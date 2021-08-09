@@ -2,178 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0A923E4CAC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 21:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDB43E4CC5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 21:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235497AbhHITHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 15:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52732 "EHLO
+        id S235976AbhHITQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 15:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235300AbhHITHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 15:07:05 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838EBC0613D3;
-        Mon,  9 Aug 2021 12:06:44 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id r17-20020a0568302371b0290504f3f418fbso4933643oth.12;
-        Mon, 09 Aug 2021 12:06:44 -0700 (PDT)
+        with ESMTP id S235907AbhHITQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 15:16:28 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1C3C061796
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 12:16:07 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id js7so9573899qvb.4
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 12:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=cpWtdrg0Pds7qmeMB9y3OlMrvJ16ctKZqCW37RmKfMg=;
-        b=lwHvyTKVOPwrS8cZe0zzXXK67hgOLK/AZZuO980UcdbVuZJ18j9rNLCJh3yj4cGBNg
-         VYtO1NG5n2C+tA+URW3LJCSxr1Be50oIFR54bqyCuyPwSgCQsXJTmpwjchulTCkHj2q/
-         CiENbdhDANNeHSMs+zKn0v/5IAPN1ZMPLzRi4btIuH4XLvKc+2Dj2qAWIFlgCTbjG8dK
-         ZumfTSen0MVhXfEyU7glmAZng0YuitppixTN04WkOipG2qpwIwY319FPXi37+J5L170y
-         94bRfvbC66KgAvr+pJb7KKDHSBxLm42bQlS1p/jUJJJewfD2ULzDGE2sCReFCnhlI7GB
-         sVyg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eNbXDUTDq2s+IaNPv/bGr5+o3NzigRzKhkvSyNsXN88=;
+        b=zZQPvJUNvjfkbD+0j59Ay36EtKRba9d/7e1T3pbuBzJksLb46H1gcjWWVQ3JVhcwfb
+         ZQopmiE3aK1C8xme5PRrrW0HvQC7Ps+8JhK8LoEP+io9kR1AyQxjTNwHP7AmFzf+gpN7
+         M362d3zSAxYXoVreM6mKyTADldvuG58E/gaA3E3YYjdR7/P35nL/Hy1RbxQRNBqHFOrx
+         I1FLsmXvBQaZPRkdVNTAOn3huJoiCmrEzqcaL7wpf6h523pWon2pj2As/JsSPJ0ZNZnd
+         dR5jD5x5+GxwsqCHU9S5tuByklaS/zZ0j/jAAJsYFvuI6HVO0SmeTM7Oocj0sUTMYG0N
+         Cjpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=cpWtdrg0Pds7qmeMB9y3OlMrvJ16ctKZqCW37RmKfMg=;
-        b=RtYML/1s2vegOzH98Ox/igGCjf0gWO4z1qa3eyuGY1MlpXTocEm7sTB+81623YWu/Z
-         gSgbc/JMkEGV9X7Us3DPF0h5k3oemImWI66ZyjkLbyZa/i4ZFYCAdwf0nCYIKuet1uRC
-         m7CUYSzNlUux6vJJ1Kg3vZWuVe0Ln3AYgB7jcLZMSXf9pcesCjVVp8QQf1Um2C9WPFWG
-         8EqOLN35QZR1Hm2pcGKOr5+fq4kGF8pXXuNF5JSJcjDzQOlLv3dZNjvyP3oi2+9fu0N3
-         pXHmJdyHPP9hTIMy4VB2zeS7m0408Pu1lHSoI7KNqQodA27fvH07RlI5/ZIFiHQODiz4
-         +Amw==
-X-Gm-Message-State: AOAM533xemPvzR9va7nByL78+cQeIBy3MD+ZEAAyYxb/Ujpa4lYx/UMK
-        Ul7Q+1JaOngP/IFVNExH5as=
-X-Google-Smtp-Source: ABdhPJw51Q8sQoLTe3KKK8sm3DKSF8kf3hu75pVBEYkMMXwbqFHQuKE5VwtKRwWjLFH1mriDS5/pzg==
-X-Received: by 2002:a05:6830:1f59:: with SMTP id u25mr18262623oth.321.1628536003855;
-        Mon, 09 Aug 2021 12:06:43 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id be15sm3464317oib.18.2021.08.09.12.06.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eNbXDUTDq2s+IaNPv/bGr5+o3NzigRzKhkvSyNsXN88=;
+        b=E6wcORn3YMM7UtuDvxB14J3xMvl+wJGa7WAYvQj9dns4N4jgPR3hmz+F5qjD9rznLu
+         +V8w7BFLlRfOUoT13ow99Fe6mrYhe8GjaIVvQWGWy+8mDGkssC3BcxYqsjwKW0+aPK1l
+         QqsX5z/v1oa5LREuKkpK17UT/xjzePBReaGWPb3hwNkPR3d3hefMxvl+NSpf/B34AuNv
+         boKbMujRNhVdaNrsix5GBzA8rB/osoEySsxXiko3P522ZahZJ5JQCI41n7heh3ywGFIj
+         XzllJij16tijhdu2At76RQc6tNkxtACPaEeyGHUkXxLob4C2yZx4nqRBb3AqCqgFjac+
+         6OUg==
+X-Gm-Message-State: AOAM531bY2j9TI7ZznkACAmv8kkoUMBuQRfntlp8fqdXz7ACAVWg0+M9
+        ebyYR4b23GKTV9M6lrnYukJbOQ==
+X-Google-Smtp-Source: ABdhPJxOihykJpeRPEDZTzRcVEV2Wuq24+nqfDn5c/qMKXFJNx0xbZGL2prEG0JGiv7yz9JcoA6chA==
+X-Received: by 2002:a05:6214:570:: with SMTP id cj16mr4212867qvb.41.1628536566949;
+        Mon, 09 Aug 2021 12:16:06 -0700 (PDT)
+Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.googlemail.com with ESMTPSA id n14sm7303398qti.47.2021.08.09.12.16.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Aug 2021 12:06:43 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 9 Aug 2021 12:06:41 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Mike Rapoport <rppt@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        linux-mips@vger.kernel.org, linux-mm@kvack.org,
-        Will Deacon <will@kernel.org>,
-        "H. Peter Anvin" <hpa@zytor.com>, linux-riscv@lists.infradead.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        kvmarm@lists.cs.columbia.edu, linux-s390@vger.kernel.org,
-        linux-acpi@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        x86@kernel.org, Russell King <linux@armlinux.org.uk>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Christian Borntraeger <borntraeger@de.ibm.com>,
-        Ingo Molnar <mingo@redhat.com>, Len Brown <lenb@kernel.org>,
-        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Vasily Gorbik <gor@linux.ibm.com>,
-        Heiko Carstens <hca@linux.ibm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Andy Lutomirski <luto@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Kirill A. Shutemov" <kirill@shutemov.name>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>
-Subject: Re: [PATCH v3] memblock: make memblock_find_in_range method private
-Message-ID: <20210809190641.GA1176508@roeck-us.net>
-References: <20210803064218.6611-1-rppt@kernel.org>
+        Mon, 09 Aug 2021 12:16:06 -0700 (PDT)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, viresh.kumar@linaro.org,
+        rjw@rjwysocki.net, robh+dt@kernel.org
+Cc:     steev@kali.org, tdas@codeaurora.org, mka@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [Patch v5 0/6] Introduce LMh driver for Qualcomm SoCs
+Date:   Mon,  9 Aug 2021 15:15:58 -0400
+Message-Id: <20210809191605.3742979-1-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210803064218.6611-1-rppt@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 03, 2021 at 09:42:18AM +0300, Mike Rapoport wrote:
-> From: Mike Rapoport <rppt@linux.ibm.com>
-> 
-> There are a lot of uses of memblock_find_in_range() along with
-> memblock_reserve() from the times memblock allocation APIs did not exist.
-> 
-> memblock_find_in_range() is the very core of memblock allocations, so any
-> future changes to its internal behaviour would mandate updates of all the
-> users outside memblock.
-> 
-> Replace the calls to memblock_find_in_range() with an equivalent calls to
-> memblock_phys_alloc() and memblock_phys_alloc_range() and make
-> memblock_find_in_range() private method of memblock.
-> 
-> This simplifies the callers, ensures that (unlikely) errors in
-> memblock_reserve() are handled and improves maintainability of
-> memblock_find_in_range().
-> 
-> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+Limits Management Hardware(LMh) is a hardware infrastructure on some
+Qualcomm SoCs that can enforce temperature and current limits as programmed
+by software for certain IPs like CPU. On many newer SoCs LMh is configured
+by firmware/TZ and no programming is needed from the kernel side. But on
+certain SoCs like sdm845 the firmware does not do a complete programming of
+the h/w block. On such SoCs kernel software has to explicitly set up the
+temperature limits and turn on various monitoring and enforcing algorithms
+on the hardware.
 
-I see a number of crashes in next-20210806 when booting x86 images from efi.
+Introduce support for enabling and programming various limit settings and
+monitoring capabilities of Limits Management Hardware(LMh) associated with
+cpu clusters. Also introduce support in cpufreq hardware driver to monitor
+the interrupt associated with cpu frequency throttling so that this
+information can be conveyed to the schdeuler via thermal pressure
+interface.
 
-[    0.000000] efi: EFI v2.70 by EDK II
-[    0.000000] efi: SMBIOS=0x1fbcc000 ACPI=0x1fbfa000 ACPI 2.0=0x1fbfa014 MEMATTR=0x1f25f018
-[    0.000000] SMBIOS 2.8 present.
-[    0.000000] DMI: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 0.0.0 02/06/2015
-[    0.000000] last_pfn = 0x1ff50 max_arch_pfn = 0x400000000
-[    0.000000] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT
-[    0.000000] Kernel panic - not syncing: alloc_low_pages: can not alloc memory
-[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 5.14.0-rc4-next-20210806 #1
-[    0.000000] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS 0.0.0 02/06/2015
-[    0.000000] Call Trace:
-[    0.000000]  ? dump_stack_lvl+0x57/0x7d
-[    0.000000]  ? panic+0xfc/0x2c6
-[    0.000000]  ? alloc_low_pages+0x117/0x156
-[    0.000000]  ? phys_pmd_init+0x234/0x342
-[    0.000000]  ? phys_pud_init+0x171/0x337
-[    0.000000]  ? __kernel_physical_mapping_init+0xec/0x276
-[    0.000000]  ? init_memory_mapping+0x1ea/0x2aa
-[    0.000000]  ? init_range_memory_mapping+0xdf/0x12e
-[    0.000000]  ? init_mem_mapping+0x1e9/0x26f
-[    0.000000]  ? setup_arch+0x5ff/0xb6d
-[    0.000000]  ? start_kernel+0x71/0x6b4
-[    0.000000]  ? secondary_startup_64_no_verify+0xc2/0xcb
+With this patch series following cpu performance improvement(30-70%) is
+observed on sdm845. The reasoning here is that without LMh being programmed
+properly from the kernel, the default settings were enabling thermal
+mitigation for CPUs at too low a temperature (around 70-75 degree C).  This
+in turn meant that many a time CPUs were never actually allowed to hit the
+maximum possible/required frequencies.
 
-Bisect points to this patch. Reverting it fixes the problem. Key seems to
-be the amount of memory configured in qemu; the problem is not seen if
-there is 1G or more of memory, but it is seen with all test boots with
-512M or 256M of memory. It is also seen with almost all 32-bit efi boots.
+UnixBench whets and dhry (./Run whets dhry)
+System Benchmarks Index Score
 
-The problem is not seen when booting without efi.
+                Without LMh Support             With LMh Support
+1 copy test     1353.7                          1773.2
 
-Guenter
+8 copy tests    4473.6                          7402.3
 
----
-Bisect log:
+Sysbench cpu
+sysbench cpu --threads=8 --time=60 --cpu-max-prime=100000 run
 
-# bad: [da454ebf578f6c542ba9f5b3ddb98db3ede109c1] Add linux-next specific files for 20210809
-# good: [36a21d51725af2ce0700c6ebcb6b9594aac658a6] Linux 5.14-rc5
-git bisect start 'HEAD' 'v5.14-rc5'
-# good: [d22fda64bea5f33000e31e5b7e4ba876bca37436] Merge remote-tracking branch 'crypto/master'
-git bisect good d22fda64bea5f33000e31e5b7e4ba876bca37436
-# good: [b084da3a98fad27a39ed5ca64106b86df0417851] Merge remote-tracking branch 'irqchip/irq/irqchip-next'
-git bisect good b084da3a98fad27a39ed5ca64106b86df0417851
-# good: [a5383d1f57190a33c6afc25c62b9907d84ba2bc6] Merge remote-tracking branch 'staging/staging-next'
-git bisect good a5383d1f57190a33c6afc25c62b9907d84ba2bc6
-# good: [a439da3e6abeb054f4e6b0d37814e762b7340196] Merge remote-tracking branch 'seccomp/for-next/seccomp'
-git bisect good a439da3e6abeb054f4e6b0d37814e762b7340196
-# bad: [9801f3c0890c7b992b45a5c2afcb16c5cdc8388e] mm/idle_page_tracking: Make PG_idle reusable
-git bisect bad 9801f3c0890c7b992b45a5c2afcb16c5cdc8388e
-# good: [b4f7f4a9b542836683308d48ffdd18471c6f3e76] lazy-tlb-allow-lazy-tlb-mm-refcounting-to-be-configurable-fix
-git bisect good b4f7f4a9b542836683308d48ffdd18471c6f3e76
-# good: [e30842a48c36f094271eea0984bb861b49c49c87] mm/vmscan: add 'else' to remove check_pending label
-git bisect good e30842a48c36f094271eea0984bb861b49c49c87
-# bad: [65300b20a21214fb2043419d4e5da1d9947c6e15] mm/madvise: add MADV_WILLNEED to process_madvise()
-git bisect bad 65300b20a21214fb2043419d4e5da1d9947c6e15
-# bad: [7348da7a8c244d1a755bc5838b04cb9b1b6ee06c] memblock: make memblock_find_in_range method private
-git bisect bad 7348da7a8c244d1a755bc5838b04cb9b1b6ee06c
-# good: [98f8c467fe2ba8e553b450b2a3294d69f1f2027f] mm-mempolicy-convert-from-atomic_t-to-refcount_t-on-mempolicy-refcnt-fix
-git bisect good 98f8c467fe2ba8e553b450b2a3294d69f1f2027f
-# good: [760ded422ebe4f8899905b752d8378c44f2a78f3] mm/memplicy: add page allocation function for MPOL_PREFERRED_MANY policy
-git bisect good 760ded422ebe4f8899905b752d8378c44f2a78f3
-# good: [fbfa0492d9639b67119d3d94b7a6a3f85e064260] mm/mempolicy: advertise new MPOL_PREFERRED_MANY
-git bisect good fbfa0492d9639b67119d3d94b7a6a3f85e064260
-# good: [ff6d5759a871883aeea38309fb16d91666179328] mm/mempolicy: unify the create() func for bind/interleave/prefer-many policies
-git bisect good ff6d5759a871883aeea38309fb16d91666179328
-# first bad commit: [7348da7a8c244d1a755bc5838b04cb9b1b6ee06c] memblock: make memblock_find_in_range method private
+                Without LMh Support             With LMh Support
+Events per
+second                  355                             614
+
+Avg Latency(ms)         21.84                           13.02
+
+v4->v5:
+	- Rebased to v5.14-rc5.
+
+v3->v4:
+        - Rebased to v5.14-rc2.
+
+v2->v3:
+        - Included patch adding dt binding documentation for LMh nodes.
+        - Rebased to v5.13
+
+Thara Gopinath (6):
+  firmware: qcom_scm: Introduce SCM calls to access LMh
+  thermal: qcom: Add support for LMh driver
+  cpufreq: qcom-cpufreq-hw: Add dcvs interrupt support
+  arm64: dts: qcom: sdm45: Add support for LMh node
+  arm64: dts: qcom: sdm845: Remove cpufreq cooling devices for CPU
+    thermal zones
+  dt-bindings: thermal: Add dt binding for QCOM LMh
+
+ .../devicetree/bindings/thermal/qcom-lmh.yaml |  82 +++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 162 ++----------
+ drivers/cpufreq/qcom-cpufreq-hw.c             | 147 +++++++++++
+ drivers/firmware/qcom_scm.c                   |  58 +++++
+ drivers/firmware/qcom_scm.h                   |   4 +
+ drivers/thermal/qcom/Kconfig                  |  10 +
+ drivers/thermal/qcom/Makefile                 |   1 +
+ drivers/thermal/qcom/lmh.c                    | 232 ++++++++++++++++++
+ include/linux/qcom_scm.h                      |  14 ++
+ 9 files changed, 574 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
+ create mode 100644 drivers/thermal/qcom/lmh.c
+
+-- 
+2.25.1
+
