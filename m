@@ -2,120 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76AB83E4986
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB0E3E4A09
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:32:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbhHIQQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 12:16:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35878 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229488AbhHIQQn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 12:16:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 17D4860EB9;
-        Mon,  9 Aug 2021 16:16:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628525782;
-        bh=C5/2dVgJImM/dgrdIjcufSzzf7XvsOxZHwVOIj8pShE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=eSokIi1AXe7eH/E/RW+03kMmrL/YNf2bMht4nF6os6Baba65ELy1ADAw+/nYc6QBD
-         1OH8WiLaKIcj1WbbpQMm9wTFh5ZDq7oc23tbUxElV9gtgpYRmlh8LCmUszq5N2CNXf
-         I4yJHMaNWuqrRN0ZNc1p+0m+tdNrPwEBcMyagB/8Xas1ECKfWqTvN+neYebAHWPViB
-         HlS/1l1FSxTUQiTrethkTKArmDhVFEnbewVICG95sc+6HdfgBUtnc6/y4uC9Euyiw6
-         zvL6Q+wEMLwN2QI1HM1IS1KGIuFylqsQWc9viRx+33kiY5Ya0Mafv1az+ujYi3DTZn
-         cdJ1STGr2qReg==
-Date:   Mon, 9 Aug 2021 09:16:21 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Anton Blanchard <anton@ozlabs.org>,
-        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] net: Add driver for LiteX's LiteETH network
- interface
-Message-ID: <20210809091621.40c91f01@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <CACPK8XcCjNWm=85uXX2tubP=WAgfF8ewqMAMWO_wJVeHB-U_0w@mail.gmail.com>
-References: <20210806054904.534315-1-joel@jms.id.au>
-        <20210806054904.534315-3-joel@jms.id.au>
-        <20210806161030.52a7ae93@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <CACPK8XcCjNWm=85uXX2tubP=WAgfF8ewqMAMWO_wJVeHB-U_0w@mail.gmail.com>
+        id S234085AbhHIQdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 12:33:00 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:35445 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233620AbhHIQcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 12:32:33 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628526732; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=ScGC4Wqnf3TqhG3D0GIJYJnUSJr2rvY61q05HrRAX9w=;
+ b=SYEm/M59/BN4dmuzTXtDwuUUU77ch/stdsR3/9bLPFm0F4DWDFwONFJX5QDNOpWKaH0vQlbx
+ m1rAVVEzG0WIdIFA09N+3/JaLBvcwTRpX+9u8rYpDUqDY7C7f/LBh7qFFQuvxaIezrUeNxJl
+ mfC4F+vzXa6LvXcviCpiYBKy2Js=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61115873f746c298d974aec1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 16:31:47
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 80F2BC43144; Mon,  9 Aug 2021 16:31:47 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D1736C43460;
+        Mon,  9 Aug 2021 16:31:46 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Mon, 09 Aug 2021 22:01:46 +0530
+From:   okukatla@codeaurora.org
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, evgreen@google.com,
+        georgi.djakov@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [V4 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on
+ SC7280
+In-Reply-To: <CAE-0n51btkt9ehEFrm+WucP90ZufKw1PEQqzNGVDRy51jByXkw@mail.gmail.com>
+References: <1624015734-16778-1-git-send-email-okukatla@codeaurora.org>
+ <1624015734-16778-2-git-send-email-okukatla@codeaurora.org>
+ <CAE-0n51btkt9ehEFrm+WucP90ZufKw1PEQqzNGVDRy51jByXkw@mail.gmail.com>
+Message-ID: <618b3a664b3556718a867e815e94578f@codeaurora.org>
+X-Sender: okukatla@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Aug 2021 12:03:36 +0000 Joel Stanley wrote:
-> On Fri, 6 Aug 2021 at 23:10, Jakub Kicinski <kuba@kernel.org> wrote:
-> > > +static int liteeth_start_xmit(struct sk_buff *skb, struct net_device *netdev)
-> > > +{
-> > > +     struct liteeth *priv = netdev_priv(netdev);
-> > > +     void __iomem *txbuffer;
-> > > +     int ret;
-> > > +     u8 val;
-> > > +
-> > > +     /* Reject oversize packets */
-> > > +     if (unlikely(skb->len > MAX_PKT_SIZE)) {
-> > > +             if (net_ratelimit())
-> > > +                     netdev_dbg(netdev, "tx packet too big\n");
-> > > +             goto drop;
-> > > +     }
-> > > +
-> > > +     txbuffer = priv->tx_base + priv->tx_slot * LITEETH_BUFFER_SIZE;
-> > > +     memcpy_toio(txbuffer, skb->data, skb->len);
-> > > +     writeb(priv->tx_slot, priv->base + LITEETH_READER_SLOT);
-> > > +     writew(skb->len, priv->base + LITEETH_READER_LENGTH);
-> > > +
-> > > +     ret = readl_poll_timeout_atomic(priv->base + LITEETH_READER_READY, val, val, 5, 1000);  
-> >
-> > Why the need for poll if there is an interrupt?
-> > Why not stop the Tx queue once you're out of slots and restart
-> > it when the completion interrupt comes?  
-> 
-> That makes sense.
-> 
-> In testing I have not been able to hit the LITEETH_READER_READY
-> not-ready state. I assume it's there to say that the slots are full.
+Thanks Stephen for the reviews!
 
-In that case it's probably best to stop the Tx queue in the xmit routine
-once all the lots are used, and restart it from the interrupt. I was
-guessing maybe the IRQ is not always there, but that doesn't seem to be
-the case.
- 
-> > > +     if (ret == -ETIMEDOUT) {
-> > > +             netdev_err(netdev, "LITEETH_READER_READY timed out\n");  
-> >
-> > ratelimit this as well, please
-> >  
-> > > +             goto drop;
-> > > +     }
-> > > +
-> > > +     writeb(1, priv->base + LITEETH_READER_START);
-> > > +
-> > > +     netdev->stats.tx_bytes += skb->len;  
-> >
-> > Please count bytes and packets in the same place  
+On 2021-07-09 04:52, Stephen Boyd wrote:
+> Quoting Odelu Kukatla (2021-06-18 04:28:52)
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+>> SoCs.
+>> 
+>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+>> ---
+>>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  9 
+>> ++++++++-
+>>  include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 
+>> +++++++++-
+>>  2 files changed, 17 insertions(+), 2 deletions(-)
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml 
+>> b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> index d6a95c3..9f67c8e 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+>> @@ -18,12 +18,19 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - qcom,sc7180-osm-l3
+>> +      - qcom,sc7280-epss-l3
+>>        - qcom,sdm845-osm-l3
+>>        - qcom,sm8150-osm-l3
+>>        - qcom,sm8250-epss-l3
+>> 
+>>    reg:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 4
 > 
-> AFAIK we don't know the length when the interrupt comes in, so we need
-> to count both here in xmit?
-
-Either that or allocate a small array (num_tx_slots) to save the
-lengths for IRQ routine to use.
-
-> > > +     priv->tx_slot = (priv->tx_slot + 1) % priv->num_tx_slots;
-> > > +     dev_kfree_skb_any(skb);
-> > > +     return NETDEV_TX_OK;
-> > > +drop:
-> > > +     /* Drop the packet */
-> > > +     dev_kfree_skb_any(skb);
-> > > +     netdev->stats.tx_dropped++;
-> > > +
-> > > +     return NETDEV_TX_OK;
-> > > +}  
+> Can we base this on the compatible string so that only sc7280-epss-l3
+> requires 4 items? and then the others require 1 reg property?
+> 
+Done, Addressing this in new revision.
+>> +    items:
+>> +      - description: OSM clock domain-0 base address and size
+>> +      - description: OSM clock domain-1 base address and size
+>> +      - description: OSM clock domain-2 base address and size
+>> +      - description: OSM clock domain-3 base address and size
+>> 
+>>    clocks:
+>>      items:
