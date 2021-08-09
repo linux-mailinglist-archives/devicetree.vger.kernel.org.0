@@ -2,109 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 841023E4A35
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:47:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 867343E4A65
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:58:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233472AbhHIQrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 12:47:51 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:34969 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233384AbhHIQru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 12:47:50 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628527650; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=yUxHTAvfQ3lFYbw5/P/m+T6OTXizyFzlcN9gu+Rsslw=;
- b=v+S8YxdLY3pUercsQl2jjwunQefXP1DE6t0WY4UdMgeP9Vsc82puja0DHi/mgTYmYavxnymy
- qsbEzPLMD8eaazz2S8cvjb0S+Mp3vQIt8CkRiGRaA3FYaSc4qJWZkDdXMFEsqxlYlnChxrPV
- C94jfeDGPjd+OsbUfB9l9k+0ssE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 61115c1ab14e7e2ecba13dde (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 16:47:22
- GMT
-Sender: okukatla=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3B055C43217; Mon,  9 Aug 2021 16:47:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5F9ACC433D3;
-        Mon,  9 Aug 2021 16:47:18 +0000 (UTC)
+        id S233940AbhHIQ7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 12:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51390 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233889AbhHIQ7L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 12:59:11 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6FBEC0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 09:58:50 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id f13so25589044edq.13
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 09:58:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=GShMZ0YE31PhZtv7qVrPV9jBnPIeRvrOKU05vxEPKPw=;
+        b=RBsgmvw3vpA/wP5MnH75lfLsQR2Z9iTL+sSUoGptGSAA1q7B4lk/pMTqeqjLfktHqq
+         m0LzdVO4BGdQou7VxMJSf7+0OhthyqU1fcRBzRv0sS5ip20SVw7hs5Xv9Oiju7gWVHEC
+         JlqFvTXU80Yi5Zb/9Ts8//QLlh7Izu0B9pP5A15yzD7U6dMuZc6DgHIrDW7JwCtDEMs7
+         rJaYIwMKFE2XNmUru4EiAe+BmQiLZWmVRloAsYLabOHlnZzDBmuIzIO7zTUPfjngbC2l
+         p0qgxpMjdokK02+V9RRZF/n2dtFFOygqZUFOmcfpJP//nhiO6exqutQZvqsLK8bfur/I
+         0+EA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=GShMZ0YE31PhZtv7qVrPV9jBnPIeRvrOKU05vxEPKPw=;
+        b=mo1AMoke5SUFXXs5LaQ+kWlRT8QxdVd8+1hfgcvZa1gcZr1j70fDENGxeEgzR3MXCB
+         xkfMqRV3tAIOfsEKj+qQZsKVaTIEDIXYzpIhCseA1UTbkDvWq5xOofsitLEl+UX8wGiT
+         1wqtZndGwAaOv+gd6W1YT2GWUgRR1/X6i2f5J42UuhqssCk4qQMdvX+TZOI8Zn4WE4de
+         Cr+A4ipNnVJHbQMdLbNnPq78U/uQBpZ8Lr5TQCwL2V9hBd2+R9WvsOhxOJIEKG6szMkg
+         4nUrJzyJsKlKewJyraLHk8gxKMdDWhQ/ZMymQ+p3p5k5zaXyGcPMR049iogxujHgQuLf
+         7xNA==
+X-Gm-Message-State: AOAM530j4Q7ybOZkp/hh9FgvHYBmZF471lyqPZurDkIpYsBGBDQwTI4u
+        np5cUq23bXgkw2WkjBS7aFDjsTYPQP6zCFYl4sw=
+X-Google-Smtp-Source: ABdhPJzjrn1TdqejoKst5AYtHvNnnBgWYA3jpehnxsKwm8w692+503UZHwiWhiLawahNsfeIIjWGKSBH/pwAB9PjrBg=
+X-Received: by 2002:a05:6402:5241:: with SMTP id t1mr10955207edd.188.1628528329437;
+ Mon, 09 Aug 2021 09:58:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 09 Aug 2021 22:17:18 +0530
-From:   okukatla@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        evgreen@google.com, georgi.djakov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [V4 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
- provider
-In-Reply-To: <CAE-0n52XPJ7COZc7Zy=721-FGPX9D=vSFR_qccL86UXuABuy9Q@mail.gmail.com>
-References: <1624015734-16778-1-git-send-email-okukatla@codeaurora.org>
- <1624015734-16778-4-git-send-email-okukatla@codeaurora.org>
- <CAE-0n52XPJ7COZc7Zy=721-FGPX9D=vSFR_qccL86UXuABuy9Q@mail.gmail.com>
-Message-ID: <74e3a26642342e88cb93c4e1aee62705@codeaurora.org>
-X-Sender: okukatla@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Received: by 2002:a17:907:868b:0:0:0:0 with HTTP; Mon, 9 Aug 2021 09:58:48
+ -0700 (PDT)
+Reply-To: mrmichelduku@outlook.com
+From:   Michel <michaeldung001@gmail.com>
+Date:   Mon, 9 Aug 2021 16:58:48 +0000
+Message-ID: <CAFj68QqNs8tvhzh9oaXSxbdbfsLSMe1DOGXdaUXG1O94qMhqkQ@mail.gmail.com>
+Subject: Please Respond Urgently
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-09 04:34, Stephen Boyd wrote:
-> Quoting Odelu Kukatla (2021-06-18 04:28:54)
->> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
->> SoCs.
->> 
->> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 38a7f55..7690d7e 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -1153,6 +1153,15 @@
->>                         };
->>                 };
->> 
->> +               epss_l3: interconnect@18590000 {
->> +                       compatible = "qcom,sc7280-epss-l3";
->> +                       reg = <0 0x18590000 0 1000>, <0 0x18591000 0 
->> 0x100>,
->> +                               <0 0x18592000 0 0x100>, <0 0x18593000 
->> 0 0x100>;
->> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc 
->> GCC_GPLL0>;
->> +                       clock-names = "xo", "alternate";
->> +                       #interconnect-cells = <1>;
->> +               };
-> 
-> Is this inside the soc node? Because it should be but then the next 
-> node
-> is called 'interconnect' and has no address so that is probably outside
-> the soc node. Please put nodes with a reg property like this into the
-> soc node.
-> 
-no, will move this into soc node in v5.
->> +
->>                 clk_virt: interconnect {
->>                         compatible = "qcom,sc7280-clk-virt";
->>                         #interconnect-cells = <2>;
+Hello,
+
+With due respect to your person, I make this contact with you as I
+believe that you can be of great assistance to me. I need your
+assistance in transferring the sum of $11.3million to your private
+account Where this money can be shared between us.
+
+The money has been here in our Bank lying dormant for years now
+without anybody coming for the claim. I want to release the money to
+you as the relative to our deceased customer (the account owner) who
+died in a plane crash with his family since October 2005.
+
+By indicating your interest I will send you the full details on how
+the business will be executed.
+
+Best Regards,
+Michel Duku.
