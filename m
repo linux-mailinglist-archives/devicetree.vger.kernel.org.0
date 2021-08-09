@@ -2,102 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C47F23E4713
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC333E4727
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:05:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234769AbhHIOAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 10:00:51 -0400
-Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:52908
-        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234867AbhHIOAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 10:00:49 -0400
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 3514E3F358
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 14:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1628517628;
-        bh=ogcKwTXTNYwj+j1SOoDVMuNAFMs2asYIwm4+FNw/esM=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=intbm6++GHyRvl/jNImpuCeR5EP4S0dzPseQahUW5DfI+xaQzoxVzvmDMZpRAmRHz
-         jspcJ2m/8+7x2PTydpS5QkWV3swog+tk+IhtcXZMUy3jxR0n4XjM+q8uViKZxMWGO7
-         XEohb+JExqd40v6IdReMSLPzbSOe92k7cPbaVqmX2YKx62tYXP2zcrDmOORo8k2tFB
-         Avwkrv251fB3vOW1QfXXZGqcO43SQxibEXHCxC6QeYt5T9JVglFQahcQJPXl4v0yaQ
-         L+GgQunGo0L6BnadxKsRV3N9JY2JDYr6K5AK4EOEn236Dfp1w6vy59seuZpEBZI8Og
-         KueGchOTYFSBA==
-Received: by mail-ej1-f72.google.com with SMTP id q19-20020a1709064cd3b02904c5f93c0124so4530093ejt.14
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 07:00:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ogcKwTXTNYwj+j1SOoDVMuNAFMs2asYIwm4+FNw/esM=;
-        b=lncI4LaAjpkavT32BO1Tv/Ocv+2i2bRfC9YSxHlo/mE6dbNomDTTOQ7Z8+2VOTZuVo
-         skYzetKBGbwrAkNiYFOcceWrmI3hnHd/WcBVo4gwrlj3b1YnivBrakS5fM+oFWrQFpCq
-         TN6bxTsSNV7xLtmtw5hVHfd8CuvaKXhKlKTJnpIthuTP/Enyy+rvELgKYv3dPSfCGsRh
-         0GQDQCpEInIQrb67Wd/xXBQ5034WMZrSsepI73Iol9DFRpUlXFEdX3hyzR7DRTFN6jfY
-         sXLJa9D3TIzgebZzN2iPFkwKMTChHabgY1gg3i8GOd1nHJ35w8wgMoYT9/DTVbNGxBj+
-         YQRQ==
-X-Gm-Message-State: AOAM533UCNlVq+rMSG1KBJG2FP7ZRj22fQkdPP7oHuDUdlzuDO6a87Pf
-        Oo1L8fx0qGKHXLxbOu2umWhCcFI+Mp/NLyxLohGmMrElJR83Q/k4VCBmoFpY5rAYqLgVfFTal6H
-        FW+aDT9bvT63fgqxe3G5ILO0pAQUKIUcPX6DuoOY=
-X-Received: by 2002:a50:eb95:: with SMTP id y21mr3033505edr.5.1628517627880;
-        Mon, 09 Aug 2021 07:00:27 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzrg+ozBKK4x83aTava67CJhBK41FPyP3TvrzsZD3SsSwXCBJSszou+evSlMSrS/YsyQeeDcQ==
-X-Received: by 2002:a50:eb95:: with SMTP id y21mr3033487edr.5.1628517627750;
-        Mon, 09 Aug 2021 07:00:27 -0700 (PDT)
-Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id b17sm7909686edd.27.2021.08.09.07.00.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Aug 2021 07:00:27 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] MAINTAINERS: clock: include S3C and S5P in Samsung SoC clock entry
-Date:   Mon,  9 Aug 2021 15:59:42 +0200
-Message-Id: <20210809135942.100744-4-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210809135942.100744-1-krzysztof.kozlowski@canonical.com>
-References: <20210809135942.100744-1-krzysztof.kozlowski@canonical.com>
+        id S233558AbhHIOGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 10:06:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35662 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231478AbhHIOGB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 10:06:01 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3BB760F35;
+        Mon,  9 Aug 2021 14:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628517940;
+        bh=B16BkVOlzvMofRNxZCCPfBpfJWKgMemm4c5pHZIX5uE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=P/rj+RsZilC5qcXQ/+8k1PaWasOHfI6V7uARzwTxsJxOtKgBnRiawROZavf8ARIk1
+         VfkoxdO3tgLoju+FV2uKH1olUAnunxOnd4esoz/i7R801K0z0AjzorDn5c+Zn1Ovu3
+         pEyJ9FVykcNU+88fLz9pHKHfKtMQsYpGjlIX3Y75Z+ZsStwbhFkZ3RpmwWpdgrs4i9
+         AoO0HEgbca8ZtVyNsTjos3Kg3/jNHrI3DvMxBjbOrvH/JttZSlZmR3pqVvOeWrxHGi
+         5OPdYG/jTQRpPN/r5Hi+T/wOBDhpbg/SHcZ3ljwR1q7tT2iDlxNqudcW//kF7Qgaee
+         7OKfeKQXXRkIQ==
+Received: by mail-ed1-f46.google.com with SMTP id f13so24730043edq.13;
+        Mon, 09 Aug 2021 07:05:40 -0700 (PDT)
+X-Gm-Message-State: AOAM532Ie0lPdXLfZikp3rQpAEP7uCVy2POBbVtvMSXSkE10nGcOgEGG
+        w2BQhXFyavxWXscxp6MDPzHRNJeI9hUckQmVBQ==
+X-Google-Smtp-Source: ABdhPJzq3vGkwq0LwxmantDeoehWwnPrH+tI1JJ76dOOXmOZpmtTgTRuHk9cLXTrSQ0qQJPtXQG+i+a4FW+Oe+pp8Ms=
+X-Received: by 2002:a05:6402:648:: with SMTP id u8mr30935144edx.162.1628517939275;
+ Mon, 09 Aug 2021 07:05:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201023133130.194140-1-fparent@baylibre.com> <20201023133130.194140-6-fparent@baylibre.com>
+In-Reply-To: <20201023133130.194140-6-fparent@baylibre.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 9 Aug 2021 22:05:28 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-9zscXmC83oDkk-JZvnooZbiqtei+R2+c=VhBJ7xW84A@mail.gmail.com>
+Message-ID: <CAAOTY_-9zscXmC83oDkk-JZvnooZbiqtei+R2+c=VhBJ7xW84A@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] drm/mediatek: Add support for main DDP path on MT8167
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cover the S3C and S5Pv210 clock controller binding headers by Samsung
-SoC clock controller drivers maintainer entry.
+Hi, Fabien:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
+Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8823=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Add the main (DSI) drm display path for MT8167.
+>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2dbacacac3f5..7846ce554b07 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16496,6 +16496,9 @@ F:	Documentation/devicetree/bindings/clock/samsung,s3c*
- F:	Documentation/devicetree/bindings/clock/samsung,s5p*
- F:	drivers/clk/samsung/
- F:	include/dt-bindings/clock/exynos*.h
-+F:	include/dt-bindings/clock/s3c*.h
-+F:	include/dt-bindings/clock/s5p*.h
-+F:	include/dt-bindings/clock/samsung,*.h
- F:	include/linux/clk/samsung.h
- F:	include/linux/platform_data/clk-s3c2410.h
- 
--- 
-2.30.2
+Applied to mediatek-drm-next [1], thanks.
 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>
+> Changelog:
+>
+> V2: No change
+>
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 38 ++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index 59c85c63b7cc..3952435093fe 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -112,6 +112,17 @@ static const enum mtk_ddp_comp_id mt2712_mtk_ddp_thi=
+rd[] =3D {
+>         DDP_COMPONENT_PWM2,
+>  };
+>
+> +static enum mtk_ddp_comp_id mt8167_mtk_ddp_main[] =3D {
+> +       DDP_COMPONENT_OVL0,
+> +       DDP_COMPONENT_COLOR0,
+> +       DDP_COMPONENT_CCORR,
+> +       DDP_COMPONENT_AAL0,
+> +       DDP_COMPONENT_GAMMA,
+> +       DDP_COMPONENT_DITHER,
+> +       DDP_COMPONENT_RDMA0,
+> +       DDP_COMPONENT_DSI0,
+> +};
+> +
+>  static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] =3D {
+>         DDP_COMPONENT_OVL0,
+>         DDP_COMPONENT_COLOR0,
+> @@ -163,6 +174,11 @@ static const struct mtk_mmsys_driver_data mt8173_mms=
+ys_driver_data =3D {
+>         .ext_len =3D ARRAY_SIZE(mt8173_mtk_ddp_ext),
+>  };
+>
+> +static const struct mtk_mmsys_driver_data mt8167_mmsys_driver_data =3D {
+> +       .main_path =3D mt8167_mtk_ddp_main,
+> +       .main_len =3D ARRAY_SIZE(mt8167_mtk_ddp_main),
+> +};
+> +
+>  static int mtk_drm_kms_init(struct drm_device *drm)
+>  {
+>         struct mtk_drm_private *private =3D drm->dev_private;
+> @@ -401,26 +417,42 @@ static const struct component_master_ops mtk_drm_op=
+s =3D {
+>  static const struct of_device_id mtk_ddp_comp_dt_ids[] =3D {
+>         { .compatible =3D "mediatek,mt2701-disp-ovl",
+>           .data =3D (void *)MTK_DISP_OVL },
+> +       { .compatible =3D "mediatek,mt8167-disp-ovl",
+> +         .data =3D (void *)MTK_DISP_OVL },
+>         { .compatible =3D "mediatek,mt8173-disp-ovl",
+>           .data =3D (void *)MTK_DISP_OVL },
+>         { .compatible =3D "mediatek,mt2701-disp-rdma",
+>           .data =3D (void *)MTK_DISP_RDMA },
+> +       { .compatible =3D "mediatek,mt8167-disp-rdma",
+> +         .data =3D (void *)MTK_DISP_RDMA },
+>         { .compatible =3D "mediatek,mt8173-disp-rdma",
+>           .data =3D (void *)MTK_DISP_RDMA },
+>         { .compatible =3D "mediatek,mt8173-disp-wdma",
+>           .data =3D (void *)MTK_DISP_WDMA },
+> +       { .compatible =3D "mediatek,mt8167-disp-ccorr",
+> +         .data =3D (void *)MTK_DISP_CCORR },
+>         { .compatible =3D "mediatek,mt2701-disp-color",
+>           .data =3D (void *)MTK_DISP_COLOR },
+> +       { .compatible =3D "mediatek,mt8167-disp-color",
+> +         .data =3D (void *)MTK_DISP_COLOR },
+>         { .compatible =3D "mediatek,mt8173-disp-color",
+>           .data =3D (void *)MTK_DISP_COLOR },
+> +       { .compatible =3D "mediatek,mt8167-disp-aal",
+> +         .data =3D (void *)MTK_DISP_AAL},
+>         { .compatible =3D "mediatek,mt8173-disp-aal",
+>           .data =3D (void *)MTK_DISP_AAL},
+> +       { .compatible =3D "mediatek,mt8167-disp-gamma",
+> +         .data =3D (void *)MTK_DISP_GAMMA, },
+>         { .compatible =3D "mediatek,mt8173-disp-gamma",
+>           .data =3D (void *)MTK_DISP_GAMMA, },
+> +       { .compatible =3D "mediatek,mt8167-disp-dither",
+> +         .data =3D (void *)MTK_DISP_DITHER },
+>         { .compatible =3D "mediatek,mt8173-disp-ufoe",
+>           .data =3D (void *)MTK_DISP_UFOE },
+>         { .compatible =3D "mediatek,mt2701-dsi",
+>           .data =3D (void *)MTK_DSI },
+> +       { .compatible =3D "mediatek,mt8167-dsi",
+> +         .data =3D (void *)MTK_DSI },
+>         { .compatible =3D "mediatek,mt8173-dsi",
+>           .data =3D (void *)MTK_DSI },
+>         { .compatible =3D "mediatek,mt2701-dpi",
+> @@ -431,10 +463,14 @@ static const struct of_device_id mtk_ddp_comp_dt_id=
+s[] =3D {
+>           .data =3D (void *)MTK_DISP_MUTEX },
+>         { .compatible =3D "mediatek,mt2712-disp-mutex",
+>           .data =3D (void *)MTK_DISP_MUTEX },
+> +       { .compatible =3D "mediatek,mt8167-disp-mutex",
+> +         .data =3D (void *)MTK_DISP_MUTEX },
+>         { .compatible =3D "mediatek,mt8173-disp-mutex",
+>           .data =3D (void *)MTK_DISP_MUTEX },
+>         { .compatible =3D "mediatek,mt2701-disp-pwm",
+>           .data =3D (void *)MTK_DISP_BLS },
+> +       { .compatible =3D "mediatek,mt8167-disp-pwm",
+> +         .data =3D (void *)MTK_DISP_PWM },
+>         { .compatible =3D "mediatek,mt8173-disp-pwm",
+>           .data =3D (void *)MTK_DISP_PWM },
+>         { .compatible =3D "mediatek,mt8173-disp-od",
+> @@ -449,6 +485,8 @@ static const struct of_device_id mtk_drm_of_ids[] =3D=
+ {
+>           .data =3D &mt7623_mmsys_driver_data},
+>         { .compatible =3D "mediatek,mt2712-mmsys",
+>           .data =3D &mt2712_mmsys_driver_data},
+> +       { .compatible =3D "mediatek,mt8167-mmsys",
+> +         .data =3D &mt8167_mmsys_driver_data},
+>         { .compatible =3D "mediatek,mt8173-mmsys",
+>           .data =3D &mt8173_mmsys_driver_data},
+>         { }
+> --
+> 2.28.0
+>
