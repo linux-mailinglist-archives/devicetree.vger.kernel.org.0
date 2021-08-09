@@ -2,150 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A91A3E4452
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E9693E445A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234861AbhHILA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 07:00:26 -0400
-Received: from mail-ua1-f43.google.com ([209.85.222.43]:40712 "EHLO
-        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233254AbhHILAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 07:00:25 -0400
-Received: by mail-ua1-f43.google.com with SMTP id y14so1780564uai.7;
-        Mon, 09 Aug 2021 04:00:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rCa+8aMH9lvrldDtJTsQzoAwywDdjdFTQK8ubSieS/Y=;
-        b=gVUat8b6QOGWiN3CVrn4ajVbO+BPJ+dQoX0eWprAuRw//Aq2tOvKTZ7rCZgWbnH3u8
-         KxAZDTsx4Wa4TYxmqnNwvOrPhLE5yNcKnlmqFueSKfuyDVwAEfZVfOCQE23IyR4lf+vP
-         p9osX3zu4+qru1p4GFu5V9EGdvXq3braIWDrdtt9g2qVgDSgtlmQg1xr3gEKY2J9z0oW
-         EHLVv24MRNGzfTAtRJlPoQfONWC3kn9QhRkf4TrnXDLFKifx7i5T5pyq9KK1ZqU0E9MX
-         HFnHWZN3dpB9XdZoqeqVkJG9zzovlhJt5Z4XQNJa2OGGv8VjjXCeJPEyrlvJNsxf9yaM
-         W1tg==
-X-Gm-Message-State: AOAM530Llf5WjHdBkuGcaVUL+bLe6h+hwXiiudOjkR/pnoAxvYmXi3Gm
-        bFfueTAFNokmPvFGZCZ6KDxOR1sqG50AveX32BQ=
-X-Google-Smtp-Source: ABdhPJyzDIPE3tsvO4qcGGsTg9uBsU8k/CFcUQfTTC+SWZI+D9cqB89hcO9ltBZOMwDA8wciAXmJoysCLpv3MeXn4E8=
-X-Received: by 2002:a9f:31ad:: with SMTP id v42mr2393402uad.58.1628506805059;
- Mon, 09 Aug 2021 04:00:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
- <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
- <20210805023024.GA12312@x1> <CANBLGcwczBsc-mfU2t9=7No7KhHfBFHFzGy=5hdyEE+4VN8ksg@mail.gmail.com>
- <CAOnJCU+-orqjP5dND0QNh+08UhXitS=LPpg1VpnBcp=6YJU7EQ@mail.gmail.com>
-In-Reply-To: <CAOnJCU+-orqjP5dND0QNh+08UhXitS=LPpg1VpnBcp=6YJU7EQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 9 Aug 2021 12:59:53 +0200
-Message-ID: <CAMuHMdW=HUKz-9gd6R2Sh4tu5uLrjNPhdScZMi5ev+n-B4yYsw@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
-        Drew Fustini <drew@pdp7.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Bin Meng <bmeng.cn@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S234949AbhHILBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 07:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234948AbhHILBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 07:01:55 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41AA1C0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 04:01:35 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mD328-0003RL-TW; Mon, 09 Aug 2021 13:01:28 +0200
+Message-ID: <8ea33d97fb3f7abb2d80b11db28cce8c01932a09.camel@pengutronix.de>
+Subject: Re: [PATCH v2 00/18] i.MX8MM GPC improvements and BLK_CTRL driver
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>, Marek Vasut <marex@denx.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+Date:   Mon, 09 Aug 2021 13:01:27 +0200
+In-Reply-To: <8de1cd0a-4d91-60e2-61e6-9f903bbf546b@kontron.de>
+References: <20210716232916.3572966-1-l.stach@pengutronix.de>
+         <20210721204703.1424034-1-l.stach@pengutronix.de>
+         <818b52fe-8fa6-b47a-6dde-783ac378c603@kontron.de>
+         <8de1cd0a-4d91-60e2-61e6-9f903bbf546b@kontron.de>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 5, 2021 at 8:09 PM Atish Patra <atishp@atishpatra.org> wrote:
-> On Thu, Aug 5, 2021 at 1:13 AM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > On Thu, 5 Aug 2021 at 04:30, Drew Fustini <drew@pdp7.com> wrote:
-> > > On Wed, Aug 04, 2021 at 02:13:47PM -0700, Palmer Dabbelt wrote:
-> > > > On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
-> > > > > On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> > > > > > On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
-> > > > > > > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
-> > > > > > >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
-> > > > > > >> BeagleV Starlight JH7100 board [2].
-> > > > > > >>
-> > > > > > >> [1] https://github.com/starfive-tech/beaglev_doc
-> > > > > > >> [2] https://github.com/beagleboard/beaglev-starlight
-> > > > > > >>
-> > > > > > >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+Hi Frieder,
 
-> > > > > Given that beagleV starlight mass production is cancelled [1], are we
-> > > > > still upstreaming the support for this ?
-> > > >
-> > > > I'm not sure, but I wasn't quite sure where to have that discussion.  I
-> > > > figured that the boards exist so there's no reason to shoot this down, given
-> > > > that it's just the vendor DT list.  At a bare minimum there's out of tree
-> > > > support for this, so having the DT strings defined seems sane as that's a
-> > > > defacto interface with bootloaders.
-> > > >
-> > > > Maybe this is more of a question for Drew: I think we were all OK working
-> > > > through the issues with the first-run chip when there was going to be a lot
-> > > > of them, but with such a small number produced I'm not sure if there's going
-> > > > to be enough interested to take on all that effort.
-> > > >
-> > > > I'm not quite sure where we stand on support for this: at some point there
-> > > > were some ideas floating around as to a way to support it without major
-> > > > software changes (allocating into the non-caching regions).  If that pans
-> > > > out then I'm fine handling this, at least from the RISC-V side, but if we're
-> > > > going to have to go through all the ISA/SBI stuff then it's probably not
-> > > > worth it.  Also not sure if there are a bunch of starfive-specific drivers
-> > > > that would be needed to make this boot, in which case it's probably best to
-> > > > wait for whatever comes next.
-> > >
-> > > I think that the discontinued beta prototype could be useful as a native
-> > > build host for those of you that have it and don't have an Unmatched.
+Am Donnerstag, dem 05.08.2021 um 20:56 +0200 schrieb Frieder Schrempf:
+> On 05.08.21 12:18, Frieder Schrempf wrote:
+> > On 21.07.21 22:46, Lucas Stach wrote:
+> > > Hi all,
+> > > 
+> > > second revision of the GPC improvements and BLK_CTRL driver to make use
+> > > of all the power-domains on the i.MX8MM. I'm not going to repeat the full
+> > > blurb from the v1 cover letter here, but if you are not familiar with
+> > > i.MX8MM power domains, it may be worth a read.
+> > > 
+> > > This 2nd revision fixes the DT bindings to be valid yaml, some small
+> > > failure path issues and most importantly the interaction with system
+> > > suspend/resume. With the previous version some of the power domains
+> > > would not come up correctly after a suspend/resume cycle.
+> > > 
+> > > Updated testing git trees here, disclaimer still applies:
+> > > https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8m-power-domains
+> > > https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8m-power-domains-testing
+> > 
+> > I finally did some tests on my side using USB, GPU and DSI (no PCIe, VPU, CSI so far) and the results are promising. Thanks for the effort!
+> > 
+> > I will try to run some more automated suspend/resume and reboot test cycles over the weekend and report the results here afterwards.
+> > 
+> 
+> Unfortunately I got some results sooner than I had hoped. I set up a simple loop to suspend/resume every few seconds and on the first run it took around 2-3 hours for the device to lock up on resume. On the second run it took less than half an hour. I had glmark2-es2-drm running in the background, but it looks like it crashed at some point before the lockup occurred.
+> 
+> Of course this could also be unrelated and caused by some peripheral driver or something but the first suspicion is definitely the power domains.
+> 
+> If you have any suggestions for which debug options to enable or where to add some printks, please let me know. If I do another run I would like to make sure that the resulting logs are helpful for debugging.
+> 
+> And I would appreciate if someone else could try to reproduce this problem on his/her side. I use this simple script for testing:
+> 
+> #!/bin/sh
+> 
+> glmark2-es2-drm &
+> 
+> while true;
+> do
+>     echo +10 > /sys/class/rtc/rtc0/wakealarm
+>     echo mem > /sys/power/state
+>     sleep 5
+> done;
 
-Exactly.  And there are ca. 300 boards out there (many more than
-some other platforms supported by Linux), which won't disappear with
-the blimp of an eye (unlike "proprietary" boards that tend to get
-mass-destroyed when a project is cancelled).
+Hm, that's unfortunate.
 
-> > Also according to this statement [1], they're still planning on
-> > producing new boards with the JH7100 (same chip as on the BeagleV
-> > prototype) at the end of Q3 and the JH7110 further in the future, so I
-> > still think it'd make sense to support those.
-> >
-> > [1]: https://www.design-reuse.com/news/50402/starfive-open-source-single-board-platform-q3-2021.html
->
-> > > The arch_sync_dma RFC from Atish [1] is key to the board running
-> > > mainline. Most of the peripherals (USB, SD card, ethernet) are already
-> > > supported by upstream Cadence and Synopsys drivers. However, the vendor
-> > > kernel used ifdef's to flush the L2 cache at several points in those
-> > > drivers and subsystem cores because the peripherals are on a non-cache
-> > > coherent interconnect.
-> > >
-> > > Without the proposed solution from Atish that uses the non-cached DDR
-> > > alias, then only serial console would work on mainline (assuming the
-> > > system is running from a ramdisk that the vendor uboot loaded).
->
-> We need the clock patches as well. If there is an agreed effort to
-> upstream the clock patches
-> and other bare minimum patches, I am happy to revise the DMA patches as well.
+I'm back from a two week vacation, but it looks like I won't have much
+time available to look into this issue soon. It would be very helpful
+if you could try to pinpoint the hang a bit more.  If you can reproduce
+the hang with no_console_suspend you might be able to extract a bit
+more info in which stage the hang happens (suspend, resume, TF-A, etc.)
+If the hang is in the kernel you might be able to add some prints to
+the suspend/resume paths to be able to track down the exact point of
+the hang.
 
-The main issue with the clock driver is that we do not have complete
-documentation about the clock tree, so the tree implemented by the
-driver is a bit ad-hoc.
+I'm happy to look into the issue once it's better known where to look,
+but I fear that I won't have time to do the above investigation myself
+short term. Frieder, is this something you could help with over the
+next few days?
 
-However, I do think we already have a good separation between DT
-bindings (incl. definitions) and clock driver.  Hence we can upstream
-the DT and clock driver, and fill in the missing and correct the
-existing parts of the clock driver later, without needing further
-changes to the DT bindings.
+Regards,
+Lucas
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
