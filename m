@@ -2,103 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC4FF3E45F7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 14:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3603E4605
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 15:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233855AbhHIM6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 08:58:06 -0400
-Received: from mail-vk1-f179.google.com ([209.85.221.179]:34401 "EHLO
-        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233342AbhHIM6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 08:58:05 -0400
-Received: by mail-vk1-f179.google.com with SMTP id x11so3908034vke.1;
-        Mon, 09 Aug 2021 05:57:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8YyANyuZR7fYPTEivb2A77rPthj74HCMJFLYlpLjhb4=;
-        b=JHl0Wpqlw4+rEhyCZiZudmmLXovJ/7qPMEnQkSaj8VsXg9iw+C2fE/OkqbZ5Gn7NSj
-         3pybdxret/bV1eP8imGReJ6cU1IAWwPdrw9wTuJHD+wGwd5aKb6VGkw+uwY2IWHxNuEb
-         NPzGjrQubxTwtoS57ffsILhp6zo7tdTZQwoabU3+IKrWAY9+F0SM8lBPiCpPK6TcigJA
-         pjW43kReh1p+cEUM7UZ0Qsk1kMl9SE8axGdZNsY3YREdQD40Z+/5X4/RSZokNwv83bhf
-         IxUyjRoM+lq3fFyfAIvqrsIpo+1yWxQpKz2DfVqR4mVc+R+vh2jIdawCNgQpsIIERDv0
-         5qrA==
-X-Gm-Message-State: AOAM5302/2M5VnsZ2Ab2F/nmk0JQLqMfuCdW9WkPee/9dmHeKZw7wbrO
-        RrSVeaiGUesKcaRg2c5L64dwBgp9qscSq74DbsY=
-X-Google-Smtp-Source: ABdhPJy3oD8kwL2fKgjd1+x6oD9DrDy3lnCulPeZeuWofPVdmbjqf9lmI9L+WnkYPGr3ewE9j3BxXIRigNiej0QJHFk=
-X-Received: by 2002:a1f:fc03:: with SMTP id a3mr13722921vki.1.1628513864509;
- Mon, 09 Aug 2021 05:57:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210806102930.3024-1-biju.das.jz@bp.renesas.com> <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 9 Aug 2021 14:57:33 +0200
-Message-ID: <CAMuHMdVnU4HSXCr08WEiVmYCNoRBcdZGOfS7mwmS_euo2RZaEA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] ASoC: dt-bindings: sound: renesas,rz-ssi: Update
- slave dma channel configuration parameters
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        id S234698AbhHINEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 09:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234285AbhHINEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 09:04:35 -0400
+Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB6BC0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 06:04:13 -0700 (PDT)
+Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1mD4wt-007xCQ-RS
+        for devicetree@vger.kernel.org; Mon, 09 Aug 2021 15:04:11 +0200
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
+Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8]
+        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1mD4t3-007x83-Go; Mon, 09 Aug 2021 15:00:13 +0200
+Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        John Crispin <john@phrozen.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        YiFei Zhu <yifeifz2@illinois.edu>,
+        Mike Rapoport <rppt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Kees Cook <keescook@chromium.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Felix Fietkau <nbd@nbd.name>
+References: <20210730134552.853350-1-bert@biot.com>
+ <20210730134552.853350-5-bert@biot.com>
+ <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
+ <1e3070fe-b5da-0acc-f50b-b0986a1045cd@biot.com>
+ <CAMuHMdWni=2ggV7dQiy-nfF1nOmKferbZOCkLp0kDsvMNfwF2Q@mail.gmail.com>
+From:   Bert Vermeulen <bert@biot.com>
+Message-ID: <c9ec706f-4a55-a716-ed2e-5c04a6f6bffd@biot.com>
+Date:   Mon, 9 Aug 2021 15:00:12 +0200
+MIME-Version: 1.0
+In-Reply-To: <CAMuHMdWni=2ggV7dQiy-nfF1nOmKferbZOCkLp0kDsvMNfwF2Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On 8/9/21 2:46 PM, Geert Uytterhoeven wrote:
+>> I didn't make that patch, but it turns out it's needed to get PSCI working;
+>> detection hangs without it. That makes no sense to me, but I'll examine further.
+> 
+> Probably PSCI relies on the memory contents at the start of RAM not
+> being overwritten?
 
-On Fri, Aug 6, 2021 at 12:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> The DMAC driver on RZ/G2L expects the slave channel configuration
-> to be passed in dmas property.
-> This patch updates the example node to include the encoded slave
-> channel configuration.
->
-> Fixes: 5df6dfbb6de815ba3a("ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support")
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+It turns out to hang at the first SMC call, for PSCI_0_2_FN_PSCI_VERSION. I 
+assume the receiver of that call, ATF, got dropped in that region by the 
+vendor's U-Boot.
 
-> v3->v4:
->  * Updated bindings as the DMAC driver on RZ/G2L expects the
->    slave channel configuration to be passed in dmas property.
+> Does it help if you remove the first 512 KiB from the /memory node
+> (which should be declared in en7523-evb.dts instead of en7523.dtsi
+> BTW)?
+No it doesn't, was just trying to work out why not, in your 
+fdt_check_mem_start().
 
-Thanks for the update!
+Anyway that was Arnd's first suggestion, but I think his second suggestion 
+(teach fdt_check_mem_start() about /memreserve/) is the cleaner approach to 
+this. Opinions?
 
-> --- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-> @@ -93,8 +93,8 @@ examples:
->              clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
->              power-domains = <&cpg>;
->              resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
-> -            dmas = <&dmac 0x255>,
-> -                   <&dmac 0x256>;
-> +            dmas = <&dmac 0x2655>,
-> +                   <&dmac 0x2656>;
->              dma-names = "tx", "rx";
->              #sound-dai-cells = <0>;
->      };
-
-I think it would be good to describe the expected format in the description
-for the dmas property, so the DTS writer knows what the numerical
-values in the example really mean.
-
-Gr{oetje,eeting}s,
-
-                        Geert
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Bert Vermeulen
+bert@biot.com
