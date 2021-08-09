@@ -2,139 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1A43E4688
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 15:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E55513E4707
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232488AbhHIN1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 09:27:55 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:39946 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231127AbhHIN1z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 09:27:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=XPcwLD3bV7njc8ZJSvv3i6NpD/qthpMV+YNj6jBN0Nc=; b=KNANoakmu9zX5ptv9bakmVwzXS
-        VhNg7Xgh4r8JcEz2d/r7StCSFlBrCdT6nizpMQvSR6eZDWoHowQEhCab2rTuxnlRqvAg03GA9qfhG
-        CGcKdyzU14BLkcvu+cBUt4bsUFXysNI69XyiroliVyLi4Lphx+4BzbcPptiDqpkWu7wU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mD5JK-00GhzY-HE; Mon, 09 Aug 2021 15:27:22 +0200
-Date:   Mon, 9 Aug 2021 15:27:22 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S234579AbhHIOAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 10:00:46 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:53132
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233420AbhHIOAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 10:00:45 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 5EB6D40655
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 14:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628517624;
+        bh=PXrJ+BbgGTXejs85MxNsHQpcGJv4nzL8+I3ykkzFz/Y=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=UItA6TtFhztj5GcV5g8jP6Do8rXQoP2xe090xFv9d+pRvdhlN2fH4eOaOKK9gyo5W
+         9mtp1wbjLKnCdZ5uKP7PtODpDDCPC9jvwfWzLc8cXvoywfKnF/esAiq6QuTSxe3e1C
+         ouv83DiPthm3Rq5Calrk0OkFsPW3ca7b04MrYpW7cKLCdCzMYJmlI3ay7JtLyg3HrP
+         uXGsraL8FMV7ojHf7YakFLvfxGsKT1GLIhfBJlplpMUXRbb3dly0GsYamVfm3t3VwM
+         oBkZgYz1NzJOf1Z22folkEQMq5Q7+ITaw6XiYEWdeWuxLb/trelGmIPckejjIkJwkO
+         lwZh/DPKJYsYw==
+Received: by mail-ed1-f70.google.com with SMTP id u25-20020aa7d8990000b02903bb6a903d90so8940976edq.17
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 07:00:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PXrJ+BbgGTXejs85MxNsHQpcGJv4nzL8+I3ykkzFz/Y=;
+        b=iPfMub9lp20CN3k3en64vRPtQKfkKSi1Rf1Rr7lFqEYnsX7pEKk9uPBUNMiFexnAJX
+         6eiUYKROHMtnEzxl+WwqfbEMrIjdl8Au07QYxs2XeKlsb8hhBympS7e2u5nwpfn4n3Bc
+         L0K8YLLrhdLocxZf25Zvw5lX0cUzZc9VAz6elNHxzUZw79j2CG0tKjgvD9vW2mxdANCo
+         24NPlwZ6U/oUamTC8AKSt4zbdF9pW+1wVEGgSGBWFY7NFa2lXLPXUsxF6/d31BuWlrV5
+         wYKNztZE91b84TxYIoIeOlg3Vm8WIkKK+13i7g1FYtju433AUjQhXn2NasS3cZ+0SvqA
+         HhlQ==
+X-Gm-Message-State: AOAM532trS0DDD9aUZsjWk39GnRO/Yzy8Q3f/2QbFzd/vADx6oMZctlP
+        N1isHWvfokB+A0uPFj3E96X5Hwn3Dk/EFhLIBr8g/KWOV8FY5DncKkhVZ6o1lT53Np8bd9E6zPS
+        0uMrrMXji2pekwea5iN28pQMoQpuTygsoi8nKdX0=
+X-Received: by 2002:aa7:c6d0:: with SMTP id b16mr30047983eds.257.1628517624122;
+        Mon, 09 Aug 2021 07:00:24 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy733K83FCEVxUSDiFu+sAff4YqEjYwxphl7rHUYA+ge65yYWoTdLNweov2T/r4nxposORUTw==
+X-Received: by 2002:aa7:c6d0:: with SMTP id b16mr30047953eds.257.1628517623881;
+        Mon, 09 Aug 2021 07:00:23 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id b17sm7909686edd.27.2021.08.09.07.00.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Aug 2021 07:00:23 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Anton Blanchard <anton@ozlabs.org>,
-        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: net: Add bindings for LiteETH
-Message-ID: <YREtOlBnRl42lwhD@lunn.ch>
-References: <20210806054904.534315-1-joel@jms.id.au>
- <20210806054904.534315-2-joel@jms.id.au>
- <YQ7ZXu7hHTCNBwNz@lunn.ch>
- <CACPK8XdKi3f60h2PNjuWsEiw5Rz+F7Ngtw0yF0ZOg+N3kOy0tQ@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] dt-bindings: clock: samsung: convert AudSS to dtschema
+Date:   Mon,  9 Aug 2021 15:59:39 +0200
+Message-Id: <20210809135942.100744-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACPK8XdKi3f60h2PNjuWsEiw5Rz+F7Ngtw0yF0ZOg+N3kOy0tQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Hi Joel
-> >
-> > How configurable is the synthesis? Can the MDIO bus be left out? You
-> > can have only the MDIO bus and no MAC?
-> >
-> > I've not looked at the driver yet, but if the MDIO bus has its own
-> > address space, you could consider making it a standalone
-> > device. Somebody including two or more LiteETH blocks could then have
-> > one shared MDIO bus. That is a supported Linux architecture.
-> 
-> It's currently integrated as one device. If you instatined two blocks,
-> you would end up with two mdio controllers, each inside those two
-> liteeth blocks.
+Hi,
 
-O.K. So at the moment, that is the default architecture, and the
-driver should then support it. But since there appears to be a clean
-address space split, the Linux MDIO driver could still be
-separate. But it might depend on the reset, since the register is in
-the MDIO address space. So again, we need to understand what that
-reset is about.
+Rebased on on previous series:
+https://lore.kernel.org/linux-samsung-soc/20210809120544.56596-1-krzysztof.kozlowski@canonical.com/T/#t
+It affects only the maintainers file change (context-dependency).
 
-> Obviously being software someone could change that. We've had a few
-> discussions about the infinite possibilities of a soft SoC and what
-> that means for adding driver support to mainline.
+Best regards,
+Krzysztof
 
-Has any thought been given to making the hardware somehow
-enumerable/self describing? A register containing features which have
-been synthesised? There could be a bit indicating is the MDIO bus
-master is present, etc.
 
-> As the soft core project evolves, we can revisit what goes in
-> mainline, how flexible that driver support needs to be, and how best
-> to manage that.
+Krzysztof Kozlowski (3):
+  dt-bindings: clock: samsung: convert Exynos AudSS to dtschema
+  dt-bindings: clock: samsung: convert S5Pv210 AudSS to dtschema
+  MAINTAINERS: clock: include S3C and S5P in Samsung SoC clock entry
 
-We can do that, but we have to keep backwards compatibility in
-mind. We cannot break older synthesised IP blobs because a new feature
-has come along and the driver has changed. It is best to put some
-thought into that now, how forward/backward compatibility will work.
-A revision register, a self description register, something which
-helps the software driver identify what the 'hardware' is.
+ .../bindings/clock/clk-exynos-audss.txt       | 103 ------------------
+ .../bindings/clock/clk-s5pv210-audss.txt      |  53 ---------
+ .../clock/samsung,exynos-audss-clock.yaml     |  79 ++++++++++++++
+ .../clock/samsung,s5pv210-audss-clock.yaml    |  75 +++++++++++++
+ MAINTAINERS                                   |   3 +
+ 5 files changed, 157 insertions(+), 156 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/clk-s5pv210-audss.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-audss-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,s5pv210-audss-clock.yaml
 
-      Andrew
-
-> 
-> >
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  rx-fifo-depth:
-> > > +    description: Receive FIFO size, in units of 2048 bytes
-> > > +
-> > > +  tx-fifo-depth:
-> > > +    description: Transmit FIFO size, in units of 2048 bytes
-> > > +
-> > > +  mac-address:
-> > > +    description: MAC address to use
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    mac: ethernet@8020000 {
-> > > +        compatible = "litex,liteeth";
-> > > +        reg = <0x8021000 0x100
-> > > +               0x8020800 0x100
-> > > +               0x8030000 0x2000>;
-> > > +        rx-fifo-depth = <2>;
-> > > +        tx-fifo-depth = <2>;
-> > > +        interrupts = <0x11 0x1>;
-> > > +    };
-> >
-> > You would normally expect to see some MDIO properties here, a link to
-> > the standard MDIO yaml, etc.
-> 
-> Do you have a favourite example that I could follow?
-
-Documentation/devicetree/bindings/net/mdio.yaml describes all the
-standard properties. Picking a file at random:
-
-Documentation/devicetree/bindings/net/socionext,uniphier-ave4.yaml
+-- 
+2.30.2
 
