@@ -2,291 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD7C23E4BFD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 20:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1174F3E4C46
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 20:39:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235027AbhHISTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 14:19:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41732 "EHLO
+        id S235220AbhHISkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 14:40:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234962AbhHISTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 14:19:02 -0400
-Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01DCC061798
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 11:18:41 -0700 (PDT)
-Received: by mail-vk1-xa2c.google.com with SMTP id l6so4147944vkr.8
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 11:18:41 -0700 (PDT)
+        with ESMTP id S234969AbhHISkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 14:40:08 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A8CC0613D3;
+        Mon,  9 Aug 2021 11:39:47 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id a8so29389189pjk.4;
+        Mon, 09 Aug 2021 11:39:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kjXVJjhEvR65+Z4ewOj5xb9PKKSWhFxsxBVNcUv+8M0=;
-        b=smQyp8aCntQWqx50j3QCg9imrJunJPc/fUtV2QCjb25K8h6DM663/X997pvKkuAIt4
-         F+2wnhwGDszBtm7bu15NgY3VaroX3gOC7zzDBi0UyBW/CRfDBSV1ACdVK8XWfsSkYWgD
-         zHneNu3AlOQI6wfINpBJEUnLqZ/91LPuyPb8HuZ6RezQ6Cl4C4dtjUse7Tyd3vpyF/kP
-         Qc1oLo6nCaL9DVFljinZIWdSkFphDzO+1nGuSM5SZ5UCSmgTxu8r7g0++1wE85YerrJs
-         AswwaUIO76/xPKTCYoPR64GznLV8OHhT85TzOaTrx1osrE0Bd1sgkKEvSA/LkF9sVQys
-         Nb0A==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=56m5WxF46cuEBqooJdKU5PqcLQQVhGAT5R7cabcEapE=;
+        b=tsMQOjYz16wH9fytQh/kRgjgXs8cj3wXFQ5QB7wtsYiqg/2gVo2Yi6KRWhCGqZ1ggd
+         s/X5XK5D8aD4kpklPt5PwYL771bY//pQLg0QUogRUh/Re6oPA26YmO1DNx4kW8gj82s5
+         kA1UM3yHIe4r8LeYxCz6tZuBiOcyKunYtxFvJ8/ETBugCYMwKVpBfDz1gbFy8x5Ld63T
+         YgslmC+eNRldYGqdAYGC8OMPSoQvMvr6K7Gf90SKG9N0okqqWqxl2ddcwoGJJoO4vxwK
+         NrIktrJ6FuvF9f0J/jd4kwzc4x7axvQd0eABbg87naV+gqsrCwHkX5G3wyFKHtLXqjsP
+         cj+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kjXVJjhEvR65+Z4ewOj5xb9PKKSWhFxsxBVNcUv+8M0=;
-        b=rMtcwR6E+O+MJrTEGU3mfjUvVZcAvgnVW/jwDSlJpHDPI+JYhOfAbK0rDHlCqaxOLE
-         h2Yxid6UJ+6j7b61A9QLrPjaxa5KY3gR+z2N9T4EE513Us8HqcvOSwMU76HEOlPNO4jN
-         /84+KC3kby2/6tgyLxNHZuARn2FxhBsLezRe09nvpBWQdCenSoi5ni0L9nXejNN4xuHE
-         NYvE3xbpfXdUiDuTmNukkORDi/YNu2enLTmJVlnbr7vhrQ5H5c3NzHXD6NIfqQmoAZ8p
-         zN4xV6pkA6c9GjtgsFdau9HQh6rK7ga6AA4EVizavpXJOTEd3pwNw4mdSJF9gdKgcBDQ
-         ujPA==
-X-Gm-Message-State: AOAM5332ECeHpQ0XP9iZT+TlquMcvJfDv17HwxwJ9GxmGhypOmZyqsMz
-        yp7liGIqKcpLyeXQOfrtAItUbKC74r/dAQ2iRlbunA==
-X-Google-Smtp-Source: ABdhPJxZIMAieQwRraZ3xFtXse7kceCifmxgmHFDrtnoOgP6oXdmx/b2tdhN9tRkyzJ9KjHmPAmG6AO4++pOLiw8bbQ=
-X-Received: by 2002:a1f:1dc2:: with SMTP id d185mr15370667vkd.21.1628533120787;
- Mon, 09 Aug 2021 11:18:40 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=56m5WxF46cuEBqooJdKU5PqcLQQVhGAT5R7cabcEapE=;
+        b=bI/qO/F3RR0bhrE7f1cPk+2jjZANugw+HqQNMlNlId6mZZl1MOAU7XoWHbquW9ZJRQ
+         otMrE1LyAv94L2jbZEy5IGCg6rRBagLDtlhL8ufX/EjyQ5dih/17nAReS6GqLStIWUTa
+         8MkK1cDJ18uuVOamuCvZcYC0+Sy/JZ+EEzgFm0i1hPX6iZmitXEivhSDfRE3dzTnKx14
+         sLlBM0WFyqAFV5qyIfNhbmJawhCZW1sfFtOQJZODpvFCJOw8H+yXHBDTsHjNbXDhp8kW
+         zAsIyr626HIOS1vpfjyulcaFRVC4gkfzSFLVcJD48n54v+uxW0+XKnoy1vB40nn931+a
+         q5NA==
+X-Gm-Message-State: AOAM532MNcot/O8aU+jRq0pFTlanXeLLWl+jIuwgEElbJA6No9dEyRpe
+        N21lbE/EdtWtbWvmiOLENdw=
+X-Google-Smtp-Source: ABdhPJzMFbb6956f53hngsq0oj6k2EOrYjUURl6JvtdkeTT1ZSa4W2jxnm/PSbr/G2jFyVog/z4M1g==
+X-Received: by 2002:a63:f410:: with SMTP id g16mr563625pgi.201.1628534387435;
+        Mon, 09 Aug 2021 11:39:47 -0700 (PDT)
+Received: from [192.168.1.22] (amarseille-551-1-7-65.w92-145.abo.wanadoo.fr. [92.145.152.65])
+        by smtp.gmail.com with ESMTPSA id e12sm19136138pjh.33.2021.08.09.11.39.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Aug 2021 11:39:46 -0700 (PDT)
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: fsl, fec: add "fsl,
+ wakeup-irq" property
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210805074615.29096-1-qiangqing.zhang@nxp.com>
+ <20210805074615.29096-2-qiangqing.zhang@nxp.com>
+ <2e1a14bf-2fa8-ed39-d133-807c4e14859c@gmail.com>
+ <DB8PR04MB67950F6863A8FEE6745CBC68E6F69@DB8PR04MB6795.eurprd04.prod.outlook.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <498f3cee-8f37-2ab1-93c4-5472572ecc37@gmail.com>
+Date:   Mon, 9 Aug 2021 11:39:40 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-References: <20210806152146.16107-1-semen.protsenko@linaro.org>
- <20210806152146.16107-3-semen.protsenko@linaro.org> <407ee65f-6004-5173-9fcc-99023c85db4e@canonical.com>
-In-Reply-To: <407ee65f-6004-5173-9fcc-99023c85db4e@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 9 Aug 2021 21:18:29 +0300
-Message-ID: <CAPLW+4mfTMWWssW8+nTt8Yp3dN5=WJpji=o_rRYYr6+kx_dctA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] pinctrl: samsung: Add Exynos850 SoC specific data
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <DB8PR04MB67950F6863A8FEE6745CBC68E6F69@DB8PR04MB6795.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Aug 2021 at 13:43, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 06/08/2021 17:21, Sam Protsenko wrote:
-> > Add Samsung Exynos850 SoC specific data to enable pinctrl support for
-> > all platforms based on Exynos850.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> > Changes in v2:
-> >   - Removed .suspend/.resume callbacks, as retention registers are not
-> >     implemented yet for Exynos850
-> >   - Removed .eint_gpio_init for AUD domain, as there are no external
-> >     interrupts available for that domain
-> >
-> >  .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 116 ++++++++++++++++++
-> >  drivers/pinctrl/samsung/pinctrl-exynos.h      |  29 +++++
-> >  drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
-> >  drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
-> >  4 files changed, 148 insertions(+)
-> >
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> > index b6e56422a700..3157bdf0233c 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> > @@ -40,6 +40,24 @@ static const struct samsung_pin_bank_type exynos5433_bank_type_alive = {
-> >       .reg_offset = { 0x00, 0x04, 0x08, 0x0c, },
-> >  };
-> >
-> > +/*
-> > + * Bank type for non-alive type. Bit fields:
-> > + * CON: 4, DAT: 1, PUD: 4, DRV: 4, CONPDN: 2, PUDPDN: 4
-> > + */
-> > +static struct samsung_pin_bank_type exynos850_bank_type_off  = {
-> > +     .fld_width = { 4, 1, 4, 4, 2, 4, },
-> > +     .reg_offset = { 0x00, 0x04, 0x08, 0x0c, 0x10, 0x14, },
-> > +};
-> > +
-> > +/*
-> > + * Bank type for alive type. Bit fields:
-> > + * CON: 4, DAT: 1, PUD: 4, DRV: 4
-> > + */
-> > +static struct samsung_pin_bank_type exynos850_bank_type_alive = {
->
-> I missed that part last time - this and one before should be const.
->
-> > +     .fld_width = { 4, 1, 4, 4, },
-> > +     .reg_offset = { 0x00, 0x04, 0x08, 0x0c, },
-> > +};
-> > +
-> >  /* Pad retention control code for accessing PMU regmap */
-> >  static atomic_t exynos_shared_retention_refcnt;
-> >
-> > @@ -422,3 +440,101 @@ const struct samsung_pinctrl_of_match_data exynos7_of_data __initconst = {
-> >       .ctrl           = exynos7_pin_ctrl,
-> >       .num_ctrl       = ARRAY_SIZE(exynos7_pin_ctrl),
-> >  };
-> > +
-> > +/* pin banks of exynos850 pin-controller 0 (ALIVE) */
-> > +static struct samsung_pin_bank_data exynos850_pin_banks0[] = {
->
-> All these as well - initconst - unless they are somehow different than
-> rest of such structures?
->
-> > +     /* Must start with EINTG banks, ordered by EINT group number. */
-> > +     EXYNOS9_PIN_BANK_EINTW(8, 0x000, "gpa0", 0x00),
-> > +     EXYNOS9_PIN_BANK_EINTW(8, 0x020, "gpa1", 0x04),
-> > +     EXYNOS9_PIN_BANK_EINTW(8, 0x040, "gpa2", 0x08),
-> > +     EXYNOS9_PIN_BANK_EINTW(8, 0x060, "gpa3", 0x0c),
-> > +     EXYNOS9_PIN_BANK_EINTW(4, 0x080, "gpa4", 0x10),
-> > +     EXYNOS9_PIN_BANK_EINTN(3, 0x0A0, "gpq0"),
-> > +};
-> > +
-> > +/* pin banks of exynos850 pin-controller 1 (CMGP) */
-> > +static struct samsung_pin_bank_data exynos850_pin_banks1[] = {
-> > +     /* Must start with EINTG banks, ordered by EINT group number. */
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x000, "gpm0", 0x00),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x020, "gpm1", 0x04),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x040, "gpm2", 0x08),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x060, "gpm3", 0x0C),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x080, "gpm4", 0x10),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x0A0, "gpm5", 0x14),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x0C0, "gpm6", 0x18),
-> > +     EXYNOS9_PIN_BANK_EINTW(1, 0x0E0, "gpm7", 0x1C),
-> > +};
-> > +
-> > +/* pin banks of exynos850 pin-controller 2 (AUD) */
-> > +static struct samsung_pin_bank_data exynos850_pin_banks2[] = {
-> > +     /* Must start with EINTG banks, ordered by EINT group number. */
-> > +     EXYNOS9_PIN_BANK_EINTG(5, 0x000, "gpb0", 0x00),
-> > +     EXYNOS9_PIN_BANK_EINTG(5, 0x020, "gpb1", 0x04),
-> > +};
-> > +
-> > +/* pin banks of exynos850 pin-controller 3 (HSI) */
-> > +static struct samsung_pin_bank_data exynos850_pin_banks3[] = {
-> > +     /* Must start with EINTG banks, ordered by EINT group number. */
-> > +     EXYNOS9_PIN_BANK_EINTG(6, 0x000, "gpf2", 0x00),
-> > +};
-> > +
-> > +/* pin banks of exynos850 pin-controller 4 (CORE) */
-> > +static struct samsung_pin_bank_data exynos850_pin_banks4[] = {
-> > +     /* Must start with EINTG banks, ordered by EINT group number. */
-> > +     EXYNOS9_PIN_BANK_EINTG(4, 0x000, "gpf0", 0x00),
-> > +     EXYNOS9_PIN_BANK_EINTG(8, 0x020, "gpf1", 0x04),
-> > +};
-> > +
-> > +/* pin banks of exynos850 pin-controller 5 (PERI) */
-> > +static struct samsung_pin_bank_data exynos850_pin_banks5[] = {
-> > +     /* Must start with EINTG banks, ordered by EINT group number. */
-> > +     EXYNOS9_PIN_BANK_EINTG(2, 0x000, "gpg0", 0x00),
-> > +     EXYNOS9_PIN_BANK_EINTG(6, 0x020, "gpp0", 0x04),
-> > +     EXYNOS9_PIN_BANK_EINTG(4, 0x040, "gpp1", 0x08),
-> > +     EXYNOS9_PIN_BANK_EINTG(4, 0x060, "gpp2", 0x0C),
-> > +     EXYNOS9_PIN_BANK_EINTG(8, 0x080, "gpg1", 0x10),
-> > +     EXYNOS9_PIN_BANK_EINTG(8, 0x0A0, "gpg2", 0x14),
-> > +     EXYNOS9_PIN_BANK_EINTG(1, 0x0C0, "gpg3", 0x18),
-> > +     EXYNOS9_PIN_BANK_EINTG(3, 0x0E0, "gpc0", 0x1C),
-> > +     EXYNOS9_PIN_BANK_EINTG(6, 0x100, "gpc1", 0x20),
-> > +};
-> > +
-> > +static const struct samsung_pin_ctrl exynos850_pin_ctrl[] __initconst = {
-> > +     {
-> > +             /* pin-controller instance 0 ALIVE data */
-> > +             .pin_banks      = exynos850_pin_banks0,
-> > +             .nr_banks       = ARRAY_SIZE(exynos850_pin_banks0),
-> > +             .eint_gpio_init = exynos_eint_gpio_init,
-> > +             .eint_wkup_init = exynos_eint_wkup_init,
-> > +     }, {
-> > +             /* pin-controller instance 1 CMGP data */
-> > +             .pin_banks      = exynos850_pin_banks1,
-> > +             .nr_banks       = ARRAY_SIZE(exynos850_pin_banks1),
-> > +             .eint_gpio_init = exynos_eint_gpio_init,
-> > +             .eint_wkup_init = exynos_eint_wkup_init,
-> > +     }, {
-> > +             /* pin-controller instance 2 AUD data */
-> > +             .pin_banks      = exynos850_pin_banks2,
-> > +             .nr_banks       = ARRAY_SIZE(exynos850_pin_banks2),
-> > +     }, {
-> > +             /* pin-controller instance 3 HSI data */
-> > +             .pin_banks      = exynos850_pin_banks3,
-> > +             .nr_banks       = ARRAY_SIZE(exynos850_pin_banks3),
-> > +             .eint_gpio_init = exynos_eint_gpio_init,
-> > +     }, {
-> > +             /* pin-controller instance 4 CORE data */
-> > +             .pin_banks      = exynos850_pin_banks4,
-> > +             .nr_banks       = ARRAY_SIZE(exynos850_pin_banks4),
-> > +             .eint_gpio_init = exynos_eint_gpio_init,
-> > +     }, {
-> > +             /* pin-controller instance 5 PERI data */
-> > +             .pin_banks      = exynos850_pin_banks5,
-> > +             .nr_banks       = ARRAY_SIZE(exynos850_pin_banks5),
-> > +             .eint_gpio_init = exynos_eint_gpio_init,
-> > +     },
-> > +};
-> > +
-> > +const struct samsung_pinctrl_of_match_data exynos850_of_data __initconst = {
-> > +     .ctrl           = exynos850_pin_ctrl,
-> > +     .num_ctrl       = ARRAY_SIZE(exynos850_pin_ctrl),
-> > +};
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.h b/drivers/pinctrl/samsung/pinctrl-exynos.h
-> > index da1ec13697e7..595086f2d5dd 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-exynos.h
-> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos.h
-> > @@ -108,6 +108,35 @@
-> >               .pctl_res_idx   = pctl_idx,                     \
-> >       }                                                       \
-> >
-> > +#define EXYNOS9_PIN_BANK_EINTN(pins, reg, id)                        \
-> > +     {                                                       \
-> > +             .type           = &exynos850_bank_type_alive,   \
->
-> Having the prefix EXYNOS9 is actually confusing because:
-> 1. There is no Exynos9 support,
-> 2. The type is exynos850.
->
-> Let's keep it consistent, so 850 everywhere,
->
 
-Sure. Will send v3 shortly with fixes for everything you mentioned.
 
-> > +             .pctl_offset    = reg,                          \
-> > +             .nr_pins        = pins,                         \
-> > +             .eint_type      = EINT_TYPE_NONE,               \
-> > +             .name           = id                            \
-> > +     }
-> > +
-> > +#define EXYNOS9_PIN_BANK_EINTG(pins, reg, id, offs)          \
-> > +     {                                                       \
-> > +             .type           = &exynos850_bank_type_off,     \
-> > +             .pctl_offset    = reg,                          \
-> > +             .nr_pins        = pins,                         \
-> > +             .eint_type      = EINT_TYPE_GPIO,               \
-> > +             .eint_offset    = offs,                         \
-> > +             .name           = id                            \
-> > +     }
-> > +
-> > +#define EXYNOS9_PIN_BANK_EINTW(pins, reg, id, offs)          \
-> > +     {                                                       \
-> > +             .type           = &exynos850_bank_type_alive,   \
-> > +             .pctl_offset    = reg,                          \
-> > +             .nr_pins        = pins,                         \
-> > +             .eint_type      = EINT_TYPE_WKUP,               \
-> > +             .eint_offset    = offs,                         \
-> > +             .name           = id                            \
-> > +     }
-> > +
->
-> Best regards,
-> Krzysztof
+On 8/8/2021 10:08 PM, Joakim Zhang wrote:
+> 
+> Hi Florian,
+> 
+>> -----Original Message-----
+>> From: Florian Fainelli <f.fainelli@gmail.com>
+>> Sent: 2021年8月5日 17:18
+>> To: Joakim Zhang <qiangqing.zhang@nxp.com>; davem@davemloft.net;
+>> kuba@kernel.org; robh+dt@kernel.org; shawnguo@kernel.org;
+>> s.hauer@pengutronix.de; festevam@gmail.com; andrew@lunn.ch
+>> Cc: kernel@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>;
+>> netdev@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+>> Subject: Re: [PATCH net-next 1/3] dt-bindings: net: fsl, fec: add "fsl,
+>> wakeup-irq" property
+>>
+>>
+>>
+>> On 8/5/2021 12:46 AM, Joakim Zhang wrote:
+>>> Add "fsl,wakeup-irq" property for FEC controller to select wakeup irq
+>>> source.
+>>>
+>>> Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
+>>> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+>>
+>> Why are not you making use of the standard interrupts-extended property
+>> which allows different interrupt lines to be originating from different interrupt
+>> controllers, e.g.:
+>>
+>> interrupts-extended = <&gic GIC_SPI 112 4>, <&wakeup_intc 0>;
+> 
+> Thanks.
+> 
+> AFAIK, interrupts-extended should be used instead of interrupts when a device is connected to multiple interrupt controllers
+> as it encodes a parent phandle with each interrupt specifier. However, for FEC controller, all interrupt lines are originating from
+> the same interrupt controllers.
+
+OK, so why this custom property then?
+
+> 
+> 1) FEC controller has up to 4 interrupt lines and all of these are routed to GIC interrupt controller.
+> 2) FEC has a wakeup interrupt signal and always are mixed with other interrupt signals, and then output to one interrupt line.
+> 3) For legacy SoCs, wakeup interrupt are mixed to int0 line, but for i.MX8M serials, are mixed to int2 line.
+> 4) Now driver treat int0 as the wakeup source by default, it is broken for i.MX8M.
+
+I don't really know what to make of your response, it seems to me that 
+you are carrying some legacy Device Tree properties that were invented 
+when interrupts-extended did not exist and we did not know any better.
+-- 
+Florian
