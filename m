@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB6013E431D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 11:49:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136493E4371
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 11:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234726AbhHIJtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 05:49:25 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42162 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234712AbhHIJtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 05:49:24 -0400
-X-UUID: 4f5e425ed26043d0a2c43cc4a68fba75-20210809
-X-UUID: 4f5e425ed26043d0a2c43cc4a68fba75-20210809
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1248555971; Mon, 09 Aug 2021 17:49:01 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 9 Aug 2021 17:49:00 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 9 Aug 2021 17:49:00 +0800
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <bicycle.tsai@mediatek.com>, <jiaxin.yu@mediatek.com>,
-        <cychiang@google.com>, <aaronyu@google.com>, <wenst@chromium.org>
-Subject: [PATCH v3 9/9] dt-bindings: mediatek: mt8195: add mt8195-mt6359-rt1019-rt5682 document
-Date:   Mon, 9 Aug 2021 17:48:55 +0800
-Message-ID: <20210809094855.7169-10-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210809094855.7169-1-trevor.wu@mediatek.com>
-References: <20210809094855.7169-1-trevor.wu@mediatek.com>
+        id S233806AbhHIJ7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 05:59:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233842AbhHIJ7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 05:59:36 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA2AC0613D3;
+        Mon,  9 Aug 2021 02:59:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=1hoY8riowLJ4bGTuyocZGdD11OkuSsTIdR5YrgprP04=; b=kZ/CkK8TfZkmZFMIQNFz15+Qn
+        329LqomRb4k3yMyB28GLqzwZIcoOYZjG5tSpCS7tMmj0TAYohQeDMyQwg89A5bZszSLnLaalz2TV7
+        oZmI556AqlGZRGAQM/bGy3YqeH2wxSx3T/XKnlB4YS7ZZCjstrGskHaDLBV2c3nxuTOG3sqt2hyWX
+        Lp+2hmSso+8AT4yjOeSGDPCiPS+6SOuYVmemuI6uZ0MW2Zb3LlhUbvqNx35l1Cb09Bcdrt8NcnpUM
+        wlSOGnneB0FgPUZnmq3m9Lasgqvb24lh0gecosM/8pUWrHPZ+A/Xx8a2PDYhpOqZ3U2jtqmFlCx4U
+        UZb719R3w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47106)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mD23j-0005Qj-Eq; Mon, 09 Aug 2021 10:59:03 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mD23g-00015j-CC; Mon, 09 Aug 2021 10:59:00 +0100
+Date:   Mon, 9 Aug 2021 10:59:00 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     chaochao2021666@163.com
+Cc:     andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Chao Zeng <chao.zeng@siemens.com>
+Subject: Re: [PATCH 2/2] net:phy:dp83867:implement the binding for status led
+Message-ID: <20210809095900.GS22278@shell.armlinux.org.uk>
+References: <20210809085510.324205-1-chaochao2021666@163.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210809085510.324205-1-chaochao2021666@163.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds document for mt8195 board with mt6359, rt1019 and rt5682
+On Mon, Aug 09, 2021 at 04:55:10PM +0800, chaochao2021666@163.com wrote:
+> From: Chao Zeng <chao.zeng@siemens.com>
+> 
+> the DP83867 has different function option for the status led.
+> It is possible to set the status led for different function
+> 
+> Signed-off-by: Chao Zeng <chao.zeng@siemens.com>
 
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
----
- .../sound/mt8195-mt6359-rt1019-rt5682.yaml    | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
+Private properties for status LEDs are no longer permitted for new code.
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-new file mode 100644
-index 000000000000..246c0875e64e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8195-mt6359-rt1019-rt5682.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek MT8195 with MT6359, RT1019 and RT5682 ASoC sound card driver
-+
-+maintainers:
-+  - Trevor Wu <trevor.wu@mediatek.com>
-+
-+description:
-+  This binding describes the MT8195 sound card.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt8195_mt6359_rt1019_rt5682
-+
-+  mediatek,platform:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 ASoC platform.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+examples:
-+  - |
-+
-+    sound: mt8195-sound {
-+        compatible = "mediatek,mt8195_mt6359_rt1019_rt5682";
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&aud_pins_default>;
-+    };
-+
-+...
+Instead, there is work ongoing to add LED subsystem support for PHY
+status indicators, a recent patch set can be found here:
+https://lore.kernel.org/netdev/20210602144439.4d20b295@dellmb/T/
+You may be interested in helping this effort along.
+
+Thanks.
+
 -- 
-2.18.0
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
