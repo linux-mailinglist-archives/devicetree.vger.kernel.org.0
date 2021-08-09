@@ -2,220 +2,358 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3EC3E4A8D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 19:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 837113E4B45
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 19:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233723AbhHIRLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 13:11:36 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:33781 "EHLO m43-7.mailgun.net"
+        id S234701AbhHIRzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 13:55:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45760 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233683AbhHIRLg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 13:11:36 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628529076; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ufhEvlBwKdzuG2NOijPUJXkxLFRmYjIhJWYy0BdVpTI=;
- b=AVl5fuyZXNayIgYoAobp4QZc79LJKj4cjJNOBzq0r83YHnVDvbIJQCxbueB8XZYaV9hTB2Mz
- X+92oWT3yfMzELKGPiaf+Fopkr23avCNwnH8KYnogVotnGQeOwlwYggamhV45NaCvtwAcJO2
- 27TonArv2Igf4WaHs83urWSFP4Q=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6111614f76c3a9a17234ed4a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 17:09:34
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E1A68C433D3; Mon,  9 Aug 2021 17:09:33 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7242DC433F1;
-        Mon,  9 Aug 2021 17:09:30 +0000 (UTC)
+        id S232464AbhHIRzb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 13:55:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B37F260E78;
+        Mon,  9 Aug 2021 17:55:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628531710;
+        bh=xt5HUGt3PKLJ5RZuYecvLk5allJyEl1mTduSPvyDnO0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=kOQSutxxbkMJsjoK78auSzAw5REL24ZY99I1nNSZh/QbzXzgMb9NZTXeUVcwefUWE
+         ynYFdakZzkypBhDG7HwX0mdwvhnykx6tp8HHg41T9Hcbog7CbgLLWAKnRwvP6vT3lm
+         9C/y22aYDycMWlMOI6cuxNg1nng+ohUQg7zgB+2Nj9C9xHWSMjBc/57sngDTnjxGID
+         S7BgVJxPO4H7OUHHW+suttm4ixzstakxqYVh94FJYdDSOxdQpYlQMpvy7TX4WazBYL
+         d/YaSms0MIZBFdYUDHfQe7NQanD9IQDYNlkvbC3XJn7FUHPMa0oK0xGqXh1lHaKwj2
+         GHN2r2vBQXZHA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 09 Aug 2021 22:39:30 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>, agross@kernel.org,
-        bhelgaas@google.com, robh+dt@kernel.org, swboyd@chromium.org,
-        lorenzo.pieralisi@arm.com, svarbanov@mm-sol.com,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org
-Subject: Re: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
-In-Reply-To: <YPHuWudai/FO6SMN@yoga>
-References: <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
- <20210716150646.GA2098485@bjorn-Precision-5520> <YPHuWudai/FO6SMN@yoga>
-Message-ID: <5b41b2898504e915fda4eb8aeafdcccb@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1627972461-2627-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+References: <1627972461-2627-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1627972461-2627-4-git-send-email-hsin-hsiung.wang@mediatek.com>
+Subject: Re: [PATCH v10 3/5] spmi: mediatek: Add support for MT6873/8192
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 09 Aug 2021 10:55:09 -0700
+Message-ID: <162853170949.1975443.12492156194100139076@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-17 02:08, Bjorn Andersson wrote:
-> On Fri 16 Jul 10:06 CDT 2021, Bjorn Helgaas wrote:
-> 
->> Run this:
->> 
->>   $ git log --oneline drivers/pci/controller/dwc/pcie-qcom.c
->> 
->> and make your subject match the style and structure (in particular,
->> s/PCIe/PCI/).  In this case, maybe something like this?
->> 
->>   PCI: qcom: Switch sc7280 gcc_pcie_1_pipe_clk_src after PHY init
->> 
->> On Fri, Jul 16, 2021 at 07:28:47PM +0530, Prasad Malisetty wrote:
->> > This is a new requirement for sc7280 SoC.
->> > To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
->> > after PHY initialization gcc_pcie_1_pipe_clk_src needs
->> > to switch from TCXO to gcc_pcie_1_pipe_clk.
->> 
->> This says what *needs* to happen, but it doesn't actually say what
->> this patch *does*.  I think it's something like:
->> 
->>   On the sc7280 SoC, the clock source for pcie_1_pipe must be the TCXO
->>   while gdsc is enabled.  But after the PHY is initialized, the clock
->>   source must be switched to gcc_pcie_1_pipe_clk.
->> 
->>   On sc7280, switch gcc_pcie_1_pipe_clk_src from TCXO to
->>   gcc_pcie_1_pipe_clk after the PHY has been initialized.
->> 
->> Nits: Rewrap to fill 75 columns or so.  Add blank lines between
->> paragraphs.  Start sentences with capital letter.
->> 
->> > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
->> > ---
->> >  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
->> >  1 file changed, 22 insertions(+)
->> >
->> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
->> > index 8a7a300..9e0e4ab 100644
->> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> > @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
->> >  	struct regulator_bulk_data supplies[2];
->> >  	struct reset_control *pci_reset;
->> >  	struct clk *pipe_clk;
->> > +	struct clk *gcc_pcie_1_pipe_clk_src;
->> > +	struct clk *phy_pipe_clk;
->> > +	struct clk *ref_clk_src;
->> >  };
->> >
->> >  union qcom_pcie_resources {
->> > @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->> >  	if (ret < 0)
->> >  		return ret;
->> >
->> > +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
->> > +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
->> > +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
->> > +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
->> > +
->> > +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
->> > +		if (IS_ERR(res->phy_pipe_clk))
->> > +			return PTR_ERR(res->phy_pipe_clk);
->> > +
->> > +		res->ref_clk_src = devm_clk_get(dev, "ref");
->> > +		if (IS_ERR(res->ref_clk_src))
->> > +			return PTR_ERR(res->ref_clk_src);
->> 
->> Not clear why ref_clk_src is here, since it's not used anywhere.  If
->> it's not necessary here, drop it and add it in a future patch that
->> uses it.
->> 
->> > +	}
->> > +
->> >  	res->pipe_clk = devm_clk_get(dev, "pipe");
->> >  	return PTR_ERR_OR_ZERO(res->pipe_clk);
->> >  }
->> > @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
->> >  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->> >  {
->> >  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->> > +	struct dw_pcie *pci = pcie->pci;
->> > +	struct device *dev = pci->dev;
->> > +
->> > +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
->> 
->> Using of_device_is_compatible() follows existing style in the driver,
->> which is good.  But I'm not sure that's good style in general because
->> it's a little repetitious and wasteful.
->> 
-> 
-> Following the style is good, but up until the recent sm8250 addition it
-> was just a hack to deal with legacy platforms that we don't know the
-> exact details about.
-> 
-> But, all platforms I know of has the pipe_clk from the PHY fed into the
-> pipe_clk_src mux in the gcc block and then ends up in the PCIe
-> controller. As such, I suspect that the pipe_clk handling should be 
-> moved
-> to the common code path of the driver and there's definitely no harm in
-> making sure that the pipe_clk_src mux is explicitly configured on
-> existing platforms (at least all 2.7.0 based ones).
-> 
->> qcom_pcie_probe() already calls of_device_get_match_data(), which does
->> basically the same thing as of_device_is_compatible(), so I think we
->> could take better advantage of that by augmenting struct qcom_pcie_ops
->> with these device-specific details.
->> 
-> 
-> I agree.
-> 
-> Regards,
-> Bjorn
-> 
->> Some drivers that use this strategy:
->> 
->>   drivers/pci/controller/cadence/pci-j721e.c
->>   drivers/pci/controller/dwc/pci-imx6.c
->>   drivers/pci/controller/dwc/pci-layerscape.c
->>   drivers/pci/controller/dwc/pci-layerscape-ep.c
->>   drivers/pci/controller/dwc/pcie-tegra194.c
->>   drivers/pci/controller/pci-ftpci100.c
->>   drivers/pci/controller/pcie-brcmstb.c
->>   drivers/pci/controller/pcie-mediatek.c
->> 
->> > +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
->> >
->> >  	return clk_prepare_enable(res->pipe_clk);
->> >  }
->> > --
+Quoting Hsin-Hsiung Wang (2021-08-02 23:34:19)
+> diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
+> new file mode 100644
+> index 000000000000..94c45d46ab0c
+> --- /dev/null
+> +++ b/drivers/spmi/spmi-mtk-pmif.c
+> @@ -0,0 +1,465 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (c) 2021 MediaTek Inc.
+> +
+> +#include <linux/clk.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
 
-Hi Bjorn,
+include platform_device.h for the platform device driver that this is.
 
-Thanks for your review and inputs.
+> +#include <linux/spmi.h>
+> +
+> +#define SWINF_IDLE     0x00
+> +#define SWINF_WFVLDCLR 0x06
+> +
+> +#define GET_SWINF(x)   (((x) >> 1) & 0x7)
+> +
+> +#define PMIF_CMD_REG_0         0
+> +#define PMIF_CMD_REG           1
+> +#define PMIF_CMD_EXT_REG       2
+> +#define PMIF_CMD_EXT_REG_LONG  3
+> +
+> +#define PMIF_DELAY_US   10
+> +#define PMIF_TIMEOUT_US (10 * 1000)
+> +
+> +#define PMIF_CHAN_OFFSET 0x5
+> +
+> +#define PMIF_MAX_CLKS  3
+> +
+> +#define SPMI_OP_ST_BUSY 1
+> +
+> +struct ch_reg {
+> +       u32 ch_sta;
+> +       u32 wdata;
+> +       u32 rdata;
+> +       u32 ch_send;
+> +       u32 ch_rdy;
+> +};
+> +
+> +struct pmif_data {
+> +       const u32       *regs;
+> +       const u32       *spmimst_regs;
+> +       u32     soc_chan;
+> +};
+> +
+> +struct pmif {
+> +       void __iomem    *base;
+> +       void __iomem    *spmimst_base;
+> +       struct ch_reg   chan;
+> +       struct clk_bulk_data clks[PMIF_MAX_CLKS];
+> +       u32 nclks;
 
-I would like to add more details on this requirement. The hardware ver. 
-of SM8250 & SC7280 platforms is the same but
-where as only for SC7280, we need to switch gcc_pcie_1_pipe_clk source 
-between TXCO and gcc_pcie_1_pipe_clk hence this is SoC level
-specific requirement. all existing platforms doesn't need this pipe clk 
-handling.
+size_t? Surely 32-bits isn't important.
 
-I will use boolean flag entry in SoC dtsi such as 
-"pipe-clk-source-switch" to differentiate between SM8250 and SC7280 
-instead of compatible
-method.
+> +       const struct pmif_data *data;
+> +};
+> +
+> +static const char * const pmif_clock_names[] =3D {
+> +       "pmif_sys_ck", "pmif_tmr_ck", "spmimst_clk_mux",
+> +};
+[...]
+> +
+> +static bool pmif_is_fsm_vldclr(struct pmif *arb)
+> +{
+> +       u32 reg_rdata;
+> +
+> +       reg_rdata =3D pmif_readl(arb, arb->chan.ch_sta);
 
-Please provide any other better approach for the above case.
+Newline here please.
 
-Thanks
--Prasad
+> +       return GET_SWINF(reg_rdata) =3D=3D SWINF_WFVLDCLR;
+> +}
+> +
+> +static int pmif_arb_cmd(struct spmi_controller *ctrl, u8 opc, u8 sid)
+> +{
+> +       struct pmif *arb =3D spmi_controller_get_drvdata(ctrl);
+> +       u32 rdata, cmd;
+> +       int ret;
+> +
+> +       /* Check the opcode */
+> +       if (opc < SPMI_CMD_RESET || opc > SPMI_CMD_WAKEUP)
+> +               return -EINVAL;
+> +
+> +       cmd =3D opc - SPMI_CMD_RESET;
+> +
+> +       mtk_spmi_writel(arb, (cmd << 0x4) | sid, SPMI_OP_ST_CTRL);
+> +       ret =3D readl_poll_timeout_atomic(arb->spmimst_base + arb->data->=
+spmimst_regs[SPMI_OP_ST_STA],
+> +                                       rdata, (rdata & SPMI_OP_ST_BUSY) =
+=3D=3D SPMI_OP_ST_BUSY,
+> +                                       PMIF_DELAY_US, PMIF_TIMEOUT_US);
+> +       if (ret < 0)
+> +               dev_err(&ctrl->dev, "timeout, err =3D %d\n", ret);
+> +
+> +       return ret;
+> +}
+> +
+> +static int pmif_spmi_read_cmd(struct spmi_controller *ctrl, u8 opc, u8 s=
+id,
+> +                             u16 addr, u8 *buf, size_t len)
+> +{
+> +       struct pmif *arb =3D spmi_controller_get_drvdata(ctrl);
+> +       struct ch_reg *inf_reg;
+> +       int ret;
+> +       u32 data, cmd;
+> +
+> +       /* Check for argument validation. */
+> +       if (sid & ~0xf) {
+> +               dev_err(&ctrl->dev, "exceed the max slv id\n");
+> +               return -EINVAL;
+> +       }
+> +
+> +       if (len > 4) {
+> +               dev_err(&ctrl->dev, "pmif supports 1..4 bytes per trans, =
+but:%zu requested", len);
 
->> > The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
->> > a Linux Foundation Collaborative Project
->> >
+Missing newline
+
+> +               return -EINVAL;
+> +       }
+> +
+> +       if (opc >=3D 0x60 && opc <=3D 0x7f)
+> +               opc =3D PMIF_CMD_REG;
+> +       else if ((opc >=3D 0x20 && opc <=3D 0x2f) || (opc >=3D 0x38 && op=
+c <=3D 0x3f))
+> +               opc =3D PMIF_CMD_EXT_REG_LONG;
+> +       else
+> +               return -EINVAL;
+> +
+> +       /* Wait for Software Interface FSM state to be IDLE. */
+> +       inf_reg =3D &arb->chan;
+> +       ret =3D readl_poll_timeout_atomic(arb->base + arb->data->regs[inf=
+_reg->ch_sta],
+> +                                       data, GET_SWINF(data) =3D=3D SWIN=
+F_IDLE,
+> +                                       PMIF_DELAY_US, PMIF_TIMEOUT_US);
+> +       if (ret < 0) {
+> +               /* set channel ready if the data has transferred */
+> +               if (pmif_is_fsm_vldclr(arb))
+> +                       pmif_writel(arb, 1, inf_reg->ch_rdy);
+> +               dev_err(&ctrl->dev, "failed to wait for SWINF_IDLE\n");
+> +               goto out;
+> +       }
+> +
+> +       /* Send the command. */
+> +       cmd =3D (opc << 30) | (sid << 24) | ((len - 1) << 16) | addr;
+> +       pmif_writel(arb, cmd, inf_reg->ch_send);
+> +
+> +       /*
+> +        * Wait for Software Interface FSM state to be WFVLDCLR,
+> +        * read the data and clear the valid flag.
+> +        */
+> +       ret =3D readl_poll_timeout_atomic(arb->base + arb->data->regs[inf=
+_reg->ch_sta],
+> +                                       data, GET_SWINF(data) =3D=3D SWIN=
+F_WFVLDCLR,
+> +                                       PMIF_DELAY_US, PMIF_TIMEOUT_US);
+> +       if (ret < 0) {
+> +               dev_err(&ctrl->dev, "failed to wait for SWINF_WFVLDCLR\n"=
+);
+> +               goto out;
+> +       }
+> +
+> +       data =3D pmif_readl(arb, inf_reg->rdata);
+> +       memcpy(buf, &data, len);
+> +       pmif_writel(arb, 1, inf_reg->ch_rdy);
+> +
+> +out:
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       return 0;
+> +}
+> +
+> +static int pmif_spmi_write_cmd(struct spmi_controller *ctrl, u8 opc, u8 =
+sid,
+> +                              u16 addr, const u8 *buf, size_t len)
+> +{
+> +       struct pmif *arb =3D spmi_controller_get_drvdata(ctrl);
+> +       struct ch_reg *inf_reg;
+> +       int ret;
+> +       u32 data, cmd;
+> +
+> +       if (len > 4) {
+> +               dev_err(&ctrl->dev, "pmif supports 1..4 bytes per trans, =
+but:%zu requested", len);
+
+Missing newline
+
+> +               return -EINVAL;
+> +       }
+> +
+> +       /* Check the opcode */
+> +       if (opc >=3D 0x40 && opc <=3D 0x5F)
+> +               opc =3D PMIF_CMD_REG;
+> +       else if ((opc <=3D 0xF) || (opc >=3D 0x30 && opc <=3D 0x37))
+> +               opc =3D PMIF_CMD_EXT_REG_LONG;
+> +       else if (opc >=3D 0x80)
+> +               opc =3D PMIF_CMD_REG_0;
+> +       else
+> +               return -EINVAL;
+> +
+> +       /* Wait for Software Interface FSM state to be IDLE. */
+> +       inf_reg =3D &arb->chan;
+> +       ret =3D readl_poll_timeout_atomic(arb->base + arb->data->regs[inf=
+_reg->ch_sta],
+> +                                       data, GET_SWINF(data) =3D=3D SWIN=
+F_IDLE,
+> +                                       PMIF_DELAY_US, PMIF_TIMEOUT_US);
+> +       if (ret < 0) {
+> +               /* set channel ready if the data has transferred */
+> +               if (pmif_is_fsm_vldclr(arb))
+> +                       pmif_writel(arb, 1, inf_reg->ch_rdy);
+> +               dev_err(&ctrl->dev, "failed to wait for SWINF_IDLE\n");
+> +               goto out;
+> +       }
+> +
+> +       /* Set the write data. */
+> +       memcpy(&data, buf, len);
+> +       pmif_writel(arb, data, inf_reg->wdata);
+> +
+> +       /* Send the command. */
+> +       cmd =3D (opc << 30) | BIT(29) | (sid << 24) | ((len - 1) << 16) |=
+ addr;
+> +       pmif_writel(arb, cmd, inf_reg->ch_send);
+> +
+> +out:
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       return 0;
+
+Simplify to=20
+
+	out:
+		return ret;
+
+> +}
+> +
+> +static const struct pmif_data mt6873_pmif_arb =3D {
+> +       .regs =3D mt6873_regs,
+> +       .spmimst_regs =3D mt6873_spmi_regs,
+> +       .soc_chan =3D 2,
+> +};
+> +
+> +static int mtk_spmi_probe(struct platform_device *pdev)
+> +{
+> +       struct pmif *arb;
+> +       struct spmi_controller *ctrl;
+> +       int err, i;
+> +       u32 chan_offset;
+> +
+> +       ctrl =3D spmi_controller_alloc(&pdev->dev, sizeof(*arb));
+> +       if (!ctrl)
+> +               return -ENOMEM;
+> +
+> +       arb =3D spmi_controller_get_drvdata(ctrl);
+> +       arb->data =3D of_device_get_match_data(&pdev->dev);
+
+Use device_get_match_data() instead please.
+
+> +       if (!arb->data) {
+> +               err =3D -EINVAL;
+> +               dev_err(&pdev->dev, "Cannot get drv_data\n");
+> +               goto err_put_ctrl;
+> +       }
+> +
+> +       arb->base =3D devm_platform_ioremap_resource_byname(pdev, "pmif");
+> +       if (IS_ERR(arb->base)) {
+> +               err =3D PTR_ERR(arb->base);
+> +               dev_err(&pdev->dev, "pmif failed to get the remappped mem=
+ory\n");
+
+Please drop print as the API already prints errors for every problem.
+
+> +               goto err_put_ctrl;
+> +       }
+> +
+> +       arb->spmimst_base =3D devm_platform_ioremap_resource_byname(pdev,=
+ "spmimst");
+> +       if (IS_ERR(arb->spmimst_base)) {
+> +               err =3D PTR_ERR(arb->spmimst_base);
+> +               dev_err(&pdev->dev, "spmimst failed to get the remappped =
+memory\n");
+
+Please drop print as the API already prints errors for every problem.
+
+> +               goto err_put_ctrl;
+> +       }
+> +
+> +       arb->nclks =3D ARRAY_SIZE(pmif_clock_names);
+> +       if (arb->nclks > PMIF_MAX_CLKS) {
+> +               err =3D -EINVAL;
+> +               dev_err(&pdev->dev, "exceed the max clock numbers\n");
+
+Do we really care? The dt schema should be checking this instead of the
+driver.
+
+> +               goto err_put_ctrl;
+> +       }
+> +
+> +       for (i =3D 0; i < arb->nclks; i++)
+> +               arb->clks[i].id =3D pmif_clock_names[i];
+> +
