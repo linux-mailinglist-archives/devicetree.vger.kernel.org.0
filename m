@@ -2,677 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64AAE3E3F3E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 07:10:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 527CE3E3F43
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 07:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbhHIFLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 01:11:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232842AbhHIFLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 01:11:01 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD36AC061796
-        for <devicetree@vger.kernel.org>; Sun,  8 Aug 2021 22:10:41 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d17so15081931plr.12
-        for <devicetree@vger.kernel.org>; Sun, 08 Aug 2021 22:10:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=qcgg+84n0Gz6uLIloitkbV2FlGZEI9/Aogv7CEB5vz0=;
-        b=RUm0dXm8CSmMvCyynJnK1vv/z0IFdgwNHNoZ0TjExyZoONiJ2E7sxpAwIyoxLjrEuW
-         6QITeV7eRh7e3JoMF+3M+be3gzUoQ92htwlM6rmREyUA1U8pfaRbjbtgjXaxpXp0hE9R
-         7zpbo+pxwLDyZeDnRX+283z3KaOSMtvUhG+ASkLpddSSyGej4TFujMC8Vy4XW6aVABir
-         W/WdVjcJW+MhqYo/FwRY6bYvWFIlwlb9Zb9pfXsYhNzwUDhbnZ8MS154voKdMs8KhJTI
-         uU7wew83FpGa3jNJ14HXfRp1TBe+lXp5vb8Zrpvs9GW8muEgPb/mJOq6wjknT9aun7Si
-         kXZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=qcgg+84n0Gz6uLIloitkbV2FlGZEI9/Aogv7CEB5vz0=;
-        b=qLhsLeMw44QjC/U96Af/bs63lR3cLsA+GFaQmv7X6WmsxadFr71II5v8qjEr/2tL/j
-         keynOlDC/MHaTKO0gbC94N7hAjYmGRdqmHCt1tfSeFuFp10vO/6kHyp3RV3N4ZCKccHW
-         ZTbisBvWbymcfDcMulgrC72y18ZQGO7cdIVp4Aqb+oc/Ww5sxNus7gIpe5N2NHdJXQKC
-         TWCucm4U1uQG/maGKbcn7pq+tKH2/dQAEZECaARehTRAVz6mYwgxipnT9zm2YnvKxNTq
-         3aLu2TWy7qCLJn+gnBXB/kct0LonQy7jgC56wlmE+W8VkTZRiv3mQrBLCY+Jz0OwSljB
-         42DA==
-X-Gm-Message-State: AOAM532Sv+AwzcmXdZRse8tV1MWBUm+mQCXfm/qPEL8jjjsH9zzzfJJf
-        AGbrJT6KchGl5a1e5uxd4JJ41g==
-X-Google-Smtp-Source: ABdhPJxK0LdE4qXTUf8RyHa1b0QEmhNSLtVrJRfl8svykc/SwE3gnK2wEbfAKfKniP0rKzCi/lGuMg==
-X-Received: by 2002:a65:44c3:: with SMTP id g3mr58603pgs.233.1628485840983;
-        Sun, 08 Aug 2021 22:10:40 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id e35sm20420219pjk.28.2021.08.08.22.10.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Aug 2021 22:10:40 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v2 2/2] drm/panel: Add Sony Tulip Truly NT35521 driver
-Date:   Mon,  9 Aug 2021 13:10:08 +0800
-Message-Id: <20210809051008.6172-3-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210809051008.6172-1-shawn.guo@linaro.org>
-References: <20210809051008.6172-1-shawn.guo@linaro.org>
+        id S233045AbhHIFLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 01:11:54 -0400
+Received: from mail-vi1eur05on2077.outbound.protection.outlook.com ([40.107.21.77]:61536
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231996AbhHIFLx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 01:11:53 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CuPnq5QtKFFlqjb1r8xNHk+G2hDmVQBMoaiqAfpvAgnH1QV0aqRhJcAfpt6YFknZGuPM5NiPAWpN9wLmyez1xps80dkNCT6NGLGTPxmZ/qg86cGLFbRNPyLF3QrgKowsBwoS7kCtKK+Eim6vyIvRVdziAun5LsRiPicxfpevU4SKBURJ6f2AoUfh1EVd/Y3ipJRGIXbOSGTZ9YixC0hUaYvxAiY3GTPRjihWPuxITCyJazBK2+ScE/5274Xd6xKVDDeJjfaY0KlWCaX/5zFpeWOQTNmWulCfhgQKdxUMc215vgfzL3OkcyAfVAjOd4k1E/4YPWb+Fpba6dn9HxQWSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EtspRq5npEh87AC+Arr/P6boAe+7nWyNF1Zan7b/oRw=;
+ b=NGzyfz35NNODRkRIsjD/wsDs0UtyLN8zcjfgo2K+lTAoPZ4Niub1R+MvZ8M4NyrveZrFNFdttiTxLvEpf2rqfSooc1gd/OAP9eitxrhBy2mjpMDYW0/y/QvlYgsr8xt9tcFCzFxP0CrC/wWxkC6+JXPoPvZzeAb/bh8PXNimGzbenwEvQAOUyKA2QBVPeEJIEud0I/yhHACwBfhq1yzBtlsHjCm5I/96uKYh1GlYayO9/D/B3XRimkQV76oj6j010eIurSTCH/i7aV8K8ckQW3MZERMYMjRBO0TisWO0/zNr5p7dsT2pa7fKYCwjo361ojWJiT0nLbmz+asY94kdSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EtspRq5npEh87AC+Arr/P6boAe+7nWyNF1Zan7b/oRw=;
+ b=mBMctz27vlJsTWDR7y/4+U30cu1izciReG+eqnoSXuDKxj7G9iRxRX6R4ZcVdWYeURI6Co4ypC68WZYeFUKj5eKVfE1yYn5zOWP5WeoIZ1SNCDgsIaMHwult4SaFJtMZDH/AwcBVUSJSWo8uecInHb5KOZVQ5GgBSJ9A0ZO/Mtc=
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB9PR04MB8430.eurprd04.prod.outlook.com (2603:10a6:10:24f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15; Mon, 9 Aug
+ 2021 05:11:31 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::6969:eadc:6001:c0d]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::6969:eadc:6001:c0d%6]) with mapi id 15.20.4394.022; Mon, 9 Aug 2021
+ 05:11:31 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V1 4/5] net: fec: add eee mode tx lpi support
+Thread-Topic: [PATCH V1 4/5] net: fec: add eee mode tx lpi support
+Thread-Index: AQHXdJeZXIVAjgPwdk68s5rhZYjv2KtqlfKAgAA6T0A=
+Date:   Mon, 9 Aug 2021 05:11:31 +0000
+Message-ID: <DB8PR04MB67956C9894A1F77FF537A731E6F69@DB8PR04MB6795.eurprd04.prod.outlook.com>
+References: <20210709075355.27218-1-qiangqing.zhang@nxp.com>
+ <20210709075355.27218-5-qiangqing.zhang@nxp.com>
+ <20210809014043.GA3712165@roeck-us.net>
+In-Reply-To: <20210809014043.GA3712165@roeck-us.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 489a85aa-6c17-4478-28cd-08d95af4267a
+x-ms-traffictypediagnostic: DB9PR04MB8430:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB9PR04MB84309813772A6489EDB62ADCE6F69@DB9PR04MB8430.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: HT/o75Ib9ujTJCyvLueNYEECfCxOxyawLkIt+zxBB3QXzm4Kiqp9fue9e5wJIG8EFlhejBjm4hZOodv5HqDAQLAi//8gNRHXxuxEKwN+2zZudXwVqS0ugfLd1i3NbCzdqN56aJIV161E6DgRxlhQkHRmZNjkOlpCjQm3dLtrPKYZzwWTYsLQ4/elmI3OruCh3Oa2yWN0lr36+OCup921lpN+OIldN5MKt/a3rH6wSbokQUthY+nGi2/vvSRYsWPZTnx7xWLwPfBs3RPC0fzU01xMVDKSlaWCC5kWcrJZ3ZEGYDzN+Prr8OPB4gPC6J4Wb73wJ0tGHvu+JH9+rp/M7LXpFy2KA9hFQ/riJNkUqD5WHRgLN2O3ZCAC/+g/9NB30tPBDdLoQD5qOj59yKONQkH6DZeAJprTOo0IeMXKG9PfjXsTjAXeulpynMaaJpRqBSv7MBogZUWBO3Xh1rTQA0ZDna1JzxKEFVeTfXaVN+SSS5jJI/qdcQFiqKLCKJ7GUIFoNRhtR9sudlyodHVGbr54V7twXyHLpynNCyRkXB6JWNk7whdXqzgT40ODY6yZ3qf77Bv6QwRSvmZcXKdaBwn/+/oSt5ZSUYWqqoLO+4bi3b4x1X+4cMRPnvzET/wVDV+Tf4aGHLVC3+Dc4GeGTIBi8IqpLOt5iw+ZfGvFbBjbssHcEg/URPdNT5uaEsAtauK2gtIUPxZyhxSFTCooJQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(5660300002)(186003)(26005)(52536014)(6916009)(83380400001)(86362001)(66946007)(66556008)(76116006)(64756008)(66446008)(66476007)(55016002)(71200400001)(2906002)(9686003)(54906003)(8936002)(122000001)(4326008)(38100700002)(38070700005)(33656002)(316002)(6506007)(8676002)(53546011)(7696005)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?bkhMcTgxS0RmbEdRL054NmVEY3F0dzBLQlNaaXczOHJLbkNDZlRocEw2OXFR?=
+ =?gb2312?B?N0FkektsL0ppYXFGZUZWS3FHalRIdlAyUVpxQmJ2ZUZWclpsS0o0VE1NQkxy?=
+ =?gb2312?B?N3hLMFJ5LzZhVjlKc0R1SExPMndRUlZUamhJd2Jva2w2VVFPY3RBRXZ2Mmo1?=
+ =?gb2312?B?V1JFRkVIdU1uTm42bm9tT25pTmU1Vnl6M2QxenFVc2UwSEQ2ZlMrVkNxdzJQ?=
+ =?gb2312?B?RElmb29VRTNOSlpDUGtkcFFvQlkvOTBITmd4bFQrb3p5cTJXYnllRkJrejFv?=
+ =?gb2312?B?Ty9xVjdKRmwzVUUzRHZ4ZWIwV3pPUnMxWDQ0N3NRTHB4M0hMNjlrYTByUlF1?=
+ =?gb2312?B?dC9pdk9meU5OYTNpeTdzRkRaZS9ocUMrNUNsLzZQS1ROZ2Jyay9rWmRnSHpK?=
+ =?gb2312?B?S1lBM3RQUkpnQ2lwTHVZOVo1YlhWTmRZRjJ2RjBTMTIwcjNVT00razY0LzMr?=
+ =?gb2312?B?TXpLR0xHandZWWgrTW9kY2VkSXJ4VVRwQnlpb1dGTUFzUlJDY01wTHN3VUk1?=
+ =?gb2312?B?NXlYMXcvZ2kvcjRCVGJad1VyeGNnOFQ0cmdpYjZWekFBYXNaY29jZTA1M3k0?=
+ =?gb2312?B?S2pOUkIyQWN6c3RYdml4Skd5L2FkWS9RbWJaYVBGUVQ1U3Z3SFErOFVMQ200?=
+ =?gb2312?B?V2xSWFlyeGlNYmt3SnZpV3ZEWlZoMzk0T0I2aHp1TWJmRE5VcVlwM1ExSGN6?=
+ =?gb2312?B?ZWNlcVpxbWk1eTYvNUo3THFCNytJYXVxLzVLOE5zVGZTbUJWQlJ3Q0NFRW1t?=
+ =?gb2312?B?NGpKY3BWNTZ3KzdqL1JwR3VxNEg0cmZpWnhxcGRZbDIwdmlSSzFOUVA3YTBN?=
+ =?gb2312?B?UUo4anQxYnpUS0kyRkxwMHdReXNld2dWNTR2OVZvR0ZxcUhSM2ozT1B1eWl3?=
+ =?gb2312?B?cmM2WUc3NHNjaEpDby80MWs2d2EvbDBQanZlT0Fsc2FPUUtINEVHVUdvY0JE?=
+ =?gb2312?B?QXQ0ZnQ2OHVqN3JiczBhclBpUWI2d1ZBL3VFK05NcVQ1Vk1aK2xPeEE0NjZH?=
+ =?gb2312?B?L2dRd0g1TTQ3Q0xvSGRFeHhJOER4d0UxRTA5ZHVjaHZxRmZxTGNXVFZicWRj?=
+ =?gb2312?B?YWVtUW94WFpUTXk1TTdkY1B3UUs1ZWxBMjI1cldUanhVQmUwdld6SVFLK21N?=
+ =?gb2312?B?Ym1oQTU2SEk5UmphNVhKM3ZEbmJ3dkVTdGdTVTBrOS9HTVlJVzVyRkdYR2F5?=
+ =?gb2312?B?bnRsWFYxOGxNWFc4eXptMHVUWGlvYzJkOURsMnduYVRxdDg0N0tqekdQdCtR?=
+ =?gb2312?B?alErR3QzNW93ZDRkM0dHRkNwMGtzeGJCd1k1MzhvSXhndDZYSURiMVZIaWJr?=
+ =?gb2312?B?akJVNnJqTDRGaVMwR3crTlRFK2lyVjREWm9WY1greGxHTVJyeW11SXBnaEJE?=
+ =?gb2312?B?Q2FIaENadnJySVJUVDhpV2d5UkF5QVJ6TytDZUMrSTFCSU9ackpQUUU3eDBI?=
+ =?gb2312?B?WXB1VFRSeEF2RXp0L0dRaU9CaUxpYnVBNHBuMXk5UHFYT0hMSFhwV1poNEZw?=
+ =?gb2312?B?eG5RU2pMQXRlNm92eWZqZ2tkQnpCSERsS3Y1NTVZZnM3WG9vWmtJcWRRNmVx?=
+ =?gb2312?B?OVloQVNMV3NWZHI0NWFxbzVtZG1LL1F0NG4ybU04TERLdDBjR291eDhIdDM4?=
+ =?gb2312?B?Tlk0dnpDRVNiUGtVVGs2a3YzM0dZNm9wc3lybEpHdGlRT25DRkpQQXFXaGNI?=
+ =?gb2312?B?NVJ3QmJEWGJaME5aRi9UbGNQa3NFUTBpVUc4NXo0ZTFIQTJ1UEIybXhRQXp4?=
+ =?gb2312?Q?Co5PP5Gj7DFugZjyls=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 489a85aa-6c17-4478-28cd-08d95af4267a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2021 05:11:31.3287
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: m+bsweSXRGk+bLP5h5ycF9TkC+LMuICCz22HIzV5FvHdOpBZhZmJyzO1t57F1Xh4qKDeRwHS8sDJKBvN2jRRaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8430
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It adds a DRM panel driver for Sony Tulip Truly NT35521 5.24" 1280x720
-DSI panel, which can be found on Sony Xperia M4 Aqua phone.  The panel
-backlight is managed through DSI link.
-
-The driver is built using linux-mdss-dsi-panel-driver-generator[1], and
-additionally modeling the 5V control GPIOs with regulators and adding
-Backlight GPIO support.
-
-[1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
-
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- drivers/gpu/drm/panel/Kconfig                 |  10 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../panel/panel-sony-tulip-truly-nt35521.c    | 552 ++++++++++++++++++
- 3 files changed, 563 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
-
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index ef87d92cdf49..a5809eab49b2 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -502,6 +502,16 @@ config DRM_PANEL_SONY_ACX565AKM
- 	  Say Y here if you want to enable support for the Sony ACX565AKM
- 	  800x600 3.5" panel (found on the Nokia N900).
- 
-+config DRM_PANEL_SONY_TULIP_TRULY_NT35521
-+	tristate "Sony Tulip Truly NT35521 panel"
-+	depends on GPIOLIB && OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for the Sony Tulip
-+	  NT35521 1280x720 video mode panel as found on Sony Xperia M4
-+	  Aqua phone.
-+
- config DRM_PANEL_TDO_TL070WSH30
- 	tristate "TDO TL070WSH30 DSI panel"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index cae4d976c069..852ce32d58ee 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -52,6 +52,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
- obj-$(CONFIG_DRM_PANEL_SONY_ACX424AKP) += panel-sony-acx424akp.o
- obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
-+obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
- obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) += panel-tpo-td028ttec1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
-diff --git a/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c b/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
-new file mode 100644
-index 000000000000..eba926c6f722
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
-@@ -0,0 +1,552 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021, Linaro Limited
-+ *
-+ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
-+ *   Copyright (c) 2013, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct truly_nt35521 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator_bulk_data supplies[2];
-+	struct gpio_desc *reset_gpio;
-+	struct gpio_desc *blen_gpio;
-+	bool prepared;
-+	bool enabled;
-+};
-+
-+static inline
-+struct truly_nt35521 *to_truly_nt35521(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct truly_nt35521, panel);
-+}
-+
-+#define dsi_generic_write_seq(dsi, seq...) do {				\
-+		static const u8 d[] = { seq };				\
-+		int ret;						\
-+		ret = mipi_dsi_generic_write(dsi, d, ARRAY_SIZE(d));	\
-+		if (ret < 0)						\
-+			return ret;					\
-+	} while (0)
-+
-+static void truly_nt35521_reset(struct truly_nt35521 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(1000, 2000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	msleep(150);
-+}
-+
-+static int truly_nt35521_on(struct truly_nt35521 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x00);
-+	dsi_generic_write_seq(dsi, 0xff, 0xaa, 0x55, 0xa5, 0x80);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x11, 0x00);
-+	dsi_generic_write_seq(dsi, 0xf7, 0x20, 0x00);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x01);
-+	dsi_generic_write_seq(dsi, 0xb1, 0x21);
-+	dsi_generic_write_seq(dsi, 0xbd, 0x01, 0xa0, 0x10, 0x08, 0x01);
-+	dsi_generic_write_seq(dsi, 0xb8, 0x01, 0x02, 0x0c, 0x02);
-+	dsi_generic_write_seq(dsi, 0xbb, 0x11, 0x11);
-+	dsi_generic_write_seq(dsi, 0xbc, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb6, 0x02);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x01);
-+	dsi_generic_write_seq(dsi, 0xb0, 0x09, 0x09);
-+	dsi_generic_write_seq(dsi, 0xb1, 0x09, 0x09);
-+	dsi_generic_write_seq(dsi, 0xbc, 0x8c, 0x00);
-+	dsi_generic_write_seq(dsi, 0xbd, 0x8c, 0x00);
-+	dsi_generic_write_seq(dsi, 0xca, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc0, 0x04);
-+	dsi_generic_write_seq(dsi, 0xbe, 0xb5);
-+	dsi_generic_write_seq(dsi, 0xb3, 0x35, 0x35);
-+	dsi_generic_write_seq(dsi, 0xb4, 0x25, 0x25);
-+	dsi_generic_write_seq(dsi, 0xb9, 0x43, 0x43);
-+	dsi_generic_write_seq(dsi, 0xba, 0x24, 0x24);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x02);
-+	dsi_generic_write_seq(dsi, 0xee, 0x03);
-+	dsi_generic_write_seq(dsi, 0xb0,
-+			      0x00, 0xb2, 0x00, 0xb3, 0x00, 0xb6, 0x00, 0xc3,
-+			      0x00, 0xce, 0x00, 0xe1, 0x00, 0xf3, 0x01, 0x11);
-+	dsi_generic_write_seq(dsi, 0xb1,
-+			      0x01, 0x2e, 0x01, 0x5c, 0x01, 0x82, 0x01, 0xc3,
-+			      0x01, 0xfe, 0x02, 0x00, 0x02, 0x37, 0x02, 0x77);
-+	dsi_generic_write_seq(dsi, 0xb2,
-+			      0x02, 0xa1, 0x02, 0xd7, 0x02, 0xfe, 0x03, 0x2c,
-+			      0x03, 0x4b, 0x03, 0x63, 0x03, 0x8f, 0x03, 0x90);
-+	dsi_generic_write_seq(dsi, 0xb3, 0x03, 0x96, 0x03, 0x98);
-+	dsi_generic_write_seq(dsi, 0xb4,
-+			      0x00, 0x81, 0x00, 0x8b, 0x00, 0x9c, 0x00, 0xa9,
-+			      0x00, 0xb5, 0x00, 0xcb, 0x00, 0xdf, 0x01, 0x02);
-+	dsi_generic_write_seq(dsi, 0xb5,
-+			      0x01, 0x1f, 0x01, 0x51, 0x01, 0x7a, 0x01, 0xbf,
-+			      0x01, 0xfa, 0x01, 0xfc, 0x02, 0x34, 0x02, 0x76);
-+	dsi_generic_write_seq(dsi, 0xb6,
-+			      0x02, 0x9f, 0x02, 0xd7, 0x02, 0xfc, 0x03, 0x2c,
-+			      0x03, 0x4a, 0x03, 0x63, 0x03, 0x8f, 0x03, 0xa2);
-+	dsi_generic_write_seq(dsi, 0xb7, 0x03, 0xb8, 0x03, 0xba);
-+	dsi_generic_write_seq(dsi, 0xb8,
-+			      0x00, 0x01, 0x00, 0x02, 0x00, 0x0e, 0x00, 0x2a,
-+			      0x00, 0x41, 0x00, 0x67, 0x00, 0x87, 0x00, 0xb9);
-+	dsi_generic_write_seq(dsi, 0xb9,
-+			      0x00, 0xe2, 0x01, 0x22, 0x01, 0x54, 0x01, 0xa3,
-+			      0x01, 0xe6, 0x01, 0xe7, 0x02, 0x24, 0x02, 0x67);
-+	dsi_generic_write_seq(dsi, 0xba,
-+			      0x02, 0x93, 0x02, 0xcd, 0x02, 0xf6, 0x03, 0x31,
-+			      0x03, 0x6c, 0x03, 0xe9, 0x03, 0xef, 0x03, 0xf4);
-+	dsi_generic_write_seq(dsi, 0xbb, 0x03, 0xf6, 0x03, 0xf7);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x03);
-+	dsi_generic_write_seq(dsi, 0xb0, 0x22, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb1, 0x22, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb2, 0x05, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb3, 0x05, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb4, 0x05, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb5, 0x05, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xba, 0x53, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xbb, 0x53, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xbc, 0x53, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xbd, 0x53, 0x00, 0x60, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc0, 0x00, 0x34, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc1, 0x00, 0x00, 0x34, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc2, 0x00, 0x00, 0x34, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc3, 0x00, 0x00, 0x34, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc4, 0x60);
-+	dsi_generic_write_seq(dsi, 0xc5, 0xc0);
-+	dsi_generic_write_seq(dsi, 0xc6, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc7, 0x00);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x05);
-+	dsi_generic_write_seq(dsi, 0xb0, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb1, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb2, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb3, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb4, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb5, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb6, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb7, 0x17, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb8, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb9, 0x00, 0x03);
-+	dsi_generic_write_seq(dsi, 0xba, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xbb, 0x02, 0x03);
-+	dsi_generic_write_seq(dsi, 0xbc, 0x02, 0x03);
-+	dsi_generic_write_seq(dsi, 0xbd, 0x03, 0x03, 0x00, 0x03, 0x03);
-+	dsi_generic_write_seq(dsi, 0xc0, 0x0b);
-+	dsi_generic_write_seq(dsi, 0xc1, 0x09);
-+	dsi_generic_write_seq(dsi, 0xc2, 0xa6);
-+	dsi_generic_write_seq(dsi, 0xc3, 0x05);
-+	dsi_generic_write_seq(dsi, 0xc4, 0x00);
-+	dsi_generic_write_seq(dsi, 0xc5, 0x02);
-+	dsi_generic_write_seq(dsi, 0xc6, 0x22);
-+	dsi_generic_write_seq(dsi, 0xc7, 0x03);
-+	dsi_generic_write_seq(dsi, 0xc8, 0x07, 0x20);
-+	dsi_generic_write_seq(dsi, 0xc9, 0x03, 0x20);
-+	dsi_generic_write_seq(dsi, 0xca, 0x01, 0x60);
-+	dsi_generic_write_seq(dsi, 0xcb, 0x01, 0x60);
-+	dsi_generic_write_seq(dsi, 0xcc, 0x00, 0x00, 0x02);
-+	dsi_generic_write_seq(dsi, 0xcd, 0x00, 0x00, 0x02);
-+	dsi_generic_write_seq(dsi, 0xce, 0x00, 0x00, 0x02);
-+	dsi_generic_write_seq(dsi, 0xcf, 0x00, 0x00, 0x02);
-+	dsi_generic_write_seq(dsi, 0xd1, 0x00, 0x05, 0x01, 0x07, 0x10);
-+	dsi_generic_write_seq(dsi, 0xd2, 0x10, 0x05, 0x05, 0x03, 0x10);
-+	dsi_generic_write_seq(dsi, 0xd3, 0x20, 0x00, 0x43, 0x07, 0x10);
-+	dsi_generic_write_seq(dsi, 0xd4, 0x30, 0x00, 0x43, 0x07, 0x10);
-+	dsi_generic_write_seq(dsi, 0xd0,
-+			      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xd5,
-+			      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			      0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xd6,
-+			      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			      0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xd7,
-+			      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+			      0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xd8, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xe5, 0x06);
-+	dsi_generic_write_seq(dsi, 0xe6, 0x06);
-+	dsi_generic_write_seq(dsi, 0xe7, 0x00);
-+	dsi_generic_write_seq(dsi, 0xe8, 0x06);
-+	dsi_generic_write_seq(dsi, 0xe9, 0x06);
-+	dsi_generic_write_seq(dsi, 0xea, 0x06);
-+	dsi_generic_write_seq(dsi, 0xeb, 0x00);
-+	dsi_generic_write_seq(dsi, 0xec, 0x00);
-+	dsi_generic_write_seq(dsi, 0xed, 0x30);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x06);
-+	dsi_generic_write_seq(dsi, 0xb0, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xb1, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xb2, 0x2d, 0x2e);
-+	dsi_generic_write_seq(dsi, 0xb3, 0x31, 0x34);
-+	dsi_generic_write_seq(dsi, 0xb4, 0x29, 0x2a);
-+	dsi_generic_write_seq(dsi, 0xb5, 0x12, 0x10);
-+	dsi_generic_write_seq(dsi, 0xb6, 0x18, 0x16);
-+	dsi_generic_write_seq(dsi, 0xb7, 0x00, 0x02);
-+	dsi_generic_write_seq(dsi, 0xb8, 0x08, 0x31);
-+	dsi_generic_write_seq(dsi, 0xb9, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xba, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xbb, 0x31, 0x08);
-+	dsi_generic_write_seq(dsi, 0xbc, 0x03, 0x01);
-+	dsi_generic_write_seq(dsi, 0xbd, 0x17, 0x19);
-+	dsi_generic_write_seq(dsi, 0xbe, 0x11, 0x13);
-+	dsi_generic_write_seq(dsi, 0xbf, 0x2a, 0x29);
-+	dsi_generic_write_seq(dsi, 0xc0, 0x34, 0x31);
-+	dsi_generic_write_seq(dsi, 0xc1, 0x2e, 0x2d);
-+	dsi_generic_write_seq(dsi, 0xc2, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xc3, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xc4, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xc5, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xc6, 0x2e, 0x2d);
-+	dsi_generic_write_seq(dsi, 0xc7, 0x31, 0x34);
-+	dsi_generic_write_seq(dsi, 0xc8, 0x29, 0x2a);
-+	dsi_generic_write_seq(dsi, 0xc9, 0x17, 0x19);
-+	dsi_generic_write_seq(dsi, 0xca, 0x11, 0x13);
-+	dsi_generic_write_seq(dsi, 0xcb, 0x03, 0x01);
-+	dsi_generic_write_seq(dsi, 0xcc, 0x08, 0x31);
-+	dsi_generic_write_seq(dsi, 0xcd, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xce, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xcf, 0x31, 0x08);
-+	dsi_generic_write_seq(dsi, 0xd0, 0x00, 0x02);
-+	dsi_generic_write_seq(dsi, 0xd1, 0x12, 0x10);
-+	dsi_generic_write_seq(dsi, 0xd2, 0x18, 0x16);
-+	dsi_generic_write_seq(dsi, 0xd3, 0x2a, 0x29);
-+	dsi_generic_write_seq(dsi, 0xd4, 0x34, 0x31);
-+	dsi_generic_write_seq(dsi, 0xd5, 0x2d, 0x2e);
-+	dsi_generic_write_seq(dsi, 0xd6, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xd7, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xe5, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xe6, 0x31, 0x31);
-+	dsi_generic_write_seq(dsi, 0xd8, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xd9, 0x00, 0x00, 0x00, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xe7, 0x00);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x02);
-+	dsi_generic_write_seq(dsi, 0xf7, 0x47);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x0a);
-+	dsi_generic_write_seq(dsi, 0xf7, 0x02);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x17);
-+	dsi_generic_write_seq(dsi, 0xf4, 0x60);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x01);
-+	dsi_generic_write_seq(dsi, 0xf9, 0x46);
-+	dsi_generic_write_seq(dsi, 0x6f, 0x11);
-+	dsi_generic_write_seq(dsi, 0xf3, 0x01);
-+	dsi_generic_write_seq(dsi, 0x35, 0x00);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x00);
-+	dsi_generic_write_seq(dsi, 0xd9, 0x02, 0x03, 0x00);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x08, 0x00);
-+	dsi_generic_write_seq(dsi, 0xb1, 0x6c, 0x21);
-+	dsi_generic_write_seq(dsi, 0xf0, 0x55, 0xaa, 0x52, 0x00, 0x00);
-+	dsi_generic_write_seq(dsi, 0x35, 0x00);
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display on: %d\n", ret);
-+		return ret;
-+	}
-+	usleep_range(1000, 2000);
-+
-+	dsi_generic_write_seq(dsi, 0x53, 0x24);
-+
-+	return 0;
-+}
-+
-+static int truly_nt35521_off(struct truly_nt35521 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_off(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display off: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(50);
-+
-+	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(150);
-+
-+	return 0;
-+}
-+
-+static int truly_nt35521_prepare(struct drm_panel *panel)
-+{
-+	struct truly_nt35521 *ctx = to_truly_nt35521(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	truly_nt35521_reset(ctx);
-+
-+	ret = truly_nt35521_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		return ret;
-+	}
-+
-+	ctx->prepared = true;
-+	return 0;
-+}
-+
-+static int truly_nt35521_unprepare(struct drm_panel *panel)
-+{
-+	struct truly_nt35521 *ctx = to_truly_nt35521(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (!ctx->prepared)
-+		return 0;
-+
-+	ret = truly_nt35521_off(ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies),
-+			       ctx->supplies);
-+
-+	ctx->prepared = false;
-+	return 0;
-+}
-+
-+static int truly_nt35521_enable(struct drm_panel *panel)
-+{
-+	struct truly_nt35521 *ctx = to_truly_nt35521(panel);
-+
-+	if (ctx->enabled)
-+		return 0;
-+
-+	gpiod_set_value_cansleep(ctx->blen_gpio, 1);
-+
-+	ctx->enabled = true;
-+	return 0;
-+}
-+
-+static int truly_nt35521_disable(struct drm_panel *panel)
-+{
-+	struct truly_nt35521 *ctx = to_truly_nt35521(panel);
-+
-+	if (!ctx->enabled)
-+		return 0;
-+
-+	gpiod_set_value_cansleep(ctx->blen_gpio, 0);
-+
-+	ctx->enabled = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode truly_nt35521_mode = {
-+	.clock = (720 + 232 + 20 + 112) * (1280 + 18 + 1 + 18) * 60 / 1000,
-+	.hdisplay = 720,
-+	.hsync_start = 720 + 232,
-+	.hsync_end = 720 + 232 + 20,
-+	.htotal = 720 + 232 + 20 + 112,
-+	.vdisplay = 1280,
-+	.vsync_start = 1280 + 18,
-+	.vsync_end = 1280 + 18 + 1,
-+	.vtotal = 1280 + 18 + 1 + 18,
-+	.width_mm = 65,
-+	.height_mm = 116,
-+};
-+
-+static int truly_nt35521_get_modes(struct drm_panel *panel,
-+				     struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &truly_nt35521_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs truly_nt35521_panel_funcs = {
-+	.prepare = truly_nt35521_prepare,
-+	.unprepare = truly_nt35521_unprepare,
-+	.enable = truly_nt35521_enable,
-+	.disable = truly_nt35521_disable,
-+	.get_modes = truly_nt35521_get_modes,
-+};
-+
-+static int truly_nt35521_bl_update_status(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness = backlight_get_brightness(bl);
-+	int ret;
-+
-+	ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int truly_nt35521_bl_get_brightness(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness;
-+	int ret;
-+
-+	ret = mipi_dsi_dcs_get_display_brightness(dsi, &brightness);
-+	if (ret < 0)
-+		return ret;
-+
-+	return brightness & 0xff;
-+}
-+
-+static const struct backlight_ops truly_nt35521_bl_ops = {
-+	.update_status = truly_nt35521_bl_update_status,
-+	.get_brightness = truly_nt35521_bl_get_brightness,
-+};
-+
-+static struct backlight_device *
-+truly_nt35521_create_backlight(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 255,
-+		.max_brightness = 255,
-+	};
-+
-+	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
-+					      &truly_nt35521_bl_ops, &props);
-+}
-+
-+static int truly_nt35521_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct truly_nt35521 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->supplies[0].supply = "positive5";
-+	ctx->supplies[1].supply = "negative5";
-+	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
-+				      ctx->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to get regulators: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->blen_gpio = devm_gpiod_get(dev, "backlight", GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->blen_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->blen_gpio),
-+				     "Failed to get backlight-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_EOT_PACKET |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	drm_panel_init(&ctx->panel, dev, &truly_nt35521_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	ctx->panel.backlight = truly_nt35521_create_backlight(dsi);
-+	if (IS_ERR(ctx->panel.backlight))
-+		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-+				     "Failed to create backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int truly_nt35521_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct truly_nt35521 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id truly_nt35521_of_match[] = {
-+	{ .compatible = "sony,tulip-truly-nt35521" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, truly_nt35521_of_match);
-+
-+static struct mipi_dsi_driver truly_nt35521_driver = {
-+	.probe = truly_nt35521_probe,
-+	.remove = truly_nt35521_remove,
-+	.driver = {
-+		.name = "panel-truly-nt35521",
-+		.of_match_table = truly_nt35521_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(truly_nt35521_driver);
-+
-+MODULE_AUTHOR("Shawn Guo <shawn.guo@linaro.org>");
-+MODULE_DESCRIPTION("DRM driver for Sony Tulip Truly NT35521 panel");
-+MODULE_LICENSE("GPL v2");
--- 
-2.17.1
-
+DQpIaSBHdWVudGVyLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEd1
+ZW50ZXIgUm9lY2sgPGdyb2VjazdAZ21haWwuY29tPiBPbiBCZWhhbGYgT2YgR3VlbnRlciBSb2Vj
+aw0KPiBTZW50OiAyMDIxxOo41MI5yNUgOTo0MQ0KPiBUbzogSm9ha2ltIFpoYW5nIDxxaWFuZ3Fp
+bmcuemhhbmdAbnhwLmNvbT4NCj4gQ2M6IGRhdmVtQGRhdmVtbG9mdC5uZXQ7IGt1YmFAa2VybmVs
+Lm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBhbmRyZXdAbHVubi5jaDsgbmV0ZGV2QHZnZXIu
+a2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2
+Z2VyLmtlcm5lbC5vcmc7IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+DQo+IFN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggVjEgNC81XSBuZXQ6IGZlYzogYWRkIGVlZSBtb2RlIHR4IGxwaSBzdXBw
+b3J0DQo+IA0KPiBPbiBGcmksIEp1bCAwOSwgMjAyMSBhdCAwMzo1Mzo1NFBNICswODAwLCBKb2Fr
+aW0gWmhhbmcgd3JvdGU6DQo+ID4gRnJvbTogRnVnYW5nIER1YW4gPGZ1Z2FuZy5kdWFuQG54cC5j
+b20+DQo+ID4NCj4gPiBUaGUgaS5NWDhNUSBFTkVUIHZlcnNpb24gc3VwcG9ydCBJRUVFODAyLjNh
+eiBlZWUgbW9kZSwgYWRkIGVlZSBtb2RlIHR4DQo+ID4gbHBpIGVuYWJsZSB0byBzdXBwb3J0IGV0
+aHRvb2wgaW50ZXJmYWNlLg0KPiA+DQo+ID4gdXNhZ2U6DQo+ID4gMS4gc2V0IHNsZWVwIGFuZCB3
+YWtlIHRpbWVyIHRvIDVtczoNCj4gPiBldGh0b29sIC0tc2V0LWVlZSBldGgwIGVlZSBvbiB0eC1s
+cGkgb24gdHgtdGltZXIgNTAwMCAyLiBjaGVjayB0aGUgZWVlDQo+ID4gbW9kZToNCj4gPiB+IyBl
+dGh0b29sIC0tc2hvdy1lZWUgZXRoMA0KPiA+IEVFRSBTZXR0aW5ncyBmb3IgZXRoMDoNCj4gPiAg
+ICAgICAgIEVFRSBzdGF0dXM6IGVuYWJsZWQgLSBhY3RpdmUNCj4gPiAgICAgICAgIFR4IExQSTog
+NTAwMCAodXMpDQo+ID4gICAgICAgICBTdXBwb3J0ZWQgRUVFIGxpbmsgbW9kZXM6ICAxMDBiYXNl
+VC9GdWxsDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxMDAwYmFzZVQv
+RnVsbA0KPiA+ICAgICAgICAgQWR2ZXJ0aXNlZCBFRUUgbGluayBtb2RlczogIDEwMGJhc2VUL0Z1
+bGwNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxMDAwYmFzZVQvRnVs
+bA0KPiA+ICAgICAgICAgTGluayBwYXJ0bmVyIGFkdmVydGlzZWQgRUVFIGxpbmsgbW9kZXM6ICAx
+MDBiYXNlVC9GdWxsDQo+ID4NCj4gPiBOb3RlOiBGb3IgcmVhbHRpbWUgY2FzZSBhbmQgSUVFRTE1
+ODggcHRwIGNhc2UsIGl0IHNob3VsZCBkaXNhYmxlIEVFRQ0KPiA+IG1vZGUuDQo+ID4NCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBGdWdhbmcgRHVhbiA8ZnVnYW5nLmR1YW5AbnhwLmNvbT4NCj4gPiBTaWdu
+ZWQtb2ZmLWJ5OiBKb2FraW0gWmhhbmcgPHFpYW5ncWluZy56aGFuZ0BueHAuY29tPg0KPiANCj4g
+VGhpcyBwYXRjaCByZXN1bHRzIGluOg0KPiANCj4gZHJpdmVycy9uZXQvZXRoZXJuZXQvZnJlZXNj
+YWxlL2ZlY19tYWluLmM6IEluIGZ1bmN0aW9uDQo+ICdmZWNfZW5ldF9lZWVfbW9kZV9zZXQnOg0K
+PiBkcml2ZXJzL25ldC9ldGhlcm5ldC9mcmVlc2NhbGUvZmVjX21haW4uYzoyODAxOjQwOiBlcnJv
+cjogJ0ZFQ19MUElfU0xFRVAnDQo+IHVuZGVjbGFyZWQNCj4gZHJpdmVycy9uZXQvZXRoZXJuZXQv
+ZnJlZXNjYWxlL2ZlY19tYWluLmM6MjgwMjozOTogZXJyb3I6ICdGRUNfTFBJX1dBS0UnDQo+IHVu
+ZGVjbGFyZWQNCj4gDQo+IHdoZW4gYnVpbGRpbmcgbTY4azptNTI3MmMzX2RlZmNvbmZpZy4NCg0K
+SSBqdXN0IHNlbnQgdG8gcGF0Y2ggdG8gZml4IHRoaXMgYnVpbGQgaXNzdWUsIHNvcnJ5IGZvciB0
+aGlzIGluY29udmVuaWVuY2UuDQoNCkJlc3QgUmVnYXJkcywNCkpvYWtpbSBaaGFuZw0KPiBHdWVu
+dGVyDQo=
