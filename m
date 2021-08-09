@@ -2,108 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 675433E40DA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA43D3E40E7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:37:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233452AbhHIHdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 03:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33602 "EHLO
+        id S233452AbhHIHh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 03:37:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233445AbhHIHdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:33:05 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46349C061796
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 00:32:43 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id k2so15371736plk.13
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 00:32:43 -0700 (PDT)
+        with ESMTP id S232094AbhHIHhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:37:53 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E476EC0613CF;
+        Mon,  9 Aug 2021 00:37:31 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id y7so11348205ljp.3;
+        Mon, 09 Aug 2021 00:37:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=NVCCSnIXYykkg2R7yVA5Ld91gUKOn2zITwPVLJyBQvQ=;
-        b=JJ0xgqBnD9h/5UXKJJkdIH5qjmoVw6ZhAxv2ayd+S0yB+m/LShHqM8AynrVtiYUuPD
-         alwnu+6AGSPiAaPuawgIIconPh0TGQkupInxxbQwuXXiLrMagcGMZJzAZPpnexiGg+6Q
-         yKPYKw7FJTDbtEkvB2KSnDDzvYmbkM/E5jEWg=
+        bh=tOfwbYzSxTz3/qcaHpP5xq44HlT8+4ETE/kx1iWOW9k=;
+        b=Hd8h+zSTKqqrKx2DoCL857vPml6dHMgVL3E5Uhyq7UVegef+fv2BUbz5fcNkmw8J3Y
+         1bMtRV+3ezRgV/cpVgVVNz0w2KGXor/42dxrqAVmNddMUCAbxL6hT95LyMFAy5ydccQJ
+         O3bGeier+ZUnYLraMSCieUx8d1Pk9sUBMBm2flgkz1sq8Qz3JLwVfCFNZYi164a1pVdc
+         BXTAsluL2A1VGSOIleP3zWLUOHZvYPiHYLr5Q0JXgTznIK0IOHoSi/N769oQN6uZio4u
+         fwNpUItdL4RxwIwDfbxttvFs9yieG6lFlIWGjzTfihbixwIu7p8o1nUtTcuKzRIJwP0k
+         RiZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NVCCSnIXYykkg2R7yVA5Ld91gUKOn2zITwPVLJyBQvQ=;
-        b=TNTxuXMGp+Me6LzVh02o+pAOdI1mXhemk7pnEsTAXJKlSzBGOeMO3dDw32iULaAv/Z
-         X1+OEW8DzLCrTSCy8st+t6QVUtkxl94JSuuitJ/hCZC0L+/Uz31S5KO+0G2XJoosPP7H
-         DWQo6yae9MRvDC+WLHMk0KY0+pyDxXpbEugcb1/2pzb4Gx3I0QhyhILwlPNBTWNBEqgG
-         +OuQummslcjADwjt8GkoVW7gR2FyXV8UEotKNrasYmI+/Uz8zDOIXJkR6RsLFZaNiw2C
-         niVXxvccVvFzGHYR4PyK2Gm8NH0cf03FQETjUYxx/za6GcP10fZTPNuzcHylWZjQmofk
-         wZZg==
-X-Gm-Message-State: AOAM532bLVLtUaQVs52BHUUEWuMLcREa5P4LXGz22RdlcaeDr3CwcgDi
-        XAyEKuntB0iQonjRssiHgeJRbAhW27rYcIyX6FBCDw==
-X-Google-Smtp-Source: ABdhPJzPT1GiwQpBd6U/85ILPMLMrLPdsU7/6fuodJb9JGdW/fcRu0XqgpdJcPoOgwhC12HFQLmJTOHVjKPOQOD+oQ8=
-X-Received: by 2002:a17:90b:102:: with SMTP id p2mr150614pjz.126.1628494362683;
- Mon, 09 Aug 2021 00:32:42 -0700 (PDT)
+        bh=tOfwbYzSxTz3/qcaHpP5xq44HlT8+4ETE/kx1iWOW9k=;
+        b=tGC4L8sLqpG24z/jJHMYpqSSjYArtF6z/X6xoHf+oQOxQY6Sc4KCDjsPBD9yHnTSuq
+         RA9hhFGKYAmVvvjOgpArxmqVESKvfM/7LgyPd0Crbm8ZW4SA3qnkvtFtVl8lXBAiGTnu
+         70kuNRTaTLLfZcy+DdEwwJQUs5PqUp1MRM5pPBX2RH7J24xfQNNqxy+rzeqbmt7cftVC
+         VnO9XjRP3xWZSzlcv7HDBtraepAZOk9uOFw+MbgPAoDB6ObxwQYIT8WSewlN2uUJR6Yd
+         ZrNZuxh6aeIX8PTkrX8/8AqvM2ghDuYgHm7PM3dZJlv++2YQ7V7ki2UEAmmFKXd+tJT0
+         GKcg==
+X-Gm-Message-State: AOAM531uWstpLpnyIvSP5sRN1LnwxdRRq9/oKu+NJ0nUWBWhE3xo3Uv4
+        SPwDn+Fw1AQfjtER/m0mmNfetafYp00HVmbXmNE=
+X-Google-Smtp-Source: ABdhPJxCTMdNR4nhdx+ITQyYxOPPVNGZiM7D3EUtxmzvbpMraOfsVBSAOpA86otXJM39RLOEZ1uhZ1qXuutIAvJb1j8=
+X-Received: by 2002:a2e:944a:: with SMTP id o10mr14770206ljh.119.1628494650167;
+ Mon, 09 Aug 2021 00:37:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <1627635002-24521-1-git-send-email-chunfeng.yun@mediatek.com> <1627635002-24521-9-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1627635002-24521-9-git-send-email-chunfeng.yun@mediatek.com>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Mon, 9 Aug 2021 15:32:31 +0800
-Message-ID: <CAATdQgA4qwKb=Uee1pUj-Fk8G31zA40OD7o49W1YLUhZh7BHWA@mail.gmail.com>
-Subject: Re: [PATCH 09/11] usb: xhci-mtk: check boundary before check tt
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
+References: <20210804140309.31468-1-puranjay12@gmail.com> <20210804140309.31468-2-puranjay12@gmail.com>
+ <20210808160628.7b031948@jic23-huawei> <20210808164345.799b8568@jic23-huawei>
+In-Reply-To: <20210808164345.799b8568@jic23-huawei>
+From:   Puranjay Mohan <puranjay12@gmail.com>
+Date:   Mon, 9 Aug 2021 13:07:18 +0530
+Message-ID: <CANk7y0idV-EtDG0BuVjF7L4NU_8sgGv3wNZWLoHWksRbcLEgZQ@mail.gmail.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: iio: accel: Add DT binding doc for ADXL355
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        "Berghe, Darius" <Darius.Berghe@analog.com>, robh+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chunfeng,
+On Sun, Aug 8, 2021 at 9:10 PM Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> On Sun, 8 Aug 2021 16:06:28 +0100
+> Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> > On Wed,  4 Aug 2021 19:33:07 +0530
+> > Puranjay Mohan <puranjay12@gmail.com> wrote:
+> >
+> > > Add devicetree binding document for ADXL355, a 3-Axis MEMS Accelerometer.
+> > >
+> > > Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+> >
+> > Looks good to me. I'll pick this up once Rob and anyone else interested
+> > has had time to take a look assuming they don't ask for any changes.
+> >
+> > Thanks,
+> >
+> > Jonathan
+> >
+> >
+> > > ---
+> > >  .../bindings/iio/accel/adi,adxl355.yaml       | 88 +++++++++++++++++++
+> > >  1 file changed, 88 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+> > > new file mode 100644
+> > > index 000000000..5da3fd5ad
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+> > > @@ -0,0 +1,88 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/accel/adi,adxl355.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Analog Devices ADXL355 3-Axis, Low noise MEMS Accelerometer
+> > > +
+> > > +maintainers:
+> > > +  - Puranjay Mohan <puranjay12@gmail.com>
+> > > +
+> > > +description: |
+> > > +  Analog Devices ADXL355 3-Axis, Low noise MEMS Accelerometer that supports
+> > > +  both I2C & SPI interfaces
+> > > +    https://www.analog.com/en/products/adxl355.html
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - adi,adxl355
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    minItems: 1
+> > > +    maxItems: 3
+> > > +    description: |
+> > > +      Type should be IRQ_TYPE_LEVEL_HIGH.
+> > > +      Three configurable interrupt lines exist.
+>
+> I just noticed from the datasheet, that INT1 and INT2 have controllable
+> polarity on the device.  We should look to support that rather than
+> stating all 3 interrupts are LEVEL_HIGH.  For now, I'd just not
+> state the type here, or make that statement only for the dataready pin.
+>
 
-On Fri, Jul 30, 2021 at 4:50 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
->
-> check_sch_tt() will access fs_bus_bw[] array, check boundary
-> firstly to avoid out-of-bounds issue.
->
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  drivers/usb/host/xhci-mtk-sch.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/usb/host/xhci-mtk-sch.c b/drivers/usb/host/xhci-mtk-sch.c
-> index 10c0f0f6461f..c2f13d69c607 100644
-> --- a/drivers/usb/host/xhci-mtk-sch.c
-> +++ b/drivers/usb/host/xhci-mtk-sch.c
-> @@ -600,13 +600,14 @@ static int check_sch_bw(struct mu3h_sch_bw_info *sch_bw,
->          * and find a microframe where its worst bandwidth is minimum.
->          */
->         for (offset = 0; offset < sch_ep->esit; offset++) {
-> -               ret = check_sch_tt(sch_ep, offset);
-> -               if (ret)
-> -                       continue;
->
->                 if ((offset + sch_ep->num_budget_microframes) > esit_boundary)
->                         break;
+Hi Jonathan,
+I will be sending v9 of this series where I will state this only for
+the DRDY pin. I will also make the scale defines inline for the other
+patch.
+Also, I will not send the third patch: trigger support in v9 because
+it needs a lot of work.
+It would be great if the base driver gets accepted and I will keep
+working on the trigger support separately and not as a part of this
+patch series.
+I am also interested in looking into fwnode_get_irq_byname() for the
+trigger patch.
 
-Instead of dropping it,
-I'm wondering if it should be checked against (offset & 63) == 0 when it's 64?
+> Once you enable these interrupts, you will want to handle the polarity setting
+> in a similar fashion to the bmi160.
+>
+> It is a bit messy to combine the interrupt polarity at the interrupt controller
+> with that at the device, but that is how we've handled these in the past.
+>
+> Jonathan
+>
+> > > +
+> > > +  interrupt-names:
+> > > +    description: Specify which interrupt line is in use.
+> > > +    items:
+> > > +      enum:
+> > > +        - INT1
+> > > +        - INT2
+> > > +        - DRDY
+> > > +    minItems: 1
+> > > +    maxItems: 3
+> > > +
+> > > +  vdd-supply:
+> > > +    description: Regulator that provides power to the sensor
+> > > +
+> > > +  vddio-supply:
+> > > +    description: Regulator that provides power to the bus
+> > > +
+> > > +  spi-max-frequency: true
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +        #include <dt-bindings/gpio/gpio.h>
+> > > +        #include <dt-bindings/interrupt-controller/irq.h>
+> > > +        i2c {
+> > > +                #address-cells = <1>;
+> > > +                #size-cells = <0>;
+> > > +
+> > > +                /* Example for a I2C device node */
+> > > +                accelerometer@1d {
+> > > +                        compatible = "adi,adxl355";
+> > > +                        reg = <0x1d>;
+> > > +                        interrupt-parent = <&gpio>;
+> > > +                        interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+> > > +                        interrupt-names = "DRDY";
+> > > +                };
+> > > +        };
+> > > +  - |
+> > > +        #include <dt-bindings/gpio/gpio.h>
+> > > +        #include <dt-bindings/interrupt-controller/irq.h>
+> > > +        spi {
+> > > +                #address-cells = <1>;
+> > > +                #size-cells = <0>;
+> > > +
+> > > +                accelerometer@0 {
+> > > +                        compatible = "adi,adxl355";
+> > > +                        reg = <0>;
+> > > +                        spi-max-frequency = <1000000>;
+> > > +                        interrupt-parent = <&gpio>;
+> > > +                        interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+> > > +                        interrupt-names = "DRDY";
+> > > +                };
+> > > +        };
+> >
+>
 
->
-> +               ret = check_sch_tt(sch_ep, offset);
-> +               if (ret)
-> +                       continue;
-> +
->                 worst_bw = get_max_bw(sch_bw, sch_ep, offset);
->                 if (worst_bw > bw_boundary)
->                         continue;
-> --
-> 2.18.0
->
+
+-- 
+Thanks and Regards
+
+Yours Truly,
+
+Puranjay Mohan
