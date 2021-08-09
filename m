@@ -2,189 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 184373E4496
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B87133E44A3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:24:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235060AbhHILXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 07:23:31 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:42944
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234996AbhHILXb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 07:23:31 -0400
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 28DC13F249
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 11:23:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1628508190;
-        bh=vRoT5BSxcI/qFuszLL/O88HOU90cRS5N0ZHejOSe9B0=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=hFMY9oQ7c01pr7d0dnaLHwuOYPIN/dP7XtUDHAbGAU9yZUdsziovni5IpjKeAfLo5
-         DLPyotD3yGHqpjD1joQUCjKr78K6lhvMJDHvqmv19aZAsU7fqoGaZvVCREtmfsKlNl
-         tso8u2FpyfqSSk71mTMVGU2a/FKgrbSK95T9468OENT1RhUAQCjYrKRhkdUQJPNd/V
-         3zV6LdYnsAl5Z49UdeLAznuzBRC7TQgi29ZwR9Fi/o5sGtV2ZlLUlITcRpit/FFWZA
-         HAFWhhSKM0kEPG2r6pj0HDOE98rdqIKkswOKSG1cIWkeIn7oHnP+8H83ARGB1EoHE1
-         5kZOB10GzUvbA==
-Received: by mail-ej1-f70.google.com with SMTP id r21-20020a1709067055b02904be5f536463so4419234ejj.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 04:23:10 -0700 (PDT)
+        id S235045AbhHILYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 07:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59294 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235053AbhHILYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 07:24:51 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE492C0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 04:24:30 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id h13so20923257wrp.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 04:24:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=H0QvTsq4Hu71SVIzc9UOs12oE6N97i7FOoAniQXjLLE=;
+        b=rf+o0Vs8HTQ+ELojlj/jSA/9bWOMyF5sRz8gQnJ2VYZqkZFmoT+3CVYwZuzFQZwlmK
+         bXyPjbOSyGokx+KzWk3tN07Mmy7SxMtCYv8ZRofXWAZ9tzDG4jEqxmiyvwACkfHdJx/l
+         w9qoPS+HTLOAmZhwJ8ZkvjfAW10SMHPEsZCo3d0xKoA14zWFqps0rwa04lD7XDWsSMBR
+         cqGEjeHb5WGuvHuWAbofjcM0WEhdjrI/x7Orj42E0BdEzqXxnbs+Cul8d0GVPkP3i5Iz
+         9uKmg8E9zOnpzYSlzfeCvJ9HZatPic2Hb7kQVSZeP4V01pqsRtoRPQcrK7e3lUd14dnF
+         yPUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=vRoT5BSxcI/qFuszLL/O88HOU90cRS5N0ZHejOSe9B0=;
-        b=Y5duvuWrcQuU70NuMcdhVQ1r6BZLZH4EFJEraOwOHZZdqnqQ4gzI8OZTfb9HLpPoGE
-         bw6VzINKkc9ou6U6nJ4YbSrZwjqtE2rWckux9WVcEJtUKQNsSMyFYneC66JLz6joYlLn
-         lNKr53Q3iqTxKEueYFCY8qk7JXqDBcNJlXMpfF1OsWdmssBu14ZPuJlFrkHr3rzshGDy
-         1DGC0X7IfpIhyhJYoajQEL4+4uUJGIoLWA7m56OV+Q6Qv2B4m+QO+NaZ00z6IhbM0v2x
-         ENN5cd5c4E6omAaQ02tHbozLNfxpK1LMrQyHfIrouT9piEGvMcdY1yF92myC3dMNcyaM
-         L+FQ==
-X-Gm-Message-State: AOAM533rIlUQs1G9vSuYLisv6anoDoelmOuHxqVsD4ek3yNNoo7QwX52
-        N1s+FDYA7WxlrhHrPl2YwTf1RZOot3PKkRcdTbE8xpWjewN4cnBOor/XjcoyrWBwgAznP3XjVHS
-        qYmKU2o2Xsx7zqJijAO3uF7ihRKQmMmyR35ROeGE=
-X-Received: by 2002:a50:cc06:: with SMTP id m6mr8360380edi.97.1628508179569;
-        Mon, 09 Aug 2021 04:22:59 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy6XjMI02FzZDa29mvOYI4lhR2QTlk6CwiRU3KFxBkR1w1Iwv1+C2mD+X6K5L1Go6NB91ffkw==
-X-Received: by 2002:a50:cc06:: with SMTP id m6mr8360357edi.97.1628508179449;
-        Mon, 09 Aug 2021 04:22:59 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id l20sm5813866ejb.23.2021.08.09.04.22.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Aug 2021 04:22:59 -0700 (PDT)
-Subject: Re: [PATCH v2 7/8] clk: samsung: Add Exynos850 clock driver stub
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20210806152146.16107-1-semen.protsenko@linaro.org>
- <20210806152146.16107-8-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <3add6f87-7293-e1ae-8f9e-c69e9de18cf5@canonical.com>
-Date:   Mon, 9 Aug 2021 13:22:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        bh=H0QvTsq4Hu71SVIzc9UOs12oE6N97i7FOoAniQXjLLE=;
+        b=ZbP5AAExtsMX6f9axJdxPugqaBp7x2DdCUH1IjfjANSzS32gs1tpdZf8MPkzrBNSCq
+         /0YihmlFrdYQ4CJ6/PJc/b5R3u6Nha0cF1VptIMabMnqetLxpm1VOmp7RrYUjDTXxwLF
+         vZnlzAOOALS2x+NVNcOAWFsbFJK6HEZJF7FFC1eSgKzd6H58ClAlORv3tPODY05OSZ9P
+         QcoMEQb6GWYIOn4RApnGSLPP10zAIbSAI6mbIjc6LVHUON/Xcb7e8qXgQ4zSiLJdzn8V
+         nnHfWfcxywUTygTNVng/fqGZQY3yVHSWtj+TnLPokMBE/Sgya2yGY+P8yc3OV3sJJWpH
+         K/zg==
+X-Gm-Message-State: AOAM532Iy3PiL5Y0lTPPmn369XmfMUaL+gJJ6JvvW30qu9yscEIbWCZF
+        99EUqnzhBcvJZ05QV5nGfzUK6Q==
+X-Google-Smtp-Source: ABdhPJyWFpY0/upVyfo6RxXi4JmK5/VEf6Wlgx9PAPwR7MnCpTJO3xbcF1vbBe0fH0FG0RPgnjsxdA==
+X-Received: by 2002:a5d:6905:: with SMTP id t5mr23919160wru.78.1628508269392;
+        Mon, 09 Aug 2021 04:24:29 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id b80sm7774900wmb.2.2021.08.09.04.24.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Aug 2021 04:24:28 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 00/20] ASoC: qcom: Add AudioReach support
+Date:   Mon,  9 Aug 2021 12:23:19 +0100
+Message-Id: <20210809112339.8368-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20210806152146.16107-8-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/08/2021 17:21, Sam Protsenko wrote:
-> For now it's just a stub driver to make the serial driver work. Later it
-> will be implemented properly. This driver doesn't really change clocks,
-> only registers the UART clock as a fixed-rate clock. Without this clock
-> driver the UART driver won't work, as it's trying to obtain "uart" clock
-> and fails if it's not able to.
-> 
-> In order to get a functional serial console we have to implement that
-> minimal clock driver with "uart" clock. It's not necessary to actually
-> configure clocks, as those are already configured in bootloader, so
-> kernel can rely on that for now.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - Used hard coded clock indexes, as clock bindings were removed; will
->     add clock bindings back (reimplemented) once proper clock driver is
->     ready
->   - Removed .data = 0 for exynos850-oscclk, as it's in BSS section
->   - Removed comma for terminator {}
->   - Made exynos850_clk_init() static
->   - Removed checking np for NULL, as it's already done in of_iomap()
-> 
->  drivers/clk/samsung/Makefile        |  1 +
->  drivers/clk/samsung/clk-exynos850.c | 64 +++++++++++++++++++++++++++++
->  2 files changed, 65 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-exynos850.c
-> 
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index 028b2e27a37e..c46cf11e4d0b 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos5433.o
->  obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) += clk-exynos-audss.o
->  obj-$(CONFIG_EXYNOS_CLKOUT)	+= clk-exynos-clkout.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7.o
-> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
->  obj-$(CONFIG_S3C2410_COMMON_CLK)+= clk-s3c2410.o
->  obj-$(CONFIG_S3C2410_COMMON_DCLK)+= clk-s3c2410-dclk.o
->  obj-$(CONFIG_S3C2412_COMMON_CLK)+= clk-s3c2412.o
-> diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-> new file mode 100644
-> index 000000000000..36c7c7fe7cf0
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynos850.c
-> @@ -0,0 +1,64 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2019 Samsung Electronics Co., Ltd.
-> + * Copyright (C) 2021 Linaro Ltd.
-> + *
-> + * Common Clock Framework support for Exynos850 SoC.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clkdev.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +
-> +#include "clk.h"
-> +
-> +/* Will be extracted to bindings header once proper clk driver is implemented */
-> +#define OSCCLK		1
-> +#define DOUT_UART	2
-> +#define CLK_NR_CLKS	3
-> +
-> +/* Fixed rate clocks generated outside the SoC */
-> +static struct samsung_fixed_rate_clock exynos850_fixed_rate_ext_clks[] __initdata = {
-> +	FRATE(OSCCLK, "fin_pll", NULL, 0, 26000000),
-> +};
-> +
-> +/*
-> + * Model the UART clock as a fixed-rate clock for now, to make serial driver
-> + * work. This clock is already configured in the bootloader.
-> + */
-> +static const struct samsung_fixed_rate_clock exynos850_peri_clks[] __initconst = {
-> +	FRATE(DOUT_UART, "DOUT_UART", NULL, 0, 200000000),
-> +};
-> +
-> +static const struct of_device_id ext_clk_match[] __initconst = {
-> +	{ .compatible = "samsung,exynos850-oscclk" },
+Many thanks for reviewing v3. This version addresses all the comments
+raised as part of v3 review.
 
-One more thing - I am not sure anymore if this is correct. AFAIR, we
-wanted to drop compatibles for external clocks.
+This patchset adds ASoC driver support to configure signal processing
+framework ("AudioReach") which is integral part of Qualcomm next
+generation audio SDK and will be deployed on upcoming Qualcomm chipsets.
+It makes use of ASoC Topology to load graphs on to the DSP which is then
+managed by APM (Audio Processing Manager) service to prepare/start/stop.
 
-Chanwoo, Sylwester, Tomasz,
-Do you remember the recommended approach? Shall it be like Exynos542x
-(samsung,exynos5420-oscclk) or Exynos5433?
+Here is simpified high-level block diagram of AudioReach:
+
+ ___________________________________________________________
+|                 CPU (Application Processor)               |
+|  +---------+          +---------+         +----------+    |
+|  |  q6apm  |          |  q6apm  |         |  q6apm   |    |
+|  |   dais  | <------> |         | <-----> |lpass-dais|    |
+|  +---------+          +---------+         +----------+    |
+|                            ^  ^                           |
+|                            |  |           +---------+     |
+|  +---------+               v  +---------->|topology |     |
+|  | q6prm   |          +---------+         |         |     |
+|  |         |<-------->|   GPR   |         +---------+     |
+|  +---------+          +---------+                         |
+|       ^                    ^                              |
+|       |                    |                              |
+|  +----------+              |                              |
+|  |   q6prm  |              |                              |
+|  |lpass-clks|              |                              |
+|  +----------+              |                              |
+|____________________________|______________________________|
+                             |  
+                             | RPMSG (IPC over GLINK)              
+ ____________________________|______________________________
+|                            |                              |
+|    +-----------------------+                              |
+|    |                       |                              |
+|    v                       v              q6 (Audio DSP)  |
+|+-----+    +----------------------------------+            |
+|| PRM |    | APM (Audio Processing Manager)   |            |
+|+-----+    |  . Graph Management              |            |  
+|           |  . Command Handing               |            |  
+|           |  . Event Management              |            |  
+|           |  ...                             |            |  
+|           +----------------------------------+            |  
+|                            ^                              |
+|____________________________|______________________________|
+                             |  
+                             |   LPASS AIF
+ ____________________________|______________________________
+|                            |            Audio I/O         |
+|                            v                              |
+|   +--------------------------------------------------+    |
+|    |                Audio devices                     |   |
+|    | CODEC | HDMI-TX | PCM  | SLIMBUS | I2S |MI2S |...|   |
+|    |                                                  |   |
+|    +--------------------------------------------------+   |
+|___________________________________________________________|
+
+AudioReach has constructs of sub-graph, container and modules.
+Each sub-graph can have N containers and each Container can have N Modules
+and connections between them can be linear or non-linear.
+An audio function can be realized with one or many connected
+sub-graphs. There are also control/event paths between modules that can
+be wired up while building graph to achieve various control mechanism
+between modules. These concepts of Sub-Graph, Containers and Modules
+are represented in ASoC topology.
+
+Here is simple I2S graph with a Write Shared Memory and a
+Volume control module within a single Subgraph (1) with one Container (1)
+and 5 modules.
+
+  ____________________________________________________________
+ |                        Sub-Graph [1]                       |
+ |  _______________________________________________________   |
+ | |                       Container [1]                   |  |
+ | | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]-> [I2S-EP]|  |
+ | |_______________________________________________________|  |
+ |____________________________________________________________|
+
+For now this graph is split into two subgraphs to achieve dpcm like below:
+ ________________________________________________    _________________
+|                Sub-Graph [1]                   |  |  Sub-Graph [2]  |
+|  ____________________________________________  |  |  _____________  |
+| |              Container [1]                 | |  | |Container [2]| |
+| | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]| |  | |   [I2S-EP]  | |
+| |____________________________________________| |  | |_____________| |
+|________________________________________________|  |_________________|
+
+                                                      _________________
+                                                    |  Sub-Graph [3]  |
+                                                    |  _____________  |
+                                                    | |Container [3]| |
+                                                    | |  [DMA-EP]   | |
+                                                    | |_____________| |
+                                                    |_________________|
 
 
-BTW, I am now converting some of existing clock controller bindings to
-dtschema.
+This patchset adds very minimal support for AudioReach which includes
+supporting sub-graphs containing CODEC DMA ports and simple PCM
+Decoder/Encoder and Logger Modules. Additional capabilities will
+be built over time to expose features offered by AudioReach. 
 
-Best regards,
-Krzysztof
+This patchset is Tested on SM8250 SoC based Qualcomm Robotics Platform RB5
+and SM9250 MTP with WSA881X Smart Speaker Amplifiers, DMICs connected via
+VA Macro and WCD938x Codec connected via TX and RX Macro and HDMI audio
+via I2S.
+
+First 10 Patches are mostly reorganization existing Old QDSP Audio
+Framework code and bindings so that we could reuse them on AudioReach.
+
+ASoC topology graphs for DragonBoard RB5 and SM8250 MTP are available at 
+https://git.linaro.org/people/srinivas.kandagatla/audioreach-topology.git/
+
+Thanks,
+srini
+
+Changes since v3:
+- Split some dt-bindings patches for easy review.
+- fixed various cppcheck warnings and ignore some bogus ones.
+- fixed memory leak in various places in topology
+- reordered Kconfig and Makefile changes
+- cleaned Kconfig symbols to fit in properly with existing Q6DSP KConfigs
+- added lpass suffix to compatible for nodes that are dealing with LPASS IP.
+- fix few typos.
+
+Srinivas Kandagatla (20):
+  soc: dt-bindings: qcom: apr: convert to yaml
+  soc: qcom: apr: make code more reuseable
+  soc: dt-bindings: qcom: add gpr bindings
+  soc: qcom: apr: Add GPR support
+  ASoC: dt-bindings: move LPASS dai related bindings out of q6afe
+  ASoC: dt-bindings: move LPASS clocks related bindings out of q6afe
+  ASoC: dt-bindings: rename q6afe.h to q6dsp-lpass-ports.h
+  ASoC: qdsp6: q6afe-dai: move lpass audio ports to common file
+  ASoC: qdsp6: q6afe-clocks: move audio-clocks to common file
+  ASoC: dt-bindings: q6dsp: add q6apm-lpass-dai compatible
+  ASoC: dt-bindings: lpass-clocks: add q6prm clocks compatible
+  ASoC: dt-bindings: add q6apm digital audio stream bindings
+  ASoC: qdsp6: audioreach: add basic pkt alloc support
+  ASoC: qdsp6: audioreach: add q6apm support
+  ASoC: qdsp6: audioreach: add module configuration command helpers
+  ASoC: qdsp6: audioreach: add topology support
+  ASoC: qdsp6: audioreach: add q6apm-dai support
+  ASoC: qdsp6: audioreach: add q6apm lpass dai support
+  ASoC: qdsp6: audioreach: add q6prm support
+  ASoC: qdsp6: audioreach: add support for q6prm-clocks
+
+ .../devicetree/bindings/soc/qcom/qcom,apr.txt |  134 --
+ .../bindings/soc/qcom/qcom,apr.yaml           |  209 +++
+ .../devicetree/bindings/sound/qcom,q6afe.txt  |  181 ---
+ .../bindings/sound/qcom,q6apm-dai.yaml        |   50 +
+ .../sound/qcom,q6dsp-lpass-clocks.yaml        |   74 ++
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |  202 +++
+ drivers/soc/qcom/Kconfig                      |    8 +
+ drivers/soc/qcom/apr.c                        |  286 +++-
+ include/dt-bindings/soc/qcom,gpr.h            |   18 +
+ include/dt-bindings/sound/qcom,q6afe.h        |  203 +--
+ .../sound/qcom,q6dsp-lpass-ports.h            |  208 +++
+ include/linux/soc/qcom/apr.h                  |   70 +-
+ include/uapi/sound/snd_ar_tokens.h            |  203 +++
+ sound/soc/qcom/Kconfig                        |   22 +
+ sound/soc/qcom/qdsp6/Makefile                 |   11 +-
+ sound/soc/qcom/qdsp6/audioreach.c             | 1170 +++++++++++++++++
+ sound/soc/qcom/qdsp6/audioreach.h             |  692 ++++++++++
+ sound/soc/qcom/qdsp6/q6afe-clocks.c           |  187 +--
+ sound/soc/qcom/qdsp6/q6afe-dai.c              |  687 +---------
+ sound/soc/qcom/qdsp6/q6apm-dai.c              |  504 +++++++
+ sound/soc/qcom/qdsp6/q6apm-lpass-dais.c       |  266 ++++
+ sound/soc/qcom/qdsp6/q6apm.c                  |  916 +++++++++++++
+ sound/soc/qcom/qdsp6/q6apm.h                  |  154 +++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c     |  186 +++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h     |   30 +
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |  627 +++++++++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h      |   22 +
+ sound/soc/qcom/qdsp6/q6prm-clocks.c           |   85 ++
+ sound/soc/qcom/qdsp6/q6prm.c                  |  256 ++++
+ sound/soc/qcom/qdsp6/q6prm.h                  |   78 ++
+ sound/soc/qcom/qdsp6/topology.c               | 1118 ++++++++++++++++
+ 31 files changed, 7443 insertions(+), 1414 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
+ create mode 100644 include/dt-bindings/soc/qcom,gpr.h
+ create mode 100644 include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+ create mode 100644 include/uapi/sound/snd_ar_tokens.h
+ create mode 100644 sound/soc/qcom/qdsp6/audioreach.c
+ create mode 100644 sound/soc/qcom/qdsp6/audioreach.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm-dai.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm-clocks.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm.h
+ create mode 100644 sound/soc/qcom/qdsp6/topology.c
+
+-- 
+2.21.0
+
