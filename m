@@ -2,158 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6C703E3D74
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 03:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D7643E3D90
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 03:35:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbhHIBP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Aug 2021 21:15:59 -0400
-Received: from lucky1.263xmail.com ([211.157.147.131]:40114 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232604AbhHIBP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 21:15:59 -0400
-Received: from localhost (unknown [192.168.167.70])
-        by lucky1.263xmail.com (Postfix) with ESMTP id C4BAAC27F9;
-        Mon,  9 Aug 2021 09:15:26 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from xxm-vm.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P4988T139771212945152S1628471718235274_;
-        Mon, 09 Aug 2021 09:15:21 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <bdbf839b9bdfbacf5240d607c3012c6c>
-X-RL-SENDER: xxm@rock-chips.com
-X-SENDER: xxm@rock-chips.com
-X-LOGIN-NAME: xxm@rock-chips.com
-X-FST-TO: jic23@kernel.org
-X-RCPT-COUNT: 11
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Simon Xue <xxm@rock-chips.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, David Wu <david.wu@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: [PATCH v3] iio: adc: rockchip_saradc: add voltage notifier so get referenced voltage once at probe
-Date:   Mon,  9 Aug 2021 09:15:17 +0800
-Message-Id: <20210809011517.6374-1-xxm@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+        id S232623AbhHIBf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Aug 2021 21:35:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38998 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231324AbhHIBfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 21:35:25 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DCAC061757
+        for <devicetree@vger.kernel.org>; Sun,  8 Aug 2021 18:35:05 -0700 (PDT)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DCF35466;
+        Mon,  9 Aug 2021 03:35:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1628472903;
+        bh=VK2CG4rNEAT9j1mhsJUqBacBm2oBByG7p+CUd4pZ8zQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KTMMQnJQ0XMVwyFAJQT0UKiWD0Y9j2LdADlChh+ik1mhpphlC1Q6gzpH0puB/NlAX
+         KDuJC8LOeSad8yX8Uwyh45o9o7eLOAAtRO7HnxfqlVmRD3rdDlhU2HVDqd5w7/n2d5
+         tHuPqlGsej+RWvGIIIN2jVNn7Z6XRFroS+LMQM6Q=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Jianqiang Chen <jianqian@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 00/36] drm: xlnx: zynqmp_dpsub: Initial live video input support
+Date:   Mon,  9 Aug 2021 04:34:21 +0300
+Message-Id: <20210809013457.11266-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Wu <david.wu@rock-chips.com>
+Hello,
 
-Add voltage notifier, no need to query regulator voltage for
-every saradc read, just get regulator voltage once at probe.
+The DPSUB is the DisplayPort subsystem, a set of hard IP cores found in
+the ZynqMP family of SoCs. It combines a DisplayPort encoder, a video
+blender with two input channels, and a DMA engine. The zynqmp_dpsub
+driver exposes this as a DRM device with one CRTC and two planes.
 
-Signed-off-by: David Wu <david.wu@rock-chips.com>
-Signed-off-by: Simon Xue <xxm@rock-chips.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
----
- drivers/iio/adc/rockchip_saradc.c | 46 ++++++++++++++++++++++++++-----
- 1 file changed, 39 insertions(+), 7 deletions(-)
+In addition to those features, the DPSUB can interface with the
+programmable logic (PL) found in the ZynqMP SoC. Each input to the video
+blender can come from the PL instead of the DMA engine, and the blender
+output can also be routed to the PL. This creates a very configurable
+device that can accommodate lots of use cases, but it also makes it
+difficult to model it as a DRM/KMS device.
 
-diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-index f3eb8d2e50dc..33c7dd635eb9 100644
---- a/drivers/iio/adc/rockchip_saradc.c
-+++ b/drivers/iio/adc/rockchip_saradc.c
-@@ -49,10 +49,12 @@ struct rockchip_saradc {
- 	struct clk		*clk;
- 	struct completion	completion;
- 	struct regulator	*vref;
-+	int			uv_vref;
- 	struct reset_control	*reset;
- 	const struct rockchip_saradc_data *data;
- 	u16			last_val;
- 	const struct iio_chan_spec *last_chan;
-+	struct notifier_block nb;
- };
- 
- static void rockchip_saradc_power_down(struct rockchip_saradc *info)
-@@ -105,13 +107,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
- 		mutex_unlock(&indio_dev->mlock);
- 		return IIO_VAL_INT;
- 	case IIO_CHAN_INFO_SCALE:
--		ret = regulator_get_voltage(info->vref);
--		if (ret < 0) {
--			dev_err(&indio_dev->dev, "failed to get voltage\n");
--			return ret;
--		}
--
--		*val = ret / 1000;
-+		*val = info->uv_vref / 1000;
- 		*val2 = chan->scan_type.realbits;
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 	default:
-@@ -298,6 +294,26 @@ static irqreturn_t rockchip_saradc_trigger_handler(int irq, void *p)
- 	return IRQ_HANDLED;
- }
- 
-+static int rockchip_saradc_volt_notify(struct notifier_block *nb,
-+						   unsigned long event,
-+						   void *data)
-+{
-+	struct rockchip_saradc *info =
-+			container_of(nb, struct rockchip_saradc, nb);
-+
-+	if (event & REGULATOR_EVENT_VOLTAGE_CHANGE)
-+		info->uv_vref = (unsigned long)data;
-+
-+	return NOTIFY_OK;
-+}
-+
-+static void rockchip_saradc_regulator_action(void *data)
-+{
-+	struct rockchip_saradc *info = data;
-+
-+	regulator_unregister_notifier(info->vref, &info->nb);
-+}
-+
- static int rockchip_saradc_probe(struct platform_device *pdev)
- {
- 	struct rockchip_saradc *info = NULL;
-@@ -410,6 +426,12 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = regulator_get_voltage(info->vref);
-+	if (ret < 0)
-+		return ret;
-+
-+	info->uv_vref = ret;
-+
- 	ret = clk_prepare_enable(info->pclk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to enable pclk\n");
-@@ -450,6 +472,16 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	info->nb.notifier_call = rockchip_saradc_volt_notify;
-+	ret = regulator_register_notifier(info->vref, &info->nb);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(&pdev->dev,
-+				       rockchip_saradc_regulator_action, info);
-+	if (ret)
-+		return ret;
-+
- 	return devm_iio_device_register(&pdev->dev, indio_dev);
- }
- 
+This patch series implements initial support for live video inputs, by
+restricting the supported use cases to a single live video input. In
+that mode, the video blender is configured in pass-through mode, with
+the whole DPSUB essentially operating as a DisplayPort encoder only. The
+CRTC and plane functions are then implemented by IP cores in the PL.
+
+To support this, the series start with patch 01/36 to model the
+connections to the PL in DT using OF graph bindings. This fixes a
+historical mistake that forgot to model the connection to the DP
+connector in DT.
+
+With that in place, patches 02/36 to 10/36 refactor the driver to turn
+the DisplayPort encoder implementation, modelled as a DRM encoder, into
+a DRM bridge. Please see individual patches for details. The rework is
+internal only, simplifies the code by making use of the DRM bridge
+connector helper, but doesn't bring any functional change.
+
+Patches 11/36 to 30/36 continue refactoring of the driver, to cleanly
+separate the DRM planes, CRTC, encoder and connector from the DRM bridge
+implementation. The goal is to make the latter available to a DRM driver
+for the PL display pipeline without registering any DRM device in the
+DPSUB driver itself. Patches 31/36 to 34/36 implement this, reading
+information about the connection to the PL from the device tree to
+decide in which mode to operate.
+
+Finally, patch 35/36 and 36/36 update the ZynqMP core and ZCU106A board
+device tree files to create ports and connect the DPSUB to the
+DisplayPort connector. I have tested the whole series without these two
+patches to ensure that backward compatibility with older DT isn't
+broken.
+
+With this series applied, the DPSUB can be used as a DisplayPort encoder
+by a PL display pipeline. A careful reviewer may ask me where drivers
+for such a display pipelines are, and that would be a very good
+question.
+
+PL display pipelines are currently supported in the Xilinx downstream
+kernel only, which is something I want to address next. That road will
+be full of challenges, as in theory anything can be implemented in the
+PL, including pipelines that connect cameras and displays together. If
+anynoe is interested in discussing this topic, please let me know.
+
+Laurent Pinchart (36):
+  dt-bindings: display: xlnx: zynqmp-dpsub: Add OF graph ports
+  drm: xlnx: zynqmp_dpsub: Switch to atomic encoder enable/disable
+  drm: xlnx: zynqmp_dpsub: Constify mode argument to function
+  drm: xlnx: zynqmp_dpsub: Create DRM bridge to model DP encoder
+  drm: xlnx: zynqmp_dpsub: Don't access connector in
+    zynqmp_dp_set_format()
+  drm: xlnx: zynqmp_dpsub: Move connector registration to bridge attach
+  drm: xlnx: zynqmp_dpsub: Move encoder to DPSUB core
+  drm: xlnx: zynqmp_dpsub: Attach to the next bridge
+  drm: xlnx: zynqmp_dpsub: Use DRM connector bridge helper
+  drm: xlnx: zynqmp_dpsub: Report HPD through the bridge
+  drm: xlnx: zynqmp_dpsub: Drop unused zynqmp_disp.event field
+  drm: xlnx: zynqmp_dpsub: Drop unused zynqmp_disp_format.bus_fmt field
+  drm: xlnx: zynqmp_dpsub: Don't pass CRTC to zynqmp_disp_setup_clock()
+  drm: xlnx: zynqmp_dpsub: Configure blender in zynqmp_disp_enable()
+  drm: xlnx: zynqmp_dpsub: Use local variable in
+    zynqmp_disp_layer_update()
+  drm: xlnx: zynqmp_dpsub: Pass format info to
+    zynqmp_disp_layer_set_format()
+  drm: xlnx: zynqmp_dpsub: Remplace hardcoded values with ARRAY_SIZE()
+  drm: xlnx: zynqmp_dpsub: Don't use drmm_kcalloc() for temporary data
+  drm: xlnx: zynqmp_dpsub: Move pclk from zynqmp_disp to zynqmp_dpsub
+  drm: xlnx: zynqmp_dpsub: Move audio clk from zynqmp_disp to
+    zynqmp_dpsub
+  drm: xlnx: zynqmp_dpsub: Move CRTC to zynqmp_dpsub structure
+  drm: xlnx: zynqmp_dpsub: Move planes to zynqmp_dpsub structure
+  drm: xlnx: zynqmp_dpsub: Move CRTC handling to zynqmp_kms.c
+  drm: xlnx: zynqmp_dpsub: Move planes handling to zynqmp_kms.c
+  drm: xlnx: zynqmp_dpsub: Register AUX bus at bridge attach time
+  drm: xlnx: zynqmp_dpsub: Move DP bridge init to zynqmp_dp_probe()
+  drm: xlnx: zynqmp_dpsub: Manage DP and DISP allocations manually
+  drm: xlnx: zynqmp_dpsub: Move all DRM init and cleanup to zynqmp_kms.c
+  drm: xlnx: zynqmp_dpsub: Decouple DRM device from zynqmp_dpsub
+  drm: xlnx: zynqmp_dpsub: Rename zynqmp_dpsub_handle_vblank with DRM
+    prefix
+  drm: xlnx: zynqmp_dpsub: Parse DT to find connected ports
+  drm: xlnx: zynqmp_dpsub: Allow configuration of layer mode
+  drm: xlnx: zynqmp_dpsub: Support operation without DMA engine
+  drm: xlnx: zynqmp_dpsub: Add support for live video input
+  arm64: dts: zynqmp: Add ports for the DisplayPort subsystem
+  arm64: dts: zynqmp: zcu106a: Describe DisplayPort connector
+
+ .../display/xlnx/xlnx,zynqmp-dpsub.yaml       |  67 ++
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    |  20 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  24 +
+ drivers/gpu/drm/xlnx/Makefile                 |   2 +-
+ drivers/gpu/drm/xlnx/zynqmp_disp.c            | 646 ++++--------------
+ drivers/gpu/drm/xlnx/zynqmp_disp.h            |  48 +-
+ drivers/gpu/drm/xlnx/zynqmp_dp.c              | 482 +++++++------
+ drivers/gpu/drm/xlnx/zynqmp_dp.h              |   4 +-
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c           | 316 +++++----
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.h           |  46 +-
+ drivers/gpu/drm/xlnx/zynqmp_kms.c             | 539 +++++++++++++++
+ drivers/gpu/drm/xlnx/zynqmp_kms.h             |  48 ++
+ 12 files changed, 1343 insertions(+), 899 deletions(-)
+ create mode 100644 drivers/gpu/drm/xlnx/zynqmp_kms.c
+ create mode 100644 drivers/gpu/drm/xlnx/zynqmp_kms.h
+
 -- 
-2.25.1
+Regards,
 
-
+Laurent Pinchart
 
