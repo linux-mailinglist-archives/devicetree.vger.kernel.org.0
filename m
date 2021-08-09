@@ -2,73 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D7B3E47D2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FFA23E47DE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233845AbhHIOnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 10:43:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53576 "EHLO mail.kernel.org"
+        id S233279AbhHIOp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 10:45:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58020 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235648AbhHIOjq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 10:39:46 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6ECEC60234;
-        Mon,  9 Aug 2021 14:39:26 +0000 (UTC)
+        id S229474AbhHIOpZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 10:45:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A5F8261058;
+        Mon,  9 Aug 2021 14:45:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628519966;
-        bh=1ihZ2r+7Mr+u9hu6BG8YAHj+316a13abVADO3tMi+5U=;
+        s=k20201202; t=1628520304;
+        bh=95QsABHXN+pKNxd1hFR4tyhFhuhVRX4HItHjBlDAOAM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=m81bRfhj2Ga/1o07fPBKAAMRT/NuWWIsGXjOV9ZcvblF3VSWEt4HHjIiFb52A4Suo
-         NNwZdC3HLv+6CryXWYuhlgWusVHqN1dqjaO+cVGMaote05SH2VceXdJpcTKDjFgbio
-         M1XHUD3WqB1exZfutPPGe5tDGW8auJ2ZLqVUJBsS13WCJ1IWWyGsge1qE4+Nl5F00w
-         o8UkOweQjCtxB01M+GmCj6UD2ZXyRNgSwkJVVoRZSUaUXE7QGjhdtzU2glz+kOVRnt
-         bC0c8dObBh7wcFJtPpBzb9eZTXP90VNnBg1whMkXZ7DsY6Whx0tw5tC4Ln/ZvDTtW2
-         zz7jFeRwY2XUg==
-Received: by mail-ed1-f46.google.com with SMTP id y7so24939714eda.5;
-        Mon, 09 Aug 2021 07:39:26 -0700 (PDT)
-X-Gm-Message-State: AOAM532MwUYja+otCvyvzKC+2pImbEcC11LazxoUEmVzhfrwT/EzpHHl
-        XCj+eZ9qQN7O9z6dZWM11YiFi4AfMA6ngJCa8g==
-X-Google-Smtp-Source: ABdhPJzB8Z+clDtufI8TAGx9E2xZjWgkEt6Cn39QWZwhkUxrlr7yCVT7FkzqSfuAX1zne9+n2xkutY6VnGcBuZO6x08=
-X-Received: by 2002:aa7:c603:: with SMTP id h3mr30164744edq.165.1628519964968;
- Mon, 09 Aug 2021 07:39:24 -0700 (PDT)
+        b=ZHHc2tqQt4FtLxY3aH4lGfE3tn50kdJD0e6njJSMxYHMB/2u1a150CuHr67VD3wfG
+         CgAcy29+9FWnwthQBGb1NuD5jcOC21zUsG3dPdQmSNiYLWBb2uYi6cIIPMiFOXtpls
+         OhI09RLY5jwhcvlbdbxP69f3Fk8voUeu+3X+EHhHiS3J88UDQFa0Zg6JT+JztDLHUE
+         GwYqvqGQUlmFEPlv5wB3ZvWNCuD5YoGoWaI69DkgujioU5euX/MKOdbsQp+7HZr/w7
+         NZUhExbNiy1LJ//dVeUhOhmpI3ubH+pJFcns5NlPqxRN1EDOuQp7K65K6LeeaPiO0k
+         dacPEHNlPdsQw==
+Received: by mail-ej1-f43.google.com with SMTP id e19so29388323ejs.9;
+        Mon, 09 Aug 2021 07:45:04 -0700 (PDT)
+X-Gm-Message-State: AOAM530E1pHItuPKHy/EuNyYAe56dY1BumDqJ/Ot3U218WGCZoid20xk
+        a/Ng1uvnp6kMTxu6lL/HCM6SA4lDhTu79O/MfQ==
+X-Google-Smtp-Source: ABdhPJzN+KSXTc2XGkL/912N2+WxTOmmqX40r8nDWbVnU03DlFFuQZ0jsZTTmMWJ4Ylfu7wo2OO4OoF580G8wMPF7Kw=
+X-Received: by 2002:a17:907:98fb:: with SMTP id ke27mr1266398ejc.303.1628520303167;
+ Mon, 09 Aug 2021 07:45:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210625065511.1096935-1-xxm@rock-chips.com>
-In-Reply-To: <20210625065511.1096935-1-xxm@rock-chips.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 9 Aug 2021 08:39:12 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+b9adwUav8Ny43hsdB_mVPaKcV4wSJYydGuA1f5u-YQA@mail.gmail.com>
-Message-ID: <CAL_Jsq+b9adwUav8Ny43hsdB_mVPaKcV4wSJYydGuA1f5u-YQA@mail.gmail.com>
-Subject: Re: [PATCH v11] PCI: rockchip-dwc: Add Rockchip RK356X host
- controller driver
-To:     Simon Xue <xxm@rock-chips.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>
+References: <20210808134117.66798-1-jitao.shi@mediatek.com> <20210808134117.66798-2-jitao.shi@mediatek.com>
+In-Reply-To: <20210808134117.66798-2-jitao.shi@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 9 Aug 2021 22:44:52 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_90UteUjOgJ5w7vKW6amXCfps7=SennwYYk2=TUrr6aYA@mail.gmail.com>
+Message-ID: <CAAOTY_90UteUjOgJ5w7vKW6amXCfps7=SennwYYk2=TUrr6aYA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/1] drm/mediatek: force hsa hbp hfp packets multiple
+ of lanenum to avoid screen shift
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        CK Hu <ck.hu@mediatek.com>, stonea168@163.com,
+        huijuan.xie@mediatek.com, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        shuijing.li@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 12:55 AM Simon Xue <xxm@rock-chips.com> wrote:
->
-> Add a driver for the DesignWare-based PCIe controller found on
-> RK356X. The existing pcie-rockchip-host driver is only used for
-> the Rockchip-designed IP found on RK3399.
->
-> Tested-by: Peter Geis <pgwipeout@gmail.com>
-> Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> ---
->  drivers/pci/controller/dwc/Kconfig            |  11 +
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-dw-rockchip.c | 276 ++++++++++++++++++
->  3 files changed, 288 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-dw-rockchip.c
+Hi, Jitao:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=888=E6=97=
+=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=889:41=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> The bridge chip ANX7625 requires the packets on lanes aligned at the end,
+> or ANX7625 will shift the screen.
+
+In anx7625_attach_dsi(), it call mipi_dsi_attach(), and it call into
+mtk_dsi_host_attach().
+I would like to pass this information from anx7623 driver to mtk_dsi
+driver when attach.
+
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediate=
+k/mtk_dsi.c
+> index ae403c67cbd9..033234d51e86 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -194,6 +194,8 @@ struct mtk_dsi {
+>         struct clk *hs_clk;
+>
+>         u32 data_rate;
+> +       /* force dsi line end without dsi_null data */
+> +       bool force_dsi_end_without_null;
+>
+>         unsigned long mode_flags;
+>         enum mipi_dsi_pixel_format format;
+> @@ -499,6 +501,13 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi=
+ *dsi)
+>                 DRM_WARN("HFP + HBP less than d-phy, FPS will under 60Hz\=
+n");
+>         }
+>
+> +       if (dsi->force_dsi_end_without_null) {
+> +               horizontal_sync_active_byte =3D roundup(horizontal_sync_a=
+ctive_byte, dsi->lanes) - 2;
+> +               horizontal_frontporch_byte =3D roundup(horizontal_frontpo=
+rch_byte, dsi->lanes) - 2;
+> +               horizontal_backporch_byte =3D roundup(horizontal_backporc=
+h_byte, dsi->lanes) - 2;
+> +               horizontal_backporch_byte -=3D (vm->hactive * dsi_tmp_buf=
+_bpp + 2) % dsi->lanes;
+> +       }
+> +
+>         writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
+>         writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
+>         writel(horizontal_frontporch_byte, dsi->regs + DSI_HFP_WC);
+> @@ -1095,6 +1104,10 @@ static int mtk_dsi_probe(struct platform_device *p=
+dev)
+>         dsi->bridge.of_node =3D dev->of_node;
+>         dsi->bridge.type =3D DRM_MODE_CONNECTOR_DSI;
+>
+> +       if (dsi->next_bridge)
+> +               dsi->force_dsi_end_without_null =3D of_device_is_compatib=
+le(dsi->next_bridge->of_node,
+> +                                                                        =
+ "analogix,anx7625");
+> +
+>         drm_bridge_add(&dsi->bridge);
+>
+>         ret =3D component_add(&pdev->dev, &mtk_dsi_component_ops);
+> --
+> 2.25.1
