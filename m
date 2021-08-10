@@ -2,184 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F06E3E574B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5F13E5784
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239212AbhHJJoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 05:44:07 -0400
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:5100 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S239092AbhHJJoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 05:44:04 -0400
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 17A9evor011042;
-        Tue, 10 Aug 2021 02:43:33 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=73nwB+H/Gc5EpUEtTt+5UourBXEJEhmgmjgofq3FJ8g=;
- b=UTKpNVCbsPQpHFbypkk1LOwo7ya7pdKgwaDD4oGuRBhnHK+sAnKQRv3dQjckaUoTgmnY
- 5BCN4duB3EjmmmezWajw+G2m2IDESjFmdebi+bL5S/M+lOtsu8TrIvGnapx9M/0OP58O
- oI0zxUQAGT1nBp1563b/drFNm2b2HM3N5sEZ3EROug0UU/d5Flg66yUatC5fO0i45I3I
- oFqK4H3zA5mCWOaQHe0fbYHXoBwjpmx4I6hUS+25vBmdyy+1EBUxLBTc0e68TmQeYsbd
- ze5Od8DU6YU+ozvBYNC3G6T8rhwuoQwzJzUaBhCh4eeSWYqzTJRZRlTQEnZJjZzvwLCg sg== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0a-0016f401.pphosted.com with ESMTP id 3abfu2hdn8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 10 Aug 2021 02:43:33 -0700
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 10 Aug
- 2021 02:43:32 -0700
-Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Tue, 10 Aug 2021 02:43:29 -0700
-From:   Bharat Bhushan <bbhushan2@marvell.com>
-To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Bharat Bhushan <bbhushan2@marvell.com>
-Subject: [PATCH v2 4/4] perf/marvell: cn10k DDR perf event core ownership
-Date:   Tue, 10 Aug 2021 15:13:07 +0530
-Message-ID: <20210810094307.29595-5-bbhushan2@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210810094307.29595-1-bbhushan2@marvell.com>
-References: <20210810094307.29595-1-bbhushan2@marvell.com>
+        id S229474AbhHJJwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 05:52:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55612 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229470AbhHJJwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 05:52:54 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908A2C0613D3;
+        Tue, 10 Aug 2021 02:52:31 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id n7so3186681ljq.0;
+        Tue, 10 Aug 2021 02:52:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=VxKLBzjOyzndQSkwMtQilthdPdFNiRTvzfca7De9zs4=;
+        b=LgS5+341pmKDIZcJiTqLAxhlTc1fpnzWz8agEjGPUuZOFgPdIv5F3A22w1uUmldpVj
+         RfFZf1w/CLKaYaDmNWuhZFqRTj8UqAbA7RXDgcr0hDhfiXt3WaWMey/qfaZXli+jyla5
+         Ka/wMo9xCM/CRPzl4yKk1PdJec9YuhFIHNuFY69PCHDvScjlTxwC+RRr0XWPx6G8ofV3
+         I/ozlE7hNWIul8IEhtoKPaUWBc3GwI7MwgwUYgkmOal4VVx0KPEnpLZYD3Mp07ykgMS0
+         n/4z/47F+gZdLZrQomt8+DYIMQOVcIP8vpKPDPzagVIXJCsfJ9YBTG9ZvJigjmPYPQp5
+         +U2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VxKLBzjOyzndQSkwMtQilthdPdFNiRTvzfca7De9zs4=;
+        b=P0C0eYzkms0ei/6Vr3ovw5UiVZSdgn30kvV7dWjm9I6zshJAQggDtN2DPID5cqBNWO
+         HcBodxoSSeyoY5tILfU9RUqRtNAv6tBFEWR5U4E4yFh0tZAgozXWUm9GSJ9t78tdBYnf
+         wI/oW+Y4YE6CANj1ootYKBVIQpzReiQvoMqEoKZjO+uWv0DQ+A0gx956PRAP+uhC55RW
+         0uKKYm7YUHpne2yke7SmeVsuocvbm31vNhZrb+MT0ZvfyrO8I+3SvB8Kp9y3Ue7Qzj35
+         Oak2tsXE1HQZk/f5P36UnrpnJSVfnXZud1ZmOFRNkgPjlC3j4FqYObqAceKsXSlkggeC
+         vAqg==
+X-Gm-Message-State: AOAM5304bUpAo+broKzx29IecAXZDithinPH9gcsOchMrCnzYvuA1NAK
+        Agsd/5m/pN55Q1V84x9fGhM=
+X-Google-Smtp-Source: ABdhPJwqa3xO06zcgzEnLHW1CMokvDfOYURj44goeGFArf00P9qfl4PCvw88u814T9NobtU74F30IA==
+X-Received: by 2002:a05:651c:1119:: with SMTP id d25mr12859530ljo.129.1628589149962;
+        Tue, 10 Aug 2021 02:52:29 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id v124sm1997031lfa.192.2021.08.10.02.52.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 02:52:29 -0700 (PDT)
+Date:   Tue, 10 Aug 2021 12:52:27 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     "Srikandan, Nandhini" <nandhini.srikandan@intel.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Pan, Kris" <kris.pan@intel.com>,
+        "Demakkanavar, Kenchappa" <kenchappa.demakkanavar@intel.com>,
+        "Zhou, Furong" <furong.zhou@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>,
+        "Vaidya, Mahesh R" <mahesh.r.vaidya@intel.com>,
+        "A, Rashmi" <rashmi.a@intel.com>
+Subject: Re: =?utf-8?B?W+KAnFBBVENI?= =?utf-8?B?4oCd?= 0/2] Add support for
+ Intel Thunder Bay SPI
+Message-ID: <20210810095227.ixukmo2gnq73bikj@mobilestation>
+References: <20210722053358.29682-1-nandhini.srikandan@intel.com>
+ <20210722160919.ccjfodb7pbvu7ul5@mobilestation>
+ <BN0PR11MB5727CB650247519314CCC92785F79@BN0PR11MB5727.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: uUl1SUkLu2osK3avE2Ct2BXd5pJ0FeII
-X-Proofpoint-GUID: uUl1SUkLu2osK3avE2Ct2BXd5pJ0FeII
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-10_03:2021-08-06,2021-08-10 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <BN0PR11MB5727CB650247519314CCC92785F79@BN0PR11MB5727.namprd11.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As DDR perf event counters are not per core, so they
-should be accessed only by one core at a time.
-Select new core when previously owning core is going
-offline.
+On Tue, Aug 10, 2021 at 09:24:08AM +0000, Srikandan, Nandhini wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Serge Semin <fancer.lancer@gmail.com>
+> > Sent: Thursday, July 22, 2021 9:39 PM
+> > To: Srikandan, Nandhini <nandhini.srikandan@intel.com>
+> > Cc: broonie@kernel.org; robh+dt@kernel.org; linux-spi@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > mgross@linux.intel.com; Pan, Kris <kris.pan@intel.com>; Demakkanavar,
+> > Kenchappa <kenchappa.demakkanavar@intel.com>; Zhou, Furong
+> > <furong.zhou@intel.com>; Sangannavar, Mallikarjunappa
+> > <mallikarjunappa.sangannavar@intel.com>; Vaidya, Mahesh R
+> > <mahesh.r.vaidya@intel.com>; A, Rashmi <rashmi.a@intel.com>
+> > Subject: Re: [“PATCH” 0/2] Add support for Intel Thunder Bay SPI
+> > 
+> > Hello Nandhini
+> > 
+> > On Thu, Jul 22, 2021 at 01:33:56PM +0800, nandhini.srikandan@intel.com
+> > wrote:
+> > > From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> > >
+> > > Hi,
+> > >
+> > > This patch set enables the support for Designware SPI on the Intel Thunder
+> > Bay SoC.
+> > >
+> > > Patch 1: SPI DT bindings for Intel Thunder Bay SoC Patch 2: Adds
+> > > support for Designware SPI on Intel Thunderbay SoC
+> > >
+> > > Please help to review this patch set.
+> > 
+> > Thanks for the patchset. I'll send you my comments to the corresponding
+> > patches soon.
+> > 
 
-Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
----
-v1->v2:
- - No change
+> Thank you for your review comments. I am working on it and I will share another patchset shortly. 
 
- drivers/perf/marvell_cn10k_ddr_pmu.c | 50 ++++++++++++++++++++++++++--
- include/linux/cpuhotplug.h           |  1 +
- 2 files changed, 49 insertions(+), 2 deletions(-)
+I'd suggest to answer on the review questions first...
 
-diff --git a/drivers/perf/marvell_cn10k_ddr_pmu.c b/drivers/perf/marvell_cn10k_ddr_pmu.c
-index 80f1441961d0..3bf810fe0cf5 100644
---- a/drivers/perf/marvell_cn10k_ddr_pmu.c
-+++ b/drivers/perf/marvell_cn10k_ddr_pmu.c
-@@ -130,6 +130,7 @@ struct cn10k_ddr_pmu {
- 	int active_events;
- 	struct perf_event *events[DDRC_PERF_NUM_COUNTERS];
- 	struct hrtimer hrtimer;
-+	struct hlist_node node;
- };
- 
- #define to_cn10k_ddr_pmu(p)	container_of(p, struct cn10k_ddr_pmu, pmu)
-@@ -613,6 +614,24 @@ static enum hrtimer_restart cn10k_ddr_pmu_timer_handler(struct hrtimer *hrtimer)
- 	return HRTIMER_RESTART;
- }
- 
-+static int cn10k_ddr_pmu_offline_cpu(unsigned int cpu, struct hlist_node *node)
-+{
-+	struct cn10k_ddr_pmu *pmu = hlist_entry_safe(node, struct cn10k_ddr_pmu,
-+						     node);
-+	unsigned int target;
-+
-+	if (cpu != pmu->cpu)
-+		return 0;
-+
-+	target = cpumask_any_but(cpu_online_mask, cpu);
-+	if (target >= nr_cpu_ids)
-+		return 0;
-+
-+	perf_pmu_migrate_context(&pmu->pmu, cpu, target);
-+	pmu->cpu = target;
-+	return 0;
-+}
-+
- static int cn10k_ddr_perf_probe(struct platform_device *pdev)
- {
- 	struct cn10k_ddr_pmu *ddr_pmu;
-@@ -666,20 +685,33 @@ static int cn10k_ddr_perf_probe(struct platform_device *pdev)
- 	hrtimer_init(&ddr_pmu->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
- 	ddr_pmu->hrtimer.function = cn10k_ddr_pmu_timer_handler;
- 
-+	cpuhp_state_add_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+
- 	ret = perf_pmu_register(&ddr_pmu->pmu, name, -1);
- 	if (ret)
--		return ret;
-+		goto error;
- 
- 	ddr_pmu->id = index++;
- 	pr_info("CN10K DDR PMU Driver for ddrc@%llx - id-%d\n",
- 		res->start, ddr_pmu->id);
- 	return 0;
-+error:
-+	cpuhp_state_remove_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+	return ret;
- }
- 
- static int cn10k_ddr_perf_remove(struct platform_device *pdev)
- {
- 	struct cn10k_ddr_pmu *ddr_pmu = platform_get_drvdata(pdev);
- 
-+	cpuhp_state_remove_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+
- 	perf_pmu_unregister(&ddr_pmu->pmu);
- 	return 0;
- }
-@@ -702,12 +734,26 @@ static struct platform_driver cn10k_ddr_pmu_driver = {
- 
- static int __init cn10k_ddr_pmu_init(void)
- {
--	return platform_driver_register(&cn10k_ddr_pmu_driver);
-+	int ret;
-+
-+	ret = cpuhp_setup_state_multi(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				"perf/marvell/cn10k/ddr:online", NULL,
-+				cn10k_ddr_pmu_offline_cpu);
-+	if (ret)
-+		return ret;
-+
-+	ret = platform_driver_register(&cn10k_ddr_pmu_driver);
-+	if (ret)
-+		cpuhp_remove_multi_state(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
-+	return ret;
- }
- 
- static void __exit cn10k_ddr_pmu_exit(void)
- {
- 	platform_driver_unregister(&cn10k_ddr_pmu_driver);
-+	cpuhp_remove_multi_state(CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
- }
- 
- module_init(cn10k_ddr_pmu_init);
-diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
-index 47e13582d9fc..ce7f2740d7db 100644
---- a/include/linux/cpuhotplug.h
-+++ b/include/linux/cpuhotplug.h
-@@ -185,6 +185,7 @@ enum cpuhp_state {
- 	CPUHP_AP_PERF_ARM_QCOM_L3_ONLINE,
- 	CPUHP_AP_PERF_ARM_APM_XGENE_ONLINE,
- 	CPUHP_AP_PERF_ARM_CAVIUM_TX2_UNCORE_ONLINE,
-+	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_NEST_IMC_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_CORE_IMC_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_THREAD_IMC_ONLINE,
--- 
-2.17.1
+-Sergey
 
+> 
+> Regards,
+> Nandhini
+> 
+> > >
+> > > Thanks & Regards,
+> > > Nandhini
+> > >
+> > > Nandhini Srikandan (2):
+> > >   dt-bindings: spi: Add bindings for Intel Thunder Bay SoC
+> > >   spi: dw: Add support for Intel Thunder Bay SPI
+> > >
+> > >  .../bindings/spi/snps,dw-apb-ssi.yaml         |  2 ++
+> > >  drivers/spi/spi-dw-core.c                     |  6 ++++++
+> > >  drivers/spi/spi-dw-mmio.c                     | 20 +++++++++++++++++++
+> > >  drivers/spi/spi-dw.h                          | 15 ++++++++++++++
+> > >  4 files changed, 43 insertions(+)
+> > >
+> > > --
+> > > 2.17.1
+> > >
