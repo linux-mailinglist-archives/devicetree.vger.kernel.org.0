@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DA263E5D72
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 456EB3E5DA4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240970AbhHJOUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 10:20:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54656 "EHLO mail.kernel.org"
+        id S240947AbhHJOWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 10:22:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53856 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242675AbhHJOSF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 10:18:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9962A61158;
-        Tue, 10 Aug 2021 14:16:43 +0000 (UTC)
+        id S242735AbhHJOS3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 10:18:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D803961019;
+        Tue, 10 Aug 2021 14:16:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628605004;
-        bh=+SZmIis+xGQqa80afTUIFbXPIBLY3A8koq5bqvSl9xs=;
+        s=k20201202; t=1628605010;
+        bh=gEtSWd3s3bZAR1yMiWz9b2wtS3A9s4H9679+dw6ETk8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZJuSMFBBMj/JtZ1SV0493L3aP4iBcj4mO7rzVvgsxoYqY7sA3z76znihjEpabRK+c
-         HnDF4KRy+G3PH8N+HxULgzDAgaU1D3DTV3xmryoz6bsLAH9SO4ftUaIx/hQlTI+vSO
-         EctUX/QC3zxG/Xi8beU/VolLChIxAw+a3b1mp8mpzvbnpaY/CB7qkgmwxtXJIk6f55
-         Yt70OgqbSVStkZTobiuYED7FlfTDcYOw3c5fRytYCQmZOeSUjoyvdU/fozFzLBjeGx
-         YbRpwybTIPfclIhjt+iv5LEw8JvcvKPkVLQdwoJPTqCajCHVb6LAnNBJcfKZgh8GBh
-         Du0ddIydiod+w==
+        b=nbP4wFVTS9YTbFFhyE5fkgE80jJUiXp3+BLv9jJOV+Hp/Cb66LqvQCbAEjirftdut
+         SwLErMcW5Rcf4Su53/fMnfssjJrI5BCFWhENj5yfR0aD/yzK3RGyShLmyAZX4TZAYL
+         S/VQC0SEWgf16IB94h60FNGmRnOJfR/G66kvahaffBasKQ0WnZ0W2U8JTEukJP/vY+
+         LgAQTj/r/maMJ6g8doL5Hq2kEYnxJG0hNiBYsDGMH/B3wXVtmjCS2Uet0t9cmM5i4b
+         C+9otJQWXT4hDYnAHb3oQ00X2X9do8AuIG29uUqLgplIAUFl8mFFMIBUM46ZSCpTmD
+         PxcWPHE6aeSdQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Dave Gerlach <d-gerlach@ti.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 02/10] ARM: dts: am43x-epos-evm: Reduce i2c0 bus speed for tps65218
-Date:   Tue, 10 Aug 2021 10:16:33 -0400
-Message-Id: <20210810141641.3118360-2-sashal@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 07/10] ARM: dts: nomadik: Fix up interrupt controller node names
+Date:   Tue, 10 Aug 2021 10:16:38 -0400
+Message-Id: <20210810141641.3118360-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210810141641.3118360-1-sashal@kernel.org>
 References: <20210810141641.3118360-1-sashal@kernel.org>
@@ -44,48 +43,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dave Gerlach <d-gerlach@ti.com>
+From: Sudeep Holla <sudeep.holla@arm.com>
 
-[ Upstream commit 20a6b3fd8e2e2c063b25fbf2ee74d86b898e5087 ]
+[ Upstream commit 47091f473b364c98207c4def197a0ae386fc9af1 ]
 
-Based on the latest timing specifications for the TPS65218 from the data
-sheet, http://www.ti.com/lit/ds/symlink/tps65218.pdf, document SLDS206
-from November 2014, we must change the i2c bus speed to better fit within
-the minimum high SCL time required for proper i2c transfer.
+Once the new schema interrupt-controller/arm,vic.yaml is added, we get
+the below warnings:
 
-When running at 400khz, measurements show that SCL spends
-0.8125 uS/1.666 uS high/low which violates the requirement for minimum
-high period of SCL provided in datasheet Table 7.6 which is 1 uS.
-Switching to 100khz gives us 5 uS/5 uS high/low which both fall above
-the minimum given values for 100 khz, 4.0 uS/4.7 uS high/low.
+	arch/arm/boot/dts/ste-nomadik-nhk15.dt.yaml:
+	intc@10140000: $nodename:0: 'intc@10140000' does not match
+	'^interrupt-controller(@[0-9a-f,]+)*$'
 
-Without this patch occasionally a voltage set operation from the kernel
-will appear to have worked but the actual voltage reflected on the PMIC
-will not have updated, causing problems especially with cpufreq that may
-update to a higher OPP without actually raising the voltage on DCDC2,
-leading to a hang.
+Fix the node names for the interrupt controller to conform
+to the standard node name interrupt-controller@..
 
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Link: https://lore.kernel.org/r/20210617210825.3064367-2-sudeep.holla@arm.com
+Link: https://lore.kernel.org/r/20210626000103.830184-1-linus.walleij@linaro.org'
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/am43x-epos-evm.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/ste-nomadik-stn8815.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
-index c4279b0b9f12..437e8d2dcc70 100644
---- a/arch/arm/boot/dts/am43x-epos-evm.dts
-+++ b/arch/arm/boot/dts/am43x-epos-evm.dts
-@@ -411,7 +411,7 @@ &i2c0 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0_pins>;
--	clock-frequency = <400000>;
-+	clock-frequency = <100000>;
+diff --git a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
+index 733678b75b88..ad3cdf2ca7fb 100644
+--- a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
++++ b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
+@@ -756,14 +756,14 @@ clcd@10120000 {
+ 			status = "disabled";
+ 		};
  
- 	tps65218: tps65218@24 {
- 		reg = <0x24>;
+-		vica: intc@10140000 {
++		vica: interrupt-controller@10140000 {
+ 			compatible = "arm,versatile-vic";
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
+ 			reg = <0x10140000 0x20>;
+ 		};
+ 
+-		vicb: intc@10140020 {
++		vicb: interrupt-controller@10140020 {
+ 			compatible = "arm,versatile-vic";
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
 -- 
 2.30.2
 
