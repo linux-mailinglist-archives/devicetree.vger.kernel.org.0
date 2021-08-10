@@ -2,116 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E67873E561A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 10:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8441B3E5679
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238487AbhHJI7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 04:59:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42534 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238426AbhHJI7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 04:59:17 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49B0C0613D3;
-        Tue, 10 Aug 2021 01:58:55 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id o1-20020a05600c5101b02902e676fe1f04so1368381wms.1;
-        Tue, 10 Aug 2021 01:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=DZGtTjtzuONYDWQ02eZzQw+Y6sEYh4NUv+medlIAmQg=;
-        b=egqehrq7CkJ97r5UIn8xQu8mS1JgYuuTIE88Yr6sIQfBuwd2f3cHYoXKMX5k8AeOXT
-         zcUZLaJ8nM2QHotO5d3amELtbpr5YHHBnRivUmGei8ob2B0yF/kE17hSgB2+UeCPt6bs
-         /XBwAilgaoeOgcZS/M1mzAMCszKBTxDuu7jvE5qEuROo0PihhQjFwWlKxFcDxcAkBClU
-         KgEZC/o1yeHBeQM70+arvJSHFwDSSWfSN9IeCCFzfSo5s+/YISjacxmz6WTxzGtZVAa/
-         ULKKC+SUT3ZMYXSc2AErLxggUjsNYlYgQ4kQoukWF3kc35qWCOX0ClymcFvgI76KgaXI
-         hCaQ==
+        id S237922AbhHJJNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 05:13:52 -0400
+Received: from mail-vs1-f41.google.com ([209.85.217.41]:36566 "EHLO
+        mail-vs1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229827AbhHJJNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 05:13:49 -0400
+Received: by mail-vs1-f41.google.com with SMTP id y65so1469045vsy.3;
+        Tue, 10 Aug 2021 02:13:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=DZGtTjtzuONYDWQ02eZzQw+Y6sEYh4NUv+medlIAmQg=;
-        b=rChzf6l/Jdgyn/jCd+2IOqGokTK1BWOzyW+b2i0viBbWlz+fWnRcIOIu87dmI1v82a
-         GwpQzN7DLpad3dpdCWLGHKxOrzX32UCBESiQ8fP0hl0LaUY1mWt8j3osMk4TBNMlq624
-         xiM0FvFjqlHOi0wEwpqdGTH6KkWKnluziLbAlKyRCwRP3a5VhPm5iHRvExpbFtWIuWih
-         Uag/B9NT6kpRBdHuiqc0DJJV4uLFhlAKIGZB8lDBKkMwCBGuJ87jlu5rN5cwKwXRNDVX
-         Sph0HGGc5ei38higsyrCEDY6GrMfMjPoDdZUglIiDaD6Dfe/k14AJacxmA2d3Nfhi32w
-         n4PA==
-X-Gm-Message-State: AOAM530I6qdKnp/lDh4KkeWvHcL8Lx60K/nO48AWU7LPQ6/MphOvA3fZ
-        JCTLscPemnv3BPjjgi3H3GE=
-X-Google-Smtp-Source: ABdhPJzPEKr39AcsB3Lagut2U7pslSZe1FaUFeq/Uoj2qWkA8L7OvGIH6bMmf40+xCTrTTMonQ/omQ==
-X-Received: by 2002:a1c:1904:: with SMTP id 4mr15181735wmz.93.1628585934443;
-        Tue, 10 Aug 2021 01:58:54 -0700 (PDT)
-Received: from ziggy.stardust ([207.188.163.204])
-        by smtp.gmail.com with ESMTPSA id o17sm22127178wrw.17.2021.08.10.01.58.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Aug 2021 01:58:54 -0700 (PDT)
-Subject: Re: Aw: [PATCH v8, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys
- routing table
-To:     Frank Wunderlich <frank-w@public-files.de>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-References: <1627894773-23872-1-git-send-email-yongqiang.niu@mediatek.com>
- <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
- <trinity-a5eeacb8-1625-4111-b613-19ee1609b902-1628062221917@3c-app-gmx-bap67>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <a09da534-274d-3eaf-6c4d-eb2a4817626b@gmail.com>
-Date:   Tue, 10 Aug 2021 10:58:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=D4zFUoQGWXvJJzszKGbYHtmhD6iQDxYUpdvSAl+bWOM=;
+        b=n/aBVUK99Rmm2MaI+JLChXRJm1A059O4buVZjxXJgxCY3kBlujqs7HeegoWLIiHvGa
+         E0LGs69wzyT8DIzIhaB1LNz3iEtk7lw9xx+LTdAgyEwYFq3hsHGwVVcaY+bPYqCX0mTh
+         499n2NF/ogRk9RdcVM4nCtI/TB/z/+Wv75yXp9aZ2Ni+wyjLxDXf/ZX6WZkgYTRBSpBA
+         c1fNZbD0Y6yyUkhom1Mwmgut/W/O1MseAEeDhzIgWevskuzK8c+L3mO13A2sBMOo5WSe
+         nv37EjGuDZSx4DWxyrHCYTV+cOU5hGF9AOIM/af11D/q+N2HXW04py7v8ewAFouhFV8i
+         H/FQ==
+X-Gm-Message-State: AOAM532zqhJnsUpDgFwIXI4dVsPoNYlluwXAWQfzrfWgWNOv0eJGdXBS
+        pyj593JnrZ+APGUgNe7qF9pvEpBkKpG4PdQG+SQ=
+X-Google-Smtp-Source: ABdhPJzi/lB8toRXF6TLgirnwNVqdViDEm3Wk1WLbMzBb5EExiEX3qWBYRajb5yqiHccxcg+Sc4I+H0YhXdr/mU8G4o=
+X-Received: by 2002:a67:e2c7:: with SMTP id i7mr20048451vsm.3.1628586807159;
+ Tue, 10 Aug 2021 02:13:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <trinity-a5eeacb8-1625-4111-b613-19ee1609b902-1628062221917@3c-app-gmx-bap67>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210727112328.18809-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210727112328.18809-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210727112328.18809-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 10 Aug 2021 11:13:15 +0200
+Message-ID: <CAMuHMdWy4JNZ2=Z+FdMdHukN6rGQMma7cc+Pm06AtsOk8j_eGA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] pinctrl: renesas: Add RZ/G2L pin and gpio
+ controller driver
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
+On Tue, Jul 27, 2021 at 1:23 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support for pin and gpio controller driver for RZ/G2L SoC.
+>
+> Based on a patch in the BSP by Hien Huynh <hien.huynh.px@renesas.com>.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On 04/08/2021 09:30, Frank Wunderlich wrote:
-> Hi
-> 
-> can you please test if your device still work after applying this
-> 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20210729070549.5514-1-linux@fw-web.de/
-> 
-> and
-> 
-> duplicate value constants in your routes?
-> 
-> e.g. changing
-> 
-> +		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-> +		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
-> 
-> to
-> 
-> +		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-> +		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
-> +		MT8192_OVL0_MOUT_EN_DISP_RDMA0
-> 
-> regards Frank
-> 
+Thanks for your patch!
 
-I did a fixup for that in v5.15-tmp/soc
+> --- /dev/null
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
 
-Yongqiang, please test if this is working on the SoC.
+> +static void rzg2l_pinctrl_clk_disable(void *data)
+> +{
+> +       struct clk *clk = data;
 
-Regards,
-Matthias
+No need for the intermediate variable.
+
+> +
+> +       clk_disable_unprepare(clk);
+> +}
+> +
+> +static int rzg2l_pinctrl_probe(struct platform_device *pdev)
+> +{
+> +       struct rzg2l_pinctrl *pctrl;
+> +       int ret;
+> +
+> +       pctrl = devm_kzalloc(&pdev->dev, sizeof(*pctrl), GFP_KERNEL);
+> +       if (!pctrl)
+> +               return -ENOMEM;
+> +
+> +       pctrl->dev = &pdev->dev;
+> +
+> +       pctrl->data = of_device_get_match_data(&pdev->dev);
+> +       if (!pctrl->data)
+> +               return -EINVAL;
+> +
+> +       pctrl->base = devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(pctrl->base))
+> +               return PTR_ERR(pctrl->base);
+> +
+> +       pctrl->clk = devm_clk_get(pctrl->dev, NULL);
+> +       if (IS_ERR(pctrl->clk)) {
+> +               ret = PTR_ERR(pctrl->clk);
+> +               dev_err(pctrl->dev, "failed to get GPIO clk : %i\n", ret);
+> +               return ret;
+> +       };
+> +
+> +       spin_lock_init(&pctrl->lock);
+> +
+> +       platform_set_drvdata(pdev, pctrl);
+> +
+> +       ret = clk_prepare_enable(pctrl->clk);
+> +       if (ret) {
+> +               dev_err(pctrl->dev, "failed to enable GPIO clk: %i\n", ret);
+> +               return ret;
+> +       };
+> +
+> +       ret = devm_add_action_or_reset(&pdev->dev, rzg2l_pinctrl_clk_disable, pctrl->clk);
+
+This line is a bit long.
+
+> +       if (ret) {
+> +               dev_err(pctrl->dev, "failed to register pinctrl clk disable devm action, %i\n",
+
+Elsewhere, this is called the "GPIO clk".
+This line is a bit long.
+
+> +                       ret);
+> +               return ret;
+> +       }
+> +
+> +       ret = rzg2l_pinctrl_register(pctrl);
+> +       if (ret)
+> +               return ret;
+> +
+> +       dev_info(pctrl->dev, "%s support registered\n", DRV_NAME);
+> +       return 0;
+> +}
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-pinctrl-for-v5.15, with the above fixed, so no need
+to resend.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
