@@ -2,159 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C5483E5088
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 03:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F1F03E5099
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 03:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbhHJBLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 21:11:16 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:47634 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbhHJBLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 21:11:16 -0400
-Received: from localhost (unknown [192.168.167.32])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 36D7CD6179;
-        Tue, 10 Aug 2021 09:10:33 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from xxm-vm.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P49146T140469470209792S1628557815809840_;
-        Tue, 10 Aug 2021 09:10:19 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <edc5533435c7c5301041dd3fb0d9e71b>
-X-RL-SENDER: xxm@rock-chips.com
-X-SENDER: xxm@rock-chips.com
-X-LOGIN-NAME: xxm@rock-chips.com
-X-FST-TO: jic23@kernel.org
-X-RCPT-COUNT: 11
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Simon Xue <xxm@rock-chips.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, David Wu <david.wu@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: [PATCH v4] iio: adc: rockchip_saradc: add voltage notifier so get referenced voltage once at probe
-Date:   Tue, 10 Aug 2021 09:10:07 +0800
-Message-Id: <20210810011007.54066-1-xxm@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+        id S237201AbhHJB2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 21:28:31 -0400
+Received: from szxga02-in.huawei.com ([45.249.212.188]:13407 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237196AbhHJB2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 21:28:30 -0400
+Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.57])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4GkFbx2JylzcmLm;
+        Tue, 10 Aug 2021 09:24:29 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 10 Aug 2021 09:28:07 +0800
+Received: from [10.174.179.0] (10.174.179.0) by dggpemm500006.china.huawei.com
+ (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 10 Aug
+ 2021 09:28:06 +0800
+Subject: Re: [PATCH v2 1/1] arm64: dts: lx2160a: Fix the compatible string of
+ LX2160A UART
+To:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210615131605.616-1-thunder.leizhen@huawei.com>
+ <20210615131605.616-2-thunder.leizhen@huawei.com>
+ <AS8PR04MB8946D0EB15D631346F4D13198FF69@AS8PR04MB8946.eurprd04.prod.outlook.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <03d7c7be-2f19-9fdf-2a4e-f49a62bb82f6@huawei.com>
+Date:   Tue, 10 Aug 2021 09:28:05 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <AS8PR04MB8946D0EB15D631346F4D13198FF69@AS8PR04MB8946.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.0]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Wu <david.wu@rock-chips.com>
-
-Add voltage notifier, no need to query regulator voltage for
-every saradc read, just get regulator voltage once at probe.
-
-Signed-off-by: David Wu <david.wu@rock-chips.com>
-Signed-off-by: Simon Xue <xxm@rock-chips.com>
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
----
- drivers/iio/adc/rockchip_saradc.c | 47 ++++++++++++++++++++++++++-----
- 1 file changed, 40 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-index f3eb8d2e50dc..a237fe469a30 100644
---- a/drivers/iio/adc/rockchip_saradc.c
-+++ b/drivers/iio/adc/rockchip_saradc.c
-@@ -49,10 +49,12 @@ struct rockchip_saradc {
- 	struct clk		*clk;
- 	struct completion	completion;
- 	struct regulator	*vref;
-+	int			uv_vref;
- 	struct reset_control	*reset;
- 	const struct rockchip_saradc_data *data;
- 	u16			last_val;
- 	const struct iio_chan_spec *last_chan;
-+	struct notifier_block nb;
- };
- 
- static void rockchip_saradc_power_down(struct rockchip_saradc *info)
-@@ -105,13 +107,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
- 		mutex_unlock(&indio_dev->mlock);
- 		return IIO_VAL_INT;
- 	case IIO_CHAN_INFO_SCALE:
--		ret = regulator_get_voltage(info->vref);
--		if (ret < 0) {
--			dev_err(&indio_dev->dev, "failed to get voltage\n");
--			return ret;
--		}
--
--		*val = ret / 1000;
-+		*val = info->uv_vref / 1000;
- 		*val2 = chan->scan_type.realbits;
- 		return IIO_VAL_FRACTIONAL_LOG2;
- 	default:
-@@ -298,6 +294,26 @@ static irqreturn_t rockchip_saradc_trigger_handler(int irq, void *p)
- 	return IRQ_HANDLED;
- }
- 
-+static int rockchip_saradc_volt_notify(struct notifier_block *nb,
-+						   unsigned long event,
-+						   void *data)
-+{
-+	struct rockchip_saradc *info =
-+			container_of(nb, struct rockchip_saradc, nb);
-+
-+	if (event & REGULATOR_EVENT_VOLTAGE_CHANGE)
-+		info->uv_vref = (unsigned long)data;
-+
-+	return NOTIFY_OK;
-+}
-+
-+static void rockchip_saradc_regulator_unreg_notifier(void *data)
-+{
-+	struct rockchip_saradc *info = data;
-+
-+	regulator_unregister_notifier(info->vref, &info->nb);
-+}
-+
- static int rockchip_saradc_probe(struct platform_device *pdev)
- {
- 	struct rockchip_saradc *info = NULL;
-@@ -410,6 +426,12 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = regulator_get_voltage(info->vref);
-+	if (ret < 0)
-+		return ret;
-+
-+	info->uv_vref = ret;
-+
- 	ret = clk_prepare_enable(info->pclk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to enable pclk\n");
-@@ -450,6 +472,17 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	info->nb.notifier_call = rockchip_saradc_volt_notify;
-+	ret = regulator_register_notifier(info->vref, &info->nb);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(&pdev->dev,
-+				       rockchip_saradc_regulator_unreg_notifier,
-+				       info);
-+	if (ret)
-+		return ret;
-+
- 	return devm_iio_device_register(&pdev->dev, indio_dev);
- }
- 
--- 
-2.25.1
 
 
+On 2021/8/10 6:52, Leo Li wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Zhen Lei <thunder.leizhen@huawei.com>
+>> Sent: Tuesday, June 15, 2021 8:16 AM
+>> To: Shawn Guo <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob
+>> Herring <robh+dt@kernel.org>; Mark Kettenis <mark.kettenis@xs4all.nl>;
+>> devicetree <devicetree@vger.kernel.org>; linux-arm-kernel <linux-arm-
+>> kernel@lists.infradead.org>; linux-kernel <linux-kernel@vger.kernel.org>
+>> Cc: Zhen Lei <thunder.leizhen@huawei.com>
+>> Subject: [PATCH v2 1/1] arm64: dts: lx2160a: Fix the compatible string of
+>> LX2160A UART
+>>
+>> Mark Kettenis told us that:
+>> According to the NXP documentation, the LX2160A has a real PL011 UART.
+>>
+>> Therefore, rewrite it to the compatible string of pl011. The property "current-
+>> speed" specific to "arm,sbsa-uart" is also deleted.
+> 
+> Sorry that I missed the discussion on the v1.  But looks like this change breaks the LX2160 boot.  The AMBA matching doesn't seem to work.  And the console is not registered correctly.
 
+https://lore.kernel.org/linux-arm-kernel/cba3a29f-92b5-072a-9a27-60240f072dad@huawei.com/
+
+Maybe we should fall back to v1.
+
+> 
+> [    0.639055] OF: amba_device_add() failed (-2) for /soc/serial@21c0000
+> [    0.645612] OF: amba_device_add() failed (-2) for /soc/serial@21d0000
+> 
+>>
+>> Suggested-by: Shawn Guo <shawnguo@kernel.org>
+>> Suggested-by: Mark Kettenis <mark.kettenis@xs4all.nl>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 12 ++++--------
+>>  1 file changed, 4 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>> index c4b1a59ba424..d2e6f7285674 100644
+>> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>> @@ -920,34 +920,30 @@ QORIQ_CLK_PLL_DIV(8)>,
+>>  		};
+>>
+>>  		uart0: serial@21c0000 {
+>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>> +			compatible = "arm,pl011", "arm,primecell";
+>>  			reg = <0x0 0x21c0000 0x0 0x1000>;
+>>  			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>> -			current-speed = <115200>;
+>>  			status = "disabled";
+>>  		};
+>>
+>>  		uart1: serial@21d0000 {
+>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>> +			compatible = "arm,pl011", "arm,primecell";
+>>  			reg = <0x0 0x21d0000 0x0 0x1000>;
+>>  			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+>> -			current-speed = <115200>;
+>>  			status = "disabled";
+>>  		};
+>>
+>>  		uart2: serial@21e0000 {
+>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>> +			compatible = "arm,pl011", "arm,primecell";
+>>  			reg = <0x0 0x21e0000 0x0 0x1000>;
+>>  			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+>> -			current-speed = <115200>;
+>>  			status = "disabled";
+>>  		};
+>>
+>>  		uart3: serial@21f0000 {
+>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>> +			compatible = "arm,pl011", "arm,primecell";
+>>  			reg = <0x0 0x21f0000 0x0 0x1000>;
+>>  			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+>> -			current-speed = <115200>;
+>>  			status = "disabled";
+>>  		};
+>>
+>> --
+>> 2.25.1
+>>
+> 
+> .
+> 
