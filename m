@@ -2,96 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3BA3E5E09
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4923E5E62
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:51:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240469AbhHJOde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 10:33:34 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:42928 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240212AbhHJOdb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 10:33:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=3FxL/4S4YmrQ+IWKQjnrpQVFunMNvpe9IajSsBJ9+jM=; b=xmpRAlZqaHdbLxX7ChgXsuhmse
-        zrIYeTvO9v6JolQjUytMTEX+UmMI1Jedhxl2nz6zjt2z1DCEGQM1xkwSCJLQGieLeZVKpE5t418DV
-        rVVBRsXnuhng9//M+3v6h7BEvl9Z6nrPeln1nAmwSV5ENgjSD7gv4a43zGbzLqTAyfVM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mDSoM-00Gv7f-0A; Tue, 10 Aug 2021 16:32:58 +0200
-Date:   Tue, 10 Aug 2021 16:32:57 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: fsl, fec: add "fsl,
- wakeup-irq" property
-Message-ID: <YRKOGYwx1uVdsKoF@lunn.ch>
-References: <20210805074615.29096-1-qiangqing.zhang@nxp.com>
- <20210805074615.29096-2-qiangqing.zhang@nxp.com>
- <2e1a14bf-2fa8-ed39-d133-807c4e14859c@gmail.com>
- <DB8PR04MB67950F6863A8FEE6745CBC68E6F69@DB8PR04MB6795.eurprd04.prod.outlook.com>
- <498f3cee-8f37-2ab1-93c4-5472572ecc37@gmail.com>
- <DB8PR04MB6795DC35D0387637052E64A1E6F79@DB8PR04MB6795.eurprd04.prod.outlook.com>
+        id S241524AbhHJOvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 10:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241970AbhHJOt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 10:49:58 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B477BC061799;
+        Tue, 10 Aug 2021 07:49:31 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id m12so26646865wru.12;
+        Tue, 10 Aug 2021 07:49:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qkLAa3qaTd+8nDqfmQYHkSkAUgc2KH2yxW7jHafFEGU=;
+        b=C75iiIP8Jinw9T3dzyHeFsZhnT3b/VHrUjcreDn10v1lsE0miVUhACe1lClAq5tc5N
+         1FlxOq9u7eTwlI8i8EBt7STg8ero3hdHZ3lSYi9h41aPQo24TJvf0rCihR20D7QpZQDo
+         Y/MDjQuJ8faLOxOs5ASv+i6/DDj7y/SrWmOADCkR3XUt02UiYJyQnH0f5zJ/1w/4IO6Y
+         uoY9I3Hi7FUB7oABb43pHRsjNDco4VWtPLMHwudTSbRozJYHM2HZ8uSk5zXUbSOtBgdP
+         AIXDn/Q0lTeADtcjkUAX8pjLBe3CiLelEXySkplZulP4KelUCpG2LOkCTF4i9KF2u4F3
+         rSQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qkLAa3qaTd+8nDqfmQYHkSkAUgc2KH2yxW7jHafFEGU=;
+        b=NziCVPgeo7CSmWiz6S3DJ4hWBU8155QYkgT/lfXjemNCwhbIC3Gs9iVaBYm7Ye6CIm
+         VBXrb01M/hSAmKWW/Pv589ibuDqMk228QlGn7RlsAqGeFuGmAZPOgJ/d4Ys37Qj3mbhA
+         XmmHIAFsNzBXTLRIlrgt0EzQfZT7+GW8VCm0kIC4yal9hWozumrAZamk/YvP7bGh4Bod
+         Fq5Cp0lGZyofTGB3GIsHVkchoe1cHpuWowqBQrXt+/z8nZhK4PBxmM0fp62+TFqVV5/y
+         mQD3pRUjGww75cf+ahzYuewUtocDDdM6BCLOGA9ZFYLo0D8p5hVFLKQ0d0K3gv+fi6GA
+         NMag==
+X-Gm-Message-State: AOAM533eLn3jgamJ5WVA0a9/iqqYzBJnpeQo0+ybwM5UK3lSETnAChBg
+        n8gjsAVOiSifAGVOs+ToEzg=
+X-Google-Smtp-Source: ABdhPJyGpIjjK7YDyXqguWBe5fWsAo8d3ezNZSAlt17FwtPkid466C2w4F3IrtUJvrAa8VWvNtZQrw==
+X-Received: by 2002:a5d:6d0f:: with SMTP id e15mr4355140wrq.373.1628606970305;
+        Tue, 10 Aug 2021 07:49:30 -0700 (PDT)
+Received: from ziggy.stardust ([207.188.163.204])
+        by smtp.gmail.com with ESMTPSA id n30sm26883031wra.1.2021.08.10.07.49.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Aug 2021 07:49:29 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] arm64: dts: mt8183: add audio node
+To:     Kansho Nishida <kansho@chromium.org>
+Cc:     Shunli Wang <shunli.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Chen-Yu Tsai <wenst@csie.org>
+References: <20210706100136.1205047-1-kansho@chromium.org>
+ <20210706190111.v3.1.I88a52644e47e88b15f5db9841cb084dc53c5875c@changeid>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <3db268d2-b662-8fd4-d6dd-0679fa010b71@gmail.com>
+Date:   Tue, 10 Aug 2021 16:49:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB8PR04MB6795DC35D0387637052E64A1E6F79@DB8PR04MB6795.eurprd04.prod.outlook.com>
+In-Reply-To: <20210706190111.v3.1.I88a52644e47e88b15f5db9841cb084dc53c5875c@changeid>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > 1) FEC controller has up to 4 interrupt lines and all of these are routed to GIC
-> > interrupt controller.
-> > > 2) FEC has a wakeup interrupt signal and always are mixed with other
-> > interrupt signals, and then output to one interrupt line.
-> > > 3) For legacy SoCs, wakeup interrupt are mixed to int0 line, but for i.MX8M
-> > serials, are mixed to int2 line.
 
-So you need to know which of the interrupts listed is the wake up
-interrupt.
 
-I can see a few ways to do this:
+On 06/07/2021 12:01, Kansho Nishida wrote:
+> Add afe (audio front end) device node to the MT8183 dtsi.
+> 
+> Signed-off-by: Kansho Nishida <kansho@chromium.org>
 
-The FEC driver already has quirks. Add a quirk to fec_imx8mq_info and
-fec_imx8qm_info to indicate these should use int2.
+Now queued in v5.15-tmp/dts64
 
-or
+Please submit a patch to update the binding description. Maybe we should think
+of merging the two binding descriptions into one (clock and audio part).
 
-Documentation/devicetree/bindings/interrupt-controller/interrupts.txt 
+Regards,
+Matthias
 
-  b) two cells
-  ------------
-  The #interrupt-cells property is set to 2 and the first cell defines the
-  index of the interrupt within the controller, while the second cell is used
-  to specify any of the following flags:
-    - bits[3:0] trigger type and level flags
-        1 = low-to-high edge triggered
-        2 = high-to-low edge triggered
-        4 = active high level-sensitive
-        8 = active low level-sensitive
-
-You could add
-
-       18 = wakeup source
-
-and extend to core to either do all the work for you, or tell you this
-interrupt is flagged as being a wakeup source. This solution has the
-advantage of it should be usable in other drivers.
-
-	  Andrew
+> ---
+> 
+> Changes in v3:
+> - Use audio-controller as the audio node instead.
+> 
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 94 +++++++++++++++++++++++-
+>  1 file changed, 93 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index f90df6439c08..af895921700c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1115,10 +1115,102 @@ usb_host: usb@11200000 {
+>  			};
+>  		};
+>  
+> -		audiosys: syscon@11220000 {
+> +		audiosys: audio-controller@11220000 {
+>  			compatible = "mediatek,mt8183-audiosys", "syscon";
+>  			reg = <0 0x11220000 0 0x1000>;
+>  			#clock-cells = <1>;
+> +			afe: mt8183-afe-pcm {
+> +				compatible = "mediatek,mt8183-audio";
+> +				interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_LOW>;
+> +				resets = <&watchdog MT8183_TOPRGU_AUDIO_SW_RST>;
+> +				reset-names = "audiosys";
+> +				power-domains =
+> +					<&spm MT8183_POWER_DOMAIN_AUDIO>;
+> +				clocks = <&audiosys CLK_AUDIO_AFE>,
+> +					 <&audiosys CLK_AUDIO_DAC>,
+> +					 <&audiosys CLK_AUDIO_DAC_PREDIS>,
+> +					 <&audiosys CLK_AUDIO_ADC>,
+> +					 <&audiosys CLK_AUDIO_PDN_ADDA6_ADC>,
+> +					 <&audiosys CLK_AUDIO_22M>,
+> +					 <&audiosys CLK_AUDIO_24M>,
+> +					 <&audiosys CLK_AUDIO_APLL_TUNER>,
+> +					 <&audiosys CLK_AUDIO_APLL2_TUNER>,
+> +					 <&audiosys CLK_AUDIO_I2S1>,
+> +					 <&audiosys CLK_AUDIO_I2S2>,
+> +					 <&audiosys CLK_AUDIO_I2S3>,
+> +					 <&audiosys CLK_AUDIO_I2S4>,
+> +					 <&audiosys CLK_AUDIO_TDM>,
+> +					 <&audiosys CLK_AUDIO_TML>,
+> +					 <&infracfg CLK_INFRA_AUDIO>,
+> +					 <&infracfg CLK_INFRA_AUDIO_26M_BCLK>,
+> +					 <&topckgen CLK_TOP_MUX_AUDIO>,
+> +					 <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
+> +					 <&topckgen CLK_TOP_SYSPLL_D2_D4>,
+> +					 <&topckgen CLK_TOP_MUX_AUD_1>,
+> +					 <&topckgen CLK_TOP_APLL1_CK>,
+> +					 <&topckgen CLK_TOP_MUX_AUD_2>,
+> +					 <&topckgen CLK_TOP_APLL2_CK>,
+> +					 <&topckgen CLK_TOP_MUX_AUD_ENG1>,
+> +					 <&topckgen CLK_TOP_APLL1_D8>,
+> +					 <&topckgen CLK_TOP_MUX_AUD_ENG2>,
+> +					 <&topckgen CLK_TOP_APLL2_D8>,
+> +					 <&topckgen CLK_TOP_MUX_APLL_I2S0>,
+> +					 <&topckgen CLK_TOP_MUX_APLL_I2S1>,
+> +					 <&topckgen CLK_TOP_MUX_APLL_I2S2>,
+> +					 <&topckgen CLK_TOP_MUX_APLL_I2S3>,
+> +					 <&topckgen CLK_TOP_MUX_APLL_I2S4>,
+> +					 <&topckgen CLK_TOP_MUX_APLL_I2S5>,
+> +					 <&topckgen CLK_TOP_APLL12_DIV0>,
+> +					 <&topckgen CLK_TOP_APLL12_DIV1>,
+> +					 <&topckgen CLK_TOP_APLL12_DIV2>,
+> +					 <&topckgen CLK_TOP_APLL12_DIV3>,
+> +					 <&topckgen CLK_TOP_APLL12_DIV4>,
+> +					 <&topckgen CLK_TOP_APLL12_DIVB>,
+> +					 /*<&topckgen CLK_TOP_APLL12_DIV5>,*/
+> +					 <&clk26m>;
+> +				clock-names = "aud_afe_clk",
+> +						  "aud_dac_clk",
+> +						  "aud_dac_predis_clk",
+> +						  "aud_adc_clk",
+> +						  "aud_adc_adda6_clk",
+> +						  "aud_apll22m_clk",
+> +						  "aud_apll24m_clk",
+> +						  "aud_apll1_tuner_clk",
+> +						  "aud_apll2_tuner_clk",
+> +						  "aud_i2s1_bclk_sw",
+> +						  "aud_i2s2_bclk_sw",
+> +						  "aud_i2s3_bclk_sw",
+> +						  "aud_i2s4_bclk_sw",
+> +						  "aud_tdm_clk",
+> +						  "aud_tml_clk",
+> +						  "aud_infra_clk",
+> +						  "mtkaif_26m_clk",
+> +						  "top_mux_audio",
+> +						  "top_mux_aud_intbus",
+> +						  "top_syspll_d2_d4",
+> +						  "top_mux_aud_1",
+> +						  "top_apll1_ck",
+> +						  "top_mux_aud_2",
+> +						  "top_apll2_ck",
+> +						  "top_mux_aud_eng1",
+> +						  "top_apll1_d8",
+> +						  "top_mux_aud_eng2",
+> +						  "top_apll2_d8",
+> +						  "top_i2s0_m_sel",
+> +						  "top_i2s1_m_sel",
+> +						  "top_i2s2_m_sel",
+> +						  "top_i2s3_m_sel",
+> +						  "top_i2s4_m_sel",
+> +						  "top_i2s5_m_sel",
+> +						  "top_apll12_div0",
+> +						  "top_apll12_div1",
+> +						  "top_apll12_div2",
+> +						  "top_apll12_div3",
+> +						  "top_apll12_div4",
+> +						  "top_apll12_divb",
+> +						  /*"top_apll12_div5",*/
+> +						  "top_clk26m_clk";
+> +			};
+>  		};
+>  
+>  		mmc0: mmc@11230000 {
+> 
