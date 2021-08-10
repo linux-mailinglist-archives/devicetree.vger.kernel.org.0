@@ -2,107 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA523E83DE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 21:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C213E83F3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 21:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230309AbhHJTqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 15:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53540 "EHLO
+        id S232196AbhHJTwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 15:52:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhHJTql (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 15:46:41 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BCA6C0613C1;
-        Tue, 10 Aug 2021 12:46:19 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id bl13so5788037qvb.5;
-        Tue, 10 Aug 2021 12:46:19 -0700 (PDT)
+        with ESMTP id S230077AbhHJTwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 15:52:07 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1ABDC0613D3
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:51:44 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id e13-20020a9d63cd0000b02904fa42f9d275so482731otl.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:51:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:subject:from
-         :to:cc:references:in-reply-to;
-        bh=7uKhEd6eOX5t2b+eg1FPghI/jUcRjPOp/WnfQQyxxWY=;
-        b=Cf5gKsRwjqoQHx9oIyDJAKGUxUbuOLczqOVlcz9xPxDXx80ilyxeI0Zb6rqIrBoAL2
-         T48RQCZIhT5Fxz53eDY6a1DzGL10RBlx5i7eln1OKUeNnFRt6R1Pf6c7ydwoxgq+s+SQ
-         YqEYYgWW6Fi2PTqMj+g7X1tlcTa5eCv+K2UP5vZw9/WlRv4wkmsLaZjclYXR1S5Fln7R
-         yDQDPkgCoJvl6Dgtqcg2YH8lwWXK4Nnkrs69XlHWHXh72G9bETAY+PWXOigcGCSxxsYA
-         VWU5aRyTx9FG46i3e1Lk4Mz2DTLeA7luZLLX59RBf2pYmGRrrxfnnNHPW/ccfPhqJx90
-         qtXg==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=7/7uowWN2jQeWDxt9eNITvpY2HZF5mcPTVHvPG/MbMQ=;
+        b=gt5soBchXC72xOkvl3xRddt38dFwE4MTM7neiayM2G7uoE7Vh+uFyH1pTweQ2BpE9Q
+         Q4w5KNBCV+MXPzZFKDUOdVp8I27Pso4vAIjC1Y3fqdgwnDdWbhWwt0UCI/75EqbcugPd
+         QZxGFJby0phDcPWiQGZFgdVSlmdZPWSrSzuzE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:subject:from:to:cc:references:in-reply-to;
-        bh=7uKhEd6eOX5t2b+eg1FPghI/jUcRjPOp/WnfQQyxxWY=;
-        b=YQUPvOhjAS4qAzI1OnX8gvvl17gU/gNFcpewI2gu2GePxOZBJBSJPGgVngwFHwfywl
-         M1GM8N6Hob9/RZOZbGmspTiP+UJKMuZacd49Swt0L1UH3dl5Z9Rj7IgKbPtiGC9JQng5
-         KxLxnuZ/M4kqlcUgb1Fd5wrWuxW/+q3RbBwFdsyYG6Vp91TdC6QjLEN1aRehOju6RQMb
-         E11OrwIMvDNBwxnX8ePewmFQxUo0vRcRTWmDbSkDlbka05F+HlEx3e99KbMU4f0TLnHV
-         EgA0KDPdAXTEOet/fbHcQzubUtgrXDHljOKtPq5saeDlRLtGr/1OHupx71pEYW1N/rwI
-         CxSw==
-X-Gm-Message-State: AOAM532S58wXVA5WZU9GTZx9tJ945s96QE/xTjk6pXzq6+krwqmSMklN
-        XIlQNFaOb/+XOAyj9STzPLE=
-X-Google-Smtp-Source: ABdhPJwAAxuvIqF3lzOesrPoEyxuMuaQHzyagNGW6nN0Zo4K+lcCE+lWTZGz/KFNAp0UNnbacp4tXw==
-X-Received: by 2002:ad4:4dc5:: with SMTP id cw5mr6748758qvb.62.1628624778573;
-        Tue, 10 Aug 2021 12:46:18 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id b22sm3257166qtr.2.2021.08.10.12.46.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Aug 2021 12:46:17 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 10 Aug 2021 15:46:16 -0400
-Message-Id: <CDG3ATRV00VV.57ZPL3OPU5N4@shaak>
-Subject: Re: [PATCH v5 3/5] iio: adc: ad7949: add support for internal vref
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Andy Shevchenko" <andy.shevchenko@gmail.com>
-Cc:     "Jonathan Cameron" <jic23@kernel.org>, <lars@metafoo.de>,
-        <Michael.Hennerich@analog.com>,
-        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-References: <20210808015659.2955443-1-liambeguin@gmail.com>
- <20210808015659.2955443-4-liambeguin@gmail.com>
- <20210808173630.5c384a4b@jic23-huawei> <CDEHT583QT0A.2QAXX9AC2FMLO@shaak>
- <CAHp75Vc3o-RrHD_wt_CfJY3P8hoRhJkdiRRySFS_O_7VdtJTQA@mail.gmail.com>
-In-Reply-To: <CAHp75Vc3o-RrHD_wt_CfJY3P8hoRhJkdiRRySFS_O_7VdtJTQA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=7/7uowWN2jQeWDxt9eNITvpY2HZF5mcPTVHvPG/MbMQ=;
+        b=GAzA2jQ3cVdzajE15vzZRhkgMIZdNYgIg2rWIpoewhJGsnhCWwjFvZaVHMNFPhh89C
+         eLlos5TkCXlCXDuMaHjMOKoSQ96qVJRDCy4fYn9GyGxVXwET7DSC3HPL2mxojVMdti1p
+         Eh5DRmm6pDq93/6sEx50OEpJ2/rD/omX452VtB6BmG2wLKiCDrS0pqXF2jUFrvTpM8OH
+         Al2Ys0OP+oQ2UyaNFLfQJdAs+p1vu+b8R8CFVXNBo0lRwc6Rp/RTorf9xnjPsvr/IXuz
+         2eJZ9x0I/kbiTustlBT29b8hzHdxiUhcUCASa8HgZH0+aYH6jw2sTrWNvpsHU92MNbJt
+         IUAg==
+X-Gm-Message-State: AOAM530m62piGncLye4561nJuNuLPHYtLzCBuRshCbZiruzoSk8kuhqc
+        oW4HIJxkB6uTNttTVpU2QzedaYaz4ayDIt2MFw2DBg==
+X-Google-Smtp-Source: ABdhPJwWfhK1GcpqU0JS0YBVqCjmmL+rUGGuzn4ocxKLaz3l+uhfqZ5RAje9bUKCezb5w0pDB+nkPEk2a5qGGrl4IJM=
+X-Received: by 2002:a05:6830:44a7:: with SMTP id r39mr22245175otv.25.1628625104215;
+ Tue, 10 Aug 2021 12:51:44 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 10 Aug 2021 12:51:43 -0700
+MIME-Version: 1.0
+In-Reply-To: <1628619089-12502-1-git-send-email-pillair@codeaurora.org>
+References: <1628619089-12502-1-git-send-email-pillair@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 10 Aug 2021 12:51:43 -0700
+Message-ID: <CAE-0n539nm6BrR51bZW-jX8e=o5d19JFnKfT9fb-sVS9FGKn0A@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
+To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue Aug 10, 2021 at 8:15 AM EDT, Andy Shevchenko wrote:
-> On Mon, Aug 9, 2021 at 1:50 AM Liam Beguin <liambeguin@gmail.com> wrote:
-> > On Sun Aug 8, 2021 at 12:36 PM EDT, Jonathan Cameron wrote:
-> > > On Sat, 7 Aug 2021 21:56:57 -0400
-> >         ret =3D fwnode_property_read_u32(child, "adi,internal-ref-micro=
-volt", &tmp);
-> >         if (ret =3D=3D -EINVAL && mode & AD7949_CFG_VAL_REF_EXTERNAL) {
-> >                 continue;
+Quoting Rakesh Pillai (2021-08-10 11:11:29)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 53a21d0..41a7826 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -74,6 +74,16 @@
+>                         reg = <0 0x8b700000 0 0x10000>;
+>                         no-map;
+>                 };
+> +
+> +               wlan_fw_mem: memory@80c00000 {
+> +                       no-map;
+> +                       reg = <0x0 0x80c00000 0x0 0xc00000>;
+> +               };
+
+Please try to keep this sorted by reg address. 80c00000 comes before
+8b700000.
+
+> +
+> +               wpss_mem: memory@9ae00000 {
+> +                       no-map;
+> +                       reg = <0x0 0x9ae00000 0x0 0x1900000>;
+> +               };
+>         };
 >
-> >         } else if (ret < 0) {
+>         cpus {
+> @@ -1270,6 +1280,53 @@
+>                         };
+>                 };
 >
+> +               remoteproc_wpss: remoteproc@8a00000 {
+> +                       compatible = "qcom,sc7280-wpss-pil";
+> +                       reg = <0 0x08a00000 0 0x10000>;
+> +
+> +                       interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
+> +                                             <&wpss_smp2p_in 0 IRQ_TYPE_NONE>,
+> +                                             <&wpss_smp2p_in 1 IRQ_TYPE_NONE>,
+> +                                             <&wpss_smp2p_in 2 IRQ_TYPE_NONE>,
+> +                                             <&wpss_smp2p_in 3 IRQ_TYPE_NONE>,
+> +                                             <&wpss_smp2p_in 7 IRQ_TYPE_NONE>;
 
-Hi Andy,
+Is this IRQ_TYPE_EDGE_RISING? Please add some type of edge or level flag.
 
-> Side note, redundant 'else'
-
-Are you asking to add an 'else' statement?
-
-because, unless I'm mistaken, in this case ret can have other negative valu=
-es
-that we want to catch with this 'else if'.
-
-Thanks for your time,
-Liam
-
->
-> >                 dev_err(dev, "invalid voltage reference in %pfw\n", chi=
-ld);
-> >                 fwnode_handle_put(child);
-> >                 return ret;
-> >         }
->
->
-> --
-> With Best Regards,
-> Andy Shevchenko
-
+> +                       interrupt-names = "wdog", "fatal", "ready", "handover",
+> +                                         "stop-ack", "shutdown-ack";
+> +
+> +                       clocks = <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
+> +                                <&gcc GCC_WPSS_AHB_CLK>,
+> +                                <&gcc GCC_WPSS_RSCP_CLK>,
+> +                                <&rpmhcc RPMH_CXO_CLK>;
+> +                       clock-names = "gcc_wpss_ahb_bdg_mst_clk",
+> +                                     "gcc_wpss_ahb_clk",
+> +                                     "gcc_wpss_rscp_clk",
+> +                                     "xo";
+> +
+> +                       memory-region = <&wpss_mem>;
+> +
+> +                       qcom,smem-states = <&wpss_smp2p_out 0>;
