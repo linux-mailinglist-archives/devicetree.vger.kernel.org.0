@@ -2,80 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D0013E5B96
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 15:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7203E5BBB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 15:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238924AbhHJN2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 09:28:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49656 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238872AbhHJN2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 09:28:31 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E11C061798
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 06:28:09 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id d4so12599522lfk.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 06:28:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=txwmknRtly19dwG2TwLijdSUyS9aLwYWp1obTuXBfoc=;
-        b=uZbA+1J935R3usprafc8LRUQw8doPbVfcapR1X2WEhOvM+EX7M63d5ZsO0VAvsVNZS
-         xc3FivfT6ubgZbfMXKz52jSnsZIMXiSe+40kgwcbMhimzux+MtLWI03TsIxYPR8J+FXy
-         Fg5ItgR5ZgUAVtjsevhX75vxMeq6H4bInYp3SkK3AbY468I630NCUa9R16uQJpzFZaVl
-         wSQXu0x1FHzzpXqhzKbQ58q8eGA3P6T88AslMArgdP9Yv7k4KPId9rJKhKVQ0lnvZMgF
-         JJiyC3XFKOXLI7k7TQbwnJZ6QDbjb2mbVHMVLbZcReEvjhfrU1stahisnFI79GDgAQW9
-         +JTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=txwmknRtly19dwG2TwLijdSUyS9aLwYWp1obTuXBfoc=;
-        b=D9PkYDm1vtuIaAFperfn8zjqgzEy3aSyD6LIo19EeLtjWRcgHpTs6ckYf1iJQOf2l8
-         VB24SllLm6+0S+yfGMw6EBkevXGRsmgzHUHmGpljr50NKvh/IRaNEPNDFZDaEp7Wv1FG
-         Vam0VcPvUW6ux88XicQGE04kcfAdCIBKfDdNDDt4e9x3kM9Mmh+3RAHjA0ySfXLpn0ud
-         KVpqomFZOAOEYZPxqeWNm8/ERxP9zZXvcDkH+spQYfb5sVfK7iOn9eWK1EE1GuMcsyXF
-         qDoPnt90TBN5kGb2aocsR71DTkdiZIIHk7M3jufmfxYBu91oH5RYi5gZ5HpUBFpEMXRY
-         reAg==
-X-Gm-Message-State: AOAM530ZEd8r2rOekf9Pu7ner63DhdKCGyOK/J9+sp834vAi+4Y0JOu6
-        3FYXQFlls7HqwGY0nZ53GZTOyTNVFhdm1AQsoGLmpg==
-X-Google-Smtp-Source: ABdhPJwobs4y7d/rU3nBa6u5h3FCXzTiFu5hBR5q/ktt76N9parIbFxpmpXXOJKBBwsROkKpvYnYcohfRvGFRZM7pmY=
-X-Received: by 2002:ac2:5d4a:: with SMTP id w10mr22073687lfd.529.1628602087498;
- Tue, 10 Aug 2021 06:28:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210723022543.4095-1-jiaxun.yang@flygoat.com> <20210723022543.4095-7-jiaxun.yang@flygoat.com>
-In-Reply-To: <20210723022543.4095-7-jiaxun.yang@flygoat.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Aug 2021 15:27:56 +0200
-Message-ID: <CACRpkdYVcCW2yD_Xva+cog7i5C=YokMw+52i7iq0Nj2vVbWacA@mail.gmail.com>
-Subject: Re: [PATCH v4 6/9] pinctrl: pistachio: Make it as an option
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-mips@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-phy@lists.infradead.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S241371AbhHJNcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 09:32:55 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:28945 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240581AbhHJNcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 09:32:55 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628602353; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=6hqzkdfKqree8jFawrQLQ5Nin89Qt5mL93Mi7px0A9c=; b=UTDKaBtUTXNDAwjHx2YDFefqU37kLy4tC8Kq8thwrK4o4BAWyT0TJ0d9QFZt0oF3oT7+LbXD
+ dY++X4f8z+vQiyPaNzGJDB/LEyVZQ5LeQTgDMlAHRswP8VpDdWYMtDASnoftGZsQP8XVYBKP
+ LdOihlIyH2u7KCsX6ZnLmYpVVNo=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 61127fb591487ad5206e91f7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 13:31:33
+ GMT
+Sender: luoj=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CB3FBC433F1; Tue, 10 Aug 2021 13:31:32 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from akronite-sh-dev02.qualcomm.com (unknown [180.166.53.21])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: luoj)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DE42CC433F1;
+        Tue, 10 Aug 2021 13:31:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DE42CC433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=luoj@codeaurora.org
+From:   Luo Jie <luoj@codeaurora.org>
+To:     andrew@lunn.ch, agross@kernel.org, bjorn.andersson@linaro.org,
+        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        hkallweit1@gmail.com, linux@armlinux.org.uk,
+        robert.marko@sartura.hr
+Cc:     linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sricharan@codeaurora.org, Luo Jie <luoj@codeaurora.org>
+Subject: [PATCH v2 0/3] net: mdio: Add IPQ MDIO reset related function
+Date:   Tue, 10 Aug 2021 21:31:13 +0800
+Message-Id: <20210810133116.29463-1-luoj@codeaurora.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 4:26 AM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+This patch series add the MDIO reset features, which includes
+configuring MDIO clock source frequency and indicating CMN_PLL that
+ethernet LDO has been ready, this ethernet LDO is dedicated in the
+IPQ5018 platform.
 
-> So it will be avilable for generic MIPS kernel.
->
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> --
-> v3: Depend on OF as well
+Specify more chipset IPQ40xx, IPQ807x, IPQ60xx and IPQ50xx supported by
+this MDIO driver.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Changes in v2:
+	* Addressed review comments (Andrew Lunn).
+	* Remove the IS_ERR().
+	* make binding patch part of series.
+	* document the property 'reg' and 'clock'.
 
-Yours,
-Linus Walleij
+Changes in v1:
+	* make MDIO_IPQ4019 unchanged for backwards compatibility.
+	* remove the PHY reset functions
+
+Luo Jie (3):
+  net: mdio: Add the reset function for IPQ MDIO driver
+  MDIO: Kconfig: Specify more IPQ chipset supported
+  dt-bindings: net: Add the properties for ipq4019 MDIO
+
+ .../bindings/net/qcom,ipq4019-mdio.yaml       | 15 +++++-
+ drivers/net/mdio/Kconfig                      |  3 +-
+ drivers/net/mdio/mdio-ipq4019.c               | 48 +++++++++++++++++++
+ 3 files changed, 64 insertions(+), 2 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
