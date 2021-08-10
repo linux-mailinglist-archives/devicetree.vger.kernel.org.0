@@ -2,80 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7081C3E56C4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87293E56EE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238943AbhHJJZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 05:25:00 -0400
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:36701 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234739AbhHJJY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 05:24:57 -0400
-Received: by mail-ua1-f52.google.com with SMTP id v3so8300356uau.3;
-        Tue, 10 Aug 2021 02:24:35 -0700 (PDT)
+        id S237915AbhHJJcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 05:32:53 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:42570
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236507AbhHJJcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 05:32:52 -0400
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id C980140C83
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 09:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628587947;
+        bh=/TjUAhhwvSRFuslwguP2QiddIzNChxvR3o7MxjSQJ14=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=P3dMRhJ94z4SbEeqHGR2UwlFLPPStVsQmsleniCRwWm7MjWbX0yganjB3ITo7VugD
+         svZy0IpdGcGFLD2Ld4820VkvvU3PnXDXmT++JhmVnzNpfQ0EU6x8fvXR2gLby5mpKE
+         EuwcKSEL2+Id6neDf7wh71ETtu7mIVHlJ5zUyLszTllL8aUVHMOOgdMzdcDJJ1VE3J
+         C7d6/vmLEev1U0szgcRSUSfxMcbIrTDjV62rK03VkbFSxj2rrg0PyLUpJCyKL/80AS
+         OETUN1G81mGKUcyvpqUyi+Us3g+t6iOlKcvvXX9SLWbgzd9qclTj+a9OmYQuoJJ5Me
+         8rg+/XTH1wvcg==
+Received: by mail-ej1-f71.google.com with SMTP id gg35-20020a17090689a3b0290580ff45a075so5346125ejc.20
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 02:32:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ICqADYaP1A14+MyANtx/aXP29/vtA2xTZTvUmJgQydA=;
-        b=qX1PtnwZCIwCfUbDCXChUb0CPdkFiFLNtSVl2zNY5SrQLc4dwYn7dlXYV9uK1fC3td
-         1j4pNAC0ZXFsAJad7ZyrDFjHaJhsKROh02IC7hUhMwD/ylLiyouwEKmbJokVaUp0Sx8F
-         3UXmZZeM3+OOqUDo15igvAaTRJ+yRbWlcorGiSSZK2cpaQ+xX8UxG07Kvvg51lDuw4/Q
-         Zb0nsNyWXDMjcFhGOeNivYaq62eRAKUuckRa8n32WhSwix6IgjHitqmm011qvyUUn1x+
-         GALJJ7Lpzb6xJqRrAUrdAkmMAaGwwcFLO9nW8efdFGSzFjrCfTfomgNp/m/dxGijih5n
-         RE2Q==
-X-Gm-Message-State: AOAM532kfE0CW/qybN+lV015IYZRN28l2h/3LfLSXHc8TKgC04/D3qKV
-        hDD2LJs+dXhmpBsOrhyDafq7tIhQeIegzMhMH5Y=
-X-Google-Smtp-Source: ABdhPJx0+WKs4BIH2VfJ9bQwS28hkA/EVWEvawlX2BcIkosS8SlaxLrvTttwLfx7NXsyDcZcgZofzopA9Ko/fGvHiyM=
-X-Received: by 2002:ab0:1d05:: with SMTP id j5mr5141579uak.2.1628587473228;
- Tue, 10 Aug 2021 02:24:33 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/TjUAhhwvSRFuslwguP2QiddIzNChxvR3o7MxjSQJ14=;
+        b=oyAOHSmPEK3mUfI3UkF3vETYEBFX7bjaZxAP0q7MYC5RHjeTlCCl6cXoLwv8oiVrQL
+         D0ZcUi/rf/LIQckorZwRAYgHQbgUW/DryPMmJtrU7qagvg/Y/JRxNc2QJGrNO6Vt5i5C
+         Gv0vOMCEklZg1JeQUG2f+F1Vxje9YmzdNOFMIH3e1vs+ZmF3otZcAoeWRJbYh0inuivZ
+         OJjlAxETJHWYNajDN8rxNLonJwg+Dw0GenKSKNArEQkGTtPtHFMITi7PR1mCzM4cZAoP
+         xhPTATR7IqKXQryz92XauO4K9xhBSJcwNCWBDc/iUv7AGWREVLB4zAWb6mWHl6EAOFGJ
+         FR4w==
+X-Gm-Message-State: AOAM5333mEnmWPM4feJH3tyC3tg5Kxiq93NnNMJp3QLHRu1ALdB3qtqu
+        TDidRMU9aoKTmn6zgUsa+pnPY7/y7rfnG2uEZe2ix9M3sK4GO6tvDAtvGP9H1dfgSmiAtKX+OAY
+        aZOe3/X+iPXp665Q78LGmW9iT05SwyGOHKzKTZYA=
+X-Received: by 2002:a05:6402:796:: with SMTP id d22mr3886392edy.57.1628587946811;
+        Tue, 10 Aug 2021 02:32:26 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxTDejpsnySJ5hI4EiBZYSmNUdOwiCDaSglUDL7QJIhM3zKW5UGTy4wbFQDlfcb7RdEzzFCRA==
+X-Received: by 2002:a05:6402:796:: with SMTP id d22mr3886364edy.57.1628587946598;
+        Tue, 10 Aug 2021 02:32:26 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id q21sm5117606ejs.43.2021.08.10.02.32.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 02:32:26 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>
+Subject: [PATCH v2 0/8] dt-bindings: clock: samsung: convert to dtschema
+Date:   Tue, 10 Aug 2021 11:31:37 +0200
+Message-Id: <20210810093145.26153-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210727112328.18809-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210727112328.18809-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210727112328.18809-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 10 Aug 2021 11:24:22 +0200
-Message-ID: <CAMuHMdWUr94SrsmJ_Qu8F=YqvWiKhUURpUJ=FHofQWhZBf=N3A@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: rzg2l-smarc: Add scif0 pins
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi,
 
-On Tue, Jul 27, 2021 at 1:23 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add scif0 pins in pinctrl node and update the scif0 node
-> to include pinctrl properties.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Combined patchset of separate v1 sets:
 
-Thanks for your patch!
+https://lore.kernel.org/linux-samsung-soc/20210809120544.56596-1-krzysztof.kozlowski@canonical.com/T/#t
+https://lore.kernel.org/linux-samsung-soc/20210809130935.80565-1-krzysztof.kozlowski@canonical.com/T/#t
+https://lore.kernel.org/linux-samsung-soc/20210809135942.100744-1-krzysztof.kozlowski@canonical.com/T/#t
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Changes since v1:
+1. Patch 7/8: include header to fix clock IDs error in example.
 
-As this depends on the pin control driver, which goes in through a
-different path, I think I have to postpone this to v5.16.
+Best regards,
+Krzysztof
 
-Gr{oetje,eeting}s,
 
-                        Geert
+Krzysztof Kozlowski (8):
+  dt-bindings: clock: samsung: convert Exynos5250 to dtschema
+  dt-bindings: clock: samsung: add bindings for Exynos external clock
+  dt-bindings: clock: samsung: convert Exynos542x to dtschema
+  dt-bindings: clock: samsung: convert Exynos3250 to dtschema
+  dt-bindings: clock: samsung: convert Exynos4 to dtschema
+  dt-bindings: clock: samsung: convert Exynos AudSS to dtschema
+  dt-bindings: clock: samsung: convert S5Pv210 AudSS to dtschema
+  MAINTAINERS: clock: include S3C and S5P in Samsung SoC clock entry
+
+ .../bindings/clock/clk-exynos-audss.txt       | 103 ------------------
+ .../bindings/clock/clk-s5pv210-audss.txt      |  53 ---------
+ .../bindings/clock/exynos3250-clock.txt       |  57 ----------
+ .../bindings/clock/exynos4-clock.txt          |  86 ---------------
+ .../bindings/clock/exynos5250-clock.txt       |  41 -------
+ .../bindings/clock/exynos5420-clock.txt       |  42 -------
+ .../clock/samsung,exynos-audss-clock.yaml     |  79 ++++++++++++++
+ .../bindings/clock/samsung,exynos-clock.yaml  |  87 +++++++++++++++
+ .../clock/samsung,exynos-ext-clock.yaml       |  46 ++++++++
+ .../clock/samsung,s5pv210-audss-clock.yaml    |  77 +++++++++++++
+ MAINTAINERS                                   |   4 +
+ 11 files changed, 293 insertions(+), 382 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/clk-s5pv210-audss.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/exynos3250-clock.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/exynos4-clock.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/exynos5250-clock.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/exynos5420-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-audss-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-ext-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,s5pv210-audss-clock.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
