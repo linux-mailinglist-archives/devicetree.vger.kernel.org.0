@@ -2,178 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6740C3E597D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 13:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7683C3E59B9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 14:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238560AbhHJL4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 07:56:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56074 "EHLO
+        id S240511AbhHJMQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 08:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238504AbhHJL4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 07:56:08 -0400
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB05C061799
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:55:46 -0700 (PDT)
-Received: by mail-vs1-xe29.google.com with SMTP id y65so1716537vsy.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:55:46 -0700 (PDT)
+        with ESMTP id S240385AbhHJMQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 08:16:35 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC9AC0613D3;
+        Tue, 10 Aug 2021 05:16:13 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d17so20692922plr.12;
+        Tue, 10 Aug 2021 05:16:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=F7xu/bBnCf8IofdJc86gnO8/ycUPqIN8iSkmT0WuVQk=;
-        b=l4Ceei4KMRjCvuuh2dEJXRgD7arZhfm9zTdC0UuddCXFyjoQ6R8qwWj2cfcM4Xb3NU
-         iQgkHohQsJ/B52fCulLHrMjkeSm6n1KrOphOeYTaIq3wc1onp8T7VYUl3EFgtLLqf1/b
-         pbFnJhrcZMzBUb9AqqW5lgfPzlsDORldw65Y5z+C4zz+G0D0P7shxhHHScEJA7rnEMpi
-         If2YF6+YhSoadfey74zwnhRL8vLIb91zw/4tKiCfMNEctKWHk96NJ7MVgQZcbd3XBYw+
-         8mPL3MVamWCkmBY7DWi23EqOOpOmABzfSlUlbY3Nq1bQltYxlrR9CFZCW1jCTu/lTSiw
-         th0g==
+        bh=R2SAom+K3xjq+elR9A4m6RnGt39/xLthbnTdTanpHn4=;
+        b=MO4y78cwlP3HlTDYWsUl7zPYe6e3Y6MG4yHvEC2GfpNcCvN98gbxYivkNSCmv95blc
+         NRfhMMej7c79A9+1Tsnj7Gs1Uweo1zemDFsFUVob5lAX84yE381jnRBRySTw2WCB94Gw
+         i3vFUs1yUEl0Bcl8oa5b+8Zrod09eJnIo41FFtF3GUi36GK22ryvDeEXVKCplBQFpA+X
+         SRWuhJTH0b6LIrR7GchlM/3tKQyxkPM/rDpZ1BcVHa0Tgq8XPwGm2sZtOd1dn6nhB4Fr
+         Md2IF+FOQ+s3aqO/ZLb0j+h2OGpKWS133JGMvLorhP8zD6kQ+PejR7dL/ammFW/f9ZOX
+         iurQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=F7xu/bBnCf8IofdJc86gnO8/ycUPqIN8iSkmT0WuVQk=;
-        b=KswkkXGY8D8kKk/WrjHfky/kD0/s3/0ZAN61SruM2HZ1cfRbvOwGSf80pFm2Zd5kcP
-         CNkmC79O8qEkb2GOyai0y/E/KCfmvVp9VMt6mKdN9sWrbRMmUk1mBcxVHXVsuuWtGM/B
-         3b5nMSy27O/ZMKSlSRMKfeVastrdktqgz1NheKL62aQa04+pXWDsPAIorlb5WYbuyGJ2
-         3m69CRWlSDjECl9s31sPj6nPK3DBDD3+2MuSUHkCm6K+BKOF+Xmqb4Qj91v1BmVcJ7JG
-         FVGIXqZxgFZq6lNwfMC8LGGE4zOYdirxg4aSMjE4EY/65PGoQ/uw2vjqkmkvlgn2miUC
-         yl2Q==
-X-Gm-Message-State: AOAM533p9KikWOUkFaMOCyc5Bm9mQH8Tds7qV2NU9Rjr6AVL9aEn+BPv
-        Pl7BlUgXOlwIGsMyuakR5O3XL8uouPc9G11H+KFcug==
-X-Google-Smtp-Source: ABdhPJzs5hioDbWm1Xnso+x3JzEaN9qdFPUT/HFC1aBPmwjgDn/+SCnR6iNy/JdyXVCbu99bZqbGsOKUbdGC0egdpl8=
-X-Received: by 2002:a67:f6d8:: with SMTP id v24mr21612180vso.48.1628596545956;
- Tue, 10 Aug 2021 04:55:45 -0700 (PDT)
+        bh=R2SAom+K3xjq+elR9A4m6RnGt39/xLthbnTdTanpHn4=;
+        b=gea2woMrEdvJr4Im///ZcxiLfnHjUxly/WZ/RlFTQXbDgJnmro6mpmW70tE+IQpTdu
+         ioeICDbFi6l8aT5f/+YcaYv0JHFdfwNZBN2tave3VaZesj4BZrszf80XE+/kEgztdS55
+         nR0iIeTgnZM5OUZqY1dYt5XT+5AZlb+4NR5wcyqm255FL5KxJuDaW9b+QlkDhZ7hcUrH
+         vKlcVrH9HlsGwWqR/GozAFFF3PlIDL/duV1+GgVcY2pM1g6NpcpEwAvoMSkgGY8nN7eq
+         Mvn+tNMlHcIt1+s74uaLvRylHugliP55kZN7ujs8jtv74w5swNaiR+qklMPbxqoetji9
+         FQYw==
+X-Gm-Message-State: AOAM531FtRAIvVYgmbR8vzmHvRwaVs65rW8wfJ8nDQxamRN0oidvh2w3
+        NtojJ6atlPoY4RmUsKLRAGgbcteN/a0eRaRqAe8=
+X-Google-Smtp-Source: ABdhPJziQkMUi2pJ8MxSHmab5wsEcIv1K6XRsXT+/7zhdllwdZnOe5vGfcUG4Cf+MUVglMCiAuuIvloG6RkqDbJDi9M=
+X-Received: by 2002:aa7:868c:0:b029:3bc:e2ca:4e2f with SMTP id
+ d12-20020aa7868c0000b02903bce2ca4e2fmr29256171pfo.73.1628597772939; Tue, 10
+ Aug 2021 05:16:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
- <20210621223141.1638189-3-dmitry.baryshkov@linaro.org> <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
- <20210706115517.GB4529@sirena.org.uk> <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
- <CAA8EJppSV--TBjnGxGhaTHeKWdpM6uz70bg7diU3_K7OHoka4g@mail.gmail.com> <20210714164710.GC2719790@robh.at.kernel.org>
-In-Reply-To: <20210714164710.GC2719790@robh.at.kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 10 Aug 2021 13:55:09 +0200
-Message-ID: <CAPDyKFokvTFSpbnhhKeCmZzAjqvSpUiwz7QjjQNdcd3Sd3T0rQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
- powerup sequence
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-bluetooth@vger.kernel.org
+References: <20210808015659.2955443-1-liambeguin@gmail.com>
+ <20210808015659.2955443-4-liambeguin@gmail.com> <20210808173630.5c384a4b@jic23-huawei>
+ <CDEHT583QT0A.2QAXX9AC2FMLO@shaak>
+In-Reply-To: <CDEHT583QT0A.2QAXX9AC2FMLO@shaak>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 10 Aug 2021 15:15:36 +0300
+Message-ID: <CAHp75Vc3o-RrHD_wt_CfJY3P8hoRhJkdiRRySFS_O_7VdtJTQA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] iio: adc: ad7949: add support for internal vref
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de,
+        Michael.Hennerich@analog.com, charles-antoine.couret@essensium.com,
+        Nuno.Sa@analog.com, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 at 18:47, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Jul 08, 2021 at 02:37:44PM +0300, Dmitry Baryshkov wrote:
-> > Hi,
-> >
-> > On Thu, 8 Jul 2021 at 13:10, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >
-> > > - Peter (the email was bouncing)
-> >
-> > + Peter's kernel.org address
-> >
-> > >
-> > > On Tue, 6 Jul 2021 at 13:55, Mark Brown <broonie@kernel.org> wrote:
-> > > >
-> > > > On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
-> > > > > On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
-> > > >
-> > > > > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> > > > > > being controlled through the UART and WiFi being present on PCIe
-> > > > > > bus. Both blocks share common power sources. Add device driver handling
-> > > > > > power sequencing of QCA6390/1.
-> > > >
-> > > > > Power sequencing of discoverable buses have been discussed several
-> > > > > times before at LKML. The last attempt [1] I am aware of, was in 2017
-> > > > > from Peter Chen. I don't think there is a common solution, yet.
-> > > >
-> > > > This feels a bit different to the power sequencing problem - it's not
-> > > > exposing the individual inputs to the device but rather is a block that
-> > > > manages everything but needs a bit of a kick to get things going (I'd
-> > > > guess that with ACPI it'd be triggered via AML).  It's in the same space
-> > > > but it's not quite the same issue I think, something that can handle
-> > > > control of the individual resources might still struggle with this.
-> > >
-> > > Well, to me it looks very similar to those resouses we could manage
-> > > with the mmc pwrseq, for SDIO. It's also typically the same kind of
-> > > combo-chips that moved from supporting SDIO to PCIe, for improved
-> > > performance I guess. More importantly, the same constraint to
-> > > pre-power on the device is needed to allow it to be discovered/probed.
-> >
-> > In our case we'd definitely use pwrseq for PCIe bus and we can also
-> > benefit from using pwrseq for serdev and for platform busses also (for
-> > the same story of WiFi+BT chips).
-> >
-> > I can take a look at rewriting pwrseq code to also handle the PCIe
-> > bus. Rewriting it to be a generic lib seems like an easy task,
-> > plugging it into PCIe code would be more fun.
-> >
-> > Platform and serdev... Definitely even more fun.
->
-> I don't want to see pwrseq (the binding) expanded to other buses. If
-> that was the answer, we wouldn't be having this discussion. It was a
-> mistake for MMC IMO.
+On Mon, Aug 9, 2021 at 1:50 AM Liam Beguin <liambeguin@gmail.com> wrote:
+> On Sun Aug 8, 2021 at 12:36 PM EDT, Jonathan Cameron wrote:
+> > On Sat, 7 Aug 2021 21:56:57 -0400
+>         ret = fwnode_property_read_u32(child, "adi,internal-ref-microvolt", &tmp);
+>         if (ret == -EINVAL && mode & AD7949_CFG_VAL_REF_EXTERNAL) {
+>                 continue;
 
-Let's make sure we get your point correctly. I think we have discussed
-this in the past, but let's refresh our memories.
+>         } else if (ret < 0) {
 
-If I recall correctly, you are against the mmc pwrseq DT bindings
-because we are using a separate pwrseq OF node, that we point to via a
-"mmc-pwrseq" property that contains a phandle from the mmc controller
-device node. Is that correct?
+Side note, redundant 'else'
 
-If we would have encoded the power sequence specific properties, from
-within a child node for the mmc controller node, that would have been
-okay for you, right?
+>                 dev_err(dev, "invalid voltage reference in %pfw\n", child);
+>                 fwnode_handle_put(child);
+>                 return ret;
+>         }
 
->
-> If pwrseq works as a kernel library/api, then I have no issue with that.
 
-That's what Peter Chen was trying to do. A generic interface, flexible
-enough so it can be used for many similar configurations (but not
-exactly the same).
-
-Perhaps it was too generic though.
-
->
-> >
-> > > Therefore, I think it would be worth having a common solution for
-> > > this, rather than a solution per subsystem or even worse, per device.
->
-> Power sequencing requirements are inheritently per device unless we're
-> talking about standard connectors.
-
-The requirements are certainly per device, but the way to manage them
-doesn't have to be.
-
-As you said above, a generic library that subsystems/drivers can call
-to power on/off a discoverable device, before trying to probe it would
-be a good start.
-
->
-> This is a solved problem on MDIO. It's quite simple. If there's a DT
-> node for a device you haven't discovered, then probe it anyways.
-
-A child OF node?
-
-Then what do you think about some common power sequence properties
-that we can use in such node?
-
->
-> Rob
-
-Kind regards
-Uffe
+-- 
+With Best Regards,
+Andy Shevchenko
