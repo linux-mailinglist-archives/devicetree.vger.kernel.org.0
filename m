@@ -2,120 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6BFC3E52F7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 07:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0695B3E52F8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 07:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234357AbhHJFj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 01:39:57 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40947 "EHLO
+        id S237155AbhHJFkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 01:40:00 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:39805 "EHLO
         out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234208AbhHJFj4 (ORCPT
+        by vger.kernel.org with ESMTP id S234208AbhHJFj7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 01:39:56 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id D81045C013E;
-        Tue, 10 Aug 2021 01:39:34 -0400 (EDT)
+        Tue, 10 Aug 2021 01:39:59 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id BD4965C012F;
+        Tue, 10 Aug 2021 01:39:37 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 10 Aug 2021 01:39:34 -0400
+  by compute4.internal (MEProxy); Tue, 10 Aug 2021 01:39:37 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
          h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=qlpsgNglcB6Ix
-        ihSP2vT3ExvbHzxYtc0un128CYLs/U=; b=LHnYkfg+CK7PBKV9JFetNc4M2xWqe
-        34Ul+4WnLbYOqhikQePz1mcNLdGhZ1/hVTvNtgJpCGy3vFjGGvQje6sB9VKr/2dD
-        n8kAGOWNavwKczxUC8P3SDVwFaPy+vFoX1a2DJpGZQn4wD4zZJyfPA5Zmku6ss5P
-        V0XV3vraS3zRvPw3TXEFCcVTfi0kl8rn4Lhl2B6UlPA0jVc5uxf+npnFwDaJjBR4
-        pwm3mSr288OSXyMr4VQCa8MzY8nYkZND9lSOzgh60YDGoGcU32iBLEfB6KrtVxPp
-        5TcQYQz3mj631GqUd3H1kAkY9U1ip7xPn+MJx076SBBiLFJZx81etfHAA==
+        :mime-version:content-transfer-encoding; s=fm1; bh=BUNYiaqYyvvif
+        TaaWDUMBb2en8mCP8FH1NoATW9aNVo=; b=evPGH6ZT1+DL+K2VLMg8yVBME1bo7
+        O6Pya0aJhGT2c+JWA2AnGh3MWjNO7Q3kKdLlyEEQz9CatsFZCEGPwafNyZvANIHc
+        11riBj2gDbqveUwX/LRWUAPFxmFifjIpS8Jm3L6t5dZ014s1pzH2ZM881zXzRrng
+        5LEXeP3gyS4KPFnrvQYRNDH/qsEE0lFVctlNwVxTP3o7yVv7PTdaarY9xwU+FzOv
+        4kpnOzZKoqiFu1PpgLIbW4vRbjm41jF1kFE5rZcxcmfKDLF8+mXYLZx4ziYJFbDJ
+        Gme/92/OvOwqOGri8uI1kgEOSLhZMdVHsrGW1g55RFTkfFf81qAdOupPw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=qlpsgNglcB6IxihSP2vT3ExvbHzxYtc0un128CYLs/U=; b=PqEqvHo2
-        tazgrWn/avuGRPzzi5/yrLuOxupMaX6FTL+2NFVzmkkiuL6uqz7d+n0kRh3bj6kY
-        4Eqklb5nmUiyJPbLcwTjFtRB57J1uiuhLiJmacRbAo5CF8pX7v3Fg9mfmnsCYENj
-        Xlq6KihySB7Ie2BxhvdOmLK2WLttJ2hgG+q3pQ+fTo4l+ZNgC6bMD70LXxyadX7W
-        Yn2e82uBT4zK9sQ3cBz3yY9Ydl2ZljdpvAMuN88H/894aYu7eiZOcE1HKkwfbiuc
-        D+VMKTcmaD79Wppem8D0KYtOem+D+S0yVg6JnuxOoCupi8UBjULoHebhuFpPWASF
-        hOGv8B3biQFhZQ==
-X-ME-Sender: <xms:FRESYeWZBE9DYqJWeGtB16mndoVZTqkGICmsPejcRNdwaJc6srIlxg>
-    <xme:FRESYalgS4SoE_T9Y1_F4P8ZqEfs-aSp5XBTnkVqZ4ivAwcXf-Ya1KPRSm_fASEl0
-    P66CWtCi1xQSQHtEqY>
-X-ME-Received: <xmr:FRESYSZWHK7LQp8y3TJ4jOYa1IPOQC1pnhZrgfeFxhjMLL_QIFs-IlHkTlvVoah293I-fgV3Yp8L0H6_GCNnWvKTdPq-twtoIKu-G4d4N262R_yzNiwLA8MXcfQFKEo>
+        fm3; bh=BUNYiaqYyvvifTaaWDUMBb2en8mCP8FH1NoATW9aNVo=; b=S61RzuV1
+        OmwxgzdbOpPiev4eBPzK8nlJts6K37hCnIDjLK1MOhrVBgM61IdiCDDyOvTlHK78
+        2YtvOysz4dIUisQqqCNONC2UnbR5FAqVgJLxUGW+Uf9MO4Xes4VP+a34jOhFr3Ko
+        /mJ7zp1FZDFroiomScS3p0Y9NEiYxul3lJFyJfSwgb5P07vG4QfZDWQdwPFufnQU
+        E8Yvy2XUjtiteyRZCx4l30VoWafQYEmzblwFNj18mM6qiRoPpcUAuocwUh7xXecz
+        0ozNVM8NidWLgI8U3/f4/fJPTv9pxUBHfNpOaPjCcd+cHoiR3wQxtwrnxLmgIoMq
+        8yRY4WV7M97ylQ==
+X-ME-Sender: <xms:GRESYddmlg9RbYTeumBoA_usx4XCk8-j5e7iMbeSTQF4V2FR3KJx_A>
+    <xme:GRESYbMPmUvhc3yjB4LGbS2YFb8RKEvdxydUrcabiLqo4CuY5keDJBqQtg4UuQtV2
+    u9-dkjC3kV3FvdhACY>
+X-ME-Received: <xmr:GRESYWjZql77TYoQPCrVlvcMVZb5-EgzsqGg65X_01QgQV2umfZBNy2mEUyzeOle_w-HIO78pfPSzGGuD-QEN36MTcjTzASH37mK5P_LurF0eRuItYO-xCd0uSe2Lmo>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrjeekgdellecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrthhhvgif
     ucfotgeurhhiuggvuceomhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghuqeenucggtf
-    frrghtthgvrhhnpeehudekgeevhfefueeiudegjeelgfeitdevveekkeetgfeiteetteff
-    leevvedtleenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrthhtsehtrhgrvhgvrhhsvgdr
-    tghomhdrrghu
-X-ME-Proxy: <xmx:FRESYVU-YjuEk2OkOltPxCPipGOQJbetJGaMCzdvKuV3EuPAbPJd4w>
-    <xmx:FRESYYmsdPUz2giiQajkpzSsrzMTFwcImQjMUcRRt_C3PUi0rDSkCA>
-    <xmx:FRESYaco47JWa9UqJAxM0tSStqMJzW5NesVGLQ7J3wypTSY7iTLGpw>
-    <xmx:FhESYXtvomR6yYxHvuX0dJIkysXANXlAUg7d_zypPL3Mwu5RhyDRSA>
+    frrghtthgvrhhnpeekleevteelvdduheetgfdvfeelueekffeggeethedtteeljeeivedv
+    gfehjeejheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruh
+X-ME-Proxy: <xmx:GRESYW9t1a57re6AIh-rOwykKrXfQTIF2z2Y2uYioL6oZRWSB5YmCg>
+    <xmx:GRESYZsWyZFUJXxVMbqGusrk7DF8Q0-pGt0B08_ijxq2PZ5TuK6KaA>
+    <xmx:GRESYVF-uH4_racH_QJVNSEQ1g5YH833I37dvkX9IjeSEmeeUV1yVQ>
+    <xmx:GRESYXWToxFHGmIQTabfY4uYVBUyKi_kkkTTziqi8Ey_ZFrkKJWusQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 10 Aug 2021 01:39:31 -0400 (EDT)
+ 10 Aug 2021 01:39:35 -0400 (EDT)
 From:   Mathew McBride <matt@traverse.com.au>
 To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Ioana Ciornei <ioana.ciornei@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH v3 0/5] Add Traverse Technologies Ten64 board DTS
-Date:   Tue, 10 Aug 2021 05:38:23 +0000
-Message-Id: <20210810053828.4240-1-matt@traverse.com.au>
+Subject: [PATCH v3 1/5] arm64: dts: ls1088a: add internal PCS for DPMAC1 node
+Date:   Tue, 10 Aug 2021 05:38:24 +0000
+Message-Id: <20210810053828.4240-2-matt@traverse.com.au>
 X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210722042450.11862-1-matt@traverse.com.au>
+In-Reply-To: <20210810053828.4240-1-matt@traverse.com.au>
 References: <20210722042450.11862-1-matt@traverse.com.au>
+ <20210810053828.4240-1-matt@traverse.com.au>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Traverse Technologies Ten64 board is a networking-oriented
-Mini-ITX form factor appliance using the NXP LS1088A SoC.
+A previous patch added the PCS for DPMAC2 only, as
+used for the AQR PHY on the LS1088ARDB.
 
-This patch series adds a basic device tree (fsl-ls1088a-ten64.dts)
-for the board. At the moment only hardware features supported
-(or soon to be supported) by mainline kernels are described.
+DPMAC1 PCS access is required for PHYLINK SFP support
+on the Traverse Ten64 board.
 
-In the course of verifying the DTS on recent kernels, it
-was found that some LS1088A features were not described
-in fsl-ls1088a.dtsi. The first two patches add them.
+Signed-off-by: Mathew McBride <matt@traverse.com.au>
+Reviewed-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-The device tree includes a reference to the Epson RX-8035
-RTC which depends on this patch series:
-"rtc: Implement support for EPSON RX-8035", reviewed but
-not yet in the Linus tree.
-https://lore.kernel.org/linux-rtc/20210709044518.28769-1-matt@traverse.com.au/T/#t
-
-Changes since v2:
- - Move flash (NOR and NAND) partitions under a partitions node
- - Fix minor spelling error in fsl.yaml (s/bassed/based/g)
-
-Changes since v1:
- - Pick up Reviewed-By tags for PCS and MAC/PHY related parts
- - Use constants for describing interrupts for the PMU
- - Use the Cortex-A53 specific PMU compatible instead of the armv8-pmu3 generic
- - Fix formatting issues for the board DTS (ordering, newlines, node names)
-
-Mathew McBride (5):
-  arm64: dts: ls1088a: add internal PCS for DPMAC1 node
-  arm64: dts: ls1088a: add missing PMU node
-  dt-bindings: vendor-prefixes: add Traverse Technologies
-  dt-bindings: arm: fsl: Add Traverse Ten64 (LS1088A) board
-  arm64: dts: add device tree for Traverse Ten64 (LS1088A)
-
- .../devicetree/bindings/arm/fsl.yaml          |   6 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 389 ++++++++++++++++++
- .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  18 +
- 5 files changed, 416 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+index 2fa6cfbef01f..79ceadc9dc4a 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+@@ -765,6 +765,19 @@ emdio2: mdio@8b97000 {
+ 			status = "disabled";
+ 		};
+ 
++		pcs_mdio1: mdio@8c07000 {
++			compatible = "fsl,fman-memac-mdio";
++			reg = <0x0 0x8c07000 0x0 0x1000>;
++			little-endian;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++
++			pcs1: ethernet-phy@0 {
++				reg = <0>;
++			};
++		};
++
+ 		pcs_mdio2: mdio@8c0b000 {
+ 			compatible = "fsl,fman-memac-mdio";
+ 			reg = <0x0 0x8c0b000 0x0 0x1000>;
 -- 
 2.30.1
 
