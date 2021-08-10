@@ -2,127 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7652A3E58E8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 13:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6740C3E597D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 13:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240054AbhHJLOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 07:14:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46446 "EHLO
+        id S238560AbhHJL4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 07:56:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240048AbhHJLOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 07:14:16 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701AFC061798
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:13:54 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id c3so14903311ilh.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:13:54 -0700 (PDT)
+        with ESMTP id S238504AbhHJL4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 07:56:08 -0400
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB05C061799
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:55:46 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id y65so1716537vsy.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:55:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5BOsKHbtULAxcDrxqJDAJDBDyZVhdaKsxydikfZ2cCY=;
-        b=le5jpsllsk89jd77pk7klxKwaq6DCVXUZMp+F4J1gkrQMl7VWJ3KdHkPJKe5ZHYwn/
-         CT9ld8XxqTbGwtXkgXyRl8EcBOf8HkH4MdbUSlDcVGRHVC/W7ADwJGO1PsavEugYpE/8
-         /0O4b7jsrK1uPXXzZinEVKxNoXGV9ueBzh/9yQFm/Pd7smQF94uIeRQuiBlTq4JKnkuk
-         lIuLDajRa+ROeCNpYcpfHqgojtrRwjJy7I969VQz1M2UVAzmzlm/fVRmiyiPhXntysyQ
-         HVD8lDG1XeS17nXUBZbSSjae0wACMIcGA2k7IztCfTy90GmfayCrXq/+M22hyJxUMcdH
-         jkZA==
+        bh=F7xu/bBnCf8IofdJc86gnO8/ycUPqIN8iSkmT0WuVQk=;
+        b=l4Ceei4KMRjCvuuh2dEJXRgD7arZhfm9zTdC0UuddCXFyjoQ6R8qwWj2cfcM4Xb3NU
+         iQgkHohQsJ/B52fCulLHrMjkeSm6n1KrOphOeYTaIq3wc1onp8T7VYUl3EFgtLLqf1/b
+         pbFnJhrcZMzBUb9AqqW5lgfPzlsDORldw65Y5z+C4zz+G0D0P7shxhHHScEJA7rnEMpi
+         If2YF6+YhSoadfey74zwnhRL8vLIb91zw/4tKiCfMNEctKWHk96NJ7MVgQZcbd3XBYw+
+         8mPL3MVamWCkmBY7DWi23EqOOpOmABzfSlUlbY3Nq1bQltYxlrR9CFZCW1jCTu/lTSiw
+         th0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5BOsKHbtULAxcDrxqJDAJDBDyZVhdaKsxydikfZ2cCY=;
-        b=AuVl4Rq2nsdvudsDkl6KVZywXhyCefA5mOa939R2afuxhhFfMJFB2FvxRQWmgwVft4
-         o2mQWGVnLUrOiKTCNFKDVU7BwWy4WgZHI2AsX0HUqFbWhC7Mr72FSfoUenoOl1HT20ES
-         swb0bhPFL5Bs+dukN1d0OrxWS2Pw/e466aBd+Bi4XUttss/OGyCDB9XS+O8YPt5L4t/6
-         bFOY0C4QEgIzNBgBuDPLcgshG05a3joD8DDVxT8BlQPWifaSZVaaDnRuRg3qR5EpZRAn
-         nPzh4H873SOMhx3viP+KAPTIkeuvyM5YYaov5Fyi8WnNtOvDQgQOkt6wbYpsHdaswkJD
-         FabQ==
-X-Gm-Message-State: AOAM530/desIt2lbfkMLziFjh4HXPpoa0YpFXWaJDCJC31yz+eVQClOO
-        OaWko/0H/6x+n5qQ55ezsAvfoyjk7yjup99CyoT4VA==
-X-Google-Smtp-Source: ABdhPJxwA6MFGfh+hxoslxEDaOewEk8gaU5fvpAXvmlLfB4gy5x9YiXntNg1S3GQ8DFLdtDoCFGkTnzrhz5SvoHeVsc=
-X-Received: by 2002:a05:6e02:d03:: with SMTP id g3mr121789ilj.127.1628594033707;
- Tue, 10 Aug 2021 04:13:53 -0700 (PDT)
+        bh=F7xu/bBnCf8IofdJc86gnO8/ycUPqIN8iSkmT0WuVQk=;
+        b=KswkkXGY8D8kKk/WrjHfky/kD0/s3/0ZAN61SruM2HZ1cfRbvOwGSf80pFm2Zd5kcP
+         CNkmC79O8qEkb2GOyai0y/E/KCfmvVp9VMt6mKdN9sWrbRMmUk1mBcxVHXVsuuWtGM/B
+         3b5nMSy27O/ZMKSlSRMKfeVastrdktqgz1NheKL62aQa04+pXWDsPAIorlb5WYbuyGJ2
+         3m69CRWlSDjECl9s31sPj6nPK3DBDD3+2MuSUHkCm6K+BKOF+Xmqb4Qj91v1BmVcJ7JG
+         FVGIXqZxgFZq6lNwfMC8LGGE4zOYdirxg4aSMjE4EY/65PGoQ/uw2vjqkmkvlgn2miUC
+         yl2Q==
+X-Gm-Message-State: AOAM533p9KikWOUkFaMOCyc5Bm9mQH8Tds7qV2NU9Rjr6AVL9aEn+BPv
+        Pl7BlUgXOlwIGsMyuakR5O3XL8uouPc9G11H+KFcug==
+X-Google-Smtp-Source: ABdhPJzs5hioDbWm1Xnso+x3JzEaN9qdFPUT/HFC1aBPmwjgDn/+SCnR6iNy/JdyXVCbu99bZqbGsOKUbdGC0egdpl8=
+X-Received: by 2002:a67:f6d8:: with SMTP id v24mr21612180vso.48.1628596545956;
+ Tue, 10 Aug 2021 04:55:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210810083047.16693-1-yunfei.dong@mediatek.com> <20210810083047.16693-5-yunfei.dong@mediatek.com>
-In-Reply-To: <20210810083047.16693-5-yunfei.dong@mediatek.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Tue, 10 Aug 2021 19:13:42 +0800
-Message-ID: <CA+Px+wUbDU8ZD_TOoWRGT2qXh1KS-jh_P6NUDdUA-GuO8CiFiw@mail.gmail.com>
-Subject: Re: [PATCH v4, 04/15] media: mtk-vcodec: Use component framework to
- manage each hardware information
-To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        George Sun <george.sun@mediatek.com>
+References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
+ <20210621223141.1638189-3-dmitry.baryshkov@linaro.org> <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
+ <20210706115517.GB4529@sirena.org.uk> <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
+ <CAA8EJppSV--TBjnGxGhaTHeKWdpM6uz70bg7diU3_K7OHoka4g@mail.gmail.com> <20210714164710.GC2719790@robh.at.kernel.org>
+In-Reply-To: <20210714164710.GC2719790@robh.at.kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 10 Aug 2021 13:55:09 +0200
+Message-ID: <CAPDyKFokvTFSpbnhhKeCmZzAjqvSpUiwz7QjjQNdcd3Sd3T0rQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
+ powerup sequence
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-bluetooth@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 10, 2021 at 04:30:36PM +0800, Yunfei Dong wrote:
->   > Looking up "mediatek,mtk-vcodec-core" to determine if it uses component framwork sounds like...
->   Add prameter in pdata, for all platform will use compoent after mt8183
+On Wed, 14 Jul 2021 at 18:47, Rob Herring <robh@kernel.org> wrote:
 >
->   >> +     if (dev->is_comp_supported) {
->   >> +             ret = mtk_vcodec_init_master(dev);
->   >> +             if (ret < 0)
->   >> +                     goto err_component_match;
->   >> +     } else {
->   >> +             platform_set_drvdata(pdev, dev);
->   >> +     }
->   > + Has asked the same question in [1].  Why it removes the
->   > +platform_set_drvdata() above?  mtk_vcodec_init_master() also calls platform_set_drvdata().
->   Must call component_master_add_with_match after platform_set_drvdata for component architecture.
-I am confused.  The condition "call component_master_add_with_match
-after platform_set_drvdata" is already true even if without the
-change.  See below.
-
-> +static int mtk_vcodec_init_master(struct mtk_vcodec_dev *dev)
-> +{
-> +     struct platform_device *pdev = dev->plat_dev;
-> +     struct component_match *match;
-> +     int ret;
-> +
-> +     match = mtk_vcodec_match_add(dev);
-> +     if (IS_ERR_OR_NULL(match))
-> +             return -EINVAL;
-> +
-> +     platform_set_drvdata(pdev, dev);
-> +     ret = component_master_add_with_match(&pdev->dev, &mtk_vdec_ops, match);
-Point [1].
-
-> @@ -311,7 +413,6 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->               MTK_VCODEC_DEC_NAME);
->       video_set_drvdata(vfd_dec, dev);
->       dev->vfd_dec = vfd_dec;
-> -     platform_set_drvdata(pdev, dev);
-Point [2].
-
-> @@ -362,8 +463,16 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->       mtk_v4l2_debug(0, "decoder registered as /dev/video%d",
->               vfd_dec->num);
+> On Thu, Jul 08, 2021 at 02:37:44PM +0300, Dmitry Baryshkov wrote:
+> > Hi,
+> >
+> > On Thu, 8 Jul 2021 at 13:10, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > >
+> > > - Peter (the email was bouncing)
+> >
+> > + Peter's kernel.org address
+> >
+> > >
+> > > On Tue, 6 Jul 2021 at 13:55, Mark Brown <broonie@kernel.org> wrote:
+> > > >
+> > > > On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
+> > > > > On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
+> > > >
+> > > > > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+> > > > > > being controlled through the UART and WiFi being present on PCIe
+> > > > > > bus. Both blocks share common power sources. Add device driver handling
+> > > > > > power sequencing of QCA6390/1.
+> > > >
+> > > > > Power sequencing of discoverable buses have been discussed several
+> > > > > times before at LKML. The last attempt [1] I am aware of, was in 2017
+> > > > > from Peter Chen. I don't think there is a common solution, yet.
+> > > >
+> > > > This feels a bit different to the power sequencing problem - it's not
+> > > > exposing the individual inputs to the device but rather is a block that
+> > > > manages everything but needs a bit of a kick to get things going (I'd
+> > > > guess that with ACPI it'd be triggered via AML).  It's in the same space
+> > > > but it's not quite the same issue I think, something that can handle
+> > > > control of the individual resources might still struggle with this.
+> > >
+> > > Well, to me it looks very similar to those resouses we could manage
+> > > with the mmc pwrseq, for SDIO. It's also typically the same kind of
+> > > combo-chips that moved from supporting SDIO to PCIe, for improved
+> > > performance I guess. More importantly, the same constraint to
+> > > pre-power on the device is needed to allow it to be discovered/probed.
+> >
+> > In our case we'd definitely use pwrseq for PCIe bus and we can also
+> > benefit from using pwrseq for serdev and for platform busses also (for
+> > the same story of WiFi+BT chips).
+> >
+> > I can take a look at rewriting pwrseq code to also handle the PCIe
+> > bus. Rewriting it to be a generic lib seems like an easy task,
+> > plugging it into PCIe code would be more fun.
+> >
+> > Platform and serdev... Definitely even more fun.
 >
-> -     return 0;
-> +     if (dev->vdec_pdata->is_comp_supported) {
-> +             ret = mtk_vcodec_init_master(dev);
-Point [3].
+> I don't want to see pwrseq (the binding) expanded to other buses. If
+> that was the answer, we wouldn't be having this discussion. It was a
+> mistake for MMC IMO.
 
+Let's make sure we get your point correctly. I think we have discussed
+this in the past, but let's refresh our memories.
 
-The calling sequence is: [2] -> component_master_add_with_match() -> [1] -> [3].
+If I recall correctly, you are against the mmc pwrseq DT bindings
+because we are using a separate pwrseq OF node, that we point to via a
+"mmc-pwrseq" property that contains a phandle from the mmc controller
+device node. Is that correct?
 
-Don't understand why it removes the platform_set_drvdata() at point [2].
+If we would have encoded the power sequence specific properties, from
+within a child node for the mmc controller node, that would have been
+okay for you, right?
+
+>
+> If pwrseq works as a kernel library/api, then I have no issue with that.
+
+That's what Peter Chen was trying to do. A generic interface, flexible
+enough so it can be used for many similar configurations (but not
+exactly the same).
+
+Perhaps it was too generic though.
+
+>
+> >
+> > > Therefore, I think it would be worth having a common solution for
+> > > this, rather than a solution per subsystem or even worse, per device.
+>
+> Power sequencing requirements are inheritently per device unless we're
+> talking about standard connectors.
+
+The requirements are certainly per device, but the way to manage them
+doesn't have to be.
+
+As you said above, a generic library that subsystems/drivers can call
+to power on/off a discoverable device, before trying to probe it would
+be a good start.
+
+>
+> This is a solved problem on MDIO. It's quite simple. If there's a DT
+> node for a device you haven't discovered, then probe it anyways.
+
+A child OF node?
+
+Then what do you think about some common power sequence properties
+that we can use in such node?
+
+>
+> Rob
+
+Kind regards
+Uffe
