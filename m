@@ -2,108 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF663E5C3E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 15:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A55B43E5C4C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 15:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241984AbhHJNxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 09:53:17 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:35668 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241985AbhHJNxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 09:53:16 -0400
-Received: by mail-io1-f44.google.com with SMTP id s184so32376961ios.2;
-        Tue, 10 Aug 2021 06:52:54 -0700 (PDT)
+        id S236814AbhHJNyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 09:54:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240447AbhHJNyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 09:54:46 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB79DC061799
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 06:54:23 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id z2so24899231lft.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 06:54:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jwWuIJqiBzpe1+2G6GtRorjiBXRmpvLNd3Ic9h54t+Q=;
+        b=W8fomkKIUYVT177erd3QXdCb9N+w4GU7xEHCTq5V+/pLfs4vtKwHrQWVUWoJUa0WKb
+         yROIoySSTQNgzo/gwzIxqRF0R5bfQS+nDpd4VtEzC7ELr7a7smTBhEYmnBQS7iU28eFl
+         6/XmILEUsrPbVSQo2USlm6N8PSX516JZiNcZJXsvUVhtLxfMxR0eLAOF6GrZr45uhpYA
+         i7Yq+yxNWPQ9DzLISfpIM6HOHFoZYWG8HkNOCTHmLhZ4GupDBs4AmopLoCHgMdalRbIB
+         DLdHvCypgf5HJo3jpK3W4lZxDXnfAGL3udivEZnwKrCtcdQJBxxszPhgqQXRt34MHJsX
+         q8WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=n0pQptOPLSLX5QIJ3YjoYTw0YmHkHPJHCW1Ja2cSyMo=;
-        b=V1c4zjkhhnB+pdUELhG0WzBxByYShwBNI66ug+B2Po62RO2Aj/WxQ0CLhHrHxLYzaI
-         O5EqtcCwnZ6v5w8Ml97WOp3c5+lD8GX5L4b2KpjJZ7luUiG0OrHNcJbGwuBF8OL71yft
-         g4c8zqM3DCf8+mJ/BZM55MMi/BXAsjC2mwo2RQcIydSdAvoTm04cmXfAcqjLKL6uWl8G
-         21fY4xpnsM1Rzwe3mfDpQ/143bcrA5uzBQmesc8ZZ6UVc51CHt/xJr8tPR0nlFkmv0TH
-         E2jyyT22Jp2lf8lJxwykHh/Ug+PqKdlf1ZLj2Ffpt2hUfa1S5Q4OR6c7UmngwKYYcYmH
-         QpRg==
-X-Gm-Message-State: AOAM533hN8HS3GNSc+dhbwfsBqxKv2eyOS6C3rI8R6XM6UsRtpZcqu8T
-        nCCJqWdv19iZMCwmErTe0Q==
-X-Google-Smtp-Source: ABdhPJxbfBYGw8RHYSAjad8JbTAHBSwUTqo3bLN+N1qARLZk4PyFRs8m9FCgFlBHdl8i3mVv/aeDHw==
-X-Received: by 2002:a6b:f813:: with SMTP id o19mr315560ioh.49.1628603574396;
-        Tue, 10 Aug 2021 06:52:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id e12sm1423228ilc.16.2021.08.10.06.52.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Aug 2021 06:52:53 -0700 (PDT)
-Received: (nullmailer pid 1500790 invoked by uid 1000);
-        Tue, 10 Aug 2021 13:52:51 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jwWuIJqiBzpe1+2G6GtRorjiBXRmpvLNd3Ic9h54t+Q=;
+        b=ulE7ODoPXQNAWmbO5PMnNkG4HGsimT3e8ZDbpS0m4nEyZXcQcJXnl7tjnl5jGift8q
+         2xsswDvOvJtTrWF2cvRZgchSzA2DqpUd8Ns5CxvzJ+y6Ey0QS15/vEj03zNqj6lGc7wl
+         e3uMDsBOsHYIGE0k67EmxrB9QajACXhcyDSANkjOA0M0xd+URTGgQCpObHDO4/xLMXnc
+         woCWA4JCDNYeOGE06l9Fdep1Iswv1jf9LomwV5gJ+klq6BNYorjbEFjxWqEjuoCRSc9b
+         cI2t2xL2kKhgDP1T3Ac6UdG9od43NIvU/TN2+k8QDsFuJtJ6F1gbyW5qldSYLSxbpHz1
+         DePA==
+X-Gm-Message-State: AOAM532FrE1moJZMPhPyC2bgM2ywEhr4GVLGJiEP/tMmyX4ZvxgwVmxU
+        vfYx2KBAw6bPcosd9WQmpuy6ksY0bcXzBbei/5oucQ==
+X-Google-Smtp-Source: ABdhPJydL53OBU+42r6QKcJIZe4IlQ/SoqsP/bpkjgaMcCdQZB8nlKWRZ68tmLNyMtyFuqJpiUzbjuD8656QAXWk9KU=
+X-Received: by 2002:ac2:4d0f:: with SMTP id r15mr21366821lfi.649.1628603662266;
+ Tue, 10 Aug 2021 06:54:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210723075858.376378-1-andrew@aj.id.au> <20210723075858.376378-5-andrew@aj.id.au>
+In-Reply-To: <20210723075858.376378-5-andrew@aj.id.au>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 10 Aug 2021 15:54:11 +0200
+Message-ID: <CACRpkdZm9C23aHTWs8DNX1RChSB4A-X0PoyW5wnH2XyQQeviag@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/6] leds: pca955x: Use pinctrl to map GPIOs to pins
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Tomasz Figa <tfiga@google.com>, linux-media@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-mediatek@lists.infradead.org,
-        George Sun <george.sun@mediatek.com>,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>
-In-Reply-To: <20210810083047.16693-14-yunfei.dong@mediatek.com>
-References: <20210810083047.16693-1-yunfei.dong@mediatek.com> <20210810083047.16693-14-yunfei.dong@mediatek.com>
-Subject: Re: [PATCH v4, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
-Date:   Tue, 10 Aug 2021 07:52:51 -0600
-Message-Id: <1628603571.555258.1500789.nullmailer@robh.at.kernel.org>
+        Joel Stanley <joel@jms.id.au>, Pavel Machek <pavel@ucw.cz>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Aug 2021 16:30:45 +0800, Yunfei Dong wrote:
-> Adds decoder dt-bindings for mt8192.
-> 
-> Change-Id: I2c482fa6c0a91b5fc4f1950dd563cbc4d6c35da1
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
-> v4: fix yaml file check fail
-> ---
->  .../media/mediatek,vcodec-comp-decoder.yaml   | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
-> 
+On Fri, Jul 23, 2021 at 9:59 AM Andrew Jeffery <andrew@aj.id.au> wrote:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> The leds-pca955x driver currently assumes that the GPIO numberspace and
+> the pin numberspace are the same. This quickly falls apart with a
+> devicetree binding such as the following:
+(...)
 
-yamllint warnings/errors:
+Honestly I do not understand this patch. It seems to implement a pin
+controller and using it in nonstandard ways.
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/media/mediatek,vcodec-comp-decoder.yaml#
-Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dts:22:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
-   22 |         #include <dt-bindings/clock/mt8192-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1419: dt_binding_check] Error 2
+If something implements the pin controller driver API it should be
+used as such IMO, externally. This seems to be using it do relay
+calls to itself which seems complicated, just invent something
+locally in the driver in that case? No need to use pin control?
 
-doc reference errors (make refcheckdocs):
+Can you explain why this LED driver needs to implement a pin
+controller?
 
-See https://patchwork.ozlabs.org/patch/1515305
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Yours,
+Linus Walleij
