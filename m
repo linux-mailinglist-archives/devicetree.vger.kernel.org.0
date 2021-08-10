@@ -2,195 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 005383E5079
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 03:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C5483E5088
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 03:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237169AbhHJBCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 21:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237163AbhHJBCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 21:02:38 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17BBCC0613D3
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 18:02:17 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id l4so11763612ljq.4
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 18:02:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=haFDSk96QJYNOFsZMcENBLbn99PoDmddH3/hzh7or5M=;
-        b=jhNo8XwfkfwkZCFM86MMJamwZjCPjvEUccp+hbtfiTawBFeIgjsUpKGn4VAjvaUp0C
-         YVgdFpTfAPa32YzRD9mY7/DSWUd2gclAKL7tzzYT9RLaQJNc3AHSCNkc71Vb1cJFZGiD
-         KF6cf/wqBdULsNtvh7K4lflR6zq3DGuj2vj0C572evl4cyjGbXKXmAt9ZWWM4NXmgqKw
-         WVZfr8IM3Imlru2iA/dCxej69eTKOdK1FQnRDN1pGTyXkTONR1yXXD2GP6GFat+xiDLz
-         rSzbZ9fwYzYi5BrU1uF4TlDxNjetzxBSSdKDQblVzBwcKMfBjDIMEuiy4jwY6WjO1/ad
-         eBAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=haFDSk96QJYNOFsZMcENBLbn99PoDmddH3/hzh7or5M=;
-        b=RCLY25nXwDGIGVDibqHsSwv2zDTrhZ+Gsc06oITx8m4RTGXrpwdq843zywEvqADQxp
-         qifs62hbgQv0dT96hMtpV13EXcmmDMSALpxKtNwwPJPPDlINTr02rFY62BplWpLfcLsE
-         Jy/Ext9s1r8A5U9+9GBmJdhOVY5DmtJAX2Df62cc0GMQy6VmVCq90/M5PlsUZH3JJtTB
-         cqwFoGhY51yV+ns4w5DcJW/h/1sBx4OlZ8f1T/yzaTSOZPp5m1vQZBOHyfXqd0FE0+Ww
-         kCAmDC907Xanae/QvmAtBOvKm3FDVwSguuQjh9v4m7YedHhPjOLeXoRinSkZWq/jmJ+b
-         YesQ==
-X-Gm-Message-State: AOAM531axXYg4mpb36IEhmDGPjaB57KuOwf3XdPH4JIHtOm6E5/tnJZy
-        obWliKw2zv45R8aBGJVNaXqEUsce0fBmHg==
-X-Google-Smtp-Source: ABdhPJyU1PkpiTwGAizbTed4i3D9037Qc+lr88u6kN3dUwI8kvnPTqvDmuRUooCv2y0I+DM32qFypg==
-X-Received: by 2002:a2e:900c:: with SMTP id h12mr16829735ljg.240.1628557335404;
-        Mon, 09 Aug 2021 18:02:15 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x16sm603601ljc.29.2021.08.09.18.02.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Aug 2021 18:02:14 -0700 (PDT)
-Subject: Re: [PATCH 04/39] arm64: dts: qcom: sdm630: Add interconnect provider
- nodes
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210728222542.54269-1-konrad.dybcio@somainline.org>
- <20210728222542.54269-5-konrad.dybcio@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <f25b75bc-edaf-e7d3-93dd-7be07380a3f0@linaro.org>
-Date:   Tue, 10 Aug 2021 04:02:14 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S230006AbhHJBLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 21:11:16 -0400
+Received: from lucky1.263xmail.com ([211.157.147.133]:47634 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229739AbhHJBLQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 21:11:16 -0400
+Received: from localhost (unknown [192.168.167.32])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 36D7CD6179;
+        Tue, 10 Aug 2021 09:10:33 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from xxm-vm.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P49146T140469470209792S1628557815809840_;
+        Tue, 10 Aug 2021 09:10:19 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <edc5533435c7c5301041dd3fb0d9e71b>
+X-RL-SENDER: xxm@rock-chips.com
+X-SENDER: xxm@rock-chips.com
+X-LOGIN-NAME: xxm@rock-chips.com
+X-FST-TO: jic23@kernel.org
+X-RCPT-COUNT: 11
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Simon Xue <xxm@rock-chips.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, David Wu <david.wu@rock-chips.com>,
+        Simon Xue <xxm@rock-chips.com>
+Subject: [PATCH v4] iio: adc: rockchip_saradc: add voltage notifier so get referenced voltage once at probe
+Date:   Tue, 10 Aug 2021 09:10:07 +0800
+Message-Id: <20210810011007.54066-1-xxm@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210728222542.54269-5-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/07/2021 01:25, Konrad Dybcio wrote:
-> Add interconnect provider nodes to allow for NoC bus scaling.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->   arch/arm64/boot/dts/qcom/sdm630.dtsi | 59 ++++++++++++++++++++++++++++
->   1 file changed, 59 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index e2cbe210048e..c46b7327afbe 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -4,6 +4,7 @@
->    */
->   
->   #include <dt-bindings/clock/qcom,gcc-sdm660.h>
-> +#include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->   #include <dt-bindings/clock/qcom,rpmcc.h>
->   #include <dt-bindings/power/qcom-rpmpd.h>
->   #include <dt-bindings/gpio/gpio.h>
-> @@ -516,11 +517,38 @@ rng: rng@793000 {
->   			clock-names = "core";
->   		};
->   
-> +		bimc: interconnect@1008000 {
-> +			compatible = "qcom,sdm660-bimc";
-> +			reg = <0x01008000 0x78000>;
-> 
-+			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-> +				 <&rpmcc RPM_SMD_BIMC_A_CLK>;
-> +		};
-> +
->   		restart@10ac000 {
->   			compatible = "qcom,pshold";
->   			reg = <0x010ac000 0x4>;
->   		};
->   
-> +		cnoc: interconnect@1500000 {
-> +			compatible = "qcom,sdm660-cnoc";
-> +			reg = <0x01500000 0x10000>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
-> +				 <&rpmcc RPM_SMD_CNOC_A_CLK>;
-> +		};
-> +
-> +		snoc: interconnect@1626000 {
-> +			compatible = "qcom,sdm660-snoc";
-> +			reg = <0x01626000 0x7090>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-> +				 <&rpmcc RPM_SMD_SNOC_A_CLK>;
-> +		};
+From: David Wu <david.wu@rock-chips.com>
 
-Interesting, this disagrees with the downstream dts. It looks like you 
-are including offset to QoS registers into start address. Although we do 
-not use other registers from the NoC, I think it would be better to use 
-correct device address and adjust register offset in the interconnect 
-driver.
+Add voltage notifier, no need to query regulator voltage for
+every saradc read, just get regulator voltage once at probe.
 
-> +
->   		anoc2_smmu: iommu@16c0000 {
->   			compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
->   			reg = <0x016c0000 0x40000>;
-> @@ -564,6 +592,25 @@ anoc2_smmu: iommu@16c0000 {
->   			status = "disabled";
->   		};
->   
-> +		a2noc: interconnect@1704000 {
-> +			compatible = "qcom,sdm660-a2noc";
-> +			reg = <0x01704000 0xc100>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
-> +				 <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
-> +		};
-> +
-> +		mnoc: interconnect@1745000 {
-> +			compatible = "qcom,sdm660-mnoc";
-> +			reg = <0x01745000 0xA010>;
-> +			#interconnect-cells = <1>;
-> +			clock-names = "bus", "bus_a", "iface";
-> +			clocks = <&rpmcc RPM_SMD_MMSSNOC_AXI_CLK>,
-> +				 <&rpmcc RPM_SMD_MMSSNOC_AXI_CLK_A>,
-> +				 <&mmcc AHB_CLK_SRC>;
-> +		};
-> +
->   		tcsr_mutex_regs: syscon@1f40000 {
->   			compatible = "syscon";
->   			reg = <0x01f40000 0x20000>;
-> @@ -1156,6 +1203,18 @@ mmss_smmu: iommu@cd00000 {
->   			status = "disabled";
->   		};
->   
-> +		gnoc: interconnect@17900000 {
-> +			compatible = "qcom,sdm660-gnoc";
-> +			reg = <0x17900000 0xe000>;
-> +			#interconnect-cells = <1>;
-> +			/*
-> +			 * This one apparently features no clocks,
-> +			 * so let's not mess with the driver needlessly
-> +			 */
-> +			clock-names = "bus", "bus_a";
-> +			clocks = <&xo_board>, <&xo_board>;
-> +		};
-> +
->   		apcs_glb: mailbox@17911000 {
->   			compatible = "qcom,sdm660-apcs-hmss-global";
->   			reg = <0x17911000 0x1000>;
-> 
+Signed-off-by: David Wu <david.wu@rock-chips.com>
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+---
+ drivers/iio/adc/rockchip_saradc.c | 47 ++++++++++++++++++++++++++-----
+ 1 file changed, 40 insertions(+), 7 deletions(-)
 
-
+diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+index f3eb8d2e50dc..a237fe469a30 100644
+--- a/drivers/iio/adc/rockchip_saradc.c
++++ b/drivers/iio/adc/rockchip_saradc.c
+@@ -49,10 +49,12 @@ struct rockchip_saradc {
+ 	struct clk		*clk;
+ 	struct completion	completion;
+ 	struct regulator	*vref;
++	int			uv_vref;
+ 	struct reset_control	*reset;
+ 	const struct rockchip_saradc_data *data;
+ 	u16			last_val;
+ 	const struct iio_chan_spec *last_chan;
++	struct notifier_block nb;
+ };
+ 
+ static void rockchip_saradc_power_down(struct rockchip_saradc *info)
+@@ -105,13 +107,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
+ 		mutex_unlock(&indio_dev->mlock);
+ 		return IIO_VAL_INT;
+ 	case IIO_CHAN_INFO_SCALE:
+-		ret = regulator_get_voltage(info->vref);
+-		if (ret < 0) {
+-			dev_err(&indio_dev->dev, "failed to get voltage\n");
+-			return ret;
+-		}
+-
+-		*val = ret / 1000;
++		*val = info->uv_vref / 1000;
+ 		*val2 = chan->scan_type.realbits;
+ 		return IIO_VAL_FRACTIONAL_LOG2;
+ 	default:
+@@ -298,6 +294,26 @@ static irqreturn_t rockchip_saradc_trigger_handler(int irq, void *p)
+ 	return IRQ_HANDLED;
+ }
+ 
++static int rockchip_saradc_volt_notify(struct notifier_block *nb,
++						   unsigned long event,
++						   void *data)
++{
++	struct rockchip_saradc *info =
++			container_of(nb, struct rockchip_saradc, nb);
++
++	if (event & REGULATOR_EVENT_VOLTAGE_CHANGE)
++		info->uv_vref = (unsigned long)data;
++
++	return NOTIFY_OK;
++}
++
++static void rockchip_saradc_regulator_unreg_notifier(void *data)
++{
++	struct rockchip_saradc *info = data;
++
++	regulator_unregister_notifier(info->vref, &info->nb);
++}
++
+ static int rockchip_saradc_probe(struct platform_device *pdev)
+ {
+ 	struct rockchip_saradc *info = NULL;
+@@ -410,6 +426,12 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
++	ret = regulator_get_voltage(info->vref);
++	if (ret < 0)
++		return ret;
++
++	info->uv_vref = ret;
++
+ 	ret = clk_prepare_enable(info->pclk);
+ 	if (ret < 0) {
+ 		dev_err(&pdev->dev, "failed to enable pclk\n");
+@@ -450,6 +472,17 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
++	info->nb.notifier_call = rockchip_saradc_volt_notify;
++	ret = regulator_register_notifier(info->vref, &info->nb);
++	if (ret)
++		return ret;
++
++	ret = devm_add_action_or_reset(&pdev->dev,
++				       rockchip_saradc_regulator_unreg_notifier,
++				       info);
++	if (ret)
++		return ret;
++
+ 	return devm_iio_device_register(&pdev->dev, indio_dev);
+ }
+ 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
+
+
