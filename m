@@ -2,207 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7773E7D13
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 18:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F08553E7D29
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 18:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234125AbhHJQDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 12:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58318 "EHLO
+        id S232734AbhHJQIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 12:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233792AbhHJQDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 12:03:39 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E200C061798
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 09:03:17 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id c2-20020a0568303482b029048bcf4c6bd9so22520250otu.8
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 09:03:17 -0700 (PDT)
+        with ESMTP id S233058AbhHJQIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 12:08:42 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522DDC0613C1;
+        Tue, 10 Aug 2021 09:08:20 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id b11so10873196wrx.6;
+        Tue, 10 Aug 2021 09:08:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UOeBJb5cGy5paFAALWsFuASdLzBG7EqmkQ93lI0oDjg=;
-        b=xVCYLKEs/uDoz2qqKcRtH/cYFoZnbZtY9Tsrn8R8CS1Hqbg7ZL9bDIuxarRrVYwQdM
-         +ngMyxnNwBX5TVXYeeqDFzZw5ddBYJoMQOIXjyVTSxf736jyFNzE1HxEiGx7gNTLMIw6
-         p0om15jxaQbX7AdNnXcnl3wi1PpJK1xddiRfvez+TUVQLaNFawI5L/tHPNRHD731k4fm
-         mw2fTJ2IlQGWmQqoEXwoaB3FD5jDfiQZy7itDo4NBJskHHgnEx4FFQ2r4owqxYvXRMNr
-         pBRBpexnI1Uy68f9xSDEcijNmcw+Q1k1/GekGnKXWB+/aVSHzXzKiSi7za8l+9W4sba5
-         VVWg==
+         :content-disposition:in-reply-to:user-agent;
+        bh=s6FzczmnqWcM8v8wmbqHjp1AM3inHU529BufOXLNuUU=;
+        b=RxeplgufzJz5cddEnSUDOcYJ3UBdJF1NibJ3S42nPQdh31odlwFCl/r0snOyDSSLgo
+         nt36Tw1P2s7D7NAXvPrVPLQ1oXmq9gR0ZeUVavSlAE5yWLe0CbuefRe16DaHwsAUVoSl
+         icp6b+QowvLR0WCT1Q30Xj4gsaC9VMnCbUCnXwDhOjRmc/xF0YZKfRnRUVZzBcqb3kl1
+         GnI5U3R+5C7HVKaqEuY9sgZhM/fkI6RvAA8kbhBUwp661A72pDq09CrsR0oVrdXWEMk8
+         ZQWoz8aDZbufZgngucm86F9ckoPewp4l6q0UxIh2jODCJ5Akuq9M2HGvyP1BtgnDxgbi
+         OPAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UOeBJb5cGy5paFAALWsFuASdLzBG7EqmkQ93lI0oDjg=;
-        b=Mj6yI9cFWbMqQbgcIUbss4fEGsPIeknQhSb2M1FUw3cuPQk8+Vo+9wwerfqV6FcJcZ
-         UQgh3SQgewKbgak6f4cWS19sNClSyvO8axxQHFysIcI/+49rEFDphaiANvRa6QeVRt+Y
-         cpmKNmkn+sx6nO83SLcredhSy4aQ2ve7w1/2qfduLAzunGWP/CieuX0zQabHvjAGCSMx
-         0pySpx4GtnS0/vJn1K/eWIyydlN/h3NEEXahWgqYMe7HsJ7dPekAptQozzr+xNhKyCJR
-         rmbIZeg825njhan0d48356biS+sL8okDDgV1UyDn2vbV0LgnjXxlFyDsguD58IgTZQYJ
-         r6ig==
-X-Gm-Message-State: AOAM5311wegTzCfD8eixpzvxHnJhkPo5Mnz1L4K8cMNS9GeBbaFglD/v
-        y9cyEyDQviKn3bgRywCW3o6N8Q==
-X-Google-Smtp-Source: ABdhPJyb5luJDRgsrhvyVHotm5kjI3gsgDl7FNLBXBEL8BAgkYs1tlNbNSeNVUWUOeezbAkELGsIFg==
-X-Received: by 2002:a05:6830:b84:: with SMTP id a4mr20805679otv.357.1628611396393;
-        Tue, 10 Aug 2021 09:03:16 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e22sm3072636otq.5.2021.08.10.09.03.15
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=s6FzczmnqWcM8v8wmbqHjp1AM3inHU529BufOXLNuUU=;
+        b=VPGBNvfKul5UPBXm1Z3UHCsfsHHv70owCmvCZuD8WOevH6wGuCkqZq4uMUlDG9Uahd
+         gpxAhHhlX6IvLdhmpQk/B8NRoR3hA6qvgn0LK1ETkJn4hlvkWsckGsS+wGCcxftoGt7o
+         gjGU5VrnosV+HSR0DNFKcHb8ohRDiXXZa8sVJhNWIqIudowqHOhhBy0q/uhYzN4wSwmC
+         4QA1lnaA8foRtCk1nJDAXAPPncpEhUtTDmAbNMhmjn7nypWu2tTFICI3mpkZa1XFBrUQ
+         Uq1lDW6pCebYf8a2ZqW8c2uOQXYRA62Z7MBUuO26vQpCi5fH3apcMpUXsT6sp2GO0rDS
+         bO0A==
+X-Gm-Message-State: AOAM532JuJ/n3ni3062vBYSmbSCEN03haF/mWk0yE8j1hmCJwfP9owLT
+        7IB+Y2z7eavkSG0mv4LoIw8=
+X-Google-Smtp-Source: ABdhPJysBBrUIctxQUG5HmK9FUt9CAtgtz5R7Dfn+hCUh++RhMPKvcG1HH1pbuOj/K2bMzRHh/eZcg==
+X-Received: by 2002:adf:f288:: with SMTP id k8mr31946841wro.350.1628611698951;
+        Tue, 10 Aug 2021 09:08:18 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id q17sm1801399wrr.91.2021.08.10.09.08.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Aug 2021 09:03:15 -0700 (PDT)
-Date:   Tue, 10 Aug 2021 11:03:12 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
- powerup sequence
-Message-ID: <YRKjQJc0yiQXFqCD@builder.lan>
-References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
- <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
- <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
- <20210706115517.GB4529@sirena.org.uk>
- <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
- <CAA8EJppSV--TBjnGxGhaTHeKWdpM6uz70bg7diU3_K7OHoka4g@mail.gmail.com>
- <20210714164710.GC2719790@robh.at.kernel.org>
- <CAPDyKFokvTFSpbnhhKeCmZzAjqvSpUiwz7QjjQNdcd3Sd3T0rQ@mail.gmail.com>
+        Tue, 10 Aug 2021 09:08:17 -0700 (PDT)
+Date:   Tue, 10 Aug 2021 18:10:43 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, jonathanh@nvidia.com,
+        airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: Add YAML bindings for Host1x and
+ NVDEC
+Message-ID: <YRKlA7aBYOuElXDe@orome.fritz.box>
+References: <20210806123450.2970777-1-mperttunen@nvidia.com>
+ <20210806123450.2970777-2-mperttunen@nvidia.com>
+ <YRKengKZmFtgsIZy@orome.fritz.box>
+ <c06df24f-989b-fdfe-ea04-867de1aa8828@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gS61pFWBoSyehaqJ"
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFokvTFSpbnhhKeCmZzAjqvSpUiwz7QjjQNdcd3Sd3T0rQ@mail.gmail.com>
+In-Reply-To: <c06df24f-989b-fdfe-ea04-867de1aa8828@nvidia.com>
+User-Agent: Mutt/2.1.1 (e2a89abc) (2021-07-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 10 Aug 06:55 CDT 2021, Ulf Hansson wrote:
 
-> On Wed, 14 Jul 2021 at 18:47, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Jul 08, 2021 at 02:37:44PM +0300, Dmitry Baryshkov wrote:
-> > > Hi,
-> > >
-> > > On Thu, 8 Jul 2021 at 13:10, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > >
-> > > > - Peter (the email was bouncing)
-> > >
-> > > + Peter's kernel.org address
-> > >
-> > > >
-> > > > On Tue, 6 Jul 2021 at 13:55, Mark Brown <broonie@kernel.org> wrote:
-> > > > >
-> > > > > On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
-> > > > > > On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
-> > > > >
-> > > > > > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> > > > > > > being controlled through the UART and WiFi being present on PCIe
-> > > > > > > bus. Both blocks share common power sources. Add device driver handling
-> > > > > > > power sequencing of QCA6390/1.
-> > > > >
-> > > > > > Power sequencing of discoverable buses have been discussed several
-> > > > > > times before at LKML. The last attempt [1] I am aware of, was in 2017
-> > > > > > from Peter Chen. I don't think there is a common solution, yet.
-> > > > >
-> > > > > This feels a bit different to the power sequencing problem - it's not
-> > > > > exposing the individual inputs to the device but rather is a block that
-> > > > > manages everything but needs a bit of a kick to get things going (I'd
-> > > > > guess that with ACPI it'd be triggered via AML).  It's in the same space
-> > > > > but it's not quite the same issue I think, something that can handle
-> > > > > control of the individual resources might still struggle with this.
-> > > >
-> > > > Well, to me it looks very similar to those resouses we could manage
-> > > > with the mmc pwrseq, for SDIO. It's also typically the same kind of
-> > > > combo-chips that moved from supporting SDIO to PCIe, for improved
-> > > > performance I guess. More importantly, the same constraint to
-> > > > pre-power on the device is needed to allow it to be discovered/probed.
-> > >
-> > > In our case we'd definitely use pwrseq for PCIe bus and we can also
-> > > benefit from using pwrseq for serdev and for platform busses also (for
-> > > the same story of WiFi+BT chips).
-> > >
-> > > I can take a look at rewriting pwrseq code to also handle the PCIe
-> > > bus. Rewriting it to be a generic lib seems like an easy task,
-> > > plugging it into PCIe code would be more fun.
-> > >
-> > > Platform and serdev... Definitely even more fun.
-> >
-> > I don't want to see pwrseq (the binding) expanded to other buses. If
-> > that was the answer, we wouldn't be having this discussion. It was a
-> > mistake for MMC IMO.
-> 
-> Let's make sure we get your point correctly. I think we have discussed
-> this in the past, but let's refresh our memories.
-> 
-> If I recall correctly, you are against the mmc pwrseq DT bindings
-> because we are using a separate pwrseq OF node, that we point to via a
-> "mmc-pwrseq" property that contains a phandle from the mmc controller
-> device node. Is that correct?
-> 
-> If we would have encoded the power sequence specific properties, from
-> within a child node for the mmc controller node, that would have been
-> okay for you, right?
-> 
+--gS61pFWBoSyehaqJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In Dmitry's case, we have an external chip with that needs to be powered
-on per a specific sequence, at which point the WiFi driver on PCIe and
-BT driver on serdev will be able to communicate with the device.
+On Tue, Aug 10, 2021 at 06:50:26PM +0300, Mikko Perttunen wrote:
+> On 10.8.2021 18.43, Thierry Reding wrote:
+> > On Fri, Aug 06, 2021 at 03:34:48PM +0300, Mikko Perttunen wrote:
+> > > Convert the original Host1x bindings to YAML and add new bindings for
+> > > NVDEC, now in a more appropriate location. The old text bindings
+> > > for Host1x and engines are still kept at display/tegra/ since they
+> > > encompass a lot more engines that haven't been converted over yet.
+> > >=20
+> > > Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> > > ---
+> > > v2:
+> > > * Fix issues pointed out in v1
+> > > * Add T194 nvidia,instance property
+> > > ---
+> > >   .../gpu/host1x/nvidia,tegra20-host1x.yaml     | 131 +++++++++++++++=
++++
+> > >   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 +++++++++++++++
+> > >   MAINTAINERS                                   |   1 +
+> > >   3 files changed, 241 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvi=
+dia,tegra20-host1x.yaml
+> > >   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvi=
+dia,tegra210-nvdec.yaml
+> >=20
+> > Can we split off the NVDEC bindings addition into a separate patch? I've
+> > been working on converting the existing host1x bindings in full to json-
+> > schema and this partial conversion would conflict with that effort.
+> >=20
+> > I assume that NVDEC itself validates properly even if host1x hasn't been
+> > converted yet?
+>=20
+> Sure. I thought I had some problems with this before but can't see any no=
+w.
+>=20
+> >=20
+> > > diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegr=
+a210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra=
+210-nvdec.yaml
+> > > new file mode 100644
+> > > index 000000000000..fc535bb7aee0
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nv=
+dec.yaml
+> > > @@ -0,0 +1,109 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec=
+=2Eyaml#"
+> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > > +
+> > > +title: Device tree binding for NVIDIA Tegra NVDEC
+> > > +
+> > > +description: |
+> > > +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
+> > > +  and newer chips. It is located on the Host1x bus and typically
+> > > +  programmed through Host1x channels.
+> > > +
+> > > +maintainers:
+> > > +  - Thierry Reding <treding@gmail.com>
+> > > +  - Mikko Perttunen <mperttunen@nvidia.com>
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    pattern: "^nvdec@[0-9a-f]*$"
+> > > +
+> > > +  compatible:
+> > > +    enum:
+> > > +      - nvidia,tegra210-nvdec
+> > > +      - nvidia,tegra186-nvdec
+> > > +      - nvidia,tegra194-nvdec
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: nvdec
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  reset-names:
+> > > +    items:
+> > > +      - const: nvdec
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  iommus:
+> > > +    maxItems: 1
+> > > +
+> > > +  interconnects:
+> > > +    items:
+> > > +      - description: DMA read memory client
+> > > +      - description: DMA read 2 memory client
+> > > +      - description: DMA write memory client
+> > > +
+> > > +  interconnect-names:
+> > > +    items:
+> > > +      - const: dma-mem
+> > > +      - const: read2
+> >=20
+> > The convention that we've used so far has been to start numbering these
+> > at 0 and use a dash, so this would be "read-1".
+>=20
+> Will fix.
+>=20
+> >=20
+> > > +      - const: write
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - resets
+> > > +  - reset-names
+> > > +  - power-domains
+> > > +
+> > > +if:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        const: nvidia,tegra194-host1x
+> > > +then:
+> > > +  properties:
+> > > +    nvidia,instance:
+> > > +      items:
+> > > +        - description: 0 for NVDEC0, or 1 for NVDEC1
+> >=20
+> > I know we had discussed this before, but looking at the driver patch, I
+> > don't actually see this being used now, so I wonder if we still need it.
+> >=20
+> > > +additionalProperties: true
+> >=20
+> > Maybe this should have a comment noting that this should really be
+> > unevaluatedProperties: false, but we can't use that because the tooling
+> > doesn't support it yet?
+>=20
+> I can add such a comment if desired. Honestly, I don't really know what
+> 'unevaluatedProperties' means or does -- the explanation in
+> example-schema.yaml doesn't seem like it's relevant here and I cannot find
+> any other documentation.
 
-The extended case of this is where we have an SDX55 modem soldered onto
-the pcb next to the SoC, in which case the power sequencing is even more
-complex and additionally there are incoming gpios used to detect things
-such as the firmware of the modem has crashed and Linux needs to toggle
-power and rescan the PCIe bus.
+It's basically like additionalProperties, except that it applies to
+properties evaluated via if: blocks.
 
-In both of these cases it seems quite reasonable to represent that
-external chip (and it's power needs) as a separate DT node. But we need
-a way to link the functional devices to that thing.
+So with additionalProperties: false, the presence of the nvidia,instance
+property in a Tegra194 DTS file would cause a validation failure because
+it's a property that was not defined in the properties: block.
 
-Regards,
-Bjorn
+With unevaluatedProperties: false, on the other hand, the properties
+that are defined in the if: block above will become a evaluated
+properties and therefore a Tegra194 DTS with the nvidia,instance
+property present would succeed validation. Unless, of course, if it
+contained additional properties that are not defined in any of the
+properties: blocks (either unconditional or conditional ones).
 
-> >
-> > If pwrseq works as a kernel library/api, then I have no issue with that.
-> 
-> That's what Peter Chen was trying to do. A generic interface, flexible
-> enough so it can be used for many similar configurations (but not
-> exactly the same).
-> 
-> Perhaps it was too generic though.
-> 
-> >
-> > >
-> > > > Therefore, I think it would be worth having a common solution for
-> > > > this, rather than a solution per subsystem or even worse, per device.
-> >
-> > Power sequencing requirements are inheritently per device unless we're
-> > talking about standard connectors.
-> 
-> The requirements are certainly per device, but the way to manage them
-> doesn't have to be.
-> 
-> As you said above, a generic library that subsystems/drivers can call
-> to power on/off a discoverable device, before trying to probe it would
-> be a good start.
-> 
-> >
-> > This is a solved problem on MDIO. It's quite simple. If there's a DT
-> > node for a device you haven't discovered, then probe it anyways.
-> 
-> A child OF node?
-> 
-> Then what do you think about some common power sequence properties
-> that we can use in such node?
-> 
-> >
-> > Rob
-> 
-> Kind regards
-> Uffe
+So in other words, the additionalProperties schema applies to all
+unconditionally defined properties, whereas unevaluatedProperties
+applies to all (conditionally and unconditionally) defined properties.
+
+Thierry
+
+--gS61pFWBoSyehaqJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmESpQMACgkQ3SOs138+
+s6HTJw//ckFGmxW4tZPl0eMpVCI8/7brLmmKGRwbDY2mXZaWyVOgVfBI36oARYUT
+SRrNFxFOpYIjjBimpWNMevG149nS0EN3LxFu9/h6S7ZvFZIK5k4xXn84pxg16eb6
+4mYgtrrfkDFL6RHEkrmayGlJ2whhTZjF41I5axF9bO5GH0h5ZR+Y83s64Ja8MTHt
+PW7VPkwQd3RaqPi1dm3ooOFRz/DfMtqvFHYLPqJ+Ptkq5I4K9g4dQ9ZWSlRT0XCE
+canA0cpmXym6HMrL6jk2oRJ/ZzTfAI9/uWwVqyVQX0mBfqhr+XEsBdPo0+fNQlpm
+S8SKG9GoeCvTTZVitjxNoLfKOvZB84KX0KEFpmZk1hR5XyuCQdjEE3Rku6BjxKWv
+n2En94wyrKd6CafU08tS5z4hmWk1TSGHKkUzwIni+1iupLGGlbSlwRF60Ce/5Jx0
+WG677rED9WBV4yvN7rDvG7P4ujiWebVgTXy/ZoEvlERK41o630uCJ4VwhSYPMqUA
+PFs1PmDy1uMlAya2870yKCYYVON8yU6IuDxw9P04a3XUmIhVlE5bcP7/EBTBptRO
+ry/+y8f+rqQVwXouGcawwbHqlBCvsVgUpAFmbYTU1W0NL9Z5ArhwI3fUMgqKcYsf
+hR0VriBi/qHviy33TjSpJRx8T7YbBSLVxoecJANidV0KXhE3kOY=
+=cIO4
+-----END PGP SIGNATURE-----
+
+--gS61pFWBoSyehaqJ--
