@@ -2,118 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B76343E51C9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 06:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6BFC3E52F7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 07:39:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236943AbhHJEKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 00:10:13 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:60775 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236959AbhHJEJ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 00:09:58 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628568577; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=jj+EJdpyqlbmbnLzE53tILclU1PuLXIfSdqbeDfZAlU=; b=Rvd+mnn3MiwyEfE/JjIm0UPOHosGrOKvXLIvXMr2aOhjhD1/tk+wTL3THQ+QaPoRs1WG75nz
- yTp1mhtGgzJ6CyALJ01SkWBaQ7H8MDW3gzdoxW1Ow7kK9BA+5CDGYgzZUOvvQeELDG06q9IY
- YfN3udGy1fGTt8r+O/lKNBFfbwE=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 6111fbf2b3873958f576d965 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 04:09:22
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2D37FC43217; Tue, 10 Aug 2021 04:09:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 83618C433D3;
-        Tue, 10 Aug 2021 04:09:16 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 83618C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pmaliset@codeaurora.org
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
-        Prasad Malisetty <pmaliset@codeaurora.org>
-Subject: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
-Date:   Tue, 10 Aug 2021 09:38:36 +0530
-Message-Id: <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
-References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
+        id S234357AbhHJFj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 01:39:57 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40947 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234208AbhHJFj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 01:39:56 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id D81045C013E;
+        Tue, 10 Aug 2021 01:39:34 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 10 Aug 2021 01:39:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
+         h=from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm1; bh=qlpsgNglcB6Ix
+        ihSP2vT3ExvbHzxYtc0un128CYLs/U=; b=LHnYkfg+CK7PBKV9JFetNc4M2xWqe
+        34Ul+4WnLbYOqhikQePz1mcNLdGhZ1/hVTvNtgJpCGy3vFjGGvQje6sB9VKr/2dD
+        n8kAGOWNavwKczxUC8P3SDVwFaPy+vFoX1a2DJpGZQn4wD4zZJyfPA5Zmku6ss5P
+        V0XV3vraS3zRvPw3TXEFCcVTfi0kl8rn4Lhl2B6UlPA0jVc5uxf+npnFwDaJjBR4
+        pwm3mSr288OSXyMr4VQCa8MzY8nYkZND9lSOzgh60YDGoGcU32iBLEfB6KrtVxPp
+        5TcQYQz3mj631GqUd3H1kAkY9U1ip7xPn+MJx076SBBiLFJZx81etfHAA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; bh=qlpsgNglcB6IxihSP2vT3ExvbHzxYtc0un128CYLs/U=; b=PqEqvHo2
+        tazgrWn/avuGRPzzi5/yrLuOxupMaX6FTL+2NFVzmkkiuL6uqz7d+n0kRh3bj6kY
+        4Eqklb5nmUiyJPbLcwTjFtRB57J1uiuhLiJmacRbAo5CF8pX7v3Fg9mfmnsCYENj
+        Xlq6KihySB7Ie2BxhvdOmLK2WLttJ2hgG+q3pQ+fTo4l+ZNgC6bMD70LXxyadX7W
+        Yn2e82uBT4zK9sQ3cBz3yY9Ydl2ZljdpvAMuN88H/894aYu7eiZOcE1HKkwfbiuc
+        D+VMKTcmaD79Wppem8D0KYtOem+D+S0yVg6JnuxOoCupi8UBjULoHebhuFpPWASF
+        hOGv8B3biQFhZQ==
+X-ME-Sender: <xms:FRESYeWZBE9DYqJWeGtB16mndoVZTqkGICmsPejcRNdwaJc6srIlxg>
+    <xme:FRESYalgS4SoE_T9Y1_F4P8ZqEfs-aSp5XBTnkVqZ4ivAwcXf-Ya1KPRSm_fASEl0
+    P66CWtCi1xQSQHtEqY>
+X-ME-Received: <xmr:FRESYSZWHK7LQp8y3TJ4jOYa1IPOQC1pnhZrgfeFxhjMLL_QIFs-IlHkTlvVoah293I-fgV3Yp8L0H6_GCNnWvKTdPq-twtoIKu-G4d4N262R_yzNiwLA8MXcfQFKEo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrjeekgdellecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrthhhvgif
+    ucfotgeurhhiuggvuceomhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghuqeenucggtf
+    frrghtthgvrhhnpeehudekgeevhfefueeiudegjeelgfeitdevveekkeetgfeiteetteff
+    leevvedtleenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrthhtsehtrhgrvhgvrhhsvgdr
+    tghomhdrrghu
+X-ME-Proxy: <xmx:FRESYVU-YjuEk2OkOltPxCPipGOQJbetJGaMCzdvKuV3EuPAbPJd4w>
+    <xmx:FRESYYmsdPUz2giiQajkpzSsrzMTFwcImQjMUcRRt_C3PUi0rDSkCA>
+    <xmx:FRESYaco47JWa9UqJAxM0tSStqMJzW5NesVGLQ7J3wypTSY7iTLGpw>
+    <xmx:FhESYXtvomR6yYxHvuX0dJIkysXANXlAUg7d_zypPL3Mwu5RhyDRSA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 10 Aug 2021 01:39:31 -0400 (EDT)
+From:   Mathew McBride <matt@traverse.com.au>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Mathew McBride <matt@traverse.com.au>
+Subject: [PATCH v3 0/5] Add Traverse Technologies Ten64 board DTS
+Date:   Tue, 10 Aug 2021 05:38:23 +0000
+Message-Id: <20210810053828.4240-1-matt@traverse.com.au>
+X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20210722042450.11862-1-matt@traverse.com.au>
+References: <20210722042450.11862-1-matt@traverse.com.au>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the SC7280, By default the clock source for pcie_1_pipe is
-TCXO for gdsc enable. But after the PHY is initialized, the clock
-source must be switched to gcc_pcie_1_pipe_clk from TCXO.
+The Traverse Technologies Ten64 board is a networking-oriented
+Mini-ITX form factor appliance using the NXP LS1088A SoC.
 
-Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+This patch series adds a basic device tree (fsl-ls1088a-ten64.dts)
+for the board. At the moment only hardware features supported
+(or soon to be supported) by mainline kernels are described.
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 8a7a300..39e3b21 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -166,6 +166,8 @@ struct qcom_pcie_resources_2_7_0 {
- 	struct regulator_bulk_data supplies[2];
- 	struct reset_control *pci_reset;
- 	struct clk *pipe_clk;
-+	struct clk *gcc_pcie_1_pipe_clk_src;
-+	struct clk *phy_pipe_clk;
- };
- 
- union qcom_pcie_resources {
-@@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
- 	if (ret < 0)
- 		return ret;
- 
-+	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
-+		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
-+		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
-+			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
-+
-+		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
-+		if (IS_ERR(res->phy_pipe_clk))
-+			return PTR_ERR(res->phy_pipe_clk);
-+	}
-+
- 	res->pipe_clk = devm_clk_get(dev, "pipe");
- 	return PTR_ERR_OR_ZERO(res->pipe_clk);
- }
-@@ -1255,6 +1267,12 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
- static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
- {
- 	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
-+	struct dw_pcie *pci = pcie->pci;
-+	struct device *dev = pci->dev;
-+	struct device_node *node = dev->of_node;
-+
-+	if (of_property_read_bool(node, "pipe-clk-source-switch"))
-+		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
- 
- 	return clk_prepare_enable(res->pipe_clk);
- }
+In the course of verifying the DTS on recent kernels, it
+was found that some LS1088A features were not described
+in fsl-ls1088a.dtsi. The first two patches add them.
+
+The device tree includes a reference to the Epson RX-8035
+RTC which depends on this patch series:
+"rtc: Implement support for EPSON RX-8035", reviewed but
+not yet in the Linus tree.
+https://lore.kernel.org/linux-rtc/20210709044518.28769-1-matt@traverse.com.au/T/#t
+
+Changes since v2:
+ - Move flash (NOR and NAND) partitions under a partitions node
+ - Fix minor spelling error in fsl.yaml (s/bassed/based/g)
+
+Changes since v1:
+ - Pick up Reviewed-By tags for PCS and MAC/PHY related parts
+ - Use constants for describing interrupts for the PMU
+ - Use the Cortex-A53 specific PMU compatible instead of the armv8-pmu3 generic
+ - Fix formatting issues for the board DTS (ordering, newlines, node names)
+
+Mathew McBride (5):
+  arm64: dts: ls1088a: add internal PCS for DPMAC1 node
+  arm64: dts: ls1088a: add missing PMU node
+  dt-bindings: vendor-prefixes: add Traverse Technologies
+  dt-bindings: arm: fsl: Add Traverse Ten64 (LS1088A) board
+  arm64: dts: add device tree for Traverse Ten64 (LS1088A)
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 389 ++++++++++++++++++
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  18 +
+ 5 files changed, 416 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.1
 
