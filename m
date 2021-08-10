@@ -2,155 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05AB33E8298
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 20:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B7D3E8329
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 20:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236060AbhHJSMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 14:12:41 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:43707 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234715AbhHJSMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 14:12:31 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628619129; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=oL1WDsEvqvap52+RoHgws/BVmR0/7VIUAB6915T9xi0=; b=KrOUpc1xNtNB5WAOBQI2Kj4Q9M7RME9yDEGGf+bW845y2Swo3RdA5iOxThcH6fjqd8MfQy6p
- b1KDuboG7HVNjToGcQ6BowRaZFl4Wb7ZxZ5J1VDkSY1KJOyAWvKKaTRlyu+0M39oBvfBQsXf
- aXGBS0qxEIAtTyjbiyR+aWmSd0g=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 6112c163b14e7e2ecba9f9aa (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 18:11:47
- GMT
-Sender: pillair=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A481BC28D95; Tue, 10 Aug 2021 18:11:46 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 61494C41634;
-        Tue, 10 Aug 2021 18:11:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 61494C41634
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pillair@codeaurora.org
-From:   Rakesh Pillai <pillair@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
-        sboyd@kernel.org, mpubbise@codeaurora.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-Subject: [PATCH v2] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-Date:   Tue, 10 Aug 2021 23:41:29 +0530
-Message-Id: <1628619089-12502-1-git-send-email-pillair@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S231625AbhHJSqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 14:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231406AbhHJSqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 14:46:08 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B315C0613C1;
+        Tue, 10 Aug 2021 11:45:46 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id t3so22468850plg.9;
+        Tue, 10 Aug 2021 11:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ApjcOuh7duZILh8T6JLUB1Jdv+YHLxNkLoCXW/z5nfY=;
+        b=dcnP4jw5UI8nCSfi/syI5q9gL/kCyB8rWwt7nwllSuIcM0XtYoAbVa6eWY3Ow5Z4/r
+         8ZPSH3RCrUCMKYoxAl48j+IIlKdeHY2dLm37jkGI/SEtwLmNfeD7WHbpskZbX8SoG2KJ
+         kSlUx4kF7SzRochmnIh7U2qZ04m047T+bzTcwdYkY0o+Jc5RPeblTq2sIXmJtfqCbruH
+         Nblgl1TGQORhuv1uHljXAVSn0w4/FR136fvb9n+cdtw7Th0UziS7ohV/NtBgr7Z+o1zG
+         y7Aq2Iph4Dv2eeKVCM0Z5Tt3TvLHGBd5mGaVlJfO3ovj9pH+5oSADoB6OSO6Dvus9GEH
+         u8Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ApjcOuh7duZILh8T6JLUB1Jdv+YHLxNkLoCXW/z5nfY=;
+        b=jIG8Xp+WRxSXZ7fR5/N1QIbJSUr3nBAdHrAh0K+lSqF64Mcl4dzvUpJdPVwbTWp+cK
+         x5vydjeWbBGYD4kffZ4KIXIwlZDwm/a0HkFjqcdmalErcPLmq2IQ/dY84LcewJRNO/ph
+         2cQ65WrtQ3zpoEFCAZwrJqxhL2nZMY/4ADtSoRg7SvbZzL159ogBJHJq/SCVueUZg7eY
+         f+j/JXoLNix9c35iwDu3/xMXJE8Hbyjx3sR/yL2dNJbQWC2NhRrXneQVLltsWb2moCY+
+         nZFzTUDyvkr49cZePQPnvn+N2Ni0evlH6bCBVWXq8uLAPmL449P64IKMC7zeZeaPqk4Y
+         5SDA==
+X-Gm-Message-State: AOAM532eFFP89hc9xGNWMwm2RY93+zyFIcgKwVdbY+0gnaGNlHmUVpqC
+        sqW6IxY8v+FQ4oyx/eWYlR3Amw+ABtPC+ut5
+X-Google-Smtp-Source: ABdhPJyGB11DnKQqwRlqB0bhsQVRQ50tgIHv0X1zL13EgqCJpYK+prTKs4GNxBMWXyqjVkGeF3pIDA==
+X-Received: by 2002:a17:90a:4681:: with SMTP id z1mr18196522pjf.131.1628621145705;
+        Tue, 10 Aug 2021 11:45:45 -0700 (PDT)
+Received: from localhost.localdomain ([125.62.119.16])
+        by smtp.googlemail.com with ESMTPSA id f4sm29933733pgi.68.2021.08.10.11.45.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 11:45:45 -0700 (PDT)
+From:   Puranjay Mohan <puranjay12@gmail.com>
+To:     Michael.Hennerich@analog.com, jic23@kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lars@metafoo.de,
+        Dragos.Bogdan@analog.com, Darius.Berghe@analog.com,
+        andy.shevchenko@gmail.com
+Cc:     Puranjay Mohan <puranjay12@gmail.com>
+Subject: [PATCH v10 0/2] iio: accel: add support for ADXL355
+Date:   Wed, 11 Aug 2021 00:15:34 +0530
+Message-Id: <20210810184536.34443-1-puranjay12@gmail.com>
+X-Mailer: git-send-email 2.30.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the WPSS remoteproc node in dts for
-PIL loading.
+Add the dt-bindings and the driver for ADXL355 3-axis MEMS Accelerometer.
 
-Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
- arch/arm64/boot/dts/qcom/sc7280.dtsi    | 57 +++++++++++++++++++++++++++++++++
- 2 files changed, 61 insertions(+)
+Changes since v9:
+1. Fix white space issues, remove extra lines.
+2. Include bits.h and device.h
+3. Add commas to non-terminal lines in structs etc.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index 64fc22a..2b8bbcd 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -68,3 +68,7 @@
- 		qcom,pre-scaling = <1 1>;
- 	};
- };
-+
-+&remoteproc_wpss {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 53a21d0..41a7826 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -74,6 +74,16 @@
- 			reg = <0 0x8b700000 0 0x10000>;
- 			no-map;
- 		};
-+
-+		wlan_fw_mem: memory@80c00000 {
-+			no-map;
-+			reg = <0x0 0x80c00000 0x0 0xc00000>;
-+		};
-+
-+		wpss_mem: memory@9ae00000 {
-+			no-map;
-+			reg = <0x0 0x9ae00000 0x0 0x1900000>;
-+		};
- 	};
- 
- 	cpus {
-@@ -1270,6 +1280,53 @@
- 			};
- 		};
- 
-+		remoteproc_wpss: remoteproc@8a00000 {
-+			compatible = "qcom,sc7280-wpss-pil";
-+			reg = <0 0x08a00000 0 0x10000>;
-+
-+			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
-+					      <&wpss_smp2p_in 0 IRQ_TYPE_NONE>,
-+					      <&wpss_smp2p_in 1 IRQ_TYPE_NONE>,
-+					      <&wpss_smp2p_in 2 IRQ_TYPE_NONE>,
-+					      <&wpss_smp2p_in 3 IRQ_TYPE_NONE>,
-+					      <&wpss_smp2p_in 7 IRQ_TYPE_NONE>;
-+			interrupt-names = "wdog", "fatal", "ready", "handover",
-+					  "stop-ack", "shutdown-ack";
-+
-+			clocks = <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
-+				 <&gcc GCC_WPSS_AHB_CLK>,
-+				 <&gcc GCC_WPSS_RSCP_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "gcc_wpss_ahb_bdg_mst_clk",
-+				      "gcc_wpss_ahb_clk",
-+				      "gcc_wpss_rscp_clk",
-+				      "xo";
-+
-+			memory-region = <&wpss_mem>;
-+
-+			qcom,smem-states = <&wpss_smp2p_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>,
-+				 <&pdc_reset PDC_WPSS_SYNC_RESET>;
-+			reset-names = "restart", "pdc_sync";
-+
-+			qcom,halt-regs = <&tcsr_mutex_regs 0x37000>;
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-+							     IPCC_MPROC_SIGNAL_GLINK_QMP
-+							     IRQ_TYPE_EDGE_RISING>;
-+				mboxes = <&ipcc IPCC_CLIENT_WPSS
-+						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-+
-+				label = "wpss";
-+				qcom,remote-pid = <13>;
-+			};
-+		};
-+
- 		usb_2: usb@8cf8800 {
- 			compatible = "qcom,sc7280-dwc3", "qcom,dwc3";
- 			reg = <0 0x08cf8800 0 0x400>;
+Changes since v8:
+1. Make scale and offset defines inline and remove them.
+2. Change dt-binding doc to state interrupt polarity only for DRDY pin.
+3. Remove triggered buffer support from this patch series.
+
+Changes since v7:
+1. Update MAINTAINERS to show all driver files.
+2. Set CONFIGS for buffered support in Kconfig.
+
+Changes since v6:
+1. Use interrupt-names property in device tree document.
+2. Add triggered buffer support.
+3. Use a static table for offset and data registers.
+4. Fix coding style issues.
+5. move defines from header to c file.
+
+Changes since v5:
+1. Used get_unaligned_be24() and  get_unaligned_be16() to parse
+acceleration and temperature data. This solves sparse errors and also
+make the code more understandable.
+
+Changes since v4:
+1. Fix errors reported by sparse.
+
+Changes since v3:
+1. Fix errors in yaml DT doc.
+2. Change SPDX-License-Identifier to GPL-2.0-only OR BSD-2-Clause
+
+Changes since v2:
+1. Add separate DT binding doc in yaml.
+2. Use ____cacheline_aligned buffer for regmap_bulk_read/write calls.
+3. Make code consistent by using same style in switch case.
+4. Use FIELD_PREP in place of custom macros.
+5. Make Kconfig description more informative.
+
+Changes since v1:
+1. Remove the declarations for static regmap structures from adxl355.h.
+This was missed in the v1 and caused errors.
+2. Make switch case statements consistent by directly returning from
+each case rather than saving the return in a variable.
+3. Some coding style changes.
+
+Changes since v0:
+1. Move adxl355_hpf_3db_table to adxl355_data structure. This is done to make
+sure that each device gets its own table.
+2. Make local regmap definitions private to adxl355_core.c.
+3. Other minor coding style changes.
+
+Puranjay Mohan (2):
+  dt-bindings: iio: accel: Add DT binding doc for ADXL355
+  iio: accel: Add driver support for ADXL355
+
+ .../bindings/iio/accel/adi,adxl355.yaml       |  88 +++
+ MAINTAINERS                                   |  10 +
+ drivers/iio/accel/Kconfig                     |  29 +
+ drivers/iio/accel/Makefile                    |   3 +
+ drivers/iio/accel/adxl355.h                   |  20 +
+ drivers/iio/accel/adxl355_core.c              | 582 ++++++++++++++++++
+ drivers/iio/accel/adxl355_i2c.c               |  62 ++
+ drivers/iio/accel/adxl355_spi.c               |  65 ++
+ 8 files changed, 859 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+ create mode 100644 drivers/iio/accel/adxl355.h
+ create mode 100644 drivers/iio/accel/adxl355_core.c
+ create mode 100644 drivers/iio/accel/adxl355_i2c.c
+ create mode 100644 drivers/iio/accel/adxl355_spi.c
+
 -- 
-2.7.4
+2.30.1
 
