@@ -2,170 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42C283E56E9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B48D3E5723
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 11:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237078AbhHJJcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 05:32:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
+        id S235565AbhHJJhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 05:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbhHJJcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 05:32:21 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD0DDC061798
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 02:31:59 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id k4so12549740wms.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 02:31:59 -0700 (PDT)
+        with ESMTP id S239199AbhHJJhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 05:37:37 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F65C061798
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 02:37:16 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id e19so6671257pla.10
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 02:37:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=date:from:to:cc:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Fq/OAyt9tR1z4LnLP6//tUkpUqlQ4V8PVc64GMxq34c=;
-        b=FoY37oazvgJBwObkVJeS7apdeD0ExW53Tna+FSuiQK4P0tA0pxBfIFVNeXp/mYxLy1
-         JTOmNxXkeraPJw/epdbG44H8BgWTvRiZrYrx+12/bsBmYc06OmTN7THcP+8+9wWk2u89
-         i5eBj+6DBxjZY9v96ExCbIcUCRB5iFyjyJK84=
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EooUrttQkSGGKk5aXhKQCqIE40W9rEd6lYvmZbP35ic=;
+        b=LuqhlqIXe6YrbxZY2g/8+TVPvMxslVNVuYN5JuyYy2Epm0Woyw8D7Xyaxp3wzPj2h1
+         eIosjtsii1KAOL3rqcoUdQLdWx+p2CiecK9ijCZuDFVSRWOD6Mv7zrxutnW3DCWoqqGQ
+         RYiYezh4wqlyH1re+kN/F+iG9zLFXy5HgyESTF0ywtx21F/WNYfNmTtxFwPQbJ2pUvXf
+         aHX1UbmeXFyikA6j0LhB/gla9voY4g4Q1F2/7Kce63Z+Bpyku8A7zcqIs6vsN844dxed
+         3Rlj816YQWf92/yU62Ts5QUUl4Tq7LeemAzK0WR31fN218C+UDm27tOimkDh1RKG4oRk
+         r2Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=Fq/OAyt9tR1z4LnLP6//tUkpUqlQ4V8PVc64GMxq34c=;
-        b=hulXiNPTFJak3u7nuAm4z/QRiaiCC8yV56qQq6aYIKda1Aww1WroHVpB80D8/rx0FE
-         Huu86RP10Pzme+xpteEMEGJtLPL+U0sLwSCCtY10Pn8l0OAOqnQTmfJocYkPmXhCGiLO
-         E8yAwC7o5YYfAJH+jXDQutzTRKRAE/n/HCfazMHBnNQMfDrf0/zbq7IYhoURc+BfE/+5
-         XPFcOreefYVjel/RdInnVdVEmqtxvemU7LoLm7A6pTnY2b26wtRb7Rqx4fqpt8U/cVmV
-         iZCJl+NV1Jx30hJLzrDGRsAW3IcZmkJp/HRfJRYSMYs3GmnbYeMxrfRbv7FIo22NNCwK
-         6G3w==
-X-Gm-Message-State: AOAM532ET1IGPGVNqJjUBYnCrUvO3wU832kP4VK5d3XWLCkLciiAxEId
-        XfwOi41Ivf/KfXGom9s57g9STA==
-X-Google-Smtp-Source: ABdhPJzvZkH5pcJd6qwMb5LXZEjwx9xzqNaGqoFLYYda0Vgzpy45V7iyyowtXSubND6b/zl1tYBDlQ==
-X-Received: by 2002:a05:600c:2215:: with SMTP id z21mr14300862wml.141.1628587918406;
-        Tue, 10 Aug 2021 02:31:58 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id s13sm2186328wmc.47.2021.08.10.02.31.57
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EooUrttQkSGGKk5aXhKQCqIE40W9rEd6lYvmZbP35ic=;
+        b=TgAaggZHEubu3S5a3lORgiUEEpowqnV5LoFqHh3B4R0/sfdq3Rj5Om2hi61WiS/6DG
+         s0FrqqAnDjfJZmOXinbfWuNba0aUcV7cCoS9XpRwjuNYGl3BgzgG1dnkqOJhEmTcHI6p
+         PDydqZ8vPYrWHHPad7ThdR2Trf4puLO6MfZzwdimy5Hrkko7Vbiz+1CsXF6lmylM43J5
+         VP+tIr/97mpnXkle8FHa6uXzOFlXGqAXsPBbzUd/PHwvtRUpD3TBxZKn1MpJFydv19FJ
+         cNwAg5nThlYQbQ8BAR+4Xli/iK4ds9s6fNZ2kj0LmsT0ZVskEtduDEJamJAJrPYePBk7
+         gFTA==
+X-Gm-Message-State: AOAM531JtuUUSy/Wp+VBrQKB3idNX+fYqu6F4Kn1Fi3KMv3UPmybjRXW
+        0MErB7KXt44HZvEbyIGG0UHw7w==
+X-Google-Smtp-Source: ABdhPJxbg0bywfMRwZdah9ui6neKwc4xUTWf2MtdZORDq+EQsFsh6FebcuBxdZYZcjpEzWJM8wJMFQ==
+X-Received: by 2002:a62:88c5:0:b029:3c5:77f1:ab71 with SMTP id l188-20020a6288c50000b02903c577f1ab71mr22577537pfd.1.1628588235254;
+        Tue, 10 Aug 2021 02:37:15 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:236:db61:d8af:d151])
+        by smtp.gmail.com with ESMTPSA id l18sm18325539pff.24.2021.08.10.02.37.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Aug 2021 02:31:57 -0700 (PDT)
-Date:   Tue, 10 Aug 2021 11:31:55 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Paul Boddie <paul@boddie.org.uk>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 8/8] [RFC] drm/ingenic: convert to component framework
- for jz4780 hdmi
-Message-ID: <YRJHiydE2+6P81hg@phenom.ffwll.local>
-Mail-Followup-To: Paul Cercueil <paul@crapouillou.net>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Paul Boddie <paul@boddie.org.uk>,
-        Jonas Karlman <jonas@kwiboo.se>, dri-devel@lists.freedesktop.org
-References: <cover.1628172477.git.hns@goldelico.com>
- <77554dd2612f418f6ab74a8be06c82b71410e0e6.1628172477.git.hns@goldelico.com>
- <YQv+DC5yTEGlJYuD@pendragon.ideasonboard.com>
- <BDF501D1-BA1D-4866-8EAF-3862F6CEC6F4@goldelico.com>
- <8XJDXQ.X70C5WOD0QB7@crapouillou.net>
+        Tue, 10 Aug 2021 02:37:14 -0700 (PDT)
+Date:   Tue, 10 Aug 2021 17:37:11 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     Jack Yu <jack.yu@realtek.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
+        oder_chiou@realtek.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, lars@metafoo.de,
+        kent_chen@realtek.com, kenny_chen@realtek.com,
+        linux-kernel@vger.kernel.org, derek.fang@realtek.com,
+        shumingf@realtek.com, flove@realtek.com
+Subject: Re: [PATCH] ASoC: dt-bindings: rt1015p: fix syntax error in
+ dts-binding document
+Message-ID: <YRJIx4O4BTybk1gi@google.com>
+References: <20210810020834.32414-1-jack.yu@realtek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8XJDXQ.X70C5WOD0QB7@crapouillou.net>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
+In-Reply-To: <20210810020834.32414-1-jack.yu@realtek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 05, 2021 at 06:17:32PM +0200, Paul Cercueil wrote:
-> Hi Nikolaus and Laurent,
-> 
-> Le jeu., août 5 2021 at 18:07:20 +0200, H. Nikolaus Schaller
-> <hns@goldelico.com> a écrit :
-> > Hi Laurent,
-> > 
-> > >  Am 05.08.2021 um 17:04 schrieb Laurent Pinchart
-> > > <laurent.pinchart@ideasonboard.com>:
-> > > 
-> > >  Hi Nikolaus,
-> > > 
-> > >  Thank you for the patch.
-> > > 
-> > >  On Thu, Aug 05, 2021 at 04:07:57PM +0200, H. Nikolaus Schaller
-> > > wrote:
-> > > >  This patch attempts to convert the ingenic-dw-hdmi driver
-> > > >  into a version that uses the component framework.
-> > > 
-> > >  Why ? What problem would this solve ?
-> > 
-> > Well, it was suggested in a v1 we did post several months ago. I have
-> > not
-> > looked up by whom and do not exactly remember the reasons.
-> > 
-> > We now simply thought that it is common style since dome dw-hdmi drivers
-> > make use of it but some others don't. And we got it working without.
-> > 
-> > If it is not needed/requested by anyone, we can drop it from v3 (or add
-> > later).
-> 
-> I don't remember exactly TBH - the only reason to use a component is to have
-> access to the main driver's "drm_device" structure. The IPU needs it for
-> instance, to register planes; but I don't think this HDMI driver needs it as
-> it registers a bridge.
+On Tue, Aug 10, 2021 at 10:08:34AM +0800, Jack Yu wrote:
+> Signed-off-by: Jack Yu <jack.yu@realtek.com>
+Would be better to put the tag:
+Fixes: 064478e4877c ("ASoC: dt-bindings: rt1015p: add new compatible id")
 
-Imo for bridges/panels we really should move _away_ from component, not
-towards it. If there's a gap in the bridge/panel api (I think there's some
-patches floating around exactly to make this more a multi-step process for
-reasons like the above) then we need to fix that.
-
-Unfortunately the dw-hdmi and also dw-dsi drivers are very much built on
-top of component.c and side-step the bridge stuff quite a lot. That
-results in quite bad integration pains all around as we add more users of
-these.
-
-The other unfortunate thing is that there's not many people working in
-this area, so fundamental improvements to the core design take a long time
-to make and then even longer to roll out. It's a bit a tough spot, but
-also, help very much welcome :-)
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>  properties:
+>    compatible:
+>        oneOf:
+> -        const: realtek,rt1015p
+> -        const: realtek,rt1019p
+> +        - const: realtek,rt1015p
+> +        - const: realtek,rt1019p
+Not directly related to the fix but the "oneOf" has 2 extra space indent from the upper layer.
