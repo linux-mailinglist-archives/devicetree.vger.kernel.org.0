@@ -2,252 +2,607 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 918483E7CC8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 17:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 770213E7CF7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 18:00:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238770AbhHJPu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 11:50:56 -0400
-Received: from mail-bn8nam12on2068.outbound.protection.outlook.com ([40.107.237.68]:37377
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232968AbhHJPuz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 11:50:55 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PEQrcGw01zI5imzKBdHqNw8mTLoB9wDTsem5XDMyzoiQBnGdldJCRPqf6KwXKhHn1yjJlUYdEyN/LrHPvDP5aFZxilgq3R12NSdCiEnafxu0ImonU+V4pmt7rtkAfvw7ypswRiUljhXotgRthoRL/RKK5+cxuOzlKJnGV2/2d6TuCmMyByC68O/2JNe4vOMra8etDHDmZ1noFEHj6vjegeMId5nL69sB5tGYY+w5D/jBTOxFbbSamoTfvBE/8Jn7YhB9VXWNBQB/shmtJabZxFd2LZrdobxwlyhsGRiPbmWeabjoNL7HNiNDYBR66etT5TUfKe8f+zsYVhs53GO/Pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HhNLSO/323kBeOJR9Qhbf3XHiy5ZuCpby0tI6G9HBw8=;
- b=UvFl4qiZELDJF/ZYVFteOxY//6gewquR+tivce7whAnDQKKdR43Ai8eD13apsLaBi6rpkhUCsQmokNc+dvmdxuVTzP/nj3M4VTNWWtrDT7WtG/g+33pb8EA1CgGHTmettCQCFGwWUUaib4JDk/Tj5UhUCY8Hs3zLb4ust/OjVraANWFF65eJqocBC1i1Jpbn/zJ44xB7xTtx+zW9SxdppMgs2jmPPCwHamn2iEDQcbhxkY2IR7h7asVGGEfqhATvpgXQGRGPQBCqGcxz7kuDJ9czzkzznxukGwHYkXp+ri17ezyNCyPRndz6yboFkuEmeVZqWqnklT8qdI3MxU98XQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=linux.ie smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HhNLSO/323kBeOJR9Qhbf3XHiy5ZuCpby0tI6G9HBw8=;
- b=s+/l40yUOJcCvXWHTTwd6kLWgnEe4vbx1XdX+HdfsOCIB5US2NpkBPEMJFIpkuEA88kGlngcVbiaAWy35q0GYwmfGOFQ217teM58My3p/j2dzZphnhQRy9UWczAcFBMAjcQMXAqOcxsmjEuk00g9IuvMtNpS6SHAKtnt9sGIfNjKd0YvaaJKiywlM5uC49S/xk1QTRXnS7+7ZUJuO/hafx8ViE+zK801dA4ZaBaXhNqUnHtoVAaAWPP68bphNvABvrcuqL1PUATDITEgThcSq6One48c5Dz6u/CZ1HxKCVrbsaw//8udZLTbefcsFfSJPjNNTaYKSGrCrf362d5jRA==
-Received: from MW4P221CA0009.NAMP221.PROD.OUTLOOK.COM (2603:10b6:303:8b::14)
- by CH2PR12MB3847.namprd12.prod.outlook.com (2603:10b6:610:2f::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.14; Tue, 10 Aug
- 2021 15:50:32 +0000
-Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8b:cafe::56) by MW4P221CA0009.outlook.office365.com
- (2603:10b6:303:8b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16 via Frontend
- Transport; Tue, 10 Aug 2021 15:50:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; linux.ie; dkim=none (message not signed)
- header.d=none;linux.ie; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4394.16 via Frontend Transport; Tue, 10 Aug 2021 15:50:31 +0000
-Received: from [10.21.26.179] (172.20.187.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 10 Aug
- 2021 15:50:29 +0000
-Subject: Re: [PATCH v2 1/3] dt-bindings: Add YAML bindings for Host1x and
- NVDEC
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <jonathanh@nvidia.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
+        id S233605AbhHJQBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 12:01:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239053AbhHJQAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 12:00:54 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72481C0613C1;
+        Tue, 10 Aug 2021 09:00:29 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id g138so1597914wmg.4;
+        Tue, 10 Aug 2021 09:00:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wEBNOuULbonlBX66+WtmXYjvzCxn7CstM1XVkP+RaGE=;
+        b=VM95yTf+4s3dBVENaBBNRrZQaGHbqsIeryNDctZDk/P3B3AvopL5K6mfLv/otNIFR4
+         8LUqM2TkuOg5znoB+QSuiNetb5lJoimAxQcXQv5jV2vYqPNMAXbdvn79QwSLlAqNTM0H
+         gQVksJ4i0wK/Mbh3uR8pCDMJYR8J6j89G1ajCV7tgjdw2yvNY5Ws9UDwLofd7z/k9bVG
+         LPhbchZgpQyqPWeCphZXDZTBZjfKLA7W+8AkJXsEvL598w+eaETA83OdMtfoI8Cu5OOh
+         9nbXuPrxxzIb4HLtrzcK5qBdjElY+/95CiEGvHR1bMcMR8PpI9lFlGPUyIm/sPOB0hWe
+         1t6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wEBNOuULbonlBX66+WtmXYjvzCxn7CstM1XVkP+RaGE=;
+        b=fUj/JAnJ9nnqvw7c+uaS9OFqGFEtGLxCU1c5R60tet3gwOlUgntHCWYNB3j4sFF/eX
+         hA7w87kc0ZKcNPescEYFy6zgLeVG4qDxwhiMi9GQgxg27v8kaJIvg/BqjkAGjzwsYcgb
+         1Dznrpvki40gqjY4/z+5zBpr7aw8Ujk8ZuBor64OQ9G1tklHT/h5dGXebnj7vvyZL9FA
+         M/VUHx92CtPCrj6qi0RxEYEiq4V5qnRJ4A32XTpl0imXdgxnqFITrVpG6q2SV9IGyPOd
+         2fF9oIXqkN1/vjK08RQoDDQNEOycmtpWhq/ENosykhcYEnZDz4c1WNL+Y+JBJ4svBoDa
+         MH7w==
+X-Gm-Message-State: AOAM530jZ5h6bebJFrMLLux6/UZi8GzInsqIqaZVnkzkTIatb1iIfVXn
+        HkVmxDExYEFwRwgcXmupW9w=
+X-Google-Smtp-Source: ABdhPJxXtK9rfEqGNnHRk4b/CTLfWzfnj+1dYpWworDPdZw02NbKGa+NUBPdNu5SM3XEVjX22NBapg==
+X-Received: by 2002:a1c:7706:: with SMTP id t6mr7871704wmi.30.1628611228062;
+        Tue, 10 Aug 2021 09:00:28 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id u5sm6760715wrr.94.2021.08.10.09.00.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 09:00:26 -0700 (PDT)
+Date:   Tue, 10 Aug 2021 18:02:52 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     jonathanh@nvidia.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] drm/tegra: Add NVDEC driver
+Message-ID: <YRKjLOqBpxBzG62a@orome.fritz.box>
 References: <20210806123450.2970777-1-mperttunen@nvidia.com>
- <20210806123450.2970777-2-mperttunen@nvidia.com>
- <YRKengKZmFtgsIZy@orome.fritz.box>
-From:   Mikko Perttunen <mperttunen@nvidia.com>
-Message-ID: <c06df24f-989b-fdfe-ea04-867de1aa8828@nvidia.com>
-Date:   Tue, 10 Aug 2021 18:50:26 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ <20210806123450.2970777-4-mperttunen@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <YRKengKZmFtgsIZy@orome.fritz.box>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.187.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 503aa930-5e8e-4d3a-b57d-08d95c1695b1
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3847:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB3847386806436D7E6F0340D3B2F79@CH2PR12MB3847.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ks0hOxGIZPc2PSfWU1sanmAYuj/MWSwBPlmAWFQux9V3aOd9wuhRcXfDgQZRP7q41Un8EDOulVEw/cFNJxxQzEiVY2Bp++h15sNdkfN4rhnjbn1Iy3WLtlZgxw6gl6p6Nhv6M7dfhH1cWLoHDB+r39FLqtZdJWCR9UgR52HWOSfT5ha/cv3IyEU1chizvC/C1QDPNP+41aQozQcv0mFEtpCK4SAnP/pE9ec1xCp9VNUN1yX2CWTdP/sh4wl4DNBYVG2xCgfZCu4zpkh0cY+20kEg2qM0aCiI1G8xkUE3MLhn81HBZ0+/A6kHf55PYArKlEVqBC5VEtmzbj3b8+Zwiv9SUGHcCWaQDU31ht+k7pPDEiCmRlemzvHP6VVpOVHnH9wlBNc96O9GtzlC1wwi1JCZOfgAZuaVCSH6dzPTBp4wQZUExhROA1t/H1iUbCUlds6QRDF5VIpX5a689ntb0lebY4CUO6bT5HBuMqJSzjVkliv7e3+0Pi4SprXQ7bOj/pU7CwAsEg5iZTio5O1B2iMMqaZxVgl2jPkivSZmJob/X9mK4lKXMxUmXI9AckW1nyP+ioFLIKoUHZcAKq4v9ilWsSem5LZuwQ9Yj0dD+8C19u7x7YWxfaiq+9DGEmjoVoEWokW8d7qPoR4/6VMYzJmZLOqmhafSBXfNZYdjm4JauGXvZ9EqY+8wDYXrEjHrKf85aDoW/RfQ+Bk+zU3aJRA31rxVWP+RIxrxQJuXFQhVehYqtVROi3mIeKVKUyNE8M0446iFZCsEV8QScCu58/OdEA40kIDyDQjjwc9oMrq1L4Ga1sqhS23Bmzov2i109M4mCVgFrZhCN61W/iiYLsuGeYSOr4HSfrg5Ief1aIwUZw+MnFIlhnHCq4v6Mkxq1GVrd1iodh7leRTIqq/Kig==
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(346002)(136003)(376002)(396003)(39860400002)(46966006)(36840700001)(316002)(36906005)(36860700001)(5660300002)(2616005)(426003)(2906002)(4326008)(31686004)(356005)(16576012)(8936002)(31696002)(8676002)(336012)(6666004)(26005)(82310400003)(36756003)(16526019)(47076005)(186003)(110136005)(54906003)(86362001)(70586007)(7636003)(70206006)(478600001)(83380400001)(82740400003)(32563001)(43740500002)(357404004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2021 15:50:31.8943
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 503aa930-5e8e-4d3a-b57d-08d95c1695b1
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3847
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="VPqa6mWmG7/oyOgx"
+Content-Disposition: inline
+In-Reply-To: <20210806123450.2970777-4-mperttunen@nvidia.com>
+User-Agent: Mutt/2.1.1 (e2a89abc) (2021-07-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.8.2021 18.43, Thierry Reding wrote:
-> On Fri, Aug 06, 2021 at 03:34:48PM +0300, Mikko Perttunen wrote:
->> Convert the original Host1x bindings to YAML and add new bindings for
->> NVDEC, now in a more appropriate location. The old text bindings
->> for Host1x and engines are still kept at display/tegra/ since they
->> encompass a lot more engines that haven't been converted over yet.
->>
->> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->> ---
->> v2:
->> * Fix issues pointed out in v1
->> * Add T194 nvidia,instance property
->> ---
->>   .../gpu/host1x/nvidia,tegra20-host1x.yaml     | 131 ++++++++++++++++++
->>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 +++++++++++++++
->>   MAINTAINERS                                   |   1 +
->>   3 files changed, 241 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra20-host1x.yaml
->>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> 
-> Can we split off the NVDEC bindings addition into a separate patch? I've
-> been working on converting the existing host1x bindings in full to json-
-> schema and this partial conversion would conflict with that effort.
-> 
-> I assume that NVDEC itself validates properly even if host1x hasn't been
-> converted yet?
 
-Sure. I thought I had some problems with this before but can't see any now.
+--VPqa6mWmG7/oyOgx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
->> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->> new file mode 100644
->> index 000000000000..fc535bb7aee0
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->> @@ -0,0 +1,109 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Device tree binding for NVIDIA Tegra NVDEC
->> +
->> +description: |
->> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
->> +  and newer chips. It is located on the Host1x bus and typically
->> +  programmed through Host1x channels.
->> +
->> +maintainers:
->> +  - Thierry Reding <treding@gmail.com>
->> +  - Mikko Perttunen <mperttunen@nvidia.com>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^nvdec@[0-9a-f]*$"
->> +
->> +  compatible:
->> +    enum:
->> +      - nvidia,tegra210-nvdec
->> +      - nvidia,tegra186-nvdec
->> +      - nvidia,tegra194-nvdec
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: nvdec
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    items:
->> +      - const: nvdec
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  interconnects:
->> +    items:
->> +      - description: DMA read memory client
->> +      - description: DMA read 2 memory client
->> +      - description: DMA write memory client
->> +
->> +  interconnect-names:
->> +    items:
->> +      - const: dma-mem
->> +      - const: read2
-> 
-> The convention that we've used so far has been to start numbering these
-> at 0 and use a dash, so this would be "read-1".
+On Fri, Aug 06, 2021 at 03:34:50PM +0300, Mikko Perttunen wrote:
+> Add support for booting and using NVDEC on Tegra210, Tegra186
+> and Tegra194 to the Host1x and TegraDRM drivers. Booting in
+> secure mode is not currently supported.
+>=20
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+> v2:
+> * Use devm_platform_get_and_ioremap_resource
+> * Remove reset handling, done by power domain code
+> * Assume runtime PM is enabled
+> ---
+>  drivers/gpu/drm/tegra/Makefile |   3 +-
+>  drivers/gpu/drm/tegra/drm.c    |   4 +
+>  drivers/gpu/drm/tegra/drm.h    |   1 +
+>  drivers/gpu/drm/tegra/nvdec.c  | 473 +++++++++++++++++++++++++++++++++
+>  drivers/gpu/host1x/dev.c       |  18 ++
+>  include/linux/host1x.h         |   2 +
+>  6 files changed, 500 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/tegra/nvdec.c
+>=20
+> diff --git a/drivers/gpu/drm/tegra/Makefile b/drivers/gpu/drm/tegra/Makef=
+ile
+> index 5d2039f0c734..b248c631f790 100644
+> --- a/drivers/gpu/drm/tegra/Makefile
+> +++ b/drivers/gpu/drm/tegra/Makefile
+> @@ -24,7 +24,8 @@ tegra-drm-y :=3D \
+>  	gr2d.o \
+>  	gr3d.o \
+>  	falcon.o \
+> -	vic.o
+> +	vic.o \
+> +	nvdec.o
+> =20
+>  tegra-drm-y +=3D trace.o
+> =20
+> diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+> index b20fd0833661..5f5afd7ba37e 100644
+> --- a/drivers/gpu/drm/tegra/drm.c
+> +++ b/drivers/gpu/drm/tegra/drm.c
+> @@ -1337,15 +1337,18 @@ static const struct of_device_id host1x_drm_subde=
+vs[] =3D {
+>  	{ .compatible =3D "nvidia,tegra210-sor", },
+>  	{ .compatible =3D "nvidia,tegra210-sor1", },
+>  	{ .compatible =3D "nvidia,tegra210-vic", },
+> +	{ .compatible =3D "nvidia,tegra210-nvdec", },
+>  	{ .compatible =3D "nvidia,tegra186-display", },
+>  	{ .compatible =3D "nvidia,tegra186-dc", },
+>  	{ .compatible =3D "nvidia,tegra186-sor", },
+>  	{ .compatible =3D "nvidia,tegra186-sor1", },
+>  	{ .compatible =3D "nvidia,tegra186-vic", },
+> +	{ .compatible =3D "nvidia,tegra186-nvdec", },
+>  	{ .compatible =3D "nvidia,tegra194-display", },
+>  	{ .compatible =3D "nvidia,tegra194-dc", },
+>  	{ .compatible =3D "nvidia,tegra194-sor", },
+>  	{ .compatible =3D "nvidia,tegra194-vic", },
+> +	{ .compatible =3D "nvidia,tegra194-nvdec", },
+>  	{ /* sentinel */ }
+>  };
+> =20
+> @@ -1369,6 +1372,7 @@ static struct platform_driver * const drivers[] =3D=
+ {
+>  	&tegra_gr2d_driver,
+>  	&tegra_gr3d_driver,
+>  	&tegra_vic_driver,
+> +	&tegra_nvdec_driver,
+>  };
+> =20
+>  static int __init host1x_drm_init(void)
+> diff --git a/drivers/gpu/drm/tegra/drm.h b/drivers/gpu/drm/tegra/drm.h
+> index 8b28327c931c..fc0a19554eac 100644
+> --- a/drivers/gpu/drm/tegra/drm.h
+> +++ b/drivers/gpu/drm/tegra/drm.h
+> @@ -202,5 +202,6 @@ extern struct platform_driver tegra_sor_driver;
+>  extern struct platform_driver tegra_gr2d_driver;
+>  extern struct platform_driver tegra_gr3d_driver;
+>  extern struct platform_driver tegra_vic_driver;
+> +extern struct platform_driver tegra_nvdec_driver;
+> =20
+>  #endif /* HOST1X_DRM_H */
+> diff --git a/drivers/gpu/drm/tegra/nvdec.c b/drivers/gpu/drm/tegra/nvdec.c
+> new file mode 100644
+> index 000000000000..4a58b5357473
+> --- /dev/null
+> +++ b/drivers/gpu/drm/tegra/nvdec.c
+> @@ -0,0 +1,473 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2015-2021, NVIDIA Corporation.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/host1x.h>
+> +#include <linux/iommu.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +
+> +#include <soc/tegra/pmc.h>
+> +
+> +#include "drm.h"
+> +#include "falcon.h"
+> +#include "vic.h"
+> +
+> +struct nvdec_config {
+> +	const char *firmware;
+> +	unsigned int version;
+> +	bool supports_sid;
+> +	int num_instances;
 
-Will fix.
+This can be unsigned int.
 
-> 
->> +      - const: write
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - power-domains
->> +
->> +if:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        const: nvidia,tegra194-host1x
->> +then:
->> +  properties:
->> +    nvidia,instance:
->> +      items:
->> +        - description: 0 for NVDEC0, or 1 for NVDEC1
-> 
-> I know we had discussed this before, but looking at the driver patch, I
-> don't actually see this being used now, so I wonder if we still need it.
-> 
->> +additionalProperties: true
-> 
-> Maybe this should have a comment noting that this should really be
-> unevaluatedProperties: false, but we can't use that because the tooling
-> doesn't support it yet?
+> +};
+> +
+> +struct nvdec {
+> +	struct falcon falcon;
+> +
+> +	void __iomem *regs;
+> +	struct tegra_drm_client client;
 
-I can add such a comment if desired. Honestly, I don't really know what 
-'unevaluatedProperties' means or does -- the explanation in 
-example-schema.yaml doesn't seem like it's relevant here and I cannot 
-find any other documentation.
+Traditionally this goes first to make the to_nvdec() cast helper a
+no-op. But I see that we also got this wrong for VIC, and that's
+probably where you copied this from. So nevermind, we can fix that
+in a later patch.
 
-Thanks,
-Mikko
+> +	struct host1x_channel *channel;
+> +	struct device *dev;
+> +	struct clk *clk;
+> +
+> +	/* Platform configuration */
+> +	const struct nvdec_config *config;
+> +};
+> +
+> +static inline struct nvdec *to_nvdec(struct tegra_drm_client *client)
+> +{
+> +	return container_of(client, struct nvdec, client);
+> +}
+> +
+> +static void nvdec_writel(struct nvdec *nvdec, u32 value, unsigned int of=
+fset)
+> +{
+> +	writel(value, nvdec->regs + offset);
+> +}
+> +
+> +static int nvdec_boot(struct nvdec *nvdec)
+> +{
+> +#ifdef CONFIG_IOMMU_API
+> +	struct iommu_fwspec *spec =3D dev_iommu_fwspec_get(nvdec->dev);
+> +#endif
+> +	int err =3D 0;
 
-> 
-> Rob, what's the current best practice for that? I see that there are
-> quite a few bindings that use unevaluatedProperties, so I wonder if we
-> just ignore errors from that for now? Or do we have some development
-> branch of the tooling somewhere that supports this now? I vaguely recall
-> reading about work in progress patches for this, but I can't find the
-> link now to see if there's been an update since I last looked.
-> 
-> Thierry
-> 
+Why does this need to be initialized?
+
+> +
+> +#ifdef CONFIG_IOMMU_API
+> +	if (nvdec->config->supports_sid && spec) {
+> +		u32 value;
+> +
+> +		value =3D TRANSCFG_ATT(1, TRANSCFG_SID_FALCON) |
+> +			TRANSCFG_ATT(0, TRANSCFG_SID_HW);
+
+This fits on a single line. The limit of characters per line was
+recently bumped to 100.
+
+> +		nvdec_writel(nvdec, value, VIC_TFBIF_TRANSCFG);
+> +
+> +		if (spec->num_ids > 0) {
+> +			value =3D spec->ids[0] & 0xffff;
+> +
+> +			nvdec_writel(nvdec, value, VIC_THI_STREAMID0);
+> +			nvdec_writel(nvdec, value, VIC_THI_STREAMID1);
+> +		}
+> +	}
+> +#endif
+> +
+> +	err =3D falcon_boot(&nvdec->falcon);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	err =3D falcon_wait_idle(&nvdec->falcon);
+> +	if (err < 0) {
+> +		dev_err(nvdec->dev,
+> +			"failed to set application ID and FCE base\n");
+
+Same here.
+
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int nvdec_init(struct host1x_client *client)
+> +{
+> +	struct tegra_drm_client *drm =3D host1x_to_drm_client(client);
+> +	struct drm_device *dev =3D dev_get_drvdata(client->host);
+> +	struct tegra_drm *tegra =3D dev->dev_private;
+> +	struct nvdec *nvdec =3D to_nvdec(drm);
+> +	int err;
+> +
+> +	err =3D host1x_client_iommu_attach(client);
+> +	if (err < 0 && err !=3D -ENODEV) {
+> +		dev_err(nvdec->dev, "failed to attach to domain: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	nvdec->channel =3D host1x_channel_request(client);
+> +	if (!nvdec->channel) {
+> +		err =3D -ENOMEM;
+> +		goto detach;
+> +	}
+> +
+> +	client->syncpts[0] =3D host1x_syncpt_request(client, 0);
+> +	if (!client->syncpts[0]) {
+> +		err =3D -ENOMEM;
+> +		goto free_channel;
+> +	}
+> +
+> +	err =3D tegra_drm_register_client(tegra, drm);
+> +	if (err < 0)
+> +		goto free_syncpt;
+> +
+> +	/*
+> +	 * Inherit the DMA parameters (such as maximum segment size) from the
+> +	 * parent host1x device.
+> +	 */
+> +	client->dev->dma_parms =3D client->host->dma_parms;
+> +
+> +	return 0;
+> +
+> +free_syncpt:
+> +	host1x_syncpt_put(client->syncpts[0]);
+> +free_channel:
+> +	host1x_channel_put(nvdec->channel);
+> +detach:
+> +	host1x_client_iommu_detach(client);
+> +
+> +	return err;
+> +}
+> +
+> +static int nvdec_exit(struct host1x_client *client)
+> +{
+> +	struct tegra_drm_client *drm =3D host1x_to_drm_client(client);
+> +	struct drm_device *dev =3D dev_get_drvdata(client->host);
+> +	struct tegra_drm *tegra =3D dev->dev_private;
+> +	struct nvdec *nvdec =3D to_nvdec(drm);
+> +	int err;
+> +
+> +	/* avoid a dangling pointer just in case this disappears */
+> +	client->dev->dma_parms =3D NULL;
+> +
+> +	err =3D tegra_drm_unregister_client(tegra, drm);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	host1x_syncpt_put(client->syncpts[0]);
+> +	host1x_channel_put(nvdec->channel);
+> +	host1x_client_iommu_detach(client);
+> +
+> +	if (client->group) {
+> +		dma_unmap_single(nvdec->dev, nvdec->falcon.firmware.phys,
+> +				 nvdec->falcon.firmware.size, DMA_TO_DEVICE);
+> +		tegra_drm_free(tegra, nvdec->falcon.firmware.size,
+> +			       nvdec->falcon.firmware.virt,
+> +			       nvdec->falcon.firmware.iova);
+> +	} else {
+> +		dma_free_coherent(nvdec->dev, nvdec->falcon.firmware.size,
+> +				  nvdec->falcon.firmware.virt,
+> +				  nvdec->falcon.firmware.iova);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct host1x_client_ops nvdec_client_ops =3D {
+> +	.init =3D nvdec_init,
+> +	.exit =3D nvdec_exit,
+> +};
+> +
+> +static int nvdec_load_firmware(struct nvdec *nvdec)
+> +{
+> +	struct host1x_client *client =3D &nvdec->client.base;
+> +	struct tegra_drm *tegra =3D nvdec->client.drm;
+> +	dma_addr_t iova;
+> +	size_t size;
+> +	void *virt;
+> +	int err;
+> +
+> +	if (nvdec->falcon.firmware.virt)
+> +		return 0;
+> +
+> +	err =3D falcon_read_firmware(&nvdec->falcon, nvdec->config->firmware);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	size =3D nvdec->falcon.firmware.size;
+> +
+> +	if (!client->group) {
+> +		virt =3D dma_alloc_coherent(nvdec->dev, size, &iova, GFP_KERNEL);
+> +
+> +		err =3D dma_mapping_error(nvdec->dev, iova);
+> +		if (err < 0)
+> +			return err;
+> +	} else {
+> +		virt =3D tegra_drm_alloc(tegra, size, &iova);
+> +	}
+> +
+> +	nvdec->falcon.firmware.virt =3D virt;
+> +	nvdec->falcon.firmware.iova =3D iova;
+> +
+> +	err =3D falcon_load_firmware(&nvdec->falcon);
+> +	if (err < 0)
+> +		goto cleanup;
+> +
+> +	/*
+> +	 * In this case we have received an IOVA from the shared domain, so we
+> +	 * need to make sure to get the physical address so that the DMA API
+> +	 * knows what memory pages to flush the cache for.
+> +	 */
+> +	if (client->group) {
+> +		dma_addr_t phys;
+> +
+> +		phys =3D dma_map_single(nvdec->dev, virt, size, DMA_TO_DEVICE);
+> +
+> +		err =3D dma_mapping_error(nvdec->dev, phys);
+> +		if (err < 0)
+> +			goto cleanup;
+> +
+> +		nvdec->falcon.firmware.phys =3D phys;
+> +	}
+> +
+> +	return 0;
+> +
+> +cleanup:
+> +	if (!client->group)
+> +		dma_free_coherent(nvdec->dev, size, virt, iova);
+> +	else
+> +		tegra_drm_free(tegra, size, virt, iova);
+> +
+> +	return err;
+> +}
+> +
+> +
+> +static int nvdec_runtime_resume(struct device *dev)
+> +{
+> +	struct nvdec *nvdec =3D dev_get_drvdata(dev);
+> +	int err;
+> +
+> +	err =3D clk_prepare_enable(nvdec->clk);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	usleep_range(10, 20);
+> +
+> +	err =3D nvdec_load_firmware(nvdec);
+> +	if (err < 0)
+> +		goto disable;
+> +
+> +	err =3D nvdec_boot(nvdec);
+> +	if (err < 0)
+> +		goto disable;
+> +
+> +	return 0;
+> +
+> +disable:
+> +	clk_disable_unprepare(nvdec->clk);
+> +	return err;
+> +}
+> +
+> +static int nvdec_runtime_suspend(struct device *dev)
+> +{
+> +	struct nvdec *nvdec =3D dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(nvdec->clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int nvdec_open_channel(struct tegra_drm_client *client,
+> +			    struct tegra_drm_context *context)
+> +{
+> +	struct nvdec *nvdec =3D to_nvdec(client);
+> +	int err;
+> +
+> +	err =3D pm_runtime_get_sync(nvdec->dev);
+> +	if (err < 0) {
+> +		pm_runtime_put(nvdec->dev);
+> +		return err;
+> +	}
+> +
+> +	context->channel =3D host1x_channel_get(nvdec->channel);
+> +	if (!context->channel) {
+> +		pm_runtime_put(nvdec->dev);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void nvdec_close_channel(struct tegra_drm_context *context)
+> +{
+> +	struct nvdec *nvdec =3D to_nvdec(context->client);
+> +
+> +	host1x_channel_put(context->channel);
+> +	pm_runtime_put(nvdec->dev);
+> +}
+> +
+> +static const struct tegra_drm_client_ops nvdec_ops =3D {
+> +	.open_channel =3D nvdec_open_channel,
+> +	.close_channel =3D nvdec_close_channel,
+> +	.submit =3D tegra_drm_submit,
+> +};
+> +
+> +#define NVIDIA_TEGRA_210_NVDEC_FIRMWARE "nvidia/tegra210/nvdec.bin"
+> +
+> +static const struct nvdec_config nvdec_t210_config =3D {
+> +	.firmware =3D NVIDIA_TEGRA_210_NVDEC_FIRMWARE,
+> +	.version =3D 0x21,
+> +	.supports_sid =3D false,
+> +};
+> +
+> +#define NVIDIA_TEGRA_186_NVDEC_FIRMWARE "nvidia/tegra186/nvdec.bin"
+> +
+> +static const struct nvdec_config nvdec_t186_config =3D {
+> +	.firmware =3D NVIDIA_TEGRA_186_NVDEC_FIRMWARE,
+> +	.version =3D 0x18,
+> +	.supports_sid =3D true,
+> +};
+
+Shouldn't the above both have .num_instances =3D 1?
+
+> +
+> +#define NVIDIA_TEGRA_194_NVDEC_FIRMWARE "nvidia/tegra194/nvdec.bin"
+> +
+> +static const struct nvdec_config nvdec_t194_config =3D {
+> +	.firmware =3D NVIDIA_TEGRA_194_NVDEC_FIRMWARE,
+> +	.version =3D 0x19,
+> +	.supports_sid =3D true,
+
+And shouldn't this have .num_instances =3D 2?
+
+> +};
+> +
+> +static const struct of_device_id tegra_nvdec_of_match[] =3D {
+> +	{ .compatible =3D "nvidia,tegra210-nvdec", .data =3D &nvdec_t210_config=
+ },
+> +	{ .compatible =3D "nvidia,tegra186-nvdec", .data =3D &nvdec_t186_config=
+ },
+> +	{ .compatible =3D "nvidia,tegra194-nvdec", .data =3D &nvdec_t194_config=
+ },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, tegra_nvdec_of_match);
+> +
+> +static int nvdec_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct host1x_syncpt **syncpts;
+> +	struct nvdec *nvdec;
+> +	u32 instance;
+> +	int err;
+> +
+> +	/* inherit DMA mask from host1x parent */
+> +	err =3D dma_coerce_mask_and_coherent(dev, *dev->parent->dma_mask);
+> +	if (err < 0) {
+> +		dev_err(&pdev->dev, "failed to set DMA mask: %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	nvdec =3D devm_kzalloc(dev, sizeof(*nvdec), GFP_KERNEL);
+> +	if (!nvdec)
+> +		return -ENOMEM;
+> +
+> +	nvdec->config =3D of_device_get_match_data(dev);
+> +
+> +	syncpts =3D devm_kzalloc(dev, sizeof(*syncpts), GFP_KERNEL);
+> +	if (!syncpts)
+> +		return -ENOMEM;
+> +
+> +	nvdec->regs =3D devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+> +	if (IS_ERR(nvdec->regs))
+> +		return PTR_ERR(nvdec->regs);
+> +
+> +	nvdec->clk =3D devm_clk_get(dev, NULL);
+> +	if (IS_ERR(nvdec->clk)) {
+> +		dev_err(&pdev->dev, "failed to get clock\n");
+> +		return PTR_ERR(nvdec->clk);
+> +	}
+> +
+> +	err =3D of_property_read_u32(dev->of_node, "nvidia,instance", &instance=
+);
+> +	if (err < 0)
+> +		instance =3D 0;
+> +
+> +	if (instance > nvdec->config->num_instances)
+> +		return -EINVAL;
+
+I assume nvidia,instance is zero-based? Shouldn't this then be:
+
+	if (instance >=3D nvdec->config->num_instances)
+
+instead? With the current code, a second instance (nvidia,instance =3D
+<1>) would be accepted, even if the SoC only supported a single
+instance.
+
+Thierry
+
+--VPqa6mWmG7/oyOgx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmESoykACgkQ3SOs138+
+s6Gfww/9G15WmhCkYcQloKlhRjgh/fgjWtQny/pcwGlHEXbXd+tNzKMzvTkX5mNM
+RkeYWv4Ibwiv7jRm3cKh/w44GYKFe+7yxjPo76gTpyjfBEAisJC5862J7IKq8o/Y
+Au7vdaEyG0VR5KCYadyiDzI06tAuZgIg2cAJl+wB3DYbKmR4xRE0Fq4kxaTK2CZL
+sBAYzvt6IungP36Nq/nl+W4oHecIe/r8qE8RkZFxTenG+8uTUtHjtiuIdLGCHnyU
+aivu87uRvRjSgS1XJEAl4SUhsinYv/CJU0k6e7cvcEJZazpmqqe5AVvqgWPcNMY5
+o2T4oGJuyt+i3PYrx0OO/FoUz1j8rJMoZ6QixaF647vSNp1Yxe+WPkMXz98r1a9i
+1nORdrV4C+6/O1bcmMX7fR3ZlJc5QNrkbkFrG6hFZg4FrHo00MZPlCxGb39nCtVa
+z80I+Pl/TBv1VyXyqULU+LXObfNgYOCEO/5p70hTyeVRNajrpnN3F1QHlyRGvFet
+rLeNn8NfKg09m35e67k8K8NPcE09iZtMnZpnzI3n3A23uJVKrAGwHTmowoQEY26p
+b25NlgkW+fgWr76czIwByPvRhdjwTBuDA7lZ/ic3/Q469R9D6K+jyAKw8RHExE+3
+WQYPpVwvkqEHWgOE/mkl6ASNV92KmKjb6HrXcS5ThxVc39d9hkk=
+=jjwS
+-----END PGP SIGNATURE-----
+
+--VPqa6mWmG7/oyOgx--
