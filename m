@@ -2,121 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 770A93E83D3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 21:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02CCB3E83D9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 21:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231152AbhHJThr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 15:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbhHJThr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 15:37:47 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F330CC061798
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:37:24 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id u10so735624oiw.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=9Fxu/Ysfn0gqVmhD1gd5P8cBO5tv38bfpeBMPA6T+64=;
-        b=GCDls4YJQW1Lz3IMv4mdjtIDR4+DSbiXvOp2eVyyB2Na/tEGUPrG343jTR+dvrxax1
-         mD7TMQGMbI7bx65Tkis5yPhJBr0clMpcsOGAuIfOuPaHgUAeW3IYs+3JUZnJum+vaOvU
-         +pJD8t57bNeJidPHRJm/vyE5f5KRQ04xvuSng=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=9Fxu/Ysfn0gqVmhD1gd5P8cBO5tv38bfpeBMPA6T+64=;
-        b=GNKPxwlchqLfeOsXcCTWepx8pImquWLrQbikiPxOL8KQpRaMhDyYnQhidrar/l1u1c
-         sdl0PW3bxD8M3DqbTMjJKZvXn1O5igHso/JznzZnp2sFy/nFOPBLvsskVi47CTimHzXL
-         N2B75PfXoqPMNhGyJHp4lezhoEUIPq277wX3ADAOts+4/QpZgCr4mbv13uuBCFNHXdHb
-         USVl5qNjFJSxZE3XBSIrtzDCjPKM3OOybr1gQhg0b+Pf0C6/yT3ROqGO2indEThRN6d6
-         JZxMGmv2sGvbknEJbbGPwfVud3Kfs2H6PaoxnUn68MVH7oAO8W3ScnDm1NUnL2lppDJm
-         sAIA==
-X-Gm-Message-State: AOAM530J/0FN2JGJx/IBkrY8pb7fZ8p1b1ToUZEmY0st4g2imG9NHNsz
-        zUuLwPKenIl3GiDbM9PhZpcgg2R5/Msky1hBmZUSSw==
-X-Google-Smtp-Source: ABdhPJxU0FT5mFZ1LfcK03VImsB6LDN/ygUzUlf0I6T/TxHXwb2bTppAzk8rLFzG/A7E13jLiMYR8RBrgzpG/w2wY6A=
-X-Received: by 2002:a05:6808:984:: with SMTP id a4mr4982195oic.166.1628624244330;
- Tue, 10 Aug 2021 12:37:24 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 10 Aug 2021 12:37:23 -0700
+        id S229743AbhHJTnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 15:43:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57826 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229585AbhHJTnO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 15:43:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 00EE560F38;
+        Tue, 10 Aug 2021 19:42:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628624572;
+        bh=vLtJ1EiYM+s1L8PUym60/lK3H9ghJQRAHr0pTCwBfzQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=uVtpsTg7/8Q2vqjZBe8ZJR4eqSalmV+AVT+gjGm3bWvEDeLHdqcJwriS6O1+4BvA3
+         9QeA46gVn31VPPT32d2rwDgzIO7uEudm/M2CDqGnIe4I3EKBJ7h2MV/75hBvMg620L
+         aT9+dGjt1wXxLTuEbqMkr0Nf9CZphhWdYyPcWc7Jk16BqwcReZ7xaqZbfQzkgqZOV9
+         KQax/Ovo7ZxfUjLOs3lwHMJs5ltp6XESiJ1NABPLN1OV8qyWq7wM29/xbo7F2yqqh8
+         1vrpDvB8Da4YoEGjBYHZQEhlkPIjrnwOWdjAfTNElEc2uZSFaggx0/hrHrGwTrBqt0
+         WAao3f3Hfk0FA==
+Date:   Tue, 10 Aug 2021 14:42:50 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
+Cc:     robh+dt@kernel.org, bhelgaas@google.com, matthias.bgg@gmail.com,
+        lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com,
+        jianjun.wang@mediatek.com, yong.wu@mediatek.com,
+        Frank Wunderlich <frank-w@public-files.de>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 2/4] PCI: mediatek: Add new method to get shared
+ pcie-cfg base address and parse node
+Message-ID: <20210810194250.GA2276275@bjorn-Precision-5520>
 MIME-Version: 1.0
-In-Reply-To: <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
-References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org> <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 10 Aug 2021 12:37:23 -0700
-Message-ID: <CAE-0n50nYEAhpBADVWutm-SvUMpe+4Qte69iucJvXax=d_59=w@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
- init in SC7280
-To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
-        bhelgaas@google.com, bjorn.andersson@linaro.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org, svarbanov@mm-sol.com
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210719073456.28666-3-chuanjia.liu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-08-09 21:08:36)
-> On the SC7280, By default the clock source for pcie_1_pipe is
-> TCXO for gdsc enable. But after the PHY is initialized, the clock
-> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
->
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+On Mon, Jul 19, 2021 at 03:34:54PM +0800, Chuanjia Liu wrote:
+> For the new dts format, add a new method to get
+> shared pcie-cfg base address and parse node.
+
+This commit log doesn't seem to really cover what's going on here.  It
+looks like:
+
+  - You added a check for "mediatek,generic-pciecfg" (I guess this is
+    the "shared pcie-cfg base address" part).  Probably could have
+    been its own patch.
+
+  - You added checks for "interrupt-names" and "pcie_irq".  Not
+    explained in commit log; probably could have been its own patch,
+    too.
+
+  - You now look for "linux,pci-domain" (via of_get_pci_domain_nr()).
+    If present, you parse only one port instead of looking for all the
+    children of the node.
+
+    That's sort of weird behavior -- why should the presence of
+    "linux,pci-domain" determine whether the node can have children?
+    Is that really what you intend?
+
+    Should be explained in the commit log and could have been its own
+    patch, too.
+
+> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 8a7a300..39e3b21 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->         if (ret < 0)
->                 return ret;
->
-> +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
-> +               res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
-> +               if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
-> +                       return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+>  drivers/pci/controller/pcie-mediatek.c | 52 +++++++++++++++++++-------
+>  1 file changed, 39 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index 25bee693834f..928e0983a900 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/irqdomain.h>
+>  #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/msi.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+> @@ -23,6 +24,7 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+>  #include <linux/reset.h>
+>  
+>  #include "../pci.h"
+> @@ -207,6 +209,7 @@ struct mtk_pcie_port {
+>   * struct mtk_pcie - PCIe host information
+>   * @dev: pointer to PCIe device
+>   * @base: IO mapped register base
+> + * @cfg: IO mapped register map for PCIe config
+>   * @free_ck: free-run reference clock
+>   * @mem: non-prefetchable memory resource
+>   * @ports: pointer to PCIe port information
+> @@ -215,6 +218,7 @@ struct mtk_pcie_port {
+>  struct mtk_pcie {
+>  	struct device *dev;
+>  	void __iomem *base;
+> +	struct regmap *cfg;
+>  	struct clk *free_ck;
+>  
+>  	struct list_head ports;
+> @@ -650,7 +654,11 @@ static int mtk_pcie_setup_irq(struct mtk_pcie_port *port,
+>  		return err;
+>  	}
+>  
+> -	port->irq = platform_get_irq(pdev, port->slot);
+> +	if (of_find_property(dev->of_node, "interrupt-names", NULL))
+> +		port->irq = platform_get_irq_byname(pdev, "pcie_irq");
+> +	else
+> +		port->irq = platform_get_irq(pdev, port->slot);
 > +
-> +               res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
-> +               if (IS_ERR(res->phy_pipe_clk))
-> +                       return PTR_ERR(res->phy_pipe_clk);
-> +       }
+>  	if (port->irq < 0)
+>  		return port->irq;
+>  
+> @@ -682,6 +690,10 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>  		val |= PCIE_CSR_LTSSM_EN(port->slot) |
+>  		       PCIE_CSR_ASPM_L1_EN(port->slot);
+>  		writel(val, pcie->base + PCIE_SYS_CFG_V2);
+> +	} else if (pcie->cfg) {
+> +		val = PCIE_CSR_LTSSM_EN(port->slot) |
+> +		      PCIE_CSR_ASPM_L1_EN(port->slot);
+> +		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
+>  	}
+>  
+>  	/* Assert all reset signals */
+> @@ -985,6 +997,7 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>  	struct device *dev = pcie->dev;
+>  	struct platform_device *pdev = to_platform_device(dev);
+>  	struct resource *regs;
+> +	struct device_node *cfg_node;
+>  	int err;
+>  
+>  	/* get shared registers, which are optional */
+> @@ -995,6 +1008,14 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>  			return PTR_ERR(pcie->base);
+>  	}
+>  
+> +	cfg_node = of_find_compatible_node(NULL, NULL,
+> +					   "mediatek,generic-pciecfg");
+> +	if (cfg_node) {
+> +		pcie->cfg = syscon_node_to_regmap(cfg_node);
+> +		if (IS_ERR(pcie->cfg))
+> +			return PTR_ERR(pcie->cfg);
+> +	}
 > +
->         res->pipe_clk = devm_clk_get(dev, "pipe");
->         return PTR_ERR_OR_ZERO(res->pipe_clk);
->  }
-> @@ -1255,6 +1267,12 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
->         struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
-> +       struct dw_pcie *pci = pcie->pci;
-> +       struct device *dev = pci->dev;
-> +       struct device_node *node = dev->of_node;
+>  	pcie->free_ck = devm_clk_get(dev, "free_ck");
+>  	if (IS_ERR(pcie->free_ck)) {
+>  		if (PTR_ERR(pcie->free_ck) == -EPROBE_DEFER)
+> @@ -1027,22 +1048,27 @@ static int mtk_pcie_setup(struct mtk_pcie *pcie)
+>  	struct device *dev = pcie->dev;
+>  	struct device_node *node = dev->of_node, *child;
+>  	struct mtk_pcie_port *port, *tmp;
+> -	int err;
+> +	int err, slot;
 > +
-> +       if (of_property_read_bool(node, "pipe-clk-source-switch"))
-
-This can be straightline code. If gcc_pcie_1_pipe_clk_src is NULL,
-calling clk_set_parent() on it is a nop, return 0, so drop the property
-check and only assign the clk pointer if it needs to be done.
-
-> +               clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
-
-Please check the return value and fail if it fails to set the parent.
-I'd also prefer a comment indicating that we have to set the parent
-because the GDSC must be enabled with the clk at XO speed. The DT should
-probably also have an assigned clock parent of XO so when the driver
-probes it is set to XO parent for gdsc enable and then this driver code
-can change the parent to the phy pipe clk.
-
->
->         return clk_prepare_enable(res->pipe_clk);
->  }
+> +	slot = of_get_pci_domain_nr(dev->of_node);
+> +	if (slot < 0) {
+> +		for_each_available_child_of_node(node, child) {
+> +			err = of_pci_get_devfn(child);
+> +			if (err < 0) {
+> +				dev_err(dev, "failed to get devfn: %d\n", err);
+> +				goto error_put_node;
+> +			}
+>  
+> -	for_each_available_child_of_node(node, child) {
+> -		int slot;
+> +			slot = PCI_SLOT(err);
+>  
+> -		err = of_pci_get_devfn(child);
+> -		if (err < 0) {
+> -			dev_err(dev, "failed to parse devfn: %d\n", err);
+> -			goto error_put_node;
+> +			err = mtk_pcie_parse_port(pcie, child, slot);
+> +			if (err)
+> +				goto error_put_node;
+>  		}
+> -
+> -		slot = PCI_SLOT(err);
+> -
+> -		err = mtk_pcie_parse_port(pcie, child, slot);
+> +	} else {
+> +		err = mtk_pcie_parse_port(pcie, node, slot);
+>  		if (err)
+> -			goto error_put_node;
+> +			return err;
+>  	}
+>  
+>  	err = mtk_pcie_subsys_powerup(pcie);
+> -- 
+> 2.18.0
+> 
