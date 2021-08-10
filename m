@@ -2,100 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 110533E5413
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 09:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1C73E5439
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 09:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbhHJHEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 03:04:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231535AbhHJHEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 03:04:22 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62D55C0613D3;
-        Tue, 10 Aug 2021 00:04:01 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id w4so4870773ilq.13;
-        Tue, 10 Aug 2021 00:04:01 -0700 (PDT)
+        id S232757AbhHJH0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 03:26:17 -0400
+Received: from mail-mw2nam12on2078.outbound.protection.outlook.com ([40.107.244.78]:31264
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232616AbhHJH0R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 03:26:17 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Dl1zZSiO6w9SLlNkDTx80oBo2lEN8I9FuiEQPfgUcYqjlsirp2+yBmEyD27JwCHQeyhJkSr+lY7iIH4QoykYo6B/ZenxcltkyASk9Sc9iV20LjbLxoJa73qnCJAAU9rxeerS7xkWW0TGTlEn50VLtGYRyC8NpDOc9qjXVAE313vrblCTO8glFq0VWzsHRKMIUaMNwhJ0OyQ5iLVhTDNkXD/1D+0E4eeLMnyjDIVjSWSNM/0eVdwbt0z7Y48flS08TzWB0KOtpPoO22h+Yx8dpN7sGk3nnnjLrc2EsluVDszBV0XHRyI0j18eVAI9Vs9M7ybZHJihvZ4aO5V/SyfAPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iKvLrOTqOVV7gU7DxeCpmlc1s0Uqpw7YRhDKc49KMMg=;
+ b=aqB4JL9dxZujtovaeK0Y7GpQ/ZyOsT5jQ3mh8Pem7DUvmUmY9dz5khO+xmdwxd0jCwXCSkfUCUKIbNxgei4XH81B8AocvHOdZmRTfrY9jeaxJX7jgvSlGd0UNV3zWBsAiTVoNDhWd/3Ah+tE+OB+Glwhs/yLMs7SWPibjjfDvsF9XT3pG1Ow6WDH9OdtrRHreGZ66p4i/+N9deFRQBCjNvwnJaMrQWyhEZH13NAXanbRELtcyUQPEOOLkkAYHJIqTNsXoSXUoXZEdjiNWYxS9K7QOrwBBe5ZuEq7o1DDd1+rksLyPaEpDIBMOyXgl+/CdNtR9CUmJ5fVwO/lApaCcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CRgVYbQb3U4KJJpbnla1/MQYFRgYupowMXh7LlyjTy4=;
-        b=HKjXrr24nvourgRK3JgGuh+okvDa3fKScHfrZ9mdXbwcUZEvneA7wqhLLz1IL01do7
-         Zx/tgmLFIaWkVs/NMgHgZNNrYctRA3K1ttkhCoBN/OYAD7/G5F5fumM8xbrHjRltruCU
-         XxbKWzJsibd9olGRGfG/nmT3EojJV0TYwTLuc+oRlqE0b14tvDtHdfh6va/vLhDSrpqg
-         3W0gctggh0Hb00Sz3IOKRWF/JYtKDia5XNgvpZO4asUNHue3Kzq2QLfcRYwk/Yc5knGy
-         n4NAH3djoYqsti4yTK+M9MlyvP3cWBrpUQaMis5DtNu0LD3FS1649633h5NMzU2I1tLG
-         JHMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CRgVYbQb3U4KJJpbnla1/MQYFRgYupowMXh7LlyjTy4=;
-        b=idm9eh61BZTMhRB0zlUn9VHkjQfNBGB2+1EES2Qh3DwCCJLrcKwljZDagU926enuCd
-         8H3z9VbTPmv4RLHtODDsXIlOK90r69ZpkM0HohImPT5LmgmiyzvrEGhLe5vywALPLqu1
-         2cD+qHX/WQq9XOqzlV9Qd4i7CrRUu/mwuNJL/8xMNacCaosvywaPvr1HUZeZghgk8gZ8
-         rVEBrAideQo1VwNJERObwQDspps/W7FdeezuSIKPEVIlSda97PCSsN/HhhSzHvbYAr2D
-         fiknsv4ZUqRfX13Hk9gXgdjaWCC27NpVMTr53i79LphWCyfa01077o47Kuq0GPfbaIR/
-         U2Fw==
-X-Gm-Message-State: AOAM532p/ZPklehcwaqokR2fH4SPkpuEkui2mTExRFAtv6NMKq5PFD9O
-        Q5S+vFtbxGLqTq1IYZs3KFX0j4YwenbdzhsrldY=
-X-Google-Smtp-Source: ABdhPJzfuq+IVAk5YYrWnu5gD/r6do+ig0Dc4/FfqJAljwyqqIiAPFcfuuF48yIJSGSWUaBlYV16uuxCNyhhbLGhPVk=
-X-Received: by 2002:a05:6e02:1d8d:: with SMTP id h13mr452911ila.40.1628579040897;
- Tue, 10 Aug 2021 00:04:00 -0700 (PDT)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iKvLrOTqOVV7gU7DxeCpmlc1s0Uqpw7YRhDKc49KMMg=;
+ b=bXUGqAxDbgDxjFYcP0ZcdwlHrlRfcgALbYLKu5CAym/UTqO9NBPdqTB3Pj7gkIejddciD7pvEvaw99XpHpiACak3FEyS9ITva/wkwTonez0j6w1j/aA4VSJDAjUfYHZ/v9ZgJC52x3vJNdJYW/uvuGpegBGjcyJ5gSZu6abtojM=
+Received: from BN6PR16CA0016.namprd16.prod.outlook.com (2603:10b6:404:f5::26)
+ by DM6PR02MB6558.namprd02.prod.outlook.com (2603:10b6:5:1b5::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16; Tue, 10 Aug
+ 2021 07:25:51 +0000
+Received: from BN1NAM02FT057.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:404:f5:cafe::55) by BN6PR16CA0016.outlook.office365.com
+ (2603:10b6:404:f5::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend
+ Transport; Tue, 10 Aug 2021 07:25:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT057.mail.protection.outlook.com (10.13.2.165) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4394.16 via Frontend Transport; Tue, 10 Aug 2021 07:25:51 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 10 Aug 2021 00:25:37 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 10 Aug 2021 00:25:37 -0700
+Envelope-to: git@xilinx.com,
+ linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ shubhrajyoti.datta@gmail.com
+Received: from [10.140.6.59] (port=48216 helo=xhdshubhraj40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1mDM8m-0005zG-5m; Tue, 10 Aug 2021 00:25:36 -0700
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <linux-clk@vger.kernel.org>, <git@xilinx.com>
+CC:     <devicetree@vger.kernel.org>, <shubhrajyoti.datta@gmail.com>,
+        "Shubhrajyoti Datta" <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH v12 0/5] clk: clocking-wizard: Driver updates
+Date:   Tue, 10 Aug 2021 12:55:28 +0530
+Message-ID: <20210810072533.27620-1-shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210806091058.141-1-alistair@alistair23.me> <20210806091058.141-4-alistair@alistair23.me>
- <YQ0fPEeZGYe7f1cC@google.com> <20210806114541.GY26252@sirena.org.uk> <YREOMY4Q5xY8Qn9N@google.com>
-In-Reply-To: <YREOMY4Q5xY8Qn9N@google.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Tue, 10 Aug 2021 17:03:34 +1000
-Message-ID: <CAKmqyKMtFYC8KN4pD-8cnUQq39WmOJHDotK6FT2BsisOoM2=8w@mail.gmail.com>
-Subject: Re: [PATCH v9 03/12] mfd: simple-mfd-i2c: Save the register client data
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 79515521-ece7-4f18-f3b1-08d95bd01511
+X-MS-TrafficTypeDiagnostic: DM6PR02MB6558:
+X-Microsoft-Antispam-PRVS: <DM6PR02MB6558EEC7566981BC91CE4DEAAAF79@DM6PR02MB6558.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: h+9Bk0+9JkoPdrJdXtt+YTnYLEbSKCoODxhv3NW+O0RVehuMCzb5TUtPPcQ9e4dZT3qfGfDq623PDdPerfHHsLO4RPbw7QHWiz90t4hOY3v9So3mkbJbWcHmuiOzrYDA8tZ3ML8QYrva5NUFxFknObF2zkM9Yg8hGvNKFGNOjst9YI43oE2FQXltplai/+C8Q3KektelUcFrA+5KQnEfjD1c0R2WmukaQ7KInAMZ6RpG1fYo9vs5QzJZPsqI4mnUcX8X2DfZ3hp+PXHYsaO9YJhKF5h5830IXxaoaEFcxVrZlMpcrfGuk0s5g4uUyK2c9aHiRzsd76PRDukzkDoY1pw+0y4MSHi0oEqrb6mjHFFPAlp060FxYGcJ9y6KTWp/5iQxMehWcdVz4ZfM3f38pLqjMnubkF4xIAr+riqLO+C/UQm8S9QpHY7vDjfucK7udl+rJ+KLTpAYZVjInVMh8WyNiHMjsNIfIqaEVuLRO8avjjq9a6JahcVXnJbAoYr3mpM45hC2pytzr5bNaygttdSgdnrtN7Cs/zJpdhwoCASvBpx5dbfGCyKcDZA4Idx70cuMA64Z5Pjk5hUmMkIrAHtiJfg+lHc3abPivp1Js0ysWf5M5JKDNV3FcYO8uNZBxD/ACkUAJLIviRCtm6gL2W+7e+yXo98wsxQ697hFB8fOTKmcsPsiOyQaJ1xF4KoHgdjFOVvlunuiJTkhlME/DR9uZEeQdPe7bl+GmzdQqo0=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(136003)(376002)(396003)(39860400002)(36840700001)(46966006)(356005)(15650500001)(107886003)(83380400001)(36860700001)(5660300002)(1076003)(6636002)(4744005)(82740400003)(47076005)(7696005)(82310400003)(70586007)(70206006)(8676002)(8936002)(36756003)(2616005)(478600001)(6666004)(44832011)(26005)(186003)(7636003)(336012)(2906002)(316002)(9786002)(36906005)(426003)(54906003)(110136005)(4326008)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2021 07:25:51.3139
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79515521-ece7-4f18-f3b1-08d95bd01511
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT057.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB6558
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 9, 2021 at 9:14 PM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Fri, 06 Aug 2021, Mark Brown wrote:
->
-> > On Fri, Aug 06, 2021 at 12:38:36PM +0100, Lee Jones wrote:
-> > > On Fri, 06 Aug 2021, Alistair Francis wrote:
-> >
-> > > > + i2c_set_clientdata(i2c, regmap);
-> > > > +
-> >
-> > > No need to store this here.
-> >
-> > > Just do this in the child device:
-> >
-> > >      dev_get_regmap(pdev->dev.parent, NULL);
-> >
-> > Note that dev_get_regmap() is relatively expensive compared to a simple
-> > driver data reference since it needs to go search for the device to fin=
-d
-> > the regmap, it's not the end of the world especially in the context of
-> > doing I2C I/O but storing it isn't a terrible idea.
->
-> It would be nice if someone could do some metrics on this.
+The patch does the following
+Update the versions of the clocking wizard ip.
+Move from staging to clk directory.
+Update the bindings.
 
-I updated it to use `dev_get_regmap()` in version 10 of the series
+v12: 
+No change. 
+Rebased
 
-Alistair
+Shubhrajyoti Datta (5):
+  dt-bindings: add documentation of xilinx clocking wizard
+  clk: clocking-wizard: Add the clockwizard to clk directory
+  clk: clocking-wizard: Rename nr-outputs to xlnx,nr-outputs
+  clk: clocking-wizard: Fix the reconfig for 5.2
+  clk: clocking-wizard: Update the compatible
 
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+ .../bindings/clock/xlnx,clocking-wizard.yaml  |  77 +++
+ drivers/clk/Kconfig                           |   9 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-xlnx-clock-wizard.c           | 643 ++++++++++++++++++
+ 4 files changed, 730 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+ create mode 100644 drivers/clk/clk-xlnx-clock-wizard.c
+
+-- 
+2.17.1
+
