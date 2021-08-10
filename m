@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0942B3E582C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 12:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4993E584E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 12:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239803AbhHJKVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 06:21:21 -0400
-Received: from mail-vs1-f43.google.com ([209.85.217.43]:36598 "EHLO
-        mail-vs1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238988AbhHJKVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 06:21:20 -0400
-Received: by mail-vs1-f43.google.com with SMTP id y65so1569144vsy.3;
-        Tue, 10 Aug 2021 03:20:58 -0700 (PDT)
+        id S238455AbhHJK1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 06:27:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239156AbhHJK0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 06:26:40 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01E9C061798;
+        Tue, 10 Aug 2021 03:26:18 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id x12so2068976wrr.11;
+        Tue, 10 Aug 2021 03:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=mjY7O/pC2TcqSPG82GtWi58hA2y8Bv1MoiaYMqZ4vVI=;
+        b=JqZnHfY+P04gFemljz3QJ5119I8BJNqCNkUXZP5Xde3C5M5XZV3mRmZBXGuiJuLpuB
+         y3lC/DGEoe8U/yHxUKIXY7d6aIZSOu5Jv+QLcxNvqPyAc+v2IKx8WNXvc/Bw7Nu5gom8
+         x5fCDWDc81FXxtuv0RXvtBTGPVRq/fPMA73v+Mu+RGgqGKeL+mO3uDea/96adeaT2Pbg
+         dB+XoIuwYkqdY2AHaneALcojWzeoVQD6HVo1EeA8PWrrTLbFGA6zKgUTF9lloaMFt1Hw
+         qN5Wt1E5w+7Fc1HxALUVnDRT73yqcMTZrOVswCb/o2Sum269O24oFFy03R4VwB+B6Vyk
+         gnUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l1gBoiYEO7XbkRs8hlFE3qe793CSdQbcY1z2rTY4odU=;
-        b=gWRnAcOQk9Pex17gjG0S/ABGc8h7dC4xQDvnTqANgZjvI8B2q4RMD+MHUBy5973i3h
-         2ntf9bcoUKwbDflhbV+0oaw5d90qnUOiDWFH0ndfFHyoSXN40BPo9+Q+diqb5citDSD5
-         GeKg444LRioVVoXvSnWhN464/6FY7Tz4tM7ZjtoLhe8zoskwxfohimQJ+3BQYFKpAX7+
-         DDRAKp89Gl3gT3lEow7PfD0AqQNbcmp8MdJffCgsJ3jeViPAzvkQsDXJE6CQAC0iIkKa
-         7wQtIq8Da5y3rsk0oLVivzsmr59YYF5aYBO8OqhcjK0fRtbxUCJs3yq0fCH5ALApCW0t
-         7hgQ==
-X-Gm-Message-State: AOAM533My07AuOD1YCdQDSr17F2VnBgqCRtIm9/hC1q8l1pgqhVayLku
-        EDup/TlOutkiJJzeu4sROBIrW6AXBvJkp4Chu7Y=
-X-Google-Smtp-Source: ABdhPJzOym84ueJA1uKY9xnfxHaBxHX6hUvp89HqSHr+H8RurhngSChw9Xes3S5wV6h+vA/1VtUSBq+Od6PYuOZNVR0=
-X-Received: by 2002:a67:ca1c:: with SMTP id z28mr13062605vsk.40.1628590858048;
- Tue, 10 Aug 2021 03:20:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210727185527.19907-1-biju.das.jz@bp.renesas.com> <20210727185527.19907-7-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210727185527.19907-7-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 10 Aug 2021 12:20:46 +0200
-Message-ID: <CAMuHMdVgafPA9YT7gkqcZidJar+Mpb_m1DyYFqb6PXMWGfZQbg@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] arm64: dts: renesas: r9a07g044: Add USB2.0 device support
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=mjY7O/pC2TcqSPG82GtWi58hA2y8Bv1MoiaYMqZ4vVI=;
+        b=h1uytK6R1Ph6oLMSrwYYotFbSVnMs958pqKPheAllJcmxoukAjkkjVL84bvKtkoRFF
+         r0FRQmrukVwgqX1XsN/gTWw9+Bg37KctPv0LWNTLNmN15QXxWoi3X1CpHmhbZbkud7JP
+         lBU4o8rcOWjRdtMtOuhg2zuspjNR0bpPkfWzTQhrNtVP6N0yQJ9uCstqBDUaPEq8ej8n
+         0cbek7naXv6EGYJX+d+TUZrMfpF/MscNeQjw1R7AtN5LzStEzy7Skbx3ixup5omamvWv
+         D3hqeM5e9LuFFcAFdAOd8IGjke5p3BmmmYzoWe9n/JLN1sLuXehDjt0FBA3EibdCmzI9
+         KNXA==
+X-Gm-Message-State: AOAM533F8mphk3EIXLiUp5DU53Prprwrtf8dOWkp25wDLfhqrthPKe2W
+        94rEDjOiMjg1S4ny0s8ru+8=
+X-Google-Smtp-Source: ABdhPJxJg8rlUTfz4vqYgqJ+QF4oQlBfbwNVQj2jbNaJV9TqYAZAW7wdJV5HauBzT23Z/v/xvERvzg==
+X-Received: by 2002:adf:e6c4:: with SMTP id y4mr30011954wrm.220.1628591177334;
+        Tue, 10 Aug 2021 03:26:17 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id j194sm1582998wmj.3.2021.08.10.03.26.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 03:26:16 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: amlogic: add support for Radxa Zero
+Date:   Tue, 10 Aug 2021 10:26:11 +0000
+Message-Id: <20210810102613.25149-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 27, 2021 at 8:55 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add USB2.0 device support to RZ/G2L SoC DT.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This adds support for the Radxa Zero SBC. The device-tree is loosely
+based upon existing support for SEI510 and U200 (also G12A boards)
+and has been developed with the 4/32 board configuration.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Changes since v1:
+- Drop flash_1v8 and use vcc_1v8
+- Rename dc_in to ao_5v
+- Rename vcc_5v to hdmi_pw and drop GPIO control
 
-Gr{oetje,eeting}s,
+Christian Hewitt (2):
+  dt-bindings: arm: amlogic: add support for Radxa Zero
+  arm64: dts: amlogic: add support for Radxa Zero
 
-                        Geert
+ .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../dts/amlogic/meson-g12a-radxa-zero.dts     | 407 ++++++++++++++++++
+ 3 files changed, 409 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dts
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
