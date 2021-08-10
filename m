@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 488DE3E5CCE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 880933E5CD9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:15:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242315AbhHJOPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 10:15:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52216 "EHLO mail.kernel.org"
+        id S242424AbhHJOP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 10:15:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52520 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241836AbhHJOPr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 10:15:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0885260F94;
-        Tue, 10 Aug 2021 14:15:23 +0000 (UTC)
+        id S242352AbhHJOPu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 10:15:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D4AE361008;
+        Tue, 10 Aug 2021 14:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628604924;
-        bh=B4GCpMvv88fvF6tgPZyrI3HUgrOaaR9BMYX9n601PZc=;
+        s=k20201202; t=1628604928;
+        bh=M4IO3RhlVin1iu3XzP+nfxLyRXRODIc+CtwQNbOT6i0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OvXNJ6dpQGhBw+zaWUZf4NaF0E5zkDz4Ont4KLfRANJo5/EgNrNjnzXCNVcTT5fSA
-         66wKVtRRaZtPzV2vJRi9IcKBLnONvEx7VBuiEBRdpqEcrlf7mp1dJqmZvql5u74Qxp
-         Kbfqi3AHpVng+P66BkaGEZJ0QjgPBUQ2Zp5D7FxmUH+uR117HQZdNmSOydYhDI0oet
-         otHQ9kFq6+fycdmw6fiB7BsBfVVvlIR4KbDh0wgNq7VBSBqu2Z5ucgp+C49LY/JY+0
-         QYjNc77AAP+eSUgnySZVB0d1sOOQbTgFIegtNxWAqbOKY9TKY1eonDFzJatoGMKaha
-         jClXLQZUjO6GQ==
+        b=u4lyCX84fWxdYVQo2IGhbXo7Vs6ydxEGRGPFnDzwTjcZJ8NX19UBCa8FDVk6VYfw1
+         Xdn7PtypcSS0f+FjsY9bbTDsUuSzaMkX4/3vyf+yAYOrK9xGSka025DHrlC5WcaLYo
+         QLqYeqC+3JXyNUVJfZhN6sdk+cxJbZm5UzW4Sw84rtxQi9KFNYEm7y88HC+NQHR26T
+         Uqk/dL0Lh9XRaVWEB8FOJA3Fl4tW04H+VAxkws0xZDg0PI0DsgS/QfAT3t2S+1M5rJ
+         9t4y5zBIBWnfBUpZUhumibUWt/CbFcR9n5MLg3wFE2Q3fDUg5R0BKu3UcNIsHrIaii
+         yFYCI2Ul/buDw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 14/24] ARM: dts: nomadik: Fix up interrupt controller node names
-Date:   Tue, 10 Aug 2021 10:14:55 -0400
-Message-Id: <20210810141505.3117318-14-sashal@kernel.org>
+Cc:     Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.13 17/24] riscv: dts: fix memory size for the SiFive HiFive Unmatched
+Date:   Tue, 10 Aug 2021 10:14:58 -0400
+Message-Id: <20210810141505.3117318-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210810141505.3117318-1-sashal@kernel.org>
 References: <20210810141505.3117318-1-sashal@kernel.org>
@@ -43,52 +43,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sudeep Holla <sudeep.holla@arm.com>
+From: Qiu Wenbo <qiuwenbo@kylinos.com.cn>
 
-[ Upstream commit 47091f473b364c98207c4def197a0ae386fc9af1 ]
+[ Upstream commit d09560435cb712c9ec1e62b8a43a79b0af69fe77 ]
 
-Once the new schema interrupt-controller/arm,vic.yaml is added, we get
-the below warnings:
+The production version of HiFive Unmatched have 16GB memory.
 
-	arch/arm/boot/dts/ste-nomadik-nhk15.dt.yaml:
-	intc@10140000: $nodename:0: 'intc@10140000' does not match
-	'^interrupt-controller(@[0-9a-f,]+)*$'
-
-Fix the node names for the interrupt controller to conform
-to the standard node name interrupt-controller@..
-
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Link: https://lore.kernel.org/r/20210617210825.3064367-2-sudeep.holla@arm.com
-Link: https://lore.kernel.org/r/20210626000103.830184-1-linus.walleij@linaro.org'
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Qiu Wenbo <qiuwenbo@kylinos.com.cn>
+Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/ste-nomadik-stn8815.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-index c9b906432341..1815361fe73c 100644
---- a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-+++ b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-@@ -755,14 +755,14 @@ clcd@10120000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index b1c3c596578f..2e4ea84f27e7 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -24,7 +24,7 @@ cpus {
  
--		vica: intc@10140000 {
-+		vica: interrupt-controller@10140000 {
- 			compatible = "arm,versatile-vic";
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 			reg = <0x10140000 0x20>;
- 		};
+ 	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 0x2 0x00000000>;
++		reg = <0x0 0x80000000 0x4 0x00000000>;
+ 	};
  
--		vicb: intc@10140020 {
-+		vicb: interrupt-controller@10140020 {
- 			compatible = "arm,versatile-vic";
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
+ 	soc {
 -- 
 2.30.2
 
