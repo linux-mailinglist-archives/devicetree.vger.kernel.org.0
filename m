@@ -2,39 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 880933E5CD9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3666D3E5CFD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 16:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242424AbhHJOP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 10:15:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52520 "EHLO mail.kernel.org"
+        id S242628AbhHJOQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 10:16:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53478 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242352AbhHJOPu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 10:15:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D4AE361008;
-        Tue, 10 Aug 2021 14:15:27 +0000 (UTC)
+        id S242497AbhHJOQH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Aug 2021 10:16:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A2DC761075;
+        Tue, 10 Aug 2021 14:15:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628604928;
-        bh=M4IO3RhlVin1iu3XzP+nfxLyRXRODIc+CtwQNbOT6i0=;
+        s=k20201202; t=1628604945;
+        bh=xC+BBKoZiCriGDF9X9QmzpHZ2z6ZAXuPMpw4yI+zFBc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=u4lyCX84fWxdYVQo2IGhbXo7Vs6ydxEGRGPFnDzwTjcZJ8NX19UBCa8FDVk6VYfw1
-         Xdn7PtypcSS0f+FjsY9bbTDsUuSzaMkX4/3vyf+yAYOrK9xGSka025DHrlC5WcaLYo
-         QLqYeqC+3JXyNUVJfZhN6sdk+cxJbZm5UzW4Sw84rtxQi9KFNYEm7y88HC+NQHR26T
-         Uqk/dL0Lh9XRaVWEB8FOJA3Fl4tW04H+VAxkws0xZDg0PI0DsgS/QfAT3t2S+1M5rJ
-         9t4y5zBIBWnfBUpZUhumibUWt/CbFcR9n5MLg3wFE2Q3fDUg5R0BKu3UcNIsHrIaii
-         yFYCI2Ul/buDw==
+        b=AN/XlpyZVn0aPBQ4o+HZbMA+KfE7nXGSf6uehK9fjtlg6bmf5+IaNcwOvoimdQ318
+         6W1AeqA6/tLXesaSYUDwURROJOmN5lFcNr/08YDons4HDjveHCbXfopJMHtVD4Zra0
+         2Vc7nyPYVbvnhY6UWph0cU/FYpjdoIBcosZCJG2MncziqeLldt2yomWuI63GW9u149
+         amGzf8blwQPBzidZAbne1Xe9BMPRZs/HZ3g3a8XFISQW5v9aMKulrkJuFGrxGPwrmX
+         WDonEzpNiET3BCtrD0pIVDYPFQaoXYhi2tzuxsoneRWfC1waN5ZY4KxDRelLbpGBnj
+         h0QDRW0eSQaNQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.13 17/24] riscv: dts: fix memory size for the SiFive HiFive Unmatched
-Date:   Tue, 10 Aug 2021 10:14:58 -0400
-Message-Id: <20210810141505.3117318-17-sashal@kernel.org>
+Cc:     Dave Gerlach <d-gerlach@ti.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 05/20] ARM: dts: am43x-epos-evm: Reduce i2c0 bus speed for tps65218
+Date:   Tue, 10 Aug 2021 10:15:23 -0400
+Message-Id: <20210810141538.3117707-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210810141505.3117318-1-sashal@kernel.org>
-References: <20210810141505.3117318-1-sashal@kernel.org>
+In-Reply-To: <20210810141538.3117707-1-sashal@kernel.org>
+References: <20210810141538.3117707-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -43,32 +44,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Qiu Wenbo <qiuwenbo@kylinos.com.cn>
+From: Dave Gerlach <d-gerlach@ti.com>
 
-[ Upstream commit d09560435cb712c9ec1e62b8a43a79b0af69fe77 ]
+[ Upstream commit 20a6b3fd8e2e2c063b25fbf2ee74d86b898e5087 ]
 
-The production version of HiFive Unmatched have 16GB memory.
+Based on the latest timing specifications for the TPS65218 from the data
+sheet, http://www.ti.com/lit/ds/symlink/tps65218.pdf, document SLDS206
+from November 2014, we must change the i2c bus speed to better fit within
+the minimum high SCL time required for proper i2c transfer.
 
-Signed-off-by: Qiu Wenbo <qiuwenbo@kylinos.com.cn>
-Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
+When running at 400khz, measurements show that SCL spends
+0.8125 uS/1.666 uS high/low which violates the requirement for minimum
+high period of SCL provided in datasheet Table 7.6 which is 1 uS.
+Switching to 100khz gives us 5 uS/5 uS high/low which both fall above
+the minimum given values for 100 khz, 4.0 uS/4.7 uS high/low.
+
+Without this patch occasionally a voltage set operation from the kernel
+will appear to have worked but the actual voltage reflected on the PMIC
+will not have updated, causing problems especially with cpufreq that may
+update to a higher OPP without actually raising the voltage on DCDC2,
+leading to a hang.
+
+Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 2 +-
+ arch/arm/boot/dts/am43x-epos-evm.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index b1c3c596578f..2e4ea84f27e7 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -24,7 +24,7 @@ cpus {
+diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
+index 8b696107eef8..d2aebdbc7e0f 100644
+--- a/arch/arm/boot/dts/am43x-epos-evm.dts
++++ b/arch/arm/boot/dts/am43x-epos-evm.dts
+@@ -582,7 +582,7 @@ &i2c0 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c0_pins>;
+-	clock-frequency = <400000>;
++	clock-frequency = <100000>;
  
- 	memory@80000000 {
- 		device_type = "memory";
--		reg = <0x0 0x80000000 0x2 0x00000000>;
-+		reg = <0x0 0x80000000 0x4 0x00000000>;
- 	};
- 
- 	soc {
+ 	tps65218: tps65218@24 {
+ 		reg = <0x24>;
 -- 
 2.30.2
 
