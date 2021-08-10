@@ -2,134 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 382863E58B1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 12:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2790B3E58D6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 13:04:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238058AbhHJK5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 06:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
+        id S238026AbhHJLFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 07:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236095AbhHJK5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 06:57:44 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BDB1C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 03:57:22 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id m28-20020a05600c3b1cb02902b5a8c22575so2256279wms.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 03:57:22 -0700 (PDT)
+        with ESMTP id S233264AbhHJLFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 07:05:06 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D92C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:04:45 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id k24so12063077vsg.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 04:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tYhapPe5H4mgp99/xIK0U3JAgB8Az9f2F1V7ARndpoI=;
-        b=AhB9IzC8N70Gkz+16zkOwjsZF/JBPizz4JhvEBW8U0aZ6Wi5VbDm8loljB0HEFNPoq
-         AvzkUISNyWFs/12scBaSXcdcHM0WRbYHdkbvvPy6CTQ0D2RhIJuRRabU4QizyWpgkAMv
-         M4rdVgbR9O0/GV+/cUKoRJTWKvA9wUlW/RSfip2F9BCutzu9neQgm5LhhMro6IaUURRT
-         g3g3vR5m+ilAjyMo2VNDgldGvH6jkjyW59laaO0TQXlGmqlo1etTkHVlQnJeNA8DePRi
-         sInHmvZlz6RwYdOqXbmADv7YCBgHjBCTOwokBMFXbtRyvKypW1X3kM0EUkCQN2py0KuZ
-         62Aw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7G6Ytc0pL75dT7oBzRYQRV/PqpL3MiLjj11SQTrmI/w=;
+        b=ATyV9Hkb/32GLHbt4+s0SijWAQfOMigNeNWFIUo9kj8nEwAgSLI46Wq70CaiWa3Dw6
+         OfL9JyOkJIU7SkJaaiArzpbiz79MXkx7s16Xx4FBgjZCpOJ+CCrceeHfK570NhKrgYFV
+         eafHiLvQ3CzZ17UNqE0FY2Pg0sMMvEInvv/pyIv9mQLbOmsUzcmEnEmOAgCkd3hV/tWz
+         hDZGLTJIDV/mDF5DasZWsy5x6Zi89gdecqPSivy049vL8FWPosiHn+8EfzhCHiwocfTK
+         4NuGnPsgfPrfYl8qJQMVk1qh015w5xhIDtj4vPfqLX6/00R7TAHJFbMUYFlrskNfMuEw
+         Q3XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tYhapPe5H4mgp99/xIK0U3JAgB8Az9f2F1V7ARndpoI=;
-        b=MtSyXlfvRUp8gg9RKZIoIjQGcOHMq6EdWq+pxGXeAr77IqfgcDcj/fbcOoa26GEgRO
-         /prX2IMjmGOuR94IDxu5y+SKxtU4bYev5igaDi6B4n60D5BfqP4awghkqN/5msldLMqy
-         s1+t5h6c9UnU8P4Bn/Y1GHHpBwvqJS22BPcGcRAD5TIB/7g9k0XjsyKNLgoBltRvmhCE
-         yjRh5PunVqqXyIowRl7NkHfPG6DOPVRmFpHlsJ6Acg2bw6LDC8AxteixE4s2MdYA/pSz
-         7X9UDs2+tdfz5zwNcY/mTTdjJpJQ3CnPD8+zDaFpkdCF54bndd7ujZ/i/mpxoAN/GyYH
-         CFTQ==
-X-Gm-Message-State: AOAM5338Pxjb98NLazgEsyYxtyqU5drWMTN4H6tDyrFadrJ7tzutfvO8
-        yVFfXES+pPYPMyP41qiqX0+ijQ==
-X-Google-Smtp-Source: ABdhPJx+VZCy4y7O0qYRDJKBrvGIBsNubqdg/hBRfB6E8JiB0w1awHjnpL/wVPnZe4LlEaivmn3SVg==
-X-Received: by 2002:a7b:c7d7:: with SMTP id z23mr21542255wmk.136.1628593040855;
-        Tue, 10 Aug 2021 03:57:20 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id q17sm925952wrr.91.2021.08.10.03.57.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Aug 2021 03:57:20 -0700 (PDT)
-Subject: Re: [PATCH v4 0/5] nvmem: nintendo-otp: Add new driver for the Wii
- and Wii U OTP
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Cc:     Ash Logan <ash@heyquark.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.ne@posteo.net>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
-References: <20210701225743.14631-1-linkmauve@linkmauve.fr>
- <20210801073822.12452-1-linkmauve@linkmauve.fr>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <cd854a84-7fd3-38bd-5a28-9306867a990f@linaro.org>
-Date:   Tue, 10 Aug 2021 11:57:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7G6Ytc0pL75dT7oBzRYQRV/PqpL3MiLjj11SQTrmI/w=;
+        b=XqJV5WyUG5ASjeHKHAG4z8pWKxxiRYXgY5Vdjyoa0Vq8yg1ReUWNIhxmMz0wqlnkAI
+         DesFLvAL1qHWrpgaosJ+UUN5W5Vt5gq+XOsEI4vxbcM4mMKWPZN5gxY5Sr/ORfjKKeVD
+         lmieymgBCTmj1D9UMkYehMEPGvXSrtsqfpBNCZ7IlJlleMXrSKxt4ePcJ786hSkOjv9W
+         TLTnqj2RF8JR6C1qtkXZ1J/RSXZdqn/1o7x5jQF2DwCLvqqkwko2KsE6TltLk2B2A20q
+         +UixTLwLP9pG+iRB1oVhoi28EGMqyEh6Ob86oeaOwtZt3VNjXQ6S4ynRW5lzPn138xek
+         /ZUQ==
+X-Gm-Message-State: AOAM53079Tkzz8Kpb8Z2inPcuawjsR7qV8+2gTn1/yFlTwi3ablaeyBK
+        G83UM2dXgFsOOXqShXQ3bfu8Tsyau9Wn9m4kCdqSww==
+X-Google-Smtp-Source: ABdhPJwceVyJX3DPlFP+mrX17PzCp6nVuJo1728/yo4SGqlaa2irpTqgqKxr3bksTV0NDNdGscj/YgQDyft6YTcKhOo=
+X-Received: by 2002:a67:328f:: with SMTP id y137mr20625440vsy.34.1628593484132;
+ Tue, 10 Aug 2021 04:04:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210801073822.12452-1-linkmauve@linkmauve.fr>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+In-Reply-To: <20210802062212.73220-1-icenowy@sipeed.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 10 Aug 2021 13:04:08 +0200
+Message-ID: <CAPDyKFrOcoFi4iTYSkbTAyZaXkfPb4RV=zMPm9j1dmK88=mgpA@mail.gmail.com>
+Subject: Re: [PATCH 00/17] Basical Allwinner R329 support
+To:     Icenowy Zheng <icenowy@sipeed.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 2 Aug 2021 at 08:24, Icenowy Zheng <icenowy@sipeed.com> wrote:
+>
+> This patchset tries to add basical support for Allwinner R329 SoC to the
+> Linux kernel, including clock/pintrl driver and MMC support.
+>
+> Three patches from the H616 patchset, which are used to support the RTC
+> with linear day, are attached into this patchset. Other RTC-related
+> patches of that patchset is not included, because the binding of the
+> clock part there is still under discussion.
+>
+> Then I added RTC binding and support (which is now only a struct
+> addition). I added RTC into this patchset, with the same reason that
+> H616 patchset contains RTC, which is to make the clock tree correct at
+> the first inclusion.
+>
+> After RTC, main basical SoC-specific part, pinctrl and CCU, come. The
+> R329 CCU is something special because PLLs are in R-CCU, no main CCU.
+>
+> MMC support is added here because it's also a simple struct addition
+> work, no main driver code change needed.
 
+It sounds like the MMC updates can be posted separately to linux-mmc.
+Please do so I can pick them up.
 
-On 01/08/2021 08:38, Emmanuel Gil Peyrot wrote:
-> The OTP is a read-only memory area which contains various keys and
-> signatures used to decrypt, encrypt or verify various pieces of storage.
-> 
-> Its size depends on the console, it is 128 bytes on the Wii and
-> 1024 bytes on the Wii U (split into eight 128 bytes banks).
-> 
-> It can be used directly by writing into one register and reading from
-> the other one, without any additional synchronisation.
-> 
-> This series has been tested on both the Wii U (using my downstream
-> master-wiiu branch[1]), as well as on the Wii on mainline.
-> 
-> [1] https://gitlab.com/linkmauve/linux-wiiu/-/commits/master-wiiu
-> 
-> Changes since v1:
-> - Fixed the commit messages so they can be accepted by other email
->    servers, sorry about that.
-> 
-> Changes since v2:
-> - Switched the dt binding documentation to YAML.
-> - Used more obvious register arithmetic, and tested that gcc (at -O1 and
->    above) outputs the exact same rlwinm instructions for them.
-> - Use more #defines to make the code easier to read.
-> - Include some links to the reversed documentation.
-> - Avoid overlapping dt regions by changing the existing control@d800100
->    node to end before the OTP registers, with some bigger dt refactoring
->    left for a future series.
-> 
-> Changes since v3:
-> - Relicense the dt-binding documentation under GPLv2-only or
->    BSD-2-clauses.
-> 
-> Emmanuel Gil Peyrot (5):
->    nvmem: nintendo-otp: Add new driver for the Wii and Wii U OTP
->    dt-bindings: nintendo-otp: Document the Wii and Wii U OTP support
+[...]
 
-
-Applied 1/5 and 2/5 to nvmem next,
-rest of the patches should go via powerpc dts tree.
-
-thanks,
---srini
->    powerpc: wii.dts: Reduce the size of the control area
->    powerpc: wii.dts: Expose the OTP on this platform
->    powerpc: wii_defconfig: Enable OTP by default
-> 
->   .../bindings/nvmem/nintendo-otp.yaml          |  44 +++++++
->   arch/powerpc/boot/dts/wii.dts                 |  13 +-
->   arch/powerpc/configs/wii_defconfig            |   1 +
->   drivers/nvmem/Kconfig                         |  11 ++
->   drivers/nvmem/Makefile                        |   2 +
->   drivers/nvmem/nintendo-otp.c                  | 124 ++++++++++++++++++
->   6 files changed, 194 insertions(+), 1 deletion(-)
->   create mode 100644 Documentation/devicetree/bindings/nvmem/nintendo-otp.yaml
->   create mode 100644 drivers/nvmem/nintendo-otp.c
-> 
+Kind regards
+Uffe
