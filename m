@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E188F3E815A
+	by mail.lfdr.de (Postfix) with ESMTP id 717B43E8159
 	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 20:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234445AbhHJR6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 13:58:53 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:24511 "EHLO
+        id S235094AbhHJR6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 13:58:50 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:42215 "EHLO
         so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237178AbhHJR4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 13:56:52 -0400
+        with ESMTP id S233772AbhHJR4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 13:56:48 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628618189; h=References: In-Reply-To: References:
+ s=smtp; t=1628618185; h=References: In-Reply-To: References:
  In-Reply-To: Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=wdqL1DdUtVW6v1FINuwwQImqzwB8zjHrVnZD1Wvz4Gk=; b=THwr8Hq5YwLM3wnRukt7T8BujecGeqjQA1jykgpzJNfYWfHUihYc1T3jtRdXgyk3O103OSOo
- yj5WniQ6M792cuiFf8blmgyLc59BzLX2vq5ZGXSXvRFhQZeEMwGdi1eEwvsRQr8PGUiIwICC
- o+Qgt6vAtG1WZRnlCBjUnQXFr88=
+ bh=8cKfPL/kN6+ehjy7BzK6OHk/RAokvDD9LDviSzMiOAg=; b=oWjfukADVdi3kpMPbloxvmRcV0H0nTdLRJmq6COuHg8sTlYD7L7p65AV2mKMv88NdRI5E6jH
+ Gl/ornfICr5OJb64tK4aF0G7Btmyjx7V2Ha+Y1rnay2MmVkGuTxz3aERGA4IObG/VlNA5+2Z
+ xpfShJnpofBH+mj9L5RjGSOH6QY=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
  smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 6112bdc2f746c298d90a6b0b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 17:56:18
+ 6112bdbff746c298d90a630d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 17:56:15
  GMT
 Sender: schowdhu=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 22E2AC2BB5A; Tue, 10 Aug 2021 17:56:18 +0000 (UTC)
+        id 52FB5C35960; Tue, 10 Aug 2021 17:56:15 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -37,9 +37,9 @@ Received: from blr-ubuntu-525.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Out
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 48063C358F4;
-        Tue, 10 Aug 2021 17:56:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 48063C358F4
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 85CB4C358F2;
+        Tue, 10 Aug 2021 17:56:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 85CB4C358F2
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=schowdhu@codeaurora.org
 From:   Souradeep Chowdhury <schowdhu@codeaurora.org>
@@ -52,9 +52,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Sibi Sankar <sibis@codeaurora.org>,
         Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org,
         Souradeep Chowdhury <schowdhu@codeaurora.org>
-Subject: [PATCH V6 4/7] arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support node
-Date:   Tue, 10 Aug 2021 23:24:40 +0530
-Message-Id: <a2dc15156c5c29f09920aa0beaa81e10a991ff8f.1628617260.git.schowdhu@codeaurora.org>
+Subject: [PATCH V6 5/7] arm64: dts: qcom: sc7280: Add Data Capture and Compare(DCC) support node
+Date:   Tue, 10 Aug 2021 23:24:41 +0530
+Message-Id: <a7f9fc40db7885f7622077df7682f4b11027eccc.1628617260.git.schowdhu@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <cover.1628617260.git.schowdhu@codeaurora.org>
 References: <cover.1628617260.git.schowdhu@codeaurora.org>
@@ -65,30 +65,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Add the DCC(Data Capture and Compare) device tree node entry along with
-the addresses for register regions.
+the address of the register region.
 
 Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 6 ++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++++
  1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index d6d50b4..e0e1d3d 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -1627,6 +1627,12 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 53a21d0..54f1ec9 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -661,6 +661,12 @@
+ 			#power-domain-cells = <1>;
  		};
  
-+		dma@10a2000 {
-+			compatible = "qcom,sm8150-dcc", "qcom,dcc";
-+			reg = <0x0 0x010a2000 0x0 0x1000>,
-+			      <0x0 0x010ad000 0x0 0x3000>;
++		dma@117f000 {
++			compatible = "qcom,sc7280-dcc", "qcom,dcc";
++			reg = <0x0 0x0117f000 0x0 0x1000>,
++			      <0x0 0x01112000 0x0 0x6000>;
 +		};
 +
- 		ufs_mem_hc: ufshc@1d84000 {
- 			compatible = "qcom,sm8150-ufshc", "qcom,ufshc",
- 				     "jedec,ufs-2.0";
+ 		stm@6002000 {
+ 			compatible = "arm,coresight-stm", "arm,primecell";
+ 			reg = <0 0x06002000 0 0x1000>,
 -- 
 QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
 of Code Aurora Forum, hosted by The Linux Foundation
