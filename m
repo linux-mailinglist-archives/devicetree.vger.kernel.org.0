@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E923E839E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 21:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D63C3E83C5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 21:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232376AbhHJT0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 15:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
+        id S232644AbhHJTcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 15:32:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232140AbhHJT0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 15:26:00 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2EFBC061799
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:25:37 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id o185so600319oih.13
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:25:37 -0700 (PDT)
+        with ESMTP id S231143AbhHJTcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 15:32:22 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE5E8C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:31:59 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id u25so697582oiv.5
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 12:31:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=Qaz4xCN739RXFhIv84poX0ScDJwNuifosj/wmNYeKrI=;
-        b=Gd5MAtaiKtZayubjDqRGAyI3XDiBp5Oem/dVLOHadExJW1CH458Ic5Ck696RNY4z7R
-         Kcgb6rKMWcXpAHbi1BvRUx0qgqKUMotleU2XSfSD0qy8k+cAqzi8Q0uNyhxZ3P2Y56pM
-         NFrITyTsXdq3Zo+x+4YrcOELrdbAWfqTIp/7E=
+        bh=uXLJXQXuuZd3UO1KaNFPnK2MtvAlw+IRTdMIHt3NneI=;
+        b=iGQiqPn37w/N3I/dCgu8RNPJSTKuhmeuvE1IiucCtPuOI+RcB2QkZf2DczQin4exUY
+         ziYtP35UfEve9EEdLnPXqTThfUQSXK5LdSjZQxZL5x1KoYD8ns4jBbjo9F2UkY+9plYj
+         W8bDWcuQ9XqPNG/raNP9ZdtqxoDTpXHMdEEWc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=Qaz4xCN739RXFhIv84poX0ScDJwNuifosj/wmNYeKrI=;
-        b=SjjSISAHzQKMqyM7FIg3PqyCMZtm+fLmzu73gRxM821NgAaJcbmFcErCAjzvFgVAW4
-         Mvng2jm7cf7k2aXsxHaMfTGugtO5NPZiNxh7bPr51IQXEajH0VDFln39V/9wsxTSFwtX
-         O8tNnHqcurjcG+VtaO5CKz3ZcX4AxR6K3+Q4ctaWEsXwlKRD4fxTVojmmIvBVSkbZey3
-         z+kHVtKT64k65bxM3I1nVfLeWN0FLZcohTQLGNsQfTO9uCtOcblq6YVlg3isX9jn0oqG
-         PMeLABX07m5Tvms1I9VMjxlUnxerkUnQixbX4A5BFr5LHlmUUrVxWrkd/AP50iguXhjf
-         VgcA==
-X-Gm-Message-State: AOAM5325fajIzXwk+ato8SDnyl9Hf6iDRTAMzqsacO7KutiOBbqCeFuc
-        qrNbRI8odXNiiGDi3luYPXsMr2kPovqpqTHSgdT9Pg==
-X-Google-Smtp-Source: ABdhPJzqQGzY1mBI3xr7FZKkIXaGjwxBnCoAClVfvG9imfTSZkgRoR57g4wmu62dncETwlAoAKYBAKxJ0ASAVABb++A=
-X-Received: by 2002:a05:6808:984:: with SMTP id a4mr4944772oic.166.1628623537400;
- Tue, 10 Aug 2021 12:25:37 -0700 (PDT)
+        bh=uXLJXQXuuZd3UO1KaNFPnK2MtvAlw+IRTdMIHt3NneI=;
+        b=BOlV9jqYw9f6wxNUB6jk8KLfSJY4NcQm4LtM4Id26hgnNhR5Ofgz7HrtGHZhfKQJL5
+         WU9r80Wf/LPL9qt7dvUjp80YSiMEDmEErHHCvPU7XxOb2e6YKtlRksG7KZldg/ZNTtU3
+         yFlX5rmICpV8YmQnlBl1bhYlqy56rW162mcF2yqL4rVrj4gialTp7NQySQM+KFP8oeSI
+         UtKsoeUx6KFxqcFfIio7PUXKikmITqIDXuCRYq07mms+tvWEZLfcAqHrBwYX3tKgEVG+
+         xhR26P//3Wg9+DCSnv07GZROkCuXRPWkEFEdpwPa9DKr2IJ6KPI2TAT7vtvEc/D9xVRP
+         WUig==
+X-Gm-Message-State: AOAM531Hn6inpV8uk5TFwfLPDGyMKmt9yoHhGUBDx9qaIZkZ7P8scC+q
+        YqxEMYpUDABPgRzrkkthE3rBCsel0H/eu7YD2OGMZQ==
+X-Google-Smtp-Source: ABdhPJzvphU4+3PJPdpAiqFAGurPLLah+Lub1M7phYZa7mgUvQgTJjNkVmKIcimt5yMxJU40w3vDC3xrilgyng8dlf4=
+X-Received: by 2002:a05:6808:114a:: with SMTP id u10mr7456659oiu.19.1628623919391;
+ Tue, 10 Aug 2021 12:31:59 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 10 Aug 2021 12:25:36 -0700
+ HTTPREST; Tue, 10 Aug 2021 12:31:58 -0700
 MIME-Version: 1.0
 In-Reply-To: <1628568516-24155-3-git-send-email-pmaliset@codeaurora.org>
 References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org> <1628568516-24155-3-git-send-email-pmaliset@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Tue, 10 Aug 2021 12:25:36 -0700
-Message-ID: <CAE-0n532Mwe2OzhM-_UT62FpxqmpecBda7q0ciW1WzaOPm_Q5Q@mail.gmail.com>
+Date:   Tue, 10 Aug 2021 12:31:58 -0700
+Message-ID: <CAE-0n51uQJ4VDDbmpu18mJw4zcDhD-tvUDgi0LQ4-zAgBUKJ6A@mail.gmail.com>
 Subject: Re: [PATCH v5 2/4] arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
 To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
         bhelgaas@google.com, bjorn.andersson@linaro.org,
@@ -63,50 +63,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Quoting Prasad Malisetty (2021-08-09 21:08:34)
-> Add PCIe controller and PHY nodes for sc7280 SOC.
->
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 126 +++++++++++++++++++++++++++++++++++
->  1 file changed, 126 insertions(+)
->
 > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
 > index 53a21d0..4500d88 100644
 > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
 > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -16,6 +16,7 @@
->  #include <dt-bindings/reset/qcom,sdm845-pdc.h>
->  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->  #include <dt-bindings/thermal/thermal.h>
-> +#include <dt-bindings/gpio/gpio.h>
-
-Please sort this alphabetically, gpio comes before reset at the least.
-
->
->  / {
->         interrupt-parent = <&intc>;
-> @@ -586,6 +587,119 @@
->                         qcom,bcm-voters = <&apps_bcm_voter>;
->                 };
->
-> +               pcie1: pci@1c08000 {
-> +                       compatible = "qcom,pcie-sc7280", "qcom,pcie-sm8250", "snps,dw-pcie";
-> +                       reg = <0 0x01c08000 0 0x3000>,
-> +                             <0 0x40000000 0 0xf1d>,
-> +                             <0 0x40000f20 0 0xa8>,
-> +                             <0 0x40001000 0 0x1000>,
-> +                             <0 0x40100000 0 0x100000>;
+> @@ -1598,6 +1712,18 @@
+>                                         bias-bus-hold;
+>                                 };
+>                         };
 > +
-> +                       reg-names = "parf", "dbi", "elbi", "atu", "config";
-> +                       device_type = "pci";
-> +                       linux,pci-domain = <1>;
-> +                       bus-range = <0x00 0xff>;
-> +                       num-lanes = <2>;
-> +                       pipe-clk-source-switch;
-
-I'd rather not have this DT property, but key it off the compatible
-string.
-
+> +                       pcie1_default_state: pcie1-default-state {
+> +                               clkreq {
+> +                                       pins = "gpio79";
+> +                                       function = "pcie1_clkreqn";
+> +                               };
 > +
-> +                       #address-cells = <3>;
-> +                       #size-cells = <2>;
+> +                               wake-n {
+> +                                       pins = "gpio3";
+> +                                       function = "gpio";
+
+This is function gpio, so presumably board designers could decide to
+change the wake gpio to something else, right? I'd prefer we move wake-n
+to the board level (idp) as well. gpio79 looks fine as it is muxed to be
+the pcie1_clkreqn function, not gpio, so it seems to be a dedicated pin
+for this purpose.
