@@ -2,81 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FED3E54B6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 09:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D9D3E54BF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 10:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237951AbhHJH7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 03:59:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237977AbhHJH7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 03:59:11 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6EC1C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 00:58:49 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id u15so12365780wmj.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 00:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=az+6FbSVeQcfGxgUtfAori5lUKY+79GO47gVQy0HruY=;
-        b=oHSnIxVK1R+pxluaznogtJUMVrSIlFuRXfYUMzUeGgoOkk6ypUuvTf5A2TcNYZRQKN
-         mLIyMvSMRkceMA53LvBUjQepkis4FapdxtKMdlk+OanN9HdKL4K/7i6N1uhorIDv73EB
-         FjBYC6a1cUgRlGQk1DPqDgdE1CNj85ArR7kppfaRSo6zPRcQnEe1MvpJcM3PtPLRy4E/
-         ILQsBWfMTI9vjjb8PnMEtvl+FaqWuPNh35knUmPTiJ+vyZ+GiX8+q+dcLriIhtC/G2oK
-         B1IZn+KDAmMLKMUR2zXqoe0W25tD3OI/3hnjtZPKj0lCfxdD5vBGXktUH8ojmprhqnG2
-         7Ucw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=az+6FbSVeQcfGxgUtfAori5lUKY+79GO47gVQy0HruY=;
-        b=Abj1LcoujYf2x61cZDP7qzriNyYyC+zj1yIhRJ/2YqlObFqAHY5DQOpXSf6LAG3152
-         y9V0VtqOcYooGdu4rT836OZ3MYVVW5/Ua91Uss2MZLvNcKnaL/yUJdy4o1c6SD313x5W
-         9pVsWFD5Ot3PxxSc+WYJYy5SdZzMpxqK07U8QGXeQtYh25SnQ/pvs78h8R4KRzTsDkl9
-         fc52ATsAuelo3XZWAY2Py39izP4VsMNSnvCjz7YNHNwYGAMIWR6nOYNTISRfofWE3keY
-         QeNIzk/CMwgs7PS0a/ThueCTRvhD3cvvV7EsnlwuK+UH78IBvt0ZgqpaXt/GbKLEcn97
-         8cTw==
-X-Gm-Message-State: AOAM531wweRBkn5Qcji8VTSM3IHrQsGes83wgyd258JuZPJRUHUlAB9b
-        FxD7gDlWG7MyffNzZF3tQP0bHw==
-X-Google-Smtp-Source: ABdhPJz8XCNayFApSfos4bR2F31+2QXn4+nRfP5W1mwgK39NBwUs+TU0oX74xTulywVs1cp4h0Ol0w==
-X-Received: by 2002:a05:600c:3b12:: with SMTP id m18mr21387489wms.143.1628582328412;
-        Tue, 10 Aug 2021 00:58:48 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:b710:2b6e:27aa:f0a0])
-        by smtp.gmail.com with ESMTPSA id d5sm22175380wre.77.2021.08.10.00.58.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Aug 2021 00:58:48 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     linux-amlogic@lists.infradead.org,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson: add audio playback to vega-s95 dtsi
-Date:   Tue, 10 Aug 2021 09:58:35 +0200
-Message-Id: <162858223387.1486110.6330831652699678995.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210804140258.4666-1-christianshewitt@gmail.com>
-References: <20210804140258.4666-1-christianshewitt@gmail.com>
+        id S236841AbhHJIJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 04:09:46 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49542 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236577AbhHJIJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 04:09:44 -0400
+X-UUID: 53b6c6ec88234b69b482cd65c786915a-20210810
+X-UUID: 53b6c6ec88234b69b482cd65c786915a-20210810
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 143540492; Tue, 10 Aug 2021 16:09:09 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 10 Aug 2021 16:09:08 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 10 Aug 2021 16:09:07 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
+        <ming-fan.chen@mediatek.com>, <yi.kuo@mediatek.com>,
+        <anthony.huang@mediatek.com>, Ikjoon Jang <ikjn@chromium.org>
+Subject: [PATCH v3 00/13] MT8195 SMI support
+Date:   Tue, 10 Aug 2021 16:08:46 +0800
+Message-ID: <20210810080859.29511-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patchset mainly adds SMI support for mt8195.
 
-On Wed, 4 Aug 2021 14:02:58 +0000, Christian Hewitt wrote:
-> Add initial support limited to HDMI i2s and SPDIF (LPCM).
+Comparing with the previous version, add two new functions:
+a) add smi sub common
+b) add initial setting for smi-common and smi-larb.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.15/dt64)
+Change note:
+v3:1) In the dt-binding:
+       a. Change mediatek,smi type from phandle-array to phandle from Rob.
+       b. Add a new bool property (mediatek,smi_sub_common)
+          to indicate if this is smi-sub-common.
+   2) Change the clock using bulk parting.
+      keep the smi-common's has_gals flag. more strict.
+   3) More comment about larb initial setting.
+   4) Add a maintain patch
+       
+v2: https://lore.kernel.org/linux-mediatek/20210715121209.31024-1-yong.wu@mediatek.com/
+    rebase on v5.14-rc1
+    1) Adjust clk_bulk flow: use devm_clk_bulk_get for necessary clocks.
+    2) Add two new little patches:
+       a) use devm_platform_ioremap_resource
+       b) Add error handle for smi_probe
 
-[1/1] arm64: dts: meson: add audio playback to vega-s95 dtsi
-      https://git.kernel.org/amlogic/c/c6cf488e3bfdf92427686317d99e0342516753de
+v1: https://lore.kernel.org/linux-mediatek/20210616114346.18812-1-yong.wu@mediatek.com/
+
+Yong Wu (13):
+  dt-bindings: memory: mediatek: Add mt8195 smi binding
+  dt-bindings: memory: mediatek: Add mt8195 smi sub common
+  memory: mtk-smi: Use clk_bulk clock ops
+  memory: mtk-smi: Rename smi_gen to smi_type
+  memory: mtk-smi: Adjust some code position
+  memory: mtk-smi: Add error handle for smi_probe
+  memory: mtk-smi: Add device link for smi-sub-common
+  memory: mtk-smi: Add clocks for smi-sub-common
+  memory: mtk-smi: Use devm_platform_ioremap_resource
+  memory: mtk-smi: mt8195: Add smi support
+  memory: mtk-smi: mt8195: Add initial setting for smi-common
+  memory: mtk-smi: mt8195: Add initial setting for smi-larb
+  MAINTAINERS: Add entry for MediaTek SMI
+
+ .../mediatek,smi-common.yaml                  |  36 +-
+ .../memory-controllers/mediatek,smi-larb.yaml |   3 +
+ MAINTAINERS                                   |   8 +
+ drivers/memory/mtk-smi.c                      | 596 ++++++++++--------
+ 4 files changed, 395 insertions(+), 248 deletions(-)
 
 -- 
-Neil
+2.18.0
+
+
