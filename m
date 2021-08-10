@@ -2,84 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA76E3E54E2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 10:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE103E5523
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 10:27:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231304AbhHJIMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 04:12:07 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:52564 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S236598AbhHJILV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 04:11:21 -0400
-X-UUID: 781678e9f89f4f5d9f34668020e1b445-20210810
-X-UUID: 781678e9f89f4f5d9f34668020e1b445-20210810
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 304722485; Tue, 10 Aug 2021 16:10:55 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 10 Aug 2021 16:10:54 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 10 Aug 2021 16:10:47 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
-        <ming-fan.chen@mediatek.com>, <yi.kuo@mediatek.com>,
-        <anthony.huang@mediatek.com>, Ikjoon Jang <ikjn@chromium.org>
-Subject: [PATCH v3 13/13] MAINTAINERS: Add entry for MediaTek SMI
-Date:   Tue, 10 Aug 2021 16:08:59 +0800
-Message-ID: <20210810080859.29511-14-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210810080859.29511-1-yong.wu@mediatek.com>
-References: <20210810080859.29511-1-yong.wu@mediatek.com>
+        id S236941AbhHJI13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 04:27:29 -0400
+Received: from mail-vs1-f53.google.com ([209.85.217.53]:35520 "EHLO
+        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232772AbhHJI13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 04:27:29 -0400
+Received: by mail-vs1-f53.google.com with SMTP id b138so11840170vsd.2;
+        Tue, 10 Aug 2021 01:27:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vEsirkXQR9XRp+ESI/NxcQBZnW3vhj14fJ6I3VFuv8A=;
+        b=UD91EvcN64Sn5cTlmapZjGWsk6y0y7UxLBoYUCY/5B2dh/9AHGEVGnfg8w2mlTSvpi
+         oKkcKz7XnoZgUBXq1FRabu/PUictdty3Tp0ypOjFJifmZscNy4Oa9+vduuRQZQ7rxdyM
+         xOkedV28ASTRmZNQddXahBCIuMll74ecCm6sKJpNrczMdttjfk8kQ9lDe70+wxa0+G93
+         wcHeSjiIv0of8t4qZ+jOe9H+MjOE//F69awHM2kyy4ReDDSBKsNJYAhfBOsSowKOUxo9
+         4xs3y476RL/MqWTFqNgDjPRYvf6LWORdkQwoRAGpXKi+NGwKV9unIcXyHTp0Qvyqm7AX
+         jcnw==
+X-Gm-Message-State: AOAM531/fbaB2CevqC8dCODysNQPCiwAPe/QbScQ5jd0nFAHm32lqaPN
+        qPGPSgQENLJveDrd5zRPDLpCnejxnFyjNLDtPOM=
+X-Google-Smtp-Source: ABdhPJwyqKTQQpPefbrJQBBtVL0JrZHJed0ystZSCbUas8Yc765XYNut1HHYKt7QAQ0qru2tK8FCEcPeuQXvb7ROTe4=
+X-Received: by 2002:a05:6102:d9:: with SMTP id u25mr11249297vsp.42.1628584026679;
+ Tue, 10 Aug 2021 01:27:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210727133022.634-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210727133022.634-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210727133022.634-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 10 Aug 2021 10:26:55 +0200
+Message-ID: <CAMuHMdU7-AahJmKLabba_ZF2bcPwktU00Q_uBOYm+AdiBVGyTA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] can: rcar_canfd: Add support for RZ/G2L family
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am the author of MediaTek SMI driver, and will to maintain
-and develop it further.
-Add myself to cover these items.
+Hi Prabhakar,
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Tue, Jul 27, 2021 at 3:30 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> CANFD block on RZ/G2L SoC is almost identical to one found on
+> R-Car Gen3 SoC's. On RZ/G2L SoC interrupt sources for each channel
+> are split into different sources and the IP doesn't divide (1/2)
+> CANFD clock within the IP.
+>
+> This patch adds compatible string for RZ/G2L family and splits
+> the irq handlers to accommodate both RZ/G2L and R-Car Gen3 SoC's.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a61f4f3b78a9..91af55b45e80 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11754,6 +11754,14 @@ M:	Sean Wang <sean.wang@mediatek.com>
- S:	Maintained
- F:	drivers/char/hw_random/mtk-rng.c
- 
-+MEDIATEK SMI DRIVER
-+M:	Yong Wu <yong.wu@mediatek.com>
-+L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-+S:	Supported
-+F:	Documentation/devicetree/bindings/memory-controllers/mediatek,smi*
-+F:	drivers/memory/mtk-smi.c
-+F:	include/soc/mediatek/smi.h
-+
- MEDIATEK SWITCH DRIVER
- M:	Sean Wang <sean.wang@mediatek.com>
- M:	Landen Chao <Landen.Chao@mediatek.com>
+Thanks for your patch!
+
+I've just noticed a set of silly typos:
+
+> --- a/drivers/net/can/rcar/rcar_canfd.c
+> +++ b/drivers/net/can/rcar/rcar_canfd.c
+
+> +static void rcar_canfd_handle_global_recieve(struct rcar_canfd_global *gpriv, u32 ch)
+
+receive (everywhere)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.18.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
