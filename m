@@ -2,90 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 637383E5A1F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 14:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A3F73E5A25
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 14:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240673AbhHJMkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 08:40:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37836 "EHLO
+        id S238880AbhHJMmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 08:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240681AbhHJMkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 08:40:11 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B0CAC061798;
-        Tue, 10 Aug 2021 05:39:49 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d1so20815367pll.1;
-        Tue, 10 Aug 2021 05:39:49 -0700 (PDT)
+        with ESMTP id S238851AbhHJMmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 08:42:07 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E7DC061798
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 05:41:45 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id t7-20020a17090a5d87b029017807007f23so4108771pji.5
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 05:41:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9I0CnBRBS69h5ISxkRVZTJz/oVJGT//9peAin9G2oR0=;
-        b=a5N2tYoMh+j84y+bIgz6oG01D0K5QDRWLaZg+31ztimX+GfRHjZQ4sQRrB4p6SLitX
-         V14TEE1gTejVfsq+PrL8uLIUrThO8ZrC1MJaRfl4d14PtPvooc6U4SvcOrj3i3Au0kbp
-         2aeH5rSg3XSlATKMIGZv0Ttpeotyjb27motXWF8ldnl2GeHEiX2GQhUGwcztpMX1GjH7
-         kGsQhdNhUXqny360/iN+y4B9/j0m5yvO0Af/32a9i+KthjiHgAlKIe+SHUMArSizkcdD
-         X/2q9P3pI2IqNV8oKdZxNg8mewu7YEDGPwVXuNiqQO6HHSmjWtrZjwwQxOGAxgO50b3F
-         Ojrg==
+        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=jEv32BiVnu7fQqSnvPGcx5ruZj5V0HnF2prfpKqxjn4=;
+        b=0mjhlmrZSBz51JqUD9OH0DhuZBRxI34vxDlxoSVsklAlLVx+DB4RYGu4wXSCPJo6bE
+         0Rj1Ffse8Rzx2ep4AxTlkweNF25Z6t+4LZO9PAdFTLPcQXwbra9BkRNXLHiVKaTsNc0S
+         +ixAQQ2i6aJthqyAUcHvnh8fjB5XaFTimMRxJcK8KBdSEvIxfGKjYcbv5RpgW2yA029b
+         ZfALDvV0HR4/2en03DYTmB2UEgKkjXlvfeQd+NIYlDc4ILWvxdqWUoEG+deW7Q3HdAV6
+         XilWTUU3kgXGlUtEyArDUU12hOt0M0ah1oK3apBp/eiU70CaaFA9B1cMk20hy53/fqj7
+         I6rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9I0CnBRBS69h5ISxkRVZTJz/oVJGT//9peAin9G2oR0=;
-        b=pk4GfiEYWIMxyVZAY5/xkc0ln8nSbNOR1m/68jYdt4dkSnKX8QScrTkXgNiPyN7oiZ
-         qEq3L+bu1Jx0Zj+OEUxHQjd1VYMgeEnJXusMxng2oEFXc5b30KxQh1Kq2uVve3ShuG1c
-         qaDD2T0rvaFZucaZrP+8DTF7PAe8JWkf4iOXqmgo0IEuYRxIqeKKQDu5SDB7Q61f6+ji
-         gs0YYk2uO80JU+aXPnCvYYIYYiGWljlt8eOTJw/4ulbLHiBEbIVbRmb9mfR+lb9W5ieh
-         Pyf16XI9Zh/km83PaqEAXPsoBmrzR+hVN/srh++7FJEyUYPf4Bkc8ODmfraaAmdYdwTn
-         4OHw==
-X-Gm-Message-State: AOAM531FAzt2wTxZEBtqQ4o49PVHVvLF7HBLQWmqSy1XTWLcSn55UX1L
-        yh5sKnywobuwUgAYLF/5BKad/epFf4aUVKqkz5M=
-X-Google-Smtp-Source: ABdhPJxknJ/8yapgV7DOjdk/q25wwmvoANXzbC6kDa/PQf+uy3zUoNRhkS3S+e2JHbl0/P9EcODlDqlWmWx5mWKH2ls=
-X-Received: by 2002:a17:90a:604e:: with SMTP id h14mr1710147pjm.181.1628599188576;
- Tue, 10 Aug 2021 05:39:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210809080729.57029-1-puranjay12@gmail.com> <20210809080729.57029-3-puranjay12@gmail.com>
- <20210809205141.193d24dc@jic23-huawei>
-In-Reply-To: <20210809205141.193d24dc@jic23-huawei>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 10 Aug 2021 15:39:11 +0300
-Message-ID: <CAHp75Ve=fnib8YzVH_5LySgQDiWCxNzsJYBBLtB68GrSOCT9SQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v9 2/2] iio: accel: Add driver support for ADXL355
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Puranjay Mohan <puranjay12@gmail.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-        Darius <Darius.Berghe@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=jEv32BiVnu7fQqSnvPGcx5ruZj5V0HnF2prfpKqxjn4=;
+        b=twyjWHdqPWzrJpTYTEsWu67TlC98wqn69edhmaR22BzKQRfzmP186xXO2Z43gpBhT1
+         UixbbEli9pFhrX51jcJz018vfLfqUSiDXf5eYLIaEU2N78U+ic6ACnY3Knd+MrP3/wqX
+         i5Yjf9TomxpeKTh/kYQDotffBsXd2fbGi9o2OhjH+06pGMjAgiXW/rsaZDC+dhTR/W/2
+         J+fJd2WnPJ9PxfF3KD+C6/YdcrSkOtyDizJpT35Zvd8bYv/SiDGOA9hIs90R7RQO46jO
+         k3FvWMGWK+d66zc/D28G8ZpoM/5WlIyfSLrcc+7LJRDVUm0tYpBd1QlWf28xp7Lrw6f1
+         H4Eg==
+X-Gm-Message-State: AOAM532b9mnP99IA/qxcsjVT7qL4mcpU7f5OwmcfcX5oGw6v0zVrVtLe
+        bTS1s+cW0TiD1uNFvCY+b2vKdg==
+X-Google-Smtp-Source: ABdhPJxAEsdQRashpCRGsGTtR9hGQpKEX2bQMXc4GZMfve1VZFx9ipQvlCg0rOzK62MK+kdtLSnIMw==
+X-Received: by 2002:a65:55c6:: with SMTP id k6mr188593pgs.129.1628599305051;
+        Tue, 10 Aug 2021 05:41:45 -0700 (PDT)
+Received: from ubuntu.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id y12sm23851561pfr.68.2021.08.10.05.41.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Aug 2021 05:41:44 -0700 (PDT)
+From:   xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
+To:     pihsun@chromium.org, drinkcat@google.com, marcheu@chromium.org,
+        jitao.shi@mediatek.com, thierry.reding@gmail.com, sam@ravnborg.org,
+        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/panel: Add inx Himax8279d MIPI-DSI LCD panel driver
+Date:   Tue, 10 Aug 2021 20:41:40 +0800
+Message-Id: <20210810124140.16937-1-xiazhengqiao@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210412080134.24598-1-xiazhengqiao@huaqin.corp-partner.google.com>
+References: <20210412080134.24598-1-xiazhengqiao@huaqin.corp-partner.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 9, 2021 at 11:56 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Mon,  9 Aug 2021 13:37:29 +0530
-> Puranjay Mohan <puranjay12@gmail.com> wrote:
->
-> > ADXL355 is 3-axis MEMS Accelerometer. It offers low noise density,
-> > low 0g offset drift, low power with selectable measurement ranges.
-> > It also features programmable high-pass and low-pass filters.
-> >
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl354_adxl355.pdf
-> > Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
->
-> One odd formatting thing below (tab where it should be a space)
-> that I can fix whilst applying if you don't have other reasons to
-> do a v10.
->
-> Otherwise, looks good to me.
+Hi,
 
-I just reviewed a previous "v9" and I have quite a few comments I
-think can be addressed.
+could you help to review this patch? This patch has been applied to our devices which use
 
--- 
-With Best Regards,
-Andy Shevchenko
+INX 2081101qfh032011-53g 1200x1920 video panel and it works well.
+
+thanks.
