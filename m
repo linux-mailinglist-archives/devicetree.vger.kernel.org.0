@@ -2,94 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 550873E815E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 20:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FCC33E8245
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 20:06:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236421AbhHJR65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Aug 2021 13:58:57 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:64968 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236373AbhHJR44 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Aug 2021 13:56:56 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628618193; h=References: In-Reply-To: References:
- In-Reply-To: Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=nZwLC8/2+nLBKjH7ldDqFj6R3W+sRvtGK7QbXrDghZs=; b=tK1bZtQ3UZQnb3pseHa3595w95XnF8fG7CMC1yr+LbCEY6v5mkwK7FM6DkcqUz5BoYJeQdbU
- qtDboSPkTgTFQO3IiKpbLNWZmHlum7rvpsf7Y6eKkiyRNT+tKXqyw8rzNWUycGzf1y5QELnH
- tOnbAJchJeGEScGaS5sHvTagr1Q=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 6112bdd0b14e7e2ecb94ce59 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Aug 2021 17:56:32
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 163BBC35973; Tue, 10 Aug 2021 17:56:31 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-525.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9C9DBC3596D;
-        Tue, 10 Aug 2021 17:56:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9C9DBC3596D
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=schowdhu@codeaurora.org
-From:   Souradeep Chowdhury <schowdhu@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org,
-        Souradeep Chowdhury <schowdhu@codeaurora.org>
-Subject: [PATCH V6 7/7] arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support node
-Date:   Tue, 10 Aug 2021 23:24:43 +0530
-Message-Id: <db71a289cfceddc2d93f3f63423d67b545992e12.1628617260.git.schowdhu@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1628617260.git.schowdhu@codeaurora.org>
-References: <cover.1628617260.git.schowdhu@codeaurora.org>
-In-Reply-To: <cover.1628617260.git.schowdhu@codeaurora.org>
-References: <cover.1628617260.git.schowdhu@codeaurora.org>
+        id S236949AbhHJSGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Aug 2021 14:06:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236783AbhHJSDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Aug 2021 14:03:42 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8730C09B12F
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 10:36:54 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id d4so14192768lfk.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 10:36:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=y3BZ+wT7TMDVjM2/WQcyPOhYkG/NWjvDbJIsMqFI2RA=;
+        b=rZyDO+pQmFAMTqMMwbflMM4ql7GCGPeivQF49luaUKDh68BdWveTpXnyTbx8OavZh5
+         bGP7zLKVlUZwhT2f48vcZmIt1snZCfta1+RSsuWy7jL1bN3yiCeI7kSgY9GO+Mr9hMq3
+         QkduLfUrIvN/HhmkJo3bkzdVVz9B3L1xqaqjjeWbgQaiVHo19p8Fs6QUjc1RLTijFsZ1
+         J9z0vnpLd+WWbyIkFWEiiEi8HRNeEnyGx9q1dMSNuv5GsXDJ6u1Pt8dggrrGxNlZZA6H
+         nx910xE9Y9oc9IQRBXvrtvv831ie/oFdSTFPcOo+Z7/z7WR4icLIqTKALRAXVA68hURN
+         avgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=y3BZ+wT7TMDVjM2/WQcyPOhYkG/NWjvDbJIsMqFI2RA=;
+        b=Ot7vM3gaAUNgv87SdxDgLaqfYwwFXZV0Rx493a7Wxl9oQtLK3tXgyM4Pgkb5mNU57O
+         B1EOvBoABOnDnPMg8zww/9TOxbSdfHGeK7O7Kg8Ps+FOB2o3ETJKu/98LEoNr/rFrEgi
+         4Hgsz2HrR+o5Nfjx3V9lS6d92oLqlQ6WDmdC+gT4RNWzIZ3dTW56stzD9Wdk/8lkZmPr
+         9MJ55Qi+yJO9MoekJg3t+UJquZNr/8Hvpl9EM2dZXW8RqPk08DN2KY8bPD7YvuB5UG0J
+         uPkxi3FzoLY/dVWfTozavDTrd0yHnFVeTRrda/5gelNDGzP1N+NPHSN0w/5rOvsJJOBl
+         qU7w==
+X-Gm-Message-State: AOAM5312FKF6+K6eiB7Y+czW8uAeacfAJxkuCYjlb/p1abehu3PKLX4y
+        JkatmzaivMayWMAT4rZ2CRmS/bjXfpXx1VnpSMU=
+X-Google-Smtp-Source: ABdhPJzIebxwo90Zyr4sj9ScmYCof4VCk1w95dCMQpZ4/cQfOuUDCqwTC1pz0BbxoizG48Nn6kSbzrBfyOpB9YVAvEQ=
+X-Received: by 2002:a05:6512:11c3:: with SMTP id h3mr22104381lfr.413.1628617013026;
+ Tue, 10 Aug 2021 10:36:53 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:ac2:4eca:0:0:0:0:0 with HTTP; Tue, 10 Aug 2021 10:36:52
+ -0700 (PDT)
+Reply-To: majidmuzaffar8@gmail.com
+From:   Majid Muzaffar <ngl.binabdul.rashiid333.me@gmail.com>
+Date:   Tue, 10 Aug 2021 20:36:52 +0300
+Message-ID: <CAG1gDZWXEFoLwsRk8a_qSWzn3-vwvvxE2XX3d--LKh2r2t4e1w@mail.gmail.com>
+Subject: Proposal
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DCC(Data Capture and Compare) device tree node entry along with
-the address of the register region.
+Salam alaikum,
 
-Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+I am the investment officer of UAE based investment company who are
+ready to fund projects outside UAE, in the form of debt finance. We
+grant loan to both Corporate and private entities at a low interest
+rate of 3% ROI per annum. The terms are very flexible and interesting.
+Kindly revert back if you have projects that needs funding for further
+discussion and negotiation.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index ff6bda1..ee13b5f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1968,6 +1968,12 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		dma@10a2000 {
-+			compatible = "qcom,sdm845-dcc", "qcom,dcc";
-+			reg = <0x0 0x010a2000 0x0 0x1000>,
-+			      <0x0 0x010ae000 0x0 0x2000>;
-+		};
-+
- 		pcie0: pci@1c00000 {
- 			compatible = "qcom,pcie-sdm845", "snps,dw-pcie";
- 			reg = <0 0x01c00000 0 0x2000>,
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Thanks
 
+investment officer
