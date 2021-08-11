@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A0293E8EF2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 12:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55DD93E8EFE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 12:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236847AbhHKKsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 06:48:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34876 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232644AbhHKKsZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 06:48:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9053F60E78;
-        Wed, 11 Aug 2021 10:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628678881;
-        bh=xYgnW6GKpe7B16PTBfB7hhq82Lr5SW7l3TtN+WaINkM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QnBiGODFjPOnuHARymzRkOPEO0iuhRXJ8JXcvcS7ggufrsRsUH6gbfTQ4lIY8Jr1b
-         EL+BThFwEaMBXmHBbWPM83WhWER+Jw1OxvDDblbw7GTHn5WXJNEGkDnPOZQss5deyR
-         BE/mtZw2jFotLgkcmLOWnh2njuLQCJ2GcdoNPCV4Ss968C76K2Ku6ur9gT2KFafjVD
-         xe/O1bHPnvI1DJP27wB4ZoQPVghS35tLQ3pIBh0hjun9+0SHyxbmlSrLFCm/ro9BB+
-         KK8sabJwbEug+PxbMEA0fSsSM7lkrtwktacD0CR5kXaCqsWdGI9E08YUqHujv+fsBq
-         4cBRnHttYTSjA==
-Date:   Wed, 11 Aug 2021 12:47:55 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 19/19] auxdisplay: ht16k33: Add LED support
-Message-ID: <20210811124755.37b0a0a9@thinkpad>
-In-Reply-To: <20210811095759.1281480-20-geert@linux-m68k.org>
-References: <20210811095759.1281480-1-geert@linux-m68k.org>
-        <20210811095759.1281480-20-geert@linux-m68k.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S232376AbhHKKvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 06:51:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33450 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237136AbhHKKvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 06:51:11 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FD7C0613D3;
+        Wed, 11 Aug 2021 03:50:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=7wGqM2CTNMgzFAoCTsxE+tYXNpD4LqM52tDDtrhDGi0=; b=dPplMKmbiSU1B15LZvzpZifUUT
+        R/lzecwd8+y9h8uWGbaYZZqxM5+A1tOMyr2Bv+dbHRaInZTL2uoYAKOlxJcy/PbPSA7jOm5maWKaO
+        7bbIitvrCQC5Twn4tz1pzWniyXhXJhyvYAuzu8qYGWW5EYUYqYMXEo5ayKZa5ocuW+kYwCW52N4d/
+        2YBzcxUlx9pvvPPFqH10nX6LP/BRhrkGto9Ijg4qr3j4AAL9f1EmKiBSlG7z5XPTW+jx+05BmRVuo
+        JOK10gjovr9s1wsdpg+WU3yREibOgICnRtxzmp1C4s2sB2BmvXQWXPTFsEcvfxxDnmcNuzOgvgj2N
+        +oPO662w==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <mperttunen@nvidia.com>)
+        id 1mDloh-0007SJ-QO; Wed, 11 Aug 2021 13:50:35 +0300
+From:   Mikko Perttunen <mperttunen@nvidia.com>
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v3 0/3] NVIDIA Tegra NVDEC support
+Date:   Wed, 11 Aug 2021 13:50:27 +0300
+Message-Id: <20210811105030.3458521-1-mperttunen@nvidia.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: mperttunen@nvidia.com
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Aug 2021 11:57:59 +0200
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+Here's the v3 of the NVDEC support series, containing minor fixes
+compared to v2.
 
-> Instantiate a single LED based on the "led" subnode in DT.
-> This allows the user to control display brightness and blinking (backed
-> by hardware support) through the LED class API and triggers, and exposes
-> the display color.  The LED will be named
-> "auxdisplay:<color>:<function>".
->=20
-> When running in dot-matrix mode and if no "led" subnode is found, the
-> driver falls back to the traditional backlight mode, to preserve
-> backwards compatibility.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+NVDEC hardware documentation can be found at
+https://github.com/NVIDIA/open-gpu-doc/tree/master/classes/video
 
-Reviewed-by: Marek Beh=C3=BAn <kabel@kernel.org>
+and example userspace can be found at
+https://github.com/cyndis/vaapi-tegra-driver
 
-BTW, this driver does not need to depend on OF, methinks.
-The few instances of properties reading can be
-easily rewritten to device_* functions (from include/linux/property.h).
-The of_get_child_by_name() can become device_get_named_child_node().
+Thanks,
+Mikko
 
-Geert, what do you think?
+Mikko Perttunen (3):
+  dt-bindings: Add YAML bindings for NVDEC
+  arm64: tegra: Add NVDEC to Tegra186/194 device trees
+  drm/tegra: Add NVDEC driver
 
-Marek
+ .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  16 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  36 ++
+ drivers/gpu/drm/tegra/Makefile                |   3 +-
+ drivers/gpu/drm/tegra/drm.c                   |   4 +
+ drivers/gpu/drm/tegra/drm.h                   |   1 +
+ drivers/gpu/drm/tegra/nvdec.c                 | 474 ++++++++++++++++++
+ drivers/gpu/host1x/dev.c                      |  18 +
+ include/linux/host1x.h                        |   2 +
+ 10 files changed, 663 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+ create mode 100644 drivers/gpu/drm/tegra/nvdec.c
+
+-- 
+2.32.0
+
