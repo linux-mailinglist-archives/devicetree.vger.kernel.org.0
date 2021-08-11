@@ -2,88 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 881F53E9787
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 20:19:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357EA3E9795
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 20:23:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231217AbhHKSTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 14:19:47 -0400
-Received: from mail-pj1-f53.google.com ([209.85.216.53]:33766 "EHLO
-        mail-pj1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231281AbhHKSTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 14:19:47 -0400
-Received: by mail-pj1-f53.google.com with SMTP id 28-20020a17090a031cb0290178dcd8a4d1so5662015pje.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 11:19:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ilpZFfh2W+CY8+HCSImTzYloCYVl2pqPpxQYj2d5QPI=;
-        b=B5a05WLSU+4zuhEO/15k1vfCL+KuL2BBp3jg0UtCyfsAQQkQvsxFP4m6rDiNiPwXKH
-         oW78RALi0XliIZaxcT4riO9zI8PUIl0byDiH2FfpqCRQe7U60ud6lfLGcDUH4zQm2FPJ
-         qoFT8ubZNJ47o0o/pF5793JUE0StwQtepZGglk4/lqB/TxU3iqprxDG2mk9ZFkg8ecGv
-         AedDoYqXu1UP5fgoPenv6bXtMlMucG48S5IT3B6UWbFSDHTXh8ooFPyPVj/XW+3D+0C9
-         J+IiqI2Ve9+kDo39yKvo+uEYvxaGZGB0SsPS6dmmWgrxddE40083jT3nP8NH9dMK+tzA
-         5QJA==
-X-Gm-Message-State: AOAM533bItg4Yg09NlZ1WB3bRVz3nlRiBIkJGS6Hk6e+fnd+jqLR/lY/
-        EQ6z6+3nskzYKbm6INjXCg==
-X-Google-Smtp-Source: ABdhPJxUdAalxENdH6d6efbOmzxEgsbEVrYlNZ1GqZ+dtvFoyMVQkp9dVRHrCSA/A1CQgbuDZCz/iQ==
-X-Received: by 2002:a63:5002:: with SMTP id e2mr41094pgb.256.1628705963297;
-        Wed, 11 Aug 2021 11:19:23 -0700 (PDT)
-Received: from robh.at.kernel.org ([208.184.162.215])
-        by smtp.gmail.com with ESMTPSA id 15sm141463pgp.3.2021.08.11.11.19.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Aug 2021 11:19:22 -0700 (PDT)
-Received: (nullmailer pid 29882 invoked by uid 1000);
-        Wed, 11 Aug 2021 18:19:17 -0000
-Date:   Wed, 11 Aug 2021 12:19:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, bjorn.andersson@linaro.org,
-        plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-Subject: Re: [PATCH v3 05/20] ASoC: dt-bindings: replace q6afe bindings with
- q6dsp-audio-ports
-Message-ID: <YRQUpZeusOEA9aOM@robh.at.kernel.org>
-References: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
- <20210803125411.28066-6-srinivas.kandagatla@linaro.org>
- <20210804175334.GE26252@sirena.org.uk>
- <225bc8df-0d78-09d6-4dc9-8cc2145f095f@linaro.org>
+        id S229847AbhHKSXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 14:23:37 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:45600 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229655AbhHKSXh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 14:23:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=TRGj6dbMSGqJuo7VxARfKcBHrtxIRic/Swrh3n8R1HQ=; b=FqA2X11gyQK+MEJpDWdYCnPv0z
+        +kqPkJHc1CvigeD3ZdDaBpTSIcuitwui3fuPJVr1jb8QgWd5FGf7vDSzHHmp8t+q2QmxCwfWYllpz
+        henqDrmmnwYtlScLXQVh8OgmbB56rum3KIlkdh9ZdCZESAW2hqn+ozeKLObVsZh4Aic4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mDssa-00HAB2-Eo; Wed, 11 Aug 2021 20:23:04 +0200
+Date:   Wed, 11 Aug 2021 20:23:04 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, davem@davemloft.net, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <YRQViFYGsoG3OUCc@lunn.ch>
+References: <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
+ <YQfvXTEbyYFMLH5u@lunn.ch>
+ <20210802135911.inpu6khavvwsfjsp@skbuf>
+ <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
+ <20210803235401.rctfylazg47cjah5@skbuf>
+ <20210804095954.GN22278@shell.armlinux.org.uk>
+ <20210804104625.d2qw3gr7algzppz5@skbuf>
+ <YQ6pc6EZRLftmRh3@lunn.ch>
+ <20191b895a56e2a29f7fee8063d9cc0900f55bfe.camel@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <225bc8df-0d78-09d6-4dc9-8cc2145f095f@linaro.org>
+In-Reply-To: <20191b895a56e2a29f7fee8063d9cc0900f55bfe.camel@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 05, 2021 at 10:16:14AM +0100, Srinivas Kandagatla wrote:
-> Thanks Mark for the review,
-> 
-> On 04/08/2021 18:53, Mark Brown wrote:
-> > On Tue, Aug 03, 2021 at 01:53:56PM +0100, Srinivas Kandagatla wrote:
-> > > DSP Audio Ports bindings have been documented with DSP services bindings
-> > > which makes it difficult to reuse them, so pull them out in to a dedicated
-> > > bindings.
-> > > Also as part of this change convert them into yaml format.
-> > 
-> > > This patch also removes q6afe bindings as dsp services are now documented in
-> > > apr bindings.
-> > 
-> > This feels like it's multiple changes stuffed into one commit which
-> > makes it difficult to review, especially since I'm having a hard time
-> > connecting the code changes with the description.  For example this says
-> > it removes the "q6afe bindings" but we seem to be adding some in the
-> > newly added YAML file.  At the very least the commit message needs to be
-> > improved but I think this probably needs to be split out into separate
-> > changes each doing one thing.
-> This patch is doing yaml conversion + removing the "qcom,q6afe" compatible
-> from the existing bindings + header file renaming.
-> 
-> I agree, will split the header file renaming and yaml conversions as two
-> patches, that should probably help. I will also update the commit message
-> with more details.
+> I hope that using "*-internal-delay-ps" for Mac would be the right option.
+> Shall i include these changes as we discussed in next revision of the patch? 
 
-Perhaps also relicense the header to include Qcom's preferred license.
+Yes, that seems sensible. But please limit them to the CPU port. Maybe
+return -EINVAL for other ports.
 
-Rob
+     Andrew
