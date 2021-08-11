@@ -2,112 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B9003E9712
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23F483E9731
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbhHKRxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 13:53:03 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:21027 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbhHKRxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 13:53:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1628704359; x=1660240359;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YvLsHg/EptJ2LvMJ2mhuOEkSOGfZFINShOVVjydMfTQ=;
-  b=dMshmNB00YL5incch5ZmboUUEd8VU0p5IA6LvVNgZTHo2rA0tFsxhw+n
-   xz8rGgQdDfOkPelAxDgckZA0ymZhyz95udWmoiwVBd703xv6bYPTA0HL6
-   6lk2LNKsYbUii0+PRvk9cZ5IrvdSul2uvFicGxp91U/Fu7h6t4bQMIhxN
-   GPSLcHG92tP3TgplqrSTxVAenLGSaWlmNxyPIwv8A0RnNo/LvcxwV5vJ0
-   rfqimYCt5PTTKhvpl2sqm0/4/nuIgdHF15/zsWkpYW+4Lz6wQdt7e8o0o
-   UPYgrNMSizT5RpDsKG3YBx0AjgEZtuEoeRflrmP3xI4nPOCoQpUJGSUDI
-   A==;
-IronPort-SDR: qNGjdwFKDI+SOaSLk7ptUluxc82Y00Tu9YHqtBifeHUfu5wKOjdpccBkExuEdPnuf8r/dv4A8Q
- K1yrVn8cpvPCJ1wSCfkJNXN3mWXEr3/GxRJeDesnHVdgm6kHAATIEKU/uP9tP6MGyB7YeQZa9y
- hfxrevvgLWhnGFVTAUpJxasRLStirZSssSXUD+6HCamhu18I9q3EbtN1IUmydhc6hiTTcrIsSv
- 2lXW4Huv22qv4/i9wg+WZL+E+fdmzL0fGG8iH9TLJhH/w4ZTyEBVTV0mWwIOVDNJMTFsapU9ZO
- OI4wvxLekKig6HpddjPEZw8i
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; 
-   d="scan'208";a="132446740"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Aug 2021 10:52:38 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 11 Aug 2021 10:52:38 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Wed, 11 Aug 2021 10:52:33 -0700
-Message-ID: <90899ba866a198ce60ac02f990200f0335759446.camel@microchip.com>
-Subject: Re: [PATCH v3 net-next 03/10] net: phy: Add support for LAN937x T1
- phy driver
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     <andrew@lunn.ch>
-CC:     <netdev@vger.kernel.org>, <olteanv@gmail.com>,
-        <robh+dt@kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <Woojung.Huh@microchip.com>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Wed, 11 Aug 2021 23:22:32 +0530
-In-Reply-To: <20210723173108.459770-4-prasanna.vengateshan@microchip.com>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
-         <20210723173108.459770-4-prasanna.vengateshan@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1-1 
+        id S229535AbhHKSAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 14:00:01 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:35812 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229473AbhHKSAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 14:00:01 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 67DDFEE;
+        Wed, 11 Aug 2021 19:59:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1628704775;
+        bh=BMsdi7My1VYTMrplXoEmSnQucwP+J/DbPd0dzrnNBsM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IHxA1AMILWKIHji8vmE4Bnzr2zmoUHodN+zQtrlMsQXc2KnZ8/0jXPdvhcRyMK9Y0
+         biqdsyNn4CTwpBw/Wf+8yaT/O4PgR/8Akw0izPsfspboLK84s9qqEGgnTlP3HzMB7o
+         2CsHjgO66+Hz0AV3k68PC9sB+etZaCQAptgb114Q=
+Date:   Wed, 11 Aug 2021 20:59:32 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        George Sun <george.sun@mediatek.com>
+Subject: Re: [PATCH v5, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for mt8192
+Message-ID: <YRQQBL8AN0925zj9@pendragon.ideasonboard.com>
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
+ <20210811025801.21597-14-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210811025801.21597-14-yunfei.dong@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andrew,
+Hi Yunfei,
 
-On Fri, 2021-07-23 at 23:01 +0530, Prasanna Vengateshan wrote:
-> Added support for Microchip LAN937x T1 phy driver. The sequence of
-> initialization is used commonly for both LAN87xx and LAN937x
-> drivers. The new initialization sequence is an improvement to
-> existing LAN87xx and it is shared with LAN937x.
+Thank you for the patch.
+
+On Wed, Aug 11, 2021 at 10:57:59AM +0800, Yunfei Dong wrote:
+> Adds decoder dt-bindings for mt8192.
 > 
-> Also relevant comments are added in the existing code and existing
-> soft-reset customized code has been replaced with
-> genphy_soft_reset().
-> 
-> access_ereg_clr_poll_timeout() API is introduced for polling phy
-> bank write and this is linked with PHYACC_ATTR_MODE_POLL.
-> 
-> Finally introduced function table for LAN937X_T1_PHY_ID along with
-> microchip_t1_phy_driver struct.
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > ---
->  drivers/net/phy/microchip_t1.c | 319 +++++++++++++++++++++++++++------
->  1 file changed, 260 insertions(+), 59 deletions(-)
+> v5: no changes
 > 
-> diff --git a/drivers/net/phy/microchip_t1.c b/drivers/net/phy/microchip_t1.c
-> index 4dc00bd5a8d2..a3f1b5d123ce 100644
-> --- a/drivers/net/phy/microchip_t1.c
-> +++ b/drivers/net/phy/microchip_t1.c
-> @@ -30,15 +30,53 @@
->  #define        PHYACC_ATTR_MODE_READ           0
->  #define        PHYACC_ATTR_MODE_WRITE          1
->  #define        PHYACC_ATTR_MODE_MODIFY         2
-> +#define        PHYACC_ATTR_MODE_POLL           3
->  
->  #define        PHYACC_ATTR_BANK_SMI            0
->  #define        PHYACC_ATTR_BANK_MISC           1
->  #define        PHYACC_ATTR_BANK_PCS            2
->  #define        PHYACC_ATTR_BANK_AFE            3
-> +#define        PHYACC_ATTR_BANK_DSP            4
->  #define        PHYACC_ATTR_BANK_MAX            7
- 
+> This patch depends on "Mediatek MT8192 clock support"[1].
+> 
+> The definition of decoder clocks are in mt8192-clk.h, need to include them in case of build fail [1].
+> 
+> [1]https://patchwork.kernel.org/project/linux-mediatek/list/?series=511175
+> ---
+>  .../media/mediatek,vcodec-comp-decoder.yaml   | 172 ++++++++++++++++++
+>  1 file changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> new file mode 100644
+> index 000000000000..083c89933917
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> @@ -0,0 +1,172 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/mediatek,vcodec-comp-decoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Video Decode Accelerator With Component
+> +
+> +maintainers:
+> +  - Yunfei Dong <yunfei.dong@mediatek.com>
+> +
+> +description: |+
+> +  Mediatek Video Decode is the video decode hardware present in Mediatek
+> +  SoCs which supports high resolution decoding functionalities. Required
+> +  master and component node.
 
-Are there any items that need a change in this patch? It will be helpful for me
-to include them in the next version. Thanks.
+This should explain how the three IP cores relate to each other.
 
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt8192-vcodec-dec  # for lat hardware
+> +          - mediatek,mtk-vcodec-lat     # for core hardware
+> +          - mediatek,mtk-vcodec-core
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - const: vdec-sel
+> +      - const: vdec-soc-vdec
+> +      - const: vdec-soc-lat
+> +      - const: vdec-vdec
+> +      - const: vdec-top
+> +
+> +  assigned-clocks: true
+> +
+> +  assigned-clock-parents: true
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    minItems: 1
+> +    maxItems: 32
+> +    description: |
+> +      List of the hardware port in respective IOMMU block for current Socs.
+> +      Refer to bindings/iommu/mediatek,iommu.yaml.
+> +
+> +  dma-ranges:
+> +    maxItems: 1
+> +    description: |
+> +      Describes the physical address space of IOMMU maps to memory.
+> +
+> +  mediatek,scp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+> +    description:
+> +      Describes point to scp.
+> +
+> +required:
+> +      - compatible
+> +      - reg
+> +      - iommus
+> +      - dma-ranges
+> +
+> +allOf:
+> +  - if: #master node
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8192-vcodec-dec  # for lat hardware
+> +
+> +    then:
+> +      required:
+> +        - mediatek,scp
+> +
+> +  - if: #component node
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mtk-vcodec-lat     # for core hardware
+> +              - mediatek,mtk-vcodec-core
+> +
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - clocks
+> +        - clock-names
+> +        - assigned-clocks
+> +        - assigned-clock-parents
+> +        - power-domains
+> +
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt8192-larb-port.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mt8192-clk.h>
+> +    #include <dt-bindings/power/mt8192-power.h>
+> +
+> +    vcodec_dec: vcodec_dec@16000000 {
+> +        compatible = "mediatek,mt8192-vcodec-dec";
+> +        reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+> +        mediatek,scp = <&scp>;
+> +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +    };
+> +
+> +    vcodec_lat: vcodec_lat@0x16010000 {
+> +        compatible = "mediatek,mtk-vcodec-lat";
+> +        reg = <0 0x16010000 0 0x800>;		/* VDEC_MISC */
+> +        interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +             <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> +             <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> +             <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+> +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> +              "vdec-vdec", "vdec-top";
+> +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +        assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+> +    };
+> +
+> +    vcodec_core: vcodec_core@0x16025000 {
+> +        compatible = "mediatek,mtk-vcodec-core";
+> +        reg = <0 0x16025000 0 0x1000>;		/* VDEC_CORE_MISC */
+> +        interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +             <&vdecsys CLK_VDEC_VDEC>,
+> +             <&vdecsys CLK_VDEC_LAT>,
+> +             <&vdecsys CLK_VDEC_LARB1>,
+> +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> +              "vdec-vdec", "vdec-top";
+> +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +        assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+> +    };
 
-Prasanna V 
+I'm a bit late in the game, reviewing v5 only, but I'm wondering if
+those IP cores need to be modelled in separate nodes. It would be much
+easier, from a software point of view, to have a single node, with
+multiple register ranges.
 
+Are some of those IP cores used in different SoCs, combined in different
+ways, that make a modular design better ?
 
+-- 
+Regards,
+
+Laurent Pinchart
