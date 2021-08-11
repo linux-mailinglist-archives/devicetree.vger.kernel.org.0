@@ -2,91 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDEF13E9589
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 18:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7AB03E95B9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 18:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbhHKQHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 12:07:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53020 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbhHKQHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 12:07:47 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE00C061765;
-        Wed, 11 Aug 2021 09:07:24 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id u15so1159430ple.2;
-        Wed, 11 Aug 2021 09:07:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KffArpOyUib3xLvmma0gw4eoYf5u08GOHiGqQNefyKY=;
-        b=HPsATQBC1TxP9YXDvO6/HpnceepixH7+UmUBemM9O8th0lKUu49VkCwyUE7hgiKJu+
-         E1iB419oPuAm3guuO9cghFv2L5raN/td2TeRpx8iWqYlB8ywGC7lulfVrCfIzTtYgb9+
-         MuIW3p2ylatMLkI/DzZAxcCcacf6cU7voMhmWY+fGW/Jz+DlqTUZ9Ol7crc//34rGb3z
-         nGCYRTyyJt4n2ndvZkeSY32nfSc8EjljyrDblJ9asrt2s17SgPkWVeXs9U9XsYHhLpX9
-         It0+K+mdbanfy+JZ79Rgb7JcHhAiMr4T4hk9bED+aVJ15CHQ6vK5lEMicRCC5Sr04DiG
-         2ZlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KffArpOyUib3xLvmma0gw4eoYf5u08GOHiGqQNefyKY=;
-        b=TFMm101y16MTRkM1ztaLpyNkb4gBRKtT7PAmWSWjuHjGa+Ooi/RPrZdppqCnQ95DDh
-         sKlxJKDm+Zx2pb0tWWTc6VDxL2tmoD/TZ8AnIxY6H19gfsFDzQ5HrOi+rJb7UELE9a4l
-         NhhG1J+2rlGH66VZHMowkDuBEpBJccImWP7Dnxr2j+Srz4saCUgWr0Qmbe3mhid4oYNs
-         h/rdrzcqsrPGfLLKvmt/16tbHHx/CFZvYg6LTKz1ERfPPFob+lwPnzHszh7Bq6Pvgi88
-         kji1Sa2afDcPjsjEGOBHmLdlIfqKisq2GTjROHfHhcd3gGs7d7IitoT4XPy09O/23vsy
-         VLcw==
-X-Gm-Message-State: AOAM531yrmRZkDmEchEh35eMmC7QHO6o6HzqF+camIMlYjEujgcyUMad
-        jtLnpx5kLmD3sZbT/YTId7HPSl/kMPqnXf5tkmg=
-X-Google-Smtp-Source: ABdhPJxT/bamFNOzxnUwiKPLoYVj6shFGLY6RHKownLvpNsQtzfsSR4MoEDaHdyJpn6tl9YNSsIMvQ8w5e31/7xAJIE=
-X-Received: by 2002:a17:902:e786:b029:12d:2a7:365f with SMTP id
- cp6-20020a170902e786b029012d02a7365fmr4813354plb.21.1628698043540; Wed, 11
- Aug 2021 09:07:23 -0700 (PDT)
+        id S229508AbhHKQQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 12:16:48 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:45426 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229488AbhHKQQr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 12:16:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=9etRDZteX1Y0FD9CQdjx0qPLybESllogXDOFBwIf/bk=; b=j+jnauB322Qw/28/zy00hvqAln
+        x1r6UkWN/Y7u8P+oPqeVxAWjIlhAEJt7bLj6xMMrzz7tjOei9HQ2u68RC7Yw9J+xATE3pBXaoiT+S
+        qCufKbhyW3xxCrEPj5ND/RYkFiZg3I9VWEd1hdYluz9HnmW0Qxcq+KTVpbZeqkGwLpJA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mDqts-00H9Ae-1J; Wed, 11 Aug 2021 18:16:16 +0200
+Date:   Wed, 11 Aug 2021 18:16:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: fsl, fec: add "fsl,
+ wakeup-irq" property
+Message-ID: <YRP30Mb8NaD4FjQj@lunn.ch>
+References: <20210805074615.29096-1-qiangqing.zhang@nxp.com>
+ <20210805074615.29096-2-qiangqing.zhang@nxp.com>
+ <2e1a14bf-2fa8-ed39-d133-807c4e14859c@gmail.com>
+ <DB8PR04MB67950F6863A8FEE6745CBC68E6F69@DB8PR04MB6795.eurprd04.prod.outlook.com>
+ <498f3cee-8f37-2ab1-93c4-5472572ecc37@gmail.com>
+ <DB8PR04MB6795DC35D0387637052E64A1E6F79@DB8PR04MB6795.eurprd04.prod.outlook.com>
+ <YRKOGYwx1uVdsKoF@lunn.ch>
+ <VI1PR04MB6800EE08F70CC3F0DD53C991E6F89@VI1PR04MB6800.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210809075745.160042-1-dmugil2000@gmail.com> <20210809075745.160042-3-dmugil2000@gmail.com>
- <CAHp75Ve=D1d5wFZgNseP=wGpteEkZHnmAi7j9ykKC+u_NrR5xw@mail.gmail.com> <013bcb79-c496-44d8-2e93-57eb57834ee0@metafoo.de>
-In-Reply-To: <013bcb79-c496-44d8-2e93-57eb57834ee0@metafoo.de>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 11 Aug 2021 19:06:43 +0300
-Message-ID: <CAHp75VcvA=dDOJXSFzgz69JVgbez4Lz27EGOEF7JWUehyrwQrA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: potentiometer: Add driver support for AD5110
-To:     Lars-Peter Clausen <lars@metafoo.de>
-Cc:     Mugilraj Dhavachelvan <dmugil2000@gmail.com>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-        Darius <Darius.Berghe@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VI1PR04MB6800EE08F70CC3F0DD53C991E6F89@VI1PR04MB6800.eurprd04.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 11:15 AM Lars-Peter Clausen <lars@metafoo.de> wrote:
-> On 8/10/21 2:49 PM, Andy Shevchenko wrote:
-> >
-> >> +       data->tol = data->cfg->kohms * (val & GENMASK(6, 0)) * 10 / 8;
-> >> +       if (!(val & BIT(7)))
-> >> +               data->tol *= -1;
-> > Shouldn't you simple use corresponding sign_extend*()?
-> The data is encoded a sign-magnitude. sign_extend() works for two's
-> complement numbers.
+> So I would prefer solution 1, it's easier and under-control.
 
-Good catch!
-I'm wondering if it's a good idea to have a sign_magnitude_to_int()
-helper or so?
+Hi Joakim
 
--- 
-With Best Regards,
-Andy Shevchenko
+Using quirks is fine by me.
+
+      Andrew
