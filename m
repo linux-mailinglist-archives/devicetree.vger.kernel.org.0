@@ -2,100 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0445B3E96FB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C0DF3E9705
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:50:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbhHKRos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 13:44:48 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:10066 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhHKRos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 13:44:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1628703864; x=1660239864;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qfHVUSB+Z97DSvueqImP5XFwDlXHbgk+KorN5ejls2Y=;
-  b=FEvcVdoyuoMwTou8nyvsiSGPFhQpne7Gs3/UigU/pqzzUVjK7kRNM7qv
-   gsYgKigq4yxgU6Gntnd5OAPihws6rvcvN7w9mQBTjZVBVndYAkDSDJjeH
-   wHG6TwTEe3bFujGvKlZmhmjwTX5sD3UEnWS9lcWG8PRyeqhR5g0Ss4kDh
-   eNwwFbYbJJ9DH4tGwvJ7pGoJzCItWPJavWV0SmkOSD1gOCD3ARJ64yjQF
-   PTpdVyFEBHyMBQ+anoZbc38AN3ePPzF+Zn4LnhBQMBBXWZmI0dqU7h4NL
-   4/k5L3rT3DjepI8xb/QoSiYUumn8LmwqVwkW9aVQS42GLE7M2DXZvHhFq
-   Q==;
-IronPort-SDR: claGEUQxs+LhdUthaCdYM4eE7xEZ8886peCxPi7H78UdW/mDlBWvPbyzgGELLUmgjNbv0uNbAi
- tfSNnf5eqcHFax5qH+2HpH8SOvHAbuCoSHxIZfF8rPO00cGFVpQ8ABX8JtnpuVyUBHPMGMDGsM
- n96b/cOxjCgqjrnYllYy0nbaXKqWeJ6seytXUOYa7IlsLhRZYsX5o2GllZGTV7HxoZoqpLKGzO
- 3W35Er0zQvNcQjnROk4ByFglZCvvyi78riMvk8ioJS1UZ3TdS8nydtcAy7ZRd2iKxdCAcOD7Gb
- PAiu4RdYz6M1aibwv7O/ZYnB
-X-IronPort-AV: E=Sophos;i="5.84,313,1620716400"; 
-   d="scan'208";a="139704928"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Aug 2021 10:44:23 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 11 Aug 2021 10:44:23 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Wed, 11 Aug 2021 10:44:18 -0700
-Message-ID: <20191b895a56e2a29f7fee8063d9cc0900f55bfe.camel@microchip.com>
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>
-CC:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
-        <hkallweit1@gmail.com>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Wed, 11 Aug 2021 23:14:17 +0530
-In-Reply-To: <YQ6pc6EZRLftmRh3@lunn.ch>
-References: <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
-         <20210731150416.upe5nwkwvwajhwgg@skbuf>
-         <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
-         <20210802121550.gqgbipqdvp5x76ii@skbuf> <YQfvXTEbyYFMLH5u@lunn.ch>
-         <20210802135911.inpu6khavvwsfjsp@skbuf>
-         <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
-         <20210803235401.rctfylazg47cjah5@skbuf>
-         <20210804095954.GN22278@shell.armlinux.org.uk>
-         <20210804104625.d2qw3gr7algzppz5@skbuf> <YQ6pc6EZRLftmRh3@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1-1 
+        id S229530AbhHKRvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 13:51:04 -0400
+Received: from mail-pj1-f44.google.com ([209.85.216.44]:42674 "EHLO
+        mail-pj1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229484AbhHKRvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 13:51:03 -0400
+Received: by mail-pj1-f44.google.com with SMTP id mq2-20020a17090b3802b0290178911d298bso6328637pjb.1;
+        Wed, 11 Aug 2021 10:50:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uXuZxvmC9dWMxXHamiQ0kCxgDbumKVveKsGWWbzD8PI=;
+        b=XD0zdgPOBkocNasvwGoH+G2voAaY6yV8xHCv/LE5HI36J8qVIJT+DSHifb10BUtrFO
+         q18qpgzoyceDBwzST528OvHQGP/iHRWXOGORvEJujcfrttQzONCNGbPoHSReYiXpbSym
+         Fv+vZB8ZXpJnF7ha3bshPy8tvvE7KS1mCG6tNJjQL5dpHB68bvaIeHsF9IVLu2TK36kT
+         8iZ78ORdslXEx8HVayatcHATriWMQjMDRVBa5vWELap+qJLVQtkV7LU6BjicTJjPLD58
+         eFxBf0FGuRe1hzPi1wYjbKn7jclb6c2gg6lwf/fNdxnZYwkED052yvyAj6HRqbqa67Xt
+         FIow==
+X-Gm-Message-State: AOAM533mhTDziTbqWfeunKZmCq52UDxm/IYCl2vGJ2cir60ezg+Ei1ku
+        3BjHlbu490Un/8gDD/otVw==
+X-Google-Smtp-Source: ABdhPJxuEAsQX2oLcwEObZ00L2Y1HqW/rUDfIiQ9FVgGXV3Y6qIEzhTf4EKv95M02ZNUs+Q2cxypiQ==
+X-Received: by 2002:a63:5252:: with SMTP id s18mr65321pgl.94.1628704238944;
+        Wed, 11 Aug 2021 10:50:38 -0700 (PDT)
+Received: from robh.at.kernel.org ([208.184.162.215])
+        by smtp.gmail.com with ESMTPSA id e31sm78977pjk.19.2021.08.11.10.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Aug 2021 10:50:38 -0700 (PDT)
+Received: (nullmailer pid 4169078 invoked by uid 1000);
+        Wed, 11 Aug 2021 17:50:34 -0000
+Date:   Wed, 11 Aug 2021 11:50:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        devicetree@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: pci: Add DT binding for Toshiba
+ Visconti PCIe controller
+Message-ID: <YRQN6paKB1772KJD@robh.at.kernel.org>
+References: <20210811083830.784065-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210811083830.784065-2-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210811083830.784065-2-nobuhiro1.iwamatsu@toshiba.co.jp>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2021-08-07 at 17:40 +0200, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
+On Wed, Aug 11, 2021 at 05:38:28PM +0900, Nobuhiro Iwamatsu wrote:
+> This commit adds the Device Tree binding documentation that allows
+> to describe the PCIe controller found in Toshiba Visconti SoCs.
 > 
-> > I am not even clear what is the expected canonical behavior for a MAC
-> > driver. It parses rx-internal-delay-ps and tx-internal-delay-ps, and
-> > then what?
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 > 
-> So best practices are based around a MAC-PHY link. phy-mode is passed
-> to the PHY, and the MAC does not act upon it. MAC rx-internal-delay-ps
-> and tx-internal-delay-ps can be used to fine tune the link. You can
-> use them to add and sometimes subtract small amounts of delay.
+> v3 -> v4:
+>  - Changed the redundant clock name.
 > 
-> > It treats all "rgmii*" phy-mode strings identically? Or is it an
-> > error to have "rgmii-rxid" for phy-mode and non-zero
-> > rx-internal-delay-ps?
+> v2 -> v3:
+>  - No update.
 > 
-> I would say the first is correct, the second statement is false. You
-> should always be able to fine tune the link, independent of the PHY
-> mode.
-> 
-> We also have to consider the case when the PHY is not actually able to
-> implement the delay. It hopefully returns -EOPNOTSUPP for anything
-> other than "rgmii". You can then put the full 2ns delay into
-> tx-internal-delay-ps nd rx-internal-delay-ps.
+> v1 -> v2:
+>  - Remove white space.
+>  - Drop num-viewport and bus-range from required.
+>  - Drop status line from example.
+>  - Drop bus-range from required.
+>  - Removed lines defined in pci-bus.yaml from required.
+> ---
+>  .../bindings/pci/toshiba,visconti-pcie.yaml   | 110 ++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
 
-I hope that using "*-internal-delay-ps" for Mac would be the right option.
-Shall i include these changes as we discussed in next revision of the patch? 
+I already applied this, why are you sending it again?
 
+Rob
