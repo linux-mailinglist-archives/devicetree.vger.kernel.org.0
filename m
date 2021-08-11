@@ -2,87 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F219B3E93E4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 16:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7230A3E93F8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 16:52:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232482AbhHKOpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 10:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33890 "EHLO
+        id S232632AbhHKOwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 10:52:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbhHKOpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 10:45:40 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA739C0613D3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 07:45:16 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id y7so5035192ljp.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 07:45:16 -0700 (PDT)
+        with ESMTP id S232619AbhHKOwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 10:52:47 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F7FC0613D3
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 07:52:23 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id 28-20020a17090a031cb0290178dcd8a4d1so5181502pje.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 07:52:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6v9hHCZVHAmYgbnWmMzGUr44DlUe75gTidfZaeJXFqM=;
-        b=ixasY3I7+egTqHiYwBpn7xtvMOB0ubWh0dHree5YQRsOXjfoZLiZcoMtIJ+YZMA1KC
-         QLIH+wpRjXQ+40tIMdWVHT5fHp2+y4BlqZOXDkt3LERoqmIYNij8izzIYqtmT8kInG/y
-         8e/b19oe2nAPywFHDVO4W2kMB6/e+tEFf05dEiOWavZs7/dXkRLdwBPdABA63ebtcxLE
-         GHhiqYKTqhzsudkCEB8ktzP3FkUIdnjYUVeZ2+83X7hRDrPkhK1sOqwnNNngBH9y/HP4
-         kQaJq1h5gX9j6hUFcgyXckbDJDPP0t3ZzIeWAvDjGY+SG6AfNpv8j8aVvFGP4os2KnLU
-         FjVw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=75ur5KKGa4AeVyjOxEPV5aTd7FRhCKJwfef00vGVoM8=;
+        b=dNeuNSPR72XMt8HQMXbWd0apuJjW2wFi8Fq39ovyBunvm4StUIArQlVFfEWxkO+dr3
+         YnCzViRy11XsYT234s4SI7537yMvGLoUrEqokKtsmbSztl1LbI58xxGUq7TN2PqjbC3s
+         VuEbafnY9ZB7yNoW/q2ldEKYN1zKG9JZxFHJo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6v9hHCZVHAmYgbnWmMzGUr44DlUe75gTidfZaeJXFqM=;
-        b=aKl+OiA//O4JpDTGHxK2th+8mLWRw1dJVl+y6ghyVWXTp1dZT3wq6Cu8NpNdcocMQF
-         werWl7hhcoHT1/0ZMADd6UpsdfrN6UF7Td5H5+9snjspJT74vGrIPo9zVp7Zih3nk4gc
-         JcEL8nd76ZmxKu2FuSxixP6VT9zbyNQ1Pfghamfr9ig/N0GZYN3ohiWn4WOTpWi+HCqA
-         cW4i19syzILcg44H6KgPZhzuYJF+4zBa5J3CLnvVEf4r8UDsG1yNj7lJvsxaK3p6nHld
-         rOk6WK1Stkr9Xz9BnaZN4PysPBNFO/lW6FLphTTaKVzUrfo0wkosV2CDgFTpJFaLPh7T
-         R2Fw==
-X-Gm-Message-State: AOAM532moFpF/Bm1k1x+owsyJScZ437kWqoaGKOLbBV/UnOhXpV6evQc
-        2kQfTdv0Ajp9TDCIhR90DwLSboybwbiE+VmW9Eg63w==
-X-Google-Smtp-Source: ABdhPJxLhduWN/mt3ervtvbNLFqT3qSQ+hT6DmUXLPRYj76K2NG8pRMv3ca/z6GWKiGtYDR8kRc+zxzqFBMKyYGGHDg=
-X-Received: by 2002:a05:651c:327:: with SMTP id b7mr24076891ljp.74.1628693115248;
- Wed, 11 Aug 2021 07:45:15 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=75ur5KKGa4AeVyjOxEPV5aTd7FRhCKJwfef00vGVoM8=;
+        b=NJTnC/3gJryf5f4YVeibjlUAYh/hzbnRhCv7xFZNRgrfNUazo8D6aiF2IMtTUDcOhY
+         sG0DjD/OzJ2B16lMe4BgGlWLzpHz78bkGaya+wtv3Wv3Ah+FT5LPMQkH5gc1JQgTqSMc
+         OT07KF0dH6L95/MPHZPLuy45hUCFlVhqG4r9uemMJuyymMyIIuwAguGrOuli/9CHTUUJ
+         i2WYjVVByFHAax7FN/fXcE6Ab6m4P7ymgu6iSjEq+xOUwCsdVif8VdhWKi9i8BJEujdr
+         ckzKlZ3rF1jyjZQpiwPF0I+OWCLYgO0i9scqIiueQAhT8m/2TcbSL66VTmPFwqrQS7/C
+         L3tw==
+X-Gm-Message-State: AOAM531EGyQ3DyFzcxHffrP8LgyJ/3G1NUPoD0obaFPtMA2GkNGvTnZN
+        /6duXX41X3yTx/+W1AUmaKES3A==
+X-Google-Smtp-Source: ABdhPJzz0asiYJyz4gYdnrRfwCnsqIypLFkB42hUmXHvd7RDrvQ7eqJaIfLwxn0gFrIY1yTLkMQi3Q==
+X-Received: by 2002:a63:712:: with SMTP id 18mr327582pgh.277.1628693542848;
+        Wed, 11 Aug 2021 07:52:22 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:ee27:bab:1cec:afe5])
+        by smtp.gmail.com with UTF8SMTPSA id b12sm28966736pff.63.2021.08.11.07.52.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Aug 2021 07:52:21 -0700 (PDT)
+Date:   Wed, 11 Aug 2021 07:52:19 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     rajpat@codeaurora.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>
+Subject: Re: [PATCH V4 2/4] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
+Message-ID: <YRPkI8AQAjjFuXcf@google.com>
+References: <1627306847-25308-1-git-send-email-rajpat@codeaurora.org>
+ <1627306847-25308-3-git-send-email-rajpat@codeaurora.org>
+ <YP7cmkayoajJ+1yj@google.com>
+ <bdfd39def9a11104c043090d920ef4df@codeaurora.org>
 MIME-Version: 1.0
-References: <20210805174219.3000667-1-piyush.mehta@xilinx.com>
- <20210805174219.3000667-4-piyush.mehta@xilinx.com> <CACRpkdZ=WRhTTQOvQcDEQhbf5Fone0GHopZfJhsQfsS-NRQUUw@mail.gmail.com>
- <974df9ef-6cdb-cb7b-2b9d-2eddaf1171f7@xilinx.com>
-In-Reply-To: <974df9ef-6cdb-cb7b-2b9d-2eddaf1171f7@xilinx.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Aug 2021 16:45:04 +0200
-Message-ID: <CACRpkdZ5owo0rfOqysLpu+La+0p5SgNkjW6OFbG9tsOmtNJEtA@mail.gmail.com>
-Subject: Re: [PATCH V2 3/3] gpio: modepin: Add driver support for modepin GPIO controller
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Piyush Mehta <piyush.mehta@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>, Zou Wei <zou_wei@huawei.com>,
-        Greg KH <gregkh@linuxfoundation.org>, wendy.liang@xilinx.com,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, rajan.vaja@xilinx.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, git <git@xilinx.com>,
-        Srinivas Goud <sgoud@xilinx.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <bdfd39def9a11104c043090d920ef4df@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 3:30 PM Michal Simek <michal.simek@xilinx.com> wrote:
+On Wed, Aug 11, 2021 at 05:43:48PM +0530, rajpat@codeaurora.org wrote:
+> On 2021-07-26 21:32, Matthias Kaehlcke wrote:
+> > On Mon, Jul 26, 2021 at 07:10:45PM +0530, Rajesh Patil wrote:
+> > > From: Roja Rani Yarubandi <rojay@codeaurora.org>
+> > > 
+> > > Add QUPv3 wrapper_0 DT nodes for SC7280 SoC.
+> > > 
+> > > Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> > > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> > > ---
+> > > Changes in V4:
+> > >  - As per Bjorn's comment, added QUP Wrapper_0 nodes
+> > >    other than debug-uart node
+> > >  - Dropped interconnect votes for wrapper_0 node
+> > > 
+> > > Changes in V3:
+> > >  - Broken the huge V2 patch into 3 smaller patches.
+> > >    1. QSPI DT nodes
+> > >    2. QUP wrapper_0 DT nodes
+> > >    3. QUP wrapper_1 DT nodes
+> > > 
+> > > Changes in V2:
+> > >  - As per Doug's comments removed pinmux/pinconf subnodes.
+> > >  - As per Doug's comments split of SPI, UART nodes has been done.
+> > >  - Moved QSPI node before aps_smmu as per the order.
+> > > 
+> > >  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  84 ++++
+> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 720
+> > > ++++++++++++++++++++++++++++++++
+> > >  2 files changed, 804 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> > > b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> > > index b0bfd8e..f63cf51 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> > > @@ -358,6 +358,16 @@
+> > >  	vdda18-supply = <&vreg_l1c_1p8>;
+> > >  };
+> > > 
+> > > +&uart7 {
+> > > +	status = "okay";
+> > > +
+> > > +	/delete-property/interrupts;
+> > > +	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
+> > > +				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
+> > > +	pinctrl-names = "default", "sleep";
+> > > +	pinctrl-1 = <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
+> > > <&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
+> > > +};
+> > > +
+> > >  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
+> > > 
+> > >  &qspi_cs0 {
+> > > @@ -428,3 +438,77 @@
+> > >  		bias-pull-up;
+> > >  	};
+> > >  };
+> > > +&qup_uart7_cts {
+> > > +	/*
+> > > +	 * Configure a pull-down on CTS to match the pull of
+> > > +	 * the Bluetooth module.
+> > > +	 */
+> > > +	bias-pull-down;
+> > > +};
+> > > +
+> > > +&qup_uart7_rts {
+> > > +	/* We'll drive RTS, so no pull */
+> > > +	drive-strength = <2>;
+> > > +	bias-disable;
+> > > +};
+> > > +
+> > > +&qup_uart7_tx {
+> > > +	/* We'll drive TX, so no pull */
+> > > +	drive-strength = <2>;
+> > > +	bias-disable;
+> > > +};
+> > > +
+> > > +&qup_uart7_rx {
+> > > +	/*
+> > > +	 * Configure a pull-up on RX. This is needed to avoid
+> > > +	 * garbage data when the TX pin of the Bluetooth module is
+> > > +	 * in tri-state (module powered off or not driving the
+> > > +	 * signal yet).
+> > > +	 */
+> > > +	bias-pull-up;
+> > > +};
+> > > +
+> > > +&tlmm {
+> > > +	qup_uart7_sleep_cts: qup-uart7-sleep-cts {
+> > > +		pins = "gpio28";
+> > > +		function = "gpio";
+> > > +		/*
+> > > +		 * Configure a pull-down on CTS to match the pull of
+> > > +		 * the Bluetooth module.
+> > > +		 */
+> > > +		bias-pull-down;
+> > > +	};
+> > > +
+> > > +	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
+> > > +		pins = "gpio29";
+> > > +		function = "gpio";
+> > > +		/*
+> > > +		 * Configure pull-down on RTS. As RTS is active low
+> > > +		 * signal, pull it low to indicate the BT SoC that it
+> > > +		 * can wakeup the system anytime from suspend state by
+> > > +		 * pulling RX low (by sending wakeup bytes).
+> > > +		 */
+> > > +		bias-pull-down;
+> > > +	};
+> > > +
+> > > +	qup_uart7_sleep_tx: qup-uart7-sleep-tx {
+> > > +		pins = "gpio30";
+> > > +		function = "gpio";
+> > > +		/*
+> > > +		 * Configure pull-up on TX when it isn't actively driven
+> > > +		 * to prevent BT SoC from receiving garbage during sleep.
+> > > +		 */
+> > > +		bias-pull-up;
+> > > +	};
+> > > 
+> > > +	qup_uart7_sleep_rx: qup-uart7-sleep-rx {
+> > > +		pins = "gpio31";
+> > > +		function = "gpio";
+> > > +		/*
+> > > +		 * Configure a pull-up on RX. This is needed to avoid
+> > > +		 * garbage data when the TX pin of the Bluetooth module
+> > > +		 * is floating which may cause spurious wakeups.
+> > > +		 */
+> > > +		bias-pull-up;
+> > > +	};
+> > > +};
+> > 
+> > How the patches of this series are split strikes me as a bit odd.
+> > Supposedly
+> > this patch adds the QUPv3 wrapper_0 DT nodes for the SC7280, however the
+> > above is the pin configuration for the Bluetooth UART of the SC7280 IDP
+> > board.
+> > I don't see a good reason why that should be part of this patch. It
+> > should be
+> > a separate change whose subject indicates that it configures the
+> > Bluetooth UART
+> > of the SC7280 IDP.
+> > 
+> 
+> Okay will split this up.
+> 
+> > Without this conflation of SoC and board DT it would seem perfectly
+> > reasonable
+> > to squash this patch and '[4/4] arm64: dts: sc7280: Add QUPv3 wrapper_1
+> > nodes'
+> > into a single one, they are essentially doing the same thing, I see no
+> > need to
+> > have different patches for the wrapper 0 and 1 nodes.
+> 
+> Previously when QUP wrapper 0 and wrapper 1 nodes were added in single
+> patch, we faced some git issues as the patch was huge. Hence we split it up.
+> https://partnerissuetracker.corp.google.com/issues/177045897#comment12
 
-> They are bootmode pins because that pins are designed and used by ROM to
-> get information which boot device should be used.
-> But after this is it is really behaving as generic purpose I/O pins.
-> Xilinx is using them for years for usb phy resets. I have also seen them
-> to be used for other reset functionality.
+That bug tracker entry isn't public, this is what the comment says:
 
-OK if they are used for general purpose tasks then a GPIO driver
-is fine, I was worried that it was just a way to read these pins from
-userspace.
+> I suspect that diff is just having a hard time since your patch touches so
+> much stuff. Presumably you could make it happier if you broke your patch
+> into smaller changes. For instance:
+> 
+> One patch that adds the quad SPI. After all the quad SPI isn't really
+> related to the other QUP stuff. One patch that fixes up the existing
+> "uart5" and the QUP it's on to be how it's supposed to be. One patch
+> that adds all the new stuff.
 
-Go ahead with this patch series!
-
-Yours,
-Linus Walleij
+If I understand correctly the problem wasn't that the QUP wrappers are
+added in a single patch (which should be pretty straightforward to
+review), but that the previous patch(es) do too many things at once.
+Adding both QUP wrappers is conceptionally a single thing, the problem
+is intermingling that with adding board specific Bluetooth nodes, board
+flash nodes, pinconf for UART, etc
