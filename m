@@ -2,88 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7B0A3E8D17
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 11:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57EBF3E8D33
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 11:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236555AbhHKJUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 05:20:03 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47736 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234869AbhHKJUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 05:20:00 -0400
-X-UUID: 9b3a6a0ac02b4fdaaa2ee898b4ff4e59-20210811
-X-UUID: 9b3a6a0ac02b4fdaaa2ee898b4ff4e59-20210811
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 411210463; Wed, 11 Aug 2021 17:19:36 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 11 Aug 2021 17:19:34 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 11 Aug 2021 17:19:34 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH v2 9/9] phy: phy-mtk-mipi-dsi: convert to devm_platform_ioremap_resource
-Date:   Wed, 11 Aug 2021 17:18:40 +0800
-Message-ID: <1628673520-23537-9-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1628673520-23537-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1628673520-23537-1-git-send-email-chunfeng.yun@mediatek.com>
+        id S234992AbhHKJXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 05:23:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234670AbhHKJXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 05:23:51 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 839B0C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:23:27 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id p38so4444514lfa.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:23:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Wv2obZIW7bS+yaiNicFM8A4ncuxkejW+sA4cvAfXZlg=;
+        b=jX3O/8ysjqDcQbgJVpMXjGfnrZGp+OmpsIcnbEK9hVCl+2IdLp1c21IDLPnDw4Lvyo
+         9vCstxnPeIA/181verJTuJ+1jEZoFk56PYqGlaEgJN6cb8j4ptetHB7YkJIqgr+n2z21
+         TIy3VC83Ukbr0Wr7lkmxqVRMncRZOugZNDq+dJFtHqZy1jkN8bTgbA8RZdDfQ/JGoM7l
+         tCjPkFHa9D42lmmuaPWimBl44b20PKUaoUtTp9ciEg/ya/TZhInDQ9yrOLWDjRPUKbqi
+         quAxUT/4moEE2wjxEvWtq47tzT56or6CDJZ77E80Fgo6/wRzb2/54Vn0yo2EqjuPo7Dt
+         lMYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Wv2obZIW7bS+yaiNicFM8A4ncuxkejW+sA4cvAfXZlg=;
+        b=qUsZ5ybtOMTgQsRzwuo1nwAc2k5RS3RnXyjv96w1tRwiXBVmkXRf0Zf1Mae+VFVJGT
+         sSo5VP5JmnOs0gRdUIF59nDuzeufyK+biuR9Z2JcY/k066Kh1VZJejw5Ayc39SEA3XoS
+         l1aq7ziDBwBNlhAaW7WneBIC83+0bv99P7YdOlSOKi+G5y5Pupxq3o44ifmHh7NsfpLG
+         SNSEPKRwVBROW/cSgU88lqgE0amVCnYLq5D9rCKQeMvQm9Xu9r51vsGqhJxzfyDWMEMd
+         3udJZDomBcJtNYN/1sIsRYfj3LIbUkndJnNoMWgkf/75y1Hg1cURO1z0u2PWqd3FFqCX
+         rGzg==
+X-Gm-Message-State: AOAM533RCrv9zULiYcH9gyfUqET5JY0zY8/AxXOrOb9X3Qm9NbbW51NN
+        3jDI8c9yK38AT6NZnJWUjiX+eALumRi5iJsM6qoxEQ==
+X-Google-Smtp-Source: ABdhPJyTeVHbDouXlckDIvDSJ6/AR1HfBLteshMqv3PywJcQx+H0DVOfsZHvFYogqF2k07PL0S+wamjLfLzKzj6y9ew=
+X-Received: by 2002:a19:ac04:: with SMTP id g4mr8676419lfc.29.1628673805805;
+ Wed, 11 Aug 2021 02:23:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210802062212.73220-1-icenowy@sipeed.com> <20210802062212.73220-8-icenowy@sipeed.com>
+In-Reply-To: <20210802062212.73220-8-icenowy@sipeed.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 11 Aug 2021 11:23:14 +0200
+Message-ID: <CACRpkdaPf76ORB4wHGZdnzszb16SMUa_PEoPqhuBP+Wpfk0Hmg@mail.gmail.com>
+Subject: Re: [PATCH 07/17] pinctrl: sunxi: add support for R329 CPUX pin controller
+To:     Icenowy Zheng <icenowy@sipeed.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use devm_platform_ioremap_resource to simplify code
+On Mon, Aug 2, 2021 at 8:23 AM Icenowy Zheng <icenowy@sipeed.com> wrote:
 
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v2: add acked-by CK
----
- drivers/phy/mediatek/phy-mtk-mipi-dsi.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+> Allwinner R329 SoC has two pin controllers similar to ones on previous
+> SoCs, one in CPUX power domain and another in CPUS.
+>
+> This patch adds support for the CPUX domain pin controller.
+>
+> Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
 
-diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi.c b/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
-index 61c942fbf4a1..28ad9403c441 100644
---- a/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
-+++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
-@@ -130,7 +130,6 @@ static int mtk_mipi_tx_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct mtk_mipi_tx *mipi_tx;
--	struct resource *mem;
- 	const char *ref_clk_name;
- 	struct clk *ref_clk;
- 	struct clk_init_data clk_init = {
-@@ -148,11 +147,9 @@ static int mtk_mipi_tx_probe(struct platform_device *pdev)
- 
- 	mipi_tx->driver_data = of_device_get_match_data(dev);
- 
--	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	mipi_tx->regs = devm_ioremap_resource(dev, mem);
--	if (IS_ERR(mipi_tx->regs)) {
-+	mipi_tx->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(mipi_tx->regs))
- 		return PTR_ERR(mipi_tx->regs);
--	}
- 
- 	ref_clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(ref_clk)) {
--- 
-2.25.1
+Can you send the pin control changes separately?
+Also the bindings.
 
+Then they can be reviewed and merged separately so I
+don't have to pick out the stuff I can apply.
+
+Yours,
+Linus Walleij
