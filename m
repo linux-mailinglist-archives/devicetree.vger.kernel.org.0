@@ -2,104 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D13C93E9399
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 16:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AFA83E93A4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 16:24:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbhHKOXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 10:23:38 -0400
-Received: from www.zeus03.de ([194.117.254.33]:33492 "EHLO mail.zeus03.de"
+        id S231661AbhHKOY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 10:24:58 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:21287 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232340AbhHKOXg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 10:23:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=bA+SpoCd9Zrin70ep2OKmQSSiYzO
-        VLF5suFO9tR8vJU=; b=sNdIRyoQrtF9c/RK047CRz32yayHGtxMCPHLvHJKEovc
-        ciZpqZcEK4MAz205TALD1DNDpGQ067qZryQVPfVIIT4aUAkwZdAzSZFbU1sigKxq
-        4dBNdMkkCNbVcGHhArZyH5QvJ0JBAU5GnoLh/3yzb1GhVq5xnDMo6Xzn2TA6UcA=
-Received: (qmail 2682161 invoked from network); 11 Aug 2021 16:23:11 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Aug 2021 16:23:11 +0200
-X-UD-Smtp-Session: l3s3148p1@QzenW0nJDJ8gARa4RTP4AfHKOCm/nqrR
-Date:   Wed, 11 Aug 2021 16:23:10 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH/RFC 0/4] dt-bindings: i2c: renesas,riic: Add
- interrupt-names
-Message-ID: <YRPdTiAakb6OBd2k@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S231872AbhHKOY6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 10:24:58 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628691874; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=OEH3ipEthr4FSWtEXihueOGhF2jm1l4PRHH2IWOcnXg=; b=on/y5WC7g4csYivd4KBKAMrSZFEc/2fHdRS15JrV+eSBcB+7sGBqlqdP0hxiehaGRaXTYJVX
+ xYdkur/swGFFJ038lUIjfiDMnJQnUsEfIx38B/3D7Md0A0cfgf9Fht0ERa3NitJX9H78ejAg
+ fn4I1sGFLLIfs43CbgqaVTliUac=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 6113dd8766ff107904875847 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 11 Aug 2021 14:24:07
+ GMT
+Sender: akhilpo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C8343C433D3; Wed, 11 Aug 2021 14:24:06 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AFA33C433D3;
+        Wed, 11 Aug 2021 14:24:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AFA33C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+To:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel@lists.freedesktop.org,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, linux-arm-msm@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1626267422.git.geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0/yWTP9/4TtsiMqK"
-Content-Disposition: inline
-In-Reply-To: <cover.1626267422.git.geert+renesas@glider.be>
+        Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
+Cc:     Jordan Crouse <jordan@cosmicpenguin.net>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/2] arm64: dts: qcom: sc7280: Add gpu support
+Date:   Wed, 11 Aug 2021 19:53:54 +0530
+Message-Id: <1628691835-36958-1-git-send-email-akhilpo@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the necessary dt nodes for gpu support in sc7280.
 
---0/yWTP9/4TtsiMqK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+---
 
-Hi Geert,
+Changes in v5:
+- Added Stephen's reviewed-by tag to patch-2
 
-> The Renesas RZ/A and RZ/G2L I2C Bus Interface has no less than 8
-> interrupts.  So I think it makes sense to use "interrupt-names"
-> property, to make it easier to review the interrupt mappings in DTS
-> files.
->=20
-> Hence this series documents the "interrupt-names" property in the DT
-> bindings, adds the property to the DTS files, and marks it required in
-> the DT bindings. Obviously the last step cannot be applied until all
-> earlier patches are upstream.
->=20
-> What do you think?
+Changes in v4:
+- Removed the dependency on gpucc bindings (Stephen)
+- Reordered GPU's opp table
 
-I like it and I'd think it is good to go. It is probably easiest if you
-take the series via your tree to avoid merge conflicts and/or subsystem
-dependencies. It's unlikely the YAML file will see further updates. So,
-for the series:
+Changes in v3:
+- Re-ordered the nodes based on address (Stephen)
+- Added the patch for gpu cooling to the stack.
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Changes in v2:
+- formatting update and removed a duplicate header (Stephen)
 
-Let me know if you think another way is better.
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 115 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 115 insertions(+)
 
-Happy hacking,
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 029723a..b9006d8 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -592,6 +592,85 @@
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
++		gpu@3d00000 {
++			compatible = "qcom,adreno-635.0", "qcom,adreno";
++			#stream-id-cells = <16>;
++			reg = <0 0x03d00000 0 0x40000>,
++			      <0 0x03d9e000 0 0x1000>,
++			      <0 0x03d61000 0 0x800>;
++			reg-names = "kgsl_3d0_reg_memory",
++				    "cx_mem",
++				    "cx_dbgc";
++			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&adreno_smmu 0 0x401>;
++			operating-points-v2 = <&gpu_opp_table>;
++			qcom,gmu = <&gmu>;
++			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "gfx-mem";
++
++			gpu_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-315000000 {
++					opp-hz = /bits/ 64 <315000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
++					opp-peak-kBps = <1804000>;
++				};
++
++				opp-450000000 {
++					opp-hz = /bits/ 64 <450000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
++					opp-peak-kBps = <4068000>;
++				};
++
++				opp-550000000 {
++					opp-hz = /bits/ 64 <550000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
++					opp-peak-kBps = <6832000>;
++				};
++			};
++		};
++
++		gmu: gmu@3d69000 {
++			compatible="qcom,adreno-gmu-635.0", "qcom,adreno-gmu";
++			reg = <0 0x03d6a000 0 0x34000>,
++				<0 0x3de0000 0 0x10000>,
++				<0 0x0b290000 0 0x10000>;
++			reg-names = "gmu", "rscc", "gmu_pdc";
++			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hfi", "gmu";
++			clocks = <&gpucc 5>,
++					<&gpucc 8>,
++					<&gcc GCC_DDRSS_GPU_AXI_CLK>,
++					<&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++					<&gpucc 2>,
++					<&gpucc 15>,
++					<&gpucc 11>;
++			clock-names = "gmu",
++				      "cxo",
++				      "axi",
++				      "memnoc",
++				      "ahb",
++				      "hub",
++				      "smmu_vote";
++			power-domains = <&gpucc 0>,
++					<&gpucc 1>;
++			power-domain-names = "cx",
++					     "gx";
++			iommus = <&adreno_smmu 5 0x400>;
++			operating-points-v2 = <&gmu_opp_table>;
++
++			gmu_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-200000000 {
++					opp-hz = /bits/ 64 <200000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
++				};
++			};
++		};
++
+ 		gpucc: clock-controller@3d90000 {
+ 			compatible = "qcom,sc7280-gpucc";
+ 			reg = <0 0x03d90000 0 0x9000>;
+@@ -606,6 +685,42 @@
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		adreno_smmu: iommu@3da0000 {
++			compatible = "qcom,sc7280-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
++			reg = <0 0x03da0000 0 0x20000>;
++			#iommu-cells = <2>;
++			#global-interrupts = <2>;
++			interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 675 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
++
++			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++					<&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
++					<&gpucc 2>,
++					<&gpucc 11>,
++					<&gpucc 5>,
++					<&gpucc 15>,
++					<&gpucc 13>;
++			clock-names = "gcc_gpu_memnoc_gfx_clk",
++					"gcc_gpu_snoc_dvm_gfx_clk",
++					"gpu_cc_ahb_clk",
++					"gpu_cc_hlos1_vote_gpu_smmu_clk",
++					"gpu_cc_cx_gmu_clk",
++					"gpu_cc_hub_cx_int_clk",
++					"gpu_cc_hub_aon_clk";
++
++			power-domains = <&gpucc 0>;
++		};
++
+ 		stm@6002000 {
+ 			compatible = "arm,coresight-stm", "arm,primecell";
+ 			reg = <0 0x06002000 0 0x1000>,
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
-   Wolfram
-
-
---0/yWTP9/4TtsiMqK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmET3U4ACgkQFA3kzBSg
-KbYwWg/+MAKeYtltD8jFf1qc2Dpw7KM5aIJ+xh8k3TP69KhqUT0VrTRm9Arv0iyh
-m8xarEu7CQJOksSxLuUScEHMmEsEyjJQ2YT1oWbqzvRJcm7jVUQJ9muAeaKbVDRH
-ZM9Vj0GohckcVXrN98Ob+dHa5TIv7lzrcSr71DRLJJx6MT55lPezfARxSYQqnYFN
-iaeyZ6rRLANzZ3DUvwM6LK5fWy460UB3Wr1SBLj9XxLEvMm8MZElVfyXZI+uwAIa
-/MSKufEe2b0E0ACzoyQAYXeDDSF73LNV6+nTjScU9jw0fgTs6OlK5HtRzpYNfck6
-8CyGacSHn0Fl9WY33/kZtUySbGzB6gsNqCnJe6pQOrMvUtC3APP8tXIRFq8gcIm/
-hBjAv1yKCMFIdZMVnsK1TMf3MUCEZ79nIbJA0JUp0ytSEe65uHnPvoOZmCvHlTE3
-rrfRmVi8T0ABBO+OayyeA4klswajvNMSjCei/XqbBh4XCi/ko2oq5pZcr1utTuxv
-e2jaa2ts9Zpfc1NaQOUtKRw64X+53D07AU1GDjf1IGOkbvA1aBQWwYUbuNijda/X
-F/FhCr7UP96RU7KZktYxHswwl6NSBEO0LJmQCxDPxUTTDZ68hDVgckKmL//Hseyt
-2TK6AKLMX5f9YBtY1ufpvpHVsMpp62k+NlrIb0Ge/jbUp0lqa+0=
-=DrMT
------END PGP SIGNATURE-----
-
---0/yWTP9/4TtsiMqK--
