@@ -2,60 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6465B3E9166
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5CF43E91A1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231151AbhHKMcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 08:32:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
+        id S230137AbhHKMiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 08:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbhHKMco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:32:44 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28C4C0619C2
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:30:49 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id u25so4295340oiv.5
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:30:49 -0700 (PDT)
+        with ESMTP id S230106AbhHKMiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:38:18 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE28EC061765
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:37:54 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id n17so5302907lft.13
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
-        b=hdHPl6EhPO0rbYNHyzk/Qo8j2rhdvZw/z+/z3eKcJgnhYdIuV06zrz+zfq2oDrvqk1
-         c0LKRXc22iojVXH74sinAySKjYxv5qL4FjuzYeq7i+GiqO20jdVJ7UTxOeUF4SiSuiJX
-         RewKmhiwkp/6WsiVbTH9E136ovvKd6DNxFFBy4cd/2Trvv1j8/9pYWO5AOAs9fGFYGCd
-         iJ2P7Jrk1siLmf7tcfdXJyYqiDCNX3jxYLZ2givbERMcqk+LrtRXQVXYxkyOtGLqz+Qz
-         QvmU8mGajKHdAoDkeskW/1G1/HhtTB3nYcj6MlaVO9aRxejlmxHNIw739MwGHzNSpwcZ
-         ZsEg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9S5hNWF7Ym56keRWy48m1LDZ9cViBH7sfuOyRaprzEc=;
+        b=OhLxJMmJn6LGQeeXfeGiPmO+AVDUGQYNXJzRzfNxRqi3efHSiZcwI019V8OUjhaXSb
+         qyVz6X+DF4E6khqP1VjSveuZVdirnVTgWJoVcttI+pE7f0PfqZ8Tk2xevufW2vVMJwOb
+         lp96fWowdQ+F2t7vIf4f9ksWjDCxUFHW/TUacoBkvZ0Nn8Cz98X4fC4sMgBr9ey/zE8c
+         8XJP222RFXrP8FAF1Pja2BQfYUXPdTzUmaNfvpu+9hEcE3EnTZdvRUFjQ7Jwp6kfW9Cp
+         zd+teOJ8jhY81xicFaR5mL6JRc+jpi4SCQhEv37rPqsZRNuUb600s4Qr6iwlnxyQOGB1
+         u8ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
-        b=bCTlAqI5KQdFuyIojMUmm+4A/830tGlxcgm1p+O8owgWPH57STHBolob9lWyhw3qbR
-         ue3kdSFsC65vPgkHTGTQUXs2YPknkaPfQYpg+rNWcHTNC9nd2jUXcatK/c1nRpQRo7Ev
-         aDD3qAwz04hYipirapEwhw7uscAYHX0ek2HWNVFJLWKHuMMQG5USlzIGbboFF/JZshVa
-         xxF0V/ma2pf9rOrvs+vPjjrdn0Z8qZrby6/GwWeUhAGlXE1ql+n5GT1LannmeNmP8bvZ
-         VR5lC7LGKdzYCa+xpmpl/NLXR8/5/ei48k0VpeCAh6x34YTE5EXK3IZV4RDG641o2VPA
-         4a7A==
-X-Gm-Message-State: AOAM532+9cJwffH4/S8ZgSbHVvM44FAJCR0tt7tz41vt2XA3mKEuOkPN
-        bIndL5ZLfxqw1VlcXLMqsw5fRNvoXAqPTA/A8KQ=
-X-Google-Smtp-Source: ABdhPJzQ7QNnWBNY+00bZ2/vHMEXadQHBg9sM7+hqX/w5OdV5gUABk+MeuK4xdHXt9RivYMg5+YhMPfmKAKJ2sTGTK4=
-X-Received: by 2002:aca:1817:: with SMTP id h23mr11856802oih.146.1628685049402;
- Wed, 11 Aug 2021 05:30:49 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9S5hNWF7Ym56keRWy48m1LDZ9cViBH7sfuOyRaprzEc=;
+        b=pPk6CofEFbeRTYf7vsIYjg/vEH0Xit5CIif3f2Jffky5Exx6IZp4NE93dwro5sDh61
+         BvfoZxbh8ifmtK8ntzYmJ/9dZjI2bCJKEOBope+qnkeayb6i9LoKzFDDpAhYa0ElKER5
+         OuOYIJHJjMH61T/Pl9177ukdDPsgzIN0dG1HiSAFM7cPHrHP1x+zWe1DA4lwdH3kcMIm
+         yc4hA5szj3txUReOOXCC9g5+yMYo4sPFxQEPzqqyl+jRAwQUUcI+3aaehYkxSls0TBPj
+         HsQrH/kNK/0eVMzBPuGgTFzkLGCOOl45JYFEZ4VKJa3i5JdX3aNkRJXXkPm2DjlV4UFG
+         Vr7w==
+X-Gm-Message-State: AOAM530Z3cn28yliuzs4c6bq/1qH7BWNWm/rnOOz5KED+ipodDBSRs4f
+        ynd7D+KwMYNjGJyehMkVLJLxAkjB0M4eSxGpAabeNA==
+X-Google-Smtp-Source: ABdhPJzcII1prgIZeP3ejqboxiWA7I+FA2kPmqQ4S+j1vFjaVQJyk+h5CSOe2+KVFhyLYUO1sAb/UlIcR+aFDzlq8nk=
+X-Received: by 2002:a19:ac04:: with SMTP id g4mr9218546lfc.29.1628685473062;
+ Wed, 11 Aug 2021 05:37:53 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a05:6830:23a5:0:0:0:0 with HTTP; Wed, 11 Aug 2021 05:30:49
- -0700 (PDT)
-Reply-To: rihabmanyang07@yahoo.com
-From:   Rihab Manyang <ndourandiogou1@gmail.com>
-Date:   Wed, 11 Aug 2021 13:30:49 +0100
-Message-ID: <CAP5_mB5JzCUj=G2=OFQTUAHntUyVzX9U4Cd6GCXO82jwGUg2bQ@mail.gmail.com>
-Subject: hi
-To:     undisclosed-recipients:;
+References: <20210726125436.58685-1-andriy.shevchenko@linux.intel.com> <20210726125436.58685-2-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20210726125436.58685-2-andriy.shevchenko@linux.intel.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 11 Aug 2021 14:37:42 +0200
+Message-ID: <CACRpkdarpuFwzj-xRPRe0Y4iWwMtsMeTKwZRp8E0hSyDZZcHwg@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] gpio: dwapb: Read GPIO base from gpio-base property
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Hoan Tran <hoan@os.amperecomputing.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-How are you?I am miss.Rihab Manyang i will like to be your friend
-please write me back on my email for more details, Thanks.
+On Mon, Jul 26, 2021 at 2:54 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+
+> For backward compatibility with some legacy devices introduce
+> a new (*) property gpio-base to read GPIO base. This will allow
+> further cleanup of the driver.
+>
+> *) Note, it's not new for GPIO library since mockup driver is
+>    using it already.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+(...)
+> -               pp->gpio_base   = -1;
+> +               if (fwnode_property_read_u32(fwnode, "gpio-base", &pp->gpio_base))
+> +                       pp->gpio_base = -1;
+
+This is problematic because we have repeatedly NACKed this property
+to be added to device trees.
+
+I don't know about fwnode policies, but in the device tree this would have
+to be "linux,gpio-base" and then it would be NACKed because of adding
+an operating-system specific thing to a OS-independent hardware
+description.
+
+I don't know what to do with this really, but I understand the need of it
+as a kernel-internal thing, however I am afraid that adding this will make
+it possible to add linux,gpio-base = <n> to any device tree gpio_chip
+as well and that encourages bad behaviour even if we don't allow a
+DT binding (YAML) like that.
+
+Is there a way to make a fwnode property only come from software
+nodes and not allowed to be used in ACPI or DT? (I guess not...)
+
+Yours,
+Linus Walleij
