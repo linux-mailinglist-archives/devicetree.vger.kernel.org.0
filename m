@@ -2,191 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C51CC3E8D8E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 11:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8F2B3E8DB5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 11:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236618AbhHKJwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 05:52:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47772 "EHLO
+        id S236885AbhHKJ6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 05:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236432AbhHKJwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 05:52:44 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D247C061765
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:52:21 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id m12so2153025wru.12
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:52:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7Sa735VBDk/11axEt+ahFeW6tHjYIapyTeUGnE9a9Kc=;
-        b=EdDZtng4b3ClBH3m5cgskqpFPpNoW0Owbzb7jMBlthFvHMNXkJ6w4hYC0w0nb5KOpA
-         5H0IPy4VgYfI4fqwprpwJpPdwOfdgokMbZysfIfDcRxLC4fNW6YlpQlUbCZ+xBcVPhDR
-         aVd30InM2UDjtpGfqzf9a150PyTWQfNj+DKo9t8V4Lad1bWEliJYgOxunJd70dyL7MS9
-         0Gfpmm2CcRkwH4Yfz3l2ZlG3/0brZks80+WbTUiw08yDkOjuz3dau2yz3GAswVMbKKwS
-         Ywl10IfsVtuF1sPKPVpOQ3UM7TMgtsKXBbI3/lYSW5rskkD6EINLJuvnd3jZtPohnxe6
-         brLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=7Sa735VBDk/11axEt+ahFeW6tHjYIapyTeUGnE9a9Kc=;
-        b=Xv/4aC5CKSJEqjOXNS6dbsaTBphZM9bidOEWMI3BKDYPqWCZUsJSq2dNb+JShiipeK
-         7uptpafSLZSEMJ+3gBDS4B8fZqcTGUv5fLNPwP+NCGQpRVbLMG0XLm6/gBXkq1FOZLWd
-         4cDkadD/1BQOOuNRihN1w9lMK4AQzsOIPRuQFdSt+zEKd5Rm6GaTWaxbPVZXBmblM8Xx
-         AvACLwbVV+JLP/3ew8ibce1eCdQm+e3p5D3Y8i20BtXfetzXSNniSA46Ik8PnUck1tKq
-         8dwSbuz39ingOyE72ROkuQnhWc7/ngwwotKp9Lm0FzeilVUovmpfrdN7/TC8vY35Ih+o
-         XCyw==
-X-Gm-Message-State: AOAM5318ms+89TH6kep/sYXLJTJX/59uUBiEhpzduRCrdl3+oDh14nxz
-        +ATqcdG8qBDWP7QhoYfd/9/lUg==
-X-Google-Smtp-Source: ABdhPJwCF2Ck4qsqGQidKYLvFHhCmO51q61CXZA/BY3QacvhmLLPvCN8U73Otn7f5gWXt4j454FKiQ==
-X-Received: by 2002:adf:cd10:: with SMTP id w16mr36343368wrm.404.1628675540030;
-        Wed, 11 Aug 2021 02:52:20 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id h11sm6181339wmc.23.2021.08.11.02.52.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Aug 2021 02:52:19 -0700 (PDT)
-Subject: Re: [PATCH V1 2/4] nvmem: core: introduce "reverse-data" property to
- reverse buffer
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>, robh+dt@kernel.org,
-        shawnguo@kernel.org
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210810073510.18218-1-qiangqing.zhang@nxp.com>
- <20210810073510.18218-3-qiangqing.zhang@nxp.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <2a69b82c-0ecb-51cf-ea60-1827c60bfe85@linaro.org>
-Date:   Wed, 11 Aug 2021 10:52:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S236915AbhHKJ6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 05:58:37 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DACECC0613D5
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:58:10 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:438:1ff1:1071:f524])
+        by baptiste.telenet-ops.be with bizsmtp
+        id g9y52500K1gJxCh019y5qP; Wed, 11 Aug 2021 11:58:07 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mDkzs-001zgH-Tp; Wed, 11 Aug 2021 11:58:04 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mDkzr-005NO7-6d; Wed, 11 Aug 2021 11:58:03 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Robin van der Gracht <robin@protonic.nl>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v5 00/19] auxdisplay: ht16k33: Add character display support
+Date:   Wed, 11 Aug 2021 11:57:40 +0200
+Message-Id: <20210811095759.1281480-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210810073510.18218-3-qiangqing.zhang@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+	Hi all,
 
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
+The current auxdisplay driver is limited to dot-matrix displays, which
+are exposed as a frame buffer device.
 
-On 10/08/2021 08:35, Joakim Zhang wrote:
-> This patch intends to introduce "reverse-data" property at nvmem
-> provider side to reverse buffer.
-> 
-> For a case used from Ethernet driver, of_get_mac_address() may call
-> of_get_mac_addr_nvmem() to get MAC address from nvmem device. MAC address
-> programed in imx-ocopt is MSB first in lowest address, so need reverse
+This patch series extends the driver to 4-digit 7-segment and quad
+14-segment alphanumeric displays, allowing the user to display and
+scroll text messages.
 
-Is all the data stored in imx-ocopt reverse byte order?
+List of patches:
+  - Patch 1 provides font data for displaying ASCII characters on
+    14-segment displays,
+  - Patch 2 updates the HT16K33 DT bindings for segment displays,
+  - Patches 3-5 contain a bug fix and small improvements for the
+    Imagination Technologies ASCII LCD Display driver,
+  - Patch 6 extracts the character line display core support from the
+    Imagination Technologies ASCII LCD Display driver, for reuse,
+  - Patches 7-8 contain cleanups and improvements for the character line
+    display core driver,
+  - Patches 9-16 contain a bug fix, cleanups and improvements for the
+    HT16K33 driver, to prepare for segment display support,
+  - Patch 17 adds support for 7/14-segment displays to the HT16K33
+    driver,
+  - Patch 18 updates the HT16K33 DT bindings to document an LED subnode,
+  - Patch 19 adds segment display LED support to the HT16K33 driver,
+    to make use of hardware blinking, and to expose display color.
 
-or someone decided to change the order for only mac-address?
+Changes compared to v4[1]:
+  - Add Reviewed-by,
+  - Add missing select NEW_LEDS.
 
+Changes compared to v3[2]:
+  - Combine compatible values for 7/14 segment displays into an enum,
+  - Add Reviewed-by,
+  - Add missing select LEDS_CLASS.
 
-> data then feedback to nvmem consumer. E.g. MAC address read from
-> imx-ocopt is 98:e2:06:9f:04:00, after reversed the data is
-> 00:04:9f:06:e2:98.
-> 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
->   drivers/nvmem/core.c           | 30 ++++++++++++++++++++++++++++++
->   include/linux/nvmem-provider.h |  2 ++
->   2 files changed, 32 insertions(+)
-> 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index b3bc30a04ed7..ccc2c5801c8e 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -55,6 +55,7 @@ struct nvmem_cell {
->   	struct device_node	*np;
->   	struct nvmem_device	*nvmem;
->   	struct list_head	node;
-> +	u32			flags;
+Changes compared to v2[3]:
+  - Drop color property from display node,
+  - Use compat_only_sysfs_link_entry_to_kobj() instead of cooking our
+    own helper on top of kernfs_create_link(),
+  - Use "err" instead of "error" to be consistent with existing driver
+    naming style,
+  - Pass "dev" instead of "client" to ht16k33_fbdev_probe() and
+    ht16k33_seg_probe(),
+  - Drop local variable "node",
+  - Remove unneeded inclusion of <linux/leds.h> and <linux/of_device.h>,
+  - Document LED subnode,
+  - Remove unneeded C++ comment,
+  - Make the creation of the LED device dependent on the presence of the
+    "led" subnode in DT, so it can be used in dot-matrix mode too.
+  - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
+    all LED properties from DT, instead of manual LED name construction
+    based on just the "color" property.
 
-This flag also needs to go in struct nvmem_cell_info too.
+Changes compared to v1[4]:
+  - Fix type of color to uint32,
+  - "refresh-rate-hz" is still required for dot-matrix displays.
+  - Move "select LINEDISP" for HT16K33 symbol to correct patch,
+  - Add backwards compatibility "message" symlink to img-ascii-lcd,
+  - Connect backlight to fbdev in ht16k33 dot-matrix mode,
+  - Set "err = -EINVAL" in switch() case that cannot happen,
+  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
 
->   };
->   
->   static DEFINE_MUTEX(nvmem_mutex);
-> @@ -92,6 +93,26 @@ static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
->   	return -EINVAL;
->   }
->   
-> +static int nvmem_buffer_reverse(void *bufaddr, int len)
-> +{
-> +	u8 *buf = (u8 *)bufaddr;
-> +	u8 *temp;
-> +	int i;
-> +
-> +	temp = kzalloc(len, GFP_KERNEL);
-> +	if (!temp)
-> +		return -ENOMEM;
-> +
-> +	memcpy(temp, buf, len);
-> +
-> +	for (i = 0; i < len; i++)
-> +		buf[i] = temp[len - i - 1];
-> +
+This series has been tested using an Adafruit 0.54" Quad Alphanumeric
+Red FeatherWing Display, connected to an OrangeCrab ECP5 FPGA board
+running a 64 MHz VexRiscv RISC-V softcore.
+7-segment display support is based purely on schematics, and has not
+been tested on actual hardware.  The changes to img-ascii-lcd.c are also
+untested, due to lack of hardware.
 
-You could possibly simplify this.
+Thanks!
 
-static void nvmem_buffer_reverse(u8 *buf, int len)
-{
-	int i;
+[1] "[PATCH v4 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210727140459.3767788-1-geert@linux-m68k.org/
+[2] "[PATCH v3 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210714151130.2531831-1-geert@linux-m68k.org/
+[3] "[PATCH v2 00/18] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210625125902.1162428-1-geert@linux-m68k.org/
+[4] "[PATCH 00/17] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210322144848.1065067-1-geert@linux-m68k.org/
 
-	for (i = 0; i < len/2; i++)
-		swap(buf[i], buf[len - i - 1]);
-}
+Geert Uytterhoeven (19):
+  uapi: Add <linux/map_to_14segment.h>
+  dt-bindings: auxdisplay: ht16k33: Document Adafruit segment displays
+  auxdisplay: img-ascii-lcd: Fix lock-up when displaying empty string
+  auxdisplay: img-ascii-lcd: Add helper variable dev
+  auxdisplay: img-ascii-lcd: Convert device attribute to sysfs_emit()
+  auxdisplay: Extract character line display core support
+  auxdisplay: linedisp: Use kmemdup_nul() helper
+  auxdisplay: linedisp: Add support for changing scroll rate
+  auxdisplay: ht16k33: Connect backlight to fbdev
+  auxdisplay: ht16k33: Use HT16K33_FB_SIZE in ht16k33_initialize()
+  auxdisplay: ht16k33: Remove unneeded error check in keypad probe()
+  auxdisplay: ht16k33: Convert to simple i2c probe function
+  auxdisplay: ht16k33: Add helper variable dev
+  auxdisplay: ht16k33: Move delayed work
+  auxdisplay: ht16k33: Extract ht16k33_brightness_set()
+  auxdisplay: ht16k33: Extract frame buffer probing
+  auxdisplay: ht16k33: Add support for segment displays
+  dt-bindings: auxdisplay: ht16k33: Document LED subnode
+  auxdisplay: ht16k33: Add LED support
 
-> +	kfree(temp);
-> +
-> +	return 0;
-> +}
-> +
->   static int nvmem_access_with_keepouts(struct nvmem_device *nvmem,
->   				      unsigned int offset, void *val,
->   				      size_t bytes, int write)
-> @@ -705,6 +726,9 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
->   		cell->bytes = be32_to_cpup(addr);
->   		cell->name = kasprintf(GFP_KERNEL, "%pOFn", child);
->   
-> +		if (of_property_read_bool(child, "reverse-data"))
-> +			cell->flags |= NVMEM_FLAGS_REVERSE_DATA;
-> +
->   		addr = of_get_property(child, "bits", &len);
->   		if (addr && len == (2 * sizeof(u32))) {
->   			cell->bit_offset = be32_to_cpup(addr++);
-> @@ -1398,6 +1422,12 @@ static int __nvmem_cell_read(struct nvmem_device *nvmem,
->   	if (cell->bit_offset || cell->nbits)
->   		nvmem_shift_read_buffer_in_place(cell, buf);
->   
-> +	if (cell->flags & NVMEM_FLAGS_REVERSE_DATA) {
-> +		rc = nvmem_buffer_reverse(buf, cell->bytes);
-> +		if (rc < 0)
-> +			return rc;
-> +	}
-> +
->   	if (len)
->   		*len = cell->bytes;
->   
-> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-> index 104505e9028f..364ac2a61b11 100644
-> --- a/include/linux/nvmem-provider.h
-> +++ b/include/linux/nvmem-provider.h
-> @@ -31,6 +31,8 @@ enum nvmem_type {
->   #define NVMEM_DEVID_NONE	(-1)
->   #define NVMEM_DEVID_AUTO	(-2)
->   
-> +#define NVMEM_FLAGS_REVERSE_DATA	BIT(0)
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |  31 +-
+ drivers/auxdisplay/Kconfig                    |  10 +
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/ht16k33.c                  | 473 ++++++++++++++----
+ drivers/auxdisplay/img-ascii-lcd.c            | 205 ++------
+ drivers/auxdisplay/line-display.c             | 261 ++++++++++
+ drivers/auxdisplay/line-display.h             |  43 ++
+ include/uapi/linux/map_to_14segment.h         | 239 +++++++++
+ 8 files changed, 996 insertions(+), 267 deletions(-)
+ create mode 100644 drivers/auxdisplay/line-display.c
+ create mode 100644 drivers/auxdisplay/line-display.h
+ create mode 100644 include/uapi/linux/map_to_14segment.h
 
-Maybe NVMEM_FLAGS_REVERSE_BYTE_ORDER and some kerneldoc would help new 
-users.
+-- 
+2.25.1
 
---srini
-> +
->   /**
->    * struct nvmem_keepout - NVMEM register keepout range.
->    *
-> 
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
