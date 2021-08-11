@@ -2,222 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B3D3E96EA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E8C3E96F3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:41:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231311AbhHKRiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 13:38:09 -0400
-Received: from mail-pj1-f53.google.com ([209.85.216.53]:38774 "EHLO
-        mail-pj1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230454AbhHKRiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 13:38:08 -0400
-Received: by mail-pj1-f53.google.com with SMTP id lw7-20020a17090b1807b029017881cc80b7so10782667pjb.3;
-        Wed, 11 Aug 2021 10:37:44 -0700 (PDT)
+        id S230230AbhHKRlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 13:41:44 -0400
+Received: from mail-pj1-f48.google.com ([209.85.216.48]:42550 "EHLO
+        mail-pj1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229530AbhHKRln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 13:41:43 -0400
+Received: by mail-pj1-f48.google.com with SMTP id mq2-20020a17090b3802b0290178911d298bso6286238pjb.1;
+        Wed, 11 Aug 2021 10:41:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LoybAd5sHCpogBbkvPiZHgRz3J1+CJcAGwXd1p0kfEA=;
-        b=id1DC+YhCePIB3mt8SXtR1ZH+PjYoBJh3fyYeN4LB/u8CN8EkFb2sfLHV+1w/uQs6s
-         GUXIEh7EC1+G6WOOGiCmMagL+hzTkB4bECkjGB9uMVIPz8tVYCHYYGnbtkTflNghzBXB
-         kfSjwJXRiq1cUSZ3Wntc3VLglpxBXCeBfXwl1DxSaZxTwfnhzlwUumFs9ELIK5p62t4b
-         CzmiY+fRt4Rm3lgYuli8+6Uqy+tPRGrdFYhRb0RbgP+hnq2EMGLaKLQ+8AzmRSZtb+ZS
-         +j+0u5BkPytQPaHVUqyvtnzlaBJYSE4Ve3UU9/REZ0UfR+pmENGY3tvbxaSXG9RqEzvx
-         6wJw==
-X-Gm-Message-State: AOAM531DW5wIyyqAe8q2z4c1hMwKCxE96Mb39T7KfipVQe0IVIOJV+q0
-        JPkicfr94fCdgkTgQ2NK0g==
-X-Google-Smtp-Source: ABdhPJzSoy3yDNPff3jDteYw59XJCtZCU80BKNbY3DzC9F3qQY7IG14H4MAq67eel9fY/L2w37r12Q==
-X-Received: by 2002:a17:90a:a42:: with SMTP id o60mr11780394pjo.191.1628703464404;
-        Wed, 11 Aug 2021 10:37:44 -0700 (PDT)
+        bh=SKwYFo8dYv0QNS156XTY/lU7jm4l1+2FwbKLknPJvfU=;
+        b=tl4XyX5BGHGC5Erc8VFaolQFCaLt3yVR33/3GYXTw52tX/oCft5Stbkk5DdQAhTmeC
+         88pxZezNJsu0TEUgKuiJJF9SxpYrHzMR4EJjugfTj4y+0txkGZolFaAulcV2TNTH6UQP
+         1l/Z2I6qYOYWzaq2yKVwO7HkAYXi+4zf0afkTaKlIsecKGpJgK+m0dotfffPZuopJ1PK
+         a4wO5F6oNFP4XYabw5pyG1nKCREQwPOkHTG+n7OA1EnREurPXlcP7G4te7R4wkSDD8Rg
+         Wvfd37ijuQqY3TATPO29PvV8U4p5aL6A/GgaMKarVWvqPzaSPTjvsiFUmqpxvUypUj0y
+         AdhA==
+X-Gm-Message-State: AOAM53056sEdI8G02Ez9TETNZ54roGm5xVf405REIeejGagmuJ9j8rzO
+        Wcr1FnpDsRn9i7eqgOUbGw==
+X-Google-Smtp-Source: ABdhPJzd0Rv9z9sTfwYP6BWh5jwSA3kbD4w+MhfZ0jc+4Oh8j0z36V1h4a362NG4HRXAo2xErhqfqw==
+X-Received: by 2002:a63:d044:: with SMTP id s4mr1391317pgi.32.1628703679422;
+        Wed, 11 Aug 2021 10:41:19 -0700 (PDT)
 Received: from robh.at.kernel.org ([208.184.162.215])
-        by smtp.gmail.com with ESMTPSA id z20sm124823pfr.121.2021.08.11.10.37.41
+        by smtp.gmail.com with ESMTPSA id e13sm95836pfi.210.2021.08.11.10.41.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Aug 2021 10:37:43 -0700 (PDT)
-Received: (nullmailer pid 4096083 invoked by uid 1000);
-        Wed, 11 Aug 2021 17:37:39 -0000
-Date:   Wed, 11 Aug 2021 11:37:39 -0600
+        Wed, 11 Aug 2021 10:41:18 -0700 (PDT)
+Received: (nullmailer pid 4130314 invoked by uid 1000);
+        Wed, 11 Aug 2021 17:41:09 -0000
+Date:   Wed, 11 Aug 2021 11:41:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
-        sboyd@kernel.org, mpubbise@codeaurora.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
- support
-Message-ID: <YRQK4xgxTAD2ALME@robh.at.kernel.org>
-References: <1628618483-664-1-git-send-email-pillair@codeaurora.org>
- <1628618483-664-3-git-send-email-pillair@codeaurora.org>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        George Sun <george.sun@mediatek.com>
+Subject: Re: [PATCH v5, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for mt8192
+Message-ID: <YRQLtd+IyISzlreI@robh.at.kernel.org>
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
+ <20210811025801.21597-14-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1628618483-664-3-git-send-email-pillair@codeaurora.org>
+In-Reply-To: <20210811025801.21597-14-yunfei.dong@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 10, 2021 at 11:31:22PM +0530, Rakesh Pillai wrote:
-> Add WPSS PIL loading support for SC7280 SoCs.
+On Wed, Aug 11, 2021 at 10:57:59AM +0800, Yunfei Dong wrote:
+> Adds decoder dt-bindings for mt8192.
 > 
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > ---
->  .../bindings/remoteproc/qcom,hexagon-v56.yaml      | 79 ++++++++++++++++++++--
->  1 file changed, 74 insertions(+), 5 deletions(-)
+> v5: no changes
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
-> index 5f3558e..9ae433c6 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,qcs404-cdsp-pil
-> +      - qcom,sc7280-wpss-pil
->        - qcom,sdm845-adsp-pil
->  
->    reg:
-> @@ -26,25 +27,30 @@ properties:
->  
->    interrupts-extended:
->      minItems: 5
-> -    maxItems: 5
-> +    maxItems: 6
->  
->    interrupt-names:
->      minItems: 5
-> -    maxItems: 5
-> +    maxItems: 6
->  
->    clocks:
-> -    minItems: 7
-> +    minItems: 3
+> This patch depends on "Mediatek MT8192 clock support"[1].
+> 
+> The definition of decoder clocks are in mt8192-clk.h, need to include them in case of build fail [1].
+> 
+> [1]https://patchwork.kernel.org/project/linux-mediatek/list/?series=511175
+> ---
+>  .../media/mediatek,vcodec-comp-decoder.yaml   | 172 ++++++++++++++++++
+>  1 file changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> new file mode 100644
+> index 000000000000..083c89933917
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> @@ -0,0 +1,172 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/mediatek,vcodec-comp-decoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Video Decode Accelerator With Component
+> +
+> +maintainers:
+> +  - Yunfei Dong <yunfei.dong@mediatek.com>
+> +
+> +description: |+
+> +  Mediatek Video Decode is the video decode hardware present in Mediatek
+> +  SoCs which supports high resolution decoding functionalities. Required
+> +  master and component node.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
 
-Patch 1 shows 3 clocks are valid...
+Don't need 'oneOf' when only one entry.
 
->      maxItems: 8
->      description:
->        List of phandles and clock specifier pairs for the Hexagon,
->        per clock-names below.
->  
->    clock-names:
-> -    minItems: 7
-> +    minItems: 3
->      maxItems: 8
->  
->    power-domains:
-> -    maxItems: 1
+> +      - enum:
+> +          - mediatek,mt8192-vcodec-dec  # for lat hardware
+> +          - mediatek,mtk-vcodec-lat     # for core hardware
+> +          - mediatek,mtk-vcodec-core
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - const: vdec-sel
+> +      - const: vdec-soc-vdec
+> +      - const: vdec-soc-lat
+> +      - const: vdec-vdec
+> +      - const: vdec-top
+> +
+
+> +  assigned-clocks: true
+> +
+> +  assigned-clock-parents: true
+
+Don't need these 2. Always valid if 'clocks' is present.
+
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
 > +    minItems: 1
-> +    maxItems: 2
+> +    maxItems: 32
+> +    description: |
+> +      List of the hardware port in respective IOMMU block for current Socs.
+> +      Refer to bindings/iommu/mediatek,iommu.yaml.
 > +
-> +  power-domain-names:
-> +    minItems: 1
-> +    maxItems: 2
->  
->    resets:
->      minItems: 1
-> @@ -92,6 +98,7 @@ required:
->    - clocks
->    - clock-names
->    - power-domains
-> +  - power-domain-names
-
-It's not backwards compatible to add a required property.
-
->    - qcom,halt-regs
->    - memory-region
->    - qcom,smem-states
-> @@ -129,6 +136,31 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,sc7280-wpss-pil
-> +    then:
-> +      properties:
-> +        interrupts-extended:
-> +          items:
-> +            - description: Watchdog interrupt
-> +            - description: Fatal interrupt
-> +            - description: Ready interrupt
-> +            - description: Handover interrupt
-> +            - description: Stop acknowledge interrupt
-> +            - description: Shutdown acknowledge interrupt
-> +        interrupt-names:
-> +          items:
-> +            - const: wdog
-> +            - const: fatal
-> +            - const: ready
-> +            - const: handover
-> +            - const: stop-ack
-> +            - const: shutdown-ack
-
-The items lists can go in the main section with 'minItems: 5' and just 
-'minItems: 6' here.
-
+> +  dma-ranges:
+> +    maxItems: 1
+> +    description: |
+> +      Describes the physical address space of IOMMU maps to memory.
 > +
-> +  - if:
+> +  mediatek,scp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+> +    description:
+> +      Describes point to scp.
+> +
+> +required:
+> +      - compatible
+> +      - reg
+> +      - iommus
+> +      - dma-ranges
+> +
+> +allOf:
+> +  - if: #master node
 > +      properties:
 > +        compatible:
 > +          contains:
 > +            enum:
->                - qcom,sdm845-adsp-pil
->      then:
->        properties:
-> @@ -211,6 +243,26 @@ allOf:
->          power-domains:
->            items:
->              - description: CX power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: cx
+> +              - mediatek,mt8192-vcodec-dec  # for lat hardware
 > +
-> +  - if:
+> +    then:
+> +      required:
+> +        - mediatek,scp
+> +
+> +  - if: #component node
 > +      properties:
 > +        compatible:
 > +          contains:
 > +            enum:
-> +              - qcom,sc7280-wpss-pil
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: CX power domain
-> +            - description: MX power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: cx
-> +            - const: mx
-
-As 'cx' is always the first entry, the 'items' lists here can be moved 
-to the main section and you just need minItems or maxItems in the 
-if/then.
-
->  
->    - if:
->        properties:
-> @@ -244,6 +296,23 @@ allOf:
->            items:
->              - const: restart
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7280-wpss-pil
-> +    then:
-> +      properties:
-> +        resets:
-> +          items:
-> +            - description: AOSS restart
-> +            - description: PDC SYNC
-> +        reset-names:
-> +          items:
-> +            - const: restart
-> +            - const: pdc_sync
+> +              - mediatek,mtk-vcodec-lat     # for core hardware
+> +              - mediatek,mtk-vcodec-core
 > +
->  examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - clocks
+> +        - clock-names
+> +        - assigned-clocks
+> +        - assigned-clock-parents
+> +        - power-domains
+> +
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt8192-larb-port.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mt8192-clk.h>
+> +    #include <dt-bindings/power/mt8192-power.h>
+> +
+> +    vcodec_dec: vcodec_dec@16000000 {
+> +        compatible = "mediatek,mt8192-vcodec-dec";
+> +        reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+> +        mediatek,scp = <&scp>;
+> +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +    };
+> +
+> +    vcodec_lat: vcodec_lat@0x16010000 {
+> +        compatible = "mediatek,mtk-vcodec-lat";
+> +        reg = <0 0x16010000 0 0x800>;		/* VDEC_MISC */
+> +        interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> +             <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +             <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> +             <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> +             <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+> +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> +              "vdec-vdec", "vdec-top";
+> +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +        assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+> +    };
+> +
+> +    vcodec_core: vcodec_core@0x16025000 {
+> +        compatible = "mediatek,mtk-vcodec-core";
+> +        reg = <0 0x16025000 0 0x1000>;		/* VDEC_CORE_MISC */
+> +        interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+> +             <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> +             <&vdecsys CLK_VDEC_VDEC>,
+> +             <&vdecsys CLK_VDEC_LAT>,
+> +             <&vdecsys CLK_VDEC_LARB1>,
+> +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> +              "vdec-vdec", "vdec-top";
+> +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> +        assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+> +    };
 > -- 
-> 2.7.4
+> 2.25.1
 > 
 > 
