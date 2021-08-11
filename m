@@ -2,113 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E45B43E8F58
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 13:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C52753E8F62
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 13:20:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237261AbhHKLT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 07:19:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
+        id S237338AbhHKLUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 07:20:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237298AbhHKLT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 07:19:27 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13E5C061765
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 04:19:04 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id lw7-20020a17090b1807b029017881cc80b7so8978644pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 04:19:04 -0700 (PDT)
+        with ESMTP id S237329AbhHKLUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 07:20:38 -0400
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24819C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 04:20:15 -0700 (PDT)
+Received: by mail-ua1-x933.google.com with SMTP id 75so992125uav.8
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 04:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mC8C0xwm8W7bgu0JyGtZcqjXFuXUk/Avbe6reu50yCI=;
-        b=aJdqWdV0w84zCE2qGTJuXtiN/EUul8d4ZIx2LnoWE5me1OFiMKrLMJaNmWyfawWz5o
-         VOys7eOAd0Wg/PnrMXQfrwGQSnmKSaeR0rpd8m2loLS575PH50QC3Ue9Cq6XkknRvlpP
-         75ql9KaXbtW75LLYirKzR93x/LLe75PoyKMpLmJvnn+XKFG+pgEHOcQw2zPf55JPHHe8
-         XhRRjePUd9oPIPseAVxj1Ao8SyjU7ZQfsLZ9DDyP+r+MG5hcORJjkjVLAMbmhvzWrFpI
-         so16YJ5LTEkpjHHcwWmGqAg5sUtLMcgeg6kxBKnLcL2eG3r3M4AI4sb9TJi2RGQGte5k
-         NAkA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t0kEBolSkLS2sqce8sXfB33QiH70Nq/WEHar/RhDH00=;
+        b=EXu9onjXPrdieAXb4oXgi7XDK2Cs0n7NV6W1fs65ZqHGgYhojmH+np0TMd9X9TqyuL
+         mOnHJv7IMjvM9aW6URokLeKObx1Hr9sjULLeVyDoJV4IKgi8fwJ//B4u5gldK+Z5wFx9
+         BKtL5eL2UislHCHvFKd2LH1s/w/8kUDgOikyU9jhJ/2FvWAV5lYtV4zP5KAHH5VelCmZ
+         OILdkPwbA6BPx1xP6y3Vmt5x8OAnk13uX69egwyyuj2xCe/JXUzlmQ1/WZHG02cohJit
+         nyEOMegmP/pDz8Yx19iIhYRG2XssOk/biOMEYxoM2J5Xg5LaVzEzM6IeYbKxMX6BoUG0
+         DcBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mC8C0xwm8W7bgu0JyGtZcqjXFuXUk/Avbe6reu50yCI=;
-        b=i0j8E18MutA3yS0oJHF5L6f4pa0u5JOrizPmso4liATkfmB+i79NWm4uPpBwvHRp4l
-         6TW4FDBv+14CzlpXbd1J/5k0UkPCHr9A/rsqpbtfqkDH2SkzldWMKqsPODD0QtbQIBeU
-         O/vStjQDBDFApTBS6yacgEu4bHcQyLGY9nvE/gGvDd+rA1fySh8sNNOw4WujYptIg4jL
-         mUnAOBL/v89lBYrbmmBBQiadtJYLJWwfAtkV/kkFZfrGpKnM+jJvIbWQhEFlGz28itnf
-         pGdINY50l9PHqXCW+IzrVzh3ukuwyv3g3CdwV8D00jWn0CezvW66+6m5ZeRlH6v6prGN
-         IaTg==
-X-Gm-Message-State: AOAM5308/Ujp0n+7KUy0vlrMOT73aejW+kWIFhqnhV46RyYdnJSCHheo
-        Hf30K/kZxFIsGHn6MsbAXMV5pA==
-X-Google-Smtp-Source: ABdhPJwm7QFpVQrDdQM9uD/6wNXIDd2ezHOUsmTYiL5CuXboXPsLNkKYtggVLkg3cfpqns77Dfrhgg==
-X-Received: by 2002:a62:65c7:0:b029:3c3:4eff:1b26 with SMTP id z190-20020a6265c70000b02903c34eff1b26mr27485612pfb.48.1628680744167;
-        Wed, 11 Aug 2021 04:19:04 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id c14sm31728792pgv.86.2021.08.11.04.19.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Aug 2021 04:19:02 -0700 (PDT)
-Date:   Wed, 11 Aug 2021 16:49:00 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v6 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-Message-ID: <20210811111900.bloukqgc3f2a4f2m@vireshk-i7>
-References: <1628074696-7979-1-git-send-email-rnayak@codeaurora.org>
- <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
- <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
- <2afd0fac-ed28-c090-a345-3fd4284b4125@codeaurora.org>
- <20210810024308.gurvzpbe2bc2bhky@vireshk-i7>
- <e452c0b5-5555-d6e2-40da-6aa21a26766d@codeaurora.org>
- <20210811100749.kwg6435m7xj7ulwa@vireshk-i7>
- <CAPDyKFp3xmx1r_2SCbrVcT-CcyUkTUoNgiUMWoyuWw5jE6WLrA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t0kEBolSkLS2sqce8sXfB33QiH70Nq/WEHar/RhDH00=;
+        b=GsYhmIPg0SpWd1LoxKsWtTqCs8VBAEW3hH3NbbmVcuyGkNy3eTWYZ3iw8yH6UzQyzq
+         dI3V60mfV7tAamzFxtgDA+Xe9yFeYyAb5r5MR32E/zWVhpNmNFGgZ6QPXUKVvCpmpxwy
+         4zG7rqa3kD1Ps9gcdERDUAaLEIOq7rDgz6ihlBjFSNwW7rUKzAqSUWYzQZOOdxpkUr5P
+         dOexBNtaR6ZuuuRA/8TIO/AZ7JOOWOsFNIyKwVRGFLQE0S7VLiLitQzW4DohdydvRnfW
+         f0c4kQOcK/WrI79SLf56G2pGULSdJF7nKZ+oSKHu9u3Ct9RlJ3i5pET5+TXbcbLP5xWN
+         8hNQ==
+X-Gm-Message-State: AOAM532w5oYaolhPTO+bAQeSF5tzSEvfCarnRlRe4SXueM9bcvyLCetq
+        bMvWhz8ZdL4GGfGxFquu6rdFY5jkaIwFYRLEEyitog==
+X-Google-Smtp-Source: ABdhPJzHREh3TtpeK5LboogIOTf9B16ur3hdtF1iwFqcdwjhPQLqbrAfGLqvXhyblELiy1U/5s3uTaTrZeYTfryBy8o=
+X-Received: by 2002:ab0:7014:: with SMTP id k20mr10843046ual.9.1628680814267;
+ Wed, 11 Aug 2021 04:20:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFp3xmx1r_2SCbrVcT-CcyUkTUoNgiUMWoyuWw5jE6WLrA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20210806152146.16107-1-semen.protsenko@linaro.org>
+ <20210806152146.16107-8-semen.protsenko@linaro.org> <3add6f87-7293-e1ae-8f9e-c69e9de18cf5@canonical.com>
+ <CGME20210809194915eucas1p19999295aef3127f95ffe4c75a8acc63f@eucas1p1.samsung.com>
+ <CAPLW+4=-uUcoLCjjBAC2K5NLswnXGXW1qrsTJrb_uZDgOQ5Ehw@mail.gmail.com> <bb69e79d-55a8-2090-e51c-fdfea755cf99@samsung.com>
+In-Reply-To: <bb69e79d-55a8-2090-e51c-fdfea755cf99@samsung.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Wed, 11 Aug 2021 14:20:02 +0300
+Message-ID: <CAPLW+4mPrPSeukiJY6DmpEz0V=bjEYbjzLTnJ28T01yqoQY=mg@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] clk: samsung: Add Exynos850 clock driver stub
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-08-21, 12:52, Ulf Hansson wrote:
-> On Wed, 11 Aug 2021 at 12:07, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Tue, 10 Aug 2021 at 10:55, Sylwester Nawrocki <s.nawrocki@samsung.com> wrote:
+>
+> On 09.08.2021 21:48, Sam Protsenko wrote:
+> >>> +/* Will be extracted to bindings header once proper clk driver is implemented */
+> >>> +#define OSCCLK               1
+> >>> +#define DOUT_UART    2
+> >>> +#define CLK_NR_CLKS  3
+> >>> +
+> >>> +/* Fixed rate clocks generated outside the SoC */
+> >>> +static struct samsung_fixed_rate_clock exynos850_fixed_rate_ext_clks[] __initdata = {
+> >>> +     FRATE(OSCCLK, "fin_pll", NULL, 0, 26000000),
+> >>> +};
+> >>> +
+> >>> +/*
+> >>> + * Model the UART clock as a fixed-rate clock for now, to make serial driver
+> >>> + * work. This clock is already configured in the bootloader.
+> >>> + */
+> >>> +static const struct samsung_fixed_rate_clock exynos850_peri_clks[] __initconst = {
+> >>> +     FRATE(DOUT_UART, "DOUT_UART", NULL, 0, 200000000),
+> >>> +};
+> >>> +
+> >>> +static const struct of_device_id ext_clk_match[] __initconst = {
+> >>> +     { .compatible = "samsung,exynos850-oscclk" },
+> >>
+> >> One more thing - I am not sure anymore if this is correct. AFAIR, we
+> >> wanted to drop compatibles for external clocks.
+> >>
+> > I'll remove oscclk from the clock driver and device tree. It's not
+> > needed right now anyway, as that driver is just a stub.
 > >
-> > On 11-08-21, 15:30, Rajendra Nayak wrote:
-> > > In my case I don't want to error out if the property is missing, I want to error out
-> > > only when the property exists but can't be translated into a performance state.
-> > >
-> > > So currently I check if the property exists and *only then* try to translate it, Ulf asked
-> > > me to skip the check. If I do that and I call of_get_required_opp_performance_state()
-> > > unconditionally, and if it errors out I will need to put in additional logic (check for
-> > > return value of ENODEV) to distinguish between the property-does-not-exist vs
-> > > property-exists-but-cannot-be-translated case.
-> > > It just seems more straight-forward to call this only when the property exists, Ulf?
-> >
-> > The same check will be done by OPP core as well, so it is better to
-> > optimize for the success case here. I will say, don't error out on
-> > ENODEV, rest you know well.
-> 
-> This should work, while I generally favor not having to parse for
-> specific return codes.
-> 
-> Another option is to add a new OPP OF helperfunction that just informs
-> the caller whether the required-opps property exists (instead of
-> open-coding that part), and if so, the caller can continue with
-> of_get_required_opp_performance_state() and then expect it to succeed.
-> 
-> I have no strong opinion though! Whatever works for me.
+> > But I'd still like to know the proper way to define external clocks. I
+> > can see that in exynos7.dtsi and exynos5433.dtsi there is just regular
+> > fixed clock defined for "oscclk" (or "fin_pll"), and then that clock
+> > is referenced in corresponding clock driver by its
+> > 'clock-output-names' property. I guess that approach is the
+> > recommended one?
+>
+> Yes, we should use generic "fixed-clock" in DT to model the external
+> root clock. Registering the external clock from within the CMU driver
+> is a legacy method that predates generic "fixed-clock" and should be
+> avoided.
+>
 
-I would like to work with the existing set of APIs, as the OPP core is
-going to do that check anyways, again.
+Thanks for confirming this. I'll go with generic fixed clock in my
+clock patch series then.
 
--- 
-viresh
+> That said I think this temporary stub driver is not needed at all,
+> you could well define a fixed clock in DT and reference it in the UART
+> node, as Krzysztof suggested.
+>
+
+Ok, I'll remove the stub clock driver in v3. Using fixed clock in
+device tree for serial seems to work fine.
+
+> --
+> Regards,
+> Sylwester
