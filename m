@@ -2,73 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8B3F3E9804
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 20:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04FE3E9840
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 21:04:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbhHKSyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 14:54:20 -0400
-Received: from mail-pj1-f41.google.com ([209.85.216.41]:44811 "EHLO
-        mail-pj1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbhHKSyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 14:54:20 -0400
-Received: by mail-pj1-f41.google.com with SMTP id hv22-20020a17090ae416b0290178c579e424so6601183pjb.3;
-        Wed, 11 Aug 2021 11:53:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M1uZob/D+GwylCXdgRi3obUxS40Qeihru4aemoTLAUQ=;
-        b=RQAqBoGxIRm1rwU9qIU5SbqrqvqxjaC4mdS43Jw1QDluVcYXrEohGmWjV7FvMy/PNJ
-         Sw9LtcKEa6fB5ZTdiTSKfe5678gQ1YlwcybLwCe7mHnQ87MqkKxK5sdqObKh5epaNV6E
-         0wMDsCMEt8WsiczQIKba06N7tdjUIIQuMf1jEnBGGBpX49G4Il6SElXMMF9hlaznrn/h
-         UaL6A6vussnbhn5u9suoDROOYh33eSXtnWrsXI39qoaifIUSuvkp9kez/xAM5keSgKrv
-         GJE4oZQB7lOBinpE+6bxLvy00vTQZRNORXQ3nDEqRGWi2/xoRCG2G2fEuOU1UpmMzcE0
-         5dwQ==
-X-Gm-Message-State: AOAM530UnvSDATHBkB6o2Zh0R1v/lh0hhVIh3fNhQNHgVt0M5GMU2D76
-        X6Lya6jvYAWgbot+fRdCYQ==
-X-Google-Smtp-Source: ABdhPJzwPWdzjp/BVTGo4S+qJUbIvZLtknvskDXcbQTrge6t+rdZVuqlnSego1aoSS8+I6dV0b0rbA==
-X-Received: by 2002:a17:90a:d144:: with SMTP id t4mr64475pjw.113.1628708036070;
-        Wed, 11 Aug 2021 11:53:56 -0700 (PDT)
-Received: from robh.at.kernel.org ([208.184.162.215])
-        by smtp.gmail.com with ESMTPSA id x13sm188199pjh.30.2021.08.11.11.53.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Aug 2021 11:53:55 -0700 (PDT)
-Received: (nullmailer pid 90561 invoked by uid 1000);
-        Wed, 11 Aug 2021 18:53:52 -0000
-Date:   Wed, 11 Aug 2021 12:53:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        punit1.agrawal@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        yuji2.ishikawa@toshiba.co.jp, Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: clock: Add DT bindings for SMU of
- Toshiba Visconti TMPV770x SoC
-Message-ID: <YRQcwD7771ncxtMT@robh.at.kernel.org>
-References: <20210804092244.390376-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210804092244.390376-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S230424AbhHKTEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 15:04:41 -0400
+Received: from www.zeus03.de ([194.117.254.33]:42164 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230391AbhHKTEk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 15:04:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=yotAXwGxPU3du2t0851ttQ/XEv4u
+        xc75haydCGhcwDk=; b=uhRV3nizCjjBdQUbDSIINuQ40KhPgDduxHvZ7loqVD4E
+        J5TZYUfonKw/uoS7XbNuyCR6VO79Br63PP+58KBbgbc4aFWHYpFrobsZpXCAB/YH
+        fsFHVaXHKtntIDaby9s4/LSP/qeB1kx99cKx1blQeryPrz1UgkkegpucWYY/G3s=
+Received: (qmail 2749631 invoked from network); 11 Aug 2021 21:04:14 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Aug 2021 21:04:14 +0200
+X-UD-Smtp-Session: l3s3148p1@8oDASE3JxOIgAwDPXwY8AGSWydYZifHX
+Date:   Wed, 11 Aug 2021 21:04:12 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH/RFC 0/4] dt-bindings: i2c: renesas,riic: Add
+ interrupt-names
+Message-ID: <YRQfLN3r0gFiQMG1@kunai>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+References: <cover.1626267422.git.geert+renesas@glider.be>
+ <YRPdTiAakb6OBd2k@shikoro>
+ <CAMuHMdVmKuYo7XhrQsLhXCOyRa=-aKwbtub=yi5nuSvJ22An2Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="VhfuD+Qk+C9o4mf/"
 Content-Disposition: inline
-In-Reply-To: <20210804092244.390376-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <CAMuHMdVmKuYo7XhrQsLhXCOyRa=-aKwbtub=yi5nuSvJ22An2Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Aug 2021 18:22:42 +0900, Nobuhiro Iwamatsu wrote:
-> Add device tree bindings for SMU (System Management Unit) controller of
-> Toshiba Visconti TMPV770x SoC series.
-> 
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> ---
->  .../clock/toshiba,tmpv770x-pismu.yaml         |  50 +++++
->  include/dt-bindings/clock/toshiba,tmpv770x.h  | 181 ++++++++++++++++++
->  include/dt-bindings/reset/toshiba,tmpv770x.h  |  41 ++++
->  3 files changed, 272 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
->  create mode 100644 include/dt-bindings/clock/toshiba,tmpv770x.h
->  create mode 100644 include/dt-bindings/reset/toshiba,tmpv770x.h
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--VhfuD+Qk+C9o4mf/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Geert,
+
+> Probably it is not worth doing this in lockstep (1/4 in v5.15 through
+> i2c, 2/4 and 3/4 in v5.16 through renesas-devel, and 4/4 in v5.17
+> through i2c).
+
+I agree!
+
+> I have different branches for DT binding and DTS, but I guess it
+> doesn't hurt to deviate and apply both to renesas-arm-dt-for-v5.15...
+
+Sounds good, thanks!
+
+All the best,
+
+   Wolfram
+
+--VhfuD+Qk+C9o4mf/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmEUHygACgkQFA3kzBSg
+KbZXaBAAim/mI+VPfpgtyAN2RE3C4n/H5lYiDnzByB2Rqq4t1ammd2RoLwDibtxp
+5wE1CelXSD64Q3tRvRCyQBImxrhI76BlD8UjtXaQ2Y3PRVdRHgR1DueVXa24q/6N
+ofkxPM4LAWU4kF2I7RfMyFau5Dtf/oJlCKncF/TK5+/SGO/eBqxgZVY1o0+9r7ix
+C1yHFEEI3KVnvbRygGk1aUT+kQm5KZAPD9/SnPnyu9Fq81I0r0oJi8jWNm8hT3i3
+JxjCR0y+OrhUP2jrknkTTZfghYiR17GVcAPqVIog+dbZ8Eq5l8v2u0Qea7OWLtDV
+hzZ3l9owIhjXk0uXDX7VYhwRTq1WreY0fqm9686mQOTNBcf/1BuY6gr0fp1Woqhf
+PNsgEkBm/TgTIA08gLkB1E1HHDSErBYwAnXy2zRW/BTTA/MdrM9GFkMZ1EuzVLwv
+9/jiDGuD/kYJwxH+TzzkW2IwK05UEg9j+kY4iMbHeOntM0LNTAj5n7jYH4TXdm9v
+z9NnEGOXxHgJoVeK98yFxUQk5GOjXzg59Jsp00qtVFGf1Y6f+4RaXw/zP1NODoru
+37UnxfH9XoRB2qZo6Rf0w7r+L2zDe3r8IFg03lDt6B5jeK1R+icVZ2SUWmT2t0Ob
+2b/JHxlxqf54JVcj7kwifucu1oO0ScCLV2Q0mOsGgIdU2Jg/V40=
+=bJpJ
+-----END PGP SIGNATURE-----
+
+--VhfuD+Qk+C9o4mf/--
