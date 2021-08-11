@@ -2,99 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 361C53E8F76
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 13:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 363913E8FAB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 13:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237333AbhHKL3q convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 11 Aug 2021 07:29:46 -0400
-Received: from mail-vs1-f45.google.com ([209.85.217.45]:43569 "EHLO
-        mail-vs1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237210AbhHKL3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 07:29:42 -0400
-Received: by mail-vs1-f45.google.com with SMTP id s196so1240625vsc.10;
-        Wed, 11 Aug 2021 04:29:18 -0700 (PDT)
+        id S237385AbhHKLsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 07:48:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237369AbhHKLsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 07:48:54 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DD9C061765
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 04:48:30 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id cf5so3313948edb.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 04:48:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YxayS6Buf73tv3W4stt0EXlqaddKxMlyi9Xug6Snj2I=;
+        b=loysSsRwzb1MyGQ25d/g4sLOBOWXfOWM5v8QQ/qlivnFJCpOyuqXy7OF/Mg+b4EK3p
+         ttVxPlPIZZjpplsvj6+hRGePyBYIhXAPUDn1vvq+zrUhT9WPxRpewyeTbUB53f9Hm9nb
+         cPAPA9P7QD+Y4cHdnVQoHfpYclsKc3OEDIKjjjKombZirgCh+r+KZYCk/QGbmBtNeQ8d
+         xgJamKCDMAs7pdAumsK+i9ULQ61sb0Fx9KF25am1ZFEOGQ+u+EIFDqsvqYS2IX0xwTIH
+         4b/9V9pV9f1wSrs68EPyu1tPf59TnOUJqcN1ro0TPiyctZrslcLO0cSxO97+O5Voma2T
+         qwOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=40wisL4/SKjdMqbDzvwZrkyDfanri5aoKVnQRyWUuY0=;
-        b=SyG6+XczyIGKkdTh4UR41xo5YbZc+ITtlXgZsw+I7R9zWx0YDIqWadUMBjDz1F9WBx
-         6B++eWQDkkBRTwSNCRJUuVjSdXO6XOv1eixJFAiivX8K7gGA7Q8xzctv9xnHX9UvaiLD
-         o1GNzDsw+mjumXC99nphkWAQpzPWgQZXfJEKlxuIuRpspJTWMfD4HzH+PvPvOv8SwmoD
-         oXGfcXRAYQrdLtGsfUQhemsBfC3a8WAx49scXrEseDo5thDJiyClflda/zuUoqbGU1pL
-         q9BAWKt1GZC3wVxVmwQPItLMCrBZkaMqscsuSaq+/NBOUV7dy2lKLYccCDKxGPr/Puv6
-         Ge/Q==
-X-Gm-Message-State: AOAM533G4k4AwlQALJnnZow/MxtR0erk3C6vPZrTVm8XDMdulay5fT05
-        ZU1zppPlQ8mK5ettEk0Dgeohe88pVSzKTVJ5amg=
-X-Google-Smtp-Source: ABdhPJy4XrbkHkqk1N7n531OJu2JQkcYcvarSrfV7a1TjAP6AU3ROsnF7Eatvrj+CJP4HBfqYOWJdNPELnM5eP6VJV4=
-X-Received: by 2002:a67:e2c7:: with SMTP id i7mr25004885vsm.3.1628681358404;
- Wed, 11 Aug 2021 04:29:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210811095759.1281480-1-geert@linux-m68k.org>
- <20210811095759.1281480-20-geert@linux-m68k.org> <20210811124755.37b0a0a9@thinkpad>
-In-Reply-To: <20210811124755.37b0a0a9@thinkpad>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 Aug 2021 13:29:07 +0200
-Message-ID: <CAMuHMdUFPvJBuFByiN6pb539REYtcsNJMKML+M2NQw=GJxTYJg@mail.gmail.com>
-Subject: Re: [PATCH v5 19/19] auxdisplay: ht16k33: Add LED support
-To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YxayS6Buf73tv3W4stt0EXlqaddKxMlyi9Xug6Snj2I=;
+        b=lZOrA/HvcIamuRY5vb1crW+MKzVdGxtHRCJBBlcq7zq0zTCAAM69Qq1J1GWIeufwca
+         Y/iRC3XVdf5YeSoFpyTl6HECx5muUtU7o6DCcy1hAad8t68UU6CWkNQ4xqD1YreiZK2/
+         7DuFBod5Np5KzHyGQqOClQIu2A4KJ8at+QxA6oVfyQjIwWoKJq3gATg61M8WPGzR1c65
+         YIsfrnHSFrZ41WqPX5kwSs/Waa9xy9iixxYkuq8lE/KRSbwUsFncJ+8TduVI/+o+dFrA
+         0y2DbW8NtCvXmKwepRRZlajBWu0A3CgKqQ94hnVrCunFNKUuyYfa1yVLT2YFRpj5mXQf
+         LvcQ==
+X-Gm-Message-State: AOAM531vnS+wEdhlbw9Pgj5b1KHOhAb2YQS0iz/YVW+g0dqXf5LLF9+z
+        vsJeIC4PWHJT/FRW0z8uimAhNg==
+X-Google-Smtp-Source: ABdhPJxho73WzOVrYw9NK76kUVvDzKorlN5ePOWM7MnSaI8LdBh6S7aHNtX2d0X3hINOjcqhrEzptw==
+X-Received: by 2002:aa7:d757:: with SMTP id a23mr10907031eds.29.1628682509410;
+        Wed, 11 Aug 2021 04:48:29 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id a22sm8094458ejk.35.2021.08.11.04.48.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Aug 2021 04:48:28 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: [PATCH v3 0/7] Add minimal support for Exynos850 SoC
+Date:   Wed, 11 Aug 2021 14:48:20 +0300
+Message-Id: <20210811114827.27322-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+This patch series adds initial platform support for Samsung Exynos850
+SoC [1]. With this patchset it's possible to run the kernel with BusyBox
+rootfs as a RAM disk. More advanced platform support (like MMC driver
+additions) will be added later. The idea is to keep the first submission
+minimal to ease the review, and then build up on top of that.
 
-On Wed, Aug 11, 2021 at 12:48 PM Marek Behún <kabel@kernel.org> wrote:
-> On Wed, 11 Aug 2021 11:57:59 +0200
-> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> > Instantiate a single LED based on the "led" subnode in DT.
-> > This allows the user to control display brightness and blinking (backed
-> > by hardware support) through the LED class API and triggers, and exposes
-> > the display color.  The LED will be named
-> > "auxdisplay:<color>:<function>".
-> >
-> > When running in dot-matrix mode and if no "led" subnode is found, the
-> > driver falls back to the traditional backlight mode, to preserve
-> > backwards compatibility.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
->
-> Reviewed-by: Marek Behún <kabel@kernel.org>
+[1] https://www.samsung.com/semiconductor/minisite/exynos/products/mobileprocessor/exynos-850/
 
-Thanks!
+Changes in v3:
+ * Removed the stub clock driver; uart clock is modeled as generic fixed
+   clock in dts for now
+ * See also changes in each particular patch
 
-> BTW, this driver does not need to depend on OF, methinks.
-> The few instances of properties reading can be
-> easily rewritten to device_* functions (from include/linux/property.h).
-> The of_get_child_by_name() can become device_get_named_child_node().
->
-> Geert, what do you think?
+Changes in v2:
+ * Rebased on top of current linux-mainline
+ * Removed patch ("pinctrl: samsung: Fix pinctrl bank pin count"); it
+   was sent separately, as it's an independent fix
+ * Made the patch ("dt-bindings: pinctrl: samsung: Add Exynos850 doc")
+   to be the first in series
+ * Removed patch ("MAINTAINERS: Changes in v2"); will add that later,
+   when proper clock driver is implemented
+ * Removed patch ("dt-bindings: clock: Add bindings for Exynos850 clock
+   controller"); will add clock bindings later, when proper clock driver
+   is implemented
+ * Removed patch ("dt-bindings: interrupt-controller: Add IRQ constants
+   for Exynos850"), and used hard-coded IRQ numbers in dts instead
+ * See also changes in each particular patch
 
-Sure, that can be done later, when an ACPI user appears?
-The dependency on OF was pre-existing, and this series is already
-at v5.
+Sam Protsenko (7):
+  dt-bindings: pinctrl: samsung: Add Exynos850 doc
+  pinctrl: samsung: Add Exynos850 SoC specific data
+  dt-bindings: serial: samsung: Add Exynos850 doc
+  tty: serial: samsung: Init USI to keep clocks running
+  tty: serial: samsung: Fix driver data macros style
+  tty: serial: samsung: Add Exynos850 SoC data
+  arm64: dts: exynos: Add Exynos850 SoC support
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/pinctrl/samsung-pinctrl.txt      |   1 +
+ .../bindings/serial/samsung_uart.yaml         |   1 +
+ .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 748 ++++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos850.dtsi     | 261 ++++++
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 116 +++
+ drivers/pinctrl/samsung/pinctrl-exynos.h      |  29 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
+ drivers/tty/serial/samsung_tty.c              |  49 +-
+ include/linux/serial_s3c.h                    |   9 +
+ 10 files changed, 1214 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos850.dtsi
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
