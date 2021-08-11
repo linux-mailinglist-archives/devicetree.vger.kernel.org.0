@@ -2,123 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B33283E8C99
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 10:52:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D6A3E8C9E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 10:53:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236290AbhHKIw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 04:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33918 "EHLO
+        id S236433AbhHKIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 04:54:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236220AbhHKIw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 04:52:57 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB403C061765
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 01:52:33 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:438:1ff1:1071:f524])
-        by albert.telenet-ops.be with bizsmtp
-        id g8sX2500K1gJxCh068sXnW; Wed, 11 Aug 2021 10:52:32 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mDjyR-001yhr-J9; Wed, 11 Aug 2021 10:52:31 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mDjyR-00595J-3T; Wed, 11 Aug 2021 10:52:31 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] of: fdt: Remove early_init_dt_reserve_memory_arch() override capability
-Date:   Wed, 11 Aug 2021 10:52:28 +0200
-Message-Id: <be0140a0183ecfd0a3afa4fe6d2d77ed418102f9.1628671897.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S236399AbhHKIyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 04:54:06 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6666BC0613D3
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 01:53:42 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id x27so4165023lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 01:53:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3AiCUWhgfaQ/Re4MVUqsQq5azIzJHgBMesbI0wlW/ZQ=;
+        b=uCwmQccxrxGK0rbVI2asZmP3OKbsYKZ+DvVUn6w4vzMQO2hqr5ZpeMmShnvbBU8/Yr
+         ZHrWLxRoxQX1pVuGeAJoOic61PhlPpiwESkj7USTzPr/1EAXEQxFAjqosz11DxT4FlFM
+         bbrPVxhBxg2k5VgjesQQZC9WjuEXQz4y4fIV4eunpY/rKbK7wv13z32fDiOGlz5tlXtF
+         lC15FlLulxhKFjSC41aMc28F/YM8Gy/fhV1LC5lcLoLFKfmLCcY97MdrfpTDMX36LDzg
+         zLXli7upUMMfUBTLWPlXFZlU7rbgvECD5d3SbvaneR1in6XEIMcHGVMHFG3FuiJMk7Pa
+         dHXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3AiCUWhgfaQ/Re4MVUqsQq5azIzJHgBMesbI0wlW/ZQ=;
+        b=FFFkV8xcRcRaiURN3nz5i5RJEnwRLmdeWcbJ3uwOH6f1QA2viZoUpxkyQ376EyYs+v
+         BNO+/XsI0boOOOCQmorVu+YGezRhQZJ5S7952aUogzIV9b3eGOwImW0KuPWn7Xudapde
+         FJPyYn+XANJ/Hsnis05XOZGI1hD4u5B87iDEyfJw7Yt5JxcJWSlxtPT6WbVUUiF1MfIN
+         fCEfIYbrwwzbHvXRVb8NyLD+PWK245g5uQ9wf4eiTqOfg2AX+RJSAqjYMI0QHpyYpWgi
+         d+bnU/HoNQTq+0DCaob5T4vsmlouLSVxU9DPlntfa/f9WWLrxqRKmxHglLyiW3Rn5kNK
+         MgCA==
+X-Gm-Message-State: AOAM531bl12b/qYl4iKKGXXnfXUw5NarhDXHfmTPgW0XaS1gmJHmU0Pv
+        sGfTOzVDX8Hb7cfRfLHykMROZTs7Im7uWd3kHoJ1SprH+X2LOQ==
+X-Google-Smtp-Source: ABdhPJwiM31QODgSzneDy7YtTHVThH6UHiJzC+ra8IUt6YwIQr8jCgHTyTZ7OO09tzof0XpJJpPWGQJeaRRxwn8/QIA=
+X-Received: by 2002:a05:6512:32a3:: with SMTP id q3mr13222195lfe.157.1628672020757;
+ Wed, 11 Aug 2021 01:53:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210804044033.3047296-1-hsinyi@chromium.org>
+In-Reply-To: <20210804044033.3047296-1-hsinyi@chromium.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 11 Aug 2021 10:53:29 +0200
+Message-ID: <CACRpkdaC-vD2Op-ZzJY8uWQUoS8WH5UPd0FPpWYkExXDg-5biQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] arm: dts: mt8135: Move pinfunc to include/dt-bindings/pinctrl
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit e7ae8d174eec0b3b ("MIPS: replace add_memory_region with
-memblock") removed the last architecture-specific override of
-early_init_dt_reserve_memory_arch().
-Convert the common implementation from a weak global function to a
-static function.
+Hi Hsin-Yi, Matthias,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Should the "_arch" suffix be removed?
-Similar commit 0fa1c579349fdd90 ("of/fdt: use memblock_virt_alloc for
-early alloc") did not.
----
- drivers/of/fdt.c       | 32 ++++++++++++++++----------------
- include/linux/of_fdt.h |  2 --
- 2 files changed, 16 insertions(+), 18 deletions(-)
+I have applied all three patches on this immutable branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=ib-mt8135
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 0142b9334559baec..ee8f9937227b5e45 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -476,6 +476,22 @@ void *initial_boot_params __ro_after_init;
- 
- static u32 of_fdt_crc32;
- 
-+static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
-+					phys_addr_t size, bool nomap)
-+{
-+	if (nomap) {
-+		/*
-+		 * If the memory is already reserved (by another region), we
-+		 * should not allow it to be marked nomap.
-+		 */
-+		if (memblock_is_region_reserved(base, size))
-+			return -EBUSY;
-+
-+		return memblock_mark_nomap(base, size);
-+	}
-+	return memblock_reserve(base, size);
-+}
-+
- /*
-  * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
-  */
-@@ -1224,22 +1240,6 @@ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
- 	return memblock_mark_hotplug(base, size);
- }
- 
--int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
--					phys_addr_t size, bool nomap)
--{
--	if (nomap) {
--		/*
--		 * If the memory is already reserved (by another region), we
--		 * should not allow it to be marked nomap.
--		 */
--		if (memblock_is_region_reserved(base, size))
--			return -EBUSY;
--
--		return memblock_mark_nomap(base, size);
--	}
--	return memblock_reserve(base, size);
--}
--
- static void * __init early_init_dt_alloc_memory_arch(u64 size, u64 align)
- {
- 	void *ptr = memblock_alloc(size, align);
-diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
-index acf820e88952977c..3b1500a0116f91fd 100644
---- a/include/linux/of_fdt.h
-+++ b/include/linux/of_fdt.h
-@@ -68,8 +68,6 @@ extern void early_init_fdt_reserve_self(void);
- extern void __init early_init_dt_scan_chosen_arch(unsigned long node);
- extern void early_init_dt_add_memory_arch(u64 base, u64 size);
- extern int early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size);
--extern int early_init_dt_reserve_memory_arch(phys_addr_t base, phys_addr_t size,
--					     bool no_map);
- extern u64 dt_mem_next_cell(int s, const __be32 **cellp);
- 
- /* Early flat tree scan hooks */
--- 
-2.25.1
+Then I merged this branch into the pinctrl "devel" branch for
+v5.15.
 
+Matthias can pull the same branch into his MT SoC tree so
+that the hashes will match up in the merge window. No rebasing.
+
+The same patches will then come in to Torvalds in two ways
+with the same hashes and match perfectly.
+
+Yours,
+Linus Walleij
