@@ -2,66 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7AB03E95B9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 18:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A233E96CE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 19:25:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbhHKQQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 12:16:48 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:45426 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229488AbhHKQQr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 12:16:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=9etRDZteX1Y0FD9CQdjx0qPLybESllogXDOFBwIf/bk=; b=j+jnauB322Qw/28/zy00hvqAln
-        x1r6UkWN/Y7u8P+oPqeVxAWjIlhAEJt7bLj6xMMrzz7tjOei9HQ2u68RC7Yw9J+xATE3pBXaoiT+S
-        qCufKbhyW3xxCrEPj5ND/RYkFiZg3I9VWEd1hdYluz9HnmW0Qxcq+KTVpbZeqkGwLpJA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mDqts-00H9Ae-1J; Wed, 11 Aug 2021 18:16:16 +0200
-Date:   Wed, 11 Aug 2021 18:16:16 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: fsl, fec: add "fsl,
- wakeup-irq" property
-Message-ID: <YRP30Mb8NaD4FjQj@lunn.ch>
-References: <20210805074615.29096-1-qiangqing.zhang@nxp.com>
- <20210805074615.29096-2-qiangqing.zhang@nxp.com>
- <2e1a14bf-2fa8-ed39-d133-807c4e14859c@gmail.com>
- <DB8PR04MB67950F6863A8FEE6745CBC68E6F69@DB8PR04MB6795.eurprd04.prod.outlook.com>
- <498f3cee-8f37-2ab1-93c4-5472572ecc37@gmail.com>
- <DB8PR04MB6795DC35D0387637052E64A1E6F79@DB8PR04MB6795.eurprd04.prod.outlook.com>
- <YRKOGYwx1uVdsKoF@lunn.ch>
- <VI1PR04MB6800EE08F70CC3F0DD53C991E6F89@VI1PR04MB6800.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VI1PR04MB6800EE08F70CC3F0DD53C991E6F89@VI1PR04MB6800.eurprd04.prod.outlook.com>
+        id S231601AbhHKRZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 13:25:33 -0400
+Received: from mail-pj1-f53.google.com ([209.85.216.53]:45745 "EHLO
+        mail-pj1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231639AbhHKRZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 13:25:29 -0400
+Received: by mail-pj1-f53.google.com with SMTP id m24-20020a17090a7f98b0290178b1a81700so6169722pjl.4;
+        Wed, 11 Aug 2021 10:25:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=zA+3b14ofbyiws8ymmMD/m7+Kf0mcNrODar9P3zeNdc=;
+        b=ZzOjEqXL7BDfC0MAmvXOo56Yc4Cq+Q8CPqqwrln4rREsPcAvqXCw69s7yRX7XvLvly
+         anU3MSc9+iN6eawKSr7TiRZC2dab1UoAoAPLlp7tmUAaRjZLsoB+d002bGcg4wmkcK1j
+         S5mto65MSiW7UOzhi7mTtZZUZ+dUsGacLAFe2Bh+cBTeVejGU8eG/zpDu0D3/rpLpsPu
+         zJ/ptAXQNmeCTqjqj4csSkcdA541nBIDYdKkOmkiqahsP3nqahreGn0hGiCdTzIz39Sr
+         Ve+/CjKAatB8y7NIVqPZp4EFztBV+r/nD2MENxqdGMqn8TOcRjCQnWQ2l9uvDLbwh6x+
+         e8Sg==
+X-Gm-Message-State: AOAM530gSy1D82uEj9XTW1en4UvdwwDn4Xaw1Eq8CeGFQdk8w2MpbVtB
+        SVrvZEDLjWhUFDwDQLxQjQ==
+X-Google-Smtp-Source: ABdhPJwKyhBu56kK4nHhyDFKA48JqamDhYuv7Yhdw715/G0+dgoeHXNeYpZU6Tjc7mq1N8YphlmUJw==
+X-Received: by 2002:aa7:9415:0:b029:3ca:3205:b1f6 with SMTP id x21-20020aa794150000b02903ca3205b1f6mr20916038pfo.27.1628702704749;
+        Wed, 11 Aug 2021 10:25:04 -0700 (PDT)
+Received: from robh.at.kernel.org ([208.184.162.215])
+        by smtp.gmail.com with ESMTPSA id f6sm86234pfv.69.2021.08.11.10.25.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Aug 2021 10:25:04 -0700 (PDT)
+Received: (nullmailer pid 3975942 invoked by uid 1000);
+        Wed, 11 Aug 2021 17:24:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        Alexandre Courbot <acourbot@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Tomasz Figa <tfiga@google.com>, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        George Sun <george.sun@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Irui Wang <irui.wang@mediatek.com>, linux-media@vger.kernel.org
+In-Reply-To: <20210811025801.21597-14-yunfei.dong@mediatek.com>
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com> <20210811025801.21597-14-yunfei.dong@mediatek.com>
+Subject: Re: [PATCH v5, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
+Date:   Wed, 11 Aug 2021 11:24:53 -0600
+Message-Id: <1628702693.304754.3975941.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> So I would prefer solution 1, it's easier and under-control.
+On Wed, 11 Aug 2021 10:57:59 +0800, Yunfei Dong wrote:
+> Adds decoder dt-bindings for mt8192.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+> v5: no changes
+> 
+> This patch depends on "Mediatek MT8192 clock support"[1].
+> 
+> The definition of decoder clocks are in mt8192-clk.h, need to include them in case of build fail [1].
+> 
+> [1]https://patchwork.kernel.org/project/linux-mediatek/list/?series=511175
+> ---
+>  .../media/mediatek,vcodec-comp-decoder.yaml   | 172 ++++++++++++++++++
+>  1 file changed, 172 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> 
 
-Hi Joakim
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Using quirks is fine by me.
+yamllint warnings/errors:
 
-      Andrew
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/media/mediatek,vcodec-comp-decoder.yaml#
+Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dts:22:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   22 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1419: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1515556
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
