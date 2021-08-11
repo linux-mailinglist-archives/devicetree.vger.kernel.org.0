@@ -2,104 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 917693E8B91
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 10:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0B83E8B96
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 10:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235458AbhHKIMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 04:12:10 -0400
-Received: from mail-vs1-f51.google.com ([209.85.217.51]:45756 "EHLO
-        mail-vs1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235094AbhHKIMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 04:12:09 -0400
-Received: by mail-vs1-f51.google.com with SMTP id a1so947704vsd.12;
-        Wed, 11 Aug 2021 01:11:46 -0700 (PDT)
+        id S235930AbhHKIMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 04:12:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231178AbhHKIMP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 04:12:15 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6568BC06179B;
+        Wed, 11 Aug 2021 01:11:50 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id oa17so2181307pjb.1;
+        Wed, 11 Aug 2021 01:11:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=49LZp3X8rq2JjBuSPYq9SGlPT2VFV8uGCsrCxh95J6s=;
+        b=hxHlZrytexT1dlasaEVtzDPIhUb/CuQ27umx88g0hMVx7sWD89Ynww35yzOyrmyAeB
+         aMnhTFZ0EJ1ZPCGYUqet2mCpwAHpS5tAULse2NMPsgtFLIGwtK4MdMSrZYGUhjMD8DcD
+         76VyVIkJqF3LbRkNwIKv98EWmXr06nGmYyoxPGEnF1YPmyvoh/Olncp1oYZNMYuKER/v
+         jk/TlroXaGrIipp7/NMXvZGZ+WSiLWxiZB4+BE2RqBqtU3cCuprPXOO3NY9eS6+W9n2l
+         UkAlWC8r8KAp6JsFPctAV96zItaO89xW089F8jsOk93ii77eFSykGlpCI7xacqcadh3x
+         WntA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Tz0+jEgIobQjuTow/ARUuugSs1kLubTzwy0T9ZLI9hU=;
-        b=fe+PFcMlNn5jjkw3HuZIgBmrfHqI3ogLbui4oymkdMtgrd6H7NXENRIIRJpNL0BINs
-         MeinDJ8afMnFXErb3oRlLcT5ah2lnm1EcsNrrOQI9CXqlZe96a8Cl0mdqaxiiNkUHGXn
-         /prN/GZI1kwZQFQtOX9IlSGCukMi8gAmCI6XyT6g9YII12U3h5QB6Ikbm8rBru2mY6LA
-         rJAEJ7k/tNIq6lVBudpDcAK48QeCRCXf7X/SnbUFCCEvM2k3RocPQsgQel/m4E+cFRmH
-         29yJhnMuYIxGmZt2hK8EnWCIp246of5TqYVM6IumYUaHy8YdUI7tlqwmWhZAhaAcn9TS
-         Rqog==
-X-Gm-Message-State: AOAM532WqA4lOw63DZFKP1SgRnXUWhUjOHvV+2GwuqIwTLXZhyXktU16
-        hsWM8hoshuVhTHjhmqRz7feYA4BRMeDjUX7prd0=
-X-Google-Smtp-Source: ABdhPJyQYdEzQ87d4q8Gjh5OGWc3XIzYeTLsfNGD+TMt1AWgMT8WjUJws7odP2IIw+RmtCkRDyil2IHyZbu6KAbZAGY=
-X-Received: by 2002:a67:ca1c:: with SMTP id z28mr17470575vsk.40.1628669506037;
- Wed, 11 Aug 2021 01:11:46 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=49LZp3X8rq2JjBuSPYq9SGlPT2VFV8uGCsrCxh95J6s=;
+        b=SmK1z938YjnEvYDDD/bTCYehT/NKbs6f4/bVKb2FbT+UwC9V8b+7RwScihqxR8n/45
+         v3swKpjRLTy1v5RZcmqAjnegxrd5tBdCpLUDDejU8oTHDoucK4Hl/z7GGzpHVnfNP6W3
+         ipURlqUtrUdNw8Pm+cQapMGpZ8wfPMwTZ2cD6KR49DVE4w4jO1JxwurvXmjG1WSWhPo2
+         gbB2RZovs0dMJDMhu9knuhjoOFQMqRYAa+imhiIlIGk6KBCHlchIncEen4QGbnmKivdH
+         szfagz2I+EA1Zl+YRxW7/aDxe1ZeviSFUtQfqKxi+xxGCYdSKWGmnagBu20NGizv6jgJ
+         fvVw==
+X-Gm-Message-State: AOAM531e+9MeouMijtKOdp4Uz8VlJhLiL+WqbhuL4Je3ybNBitKTuB3n
+        IRvj2EkexPwbUK0a4fSqr5c=
+X-Google-Smtp-Source: ABdhPJzGyB3LJEAM4djQHII9goeLaI5mNFi+aEfmFFSpXNV+7yd8Z8ujKBJkGapY9oJA1NDEayAmLA==
+X-Received: by 2002:a17:902:6507:b029:12d:2292:f750 with SMTP id b7-20020a1709026507b029012d2292f750mr13649601plk.54.1628669509742;
+        Wed, 11 Aug 2021 01:11:49 -0700 (PDT)
+Received: from mugil-Nitro-AN515-52 ([2409:4072:6d8a:236c:368e:64f7:f411:e650])
+        by smtp.gmail.com with ESMTPSA id v7sm26074433pfu.39.2021.08.11.01.11.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Aug 2021 01:11:49 -0700 (PDT)
+Date:   Wed, 11 Aug 2021 13:41:38 +0530
+From:   Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        Darius <Darius.Berghe@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] iio: potentiometer: Add driver support for AD5110
+Message-ID: <20210811081138.GA4951@mugil-Nitro-AN515-52>
+References: <20210809075745.160042-1-dmugil2000@gmail.com>
+ <20210809075745.160042-3-dmugil2000@gmail.com>
+ <CAHp75Ve=D1d5wFZgNseP=wGpteEkZHnmAi7j9ykKC+u_NrR5xw@mail.gmail.com>
+ <20210811054558.GA3826@mugil-Nitro-AN515-52>
+ <CAHp75VfaeEzodmPPmxxDoScPQzE2+5D_czEHfF0pq6oOVh-6nw@mail.gmail.com>
+ <CAHp75VdqM+XVCkkE+GXCytBUqgT5QLNq5=68KOzfs92t-Vb7ww@mail.gmail.com>
 MIME-Version: 1.0
-References: <cover.1626266516.git.geert+renesas@glider.be> <04c4d231fb03a3810d72a45c8a5bc2272c5975f3.1626266516.git.geert+renesas@glider.be>
- <20210714135101.GB2441138@robh.at.kernel.org>
-In-Reply-To: <20210714135101.GB2441138@robh.at.kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 Aug 2021 10:11:34 +0200
-Message-ID: <CAMuHMdVRPpHudj2svs_TYP9=GYkWFtJrG_+BHA7A+TVPdQ92aQ@mail.gmail.com>
-Subject: Re: [PATCH v4 02/10] memblock: Add variables for usable memory limitation
-To:     Rob Herring <robh@kernel.org>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Nicolas Pitre <nico@fluxnic.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dave Young <dyoung@redhat.com>,
-        Mike Rapoport <rppt@kernel.org>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        kexec@lists.infradead.org, Linux MM <linux-mm@kvack.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VdqM+XVCkkE+GXCytBUqgT5QLNq5=68KOzfs92t-Vb7ww@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 3:51 PM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Jul 14, 2021 at 02:50:12PM +0200, Geert Uytterhoeven wrote:
-> > Add two global variables (cap_mem_addr and cap_mem_size) for storing a
-> > base address and size, describing a limited region in which memory may
-> > be considered available for use by the kernel.  If enabled, memory
-> > outside of this range is not available for use.
+On Wed, Aug 11, 2021 at 10:05:41AM +0300, Andy Shevchenko wrote:
+> On Wed, Aug 11, 2021 at 10:03 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Wed, Aug 11, 2021 at 8:46 AM Mugilraj Dhavachelvan
+> > <dmugil2000@gmail.com> wrote:
+> > > On Tue, Aug 10, 2021 at 03:49:52PM +0300, Andy Shevchenko wrote:
+> > > > On Mon, Aug 9, 2021 at 10:59 AM Mugilraj Dhavachelvan
+> > > > <dmugil2000@gmail.com> wrote:
 > >
-> > These variables can by filled by firmware-specific code, and used in
-> > calls to memblock_cap_memory_range() by architecture-specific code.
-> > An example user is the parser of the "linux,usable-memory-range"
-> > property in the DT "/chosen" node.
+> > ...
 > >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > This is similar to how the initial ramdisk (phys_initrd_{start,size})
-> > and ELF core headers (elfcorehdr_{addr,size})) are handled.
+> > > > > +       data->tol = data->cfg->kohms * (val & GENMASK(6, 0)) * 10 / 8;
+> > > > > +       if (!(val & BIT(7)))
+> > > > > +               data->tol *= -1;
+> > > >
+> > > > Shouldn't you simple use corresponding sign_extend*()?
+> > > >
+> > > I'm not able see any sign_extend for 16 bit. Is there any other way?
 > >
-> > Does there exist a suitable place in the common memblock code to call
-> > "memblock_cap_memory_range(cap_mem_addr, cap_mem_size)", or does this
-> > have to be done in architecture-specific code?
->
-> Can't you just call it from early_init_dt_scan_usablemem? If the
-> property is present, you want to call it. If the property is not
-> present, nothing happens.
-
-Seems to work fine when called from early_init_dt_scan_nodes().
-Hence v5 will no longer need to touch memblock.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > So, then add it in bitops.h the same way it's done for s32 and s64.
+> 
+> In case you are afraid that this will delay patches and you are in a
+> hurry, you may define it locally (but in the very same way, so
+> somebody can make it generic). Nevertheless, I think this one can be
+> added directly to the generic header, it will definitely have more
+> than one user.
+> 
+It seems like we can use sign_extend32() for 16 and 8 bit as well.
+> > ...
+> >
+> > > > > +       if (!data->cfg)
+> > > > > +               data->cfg = &ad5110_cfg[i2c_match_id(ad5110_id, client)->driver_data];
+> > > >
+> > > > Not sure this is not a dead code since you are using ->probe_new().
+> > > >
+> > > Even I'm suspecting that and also removing id_table. But I'm not sure of
+> > > it so just left as it is.
+> >
+> > I²C ID table is good to have without direct use, but ->probe_new() is
+> > called if and only if there is a compatible string or ACPI ID match.
+> > In such case data->cfg may be NULL if and only if the corresponding
+> > table missed it, but this will be a bug anyway, so the above code will
+> > rather hide the bug. Hence, please remove it.
+> 
+> 
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
