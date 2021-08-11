@@ -2,100 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C083E8C56
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 10:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A558E3E8C82
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 10:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236181AbhHKIt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 04:49:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32956 "EHLO
+        id S236630AbhHKIwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 04:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233053AbhHKIt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 04:49:28 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE51C061765
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 01:49:04 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id h11so3291342ljo.12
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 01:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JDzCwx530Uv8LE9Hg8k3gK4gX2isyfl8rKYS+HUnkVk=;
-        b=sFPNyBA3VF6paJeXHKJGiJN+Sh1GjSKbCHnngcFcrnT6aiT7iW9rGuN4Xsb21ft9Ma
-         T9/jSYq2dJBnAcpGVMVLvcjhtxLe6R5AQttb9yzE64d2XIUvUwUHb0MvTYfeldRrJu4j
-         aRrdXj3HskgcDrSEFBjyV7LBoctEoNNhSHEUCbwE8Xz6lUfoCKic4cYmh0BMOMb5ow8v
-         Vszgor5Hf8sUoNHIa3FgvoL/d94zBWOeYkpxKAkN2lItJBfUiwSu9LMs9cAFkfI1qWST
-         p2iHlEVXpW6omG2OORWBoQ/Ug3vBXorseCLE3nxaDI1BB9L/V1UWVy1loGcKl5t1Dmlm
-         fHqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JDzCwx530Uv8LE9Hg8k3gK4gX2isyfl8rKYS+HUnkVk=;
-        b=BGlEuE96Ggqb9GdKE0uRrHm8D9x9FgQ8zwVX78O9nmiHAi8wRshEnBTsn4Qg0AN/M3
-         R07duq979FWn3to0ZYxFJ+zQwaIPIHqCLYOP0Rn4CphtW4xZtYUFshAHHoIy+gL6Fwqc
-         cjS3zhYIf64WnnBr4w/3BUbZ2BfG6Nu5hQM10zkFMzYNGrJaVfr3kExv/lSngZJyq6Hb
-         eSHhZD4H5FOrRqlNZ7FzC16sTx4OUJams+QAY9sKatBjvfAdZTu417qTVIH4mz2fctpI
-         XasYYOqNSbN3ks6a74dv+bSszroZMMSUbdD895T64oVWL0OcIAGyahP5h0WQ7ZYBJZCV
-         wNhg==
-X-Gm-Message-State: AOAM532uGQjFIPm8dFl33lRlQahGxAd5ES1+z3g2rtA9Nd8Zt2VPyB8v
-        W1yqMiPcXHNLDKtJUIc6PnQ3muS/5piZqIvDVFl7Ow==
-X-Google-Smtp-Source: ABdhPJwCxS4RyJPQYMtZ37IXjlOSjy5gDhIzOTNQJe7kYmuLW56om7abo3l/tT9UNYV9boQQa6wawGYkS0DjsBv4nS8=
-X-Received: by 2002:a05:651c:327:: with SMTP id b7mr22987076ljp.74.1628671742768;
- Wed, 11 Aug 2021 01:49:02 -0700 (PDT)
+        with ESMTP id S236463AbhHKIwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 04:52:00 -0400
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B844BC0617A2
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 01:51:35 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:438:1ff1:1071:f524])
+        by andre.telenet-ops.be with bizsmtp
+        id g8rG2500H1gJxCh018rGYY; Wed, 11 Aug 2021 10:51:32 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mDjxD-001yaB-TH; Wed, 11 Aug 2021 10:51:15 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mDjxD-0058wf-87; Wed, 11 Aug 2021 10:51:15 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>
+Cc:     Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Mike Rapoport <rppt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v5 0/9] Add generic support for kdump DT properties
+Date:   Wed, 11 Aug 2021 10:50:58 +0200
+Message-Id: <cover.1628670468.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210804044033.3047296-1-hsinyi@chromium.org> <d48087c2-ddff-0c58-c7e6-a0ba526a393f@gmail.com>
-In-Reply-To: <d48087c2-ddff-0c58-c7e6-a0ba526a393f@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Aug 2021 10:48:51 +0200
-Message-ID: <CACRpkdb39r+AraKaAocB2qX+eLDdRvx3zFyvf0nqvEwFg_QdXg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] arm: dts: mt8135: Move pinfunc to include/dt-bindings/pinctrl
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 5, 2021 at 11:02 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+	Hi all,
 
-> Hi Linus,
->
-> On 04/08/2021 06:40, Hsin-Yi Wang wrote:
-> > Move mt8135-pinfunc.h into include/dt-bindings/pinctrl so that we can
-> > include it in yaml examples.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-> >  arch/arm/boot/dts/mt8135.dtsi                                   | 2 +-
-> >  .../boot/dts => include/dt-bindings/pinctrl}/mt8135-pinfunc.h   | 0
-> >  2 files changed, 1 insertion(+), 1 deletion(-)
-> >  rename {arch/arm/boot/dts => include/dt-bindings/pinctrl}/mt8135-pinfunc.h (100%)
-> >
->
-> If that's fine with you, I'll take patch 1+2 through my tree. IMHO the best for
-> patch 3 would be to go through your tree.
->
-> Sounds good?
+This patch series adds generic support for parsing DT properties related
+to crash dump kernels ("linux,elfcorehdr" and "linux,elfcorehdr" under
+the "/chosen" node), makes use of it on arm32, and performs a few
+cleanups.  It is an evolution of the combination of [1] and [2].
 
-It can't be done that way. Patch 3 depends on patch 1+2 to get the
-include file into the right place for patch 3/3 to compile. (YAML
-check.)
+The series consists of 6 parts:
+  1. Patch 1 prepares architecture-specific code (needed for MIPS only)
+     to avoid duplicating elf core header reservation later.
+  2. Patch 2 prepares the visibility of variables used to hold
+     information retrieved from the DT properties.
+  3. Patches 3-5 add support to the FDT core for handling the
+     properties.
+     This can co-exist safely with architecture-specific handling, until
+     the latter has been removed.
+  4. Patch 6 removes the non-standard handling of "linux,elfcorehdr" on
+     riscv.
+  5. Patches 7-8 convert arm64 to use the generic handling instead of
+     its own implementation.
+  6. Patch 9 adds support for kdump properties to arm32.
+     The corresponding patch for kexec-tools is "[PATCH] arm: kdump: Add
+     DT properties to crash dump kernel's DTB"[3], which is still valid.
 
-I will apply all three and then provide an immutable branch that you
-can pull in to your tree as well. This is usually what we do with
-cross-tree dependencies.
+Changes compared to v4[4]:
+  - New patch "[PATCH v5 1/9] MIPS: Avoid future duplicate elf core
+    header reservation",
+  - Drop "memblock: Add variables for usable memory limitation", as this
+    is now handled in FDT core code,
+  - Make ELFCORE_ADDR_{MAX,ERR} visible, too,
+  - Handle the actual elf core header reservation and memory capping in
+    FDT core code,
+  - Add Reviewed-by, Acked-by,
+  - Remove all architecture-specific handling on arm64,
+  - Drop "arm64: kdump: Use IS_ENABLED(CONFIG_CRASH_DUMP) instead of
+    #ifdef", as the affected code is gone,
+  - Remove the addition of "linux,elfcorehdr" and
+    "linux,usable-memory-range" handling to arch/arm/mm/init.c.
 
-Yours,
-Linus Walleij
+Changes compared to older versions:
+  - Make elfcorehdr_{addr,size} always visible,
+  - Add variables for usable memory limitation,
+  - Use IS_ENABLED() instead of #ifdef (incl. initrd and arm64),
+  - Clarify what architecture-specific code is still responsible for,
+  - Add generic support for parsing linux,usable-memory-range,
+  - Remove custom linux,usable-memory-range parsing on arm64,
+  - Use generic handling on ARM.
+  
+This has been tested with kexec/kdump on arm32 and arm64, and
+boot-tested on riscv64 and DT-less MIPS.
+
+Thanks!
+
+[1] "[PATCH v3] ARM: Parse kdump DT properties"
+    https://lore.kernel.org/r/20210317113130.2554368-1-geert+renesas@glider.be/
+[2] "[PATCH 0/3] Add generic-support for linux,elfcorehdr and fix riscv"
+    https://lore.kernel.org/r/cover.1623780059.git.geert+renesas@glider.be/
+[3] "[PATCH] arm: kdump: Add DT properties to crash dump kernel's DTB"
+    https://lore.kernel.org/r/20200902154129.6358-1-geert+renesas@glider.be/
+[4] "[PATCH v4 00/10] Add generic support for kdump DT properties"
+    https://lore.kernel.org/r/cover.1626266516.git.geert+renesas@glider.be
+
+Geert Uytterhoeven (9):
+  MIPS: Avoid future duplicate elf core header reservation
+  crash_dump: Make elfcorehdr address/size symbols always visible
+  of: fdt: Add generic support for handling elf core headers property
+  of: fdt: Add generic support for handling usable memory range property
+  of: fdt: Use IS_ENABLED(CONFIG_BLK_DEV_INITRD) instead of #ifdef
+  riscv: Remove non-standard linux,elfcorehdr handling
+  arm64: kdump: Remove custom linux,elfcorehdr handling
+  arm64: kdump: Remove custom linux,usable-memory-range handling
+  ARM: uncompress: Parse "linux,usable-memory-range" DT property
+
+ Documentation/devicetree/bindings/chosen.txt  | 12 +--
+ .../arm/boot/compressed/fdt_check_mem_start.c | 48 ++++++++--
+ arch/arm64/mm/init.c                          | 88 -----------------
+ arch/mips/kernel/setup.c                      |  3 +-
+ arch/riscv/mm/init.c                          | 20 ----
+ drivers/of/fdt.c                              | 94 +++++++++++++++++--
+ include/linux/crash_dump.h                    |  3 +-
+ 7 files changed, 139 insertions(+), 129 deletions(-)
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
