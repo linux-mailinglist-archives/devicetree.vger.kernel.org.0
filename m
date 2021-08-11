@@ -2,168 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC98E3E9007
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C1873E9025
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237439AbhHKMFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 08:05:15 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:54546 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237410AbhHKMFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:05:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628683491; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=UpoWxDwi/WJD3AY6N5zl01gu9NgyIOD/P/DwkvQG18c=;
- b=VhQMgaBz2kkD0s61xLlvdoGJa48fCMk4fbF3rL84qiXZJ02434OG+2cUjbiaoBgZeebnaAOO
- r0q5g6qUIinGBTl9z7+AKo+Um6Gm2ELb6R4f6j9aoqOTRd4mbOl9/ByuaJLXrp/L0ITlNmLS
- 8IcCEPPy5Wxx1+dFvU5QR25+tKU=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 6113bcdc454b7a558f2e4cdc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 11 Aug 2021 12:04:44
- GMT
-Sender: rajpat=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 52A8EC43460; Wed, 11 Aug 2021 12:04:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rajpat)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id AD779C4338A;
-        Wed, 11 Aug 2021 12:04:41 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 11 Aug 2021 17:34:41 +0530
-From:   rajpat@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S236777AbhHKMIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 08:08:04 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48330 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237254AbhHKMID (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:08:03 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17BC7QVK006232;
+        Wed, 11 Aug 2021 07:07:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1628683646;
+        bh=KjpVc4pTn7uSq3ISvTFRGUJK5IcJ7G970jUpRo1ZtFw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=sH+VGD2SL+CXM6XV3vyAje+AiHwrTREJTneuvTjNXV0tfP/27FTt3v9JiZEw51fSm
+         BgMPKpyDTqA2MfYIuNVNc/5tyqjzlmoJEL8Y3kLj2yCcOanb7zBImnQmdTTl4EV36M
+         u+1swRmdsnblblAwrHZ5GVIPc33syZ80PeYBJef8=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17BC7QRU083377
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Aug 2021 07:07:26 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 11
+ Aug 2021 07:07:26 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 11 Aug 2021 07:07:26 -0500
+Received: from [10.250.151.119] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17BC7KUI038229;
+        Wed, 11 Aug 2021 07:07:21 -0500
+Subject: Re: [PATCH v2 2/3] PCI: j721e: Add PCI legacy interrupt support for
+ J721E
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>,
-        swboyd@chromium.org
-Subject: Re: [PATCH V4 3/4] arm64: dts: sc7280: Update QUPv3 Debug UART DT
- node
-In-Reply-To: <YP7X7kjH9wd818Xg@google.com>
-References: <1627306847-25308-1-git-send-email-rajpat@codeaurora.org>
- <1627306847-25308-4-git-send-email-rajpat@codeaurora.org>
- <YP7X7kjH9wd818Xg@google.com>
-Message-ID: <4700a6df7ed665c6b17003cd35aab0c4@codeaurora.org>
-X-Sender: rajpat@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>, <linux-omap@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210804132912.30685-1-kishon@ti.com>
+ <20210804132912.30685-3-kishon@ti.com> <87h7g5w8d8.wl-maz@kernel.org>
+ <c20be7ae-e4a7-c3ba-f1c9-e4ff2aae0a66@ti.com> <87o8a7arew.wl-maz@kernel.org>
+ <7646c75e-29de-1edc-225c-57feeaa80118@ti.com> <875ywdbhta.wl-maz@kernel.org>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <9638f916-d0da-9c0e-6f01-b90c986decfd@ti.com>
+Date:   Wed, 11 Aug 2021 17:37:19 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <875ywdbhta.wl-maz@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-26 21:12, Matthias Kaehlcke wrote:
-> On Mon, Jul 26, 2021 at 07:10:46PM +0530, Rajesh Patil wrote:
->> From: Roja Rani Yarubandi <rojay@codeaurora.org>
->> 
->> Update QUPv3 Debug UART DT node with the interconnect names and
->> functions for SC7280 SoC.
->> 
->> Split the Debug UART pin control functions.
->> 
->> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
->> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
->> ---
->> Changes in V4:
->>  - As per Bjorn's comment, posting this debug-uart node update
->>    as seperate patch
->> 
->>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 18 +++++++-----------
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 28 
->> ++++++++++++++++++++++++----
->>  2 files changed, 31 insertions(+), 15 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> index f63cf51..a50c9e5 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> @@ -383,18 +383,14 @@
->>  	bias-pull-up;
->>  };
->> 
->> -&qup_uart5_default {
->> -	tx {
->> -		pins = "gpio46";
->> -		drive-strength = <2>;
->> -		bias-disable;
->> -	};
->> +&qup_uart5_tx {
->> +	drive-strength = <2>;
->> +	bias-disable;
->> +};
->> 
->> -	rx {
->> -		pins = "gpio47";
->> -		drive-strength = <2>;
->> -		bias-pull-up;
->> -	};
->> +&qup_uart5_rx {
->> +	drive-strength = <2>;
->> +	bias-pull-up;
->>  };
->> 
->>  &sdc1_on {
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 455e58f..951818f 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -853,8 +853,13 @@
->>  				clock-names = "se";
->>  				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
->>  				pinctrl-names = "default";
->> -				pinctrl-0 = <&qup_uart5_default>;
->> +				pinctrl-0 = <&qup_uart5_cts>, <&qup_uart5_rts>, <&qup_uart5_tx>, 
->> <&qup_uart5_rx>;
->>  				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
->> +				power-domains = <&rpmhpd SC7280_CX>;
->> +				operating-points-v2 = <&qup_opp_table>;
->> +				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt 
->> SLAVE_QUP_CORE_0 0>,
->> +						<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_QUP_0 0>;
->> +				interconnect-names = "qup-core", "qup-config";
+Hi Marc,
+
+On 10/08/21 6:03 pm, Marc Zyngier wrote:
+> On Mon, 09 Aug 2021 15:58:38 +0100,
+> Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>
+>> Hi Marc,
+>>
+>> On 09/08/21 3:09 pm, Marc Zyngier wrote:
+>>> On Mon, 09 Aug 2021 05:50:10 +0100,
+>>> Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>>>
+>>>> Hi Marc,
+>>>>
+>>>> On 04/08/21 8:43 pm, Marc Zyngier wrote:
+>>>>> On Wed, 04 Aug 2021 14:29:11 +0100,
+>>>>> Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>>>>>
+>>>>>> Add PCI legacy interrupt support for J721E. J721E has a single HW
+>>>>>> interrupt line for all the four legacy interrupts INTA/INTB/INTC/INTD.
+>>>>>> The HW interrupt line connected to GIC is a pulse interrupt whereas
+>>>>>> the legacy interrupts by definition is level interrupt. In order to
+>>>>>> provide level interrupt functionality to edge interrupt line, PCIe
+>>>>>> in J721E has provided IRQ_EOI register.
+>>>>>>
+>>>>>> However due to Errata ID #i2094 ([1]), EOI feature is not enabled in HW
+>>>>>> and only a single pulse interrupt will be generated for every
+>>>>>> ASSERT_INTx/DEASSERT_INTx.
+>>>>>
+>>>>> So my earlier remark stands. If you get a single edge, how do you
+>>>>> handle a level that is still high after having handled the interrupt
+>>>>> on hardware that has this bug?
+>>>>
+>>>> Right, this hardware (J721E) has a bug but was fixed in J7200 (Patch 3/3
+>>>> handles that).
+>>>
+>>> But how do you make it work with J721E? Is it even worth supporting if
+>>> (as I expect) it is unreliable?
+>>
+>> I've seen at-least the NVMe devices triggers the interrupts again and
+>> the data transfer completes. But I agree, this is unreliable.
 > 
-> 
-> Most of the above should be added by patch '[2/4] arm64: dts: sc7280: 
-> Add QUPv3
-> wrapper_0 nodes'.
+> Then I don't think you should add INTx support for this system. It is
+> bound to be a support burden, and will reflect badly on the whole
+> platform. Focusing on J7200 is probably the best thing to do.
 
-Based on the comments on v3 [1], I have added this as a separate patch
-[1] https://lore.kernel.org/patchwork/patch/1441257/
+Okay, will drop this patch from the series and have INTx support only
+for J7200.
 
-> 
-> I have to say I dislike that the SoC DT file dictates which UART to use 
-> for
-> the serial console. Technically it could be any of them, right? uart5 
-> is
-> used because that's what the IDP does, and the rest of the world is 
-> expected
-> to follow. Why not configure uart5 as "qcom,geni-uart" by default and
-> overwrite the compatible string and pinctrl in the board file? You 
-> could even
-> add 'qup-uartN-all' (or similar) pinconfigs to sc7280.dtsi, which would 
-> make
-> the changes in the board file trivial.
-
-Okay, will make the compatible as "qcom,geni-uart" in SoC dt and later 
-modify it in idp dts as "qcom,geni-debug-uart".
-
-Thanks,
-Rajesh
+Thanks
+Kishon
