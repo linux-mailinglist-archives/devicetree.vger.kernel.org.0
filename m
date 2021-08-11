@@ -2,86 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B64493E9030
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D5DB3E9038
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237307AbhHKMLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 08:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51912 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232496AbhHKMLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:11:08 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92917C061765
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:10:44 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id g13so5141406lfj.12
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:10:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KBczuHX+1v4RsAOc2qbNNm3ZUF53aZdkil8sTejujeA=;
-        b=kGZfn94t2QYH8Q6jbR2mv4bDU86CK5aMCFcJTprdhQ7LTcjy0AGpFDuPfdGJsGdN/U
-         NJIzHe7EIeUXNf0Ok0IfEDnHfdSoLKbDM4Qhw8ooyyWPSwkCMQfFlma2PGj/S0Elw/jd
-         KbyjiFearaL6pO3QTLcmOwC4hTuhQL5uM80DfzmZAD2TuN2hAw9lqsYvx4Vd2IhUdooe
-         DbXkbTsmF3ifT2lB33+NHruWXaSSX+RnErO+VfOGKmqgoA9WS8GrfJ4IA7N0mHWAXW+3
-         GgD3HCPy+Vez4uJCVL4YKAyUKJj5oLD8eqI+wp95E2ssOzdqg0VhbBwCiWXII4hCzIYR
-         58DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KBczuHX+1v4RsAOc2qbNNm3ZUF53aZdkil8sTejujeA=;
-        b=tBXnwRSD1d9K8FuFHMM/kLvEw5bpw7JQC7g0qEHIIaU3rJvlr1/NNw1QW5Sfp1OWUx
-         +P0lrhwFZ6/WyRZGaaAHGFAFjAc7cO+0m845/QMLfuUrD5R9zSHNyADlV2CbigOKbwA6
-         z08lrsw7oiQ0LBl4HJ/DkuKRNDPYxUj0sZ8+PPyApJEQ3eLpRW2vuInrqlITwx0DiTYR
-         zVO0s9MqiijE/vBtJVVVfUlwKDFjPc22X3tZVCyHFkfmixfCi/Nvo4Vp6WNzjtaEFbvv
-         aQgGxG+/K1ktAwtVwDB3s/X4bvxT0NEF4+RZRnOlMMIErEnp7IcjE133NuQJynRoxdrm
-         U4HA==
-X-Gm-Message-State: AOAM532BbvBsFqtb+2DD8MpD5YhQrXXOpb0dwWWGdLheXIfqnOMtKAjj
-        bIqZ5daOPcL4+J6oAvDp8sTHdQ+2enK9UnLCn9H8zQ==
-X-Google-Smtp-Source: ABdhPJwwrj9PJmBaA8K2+6DSS48GN5f7YzmPXv/NK8VjseBpLrkHE7CMNRz/lOmkeBhanSaQZ+TO0c3EbNLRLuUHpPw=
-X-Received: by 2002:a05:6512:132a:: with SMTP id x42mr24694863lfu.291.1628683842796;
- Wed, 11 Aug 2021 05:10:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210803175109.1729-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210803175109.1729-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210803175109.1729-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Aug 2021 14:10:32 +0200
-Message-ID: <CACRpkdaMmGCwmA6j0CvJUX3S6cthoeqWRmY1RssSTmSKukwHkg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: interrupt-controller: Add Renesas
- RZ/G2L Interrupt Controller
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        id S237443AbhHKMNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 08:13:07 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:58260 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237410AbhHKMNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:13:07 -0400
+X-UUID: e67f6b01412b48e989e03dc7bc688cc2-20210811
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=wozoe7kFjE8qPjz1M4fr5WJfU/E/RA/En/zjFHWQWkw=;
+        b=Sejl83A0OmWHSJ1DtKCGwFt7Wfc2mJ41D/kz8HlxOU0fproBCcFihfCuS0pxIvRCYVHBhWZ4bWpeXTo6V5MPVrR1upSEp2LwfQG/gZD+gQKz9mogO9NxUGFQpUwZflbRpHhSd46EdNsLVrd/G5ZdFyRpvSe22FCc98iOhbnNCJM=;
+X-UUID: e67f6b01412b48e989e03dc7bc688cc2-20210811
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 204538102; Wed, 11 Aug 2021 20:12:40 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 11 Aug 2021 20:12:38 +0800
+Received: from mtksdccf07 (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 11 Aug 2021 20:12:38 +0800
+Message-ID: <ba4174599b40b5cc2f6397bb9b8772f75b945365.camel@mediatek.com>
+Subject: Re: [v6 2/2] arm64: dts: mediatek: Correct UART0 bus clock of MT8192
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Ikjoon Jang <ikjn@chromium.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 11 Aug 2021 20:12:38 +0800
+In-Reply-To: <913973ef-e3ee-5015-a010-b436fe620e1c@gmail.com>
+References: <20210727023205.20319-1-chun-jie.chen@mediatek.com>
+         <20210727023205.20319-3-chun-jie.chen@mediatek.com>
+         <CAATdQgC-X6pijkgTBsWJJKp__J6N=7JNKHQJmOMvTAjivwPM5w@mail.gmail.com>
+         <a48525422d4c953a2dac2a907895c20b9fd6d232.camel@mediatek.com>
+         <913973ef-e3ee-5015-a010-b436fe620e1c@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 3, 2021 at 7:51 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+T24gVGh1LCAyMDIxLTA4LTA1IGF0IDE3OjQ0ICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
+Og0KPiANCj4gT24gMzAvMDcvMjAyMSAwNDo0MywgQ2h1bi1KaWUgQ2hlbiB3cm90ZToNCj4gPiBP
+biBXZWQsIDIwMjEtMDctMjggYXQgMTQ6MTQgKzA4MDAsIElram9vbiBKYW5nIHdyb3RlOg0KPiA+
+ID4gSGksDQo+ID4gPiANCj4gPiA+IE9uIFR1ZSwgSnVsIDI3LCAyMDIxIGF0IDEwOjQzIEFNIENo
+dW4tSmllIENoZW4NCj4gPiA+IDxjaHVuLWppZS5jaGVuQG1lZGlhdGVrLmNvbT4gd3JvdGU6DQo+
+ID4gPiA+IA0KPiA+ID4gPiBpbmZyYV91YXJ0MCBjbG9jayBpcyB0aGUgcmVhbCBvbmUgd2hhdCB1
+YXJ0MCB1c2VzIGFzIGJ1cyBjbG9jay4NCj4gPiA+ID4gDQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6
+IFdlaXlpIEx1IDx3ZWl5aS5sdUBtZWRpYXRlay5jb20+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6
+IENodW4tSmllIENoZW4gPGNodW4tamllLmNoZW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gPiAtLS0N
+Cj4gPiA+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTkyLmR0c2kgfCAyICst
+DQo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkN
+Cj4gPiA+ID4gDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlh
+dGVrL210ODE5Mi5kdHNpDQo+ID4gPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
+dDgxOTIuZHRzaQ0KPiA+ID4gPiBpbmRleCBjN2M3ZDRlMDE3YWUuLjk4MTBmMWQ0NDFkYSAxMDA2
+NDQNCj4gPiA+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRz
+aQ0KPiA+ID4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNp
+DQo+ID4gPiA+IEBAIC0zMjcsNyArMzI3LDcgQEANCj4gPiA+ID4gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICJtZWRpYXRlayxtdDY1NzctdWFydCI7DQo+ID4gPiA+ICAgICAg
+ICAgICAgICAgICAgICAgICAgIHJlZyA9IDwwIDB4MTEwMDIwMDAgMCAweDEwMDA+Ow0KPiA+ID4g
+PiAgICAgICAgICAgICAgICAgICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTA5DQo+ID4g
+PiA+IElSUV9UWVBFX0xFVkVMX0hJR0ggMD47DQo+ID4gPiA+IC0gICAgICAgICAgICAgICAgICAg
+ICAgIGNsb2NrcyA9IDwmY2xrMjZtPiwgPCZjbGsyNm0+Ow0KPiA+ID4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICBjbG9ja3MgPSA8JmNsazI2bT4sIDwmaW5mcmFjZmcNCj4gPiA+ID4gQ0xLX0lO
+RlJBX1VBUlQwPjsNCj4gPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgY2xvY2stbmFtZXMg
+PSAiYmF1ZCIsICJidXMiOw0KPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgICBzdGF0dXMg
+PSAiZGlzYWJsZWQiOw0KPiA+ID4gPiAgICAgICAgICAgICAgICAgfTsNCj4gPiA+IA0KPiA+ID4g
+VGhlcmUncmUgbWFueSBvdGhlciBub2RlcyBzdGlsbCBoYXZpbmcgb25seSBjbGsyNm0uIFdpbGwg
+eW91DQo+ID4gPiB1cGRhdGUNCj4gPiA+IHRoZW0gdG9vPw0KPiA+ID4gDQo+ID4gDQo+ID4gT3Ro
+ZXJzIHdpbGwgYmUgdXBkYXRlZCBieSBJUCBvd25lci4NCj4gPiANCj4gDQo+IEFzIGl0IHNlZW1z
+IHdlIHdpbGwgaGF2ZSBzb21lIHRpbWUgYmVmb3JlIHRoaXMgY2FuIGJlIG1lcmdlZCwgY291bGQN
+Cj4geW91IGhlbHANCj4gd29yayB3aXRoIHRoZSBvdGhlciBJUCBvd25lcnMgdG8gZ2V0IG9uZSBi
+aWcgcGF0Y2ggdGhhdCB1cGRhdGVzIGFsbA0KPiBjbG9ja3M/DQo+IA0KPiBUaGFua3MgYSBsb3Qs
+DQo+IE1hdHRoaWFzDQo+IA0KDQpPaywgSSB3aWxsIHVwZGF0ZSBhbGwgY2xvY2sgc2V0dGluZyAo
+dWFydC9ub3JfZmxhc2gvaTJjL3NwaSkgaW4NCm10ODE5Mi5kdHNpIGF0IHRoZSBsYXRlc3Qga2Vy
+bmVsIHZlcnNpb24uIERpZCB5b3Ugc3VnZ2VzdCB0byBtZXJnZSBhbGwNCnRvIG9uZSBwYXRjaCBv
+ciBzZXBhcmF0ZSB0byBkaWZmZXJlbnQgcGF0Y2hlcyBidXQgcHV0IGluIHNhbWUNCnNlcmllcz8N
+Cg0KQmVzdCBSZWdhcmRzLA0KQ2h1bi1KaWUNCg0KPiA+IEJlc3QgUmVnYXJkcywNCj4gPiBDaHVu
+LUppZQ0KPiA+IA0KPiA+ID4gPiAtLQ0KPiA+ID4gPiAyLjE4LjANCj4gPiA+ID4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiA+ID4gTGludXgtbWVk
+aWF0ZWsgbWFpbGluZyBsaXN0DQo+ID4gPiA+IExpbnV4LW1lZGlhdGVrQGxpc3RzLmluZnJhZGVh
+ZC5vcmcNCj4gPiA+ID4gDQo+ID4gDQo+ID4gDQpodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19f
+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1tZWRpYXRl
+a19fOyEhQ1RSTktBOXdNZzBBUmJ3ITFiSXo2WDJFaUZiaWdDSW16UW1icXRleklGZmwxTFJCdVBP
+WVRxQmRsNXdmeDhiLXpwMHpRUDY4UjdSaGFJY0FBWFhGJA0KPiA+ID4gPiAgDQo=
 
-> +description: |
-> +  The RZ/G2L Interrupt Controller is a front-end for the GIC found on Renesas RZ/G2L SoC's
-> +    - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts,
-> +    - GPIO pins used as external interrupt input pins, mapped to 32 GIC SPI interrupts,
-> +    - NMI edge select.
-
-Not that we don't have weird documentation but what on earth is an
-"NMI edge"???
-
-I know about rising and falling edges, and I know about non-maskable
-interrupts. But NMI edge? Maybe expand this to explain what it is?
-
-Yours,
-Linus Walleij
