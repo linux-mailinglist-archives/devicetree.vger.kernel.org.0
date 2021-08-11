@@ -2,103 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADC03E8D75
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 11:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C51CC3E8D8E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 11:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236320AbhHKJrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 05:47:43 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:50454
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231508AbhHKJrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 05:47:42 -0400
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 634E43F045
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 09:47:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1628675238;
-        bh=PS8yHIKypIU7zjLPbMN2+vMgzErZMgMuY8iIETH4G0E=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Q9xR+QkUrIo7CU1N8tqHSaysSSzlfIHPcDEuGPsB4Oy3AJNXQVTqTYH0KINBdSDZH
-         k8Qhrotyq6S/NGxatX3xfaaUARwtcOFJGYuUWhF/F6DdKxMVhXtK8rn7bcuN+KMwjD
-         dI6lX92u5uxtJYOeNYOo3PtLAqq3/UygZ5kyHA1NdZQ62vve8yKNUmhk6dEh3GY6XM
-         O/OB6MZKFSTsxV0PrRt695MVki1mmb4Yxm1knQikaJDk+aiIVkyECdu+N82vCy2GSs
-         7ZG1dTPxvfCtuSt4id2hbMxOF4HvlAnLbRT5Y9XR/VvfLfBnkoTVjU9yzmN8Lni6NM
-         +tmfSuPri8esQ==
-Received: by mail-ed1-f69.google.com with SMTP id ec47-20020a0564020d6fb02903be5e0a8cd2so970819edb.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:47:18 -0700 (PDT)
+        id S236618AbhHKJwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 05:52:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236432AbhHKJwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 05:52:44 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D247C061765
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:52:21 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id m12so2153025wru.12
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 02:52:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7Sa735VBDk/11axEt+ahFeW6tHjYIapyTeUGnE9a9Kc=;
+        b=EdDZtng4b3ClBH3m5cgskqpFPpNoW0Owbzb7jMBlthFvHMNXkJ6w4hYC0w0nb5KOpA
+         5H0IPy4VgYfI4fqwprpwJpPdwOfdgokMbZysfIfDcRxLC4fNW6YlpQlUbCZ+xBcVPhDR
+         aVd30InM2UDjtpGfqzf9a150PyTWQfNj+DKo9t8V4Lad1bWEliJYgOxunJd70dyL7MS9
+         0Gfpmm2CcRkwH4Yfz3l2ZlG3/0brZks80+WbTUiw08yDkOjuz3dau2yz3GAswVMbKKwS
+         Ywl10IfsVtuF1sPKPVpOQ3UM7TMgtsKXBbI3/lYSW5rskkD6EINLJuvnd3jZtPohnxe6
+         brLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=PS8yHIKypIU7zjLPbMN2+vMgzErZMgMuY8iIETH4G0E=;
-        b=S9ISZsVwab4i0YprTBcfs132qyo3bXbo4XL1qXdkzPE5DYTz0PUlzw+h4kxOc5+htU
-         kTnHhBoezgCH9sdQc+ADIkScQMzJCmkTt6YtiWMjcm0O5qpJ+bIHcfKYq3IOgdHxRO8Z
-         +8A9TGn1GI1cM6M3c/YYEyedBJU2CgY8cwnsKUckMiZGD8FfjWrdPMNX+GpQ+rAQCfQL
-         32DStcRJd1Jyu2GK+g5Tp3z2dLSIR+Yn7LDoYpNuC+62z6di+66ZJlZvWRIq0qpDzbgs
-         5LnClWM8rBafnGu4B7FoZxP352lYfRunw101jlAh/mD/j+FM03rxEokrQrSf1p6pNJ0j
-         kLIw==
-X-Gm-Message-State: AOAM533CW9Z9e6YhmhzNBAH4lIpOYFsH+c1b+Em0unXTTQrXe83+VUqY
-        AUNDavx75k+a0Iqwq25gNnCGKhX1RGYz30jIL6iaX/6+3hcJ61NaKuHfn4JpuDtUDDhO5K7/YG7
-        7GSQ8/LNXyItbpxItxjIg5YmOlFisdlJCGETzYn4=
-X-Received: by 2002:a05:6402:3489:: with SMTP id v9mr10558282edc.379.1628675237983;
-        Wed, 11 Aug 2021 02:47:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwKnLgxSqQnEduvT026FRmXeeMndTcAU4cAxXY0ufzsJkkLI7k6aLcWk+14ITfo34bPu2r46w==
-X-Received: by 2002:a05:6402:3489:: with SMTP id v9mr10558262edc.379.1628675237812;
-        Wed, 11 Aug 2021 02:47:17 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id c6sm7906447eje.105.2021.08.11.02.47.16
+        bh=7Sa735VBDk/11axEt+ahFeW6tHjYIapyTeUGnE9a9Kc=;
+        b=Xv/4aC5CKSJEqjOXNS6dbsaTBphZM9bidOEWMI3BKDYPqWCZUsJSq2dNb+JShiipeK
+         7uptpafSLZSEMJ+3gBDS4B8fZqcTGUv5fLNPwP+NCGQpRVbLMG0XLm6/gBXkq1FOZLWd
+         4cDkadD/1BQOOuNRihN1w9lMK4AQzsOIPRuQFdSt+zEKd5Rm6GaTWaxbPVZXBmblM8Xx
+         AvACLwbVV+JLP/3ew8ibce1eCdQm+e3p5D3Y8i20BtXfetzXSNniSA46Ik8PnUck1tKq
+         8dwSbuz39ingOyE72ROkuQnhWc7/ngwwotKp9Lm0FzeilVUovmpfrdN7/TC8vY35Ih+o
+         XCyw==
+X-Gm-Message-State: AOAM5318ms+89TH6kep/sYXLJTJX/59uUBiEhpzduRCrdl3+oDh14nxz
+        +ATqcdG8qBDWP7QhoYfd/9/lUg==
+X-Google-Smtp-Source: ABdhPJwCF2Ck4qsqGQidKYLvFHhCmO51q61CXZA/BY3QacvhmLLPvCN8U73Otn7f5gWXt4j454FKiQ==
+X-Received: by 2002:adf:cd10:: with SMTP id w16mr36343368wrm.404.1628675540030;
+        Wed, 11 Aug 2021 02:52:20 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id h11sm6181339wmc.23.2021.08.11.02.52.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Aug 2021 02:47:17 -0700 (PDT)
-Subject: Re: [PATCH 3/3] gpiolib: of: constify few local device_node variables
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20210728144229.323611-1-krzysztof.kozlowski@canonical.com>
- <20210728144229.323611-4-krzysztof.kozlowski@canonical.com>
- <CACRpkdabg6vDKSRL6_AJUOMm6L_zUFCxf9nBz-MbfA5rLGcHng@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <f830c295-03d1-831c-8561-248d54cd782e@canonical.com>
-Date:   Wed, 11 Aug 2021 11:47:16 +0200
+        Wed, 11 Aug 2021 02:52:19 -0700 (PDT)
+Subject: Re: [PATCH V1 2/4] nvmem: core: introduce "reverse-data" property to
+ reverse buffer
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210810073510.18218-1-qiangqing.zhang@nxp.com>
+ <20210810073510.18218-3-qiangqing.zhang@nxp.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <2a69b82c-0ecb-51cf-ea60-1827c60bfe85@linaro.org>
+Date:   Wed, 11 Aug 2021 10:52:18 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdabg6vDKSRL6_AJUOMm6L_zUFCxf9nBz-MbfA5rLGcHng@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210810073510.18218-3-qiangqing.zhang@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2021 11:00, Linus Walleij wrote:
-> On Wed, Jul 28, 2021 at 4:42 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
+
+
+On 10/08/2021 08:35, Joakim Zhang wrote:
+> This patch intends to introduce "reverse-data" property at nvmem
+> provider side to reverse buffer.
 > 
->> gpiolib does not modify struct device_node, so few local pointers can
->> point to a const data.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> For a case used from Ethernet driver, of_get_mac_address() may call
+> of_get_mac_addr_nvmem() to get MAC address from nvmem device. MAC address
+> programed in imx-ocopt is MSB first in lowest address, so need reverse
+
+Is all the data stored in imx-ocopt reverse byte order?
+
+or someone decided to change the order for only mac-address?
+
+
+> data then feedback to nvmem consumer. E.g. MAC address read from
+> imx-ocopt is 98:e2:06:9f:04:00, after reversed the data is
+> 00:04:9f:06:e2:98.
 > 
-> LGTM
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> I guess this needs to be merged with the other two patches?
-> I suppose in Rob Herrings DT tree?
+> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> ---
+>   drivers/nvmem/core.c           | 30 ++++++++++++++++++++++++++++++
+>   include/linux/nvmem-provider.h |  2 ++
+>   2 files changed, 32 insertions(+)
+> 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index b3bc30a04ed7..ccc2c5801c8e 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -55,6 +55,7 @@ struct nvmem_cell {
+>   	struct device_node	*np;
+>   	struct nvmem_device	*nvmem;
+>   	struct list_head	node;
+> +	u32			flags;
 
-Bartosz replied he merged it:
-https://lore.kernel.org/lkml/CAMpxmJVtxy-GBWmFLp-tMAOf03Fr7fg8RZ2ndMbvAu_M3qEkHQ@mail.gmail.com/
+This flag also needs to go in struct nvmem_cell_info too.
 
+>   };
+>   
+>   static DEFINE_MUTEX(nvmem_mutex);
+> @@ -92,6 +93,26 @@ static int __nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
+>   	return -EINVAL;
+>   }
+>   
+> +static int nvmem_buffer_reverse(void *bufaddr, int len)
+> +{
+> +	u8 *buf = (u8 *)bufaddr;
+> +	u8 *temp;
+> +	int i;
+> +
+> +	temp = kzalloc(len, GFP_KERNEL);
+> +	if (!temp)
+> +		return -ENOMEM;
+> +
+> +	memcpy(temp, buf, len);
+> +
+> +	for (i = 0; i < len; i++)
+> +		buf[i] = temp[len - i - 1];
+> +
 
+You could possibly simplify this.
 
-Best regards,
-Krzysztof
+static void nvmem_buffer_reverse(u8 *buf, int len)
+{
+	int i;
+
+	for (i = 0; i < len/2; i++)
+		swap(buf[i], buf[len - i - 1]);
+}
+
+> +	kfree(temp);
+> +
+> +	return 0;
+> +}
+> +
+>   static int nvmem_access_with_keepouts(struct nvmem_device *nvmem,
+>   				      unsigned int offset, void *val,
+>   				      size_t bytes, int write)
+> @@ -705,6 +726,9 @@ static int nvmem_add_cells_from_of(struct nvmem_device *nvmem)
+>   		cell->bytes = be32_to_cpup(addr);
+>   		cell->name = kasprintf(GFP_KERNEL, "%pOFn", child);
+>   
+> +		if (of_property_read_bool(child, "reverse-data"))
+> +			cell->flags |= NVMEM_FLAGS_REVERSE_DATA;
+> +
+>   		addr = of_get_property(child, "bits", &len);
+>   		if (addr && len == (2 * sizeof(u32))) {
+>   			cell->bit_offset = be32_to_cpup(addr++);
+> @@ -1398,6 +1422,12 @@ static int __nvmem_cell_read(struct nvmem_device *nvmem,
+>   	if (cell->bit_offset || cell->nbits)
+>   		nvmem_shift_read_buffer_in_place(cell, buf);
+>   
+> +	if (cell->flags & NVMEM_FLAGS_REVERSE_DATA) {
+> +		rc = nvmem_buffer_reverse(buf, cell->bytes);
+> +		if (rc < 0)
+> +			return rc;
+> +	}
+> +
+>   	if (len)
+>   		*len = cell->bytes;
+>   
+> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+> index 104505e9028f..364ac2a61b11 100644
+> --- a/include/linux/nvmem-provider.h
+> +++ b/include/linux/nvmem-provider.h
+> @@ -31,6 +31,8 @@ enum nvmem_type {
+>   #define NVMEM_DEVID_NONE	(-1)
+>   #define NVMEM_DEVID_AUTO	(-2)
+>   
+> +#define NVMEM_FLAGS_REVERSE_DATA	BIT(0)
+
+Maybe NVMEM_FLAGS_REVERSE_BYTE_ORDER and some kerneldoc would help new 
+users.
+
+--srini
+> +
+>   /**
+>    * struct nvmem_keepout - NVMEM register keepout range.
+>    *
+> 
