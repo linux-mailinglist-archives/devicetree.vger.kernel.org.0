@@ -2,114 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F23B3E9495
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 17:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D93D73E9544
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 18:02:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233027AbhHKPgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 11:36:02 -0400
-Received: from mail-vs1-f42.google.com ([209.85.217.42]:42700 "EHLO
-        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233010AbhHKPgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 11:36:02 -0400
-Received: by mail-vs1-f42.google.com with SMTP id k24so1764345vsg.9;
-        Wed, 11 Aug 2021 08:35:37 -0700 (PDT)
+        id S233554AbhHKQCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 12:02:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233543AbhHKQCk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 12:02:40 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 951DBC061765;
+        Wed, 11 Aug 2021 09:02:16 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id nt11so4224084pjb.2;
+        Wed, 11 Aug 2021 09:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xp7fAHuStoMf5bIGzrdp1ddyp2JL7ecgJJqJ7viLvyQ=;
+        b=g8pWK67UPmKgXGAIsziQSHtJkoZCrnHj0R7Ggcl3aEfFyva6bdZKYXwFiu3mRSw7Dx
+         MgJKgC8cXG56ewNREDttPnPqSDLcPAE+66JzmWHXMdOSN2rNZTllI4W5LaJtzy0VxCIi
+         9HPQuQKXcJt2+DdEkL76QTy2tXrcInl9y8ALpP7ywysIGOvkkN1ClTM4ioSROnhvxGD0
+         4TzAEgHc5YU7MY/iXJx+4wOw0WjxWwDOOROaax1wDb1P9jeatFtKT23OPsEj68VF5xKz
+         siUti0ROrc6R4YdJr21x2nU+Y0CnqmmG5RfMVPlx9AsF8LAndllkZcgkJFzH8BIIA55t
+         vK/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=qe0iSj8XpU18YU856j4Cl+K1mgU1eag6gHjOJIBodYU=;
-        b=NxbMnEOENBHaXg4NMprVdhDf6hm/iv8kojr90GBi/mZJvHW2UBFe3kuT37cSCMFpOJ
-         WSKTIZrLDfHkr3TCElHHczCSfqT94Kl8POn7qJ0H8q4XD+QeFIVI7O5D/ASitH+1RsVz
-         ImwdIRcCp1UJetSE/xdF/uDTnW6WoN0evVQbWoBYLEcLzF4rJUGNwJa/uP9naCWVfW+B
-         5C7uFG3wWW+2dYv59oZRPPhbDzgWUUYfWyNbf5SDQtHLCFUPjH8pekxT2uziRhGOcxTy
-         PkPqp8ozJMKO2RWf6QFF4q7HbJu1awxrLDiqUidDKLSAugYQYAd9RxKGw4jsRdErdNsf
-         NdNQ==
-X-Gm-Message-State: AOAM532FKs2F8dhaSJE9z8LbThpgml7plQ1eXadzYFJKB/UZW59xx9Vq
-        MxkfEDSVkqERhRomXeWlr5HDusICQEN7n/4Yzos=
-X-Google-Smtp-Source: ABdhPJyCg7XeMMJOVeEoBRA0hgH3tr2A9kDf4d5be/Soj53sLrczZ+iXFRzYK6VNuP5kM7qaaKYjO/TzUNz0MI9TmgQ=
-X-Received: by 2002:a67:8009:: with SMTP id b9mr27769636vsd.18.1628696137555;
- Wed, 11 Aug 2021 08:35:37 -0700 (PDT)
+        bh=xp7fAHuStoMf5bIGzrdp1ddyp2JL7ecgJJqJ7viLvyQ=;
+        b=SGXsDfaS5Og15/zYIwS0kbyPDQHrZsjziTAa/9UyT1MlpUfVQD8EZa9Ee98D6QHITV
+         9uQl916mvvSTDL0ZyhJBzwaaGAgK0d6Ig2jpT3TS10pG7PQVBdf9t7ssE+5lwFNpS3E9
+         YBgvru0CmN6l8zzyo3NhGJjeAgbvrzScBU/NoCofRBpjN959SjmQIinmxQrqUEkJD7iq
+         iHO+3XH+4mUVHLFY1iIH/nz6qsqx+cZSLgkGy89IF1HUL5EguISc63HVOlx+SufG0cwa
+         e69FwVjXU6F7TwGI7w3yIM1fC6dtaP2SZj7kF2LqYISx83WlpbFZQ1/NuqVS6rJFMtPd
+         rNiA==
+X-Gm-Message-State: AOAM533yQHYQSeMXXGGPicPsZ/QNKch9lKM5PIEyw823afkljRGoz6kN
+        V5hqlyeBw4BbQpv89HqGw6JeNobeqCYyIn9tmIdIHYb7DRmkF78y
+X-Google-Smtp-Source: ABdhPJzlL1aDC2iXEX4fxF9XlKhwbXp4u/YW844FC6pezRpDprQfleemVG7KJi7+PJjT8E8bHqwl5CDP1EqHZpfB4HE=
+X-Received: by 2002:aa7:868c:0:b029:3bc:e2ca:4e2f with SMTP id
+ d12-20020aa7868c0000b02903bce2ca4e2fmr35296186pfo.73.1628697736067; Wed, 11
+ Aug 2021 09:02:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1628670468.git.geert+renesas@glider.be> <92b6718f5618d5469f67b48fbea189cca0c12f4b.1628670468.git.geert+renesas@glider.be>
-In-Reply-To: <92b6718f5618d5469f67b48fbea189cca0c12f4b.1628670468.git.geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 Aug 2021 17:35:26 +0200
-Message-ID: <CAMuHMdVFJ_qGs0V7f+XhfD6v3WnkMJ98fO31sCRSNaeS89XXUQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/9] MIPS: Avoid future duplicate elf core header reservation
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Pitre <nico@fluxnic.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        kexec@lists.infradead.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+References: <20210811073027.124619-1-puranjay12@gmail.com>
+In-Reply-To: <20210811073027.124619-1-puranjay12@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 11 Aug 2021 19:01:36 +0300
+Message-ID: <CAHp75VeGKYe_OhAhZJ5zaHnLgrn-yv6viz37yrz5ucqvBw3eFg@mail.gmail.com>
+Subject: Re: [PATCH v12 0/2] iio: accel: add support for ADXL355
+To:     Puranjay Mohan <puranjay12@gmail.com>
+Cc:     Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        Darius <Darius.Berghe@analog.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 10:51 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> Prepare for early_init_fdt_scan_reserved_mem() reserving the memory
-> occupied by an elf core header described in the device tree.
-> As arch_mem_init() calls early_init_fdt_scan_reserved_mem() before
-> mips_reserve_vmcore(), the latter needs to check if the memory has
-> already been reserved before.
+On Wed, Aug 11, 2021 at 10:30 AM Puranjay Mohan <puranjay12@gmail.com> wrote:
 >
-> Note that mips_reserve_vmcore() cannot just be removed, as not all MIPS
-> systems use DT.
+> Add the dt-bindings and the driver for ADXL355 3-axis MEMS Accelerometer.
 >
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v5:
->   - New.
-> ---
->  arch/mips/kernel/setup.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-> index 23a140327a0bac1b..4693add05743d78b 100644
-> --- a/arch/mips/kernel/setup.c
-> +++ b/arch/mips/kernel/setup.c
-> @@ -429,7 +429,8 @@ static void __init mips_reserve_vmcore(void)
->         pr_info("Reserving %ldKB of memory at %ldKB for kdump\n",
->                 (unsigned long)elfcorehdr_size >> 10, (unsigned long)elfcorehdr_addr >> 10);
->
-> -       memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
-> +       if (!memblock_is_region_reserved(elfcorehdr_addr, elfcorehdr_size)
+> Changes since v11:
+> 1. Add forward declaration of struct device in header.
 
-As pointed out by lkp, there's a closing parenthesis missing.
+> 2. Use defines for power-of-10s.
 
-/me hides back under his rock.
-
-> +               memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
->  #endif
-
-Gr{oetje,eeting}s,
-
-                        Geert
+TWIMC, Wolfram applied patch against units.h to add the SI prefixes:
+https://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git/commit/?id=26471d4a6cf8d5d0bd0fb55c7169de7d67cc703a
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+With Best Regards,
+Andy Shevchenko
