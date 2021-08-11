@@ -2,84 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 437E43E921F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 15:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BC73E923D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 15:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbhHKNDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 09:03:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36526 "EHLO
+        id S231467AbhHKNJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 09:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230479AbhHKNDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 09:03:47 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A87C8C0613D5
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 06:03:23 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id y7so4465264ljp.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 06:03:23 -0700 (PDT)
+        with ESMTP id S231447AbhHKNJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 09:09:11 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090B5C0613D3
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 06:08:48 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id w20so5585993lfu.7
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 06:08:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=zuMFwAVD6fY0KArmeR9wSduaNs/aEjUW6qkJa3ECyv8=;
-        b=TCpUp5F1rIsu50ljO5tUd8VYmUjjBPVQQXUGND2l8iThkPszFllIURH2d9QO5Kp3wr
-         20hdUcM+6Mq2hwT8/HawHY7iF3d23NShYFzrA0yQTxhpIVWNWG6J4+mwqwZRds7vSWkn
-         ryr9QAZapCb+OCy9ATaGG5pWUNjSb0zXfOsY4sGS9wEDMP4gMGMuPjB4EBZbhBJ4ZJau
-         qYXAq8dS5PbHEiyDb/SNZ+os+lZI8mkwHbsYaFgwJ+E7cCOvstIh2d3ZmcSjmxSrk5tr
-         XZ0kwT+zphh3jDjsZruTgmXrO7y+kZ3ssAa6Yha3uKi5GrbF+U7p13/r2FIWYwnzAxBW
-         aX1Q==
+        bh=0Q/OipXg5g+bBy7pKTFAJBo2h8NmRufFU0TcCTZHVxQ=;
+        b=AEXFKHPH/3LxE48BApNLzNCXADbLmx6mJVTDYzP/UWXVBa8MGkwlfj61fz+YT+n/iF
+         3QQ7XxyzctODusGygoOKQQiUOvB4iIMwB/jr4J0c2z68EOP0yP5mRj0LcbMqRHUqRX8y
+         Ifo7slj7QlHMDleExdEmQNrKgWcEh+xM/U8ofNrSmEaIOXQxEoK2qH7yncdNhLWY2SBL
+         Ww4xGrpQSR81gkDVkoxX0lpbVa2Z8OiJEPSnHHJO0/cjgykb7uuF/N04nJJ3jVMkycpd
+         T11rjgEA/i671M5tagCGiB24spbPA+wSw31MGHVjvLEQu9ZR8aIAtoXRcSyNScf6UtUb
+         /hmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=zuMFwAVD6fY0KArmeR9wSduaNs/aEjUW6qkJa3ECyv8=;
-        b=QBjhFV2HwT0pvOJrKzeYQxXMEygKAbEl1ipcJ2uoFrg7lyF4QabRymhIpngL4qGpb7
-         NdBuZEhgCMKJ63d7LRpWTTQ3vQS3xdyQ7vSFrSTKQe9o0e8x2RfBP/fc6uGOVPnpc9Nl
-         tBGJSByDIbGRlRLk3PvTqwU8XhIuCrBlKEZysnN53D6SR+Ns5WUEqb/qbWFfb4IYnfc1
-         yDYBZudJMWeIYvqmV9wsSxr9KKjDzSWh5xAAFm9ON6MewwmH1weWz2jN6cxCKFZC49bS
-         gksyqXDGErYvctIU36PBumd/BIvFnuKtsGqo+NUa7NHiP7bknjdK8eI4VRp9P9ZR3TwX
-         cp2A==
-X-Gm-Message-State: AOAM533rhfxgYsXDALmr6nn7X1PDhkpPDAzlvklN6EEK3GvRZ7Ll3Qnq
-        A+Sk+IT3S5KYTmGAMR1w94u/GnmnyT4u0s9oTndVKQ==
-X-Google-Smtp-Source: ABdhPJzx+NlgiIZnomfYiB8/G4LgCd6WP6GFsrtvbCL30ZLORab4/n85+ZBn2rA47FR1ujRI3K0kFKlULjuaBeSQo5k=
-X-Received: by 2002:a05:651c:327:: with SMTP id b7mr23695765ljp.74.1628687001676;
- Wed, 11 Aug 2021 06:03:21 -0700 (PDT)
+        bh=0Q/OipXg5g+bBy7pKTFAJBo2h8NmRufFU0TcCTZHVxQ=;
+        b=ShDRpXLyVmXHrJ2ifVmt2vW9oYqcExHWYVj6K4hOxC0xm9S7SX7ph/WyaHr1kKtc/N
+         t6+k2WPb4uek553JmnfNOHzwRt3+56hCmX2CWJt/cFJsGu7HRUXr2ZSBVMIKiGG4vAXG
+         XNeLp8H7p7uRxtj2R8vzuyCSxCWfFzS7O+Yi/IVGL7mfoU1SMfle5q93/3uIAzu//Gqh
+         HBDTY17wbIxgKtJxN2QKlACqBUqUpNjWcgNCkMmyV74AS5YkPfxp9VV5wsIwLD8Q1EO0
+         T1/oot5IMKM8JvPmvC9m22oTX/B7B6TO1B5Bcro64FMl+moWVO7Y4CJu/Ft/x/8P7CaH
+         eXfw==
+X-Gm-Message-State: AOAM531+NTNuSXgbEWVju8ez9FcIpPCgW4QgoaMTcPwLZiMrbBZpf1H7
+        ZWFpH+dpD6r87lHbaRnKCpzyEG/SmWYggch+bVJvvQ==
+X-Google-Smtp-Source: ABdhPJzngrlz2QK7UpQplrwK8nq9N3R5uqem/ckB0ImAfMdAQvhtKbnN9URtS6Tro73RTdIez51pslkCrnGNaLO3pIo=
+X-Received: by 2002:a05:6512:32a3:: with SMTP id q3mr13907141lfe.157.1628687326222;
+ Wed, 11 Aug 2021 06:08:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210805222625.40236-1-konrad.dybcio@somainline.org> <20210805222625.40236-2-konrad.dybcio@somainline.org>
-In-Reply-To: <20210805222625.40236-2-konrad.dybcio@somainline.org>
+References: <20210805174219.3000667-1-piyush.mehta@xilinx.com> <20210805174219.3000667-2-piyush.mehta@xilinx.com>
+In-Reply-To: <20210805174219.3000667-2-piyush.mehta@xilinx.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Aug 2021 15:03:10 +0200
-Message-ID: <CACRpkdYm_Ky+D5=rhX9gekKYZkTXwvS-FGED_Ou+_0=nEGZUUA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pinctrl: qcom-pmic-gpio: Add support for pm8019
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Martin Botka <martin.botka@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
+Date:   Wed, 11 Aug 2021 15:08:35 +0200
+Message-ID: <CACRpkdYo5e7uTJJRqnK1R4QLtUzRGNbsvNvm-47UFZOr4_R9Cw@mail.gmail.com>
+Subject: Re: [PATCH V2 1/3] firmware: zynqmp: Add MMIO read and write support
+ for PS_MODE pin
+To:     Piyush Mehta <piyush.mehta@xilinx.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Zou Wei <zou_wei@huawei.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Michal Simek <michal.simek@xilinx.com>, wendy.liang@xilinx.com,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, rajan.vaja@xilinx.com,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, git <git@xilinx.com>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 6, 2021 at 12:26 AM Konrad Dybcio
-<konrad.dybcio@somainline.org> wrote:
+On Thu, Aug 5, 2021 at 7:42 PM Piyush Mehta <piyush.mehta@xilinx.com> wrote:
 
-> PM8019 provides 6 GPIOs. Add a compatible to support that.
+> Add Xilinx ZynqMP firmware MMIO APIs support to set and get PS_MODE
+> pins value and status. These APIs create an interface path between
+> mode pin controller driver and low-level API to access GPIO pins.
 >
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> ---
+> Changes in v2:
+> - Added Xilinx ZynqMP firmware MMIO API support to set and get pin
+>   value and status.
 
-I will merge this as soon as the binding is fixed (please resend both)
+I doubt this is "GPIO".
+General Purpose? I think not. It seems to be about boot mode.
+
+If you need a userspace ABI, then add sysfs files to this firmware
+driver instead of bridging it to the GPIO subsystem.
+
+However I can be argued down from usecases etc that it is used as
+GPIO but I need to push back on this.
 
 Yours,
 Linus Walleij
