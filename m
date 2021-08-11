@@ -2,95 +2,465 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5557E3E8E1F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 12:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12D653E8E3D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 12:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236632AbhHKKIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 06:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51528 "EHLO
+        id S236787AbhHKKPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 06:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237011AbhHKKIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 06:08:23 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44121C0617BD
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 03:07:52 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id f3so2012813plg.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 03:07:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=tzsS7AZHN5hyd5i/vgo5pHazU+FL6RQAhM9b4mH3Hqc=;
-        b=xrg/dN5zYbriK5itgrKCFqwpt+tinhh9L15HeF9ETxBRpzawjZhN+vtNwQXjjaR8v0
-         MNMTTN+tXhlSPNM8qipa7OYd60SCVukCgd0Y6YJLdEAQw3VYCHFYOqwIUIhhFtERSGZ/
-         wlA8jJ5WT34nwiSSC65FuuGPkxZ9bA4KNM+Q8SJO2JRhovDhAfFR4AWh2MROFe+zVRxN
-         aEHMrJoEpBX3wkLBg1QHKRci/W0t6cSqweFGSE5mbCv9WeypUmZOLaXsntY1KcZfoTnU
-         2S01vgFvBZ82jQ2RvEyU1O+qWzGWsFL7pdIRnc8M2GQWJhVQ/QQxiM0I3dKAh2Xp4Wvc
-         vzqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tzsS7AZHN5hyd5i/vgo5pHazU+FL6RQAhM9b4mH3Hqc=;
-        b=kGrZ6roCEtS9bQ0hagvrGEFyLYPrPN5ZYtkE/9XFlQm5dc87XCXkKLmm4ikbEwal7+
-         Z8U8T7tTwswDJFE8tVnX8P78UjggLIAIeFoR6YHYUsKXrh2kpDzFvhliUns/8xjEqVtB
-         lAPWu4bzmo964AkVm7dO7ebjXJvY40Sq4O1x6vevYImv6XoOIQW4rVG+8P2Eb1DDfaWB
-         IPFLNlm/K/43VAokcpS3J4zTu3QmtfW4hBd6xn/CdO16O+mFdUyfeRvQgJ3cJZ0tJgAf
-         9+WYqxM3kSXi5T/YzOs6n3rckxw1wRy7c8bOIsNoLtpmc6cKAykfOwnZCwy+d3iybVrQ
-         v97w==
-X-Gm-Message-State: AOAM530wmajY2F72ov7Gh/x6wnD99JcRqgPJ/BOpIOwsadxV51aNiDsY
-        5WYtQRpECRmb+gt+9paxmOAklBxFyMb1OA==
-X-Google-Smtp-Source: ABdhPJxRiSSMq+j2y9GrkjclfC8eCBy4HeC/eBdFwjlqBgsbEfhh24xzyew4tdnIOtXaJlSnoDnklw==
-X-Received: by 2002:a17:902:8301:b029:12c:d401:1b52 with SMTP id bd1-20020a1709028301b029012cd4011b52mr259440plb.10.1628676471746;
-        Wed, 11 Aug 2021 03:07:51 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id ci23sm24633791pjb.47.2021.08.11.03.07.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Aug 2021 03:07:51 -0700 (PDT)
-Date:   Wed, 11 Aug 2021 15:37:49 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v6 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-Message-ID: <20210811100749.kwg6435m7xj7ulwa@vireshk-i7>
-References: <1628074696-7979-1-git-send-email-rnayak@codeaurora.org>
- <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
- <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
- <2afd0fac-ed28-c090-a345-3fd4284b4125@codeaurora.org>
- <20210810024308.gurvzpbe2bc2bhky@vireshk-i7>
- <e452c0b5-5555-d6e2-40da-6aa21a26766d@codeaurora.org>
+        with ESMTP id S236798AbhHKKOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 06:14:51 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 804A9C06179C
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 03:12:59 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mDlE9-0004NE-Ds; Wed, 11 Aug 2021 12:12:49 +0200
+Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mDlE7-0005go-5G; Wed, 11 Aug 2021 12:12:47 +0200
+Date:   Wed, 11 Aug 2021 12:12:47 +0200
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Quanyang Wang <quanyang.wang@windriver.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: Re: [PATCH v3 1/2] arm64: zynqmp: Enable xlnx, zynqmp-dwc3 driver
+ for xilinx boards
+Message-ID: <20210811101247.GC27204@pengutronix.de>
+References: <cover.1628244703.git.michal.simek@xilinx.com>
+ <640a3bc0dc3e32560d3e84c2f78b5ae561396eb0.1628244703.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e452c0b5-5555-d6e2-40da-6aa21a26766d@codeaurora.org>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <640a3bc0dc3e32560d3e84c2f78b5ae561396eb0.1628244703.git.michal.simek@xilinx.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:10:57 up 174 days, 13:34, 92 users,  load average: 0.38, 0.26,
+ 0.19
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-08-21, 15:30, Rajendra Nayak wrote:
-> In my case I don't want to error out if the property is missing, I want to error out
-> only when the property exists but can't be translated into a performance state.
+On Fri, 06 Aug 2021 12:12:07 +0200, Michal Simek wrote:
+> The commit 84770f028fab ("usb: dwc3: Add driver for Xilinx platforms")
+> finally add proper support for Xilinx dwc3 driver. This patch is adding DT
+> description for it.
 > 
-> So currently I check if the property exists and *only then* try to translate it, Ulf asked
-> me to skip the check. If I do that and I call of_get_required_opp_performance_state()
-> unconditionally, and if it errors out I will need to put in additional logic (check for
-> return value of ENODEV) to distinguish between the property-does-not-exist vs
-> property-exists-but-cannot-be-translated case.
-> It just seems more straight-forward to call this only when the property exists, Ulf?
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 
-The same check will be done by OPP core as well, so it is better to
-optimize for the success case here. I will say, don't error out on
-ENODEV, rest you know well.
+Reviewed-by: Michael Tretter <m.tretter@pengutronix.de>
+
+> ---
+> 
+> Changes in v3:
+> - usb node name fix, remove undocumented properties reported by Michael Tretter
+> - Also remove status property from dwc3_0/1 nodes reported by Michael
+>   Tretter
+> - Move USB3 PHY properties from DWC3 node to USB node - reported by Manish
+>   Narani
+> 
+> Changes in v2:
+> - New patch in the series
+> 
+>  .../dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    |  8 ++-
+>  .../dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    |  7 +++
+>  .../dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    | 14 +++++
+>  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 14 ++++-
+>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    |  8 ++-
+>  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    |  8 ++-
+>  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    |  8 ++-
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    |  8 ++-
+>  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    |  8 ++-
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 60 +++++++++++++++----
+>  10 files changed, 122 insertions(+), 21 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+> index d93fe2efa39d..b05be2552826 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+> @@ -27,6 +27,7 @@ aliases {
+>  		rtc0 = &rtc;
+>  		serial0 = &uart0;
+>  		spi0 = &qspi;
+> +		usb0 = &usb0;
+>  	};
+>  
+>  	chosen {
+> @@ -404,9 +405,14 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+> index cd61550c52e5..938b76bd0527 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+> @@ -26,6 +26,7 @@ aliases {
+>  		serial1 = &uart1;
+>  		spi0 = &spi0;
+>  		spi1 = &spi1;
+> +		usb0 = &usb1;
+>  	};
+>  
+>  	chosen {
+> @@ -479,7 +480,13 @@ &usb1 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb1_default>;
+> +};
+> +
+> +&dwc3_1 {
+> +	status = "okay";
+>  	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+> +	maximum-speed = "super-speed";
+>  };
+>  
+>  &uart0 {
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+> index ba7f1f21c579..4394ec3b6a23 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+> @@ -24,6 +24,8 @@ aliases {
+>  		rtc0 = &rtc;
+>  		serial0 = &uart0;
+>  		serial1 = &uart1;
+> +		usb0 = &usb0;
+> +		usb1 = &usb1;
+>  	};
+>  
+>  	chosen {
+> @@ -147,11 +149,23 @@ &uart1 {
+>  
+>  &usb0 {
+>  	status = "okay";
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+>  	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+> +	maximum-speed = "super-speed";
+>  };
+>  
+>  /* ULPI SMSC USB3320 */
+>  &usb1 {
+>  	status = "okay";
+> +};
+> +
+> +&dwc3_1 {
+> +	status = "okay";
+>  	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+> +	maximum-speed = "super-speed";
+>  };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> index 80415e202814..f6aad4159ccd 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> @@ -30,6 +30,8 @@ aliases {
+>  		serial2 = &dcc;
+>  		spi0 = &spi0;
+>  		spi1 = &spi1;
+> +		usb0 = &usb0;
+> +		usb1 = &usb1;
+>  		mmc0 = &sdhci0;
+>  		mmc1 = &sdhci1;
+>  	};
+> @@ -537,9 +539,13 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "peripheral";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 0>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "peripheral";
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> @@ -548,9 +554,13 @@ &usb1 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb1_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 3 PHY_TYPE_USB3 1 0>;
+> +};
+> +
+> +&dwc3_1 {
+> +	status = "okay";
+> +	dr_mode = "host";
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> index 3d8d14ef1ede..7b9a88b125d1 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> @@ -31,6 +31,7 @@ aliases {
+>  		serial1 = &uart1;
+>  		serial2 = &dcc;
+>  		spi0 = &qspi;
+> +		usb0 = &usb0;
+>  	};
+>  
+>  	chosen {
+> @@ -997,9 +998,14 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> index 86fff3632c7d..bd8f20f3223d 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> @@ -29,6 +29,7 @@ aliases {
+>  		serial1 = &uart1;
+>  		serial2 = &dcc;
+>  		spi0 = &qspi;
+> +		usb0 = &usb0;
+>  	};
+>  
+>  	chosen {
+> @@ -481,9 +482,14 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> index 2a872d439804..96feaad30166 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> @@ -29,6 +29,7 @@ aliases {
+>  		serial1 = &uart1;
+>  		serial2 = &dcc;
+>  		spi0 = &qspi;
+> +		usb0 = &usb0;
+>  	};
+>  
+>  	chosen {
+> @@ -493,9 +494,14 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> index 057c04352591..20b7c75bb1d3 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> @@ -31,6 +31,7 @@ aliases {
+>  		serial1 = &uart1;
+>  		serial2 = &dcc;
+>  		spi0 = &qspi;
+> +		usb0 = &usb0;
+>  	};
+>  
+>  	chosen {
+> @@ -990,9 +991,14 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+> index e1fff62a4cd5..e36df6adbeee 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+> @@ -30,6 +30,7 @@ aliases {
+>  		serial0 = &uart0;
+>  		serial1 = &dcc;
+>  		spi0 = &qspi;
+> +		usb0 = &usb0;
+>  	};
+>  
+>  	chosen {
+> @@ -827,9 +828,14 @@ &usb0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_usb0_default>;
+> -	dr_mode = "host";
+>  	phy-names = "usb3-phy";
+>  	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
+> +};
+> +
+> +&dwc3_0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +	snps,usb3_lpm_capable;
+>  	maximum-speed = "super-speed";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index b5fde9dddca5..74e66443e4ce 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -2,7 +2,7 @@
+>  /*
+>   * dts file for Xilinx ZynqMP
+>   *
+> - * (C) Copyright 2014 - 2019, Xilinx, Inc.
+> + * (C) Copyright 2014 - 2021, Xilinx, Inc.
+>   *
+>   * Michal Simek <michal.simek@xilinx.com>
+>   *
+> @@ -805,24 +805,58 @@ uart1: serial@ff010000 {
+>  			power-domains = <&zynqmp_firmware PD_UART_1>;
+>  		};
+>  
+> -		usb0: usb@fe200000 {
+> -			compatible = "snps,dwc3";
+> +		usb0: usb@ff9d0000 {
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+>  			status = "disabled";
+> -			interrupt-parent = <&gic>;
+> -			interrupts = <0 65 4>;
+> -			reg = <0x0 0xfe200000 0x0 0x40000>;
+> -			clock-names = "clk_xin", "clk_ahb";
+> +			compatible = "xlnx,zynqmp-dwc3";
+> +			reg = <0x0 0xff9d0000 0x0 0x100>;
+> +			clock-names = "bus_clk", "ref_clk";
+>  			power-domains = <&zynqmp_firmware PD_USB_0>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_USB0_CORERESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB0_HIBERRESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB0_APB>;
+> +			reset-names = "usb_crst", "usb_hibrst", "usb_apbrst";
+> +			ranges;
+> +
+> +			dwc3_0: usb@fe200000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x0 0xfe200000 0x0 0x40000>;
+> +				interrupt-parent = <&gic>;
+> +				interrupt-names = "dwc_usb3", "otg";
+> +				interrupts = <0 65 4>, <0 69 4>;
+> +				#stream-id-cells = <1>;
+> +				iommus = <&smmu 0x860>;
+> +				snps,quirk-frame-length-adjustment = <0x20>;
+> +				/* dma-coherent; */
+> +			};
+>  		};
+>  
+> -		usb1: usb@fe300000 {
+> -			compatible = "snps,dwc3";
+> +		usb1: usb@ff9e0000 {
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+>  			status = "disabled";
+> -			interrupt-parent = <&gic>;
+> -			interrupts = <0 70 4>;
+> -			reg = <0x0 0xfe300000 0x0 0x40000>;
+> -			clock-names = "clk_xin", "clk_ahb";
+> +			compatible = "xlnx,zynqmp-dwc3";
+> +			reg = <0x0 0xff9e0000 0x0 0x100>;
+> +			clock-names = "bus_clk", "ref_clk";
+>  			power-domains = <&zynqmp_firmware PD_USB_1>;
+> +			resets = <&zynqmp_reset ZYNQMP_RESET_USB1_CORERESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB1_HIBERRESET>,
+> +				 <&zynqmp_reset ZYNQMP_RESET_USB1_APB>;
+> +			reset-names = "usb_crst", "usb_hibrst", "usb_apbrst";
+> +			ranges;
+> +
+> +			dwc3_1: usb@fe300000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x0 0xfe300000 0x0 0x40000>;
+> +				interrupt-parent = <&gic>;
+> +				interrupt-names = "dwc_usb3", "otg";
+> +				interrupts = <0 70 4>, <0 74 4>;
+> +				#stream-id-cells = <1>;
+> +				iommus = <&smmu 0x861>;
+> +				snps,quirk-frame-length-adjustment = <0x20>;
+> +				/* dma-coherent; */
+> +			};
+>  		};
+>  
+>  		watchdog0: watchdog@fd4d0000 {
+> -- 
+> 2.32.0
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
 
 -- 
-viresh
+Pengutronix e.K.                           | Michael Tretter             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
