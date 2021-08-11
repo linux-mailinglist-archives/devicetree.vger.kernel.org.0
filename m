@@ -2,171 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 158A43E9372
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 16:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13C93E9399
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 16:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbhHKOTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 10:19:37 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:39434 "EHLO m43-7.mailgun.net"
+        id S232343AbhHKOXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 10:23:38 -0400
+Received: from www.zeus03.de ([194.117.254.33]:33492 "EHLO mail.zeus03.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232456AbhHKOTg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 10:19:36 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628691553; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=lLO4eFNHdUCV1ee4Fqm1c0UbZaPJfKpMDZtjZ/5Hlzo=; b=mvyWT+P7VNdBryl43qkOtQimA0HmaE2S3hOzcefnYr3JL5meDnWRcmHHbzPCscVoCUVjhwYc
- f3+5nmNu9suh2bYwBHuWtKzoE7kml87o2z9DFcHSvWo3cMMj5zFY32fvshpXSyjHYQ9CYops
- qodJ3AmpH9yq0BdLtUd9pipiT6Q=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 6113dc4eb14e7e2ecb772007 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 11 Aug 2021 14:18:54
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 12915C4360C; Wed, 11 Aug 2021 14:18:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8582CC433F1;
-        Wed, 11 Aug 2021 14:18:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8582CC433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-To:     freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@lists.freedesktop.org,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, linux-arm-msm@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S232340AbhHKOXg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 10:23:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=bA+SpoCd9Zrin70ep2OKmQSSiYzO
+        VLF5suFO9tR8vJU=; b=sNdIRyoQrtF9c/RK047CRz32yayHGtxMCPHLvHJKEovc
+        ciZpqZcEK4MAz205TALD1DNDpGQ067qZryQVPfVIIT4aUAkwZdAzSZFbU1sigKxq
+        4dBNdMkkCNbVcGHhArZyH5QvJ0JBAU5GnoLh/3yzb1GhVq5xnDMo6Xzn2TA6UcA=
+Received: (qmail 2682161 invoked from network); 11 Aug 2021 16:23:11 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Aug 2021 16:23:11 +0200
+X-UD-Smtp-Session: l3s3148p1@QzenW0nJDJ8gARa4RTP4AfHKOCm/nqrR
+Date:   Wed, 11 Aug 2021 16:23:10 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH/RFC 0/4] dt-bindings: i2c: renesas,riic: Add
+ interrupt-names
+Message-ID: <YRPdTiAakb6OBd2k@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] arm64: dts: qcom: sc7280: Add gpu thermal zone cooling support
-Date:   Wed, 11 Aug 2021 19:48:36 +0530
-Message-Id: <20210811194758.v4.2.Iea8318d85a23f0167fd523ea85df5630147649f9@changeid>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1628691516-33624-1-git-send-email-akhilpo@codeaurora.org>
-References: <1628691516-33624-1-git-send-email-akhilpo@codeaurora.org>
+        Chris Brandt <chris.brandt@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1626267422.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0/yWTP9/4TtsiMqK"
+Content-Disposition: inline
+In-Reply-To: <cover.1626267422.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
 
-Add cooling-cells property and the cooling maps for the gpu thermal
-zones to support GPU thermal cooling.
+--0/yWTP9/4TtsiMqK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
-Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
----
+Hi Geert,
 
-(no changes since v1)
+> The Renesas RZ/A and RZ/G2L I2C Bus Interface has no less than 8
+> interrupts.  So I think it makes sense to use "interrupt-names"
+> property, to make it easier to review the interrupt mappings in DTS
+> files.
+>=20
+> Hence this series documents the "interrupt-names" property in the DT
+> bindings, adds the property to the DTS files, and marks it required in
+> the DT bindings. Obviously the last step cannot be applied until all
+> earlier patches are upstream.
+>=20
+> What do you think?
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 29 ++++++++++++++++++++++-------
- 1 file changed, 22 insertions(+), 7 deletions(-)
+I like it and I'd think it is good to go. It is probably easiest if you
+take the series via your tree to avoid merge conflicts and/or subsystem
+dependencies. It's unlikely the YAML file will see further updates. So,
+for the series:
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index b9006d8..cd2bbf0 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -592,7 +592,7 @@
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
--		gpu@3d00000 {
-+		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-635.0", "qcom,adreno";
- 			#stream-id-cells = <16>;
- 			reg = <0 0x03d00000 0 0x40000>,
-@@ -607,6 +607,7 @@
- 			qcom,gmu = <&gmu>;
- 			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
- 			interconnect-names = "gfx-mem";
-+			#cooling-cells = <2>;
- 
- 			gpu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
-@@ -2523,16 +2524,16 @@
- 		};
- 
- 		gpuss0-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <100>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 1>;
- 
- 			trips {
- 				gpuss0_alert0: trip-point0 {
--					temperature = <90000>;
-+					temperature = <95000>;
- 					hysteresis = <2000>;
--					type = "hot";
-+					type = "passive";
- 				};
- 
- 				gpuss0_crit: gpuss0-crit {
-@@ -2541,19 +2542,26 @@
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&gpuss0_alert0>;
-+					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		gpuss1-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <100>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 2>;
- 
- 			trips {
- 				gpuss1_alert0: trip-point0 {
--					temperature = <90000>;
-+					temperature = <95000>;
- 					hysteresis = <2000>;
--					type = "hot";
-+					type = "passive";
- 				};
- 
- 				gpuss1_crit: gpuss1-crit {
-@@ -2562,6 +2570,13 @@
- 					type = "critical";
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&gpuss1_alert0>;
-+					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		nspss0-thermal {
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation.
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
+Let me know if you think another way is better.
+
+Happy hacking,
+
+   Wolfram
+
+
+--0/yWTP9/4TtsiMqK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmET3U4ACgkQFA3kzBSg
+KbYwWg/+MAKeYtltD8jFf1qc2Dpw7KM5aIJ+xh8k3TP69KhqUT0VrTRm9Arv0iyh
+m8xarEu7CQJOksSxLuUScEHMmEsEyjJQ2YT1oWbqzvRJcm7jVUQJ9muAeaKbVDRH
+ZM9Vj0GohckcVXrN98Ob+dHa5TIv7lzrcSr71DRLJJx6MT55lPezfARxSYQqnYFN
+iaeyZ6rRLANzZ3DUvwM6LK5fWy460UB3Wr1SBLj9XxLEvMm8MZElVfyXZI+uwAIa
+/MSKufEe2b0E0ACzoyQAYXeDDSF73LNV6+nTjScU9jw0fgTs6OlK5HtRzpYNfck6
+8CyGacSHn0Fl9WY33/kZtUySbGzB6gsNqCnJe6pQOrMvUtC3APP8tXIRFq8gcIm/
+hBjAv1yKCMFIdZMVnsK1TMf3MUCEZ79nIbJA0JUp0ytSEe65uHnPvoOZmCvHlTE3
+rrfRmVi8T0ABBO+OayyeA4klswajvNMSjCei/XqbBh4XCi/ko2oq5pZcr1utTuxv
+e2jaa2ts9Zpfc1NaQOUtKRw64X+53D07AU1GDjf1IGOkbvA1aBQWwYUbuNijda/X
+F/FhCr7UP96RU7KZktYxHswwl6NSBEO0LJmQCxDPxUTTDZ68hDVgckKmL//Hseyt
+2TK6AKLMX5f9YBtY1ufpvpHVsMpp62k+NlrIb0Ge/jbUp0lqa+0=
+=DrMT
+-----END PGP SIGNATURE-----
+
+--0/yWTP9/4TtsiMqK--
