@@ -2,123 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 277723E9055
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:18:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6465B3E9166
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 14:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbhHKMSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 08:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53666 "EHLO
+        id S231151AbhHKMcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 08:32:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbhHKMSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:18:21 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF3EC0613D3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:17:57 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id u13so4216193lje.5
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:17:57 -0700 (PDT)
+        with ESMTP id S230139AbhHKMco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Aug 2021 08:32:44 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28C4C0619C2
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:30:49 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id u25so4295340oiv.5
+        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 05:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KQjb/FThXLfBl/otc3Znh0SZQ+j62VlqIHDeYo+IMZg=;
-        b=tpLq6HB2rX522yTr4THCUwY7joSNADf4vSrKKu61HhVFIllWBYhinsNhaggrONz8hM
-         tDLN86QYxoZIZfKrdxHMR2/59QaV86eynH52IIlKR274X1lcOprxx/+RBEbVTk7ygZIQ
-         ngjRQkm8RAfN4gMDLdy9NpLGwYCiZlywH2O3Is4x4Nr2NNdW3C8wtPIP/gFqTMTjlC51
-         MGNu85NbTSDHS/GTNLKH+63Mk6pnX3tmBlD/98aTh55zEWaB7g6hADOSHK84xiMsIjvh
-         243ls6P1nfk47fcRXZamgi5COT+S1zFrLX0Gldz8FVbrJ3YFL6Q4eJulvPy4NPi0X0Ej
-         9dOQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
+        b=hdHPl6EhPO0rbYNHyzk/Qo8j2rhdvZw/z+/z3eKcJgnhYdIuV06zrz+zfq2oDrvqk1
+         c0LKRXc22iojVXH74sinAySKjYxv5qL4FjuzYeq7i+GiqO20jdVJ7UTxOeUF4SiSuiJX
+         RewKmhiwkp/6WsiVbTH9E136ovvKd6DNxFFBy4cd/2Trvv1j8/9pYWO5AOAs9fGFYGCd
+         iJ2P7Jrk1siLmf7tcfdXJyYqiDCNX3jxYLZ2givbERMcqk+LrtRXQVXYxkyOtGLqz+Qz
+         QvmU8mGajKHdAoDkeskW/1G1/HhtTB3nYcj6MlaVO9aRxejlmxHNIw739MwGHzNSpwcZ
+         ZsEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KQjb/FThXLfBl/otc3Znh0SZQ+j62VlqIHDeYo+IMZg=;
-        b=MDyAQrL1KlnsrStkunynKuFwzHnsCPgC6bb9+x9O+w1nC8NApJFjQn5gIv3d4fmsE1
-         W5UdoLPidzqlj6gFa3FQwH3uhc5FY9nxktBgtE9uqRUvPZXv5U7LJwnnDtlNqOi3N5XE
-         W/PMVZqAIQl4v1YyLr4B4aOShQJpee2sHNM/MgWZq4THpvMsflx7g1IKtrRnpBa7mMbP
-         L0SdRfU12TQAgm/evD+AYU9aiVH6RxKp8MMwnr13wOk8/mMH6rKo1fBKMShCmoBaf2Bj
-         khKtKFZFdj4rfFw78hGSS0ZoiHkas2lylJ92xZ6ZRGgDceEy0lP4arJ/DsvEu/VPLrud
-         ogiA==
-X-Gm-Message-State: AOAM5326jOFig3hlmymP1xneCOlcoc+OJWCWKGSDBmmY8Yl7Ymq+Zelx
-        Ny/RvoNVz7svwVwMwXz38qKN3qOuwOl+rY6pbGu7eA==
-X-Google-Smtp-Source: ABdhPJykncSqm3nyxK3p72zHiH80OFKfNQHUKLJLnWJSQkukUssrqDDbMiWiEf8QJ4mkA7jhMhWxAvKH1ulwqn1rzAY=
-X-Received: by 2002:a05:651c:1318:: with SMTP id u24mr23139087lja.200.1628684276361;
- Wed, 11 Aug 2021 05:17:56 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=77BwqRII9XCweQU8IJul6unijI/BEL+vUJmVmCRLxH4=;
+        b=bCTlAqI5KQdFuyIojMUmm+4A/830tGlxcgm1p+O8owgWPH57STHBolob9lWyhw3qbR
+         ue3kdSFsC65vPgkHTGTQUXs2YPknkaPfQYpg+rNWcHTNC9nd2jUXcatK/c1nRpQRo7Ev
+         aDD3qAwz04hYipirapEwhw7uscAYHX0ek2HWNVFJLWKHuMMQG5USlzIGbboFF/JZshVa
+         xxF0V/ma2pf9rOrvs+vPjjrdn0Z8qZrby6/GwWeUhAGlXE1ql+n5GT1LannmeNmP8bvZ
+         VR5lC7LGKdzYCa+xpmpl/NLXR8/5/ei48k0VpeCAh6x34YTE5EXK3IZV4RDG641o2VPA
+         4a7A==
+X-Gm-Message-State: AOAM532+9cJwffH4/S8ZgSbHVvM44FAJCR0tt7tz41vt2XA3mKEuOkPN
+        bIndL5ZLfxqw1VlcXLMqsw5fRNvoXAqPTA/A8KQ=
+X-Google-Smtp-Source: ABdhPJzQ7QNnWBNY+00bZ2/vHMEXadQHBg9sM7+hqX/w5OdV5gUABk+MeuK4xdHXt9RivYMg5+YhMPfmKAKJ2sTGTK4=
+X-Received: by 2002:aca:1817:: with SMTP id h23mr11856802oih.146.1628685049402;
+ Wed, 11 Aug 2021 05:30:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr>
- <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
- <20210713222528.GA952399@robh.at.kernel.org> <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
- <20210719225906.GA2769608@robh.at.kernel.org> <CACRpkdbq6Jow6AT9OpsR7Q0JVCWVMcmamh9KHPXMtUnkoe7ZFw@mail.gmail.com>
- <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com>
-In-Reply-To: <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Aug 2021 14:17:45 +0200
-Message-ID: <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
+Received: by 2002:a05:6830:23a5:0:0:0:0 with HTTP; Wed, 11 Aug 2021 05:30:49
+ -0700 (PDT)
+Reply-To: rihabmanyang07@yahoo.com
+From:   Rihab Manyang <ndourandiogou1@gmail.com>
+Date:   Wed, 11 Aug 2021 13:30:49 +0100
+Message-ID: <CAP5_mB5JzCUj=G2=OFQTUAHntUyVzX9U4Cd6GCXO82jwGUg2bQ@mail.gmail.com>
+Subject: hi
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 3, 2021 at 9:23 PM Robert Marko <robert.marko@sartura.hr> wrote:
-
-> The pins that this driver wants to expose are used for SFP-s only,
-> they are provided by the Lattice CPLD which also does other things.
->
-> Linux has a generic SFP driver which is used to manage these SFP
-> ports, but it only supports GPIO-s, it has no concept of anything else.
-> Since the driver is fully generic, I have no idea how could one extend it
-> to effectively handle these pins internally, especially since I have more
-> switches that use the CPLD for SFP-s as well, even for 48 ports and 192
-> pins for them.
-
-Which file is this driver in so I can look?
-
-Maybe it is not a good idea to look for generic code just because
-it is convenient? I have had this problem before with GPIO, along
-the lines "lemme just do this dirty thing this one time because it
-is so convenient for me" (more or less) and the answer is still
-"no".
-
-Can you either augment the driver to handle a regmap with bit indices
-instead or write a new similar driver for that or refactor it some other
-way?
-
-It is not a simple solution to your problem, but it might be the right
-solution even if it means some more work.
-
-> GPIO regmap works perfectly for this as its generic enough to cover all of
-> these cases.
-
-Yeah but it might be the wrong thing to do even if it is simple
-to use and works.
-
-> CPLD also provides pins to test the port LED-s per color as well,
-> but I have chosen not to expose them so far.
-
-Have you considered
-Documentation/devicetree/bindings/leds/register-bit-led.txt
-
-> > If it is a regmap in Linux then that is fine, just pass the regmap
-> > around inside the kernel, OK finished. But really that is an OS
-> > detail.
->
-> Yes, its regmap but I cant really pass it to the SFP driver as I don't have
-> special driver handling the SFP but rather the generic kernel one.
-> It only knows how to handle GPIO-s.
-
-Of course you have to program it. If I know which driver it
-is it is easier to provide architecture ideas.
-
-Yours,
-Linus Walleij
+-- 
+How are you?I am miss.Rihab Manyang i will like to be your friend
+please write me back on my email for more details, Thanks.
