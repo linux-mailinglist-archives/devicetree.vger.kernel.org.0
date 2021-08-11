@@ -2,223 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3D7F3E8A5B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 08:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B4D13E8A5E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Aug 2021 08:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234879AbhHKGrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 02:47:12 -0400
-Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:59744
-        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234887AbhHKGrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 02:47:12 -0400
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 6377C40330
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 06:46:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1628664408;
-        bh=Kxcfgig03MExxX+JwfluOsjWYQpaWWiiVo+lWFIhADQ=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=P/LI2XjiaGae2I65j+DTithB5mybgXSQefo/W8jpIckD99M+TqMME6FMn9cr8kydA
-         egY/sEvMO7Vj8OOgBthFJW0yXcpfI5AiOColUV67mipBwAF2bsJxh2MF2mq7RgAuTB
-         zI6bSMITE/i1Xp8k4PqxAJj0jX8YlnURpHGHWGCU0fldnc6Jvcjw2r23V6Kf048jJX
-         0JeMQ952BeUMbwC/EO7R8xrK1Lg9YfB2Nb4YhgeL3mUyN3BTudufPuS7IfCieuA1H5
-         uivAsA0Mj+b53gZal7GtvdPCTBYbNL8NkdoirZrWaiVA/CaE6/LvcklYtbayfnlbMh
-         IAKR1wKwKyxlA==
-Received: by mail-ej1-f69.google.com with SMTP id k22-20020a1709061596b02905a370b2f477so275950ejd.17
-        for <devicetree@vger.kernel.org>; Tue, 10 Aug 2021 23:46:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Kxcfgig03MExxX+JwfluOsjWYQpaWWiiVo+lWFIhADQ=;
-        b=h01oIyFy5uFN2fY5XlpbPirB0V41KIk8tcTMlyEZS+iaa5sQEjud/2ZGWKROiqE1L3
-         YdStmi+T/PtmULovKwlJw8HK8OeTZTju0tZPaz388ouX8v7Oj6v2GMN1rYrwVz3Zp8PF
-         wNwqPFjXaUubh8KhNt+cl0texgxF9RADwOaFzJOYHSKzVuylXJr4RC2hoiU93OWdLOfa
-         Dkr7vRzBAfdhtVS38VwXWO3VgfY+WFnN3PLFxA+ouPpz+FgrQvudfMTnN/hODxpCXM9K
-         hE8M7hBLa0QbZaaM1DKXVXbcf4/+u/w8YsrdOzLHMsMJF/xUZqQogv5zy7G2as8I2Xj9
-         TS+w==
-X-Gm-Message-State: AOAM531gQvmpqDr33qXgQvt347YZTjVeszj6hUE58H9aoB6EfD++IQBz
-        l0inmn1+xWcPLNvQ7V/3MHc1mIB7spmL3E/aF7BOF7yaPBGb2U0nrX6LqmUhdogyxCuZ6Slwjth
-        GLqcLGzsqgajCZNMuINkPG4N39IxmJRsxTh4B2AE=
-X-Received: by 2002:a17:906:3486:: with SMTP id g6mr2191977ejb.71.1628664407875;
-        Tue, 10 Aug 2021 23:46:47 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzBEhnDDIKzRzSlos2OcWTaUXRBhbPyQFY/bOczJwuJqcDVlM+mwha6XxbcUtpn16t24qXmdw==
-X-Received: by 2002:a17:906:3486:: with SMTP id g6mr2191954ejb.71.1628664407588;
-        Tue, 10 Aug 2021 23:46:47 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id n15sm10695991edw.70.2021.08.10.23.46.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Aug 2021 23:46:47 -0700 (PDT)
-Subject: Re: [PATCH v2 6/8] dt-bindings: clock: samsung: convert Exynos AudSS
- to dtschema
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20210810093145.26153-1-krzysztof.kozlowski@canonical.com>
- <20210810093145.26153-7-krzysztof.kozlowski@canonical.com>
- <CAPLW+4=tOpaNGs6vxwyVy7xaeX+w_jhtY2P2U8sZGvm6mdqh1Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <2f8ff138-4d34-619c-e137-099dc9251e25@canonical.com>
-Date:   Wed, 11 Aug 2021 08:46:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S234897AbhHKGrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 02:47:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53656 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234760AbhHKGrS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 02:47:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B30CD6056C;
+        Wed, 11 Aug 2021 06:46:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628664415;
+        bh=cQZ5Ceo92fMCjMoNepYyMcCXXNTel21pdVZSy1necE8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=qdv/OdiGLopkL3HLUtMTkU/J55Jq5uVtPc+rOe2OqCI1vFdaj/fWhCo0PlrudoKyS
+         mn4T/GtTI6Mmu2FZSuwSez46llplA0WUkMZA+fdPH4dz0nA5YInlnFjNa+83qPleBa
+         dXa0/YgrSV/HsXseq7ianHJbfDxkTR5o5ItPHvnf/8sPWw8zqJ0CXb0HOG6+3wyoqM
+         E9YLbZmUrB/4kiYoBV4647gUoHq7TZkT//rMo68UMFhNc+Sv504DDZUFMDg6HMabMA
+         JMS/rlWHXtPuGbOj5bB+LQUu6Q+WO9ciKe3H9/WpZFB2CLLJNJkBw54osbhbassMD0
+         1QIWqV2SXli+A==
+Date:   Wed, 11 Aug 2021 08:46:48 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v3 0/4] DT schema changes for HiKey970 PCIe hardware to
+ work
+Message-ID: <20210811084648.66ddff29@coco.lan>
+In-Reply-To: <CAL_JsqL-R=kTugNAC-C1gfSm6Xnb0Nw_iLcRki8aQMNQjcLN6A@mail.gmail.com>
+References: <cover.1627965261.git.mchehab+huawei@kernel.org>
+        <CAL_JsqLjw=+szXWJjGe86tMc51NA-5j=jVSXUAWuKeZRuJNJUg@mail.gmail.com>
+        <20210804085045.3dddbb9c@coco.lan>
+        <YQrARd7wgYS1nywt@robh.at.kernel.org>
+        <20210805094612.2bc2c78f@coco.lan>
+        <20210805095848.464cf85c@coco.lan>
+        <CAL_JsqKso=z8LG3ViaggyS1k+1T2F5aAhP3_RNhumQoUUD+bbg@mail.gmail.com>
+        <20210810114211.01df0246@coco.lan>
+        <CAL_JsqKtXoFeJO6_13U+VsSXNGX_1TQvwOyQYRk5JUgBhvQChA@mail.gmail.com>
+        <20210810162054.1aa84b84@coco.lan>
+        <CAL_JsqL-R=kTugNAC-C1gfSm6Xnb0Nw_iLcRki8aQMNQjcLN6A@mail.gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAPLW+4=tOpaNGs6vxwyVy7xaeX+w_jhtY2P2U8sZGvm6mdqh1Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2021 19:46, Sam Protsenko wrote:
-> On Tue, 10 Aug 2021 at 12:32, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> Convert Samsung Exynos Audio SubSystem clock controller bindings to DT
->> schema format using json-schema.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  .../bindings/clock/clk-exynos-audss.txt       | 103 ------------------
->>  .../clock/samsung,exynos-audss-clock.yaml     |  79 ++++++++++++++
->>  2 files changed, 79 insertions(+), 103 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
->>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-audss-clock.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt b/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
->> deleted file mode 100644
->> index 6030afb10b5c..000000000000
->> --- a/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
->> +++ /dev/null
->> @@ -1,103 +0,0 @@
->> -* Samsung Audio Subsystem Clock Controller
->> -
->> -The Samsung Audio Subsystem clock controller generates and supplies clocks
->> -to Audio Subsystem block available in the S5PV210 and Exynos SoCs. The clock
->> -binding described here is applicable to all SoCs in Exynos family.
->> -
->> -Required Properties:
->> -
->> -- compatible: should be one of the following:
->> -  - "samsung,exynos4210-audss-clock" - controller compatible with all Exynos4 SoCs.
->> -  - "samsung,exynos5250-audss-clock" - controller compatible with Exynos5250
->> -    SoCs.
->> -  - "samsung,exynos5410-audss-clock" - controller compatible with Exynos5410
->> -    SoCs.
->> -  - "samsung,exynos5420-audss-clock" - controller compatible with Exynos5420
->> -    SoCs.
->> -- reg: physical base address and length of the controller's register set.
->> -
->> -- #clock-cells: should be 1.
->> -
->> -- clocks:
->> -  - pll_ref: Fixed rate PLL reference clock, parent of mout_audss. "fin_pll"
->> -    is used if not specified.
->> -  - pll_in: Input PLL to the AudioSS block, parent of mout_audss. "fout_epll"
->> -    is used if not specified.
->> -  - cdclk: External i2s clock, parent of mout_i2s. "cdclk0" is used if not
->> -    specified.
->> -  - sclk_audio: Audio bus clock, parent of mout_i2s. "sclk_audio0" is used if
->> -    not specified.
->> -  - sclk_pcm_in: PCM clock, parent of sclk_pcm.  "sclk_pcm0" is used if not
->> -    specified.
->> -
->> -- clock-names: Aliases for the above clocks. They should be "pll_ref",
->> -  "pll_in", "cdclk", "sclk_audio", and "sclk_pcm_in" respectively.
->> -
->> -Optional Properties:
->> -
->> -  - power-domains: a phandle to respective power domain node as described by
->> -    generic PM domain bindings (see power/power_domain.txt for more
->> -    information).
->> -
->> -The following is the list of clocks generated by the controller. Each clock is
->> -assigned an identifier and client nodes use this identifier to specify the
->> -clock which they consume. Some of the clocks are available only on a particular
->> -Exynos4 SoC and this is specified where applicable.
->> -
->> -Provided clocks:
->> -
->> -Clock           ID      SoC (if specific)
->> ------------------------------------------------
->> -
->> -mout_audss      0
->> -mout_i2s        1
->> -dout_srp        2
->> -dout_aud_bus    3
->> -dout_i2s        4
->> -srp_clk         5
->> -i2s_bus         6
->> -sclk_i2s        7
->> -pcm_bus         8
->> -sclk_pcm        9
->> -adma            10      Exynos5420
->> -
->> -Example 1: An example of a clock controller node using the default input
->> -          clock names is listed below.
->> -
->> -clock_audss: audss-clock-controller@3810000 {
->> -       compatible = "samsung,exynos5250-audss-clock";
->> -       reg = <0x03810000 0x0C>;
->> -       #clock-cells = <1>;
->> -};
->> -
->> -Example 2: An example of a clock controller node with the input clocks
->> -           specified.
->> -
->> -clock_audss: audss-clock-controller@3810000 {
->> -       compatible = "samsung,exynos5250-audss-clock";
->> -       reg = <0x03810000 0x0C>;
->> -       #clock-cells = <1>;
->> -       clocks = <&clock 1>, <&clock 7>, <&clock 138>, <&clock 160>,
->> -               <&ext_i2s_clk>;
->> -       clock-names = "pll_ref", "pll_in", "sclk_audio", "sclk_pcm_in", "cdclk";
->> -};
->> -
->> -Example 3: I2S controller node that consumes the clock generated by the clock
->> -           controller. Refer to the standard clock bindings for information
->> -           about 'clocks' and 'clock-names' property.
->> -
->> -i2s0: i2s@3830000 {
->> -       compatible = "samsung,i2s-v5";
->> -       reg = <0x03830000 0x100>;
->> -       dmas = <&pdma0 10
->> -               &pdma0 9
->> -               &pdma0 8>;
->> -       dma-names = "tx", "rx", "tx-sec";
->> -       clocks = <&clock_audss EXYNOS_I2S_BUS>,
->> -               <&clock_audss EXYNOS_I2S_BUS>,
->> -               <&clock_audss EXYNOS_SCLK_I2S>,
->> -               <&clock_audss EXYNOS_MOUT_AUDSS>,
->> -               <&clock_audss EXYNOS_MOUT_I2S>;
->> -       clock-names = "iis", "i2s_opclk0", "i2s_opclk1",
->> -                     "mout_audss", "mout_i2s";
->> -};
+Em Tue, 10 Aug 2021 11:13:48 -0600
+Rob Herring <robh@kernel.org> escreveu:
+
+> > > >                                         compatible = "pciclass,0604";
+> > > >                                         device_type = "pci";
+> > > >                                         #address-cells = <3>;
+> > > >                                         #size-cells = <2>;
+> > > >                                         ranges;
+> > > >                                 };
+> > > >                                 pcie@1,0 { // Lane 4: M.2  
+> > >
+> > > These 3 nodes (1, 5, 7) need to be child nodes of the above node.  
 > 
-> Seems like some examples and "Provided clocks" table were dropped in
-> in yaml binding. Also there is no description for example present in
-> yaml file. Is that some redundant info and was dropped intentionally?
-> I'm just worrying about losing some useful info during the conversion.
+> This was the main issue.
 
-I don't see any point of having a clock consumer example in a clock
-provider binding.
+Ok, placing 1, 5, 7 as child nodes of 0 worked, with the attached
+DT schema:
 
 
-Best regards,
-Krzysztof
+	$ ls -l $(find /sys/devices/platform/soc/f4000000.pcie/ -name of_node)
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/of_node -> ../../../../firmware/devicetree/base/soc/pcie@f4000000
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:01.0/of_node -> ../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@1,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:01.0/pci_bus/0000:03/of_node -> ../../../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@1,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:05.0/of_node -> ../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@5,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:05.0/pci_bus/0000:05/of_node -> ../../../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@5,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:07.0/of_node -> ../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:07.0/pci_bus/0000:06/of_node -> ../../../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/of_node -> ../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/pci_bus/0000:02/of_node -> ../../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/of_node -> ../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/pci_bus/0000:01/of_node -> ../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0
+	lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f4000000.pcie/pci0000:00/pci_bus/0000:00/of_node -> ../../../../../../../firmware/devicetree/base/soc/pcie@f4000000
+
+The logs also seem OK on my eyes:
+
+	[    3.911082]  (null): pci_set_bus_of_node: of_node: /soc/pcie@f4000000
+	[    4.001104] pci 0000:00:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000
+	[    4.043609] pci_bus 0000:01: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
+	[    4.076756] pci 0000:01:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
+	[    4.120652] pci_bus 0000:02: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	[    4.150766] pci 0000:02:01.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	[    4.196413] pci 0000:02:04.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	[    4.238896] pci 0000:02:05.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	[    4.280116] pci 0000:02:07.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	[    4.309821] pci 0000:02:09.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0
+	[    4.370830] pci_bus 0000:03: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@1,0
+	[    4.382345] pci_bus 0000:04: pci_set_bus_of_node: of_node: (null)
+	[    4.411966] pci_bus 0000:05: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@5,0
+	[    4.439898] pci_bus 0000:06: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
+	[    4.491616] pci 0000:06:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
+	[    4.519907] pci_bus 0000:07: pci_set_bus_of_node: of_node: (null)
+
+Thanks,
+Mauro
+
+
+		pcie@f4000000 {
+			compatible = "hisilicon,kirin970-pcie";
+			reg = <0x0 0xf4000000 0x0 0x1000000>,
+			      <0x0 0xfc180000 0x0 0x1000>,
+			      <0x0 0xf5000000 0x0 0x2000>;
+			reg-names = "dbi", "apb", "config";
+			bus-range = <0x00 0xff>;
+			#address-cells = <3>;
+			#size-cells = <2>;
+			device_type = "pci";
+			phys = <&pcie_phy>;
+			ranges = <0x02000000 0x0 0x00000000
+				  0x0 0xf6000000
+				  0x0 0x02000000>;
+			num-lanes = <1>;
+			#interrupt-cells = <1>;
+			interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "msi";
+			interrupt-map-mask = <0 0 0 7>;
+			interrupt-map = <0x0 0 0 1
+					 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+					<0x0 0 0 2
+					 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+					<0x0 0 0 3
+					 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
+					<0x0 0 0 4
+					 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
+			reset-gpios = <&gpio7 0 0>;
+			hisilicon,clken-gpios = <&gpio27 3 0>, <&gpio17 0 0>,
+						<&gpio20 6 0>;
+			pcie@0,0 { // Lane 0: PCIe switch: Bus 1, Device 0
+				reg = <0x80 0 0 0 0>;
+				compatible = "pciclass,0604";
+				device_type = "pci";
+				#address-cells = <3>;
+				#size-cells = <2>;
+				ranges;
+				bus-range = <0x01 0xff>;
+				msi-parent = <&its_pcie>;
+
+				pcie@0,0 { // Lane 0: upstream
+					reg = <0x010000 0 0 0 0>;
+					compatible = "pciclass,0604";
+					device_type = "pci";
+					#address-cells = <3>;
+					#size-cells = <2>;
+					ranges;
+
+					pcie@1,0 { // Lane 4: M.2
+						reg = <0x010800 0 0 0 0>;
+						compatible = "pciclass,0604";
+						device_type = "pci";
+						reset-gpios = <&gpio3 1 0>;
+						#address-cells = <3>;
+						#size-cells = <2>;
+						ranges;
+					};
+
+					pcie@5,0 { // Lane 5: Mini PCIe
+						reg = <0x012800 0 0 0 0>;
+						compatible = "pciclass,0604";
+						device_type = "pci";
+						reset-gpios = <&gpio27 4 0 >;
+						#address-cells = <3>;
+						#size-cells = <2>;
+						ranges;
+					};
+
+					pcie@7,0 { // Lane 6: Ethernet
+						reg = <0x013800 0 0 0 0>;
+						compatible = "pciclass,0604";
+						device_type = "pci";
+						reset-gpios = <&gpio25 2 0 >;
+						#address-cells = <3>;
+						#size-cells = <2>;
+						ranges;
+					};
+				};
+			};
+		};
