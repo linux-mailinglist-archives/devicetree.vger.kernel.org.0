@@ -2,188 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FF643EAA33
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 20:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2F63EAADD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 21:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231956AbhHLSZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 14:25:28 -0400
-Received: from smtp-out1.suse.de ([195.135.220.28]:56120 "EHLO
-        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230382AbhHLSZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 14:25:28 -0400
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id AD648222BC;
-        Thu, 12 Aug 2021 18:25:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1628792701; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hi7oLyJPDXy6ku7Fi1Eh5N37tZq9adDeMnE5MM3p5aw=;
-        b=Um9FeldPod2W1iDCfCP0Ry0hLB1fcDvQ5r4CeqJavrZVxHoDEpPX7z82oe5+OMRU/vvOED
-        T7QzsfAIk2IMrsmgfICFLWEz1MXNUod2hrUxnhzDZQtUPSQBv9geVNPyTH7fFQ2sR5Elo2
-        cu9E98A+sRsYH+XQHZs9JElMgeZQlIo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1628792701;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hi7oLyJPDXy6ku7Fi1Eh5N37tZq9adDeMnE5MM3p5aw=;
-        b=JuGetmj7oS0dbWVeFAdO8QVBznkhWJRx7sRhyRuDHphk/SlocukjawxaHSUgMP+cBSaoA5
-        L6fFSx1RemJEZmBA==
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 1A9B413AD4;
-        Thu, 12 Aug 2021 18:25:01 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap1.suse-dmz.suse.de with ESMTPSA
-        id UW1pBX1nFWGlGwAAGKfGzw
-        (envelope-from <afaerber@suse.de>); Thu, 12 Aug 2021 18:25:01 +0000
-To:     Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        s32@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
-        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
-        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
-References: <20210805065429.27485-1-clin@suse.com>
- <20210805065429.27485-8-clin@suse.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Subject: Re: [PATCH 7/8] arm64: dts: s32g2: add memory nodes for evb and rdb2
-Message-ID: <17ab7b71-2dbe-0c66-e180-4cc2e8310441@suse.de>
-Date:   Thu, 12 Aug 2021 20:25:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S233818AbhHLTXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 15:23:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233436AbhHLTXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 15:23:07 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BEE1C0617A8
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 12:22:41 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id a20so8649125plm.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 12:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Qb+FI0jSCsZyHH1Ia4kbzXwLXCw4sowjg/unRazGFOw=;
+        b=j8cQMpokfQuLRgHm07RR5lcnPohAYewhPt1EspVbwh4WNHr7GGQvDm3kmECAFwxwW8
+         jhbPlSAsren8SdoC+d8S8uO8TfchuQSUWI0bK9y+pjIJBSt5nSr77a9k+j+Tq1b1NGAS
+         tTE9TMfvEPFduwrbXRQDM01A2S6J85S2QCkPs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Qb+FI0jSCsZyHH1Ia4kbzXwLXCw4sowjg/unRazGFOw=;
+        b=IY5eb6+8oVEuvLP4YWlaEIX/cQgMSj1BItTf7ePyjXJSH/w0q/jATZZpHcnz45b71+
+         Znq7kiL4Z1ppmHkSkFXDRI9NvI23Gq6S+TLzAebXcT9+cD0WzmIpdYqtwHDuvJotfz8s
+         lrY5HCdwtSetGwYRGPKuUwW0pVmlFA9MvcRHR3FTl2PlGLaOKDbnUaSCRdd/mmYmEEDn
+         EmA6hXIuY2i9ITTps20O13xuh/q68VO9RdRIv3L2K2b3UX58udKnrYpZhdXxHXFgHUiK
+         6Y+Z9KRTE8kiMhgkAdX6NQznv5pI1+WbECGiWqMhayhT9lBs3znyv1GoK0dUalGCsqLb
+         minQ==
+X-Gm-Message-State: AOAM530SIwUf1LYeE4PzPLuZxZ0LO8i8Xh6+ewBGfvIIootNCFleX4Fm
+        hGXPqryJZoeY3uD3E40EpSuLlA==
+X-Google-Smtp-Source: ABdhPJwPH80t5d7F/jYCYlTC6qaJ9oXn39f+IjkD6biu7WuSZq9ZoVowWfDG6IADtOsKsh6cCUYT5A==
+X-Received: by 2002:a05:6a00:1c71:b029:3e0:4537:a1d4 with SMTP id s49-20020a056a001c71b02903e04537a1d4mr5590743pfw.1.1628796161176;
+        Thu, 12 Aug 2021 12:22:41 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6683:43e5:ba4c:d76c])
+        by smtp.gmail.com with UTF8SMTPSA id j22sm4434963pgb.62.2021.08.12.12.22.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Aug 2021 12:22:40 -0700 (PDT)
+Date:   Thu, 12 Aug 2021 12:22:39 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajesh Patil <rajpat@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org
+Subject: Re: [PATCH V5 6/7] arm64: dts: sc7280: Configure uart7 to support
+ bluetooth on sc7280-idp
+Message-ID: <YRV0/8qtlMyVSDRI@google.com>
+References: <1628754078-29779-1-git-send-email-rajpat@codeaurora.org>
+ <1628754078-29779-7-git-send-email-rajpat@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20210805065429.27485-8-clin@suse.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Disposition: inline
+In-Reply-To: <1628754078-29779-7-git-send-email-rajpat@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chester et al.,
-
-On 05.08.21 08:54, Chester Lin wrote:
-> Add memory nodes for S32G-VNP-EVB and S32G-VNP-RDB2 since they have fixed
-> RAM size.
-
-You can drop "since they have fixed RAM size" - if they didn't, you
-would simply choose the lowest size and rely on the bootloader (U-Boot)
-to overwrite it with the actually detected size.
-
-Please expand why this patch is separate - BSP based, I assume?
-
+On Thu, Aug 12, 2021 at 01:11:17PM +0530, Rajesh Patil wrote:
+> Add bluetooth uart pin configuration for sc7280-idp.
 > 
-> Signed-off-by: Chester Lin <clin@suse.com>
-> ---
->  arch/arm64/boot/dts/freescale/s32g274a-evb.dts  | 8 ++++++++
->  arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts | 8 ++++++++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-> index a1ae5031730a..cd41f0af5dd8 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-> +++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
->  /*
->   * Copyright (c) 2021 SUSE LLC
-> + * Copyright 2019-2020 NXP
+> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
 
-@NXP: Please review year, alignment. Do any Signed-off-bys apply?
-
->   */
->  
->  /dts-v1/;
-> @@ -14,6 +15,13 @@ / {
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* 4GB RAM */
-
-This looks strange to me - either put /* 4 GiB RAM */ before the node,
-three lines above, and/or append comment /* 2 GiB */ on each line below.
-Note the space, and suggest to be precise about factor 1024 vs. 1000.
-
-> +		reg = <0 0x80000000 0 0x80000000>,
-
-Note that this gives you the range to use for the .dtsi /soc node:
-Address 0x0 with size 0x80000000 gets mapped to 0x0 0x0, excluding the
-upper 0x80000000 for the RAM here. Or address 0x0 0x0 for two /soc cells
-if there are high-memory peripherals.
-
-> +		      <8 0x80000000 0 0x80000000>;
-
-Maybe use 0x8 here and 0x0 above? (second 0 stays same, so don't mind)
-
-> +	};
->  };
->  
->  &uart0 {
-> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-> index b2faae306b70..8fbbf3b45eb8 100644
-> --- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-> +++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
->  /*
->   * Copyright (c) 2021 SUSE LLC
-> + * Copyright 2019-2020 NXP
-
-@NXP: 2021?
-
->   */
->  
->  /dts-v1/;
-> @@ -14,6 +15,13 @@ / {
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		/* 4GB RAM */
-> +		reg = <0 0x80000000 0 0x80000000>,
-> +		      <8 0x80000000 0 0x80000000>;
-> +	};
-
-Same comments as for EVB.
-
->  };
->  
->  &uart0 {
-
-Regards,
-Andreas
-
--- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
