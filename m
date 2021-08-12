@@ -2,144 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4893EA827
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 18:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 849A83EA835
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 18:04:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238195AbhHLQA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 12:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238449AbhHLQAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 12:00:55 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AB8C0613D9
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 09:00:30 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id s184so9144487ios.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 09:00:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rkJ9eY9sNpdQyMVe+0pcG6m3ooB5K5M6INJoQWT+o/s=;
-        b=GjuNVqDaRiqBz4zyK3V+2n5ScpxGtvZN3wriHUi73F3HvZgp8MxBgFES6Be6wbG5m0
-         GSxHwamV94HZmZTH8PfGJhxOIGpstPYtiq6pZsX0M7UqSaCCe1EiGRggq5unN6IQSwxU
-         Jj9XsqDEaiovSVkXYaqxVSyDGOCN4INNyRZ3A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rkJ9eY9sNpdQyMVe+0pcG6m3ooB5K5M6INJoQWT+o/s=;
-        b=Blk/7PD+xXK6p8PPw3iRAxgsE9c+mfNpdR2/UZDPv4FNBvtU8UVLeGNKUusFZwt63h
-         iK/JlaG+ft/8Ry3AGcPLeGyTQGYUmHY3Jp41cf21Ce/U2lpanTB2oGwYVoaUo7E2LxDL
-         jF28ZPwbIvSXPVTc+KBaWtItM3fvVH7lUkIofS/gv2dmqVzDSXbDBbYSfRXvXkrdFmxJ
-         cpY1usEOAEVIK41+bqnfAf2E+l/TH9PSdivtiJ7PVzB987ConTdx96YauguTkt0G/S78
-         XT8s4TfWEsAYwEEEUdDQmPSDEMW+5tJ5rdwWkNr2q5srbIO6m6awr5sWKcs2tXNDwvaG
-         s7ZQ==
-X-Gm-Message-State: AOAM530M02tV9sDItBcA8hK4RSGIHQdoqLPhzqLAo7m4B4lvsJDLwhov
-        dMVYuUFecWzyPUYUAdT8nU0NJJwFjQbktw==
-X-Google-Smtp-Source: ABdhPJzGo2lUKdmguXYB/kygsxT6plnScZ5lahWGbCDXCRCkK4TISqVLfmC8tj8i7JzrpzkhkDChGA==
-X-Received: by 2002:a02:a196:: with SMTP id n22mr4457328jah.24.1628784029576;
-        Thu, 12 Aug 2021 09:00:29 -0700 (PDT)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
-        by smtp.gmail.com with ESMTPSA id m10sm716137ilg.20.2021.08.12.09.00.27
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Aug 2021 09:00:27 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id y1so9052340iod.10
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 09:00:27 -0700 (PDT)
-X-Received: by 2002:a05:6602:713:: with SMTP id f19mr3710787iox.140.1628784026906;
- Thu, 12 Aug 2021 09:00:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210730212625.3071831-1-dianders@chromium.org>
- <YQmp3mGpLW+ELxAC@ravnborg.org> <CAD=FV=XxOXJEgq7SiOVwSo2eWEbekQqutucFP=MmrrtmStXxog@mail.gmail.com>
- <YRTsFNTn/T8fLxyB@ravnborg.org>
-In-Reply-To: <YRTsFNTn/T8fLxyB@ravnborg.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 12 Aug 2021 09:00:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UiATFdiYbrAtinmu3BwO=XoOLaWBkypxRwm+GqfQEhyg@mail.gmail.com>
-Message-ID: <CAD=FV=UiATFdiYbrAtinmu3BwO=XoOLaWBkypxRwm+GqfQEhyg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] eDP: Support probing eDP panels dynamically
- instead of hardcoding
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        id S229589AbhHLQFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 12:05:12 -0400
+Received: from smtp-out1.suse.de ([195.135.220.28]:39438 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229531AbhHLQFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 12:05:11 -0400
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 5E6F5222AF;
+        Thu, 12 Aug 2021 16:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1628784285; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Hd5YnS5VlsByO54UINflxFxM7cPEyatBOwZmq8q+1yw=;
+        b=YotCp8PjStL4i9ffUhS9OoZX8QnH2jB2T/zk6/oQWD3WHdpPYMmveaqDEw7oId8so/Esu4
+        F0HIeCyp+gdzwOqnaJj1VQj/1JZHQsE4Eazs6QU6BaXIQ2w+5dx2NziXeHfnuGaxFdrXmq
+        MaFZgG82KZeixNCbQrDWkj0vQf8kCsI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1628784285;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Hd5YnS5VlsByO54UINflxFxM7cPEyatBOwZmq8q+1yw=;
+        b=OQuQ6s6K3EktLNE86QftmfX7DWBZd9pvqvcwE+zzMBxxZMjI5KN0YAaXc6xsjREBlTbt8t
+        uj3+YfCflhWq/iCA==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id C8F1813ACC;
+        Thu, 12 Aug 2021 16:04:44 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap1.suse-dmz.suse.de with ESMTPSA
+        id 8uSJL5xGFWEDfAAAGKfGzw
+        (envelope-from <afaerber@suse.de>); Thu, 12 Aug 2021 16:04:44 +0000
+To:     Chester Lin <clin@suse.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Linus W <linus.walleij@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Jagan Teki <jagan@amarulasolutions.com>, s32@nxp.com,
+        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
+        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
+        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
+References: <20210805065429.27485-1-clin@suse.com>
+ <20210805065429.27485-3-clin@suse.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Subject: Re: [PATCH 2/8] dt-bindings: serial: fsl-linflexuart: convert to
+ json-schema format
+Message-ID: <1ff13837-e6ca-c476-376d-b4f80450a259@suse.de>
+Date:   Thu, 12 Aug 2021 18:04:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
+MIME-Version: 1.0
+In-Reply-To: <20210805065429.27485-3-clin@suse.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 05.08.21 08:54, Chester Lin wrote:
+> Convert the FSL LINFlexD UART binding to json-schema.
+> 
+> Signed-off-by: Chester Lin <clin@suse.com>
+> ---
+>  .../bindings/serial/fsl,s32-linflexuart.txt   | 22 ---------
+>  .../bindings/serial/fsl,s32-linflexuart.yaml  | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
 
-On Thu, Aug 12, 2021 at 2:38 AM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Doug,
-> On Mon, Aug 09, 2021 at 03:18:03PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Aug 3, 2021 at 1:41 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> > >
-> > > Hi Douglas,
-> > >
-> > > On Fri, Jul 30, 2021 at 02:26:19PM -0700, Douglas Anderson wrote:
-> > > > The goal of this patch series is to move away from hardcoding exact
-> > > > eDP panels in device tree files. As discussed in the various patches
-> > > > in this series (I'm not repeating everything here), most eDP panels
-> > > > are 99% probable and we can get that last 1% by allowing two "power
-> > > > up" delays to be specified in the device tree file and then using the
-> > > > panel ID (found in the EDID) to look up additional power sequencing
-> > > > delays for the panel.
-> > >
-> > > Have you considered a new driver for edp panels?
-> > > panel-edp.c?
-> > >
-> > > There will be some duplicate code from pnale-simple - but the same can
-> > > be said by the other panel drivers too.
-> > > In the end I think it is better to separate them so we end up with two
-> > > less complex panel drivers rather than one do-it-all panel driver.
-> > >
-> > > I have not looked in detail how this would look like, but my first
-> > > impression is that we should split it out.
-> >
-> > I certainly could, but my argument against it is that really it's the
-> > exact same set of eDP panels that would be supported by both drivers.
->
-> The idea was to move all eDP panels to the new driver.
->
-> My hope it that we can make panel-simple handle a more more narrow set
-> of panels. eDP capable displays are IMO not simple panels.
+Thanks for your effort, Chester.
 
-Ah! OK, this makes sense. I can work on this, though it might be a
-short while before I can. I think moving all eDP panels out of
-panel-simple.c to something like panel-simple-edp.c makes sense. It
-will be a patch that will be very hard to cherry-pick anywhere since
-it will conflict with everything but it should be doable.
+> diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
+> deleted file mode 100644
+> index f1bbe0826be5..000000000000
+> --- a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -* Freescale LINFlexD UART
+> -
+> -The LINFlexD controller implements several LIN protocol versions, as well as
+> -support for full-duplex UART communication through 8-bit and 9-bit frames.
+> -
+> -See chapter 47 ("LINFlexD") in the reference manual[1].
+> -
+> -Required properties:
+> -- compatible :
+> -  - "fsl,s32v234-linflexuart" for LINFlexD configured in UART mode, which
+> -    is compatible with the one integrated on S32V234 SoC
+> -- reg : Address and length of the register set for the device
+> -- interrupts : Should contain uart interrupt
+> -
+> -Example:
+> -uart0: serial@40053000 {
+> -	compatible = "fsl,s32v234-linflexuart";
+> -	reg = <0x0 0x40053000 0x0 0x1000>;
+> -	interrupts = <0 59 4>;
+> -};
+> -
+> -[1] https://www.nxp.com/webapp/Download?colCode=S32V234RM
+> diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+> new file mode 100644
+> index 000000000000..acfe34706ccb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
+Since this is dual-licensed and BSD-2-Clause would seem compatible with
+GPLv3, this could probably be s/GPL-2.0-only/GPL-2.0-or-later/ ? Not a
+blocker.
 
-> Likewise DSI capable panels could also be pulled out of panel-simple.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/fsl,s32-linflexuart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale LINFlexD UART
+> +
+> +description: |
+> +  The LINFlexD controller implements several LIN protocol versions, as well
+> +  as support for full-duplex UART communication through 8-bit and 9-bit
+> +  frames. See chapter 47 ("LINFlexD") in the reference manual
+> +  https://www.nxp.com/webapp/Download?colCode=S32V234RM.
+> +
+> +maintainers:
+> +  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> +  - Rob Herring <robh@kernel.org>
 
-At the moment I haven't done much with DSI panels so I might leave
-them in panel-simple for now. I'll evaluate to see how nasty it would
-be for me to try this.
+@Shawn: I assume we need both of them to ack this (or an S32V maintainer
+to volunteer), since they were not named in the .txt file before?
 
+> +
+> +allOf:
+> +  - $ref: "serial.yaml"
+> +
+> +properties:
+> +  compatible:
+> +    description: The LINFlexD controller on S32V234 SoC, which can be
+> +      configured in UART mode.
+> +    items:
+> +      - const: fsl,s32v234-linflexuart
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    serial@40053000 {
+> +        compatible = "fsl,s32v234-linflexuart";
+> +        reg = <0x40053000 0x1000>;
+> +        interrupts = <0 59 4>;
+> +    };
 
-> This would continue to duplicate some code - but we have a lot of
-> duplicated code across the various panels and the best way forward
-> would be to implement more helpers that can be used by the drivers.
->
->         Sam - who is trying to recover form the deadly man flu...
+Otherwise looking sane,
 
-Feel better!
+Reviewed-by: Andreas Färber <afaerber@suse.de>
 
--Doug
+Thanks,
+Andreas
+
+-- 
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
