@@ -2,295 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE693EA4E4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 14:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 054F83EA4F8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 14:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237532AbhHLMuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 08:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237119AbhHLMuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 08:50:20 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C33C0613D5
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 05:49:55 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id e15so7122251plh.8
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 05:49:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5z0VowACz7VDyFWYhf5Cy8tEEuH9sKtUeLjj1X1gkAI=;
-        b=jV8XjH/ivkKLoOOqhHVooa/MFuAMdidUq1vkDJSP4ySAwN1feA+PcX3ryvq3u8M57C
-         rXr/aWdju259m/4moctfZUigX9KJIpfaqLm0+epPxcoIhgAQ3VcqoGwqP9i70vreZect
-         B91AfY2kHiDOmhmYVRT8FaW44YRZ8gN6VXvU4=
+        id S236506AbhHLM5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 08:57:23 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:43733 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235400AbhHLM5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 08:57:23 -0400
+Received: by mail-ot1-f42.google.com with SMTP id r16-20020a0568304190b02904f26cead745so7563243otu.10;
+        Thu, 12 Aug 2021 05:56:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5z0VowACz7VDyFWYhf5Cy8tEEuH9sKtUeLjj1X1gkAI=;
-        b=o8GZIdaj5LVJU8B3Fm5WbGMC0Pg597R7aqKNBtZtpTJ6fw5kfkg+TZCocDrnxFCYtU
-         i4f3Q8nu6HhCdq4L8Z1mZZ78RK3OyhDtIciJrgGd/DSBciozcka/RGRAKrtQSRDRPl5b
-         12MjtvNapvGVCFtde7ywBCiY0Cb3R7kzUz357/rBZWMEYxF51eHNpHfBaC/t8zIEJS+p
-         V5jMp6Iesvd+TfgqJTOIrSSOrkfhjbBRLcCXmMgInbsXgDelVM6pvlhh2Loe0qIfhpp2
-         +cDHycgeKVSlXXapd/GJLLVi8IYs7TU5xkOK/RG+Wp1ENEYO8U3Efwu69r+au/7AFnOF
-         G4tw==
-X-Gm-Message-State: AOAM531bcv03LgDEXt6CGUDDqttntJQW7YDB0SWQpnpMQGqe6fzbJmoF
-        HT/+P6EvDTgEeMzyhUgV9VffLw==
-X-Google-Smtp-Source: ABdhPJygBWv3m1fW/5ZUmjk8RDvXWMWkUQJxUwExxcjgFYPujCdWcsdMIJo1hmZq6O7GOBVcp8LKHQ==
-X-Received: by 2002:a63:5f15:: with SMTP id t21mr537152pgb.391.1628772595146;
-        Thu, 12 Aug 2021 05:49:55 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:9d69:4059:b8a6:e36f])
-        by smtp.gmail.com with UTF8SMTPSA id s15sm2461167pjr.9.2021.08.12.05.49.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Aug 2021 05:49:54 -0700 (PDT)
-Date:   Thu, 12 Aug 2021 05:49:53 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     rajpat@codeaurora.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org
-Subject: Re: [PATCH V4 2/4] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
-Message-ID: <YRUY8fpm2AuqNqN+@google.com>
-References: <1627306847-25308-1-git-send-email-rajpat@codeaurora.org>
- <1627306847-25308-3-git-send-email-rajpat@codeaurora.org>
- <YP7cmkayoajJ+1yj@google.com>
- <bdfd39def9a11104c043090d920ef4df@codeaurora.org>
- <YRPkI8AQAjjFuXcf@google.com>
- <71fd47e7a83e2c56c96e2638004a7812@codeaurora.org>
+        bh=1Dn1hE2ukpz/WECVCplI+uSk9eP83Ym70szgfvUF3Ew=;
+        b=E/L/+q+kpH61k3Z+SzMUkFXlxIOZK4yb1KaGUtDpweA8kSMS2+DiaJj7TsVRAoBQzD
+         0kIzTFf1OJw+nXXclxCbGw3li/5O4GcRLkUkGXkI+/KogCCJb3IQbZLKSb+fkeEhBJKA
+         KB+Iimp+4+LTE3e9NvAjgjAdZK5jSp1fhVRab+xcJ5r9ab75ggRyMXIVBc4FqShgY0dF
+         mw141bcvbQmBGUyj1+fwP/HGlxd0ZrV3cKHLvJGTY3xLIqlJcT+1IrR9bb6QrA/W+C+E
+         hL7f5ANoIZUMKrsdU1DLpK5K6NEco+DnnUeAWhUCBk9BavsunNM69+lwCGzBiT+AdCjI
+         XKCw==
+X-Gm-Message-State: AOAM530G4KF74mgGCZYjBKptI22cEAw5JopqBWIOI6MLtnUCqhQRh7Dx
+        0RNKAZfH+Cv0QvetJ3ZEnQ==
+X-Google-Smtp-Source: ABdhPJyYec/VgtswnBEuZftjOY/B95EXc8HL+d/1/ZZhKfJ0OjKyRLmPhayd9j8kaFtttlHgnA2WNg==
+X-Received: by 2002:a05:6830:1108:: with SMTP id w8mr3321893otq.88.1628773017952;
+        Thu, 12 Aug 2021 05:56:57 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d2sm592888otl.32.2021.08.12.05.56.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Aug 2021 05:56:57 -0700 (PDT)
+Received: (nullmailer pid 1259131 invoked by uid 1000);
+        Thu, 12 Aug 2021 12:56:56 -0000
+Date:   Thu, 12 Aug 2021 07:56:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: PCI: kirin: fix HiKey970 example
+Message-ID: <YRUamNF18ese0DYw@robh.at.kernel.org>
+References: <cover.1628754620.git.mchehab+huawei@kernel.org>
+ <655e21422a14620ae2d55335eb72bcaa66f5384d.1628754620.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <71fd47e7a83e2c56c96e2638004a7812@codeaurora.org>
+In-Reply-To: <655e21422a14620ae2d55335eb72bcaa66f5384d.1628754620.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 12, 2021 at 12:43:11PM +0530, rajpat@codeaurora.org wrote:
-> On 2021-08-11 20:22, Matthias Kaehlcke wrote:
-> > On Wed, Aug 11, 2021 at 05:43:48PM +0530, rajpat@codeaurora.org wrote:
-> > > On 2021-07-26 21:32, Matthias Kaehlcke wrote:
-> > > > On Mon, Jul 26, 2021 at 07:10:45PM +0530, Rajesh Patil wrote:
-> > > > > From: Roja Rani Yarubandi <rojay@codeaurora.org>
-> > > > >
-> > > > > Add QUPv3 wrapper_0 DT nodes for SC7280 SoC.
-> > > > >
-> > > > > Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> > > > > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> > > > > ---
-> > > > > Changes in V4:
-> > > > >  - As per Bjorn's comment, added QUP Wrapper_0 nodes
-> > > > >    other than debug-uart node
-> > > > >  - Dropped interconnect votes for wrapper_0 node
-> > > > >
-> > > > > Changes in V3:
-> > > > >  - Broken the huge V2 patch into 3 smaller patches.
-> > > > >    1. QSPI DT nodes
-> > > > >    2. QUP wrapper_0 DT nodes
-> > > > >    3. QUP wrapper_1 DT nodes
-> > > > >
-> > > > > Changes in V2:
-> > > > >  - As per Doug's comments removed pinmux/pinconf subnodes.
-> > > > >  - As per Doug's comments split of SPI, UART nodes has been done.
-> > > > >  - Moved QSPI node before aps_smmu as per the order.
-> > > > >
-> > > > >  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  84 ++++
-> > > > >  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 720
-> > > > > ++++++++++++++++++++++++++++++++
-> > > > >  2 files changed, 804 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > > > b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > > > index b0bfd8e..f63cf51 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > > > @@ -358,6 +358,16 @@
-> > > > >  	vdda18-supply = <&vreg_l1c_1p8>;
-> > > > >  };
-> > > > >
-> > > > > +&uart7 {
-> > > > > +	status = "okay";
-> > > > > +
-> > > > > +	/delete-property/interrupts;
-> > > > > +	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > +				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-> > > > > +	pinctrl-names = "default", "sleep";
-> > > > > +	pinctrl-1 = <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
-> > > > > <&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
-> > > > > +};
-> > > > > +
-> > > > >  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
-> > > > >
-> > > > >  &qspi_cs0 {
-> > > > > @@ -428,3 +438,77 @@
-> > > > >  		bias-pull-up;
-> > > > >  	};
-> > > > >  };
-> > > > > +&qup_uart7_cts {
-> > > > > +	/*
-> > > > > +	 * Configure a pull-down on CTS to match the pull of
-> > > > > +	 * the Bluetooth module.
-> > > > > +	 */
-> > > > > +	bias-pull-down;
-> > > > > +};
-> > > > > +
-> > > > > +&qup_uart7_rts {
-> > > > > +	/* We'll drive RTS, so no pull */
-> > > > > +	drive-strength = <2>;
-> > > > > +	bias-disable;
-> > > > > +};
-> > > > > +
-> > > > > +&qup_uart7_tx {
-> > > > > +	/* We'll drive TX, so no pull */
-> > > > > +	drive-strength = <2>;
-> > > > > +	bias-disable;
-> > > > > +};
-> > > > > +
-> > > > > +&qup_uart7_rx {
-> > > > > +	/*
-> > > > > +	 * Configure a pull-up on RX. This is needed to avoid
-> > > > > +	 * garbage data when the TX pin of the Bluetooth module is
-> > > > > +	 * in tri-state (module powered off or not driving the
-> > > > > +	 * signal yet).
-> > > > > +	 */
-> > > > > +	bias-pull-up;
-> > > > > +};
-> > > > > +
-> > > > > +&tlmm {
-> > > > > +	qup_uart7_sleep_cts: qup-uart7-sleep-cts {
-> > > > > +		pins = "gpio28";
-> > > > > +		function = "gpio";
-> > > > > +		/*
-> > > > > +		 * Configure a pull-down on CTS to match the pull of
-> > > > > +		 * the Bluetooth module.
-> > > > > +		 */
-> > > > > +		bias-pull-down;
-> > > > > +	};
-> > > > > +
-> > > > > +	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
-> > > > > +		pins = "gpio29";
-> > > > > +		function = "gpio";
-> > > > > +		/*
-> > > > > +		 * Configure pull-down on RTS. As RTS is active low
-> > > > > +		 * signal, pull it low to indicate the BT SoC that it
-> > > > > +		 * can wakeup the system anytime from suspend state by
-> > > > > +		 * pulling RX low (by sending wakeup bytes).
-> > > > > +		 */
-> > > > > +		bias-pull-down;
-> > > > > +	};
-> > > > > +
-> > > > > +	qup_uart7_sleep_tx: qup-uart7-sleep-tx {
-> > > > > +		pins = "gpio30";
-> > > > > +		function = "gpio";
-> > > > > +		/*
-> > > > > +		 * Configure pull-up on TX when it isn't actively driven
-> > > > > +		 * to prevent BT SoC from receiving garbage during sleep.
-> > > > > +		 */
-> > > > > +		bias-pull-up;
-> > > > > +	};
-> > > > >
-> > > > > +	qup_uart7_sleep_rx: qup-uart7-sleep-rx {
-> > > > > +		pins = "gpio31";
-> > > > > +		function = "gpio";
-> > > > > +		/*
-> > > > > +		 * Configure a pull-up on RX. This is needed to avoid
-> > > > > +		 * garbage data when the TX pin of the Bluetooth module
-> > > > > +		 * is floating which may cause spurious wakeups.
-> > > > > +		 */
-> > > > > +		bias-pull-up;
-> > > > > +	};
-> > > > > +};
-> > > >
-> > > > How the patches of this series are split strikes me as a bit odd.
-> > > > Supposedly
-> > > > this patch adds the QUPv3 wrapper_0 DT nodes for the SC7280, however the
-> > > > above is the pin configuration for the Bluetooth UART of the SC7280 IDP
-> > > > board.
-> > > > I don't see a good reason why that should be part of this patch. It
-> > > > should be
-> > > > a separate change whose subject indicates that it configures the
-> > > > Bluetooth UART
-> > > > of the SC7280 IDP.
-> > > >
-> > > 
-> > > Okay will split this up.
-> > > 
-> > > > Without this conflation of SoC and board DT it would seem perfectly
-> > > > reasonable
-> > > > to squash this patch and '[4/4] arm64: dts: sc7280: Add QUPv3 wrapper_1
-> > > > nodes'
-> > > > into a single one, they are essentially doing the same thing, I see no
-> > > > need to
-> > > > have different patches for the wrapper 0 and 1 nodes.
-> > > 
-> > > Previously when QUP wrapper 0 and wrapper 1 nodes were added in single
-> > > patch, we faced some git issues as the patch was huge. Hence we
-> > > split it up.
-> > > https://partnerissuetracker.corp.google.com/issues/177045897#comment12
-> > 
-> > That bug tracker entry isn't public, this is what the comment says:
-> > 
-> > > I suspect that diff is just having a hard time since your patch
-> > > touches so
-> > > much stuff. Presumably you could make it happier if you broke your
-> > > patch
-> > > into smaller changes. For instance:
-> > > 
-> > > One patch that adds the quad SPI. After all the quad SPI isn't really
-> > > related to the other QUP stuff. One patch that fixes up the existing
-> > > "uart5" and the QUP it's on to be how it's supposed to be. One patch
-> > > that adds all the new stuff.
-> > 
-> > If I understand correctly the problem wasn't that the QUP wrappers are
-> > added in a single patch (which should be pretty straightforward to
-> > review), but that the previous patch(es) do too many things at once.
-> > Adding both QUP wrappers is conceptionally a single thing, the problem
-> > is intermingling that with adding board specific Bluetooth nodes, board
-> > flash nodes, pinconf for UART, etc
+On Thu, Aug 12, 2021 at 09:55:52AM +0200, Mauro Carvalho Chehab wrote:
+> The given example doesn't produce all of_nodes at sysfs.
+> Update it to reflect what's actually working.
 > 
-> Even after splitting the patches as suggested(i.e., additions and
-> modifications separately), if I add qup wrapper0 and wrapper1 nodes in
-> single patch the git diff is getting messed up. pasted the diff for
-> reference
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../bindings/pci/hisilicon,kirin-pcie.yaml    | 64 +++++++++++--------
+>  1 file changed, 36 insertions(+), 28 deletions(-)
 > 
-> 
-> +                       qup_spi14_cs_gpio: qup-spi14-cs_gpio {
-> +                               pins = "gpio59";
-> +                               function = "gpio";
-> +                       };
-> 
-> -                       assigned-clocks = <&gcc
-> GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> -                                         <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-> -                       assigned-clock-rates = <19200000>, <200000000>;
-> +                       qup_spi15_data_clk: qup-spi15-data-clk {
-> +                               pins = "gpio60", "gpio61", "gpio62";
-> +                               function = "qup17";
-> +                       };
-> 
-> -                       interrupts-extended = <&intc GIC_SPI 131
-> IRQ_TYPE_LEVEL_HIGH>,
-> -                                             <&pdc 14 IRQ_TYPE_EDGE_BOTH>,
-> -                                             <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
-> -                                             <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
-> -                       interrupt-names = "hs_phy_irq", "dp_hs_phy_irq",
-> -                                         "dm_hs_phy_irq", "ss_phy_irq";
-> +                       qup_spi15_cs: qup-spi15-cs {
-> +                               pins = "gpio63";
-> +                               function = "qup17";
-> +                       };
-> 
-> 
-> -                       power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
-> +                       qup_spi15_cs_gpio: qup-spi15-cs_gpio {
-> +                               pins = "gpio63";
-> +                               function = "gpio";
-> +                       };
-> 
+> diff --git a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+> index d05deebe9dbb..668a09e27139 100644
+> --- a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+> @@ -97,7 +97,6 @@ examples:
+>                <0x0 0xfc180000 0x0 0x1000>,
+>                <0x0 0xf5000000 0x0 0x2000>;
+>          reg-names = "dbi", "apb", "config";
+> -        msi-parent = <&its_pcie>;
+>          #address-cells = <3>;
+>          #size-cells = <2>;
+>          device_type = "pci";
+> @@ -116,43 +115,52 @@ examples:
+>                          <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
+>          reset-gpios = <&gpio7 0 0>;
+>          hisilicon,clken-gpios = <&gpio27 3 0>, <&gpio17 0 0>, <&gpio20 6 0>;
+> -
+> -        pcie@0 { // Lane 0: PCIe switch: Bus 1, Device 0
+> -          reg = <0 0 0 0 0>;
+> +        pcie@0,0 { // Lane 0: PCIe switch: Bus 1, Device 0
+> +          reg = <0x80 0 0 0 0>;
+>            compatible = "pciclass,0604";
+>            device_type = "pci";
+>            #address-cells = <3>;
+>            #size-cells = <2>;
+>            ranges;
+> -          pcie@1,0 { // Lane 4: M.2
+> -            reg = <0x800 0 0 0 0>;
+> +          msi-parent = <&its_pcie>;
 
-If the diffs actually end up more messy with a single patch in this case
-then there is no point for it. Thanks for trying.
+Why do we need this change? Adding the child nodes shouldn't change 
+the behavior here. I'd expect that we'd walk the parent nodes until we 
+find a 'msi-parent' much like 'interrupt-parent'.
+
+It looks like we walk PCI bus parents to get the MSI domain, but we 
+don't walk the DT node parents. 
+
+Adding Marc for his thoughts.
+
+Rob
