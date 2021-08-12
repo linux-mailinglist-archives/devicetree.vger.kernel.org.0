@@ -2,118 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 012CA3E9B1A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 01:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C16D83E9B8D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 02:20:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232498AbhHKXGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 19:06:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37916 "EHLO mail.kernel.org"
+        id S232931AbhHLAUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Aug 2021 20:20:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57748 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232434AbhHKXGI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 19:06:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DAE64610A3;
-        Wed, 11 Aug 2021 23:05:43 +0000 (UTC)
+        id S230185AbhHLAUb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Aug 2021 20:20:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BA8356104F;
+        Thu, 12 Aug 2021 00:20:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628723143;
-        bh=LBkFZQCUVSz/Rhx1ZP4O8O+xC4njvVvDFWJMqfhUzZc=;
+        s=k20201202; t=1628727606;
+        bh=8WwHn/zMxj39QrM8VdRSIm8zdth6Umf39XRXeWVmE6k=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=N7j+EgSapAyF+E2AEGflrSJiCZjpXiN2JMJWDRznUA/NrxH+lurInjTi1MtNpy85D
-         xrJ7HqMEM0cEO5JzCgW2Lz0DffXyBVfrtxqKIXiAn6i5bBxbOSn+zcxVG6d6GvMMrK
-         bVWXu4t+swt1Ylq/HkupY0NqVEegG6CVxnygcST8s+n1CW6/WYqUrUQkxfr5m2S/ow
-         pMTVv8JkSs5Lvg++Yqzdkq9L51sUm711vSUAPRNPiIeTBhtJ5goF6+14H2UfZQX2Vu
-         cZcu3ctNnysA4Km0Q2sG4gehaPE1JbwKv5poy95kXoLmCCFE/qu1rkqhn293tb2X4e
-         qMsycz3wt/GRg==
-Received: by mail-ej1-f47.google.com with SMTP id hs10so7625769ejc.0;
-        Wed, 11 Aug 2021 16:05:43 -0700 (PDT)
-X-Gm-Message-State: AOAM531q+BuvA+rgO9POSAQk/Z2zf640PYMH1v1bIecnJzjwRlMkLk1T
-        zS/dJfgysQe+dyX7sCL7sh6nqddD8wdA/izkAA==
-X-Google-Smtp-Source: ABdhPJyl3xEbZZiTrI86cuk97OLZ4BOIdeT1gJvH8o+OFIusAC3qYu99JLfekICMO5HYVUlnTIbMmIkwRgDjMX6NUW0=
-X-Received: by 2002:a17:906:fcd7:: with SMTP id qx23mr818236ejb.267.1628723142314;
- Wed, 11 Aug 2021 16:05:42 -0700 (PDT)
+        b=BPdorrsEj599FTpV2LS39F6Tkr7571nFfRknfLNvvlprN33+Mdmtk2FkntqYaOqT9
+         xLaKybLKzih4HlHo05atceeZjxSNlu8GRKunLtv0Vy7MSBt3ZZehXaCqTAYDXKzUBQ
+         Q3TtQ9dv+zW/TQv76lpXgVnEKnszkaB5MW1qUP1EmhTQjA0M2Cibm2POPpniTuIlnB
+         PRPoRAiIrFUblWwJrrZpoPjv9At7Cnqo7JNagMZn5ikS/M/QqSLAUogbQ3YFVF+xbx
+         /3SYgtHKDKew0Ctay6GJfjgMOtbqVniX9ov11YaLOCPp4Kc925XF3m/ssLUqBR/MaL
+         JudwvfnNexlYA==
+Received: by mail-ed1-f44.google.com with SMTP id r19so3279055eds.13;
+        Wed, 11 Aug 2021 17:20:06 -0700 (PDT)
+X-Gm-Message-State: AOAM530QG0gWRd+PZ+lTAVZsVWsZFN8HcMU7c0UoX9e1kKGQ0KB5AMw/
+        Fby6I2cLp32zeBWmZerPwJWnb/jiQ/APlCVEqA==
+X-Google-Smtp-Source: ABdhPJxKHb7wCRP3M/rwctlj0eB86IcbWXjn8UwsLLYmcTXsasU1mLRWPrWTRtopKhZ4g6A4oAdieVECbfuvx3wokHw=
+X-Received: by 2002:aa7:c857:: with SMTP id g23mr2005613edt.219.1628727605357;
+ Wed, 11 Aug 2021 17:20:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210810025503.16353-1-jason-jh.lin@mediatek.com>
-In-Reply-To: <20210810025503.16353-1-jason-jh.lin@mediatek.com>
+References: <1628646468-29775-1-git-send-email-yongqiang.niu@mediatek.com> <1628646468-29775-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1628646468-29775-2-git-send-email-yongqiang.niu@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 12 Aug 2021 07:05:31 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8+wnXxetnvijkc1FCN=bPuq8sO4psoTpjT9gS-4nieMw@mail.gmail.com>
-Message-ID: <CAAOTY_8+wnXxetnvijkc1FCN=bPuq8sO4psoTpjT9gS-4nieMw@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/mediatek: add AAL output size configuration
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Thu, 12 Aug 2021 08:19:54 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-qigNtPJETHsE8YaVqxctrZ7Y+a31f5eqOVHXPowuucw@mail.gmail.com>
+Message-ID: <CAAOTY_-qigNtPJETHsE8YaVqxctrZ7Y+a31f5eqOVHXPowuucw@mail.gmail.com>
+Subject: Re: [PATCH v4] drm/mediatek: clear pending flag when cmdq packet is done.
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        fshao@chromium.org, David Airlie <airlied@linux.ie>,
+        David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
         DTML <devicetree@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+Hi, Yongqiang:
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=881=
-0=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8810:55=E5=AF=AB=E9=81=93=EF=
-=BC=9A
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=
+=8811=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=889:48=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> To avoid the output width and height is incorrect,
-> AAL_OUTPUT_SIZE configuration should be set.
+> In cmdq mode, packet may be flushed before it is executed, so
+> the pending flag should be cleared after cmdq packet is done.
 
-Applied to mediatek-drm-fixes [1], thanks.
+Applied to mediatek-drm-next [1], thanks.
 
 [1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-fixes
+log/?h=3Dmediatek-drm-next
 
 Regards,
 Chun-Kuang.
 
 >
-> Fixes: 0664d1392c26 ("drm/mediatek: Add AAL engine basic function")
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
-> Change in v2:
-> - fix to one line
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 47 +++++++++++++++++++++++++++=
+++----
+>  1 file changed, 42 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.c
-> index 75bc00e17fc4..50d20562e612 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -34,6 +34,7 @@
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/me=
+diatek/mtk_drm_crtc.c
+> index 4c25e33..89f093d 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> @@ -267,6 +267,36 @@ static void ddp_cmdq_cb(struct mbox_client *cl, void=
+ *mssg)
+>  {
+>         struct mtk_drm_crtc *mtk_crtc =3D container_of(cl, struct mtk_drm=
+_crtc, cmdq_cl);
+>         struct cmdq_cb_data *data =3D mssg;
+> +       struct mtk_crtc_state *state;
+> +       unsigned int i;
+> +
+> +       state =3D to_mtk_crtc_state(mtk_crtc->base.state);
+> +
+> +       state->pending_config =3D false;
+> +
+> +       if (mtk_crtc->pending_planes) {
+> +               for (i =3D 0; i < mtk_crtc->layer_nr; i++) {
+> +                       struct drm_plane *plane =3D &mtk_crtc->planes[i];
+> +                       struct mtk_plane_state *plane_state;
+> +
+> +                       plane_state =3D to_mtk_plane_state(plane->state);
+> +
+> +                       plane_state->pending.config =3D false;
+> +               }
+> +               mtk_crtc->pending_planes =3D false;
+> +       }
+> +
+> +       if (mtk_crtc->pending_async_planes) {
+> +               for (i =3D 0; i < mtk_crtc->layer_nr; i++) {
+> +                       struct drm_plane *plane =3D &mtk_crtc->planes[i];
+> +                       struct mtk_plane_state *plane_state;
+> +
+> +                       plane_state =3D to_mtk_plane_state(plane->state);
+> +
+> +                       plane_state->pending.async_config =3D false;
+> +               }
+> +               mtk_crtc->pending_async_planes =3D false;
+> +       }
 >
->  #define DISP_AAL_EN                            0x0000
->  #define DISP_AAL_SIZE                          0x0030
-> +#define DISP_AAL_OUTPUT_SIZE                   0x04d8
+>         mtk_crtc->cmdq_vblank_cnt =3D 0;
+>         mtk_drm_cmdq_pkt_destroy(mtk_crtc->cmdq_chan, data->pkt);
+> @@ -423,7 +453,8 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crtc=
+,
+>                                     state->pending_vrefresh, 0,
+>                                     cmdq_handle);
 >
->  #define DISP_DITHER_EN                         0x0000
->  #define DITHER_EN                              BIT(0)
-> @@ -197,6 +198,7 @@ static void mtk_aal_config(struct device *dev, unsign=
-ed int w,
->         struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
+> -               state->pending_config =3D false;
+> +               if (!cmdq_handle)
+> +                       state->pending_config =3D false;
+>         }
 >
->         mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs,=
- DISP_AAL_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs,=
- DISP_AAL_OUTPUT_SIZE);
+>         if (mtk_crtc->pending_planes) {
+> @@ -443,9 +474,12 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crt=
+c,
+>                                 mtk_ddp_comp_layer_config(comp, local_lay=
+er,
+>                                                           plane_state,
+>                                                           cmdq_handle);
+> -                       plane_state->pending.config =3D false;
+> +                       if (!cmdq_handle)
+> +                               plane_state->pending.config =3D false;
+>                 }
+> -               mtk_crtc->pending_planes =3D false;
+> +
+> +               if (!cmdq_handle)
+> +                       mtk_crtc->pending_planes =3D false;
+>         }
+>
+>         if (mtk_crtc->pending_async_planes) {
+> @@ -465,9 +499,12 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crt=
+c,
+>                                 mtk_ddp_comp_layer_config(comp, local_lay=
+er,
+>                                                           plane_state,
+>                                                           cmdq_handle);
+> -                       plane_state->pending.async_config =3D false;
+> +                       if (!cmdq_handle)
+> +                               plane_state->pending.async_config =3D fal=
+se;
+>                 }
+> -               mtk_crtc->pending_async_planes =3D false;
+> +
+> +               if (!cmdq_handle)
+> +                       mtk_crtc->pending_async_planes =3D false;
+>         }
 >  }
 >
->  static void mtk_aal_gamma_set(struct device *dev, struct drm_crtc_state =
-*state)
 > --
-> 2.18.0
+> 1.8.1.1.dirty
 >
