@@ -2,169 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 371D53E9CC5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 05:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D477B3E9D30
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 06:10:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233530AbhHLDOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Aug 2021 23:14:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230171AbhHLDOJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Aug 2021 23:14:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3E3B1610A7;
-        Thu, 12 Aug 2021 03:13:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628738025;
-        bh=upoubUoFXUupbVihHazGgBdMNxy54/SCZ+T3/jlKERk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OqwSfW+yiJvyboc2kkEo2xyT9xNzZliDAW3jBXxzSAjFLlvb+FE/m/C5FwmRU5WaL
-         PoqT4RztphbwRX/w+Be9o+BR3opJ+qTRTYo03xsvoWplFj8Jh5qdbEp13WfVuflwSd
-         tj2gV3FEQKZedTJ+I+rNTCv7ZLIWv3N9ted/muxXXNmGzmC9OSvCnj+PQ6lkZoyqcW
-         wXG7jVeRXi3ewnrqw/e1mpzEVCxxtwE6zIeSaPUdd9HA1BvnyIwNR5rokED8k3yokh
-         B4LE0bN0wNbCZ0TP11TjQr6+F6Ag0NLsA0ySeOt7uE/YU+gL2KtAYa1daCEipciEXK
-         5XxVCj2Zs6LGw==
-Received: by mail-ed1-f47.google.com with SMTP id x14so7142422edr.12;
-        Wed, 11 Aug 2021 20:13:45 -0700 (PDT)
-X-Gm-Message-State: AOAM531Gsyakwt4gTacJ8XG0f5HH0hB8wUJtEZTyHnyFta65D6HrqixI
-        HOjRiG5809gQ2GLETYbMgnOfMOhUFmUwSVNNvw==
-X-Google-Smtp-Source: ABdhPJzbwIiwyus8IKZuyQeUUkPB0pXANOg79zMYiZaRiaBA4SqoNv4lSkj50zVHajQIBRcwrMp2s6DtG1DsUpopkEI=
-X-Received: by 2002:a05:6402:1215:: with SMTP id c21mr2783756edw.137.1628738023720;
- Wed, 11 Aug 2021 20:13:43 -0700 (PDT)
+        id S233682AbhHLEKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 00:10:48 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:63435 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233633AbhHLEKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 00:10:46 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 17C3psOb078831;
+        Thu, 12 Aug 2021 11:51:54 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 12 Aug
+ 2021 12:09:42 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
+        <billy_tsai@aspeedtech.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v11 0/2] Support pwm driver for aspeed ast26xx
+Date:   Thu, 12 Aug 2021 12:09:40 +0800
+Message-ID: <20210812040942.5365-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <cover.1627965261.git.mchehab+huawei@kernel.org>
- <CAL_JsqLjw=+szXWJjGe86tMc51NA-5j=jVSXUAWuKeZRuJNJUg@mail.gmail.com>
- <20210804085045.3dddbb9c@coco.lan> <YQrARd7wgYS1nywt@robh.at.kernel.org>
- <20210805094612.2bc2c78f@coco.lan> <20210805095848.464cf85c@coco.lan>
- <CAL_JsqKso=z8LG3ViaggyS1k+1T2F5aAhP3_RNhumQoUUD+bbg@mail.gmail.com>
- <20210810114211.01df0246@coco.lan> <CAL_JsqKtXoFeJO6_13U+VsSXNGX_1TQvwOyQYRk5JUgBhvQChA@mail.gmail.com>
- <20210810162054.1aa84b84@coco.lan> <CAL_JsqL-R=kTugNAC-C1gfSm6Xnb0Nw_iLcRki8aQMNQjcLN6A@mail.gmail.com>
- <20210811084648.66ddff29@coco.lan>
-In-Reply-To: <20210811084648.66ddff29@coco.lan>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 11 Aug 2021 22:13:32 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLg-jD1P3oGDocMaeHWQc+9kLr3gEdantRNUScUq5xsQw@mail.gmail.com>
-Message-ID: <CAL_JsqLg-jD1P3oGDocMaeHWQc+9kLr3gEdantRNUScUq5xsQw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] DT schema changes for HiKey970 PCIe hardware to work
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, linux-phy@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 17C3psOb078831
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 1:46 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> Em Tue, 10 Aug 2021 11:13:48 -0600
-> Rob Herring <robh@kernel.org> escreveu:
->
-> > > > >                                         compatible =3D "pciclass,=
-0604";
-> > > > >                                         device_type =3D "pci";
-> > > > >                                         #address-cells =3D <3>;
-> > > > >                                         #size-cells =3D <2>;
-> > > > >                                         ranges;
-> > > > >                                 };
-> > > > >                                 pcie@1,0 { // Lane 4: M.2
-> > > >
-> > > > These 3 nodes (1, 5, 7) need to be child nodes of the above node.
-> >
-> > This was the main issue.
->
-> Ok, placing 1, 5, 7 as child nodes of 0 worked, with the attached
-> DT schema:
->
->
->         $ ls -l $(find /sys/devices/platform/soc/f4000000.pcie/ -name of_=
-node)
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/of_node -> ../../../../firmware/devicetree/base/soc/pcie@f4000=
-000
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:01.0/of_node -> .=
-./../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/=
-pcie@0,0/pcie@1,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:01.0/pci_bus/0000=
-:03/of_node -> ../../../../../../../../../../firmware/devicetree/base/soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0/pcie@1,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:05.0/of_node -> .=
-./../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/=
-pcie@0,0/pcie@5,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:05.0/pci_bus/0000=
-:05/of_node -> ../../../../../../../../../../firmware/devicetree/base/soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0/pcie@5,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:07.0/of_node -> .=
-./../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/=
-pcie@0,0/pcie@7,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/0000:02:07.0/pci_bus/0000=
-:06/of_node -> ../../../../../../../../../../firmware/devicetree/base/soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/of_node -> ../../../../..=
-/../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0/pcie@0,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/pci_bus/0000:02/of_node -=
-> ../../../../../../../../../firmware/devicetree/base/soc/pcie@f4000000/pci=
-e@0,0/pcie@0,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/of_node -> ../../../../../../firmware/=
-devicetree/base/soc/pcie@f4000000/pcie@0,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/0000:00:00.0/pci_bus/0000:01/of_node -> ../../../..=
-/../../../../firmware/devicetree/base/soc/pcie@f4000000/pcie@0,0
->         lrwxrwxrwx 1 root root 0 ago 11 08:43 /sys/devices/platform/soc/f=
-4000000.pcie/pci0000:00/pci_bus/0000:00/of_node -> ../../../../../../../fir=
-mware/devicetree/base/soc/pcie@f4000000
+The legacy driver of aspeed pwm is binding with tach controller and it
+doesn't follow the pwm framworks usage. In addition, the pwm register
+usage of the 6th generation of ast26xx has drastic change. So these
+patch serials add the new aspeed pwm driver to fix up the problem above.
 
-This all looks right to me, but...
+Change since v10:
+- pwm-aspeed-ast2600.c
+  - Add more comment to explain the feature of PWM
+  - Fix the naming of some parameters.
+  - Set pin_enable and clk_enable at the same time.
+  - Always set fixed divisor to hw register when apply.
 
-> The logs also seem OK on my eyes:
->
->         [    3.911082]  (null): pci_set_bus_of_node: of_node: /soc/pcie@f=
-4000000
->         [    4.001104] pci 0000:00:00.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000
->         [    4.043609] pci_bus 0000:01: pci_set_bus_of_node: of_node: /so=
-c/pcie@f4000000/pcie@0,0
->         [    4.076756] pci 0000:01:00.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0
->         [    4.120652] pci_bus 0000:02: pci_set_bus_of_node: of_node: /so=
-c/pcie@f4000000/pcie@0,0/pcie@0,0
->         [    4.150766] pci 0000:02:01.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0
->         [    4.196413] pci 0000:02:04.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0
->         [    4.238896] pci 0000:02:05.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0
->         [    4.280116] pci 0000:02:07.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0
->         [    4.309821] pci 0000:02:09.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0
+Change since v9:
+- dt-bindings:
+  - Change the naming of tach subnode channel setting property to
+  aspeed,tach-ch.
+- pwm-aspeed-ast2600.c
+  - Fix the naming of some parameters.
+  - Capitalise error messages.
+  - Handling potentially mult overflow when .apply
 
-...these do not.
+Change since v8:
+- pwm-aspeed-ast2600.c
+  - Replace "* _BITULL(div_h)" to "<< div_h"
+  - Fix duty_cycle precision problem.
+  - Add the comment about the formula of duty_cycle.
 
->         [    4.370830] pci_bus 0000:03: pci_set_bus_of_node: of_node: /so=
-c/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@1,0
->         [    4.382345] pci_bus 0000:04: pci_set_bus_of_node: of_node: (nu=
-ll)
->         [    4.411966] pci_bus 0000:05: pci_set_bus_of_node: of_node: /so=
-c/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@5,0
->         [    4.439898] pci_bus 0000:06: pci_set_bus_of_node: of_node: /so=
-c/pcie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
->         [    4.491616] pci 0000:06:00.0: pci_set_of_node: of_node: /soc/p=
-cie@f4000000/pcie@0,0/pcie@0,0/pcie@7,0
->         [    4.519907] pci_bus 0000:07: pci_set_bus_of_node: of_node: (nu=
-ll)
+Change since v7:
+- pwm-aspeed-g6.c
+  - Rename the driver: pwm-aspeed-g6.c -> pwm-aspeed-ast2600.c.
+  - Macro remove "_CH" part of the register name.
+  - Unroll the aspeed_pwm_get_period and remove it.
+  - Simplify the formula to get duty_pt
+  - Reduce the number of writing register. Organize all the fields and
+    write them at once.
+
+Change since v6:
+- dt-bindings:
+  - Add blank line between each DT property.
+  - Change the sub-node name from fan to tach-ch.
+- pwm-aspeed-g6.c
+  - Merge aspeed_pwm_set_period and aspeed_pwm_set_duty into .apply.
+  - Convert the factor type to u64 when calculating the period value.
+  - Using ROUND_UP strategy to calculate div_h for finer resolution.
+
+Change since v5:
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Move the divide at the end of the calculation.
+  - Unified the prefix of the function name.
+  - Use div64_u64 to calculate the divider of frequency.
+
+Change since v4:
+- dt_binding:
+  - pwm/tach yaml: Replace child-node with additionalProperties
+  - pwm-tach yaml: Replace child-node with patternProperties
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - The bit definitions contained the name of the register.
+  - Remove single caller function and fold it to the caller.
+  - Avoid to divide by the result of a division.
+  - Remove unnecessary condition in .apply().
+  - Use goto for error handling
+
+Changes since v3:
+- Add the dt_binding for aspeed,ast2600-tach.
+- Describe the pwm/tach as child-node of pwm-tach mfd.
+- Complete the properties of pwm node.
+
+Changes since v2:
+- Remove the tach node, #address-cells and #size-cells from pwm-tach.yaml
+- Add clocks and reset properties to pwm-tach.yaml
+- Kconfig/Makfile sorted alphabetically
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Add more hardware descriptions at top of the driver.
+  - Remove unused api request and free
+  - Move the initialize settings of all pwm channel to probe.
+  - Change the method of getting the approximate period.
+  - Read the hardware register values to fill the state for .get_state()
+
+Changes since v1:
+- Fix the dt_binding_check fail suggested by Rob Herring
+- Add depends to PWM_ASPEED_G6 configure suggested by Uwe Kleine-Konig
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Fix license header
+  - Use bitfiled.h macro to define register fields
+  - Implement .remove device function
+  - Implement .get_state pwm api
+
+Billy Tsai (2):
+  dt-bindings: Add bindings for aspeed pwm-tach.
+  pwm: Add Aspeed ast2600 PWM support
+
+ .../bindings/hwmon/aspeed,ast2600-tach.yaml   |  68 ++++
+ .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml |  76 ++++
+ .../bindings/pwm/aspeed,ast2600-pwm.yaml      |  64 ++++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-aspeed-ast2600.c              | 327 ++++++++++++++++++
+ 6 files changed, 546 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-aspeed-ast2600.c
+
+-- 
+2.25.1
+
