@@ -2,269 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 352BE3EA96E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 19:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69ED73EA9A2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 19:42:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235664AbhHLR04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 13:26:56 -0400
-Received: from smtp-out2.suse.de ([195.135.220.29]:32848 "EHLO
-        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234975AbhHLR0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 13:26:55 -0400
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 75C371FF68;
-        Thu, 12 Aug 2021 17:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1628789189; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SPcSNINPXIAlmc4sErzLU2oor99AUyvRmybsJT6/ctw=;
-        b=jFS1SgersCWKSjeuMRL86MMLMYDOLbS7kq8V+UojoaAt4ls1aQfiLYxihkbBbOGu85s7fy
-        dbGzuMtnIM34pfy/o2slO4gtQc8UApsD/TeYSlrrRxK/PX6IL6GEDTeBIdrWZ/HlFGfaqq
-        BdCKiegaF7J8zgDoEs+YbEjXAOBduxA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1628789189;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SPcSNINPXIAlmc4sErzLU2oor99AUyvRmybsJT6/ctw=;
-        b=wZDwhh8fVyA69YEV0ABzp/q4iMIkF3NVg3/0QFvbbtIADIyMzpO0DegU7G86M7LyBYCqQu
-        p84snFnB/jM8ZdAg==
-Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id DAA1013AC3;
-        Thu, 12 Aug 2021 17:26:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap1.suse-dmz.suse.de with ESMTPSA
-        id FDdTNMRZFWGnDwAAGKfGzw
-        (envelope-from <afaerber@suse.de>); Thu, 12 Aug 2021 17:26:28 +0000
-To:     Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        s32@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
-        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
-        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Ivan T . Ivanov" <iivanov@suse.de>,
-        "Lee, Chun-Yi" <jlee@suse.com>, Marc Zyngier <maz@misterjones.org>
-References: <20210805065429.27485-1-clin@suse.com>
- <20210805065429.27485-5-clin@suse.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Subject: Re: [PATCH 4/8] arm64: dts: add NXP S32G2 support
-Message-ID: <d09ed0fd-83e7-a6aa-0bd6-f679ffb64eaf@suse.de>
-Date:   Thu, 12 Aug 2021 19:26:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S229846AbhHLRm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 13:42:56 -0400
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:27758 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229648AbhHLRmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Aug 2021 13:42:54 -0400
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 17CHfLhm017825;
+        Thu, 12 Aug 2021 10:42:17 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=rPUu9ssA5+2l91vNWLBHC4332MScCyjZQDSplZiarf0=;
+ b=dI4lSJcJLP/QYSUdI3kSocSE4CFhen68qyM4CfDIFMNlBHR2i+8KS8rij9BZNQ7ATzue
+ 4a9Xuy7bDqyS9a83TLY4yFCbU2d3VirG7oGBZL97XYk86AtjmqoeGLOq8+1Ks6dH7+5U
+ RMOXNUAtppMdM7yov7U+uLiDI5hT/2LOTgqSzYrfbC5nUL52yERBgFV3Q8ENMAEmacvk
+ bq1FxKLa+tLX3kEa29PcLCsZr8WwpZ54Qcgt9A0mVqjPG9jH1QgqazI0Deu+s2EvwoTi
+ chELkxBzQisuWvltYg3AwXJiXHCgF1dLeCCxlfm1+ZIL9TV2Q083Xx7QqSXK6bejcrgN Xw== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0a-0016f401.pphosted.com with ESMTP id 3acrnp35a1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Thu, 12 Aug 2021 10:42:17 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Thu, 12 Aug
+ 2021 10:42:15 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Thu, 12 Aug 2021 10:42:15 -0700
+Received: from hyd1soter3.marvell.com (unknown [10.29.37.12])
+        by maili.marvell.com (Postfix) with ESMTP id 23A423F7051;
+        Thu, 12 Aug 2021 10:42:12 -0700 (PDT)
+From:   Bhaskara Budiredla <bbudiredla@marvell.com>
+To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <sgoutham@marvell.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bhaskara Budiredla <bbudiredla@marvell.com>
+Subject: [PATCH v3 0/2] drivers: perf: Add Marvell CN10K LLC-TAD pmu driver
+Date:   Thu, 12 Aug 2021 23:12:07 +0530
+Message-ID: <20210812174209.1970-1-bbudiredla@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210805065429.27485-5-clin@suse.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: RUrL8g_jIupzGjxBmMdmfLNHf9RqUNR_
+X-Proofpoint-ORIG-GUID: RUrL8g_jIupzGjxBmMdmfLNHf9RqUNR_
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-08-12_05:2021-08-12,2021-08-12 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chester et al.,
+This series introduces performance monitor driver to Last-level-cache
+tag-and-data (LLC-TAD) PMU which is an intergral part of Marvell CN10K SoCs.
+The configuration and functionality of the TAD PMU is covered in patch 1.
+The device tree bindings are dealt in patch 2.
 
-On 05.08.21 08:54, Chester Lin wrote:
-> Add an initial dtsi file for generic SoC features of NXP S32G2.
-> 
-> Signed-off-by: Chester Lin <clin@suse.com>
-> ---
->  arch/arm64/boot/dts/freescale/s32g2.dtsi | 98 ++++++++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/s32g2.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> new file mode 100644
-> index 000000000000..3321819c1a2d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+v3:
+ - rebased on kernel v5.14-rc5
+ - disable sampling events via PERF_PMU_CAP_NO_INTERRUPT (Will Deacon)
+ - convert tad pmu bindings to schema (Will Deacon)
+ - replace tighter semantics with *_relaxed() accesses (Will Deacon)
+ - use PMU_EVENT_ATTR_ID generic macro (Will Deacon)
+ - allow cleanup of allocations through devm_kcalloc() (Will Deacon)
 
-Note: This DT is for running on the Cortex-A53 cores, but S32G2 also has
-Cortex-M7 cores. For Vybrid SoCs, DTs later got contributed to also run
-on its Cortex-M4 core:
+v2:
+ - rebased on kernel v5.13-rc3
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/vf610.dtsi
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/vf500.dtsi
-vs.
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/boot/dts/vf610m4.dtsi
+Bhaskara Budiredla (2):
+  drivers: perf: Add LLC-TAD perf counter support
+  dt-bindings: perf: Add YAML schemas for Marvell CN10K LLC-TAD PMU
+    bindings
 
-Should we plan for this in our file naming here and in following patches
-(e.g., s32g2-a53* vs. s32g2-m7*)? To me, a later concatenation of
-s32g274am7* would look awkward, and s32g274a-m7* would sort between -evb
-and -rdb2.
-
-> @@ -0,0 +1,98 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/*
-
- * NXP S32G2 SoC family
- *
-?
-
-@NXP: Are any models other than 274A in the queue that we should
-distinguish between s32g2.dtsi and s32g274a.dtsi here already?
-
-> + * Copyright (c) 2021 SUSE LLC
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible = "fsl,s32g2";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&cluster0_l2>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x1>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&cluster0_l2>;
-> +		};
-> +
-> +		cpu2: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x100>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&cluster1_l2>;
-> +		};
-> +
-> +		cpu3: cpu@101 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x101>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&cluster1_l2>;
-> +		};
-> +
-> +		cluster0_l2: l2-cache0 {
-> +			compatible = "cache";
-> +		};
-> +
-> +		cluster1_l2: l2-cache1 {
-> +			compatible = "cache";
-> +		};
-> +	};
-> +
-> +	pmu {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-
-interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-
-Should we move this into a /firmware node, to group with future OP-TEE?
-
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		interrupt-parent = <&gic>;
-
-Duplicate, already set on root node.
-
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-
-Why? Does it have any peripherals that go beyond 32-bit space?
-For 64-bit Realtek platforms Rob had asked me to use 1, if possible.
-I do understand that for /memory nodes we do have high-memory addresses,
-so 2 for the root node looks correct.
-
-> +
-
-Please drop this white line.
-
-> +		ranges;
-
-According to Rob, the /soc ranges should exclude any RAM ranges for
-safety reasons. Compare:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-
-If you're lacking the maximum RAM areas to carve out, NXP is in CC to
-help out :) and the EVB and RDB2 boards should give you starting numbers
-that could be enlarged later if needed.
-
-> +
-> +		gic: interrupt-controller@50800000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +			reg = <0 0x50800000 0 0x10000>,
-> +			      <0 0x50880000 0 0x200000>,
-> +			      <0 0x50400000 0 0x2000>,
-> +			      <0 0x50410000 0 0x2000>,
-> +			      <0 0x50420000 0 0x2000>;
-
-Please order reg after compatible by convention, and sort
-interrupt-controller or at least #interrupt-cells (applying to
-consumers) last, after the below one applying to this device itself.
-
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) |
-> +						 IRQ_TYPE_LEVEL_HIGH)>;
-> +		};
-
-CC'ing Marc for additional GIC scrutiny, often the sizes are wrong.
-
-> +	};
-> +};
-
-Thanks,
-Andreas
+ .../bindings/perf/marvell-cn10k-tad.yaml      |  45 ++
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/marvell_cn10k_tad_pmu.c          | 429 ++++++++++++++++++
+ 4 files changed, 482 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+ create mode 100644 drivers/perf/marvell_cn10k_tad_pmu.c
 
 -- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+2.17.1
+
