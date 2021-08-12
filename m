@@ -2,104 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8623EA47A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 14:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 248A33EA496
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 14:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237543AbhHLMUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 08:20:36 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:33419 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237432AbhHLMTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 08:19:54 -0400
-Received: by mail-oi1-f176.google.com with SMTP id h11so10096489oie.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 05:19:29 -0700 (PDT)
+        id S236493AbhHLM0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 08:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233613AbhHLM0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 08:26:53 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73060C061765;
+        Thu, 12 Aug 2021 05:26:28 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id r6so8073754wrt.4;
+        Thu, 12 Aug 2021 05:26:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=odmiuzKPr5jQ/z0qYitTwKpP6yDBIGlDVV/+ilvzSk8=;
+        b=XBfurDaFVTbgVM/50tSJETgdK7DBlYPzpPbedIgPTA5oQhGWUY+fHbSH6PQ22E0Ai0
+         c/0y721bKw9WKYydWDbcYk0AZzUTAXDzcxxdSB1uEa3DVp+LwWDMzteJPu1plkWcsg/I
+         51A9HCRBKzdtehAERljoYsLnQNldyJPBRw9V7/RXMNEluRXBmKpMQ+cRMKGgXixjQRq+
+         GiK7RkiTf33Xn7d56aATStNDA0PbHmYEf1JR+ekJqrLEp+3lyKnrqT3xvchoUyCia9lm
+         lMz8AQMQA1uPse6BSSaLyXX3tJEHS+ey40LFecH9vlr9EZAhK4DIpalx+XBu4WbepdSI
+         uSBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=KmrMvt8u/RnNkeR/FpoGINsb9diyUiiYz6yL7uadUyM=;
-        b=mTgKybe6Dh9btLmfFVLAaA9ZXJ8mgt32UCd9fuB202f4HrDhy0LiesnFWP8Vo2JTvr
-         PKrFhj8TeRNC6jB4Rws1rEhDkX/wLAkphvkCdZy9aKTcz18jVm8Uv4UNrmhGJ4is7MYr
-         aJSc3TQVrDyq/awAEDniTuro7wWWxpti8tAoauvdwQegbNRAQVAAEbN5MHb3HI82mQDW
-         6ekrVTpLQtNtAn6LQo2/FSdyRj1kTNX6PONsucrYR44mzLHmJjySbUfHzDOTbFDETfJD
-         W+YYFtqZ+7feO73WlJf2OfNmBWkoRbg0gtnuEkzaM7yelUPfcQ0w99+/RW8rcL3W6KjV
-         3LDQ==
-X-Gm-Message-State: AOAM532Rfo+I0zIekWBQKWxcs9VPKMJGMx/AkuJidngbRyltjhnyaWgi
-        63x4txT/4iduZyXiEsqx3g==
-X-Google-Smtp-Source: ABdhPJy0wKII1rvQKKPbOea2abRnvjLCw8ACpHfEv5wWoKmLWVtTHe6yLvf9k3T4iFCMZ0CD48zeRA==
-X-Received: by 2002:aca:dac1:: with SMTP id r184mr3171871oig.81.1628770768437;
-        Thu, 12 Aug 2021 05:19:28 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m16sm275301oop.3.2021.08.12.05.19.26
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=odmiuzKPr5jQ/z0qYitTwKpP6yDBIGlDVV/+ilvzSk8=;
+        b=F5EDOaD/OMY75I1j6x4nvQtiJnnMkVGxLBw9+xSF4Swt/taS7YFSOO+7Qf1QyyYPDU
+         +BVRXjGs4++SFDI46wLVmnpC+2ZuXCeo4nnoess8LrHSkcApesWPR7m0mdBAdY4IlZ65
+         CbQWp7KezQaI8zEVgrlovVwL9PyFwl+6XqIstO97n6OM/zFmfF2XbbLv26IAzluqK9hl
+         g0cWQRmym+zAfXJMbC6LS+elck4Z8ZC1DomFrh6G58Vmj/Nk9Dp+KfyYoUtq04GjQdQM
+         dOrFDAjZ8mpFOpTOlqUeQLfz5TppdPJ91jz+4yloCtMlf9pztvIfDLkeB3LI3z23ar/6
+         Kp6Q==
+X-Gm-Message-State: AOAM533PQxyxoVVkBDCLGb1kre7hBR5899t/encQu9dYpHTQcQBUhLn2
+        3bfi80kMS09oIgimbfuEzDw=
+X-Google-Smtp-Source: ABdhPJwiuJC7qV9F0XSoxnL2q1Rl1efC5V7nI5ETcZsebS76c/n2hILJKrBWbGimpQ0E9la/2q25QQ==
+X-Received: by 2002:a05:6000:1a42:: with SMTP id t2mr3709428wry.61.1628771187087;
+        Thu, 12 Aug 2021 05:26:27 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id p8sm2756749wrn.79.2021.08.12.05.26.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Aug 2021 05:19:27 -0700 (PDT)
-Received: (nullmailer pid 1202802 invoked by uid 1000);
-        Thu, 12 Aug 2021 12:19:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Matt Johnston <matt@codeconstruct.com.au>
-Cc:     Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-        Jeremy Kerr <jk@codeconstruct.com.au>
-In-Reply-To: <20210811034345.2424442-2-matt@codeconstruct.com.au>
-References: <20210811034345.2424442-1-matt@codeconstruct.com.au> <20210811034345.2424442-2-matt@codeconstruct.com.au>
-Subject: Re: [RFC PATCH v2 1/2] dt-bindings: net: New binding for mctp-i2c-generic
-Date:   Thu, 12 Aug 2021 07:19:26 -0500
-Message-Id: <1628770766.472742.1202801.nullmailer@robh.at.kernel.org>
+        Thu, 12 Aug 2021 05:26:26 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/3] dt-bindings: tegra: Document NVIDIA Jetson TX2 NX developer kit
+Date:   Thu, 12 Aug 2021 14:26:15 +0200
+Message-Id: <20210812122617.2378605-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Aug 2021 11:43:44 +0800, Matt Johnston wrote:
-> An I2C bus with attached MCTP peripherals can be configured to be
-> accessible to the host system, using a specified I2C address.
-> 
-> This mctp-i2c-generic binding can attach to existing I2C bus
-> that supports slave functionality.
-> 
-> For a fictional hardware I2C controller:
-> 
->     /* for I2C_OWN_SLAVE_ADDRESS */
->     #include <dt-bindings/i2c/i2c.h>
-> 
->     /* root-level i2c controller */
->     i2c {
->         compatible = "vendor,example-i2c-controller";
->         reg = <...>
->         #address-cells = <1>;
->         #size-cells = <0>;
-> 
->         mctp@50 {
->             compatible = "mctp-i2c";
->             reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
->         };
->     };
-> 
-> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
-> ---
->  .../bindings/net/mctp-i2c-generic.yaml        | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/mctp-i2c-generic.yaml
-> 
+From: Thierry Reding <treding@nvidia.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The Jetson TX2 NX Developer Kit is the same form factor as Jetson Nano,
+but uses the more powerful Tegra186 SoC for added performance.
 
-yamllint warnings/errors:
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/mctp-i2c-generic.example.dt.yaml:0:0: /example-0/i2c/mctp@50: failed to match any schema with compatible: ['mctp-i2c']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1515565
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index d99b9d513ecf..53aab932ffd0 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -154,6 +154,7 @@ properties:
+       - items:
+           - enum:
+               - nvidia,p2771-0000
++              - nvidia,p3509-0000+p3636-0001
+           - const: nvidia,tegra186
+       - items:
+           - enum:
+-- 
+2.32.0
 
