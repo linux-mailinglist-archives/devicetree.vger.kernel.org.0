@@ -2,117 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E3383EA5F3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 15:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FDA3EA60A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 15:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232122AbhHLNrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 09:47:25 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:54266 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237722AbhHLNrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 09:47:24 -0400
-Received: from localhost (unknown [192.168.167.70])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 4849AD652A;
-        Thu, 12 Aug 2021 21:46:52 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P4989T139771043112704S1628776006486981_;
-        Thu, 12 Aug 2021 21:46:50 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <8dcded2026158dda55856874c75d1131>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: linux-spi@vger.kernel.org
-X-RCPT-COUNT: 20
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     linux-spi@vger.kernel.org
-Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
-        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v13 6/6] arm64: dts: rockchip: Enable SFC for Odroid Go Advance
-Date:   Thu, 12 Aug 2021 21:46:39 +0800
-Message-Id: <20210812134639.31586-2-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210812134639.31586-1-jon.lin@rock-chips.com>
-References: <20210812134546.31340-1-jon.lin@rock-chips.com>
- <20210812134639.31586-1-jon.lin@rock-chips.com>
+        id S237578AbhHLNzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 09:55:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237821AbhHLNyf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 09:54:35 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7DF9C0613D9
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 06:54:03 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id v4so1326933wro.12
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 06:54:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=c5gAMbUWOwjaIV3A82tVMXv46NPHytrVhSbZd6/BsGU=;
+        b=Q2k15wjmtZb9ktcZOX9l5IVv4Zrs+FiTgtp5pQQvZWJpeOBWhE4U+rxYNn3r2mYdE4
+         XqJRp5zOaYdsmZCvxowVzMuLpEpHO+YjdcsRKIZttxTwDTBDHzrLxSUFn6Ueg0xF0Ro/
+         O/YgUjERerTvD63HLCpRK1vxhTV6+l29dRRLYdqy8hT4MiSH7czphWKvPlQQ/kXo9Gi/
+         1owNGR0lHLHEZQLNcpuaHCzDhEAg6QZycybpxDac7Pa2Wq2WxJUBl4vDfq3R7sN/1GVS
+         HiedHPp4tXuZARKjVwykndgxjCX06RxOzG3hlygprw3FfqhrnC0EkgN0cdlZTZxKFdh7
+         11/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=c5gAMbUWOwjaIV3A82tVMXv46NPHytrVhSbZd6/BsGU=;
+        b=uim+CVYp11x9HWSRUL7bdgfETvpfBj7nNe1FOosh3i7dFxu8fXHd8OXBKZ7nMC7npw
+         zytmGUEdCe6glchrYvwVJCdQl7P1tXh1vCCSbHEeNWIranlYtFwPWR1RSsRLLZbkPZ3C
+         KMkR19bxoLxk6ngnj4OmUmd5tm4i+WplKM+F2/I7NomarWkE04fplrlIMXpG/V8ko1Ru
+         MYhBHUcFnDkbI3O1PDSExRUKmZAeBPU69U4LyJvLpE17QGaBdIIRqlFvTMckpTv6CBQk
+         6qXsqNbbZqGcf6vDArZn7oOQBZ1uWBBjN4iIBjJr78oxpXrO1ST2+tDvgD0Zeg5zoWx7
+         b9hw==
+X-Gm-Message-State: AOAM5329ffnAhBfZ0Zb7ADt2n3eVhhmY8Gzx+Fgwf1r3EmadEVwlMM0J
+        poC64b81rHtHXQg5U3xf6AFsoGFLw7D4BRFAOOo=
+X-Google-Smtp-Source: ABdhPJwS8cH5CPAZNRrdovQgzD9/4qo0rJEFI9Fd4p6tF6dH6UUbt82uHJO9BR8eJ3nbJmw2F6wIC/vbooi9Npl2Hnk=
+X-Received: by 2002:a5d:5302:: with SMTP id e2mr4139431wrv.47.1628776442490;
+ Thu, 12 Aug 2021 06:54:02 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a05:600c:19c9:0:0:0:0 with HTTP; Thu, 12 Aug 2021 06:54:02
+ -0700 (PDT)
+Reply-To: blessingbrown0147@gmail.com
+From:   Blessing Brown <hassanmariam12ab@gmail.com>
+Date:   Thu, 12 Aug 2021 14:54:02 +0100
+Message-ID: <CAJqW+SLLWjw8JvEJbBYxOQOu2SrrAhs_EQOnW-8vX3FpfLVvUg@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Hi dear,
 
-This enables the Rockchip Serial Flash Controller for the Odroid Go
-Advance. Note that while the attached SPI NOR flash and the controller
-both support quad read mode, only 2 of the required 4 pins are present.
-The rx bus width is set to 2 for this reason, and tx bus width is set
-to 1 for compatibility reasons.
+I'm Mrss  Blessing Brown please i wish to have a communication with you.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
----
+I wait for your response.
 
-Changes in v13: None
-Changes in v12: None
-Changes in v11:
-- The tx is set to 1 for Odroid Go Advance device
-
-Changes in v10: None
-Changes in v9: None
-Changes in v8: None
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
-Changes in v1: None
-
- .../boot/dts/rockchip/rk3326-odroid-go2.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index 7fc674a99a6c..35218c2771a2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -517,6 +517,22 @@
- 	status = "okay";
- };
- 
-+&sfc {
-+	pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus2>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <108000000>;
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <1>;
-+	};
-+};
-+
- &tsadc {
- 	status = "okay";
- };
--- 
-2.17.1
-
-
-
+Mrss  Blessing Brown
