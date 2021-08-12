@@ -2,138 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86BC43EA194
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 11:08:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129B03EA1C7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 11:18:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235489AbhHLJIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 05:08:44 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:38870 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235234AbhHLJIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 05:08:37 -0400
-Received: by mail-ot1-f47.google.com with SMTP id 108-20020a9d01750000b029050e5cc11ae3so6920801otu.5;
-        Thu, 12 Aug 2021 02:08:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zPqejfEgwNeF232a7WtoOVNGVMbj63Sq4HJ4EWIWtJM=;
-        b=KUJR4LPOWg55N+OGNAIVpf9Qg9i3B5kxfMiycCLrc0I0WmXO4ya/eqycHd4TcJf3bd
-         2naSpC7pBMHpsMruEfhhFGELeazyb58O+Bf1m+bFWS+EViMkdBnF618ltqNgQkRnlQrB
-         M4NdlaNsg+cxH5C6c3STQnPvi0GKx3ek7k4wcy51B42Kq3I2FKLZUGlAPX/qiRI+eZuA
-         4OlSw7lBEpjcppUt/gHjXs99lG6uUjFaKJba4GsDuFnwyqNSzEpeBtYCEu893hkR2mxT
-         kgWin4F1QVwLt51a2diCggKJXH8YF2oQ9aJdktJcDhzMk8yzCBTcaaolYqHCA8dIqUqn
-         i+yg==
-X-Gm-Message-State: AOAM531QnCziDKuuQt2DTINLVD/Kbl1XTN/dael30M11/yB82DWHqs8O
-        wAyKV3jnjPLg8olMxkyIQ6EuscaDGORqFz5cMRU=
-X-Google-Smtp-Source: ABdhPJyHOdnyAO+AJopBgUjdSWYXUSxoKbddnc9mdhEQJSDd0hJLM0OzNMs6I0NKVoe8w5tKISMEUtPHudD4BcKVBdo=
-X-Received: by 2002:a05:6830:154c:: with SMTP id l12mr2640284otp.250.1628759292107;
- Thu, 12 Aug 2021 02:08:12 -0700 (PDT)
+        id S235337AbhHLJSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 05:18:23 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:10727 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235114AbhHLJSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 05:18:22 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628759877; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=wvbmxHKDPqEGjRWLYlxLgyJabN51zMcKvsaUtZ2ab5s=; b=PomAJ0bTG3G5VucdpIcRCFOnV4m/NyJOBlIIONIoZE1rAK+Ef2NzKwN9DjcYYmk/ebDUyZDZ
+ qlXlVxC36JvcgmYmrx1J+DAWhZZnfnK8Q7QbsLAF3Mlhh+wQn5Y2IwXWt5AEtHVTmQb4b9Of
+ sI/XIQtlYno/+LEGG269z3oGXGE=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 6114e74366ff10790465255a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 12 Aug 2021 09:17:55
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 1AFF5C4338A; Thu, 12 Aug 2021 09:17:55 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 44FCAC433D3;
+        Thu, 12 Aug 2021 09:17:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 44FCAC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: [PATCH 0/3] soc: qcom: Add download mode support for QTI platforms
+Date:   Thu, 12 Aug 2021 14:47:39 +0530
+Message-Id: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-References: <20210727123450.15918-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdVSWks7f31O3y4QuZLnztoQgG04CuCiZ9Beo-qKezNmbw@mail.gmail.com> <OS0PR01MB5922DDDBA73FB25B700B1E2A86F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922DDDBA73FB25B700B1E2A86F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 12 Aug 2021 11:07:59 +0200
-Message-ID: <CAMuHMdU6iO+LkL5WURGMN7kkYLRJe9v3MbrqA_CBp74oskdeyA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: net: renesas,etheravb: Document Gigabit
- Ethernet IP
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        netdev <netdev@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Collecting ramdumps on QTI platforms mainly require two things,
+SDI (System Debug Image) enabled firmware and kernel support to
+configure download mode cookies and SDI settings. Ramdumps can
+be collected once the system enters the download mode. To enter
+download mode, magic values or cookies need to be set in IMEM
+which is used by firmware to decide to enter download mode or not.
+Download mode cookies remain the same across targets and SDI disable
+register needs to be set or SDI needs to be disabled in case of normal
+reboot since ramdumps are supposed to be for crash debugging and
+not for every reboot. This series adds the kernel support required
+to enter download mode.
 
-On Thu, Aug 12, 2021 at 11:00 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH v2] dt-bindings: net: renesas,etheravb: Document
-> > Gigabit Ethernet IP
-> > On Tue, Jul 27, 2021 at 2:35 PM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > Document Gigabit Ethernet IP found on RZ/G2L SoC.
-> > >
-> > > Gigabit Ethernet Interface includes Ethernet controller (E-MAC),
-> > > Internal TCP/IP Offload Engine (TOE) and Dedicated Direct memory
-> > > access controller (DMAC) for transferring transmitted Ethernet frames
-> > > to and received Ethernet frames from respective storage areas in the
-> > > URAM at high speed.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-> >
-> > > @@ -145,14 +142,20 @@ allOf:
-> > >        properties:
-> > >          compatible:
-> > >            contains:
-> > > -            const: renesas,etheravb-rcar-gen2
-> > > +            enum:
-> > > +              - renesas,etheravb-rcar-gen2
-> > > +              - renesas,rzg2l-gbeth
-> > >      then:
-> > >        properties:
-> > >          interrupts:
-> > > -          maxItems: 1
-> > > +          minItems: 1
-> > > +          maxItems: 3
-> > >          interrupt-names:
-> > > +          minItems: 1
-> > >            items:
-> > >              - const: mux
-> > > +            - const: int_fil_n
-> > > +            - const: int_arp_ns_n
-> >
-> > I'm aware Rob has already applied this, but should the "int_" prefix be
-> > dropped?
->
-> OK. I will use "fil" and "arp" instead.
->
-> > The "_n" suffix is also a bit weird (albeit it matches the documentation).
-> > Usually it is used to indicate an active-low signal, but the interrupt is
-> > declared in the .dtsi with IRQ_TYPE_LEVEL_HIGH.
-> >
->
-> But here on the interrupt mapping table(RZG2L_InterruptMapping_rev01.xlsx). It is mentioned as high. So I guess, it is correct.
->
-> > And the first interrupt is not a mux on RZ/G2L, but called "pif_int_n"
-> > (whatever "pif" might mean).
->
-> As per section 32.5.12 Interrupts, this interrupt include, Descriptor interrupts,
-> Error interrupts, reception interrupts and transmission interrupts.
->
-> The source status can be checked from individual status register.
->
-> For me. This description looks like a mux interrupt.
-> Multiple interrupt sources ored together to generate an interrupt and status can be
-> Checked from each individual register.
-> Please let me know if my understanding is wrong.
->
-> I agree, on HW manual it is mentioned as pif_int_n. I can replace mux with pif instead. Please let me know.
+Currently this series doesn't add support for android targets where
+a couple of SCM calls are required to set/unset the download mode
+cookies and SDI configuration but can be easily added gradually to
+the same driver, so as of now only chrome platforms are supported
+and tested.
 
-Let's keep the mux, like on R-Car Gen2.
+Sai Prakash Ranjan (3):
+  soc: qcom: Add download mode support
+  dt-bindings: msm: Add QTI download mode support binding
+  arm64: dts: qcom: sc7180: Add IMEM, pil info and download mode region
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/arm/msm/qcom,dload-mode.yaml     |  53 ++++++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  21 +++
+ drivers/soc/qcom/Kconfig                      |  10 ++
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/download_mode.c              | 152 ++++++++++++++++++
+ 6 files changed, 244 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
+ create mode 100644 drivers/soc/qcom/download_mode.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
