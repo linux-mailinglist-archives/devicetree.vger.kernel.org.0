@@ -2,38 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69BEC3EA390
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 13:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D483EA371
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 13:24:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236847AbhHLLZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 07:25:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
+        id S236852AbhHLLYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 07:24:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236888AbhHLLYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 07:24:54 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC9EC061368
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 04:24:27 -0700 (PDT)
+        with ESMTP id S236814AbhHLLYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 07:24:52 -0400
+Received: from leibniz.telenet-ops.be (leibniz.telenet-ops.be [IPv6:2a02:1800:110:4::f00:d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1157CC0613D3
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 04:24:26 -0700 (PDT)
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by leibniz.telenet-ops.be (Postfix) with ESMTPS id 4GlkqF4jBWzMrDVY
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 13:24:25 +0200 (CEST)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:438:1ff1:1071:f524])
-        by xavier.telenet-ops.be with bizsmtp
-        id gbQS2500K1gJxCh01bQS3p; Thu, 12 Aug 2021 13:24:26 +0200
+        by baptiste.telenet-ops.be with bizsmtp
+        id gbQR2500l1gJxCh01bQR5T; Thu, 12 Aug 2021 13:24:25 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1mE8oz-002Fiv-SJ; Thu, 12 Aug 2021 13:24:25 +0200
+        id 1mE8oz-002Fiw-3I; Thu, 12 Aug 2021 13:24:25 +0200
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1mE8ox-00743v-OG; Thu, 12 Aug 2021 13:24:23 +0200
+        id 1mE8ox-007442-Pn; Thu, 12 Aug 2021 13:24:23 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
 To:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-renesas-soc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 11/29] arm64: dts: renesas: Add Renesas R8A779M8 SoC support
-Date:   Thu, 12 Aug 2021 13:24:01 +0200
-Message-Id: <99ff5658889e22ea8e723733e6972c27370930bf.1628766192.git.geert+renesas@glider.be>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v2 12/29] arm64: dts: renesas: Add support for Salvator-XS with R-Car H3e
+Date:   Thu, 12 Aug 2021 13:24:02 +0200
+Message-Id: <aa680c5f52864b0f5f7e2f82993bf92f0b17b680.1628766192.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1628766192.git.geert+renesas@glider.be>
 References: <cover.1628766192.git.geert+renesas@glider.be>
@@ -43,35 +47,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Renesas R-Car H3Ne (R8A779M8) SoC, which is a
-different grading of the R-Car H3-N (R8A77951) SoC.
+Add support for the Renesas Salvator-X 2nd version development
+board equipped with an R-Car H3e SiP.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
 v2:
-  - No changes.
+  - Add Reviewed-by.
 ---
- arch/arm64/boot/dts/renesas/r8a779m8.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779m8.dtsi
+ arch/arm64/boot/dts/renesas/Makefile          |  2 +
+ .../boot/dts/renesas/r8a779m0-salvator-xs.dts | 53 +++++++++++++++++++
+ 2 files changed, 55 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779m0-salvator-xs.dts
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779m8.dtsi b/arch/arm64/boot/dts/renesas/r8a779m8.dtsi
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 15a53b5139669aa6..69bdf8e92a459f1f 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -63,6 +63,8 @@ dtb-$(CONFIG_ARCH_R8A77995) += r8a77995-draak.dtb
+ 
+ dtb-$(CONFIG_ARCH_R8A779A0) += r8a779a0-falcon.dtb
+ 
++dtb-$(CONFIG_ARCH_R8A77951) += r8a779m0-salvator-xs.dtb
++
+ dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs.dtb
+ dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb.dtb
+ dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb-kf.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r8a779m0-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m0-salvator-xs.dts
 new file mode 100644
-index 0000000000000000..752440b0c40f7c22
+index 0000000000000000..571c5e42240a6308
 --- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779m8.dtsi
-@@ -0,0 +1,12 @@
++++ b/arch/arm64/boot/dts/renesas/r8a779m0-salvator-xs.dts
+@@ -0,0 +1,53 @@
 +// SPDX-License-Identifier: (GPL-2.0 or MIT)
 +/*
-+ * Device Tree Source for the R-Car H3Ne (R8A779M8) SoC
++ * Device Tree Source for the Salvator-X 2nd version board with R-Car H3e
 + *
 + * Copyright (C) 2021 Glider bv
++ *
++ * Based on r8a77951-salvator-xs.dts
++ * Copyright (C) 2015-2017 Renesas Electronics Corp.
 + */
 +
-+#include "r8a77951.dtsi"
++/dts-v1/;
++#include "r8a779m0.dtsi"
++#include "salvator-xs.dtsi"
 +
 +/ {
-+	compatible = "renesas,r8a779m8", "renesas,r8a7795";
++	model = "Renesas Salvator-X 2nd version board based on r8a779m0";
++	compatible = "renesas,salvator-xs", "renesas,r8a779m0",
++		     "renesas,r8a7795";
++
++	memory@48000000 {
++		device_type = "memory";
++		/* first 128MB is reserved for secure area. */
++		reg = <0x0 0x48000000 0x0 0x38000000>;
++	};
++
++	memory@500000000 {
++		device_type = "memory";
++		reg = <0x5 0x00000000 0x0 0x40000000>;
++	};
++
++	memory@600000000 {
++		device_type = "memory";
++		reg = <0x6 0x00000000 0x0 0x40000000>;
++	};
++
++	memory@700000000 {
++		device_type = "memory";
++		reg = <0x7 0x00000000 0x0 0x40000000>;
++	};
++};
++
++&du {
++	clocks = <&cpg CPG_MOD 724>,
++		 <&cpg CPG_MOD 723>,
++		 <&cpg CPG_MOD 722>,
++		 <&cpg CPG_MOD 721>,
++		 <&versaclock6 1>,
++		 <&x21_clk>,
++		 <&x22_clk>,
++		 <&versaclock6 2>;
++	clock-names = "du.0", "du.1", "du.2", "du.3",
++		      "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
 +};
 -- 
 2.25.1
