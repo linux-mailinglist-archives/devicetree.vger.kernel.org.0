@@ -2,169 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D103EA80C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 17:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2EB3EA81C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 17:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238408AbhHLPyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 11:54:54 -0400
-Received: from mail-ej1-f50.google.com ([209.85.218.50]:35485 "EHLO
-        mail-ej1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238351AbhHLPyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 11:54:54 -0400
-Received: by mail-ej1-f50.google.com with SMTP id w5so12511546ejq.2;
-        Thu, 12 Aug 2021 08:54:28 -0700 (PDT)
+        id S238477AbhHLP5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 11:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238391AbhHLP5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 11:57:05 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07AF1C061756;
+        Thu, 12 Aug 2021 08:56:40 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id z2so14403568lft.1;
+        Thu, 12 Aug 2021 08:56:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=A7HUd0nU0npMSrYUznOJbVJsMaRrMewEeWqFZ6APtx4=;
+        b=j/GN+r1KBaVWAoC9ZJQmNjaUsiw+qZDHrTwbWr3orzuAL2hdRPlZTxgET/HQvaNQnx
+         PjZ7D+NeFSwhBkXzYjKEyW3hp+spXzKQJlaDDl9kO51wW9qklshwbd+6oH/GI0dIXd0k
+         Tf2HLUn+y/G1+5KjkqTEnMFmGPjZYqcJolutbtjoK3Hujl6eP/IR77GI5oEBaDEWx4DT
+         ykjHfz6FxXZtpIF158T4fe9lRrqujqkUKQfDmLYUAspjAEKSEqmOZ23Y+ZdMte+c84iG
+         E/JD8l1CgBC0/kRhlan4v2ZFhcwA5IWz6A/GMySojaIAEPnq7VrWOKVU39b5lgPWmBEk
+         DfkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=jHqYhReooo30zb8LL9lFKdY9y7F/PVOeVzdjs8SkhdY=;
-        b=CEz6cPrNISRWeebn1JShmPOdGdiUUvfWQMNZ6SSI+fhF/Y5MIBtEWeJqxapPNphuC6
-         frjAl/pOeIKhwp058MkYgMAksdsW58h4TQ9o4Ku4Je71fzyNLD+FFzB6uMmmjMljjsCC
-         RutaBmIwPR10C3kxf2T0uNdz71/A75SQVr3oZGF6nP+/7XQxTxbS/NLR3zR6VfTniC1j
-         MGP8bLycxaPsLhTMHIbpmWJL+3srwqnbKnn0s2pkm8Lh3z42fXKU3TybIV0Geg31Vrms
-         pU238l7+KNIE9pzs1sJIHtvGVnZoWDDWsB52qnTa1lAH7We12s5vt+0Jox4im6fHHHSX
-         53vg==
-X-Gm-Message-State: AOAM530xDrgEjsQdulhLdzeoq0W2JOj/RxFoyXfiQSE3yr76g2HL5lQ6
-        8JKWgCbSIEtqfIF+uRuPsqo=
-X-Google-Smtp-Source: ABdhPJz7ZDXm52HEpswiPiu6k4yJZib8V0zYLDvzytdiDCa4MewFXtlggPHQz+7453yfBwUBysQHZA==
-X-Received: by 2002:a17:906:3a46:: with SMTP id a6mr4301854ejf.147.1628783667346;
-        Thu, 12 Aug 2021 08:54:27 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.googlemail.com with ESMTPSA id r27sm1299893edb.66.2021.08.12.08.54.24
+        bh=A7HUd0nU0npMSrYUznOJbVJsMaRrMewEeWqFZ6APtx4=;
+        b=RtwSu+RVDfhz4dLVc9ChZ6wk5BFbx/nLRN20PAmsxPKstf8mEpDS+7z4JrpPe7x1mg
+         30V6f+if5Ia20/qolHbnPtAfDshGkbIzwgJ/6m6tBAGkK/jy50nQ2z1cH+pubeNT71Ce
+         uTA8T6JRr5qTxVy8QubcnJil1DqlI+GJyaQY5IrBSt8HQDk70x5waq4XmcyJ5BiBNga1
+         pUx6ng1gdbKr07ibJCaiIwGczbkTjHtSVQOG9RpgTY+j9AvtfRysgYeuK64H0yEpscPb
+         P5SsA4lv/FTzK5PaYeY7h5qbF8KLOYlM2H6N4pRIDJlICFkHOGGsah65b2AnxhQwKLm7
+         5KiQ==
+X-Gm-Message-State: AOAM532TgIqPfdXjkq2bO4M1EDvtGEVNb1BG41C+h3sm8ucjuC/JEQd1
+        8vMyuAOJHVr2JOej/ik+pLo=
+X-Google-Smtp-Source: ABdhPJyhGqznobSV1gQojSF5F6cY4ISEPvrme2LFQmK269nPCFUnNk+kZNG2hQSDiTpokrCJC7cb0A==
+X-Received: by 2002:a05:6512:2603:: with SMTP id bt3mr2982007lfb.476.1628783798362;
+        Thu, 12 Aug 2021 08:56:38 -0700 (PDT)
+Received: from [192.168.1.102] ([178.176.76.126])
+        by smtp.gmail.com with ESMTPSA id j17sm351117ljq.136.2021.08.12.08.56.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Aug 2021 08:54:26 -0700 (PDT)
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Jagan Teki <jagan@amarulasolutions.com>, s32@nxp.com,
-        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
-        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
-        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
-References: <20210805065429.27485-1-clin@suse.com>
- <20210805065429.27485-9-clin@suse.com>
- <32310c2a-9800-8b04-b6ac-d8ada044c0f8@kernel.org>
- <20210809080346.GO30984@dragon>
- <3c65f75d-724f-a438-1e22-6baeb745a8e5@suse.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 8/8] MAINTAINERS: Add an entry for NXP S32G2 boards
-Message-ID: <fab0d8a6-515a-86a8-daa3-12f37bdf004d@kernel.org>
-Date:   Thu, 12 Aug 2021 17:54:23 +0200
+        Thu, 12 Aug 2021 08:56:37 -0700 (PDT)
+Subject: Re: [PATCH v6 3/3] arm64: dts: renesas: r9a07g044: Add USB2.0 device
+ support
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
+ <20210812151808.7916-4-biju.das.jz@bp.renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <2f5f8999-260d-e9c0-731e-df644b528b61@gmail.com>
+Date:   Thu, 12 Aug 2021 18:56:36 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-In-Reply-To: <3c65f75d-724f-a438-1e22-6baeb745a8e5@suse.de>
+In-Reply-To: <20210812151808.7916-4-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2021 17:30, Andreas Färber wrote:
-> Hello Shawn and Krzysztof,
-> 
-> On 09.08.21 10:03, Shawn Guo wrote:
->> On Thu, Aug 05, 2021 at 09:49:51AM +0200, Krzysztof Kozlowski wrote:
->>> On 05/08/2021 08:54, Chester Lin wrote:
->>>> Add a new entry for the maintenance of NXP S32G2 DT files.
->>>>
->>>> Signed-off-by: Chester Lin <clin@suse.com>
->>>> ---
->>>>  MAINTAINERS | 6 ++++++
->>>>  1 file changed, 6 insertions(+)
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 36aee8517ab0..3c6ba6cefd8f 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -2281,6 +2281,12 @@ F:	arch/arm/boot/dts/nuvoton-wpcm450*
->>>>  F:	arch/arm/mach-npcm/wpcm450.c
->>>>  F:	drivers/*/*wpcm*
->>>>  
->>>> +ARM/NXP S32G2 ARCHITECTURE
-> 
-> Suggestion from NXP is to use the broader S32G name.
-> 
->>>> +M:	Chester Lin <clin@suse.com>
->>>> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->>>> +S:	Maintained
->>>> +F:	arch/arm64/boot/dts/freescale/s32g2*
->>>
->>> I support the idea of sub-sub-architecture maintainers but I think idea
->>> of in-file addresses was preferred:
->>> https://lore.kernel.org/lkml/20200830122922.3884-1-shawnguo@kernel.org/
-> 
-> I had specifically asked Chester to add a MAINTAINERS section.
-> 
-> Is your apparent suggestion of not accepting this MAINTAINERS patch
-> based on the assumption that we're dealing with only one email address
-> in three files? What do you see as the threshold to warrant a section?
-> 
-> From my point of view, above MAINTAINERS entry is incomplete, as we
-> should CC the full team working on S32G for patch review, not just
-> Chester himself.
-> So that would in my mind have been additional R: and L: entries in that
-> MAINTAINERS section.
+On 8/12/21 6:18 PM, Biju Das wrote:
 
-I assumed this is a sub-sub-architecture (something coming from
-Layerscape or i.MX) but it seems it's not, therefore I don't mind having
-separate entry in MAINTAINERS. The idea of in-file maintainers was for
-specific boards and SoCs belonging to existing sub-architectures.
+> Add USB2.0 device support to RZ/G2L SoC DT.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+[...]
+> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> index de78c921af22..2f313c2a81c7 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> @@ -391,6 +391,25 @@
+>  			power-domains = <&cpg>;
+>  			status = "disabled";
+>  		};
+> +
+> +		hsusb: usb@11c60000 {
+> +			compatible = "renesas,usbhs-r9a07g044",
+> +				     "renesas,rza2-usbhs";
+> +			reg = <0 0x11c60000 0 0x10000>;
+> +			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
 
-I agree with your following reasons.
+   Don't we need to specify "interrupt-names" when there a more than 1 interrupts?
 
-> 
->> Thanks for reminding that the patch didn't land.  I just resent it with
->> your Reviewed-by tag added.  Thanks!
-> 
-> Your above patch does not make clear to me what syntax we should use for
-> adding email addresses to .dts[i] files now:
-> 
-> https://lore.kernel.org/lkml/20210809081033.GQ30984@dragon/
-> 
-> Especially when not dealing with file authors.
-> 
-> I get the impression it is not a replacement for an F: wildcard used in
-> MAINTAINERS, but rather a complement?
-> 
-> Please understand that this is not about a single .dts file, as your
-> patch suggests, but about a complete SoC family consisting of s32g*.dts*
-> as well as in the future drivers specific to this platform. It seems way
-> easier to specify the list of maintainers/reviewers in MAINTAINERS once
-> with suitable wildcard paths, than copying them into each and every
-> .dtsi and .dts file and driver .c/.h and later needing to sync multiple
-> places. If a bot or user has fixes or cleanups for the S32G code, we
-> want to know about it, so that NXP can consider it for their BSP
-> branches and SUSE for our SLE branches, and obviously for follow-up
-> patch series that are already in the works and waiting on this one.
-> 
-> Once merged, I would expect Chester or someone from NXP to set up an
-> S32G tree on kernel.org that gets integrated into linux-next and sends
-> pull requests to the SoC tree maintainers without bothering i.MX and
-> Layerscape maintainers. Did you handle that differently for S32V?
-> 
-> Thanks,
-> Andreas
-> 
-> P.S. Have you checked or considered whether your script change might
-> start to CC non-existing email addresses, since we wouldn't be allowed
-> to remove them from copyright or authorship statements to prevent that?
+> +			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
+> +				 <&cpg CPG_MOD R9A07G044_USB_U2P_EXR_CPUCLK>;
 
-The same can happen for DT bindings maintainers.
+   And "clock-names" too?
 
-Best regards,
-Krzysztof
+> +			resets = <&phyrst 0>,
+> +				 <&cpg R9A07G044_USB_U2P_EXL_SYSRST>;
+
+   And "reset-names"?
+
+[...]
+
+MBR, Sergei
