@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB133EA75D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 17:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 164AE3EA760
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 17:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233554AbhHLPSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 11:18:40 -0400
+        id S237926AbhHLPSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 11:18:47 -0400
 Received: from relmlor1.renesas.com ([210.160.252.171]:14604 "EHLO
         relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S236984AbhHLPSk (ORCPT
+        by vger.kernel.org with ESMTP id S237925AbhHLPSr (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Aug 2021 11:18:40 -0400
+        Thu, 12 Aug 2021 11:18:47 -0400
 X-IronPort-AV: E=Sophos;i="5.84,316,1620658800"; 
-   d="scan'208";a="90480490"
+   d="scan'208";a="90480506"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 13 Aug 2021 00:18:13 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 13 Aug 2021 00:18:21 +0900
 Received: from localhost.localdomain (unknown [10.226.92.30])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5B61A4006DF2;
-        Fri, 13 Aug 2021 00:18:11 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 577C44007F40;
+        Fri, 13 Aug 2021 00:18:19 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
@@ -28,58 +28,142 @@ Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
         Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v6 0/3] Add USB2.0 support
-Date:   Thu, 12 Aug 2021 16:18:05 +0100
-Message-Id: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v6 2/3] arm64: dts: renesas: r9a07g044: Add USB2.0 phy and host support
+Date:   Thu, 12 Aug 2021 16:18:07 +0100
+Message-Id: <20210812151808.7916-3-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
+References: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series aims to add USB2.0 Host and device support for RZ/G2L SoC.
+Add USB2.0 phy and host support to SoC DT.
 
-This patch series is based on renesas-devel.
-
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
 v5->v6:
  * Updated phyrst node with status disabled
- * Added Geert's Rb tag for SoC dtsi patches
- * Sorted defconfig patch alphabetically.
- * Removed USB2.0 phy driver/binding patches as it is accepted for phy/next
- * Removed USBHS binding patches as it is accepted for usb/next.
+ * Added Rb tag from Geert.
 v4->v5:
- * Removed USBPHY control and binding patches as it is accepted for reset/next
- * Removed USB ehci/ohci binding patches as it is accepted for usb/next.
- * Updated Renesas USB2.0 PHY bindings to just use 'resets' as required.
- * Added interrupts maxitems=1 for SoC other than RZ/G2L for Renesas USBHS bindings
- * Updated the commit description for USB2.0 PHY driver patch.
+ * No change.
+V3->v4:
+ * Removed second reset from phy node.
+ V3:
+  * Added reset entries
+  * Updated compatible, phy and reset entries.
+---
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 95 ++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
 
-v3->v4:
- * Added Rob's Acked-by tag for generic-{ohci,ehci} binding patch
- * Added Rob's Rb tag for RZ/G2L USBPHY control binding patch
- * Incorporated Phillip's review comments for USBPHY control driver.
- * Dropped second reset from usb2-phy binding patch
- * Added maxitems as per Rob's review comment.
-
-v2->v3
- * USBPHY Control IP modelled as reset bindings as per Rob's suggestion
- * Updated the binding patches
- * Incorporated Geert's and Shimoda-San's review comment for phy driver patch.
-
-v1->v2
- * Updated usb phy control bindings with clock definitions
- * Updated generic ohci/ehci bindings to support RZ/G2L SoC
- * Incorporated vinod's review comment on usb phy control driver
- * Add support for USB2.0 device and OTG support.
-
-Biju Das (3):
-  arm64: defconfig: Enable RZ/G2L USBPHY control driver
-  arm64: dts: renesas: r9a07g044: Add USB2.0 phy and host support
-  arm64: dts: renesas: r9a07g044: Add USB2.0 device support
-
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 114 +++++++++++++++++++++
- arch/arm64/configs/defconfig               |   1 +
- 2 files changed, 115 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index d50ffce5a74e..de78c921af22 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -296,6 +296,101 @@
+ 			      <0x0 0x11940000 0 0x60000>;
+ 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+ 		};
++
++		phyrst: usbphy-ctrl@11c40000 {
++			compatible = "renesas,r9a07g044-usbphy-ctrl",
++				     "renesas,rzg2l-usbphy-ctrl";
++			reg = <0 0x11c40000 0 0x10000>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>;
++			resets = <&cpg R9A07G044_USB_PRESETN>;
++			power-domains = <&cpg>;
++			#reset-cells = <1>;
++			status = "disabled";
++		};
++
++		ohci0: usb@11c50000 {
++			compatible = "generic-ohci";
++			reg = <0 0x11c50000 0 0x100>;
++			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
++				 <&cpg CPG_MOD R9A07G044_USB_U2H0_HCLK>;
++			resets = <&phyrst 0>,
++				 <&cpg R9A07G044_USB_U2H0_HRESETN>;
++			phys = <&usb2_phy0 1>;
++			phy-names = "usb";
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		ohci1: usb@11c70000 {
++			compatible = "generic-ohci";
++			reg = <0 0x11c70000 0 0x100>;
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
++				 <&cpg CPG_MOD R9A07G044_USB_U2H1_HCLK>;
++			resets = <&phyrst 1>,
++				 <&cpg R9A07G044_USB_U2H1_HRESETN>;
++			phys = <&usb2_phy1 1>;
++			phy-names = "usb";
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		ehci0: usb@11c50100 {
++			compatible = "generic-ehci";
++			reg = <0 0x11c50100 0 0x100>;
++			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
++				 <&cpg CPG_MOD R9A07G044_USB_U2H0_HCLK>;
++			resets = <&phyrst 0>,
++				 <&cpg R9A07G044_USB_U2H0_HRESETN>;
++			phys = <&usb2_phy0 2>;
++			phy-names = "usb";
++			companion = <&ohci0>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		ehci1: usb@11c70100 {
++			compatible = "generic-ehci";
++			reg = <0 0x11c70100 0 0x100>;
++			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
++				 <&cpg CPG_MOD R9A07G044_USB_U2H1_HCLK>;
++			resets = <&phyrst 1>,
++				 <&cpg R9A07G044_USB_U2H1_HRESETN>;
++			phys = <&usb2_phy1 2>;
++			phy-names = "usb";
++			companion = <&ohci1>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		usb2_phy0: usb-phy@11c50200 {
++			compatible = "renesas,usb2-phy-r9a07g044",
++				     "renesas,rzg2l-usb2-phy";
++			reg = <0 0x11c50200 0 0x700>;
++			interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
++				 <&cpg CPG_MOD R9A07G044_USB_U2H0_HCLK>;
++			resets = <&phyrst 0>;
++			#phy-cells = <1>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		usb2_phy1: usb-phy@11c70200 {
++			compatible = "renesas,usb2-phy-r9a07g044",
++				     "renesas,rzg2l-usb2-phy";
++			reg = <0 0x11c70200 0 0x700>;
++			interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
++				 <&cpg CPG_MOD R9A07G044_USB_U2H1_HCLK>;
++			resets = <&phyrst 1>;
++			#phy-cells = <1>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
+ 	};
+ 
+ 	timer {
 -- 
 2.17.1
 
