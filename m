@@ -2,62 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 961863EAC00
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 22:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 684FD3EAC07
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 22:42:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbhHLUm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 16:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S232648AbhHLUmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 16:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237876AbhHLUmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 16:42:25 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E511C061756;
-        Thu, 12 Aug 2021 13:42:00 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id y130so8264928qkb.6;
-        Thu, 12 Aug 2021 13:42:00 -0700 (PDT)
+        with ESMTP id S238021AbhHLUmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 16:42:36 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC3DC0612A5;
+        Thu, 12 Aug 2021 13:42:05 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id az7so8272924qkb.5;
+        Thu, 12 Aug 2021 13:42:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ochq/82t5xUPXvIID1znrVTmhLe5E8Izsp9c+gWvjrs=;
-        b=Ed+L/+HybSvG4ub6uDGYR4D3031+XqS2vV/V6Zxga1iPxvcAIKPkTXPVoHkCVCs+Jc
-         OKUpjvQMuusgI+rqnw2LTK+aJ2VxMT5xjukAFHS3q+mwW19KSl6HlxU63WGj3x3RBAvr
-         MOxZmmj52Fo0YcckO8dSOhTrhBgiP/5R1ePBp9JKzIxrBtfztUWJVSOBO1JfHLFdW7Ba
-         hspMqOkcp9js009uvTsU7HDcdWMpXA0UoLF0DX8sgc+tZBK0fMs8MFs+UTAtwUJOk+IX
-         WwjfNLmZKGHiCxD4PV3ngGlugVyUsslMv0PxzSi4LsJAmzoGCndHxLA6WC6pg748Bk/W
-         oy/w==
+        bh=iWmyzD0AHOmumLrqKa3ZHpzPnn/EcIn8wTUKFzr+kYQ=;
+        b=hmVe7sT1hGvRwzQ/slSq+rQUvVQrRh1nihHPENrDIwE45CYMPD1Z/x4jTcP/THIFWH
+         L7dvuCIKD6w0WovygtCTVvp9YRhyNeh7Y2h1/qCUaf+lEhfhO1BIZVJstUNTgzsSXTjN
+         M78TsYn3IbNYZYNOCoXzs2OCAEAI12RYEl3+NPbER6ZEyHLk5gZlX8OnVpHLMaiLkOEP
+         18ywaxXNt7T0LZ6g8naFFBHJJwc3lJuQMzGEndkIwptE9RHU7M0ubYe7o9Leol5I/7Mp
+         DK9kKQ3xw+v4Qs3GvVaEwUYraILJ60aZvNV0Qphx7TLCaAv+IKfTyA4T3lmEMHFwF9UE
+         Kt2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ochq/82t5xUPXvIID1znrVTmhLe5E8Izsp9c+gWvjrs=;
-        b=oKRw0+gfR4fL1EZjvBRuJmLoQ2MjSobVQ27/3TGbxGxm1Rh4fOgKG+txXP4j99WdsU
-         w2BBzuPCt3BvLgyPC7BowS8GiNXupYjjwwnUkwydLE14Jq4DbKGl0xusJqR2Q7avkghj
-         JZKVAHDMGtSQc7uDEYL2ReFujVcKdIfrV+NuvMySQPwWCSxvjG7eZkr9IZvpQhW91Abx
-         NRrWXQWZzldaxCP8seQ4aq8k7hn1XuH1wBfPkB8wWBqvS4Ng4gs5dec+8aidRrHuFUY5
-         5l5bbJqE6rSG3uR1xXe9ti1WEW6Je3nj2J+Bqec5U1L3eSnWyiDRujx8xte1UcpcT20M
-         2FPw==
-X-Gm-Message-State: AOAM530uOgAD+poJvr+oU9jwDWETMmnC64yvAgZt7jddZJpDMhY1ebEF
-        zYlM8kmUbVvhhoYZyFSn0iQ=
-X-Google-Smtp-Source: ABdhPJxc8txTOhaH5bN7e5C0ZZdy7/xbhS9z9tOTuYM+5y6GbHfXe3ZldmfmU/BYBbYY0BHqOmGbkQ==
-X-Received: by 2002:a37:43ca:: with SMTP id q193mr6552744qka.459.1628800919041;
-        Thu, 12 Aug 2021 13:41:59 -0700 (PDT)
+        bh=iWmyzD0AHOmumLrqKa3ZHpzPnn/EcIn8wTUKFzr+kYQ=;
+        b=hlvvvw3aNT0S03nQZMng7tfGZADrv5YdpWu1bfOEjjFipkq6QwHbUk4ghfEgObLGA5
+         Szq59SvrsaEPdmBTnnBoahuoJSIVgwPuxusm2f0NNYEGEympyPEB22gSi9F7qqY0O+t+
+         B927oyq2OIIhI/iID2lZkcXDQGR7Ng3kywjfa9KpTIU7aQ1HowjAU0vb4e5GFvb7FLtO
+         hXMUjB5x8KmW6ux5PYs9wq3sMQ+GL7KbBjvNVexoKlPrxq2zdKo3krueAjPo0slwdCgj
+         Sf1S70iuH3lqbZuwhgHhHl1m8egCF7V1LmOgFw2qQKvFrvDTNvsJB7vh19ZppQgP9z+k
+         prCQ==
+X-Gm-Message-State: AOAM532IePJYeCJnbJqau+svh6kBeuIsCM7tUEqVP+S+R1EOxQRCM2WK
+        3awge/pXwuYOtMolOL+e/FQ=
+X-Google-Smtp-Source: ABdhPJy4HK8JMBANtT1Uwyh3IIemb3X75giy3d/8yXVQoIEBVbULOvqq2B9tZfz3t2WBRgS8QeVx9Q==
+X-Received: by 2002:a05:620a:5b7:: with SMTP id q23mr6568553qkq.386.1628800924115;
+        Thu, 12 Aug 2021 13:42:04 -0700 (PDT)
 Received: from master-laptop.sparksnet ([2601:153:980:85b1:e89f:d077:9161:1bd7])
-        by smtp.gmail.com with ESMTPSA id m16sm1940361qki.19.2021.08.12.13.41.58
+        by smtp.gmail.com with ESMTPSA id m16sm1940361qki.19.2021.08.12.13.42.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Aug 2021 13:41:58 -0700 (PDT)
+        Thu, 12 Aug 2021 13:42:03 -0700 (PDT)
 From:   Peter Geis <pgwipeout@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Peter Geis <pgwipeout@gmail.com>, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/8] dt-bindings: phy: phy-rockchip-inno-usb2: add rk3568 documentation
-Date:   Thu, 12 Aug 2021 16:41:10 -0400
-Message-Id: <20210812204116.2303617-3-pgwipeout@gmail.com>
+Subject: [PATCH v2 7/8] arm64: dts: rockchip: add usb2 nodes to rk3568 device tree
+Date:   Thu, 12 Aug 2021 16:41:15 -0400
+Message-Id: <20210812204116.2303617-8-pgwipeout@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210812204116.2303617-1-pgwipeout@gmail.com>
 References: <20210812204116.2303617-1-pgwipeout@gmail.com>
@@ -67,85 +64,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rk3568 usb2phy node is a standalone node with a single muxed
-interrupt.
-Add documentation for it to phy-rockchip-inno-usb2.
+Add the requisite nodes to the rk3568 device tree to enable the usb2
+device controllers.
+Includes the usb2phy nodes, usb2phy grf nodes, and usb2 controller
+nodes.
 
 Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 ---
- .../bindings/phy/phy-rockchip-inno-usb2.yaml  | 31 ++++++++++++++++---
- 1 file changed, 27 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 98 ++++++++++++++++++++++++
+ 1 file changed, 98 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-index 5bebd86bf8b6..d2a749c3f9a3 100644
---- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-+++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-@@ -18,6 +18,7 @@ properties:
-       - rockchip,rk3328-usb2phy
-       - rockchip,rk3366-usb2phy
-       - rockchip,rk3399-usb2phy
-+      - rockchip,rk3568-usb2phy
-       - rockchip,rv1108-usb2phy
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 322971318d5a..2abd9241c91f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -200,6 +200,50 @@ gic: interrupt-controller@fd400000 {
+ 		msi-controller;
+ 	};
  
-   reg:
-@@ -50,6 +51,9 @@ properties:
-     description:
-       Phandle to the extcon device providing the cable state for the otg phy.
- 
-+  interrupts:
-+    description: Muxed interrupt for both ports
++	usb_host0_ehci: usb@fd800000 {
++		compatible = "generic-ehci";
++		reg = <0x0 0xfd800000 0x0 0x40000>;
++		interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_USB2HOST0>, <&cru HCLK_USB2HOST0_ARB>,
++			 <&cru PCLK_USB>;
++		phys = <&u2phy1_otg>;
++		phy-names = "usb";
++		status = "disabled";
++	};
 +
-   rockchip,usbgrf:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-@@ -78,8 +82,6 @@ properties:
- 
-     required:
-       - "#phy-cells"
--      - interrupts
--      - interrupt-names
- 
-   otg-port:
-     type: object
-@@ -109,8 +111,6 @@ properties:
- 
-     required:
-       - "#phy-cells"
--      - interrupts
--      - interrupt-names
- 
- required:
-   - compatible
-@@ -120,6 +120,29 @@ required:
-   - host-port
-   - otg-port
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3568-usb2phy
-+      then:
-+        properties:
-+          interrupts:
-+            maxItems: 1
-+        required:
-+          - interrupts
-+      else:
-+        properties:
-+          host-port:
-+            required:
-+              - interrupts
-+              - interrupt-names
-+          otg-port:
-+            required:
-+              - interrupts
-+              - interrupt-names
++	usb_host0_ohci: usb@fd840000 {
++		compatible = "generic-ohci";
++		reg = <0x0 0xfd840000 0x0 0x40000>;
++		interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_USB2HOST0>, <&cru HCLK_USB2HOST0_ARB>,
++			 <&cru PCLK_USB>;
++		phys = <&u2phy1_otg>;
++		phy-names = "usb";
++		status = "disabled";
++	};
 +
- additionalProperties: false
++	usb_host1_ehci: usb@fd880000 {
++		compatible = "generic-ehci";
++		reg = <0x0 0xfd880000 0x0 0x40000>;
++		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_USB2HOST1>, <&cru HCLK_USB2HOST1_ARB>,
++			 <&cru PCLK_USB>;
++		phys = <&u2phy1_host>;
++		phy-names = "usb";
++		status = "disabled";
++	};
++
++	usb_host1_ohci: usb@fd8c0000 {
++		compatible = "generic-ohci";
++		reg = <0x0 0xfd8c0000 0x0 0x40000>;
++		interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_USB2HOST1>, <&cru HCLK_USB2HOST1_ARB>,
++			 <&cru PCLK_USB>;
++		phys = <&u2phy1_host>;
++		phy-names = "usb";
++		status = "disabled";
++	};
++
+ 	pmugrf: syscon@fdc20000 {
+ 		compatible = "rockchip,rk3568-pmugrf", "syscon", "simple-mfd";
+ 		reg = <0x0 0xfdc20000 0x0 0x10000>;
+@@ -210,6 +254,16 @@ grf: syscon@fdc60000 {
+ 		reg = <0x0 0xfdc60000 0x0 0x10000>;
+ 	};
  
- examples:
++	usb2phy0_grf: syscon@fdca0000 {
++		compatible = "rockchip,rk3568-usb2phy-grf", "syscon";
++		reg = <0x0 0xfdca0000 0x0 0x8000>;
++	};
++
++	usb2phy1_grf: syscon@fdca8000 {
++		compatible = "rockchip,rk3568-usb2phy-grf", "syscon";
++		reg = <0x0 0xfdca8000 0x0 0x8000>;
++	};
++
+ 	pmucru: clock-controller@fdd00000 {
+ 		compatible = "rockchip,rk3568-pmucru";
+ 		reg = <0x0 0xfdd00000 0x0 0x1000>;
+@@ -738,6 +792,50 @@ saradc: saradc@fe720000 {
+ 		status = "disabled";
+ 	};
+ 
++	usb2phy0: usb2-phy@fe8a0000 {
++		compatible = "rockchip,rk3568-usb2phy";
++		reg = <0x0 0xfe8a0000 0x0 0x10000>;
++		clocks = <&pmucru CLK_USBPHY0_REF>;
++		clock-names = "phyclk";
++		clock-output-names = "clk_usbphy0_480m";
++		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
++		rockchip,usbgrf = <&usb2phy0_grf>;
++		#clock-cells = <0>;
++		status = "disabled";
++
++		u2phy0_host: host-port {
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++
++		u2phy0_otg: otg-port {
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++	};
++
++	usb2phy1: usb2-phy@fe8b0000 {
++		compatible = "rockchip,rk3568-usb2phy";
++		reg = <0x0 0xfe8b0000 0x0 0x10000>;
++		clocks = <&pmucru CLK_USBPHY1_REF>;
++		clock-names = "phyclk";
++		clock-output-names = "clk_usbphy1_480m";
++		interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
++		rockchip,usbgrf = <&usb2phy1_grf>;
++		#clock-cells = <0>;
++		status = "disabled";
++
++		u2phy1_host: host-port {
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++
++		u2phy1_otg: otg-port {
++			#phy-cells = <0>;
++			status = "disabled";
++		};
++	};
++
+ 	pinctrl: pinctrl {
+ 		compatible = "rockchip,rk3568-pinctrl";
+ 		rockchip,grf = <&grf>;
 -- 
 2.25.1
 
