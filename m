@@ -2,134 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C974A3E9E4B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 08:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF4043E9F09
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 08:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234515AbhHLGLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 02:11:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46268 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234461AbhHLGLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 02:11:45 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35FCC0613D3
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 23:11:20 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id 28-20020a17090a031cb0290178dcd8a4d1so7100463pje.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 23:11:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AdSDRXkannLfQW9+0wIXjK1QxuAWsJpVgDG3Y9dksOM=;
-        b=MK0bUkHzlsqpZuBMSSMJyyUbqrQ3sIb7BgT/1F31Lb+2rQ7jyhtv8dB9eglRZM9plF
-         t7LeA4VvdOQeFNqLn5oEfwqn9WJviyjvbcL6NvYlXdIs1HMncjx9zUDaEz42Zh+VRLjG
-         G8G9B72uAblpN96sIUTKFn5o/gwieY2J3PCHpxXhBfvsmRHqn+/Njti+X4s0KqEmtVZg
-         nI36EupIAzhJlgubCjNpYUU7anx2j33fGFGCyTSlupqzTDAy2RZH2/UtBOm2LTHuiw+N
-         YB7Dhank+IkcoyerLoq8Hv40pTBaeGsZuWFOb/9dFB3TSXIac8spPxa1zLRrGyffioYo
-         dPYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AdSDRXkannLfQW9+0wIXjK1QxuAWsJpVgDG3Y9dksOM=;
-        b=FRpdXn/OvQFPuzfvBI5xm69XAXAMW5VXON6nuDV45YFUK6a2VoNQqbFYxlKz+00aC5
-         XNVBLt4A4qQkfZIDVi/M+FLUF2fqLMVjSzH3VDioEnHDUh6BvHqZflg6BTb+OETvSFs+
-         TkGiPxt3H3L/VNlX0AZwFqsTMkoHm64O8hVjDP1HSp3/31pE+zNGkVJGvV2jcmP8Thrv
-         4eB4eVEvjV9EbSsbHRfG7RZwTY2b6G9punrVyx9KUv3sy9eINU2LbeuUMk/zmecEHBlR
-         91JFfP72GQB8PcsWUNh9R1nrh3vb+bxIKd9/OOg9p+GwJb+ekQNt0/nwKZ5mP5g959mk
-         Hwkg==
-X-Gm-Message-State: AOAM533fBnGes42qnXxjs3epipD1Ufb3fVYq+owJLTTnIiZTGVGqTFOl
-        eEQcmj/8gtc75TLOIgUaE5qF
-X-Google-Smtp-Source: ABdhPJy5JhJN83aBinU0qFRL1e2LUsjLDZAT+Hr46w4wWY1am3TdZlDfobGcs2BA1dWutkaTqiPUlA==
-X-Received: by 2002:a65:68d1:: with SMTP id k17mr2463057pgt.285.1628748680227;
-        Wed, 11 Aug 2021 23:11:20 -0700 (PDT)
-Received: from thinkpad ([2409:4072:99a:700c:52f1:f031:1fc2:c301])
-        by smtp.gmail.com with ESMTPSA id t1sm1941053pgr.65.2021.08.11.23.11.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Aug 2021 23:11:19 -0700 (PDT)
-Date:   Thu, 12 Aug 2021 11:41:10 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Prasad Malisetty <pmaliset@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org
-Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
- init in SC7280
-Message-ID: <20210812061110.GB72145@thinkpad>
-References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
- <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
+        id S231184AbhHLG7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 02:59:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57006 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230323AbhHLG7p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Aug 2021 02:59:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F24AA601FD;
+        Thu, 12 Aug 2021 06:59:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628751560;
+        bh=YFMZTccB6r2mQUHMX3e0DwUnA6yRsuYhah5UQoES2qE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gqDKL6oFAWPfl+qrvP4ICkIiJuTj0zB5TnIo9v2jyftPMcesd9mebeUTOENH/WF4R
+         PBfqCrnjEHgRHt0O1dyCISfhSxmredSB9XxmW1Ns603miZy037IV2h2edGI81ldDzY
+         NqgDtvGktsfZul6wLbLg1Tgj9dX32EjsY3bdIRoj49WsQpGFdC5ZMg6zFcqteaJDkt
+         0uruPXpJRVzqwUCwDkAf6p3Y7H3f580IbJRG6NdyUWhatq3Gxbuq0XxYssVS/sjhOA
+         hChRFrKVbGxFTcFqXajSbSnyBDOxjDPh7zY8Sk+z4WzAiR3GMcSU98BQ+MjV7C6G/L
+         np4VR2Z/7QAFw==
+From:   Mike Rapoport <rppt@kernel.org>
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Andy Lutomirski <luto@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christian Borntraeger <borntraeger@de.ibm.com>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        Heiko Carstens <hca@linux.ibm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        "Kirill A. Shutemov" <kirill@shutemov.name>,
+        Len Brown <lenb@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vasily Gorbik <gor@linux.ibm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        kvmarm@lists.cs.columbia.edu, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+        x86@kernel.org
+Subject: [PATCH v4 0/2] memblock: make memblock_find_in_range method private
+Date:   Thu, 12 Aug 2021 09:59:05 +0300
+Message-Id: <20210812065907.20046-1-rppt@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 10, 2021 at 09:38:36AM +0530, Prasad Malisetty wrote:
-> On the SC7280, By default the clock source for pcie_1_pipe is
-> TCXO for gdsc enable. But after the PHY is initialized, the clock
-> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
-> 
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 8a7a300..39e3b21 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -166,6 +166,8 @@ struct qcom_pcie_resources_2_7_0 {
->  	struct regulator_bulk_data supplies[2];
->  	struct reset_control *pci_reset;
->  	struct clk *pipe_clk;
-> +	struct clk *gcc_pcie_1_pipe_clk_src;
-> +	struct clk *phy_pipe_clk;
->  };
->  
->  union qcom_pcie_resources {
-> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (ret < 0)
->  		return ret;
->  
-> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
-> +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
-> +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
-> +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
-> +
-> +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
-> +		if (IS_ERR(res->phy_pipe_clk))
-> +			return PTR_ERR(res->phy_pipe_clk);
-> +	}
-> +
->  	res->pipe_clk = devm_clk_get(dev, "pipe");
->  	return PTR_ERR_OR_ZERO(res->pipe_clk);
->  }
-> @@ -1255,6 +1267,12 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
-> +	struct dw_pcie *pci = pcie->pci;
-> +	struct device *dev = pci->dev;
-> +	struct device_node *node = dev->of_node;
-> +
-> +	if (of_property_read_bool(node, "pipe-clk-source-switch"))
+From: Mike Rapoport <rppt@linux.ibm.com>
 
-Wondering why you didn't use the compatible here as well. This will break if the
-property exist but the clocks are not.
+Hi,
 
-Thanks,
-Mani
+This is v4 of "memblock: make memblock_find_in_range method private" patch
+that essentially replaces memblock_find_in_range() + memblock_reserve()
+calls with equivalent calls to memblock_phys_alloc() and prevents usage of
+memblock_find_in_range() outside memblock itself.
 
-> +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
->  
->  	return clk_prepare_enable(res->pipe_clk);
->  }
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+The patch uncovered an issue with top down memory mapping on x86 and this
+version has a preparation patch that addresses this issue.
+
+Guenter, I didn't add your Tested-by because the patch that addresses the
+crashes differs from the one you've tested.
+
+v4: 
+* Add patch that prevents the crashes reported by Guenter Roeck on x86/i386
+  on QEMU with 256M or 512M of memory and EFI boot enabled.
+* Add Acked-by and Reviewed-by, thanks everybidy!
+
+v3: https://lore.kernel.org/lkml/20210803064218.6611-1-rppt@kernel.org
+* simplify check for exact crash kerenl allocation on arm, per Rob
+* make crash_max unsigned long long on arm64, per Rob
+
+v2: https://lore.kernel.org/lkml/20210802063737.22733-1-rppt@kernel.org
+* don't change error message in arm::reserve_crashkernel(), per Russell
+
+v1: https://lore.kernel.org/lkml/20210730104039.7047-1-rppt@kernel.org
+
+Mike Rapoport (2):
+  x86/mm: memory_map_top_down: remove spurious reservation of upper 2M
+  memblock: make memblock_find_in_range method private
+
+ arch/arm/kernel/setup.c           | 20 +++++---------
+ arch/arm64/kvm/hyp/reserved_mem.c |  9 +++----
+ arch/arm64/mm/init.c              | 36 ++++++++-----------------
+ arch/mips/kernel/setup.c          | 14 +++++-----
+ arch/riscv/mm/init.c              | 44 ++++++++++---------------------
+ arch/s390/kernel/setup.c          | 10 ++++---
+ arch/x86/kernel/aperture_64.c     |  5 ++--
+ arch/x86/mm/init.c                | 27 +++++++------------
+ arch/x86/mm/numa.c                |  5 ++--
+ arch/x86/mm/numa_emulation.c      |  5 ++--
+ arch/x86/realmode/init.c          |  2 +-
+ drivers/acpi/tables.c             |  5 ++--
+ drivers/base/arch_numa.c          |  5 +---
+ drivers/of/of_reserved_mem.c      | 12 ++++++---
+ include/linux/memblock.h          |  2 --
+ mm/memblock.c                     |  2 +-
+ 16 files changed, 76 insertions(+), 127 deletions(-)
+
+
+base-commit: ff1176468d368232b684f75e82563369208bc371
+-- 
+2.28.0
+
