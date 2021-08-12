@@ -2,87 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8574A3EA637
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 16:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB903EA688
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 16:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237882AbhHLOIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 10:08:45 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:31383 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237854AbhHLOIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 10:08:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1628777299; x=1660313299;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=pmcxOQ+Qr7k+X6ziNFRPuhucl2XjO3oV1ys2iXot8CU=;
-  b=apVwOlfo17MBkSEjnqflJ7zvczRwHej1O6eQ2HD/zf9V2bN2EOULm5IC
-   HZOeEVYYoHpJKIO4sg4fWqMRdTSfsqyJ38kV7MMqWMKxnZzFzkSsVWVyL
-   mEnnpeMxSHXs2SbaGONW5WtI/M+2oo1VklRvQmUWGk7YkUSOnCOQ81AGA
-   f2+SeLeTvUYwAlIwAK6Yhk8l2pdFi5goHr1nclj3V5nE8Urx/0j7pli8X
-   IGFkdwm87TOLArIGTF3rmXdFOu2Iht2LLwG8Q6thaYHUc7eVNsaeTcKwW
-   HU/56hP6MUtcobX+ipXRBZ5CgRVlWBM2+4ephKUZixto93U+GhteSUKYB
-   g==;
-IronPort-SDR: QKG8GjeuWu+w6TuKzq6jkt4EZH3vD8C2JHpM079IpL4zXw5QdmQikzbhax+RFmJ7Q0u1jcZKv3
- fsx0QBIG7uWSujs9jSNhbDIiuBf/zni3aIN++/VVAfLB6NM99cxxmKw0WxHVO0P8CB8eqZyZG5
- 5l2hfdiYLrDZbmMK00AJK42pSO9wjLMbd3qdoo8illdRI4W3O49IMtlD2Kxuw8FVL3Yy5th7Fu
- ibHJCukIm/sU8HjR/mzD/7j7/MOIfH9TJecM278G8qbejU8J0s+WTRcTb7e0cyFaPGt0+zFJsH
- ptOTMuGhxPfsV++f6it0LjJv
-X-IronPort-AV: E=Sophos;i="5.84,316,1620716400"; 
-   d="scan'208";a="65610479"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Aug 2021 07:08:15 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 12 Aug 2021 07:08:15 -0700
-Received: from che-lt-i63539u.amer.actel.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 12 Aug 2021 07:08:10 -0700
-From:   Hari Prasath <Hari.PrasathGE@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux@armlinux.org.uk>
-CC:     <Hari.PrasathGE@microchip.com>
-Subject: [PATCH 2/2] ARM: at91: dts: at91-sama5d2_xplained: Add comments for sama5d29
-Date:   Thu, 12 Aug 2021 19:37:58 +0530
-Message-ID: <20210812140758.28273-2-Hari.PrasathGE@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
-References: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
+        id S237205AbhHLO0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 10:26:14 -0400
+Received: from elvis.franken.de ([193.175.24.41]:57499 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233282AbhHLO0O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Aug 2021 10:26:14 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1mEBeQ-0002iE-00; Thu, 12 Aug 2021 16:25:42 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id DCCD2C07DD; Thu, 12 Aug 2021 16:09:34 +0200 (CEST)
+Date:   Thu, 12 Aug 2021 16:09:34 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     linux-mips@vger.kernel.org, mturquette@baylibre.com,
+        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
+        vkoul@kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/9] MIPS: Migrate pistachio to generic kernel
+Message-ID: <20210812140934.GA9924@alpha.franken.de>
+References: <20210723022543.4095-1-jiaxun.yang@flygoat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210723022543.4095-1-jiaxun.yang@flygoat.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add comments for the end user for modifying the DTS file for
-instantiating the sama5d29 SoC.
+On Fri, Jul 23, 2021 at 10:25:34AM +0800, Jiaxun Yang wrote:
+> I'm lucky enough to get a Creator CI40 board from dusts.
+> This patchset move it to gerneic kernel to reduce maintenance burden.
+> It have been tested with SD Card boot.
+> 
+> --
+> v2: Minor fixes
+> v3: Typo fixes and 0day testbot warning fix (Thanks to Sergei!)
+> v4: 01.org warning fix
+> 
+> Jiaxun Yang (9):
+>   MIPS: generic: Allow generating FIT image for Marduk board
+>   MIPS: DTS: Pistachio add missing cpc and cdmm
+>   clk: pistachio: Make it selectable for generic MIPS kernel
+>   clocksource/drivers/pistachio: Make it selectable for MIPS
+>   phy: pistachio-usb: Depend on MIPS || COMPILE_TEST
+>   pinctrl: pistachio: Make it as an option
+>   MIPS: config: generic: Add config for Marduk board
+>   MIPS: Retire MACH_PISTACHIO
+>   MIPS: Make a alias for pistachio_defconfig
+> 
+>  arch/mips/Kbuild.platforms                    |   1 -
+>  arch/mips/Kconfig                             |  30 --
+>  arch/mips/Makefile                            |   3 +
+>  arch/mips/boot/dts/Makefile                   |   2 +-
+>  arch/mips/boot/dts/img/Makefile               |   3 +-
+>  arch/mips/boot/dts/img/pistachio.dtsi         |  10 +
+>  arch/mips/configs/generic/board-marduk.config |  53 +++
+>  arch/mips/configs/pistachio_defconfig         | 316 ------------------
+>  arch/mips/generic/Kconfig                     |   6 +
+>  arch/mips/generic/Platform                    |   1 +
+>  arch/mips/generic/board-marduk.its.S          |  22 ++
+>  arch/mips/pistachio/Kconfig                   |  14 -
+>  arch/mips/pistachio/Makefile                  |   2 -
+>  arch/mips/pistachio/Platform                  |   6 -
+>  arch/mips/pistachio/init.c                    | 125 -------
+>  arch/mips/pistachio/irq.c                     |  24 --
+>  arch/mips/pistachio/time.c                    |  55 ---
+>  drivers/clk/Kconfig                           |   1 +
+>  drivers/clk/Makefile                          |   2 +-
+>  drivers/clk/pistachio/Kconfig                 |   8 +
+>  drivers/clocksource/Kconfig                   |   3 +-
+>  drivers/phy/Kconfig                           |   2 +-
+>  drivers/pinctrl/Kconfig                       |   5 +-
+>  23 files changed, 114 insertions(+), 580 deletions(-)
+>  create mode 100644 arch/mips/configs/generic/board-marduk.config
+>  delete mode 100644 arch/mips/configs/pistachio_defconfig
+>  create mode 100644 arch/mips/generic/board-marduk.its.S
+>  delete mode 100644 arch/mips/pistachio/Kconfig
+>  delete mode 100644 arch/mips/pistachio/Makefile
+>  delete mode 100644 arch/mips/pistachio/Platform
+>  delete mode 100644 arch/mips/pistachio/init.c
+>  delete mode 100644 arch/mips/pistachio/irq.c
+>  delete mode 100644 arch/mips/pistachio/time.c
+>  create mode 100644 drivers/clk/pistachio/Kconfig
 
-Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d2_xplained.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+series applied to mips-next.
 
-diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-index 627b7bf88d83..faa30063d9a9 100644
---- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-@@ -6,6 +6,11 @@
-  *                2015 Nicolas Ferre <nicolas.ferre@atmel.com>
-  */
- /dts-v1/;
-+/*
-+ * Replace the line below with "sama5d29.dtsi" in order to instantiate the
-+ * sama5d29 SoC of the sama5d2 family.Otherwise, leave it unchanged when
-+ * using sama5d27 SoC for instance.
-+ */
- #include "sama5d2.dtsi"
- #include "sama5d2-pinfunc.h"
- #include <dt-bindings/mfd/atmel-flexcom.h>
+Thomas.
+
 -- 
-2.17.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
