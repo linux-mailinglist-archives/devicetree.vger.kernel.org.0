@@ -2,93 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8395D3E9DE1
-	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 07:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D303E9E1E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Aug 2021 07:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234167AbhHLFT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 01:19:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34630 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234209AbhHLFT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 01:19:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EE71C061765
-        for <devicetree@vger.kernel.org>; Wed, 11 Aug 2021 22:19:03 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mE37I-0000TW-MH; Thu, 12 Aug 2021 07:18:56 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mE37H-0003wc-ID; Thu, 12 Aug 2021 07:18:55 +0200
-Date:   Thu, 12 Aug 2021 07:18:55 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v1] dt-bindings: timer: fsl,imxgpt: add optional osc_per
- clock
-Message-ID: <20210812051855.vrwisusfqkbb5v6a@pengutronix.de>
-References: <20210803072958.4815-1-o.rempel@pengutronix.de>
- <YRQRNrLXIYERa6FT@robh.at.kernel.org>
+        id S233956AbhHLFtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 01:49:46 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:46606 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230377AbhHLFtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 01:49:45 -0400
+X-UUID: ac7b4d3721684250a58decace1416389-20210812
+X-UUID: ac7b4d3721684250a58decace1416389-20210812
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <hui.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1699305085; Thu, 12 Aug 2021 13:49:18 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 12 Aug 2021 13:49:17 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 12 Aug 2021 13:49:16 +0800
+From:   Hui Liu <hui.liu@mediatek.com>
+To:     <robh+dt@kernel.org>, <jic23@kernel.org>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <zhiyong.tao@mediatek.com>, <chun-hung.wu@mediatek.com>,
+        <yingjoe.chen@mediatek.com>, <seiya.wang@mediatek.com>,
+        <matthias.bgg@gmail.com>, <s.hauer@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v1 0/2] AUXADC: Mediatek auxadc driver
+Date:   Thu, 12 Aug 2021 13:48:42 +0800
+Message-ID: <20210812054844.30575-1-hui.liu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YRQRNrLXIYERa6FT@robh.at.kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 06:58:51 up 252 days, 19:05, 12 users,  load average: 0.02, 0.03,
- 0.00
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 12:04:38PM -0600, Rob Herring wrote:
-> On Tue, Aug 03, 2021 at 09:29:58AM +0200, Oleksij Rempel wrote:
-> > Add optional osc_per and fix dts validation warnings on imx6 SoCs.
-> > 
-> > Fixes: df8cad689eae ("dt-bindings: timer: Convert i.MX GPT to json-schema")
-> 
-> I don't think you can say the above commit was broken.
->
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > ---
-> >  .../devicetree/bindings/timer/fsl,imxgpt.yaml   | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> > index a4f51f46b7a1..e496dd9f4988 100644
-> > --- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> > @@ -43,11 +43,15 @@ properties:
-> >      items:
-> >        - description: SoC GPT ipg clock
-> >        - description: SoC GPT per clock
-> > +      - description: optional SoC GPT oscillator
-> > +    minItems: 2
-> 
-> The 3rd clock is valid on every version of the h/w?
+This series includes two patchs:
+1.add support for case IIO_CHAN_INFO_RAW.
+2.update case IIO_CHAN_INFO_PROCESSED: convert raw data to voltage.
 
-No.
+Changes in patch v1:
+1)fix typo covert to convert in patch 2/2 description.
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Hui Liu (2):
+  iio: mtk-auxadc: add support IIO_CHAN_INFO_RAW case
+  iio: mtk-auxadc: update case IIO_CHAN_INFO_PROCESSED
+
+ drivers/iio/adc/mt6577_auxadc.c | 24 +++++++++++++++++++++++-
+ 1 file changed, 23 insertions(+), 1 deletion(-)
+
+--
+2.18.0
+
+
+
