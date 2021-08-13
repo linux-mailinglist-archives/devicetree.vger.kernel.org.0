@@ -2,123 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9B783EB669
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 15:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E443EB666
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 15:59:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbhHMOAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 10:00:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
+        id S240266AbhHMOAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 10:00:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233514AbhHMOAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 10:00:19 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 009F9C061756;
-        Fri, 13 Aug 2021 06:59:53 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id oa17so15387490pjb.1;
-        Fri, 13 Aug 2021 06:59:52 -0700 (PDT)
+        with ESMTP id S235838AbhHMOAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 10:00:18 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8170C0617AD
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 06:59:51 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id hv22-20020a17090ae416b0290178c579e424so16126212pjb.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 06:59:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=LSu8sFAFrhC/odFtHfJqDJdYJpzj9L5nziSDMXR8vEM=;
-        b=TGPQkbTs2i8gpw+d00MDmoYy23labhuVlc9grBKN7y7s+IXbxe31PZ9JEbzgL7HzEz
-         tPEJz0ch5WB3x/Tz9RqOU4uJ4fkgLRguXjyPaLM7lFD+ANJCIpA/XgtJot2H8/acXx+p
-         CYxiUkwJIsKAxsB15IcU7Q9jCgzZ2Djbl24Ea8UvKxQJXPN5rQkGMwIwo4I0jQOjYmRq
-         t6WK9ltK2ROdWHJCFIr/qL5iednM+RuTsMIMET9i1uT1RNaZECZKuwqTfGj6lSuPu4r3
-         LMS9CV64svF2Kt4rdtIDT/mL78QXVMc1F2CaZho6cOKo9HpZdmaGNssTn8S1w0RVkE/c
-         1fUw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=MQn6cqjN8smmcTyxcoK9bZJTSPGWxwSW1fWm9idf4p8=;
+        b=bbHUzcOfc28iYmzuG1dJQA5Qa3wglzCEl3896nSfZmZ8WFP2QtXO5vfAMUDVjq3oJ0
+         KV1z2/rvmQtomipyPGLecQk2BHJrW5ZZYHuGh0PF/NyN5AnZWF8U6nHxdvnb5RHkk7bV
+         tQr7yYencus19zZQx3ztNv2JgInt1QHi2/Wu//2MOET5FtlbIu1YmYhzsRgebMogur/5
+         /LsoPJgbZJI11aLJKGmhiWVM78ymSDQlWFA2z2ScyQs7EvXR38FfdHvJ8I6QIdwfTEKy
+         fLjD9eQHoajeBTxC/ZDO+haKCPSfkA50cIlRCf7j3YjrCnL7UU7CM6rBGvfmdtv7sfpc
+         wzJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=LSu8sFAFrhC/odFtHfJqDJdYJpzj9L5nziSDMXR8vEM=;
-        b=Jssf8q6A6croBuqo4bZew1sx7bUyQs1HJrIRDylvS0deBreJME0V58dSWvOKP9tOax
-         OHrlnjtnbQ2WRzLiIZX+wlY870pnHeIRqLiuY+1zPbeVJr/yzr/PGqJWdf1uBUOgmWdI
-         LesnJXLa3IuoJg9cYheGFSJgmYoqpjx4QmeFjm3TEQbNZpApK6/MzS74M7vwKX+K5eO0
-         52uyLEQDF7bQqzoW/3p/7gT7plY+6s+S9Ru9QK+iCR+aAd3X6obflLJtgoCPe+pu780O
-         KPB/rVqUdHTdJMd8wtDS/bJRsUBzeJ8CjCZh3mauqoZP9oc6cwnDwuzR6T+AMbZmiV+J
-         PEug==
-X-Gm-Message-State: AOAM530k7T2ikqS/5O27dACwpREAHuBGgSsdjy29LUlKyvIdPszdK3zW
-        i2vs/EwvucN/DHcgO5+MZ0+oK+YdRGhY4Nfj9+Y=
-X-Google-Smtp-Source: ABdhPJzQbeYqFgjmUZ7qRC5aFHx8LQJMXfquo7iK9Xh0oX2OxNFjiTy5sHnPApz+D8JrixNPFriP2nkZUsivzsv59Rk=
-X-Received: by 2002:a17:90a:cf18:: with SMTP id h24mr2737483pju.228.1628863192516;
- Fri, 13 Aug 2021 06:59:52 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MQn6cqjN8smmcTyxcoK9bZJTSPGWxwSW1fWm9idf4p8=;
+        b=S2UngRjcm+3p7cGq4cw0QUHzEdd4U3fylOHBerm71SNLtX9ytMl7/2AgPJtqr1oTj5
+         iQpxg2tjOB7oKW+rK5txhVlumtCWdhwdd0MWiyHopKirNLh0X9JGDyI8ZIDZ525O7oAN
+         CVTdAgTG1opv2+DO6BhvZGUqqBwcr9Cf6jvg2FCNQxxbq33tvE2Z5lwBXrBvwZWLwXu8
+         SQKC9e3gPHiL/2lPOsWa9nv04wbge+feSCUplTC4cQkjsF3HWDECwvycsyt2uuPZFoit
+         M3J9BgORRyKpC/UXKTnZuFq9wzdmuI9lLqOlT9nP0VASopv44Md6MZiXanDCWqgcYo/V
+         GfoA==
+X-Gm-Message-State: AOAM532wWKVrwoABsS8UGiahgAEZvvEpeNRPVGZsFCMRRz2bD/38bCjv
+        flrIt6hcZj38zVAmtj8oRnFNWA==
+X-Google-Smtp-Source: ABdhPJwZR5on4UTDwsr7OAESZTVh5CnOYdmBdsdNm1FuFkNx+acV4zlCo1Q9eKj2prvco3VqfZsMsQ==
+X-Received: by 2002:a17:90a:930e:: with SMTP id p14mr2731460pjo.132.1628863191115;
+        Fri, 13 Aug 2021 06:59:51 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id a185sm2511961pfa.205.2021.08.13.06.59.49
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 13 Aug 2021 06:59:50 -0700 (PDT)
+Date:   Fri, 13 Aug 2021 21:59:44 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Truly NT35521 panel
+ support
+Message-ID: <20210813135943.GE6795@dragon>
+References: <20210804081352.30595-1-shawn.guo@linaro.org>
+ <20210804081352.30595-2-shawn.guo@linaro.org>
+ <YRQcTLK1ffM1TEbX@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20210811095759.1281480-1-geert@linux-m68k.org>
- <20210811095759.1281480-20-geert@linux-m68k.org> <20210811124755.37b0a0a9@thinkpad>
- <CAMuHMdUFPvJBuFByiN6pb539REYtcsNJMKML+M2NQw=GJxTYJg@mail.gmail.com>
- <CAHp75VeNyHUmcU7GPnP8woRcDErDNQ5M3FHQGpLnhUoL5qTnLQ@mail.gmail.com> <CAMuHMdVFOu6EXKqkiLgBp3n8Oujm+uSpFn-ximtp+37TOZSp9A@mail.gmail.com>
-In-Reply-To: <CAMuHMdVFOu6EXKqkiLgBp3n8Oujm+uSpFn-ximtp+37TOZSp9A@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 13 Aug 2021 16:59:13 +0300
-Message-ID: <CAHp75VfsOFdgQP3-XStFieBQ9o4P=FVY43N4WXg6yOe+2O0bwg@mail.gmail.com>
-Subject: Re: [PATCH v5 19/19] auxdisplay: ht16k33: Add LED support
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YRQcTLK1ffM1TEbX@robh.at.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 13, 2021 at 3:53 PM Geert Uytterhoeven <geert@linux-m68k.org> w=
-rote:
-> On Thu, Aug 12, 2021 at 2:33 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Wednesday, August 11, 2021, Geert Uytterhoeven <geert@linux-m68k.org=
-> wrote:
-> >> On Wed, Aug 11, 2021 at 12:48 PM Marek Beh=C3=BAn <kabel@kernel.org> w=
-rote:
-> >> > On Wed, 11 Aug 2021 11:57:59 +0200
+On Wed, Aug 11, 2021 at 12:51:56PM -0600, Rob Herring wrote:
+> On Wed, Aug 04, 2021 at 04:13:51PM +0800, Shawn Guo wrote:
+> > The Truly NT35521 is a 5.24" 1280x720 DSI panel, and the backlight is
+> > managed through DSI link.
+> > 
+> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> > ---
+> >  .../bindings/display/panel/truly,nt35521.yaml | 62 +++++++++++++++++++
+> >  1 file changed, 62 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/truly,nt35521.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/truly,nt35521.yaml b/Documentation/devicetree/bindings/display/panel/truly,nt35521.yaml
+> > new file mode 100644
+> > index 000000000000..4727c3df6eb8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/truly,nt35521.yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/truly,nt35521.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Truly NT35521 5.24" 1280x720 MIPI-DSI Panel
+> > +
+> > +maintainers:
+> > +  - Shawn Guo <shawn.guo@linaro.org>
+> > +
+> > +description: |
+> > +  The Truly NT35521 is a 5.24" 1280x720 MIPI-DSI panel.  The panel backlight
+> > +  is managed through DSI link.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: truly,nt35521
+> > +
+> > +  reg: true
+> > +
+> > +  reset-gpios: true
+> > +
+> > +  enable-gpios: true
+> > +
+> > +  pwr-positive5-gpios:
+> > +    maxItems: 1
+> > +
+> > +  pwr-negative5-gpios:
+> > +    maxItems: 1
+> 
+> Are these +/-5V supplies? If so, they should be modeled with 
+> gpio-regulator perhaps unless the panel connection could only ever be 
+> GPIOs.
 
-...
+Hi Rob,
 
-> >> Sure, that can be done later, when an ACPI user appears?
-> >
-> > Actually with PRP0001 approach any of compatible driver may be used onA=
-CPI platform. So, what you are saying can be interpreted the way =E2=80=9Cw=
-e don=E2=80=99t care about users on ACPI based platforms=E2=80=9D. If it is=
- the case, then it should be told explicitly.
->
-> I think you're interpreting too much ;-)
-> My point is simply:
->
-> >> The dependency on OF was pre-existing, and this series is already
-> >> at v5.
+The binding has been updated in v2 [1].  Please help review that.
+Thanks!
 
-Okay, but we can get rid of it. Why not make it more generic at the
-same time? Does it make sense?
-(I believe this is what Marek is asking initially)
+Shawn
 
-> If any OF compatible driver can now be used on ACPI platforms, perhaps
-> this should be handled at the API level? I.e. the distinction between
-> OF and device properties should be dropped completely,
+[1] https://lore.kernel.org/linux-arm-msm/20210809051008.6172-2-shawn.guo@linaro.org/T/#m587035a602b1be6c5326dcf24af01b3e8a5d2cc9
 
-And this is done by device_*() / fwnode_*() APIs. And that's what can
-be easily done here.
-
->  and all drivers
-> be converted mechanically in one shot, instead of a gradual ad-hoc
-> conversion being sneaked in through other series like this one?
-
-Do you realize that you are asking for something impossible?
-
-Moreover, an ad-hoc approach is what we do for plenty of things in the
-kernel (WRT new APIs, that don't replace old ones immediately).
-
---=20
-With Best Regards,
-Andy Shevchenko
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reset-gpios
+> > +  - enable-gpios
+> > +  - pwr-positive5-gpios
+> > +  - pwr-negative5-gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    dsi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        panel@0 {
+> > +            compatible = "truly,nt35521";
+> > +            reg = <0>;
+> > +            reset-gpios = <&msmgpio 25 GPIO_ACTIVE_LOW>;
+> > +            pwr-positive5-gpios = <&msmgpio 114 GPIO_ACTIVE_HIGH>;
+> > +            pwr-negative5-gpios = <&msmgpio 17 GPIO_ACTIVE_HIGH>;
+> > +            enable-gpios = <&msmgpio 10 GPIO_ACTIVE_HIGH>;
+> > +        };
+> > +    };
+> > +...
+> > -- 
+> > 2.17.1
+> > 
+> > 
