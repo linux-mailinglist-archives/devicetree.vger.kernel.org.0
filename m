@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E943EAF0D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 05:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F8B3EAF1C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 06:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233750AbhHMD60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 23:58:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34032 "EHLO
+        id S232197AbhHMEOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 00:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238657AbhHMD6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 23:58:24 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EDBC061756
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 20:57:58 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id j1so13410213pjv.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 20:57:58 -0700 (PDT)
+        with ESMTP id S231946AbhHMEOC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 00:14:02 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52563C061756;
+        Thu, 12 Aug 2021 21:13:36 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id 22so22659qkg.2;
+        Thu, 12 Aug 2021 21:13:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=MvmuwhxcqYAbdPmkTIufV5uQRwUnrxELEdSjPA9KrXo=;
-        b=eOwiRNh4MUanAxbqTJMBRZCZfu41L9y7gdH60FKetDLsqWzSItkABZc2JszeZ82opI
-         bfkEzhtcD2es9gu2FAoDAUD+8r0bgLFFKMlRuYwEIbemol70oWZxCO31WcLOv5eMCRNa
-         CJz0KsyMOp6WuJk25J8DqIzQcqdedVyC1mhgHbhFE87rdyadBI69e49/dXtQgjr5nbwK
-         VwFZ8KAWt5PmbX1zUdzO5/uHS77AD+9oVD4cjLD1dgCyEgN0HdYt+pNQ9evzQR5Xju/D
-         A2Cbwl1uAfUjP6ecqadlbt+ewPMPfQYRiHSWmx1YWwU4/vp+unPk39FFAHC70KWSX+1c
-         sUrw==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JATj7FlSMDAm89anL9O14/wxabM+bn6u6NhVI8X8ONE=;
+        b=lE2ubq/U0m3V2snJ8bMvBWCXNeU5Fw0Wv9eyUHk8DAwHTQanm5wFxiTPjKtAaxALCh
+         /IVN/OSLvUl2tOs4mrRp5Rc8s+zZ9grirEMWhuj/m0+9FtTCe1nzFnhWoLeElj7/SrXq
+         rCcNYIYx/BALAuUVm46dOIlYQ7dGqN/gBk43U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=MvmuwhxcqYAbdPmkTIufV5uQRwUnrxELEdSjPA9KrXo=;
-        b=FlJ5Ej2uoldbiuJtEw0ZfBlnGcOYRcW8+fVQlGvzgyBp84Cugyc//75iz0AahVzMuu
-         ASJGsKY/7Kt1CyVw52w/oKLRg1qdkRLUwaH6iep2c62RuYNT5tx56YlSzQ6YsoaPr8B+
-         pds7qdKhsuE+Z5gcr3/GeuatQ9qnOUnILB9hKsl/xsgXZE02joAcoYJwmLv64VryY++u
-         7Xn7rKaYPs7AC7JQI8SQbq6j/BNfVmpEujC5TpglrXceJCM6gpIMwsydSJy9TXGNZ4Ym
-         7bNJ+Lr9N6Pgn3xOjoP3zdoq5a0UNCBYVCNMV3YPTYnJYKruMJAtT4ufXHGD8FdUaWG8
-         VFHA==
-X-Gm-Message-State: AOAM5309N+vnnL8sNdrgrfBg+No4oMkx6eSxHB5hU4F/sAs5kRC07UQq
-        XTCWJRvRgPhAidG95b9/LP0nww==
-X-Google-Smtp-Source: ABdhPJxRDakJcVqHqBRWt5r47fIPr4C/oo8C0jNq80oWE8P2YNHnQVm97OlAzna+HWJyBkUGtgz+2g==
-X-Received: by 2002:a65:44c3:: with SMTP id g3mr421133pgs.233.1628827076146;
-        Thu, 12 Aug 2021 20:57:56 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id x1sm299780pfn.64.2021.08.12.20.57.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Aug 2021 20:57:55 -0700 (PDT)
-Date:   Fri, 13 Aug 2021 09:27:53 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net,
-        digetx@gmail.com
-Subject: Re: [PATCH v7 1/3] opp: Don't print an error if required-opps is
- missing
-Message-ID: <20210813035753.7b6ye4yzztmp2ly7@vireshk-i7>
-References: <1628767642-4008-1-git-send-email-rnayak@codeaurora.org>
- <1628767642-4008-2-git-send-email-rnayak@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JATj7FlSMDAm89anL9O14/wxabM+bn6u6NhVI8X8ONE=;
+        b=Wz3Cz+Dh42Uif9Ii4PLtylFGJTiy2BynSu1lk1gMkFTBRflJLdTnSdkSQg17QxxQrA
+         Mgks5Gn6y/WYCC4VdVPEGoM/h6gQMGydZ6erxZb1Z/FQQnP43QlWxe75eFu7u8xBBNpL
+         1ld+3BVJxxl8ieuh40exlqHICT3AJGvVRyFeH2x95FyyaKaFrsY60h1KwdjZxFatFcla
+         WyrjgaaRiflhCQ2YFh2Vyh+CMiURaSCTub/Ml+iM+GO/s+zhGQv/f9AvWbKwhPneseD2
+         hI1ukWzCEXLgVoy8O8bJ4OKjXANZEa8PUHO1ujjSMn690QINcZqxh/Yb5JSh7x67maN0
+         P2wQ==
+X-Gm-Message-State: AOAM532ZaQTSJjtZacRizmI7bcZ+5FzJnn0w9tvjsXgHcs3ytaiinus3
+        U7/ymN9+1AvM6+uEsowHg8UTae1fBxKtbIY8+bA=
+X-Google-Smtp-Source: ABdhPJwZqoAo49DMKYzjDkSgFAuPBY+tIL4xnl8wvv+rWSUBDeXDtc0ndYWLTCbIfTwEdimJshNoOAUSSoZGjVZlzR0=
+X-Received: by 2002:a05:620a:19a8:: with SMTP id bm40mr293306qkb.66.1628828015291;
+ Thu, 12 Aug 2021 21:13:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1628767642-4008-2-git-send-email-rnayak@codeaurora.org>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20210805222818.8391-1-rentao.bupt@gmail.com> <20210805222818.8391-5-rentao.bupt@gmail.com>
+ <CACPK8XcV5On2D4D+SXnfw1M0owwfCL4Su19jOEA7yWpq+T3jLw@mail.gmail.com> <20210813034016.GA21895@taoren-ubuntu-R90MNF91>
+In-Reply-To: <20210813034016.GA21895@taoren-ubuntu-R90MNF91>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Fri, 13 Aug 2021 04:13:23 +0000
+Message-ID: <CACPK8XeoV8DqDNYFgK97r-Q0DebNjrmgUTydKSYmGt+3x=-vOQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] ARM: dts: aspeed: Add Facebook Cloudripper
+ (AST2600) BMC
+To:     Tao Ren <rentao.bupt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tao Ren <taoren@fb.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-08-21, 16:57, Rajendra Nayak wrote:
-> The 'required-opps' property is considered optional, hence remove
-> the pr_err() in of_parse_required_opp() when we find the property is
-> missing.
-> While at it, also fix the return value of
-> of_get_required_opp_performance_state() when of_parse_required_opp()
-> fails, return a -ENODEV instead of the -EINVAL.
-> 
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  drivers/opp/of.c | 12 ++----------
->  1 file changed, 2 insertions(+), 10 deletions(-)
+On Fri, 13 Aug 2021 at 03:40, Tao Ren <rentao.bupt@gmail.com> wrote:
+>
+> On Fri, Aug 13, 2021 at 01:29:17AM +0000, Joel Stanley wrote:
+> > On Thu, 5 Aug 2021 at 22:28, <rentao.bupt@gmail.com> wrote:
+> > > +&mdio1 {
+> > > +       status = "okay";
+> >
+> > You're enabling this but it looks like it's unused?
+>
+> Thanks Joel for the careful review. The MDIO controller is not paired
+> with BMC MAC; instead, it's connected to the MDC/MDIO interface of the
+> on-board switch (whose ports are connected to BMC, Host and front panel
+> management port).
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+I see!
 
--- 
-viresh
+>
+> In other word, the MDIO controller is used, but we do need some user
+> space scripts to control the controller. What's your suggestion? For
+> example, should I add some comments to explain the purpose?
+
+Yes, that would make sense.
+
+I've applied your patch, so if you want to add comments please send a
+diff against this tree:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/joel/bmc.git/log/?h=dt-for-v5.15
