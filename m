@@ -2,295 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C21C3EBE3D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 00:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 583323EBE4A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 00:32:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235032AbhHMWXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 18:23:36 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:39875 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234982AbhHMWXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 18:23:34 -0400
-Received: by mail-oi1-f176.google.com with SMTP id bj40so18117835oib.6
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 15:23:07 -0700 (PDT)
+        id S235073AbhHMWcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 18:32:46 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:38647 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235029AbhHMWcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 18:32:46 -0400
+Received: by mail-oi1-f178.google.com with SMTP id u25so18116141oiv.5
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 15:32:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jC2PUYWO6/b2RNk6g7rayeCm9jNbK7Ru4h0UAMkLO4w=;
-        b=sduJxEeXptp6q0JzXQI4iGNVMzondUWw5iVvdNbwsU/qSgZA5R5resfXu04yKWykBn
-         7SZzG4jVg0mfSvkkm7/FzXSQEQqgaJScASFgELdM5/DApbbO/WKg3M1IBlAiSlBu/G6A
-         YKbLTf5rJdKBg/JbcEQebxPysL2hGSd8jPS1ySJHENCA47tHxMhGDYiJ+Xw6MOptWgRP
-         0qSZaRUy6uGHtkGcwl9eT2EJD2QvHJj2NfCq9YO2VwrRSLnBeQYCG8jwsIEs3gOnVr05
-         CXBVHDn3mfNbZ8aTA6DxO1aYNxJth1cKeAHQ3fqWioLH/yi87dbaMO63D/t6SOXvxKPw
-         QLQA==
-X-Gm-Message-State: AOAM532Jiojm1VXl58dO2V6FSQS2Qudub7VB5UZ3/ORBmMepj9JJInfv
-        To1dDefU6zvj4gj0hM7c8Q==
-X-Google-Smtp-Source: ABdhPJyUUN4I1uIXZyw9oxHDZusxdXapylWJtreLq2VsbbxT8qfPv1qHmQvenD+ZV/RnDYQf+EAEkg==
-X-Received: by 2002:aca:60d6:: with SMTP id u205mr3773176oib.99.1628893386667;
-        Fri, 13 Aug 2021 15:23:06 -0700 (PDT)
+        bh=aSQ91xVPzAXJR7Ir9zVwBjsmn9exYGic1VvkPyPRbjQ=;
+        b=WiwExqbZA7YXHZmg8kPsVncGZvi/sNKX66Lf376PLNqfTnpitlLmKwV9GrphN775LT
+         tgW69Qvh3+hBORNO6NAG69Th+ICC8opNvOYB8RbbJ4ThGT+sLgQREoBMzoRqlAyjGBP2
+         Az63DtGZ52zzga2Ycj7V9PiUwLDLje4nmNeRP0M88XsZzlcd25CNO30Q64py1Ru/GhdD
+         Z0qqEQ+FiOn31BAcnZD/XkVrFp9ZJ+6Kk5LU7XvqQB6vRTvpC139+eY+AXPxjofW7muG
+         YkW5nLfYc9EYO/Gw9CH67Hu5HcoiI5YyN9Hyh1hh+TdMEgDh9p7T9mWOIhuDywA27Ngp
+         iV7Q==
+X-Gm-Message-State: AOAM533H7bxRQzNsNPOVurqSDcbEZEB/6IioOTxKVQ/e6j5DfdKNphQ7
+        ahPvCB+G/sEM+QCuF6LGLA==
+X-Google-Smtp-Source: ABdhPJw12anws6OaHVH9mfi6kuY5PCH1uTMHo+F+9G+j5EgMJsVmwy/74TeWdi3mFRZZBg5+xcXqQw==
+X-Received: by 2002:aca:c642:: with SMTP id w63mr3688027oif.177.1628893938406;
+        Fri, 13 Aug 2021 15:32:18 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d2sm574798otl.32.2021.08.13.15.23.05
+        by smtp.gmail.com with ESMTPSA id c11sm522239oot.25.2021.08.13.15.32.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 15:23:05 -0700 (PDT)
-Received: (nullmailer pid 4044137 invoked by uid 1000);
-        Fri, 13 Aug 2021 22:23:04 -0000
-Date:   Fri, 13 Aug 2021 17:23:04 -0500
+        Fri, 13 Aug 2021 15:32:17 -0700 (PDT)
+Received: (nullmailer pid 4058431 invoked by uid 1000);
+        Fri, 13 Aug 2021 22:32:16 -0000
+Date:   Fri, 13 Aug 2021 17:32:16 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc:     bjorn.andersson@linaro.org, broonie@kernel.org,
         plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
         perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
         bgoswami@codeaurora.org
-Subject: Re: [PATCH v4 01/20] soc: dt-bindings: qcom: apr: convert to yaml
-Message-ID: <YRbwyIYt4YdzAbqj@robh.at.kernel.org>
+Subject: Re: [PATCH v4 03/20] soc: dt-bindings: qcom: add gpr bindings
+Message-ID: <YRby8EtUeXnqEd8m@robh.at.kernel.org>
 References: <20210809112339.8368-1-srinivas.kandagatla@linaro.org>
- <20210809112339.8368-2-srinivas.kandagatla@linaro.org>
+ <20210809112339.8368-4-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210809112339.8368-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20210809112339.8368-4-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 09, 2021 at 12:23:20PM +0100, Srinivas Kandagatla wrote:
-> Convert APR bindings to yaml format so that we could add new bindings support.
+On Mon, Aug 09, 2021 at 12:23:22PM +0100, Srinivas Kandagatla wrote:
+> Qualcomm Generic Packet router aka GPR is the IPC mechanism found
+> in AudioReach next generation signal processing framework to perform
+> command and response messages between various processors.
 > 
-> All the dsp services bindings are now part of apr bindings instead
-> of adding them to audio bindings.
+> GPR has concepts of static and dynamic port, all static services like
+> APM (Audio Processing Manager), PRM (Proxy resource manager) have
+> fixed port numbers where as dynamic services like graphs have dynamic
+> port numbers which are allocated at runtime. All GPR packet messages
+> will have source and destination domain and port along with opcode
+> and payload.
+> 
+> This support is added using existing APR driver to reuse most of
+> the code.
 > 
 > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  .../devicetree/bindings/soc/qcom/qcom,apr.txt | 134 ------------------
->  .../bindings/soc/qcom/qcom,apr.yaml           | 127 +++++++++++++++++
->  2 files changed, 127 insertions(+), 134 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+>  .../bindings/soc/qcom/qcom,apr.yaml           | 92 ++++++++++++++++++-
+>  include/dt-bindings/soc/qcom,gpr.h            | 18 ++++
+>  2 files changed, 105 insertions(+), 5 deletions(-)
+>  create mode 100644 include/dt-bindings/soc/qcom,gpr.h
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
-> deleted file mode 100644
-> index 2e2f6dc351c0..000000000000
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
-> +++ /dev/null
-> @@ -1,134 +0,0 @@
-> -Qualcomm APR (Asynchronous Packet Router) binding
-> -
-> -This binding describes the Qualcomm APR. APR is a IPC protocol for
-> -communication between Application processor and QDSP. APR is mainly
-> -used for audio/voice services on the QDSP.
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,apr-v<VERSION-NUMBER>", example "qcom,apr-v2"
-> -
-> -- qcom,apr-domain
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Destination processor ID.
-> -	Possible values are :
-> -			1 - APR simulator
-> -			2 - PC
-> -			3 - MODEM
-> -			4 - ADSP
-> -			5 - APPS
-> -			6 - MODEM2
-> -			7 - APPS2
-> -
-> -= APR SERVICES
-> -Each subnode of the APR node represents service tied to this apr. The name
-> -of the nodes are not important. The properties of these nodes are defined
-> -by the individual bindings for the specific service
-> -- All APR services MUST contain the following property:
-> -
-> -- reg
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: APR Service ID
-> -	Possible values are :
-> -			3 - DSP Core Service
-> -			4 - Audio Front End Service.
-> -			5 - Voice Stream Manager Service.
-> -			6 - Voice processing manager.
-> -			7 - Audio Stream Manager Service.
-> -			8 - Audio Device Manager Service.
-> -			9 - Multimode voice manager.
-> -			10 - Core voice stream.
-> -			11 - Core voice processor.
-> -			12 - Ultrasound stream manager.
-> -			13 - Listen stream manager.
-> -
-> -- qcom,protection-domain
-> -	Usage: optional
-> -	Value type: <stringlist>
-> -	Definition: Must list the protection domain service name and path
-> -		    that the particular apr service has a dependency on.
-> -	Possible values are :
-> -			"avs/audio", "msm/adsp/audio_pd".
-> -			"kernel/elf_loader", "msm/modem/wlan_pd".
-> -			"tms/servreg", "msm/adsp/audio_pd".
-> -			"tms/servreg", "msm/modem/wlan_pd".
-> -			"tms/servreg", "msm/slpi/sensor_pd".
-> -
-> -= EXAMPLE
-> -The following example represents a QDSP based sound card on a MSM8996 device
-> -which uses apr as communication between Apps and QDSP.
-> -
-> -	apr {
-> -		compatible = "qcom,apr-v2";
-> -		qcom,apr-domain = <APR_DOMAIN_ADSP>;
-> -
-> -		apr-service@3 {
-> -			compatible = "qcom,q6core";
-> -			reg = <APR_SVC_ADSP_CORE>;
-> -		};
-> -
-> -		apr-service@4 {
-> -			compatible = "qcom,q6afe";
-> -			reg = <APR_SVC_AFE>;
-> -
-> -			dais {
-> -				#sound-dai-cells = <1>;
-> -				dai@1 {
-> -					reg = <HDMI_RX>;
-> -				};
-> -			};
-> -		};
-> -
-> -		apr-service@7 {
-> -			compatible = "qcom,q6asm";
-> -			reg = <APR_SVC_ASM>;
-> -			...
-> -		};
-> -
-> -		apr-service@8 {
-> -			compatible = "qcom,q6adm";
-> -			reg = <APR_SVC_ADM>;
-> -			...
-> -		};
-> -	};
-> -
-> -= EXAMPLE 2
-> -The following example represents a QDSP based sound card with protection domain
-> -dependencies specified. Here some of the apr services are dependent on services
-> -running on protection domain hosted on ADSP/SLPI remote processors while others
-> -have no such dependency.
-> -
-> -	apr {
-> -		compatible = "qcom,apr-v2";
-> -		qcom,glink-channels = "apr_audio_svc";
-> -		qcom,apr-domain = <APR_DOMAIN_ADSP>;
-> -
-> -		apr-service@3 {
-> -			compatible = "qcom,q6core";
-> -			reg = <APR_SVC_ADSP_CORE>;
-> -		};
-> -
-> -		q6afe: apr-service@4 {
-> -			compatible = "qcom,q6afe";
-> -			reg = <APR_SVC_AFE>;
-> -			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-> -			...
-> -		};
-> -
-> -		q6asm: apr-service@7 {
-> -			compatible = "qcom,q6asm";
-> -			reg = <APR_SVC_ASM>;
-> -			qcom,protection-domain = "tms/servreg", "msm/slpi/sensor_pd";
-> -			...
-> -		};
-> -
-> -		q6adm: apr-service@8 {
-> -			compatible = "qcom,q6adm";
-> -			reg = <APR_SVC_ADM>;
-> -			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-> -			...
-> -		};
-> -	};
 > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-> new file mode 100644
-> index 000000000000..12650f7084f4
-> --- /dev/null
+> index 12650f7084f4..59d8b4dce8b5 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
 > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,apr.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm APR (Asynchronous Packet Router) binding
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description: |
-> +  This binding describes the Qualcomm APR, APR is a IPC protocol for
-> +  communication between Application processor and QDSP. APR is mainly
-> +  used for audio/voice services on the QDSP.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,apr
+> @@ -4,14 +4,14 @@
+>  $id: "http://devicetree.org/schemas/soc/qcom/qcom,apr.yaml#"
+>  $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>  
+> -title: Qualcomm APR (Asynchronous Packet Router) binding
+> +title: Qualcomm APR/GPR (Asynchronous/Generic Packet Router) binding
+>  
+>  maintainers:
+>    - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>  
+>  description: |
+> -  This binding describes the Qualcomm APR, APR is a IPC protocol for
+> -  communication between Application processor and QDSP. APR is mainly
+> +  This binding describes the Qualcomm APR/GPR, APR/GPR is a IPC protocol for
+> +  communication between Application processor and QDSP. APR/GPR is mainly
+>    used for audio/voice services on the QDSP.
+>  
+>  properties:
+> @@ -19,6 +19,7 @@ properties:
+>      enum:
+>        - qcom,apr
+>        - qcom,apr-v2
+> +      - qcom,gpr
+>  
+>    qcom,apr-domain:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -33,13 +34,22 @@ properties:
+>          6 = Modem2 Domain
+>          7 = Application Processor2 Domain
+>  
+> +  qcom,gpr-domain:
 
-This wasn't a valid compatible before.
+When the next flavor comes out, we'll have qcom,foo-domain?
 
-> +      - qcom,apr-v2
-> +
-> +  qcom,apr-domain:
 > +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 3, 4, 5, 6, 7]
+> +    enum: [1, 2, 3]
 > +    description:
-> +      Selects the processor domain for apr
-> +        1 = APR simulator
-> +        2 = PC Domain
-> +        3 = Modem Domain
-> +        4 = ADSP Domain
-> +        5 = Application processor Domain
-> +        6 = Modem2 Domain
-> +        7 = Application Processor2 Domain
+> +      Selects the processor domain for gpr
+> +        1 = Modem Domain
+> +        2 = Audio DSP Domain
+> +        3 = Application Processor Domain
 > +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +#APR Services
-> +patternProperties:
-> +  "^apr-service@[0-9a-e]$":
+>    '#address-cells':
+>      const: 1
+>  
+>    '#size-cells':
+>      const: 0
+>  
+> -#APR Services
+> +#APR/GPR Services
+>  patternProperties:
+>    "^apr-service@[0-9a-e]$":
+>      type: object
+> @@ -86,9 +96,66 @@ patternProperties:
+>  
+>      additionalProperties: false
+>  
+> +  "^gpr-service@[0-9a-e]$":
 
-Based on reg, this should be: [3-9a-d]
+And foo-service@...
+
+Do you (the driver) care what the node name is?
 
 > +    type: object
 > +    description:
-> +      APR node's client devices use subnodes for desired static port services.
+> +      GPR node's client devices use subnodes for desired static port services.
 > +
 > +    properties:
 > +      compatible:
 > +        enum:
-> +          - qcom,q6core
-> +          - qcom,q6asm
-> +          - qcom,q6afe
-> +          - qcom,q6adm
+> +          - qcom,q6apm
+> +          - qcom,q6prm
 > +
 > +      reg:
-> +        enum: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+> +        enum: [1, 2, 3, 4]
 > +        description:
-> +          APR Service ID
-> +            3 = DSP Core Service
-> +            4 = Audio  Front End Service.
-> +            5 = Voice Stream Manager Service.
-> +            6 = Voice processing manager.
-> +            7 = Audio Stream Manager Service.
-> +            8 = Audio Device Manager Service.
-> +            9 = Multimode voice manager.
-> +            10 = Core voice stream.
-> +            11 = Core voice processor.
-> +            12 = Ultrasound stream manager.
-> +            13 = Listen stream manager.
+> +          GPR Service ID
+> +            1 = Audio Process Manager Service
+> +            2 = Proxy Resource Manager Service.
+
+Looks like both reg and compatible encode what the service is.
+
+> +            3 = AMDB Service.
+> +            4 = Voice processing manager.
 > +
 > +      qcom,protection-domain:
 > +        $ref: /schemas/types.yaml#/definitions/string-array
@@ -300,7 +173,8 @@ Based on reg, this should be: [3-9a-d]
 > +          - const: avs/audio
 > +          - const: msm/adsp/audio_pd
 
-You've dropped a bunch of possible values.
+Why are we redefining the same property? You've combined the binding but 
+are still sharing almost nothing...
 
 > +
 > +      '#address-cells':
@@ -311,45 +185,77 @@ You've dropped a bunch of possible values.
 > +
 > +    additionalProperties: false
 > +
-> +required:
-> +  - compatible
-> +  - qcom,apr-domain
+>  required:
+>    - compatible
+> -  - qcom,apr-domain
 > +
-> +additionalProperties: false
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,apr-v2
+> +              - qcom,apr
+> +    then:
+> +      required:
+> +        - qcom,apr-domain
 > +
-> +examples:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,gpr
+> +    then:
+> +      required:
+> +        - qcom,gpr-domain
+>  
+>  additionalProperties: false
+>  
+> @@ -125,3 +192,18 @@ examples:
+>            qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+>          };
+>      };
+> +
 > +  - |
-> +    #include <dt-bindings/soc/qcom,apr.h>
-> +    apr {
-> +        compatible = "qcom,apr-v2";
-> +        qcom,apr-domain = <APR_DOMAIN_ADSP>;
+> +    #include <dt-bindings/soc/qcom,gpr.h>
+> +    gpr {
+> +        compatible = "qcom,gpr";
+> +        qcom,gpr-domain = <GPR_DOMAIN_ID_ADSP>;
 > +        #address-cells = <1>;
 > +        #size-cells = <0>;
 > +
-> +        q6core: apr-service@3 {
-> +          compatible = "qcom,q6core";
-> +          reg = <APR_SVC_ADSP_CORE>;
-> +          qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-> +        };
-> +
-> +        q6afe: apr-service@4 {
-> +          compatible = "qcom,q6afe";
-> +          reg = <APR_SVC_AFE>;
-> +          qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-> +        };
-> +
-> +        q6asm: apr-service@7 {
-> +          compatible = "qcom,q6asm";
-> +          reg = <APR_SVC_ASM>;
-> +          qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-> +        };
-> +
-> +        q6adm: apr-service@8 {
-> +          compatible = "qcom,q6adm";
-> +          reg = <APR_SVC_ADM>;
+> +        gpr-service@1 {
+> +          compatible = "qcom,q6apm";
+> +          reg = <GPR_APM_MODULE_IID>;
 > +          qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
 > +        };
 > +    };
+> diff --git a/include/dt-bindings/soc/qcom,gpr.h b/include/dt-bindings/soc/qcom,gpr.h
+> new file mode 100644
+> index 000000000000..1c68906e079c
+> --- /dev/null
+> +++ b/include/dt-bindings/soc/qcom,gpr.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __DT_BINDINGS_QCOM_GPR_H
+> +#define __DT_BINDINGS_QCOM_GPR_H
+> +
+> +/* DOMAINS */
+> +
+> +#define GPR_DOMAIN_ID_MODEM	1
+> +#define GPR_DOMAIN_ID_ADSP	2
+> +#define GPR_DOMAIN_ID_APPS	3
+> +
+> +/* Static Services */
+> +
+> +#define GPR_APM_MODULE_IID		1
+> +#define GPR_PRM_MODULE_IID		2
+> +#define GPR_AMDB_MODULE_IID		3
+> +#define GPR_VCPM_MODULE_IID		4
+> +
+> +#endif /* __DT_BINDINGS_QCOM_GPR_H */
 > -- 
 > 2.21.0
 > 
