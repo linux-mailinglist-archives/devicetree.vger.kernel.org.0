@@ -2,80 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C503EB2A5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 10:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 518C03EB2BA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 10:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238975AbhHMIae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 04:30:34 -0400
-Received: from szxga01-in.huawei.com ([45.249.212.187]:8015 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238638AbhHMIae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 04:30:34 -0400
-Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.53])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GmGvD22lWzYnm4;
-        Fri, 13 Aug 2021 16:29:44 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Fri, 13 Aug 2021 16:30:01 +0800
-Message-ID: <61162D89.2070901@hisilicon.com>
-Date:   Fri, 13 Aug 2021 16:30:01 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S238792AbhHMIk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 04:40:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238688AbhHMIk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 04:40:29 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B18C061756
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 01:40:02 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id i7so12278622iow.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 01:40:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=YXA6ubmxBM3AO934Ql+xSBBVvleUU47PEWiFVU0c5sY=;
+        b=Se7a2lBKPtN2OgP3qdqxNIBE6EE5Q8UeO9pMTEEP/mdv9KEnh6k+YXvxNVGGgMSAru
+         xHe4jicMKKcBTpom7sLaUGeO2MikvZZAME1rnmuaI0ncAM4XwFH5W/61qXCRV6I76Tyv
+         BTLIRA55j7vcpY/3VntVugHrM+nlAAqG4s84wCu1QthussKWwxpe+aBn8KS4Fwpum0eB
+         Fh9V7PxTv1v6zrjLHEjco05ruJOoazBEwP9guBFv9/xnG4r37WkPJJ4iF1PUCQXVLUXJ
+         RUynPYkIOMab9MRl5JR/0wnvPp5tpJDyKPS7Zm2IS9SEIxXu0GJO6LYbg1yL/APqv+r6
+         J0zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=YXA6ubmxBM3AO934Ql+xSBBVvleUU47PEWiFVU0c5sY=;
+        b=JtQHwv7+JlVld39ViSWczxCeeF6ZryA0RgTp3KOfOcG/hqypoXtzA3GmC+OB94Kcae
+         5jfjg5g9JHgtPE+Qykb2IGNG3x3ih2Y+afdDYHHwiSsvVuRPnwr43Q9548VuYEqPawRa
+         ZB5a4i98BpWaJJK3DR0SqboH50FEYhe7Bd92zoeEDAxEySOPxEY6qBheM33UiZ0j/6I+
+         eLvKLlh2O1VTlSGojp2me6p/rJg52QQIvTV+XwntrmDmuwdVyVUd6U5mz0rHqQtUE1h/
+         pnpzrbpQkxuZ8F+2zNISEm9ImN6ZrltBYAEHsmSk5H1xowikSarVEl0O2Ou1x7LUPPJJ
+         ImnA==
+X-Gm-Message-State: AOAM531oGIPjoqRifljUe2kiivi/XtkZ7oavo1KtXpjz5nhGvEXISne6
+        YQDFC0sXzjsf66AcKjGf+vLbKSP5cVxmQdOosQ==
+X-Google-Smtp-Source: ABdhPJy1R3yI12hU8GmPAhQTMMmaxtAhtaHYjSV1G3s5XjrbjODu0gpavs6gUZglvU6ovjd1fBldpbZJaaHg1VD14os=
+X-Received: by 2002:a6b:7712:: with SMTP id n18mr1227617iom.34.1628844002137;
+ Fri, 13 Aug 2021 01:40:02 -0700 (PDT)
 MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <xuwei5@hisilicon.com>
-Subject: Re: [PATCH] arm64: dts: HiSilicon: hi3660: address a PCI warning
-References: <934f397d227ea589a16c89f1ee9c6f199c662093.1628666047.git.mchehab+huawei@kernel.org>
-In-Reply-To: <934f397d227ea589a16c89f1ee9c6f199c662093.1628666047.git.mchehab+huawei@kernel.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggeme755-chm.china.huawei.com (10.3.19.101)
-X-CFilter-Loop: Reflected
+Reply-To: zahirikeen@gmail.com
+Sender: ali.wa1234ara@gmail.com
+Received: by 2002:a02:6a56:0:0:0:0:0 with HTTP; Fri, 13 Aug 2021 01:40:01
+ -0700 (PDT)
+From:   Zahiri Keen <zahirikeen2@gmail.com>
+Date:   Fri, 13 Aug 2021 08:40:01 +0000
+X-Google-Sender-Auth: hbw4zbUZ2lzd8b83JS0ddrLZqtQ
+Message-ID: <CA+0F4TEqV24A_=sJSXTCkj8+PXnmyS5RP24Lt7rq--LQpwE2cg@mail.gmail.com>
+Subject: Greetings to you.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Greetings,
 
-On 2021/8/11 15:14, Mauro Carvalho Chehab wrote:
-> When the driver is registered, it produces a warning when
-> registering the PCI bridge:
-> 
-> 	[    5.363450] pci_bus 0000:00: root bus resource [bus 00-01]
-> 	[    5.396998] pci_bus 0000:01: busn_res: can not insert [bus 01-ff] under [bus 00-01] (conflicts with (null) [bus 00-01])
-> 	[    5.284831] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
-> 
-> The reason is that the bus-range is wrong. Address it.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+            I have a Mutual/Beneficial Business Project that would be
+beneficial to you. I only have two questions to ask of you, if you are
+interested.
 
-Thanks!
-Applied to the hisilicon arm64 dt tree.
+1. Can you handle this project?
+2. Can I give you this trust?
 
-Best Regards,
-Wei
+Please note that the deal requires high level of maturity, honesty and
+secrecy. This will involve moving some money from my office, on trust
+to your hands or bank account. Also note that i will do everything to
+make sure that the money is moved as a purely legitimate fund, so you
+will not be exposed to any risk.
 
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> index f1ec87c05842..cf2079590ad8 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> @@ -1002,7 +1002,7 @@ pcie@f4000000 {
->  			      <0x0 0xf3f20000 0x0 0x40000>,
->  			      <0x0 0xf5000000 0x0 0x2000>;
->  			reg-names = "dbi", "apb", "phy", "config";
-> -			bus-range = <0x0  0x1>;
-> +			bus-range = <0x0  0xff>;
->  			#address-cells = <3>;
->  			#size-cells = <2>;
->  			device_type = "pci";
-> 
+I request for your full co-operation. I will give you details and
+procedure when I receive your reply, to commence this transaction, I
+require you to immediately indicate your interest by a return reply. I
+will be waiting for your response in a timely manner.
+
+Contact  Email: zahirikeen@gmail.com
+Best Regard,
+Mr Zahiri Keen.
