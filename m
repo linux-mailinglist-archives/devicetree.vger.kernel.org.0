@@ -2,100 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B46D43EBB53
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 19:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 137453EBB66
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 19:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbhHMRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 13:23:04 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:46762 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbhHMRXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 13:23:03 -0400
-Received: by mail-ot1-f42.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso85133ott.13;
-        Fri, 13 Aug 2021 10:22:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Qtl1x9JJ0XKFoBsOFr6FS/aFXbYj3pnKTeinmcXne70=;
-        b=feynS/pRwqQ6zrdK7e9IXH3MNDB480q7VPkHz/i0YLA+rM7cxLFM19bImUelTz7lTz
-         GLrZ6FtHsv4KXxMtxd3SsiuV9x7KJSNQJwyEXcrEEO4dRv3z3yWnCc7UAWUgg/ey7Iae
-         BFTk226DdoTtNe2/TveWmXh+5TtgSVcgll7jkQq97ATp+1/mWbfXVqhsPq3RbNnXC+qC
-         VzvnNh9zflQ9+45z7aJRofycY5ahhWL7TVsprJdPgPK+xZJCKb1hxsfbtO6gXKY5g7iQ
-         sZ1rfu6YEnCt+RT8SsHHJ365o8Ad8F63+/h3ZY4fNbY8CsMcRG+a1Pi2+L32qXVQat4e
-         AvXQ==
-X-Gm-Message-State: AOAM530iLIiNbeb5NmsZBhMPAG3knQeERg9XB+LbcvfrNLG44XI3aVnV
-        mbJSXlsP83f+YnjE347oSxB68OpTmg==
-X-Google-Smtp-Source: ABdhPJzY3LjdzZmYKwwt6RN5JSGv1PbqSVilzq53lfwv4e45NlgToI6abyIrp0oNLFt9px9/W8R+Fw==
-X-Received: by 2002:a05:6830:30a8:: with SMTP id g8mr2982948ots.54.1628875356369;
-        Fri, 13 Aug 2021 10:22:36 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w13sm436611otl.41.2021.08.13.10.22.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 10:22:35 -0700 (PDT)
-Received: (nullmailer pid 3706545 invoked by uid 1000);
-        Fri, 13 Aug 2021 17:22:34 -0000
-Date:   Fri, 13 Aug 2021 12:22:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Jack Pham <jackp@codeaurora.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        linux-arm-msm@vger.kernel.org,
+        id S229603AbhHMR0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 13:26:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38866 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229533AbhHMR0M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 13:26:12 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B4D1060F36;
+        Fri, 13 Aug 2021 17:25:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628875545;
+        bh=bmfn7HbaaCItG5D2XO6GaE2puQJLN9rvaABOzoYwYRc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iwgXXRq72gtd4nZHWuZoh7lOvyjwD50w3KX0bd//GnWIV0vc1ulSzvI/Tnc/M/pk9
+         a0m+QuNF0RSxm/QTGyMWyeY4Aeli4trKm6bGJfTNsqC3HLPdthQXE4fHjyg0gU9aTR
+         K0VzwueqE0tGHRfClLzJp1hpzipICxLVX+wbGJ8AIB9I9o9sMKuq4K5PqcMrRepXwR
+         pXnbFz0d0zaAT7p1gK4rdG2ESVJM6v5sH2aelEdVoZfHfm6AIMCyR9nWdfsRVBSB/d
+         E3EJ2UPCDbXbL7cZDdgKR7GnAChJ22fQ3OjVGxfhqOCLbl8EyDPohfhLRxNKXTufl7
+         h6MdWyntVwWmQ==
+Date:   Fri, 13 Aug 2021 18:25:24 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Gene Chen <gene.chen.richtek@gmail.com>, matthias.bgg@gmail.com,
+        matti.vaittinen@fi.rohmeurope.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] dt-bindings: usb: dwc3: add reference clock period
-Message-ID: <YRaqWtSK7zNhKxSN@robh.at.kernel.org>
-References: <3d86f45004fe2fcbae0a2cd197df81a1fd076a1e.1628085910.git.baruch@tkos.co.il>
- <22f62c59471e128b681a731997a9416ab2e91acf.1628085910.git.baruch@tkos.co.il>
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        rdunlap@infradead.org, gene_chen@richtek.com,
+        Wilma.Wu@mediatek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: Re: [PATCH resend v6 0/3] power: supply: mt6360_charger: add MT6360
+ charger support
+Message-ID: <20210813172524.GG5209@sirena.org.uk>
+References: <20210719033914.16990-1-gene.chen.richtek@gmail.com>
+ <20210813155438.4ssph6deqksob2uv@earth.universe>
+ <20210813155858.GD5209@sirena.org.uk>
+ <20210813162029.q5slrkubelfy3mvh@earth.universe>
+ <20210813163254.GF5209@sirena.org.uk>
+ <20210813171106.entpro4b6dstho4s@earth.universe>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lHGcFxmlz1yfXmOs"
 Content-Disposition: inline
-In-Reply-To: <22f62c59471e128b681a731997a9416ab2e91acf.1628085910.git.baruch@tkos.co.il>
+In-Reply-To: <20210813171106.entpro4b6dstho4s@earth.universe>
+X-Cookie: E Pluribus Unix
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 04, 2021 at 05:05:07PM +0300, Baruch Siach wrote:
-> Document the snps,ref-clock-period property that describes reference
-> clock period when it deviates from the default set value.
-> 
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index 41416fbd92aa..c8027d2852cd 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -252,6 +252,15 @@ properties:
->      minimum: 0
->      maximum: 0x3f
->  
-> +  snps,ref-clock-period:
-> +    description:
-> +      Value for REFCLKPER field of GUCTL register for post-silicon reference
 
-Why is post-silicon relevant here? Everything upstream should be for 
-post-silicon. I've seen and done the hacks to make pre-silicon testing 
-work and we don't need those upstream.
+--lHGcFxmlz1yfXmOs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +      clock period in nanoseconds, when the hardware set default does not match
+On Fri, Aug 13, 2021 at 07:11:06PM +0200, Sebastian Reichel wrote:
+> On Fri, Aug 13, 2021 at 05:32:54PM +0100, Mark Brown wrote:
 
-If you have units, then use property unit suffix in the name.
+> > It would be better, the issues I'm worrying about are more general
+> > refactorings or whatever that create actual dependencies rather than
+> > just trivial add/add type issues - it can make doing some kinds of work
+> > really painful if things go via a different tree.
 
-> +      the actual clock.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> There you go:
 
-And then you can drop the type.
+Thanks!
 
-However, if the h/w block gets a ref clock why isn't it described in 
-'clocks' and then you can just read why the frequency is and calculate 
-the period.
+--lHGcFxmlz1yfXmOs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEWqwQACgkQJNaLcl1U
+h9B8MQf/SabFhXiu82blgagfCOLQoxiKYIr+aSGYjCQoWyz9Zvt1gSq1HULJmgc1
+ofKQVgValsxqtpU6UYzPMVBIPhqpZ/TIbgYHvlLMSrpD07Nt3tddjDr/g6fYGyj7
+dwfQAa5QrxXz3uRPWpszlgQtkas3tpTM4lNF/ytOHWq1Lk9Mz3CmujN9qsbPKf/U
+DBVVEsV+oBCVG1atIOrKqZQCUrOkhG/KxhTrw1DquIN4IL6ygGUbhNVxi7nbRgu1
+z0TtqU54hgl3ALZZ1jxS3ehe/9zNP4zMZKk1qG+T6pj2kYwRmmDPVD9VFntbP1lP
+0KOZoYGZKBO8aBs6x06t78BGFwd42w==
+=KFpM
+-----END PGP SIGNATURE-----
+
+--lHGcFxmlz1yfXmOs--
