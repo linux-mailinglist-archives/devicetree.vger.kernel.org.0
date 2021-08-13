@@ -2,74 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AFAF3EBDB1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 22:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC90B3EBE07
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 23:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234558AbhHMU5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 16:57:53 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36765 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbhHMU5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 16:57:53 -0400
-Received: by mail-oi1-f169.google.com with SMTP id bd1so10311082oib.3;
-        Fri, 13 Aug 2021 13:57:25 -0700 (PDT)
+        id S234824AbhHMVrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 17:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234841AbhHMVrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 17:47:32 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E94C061756
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 14:47:05 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id r9so12984510lfn.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 14:47:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8eT0SyDLhtqUCRVoTbFA0TfLCPJmpdZc1LYFo2vzcrU=;
+        b=Z7llxaB03js+5zDqMl9BJeU8H603XLw8p0usL4lrTwS3FMi3UtyJAdU1gA5WtzQ5aP
+         qp0K/OxL+afYh795ltTSFjme1o+v67sL3pNfGWUPAHja4xu4MZAPcSk1wfJPtG5GY5QS
+         kNn84rHKdih51ram5Y6A+lxip7ybeLuymORIGF9DMkF6EQdgTFC237xBhQrCNKmPG2xN
+         dgImHkqxU95PBDIjx4NfAtovGSGQG3QZN5es6qdAraUOddZGHiZGgTb0dkgDC/80f/Mn
+         b2SZrAorG4gJ42Vf1cAZcRwF2sgZqq5R4+b81fbBIn6WyR2BMsO2FEw5VL80EoE+Vm54
+         9gRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xRw29i8rZgtAQOOWjfxSeVfjrlJMzPgX8t5bNl0FQc4=;
-        b=hRoXSmfsfdK7xpXZnyMusn4ZiJvrro3kFsRvOPY4m0iq78T2Ofh+nnKs6N9suMWXpM
-         tbjE2DaRJMDvsoPrGTfR+0J8xFb15G09YV5h6p/MqN3XMNqW/qBQQZuL+lBoyefpy4dM
-         exNe/+Tqlft9445h9Otylem95TtB/ViDQlzz4d6eOGMa8Na6Tqgum05o9TE5BlIyhuGF
-         yhZUOEAx2rPR5SE+bHKjSQyuqKJp4Q7MPGVlTYNKUDb4w1rPAl8DtCO/kf+WzknTo2cK
-         jchHEA4xv6v97XBSqrKbxePJluHB27NF+PUlHF/HaoqrM50qHYYoRe2LvHp6Zt8C2bQU
-         0Yag==
-X-Gm-Message-State: AOAM5301GLHMAV0XzycyNBAmHTHw0bL0MwIH5yiWj10FLFDTkk9pli7F
-        S6CHbcmVOOxYCkTmoaCEGQ==
-X-Google-Smtp-Source: ABdhPJy9HKW8pPlI9RBDXhXYvubQZueRg9WbqHK62nLq1LNsL5G+0pIOcso3FFcfwkxt3itU8Ljf5w==
-X-Received: by 2002:aca:1911:: with SMTP id l17mr3728709oii.160.1628888245552;
-        Fri, 13 Aug 2021 13:57:25 -0700 (PDT)
-Received: from robh.at.kernel.org (2603-8080-2a06-ed00-a2a6-2d62-395f-9378.res6.spectrum.com. [2603:8080:2a06:ed00:a2a6:2d62:395f:9378])
-        by smtp.gmail.com with ESMTPSA id w35sm525504ott.80.2021.08.13.13.57.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 13:57:25 -0700 (PDT)
-Received: (nullmailer pid 4019742 invoked by uid 1000);
-        Fri, 13 Aug 2021 20:57:23 -0000
-Date:   Fri, 13 Aug 2021 15:57:23 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-Cc:     linux-iio@vger.kernel.org, Dragos.Bogdan@analog.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Darius.Berghe@analog.com,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: potentiometer: Add AD5110 in
- trivial-devices
-Message-ID: <YRbcswAZuiLCFVz+@robh.at.kernel.org>
-References: <20210809075745.160042-1-dmugil2000@gmail.com>
- <20210809075745.160042-2-dmugil2000@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8eT0SyDLhtqUCRVoTbFA0TfLCPJmpdZc1LYFo2vzcrU=;
+        b=YkDE4CnpI7uOyPwTee7/6H5xr2j47YBgPlkPhitEKLcQEArF+DRM9AKNaZXZHJaKU6
+         wwndMyMgC0G0OAGWsawiOzPCeGPnFIEfLLRD3GlJ8B4zI3702kKmQA95yK4/GopUoCS9
+         LGRQo4uLxyOtwQG9Gb38IN9LtWhpn2Pick+xOerlmj7c2La2yq2rsYylTLXRgmHRDHdw
+         +AQ1nk8PeTdqrt9kHA5clAptw/JWtZNJdlH6MUqJAnMdXqqJi4MiCtMEY/iym7awrtJP
+         f75dcPHf6vGKzxZ9YSXzE3j44baW/mOWFmOC9aKnhnerEYA0QQbPwT/gWKHO6xUFQuAl
+         s+Vg==
+X-Gm-Message-State: AOAM530LbVPcBauBIru74CdsBgRADQyDSckTjigqg/3iNixQh0yp+I+3
+        zyxJwmXqkqjXWkmrl/j9ZBD/LZeFAfs82KvPw9mHHw==
+X-Google-Smtp-Source: ABdhPJzIl9ij4hoqRja2SJhOC1MMNQl/5QwyoHXCpxzvQa+0J3XpSsf519mnSkQWEtXLfDnZLZmoVyxR0QNhVU0wdJg=
+X-Received: by 2002:ac2:5d4a:: with SMTP id w10mr3156477lfd.529.1628891223784;
+ Fri, 13 Aug 2021 14:47:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210809075745.160042-2-dmugil2000@gmail.com>
+References: <20210805085828.3451909-1-linus.walleij@linaro.org> <YRa5UnBcmW1KBIEd@robh.at.kernel.org>
+In-Reply-To: <YRa5UnBcmW1KBIEd@robh.at.kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 13 Aug 2021 23:46:52 +0200
+Message-ID: <CACRpkdbcVJbMnCQ3P1nPmFUsJSw2jgpr2BEzz6GBUQLhBVuO_A@mail.gmail.com>
+Subject: Re: [PATCH 1/2 v2] dt-bindings: power: Extend battery bindings with type
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 09 Aug 2021 13:27:19 +0530, Mugilraj Dhavachelvan wrote:
-> Add AD5110, a Nonvolatile Digital Potentiometer into
-> trivial-devices.yaml.
-> 
-> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On Fri, Aug 13, 2021 at 8:26 PM Rob Herring <robh@kernel.org> wrote:
+> On Thu, Aug 05, 2021 at 10:58:27AM +0200, Linus Walleij wrote:
+> > This adds a battery-type property and bindings for the different
+>
+> s/battery-type/"device-chemistry"/
+>
+> Otherwise,
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Thanks Rob, Sebastian tell me if you can fix this when applying
+or if you want me to respin the patch.
+
+Yours,
+Linus Walleij
