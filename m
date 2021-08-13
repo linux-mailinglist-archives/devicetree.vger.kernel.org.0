@@ -2,190 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F7BD3EAD7B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 01:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB8B33EADCD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 02:16:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233237AbhHLXKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 19:10:08 -0400
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:45799 "EHLO
-        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbhHLXKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 19:10:08 -0400
-Received: by mail-qk1-f170.google.com with SMTP id o123so3381880qkf.12;
-        Thu, 12 Aug 2021 16:09:42 -0700 (PDT)
+        id S234929AbhHMAQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 20:16:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41582 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234875AbhHMAQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 20:16:37 -0400
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121A6C0613D9
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 17:16:12 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so10169212oti.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 17:16:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=JOTNUTQtU5ZZqRjDa2leuDXvXu+UguId06UQDSUoMaY=;
+        b=U34dVhVaT3zF39gkIHSPg+32QxpezmxMHXTM4kxM96GTjtRmBW82CpPdmpJYB7o89D
+         Z1oYR+gbPbBvLkLJ2aCXIvuVV4IJyfsqoVGxna3m7XTeVXZMPGQV1fGnU3Vvw+1Op7wj
+         WoFd/sfxE/7/s4ifnBnipPEtoyujIf5CmQ4hQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=/fde461zyBqFG4VxvCXC1y+Kn2D6FELzcDQs0SJciDQ=;
-        b=OfFgn2h83Hx+JclR2YA697qeyq5ahp4iVCzY/buxJDjYPWjkE6AbXZFdcMOz0wdW2Y
-         fReZHg1sNFvEngRf1G1x3B8uwUSQ+4K/+cI4eCifSQkxAtMppZsO1B1BIKJofMaUYeWE
-         HfCLfG8aXv1yWWT+R01vf1G/wxqrrovSSLta8U9dmcVuj1aXwrm61doAOnvI1BNlsv/u
-         XXtzKqu1LkKZesdT9IKO96GFivTkO/TrWn1tARBcfDQ8kfXOMPtlgKS5IKmAZdLQfDYx
-         w0mcxVsUtSS7z8urr9Dx6r0t++b0Ci1oXvRmyrCLtbMtnHjgqSkINefV1M0YKAgaO0jF
-         CQ9Q==
-X-Gm-Message-State: AOAM5321RTBbOw4c0sQIONlZLY644GygquSJcp8oLcay91LmDZ2GCkkE
-        bxXM3jPQVzK8ZpnWgQQpgLR0N65IWAo=
-X-Google-Smtp-Source: ABdhPJz5NhzPyjpN6HiD4wikS0FNnO3/NvE1DMu8z1ucZLbe7wx6RLottmac+GxtaY/6wYHmIhwc1w==
-X-Received: by 2002:a37:a956:: with SMTP id s83mr7105814qke.220.1628809781469;
-        Thu, 12 Aug 2021 16:09:41 -0700 (PDT)
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com. [209.85.219.49])
-        by smtp.gmail.com with ESMTPSA id k23sm2209649qkk.84.2021.08.12.16.09.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Aug 2021 16:09:40 -0700 (PDT)
-Received: by mail-qv1-f49.google.com with SMTP id m3so4228887qvu.0;
-        Thu, 12 Aug 2021 16:09:40 -0700 (PDT)
-X-Received: by 2002:ad4:4e04:: with SMTP id dl4mr6502780qvb.18.1628809780364;
- Thu, 12 Aug 2021 16:09:40 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=JOTNUTQtU5ZZqRjDa2leuDXvXu+UguId06UQDSUoMaY=;
+        b=TPFgs+07YUuw3N6P++/gWxWm17TF3oZoVF8uMHb6Et0FfEKM8DmYMro0XEUtIn3LpG
+         8U8WYwVseNalE6sZ+/2E8HlqJ27gL+NAR+xLMAsrT3hC4D/xr0hANRC7QWkEb3AvpAVR
+         CFI+s/6DNhTcPTYNA9AY8CVR22Mlv1iSHnk9b4wCT7UaOnpRjEKfE/jA81sY8RRaRNNQ
+         LMc1C6BZllcPPkvme/1hdopve/bp2uqBDDjJr23lUIUrjy6c9HrmZNqTol93nzymZpv5
+         ienisKFXQ9YvB30SwjeoS/zTchPkfhYY8K8ntBJrksH8qFE50HiVxrQfBrnnJM2XzshD
+         22bQ==
+X-Gm-Message-State: AOAM530IbTfvADzmZfS4R7s0PFCqpi3Kaa2eQOa6JmsEJFPEVF2yhnOH
+        iWfWIi6iVb74fbOnD46UoKODXkeu9O76tnEZBJb38A==
+X-Google-Smtp-Source: ABdhPJyGw6k5PFLsnsOyl7Kmiduldcnpb0fSaQSLgzTNUwqyZFiIfuf7jf/HDXtWRziaY1h9dXsGZoCKmV6WwauiFbA=
+X-Received: by 2002:a9d:69cd:: with SMTP id v13mr5461893oto.34.1628813771273;
+ Thu, 12 Aug 2021 17:16:11 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 12 Aug 2021 17:16:10 -0700
 MIME-Version: 1.0
-References: <20210615131605.616-1-thunder.leizhen@huawei.com>
- <20210615131605.616-2-thunder.leizhen@huawei.com> <AS8PR04MB8946D0EB15D631346F4D13198FF69@AS8PR04MB8946.eurprd04.prod.outlook.com>
- <03d7c7be-2f19-9fdf-2a4e-f49a62bb82f6@huawei.com> <AS8PR04MB8946913A8B97C18240ADBAEA8FF79@AS8PR04MB8946.eurprd04.prod.outlook.com>
-In-Reply-To: <AS8PR04MB8946913A8B97C18240ADBAEA8FF79@AS8PR04MB8946.eurprd04.prod.outlook.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Thu, 12 Aug 2021 18:09:28 -0500
-X-Gmail-Original-Message-ID: <CADRPPNQaM+-LfacBJLQPYjk3df_p0VuF9rx933T6bTQOcgYacw@mail.gmail.com>
-Message-ID: <CADRPPNQaM+-LfacBJLQPYjk3df_p0VuF9rx933T6bTQOcgYacw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: lx2160a: Fix the compatible string of
- LX2160A UART
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+In-Reply-To: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
+References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 12 Aug 2021 17:16:10 -0700
+Message-ID: <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] soc: qcom: Add download mode support for QTI platforms
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 10, 2021 at 1:28 AM Leo Li <leoyang.li@nxp.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Leizhen (ThunderTown) <thunder.leizhen@huawei.com>
-> > Sent: Monday, August 9, 2021 8:28 PM
-> > To: Leo Li <leoyang.li@nxp.com>; Shawn Guo <shawnguo@kernel.org>; Rob
-> > Herring <robh+dt@kernel.org>; Mark Kettenis <mark.kettenis@xs4all.nl>;
-> > devicetree <devicetree@vger.kernel.org>; linux-arm-kernel <linux-arm-
-> > kernel@lists.infradead.org>; linux-kernel <linux-kernel@vger.kernel.org>
-> > Subject: Re: [PATCH v2 1/1] arm64: dts: lx2160a: Fix the compatible string of
-> > LX2160A UART
-> >
-> >
-> >
-> > On 2021/8/10 6:52, Leo Li wrote:
-> > >
-> > >
-> > >> -----Original Message-----
-> > >> From: Zhen Lei <thunder.leizhen@huawei.com>
-> > >> Sent: Tuesday, June 15, 2021 8:16 AM
-> > >> To: Shawn Guo <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>;
-> > Rob
-> > >> Herring <robh+dt@kernel.org>; Mark Kettenis
-> > >> <mark.kettenis@xs4all.nl>; devicetree <devicetree@vger.kernel.org>;
-> > >> linux-arm-kernel <linux-arm- kernel@lists.infradead.org>;
-> > >> linux-kernel <linux-kernel@vger.kernel.org>
-> > >> Cc: Zhen Lei <thunder.leizhen@huawei.com>
-> > >> Subject: [PATCH v2 1/1] arm64: dts: lx2160a: Fix the compatible
-> > >> string of LX2160A UART
-> > >>
-> > >> Mark Kettenis told us that:
-> > >> According to the NXP documentation, the LX2160A has a real PL011 UART.
-> > >>
-> > >> Therefore, rewrite it to the compatible string of pl011. The property
-> > >> "current- speed" specific to "arm,sbsa-uart" is also deleted.
-> > >
-> > > Sorry that I missed the discussion on the v1.  But looks like this change
-> > breaks the LX2160 boot.  The AMBA matching doesn't seem to work.  And
-> > the console is not registered correctly.
-> >
-> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.k
-> > ernel.org%2Flinux-arm-kernel%2Fcba3a29f-92b5-072a-9a27-
-> > 60240f072dad%40huawei.com%2F&amp;data=04%7C01%7Cleoyang.li%40nx
-> > p.com%7C9986b52f71724d7f6ae108d95b9e1d9b%7C686ea1d3bc2b4c6fa92cd
-> > 99c5c301635%7C0%7C0%7C637641556923909225%7CUnknown%7CTWFpbGZ
-> > sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6M
-> > n0%3D%7C1000&amp;sdata=wReesSfMj1hV2iPTN0%2F%2B%2Fb%2BKJH8xF
-> > LLcDgOMfjx731I%3D&amp;reserved=0
-> >
-> > Maybe we should fall back to v1.
->
-> I didn't look into the problem in detail.  Probably it is because of lacking the clock properties needed by the AMBA bus?
->
+Quoting Sai Prakash Ranjan (2021-08-12 02:17:39)
+> Collecting ramdumps on QTI platforms mainly require two things,
+> SDI (System Debug Image) enabled firmware and kernel support to
+> configure download mode cookies and SDI settings. Ramdumps can
+> be collected once the system enters the download mode. To enter
+> download mode, magic values or cookies need to be set in IMEM
+> which is used by firmware to decide to enter download mode or not.
+> Download mode cookies remain the same across targets and SDI disable
+> register needs to be set or SDI needs to be disabled in case of normal
+> reboot since ramdumps are supposed to be for crash debugging and
+> not for every reboot. This series adds the kernel support required
+> to enter download mode.
 
-After reading through the history of sbsa-uart,  I think that I would
-prefer us to fall back to v1 to be compatible with sbsa-uart rather
-than changing it to be compatible with pl011.  Although the hardware
-is actually compatible with the pl011, it would be better for us to
-follow the newer SBSA standard to leave advanced configuration to
-firmware and just expose the simple standard interface to OS.
+I don't recall if we discussed this on the list, but I'd really prefer
+that we don't make kernel changes to support this beyond implementing
+PSCI SYSTEM_RESET2 support and then some sort of vendor specific (or if
+ARM is willing to update the spec then ARM specific) reset command on
+panic reboot paths. The idea is to set the cookie in the bootloader
+before the kernel is booted, then any insta-reboots/watchdogs would go
+into download mode, no special init code required to lay down the cookie
+or clear it on normal reboot. The normal reboot PSCI call would clear
+the cookie in the firmware, in case something goes wrong after the
+kernel hands off control to PSCI, and then panics that want to go into
+download mode would make the SYSTEM_RESET2 reboot call into PSCI that
+sets the cookie.
 
-Regards,
-Leo
+Maybe it could be a linux specific psci number or maybe we could
+configure the reboot call in the psci node to be this specific number so
+that it can be different based on the firmware implementation if
+consolidating around a single number doesn't work. Either way, that all
+seems manageable and we can keep these cookie details out of the kernel
+and the reboot/panic paths.
 
-> >
-> > >
-> > > [    0.639055] OF: amba_device_add() failed (-2) for /soc/serial@21c0000
-> > > [    0.645612] OF: amba_device_add() failed (-2) for /soc/serial@21d0000
-> > >
-> > >>
-> > >> Suggested-by: Shawn Guo <shawnguo@kernel.org>
-> > >> Suggested-by: Mark Kettenis <mark.kettenis@xs4all.nl>
-> > >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> > >> ---
-> > >>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 12 ++++--------
-> > >>  1 file changed, 4 insertions(+), 8 deletions(-)
-> > >>
-> > >> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > >> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > >> index c4b1a59ba424..d2e6f7285674 100644
-> > >> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > >> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > >> @@ -920,34 +920,30 @@ QORIQ_CLK_PLL_DIV(8)>,
-> > >>            };
-> > >>
-> > >>            uart0: serial@21c0000 {
-> > >> -                  compatible = "arm,sbsa-uart","arm,pl011";
-> > >> +                  compatible = "arm,pl011", "arm,primecell";
-> > >>                    reg = <0x0 0x21c0000 0x0 0x1000>;
-> > >>                    interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> > >> -                  current-speed = <115200>;
-> > >>                    status = "disabled";
-> > >>            };
-> > >>
-> > >>            uart1: serial@21d0000 {
-> > >> -                  compatible = "arm,sbsa-uart","arm,pl011";
-> > >> +                  compatible = "arm,pl011", "arm,primecell";
-> > >>                    reg = <0x0 0x21d0000 0x0 0x1000>;
-> > >>                    interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > >> -                  current-speed = <115200>;
-> > >>                    status = "disabled";
-> > >>            };
-> > >>
-> > >>            uart2: serial@21e0000 {
-> > >> -                  compatible = "arm,sbsa-uart","arm,pl011";
-> > >> +                  compatible = "arm,pl011", "arm,primecell";
-> > >>                    reg = <0x0 0x21e0000 0x0 0x1000>;
-> > >>                    interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > >> -                  current-speed = <115200>;
-> > >>                    status = "disabled";
-> > >>            };
-> > >>
-> > >>            uart3: serial@21f0000 {
-> > >> -                  compatible = "arm,sbsa-uart","arm,pl011";
-> > >> +                  compatible = "arm,pl011", "arm,primecell";
-> > >>                    reg = <0x0 0x21f0000 0x0 0x1000>;
-> > >>                    interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> > >> -                  current-speed = <115200>;
-> > >>                    status = "disabled";
-> > >>            };
-> > >>
-> > >> --
-> > >> 2.25.1
-> > >>
-> > >
-> > > .
-> > >
+>
+> Currently this series doesn't add support for android targets where
+> a couple of SCM calls are required to set/unset the download mode
+> cookies and SDI configuration but can be easily added gradually to
+> the same driver, so as of now only chrome platforms are supported
+> and tested.
+>
+> Sai Prakash Ranjan (3):
+>   soc: qcom: Add download mode support
+>   dt-bindings: msm: Add QTI download mode support binding
+>   arm64: dts: qcom: sc7180: Add IMEM, pil info and download mode region
+>
+>  .../bindings/arm/msm/qcom,dload-mode.yaml     |  53 ++++++
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi          |  21 +++
+>  drivers/soc/qcom/Kconfig                      |  10 ++
+>  drivers/soc/qcom/Makefile                     |   1 +
+>  drivers/soc/qcom/download_mode.c              | 152 ++++++++++++++++++
+>  6 files changed, 244 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
+>  create mode 100644 drivers/soc/qcom/download_mode.c
