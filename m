@@ -2,88 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F323EB625
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 15:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F2C3EB645
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 15:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233904AbhHMNmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 09:42:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53966 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231891AbhHMNml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 09:42:41 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09A9C0617AD;
-        Fri, 13 Aug 2021 06:42:14 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id x7so15674873ljn.10;
-        Fri, 13 Aug 2021 06:42:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1viBBWczlkP+CWERm1XEX0a0CTiI/0fH6f0ytu3rz0A=;
-        b=Jk7CiyxDYkrXr5bbKit/p4MHUUka1PofWoSEPX1jc3vqzmVk0y8poFKZIbnkgf5nLp
-         tA6MkLjmivgUBesIOomSSFXs+kleh82GTyJ3DTTb7dkVAykCfIDNQ7fjqZju5QFIvMkR
-         I2cAKrjUFrxG0r4wM60hEPQpOU0X6tKwmTkxMScCtKuSO7dh7g7K604c47/WO571eWpH
-         3E7RmQ/jMfJ9pPLZFh49oh5yZm84B+F0oqV503szFEtG4JexKrXI5rzGnR+A5d1xQB9x
-         zp3iZIwDL8N6O8JXJQoKGMkSE9Epux/XsniOuPwJDnjSXP/e33CCWIZBl8VaVTUdeh+/
-         8cPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1viBBWczlkP+CWERm1XEX0a0CTiI/0fH6f0ytu3rz0A=;
-        b=qxOEd3KKGqgFyjR6r0puHYt7ywoB4WiXL7IzAp8RSyfytKE0WgwJyunepftx80hh5w
-         hD8h8W8gHWZgRSDKSIrTco22aksx6BWw3/lvreTUKlIA4oIA2tL+KKppcQTq62zcycyn
-         bK1KEpauC2Ry0cw36k6aL3wI8Tj5WDQ5fXZ364lFmtfQdga2Cw6fuHpe4fjhpC9rApze
-         IikCZVBNdyFQcpu/n/aH/nMK4kzBiNWFtqKr2X0aUsKM1RykhuEkkKsEitWFni8rDGDw
-         dOqOl/6i5sxwegAZgIr7lRjv5PN1Hou+L6pT+0q4snG8u9oOKZLgY4YswoEippjAZ/kV
-         ezmA==
-X-Gm-Message-State: AOAM531OU9Oi03bo1hX6ZFt4T3Td9OT79oSKpAVlrN/q15k741B3NYZp
-        sIAPbwGMlMwR+TyVCw+Y6SNRylE/xRc=
-X-Google-Smtp-Source: ABdhPJywSoDJ82jiwrgfLUNe2QMY1zh+Wyyr2KJVU6xTQ0y7uT5/84WlYebcZAZiVcSCWvEapUbOIQ==
-X-Received: by 2002:a2e:f02:: with SMTP id 2mr1918749ljp.112.1628862133066;
-        Fri, 13 Aug 2021 06:42:13 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-117-53.dynamic.spd-mgts.ru. [46.138.117.53])
-        by smtp.googlemail.com with ESMTPSA id j16sm175418ljc.71.2021.08.13.06.42.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Aug 2021 06:42:12 -0700 (PDT)
-Subject: Re: [PATCH v6 04/12] usb: phy: tegra: Support OTG mode programming
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20210731173842.19643-1-digetx@gmail.com>
- <20210731173842.19643-5-digetx@gmail.com>
-Message-ID: <c61e0bb0-07e8-b9ce-35f2-b071fdb68ba3@gmail.com>
-Date:   Fri, 13 Aug 2021 16:42:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S239179AbhHMNw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 09:52:29 -0400
+Received: from foss.arm.com ([217.140.110.172]:53750 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235656AbhHMNw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 09:52:28 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BBB871042;
+        Fri, 13 Aug 2021 06:52:01 -0700 (PDT)
+Received: from [10.57.36.146] (unknown [10.57.36.146])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 854913F718;
+        Fri, 13 Aug 2021 06:52:00 -0700 (PDT)
+Subject: Re: [PATCH v3] arm64: dts: rockchip: add thermal fan control to
+ rockpro64
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210730151727.729822-1-pgwipeout@gmail.com>
+ <ad6d8025-977c-9ff2-81ff-a417df48231c@linaro.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <893701da-ea17-00ab-5e31-c745051ac9b9@arm.com>
+Date:   Fri, 13 Aug 2021 14:51:54 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210731173842.19643-5-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <ad6d8025-977c-9ff2-81ff-a417df48231c@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-31.07.2021 20:38, Dmitry Osipenko пишет:
-> Support programming USB PHY into OTG mode.
+On 2021-08-13 13:59, Daniel Lezcano wrote:
+> On 30/07/2021 17:17, Peter Geis wrote:
+>> The rockpro64 had a fan node since
+>> commit 5882d65c1691 ("arm64: dts: rockchip: Add PWM fan for RockPro64")
+>> however it was never tied into the thermal driver for automatic control.
+>>
+>> Add the links to the thermal node to permit the kernel to handle this
+>> automatically.
+>> Borrowed from the (rk3399-khadas-edge.dtsi).
+>>
+>> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+>> ---
+>>
+>> Changelog:
+>> v3:
+>> Removed the gpu nodes to prevent in-fighting (thanks Robin!)
+>>
+>> v2:
+>> Adjusted fan setpoints for less noise
+>>
+>>   .../boot/dts/rockchip/rk3399-rockpro64.dtsi   | 29 +++++++++++++++++++
+>>   1 file changed, 29 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> index 6bff8db7d33e..83db4ca67334 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+>> @@ -69,6 +69,7 @@ diy_led: led-1 {
+>>   
+>>   	fan: pwm-fan {
+>>   		compatible = "pwm-fan";
+>> +		cooling-levels = <0 100 150 200 255>;
+>>   		#cooling-cells = <2>;
+>>   		fan-supply = <&vcc12v_dcin>;
+>>   		pwms = <&pwm1 0 50000 0>;
+>> @@ -245,6 +246,34 @@ &cpu_b1 {
+>>   	cpu-supply = <&vdd_cpu_b>;
+>>   };
+>>   
+>> +&cpu_thermal {
+>> +	trips {
+>> +		cpu_warm: cpu_warm {
+>> +			temperature = <55000>;
+>> +			hysteresis = <2000>;
+>> +			type = "active";
+>> +		};
+>> +
+>> +		cpu_hot: cpu_hot {
+>> +			temperature = <65000>;
+>> +			hysteresis = <2000>;
+>> +			type = "active";
+>> +		};
+>> +	};
+>> +
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/usb/phy/phy-tegra-usb.c   | 197 +++++++++++++++++++++++++++++-
->  include/linux/usb/tegra_usb_phy.h |   5 +
->  2 files changed, 197 insertions(+), 5 deletions(-)
+> Why two trip points ?
+> 
+> Why not one functioning temperature and no lower / upper limits for the
+> cooling maps ?
 
-Greg/Felipe, could you please ack this patch? This series should go via
-tegra tree since patches are interdependent.
+Certainly when I first did this for NanoPC-T4, IIRC it was to avoid the 
+fan ramping up too eagerly, since level 1 for my fan is effectively 
+silent but still cools enough to let a moderate load eventually settle 
+to a steady state below the second trip.
+
+Robin.
+
+>> +	cooling-maps {
+>> +		map2 {
+>> +			trip = <&cpu_warm>;
+>> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+>> +		};
+>> +
+>> +		map3 {
+>> +			trip = <&cpu_hot>;
+>> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>>   &emmc_phy {
+>>   	status = "okay";
+>>   };
+>>
+> 
+> 
