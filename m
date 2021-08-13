@@ -2,118 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8B33EADCD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 02:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA2833EAE26
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 03:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234929AbhHMAQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Aug 2021 20:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41582 "EHLO
+        id S238139AbhHMB34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Aug 2021 21:29:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234875AbhHMAQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 20:16:37 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121A6C0613D9
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 17:16:12 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so10169212oti.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Aug 2021 17:16:12 -0700 (PDT)
+        with ESMTP id S237238AbhHMB34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Aug 2021 21:29:56 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF5FC061756;
+        Thu, 12 Aug 2021 18:29:30 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id bl13so4362196qvb.5;
+        Thu, 12 Aug 2021 18:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=JOTNUTQtU5ZZqRjDa2leuDXvXu+UguId06UQDSUoMaY=;
-        b=U34dVhVaT3zF39gkIHSPg+32QxpezmxMHXTM4kxM96GTjtRmBW82CpPdmpJYB7o89D
-         Z1oYR+gbPbBvLkLJ2aCXIvuVV4IJyfsqoVGxna3m7XTeVXZMPGQV1fGnU3Vvw+1Op7wj
-         WoFd/sfxE/7/s4ifnBnipPEtoyujIf5CmQ4hQ=
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d7y1hw5LdhKxpKxA/yXBN3ZJJ9yKaaGgYxkF16tEOMQ=;
+        b=XgmjOaNQhbcCpvEmbZ5/zeX1bIUCgsvOXXufJ2DPyPwiVEcOXqrSKm7FQ6EHIiZPyf
+         oLeOmGXFO5wc15/y2C90t9Vq9dPWNQ1zd0kaJv433461YrWvDUAzi2BBUezZlhb5C9cK
+         XEDHQ5hrZEWfa+AOsbVJMlsxxBhsgTXh6Acys=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=JOTNUTQtU5ZZqRjDa2leuDXvXu+UguId06UQDSUoMaY=;
-        b=TPFgs+07YUuw3N6P++/gWxWm17TF3oZoVF8uMHb6Et0FfEKM8DmYMro0XEUtIn3LpG
-         8U8WYwVseNalE6sZ+/2E8HlqJ27gL+NAR+xLMAsrT3hC4D/xr0hANRC7QWkEb3AvpAVR
-         CFI+s/6DNhTcPTYNA9AY8CVR22Mlv1iSHnk9b4wCT7UaOnpRjEKfE/jA81sY8RRaRNNQ
-         LMc1C6BZllcPPkvme/1hdopve/bp2uqBDDjJr23lUIUrjy6c9HrmZNqTol93nzymZpv5
-         ienisKFXQ9YvB30SwjeoS/zTchPkfhYY8K8ntBJrksH8qFE50HiVxrQfBrnnJM2XzshD
-         22bQ==
-X-Gm-Message-State: AOAM530IbTfvADzmZfS4R7s0PFCqpi3Kaa2eQOa6JmsEJFPEVF2yhnOH
-        iWfWIi6iVb74fbOnD46UoKODXkeu9O76tnEZBJb38A==
-X-Google-Smtp-Source: ABdhPJyGw6k5PFLsnsOyl7Kmiduldcnpb0fSaQSLgzTNUwqyZFiIfuf7jf/HDXtWRziaY1h9dXsGZoCKmV6WwauiFbA=
-X-Received: by 2002:a9d:69cd:: with SMTP id v13mr5461893oto.34.1628813771273;
- Thu, 12 Aug 2021 17:16:11 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 12 Aug 2021 17:16:10 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d7y1hw5LdhKxpKxA/yXBN3ZJJ9yKaaGgYxkF16tEOMQ=;
+        b=hwMBouZ2mAgpiZBPsPK0s87Fi61zee7S4HNbnaDMNvzob1DRQGfY9debR7i8w3TLP2
+         FZTwFBL8tGBmJSN9tmd0Xk0s/TXoW1YE5nbJGkkXESJE5+POsbbMswUU2Xockj0n8mat
+         ZJFz+3XcfPrtgVT1X3FL9O3tyhx/VfLNX78bl728qlkxQHPgcjO8hKEXzSfQP0nZjVMK
+         8mIKKDkygEqJBNq2b8C3K1mz+JcFLYWYOjVHbhWEvnJwIxF3FE8j5loKbBP6kV7/yyZr
+         e5Rw5R5HJBKL3Z5AFBgNXsdQgfBPS3SYrrXhSd5SUVaEurlsy6t+Wd+RZTaui9vPIEU2
+         c++g==
+X-Gm-Message-State: AOAM5325GveBTe40moyQqInnfD4ywhI0Od0y8hpIvzwcAU6rjC3p5j9u
+        pq1QAQFVwf6HogAjcr1XZe4a9JrXTZFN14msF4w=
+X-Google-Smtp-Source: ABdhPJwhFLUqMIHIWOI/nCQlWmPOcdMRcHIRqjb8rAdMkprVxUulQ0uUl0tMgKhaIcL2vd8J9M1zxJmLtEpFhq9AfOM=
+X-Received: by 2002:a0c:e6a4:: with SMTP id j4mr107833qvn.16.1628818169431;
+ Thu, 12 Aug 2021 18:29:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 12 Aug 2021 17:16:10 -0700
-Message-ID: <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] soc: qcom: Add download mode support for QTI platforms
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
+References: <20210805222818.8391-1-rentao.bupt@gmail.com> <20210805222818.8391-5-rentao.bupt@gmail.com>
+In-Reply-To: <20210805222818.8391-5-rentao.bupt@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Fri, 13 Aug 2021 01:29:17 +0000
+Message-ID: <CACPK8XcV5On2D4D+SXnfw1M0owwfCL4Su19jOEA7yWpq+T3jLw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] ARM: dts: aspeed: Add Facebook Cloudripper
+ (AST2600) BMC
+To:     Tao Ren <rentao.bupt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tao Ren <taoren@fb.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sai Prakash Ranjan (2021-08-12 02:17:39)
-> Collecting ramdumps on QTI platforms mainly require two things,
-> SDI (System Debug Image) enabled firmware and kernel support to
-> configure download mode cookies and SDI settings. Ramdumps can
-> be collected once the system enters the download mode. To enter
-> download mode, magic values or cookies need to be set in IMEM
-> which is used by firmware to decide to enter download mode or not.
-> Download mode cookies remain the same across targets and SDI disable
-> register needs to be set or SDI needs to be disabled in case of normal
-> reboot since ramdumps are supposed to be for crash debugging and
-> not for every reboot. This series adds the kernel support required
-> to enter download mode.
+On Thu, 5 Aug 2021 at 22:28, <rentao.bupt@gmail.com> wrote:
+> +&mdio1 {
+> +       status = "okay";
 
-I don't recall if we discussed this on the list, but I'd really prefer
-that we don't make kernel changes to support this beyond implementing
-PSCI SYSTEM_RESET2 support and then some sort of vendor specific (or if
-ARM is willing to update the spec then ARM specific) reset command on
-panic reboot paths. The idea is to set the cookie in the bootloader
-before the kernel is booted, then any insta-reboots/watchdogs would go
-into download mode, no special init code required to lay down the cookie
-or clear it on normal reboot. The normal reboot PSCI call would clear
-the cookie in the firmware, in case something goes wrong after the
-kernel hands off control to PSCI, and then panics that want to go into
-download mode would make the SYSTEM_RESET2 reboot call into PSCI that
-sets the cookie.
+You're enabling this but it looks like it's unused?
 
-Maybe it could be a linux specific psci number or maybe we could
-configure the reboot call in the psci node to be this specific number so
-that it can be different based on the firmware implementation if
-consolidating around a single number doesn't work. Either way, that all
-seems manageable and we can keep these cookie details out of the kernel
-and the reboot/panic paths.
-
->
-> Currently this series doesn't add support for android targets where
-> a couple of SCM calls are required to set/unset the download mode
-> cookies and SDI configuration but can be easily added gradually to
-> the same driver, so as of now only chrome platforms are supported
-> and tested.
->
-> Sai Prakash Ranjan (3):
->   soc: qcom: Add download mode support
->   dt-bindings: msm: Add QTI download mode support binding
->   arm64: dts: qcom: sc7180: Add IMEM, pil info and download mode region
->
->  .../bindings/arm/msm/qcom,dload-mode.yaml     |  53 ++++++
->  MAINTAINERS                                   |   7 +
->  arch/arm64/boot/dts/qcom/sc7180.dtsi          |  21 +++
->  drivers/soc/qcom/Kconfig                      |  10 ++
->  drivers/soc/qcom/Makefile                     |   1 +
->  drivers/soc/qcom/download_mode.c              | 152 ++++++++++++++++++
->  6 files changed, 244 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
->  create mode 100644 drivers/soc/qcom/download_mode.c
+> +};
+> +
+> +&mdio3 {
+> +       status = "okay";
+> +
+> +       ethphy1: ethernet-phy@13 {
+> +               compatible = "ethernet-phy-ieee802.3-c22";
+> +               reg = <0x0d>;
+> +       };
+> +};
+> +
+> +&mac3 {
+> +       status = "okay";
+> +       phy-mode = "rgmii";
+> +       phy-handle = <&ethphy1>;
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_rgmii4_default>;
+> +};
