@@ -2,247 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 717DE3EB39E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 11:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CAB13EB3C0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 12:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239986AbhHMJz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 05:55:29 -0400
-Received: from mail-eopbgr20046.outbound.protection.outlook.com ([40.107.2.46]:59013
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S239987AbhHMJz2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Aug 2021 05:55:28 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EaoODnTORCa6+NvbFYLpFtPbYfq2YSUS1ydFnh1gX52ClNVy23W5swwd4awtIzcboAOr0zDfoQbvvIIcdqts77C6Y7Z/HjA0itfc4S1y52O34Wi2QEGZnAghHbJO+fQ0/AUcq9IMAFJ19TiMeTzQAQbrrzkdGqcC9pBpKz96CRGhfYsG6ttW0+F3n3jfIB5DOgvNW1Y4f0hZ4CdKrDeUjfwTtCXhlHA6S/BGHVcgMx98CRUbYXoNoL3e+s3Luqq4TU44Hw117TtEcm1PZLwB7vu3O7fV6RHkI0JBn3lBvpcCOZIcsVZz0llf3rmnLKh/p+wArUtdK2eYPzVWakEijw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K6FPdadMcTceJQmAZVjWfrq4HN7PFm9qjpGw16n7ayk=;
- b=m9CWrFdBsezUuYgP6D+R77ORLfcilBE1auqHSKtYF+ZArG1bllz83mTwasZeLssMpKbN6biUT9HxyvtGVdXd+2oLNBYD33DQDWOcBptRTkdJcTAyYxuM7FgOhV4kKMUzV+HIj3xfSZhcTMSeXKJPgT9ljX19XNq0DcEyYDmPbx6iTWSDe10sLlxyDjGO+I+JGyK+9oLiPQY7GYYXryKASNGeQIE0Gupxg1QJfC4g+CKaHblNPeuS/GCSynfTwIWbjQ3OHqxLmepIxigkcSGo3jyvv9oGlDviQtuT/C3fB4QWlFDcXuExd23mYUCKlz8Q45qCK9qbgBIxtmbSf5ivmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K6FPdadMcTceJQmAZVjWfrq4HN7PFm9qjpGw16n7ayk=;
- b=cW3ohxEs2kYUI0HNIAT88cYBcSt/Z3AaMaTAqyeBT9aeTxU4xfJQIRLGWZwQQ24pAmepA5MvqEoADHAmEZWRsAVBtzDU088Mz1IBD1NGXWtkow9yRKmzM8wHkDdM5HmhHmfQk7rJ0Vy2gJs4h+hB+LAJDs692bkNr9V2SKe9duE=
-Authentication-Results: suse.de; dkim=none (message not signed)
- header.d=none;suse.de; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5101.eurprd04.prod.outlook.com (2603:10a6:803:5f::31)
- by VI1PR04MB7197.eurprd04.prod.outlook.com (2603:10a6:800:129::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16; Fri, 13 Aug
- 2021 09:54:59 +0000
-Received: from VI1PR04MB5101.eurprd04.prod.outlook.com
- ([fe80::ddcf:cac8:c7df:47d7]) by VI1PR04MB5101.eurprd04.prod.outlook.com
- ([fe80::ddcf:cac8:c7df:47d7%7]) with mapi id 15.20.4415.019; Fri, 13 Aug 2021
- 09:54:59 +0000
-Message-ID: <8a38d66032f875d35834e50943aa02786e2a0517.camel@oss.nxp.com>
-Subject: Re: [PATCH 5/8] arm64: dts: s32g2: add serial/uart support
-From:   "Radu Nicolae Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>
-To:     Andreas =?ISO-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        s32@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
-        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
-        ghennadi.procopciuc@nxp.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
-Date:   Fri, 13 Aug 2021 12:54:53 +0300
-In-Reply-To: <93978882-4b47-4c4a-cd43-60cb5bcdf471@suse.de>
-References: <20210805065429.27485-1-clin@suse.com>
-         <20210805065429.27485-6-clin@suse.com>
-         <93978882-4b47-4c4a-cd43-60cb5bcdf471@suse.de>
+        id S239280AbhHMKDl convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Aug 2021 06:03:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239391AbhHMKDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 06:03:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E45C061756
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 03:02:28 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mEU14-0003CR-44; Fri, 13 Aug 2021 12:02:18 +0200
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mEU11-0003w2-Fx; Fri, 13 Aug 2021 12:02:15 +0200
+Message-ID: <5da35c2030e57621fa56795cd193e727f53205fe.camel@pengutronix.de>
+Subject: Re: [v11 2/2] pwm: Add Aspeed ast2600 PWM support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>, lee.jones@linaro.org,
+        robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Cc:     BMC-SW@aspeedtech.com
+Date:   Fri, 13 Aug 2021 12:02:15 +0200
+In-Reply-To: <20210812040942.5365-3-billy_tsai@aspeedtech.com>
+References: <20210812040942.5365-1-billy_tsai@aspeedtech.com>
+         <20210812040942.5365-3-billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM4PR0202CA0003.eurprd02.prod.outlook.com
- (2603:10a6:200:89::13) To VI1PR04MB5101.eurprd04.prod.outlook.com
- (2603:10a6:803:5f::31)
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.141] (89.45.21.213) by AM4PR0202CA0003.eurprd02.prod.outlook.com (2603:10a6:200:89::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16 via Frontend Transport; Fri, 13 Aug 2021 09:54:57 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 72cfdbd0-1f1f-4856-0b34-08d95e406960
-X-MS-TrafficTypeDiagnostic: VI1PR04MB7197:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB7197AFF7C9CC44ABA8A935F89FFA9@VI1PR04MB7197.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dsWHM1mYWi8nG9md9Z9jGYP1Z6LIWUJPXr7B5KW2nVun4oQK3D5oM1umbbObIkG28j4B4QT1UFs4yHVffL6nh20djAn94eqw/PIZEBpxMz1xO6PuACfAEpIT8+6EQf6mcIsJqJIqNhFPpmVOoG9C5e2Q8Yzku0Z7ZhQoL4XAhGpRWzTuqbdpK4jeb3jJDubtP+1NHDSTrXQg1MQsm9f2sbDbyEtDKGMO8043H4MQ2mHUWZfCflKSOnlxyktHwuxtCM71I1jy6EWVIwTsmk4nFKLKFlx5/BdZFSX6WnZlK6g8g33G8f6BaNyWFmmzmkiSaAc01Rdz7XzooOfaW7De7x2TnN+x96tmpQARBHhfqBKe9/3lUVbCeYSSmeibcfTeWgIqsFCn3zUJvY8ZOhszkNLLBLmCZRuTw2kSnviT6UsQCXCQQlPlKnKNIv1kwP9mT4e+oot0a8sKdxWXIOMpBRB3zDurTpZixcCxS1/EOwDeXSN/O2pP8xB+o/qAPrD5Z2f5LS81oaKW6xWsDLhXbRHtbbgyh67MKU9lEZMHIE6FenpuargIzFWJrCELKIQnfmjMmMzILS1OzVCzrQxkTNp0Lm1pUlEFKrYqFu1czlT/Ja1djibuhiME7EoxOf1jmmtddZyZZCYvkRuqd5UDAr/U6cwJVaBpZTw0oJqbTG8Jre4dItlzArEN5/O7LJIQfmorpO69IAQjj/AfK2iTy0xK16BYoDYeTOKySKr1cFk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5101.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39860400002)(376002)(136003)(366004)(346002)(5660300002)(7416002)(478600001)(53546011)(52116002)(83380400001)(66574015)(6666004)(8676002)(316002)(8936002)(6486002)(26005)(186003)(66556008)(66946007)(66476007)(38350700002)(38100700002)(110136005)(54906003)(86362001)(2616005)(2906002)(956004)(4326008)(16576012)(41350200001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RjFheXBQMkZzWlhRaGNwYU5HR3o2Z2VnbVJZUzlva0s2OFZtWlZsdFRGRHRT?=
- =?utf-8?B?NHhWVm9CM3E3a3lTOGtwMjlLRDc2VnN4MnZ2K1ZBUXRxeTlodjRzUDNrQWFy?=
- =?utf-8?B?M013Y200L3kwNEhjd0k4UWdMdVExbDZFYm1IZEl6MHJjRTFrbkh2b2w1dGN0?=
- =?utf-8?B?TzdvSENCZ0xoRVpZZ1lGSUE3NytIdzQvMmxFTjQzdFdpeTdGcWFpVk8zTnBp?=
- =?utf-8?B?QWxJNWNrVURBRzByY2RLckZGb3FGaEVCOGtDcUpubkFHWmhkdWdySDJoOVMw?=
- =?utf-8?B?VG1nYU5EOUIvZVR4Y0gyREh1TDZvRjdkN3Q3SUxra0Ewa21VamFaVXJRbjlR?=
- =?utf-8?B?TkNuRFpSaGM1SHUzT3huYWlkVHhhbGxHUWZrNmRucW5KNmxIbzc4akZHR3gv?=
- =?utf-8?B?cjQ0Zkw2K3ZNcTRkajdwZWUwajZwc2wrUWtOSStOalJpSnFpb25RT0lGNnJo?=
- =?utf-8?B?OFFBL2VCam5PSHpCRXFuUWpzR2t3WHE3NzVNNlArZi9tNXBaeDBQSTRBcFZl?=
- =?utf-8?B?aEFrdnVPYk5YYVArbGJRZjdFLzlYNUZIbjl3bGkrdkJEb21MRkZ6a3NTZXhp?=
- =?utf-8?B?VUlEc05JZDJRYTRSWVRzVGgrblE0RDhLMVlyZ0dqdVMrQ0xrWTlJbCtZaFJX?=
- =?utf-8?B?NUdKdktNSy9GU2VBVDcxSGRaVmEwKzhhSGJtZGhVY00xVUs2aTkzcUhVcUNY?=
- =?utf-8?B?SHVuOUtnU0Q0Z0ZQZFM1a1pOcEpZamhZL2xMdGxLY2dudXpweGtNMkZDVmph?=
- =?utf-8?B?RklFR0FCdXA5cU1pNVRIUDk3OS8zdk1NcEU2dmQxdkN3ZzZUUUQ2bjByRmY4?=
- =?utf-8?B?bytEMHhqUXRveDNpSHFnZ1Bkc2tKLytQa3NPRE5Db2ZmM2xKYW12amxZcFl1?=
- =?utf-8?B?dTFqY3ArVWJhdit2UEE5M1FBY0FRRy9WOXkvOXdqZVcyL0M1amFFNjNGVnNC?=
- =?utf-8?B?RXlXVE1jZW9DZUxrWTVsUzFEWVdua3N1VTVodjRBNGtOOGRhdEhKMms0UGNF?=
- =?utf-8?B?RXRrQVpKNDhTM0FMQ0E2Z25TWFpUem82d0tRcGNlY25PT21YOXNSNGkrbXFD?=
- =?utf-8?B?WDFkYUhyU1hZR3ZsL3lRQ2ZyblNBMGxhRnhBUW1GQSs3Z3JRSHlCRmd5Rm9D?=
- =?utf-8?B?eFBLRnEwZ2d6TFFGbzJaOGlkL1BEYlI3ZnpmQXk3ZEhQd21Vci9zNWRIMDd5?=
- =?utf-8?B?amFMZFpWV3VVdjU0cmk1YXpmNUp5VTdkTTJyWWxCNzdkUXlKZW43MXROWHdY?=
- =?utf-8?B?TzhjYnVQRWRyWC9jU05NcDdTR3ZTLzdUNU9neUpPcnBXbU1ENlFvQ0MrbXFo?=
- =?utf-8?B?K1g1Sk8rQnQ2eVExOEFzdmhrc2R2cTFIa0o0Mk43a200Z0ZaK2thdlo1Q1o0?=
- =?utf-8?B?T3hFTmtqblB0Ny8zT2szMlZsTzcwL085dXV3YTB6bE9QV08zRTNOQnRjSVI0?=
- =?utf-8?B?aEVEMFZUNkwxeXBpTmc5bUJjcmRaRVJaYWJFY0dtR2NUOVUveldYNGk2alpC?=
- =?utf-8?B?VmNhd2dzaHZDaSszL1I5dXFIeVZzUEs1aFhkT2pXOEhVNllFZm5QOHlCKzl2?=
- =?utf-8?B?YkVETTJTbDgySHRpRVoxaE9RRXFkdGpWaUE1emgwSHJPRE90My9PVHFRcjUx?=
- =?utf-8?B?Z0NrV1crenpyU3BId0xUTW1tWkowUCthbVdMcUxNbjJDMFBwVlEvaStwSFF3?=
- =?utf-8?B?VTRrT2d0VDlCbU5laWdaRys3RDhoU2tGd1NOb3Z4REFkTUQyVUxGQXRxZlg2?=
- =?utf-8?Q?ahUcCZaSqnkzGBtnUiJDOegOHBP4o/nwgPOvBuB?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72cfdbd0-1f1f-4856-0b34-08d95e406960
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5101.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2021 09:54:59.1214
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2C/fwKUb/yDuWcUvjEEdrDk/nbUXjF+QxhZpY6eVnLpkuB0UWL8eAKzJguDADuyahI//8IEMwKuBSvLGCjmq94yZGGzFPXIJ6SlPMhGs+Vc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7197
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas
-On Thu, 2021-08-12 at 19:42 +0200, Andreas Färber wrote:
-> Hi Chester et al.,
-> 
-> On 05.08.21 08:54, Chester Lin wrote:
-> > Add serial/uart support for NXP S32G2.
-> 
-> You might mention here that (following our initial stub) this commit
-> is
-> now apparently based on the CodeAurora BSP branch foo (and therefore
-> adding its last-year copyright below and separate from 4/8).
-> 
-> > 
-> 
-> @NXP: If there are downstream Signed-off-bys that you would like to
-> see
-> included for this portion here, please speak up.
+Hi Billy,
 
-Larisa signed-off should be added.
-Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+On Thu, 2021-08-12 at 12:09 +0800, Billy Tsai wrote:
+> This patch add the support of PWM controller which can be found at aspeed
+> ast2600 soc. The pwm supoorts up to 16 channels and it's part function
+> of multi-function device "pwm-tach controller".
+> 
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+[...]
+> diff --git a/drivers/pwm/pwm-aspeed-ast2600.c b/drivers/pwm/pwm-aspeed-ast2600.c
+> new file mode 100644
+> index 000000000000..f89ce1d4cd67
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-aspeed-ast2600.c
+> @@ -0,0 +1,327 @@
+[...]
+> +static int aspeed_pwm_probe(struct platform_device *pdev)
+> +{
+[...]
+> +	priv->clk = devm_clk_get(&parent_dev->dev, 0);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "Couldn't get clock\n");
+> +
+> +	ret = clk_prepare_enable(priv->clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Couldn't enable clock\n");
+> +
+> +	priv->reset = devm_reset_control_get_shared(&parent_dev->dev, NULL);
+> +	if (IS_ERR(priv->reset)) {
+> +		ret = dev_err_probe(dev, PTR_ERR(priv->reset),
+> +				    "Get reset failed\n");
+> +		goto err_disable_clk;
+> +	}
 
-> 
-> > Signed-off-by: Chester Lin <clin@suse.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/s32g2.dtsi | 31
-> > ++++++++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> > b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> > index 3321819c1a2d..0076eacad8a6 100644
-> > --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> > @@ -1,6 +1,7 @@
-> >  // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> >  /*
-> >   * Copyright (c) 2021 SUSE LLC
-> > + * Copyright 2017-2020 NXP
-> 
-> @NXP: Should this be updated to include 2021 from your latest BSP
-> releases? Do you want it visually aligned by adding the ASCII-art?
+I suggest to request the reset control before enabling the clock. That
+way you can simplify the error path and avoid enabling the clock in case
+of reset_control_get failure.
 
-Yes for both questions. The copyright year sould be updated to 2021 and
-should be visually aligned.
-
-> 
-> >   */
-> >  
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > @@ -11,6 +12,12 @@ / {
-> >         #address-cells = <2>;
-> >         #size-cells = <2>;
-> >  
-> > +       aliases {
-> > +               serial0 = &uart0;
-> > +               serial1 = &uart1;
-> > +               serial2 = &uart2;
-> > +       };
-> 
-> Note: In the past there had been controversies as to whether to
-> define
-> aliases globally for a SoC or in a .dts specific to a board's usage.
-> In this case it does not seem to matter much, as uart0 is being used
-> as
-> console on the reference boards.
-> 
-> > +
-> >         cpus {
-> >                 #address-cells = <1>;
-> >                 #size-cells = <0>;
-> > @@ -82,6 +89,30 @@ soc {
-> >  
-> >                 ranges;
-> >  
-> > +               uart0: serial@401c8000 {
-> > +                       compatible = "fsl,s32g2-linflexuart",
-> > +                                    "fsl,s32v234-linflexuart";
-> > +                       reg = <0 0x401c8000 0 0x3000>;
-> > +                       interrupts = <GIC_SPI 82
-> > IRQ_TYPE_EDGE_RISING>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               uart1: serial@401cc000 {
-> > +                       compatible = "fsl,s32g2-linflexuart",
-> > +                                    "fsl,s32v234-linflexuart";
-> > +                       reg = <0 0x401cc000 0 0x3000>;
-> > +                       interrupts = <GIC_SPI 83
-> > IRQ_TYPE_EDGE_RISING>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               uart2: serial@402bc000 {
-> > +                       compatible = "fsl,s32g2-linflexuart",
-> > +                                    "fsl,s32v234-linflexuart";
-> > +                       reg = <0 0x402bc000 0 0x3000>;
-> > +                       interrupts = <GIC_SPI 84
-> > IRQ_TYPE_EDGE_RISING>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> >                 gic: interrupt-controller@50800000 {
-> >                         compatible = "arm,gic-v3";
-> >                         #interrupt-cells = <3>;
-> 
-> Regards,
-> Andreas
-> 
-
-
+regards
+Philipp
