@@ -2,128 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F2C3EB645
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 15:52:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E04E3EB653
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 15:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239179AbhHMNw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 09:52:29 -0400
-Received: from foss.arm.com ([217.140.110.172]:53750 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235656AbhHMNw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Aug 2021 09:52:28 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BBB871042;
-        Fri, 13 Aug 2021 06:52:01 -0700 (PDT)
-Received: from [10.57.36.146] (unknown [10.57.36.146])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 854913F718;
-        Fri, 13 Aug 2021 06:52:00 -0700 (PDT)
-Subject: Re: [PATCH v3] arm64: dts: rockchip: add thermal fan control to
- rockpro64
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210730151727.729822-1-pgwipeout@gmail.com>
- <ad6d8025-977c-9ff2-81ff-a417df48231c@linaro.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <893701da-ea17-00ab-5e31-c745051ac9b9@arm.com>
-Date:   Fri, 13 Aug 2021 14:51:54 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S240669AbhHMNzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 09:55:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240068AbhHMNzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 09:55:05 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA6E0C061756
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 06:54:38 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id x27so20012859lfu.5
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 06:54:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=otK/iMJZAO+WUnDkESkc3mIfvbccqZxXw7/cgOsKwuY=;
+        b=q68p0V6YCcitFiRzJYs8VI8mus2v9tDpwSOhqnoaIDSg7LfkH0zLNiHj4gIcFdVYvQ
+         6pdjylWQI5BaGuWgWjHZ5iMzfRiDEPBXSqhek8dE5WElyuuQYfmPQiwuEX4K9IdlMd/h
+         ZRnDuzLR8U8r/otEDJNYndGrqUtXnOAliPlAUoRJThsn+BDTJX0USU6zKmftAO4Bccz3
+         LQChesHq/80o4S4WFPSrfbXZNlJIY6rf9HfkZs7B1FEs39+7DiXkue84G5GLOw6ukWmf
+         daz9pYwB2yrZ2d5XLgizi+FTaSpz3p0gJNiKb4n0TiEjynY4jcr2gA2RT7bF6JZYwnzc
+         KAyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=otK/iMJZAO+WUnDkESkc3mIfvbccqZxXw7/cgOsKwuY=;
+        b=tT+RjOrjNP5uS2VlSDGaGBDBaVZS0o+/MKlBDrkuIyDOCT5F+qfJsGPERx9OPKXJZG
+         yQxu0UgRyoN7y2G0VrJ2xHYXVnD593Hl5vvyl6ZYh+4Lkhhi5rspxRwFGZ3OIa6xcK2+
+         KXavpyOQKjjpXx+OphWHqbmYUUB226/s1NEgi2+LFyCNCPV6TlQ6Vzinswz4CE/diZe+
+         iFdr/0o1j3wl8IgQBRN4XNlJKS0tJNRfjTe+qj3v1LOfizwwUx2BTis/IsiQMVbVFmHh
+         +PniBkk/mMnr7eiw3sgfAKnAwVmppBcMRcxrF7y2e1r8ZzwiWDzNgvAke9uGQwwc4Oqz
+         s5Lg==
+X-Gm-Message-State: AOAM530DQH2s5XqnnIe3cX61a2yNaZ+9E1M/tgHiLYYKvoeMdUfKknp9
+        DnP9Tdwp2OJ41JuD4mvD5pJ+47NhKJv12/qK1rRTmQ==
+X-Google-Smtp-Source: ABdhPJxme3U8eSdMjqWto+v2Z1XrKuaTSSrkpLdfLgEk06SuK1WGFzHCiMQBx5H30X5MFWZEaVZ2xe/VjuI/fkr1zX4=
+X-Received: by 2002:a19:ac04:: with SMTP id g4mr1835348lfc.29.1628862877070;
+ Fri, 13 Aug 2021 06:54:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ad6d8025-977c-9ff2-81ff-a417df48231c@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <YQw7M7OF6OZLcLjk@ravnborg.org> <20210807133111.5935-1-markuss.broks@gmail.com>
+ <20210807133111.5935-3-markuss.broks@gmail.com>
+In-Reply-To: <20210807133111.5935-3-markuss.broks@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 13 Aug 2021 15:54:26 +0200
+Message-ID: <CACRpkdaGvd+47zwJ8pwAU_Ce2N7bmBBJe-UwKNTQ9gfxPsCd_g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/panel: s6d27a1: Add driver for Samsung S6D27A1
+ display panel
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-13 13:59, Daniel Lezcano wrote:
-> On 30/07/2021 17:17, Peter Geis wrote:
->> The rockpro64 had a fan node since
->> commit 5882d65c1691 ("arm64: dts: rockchip: Add PWM fan for RockPro64")
->> however it was never tied into the thermal driver for automatic control.
->>
->> Add the links to the thermal node to permit the kernel to handle this
->> automatically.
->> Borrowed from the (rk3399-khadas-edge.dtsi).
->>
->> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
->> ---
->>
->> Changelog:
->> v3:
->> Removed the gpu nodes to prevent in-fighting (thanks Robin!)
->>
->> v2:
->> Adjusted fan setpoints for less noise
->>
->>   .../boot/dts/rockchip/rk3399-rockpro64.dtsi   | 29 +++++++++++++++++++
->>   1 file changed, 29 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> index 6bff8db7d33e..83db4ca67334 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> @@ -69,6 +69,7 @@ diy_led: led-1 {
->>   
->>   	fan: pwm-fan {
->>   		compatible = "pwm-fan";
->> +		cooling-levels = <0 100 150 200 255>;
->>   		#cooling-cells = <2>;
->>   		fan-supply = <&vcc12v_dcin>;
->>   		pwms = <&pwm1 0 50000 0>;
->> @@ -245,6 +246,34 @@ &cpu_b1 {
->>   	cpu-supply = <&vdd_cpu_b>;
->>   };
->>   
->> +&cpu_thermal {
->> +	trips {
->> +		cpu_warm: cpu_warm {
->> +			temperature = <55000>;
->> +			hysteresis = <2000>;
->> +			type = "active";
->> +		};
->> +
->> +		cpu_hot: cpu_hot {
->> +			temperature = <65000>;
->> +			hysteresis = <2000>;
->> +			type = "active";
->> +		};
->> +	};
->> +
-> 
-> Why two trip points ?
-> 
-> Why not one functioning temperature and no lower / upper limits for the
-> cooling maps ?
+On Sat, Aug 7, 2021 at 3:31 PM Markuss Broks <markuss.broks@gmail.com> wrote:
 
-Certainly when I first did this for NanoPC-T4, IIRC it was to avoid the 
-fan ramping up too eagerly, since level 1 for my fan is effectively 
-silent but still cools enough to let a moderate load eventually settle 
-to a steady state below the second trip.
+> This adds a driver for Samsung S6D27A1 display controller and panel.
+> This panel is found in the Samsung GT-I8160 mobile phone,
+> and possibly some other mobile phones.
+>
+> This display needs manufacturer commands to configure it;
+> the commands used in this driver were taken from downstream driver
+> by Gareth Phillips; sadly, there is almost no documentation on what they
+> actually do.
+>
+> This driver re-uses the DBI infrastructure to communicate with the display.
+>
+> This driver is heavily based on WideChips WS2401 display controller
+> driver by Linus Walleij and on other panel drivers for reference.
+>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+>
+> v2 -> v3:
 
-Robin.
+Both v3 patches applied to drm-misc-next and pushed.
 
->> +	cooling-maps {
->> +		map2 {
->> +			trip = <&cpu_warm>;
->> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
->> +		};
->> +
->> +		map3 {
->> +			trip = <&cpu_hot>;
->> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
->> +		};
->> +	};
->> +};
->> +
->>   &emmc_phy {
->>   	status = "okay";
->>   };
->>
-> 
-> 
+Yours,
+Linus Walleij
