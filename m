@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45F8B3EAF1C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 06:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD8863EAF56
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 06:31:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232197AbhHMEOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 00:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbhHMEOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 00:14:02 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52563C061756;
-        Thu, 12 Aug 2021 21:13:36 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id 22so22659qkg.2;
-        Thu, 12 Aug 2021 21:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JATj7FlSMDAm89anL9O14/wxabM+bn6u6NhVI8X8ONE=;
-        b=lE2ubq/U0m3V2snJ8bMvBWCXNeU5Fw0Wv9eyUHk8DAwHTQanm5wFxiTPjKtAaxALCh
-         /IVN/OSLvUl2tOs4mrRp5Rc8s+zZ9grirEMWhuj/m0+9FtTCe1nzFnhWoLeElj7/SrXq
-         rCcNYIYx/BALAuUVm46dOIlYQ7dGqN/gBk43U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JATj7FlSMDAm89anL9O14/wxabM+bn6u6NhVI8X8ONE=;
-        b=Wz3Cz+Dh42Uif9Ii4PLtylFGJTiy2BynSu1lk1gMkFTBRflJLdTnSdkSQg17QxxQrA
-         Mgks5Gn6y/WYCC4VdVPEGoM/h6gQMGydZ6erxZb1Z/FQQnP43QlWxe75eFu7u8xBBNpL
-         1ld+3BVJxxl8ieuh40exlqHICT3AJGvVRyFeH2x95FyyaKaFrsY60h1KwdjZxFatFcla
-         WyrjgaaRiflhCQ2YFh2Vyh+CMiURaSCTub/Ml+iM+GO/s+zhGQv/f9AvWbKwhPneseD2
-         hI1ukWzCEXLgVoy8O8bJ4OKjXANZEa8PUHO1ujjSMn690QINcZqxh/Yb5JSh7x67maN0
-         P2wQ==
-X-Gm-Message-State: AOAM532ZaQTSJjtZacRizmI7bcZ+5FzJnn0w9tvjsXgHcs3ytaiinus3
-        U7/ymN9+1AvM6+uEsowHg8UTae1fBxKtbIY8+bA=
-X-Google-Smtp-Source: ABdhPJwZqoAo49DMKYzjDkSgFAuPBY+tIL4xnl8wvv+rWSUBDeXDtc0ndYWLTCbIfTwEdimJshNoOAUSSoZGjVZlzR0=
-X-Received: by 2002:a05:620a:19a8:: with SMTP id bm40mr293306qkb.66.1628828015291;
- Thu, 12 Aug 2021 21:13:35 -0700 (PDT)
+        id S235475AbhHMEbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 00:31:37 -0400
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:22715 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235002AbhHMEbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 00:31:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1628829071; x=1660365071;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=2Qn8uclZhD6XPeMfCxSgFOazhwYXJ3l60HI88f+/yDc=;
+  b=nx+zmMAEQd/puFCvKJdkqVdHQ5QRn+iX7m1nZQ/kl3Z7KOOneuNCqbYO
+   1WW18YbMzpHqLTbaB1l8CpnYU8KkyKh5JHmtMnMyXem7Sd9he3NAkAv2m
+   EWQ8IisaYLJ0NvH3Vy531rdHyNMn09hCSwaipp9Pf9Yh72tr4YDP9Ltwo
+   Q=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 12 Aug 2021 21:31:10 -0700
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2021 21:31:10 -0700
+Received: from [10.110.12.68] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.858.15; Thu, 12 Aug
+ 2021 21:31:09 -0700
+Subject: Re: [PATCH 0/3] soc: qcom: Add download mode support for QTI
+ platforms
+To:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Sai Prakash Ranjan" <saiprakash.ranjan@codeaurora.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        "Rajendra Nayak" <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, <quic_eberman@quicinc.com>
+References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
+ <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+Message-ID: <0178821e-a8cd-87c8-640c-4928201a3b5a@quicinc.com>
+Date:   Thu, 12 Aug 2021 21:31:08 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210805222818.8391-1-rentao.bupt@gmail.com> <20210805222818.8391-5-rentao.bupt@gmail.com>
- <CACPK8XcV5On2D4D+SXnfw1M0owwfCL4Su19jOEA7yWpq+T3jLw@mail.gmail.com> <20210813034016.GA21895@taoren-ubuntu-R90MNF91>
-In-Reply-To: <20210813034016.GA21895@taoren-ubuntu-R90MNF91>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 13 Aug 2021 04:13:23 +0000
-Message-ID: <CACPK8XeoV8DqDNYFgK97r-Q0DebNjrmgUTydKSYmGt+3x=-vOQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] ARM: dts: aspeed: Add Facebook Cloudripper
- (AST2600) BMC
-To:     Tao Ren <rentao.bupt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tao Ren <taoren@fb.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanexm03f.na.qualcomm.com (10.85.0.47) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Aug 2021 at 03:40, Tao Ren <rentao.bupt@gmail.com> wrote:
->
-> On Fri, Aug 13, 2021 at 01:29:17AM +0000, Joel Stanley wrote:
-> > On Thu, 5 Aug 2021 at 22:28, <rentao.bupt@gmail.com> wrote:
-> > > +&mdio1 {
-> > > +       status = "okay";
-> >
-> > You're enabling this but it looks like it's unused?
->
-> Thanks Joel for the careful review. The MDIO controller is not paired
-> with BMC MAC; instead, it's connected to the MDC/MDIO interface of the
-> on-board switch (whose ports are connected to BMC, Host and front panel
-> management port).
+Stephen,
 
-I see!
+On 8/12/2021 5:16 PM, Stephen Boyd wrote:
+> Quoting Sai Prakash Ranjan (2021-08-12 02:17:39)
+>> Collecting ramdumps on QTI platforms mainly require two things,
+>> SDI (System Debug Image) enabled firmware and kernel support to
+>> configure download mode cookies and SDI settings. Ramdumps can
+>> be collected once the system enters the download mode. To enter
+>> download mode, magic values or cookies need to be set in IMEM
+>> which is used by firmware to decide to enter download mode or not.
+>> Download mode cookies remain the same across targets and SDI disable
+>> register needs to be set or SDI needs to be disabled in case of normal
+>> reboot since ramdumps are supposed to be for crash debugging and
+>> not for every reboot. This series adds the kernel support required
+>> to enter download mode.
+> 
+> I don't recall if we discussed this on the list, but I'd really prefer
+> that we don't make kernel changes to support this beyond implementing
+> PSCI SYSTEM_RESET2 support and then some sort of vendor specific (or if
+> ARM is willing to update the spec then ARM specific) reset command on
+> panic reboot paths. The idea is to set the cookie in the bootloader
+> before the kernel is booted, then any insta-reboots/watchdogs would go
+> into download mode, no special init code required to lay down the cookie
+>>   create mode 100644 drivers/soc/qcom/download_mode.c
 
->
-> In other word, the MDIO controller is used, but we do need some user
-> space scripts to control the controller. What's your suggestion? For
-> example, should I add some comments to explain the purpose?
+Some discussion by Elliot on the PSCI_SYSTEM_RESET2 and vendor bits was 
+done here. You may want to check.
 
-Yes, that would make sense.
+https://lkml.org/lkml/2020/2/24/1137
 
-I've applied your patch, so if you want to add comments please send a
-diff against this tree:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/joel/bmc.git/log/?h=dt-for-v5.15
+---Trilok Soni
