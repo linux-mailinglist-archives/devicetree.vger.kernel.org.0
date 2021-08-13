@@ -2,55 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E4E03EB2F2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 10:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68C783EB30A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 10:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239486AbhHMIwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 04:52:15 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:43214 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239291AbhHMIwP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Aug 2021 04:52:15 -0400
-Received: from 82-99-180-238.static.bluetone.cz ([82.99.180.238] helo=phil.sntech)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mESuo-00077D-Kb; Fri, 13 Aug 2021 10:51:46 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/2] arm64: dts: rockchip: Add Scarlet Dumo Variant
-Date:   Fri, 13 Aug 2021 10:51:41 +0200
-Message-Id: <162884469491.2596417.3007403443594611487.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210812094753.2359087-1-wenst@chromium.org>
-References: <20210812094753.2359087-1-wenst@chromium.org>
+        id S233713AbhHMI6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 04:58:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45868 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231582AbhHMI6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 04:58:35 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148F3C0617AF
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 01:58:09 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id n6so14648983ljp.9
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 01:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4Go/2+Nr8/IPd0gMcjz2kJs/syLb1QNBBenHOoL/xe0=;
+        b=Az3XzF1K+Slxm41YO7BXtPTbH8PCX6lQvvTdftzW4AJ+LI8DRJgXFJkX8x5B0qPk83
+         MJ9yOeq5iQlm3Mv7HC6cqkVfcJaqsSQmEDgGsOD5EvPza99LRSbI5WJnCBQAdS1Vpac5
+         XEpCKVR1KLpu6RJJm1mPASkYP+ZBwsGRa0zX6d6C097S1utT3q0Mptb77LjaKIzqgge8
+         8gJ0EUkbxmCbjZJbpvGRhIrtVB6u2wcfVqZ9EiLgpGv2KKKtXfZTBz2Qp4A2XcjBPp9V
+         5ukEITiwo6t3HMeAhrpfcpD4XXDkqkv+zzDVkcQZmHOVqRSdCUvu9LxkDp2ldzogvnWy
+         j4Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4Go/2+Nr8/IPd0gMcjz2kJs/syLb1QNBBenHOoL/xe0=;
+        b=AfojQWxjuxAIaAfxRKLo+FTVMeZmzKAnrdbZ1XUGX0JLzpHUVPE4DA2VJVUAu4CYFu
+         2etu0/tRHq70uO71ywM5GvsDkyxkdZrC1WHPXsBVwHdeP/dricoIUOGJG+Ft4Oh5xEhO
+         hepLPXo1c3Y1hwUG6GbjpEHJ2cKHSuacDp+inf2o+OHEsVgZtu/uiwZUIfOwBz6Fx7ZX
+         R1ZTw6P0+Bh5Wm8oNfxJw/dHeUJ1Qq3SrSt8fNVy1jY5esgsEjIoSmRmz5wJoM9Zr+Fm
+         gw55YznVws03bhUAs/zmu9+gpzEN+P8YWE65ujoOTPG7zeSHXfbANm2gBa0hWieCGN9k
+         Nudg==
+X-Gm-Message-State: AOAM533W22HBoNUPeR5L09Of9Yv4lHXOce3o6HTwCCGiTZiQKkcsuiId
+        naVEFmeIkiT90HXDL5lmjsHMS683zlOR7FPCJR4F5A==
+X-Google-Smtp-Source: ABdhPJyNaVTxTCBGNCrzgLPEQnUlZnlrJKZgtztD/0Ef7Ohf6blBSKOY6Thc5Lxa3SIc8Fig9WbOq4LhwcWuOaNywa8=
+X-Received: by 2002:a2e:89c1:: with SMTP id c1mr1083515ljk.273.1628845086850;
+ Fri, 13 Aug 2021 01:58:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <1628830531-14648-1-git-send-email-skakit@codeaurora.org> <1628830531-14648-2-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1628830531-14648-2-git-send-email-skakit@codeaurora.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 13 Aug 2021 10:57:55 +0200
+Message-ID: <CACRpkdZteWY6X+prHeAF0rtPVbCk+X9=ZYgpjgAMH24LhOjhaQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec translation
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Aug 2021 17:47:51 +0800, Chen-Yu Tsai wrote:
-> A variant of the Chrome OS Gru-Scarlet device is missing in upstream.
-> This variant, dumo, is the same as the Innolux display panel variant,
-> but requires a specific calibration variant for its WiFi module.
-> 
-> I'm not sure if it's better to inherit from gru-scarlet-innolux. I kept
-> them separate from now, like in downstream ChromeOS kernel v4.4.
-> 
-> [...]
+Hi Satya/David,
 
-Applied, thanks!
+nice work on identifying this bug!
 
-[1/2] dt-bindings: arm: rockchip: Add gru-scarlet-dumo board
-      commit: 1aec043e2bcfc28a7b3946c852c89c008cfceb30
-[2/2] arm64: dts: rockchip: rk3399: Add gru-scarlet-dumo board
-      commit: ae328485ba0d5e2e0ff058438afbd8371badbc19
+On Fri, Aug 13, 2021 at 6:56 AM satya priya <skakit@codeaurora.org> wrote:
+>
+> From: David Collins <collinsd@codeaurora.org>
+>
+> pmic_gpio_child_to_parent_hwirq() and
+> gpiochip_populate_parent_fwspec_fourcell() translate a pinctrl-
+> spmi-gpio irqspec to an SPMI controller irqspec.  When they do
+> this, they use a fixed SPMI slave ID of 0 and a fixed GPIO
+> peripheral offset of 0xC0 (corresponding to SPMI address 0xC000).
+> This translation results in an incorrect irqspec for secondary
+> PMICs that don't have a slave ID of 0 as well as for PMIC chips
+> which have GPIO peripherals located at a base address other than
+> 0xC000.
+>
+> Correct this issue by passing the slave ID of the pinctrl-spmi-
+> gpio device's parent in the SPMI controller irqspec and by
+> calculating the peripheral ID base from the device tree 'reg'
+> property of the pinctrl-spmi-gpio device.
+>
+> Signed-off-by: David Collins <collinsd@codeaurora.org>
+> Signed-off-by: satya priya <skakit@codeaurora.org>
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Is this a regression or is it fine if I just apply it for v5.15?
+I was thinking v5.15 since it isn't yet used in device trees.
+
+Yours,
+Linus Walleij
