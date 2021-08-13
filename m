@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68C783EB30A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 10:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F09273EB336
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 11:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233713AbhHMI6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 04:58:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45868 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231582AbhHMI6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 04:58:35 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 148F3C0617AF
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 01:58:09 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id n6so14648983ljp.9
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 01:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4Go/2+Nr8/IPd0gMcjz2kJs/syLb1QNBBenHOoL/xe0=;
-        b=Az3XzF1K+Slxm41YO7BXtPTbH8PCX6lQvvTdftzW4AJ+LI8DRJgXFJkX8x5B0qPk83
-         MJ9yOeq5iQlm3Mv7HC6cqkVfcJaqsSQmEDgGsOD5EvPza99LRSbI5WJnCBQAdS1Vpac5
-         XEpCKVR1KLpu6RJJm1mPASkYP+ZBwsGRa0zX6d6C097S1utT3q0Mptb77LjaKIzqgge8
-         8gJ0EUkbxmCbjZJbpvGRhIrtVB6u2wcfVqZ9EiLgpGv2KKKtXfZTBz2Qp4A2XcjBPp9V
-         5ukEITiwo6t3HMeAhrpfcpD4XXDkqkv+zzDVkcQZmHOVqRSdCUvu9LxkDp2ldzogvnWy
-         j4Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4Go/2+Nr8/IPd0gMcjz2kJs/syLb1QNBBenHOoL/xe0=;
-        b=AfojQWxjuxAIaAfxRKLo+FTVMeZmzKAnrdbZ1XUGX0JLzpHUVPE4DA2VJVUAu4CYFu
-         2etu0/tRHq70uO71ywM5GvsDkyxkdZrC1WHPXsBVwHdeP/dricoIUOGJG+Ft4Oh5xEhO
-         hepLPXo1c3Y1hwUG6GbjpEHJ2cKHSuacDp+inf2o+OHEsVgZtu/uiwZUIfOwBz6Fx7ZX
-         R1ZTw6P0+Bh5Wm8oNfxJw/dHeUJ1Qq3SrSt8fNVy1jY5esgsEjIoSmRmz5wJoM9Zr+Fm
-         gw55YznVws03bhUAs/zmu9+gpzEN+P8YWE65ujoOTPG7zeSHXfbANm2gBa0hWieCGN9k
-         Nudg==
-X-Gm-Message-State: AOAM533W22HBoNUPeR5L09Of9Yv4lHXOce3o6HTwCCGiTZiQKkcsuiId
-        naVEFmeIkiT90HXDL5lmjsHMS683zlOR7FPCJR4F5A==
-X-Google-Smtp-Source: ABdhPJyNaVTxTCBGNCrzgLPEQnUlZnlrJKZgtztD/0Ef7Ohf6blBSKOY6Thc5Lxa3SIc8Fig9WbOq4LhwcWuOaNywa8=
-X-Received: by 2002:a2e:89c1:: with SMTP id c1mr1083515ljk.273.1628845086850;
- Fri, 13 Aug 2021 01:58:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <1628830531-14648-1-git-send-email-skakit@codeaurora.org> <1628830531-14648-2-git-send-email-skakit@codeaurora.org>
-In-Reply-To: <1628830531-14648-2-git-send-email-skakit@codeaurora.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 13 Aug 2021 10:57:55 +0200
-Message-ID: <CACRpkdZteWY6X+prHeAF0rtPVbCk+X9=ZYgpjgAMH24LhOjhaQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec translation
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S239329AbhHMJMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 05:12:43 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:27282 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S238739AbhHMJMj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 05:12:39 -0400
+X-IronPort-AV: E=Sophos;i="5.84,318,1620658800"; 
+   d="scan'208";a="90541571"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 13 Aug 2021 18:12:12 +0900
+Received: from localhost.localdomain (unknown [10.226.92.30])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 877124228B65;
+        Fri, 13 Aug 2021 18:12:09 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v5 2/3] ASoC: dt-bindings: renesas,rz-ssi: Update slave dma channel configuration parameter
+Date:   Fri, 13 Aug 2021 10:11:55 +0100
+Message-Id: <20210813091156.10700-3-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210813091156.10700-1-biju.das.jz@bp.renesas.com>
+References: <20210813091156.10700-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Satya/David,
+The DMAC on RZ/G2L has specific slave channel configuration
+parameters for SSI.
+This patch updates the dmas description and example node to include
+the encoded slave channel configuration.
 
-nice work on identifying this bug!
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+Note:-
+ This patch is based on [1]
+ [1]:- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210806095322.2326-2-biju.das.jz@bp.renesas.com/
+v4->v5:
+ * Updated dmas description and removed fixes as it is an enhancement
+   now.
+v3->v4:
+ * Updated bindings as the DMAC driver on RZ/G2L expects the
+   slave channel configuration to be passed in dmas property.
+v2->v3:
+ * Merged the binding patch with dmas added
+ * Updated dt binding example with encoded #dma-cells value.
+v1->v2:
+ * Rebased on 5.14-rc2.
+---
+ .../bindings/sound/renesas,rz-ssi.yaml        | 22 +++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
 
-On Fri, Aug 13, 2021 at 6:56 AM satya priya <skakit@codeaurora.org> wrote:
->
-> From: David Collins <collinsd@codeaurora.org>
->
-> pmic_gpio_child_to_parent_hwirq() and
-> gpiochip_populate_parent_fwspec_fourcell() translate a pinctrl-
-> spmi-gpio irqspec to an SPMI controller irqspec.  When they do
-> this, they use a fixed SPMI slave ID of 0 and a fixed GPIO
-> peripheral offset of 0xC0 (corresponding to SPMI address 0xC000).
-> This translation results in an incorrect irqspec for secondary
-> PMICs that don't have a slave ID of 0 as well as for PMIC chips
-> which have GPIO peripherals located at a base address other than
-> 0xC000.
->
-> Correct this issue by passing the slave ID of the pinctrl-spmi-
-> gpio device's parent in the SPMI controller irqspec and by
-> calculating the peripheral ID base from the device tree 'reg'
-> property of the pinctrl-spmi-gpio device.
->
-> Signed-off-by: David Collins <collinsd@codeaurora.org>
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+diff --git a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+index 471937cb8d05..414ff8035a4e 100644
+--- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
++++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+@@ -48,6 +48,24 @@ properties:
+   dmas:
+     minItems: 1
+     maxItems: 2
++    description:
++      The first cell represents a phandle to dmac
++      The second cell specifies the encoded MID/RID values of the SSI port
++      connected to the DMA client and the slave channel configuration
++      parameters.
++      bits[0:9]   - Specifies MID/RID value of a SSI channel as below
++                    MID/RID value of SSI rx0 = 0x256
++                    MID/RID value of SSI tx0 = 0x255
++                    MID/RID value of SSI rx1 = 0x25a
++                    MID/RID value of SSI tx1 = 0x259
++                    MID/RID value of SSI rt2 = 0x25f
++                    MID/RID value of SSI rx3 = 0x262
++                    MID/RID value of SSI tx3 = 0x261
++      bit[10]     - HIEN = 1, Detects a request in response to the rising edge
++                    of the signal
++      bit[11]     - LVL = 0, Detects based on the edge
++      bits[12:14] - AM = 2, Bus cycle mode
++      bit[15]     - TM = 0, Single transfer mode
+ 
+   dma-names:
+     oneOf:
+@@ -93,8 +111,8 @@ examples:
+             clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
+             power-domains = <&cpg>;
+             resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
+-            dmas = <&dmac 0x255>,
+-                   <&dmac 0x256>;
++            dmas = <&dmac 0x2655>,
++                   <&dmac 0x2656>;
+             dma-names = "tx", "rx";
+             #sound-dai-cells = <0>;
+     };
+-- 
+2.17.1
 
-Is this a regression or is it fine if I just apply it for v5.15?
-I was thinking v5.15 since it isn't yet used in device trees.
-
-Yours,
-Linus Walleij
