@@ -2,95 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 155413EB9EF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 18:20:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B873EBA0C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 18:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233870AbhHMQU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 12:20:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231503AbhHMQU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 12:20:59 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B55C061756;
-        Fri, 13 Aug 2021 09:20:32 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 7D8C11F44AAA
-Received: by earth.universe (Postfix, from userid 1000)
-        id 6F3823C0C99; Fri, 13 Aug 2021 18:20:29 +0200 (CEST)
-Date:   Fri, 13 Aug 2021 18:20:29 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Gene Chen <gene.chen.richtek@gmail.com>, matthias.bgg@gmail.com,
-        matti.vaittinen@fi.rohmeurope.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        rdunlap@infradead.org, gene_chen@richtek.com,
-        Wilma.Wu@mediatek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH resend v6 0/3] power: supply: mt6360_charger: add MT6360
- charger support
-Message-ID: <20210813162029.q5slrkubelfy3mvh@earth.universe>
-References: <20210719033914.16990-1-gene.chen.richtek@gmail.com>
- <20210813155438.4ssph6deqksob2uv@earth.universe>
- <20210813155858.GD5209@sirena.org.uk>
+        id S236114AbhHMQaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 12:30:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50440 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235752AbhHMQaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 12:30:12 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EF7CA60EB2
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 16:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628872186;
+        bh=wKj03RgBBsB4L/81//BD1MH3Wr9vd0NxPSjboXBcryc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mzmaLRKftPvfyUu90Fz4oKRJPSUaB/ZfbTRfzQsVIFnSwsGq/doveorLA9FCw4or6
+         RLbDreCQxonb8HbMaIikUY/o7R71LDCokIud9gderDcmvT1XPXhyKPLsn8AlQzBQxD
+         whZUTAqVm3eAljAhDsl1++chXnO8btOy7RMkL8Bib3ibseukbiMOItPcPoOuIRN5LI
+         XghxTtnkAvM5RGAzXP+Qswz31CpVCPH0GLoZsaKj8x1x+LLx7kOCmBIU9pEeSJQtPm
+         NAz5LDOUg8MBR6arOyd3FM59iqjqTQ4hEohOEwWSl/vgPamyGqMRvhMnZJWmOd1C0x
+         o0dXjNtDvF1rA==
+Received: by mail-ej1-f54.google.com with SMTP id b10so10797661eju.9
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 09:29:45 -0700 (PDT)
+X-Gm-Message-State: AOAM531KM/k1tmd4QKNJ9WGt5OzipaVYPiHTGtPFv64n27dQB1qWTrcV
+        7ce2kBpHtuhISqDa1pqonJPINDky5C4T7kQItw==
+X-Google-Smtp-Source: ABdhPJxwE9YhpLEurAf5R/ZwP490B2Z55qCViPEO3fP0hZtj+tU58WOgE3QMVNkD7ojv02bn/gk1jvgDodzIg4LopsY=
+X-Received: by 2002:a17:906:519:: with SMTP id j25mr3212359eja.525.1628872184592;
+ Fri, 13 Aug 2021 09:29:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gdfyujkmpuwincfd"
-Content-Disposition: inline
-In-Reply-To: <20210813155858.GD5209@sirena.org.uk>
+References: <20210802040458.334732-1-matt@codeconstruct.com.au>
+ <20210802040458.334732-2-matt@codeconstruct.com.au> <CAL_Jsq+rDox9gBDpZ2ZhiBvbyeHtwJDqFv_3imgSzt8hk4K4dA@mail.gmail.com>
+ <47d77b0c67cade473c496a956754ad5fc3d074ca.camel@codeconstruct.com.au>
+In-Reply-To: <47d77b0c67cade473c496a956754ad5fc3d074ca.camel@codeconstruct.com.au>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 13 Aug 2021 11:29:33 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+EKpUkKvL500aOGGtQDOgHs_pFbO9uCxjcxPOYsQnkPA@mail.gmail.com>
+Message-ID: <CAL_Jsq+EKpUkKvL500aOGGtQDOgHs_pFbO9uCxjcxPOYsQnkPA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: net: New binding for mctp-i2c
+To:     Matt Johnston <matt@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 10, 2021 at 10:39 PM Matt Johnston
+<matt@codeconstruct.com.au> wrote:
+>
+> On Mon, 2021-08-02 at 10:45 -0600, Rob Herring wrote:
+> > On Sun, Aug 1, 2021 at 10:12 PM Matt Johnston <matt@codeconstruct.com.au>
+> > wrote:
+> > >
+> > > +  slave functionality. The reg address must include
+> > > I2C_OWN_SLAVE_ADDRESS.
+> >
+> > This constraint can be a schema.
+>
+> The flag is already described in i2c.txt, is it OK to just make reference
+> to that?
 
---gdfyujkmpuwincfd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I know it is, but you are saying the only addresses valid must have
+that. Sounds like a constraint to me, so it should be a schema. Why
+make a user have to debug that they forgot to set that bit?
 
-Hi Mark,
-
-On Fri, Aug 13, 2021 at 04:58:58PM +0100, Mark Brown wrote:
-> On Fri, Aug 13, 2021 at 05:54:38PM +0200, Sebastian Reichel wrote:
-> > On Mon, Jul 19, 2021 at 11:39:11AM +0800, Gene Chen wrote:
-> > > This patch series add MT6360 Charger support contains driver and bind=
-ing
-> > > document
->=20
-> > Thanks, queued.
->=20
-> We're still waiting for review from Matti on the linear ranges bit -
-> normally that goes through the regulator tree, do you have a tag to pull
-> in case of merge conflicts?
-
-He actually already provided his Rb in v5, Gene did not carry it
-over properly (I added it) and the patch looks simple enough, that
-Linus will know what to do in case of a conflict. But if you insist
-I can unroll my tree and create a topic branch for this.
-
--- Sebastian
-
---gdfyujkmpuwincfd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmEWm80ACgkQ2O7X88g7
-+ppouw/+MI2zSWoohv5esyfj7NAMNCDyaDrbHkrd4z1MhbA/awpyh8lTnGUwu8kk
-caD03Omd6l/Pnsx+F4w6/SApqn3HxUrK5ge+6EqVczzWFGRtOHNhuksVEwa+EFxJ
-w+iHtH0TABaKcbOXiwrGiRFu6VnOiODF2tn9EhVOS9LC5Rph01ixBxw9djbqZiKX
-fToqLHwu4aEwScM1HRbp93ce5p1Iocx2AZBTT3cUk8DWSheIwW3UZVbh8jIE6amA
-0DhakGzOSM62RFRq2rL0ZOsYxr74cpjt8e/onPTCmhFaFFeYVKs+x4sx15G7LAGV
-hffKGf1yuxf7E0AshZDO1c1bk1qvwfdO7x+YoTNCoyoRH/xrcYgvZtQolzDk8AJM
-b3jc6Y9y+mqSDCEStt7SyBxiK/YYjAonoS8zoA7BuMD/WgLiqCdZ+d+RUXZJ3OZQ
-GWavHPZN3IafKG2B8pwHeP0ZftUStGUgozseGKxUc/AzwGE99toVYTb9UNOaGFkJ
-pS2/077on37yQJy3OW6LWtd3v9DINSut/nra8IdC+Wz7ZqkEqGUmNvf72Y4g8KsF
-ubMRl9ojT2KfLiwizAFuIHs7zuKzuBHMZ6VuDo9HSy4baXjsqM73b5NQKfLJY6U1
-uPQYdGYY54Pkty/dzHwxK2PHFtHGtwsvWqkdTdEwqnDeD66/tPQ=
-=fs0n
------END PGP SIGNATURE-----
-
---gdfyujkmpuwincfd--
+Rob
