@@ -2,264 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60D5C3EB6B0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 16:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18BC03EB6BD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 16:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236026AbhHMO2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 10:28:22 -0400
-Received: from mail-eopbgr00079.outbound.protection.outlook.com ([40.107.0.79]:8823
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231683AbhHMO2V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Aug 2021 10:28:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cj5VY9+tSGXPwaI2yCpqLtJIMPnaKZoftFCFOtU7+Sepj/V22vZfR1ThwZPUYpgBGxj5DG4g2XEPwDNe+d01wi7ygjDM8UDCRxXZQmBbhYVRND04GAZhulpSnL34uXNsMJ3kdMG3Gz7H1PDKUwz3+UI9FLcHoWbu4yHFh8BSP3ur7dkx4m1KXH3ZRzY6GvbBRZ5tCbER7wn6c/AWhDsrlLcD5QrJBC+R+qBYVtrsaGKmoXUnEjKsc46hvXyFE6kvyDelpZkFW2MLosNpOtCpGYswnUFCOI/IpqGo9ZV+wkee+jjJoPWMRoRWK8VG9+Q1JShIzjAh2jGOFsrxvAlypw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dR8ezOtMZMQ3L2VsIz2rNCjitma0TbFG7sftBxA+FWc=;
- b=A32s4Pis+zazc+7RV70isuGdAKtK3LtXJ0v5ZMwx8+gz0yWY3ZtvoadEId1vYmnT1D1GMn5XOcPPUxUBcCTTFXq47KZN42Oiu7ZLf0wL04s2/m6dHoh81AaRr5Xu4ybhrXj6oeW2eJamY6WIKymj06V0eVmWvYIoq1rLRANgFb0rzvnmMZArPgZVuHaRQmI0bNHoeZ7jAueRb+IVoYctTMnUkhBDBbDR2OFXC38qc26h6dyVDGNvcVNQtCA4K8eTszwWkZLRtRwQEs+jvdne4jSirrCCNFpe06a8wvtR1Rwl/7CxAdDuBPs3m4cj9k8grHXTvGmZbWxqHnwwhzSpVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dR8ezOtMZMQ3L2VsIz2rNCjitma0TbFG7sftBxA+FWc=;
- b=eS8yl2NzXcHQj+HhiyfuKUbzj/R66N0V6fW8dyjed9xzylGKilUOx4caPkxcA/1o6V33NiBjd3qEfZo2XGSE8RFI53TjhHSzH6UlMeDNHHLgmNSB/GuxdibNbJLFqXjAGIyMHc3T4d7Bm6lghcrHvInN0AwCcNvzED42PIgGePQ=
-Authentication-Results: suse.de; dkim=none (message not signed)
- header.d=none;suse.de; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5101.eurprd04.prod.outlook.com (2603:10a6:803:5f::31)
- by VI1PR0401MB2591.eurprd04.prod.outlook.com (2603:10a6:800:59::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15; Fri, 13 Aug
- 2021 14:27:50 +0000
-Received: from VI1PR04MB5101.eurprd04.prod.outlook.com
- ([fe80::ddcf:cac8:c7df:47d7]) by VI1PR04MB5101.eurprd04.prod.outlook.com
- ([fe80::ddcf:cac8:c7df:47d7%7]) with mapi id 15.20.4415.019; Fri, 13 Aug 2021
- 14:27:50 +0000
-Message-ID: <a0b5810b958eda8149ad498b76b7b05f758b8928.camel@oss.nxp.com>
-Subject: Re: [PATCH 3/8] dt-bindings: serial: fsl-linflexuart: Add
- compatible for S32G2
-From:   "Radu Nicolae Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>
-To:     Andreas =?ISO-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Chester Lin <clin@suse.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, s32@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
-        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
-        ghennadi.procopciuc@nxp.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
-Date:   Fri, 13 Aug 2021 17:27:42 +0300
-In-Reply-To: <96c02ee6-cd3a-59df-0b3b-1632bb355019@suse.de>
-References: <20210805065429.27485-1-clin@suse.com>
-         <20210805065429.27485-4-clin@suse.com>
-         <96c02ee6-cd3a-59df-0b3b-1632bb355019@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM4PR0302CA0004.eurprd03.prod.outlook.com
- (2603:10a6:205:2::17) To VI1PR04MB5101.eurprd04.prod.outlook.com
- (2603:10a6:803:5f::31)
+        id S240612AbhHMOd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 10:33:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34680 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231683AbhHMOd2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 10:33:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A5CC36103A;
+        Fri, 13 Aug 2021 14:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628865181;
+        bh=Kst2wr3UnK7JgTeoig+Taeqy5rPFWjd6edmIyKqJMms=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=h9azIVg730xbLa8QfGj3GW3bw7S7QtOQXVGnkQLqh/kZpoYCFHzcXj2YMQWeyEcB8
+         ujLWzguOBAHg2a9LQMVfceSVK1ckNWOsq4I4ZxNjb0A7/398h/G3Sjwuo+KzkHRZfS
+         KR1olLdgJoYou4vQiKTk08Nob0HROUruHfbKkgZrc/dbDiG8E44BCxP9CAP+lzW8+E
+         p1pnipY2juwQblmQhlnlb2WYZtjPBoGeFyxrDjMzkxw81rZPcpV+TKb+tmgcDJJFEo
+         Lpxs02zCzHYfgb1iJRR+3QJaHUvVCQSsU203IqcCYU+mHGRipnP+8rcvWdsXIrOgrL
+         HtLuO6SJF4BSA==
+Date:   Fri, 13 Aug 2021 16:32:55 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>, linuxarm@huawei.com,
+        mauro.chehab@huawei.com, Xiaowei Song <songxiaowei@hisilicon.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: PCI: kirin: fix HiKey970 example
+Message-ID: <20210813163255.3803fe41@coco.lan>
+In-Reply-To: <YRUamNF18ese0DYw@robh.at.kernel.org>
+References: <cover.1628754620.git.mchehab+huawei@kernel.org>
+        <655e21422a14620ae2d55335eb72bcaa66f5384d.1628754620.git.mchehab+huawei@kernel.org>
+        <YRUamNF18ese0DYw@robh.at.kernel.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.1.141] (89.45.21.213) by AM4PR0302CA0004.eurprd03.prod.outlook.com (2603:10a6:205:2::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.14 via Frontend Transport; Fri, 13 Aug 2021 14:27:47 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 79985f71-f804-48e7-6ffe-08d95e66875f
-X-MS-TrafficTypeDiagnostic: VI1PR0401MB2591:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0401MB2591623FBA527AC63A7C6D4E9FFA9@VI1PR0401MB2591.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RPhF2a4Sg+21FXMzMC1hW7gH7pn1T7yc2q8+8MNL86e1D+wkzqFfMndCGMC3h9rOeVVwyzgGgC04bpuUDXJPaFU7GSDjZqueHnIS0o+LZFCgDMH/5Jy9mWs8MWpJqfCstLlzupEXYABh6iAw2D105/ZDMgiyMoTEPXoUqFj9MHtwqNBcZsR/1QxOfqgQN7nDnmQaCXS0F10z6iGz/XbHg2hw9joWqGD6LDYn9iyDKCrwxkj0NHpj/o0ihZK28uxER/XfWZCW3LGY6D8jc5clBIQ4v++akK0XTEL+SKdkITXEeAnDu0/19LIF+a3OrqIyQpSLmNrNpLdWhGajg8xLc4L52Yq7esc+B10es9rPfWVzQO5jQZ2S/PvAhOp1YFrlZyioFIx1rvrnl6hjUnefuK1mnkNkRx4v3PBhUplOEHtCWJ0D/R2/ACtNnSbSdR8JbFclAnJWIyD7KsJFZlhxnMMJ8ab+NU+JZu/+88t9Oth9CY9KkaoEc8TcU02EBffaUA8jP/APUxYwf6WzNJCmXQM8/Ekaeqg28QS7k0JEK6vHXas7lD0zwwpRuXmsXApmBfFfTSF5sk15HozdaYfGAzfPLWWSb7gCqNTXXBLkzuDV2BwrJGMGueSB2ny1z7Qr57KbhJ1KGJWT5a44roUNJuPfYfrIeByC0KvKPFg1uW9vOioQfVC4BbsOq+t+2s3k1upgYCTJi3hue7E7FBDsF2TfXv1QLE1QZkvttpsYdOM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5101.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(376002)(39860400002)(346002)(136003)(66556008)(6486002)(5660300002)(38100700002)(8676002)(38350700002)(478600001)(186003)(66476007)(8936002)(2906002)(53546011)(66574015)(86362001)(6666004)(26005)(83380400001)(16576012)(316002)(4326008)(7416002)(110136005)(54906003)(52116002)(956004)(2616005)(66946007)(41350200001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UXYrdEpGMFp5amVpb2w1L0Z6VkdhdGFDcExQa0Q3KzNuRlVUK0NxUFVCeTFK?=
- =?utf-8?B?SEwzZndIaHltM0hzcGJuYzBYQ1NXbVQzZVJiYlV4WHcvSVZ3WWRpOHg1akk3?=
- =?utf-8?B?aXlCZFpDNDNxVG8zNkFhVDVielV6Y0RCTHF6QWFpY25FZitlTUJ6c0JETVRw?=
- =?utf-8?B?bjA4aWZGcUdPZFV4OG9hOTJXUlE1RmdBcm5zOEs5THI5MWQxeWVxMjE0NjhW?=
- =?utf-8?B?ZjVsRGZUMStEN3FrNzFMWkVKN010bWZiT0IxaVMxTEEyS2QzSjdobGp3L0VH?=
- =?utf-8?B?MEh1eEtVWHNhdkNkdUhIVDBudVBHdUdpWWoxTTRubTRHZFdzYTJtZ1dEVndl?=
- =?utf-8?B?eHRYOWgxZUxuYmFWMEhEK0pkVE1VOVhKSUJxZkFQemFPWkVzTzEwNzBZOTg1?=
- =?utf-8?B?S0E3VWV0YUNuNFdQNDB6UFJJOStiNks2MzViaFh1WWhlcndNcjhGa1UveEFx?=
- =?utf-8?B?OVoxYzMxVjNETzJDU1d1ZGdsOUtSZDlWSkhxSlphaysyTGRuZHJhMmllWFMz?=
- =?utf-8?B?aW1BSExzM1liWGMrcDR2VW5lN0JqMWRkVzZLL0NkWU1pTzBmRU8vU0YxSmpE?=
- =?utf-8?B?Nmt6QWtKSWtjNk1CK3VYSDdickp4dWRpV0NzRDcvbXg1NVhDMStkTFRIQ0pw?=
- =?utf-8?B?NTE2K3ZVTzlIdExmRFRWUnFaR1V0dXRZK0VaUTlqOWlxc1lJd3o0RnJQRytV?=
- =?utf-8?B?MGZFVkRwL3JrWXVidXlld0RGNmZ1ei9MQ210MW51WlpkSUVLNmJWVEY1V0s1?=
- =?utf-8?B?cUtvbXVrTlpTY09hNFduK0lEa0oySVI0a0R5WFZ5V3piT0kveGxXM3lFNm8r?=
- =?utf-8?B?Y2ZlcE0zakEyK3dWYkFjRTFqY1BKcUdpKzNCTmMwRU9lOWp0TkhtQW5EekNz?=
- =?utf-8?B?MTFJVGpmK0FLZk95eHE0Y1huUDRTczErL3ZVS2kxc0llTzFtbkxhKzBNWGVO?=
- =?utf-8?B?dTR5RUYvdndmTklyQStJZWIzam04dFJVL2RjbUx0VE5iekRoMlYvU2dQVlVF?=
- =?utf-8?B?eEtWczI3T2U1Y2VsTGI5S3lkaHd3Q01IV0M3ZERTZXN6emFuOFpSSzNCUTVH?=
- =?utf-8?B?WkhVQ0kvTDd2ekhTMm85ZVcxdDBQd0VmWllMUnBEcUhZNkd3ZlJ3ZkpETkZP?=
- =?utf-8?B?NnI4ZmJrbHhrcFpxNThYc0NIa0V1TlFaWkE3Q3ZGZkEraGFiV2czTHlIbmI2?=
- =?utf-8?B?R0E0VldzTzg4THNVNFVqMnRzaERSTE1nK09lOTYrN015SmorTzJPeFJNbjgr?=
- =?utf-8?B?bkpZUzdvWXY2UVdTOEljQ05zVHdqcVVJVnJPTEh6WG1ST0VHZ2xCemF0ZzhL?=
- =?utf-8?B?bVZ3UHpCT1YxM25iZTFJdmFVVGIvL1k2RGxncys1YXVWY2JwaVlWYmNNbFc5?=
- =?utf-8?B?K04zS0ZnSVhSMFd1bU80d0wxWGpJYm5OYytSWE9VaWxyeGcvcFJKbFdPRHJu?=
- =?utf-8?B?dVFOY1llSWhNektXT0paOTd2UDBOVU4vcG5oemd5QjBLL1lkNTFNUGdvNTNs?=
- =?utf-8?B?S1JrMkIxYnk3WGt2UVlpY1NDYmFteGs1NWNVMVVnTGkxa29CS3VqdWYzN2M5?=
- =?utf-8?B?WjJtWFQwNHgzKys0YWNuZ0dPV2dkNFdaK0NSZUNzbHFmOFQvMTNFRldCOW1h?=
- =?utf-8?B?REdJWUp4NTZXem9xVjZqNTR0ZWJGeEFpOXh5ekNUWTkrdlg2NXZsVUhqcXRx?=
- =?utf-8?B?dnQrL25RVTlaVFp3LytnWG41eVlrZDRORHJoa0hra2c1Z1RmMVdVSzlHVjdu?=
- =?utf-8?Q?0BdFt/isnrRiTY3muyqWAKd1Oy6NkLEgGTR8lej?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79985f71-f804-48e7-6ffe-08d95e66875f
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5101.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2021 14:27:50.3717
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Dd6h9RW1+xkGP2SDrwmped1q9tLc69VPTjiYI1tR0y+xgtzv1DVwhqx7YjJun3exQHVVJ4WSaH7gTUzKtTO019NNufxYQNW9/9bhbUS1voQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2591
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-08-12 at 18:27 +0200, Andreas Färber wrote:
-> On 05.08.21 08:54, Chester Lin wrote:
-> > Add a compatible string for the uart binding of NXP S32G2
-> > platforms. Here
-> > we use "s32v234-linflexuart" as fallback since the current
-> > linflexuart
-> > driver still works on S32G2.
-> > 
-> > Signed-off-by: Chester Lin <clin@suse.com>
-> > ---
-> >  .../bindings/serial/fsl,s32-linflexuart.yaml  | 26
-> > ++++++++++++++++---
-> >  1 file changed, 22 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-
-> > linflexuart.yaml
-> > b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.yaml
-> > index acfe34706ccb..e731f3f6cea4 100644
-> > --- a/Documentation/devicetree/bindings/serial/fsl,s32-
-> > linflexuart.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/fsl,s32-
-> > linflexuart.yaml
-> > @@ -21,10 +21,20 @@ allOf:
-> >  
-> >  properties:
-> >    compatible:
-> > -    description: The LINFlexD controller on S32V234 SoC, which can
-> > be
-> > -      configured in UART mode.
-> > -    items:
-> > -      - const: fsl,s32v234-linflexuart
-> > +    minItems: 1
-> > +    maxItems: 2
-> 
-> Are these necessary for oneOf?
-> 
-> > +    oneOf:
-> > +      - description: The LINFlexD controller on S32G2 SoC, which
-> > can be
-> > +          configured in UART mode.
-> > +        items:
-> > +          - enum:
-> > +              - fsl,s32g2-linflexuart
-> > +          - const: fsl,s32v234-linflexuart
-> 
-> This reads inconsistent to me: Either this oneOf is for S32G2 only,
-> then
-> please turn the enum into a const. Or change the description to "on
-> SoCs
-> compatible with S32V234" if we expect the enum list to grow.
-> 
-> I believe the idea here was to avoid unnecessary driver compatible
-> and
-> earlycon compatible additions, while preparing for eventual quirks
-> specific to S32G2.
-> 
-> @NXP: Should this be s32g2- like above or s32g274a- specifically? Do
-> you
-> agree this is a useful thing to prepare here, as opposed to using
-> only
-> s32v234- in the s32g2* DT?
+Em Thu, 12 Aug 2021 07:56:56 -0500
+Rob Herring <robh@kernel.org> escreveu:
 
-s32g2- is fine, but the vendor should be nxp, not fsl.
-nxp,s32g2-linflexuart
+> > +          msi-parent = <&its_pcie>;  
+> 
+> Why do we need this change? Adding the child nodes shouldn't change 
+> the behavior here. I'd expect that we'd walk the parent nodes until we 
+> find a 'msi-parent' much like 'interrupt-parent'.
+> 
+> It looks like we walk PCI bus parents to get the MSI domain, but we 
+> don't walk the DT node parents. 
+> 
+> Adding Marc for his thoughts.
 
-> 
-> I assume the ordering is done alphabetically as S32G < S32V;
-> alternatively we might order S32V234 first and then the compatible
-> ones.
-> 
-> > +
-> > +      - description: The LINFlexD controller on S32V234 SoC, which
-> > can be
-> > +          configured in UART mode.
-> > +        items:
-> > +          - const: fsl,s32v234-linflexuart
-> 
-> To minimize this S32G2 patch, would it be valid to do oneOf for the
-> single S32V in the preceding patch already? Then we would avoid the
-> text
-> movement and re-indentation above and more easily see the lines newly
-> getting added for S32G2.
-> 
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -41,8 +51,16 @@ unevaluatedProperties: false
-> >  
-> >  examples:
-> >    - |
-> > +    /* S32V234 */
-> 
-> Could this be:
->   - description: S32V234
->     |
-> ?
-> 
-> >      serial@40053000 {
-> >          compatible = "fsl,s32v234-linflexuart";
-> >          reg = <0x40053000 0x1000>;
-> >          interrupts = <0 59 4>;
-> >      };
-> > +
-> > +    /* S32G2 */
-> 
-> This should not be part of the S32V example, but a new one:
-> 
->   - |
-> 
-> (or with description, as discussed above)
-> 
-> > +    serial@401c8000 {
-> > +        compatible = "fsl,s32g2-linflexuart", "fsl,s32v234-
-> > linflexuart";
-> 
-> Potentially affected by naming discussions above.
-> 
-> > +        reg = <0x401c8000 0x3000>;
-> > +        interrupts = <0 82 1>;
-> > +    };
-> 
-> Regards,
-> Andreas
-> 
+This is actually not directly related with the pcie hierarchy needed by the
+per-slot PERST# signal, but it seems to be related to the fact that, on
+this device, we have this topology:
+
+
+	+------------+
+	| Kirin 970  |       +------------+
+        | PCIe bus 0 |  ---> | PCIe bus 1 | ---> PCI bus (2 slots + Eth)
+	+------------+       +------------+
+
+With this change, we have ("version 1"):
+
+    soc {
+	its_pcie: interrupt-controller@f5100000 {
+		reg = <0x0 0xf5100000 0x0 0x100000>;
+		compatible = "arm,gic-v3-its";
+		msi-controller;
+	};
+	pcie@f4000000 {
+		#interrupt-cells = <1>;
+		interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "msi";
+		interrupt-map-mask = <0 0 0 7>;
+		interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+				<0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+				<0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
+				<0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
+		pcie@0,0 {
+			msi-parent = <&its_pcie>;
+
+		};		
+	};
+    };
+
+While the original version ("version 2") was:
+
+    soc {
+	its_pcie: interrupt-controller@f5100000 {
+		reg = <0x0 0xf5100000 0x0 0x100000>;
+		compatible = "arm,gic-v3-its";
+		msi-controller;
+	};
+	pcie@f4000000 {
+		#interrupt-cells = <1>;
+		interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "msi";
+		interrupt-map-mask = <0 0 0 7>;
+		interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+				<0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+				<0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
+				<0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
+		msi-parent = <&its_pcie>;
+		pcie@0,0 {
+			... (no msi-parent here)
+		};		
+	};
+    };
+
+With both versions, PCI works OK.
+
+Wowever, "version 2" produce lots of crap at dmesg (see enclosed).
+
+The root cause seems to be happening on this function:
+
+	static int pci_msi_setup_msi_irqs(struct pci_dev *dev, int nvec, int type)
+	{
+		struct irq_domain *domain;
+	
+		domain = dev_get_msi_domain(&dev->dev);
+		if (domain && irq_domain_is_hierarchy(domain))
+			return msi_domain_alloc_irqs(domain, &dev->dev, nvec);
+
+		return arch_setup_msi_irqs(dev, nvec, type);
+	}
+
+It sounds that dev_get_msi_domain() fails with "version 1", probably
+because of the additional PCIe bridge, but works fine with "version 2".
+
+Thanks,
+Mauro
+
+[    5.034618] ------------[ cut here ]------------
+[    5.039239] WARNING: CPU: 4 PID: 7 at include/linux/msi.h:256 __pci_enable_msi_range+0x398/0x59c
+[    5.048035] Modules linked in: wl18xx(+) wlcore mac80211 libarc4 cfg80211 wlcore_sdio crct10dif_ce tcpci_rt1711h tcpci tcpm typec phy_hi3670_usb3 phy_hi3670_pcie pcie_kirin hisi_hikey_usb rfkill drm fuse ip_tables x_tables ipv6
+[    5.068231] CPU: 4 PID: 7 Comm: kworker/u16:0 Not tainted 5.14.0-rc1+ #340
+[    5.075103] Hardware name: HiKey970 (DT)
+[    5.079020] Workqueue: events_unbound deferred_probe_work_func
+[    5.084855] pstate: 60000005 (nZCv daif -PAN -UAO -TCO BTYPE=--)
+[    5.088800] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    5.090856] pc : __pci_enable_msi_range+0x398/0x59c
+[    5.090860] lr : __pci_enable_msi_range+0x2b8/0x59c
+[    5.109813] sp : ffff80001220b670
+[    5.113119] x29: ffff80001220b670 x28: ffff000104547000 x27: 0000000000000001
+[    5.120252] x26: ffff0001045472f0 x25: ffff80001216626c x24: 0000000000000000
+[    5.127383] x23: ffff0001045470c8 x22: 0000000000000001 x21: 0000000000000001
+[    5.129006] mmc_host mmc1: Bus speed (slot 0) = 25000000Hz (slot req 25000000Hz, actual 25000000HZ div = 0)
+[    5.134515] x20: 0000000000000001 x19: ffff0001055b7d00 x18: 00000000fffffffd
+[    5.134519] x17: 6572702066666666 x16: 6632376678302d30 x15: 0000000000000020
+[    5.158527] x14: 0000000000000001 x13: ffff00010e9ec803 x12: 0000000000000040
+[    5.165663] x11: ffff000100400248 x10: ffff00010040024a x9 : 0000000000000000
+[    5.172805] x8 : ffff0001055b7d80 x7 : ffff800013000000 x6 : ffff800008f73190
+[    5.185571] x5 : 0000000040000000 x4 : 0000000000000000 x3 : ffff800010808ba0
+[    5.194702] x2 : 0000000000000000 x1 : ffff0001045472f0 x0 : 0000000000000000
+[    5.201855] Call trace:
+[    5.201859]  __pci_enable_msi_range+0x398/0x59c
+[    5.201868]  pci_alloc_irq_vectors_affinity+0xe0/0x140
+[    5.201872]  pcie_port_device_register+0x15c/0x4fc
+[    5.201877]  pcie_portdrv_probe+0x44/0xfc
+[    5.201881]  local_pci_probe+0x40/0xac
+[    5.201886]  pci_device_probe+0x114/0x1b0
+[    5.201891]  really_probe+0x1b0/0x42c
+[    5.201895]  __driver_probe_device+0x114/0x190
+[    5.201899]  driver_probe_device+0x40/0x100
+[    5.242782]  __device_attach_driver+0x98/0x130
+[    5.242789]  bus_for_each_drv+0x78/0xd0
+[    5.242792]  __device_attach+0xdc/0x1c0
+[    5.242795]  device_attach+0x14/0x20
+[    5.242800]  pci_bus_add_device+0x50/0xb4
+[    5.242806]  pci_bus_add_devices+0x3c/0x8c
+[    5.266581]  pci_host_probe+0x40/0xc4
+[    5.266593]  dw_pcie_host_init+0x198/0x470
+[    5.266600]  kirin_pcie_probe+0x5cc/0x88c [pcie_kirin]
+[    5.266610]  platform_probe+0x68/0xe0
+[    5.266614]  really_probe+0x1b0/0x42c
+[    5.272805] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    5.274366]  __driver_probe_device+0x114/0x190
+[    5.300468]  driver_probe_device+0x40/0x100
+[    5.300480]  __device_attach_driver+0x98/0x130
+[    5.300484]  bus_for_each_drv+0x78/0xd0
+[    5.300488]  __device_attach+0xdc/0x1c0
+[    5.313196] mmc_host mmc1: Bus speed (slot 0) = 25000000Hz (slot req 25000000Hz, actual 25000000HZ div = 0)
+[    5.316763]  device_initial_probe+0x14/0x20
+[    5.316766]  bus_probe_device+0x98/0xa0
+[    5.316770]  deferred_probe_work_func+0x9c/0xf0
+[    5.339026]  process_one_work+0x1cc/0x350
+[    5.339035]  worker_thread+0x138/0x46c
+[    5.339040]  kthread+0x150/0x160
+[    5.350007]  ret_from_fork+0x10/0x18
+[    5.358700] ---[ end trace a4c2ccee5a840ad8 ]---
+[    5.363529] ------------[ cut here ]------------
+[    5.373739] WARNING: CPU: 4 PID: 7 at include/linux/msi.h:262 free_msi_irqs+0x54/0x1a0
+[    5.373751] Modules linked in: wl18xx wlcore mac80211 libarc4 cfg80211 wlcore_sdio crct10dif_ce tcpci_rt1711h tcpci tcpm typec phy_hi3670_usb3 phy_hi3670_pcie pcie_kirin hisi_hikey_usb rfkill drm fuse ip_tables x_tables ipv6
+[    5.402792] CPU: 4 PID: 7 Comm: kworker/u16:0 Tainted: G        W         5.14.0-rc1+ #340
+[    5.402801] Hardware name: HiKey970 (DT)
+[    5.402804] Workqueue: events_unbound deferred_probe_work_func
+[    5.402816] pstate: 60000005 (nZCv daif -PAN -UAO -TCO BTYPE=--)
+[    5.402820] pc : free_msi_irqs+0x54/0x1a0
+[    5.402825] lr : __pci_enable_msi_range+0x3dc/0x59c
+[    5.402829] sp : ffff80001220b620
+[    5.402830] x29: ffff80001220b620 x28: ffff000104547000 x27: 00000000ffffffed
+[    5.402835] x26: ffff0001045472f0 x25: ffff0001045470c8 x24: 0000000000000000
+[    5.402840] x23: ffff0001045470c8 x22: ffff000104547000 x21: ffff0001045472f0
+[    5.402843] x20: 0000000000000001 x19: ffff0001045472f0 x18: 00000000fffffffd
+[    5.402847] x17: 6572702066666666 x16: 6632376678302d30 x15: 0000000000000020
+[    5.402851] x14: 0000000000000001 x13: ffff00010e9ec803 x12: 0000000000000040
+[    5.402855] x11: ffff000100400248 x10: ffff00010040024a
+[    5.424804] mmc_host mmc1: Bus speed (slot 0) = 400000Hz (slot req 400000Hz, actual 400000HZ div = 0)
+[    5.426863]  x9 : 0000000000000000
+[    5.426866] x8 : ffff0001055b7d80 x7 : ffff800013000000 x6 : ffff800008f73190
+[    5.461001] mmc_host mmc1: Bus speed (slot 0) = 25000000Hz (slot req 25000000Hz, actual 25000000HZ div = 0)
+[    5.467547] x5 : 0000000040000000 x4 : 0000000000000000 x3 : ffff800010808ba0
+[    5.467552] x2 : 0000000000000000 x1 : ffff0001000cd580 x0 : 0000000000000000
+[    5.523618] Call trace:
+[    5.523621]  free_msi_irqs+0x54/0x1a0
+[    5.523625]  __pci_enable_msi_range+0x3dc/0x59c
+[    5.541384]  pci_alloc_irq_vectors_affinity+0xe0/0x140
+[    5.541392]  pcie_port_device_register+0x15c/0x4fc
+[    5.541396]  pcie_portdrv_probe+0x44/0xfc
+[    5.541400]  local_pci_probe+0x40/0xac
+[    5.541404]  pci_device_probe+0x114/0x1b0
+[    5.541407]  really_probe+0x1b0/0x42c
+[    5.541412]  __driver_probe_device+0x114/0x190
+[    5.571173]  driver_probe_device+0x40/0x100
+[    5.571186]  __device_attach_driver+0x98/0x130
+[    5.579813]  bus_for_each_drv+0x78/0xd0
+[    5.579819]  __device_attach+0xdc/0x1c0
+[    5.579822]  device_attach+0x14/0x20
+[    5.579826]  pci_bus_add_device+0x50/0xb4
+[    5.579830]  pci_bus_add_devices+0x3c/0x8c
+[    5.603932]  pci_host_probe+0x40/0xc4
+[    5.607754]  dw_pcie_host_init+0x198/0x470
+[    5.611850]  kirin_pcie_probe+0x5cc/0x88c [pcie_kirin]
+[    5.621932]  platform_probe+0x68/0xe0
+[    5.625594]  really_probe+0x1b0/0x42c
+[    5.629424]  __driver_probe_device+0x114/0x190
+[    5.633870]  driver_probe_device+0x40/0x100
+[    5.643685]  __device_attach_driver+0x98/0x130
+[    5.648123]  bus_for_each_drv+0x78/0xd0
+[    5.652121]  __device_attach+0xdc/0x1c0
+[    5.656118]  device_initial_probe+0x14/0x20
+[    5.660295]  bus_probe_device+0x98/0xa0
+[    5.669763]  deferred_probe_work_func+0x9c/0xf0
+[    5.674288]  process_one_work+0x1cc/0x350
+[    5.678459]  worker_thread+0x138/0x46c
+[    5.682202]  kthread+0x150/0x160
+[    5.690802]  ret_from_fork+0x10/0x18
+[    5.694375] ---[ end trace a4c2ccee5a840ad9 ]---
+[    5.699345] pcieport 0000:00:00.0: PME: Signaling with IRQ 57
+[    5.699721] pcieport 0000:00:00.0: AER: enabled with IRQ 57
+[    5.716257] wlcore: wl18xx HW: 183x or 180x, PG 2.2 (ROM 0x11)
+[    5.716612] pcieport 0000:01:00.0: enabling device (0000 -> 0002)
+[    5.729396] wlcore: WARNING Detected unconfigured mac address in nvs, derive from fuse instead.
+[    5.734803] pcieport 0000:02:07.0: enabling device (0000 -> 0002)
+[    5.742879] wlcore: WARNING This default nvs file can be removed from the file system
+[    5.755469] ------------[ cut here ]------------
+[    5.765439] wlcore: loaded
+[    5.766377] WARNING: CPU: 6 PID: 7 at include/linux/msi.h:256 __pci_enable_msix_range+0x5ec/0x6b0
+[    5.777977] Modules linked in: wl18xx wlcore mac80211 libarc4 cfg80211 wlcore_sdio crct10dif_ce tcpci_rt1711h tcpci tcpm typec phy_hi3670_usb3 phy_hi3670_pcie pcie_kirin hisi_hikey_usb rfkill drm fuse ip_tables x_tables ipv6
+[    5.797948] CPU: 6 PID: 7 Comm: kworker/u16:0 Tainted: G        W         5.14.0-rc1+ #340
+[    5.806233] Hardware name: HiKey970 (DT)
+[    5.815789] Workqueue: events_unbound deferred_probe_work_func
+[    5.821884] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+[    5.827915] pc : __pci_enable_msix_range+0x5ec/0x6b0
+[    5.827937] lr : __pci_enable_msix_range+0x37c/0x6b0
+[    5.827942] sp : ffff80001220b620
+[    5.827944] x29: ffff80001220b620 x28: 0000000000000000 x27: ffff000108fce000
+[    5.827954] x26: ffff000108fce0c8 x25: 0000000000000001 x24: 0000000000000000
+[    5.827958] x23: 000000000000000c x22: 0000000000000001 x21: ffff000108fce2f0
+[    5.827962] x20: 0000000000000001 x19: 0000000000000000 x18: 0000000000000002
+[    5.827966] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
+[    5.827970] x14: 0000000000000000 x13: 000000000000027e x12: ffff80001286b000
+[    5.876878] x11: ffff800012869000 x10: 00000000f7200000 x9 : 0000000000000000
+[    5.876886] x8 : 0000000000000039 x7 : 0000000000000000 x6 : 000000000000003f
+[    5.876891] x5 : ffff000108fce2f0 x4 : ffff80001220b5e0 x3 : 0000000000000000
+[    5.876896] x2 : ffff800012869000 x1 : 0000000000000004 x0 : 0000000000000000
+[    5.876901] Call trace:
+[    5.876904]  __pci_enable_msix_range+0x5ec/0x6b0
+[    5.919629]  pci_alloc_irq_vectors_affinity+0xc0/0x140
+[    5.919645]  rtl_init_one+0x55c/0xf90
+[    5.919653]  local_pci_probe+0x40/0xac
+[    5.932195]  pci_device_probe+0x114/0x1b0
+[    5.932200]  really_probe+0x1b0/0x42c
+[    5.932205]  __driver_probe_device+0x114/0x190
+[    5.932209]  driver_probe_device+0x40/0x100
+[    5.932212]  __device_attach_driver+0x98/0x130
+[    5.932217]  bus_for_each_drv+0x78/0xd0
+[    5.932220]  __device_attach+0xdc/0x1c0
+[    5.932223]  device_attach+0x14/0x20
+[    5.932227]  pci_bus_add_device+0x50/0xb4
+[    5.932231]  pci_bus_add_devices+0x3c/0x8c
+[    5.932234]  pci_bus_add_devices+0x68/0x8c
+[    5.932236]  pci_bus_add_devices+0x68/0x8c
+[    5.932239]  pci_bus_add_devices+0x68/0x8c
+[    5.932241]  pci_host_probe+0x40/0xc4
+[    5.932244]  dw_pcie_host_init+0x198/0x470
+[    5.932250]  kirin_pcie_probe+0x5cc/0x88c [pcie_kirin]
+[    5.932259]  platform_probe+0x68/0xe0
+[    5.932262]  really_probe+0x1b0/0x42c
+[    5.932265]  __driver_probe_device+0x114/0x190
+[    5.932268]  driver_probe_device+0x40/0x100
+[    5.932271]  __device_attach_driver+0x98/0x130
+[    5.932274]  bus_for_each_drv+0x78/0xd0
+[    5.932277]  __device_attach+0xdc/0x1c0
+[    5.932280]  device_initial_probe+0x14/0x20
+[    5.932283]  bus_probe_device+0x98/0xa0
+[    5.932286]  deferred_probe_work_func+0x9c/0xf0
+[    5.932289]  process_one_work+0x1cc/0x350
+[    5.932295]  worker_thread+0x138/0x46c
+[    5.932298]  kthread+0x150/0x160
+[    5.932302]  ret_from_fork+0x10/0x18
+[    5.932307] ---[ end trace a4c2ccee5a840ada ]---
 
 
