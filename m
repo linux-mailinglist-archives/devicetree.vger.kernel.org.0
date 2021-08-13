@@ -2,70 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CA63EBBA1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 19:45:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 754EF3EBBA8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 19:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbhHMRpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 13:45:49 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:35656 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbhHMRpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 13:45:45 -0400
-Received: by mail-ot1-f48.google.com with SMTP id r19-20020a0568301353b029050aa53c3801so12950065otq.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 10:45:18 -0700 (PDT)
+        id S231881AbhHMRrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 13:47:24 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:43763 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229919AbhHMRrS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 13:47:18 -0400
+Received: by mail-oi1-f179.google.com with SMTP id bf25so8229272oib.10;
+        Fri, 13 Aug 2021 10:46:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/tRJJqRyWJqAafGX76y4iwOE1vDparJzpmZe1NF8mMQ=;
-        b=YMogNfydo1odFGmau6KsuQvAflI3HtZNMzE8EtJti4M47vRScDDLhqAKOZArtySdIe
-         cFY2XS8Jx570hKOTs7hLtw/cBhVaeq2KH+cTFHgG4TgedW5c5TnqXhbh3s3CyUDSSr9P
-         n14ooHKVkLC0YNVLQGgqwikansPY5LGYO+LzCHBod8WypN8U3TO6J/tdsZjRC0a6+HFU
-         kXMuPjHwWuwh7cgxlqEWvpEpzDbFKvIWHI+edqTEUGjIfN+tHHjke+ULTGGMOL0ZE+GU
-         2Mhb+8sMJhBwWerHPVJABAPqBTlv8GuSOQRMmqlP6dQ1evyxbF9rD42XXUMM6KMeR1uX
-         x80Q==
-X-Gm-Message-State: AOAM530SmylRsP7KDYPOvAc5GTLgQlDdbCVdLDttg0ImW1GndvlTo8UR
-        dz9UE9Xbp7x4qdXuIgxQTQ==
-X-Google-Smtp-Source: ABdhPJyovJzS1FxaUL0k/lw2dKsfYXld3XGCueBU0/vxcNy8I2elUWEkepjsmVlUmRqcFvjcJHv7rg==
-X-Received: by 2002:a9d:5f0e:: with SMTP id f14mr3008794oti.107.1628876718430;
-        Fri, 13 Aug 2021 10:45:18 -0700 (PDT)
+        bh=nruG5wbXF+Ql+fb23mE0km1GyZSsSCOkm8QTSIH25Qs=;
+        b=mtu10bz6s35Vjd5OjTN703PWOVwXwmRnTe3CvkOmc2/CDzw6ZS/KNGp2xDvCMmXryk
+         EYHYFoairDqeO5Kx3BnSMzWv3f/fHRLs7dj8tYu4JAUn9lYJSBpo6scWoZbcwm2GGg8c
+         RXGaDs2mjcgoKW67UoPbRQcyuBpLlwjchHlX2lE3jEZlzMnArOGsTjdAsStQzWBb+KLm
+         nb0IRfP3FQcMa8QFY7J6Z73rwt/Oalmb2X8mClo7FNfLXsswHH0mGjbQwlTKxFdX/tN4
+         uZvu0Szfek1bZMHTMtr4ytqav1x6qJm8TttBRs/nqaukzU8iPRsFnbAMio2/o4OZIRAj
+         LQmQ==
+X-Gm-Message-State: AOAM531rw/CawjRF8hjCvVmbeluIlqgCxdJDYjiHZo+1actyC+iJNqWy
+        oMq2a0HUjYUQu7hEBz67DQ==
+X-Google-Smtp-Source: ABdhPJwmioe5mchEce3/NXdPmIyIO3ho3zWNNzXefOSZaEwZx1f/l2+dUrbHFkGd9aBwM/Xzf4ogsA==
+X-Received: by 2002:a05:6808:6cc:: with SMTP id m12mr3167933oih.51.1628876811264;
+        Fri, 13 Aug 2021 10:46:51 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z12sm434094otj.1.2021.08.13.10.45.17
+        by smtp.gmail.com with ESMTPSA id g13sm206497oos.39.2021.08.13.10.46.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 10:45:17 -0700 (PDT)
-Received: (nullmailer pid 3743626 invoked by uid 1000);
-        Fri, 13 Aug 2021 17:45:16 -0000
-Date:   Fri, 13 Aug 2021 12:45:16 -0500
+        Fri, 13 Aug 2021 10:46:50 -0700 (PDT)
+Received: (nullmailer pid 3746395 invoked by uid 1000);
+        Fri, 13 Aug 2021 17:46:49 -0000
+Date:   Fri, 13 Aug 2021 12:46:49 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     Kever Yang <kever.yang@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        Peter Geis <pgwipeout@gmail.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: gpu: mali-bifrost: Add RK3568
- compatible
-Message-ID: <YRavrOQTnvU5amqZ@robh.at.kernel.org>
-References: <20210805025948.10900-1-ezequiel@collabora.com>
- <20210805025948.10900-3-ezequiel@collabora.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: sunxi: Add compatible for
+ R329
+Message-ID: <YRawCZ0BWEzTE4El@robh.at.kernel.org>
+References: <20210805045716.46141-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210805025948.10900-3-ezequiel@collabora.com>
+In-Reply-To: <20210805045716.46141-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Aug 2021 23:59:46 -0300, Ezequiel Garcia wrote:
-> The Rockchip RK3568 SoC has a Bifrost Mali-G52 GPU,
-> add a compatible string for it.
+On Wed, Aug 04, 2021 at 11:57:14PM -0500, Samuel Holland wrote:
+> On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
+> divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
+> an alternative clock source, with a bit to switch between them.
 > 
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> Since 24 MHz / 750 == 32 kHz, not 32.768 kHz, the hardware adjusts the
+> cycle counts to keep the timeouts independent of the clock source. This
+> keeps the programming interface backward-compatible.
+> 
+> R329 also adds two new registers, to allow software to immediately drive
+> the SoC reset signal.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes v1 to v2:
+>  - Switch from enum to const
+>  - Add descriptions to "clocks" items
 > 
+>  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 32 ++++++++++++++++++-
+>  1 file changed, 31 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index 9aa3c313c49f..8fa5b0d32381 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -24,6 +24,7 @@ properties:
+>                - allwinner,sun50i-a100-wdt
+>                - allwinner,sun50i-h6-wdt
+>                - allwinner,sun50i-h616-wdt
+> +              - allwinner,sun50i-r329-wdt
+>            - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,suniv-f1c100s-wdt
+> @@ -33,7 +34,18 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - description: High-frequency oscillator input, divided internally
+> +      - description: Low-frequency oscillator input, only found on some variants
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - const: hosc
+> +      - const: losc
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -44,6 +56,24 @@ required:
+>    - clocks
+>    - interrupts
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - allwinner,sun50i-r329-wdt
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      minItems: 2
+> +
+> +    clock-names:
+> +      minItems: 2
+> +
+> +  required:
+> +    - clock-names
 
-Applied, thanks!
+Needs an else clause with 'maxItems: 1' or is the 2nd clock now valid 
+for all?
+
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> -- 
+> 2.31.1
+> 
+> 
