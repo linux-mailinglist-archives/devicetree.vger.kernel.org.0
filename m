@@ -2,91 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA7A3EBD23
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 22:13:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAD583EBD27
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 22:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234280AbhHMUNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 16:13:49 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:42845 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233905AbhHMUNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 16:13:49 -0400
-Received: by mail-oi1-f172.google.com with SMTP id t35so17601752oiw.9;
-        Fri, 13 Aug 2021 13:13:21 -0700 (PDT)
+        id S234346AbhHMUOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 16:14:25 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:40715 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234344AbhHMUOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 16:14:25 -0400
+Received: by mail-ot1-f53.google.com with SMTP id h63-20020a9d14450000b02904ce97efee36so13437869oth.7;
+        Fri, 13 Aug 2021 13:13:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OquAakahea26nEMMYnVSuFdMaOwT9nWOuEZ5pT1GDFg=;
-        b=QN8ueV5MJRO1DZbtUgELK/L+FUDxnoGeP3yTQnA5oUo3JABLK7a6x/nrcd/fXN+a/n
-         +EGH6xrcQPhqGCYGJVl+kQ8/zB+clwwMJVPDZgpv4WrfDlUemmCw4P1f7Np2gqnYGU7y
-         81SrAzdd051wjshsSQs8+xAt+ff5qR2EbBUhGdGKZ72HbddRre4A0PSXChv1LClMqLgN
-         hWPxJQH8ijqkqipCdyI4bb4i58M3LhPoPkP0s26CYyieJsWvVlFPIM8osr6ST9fSlTLS
-         NHRgymRNKh+3niy15CXDEKPnSP75W8RpTHKU4Wy+7uSRWk2D+PG/ooc7veWzaTcab3w/
-         HUjQ==
-X-Gm-Message-State: AOAM530RBa6HV8x5DJaFUJyS6TIa49LmXIeeNy6zcGnL/6Hx8Fbvd7Fx
-        4DUxWiQMfPxEtJD/IoXVTw==
-X-Google-Smtp-Source: ABdhPJz+sTeYclyG6tB76eUhdgMTPu4W3K1FCrw3tb0uxcBscFGu5U1dDPVVvXhkvpngfi+DznOqcA==
-X-Received: by 2002:a05:6808:1389:: with SMTP id c9mr3468628oiw.89.1628885601554;
-        Fri, 13 Aug 2021 13:13:21 -0700 (PDT)
+        bh=FgB4NgYatIsDbtRKZgX8xWlz86d7FogZ5voxSBxuiCs=;
+        b=NviuOFwn6q0z2S8QE9+baaNsGDjwhv+vgxRdpvN8vplYA6wxGxYBxfH/CLWYh1xUCr
+         Wnt5j9rlDg4nS4E6Lwa62xZT8v6BN9WVqyu6hsODDkMsSe73s+tQtEIRSbwAs9zvHqWH
+         3N2eAqr2ZpDTKL9gg6ddWwL7UDnRo8YThvk8HjgSKpbRwhDRMmM2sBeWT2zU5MnATd5j
+         l8tTbkeej1+UxKmQX89KzqX/Z2BhCLQRvKh/l2/L+AjvgUBdEw4UnVBiz6tqBbggiAP1
+         Q0S9llWir3VDVLCpIsmNmZk37S+kZ9oaZgOt+sZNUwlmeDDdWl0xLcnvDinSOe6clWIu
+         g3Og==
+X-Gm-Message-State: AOAM531wGtjlGq6NonS/aFaS7jKJzGCjN9TzpvFQoYrrBMCsRbnDmFqa
+        Fck6pVF+am9XWySt2T4nRA==
+X-Google-Smtp-Source: ABdhPJwwCyqqirH/elfGbuCKrfd56vMsIKlXL9oqb/uDXXKE879RfbEZgFWOmiEJ/XgGNTQOZIGlrQ==
+X-Received: by 2002:a9d:7608:: with SMTP id k8mr3436762otl.239.1628885637594;
+        Fri, 13 Aug 2021 13:13:57 -0700 (PDT)
 Received: from robh.at.kernel.org (2603-8080-2a06-ed00-7254-0b80-dd3c-00c6.res6.spectrum.com. [2603:8080:2a06:ed00:7254:b80:dd3c:c6])
-        by smtp.gmail.com with ESMTPSA id o18sm558321oiw.27.2021.08.13.13.13.20
+        by smtp.gmail.com with ESMTPSA id s63sm567380oia.52.2021.08.13.13.13.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 13:13:20 -0700 (PDT)
-Received: (nullmailer pid 3945957 invoked by uid 1000);
-        Fri, 13 Aug 2021 20:13:18 -0000
-Date:   Fri, 13 Aug 2021 15:13:18 -0500
+        Fri, 13 Aug 2021 13:13:56 -0700 (PDT)
+Received: (nullmailer pid 3947028 invoked by uid 1000);
+        Fri, 13 Aug 2021 20:13:54 -0000
+Date:   Fri, 13 Aug 2021 15:13:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>
-Subject: Re: [PATCH v4 2/3] ASoC: dt-bindings: sound: renesas,rz-ssi: Update
- slave dma channel configuration parameters
-Message-ID: <YRbSXn9P41o28u32@robh.at.kernel.org>
-References: <20210806102930.3024-1-biju.das.jz@bp.renesas.com>
- <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     git@xilinx.com, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        monstr@monstr.eu, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: timer: Remove binding for
+ energymicro,efm32-timer.txt
+Message-ID: <YRbSgkDRXdXzjKW3@robh.at.kernel.org>
+References: <571fc4b2e6d41c61b7f4445601a79bb50aace2e7.1628245879.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <571fc4b2e6d41c61b7f4445601a79bb50aace2e7.1628245879.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 Aug 2021 11:29:29 +0100, Biju Das wrote:
-> The DMAC driver on RZ/G2L expects the slave channel configuration
-> to be passed in dmas property.
-> This patch updates the example node to include the encoded slave
-> channel configuration.
+On Fri, 06 Aug 2021 12:31:22 +0200, Michal Simek wrote:
+> The driver has been removed by commit 523d83ef0979
+> ("clocksource/drivers/efm32: Drop unused timer code") that's why binding
+> doc shouldn't be also valid anymore.
 > 
-> Fixes: 5df6dfbb6de815ba3a("ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support")
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
-> Note:-
->  This patch is based on [1]
->  [1]:- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210806095322.2326-2-biju.das.jz@bp.renesas.com/
 > 
-> v3->v4:
->  * Updated bindings as the DMAC driver on RZ/G2L expects the
->    slave channel configuration to be passed in dmas property.
-> v2->v3:
->  * Merged the binding patch with dmas added
->  * Updated dt binding example with encoded #dma-cells value.
-> v1->v2:
->  * Rebased on 5.14-rc2.
-> ---
->  Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../timer/energymicro,efm32-timer.txt         | 23 -------------------
+>  1 file changed, 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/energymicro,efm32-timer.txt
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
