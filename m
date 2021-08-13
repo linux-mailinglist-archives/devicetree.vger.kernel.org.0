@@ -2,134 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62AB23EB52A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 14:20:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAC43EB5C5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 14:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240247AbhHMMUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 08:20:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35252 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240312AbhHMMUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 08:20:39 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22C0C0613A3
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 05:20:12 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id j1so14968113pjv.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 05:20:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9Di47GUy6tetqqQE22JBysnHPPz3MzJuD8k18pWiqxo=;
-        b=aqsbn03KP4nyTGMiqRYZsE+icZTZ1YfCVwlkcBGl4ZBLP9hjo94E5M48vWIzHY4QhO
-         7bQ+rHvk9dVAYn2DFQ50HKyyh/EYOUqJEq6XTHkdKZWhgEzhia1/msroAGGIFLo3yAa5
-         4vu0R4szjmjcYrDXV9zGzYiSqyX+p3MF3N0Fg=
+        id S240145AbhHMMxb convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Aug 2021 08:53:31 -0400
+Received: from mail-vs1-f50.google.com ([209.85.217.50]:34646 "EHLO
+        mail-vs1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233416AbhHMMxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 08:53:31 -0400
+Received: by mail-vs1-f50.google.com with SMTP id l22so5928953vsi.1;
+        Fri, 13 Aug 2021 05:53:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9Di47GUy6tetqqQE22JBysnHPPz3MzJuD8k18pWiqxo=;
-        b=ervG3YkHxl5Z9k6IHsnos3u8nEY5386vHwqLfTehxJXwBiY+Q+h71YIoQRiiuDgQTb
-         zegQIGZMVItlumZLhCF+mCLwFzbPbK5fJ6F8lrx7CT1rlvUlhrXwy+L1GZSAdKey/N8x
-         0reOGF+lEdvLu7TGB2Z9rMj6wZAH7x2CPD343E96DAE3qS/Uv52lW4joK9Ob0DnqgUr5
-         KNyawhI4Ag+4C60qyzBFa2dEFXgXd1pUOkngjTLcT/pQ1vCftIZbTheWIxIdIuAwJjD8
-         J4aUINjSQVHWpJop6VdTA7yN/mI7OiEMKcYA4PyTWBjIZyIJsrYDhdMZKUYhE1GqERqE
-         8NJg==
-X-Gm-Message-State: AOAM5304GkBVSkpd/w+d276QSO6kQ1XCka0gStcm1CXAWuaHN3Zt18e0
-        W2T+yjA/mQ/MrNnhgakzT0Edgg==
-X-Google-Smtp-Source: ABdhPJxFW7YDSIy36xHldQt5PEerBOuZ1Ngvzs2SlQfdRfcIKg3KKXQSl0n5gHTIuEevJmFFIwkJlA==
-X-Received: by 2002:a17:90a:5982:: with SMTP id l2mr2425365pji.18.1628857212238;
-        Fri, 13 Aug 2021 05:20:12 -0700 (PDT)
-Received: from kansho.tok.corp.google.com ([2401:fa00:8f:203:5293:be68:a318:ba36])
-        by smtp.gmail.com with ESMTPSA id v15sm2181680pff.105.2021.08.13.05.20.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 05:20:12 -0700 (PDT)
-From:   Kansho Nishida <kansho@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        Kansho Nishida <kansho@chromium.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: [PATCH 1/1] dt-bindings: mediatek: update audio binding documentation
-Date:   Fri, 13 Aug 2021 21:19:57 +0900
-Message-Id: <20210813211947.1.Iaddd8d9fd3ce70ac40663afb9d6fa5b76ef0c38a@changeid>
-X-Mailer: git-send-email 2.33.0.rc1.237.g0d66db33f3-goog
-In-Reply-To: <20210813121957.3089816-1-kansho@chromium.org>
-References: <20210813121957.3089816-1-kansho@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=GUkLMwD2j+LMs+Mhg8retAXqFr+2fCyVciaZId7XXMA=;
+        b=A+DzMKh4SaI8IKueMe35NE6ASnRVifB/NBYZX/KGnlJTV2kWkfMtpUDCQzWd3qjVJO
+         Wy1VM4v21eEHWU1DfNhtEeV7Fy6cqj2zE6FVwmMBX4WtnbaechVx9fBRbSi2KkBHtUDM
+         ja7sx7g8zMX0g4zN5vAaOLt0JchtWm4Tznc7buTYRItM/C+WTGrmJ7Rv4zD+w6Kbzm95
+         IFOUpwTj1MhzlQF6RWNFRVHnsktUvnoxDOw0IC6BJOHcxUXWf3d2K9QbxK9fz7NWoATu
+         7wOZEe15THA+ykF6m2QwCsZqtJJjHJkamhPFTVVu/U4vcKqVcXY2nfD94t9iLynowXRj
+         LFyw==
+X-Gm-Message-State: AOAM533CYkLOQ078pKB3UPE6RzN1mGLSSWnt8FkimyOtbv2I/a6HFngl
+        uRAcMx2mYV8id8UPumpqQLfqhJXRHEMbImvt+To=
+X-Google-Smtp-Source: ABdhPJzjK6cDtV6QbCobPoCPv+kseDVbo2qNoxZBSAFh+8+1qixu6jaaer/OLjhFttaw7VgR0TV8HigL8Np+ZSkG7+k=
+X-Received: by 2002:a05:6102:e59:: with SMTP id p25mr1482758vst.26.1628859183649;
+ Fri, 13 Aug 2021 05:53:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210811095759.1281480-1-geert@linux-m68k.org>
+ <20210811095759.1281480-20-geert@linux-m68k.org> <20210811124755.37b0a0a9@thinkpad>
+ <CAMuHMdUFPvJBuFByiN6pb539REYtcsNJMKML+M2NQw=GJxTYJg@mail.gmail.com> <CAHp75VeNyHUmcU7GPnP8woRcDErDNQ5M3FHQGpLnhUoL5qTnLQ@mail.gmail.com>
+In-Reply-To: <CAHp75VeNyHUmcU7GPnP8woRcDErDNQ5M3FHQGpLnhUoL5qTnLQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 13 Aug 2021 14:52:52 +0200
+Message-ID: <CAMuHMdVFOu6EXKqkiLgBp3n8Oujm+uSpFn-ximtp+37TOZSp9A@mail.gmail.com>
+Subject: Re: [PATCH v5 19/19] auxdisplay: ht16k33: Add LED support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        Robin van der Gracht <robin@protonic.nl>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-leds <linux-leds@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch updates audio binding documentation.
-And change audio node names in dts files in the same manner.
+Hi Andy,
 
-Signed-off-by: Kansho Nishida <kansho@chromium.org>
----
+On Thu, Aug 12, 2021 at 2:33 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+> On Wednesday, August 11, 2021, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>> On Wed, Aug 11, 2021 at 12:48 PM Marek Behún <kabel@kernel.org> wrote:
+>> > On Wed, 11 Aug 2021 11:57:59 +0200
+>> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>> > > Instantiate a single LED based on the "led" subnode in DT.
+>> > > This allows the user to control display brightness and blinking (backed
+>> > > by hardware support) through the LED class API and triggers, and exposes
+>> > > the display color.  The LED will be named
+>> > > "auxdisplay:<color>:<function>".
+>> > >
+>> > > When running in dot-matrix mode and if no "led" subnode is found, the
+>> > > driver falls back to the traditional backlight mode, to preserve
+>> > > backwards compatibility.
+>> > >
+>> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>> >
+>> > Reviewed-by: Marek Behún <kabel@kernel.org>
+>>
+>> Thanks!
+>>
+>> > BTW, this driver does not need to depend on OF, methinks.
+>> > The few instances of properties reading can be
+>> > easily rewritten to device_* functions (from include/linux/property.h).
+>> > The of_get_child_by_name() can become device_get_named_child_node().
+>> >
+>> > Geert, what do you think?
+>>
+>> Sure, that can be done later, when an ACPI user appears?
+>
+> Actually with PRP0001 approach any of compatible driver may be used onACPI platform. So, what you are saying can be interpreted the way “we don’t care about users on ACPI based platforms”. If it is the case, then it should be told explicitly.
 
- .../devicetree/bindings/arm/mediatek/mediatek,audsys.txt      | 4 ++--
- arch/arm64/boot/dts/mediatek/mt7622.dtsi                      | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183.dtsi                      | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+I think you're interpreting too much ;-)
+My point is simply:
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
-index 699776be1dd3..409a425cbdd3 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.txt
-@@ -28,12 +28,12 @@ For common binding part and usage, refer to
- 
- Example:
- 
--	audsys: clock-controller@11220000 {
-+	audsys: audio-controller@11220000 {
- 		compatible = "mediatek,mt7622-audsys", "syscon";
- 		reg = <0 0x11220000 0 0x2000>;
- 		#clock-cells = <1>;
- 
--		afe: audio-controller {
-+		afe: mt7622-audio {
- 			...
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-index 890a942ec608..a54c9cc2063d 100644
---- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-@@ -590,12 +590,12 @@ uart4: serial@11019000 {
- 		status = "disabled";
- 	};
- 
--	audsys: clock-controller@11220000 {
-+	audsys: audio-controller@11220000 {
- 		compatible = "mediatek,mt7622-audsys", "syscon";
- 		reg = <0 0x11220000 0 0x2000>;
- 		#clock-cells = <1>;
- 
--		afe: audio-controller {
-+		afe: mt7622-audio {
- 			compatible = "mediatek,mt7622-audio";
- 			interrupts =  <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW>,
- 				      <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 9ea4c5001b1e..189e3545226e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1119,7 +1119,7 @@ audiosys: audio-controller@11220000 {
- 			compatible = "mediatek,mt8183-audiosys", "syscon";
- 			reg = <0 0x11220000 0 0x1000>;
- 			#clock-cells = <1>;
--			afe: mt8183-afe-pcm {
-+			afe: mt8183-audio {
- 				compatible = "mediatek,mt8183-audio";
- 				interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_LOW>;
- 				resets = <&watchdog MT8183_TOPRGU_AUDIO_SW_RST>;
+>> The dependency on OF was pre-existing, and this series is already
+>> at v5.
+
+If any OF compatible driver can now be used on ACPI platforms, perhaps
+this should be handled at the API level? I.e. the distinction between
+OF and device properties should be dropped completely, and all drivers
+be converted mechanically in one shot, instead of a gradual ad-hoc
+conversion being sneaked in through other series like this one?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.33.0.rc1.237.g0d66db33f3-goog
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
