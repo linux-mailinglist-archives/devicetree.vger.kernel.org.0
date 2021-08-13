@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C90963EBDAC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 22:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C873EBDAF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 22:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234456AbhHMUzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 16:55:46 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:33487 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbhHMUzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 16:55:45 -0400
-Received: by mail-oi1-f177.google.com with SMTP id h11so17872901oie.0;
-        Fri, 13 Aug 2021 13:55:18 -0700 (PDT)
+        id S234552AbhHMU5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 16:57:31 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:43597 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229519AbhHMU5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 16:57:30 -0400
+Received: by mail-oi1-f182.google.com with SMTP id bf25so8989145oib.10;
+        Fri, 13 Aug 2021 13:57:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7BO2ChIUuNpq3WeTk0/EByYq5NnLR/krREfPVXHnjWs=;
-        b=aMcjDePWqNTTND/IXoG91jTc//Vly6b3kwjIY20ebCpPSCzo8qrkcVnxSU+AumISpo
-         0MLp7Nqv92GkM18ig2R1cnVluw0MQT74uPt2TgSoCwxh4MSc++EQmnkmedWpEZLvMYbK
-         kU8NbAC24lOP2MH45x8qQr8dxTTryjDnrzTqYl1n45qOHSFS36dnu2pj2c4suJNBf8kc
-         twUUz1VbXxN0ZN/N/kQmgx7E2SzNgVYMA7ltxKZhVfnJGPdZMi98LpmOAU+LIw92/dAv
-         PIzS//DOrZ6DXV2DSkzzzio00mHCCh026/EG1tdg0/j2VLTJvM+wUKONsNJPPY1yLBuP
-         GKhg==
-X-Gm-Message-State: AOAM532Lcbyy6O2d5AWWjbO8SZ96xZLYCQMYN0KKNzCSHnCQ0miaVT31
-        kKSUYByxst5S0WtmIBMFTw==
-X-Google-Smtp-Source: ABdhPJzneb8YgUnhnQwPss2jCeHxOJcbK7td+ujVZXi3MHUQPfw/T/R3qMeWlG2j5d5ErA2Mpsy6cQ==
-X-Received: by 2002:a05:6808:8c7:: with SMTP id k7mr3725650oij.53.1628888118504;
-        Fri, 13 Aug 2021 13:55:18 -0700 (PDT)
+        bh=3wvmf7DOu12lxJGmuxwNus8Ei0TqBPYTO/Ya0rfIezM=;
+        b=XZ4bez+jEoD0nxwvVfnM7MR6X5KngPCcAVyh01S50NBYomgdsYxQG3MhZJvS2LzrKR
+         HRbhANSVwS9Z6Rq2PyXKsSadVqIWprYl8dD8SdQRvhytBHd6UF9AaHJY+9QNZNEsEdbV
+         pznvHDWPDwuzEUDzGjv3ZD0PdTTiymf4FFdoZ0tfMwaT4gpPHVgLzw0GjmdKcn6UOMKE
+         dZbx211SMpCTP0mNQw2RsDQQYgqsxKCFO0WLNtzNSD7xaOynv5sWdec3Zrnio/dpCakk
+         riFbRxeYCXE2RrUEjkzGeiS4xcXRER+6spdsX0NYJ0Y2zzcf2o0bLOkeJZq7BWtwXiQU
+         Nd4A==
+X-Gm-Message-State: AOAM5325oswN6YB45jD6kq0OdRve/6wh+uLedNEkr0k746KPJfx7lfou
+        boiaFekHDdsCXENek8jvVg==
+X-Google-Smtp-Source: ABdhPJzEqww+nuVlBCG4CJ4QIjNt2ny8eoAF/xFTGVu66sG0M0ICoNa+C3HT50atfQpNHUR72XfXZw==
+X-Received: by 2002:a05:6808:85:: with SMTP id s5mr3627786oic.31.1628888223215;
+        Fri, 13 Aug 2021 13:57:03 -0700 (PDT)
 Received: from robh.at.kernel.org (2603-8080-2a06-ed00-a2a6-2d62-395f-9378.res6.spectrum.com. [2603:8080:2a06:ed00:a2a6:2d62:395f:9378])
-        by smtp.gmail.com with ESMTPSA id m9sm481841ooe.32.2021.08.13.13.55.17
+        by smtp.gmail.com with ESMTPSA id l9sm530729otr.34.2021.08.13.13.57.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 13:55:17 -0700 (PDT)
-Received: (nullmailer pid 4016157 invoked by uid 1000);
-        Fri, 13 Aug 2021 20:55:16 -0000
-Date:   Fri, 13 Aug 2021 15:55:16 -0500
+        Fri, 13 Aug 2021 13:57:02 -0700 (PDT)
+Received: (nullmailer pid 4019042 invoked by uid 1000);
+        Fri, 13 Aug 2021 20:57:00 -0000
+Date:   Fri, 13 Aug 2021 15:57:00 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: Add Sony Tulip Truly
- NT35521 panel support
-Message-ID: <YRbcNJHLkvmoG+TM@robh.at.kernel.org>
-References: <20210809051008.6172-1-shawn.guo@linaro.org>
- <20210809051008.6172-2-shawn.guo@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski@canonical.com,
+        robh+dt@kernel.org, matthias.bgg@gmail.com, shawnguo@kernel.org,
+        sam@ravnborg.org, geert+renesas@glider.be, fanghao11@huawei.com,
+        daniel@0x0f.com, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, ohad@wizery.com,
+        linux@rempel-privat.de, bjorn.andersson@linaro.org,
+        linux-kernel@vger.kernel.org, Max.Merchel@tq-group.com,
+        linux-mediatek@lists.infradead.org, mathieu.poirier@linaro.org
+Subject: Re: [PATCH v6 3/6] dt-bindings: remoteproc: mediatek: Convert
+ mtk,scp to json-schema
+Message-ID: <YRbcnKLx43UcJNSm@robh.at.kernel.org>
+References: <20210809051959.31136-1-tinghan.shen@mediatek.com>
+ <20210809051959.31136-4-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210809051008.6172-2-shawn.guo@linaro.org>
+In-Reply-To: <20210809051959.31136-4-tinghan.shen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 09 Aug 2021 13:10:07 +0800, Shawn Guo wrote:
-> The Sony Tulip Truly NT35521 is a 5.24" 1280x720 DSI panel, which can
-> be found on Sony Xperia M4 Aqua phone.  The backlight is managed
-> through DSI link.
+On Mon, 09 Aug 2021 13:19:56 +0800, Tinghan Shen wrote:
+> Convert the mtk,scp binding to DT schema format using json-schema.
 > 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
->  .../panel/sony,tulip-truly-nt35521.yaml       | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/sony,tulip-truly-nt35521.yaml
+>  .../bindings/remoteproc/mtk,scp.txt           | 41 ---------
+>  .../bindings/remoteproc/mtk,scp.yaml          | 92 +++++++++++++++++++
+>  2 files changed, 92 insertions(+), 41 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
