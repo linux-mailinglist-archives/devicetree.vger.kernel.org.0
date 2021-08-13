@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 237FE3EBC0A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 20:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C83E33EBC12
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 20:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232960AbhHMS1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 14:27:18 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:46957 "EHLO
+        id S233510AbhHMSb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 14:31:28 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:41591 "EHLO
         mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233526AbhHMS0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 14:26:55 -0400
-Received: by mail-oi1-f179.google.com with SMTP id o185so17106008oih.13;
-        Fri, 13 Aug 2021 11:26:28 -0700 (PDT)
+        with ESMTP id S233116AbhHMS3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 14:29:15 -0400
+Received: by mail-oi1-f179.google.com with SMTP id be20so17146539oib.8;
+        Fri, 13 Aug 2021 11:28:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WYCNoGBght09bQuIXOlTFX4QMjS4tFI3LYNWjVBrRhU=;
-        b=hhEywIJ0R/6LtGNSnrA983xWCAWCObIg1oe5dZmPmUfQmZoKw9xFppEJTMqjDBALFb
-         c471HZVry1FS+YFshjFkO2t5/sjDIwxQbrWK5JfJyJtrOJGR17y/VYlcfZ/i1+Wda55X
-         l3Glwendck7yhTrngVF7iGXkN7rI/DJ5JN0OoT1GDxUjlpoBIkJP68ofXWXfbNeDrKFb
-         5gw49l6av7jFc+AvI+YovuzA0Y+5yrFZTSOrpzgCYMAifxjUM4KwK0v3XPQHI7P2pi1Y
-         Xya64RoOK4SASnkRj/v1fvJYAzOUykSnp5yvdBw9Ib9ir2sKfXe/x1pcaYcxEndpsgpA
-         6ttA==
-X-Gm-Message-State: AOAM533McIdWbukVeof4bMJ9OPUBesHzSIDm+dTy4zG7utHspPvwT0HR
-        cwnf6cFhgWxg24ZPV8Fjzg==
-X-Google-Smtp-Source: ABdhPJz7SjpVK76kUR4gQAgTEtBgkp19NbC2fnCO5DFhgE88OHm6uT0GPS69jiWRjUAvMCOl3dAr3Q==
-X-Received: by 2002:a05:6808:105:: with SMTP id b5mr3070659oie.42.1628879187967;
-        Fri, 13 Aug 2021 11:26:27 -0700 (PDT)
+        bh=zZCdGU68OAkJc6X7hI5SXJs2mB8DxFZBfZ+b7CmoJgk=;
+        b=lmIWKug6vRie56/gryTmcDTlhdqs+KT9M6w1XxYnjbMAjNXnVaAoGJGegGGN7sYeDe
+         V99h06LvEvoQCaHgcbdlY38TzRGGnatWa0NO1P17vvLXuXb5sJaR/fc+rH/7AKak4kCT
+         qVqQZpE6OBVBx69gzniXOjrLFa3wqnwwTjecGVFPftw4Y+kRyILLQhsA0pJSwey0fzf6
+         5kPe/al0So2yfVx1bHp+XYNT80Cf0nHEvScZql/3eg+L0md01LTqpT70vfTMW565f3Z3
+         Wax6oDkYcoXFf1LUa5ntTviTg4kH/6wxYengeyVZvWEKcwFv67xqtxh2o8mUFc/Kk1qz
+         HhyQ==
+X-Gm-Message-State: AOAM533ljmzAmTrYCPOvfJcQ27jDIMcO9tdJZzOm3jWDjy8ZHXQGfVyu
+        iFK339z1l/VtiXEHnK2sUw==
+X-Google-Smtp-Source: ABdhPJz9MREtiq35h0kEgBsz0lVLN1iN55g1Kkmm/x/pVF9OxvS3DVnNjeLNGCKCHRJDIPJ+7nUZ4A==
+X-Received: by 2002:aca:5888:: with SMTP id m130mr3183934oib.3.1628879327512;
+        Fri, 13 Aug 2021 11:28:47 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j125sm501170oif.53.2021.08.13.11.26.27
+        by smtp.gmail.com with ESMTPSA id c18sm454677ots.81.2021.08.13.11.28.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Aug 2021 11:26:27 -0700 (PDT)
-Received: (nullmailer pid 3810108 invoked by uid 1000);
-        Fri, 13 Aug 2021 18:26:26 -0000
-Date:   Fri, 13 Aug 2021 13:26:26 -0500
+        Fri, 13 Aug 2021 11:28:46 -0700 (PDT)
+Received: (nullmailer pid 3814039 invoked by uid 1000);
+        Fri, 13 Aug 2021 18:28:45 -0000
+Date:   Fri, 13 Aug 2021 13:28:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Marcus Cooper <codekipper@gmail.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2 v2] dt-bindings: power: Extend battery bindings with
- type
-Message-ID: <YRa5UnBcmW1KBIEd@robh.at.kernel.org>
-References: <20210805085828.3451909-1-linus.walleij@linaro.org>
+To:     Sireesh Kodali <sireeshkodali@protonmail.com>
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        phone-devel@vger.kernel.org, Vladimir Lypak <junak.pub@gmail.com>,
+        devicetree@vger.kernel.org, bjorn.andersson@linaro.org,
+        Adam Skladowski <a_skl39@protonmail.com>,
+        linux-clk@vger.kernel.org, agross@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sboyd@kernel.org
+Subject: Re: [PATCH RESEND 1/2] dt-bindings: clock: add Qualcomm MSM8953 GCC
+ driver bindings
+Message-ID: <YRa53aqcX5I+8vji@robh.at.kernel.org>
+References: <Q6uB3NRxqtD8Prsmliv8ZdsTXGeviv7lb2jQ743jr1E@cp4-web-036.plabs.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210805085828.3451909-1-linus.walleij@linaro.org>
+In-Reply-To: <Q6uB3NRxqtD8Prsmliv8ZdsTXGeviv7lb2jQ743jr1E@cp4-web-036.plabs.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 05, 2021 at 10:58:27AM +0200, Linus Walleij wrote:
-> This adds a battery-type property and bindings for the different
-
-s/battery-type/"device-chemistry"/
-
-Otherwise,
+On Thu, 05 Aug 2021 09:06:42 +0000, Sireesh Kodali wrote:
+> From: Vladimir Lypak <junak.pub@gmail.com>
+> 
+> Add bindings and compatible to document MSM8953 GCC (Global Clock
+> Controller) driver.
+> 
+> Signed-off-by: Vladimir Lypak <junak.pub@gmail.com>
+> Signed-off-by: Adam Skladowski <a_skl39@protonmail.com>
+> Signed-off-by: Sireesh Kodali <sireeshkodali@protonmail.com>
+> ---
+>  .../devicetree/bindings/clock/qcom,gcc.yaml   |   2 +
+>  include/dt-bindings/clock/qcom,gcc-msm8953.h  | 234 ++++++++++++++++++
+>  2 files changed, 236 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-msm8953.h
+> 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-
-> "technologies" that are used in Linux. More types can be added.
-> 
-> This is needed to convert the custom ST-Ericsson AB8500 battery
-> properties over to the generic battery bindings.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - Add devicetree list to Cc
-> - Use "device-chemistry" instead of "battery-type" as this
->   has precedence in standards.
-> I need a bunch of new bindings for switch the STE AB8500 custom
-> bindings out, but I need to start somewhere, this is as good as
-> any place to start.
-> ---
->  .../devicetree/bindings/power/supply/battery.yaml  | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
