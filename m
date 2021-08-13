@@ -2,117 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFAC43EB5C5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 14:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72DCD3EB5D3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 14:55:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240145AbhHMMxb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Aug 2021 08:53:31 -0400
-Received: from mail-vs1-f50.google.com ([209.85.217.50]:34646 "EHLO
-        mail-vs1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233416AbhHMMxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 08:53:31 -0400
-Received: by mail-vs1-f50.google.com with SMTP id l22so5928953vsi.1;
-        Fri, 13 Aug 2021 05:53:04 -0700 (PDT)
+        id S240499AbhHMMz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 08:55:26 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:57904
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233416AbhHMMz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Aug 2021 08:55:26 -0400
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 5DC5D3F092
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 12:54:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628859298;
+        bh=BIiDZIvIKhWZo8ChmOHD9cnqndoFwXV2somORXCN6EY=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=QI6yPWtg4HYDyP3tZuT/Vx4yk4Tvrwnd+A+uX+j5YAGVkW0yWhahXlOMsMqRq7N8O
+         yGWMJOD86/KqWZopk6x42tA3Y5xrvkT1/s5s1lD2nFydiMcdjHydV5R9Qipj5Q4xdQ
+         lCmHD1N3MvxKw4W5neLP7wgM2gIaPiL8GiMh5hm8/qc15Kf4xKDso3ROgJMtSOAQgd
+         yfNwaFzhXfC+ROYSTWUgNdfW2ZIFVgdgpJxXRP96Aia03L751IdXbx1J0fVDt2pBqB
+         5mUYhh7+F6sYyughfxPQKcWN/blw+1PnSslLQTzSlZ9D0qNOIb5Pz4IzKOZZqrfaHQ
+         cLXKqXOfsH4lw==
+Received: by mail-ej1-f72.google.com with SMTP id k22-20020a1709061596b02905a370b2f477so2921987ejd.17
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 05:54:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=GUkLMwD2j+LMs+Mhg8retAXqFr+2fCyVciaZId7XXMA=;
-        b=A+DzMKh4SaI8IKueMe35NE6ASnRVifB/NBYZX/KGnlJTV2kWkfMtpUDCQzWd3qjVJO
-         Wy1VM4v21eEHWU1DfNhtEeV7Fy6cqj2zE6FVwmMBX4WtnbaechVx9fBRbSi2KkBHtUDM
-         ja7sx7g8zMX0g4zN5vAaOLt0JchtWm4Tznc7buTYRItM/C+WTGrmJ7Rv4zD+w6Kbzm95
-         IFOUpwTj1MhzlQF6RWNFRVHnsktUvnoxDOw0IC6BJOHcxUXWf3d2K9QbxK9fz7NWoATu
-         7wOZEe15THA+ykF6m2QwCsZqtJJjHJkamhPFTVVu/U4vcKqVcXY2nfD94t9iLynowXRj
-         LFyw==
-X-Gm-Message-State: AOAM533CYkLOQ078pKB3UPE6RzN1mGLSSWnt8FkimyOtbv2I/a6HFngl
-        uRAcMx2mYV8id8UPumpqQLfqhJXRHEMbImvt+To=
-X-Google-Smtp-Source: ABdhPJzjK6cDtV6QbCobPoCPv+kseDVbo2qNoxZBSAFh+8+1qixu6jaaer/OLjhFttaw7VgR0TV8HigL8Np+ZSkG7+k=
-X-Received: by 2002:a05:6102:e59:: with SMTP id p25mr1482758vst.26.1628859183649;
- Fri, 13 Aug 2021 05:53:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210811095759.1281480-1-geert@linux-m68k.org>
- <20210811095759.1281480-20-geert@linux-m68k.org> <20210811124755.37b0a0a9@thinkpad>
- <CAMuHMdUFPvJBuFByiN6pb539REYtcsNJMKML+M2NQw=GJxTYJg@mail.gmail.com> <CAHp75VeNyHUmcU7GPnP8woRcDErDNQ5M3FHQGpLnhUoL5qTnLQ@mail.gmail.com>
-In-Reply-To: <CAHp75VeNyHUmcU7GPnP8woRcDErDNQ5M3FHQGpLnhUoL5qTnLQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 13 Aug 2021 14:52:52 +0200
-Message-ID: <CAMuHMdVFOu6EXKqkiLgBp3n8Oujm+uSpFn-ximtp+37TOZSp9A@mail.gmail.com>
-Subject: Re: [PATCH v5 19/19] auxdisplay: ht16k33: Add LED support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BIiDZIvIKhWZo8ChmOHD9cnqndoFwXV2somORXCN6EY=;
+        b=sRvLxbcPpYzL1G/+ut3wW8yO8g0MgaNU/bMQEqgNc6MM0W8Abkp8bJNRBiICdctJY9
+         yzBVnms2v0zqO40X+4ikUSsCjR+gj2qv6rJls7jjwdB1G707WpaCXXzQk61klzFNGeNu
+         JkM8Y4Y1EGDVSyXmXQ1eFAHONsiIFUVVZVaXVvokwGtdOBOVIdjlv28rDdlNxbkLW1cO
+         O+n1dJftPZO4gSg3rK1B+V/UlgX4U3JvH4VrrSoOXlzYMaenr+irFYgjKSrJvqCUEFf2
+         E7NBJgo6tf/Os22qKEe7ztYuNHcDybClUHa4or49j2EZPrd4/XmOAAFxa4sXpKhSHaQJ
+         Wb0A==
+X-Gm-Message-State: AOAM533l9Ji4R5CxMxpzWomyRYjqS0iWb1IeFkkBf492+t4Gh3RWNuNd
+        CJCDd7mNvysFVgdIpjV8w4nIDPzHo7Tw9qkhXg73xOc4jX0cEos4DdioPdSSfKwEMPDRA8rijdv
+        gZHFaX/1TXL8RMm/vPoN4pjpiLv+uIFl3+qEM3+8=
+X-Received: by 2002:aa7:c4d4:: with SMTP id p20mr2949917edr.382.1628859298077;
+        Fri, 13 Aug 2021 05:54:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzVlWeVKe50mKNtAwRRnujr59LFk6b9kiWigqOfEHvhKA9oq2QAmUrCktKZiswrFYf56kinjQ==
+X-Received: by 2002:aa7:c4d4:: with SMTP id p20mr2949894edr.382.1628859297856;
+        Fri, 13 Aug 2021 05:54:57 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id h8sm593264ejj.22.2021.08.13.05.54.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Aug 2021 05:54:57 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        Lukasz Luba <lukasz.luba@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: [PATCH] dt-bindings: memory: convert Samsung Exynos DMC to dtschema
+Date:   Fri, 13 Aug 2021 14:54:14 +0200
+Message-Id: <20210813125414.104467-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Convert Samsung Exynos5422 SoC frequency and voltage scaling for
+Dynamic Memory Controller to DT schema format using json-schema.
 
-On Thu, Aug 12, 2021 at 2:33 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Wednesday, August 11, 2021, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->> On Wed, Aug 11, 2021 at 12:48 PM Marek Behún <kabel@kernel.org> wrote:
->> > On Wed, 11 Aug 2021 11:57:59 +0200
->> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->> > > Instantiate a single LED based on the "led" subnode in DT.
->> > > This allows the user to control display brightness and blinking (backed
->> > > by hardware support) through the LED class API and triggers, and exposes
->> > > the display color.  The LED will be named
->> > > "auxdisplay:<color>:<function>".
->> > >
->> > > When running in dot-matrix mode and if no "led" subnode is found, the
->> > > driver falls back to the traditional backlight mode, to preserve
->> > > backwards compatibility.
->> > >
->> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
->> >
->> > Reviewed-by: Marek Behún <kabel@kernel.org>
->>
->> Thanks!
->>
->> > BTW, this driver does not need to depend on OF, methinks.
->> > The few instances of properties reading can be
->> > easily rewritten to device_* functions (from include/linux/property.h).
->> > The of_get_child_by_name() can become device_get_named_child_node().
->> >
->> > Geert, what do you think?
->>
->> Sure, that can be done later, when an ACPI user appears?
->
-> Actually with PRP0001 approach any of compatible driver may be used onACPI platform. So, what you are saying can be interpreted the way “we don’t care about users on ACPI based platforms”. If it is the case, then it should be told explicitly.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../memory-controllers/exynos5422-dmc.txt     |  84 -----------
+ .../samsung,exynos5422-dmc.yaml               | 137 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 138 insertions(+), 85 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
 
-I think you're interpreting too much ;-)
-My point is simply:
-
->> The dependency on OF was pre-existing, and this series is already
->> at v5.
-
-If any OF compatible driver can now be used on ACPI platforms, perhaps
-this should be handled at the API level? I.e. the distinction between
-OF and device properties should be dropped completely, and all drivers
-be converted mechanically in one shot, instead of a gradual ad-hoc
-conversion being sneaked in through other series like this one?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt b/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
+deleted file mode 100644
+index 02e4a1f862f1..000000000000
+--- a/Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
++++ /dev/null
+@@ -1,84 +0,0 @@
+-* Exynos5422 frequency and voltage scaling for Dynamic Memory Controller device
+-
+-The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the DRAM
+-memory chips are connected. The driver is to monitor the controller in runtime
+-and switch frequency and voltage. To monitor the usage of the controller in
+-runtime, the driver uses the PPMU (Platform Performance Monitoring Unit), which
+-is able to measure the current load of the memory.
+-When 'userspace' governor is used for the driver, an application is able to
+-switch the DMC and memory frequency.
+-
+-Required properties for DMC device for Exynos5422:
+-- compatible: Should be "samsung,exynos5422-dmc".
+-- clocks : list of clock specifiers, must contain an entry for each
+-  required entry in clock-names for CLK_FOUT_SPLL, CLK_MOUT_SCLK_SPLL,
+-  CLK_FF_DOUT_SPLL2, CLK_FOUT_BPLL, CLK_MOUT_BPLL, CLK_SCLK_BPLL,
+-  CLK_MOUT_MX_MSPLL_CCORE, CLK_MOUT_MX_MSPLL_CCORE_PHY, CLK_MOUT_MCLK_CDREX,
+-- clock-names : should include "fout_spll", "mout_sclk_spll", "ff_dout_spll2",
+-  "fout_bpll", "mout_bpll", "sclk_bpll", "mout_mx_mspll_ccore",
+-  "mout_mclk_cdrex"  entries
+-- devfreq-events : phandles for PPMU devices connected to this DMC.
+-- vdd-supply : phandle for voltage regulator which is connected.
+-- reg : registers of two CDREX controllers.
+-- operating-points-v2 : phandle for OPPs described in v2 definition.
+-- device-handle : phandle of the connected DRAM memory device. For more
+-	information please refer to documentation file:
+-	Documentation/devicetree/bindings/ddr/lpddr3.txt
+-- devfreq-events : phandles of the PPMU events used by the controller.
+-- samsung,syscon-clk : phandle of the clock register set used by the controller,
+-	these registers are used for enabling a 'pause' feature and are not
+-	exposed by clock framework but they must be used in a safe way.
+-	The register offsets are in the driver code and specyfic for this SoC
+-	type.
+-
+-Optional properties for DMC device for Exynos5422:
+-- interrupt-parent : The parent interrupt controller.
+-- interrupts : Contains the IRQ line numbers for the DMC internal performance
+-  event counters in DREX0 and DREX1 channels. Align with specification of the
+-  interrupt line(s) in the interrupt-parent controller.
+-- interrupt-names : IRQ names "drex_0" and "drex_1", the order should be the
+-  same as in the 'interrupts' list above.
+-
+-Example:
+-
+-	ppmu_dmc0_0: ppmu@10d00000 {
+-		compatible = "samsung,exynos-ppmu";
+-		reg = <0x10d00000 0x2000>;
+-		clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
+-		clock-names = "ppmu";
+-		events {
+-			ppmu_event_dmc0_0: ppmu-event3-dmc0_0 {
+-				event-name = "ppmu-event3-dmc0_0";
+-			};
+-		};
+-	};
+-
+-	dmc: memory-controller@10c20000 {
+-		compatible = "samsung,exynos5422-dmc";
+-		reg = <0x10c20000 0x10000>, <0x10c30000 0x10000>;
+-		clocks = <&clock CLK_FOUT_SPLL>,
+-			 <&clock CLK_MOUT_SCLK_SPLL>,
+-			 <&clock CLK_FF_DOUT_SPLL2>,
+-			 <&clock CLK_FOUT_BPLL>,
+-			 <&clock CLK_MOUT_BPLL>,
+-			 <&clock CLK_SCLK_BPLL>,
+-			 <&clock CLK_MOUT_MX_MSPLL_CCORE>,
+-			 <&clock CLK_MOUT_MCLK_CDREX>;
+-		clock-names = "fout_spll",
+-			      "mout_sclk_spll",
+-			      "ff_dout_spll2",
+-			      "fout_bpll",
+-			      "mout_bpll",
+-			      "sclk_bpll",
+-			      "mout_mx_mspll_ccore",
+-			      "mout_mclk_cdrex";
+-		operating-points-v2 = <&dmc_opp_table>;
+-		devfreq-events = <&ppmu_event3_dmc0_0>,	<&ppmu_event3_dmc0_1>,
+-				 <&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
+-		device-handle = <&samsung_K3QF2F20DB>;
+-		vdd-supply = <&buck1_reg>;
+-		samsung,syscon-clk = <&clock>;
+-		interrupt-parent = <&combiner>;
+-		interrupts = <16 0>, <16 1>;
+-		interrupt-names = "drex_0", "drex_1";
+-	};
+diff --git a/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
+new file mode 100644
+index 000000000000..b168a9c8bfde
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
+@@ -0,0 +1,137 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/samsung,exynos5422-dmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: |
++  Samsung Exynos5422 SoC frequency and voltage scaling for Dynamic Memory
++  Controller device
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++  - Lukasz Luba <lukasz.luba@arm.com>
++
++description: |
++  The Samsung Exynos5422 SoC has DMC (Dynamic Memory Controller) to which the
++  DRAM memory chips are connected. The driver is to monitor the controller in
++  runtime and switch frequency and voltage. To monitor the usage of the
++  controller in runtime, the driver uses the PPMU (Platform Performance
++  Monitoring Unit), which is able to measure the current load of the memory.
++  When 'userspace' governor is used for the driver, an application is able to
++  switch the DMC and memory frequency.
++
++properties:
++  compatible:
++    items:
++      - const: samsung,exynos5422-dmc
++
++  clock-names:
++    items:
++      - const: fout_spll
++      - const: mout_sclk_spll
++      - const: ff_dout_spll2
++      - const: fout_bpll
++      - const: mout_bpll
++      - const: sclk_bpll
++      - const: mout_mx_mspll_ccore
++      - const: mout_mclk_cdrex
++
++  clocks:
++    minItems: 8
++    maxItems: 8
++
++  devfreq-events:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    minItems: 1
++    maxItems: 16
++    description: phandles of the PPMU events used by the controller.
++
++  device-handle:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: |
++      phandle of the connected DRAM memory device. For more information please
++      refer to documentation file: Documentation/devicetree/bindings/ddr/lpddr3.txt
++
++  operating-points-v2: true
++
++  interrupts:
++    items:
++      - description: DMC internal performance event counters in DREX0
++      - description: DMC internal performance event counters in DREX1
++
++  interrupt-names:
++    items:
++      - const: drex_0
++      - const: drex_1
++
++  reg:
++    items:
++      - description: registers of DREX0
++      - description: registers of DREX1
++
++  samsung,syscon-clk:
++    $ref: '/schemas/types.yaml#/definitions/phandle'
++    description: |
++      Phandle of the clock register set used by the controller, these registers
++      are used for enabling a 'pause' feature and are not exposed by clock
++      framework but they must be used in a safe way.  The register offsets are
++      in the driver code and specyfic for this SoC type.
++
++  vdd-supply: true
++
++required:
++  - compatible
++  - clock-names
++  - clocks
++  - devfreq-events
++  - device-handle
++  - reg
++  - samsung,syscon-clk
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos5420.h>
++    ppmu_dmc0_0: ppmu@10d00000 {
++        compatible = "samsung,exynos-ppmu";
++        reg = <0x10d00000 0x2000>;
++        clocks = <&clock CLK_PCLK_PPMU_DREX0_0>;
++        clock-names = "ppmu";
++        events {
++            ppmu_event_dmc0_0: ppmu-event3-dmc0_0 {
++                event-name = "ppmu-event3-dmc0_0";
++            };
++        };
++    };
++
++    memory-controller@10c20000 {
++        compatible = "samsung,exynos5422-dmc";
++        reg = <0x10c20000 0x10000>, <0x10c30000 0x10000>;
++        clocks = <&clock CLK_FOUT_SPLL>,
++                 <&clock CLK_MOUT_SCLK_SPLL>,
++                 <&clock CLK_FF_DOUT_SPLL2>,
++                 <&clock CLK_FOUT_BPLL>,
++                 <&clock CLK_MOUT_BPLL>,
++                 <&clock CLK_SCLK_BPLL>,
++                 <&clock CLK_MOUT_MX_MSPLL_CCORE>,
++                 <&clock CLK_MOUT_MCLK_CDREX>;
++        clock-names = "fout_spll",
++                      "mout_sclk_spll",
++                      "ff_dout_spll2",
++                      "fout_bpll",
++                      "mout_bpll",
++                      "sclk_bpll",
++                      "mout_mx_mspll_ccore",
++                      "mout_mclk_cdrex";
++        operating-points-v2 = <&dmc_opp_table>;
++        devfreq-events = <&ppmu_event3_dmc0_0>,	<&ppmu_event3_dmc0_1>,
++                         <&ppmu_event3_dmc1_0>, <&ppmu_event3_dmc1_1>;
++        device-handle = <&samsung_K3QF2F20DB>;
++        vdd-supply = <&buck1_reg>;
++        samsung,syscon-clk = <&clock>;
++        interrupt-parent = <&combiner>;
++        interrupts = <16 0>, <16 1>;
++        interrupt-names = "drex_0", "drex_1";
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ebdb07a49b02..eb4ada858826 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5570,7 +5570,7 @@ M:	Lukasz Luba <lukasz.luba@arm.com>
+ L:	linux-pm@vger.kernel.org
+ L:	linux-samsung-soc@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/memory-controllers/exynos5422-dmc.txt
++F:	Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
+ F:	drivers/memory/samsung/exynos5422-dmc.c
+ 
+ DME1737 HARDWARE MONITOR DRIVER
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
