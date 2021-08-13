@@ -2,91 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9CC3EBA25
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 18:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEB93EBA29
+	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 18:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237556AbhHMQdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 12:33:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51300 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237469AbhHMQdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Aug 2021 12:33:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1E011610E9;
-        Fri, 13 Aug 2021 16:33:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628872394;
-        bh=RsV8b7RStf2aqBJP+j/Ai99xGWXWnGgnyJ6Mj4v1/4g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UA6Ffbs4QUyvRzsMPdO7rMhcGsOFpNMxceFWbpvL8FZ9RVpBNCt6EDoHuLdVEjzmg
-         tXqSFeABDp+bCfql/5Gt25nfVPJwqsotFphDY15t9zmicU/g9VbLfs+4SP0nNTwcGM
-         kyVp3rOEIZ9yuRhn5VzWvhVuMIHQU8wX4Oh1pFri0cdiPH+RA+UwYCooL1fHjJuvWt
-         UQnUUW6cfMSbqSLPVDvUy4QdpwGdWBWbIBgSD+5o/HBgjSL0Ucn9LuheyxTt6TgoB4
-         FHvj6ywBn8d1Dff8cch3kZnO6ouhIwGfDOxiyeIZycGZUKwouvZrPjmut+8uykNZGb
-         ILANYOViAGq2A==
-Date:   Fri, 13 Aug 2021 17:32:54 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Gene Chen <gene.chen.richtek@gmail.com>, matthias.bgg@gmail.com,
-        matti.vaittinen@fi.rohmeurope.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        rdunlap@infradead.org, gene_chen@richtek.com,
-        Wilma.Wu@mediatek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH resend v6 0/3] power: supply: mt6360_charger: add MT6360
- charger support
-Message-ID: <20210813163254.GF5209@sirena.org.uk>
-References: <20210719033914.16990-1-gene.chen.richtek@gmail.com>
- <20210813155438.4ssph6deqksob2uv@earth.universe>
- <20210813155858.GD5209@sirena.org.uk>
- <20210813162029.q5slrkubelfy3mvh@earth.universe>
+        id S235317AbhHMQeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 12:34:23 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:45048 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234887AbhHMQeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 12:34:22 -0400
+Received: by mail-oi1-f179.google.com with SMTP id w6so16653256oiv.11
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 09:33:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rYr5noxVQR/S00Y966BOqxf5d/HW9FsG7+zCyDxoo7E=;
+        b=Nj0lYFcb/iUQPJVa8XRTUSFdXNyZK5YgRfpZZCwUYukZBr4sq+UPhIYPLxX98pypm/
+         pkhU+zcADRT3bJ0fy0jpaxYABZuCdosR/SOqn94+y842indxiNSxC2IysJxlgXlUc85/
+         A1J7eLNX+PQCVWtmsEig3ZHV6JcLQJv4e+I3XU66GZ65kPoVirnZK9tApBXYambj9kut
+         VoK/NyCT3CswAz90EitA906oL/ECuhHoJsiYmXskbGM72uOB9kkr/0g8xx5ueXrH1Uhf
+         eBuv1GwOIvtTxdR306cyk3xiX4GF4gxnPJAn67vZuy8p+2pQuYtZGjwOj+BwEOYSjg9C
+         4teQ==
+X-Gm-Message-State: AOAM533Jvt0FQ1WhkLb1uOYUDre+Cl0c5g7SGT/GvGuDcwioaeUhT8Ik
+        SZgo6unzdsw+t/eh6fo5VQ==
+X-Google-Smtp-Source: ABdhPJwPyJ0K8T/GcWbG3rlPOSMDav+kxD5GOjeg0eBWseKJJr6cpN3SY/pnGAkzTcPILnUknGKntQ==
+X-Received: by 2002:a05:6808:105:: with SMTP id b5mr2677427oie.42.1628872435646;
+        Fri, 13 Aug 2021 09:33:55 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z3sm338048oot.46.2021.08.13.09.33.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Aug 2021 09:33:54 -0700 (PDT)
+Received: (nullmailer pid 3624043 invoked by uid 1000);
+        Fri, 13 Aug 2021 16:33:54 -0000
+Date:   Fri, 13 Aug 2021 11:33:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Matt Johnston <matt@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>
+Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
+Message-ID: <YRae8tDReDS67sM4@robh.at.kernel.org>
+References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="l+goss899txtYvYf"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210813162029.q5slrkubelfy3mvh@earth.universe>
-X-Cookie: E Pluribus Unix
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210811034345.2424442-1-matt@codeconstruct.com.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 11, 2021 at 11:43:43AM +0800, Matt Johnston wrote:
+> Hi Rob,
+> 
+> These patches are a v2 RFC for a devicetree binding of MCTP-over-I2C
+> hardware, where MCTP messages are transferred as SMBus block writes.
+> 
+> Since v1 I've revised the description and commits to hopefully be
+> clearer, and renamed the binding to indicate that it's generic for any
+> I2C hardware. That should allow for any later device specific drivers -
+> please let me know if I'm misunderstanding how it should be changed.
 
---l+goss899txtYvYf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Adding 'generic' is not an improvement nor does it change anything. 
+Again, a protocol is not a device. We went thru the same thing with 
+HID-over-I2C.
 
-On Fri, Aug 13, 2021 at 06:20:29PM +0200, Sebastian Reichel wrote:
-> On Fri, Aug 13, 2021 at 04:58:58PM +0100, Mark Brown wrote:
+There's still not any diagram to better understand what all this is.
 
-> > We're still waiting for review from Matti on the linear ranges bit -
-> > normally that goes through the regulator tree, do you have a tag to pull
-> > in case of merge conflicts?
-
-> He actually already provided his Rb in v5, Gene did not carry it
-> over properly (I added it) and the patch looks simple enough, that
-> Linus will know what to do in case of a conflict. But if you insist
-> I can unroll my tree and create a topic branch for this.
-
-It would be better, the issues I'm worrying about are more general
-refactorings or whatever that create actual dependencies rather than
-just trivial add/add type issues - it can make doing some kinds of work
-really painful if things go via a different tree.
-
---l+goss899txtYvYf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEWnrUACgkQJNaLcl1U
-h9CcoQf/Winqb6RX4ilu9FDNU8XLNiJFX2+ApqvxEDI72rwph0/OJ5DfJ2sbXltf
-EQaGfnmUSWRlGRsGnuE/QdnmgJ++HwfaA6NL4BmYalIAsRZvg/+bGxRLwEDLZZpz
-grdaGitjklhn3vrT00339tbQcPn4gOSMxvnO0gCMtRnGd1MWYenRg02Dptq60v2K
-xF+i06p+PQX2aIHk+Xnyo9QCap1y+6A2Yjd8z/BEuQ+0hJBLXpzeNAxltd5DsbGA
-DjFDEokCy+9eZ6gvjnU9/T2Dl6rn7iNIP3NA0CJZcesIFLgx9i/bmfhbdVXsXDGS
-ggSqbh8TenBgdCiK/riOYOLQ7nOCDQ==
-=InBg
------END PGP SIGNATURE-----
-
---l+goss899txtYvYf--
+Rob
