@@ -2,77 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC90B3EBE07
-	for <lists+devicetree@lfdr.de>; Fri, 13 Aug 2021 23:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75F9B3EBE23
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 00:03:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234824AbhHMVrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 17:47:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53284 "EHLO
+        id S235284AbhHMWDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 18:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234841AbhHMVrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 17:47:32 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E94C061756
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 14:47:05 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id r9so12984510lfn.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 14:47:05 -0700 (PDT)
+        with ESMTP id S235232AbhHMWDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 18:03:10 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D61C0617AF
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 15:02:42 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id w20so22510751lfu.7
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 15:02:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8eT0SyDLhtqUCRVoTbFA0TfLCPJmpdZc1LYFo2vzcrU=;
-        b=Z7llxaB03js+5zDqMl9BJeU8H603XLw8p0usL4lrTwS3FMi3UtyJAdU1gA5WtzQ5aP
-         qp0K/OxL+afYh795ltTSFjme1o+v67sL3pNfGWUPAHja4xu4MZAPcSk1wfJPtG5GY5QS
-         kNn84rHKdih51ram5Y6A+lxip7ybeLuymORIGF9DMkF6EQdgTFC237xBhQrCNKmPG2xN
-         dgImHkqxU95PBDIjx4NfAtovGSGQG3QZN5es6qdAraUOddZGHiZGgTb0dkgDC/80f/Mn
-         b2SZrAorG4gJ42Vf1cAZcRwF2sgZqq5R4+b81fbBIn6WyR2BMsO2FEw5VL80EoE+Vm54
-         9gRQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=zdoJvRdg/wiFMUqCvkYyo5RNQaUscCsPcncLCMhtPj8=;
+        b=f8XsZ752SQAycow7/iB1RfXwOm+G3Zp1Tz6qAUMBy1R6O2FZ9qoZ22yYdqZBOZyxI5
+         v3G4fUbh1rqqvN0qM0LRurSHXB2l8P7hv7TZMN7RWpSX3vg4fT7qmMPSZ39ySSJKgCIW
+         zh0+qsnpHTjybYQ3emFBesytEPSiPLomOk4WZXeUhPXg7xMDJr9+NHnSschXrogQNu5N
+         77WWZPs6lfHmzNq54qZN0YjSYLmR9rmbF3K0Fo2aMcIyQKTIaHj/SLjEi3pg6/KSlvZx
+         ljYhoxKherijbquT7IqBSmIQaeVMhPNxIXhfLLXjGWkgkaNWo67yeVYHxLWob2WT+y2H
+         tdVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8eT0SyDLhtqUCRVoTbFA0TfLCPJmpdZc1LYFo2vzcrU=;
-        b=YkDE4CnpI7uOyPwTee7/6H5xr2j47YBgPlkPhitEKLcQEArF+DRM9AKNaZXZHJaKU6
-         wwndMyMgC0G0OAGWsawiOzPCeGPnFIEfLLRD3GlJ8B4zI3702kKmQA95yK4/GopUoCS9
-         LGRQo4uLxyOtwQG9Gb38IN9LtWhpn2Pick+xOerlmj7c2La2yq2rsYylTLXRgmHRDHdw
-         +AQ1nk8PeTdqrt9kHA5clAptw/JWtZNJdlH6MUqJAnMdXqqJi4MiCtMEY/iym7awrtJP
-         f75dcPHf6vGKzxZ9YSXzE3j44baW/mOWFmOC9aKnhnerEYA0QQbPwT/gWKHO6xUFQuAl
-         s+Vg==
-X-Gm-Message-State: AOAM530LbVPcBauBIru74CdsBgRADQyDSckTjigqg/3iNixQh0yp+I+3
-        zyxJwmXqkqjXWkmrl/j9ZBD/LZeFAfs82KvPw9mHHw==
-X-Google-Smtp-Source: ABdhPJzIl9ij4hoqRja2SJhOC1MMNQl/5QwyoHXCpxzvQa+0J3XpSsf519mnSkQWEtXLfDnZLZmoVyxR0QNhVU0wdJg=
-X-Received: by 2002:ac2:5d4a:: with SMTP id w10mr3156477lfd.529.1628891223784;
- Fri, 13 Aug 2021 14:47:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210805085828.3451909-1-linus.walleij@linaro.org> <YRa5UnBcmW1KBIEd@robh.at.kernel.org>
-In-Reply-To: <YRa5UnBcmW1KBIEd@robh.at.kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=zdoJvRdg/wiFMUqCvkYyo5RNQaUscCsPcncLCMhtPj8=;
+        b=JtnWibtH2YjF2FwGtp7E92h7FJYvHvu4C7g0bTB+fJ/ktPk6gKkMsnJ5XFdCK2eKAc
+         BJsHAxAEwlicCo5yCwqHHFT6aTirO33M+xsRQJfSCPRcn42lhEA4YuN5whH9AJmgoVsq
+         aPVClsAxN0pPlM4vrq8VfYdJ1ParwjAf/tbvUW1MyqrSnE9I28yWu4KUHUcHo2n9nuw3
+         tPM5SJZ0sL+yYZDf1uvZTfSKTQK1eHEJmU8Q+ks7pV/PJ+2PdzkjY7BRDvj4r14At74W
+         JjpXgvqE0UXItxpzXOJ0UPfx/ZUZTcH5/CaGh+DFjyZHSLzb438ly0JHoWEVFoqTZEhh
+         oSIw==
+X-Gm-Message-State: AOAM532SCCbm2YxLLyHaZLMZZ77fdeAosG25Mexd/aF7rl/TcCbcpSKH
+        U/7JmUP3FytRA+9pX+KGJBYZlw==
+X-Google-Smtp-Source: ABdhPJxe0oddE+SnbYcUknKoKmvFBnFFiwpK0p+40INIEZBanyAowK9scIelaK+O/i9oOfhCzlKfAg==
+X-Received: by 2002:ac2:5496:: with SMTP id t22mr3086990lfk.445.1628892160938;
+        Fri, 13 Aug 2021 15:02:40 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id s17sm274912ljp.61.2021.08.13.15.02.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Aug 2021 15:02:40 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 13 Aug 2021 23:46:52 +0200
-Message-ID: <CACRpkdbcVJbMnCQ3P1nPmFUsJSw2jgpr2BEzz6GBUQLhBVuO_A@mail.gmail.com>
-Subject: Re: [PATCH 1/2 v2] dt-bindings: power: Extend battery bindings with type
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Imre Kaloz <kaloz@openwrt.org>, Krzysztof Halasa <khalasa@piap.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next 5/6 v2] ixp4xx_eth: Add devicetree bindings
+Date:   Sat, 14 Aug 2021 00:00:10 +0200
+Message-Id: <20210813220011.921211-6-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210813220011.921211-1-linus.walleij@linaro.org>
+References: <20210813220011.921211-1-linus.walleij@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 13, 2021 at 8:26 PM Rob Herring <robh@kernel.org> wrote:
-> On Thu, Aug 05, 2021 at 10:58:27AM +0200, Linus Walleij wrote:
-> > This adds a battery-type property and bindings for the different
->
-> s/battery-type/"device-chemistry"/
->
-> Otherwise,
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+This adds device tree bindings for the IXP46x PTP Timer, a companion
+to the IXP4xx ethernet in newer platforms.
 
-Thanks Rob, Sebastian tell me if you can fix this when applying
-or if you want me to respin the patch.
+Cc: devicetree@vger.kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/net/intel,ixp46x-ptp-timer.yaml  | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
 
-Yours,
-Linus Walleij
+diff --git a/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
+new file mode 100644
+index 000000000000..8b9b3f915d92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2018 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/net/intel,ixp46x-ptp-timer.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel IXP46x PTP Timer (TSYNC)
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Intel IXP46x PTP timer is known in the manual as IEEE1588 Hardware
++  Assist and Time Synchronization Hardware Assist TSYNC provides a PTP
++  timer. It exists in the Intel IXP45x and IXP46x XScale SoCs.
++
++properties:
++  compatible:
++    const: intel,ixp46x-ptp-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: Interrupt to trigger master mode snapshot from the
++          PRP timer, usually a GPIO interrupt.
++      - description: Interrupt to trigger slave mode snapshot from the
++          PRP timer, usually a GPIO interrupt.
++
++  interrupt-names:
++    items:
++      - const: master
++      - const: slave
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    ptp-timer@c8010000 {
++        compatible = "intel,ixp46x-ptp-timer";
++        reg = <0xc8010000 0x1000>;
++        interrupt-parent = <&gpio0>;
++        interrupts = <8 IRQ_TYPE_EDGE_FALLING>, <7 IRQ_TYPE_EDGE_FALLING>;
++        interrupt-names = "master", "slave";
++    };
+-- 
+2.31.1
+
