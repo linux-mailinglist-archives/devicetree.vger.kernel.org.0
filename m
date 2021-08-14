@@ -2,92 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ECAE3EBFC2
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 04:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A463EBFC4
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 04:31:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236686AbhHNCcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Aug 2021 22:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
+        id S236652AbhHNCcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Aug 2021 22:32:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236545AbhHNCcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 22:32:07 -0400
+        with ESMTP id S236629AbhHNCcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Aug 2021 22:32:09 -0400
 Received: from mail-qk1-x749.google.com (mail-qk1-x749.google.com [IPv6:2607:f8b0:4864:20::749])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B67DC061756
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 19:31:39 -0700 (PDT)
-Received: by mail-qk1-x749.google.com with SMTP id n71-20020a37274a0000b02903d24fa436e2so8852244qkn.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 19:31:39 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9D9CC0617AD
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 19:31:41 -0700 (PDT)
+Received: by mail-qk1-x749.google.com with SMTP id s206-20020a3745d70000b02903b9207abc7bso8829539qka.4
+        for <devicetree@vger.kernel.org>; Fri, 13 Aug 2021 19:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=rKVGjbPprzOVCWKzlLh4tG1TpuszZjwSp7r9YIWAvR0=;
-        b=JPlA7x+zZWolHb7zSZpUIY9aIcuTF0t69uIQWppWqXw6zXHnnR/DGndGgegzdw5ptz
-         V2tsHlUVQqy38ljcVEVlLSA3NPyi4goZLoq1SKcRjtsGWQY8SjTXzv21CuaJBDz8kjVs
-         92oRhTwWjHe2svjrO6KXYIeQ93o2us9ZAqTsR19uthhf2mLbcWIWd+KDC/1JPmeUa55B
-         amXgcp+rLUZpt+WaaQF+lbbpDyGkW8sC1Ry5tVVIduZgv1KvhcUOLyniZBlNl/bzvBNR
-         cofMuF5F2urNs550VgFFayq4v0tz47WPm4u68Ule7X1wCR1bin+IAFEWwmKJoQvNjqpV
-         0a9g==
+        bh=VScF7YU24u6/3/ImRpw40sHg3zOa5uLkS4vlieP2+vw=;
+        b=BQFS55IcoBMVhmhaW3LlsF6XbAI8wIJ/hKqJevMy4quj58zUUZQDpVIM767gWm0pZ8
+         WnWgO41gNIdMllgEtaLBBbH/Fvp+JqEv4TBA0lSiPWb7fZnMDKynorQ63A99vXxXd0lQ
+         wXZ+KB8vl9qc1WZQEskoQvWrbWHAd1AXU2l0zaCFcPhn0X/Op7IKecbw/XiXXrg1/+zZ
+         h6SxdZ6ej8gmeIK1WhUaxxOtFQdWUp7D2o4GxTc+nVSzA1La02bAbeFZ/PCBjvJhkRUx
+         NFNBCBeQZKXX+p89gZ3+PcUjI8eJxkF7WSD3uLr0ROq6bYM2NPc+qKniAFxY+Yq1DG8f
+         IUjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=rKVGjbPprzOVCWKzlLh4tG1TpuszZjwSp7r9YIWAvR0=;
-        b=mzI0kN2wLd8rgaowADJJHZXF3lDNFRn8fXpvWGC0EZTyeFq5+2YR0z2YlCPRuRPUh6
-         4jt5btVNRyrsZnQqyCTyDWPJ94MVwy+stVDgBKvtTlPp5AfvbAIirqEyoiWMZPTj3m72
-         L7wvL6yy6uZl7zX4nX0yKmDGQrJj6iVwR//7hx5rPXP/DeriHYu4EzlVPGMiJo5/0gTl
-         A/U9tv/BsbAL3W1Yf5rJpbIV9DoIq5a4PPpHjgN+K4O0ZegSXyLUz8/X8rNyBEcsVyLM
-         yrvrx51kKIX6p4kVNYgq6tgeeVtFkf58U0Xy9EaAz6TXDlPooGGaRBLv05RBFlkZrE1t
-         DhDQ==
-X-Gm-Message-State: AOAM531MZwdPwk3baoQ5PA+iy+lr8THwG3XmHx4iiHjscN+ShYdRTB9A
-        Hm0mO5a9Ebe/acgEBqEtxWI7GhrpElByzak=
-X-Google-Smtp-Source: ABdhPJx8v6ipmA6XHJxxhId2cdNaRBu/aZFAOABEZqglRPSWQq8mA8GtlJb/hmjpamj5O2OSEUW/QMhdGQDTkRU=
+        bh=VScF7YU24u6/3/ImRpw40sHg3zOa5uLkS4vlieP2+vw=;
+        b=qxms2so54TqXT8DO7kktsJloouv28f0DG0sWOgVprOOij002DjvA1UcECko+mEkHy8
+         XDy7R1rsbvXE+9iYf6GQ3AL4hdSmRHY1ZQbmXOm0KOvStQjIa92KCoYcIquzIZ8OjJNe
+         ih7DbRA+RWUW9wjIxH6RuwHoY1GHPnCulsM8x8IwPMk2KqceARGUUFy1jxOUgJDsDFOD
+         9sv8zOxkNaHOH2T4CNrbjIfBiVZD2sku8LxFOEUB/jttXFo1feQmmtph0CMHsST6S01N
+         hbdeLGdOKGIO0NnxACeRA6L2VlSNqBdqfoMHqZgFNBNSxwnzfpAZ4uHrKsvaOAJA+gs7
+         3+Dg==
+X-Gm-Message-State: AOAM5321C19coVz+NLaBszOWWSXNo2BCtpjLLOoNw6FprTNFWpy2N8rZ
+        kdmsbKEV+GI7mlu6BWI4PZ3cXiTnQ54Uf1I=
+X-Google-Smtp-Source: ABdhPJzOErHhEkhCh9EJI4GT7EBhMAEaMyu97hAOx70DUHnw2UgHafwWHHIKdPvynjFR28LWZZv3wBqG7j9w8Kk=
 X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:55f9:6fdc:d435:ad28])
- (user=saravanak job=sendgmr) by 2002:a05:6214:2022:: with SMTP id
- 2mr5522178qvf.38.1628908298650; Fri, 13 Aug 2021 19:31:38 -0700 (PDT)
-Date:   Fri, 13 Aug 2021 19:31:30 -0700
+ (user=saravanak job=sendgmr) by 2002:a05:6214:1e1:: with SMTP id
+ c1mr5744296qvu.42.1628908301138; Fri, 13 Aug 2021 19:31:41 -0700 (PDT)
+Date:   Fri, 13 Aug 2021 19:31:31 -0700
 In-Reply-To: <20210814023132.2729731-1-saravanak@google.com>
-Message-Id: <20210814023132.2729731-2-saravanak@google.com>
+Message-Id: <20210814023132.2729731-3-saravanak@google.com>
 Mime-Version: 1.0
 References: <20210814023132.2729731-1-saravanak@google.com>
 X-Mailer: git-send-email 2.33.0.rc1.237.g0d66db33f3-goog
-Subject: [PATCH v1 1/2] of: property: fw_devlink: Add support for "leds" and "backlight"
+Subject: [PATCH v1 2/2] of: property: fw_devlink: Add support for "phy-handle" property
 From:   Saravana Kannan <saravanak@google.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allows tracking dependencies between leds/backlights devices and their
-consumers.
+Allows tracking dependencies between consumers of an Ethernet PHY and
+the parent devices that own the PHY.
 
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/of/property.c | 4 ++++
- 1 file changed, 4 insertions(+)
+
+Hi Andrew,
+
+I spent a few hours looking at most/all uses of phy-handle and my
+comment in the code seems valid. Can you confirm that please? Also there
+are so many phy related properties that my head is spinning. Is there a
+"phy" property (which is different from "phys") that treated exactly as
+"phy-handle"?
+
+-Saravana
+
+ drivers/of/property.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/drivers/of/property.c b/drivers/of/property.c
-index a81559c5ee2b..931340329414 100644
+index 931340329414..70d9843fd4bf 100644
 --- a/drivers/of/property.c
 +++ b/drivers/of/property.c
-@@ -1289,6 +1289,8 @@ DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
- DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
- DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
- DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
-+DEFINE_SIMPLE_PROP(leds, "leds", NULL)
-+DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+@@ -1350,6 +1350,20 @@ static struct device_node *parse_interrupts(struct device_node *np,
+ 	return of_irq_parse_one(np, index, &sup_args) ? NULL : sup_args.np;
+ }
  
-@@ -1375,6 +1377,8 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
- 	{ .parse_prop = parse_pwms, },
++static struct device_node *parse_phy_handle(struct device_node *np,
++					    const char *prop_name, int index)
++{
++	if (strcmp(prop_name, "phy-handle"))
++		return NULL;
++
++	/*
++	 * Device tree nodes pointed to by phy-handle never have struct devices
++	 * created for them even if they have a "compatible" property. So
++	 * return the parent node pointer.
++	 */
++	return of_get_next_parent(of_parse_phandle(np, prop_name, index));
++}
++
+ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_clocks, },
+ 	{ .parse_prop = parse_interconnects, },
+@@ -1379,6 +1393,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
  	{ .parse_prop = parse_resets, },
-+	{ .parse_prop = parse_leds, },
-+	{ .parse_prop = parse_backlight, },
+ 	{ .parse_prop = parse_leds, },
+ 	{ .parse_prop = parse_backlight, },
++	{ .parse_prop = parse_phy_handle, },
  	{ .parse_prop = parse_gpio_compat, },
  	{ .parse_prop = parse_interrupts, },
  	{ .parse_prop = parse_regulators, },
