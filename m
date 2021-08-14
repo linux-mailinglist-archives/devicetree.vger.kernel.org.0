@@ -2,369 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF0F23EC103
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 08:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 052913EC12C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 09:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235123AbhHNG7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Aug 2021 02:59:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33028 "EHLO mail.kernel.org"
+        id S236542AbhHNHeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Aug 2021 03:34:36 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:47986 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232021AbhHNG7U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Aug 2021 02:59:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F371F61028;
-        Sat, 14 Aug 2021 06:58:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628924332;
-        bh=EV/0x4V8z3izYCldWFKdO2IbRSuZoxsOxbNxI87i/uU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=pZFcRdj+IWprpznhWcqB+8mJH+eehoit43d5g8Au/NUd1kyLmBUrJFW/62PYAXdPg
-         ooTTdwz81PDboJ5nm6gP//o/ub+TFwrE1MYVufiXY6iAoN7ZK6q+3f/l3g+Cy7KCQJ
-         wvgQfCgmm3fCMzwMgk+vPgmsifNVG/dXoAnUE6RoSwUheKXTH0pbkH1bk4j8PYs88w
-         69OJ0sQspvxy0ED9YmWgvSE+o3gTGR5cRNrvroL9zsC/4IFDm5O/AktWgOoA4VIu5K
-         9C/7ZiiqVke3EWl0PH5CPZL3i23ffk0PTq1Scpu0D6h64h+Do12WP5HL6AbGoJtQdt
-         nTPKMbajbclYQ==
-Date:   Sat, 14 Aug 2021 08:58:46 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Yu Chen <chenyu56@huawei.com>,
-        John Stultz <john.stultz@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: misc: add schema for USB hub on Kirin
- devices
-Message-ID: <20210814085846.15119702@coco.lan>
-In-Reply-To: <YRa/fURTp8QncIEZ@robh.at.kernel.org>
-References: <d428b90bb655c7992e9e13fc50130ed223812d2d.1628159456.git.mchehab+huawei@kernel.org>
-        <YRa/fURTp8QncIEZ@robh.at.kernel.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+        id S236519AbhHNHeg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Aug 2021 03:34:36 -0400
+Received: from 82-99-180-238.static.bluetone.cz ([82.99.180.238] helo=phil.sntech)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mEoB4-0003bg-2O; Sat, 14 Aug 2021 09:33:58 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-kernel@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Simon Xue <xxm@rock-chips.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Liang Chen <cl@rock-chips.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Zhang Changzhong <zhangchangzhong@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v3 0/7] arm64: dts: rockchip: rk3568-evb1-v10: add sd card support
+Date:   Sat, 14 Aug 2021 09:33:54 +0200
+Message-Id: <162892642459.2674259.13856979859165200065.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210805120107.27007-1-michael.riesch@wolfvision.net>
+References: <20210805120107.27007-1-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Fri, 13 Aug 2021 13:52:45 -0500
-Rob Herring <robh@kernel.org> escreveu:
-
-> On Thu, Aug 05, 2021 at 12:31:00PM +0200, Mauro Carvalho Chehab wrote:
-> > From: Yu Chen <chenyu56@huawei.com>
-> > 
-> > This patch adds binding documentation to support USB HUB and
-> > USB data role switch of HiSilicon HiKey960 and HiKey970 boards.  
+On Thu, 5 Aug 2021 14:01:00 +0200, Michael Riesch wrote:
+> This series enables the SD card reader on the RK3568 EVB1
+> and completes the support for the on-board eMMC.
 > 
-> Like PCIe, there's a standard way to describe USB devices in DT. Though 
-> PCI is easy compared to USB. :(
+> As the PMU IO domains are required, the patch series that
+> introduces support for the RK3568 PMU IO domains [1] has been
+> revised and integrated in this series.
+> Additionally, the required voltage regulators of the RK809
+> PMIC are enabled.
 > 
-> Also like PCIe on Hikey, I'm less than thrilled to define how this 
-> should look for a board that's generally not widely available or well 
-> supported.
+> [...]
 
-This board is widely available. Mine was bought at Amazon. 96boards has
-a list of other places with also sell it:
-	https://www.96boards.org/product/hikey970/
+Applied, thanks!
 
-> > [mchehab: updated OF names and added support for HiKey970]
-> > Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> > Signed-off-by: John Stultz <john.stultz@linaro.org>
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >  .../bindings/misc/hisilicon,hikey-usb.yaml    | 95 +++++++++++++++++++
-> >  1 file changed, 95 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> > new file mode 100644
-> > index 000000000000..857f9bd802fe
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> > @@ -0,0 +1,95 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2019 Linaro Ltd.
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/misc/hisilicon,hikey-usb.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: HiKey960/970 onboard USB GPIO Hub
-> > +
-> > +maintainers:
-> > +  - John Stultz <john.stultz@linaro.org>
-> > +
-> > +description: |
-> > +  Supports the onboard USB GPIO hub found on HiKey960/970.
-> > +  The HUB, which acts as a role-switch intermediary to detect the state of
-> > +  the USB-C port, to switch the hub into dual-role USB-C or host mode,
-> > +  which enables the onboard USB-A host ports.
-> > +
-> > +  Schematics about the hub can be found here:
-> > +    https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
-> > +    https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - hisilicon,gpio_hubv1
-> > +      - hisilicon,kirin970_hikey_usbhub  
-> 
-> s/_/-/
-> 
-> Why is one compatible pretty generic and the other very specific?
+[1/7] dt-bindings: power: add rk3568-pmu-io-domain support
+      commit: fadbd4e7847905d61dd333a0d3d31654f4510bc6
+[2/7] soc: rockchip: io-domain: add rk3568 support
+      commit: 28b05a64e47cbceebb8a5f3f643033148d5c06c3
+[3/7] arm64: dts: rockchip: enable io domains for rk356x
+      commit: 2e9ce86bbea81022540ede98cac152df5566205e
+[4/7] arm64: dts: rockchip: rk3568-evb1-v10: enable io domains
+      commit: 915186bd99a55642ae77d7f9c46e295b3fd9dc1c
+[5/7] arm64: dts: rockchip: rk3568-evb1-v10: add regulators of rk809 pmic
+      commit: e3f6b997b6b17810583af79f458b35fc0a34d939
+[6/7] arm64: dts: rockchip: rk3568-evb1-v10: add node for sd card
+      commit: ef180dba76f583efc19c7d5f3d2809e0aa8856e8
+[7/7] arm64: dts: rockchip: rk3568-evb1-v10: add pinctrl and alias to emmc node
+      commit: eb8d07586e13fc7aa4ed68820240d36a03418193
 
-Historical reasons. I'll change them to:
-
-	  compatible:
-	    enum:
-	      - hisilicon,hikey960-usbhub
-	      - hisilicon,hikey970-usbhub
-
-> 
-> > +
-> > +  typec-vbus:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle to the typec-vbus gpio  
-> 
-> If a GPIO, why is it not using a GPIO DT property?
-
-Not sure what you meant. Do you want append "-gpios" to each of the gpio
-property, like:
-
-	typec-vbus-gpios
-	otg-switch-gpios
-
-Or do you mean something else?
-
-> 
-> > +
-> > +  otg-switch:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle to the otg-switch gpio  
-> 
-> Ditto?
-> 
-> > +
-> > +  hub-vdd33-en:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle to the hub 3.3v power enablement gpio  
-> 
-> GPIOs controlling a power rail should use a gpio-regulator.
-
-Ok. I'll change and do some tests with Kirin960.
-
-> 
-> > +
-> > +  hub_reset_en_gpio:  
-> 
-> s/_/-/
-> 
-> And still, not a GPIO DT property...
-> 
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle to the hub reset gpio
-> > +
-> > +  usb-role-switch:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description: Support role switch.
-> > +
-> > +  hub-vdd-supply:
-> > +    description: regulator for hub power
-> > +
-> > +  port:
-> > +    description: |
-> > +      any connector to the data bus of this controller should be modelled
-> > +      using the OF graph bindings specified, if the "usb-role-switch"
-> > +      property is used. Note for this driver, two ports are supported,
-> > +      the first being the endpoint that will be notified by this driver,
-> > +      and the second being the endpoint that notifies this driver of a
-> > +      role switch.  
-> 
-> You're describing this in terms of driver connections rather than h/w 
-> connections.
-> 
-> But we've already got ways to describe the data connections. For 
-> starters, it should be a child of the USB host.
-> 
-> And how does all this tie in with the USB connector binding?
-
-The HiKey960/970 hardware has those components:
-
-	- a DWC3 IP at the Kirin960/970 SoC;
-	- an I2C-controlled host/budget PHY (rt1711h);
-	- an in-board USB hub chip. Either one of those chips:
-		- On HiKey960: USB5743
-		- On HiKey970: TUSB8041
-	- USB3 and Type-C ports:
-		- On HiKey960: one Type-C port, two USB3 ports
-		- On HiKey970: two Type-C ports, two USB3 ports
-
-That makes the port connections more complex, as they are between
-the PHY and the HUB.
-
-This is at Kirin970 SoC DT schema (I omitted some properties, to make it
-shorter):
-
-	soc {
-		gpio0: gpio@e8a0b000 {
-			compatible = "arm,pl061", "arm,primecell";
-			gpio-controller;
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx0 1 0 1 &pmx0 3 1 5>;
-		};
-		gpio4: gpio@e8a0f000 {
-			compatible = "arm,pl061", "arm,primecell";
-			gpio-controller;
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx0 0 18 8>;
-		};
-		gpio26: gpio@fff0f000 {
-			compatible = "arm,pl061", "arm,primecell";
-			gpio-controller;
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx1 0 30 1>;
-		};
-
-		i2c1: i2c@ffd72000 {
-			compatible = "snps,designware-i2c";
-		};
-
-		usb3_otg_bc: usb3_otg_bc@ff200000 {
-			compatible = "syscon", "simple-mfd";
-			reg = <0x0 0xff200000 0x0 0x1000>;
-
-			usb_phy: usbphy {
-				compatible = "hisilicon,hi3670-usb-phy";
-			};
-		};
-
-		usb31_misc_rst: usb31_misc_rst_controller {
-			compatible = "hisilicon,hi3660-reset";
-			#reset-cells = <2>;
-			hisi,rst-syscon = <&usb3_otg_bc>;
-		};
-
-		usb3: hisi_dwc3 {
-			compatible = "hisilicon,hi3670-dwc3";
-
-			resets = <&crg_rst 0x90 6>,
-				 <&crg_rst 0x90 7>,
-				 <&usb31_misc_rst 0xA0 8>,
-				 <&usb31_misc_rst 0xA0 9>;
-
-			dwc3: usb@ff100000 {
-				compatible = "snps,dwc3";
-			};
-		};
-	};
-
-This is the HiKey970 DT schema:
-
-       hikey_usbhub: hikey_usbhub {
-               compatible = "hisilicon,kirin970_hikey_usbhub";
-
-               typec-vbus-gpios = <&gpio26 1 0>;
-               otg-switch-gpios = <&gpio4 2 0>;
-               hub_reset_en_gpio = <&gpio0 3 0>;
-               hub-vdd-supply = <&ldo17>;
-               usb-role-switch;
-
-               port {
-                       #address-cells = <1>;
-                       #size-cells = <0>;
-
-                       hikey_usb_ep0: endpoint@0 {
-                               reg = <0>;
-                               remote-endpoint = <&dwc3_role_switch>;
-                       };
-                       hikey_usb_ep1: endpoint@1 {
-                               reg = <1>;
-                               remote-endpoint = <&rt1711h_ep>;
-                       };
-               };
-       };
-
-	&usb_phy {
-		phy-supply = <&ldo17>;
-	};
-
-	&i2c1 {
-		status = "okay";
-
-		rt1711h: rt1711h@4e {
-			compatible = "richtek,rt1711h";
-
-			usb_con: connector {
-				compatible = "usb-c-connector";
-				label = "USB-C";
-				data-role = "dual";
-				power-role = "dual";
-				ports {
-					#address-cells = <1>;
-					#size-cells = <0>;
-					port@1 {
-						reg = <1>;
-						usb_con_ss: endpoint {
-							remote-endpoint = <&dwc3_ss>;
-						};
-					};
-				};
-			};
-			port {
-				#address-cells = <1>;
-				#size-cells = <0>;
-
-				rt1711h_ep: endpoint@0 {
-					reg = <0>;
-					remote-endpoint = <&hikey_usb_ep1>;
-				};
-			};
-		};
-	};
-
-
-
-> 
-> > +
-> > +
-> > +required:
-> > +  - compatible
-> > +  - typec-vbus
-> > +  - otg-switch
-> > +  - usb-role-switch
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    hisi_hikey_usb: hisi_hikey_usb {
-> > +        compatible = "hisilicon,gpio_hubv1";
-> > +        typec-vbus = <&gpio25 2 GPIO_ACTIVE_HIGH>;
-> > +        otg-switch = <&gpio25 6 GPIO_ACTIVE_HIGH>;
-> > +        hub-vdd33-en = <&gpio5 6 GPIO_ACTIVE_HIGH>;
-> > +        usb-role-switch;
-> > +
-> > +        port {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            hikey_usb_ep0: endpoint@0 {
-> > +                reg = <0>;
-> > +                remote-endpoint = <&dwc3_role_switch>;
-> > +            };
-> > +            hikey_usb_ep1: endpoint@1 {
-> > +                reg = <1>;
-> > +                remote-endpoint = <&rt1711h_ep>;
-> > +            };
-> > +        };
-> > +    };
-> > -- 
-> > 2.31.1
-> > 
-> >   
-
-
-
-Thanks,
-Mauro
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
