@@ -2,141 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C11EA3EC306
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 15:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D603EC379
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 17:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238570AbhHNN4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Aug 2021 09:56:05 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:23701 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S238551AbhHNN4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Aug 2021 09:56:04 -0400
-X-IronPort-AV: E=Sophos;i="5.84,321,1620658800"; 
-   d="scan'208";a="90627093"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 14 Aug 2021 22:55:35 +0900
-Received: from localhost.localdomain (unknown [10.226.92.7])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9518A4272039;
-        Sat, 14 Aug 2021 22:55:33 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a07g044: Add SSI support
-Date:   Sat, 14 Aug 2021 14:55:26 +0100
-Message-Id: <20210814135526.15561-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210814135526.15561-1-biju.das.jz@bp.renesas.com>
-References: <20210814135526.15561-1-biju.das.jz@bp.renesas.com>
+        id S238660AbhHNPXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Aug 2021 11:23:33 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50010 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238633AbhHNPXc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Aug 2021 11:23:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=+xcyqJGzVSzEHEA1fuUegCx0faWqscCzNFFs988EPSQ=; b=JeEF3Gbl/zVxAi7G0NZONVh8rX
+        x+bAcdPs1O2cIuLTVlZD3zJEyxsVB6/P0rf/9SMH9fEEfxzVa03u8DCRhoICnb5iIRNx88j/mqXVl
+        oOJj531k7PO9kEIwpOqG53+8OJIxHuzPlXTBgIsxBmH/RGvk4uw0x6pO1sIkTFhuGQKU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mEvUr-0004vU-Fz; Sat, 14 Aug 2021 17:22:53 +0200
+Date:   Sat, 14 Aug 2021 17:22:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] of: property: fw_devlink: Add support for
+ "phy-handle" property
+Message-ID: <YRffzVgP2eBw7HRz@lunn.ch>
+References: <20210814023132.2729731-1-saravanak@google.com>
+ <20210814023132.2729731-3-saravanak@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210814023132.2729731-3-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SSI{0,1,2,3} nodes to RZ/G2L SoC DTSI.
+Hi Saravana
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 80 ++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+> Hi Andrew,
+> 
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 6bbf1fae8ca5..c8b517d235e3 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -92,6 +92,86 @@
- 		#size-cells = <2>;
- 		ranges;
- 
-+		ssi0: ssi@10049c00 {
-+			compatible = "renesas,r9a07g044-ssi",
-+				     "renesas,rz-ssi";
-+			reg = <0 0x10049c00 0 0x400>;
-+			interrupts = <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 327 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 328 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 329 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+			clocks = <&cpg CPG_MOD R9A07G044_SSI0_PCLK2>,
-+				 <&cpg CPG_MOD R9A07G044_SSI0_PCLK_SFR>,
-+				 <&audio_clk1>,
-+				 <&audio_clk2>;
-+			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-+			resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
-+			power-domains = <&cpg>;
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		ssi1: ssi@1004a000 {
-+			compatible = "renesas,r9a07g044-ssi",
-+				     "renesas,rz-ssi";
-+			reg = <0 0x1004a000 0 0x400>;
-+			interrupts = <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 331 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 332 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 333 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+			clocks = <&cpg CPG_MOD R9A07G044_SSI1_PCLK2>,
-+				 <&cpg CPG_MOD R9A07G044_SSI1_PCLK_SFR>,
-+				 <&audio_clk1>,
-+				 <&audio_clk2>;
-+			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-+			resets = <&cpg R9A07G044_SSI1_RST_M2_REG>;
-+			power-domains = <&cpg>;
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		ssi2: ssi@1004a400 {
-+			compatible = "renesas,r9a07g044-ssi",
-+				     "renesas,rz-ssi";
-+			reg = <0 0x1004a400 0 0x400>;
-+			interrupts = <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 335 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 336 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 337 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+			clocks = <&cpg CPG_MOD R9A07G044_SSI2_PCLK2>,
-+				 <&cpg CPG_MOD R9A07G044_SSI2_PCLK_SFR>,
-+				 <&audio_clk1>,
-+				 <&audio_clk2>;
-+			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-+			resets = <&cpg R9A07G044_SSI2_RST_M2_REG>;
-+			power-domains = <&cpg>;
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		ssi3: ssi@1004a800 {
-+			compatible = "renesas,r9a07g044-ssi",
-+				     "renesas,rz-ssi";
-+			reg = <0 0x1004a800 0 0x400>;
-+			interrupts = <GIC_SPI 338 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 339 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 340 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 341 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+			clocks = <&cpg CPG_MOD R9A07G044_SSI3_PCLK2>,
-+				 <&cpg CPG_MOD R9A07G044_SSI3_PCLK_SFR>,
-+				 <&audio_clk1>,
-+				 <&audio_clk2>;
-+			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-+			resets = <&cpg R9A07G044_SSI3_RST_M2_REG>;
-+			power-domains = <&cpg>;
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		scif0: serial@1004b800 {
- 			compatible = "renesas,scif-r9a07g044";
- 			reg = <0 0x1004b800 0 0x400>;
--- 
-2.17.1
+> Also there
+> are so many phy related properties that my head is spinning. Is there a
+> "phy" property (which is different from "phys") that treated exactly as
+> "phy-handle"?
 
+Sorry, i don't understand your question.
+
+> +	/*
+> +	 * Device tree nodes pointed to by phy-handle never have struct devices
+> +	 * created for them even if they have a "compatible" property. So
+> +	 * return the parent node pointer.
+> +	 */
+
+We have a classic bus with devices on it. The bus master is registers
+with linux using one of the mdiobus_register() calls. That then
+enumerates the bus, looking at the 32 possible address on the bus,
+using mdiobus_scan. It then gets a little complex, due to
+history.
+
+Originally, the only thing you could have on an MDIO bus was a
+PHY. But devices on MDIO busses are more generic, and Linux gained
+support for Ethernet switches on an MDIO bus, and there are a few
+other sort device. So to keep the PHY API untouched, but to add these
+extra devices, we added the generic struct mdio_device which
+represents any sort of device on an MDIO bus. This has a struct device
+embedded in it.
+
+When we scan the bus and find a PHY, a struct phy_device is created,
+which has an embedded struct mdio_device. The struct device in that is
+then registered with the driver core.
+
+So a phy-handle does point to a device, but you need to do an object
+orientated style look at the base class to find it.
+
+	   Andrew
