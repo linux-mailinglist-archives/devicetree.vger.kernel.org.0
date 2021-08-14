@@ -2,184 +2,519 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4B33EC4AD
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 21:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B98D63EC4CA
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 21:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234228AbhHNTJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Aug 2021 15:09:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53790 "EHLO
+        id S229563AbhHNTqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Aug 2021 15:46:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234279AbhHNTJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Aug 2021 15:09:26 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE7EC061764;
-        Sat, 14 Aug 2021 12:08:57 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id v2so9888280edq.10;
-        Sat, 14 Aug 2021 12:08:57 -0700 (PDT)
+        with ESMTP id S229489AbhHNTqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Aug 2021 15:46:07 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F34AC061764;
+        Sat, 14 Aug 2021 12:45:38 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id u13-20020a17090abb0db0290177e1d9b3f7so25975466pjr.1;
+        Sat, 14 Aug 2021 12:45:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qn4GvlYQZobCtErWEed4YL0Byg/5djbyOa0HzbMWBys=;
-        b=boZRjvM7xpxdS0E1QfjU5IZ9WLtxktShHeHdvt18Moj9gGCOwNQprZv7maryrLov3v
-         9FNWG933qdVw7mri3DelTJqveBRtWjBv2HenahVTzAztDqQL+UMsp8rw/QALe6qJneqv
-         44qWWPpg+r4/bpRpvQTuw9OVSxq4WhBTuMhEMvy7xSpR+B1Jacv407xPfiwxBOCzpg8i
-         jUMboy4uGbGXF9Qv4uWyMSECqHDcZ+T6etOeMj1UgZTKXnwnv7KxqwyWrYiFzQuah8O6
-         Vmkwwqg+pNIlXqqXGgrA50Xp4ruK+7LtWOVZC7HA3Q6iDiJXd4VDY6Gg8wmYrO9TWQnW
-         l2Sg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=OadGIv82teYPe0CEeCTn/7jGhodznMIM9Ifjv7KBhrM=;
+        b=GS7TheAwI9zWitWk5NwilDA/RFoctep8IdAxFkhuIu5eaHVDklHogQK5cxn0ViFYPF
+         101nRHgFGS9j76ItqFyUeVtWcbypUXN/GxvFDQSxjDrTTwHafc5WK2X2CKQC8L98UrGt
+         X89RKzbVGjtB+K0Y5wMwXxofbmi/+eiy6RwTsPHY7JBGODXwHen1bnOmRn50FPGQ6LWP
+         zGCx+C7XY6VeBgSwEwmbEsqRRFn4KChggUJnlhvBmM1I1BHsO1IZzbBm6hShYvHWY42z
+         bpAzvlCA0juxRduOUDXlmhh4aKw3khcYLKEkd9KQ34GNgXHVsgAv3Xfsyj0fS5AwztrL
+         6qQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=qn4GvlYQZobCtErWEed4YL0Byg/5djbyOa0HzbMWBys=;
-        b=QJBN3WluhK/U4o3OC2nLqEgdNGZ+CdKYhk4/zRESEo6USrEOy5k0HDutHFbD+17xlw
-         bgEgFizvW5qfr0vWeTxBuC1XJT3/eK8kUvOIpqNcJbEQMN4SGDN+mHHtHE2irdRLVaQ7
-         KAiLxIcsxZ35+CBZlJImZUAeRZDQZz10s+ksfk/2wWyb6hA1W/kEBuFrH0A0K1OeRCvw
-         +sK/DnV2QHkHTHJXLAhHmw/Q/prfUdgCEjPSvPStZoNbemBF0cTO0bYme75DUp22pECv
-         QeiT19g4CcmadI7VDDgzapl8TW+ViiiwgBZ6Mmlyv+GzCOLbP/c7Fw3AwO3llBTtdcsS
-         /ScA==
-X-Gm-Message-State: AOAM533Gm23MG1TbrTTnS7LK/2YLcOIuwnUI3vhkzhgNR9GTM5ap+fOF
-        35aBZ0Yw37wkNYgq9Reouqk=
-X-Google-Smtp-Source: ABdhPJwSLCyFZTPzB5aTk1qDwj19iWfjv8VIB6T8Hr/6xelhT/gNQ/uoG7h4MyNQwJh9RkEBBcbbSg==
-X-Received: by 2002:a05:6402:5112:: with SMTP id m18mr10540742edd.47.1628968136529;
-        Sat, 14 Aug 2021 12:08:56 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id n15sm2531680edw.70.2021.08.14.12.08.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Aug 2021 12:08:56 -0700 (PDT)
-Date:   Sat, 14 Aug 2021 22:08:54 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        claudiu.manoil@nxp.com, alexandre.belloni@bootlin.com,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v3 net-next 10/10] docs: devicetree: add
- documentation for the VSC7512 SPI device
-Message-ID: <20210814190854.z6b33nfjd4wmlow3@skbuf>
-References: <20210814025003.2449143-1-colin.foster@in-advantage.com>
- <20210814025003.2449143-11-colin.foster@in-advantage.com>
- <20210814114721.ncxi6xwykdi4bfqy@skbuf>
- <20210814184040.GD3244288@euler>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=OadGIv82teYPe0CEeCTn/7jGhodznMIM9Ifjv7KBhrM=;
+        b=A0bYQ3j1KJzoNKjpWcfhUVstSsu9muU81b1mtEVA4l9ZLhYPOyFSKYrt/jTjVolVJ5
+         y21WSiugbp+1Oif7twmEkibz7lDjNO33vpZyoPOAnBFq1tbTetI6w3tDY5XLz+VWDXKG
+         IiXVnsd4WSORTxDgDdm40P71gO6dVia/2LtEDmoNTlHZMhPkgYVLMLKzHYp/UGVqJnek
+         5L62n1YRdD69ee1VWfXAQtcZmP6NO4D/FQRr5ttdfckbee/hRnj9o/DZXKfSnmTpK/hJ
+         a19Be568TC4U1eZVYdgNTRJMrc6A4g9KwjmJXrRJXVdujc7oAz8wYVgHAjlpVV4+uNVL
+         ONCw==
+X-Gm-Message-State: AOAM530sTnLZ89zV16z5G3tmhbRUnopEaMAIQlTWRcJdulC3IOrbhteh
+        hSuaGY0sGE5oM7ENQel2M382hpctVAbhFbvp/C0=
+X-Google-Smtp-Source: ABdhPJwcSss+iBLg1KogqOdf66gQ6iE3zI34PRLiEkGuL71OXiUPtp1agXDGLynsn14QXFYmpDdjl6h4n2KWHKP1Lg4=
+X-Received: by 2002:a65:5ccd:: with SMTP id b13mr8011188pgt.203.1628970337854;
+ Sat, 14 Aug 2021 12:45:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20210814175607.48399-1-dmugil2000@gmail.com> <20210814175607.48399-3-dmugil2000@gmail.com>
+In-Reply-To: <20210814175607.48399-3-dmugil2000@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sat, 14 Aug 2021 22:45:01 +0300
+Message-ID: <CAHp75Ve+5sLv6cf88mOHnTpq5DeJ=37VDF9kacpZXVVk7KB8Qg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: potentiometer: Add driver support for AD5110
+To:     Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+Cc:     "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        Darius <Darius.Berghe@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210814184040.GD3244288@euler>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 14, 2021 at 11:40:40AM -0700, Colin Foster wrote:
-> On Sat, Aug 14, 2021 at 02:47:21PM +0300, Vladimir Oltean wrote:
-> > On Fri, Aug 13, 2021 at 07:50:03PM -0700, Colin Foster wrote:
-> > > +* phy_mode =3D "sgmii": on ports 0, 1, 2, 3
-> >=20
-> > > +			port@0 {
-> > > +				reg =3D <0>;
-> > > +				ethernet =3D <&mac>;
-> > > +				phy-mode =3D "sgmii";
-> > > +
-> > > +				fixed-link {
-> > > +					speed =3D <100>;
-> > > +					full-duplex;
-> > > +				};
-> > > +			};
-> >=20
-> > Your driver is unconditionally setting up the NPI port at gigabit and
-> > you claim it works, yet the device tree sees a 100Mbps fixed-link? Which
-> > one is right, what speed does the port operate at?
->=20
-> Good catch!
->=20
-> I made the change to ocelot_spi_vsc7512 yesterday to set it up as
-> gigabit, tested it, and it still works. Previously for my testing I'd
-> had it hard-coded to 100, because the Beaglebone I'm using only supports
-> 100Mbps on eth0.
->=20
-> # phytool print swp1/0
+On Sat, Aug 14, 2021 at 8:57 PM Mugilraj Dhavachelvan
+<dmugil2000@gmail.com> wrote:
+>
+> The AD5110/AD5112/AD5114 provide a nonvolatile solution
+> for 128-/64-/32-position adjustment applications, offering
+> guaranteed low resistor tolerance errors of =C2=B18% and up to
+> =C2=B16 mA current density.
 
-Why are you showing the PHY registers of swp1? Why are these relevant at al=
-l?
+Looks good enough to me, thanks!
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
->=20
-> ieee-phy: id:0x00070540
->=20
->    ieee-phy: reg:BMCR(0x00) val:0x1040
->       flags:          -reset -loopback =1B[1m+aneg-enable=1B[0m -power-do=
-wn -isolate -aneg-restart -collision-test
->       speed:          1000-half
+> Datasheet: https://www.analog.com/media/en/technical-documentation/data-s=
+heets/AD5110_5112_5114.pdf
+> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+> ---
+>  MAINTAINERS                        |   6 +
+>  drivers/iio/potentiometer/Kconfig  |  10 +
+>  drivers/iio/potentiometer/Makefile |   1 +
+>  drivers/iio/potentiometer/ad5110.c | 345 +++++++++++++++++++++++++++++
+>  4 files changed, 362 insertions(+)
+>  create mode 100644 drivers/iio/potentiometer/ad5110.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index bd7aff0c120f..cf6e73b87b6e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -452,6 +452,12 @@ S: Maintained
+>  W:     https://parisc.wiki.kernel.org/index.php/AD1889
+>  F:     sound/pci/ad1889.*
+>
+> +AD5110 ANALOG DEVICES DIGITAL POTENTIOMETERS DRIVER
+> +M:     Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+> +L:     linux-iio@vger.kernel.org
+> +S:     Supported
+> +F:     drivers/iio/potentiometer/ad5110.c
+> +
+>  AD525X ANALOG DEVICES DIGITAL POTENTIOMETERS DRIVER
+>  M:     Michael Hennerich <michael.hennerich@analog.com>
+>  S:     Supported
+> diff --git a/drivers/iio/potentiometer/Kconfig b/drivers/iio/potentiomete=
+r/Kconfig
+> index 4cac0173db8b..832df8da2bc6 100644
+> --- a/drivers/iio/potentiometer/Kconfig
+> +++ b/drivers/iio/potentiometer/Kconfig
+> @@ -6,6 +6,16 @@
+>
+>  menu "Digital potentiometers"
+>
+> +config AD5110
+> +       tristate "Analog Devices AD5110 and similar Digital Potentiometer=
+ driver"
+> +       depends on I2C
+> +       help
+> +         Say yes here to build support for the Analog Devices AD5110, AD=
+5112
+> +         and AD5114 digital potentiometer chip.
+> +
+> +         To compile this driver as a module, choose M here: the
+> +         module will be called ad5110.
+> +
+>  config AD5272
+>         tristate "Analog Devices AD5272 and similar Digital Potentiometer=
+ driver"
+>         depends on I2C
+> diff --git a/drivers/iio/potentiometer/Makefile b/drivers/iio/potentiomet=
+er/Makefile
+> index 091adf3cdd0b..5ebb8e3bbd76 100644
+> --- a/drivers/iio/potentiometer/Makefile
+> +++ b/drivers/iio/potentiometer/Makefile
+> @@ -4,6 +4,7 @@
+>  #
+>
+>  # When adding new entries keep the list in alphabetical order
+> +obj-$(CONFIG_AD5110) +=3D ad5110.o
+>  obj-$(CONFIG_AD5272) +=3D ad5272.o
+>  obj-$(CONFIG_DS1803) +=3D ds1803.o
+>  obj-$(CONFIG_MAX5432) +=3D max5432.o
+> diff --git a/drivers/iio/potentiometer/ad5110.c b/drivers/iio/potentiomet=
+er/ad5110.c
+> new file mode 100644
+> index 000000000000..ae18f9e115b2
+> --- /dev/null
+> +++ b/drivers/iio/potentiometer/ad5110.c
+> @@ -0,0 +1,345 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Analog Devices AD5110 digital potentiometer driver
+> + *
+> + * Copyright (C) 2021 Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+> + *
+> + * Datasheet: https://www.analog.com/media/en/technical-documentation/da=
+ta-sheets/AD5110_5112_5114.pdf
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+> +/* AD5110 commands */
+> +#define AD5110_EEPROM_WR       1
+> +#define AD5110_RDAC_WR         2
+> +#define AD5110_SHUTDOWN        3
+> +#define AD5110_RESET           4
+> +#define AD5110_RDAC_RD         5
+> +#define AD5110_EEPROM_RD       6
+> +
+> +/* AD5110_EEPROM_RD data */
+> +#define AD5110_WIPER_POS       0
+> +#define AD5110_RESISTOR_TOL    1
+> +
+> +#define AD5110_WIPER_RESISTANCE        70
+> +
+> +struct ad5110_cfg {
+> +       int max_pos;
+> +       int kohms;
+> +       int shift;
+> +};
+> +
+> +enum ad5110_type {
+> +       AD5110_10,
+> +       AD5110_80,
+> +       AD5112_05,
+> +       AD5112_10,
+> +       AD5112_80,
+> +       AD5114_10,
+> +       AD5114_80,
+> +};
+> +
+> +static const struct ad5110_cfg ad5110_cfg[] =3D {
+> +       [AD5110_10] =3D { .max_pos =3D 128, .kohms =3D 10 },
+> +       [AD5110_80] =3D { .max_pos =3D 128, .kohms =3D 80 },
+> +       [AD5112_05] =3D { .max_pos =3D 64, .kohms =3D 5, .shift =3D 1 },
+> +       [AD5112_10] =3D { .max_pos =3D 64, .kohms =3D 10, .shift =3D 1 },
+> +       [AD5112_80] =3D { .max_pos =3D 64, .kohms =3D 80, .shift =3D 1 },
+> +       [AD5114_10] =3D { .max_pos =3D 32, .kohms =3D 10, .shift =3D 2 },
+> +       [AD5114_80] =3D { .max_pos =3D 32, .kohms =3D 80, .shift =3D 2 },
+> +};
+> +
+> +struct ad5110_data {
+> +       struct i2c_client       *client;
+> +       s16                     tol;            /* resistor tolerance */
+> +       bool                    enable;
+> +       struct mutex            lock;
+> +       const struct ad5110_cfg *cfg;
+> +       /*
+> +        * DMA (thus cache coherency maintenance) requires the
+> +        * transfer buffers to live in their own cache lines.
+> +        */
+> +       u8                      buf[2] ____cacheline_aligned;
+> +};
+> +
+> +static const struct iio_chan_spec ad5110_channels[] =3D {
+> +       {
+> +               .type =3D IIO_RESISTANCE,
+> +               .output =3D 1,
+> +               .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_=
+CHAN_INFO_OFFSET) |
+> +                                       BIT(IIO_CHAN_INFO_SCALE) | BIT(II=
+O_CHAN_INFO_ENABLE),
+> +       },
+> +};
+> +
+> +static int ad5110_read(struct ad5110_data *data, u8 cmd, int *val)
+> +{
+> +       int ret;
+> +
+> +       mutex_lock(&data->lock);
+> +       data->buf[0] =3D cmd;
+> +       data->buf[1] =3D *val;
+> +
+> +       ret =3D i2c_master_send_dmasafe(data->client, data->buf, sizeof(d=
+ata->buf));
+> +       if (ret < 0) {
+> +               goto error;
+> +       } else if (ret !=3D sizeof(data->buf)) {
+> +               ret =3D -EIO;
+> +               goto error;
+> +       }
+> +
+> +       ret =3D i2c_master_recv_dmasafe(data->client, data->buf, 1);
+> +       if (ret < 0) {
+> +               goto error;
+> +       } else if (ret !=3D 1) {
+> +               ret =3D -EIO;
+> +               goto error;
+> +       }
+> +
+> +       *val =3D data->buf[0];
+> +       ret =3D 0;
+> +
+> +error:
+> +       mutex_unlock(&data->lock);
+> +       return ret;
+> +}
+> +
+> +static int ad5110_write(struct ad5110_data *data, u8 cmd, u8 val)
+> +{
+> +       int ret;
+> +
+> +       mutex_lock(&data->lock);
+> +       data->buf[0] =3D cmd;
+> +       data->buf[1] =3D val;
+> +
+> +       ret =3D i2c_master_send_dmasafe(data->client, data->buf, sizeof(d=
+ata->buf));
+> +       if (ret < 0) {
+> +               goto error;
+> +       } else if (ret !=3D sizeof(data->buf)) {
+> +               ret =3D -EIO;
+> +               goto error;
+> +       }
+> +
+> +       ret =3D 0;
+> +
+> +error:
+> +       mutex_unlock(&data->lock);
+> +       return ret;
+> +}
+> +
+> +static int ad5110_resistor_tol(struct ad5110_data *data, u8 cmd, int val=
+)
+> +{
+> +       int ret;
+> +
+> +       ret =3D ad5110_read(data, cmd, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       data->tol =3D data->cfg->kohms * (val & GENMASK(6, 0)) * 10 / 8;
+> +       if (!(val & BIT(7)))
+> +               data->tol *=3D -1;
+> +
+> +       return 0;
+> +}
+> +
+> +static ssize_t store_eeprom_show(struct device *dev,
+> +                                 struct device_attribute *attr,
+> +                                 char *buf)
+> +{
+> +       struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> +       struct ad5110_data *data =3D iio_priv(indio_dev);
+> +       int val =3D AD5110_WIPER_POS;
+> +       int ret;
+> +
+> +       ret =3D ad5110_read(data, AD5110_EEPROM_RD, &val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       val =3D val >> data->cfg->shift;
+> +       return iio_format_value(buf, IIO_VAL_INT, 1, &val);
+> +}
+> +
+> +static ssize_t store_eeprom_store(struct device *dev,
+> +                                  struct device_attribute *attr,
+> +                                  const char *buf, size_t len)
+> +{
+> +       struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> +       struct ad5110_data *data =3D iio_priv(indio_dev);
+> +       int ret;
+> +
+> +       ret =3D ad5110_write(data, AD5110_EEPROM_WR, 0);
+> +       if (ret) {
+> +               dev_err(&data->client->dev, "RDAC to EEPROM write failed\=
+n");
+> +               return ret;
+> +       }
+> +
+> +       /* The storing of EEPROM data takes approximately 18 ms. */
+> +       msleep(20);
+> +
+> +       return len;
+> +}
+> +
+> +static IIO_DEVICE_ATTR_RW(store_eeprom, 0);
+> +
+> +static struct attribute *ad5110_attributes[] =3D {
+> +       &iio_dev_attr_store_eeprom.dev_attr.attr,
+> +       NULL
+> +};
+> +
+> +static const struct attribute_group ad5110_attribute_group =3D {
+> +       .attrs =3D ad5110_attributes,
+> +};
+> +
+> +static int ad5110_read_raw(struct iio_dev *indio_dev,
+> +                          struct iio_chan_spec const *chan,
+> +                          int *val, int *val2, long mask)
+> +{
+> +       struct ad5110_data *data =3D iio_priv(indio_dev);
+> +       int ret;
+> +
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_RAW:
+> +               ret =3D ad5110_read(data, AD5110_RDAC_RD, val);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               *val =3D *val >> data->cfg->shift;
+> +               return IIO_VAL_INT;
+> +       case IIO_CHAN_INFO_OFFSET:
+> +               *val =3D AD5110_WIPER_RESISTANCE * data->cfg->max_pos;
+> +               *val2 =3D 1000 * data->cfg->kohms + data->tol;
+> +               return IIO_VAL_FRACTIONAL;
+> +       case IIO_CHAN_INFO_SCALE:
+> +               *val =3D 1000 * data->cfg->kohms + data->tol;
+> +               *val2 =3D data->cfg->max_pos;
+> +               return IIO_VAL_FRACTIONAL;
+> +       case IIO_CHAN_INFO_ENABLE:
+> +               *val =3D data->enable;
+> +               return IIO_VAL_INT;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+> +
+> +static int ad5110_write_raw(struct iio_dev *indio_dev,
+> +                           struct iio_chan_spec const *chan,
+> +                           int val, int val2, long mask)
+> +{
+> +       struct ad5110_data *data =3D iio_priv(indio_dev);
+> +       int ret;
+> +
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_RAW:
+> +               if (val > data->cfg->max_pos || val < 0)
+> +                       return -EINVAL;
+> +
+> +               return ad5110_write(data, AD5110_RDAC_WR, val << data->cf=
+g->shift);
+> +       case IIO_CHAN_INFO_ENABLE:
+> +               if (val < 0 || val > 1)
+> +                       return -EINVAL;
+> +               if (data->enable =3D=3D val)
+> +                       return 0;
+> +               ret =3D ad5110_write(data, AD5110_SHUTDOWN, val ? 0 : 1);
+> +               if (ret)
+> +                       return ret;
+> +               data->enable =3D val;
+> +               return 0;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+> +
+> +static const struct iio_info ad5110_info =3D {
+> +       .read_raw =3D ad5110_read_raw,
+> +       .write_raw =3D ad5110_write_raw,
+> +       .attrs =3D &ad5110_attribute_group,
+> +};
+> +
+> +#define AD5110_COMPATIBLE(of_compatible, cfg) {        \
+> +                       .compatible =3D of_compatible,    \
+> +                       .data =3D &ad5110_cfg[cfg],       \
+> +}
+> +
+> +static const struct of_device_id ad5110_of_match[] =3D {
+> +       AD5110_COMPATIBLE("adi,ad5110-10", AD5110_10),
+> +       AD5110_COMPATIBLE("adi,ad5110-80", AD5110_80),
+> +       AD5110_COMPATIBLE("adi,ad5112-05", AD5112_05),
+> +       AD5110_COMPATIBLE("adi,ad5112-10", AD5112_10),
+> +       AD5110_COMPATIBLE("adi,ad5112-80", AD5112_80),
+> +       AD5110_COMPATIBLE("adi,ad5114-10", AD5114_10),
+> +       AD5110_COMPATIBLE("adi,ad5114-80", AD5114_80),
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, ad5110_of_match);
+> +
+> +static const struct i2c_device_id ad5110_id[] =3D {
+> +       { "ad5110-10", AD5110_10 },
+> +       { "ad5110-80", AD5110_80 },
+> +       { "ad5112-05", AD5112_05 },
+> +       { "ad5112-10", AD5112_10 },
+> +       { "ad5112-80", AD5112_80 },
+> +       { "ad5114-10", AD5114_10 },
+> +       { "ad5114-80", AD5114_80 },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, ad5110_id);
+> +
+> +static int ad5110_probe(struct i2c_client *client)
+> +{
+> +       struct device *dev =3D &client->dev;
+> +       struct iio_dev *indio_dev;
+> +       struct ad5110_data *data;
+> +       int ret;
+> +
+> +       indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
+> +       if (!indio_dev)
+> +               return -ENOMEM;
+> +
+> +       data =3D iio_priv(indio_dev);
+> +       data->client =3D client;
+> +       mutex_init(&data->lock);
+> +       data->enable =3D 1;
+> +       data->cfg =3D device_get_match_data(dev);
+> +
+> +       /* refresh RDAC register with EEPROM */
+> +       ret =3D ad5110_write(data, AD5110_RESET, 0);
+> +       if (ret) {
+> +               dev_err(dev, "Refresh RDAC with EEPROM failed\n");
+> +               return ret;
+> +       }
+> +
+> +       ret =3D ad5110_resistor_tol(data, AD5110_EEPROM_RD, AD5110_RESIST=
+OR_TOL);
+> +       if (ret) {
+> +               dev_err(dev, "Read resistor tolerance failed\n");
+> +               return ret;
+> +       }
+> +
+> +       indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +       indio_dev->info =3D &ad5110_info;
+> +       indio_dev->channels =3D ad5110_channels;
+> +       indio_dev->num_channels =3D ARRAY_SIZE(ad5110_channels);
+> +       indio_dev->name =3D client->name;
+> +
+> +       return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static struct i2c_driver ad5110_driver =3D {
+> +       .driver =3D {
+> +               .name   =3D "ad5110",
+> +               .of_match_table =3D ad5110_of_match,
+> +       },
+> +       .probe_new      =3D ad5110_probe,
+> +       .id_table       =3D ad5110_id,
+> +};
+> +module_i2c_driver(ad5110_driver);
+> +
+> +MODULE_AUTHOR("Mugilraj Dhavachelvan <dmugil2000@gmail.com>");
+> +MODULE_DESCRIPTION("AD5110 digital potentiometer");
+> +MODULE_LICENSE("GPL v2");
+> +
+> --
+> 2.25.1
+>
 
-Also, 1000/half sounds like an odd speed to end negotiation at.
 
->=20
->    ieee-phy: reg:BMSR(0x01) val:0x796d
->       capabilities:   -100-b4 =1B[1m+100-f=1B[0m =1B[1m+100-h=1B[0m =1B[1=
-m+10-f=1B[0m =1B[1m+10-h=1B[0m -100-t2-f -100-t2-h
->       flags:          =1B[1m+ext-status=1B[0m =1B[1m+aneg-complete=1B[0m =
--remote-fault =1B[1m+aneg-capable=1B[0m =1B[1m+link=1B[0m -jabber =1B[1m+ex=
-t-register=1B[0m
->=20
->=20
-> Of course I understand that "it works" is not the same as "it's correct"
->=20
-> What I wanted to accomplish was to use the speed parameter and set up
-> the link based on that. I looked through all the DSA drivers and
-> couldn't find anything that seems to do that. The closest thing I saw
-> was in mt7531_cpu_port_config where they set the speed to either 2500 or
-> 1000 based on the interface. But nothing that I saw would explicitly set
-> the speed based on this parameter.
-
-As I mentioned in the other email, .phylink_mac_link_up is the function
-you are looking for. Phylink parses the fixed-link and calls that
-function for fixed-link ports with the speed and duplex specified. Check
-and see if felix_phylink_mac_link_up is not in fact called with
-link_an_mode =3D=3D MLO_AN_FIXED, speed =3D=3D SPEED_100 and duplex =3D=3D =
-DUPLEX_FULL,
-then what you are doing with that and if it makes sense for what you are
-trying to do.
-
->=20
-> So I think there's something I'm missing. The fixed-link speed should app=
-ly to=20
-> the CPU port on the switch (port@0)?
-
-Is this a question? It is under port@0, the port with the 'ethernet'
-property i.e. the CPU port, so why should it not?
-
-> Then eth0 can be manually set to a specific speed, but if it doesn't
-> match the fixed-link speed I'd be out of luck? Or should an ip link or
-> ethtool command to eth0 modify the speeds of both sides of the
-> connection? It feels like setting port@0 to the fastest speed and
-> letting it negotiate down to eth0 makes sense...
->=20
-> To ask the same question a different way:
->=20
-> I can currently run "ethtool -s eth0 speed 10 duplex full autoneg on"=20
-> and the link at eth0 drops to 10Mbps. Pinging my desktop jumps from=20
-> about 400us to about 600us when I do that.
-
-If eth0 is also a fixed-link, you should not be able to do that, no.
-But the fact that you are able to do that means it's not a fixed-link,
-you have a pair of PHYs that freely auto-negotiate the speed between the
-BeagleBone and the switch.
-
->=20
-> Should I not be able to do that? It should be fixed at 100Mbps without
-> autoneg, end of story? Because in the current configuration it feels
-> like the fixed-link settings are more a suggestion than a rule...
->=20
-
-It should describe the hardware configuration, of course. It is
-incorrect to describe one side of a copper PHY connection as fixed-link
-and the other as having a phy-handle, and it sounds like this is what
-you're doing. We need to see the device tree binding for eth0, and
-maybe a picture of your setup if that is possible. How do you connect
-the switch board to the BeagleBone? Is it an RJ45 cable or some sort of
-PCIe-style connector with fingers for an SGMII SERDES lane, in which the
-board is plugged?
-
-The device tree says SGMII, the behavior says RJ45.
+--=20
+With Best Regards,
+Andy Shevchenko
