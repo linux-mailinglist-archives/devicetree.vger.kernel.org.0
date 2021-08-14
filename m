@@ -2,83 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5D603EC379
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 17:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ECF13EC385
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 17:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238660AbhHNPXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Aug 2021 11:23:33 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50010 "EHLO vps0.lunn.ch"
+        id S238676AbhHNP1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Aug 2021 11:27:35 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50024 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238633AbhHNPXc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Aug 2021 11:23:32 -0400
+        id S238554AbhHNP1f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Aug 2021 11:27:35 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
         References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
         Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=+xcyqJGzVSzEHEA1fuUegCx0faWqscCzNFFs988EPSQ=; b=JeEF3Gbl/zVxAi7G0NZONVh8rX
-        x+bAcdPs1O2cIuLTVlZD3zJEyxsVB6/P0rf/9SMH9fEEfxzVa03u8DCRhoICnb5iIRNx88j/mqXVl
-        oOJj531k7PO9kEIwpOqG53+8OJIxHuzPlXTBgIsxBmH/RGvk4uw0x6pO1sIkTFhuGQKU=;
+        bh=k5oaY0yxV1bCHw1gaOjIPXieerYTHQ1q9Of4rT8QusE=; b=ZptVl3mdz5xew2/cEvmLXeaPEx
+        kfWsMX17M/uIERuvvQsegMfyaHuAX+EZ0mziXAYD6MRw/qUSF8wXGeHQfxqFrdwsOxsuBRizEhpky
+        n27x1Z+yZTYummSjmDQhYN0vbxL9ccLr1+BQa7sGLKWPIJaRaI0VJuxGiCR0Z4OWZYio=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1mEvUr-0004vU-Fz; Sat, 14 Aug 2021 17:22:53 +0200
-Date:   Sat, 14 Aug 2021 17:22:53 +0200
+        id 1mEvYl-0004x1-9S; Sat, 14 Aug 2021 17:26:55 +0200
+Date:   Sat, 14 Aug 2021 17:26:55 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] of: property: fw_devlink: Add support for
- "phy-handle" property
-Message-ID: <YRffzVgP2eBw7HRz@lunn.ch>
-References: <20210814023132.2729731-1-saravanak@google.com>
- <20210814023132.2729731-3-saravanak@google.com>
+To:     Tao Ren <rentao.bupt@gmail.com>
+Cc:     Joel Stanley <joel@jms.id.au>, Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Tao Ren <taoren@fb.com>
+Subject: Re: [PATCH v2 4/6] ARM: dts: aspeed: Add Facebook Cloudripper
+ (AST2600) BMC
+Message-ID: <YRfgv5OknMluW7jj@lunn.ch>
+References: <20210805222818.8391-1-rentao.bupt@gmail.com>
+ <20210805222818.8391-5-rentao.bupt@gmail.com>
+ <CACPK8XcV5On2D4D+SXnfw1M0owwfCL4Su19jOEA7yWpq+T3jLw@mail.gmail.com>
+ <20210813034016.GA21895@taoren-ubuntu-R90MNF91>
+ <YRaFpq1LvRzMYr/A@lunn.ch>
+ <20210814052228.GA1298@taoren-ubuntu-R90MNF91>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210814023132.2729731-3-saravanak@google.com>
+In-Reply-To: <20210814052228.GA1298@taoren-ubuntu-R90MNF91>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana
-
-> Hi Andrew,
+> Thanks for jumping in. We are using BCM5389 and the MDIO bus is used to
+> access BCM5389 MDC/MDIO interface in Pseudo-PHY mode.
 > 
+> I didn't know drivers/net/dsa, but let me check out the drivers and see
+> if it works in the Cloudripper environment.
 
-> Also there
-> are so many phy related properties that my head is spinning. Is there a
-> "phy" property (which is different from "phys") that treated exactly as
-> "phy-handle"?
+The b53 driver knows about this switch, so please make use of that
+driver. See Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+for how you describe it in DT.
 
-Sorry, i don't understand your question.
-
-> +	/*
-> +	 * Device tree nodes pointed to by phy-handle never have struct devices
-> +	 * created for them even if they have a "compatible" property. So
-> +	 * return the parent node pointer.
-> +	 */
-
-We have a classic bus with devices on it. The bus master is registers
-with linux using one of the mdiobus_register() calls. That then
-enumerates the bus, looking at the 32 possible address on the bus,
-using mdiobus_scan. It then gets a little complex, due to
-history.
-
-Originally, the only thing you could have on an MDIO bus was a
-PHY. But devices on MDIO busses are more generic, and Linux gained
-support for Ethernet switches on an MDIO bus, and there are a few
-other sort device. So to keep the PHY API untouched, but to add these
-extra devices, we added the generic struct mdio_device which
-represents any sort of device on an MDIO bus. This has a struct device
-embedded in it.
-
-When we scan the bus and find a PHY, a struct phy_device is created,
-which has an embedded struct mdio_device. The struct device in that is
-then registered with the driver core.
-
-So a phy-handle does point to a device, but you need to do an object
-orientated style look at the base class to find it.
-
-	   Andrew
+    Andrew
