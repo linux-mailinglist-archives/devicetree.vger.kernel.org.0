@@ -2,105 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A333EC15C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 10:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B19C3EC189
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 11:11:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237144AbhHNISm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Aug 2021 04:18:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237299AbhHNISm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Aug 2021 04:18:42 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 249E3C06175F;
-        Sat, 14 Aug 2021 01:18:14 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id n13-20020a17090a4e0d00b0017946980d8dso5268093pjh.5;
-        Sat, 14 Aug 2021 01:18:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AlwkvMA5TKL93cZfm6M/CQUNPE2+oYy9JxRaVYzYyAg=;
-        b=FD/+MbNAvOYFb7/jptc9n+3gwgnj1+DzxQhYXtrzYQN8kw5RT7yCjsxTtRMyvvRcgv
-         ZnIXGVm1BU8koYL79u5bKmkaQJLvjSFD5L+WkR+t0qkMoG0GBgTqVDPylbnJPAFlAxEt
-         DkydKSy3pnTCwRASf08koslXni/OQsjgxgekQ2HC/NFcHZleoRl1YOjOORupFF5Nv9n2
-         Rb1082VcCqad+Ha3MAVL6E2Kx6FIximf/E2v+UGhXU4QTYAvJ+DZgz9MYsEqoLpucDGN
-         jNX0MN8FvpEgCqsVmUpm3WD813ZoNIc5fyoHhOUActmErmMMFBEO+VF/l2MUYCHx12E6
-         LGYw==
+        id S237599AbhHNJLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Aug 2021 05:11:44 -0400
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:33460 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237547AbhHNJLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Aug 2021 05:11:43 -0400
+Received: by mail-ua1-f41.google.com with SMTP id x21so5466956uau.0;
+        Sat, 14 Aug 2021 02:11:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AlwkvMA5TKL93cZfm6M/CQUNPE2+oYy9JxRaVYzYyAg=;
-        b=If01E0o6JPWxPVo9FzxNHAs6C1u/FTLuX7FeJS0qAsVukUQJU+pb1++lQ2GvcLSvgz
-         +3NvmAtbUSzgO4f8faX2BRfPCVXxVKswNHy0Sdm9gHw3fkhUtJracm6Vt0ySVO5YoGYN
-         pdGBA8LVpl9q/IMZX9mjKobrGHUznQsEeUDf/C74t/kRpR9dncmKCTCqL5Cg4ieOhw/l
-         eh0yDYBlvfJ+0o96zHtoWkjF+DlZCsuGzBmeGOOIqyLANn5UlC5m+oxD1dqy8cT7lXwq
-         WAVEA9UzOMmzZWxBoKCL+ANa3e6mGgx+UhV7n/LiAkx13TlQoWYxAjpti94KlXaU20R0
-         NVxw==
-X-Gm-Message-State: AOAM530senXLns3p02GI5gqgb9lmmGbVI+8umrwnH6go8ZV0/k/f8Bwd
-        wV/5jLsUcFQr2Iv2WzA5bYk=
-X-Google-Smtp-Source: ABdhPJwR4yOSrSk9d8Py+pklZ0xWbsDncc7HtDYpqbAD6il/Uya8CTwDyUwHEzYUnP50bUkEWtIFcA==
-X-Received: by 2002:a63:303:: with SMTP id 3mr5889661pgd.439.1628929093503;
-        Sat, 14 Aug 2021 01:18:13 -0700 (PDT)
-Received: from mugil-Nitro-AN515-52 ([2409:4072:608b:6e91:963e:30ac:c1d8:e28])
-        by smtp.gmail.com with ESMTPSA id y62sm4655325pfg.88.2021.08.14.01.18.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Aug 2021 01:18:12 -0700 (PDT)
-Date:   Sat, 14 Aug 2021 13:48:02 +0530
-From:   Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-        Darius <Darius.Berghe@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] iio: potentiometer: Add driver support for AD5110
-Message-ID: <20210814081802.GA11128@mugil-Nitro-AN515-52>
-References: <20210809075745.160042-1-dmugil2000@gmail.com>
- <20210809075745.160042-3-dmugil2000@gmail.com>
- <CAHp75Ve=D1d5wFZgNseP=wGpteEkZHnmAi7j9ykKC+u_NrR5xw@mail.gmail.com>
- <013bcb79-c496-44d8-2e93-57eb57834ee0@metafoo.de>
- <CAHp75VcvA=dDOJXSFzgz69JVgbez4Lz27EGOEF7JWUehyrwQrA@mail.gmail.com>
- <20210812165327.GA4542@mugil-Nitro-AN515-52>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nS2GBUaZJqdSBV6ll8beKF35e+BRExfjUT6JLRFqePs=;
+        b=tBNuI9SKgsQi3mM0ZP8AzpH45iVU7C4OlTWaTIZnBYPGn2K+zvKPQ/C9awxCxGUvs7
+         pt9pRRWd2pC6SWncHgWFISiI/wHb+PRE0i8lHvqeiifx+JhjSBQ44bHBv1TBEcIvXpw4
+         fCR8er9C/AivdgtoJqAoE85t2JQ/Z21y5YWk0FFs6eZ543sHCY0goyW/RGU/J6oRzB8E
+         sR861t0CfDjqxU+5B7GF7aq1d6PxzyAx/U3905r18o32AabsgB9Y0vWB/WP/iwihfNmH
+         tjQ+TIFc/TXp37iFzVybJVjYIcZAzIYkogp7xnL6XYMYLAro+3RQLu4HnvLTqZmsqsad
+         IVRA==
+X-Gm-Message-State: AOAM530hMV+I/+ZAQAPrAMk3KSED+ZDqCyo4gtUWNvaVXW0sIINUZiIv
+        Gt40yuYO5KTLyu6Z4f3sewwKo6QyD5U4V1F+VkA=
+X-Google-Smtp-Source: ABdhPJwDZ92lrh+CYuLTZSHlHS4ZHH7Rm08fcznOaAAqNrX88dRPlmVucjpDawgMaoLwq6WOgO2xuYqn0lpv41Vl01E=
+X-Received: by 2002:ab0:6887:: with SMTP id t7mr4505712uar.114.1628932275340;
+ Sat, 14 Aug 2021 02:11:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210812165327.GA4542@mugil-Nitro-AN515-52>
+References: <20210806102930.3024-1-biju.das.jz@bp.renesas.com>
+ <20210806102930.3024-3-biju.das.jz@bp.renesas.com> <CAMuHMdVnU4HSXCr08WEiVmYCNoRBcdZGOfS7mwmS_euo2RZaEA@mail.gmail.com>
+ <YRbSHw9X51Nif/Sd@robh.at.kernel.org>
+In-Reply-To: <YRbSHw9X51Nif/Sd@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 14 Aug 2021 11:11:03 +0200
+Message-ID: <CAMuHMdXipSxTTEtiAYrZNXz6POzB9C_qaRUv+KXYtUS+DeGzug@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] ASoC: dt-bindings: sound: renesas,rz-ssi: Update
+ slave dma channel configuration parameters
+To:     Rob Herring <robh@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 12, 2021 at 10:23:41PM +0530, Mugilraj Dhavachelvan wrote:
-> On Wed, Aug 11, 2021 at 07:06:43PM +0300, Andy Shevchenko wrote:
-> > On Wed, Aug 11, 2021 at 11:15 AM Lars-Peter Clausen <lars@metafoo.de> wrote:
-> > > On 8/10/21 2:49 PM, Andy Shevchenko wrote:
-> > > >
-> > > >> +       data->tol = data->cfg->kohms * (val & GENMASK(6, 0)) * 10 / 8;
-> > > >> +       if (!(val & BIT(7)))
-> > > >> +               data->tol *= -1;
-> > > > Shouldn't you simple use corresponding sign_extend*()?
-> > > The data is encoded a sign-magnitude. sign_extend() works for two's
-> > > complement numbers.
-> > 
-> > Good catch!
-> > I'm wondering if it's a good idea to have a sign_magnitude_to_int()
-> > helper or so?
+Hi Rob,
+
+On Fri, Aug 13, 2021 at 10:12 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Aug 09, 2021 at 02:57:33PM +0200, Geert Uytterhoeven wrote:
+> > On Fri, Aug 6, 2021 at 12:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > The DMAC driver on RZ/G2L expects the slave channel configuration
+> > > to be passed in dmas property.
+> > > This patch updates the example node to include the encoded slave
+> > > channel configuration.
+> > >
+> > > Fixes: 5df6dfbb6de815ba3a("ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support")
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > >
-> So, What should I do now?
-> 
-Will send v3 with other changes and add this change in v4. Hope it's
-okay.
-> > -- 
-> > With Best Regards,
-> > Andy Shevchenko
+> > > v3->v4:
+> > >  * Updated bindings as the DMAC driver on RZ/G2L expects the
+> > >    slave channel configuration to be passed in dmas property.
+> >
+> > Thanks for the update!
+> >
+> > > --- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+> > > +++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+> > > @@ -93,8 +93,8 @@ examples:
+> > >              clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
+> > >              power-domains = <&cpg>;
+> > >              resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
+> > > -            dmas = <&dmac 0x255>,
+> > > -                   <&dmac 0x256>;
+> > > +            dmas = <&dmac 0x2655>,
+> > > +                   <&dmac 0x2656>;
+> > >              dma-names = "tx", "rx";
+> > >              #sound-dai-cells = <0>;
+> > >      };
+> >
+> > I think it would be good to describe the expected format in the description
+> > for the dmas property, so the DTS writer knows what the numerical
+> > values in the example really mean.
+>
+> Yes, but that's a property of the DMA controller binding, not this one.
+> It could vary from chip to chip.
+
+Right, unlike the other Renesas SoCs, RZ/G2L uses the normal DMAC for
+audio, not an audio-specific one.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
