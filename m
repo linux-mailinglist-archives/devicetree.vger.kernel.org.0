@@ -2,124 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 734163EC214
-	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 12:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E8E3EC226
+	for <lists+devicetree@lfdr.de>; Sat, 14 Aug 2021 12:55:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237880AbhHNKqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Aug 2021 06:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55698 "EHLO
+        id S229974AbhHNK4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Aug 2021 06:56:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237818AbhHNKqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Aug 2021 06:46:34 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D9BC061764
-        for <devicetree@vger.kernel.org>; Sat, 14 Aug 2021 03:46:05 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id w21-20020a7bc1150000b02902e69ba66ce6so8497975wmi.1
-        for <devicetree@vger.kernel.org>; Sat, 14 Aug 2021 03:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GifoOqx6SBFwu3FmttmT9/vPFr3vQ27vYXItoPzfJbw=;
-        b=iGKh7WrVF4MYNXHXmMuE4HGs2rA+BEqWJdnXx5ZB4V8/VbbgOA+EVrDUxNhEIqD3ou
-         ornGW1iaYUVFiU29FPznnm5EeccA8yzASP2GO1Og95jGLgHz+Fux3CiVQh/3ppoU4wCj
-         e6TXhrqpVniBVAAQhPCmNpBv327gwXRClqIw+d4GbEJubjreuydBJ0Ez2wAVAnNGlQGI
-         s0gW6WB6TEi5rFjmilKmtFyCj3STAbLcnKrZiCet9tNZLODUSkClFeSs1EcXdfvmcNOn
-         KhQSrlr4wcrwm3hvLDkDAjrL16ZM2AyYi85tdEAV/Z0lRBefuHBYKa+aSzTVOFm3/Vzo
-         ozmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GifoOqx6SBFwu3FmttmT9/vPFr3vQ27vYXItoPzfJbw=;
-        b=lvRXHsKOs6XQoriHMW76SGJT+906v1B42BYe4wUBqr2K68hgBO9jEcQy7VQM47cPcl
-         1/uay7s1hzq0TpNd01j/Du/6iCuAjLjmldXRJ09f5Y39Vb5HV1By5eG24yPbufTol+pH
-         J52odSIZW+QwZozKk4N5Y/ObvYwRF2NkI99d94YAEX1/I2NUlTzjz+VMcqh5tRbFJzTK
-         mgUv0i1u/YLwuJz/jcwmGS8Fm4CYBThaiRqYQ3iHDPtmtPCWgLM7Hr7F8Nk4syGqwOer
-         vFptWiTyvdFZY+ei9T0WKrfV2A321Gtyq65Mfx0I6jz6pJocgjC1Z+XIqhR2AcCy1ln8
-         RPuQ==
-X-Gm-Message-State: AOAM530kQb9dTBtyDZpmfXZ926ggtKpBe8v397J1PBWe/baGzDdH8uvI
-        oX+81Ey107tQcBJq/Z+H4weXbw==
-X-Google-Smtp-Source: ABdhPJwD51MeaLVeBz/WK26aIMBhej+CHSLIoF//Z0NKAcKPUzPRVFdORiIYFrqgmWAsn3DfbaNlBQ==
-X-Received: by 2002:a05:600c:20f:: with SMTP id 15mr6639569wmi.176.1628937964110;
-        Sat, 14 Aug 2021 03:46:04 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5df3:d0eb:3945:640d? ([2a01:e34:ed2f:f020:5df3:d0eb:3945:640d])
-        by smtp.googlemail.com with ESMTPSA id f2sm4210847wru.31.2021.08.14.03.46.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Aug 2021 03:46:03 -0700 (PDT)
-Subject: Re: [PATCH v8 1/5] cpuidle: qcom_spm: Detach state machine from main
- SPM handling
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>, rjw@rjwysocki.net
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
-        jami.kettunen@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        stephan@gerhold.net, robh@kernel.org, bartosz.dudziak@snejp.pl
-References: <20210729155609.608159-1-angelogioacchino.delregno@somainline.org>
- <20210729155609.608159-2-angelogioacchino.delregno@somainline.org>
- <YQsbBQAdGhX7eO+5@builder.lan>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <f688b8b4-4fdb-4497-22db-920bd67d255e@linaro.org>
-Date:   Sat, 14 Aug 2021 12:46:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S229919AbhHNK4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Aug 2021 06:56:18 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A8A8C061764;
+        Sat, 14 Aug 2021 03:55:49 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 503971F4479D
+Received: by earth.universe (Postfix, from userid 1000)
+        id C192F3C0C9B; Sat, 14 Aug 2021 12:55:44 +0200 (CEST)
+Date:   Sat, 14 Aug 2021 12:55:44 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2 v2] dt-bindings: power: Extend battery bindings with
+ type
+Message-ID: <20210814105544.subnntwn377fyp2f@earth.universe>
+References: <20210805085828.3451909-1-linus.walleij@linaro.org>
+ <YRa5UnBcmW1KBIEd@robh.at.kernel.org>
+ <CACRpkdbcVJbMnCQ3P1nPmFUsJSw2jgpr2BEzz6GBUQLhBVuO_A@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YQsbBQAdGhX7eO+5@builder.lan>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sdlnqgaczxryuhlc"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbcVJbMnCQ3P1nPmFUsJSw2jgpr2BEzz6GBUQLhBVuO_A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/08/2021 00:56, Bjorn Andersson wrote:
-> On Thu 29 Jul 10:56 CDT 2021, AngeloGioacchino Del Regno wrote:
-> 
->> In commit a871be6b8eee ("cpuidle: Convert Qualcomm SPM driver to a generic
->> CPUidle driver") the SPM driver has been converted to a
->> generic CPUidle driver: that was mainly made to simplify the
->> driver and that was a great accomplishment;
->> Though, at that time, this driver was only applicable to ARM 32-bit SoCs,
->> lacking logic about the handling of newer generation SAW.
->>
->> In preparation for the enablement of SPM features on AArch64/ARM64,
->> split the cpuidle-qcom-spm driver in two: the CPUIdle related
->> state machine (currently used only on ARM SoCs) stays there, while
->> the SPM communication handling lands back in soc/qcom/spm.c and
->> also making sure to not discard the simplifications that were
->> introduced in the aforementioned commit.
->>
->> Since now the "two drivers" are split, the SCM dependency in the
->> main SPM handling is gone and for this reason it was also possible
->> to move the SPM initialization early: this will also make sure that
->> whenever the SAW CPUIdle driver is getting initialized, the SPM
->> driver will be ready to do the job.
->>
->> Please note that the anticipation of the SPM initialization was
->> also done to optimize the boot times on platforms that have their
->> CPU/L2 idle states managed by other means (such as PSCI), while
->> needing SAW initialization for other purposes, like AVS control.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
->> Tested-by: Stephan Gerhold <stephan@gerhold.net>
-> 
-> Rafael, Daniel, any objections to me picking this patch through the qcom
-> tree?
-> 
 
-Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+--sdlnqgaczxryuhlc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
+On Fri, Aug 13, 2021 at 11:46:52PM +0200, Linus Walleij wrote:
+> On Fri, Aug 13, 2021 at 8:26 PM Rob Herring <robh@kernel.org> wrote:
+> > On Thu, Aug 05, 2021 at 10:58:27AM +0200, Linus Walleij wrote:
+> > > This adds a battery-type property and bindings for the different
+> >
+> > s/battery-type/"device-chemistry"/
+> >
+> > Otherwise,
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>=20
+> Thanks Rob, Sebastian tell me if you can fix this when applying
+> or if you want me to respin the patch.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+No, that's fine. I queued both patches with type changed to
+chemistry in the commit messages.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+-- Sebastian
+
+--sdlnqgaczxryuhlc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmEXoSkACgkQ2O7X88g7
++prhuBAApTKrYaOOk4VHbDIBsQZjGyuCOPRtWBC32CFSy+rrhpooaFzkEFxc9LY1
+hcXeQgPUotGhfFg2FJUjT7bhrZ/777fV+Lg/Y4dkV2mMvIyndbhwnXJtEKTDg30p
+8dRZgjNns83/3YiHbRlW7EPQ60wqxdbLVFFmjK2bxYpdXe3rufn3CyEBVBoRxkCR
+A9FHWBuMwUZBABcmUHdCpMeiFynXqfIK5cJq0MUfdPP24aA7NS7d80kz0u2AhmA6
+zlV46h/7cNuKJ7hXSpxZ9TShVs6y7Jovz/m+U59dsMj4TrODwFkn+DDHv2DKaB6u
+M6lB5wwVj8GAvTlCacFliNmh7Zjthc3hJ/a3nqR/NVA7MoWJsVqpZZa6rF09UqO2
+g5kprV5FwhQfnKQVOG8kz5orMgzkYVKkr0tEd+AbFFz7WsYXVOmexq3+4jfHqxKt
+aaN0xOz9XmYZlQ17G7oHGU/jfB77/qPHMNN6/huZolRQxHQd9Uy7TX2pd6I6pA9o
+SOKApc8f1phJlSZi2TJSRKGAyI0RQnjaNbk8RdSdK3Q6ZDtsdZljWUNR0otvjx0U
+Hz6PF0HzxazdQROemrX7t8hs5PYVF7wKc50WsxkF7KzBMss4UsHGKheO4LwGmEGI
+odqPVrrsJc4QF1ljTWnsnmDhgNg/hnF0jtn5RxKKctNTKC63Av4=
+=49vp
+-----END PGP SIGNATURE-----
+
+--sdlnqgaczxryuhlc--
