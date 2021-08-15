@@ -2,222 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E6AD3ECA37
-	for <lists+devicetree@lfdr.de>; Sun, 15 Aug 2021 18:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99B8B3ECA3F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Aug 2021 18:36:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229714AbhHOQa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Aug 2021 12:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbhHOQa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Aug 2021 12:30:26 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF4B3C061764;
-        Sun, 15 Aug 2021 09:29:55 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id k5so1931457lfu.4;
-        Sun, 15 Aug 2021 09:29:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FxVB4m6WpVX5TsdQT+ROYF840DCslqSPE+lxYEypnvA=;
-        b=L1HgO1qIyjFUeTEnEesC6aEKIjsox4z/KF2cADU+27r4ZScGmXnB7s2vLZ+vT6FnkT
-         qMBVvnxvqKVQQgwPfbZNSuPlJLMd2vo2y+HzZYqiMCool4uMyavIg2rChIXwEm/rcjxP
-         849jAtVsI9+VsJ4LmBOMexpBeOrgf167OwdfC5zqnTEVW2EplBpNIlclyOjHG/OD4bby
-         VKtGzTtAkKi0o6u/m8S3A+Lrg0vvxFsBWDBn4AnXSo9X2iB0oIF0y6salnXX/eaiNwKh
-         VCPYj8klzRsKIZXSQ+Mmp1ctGQuTQCsIXrZvSaH4lL0OzRUm4PdV/Lyeb2RMxBAgjgoF
-         BhdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FxVB4m6WpVX5TsdQT+ROYF840DCslqSPE+lxYEypnvA=;
-        b=W65+DefoxK27/eAukABas7LHbwT4gbw4DGjheZqP0jcJphwVUzz9Dt9/e14uQUhBqy
-         T8O6J+nZN0vuQxqOfxPxb2X/f+qSJouLmV9U8IL5RXYndgo3T2rrXBwEhhKYjojM+u9I
-         0H+uox0QS4WyjLB3S4CoicqYjM5min20b3Vk8XbUc2LpYp3esmLuH26sd92ecWMgwBxS
-         xpnwaKPBu7TZES2E+zSlHWhnRY+MZ35MLuvV6tTX+uRu5vhprrFuyGYq1Fo0S9ZRd2JQ
-         8LSjuiG/FyURG3Cykpu1DQDgs0foHZRndcAoziarG3S6jJDAOes0QwKbLWGsY5veWF5+
-         GeQA==
-X-Gm-Message-State: AOAM530UE1ZhACK6Xto6/rtwdwvVm8um9O0MOrMFA1I5Wf//bG5Cg2bG
-        1qacjjp97wSPDORMGR5IZq8Jx7YB9AMVxamHBMM=
-X-Google-Smtp-Source: ABdhPJz0cJfsop34LQLGFN3gpynNv2/i0Lfb89Yoqt5OyDNs167qlGQdTqCeu9CC4Dj9QdeNlh+lcxGU1s7lo2u84R8=
-X-Received: by 2002:ac2:5d49:: with SMTP id w9mr8714624lfd.450.1629044993830;
- Sun, 15 Aug 2021 09:29:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210811073027.124619-1-puranjay12@gmail.com> <20210811073027.124619-3-puranjay12@gmail.com>
- <20210815164654.3c51a8e3@jic23-huawei>
-In-Reply-To: <20210815164654.3c51a8e3@jic23-huawei>
-From:   Puranjay Mohan <puranjay12@gmail.com>
-Date:   Sun, 15 Aug 2021 21:59:42 +0530
-Message-ID: <CANk7y0gY7HHdfwPYq3KFSTbaZM+sT4XSxv2yDvx2_io=9hLX0A@mail.gmail.com>
-Subject: Re: [PATCH v12 2/2] iio: accel: Add driver support for ADXL355
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-        "Berghe, Darius" <Darius.Berghe@analog.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S229574AbhHOQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Aug 2021 12:36:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41278 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229453AbhHOQgf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Aug 2021 12:36:35 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6EE1A611C4;
+        Sun, 15 Aug 2021 16:36:05 +0000 (UTC)
+Received: from 109-170-232-56.xdsl.murphx.net ([109.170.232.56] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mFJ7D-0058KJ-CF; Sun, 15 Aug 2021 17:36:03 +0100
+Date:   Sun, 15 Aug 2021 17:36:02 +0100
+Message-ID: <8735ra1x8t.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
+In-Reply-To: <CAL_JsqLvqWiuib9s4PzX8pOQYJQ0eR7Gxz==J849eVJ5MDq4SA@mail.gmail.com>
+References: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
+        <20210726083204.93196-2-mark.kettenis@xs4all.nl>
+        <20210726231848.GA1025245@robh.at.kernel.org>
+        <87sfzt1pg9.wl-maz@kernel.org>
+        <CAL_JsqLvqWiuib9s4PzX8pOQYJQ0eR7Gxz==J849eVJ5MDq4SA@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 109.170.232.56
+X-SA-Exim-Rcpt-To: robh@kernel.org, mark.kettenis@xs4all.nl, devicetree@vger.kernel.org, robin.murphy@arm.com, sven@svenpeter.dev, kettenis@openbsd.org, marcan@marcan.st, bhelgaas@google.com, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 15, 2021 at 9:14 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Wed, 11 Aug 2021 13:00:27 +0530
-> Puranjay Mohan <puranjay12@gmail.com> wrote:
->
-> > ADXL355 is a 3-axis MEMS Accelerometer. It offers low noise density,
-> > low 0g offset drift, low power with selectable measurement ranges.
-> > It also features programmable high-pass and low-pass filters.
+Hi Rob,
+
+Apologies for the delay, I somehow misplaced this email...
+
+On Mon, 02 Aug 2021 17:10:39 +0100,
+Rob Herring <robh@kernel.org> wrote:
+> 
+> On Sun, Aug 1, 2021 at 3:31 AM Marc Zyngier <maz@kernel.org> wrote:
 > >
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl354_adxl355.pdf
-> > Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
-> Hi Puranjay,
->
-> I took one last look at this so I can apply it without looking again assuming
-> the dt review is fine.  Noticed one issue with error handling, but I can tidy
-> that up whilst applying assuming you aren't doing a v13 for some other reason.
-> If you are please incorporate these changes as well.
->
+> > On Tue, 27 Jul 2021 00:18:48 +0100,
+> > Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Mon, Jul 26, 2021 at 10:32:00AM +0200, Mark Kettenis wrote:
+> > > > From: Mark Kettenis <kettenis@openbsd.org>
+> > > >
+> > > > The Apple PCIe host controller is a PCIe host controller with
+> > > > multiple root ports present in Apple ARM SoC platforms, including
+> > > > various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > > >
+> > > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > > > ---
+> > > >  .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
+> > > >  MAINTAINERS                                   |   1 +
+> > > >  2 files changed, 167 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..bfcbdee79c64
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > > @@ -0,0 +1,166 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Apple PCIe host controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Mark Kettenis <kettenis@openbsd.org>
+> > > > +
+> > > > +description: |
+> > > > +  The Apple PCIe host controller is a PCIe host controller with
+> > > > +  multiple root ports present in Apple ARM SoC platforms, including
+> > > > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > > > +  The controller incorporates Synopsys DesigWare PCIe logic to
+> > > > +  implements its root ports.  But the ATU found on most DesignWare
+> > > > +  PCIe host bridges is absent.
+> > >
+> > > blank line
+> > >
+> > > > +  All root ports share a single ECAM space, but separate GPIOs are
+> > > > +  used to take the PCI devices on those ports out of reset.  Therefore
+> > > > +  the standard "reset-gpio" and "max-link-speed" properties appear on
+> > >
+> > > reset-gpios
+> > >
+> > > > +  the child nodes that represent the PCI bridges that correspond to
+> > > > +  the individual root ports.
+> > >
+> > > blank line
+> > >
+> > > > +  MSIs are handled by the PCIe controller and translated into regular
+> > > > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
+> > > > +  distributed over the root ports as the OS sees fit by programming
+> > > > +  the PCIe controller's port registers.
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    items:
+> > > > +      - const: apple,t8103-pcie
+> > > > +      - const: apple,pcie
+> > > > +
+> > > > +  reg:
+> > > > +    minItems: 3
+> > > > +    maxItems: 5
+> > > > +
+> > > > +  reg-names:
+> > > > +    minItems: 3
+> > > > +    maxItems: 5
+> > > > +    items:
+> > > > +      - const: config
+> > > > +      - const: rc
+> > > > +      - const: port0
+> > > > +      - const: port1
+> > > > +      - const: port2
+> > > > +
+> > > > +  ranges:
+> > > > +    minItems: 2
+> > > > +    maxItems: 2
+> > > > +
+> > > > +  interrupts:
+> > > > +    description:
+> > > > +      Interrupt specifiers, one for each root port.
+> > > > +    minItems: 1
+> > > > +    maxItems: 3
+> > > > +
+> > > > +  msi-controller: true
+> > > > +  msi-parent: true
+> > > > +
+> > > > +  msi-ranges:
+> > > > +    description:
+> > > > +      A list of pairs <intid span>, where "intid" is the first
+> > > > +      interrupt number that can be used as an MSI, and "span" the size
+> > > > +      of that range.
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > > +    items:
+> > > > +      minItems: 2
+> > > > +      maxItems: 2
+> > >
+> > > I still have issues I raised on v1 with this property. It's genericish
+> > > looking, but not generic. 'intid' as a single cell can't specify any
+> > > parent interrupt such as a GIC which uses 3 cells. You could put in all
+> > > the cells, but you'd still be assuming which cell you can increment.
+> >
+> > The GIC bindings already use similar abstractions, see what we do for
+> > both GICv2m and GICv3 MBIs. Other MSI controllers use similar
+> > properties (alpine and loongson, for example).
+> 
+> That's the problem. Everyone making up their own crap.
 
-Hi Jonathan, It would be great if you could make these changes while
-applying. I am not doing a v13 as all comments have been covered
-earlier.
-I shall be thankful to you.
+And that crap gets approved:
 
-> Thanks,
->
-> Jonathan
->
->
-> ...
->
-> > +
-> > +static int adxl355_set_odr(struct adxl355_data *data,
-> > +                        enum adxl355_odr odr)
-> > +{
-> > +     int ret = 0;
-> > +
-> > +     mutex_lock(&data->lock);
-> > +
-> > +     if (data->odr == odr)
-> > +             goto out_unlock;
-> > +
-> > +     ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-> > +     if (ret < 0)
-> > +             goto out_unlock;
-> > +
-> > +     ret = regmap_update_bits(data->regmap, ADXL355_FILTER_REG,
-> > +                              ADXL355_FILTER_ODR_MSK,
-> > +                              FIELD_PREP(ADXL355_FILTER_ODR_MSK, odr));
-> > +     if (ret < 0)
-> > +             goto out_unlock;
-> > +
-> > +     data->odr = odr;
-> > +     adxl355_fill_3db_frequency_table(data);
-> > +
-> > +out_unlock:
-> > +     ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
->
-> As below, we should do this because it risks returning success when a failure
-> actually occured.  Again, unless you are respinning for some other reason I'll
-> add the logic whilst applying.
->
-> > +     mutex_unlock(&data->lock);
-> > +     return ret;
-> > +}
-> > +
-> > +static int adxl355_set_hpf_3db(struct adxl355_data *data,
-> > +                            enum adxl355_hpf_3db hpf)
-> > +{
-> > +     int ret = 0;
-> > +
-> > +     mutex_lock(&data->lock);
-> > +
-> > +     if (data->hpf_3db == hpf)
-> > +             goto unlock;
-> > +
-> > +     ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-> > +     if (ret < 0)
-> > +             goto set_opmode_unlock;
-> > +
-> > +     ret = regmap_update_bits(data->regmap, ADXL355_FILTER_REG,
-> > +                              ADXL355_FILTER_HPF_MSK,
-> > +                              FIELD_PREP(ADXL355_FILTER_HPF_MSK, hpf));
-> > +     if (!ret)
-> > +             data->hpf_3db = hpf;
-> > +
-> > +set_opmode_unlock:
-> > +     ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
->
-> We can't do this as it might potentially eat an error that meant the regmap
-> update didn't occur.  To avoid that a little dance is needed using a second
-> return value and we only set ret = ret2 if ret == 0
->
-> Alternatively we just have a separate error handling path which doesn't set
-> ret for the adxl355_set_op_mode(). I'll probably go with that as it's more
-> code but easier to read.
->
->
->
-> > +unlock:
-> > +     mutex_unlock(&data->lock);
-> > +     return ret;
-> > +}
-> > +
->
-> ...
->
-> > +static int adxl355_write_raw(struct iio_dev *indio_dev,
-> > +                          struct iio_chan_spec const *chan,
-> > +                          int val, int val2, long mask)
-> > +{
-> > +     struct adxl355_data *data = iio_priv(indio_dev);
-> > +     int odr_idx, hpf_idx, calibbias;
-> > +
-> > +     switch (mask) {
-> > +     case IIO_CHAN_INFO_SAMP_FREQ:
-> > +             odr_idx = adxl355_find_match(adxl355_odr_table,
-> > +                                          ARRAY_SIZE(adxl355_odr_table),
-> > +                                          val, val2);
-> > +             if (odr_idx < 0)
-> > +                     return odr_idx;
-> > +
-> > +             return adxl355_set_odr(data, odr_idx);
-> > +     case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-> > +             hpf_idx = adxl355_find_match(data->adxl355_hpf_3db_table,
-> > +                                     ARRAY_SIZE(data->adxl355_hpf_3db_table),
->
-> Mixing different indentation styles isn't very nice for readability.
-> I'll tweak this whilst applying.
->
-> > +                                          val, val2);
-> > +             if (hpf_idx < 0)
-> > +                     return hpf_idx;
-> > +
-> > +             return adxl355_set_hpf_3db(data, hpf_idx);
-> > +     case IIO_CHAN_INFO_CALIBBIAS:
-> > +             calibbias = clamp_t(int, val, S16_MIN, S16_MAX);
-> > +
-> > +             return adxl355_set_calibbias(data, chan->address, calibbias);
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +}
-> ...
+https://lore.kernel.org/lkml/20200512205704.GA10412@bogus/
 
+I'm not trying to be antagonistic here, but it seems that your
+position on this very subject has changed recently.
 
+> > > I think you should just list all these under 'interrupts' using
+> > > interrupt-names to make your life easier:
+> > >
+> > > interrupt-names:
+> > >   items:
+> > >     - const: port0
+> > >     - const: port1
+> > >     - const: port2
+> > >     - const: msi0
+> > >     - const: msi1
+> > >     - const: msi2
+> > >     - const: msi3
+> > >     ...
+> > >
+> > > Yeah, it's kind of verbose, but if the h/w block handles N interrupts,
+> > > you should list N interrupts. The worst case for the above is N entries
+> > > too if not contiguous.
+> >
+> > And that's where I beg to differ, again.
+> >
+> > Specifying interrupts like this gives the false impression that these
+> > interrupts are generated by the device that owns them (the RC). Which
+> > for MSIs is not the case.
+> 
+> It's no different than an interrupt controller node having an
+> interrupts property. The source is downstream and the interrupt
+> controller is combining/translating the interrupts.
+> 
+> The physical interrupt signals are connected to and originating in
+> this block.
+
+Oh, I also object to this, for the same reasons. The only case where
+it makes sense IMHO is when the interrupt controller is a multiplexer.
+
+> That sounds like perfectly 'describing the h/w' to me.
+
+I guess we have a different view of about these things. At the end of
+the day, I don't care enough as long as we can expose a range of
+interrupts one way or another.
+
+> > This is not only verbose, this is
+> > semantically dubious. And what should we do when the number of
+> > possible interrupt is ridiculously large, as it is for the GICv3 ITS?
+> 
+> I don't disagree with the verbose part. But that's not really an issue
+> in this case.
+> 
+> > I wish we had a standard way to express these constraints. Until we
+> > do, I don't think enumerating individual interrupts is a practical
+> > thing to do, nor that it actually represents the topology of the
+> > system.
+> 
+> The only way a standard way will happen is to stop accepting the
+> custom properties.
+> 
+> All the custom properties suffer from knowledge of what the parent
+> interrupt controller is. To fix that, I think we need something like
+> this:
+> 
+> msi-ranges = <intspec base>, <intspec step>, <intspec end>;
+> 
+> 'intspec' is defined by the parent interrupt-controller cells. step is
+> the value to add. And end is what to match on to stop aka the last
+> interrupt in the range. For example, if the GIC is the parent, we'd
+> have something like this:
+> 
+> <GIC_SPI 123 0>, <0 1 0>, <GIC_SPI 124 0>
+> 
+> Does this apply to cases other than MSI? I think so as don't we have
+> the same type of properties with the low power mode shadow interrupt
+> controllers?  So 'interrupt-ranges'?
+
+This would work, though the increment seems a bit over-engineered. You
+also may need this property to accept multiple ranges.
+
+> It looks to me like there's an assumption in the kernel that an MSI
+> controller has a linear range of parent interrupts? Is that correct
+> and something that's guaranteed? That assumption leaks into the
+> existing bindings.
+
+Depends on how the controller works. In general, the range maps to the
+MultiMSI requirements where the message is an offset from the base of
+the interrupt range. So you generally end-up with ranges of at least
+32 contiguous MSIs. Anything under that is sub-par and probably not
+worth supporting.
+
+Of course, the controller may have some mapping facilities, which
+makes things more... interesting.
+
+> It's fine for the kernel to assume that until there's a case that's
+> not linear, but a common binding needs to be able handle a
+> non-linear case.
+
+Fair enough. I can probably work with Mark to upgrade the binding and
+the M1 PCIe code. Could you come up with a more formalised proposal?
+
+Thanks,
+
+	M.
 
 -- 
-Thanks and Regards
-
-Yours Truly,
-
-Puranjay Mohan
+Without deviation from the norm, progress is not possible.
