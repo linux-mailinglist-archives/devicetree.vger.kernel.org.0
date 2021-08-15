@@ -2,519 +2,674 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C7C73ECB0D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Aug 2021 22:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95CA83ECB66
+	for <lists+devicetree@lfdr.de>; Sun, 15 Aug 2021 23:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231271AbhHOU6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Aug 2021 16:58:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48910 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230352AbhHOU6h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Aug 2021 16:58:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 210256137A;
-        Sun, 15 Aug 2021 20:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629061087;
-        bh=701hC0Pot4YsRAa+iaWLWdi0Rx4tcYoDLxbMcFJr9ic=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PRey80e3BTQy0ZrIppsVN7Ao0R8V+DQSAazXxXX3MGEB/YwHxtFnfxL+Jm839E0An
-         z0dU6Di16fBcOjqCwuzSWk8Rk52L52xuSNUrlwFBCB5pnDCNhgxtKjRLiTuc7tQrPL
-         PQMhNfVMJEo+dydFvDF0LNLuX2AYqaHvpYmcIq44wjQP+kUbrM1/4a9qJrciR+e68P
-         lZnEfsoaYUA+TcA0b7OnmcNDMUaEn40OUFdt5wIb95llM54LEinCqZufM+AbI690hT
-         1veVvaRIjrqHfheLW/KAmoiRrmrKZMQgnubmChS+7U3kUln/jVZX/40DmeO9uKaz4t
-         2dmprSNHXpEKA==
-Received: by mail-ej1-f54.google.com with SMTP id u3so28310763ejz.1;
-        Sun, 15 Aug 2021 13:58:07 -0700 (PDT)
-X-Gm-Message-State: AOAM533uNQPzuKhQDUevR8yAjCulTLmVijMeOuSj3wCoOZ6T8QDIB9er
-        xHjyNaIcTrjUz3nKwidysajWOSH+TLi4aRSZqQ==
-X-Google-Smtp-Source: ABdhPJyq0vLK2t57/+XHb6p+i8A1B5VURFVXP0sEPT4szm07T192iP3qXDM4CZMHXJckQx8yaDy/grJa1XkdlAtM64g=
-X-Received: by 2002:a17:906:fa92:: with SMTP id lt18mr12962504ejb.359.1629061085598;
- Sun, 15 Aug 2021 13:58:05 -0700 (PDT)
+        id S233315AbhHOVfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Aug 2021 17:35:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233109AbhHOVfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Aug 2021 17:35:09 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58390C0612A9;
+        Sun, 15 Aug 2021 14:33:53 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id b1so12920703qtx.0;
+        Sun, 15 Aug 2021 14:33:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nc2oCNl3SgD83XJnElnCfknnwHbVSW3lQCTaQK0STF0=;
+        b=m7PN5HOpIvktIsyfDZROCyzxTjEBpel2mVJxKIJ6knVAHTOu+cRQojtsqwYi9Hr2Z3
+         Mh/QjrPEb+2suiLnj14smrL1ZKRCLenyKVmBmQ+ApfXHmBV3LDUmU5wujtKHVtqcVKK5
+         6QijK5SW4g3RUgJV8xx+fJAfsABZR7bnDlRN6ATQ2BawJLna9Hux5ObkSyY5iuTvf8o2
+         oGotEYLLU7Ab5pms0YadMmAm218HSLOAfGEXYaXvgNOAQGOQcj+PXSNSv8G/ZTbpCBEP
+         Y2D9GtEDjx7kYc0wIdvizQJEZy0NcLE8QZzFtE1yPLOqWonnlEqCPs9s5wb77OoYBjqX
+         IUvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nc2oCNl3SgD83XJnElnCfknnwHbVSW3lQCTaQK0STF0=;
+        b=EM3YR0gIbU340RouBQEGHkIjyTyTBGwtyr0uOceQ0OG0CU+3QfpiPcSbCu+fV+Efy1
+         A1/zhrkapnnJO6yMuQPXvFhNRPaM4NUbE3xh4VE7UuERtS9WGHZjz+FLaki5H3bxcN6C
+         3iBC7htSdz07sPvxje+G8KipKK4FmV+Sf90UBCJigE2/bwSaxwnXoPsuQEAQfiZ4//uA
+         tL2YB7zneMKANNaDhe3ltECE54leyBq/PuHZBXvoLKOmiwSS/CSH7cNvL9cdsCezOzZ+
+         in3tt53TJsY245NkkqF/yiQxu3KMlFEh/0ZZJ34jZGxIe/8ohjY98GAVfEsz4+dq6b9i
+         S7EA==
+X-Gm-Message-State: AOAM531+a6HeAcfbmAwz7YPMvAqHnSTtBb3eEsUmPOBNCksoTAfN08S+
+        2uabO+n+oEncEPF7ErnYRRw=
+X-Google-Smtp-Source: ABdhPJxyh2FM680qFiFxGGJowdVhLrAjSuoUtdBGGr+kxMBWBxcgPM3lHjF9q7GfGd2nKjAK42WzWg==
+X-Received: by 2002:ac8:7d4c:: with SMTP id h12mr11344951qtb.257.1629063232322;
+        Sun, 15 Aug 2021 14:33:52 -0700 (PDT)
+Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id u19sm3870988qtx.48.2021.08.15.14.33.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Aug 2021 14:33:51 -0700 (PDT)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, lars@metafoo.de,
+        Michael.Hennerich@analog.com, jic23@kernel.org,
+        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v6 0/5] AD7949 Fixes
+Date:   Sun, 15 Aug 2021 17:33:04 -0400
+Message-Id: <20210815213309.2847711-1-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.32.0.452.g940fe202adcb
 MIME-Version: 1.0
-References: <20210815042525.36878-1-alyssa@rosenzweig.io> <20210815042525.36878-3-alyssa@rosenzweig.io>
-In-Reply-To: <20210815042525.36878-3-alyssa@rosenzweig.io>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 15 Aug 2021 15:57:53 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJfhQr7fa4dD2cOQmo8bdj2fQ+2Hjrh_4Xie-zbr1g7KQ@mail.gmail.com>
-Message-ID: <CAL_JsqJfhQr7fa4dD2cOQmo8bdj2fQ+2Hjrh_4Xie-zbr1g7KQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/2] PCI: apple: Add driver for the Apple M1
-To:     Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc:     PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Stan Skowronek <stan@corellium.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 14, 2021 at 11:34 PM Alyssa Rosenzweig <alyssa@rosenzweig.io> wrote:
->
-> Add a driver for the PCIe controller found in Apple system-on-chips,
-> particularly the Apple M1. This driver exposes the internal bus used for
-> the USB type-A ports, Ethernet, Wi-Fi, and Bluetooth. This patch brings
-> up the USB type-A ports and Ethernet. Bringing up the radios requires
-> interfacing with the System Management Coprocessor via Apple's
-> mailboxes, so that's left to a future patch.
->
-> In this state, the driver consists of two major parts: hardware
-> initialization and MSI handling. The hardware initialization is derived
-> from Mark Kettenis's U-Boot patches which in turn is derived from
-> Corellium's patches for the hardware. The rest of the driver is derived
-> from Marc Zyngier's driver for the hardware.
->
-> Co-developed-by: Stan Skowronek <stan@corellium.com>
-> Signed-off-by: Stan Skowronek <stan@corellium.com>
-> Co-developed-by: Marc Zyngier <maz@kernel.org>
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> ---
->  MAINTAINERS                         |   1 +
->  drivers/pci/controller/Kconfig      |  13 +
->  drivers/pci/controller/Makefile     |   1 +
->  drivers/pci/controller/pcie-apple.c | 466 ++++++++++++++++++++++++++++
->  4 files changed, 481 insertions(+)
->  create mode 100644 drivers/pci/controller/pcie-apple.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d7d2e1d1e2f2..f13f65a844f7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1274,6 +1274,7 @@ M:        Alyssa Rosenzweig <alyssa@rosenzweig.io>
->  L:     linux-pci@vger.kernel.org
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> +F:     drivers/pci/controller/pcie-apple.c
->
->  APPLE SMC DRIVER
->  M:     Henrik Rydberg <rydberg@bitmath.org>
-> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-> index 326f7d13024f..881a6a81f3e2 100644
-> --- a/drivers/pci/controller/Kconfig
-> +++ b/drivers/pci/controller/Kconfig
-> @@ -312,6 +312,19 @@ config PCIE_HISI_ERR
->           Say Y here if you want error handling support
->           for the PCIe controller's errors on HiSilicon HIP SoCs
->
-> +config PCIE_APPLE
-> +       tristate "Apple PCIe controller"
-> +       depends on ARCH_APPLE || COMPILE_TEST
-> +       depends on OF
-> +       depends on PCI_MSI_IRQ_DOMAIN
-> +       depends on GPIOLIB
-> +       help
-> +         Say Y here if you want to enable PCIe controller support on Apple
-> +         system-on-chips, like the Apple M1. This is required for the USB
-> +         type-A ports, Ethernet, Wi-Fi, and Bluetooth.
-> +
-> +         If unsure, say Y if you have an Apple Silicon system.
-> +
->  source "drivers/pci/controller/dwc/Kconfig"
->  source "drivers/pci/controller/mobiveil/Kconfig"
->  source "drivers/pci/controller/cadence/Kconfig"
-> diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
-> index aaf30b3dcc14..f9d40bad932c 100644
-> --- a/drivers/pci/controller/Makefile
-> +++ b/drivers/pci/controller/Makefile
-> @@ -37,6 +37,7 @@ obj-$(CONFIG_VMD) += vmd.o
->  obj-$(CONFIG_PCIE_BRCMSTB) += pcie-brcmstb.o
->  obj-$(CONFIG_PCI_LOONGSON) += pci-loongson.o
->  obj-$(CONFIG_PCIE_HISI_ERR) += pcie-hisi-error.o
-> +obj-$(CONFIG_PCIE_APPLE) += pcie-apple.o
->  # pcie-hisi.o quirks are needed even without CONFIG_PCIE_DW
->  obj-y                          += dwc/
->  obj-y                          += mobiveil/
-> diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
-> new file mode 100644
-> index 000000000000..08088e06460f
-> --- /dev/null
-> +++ b/drivers/pci/controller/pcie-apple.c
-> @@ -0,0 +1,466 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PCIe host bridge driver for Apple system-on-chips.
-> + *
-> + * The HW is ECAM compliant, so once the controller is initialized, the driver
-> + * mostly only needs MSI handling. Initialization requires enabling power and
-> + * clocks, along with a number of register pokes.
-> + *
-> + * Copyright (C) 2021 Google LLC
-> + * Copyright (C) 2021 Corellium LLC
-> + * Copyright (C) 2021 Mark Kettenis <kettenis@openbsd.org>
-> + * Copyright (C) 2021 Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> + * Author: Marc Zyngier <maz@kernel.org>
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/module.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/pci-ecam.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/gpio/consumer.h>
-> +
-> +#define CORE_RC_PHYIF_CTL              0x00024
-> +#define   CORE_RC_PHYIF_CTL_RUN                BIT(0)
-> +#define CORE_RC_PHYIF_STAT             0x00028
-> +#define   CORE_RC_PHYIF_STAT_REFCLK    BIT(4)
-> +#define CORE_RC_CTL                    0x00050
-> +#define   CORE_RC_CTL_RUN              BIT(0)
-> +#define CORE_RC_STAT                   0x00058
-> +#define   CORE_RC_STAT_READY           BIT(0)
-> +#define CORE_FABRIC_STAT               0x04000
-> +#define   CORE_FABRIC_STAT_MASK                0x001F001F
-> +#define CORE_PHY_CTL                   0x80000
-> +#define   CORE_PHY_CTL_CLK0REQ         BIT(0)
-> +#define   CORE_PHY_CTL_CLK1REQ         BIT(1)
-> +#define   CORE_PHY_CTL_CLK0ACK         BIT(2)
-> +#define   CORE_PHY_CTL_CLK1ACK         BIT(3)
-> +#define   CORE_PHY_CTL_RESET           BIT(7)
+While working on another series[1] I ran into issues where my SPI
+controller would fail to handle 14-bit and 16-bit SPI messages. This
+addresses that issue and adds support for selecting a different voltage
+reference source from the devicetree.
 
-I was going to say these should be a phy driver perhaps, but they are
-unused. So for now, just drop them.
+v1 was base on a series[2] that seems to not have made it all the way,
+and was tested on an ad7689.
 
-> +#define CORE_LANE_CFG(port)            (0x84000 + 0x4000 * (port))
-> +#define   CORE_LANE_CFG_REFCLK0REQ     BIT(0)
-> +#define   CORE_LANE_CFG_REFCLK1                BIT(1)
-> +#define   CORE_LANE_CFG_REFCLK0ACK     BIT(2)
-> +#define   CORE_LANE_CFG_REFCLKEN       (BIT(9) | BIT(10))
-> +#define CORE_LANE_CTL(port)            (0x84004 + 0x4000 * (port))
-> +#define   CORE_LANE_CTL_CFGACC         BIT(15)
-> +
-> +#define PORT_LTSSMCTL                  0x00080
-> +#define   PORT_LTSSMCTL_START          BIT(0)
-> +#define PORT_INTSTAT                   0x00100
-> +#define   PORT_INT_TUNNEL_ERR          BIT(31)
-> +#define   PORT_INT_CPL_TIMEOUT         BIT(23)
-> +#define   PORT_INT_RID2SID_MAPERR      BIT(22)
-> +#define   PORT_INT_CPL_ABORT           BIT(21)
-> +#define   PORT_INT_MSI_BAD_DATA                BIT(19)
-> +#define   PORT_INT_MSI_ERR             BIT(18)
-> +#define   PORT_INT_REQADDR_GT32                BIT(17)
-> +#define   PORT_INT_AF_TIMEOUT          BIT(15)
-> +#define   PORT_INT_LINK_DOWN           BIT(14)
-> +#define   PORT_INT_LINK_UP             BIT(12)
-> +#define   PORT_INT_LINK_BWMGMT         BIT(11)
-> +#define   PORT_INT_AER_MASK            (15 << 4)
-> +#define   PORT_INT_PORT_ERR            BIT(4)
-> +#define   PORT_INT_INTx(i)             BIT(i)
-> +#define   PORT_INT_INTxALL             15
-> +#define PORT_INTMSK                    0x00104
-> +#define PORT_INTMSKSET                 0x00108
-> +#define PORT_INTMSKCLR                 0x0010c
-> +#define PORT_MSICFG                    0x00124
-> +#define   PORT_MSICFG_EN               BIT(0)
-> +#define   PORT_MSICFG_L2MSINUM_SHIFT   4
-> +#define PORT_MSIBASE                   0x00128
-> +#define   PORT_MSIBASE_1_SHIFT         16
-> +#define PORT_MSIADDR                   0x00168
-> +#define PORT_LINKSTS                   0x00208
-> +#define   PORT_LINKSTS_UP              BIT(0)
-> +#define   PORT_LINKSTS_BUSY            BIT(2)
-> +#define PORT_LINKCMDSTS                        0x00210
-> +#define PORT_OUTS_NPREQS               0x00284
-> +#define   PORT_OUTS_NPREQS_REQ         BIT(24)
-> +#define   PORT_OUTS_NPREQS_CPL         BIT(16)
-> +#define PORT_RXWR_FIFO                 0x00288
-> +#define   PORT_RXWR_FIFO_HDR           GENMASK(15, 10)
-> +#define   PORT_RXWR_FIFO_DATA          GENMASK(9, 0)
-> +#define PORT_RXRD_FIFO                 0x0028C
-> +#define   PORT_RXRD_FIFO_REQ           GENMASK(6, 0)
-> +#define PORT_OUTS_CPLS                 0x00290
-> +#define   PORT_OUTS_CPLS_SHRD          GENMASK(14, 8)
-> +#define   PORT_OUTS_CPLS_WAIT          GENMASK(6, 0)
-> +#define PORT_APPCLK                    0x00800
-> +#define   PORT_APPCLK_EN               BIT(0)
-> +#define   PORT_APPCLK_CGDIS            BIT(8)
-> +#define PORT_STATUS                    0x00804
-> +#define   PORT_STATUS_READY            BIT(0)
-> +#define PORT_REFCLK                    0x00810
-> +#define   PORT_REFCLK_EN               BIT(0)
-> +#define   PORT_REFCLK_CGDIS            BIT(8)
-> +#define PORT_PERST                     0x00814
-> +#define   PORT_PERST_OFF               BIT(0)
-> +#define PORT_RID2SID(i16)              (0x00828 + 4 * (i16))
-> +#define   PORT_RID2SID_VALID           BIT(31)
-> +#define   PORT_RID2SID_SID_SHIFT       16
-> +#define   PORT_RID2SID_BUS_SHIFT       8
-> +#define   PORT_RID2SID_DEV_SHIFT       3
-> +#define   PORT_RID2SID_FUNC_SHIFT      0
-> +#define PORT_OUTS_PREQS_HDR            0x00980
-> +#define   PORT_OUTS_PREQS_HDR_MASK     GENMASK(9, 0)
-> +#define PORT_OUTS_PREQS_DATA           0x00984
-> +#define   PORT_OUTS_PREQS_DATA_MASK    GENMASK(15, 0)
-> +#define PORT_TUNCTRL                   0x00988
-> +#define   PORT_TUNCTRL_PERST_ON                BIT(0)
-> +#define   PORT_TUNCTRL_PERST_ACK_REQ   BIT(1)
-> +#define PORT_TUNSTAT                   0x0098c
-> +#define   PORT_TUNSTAT_PERST_ON                BIT(0)
-> +#define   PORT_TUNSTAT_PERST_ACK_PEND  BIT(1)
-> +#define PORT_PREFMEM_ENABLE            0x00994
-> +
-> +/* The doorbell address is "well known" */
-> +#define DOORBELL_ADDR                  0xfffff000
-> +
-> +/* The hardware exposes 3 ports. Port 0 (WiFi and Bluetooth) is special, as it
-> + * is power-gated by SMC to facilitate rfkill.
-> + */
-> +enum apple_pcie_port {
-> +       APPLE_PCIE_PORT_RADIO    = 0,
-> +       APPLE_PCIE_PORT_USB      = 1,
-> +       APPLE_PCIE_PORT_ETHERNET = 2,
-> +       APPLE_PCIE_NUM_PORTS
-> +};
-> +
-> +struct apple_pcie {
-> +       u32                     msi_base;
-> +       u32                     nvecs;
-> +       struct mutex            lock;
-> +       struct device           *dev;
-> +       struct irq_domain       *domain;
-> +       unsigned long           *bitmap;
-> +       void __iomem            *rc;
-> +};
-> +
-> +static inline void rmwl(u32 clr, u32 set, void __iomem *addr)
-> +{
-> +       writel((readl(addr) & ~clr) | set, addr);
-> +}
-> +
-> +static void apple_msi_top_irq_mask(struct irq_data *d)
-> +{
-> +       pci_msi_mask_irq(d);
-> +       irq_chip_mask_parent(d);
-> +}
-> +
-> +static void apple_msi_top_irq_unmask(struct irq_data *d)
-> +{
-> +       pci_msi_unmask_irq(d);
-> +       irq_chip_unmask_parent(d);
-> +}
-> +
-> +static void apple_msi_top_irq_eoi(struct irq_data *d)
-> +{
-> +       irq_chip_eoi_parent(d);
-> +}
-> +
-> +static struct irq_chip apple_msi_top_chip = {
-> +       .name                   = "PCIe MSI",
-> +       .irq_mask               = apple_msi_top_irq_mask,
-> +       .irq_unmask             = apple_msi_top_irq_unmask,
-> +       .irq_eoi                = apple_msi_top_irq_eoi,
-> +       .irq_set_affinity       = irq_chip_set_affinity_parent,
-> +       .irq_set_type           = irq_chip_set_type_parent,
-> +};
-> +
-> +static void apple_msi_compose_msg(struct irq_data *data, struct msi_msg *msg)
-> +{
-> +       msg->address_hi = 0;
-> +       msg->address_lo = DOORBELL_ADDR;
-> +       msg->data = data->hwirq;
-> +}
-> +
-> +static struct irq_chip apple_msi_bottom_chip = {
-> +       .name                   = "MSI",
-> +       .irq_mask               = irq_chip_mask_parent,
-> +       .irq_unmask             = irq_chip_unmask_parent,
-> +       .irq_set_affinity       = irq_chip_set_affinity_parent,
-> +       .irq_eoi                = irq_chip_eoi_parent,
-> +       .irq_set_affinity       = irq_chip_set_affinity_parent,
-> +       .irq_set_type           = irq_chip_set_type_parent,
-> +       .irq_compose_msi_msg    = apple_msi_compose_msg,
-> +};
-> +
-> +static int apple_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
-> +                                 unsigned int nr_irqs, void *args)
-> +{
-> +       struct apple_pcie *pcie = domain->host_data;
-> +       struct irq_fwspec fwspec;
-> +       unsigned int i;
-> +       int ret, hwirq;
-> +
-> +       mutex_lock(&pcie->lock);
-> +
-> +       hwirq = bitmap_find_free_region(pcie->bitmap, pcie->nvecs,
-> +                                       order_base_2(nr_irqs));
-> +
-> +       mutex_unlock(&pcie->lock);
-> +
-> +       if (hwirq < 0)
-> +               return -ENOSPC;
-> +
-> +       fwspec.fwnode = domain->parent->fwnode;
-> +       fwspec.param_count = 3;
-> +       fwspec.param[0] = 0;
-> +       fwspec.param[1] = hwirq + pcie->msi_base;
-> +       fwspec.param[2] = IRQ_TYPE_EDGE_RISING;
-> +
-> +       ret = irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &fwspec);
-> +       if (ret)
-> +               return ret;
-> +
-> +       for (i = 0; i < nr_irqs; i++) {
-> +               irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
-> +                                             &apple_msi_bottom_chip,
-> +                                             domain->host_data);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void apple_msi_domain_free(struct irq_domain *domain, unsigned int virq,
-> +                                 unsigned int nr_irqs)
-> +{
-> +       struct irq_data *d = irq_domain_get_irq_data(domain, virq);
-> +       struct apple_pcie *pcie = domain->host_data;
-> +
-> +       mutex_lock(&pcie->lock);
-> +
-> +       bitmap_release_region(pcie->bitmap, d->hwirq, order_base_2(nr_irqs));
-> +
-> +       mutex_unlock(&pcie->lock);
-> +}
-> +
-> +static const struct irq_domain_ops apple_msi_domain_ops = {
-> +       .alloc  = apple_msi_domain_alloc,
-> +       .free   = apple_msi_domain_free,
-> +};
-> +
-> +static struct msi_domain_info apple_msi_info = {
-> +       .flags  = (MSI_FLAG_USE_DEF_DOM_OPS | MSI_FLAG_USE_DEF_CHIP_OPS |
-> +                  MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
-> +       .chip   = &apple_msi_top_chip,
-> +};
-> +
-> +static int apple_pcie_setup_refclk(void __iomem *rc,
-> +                                  void __iomem *port,
-> +                                  unsigned int idx)
-> +{
-> +       u32 stat;
-> +       int res;
-> +
-> +       res = readl_poll_timeout(rc + CORE_RC_PHYIF_STAT, stat,
-> +                                stat & CORE_RC_PHYIF_STAT_REFCLK, 100, 50000);
-> +       if (res < 0)
-> +               return res;
-> +
-> +       rmwl(0, CORE_LANE_CTL_CFGACC, rc + CORE_LANE_CTL(idx));
-> +       rmwl(0, CORE_LANE_CFG_REFCLK0REQ, rc + CORE_LANE_CFG(idx));
-> +
-> +       res = readl_poll_timeout(rc + CORE_LANE_CFG(idx), stat,
-> +                                stat & CORE_LANE_CFG_REFCLK0ACK, 100, 50000);
-> +       if (res < 0)
-> +               return res;
-> +
-> +       rmwl(0, CORE_LANE_CFG_REFCLK1, rc + CORE_LANE_CFG(idx));
-> +       res = readl_poll_timeout(rc + CORE_LANE_CFG(idx), stat,
-> +                                stat & CORE_LANE_CFG_REFCLK1, 100, 50000);
-> +
-> +       if (res < 0)
-> +               return res;
-> +
-> +       rmwl(CORE_LANE_CTL_CFGACC, 0, rc + CORE_LANE_CTL(idx));
-> +       udelay(1);
-> +       rmwl(0, CORE_LANE_CFG_REFCLKEN, rc + CORE_LANE_CFG(idx));
-> +
-> +       rmwl(0, PORT_REFCLK_EN, port + PORT_REFCLK);
-> +
-> +       return 0;
-> +}
-> +
-> +static int apple_pcie_setup_port(struct apple_pcie *pcie, unsigned int i)
-> +{
-> +       struct fwnode_handle *fwnode = dev_fwnode(pcie->dev);
+v6 drops support for per channel vref selection.
+After switching the voltage reference, readings take a little while to
+stabilize, invalidating consecutive readings.
 
-Doesn't look like you ever use the fwnode, just get the DT node
-pointer. Unless this driver is going to use ACPI someday (and ACPI
-changes how PCI is done), there's no point in using fwnode.
+This could've been addressed by adding more dummy cycles at the expense
+of speed, but discussing the issue with colleagues more involved in
+hardware design, it turns out these circuits are usually designed with a
+single vref in mind.
 
-> +       void __iomem *port;
-> +       struct gpio_desc *reset;
-> +       uint32_t stat;
-> +       int ret;
-> +
-> +       port = devm_of_iomap(pcie->dev, to_of_node(fwnode), i + 3, NULL);
+[1] https://patchwork.kernel.org/project/linux-iio/list/?series=511545
+[2] https://patchwork.kernel.org/project/linux-iio/list/?series=116971&state=%2A&archive=both
 
-It's preferred to use platform resource api and ioremap over DT functions.
+Changes since v5:
+- rename defines: s/AD7949_CFG_BIT_/AD7949_CFG_MASK_/g
+- rename AD7949_MASK_TOTAL to match other defines
+- make vref selection global instead of per channel, and update
+  dt-bindings
+- reword commits 2/5, 3/5, and 4/5
+- move bits_per_word configuration to struct spi_device, and switch to
+  spi_{read,write}.
 
-> +
-> +       if (IS_ERR(port))
-> +               return -ENODEV;
-> +
-> +       reset = devm_gpiod_get_index(pcie->dev, "reset", i, 0);
-> +       if (IS_ERR(reset))
-> +               return PTR_ERR(reset);
-> +
-> +       gpiod_direction_output(reset, 0);
-> +
-> +       rmwl(0, PORT_APPCLK_EN, port + PORT_APPCLK);
-> +
-> +       ret = apple_pcie_setup_refclk(pcie->rc, port, i);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       rmwl(0, PORT_PERST_OFF, port + PORT_PERST);
-> +       gpiod_set_value(reset, 1);
-> +
-> +       ret = readl_poll_timeout(port + PORT_STATUS, stat,
-> +                                stat & PORT_STATUS_READY, 100, 250000);
-> +       if (ret < 0) {
-> +               dev_err(pcie->dev, "port %u ready wait timeout\n", i);
-> +               return ret;
-> +       }
-> +
-> +       rmwl(PORT_REFCLK_CGDIS, 0, port + PORT_REFCLK);
-> +       rmwl(PORT_APPCLK_CGDIS, 0, port + PORT_APPCLK);
-> +
-> +       ret = readl_poll_timeout(port + PORT_LINKSTS, stat,
-> +                                !(stat & PORT_LINKSTS_BUSY), 100, 250000);
-> +       if (ret < 0) {
-> +               dev_err(pcie->dev, "port %u link not busy timeout\n", i);
-> +               return ret;
-> +       }
-> +
-> +       writel(0xfb512fff, port + PORT_INTMSKSET);
-> +
-> +       writel(PORT_INT_LINK_UP | PORT_INT_LINK_DOWN | PORT_INT_AF_TIMEOUT |
-> +              PORT_INT_REQADDR_GT32 | PORT_INT_MSI_ERR |
-> +              PORT_INT_MSI_BAD_DATA | PORT_INT_CPL_ABORT |
-> +              PORT_INT_CPL_TIMEOUT | (1 << 26), port + PORT_INTSTAT);
-> +
-> +       usleep_range(5000, 10000);
-> +
-> +       rmwl(0, PORT_LTSSMCTL_START, port + PORT_LTSSMCTL);
-> +
-> +       ret = readl_poll_timeout(port + PORT_LINKSTS, stat,
-> +                                stat & PORT_LINKSTS_UP, 100, 500000);
-> +       if (ret < 0) {
-> +               dev_err(pcie->dev, "port %u link up wait timeout\n", i);
-> +               return ret;
-> +       }
-> +
-> +       writel(DOORBELL_ADDR, port + PORT_MSIADDR);
-> +       writel(0, port + PORT_MSIBASE);
-> +       writel((5 << PORT_MSICFG_L2MSINUM_SHIFT) | PORT_MSICFG_EN,
-> +              port + PORT_MSICFG);
-> +
-> +       return 0;
-> +}
-> +
-> +static int apple_msi_init(struct apple_pcie *pcie)
-> +{
-> +       struct fwnode_handle *fwnode = dev_fwnode(pcie->dev);
-> +       struct device_node *parent_intc;
-> +       struct irq_domain *parent;
-> +       int ret, i;
-> +
-> +       pcie->rc = devm_of_iomap(pcie->dev, to_of_node(fwnode), 1, NULL);
+Changes since v4:
+- fix premature deletion of define
+- use separate be16 buffer for 8-bit transfers
+- switch to devm_regulator_get_optional()
+- fix vref setup
+- apply Reviewed-by
 
-Use devm_platform_ioremap_resource instead.
+Changes since v3:
+- use cpu_to_be16 and be16_to_cpu instead of manual conversion
+- use pointers to channel structures instead of copies
+- switch to generic device firmware property API
+- use standard unit suffix names (mV to microvolt)
+- switch to devm_iio_device_register() for additional cleanup
 
-Rob
+Changes since v2:
+- add comments to ambiguous register names
+- fix be16 definition of the adc buffer
+- fix BPW logic
+- rework vref support
+  - support per channel vref selection
+  - infer reference select value based on DT parameters
+  - update dt-binding
+
+Changes since v1:
+- add default case in read/write size cases
+- drop of_node change as the core already takes care of it
+- check dt user input in probe
+- move description at the top of dt-binding definition
+- drop AllOf block in dt-binding
+
+Thanks for your time,
+Liam
+
+Liam Beguin (5):
+  iio: adc: ad7949: define and use bitfield names
+  iio: adc: ad7949: fix spi messages on non 14-bit controllers
+  iio: adc: ad7949: add vref selection support
+  dt-bindings: iio: adc: ad7949: update voltage reference bindings
+  iio: adc: ad7949: use devm managed functions
+
+ .../bindings/iio/adc/adi,ad7949.yaml          |  51 +++-
+ drivers/iio/adc/ad7949.c                      | 258 +++++++++++++-----
+ 2 files changed, 232 insertions(+), 77 deletions(-)
+
+Range-diff against v5:
+1:  a5c211185661 ! 1:  a8d849189b6e iio: adc: ad7949: define and use bitfield names
+    @@ drivers/iio/adc/ad7949.c
+     +#include <linux/bitfield.h>
+      
+     -#define AD7949_MASK_CHANNEL_SEL		GENMASK(9, 7)
+    - #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+    +-#define AD7949_MASK_TOTAL		GENMASK(13, 0)
+     -#define AD7949_OFFSET_CHANNEL_SEL	7
+     -#define AD7949_CFG_READ_BACK		0x1
+    ++#define AD7949_CFG_MASK_TOTAL		GENMASK(13, 0)
+      #define AD7949_CFG_REG_SIZE_BITS	14
+      
+     +/* CFG: Configuration Update */
+    -+#define AD7949_CFG_BIT_OVERWRITE	BIT(13)
+    ++#define AD7949_CFG_MASK_OVERWRITE	BIT(13)
+     +
+     +/* INCC: Input Channel Configuration */
+    -+#define AD7949_CFG_BIT_INCC		GENMASK(12, 10)
+    ++#define AD7949_CFG_MASK_INCC		GENMASK(12, 10)
+     +#define AD7949_CFG_VAL_INCC_UNIPOLAR_GND	7
+     +#define AD7949_CFG_VAL_INCC_UNIPOLAR_COMM	6
+     +#define AD7949_CFG_VAL_INCC_UNIPOLAR_DIFF	4
+    @@ drivers/iio/adc/ad7949.c
+     +#define AD7949_CFG_VAL_INCC_BIPOLAR_DIFF	0
+     +
+     +/* INX: Input channel Selection in a binary fashion */
+    -+#define AD7949_CFG_BIT_INX		GENMASK(9, 7)
+    ++#define AD7949_CFG_MASK_INX		GENMASK(9, 7)
+     +
+     +/* BW: select bandwidth for low-pass filter. Full or Quarter */
+    -+#define AD7949_CFG_BIT_BW_FULL			BIT(6)
+    ++#define AD7949_CFG_MASK_BW_FULL		BIT(6)
+     +
+     +/* REF: reference/buffer selection */
+    -+#define AD7949_CFG_BIT_REF		GENMASK(5, 3)
+    ++#define AD7949_CFG_MASK_REF		GENMASK(5, 3)
+     +#define AD7949_CFG_VAL_REF_EXT_BUF		7
+     +
+     +/* SEQ: channel sequencer. Allows for scanning channels */
+    -+#define AD7949_CFG_BIT_SEQ		GENMASK(2, 1)
+    ++#define AD7949_CFG_MASK_SEQ		GENMASK(2, 1)
+     +
+     +/* RB: Read back the CFG register */
+    -+#define AD7949_CFG_BIT_RBN		BIT(0)
+    ++#define AD7949_CFG_MASK_RBN		BIT(0)
+     +
+      enum {
+      	ID_AD7949 = 0,
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_c
+      		ret = ad7949_spi_write_cfg(ad7949_adc,
+     -					   channel << AD7949_OFFSET_CHANNEL_SEL,
+     -					   AD7949_MASK_CHANNEL_SEL);
+    -+					   FIELD_PREP(AD7949_CFG_BIT_INX, channel),
+    -+					   AD7949_CFG_BIT_INX);
+    ++					   FIELD_PREP(AD7949_CFG_MASK_INX, channel),
+    ++					   AD7949_CFG_MASK_INX);
+      		if (ret)
+      			return ret;
+      		if (channel == ad7949_adc->current_channel)
+    +@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_reg_access(struct iio_dev *indio_dev,
+    + 	if (readval)
+    + 		*readval = ad7949_adc->cfg;
+    + 	else
+    +-		ret = ad7949_spi_write_cfg(ad7949_adc,
+    +-			writeval & AD7949_MASK_TOTAL, AD7949_MASK_TOTAL);
+    ++		ret = ad7949_spi_write_cfg(ad7949_adc, writeval,
+    ++					   AD7949_CFG_MASK_TOTAL);
+    + 
+    + 	return ret;
+    + }
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+      {
+      	int ret;
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_init(struct ad7949_adc_chip *ad7
+      	ad7949_adc->current_channel = 0;
+     -	ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
+     +
+    -+	cfg = FIELD_PREP(AD7949_CFG_BIT_OVERWRITE, 1) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_INX, ad7949_adc->current_channel) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_BW_FULL, 1) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_REF, AD7949_CFG_VAL_REF_EXT_BUF) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_SEQ, 0x0) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_RBN, 1);
+    ++	cfg = FIELD_PREP(AD7949_CFG_MASK_OVERWRITE, 1) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_INX, ad7949_adc->current_channel) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_BW_FULL, 1) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_REF, AD7949_CFG_VAL_REF_EXT_BUF) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_SEQ, 0x0) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_RBN, 1);
+     +
+    -+	ret = ad7949_spi_write_cfg(ad7949_adc, cfg, AD7949_MASK_TOTAL);
+    ++	ret = ad7949_spi_write_cfg(ad7949_adc, cfg, AD7949_CFG_MASK_TOTAL);
+      
+      	/*
+      	 * Do two dummy conversions to apply the first configuration setting.
+2:  df2f6df8f3d5 ! 2:  dfa817a7c51e iio: adc: ad7949: fix spi messages on non 14-bit controllers
+    @@ Commit message
+         iio: adc: ad7949: fix spi messages on non 14-bit controllers
+     
+         This driver supports devices with 14-bit and 16-bit sample sizes.
+    -    This is not always handled properly by spi controllers and can fail. To
+    -    work around this limitation, pad samples to 16-bit and split the sample
+    -    into two 8-bit messages in the event that only 8-bit messages are
+    -    supported by the controller.
+    +    This implies different SPI transfer lengths which are not always handled
+    +    properly by some SPI controllers.
+    +
+    +    To work around this limitation, define a big endian buffer used to split
+    +    the buffer into two 8-bit messages in the event that the controller
+    +    doesn't support 14-bit or 16-bit transfers.
+    +    A separate buffer is introduced here to avoid performing operations on
+    +    types of different endianness.
+    +
+    +    Since all transfers use the same bits_per_word value, move that logic to
+    +    the probe function, and let transfers default to the value defined in
+    +    the struct spi_device.
+     
+         Signed-off-by: Liam Beguin <lvb@xiphos.com>
+     
+    @@ drivers/iio/adc/ad7949.c
+     @@
+      #include <linux/bitfield.h>
+      
+    - #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+    + #define AD7949_CFG_MASK_TOTAL		GENMASK(13, 0)
+     -#define AD7949_CFG_REG_SIZE_BITS	14
+      
+      /* CFG: Configuration Update */
+    - #define AD7949_CFG_BIT_OVERWRITE	BIT(13)
+    + #define AD7949_CFG_MASK_OVERWRITE	BIT(13)
+     @@ drivers/iio/adc/ad7949.c: static const struct ad7949_adc_spec ad7949_adc_spec[] = {
+    -  * @indio_dev: reference to iio structure
+    -  * @spi: reference to spi structure
+    -  * @resolution: resolution of the chip
+    -+ * @bits_per_word: number of bits per SPI word
+       * @cfg: copy of the configuration register
+       * @current_channel: current channel in use
+       * @buffer: buffer to send / receive data to / from device
+    @@ drivers/iio/adc/ad7949.c: static const struct ad7949_adc_spec ad7949_adc_spec[]
+      struct ad7949_adc_chip {
+      	struct mutex lock;
+     @@ drivers/iio/adc/ad7949.c: struct ad7949_adc_chip {
+    - 	struct iio_dev *indio_dev;
+    - 	struct spi_device *spi;
+    - 	u8 resolution;
+    -+	u8 bits_per_word;
+      	u16 cfg;
+      	unsigned int current_channel;
+      	u16 buffer ____cacheline_aligned;
+    @@ drivers/iio/adc/ad7949.c: struct ad7949_adc_chip {
+      	int ret;
+     -	int bits_per_word = ad7949_adc->resolution;
+     -	int shift = bits_per_word - AD7949_CFG_REG_SIZE_BITS;
+    - 	struct spi_message msg;
+    - 	struct spi_transfer tx[] = {
+    - 		{
+    +-	struct spi_message msg;
+    +-	struct spi_transfer tx[] = {
+    +-		{
+     -			.tx_buf = &ad7949_adc->buffer,
+    - 			.len = 2,
+    +-			.len = 2,
+     -			.bits_per_word = bits_per_word,
+    -+			.bits_per_word = ad7949_adc->bits_per_word,
+    - 		},
+    - 	};
+    +-		},
+    +-	};
+      
+      	ad7949_adc->cfg = (val & mask) | (ad7949_adc->cfg & ~mask);
+     -	ad7949_adc->buffer = ad7949_adc->cfg << shift;
+    +-	spi_message_init_with_transfers(&msg, tx, 1);
+    +-	ret = spi_sync(ad7949_adc->spi, &msg);
+     +
+    -+	switch (ad7949_adc->bits_per_word) {
+    ++	switch (ad7949_adc->spi->bits_per_word) {
+     +	case 16:
+    -+		tx[0].tx_buf = &ad7949_adc->buffer;
+     +		ad7949_adc->buffer = ad7949_adc->cfg << 2;
+    ++		ret = spi_write(ad7949_adc->spi, &ad7949_adc->buffer, 2);
+     +		break;
+     +	case 14:
+    -+		tx[0].tx_buf = &ad7949_adc->buffer;
+     +		ad7949_adc->buffer = ad7949_adc->cfg;
+    ++		ret = spi_write(ad7949_adc->spi, &ad7949_adc->buffer, 2);
+     +		break;
+     +	case 8:
+     +		/* Here, type is big endian as it must be sent in two transfers */
+    -+		tx[0].tx_buf = &ad7949_adc->buf8b;
+     +		ad7949_adc->buf8b = cpu_to_be16(ad7949_adc->cfg << 2);
+    ++		ret = spi_write(ad7949_adc->spi, &ad7949_adc->buf8b, 2);
+     +		break;
+     +	default:
+     +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+     +		return -EINVAL;
+     +	}
+    -+
+    - 	spi_message_init_with_transfers(&msg, tx, 1);
+    - 	ret = spi_sync(ad7949_adc->spi, &msg);
+      
+    + 	/*
+    + 	 * This delay is to avoid a new request before the required time to
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+      {
+      	int ret;
+      	int i;
+     -	int bits_per_word = ad7949_adc->resolution;
+     -	int mask = GENMASK(ad7949_adc->resolution - 1, 0);
+    - 	struct spi_message msg;
+    - 	struct spi_transfer tx[] = {
+    - 		{
+    +-	struct spi_message msg;
+    +-	struct spi_transfer tx[] = {
+    +-		{
+     -			.rx_buf = &ad7949_adc->buffer,
+    - 			.len = 2,
+    +-			.len = 2,
+     -			.bits_per_word = bits_per_word,
+    -+			.bits_per_word = ad7949_adc->bits_per_word,
+    - 		},
+    - 	};
+    +-		},
+    +-	};
+      
+    -+	if (ad7949_adc->bits_per_word == 8)
+    -+		tx[0].rx_buf = &ad7949_adc->buf8b;
+    -+	else
+    -+		tx[0].rx_buf = &ad7949_adc->buffer;
+    -+
+      	/*
+      	 * 1: write CFG for sample N and read old data (sample N-2)
+    - 	 * 2: if CFG was not changed since sample N-1 then we'll get good data
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+      	}
+      
+      	/* 3: write something and read actual data */
+     -	ad7949_adc->buffer = 0;
+    - 	spi_message_init_with_transfers(&msg, tx, 1);
+    - 	ret = spi_sync(ad7949_adc->spi, &msg);
+    +-	spi_message_init_with_transfers(&msg, tx, 1);
+    +-	ret = spi_sync(ad7949_adc->spi, &msg);
+    ++	if (ad7949_adc->spi->bits_per_word == 8)
+    ++		ret = spi_read(ad7949_adc->spi, &ad7949_adc->buf8b, 2);
+    ++	else
+    ++		ret = spi_read(ad7949_adc->spi, &ad7949_adc->buffer, 2);
+    ++
+      	if (ret)
+    + 		return ret;
+    + 
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+      
+      	ad7949_adc->current_channel = channel;
+      
+     -	*val = ad7949_adc->buffer & mask;
+    -+	switch (ad7949_adc->bits_per_word) {
+    ++	switch (ad7949_adc->spi->bits_per_word) {
+     +	case 16:
+     +		*val = ad7949_adc->buffer;
+     +		/* Shift-out padding bits */
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_probe(struct spi_device *spi)
+      
+     +	/* Set SPI bits per word */
+     +	if (spi_ctrl_mask & SPI_BPW_MASK(ad7949_adc->resolution)) {
+    -+		ad7949_adc->bits_per_word = ad7949_adc->resolution;
+    ++		spi->bits_per_word = ad7949_adc->resolution;
+     +	} else if (spi_ctrl_mask == SPI_BPW_MASK(16)) {
+    -+		ad7949_adc->bits_per_word = 16;
+    ++		spi->bits_per_word = 16;
+     +	} else if (spi_ctrl_mask == SPI_BPW_MASK(8)) {
+    -+		ad7949_adc->bits_per_word = 8;
+    ++		spi->bits_per_word = 8;
+     +	} else {
+     +		dev_err(dev, "unable to find common BPW with spi controller\n");
+     +		return -EINVAL;
+3:  8a33618a4f90 ! 3:  aae4f239db77 iio: adc: ad7949: add support for internal vref
+    @@ Metadata
+     Author: Liam Beguin <lvb@xiphos.com>
+     
+      ## Commit message ##
+    -    iio: adc: ad7949: add support for internal vref
+    +    iio: adc: ad7949: add vref selection support
+     
+    -    Add support for selecting a custom reference voltage from the
+    -    devicetree. If an external source is used, a vref regulator should be
+    -    defined in the devicetree.
+    +    Add support for selecting the voltage reference from the devicetree.
+    +
+    +    This change is required to get valid readings with all three
+    +    vref hardware configurations supported by the ADC.
+    +
+    +    For instance if the ADC isn't provided with an external reference,
+    +    the sample request must specify an internal voltage reference to get a
+    +    valid reading.
+     
+         Signed-off-by: Liam Beguin <lvb@xiphos.com>
+     
+    @@ drivers/iio/adc/ad7949.c
+     @@
+      
+      /* REF: reference/buffer selection */
+    - #define AD7949_CFG_BIT_REF		GENMASK(5, 3)
+    + #define AD7949_CFG_MASK_REF		GENMASK(5, 3)
+     -#define AD7949_CFG_VAL_REF_EXT_BUF		7
+     +#define AD7949_CFG_VAL_REF_EXT_TEMP_BUF		3
+     +#define AD7949_CFG_VAL_REF_EXT_TEMP		2
+    @@ drivers/iio/adc/ad7949.c
+     +#define AD7949_CFG_VAL_REF_EXTERNAL		BIT(1)
+      
+      /* SEQ: channel sequencer. Allows for scanning channels */
+    - #define AD7949_CFG_BIT_SEQ		GENMASK(2, 1)
+    + #define AD7949_CFG_MASK_SEQ		GENMASK(2, 1)
+     @@ drivers/iio/adc/ad7949.c: static const struct ad7949_adc_spec ad7949_adc_spec[] = {
+    - 	[ID_AD7689] = { .num_channels = 8, .resolution = 16 },
+    - };
+    - 
+    -+/**
+    -+ * struct ad7949_channel - ADC Channel parameters
+    +  * @vref: regulator generating Vref
+    +  * @indio_dev: reference to iio structure
+    +  * @spi: reference to spi structure
+     + * @refsel: reference selection
+    -+ */
+    -+struct ad7949_channel {
+    -+	u32 refsel;
+    -+};
+    -+
+    - /**
+    -  * struct ad7949_adc_chip - AD ADC chip
+    -  * @lock: protects write sequences
+    +  * @resolution: resolution of the chip
+    +  * @cfg: copy of the configuration register
+    +  * @current_channel: current channel in use
+     @@ drivers/iio/adc/ad7949.c: struct ad7949_adc_chip {
+      	struct regulator *vref;
+      	struct iio_dev *indio_dev;
+      	struct spi_device *spi;
+    -+	struct ad7949_channel *channels;
+    ++	u32 refsel;
+      	u8 resolution;
+    - 	u8 bits_per_word;
+      	u16 cfg;
+    -@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+    - 	int ret;
+    - 	int i;
+    - 	struct spi_message msg;
+    -+	struct ad7949_channel *ad7949_chan = &ad7949_adc->channels[channel];
+    - 	struct spi_transfer tx[] = {
+    - 		{
+    - 			.len = 2,
+    -@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+    - 	 */
+    - 	for (i = 0; i < 2; i++) {
+    - 		ret = ad7949_spi_write_cfg(ad7949_adc,
+    --					   FIELD_PREP(AD7949_CFG_BIT_INX, channel),
+    --					   AD7949_CFG_BIT_INX);
+    -+					   FIELD_PREP(AD7949_CFG_BIT_INX, channel) |
+    -+					   FIELD_PREP(AD7949_CFG_BIT_REF, ad7949_chan->refsel),
+    -+					   AD7949_CFG_BIT_INX | AD7949_CFG_BIT_REF);
+    - 		if (ret)
+    - 			return ret;
+    - 		if (channel == ad7949_adc->current_channel)
+    -@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
+    - 			   int *val, int *val2, long mask)
+    - {
+    - 	struct ad7949_adc_chip *ad7949_adc = iio_priv(indio_dev);
+    -+	struct ad7949_channel *ad7949_chan = &ad7949_adc->channels[chan->channel];
+    - 	int ret;
+    - 
+    - 	if (!val)
+    + 	unsigned int current_channel;
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
+      		return IIO_VAL_INT;
+      
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_raw(struct iio_dev *indio_d
+     -		ret = regulator_get_voltage(ad7949_adc->vref);
+     -		if (ret < 0)
+     -			return ret;
+    -+		switch (ad7949_chan->refsel) {
+    ++		switch (ad7949_adc->refsel) {
+     +		case AD7949_CFG_VAL_REF_INT_2500:
+     +			*val = 2500;
+     +			break;
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_raw(struct iio_dev *indio_d
+      
+      	return -EINVAL;
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+    - 		FIELD_PREP(AD7949_CFG_BIT_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
+    - 		FIELD_PREP(AD7949_CFG_BIT_INX, ad7949_adc->current_channel) |
+    - 		FIELD_PREP(AD7949_CFG_BIT_BW_FULL, 1) |
+    --		FIELD_PREP(AD7949_CFG_BIT_REF, AD7949_CFG_VAL_REF_EXT_BUF) |
+    -+		FIELD_PREP(AD7949_CFG_BIT_REF, ad7949_adc->channels[0].refsel) |
+    - 		FIELD_PREP(AD7949_CFG_BIT_SEQ, 0x0) |
+    - 		FIELD_PREP(AD7949_CFG_BIT_RBN, 1);
+    + 		FIELD_PREP(AD7949_CFG_MASK_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
+    + 		FIELD_PREP(AD7949_CFG_MASK_INX, ad7949_adc->current_channel) |
+    + 		FIELD_PREP(AD7949_CFG_MASK_BW_FULL, 1) |
+    +-		FIELD_PREP(AD7949_CFG_MASK_REF, AD7949_CFG_VAL_REF_EXT_BUF) |
+    ++		FIELD_PREP(AD7949_CFG_MASK_REF, ad7949_adc->refsel) |
+    + 		FIELD_PREP(AD7949_CFG_MASK_SEQ, 0x0) |
+    + 		FIELD_PREP(AD7949_CFG_MASK_RBN, 1);
+      
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+      	return ret;
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_init(struct ad7949_adc_chip *ad7
+      static int ad7949_spi_probe(struct spi_device *spi)
+      {
+      	u32 spi_ctrl_mask = spi->controller->bits_per_word_mask;
+    - 	struct device *dev = &spi->dev;
+    +@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_probe(struct spi_device *spi)
+      	const struct ad7949_adc_spec *spec;
+      	struct ad7949_adc_chip *ad7949_adc;
+    -+	struct ad7949_channel *ad7949_chan;
+    -+	struct fwnode_handle *child;
+      	struct iio_dev *indio_dev;
+    -+	int mode;
+     +	u32 tmp;
+      	int ret;
+    -+	int i;
+      
+      	indio_dev = devm_iio_device_alloc(dev, sizeof(*ad7949_adc));
+    - 	if (!indio_dev) {
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_probe(struct spi_device *spi)
+      		return -EINVAL;
+      	}
+      
+     -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+    -+	/* Setup external voltage ref, buffered? */
+    ++	/* Setup internal voltage reference */
+    ++	tmp = 4096000;
+    ++	ret = device_property_read_u32(dev, "adi,internal-ref-microvolt", &tmp);
+    ++	if (ret < 0 && ret != -EINVAL) {
+    ++		dev_err(dev, "invalid value for adi,internal-ref-microvolt\n");
+    ++		return ret;
+    ++	}
+    ++
+    ++	switch (tmp) {
+    ++	case 2500000:
+    ++		ad7949_adc->refsel = AD7949_CFG_VAL_REF_INT_2500;
+    ++		break;
+    ++	case 4096000:
+    ++		ad7949_adc->refsel = AD7949_CFG_VAL_REF_INT_4096;
+    ++		break;
+    ++	default:
+    ++		dev_err(dev, "unsupported internal voltage reference\n");
+    ++		return -EINVAL;
+    ++	}
+    ++
+    ++	/* Setup external voltage reference, buffered? */
+     +	ad7949_adc->vref = devm_regulator_get_optional(dev, "vrefin");
+      	if (IS_ERR(ad7949_adc->vref)) {
+     -		dev_err(dev, "fail to request regulator\n");
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_probe(struct spi_device *spi)
+     +			ret = PTR_ERR(ad7949_adc->vref);
+     +			if (ret != -ENODEV)
+     +				return ret;
+    -+			/* Internal then */
+    -+			mode = AD7949_CFG_VAL_REF_INT_4096;
+     +		} else {
+    -+			mode = AD7949_CFG_VAL_REF_EXT_TEMP;
+    ++			ad7949_adc->refsel = AD7949_CFG_VAL_REF_EXT_TEMP;
+     +		}
+     +	} else {
+    -+		mode = AD7949_CFG_VAL_REF_EXT_TEMP_BUF;
+    ++		ad7949_adc->refsel = AD7949_CFG_VAL_REF_EXT_TEMP_BUF;
+      	}
+      
+     -	ret = regulator_enable(ad7949_adc->vref);
+     -	if (ret < 0) {
+     -		dev_err(dev, "fail to enable regulator\n");
+     -		return ret;
+    -+	if (mode & AD7949_CFG_VAL_REF_EXTERNAL) {
+    ++	if (ad7949_adc->refsel & AD7949_CFG_VAL_REF_EXTERNAL) {
+     +		ret = regulator_enable(ad7949_adc->vref);
+     +		if (ret < 0) {
+     +			dev_err(dev, "fail to enable regulator\n");
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_probe(struct spi_device *spi)
+     +					       ad7949_adc->vref);
+     +		if (ret)
+     +			return ret;
+    -+	}
+    -+
+    -+	ad7949_adc->channels = devm_kcalloc(dev, spec->num_channels,
+    -+					    sizeof(*ad7949_adc->channels),
+    -+					    GFP_KERNEL);
+    -+	if (!ad7949_adc->channels) {
+    -+		dev_err(dev, "unable to allocate ADC channels\n");
+    -+		return -ENOMEM;
+    -+	}
+    -+
+    -+	/* Initialize all channel structures */
+    -+	for (i = 0; i < spec->num_channels; i++)
+    -+		ad7949_adc->channels[i].refsel = mode;
+    -+
+    -+	/* Read channel specific information form the devicetree */
+    -+	device_for_each_child_node(dev, child) {
+    -+		ret = fwnode_property_read_u32(child, "reg", &i);
+    -+		if (ret) {
+    -+			dev_err(dev, "missing reg property in %pfw\n", child);
+    -+			fwnode_handle_put(child);
+    -+			return ret;
+    -+		}
+    -+
+    -+		ad7949_chan = &ad7949_adc->channels[i];
+    -+
+    -+		ret = fwnode_property_read_u32(child, "adi,internal-ref-microvolt", &tmp);
+    -+		if (ret < 0 && ret != -EINVAL) {
+    -+			dev_err(dev, "invalid internal reference in %pfw\n", child);
+    -+			fwnode_handle_put(child);
+    -+			return ret;
+    -+		}
+    -+
+    -+		switch (tmp) {
+    -+		case 2500000:
+    -+			ad7949_chan->refsel = AD7949_CFG_VAL_REF_INT_2500;
+    -+			break;
+    -+		case 4096000:
+    -+			ad7949_chan->refsel = AD7949_CFG_VAL_REF_INT_4096;
+    -+			break;
+    -+		default:
+    -+			dev_err(dev, "unsupported internal voltage reference\n");
+    -+			fwnode_handle_put(child);
+    -+			return -EINVAL;
+    -+		}
+      	}
+      
+      	mutex_init(&ad7949_adc->lock);
+4:  7612ff29db6b < -:  ------------ dt-bindings: iio: adc: ad7949: add per channel reference
+-:  ------------ > 4:  b0f21366439b dt-bindings: iio: adc: ad7949: update voltage reference bindings
+5:  74ee82caba57 = 5:  fb2347e306dd iio: adc: ad7949: use devm managed functions
+
+base-commit: 6cbb3aa0f9d5d23221df787cf36f74d3866fdb78
+-- 
+2.32.0.452.g940fe202adcb
+
