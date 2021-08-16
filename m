@@ -2,156 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C873ED21D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF2253ED25F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235701AbhHPKkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 06:40:05 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:62912 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233207AbhHPKkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 06:40:04 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1629110373; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=7FQMN00bWUtkew/aYXgY67FhLuXjMYkzri60rq8/V1I=;
- b=ivqIeJHMtvbH1kAevmFVT8qcRjK5UzPMJwHUzxMdeqN1Mx583aJ9jtQBL6wNeUGIfTAxODtH
- ErY7dSuCJNJhUst6W1hnjxmvFbbZKYcm6wWtXYdlujuUGEuxQTo980tjFSqtihWlZx7cgh6Q
- dM0tSkUSwNIy8daST1iGqtwfJBc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 611a403e454b7a558fc1c90b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 16 Aug 2021 10:38:54
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8B089C4360C; Mon, 16 Aug 2021 10:38:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C8AF0C4338F;
-        Mon, 16 Aug 2021 10:38:52 +0000 (UTC)
+        id S236010AbhHPKv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 06:51:28 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:1777 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235967AbhHPKvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 06:51:22 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 17GAUM3X044038;
+        Mon, 16 Aug 2021 18:30:22 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 16 Aug
+ 2021 18:48:26 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <p.zabel@pengutronix.de>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v3 00/15] Add support for ast2600 ADC
+Date:   Mon, 16 Aug 2021 18:48:31 +0800
+Message-ID: <20210816104846.13155-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 16 Aug 2021 16:08:52 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>, quic_eberman@quicinc.com
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: Re: [PATCH 0/3] soc: qcom: Add download mode support for QTI
- platforms
-In-Reply-To: <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
-References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
- <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
-Message-ID: <30aba45d0e657fd77adba119e5fad345@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 17GAUM3X044038
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-13 05:46, Stephen Boyd wrote:
-> Quoting Sai Prakash Ranjan (2021-08-12 02:17:39)
->> Collecting ramdumps on QTI platforms mainly require two things,
->> SDI (System Debug Image) enabled firmware and kernel support to
->> configure download mode cookies and SDI settings. Ramdumps can
->> be collected once the system enters the download mode. To enter
->> download mode, magic values or cookies need to be set in IMEM
->> which is used by firmware to decide to enter download mode or not.
->> Download mode cookies remain the same across targets and SDI disable
->> register needs to be set or SDI needs to be disabled in case of normal
->> reboot since ramdumps are supposed to be for crash debugging and
->> not for every reboot. This series adds the kernel support required
->> to enter download mode.
-> 
-> I don't recall if we discussed this on the list, but I'd really prefer
-> that we don't make kernel changes to support this beyond implementing
-> PSCI SYSTEM_RESET2 support and then some sort of vendor specific (or if
-> ARM is willing to update the spec then ARM specific) reset command on
-> panic reboot paths. The idea is to set the cookie in the bootloader
-> before the kernel is booted, then any insta-reboots/watchdogs would go
-> into download mode, no special init code required to lay down the 
-> cookie
-> or clear it on normal reboot. The normal reboot PSCI call would clear
-> the cookie in the firmware, in case something goes wrong after the
-> kernel hands off control to PSCI, and then panics that want to go into
-> download mode would make the SYSTEM_RESET2 reboot call into PSCI that
-> sets the cookie.
-> 
-> Maybe it could be a linux specific psci number or maybe we could
-> configure the reboot call in the psci node to be this specific number 
-> so
-> that it can be different based on the firmware implementation if
-> consolidating around a single number doesn't work. Either way, that all
-> seems manageable and we can keep these cookie details out of the kernel
-> and the reboot/panic paths.
-> 
+This patch serials make aspeed_adc.c can support ast2600 and backward
+compatible.
 
-Alright, I think we can probably make it work without much/any changes
-in kernel. So following what you said, we can just implement
-PSCI_SYSTEM_RESET2 in firmware to enter the download mode having cookies
-already set by default and the cookie is cleared when we have a normal
-reboot via PSCI_SYSTEM_RESET. For panic reboot, we already have a 
-cmdline
-*reboot=panic_warm* to identify panic reboots and can call into
-PSCI_SYSTEM_RESET2. I have just tested and it works fine if we have
-psci_system_reset2_supported as true.
+Change since v2:
+dt-bindings:
+  - Create a new dt-bindings for ast2600 adc
+aspeed_adc.c:
+  - Splits the patch for more details
+  - Remove version enum and use the flags in model data to distinguish
+  hardware feature
+  - Support trimming data get and set.
+  - Use devm_add_action_or_reset to simplify probe error handling.
 
-@Trilok/@Elliot, you can check if above works for your usecases in 
-android
-as well and it doesn't need any of your additional changes to kernel.
+Changes since v1:
+dt-bindings:
+  - Fix the aspeed,adc.yaml check error.
+  - Add battery-sensing property.
+aspeed_adc.c:
+  - Change the init flow:
+    Clock and reference voltage setting should be completed before adc
+    engine enable.
+  - Change the default sampling rate to meet most user case.
+  - Add patch #8 to suppoert battery sensing mode.
 
-Thanks,
-Sai
+Billy Tsai (15):
+  dt-bindings: iio: adc: Add ast2600-adc bindings
+  iio: adc: aspeed: completes the bitfield declare.
+  iio: adc: aspeed: set driver data when adc probe.
+  iio: adc: aspeed: Keep model data to driver data.
+  iio: adc: aspeed: Refactory model data structure
+  iio: adc: aspeed: Add vref config function
+  iio: adc: aspeed: Set num_channels with model data
+  iio: adc: aspeed: Use model_data to set clk scaler.
+  iio: adc: aspeed: Use devm_add_action_or_reset.
+  iio: adc: aspeed: Support ast2600 adc.
+  iio: adc: aspeed: Fix the calculate error of clock.
+  iio: adc: aspeed: Add func to set sampling rate.
+  iio: adc: aspeed: Add compensation phase.
+  iio: adc: aspeed: Support battery sensing.
+  iio: adc: aspeed: Get and set trimming data.
 
->> 
->> Currently this series doesn't add support for android targets where
->> a couple of SCM calls are required to set/unset the download mode
->> cookies and SDI configuration but can be easily added gradually to
->> the same driver, so as of now only chrome platforms are supported
->> and tested.
->> 
->> Sai Prakash Ranjan (3):
->>   soc: qcom: Add download mode support
->>   dt-bindings: msm: Add QTI download mode support binding
->>   arm64: dts: qcom: sc7180: Add IMEM, pil info and download mode 
->> region
->> 
->>  .../bindings/arm/msm/qcom,dload-mode.yaml     |  53 ++++++
->>  MAINTAINERS                                   |   7 +
->>  arch/arm64/boot/dts/qcom/sc7180.dtsi          |  21 +++
->>  drivers/soc/qcom/Kconfig                      |  10 ++
->>  drivers/soc/qcom/Makefile                     |   1 +
->>  drivers/soc/qcom/download_mode.c              | 152 
->> ++++++++++++++++++
->>  6 files changed, 244 insertions(+)
->>  create mode 100644 
->> Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
->>  create mode 100644 drivers/soc/qcom/download_mode.c
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+ .../bindings/iio/adc/aspeed,ast2600-adc.yaml  |  98 +++
+ drivers/iio/adc/aspeed_adc.c                  | 562 +++++++++++++++---
+ 2 files changed, 570 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.25.1
+
