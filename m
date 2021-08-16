@@ -2,185 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6513E3EDE68
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:07:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E21C73EDEA3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:26:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230433AbhHPUHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 16:07:38 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:39733 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230420AbhHPUHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 16:07:37 -0400
-Received: by mail-ot1-f51.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so5315379otf.6;
-        Mon, 16 Aug 2021 13:07:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=6VOPws0NSYeiNS4YuPCVxgucGvvQhrDQn05HTfSiBi4=;
-        b=gmeUTr7NuK6x3dA6ijbTJdVOk4zsVVbnUwIohglt7uzWDhdkcfEKRP24zUeOcPZgWi
-         hdq+DQwHXbEN9CgcJxxLHcrVonFUtZ1PTkfxpOxuxfR7lKhUjldzJ8qR2hAKcf0ykc+p
-         uXSqDKfp8F/pbiDSwyyl+O67ke/LHsN8liPOrxoj+nt35AT5DCnp6F5CVEy0qkMt49NA
-         pUzjzFlHMlKnBYWizC/aZGj1agQkn3xf7BLY95GOLScINXN7D2onR0Pnn02IGWO5Dxj0
-         qAjsIR144R6iUvd845+F+1PNczPFI/kiX6FDhei2OthVMdtYBxZ55mH9N6lXzPD7e8jW
-         S9rQ==
-X-Gm-Message-State: AOAM532rTvfRRXUXChgkZbru8oAUTZzekmZyVzgG8+CSURyQuc1F3xeM
-        vBf7QeIeRid+eVXNgB5FoQ==
-X-Google-Smtp-Source: ABdhPJyuh1bpHeI/c8OwEcGGijzGSgY+tSdMoztSLM4aXW9bUBiJeMX5BhftwpQheFofiveHYymA7A==
-X-Received: by 2002:a05:6830:4414:: with SMTP id q20mr336412otv.189.1629144425355;
-        Mon, 16 Aug 2021 13:07:05 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y33sm57065ota.66.2021.08.16.13.07.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Aug 2021 13:07:04 -0700 (PDT)
-Received: (nullmailer pid 2563332 invoked by uid 1000);
-        Mon, 16 Aug 2021 20:07:03 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     robh+dt@kernel.org, nicolas.ferre@microchip.com,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ulf.hansson@linaro.org,
-        ajay.kathat@microchip.com, ludovic.desroches@microchip.com,
-        linux-arm-kernel@lists.infradead.org, alexandre.belloni@bootlin.com
-In-Reply-To: <20210816085530.1723402-2-claudiu.beznea@microchip.com>
-References: <20210816085530.1723402-1-claudiu.beznea@microchip.com> <20210816085530.1723402-2-claudiu.beznea@microchip.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: pwrseq-sd8787: add binding for wilc1000
-Date:   Mon, 16 Aug 2021 15:07:03 -0500
-Message-Id: <1629144423.378578.2563331.nullmailer@robh.at.kernel.org>
+        id S231364AbhHPU0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 16:26:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34842 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231307AbhHPU0j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Aug 2021 16:26:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 409F960D07;
+        Mon, 16 Aug 2021 20:26:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629145567;
+        bh=fgWAjI0DaWa+emARNCzT/HZ9sQ5Rw9p++ET2aIlUCu0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mSOrpBYvL7C1ML2CNGey8a8e2qwGMV0PYBkywy88rxQ3b2G7upkzccpB2NG3oD6Ta
+         /cs9LlyBjqjVO3iMEwVypC+vUYooKDEOgtRIm7tfMNFzoOpuIpBnER78OXvjY9So/T
+         X2oimZkNNKVq7czxGWbtqwgNnh5NoO+zk6NZz4y0O/uyjQR027T3vnhaJCmrr/mBzu
+         l0jvpxg1Oi8hL4rjmytOkAA+yuX0R2U13BA3ErrvkAGhHuZJ0rcoPyjDf5M+K0D+kZ
+         zbR+lBs6t6meqC5owrU+nIb9GI/nkz91UHp1bMYClKPgMz/1RBlpVGetv2upGtg2qI
+         9D11ZtyOIXQQg==
+Received: by mail-ej1-f47.google.com with SMTP id z20so34066165ejf.5;
+        Mon, 16 Aug 2021 13:26:07 -0700 (PDT)
+X-Gm-Message-State: AOAM530olZMK1eXpDhP9SY7pho/rWDfcWMs8M2WLxUD/NF/c9x3wSX2A
+        16RDpZNJIcXMrqzeHpXEnm6eAIePu0IXsOeGlg==
+X-Google-Smtp-Source: ABdhPJwrW/No0ID/B/GwH1N+YFxWM7GR1BPXyyMT2r1NJDL+dw+DfoFcWqQp3yd/VP+S2ErEyfXCtlaZrTexVxMbtDQ=
+X-Received: by 2002:a17:906:fa92:: with SMTP id lt18mr239851ejb.359.1629145565779;
+ Mon, 16 Aug 2021 13:26:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210814010139.kzryimmp4rizlznt@skbuf> <9accd63a-961c-4dab-e167-9e2654917a94@gmail.com>
+ <20210816144622.tgslast6sbblclda@skbuf> <4cad28e0-d6b4-800d-787b-936ffaca7be3@gmail.com>
+ <CAL_JsqKYd288Th2cfOp0_HD1C8xtgKjyJfUW4JLpyn0NkGdU5w@mail.gmail.com> <2e98373f-c37c-0d26-5c9a-1f15ade243c1@gmail.com>
+In-Reply-To: <2e98373f-c37c-0d26-5c9a-1f15ade243c1@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 16 Aug 2021 15:25:53 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK9+Uf526D6535eD=WpThByKmiDcVPzBuyYjb3rWSLDaA@mail.gmail.com>
+Message-ID: <CAL_JsqK9+Uf526D6535eD=WpThByKmiDcVPzBuyYjb3rWSLDaA@mail.gmail.com>
+Subject: Re: of_node_put() usage is buggy all over drivers/of/base.c?!
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Aug 2021 11:55:27 +0300, Claudiu Beznea wrote:
-> Add binding for wilc1000 devices.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+On Mon, Aug 16, 2021 at 2:57 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 8/16/21 2:20 PM, Rob Herring wrote:
+> > On Mon, Aug 16, 2021 at 10:14 AM Frank Rowand <frowand.list@gmail.com> wrote:
+> >>
+> >> On 8/16/21 9:46 AM, Vladimir Oltean wrote:
+> >>> Hi Frank,
+> >>>
+> >>> On Mon, Aug 16, 2021 at 09:33:03AM -0500, Frank Rowand wrote:
+> >>>> Hi Vladimir,
+> >>>>
+> >>>> On 8/13/21 8:01 PM, Vladimir Oltean wrote:
+> >>>>> Hi,
+> >>>>>
+> >>>>> I was debugging an RCU stall which happened during the probing of a
+> >>>>> driver. Activating lock debugging, I see:
+> >>>>
+> >>>> I took a quick look at sja1105_mdiobus_register() in v5.14-rc1 and v5.14-rc6.
+> >>>>
+> >>>> Looking at the following stack trace, I did not see any calls to
+> >>>> of_find_compatible_node() in sja1105_mdiobus_register().  I am
+> >>>> guessing that maybe there is an inlined function that calls
+> >>>> of_find_compatible_node().  This would likely be either
+> >>>> sja1105_mdiobus_base_tx_register() or sja1105_mdioux_base_t1_register().
+> >>>
+> >>> Yes, it is sja1105_mdiobus_base_t1_register which is inlined.
+> >>>
+> >>>>>
+> >>>>> [  101.710694] BUG: sleeping function called from invalid context at kernel/locking/mutex.c:938
+> >>>>> [  101.719119] in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 1534, name: sh
+> >>>>> [  101.726763] INFO: lockdep is turned off.
+> >>>>> [  101.730674] irq event stamp: 0
+> >>>>> [  101.733716] hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+> >>>>> [  101.739973] hardirqs last disabled at (0): [<ffffd3ebecb10120>] copy_process+0xa78/0x1a98
+> >>>>> [  101.748146] softirqs last  enabled at (0): [<ffffd3ebecb10120>] copy_process+0xa78/0x1a98
+> >>>>> [  101.756313] softirqs last disabled at (0): [<0000000000000000>] 0x0
+> >>>>> [  101.762569] CPU: 4 PID: 1534 Comm: sh Not tainted 5.14.0-rc5+ #272
+> >>>>> [  101.774558] Call trace:
+> >>>>> [  101.794734]  __might_sleep+0x50/0x88
+> >>>>> [  101.798297]  __mutex_lock+0x60/0x938
+> >>>>> [  101.801863]  mutex_lock_nested+0x38/0x50
+> >>>>> [  101.805775]  kernfs_remove+0x2c/0x50             <---- this takes mutex_lock(&kernfs_mutex);
+> >>>>> [  101.809341]  sysfs_remove_dir+0x54/0x70
+> >>>>
+> >>>> The __kobject_del() occurs only if the refcount on the node
+> >>>> becomes zero.  This should never be true when of_find_compatible_node()
+> >>>> calls of_node_put() unless a "from" node is passed to of_find_compatible_node().
+> >>>
+> >>> I figured that was the assumption, that the of_node_put would never
+> >>> trigger a sysfs file / kobject deletion from there.
+> >>>
+> >>>> In both sja1105_mdiobus_base_tx_register() and sja1105_mdioux_base_t1_register()
+> >>>> a from node ("mdio") is passed to of_find_compatible_node() without first doing an
+> >>>> of_node_get(mdio).  If you add the of_node_get() calls the problem should be fixed.
+> >>>
+> >>> The answer seems simple enough, but stupid question, but why does
+> >>> of_find_compatible_node call of_node_put on "from" in the first place?
+> >>
+> >> Actually a good question.
+> >>
+> >> I do not know why of_find_compatible_node() calls of_node_put() instead of making
+> >> the caller of of_find_compatible_node() responsible.  That pattern was created
+> >> long before I was involved in devicetree and I have not gone back to read the
+> >> review comments of when that code was created.
+> >
+>
+> > Because it is an iterator function and they all drop the ref from the
+> > prior iteration.
+>
+> That is what I was expecting before reading through the code.  But instead
+> I found of_find_compatible_node():
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+No, I meant of_find_compatible_node() is the iterator for
+for_each_compatible_node().
 
-yamllint warnings/errors:
+>
+>         raw_spin_lock_irqsave(&devtree_lock, flags);
+>         for_each_of_allnodes_from(from, np)
+>                 if (__of_device_is_compatible(np, compatible, type, NULL) &&
+>                     of_node_get(np))
+>                         break;
+>         of_node_put(from);
+>         raw_spin_unlock_irqrestore(&devtree_lock, flags);
+>
+>
+> for_each_of_allnodes_fromir:
+>
+> #define for_each_of_allnodes_from(from, dn) \
+>         for (dn = __of_find_all_nodes(from); dn; dn = __of_find_all_nodes(dn))
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 15, column 7
-found duplicate key "const" with value "mmc-pwrseq-wilc1000" (original value: "mmc-pwrseq-sd8787")
-  in "<unicode string>", line 16, column 7
+This is only used internally, so it can rely on the caller holding the
+lock. This should be moved into of_private.h.
 
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+> and __of_find_all_nodes() is:
+>
+> struct device_node *__of_find_all_nodes(struct device_node *prev)
+> {
+>         struct device_node *np;
+>         if (!prev) {
+>                 np = of_root;
+>         } else if (prev->child) {
+>                 np = prev->child;
+>         } else {
+>                 /* Walk back up looking for a sibling, or the end of the structure */
+>                 np = prev;
+>                 while (np->parent && !np->sibling)
+>                         np = np->parent;
+>                 np = np->sibling; /* Might be null at the end of the tree */
+>         }
+>         return np;
+> }
+>
+>
+> So the iterator is not using of_node_get() and of_node_put() for each
+> node that is traversed.  The protection against a node disappearing
+> during the iteration is provided by holding devtree_lock.
 
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
+The lock is for traversing the nodes (i.e. a list lock), not keeping
+nodes around.
 
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
-    testtree = dtschema.load(filename, line_number=line_number)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 623, in load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 15, column 7
-found duplicate key "const" with value "mmc-pwrseq-wilc1000" (original value: "mmc-pwrseq-sd8787")
-  in "<unicode string>", line 16, column 7
+>
+> >
+> > I would say any open coded call where from is not NULL is an error.
+>
+> I assume you mean any open coded call of of_find_compatible_node().  There are
+> at least a couple of instances of that.  I did only a partial grep while looking
+> at Vladimir's issue.
+>
+> Doing the full grep now, I see 13 instances of architecture and driver code calling
+> of_find_compatible_node().
+>
+> > It's not reliable because the DT search order is not defined and could
+> > change. Someone want to write a coccinelle script to check that?
+> >
+>
+> > The above code should be using of_get_compatible_child() instead.
+>
+> Yes, of_get_compatible_child() should be used here.  Thanks for pointing
+> that out.
+>
+> There are 13 instances of architecture and driver code calling
+> of_find_compatible_node().  If possible, it would be good to change all of
+> them to of_get_compatible_child().  If we could replace all driver
+> usage of of_find_compatible_node() with a from parameter of NULL to
+> a new wrapper without a from parameter, where the wrapper calls
+> of_find_compatible_node() with the from parameter set to NULL, then
+> we could prevent this problem from recurring.
 
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+Patches welcome.
 
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
+I don't know if all 13 are only looking for child nodes. Could be open
+coding for_each_compatible_node or looking for grandchild nodes in
+addition (for which we don't have helpers).
 
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema-examples.json'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-mk-schema", line 38, in <module>
-    schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 585, in process_schemas
-    sch = process_schema(os.path.abspath(filename))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 558, in process_schema
-    schema = load_schema(filename)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 125, in load_schema
-    return do_load(os.path.join(schema_basedir, schema))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 111, in do_load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 15, column 7
-found duplicate key "const" with value "mmc-pwrseq-wilc1000" (original value: "mmc-pwrseq-sd8787")
-  in "<unicode string>", line 16, column 7
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** [Documentation/devicetree/bindings/Makefile:62: Documentation/devicetree/bindings/processed-schema-examples.json] Error 1
-make: *** [Makefile:1419: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1517069
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
