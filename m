@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F763ED42C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 14:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9033C3ED44C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 14:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235346AbhHPMnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 08:43:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        id S229716AbhHPMtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 08:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235719AbhHPMm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 08:42:28 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31101C0612AB
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 05:41:10 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id v4so16274722wro.12
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 05:41:10 -0700 (PDT)
+        with ESMTP id S229801AbhHPMtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 08:49:40 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8909AC061764;
+        Mon, 16 Aug 2021 05:49:08 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id mq2-20020a17090b3802b0290178911d298bso27455064pjb.1;
+        Mon, 16 Aug 2021 05:49:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Dd2RvTZ8gfpygtsaCzyWPhxOJ3nDcTnkRmNkdPIycPE=;
-        b=MN80BPlTMUSdGRt9o4zUkk6ciSKkUoDM5z8fqGbgjtuUeHQHeJtWULk47nDTEuSH4X
-         kclPHJ6EZWwlXgJ83NzAwgzt8phoVAnrObLpRRTCzL1MCfCGS7qw6DMFr5CPiAu0zwJE
-         dt59c0quohqlXl5X71m1sFXf92Juklkr3eL/YKdOFP1ACi/7H9JyFG/8WiysxvhymUXT
-         Am4QMChg5zWcjLAmop9ZTTGwJa+g17/5svJEkfNkx25JzJPeJeZBJlKxXAZEkh36O9I/
-         iugcvle5bfF0zkQSyYQwqDYpQ5CFMHfskAO3A9fhWx9FjxFZPmBYwKqJ4slIdTYqoZd0
-         85Ug==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fy2isYPKNPiV5shXC0pHBU+VcJN04Q1fGssTZF6jyrk=;
+        b=dbgyiLbUICxgXBHTpnPAt/qsKESjlH/GBJ5TU7nhRGV6hU3DTxWOTZYXjVLe6V0LOw
+         Dy5an50QuHgAsakguL9U4ZBtazFIOR++CnKTFqv4riOyEDkF9ulw4+gyQSQC2VKERLTL
+         pY7zB8ORh5dlqbAOIym3VEBlvcua2JM0gIUmuyxst6vgBfbDaQESHW6DNjybfifgsXf5
+         lDXOZD7hV6xVp4uZod0U+x4SRKyNDnumXP7YuRH3pPBF5WUYsw+oX8jD3xMRRdkUh3xq
+         wuXCGi1NAz8Q2egjbTe1ppJ4daHst0QJjkwiyLAKGPXSH+3Latwvcs25zzB7dzjdypEE
+         KELA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Dd2RvTZ8gfpygtsaCzyWPhxOJ3nDcTnkRmNkdPIycPE=;
-        b=ZaMcJd8m1/NWIxHEcl/cpEojV253kn6PngaPOKAkFdy5CV11etUeKcu9SzuvJOiHlc
-         AMJL7NXo5YKBzBtRXO3duW4Uqnig2tKkAqqKMHru2Kh1AlsBy27TE5/+4jV0ja4BZEP1
-         hi5Ym9ESOQ4UcLBOfoUInzPmdN5LIjUezW5EzTA3TB8VsNpmg68r6HpbetrsRG6t6NGz
-         kM5bEI/8GBKs3uGICIpmohuuj2BkMjG1FEwxtOWtmcKqVL3zgovfyA9eK4K1GjAaOdyH
-         xdZQdDF9SgV7yZwoGFKNya1IkHWtVBMhTPBL8LTzQwPlre1HBXEO8NODITq/t/Kc7fnH
-         741w==
-X-Gm-Message-State: AOAM531LPPxv6QBSjcRLCIUDlVFDJNYyxUtZYevxg5+2WP5QD/7nv0OE
-        t1tAeNVq63BDx134BlkVBj4ncQ==
-X-Google-Smtp-Source: ABdhPJzCaVGtA83Fws9GgfQkHtlFDfu5aVDPplXc1yQxTUf27mK6sgXSIb97EvM/JH/WIE9f8DpE2A==
-X-Received: by 2002:a5d:6d82:: with SMTP id l2mr18369118wrs.225.1629117668801;
-        Mon, 16 Aug 2021 05:41:08 -0700 (PDT)
-Received: from google.com ([2.31.167.59])
-        by smtp.gmail.com with ESMTPSA id i10sm10195719wmq.21.2021.08.16.05.41.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Aug 2021 05:41:08 -0700 (PDT)
-Date:   Mon, 16 Aug 2021 13:41:06 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] mfd: tps65086: Add cell entry for reset driver
-Message-ID: <YRpc4jajnsEaGbeW@google.com>
-References: <20210727092554.1059305-1-kernel@esmil.dk>
- <20210727092554.1059305-5-kernel@esmil.dk>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fy2isYPKNPiV5shXC0pHBU+VcJN04Q1fGssTZF6jyrk=;
+        b=B8BkGsQzmhDbELiYJO0GPW2Vy2o/eCmYHYGkRRI9VK+b1lz8alK4J3zBW3h9RAmxEF
+         zjvLmntlBpqLT6RmX/ez7GrkzfeodfBhl/JDTiWXit6fUppek0SCaVyU+AHb3QwVLUXP
+         7FmwkftYxnkOKQBsNj8HkXPiltEy7419qfyXkvUZgu79U8Rr5ALwf1Ss61+/6aySwRC0
+         3dBHfYKIaTqjklc5SjMKoPlkvlbbIQIJ2kR2j5a2Cj883jCxEdRAL7f8IQPzndV0Bsb9
+         8sh5jm3gFRTcZlbNqjJdOyAFWZIDq2BnTpAT2zIZEZaSm5lnz7wJTd19wsTHyxmAda+d
+         9o7g==
+X-Gm-Message-State: AOAM530vlzj9VyV2t+yoa4YW8mGbGp7L/rNqzuJ5tjplxLpwc8Ba8qUM
+        FfSNjvsRdWXsyv3tD7TO4mjSv+hqxARq+AH7Kag=
+X-Google-Smtp-Source: ABdhPJxw1y148kB9C6s1stB/oyZ5CgbZ7lwNMKRJajO3KET6bGTP3m7dnAH7DpztooEiwAxSMphInYVT5VYiQ08bv94=
+X-Received: by 2002:a17:902:e786:b029:12d:2a7:365f with SMTP id
+ cp6-20020a170902e786b029012d02a7365fmr13247410plb.21.1629118148043; Mon, 16
+ Aug 2021 05:49:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210727092554.1059305-5-kernel@esmil.dk>
+References: <20210815213309.2847711-1-liambeguin@gmail.com>
+ <20210815213309.2847711-4-liambeguin@gmail.com> <CAHp75Vd-AfmwMyYyy5ygwmvGfwZLh9VwvBEzSwW3fc99jxFpnQ@mail.gmail.com>
+ <CDKXZBW1JDOD.1ZXIT12Y3WK5B@shaak>
+In-Reply-To: <CDKXZBW1JDOD.1ZXIT12Y3WK5B@shaak>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 16 Aug 2021 15:48:28 +0300
+Message-ID: <CAHp75VdC8GFmV-uOHPQpv5q=q0ZwSKFXW6gOL-hK6N4_qS1YJw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/5] iio: adc: ad7949: add vref selection support
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
+        =?UTF-8?B?TnVubyBTw6E=?= <Nuno.Sa@analog.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jul 2021, Emil Renner Berthing wrote:
+On Mon, Aug 16, 2021 at 3:39 PM Liam Beguin <liambeguin@gmail.com> wrote:
+> On Mon Aug 16, 2021 at 4:04 AM EDT, Andy Shevchenko wrote:
+> > On Mon, Aug 16, 2021 at 12:35 AM Liam Beguin <liambeguin@gmail.com>
+> > wrote:
 
-> The only way to reset the BeagleV Starlight v0.9 board[1] properly is to
-> tell the PMIC to reset itself which will then assert the external reset
-> lines of the SoC, USB hub and ethernet phy.
-> 
-> This adds an mfd cell entry for the reset driver doing just that.
-> 
-> [1] https://github.com/beagleboard/beaglev-starlight
-> 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> ---
->  drivers/mfd/tps65086.c | 1 +
->  1 file changed, 1 insertion(+)
+...
 
-Applied, thanks.
+> > > +       tmp = 4096000;
+> > > +       ret = device_property_read_u32(dev, "adi,internal-ref-microvolt", &tmp);
+> >
+> > > +       if (ret < 0 && ret != -EINVAL) {
+>
+> Hi Andy,
+>
+> >
+> > What does this check (second part) is supposed to mean?
+> > The first part will make it mandatory, is it the goal?
+> >
+>
+> device_property_read_u32() will return -EINVAL if the property isn't
+> found in the devicetree.
+>
+> This checks for errors when the property is defined while keeping it
+> optional.
+
+Don't assign and don't check the error code of the API. As simply as that.
+
+> > > +               dev_err(dev, "invalid value for adi,internal-ref-microvolt\n");
+> > > +               return ret;
+> > > +       }
+
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+With Best Regards,
+Andy Shevchenko
