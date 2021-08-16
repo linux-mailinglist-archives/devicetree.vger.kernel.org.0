@@ -2,126 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3DE3ED076
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 10:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C425F3ED0B3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 10:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234904AbhHPImg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 04:42:36 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:45199 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234896AbhHPImg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Aug 2021 04:42:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1629103324;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4EFm6gVEreXk1Z8T6prMck0p8oHnL3WE32KdZ7f5jjo=;
-        b=WM8BMIxu13avenlRsUaKF9KhIVfdlb2WJBfIWKJrpOk6uhCQy05bxYm+MykVVPu4LEGkMo
-        raQK1NjBXDrDHQS6OEOgD1RWpdjJTxkUTum3Y/+diYztgTsN3FFH70shkcsIm53jDQVfvr
-        7+J5gI7HnjoVY/Es2197B80Wd96eT2U=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-163-utcWi-GsMWSClHuf6MR6xw-1; Mon, 16 Aug 2021 04:42:03 -0400
-X-MC-Unique: utcWi-GsMWSClHuf6MR6xw-1
-Received: by mail-ej1-f69.google.com with SMTP id v19-20020a170906b013b02905b2f1bbf8f3so4400891ejy.6
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 01:42:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4EFm6gVEreXk1Z8T6prMck0p8oHnL3WE32KdZ7f5jjo=;
-        b=JBAh798ph/3ZMUHF10GLTdPrHmGi32o/phf+j/DXBjlzKFtKm6wikGW23yYpTqzIZ5
-         alYfvIuWCHQZpXxTScdJFZca47rT4xO92sk67PmF/sDq9Rq68lQbZtD5JRXHeZa9DyC0
-         0RyETltB5wfmKC4e8zVtlO25yxwxwHepHkrNoaZfjYU0CeR5bIwUwfHcPJKYAW9Nhh/f
-         yEQPtRc3lSIeYwbQJb/STtUSw+4VJpDKNgrV2ieF99KhTajHdN6zEILMexq8mR77Cagx
-         ROmiazsyGfhYxrOTJw2IB9vU15RNX7Ic2N7vO9NabRTV2tUC2R5sQeGDGSu+WXFPFNSn
-         Pmrg==
-X-Gm-Message-State: AOAM5308a66brveCW51xhVOmy4eLVUS3yjzJDZUtbS9cUdoFQaKGb+9Q
-        vgB53YpdIkC25SGniSXy15rugopsBqFCfZYcRN3K3lhKcs4dBB8RZ2aikFa1y6nYUIIH5VKvGRw
-        Yh1fXseeodH3SVEp8tugpYg==
-X-Received: by 2002:a17:907:6089:: with SMTP id ht9mr14319197ejc.422.1629103322111;
-        Mon, 16 Aug 2021 01:42:02 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwhMOzUyKSIFJf2ZL/Rg4zpaV6lNxzUjZedt8/SufJLv342AisfKH/2GBGZYRWCOz9DFVAUbQ==
-X-Received: by 2002:a17:907:6089:: with SMTP id ht9mr14319179ejc.422.1629103321911;
-        Mon, 16 Aug 2021 01:42:01 -0700 (PDT)
-Received: from x1.localdomain ([81.30.35.201])
-        by smtp.gmail.com with ESMTPSA id d22sm3453388ejj.47.2021.08.16.01.42.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Aug 2021 01:42:01 -0700 (PDT)
-Subject: Re: [PATCH 1/3] power: supply: max17042: handle fails of reading
- status register
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        stable@vger.kernel.org
-References: <20210816082716.21193-1-krzysztof.kozlowski@canonical.com>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <820c80fa-c412-dd71-62a4-0ba1e1a97820@redhat.com>
-Date:   Mon, 16 Aug 2021 10:42:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S234969AbhHPI6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 04:58:10 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:48652 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234721AbhHPI6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 04:58:09 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1629104258; x=1660640258;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=kDfDdf720Lw4cE03NwUXgTqylizJCbBg1dQhcEVXHd4=;
+  b=JUZPrPM4yGQE6S1Dr4b3T9nyavnTy2TduC365TT5cb/TLo6yBlDeQy3U
+   f7nzeCzKzRHhyaaVRP8Fo9MutrVzQ3AyMNTjydHoUCIxIUzENrPiDWJsT
+   uJXZOzhmj35Pz4q3D2AlEGj3/79XUBWRaf6qLAFN3PMzub8YhK+693OZ5
+   PQAGb1EhNS2YhGPmonGs8EfrI1Bl80vzmJROCG3LEzsqKGgKrHgrZL05p
+   oanFLlTOk2XDHphzZnLPQtzGxqq8uDft+He2y+ef14fBd0dvjG5h4zKU9
+   flRcO8s4FxwNXFDnazSEp+6ZNiuKSNb1SUilr0Kt5PTBPOYrr0i9Ophwp
+   g==;
+IronPort-SDR: WWI1Uyx6+4+coBKi80K2oNe/PNI/mOuWyCriBFo27YSNg8M4IHR8Z0yv6at47sm44Nfc0/pd/6
+ Jah9ZbPMVQdPLzx42BGo107Yeds/u5iev0wN9rN2R9S4O+PI249u3ZLodM1kgaR3mf/5JAEoRn
+ VzkAxZnK/iZIyUgvEd0v962ETp5Gu2KIFxvOeTPplqW6s4rqF0LuW3Thk9uSAlw2j+4YAAI5wx
+ TBoSWTjpwMEyEUIznZ5RByxwETw6/QnJ+r5qZOG1ja2PKxY9XblqYIdMFsH5jynyN8tyH/AnA8
+ +fRLbDjt3fywo2DOIJD/482P
+X-IronPort-AV: E=Sophos;i="5.84,324,1620716400"; 
+   d="scan'208";a="125916694"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Aug 2021 01:57:37 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 16 Aug 2021 01:57:37 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 16 Aug 2021 01:57:33 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <ajay.kathat@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v2 0/4] mmc: pwrseq: sd8787: add support wilc1000 devices
+Date:   Mon, 16 Aug 2021 11:55:26 +0300
+Message-ID: <20210816085530.1723402-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210816082716.21193-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 8/16/21 10:27 AM, Krzysztof Kozlowski wrote:
-> Reading status register can fail in the interrupt handler.  In such
-> case, the regmap_read() will not store anything useful under passed
-> 'val' variable and random stack value will be used to determine type of
-> interrupt.
-> 
-> Handle the regmap_read() failure to avoid handling interrupt type and
-> triggering changed power supply event based on random stack value.
-> 
-> Fixes: 39e7213edc4f ("max17042_battery: Support regmap to access device's registers")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+This series adds support for WILC1000 devices on pwrseq-sd8787 driver.
+WILC1000 devices needs a minimum delay of 5ms b/w reset and power lines.
+Adapt the sd8787 driver for this by adding a new compatible for WILC1000
+devices and specify the delay on .data field of struct of_device_id.
 
-Thanks, the entire series looks good to me:
+Thank you,
+Claudiu Beznea
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+Changes in v2:
+- changed cover letter title (it was: mmc: pwrseq: sd8787: add support
+  for selectable)
+- use new compatible in pwrseq-sd8787 driver instead of adding a new
+  binding for specifying the delay; with this, the patch 1/1 from v1 is
+  not necessary
+- adapt patch 3/3 from this version with the new compatible
 
-For the series.
+Claudiu Beznea (3):
+  dt-bindings: pwrseq-sd8787: add binding for wilc1000
+  mmc: pwrseq: sd8787: add support for wilc1000
+  mmc: pwrseq: add wilc1000_sdio dependency for pwrseq_sd8787
 
-Regards,
+Eugen Hristev (1):
+  ARM: dts: at91: sama5d27_wlsom1: add wifi device
 
-Hans
+ .../bindings/mmc/mmc-pwrseq-sd8787.yaml       |  4 +-
+ arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi   | 71 +++++++++++++++++++
+ drivers/mmc/core/Kconfig                      |  2 +-
+ drivers/mmc/core/pwrseq_sd8787.c              | 11 ++-
+ 4 files changed, 84 insertions(+), 4 deletions(-)
 
-> ---
->  drivers/power/supply/max17042_battery.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
-> index ce2041b30a06..858ae97600d4 100644
-> --- a/drivers/power/supply/max17042_battery.c
-> +++ b/drivers/power/supply/max17042_battery.c
-> @@ -869,8 +869,12 @@ static irqreturn_t max17042_thread_handler(int id, void *dev)
->  {
->  	struct max17042_chip *chip = dev;
->  	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(chip->regmap, MAX17042_STATUS, &val);
-> +	if (ret)
-> +		return IRQ_HANDLED;
->  
-> -	regmap_read(chip->regmap, MAX17042_STATUS, &val);
->  	if ((val & STATUS_INTR_SOCMIN_BIT) ||
->  		(val & STATUS_INTR_SOCMAX_BIT)) {
->  		dev_info(&chip->client->dev, "SOC threshold INTR\n");
-> 
+-- 
+2.25.1
 
