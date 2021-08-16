@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3932B3ECFF7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 10:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4171E3ED036
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 10:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234476AbhHPIJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 04:09:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32790 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbhHPIJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 04:09:29 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB165C061764;
-        Mon, 16 Aug 2021 01:08:58 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id j12-20020a17090aeb0c00b00179530520b3so10633749pjz.0;
-        Mon, 16 Aug 2021 01:08:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mSmEDOlHPkeWDBRZsKIEYIy20P5Bumb1XzBEX9ztmHM=;
-        b=p8k4w4hLeDEvIU4qu3SRcoToR2AJ/DRkNtydZvZVj+Jb9xt2ALCyvCxULROJQVseyn
-         kibQS5SlQxlxEWYF+xrhh5eHTQrPLx28513UCtNO/eXrvFoTtiMtYDreHCcPcpNMCZSp
-         oObch4R9F0zWKM6bbiZYJtFCbSlFQsh1b4YjtnsPDEMjG6OgbF7JfoPvJ6Xkmhi+X/Be
-         VTP3S4uKajFIEoyVevbB24z6FJ1OP14vo3AI2GPmNMll4g1NQ+GnvR5Z2x7uoZtuSIOk
-         DSwJOYGXRsnFV/p49La4w2oDfPMjVluYo7buRiUOadYarfve8+TuKi87240czfCCpG8T
-         lqJw==
+        id S234851AbhHPI22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 04:28:28 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:59894
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234845AbhHPI21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Aug 2021 04:28:27 -0400
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 1858F3F043
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 08:27:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629102476;
+        bh=lxDKaysG/aHQwlTNKh0Nbuao0YTQ8x2bzMWqPvbdZ6o=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=jeZc+nZAlau1V5fVk6nvKy98NudglkKsgkKEqDAxJFS30LWS42A81kN3AsL6Bg4sw
+         SbbeVKF72KBRt/9hMSR/s74v/JDX1WM/PIsME/wGHvimfHEQNd1+0kClyY3ffaWpix
+         ZckyZ4xQvc1U86y1qFL4J4Ib2h9ykf8jbJni9iGO23wcK/h4P+kO5fXLilriBWWEIo
+         Gmq9bMH8hctFER7R/osvTIJCr6uz3YM1JFORHCSvHSkHZ4CeTyqiUXyKI3/b46Xn8Y
+         EgreidCC2cA5dI7+g8USMvBCQ3HBh9f81n2N/zATax15qJwFpt/SQIinv4UL47w78N
+         Vj5+JD2z2WbpQ==
+Received: by mail-ej1-f70.google.com with SMTP id ke4-20020a17090798e4b02905b869727055so3887197ejc.11
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 01:27:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mSmEDOlHPkeWDBRZsKIEYIy20P5Bumb1XzBEX9ztmHM=;
-        b=gQ8mvXUAkof/e0AlCYQM/XUP3NMgKdieKoZaBhzGuNiVccSihdg898OU/qUrjXNf+K
-         4iTM2SHbZqKy5ZBFQLBYxhC1MAWEJBvTB5z4vel9078zgBnJN5VkmUX+Innlt+TaYClK
-         C77EhEKpXPx812hHxVdhInPdnV06z7OA5iujwnpzfQKO0AZl8tT2uSxz+0NOGSxtTGEu
-         auasER4hr1CA8jmdQE5XHaAGfy7CrHIN0XSzI9aykNDqt69F8HCAYpFehgjZbsK14zQ+
-         NP5s/RNST5xO4B1DnreTH32C6eYyRoXBaKDD6NBG1R2P/WCtppmkRLgdxGj74h4nobe3
-         oWJg==
-X-Gm-Message-State: AOAM530I7tcBt7HITkqaGK06Ctq5O1tf12cIsLVJNel4HGBeXrlPTvM/
-        G9vgHULWFasX5eZXNtWEVrrrIPjw13hxB4Yx6oQ=
-X-Google-Smtp-Source: ABdhPJzPJoAW8ux5vVdeosHcEhbKSTLb5KV4/nIzzVNNZJKuYrNAt3MWbHSvmV6d/0FVtqJoNPl9EHmOF24jqxftOjQ=
-X-Received: by 2002:aa7:9618:0:b0:3e2:1bc3:aa93 with SMTP id
- q24-20020aa79618000000b003e21bc3aa93mr1279192pfg.73.1629101338516; Mon, 16
- Aug 2021 01:08:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lxDKaysG/aHQwlTNKh0Nbuao0YTQ8x2bzMWqPvbdZ6o=;
+        b=QYHiSnO01cOyPo+Y1WQDy6t1CIWiZj+LGVaGrTg/eqNt9cgG0+aNgh/jbdl+h53EOi
+         lAZ3ogMMK9Loxnbf1jvK2WGuX/mnEqdP9Wz5Q6Vp9WNpK9gdaJdkbroekhyhC1I0OKRA
+         +1nRiPvFCgo1s8pFzP3kw/2seFLoOLBMcYd6FMairRcKkY7BzGJI/SNHeJHh07i5hZ4f
+         46qlRVUkytyyZKRggHAzbGtapORvrtkg7/zAv/9KgEqWy0K1o3VAAKDMcrsA3PuDM1mr
+         CQAlquHsXBxXksU3My8lfKOrB/U50uuhpslSjeDIeAor4yPZd9EmtUrN4XI0BMtXXo9d
+         k2hA==
+X-Gm-Message-State: AOAM532HaIDEmI0kayLEO0eiq9wAmwngar84A9x2DepmDTP+yxlvvlxu
+        PeEvjrWDtKrnRjyIu3Z7JAxGv/mOwxpZb0+6/nKy+6QVTMi+dJ9mVEUHvOnDPjtsrVV+zw7dwTg
+        ZbVfNROOH5McGgtMQivLx7Wti9nmI9+s40VKnR88=
+X-Received: by 2002:a17:906:fb91:: with SMTP id lr17mr15003420ejb.110.1629102475754;
+        Mon, 16 Aug 2021 01:27:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz+BOVdere6Fu0M0Ic4QLSp/IuflMOckAgBI2uLtSkJ1OUJq6KxP3xK5gCoc2lA1BHWOYxnbQ==
+X-Received: by 2002:a17:906:fb91:: with SMTP id lr17mr15003404ejb.110.1629102475630;
+        Mon, 16 Aug 2021 01:27:55 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id ay20sm4469605edb.91.2021.08.16.01.27.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Aug 2021 01:27:55 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        stable@vger.kernel.org
+Subject: [PATCH 1/3] power: supply: max17042: handle fails of reading status register
+Date:   Mon, 16 Aug 2021 10:27:14 +0200
+Message-Id: <20210816082716.21193-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210815213309.2847711-1-liambeguin@gmail.com>
-In-Reply-To: <20210815213309.2847711-1-liambeguin@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 16 Aug 2021 11:08:19 +0300
-Message-ID: <CAHp75VdOMg-7xX+KbdaDt5tduPhorujFwvpMPmdHKMVg=vj2Ew@mail.gmail.com>
-Subject: Re: [PATCH v6 0/5] AD7949 Fixes
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
-        =?UTF-8?B?TnVubyBTw6E=?= <Nuno.Sa@analog.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 16, 2021 at 12:35 AM Liam Beguin <liambeguin@gmail.com> wrote:
->
-> While working on another series[1] I ran into issues where my SPI
-> controller would fail to handle 14-bit and 16-bit SPI messages. This
-> addresses that issue and adds support for selecting a different voltage
-> reference source from the devicetree.
->
-> v1 was base on a series[2] that seems to not have made it all the way,
-> and was tested on an ad7689.
->
-> v6 drops support for per channel vref selection.
-> After switching the voltage reference, readings take a little while to
-> stabilize, invalidating consecutive readings.
->
-> This could've been addressed by adding more dummy cycles at the expense
-> of speed, but discussing the issue with colleagues more involved in
-> hardware design, it turns out these circuits are usually designed with a
-> single vref in mind.
->
-> [1] https://patchwork.kernel.org/project/linux-iio/list/?series=511545
-> [2] https://patchwork.kernel.org/project/linux-iio/list/?series=116971&state=%2A&archive=both
->
-> Changes since v5:
-> - rename defines: s/AD7949_CFG_BIT_/AD7949_CFG_MASK_/g
-> - rename AD7949_MASK_TOTAL to match other defines
+Reading status register can fail in the interrupt handler.  In such
+case, the regmap_read() will not store anything useful under passed
+'val' variable and random stack value will be used to determine type of
+interrupt.
 
-> - make vref selection global instead of per channel, and update
->   dt-bindings
+Handle the regmap_read() failure to avoid handling interrupt type and
+triggering changed power supply event based on random stack value.
 
-Same as per v5: is it a hardware limitation?
-It's unclear to me what happened here.
+Fixes: 39e7213edc4f ("max17042_battery: Support regmap to access device's registers")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ drivers/power/supply/max17042_battery.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-> - reword commits 2/5, 3/5, and 4/5
-> - move bits_per_word configuration to struct spi_device, and switch to
->   spi_{read,write}.
-
+diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
+index ce2041b30a06..858ae97600d4 100644
+--- a/drivers/power/supply/max17042_battery.c
++++ b/drivers/power/supply/max17042_battery.c
+@@ -869,8 +869,12 @@ static irqreturn_t max17042_thread_handler(int id, void *dev)
+ {
+ 	struct max17042_chip *chip = dev;
+ 	u32 val;
++	int ret;
++
++	ret = regmap_read(chip->regmap, MAX17042_STATUS, &val);
++	if (ret)
++		return IRQ_HANDLED;
+ 
+-	regmap_read(chip->regmap, MAX17042_STATUS, &val);
+ 	if ((val & STATUS_INTR_SOCMIN_BIT) ||
+ 		(val & STATUS_INTR_SOCMAX_BIT)) {
+ 		dev_info(&chip->client->dev, "SOC threshold INTR\n");
 -- 
-With Best Regards,
-Andy Shevchenko
+2.30.2
+
