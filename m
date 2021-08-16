@@ -2,76 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CCAD3ED17F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 167CA3ED183
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235592AbhHPKAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 06:00:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37452 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229609AbhHPKAi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Aug 2021 06:00:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id BA8B86108D;
-        Mon, 16 Aug 2021 10:00:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629108006;
-        bh=9PW43dBvziydwvrdsNo5u6DZpPb4Wkfh/+7oYsIxLcw=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=kenoFo+zYRkP+qws6tjdzuVi5X0rgp+39BH6vKhawaXPi3v4BAUnBHaXis8a/Lqyj
-         ypyJ8FUtQEeEU0zxazyQI9mwoy/kWi1XrQ/EPVWqH1knGyhMgvztK/Kxf6uEvV20rK
-         yb74N+JCBdHRsC8QPKWR/kJKq9FD6kdp8/J5PURix/QF5l60XvRybwZ34CjX3JJbCs
-         LNbCVxRZvV6udETvxkUnCsWmxlk+w30rjJqvJzkpfkM6ONn0vRyQ1AktWbvzlvG7vr
-         AwZlMsLGTB44c4znej2iVWXEBYY9rYTvF6Hzu8B0+cH50yofv9V8+KD5aQ2WRB2aDe
-         oZ8rrmajxbVYQ==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id A956660976;
-        Mon, 16 Aug 2021 10:00:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S235677AbhHPKAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 06:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58542 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235702AbhHPKAt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 06:00:49 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE49C06179A
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 03:00:18 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id u16so5595909wrn.5
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 03:00:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WXtfrlhTvK5I4Q1AcToRyUZbAQ+Zw4tC00SfbVVvbW0=;
+        b=s3ToyYAoY23WCoCF6c7fFnVwgRmAsa5SAo30JW235Lg6QeLK2Z63c1kjPVsIGjCZiU
+         gJ+keeK0niCAkyDDssO7o9zgEj+CeU9011sowPpALmwzMfjylFCiQvwubhDOX/noeweA
+         OZitkIVb8Pr8U50KzUrfqAjcUCaeylgShbm+ySjWFsDKqyZatCtpYqrwm52rWm4yqaT7
+         sS326TZlVB+RIJNXACPI1h1Vhkay8IvlwI9YXh7WfxcZN707rHnmoMu8UzcTc6XjL3PV
+         6c+rk8HFqer/jR0gAv82tCNBoOxBU9G5WRqBCzkBcOxSjk2hQiJVOZsNjxBW2+9zUt3a
+         dFxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WXtfrlhTvK5I4Q1AcToRyUZbAQ+Zw4tC00SfbVVvbW0=;
+        b=DVmv28g9hMbnIS5BvcLxwYm/uRnIu5zy/ln+ptClRM+I/6mQw4bpnul8LkstIFgMvE
+         w+tJFcy2I/CxSDo0n4XTKf6/nVxsvJvKZgPqxJZ/43EisOFt7xjUO+SrkZ+6AqGgguf/
+         3fzBTvmp3C8IE+pwAODP7oPY/ru8QvrFxSlslr7kGwVwwM9uqQcxUmKTbnEMMkmfZqNG
+         eFvtCeEnFMBQk9fnuDZBWRbDFxQRjqWs7x91j6tectdJGOI4X6j2nrjXLFHXxzAJrAF5
+         82W0D8xg+NaIUYvwxL9ryNXMyVM1yI/Z8YuUZ9qupYLNYZYDNgAXlSd1O65NF/pzMvaq
+         d3GA==
+X-Gm-Message-State: AOAM530smmEdBblc0qzvDodEMA4ZF79VJjzZuyPP816vB5TeuB97J+58
+        CUQUcCnlqulaGH2+iWr4Oy5GiA==
+X-Google-Smtp-Source: ABdhPJwDGgULKk6muzbBo58qOdzC2JgP8l7B8Uqpu2dQfFY7AAre2f5xvKhTZVqiO41kMGHvn1DEJg==
+X-Received: by 2002:a5d:4688:: with SMTP id u8mr17685059wrq.148.1629108016922;
+        Mon, 16 Aug 2021 03:00:16 -0700 (PDT)
+Received: from groot.home ([2a01:cb19:826e:8e00:92b1:d3c2:1204:85e2])
+        by smtp.gmail.com with ESMTPSA id u10sm1916645wrt.14.2021.08.16.03.00.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Aug 2021 03:00:16 -0700 (PDT)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Subject: [PATCH RESEND v3 0/4] input: MT6358 PMIC button support
+Date:   Mon, 16 Aug 2021 12:00:09 +0200
+Message-Id: <20210816100013.100412-1-mkorpershoek@baylibre.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/3] net: mdio: Add IPQ MDIO reset related function
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162910800668.17833.16780539766199955250.git-patchwork-notify@kernel.org>
-Date:   Mon, 16 Aug 2021 10:00:06 +0000
-References: <20210812100642.1800-1-luoj@codeaurora.org>
-In-Reply-To: <20210812100642.1800-1-luoj@codeaurora.org>
-To:     Luo Jie <luoj@codeaurora.org>
-Cc:     andrew@lunn.ch, agross@kernel.org, bjorn.andersson@linaro.org,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sricharan@codeaurora.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+The MediaTek MT6358 PMIC has support for two buttons: PWR and HOME.
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+The interrupt logic is a little different than other PMICs from the
+same family:
+for MT6323 and MT6397, we have one interrupt source per button
+* for MT6358, we have two interrupts lines per button: the press and
+* release interrupts are distinct sources.
 
-On Thu, 12 Aug 2021 18:06:39 +0800 you wrote:
-> This patch series add the MDIO reset features, which includes
-> configuring MDIO clock source frequency and indicating CMN_PLL that
-> ethernet LDO has been ready, this ethernet LDO is dedicated in the
-> IPQ5018 platform.
-> 
-> Specify more chipset IPQ40xx, IPQ807x, IPQ60xx and IPQ50xx supported by
-> this MDIO driver.
-> 
-> [...]
+Changes since original v2 at [1]:
+* added 4th patch with device tree enable
+* cover letter title prefixed with 'input'
 
-Here is the summary with links:
-  - [v3,1/3] net: mdio: Add the reset function for IPQ MDIO driver
-    https://git.kernel.org/netdev/net-next/c/23a890d493e3
-  - [v3,2/3] MDIO: Kconfig: Specify more IPQ chipset supported
-    https://git.kernel.org/netdev/net-next/c/c76ee26306b2
-  - [v3,3/3] dt-bindings: net: Add the properties for ipq4019 MDIO
-    https://git.kernel.org/netdev/net-next/c/2a4c32e767ad
+This has been tested with evtest on mt8183-pumpkin on 5.14-rc6
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Mattijs Korpershoek (4):
+  Input: mtk-pmic-keys - use get_irq_byname() instead of index
+  dt-bindings: input: mtk-pmic-keys: add MT6358 binding definition
+  Input: mtk-pmic-keys - add support for MT6358
+  arm64: dts: mt6358: add mt6358-keys node
 
+ .../bindings/input/mtk-pmic-keys.txt          |  5 +-
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi      | 12 ++++
+ drivers/input/keyboard/mtk-pmic-keys.c        | 56 +++++++++++++++++--
+ 3 files changed, 68 insertions(+), 5 deletions(-)
+
+-- 
+2.30.2
 
