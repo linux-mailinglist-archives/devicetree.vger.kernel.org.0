@@ -2,80 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C3C33EDEAF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 930ED3EDEBC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbhHPUfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 16:35:13 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:37597 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231203AbhHPUfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 16:35:11 -0400
-Received: by mail-oi1-f169.google.com with SMTP id u10so28577542oiw.4;
-        Mon, 16 Aug 2021 13:34:39 -0700 (PDT)
+        id S231894AbhHPUo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 16:44:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231698AbhHPUo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 16:44:28 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C6AC061764
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 13:43:56 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id i8so12550465ybt.7
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 13:43:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aveHwdz8XOLg5uedKS0PiRzGHECFylhR68z7BfBqvPc=;
+        b=Yz3Debl4URh7iBQaqrwvr789CHA3V1EyHDhxu2XXGYZJIW1xuqiOmqsa8Byx45dLlf
+         CXOKnz5LtK6XekO3z8y1bvSyeBrgFe6/qIEQbKAGcPL955y2fPFKjj2Z4hrfViOcdcwp
+         CavbCcXhnlVyIW3Ap26I6sWBeZXc5SsKn477q0/+xOjBJBRMMjpuduZRoFHWMeGZp4Q7
+         VXBn3wwENsqpLEBZER6LsgzlbIlc+a/+9xTiOFhh+I9+7q1N97QxBXsgsqpFGqLw3dUW
+         Ep2lVPmlXZLhmK2l+nDcaOIKDLRJwAuUUylR80lmcDprUrQpumdWVRHbuQaDFM0i4OZI
+         NtTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=r7oF4cY6wlWIjx7KIyMGDbLK0US100rK8cbns+Ja8Tc=;
-        b=k8dxl8nfbb1SkCudbIvFD8ugkpLhBMJJeo6a1RD3Fcr816qYfBCCLHEu/zqpkc6pVx
-         I2fzjQGmxbvW8+KXSVa/ubECvLIQXMDyzJAUQdV1rDWxfYwdSRc5gzh6CRoqZankUjlZ
-         mcu4GZAuGrtMDWVJS6J5OVMOjU/rCyqOOwF8YNW4k/7p1iKe0dyV8Q2aJfcq6ikZJ5OH
-         CAlloFG7shXHYr0TpO7UUbqvb9gtN5x4Rq2S69jCpeFq4Ivsr+9dKYlHyAL510DBvXaS
-         Cvjq9fGr2NBp4+AiOE/PgiUbZMR66A5zR3CToo+wf2Scc3NtHf4w5QINas2Vwg+2f5PF
-         gisA==
-X-Gm-Message-State: AOAM530I3PD2Zc1REwI+xB3FDi+atSlfqjhoagsS5P4EUOdmjS45EnHr
-        L4SU2+JsIDkq33IeGiAUrw==
-X-Google-Smtp-Source: ABdhPJygpDnonMJ9OuIxHg0kOrR2DRgIqw4+ZZ0Hp+jrDk/Ghxyu8TRUXAKPj95r1mZRfanmb0dAig==
-X-Received: by 2002:a54:4096:: with SMTP id i22mr539410oii.26.1629146078778;
-        Mon, 16 Aug 2021 13:34:38 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 21sm22947ooy.5.2021.08.16.13.34.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Aug 2021 13:34:38 -0700 (PDT)
-Received: (nullmailer pid 2606260 invoked by uid 1000);
-        Mon, 16 Aug 2021 20:34:37 -0000
-Date:   Mon, 16 Aug 2021 15:34:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Adjust HiKey examples for kirin-pcie
-Message-ID: <YRrL3Y3wvMLYSUsZ@robh.at.kernel.org>
-References: <cover.1629143524.git.mchehab+huawei@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aveHwdz8XOLg5uedKS0PiRzGHECFylhR68z7BfBqvPc=;
+        b=W/Xw+EtuP0mDZwMmGzqnA38LkYDUFX/RNKOrArvZFLFEJxfU7/6Q4pD4N6VkqJb3IM
+         jEVtv9hoWaIlr4u1mxcj/datysZIcDqmVHpo3pnEKYZejiGFP+QaZ13PGYex1hxD2fd8
+         eKckd6SjYuusZdZUlZtglESJgGsYcss+0fOTQS3rcofHNXNaJVwkmUmrvwzuA/vonCEF
+         lW4zdH80JZNmxSNBl9tmfVDlC4sZZMm6kby8YjdGazkCTeGX9/h709cGF1hZaDluj/3Z
+         I0Rb0Ga7ZS2YELHIkeW1rdfz8XzprdWtJqUixpceLZi8hfI8RdhFC6izmzpmAubO/XOQ
+         /eJg==
+X-Gm-Message-State: AOAM532i46sod83SwEglOTKPHl/N7Pm6qJFzkc8L4CHPPGw65GIkHJyN
+        m3LIjcDrkplTAfLlXATqbOeyDI5L0aHyKVf1TF/XLA==
+X-Google-Smtp-Source: ABdhPJz+VPG5W1rq2jkWrRbzKurE6hWPrUc3BPA8am3QAN0qi5OaU9Uf/Rt7REcHo//E3hTfHV4SPbOQ8ILeRS2XNoE=
+X-Received: by 2002:a25:8445:: with SMTP id r5mr437513ybm.20.1629146635725;
+ Mon, 16 Aug 2021 13:43:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1629143524.git.mchehab+huawei@kernel.org>
+References: <20210814023132.2729731-1-saravanak@google.com>
+ <20210814023132.2729731-3-saravanak@google.com> <YRffzVgP2eBw7HRz@lunn.ch>
+In-Reply-To: <YRffzVgP2eBw7HRz@lunn.ch>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 16 Aug 2021 13:43:19 -0700
+Message-ID: <CAGETcx-ETuH_axMF41PzfmKmT-M7URiua332WvzzzXQHg=Hj0w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: property: fw_devlink: Add support for
+ "phy-handle" property
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 16, 2021 at 09:53:24PM +0200, Mauro Carvalho Chehab wrote:
-> Rob,
-> 
-> As discussed on another thread, there are three issues at
-> pci/hisilicon,kirin-pcie.yaml:
-> 
-> - The bus-range parameters are causing warnings;
-> - The Kirin970 example doesn't reflect the right device
->   hierarchy, causing some of_node files under sysfs to
->   not be initialized;
-> - There is a wrong msi-parent node causing it to not work
->   properly and to produce  several warnings.
-> 
-> This small series fix such issues.
-> 
-> Mauro Carvalho Chehab (2):
->   dt-bindings: PCI: kirin: fix bus-range
->   dt-bindings: PCI: kirin: fix HiKey970 example
-> 
->  .../bindings/pci/hisilicon,kirin-pcie.yaml    | 66 ++++++++++---------
->  1 file changed, 36 insertions(+), 30 deletions(-)
+On Sat, Aug 14, 2021 at 8:22 AM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> Hi Saravana
+>
+> > Hi Andrew,
+> >
+>
+> > Also there
+> > are so many phy related properties that my head is spinning. Is there a
+> > "phy" property (which is different from "phys") that treated exactly as
+> > "phy-handle"?
+>
+> Sorry, i don't understand your question.
 
-I applied and squashed these into the prior series.
+Sorry. I was just saying I understand the "phy-handle" DT property
+(seems specific to ethernet PHY) and "phys" DT property (seems to be
+for generic PHYs -- used mostly by display and USB?). But I noticed
+there's yet another "phy" DT property which I'm not sure I understand.
+It seems to be used by display and ethernet and seems to be a
+deprecated property. If you can explain that DT property in the
+context of networking and how to interpret it as a human, that'd be
+nice.
 
-Rob
+>
+> > +     /*
+> > +      * Device tree nodes pointed to by phy-handle never have struct devices
+> > +      * created for them even if they have a "compatible" property. So
+> > +      * return the parent node pointer.
+> > +      */
+>
+> We have a classic bus with devices on it. The bus master is registers
+> with linux using one of the mdiobus_register() calls. That then
+> enumerates the bus, looking at the 32 possible address on the bus,
+> using mdiobus_scan. It then gets a little complex, due to
+> history.
+>
+> Originally, the only thing you could have on an MDIO bus was a
+> PHY. But devices on MDIO busses are more generic, and Linux gained
+> support for Ethernet switches on an MDIO bus, and there are a few
+> other sort device. So to keep the PHY API untouched, but to add these
+> extra devices, we added the generic struct mdio_device which
+> represents any sort of device on an MDIO bus. This has a struct device
+> embedded in it.
+>
+> When we scan the bus and find a PHY, a struct phy_device is created,
+> which has an embedded struct mdio_device. The struct device in that is
+> then registered with the driver core.
+>
+> So a phy-handle does point to a device, but you need to do an object
+> orientated style look at the base class to find it.
+
+Thanks for the detailed explanation. I didn't notice a phy_device had
+an mdio_device inside it. Makes sense. I think my comment is not
+worded accurately and it really should be:
+
+Device tree nodes pointed to by phy-handle (even if they have a
+"compatible" property) will never have struct devices probed and bound
+to a driver through the driver framework. It's the parent node/device
+that gets bound to a driver and initializes the PHY. So return the
+parent node pointer instead.
+
+Does this sound right? As opposed to PHYs the other generic mdio
+devices seem to actually have drivers that'll bind to them through the
+driver framework.
+
+-Saravana
