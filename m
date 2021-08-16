@@ -2,109 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 364F33ED189
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C873ED21D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:39:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235808AbhHPKA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 06:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235774AbhHPKAx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 06:00:53 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7076C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 03:00:21 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id f9-20020a05600c1549b029025b0f5d8c6cso14533343wmg.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 03:00:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UDJl1ra07oVDdz98SG+iWdsSDX/qH4lLdmGYx5g/CN8=;
-        b=UQAyx7S0xUtzb5rTtzfeSVsO9o+fgeGp9Nm2qsgnLgbRKWX+fddfLIKN64iYkM2A2z
-         MRfyQMKROkCJ8L1xbxXgKL3EO4qI17hTWLw+CYKLPoINaJuhRbiTNmhkhxFqY91AL86v
-         t1pPO6mPDprK4yELktLu/ZBvlmCrSt7uvigyNzkoTQ1AzmWbroFa8xAqYOmtn63mwUrz
-         BeLHNgGed4T/eRoYG7o/v9tL99Q+Kr2DWH3quLRUwE46LMI484PxnHCwLQi3Fy4U/MjY
-         P3l0wI0LIep52C7+iLezChqstJBlHfUr56ubVB4HKdRGa1TjZySBQateYIbI+wAl+7Zl
-         d1ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UDJl1ra07oVDdz98SG+iWdsSDX/qH4lLdmGYx5g/CN8=;
-        b=AGp/FCP2LuwME0r5h7JBFmNUOcfwm1vfoKHBipg1KdRk8esu7TsCQSVxsnaXC9mDJl
-         3a01Atgt8B8ECAv/lXiVyLANpN7KPZzq2CEurwTB5ywUv02jksfRY7mEc/Xes1CUmRVQ
-         LTK02dOKMLMl/+RlbYXVVI9iJuEs4FqxAbm1Zp9yNPiT7KODadnFolmfQeYTvmCoVUYz
-         EmZ/6Mx+MGqSHHbg9ym4uH+70NW97BWvWOeQozlKsiDB7deqnrlhQjTPR4sSch7jaVsJ
-         v1c+Jmg+CpiC0FVjftJZAdBohDTWlztQxUpp0QRMYZ5qufDnUSHFhSFqapiCRn9Ey++B
-         EHRg==
-X-Gm-Message-State: AOAM531avaX4TUTbe/HAeEoCNBD6e+zayPatPMvQ2LXYqNH9A0975Ytl
-        Fewu11FtTmlns/hMGwcyEYIKVQ==
-X-Google-Smtp-Source: ABdhPJwDYN8zt110c62GL+L9QAZr4E6pKpjaOL2oGDz6fohYbxdvZxmPMyAy0YyEKhI9y39j9ZFhaw==
-X-Received: by 2002:a7b:c185:: with SMTP id y5mr14711494wmi.2.1629108020370;
-        Mon, 16 Aug 2021 03:00:20 -0700 (PDT)
-Received: from groot.home ([2a01:cb19:826e:8e00:92b1:d3c2:1204:85e2])
-        by smtp.gmail.com with ESMTPSA id u10sm1916645wrt.14.2021.08.16.03.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Aug 2021 03:00:20 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Subject: [PATCH RESEND v3 4/4] arm64: dts: mt6358: add mt6358-keys node
-Date:   Mon, 16 Aug 2021 12:00:13 +0200
-Message-Id: <20210816100013.100412-5-mkorpershoek@baylibre.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210816100013.100412-1-mkorpershoek@baylibre.com>
-References: <20210816100013.100412-1-mkorpershoek@baylibre.com>
+        id S235701AbhHPKkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 06:40:05 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:62912 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233207AbhHPKkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 06:40:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629110373; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=7FQMN00bWUtkew/aYXgY67FhLuXjMYkzri60rq8/V1I=;
+ b=ivqIeJHMtvbH1kAevmFVT8qcRjK5UzPMJwHUzxMdeqN1Mx583aJ9jtQBL6wNeUGIfTAxODtH
+ ErY7dSuCJNJhUst6W1hnjxmvFbbZKYcm6wWtXYdlujuUGEuxQTo980tjFSqtihWlZx7cgh6Q
+ dM0tSkUSwNIy8daST1iGqtwfJBc=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 611a403e454b7a558fc1c90b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 16 Aug 2021 10:38:54
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 8B089C4360C; Mon, 16 Aug 2021 10:38:54 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C8AF0C4338F;
+        Mon, 16 Aug 2021 10:38:52 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 16 Aug 2021 16:08:52 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>, quic_eberman@quicinc.com
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: Re: [PATCH 0/3] soc: qcom: Add download mode support for QTI
+ platforms
+In-Reply-To: <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
+References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
+ <CAE-0n52PzadMxB_4h2DGJGLO++Bu_PCSsxS8NHe+cuhv=Mw0sA@mail.gmail.com>
+Message-ID: <30aba45d0e657fd77adba119e5fad345@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the power,home keys on MediaTek boards with a mt6358 pmic.
+On 2021-08-13 05:46, Stephen Boyd wrote:
+> Quoting Sai Prakash Ranjan (2021-08-12 02:17:39)
+>> Collecting ramdumps on QTI platforms mainly require two things,
+>> SDI (System Debug Image) enabled firmware and kernel support to
+>> configure download mode cookies and SDI settings. Ramdumps can
+>> be collected once the system enters the download mode. To enter
+>> download mode, magic values or cookies need to be set in IMEM
+>> which is used by firmware to decide to enter download mode or not.
+>> Download mode cookies remain the same across targets and SDI disable
+>> register needs to be set or SDI needs to be disabled in case of normal
+>> reboot since ramdumps are supposed to be for crash debugging and
+>> not for every reboot. This series adds the kernel support required
+>> to enter download mode.
+> 
+> I don't recall if we discussed this on the list, but I'd really prefer
+> that we don't make kernel changes to support this beyond implementing
+> PSCI SYSTEM_RESET2 support and then some sort of vendor specific (or if
+> ARM is willing to update the spec then ARM specific) reset command on
+> panic reboot paths. The idea is to set the cookie in the bootloader
+> before the kernel is booted, then any insta-reboots/watchdogs would go
+> into download mode, no special init code required to lay down the 
+> cookie
+> or clear it on normal reboot. The normal reboot PSCI call would clear
+> the cookie in the firmware, in case something goes wrong after the
+> kernel hands off control to PSCI, and then panics that want to go into
+> download mode would make the SYSTEM_RESET2 reboot call into PSCI that
+> sets the cookie.
+> 
+> Maybe it could be a linux specific psci number or maybe we could
+> configure the reboot call in the psci node to be this specific number 
+> so
+> that it can be different based on the firmware implementation if
+> consolidating around a single number doesn't work. Either way, that all
+> seems manageable and we can keep these cookie details out of the kernel
+> and the reboot/panic paths.
+> 
 
-Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt6358.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Alright, I think we can probably make it work without much/any changes
+in kernel. So following what you said, we can just implement
+PSCI_SYSTEM_RESET2 in firmware to enter the download mode having cookies
+already set by default and the cookie is cleared when we have a normal
+reboot via PSCI_SYSTEM_RESET. For panic reboot, we already have a 
+cmdline
+*reboot=panic_warm* to identify panic reboots and can call into
+PSCI_SYSTEM_RESET2. I have just tested and it works fine if we have
+psci_system_reset2_supported as true.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-index fa159b20379e..a1b017a6a751 100644
---- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-@@ -2,6 +2,7 @@
- /*
-  * Copyright (c) 2020 MediaTek Inc.
-  */
-+#include <dt-bindings/input/input.h>
- 
- &pwrap {
- 	pmic: mt6358 {
-@@ -356,5 +357,16 @@ mt6358_vsim2_reg: ldo_vsim2 {
- 		mt6358rtc: mt6358rtc {
- 			compatible = "mediatek,mt6358-rtc";
- 		};
-+
-+		mt6358keys: mt6358keys {
-+			compatible = "mediatek,mt6358-keys";
-+			power {
-+				linux,keycodes = <KEY_POWER>;
-+				wakeup-source;
-+			};
-+			home {
-+				linux,keycodes = <KEY_HOME>;
-+			};
-+		};
- 	};
- };
+@Trilok/@Elliot, you can check if above works for your usecases in 
+android
+as well and it doesn't need any of your additional changes to kernel.
+
+Thanks,
+Sai
+
+>> 
+>> Currently this series doesn't add support for android targets where
+>> a couple of SCM calls are required to set/unset the download mode
+>> cookies and SDI configuration but can be easily added gradually to
+>> the same driver, so as of now only chrome platforms are supported
+>> and tested.
+>> 
+>> Sai Prakash Ranjan (3):
+>>   soc: qcom: Add download mode support
+>>   dt-bindings: msm: Add QTI download mode support binding
+>>   arm64: dts: qcom: sc7180: Add IMEM, pil info and download mode 
+>> region
+>> 
+>>  .../bindings/arm/msm/qcom,dload-mode.yaml     |  53 ++++++
+>>  MAINTAINERS                                   |   7 +
+>>  arch/arm64/boot/dts/qcom/sc7180.dtsi          |  21 +++
+>>  drivers/soc/qcom/Kconfig                      |  10 ++
+>>  drivers/soc/qcom/Makefile                     |   1 +
+>>  drivers/soc/qcom/download_mode.c              | 152 
+>> ++++++++++++++++++
+>>  6 files changed, 244 insertions(+)
+>>  create mode 100644 
+>> Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
+>>  create mode 100644 drivers/soc/qcom/download_mode.c
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
 -- 
-2.30.2
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
