@@ -2,129 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 930ED3EDEBC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB63F3EDF0E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 23:08:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231894AbhHPUo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 16:44:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
+        id S231938AbhHPVIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 17:08:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231698AbhHPUo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 16:44:28 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C6AC061764
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 13:43:56 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id i8so12550465ybt.7
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 13:43:56 -0700 (PDT)
+        with ESMTP id S233045AbhHPVIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 17:08:44 -0400
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D68EC061796
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 14:08:12 -0700 (PDT)
+Received: by mail-oo1-xc34.google.com with SMTP id w2-20020a4a9e420000b02902859adadf0fso5327642ook.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 14:08:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aveHwdz8XOLg5uedKS0PiRzGHECFylhR68z7BfBqvPc=;
-        b=Yz3Debl4URh7iBQaqrwvr789CHA3V1EyHDhxu2XXGYZJIW1xuqiOmqsa8Byx45dLlf
-         CXOKnz5LtK6XekO3z8y1bvSyeBrgFe6/qIEQbKAGcPL955y2fPFKjj2Z4hrfViOcdcwp
-         CavbCcXhnlVyIW3Ap26I6sWBeZXc5SsKn477q0/+xOjBJBRMMjpuduZRoFHWMeGZp4Q7
-         VXBn3wwENsqpLEBZER6LsgzlbIlc+a/+9xTiOFhh+I9+7q1N97QxBXsgsqpFGqLw3dUW
-         Ep2lVPmlXZLhmK2l+nDcaOIKDLRJwAuUUylR80lmcDprUrQpumdWVRHbuQaDFM0i4OZI
-         NtTA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=DhhEi9REryF7Euqq+T5kr4qdAnwWtXdUixXZ+suk4Bc=;
+        b=ZFFABO/zVDWWQmLLx0RAO6ybYuaWOdMI8nfvqWkZjHWT8a6efPqOopO3FP63sz7FCF
+         euRekIkxlsBrNPkbbInMLWEp5RUGKhseciWZxhfOUiN7ek051Qryieqvixa9QRfxErmP
+         fGQRczUdjxKv75kS7gpw4JjRovjWd6GJIh454=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aveHwdz8XOLg5uedKS0PiRzGHECFylhR68z7BfBqvPc=;
-        b=W/Xw+EtuP0mDZwMmGzqnA38LkYDUFX/RNKOrArvZFLFEJxfU7/6Q4pD4N6VkqJb3IM
-         jEVtv9hoWaIlr4u1mxcj/datysZIcDqmVHpo3pnEKYZejiGFP+QaZ13PGYex1hxD2fd8
-         eKckd6SjYuusZdZUlZtglESJgGsYcss+0fOTQS3rcofHNXNaJVwkmUmrvwzuA/vonCEF
-         lW4zdH80JZNmxSNBl9tmfVDlC4sZZMm6kby8YjdGazkCTeGX9/h709cGF1hZaDluj/3Z
-         I0Rb0Ga7ZS2YELHIkeW1rdfz8XzprdWtJqUixpceLZi8hfI8RdhFC6izmzpmAubO/XOQ
-         /eJg==
-X-Gm-Message-State: AOAM532i46sod83SwEglOTKPHl/N7Pm6qJFzkc8L4CHPPGw65GIkHJyN
-        m3LIjcDrkplTAfLlXATqbOeyDI5L0aHyKVf1TF/XLA==
-X-Google-Smtp-Source: ABdhPJz+VPG5W1rq2jkWrRbzKurE6hWPrUc3BPA8am3QAN0qi5OaU9Uf/Rt7REcHo//E3hTfHV4SPbOQ8ILeRS2XNoE=
-X-Received: by 2002:a25:8445:: with SMTP id r5mr437513ybm.20.1629146635725;
- Mon, 16 Aug 2021 13:43:55 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=DhhEi9REryF7Euqq+T5kr4qdAnwWtXdUixXZ+suk4Bc=;
+        b=gBnXmno2Bi04LQUqrSh6h5XjJGEice300SBQKYZyAzdeb8uXBRUnq1oJC/sCWJJlP8
+         dRztDLqnkccc8chuHpmyvYooo3boliwkokFdfkVPpBJS0vfTNYqV7CxqNdUXo2sBzE2A
+         TtLvJPlvdkovsozlGChfnDYMwkoucuQmovkFPU0dK7yz+0/tOJkW1TMUYDat/ht2iWVi
+         Bot5uaOfjl5UgdmzFtOp3scmdFFeEZ6Laz26AW4Ut1kIb73oTbmN0gdGH76CwJNnN9zC
+         SFm5O2/JSs+S7DcSA9UOC0UabbISqnthRC2gvouvbO9sPyYIpLg2DMGN4KAj1iD5QD56
+         dUWw==
+X-Gm-Message-State: AOAM5323qNS+6/qFN0J4krAR3IIlVzEHX43MEQuGEhOYueaS5gIxkUdp
+        2pLbRrClq1H0EKfjeaNYgdd8dXBAEqMG0u8iws/Gjg==
+X-Google-Smtp-Source: ABdhPJwkW0aWkQ3eA/CgUBtD3vfjlQxS+WPjQ68YkWRc3r79J/uwSbmFY0qfQ58wr1VReoLjN/jo6yEDlFehMe1Pnb0=
+X-Received: by 2002:a4a:3651:: with SMTP id p17mr191016ooe.92.1629148091816;
+ Mon, 16 Aug 2021 14:08:11 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 16 Aug 2021 14:08:11 -0700
 MIME-Version: 1.0
-References: <20210814023132.2729731-1-saravanak@google.com>
- <20210814023132.2729731-3-saravanak@google.com> <YRffzVgP2eBw7HRz@lunn.ch>
-In-Reply-To: <YRffzVgP2eBw7HRz@lunn.ch>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 16 Aug 2021 13:43:19 -0700
-Message-ID: <CAGETcx-ETuH_axMF41PzfmKmT-M7URiua332WvzzzXQHg=Hj0w@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] of: property: fw_devlink: Add support for
- "phy-handle" property
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
+In-Reply-To: <4af8171aefd6f0387438225666ec1ccc@codeaurora.org>
+References: <1628830531-14648-1-git-send-email-skakit@codeaurora.org>
+ <1628830531-14648-2-git-send-email-skakit@codeaurora.org> <CACRpkdZteWY6X+prHeAF0rtPVbCk+X9=ZYgpjgAMH24LhOjhaQ@mail.gmail.com>
+ <4af8171aefd6f0387438225666ec1ccc@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 16 Aug 2021 14:08:11 -0700
+Message-ID: <CAE-0n53sR12fEa_cNPeT5eGcQVzzL57pd-tYnJbpP0NXkHMTsw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec translation
+To:     Linus Walleij <linus.walleij@linaro.org>, skakit@codeaurora.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        linux-gpio@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 14, 2021 at 8:22 AM Andrew Lunn <andrew@lunn.ch> wrote:
+Quoting skakit@codeaurora.org (2021-08-15 23:50:37)
+> Hi Linus,
 >
-> Hi Saravana
->
-> > Hi Andrew,
+> On 2021-08-13 14:27, Linus Walleij wrote:
+> > Hi Satya/David,
+> >
+> > nice work on identifying this bug!
+> >
+> > On Fri, Aug 13, 2021 at 6:56 AM satya priya <skakit@codeaurora.org>
+> > wrote:
+> >>
+> >> From: David Collins <collinsd@codeaurora.org>
+> >>
+> >> pmic_gpio_child_to_parent_hwirq() and
+> >> gpiochip_populate_parent_fwspec_fourcell() translate a pinctrl-
+> >> spmi-gpio irqspec to an SPMI controller irqspec.  When they do
+> >> this, they use a fixed SPMI slave ID of 0 and a fixed GPIO
+> >> peripheral offset of 0xC0 (corresponding to SPMI address 0xC000).
+> >> This translation results in an incorrect irqspec for secondary
+> >> PMICs that don't have a slave ID of 0 as well as for PMIC chips
+> >> which have GPIO peripherals located at a base address other than
+> >> 0xC000.
+> >>
+> >> Correct this issue by passing the slave ID of the pinctrl-spmi-
+> >> gpio device's parent in the SPMI controller irqspec and by
+> >> calculating the peripheral ID base from the device tree 'reg'
+> >> property of the pinctrl-spmi-gpio device.
+> >>
+> >> Signed-off-by: David Collins <collinsd@codeaurora.org>
+> >> Signed-off-by: satya priya <skakit@codeaurora.org>
+
+Can you please add an appropriate Fixes tag?
+
+> >
+> > Is this a regression or is it fine if I just apply it for v5.15?
+> > I was thinking v5.15 since it isn't yet used in device trees.
 > >
 >
-> > Also there
-> > are so many phy related properties that my head is spinning. Is there a
-> > "phy" property (which is different from "phys") that treated exactly as
-> > "phy-handle"?
+> Without this fix, [2/2] Vol+ support is failing. If possible please
+> merge it on current branch.
 >
-> Sorry, i don't understand your question.
 
-Sorry. I was just saying I understand the "phy-handle" DT property
-(seems specific to ethernet PHY) and "phys" DT property (seems to be
-for generic PHYs -- used mostly by display and USB?). But I noticed
-there's yet another "phy" DT property which I'm not sure I understand.
-It seems to be used by display and ethernet and seems to be a
-deprecated property. If you can explain that DT property in the
-context of networking and how to interpret it as a human, that'd be
-nice.
-
->
-> > +     /*
-> > +      * Device tree nodes pointed to by phy-handle never have struct devices
-> > +      * created for them even if they have a "compatible" property. So
-> > +      * return the parent node pointer.
-> > +      */
->
-> We have a classic bus with devices on it. The bus master is registers
-> with linux using one of the mdiobus_register() calls. That then
-> enumerates the bus, looking at the 32 possible address on the bus,
-> using mdiobus_scan. It then gets a little complex, due to
-> history.
->
-> Originally, the only thing you could have on an MDIO bus was a
-> PHY. But devices on MDIO busses are more generic, and Linux gained
-> support for Ethernet switches on an MDIO bus, and there are a few
-> other sort device. So to keep the PHY API untouched, but to add these
-> extra devices, we added the generic struct mdio_device which
-> represents any sort of device on an MDIO bus. This has a struct device
-> embedded in it.
->
-> When we scan the bus and find a PHY, a struct phy_device is created,
-> which has an embedded struct mdio_device. The struct device in that is
-> then registered with the driver core.
->
-> So a phy-handle does point to a device, but you need to do an object
-> orientated style look at the base class to find it.
-
-Thanks for the detailed explanation. I didn't notice a phy_device had
-an mdio_device inside it. Makes sense. I think my comment is not
-worded accurately and it really should be:
-
-Device tree nodes pointed to by phy-handle (even if they have a
-"compatible" property) will never have struct devices probed and bound
-to a driver through the driver framework. It's the parent node/device
-that gets bound to a driver and initializes the PHY. So return the
-parent node pointer instead.
-
-Does this sound right? As opposed to PHYs the other generic mdio
-devices seem to actually have drivers that'll bind to them through the
-driver framework.
-
--Saravana
+Are there any boards supported upstream that have a gpio block that
+isn't at 0xc000?
