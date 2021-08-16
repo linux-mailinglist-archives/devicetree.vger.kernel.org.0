@@ -2,162 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 885893EDD6B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 20:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F7043EDDB1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 21:14:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229739AbhHPS5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 14:57:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42472 "EHLO
+        id S230251AbhHPTOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 15:14:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229699AbhHPS5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 14:57:30 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 655A5C0613C1
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 11:56:58 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id k5-20020a05600c1c85b02902e699a4d20cso592733wms.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 11:56:58 -0700 (PDT)
+        with ESMTP id S230307AbhHPTOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 15:14:41 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC33C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 12:14:09 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id z128so34822553ybc.10
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 12:14:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=m7ZOM7cdRkICqtiyacBDNsj4qURRxO1sWw5i5EgJhx0=;
-        b=HzJ75RUvClIBbqraulv6LCtCEKRyhF9l86bNICahsL0BMDn+tr2MAGedaCoiS/M7HI
-         3Ttln2ZDTzMQV/73OAgb5gWdhqVTcAfaMui/jwC/yGkqKyrWPECIE5BGB9wuRotTtJZR
-         n8glPdDvrAkL6NsfQuijpU7NTf+EitF7KrlYHBWiagTBD87z3EiqPC6ePhyVfex4LW1R
-         bzJOqbK5rRd2/pUmjgicupfKYa5CF6ZgyjklG6WR05kEG1tJglD4u63hsIct80uAMX0l
-         mufsLlgPEG0x9jXY+YS8QfK1nmsTKOsGjQu5tgwNUmQkNLRKK/BFJRlM20iaJgIeqnG2
-         Ks6Q==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ddKmBAaL4anw3kgNsyAbpqw4YAHAfR61Ukhu3CXAdpQ=;
+        b=T9HdhiT0dXrGmgueqTIb6X9mPePJxHP+j6MIIHkpi0Ns3V30fcgze4d85bGN7i/Vuo
+         +MPAKBqrK9UNlCJ88ifAQlz/TIT4mVkuq5CRHNfwiW3nV/JA4gUczTPuoGwMiA9HETvn
+         UkJGXMZ3PRAE3NHetz2qssyTebmLD/XqOVG/1nN8DeudnElmNQO3KUiYQ4lX8pi0Zp5d
+         tc3HZNUhZyuyxPt/NHWTtCVScOpAR8/0DaN7wD9X2h6uzUvAX25ad2gwed5WHBEO1erQ
+         RQQTrrMv4dJy3GOmZX1IfgTFpjj/33GaoVNpso7HCf3Xamo/63CbJW0Kskj5ds2p4cNz
+         9BXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=m7ZOM7cdRkICqtiyacBDNsj4qURRxO1sWw5i5EgJhx0=;
-        b=HDAhJ9RjTmfwTmOKOOfz7xxRAbMLNgsTRWKHtDl7+tVMSekDAjMmuAfRyPj2DqtOvP
-         DJEnd4uS6Xf8TK/6xawsNFb65WXcAOHVY3TpiRFmA3YDI5fyHRs9EBUupz/3JHnooP1Y
-         AmKYaMHvFqNvIQjCkzNclLWtPH4ciKzT2AiVKovHrgrLbbXJ3Q/4uP/Xq7tKg3aDVSBd
-         5uZ0Sc6CGi2WPvaYTzVduDhX2HIHzP/EJvQcYBuStyV9ko2clQfgQkHV73pVUZzTM8cN
-         AXYHtldY9Zaoj2LiHdD6omIWRkI9W3r8hH0bcBPR05+ISeMo2dOao19S2g4cCiq3tPlH
-         u/Bw==
-X-Gm-Message-State: AOAM532erarpxiGcZgv7QnKz3J+pfRh8FBXtIvo41o/oOcOVxe3qtzHY
-        adTY+/r+oImela6eKYygLaJDxw==
-X-Google-Smtp-Source: ABdhPJzoBGbVSUBBJBd79CzIiBUvM5rY3Ebc57V8YSLGDbhAuaNana1b9dAMLW1tLEGIgbbn9dJJ0g==
-X-Received: by 2002:a1c:f414:: with SMTP id z20mr524519wma.94.1629140216638;
-        Mon, 16 Aug 2021 11:56:56 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:e1b0:48c1:6199:9cb4? ([2a01:e34:ed2f:f020:e1b0:48c1:6199:9cb4])
-        by smtp.googlemail.com with ESMTPSA id g9sm386690wmk.34.2021.08.16.11.56.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Aug 2021 11:56:56 -0700 (PDT)
-Subject: Re: [PATCH v5 2/3] thermal: mediatek: Add LVTS drivers for SoC
- theraml zones
-To:     Ben Tseng <ben.tseng@mediatek.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Cc:     Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Michael Kao <michael.kao@mediatek.com>,
-        Yu-Chia Chang <ethan.chang@mediatek.com>
-References: <20210617114707.10618-1-ben.tseng@mediatek.com>
- <20210617114707.10618-3-ben.tseng@mediatek.com>
- <06b1804c-4675-2997-8c5c-bcdffbcfc4a1@linaro.org>
- <1f92b245537d6390b7b2bde62ce8b99a3df9d445.camel@mediatek.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <8a38b9fe-0448-3ddc-9ffc-c43137b5ecaa@linaro.org>
-Date:   Mon, 16 Aug 2021 20:56:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ddKmBAaL4anw3kgNsyAbpqw4YAHAfR61Ukhu3CXAdpQ=;
+        b=hTjK/w9YiY8WDlL4FTQiCv7ZHFCVJnHezGSclYG9JHLREFc79kl955mFidyrcA6LQa
+         vKHq1yGzGeb3qwyLhIoyRVWDX19TOdj+e6duwGVbL7AEf+KsZopRrpCUUySOSnofS8wX
+         KrWVJj/cZO9ceziv5zAw4tUD+oz9OgLzV+zpwA11KzDzp3hQCTBMnLMSwCkFzLQNb/mf
+         nf2rQf09ilA8fxuvywyGXMhqLumVUxZv5hip6WX0Od2T3yHonJA3z3ykn0Hder/Rbi7N
+         AIFccKgrtrPWzxTW2fie7hncR5H2Nr3yaKQhqfAyaYTCrZKox0GGkEACL/4qa/uE5kB2
+         vREQ==
+X-Gm-Message-State: AOAM533r2tOhrSeFnih16jFF5INOBpUjvpKLEjbTYoz2At4N7noBzipd
+        2inU3BDIS0pf699ChBAWi8vspVRHj9ETfQL9KjQM7g==
+X-Google-Smtp-Source: ABdhPJysWBZVCKKJbr6bgcAHayPSYtRM07cY1fPHMS0wTcE5unx6TDl/t07LozWQCgzaBW6Dh5Iiw5yNJwUzKdtfivk=
+X-Received: by 2002:a25:d0d4:: with SMTP id h203mr23601519ybg.0.1629141246719;
+ Mon, 16 Aug 2021 12:14:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1f92b245537d6390b7b2bde62ce8b99a3df9d445.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210816011948.1118959-1-jay.xu@rock-chips.com>
+In-Reply-To: <20210816011948.1118959-1-jay.xu@rock-chips.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 16 Aug 2021 21:13:56 +0200
+Message-ID: <CAMpxmJWQ1pDoPZHjg1vvZYhPrY+3BZi3Zuv2P7xKYRDW0dyw8Q@mail.gmail.com>
+Subject: Re: [PATCH v8 0/9] gpio-rockchip driver
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 16, 2021 at 3:19 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
+>
+> Separate gpio driver from pinctrl driver, and support gpio v2 controller.
+>
+> Jianqun Xu (9):
+>   pinctrl/rockchip: always enable clock for gpio controller
+>   pinctrl/rockchip: separate struct rockchip_pin_bank to a head file
+>   pinctrl/rockchip: add pinctrl device to gpio bank struct
+>   dt-bindings: gpio: change items restriction of clock for
+>     rockchip,gpio-bank
+>   gpio/rockchip: add driver for rockchip gpio
+>   gpio/rockchip: use struct rockchip_gpio_regs for gpio controller
+>   gpio/rockchip: support next version gpio controller
+>   gpio/rockchip: drop irq_gc_lock/irq_gc_unlock for irq set type
+>   pinctrl/rockchip: drop the gpio related codes
+>
+>  .../bindings/gpio/rockchip,gpio-bank.yaml     |   5 +-
+>  drivers/gpio/Kconfig                          |   8 +
+>  drivers/gpio/Makefile                         |   1 +
+>  drivers/gpio/gpio-rockchip.c                  | 771 +++++++++++++++
+>  drivers/pinctrl/pinctrl-rockchip.c            | 909 +-----------------
+>  drivers/pinctrl/pinctrl-rockchip.h            | 287 ++++++
+>  6 files changed, 1089 insertions(+), 892 deletions(-)
+>  create mode 100644 drivers/gpio/gpio-rockchip.c
+>  create mode 100644 drivers/pinctrl/pinctrl-rockchip.h
+>
+> --
+> v8:
+>  - fix rockchip,gpio-bank.yaml about clocks and clock-names
+>  - fix commit author of rockchip,gpio-bank.yaml patch to me
+>
+> v7:
+>  - include <linux/gpio/driver.h> instead of <linux/gpio.h>
+>  - use gpio align id instead of gpio-name
+>
+> v6:
+>  - new gpio-driver first and then drop gpio from pinctrl
+>  - reorder patches
+>  - cherry-pick gpio dt-binding from chenliang
+>
+> v5:
+>  - change to devel branch
+>
+> 2.25.1
+>
+>
+>
 
-Hi Ben,
+Linus,
 
-On 23/07/2021 08:17, Ben Tseng wrote:
-> On Mon, 2021-06-21 at 13:26 +0200, Daniel Lezcano wrote:
->> On 17/06/2021 13:47, Ben Tseng wrote:
->>> From: Michael Kao <michael.kao@mediatek.com>
->>>
->>> Add a LVTS (Low voltage thermal sensor) driver to report junction
->>> temperatures in Mediatek SoC and register the maximum temperature
->>> of sensors and each sensor as a thermal zone.
->>
->> I think we already talked about that. We don't want a thermal sensor
->> driver to aggregate the temperatures but create some kindof virtual
->> sensor with a property (min, max, avg, ...) which is usable by
->> anyone.
->>
->> [ ... ]
->>
->>
->>
-> 
-> Dear Daniel,
-> 
-> Sorry for the late reply.
+are you going to take the entire series through the pinctrl tree or
+should we split the patches?
 
-sorry too, missed to answer. Another thread pointed to this one and I
-figured out I forgot to answer.
-
-> After survey ,I'm not sure whether the patch[1] is the architecture of
-> virtual thermal sensor which you commented.
-
-Ah, yes that is kind of what it would be requested but really generic so
-anyone can use it.
-
-> Or, is there any existing framework on mainline already support virtual
-> sensor?
-
-No unfortunately, it is not done [yet].
-
-> Could you help to provide reference to us?
-
-Ok, we had this discussion several times on the mailing list and at the
-different events like the Linux Plumbers conference. But I was not able
-to find out a pointer.
-
-Basically the idea is simple, we don't want drivers doing weird things
-in their get_temp callback. This callback must return the temperature
-associated to a physical sensor in a 1:1 manner.
-
-However, some people want to define a thermal zone but with an
-aggregation of different sensors.
-
-At this point, we are unsure how to do that.
-
-Having a virtual sensor would be more adequate as it won't impact
-anything except the DT for a configuration. And we can make it to evolve
-without having to change all the thermal framework internals.
-
-From a DT point of view, a virtual sensor device cuold have phandles to
-the different sensors and let's say a property telling what do to (avg,
-min, max, ...). The thermal zone will point to the virtual device.
-
-In the driver itself, the get_temp will just call get_temp of all the
-sensors and do the operation specified in the property.
-
-With that, the drivers stay consistent and we have the flexibility to do
-whatever we want.
-
-Does it make sense ?
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Bart
