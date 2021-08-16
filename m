@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 011723ECC2F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 03:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68CC53ECC32
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 03:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232306AbhHPBIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Aug 2021 21:08:25 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:51985 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230124AbhHPBIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Aug 2021 21:08:24 -0400
-X-UUID: 06330229aaaa4389b7d1e48571961cdf-20210816
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=y5Wh78PwkWB3JvhOvjJ/925Vvejkr8c8LSWT0IjHL/Y=;
-        b=CDszHtFXjlxOsHtoeoyCKP5IJs4a7wAiHobuysCFyHom1pGg4TAlvJoe8fCPM6nI0NVzgEdSQ1UOsJ34aK0MVF4EgJZcSsNXlsp92uy74TbufAq6ZZrLVv2qbIZ1E1eQQ9E94hiVvPBYRz/HAOijtqfEYhtQGpGsX+SvKelEmsU=;
-X-UUID: 06330229aaaa4389b7d1e48571961cdf-20210816
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <houlong.wei@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 668228251; Mon, 16 Aug 2021 09:07:49 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 16 Aug
- 2021 09:07:41 +0800
-Received: from mhfsdcap04 (10.17.3.154) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 16 Aug 2021 09:07:41 +0800
-Message-ID: <ab83cb2c6fd8fa89b72a1cd215e8258c2b4d2c63.camel@mediatek.com>
-Subject: Re: [PATCH v6 3/9] mtk-mdp: use pm_runtime in MDP component driver
-From:   houlong wei <houlong.wei@mediatek.com>
-To:     Eizan Miyamoto <eizan@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     "wenst@chromium.org" <wenst@chromium.org>,
-        "Yong Wu =?UTF-8?Q?=28=E5=90=B4=E5=8B=87=29?=" <Yong.Wu@mediatek.com>,
-        "enric.balletbo@collabora.com" <enric.balletbo@collabora.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "Andrew-CT Chen =?UTF-8?Q?=28=E9=99=B3=E6=99=BA=E8=BF=AA=29?=" 
-        <Andrew-CT.Chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Minghsiu Tsai =?UTF-8?Q?=28=E8=94=A1=E6=98=8E=E4=BF=AE=29?=" 
-        <Minghsiu.Tsai@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>, <houlong.wei@mediatek.com>
-Date:   Mon, 16 Aug 2021 09:07:42 +0800
-In-Reply-To: <20210802220943.v6.3.I909f5375d930f5d0cc877128e30e2a67078b674c@changeid>
-References: <20210802121215.703023-1-eizan@chromium.org>
-         <20210802220943.v6.3.I909f5375d930f5d0cc877128e30e2a67078b674c@changeid>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S230124AbhHPBI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Aug 2021 21:08:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229926AbhHPBI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Aug 2021 21:08:59 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ED2DC061764
+        for <devicetree@vger.kernel.org>; Sun, 15 Aug 2021 18:08:28 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id h9so28902941ejs.4
+        for <devicetree@vger.kernel.org>; Sun, 15 Aug 2021 18:08:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=oQ6O0PgY7ljXGQ3qtGUlyg1DzFg9UJHzWhwh6kF/TMk=;
+        b=fUaYZeAnNsj+eFy0jb++D/UV2f0TE0T3nhJqNWVD2K54R8so3pgCc7pBXm3BOqv8nM
+         xHLarqiXTiOxV7VuGvdA0QZrRVUAWY80n6yOe3M2Ujh+0EbISfRrZ09elVSzuVuBMgtu
+         WegFDBqXUaa35ewwckY66JIbkgOTvpipQLOIcmFHXyrbhN1XzgnlAcbeUO86MrDhAkoB
+         M4e8W53fObHAQVQNyJBuHqZy1MENIKIEvVa3WabeGwfDkX4FnVtqiXWedWep5nqUxV/3
+         +JAsQS/7yClpdfVNavPUNEUC5by3gkokK0MZnepuxSiROHS87o8LH6NTqZ19UJLdLJ0z
+         BwfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=oQ6O0PgY7ljXGQ3qtGUlyg1DzFg9UJHzWhwh6kF/TMk=;
+        b=sAzVS87ngCFHlBeY5YwUhh8PjxOuhTGOuslOMbdWxKKRPjOmP6ChMncOnkxT+LQS+g
+         sUQkS2wri25p1aXKrC+rPworJWXWEXmgS9G5I7iWKITNMCoSGOd7wTDuJy093Qq5ZgXd
+         UfusyQu+K8CCJ0zydLQkxmAuu8GsbbRjKdwCaAiXFDkbYtNBTZxJlo44RzlBURlmKeuO
+         i2EoPDcotyRYQP35GBYGIqdJMUxNRLV87T/oQ1P7+6DRxI4QB/zUdyup8kHwAgBCQvTe
+         VkVN9B8Fj9lBPXOsbFirLV9LK4qt31fJogHW1b7t85bCJwgpMnkkQRocNMnBVZlPh0G3
+         HQKQ==
+X-Gm-Message-State: AOAM530r6jupfJI75Oez5yjyTMxT+FECGhB9nOZLe+6iCELcohPrqukB
+        TB9A4+JwDOq/6wHx+SZsuIhRI7TLTBRdcK5vGgM=
+X-Google-Smtp-Source: ABdhPJxtsHG/lC5+G9h2RjEydeILLplS4SNCwxY2u2aHM5SmnV7/AXoQpGv215lFtodX35B19ZMtkjKQpnsEj2hF70o=
+X-Received: by 2002:a17:906:1fc6:: with SMTP id e6mr13151713ejt.306.1629076107059;
+ Sun, 15 Aug 2021 18:08:27 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 9D1ED21E0FD494CF6658D2FCD6ABB133228369FEF32CB2241C9E514705F4B7992000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Received: by 2002:a50:474d:0:0:0:0:0 with HTTP; Sun, 15 Aug 2021 18:08:26
+ -0700 (PDT)
+Reply-To: c1nicele22@gmail.com
+From:   Stefano Pessina <robertcooker110@gmail.com>
+Date:   Sun, 15 Aug 2021 18:08:26 -0700
+Message-ID: <CAPv+YtbeYk=jK7weMRfCDGa7U_c3gidV63M47m2a_xHtiRDhqQ@mail.gmail.com>
+Subject: Donation
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTA4LTAyIGF0IDIwOjEyICswODAwLCBFaXphbiBNaXlhbW90byB3cm90ZToN
-Cj4gV2l0aG91dCB0aGlzIGNoYW5nZSwgdGhlIE1EUCBjb21wb25lbnRzIGFyZSBub3QgZnVsbHkg
-aW50ZWdyYXRlZCBpbnRvDQo+IHRoZSBydW50aW1lIHBvd2VyIG1hbmFnZW1lbnQgc3Vic3lzdGVt
-LCBhbmQgdGhlIE1EUCBkcml2ZXIgZG9lcyBub3QNCj4gd29yay4NCj4gDQo+IEZvciBlYWNoIG9m
-IHRoZSBjb21wb25lbnQgZGV2aWNlIGRyaXZlcnMgdG8gYmUgYWJsZSB0byBjYWxsDQo+IHBtX3J1
-bnRpbWVfZ2V0L3B1dF9zeW5jKCkgYSBwb2ludGVyIHRvIHRoZSBjb21wb25lbnQncyBkZXZpY2Ug
-c3RydWN0DQo+IGhhZCB0byBiZSBhZGRlZCB0byBzdHJ1Y3QgbXRrX21kcF9jb21wLCBzZXQgYnkg
-bXRrX21kcF9jb21wX2luaXQoKS4NCj4gDQo+IE5vdGUgdGhhdCB0aGUgZGV2IGFyZ3VtZW50IHRv
-IG10a19tZHBfY29tcF9jbG9ja19vbi9vZmYoKSBoYXMgYmVlbg0KPiByZW1vdmVkLiBUaG9zZSBm
-dW5jdGlvbnMgdXNlZCB0byBiZSBjYWxsZWQgZnJvbSB0aGUgIm1hc3RlciIgbWRwDQo+IGRyaXZl
-cg0KPiBpbiBtdGtfbWRwX2NvcmUuYywgYnV0IHRoZSBjb21wb25lbnQncyBkZXZpY2UgcG9pbnRl
-ciBubyBsb25nZXINCj4gY29ycmVzcG9uZHMgdG8gdGhlIG1kcCBtYXN0ZXIgZGV2aWNlIHBvaW50
-ZXIsIHdoaWNoIGlzIG5vdCB0aGUgcmlnaHQNCj4gZGV2aWNlIHRvIHBhc3MgdG8gcG1fcnVudGlt
-ZV9wdXQvZ2V0X3N5bmMoKSB3aGljaCB3ZSBoYWQgdG8gYWRkIHRvDQo+IGdldA0KPiB0aGUgZHJp
-dmVyIHRvIHdvcmsgcHJvcGVybHkuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBFaXphbiBNaXlhbW90
-byA8ZWl6YW5AY2hyb21pdW0ub3JnPg0KPiAtLS0NCj4gDQoNClJldmlld2VkLWJ5OiBIb3Vsb25n
-IFdlaSA8aG91bG9uZy53ZWlAbWVkaWF0ZWsuY29tPg0KDQo+IChubyBjaGFuZ2VzIHNpbmNlIHYx
-KQ0KPiANClsuLi5dDQo=
+-- 
+Hello,
 
+I'm Stefano Pessina, an Italian business tycoon, investor, and
+philanthropist. the vice chairman, chief executive officer (CEO), and
+the single largest shareholder of Walgreens Boots Alliance. I gave
+away 25 percent of my personal wealth to charity. And I also pledged
+to give away the rest of 25%  this year 2021 to Individuals  because
+of the COVID heart break. I have decided to donate $2,000,000.00 USD
+(Two Million dollars) to you. If you are interested in my donation, do
+contact me for more info. via my email at:
+c1nicele22@gmail.com
+
+All replies should be forwarded to : c1nicele22@gmail.com
+
+Warm Regard
+CEO Walgreens Boots Alliance
+Stefano Pessina
