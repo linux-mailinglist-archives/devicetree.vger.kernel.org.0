@@ -2,108 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A9633ECED1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 08:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D98513ECF2D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 09:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233561AbhHPGvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 02:51:32 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:26910 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233512AbhHPGvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 02:51:31 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1629096660; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=gdILqRmVTD/TFVQVBfNPgHl11ZlKVgr1wHcPFQbbszM=;
- b=Ag7pMNo9NM4YEz/piukAZgstpiYn19UHawj4Se3F3q6DPcRHz7WnXE8Ptkj4I6sCoa/Cq41q
- 6c+tNgRzxUmmZwEfQmuLCPrznhPM8J3bfZkNAGbodZeEKcgNxffThPPaz7hLtLbCp9gTFacS
- NjAXusbjtjiLA/40kVcSckbCd48=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 611a0abef746c298d91898e0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 16 Aug 2021 06:50:38
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2391BC43617; Mon, 16 Aug 2021 06:50:38 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 69BFCC4360C;
-        Mon, 16 Aug 2021 06:50:37 +0000 (UTC)
+        id S234303AbhHPHPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 03:15:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234035AbhHPHPD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 03:15:03 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB317C061764
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 00:14:32 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id l7-20020a1c2507000000b002e6be5d86b3so7522749wml.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 00:14:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=E7eQnXnZH7iFuJ3XmJwQ4GomWFlgLsrkSimeTQa7III=;
+        b=A8J3bXdYUMLxQSgsMfUpB3y0Zk4iH5w0w14a1DfTpaGhQVPs+eNwxCIh1nw7RDGDkw
+         0oSTJeHIQ8v6vBilBtp7ItLioFGKkKwPUky9Vd5VMJFAqyI8+WCUqPpa7P4Z1CW7tWMr
+         N/GuFBju1AcjJL3fs1v6ExN5c9aOqQNC+/e44wWzyLt6kibwDzVImpjoQpWdmjEUEqBs
+         auNQtZF0CdCTOAjcIzNhNrej+wrpOPoD2FNBDZypBPSERSaLJNdMUsjeLyV4HSvbSJHI
+         LElI7iDutGF4lWg30JbkeONwR/og5GuM9PN3R2Xujwm+i+XzYESZdRF6VlPYGQVh2bJO
+         8Oww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=E7eQnXnZH7iFuJ3XmJwQ4GomWFlgLsrkSimeTQa7III=;
+        b=ixi8qPDojZUMPXqlB5GqVKdewSZp/wp8OR5uOVZPPGXEH0uldwta5Fj2vB5XPhigUw
+         WWovp4smwJiVucoAqhN/F7KgiiojKuwLsJrQ+FRrec8A3bIhZQMe0HN3NXPA4EdNyZES
+         Kb0og7VsQUJvWTIIJEYAwbeoVTWmVr3I3GE/CCqtPGCb50wOujtp/RcDOqsgbL/HhHnX
+         mnYsX0yzuOB2mGl4pCQnhwGjRBDBvSkSa0B21Q/BfXp4IzE+PUKlQMU1o5Xf5/1XVnIk
+         808M3TZOp5exrEjHTslMSapplk736ws5AwQAb94Z875W4mEWXGU+LqnSz1DsBXFHwTHm
+         DT3g==
+X-Gm-Message-State: AOAM530Hepl3tmbm9IIhrhyQ5Fflb0C0WOtxmEXGHVrfJNML/TU/AVlI
+        Qe69fZc7EEt244m/OK6u7tbYtA==
+X-Google-Smtp-Source: ABdhPJzYC526t8f315NcpYgoC4MkUwm3UII0piSXQ/CWMVdXxYhy/wvTnvlU4iQOoZBr5WpNIB3lHA==
+X-Received: by 2002:a05:600c:a49:: with SMTP id c9mr13424130wmq.159.1629098071223;
+        Mon, 16 Aug 2021 00:14:31 -0700 (PDT)
+Received: from google.com ([2.31.167.59])
+        by smtp.gmail.com with ESMTPSA id z19sm10760853wma.0.2021.08.16.00.14.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Aug 2021 00:14:30 -0700 (PDT)
+Date:   Mon, 16 Aug 2021 08:14:32 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Min Li <min.li.xe@renesas.com>
+Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH mfd v3] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Message-ID: <YRoQWCAWC8R27/XG@google.com>
+References: <1624034232-7952-1-git-send-email-min.li.xe@renesas.com>
+ <OS3PR01MB659329DB91410939ABEB5621BAF99@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 16 Aug 2021 12:20:37 +0530
-From:   skakit@codeaurora.org
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec
- translation
-In-Reply-To: <CACRpkdZteWY6X+prHeAF0rtPVbCk+X9=ZYgpjgAMH24LhOjhaQ@mail.gmail.com>
-References: <1628830531-14648-1-git-send-email-skakit@codeaurora.org>
- <1628830531-14648-2-git-send-email-skakit@codeaurora.org>
- <CACRpkdZteWY6X+prHeAF0rtPVbCk+X9=ZYgpjgAMH24LhOjhaQ@mail.gmail.com>
-Message-ID: <4af8171aefd6f0387438225666ec1ccc@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <OS3PR01MB659329DB91410939ABEB5621BAF99@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Thu, 12 Aug 2021, Min Li wrote:
 
-On 2021-08-13 14:27, Linus Walleij wrote:
-> Hi Satya/David,
+> Hi Lee
 > 
-> nice work on identifying this bug!
-> 
-> On Fri, Aug 13, 2021 at 6:56 AM satya priya <skakit@codeaurora.org> 
-> wrote:
->> 
->> From: David Collins <collinsd@codeaurora.org>
->> 
->> pmic_gpio_child_to_parent_hwirq() and
->> gpiochip_populate_parent_fwspec_fourcell() translate a pinctrl-
->> spmi-gpio irqspec to an SPMI controller irqspec.  When they do
->> this, they use a fixed SPMI slave ID of 0 and a fixed GPIO
->> peripheral offset of 0xC0 (corresponding to SPMI address 0xC000).
->> This translation results in an incorrect irqspec for secondary
->> PMICs that don't have a slave ID of 0 as well as for PMIC chips
->> which have GPIO peripherals located at a base address other than
->> 0xC000.
->> 
->> Correct this issue by passing the slave ID of the pinctrl-spmi-
->> gpio device's parent in the SPMI controller irqspec and by
->> calculating the peripheral ID base from the device tree 'reg'
->> property of the pinctrl-spmi-gpio device.
->> 
->> Signed-off-by: David Collins <collinsd@codeaurora.org>
->> Signed-off-by: satya priya <skakit@codeaurora.org>
-> 
-> Is this a regression or is it fine if I just apply it for v5.15?
-> I was thinking v5.15 since it isn't yet used in device trees.
-> 
+> This is Min again. Any chance that you can review this patch next week?
 
-Without this fix, [2/2] Vol+ support is failing. If possible please 
-merge it on current branch.
+I applied it on the 13th July.
 
-> Yours,
-> Linus Walleij
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
