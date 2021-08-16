@@ -2,122 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E0D3ED5B3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 15:16:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FFAB3ED760
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 15:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238005AbhHPNNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 09:13:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45874 "EHLO
+        id S241178AbhHPNcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 09:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239269AbhHPNLu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 09:11:50 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E99C035436;
-        Mon, 16 Aug 2021 06:07:54 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id d9so14097558qty.12;
-        Mon, 16 Aug 2021 06:07:54 -0700 (PDT)
+        with ESMTP id S231175AbhHPNaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 09:30:13 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E2DC0363FC
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 06:12:08 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id r7so23650320wrs.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 06:12:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:to:cc
-         :subject:from:references:in-reply-to;
-        bh=xfxVTufOpmHkg6GHY87ySGvsV3ZLRddJrxsikZzhp6g=;
-        b=gasm5GElvgx3RRzmWXq52VybAz4g5Vnh3CxewUsprhDCHopi7Zdpq3HtKXOGhfm53Z
-         39GL7URg+UP78AiVfyJRseh4Xp9OLOCs/fjmyGyCPYWpiSLbuvHfBxICjBc+1RoxmeYP
-         6v+4SEtpCP3czylhQt1O2J3B9BxYILD1klMRYjiI1d6FEorvaDhglAW9W0QoiCjbu0TG
-         66woKs62QnSuoK0TkgjXHb483+R3M2itoia4zHkP2XjWQlbmqHam/ZlrcOJXHbH0GksX
-         vm7onNcxeM6usPSHPClBRmcp1foJF87cpQx11Jyc8BWGYdZ1hldIGct7EauECGdWotq4
-         Aduw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=UDElONfkbKNcr3710nHgqpMr+yCII8BlvFkS50PJBOg=;
+        b=kdGB2LOfikiNOY43wIQ70lZ4JOwpyhOlNW/yVG8xp5VvScwEF/UEnObYgXXdu+nkma
+         aed4o/bQagB3ncuxy0jgrYHjwBoH5iNFw7Teq44r6nF4UTh05/cdgmH/udAZ5vOhulbN
+         wj+VnkWHN+5Hv0h0FfoSF48Y9IXi7zsSQLiIAEPk6dZYkECb8grcQ7qM4mM3UQ4bX6Rn
+         E/Ku0/SpymKammTS3qEap7EnTBvOsSNl4OgYwThyP2v8AdBXausrl83MhwIp1W2qmGPn
+         oCWRFJ2YuInx9E96/XZ7weA+336EWSAPFCjCLYZkZAYG+pfUCm4HFS81WF1Z4/WRKrpV
+         aPCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:to:cc:subject:from:references:in-reply-to;
-        bh=xfxVTufOpmHkg6GHY87ySGvsV3ZLRddJrxsikZzhp6g=;
-        b=j02SpZFgdx5i5qyCRr4HlinrTT0hDGuajIOo1bOeaFbH71Wkd37fyMoqlTieV+7NVO
-         6pqmvMrb1WHTaJ8xntk9VF1rUG44B8CbcPnKWiak1J5506mHyecHJv9EnW2B7jKQ5xsR
-         W/N1smfj4ami/00MJUrvE6JYGr1/aIbLq2A+hWaptkyydZqaqT/W3JLmA7zGRaSbTpQi
-         5yuZwqP5KZUXjrKJiTgMecqXwzbkqjuMQYtYzz0I1+D9lAxXyUvQQN//3HtWdBcp2k/L
-         EsJImpJad821JQd+EIOJ6zSwBxL95PMv2EGEbA2/LpUz+GGjz0DGyHrKwhPmXyL8x+ts
-         vbYQ==
-X-Gm-Message-State: AOAM530XTUlbGlqlfIYrbQIzH7JCSIeGxlxG8GIxHvYSUS+mpZTSLb4i
-        zvoCkWXiwepXoNYx2RQqJU0=
-X-Google-Smtp-Source: ABdhPJyUMDRqAP6WB58hfo5+GxTozFXW06KqPhTG9PbuW4H4x7KT6X+j7e0So4OByLKuhr7iF4149A==
-X-Received: by 2002:ac8:5202:: with SMTP id r2mr5465739qtn.106.1629119273650;
-        Mon, 16 Aug 2021 06:07:53 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id bi3sm6027372qkb.133.2021.08.16.06.07.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Aug 2021 06:07:53 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 16 Aug 2021 09:07:52 -0400
-Message-Id: <CDKYL1RFEMBA.2VURZKBX9F3S@shaak>
-To:     "Andy Shevchenko" <andy.shevchenko@gmail.com>
-Cc:     "Lars-Peter Clausen" <lars@metafoo.de>,
-        "Michael Hennerich" <Michael.Hennerich@analog.com>,
-        "Jonathan Cameron" <jic23@kernel.org>,
-        "Charles-Antoine Couret" <charles-antoine.couret@essensium.com>,
-        =?utf-8?q?Nuno_S=C3=A1?= <Nuno.Sa@analog.com>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "linux-iio" <linux-iio@vger.kernel.org>,
-        "devicetree" <devicetree@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 3/5] iio: adc: ad7949: add vref selection support
-From:   "Liam Beguin" <liambeguin@gmail.com>
-References: <20210815213309.2847711-1-liambeguin@gmail.com>
- <20210815213309.2847711-4-liambeguin@gmail.com>
- <CAHp75Vd-AfmwMyYyy5ygwmvGfwZLh9VwvBEzSwW3fc99jxFpnQ@mail.gmail.com>
- <CDKXZBW1JDOD.1ZXIT12Y3WK5B@shaak>
- <CAHp75VdC8GFmV-uOHPQpv5q=q0ZwSKFXW6gOL-hK6N4_qS1YJw@mail.gmail.com>
-In-Reply-To: <CAHp75VdC8GFmV-uOHPQpv5q=q0ZwSKFXW6gOL-hK6N4_qS1YJw@mail.gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=UDElONfkbKNcr3710nHgqpMr+yCII8BlvFkS50PJBOg=;
+        b=OzHqt7kUsZdxUZ1NsyK5yXLGywYluonxBvlSd1cX+93GIgwMX0CrLxYrab1QruLZ5L
+         /ntf6LDKR+WcmWFBxZusnUCbap9+mewdiCA2SqhQXPVi+H8ycB0byWOq12jpxnVEz6s+
+         QKVRf41QCEez1gpNwrk964wFsgXu9m0OTMkeBkYcqxhaIuIwYGGIwtckjVtxzV99bnoP
+         P0eRqt1dWGhaqOYb7ZwqzHqZBfeHAhhkfvf29rvzmoSSYKGEnT6rQrI0PAWOm9iuP9Zh
+         Ema5BDz2YlPPZMBSiuoss3KKGljc8f85TRvEptQauv50woZDU3thhWf3F0mostdIBqe5
+         8lZA==
+X-Gm-Message-State: AOAM5330kW0QmR5Upp/chkd1HfC8m+DPDtxTnF3Pq3xymm4INBkMuqFu
+        ev3PruD78x+00dXbbHRD16NaEA==
+X-Google-Smtp-Source: ABdhPJwN43/sXPmjvyfmC7z57ruk7+F++aLQvUWjopfXYj9rfuVnLqLH5qa/UlxBs8q4iwFXnudh/A==
+X-Received: by 2002:a5d:610f:: with SMTP id v15mr17832834wrt.415.1629119526679;
+        Mon, 16 Aug 2021 06:12:06 -0700 (PDT)
+Received: from google.com ([2.31.167.59])
+        by smtp.gmail.com with ESMTPSA id e25sm14169014wra.90.2021.08.16.06.12.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Aug 2021 06:12:06 -0700 (PDT)
+Date:   Mon, 16 Aug 2021 14:12:04 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V3 RESEND] dt-bindings: mfd: add Broadcom CRU
+Message-ID: <YRpkJOXa2sXJkAK2@google.com>
+References: <20210713094745.2586-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210713094745.2586-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon Aug 16, 2021 at 8:48 AM EDT, Andy Shevchenko wrote:
-> On Mon, Aug 16, 2021 at 3:39 PM Liam Beguin <liambeguin@gmail.com>
-> wrote:
-> > On Mon Aug 16, 2021 at 4:04 AM EDT, Andy Shevchenko wrote:
-> > > On Mon, Aug 16, 2021 at 12:35 AM Liam Beguin <liambeguin@gmail.com>
-> > > wrote:
->
-> ...
->
-> > > > +       tmp =3D 4096000;
-> > > > +       ret =3D device_property_read_u32(dev, "adi,internal-ref-mic=
-rovolt", &tmp);
-> > >
-> > > > +       if (ret < 0 && ret !=3D -EINVAL) {
-> >
-> > Hi Andy,
-> >
-> > >
-> > > What does this check (second part) is supposed to mean?
-> > > The first part will make it mandatory, is it the goal?
-> > >
-> >
-> > device_property_read_u32() will return -EINVAL if the property isn't
-> > found in the devicetree.
-> >
-> > This checks for errors when the property is defined while keeping it
-> > optional.
->
-> Don't assign and don't check the error code of the API. As simply as
-> that.
+On Tue, 13 Jul 2021, Rafał Miłecki wrote:
 
-I'm not against getting rid of it, but I was asked to check for these
-errors in earlier revisions of the patch.
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> CRU is a block used in e.g. Northstar devices. It can be seen in the
+> bcm5301x.dtsi and this binding documents its proper usage.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> V2: Use complete binding & change additionalProperties to false
+> V3: Use clock-controller@ for clocks
+> RESEND: Patch is ready for pushing now since 5.14-rc1 is out
+> 
+> Lee: last time I sent this patch you couldn't push it because of docs
+> validation dependency on 3 following commits:
+> ac5f8197d15c ("dt-bindings: pinctrl: convert Broadcom Northstar to the json-schema")
+> 08e9fdfbb224 ("dt-bindings: thermal: brcm,ns-thermal: Convert to the json-schema")
+> 8f711f68cffd ("dt-bindings: clock: brcm, iproc-clocks: convert to the json-schema")
+> 
+> All above commits made it into the 5.14-rc1.
+> ---
+>  .../devicetree/bindings/mfd/brcm,cru.yaml     | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,cru.yaml
 
-Liam
+Applied, thanks.
 
->
-> > > > +               dev_err(dev, "invalid value for adi,internal-ref-mi=
-crovolt\n");
-> > > > +               return ret;
-> > > > +       }
->
->
-> --
-> With Best Regards,
-> Andy Shevchenko
-
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
