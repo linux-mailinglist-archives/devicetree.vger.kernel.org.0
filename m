@@ -2,110 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7A153ECBDA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 02:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA253ECC23
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 02:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232086AbhHPAGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Aug 2021 20:06:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37718 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231861AbhHPAGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Aug 2021 20:06:25 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4799DC0613CF;
-        Sun, 15 Aug 2021 17:05:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=cfAWkMGWzzkKs9mNad95sbUPUcyj83ADf+VQ53dAXuM=; b=P0dk3kQ4dltUXGzd1kFWtlKg4
-        OsnZXRoefVF93mY0eaNCldR/ZRutYSgAWzlkSvvuhA1CumO+vrZxW7LD5LVelHEke26SRA8+xco1p
-        VCT9Eex8mYYQxF5oe2U605vGlfNmhEwbUQNUBQQgRFHA1y5u0ucmnrozZLPkp8MGmITN4DdvuZUHP
-        xShrhBFdJbjodBQ0zryPhhiQIIG4npAmIrAilZgUzXP8+DwnA76J8aobzR+wUSp/4M/SghZwVTVQi
-        elTJWYLFWXSJRnPZSHHQDyvVcazupLElpY1FyWXRaggQCySKxG3NvkFiePr5UpQqo/kCkFOMZb8qX
-        jvrXxJuWg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47344)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mFQ8S-0006wu-6p; Mon, 16 Aug 2021 01:05:48 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mFQ8R-0007Qe-2s; Mon, 16 Aug 2021 01:05:47 +0100
-Date:   Mon, 16 Aug 2021 01:05:47 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        claudiu.manoil@nxp.com, alexandre.belloni@bootlin.com,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v3 net-next 09/10] net: dsa: ocelot: felix: add
- support for VSC75XX control over SPI
-Message-ID: <20210816000546.GE22278@shell.armlinux.org.uk>
-References: <20210814025003.2449143-1-colin.foster@in-advantage.com>
- <20210814025003.2449143-10-colin.foster@in-advantage.com>
- <20210814114329.mycpcfwoqpqxzsyl@skbuf>
- <20210814120211.v2qjqgi6l3slnkq2@skbuf>
- <20210815204149.GB3328995@euler>
- <20210815231454.GD22278@shell.armlinux.org.uk>
- <20210815232753.GA3526284@euler>
+        id S231379AbhHPAri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Aug 2021 20:47:38 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:50787 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230124AbhHPAri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Aug 2021 20:47:38 -0400
+X-UUID: b2cb48f51b024fc0b2a7cf67518566ef-20210816
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=sAaOLYBjvsYR1Acs6Grr3F+AAV0ocb/raZ96GUdQ1qo=;
+        b=g6yAQxcxAt6eC1KytujmwOeqKEKazfwVP/3eU/sJbGnQoh1mo9550PEthzWT1uzEcUFLfG1Tj4kMXctbW7l1zudTgI5F0iv2qfx5SzlLxP0gcgZKQvxnYInZNFZe1hoXUl0V3z1elMEMSHSwpCrTjuYpOjH6YGb1VglYgWm68LY=;
+X-UUID: b2cb48f51b024fc0b2a7cf67518566ef-20210816
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <houlong.wei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2002767682; Mon, 16 Aug 2021 08:47:03 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N1.mediatek.inc
+ (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 16 Aug
+ 2021 08:46:56 +0800
+Received: from mhfsdcap04 (10.17.3.154) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 16 Aug 2021 08:46:56 +0800
+Message-ID: <8324f3197f20dfec3e0d7ea8f32bac75b739eea5.camel@mediatek.com>
+Subject: Re: [PATCH v6 1/9] mtk-mdp: propagate errors from clock_on
+From:   houlong wei <houlong.wei@mediatek.com>
+To:     Eizan Miyamoto <eizan@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     "wenst@chromium.org" <wenst@chromium.org>,
+        "Yong Wu =?UTF-8?Q?=28=E5=90=B4=E5=8B=87=29?=" <Yong.Wu@mediatek.com>,
+        "enric.balletbo@collabora.com" <enric.balletbo@collabora.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "Andrew-CT Chen =?UTF-8?Q?=28=E9=99=B3=E6=99=BA=E8=BF=AA=29?=" 
+        <Andrew-CT.Chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Minghsiu Tsai =?UTF-8?Q?=28=E8=94=A1=E6=98=8E=E4=BF=AE=29?=" 
+        <Minghsiu.Tsai@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>, <houlong.wei@mediatek.com>
+Date:   Mon, 16 Aug 2021 08:46:57 +0800
+In-Reply-To: <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
+References: <20210802121215.703023-1-eizan@chromium.org>
+         <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210815232753.GA3526284@euler>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-TM-SNTS-SMTP: CE6BE3BDA54DFB4013AD420CB44134AF67E90702D765D0A01BFC378D53FE42952000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 15, 2021 at 04:27:53PM -0700, Colin Foster wrote:
-> On Mon, Aug 16, 2021 at 12:14:54AM +0100, Russell King (Oracle) wrote:
-> > > diff --git a/drivers/net/dsa/ocelot/felix_vsc9959.c b/drivers/net/dsa/ocelot/felix_vsc9959.c
-> > > index a84129d18007..d0b3f6be360f 100644
-> > > --- a/drivers/net/dsa/ocelot/felix_vsc9959.c
-> > > +++ b/drivers/net/dsa/ocelot/felix_vsc9959.c
-> > > @@ -1046,7 +1046,7 @@ static int vsc9959_mdio_bus_alloc(struct ocelot *ocelot)
-> > >  	int rc;
-> > >  
-> > >  	felix->pcs = devm_kcalloc(dev, felix->info->num_ports,
-> > > -				  sizeof(struct lynx_pcs *),
-> > > +				  sizeof(struct phylink_pcs *),
-> > >  				  GFP_KERNEL);
-> > >  	if (!felix->pcs) {
-> > >  		dev_err(dev, "failed to allocate array for PCS PHYs\n");
-> > > @@ -1095,8 +1095,8 @@ static int vsc9959_mdio_bus_alloc(struct ocelot *ocelot)
-> > >  
-> > >  	for (port = 0; port < felix->info->num_ports; port++) {
-> > >  		struct ocelot_port *ocelot_port = ocelot->ports[port];
-> > > +		struct phylink_pcs *phylink;
-> > >  		struct mdio_device *pcs;
-> > > -		struct lynx_pcs *lynx;
-> > 
-> > Normally, "phylink" is used to refer to the main phylink data
-> > structure, so I'm not too thrilled to see it getting re-used for the
-> > PCS. However, as you have a variable called "pcs" already, I suppose
-> > you don't have much choice.
-> > 
-> > That said, it would be nice to have consistent naming through at
-> > least a single file, and you do have "pcs" below to refer to this
-> > same thing.
-> > 
-> > Maybe using plpcs or ppcs would suffice? Or maybe use the "long name"
-> > of phylink_pcs ?
-> 
-> I noticed this as well. It seems to me like the mdio_device variable
-> name of pcs is misleading, and perhaps should be "mdio" and phylink_pcs
-> should be pcs, or any of the alternatives you suggested.
+T24gTW9uLCAyMDIxLTA4LTAyIGF0IDIwOjEyICswODAwLCBFaXphbiBNaXlhbW90byB3cm90ZToN
+Cj4gVXAgdW50aWwgdGhpcyBjaGFuZ2UsIG1hbnkgZXJyb3JzIHdlcmUgbG9nZ2VkIGJ1dCBpZ25v
+cmVkIHdoZW4NCj4gcG93ZXJpbmcNCj4gb24gY2xvY2tzIGluc2lkZSBtdGtfbWRwX2NvcmUuIFRo
+aXMgY2hhbmdlIHRyaWVzIHRvIGRvIGEgYmV0dGVyIGpvYg0KPiBhdA0KPiBwcm9wYWdhdGluZyBl
+cnJvcnMgYmFjayB0byB0aGUgcG93ZXIgbWFuYWdlbWVudCBmcmFtZXdvcmsuDQo+IA0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBFaXphbiBNaXlhbW90byA8ZWl6YW5AY2hyb21pdW0ub3JnPg0KPiAtLS0NCg0K
+UmV2aWV3ZWQtYnk6IEhvdWxvbmcgV2VpIDxob3Vsb25nLndlaUBtZWRpYXRlay5jb20+DQoNCj4g
+KG5vIGNoYW5nZXMgc2luY2UgdjEpDQpbLi4uXQ0K
 
-Yes, we could alternatively could use mdiodev for mdio devices,
-which would free up "pcs" for use with struct phylink_pcs.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
