@@ -2,228 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77BB93EDE5A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7779B3EDE6B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 22:07:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbhHPUB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 16:01:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57426 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230026AbhHPUBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 16:01:25 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CBEFC061764;
-        Mon, 16 Aug 2021 13:00:53 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id m21so2539702qkm.13;
-        Mon, 16 Aug 2021 13:00:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=S024hRAwZqlJE/Rl2lsZHRUCOODC0zD4/XZWLet2bQQ=;
-        b=GNIitcpUAd0ASrW8iDAORWU40UX72s1eM3K//3nuYzs0xOvhp1Et0v+nT2GmKO3jxM
-         ZejRh6+ATl07LCdYqfQteLMEfX/OvavaNfGvwXairPq+ajl6F5PHkyvjF1HK/FsbiKC5
-         eGeuO+GVwgBPvT4mr9++G4OwwQDPAJ0rkI60NLZ1bfDx83IEpGCAPt0OL0iLg1f7khoR
-         weX5/cgedfSMtHlJHUUl4CjH0gloLwtGU8C42jAT2xlNYY8Z+LBB2/i2WPBVo4Wmm3FO
-         lzSOFIr6iTmvZYOJwbfI96MpbIjI3VWPIHnbNhCn80C3WP6NGVrxGw7PjwgWYOPvmU6c
-         3BoA==
+        id S231416AbhHPUHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 16:07:40 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:40487 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230420AbhHPUHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 16:07:39 -0400
+Received: by mail-oi1-f169.google.com with SMTP id r5so28421226oiw.7;
+        Mon, 16 Aug 2021 13:07:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=S024hRAwZqlJE/Rl2lsZHRUCOODC0zD4/XZWLet2bQQ=;
-        b=oQwvWTS8q0TfaaEjhzTGRGS4wuVrQHkNruJ9qrHuyTTmzDk8jGe9NSsySZNeJfOiVK
-         5Loi78rYb3a0nwJNQOGobOG/89chPWNS0oVQRhynO9/osVndkMBj23PJFxZdcAqafwR9
-         ukXSi5EMVjVEthbPHI8XRsCpuSigO8ECQKb8wS51cped4twuMm7pCXCSm3nMS+IAh7nc
-         bHte+WUMnm8l3h7w9tTYTqtIetqockAhlp36xZYLa/V6Pv/O97BGMPJoKqG3OR15DCse
-         +mSSqRc9jR0OTmwDqUQ0LQ2H+kGZz6sTZwMoVs4bwgwdJfhR8OZVD3vwgDFvTX6uIxH4
-         YGKg==
-X-Gm-Message-State: AOAM533LKwFGn2oq36t6E/mga7CP+fdjEFvvGxoU1QKJ57aj0eYepIRi
-        yAzGz1YniObtWyLp7dLHOA8=
-X-Google-Smtp-Source: ABdhPJxn+UXtjMPUeak2q65o73HH2b0PfsE6ZbXa0l93A6AVbjbzthMcZDuZiUzsoj/wEzCSM3mRVg==
-X-Received: by 2002:a05:620a:c04:: with SMTP id l4mr60244qki.86.1629144052730;
-        Mon, 16 Aug 2021 13:00:52 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id 75sm126914qko.100.2021.08.16.13.00.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Aug 2021 13:00:52 -0700 (PDT)
-Subject: Re: of_node_put() usage is buggy all over drivers/of/base.c?!
-From:   Frank Rowand <frowand.list@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-References: <20210814010139.kzryimmp4rizlznt@skbuf>
- <9accd63a-961c-4dab-e167-9e2654917a94@gmail.com>
- <20210816144622.tgslast6sbblclda@skbuf>
- <4cad28e0-d6b4-800d-787b-936ffaca7be3@gmail.com>
- <CAL_JsqKYd288Th2cfOp0_HD1C8xtgKjyJfUW4JLpyn0NkGdU5w@mail.gmail.com>
- <2e98373f-c37c-0d26-5c9a-1f15ade243c1@gmail.com>
-Message-ID: <84ccd797-c307-d724-0292-ee74aba43de2@gmail.com>
-Date:   Mon, 16 Aug 2021 15:00:51 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <2e98373f-c37c-0d26-5c9a-1f15ade243c1@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=uHtjUONg6FCY3pnZJevLSPNM0uWf/2eId9QZ5tVSivw=;
+        b=hd5K7p0b1Y0HgHqNBQKlQe6cANf6svvTe38gBbbOIPmlFYPqdomMJJl1a0Em3vYuLr
+         qO27l/yCJNwfsWYcG0I/UjiRDeEY+n1NFnntCRQSBxvksflXOq/3RctUfsmEgvdessDs
+         xBNLgeSyC+OCQ0uWXZK0+CUhBCepADXdYXbuetYiost2liR6np1TjHZeHTJrqBIbfQMw
+         mE4bkfvbPBvFoeEqCvQTNlhoh5RchZE3IcQDXD9spsuaF3scHgSanyKQnA8102iwgd95
+         tiOyKuW/ZkXIhRySTiFqFDPm02uayk6KdfcrEqc20jxdXUiHb44szEhvibp0nMdaDNE4
+         3xFQ==
+X-Gm-Message-State: AOAM531cz/26MFUSsVHQPsmpfHFMgsOHbTxOU7C9PMUbj9gtQMVSfHsA
+        mUPvOqUVzpHXARYQVP2uPl12D7FMFw==
+X-Google-Smtp-Source: ABdhPJwPoLDRQz/e37Bg6ivbukWiCoD/59uOvrNG7ZaBLascqxFx2/JD5NsoIT8X2Em6vbYg4dR/Pw==
+X-Received: by 2002:a05:6808:2084:: with SMTP id s4mr383200oiw.31.1629144427275;
+        Mon, 16 Aug 2021 13:07:07 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p4sm4019ooa.35.2021.08.16.13.07.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Aug 2021 13:07:06 -0700 (PDT)
+Received: (nullmailer pid 2563335 invoked by uid 1000);
+        Mon, 16 Aug 2021 20:07:03 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     linux-kernel@vger.kernel.org, lars@metafoo.de, andrew@aj.id.au,
+        BMC-SW@aspeedtech.com, joel@jms.id.au, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lgirdwood@gmail.com, broonie@kernel.org,
+        linux-aspeed@lists.ozlabs.org, pmeerw@pmeerw.net, jic23@kernel.org
+In-Reply-To: <20210816104846.13155-2-billy_tsai@aspeedtech.com>
+References: <20210816104846.13155-1-billy_tsai@aspeedtech.com> <20210816104846.13155-2-billy_tsai@aspeedtech.com>
+Subject: Re: [v3 01/15] dt-bindings: iio: adc: Add ast2600-adc bindings
+Date:   Mon, 16 Aug 2021 15:07:03 -0500
+Message-Id: <1629144423.392245.2563334.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 16 Aug 2021 18:48:32 +0800, Billy Tsai wrote:
+> Add device tree bindings document for the aspeed ast2600 adc device
+> driver.
+> 
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  .../bindings/iio/adc/aspeed,ast2600-adc.yaml  | 98 +++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml
+> 
 
-Hit send too soon, a couple of cleanups:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On 8/16/21 2:56 PM, Frank Rowand wrote:
-> On 8/16/21 2:20 PM, Rob Herring wrote:
->> On Mon, Aug 16, 2021 at 10:14 AM Frank Rowand <frowand.list@gmail.com> wrote:
->>>
->>> On 8/16/21 9:46 AM, Vladimir Oltean wrote:
->>>> Hi Frank,
->>>>
->>>> On Mon, Aug 16, 2021 at 09:33:03AM -0500, Frank Rowand wrote:
->>>>> Hi Vladimir,
->>>>>
->>>>> On 8/13/21 8:01 PM, Vladimir Oltean wrote:
->>>>>> Hi,
->>>>>>
->>>>>> I was debugging an RCU stall which happened during the probing of a
->>>>>> driver. Activating lock debugging, I see:
->>>>>
->>>>> I took a quick look at sja1105_mdiobus_register() in v5.14-rc1 and v5.14-rc6.
->>>>>
->>>>> Looking at the following stack trace, I did not see any calls to
->>>>> of_find_compatible_node() in sja1105_mdiobus_register().  I am
->>>>> guessing that maybe there is an inlined function that calls
->>>>> of_find_compatible_node().  This would likely be either
->>>>> sja1105_mdiobus_base_tx_register() or sja1105_mdioux_base_t1_register().
->>>>
->>>> Yes, it is sja1105_mdiobus_base_t1_register which is inlined.
->>>>
->>>>>>
->>>>>> [  101.710694] BUG: sleeping function called from invalid context at kernel/locking/mutex.c:938
->>>>>> [  101.719119] in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 1534, name: sh
->>>>>> [  101.726763] INFO: lockdep is turned off.
->>>>>> [  101.730674] irq event stamp: 0
->>>>>> [  101.733716] hardirqs last  enabled at (0): [<0000000000000000>] 0x0
->>>>>> [  101.739973] hardirqs last disabled at (0): [<ffffd3ebecb10120>] copy_process+0xa78/0x1a98
->>>>>> [  101.748146] softirqs last  enabled at (0): [<ffffd3ebecb10120>] copy_process+0xa78/0x1a98
->>>>>> [  101.756313] softirqs last disabled at (0): [<0000000000000000>] 0x0
->>>>>> [  101.762569] CPU: 4 PID: 1534 Comm: sh Not tainted 5.14.0-rc5+ #272
->>>>>> [  101.774558] Call trace:
->>>>>> [  101.794734]  __might_sleep+0x50/0x88
->>>>>> [  101.798297]  __mutex_lock+0x60/0x938
->>>>>> [  101.801863]  mutex_lock_nested+0x38/0x50
->>>>>> [  101.805775]  kernfs_remove+0x2c/0x50             <---- this takes mutex_lock(&kernfs_mutex);
->>>>>> [  101.809341]  sysfs_remove_dir+0x54/0x70
->>>>>
->>>>> The __kobject_del() occurs only if the refcount on the node
->>>>> becomes zero.  This should never be true when of_find_compatible_node()
->>>>> calls of_node_put() unless a "from" node is passed to of_find_compatible_node().
->>>>
->>>> I figured that was the assumption, that the of_node_put would never
->>>> trigger a sysfs file / kobject deletion from there.
->>>>
->>>>> In both sja1105_mdiobus_base_tx_register() and sja1105_mdioux_base_t1_register()
->>>>> a from node ("mdio") is passed to of_find_compatible_node() without first doing an
->>>>> of_node_get(mdio).  If you add the of_node_get() calls the problem should be fixed.
->>>>
->>>> The answer seems simple enough, but stupid question, but why does
->>>> of_find_compatible_node call of_node_put on "from" in the first place?
->>>
->>> Actually a good question.
->>>
->>> I do not know why of_find_compatible_node() calls of_node_put() instead of making
->>> the caller of of_find_compatible_node() responsible.  That pattern was created
->>> long before I was involved in devicetree and I have not gone back to read the
->>> review comments of when that code was created.
->>
-> 
->> Because it is an iterator function and they all drop the ref from the
->> prior iteration.
-> 
-> That is what I was expecting before reading through the code.  But instead
-> I found of_find_compatible_node():
-> 
->         raw_spin_lock_irqsave(&devtree_lock, flags);
->         for_each_of_allnodes_from(from, np)
->                 if (__of_device_is_compatible(np, compatible, type, NULL) &&
->                     of_node_get(np))
->                         break;
->         of_node_put(from);
->         raw_spin_unlock_irqrestore(&devtree_lock, flags);
-> 
-> 
-> for_each_of_allnodes_fromir:
+yamllint warnings/errors:
 
-  for_each_of_allnodes_from():
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml: properties:aspeed,int_vref_mv: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('enum' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml: properties:aspeed,int_vref_mv: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	1200 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	2500 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml: ignoring, error in schema: properties: aspeed,int_vref_mv
+warning: no schema found in file: ./Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml
+Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.example.dt.yaml:0:0: /example-0/adc@1e6e9000: failed to match any schema with compatible: ['aspeed,ast2600-adc0']
+Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.example.dt.yaml:0:0: /example-0/adc@1e6e9100: failed to match any schema with compatible: ['aspeed,ast2600-adc1']
 
-> 
-> #define for_each_of_allnodes_from(from, dn) \
->         for (dn = __of_find_all_nodes(from); dn; dn = __of_find_all_nodes(dn))
-> 
-> 
-> and __of_find_all_nodes() is:
-> 
-> struct device_node *__of_find_all_nodes(struct device_node *prev)
-> {
->         struct device_node *np;
->         if (!prev) {
->                 np = of_root;
->         } else if (prev->child) {
->                 np = prev->child;
->         } else {
->                 /* Walk back up looking for a sibling, or the end of the structure */
->                 np = prev;
->                 while (np->parent && !np->sibling)
->                         np = np->parent;
->                 np = np->sibling; /* Might be null at the end of the tree */
->         }
->         return np;
-> }
-> 
-> 
-> So the iterator is not using of_node_get() and of_node_put() for each
-> node that is traversed.  The protection against a node disappearing
-> during the iteration is provided by holding devtree_lock.
-> 
->>
->> I would say any open coded call where from is not NULL is an error.
-> 
-> I assume you mean any open coded call of of_find_compatible_node().  There are
-> at least a couple of instances of that.  I did only a partial grep while looking
-> at Vladimir's issue.
-> 
-> Doing the full grep now, I see 13 instances of architecture and driver code calling
-> of_find_compatible_node().
+doc reference errors (make refcheckdocs):
 
-  of_find_compatible_node() with parameter "from" not NULL.
+See https://patchwork.ozlabs.org/patch/1517123
 
-> 
->> It's not reliable because the DT search order is not defined and could
->> change. Someone want to write a coccinelle script to check that?
->>
-> 
->> The above code should be using of_get_compatible_child() instead.
-> 
-> Yes, of_get_compatible_child() should be used here.  Thanks for pointing
-> that out.
-> 
-> There are 13 instances of architecture and driver code calling
-> of_find_compatible_node().  If possible, it would be good to change all of
-> them to of_get_compatible_child().  If we could replace all driver
-> usage of of_find_compatible_node() with a from parameter of NULL to
-> a new wrapper without a from parameter, where the wrapper calls
-> of_find_compatible_node() with the from parameter set to NULL, then
-> we could prevent this problem from recurring.
-> 
-> (I did not look at all 13 instances yet, to see if this can be done.)
-> 
->>
->> Rob
->>
-> 
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
