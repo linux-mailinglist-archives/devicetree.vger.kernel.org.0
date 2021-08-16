@@ -2,191 +2,393 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 567623ED12A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 11:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E641B3ED139
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 11:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235437AbhHPJmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 05:42:23 -0400
-Received: from mx0a-00069f02.pphosted.com ([205.220.165.32]:36266 "EHLO
-        mx0a-00069f02.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231673AbhHPJmW (ORCPT
+        id S235520AbhHPJqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 05:46:04 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:42598
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235492AbhHPJqD (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Aug 2021 05:42:22 -0400
-Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 17G9eb3E018495;
-        Mon, 16 Aug 2021 09:41:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : content-type : in-reply-to : mime-version;
- s=corp-2021-07-09; bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
- b=LX8Oqs0U51BaQilfnP0sjRPDc5iaxDosypQstPIq8s0ZOFon9Ws1AU9vG+UAo8y+mr0B
- NbNwgFLOJ+aH/PbAnZnotJ3SfzzHdtAGV6JhakRxTIw9NgCNaMjjVne6uzHlCVgWs5WS
- IQscqxbYKgnpXrB9GmzTCVnmpFvOgcrHDy/c9buhLIQTIqpu+vpSAgd3mr7bXhA78Arf
- +8dGMoTOXKFBBeMtKXLGfK8Xc4O2FUdoUVGEZsNUjZDcCZwpaHb1Xic/POMW2KuDh6me
- Ze1te7YFoyglU88Gg4IrnYlsuJPis8/3HWPg8aBEjJ4VzuP8ndEf3MmFiAab+fyt39Zb 9g== 
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : content-type : in-reply-to : mime-version;
- s=corp-2020-01-29; bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
- b=X/Gq9Z/ubPSH2sMGtn69WMXWIZR3P01IlGvlr16flCr9djCMxSYmpyTl6Vuc5ZdSl/NV
- qCdifZc7os4RZl8SGSzkRjQZKRE/irQQuY4Fgvli0h90hQ6a5pTO5hIvZQ8Jkl5cT/G6
- hX0OJdLAWzJbC2djXKgf6zTrP7EEqhozsMs+GUQwuGVplnkDSlUD2a7Nod3BJEruEDLD
- XxGykE/6no2IYF1tPXJ8Fs6zOGkhPqdzwKJzE5h6keRVcNM9ZXjKybgnE54sE4smzTca
- lbmAKABZUAdzyzs5AlKE2C+i33fATZz8tREJ/pFX4MweiPxYIonrUHvSpk6R5v7bThYe Vg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by mx0b-00069f02.pphosted.com with ESMTP id 3af83019gh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 16 Aug 2021 09:41:26 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 17G9YqUr055440;
-        Mon, 16 Aug 2021 09:41:25 GMT
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2103.outbound.protection.outlook.com [104.47.70.103])
-        by userp3020.oracle.com with ESMTP id 3aeqkrutb3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 16 Aug 2021 09:41:25 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZLbm62P8KRbMWuc8mcr+V1OYkHRUemcT4NDS+Gv9da2qALhElY59771M+0dPXUHgznD9X/ndkQr/J1JD9Qqeo2ZTVJMtbI+bzOUumEPsHLVlFl/qCcp5XCNsQMcrEN3JlLJ2Nmyg/5/9HInNAlvoSoef2TsDcoi/f4DHkQEqruhdlUmEsbMOzdia+LncwHAX+CUdTisXMwwmslmTzTW9ED4vCug+S34+Ro+/UFLvvE/XZafNItjPm2dSz1A4vM4mhMgjpgAwT0b2ctrK4LzXWUznjQuwpC2RToQE+N80ssisXwD3lPH0Gn6KNkAsJPWsNAgPqvXJ4gqq1DPXMgH4Hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
- b=blXkuOVyQ6XCjUJ/pAv563neklbnLFfP6rEV+riTy3/WtAtu029NBg4Ob8U3pzoJ90O6ukKPW2kZjzOTzGPCaGX4hzZOkUQO/llMxuDJhWEzQte7NxB72/G3jNo4gpi07NK/o4WAmAXhSRcstGlrbejGov+f6nauYb3Ss07xHoJiDEUa0nCxdXHeyPJtQVRCdeB/G2ZxtF7Ks/N/GfbTA3635V+vSsi3z8Rj+Y8qbk3Kowvm5x3QaOOFyS6es5cRWoEL7se6mqV4NMz/uwTqVM1If5KX5G6oR1mK5LJDWF44yQIjQUtU+mzcEU7r6SxOGf58yjhMtCdE7B0GqlMkyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
- b=CzwbKZpO87bXyulZXJnqZAIUML7zCk7tJMK/8kzhTgDl6SCJMWlvqAvsgqrCTRro/l/Q9m9V2b+szah++8hExOgCqAGM11TOqAgu7WcED8olK2UNHySa8tEazzlgRp/E7D5o+yHPHaK3OUApIesfbw5qRyJOsXS0EUCKvsCxVUw=
-Authentication-Results: lists.01.org; dkim=none (message not signed)
- header.d=none;lists.01.org; dmarc=none action=none header.from=oracle.com;
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by MWHPR10MB1358.namprd10.prod.outlook.com
- (2603:10b6:300:23::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.14; Mon, 16 Aug
- 2021 09:41:23 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::5820:e42b:73d7:4268]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::5820:e42b:73d7:4268%7]) with mapi id 15.20.4415.023; Mon, 16 Aug 2021
- 09:41:22 +0000
-Date:   Mon, 16 Aug 2021 12:40:55 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     kbuild@lists.01.org, Chia-Wei Wang <chiawei_wang@aspeedtech.com>,
-        robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
-        cyrilbur@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Cc:     lkp@intel.com, kbuild-all@lists.01.org
-Subject: Re: [PATCH 1/2] soc: aspeed: Add LPC mailbox support
-Message-ID: <202108160813.GOZ1P4Y8-lkp@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210813054758.13189-2-chiawei_wang@aspeedtech.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: JNAP275CA0060.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4f::14)
- To MWHPR1001MB2365.namprd10.prod.outlook.com (2603:10b6:301:2d::28)
+        Mon, 16 Aug 2021 05:46:03 -0400
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 4D909412D0
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 09:45:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629107127;
+        bh=0YPeosyPSKYRu+3IMfidh4Xy4sl5Ld4HC2vVfEQcmh8=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=knmfLTwYYlk+AxjW60bh1sR9dBCBPVP25ps+bsxO1n9x+UIpDIeBffaxaWHaTxu50
+         DyjAQcw/OrSo1KPnaUIri67hxlNNdn39dadN60xfaJDNiU7uZs3+WznMcXkw1DlFV+
+         P8EiJywLSQ+MAHrqoBKehZhJ6rwChro225FHInEkMfSv7gIWPeEPKjM08kMFD/fQ9z
+         lxHhMtnwZfdHBhgh6Pz4We9l/fqV+ShqcvyMeWlv+zpDug3CVu0fzfgreVbNT+sni/
+         oCjbIrorDinNVF7BwaMjtkBxSiuydDtCziFDfchL4d9Uy8jlSB4n8vSZX+sZle80uB
+         xXdfE0fSCbj7w==
+Received: by mail-ej1-f71.google.com with SMTP id k12-20020a170906680cb02905aeccdbd1efso4485525ejr.9
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 02:45:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0YPeosyPSKYRu+3IMfidh4Xy4sl5Ld4HC2vVfEQcmh8=;
+        b=EwuiDUdhqAvzjufe7gSYJg63XemFr8Ap9KZKq+xwr49/mYVyALU71EvZbic/imYCgf
+         AMD2KtHlj+TTR0XurCuOjBAehY6RjlIqViMjPWhZU+RV+Ty0HLGMzXQPC1vYNcJNV36X
+         sbbAhwmZ0avdZZ8wM0oqTqEjf/3W3YXkRhHvrjzoVUFacOi709C7l1dX3xdZJic3jvM3
+         D6h06Su4fL2JIxBvUzoUZhoFlModwVrpZJZwtWL6YSGYiVtcY2mzoh9U+jZRAyhZtNQ/
+         UVN/LuTAK05G5cO7W7OjNytzU1HW0wP4U6flEzRNUa0IIf/urwxA6Xpf4EptnqCn665l
+         Z6iA==
+X-Gm-Message-State: AOAM5336o4V3zqAtYCzukXzN78umC2d9Uo+n/J/ghl0vX18sKDt5rmrK
+        yhGPjwgoX9RjQDlqTYAJ3t3lx99nk7aOwBnjU2qPkQhmPJMtyoK0oEmjzAgzFtFFTaS8q0VAcX4
+        u6GXAXBxGBw7aIJ4dchxmPFw6jzdm/4ODOOa1BRY=
+X-Received: by 2002:a17:906:b195:: with SMTP id w21mr3439804ejy.12.1629107126841;
+        Mon, 16 Aug 2021 02:45:26 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwuvp8D3ZgBwPmEOii5wrRifN9jfWsAO8nKcRBli/sHMv7eXnxEkHJaNyywLt+pQvHAdcMCQg==
+X-Received: by 2002:a17:906:b195:: with SMTP id w21mr3439794ejy.12.1629107126702;
+        Mon, 16 Aug 2021 02:45:26 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id wc16sm3479626ejb.15.2021.08.16.02.45.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Aug 2021 02:45:26 -0700 (PDT)
+Subject: Re: [PATCH v3 7/7] arm64: dts: exynos: Add Exynos850 SoC support
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20210811114827.27322-1-semen.protsenko@linaro.org>
+ <20210811114827.27322-8-semen.protsenko@linaro.org>
+ <f0e892ce-acd0-7acc-4881-dd67dda6fb38@canonical.com>
+ <CAPLW+4=2msw44EjujeTUvcYJ701iZTPwkVoO3UzZyakspev20A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <40dd9a0a-eccc-1b0c-70ec-06edc8b91177@canonical.com>
+Date:   Mon, 16 Aug 2021 11:45:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from kadam (62.8.83.99) by JNAP275CA0060.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4f::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15 via Frontend Transport; Mon, 16 Aug 2021 09:41:15 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8b87c884-2390-40b2-af54-08d9609a01ef
-X-MS-TrafficTypeDiagnostic: MWHPR10MB1358:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MWHPR10MB1358DEC9F16A3C551AFBECB58EFD9@MWHPR10MB1358.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lfUJILokRbre4yQN3x6WXIONhTwEgAULclO8Q1WSLV2YzVN6ZWWq8+ixs7KiWs9Fo/TJfjWwqKy6pziAyPrkps/7zJgocS9J2m33jp74n1eaxQ7C761QIsDFucjMlFpg5OzV0k9RTUnUxFKAF8uAuhJR8sHWw99uMocB3H4svvzbtp7n5ZHMudqXn252bhbiS1yNB3T5jbMcQ+IXjANcL9biIFYupNkSmsDMLJaevj8TW6rpUEScKa+netr8SBQ2G82Zc6KMEHxPrC4P/3GlkkCN+jPPE9RaHd74dWr8YO9XzKX39UnGLsxaA62C3qPGsAB8cqkmpYaR4GjgdGkzoiNmXrNiNdmzV+wmHTLioNjd4EJ//oGEChs6mEZA7SlSpmlo+6w3fuI11R5QzvoJcRuSzTqYFMwNqqsDmJmv7qykXXK3XE+LKMeaeaHkVu8MIav/m4tcF/yRoBGfXIpK22CqX+ESPhTfHO513dl+yu2TGpRVVfC5xIYkk9oorGDE2bVbGiMqrOd/9R2JARwyd19mrmNrHlLazNIioWbK7T7fIA3ubw2nK9hvy8fK9Z8TFfsiUtkQgn4rOiuTLKXfaXz2g1uXXwMvs8GKT5uV+H0bGb9J/HgvPulq6ch4BNv4ObeMedOCr8vcG6zbfAJRssKDhuRIKnxA6yjH9zt1j41gdzhoaZsyszHh0X7fCtJZ6UiHeAkAU9IVi085FT0CU529tohDjINXGzA5YLL40yt9UfMW7Msz2mAnkSWw8c0lzUEPTstAuIBe7fXSAOWiArsBXa1tWHztYf6tYtE+h6jzAc+c7cjTUwh0+gTXFJd1DmtK9jOVeA4goj+vNZOzpA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(366004)(39860400002)(376002)(346002)(5660300002)(44832011)(1076003)(316002)(2906002)(66946007)(52116002)(956004)(7416002)(4326008)(966005)(9686003)(38100700002)(36756003)(38350700002)(6496006)(186003)(15650500001)(478600001)(921005)(8936002)(8676002)(6666004)(66556008)(6486002)(66476007)(83380400001)(86362001)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+zbLTzB1NSkrQE1zXtV/Vy0oOvCLA2e3xEY/jeko+GfFZoRLmaCtZfUSHZ8E?=
- =?us-ascii?Q?8OOcl/X0W3Yancz9mkSm09EBptBQuMOYrFLoLEFR4F7srsNTTi1EgItmJKgq?=
- =?us-ascii?Q?LJgK17rjdWdUHKWtFfqbtrlmW+EudCHLTURjRst5ATRE5ycojuLUGXVxgbgD?=
- =?us-ascii?Q?STYjFHc2Mv49dAlmSV8F00ahXBGHEW4EneB0UOhGswZfo7/uOB3pYirMnLtq?=
- =?us-ascii?Q?yxCGn0+uIT1eg8OR6v3hLl/pFXKXazv444MLurPTnDokgbALw/B4afkT94Az?=
- =?us-ascii?Q?GjPmxSmVzTStKjGgLRZDralkBokt4Gv27EOz8bEWFMjFKs8tkYYt8XZAUjiy?=
- =?us-ascii?Q?K2N7KdD4p3BwIfCIpp2bHvZS/PaNoHozVbZZr2pj1MUeLm/CqwohGXcGxKox?=
- =?us-ascii?Q?xwWsf6CifcTuDPz/nmSOHVmmSfjPPzCvXjKiLNpXywZ9MUcfAfWUfq1iBvm5?=
- =?us-ascii?Q?REUt7GrHZzuLPMlHwURnJ/oYTje/9if2CdJDu7I/mZhKFHTeQTV+js4ZLXuL?=
- =?us-ascii?Q?kokfTKnmRgb2IBw1cOX/IxLx6mjEnmETYkV6ZqFV5aOIrHxQVhveRX8vnAvf?=
- =?us-ascii?Q?5FkEYLC7KyGQPf2b7n+Pbk0WfdaFX8XWoJbh2OpsfCf+bHIhrJ53jaSOTB4T?=
- =?us-ascii?Q?t34mRQmNfpDn/worNVF5zDG7jj0llZFbxD8AH1TPu827XIt7pRm0H9nr60HU?=
- =?us-ascii?Q?gNRWsUeIeaoN/u0QE0xGLPwgHpyus18oFSyAeFI30MD/aaoH8D6LJC7bJ5uI?=
- =?us-ascii?Q?6cFxEbNLi11mVWsPMiB5ZWvjJ0y8Ad2KWbrkwugdSBgaQ6nLN3+b7FyIjerp?=
- =?us-ascii?Q?Ryy+/FHfbq1NXPn5uwDpc3V1dhHEOpJWkbEM/G8x1hi09WXougWUfBY9/XUw?=
- =?us-ascii?Q?uKdJQdOk/CoMcwVKmnBvefxUxxTVM7n+8exlOP4yYcvK4TW+tSIf3LXi5C78?=
- =?us-ascii?Q?FQTBSQnolO1bub2ZFcIbcZUG+MKXvM/cZyTZhXdMVLfm4hH8aTo7oQGtVVYc?=
- =?us-ascii?Q?1yT0Cxr7pRkhrc5tDdU6mKM1UCEmsqWblGrwj1WOjmMOTXdwFDKiaE4kd+o0?=
- =?us-ascii?Q?x4Ox/VtTXwCMDRpZ9OYOuqQa8EaRcZ4A5soHpUOcJzEfaE/Ir1UhStYzz2AV?=
- =?us-ascii?Q?wsCQwD+0ShT5FdTcwEUhvWDBNZ4Ic5+FpT98ARaBUhvineaoljzg4eTBnBgd?=
- =?us-ascii?Q?PvP90YWr14MmpZVxBAoJX32wqbn8aB1yUrR+gLwFVTxlGgQ5Gh+rWDnsO+T8?=
- =?us-ascii?Q?+Dnp36vdglmsq/h0cMKR9bIyKzyWIyhuFcBarEsHzJFVQgtSm2igAska4WPN?=
- =?us-ascii?Q?44cnxAATnKseVAvK88hIoby5?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b87c884-2390-40b2-af54-08d9609a01ef
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2021 09:41:22.8608
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jY1g6zGDNDoWLweGQTNpgLA81lsohGf4MGFb7t5CMi11hW9UNxhxrqfw2VsUkmG5BM9soC5e2PejlVSuk1M0faCZHnvZCBD3COPr+OS2zvI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1358
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=10077 signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 malwarescore=0
- mlxscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
- definitions=main-2108160059
-X-Proofpoint-ORIG-GUID: IQ3nKwe6lRpC2qkvVJuxKU3rcv6z1mca
-X-Proofpoint-GUID: IQ3nKwe6lRpC2qkvVJuxKU3rcv6z1mca
+In-Reply-To: <CAPLW+4=2msw44EjujeTUvcYJ701iZTPwkVoO3UzZyakspev20A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chia-Wei,
+On 12/08/2021 19:42, Sam Protsenko wrote:
+> On Thu, 12 Aug 2021 at 11:17, Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> On 11/08/2021 13:48, Sam Protsenko wrote:
+>>> Samsung Exynos850 is ARMv8-based mobile-oriented SoC.
+>>>
+>>> This patch adds minimal SoC support by including next Device Tree nodes:
+>>>
+>>> 1. Octa cores (Cortex-A55), supporting PSCI v1.0
+>>> 2. ARM architecture timer (armv8-timer)
+>>> 3. Interrupt controller (GIC-400)
+>>> 4. Pinctrl nodes for GPIO
+>>> 5. Serial node
+>>>
+>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+>>> ---
+>>> Changes in v3:
+>>>  - Used generic fixed clock for serial
+>>>
+>>> Changes in v2:
+>>>  * Commit message:
+>>>    - Documented added dts features instead of CPU features
+>>>
+>>>  * exynos850-usi.dtsi:
+>>>    - Removed, moved everything to exynos850.dtsi
+>>>
+>>>  * exynos850.dtsi:
+>>>    - Root node:
+>>>      - Added comment about engineering name (Exynos3830)
+>>>      - Renamed pinctrl nodes, adding domain names
+>>>      - Used hard coded IRQ numbers instead of named constants everywhere
+>>>      - Added soc node, moved next nodes there: gic, clock, pinctrls and
+>>>        serial
+>>>      - Used address-cells=1 for soc node and removed unneeded 0x0 from
+>>>        reg properties
+>>>      - Moved exynos850-pinctrl.dtsi include line to the end of
+>>>        exynos850.dtsi
+>>>      - Coding style fixes
+>>>    - cpus:
+>>>      - Used address-cells=1 for cpus node
+>>>      - Renamed cpu@0001 to cpu@1, and so on
+>>>      - Left only "arm,cortex-a55" for cpus compatible
+>>>      - Renamed reg = <0x0001> to <0x1> for cpus
+>>>    - armv8 timer:
+>>>      - Add comment about missing HV timer IRQ to armv8 timer node
+>>>      - Removed not existing properties from armv8 timer node
+>>>      - Fixed cpu number in CPU_MASK()
+>>>      - Removed obsolete clock-frequency property
+>>>    - GIC:
+>>>      - Fixed GIC type to be GIC-400
+>>>      - Fixed size of GIC's 2nd region to be 0x2000
+>>>    - serial node:
+>>>      - Hard coded clock number for serial_0 for now; will replace with
+>>>        named const once proper clock driver is implemented
+>>>      - Removed gate_uart_clk0 clock from serial_0, as that clock is not
+>>>        supported in serial driver anyway (yet)
+>>>    - clock node:
+>>>      - Fixed clock controller node name (@0x12.. -> @12..)
+>>>
+>>>  * exynos850-pinctrl.dtsi:
+>>>    - Referenced pinctrl nodes instead of defining those again in root node
+>>>    - Fixed interrupt-cells (3 -> 2)
+>>>    - Fixed USI related comments for pin config nodes
+>>>    - Removed decon_f_te_* and fm_lna_en nodes (won't be used)
+>>>    - Reordered pin config nodes by pin numbers
+>>>    - Improved all comments
+>>>    - Used existing named constants for pin-function and pin-pud
+>>>    - Fixed node names (used hyphens instead of underscore)
+>>>    - Fixed warnings found in W=1 build
+>>>
+>>>  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 748 ++++++++++++++++++
+>>>  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 261 ++++++
+>>>  2 files changed, 1009 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+>>> new file mode 100644
+>>> index 000000000000..ba5d5f33e2f6
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+>>> @@ -0,0 +1,748 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Samsung's Exynos850 SoC pin-mux and pin-config device tree source
+>>> + *
+>>> + * Copyright (C) 2017 Samsung Electronics Co., Ltd.
+>>> + * Copyright (C) 2021 Linaro Ltd.
+>>> + *
+>>> + * Samsung's Exynos850 SoC pin-mux and pin-config options are listed as device
+>>> + * tree nodes in this file.
+>>> + */
+>>> +
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/pinctrl/samsung.h>
+>>> +
+>>> +&pinctrl_alive {
+>>> +     gpa0: gpa0 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpa1: gpa1 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpa2: gpa2 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpa3: gpa3 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpa4: gpa4 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpq0: gpq0 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +     };
+>>> +
+>>> +     /* I2C5 (also called CAM_PMIC_I2C in TRM) */
+>>> +     i2c5_bus: i2c5-bus {
+>>> +             samsung,pins = "gpa3-5", "gpa3-6";
+>>> +             samsung,pin-function = <EXYNOS_PIN_FUNC_3>;
+>>> +             samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+>>> +             samsung,pin-drv = <0>;
+>>> +     };
+>>> +
+>>> +     /* I2C6 (also called MOTOR_I2C in TRM) */
+>>> +     i2c6_bus: i2c6-bus {
+>>> +             samsung,pins = "gpa3-7", "gpa4-0";
+>>> +             samsung,pin-function = <EXYNOS_PIN_FUNC_3>;
+>>> +             samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+>>> +             samsung,pin-drv = <0>;
+>>> +     };
+>>> +
+>>> +     /* USI: UART */
+>>> +     uart0_bus: uart0-bus {
+>>> +             samsung,pins = "gpq0-0", "gpq0-1";
+>>> +             samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+>>> +             samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+>>> +     };
+>>> +};
+>>> +
+>>> +&pinctrl_cmgp {
+>>> +     gpm0: gpm0 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpm1: gpm1 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpm2: gpm2 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpm3: gpm3 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpm4: gpm4 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     gpm5: gpm5 {
+>>> +             gpio-controller;
+>>> +             #gpio-cells = <2>;
+>>> +
+>>> +             interrupt-controller;
+>>> +             #interrupt-cells = <2>;
+>>> +             interrupt-parent = <&gic>;
+>>> +             interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+>>> +     };
+>>> +
+>>> +     /* USI_CMGP0: HSI2C function */
+>>> +     hsi2c3_bus: hsi2c3-bus {
+>>> +             samsung,pins = "gpm0-0", "gpm1-0";
+>>> +             samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
+>>> +             samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+>>> +             samsung,pin-drv = <0>;
+>>
+>> There are also macros for DRV.
+>>
+> 
+> Unfortunately, existing DRV macros won't work for Exynos850. DRV
+> constants have different meaning for different GPIO domains in
+> Exynos850, so I thought introducing several groups of DRV constants
+> might be confusing. But please let me know if you still want me do
+> that.
+> 
 
-url:    https://github.com/0day-ci/linux/commits/Chia-Wei-Wang/aspeed-Add-LPC-mailbox-support/20210813-134908
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed.git for-next
-config: openrisc-randconfig-m031-20210816 (attached as .config)
-compiler: or1k-linux-gcc (GCC) 11.2.0
+Oh, damn, raw values are ok then.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 
-smatch warnings:
-drivers/soc/aspeed/aspeed-lpc-mbox.c:230 aspeed_mbox_ioctl() warn: maybe return -EFAULT instead of the bytes remaining?
-
-vim +230 drivers/soc/aspeed/aspeed-lpc-mbox.c
-
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  214  static long aspeed_mbox_ioctl(struct file *file, unsigned int cmd,
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  215  				 unsigned long param)
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  216  {
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  217  	struct aspeed_mbox *mbox = file_mbox(file);
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  218  	const struct aspeed_mbox_model *model = mbox->model;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  219  	struct aspeed_mbox_ioctl_data data;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  220  	long ret;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  221  
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  222  	switch (cmd) {
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  223  	case ASPEED_MBOX_IOCTL_GET_SIZE:
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  224  		data.data = model->dr_num;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  225  		ret = copy_to_user((void __user *)param, &data, sizeof(data));
-
-This should be:
-
-	if (copy_to_user((void __user *)param, &data, sizeof(data)))
-		return -EFAULT;
-
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  226  		break;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  227  	default:
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  228  		ret = -ENOTTY;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  229  	}
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13 @230  	return ret;
-72c5a69dc779f5 Chia-Wei Wang 2021-08-13  231  }
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
-
+Best regards,
+Krzysztof
