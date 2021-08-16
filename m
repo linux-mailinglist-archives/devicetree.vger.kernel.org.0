@@ -2,84 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D98513ECF2D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 09:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFDDA3ECF6D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 09:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234303AbhHPHPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 03:15:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234035AbhHPHPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 03:15:03 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB317C061764
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 00:14:32 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id l7-20020a1c2507000000b002e6be5d86b3so7522749wml.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 00:14:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=E7eQnXnZH7iFuJ3XmJwQ4GomWFlgLsrkSimeTQa7III=;
-        b=A8J3bXdYUMLxQSgsMfUpB3y0Zk4iH5w0w14a1DfTpaGhQVPs+eNwxCIh1nw7RDGDkw
-         0oSTJeHIQ8v6vBilBtp7ItLioFGKkKwPUky9Vd5VMJFAqyI8+WCUqPpa7P4Z1CW7tWMr
-         N/GuFBju1AcjJL3fs1v6ExN5c9aOqQNC+/e44wWzyLt6kibwDzVImpjoQpWdmjEUEqBs
-         auNQtZF0CdCTOAjcIzNhNrej+wrpOPoD2FNBDZypBPSERSaLJNdMUsjeLyV4HSvbSJHI
-         LElI7iDutGF4lWg30JbkeONwR/og5GuM9PN3R2Xujwm+i+XzYESZdRF6VlPYGQVh2bJO
-         8Oww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=E7eQnXnZH7iFuJ3XmJwQ4GomWFlgLsrkSimeTQa7III=;
-        b=ixi8qPDojZUMPXqlB5GqVKdewSZp/wp8OR5uOVZPPGXEH0uldwta5Fj2vB5XPhigUw
-         WWovp4smwJiVucoAqhN/F7KgiiojKuwLsJrQ+FRrec8A3bIhZQMe0HN3NXPA4EdNyZES
-         Kb0og7VsQUJvWTIIJEYAwbeoVTWmVr3I3GE/CCqtPGCb50wOujtp/RcDOqsgbL/HhHnX
-         mnYsX0yzuOB2mGl4pCQnhwGjRBDBvSkSa0B21Q/BfXp4IzE+PUKlQMU1o5Xf5/1XVnIk
-         808M3TZOp5exrEjHTslMSapplk736ws5AwQAb94Z875W4mEWXGU+LqnSz1DsBXFHwTHm
-         DT3g==
-X-Gm-Message-State: AOAM530Hepl3tmbm9IIhrhyQ5Fflb0C0WOtxmEXGHVrfJNML/TU/AVlI
-        Qe69fZc7EEt244m/OK6u7tbYtA==
-X-Google-Smtp-Source: ABdhPJzYC526t8f315NcpYgoC4MkUwm3UII0piSXQ/CWMVdXxYhy/wvTnvlU4iQOoZBr5WpNIB3lHA==
-X-Received: by 2002:a05:600c:a49:: with SMTP id c9mr13424130wmq.159.1629098071223;
-        Mon, 16 Aug 2021 00:14:31 -0700 (PDT)
-Received: from google.com ([2.31.167.59])
-        by smtp.gmail.com with ESMTPSA id z19sm10760853wma.0.2021.08.16.00.14.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Aug 2021 00:14:30 -0700 (PDT)
-Date:   Mon, 16 Aug 2021 08:14:32 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v3] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <YRoQWCAWC8R27/XG@google.com>
-References: <1624034232-7952-1-git-send-email-min.li.xe@renesas.com>
- <OS3PR01MB659329DB91410939ABEB5621BAF99@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+        id S234023AbhHPHdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 03:33:19 -0400
+Received: from pi.codeconstruct.com.au ([203.29.241.158]:41930 "EHLO
+        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233725AbhHPHdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 03:33:19 -0400
+Received: from [192.168.12.102] (unknown [159.196.94.94])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 6C76B20134;
+        Mon, 16 Aug 2021 15:32:41 +0800 (AWST)
+Message-ID: <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
+Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
+From:   Matt Johnston <matt@codeconstruct.com.au>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>
+Date:   Mon, 16 Aug 2021 15:32:40 +0800
+In-Reply-To: <YRae8tDReDS67sM4@robh.at.kernel.org>
+References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
+         <YRae8tDReDS67sM4@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <OS3PR01MB659329DB91410939ABEB5621BAF99@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Aug 2021, Min Li wrote:
-
-> Hi Lee
+On Fri, 2021-08-13 at 11:33 -0500, Rob Herring wrote:
 > 
-> This is Min again. Any chance that you can review this patch next week?
+> Adding 'generic' is not an improvement nor does it change anything. 
 
-I applied it on the 13th July.
+I may have misunderstood the feedback then:
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> Again, a protocol is not a device. We went thru the same thing with 
+> HID-over-I2C.
+
+Thanks for the pointer to HID-over-I2C, that helps to clarify things.
+I'm a still a little unclear on what you mean by "protocol" - is that a 
+DT-specific thing? If so, I can't see many references to what's required
+for a protocol definition - do you have any pointers I can read up on?
+
+I don't expect for there to be much extra in the way of I2C controller
+quirks that we'll need, but I agree that we may need to accommodate
+those in future. It looks like the HID example gives us a bit
+of a precedent there - is that just through allowing further, more
+specific compatible values later? (plus their binding-specified properties)
+
+Essentially at the moment we just need to flag which busses will need
+to carry MCTP data, and this should work with any I2C controller. To do
+that, this new binding defines which I2C busses in the system will be
+accessible by MCTP and which local I2C client address will be used. If
+there's a neater way to represent those in the DT we're happy to rework
+the binding.
+
+(MCTP I2C uses SMBus Block Write for messages in either direction. This
+requires us to include the mux topology in the DT data so the system can
+receive response messages. However all we need from the DT binding is to
+flag the nodes in the tree that will host endpoints - a driver
+implementation can work out the rest)
+
+> There's still not any diagram to better understand what all this is.
+
+I'll add one to 2/2, how's something like this:
+                                       .-------.
+                                       |eeprom |
+.----------.   .------.               /'-------'
+| adapter  |   | mux  --@0,i2c5------'
+| i2c1     |-.-|      --@1,i2c6--.--.
+|..........|  \'------'           \  \  .........
+| mctp-i2c |   \                   \  \ .mctpB  .
+| slave    |    \                   \  '.0x30   .
+| 0x50     |     \  .........        \  '.......'
+'----------'      \ .mctpA  .         \ .........
+                   '.0x1d   .          '.mctpC  .
+                    '.......'          '.0x31   .
+                                        '.......'
+
+This shows 3 MCTP peripherals in the system, one toplevel and two
+behind a mux. This requires us to define two MCTP controllers: one
+on i2c1 - the root controller, and one in i2c6 - an individual
+downstream port of the mux.
+
+i2c1: i2cbus1 {
+  compatible = "vendor,example-i2c-controller";
+  #address-cells = <1>;
+  #size-cells = <0>;
+  mctp@50 {
+    compatible = "mctp-i2c";
+    reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
+    attach-bus = <&i2c1 &i2c6>;
+  };
+};
+
+i2cmux0 {
+  compatible = "vendor,example-i2c-mux";
+  #address-cells = <1>;
+  #size-cells = <0>;
+  i2c-parent = <&i2c1>;
+
+  i2c5: i2c@0 {
+    reg = <0>;
+    eeprom@33 {
+      compatible = "atmel,24c64";
+      reg = <0x33>;
+    };
+  };
+
+  i2c6: i2c@1 {
+    reg = <1>;
+  };
+};
+
+
+Regarding I2C_OWN_SLAVE_ADDRESS validation, I can add a i2c-own-
+address.yaml schema (name pending) though can't see a way to perform a bit-
+set test in json schema validation?
+
+Thanks,
+Matt
+
+
