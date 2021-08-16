@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8627B3ED46A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 14:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E0D3ED5B3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 15:16:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbhHPNAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 09:00:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43490 "EHLO
+        id S238005AbhHPNNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 09:13:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbhHPNAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 09:00:02 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BDC8C061764;
-        Mon, 16 Aug 2021 05:59:31 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id js7so9185890qvb.4;
-        Mon, 16 Aug 2021 05:59:31 -0700 (PDT)
+        with ESMTP id S239269AbhHPNLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 09:11:50 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E99C035436;
+        Mon, 16 Aug 2021 06:07:54 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id d9so14097558qty.12;
+        Mon, 16 Aug 2021 06:07:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=G+0eo8uBciZZ75lMpCYVoliToSNojQPxAZ9Nw5b+SJ8=;
-        b=orP6XdoARpEigMxUeWDxZuA9zCC+uW/v5mMLzo5b2heITGIGxlzoeu6hnKIlFujv7p
-         fHN6eYzQlulZa3nKCEh5So3+w1cPm+8Zq/8gxJ9JaaP5HZzq+J/s4MFgc6EFvgScZbi4
-         UdlU/BjQsrD/b0OvK8Wtel+ysj8nqqigPrMXIK8AbsJc2ttcqZShas3sxXPizfrCqRP1
-         uxQ/++qlPaI3NdTlTQ2zxNkI6+J5ZwnlFk+7JUTKawhRoxHQ6lx0gZ3rG64iQ+LAxOXk
-         K0E8mABcCXnoNWfvIohjWK8Ft0hzbxARQbqCc5vePZTuJjgFsUO1EgPjVci1yJC643p+
-         H79g==
+        h=mime-version:content-transfer-encoding:date:message-id:to:cc
+         :subject:from:references:in-reply-to;
+        bh=xfxVTufOpmHkg6GHY87ySGvsV3ZLRddJrxsikZzhp6g=;
+        b=gasm5GElvgx3RRzmWXq52VybAz4g5Vnh3CxewUsprhDCHopi7Zdpq3HtKXOGhfm53Z
+         39GL7URg+UP78AiVfyJRseh4Xp9OLOCs/fjmyGyCPYWpiSLbuvHfBxICjBc+1RoxmeYP
+         6v+4SEtpCP3czylhQt1O2J3B9BxYILD1klMRYjiI1d6FEorvaDhglAW9W0QoiCjbu0TG
+         66woKs62QnSuoK0TkgjXHb483+R3M2itoia4zHkP2XjWQlbmqHam/ZlrcOJXHbH0GksX
+         vm7onNcxeM6usPSHPClBRmcp1foJF87cpQx11Jyc8BWGYdZ1hldIGct7EauECGdWotq4
+         Aduw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=G+0eo8uBciZZ75lMpCYVoliToSNojQPxAZ9Nw5b+SJ8=;
-        b=bA5oT8X1Dx83esLx79v1jnxfmKzcR77XULOjkkyaLEoOC8n5oDA743ctl9qnabk9A9
-         /sYu9SDTpgzQkIi7knvBx83Lro/tJtXxT0j0cGTYZomysbbHE0ZyuOMU+NHlC/wT6fZS
-         7qHHvqiiBhbMa5UZCVa2pDrk5GnNPXec8mM+ABuCvMrVupzO37TeiuumTh6nzGWSnA/j
-         U5pnEQso7fIw5HN1tSaPtE9p852dDCL8qHO1TVYU2QGQxz+en+TXcmju7wgb+p472hF6
-         zAvl38E2sQn7i9YxwAAM81opH6D+UjPeiQGYswzo7wiLTAxZh7Vt0HGi8ZM7Dn+50LLz
-         IEZw==
-X-Gm-Message-State: AOAM530caH+fPBJrubiXWniNrsjiS1FsYMGSMU3bvKnKgZjZsS4SXDyZ
-        VLIPNs5yvkqrj05FYyoSw8g=
-X-Google-Smtp-Source: ABdhPJzDF4RfmwkRTqf/qKkfp3Xcae0sevuTgFNAlLFe/wFS9ENTHz1pyaI8ebi6O+q6BkHYfgIYJw==
-X-Received: by 2002:ad4:48d2:: with SMTP id v18mr15775745qvx.41.1629118770536;
-        Mon, 16 Aug 2021 05:59:30 -0700 (PDT)
+         :message-id:to:cc:subject:from:references:in-reply-to;
+        bh=xfxVTufOpmHkg6GHY87ySGvsV3ZLRddJrxsikZzhp6g=;
+        b=j02SpZFgdx5i5qyCRr4HlinrTT0hDGuajIOo1bOeaFbH71Wkd37fyMoqlTieV+7NVO
+         6pqmvMrb1WHTaJ8xntk9VF1rUG44B8CbcPnKWiak1J5506mHyecHJv9EnW2B7jKQ5xsR
+         W/N1smfj4ami/00MJUrvE6JYGr1/aIbLq2A+hWaptkyydZqaqT/W3JLmA7zGRaSbTpQi
+         5yuZwqP5KZUXjrKJiTgMecqXwzbkqjuMQYtYzz0I1+D9lAxXyUvQQN//3HtWdBcp2k/L
+         EsJImpJad821JQd+EIOJ6zSwBxL95PMv2EGEbA2/LpUz+GGjz0DGyHrKwhPmXyL8x+ts
+         vbYQ==
+X-Gm-Message-State: AOAM530XTUlbGlqlfIYrbQIzH7JCSIeGxlxG8GIxHvYSUS+mpZTSLb4i
+        zvoCkWXiwepXoNYx2RQqJU0=
+X-Google-Smtp-Source: ABdhPJyUMDRqAP6WB58hfo5+GxTozFXW06KqPhTG9PbuW4H4x7KT6X+j7e0So4OByLKuhr7iF4149A==
+X-Received: by 2002:ac8:5202:: with SMTP id r2mr5465739qtn.106.1629119273650;
+        Mon, 16 Aug 2021 06:07:53 -0700 (PDT)
 Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id n124sm6248823qkf.119.2021.08.16.05.59.29
+        by smtp.gmail.com with ESMTPSA id bi3sm6027372qkb.133.2021.08.16.06.07.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Aug 2021 05:59:29 -0700 (PDT)
+        Mon, 16 Aug 2021 06:07:53 -0700 (PDT)
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 16 Aug 2021 08:59:28 -0400
-Message-Id: <CDKYEMJOURHJ.2U1JRK17FRGD0@shaak>
+Date:   Mon, 16 Aug 2021 09:07:52 -0400
+Message-Id: <CDKYL1RFEMBA.2VURZKBX9F3S@shaak>
+To:     "Andy Shevchenko" <andy.shevchenko@gmail.com>
 Cc:     "Lars-Peter Clausen" <lars@metafoo.de>,
         "Michael Hennerich" <Michael.Hennerich@analog.com>,
         "Jonathan Cameron" <jic23@kernel.org>,
@@ -61,74 +62,60 @@ Cc:     "Lars-Peter Clausen" <lars@metafoo.de>,
         "linux-iio" <linux-iio@vger.kernel.org>,
         "devicetree" <devicetree@vger.kernel.org>,
         "Rob Herring" <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 0/5] AD7949 Fixes
+Subject: Re: [PATCH v6 3/5] iio: adc: ad7949: add vref selection support
 From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Andy Shevchenko" <andy.shevchenko@gmail.com>
 References: <20210815213309.2847711-1-liambeguin@gmail.com>
- <CAHp75VdOMg-7xX+KbdaDt5tduPhorujFwvpMPmdHKMVg=vj2Ew@mail.gmail.com>
-In-Reply-To: <CAHp75VdOMg-7xX+KbdaDt5tduPhorujFwvpMPmdHKMVg=vj2Ew@mail.gmail.com>
+ <20210815213309.2847711-4-liambeguin@gmail.com>
+ <CAHp75Vd-AfmwMyYyy5ygwmvGfwZLh9VwvBEzSwW3fc99jxFpnQ@mail.gmail.com>
+ <CDKXZBW1JDOD.1ZXIT12Y3WK5B@shaak>
+ <CAHp75VdC8GFmV-uOHPQpv5q=q0ZwSKFXW6gOL-hK6N4_qS1YJw@mail.gmail.com>
+In-Reply-To: <CAHp75VdC8GFmV-uOHPQpv5q=q0ZwSKFXW6gOL-hK6N4_qS1YJw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon Aug 16, 2021 at 4:08 AM EDT, Andy Shevchenko wrote:
-> On Mon, Aug 16, 2021 at 12:35 AM Liam Beguin <liambeguin@gmail.com>
+On Mon Aug 16, 2021 at 8:48 AM EDT, Andy Shevchenko wrote:
+> On Mon, Aug 16, 2021 at 3:39 PM Liam Beguin <liambeguin@gmail.com>
 > wrote:
-> >
-> > While working on another series[1] I ran into issues where my SPI
-> > controller would fail to handle 14-bit and 16-bit SPI messages. This
-> > addresses that issue and adds support for selecting a different voltage
-> > reference source from the devicetree.
-> >
-> > v1 was base on a series[2] that seems to not have made it all the way,
-> > and was tested on an ad7689.
-> >
-> > v6 drops support for per channel vref selection.
-> > After switching the voltage reference, readings take a little while to
-> > stabilize, invalidating consecutive readings.
-> >
-> > This could've been addressed by adding more dummy cycles at the expense
-> > of speed, but discussing the issue with colleagues more involved in
-> > hardware design, it turns out these circuits are usually designed with =
-a
-> > single vref in mind.
-> >
-> > [1] https://patchwork.kernel.org/project/linux-iio/list/?series=3D51154=
-5
-> > [2] https://patchwork.kernel.org/project/linux-iio/list/?series=3D11697=
-1&state=3D%2A&archive=3Dboth
-> >
-> > Changes since v5:
-> > - rename defines: s/AD7949_CFG_BIT_/AD7949_CFG_MASK_/g
-> > - rename AD7949_MASK_TOTAL to match other defines
+> > On Mon Aug 16, 2021 at 4:04 AM EDT, Andy Shevchenko wrote:
+> > > On Mon, Aug 16, 2021 at 12:35 AM Liam Beguin <liambeguin@gmail.com>
+> > > wrote:
 >
-> > - make vref selection global instead of per channel, and update
-> >   dt-bindings
-
-Hi Andy,
-
+> ...
 >
-> Same as per v5: is it a hardware limitation?
-> It's unclear to me what happened here.
+> > > > +       tmp =3D 4096000;
+> > > > +       ret =3D device_property_read_u32(dev, "adi,internal-ref-mic=
+rovolt", &tmp);
+> > >
+> > > > +       if (ret < 0 && ret !=3D -EINVAL) {
+> >
+> > Hi Andy,
+> >
+> > >
+> > > What does this check (second part) is supposed to mean?
+> > > The first part will make it mandatory, is it the goal?
+> > >
+> >
+> > device_property_read_u32() will return -EINVAL if the property isn't
+> > found in the devicetree.
+> >
+> > This checks for errors when the property is defined while keeping it
+> > optional.
+>
+> Don't assign and don't check the error code of the API. As simply as
+> that.
 
-I tried to provide more details in the last paragraph above.
-
-After switching the voltage reference, readings take a little while to
-stabilize invalidating consecutive readings.
-
-One option was to add more dummy cycles, but in addition to making
-things slower it was brought to my attention that this kind of circuit
-is usually designed with a single vref in mind.
-
-For those reasons and because I didn't have an explicit need for it, I
-decided to drop that part.
+I'm not against getting rid of it, but I was asked to check for these
+errors in earlier revisions of the patch.
 
 Liam
 
 >
-> > - reword commits 2/5, 3/5, and 4/5
-> > - move bits_per_word configuration to struct spi_device, and switch to
-> >   spi_{read,write}.
+> > > > +               dev_err(dev, "invalid value for adi,internal-ref-mi=
+crovolt\n");
+> > > > +               return ret;
+> > > > +       }
+>
 >
 > --
 > With Best Regards,
