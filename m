@@ -2,175 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B853ED0DA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 11:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567623ED12A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 11:41:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234811AbhHPJIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 05:08:50 -0400
-Received: from mail-dm6nam08on2077.outbound.protection.outlook.com ([40.107.102.77]:7777
-        "EHLO NAM04-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233053AbhHPJIu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Aug 2021 05:08:50 -0400
+        id S235437AbhHPJmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 05:42:23 -0400
+Received: from mx0a-00069f02.pphosted.com ([205.220.165.32]:36266 "EHLO
+        mx0a-00069f02.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231673AbhHPJmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Aug 2021 05:42:22 -0400
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+        by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 17G9eb3E018495;
+        Mon, 16 Aug 2021 09:41:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : content-type : in-reply-to : mime-version;
+ s=corp-2021-07-09; bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
+ b=LX8Oqs0U51BaQilfnP0sjRPDc5iaxDosypQstPIq8s0ZOFon9Ws1AU9vG+UAo8y+mr0B
+ NbNwgFLOJ+aH/PbAnZnotJ3SfzzHdtAGV6JhakRxTIw9NgCNaMjjVne6uzHlCVgWs5WS
+ IQscqxbYKgnpXrB9GmzTCVnmpFvOgcrHDy/c9buhLIQTIqpu+vpSAgd3mr7bXhA78Arf
+ +8dGMoTOXKFBBeMtKXLGfK8Xc4O2FUdoUVGEZsNUjZDcCZwpaHb1Xic/POMW2KuDh6me
+ Ze1te7YFoyglU88Gg4IrnYlsuJPis8/3HWPg8aBEjJ4VzuP8ndEf3MmFiAab+fyt39Zb 9g== 
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : content-type : in-reply-to : mime-version;
+ s=corp-2020-01-29; bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
+ b=X/Gq9Z/ubPSH2sMGtn69WMXWIZR3P01IlGvlr16flCr9djCMxSYmpyTl6Vuc5ZdSl/NV
+ qCdifZc7os4RZl8SGSzkRjQZKRE/irQQuY4Fgvli0h90hQ6a5pTO5hIvZQ8Jkl5cT/G6
+ hX0OJdLAWzJbC2djXKgf6zTrP7EEqhozsMs+GUQwuGVplnkDSlUD2a7Nod3BJEruEDLD
+ XxGykE/6no2IYF1tPXJ8Fs6zOGkhPqdzwKJzE5h6keRVcNM9ZXjKybgnE54sE4smzTca
+ lbmAKABZUAdzyzs5AlKE2C+i33fATZz8tREJ/pFX4MweiPxYIonrUHvSpk6R5v7bThYe Vg== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by mx0b-00069f02.pphosted.com with ESMTP id 3af83019gh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 16 Aug 2021 09:41:26 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 17G9YqUr055440;
+        Mon, 16 Aug 2021 09:41:25 GMT
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2103.outbound.protection.outlook.com [104.47.70.103])
+        by userp3020.oracle.com with ESMTP id 3aeqkrutb3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 16 Aug 2021 09:41:25 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=do2bmTzWtLF+Fkf0WxoJ+MaRHdsjDGgIPbaKvW1lPKhVDQAMzhGyAb8+mcQTowZoD4l5NfpoeJcZmX/v3Zyt9QwEEqRSbXE2WpD2aURtNdcrHsQm8KTBre3QdRU4n+CUeEqHyfBDtctpQeR75CZ9TfmFVQHR90p78H8x80e2pNHG9jQaiZM2syjiRh9saHcydQ+ycy2PTm4CpyfKPZGoxDeS/M0Nx5wDh0uvQdmhcdInuD62dVC+I9FHRbG/Nu4VxmyZM9LAYQ3dalhGaqEWbno+6m7LeE0/oS1VXOQetyoQTSx7G9EqliYHj3vpo3oAM20KiAgAnjg/XhuSVskJrw==
+ b=ZLbm62P8KRbMWuc8mcr+V1OYkHRUemcT4NDS+Gv9da2qALhElY59771M+0dPXUHgznD9X/ndkQr/J1JD9Qqeo2ZTVJMtbI+bzOUumEPsHLVlFl/qCcp5XCNsQMcrEN3JlLJ2Nmyg/5/9HInNAlvoSoef2TsDcoi/f4DHkQEqruhdlUmEsbMOzdia+LncwHAX+CUdTisXMwwmslmTzTW9ED4vCug+S34+Ro+/UFLvvE/XZafNItjPm2dSz1A4vM4mhMgjpgAwT0b2ctrK4LzXWUznjQuwpC2RToQE+N80ssisXwD3lPH0Gn6KNkAsJPWsNAgPqvXJ4gqq1DPXMgH4Hg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b2gVf9fz7jjMjEFy/qnh7CWONKuz0yS4FXONGGD4Wxc=;
- b=ENxNUPxitxkwOA92oIgB2H6gaxTEB6+7x97C8hYw67DNmB/Hm4rA47h+dXA/Me5hIVpe4uD1SDf7XfRgDIIskOApEZFWsOmU3vTwZxcC/ozJMeGGiVvpK9HfIld9G7o/QN/lpzOfzGSqfDvFtjXJXMMQm2Zz96AliOv3zUDajhxZCtTelnDV3f8tTW6F4wFQeVQO4Yf8ks9Mc6uTutdXLoNwGoUdEx/RwZdO1Ps62s5wdsmYcozVBmcs8d15khDG7y7YlBZAFpfQavDsD3lX8DlTi2igBO4bdLxS0iN8mecWpNeXdirpPfDCJ7hh8KkBpY94cd1HHGGfZGjUBvh4KQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+ bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
+ b=blXkuOVyQ6XCjUJ/pAv563neklbnLFfP6rEV+riTy3/WtAtu029NBg4Ob8U3pzoJ90O6ukKPW2kZjzOTzGPCaGX4hzZOkUQO/llMxuDJhWEzQte7NxB72/G3jNo4gpi07NK/o4WAmAXhSRcstGlrbejGov+f6nauYb3Ss07xHoJiDEUa0nCxdXHeyPJtQVRCdeB/G2ZxtF7Ks/N/GfbTA3635V+vSsi3z8Rj+Y8qbk3Kowvm5x3QaOOFyS6es5cRWoEL7se6mqV4NMz/uwTqVM1If5KX5G6oR1mK5LJDWF44yQIjQUtU+mzcEU7r6SxOGf58yjhMtCdE7B0GqlMkyA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b2gVf9fz7jjMjEFy/qnh7CWONKuz0yS4FXONGGD4Wxc=;
- b=CyptrVachFd7a0Qa+pByxuWT+HzDjXluZkNiWVd7fpnP4ZWGwvIlDbGA2M7hAeuRdTGtkyadleHvSkFYh0hEAbNGPD+/Ix9cZZxaKyfSPRfTc6DATNgRmrrRVKa+A4Hn8CpoLzCXCdLXLZ8VdxTVq/0xvLzHWTpbGPEh48KbzcY=
-Received: from BN1PR12CA0016.namprd12.prod.outlook.com (2603:10b6:408:e1::21)
- by BN6PR02MB2289.namprd02.prod.outlook.com (2603:10b6:404:36::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15; Mon, 16 Aug
- 2021 09:08:17 +0000
-Received: from BN1NAM02FT027.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:e1:cafe::a6) by BN1PR12CA0016.outlook.office365.com
- (2603:10b6:408:e1::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16 via Frontend
- Transport; Mon, 16 Aug 2021 09:08:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT027.mail.protection.outlook.com (10.13.2.141) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4415.16 via Frontend Transport; Mon, 16 Aug 2021 09:08:17 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 16 Aug 2021 02:08:11 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 16 Aug 2021 02:08:11 -0700
-Envelope-to: git@xilinx.com,
- saikrishna12468@gmail.com,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- gregkh@linuxfoundation.org,
- linus.walleij@linaro.org,
- robh@kernel.org
-Received: from [172.30.17.109] (port=54076)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1mFYbJ-0000uK-QX; Mon, 16 Aug 2021 02:08:10 -0700
-Subject: Re: [PATCH 4/4] arm: dts: zynq: Replace 'io-standard' with
- 'power-source' property
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, <saikrishna12468@gmail.com>
-References: <1626868353-96475-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1626868353-96475-5-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <YQMIhBPwcNw1YqMq@robh.at.kernel.org>
- <bc5185eb-8051-89ca-4a5f-c4e5fc90a7f2@xilinx.com>
- <CAL_Jsq+281knebcN--jQgYWtDQO4OV6ZO5CvnYpaYqrAaiGmPQ@mail.gmail.com>
- <fd759de0-d74f-3aa1-ad46-e3ee7f7f7e3f@xilinx.com>
-Message-ID: <c49c9633-4bc6-0cdd-cb3d-8b9ffc92b671@xilinx.com>
-Date:   Mon, 16 Aug 2021 11:08:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ bh=sVOvBm41+sIPs+kjXvjFXcWmwYIaEUuhb1sLlI8SQhg=;
+ b=CzwbKZpO87bXyulZXJnqZAIUML7zCk7tJMK/8kzhTgDl6SCJMWlvqAvsgqrCTRro/l/Q9m9V2b+szah++8hExOgCqAGM11TOqAgu7WcED8olK2UNHySa8tEazzlgRp/E7D5o+yHPHaK3OUApIesfbw5qRyJOsXS0EUCKvsCxVUw=
+Authentication-Results: lists.01.org; dkim=none (message not signed)
+ header.d=none;lists.01.org; dmarc=none action=none header.from=oracle.com;
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28) by MWHPR10MB1358.namprd10.prod.outlook.com
+ (2603:10b6:300:23::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.14; Mon, 16 Aug
+ 2021 09:41:23 +0000
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::5820:e42b:73d7:4268]) by MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::5820:e42b:73d7:4268%7]) with mapi id 15.20.4415.023; Mon, 16 Aug 2021
+ 09:41:22 +0000
+Date:   Mon, 16 Aug 2021 12:40:55 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     kbuild@lists.01.org, Chia-Wei Wang <chiawei_wang@aspeedtech.com>,
+        robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        cyrilbur@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Cc:     lkp@intel.com, kbuild-all@lists.01.org
+Subject: Re: [PATCH 1/2] soc: aspeed: Add LPC mailbox support
+Message-ID: <202108160813.GOZ1P4Y8-lkp@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210813054758.13189-2-chiawei_wang@aspeedtech.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: JNAP275CA0060.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4f::14)
+ To MWHPR1001MB2365.namprd10.prod.outlook.com (2603:10b6:301:2d::28)
 MIME-Version: 1.0
-In-Reply-To: <fd759de0-d74f-3aa1-ad46-e3ee7f7f7e3f@xilinx.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from kadam (62.8.83.99) by JNAP275CA0060.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4f::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15 via Frontend Transport; Mon, 16 Aug 2021 09:41:15 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 896ecd0b-b81a-4bfd-fcbf-08d9609562e1
-X-MS-TrafficTypeDiagnostic: BN6PR02MB2289:
-X-Microsoft-Antispam-PRVS: <BN6PR02MB2289B2362C072E96AC039C2FC6FD9@BN6PR02MB2289.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-MS-Office365-Filtering-Correlation-Id: 8b87c884-2390-40b2-af54-08d9609a01ef
+X-MS-TrafficTypeDiagnostic: MWHPR10MB1358:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MWHPR10MB1358DEC9F16A3C551AFBECB58EFD9@MWHPR10MB1358.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kO1ptz2TCs5pr5IPWKZDPEBgziiqOAhmG+ME0F//hUm5I62ucSixTDHQ2OjGjv/85VRAjZHjYkPUxgTfE0idm7JiXBurgEwP8Lvtzngawsq7nsyZ+LgT3xZpVMvxiMIj+aIMfZrsuoBahBCOTbXV5cdAOZKD+4rxMKaDT7vxn0nPiSVFhhAbFzaxLvua8Z+3jlowaYkB+XtllWJ4Hfj6zADLJeW8SSFoYbprCKi/07R0Yn9q8jpw21mGuRpBAF9PmMYQw3Q3n75InMZC3G1i8/gRutN20Tswpei+jZY0oJDwKV9tmsLjMi3OPlyT2rw93nGx2xB2b8A/hYMfFT7DRiWqAHt5sYhc4DeDIInBCpd+wOsmcQxn2eQExWGNHCg88pCEIjXpeUTtfwUesiqwXZlmnQCG6pSDVMwxg+skr5/M4ZtjrJseCr+zyxTEuRop2XDtqkvHOrilILyXiR/p3TgRnCCfTo7M+WJG2PRvp73XbetnkX8o9cHps9hfgd/+XPQQMzm6o3siXJpumwgVVFy+1zwNWuRP8ePXHtvMFC+IxiMiQdNWsCsYvRUqKGltk2YCH0vtJV5jOM4Bt8c5P+M/SCTccpPG8Yzq4Z2mvkozBA5HGdBqIwODbyTzRvhm6GgYEglpVU3u2lTNWI2z/wLVHyjCPfvt3qfJ2ju+m5yidl15S/hRXgGMahXlOC6SrBVG9SmlPwKgbFw0k8vRszlNNqjd0SSkoVzXE3Se56y0NW3AGf4efn6Qb9cmOqlt4SccwDt7IhIVQS/Hga2Gzw==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(39850400004)(136003)(36840700001)(46966006)(9786002)(53546011)(426003)(82740400003)(44832011)(31696002)(4326008)(336012)(478600001)(8676002)(186003)(2616005)(8936002)(7636003)(356005)(26005)(36860700001)(2906002)(31686004)(5660300002)(47076005)(36906005)(316002)(110136005)(83380400001)(54906003)(70206006)(82310400003)(70586007)(36756003)(6666004)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2021 09:08:17.3677
+X-Microsoft-Antispam-Message-Info: lfUJILokRbre4yQN3x6WXIONhTwEgAULclO8Q1WSLV2YzVN6ZWWq8+ixs7KiWs9Fo/TJfjWwqKy6pziAyPrkps/7zJgocS9J2m33jp74n1eaxQ7C761QIsDFucjMlFpg5OzV0k9RTUnUxFKAF8uAuhJR8sHWw99uMocB3H4svvzbtp7n5ZHMudqXn252bhbiS1yNB3T5jbMcQ+IXjANcL9biIFYupNkSmsDMLJaevj8TW6rpUEScKa+netr8SBQ2G82Zc6KMEHxPrC4P/3GlkkCN+jPPE9RaHd74dWr8YO9XzKX39UnGLsxaA62C3qPGsAB8cqkmpYaR4GjgdGkzoiNmXrNiNdmzV+wmHTLioNjd4EJ//oGEChs6mEZA7SlSpmlo+6w3fuI11R5QzvoJcRuSzTqYFMwNqqsDmJmv7qykXXK3XE+LKMeaeaHkVu8MIav/m4tcF/yRoBGfXIpK22CqX+ESPhTfHO513dl+yu2TGpRVVfC5xIYkk9oorGDE2bVbGiMqrOd/9R2JARwyd19mrmNrHlLazNIioWbK7T7fIA3ubw2nK9hvy8fK9Z8TFfsiUtkQgn4rOiuTLKXfaXz2g1uXXwMvs8GKT5uV+H0bGb9J/HgvPulq6ch4BNv4ObeMedOCr8vcG6zbfAJRssKDhuRIKnxA6yjH9zt1j41gdzhoaZsyszHh0X7fCtJZ6UiHeAkAU9IVi085FT0CU529tohDjINXGzA5YLL40yt9UfMW7Msz2mAnkSWw8c0lzUEPTstAuIBe7fXSAOWiArsBXa1tWHztYf6tYtE+h6jzAc+c7cjTUwh0+gTXFJd1DmtK9jOVeA4goj+vNZOzpA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(366004)(39860400002)(376002)(346002)(5660300002)(44832011)(1076003)(316002)(2906002)(66946007)(52116002)(956004)(7416002)(4326008)(966005)(9686003)(38100700002)(36756003)(38350700002)(6496006)(186003)(15650500001)(478600001)(921005)(8936002)(8676002)(6666004)(66556008)(6486002)(66476007)(83380400001)(86362001)(26005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+zbLTzB1NSkrQE1zXtV/Vy0oOvCLA2e3xEY/jeko+GfFZoRLmaCtZfUSHZ8E?=
+ =?us-ascii?Q?8OOcl/X0W3Yancz9mkSm09EBptBQuMOYrFLoLEFR4F7srsNTTi1EgItmJKgq?=
+ =?us-ascii?Q?LJgK17rjdWdUHKWtFfqbtrlmW+EudCHLTURjRst5ATRE5ycojuLUGXVxgbgD?=
+ =?us-ascii?Q?STYjFHc2Mv49dAlmSV8F00ahXBGHEW4EneB0UOhGswZfo7/uOB3pYirMnLtq?=
+ =?us-ascii?Q?yxCGn0+uIT1eg8OR6v3hLl/pFXKXazv444MLurPTnDokgbALw/B4afkT94Az?=
+ =?us-ascii?Q?GjPmxSmVzTStKjGgLRZDralkBokt4Gv27EOz8bEWFMjFKs8tkYYt8XZAUjiy?=
+ =?us-ascii?Q?K2N7KdD4p3BwIfCIpp2bHvZS/PaNoHozVbZZr2pj1MUeLm/CqwohGXcGxKox?=
+ =?us-ascii?Q?xwWsf6CifcTuDPz/nmSOHVmmSfjPPzCvXjKiLNpXywZ9MUcfAfWUfq1iBvm5?=
+ =?us-ascii?Q?REUt7GrHZzuLPMlHwURnJ/oYTje/9if2CdJDu7I/mZhKFHTeQTV+js4ZLXuL?=
+ =?us-ascii?Q?kokfTKnmRgb2IBw1cOX/IxLx6mjEnmETYkV6ZqFV5aOIrHxQVhveRX8vnAvf?=
+ =?us-ascii?Q?5FkEYLC7KyGQPf2b7n+Pbk0WfdaFX8XWoJbh2OpsfCf+bHIhrJ53jaSOTB4T?=
+ =?us-ascii?Q?t34mRQmNfpDn/worNVF5zDG7jj0llZFbxD8AH1TPu827XIt7pRm0H9nr60HU?=
+ =?us-ascii?Q?gNRWsUeIeaoN/u0QE0xGLPwgHpyus18oFSyAeFI30MD/aaoH8D6LJC7bJ5uI?=
+ =?us-ascii?Q?6cFxEbNLi11mVWsPMiB5ZWvjJ0y8Ad2KWbrkwugdSBgaQ6nLN3+b7FyIjerp?=
+ =?us-ascii?Q?Ryy+/FHfbq1NXPn5uwDpc3V1dhHEOpJWkbEM/G8x1hi09WXougWUfBY9/XUw?=
+ =?us-ascii?Q?uKdJQdOk/CoMcwVKmnBvefxUxxTVM7n+8exlOP4yYcvK4TW+tSIf3LXi5C78?=
+ =?us-ascii?Q?FQTBSQnolO1bub2ZFcIbcZUG+MKXvM/cZyTZhXdMVLfm4hH8aTo7oQGtVVYc?=
+ =?us-ascii?Q?1yT0Cxr7pRkhrc5tDdU6mKM1UCEmsqWblGrwj1WOjmMOTXdwFDKiaE4kd+o0?=
+ =?us-ascii?Q?x4Ox/VtTXwCMDRpZ9OYOuqQa8EaRcZ4A5soHpUOcJzEfaE/Ir1UhStYzz2AV?=
+ =?us-ascii?Q?wsCQwD+0ShT5FdTcwEUhvWDBNZ4Ic5+FpT98ARaBUhvineaoljzg4eTBnBgd?=
+ =?us-ascii?Q?PvP90YWr14MmpZVxBAoJX32wqbn8aB1yUrR+gLwFVTxlGgQ5Gh+rWDnsO+T8?=
+ =?us-ascii?Q?+Dnp36vdglmsq/h0cMKR9bIyKzyWIyhuFcBarEsHzJFVQgtSm2igAska4WPN?=
+ =?us-ascii?Q?44cnxAATnKseVAvK88hIoby5?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b87c884-2390-40b2-af54-08d9609a01ef
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2021 09:41:22.8608
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 896ecd0b-b81a-4bfd-fcbf-08d9609562e1
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT027.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2289
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jY1g6zGDNDoWLweGQTNpgLA81lsohGf4MGFb7t5CMi11hW9UNxhxrqfw2VsUkmG5BM9soC5e2PejlVSuk1M0faCZHnvZCBD3COPr+OS2zvI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1358
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=10077 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 malwarescore=0
+ mlxscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
+ definitions=main-2108160059
+X-Proofpoint-ORIG-GUID: IQ3nKwe6lRpC2qkvVJuxKU3rcv6z1mca
+X-Proofpoint-GUID: IQ3nKwe6lRpC2qkvVJuxKU3rcv6z1mca
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Chia-Wei,
 
-On 8/5/21 9:52 AM, Michal Simek wrote:
-> 
-> 
-> On 8/2/21 7:29 PM, Rob Herring wrote:
->> On Thu, Jul 29, 2021 at 10:59 PM Michal Simek <michal.simek@xilinx.com> wrote:
->>>
->>>
->>>
->>> On 7/29/21 9:59 PM, Rob Herring wrote:
->>>> On Wed, Jul 21, 2021 at 05:22:33PM +0530, Sai Krishna Potthuri wrote:
->>>>> Replace 'io-standard' property with 'power-source' property in all zynq dts
->>>>> files to be in sync with Zynq pinctrl driver.
->>>>>
->>>>> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
->>>>> ---
->>>>>  arch/arm/boot/dts/zynq-ebaz4205.dts |  8 ++++----
->>>>>  arch/arm/boot/dts/zynq-microzed.dts |  2 +-
->>>>>  arch/arm/boot/dts/zynq-zc702.dts    | 20 ++++++++++----------
->>>>>  arch/arm/boot/dts/zynq-zc706.dts    | 18 +++++++++---------
->>>>>  4 files changed, 24 insertions(+), 24 deletions(-)
->>>>>
->>>>> diff --git a/arch/arm/boot/dts/zynq-ebaz4205.dts b/arch/arm/boot/dts/zynq-ebaz4205.dts
->>>>> index b0b836aedd76..be7eae611fb7 100644
->>>>> --- a/arch/arm/boot/dts/zynq-ebaz4205.dts
->>>>> +++ b/arch/arm/boot/dts/zynq-ebaz4205.dts
->>>>> @@ -57,7 +57,7 @@
->>>>>
->>>>>              conf {
->>>>>                      groups = "gpio0_20_grp", "gpio0_32_grp";
->>>>> -                    io-standard = <3>;
->>>>> +                    power-source = <3>;
->>>>
->>>> This will break using a new DT with a kernel without patch 3.
->>>>
->>>
->>> What do you suggest? Not to update any old DT?
->>
->> Your options are don't change the dts files, patch 3 needs to go to
->> stable kernels, or you document the breakage (if you don't care).
-> 
-> There is no intention to go to stable kernel and I don't think this is
-> stable material. Linus has applied 3 patches and this one should go via
-> my tree. It means I will make sure that this DT change will be in the
-> tree when pinctrl changes are applied.
+url:    https://github.com/0day-ci/linux/commits/Chia-Wei-Wang/aspeed-Add-LPC-mailbox-support/20210813-134908
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed.git for-next
+config: openrisc-randconfig-m031-20210816 (attached as .config)
+compiler: or1k-linux-gcc (GCC) 11.2.0
 
-Any issue with this patch? Or can I apply it to my tree?
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 
-Thanks,
-Michal
+smatch warnings:
+drivers/soc/aspeed/aspeed-lpc-mbox.c:230 aspeed_mbox_ioctl() warn: maybe return -EFAULT instead of the bytes remaining?
+
+vim +230 drivers/soc/aspeed/aspeed-lpc-mbox.c
+
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  214  static long aspeed_mbox_ioctl(struct file *file, unsigned int cmd,
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  215  				 unsigned long param)
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  216  {
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  217  	struct aspeed_mbox *mbox = file_mbox(file);
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  218  	const struct aspeed_mbox_model *model = mbox->model;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  219  	struct aspeed_mbox_ioctl_data data;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  220  	long ret;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  221  
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  222  	switch (cmd) {
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  223  	case ASPEED_MBOX_IOCTL_GET_SIZE:
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  224  		data.data = model->dr_num;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  225  		ret = copy_to_user((void __user *)param, &data, sizeof(data));
+
+This should be:
+
+	if (copy_to_user((void __user *)param, &data, sizeof(data)))
+		return -EFAULT;
+
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  226  		break;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  227  	default:
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  228  		ret = -ENOTTY;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  229  	}
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13 @230  	return ret;
+72c5a69dc779f5 Chia-Wei Wang 2021-08-13  231  }
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
