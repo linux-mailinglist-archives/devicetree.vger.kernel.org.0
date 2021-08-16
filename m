@@ -2,157 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8773EDD0E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 20:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 885893EDD6B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 20:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229987AbhHPS1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 14:27:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47478 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229966AbhHPS1e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Aug 2021 14:27:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5279560F41;
-        Mon, 16 Aug 2021 18:27:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629138422;
-        bh=J5kTQ9jNl7GtseCHsR5QNLO97/SZNfu88It1yT0aXgE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=soBU96Am8xpoYrCIDFq34hMvCNLtkV/saokQsws6vR5idXFHlIkTzhfhaFJUeaZTN
-         7/rz7MbYA+vUxC39AAP//LRFFD+cx58LpziOIaR77NAittHTWUhLl6fGmgP0OsZYPm
-         HNFZMz4UV5GyUK0NwhioXsRLNmZ3v4f1YM35kE9dkgpsohCI97iDQEvZRGpGVHlpem
-         9ifcfx8E0t4/nXt4+GkWlFQWouvn0jiyEXs0UHSQoCVcquNZrZIww7I97AOZJRXqUX
-         UEEBCsVs5tM172pAD+iUTyUDY1M0txYO0txd6Vlx8aqJSjkPu+sWCPTeRis8SipiK0
-         EQnA0KFtephVw==
-Received: by mail-ed1-f45.google.com with SMTP id cq23so10511771edb.12;
-        Mon, 16 Aug 2021 11:27:02 -0700 (PDT)
-X-Gm-Message-State: AOAM532GfXz/E7QYLNICPFEJnKPMAas4YX86IuUPLBojl73tDlpX2xeH
-        rHU/D+dKNi7i8jui8dvcwl3djBaAAR4Vy6xEQQ==
-X-Google-Smtp-Source: ABdhPJz6YhgNYjBk8iIsDDdHBbb7lpGhLb6RzR0UMxHzXXHppoWWDik/vzQWomeYCgfQTi6gAbFbYjX0iK/BvYvkAKc=
-X-Received: by 2002:a05:6402:557:: with SMTP id i23mr21699802edx.373.1629138420901;
- Mon, 16 Aug 2021 11:27:00 -0700 (PDT)
+        id S229739AbhHPS5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 14:57:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229699AbhHPS5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 14:57:30 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 655A5C0613C1
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 11:56:58 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id k5-20020a05600c1c85b02902e699a4d20cso592733wms.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 11:56:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=m7ZOM7cdRkICqtiyacBDNsj4qURRxO1sWw5i5EgJhx0=;
+        b=HzJ75RUvClIBbqraulv6LCtCEKRyhF9l86bNICahsL0BMDn+tr2MAGedaCoiS/M7HI
+         3Ttln2ZDTzMQV/73OAgb5gWdhqVTcAfaMui/jwC/yGkqKyrWPECIE5BGB9wuRotTtJZR
+         n8glPdDvrAkL6NsfQuijpU7NTf+EitF7KrlYHBWiagTBD87z3EiqPC6ePhyVfex4LW1R
+         bzJOqbK5rRd2/pUmjgicupfKYa5CF6ZgyjklG6WR05kEG1tJglD4u63hsIct80uAMX0l
+         mufsLlgPEG0x9jXY+YS8QfK1nmsTKOsGjQu5tgwNUmQkNLRKK/BFJRlM20iaJgIeqnG2
+         Ks6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=m7ZOM7cdRkICqtiyacBDNsj4qURRxO1sWw5i5EgJhx0=;
+        b=HDAhJ9RjTmfwTmOKOOfz7xxRAbMLNgsTRWKHtDl7+tVMSekDAjMmuAfRyPj2DqtOvP
+         DJEnd4uS6Xf8TK/6xawsNFb65WXcAOHVY3TpiRFmA3YDI5fyHRs9EBUupz/3JHnooP1Y
+         AmKYaMHvFqNvIQjCkzNclLWtPH4ciKzT2AiVKovHrgrLbbXJ3Q/4uP/Xq7tKg3aDVSBd
+         5uZ0Sc6CGi2WPvaYTzVduDhX2HIHzP/EJvQcYBuStyV9ko2clQfgQkHV73pVUZzTM8cN
+         AXYHtldY9Zaoj2LiHdD6omIWRkI9W3r8hH0bcBPR05+ISeMo2dOao19S2g4cCiq3tPlH
+         u/Bw==
+X-Gm-Message-State: AOAM532erarpxiGcZgv7QnKz3J+pfRh8FBXtIvo41o/oOcOVxe3qtzHY
+        adTY+/r+oImela6eKYygLaJDxw==
+X-Google-Smtp-Source: ABdhPJzoBGbVSUBBJBd79CzIiBUvM5rY3Ebc57V8YSLGDbhAuaNana1b9dAMLW1tLEGIgbbn9dJJ0g==
+X-Received: by 2002:a1c:f414:: with SMTP id z20mr524519wma.94.1629140216638;
+        Mon, 16 Aug 2021 11:56:56 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:e1b0:48c1:6199:9cb4? ([2a01:e34:ed2f:f020:e1b0:48c1:6199:9cb4])
+        by smtp.googlemail.com with ESMTPSA id g9sm386690wmk.34.2021.08.16.11.56.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Aug 2021 11:56:56 -0700 (PDT)
+Subject: Re: [PATCH v5 2/3] thermal: mediatek: Add LVTS drivers for SoC
+ theraml zones
+To:     Ben Tseng <ben.tseng@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Michael Kao <michael.kao@mediatek.com>,
+        Yu-Chia Chang <ethan.chang@mediatek.com>
+References: <20210617114707.10618-1-ben.tseng@mediatek.com>
+ <20210617114707.10618-3-ben.tseng@mediatek.com>
+ <06b1804c-4675-2997-8c5c-bcdffbcfc4a1@linaro.org>
+ <1f92b245537d6390b7b2bde62ce8b99a3df9d445.camel@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <8a38b9fe-0448-3ddc-9ffc-c43137b5ecaa@linaro.org>
+Date:   Mon, 16 Aug 2021 20:56:54 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <cover.1626855713.git.mchehab+huawei@kernel.org> <e483ba44ed3d70e1f4ca899bb287fa38ee8a2876.1626855713.git.mchehab+huawei@kernel.org>
-In-Reply-To: <e483ba44ed3d70e1f4ca899bb287fa38ee8a2876.1626855713.git.mchehab+huawei@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 16 Aug 2021 13:26:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLJkqr_UhDGa9duPxx5mXxcp2Ju4Xv2gH6vdru6zQY9OQ@mail.gmail.com>
-Message-ID: <CAL_JsqLJkqr_UhDGa9duPxx5mXxcp2Ju4Xv2gH6vdru6zQY9OQ@mail.gmail.com>
-Subject: Re: [PATCH v7 08/10] arm64: dts: HiSilicon: Add support for HiKey 970
- PCIe controller hardware
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1f92b245537d6390b7b2bde62ce8b99a3df9d445.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 3:39 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->
-> Add DTS bindings for the HiKey 970 board's PCIe hardware.
->
-> Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 71 +++++++++++++++++++
->  .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  1 -
->  drivers/pci/controller/dwc/pcie-kirin.c       | 12 ----
->  3 files changed, 71 insertions(+), 13 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 1f228612192c..6dfcfcfeedae 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -177,6 +177,12 @@ sctrl: sctrl@fff0a000 {
->                         #clock-cells = <1>;
->                 };
->
-> +               pmctrl: pmctrl@fff31000 {
-> +                       compatible = "hisilicon,hi3670-pmctrl", "syscon";
-> +                       reg = <0x0 0xfff31000 0x0 0x1000>;
-> +                       #clock-cells = <1>;
-> +               };
-> +
->                 iomcu: iomcu@ffd7e000 {
->                         compatible = "hisilicon,hi3670-iomcu", "syscon";
->                         reg = <0x0 0xffd7e000 0x0 0x1000>;
-> @@ -660,6 +666,71 @@ gpio28: gpio@fff1d000 {
->                         clock-names = "apb_pclk";
->                 };
->
-> +               its_pcie: interrupt-controller@f4000000 {
-> +                       compatible = "arm,gic-v3-its";
-> +                       msi-controller;
-> +                       reg = <0x0 0xf5100000 0x0 0x100000>;
 
-How does this h/w have a GIC-400 (which is GICv2) and then a GIC v3 ITS?
+Hi Ben,
 
-> +               };
-> +
-> +               pcie_phy: pcie-phy@fc000000 {
-> +                       compatible = "hisilicon,hi970-pcie-phy";
-> +                       reg = <0x0 0xfc000000 0x0 0x80000>;
-> +
-> +                       phy-supply = <&ldo33>;
-> +
-> +                       clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEPHY_REF>,
-> +                                <&crg_ctrl HI3670_CLK_GATE_PCIEAUX>,
-> +                                <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
-> +                                <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>,
-> +                                <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-> +                       clock-names = "phy_ref", "aux",
-> +                                     "apb_phy", "apb_sys",
-> +                                     "aclk";
-> +
-> +                       reset-gpios = <&gpio7 0 0 >, <&gpio25 2 0 >,
-> +                                     <&gpio3 1 0 >, <&gpio27 4 0 >;
-> +
-> +                       clkreq-gpios = <&gpio20 6 0 >, <&gpio27 3 0 >,
-> +                                      <&gpio17 0 0 >;
-> +
-> +                       /* vboost iboost pre post main */
-> +                       hisilicon,eye-diagram-param = <0xFFFFFFFF 0xFFFFFFFF
-> +                                                      0xFFFFFFFF 0xFFFFFFFF
-> +                                                      0xFFFFFFFF>;
-> +
-> +                       #phy-cells = <0>;
-> +               };
-> +
-> +               pcie@f4000000 {
-> +                       compatible = "hisilicon,kirin970-pcie";
-> +                       reg = <0x0 0xf4000000 0x0 0x1000000>,
-> +                             <0x0 0xfc180000 0x0 0x1000>,
-> +                             <0x0 0xf5000000 0x0 0x2000>;
-> +                       reg-names = "dbi", "apb", "config";
-> +                       bus-range = <0x0  0x1>;
-> +                       msi-parent = <&its_pcie>;
+On 23/07/2021 08:17, Ben Tseng wrote:
+> On Mon, 2021-06-21 at 13:26 +0200, Daniel Lezcano wrote:
+>> On 17/06/2021 13:47, Ben Tseng wrote:
+>>> From: Michael Kao <michael.kao@mediatek.com>
+>>>
+>>> Add a LVTS (Low voltage thermal sensor) driver to report junction
+>>> temperatures in Mediatek SoC and register the maximum temperature
+>>> of sensors and each sensor as a thermal zone.
+>>
+>> I think we already talked about that. We don't want a thermal sensor
+>> driver to aggregate the temperatures but create some kindof virtual
+>> sensor with a property (min, max, avg, ...) which is usable by
+>> anyone.
+>>
+>> [ ... ]
+>>
+>>
+>>
+> 
+> Dear Daniel,
+> 
+> Sorry for the late reply.
 
-This means the PCI host doesn't have a MSI controller...
+sorry too, missed to answer. Another thread pointed to this one and I
+figured out I forgot to answer.
 
-> +                       #address-cells = <3>;
-> +                       #size-cells = <2>;
-> +                       device_type = "pci";
-> +                       phys = <&pcie_phy>;
-> +                       ranges = <0x02000000 0x0 0x00000000
-> +                                 0x0 0xf6000000
-> +                                 0x0 0x02000000>;
-> +                       num-lanes = <1>;
-> +                       #interrupt-cells = <1>;
-> +                       interrupts = <0 283 4>;
-> +                       interrupt-names = "msi";
+> After survey ,I'm not sure whether the patch[1] is the architecture of
+> virtual thermal sensor which you commented.
 
-But then this says it does...
+Ah, yes that is kind of what it would be requested but really generic so
+anyone can use it.
+
+> Or, is there any existing framework on mainline already support virtual
+> sensor?
+
+No unfortunately, it is not done [yet].
+
+> Could you help to provide reference to us?
+
+Ok, we had this discussion several times on the mailing list and at the
+different events like the Linux Plumbers conference. But I was not able
+to find out a pointer.
+
+Basically the idea is simple, we don't want drivers doing weird things
+in their get_temp callback. This callback must return the temperature
+associated to a physical sensor in a 1:1 manner.
+
+However, some people want to define a thermal zone but with an
+aggregation of different sensors.
+
+At this point, we are unsure how to do that.
+
+Having a virtual sensor would be more adequate as it won't impact
+anything except the DT for a configuration. And we can make it to evolve
+without having to change all the thermal framework internals.
+
+From a DT point of view, a virtual sensor device cuold have phandles to
+the different sensors and let's say a property telling what do to (avg,
+min, max, ...). The thermal zone will point to the virtual device.
+
+In the driver itself, the get_temp will just call get_temp of all the
+sensors and do the operation specified in the property.
+
+With that, the drivers stay consistent and we have the flexibility to do
+whatever we want.
+
+Does it make sense ?
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
