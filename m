@@ -2,133 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA013ED9A7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 17:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD0A3ED9FB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 17:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232769AbhHPPO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 11:14:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47068 "EHLO
+        id S233824AbhHPPiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 11:38:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232574AbhHPPOz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 11:14:55 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F0AC0613C1;
-        Mon, 16 Aug 2021 08:14:24 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id t190so6044899qke.7;
-        Mon, 16 Aug 2021 08:14:24 -0700 (PDT)
+        with ESMTP id S236468AbhHPPih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 11:38:37 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BB04C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 08:38:04 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id r9so25863501lfn.3
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 08:38:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PCGu6LKv/RVKdtYv9khNj4fVhn3c3G222WeZkDQYghA=;
-        b=CISces9TDTtyNHUhb+Dzk9UPoZjkkFXWYex7qH35eoRxGkQVLgR/1DTqaRkfd78IuQ
-         xpRbqNcaPxnjmxKfMPsl97t8z5ktu5ohAzxkVsEyke1kmjRaLwCC4bQxurQJX+scFQUa
-         xMM6XOi+foF8nmOqGYxv8ZoWEyfaMniSFzs1s03DYzWXAE9vqHIG9g7YVvlYPGws3vpT
-         6yioiJMXf3ojQrLqCPUqabZWVIkq2LJxyYYkkWffzSbNWvvzzjkuw9rldmpJMEtICRWP
-         rXdcOrs16jzuzo4rGDTodQBL7ocHJ9hFU14MZNNq4073wGUxuvxL9GtbvYpe9T6cwVEV
-         Clgg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Bm8tYluwE2tHBRzqwzgJszhrItkJk+y3RCcuMDJTmI8=;
+        b=OT95Md82WHgRGyLWmxE6nitIx0C8BB1adlzRDuzRT9M2zqetzj87ra3kpFm3KgMYga
+         8RIHvMHWlEO+gCYykxVaQ3u+tQvAxFx9yTJkeOeM0wj3hI/3jYP76ODLd+t8d7vyCUu9
+         YqAXy0/NlJDrv+x2x/UfYn7oZho6vLBJ3zIdM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PCGu6LKv/RVKdtYv9khNj4fVhn3c3G222WeZkDQYghA=;
-        b=Ihkm6RMAxIdD35JgUKbeJb+S5/XcAfVZN1uxcqRN94KNAyRKJl4EUGpHQNKfe8F4Mk
-         D5iYzzE5qzryqDO288fVsCdb0lBBhpfzqGxusDupYBwKkQfXlC/a3s3gu2XndagpfyBR
-         rbJSskndQ+c5Ym0JS3roe9jZn5GfbcqtZdnujxn/bWmL0k60uPQqhFL5tZ0nM/z49gim
-         7pCAJaC++HaZYvNe661FrbC9xGj7f2OB77xpkJuG+D/t1ZaHLhOwPamXGijdZi5hmQsD
-         pGbFDmOsZuw0YTbEq4F/Tnh0ytAj7bThh33WmXEJ29dfnAebBrgktu6+cGQlRhOKQmSZ
-         5lCQ==
-X-Gm-Message-State: AOAM5301guf6ysAatA1XuP47AY3XJZogeQer+hDYTMXSHq0C4QZFVUuw
-        83P40FZFPFG70AWKfmrZ7pI=
-X-Google-Smtp-Source: ABdhPJx10FRGjHSg4Ez0RVwMZX3QF/Boe88olE7QrDUkXZMVx1/+P4kFFuKCAIsHCE6XhGJENd4vpQ==
-X-Received: by 2002:a37:d4c:: with SMTP id 73mr16227882qkn.188.1629126863427;
-        Mon, 16 Aug 2021 08:14:23 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id y9sm4771547qtw.51.2021.08.16.08.14.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Aug 2021 08:14:23 -0700 (PDT)
-Subject: Re: of_node_put() usage is buggy all over drivers/of/base.c?!
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20210814010139.kzryimmp4rizlznt@skbuf>
- <9accd63a-961c-4dab-e167-9e2654917a94@gmail.com>
- <20210816144622.tgslast6sbblclda@skbuf>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <4cad28e0-d6b4-800d-787b-936ffaca7be3@gmail.com>
-Date:   Mon, 16 Aug 2021 10:14:22 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Bm8tYluwE2tHBRzqwzgJszhrItkJk+y3RCcuMDJTmI8=;
+        b=FD5d/hI9VeYbXtDN3Lt7B8sdCHUBUNxBuRCflTLL7kC/gHtYvSg7nIFM1wBdwbI0rc
+         f91EV/jAbum7C+ubOoKOfcOCpkUSfYbfT9O+gyxKP3pHDOldcMmPwZ5w0uWdQWdtrYKv
+         BtxILWsl+y/0z3AlEw8BB24wjBOe86jMw85RAfCmtGXxhIRq0aBpr8Tdb1yBiwuxAxqH
+         3dp0Smty7g2WwuwTpXLPYNk6CwWsb/XKeFz7F8A6rJOCSrB17oBQU8Rk42LXY6u7Nt0Z
+         Fno+dEWUyaA8elexOM/ewa/Vzj0aeaYpgx6iRP8MCh4NQ/tOz/66nBUwq9rY1WvSEuYy
+         9gSQ==
+X-Gm-Message-State: AOAM533LjQJBIDkE1tizY6K52XiKfXR2D6nq87IsvG5TW8XNGB6PO1/F
+        I6iuer7uCT9vfAXVArASVrWPEQDCHBJ08nbBw38I/A==
+X-Google-Smtp-Source: ABdhPJwM3WmrduknwaHuwv1oS/UWCa6rCVwvP8lSpnbJ99wYVLFaUwqD8adqCCp2RUVXMwg7jhadsyw/D/byN4yaDyY=
+X-Received: by 2002:ac2:51dc:: with SMTP id u28mr10792613lfm.444.1629128282504;
+ Mon, 16 Aug 2021 08:38:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210816144622.tgslast6sbblclda@skbuf>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
+ <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
+ <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
+ <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
+ <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
+ <CACRpkdZ4k9Km3vBtdN6AnBM89c4355GtPMzCQ0_YHaTb4V5cKA@mail.gmail.com>
+ <CAGXv+5HohMwU8jow5QXO5MK1tO+u=5YsfhArBWCP4Dgm1Q8igg@mail.gmail.com> <4fd12d5c53f6492e5fa3ba94a78b9a149f5b6ed9.camel@mediatek.com>
+In-Reply-To: <4fd12d5c53f6492e5fa3ba94a78b9a149f5b6ed9.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 16 Aug 2021 23:37:51 +0800
+Message-ID: <CAGXv+5GCuNK=-z9VAOjkpJdZLUSZFPfUsQ09m1FhfTsbCYLLRw@mail.gmail.com>
+Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
+        Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/16/21 9:46 AM, Vladimir Oltean wrote:
-> Hi Frank,
-> 
-> On Mon, Aug 16, 2021 at 09:33:03AM -0500, Frank Rowand wrote:
->> Hi Vladimir,
->>
->> On 8/13/21 8:01 PM, Vladimir Oltean wrote:
->>> Hi,
->>>
->>> I was debugging an RCU stall which happened during the probing of a
->>> driver. Activating lock debugging, I see:
->>
->> I took a quick look at sja1105_mdiobus_register() in v5.14-rc1 and v5.14-rc6.
->>
->> Looking at the following stack trace, I did not see any calls to
->> of_find_compatible_node() in sja1105_mdiobus_register().  I am
->> guessing that maybe there is an inlined function that calls
->> of_find_compatible_node().  This would likely be either
->> sja1105_mdiobus_base_tx_register() or sja1105_mdioux_base_t1_register().
-> 
-> Yes, it is sja1105_mdiobus_base_t1_register which is inlined.
-> 
->>>
->>> [  101.710694] BUG: sleeping function called from invalid context at kernel/locking/mutex.c:938
->>> [  101.719119] in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 1534, name: sh
->>> [  101.726763] INFO: lockdep is turned off.
->>> [  101.730674] irq event stamp: 0
->>> [  101.733716] hardirqs last  enabled at (0): [<0000000000000000>] 0x0
->>> [  101.739973] hardirqs last disabled at (0): [<ffffd3ebecb10120>] copy_process+0xa78/0x1a98
->>> [  101.748146] softirqs last  enabled at (0): [<ffffd3ebecb10120>] copy_process+0xa78/0x1a98
->>> [  101.756313] softirqs last disabled at (0): [<0000000000000000>] 0x0
->>> [  101.762569] CPU: 4 PID: 1534 Comm: sh Not tainted 5.14.0-rc5+ #272
->>> [  101.774558] Call trace:
->>> [  101.794734]  __might_sleep+0x50/0x88
->>> [  101.798297]  __mutex_lock+0x60/0x938
->>> [  101.801863]  mutex_lock_nested+0x38/0x50
->>> [  101.805775]  kernfs_remove+0x2c/0x50             <---- this takes mutex_lock(&kernfs_mutex);
->>> [  101.809341]  sysfs_remove_dir+0x54/0x70
->>
->> The __kobject_del() occurs only if the refcount on the node
->> becomes zero.  This should never be true when of_find_compatible_node()
->> calls of_node_put() unless a "from" node is passed to of_find_compatible_node().
-> 
-> I figured that was the assumption, that the of_node_put would never
-> trigger a sysfs file / kobject deletion from there.
-> 
->> In both sja1105_mdiobus_base_tx_register() and sja1105_mdioux_base_t1_register()
->> a from node ("mdio") is passed to of_find_compatible_node() without first doing an
->> of_node_get(mdio).  If you add the of_node_get() calls the problem should be fixed.
-> 
-> The answer seems simple enough, but stupid question, but why does
-> of_find_compatible_node call of_node_put on "from" in the first place?
+On Mon, Aug 16, 2021 at 6:48 PM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+>
+> On Mon, 2021-08-16 at 14:10 +0800, Chen-Yu Tsai wrote:
+> > On Thu, Aug 5, 2021 at 7:02 AM Linus Walleij <
+> > linus.walleij@linaro.org> wrote:
+> > >
+> > > On Thu, Jul 29, 2021 at 11:43 AM Chen-Yu Tsai <wenst@chromium.org>
+> > > wrote:
+> > > > On Thu, Jul 29, 2021 at 4:23 PM zhiyong.tao <
+> > > > zhiyong.tao@mediatek.com> wrote:
+> > > > > The rsel actual bias resistance of each setting is different in
+> > > > > different IC. we think that the define "MTK_PULL_SET_RSEL_000"
+> > > > > is more
+> > > > > common for all different IC.
+> > > >
+> > > > I see. I personally prefer having things clearly described. I can
+> > > > understand this might be an extra burden to support different
+> > > > chips
+> > > > with different parameters, though this should be fairly
+> > > > straightforward
+> > > > with lookup tables tied to the compatible strings.
+> > > >
+> > > > Let's see if Rob and Linus have anything to add.
+> > >
+> > > Not much. We have "soft pushed" for this to be described as generic
+> > > as possible, using SI units (ohms). But we also allow vendor-
+> > > specific
+> > > numbers in this attribute. Especially when reverse engineering SoCs
+> > > that the contributor don't really have specs on (example M1 Mac).
+> > >
+> > > The intent with the SI units is especially for people like you
+> > > folks working
+> > > with Chromium to be able to use different SoCs and not feel lost
+> > > to a forest of different ways of doing things and associated
+> > > mistakes because vendors have hopelessly idiomatic pin configs.
+> >
+> > I'll take that as "use SI units whenever possible and reasonable".
+>
+> ==> so It doesn't need to change the define, is it right?
+> we will keep the common define.
 
-Actually a good question.
+Actually I think it would be possible and reasonable to use SI units
+in this case, since you are the vendor and have the resistor values
+to implement the support. Having different sets of values for different
+chips is nothing out of the ordinary. We already have to account for
+different number of pins and different pin functions. That is what
+compatible strings are for.
 
-I do not know why of_find_compatible_node() calls of_node_put() instead of making
-the caller of of_find_compatible_node() responsible.  That pattern was created
-long before I was involved in devicetree and I have not gone back to read the
-review comments of when that code was created.
+Now if you have _many_ different sets of values within the same chip,
+that could make things more difficult. However the clearness of having
+the real values visible in the device tree would likely benefit both
+software and hardware engineers outside of Mediatek. That is what we
+should be aiming for.
 
--Frank
+
+Regards
+ChenYu
