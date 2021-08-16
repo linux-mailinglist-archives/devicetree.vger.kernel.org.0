@@ -2,241 +2,613 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 655933ED3B5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 14:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64B053ED3E3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 14:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232690AbhHPMMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 08:12:13 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51156 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229836AbhHPMMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 08:12:12 -0400
-X-UUID: 5e47368bc4da423b8b293617b2f75340-20210816
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=kkysPn/5aJXvWrgV2Um/G5eKzXBq7Ohp9jMuEy/5iYQ=;
-        b=Fjqo8WY5cgB2jePVO0i542gfEym99HrP0JrThjvjeUrpf1HG5tX6ExGpoS0qX4jaY0eodyMVtT+2MOPhMmEKwfEWvwsuh+2Js21ZqOfbKWqLNLza2rUKXLMVhAqEsWmTrcBzavSfo2uRFgw88Qw9pIDH3Y1JGycIdN6Y7MR91FA=;
-X-UUID: 5e47368bc4da423b8b293617b2f75340-20210816
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 146643191; Mon, 16 Aug 2021 20:11:39 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 16 Aug 2021 20:11:38 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 16 Aug 2021 20:11:38 +0800
-Message-ID: <1629115898.29907.3.camel@mtksdaap41>
-Subject: Re: [PATCH v10 3/5] spmi: mediatek: Add support for MT6873/8192
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        id S229799AbhHPM1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 08:27:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43348 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229600AbhHPM1I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Aug 2021 08:27:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E14C661C19;
+        Mon, 16 Aug 2021 12:26:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629116796;
+        bh=oKGepH+V+CuRpZMZ1SznskgkAaw7iXR+hlH95oGa2O8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RilaEPxyYfwaa78F2JInfDC366AkDMXVuYmme2b614jAkTLbko12psRUTDlW2ps7s
+         8ZcKxbQjkgJUPFCRnkxEG6a/9T9bKWwRvL+JIi2IdWYERfb+mwAEthxwWbjeVRpCGy
+         nDwgxxWC933fwe+2cVj0YDuOGC+Vi3gVxta8vs5IK5Q4DGC3JgAiOnepvSF/AKv9n7
+         oDHfe74RCLgHJ2q5iF+vjJVEIvSetNADYJrWFYyf+M2RXFUMrtW/hb0kgCvsdAGPio
+         9bs5z+bUf/sljHxaa0YUN2HaKLSUkexZvF9UvdmznPF4oaKNE6qMPLM6Xp10UuTS92
+         lYRzzL2c745pg==
+From:   Mike Rapoport <rppt@kernel.org>
+To:     Andrew Morton <akpm@linux-foundation.org>
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Andy Lutomirski <luto@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christian Borntraeger <borntraeger@de.ibm.com>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        Heiko Carstens <hca@linux.ibm.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        "Kirill A. Shutemov" <kirill@shutemov.name>,
+        Len Brown <lenb@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 16 Aug 2021 20:11:38 +0800
-In-Reply-To: <162853170949.1975443.12492156194100139076@swboyd.mtv.corp.google.com>
-References: <1627972461-2627-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1627972461-2627-4-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <162853170949.1975443.12492156194100139076@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Vasily Gorbik <gor@linux.ibm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        kvmarm@lists.cs.columbia.edu, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+        x86@kernel.org,
+        "Kirill A . Shutemov" <kirill.shtuemov@linux.intel.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Nick Kossifidis <mick@ics.forth.gr>
+Subject: [PATCH v5] memblock: make memblock_find_in_range method private
+Date:   Mon, 16 Aug 2021 15:26:22 +0300
+Message-Id: <20210816122622.30279-1-rppt@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCk9uIE1vbiwgMjAyMS0wOC0wOSBhdCAxMDo1NSAtMDcwMCwgU3RlcGhlbiBCb3lkIHdy
-b3RlOg0KPiBRdW90aW5nIEhzaW4tSHNpdW5nIFdhbmcgKDIwMjEtMDgtMDIgMjM6MzQ6MTkpDQo+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc3BtaS9zcG1pLW10ay1wbWlmLmMgYi9kcml2ZXJzL3Nw
-bWkvc3BtaS1tdGstcG1pZi5jDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAw
-MDAwMDAwMDAwMDAuLjk0YzQ1ZDQ2YWIwYw0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9k
-cml2ZXJzL3NwbWkvc3BtaS1tdGstcG1pZi5jDQo+ID4gQEAgLTAsMCArMSw0NjUgQEANCj4gPiAr
-Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4gPiArLy8NCj4gPiArLy8gQ29w
-eXJpZ2h0IChjKSAyMDIxIE1lZGlhVGVrIEluYy4NCj4gPiArDQo+ID4gKyNpbmNsdWRlIDxsaW51
-eC9jbGsuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2lvcG9sbC5oPg0KPiA+ICsjaW5jbHVkZSA8
-bGludXgvbW9kdWxlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9vZl9kZXZpY2UuaD4NCj4gDQo+
-IGluY2x1ZGUgcGxhdGZvcm1fZGV2aWNlLmggZm9yIHRoZSBwbGF0Zm9ybSBkZXZpY2UgZHJpdmVy
-IHRoYXQgdGhpcyBpcy4NCj4gDQpUaGFua3MgZm9yIHRoZSBjb21taXQsIEkgd2lsbCB1cGRhdGUg
-aXQgaW4gdGhlIG5leHQgcGF0Y2guDQoNCj4gPiArI2luY2x1ZGUgPGxpbnV4L3NwbWkuaD4NCj4g
-PiArDQo+ID4gKyNkZWZpbmUgU1dJTkZfSURMRSAgICAgMHgwMA0KPiA+ICsjZGVmaW5lIFNXSU5G
-X1dGVkxEQ0xSIDB4MDYNCj4gPiArDQo+ID4gKyNkZWZpbmUgR0VUX1NXSU5GKHgpICAgKCgoeCkg
-Pj4gMSkgJiAweDcpDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFBNSUZfQ01EX1JFR18wICAgICAgICAg
-MA0KPiA+ICsjZGVmaW5lIFBNSUZfQ01EX1JFRyAgICAgICAgICAgMQ0KPiA+ICsjZGVmaW5lIFBN
-SUZfQ01EX0VYVF9SRUcgICAgICAgMg0KPiA+ICsjZGVmaW5lIFBNSUZfQ01EX0VYVF9SRUdfTE9O
-RyAgMw0KPiA+ICsNCj4gPiArI2RlZmluZSBQTUlGX0RFTEFZX1VTICAgMTANCj4gPiArI2RlZmlu
-ZSBQTUlGX1RJTUVPVVRfVVMgKDEwICogMTAwMCkNCj4gPiArDQo+ID4gKyNkZWZpbmUgUE1JRl9D
-SEFOX09GRlNFVCAweDUNCj4gPiArDQo+ID4gKyNkZWZpbmUgUE1JRl9NQVhfQ0xLUyAgMw0KPiA+
-ICsNCj4gPiArI2RlZmluZSBTUE1JX09QX1NUX0JVU1kgMQ0KPiA+ICsNCj4gPiArc3RydWN0IGNo
-X3JlZyB7DQo+ID4gKyAgICAgICB1MzIgY2hfc3RhOw0KPiA+ICsgICAgICAgdTMyIHdkYXRhOw0K
-PiA+ICsgICAgICAgdTMyIHJkYXRhOw0KPiA+ICsgICAgICAgdTMyIGNoX3NlbmQ7DQo+ID4gKyAg
-ICAgICB1MzIgY2hfcmR5Ow0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArc3RydWN0IHBtaWZfZGF0YSB7
-DQo+ID4gKyAgICAgICBjb25zdCB1MzIgICAgICAgKnJlZ3M7DQo+ID4gKyAgICAgICBjb25zdCB1
-MzIgICAgICAgKnNwbWltc3RfcmVnczsNCj4gPiArICAgICAgIHUzMiAgICAgc29jX2NoYW47DQo+
-ID4gK307DQo+ID4gKw0KPiA+ICtzdHJ1Y3QgcG1pZiB7DQo+ID4gKyAgICAgICB2b2lkIF9faW9t
-ZW0gICAgKmJhc2U7DQo+ID4gKyAgICAgICB2b2lkIF9faW9tZW0gICAgKnNwbWltc3RfYmFzZTsN
-Cj4gPiArICAgICAgIHN0cnVjdCBjaF9yZWcgICBjaGFuOw0KPiA+ICsgICAgICAgc3RydWN0IGNs
-a19idWxrX2RhdGEgY2xrc1tQTUlGX01BWF9DTEtTXTsNCj4gPiArICAgICAgIHUzMiBuY2xrczsN
-Cj4gDQo+IHNpemVfdD8gU3VyZWx5IDMyLWJpdHMgaXNuJ3QgaW1wb3J0YW50Lg0KPiANCg0KVGhh
-bmtzLiBJIHdpbGwgdXNlIHNpemVfdCBpbiB0aGUgbmV4dCBwYXRjaC4NCg0KPiA+ICsgICAgICAg
-Y29uc3Qgc3RydWN0IHBtaWZfZGF0YSAqZGF0YTsNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0YXRp
-YyBjb25zdCBjaGFyICogY29uc3QgcG1pZl9jbG9ja19uYW1lc1tdID0gew0KPiA+ICsgICAgICAg
-InBtaWZfc3lzX2NrIiwgInBtaWZfdG1yX2NrIiwgInNwbWltc3RfY2xrX211eCIsDQo+ID4gK307
-DQo+IFsuLi5dDQo+ID4gKw0KPiA+ICtzdGF0aWMgYm9vbCBwbWlmX2lzX2ZzbV92bGRjbHIoc3Ry
-dWN0IHBtaWYgKmFyYikNCj4gPiArew0KPiA+ICsgICAgICAgdTMyIHJlZ19yZGF0YTsNCj4gPiAr
-DQo+ID4gKyAgICAgICByZWdfcmRhdGEgPSBwbWlmX3JlYWRsKGFyYiwgYXJiLT5jaGFuLmNoX3N0
-YSk7DQo+IA0KPiBOZXdsaW5lIGhlcmUgcGxlYXNlLg0KPiANCg0KVGhhbmtzLCBJIHdpbGwgdXBk
-YXRlIGl0IGluIHRoZSBuZXh0IHBhdGNoLg0KDQo+ID4gKyAgICAgICByZXR1cm4gR0VUX1NXSU5G
-KHJlZ19yZGF0YSkgPT0gU1dJTkZfV0ZWTERDTFI7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRp
-YyBpbnQgcG1pZl9hcmJfY21kKHN0cnVjdCBzcG1pX2NvbnRyb2xsZXIgKmN0cmwsIHU4IG9wYywg
-dTggc2lkKQ0KPiA+ICt7DQo+ID4gKyAgICAgICBzdHJ1Y3QgcG1pZiAqYXJiID0gc3BtaV9jb250
-cm9sbGVyX2dldF9kcnZkYXRhKGN0cmwpOw0KPiA+ICsgICAgICAgdTMyIHJkYXRhLCBjbWQ7DQo+
-ID4gKyAgICAgICBpbnQgcmV0Ow0KPiA+ICsNCj4gPiArICAgICAgIC8qIENoZWNrIHRoZSBvcGNv
-ZGUgKi8NCj4gPiArICAgICAgIGlmIChvcGMgPCBTUE1JX0NNRF9SRVNFVCB8fCBvcGMgPiBTUE1J
-X0NNRF9XQUtFVVApDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICsN
-Cj4gPiArICAgICAgIGNtZCA9IG9wYyAtIFNQTUlfQ01EX1JFU0VUOw0KPiA+ICsNCj4gPiArICAg
-ICAgIG10a19zcG1pX3dyaXRlbChhcmIsIChjbWQgPDwgMHg0KSB8IHNpZCwgU1BNSV9PUF9TVF9D
-VFJMKTsNCj4gPiArICAgICAgIHJldCA9IHJlYWRsX3BvbGxfdGltZW91dF9hdG9taWMoYXJiLT5z
-cG1pbXN0X2Jhc2UgKyBhcmItPmRhdGEtPnNwbWltc3RfcmVnc1tTUE1JX09QX1NUX1NUQV0sDQo+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJkYXRhLCAocmRhdGEg
-JiBTUE1JX09QX1NUX0JVU1kpID09IFNQTUlfT1BfU1RfQlVTWSwNCj4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgUE1JRl9ERUxBWV9VUywgUE1JRl9USU1FT1VUX1VT
-KTsNCj4gPiArICAgICAgIGlmIChyZXQgPCAwKQ0KPiA+ICsgICAgICAgICAgICAgICBkZXZfZXJy
-KCZjdHJsLT5kZXYsICJ0aW1lb3V0LCBlcnIgPSAlZFxuIiwgcmV0KTsNCj4gPiArDQo+ID4gKyAg
-ICAgICByZXR1cm4gcmV0Ow0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHBtaWZfc3Bt
-aV9yZWFkX2NtZChzdHJ1Y3Qgc3BtaV9jb250cm9sbGVyICpjdHJsLCB1OCBvcGMsIHU4IHNpZCwN
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1MTYgYWRkciwgdTggKmJ1Ziwgc2l6
-ZV90IGxlbikNCj4gPiArew0KPiA+ICsgICAgICAgc3RydWN0IHBtaWYgKmFyYiA9IHNwbWlfY29u
-dHJvbGxlcl9nZXRfZHJ2ZGF0YShjdHJsKTsNCj4gPiArICAgICAgIHN0cnVjdCBjaF9yZWcgKmlu
-Zl9yZWc7DQo+ID4gKyAgICAgICBpbnQgcmV0Ow0KPiA+ICsgICAgICAgdTMyIGRhdGEsIGNtZDsN
-Cj4gPiArDQo+ID4gKyAgICAgICAvKiBDaGVjayBmb3IgYXJndW1lbnQgdmFsaWRhdGlvbi4gKi8N
-Cj4gPiArICAgICAgIGlmIChzaWQgJiB+MHhmKSB7DQo+ID4gKyAgICAgICAgICAgICAgIGRldl9l
-cnIoJmN0cmwtPmRldiwgImV4Y2VlZCB0aGUgbWF4IHNsdiBpZFxuIik7DQo+ID4gKyAgICAgICAg
-ICAgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAg
-IGlmIChsZW4gPiA0KSB7DQo+ID4gKyAgICAgICAgICAgICAgIGRldl9lcnIoJmN0cmwtPmRldiwg
-InBtaWYgc3VwcG9ydHMgMS4uNCBieXRlcyBwZXIgdHJhbnMsIGJ1dDolenUgcmVxdWVzdGVkIiwg
-bGVuKTsNCj4gDQo+IE1pc3NpbmcgbmV3bGluZQ0KPiANCg0KVGhhbmtzLCBJIHdpbGwgdXBkYXRl
-IGl0IGluIHRoZSBuZXh0IHBhdGNoLg0KDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRUlO
-VkFMOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAgIGlmIChvcGMgPj0gMHg2MCAm
-JiBvcGMgPD0gMHg3ZikNCj4gPiArICAgICAgICAgICAgICAgb3BjID0gUE1JRl9DTURfUkVHOw0K
-PiA+ICsgICAgICAgZWxzZSBpZiAoKG9wYyA+PSAweDIwICYmIG9wYyA8PSAweDJmKSB8fCAob3Bj
-ID49IDB4MzggJiYgb3BjIDw9IDB4M2YpKQ0KPiA+ICsgICAgICAgICAgICAgICBvcGMgPSBQTUlG
-X0NNRF9FWFRfUkVHX0xPTkc7DQo+ID4gKyAgICAgICBlbHNlDQo+ID4gKyAgICAgICAgICAgICAg
-IHJldHVybiAtRUlOVkFMOw0KPiA+ICsNCj4gPiArICAgICAgIC8qIFdhaXQgZm9yIFNvZnR3YXJl
-IEludGVyZmFjZSBGU00gc3RhdGUgdG8gYmUgSURMRS4gKi8NCj4gPiArICAgICAgIGluZl9yZWcg
-PSAmYXJiLT5jaGFuOw0KPiA+ICsgICAgICAgcmV0ID0gcmVhZGxfcG9sbF90aW1lb3V0X2F0b21p
-YyhhcmItPmJhc2UgKyBhcmItPmRhdGEtPnJlZ3NbaW5mX3JlZy0+Y2hfc3RhXSwNCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGF0YSwgR0VUX1NXSU5GKGRhdGEp
-ID09IFNXSU5GX0lETEUsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIFBNSUZfREVMQVlfVVMsIFBNSUZfVElNRU9VVF9VUyk7DQo+ID4gKyAgICAgICBpZiAocmV0
-IDwgMCkgew0KPiA+ICsgICAgICAgICAgICAgICAvKiBzZXQgY2hhbm5lbCByZWFkeSBpZiB0aGUg
-ZGF0YSBoYXMgdHJhbnNmZXJyZWQgKi8NCj4gPiArICAgICAgICAgICAgICAgaWYgKHBtaWZfaXNf
-ZnNtX3ZsZGNscihhcmIpKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHBtaWZfd3JpdGVs
-KGFyYiwgMSwgaW5mX3JlZy0+Y2hfcmR5KTsNCj4gPiArICAgICAgICAgICAgICAgZGV2X2Vycigm
-Y3RybC0+ZGV2LCAiZmFpbGVkIHRvIHdhaXQgZm9yIFNXSU5GX0lETEVcbiIpOw0KPiA+ICsgICAg
-ICAgICAgICAgICBnb3RvIG91dDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICAv
-KiBTZW5kIHRoZSBjb21tYW5kLiAqLw0KPiA+ICsgICAgICAgY21kID0gKG9wYyA8PCAzMCkgfCAo
-c2lkIDw8IDI0KSB8ICgobGVuIC0gMSkgPDwgMTYpIHwgYWRkcjsNCj4gPiArICAgICAgIHBtaWZf
-d3JpdGVsKGFyYiwgY21kLCBpbmZfcmVnLT5jaF9zZW5kKTsNCj4gPiArDQo+ID4gKyAgICAgICAv
-Kg0KPiA+ICsgICAgICAgICogV2FpdCBmb3IgU29mdHdhcmUgSW50ZXJmYWNlIEZTTSBzdGF0ZSB0
-byBiZSBXRlZMRENMUiwNCj4gPiArICAgICAgICAqIHJlYWQgdGhlIGRhdGEgYW5kIGNsZWFyIHRo
-ZSB2YWxpZCBmbGFnLg0KPiA+ICsgICAgICAgICovDQo+ID4gKyAgICAgICByZXQgPSByZWFkbF9w
-b2xsX3RpbWVvdXRfYXRvbWljKGFyYi0+YmFzZSArIGFyYi0+ZGF0YS0+cmVnc1tpbmZfcmVnLT5j
-aF9zdGFdLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkYXRh
-LCBHRVRfU1dJTkYoZGF0YSkgPT0gU1dJTkZfV0ZWTERDTFIsDQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIFBNSUZfREVMQVlfVVMsIFBNSUZfVElNRU9VVF9VUyk7
-DQo+ID4gKyAgICAgICBpZiAocmV0IDwgMCkgew0KPiA+ICsgICAgICAgICAgICAgICBkZXZfZXJy
-KCZjdHJsLT5kZXYsICJmYWlsZWQgdG8gd2FpdCBmb3IgU1dJTkZfV0ZWTERDTFJcbiIpOw0KPiA+
-ICsgICAgICAgICAgICAgICBnb3RvIG91dDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAg
-ICAgICBkYXRhID0gcG1pZl9yZWFkbChhcmIsIGluZl9yZWctPnJkYXRhKTsNCj4gPiArICAgICAg
-IG1lbWNweShidWYsICZkYXRhLCBsZW4pOw0KPiA+ICsgICAgICAgcG1pZl93cml0ZWwoYXJiLCAx
-LCBpbmZfcmVnLT5jaF9yZHkpOw0KPiA+ICsNCj4gPiArb3V0Og0KPiA+ICsgICAgICAgaWYgKHJl
-dCA8IDApDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICsgICAg
-ICAgcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgcG1pZl9zcG1pX3dy
-aXRlX2NtZChzdHJ1Y3Qgc3BtaV9jb250cm9sbGVyICpjdHJsLCB1OCBvcGMsIHU4IHNpZCwNCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTE2IGFkZHIsIGNvbnN0IHU4ICpidWYs
-IHNpemVfdCBsZW4pDQo+ID4gK3sNCj4gPiArICAgICAgIHN0cnVjdCBwbWlmICphcmIgPSBzcG1p
-X2NvbnRyb2xsZXJfZ2V0X2RydmRhdGEoY3RybCk7DQo+ID4gKyAgICAgICBzdHJ1Y3QgY2hfcmVn
-ICppbmZfcmVnOw0KPiA+ICsgICAgICAgaW50IHJldDsNCj4gPiArICAgICAgIHUzMiBkYXRhLCBj
-bWQ7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYgKGxlbiA+IDQpIHsNCj4gPiArICAgICAgICAgICAg
-ICAgZGV2X2VycigmY3RybC0+ZGV2LCAicG1pZiBzdXBwb3J0cyAxLi40IGJ5dGVzIHBlciB0cmFu
-cywgYnV0OiV6dSByZXF1ZXN0ZWQiLCBsZW4pOw0KPiANCj4gTWlzc2luZyBuZXdsaW5lDQo+IA0K
-DQpUaGFua3MsIEkgd2lsbCB1cGRhdGUgaXQgaW4gdGhlIG5leHQgcGF0Y2guDQoNCj4gPiArICAg
-ICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICsg
-ICAgICAgLyogQ2hlY2sgdGhlIG9wY29kZSAqLw0KPiA+ICsgICAgICAgaWYgKG9wYyA+PSAweDQw
-ICYmIG9wYyA8PSAweDVGKQ0KPiA+ICsgICAgICAgICAgICAgICBvcGMgPSBQTUlGX0NNRF9SRUc7
-DQo+ID4gKyAgICAgICBlbHNlIGlmICgob3BjIDw9IDB4RikgfHwgKG9wYyA+PSAweDMwICYmIG9w
-YyA8PSAweDM3KSkNCj4gPiArICAgICAgICAgICAgICAgb3BjID0gUE1JRl9DTURfRVhUX1JFR19M
-T05HOw0KPiA+ICsgICAgICAgZWxzZSBpZiAob3BjID49IDB4ODApDQo+ID4gKyAgICAgICAgICAg
-ICAgIG9wYyA9IFBNSUZfQ01EX1JFR18wOw0KPiA+ICsgICAgICAgZWxzZQ0KPiA+ICsgICAgICAg
-ICAgICAgICByZXR1cm4gLUVJTlZBTDsNCj4gPiArDQo+ID4gKyAgICAgICAvKiBXYWl0IGZvciBT
-b2Z0d2FyZSBJbnRlcmZhY2UgRlNNIHN0YXRlIHRvIGJlIElETEUuICovDQo+ID4gKyAgICAgICBp
-bmZfcmVnID0gJmFyYi0+Y2hhbjsNCj4gPiArICAgICAgIHJldCA9IHJlYWRsX3BvbGxfdGltZW91
-dF9hdG9taWMoYXJiLT5iYXNlICsgYXJiLT5kYXRhLT5yZWdzW2luZl9yZWctPmNoX3N0YV0sDQo+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEsIEdFVF9TV0lO
-RihkYXRhKSA9PSBTV0lORl9JRExFLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBQTUlGX0RFTEFZX1VTLCBQTUlGX1RJTUVPVVRfVVMpOw0KPiA+ICsgICAgICAg
-aWYgKHJldCA8IDApIHsNCj4gPiArICAgICAgICAgICAgICAgLyogc2V0IGNoYW5uZWwgcmVhZHkg
-aWYgdGhlIGRhdGEgaGFzIHRyYW5zZmVycmVkICovDQo+ID4gKyAgICAgICAgICAgICAgIGlmIChw
-bWlmX2lzX2ZzbV92bGRjbHIoYXJiKSkNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBwbWlm
-X3dyaXRlbChhcmIsIDEsIGluZl9yZWctPmNoX3JkeSk7DQo+ID4gKyAgICAgICAgICAgICAgIGRl
-dl9lcnIoJmN0cmwtPmRldiwgImZhaWxlZCB0byB3YWl0IGZvciBTV0lORl9JRExFXG4iKTsNCj4g
-PiArICAgICAgICAgICAgICAgZ290byBvdXQ7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICsg
-ICAgICAgLyogU2V0IHRoZSB3cml0ZSBkYXRhLiAqLw0KPiA+ICsgICAgICAgbWVtY3B5KCZkYXRh
-LCBidWYsIGxlbik7DQo+ID4gKyAgICAgICBwbWlmX3dyaXRlbChhcmIsIGRhdGEsIGluZl9yZWct
-PndkYXRhKTsNCj4gPiArDQo+ID4gKyAgICAgICAvKiBTZW5kIHRoZSBjb21tYW5kLiAqLw0KPiA+
-ICsgICAgICAgY21kID0gKG9wYyA8PCAzMCkgfCBCSVQoMjkpIHwgKHNpZCA8PCAyNCkgfCAoKGxl
-biAtIDEpIDw8IDE2KSB8IGFkZHI7DQo+ID4gKyAgICAgICBwbWlmX3dyaXRlbChhcmIsIGNtZCwg
-aW5mX3JlZy0+Y2hfc2VuZCk7DQo+ID4gKw0KPiA+ICtvdXQ6DQo+ID4gKyAgICAgICBpZiAocmV0
-IDwgMCkNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKyAgICAg
-ICByZXR1cm4gMDsNCj4gDQo+IFNpbXBsaWZ5IHRvIA0KPiANCj4gCW91dDoNCj4gCQlyZXR1cm4g
-cmV0Ow0KPiANCg0KVGhhbmtzLCBJIHdpbGwgdXBkYXRlIGl0IGluIHRoZSBuZXh0IHBhdGNoLg0K
-DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgcG1pZl9kYXRhIG10Njg3
-M19wbWlmX2FyYiA9IHsNCj4gPiArICAgICAgIC5yZWdzID0gbXQ2ODczX3JlZ3MsDQo+ID4gKyAg
-ICAgICAuc3BtaW1zdF9yZWdzID0gbXQ2ODczX3NwbWlfcmVncywNCj4gPiArICAgICAgIC5zb2Nf
-Y2hhbiA9IDIsDQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IG10a19zcG1pX3Byb2Jl
-KHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gK3sNCj4gPiArICAgICAgIHN0cnVj
-dCBwbWlmICphcmI7DQo+ID4gKyAgICAgICBzdHJ1Y3Qgc3BtaV9jb250cm9sbGVyICpjdHJsOw0K
-PiA+ICsgICAgICAgaW50IGVyciwgaTsNCj4gPiArICAgICAgIHUzMiBjaGFuX29mZnNldDsNCj4g
-PiArDQo+ID4gKyAgICAgICBjdHJsID0gc3BtaV9jb250cm9sbGVyX2FsbG9jKCZwZGV2LT5kZXYs
-IHNpemVvZigqYXJiKSk7DQo+ID4gKyAgICAgICBpZiAoIWN0cmwpDQo+ID4gKyAgICAgICAgICAg
-ICAgIHJldHVybiAtRU5PTUVNOw0KPiA+ICsNCj4gPiArICAgICAgIGFyYiA9IHNwbWlfY29udHJv
-bGxlcl9nZXRfZHJ2ZGF0YShjdHJsKTsNCj4gPiArICAgICAgIGFyYi0+ZGF0YSA9IG9mX2Rldmlj
-ZV9nZXRfbWF0Y2hfZGF0YSgmcGRldi0+ZGV2KTsNCj4gDQo+IFVzZSBkZXZpY2VfZ2V0X21hdGNo
-X2RhdGEoKSBpbnN0ZWFkIHBsZWFzZS4NCj4gDQoNClRoYW5rcywgSSB3aWxsIGNoYW5nZSB0byB1
-c2UgZGV2aWNlX2dldF9tYXRjaF9kYXRhIGluIHRoZSBuZXh0IHBhdGNoLg0KDQo+ID4gKyAgICAg
-ICBpZiAoIWFyYi0+ZGF0YSkgew0KPiA+ICsgICAgICAgICAgICAgICBlcnIgPSAtRUlOVkFMOw0K
-PiA+ICsgICAgICAgICAgICAgICBkZXZfZXJyKCZwZGV2LT5kZXYsICJDYW5ub3QgZ2V0IGRydl9k
-YXRhXG4iKTsNCj4gPiArICAgICAgICAgICAgICAgZ290byBlcnJfcHV0X2N0cmw7DQo+ID4gKyAg
-ICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAgYXJiLT5iYXNlID0gZGV2bV9wbGF0Zm9ybV9pb3Jl
-bWFwX3Jlc291cmNlX2J5bmFtZShwZGV2LCAicG1pZiIpOw0KPiA+ICsgICAgICAgaWYgKElTX0VS
-UihhcmItPmJhc2UpKSB7DQo+ID4gKyAgICAgICAgICAgICAgIGVyciA9IFBUUl9FUlIoYXJiLT5i
-YXNlKTsNCj4gPiArICAgICAgICAgICAgICAgZGV2X2VycigmcGRldi0+ZGV2LCAicG1pZiBmYWls
-ZWQgdG8gZ2V0IHRoZSByZW1hcHBwZWQgbWVtb3J5XG4iKTsNCj4gDQo+IFBsZWFzZSBkcm9wIHBy
-aW50IGFzIHRoZSBBUEkgYWxyZWFkeSBwcmludHMgZXJyb3JzIGZvciBldmVyeSBwcm9ibGVtLg0K
-PiANCg0KVGhhbmtzLCBJIHdpbGwgdXBkYXRlIGl0IGluIHRoZSBuZXh0IHBhdGNoLg0KDQo+ID4g
-KyAgICAgICAgICAgICAgIGdvdG8gZXJyX3B1dF9jdHJsOw0KPiA+ICsgICAgICAgfQ0KPiA+ICsN
-Cj4gPiArICAgICAgIGFyYi0+c3BtaW1zdF9iYXNlID0gZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jl
-c291cmNlX2J5bmFtZShwZGV2LCAic3BtaW1zdCIpOw0KPiA+ICsgICAgICAgaWYgKElTX0VSUihh
-cmItPnNwbWltc3RfYmFzZSkpIHsNCj4gPiArICAgICAgICAgICAgICAgZXJyID0gUFRSX0VSUihh
-cmItPnNwbWltc3RfYmFzZSk7DQo+ID4gKyAgICAgICAgICAgICAgIGRldl9lcnIoJnBkZXYtPmRl
-diwgInNwbWltc3QgZmFpbGVkIHRvIGdldCB0aGUgcmVtYXBwcGVkIG1lbW9yeVxuIik7DQo+IA0K
-PiBQbGVhc2UgZHJvcCBwcmludCBhcyB0aGUgQVBJIGFscmVhZHkgcHJpbnRzIGVycm9ycyBmb3Ig
-ZXZlcnkgcHJvYmxlbS4NCj4gDQoNClRoYW5rcywgSSB3aWxsIHVwZGF0ZSBpdCBpbiB0aGUgbmV4
-dCBwYXRjaC4NCg0KPiA+ICsgICAgICAgICAgICAgICBnb3RvIGVycl9wdXRfY3RybDsNCj4gPiAr
-ICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICBhcmItPm5jbGtzID0gQVJSQVlfU0laRShwbWlm
-X2Nsb2NrX25hbWVzKTsNCj4gPiArICAgICAgIGlmIChhcmItPm5jbGtzID4gUE1JRl9NQVhfQ0xL
-Uykgew0KPiA+ICsgICAgICAgICAgICAgICBlcnIgPSAtRUlOVkFMOw0KPiA+ICsgICAgICAgICAg
-ICAgICBkZXZfZXJyKCZwZGV2LT5kZXYsICJleGNlZWQgdGhlIG1heCBjbG9jayBudW1iZXJzXG4i
-KTsNCj4gDQo+IERvIHdlIHJlYWxseSBjYXJlPyBUaGUgZHQgc2NoZW1hIHNob3VsZCBiZSBjaGVj
-a2luZyB0aGlzIGluc3RlYWQgb2YgdGhlDQo+IGRyaXZlci4NCj4gDQoNClRoYW5rcywgSSB3aWxs
-IHJlbW92ZSB0aGUgY2hlY2sgaW4gdGhlIG5leHQgcGF0Y2guDQoNCj4gPiArICAgICAgICAgICAg
-ICAgZ290byBlcnJfcHV0X2N0cmw7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAg
-Zm9yIChpID0gMDsgaSA8IGFyYi0+bmNsa3M7IGkrKykNCj4gPiArICAgICAgICAgICAgICAgYXJi
-LT5jbGtzW2ldLmlkID0gcG1pZl9jbG9ja19uYW1lc1tpXTsNCj4gPiArDQoNCg==
+From: Mike Rapoport <rppt@linux.ibm.com>
+
+There are a lot of uses of memblock_find_in_range() along with
+memblock_reserve() from the times memblock allocation APIs did not exist.
+
+memblock_find_in_range() is the very core of memblock allocations, so any
+future changes to its internal behaviour would mandate updates of all the
+users outside memblock.
+
+Replace the calls to memblock_find_in_range() with an equivalent calls to
+memblock_phys_alloc() and memblock_phys_alloc_range() and make
+memblock_find_in_range() private method of memblock.
+
+This simplifies the callers, ensures that (unlikely) errors in
+memblock_reserve() are handled and improves maintainability of
+memblock_find_in_range().
+
+Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
+Acked-by: Kirill A. Shutemov <kirill.shtuemov@linux.intel.com>
+Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>	# ACPI
+Acked-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Acked-by: Nick Kossifidis <mick@ics.forth.gr>			# riscv
+Reviewed-by: Catalin Marinas <catalin.marinas@arm.com>		# arm64
+---
+v5:
+* restore the original behaviour on x86 with addition of more elaborate
+  comment; I will address the issue in memory_map_top_down() in a separate
+  series.
+
+v4: https://lore.kernel.org/lkml/20210812065907.20046-1-rppt@kernel.org
+* Add patch that prevents the crashes reported by Guenter Roeck on x86/i386
+  on QEMU with 256M or 512M of memory and EFI boot enabled.
+* Add Acked-by and Reviewed-by, thanks everybidy!
+
+v3: https://lore.kernel.org/lkml/20210803064218.6611-1-rppt@kernel.org
+* simplify check for exact crash kerenl allocation on arm, per Rob
+* make crash_max unsigned long long on arm64, per Rob
+
+v2: https://lore.kernel.org/lkml/20210802063737.22733-1-rppt@kernel.org
+* don't change error message in arm::reserve_crashkernel(), per Russell
+
+v1: https://lore.kernel.org/lkml/20210730104039.7047-1-rppt@kernel.org
+
+
+ arch/arm/kernel/setup.c           | 20 +++++---------
+ arch/arm64/kvm/hyp/reserved_mem.c |  9 +++----
+ arch/arm64/mm/init.c              | 36 ++++++++-----------------
+ arch/mips/kernel/setup.c          | 14 +++++-----
+ arch/riscv/mm/init.c              | 44 ++++++++++---------------------
+ arch/s390/kernel/setup.c          | 10 ++++---
+ arch/x86/kernel/aperture_64.c     |  5 ++--
+ arch/x86/mm/init.c                | 23 ++++++++++------
+ arch/x86/mm/numa.c                |  5 ++--
+ arch/x86/mm/numa_emulation.c      |  5 ++--
+ arch/x86/realmode/init.c          |  2 +-
+ drivers/acpi/tables.c             |  5 ++--
+ drivers/base/arch_numa.c          |  5 +---
+ drivers/of/of_reserved_mem.c      | 12 ++++++---
+ include/linux/memblock.h          |  2 --
+ mm/memblock.c                     |  2 +-
+ 16 files changed, 81 insertions(+), 118 deletions(-)
+
+diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
+index f97eb2371672..284a80c0b6e1 100644
+--- a/arch/arm/kernel/setup.c
++++ b/arch/arm/kernel/setup.c
+@@ -1012,31 +1012,25 @@ static void __init reserve_crashkernel(void)
+ 		unsigned long long lowmem_max = __pa(high_memory - 1) + 1;
+ 		if (crash_max > lowmem_max)
+ 			crash_max = lowmem_max;
+-		crash_base = memblock_find_in_range(CRASH_ALIGN, crash_max,
+-						    crash_size, CRASH_ALIGN);
++
++		crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
++						       CRASH_ALIGN, crash_max);
+ 		if (!crash_base) {
+ 			pr_err("crashkernel reservation failed - No suitable area found.\n");
+ 			return;
+ 		}
+ 	} else {
++		unsigned long long crash_max = crash_base + crash_size;
+ 		unsigned long long start;
+ 
+-		start = memblock_find_in_range(crash_base,
+-					       crash_base + crash_size,
+-					       crash_size, SECTION_SIZE);
+-		if (start != crash_base) {
++		start = memblock_phys_alloc_range(crash_size, SECTION_SIZE,
++						  crash_base, crash_max);
++		if (!start) {
+ 			pr_err("crashkernel reservation failed - memory is in use.\n");
+ 			return;
+ 		}
+ 	}
+ 
+-	ret = memblock_reserve(crash_base, crash_size);
+-	if (ret < 0) {
+-		pr_warn("crashkernel reservation failed - memory is in use (0x%lx)\n",
+-			(unsigned long)crash_base);
+-		return;
+-	}
+-
+ 	pr_info("Reserving %ldMB of memory at %ldMB for crashkernel (System RAM: %ldMB)\n",
+ 		(unsigned long)(crash_size >> 20),
+ 		(unsigned long)(crash_base >> 20),
+diff --git a/arch/arm64/kvm/hyp/reserved_mem.c b/arch/arm64/kvm/hyp/reserved_mem.c
+index d654921dd09b..578670e3f608 100644
+--- a/arch/arm64/kvm/hyp/reserved_mem.c
++++ b/arch/arm64/kvm/hyp/reserved_mem.c
+@@ -92,12 +92,10 @@ void __init kvm_hyp_reserve(void)
+ 	 * this is unmapped from the host stage-2, and fallback to PAGE_SIZE.
+ 	 */
+ 	hyp_mem_size = hyp_mem_pages << PAGE_SHIFT;
+-	hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
+-					      ALIGN(hyp_mem_size, PMD_SIZE),
+-					      PMD_SIZE);
++	hyp_mem_base = memblock_phys_alloc(ALIGN(hyp_mem_size, PMD_SIZE),
++					   PMD_SIZE);
+ 	if (!hyp_mem_base)
+-		hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
+-						      hyp_mem_size, PAGE_SIZE);
++		hyp_mem_base = memblock_phys_alloc(hyp_mem_size, PAGE_SIZE);
+ 	else
+ 		hyp_mem_size = ALIGN(hyp_mem_size, PMD_SIZE);
+ 
+@@ -105,7 +103,6 @@ void __init kvm_hyp_reserve(void)
+ 		kvm_err("Failed to reserve hyp memory\n");
+ 		return;
+ 	}
+-	memblock_reserve(hyp_mem_base, hyp_mem_size);
+ 
+ 	kvm_info("Reserved %lld MiB at 0x%llx\n", hyp_mem_size >> 20,
+ 		 hyp_mem_base);
+diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+index 8490ed2917ff..0bffd2d1854f 100644
+--- a/arch/arm64/mm/init.c
++++ b/arch/arm64/mm/init.c
+@@ -74,6 +74,7 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
+ static void __init reserve_crashkernel(void)
+ {
+ 	unsigned long long crash_base, crash_size;
++	unsigned long long crash_max = arm64_dma_phys_limit;
+ 	int ret;
+ 
+ 	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
+@@ -84,33 +85,18 @@ static void __init reserve_crashkernel(void)
+ 
+ 	crash_size = PAGE_ALIGN(crash_size);
+ 
+-	if (crash_base == 0) {
+-		/* Current arm64 boot protocol requires 2MB alignment */
+-		crash_base = memblock_find_in_range(0, arm64_dma_phys_limit,
+-				crash_size, SZ_2M);
+-		if (crash_base == 0) {
+-			pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+-				crash_size);
+-			return;
+-		}
+-	} else {
+-		/* User specifies base address explicitly. */
+-		if (!memblock_is_region_memory(crash_base, crash_size)) {
+-			pr_warn("cannot reserve crashkernel: region is not memory\n");
+-			return;
+-		}
++	/* User specifies base address explicitly. */
++	if (crash_base)
++		crash_max = crash_base + crash_size;
+ 
+-		if (memblock_is_region_reserved(crash_base, crash_size)) {
+-			pr_warn("cannot reserve crashkernel: region overlaps reserved memory\n");
+-			return;
+-		}
+-
+-		if (!IS_ALIGNED(crash_base, SZ_2M)) {
+-			pr_warn("cannot reserve crashkernel: base address is not 2MB aligned\n");
+-			return;
+-		}
++	/* Current arm64 boot protocol requires 2MB alignment */
++	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
++					       crash_base, crash_max);
++	if (!crash_base) {
++		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
++			crash_size);
++		return;
+ 	}
+-	memblock_reserve(crash_base, crash_size);
+ 
+ 	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+ 		crash_base, crash_base + crash_size, crash_size >> 20);
+diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
+index 23a140327a0b..f979adfd4fc2 100644
+--- a/arch/mips/kernel/setup.c
++++ b/arch/mips/kernel/setup.c
+@@ -452,8 +452,9 @@ static void __init mips_parse_crashkernel(void)
+ 		return;
+ 
+ 	if (crash_base <= 0) {
+-		crash_base = memblock_find_in_range(CRASH_ALIGN, CRASH_ADDR_MAX,
+-							crash_size, CRASH_ALIGN);
++		crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
++						       CRASH_ALIGN,
++						       CRASH_ADDR_MAX);
+ 		if (!crash_base) {
+ 			pr_warn("crashkernel reservation failed - No suitable area found.\n");
+ 			return;
+@@ -461,8 +462,9 @@ static void __init mips_parse_crashkernel(void)
+ 	} else {
+ 		unsigned long long start;
+ 
+-		start = memblock_find_in_range(crash_base, crash_base + crash_size,
+-						crash_size, 1);
++		start = memblock_phys_alloc_range(crash_size, 1,
++						  crash_base,
++						  crash_base + crash_size);
+ 		if (start != crash_base) {
+ 			pr_warn("Invalid memory region reserved for crash kernel\n");
+ 			return;
+@@ -656,10 +658,6 @@ static void __init arch_mem_init(char **cmdline_p)
+ 	mips_reserve_vmcore();
+ 
+ 	mips_parse_crashkernel();
+-#ifdef CONFIG_KEXEC
+-	if (crashk_res.start != crashk_res.end)
+-		memblock_reserve(crashk_res.start, resource_size(&crashk_res));
+-#endif
+ 	device_tree_init();
+ 
+ 	/*
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index a14bf3910eec..88649337c568 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -812,38 +812,22 @@ static void __init reserve_crashkernel(void)
+ 
+ 	crash_size = PAGE_ALIGN(crash_size);
+ 
+-	if (crash_base == 0) {
+-		/*
+-		 * Current riscv boot protocol requires 2MB alignment for
+-		 * RV64 and 4MB alignment for RV32 (hugepage size)
+-		 */
+-		crash_base = memblock_find_in_range(search_start, search_end,
+-						    crash_size, PMD_SIZE);
+-
+-		if (crash_base == 0) {
+-			pr_warn("crashkernel: couldn't allocate %lldKB\n",
+-				crash_size >> 10);
+-			return;
+-		}
+-	} else {
+-		/* User specifies base address explicitly. */
+-		if (!memblock_is_region_memory(crash_base, crash_size)) {
+-			pr_warn("crashkernel: requested region is not memory\n");
+-			return;
+-		}
+-
+-		if (memblock_is_region_reserved(crash_base, crash_size)) {
+-			pr_warn("crashkernel: requested region is reserved\n");
+-			return;
+-		}
+-
++	if (crash_base) {
++		search_start = crash_base;
++		search_end = crash_base + crash_size;
++	}
+ 
+-		if (!IS_ALIGNED(crash_base, PMD_SIZE)) {
+-			pr_warn("crashkernel: requested region is misaligned\n");
+-			return;
+-		}
++	/*
++	 * Current riscv boot protocol requires 2MB alignment for
++	 * RV64 and 4MB alignment for RV32 (hugepage size)
++	 */
++	crash_base = memblock_phys_alloc_range(crash_size, PMD_SIZE,
++					       search_start, search_end);
++	if (crash_base == 0) {
++		pr_warn("crashkernel: couldn't allocate %lldKB\n",
++			crash_size >> 10);
++		return;
+ 	}
+-	memblock_reserve(crash_base, crash_size);
+ 
+ 	pr_info("crashkernel: reserved 0x%016llx - 0x%016llx (%lld MB)\n",
+ 		crash_base, crash_base + crash_size, crash_size >> 20);
+diff --git a/arch/s390/kernel/setup.c b/arch/s390/kernel/setup.c
+index ff0f9e838916..3d9efee0f43c 100644
+--- a/arch/s390/kernel/setup.c
++++ b/arch/s390/kernel/setup.c
+@@ -626,8 +626,9 @@ static void __init reserve_crashkernel(void)
+ 			return;
+ 		}
+ 		low = crash_base ?: low;
+-		crash_base = memblock_find_in_range(low, high, crash_size,
+-						    KEXEC_CRASH_MEM_ALIGN);
++		crash_base = memblock_phys_alloc_range(crash_size,
++						       KEXEC_CRASH_MEM_ALIGN,
++						       low, high);
+ 	}
+ 
+ 	if (!crash_base) {
+@@ -636,14 +637,15 @@ static void __init reserve_crashkernel(void)
+ 		return;
+ 	}
+ 
+-	if (register_memory_notifier(&kdump_mem_nb))
++	if (register_memory_notifier(&kdump_mem_nb)) {
++		memblock_free(crash_base, crash_size);
+ 		return;
++	}
+ 
+ 	if (!OLDMEM_BASE && MACHINE_IS_VM)
+ 		diag10_range(PFN_DOWN(crash_base), PFN_DOWN(crash_size));
+ 	crashk_res.start = crash_base;
+ 	crashk_res.end = crash_base + crash_size - 1;
+-	memblock_remove(crash_base, crash_size);
+ 	pr_info("Reserving %lluMB of memory at %lluMB "
+ 		"for crashkernel (System RAM: %luMB)\n",
+ 		crash_size >> 20, crash_base >> 20,
+diff --git a/arch/x86/kernel/aperture_64.c b/arch/x86/kernel/aperture_64.c
+index 294ed4392a0e..10562885f5fc 100644
+--- a/arch/x86/kernel/aperture_64.c
++++ b/arch/x86/kernel/aperture_64.c
+@@ -109,14 +109,13 @@ static u32 __init allocate_aperture(void)
+ 	 * memory. Unfortunately we cannot move it up because that would
+ 	 * make the IOMMU useless.
+ 	 */
+-	addr = memblock_find_in_range(GART_MIN_ADDR, GART_MAX_ADDR,
+-				      aper_size, aper_size);
++	addr = memblock_phys_alloc_range(aper_size, aper_size,
++					 GART_MIN_ADDR, GART_MAX_ADDR);
+ 	if (!addr) {
+ 		pr_err("Cannot allocate aperture memory hole [mem %#010lx-%#010lx] (%uKB)\n",
+ 		       addr, addr + aper_size - 1, aper_size >> 10);
+ 		return 0;
+ 	}
+-	memblock_reserve(addr, aper_size);
+ 	pr_info("Mapping aperture over RAM [mem %#010lx-%#010lx] (%uKB)\n",
+ 		addr, addr + aper_size - 1, aper_size >> 10);
+ 	register_nosave_region(addr >> PAGE_SHIFT,
+diff --git a/arch/x86/mm/init.c b/arch/x86/mm/init.c
+index 75ef19aa8903..23a14d82e783 100644
+--- a/arch/x86/mm/init.c
++++ b/arch/x86/mm/init.c
+@@ -127,14 +127,12 @@ __ref void *alloc_low_pages(unsigned int num)
+ 		unsigned long ret = 0;
+ 
+ 		if (min_pfn_mapped < max_pfn_mapped) {
+-			ret = memblock_find_in_range(
++			ret = memblock_phys_alloc_range(
++					PAGE_SIZE * num, PAGE_SIZE,
+ 					min_pfn_mapped << PAGE_SHIFT,
+-					max_pfn_mapped << PAGE_SHIFT,
+-					PAGE_SIZE * num , PAGE_SIZE);
++					max_pfn_mapped << PAGE_SHIFT);
+ 		}
+-		if (ret)
+-			memblock_reserve(ret, PAGE_SIZE * num);
+-		else if (can_use_brk_pgt)
++		if (!ret && can_use_brk_pgt)
+ 			ret = __pa(extend_brk(PAGE_SIZE * num, PAGE_SIZE));
+ 
+ 		if (!ret)
+@@ -610,8 +608,17 @@ static void __init memory_map_top_down(unsigned long map_start,
+ 	unsigned long addr;
+ 	unsigned long mapped_ram_size = 0;
+ 
+-	/* xen has big range in reserved near end of ram, skip it at first.*/
+-	addr = memblock_find_in_range(map_start, map_end, PMD_SIZE, PMD_SIZE);
++	/*
++	 * Systems that have many reserved areas near top of the memory,
++	 * e.g. QEMU with less than 1G RAM and EFI enabled, or Xen, will
++	 * require lots of 4K mappings which may exhaust pgt_buf.
++	 * Start with top-most PMD_SIZE range aligned at PMD_SIZE to ensure
++	 * there is enough mapped memory that can be allocated from
++	 * memblock.
++	 */
++	addr = memblock_phys_alloc_range(PMD_SIZE, PMD_SIZE, map_start,
++					 map_end);
++	memblock_free(addr, PMD_SIZE);
+ 	real_end = addr + PMD_SIZE;
+ 
+ 	/* step_size need to be small so pgt_buf from BRK could cover it */
+diff --git a/arch/x86/mm/numa.c b/arch/x86/mm/numa.c
+index e94da744386f..a1b5c71099e6 100644
+--- a/arch/x86/mm/numa.c
++++ b/arch/x86/mm/numa.c
+@@ -376,15 +376,14 @@ static int __init numa_alloc_distance(void)
+ 	cnt++;
+ 	size = cnt * cnt * sizeof(numa_distance[0]);
+ 
+-	phys = memblock_find_in_range(0, PFN_PHYS(max_pfn_mapped),
+-				      size, PAGE_SIZE);
++	phys = memblock_phys_alloc_range(size, PAGE_SIZE, 0,
++					 PFN_PHYS(max_pfn_mapped));
+ 	if (!phys) {
+ 		pr_warn("Warning: can't allocate distance table!\n");
+ 		/* don't retry until explicitly reset */
+ 		numa_distance = (void *)1LU;
+ 		return -ENOMEM;
+ 	}
+-	memblock_reserve(phys, size);
+ 
+ 	numa_distance = __va(phys);
+ 	numa_distance_cnt = cnt;
+diff --git a/arch/x86/mm/numa_emulation.c b/arch/x86/mm/numa_emulation.c
+index 87d77cc52f86..737491b13728 100644
+--- a/arch/x86/mm/numa_emulation.c
++++ b/arch/x86/mm/numa_emulation.c
+@@ -447,13 +447,12 @@ void __init numa_emulation(struct numa_meminfo *numa_meminfo, int numa_dist_cnt)
+ 	if (numa_dist_cnt) {
+ 		u64 phys;
+ 
+-		phys = memblock_find_in_range(0, PFN_PHYS(max_pfn_mapped),
+-					      phys_size, PAGE_SIZE);
++		phys = memblock_phys_alloc_range(phys_size, PAGE_SIZE, 0,
++						 PFN_PHYS(max_pfn_mapped));
+ 		if (!phys) {
+ 			pr_warn("NUMA: Warning: can't allocate copy of distance table, disabling emulation\n");
+ 			goto no_emu;
+ 		}
+-		memblock_reserve(phys, phys_size);
+ 		phys_dist = __va(phys);
+ 
+ 		for (i = 0; i < numa_dist_cnt; i++)
+diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
+index 6534c92d0f83..31b5856010cb 100644
+--- a/arch/x86/realmode/init.c
++++ b/arch/x86/realmode/init.c
+@@ -28,7 +28,7 @@ void __init reserve_real_mode(void)
+ 	WARN_ON(slab_is_available());
+ 
+ 	/* Has to be under 1M so we can execute real-mode AP code. */
+-	mem = memblock_find_in_range(0, 1<<20, size, PAGE_SIZE);
++	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
+ 	if (!mem)
+ 		pr_info("No sub-1M memory is available for the trampoline\n");
+ 	else
+diff --git a/drivers/acpi/tables.c b/drivers/acpi/tables.c
+index a37a1532a575..f9383736fa0f 100644
+--- a/drivers/acpi/tables.c
++++ b/drivers/acpi/tables.c
+@@ -583,8 +583,8 @@ void __init acpi_table_upgrade(void)
+ 	}
+ 
+ 	acpi_tables_addr =
+-		memblock_find_in_range(0, ACPI_TABLE_UPGRADE_MAX_PHYS,
+-				       all_tables_size, PAGE_SIZE);
++		memblock_phys_alloc_range(all_tables_size, PAGE_SIZE,
++					  0, ACPI_TABLE_UPGRADE_MAX_PHYS);
+ 	if (!acpi_tables_addr) {
+ 		WARN_ON(1);
+ 		return;
+@@ -599,7 +599,6 @@ void __init acpi_table_upgrade(void)
+ 	 * Both memblock_reserve and e820__range_add (via arch_reserve_mem_area)
+ 	 * works fine.
+ 	 */
+-	memblock_reserve(acpi_tables_addr, all_tables_size);
+ 	arch_reserve_mem_area(acpi_tables_addr, all_tables_size);
+ 
+ 	/*
+diff --git a/drivers/base/arch_numa.c b/drivers/base/arch_numa.c
+index 4cc4e117727d..46c503486e96 100644
+--- a/drivers/base/arch_numa.c
++++ b/drivers/base/arch_numa.c
+@@ -279,13 +279,10 @@ static int __init numa_alloc_distance(void)
+ 	int i, j;
+ 
+ 	size = nr_node_ids * nr_node_ids * sizeof(numa_distance[0]);
+-	phys = memblock_find_in_range(0, PFN_PHYS(max_pfn),
+-				      size, PAGE_SIZE);
++	phys = memblock_phys_alloc_range(size, PAGE_SIZE, 0, PFN_PHYS(max_pfn));
+ 	if (WARN_ON(!phys))
+ 		return -ENOMEM;
+ 
+-	memblock_reserve(phys, size);
+-
+ 	numa_distance = __va(phys);
+ 	numa_distance_cnt = nr_node_ids;
+ 
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index fd3964d24224..59c1390cdf42 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -33,18 +33,22 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+ 	phys_addr_t *res_base)
+ {
+ 	phys_addr_t base;
++	int err = 0;
+ 
+ 	end = !end ? MEMBLOCK_ALLOC_ANYWHERE : end;
+ 	align = !align ? SMP_CACHE_BYTES : align;
+-	base = memblock_find_in_range(start, end, size, align);
++	base = memblock_phys_alloc_range(size, align, start, end);
+ 	if (!base)
+ 		return -ENOMEM;
+ 
+ 	*res_base = base;
+-	if (nomap)
+-		return memblock_mark_nomap(base, size);
++	if (nomap) {
++		err = memblock_mark_nomap(base, size);
++		if (err)
++			memblock_free(base, size);
++	}
+ 
+-	return memblock_reserve(base, size);
++	return err;
+ }
+ 
+ /*
+diff --git a/include/linux/memblock.h b/include/linux/memblock.h
+index 4a53c3ca86bd..b066024c62e3 100644
+--- a/include/linux/memblock.h
++++ b/include/linux/memblock.h
+@@ -99,8 +99,6 @@ void memblock_discard(void);
+ static inline void memblock_discard(void) {}
+ #endif
+ 
+-phys_addr_t memblock_find_in_range(phys_addr_t start, phys_addr_t end,
+-				   phys_addr_t size, phys_addr_t align);
+ void memblock_allow_resize(void);
+ int memblock_add_node(phys_addr_t base, phys_addr_t size, int nid);
+ int memblock_add(phys_addr_t base, phys_addr_t size);
+diff --git a/mm/memblock.c b/mm/memblock.c
+index de7b553baa50..28a813d9e955 100644
+--- a/mm/memblock.c
++++ b/mm/memblock.c
+@@ -315,7 +315,7 @@ static phys_addr_t __init_memblock memblock_find_in_range_node(phys_addr_t size,
+  * Return:
+  * Found address on success, 0 on failure.
+  */
+-phys_addr_t __init_memblock memblock_find_in_range(phys_addr_t start,
++static phys_addr_t __init_memblock memblock_find_in_range(phys_addr_t start,
+ 					phys_addr_t end, phys_addr_t size,
+ 					phys_addr_t align)
+ {
+
+base-commit: ff1176468d368232b684f75e82563369208bc371
+-- 
+2.28.0
 
