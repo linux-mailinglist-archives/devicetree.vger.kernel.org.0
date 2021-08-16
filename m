@@ -2,157 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C53B23ED7F6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 15:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85ABE3ED853
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 16:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbhHPNyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 09:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
+        id S234851AbhHPOBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 10:01:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbhHPNyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 09:54:20 -0400
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE36C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 06:53:48 -0700 (PDT)
-Received: by mail-vk1-xa35.google.com with SMTP id u138so4437230vku.7
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 06:53:48 -0700 (PDT)
+        with ESMTP id S231982AbhHPOAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 10:00:37 -0400
+Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE58DC06124A
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 06:59:42 -0700 (PDT)
+Received: by mail-vk1-xa2e.google.com with SMTP id n200so385568vke.11
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 06:59:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Y7hOpa/welNvCt12D36323fD2CJdjdocllm6RzIrhyQ=;
-        b=BVHobZpr97GepNREkk5+26c5OaF2pTjp71JDn1jMijK2N9URLGhW/WMCorTiPV82ir
-         MhMBWc6D7KqmKVpJdWr/rt7dL+KJvIb+sqGLqx+lprMSn4iM3QG02hmGMj2UR9DT7A2P
-         ZA1LL+CoOINrKbG23Q7NdggC1KlJYKVHA3muM5oFAEuhBPKQg5qV9oGQ+KEZZNBuoim/
-         yhs7bFh8c0J0PH5ki4yxL7Zn7BxTXq00qwpmxH5TBQACCJwt8KwBZnRN6wJJYXf45TD3
-         EVMCYKUTgseEMoxu+ZWDApP29C7b0eXMzKTZGx6QPFzP5roEQRJGhQfNSeMakV3YV2eF
-         m2Pw==
+        bh=FdgGtEcfAftNEDhyiW7J0wv4uiUYCUUhbtGTkeqqBj0=;
+        b=lXKpKdwU/nxzKYQu0JVky+cOTbWt+XOYcwQewi4hNmjyGw32W8JHdNNw5R06zrZX8f
+         kqNJOtrzz+qdGHVlmuofDwd6Cg4iYaEDYF3/SCa2bCbZCdE1lF3fLJ3JBp3hACPglTJT
+         A93yJ6+i4J53clV+LyQqSs0HxAHMSlOjhfXtSHbSiJqq+n1F5onPinGmdkSPMFD8JKVz
+         Fo9/1bsOeqLTzS2/r3eTliVo3Nq/B+ZEbbNfeXBc459bnWFw6IikOjymXWlGVSFJ7nNy
+         4CZLQ2UNZUIspK7G6UzZNB4hA66/S4sbFaHvlo3FMh6zLXGpAj1xuwPQEk5mEJXIu+l4
+         tAQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Y7hOpa/welNvCt12D36323fD2CJdjdocllm6RzIrhyQ=;
-        b=k6qTPzP66KQiSO+kL0VZDW1+pjvERp8kWWoTsGF7ZdN8OLVydNm9cteAh0BDqltVTJ
-         zd0AGfh5H2s5LpGntlAPK/iOBLG7JkYDQN5G1A6rRgD7bTiPPlyVPB48FRukxJMVrYn4
-         Hptps70gpem1C6Vsm1aD/UZbkEFjlPI8Poh0eJH7cRxFNnQGahlpUw4DR0UWU58y1xsd
-         s6XOWujcu0+Q5V8TtVAi5s1qemTRVljrSGRbLkViYHiSigiUnKfg7itNSfdF6ZOjbhk5
-         TPczfgV3YtqBOVEDTDCvC1j0na9T5+74tfoe8wCSG2KT3+cJ834hS/thzcja0u7kR3FY
-         roZw==
-X-Gm-Message-State: AOAM531Fxmxo5kDs1avQ2VyDY9UF+GX3Rki3aH+w1/+lWyTUWEhYr7b3
-        zNEzJWpT0o5zAwlA4zqdHU9hyeTdY7JefnxJQytgig==
-X-Google-Smtp-Source: ABdhPJyPsXdd1FXnlQGYjydEpTa9/Tliu/93SI4a3CP+xaqYiqnDEBqRj+AlY8cS5Z7S5K4frFq0qT9EOKiC+nn/xwI=
-X-Received: by 2002:a1f:1d94:: with SMTP id d142mr9064370vkd.6.1629122028012;
- Mon, 16 Aug 2021 06:53:48 -0700 (PDT)
+        bh=FdgGtEcfAftNEDhyiW7J0wv4uiUYCUUhbtGTkeqqBj0=;
+        b=cdb0R+blhfMyrSwdD8IGfsuA8nKZ/J3jAM1GBRcFMkIYJWeL2O91noKHJ+KZvT6Jqu
+         J8/ijK1H2RntTtviHQ+KsbmQnTBVJWQbE571ea0Guw3IqXtpR3OSBCODbbq/tX/5aQEn
+         XoRC+zh9Yz1Kt9tNGyM+DKqAml60dD3T/joqnX5gHiekiWzCJMM+LYZjJk5aC0sMKIuJ
+         gcwbq+P/E1Cd/gaBZ3fnSsksLvgOwKOi4ahVkdE6GKnhGauDQItBXWvNUgj30NB8Il8U
+         jzjUVwIqwUAX2J3Z19gQBe4UqttPd65nTs4VVYoBU9INvvEkBL1flZoFkox9ALJwQY0u
+         RHkQ==
+X-Gm-Message-State: AOAM532HntuauAPvhEfou7ISY/NuQipFVt2Bma8FpztBCnkBcrrsO44u
+        4k2hLNK6byTmKGrjzh7f1Qw7Aw2zo/svnApJT7BVtA==
+X-Google-Smtp-Source: ABdhPJzBDfAgbW3pX7xmLsi5xJsPnYsejXMV3ITpbiRQm364lNRmYgHbWPp2xsFr8ZkGvwB2htEA73RIlio9ZyQA8vI=
+X-Received: by 2002:a1f:a301:: with SMTP id m1mr8844692vke.6.1629122382002;
+ Mon, 16 Aug 2021 06:59:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <1629117508-4886-1-git-send-email-haibo.chen@nxp.com> <1629117508-4886-4-git-send-email-haibo.chen@nxp.com>
-In-Reply-To: <1629117508-4886-4-git-send-email-haibo.chen@nxp.com>
+References: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com> <1628334401-6577-5-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <1628334401-6577-5-git-send-email-stefan.wahren@i2se.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 16 Aug 2021 15:53:11 +0200
-Message-ID: <CAPDyKFpqTdKxFytQWo+TLJf+D=JYJo6B2aZDqOQc4+9_mbH40Q@mail.gmail.com>
-Subject: Re: [PATCH 4/6] mmc: host: sdhci-esdhc-imx.c: correct the auto-tuning
- setting for sdio device
-To:     Haibo Chen <haibo.chen@nxp.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
+Date:   Mon, 16 Aug 2021 15:59:05 +0200
+Message-ID: <CAPDyKFoAGx-1nQh81P3OPiAkR5cq1wGaioQ8Mxo4JCZsZC6NVQ@mail.gmail.com>
+Subject: Re: [PATCH V2 04/10] mmc: sdhci-iproc: Cap min clock frequency on BCM2711
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Maxime Ripard <maxime@cerno.tech>, iivanov@suse.de,
         DTML <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2835..." 
+        <linux-rpi-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Aug 2021 at 15:00, <haibo.chen@nxp.com> wrote:
+On Sat, 7 Aug 2021 at 13:07, Stefan Wahren <stefan.wahren@i2se.com> wrote:
 >
-> From: Haibo Chen <haibo.chen@nxp.com>
+> From: Nicolas Saenz Julienne <nsaenz@kernel.org>
 >
-> USDHC contain auto tuning circuit, this circuit will work automatically after
-> the tuning procedurae, it can increase/decrease the delay cell according to
-> the outside environment change (like temperature).
+> There is a known bug on BCM2711's SDHCI core integration where the
+> controller will hang when the difference between the core clock and the
+> bus clock is too great. Specifically this can be reproduced under the
+> following conditions:
 >
-> Unfortunately, this auto tuning circuit can not handle the async sdio device
-> interrupt correctly. When sdio device use 4 data line, async sdio interrupt
-> will use DAT[1], if we enable auto tuning circuit check 4 data lines, include
-> the DAT[1], this circuit will detect this interrupt, take this as a data on
-> DAT[1], and adjust the delay cell wrongly.
+> - No SD card plugged in, polling thread is running, probing cards at
+>   100 kHz.
+> - BCM2711's core clock configured at 500MHz or more.
 >
-> This is the hardware design limitation, to avoid this, when sdio device enable
-> async interrupt, auto tuning circuit only check DAT[0] and CMD lines.
+> So set 200 kHz as the minimum clock frequency available for that board.
+>
+> For more information on the issue see this:
+> https://lore.kernel.org/linux-mmc/20210322185816.27582-1-nsaenz@kernel.org/T/#m11f2783a09b581da6b8a15f302625b43a6ecdeca
+>
+> Fixes: f84e411c85be ("mmc: sdhci-iproc: Add support for emmc2 of the BCM2711")
+> Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 
-SDIO irqs are being enabled/disabled dynamically in runtime by the mmc
-core via the host ops ->enable_sdio_irq().
-
-Rather than forcing the autotuning circuit to stay unused statically,
-perhaps an option would be to disable it when the SDIO irqs becomes
-enabled? Or maybe that becomes too complicated?
-
->
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  drivers/mmc/host/sdhci-esdhc-imx.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
-> index f18d169bc8ff..ab84c29777e5 100644
-> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
-> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
-> @@ -226,6 +226,7 @@ struct esdhc_platform_data {
->         unsigned int tuning_step;       /* The delay cell steps in tuning procedure */
->         unsigned int tuning_start_tap;  /* The start delay cell point in tuning procedure */
->         unsigned int strobe_dll_delay_target;   /* The delay cell for strobe pad (read clock) */
-> +       bool sdio_async_interrupt_enabled;      /* sdio device enable the async interrupt */
->  };
->
->  struct esdhc_soc_data {
-> @@ -416,6 +417,8 @@ static inline void esdhc_wait_for_card_clock_gate_off(struct sdhci_host *host)
->  /* Enable the auto tuning circuit to check the CMD line and BUS line */
->  static inline void usdhc_auto_tuning_mode_sel(struct sdhci_host *host)
->  {
-> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +       struct pltfm_imx_data *imx_data = sdhci_pltfm_priv(pltfm_host);
->         u32 buswidth, auto_tune_buswidth;
->
->         buswidth = USDHC_GET_BUSWIDTH(readl(host->ioaddr + SDHCI_HOST_CONTROL));
-> @@ -432,6 +435,18 @@ static inline void usdhc_auto_tuning_mode_sel(struct sdhci_host *host)
->                 break;
->         }
->
-> +       /*
-> +        * If sdio device use async interrupt, it will use DAT[1] to signal
-> +        * the device's interrupt asynchronous when use 4 data lines.
-> +        * Then hardware auto tuning circuit MUST NOT check the DAT[1] line,
-> +        * otherwise auto tuning will be impacted by this async interrupt,
-> +        * and change the delay cell incorrectly, which then cause data/cmd
-> +        * errors.
-> +        * This is the hardware auto tuning circuit limitation.
-> +        */
-> +       if (imx_data->boarddata.sdio_async_interrupt_enabled)
-> +               auto_tune_buswidth = ESDHC_VEND_SPEC2_AUTO_TUNE_1BIT_EN;
-> +
->         esdhc_clrset_le(host, ESDHC_VEND_SPEC2_AUTO_TUNE_MODE_MASK,
->                         auto_tune_buswidth | ESDHC_VEND_SPEC2_AUTO_TUNE_CMD_EN,
->                         ESDHC_VEND_SPEC2);
-> @@ -1531,6 +1546,9 @@ sdhci_esdhc_imx_probe_dt(struct platform_device *pdev,
->         if (of_property_read_u32(np, "fsl,delay-line", &boarddata->delay_line))
->                 boarddata->delay_line = 0;
->
-> +       if (of_property_read_bool(np, "fsl,sdio-async-interrupt-enabled"))
-
-As stated on the DT patch, I think you can use the "cap-sdio-irq" instead.
-
-> +               boarddata->sdio_async_interrupt_enabled = true;
-> +
->         mmc_of_parse_voltage(host->mmc, &host->ocr_mask);
->
->         if (esdhc_is_usdhc(imx_data) && !IS_ERR(imx_data->pinctrl)) {
-> --
-> 2.17.1
->
+Applied for fixes and by adding a stable tag, thanks!
 
 Kind regards
 Uffe
+
+
+> ---
+>  drivers/mmc/host/sdhci-iproc.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>
+> diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
+> index cce390f..032bf85 100644
+> --- a/drivers/mmc/host/sdhci-iproc.c
+> +++ b/drivers/mmc/host/sdhci-iproc.c
+> @@ -173,6 +173,23 @@ static unsigned int sdhci_iproc_get_max_clock(struct sdhci_host *host)
+>                 return pltfm_host->clock;
+>  }
+>
+> +/*
+> + * There is a known bug on BCM2711's SDHCI core integration where the
+> + * controller will hang when the difference between the core clock and the bus
+> + * clock is too great. Specifically this can be reproduced under the following
+> + * conditions:
+> + *
+> + *  - No SD card plugged in, polling thread is running, probing cards at
+> + *    100 kHz.
+> + *  - BCM2711's core clock configured at 500MHz or more
+> + *
+> + * So we set 200kHz as the minimum clock frequency available for that SoC.
+> + */
+> +static unsigned int sdhci_iproc_bcm2711_get_min_clock(struct sdhci_host *host)
+> +{
+> +       return 200000;
+> +}
+> +
+>  static const struct sdhci_ops sdhci_iproc_ops = {
+>         .set_clock = sdhci_set_clock,
+>         .get_max_clock = sdhci_iproc_get_max_clock,
+> @@ -271,6 +288,7 @@ static const struct sdhci_ops sdhci_iproc_bcm2711_ops = {
+>         .set_clock = sdhci_set_clock,
+>         .set_power = sdhci_set_power_and_bus_voltage,
+>         .get_max_clock = sdhci_iproc_get_max_clock,
+> +       .get_min_clock = sdhci_iproc_bcm2711_get_min_clock,
+>         .set_bus_width = sdhci_set_bus_width,
+>         .reset = sdhci_reset,
+>         .set_uhs_signaling = sdhci_set_uhs_signaling,
+> --
+> 2.7.4
+>
