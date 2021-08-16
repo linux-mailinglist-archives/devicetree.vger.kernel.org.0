@@ -2,96 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BE673EDA0F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 17:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4DB73EDACC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 18:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236587AbhHPPlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 11:41:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53026 "EHLO
+        id S229719AbhHPQWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 12:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236789AbhHPPkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 11:40:40 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A66C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 08:40:08 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id om1-20020a17090b3a8100b0017941c44ce4so14755916pjb.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 08:40:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3AyfMcp2yhnMT8b6WgE0Tq0TI+fTS/T3AjxmgLG4RFY=;
-        b=XY+nexCppv0jvgdLyAS8tfu9dWl7F48uM5zLpUFgPuJr5TASNvWiJSsMRb58l1Mdpk
-         ajCsvVhN0kTxNb6wPhp2qKWAIvpEDkmvx/RIKkJG5OUoQFnQIiDBBiuRrYTDfdl0FGbZ
-         O3Blyo5uA7inwySQo0MalCg5X/1J+YC3/KdaETe6dm3vRX6zGZ2pjy9EqQM9ZkyNvXIh
-         RUT3EScLPM+3VVFYU7qOFir/od/db/Rrpk+QNDuvKz1FtK44wpByriIGmNQx+aEgEQkK
-         Jtx69NH6tNW55mQr1lROPIx7/Ldx3iIa4NfMpDphzVU5Cy5+FI08eXlm9qmLmhrNvCOO
-         zwYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3AyfMcp2yhnMT8b6WgE0Tq0TI+fTS/T3AjxmgLG4RFY=;
-        b=l82nTESxAP4r8RIsF9COcyc+FnXcBWC9LcsEB2ahLA+h7Qabd7NsV9QXqv1o2iUJTp
-         RrB1w9PqbG0j93+POVaQIPEMJcb5tvTB2S7FfhQqlVz/lrKnGoxEYd5PlB2JD4Eudswf
-         UBnD0vW6VCcnGr/xIZwH7YvuvI1oYYDnDxt+biSEe0q0in/v6EUL/4KLH7EisxHcaIA9
-         Hk3z15LAGJjAr0034hV+CtatlB8ibq92lntVh0ZpNVZeh4Nr4MOJsHemKpMtT+us+yUd
-         TSp4yMqV7V1m0ZY2aUQkKaLSAf0+FaVzSMLCR27kXmuZYdeB+x2PRRLVYU7s3iM+J0xt
-         yVxw==
-X-Gm-Message-State: AOAM532MQOryROjrDdso6HJ2+gRdueDUm+CrGQ/eAPy1Rn8kieLv19+D
-        qDjKdEwVw/MRlma6zweTwP78Bun932zGNkDCysaa3w==
-X-Google-Smtp-Source: ABdhPJzhnxfzdvPDrfj5hvBd4graOCrPdcFqBHhlQyegW5ZMcqxUq9IwdQQp8Ee69yX+lK+Y0hqPjSkdKOdo0sNmhRk=
-X-Received: by 2002:a63:150e:: with SMTP id v14mr14590874pgl.126.1629128408340;
- Mon, 16 Aug 2021 08:40:08 -0700 (PDT)
+        with ESMTP id S229542AbhHPQWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 12:22:42 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364A9C061764;
+        Mon, 16 Aug 2021 09:22:11 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 86B9B1F412B4
+Received: by earth.universe (Postfix, from userid 1000)
+        id B35603C0C9B; Mon, 16 Aug 2021 18:22:07 +0200 (CEST)
+Date:   Mon, 16 Aug 2021 18:22:07 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v6 05/12] dt-bindings: power: supply: smb347-charger:
+ Document USB VBUS regulator
+Message-ID: <20210816162207.v4ka4vtuajf5jpb6@earth.universe>
+References: <20210731173842.19643-1-digetx@gmail.com>
+ <20210731173842.19643-6-digetx@gmail.com>
+ <20210806211314.sfjl5jke27hz3jj7@earth.universe>
+ <dce19bb0-216e-bcd7-3db5-b2c074b4ca47@gmail.com>
 MIME-Version: 1.0
-References: <20210723204958.7186-1-tharvey@gateworks.com> <36070609-9f1f-00c8-ccf5-8ed7877b29da@pengutronix.de>
- <VI1PR04MB58533AF76EA4DFD8AD6CDA158CEC9@VI1PR04MB5853.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB58533AF76EA4DFD8AD6CDA158CEC9@VI1PR04MB5853.eurprd04.prod.outlook.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 16 Aug 2021 08:39:57 -0700
-Message-ID: <CAJ+vNU1tgVsQWtxa0E8SArO=hA2K8OkqiSPrRSpx0Q5XS4gUWA@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Add IMX8M Mini PCI support
-To:     Richard Zhu <hongxing.zhu@nxp.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="erjfwqt7yl2kd7cr"
+Content-Disposition: inline
+In-Reply-To: <dce19bb0-216e-bcd7-3db5-b2c074b4ca47@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 6:28 PM Richard Zhu <hongxing.zhu@nxp.com> wrote:
->
-> Hi Tim:
-> Just as Ahmad mentioned, Lucas had issue one patch-set to support i.MX8MM PCIe.
-> Some comments in the review cycle.
-> - One separate PHY driver should be used for i.MX8MM PCIe driver.
-> - Schema file should be used I think, otherwise the .txt file in the dt-binding.
->
-> I'm preparing one patch-set, but it's relied on the yaml file exchanges and power-domain changes(block control and so on).
-> Up to now, I only walking on the first step, trying to exchange the dt-binding files to schema yaml file.
->
-> Best Regards
-> Richard Zhu
 
-Richard / Ahmad,
+--erjfwqt7yl2kd7cr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for your response - I did not see the series from Lucas. I will
-drop this and wait for him to complete his work.
+Hi,
 
-Thanks,
+On Mon, Aug 16, 2021 at 06:39:09PM +0300, Dmitry Osipenko wrote:
+> 07.08.2021 00:13, Sebastian Reichel =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > Hi,
+> >=20
+> > On Sat, Jul 31, 2021 at 08:38:35PM +0300, Dmitry Osipenko wrote:
+> >> SMB347 can supply power to USB VBUS, which is required by OTG-cable
+> >> devices that want to switch USB port into the host mode. Add USB VBUS
+> >> regulator properties.
+> >>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >> ---
+> >=20
+> > Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>=20
+> Sebastian, you can pick up these patches into the power tree:
+>=20
+> dt-bindings: power: supply: smb347-charger: Document USB VBUS
+> regulator
+> power: supply: smb347-charger: Make smb347_set_writable() IRQ-safe
+> power: supply: smb347-charger: Utilize generic regmap caching
+> power: supply: smb347-charger: Add missing pin control activation
+> power: supply: smb347-charger: Implement USB VBUS regulator
+>=20
+> The reset of the patches could go via the Tegra tree. It's probably a
+> bit too late for the Tegra patches since Thierry already made 5.15 PR,
+> but should be fine for the power. Thanks in advance!
 
-Tim
+Queued now.
+
+-- Sebastian
+
+--erjfwqt7yl2kd7cr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmEakJ8ACgkQ2O7X88g7
++ppCOA//Uim7ycc5jXS9N7YcXL7DOj+86gG/dde8tv/tLAtvEWcyZvRNsJqO/P4q
+jF8rSsiOytZ6PZi7swIU+/lBUIs2sVAY55+GGFAxMAf8ZVWu4b0hUHiMdrCAL3BZ
+CCRP5NNT8HNQOetJ5Xt8zjpiBCZFy5OXim+F+JQF8w9H23co7DS1Fx2IjWJwulAF
+5uwxEB5Hy9FxosI97g7LFKR37Qe2NwNNSxW3q9wDRqNri5HP64frhOut/tT6Wnmn
+t1S1WD9m/JsP1QA9cofXKKF9enhXCdzLnDEWUqcZZol3cDm+LGsMdAnHCPmcsfJ+
+iQpIXtJec6je5pPQpd9nbS/UlriErZSfoGEKrnIVTYLV+qOI+gY1Y0bt33HgChBy
+LOnmVUTuBxGD2Za1pPray1bEeAV5hQI+H5BtWqar5Dk/xFsBMFMnxWymQn/bkD7j
+GzI0daxC2IAaSIexsfoPnv1gM6DMrlV1Zuv1rpmaT3r/XV3Pk+FgnGifwW9R3CEW
+KrDTTTKe48TxtNv92B+8WynRN1y2YBhAjuPtyvBOgVe7ohbphWAqjdYX+dBBi2mC
+kjWfXAMTunUjnIkO3ik06UsC+h8+WMKwIwNb3zLbsp0COv91+bZi/O/gaQokvqmU
+OTEYff6rwW/cuLzKptXhEwT61Q52jdbS44NSBcFv/kpLC9vgVwQ=
+=AMiA
+-----END PGP SIGNATURE-----
+
+--erjfwqt7yl2kd7cr--
