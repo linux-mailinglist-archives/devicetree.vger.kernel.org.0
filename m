@@ -2,121 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5ED33ED26F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 12:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5363E3ED2B5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Aug 2021 13:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236095AbhHPKwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Aug 2021 06:52:05 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:11109 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236159AbhHPKvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 06:51:54 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 17GAUOsM044052;
-        Mon, 16 Aug 2021 18:30:24 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 16 Aug
- 2021 18:48:29 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <p.zabel@pengutronix.de>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
+        id S235907AbhHPLAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Aug 2021 07:00:49 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41062 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235906AbhHPLAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Aug 2021 07:00:43 -0400
+X-UUID: cc736ff5f1614799afeb18f3f67ef431-20210816
+X-UUID: cc736ff5f1614799afeb18f3f67ef431-20210816
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1327086574; Mon, 16 Aug 2021 19:00:09 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 16 Aug 2021 19:00:08 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 16 Aug 2021 19:00:07 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [v3 11/15] iio: adc: aspeed: Fix the calculate error of clock.
-Date:   Mon, 16 Aug 2021 18:48:42 +0800
-Message-ID: <20210816104846.13155-12-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210816104846.13155-1-billy_tsai@aspeedtech.com>
-References: <20210816104846.13155-1-billy_tsai@aspeedtech.com>
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 0/9] Enable two H264 encoder cores on MT8195
+Date:   Mon, 16 Aug 2021 18:59:25 +0800
+Message-ID: <20210816105934.28265-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 17GAUOsM044052
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The adc clcok formula is
-ast2400/2500:
-ADC clock period = PCLK * 2 * (ADC0C[31:17] + 1) * (ADC0C[9:0] + 1)
-ast2600:
-ADC clock period = PCLK * 2 * (ADC0C[15:0] + 1)
-They all have one fixed divided 2 and the legacy driver didn't handle it.
-This patch register the fixed factory clock device as the parent of adc
-clock scaler to fix this issue.
+MT8195 has two H264 encoder cores, they have their own power-domains,
+clocks, interrupts, register base. The two H264 encoder cores can work
+together to achieve higher performance.
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/iio/adc/aspeed_adc.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+This series of patches is to use enable two h264 encoder cores.
+path[1..2]: use linux component framework to manage encoder hardware,
+user call "mt8195-vcodec-enc" driver can get the encoder master device,
+the encoding work is done by the two encoder core device. The hw_mode
+variable is added to distinguish from old platform, two encoder cores
+called "FRAME_RACING_MODE".
 
-diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
-index ea3e9a52fcc9..8fe7da1a651f 100644
---- a/drivers/iio/adc/aspeed_adc.c
-+++ b/drivers/iio/adc/aspeed_adc.c
-@@ -4,6 +4,12 @@
-  *
-  * Copyright (C) 2017 Google, Inc.
-  * Copyright (C) 2021 Aspeed Technology Inc.
-+ *
-+ * ADC clock formula:
-+ * Ast2400/Ast2500:
-+ * clock period = period of PCLK * 2 * (ADC0C[31:17] + 1) * (ADC0C[9:0] + 1)
-+ * Ast2600:
-+ * clock period = period of PCLK * 2 * (ADC0C[15:0] + 1)
-  */
- 
- #include <linux/clk.h>
-@@ -77,6 +83,7 @@ struct aspeed_adc_data {
- 	struct regulator	*regulator;
- 	void __iomem		*base;
- 	spinlock_t		clk_lock;
-+	struct clk_hw		*fixed_div_clk;
- 	struct clk_hw		*clk_prescaler;
- 	struct clk_hw		*clk_scaler;
- 	struct reset_control	*rst;
-@@ -196,6 +203,13 @@ static void aspeed_adc_unregister_divider(void *data)
- 	clk_hw_unregister_divider(clk);
- }
- 
-+static void aspeed_adc_unregister_fixed_divider(void *data)
-+{
-+	struct clk_hw *clk = data;
-+
-+	clk_hw_unregister_fixed_factor(clk);
-+}
-+
- static void aspeed_adc_reset_assert(void *data)
- {
- 	struct reset_control *rst = data;
-@@ -312,6 +326,18 @@ static int aspeed_adc_probe(struct platform_device *pdev)
- 	/* Register ADC clock prescaler with source specified by device tree. */
- 	spin_lock_init(&data->clk_lock);
- 	snprintf(clk_parent_name, 32, of_clk_get_parent_name(pdev->dev.of_node, 0));
-+	snprintf(clk_name, 32, "%s-fixed-div", data->model_data->model_name);
-+	data->fixed_div_clk = clk_hw_register_fixed_factor(
-+		&pdev->dev, clk_name, clk_parent_name, 0, 1, 2);
-+	if (IS_ERR(data->fixed_div_clk))
-+		return PTR_ERR(data->fixed_div_clk);
-+
-+	ret = devm_add_action_or_reset(data->dev,
-+				       aspeed_adc_unregister_fixed_divider,
-+				       data->clk_prescaler);
-+	if (ret)
-+		return ret;
-+	snprintf(clk_parent_name, 32, clk_name);
- 	if (data->model_data->need_prescaler) {
- 		snprintf(clk_name, 32, "%s-prescaler",
- 			 data->model_data->model_name);
+The hardware mode of two encoder cores work together(overlap, another
+word called) on MT8195 called "frame_racing_mode", the two encoder
+power-domains should be power on together while encoding, the encoding
+process look like this:
+
+    VENC Core0 frm#0....frm#2....frm#4
+    VENC Core1  .frm#1....frm#3....frm#5
+
+patch[3..5]: due to the component device, the master device has no
+power-domains/clocks properties in dtsi, so the power/clock init function
+can't use for "frame_racing_mode" device in master device probe process,
+it should be called in component device probe process. Power on the
+hardware power and clock on demand.
+
+patch[6]: "frame_racing_mode" encoding need a new set of memory buffer
+for two encoder cores. For compatibility, we should new a encoder driver
+interface.
+
+patch[7..9]: add "frame_racing_mode" encoding process:
+As-Is: Synchronous
+VIDIOC_QBUF#0 --> device_run(triger encoder) --> wait encoder IRQ -->
+encode done with result --> job_finish
+
+VIDIOC_QBUF#1 --> device_run(triger encoder) --> wait encoder IRQ -->
+encode done with result --> job_finish
+...
+
+To-Be: Asynchronous
+VIDIOC_QBUF#0 --> device_run(triger encoder core0) --> job_finish
+..VIDIOC_QBUF#1 --> device_run(triger encoder core1) --> job_finish
+(core0 may encode done here, return encode result to client)
+VIDIOC_QBUF#2 --> device_run(triger encoder core0) --> job_finish
+
+Thers is no "wait encoder IRQ" synchronous call during "frame_racing_mode"
+encoding process, which can full use the two encoder cores to achieve
+higher performance.
+
+Irui Wang (9):
+  dt-bindings: media: mtk-vcodec: Add binding for MT8195 two venc cores
+  media: mtk-vcodec: Use component framework to manage encoder hardware
+  media: mtk-vcodec: Rewrite venc power manage interface
+  media: mtk-vcodec: Add venc power on/off interface
+  media: mtk-vcodec: Rewrite venc clock interface
+  media: mtk-vcodec: Add new venc drv interface for frame_racing mode
+  media: mtk-vcodec: Add frame racing mode encode process
+  media: mtk-vcodec: Return encode result to client
+  media: mtk-vcodec: Add delayed worker for encode timeout
+
+ .../bindings/media/mediatek-vcodec.txt        |   2 +
+ drivers/media/platform/mtk-vcodec/Makefile    |   2 +
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  34 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 120 +++-
+ .../platform/mtk-vcodec/mtk_vcodec_enc.h      |  10 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  | 204 +++++-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_hw.c   | 253 +++++++
+ .../platform/mtk-vcodec/mtk_vcodec_enc_hw.h   |  38 +
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 213 ++++--
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |  13 +-
+ .../platform/mtk-vcodec/mtk_vcodec_util.c     |  19 +
+ .../platform/mtk-vcodec/mtk_vcodec_util.h     |   5 +
+ .../platform/mtk-vcodec/venc/venc_common_if.c | 675 ++++++++++++++++++
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   |   6 +-
+ .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   2 +-
+ .../media/platform/mtk-vcodec/venc_drv_if.c   |  96 ++-
+ .../media/platform/mtk-vcodec/venc_drv_if.h   |   7 +
+ .../media/platform/mtk-vcodec/venc_vpu_if.c   |  11 +-
+ .../media/platform/mtk-vcodec/venc_vpu_if.h   |   3 +-
+ 19 files changed, 1564 insertions(+), 149 deletions(-)
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_hw.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_hw.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/venc/venc_common_if.c
+
 -- 
 2.25.1
 
