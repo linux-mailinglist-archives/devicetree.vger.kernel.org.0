@@ -2,95 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CD9D3EE851
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 10:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6193EE899
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 10:37:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235093AbhHQIVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 04:21:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235354AbhHQIVv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 04:21:51 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86683C061764;
-        Tue, 17 Aug 2021 01:21:17 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id dt3so8873258qvb.6;
-        Tue, 17 Aug 2021 01:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4eUZVG0XpccdWtoJobUI2EmJHkDs8bqZphSP7hFWH1Q=;
-        b=BD+21WBpfx3JflwQsN76WK36pG10k24qJf49uOaBukabmoZkC1OSJcSGBE5ArXDN48
-         JFfC/ftO1VehIaVW3ADemG5c4GUYGqKndbnxYmwlnyuAhwrNvOxtKp0vdiPM3816BOf2
-         yG8X0zariuFOwjuSeL48meiOi1n1lEOLD7UYE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4eUZVG0XpccdWtoJobUI2EmJHkDs8bqZphSP7hFWH1Q=;
-        b=EmkSy7b82QI9fRiQxvB21ZfwvgsDlnsLZN+QLfV0XynaUdBB7SMrASL2SOJ2EbHwuv
-         ISGN8QbxYWqJCBM+wydA6OJ1i6Nr5oMkBbGzaPMsRbCSKtQpjvXmvuqvH1NlQKriuWaA
-         +XdWAh2RcxuHMWfMJkSFE5XBKWhVyM6Y9wU+EOAtSDWRbVDg8jTQKt6VbtcXzjWU5u/S
-         skvzs8ur1CKoQGSlVzFqXEqwaJ99E1ZpKE1ewlei05XhE3tPKngUjIpdP4+72J1sC20C
-         9yBqqwawjeMPrg15FinSgV5+47VHrh/UszDO3KMwqm11CWwjESDdL/Xx8p1926jFCVJV
-         BUYA==
-X-Gm-Message-State: AOAM530EVoqpK+LZ9KoYdjknFRet3l4xXxWjMMd13GQn9JbeZLOhD+oN
-        LKSD/F2sZyuoyUVin6ARdHXbV4oC21ynIpidvQU=
-X-Google-Smtp-Source: ABdhPJz9DGxB7h6lDvfpMgEsp1O8RBOgo02XQZaKMDjkzBKVciQFWc8H/pOWw1CBfwgQUgIkuWSEZq9MSp8FXp6V3b0=
-X-Received: by 2002:a05:6214:27ee:: with SMTP id jt14mr2172403qvb.61.1629188476683;
- Tue, 17 Aug 2021 01:21:16 -0700 (PDT)
+        id S239208AbhHQIhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 04:37:34 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:54330 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239009AbhHQIhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 04:37:31 -0400
+X-UUID: ae5e295f632b4060afbddfdf94fd6cb9-20210817
+X-UUID: ae5e295f632b4060afbddfdf94fd6cb9-20210817
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1841774111; Tue, 17 Aug 2021 16:36:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 17 Aug 2021 16:36:44 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 17 Aug 2021 16:36:43 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Subject: [PATCH RESEND 1/9] dt-bindings: usb: mtk-xhci: add optional property to disable usb2 ports
+Date:   Tue, 17 Aug 2021 16:36:21 +0800
+Message-ID: <1629189389-18779-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-References: <20210813061900.24539-1-rentao.bupt@gmail.com>
-In-Reply-To: <20210813061900.24539-1-rentao.bupt@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 17 Aug 2021 08:21:04 +0000
-Message-ID: <CACPK8Xei0K2vcEGc3Qr5zcb1SHMgNbJ+4_fVd6u-FiOHt4PxSg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: cloudripper: Add comments for "mdio1"
-To:     Tao Ren <rentao.bupt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tao Ren <taoren@fb.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Aug 2021 at 06:19, <rentao.bupt@gmail.com> wrote:
->
-> From: Tao Ren <rentao.bupt@gmail.com>
->
-> Add some comments to explain the purpose of "mdio1" controller: it's
-> connected to the MDC/MDIO interface of the on-board management switch.
->
-> Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
+Add support to disable specific usb2 host ports, it's useful when
+a usb2 port is disabled on some platforms, but enabled on others for
+the same SoC, another case is that the different package may support
+different number of ports.
 
-Thanks, applied.
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+ Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts
-> index 01ec3ce0a29d..9c6271a17ae8 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts
-> @@ -96,6 +96,11 @@
->         status = "okay";
->  };
->
-> +/*
-> + * "mdio1" is connected to the MDC/MDIO interface of the on-board
-> + * management switch (whose ports are connected to BMC, Host and front
-> + * panel ethernet port).
-> + */
->  &mdio1 {
->         status = "okay";
->  };
-> --
-> 2.17.1
->
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index 49729aab6d1a..61a0e550b5d6 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -154,6 +154,11 @@ properties:
+     description: The mask to disable u3ports, bit0 for u3port0,
+       bit1 for u3port1, ... etc
+ 
++  mediatek,u2p-dis-msk:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The mask to disable u2ports, bit0 for u2port0,
++      bit1 for u2port1, ... etc
++
+   "#address-cells":
+     const: 1
+ 
+-- 
+2.18.0
+
