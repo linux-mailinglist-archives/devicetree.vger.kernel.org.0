@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD0E13EF5A7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 00:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3BEB3EF5BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 00:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236481AbhHQWTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 18:19:18 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:38538 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234474AbhHQWTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 18:19:12 -0400
-Received: by mail-ot1-f42.google.com with SMTP id 108-20020a9d01750000b029050e5cc11ae3so320804otu.5;
-        Tue, 17 Aug 2021 15:18:39 -0700 (PDT)
+        id S230515AbhHQW2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 18:28:13 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:40458 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235719AbhHQW2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 18:28:13 -0400
+Received: by mail-oi1-f169.google.com with SMTP id r5so1486544oiw.7;
+        Tue, 17 Aug 2021 15:27:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hH6x0kKNvTVTngzAJglfbn28xI8QAAWrgkjyn1ogaAA=;
-        b=ZyXGhcuDnO0+Dk5sMD967Q07buGcAiYkL52moxSVei8j+tfZFH29Q4FPGE2PAnBOIV
-         lLtR/d6whN8Dy9fMgAPwHO4cb8oUDXhqJGnuPjZb8XrPUEbAAtH+dNdGIkPGPTEIGCg0
-         Ek5XgTsysaaGPeDEjptrhqM4H5tP4tL1wiNtqRe04K7iyE7I8QB5gTl841k+rbA1FNv4
-         nwZ8sgtCZwEhs0u+Qplq0ONFHQoIbMhlFtAujt5G9m0CqqFgMScHpIfb2QAKqmYlhDyz
-         lIvoCJ6KMfzIbSzHTTkDEGd7t5ohbsfcwHHaGWQcIu+tyDy/Is/jfe2LbJCLouTyVZSE
-         B5rw==
-X-Gm-Message-State: AOAM531R9o8nNoVL/Y+8Hj6Nsh4w58g+j5QBnKkd1oiwz9ZXOucSysvG
-        4N7BcUrAKl3PelGjYgL4Rg==
-X-Google-Smtp-Source: ABdhPJyZkwXaIBIiV+RYqjeipQRsYMSwJcPUjKRxBFM10YNTOL1cqAvlf+PDs3/94oHBkGxuqgjARA==
-X-Received: by 2002:a9d:77da:: with SMTP id w26mr4522551otl.293.1629238718681;
-        Tue, 17 Aug 2021 15:18:38 -0700 (PDT)
+        bh=+BfyWYAoDwRkQ9ttoNeQVU12lDc/IMP5LXy6G6YFggg=;
+        b=DkXknGSv8IUaUH7XMH31NDdFalzjy5ZQYkUuLUMLSIdwwvlGdb7kFHI/ijPmUOz9rQ
+         Zz03iB+igq/zWQF8hVBn2NQBDQVjce4B0uxxylekxhz6fBQLQgettijFGf3lFu4GkQ6G
+         c/fUmae6Sc2RhmJbqc5SN7ippKQC9DloUyLQCNmhZn4pYT3+37WmIRHrDokHzrOj7nk8
+         RLR/ELNoGLW2lW1FpxRK2pPdqUiZ+gvhHtRZwN83nMdd4NkM1kfSvrKp835OLHta11//
+         fyOKLjjfJHm0wdiGbV4263I9rRPC6KjJ/kY+UPr5JPK/XA7aReCY+1cbuFnCQXVEjmsW
+         bedw==
+X-Gm-Message-State: AOAM533bVY1nhpwh7+MZJ3keHXlG3HpCNSdrSM/dgydAlT7cnCXEk5uk
+        SqK01CAH0Qv18717fIXJbg==
+X-Google-Smtp-Source: ABdhPJxty7SNfAPEV9cCyobRKduumTHgvCTsgLmTbjfmVB7lp43RU+dh1FnRjisXCBnLAZc5V7Rybg==
+X-Received: by 2002:a54:4791:: with SMTP id o17mr4498500oic.133.1629239259608;
+        Tue, 17 Aug 2021 15:27:39 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s12sm654598otk.21.2021.08.17.15.18.37
+        by smtp.gmail.com with ESMTPSA id 21sm688844ooy.5.2021.08.17.15.27.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 15:18:37 -0700 (PDT)
-Received: (nullmailer pid 939324 invoked by uid 1000);
-        Tue, 17 Aug 2021 22:18:36 -0000
-Date:   Tue, 17 Aug 2021 17:18:36 -0500
+        Tue, 17 Aug 2021 15:27:38 -0700 (PDT)
+Received: (nullmailer pid 951091 invoked by uid 1000);
+        Tue, 17 Aug 2021 22:27:37 -0000
+Date:   Tue, 17 Aug 2021 17:27:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     alexandre.belloni@bootlin.com, soc@kernel.org, arnd@arndb.de,
-        nicolas.ferre@microchip.com, linux-arm-kernel@lists.infradead.org,
-        olof@lixom.net, linux-kernel@vger.kernel.org,
-        ludovic.desroches@microchip.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/7] dt-bindings: ARM: at91: document CalAmp LMU5000
- board
-Message-ID: <YRw1vN9KHSY1hCmR@robh.at.kernel.org>
-References: <20210816064416.1630674-1-claudiu.beznea@microchip.com>
- <20210816064416.1630674-4-claudiu.beznea@microchip.com>
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/3] amba: Properly handle device probe without IRQ domain
+Message-ID: <YRw32YE4cnNnWSvl@robh.at.kernel.org>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210816064416.1630674-4-claudiu.beznea@microchip.com>
+In-Reply-To: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Aug 2021 09:44:12 +0300, Claudiu Beznea wrote:
-> Document CalAmp LMU5000.
+On Mon, Aug 16, 2021 at 03:46:16PM +0800, Kefeng Wang wrote:
+> Patch 1 and 2 make some cleanup, and patch 3 use of_irq_get() instead of 
+> irq_of_parse_and_map() to get irq number, return -EPROBE_DEFER if the irq
+> domain is not yet created, amba_device_add() will properly to handle the
+> no IRQ domain issue via deferred probe.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Kefeng Wang (3):
+>   amba: Drop unused functions about APB/AHB devices add
+>   Revert "ARM: amba: make use of -1 IRQs warn"
+>   amba: Properly handle device probe without IRQ domain
 > 
+>  drivers/amba/bus.c       | 100 ++++++++++-----------------------------
+>  drivers/of/platform.c    |   6 +--
+>  include/linux/amba/bus.h |  18 -------
+>  3 files changed, 27 insertions(+), 97 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
