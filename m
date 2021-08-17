@@ -2,132 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01ED03EEEDF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 16:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A34443EEF16
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 17:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238030AbhHQO7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 10:59:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35048 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232705AbhHQO7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 10:59:54 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9BBDC0613C1
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 07:59:20 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id m21so5456858qkm.13
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 07:59:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=86RDE8t49nfJXJnwRo5mekUUSUCPQ5KzPYvEB9EKLrY=;
-        b=b0lhNsvSnO9jLlfIEG8rNqQYdjidUAqphYNQOjsDrLry3LHCTiXXaX/QNiqXCakBAE
-         K3AItf2iYzrF+rCo3lqN6NUcV9bRbHfCHZpcz6UW2utKuvOoMYu0wmpC89z8wzXBEMPS
-         d2NY2xaY5kn1PmOcg7s8s2MWLlnXAQuvpjpf4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=86RDE8t49nfJXJnwRo5mekUUSUCPQ5KzPYvEB9EKLrY=;
-        b=VBxGi/dfo5iaMjlVh2vmtH1KO6TAXgWZ61ZGqW2NwkXL+AXmfQf5K3p4t69NKAVP3e
-         F9mUFMAlTNxMY74/vkfpaYSY5T31c/wqkLqqSCigJioF4VByQjaQmgAeTJwpNrFU9oi6
-         B38GtSGCnnXlAl2xbdWTz1lBcKqgwjDIni69tVMK4sI/pznDZ427mm2FiXVhccvu/n1f
-         zBHamPd1qcReds1/XDzKPSOAd+IU03icR9gwkcym+ciEO5lRmh4YCwMDBW1hPf006Dg/
-         3F3EJMarGi45AlPzzVHGqDJkqapgGHmPb9YVsNqJ4Q+bVoDKaIYvYueFpDQTe3mFX0SH
-         RF6Q==
-X-Gm-Message-State: AOAM5333US9w35ZXnM4S9A3kYATEROOk5zCMC665CGc1eEubgKtq19x+
-        jd7IhfDSu/cqE7963r+upoaQTMisz7/PxZiTxRe/PA==
-X-Google-Smtp-Source: ABdhPJx9ThHtRgsLOGVNe4Zf2azxZL7oN3Q/nNJhL13iXQKr218AWZFzMM3mD4YA4CjCrN+vmOaeX1+9adBRB0mlQUM=
-X-Received: by 2002:a05:620a:1651:: with SMTP id c17mr4274481qko.170.1629212359777;
- Tue, 17 Aug 2021 07:59:19 -0700 (PDT)
+        id S233722AbhHQPYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 11:24:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35682 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230369AbhHQPYr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 11:24:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4B26260E09;
+        Tue, 17 Aug 2021 15:24:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629213853;
+        bh=boESYlKP6Dzc4kd2waJ3e/ZWnK8Fx6T1LIWvj2HxkX0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=EpWj8XfYMjFSu2H8qmW6GSRSZCbozXwNvPJfpEG4eQ1z9d04wBrDrqXBF8I9GNF2k
+         Ta4QvsAOu8r7nRtDyMyIf8L/NVqvWoZ1uVcVBFL0/S0ytfoMnJJ7F76yN7AgufdA0O
+         H3RhqE1bxS1sJlexjF1FOD+jdXOGIcqaoo9YmX9hpbSmOws+jkn3KazRNZezn84yre
+         t2ftnIQsY0LKW1OKCLR8Q235J6Gr9pLTM78wUHt7KqlktfW/17w/esI6Fbieqg27G7
+         jQZseaAs1BJW5iGLCL/64Tmp2chXv2j+xWUIqg83n5wpnf6VIBcP12IEKGPxN5FAFr
+         W3SycQVB2gYAw==
+Date:   Tue, 17 Aug 2021 10:24:12 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH v8 5/8] PCI: cadence: Simplify code to get register base
+ address for configuring BAR
+Message-ID: <20210817152412.GA3016169@bjorn-Precision-5520>
 MIME-Version: 1.0
-References: <20210817080617.14503-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20210817080617.14503-1-krzysztof.kozlowski@canonical.com>
-From:   Markus Mayer <mmayer@broadcom.com>
-Date:   Tue, 17 Aug 2021 07:59:08 -0700
-Message-ID: <CAGt4E5t8oGcjw=q1UeKZcGk=XuYyw-=8LCMjxHDKgKLedd31hw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: memory: convert Broadcom DPFE to dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>,
-        Linux ARM Kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210811064656.15399-6-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for updating this.
+On Wed, Aug 11, 2021 at 12:16:53PM +0530, Kishon Vijay Abraham I wrote:
+> No functional change. Simplify code to get register base address for
+> configuring PCI BAR.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../pci/controller/cadence/pcie-cadence-ep.c   | 18 ++++--------------
+>  drivers/pci/controller/cadence/pcie-cadence.h  |  2 ++
+>  2 files changed, 6 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep.c b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> index 912a15be8bfd..f337f0842400 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> @@ -97,13 +97,8 @@ static int cdns_pcie_ep_set_bar(struct pci_epc *epc, u8 fn, u8 vfn,
+>  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_IB_EP_FUNC_BAR_ADDR1(fn, bar),
+>  			 addr1);
+>  
+> -	if (bar < BAR_4) {
+> -		reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG0(fn);
+> -		b = bar;
+> -	} else {
+> -		reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG1(fn);
+> -		b = bar - BAR_4;
+> -	}
+> +	reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG(bar, fn);
+> +	b = (bar < BAR_4) ? bar : bar - BAR_4;
+>  
+>  	cfg = cdns_pcie_readl(pcie, reg);
+>  	cfg &= ~(CDNS_PCIE_LM_EP_FUNC_BAR_CFG_BAR_APERTURE_MASK(b) |
+> @@ -126,13 +121,8 @@ static void cdns_pcie_ep_clear_bar(struct pci_epc *epc, u8 fn, u8 vfn,
+>  	enum pci_barno bar = epf_bar->barno;
+>  	u32 reg, cfg, b, ctrl;
+>  
+> -	if (bar < BAR_4) {
+> -		reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG0(fn);
+> -		b = bar;
+> -	} else {
+> -		reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG1(fn);
+> -		b = bar - BAR_4;
+> -	}
+> +	reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG(bar, fn);
+> +	b = (bar < BAR_4) ? bar : bar - BAR_4;
+>  
+>  	ctrl = CDNS_PCIE_LM_BAR_CFG_CTRL_DISABLED;
+>  	cfg = cdns_pcie_readl(pcie, reg);
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index 30db2d68c17a..d5b1fcf2c39d 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -46,6 +46,8 @@
+>  #define  CDNS_PCIE_LM_EP_ID_BUS_SHIFT	8
+>  
+>  /* Endpoint Function f BAR b Configuration Registers */
+> +#define CDNS_PCIE_LM_EP_FUNC_BAR_CFG(bar, fn) \
+> +	(((bar) < 4) ? CDNS_PCIE_LM_EP_FUNC_BAR_CFG0(fn) : CDNS_PCIE_LM_EP_FUNC_BAR_CFG1(fn))
 
-> +++ b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/brcm,dpfe-cpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DDR PHY Front End (DPFE) for Broadcom STB
-> +
-> +maintainers:
-> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> +  - Markus Mayer <mmayer@broadcom.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - brcm,bcm7271-dpfe-cpu
-> +          - brcm,bcm7268-dpfe-cpu
-> +      - const: brcm,dpfe-cpu
-> +
-> +  reg:
-> +    items:
-> +      - description: DCPU register space
-> +      - description: DCPU data memory space
-> +      - description: DCPU instruction memory space
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dpfe-cpu
-> +      - const: dpfe-dmem
-> +      - const: dpfe-imem
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dpfe-cpu@f1132000 {
-> +        compatible = "brcm,bcm7271-dpfe-cpu", "brcm,dpfe-cpu";
-> +        reg = <0xf1132000 0x180>,
-> +              <0xf1134000 0x1000>,
-> +              <0xf1138000 0x4000>;
-> +        reg-names = "dpfe-cpu", "dpfe-dmem", "dpfe-imem";
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 36aee8517ab0..be8e4af8ed64 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3855,7 +3855,7 @@ M:        Markus Mayer <mmayer@broadcom.com>
->  M:     bcm-kernel-feedback-list@broadcom.com
->  L:     linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->  S:     Maintained
-> -F:     Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.txt
-> +F:     Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
->  F:     drivers/memory/brcmstb_dpfe.c
->
->  BROADCOM STB NAND FLASH DRIVER
-> --
-> 2.30.2
->
+Why do we use "BAR_4" above and "4" here?  Shouldn't they look the
+same?
 
-Acked-by: Markus Mayer <mmayer@broadcom.com>
-
-Regards,
--Markus
+>  #define CDNS_PCIE_LM_EP_FUNC_BAR_CFG0(fn) \
+>  	(CDNS_PCIE_LM_BASE + 0x0240 + (fn) * 0x0008)
+>  #define CDNS_PCIE_LM_EP_FUNC_BAR_CFG1(fn) \
+> -- 
+> 2.17.1
+> 
