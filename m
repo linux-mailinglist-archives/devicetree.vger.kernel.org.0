@@ -2,83 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6EBF3EF500
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 355043EF503
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:31:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233866AbhHQVb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 17:31:26 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:43690 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232862AbhHQVbZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:31:25 -0400
-Received: by mail-ot1-f45.google.com with SMTP id x10-20020a056830408a00b004f26cead745so133422ott.10;
-        Tue, 17 Aug 2021 14:30:52 -0700 (PDT)
+        id S232862AbhHQVc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 17:32:28 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:41642 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231630AbhHQVc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:32:28 -0400
+Received: by mail-oi1-f176.google.com with SMTP id be20so1239567oib.8;
+        Tue, 17 Aug 2021 14:31:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=L8uWZm6U/wNMBuZeSRyfZraEH5jwhS4TJYlvnaSbDCg=;
-        b=msJr8sEWql1IOMKqLJlbu0iWdS++G/GxsSVRHWT/zHgnl+uP+2sHHYSudkfojOER4L
-         z2KxlgMKFl/iVziN4ZT2HSDVw5cJx7h+K6Xrfv9ihctGAy22OPvZy4I8NDqdbpEdhbbG
-         6Wkm8O6alTA/cZey3Hriya43n+zrgGjqQXWB1A8bv8/LidjHe9BSwwK+SuiT7Up8+XHq
-         mieuL1vmkrtWTFJLHpysGQV4aUKszxGnUIJdYeD8mGO2wycWc8E4QJw/ntL5IhSIAhYj
-         2w8+58iM0UmEEizSj6pIZnDi2V4k+XUNbGFTDaiYUkLiizEraHiEvtq3sveawlXhY4eM
-         TOIQ==
-X-Gm-Message-State: AOAM5312Z3IbGi580jZHILngAJaLj6KJek14xmsBWIyMoi8U3A+RlcKI
-        RTLn+SsbHqQ3jfl0k+RZuw==
-X-Google-Smtp-Source: ABdhPJyR75Ua//1nJMK6e0saEWk+VVaM7OLMsyOyiOR3yKOba13yG2FcdDRgAsTZ+9JDitqNSXacCw==
-X-Received: by 2002:a9d:331:: with SMTP id 46mr4271550otv.359.1629235851100;
-        Tue, 17 Aug 2021 14:30:51 -0700 (PDT)
+        bh=kt2Fk44GF+8/cRJD0+ngwDqElp7+xnXStRJ3VhNJcN8=;
+        b=NS6wyr5aLe5sONlq4TAV1ZCiu4XSbYIQvAJQ0DA+7n3K7KBa2iEoa4bt/6rnOpyzkr
+         DAK71I0FW+A2HilvXtTJ8v8bAS3gQvu2SLeor7Ou52L+HErzow6eF5+nbwaDmWFLPeuT
+         v0wzFXhJRszOCgqNQoPkMbl4myMXRSXITgphDHQLSV4RH80XAoBdLJLs5V8IzPyQBtQe
+         ALBgcemWXTTtroh61Fkqz+WztoxXG3dRZVdj1J7KGP+SmfeIQT1ZpucZoUSVtolZgIb/
+         BvyiyRTzdbVfKoMQp0ZrYaB8fKTgtJdinlsWLe2anzslnwfv5AKEuC0hPNjScjiIb9xh
+         SYtw==
+X-Gm-Message-State: AOAM532OYz4FTKnZ76agvZ+7i3P5dgoRz5AJUWFF3yBHPn83TE2fLuyQ
+        isI2t/2k4xDOAX5nmsYVIw==
+X-Google-Smtp-Source: ABdhPJyY88kwSF6xqTb7bptyaFXmhl8XLJolHuRR2HVS2XGv120oK5kfJ2J1hPSymvlFnYjSS7HwQg==
+X-Received: by 2002:aca:ac13:: with SMTP id v19mr4280919oie.93.1629235914630;
+        Tue, 17 Aug 2021 14:31:54 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u126sm669782ooa.23.2021.08.17.14.30.49
+        by smtp.gmail.com with ESMTPSA id z7sm625148oti.65.2021.08.17.14.31.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 14:30:50 -0700 (PDT)
-Received: (nullmailer pid 875639 invoked by uid 1000);
-        Tue, 17 Aug 2021 21:30:48 -0000
-Date:   Tue, 17 Aug 2021 16:30:48 -0500
+        Tue, 17 Aug 2021 14:31:54 -0700 (PDT)
+Received: (nullmailer pid 877188 invoked by uid 1000);
+        Tue, 17 Aug 2021 21:31:53 -0000
+Date:   Tue, 17 Aug 2021 16:31:53 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 01/29] dt-bindings: arm: renesas: Document more R-Car
- Gen3e Socs and boards
-Message-ID: <YRwqiIHa/avcyvQp@robh.at.kernel.org>
-References: <cover.1628766192.git.geert+renesas@glider.be>
- <55271d405112f327753945072cde5d158ab815b1.1628766192.git.geert+renesas@glider.be>
+Subject: Re: [PATCH v2 1/8] dt-bindings: soc: rockchip: add rk3568-usb2phy-grf
+Message-ID: <YRwqyZEF6FRpkdHQ@robh.at.kernel.org>
+References: <20210812204116.2303617-1-pgwipeout@gmail.com>
+ <20210812204116.2303617-2-pgwipeout@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <55271d405112f327753945072cde5d158ab815b1.1628766192.git.geert+renesas@glider.be>
+In-Reply-To: <20210812204116.2303617-2-pgwipeout@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Aug 2021 13:23:51 +0200, Geert Uytterhoeven wrote:
-> Document the compatible values for the remaining R-Car Gen3e SoCs: R-Car
-> H3e (R8A779M0), M3e (R8A779M2), M3Ne (R8A779M4), M3Ne-2G (R8A779M5), E3e
-> (R8A779M6), D3e (R8A779M7), and H3Ne (R8A779M8).  These are different
-> gradings of R-Car Gen3 SoCs.
+On Thu, 12 Aug 2021 16:41:09 -0400, Peter Geis wrote:
+> Add the documentation for the rk3568-usb2phy-grf node, which is separate
+> from the usb2phy node on this chip.
 > 
-> All R-Car Gen3e on-SoC devices are identical to the devices on the
-> corresponding R-Car Gen3 SoCs, and thus just use the compatible values
-> for the latter.  The root compatible properties do gain an additional
-> value, to sort out integration issues if they ever arise.
-> 
-> Document the use of these SoCs on the Salvator-XS, ULCB (with and
-> without Kingfisher extension), Ebisu, and Draak development boards.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 > ---
-> v2:
->   - Typo s/R8A779M/R8A779M0/,
->   - Add Reviewed-by.
-> ---
->  .../devicetree/bindings/arm/renesas.yaml      | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
+>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
