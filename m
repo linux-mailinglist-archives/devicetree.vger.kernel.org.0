@@ -2,118 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 202A53EF406
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 22:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC633EF40A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 22:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232535AbhHQU2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 16:28:18 -0400
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:33423 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbhHQU2S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 16:28:18 -0400
-Received: by mail-oo1-f42.google.com with SMTP id e3-20020a4ab9830000b029026ada3b6b90so40507oop.0;
-        Tue, 17 Aug 2021 13:27:44 -0700 (PDT)
+        id S234839AbhHQU2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 16:28:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234753AbhHQU2j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 16:28:39 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A7C6C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 13:28:05 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id r9so34331970lfn.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 13:28:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=To4Gp542jJmSWD7MdZF3sFHEVTOYykMS63VBniHZYPY=;
+        b=bh2mF/LwnSNjB0vFwgLsICNog5EaVsCuDp6N1PNuDbocaQHr2wlqC5Y+ltDOrFGEN5
+         u3Z7m+VT7UC2wOgSmWaW7dX9nP/LvrIWTk/0yppmVDoT5+QOBZiIGsJj2OmuPzoeTei4
+         oILmZeAAMhVG7eW2qWwXU/Hb/OLRew/XWxASU5THx+BrQRMHGD/90BdnmRwSv+pkD9/b
+         Ay/uWSYws4AJWv1n7Bf81YEk50I8wLvI6m8odvtn62SVoJs7HtS3XQYYYf5w6ZCfvLd4
+         ft9Ml5Ku8Tu9BRE4MbLSeaSGUEA+PP/9x9kWK65bzsnuR5HIdKTS7sk8+UX++4Ht5ELK
+         ICiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pfMSBfRo6y4lD0HSYI6UuaPcJLWtNKVFgziILtRY1Q8=;
-        b=Hu857/Y24vsK2Q/Y5WS9PTrImpwXGBaSRb557oXEnmIk6ZEEqiTg6KyQnFdPjJC2B+
-         1IT6FaA2Stxp7+SeQhO51dR4suHUKH8F0Oc6ml/GZYZiP2dZlXZOpiUXv8wDjucxckXr
-         H/xYiug+mBCsxNlpaadZWBOlPpJHyKd8nvxN263RR26w4JElA+FVV3Q8KtwG8M4SCOuI
-         fK1a/g7Bk5npxKXhg1rFIDT7zrJ4df6/s6kRK5sLVNr4s1z5c7Nrt5E63jidEG5MWCXR
-         52ZCr6Yay9LHqwsycIkR10AgNQHGM240MC4tAd5EVOb2egxGxpRAreJif3h0wsX8wpKV
-         ZfHw==
-X-Gm-Message-State: AOAM532N4X0WmrEoQJ1rnlwPA/4n6Iz2JBFoMEMF2zmcEfqBNXdnSQBD
-        mVCM80CNAs4CnSawLknGHQ==
-X-Google-Smtp-Source: ABdhPJxkFl9a5TIMvDkCD52dDtA9Qt3+/KCJuyspWzddVJx6G0d0mO8PN7ycZ29QfQIgBzOje5KcRg==
-X-Received: by 2002:a4a:b6ca:: with SMTP id w10mr3884650ooo.17.1629232064261;
-        Tue, 17 Aug 2021 13:27:44 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u126sm635932ooa.23.2021.08.17.13.27.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 13:27:43 -0700 (PDT)
-Received: (nullmailer pid 783570 invoked by uid 1000);
-        Tue, 17 Aug 2021 20:27:41 -0000
-Date:   Tue, 17 Aug 2021 15:27:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bharat Bhushan <bbhushan2@marvell.com>
-Cc:     will@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: perf: marvell: cn10k ddr performance
- monitor
-Message-ID: <YRwbvfCYl94UDseY@robh.at.kernel.org>
-References: <20210810094307.29595-1-bbhushan2@marvell.com>
- <20210810094307.29595-2-bbhushan2@marvell.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=To4Gp542jJmSWD7MdZF3sFHEVTOYykMS63VBniHZYPY=;
+        b=JeM+gYMrP4eyG0ohs5SnE0mt2qdjcjprR9OrSQRHYHVwkkSyDvVgRESxbQoLgYVRbR
+         3MdPkY+JX87dl+okZKnyiD8kbzEksmjXc68nk9/EaBXRxASmOqv4nrlPzvQTEJt+zMLk
+         3XWz8OKXQSaZHYze3KA/h+VINPfbeC204QvK8/WkiXn8m5tscInwKzj4hI9nm9UlfV+9
+         aqbqCBU5a6rcfUeeRcv+6DZs3MEmeJczKp5SpAe7CJsdwxb40u13VDEsmWo9sVLq2tL0
+         1RwUayeeShC0mn18kwTsGRfhD4L33JuuCH0LtrgfrroxD9T7oHGdB0YKJHPvwaocEFr4
+         puaw==
+X-Gm-Message-State: AOAM531kvKTPMfbHdTCqDN0NjQ9K3NAau+TuMQJt/RmH4Fvf3fJxvf3j
+        9hlZO/a9Zx5N232jPvFGUzHtt00+GKjIjIsx4VFa2w==
+X-Google-Smtp-Source: ABdhPJyzKPGkscEIAtPNNEn9m7AoHY+m4cnw4vyR4NqDDFeYVO4Cju2uRh5QlVuft9THtbNOB39mT+PFjmHgsr2J1VA=
+X-Received: by 2002:a05:6512:3286:: with SMTP id p6mr3626973lfe.649.1629232083711;
+ Tue, 17 Aug 2021 13:28:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210810094307.29595-2-bbhushan2@marvell.com>
+References: <20210817174743.541353-1-robh@kernel.org>
+In-Reply-To: <20210817174743.541353-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 17 Aug 2021 22:27:52 +0200
+Message-ID: <CACRpkdaoKyPO1nePBYuvwmqxJFxScVVwKgMfngi5UAyL5KmF5A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: faraday,ftpci100: Fix 'contains' schema usage
+To:     Rob Herring <robh@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-pci <linux-pci@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 10, 2021 at 03:13:04PM +0530, Bharat Bhushan wrote:
-> Add binding documentation for the Marvell CN10k DDR
-> performance monitor unit.
-> 
-> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
-> ---
-> v1->v2:
->  - DT binding changed to new DT Schema
-> 
->  .../bindings/perf/marvell-cn10k-ddr.yaml      | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml b/Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
-> new file mode 100644
-> index 000000000000..2a335444cf53
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/marvell-cn10k-ddr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell CN10K DDR performance monitor
-> +
-> +maintainers:
-> +  - Bharat Bhushan <bbhushan2@marvell.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - marvell,cn10k-ddr-pmu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        ddrcpmu@1 {
+On Tue, Aug 17, 2021 at 7:47 PM Rob Herring <robh@kernel.org> wrote:
 
-pmu@87e1c0000000
+> The 'contains' keyword applies to elements within an array, so
+> using 'items' only makes sense if the elements of the array are another
+> array which is not the case for 'compatible' properties.
+>
+> Looking at the driver, it seems the intent was the condition should be
+> true when 'faraday,ftpci100' is present, so we can drop
+> 'cortina,gemini-pci'.
+>
+> Fixes: 2720b991337d ("dt-bindings: PCI: ftpci100: convert faraday,ftpci100 to YAML")
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: linux-pci@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-> +            compatible = "marvell,cn10k-ddr-pmu";
-> +            reg = <0x87e1 0xc0000000 0x0 0x10000>;
-> +        };
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
