@@ -2,246 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 221D23EF079
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 18:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5523EF0E7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 19:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbhHQQww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 12:52:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60790 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbhHQQww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 12:52:52 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C39C061764;
-        Tue, 17 Aug 2021 09:52:18 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id w5so39938931ejq.2;
-        Tue, 17 Aug 2021 09:52:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TRXsHZES2DVeAZffLo0g6CHeWjHSwwEsvSttTLF0opY=;
-        b=Oj8TfBSw0nR1udwocmRMy5LTA1CO/ql0IygaS0l38S5R8yh0DHR1jycGSypIMVoIeU
-         tknFTc/Dc0f9aD2t0glUsZpH5L4qYRqpjp3auZoQJ4wifdBliFa2mvXUYnGmHkR8x5zE
-         NStJFeeMYKUxwTB2F6hJtJLAgRbYKhZe+OfCYOYVZUdO2PGTX1krRQi2j4QHV5EiFC5o
-         gKQreD/LkhF2TNW/m17OMAOfnWMDQcIlqcV20ASNjpGkYdcv0PTg98dAIfJ9Tu7I0WmM
-         X6Lr6jocf9OJl06OHcSyD8L5SCd952cENZcRkURhFm7kX08gU1u8KlPIXDGhQRl6g9BE
-         9GKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=TRXsHZES2DVeAZffLo0g6CHeWjHSwwEsvSttTLF0opY=;
-        b=gWHeDPOntIFMmfhXaf8//EgBX56K69XqG551qOEyybhQBKTtzcVbfkiyUUaWymDHWn
-         ORgoobK+0HtxFR6maMBqHYLD6AK3z2I189NRCXlbdUX5vSz3uAQIQNV879CidOps5V4R
-         h1u94r9+vHU8KSOtm6djaZTgEjOmXe/s881q3s6X9CBek15Fb+vZz3bDEUen/ZH6xkJT
-         4vzvACqryf3E7HpImDYERdSZEBiqr9b7ivkElduzb85MnQEzRD9a8HX1j5yd11lFwtYB
-         KMR8NYC/EwZLO14r3kFdfFLdirJiBmmRlv/AybEMGmCzTvNnezNpWw9yowPy1uNeCgzW
-         nHKQ==
-X-Gm-Message-State: AOAM532ygRvdnZLNsSqmIcegVle2wGi79V3NCvfj1KNno9NPaipkIv3v
-        ijuA+pmlHmgMxvJ2VYfbIOYGaLsbf+4=
-X-Google-Smtp-Source: ABdhPJy2AwPrcJG4REFLp9EWRiEjPVB9uvY4PcqHVViQmKOeV3+aoosl/oui2Stx9Rm7JX5vpfz/4g==
-X-Received: by 2002:a17:907:20b6:: with SMTP id pw22mr5083209ejb.512.1629219137363;
-        Tue, 17 Aug 2021 09:52:17 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id r6sm1330826edq.20.2021.08.17.09.52.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Aug 2021 09:52:17 -0700 (PDT)
-Subject: Re: [PATCH v2 2/8] dt-bindings: phy: phy-rockchip-inno-usb2: add
- rk3568 documentation
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210812204116.2303617-1-pgwipeout@gmail.com>
- <20210812204116.2303617-3-pgwipeout@gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <c7ff9234-cc3b-3679-bc63-73c5eb825269@gmail.com>
-Date:   Tue, 17 Aug 2021 18:52:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S231186AbhHQR1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 13:27:44 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:16790 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230354AbhHQR1n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 13:27:43 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629221229; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=EfWYM7e4IPw4UxvqdMIlRmzXZnOqCrtsKfmXiL94nUE=;
+ b=F6SmVpeJkHMtUZSPc8K5ZIxwmRYV4qJlTvkIp9AnXdDJWkGTdbgAITtSkFFuw2BWJ/IxTLX5
+ 63bdUn0+3jbc/mVmUhJHhbPzGvR2pvAPMBgCYeh6lHhqLElbZYAeqheJSoBx6a2vdhSA7pc4
+ 4puLKStNN/7wCLQKrnHDlLjFNfQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 611bf159105c6568db5ad797 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 17 Aug 2021 17:26:49
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id F2DD9C4360D; Tue, 17 Aug 2021 17:26:48 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9C922C4338F;
+        Tue, 17 Aug 2021 17:26:47 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210812204116.2303617-3-pgwipeout@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Tue, 17 Aug 2021 22:56:47 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
+ init in SC7280
+In-Reply-To: <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
+References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
+ <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
+Message-ID: <349b1178f071407dfad8ba3050482772@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
-
-Some comments. Have a look if it's useful.
-
-On 8/12/21 10:41 PM, Peter Geis wrote:
-> The rk3568 usb2phy node is a standalone node with a single muxed
-> interrupt.
-> Add documentation for it to phy-rockchip-inno-usb2.
+On 2021-08-10 09:38, Prasad Malisetty wrote:
+> On the SC7280, By default the clock source for pcie_1_pipe is
+> TCXO for gdsc enable. But after the PHY is initialized, the clock
+> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
 > 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
 > ---
->  .../bindings/phy/phy-rockchip-inno-usb2.yaml  | 31 ++++++++++++++++---
->  1 file changed, 27 insertions(+), 4 deletions(-)
+>  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> index 5bebd86bf8b6..d2a749c3f9a3 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> @@ -18,6 +18,7 @@ properties:
->        - rockchip,rk3328-usb2phy
->        - rockchip,rk3366-usb2phy
->        - rockchip,rk3399-usb2phy
-> +      - rockchip,rk3568-usb2phy
->        - rockchip,rv1108-usb2phy
->  
->    reg:
-> @@ -50,6 +51,9 @@ properties:
->      description:
->        Phandle to the extcon device providing the cable state for the otg phy.
->  
-
-> +  interrupts:
-> +    description: Muxed interrupt for both ports
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c
+> b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 8a7a300..39e3b21 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -166,6 +166,8 @@ struct qcom_pcie_resources_2_7_0 {
+>  	struct regulator_bulk_data supplies[2];
+>  	struct reset_control *pci_reset;
+>  	struct clk *pipe_clk;
+> +	struct clk *gcc_pcie_1_pipe_clk_src;
+> +	struct clk *phy_pipe_clk;
+>  };
+> 
+>  union qcom_pcie_resources {
+> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct
+> qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+> 
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+> +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+> +
+> +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> +		if (IS_ERR(res->phy_pipe_clk))
+> +			return PTR_ERR(res->phy_pipe_clk);
+> +	}
 > +
 
-This allows every Rockchip SoC dtsi to add an interrupt here.
-You have only restricted the requirements.
-The goal is to restrict things and filter bogus properties.
-If it was done because it doesn't compile, maybe could you try/test/use
-something like the rockchip-io-domain.yaml $defs format.
+Hi All,
 
-===
+Greetings!
 
-unevaluatedProperties: false
+I would like to check is there any other better approach instead of 
+compatible method here as well or is it fine to use compatible method.
 
-allOf:
-  - $ref: "#/$defs/rk3568"
+Thanks
+-Prasad
 
-$defs:
-  rk3568:
-    if:
-      properties:
-        compatible:
-          contains:
-            const: rockchip,rk3568-usb2phy
-
-    then:
-      properties:
-        interrupts:
-          maxItems: 1
-
-      required:
-        - interrupts
-
-    else:
-      properties:
-        host-port:
-          properties:
-            interrupts:
-              description: host linestate interrupt
-
-            interrupt-names:
-              const: linestate
-
-          required:
-            - interrupts
-            - interrupt-names
-
-        otg-port:
-          properties:
-
-           interrupts:
-             minItems: 1
-             maxItems: 3
-
-           interrupt-names:
-             oneOf:
-               - const: linestate
-               - const: otg-mux
-               - items:
-                   - const: otg-bvalid
-                   - const: otg-id
-                   - const: linestate
-
-          required:
-            - interrupts
-            - interrupt-names
-
->    rockchip,usbgrf:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -78,8 +82,6 @@ properties:
->  
->      required:
->        - "#phy-cells"
-
-> -      - interrupts
-> -      - interrupt-names
-
-Also remove them as properties in this part when a separate $defs is used.
-
->  
->    otg-port:
->      type: object
-> @@ -109,8 +111,6 @@ properties:
->  
->      required:
->        - "#phy-cells"
-
-> -      - interrupts
-> -      - interrupt-names
-
-dito
-
->  
->  required:
->    - compatible
-> @@ -120,6 +120,29 @@ required:
->    - host-port
->    - otg-port
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3568-usb2phy
-
-> +      then:
-
-Test "if then else" alignment with yamllint
-
-> +        properties:
-> +          interrupts:
-> +            maxItems: 1
-> +        required:
-> +          - interrupts
-
-> +      else:
-
-alignment
-
-> +        properties:
-> +          host-port:
-> +            required:
-> +              - interrupts
-> +              - interrupt-names
-> +          otg-port:
-> +            required:
-> +              - interrupts
-> +              - interrupt-names
+>  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>  }
+> @@ -1255,6 +1267,12 @@ static void qcom_pcie_deinit_2_7_0(struct
+> qcom_pcie *pcie)
+>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> +	struct dw_pcie *pci = pcie->pci;
+> +	struct device *dev = pci->dev;
+> +	struct device_node *node = dev->of_node;
 > +
-
->  additionalProperties: false
-
-additionalProperties does workn't with allOf: - $ref. Use
-unevaluatedProperties.
-
->  
->  examples:
+> +	if (of_property_read_bool(node, "pipe-clk-source-switch"))
+> +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
 > 
+>  	return clk_prepare_enable(res->pipe_clk);
+>  }
