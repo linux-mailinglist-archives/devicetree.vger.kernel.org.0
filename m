@@ -2,113 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B3C3EEFD7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 17:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A79423EEFC2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 17:55:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240123AbhHQP5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 11:57:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241082AbhHQP4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 11:56:12 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180FDC061150;
-        Tue, 17 Aug 2021 08:53:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id z2so42331377lft.1;
-        Tue, 17 Aug 2021 08:53:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=i1x/HqtgkDsm/ejKQeETrdsQe6dZCILRZB7KrDkPDRw=;
-        b=An4PsjL/Vf5udfyNdAKTCYWd10EU58Kpxe8zKg/t9npZAavumDMU+X9iBgUDO5Z8Zq
-         qLi7UARHs5EBlnNEWrEBaiEyo4AvkdNde23Gx7Ech/+7twOysiNWaNZJNc4c1H9Unsq3
-         EZ9/NC8tZYzsvHiEyEjIq8t7XNVBW4+7jhFenO5mQmYIgRBk+TxgMXr2m4yePVU5ry+F
-         yIAUTR2f68Q14RQm9v+g3T6mw1go0mbvXB6UoQIJuFvpfbNq+pUgeWHg895WJQXEl29h
-         zNHJ3yrbMGXltFkn0e1Yqc4GHFXDR5UTFoNhdaUppdVMQxIsBTVP10kUU2MP/Em1dvWL
-         oObQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=i1x/HqtgkDsm/ejKQeETrdsQe6dZCILRZB7KrDkPDRw=;
-        b=LMUv3nVDHLln3ypbO19SQ/SppKav30at9ZDJhP0teyzQmIJ+NF1hUGZ/calGUV116v
-         7cTrCqbMmt4nkZn4pzJFaeOmvPQxAXL+vqS8/f9mJNZEFQ4CU/htpUvXKgWH5a5Qh2s4
-         lizBX/CYNk16sxp/gyR2VCbxkZrTRCep94F8/5vuycT7iyIYpiJnj4Wa4WW/MVBzC0Ri
-         /UoKS7dQpLWiTWV1GIeLkjywmSsarj1BnMGO+N8yGMzDgKrzwiYncnpWyNXIrjrtY6lJ
-         wlS8rbUvn1zpL+14YDzf61DZJfzGuZ6IrzBV/QnkmkriIy0CW0ovFlz2xY/hxGTRAkdo
-         6mQg==
-X-Gm-Message-State: AOAM531m9enKkT+isJXgU8tQ1cqHR95ClWgqtVDLh5rPt/+Oj9TaNrao
-        lbFeEo8JIln9P4ppaOFs2NUDmnD3eJo=
-X-Google-Smtp-Source: ABdhPJzKDCfx8XTSv5rLHo+odlu5xNPqb9QF4cuJdpvDud3tFDUajnizSUcMOMnHR+YPCBFb3Bv9Ew==
-X-Received: by 2002:ac2:4f8f:: with SMTP id z15mr2811432lfs.361.1629215591955;
-        Tue, 17 Aug 2021 08:53:11 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-85-91.dynamic.spd-mgts.ru. [46.138.85.91])
-        by smtp.googlemail.com with ESMTPSA id r20sm223793lff.93.2021.08.17.08.53.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Aug 2021 08:53:11 -0700 (PDT)
-Subject: Re: [PATCH v8 22/34] spi: tegra20-slink: Add OPP support
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20210817012754.8710-1-digetx@gmail.com>
- <20210817012754.8710-23-digetx@gmail.com>
- <20210817122244.GA4290@sirena.org.uk>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a0e49d91-e812-5b55-e90f-bfba8476faa3@gmail.com>
-Date:   Tue, 17 Aug 2021 18:53:09 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S241099AbhHQP4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 11:56:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50800 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240525AbhHQPwJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 11:52:09 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D860B60C3E;
+        Tue, 17 Aug 2021 15:51:18 +0000 (UTC)
+Date:   Tue, 17 Aug 2021 16:54:18 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     "hui.liu" <hui.liu@mediatek.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        <robh+dt@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <chun-hung.wu@mediatek.com>, <yingjoe.chen@mediatek.com>,
+        <seiya.wang@mediatek.com>, <matthias.bgg@gmail.com>,
+        <s.hauer@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: Re: [PATCH v1 1/2] iio: mtk-auxadc: add support IIO_CHAN_INFO_RAW
+ case
+Message-ID: <20210817165418.4b1cfdce@jic23-huawei>
+In-Reply-To: <470d4a7fbbcbcaa35aa9dcbaab6a2b77f98dc528.camel@mediatek.com>
+References: <20210812054844.30575-1-hui.liu@mediatek.com>
+        <20210812054844.30575-2-hui.liu@mediatek.com>
+        <20210812190725.00007449@Huawei.com>
+        <042625639032bffe73b60a5c6274511e58e34ef4.camel@mediatek.com>
+        <20210814171007.6892ae94@jic23-huawei>
+        <470d4a7fbbcbcaa35aa9dcbaab6a2b77f98dc528.camel@mediatek.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210817122244.GA4290@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.08.2021 15:22, Mark Brown пишет:
-> On Tue, Aug 17, 2021 at 04:27:42AM +0300, Dmitry Osipenko wrote:
->> The SPI on Tegra belongs to the core power domain and we're going to
->> enable GENPD support for the core domain. Now SPI driver must use OPP
->> API for driving the controller's clock rate because OPP API takes care
->> of reconfiguring the domain's performance state in accordance to the
->> rate. Add OPP support to the driver.
+On Tue, 17 Aug 2021 16:37:52 +0800
+hui.liu <hui.liu@mediatek.com> wrote:
+
+> On Sat, 2021-08-14 at 17:10 +0100, Jonathan Cameron wrote:
+> > On Fri, 13 Aug 2021 11:46:24 +0800
+> > hui.liu <hui.liu@mediatek.com> wrote:
+> >   
+> > > On Thu, 2021-08-12 at 19:07 +0100, Jonathan Cameron wrote:  
+> > > > On Thu, 12 Aug 2021 13:48:43 +0800
+> > > > Hui Liu <hui.liu@mediatek.com> wrote:
+> > > >     
+> > > > > Add support IIO_CHAN_INFO_RAW case.    
+> > > > 
+> > > > Why?
+> > > > 
+> > > > We almost never support both RAW and PROCESSED as userspace
+> > > > should be
+> > > > fine to use either.  There are a few reasons we've let drivers do
+> > > > this but I would like know why it matters to you and it
+> > > > definitely
+> > > > needs to be in the patch description.
+> > > >     
+> > > 
+> > > Hi Jonathan,
+> > > 
+> > > 1. To support ADC consumers' different types of requirement: some
+> > > consumers want to call iio_read_channel_raw to get raw data, the
+> > > others
+> > > use iio_read_channel_processed to get voltage.  
+> > 
+> > Give an example of the consumer using the raw channel readback
+> > (without
+> > acess to any scaling information?)
+> >   
 > 
-> Acked-by: Mark Brown <broonie@kernel.org>
+> > > 2. In our origin driver, if consumer call
+> > > iio_read_channel_processed,
+> > > read back value is raw data. 
+> > > 
+> > > Could we use SCALE instead of PROCESSED in patch for next version,
+> > > or
+> > > what's your suggestion?  
+> > 
+> > That would unfortunately be a userspace ABI change.  We can add
+> > interfaces
+> > but taking them away is normally a problem :( 
+> > 
+> > Your reasons here are fine, subject to information on what consumer
+> > cares
+> > about having _RAW, please resend the patch with this information
+> > added
+> > to the description.
+> > 
+> > Thanks,
+> > 
+> > Jonathan  
 > 
-> Is there a concrete dependency here or can I merge this separately?
+> 1. We found afe/iio-rescale.c, dac/dpot-dac.c and multiplexer/iio-mux.c 
+> call iio_read_channel_raw to get raw data. If they use our ADC driver,
+> I think we should support _RAW case. 
+> If we support _RAW case, we will add more information in v2
+> description.
 
-This patch depends on the new OPP helpers added earlier in this series.
-In particular it depends on these patches:
+iio-rescale has recently gained support for processed.
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/drivers/iio/afe/iio-rescale.c?h=testing&id=53ebee9499805add3eef630d998c40812e6a1c39
+dpot-dac is a rather obscure special case, so I doubt you actually have one of those.
+If iio-mux is relevant then we should add processed support to that driver as well.
 
-opp: Add dev_pm_opp_sync() helper
-soc/tegra: Add devm_tegra_core_dev_init_opp_table_simple()
+I would rather see those users of the interface fixed than us
+having to tweak lots of drivers to provide _raw when it isn't appropriate for
+that piece of hardware.
 
-Thank you for the ack!
+Jonathan
+
+> 
+> 2. Since we change _PROCESSED readback value from raw data to voltage,
+> our consumer will make the changes synchronously. 
+> 
+> > > 
+> > > Thanks.
+> > >   
+> > > > > 
+> > > > > Signed-off-by: Hui Liu <hui.liu@mediatek.com>
+> > > > > ---
+> > > > >  drivers/iio/adc/mt6577_auxadc.c | 16 +++++++++++++++-
+> > > > >  1 file changed, 15 insertions(+), 1 deletion(-)
+> > > > > 
+> > > > > diff --git a/drivers/iio/adc/mt6577_auxadc.c
+> > > > > b/drivers/iio/adc/mt6577_auxadc.c
+> > > > > index 79c1dd68b909..e995d43287b2 100644
+> > > > > --- a/drivers/iio/adc/mt6577_auxadc.c
+> > > > > +++ b/drivers/iio/adc/mt6577_auxadc.c
+> > > > > @@ -60,7 +60,8 @@ static const struct mtk_auxadc_compatible
+> > > > > mt6765_compat = {
+> > > > >  		.type = IIO_VOLTAGE,				
+> > > > >    
+> > > > >  \
+> > > > >  		.indexed = 1,					
+> > > > >    
+> > > > >  \
+> > > > >  		.channel = (idx),				
+> > > > >     \
+> > > > > -		.info_mask_separate =
+> > > > > BIT(IIO_CHAN_INFO_PROCESSED), \
+> > > > > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |	
+> > > > >    
+> > > > >  \
+> > > > > +				      BIT(IIO_CHAN_INFO_PROCESS
+> > > > > ED), \
+> > > > >  }
+> > > > >  
+> > > > >  static const struct iio_chan_spec mt6577_auxadc_iio_channels[]
+> > > > > = {
+> > > > > @@ -181,6 +182,19 @@ static int mt6577_auxadc_read_raw(struct
+> > > > > iio_dev *indio_dev,
+> > > > >  	struct mt6577_auxadc_device *adc_dev =
+> > > > > iio_priv(indio_dev);
+> > > > >  
+> > > > >  	switch (info) {
+> > > > > +	case IIO_CHAN_INFO_RAW:
+> > > > > +		*val = mt6577_auxadc_read(indio_dev, chan);
+> > > > > +		if (*val < 0) {
+> > > > > +			dev_notice(indio_dev->dev.parent,
+> > > > > +				"failed to sample data on
+> > > > > channel[%d]\n",
+> > > > > +				chan->channel);
+> > > > > +			return *val;
+> > > > > +		}
+> > > > > +		if (adc_dev->dev_comp->sample_data_cali)
+> > > > > +			*val = mt_auxadc_get_cali_data(*val,
+> > > > > true);
+> > > > > +
+> > > > > +		return IIO_VAL_INT;
+> > > > > +
+> > > > >  	case IIO_CHAN_INFO_PROCESSED:
+> > > > >  		*val = mt6577_auxadc_read(indio_dev, chan);
+> > > > >  		if (*val < 0) {    
+> > > > 
+> > > >     
+> > 
+> >   
+
