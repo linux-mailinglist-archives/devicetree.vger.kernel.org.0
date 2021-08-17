@@ -2,124 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ACE53EF30F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 22:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 412763EF320
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 22:15:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233436AbhHQUKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 16:10:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50306 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233179AbhHQUKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 16:10:08 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2AE7C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 13:09:34 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id k5so15827704lfu.4
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 13:09:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=k8AfVuCGxDrAVAQEMwEyKZr/585805GvK2MzsN/gS3A=;
-        b=CZPAZB5/x6SSKO3/e4ljoCjcPsrNGDpLblZMD69HhLBEw4EpEnaMCLjsSRVWWn5c8R
-         6qK/hjUcTlz7tWO+lSjquayDXvuIN/47A6alfgci5XZp4ZVck4LIDSG8X7Q4SDpoCz7q
-         LZldLdE0hvD9Rs6Nr3Up4gkhyI3fIuSToGWAn4IZ92cR4YbsAltHiAVd+9v9BeE0nzik
-         ZPzZ6EjD8WwP1T0XpfKHkv1ra0lT7gDQWjVvNmU6cMwDo70qRzQnBhZIsfPpSsi6FIQy
-         DycVicbxZ8DEKI/CY5OzuH7cofexceLkH5ljhdve4pmcRWOn6+KyDnNaqxa4SUW4vZA7
-         vfLg==
+        id S233849AbhHQUMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 16:12:42 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:34597 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234014AbhHQUMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 16:12:42 -0400
+Received: by mail-oo1-f48.google.com with SMTP id w2-20020a4a9e420000b02902859adadf0fso19594ook.1;
+        Tue, 17 Aug 2021 13:12:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=k8AfVuCGxDrAVAQEMwEyKZr/585805GvK2MzsN/gS3A=;
-        b=P+J808U7UHU+/MvDFo0WmPXrJsGTteXG873D/hX1lYF4OZkhFpGK3B0bk01IqfvIXb
-         r7pCdPqQ4SLcWy+6//XcIGxZWBwyA6+dhydy9wQQWiol/nyzrRZzDRVS+VRHrMDo9ynj
-         0IsXow/35NQiO1EXiyeQeqWcemr+rEsNon6YyH+ZS0SDmmNEoKDA3w3JLRwyvSC4db7s
-         CmigETrtyp+0cRKKFRpB5zxsgBRgfRTO04i/QevVe5Dk2QyDyTcRNljPbnRHWntWziq8
-         mFbuGpwvA0+qT0C6wo6zE78ben0xd/hwJP8Hj91T8F+2bp6z4lHDQX9QlvDIi2lzQVJh
-         9USw==
-X-Gm-Message-State: AOAM533recA4+qYKm0bSXHW5hmzYf2plGRy//PM09O2jp4UAuabpBYMb
-        i/aybkK9//w6aI+YvrUCOm4pXQqnxZVfv3y0BxS2xw==
-X-Google-Smtp-Source: ABdhPJxghIUV5K9nnRKPIlLjW0aY8CAvGBeUp9sBilijN+pjZbbOVx9RaTN3WM8sx4gBVuvt9YsAcirfPdhwGO8Ypzw=
-X-Received: by 2002:ac2:58d4:: with SMTP id u20mr3489426lfo.157.1629230973143;
- Tue, 17 Aug 2021 13:09:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
- <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
- <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
- <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
- <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
- <CACRpkdZ4k9Km3vBtdN6AnBM89c4355GtPMzCQ0_YHaTb4V5cKA@mail.gmail.com>
- <CAGXv+5HohMwU8jow5QXO5MK1tO+u=5YsfhArBWCP4Dgm1Q8igg@mail.gmail.com>
- <4fd12d5c53f6492e5fa3ba94a78b9a149f5b6ed9.camel@mediatek.com>
- <CAGXv+5GCuNK=-z9VAOjkpJdZLUSZFPfUsQ09m1FhfTsbCYLLRw@mail.gmail.com>
- <CACRpkdbZKh8cqqiDRUik6Ooo33e+feGwYsLjcLRvBQnT3x5M3A@mail.gmail.com>
- <a7c8ab68ac3513865698cde27e665bdd554f459e.camel@mediatek.com>
- <CAGXv+5FtL2zaSWx4tUymx6mpCSb5dXG4XNWM9AJL+b6Ok3dxMg@mail.gmail.com> <d40f6d5fd26aedb13e7a393202e5794b1893ecf8.camel@mediatek.com>
-In-Reply-To: <d40f6d5fd26aedb13e7a393202e5794b1893ecf8.camel@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 17 Aug 2021 22:09:21 +0200
-Message-ID: <CACRpkdYkwXr76Kq5WYdz=1KkLTpaByAL1vJFo8V+2mncqs8-3Q@mail.gmail.com>
-Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9Y8O/ugVUGd/pj+YpwBoilPPzVox4p1gBlgEBXz9RZM=;
+        b=bXELBVzvCmhHbk7kR+ucuj94SMpL6ZOgWO4jptH/EMr1JRuh17woH1yQKItto1pe3o
+         iyddKeOUdhv54vQTcQmV6mw/CaVpw+lTHbEzARunZgUfbmPG1XQvnY02HA4HiXa62kaa
+         vs6aPOyiK1jNV77XZj6AQqO3AsSAhVDuASLHBjwOV8ZWG/yxZKu1J1ujCFPm6dBb9Ffb
+         xxa8K11Eto1hBKGH0/8mpZ/zBQCs9YanoJzJVQmPljToz/1+wKjP4ptUGmEUT/OejkNB
+         vg+XXHRX2olAzv92t05VBHwykENODxJj6STl5Yuhz/kZpZa+WVYCdvoXVXKbJuCH+sfz
+         GgvA==
+X-Gm-Message-State: AOAM531NcAuKcWg2WR98IVKQ0kkAfi/J+BU7Xqvj7WzYQ7vWeipGEMpE
+        eDbJZ1ZK7ma/JGNGRG2wUw==
+X-Google-Smtp-Source: ABdhPJzXi2Qb6T0n6M6hziTxPBlA6ZUr+4xKRXs2HwFfG0DIibNMEo5wtI0feqdM1bdl918jWY2pRQ==
+X-Received: by 2002:a4a:d5d0:: with SMTP id a16mr3910689oot.18.1629231128239;
+        Tue, 17 Aug 2021 13:12:08 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i188sm708832oih.7.2021.08.17.13.12.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Aug 2021 13:12:07 -0700 (PDT)
+Received: (nullmailer pid 762404 invoked by uid 1000);
+        Tue, 17 Aug 2021 20:12:06 -0000
+Date:   Tue, 17 Aug 2021 15:12:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
+        Ikjoon Jang <ikjn@chromium.org>
+Subject: Re: [PATCH v3 02/13] dt-bindings: memory: mediatek: Add mt8195 smi
+ sub common
+Message-ID: <YRwYFtVlNjxyRwX+@robh.at.kernel.org>
+References: <20210810080859.29511-1-yong.wu@mediatek.com>
+ <20210810080859.29511-3-yong.wu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210810080859.29511-3-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 17, 2021 at 9:51 AM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+On Tue, Aug 10, 2021 at 04:08:48PM +0800, Yong Wu wrote:
+> Add the binding for smi-sub-common. The SMI block diagram like this:
+> 
+>         IOMMU
+>          |  |
+>       smi-common
+>   ------------------
+>   |      ....      |
+>  larb0           larb7   <-max is 8
+> 
+> The smi-common connects with smi-larb and IOMMU. The maximum larbs number
+> that connects with a smi-common is 8. If the engines number is over 8,
+> sometimes we use a smi-sub-common which is nearly same with smi-common.
+> It supports up to 8 input and 1 output(smi-common has 2 output)
+> 
+> Something like:
+> 
+>         IOMMU
+>          |  |
+>       smi-common
+>   ---------------------
+>   |      |          ...
+> larb0  sub-common   ...   <-max is 8
+>       -----------
+>        |    |    ...   <-max is 8 too.
+>      larb2 larb5
+> 
+> We don't need extra SW setting for smi-sub-common, only the sub-common has
+> special clocks need to enable when the engines access dram.
+> 
+> If it is sub-common, it should have a "mediatek,smi" phandle to point to
+> its smi-common. meanwhile the sub-common only has one gals clock.
+> 
+> Additionally, add a new property "mediatek,smi_sub_common" for this
+> sub-common, this is needed in the IOMMU driver in which we create a device
+> link between smi-common and the IOMMU device. If we add the smi-sub-common
+> here, the IOMMU driver still need to find the smi-common device. thus,
+> add this bool property to indicate if it is sub-common.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+> change note:
+> a. change mediatek, smi type from phandle-array to phandle from Rob.
+> b. Add a new bool property (mediatek,smi_sub_common) to indicate this is
+>    smi-sub-common. the reason is as above.
+> ---
+>  .../mediatek,smi-common.yaml                  | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> index 602592b6c3f5..26bb9903864b 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> @@ -38,6 +38,7 @@ properties:
+>            - mediatek,mt8192-smi-common
+>            - mediatek,mt8195-smi-common-vdo
+>            - mediatek,mt8195-smi-common-vpp
+> +          - mediatek,mt8195-smi-sub-common
+>  
+>        - description: for mt7623
+>          items:
+> @@ -67,6 +68,14 @@ properties:
+>      minItems: 2
+>      maxItems: 4
+>  
+> +  mediatek,smi:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: a phandle to the smi-common node above. Only for sub-common.
+> +
+> +  mediatek,smi_sub_common:
 
-> In one chip, If GPIO is different, the MTXXXX_PULL_UP_RSEL_001 may
-> means different actual bias resistance setting.
->
-> For example,
->
-> KPROW IO
-> Paramters       Descriptions                   Min      Typ     Max
->  UNIT
-> Rpd     Input pull-down resistance      40      75      190     Kohm
-> Rpu     Input pull-up resistance        40      75      190     Kohm
-> Rpd     Input pull-down resistance      0.8     1.6     2       Kohm
-> Rpu     Input pull-up resistance        0.8     1.6     2       Kohm
+s/_/-/
 
-This is exactly why we should try to use SI units in the device tree.
-I assume that the software can eventually configure which resistance
-it gets?
+> +    type: boolean
+> +    description: Indicate if this is smi-sub-common.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -93,6 +102,27 @@ allOf:
+>              - const: smi
+>              - const: async
+>  
+> +  - if:  # only for sub common
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8195-smi-sub-common
+> +    then:
+> +      required:
+> +        - mediatek,smi
+> +        - mediatek,smi_sub_common
+> +      properties:
+> +        clock:
+> +          items:
+> +            minItems: 3
+> +            maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: apb
+> +            - const: smi
+> +            - const: gals0
 
-The electronics people will say make sure it is pulled down by around
-80 kOhm, they can put that on the device tree and your code can
-say, "hm 40 < 80 < 190 this is OK" and let the value pass.
+If not allowed for other compatibles, you need:
 
-We do not define these exact semantics, it is up to the driver code
-to decide what to do with the Ohm value 80000 in this case, but
-it makes perfect sent for me to let it pass and fail if someone
-for example requests 20 kOhm, or at least print a helpful warning:
+else:
+  properties:
+    mediatek,sni: false
+    mediatek,smi_sub_common: false
 
-dev_warn(dev, "the requested resistance %d is out of range, supported
-range %d to %d kOhm\n",
-                 val, low, high);
 
-This is what makes the SI units really helpful for people writing device
-trees: solve real integration tasks and make it easy to do the right thing.
-
-Yours,
-Linus Walleij
+> +
+>    - if:  # for gen2 HW that have gals
+>        properties:
+>          compatible:
+> -- 
+> 2.18.0
+> 
+> 
