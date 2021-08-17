@@ -2,171 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 998AB3EF2E6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 21:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B1913EF2F4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 21:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232741AbhHQTw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 15:52:57 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:38426 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbhHQTw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 15:52:56 -0400
-Received: by mail-oi1-f178.google.com with SMTP id u25so830177oiv.5;
-        Tue, 17 Aug 2021 12:52:23 -0700 (PDT)
+        id S231281AbhHQT6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 15:58:36 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:36467 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229466AbhHQT6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 15:58:36 -0400
+Received: by mail-oi1-f182.google.com with SMTP id bd1so869216oib.3;
+        Tue, 17 Aug 2021 12:58:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ixfHrTYt1Ggxk98FasDm3U4TseRB8t40ON9dN+2bDek=;
-        b=XZ1XMAIfFYNoWOz39lrq8T8mPVaU0Kk9LJ+RCYHXwrLpC08YKZtie6fV6DmWsqEgi3
-         Zxpzt/DkNskmJZCQh6ggwPd4+11V8YIP3wPh2Rp9yqPwVkzx0DVXUPb20xxDNg0bbGud
-         yznGOuFGkWEgCMwIYHPIlUzDaXYERlad+W9G9xlTvnZgJkZMKhIAfEVYPzpCQYW7tkif
-         H5lMy8HsE5+1Sc/2F/WX0L1Y8YE/tFh07w+ClRodo3dvEbmNNWYS0BnJvN49O7u+PxlF
-         LE8K8Bg1XC9q2XOWsmg/kRn857tk1i69sFg9hKaUmC2OZHuHJEb6YmfN6yMNdWcAJJSm
-         2Rzw==
-X-Gm-Message-State: AOAM530lZNGN3M7Iy0DNhSgNwXaecOIShj8iKTabwkz6KR9/u3Ga0mqf
-        9zIErIHNAamdE33KLM2D+A==
-X-Google-Smtp-Source: ABdhPJwxWYE4D7xKcY+qlTUW/C7DjrHS7+9SN/4H7+11Cmf+scP5xOllg68dU2dyLMS2F0dIQEQDmg==
-X-Received: by 2002:aca:c289:: with SMTP id s131mr3888056oif.14.1629229942998;
-        Tue, 17 Aug 2021 12:52:22 -0700 (PDT)
+        bh=XswSKX2YNfn4fxq6lztzp7gFskvRH1mEGY9i4/UDIcE=;
+        b=XLud5UxglgSHWYr9oUt+DbGEL8WshlkWsmhBot8Ier2yXoJwe2z8cZB+0B9W5zgzDY
+         RZJS4GVMM76fNJnVYcdKf2C/E9gdsBCwLFjmyoMIciqXdOuKWZDCX+z3sDuzhioRnno0
+         7I9bUFOmbyD4/rxQf+1uNnP/XLbNaNSfspgeMGbX5YfmAriWSt+l+RIwHBOh+09LW9ix
+         sk5Q0aQn3e6RoMnQC314ameJSiZNXkGF98b1C/FeY1elxO1iyu8gVfuRdCbBGhl3yLiX
+         hEqdja8875t5KlfHf/Z2IoRY5aXqr2pI/JETLOYhhLTOWvdN+CAK5XPFxuBospV+8NRN
+         691g==
+X-Gm-Message-State: AOAM532wrXxSTDx/eYgEzUnPpfJq70BMLtWq24jjdXH6TrtZsVFPZEtt
+        wpSoCOc0VioQEtgJM9v/lQ==
+X-Google-Smtp-Source: ABdhPJw2YJdPmm6vI/tJq6qFR0OSaSyTEaX+Og+DxLv0oF+LjxctmQIYipB7L03BC/A+QDfMHjuSJg==
+X-Received: by 2002:a05:6808:56:: with SMTP id v22mr3997896oic.49.1629230282576;
+        Tue, 17 Aug 2021 12:58:02 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id bf41sm699883oib.41.2021.08.17.12.52.22
+        by smtp.gmail.com with ESMTPSA id s63sm697959oia.52.2021.08.17.12.58.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 12:52:22 -0700 (PDT)
-Received: (nullmailer pid 736727 invoked by uid 1000);
-        Tue, 17 Aug 2021 19:52:21 -0000
-Date:   Tue, 17 Aug 2021 14:52:21 -0500
+        Tue, 17 Aug 2021 12:58:01 -0700 (PDT)
+Received: (nullmailer pid 744134 invoked by uid 1000);
+        Tue, 17 Aug 2021 19:58:00 -0000
+Date:   Tue, 17 Aug 2021 14:58:00 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     linux-clk@vger.kernel.org, git@xilinx.com,
-        devicetree@vger.kernel.org, shubhrajyoti.datta@gmail.com
-Subject: Re: [PATCH v12 1/5] dt-bindings: add documentation of xilinx
- clocking wizard
-Message-ID: <YRwTdQ5MyH6/xcja@robh.at.kernel.org>
-References: <20210810072533.27620-1-shubhrajyoti.datta@xilinx.com>
- <20210810072533.27620-2-shubhrajyoti.datta@xilinx.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>, shawnguo@kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V1 1/4] bindings: nvmem: introduce "reverse-data" property
+Message-ID: <YRwUyLsvoSpFI9X8@robh.at.kernel.org>
+References: <20210810073510.18218-1-qiangqing.zhang@nxp.com>
+ <20210810073510.18218-2-qiangqing.zhang@nxp.com>
+ <6e3f6881-929d-1663-58f1-39bf35069175@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210810072533.27620-2-shubhrajyoti.datta@xilinx.com>
+In-Reply-To: <6e3f6881-929d-1663-58f1-39bf35069175@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 10, 2021 at 12:55:29PM +0530, Shubhrajyoti Datta wrote:
-> Add the devicetree binding for the xilinx clocking wizard.
+On Wed, Aug 11, 2021 at 11:16:49AM +0100, Srinivas Kandagatla wrote:
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> ---
->  v6:
->  Fix a yaml warning
->  v7:
->  Add vendor prefix speed-grade
->  v8:
->  Fix the warnings
->  v10:
->  Add nr-outputs
->  v11:
->  add the compatibles for various versions
->  rename nr-outputs to xlnx,nr-outputs
->  v12:
->  No change
 > 
->  .../bindings/clock/xlnx,clocking-wizard.yaml  | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> On 10/08/2021 08:35, Joakim Zhang wrote:
+> > Introduce "reverse-data" property for nvmem provider to reverse buffer.
+> > 
+> > Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> > ---
+> >   Documentation/devicetree/bindings/nvmem/nvmem.yaml | 5 +++++
+> >   1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> > index b8dc3d2b6e92..bc745083fc64 100644
+> > --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> > +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> > @@ -61,6 +61,11 @@ patternProperties:
+> >                 description:
+> >                   Size in bit within the address range specified by reg.
+> > +      reverse-data:
+> > +        $ref: /schemas/types.yaml#/definitions/flag
+> > +        description:
+> > +          Reverse the data that read from the storage device.
+> > +
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> new file mode 100644
-> index 000000000000..74a121988e92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/xlnx,clocking-wizard.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Xilinx clocking wizard
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> +
-> +description:
-> +  The clocking wizard is a soft ip clocking block of Xilinx versal. It
-> +  reads required input clock frequencies from the devicetree and acts as clock
-> +  clock output.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - xlnx,clocking-wizard
+> This new property is only going to solve one of the reverse order issue
+> here.
+> If I remember correctly we have mac-address stored in various formats ex:
+> from old thread I can see
+> 
+> Type 1: Octets in ASCII without delimiters. (Swapped/non-Swapped)
+> Type 2: Octets in ASCII with delimiters like (":", ",", ".", "-"... so on)
+> (Swapped/non-Swapped)
+> Type 3: Is the one which stores mac address in Type1/2 but this has to be
+> incremented to be used on other instances of eth.
+> Type 4: Octets as bytes/u8, swapped/non-swapped
+> 
+> I think its right time to consider adding compatibles to nvmem-cells to be
+> able to specify encoding information and handle post processing.
 
-What version is this one?
+Yes. Trying to handle this with never ending new properties will end up 
+with a mess. At some point, you just need code to parse the data.
 
-> +      - xlnx,clocking-wizard-v5-2 # version 5.2
-> +      - xlnx,clocking-wizard-v6-0 # version 6.0
-
-The comment is pretty pointless. And periods are allowed in compatible 
-strings, so just do '-v5.2'.
-
-> +
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock input
-> +      - description: axi clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_in1
-> +      - const: s_axi_aclk
-> +
-> +
-> +  xlnx,speed-grade:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 3]
-> +    description:
-> +      Speed grade of the device. Higher the speed grade faster is the FPGA device.
-> +
-> +  xlnx,nr-outputs:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 8
-> +    description:
-> +      Number of outputs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
-> +  - xlnx,speed-grade
-> +  - xlnx,nr-outputs
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@b0000000  {
-> +        compatible = "xlnx,clocking-wizard";
-> +        reg = <0xb0000000 0x10000>;
-> +        #clock-cells = <1>;
-> +        xlnx,speed-grade = <1>;
-> +        xlnx,nr-outputs = <6>;
-> +        clock-names = "clk_in1", "s_axi_aclk";
-> +        clocks = <&clkc 15>, <&clkc 15>;
-> +    };
-> +...
-> -- 
-> 2.17.1
-> 
-> 
+Rob
