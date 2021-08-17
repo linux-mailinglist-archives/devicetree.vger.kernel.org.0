@@ -2,63 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D7FF3EEAFC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 961DC3EEB32
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:47:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239087AbhHQKbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 06:31:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236220AbhHQKbl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 06:31:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BBC0F600CC;
-        Tue, 17 Aug 2021 10:31:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629196268;
-        bh=gwHWOw/ASy61DLhExAAJff6S57004jn6JCY7yTCDpLY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ICnrOAIY3x8BStucty1s+XddE23iaDU6CpMMaQCdyyjQyhqEXlk8MeQHj5gjktf6u
-         B5+dsi06P+oXwRZ7NPCoXNCWPgxyny24V0QHyfLuDLy9BBl/Ajo+jDnuhsTI5/Cm/O
-         J61MyqioLWtl3yevXMwuIqNYoBnVEJgeyk8JT8FZQnE/19aazFBpEiBixUAWKQTYOo
-         gBbTogqfhVSRQAuPJ8Vx15aVHDCITtazvPkrfDaiP3aMTgbRlZ+ONa9EnrDwxEfmCg
-         wxkRGAg9dYAlpBQoQPKbMv3Xo6hPzrzSM0NXhfW52cXHXjDCFY0m8Iz1p50tl6aGwL
-         I9Fml9+Wd1E8w==
-Date:   Tue, 17 Aug 2021 16:01:04 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        Brian Kim <brian.kim@hardkernel.com>
-Subject: Re: [PATCHv3 6/6] phy: amlogic: meson8b-usb2: don't log an error on
- -EPROBE_DEFER
-Message-ID: <YRuP6JfdEZNL8tXt@matsya>
-References: <20210817041548.1276-1-linux.amoon@gmail.com>
- <20210817041548.1276-7-linux.amoon@gmail.com>
+        id S239673AbhHQKrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 06:47:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239633AbhHQKrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 06:47:45 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7553C061764
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 03:47:12 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <jlu@pengutronix.de>)
+        id 1mFwcV-00084f-9I; Tue, 17 Aug 2021 12:46:59 +0200
+Received: from localhost ([127.0.0.1])
+        by ptx.hi.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <jlu@pengutronix.de>)
+        id 1mFwcT-0000h1-T6; Tue, 17 Aug 2021 12:46:57 +0200
+Message-ID: <17798cb01c5d699738f57118d4deb53504759818.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] dt-bindings: memory: convert Marvell MVEBU SDRAM
+ controller to dtschema
+From:   Jan =?ISO-8859-1?Q?L=FCbbe?= <jlu@pengutronix.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Date:   Tue, 17 Aug 2021 12:46:57 +0200
+In-Reply-To: <20210817093807.59531-1-krzysztof.kozlowski@canonical.com>
+References: <20210817093807.59531-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.3 (by Flathub.org) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210817041548.1276-7-linux.amoon@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: jlu@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-08-21, 09:45, Anand Moon wrote:
-> devm_phy_create can return -EPROBE_DEFER if the vbus-supply is not ready
-> yet. Silence this warning as the driver framework will re-attempt
-> registering the PHY. Use dev_err_probe() for phy resources to indicate
-> the deferral reason when waiting for the resource to come up.
+On Tue, 2021-08-17 at 11:38 +0200, Krzysztof Kozlowski wrote:
+> Convert Marvell MVEBU SDRAM controller bindings to DT schema format
+> using json-schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../marvell,mvebu-sdram-controller.yaml       | 31 +++++++++++++++++++
+>  .../mvebu-sdram-controller.txt                | 21 -------------
+>  2 files changed, 31 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/marvell,mvebu-sdram-controller.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mvebu-sdram-controller.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/marvell,mvebu-sdram-controller.yaml b/Documentation/devicetree/bindings/memory-controllers/marvell,mvebu-sdram-controller.yaml
+> new file mode 100644
+> index 000000000000..14a6bc8f421f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/memory-controllers/marvell,mvebu-sdram-controller.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-controllers/marvell,mvebu-sdram-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell MVEBU SDRAM controller
+> +
+> +maintainers:
+> +  - Jan Luebbe <jlu@pengutronix.de>
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: marvell,armada-xp-sdram-controller
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    memory-controller@1400 {
+> +        compatible = "marvell,armada-xp-sdram-controller";
+> +        reg = <0x1400 0x500>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mvebu-sdram-controller.txt b/Documentation/devicetree/bindings/memory-controllers/mvebu-sdram-controller.txt
+> deleted file mode 100644
+> index 89657d1d4cd4..000000000000
+> --- a/Documentation/devicetree/bindings/memory-controllers/mvebu-sdram-controller.txt
+> +++ /dev/null
+> @@ -1,21 +0,0 @@
+> -Device Tree bindings for MVEBU SDRAM controllers
+> -
+> -The Marvell EBU SoCs all have a SDRAM controller. The SDRAM controller
+> -differs from one SoC variant to another, but they also share a number
+> -of commonalities.
+> -
+> -For now, this Device Tree binding documentation only documents the
+> -Armada XP SDRAM controller.
 
-Applied, thanks
+Please keep the description, otherwise it would be confusing why the binding is
+named marvell,mvebu-sdram-controller.yaml although it (currenly) only applies to
+the Armada XP.
+
+Jan
+
+> -
+> -Required properties:
+> -
+> - - compatible: for Armada XP, "marvell,armada-xp-sdram-controller"
+> - - reg: a resource specifier for the register space, which should
+> -   include all SDRAM controller registers as per the datasheet.
+> -
+> -Example:
+> -
+> -sdramc@1400 {
+> -	compatible = "marvell,armada-xp-sdram-controller";
+> -	reg = <0x1400 0x500>;
+> -};
 
 -- 
-~Vinod
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
