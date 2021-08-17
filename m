@@ -2,93 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 925163EF111
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 19:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E0BB3EF142
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 20:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbhHQRsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 13:48:31 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:37550 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbhHQRsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 13:48:30 -0400
-Received: by mail-ot1-f49.google.com with SMTP id n1-20020a9d1e810000b0290514da4485e4so23072442otn.4;
-        Tue, 17 Aug 2021 10:47:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4YfAdp6URMwEzxS/XiQNwuq815IjwGiZo7iZNdeIi3M=;
-        b=mC2p42Mz28+W1wCeWv52b7w/zfpSbTTmp21UFXlJ6SbR1cKvpAJFIW+fi20Dz8lbvO
-         Eqh2bpnh6SG5+ov7qENz5AhbMqgpxmAYPE6g8oK7U4q5ewgrhR/XsrGt8KVfwz4CRlXt
-         ZYY/tGJA3Dfrm7F0WzdprwuKQ1y6pxHktCoVfBgxzDF0Cf4I7xafI305pj41h1H3Kspy
-         9qZ2C7JGBwZUnRI3cSnYD5MBKgzzLO6+tGGLOoE4aESUMtyKZBiV1xJuzN4moo7OCQSy
-         Cr2qUkUXVEQrPa3WSSd4qXUOKAQVufLeMJsiOP2om/P01ErqqcTX0WFKhn+kBplZEM6G
-         ytzg==
-X-Gm-Message-State: AOAM532N0EfOAc9+rZ1VwA8zRdqWbeZd5K4WVBAd8QTYEjw+7BTeZUNB
-        h7TjupkY8vaYAd1iqudW9XI/fFcCaw==
-X-Google-Smtp-Source: ABdhPJy7VVi+GLOzKivpGy0YvumVaoyarVaWyaesbRopUsLuB4FE1R2sf4Hyp3lR/rjUoReBiRlr1Q==
-X-Received: by 2002:a9d:4785:: with SMTP id b5mr3566539otf.188.1629222476823;
-        Tue, 17 Aug 2021 10:47:56 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id o24sm617304oie.17.2021.08.17.10.47.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 10:47:56 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH] dt-bindings: sifive-l2-cache: Fix 'select' matching
-Date:   Tue, 17 Aug 2021 12:47:55 -0500
-Message-Id: <20210817174755.541735-1-robh@kernel.org>
-X-Mailer: git-send-email 2.30.2
+        id S232281AbhHQSEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 14:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232013AbhHQSEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 14:04:50 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F19C061764
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 11:04:17 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mG3RZ-00057n-P1; Tue, 17 Aug 2021 20:04:09 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mG3RX-0006BY-V6; Tue, 17 Aug 2021 20:04:07 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mG3RX-0000pC-U5; Tue, 17 Aug 2021 20:04:07 +0200
+Date:   Tue, 17 Aug 2021 20:04:07 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        michal.simek@xilinx.com, Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] pwm: Add support for Xilinx AXI Timer
+Message-ID: <20210817180407.ru4prwu344dxpynu@pengutronix.de>
+References: <20210719221322.3723009-1-sean.anderson@seco.com>
+ <20210719221322.3723009-3-sean.anderson@seco.com>
+ <20210814204710.retjwn5fycwtrypp@pengutronix.de>
+ <e8d39f18-3aa9-e617-6439-2c0b071f62b3@seco.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6sd75wqw5pt3megh"
+Content-Disposition: inline
+In-Reply-To: <e8d39f18-3aa9-e617-6439-2c0b071f62b3@seco.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the schema fixups are applied to 'select' the result is a single
-entry is required for a match, but that will never match as there should
-be 2 entries. Also, a 'select' schema should have the widest possible
-match, so use 'contains' which matches the compatible string(s) in any
-position and not just the first position.
 
-Fixes: 993dcfac64eb ("dt-bindings: riscv: sifive-l2-cache: convert bindings to json-schema")
-Cc: Paul Walmsley <paul.walmsley@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>
-Cc: Sagar Kadam <sagar.kadam@sifive.com>
-Cc: Yash Shah <yash.shah@sifive.com>
-Cc: linux-riscv@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/riscv/sifive-l2-cache.yaml        | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+--6sd75wqw5pt3megh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-index 1d38ff76d18f..2b1f91603897 100644
---- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-+++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-@@ -24,10 +24,10 @@ allOf:
- select:
-   properties:
-     compatible:
--      items:
--        - enum:
--            - sifive,fu540-c000-ccache
--            - sifive,fu740-c000-ccache
-+      contains:
-+        enum:
-+          - sifive,fu540-c000-ccache
-+          - sifive,fu740-c000-ccache
- 
-   required:
-     - compatible
--- 
-2.30.2
+On Mon, Aug 16, 2021 at 07:51:17PM -0400, Sean Anderson wrote:
+>=20
+>=20
+> On 8/14/21 4:47 PM, Uwe Kleine-K=C3=B6nig wrote:
+> > Hello Sean,
+> >=20
+> > sorry for having you let waiting so long. Now here some more feedback:
+> >=20
+> > On Mon, Jul 19, 2021 at 06:13:22PM -0400, Sean Anderson wrote:
+> > > +static int xilinx_pwm_apply(struct pwm_chip *chip, struct pwm_device=
+ *unused,
+> > > +			    const struct pwm_state *state)
+> > > +{
+> > > +	bool enabled;
+> > > +	struct xilinx_timer_priv *priv =3D xilinx_pwm_chip_to_priv(chip);
+> > > +	u32 tlr0, tlr1, tcsr0, tcsr1;
+> > > +	u64 period_cycles, duty_cycles;
+> > > +	unsigned long rate;
+> > > +
+> > > +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> > > +		return -EINVAL;
+> > > +
+> > > +	/*
+> > > +	 * To be representable by TLR, cycles must be between 2 and
+> > > +	 * priv->max + 2. To enforce this we can reduce the duty
+> > > +	 * cycle, but we may not increase it.
+> > > +	 */
+> > > +	rate =3D clk_get_rate(priv->clk);
+> > > +	period_cycles =3D mul_u64_u32_div(state->period, rate, NSEC_PER_SEC=
+);
+> >=20
+> > cool, I didn't know mul_u64_u32_div.
+>=20
+> I didn't either. Alas, many useful functions like these have no
+> documentation...
+>=20
+> >=20
+> > Hmm, we still have a problem here if
+> >=20
+> > 	state->period * rate > 1000000000 * U64_MAX.
+>=20
+> Note that this can only occur with rate > 1GHz (and period =3D U64_MAX).
+> The highest fmax in the datasheet is 300 MHz (on a very expensive FPGA).
+>=20
+> Maybe it is more prudent to do
+>=20
+> 	period =3D min(state->period, ULONG_MAX * NSEC_PER_SEC)
 
+Together with a check for rate being <=3D 300 MHz to be safe that's fine.
+
+> I think a period of 136 years is adequate :) This comparison also has
+> the advantage of being against const values.
+
+*nod*
+
+> > > +static void xilinx_pwm_get_state(struct pwm_chip *chip,
+> > > +				 struct pwm_device *unused,
+> > > +				 struct pwm_state *state)
+> > > +{
+> > > +	struct xilinx_timer_priv *priv =3D xilinx_pwm_chip_to_priv(chip);
+> > > +	u32 tlr0, tlr1, tcsr0, tcsr1;
+> > > +
+> > > +	regmap_read(priv->map, TLR0, &tlr0);
+> > > +	regmap_read(priv->map, TLR1, &tlr1);
+> > > +	regmap_read(priv->map, TCSR0, &tcsr0);
+> > > +	regmap_read(priv->map, TCSR1, &tcsr1);
+> > > +	state->period =3D xilinx_timer_get_period(priv, tlr0, tcsr0);
+> >=20
+> > xilinx_timer_get_period rounds down, this is however wrong for
+> > .get_state().
+>=20
+> Why is this wrong? I thought get_state should return values which would
+> not be rounded if passed to apply_state.
+
+Consider a PWM that yields a period of =CF=80 * $regval ns when a certain
+register is programmed with the value $regval.
+
+Consider the HW is programmed with regval =3D 317. The exact period is
+995.8848711879644. If now .get_state() rounds down and returns 995 ns and
+you feed that value back into .apply the new regval (assuming round down
+in .apply(), too) this yields regval =3D 316. If however .get_state()
+rounds up and returns 996, putting this value back into .apply() you get
+the desired 317.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--6sd75wqw5pt3megh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmEb+hQACgkQwfwUeK3K
+7AnI6wf+KmtvtJ/bo+wlOQtLD/Ow1TwFpxzoAQBBKSFnW9EfiMZBwFYGrq/g+q82
+zfUB26VZiuUOZwmtPHjzWPOXJc/gZKHiAv6fLkoGERkZCWY4gDaDJOpzeecONgNp
+59AtIZjRuV0jO+apwZLJqLhXEAleIILze5BUO20Mm1DSR7B+PkKJ97R8UfLGROUc
+unF34ncqtLLSR03Uj5M8Ru9aj4AQtpN400bkDcK4Uc1MpzkNAffnIL4QDHCA4scV
+8pk2EJeEk9Zu2c4sHOl7/8C19nl9bEVyL61BBKYCHHbthcCvL/uSLILe8mATqJsA
+WISWK2i5AAL3fykygoxrj/IZC16CXQ==
+=lrWV
+-----END PGP SIGNATURE-----
+
+--6sd75wqw5pt3megh--
