@@ -2,239 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1BC03EEC88
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 14:35:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D31E3EED2F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 15:17:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235684AbhHQMfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 08:35:43 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:58811 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbhHQMfn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 08:35:43 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20210817123508euoutp024123286ae26f6632e28a16fd970e61c2~cGCQe_p6l2618726187euoutp02Q;
-        Tue, 17 Aug 2021 12:35:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20210817123508euoutp024123286ae26f6632e28a16fd970e61c2~cGCQe_p6l2618726187euoutp02Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1629203708;
-        bh=I1Lc3QNLRdHMuOOYcM8MCj6OI+Zmefea4cIaC7PS56A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bdLvQSnQjR/t66XwqQCKMfspTx8KJ3j8v4j8Z344H3TQWpPF4PM59zoJa4lF39jrW
-         OWQAhEvIjUE10ebZ/+bZa2BSprGDeYibSyJf1tz0L5Xswn7Z1NOBXAdX2PSOLY6Vxd
-         j9r2gsdUQoidzHj3iGqtMa+ZgoXYUNOcEIONMqj4=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20210817123508eucas1p2c93495a4bce52ee192987627a73d3195~cGCQJhrc20206802068eucas1p2N;
-        Tue, 17 Aug 2021 12:35:08 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id C3.27.42068.CFCAB116; Tue, 17
-        Aug 2021 13:35:08 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20210817123507eucas1p120be1e5cc942e20bed39b6d810ccdbd1~cGCPUTBVa3090730907eucas1p1i;
-        Tue, 17 Aug 2021 12:35:07 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210817123507eusmtrp1cead64abb7ac154b4b1ebd97f352079d~cGCPTN_Ls0499304993eusmtrp1Z;
-        Tue, 17 Aug 2021 12:35:07 +0000 (GMT)
-X-AuditID: cbfec7f4-c89ff7000002a454-ad-611bacfc564e
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 55.00.31287.BFCAB116; Tue, 17
-        Aug 2021 13:35:07 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20210817123507eusmtip2cee3d14c4b90be9d235e7a5136e036a4~cGCPFhL2W2877228772eusmtip2N;
-        Tue, 17 Aug 2021 12:35:07 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-crypto@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: rng: convert Samsung Exynos TRNG to
- dtschema
-Date:   Tue, 17 Aug 2021 14:34:56 +0200
-In-Reply-To: <c3a1d7d2-7b32-b7eb-4647-f86e22f5e5ff@canonical.com> (Krzysztof
-        Kozlowski's message of "Tue, 17 Aug 2021 12:05:20 +0200")
-Message-ID: <dleftj8s10fdvz.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S231770AbhHQNRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 09:17:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39514 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239790AbhHQNRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 09:17:52 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3946FC061796
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 06:17:19 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id r7so28675927wrs.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 06:17:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=+GkZlku1Bw2JCl4HvkcPQD//HnyGFQIsuXa7PcP9+u4=;
+        b=zobAv814/jIA9hveR+EkNCwDf42MUiRgvR0jepBC7V2gciaCGjUZ3styiQZrII/VGa
+         qx77TDd0skliye2OiYngq8oLgDQoXMCxlS5/59T8Cl/xOwXettAGn+YoSLCW+UGsJyZn
+         TIkq0LD3BN/+Czb9ip5I2Deej+XiqaImJxB/Mx+i0psWXBSOW2sn4rxNZihvLV50PFoL
+         v6d+WfCiza0TKEFKzFuyGmjgTBZnlACPbs1usIJdMlQTed2Fb7I2O6DEr0dnY3K3tc3O
+         ajC4oiwU9PuEuQJ7tn2zGDR40m+g9fPfDRM76GWajlGvHy0lRWgeU8eE/p6cIr0UXOAc
+         l4Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+GkZlku1Bw2JCl4HvkcPQD//HnyGFQIsuXa7PcP9+u4=;
+        b=iv/DIYGfZ8YTKxyuX0jKCgB58AL8WOz8iTEZvZEq6zxXSLO6r+a9z8JCoLRCWYbe7k
+         eM+ibn7tRoxU2ZGtqHD29NxIPp7NIKstHgO83S/9Vmh6fI0iO4+hgcatU7VndtfobNAi
+         gRN28m1bFQ7EMb4HOQhBfShQYTjg9k1Mt95XbonrxqSROvvjAmiZLYkH92pow0O7aV1w
+         Mr3tiHn3ly8CNXHuMuCzv5AHRXElHMf0np0bhel57pL0KMbj/NT9hoCRfZBz0rB/p3AV
+         JHvDRY6R0DPjiIbvJ7Pl9hzQfpCbT3RETv21/E4BZyZJZOViWJSk54iYUTaW21y3tSui
+         +jgg==
+X-Gm-Message-State: AOAM531ZabIRA5mZIQmdLuymlUsrl6xkWTlQHSD26wl3E15bFO3nUziT
+        3t2tYRKzvUVNriDGIQ/F1rnog20DZ3pOFUD9
+X-Google-Smtp-Source: ABdhPJwiEhB1GoU5iRLmZV1y4Ji/YZrd0AlU+/xLj1e9DFnO2wK155hd4GpX9VHaaZ/iIKuoh1oVjQ==
+X-Received: by 2002:adf:bb85:: with SMTP id q5mr4002312wrg.186.1629206237558;
+        Tue, 17 Aug 2021 06:17:17 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:52c4:e6e5:cc9e:e70a? ([2a01:e34:ed2f:f020:52c4:e6e5:cc9e:e70a])
+        by smtp.googlemail.com with ESMTPSA id f2sm2464427wru.31.2021.08.17.06.17.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Aug 2021 06:17:17 -0700 (PDT)
+Subject: Re: [Patch v5 1/6] firmware: qcom_scm: Introduce SCM calls to access
+ LMh
+To:     Thara Gopinath <thara.gopinath@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org
+Cc:     steev@kali.org, tdas@codeaurora.org, mka@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210809191605.3742979-1-thara.gopinath@linaro.org>
+ <20210809191605.3742979-2-thara.gopinath@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <19659756-4716-4c5b-949a-58d362dcee22@linaro.org>
+Date:   Tue, 17 Aug 2021 15:17:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAKsWRmVeSWpSXmKPExsWy7djP87p/1kgnGhzfwmUx/8g5VovuVzIW
-        G9/+YLLY9Pgaq8X9ez+ZLC7vmsNmMeP8PiaLnXNOslos2NbHaNG69wi7xeZNU5kduD1mNfSy
-        eWw7oOqxaVUnm8e7c+fYPTYvqffoe7mB0ePzJrkA9igum5TUnMyy1CJ9uwSujFlntrAU3FWs
-        OLyzmb2B8bpMFyMnh4SAicT7f2tYuhi5OIQEVjBKrLl0EMr5wijxYtEGJgjnM6PE1G3X2WBa
-        tmyeygyRWM4osWj5DFYI5zmQs/ItUD8HB5uAnsTatREgDSIC1hJHt85nBrGZBZ4wSVxrMQCx
-        hQVCJO5PmQQWZxFQlfh5uJERxOYU6GCUmDEtH8TmFTCXOH93NSuILSpgKbHlxX12iLigxMmZ
-        T1ggZuZKzDz/hhHkBgmB+ZwS+xonQ13qIjF/wQ8WCFtY4tXxLewQtozE6ck9YHdKCNRLTJ5k
-        BtHbwyixbQ5MvbXEnXO/2CBqHCX693NBmHwSN94KQqzlk5i0bTozRJhXoqNNCKJRRWJd/x6o
-        IVISva9WMELYHhIzm+cxQkJqCqPE+m1t7BMYFWYh+WYWkm9mAY1lFtCUWL9LHyKsLbFs4Wtm
-        CNtWYt269ywLGFlXMYqnlhbnpqcWG+WllusVJ+YWl+al6yXn525iBCa00/+Of9nBuPzVR71D
-        jEwcjIcYVYCaH21YfYFRiiUvPy9VSYRXnUMqUYg3JbGyKrUoP76oNCe1+BCjNAeLkjhv0pY1
-        8UIC6YklqdmpqQWpRTBZJg5OqQYmhZvaazYqNteukX4m1fByyutXn+YpdmXfy1dmMraqqTss
-        fWDvp4rZ1nde5Bb+D618aKfybwuP1Oz7syb8VxK/usMio935RKzJnO0Cd2ft1HktvOnWFImL
-        sZULzi2/91/tmOePDwFvrTqXxHnHBVuwfvfvqP7zj73cw+zs9XBnc/P79ta/jfpWlAisM56u
-        VKAUW6NwMU/b5rG5tK7ztbUaNkde/rUr2JvQy2851e31ropD7tmPRaQX+zU9PTfp5kG3/q1/
-        3J7lvX6m/VKT/+TbKcHWUx2FBVNWJQf/t9lXlGHRIHTkafvELwvOzz/t+VvYx0iAoSHXZOJd
-        gYC3TvaMyjtMrA9Ehq79kh7XmqqtxFKckWioxVxUnAgA1DuXLOMDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xe7q/10gnGjw5xm8x/8g5VovuVzIW
-        G9/+YLLY9Pgaq8X9ez+ZLC7vmsNmMeP8PiaLnXNOslos2NbHaNG69wi7xeZNU5kduD1mNfSy
-        eWw7oOqxaVUnm8e7c+fYPTYvqffoe7mB0ePzJrkA9ig9m6L80pJUhYz84hJbpWhDCyM9Q0sL
-        PSMTSz1DY/NYKyNTJX07m5TUnMyy1CJ9uwS9jFlntrAU3FWsOLyzmb2B8bpMFyMnh4SAicSW
-        zVOZuxi5OIQEljJKnL7+DMjhAEpISaycmw5RIyzx51oXG0TNU0aJs43LwGrYBPQk1q6NAKkR
-        EbCWOLp1PtgcZoG7TBKdFxaygSSEBYIkJq15C2YLCThI7Fj5kx3EZhFQlfh5uJERxOYU6GCU
-        mDEtH8TmFTCXOH93NSuILSpgKbHlxX12iLigxMmZT1hAbGaBbImvq58zT2AUmIUkNQtJahbQ
-        ecwCmhLrd+lDhLUlli18zQxh20qsW/eeZQEj6ypGkdTS4tz03GJDveLE3OLSvHS95PzcTYzA
-        eNx27OfmHYzzXn3UO8TIxMF4iFEFqPPRhtUXGKVY8vLzUpVEeNU5pBKFeFMSK6tSi/Lji0pz
-        UosPMZoCvTaRWUo0OR+YKPJK4g3NDEwNTcwsDUwtzYyVxHm3zl0TLySQnliSmp2aWpBaBNPH
-        xMEp1cBUuu2zVkTeP8P6JUxsbHldXcs+cfr/u3ysY+a/3x+qpBd+9XBL+Gt61O1OoY90xkX/
-        G7+FlCdpP9lUf3n91Cafz71J1pUH1/gw9IlveOmf+vhkSkqVYx+X/9vZ/SH8sapiFW8vu4ot
-        bF7B+7XrTdNZIf4jF1p/Szzj+3wi9O4Ppqt9a6pSz18RO5JYnri+XM3ywMyFjzK3iF0y6Ehd
-        t6Th/4Ufn2OTNr492lQ67fT1C87x355aHZvlktMjdnivvsay3P23jqyc/GPvuh6hLPHe5yVv
-        P8jr9fguZZnBe1ZeYOJuqd37euL/pzP752loVO7XTTHV/Hw1z+6G0Wfnpujvxxx5VQsOGG5w
-        zHLojG9UYinOSDTUYi4qTgQA3iVTs1wDAAA=
-X-CMS-MailID: 20210817123507eucas1p120be1e5cc942e20bed39b6d810ccdbd1
-X-Msg-Generator: CA
-X-RootMTR: 20210817123507eucas1p120be1e5cc942e20bed39b6d810ccdbd1
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210817123507eucas1p120be1e5cc942e20bed39b6d810ccdbd1
-References: <c3a1d7d2-7b32-b7eb-4647-f86e22f5e5ff@canonical.com>
-        <CGME20210817123507eucas1p120be1e5cc942e20bed39b6d810ccdbd1@eucas1p1.samsung.com>
+In-Reply-To: <20210809191605.3742979-2-thara.gopinath@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On 09/08/2021 21:15, Thara Gopinath wrote:
+> Introduce SCM calls to access/configure limits management hardware(LMH).
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 
-It was <2021-08-17 wto 12:05>, when Krzysztof Kozlowski wrote:
-> On 17/08/2021 11:55, Lukasz Stelmach wrote:
->> It was <2021-08-11 =C5=9Bro 10:43>, when Krzysztof Kozlowski wrote:
->>> Convert Samsung Exynos SoC True Random Number Generator bindings to DT
->>> schema format using json-schema.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>> ---
->>>  .../bindings/rng/samsung,exynos5250-trng.txt  | 17 -------
->>>  .../bindings/rng/samsung,exynos5250-trng.yaml | 44 +++++++++++++++++++
->>>  MAINTAINERS                                   |  2 +-
->>>  3 files changed, 45 insertions(+), 18 deletions(-)
->>>  delete mode 100644 Documentation/devicetree/bindings/rng/samsung,exyno=
-s5250-trng.txt
->>>  create mode 100644 Documentation/devicetree/bindings/rng/samsung,exyno=
-s5250-trng.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->>> b/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->>> deleted file mode 100644
->>> index 5a613a4ec780..000000000000
->>> --- a/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->>> +++ /dev/null
->>> @@ -1,17 +0,0 @@
->>> -Exynos True Random Number Generator
->>> -
->>> -Required properties:
->>> -
->>> -- compatible  : Should be "samsung,exynos5250-trng".
->>> -- reg         : Specifies base physical address and size of the regist=
-ers map.
->>> -- clocks      : Phandle to clock-controller plus clock-specifier pair.
->>> -- clock-names : "secss" as a clock name.
->>> -
->>> -Example:
->>> -
->>> -	rng@10830600 {
->>> -		compatible =3D "samsung,exynos5250-trng";
->>> -		reg =3D <0x10830600 0x100>;
->>> -		clocks =3D <&clock CLK_SSS>;
->>> -		clock-names =3D "secss";
->>> -	};
->>> diff --git
->>> a/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->>> b/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->>> new file mode 100644
->>> index 000000000000..a50c34d5d199
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->>> @@ -0,0 +1,44 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id:
->>> https://protect2.fireeye.com/v1/url?k=3Df38ca35b-ac179a0d-f38d2814-0cc4=
-7a31ce52-1faa1ecb65482b8a&q=3D1&e=3D8b3490f9-a5fc-4da0-b2ee-7b0aec781403&u=
-=3Dhttp%3A%2F%2Fdevicetree.org%2Fschemas%2Frng%2Fsamsung%2Cexynos5250-trng.=
-yaml%23
->>> +$schema:
->>> https://protect2.fireeye.com/v1/url?k=3D9409519d-cb9268cb-9408dad2-0cc4=
-7a31ce52-12394c4409905980&q=3D1&e=3D8b3490f9-a5fc-4da0-b2ee-7b0aec781403&u=
-=3Dhttp%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
->>> +
->>> +title: Samsung Exynos SoC True Random Number Generator
->>> +
->>> +maintainers:
->>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>> +  - =C5=81ukasz Stelmach <l.stelmach@samsung.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: samsung,exynos5250-trng
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>=20
->> How about copying description from above into the description: property?
->
-> But what to copy? There is no description except generic clock bindings.
->
+Hi Bjorn, Andy,
 
-The description that "was" in the txt file.
+do you mind if I pick this patch along with patch 2/6 ?
 
->>=20
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: secss
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>=20
->> ditto.
->
-> The same, I have no clue what to copy. It's obvious that reg contains
-> "physical address and size of the registers map".
->
->
-> Best regards,
-> Krzysztof
->
->
+Thanks
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+  -- Daniel
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+> ---
+> 
+> v2->v3:
+> 	Added freeing of payload_buf after the scm call in qcom_scm_lmh_dcvsh as per
+> 	Matthias review comments.
+> 
+> v1->v2:
+> 	Changed the input parameters in qcom_scm_lmh_dcvsh from payload_buf and
+> 	payload_size to payload_fn, payload_reg, payload_val as per Bjorn's review
+> 	comments.
+> 
+>  drivers/firmware/qcom_scm.c | 58 +++++++++++++++++++++++++++++++++++++
+>  drivers/firmware/qcom_scm.h |  4 +++
+>  include/linux/qcom_scm.h    | 14 +++++++++
+>  3 files changed, 76 insertions(+)
+> 
+> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+> index 47ea2bd42b10..8a503753fe2a 100644
+> --- a/drivers/firmware/qcom_scm.c
+> +++ b/drivers/firmware/qcom_scm.c
+> @@ -1147,6 +1147,64 @@ int qcom_scm_qsmmu500_wait_safe_toggle(bool en)
+>  }
+>  EXPORT_SYMBOL(qcom_scm_qsmmu500_wait_safe_toggle);
+>  
+> +bool qcom_scm_lmh_dcvsh_available(void)
+> +{
+> +	return __qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_LMH, QCOM_SCM_LMH_LIMIT_DCVSH);
+> +}
+> +EXPORT_SYMBOL(qcom_scm_lmh_dcvsh_available);
+> +
+> +int qcom_scm_lmh_profile_change(u32 profile_id)
+> +{
+> +	struct qcom_scm_desc desc = {
+> +		.svc = QCOM_SCM_SVC_LMH,
+> +		.cmd = QCOM_SCM_LMH_LIMIT_PROFILE_CHANGE,
+> +		.arginfo = QCOM_SCM_ARGS(1, QCOM_SCM_VAL),
+> +		.args[0] = profile_id,
+> +		.owner = ARM_SMCCC_OWNER_SIP,
+> +	};
+> +
+> +	return qcom_scm_call(__scm->dev, &desc, NULL);
+> +}
+> +EXPORT_SYMBOL(qcom_scm_lmh_profile_change);
+> +
+> +int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
+> +		       u64 limit_node, u32 node_id, u64 version)
+> +{
+> +	dma_addr_t payload_phys;
+> +	u32 *payload_buf;
+> +	int ret, payload_size = 5 * sizeof(u32);
+> +
+> +	struct qcom_scm_desc desc = {
+> +		.svc = QCOM_SCM_SVC_LMH,
+> +		.cmd = QCOM_SCM_LMH_LIMIT_DCVSH,
+> +		.arginfo = QCOM_SCM_ARGS(5, QCOM_SCM_RO, QCOM_SCM_VAL, QCOM_SCM_VAL,
+> +					QCOM_SCM_VAL, QCOM_SCM_VAL),
+> +		.args[1] = payload_size,
+> +		.args[2] = limit_node,
+> +		.args[3] = node_id,
+> +		.args[4] = version,
+> +		.owner = ARM_SMCCC_OWNER_SIP,
+> +	};
+> +
+> +	payload_buf = dma_alloc_coherent(__scm->dev, payload_size, &payload_phys, GFP_KERNEL);
+> +	if (!payload_buf)
+> +		return -ENOMEM;
+> +
+> +	payload_buf[0] = payload_fn;
+> +	payload_buf[1] = 0;
+> +	payload_buf[2] = payload_reg;
+> +	payload_buf[3] = 1;
+> +	payload_buf[4] = payload_val;
+> +
+> +	desc.args[0] = payload_phys;
+> +
+> +	ret = qcom_scm_call(__scm->dev, &desc, NULL);
+> +
+> +	dma_free_coherent(__scm->dev, payload_size, payload_buf, payload_phys);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(qcom_scm_lmh_dcvsh);
+> +
+>  static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
+>  {
+>  	struct device_node *tcsr;
+> diff --git a/drivers/firmware/qcom_scm.h b/drivers/firmware/qcom_scm.h
+> index 632fe3142462..d92156ceb3ac 100644
+> --- a/drivers/firmware/qcom_scm.h
+> +++ b/drivers/firmware/qcom_scm.h
+> @@ -114,6 +114,10 @@ extern int scm_legacy_call(struct device *dev, const struct qcom_scm_desc *desc,
+>  #define QCOM_SCM_SVC_HDCP		0x11
+>  #define QCOM_SCM_HDCP_INVOKE		0x01
+>  
+> +#define QCOM_SCM_SVC_LMH			0x13
+> +#define QCOM_SCM_LMH_LIMIT_PROFILE_CHANGE	0x01
+> +#define QCOM_SCM_LMH_LIMIT_DCVSH		0x10
+> +
+>  #define QCOM_SCM_SVC_SMMU_PROGRAM		0x15
+>  #define QCOM_SCM_SMMU_CONFIG_ERRATA1		0x03
+>  #define QCOM_SCM_SMMU_CONFIG_ERRATA1_CLIENT_ALL	0x02
+> diff --git a/include/linux/qcom_scm.h b/include/linux/qcom_scm.h
+> index 0165824c5128..c0475d1c9885 100644
+> --- a/include/linux/qcom_scm.h
+> +++ b/include/linux/qcom_scm.h
+> @@ -109,6 +109,12 @@ extern int qcom_scm_hdcp_req(struct qcom_scm_hdcp_req *req, u32 req_cnt,
+>  			     u32 *resp);
+>  
+>  extern int qcom_scm_qsmmu500_wait_safe_toggle(bool en);
+> +
+> +extern int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
+> +			      u64 limit_node, u32 node_id, u64 version);
+> +extern int qcom_scm_lmh_profile_change(u32 profile_id);
+> +extern bool qcom_scm_lmh_dcvsh_available(void);
+> +
+>  #else
+>  
+>  #include <linux/errno.h>
+> @@ -170,5 +176,13 @@ static inline int qcom_scm_hdcp_req(struct qcom_scm_hdcp_req *req, u32 req_cnt,
+>  
+>  static inline int qcom_scm_qsmmu500_wait_safe_toggle(bool en)
+>  		{ return -ENODEV; }
+> +
+> +static inline int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
+> +				     u64 limit_node, u32 node_id, u64 version)
+> +		{ return -ENODEV; }
+> +
+> +static inline int qcom_scm_lmh_profile_change(u32 profile_id) { return -ENODEV; }
+> +
+> +static inline bool qcom_scm_lmh_dcvsh_available(void) { return -ENODEV; }
+>  #endif
+>  #endif
+> 
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAmEbrPAACgkQsK4enJil
-gBC5wggAq3vSstvJVjG17xqU5QPzv9fHJejUx5HQRCQcGRHUCQN4knqekli34bhg
-1B1QpfVpFF/fm9jL4HlXCCvgAefpIJf3m3fLOxdK9881M8s5Ekgh3lWSR82wUKZi
-WP6vspLVSpiSa5JZqsChqAdtaeYLhsSbOndVdnlUya6W+DuqNQ4e7On3l6rWCld/
-bKch2tW1uaKY6LXHBRWGAJ4exwzE2jcYPXp9/9Tjd5NZICnnXWRovlajQyaT3DO/
-XlxKNd8F+J5bYph2Wd0XlUugi4aqQfIuNPHsMMSooMyfvixpKr+27iEJ4N/27XXq
-XN4WSjOsNsFvxVfgiblXLNps+OSmdg==
-=wvZL
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
