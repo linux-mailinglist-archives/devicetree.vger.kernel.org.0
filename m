@@ -2,193 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9643D3EF2F7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 21:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ACE53EF30F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 22:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233793AbhHQT73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 15:59:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47786 "EHLO
+        id S233436AbhHQUKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 16:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233475AbhHQT72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 15:59:28 -0400
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9B2C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 12:58:55 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id z3-20020a4a98430000b029025f4693434bso5316ooi.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 12:58:55 -0700 (PDT)
+        with ESMTP id S233179AbhHQUKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 16:10:08 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2AE7C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 13:09:34 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id k5so15827704lfu.4
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 13:09:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=79bivVt5C0iretm2RQAebwVshGza8l6WOkdkf2Tm6mk=;
-        b=lPok6EhnosdIo1UrT0ck8CSjE0cGZvczyyWe/VT8d9qyyCiDSlpELBtSI9tXeNHlRy
-         6883bonW9Jgs+OlxPI8JwC6Gh6YR8OHQOrecbAcNYEJ2ZI1sgGysSaKGkyIZ2vWsDD0t
-         wwU0NYvrsvkx45/9BYSeqndn6tbuz4fjy6lCc=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k8AfVuCGxDrAVAQEMwEyKZr/585805GvK2MzsN/gS3A=;
+        b=CZPAZB5/x6SSKO3/e4ljoCjcPsrNGDpLblZMD69HhLBEw4EpEnaMCLjsSRVWWn5c8R
+         6qK/hjUcTlz7tWO+lSjquayDXvuIN/47A6alfgci5XZp4ZVck4LIDSG8X7Q4SDpoCz7q
+         LZldLdE0hvD9Rs6Nr3Up4gkhyI3fIuSToGWAn4IZ92cR4YbsAltHiAVd+9v9BeE0nzik
+         ZPzZ6EjD8WwP1T0XpfKHkv1ra0lT7gDQWjVvNmU6cMwDo70qRzQnBhZIsfPpSsi6FIQy
+         DycVicbxZ8DEKI/CY5OzuH7cofexceLkH5ljhdve4pmcRWOn6+KyDnNaqxa4SUW4vZA7
+         vfLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=79bivVt5C0iretm2RQAebwVshGza8l6WOkdkf2Tm6mk=;
-        b=W34/Mc+dgD4xlFKzfoE5aAtqQztZQCtN2UON2tFmrPIfiid6U54jZ938y5hCoo7BXW
-         amU18vwS6lmAjf1siIE9h0WdsJTS1qntV1sueL9Q1PauFhzrUd+LxZKDMW1fG/wGganD
-         mrlWPD0VQ6Zw4BW+43NWtHiLAFZptkvFo/PrdQ2jgWyZAZzET10ArhuK90ylJCmamCrI
-         r+GM7/246rdbAQN7WQU2Gv113AS0Nq0oU19T4V6C0if5i8yTpCqqVxGvLtbTKWRR1gmb
-         mkoZS40Xk7L5ickiCZR2fGQgU1ImI9RYAilP9+285OPts+llQbkbbXa+EKyEoQfLDQcZ
-         FNrg==
-X-Gm-Message-State: AOAM530560UWC1F9x1IrkweYYSuOKWXGzEerz/xhTwifjFxX8auhBLyT
-        vBSaWezBy8nu9waNpwtCv26GrJrM8s3flPx7685eBg==
-X-Google-Smtp-Source: ABdhPJwt0EHKR2+b1AuRlsdVymYYGJh3wAbYghf4FpRsgsDEpEnaY/lC83xDjKek1m8USwAknSR098PzcIloPu3fBZ0=
-X-Received: by 2002:a4a:c60e:: with SMTP id l14mr3855016ooq.80.1629230334756;
- Tue, 17 Aug 2021 12:58:54 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 17 Aug 2021 15:58:54 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k8AfVuCGxDrAVAQEMwEyKZr/585805GvK2MzsN/gS3A=;
+        b=P+J808U7UHU+/MvDFo0WmPXrJsGTteXG873D/hX1lYF4OZkhFpGK3B0bk01IqfvIXb
+         r7pCdPqQ4SLcWy+6//XcIGxZWBwyA6+dhydy9wQQWiol/nyzrRZzDRVS+VRHrMDo9ynj
+         0IsXow/35NQiO1EXiyeQeqWcemr+rEsNon6YyH+ZS0SDmmNEoKDA3w3JLRwyvSC4db7s
+         CmigETrtyp+0cRKKFRpB5zxsgBRgfRTO04i/QevVe5Dk2QyDyTcRNljPbnRHWntWziq8
+         mFbuGpwvA0+qT0C6wo6zE78ben0xd/hwJP8Hj91T8F+2bp6z4lHDQX9QlvDIi2lzQVJh
+         9USw==
+X-Gm-Message-State: AOAM533recA4+qYKm0bSXHW5hmzYf2plGRy//PM09O2jp4UAuabpBYMb
+        i/aybkK9//w6aI+YvrUCOm4pXQqnxZVfv3y0BxS2xw==
+X-Google-Smtp-Source: ABdhPJxghIUV5K9nnRKPIlLjW0aY8CAvGBeUp9sBilijN+pjZbbOVx9RaTN3WM8sx4gBVuvt9YsAcirfPdhwGO8Ypzw=
+X-Received: by 2002:ac2:58d4:: with SMTP id u20mr3489426lfo.157.1629230973143;
+ Tue, 17 Aug 2021 13:09:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1625576413-12324-3-git-send-email-sanm@codeaurora.org>
-References: <1625576413-12324-1-git-send-email-sanm@codeaurora.org> <1625576413-12324-3-git-send-email-sanm@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 17 Aug 2021 15:58:54 -0400
-Message-ID: <CAE-0n52d7UOWQ+hohoyV81+aB1RnNPUEnjPCtr5=nH+a=WK35Q@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add USB related nodes
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
+References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
+ <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
+ <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
+ <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
+ <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
+ <CACRpkdZ4k9Km3vBtdN6AnBM89c4355GtPMzCQ0_YHaTb4V5cKA@mail.gmail.com>
+ <CAGXv+5HohMwU8jow5QXO5MK1tO+u=5YsfhArBWCP4Dgm1Q8igg@mail.gmail.com>
+ <4fd12d5c53f6492e5fa3ba94a78b9a149f5b6ed9.camel@mediatek.com>
+ <CAGXv+5GCuNK=-z9VAOjkpJdZLUSZFPfUsQ09m1FhfTsbCYLLRw@mail.gmail.com>
+ <CACRpkdbZKh8cqqiDRUik6Ooo33e+feGwYsLjcLRvBQnT3x5M3A@mail.gmail.com>
+ <a7c8ab68ac3513865698cde27e665bdd554f459e.camel@mediatek.com>
+ <CAGXv+5FtL2zaSWx4tUymx6mpCSb5dXG4XNWM9AJL+b6Ok3dxMg@mail.gmail.com> <d40f6d5fd26aedb13e7a393202e5794b1893ecf8.camel@mediatek.com>
+In-Reply-To: <d40f6d5fd26aedb13e7a393202e5794b1893ecf8.camel@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 17 Aug 2021 22:09:21 +0200
+Message-ID: <CACRpkdYkwXr76Kq5WYdz=1KkLTpaByAL1vJFo8V+2mncqs8-3Q@mail.gmail.com>
+Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pratham Pratap <prathampratap@codeaurora.org>
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
+        Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sandeep Maheswaram (2021-07-06 06:00:12)
-> Add nodes for DWC3 USB controller, QMP and HS USB PHYs in sc7280 SOC.
+On Tue, Aug 17, 2021 at 9:51 AM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+
+> In one chip, If GPIO is different, the MTXXXX_PULL_UP_RSEL_001 may
+> means different actual bias resistance setting.
 >
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> Changed qmp usb phy to usb dp phy combo node as per Stephen's comments.
-> Changed dwc to usb and added SC7280 compatible as per Bjorn's comments.
+> For example,
 >
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 164 +++++++++++++++++++++++++++++++++++
->  1 file changed, 164 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index a8c274a..cd6908f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1035,6 +1035,125 @@
->                         };
->                 };
->
-[...]
-> +
-> +               usb_2: usb@8cf8800 {
-> +                       compatible = "qcom,sc7280-dwc3", "qcom,dwc3";
-> +                       reg = <0 0x08cf8800 0 0x400>;
-> +                       status = "disabled";
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
-> +                       ranges;
-> +                       dma-ranges;
-> +
-> +                       clocks = <&gcc GCC_CFG_NOC_USB3_SEC_AXI_CLK>,
-> +                                <&gcc GCC_USB30_SEC_MASTER_CLK>,
-> +                                <&gcc GCC_AGGRE_USB3_SEC_AXI_CLK>,
-> +                                <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +                                <&gcc GCC_USB30_SEC_SLEEP_CLK>;
-> +                       clock-names = "cfg_noc", "core", "iface","mock_utmi",
-> +                                     "sleep";
-> +
-> +                       assigned-clocks = <&gcc GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +                                         <&gcc GCC_USB30_SEC_MASTER_CLK>;
-> +                       assigned-clock-rates = <19200000>, <200000000>;
-> +
-> +                       interrupts-extended = <&intc GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <&pdc 13 IRQ_TYPE_EDGE_RISING>,
-> +                                    <&pdc 12 IRQ_TYPE_EDGE_RISING>;
+> KPROW IO
+> Paramters       Descriptions                   Min      Typ     Max
+>  UNIT
+> Rpd     Input pull-down resistance      40      75      190     Kohm
+> Rpu     Input pull-up resistance        40      75      190     Kohm
+> Rpd     Input pull-down resistance      0.8     1.6     2       Kohm
+> Rpu     Input pull-up resistance        0.8     1.6     2       Kohm
 
-I'm seeing this cause a warning at boot
+This is exactly why we should try to use SI units in the device tree.
+I assume that the software can eventually configure which resistance
+it gets?
 
-[    4.724756] irq: type mismatch, failed to map hwirq-12 for
-interrupt-controller@b220000!
-[    4.733401] irq: type mismatch, failed to map hwirq-13 for
-interrupt-controller@b220000!
+The electronics people will say make sure it is pulled down by around
+80 kOhm, they can put that on the device tree and your code can
+say, "hm 40 < 80 < 190 this is OK" and let the value pass.
 
-> +                       interrupt-names = "hs_phy_irq",
-> +                                         "dm_hs_phy_irq", "dp_hs_phy_irq";
-> +
-> +                       power-domains = <&gcc GCC_USB30_SEC_GDSC>;
-> +
-> +                       resets = <&gcc GCC_USB30_SEC_BCR>;
-> +
-> +                       usb_2_dwc3: usb@8c00000 {
-> +                               compatible = "snps,dwc3";
-> +                               reg = <0 0x08c00000 0 0xe000>;
-> +                               interrupts = <GIC_SPI 242 IRQ_TYPE_LEVEL_HIGH>;
-> +                               iommus = <&apps_smmu 0xa0 0x0>;
-> +                               snps,dis_u2_susphy_quirk;
-> +                               snps,dis_enblslpm_quirk;
-> +                               phys = <&usb_2_hsphy>;
-> +                               phy-names = "usb2-phy";
-> +                               maximum-speed = "high-speed";
-> +                       };
-> +               };
-> +
->                 dc_noc: interconnect@90e0000 {
->                         reg = <0 0x090e0000 0 0x5080>;
->                         compatible = "qcom,sc7280-dc-noc";
-> @@ -1063,6 +1182,51 @@
->                         qcom,bcm-voters = <&apps_bcm_voter>;
->                 };
->
-> +               usb_1: usb@a6f8800 {
-> +                       compatible = "qcom,sc7280-dwc3", "qcom,dwc3";
-> +                       reg = <0 0x0a6f8800 0 0x400>;
-> +                       status = "disabled";
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
-> +                       ranges;
-> +                       dma-ranges;
-> +
-> +                       clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-> +                                <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-> +                                <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-> +                                <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> +                                <&gcc GCC_USB30_PRIM_SLEEP_CLK>;
-> +                       clock-names = "cfg_noc", "core", "iface", "mock_utmi",
-> +                                     "sleep";
-> +
-> +                       assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> +                                         <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-> +                       assigned-clock-rates = <19200000>, <200000000>;
-> +
-> +                       interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> +                                             <&pdc 14 IRQ_TYPE_EDGE_BOTH>,
-> +                                             <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
+We do not define these exact semantics, it is up to the driver code
+to decide what to do with the Ohm value 80000 in this case, but
+it makes perfect sent for me to let it pass and fail if someone
+for example requests 20 kOhm, or at least print a helpful warning:
 
-And this one too.
+dev_warn(dev, "the requested resistance %d is out of range, supported
+range %d to %d kOhm\n",
+                 val, low, high);
 
-[    4.898667] irq: type mismatch, failed to map hwirq-14 for
-interrupt-controller@b220000!
-[    4.907241] irq: type mismatch, failed to map hwirq-15 for
-interrupt-controller@b220000!
+This is what makes the SI units really helpful for people writing device
+trees: solve real integration tasks and make it easy to do the right thing.
 
-which looks like genirq code is complaining that the type is different
-than what it is configured for. Are these trigger flags correct? If so,
-then there' some sort of bug in the pdc driver.
-
-> +                                             <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names = "hs_phy_irq", "dp_hs_phy_irq",
-> +                                         "dm_hs_phy_irq", "ss_phy_irq";
-> +
-> +                       power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
-> +
-> +                       resets = <&gcc GCC_USB30_PRIM_BCR>;
-> +
-> +                       usb_1_dwc3: usb@a600000 {
+Yours,
+Linus Walleij
