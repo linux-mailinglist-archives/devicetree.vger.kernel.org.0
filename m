@@ -2,213 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E5D3EEA1D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 11:41:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24F6C3EEA3F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 11:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235578AbhHQJls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 05:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239087AbhHQJlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 05:41:47 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307C2C061764;
-        Tue, 17 Aug 2021 02:41:14 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id h9so37419025ejs.4;
-        Tue, 17 Aug 2021 02:41:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xfs/l8KNPldYvYSfsE5tioy382KDShw/nZNTXXTrdnc=;
-        b=RVACI4CdE27rO43ekpdJkhagh1GNeqQuDCt+kYuwwLoJjnvR7h5gszWPYgUuOq6i98
-         CMjoNiwwN1M9Y7jFNVeKQUw1zhHSOnJ2cxztNCo3GSF0gjErJ93c9O5L/wbj6n8C/8Eg
-         OUzdTJ++cUmemxAN4zwCQmkeMVloypqy1sVnAybNwvQddcJY1bbztvh/w/DZPycDvjoz
-         SxY1oXidrd9lHXzRl43HO8DoIcvUan8vIY0KzeYvmVMLIRKab0Uka7pYD2C119SdkATF
-         RaMMLlXB9NWlYyLj5QKTbGVfanwFybqryoR+Nc43BK5CXx3si6/HWbaThR45YVNpUbZt
-         ofug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xfs/l8KNPldYvYSfsE5tioy382KDShw/nZNTXXTrdnc=;
-        b=PfDzkv3TJSTv7E+H2HfHL1Z9wwt3HxkG2STspm3wxR3vUhARHjdYsnvNW+6v2JvutB
-         CtkuulxpUq74C1cuwV/oXtQ/pRMyHcydxuzvT4zn6Obj34Uiok+FyBUndErMJpAx1Fda
-         jWyh+xX0/qvJOmSK7cVa+ZhSiN/I9UlfAQFKwTg6WFnT0UJPH+p6/8V+UZ/ywHhQw79W
-         eLQ21mh9ZDGTa9Sh7stXRmUEO7nH3R8/6ii6VQZCnuGeWmFSTlsUlxng9QSRpBuDVzrY
-         reslyyLyi8cQZsqZLsBnxphbqpErPpb3pKUde0GfLjthTabuCLq4ggbR8LOLNpFCdijc
-         etRQ==
-X-Gm-Message-State: AOAM530QWfx8o1RolXaHNcACZ12T5gL4ohF+cqEzCkP/n+MbELayAbqF
-        TFdznWpue7qzZtaCwXyujDw=
-X-Google-Smtp-Source: ABdhPJwd8chO9kxq2L9cysozEO//ABcYOVkuf3f/I/bF8amsiBAxRgt4lVD/+Y9McWwLImO/qLBf+Q==
-X-Received: by 2002:a17:907:2cf0:: with SMTP id hz16mr2991670ejc.466.1629193272716;
-        Tue, 17 Aug 2021 02:41:12 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id g10sm517357ejj.44.2021.08.17.02.41.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 02:41:12 -0700 (PDT)
-Date:   Tue, 17 Aug 2021 12:41:10 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        claudiu.manoil@nxp.com, alexandre.belloni@bootlin.com,
-        UNGLinuxDriver@microchip.com, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: Re: [RFC PATCH v3 net-next 09/10] net: dsa: ocelot: felix: add
- support for VSC75XX control over SPI
-Message-ID: <20210817094110.vfrrbt264trmn7ri@skbuf>
-References: <20210814025003.2449143-1-colin.foster@in-advantage.com>
- <20210814025003.2449143-10-colin.foster@in-advantage.com>
- <20210814114329.mycpcfwoqpqxzsyl@skbuf>
- <20210814120211.v2qjqgi6l3slnkq2@skbuf>
- <20210815204149.GB3328995@euler>
+        id S239298AbhHQJsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 05:48:09 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52220 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239474AbhHQJsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 05:48:03 -0400
+X-UUID: 67f1a41f325f4e8fb3e4ed80491319b3-20210817
+X-UUID: 67f1a41f325f4e8fb3e4ed80491319b3-20210817
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 630198430; Tue, 17 Aug 2021 17:47:13 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 17 Aug 2021 17:47:12 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 17 Aug 2021 17:47:12 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <james.lo@mediatek.com>
+Subject: [PATCH v11 0/5] Add SPMI support for Mediatek SoC IC
+Date:   Tue, 17 Aug 2021 17:47:05 +0800
+Message-ID: <1629193630-19994-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210815204149.GB3328995@euler>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 15, 2021 at 01:41:49PM -0700, Colin Foster wrote:
-> I also came across some curious code in Seville where it is callocing a
-> struct phy_device * array instead of struct lynx_pcs *. I'm not sure if
-> that's technically a bug or if the thought is "a pointer array is a
-> pointer array."
+This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi driver.
+This series is based on Chun-Jie's patches[1][2].
 
-git blame will show you that it is a harmless leftover of commit
-588d05504d2d ("net: dsa: ocelot: use the Lynx PCS helpers in Felix and
-Seville"). Before that patch, the pcs was a struct phy_device.
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=521127
+[2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=521655
 
-> @@ -1062,12 +1062,12 @@ static void vsc9953_mdio_bus_free(struct ocelot *ocelot)
->  	int port;
->
->  	for (port = 0; port < ocelot->num_phys_ports; port++) {
-> -		struct lynx_pcs *pcs = felix->pcs[port];
-> +		struct phylink_pcs *pcs = felix->pcs[port];
->
->  		if (!pcs)
->  			continue;
->
-> -		mdio_device_free(pcs->mdio);
-> +		mdio_device_free(lynx_pcs_get_mdio(pcs));
+changes since v10:
+- rebase to v5.14-rc6.
+- remove the unnecessary check for clk and drop debug log.
+- update correct mt8195 spmi driver.
 
-Don't really have a better suggestion than lynx_pcs_get_mdio.
+Henry Chen (1):
+  spmi: mediatek: Add support for MT8195
 
->  		lynx_pcs_destroy(pcs);
->  	}
->  	felix_mdio_bus_free(ocelot);
-> diff --git a/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c b/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c
-> index ccaf7e35abeb..484f0d4efefe 100644
-> --- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c
-> +++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c
-> @@ -270,10 +270,11 @@ static int dpaa2_pcs_create(struct dpaa2_mac *mac,
->
->  static void dpaa2_pcs_destroy(struct dpaa2_mac *mac)
->  {
-> -	struct lynx_pcs *pcs = mac->pcs;
-> +	struct phylink_pcs *pcs = mac->pcs;
->
->  	if (pcs) {
-> -		struct device *dev = &pcs->mdio->dev;
-> +		struct mdio_device *mdio = lynx_get_mdio_device(pcs);
-> +		struct device *dev = &mdio->dev;
->  		lynx_pcs_destroy(pcs);
->  		put_device(dev);
+Hsin-Hsiung Wang (4):
+  dt-bindings: spmi: modify the constraint 'maxItems' to 'minItems'
+  dt-bindings: spmi: document binding for the Mediatek SPMI controller
+  spmi: mediatek: Add support for MT6873/8192
+  arm64: dts: mt8192: add spmi node
 
-Ideally dpaa2 would call mdio_device_free too, just like the others.
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |  76 +++
+ .../devicetree/bindings/spmi/spmi.yaml        |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  17 +
+ drivers/spmi/Kconfig                          |  10 +
+ drivers/spmi/Makefile                         |   2 +
+ drivers/spmi/spmi-mtk-pmif.c                  | 547 ++++++++++++++++++
+ 6 files changed, 653 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+ create mode 100644 drivers/spmi/spmi-mtk-pmif.c
 
->  		mac->pcs = NULL;
-> @@ -336,7 +337,7 @@ int dpaa2_mac_connect(struct dpaa2_mac *mac)
->  	mac->phylink = phylink;
->
->  	if (mac->pcs)
-> -		phylink_set_pcs(mac->phylink, &mac->pcs->pcs);
-> +		phylink_set_pcs(mac->phylink, mac->pcs);
->
->  	err = phylink_of_phy_connect(mac->phylink, dpmac_node, 0);
->  	if (err) {
-> diff --git a/drivers/net/ethernet/freescale/enetc/enetc_pf.c b/drivers/net/ethernet/freescale/enetc/enetc_pf.c
-> index 31274325159a..cc2ca51ac984 100644
-> --- a/drivers/net/ethernet/freescale/enetc/enetc_pf.c
-> +++ b/drivers/net/ethernet/freescale/enetc/enetc_pf.c
-> @@ -823,7 +823,7 @@ static int enetc_imdio_create(struct enetc_pf *pf)
->  {
->  	struct device *dev = &pf->si->pdev->dev;
->  	struct enetc_mdio_priv *mdio_priv;
-> -	struct lynx_pcs *pcs_lynx;
-> +	struct phylink_pcs *pcs_phylink;
->  	struct mdio_device *pcs;
 
-Agree with Russell's suggestion to replace "pcs" with "mdiodev" wherever
-it refers to a struct mdio_device. Likely as a separate patch.
+base-commit: 794c7931a2428a656551f2179e6a093233a6e0aa
+prerequisite-patch-id: 8e70d378642e084a14296dbaa2aa4e07c1d30563
+prerequisite-patch-id: 82ced16215cdd31201c6146ddb5c30bc17525996
+prerequisite-patch-id: 7f2137e77cfc439c2e4b4e4369a6d6b48fec1ece
+prerequisite-patch-id: 15f52bb664f0f0436627d056a53afefb0b99f67a
+prerequisite-patch-id: 479b44dfdc6d7b367c0d441d8635d2dc02466057
+prerequisite-patch-id: 5df1858972e343d3750cdda1063655fc232eb831
+prerequisite-patch-id: 7e63a29430f65c2a0d56d7353df884645d70ed8c
+prerequisite-patch-id: 2a6200e8a05329d51aaa4fd63aacfbba66d16177
+prerequisite-patch-id: 604d2702c4217b77de3dc305ff08f630ba38fdb4
+prerequisite-patch-id: d3ece2688dbd45eee248a8c6ba3206c0c673c904
+prerequisite-patch-id: 1bebe1cd9b267c974cae50c3df8c0f8f4f0b0b3d
+prerequisite-patch-id: 3b34fe85667da5287bde9fd2378359be4a126266
+prerequisite-patch-id: 5d3d139212ab304739b75f7638251703b95948d5
+prerequisite-patch-id: 621291b21be177a63eaf6769aa6d2ee8ddb2ea2b
+prerequisite-patch-id: 024f786586b409420782d24218b15f05f6476667
+prerequisite-patch-id: 946aae93303bde26226289dc389c94de96a9dacd
+prerequisite-patch-id: b3ddf6f2079c3c269bd24091243030a971c43cbc
+prerequisite-patch-id: 5c0e0308aa8eb06ca6df6f5467bc925f2cc106ad
+prerequisite-patch-id: d4e481acd8b970f08d3e4da9c8fc0ad6e1fff551
+prerequisite-patch-id: 99db7309fbe1b9f73a07e25d5174db8976c77a2c
+prerequisite-patch-id: cffbc99e9e60f6db43cf7879f17e05c5b041d312
+prerequisite-patch-id: 69871b871ab339881b50a2d6988173050b6c7a4f
+prerequisite-patch-id: 4f5900b98a0c7cbe62694f2477a6cb410187714b
+-- 
+2.18.0
 
->  	struct mii_bus *bus;
->  	int err;
-> @@ -341,13 +355,13 @@ struct lynx_pcs *lynx_pcs_create(struct mdio_device *mdio)
->  	lynx_pcs->pcs.ops = &lynx_pcs_phylink_ops;
->  	lynx_pcs->pcs.poll = true;
->
-> -	return lynx_pcs;
-> +	return lynx_to_phylink_pcs(lynx_pcs);
-
-I would probably write another patch to convert all occurrences of
-"struct lynx_pcs" variables to the same naming scheme. Currently we have
-"lynx", "pcs", "lynx_pcs" only within the pcs-lynx.c file itself. "lynx"
-seems to be the predominant name so all others could be replaced with
-that too.
-
->  }
->  EXPORT_SYMBOL(lynx_pcs_create);
->
-> -void lynx_pcs_destroy(struct lynx_pcs *pcs)
-> +void lynx_pcs_destroy(struct phylink_pcs *pcs)
->  {
-> -	kfree(pcs);
-> +	kfree(phylink_pcs_to_lynx(pcs));
-
-I would perhaps do this in two stages
-
-	struct lynx_pcs *lynx = phylink_pcs_to_lynx(pcs);
-
-	kfree(lynx);
-
->  }
->  EXPORT_SYMBOL(lynx_pcs_destroy);
->
-> diff --git a/include/linux/pcs-lynx.h b/include/linux/pcs-lynx.h
-> index a6440d6ebe95..5712cc2ce775 100644
-> --- a/include/linux/pcs-lynx.h
-> +++ b/include/linux/pcs-lynx.h
-> @@ -9,13 +9,10 @@
->  #include <linux/mdio.h>
->  #include <linux/phylink.h>
->
-> -struct lynx_pcs {
-> -	struct phylink_pcs pcs;
-> -	struct mdio_device *mdio;
-> -};
-
-Good that this structure is no longer exposed.
-
-> +struct mdio_device *lynx_get_mdio_device(struct phylink_pcs *pcs);
->
-> -struct lynx_pcs *lynx_pcs_create(struct mdio_device *mdio);
-> +struct phylink_pcs *lynx_pcs_create(struct mdio_device *mdio);
->
-> -void lynx_pcs_destroy(struct lynx_pcs *pcs);
-> +void lynx_pcs_destroy(struct phylink_pcs *pcs);
-
-We don't want the few phylink_pcs drivers going in different directions,
-so we should modify pcs-xpcs.c too such that it no longer exposes struct
-dw_xpcs to the outside world. I think I hid most of that away already,
-and grepping for "xpcs->" in drivers/net/dsa and drivers/net/ethernet,
-I only see xpcs->mdiodev and xpcs->pcs being accessed, so converting
-khat should be a walk in the park.
-
-Anyway, I would focus for now on getting the ocelot hardware to work and
-writing the phylink_pcs driver for that. That is one part where I can't
-help a lot with.
