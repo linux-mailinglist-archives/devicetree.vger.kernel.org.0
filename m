@@ -2,145 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00D8E3EE6A9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 08:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 114023EE6BE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 08:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238089AbhHQGk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 02:40:57 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:61796 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237961AbhHQGky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 02:40:54 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1629182421; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=AeeA73ZpKawSWZg+PkAg6dDlWEGmMSg3bssyiF/542M=;
- b=Eb2j2eWiqFpK2NJ2l6LhcB++No6dTmHIDhuFIIUcNPjxgeYf2kZCLf5RWTOVYNv7XwzOKNyH
- iqA5EFu9WhK1GbMPC7gBCdE6/QP40dwleUhfyTVDDT8+CUVI9P7oN8teNFqDM3WOBj4stzgN
- I0p+rw9S6meCq0eWMgX0bNkuiVs=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 611b59c6105c6568db2f584e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 17 Aug 2021 06:40:06
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 627AAC4360C; Tue, 17 Aug 2021 06:40:06 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7A5AAC4338F;
-        Tue, 17 Aug 2021 06:40:05 +0000 (UTC)
+        id S231895AbhHQGmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 02:42:15 -0400
+Received: from mail-am6eur05on2073.outbound.protection.outlook.com ([40.107.22.73]:60085
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230094AbhHQGmO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 02:42:14 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nfgsBmMQn1LIbnKJHlShrjW4CLado+8YVgL7LIUDjD7tvESCJ1xcJPEKeGfZtP4ncXLVxI+sdUFa60n51SjDGOyPvJm67BmyL+HxbiYaNLQEtm2akXnSilNBZzw22zjgS1/pnKgMSTDZmNd0yhtDad2XODyiu3D+lPdbxKgJSL+FM6pMZNK6xvWXVrnwoPUXC0hrzWvbZT/JIc3SGJXZ2jVhxFdwY+7JyfjDTvbAQAI/5xmEW5F5E3qCwkPtvR3ZrY6PXGQWX0XlH4En6ckXzhio5sfmQaH+vvylKwYEQCsHXenveVMKvygCvhS+1BHJDO3x/q4KTOtCpqMsifwucw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UdGcI8nOu6aDc/31UaH9kinjepqoW6dGZGxxfwhik4A=;
+ b=UIyWfWbYqEw6BueFba+kl8sfH1I/drBRfbk++FTupr8hRT2Chnua/7urAGkSiRe5UsH5+TlzptzZPcnsyKSm0zqjgco+IWrNaY7Fa6fHPcYjcZWuNKiWImPQzTuZOw35P9HWD7OpxU58LlBNkbJhfp6xECizO6IsDYTYBE5bYLrjDli7+hhoZKrLPWP0QmH5ufAJelqxlHWC5sa200QcJJpl8ggo+eaTsFufyXy6ugZ5LeyAtfKp6Gdxi4ha4ploDV+UGQKGx4c0NpEm6KddWit5hv011x18fGXKIhHdEp3i7IcdoDK0vhMV6EcXizqnjEqjlghPK1GWmw0PR28MHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UdGcI8nOu6aDc/31UaH9kinjepqoW6dGZGxxfwhik4A=;
+ b=iTXhYquqEJcpdC/3nBPWSHRHpWzHAEXMLcTF1NYboGbO5Xhme5PMy6kppdQjLe/78X0rbzCo8kVgmBhYpqdJkmwofurQhknmgmxZbmh89oI+cDEz+6cCPz5r67ekapz0QJr+WeVRpkHPoBzGCEIlm7r1GukdiFpBzlPDG/9G+TM=
+Received: from VI1PR04MB5294.eurprd04.prod.outlook.com (2603:10a6:803:5a::22)
+ by VI1PR04MB3199.eurprd04.prod.outlook.com (2603:10a6:802:3::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.17; Tue, 17 Aug
+ 2021 06:41:39 +0000
+Received: from VI1PR04MB5294.eurprd04.prod.outlook.com
+ ([fe80::c59c:3e45:7b94:e5b7]) by VI1PR04MB5294.eurprd04.prod.outlook.com
+ ([fe80::c59c:3e45:7b94:e5b7%7]) with mapi id 15.20.4415.024; Tue, 17 Aug 2021
+ 06:41:39 +0000
+From:   Bough Chen <haibo.chen@nxp.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Adrian Hunter <adrian.hunter@intel.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 3/6] dt-bindings: mmc: fsl-imx-esdhc: add
+ fsl,sdio-async-interrupt-enabled binding
+Thread-Topic: [PATCH 3/6] dt-bindings: mmc: fsl-imx-esdhc: add
+ fsl,sdio-async-interrupt-enabled binding
+Thread-Index: AQHXkp6tG0/Z3/M/9EqFi1WsjhyfN6t2JAWAgAET8VA=
+Date:   Tue, 17 Aug 2021 06:41:39 +0000
+Message-ID: <VI1PR04MB529432136DB9F5FEB5F5E98090FE9@VI1PR04MB5294.eurprd04.prod.outlook.com>
+References: <1629117508-4886-1-git-send-email-haibo.chen@nxp.com>
+ <1629117508-4886-3-git-send-email-haibo.chen@nxp.com>
+ <CAPDyKFqagBkbnxxh+KWbV2=sjkj3mGrKXUweOL5TrMJ1-Hmnww@mail.gmail.com>
+In-Reply-To: <CAPDyKFqagBkbnxxh+KWbV2=sjkj3mGrKXUweOL5TrMJ1-Hmnww@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 135eae1c-c8e6-4395-5388-08d9614a116c
+x-ms-traffictypediagnostic: VI1PR04MB3199:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB3199F2504F0720D00F6D2DC290FE9@VI1PR04MB3199.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: mYdzgrAJbbO0Sb1TYwvKYNatXVNDGkbizZGVOMFzvfZzN3BXvRtrgPlMPMMhuAwNwm8+OfAeQ2XH3s6Milwt69mPGOao7LwwzRTuGh0uTNg1yHVcDO3Sf/bJoc9BOVWFCCjfI+JQMg4oovgbWxWOZ/frAks1yee2oy1FM97DBYuH6X2OaESv9P8X8vvr5WKJkAptGsYJPeCgQA7V+z61qtNkcrjLusPSBGREECjHzIqsTHzGSzw8VzyoXb7ZJrT5FkBgfDay9BumZ1F/qU7pK0f92AUJvbsmNtCdZu/FfxtMhRLK39jtWtVsv8aQjX/l9C/GIDZa9LPu36u9tTt3l2Q7wG6f4XIAM9ENo6xFFPiiIzPLthKRV5hDivqxqBRXAuUtVdPUr6tC77Qfv3gneyhlBOm/MBw5RpzO9aP6BqoyuhsBFvunl0Mpgkdd5k8f/yhGPVFMoNzrGcQHXvLGciE53eXbNt5UdtoYF0YNKtcEf6eQSPhcxuVa11ImkphRw79E4HRzBD9zaVE91eaUw6PHMZVI01+sc3+gO7TWxBh6T6rf6c1/6BKt02afulJ9Qemw+SdoOux/XXb8m+fP0wf8ifihAwmoE+9pQaTJ21HbSOGvTiLebyJEPePgmCwJXddiyfOqT7dIhgq5oV+lNcWQYdYqA2VDzYc8Hqczns+YoENphqTXIAFyXax6WKx/h4g86Z06sVNgPGD4KBFQ8g==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5294.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(39850400004)(346002)(136003)(376002)(7696005)(8936002)(52536014)(9686003)(26005)(86362001)(83380400001)(33656002)(5660300002)(6506007)(38070700005)(38100700002)(122000001)(66476007)(66556008)(2906002)(71200400001)(64756008)(66946007)(54906003)(478600001)(66446008)(76116006)(53546011)(316002)(55016002)(4326008)(186003)(8676002)(6916009)(7416002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TUVpakhzbjBUc2JLREoyN2VYTzBLM1FFaCtnN2NscGZnRE9YR29PWmxXNjhL?=
+ =?utf-8?B?VkVlY0tyU0NZbEh5aUZsYzhZbzZoM1QvWmxiNDFQSUhZMXd5SkRXN3NlNFVF?=
+ =?utf-8?B?Z1NtdGc0bll1YUlQK1A1bUVzTUZuSDVpQTZVK0N2ZzY5MDNGc3Z6cUNCbVZo?=
+ =?utf-8?B?eVVHVXdhTmlod1BMZXd1VUVYeVRPaEkxV0pJL1RQQ041WmNJYU1BcllmdmJX?=
+ =?utf-8?B?M20rMlVoWEpnc0xRQUJkcGdZL3UreWZHTndyZU8zT2ZJazA3VUl5enIyRzNs?=
+ =?utf-8?B?bHZUWmxjdldJSEc2MWgyb1ZEc2x5d1p2QThQY0tpcTJQN3B1QmthNDdWUTQz?=
+ =?utf-8?B?N2hpRkpVTFcvZXhRZXU1WFV6bjhmMGpEL09GckdmTGZ2MlJFWFNDZnhXY2dt?=
+ =?utf-8?B?OUoydGFmVk44NHBxSzVsaVZuY3pndWo0VC96V0c5QS82NWtmbVEyUFJTNUgz?=
+ =?utf-8?B?SjhrU21OSnFYRjhZMGlRVU1zZ1NCWkx3SGtlK25DYnNQMGdVTGs0d1g1c0tF?=
+ =?utf-8?B?TjlCbzlObzdwZjBydnBGVGRqOTlZYVhCZlRKLzF1bWZIbU5CTDFsdjl5Nncr?=
+ =?utf-8?B?RVUxY0M3ajVwZENlNHhneUdYSjkzSHhVQVEvZStzMUN1Ynh3bTdaQTh4UFk5?=
+ =?utf-8?B?K1BPMUZGZUdydkFtK1lFc1NmUVFGOXN0cUxmM1IwWmcxK1ZRc1NDaUYrTzlJ?=
+ =?utf-8?B?VVVUMGhmNFpZM0hIdWVlN0FzbDRmUTdOSm9TWTdiNTdUL1JsTEZ5b3RMMWF4?=
+ =?utf-8?B?Nk96YWdpd0xKM0xvV0xkWVB1R3hlbHN6Q2NVSlRkcFVRRDZQRHZEQ05sc016?=
+ =?utf-8?B?dGhhdlFZM3NNcE5EOFR0OVJ0RldYaktsbVF3VStkQlNnRFgrM1Bpb21tVWww?=
+ =?utf-8?B?eWFWWTB6T0tybGlHcWt4Q2x0empvQkMrUS9NOVJUbUNXaVB4NSszLzZ6V0py?=
+ =?utf-8?B?c0FHK21zc2tCTUpQWkRKbTlBRDNYcWZjb0ZZRE5uVGVRd1VHYUEzSlMvN2E0?=
+ =?utf-8?B?clcxZjQ4V1p1Vi9TWnpiaklIZW9vdThLL1gyRnRXTnhMNGlienoydUxUaDF2?=
+ =?utf-8?B?Sy9PVWdxWjlHTkFyRFF1ZGxTVHdUbnN4UlZvRCtHM1IwS3RaR01SNndNaHE1?=
+ =?utf-8?B?VzkxNmtsdWx4Uks3UUJFRFdQcm1mZm9tTlFsclFzaHRqYmxEZ3lvMVplNmR5?=
+ =?utf-8?B?alFFczd6cSt2OEs0V1ZiellDZUZwZkRTZlNxUUlKZ25sZjJzY2ozanJoa2Ny?=
+ =?utf-8?B?b3BqMmJ2V3RZd0ZnQk5aRTVzVFlLV3VNTkpKSkJnUFNnZUJpWk1xYUV0YVNz?=
+ =?utf-8?B?QmZxdHA2Y1YrY2syemV1b1hENTdiSzhwTDRjdXo2aENXblIwbXh1ckVmazZO?=
+ =?utf-8?B?L1BndkRxdVNtQ2xQMFM0MUJ4RzI5WUp0dXV6Z2FDMUVCWVFidVZEU0Ftbjkv?=
+ =?utf-8?B?NDYzWFZhakg1UXhvek1NSkpmTE0wbEhldEpTQk1HeEtHK2RaNUNreHBuNVhq?=
+ =?utf-8?B?RmRXN2xHQmRQSm1OSGZBVFFvbGZ4SVNtY0Fjd2pGdjlMQTRMb0hQaUZ6UVJW?=
+ =?utf-8?B?anBwVHQ5VjgwRXp6TW5RUEZBdGFuaDNVMkxVdmlidmxpRTgyWXhJbU1XdDdp?=
+ =?utf-8?B?ZUhnNU5icURrVVYvcjBUcmV5amh4OTNGKzZLdll2bGppLzhjRTdHUjRzSVE2?=
+ =?utf-8?B?WEpRUjN5d3V2TDB6bW1rL2gzZWNmdEs0bWRJejF5aDIxdXlHYUJRQnZETjhm?=
+ =?utf-8?Q?GEAMbpD3YS2vrMq3hn11vWZJGp5NjfLCcffFODc?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 17 Aug 2021 12:10:05 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
- init in SC7280
-In-Reply-To: <CAE-0n50nYEAhpBADVWutm-SvUMpe+4Qte69iucJvXax=d_59=w@mail.gmail.com>
-References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
- <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
- <CAE-0n50nYEAhpBADVWutm-SvUMpe+4Qte69iucJvXax=d_59=w@mail.gmail.com>
-Message-ID: <c742065c0469633fe4ea3a74dc42c2f9@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5294.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 135eae1c-c8e6-4395-5388-08d9614a116c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Aug 2021 06:41:39.5922
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yoWDLhYuNPZ3punRfZqeQPrSC2F0a+jsDkbqhO80QPi4dkyMGyXgBs0Se9ix1+XSEJ8drG/6Kb/Wh+m8mHyLCg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3199
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-11 01:07, Stephen Boyd wrote:
-> Quoting Prasad Malisetty (2021-08-09 21:08:36)
->> On the SC7280, By default the clock source for pcie_1_pipe is
->> TCXO for gdsc enable. But after the PHY is initialized, the clock
->> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
->> 
->> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
->> ---
->>  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
->>  1 file changed, 18 insertions(+)
->> 
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c 
->> b/drivers/pci/controller/dwc/pcie-qcom.c
->> index 8a7a300..39e3b21 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
->> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct 
->> qcom_pcie *pcie)
->>         if (ret < 0)
->>                 return ret;
->> 
->> +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) 
->> {
->> +               res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, 
->> "pipe_mux");
->> +               if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
->> +                       return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
->> +
->> +               res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
->> +               if (IS_ERR(res->phy_pipe_clk))
->> +                       return PTR_ERR(res->phy_pipe_clk);
->> +       }
->> +
->>         res->pipe_clk = devm_clk_get(dev, "pipe");
->>         return PTR_ERR_OR_ZERO(res->pipe_clk);
->>  }
->> @@ -1255,6 +1267,12 @@ static void qcom_pcie_deinit_2_7_0(struct 
->> qcom_pcie *pcie)
->>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->>  {
->>         struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->> +       struct dw_pcie *pci = pcie->pci;
->> +       struct device *dev = pci->dev;
->> +       struct device_node *node = dev->of_node;
->> +
->> +       if (of_property_read_bool(node, "pipe-clk-source-switch"))
-> 
-> This can be straightline code. If gcc_pcie_1_pipe_clk_src is NULL,
-> calling clk_set_parent() on it is a nop, return 0, so drop the property
-> check and only assign the clk pointer if it needs to be done.
-> 
->> +               clk_set_parent(res->gcc_pcie_1_pipe_clk_src, 
->> res->phy_pipe_clk);
-> 
-> Please check the return value and fail if it fails to set the parent.
-> I'd also prefer a comment indicating that we have to set the parent
-> because the GDSC must be enabled with the clk at XO speed. The DT 
-> should
-> probably also have an assigned clock parent of XO so when the driver
-> probes it is set to XO parent for gdsc enable and then this driver code
-> can change the parent to the phy pipe clk.
-> 
->> 
->>         return clk_prepare_enable(res->pipe_clk);
->>  }
-
-Hi Stephen,
-
-Thanks for your review and inputs.
-
-Yes, clk_set_parent function returning NULL if src pointer is NULL. we 
-can call clk_set_parent function without any check.
-
-I will validate and incorporate the changes in next version.
-
-Thanks
--Prasad
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBVbGYgSGFuc3NvbiBbbWFpbHRv
+OnVsZi5oYW5zc29uQGxpbmFyby5vcmddDQo+IFNlbnQ6IDIwMjHlubQ45pyIMTbml6UgMjE6NDMN
+Cj4gVG86IEJvdWdoIENoZW4gPGhhaWJvLmNoZW5AbnhwLmNvbT4NCj4gQ2M6IEFkcmlhbiBIdW50
+ZXIgPGFkcmlhbi5odW50ZXJAaW50ZWwuY29tPjsgU2hhd24gR3VvDQo+IDxzaGF3bmd1b0BrZXJu
+ZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IFNhc2NoYSBIYXVlcg0K
+PiA8cy5oYXVlckBwZW5ndXRyb25peC5kZT47IFNhc2NoYSBIYXVlciA8a2VybmVsQHBlbmd1dHJv
+bml4LmRlPjsgRmFiaW8NCj4gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPjsgbGludXgtbW1j
+IDxsaW51eC1tbWNAdmdlci5rZXJuZWwub3JnPjsNCj4gZGwtbGludXgtaW14IDxsaW51eC1pbXhA
+bnhwLmNvbT47IERUTUwgPGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPjsgTGludXgNCj4gQVJN
+IDxsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBb
+UEFUQ0ggMy82XSBkdC1iaW5kaW5nczogbW1jOiBmc2wtaW14LWVzZGhjOiBhZGQNCj4gZnNsLHNk
+aW8tYXN5bmMtaW50ZXJydXB0LWVuYWJsZWQgYmluZGluZw0KPiANCj4gT24gTW9uLCAxNiBBdWcg
+MjAyMSBhdCAxNTowMCwgPGhhaWJvLmNoZW5AbnhwLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBGcm9t
+OiBIYWlibyBDaGVuIDxoYWliby5jaGVuQG54cC5jb20+DQo+ID4NCj4gPiBBZGQgYSBuZXcgZnNs
+LHNkaW8tYXN5bmMtaW50ZXJydXB0LWVuYWJsZWQgYmluZGluZyBmb3Igc2RpbyBkZXZpY2VzDQo+
+ID4gd2hpY2ggZW5hYmxlIHRoZSBhc3luYyBpbnRlcnJ1cHQgZnVuY3Rpb24uIFdoZW4gZ2V0IHRo
+aXMgcHJvcGVydHksDQo+ID4gZHJpdmVyIHdpbGwgYXZvaWQgdG8gdXNlIERBVFsxXSBmb3IgaGFy
+ZHdhcmUgYXV0byB0dW5pbmcgY2hlY2suDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBIYWlibyBD
+aGVuIDxoYWliby5jaGVuQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9mc2wtaW14LWVzZGhjLnlhbWwgICAgICAgICB8IDEwDQo+ICsrKysrKysrKysN
+Cj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1n
+aXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2ZzbC1pbXgtZXNkaGMu
+eWFtbA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9mc2wtaW14
+LWVzZGhjLnlhbWwNCj4gPiBpbmRleCBiNWJhZjQzOWZiYWMuLjhhOWYxNzc1YjBlMiAxMDA2NDQN
+Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2ZzbC1pbXgt
+ZXNkaGMueWFtbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9t
+bWMvZnNsLWlteC1lc2RoYy55YW1sDQo+ID4gQEAgLTEyMiw2ICsxMjIsMTYgQEAgcHJvcGVydGll
+czoNCj4gPiAgICAgICAgLSBjb25zdDogc3RhdGVfMjAwbWh6DQo+ID4gICAgICAgIC0gY29uc3Q6
+IHNsZWVwDQo+ID4NCj4gPiArICBmc2wsc2Rpby1hc3luYy1pbnRlcnJ1cHQtZW5hYmxlZDoNCj4g
+PiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIFJlY29tbWVuZCBmb3IgU0RJTyBjYXJk
+cyB0aGF0IGVuYWJsZXMgU0RJTyBhc3luYyBpbnRlcnJ1cHQgZm9yDQo+IFNEUjEwNCBhbmQgU0RS
+NTANCj4gPiArICAgICAgb3BlcmF0aW5nIG1vZGVzLiBTRElPIGFzeW5jIGludGVycnVwdCB1c2Vz
+IERBVFsxXSB0byBzaWduYWwgdGhlDQo+IGNhcmQncyBpbnRlcnJ1cHQuDQo+ID4gKyAgICAgIHVT
+REhDIHR1bmluZyBtZWNoYW5pc20gbXVzdCB1c2UgREFUWzBdIGFuZCBDTUQgc2lnbmFscyB0byBh
+dm9pZA0KPiBhIHBvc3NpYmxlDQo+ID4gKyAgICAgIGNvbmZsaWN0IGFuZCBpbmNvcnJlY3QgZGVs
+YXkgbGluZSBjYWxjdWxhdGVkIGJ5IHRoZSB1U0RIQyBhdXRvIHR1bmluZw0KPiBtZWNoYW5pc20u
+DQo+ID4gKyAgICAgIEVuYWJsaW5nIHRoaXMgZGV2aWNlIHRyZWUgcHJvcGVydHkgaXMgb25seSBy
+ZWNvbW1lbmRlZCBmb3IgbGF5b3V0cw0KPiB0aGF0IGFyZQ0KPiA+ICsgICAgICBtYXRjaGluZyB0
+aGUgU0QgaW50ZXJmYWNlIGxlbmd0aC4NCj4gPiArICAgIHR5cGU6IGJvb2xlYW4NCj4gDQo+IFdl
+IGFscmVhZHkgaGF2ZSBhIGNvbW1vbiBtbWMgcHJvcGVydHksICJjYXAtc2Rpby1pcnEiLCB0aGF0
+IHRlbGxzIHdoZXRoZXINCj4gdGhlIGNvbnRyb2xsZXIgc3VwcG9ydHMgU0RJTyBpcnFzICh3aGlj
+aCBpcyBkZWxpdmVyZWQgb24gREFUMSkuDQo+IA0KPiBDYW4ndCB5b3UgdXNlIHRoaXMgaW5zdGVh
+ZD8NCj4gDQpIaSBVbGYsDQoNClRoYW5rcyBmb3IgeW91ciBxdWljayByZXBseSENCg0KQWNjb3Jk
+aW5nIHRvIG91ciBXaUZpIHRlYW0gcmVwbHksIHRoZSBzZGlvLWlycSBoYXMgdHdvIHR5cGVzLiBT
+eW5jIGludGVycnVwdCBhbmQgQXN5bmMgaW50ZXJydXB0Lg0KV2hlbiBXaUZpIHNlbmQgb3V0IHRo
+ZSBpbnRlcnJ1cHQgc2lnbmFsIGR1cmluZyB0aGUgaW50ZXJydXB0IHBlcmlvZCwgaWYgaXQgc3lu
+YyB3aXRoIGNsb2NrIHBhZChqdXN0IGFzDQp3aGVuIHNlbmQgb3V0IGRhdGEpLCB0aGVuIHRoaXMg
+aXMgc3luYyBpbnRlcnJ1cHQuIFdoZW4gdGhpcyBpbnRlcnJ1cHQgbm90IHN5bmMgd2l0aCBjbG9j
+aywgaXQgaXMgYXN5bmMNCmludGVycnVwdC4gQXN5bmMgaW50ZXJydXB0IGhhcyBhIGJldHRlciBv
+dmVyYWxsIHBlcmZvcm1hbmNlIHRoYW4gc3luYyBpbnRlcnJ1cHQuDQoNCkxvZ2ljYWxseSwgYXV0
+byB0dW5pbmcgY2lyY3VpdCBzaG91bGQgb25seSB0YWtlIGNhcmUgb2YgdGhlIGRhdGEgYW5kIGNt
+ZCBsaW5lLCBhbmQgaWdub3JlIGludGVycnVwdCBzaWduYWwuDQpCdXQgdW5mb3J0dW5hdGVseSBj
+dXJyZW50IGkubXgtdXNkaGMgSVAgZG8gbm90IGlnbm9yZSBpbnRlcnJ1cHQgc2lnbmFsLiBTbyBp
+dCBkZXRlY3QgdGhlIGludGVycnVwdCBzaWduYWwsDQphbmQgdGFrZSB0aGlzIHNpZ25hbCBhcyBh
+IGRhdGEgc2lnbmFsLCBhbmQgYWRqdXN0IHRoZSBkZWxheSBjZWxsIGFjY29yZGluZ2x5LiBGb3Ig
+c3luYyBpbnRlcnJ1cHQsIGR1ZSB0byBpdA0Kc3luYyB3aXRoIGNsb2NrLCBzbyBubyBhZmZlY3Qs
+IGJ1dCBmb3IgYXN5bmMgaW50ZXJydXB0LCBpdCB3aWxsIGludm9sdmUgd3JvbmcgZGVsYXkgY2Vs
+bCBjaGFuZ2UgcmFuZG9tbHkuDQoNCkkgaW52b2x2ZSBhIG5ldyBwcm9wZXJ0eSBoZXJlLCBiZWNh
+dXNlIGluIHNkaGNpLmMsIHdlIGRlZmF1bHQgdXNlIHRoaXMgImNhcC1zZGlvLWlycSIgZm9yIGFs
+bCBzZGlvL3NkL21tYy4NCkkgbmVlZCBvbmUgcHJvcGVydHkgd2hpY2ggY2FuIHVzZSBvbmx5IGZv
+ciBzZGlvIGRldmljZSwgYW5kIG9ubHkgd2hlbiBzZGlvIGRldmljZSBlbmFibGUgYXN5bmMtaW50
+ZXJydXB0Lg0KDQpCZXN0IFJlZ2FyZHMNCkhhaWJvIENoZW4NCg0KPiA+ICsNCj4gPiAgcmVxdWly
+ZWQ6DQo+ID4gICAgLSBjb21wYXRpYmxlDQo+ID4gICAgLSByZWcNCj4gPiAtLQ0KPiA+IDIuMTcu
+MQ0KPiA+DQo+IA0KPiBLaW5kIHJlZ2FyZHMNCj4gVWZmZQ0K
