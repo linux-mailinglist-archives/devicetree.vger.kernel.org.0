@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F8F23EEADA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE493EEAFA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239474AbhHQKW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 06:22:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51056 "EHLO mail.kernel.org"
+        id S236297AbhHQKba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 06:31:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54454 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235204AbhHQKW4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 06:22:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 571F060F14;
-        Tue, 17 Aug 2021 10:22:22 +0000 (UTC)
+        id S235204AbhHQKb3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 06:31:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EA027600CC;
+        Tue, 17 Aug 2021 10:30:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629195743;
-        bh=ZFAq4tNzIQzTRviQ8r6LSwQW3bkr+2nmdMRbQ7RZRsg=;
+        s=k20201202; t=1629196257;
+        bh=BxxNEfEkon7WthJuxGlsYjRnS9m+9ksjcTGePwqMEgU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Go0Bezt4k+PVI8Qj0upYozJ00NOmTbzPu4M0awDHqDcsgWJdndB7ISgtdfZtLeaYG
-         Dt9d7RxnVcyOrXoGBSHtYJr9o+y+nXSEXaEKexgxEWYGa+ZH76KIv2sY2VHfmE8q5r
-         1SpEt34BkbGag+m6/yS+DwxaaVFiuSXKf+sZMdfujmWgXRHtoezgHH3f5STy6hl0to
-         OGbx8Yt1h0u8LdYH+oXiCJywSnX9Ps942ktu6kpWVIR3+MQocxZVIAzX+t5YV1Vfef
-         rNTPgDPsj3BIb0KopXt1U+xVS/1cVsfXAWdlGHMd3n6eSZRUZtnkvwd0UYUVjDJdTg
-         3vMg5Cku7rj2A==
-Date:   Tue, 17 Aug 2021 15:52:18 +0530
+        b=NuVPytyt0SZu3yHNad9pEQrINoIXaagtLFgVrlJwGS1mZxrBVnZNxLLrwNiQkKEn0
+         4yoymzhT7NhUfeiq4ERTqojSUIfXjxSmS++U/ykel11QHLIYyvWgDZJs7yXmGcgg0c
+         EMQyZ8nc5UWo3c67PlkKAe9cnw0RZTKyuJf5naGm95JKCg2eFej1C7TrGfMvwjB+At
+         PW84oV393djGxTMWgFJMjQi5K5S/smp0F92ZR+W7j/fg4tPsWNYOvaV1wHZgYuiRbU
+         WKEC+a7kmjkb2Q1btZ2cP0CRzwTYOC7kdr1M0YCRxfUTkshQET7lEY60ivJc/vT0f0
+         Q0ZWZhkQX5jLw==
+Date:   Tue, 17 Aug 2021 16:00:52 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     linux-phy@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Stanley Chu <stanley.chu@mediatek.com>
-Subject: Re: [PATCH v3 1/9] dt-bindings: phy: mediatek: tphy: support type
- switch by pericfg
-Message-ID: <YRuN2tvQtO294+sE@matsya>
-References: <1629191987-20774-1-git-send-email-chunfeng.yun@mediatek.com>
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        Brian Kim <brian.kim@hardkernel.com>
+Subject: Re: [PATCHv3 5/6] phy: amlogic: meson8b-usb2: Power off the PHY by
+ putting it into reset mode
+Message-ID: <YRuP3D6EMlaKJOx7@matsya>
+References: <20210817041548.1276-1-linux.amoon@gmail.com>
+ <20210817041548.1276-6-linux.amoon@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1629191987-20774-1-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <20210817041548.1276-6-linux.amoon@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-08-21, 17:19, Chunfeng Yun wrote:
-> Add support type switch by pericfg register between USB3, PCIe,
-> SATA, SGMII, this is used to replace the way through efuse or
-> jumper.
+On 17-08-21, 09:45, Anand Moon wrote:
+> Power off the PHY by putting it into reset mode.
 
-Applied all, thanks
+Applied, thanks
 
 -- 
 ~Vinod
