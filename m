@@ -2,113 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 899763EF020
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 18:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABEFA3EF074
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 18:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbhHQQWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 12:22:51 -0400
-Received: from egress-ip4a.ess.de.barracuda.com ([18.184.203.227]:47394 "EHLO
-        egress-ip4a.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229721AbhHQQWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 12:22:51 -0400
-X-Greylist: delayed 3671 seconds by postgrey-1.27 at vger.kernel.org; Tue, 17 Aug 2021 12:22:51 EDT
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69]) by mx-outbound42-68.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 17 Aug 2021 16:22:16 +0000
-Received: by mail-pj1-f69.google.com with SMTP id v9-20020a17090a7c09b02901778a2a8fd6so3029217pjf.3
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 09:22:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VsSZGWUvvn7j0SbAPqKoESI5XWDvpP3o/VbecLlOcio=;
-        b=oR1CYR+7YdGW2W8VFM1r+9qUEa+rDxkRR2PPpuFBlFF/c/gVdD5SGVgWgSWMRydzY0
-         o4owHijmmHzVAG0LMvckc9NiORMrV4AherWsE+HuY9Bpo6onWj+GW0+cEJx8zoTjic1x
-         lO7Dm+i7A0PjtDc9IFp9+qJrm573Hb5qO5HAI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VsSZGWUvvn7j0SbAPqKoESI5XWDvpP3o/VbecLlOcio=;
-        b=teTW+w4//puIJzgJVijuw+3JgnasCUxw0u1tQbfRnCFHhrhZ8ZxuHKY75OJ9ajXxG6
-         KAC69B1i0WRa1cw9rzYEIsvUzUaRpVwWnYjiNf78fbYeVANtZa/05JqeU0F+AjDCcYa5
-         p1COhieZy0mexM9/C3mubIZLP4fdKofMoXc1/x/GdsAFIzwk3GuKnnsyMfNcLrGrialL
-         TrpCjXEy2P//JcRC2rKgPwS6IenboPT4jQo7QSfpLE57ZoTfeNLQJhIxD75NC909V7DL
-         lVGnt03DKF6sF6ggIhktmP6PUcPvhJvMmsFqMdNfakwuGLeh96pxvg0LJjAX8TM32YcE
-         /gyw==
-X-Gm-Message-State: AOAM532FLiF/m7H4YB69nzFVx+sQ5IwVjuQSuPK/PfrFRjyUFKzM0SYi
-        QKA2NvZKTACvk1tAP6rSVyK/aaYIGL1JhBnrzTHtp3CrtV5z1a8TtTY4jh3HFA6uot5Zsj4vlF4
-        s/xlKB/5XqV4+eaHlGjFj1+a6azV1e4Ll7mL9UA0rQN0R0fJ6DcxxxxOr6Q==
-X-Received: by 2002:a17:902:7c87:b029:12c:8f2d:4238 with SMTP id y7-20020a1709027c87b029012c8f2d4238mr3278442pll.50.1629213664532;
-        Tue, 17 Aug 2021 08:21:04 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzwCljfSrQAguX6MEzyY1djUhbhAX3lvGHwKM1bezzxj6OMs03o2YiVWt6FZgwoCkxfOPU1Ww==
-X-Received: by 2002:a17:902:7c87:b029:12c:8f2d:4238 with SMTP id y7-20020a1709027c87b029012c8f2d4238mr3278418pll.50.1629213664266;
-        Tue, 17 Aug 2021 08:21:04 -0700 (PDT)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id f137sm3148368pfa.160.2021.08.17.08.20.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 08:21:03 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        Suman Anna <s-anna@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH] dt-bindings: remoteproc: k3-dsp: Update example to remove board specific
-Date:   Tue, 17 Aug 2021 20:50:05 +0530
-Message-Id: <20210817152005.21575-1-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.31.1
+        id S230481AbhHQQv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 12:51:26 -0400
+Received: from mxout04.lancloud.ru ([45.84.86.114]:42202 "EHLO
+        mxout04.lancloud.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231436AbhHQQv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 12:51:26 -0400
+X-Greylist: delayed 548 seconds by postgrey-1.27 at vger.kernel.org; Tue, 17 Aug 2021 12:51:25 EDT
+Received: from LanCloud
+DKIM-Filter: OpenDKIM Filter v2.11.0 mxout04.lancloud.ru C46BC20CEA3B
+Received: from LanCloud
+Received: from LanCloud
+Received: from LanCloud
+Subject: Re: [PATCH v6 3/3] arm64: dts: renesas: r9a07g044: Add USB2.0 device
+ support
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
+ <20210812151808.7916-4-biju.das.jz@bp.renesas.com>
+ <2f5f8999-260d-e9c0-731e-df644b528b61@gmail.com>
+ <OS0PR01MB59221C4884E0667F75748A1686F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB5922205202921BA8EC12C26686FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <05bdd9e8-e68f-c8b4-a7d9-a83f2ca97a58@omp.ru>
+Date:   Tue, 17 Aug 2021 19:41:41 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1629217335-310820-5358-4972-1
-X-BESS-VER: 2019.1_20210805.2250
-X-BESS-Apparent-Source-IP: 209.85.216.69
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.234019 [from 
-        cloudscan19-46.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
+In-Reply-To: <OS0PR01MB5922205202921BA8EC12C26686FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [192.168.11.198]
+X-ClientProxiedBy: LFEXT02.lancloud.ru (fd00:f066::142) To
+ LFEX1907.lancloud.ru (fd00:f066::207)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+On 8/17/21 2:12 PM, Biju Das wrote:
 
-The example includes a board-specific compatible property, but developers
-need to add the board name each time when a new board is added to the K3
-J721E SoC list. This grows the compatible string-list. So, drop the
-board-specific compatible string and add cbass_main as a parent node to 
-avoid parent node and child node address-cells mismatch error.
+[...]
+>>>> Add USB2.0 device support to RZ/G2L SoC DT.
+>>>>
+>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> [...]
+>>>> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>> b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>> index de78c921af22..2f313c2a81c7 100644
+>>>> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>>>> @@ -391,6 +391,25 @@
+>>>>  			power-domains = <&cpg>;
+>>>>  			status = "disabled";
+>>>>  		};
+>>>> +
+>>>> +		hsusb: usb@11c60000 {
+>>>> +			compatible = "renesas,usbhs-r9a07g044",
+>>>> +				     "renesas,rza2-usbhs";
+>>>> +			reg = <0 0x11c60000 0 0x10000>;
+>>>> +			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
+>>>> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+>>>
+>>>    Don't we need to specify "interrupt-names" when there a more than 1
+>>> interrupts?
+>>
+>> This dtsi changes, as per binding documentation [1]. As you see,
+>> "interrupt-names" is optional.
+> 
+> For now I will go with current dt changes.
+> 
+> Later  I will create incremental patches for dt-binding with optional "interrupt-names",
+> "clock-names" and "reset names" for all the SoC's supported by this binding doc. 
+> 
+> After that, will send an incremental patch with adding optional properties in all SoC dtsi.
+> 
+> Does it make sense?
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
- .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+   I had the impression that the "*-names" prop was mandatory for a "*" prop having 2 values or mores.
+If it's now allowed to be optional, don't bother with that at all.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-index 6070456a7b67..905b8798d4c4 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-@@ -132,10 +132,8 @@ required:
- unevaluatedProperties: false
- 
- examples:
--  - |
--    / {
--        model = "Texas Instruments K3 J721E SoC";
--        compatible = "ti,j721e";
-+  - |+
-+     cbass_main {
-         #address-cells = <2>;
-         #size-cells = <2>;
- 
--- 
-2.31.1
+> Regards,
+> Biju
 
+
+MBR, Sergei
