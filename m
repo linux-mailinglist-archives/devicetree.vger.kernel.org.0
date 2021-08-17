@@ -2,189 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 114023EE6BE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 08:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB0A3EE6C6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 08:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231895AbhHQGmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 02:42:15 -0400
-Received: from mail-am6eur05on2073.outbound.protection.outlook.com ([40.107.22.73]:60085
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230094AbhHQGmO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 02:42:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nfgsBmMQn1LIbnKJHlShrjW4CLado+8YVgL7LIUDjD7tvESCJ1xcJPEKeGfZtP4ncXLVxI+sdUFa60n51SjDGOyPvJm67BmyL+HxbiYaNLQEtm2akXnSilNBZzw22zjgS1/pnKgMSTDZmNd0yhtDad2XODyiu3D+lPdbxKgJSL+FM6pMZNK6xvWXVrnwoPUXC0hrzWvbZT/JIc3SGJXZ2jVhxFdwY+7JyfjDTvbAQAI/5xmEW5F5E3qCwkPtvR3ZrY6PXGQWX0XlH4En6ckXzhio5sfmQaH+vvylKwYEQCsHXenveVMKvygCvhS+1BHJDO3x/q4KTOtCpqMsifwucw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UdGcI8nOu6aDc/31UaH9kinjepqoW6dGZGxxfwhik4A=;
- b=UIyWfWbYqEw6BueFba+kl8sfH1I/drBRfbk++FTupr8hRT2Chnua/7urAGkSiRe5UsH5+TlzptzZPcnsyKSm0zqjgco+IWrNaY7Fa6fHPcYjcZWuNKiWImPQzTuZOw35P9HWD7OpxU58LlBNkbJhfp6xECizO6IsDYTYBE5bYLrjDli7+hhoZKrLPWP0QmH5ufAJelqxlHWC5sa200QcJJpl8ggo+eaTsFufyXy6ugZ5LeyAtfKp6Gdxi4ha4ploDV+UGQKGx4c0NpEm6KddWit5hv011x18fGXKIhHdEp3i7IcdoDK0vhMV6EcXizqnjEqjlghPK1GWmw0PR28MHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UdGcI8nOu6aDc/31UaH9kinjepqoW6dGZGxxfwhik4A=;
- b=iTXhYquqEJcpdC/3nBPWSHRHpWzHAEXMLcTF1NYboGbO5Xhme5PMy6kppdQjLe/78X0rbzCo8kVgmBhYpqdJkmwofurQhknmgmxZbmh89oI+cDEz+6cCPz5r67ekapz0QJr+WeVRpkHPoBzGCEIlm7r1GukdiFpBzlPDG/9G+TM=
-Received: from VI1PR04MB5294.eurprd04.prod.outlook.com (2603:10a6:803:5a::22)
- by VI1PR04MB3199.eurprd04.prod.outlook.com (2603:10a6:802:3::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.17; Tue, 17 Aug
- 2021 06:41:39 +0000
-Received: from VI1PR04MB5294.eurprd04.prod.outlook.com
- ([fe80::c59c:3e45:7b94:e5b7]) by VI1PR04MB5294.eurprd04.prod.outlook.com
- ([fe80::c59c:3e45:7b94:e5b7%7]) with mapi id 15.20.4415.024; Tue, 17 Aug 2021
- 06:41:39 +0000
-From:   Bough Chen <haibo.chen@nxp.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Adrian Hunter <adrian.hunter@intel.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 3/6] dt-bindings: mmc: fsl-imx-esdhc: add
- fsl,sdio-async-interrupt-enabled binding
-Thread-Topic: [PATCH 3/6] dt-bindings: mmc: fsl-imx-esdhc: add
- fsl,sdio-async-interrupt-enabled binding
-Thread-Index: AQHXkp6tG0/Z3/M/9EqFi1WsjhyfN6t2JAWAgAET8VA=
-Date:   Tue, 17 Aug 2021 06:41:39 +0000
-Message-ID: <VI1PR04MB529432136DB9F5FEB5F5E98090FE9@VI1PR04MB5294.eurprd04.prod.outlook.com>
-References: <1629117508-4886-1-git-send-email-haibo.chen@nxp.com>
- <1629117508-4886-3-git-send-email-haibo.chen@nxp.com>
- <CAPDyKFqagBkbnxxh+KWbV2=sjkj3mGrKXUweOL5TrMJ1-Hmnww@mail.gmail.com>
-In-Reply-To: <CAPDyKFqagBkbnxxh+KWbV2=sjkj3mGrKXUweOL5TrMJ1-Hmnww@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 135eae1c-c8e6-4395-5388-08d9614a116c
-x-ms-traffictypediagnostic: VI1PR04MB3199:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB3199F2504F0720D00F6D2DC290FE9@VI1PR04MB3199.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mYdzgrAJbbO0Sb1TYwvKYNatXVNDGkbizZGVOMFzvfZzN3BXvRtrgPlMPMMhuAwNwm8+OfAeQ2XH3s6Milwt69mPGOao7LwwzRTuGh0uTNg1yHVcDO3Sf/bJoc9BOVWFCCjfI+JQMg4oovgbWxWOZ/frAks1yee2oy1FM97DBYuH6X2OaESv9P8X8vvr5WKJkAptGsYJPeCgQA7V+z61qtNkcrjLusPSBGREECjHzIqsTHzGSzw8VzyoXb7ZJrT5FkBgfDay9BumZ1F/qU7pK0f92AUJvbsmNtCdZu/FfxtMhRLK39jtWtVsv8aQjX/l9C/GIDZa9LPu36u9tTt3l2Q7wG6f4XIAM9ENo6xFFPiiIzPLthKRV5hDivqxqBRXAuUtVdPUr6tC77Qfv3gneyhlBOm/MBw5RpzO9aP6BqoyuhsBFvunl0Mpgkdd5k8f/yhGPVFMoNzrGcQHXvLGciE53eXbNt5UdtoYF0YNKtcEf6eQSPhcxuVa11ImkphRw79E4HRzBD9zaVE91eaUw6PHMZVI01+sc3+gO7TWxBh6T6rf6c1/6BKt02afulJ9Qemw+SdoOux/XXb8m+fP0wf8ifihAwmoE+9pQaTJ21HbSOGvTiLebyJEPePgmCwJXddiyfOqT7dIhgq5oV+lNcWQYdYqA2VDzYc8Hqczns+YoENphqTXIAFyXax6WKx/h4g86Z06sVNgPGD4KBFQ8g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5294.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(39850400004)(346002)(136003)(376002)(7696005)(8936002)(52536014)(9686003)(26005)(86362001)(83380400001)(33656002)(5660300002)(6506007)(38070700005)(38100700002)(122000001)(66476007)(66556008)(2906002)(71200400001)(64756008)(66946007)(54906003)(478600001)(66446008)(76116006)(53546011)(316002)(55016002)(4326008)(186003)(8676002)(6916009)(7416002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TUVpakhzbjBUc2JLREoyN2VYTzBLM1FFaCtnN2NscGZnRE9YR29PWmxXNjhL?=
- =?utf-8?B?VkVlY0tyU0NZbEh5aUZsYzhZbzZoM1QvWmxiNDFQSUhZMXd5SkRXN3NlNFVF?=
- =?utf-8?B?Z1NtdGc0bll1YUlQK1A1bUVzTUZuSDVpQTZVK0N2ZzY5MDNGc3Z6cUNCbVZo?=
- =?utf-8?B?eVVHVXdhTmlod1BMZXd1VUVYeVRPaEkxV0pJL1RQQ041WmNJYU1BcllmdmJX?=
- =?utf-8?B?M20rMlVoWEpnc0xRQUJkcGdZL3UreWZHTndyZU8zT2ZJazA3VUl5enIyRzNs?=
- =?utf-8?B?bHZUWmxjdldJSEc2MWgyb1ZEc2x5d1p2QThQY0tpcTJQN3B1QmthNDdWUTQz?=
- =?utf-8?B?N2hpRkpVTFcvZXhRZXU1WFV6bjhmMGpEL09GckdmTGZ2MlJFWFNDZnhXY2dt?=
- =?utf-8?B?OUoydGFmVk44NHBxSzVsaVZuY3pndWo0VC96V0c5QS82NWtmbVEyUFJTNUgz?=
- =?utf-8?B?SjhrU21OSnFYRjhZMGlRVU1zZ1NCWkx3SGtlK25DYnNQMGdVTGs0d1g1c0tF?=
- =?utf-8?B?TjlCbzlObzdwZjBydnBGVGRqOTlZYVhCZlRKLzF1bWZIbU5CTDFsdjl5Nncr?=
- =?utf-8?B?RVUxY0M3ajVwZENlNHhneUdYSjkzSHhVQVEvZStzMUN1Ynh3bTdaQTh4UFk5?=
- =?utf-8?B?K1BPMUZGZUdydkFtK1lFc1NmUVFGOXN0cUxmM1IwWmcxK1ZRc1NDaUYrTzlJ?=
- =?utf-8?B?VVVUMGhmNFpZM0hIdWVlN0FzbDRmUTdOSm9TWTdiNTdUL1JsTEZ5b3RMMWF4?=
- =?utf-8?B?Nk96YWdpd0xKM0xvV0xkWVB1R3hlbHN6Q2NVSlRkcFVRRDZQRHZEQ05sc016?=
- =?utf-8?B?dGhhdlFZM3NNcE5EOFR0OVJ0RldYaktsbVF3VStkQlNnRFgrM1Bpb21tVWww?=
- =?utf-8?B?eWFWWTB6T0tybGlHcWt4Q2x0empvQkMrUS9NOVJUbUNXaVB4NSszLzZ6V0py?=
- =?utf-8?B?c0FHK21zc2tCTUpQWkRKbTlBRDNYcWZjb0ZZRE5uVGVRd1VHYUEzSlMvN2E0?=
- =?utf-8?B?clcxZjQ4V1p1Vi9TWnpiaklIZW9vdThLL1gyRnRXTnhMNGlienoydUxUaDF2?=
- =?utf-8?B?Sy9PVWdxWjlHTkFyRFF1ZGxTVHdUbnN4UlZvRCtHM1IwS3RaR01SNndNaHE1?=
- =?utf-8?B?VzkxNmtsdWx4Uks3UUJFRFdQcm1mZm9tTlFsclFzaHRqYmxEZ3lvMVplNmR5?=
- =?utf-8?B?alFFczd6cSt2OEs0V1ZiellDZUZwZkRTZlNxUUlKZ25sZjJzY2ozanJoa2Ny?=
- =?utf-8?B?b3BqMmJ2V3RZd0ZnQk5aRTVzVFlLV3VNTkpKSkJnUFNnZUJpWk1xYUV0YVNz?=
- =?utf-8?B?QmZxdHA2Y1YrY2syemV1b1hENTdiSzhwTDRjdXo2aENXblIwbXh1ckVmazZO?=
- =?utf-8?B?L1BndkRxdVNtQ2xQMFM0MUJ4RzI5WUp0dXV6Z2FDMUVCWVFidVZEU0Ftbjkv?=
- =?utf-8?B?NDYzWFZhakg1UXhvek1NSkpmTE0wbEhldEpTQk1HeEtHK2RaNUNreHBuNVhq?=
- =?utf-8?B?RmRXN2xHQmRQSm1OSGZBVFFvbGZ4SVNtY0Fjd2pGdjlMQTRMb0hQaUZ6UVJW?=
- =?utf-8?B?anBwVHQ5VjgwRXp6TW5RUEZBdGFuaDNVMkxVdmlidmxpRTgyWXhJbU1XdDdp?=
- =?utf-8?B?ZUhnNU5icURrVVYvcjBUcmV5amh4OTNGKzZLdll2bGppLzhjRTdHUjRzSVE2?=
- =?utf-8?B?WEpRUjN5d3V2TDB6bW1rL2gzZWNmdEs0bWRJejF5aDIxdXlHYUJRQnZETjhm?=
- =?utf-8?Q?GEAMbpD3YS2vrMq3hn11vWZJGp5NjfLCcffFODc?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S233676AbhHQGna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 02:43:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35484 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230094AbhHQGna (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 02:43:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AB8B860FD8;
+        Tue, 17 Aug 2021 06:42:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629182577;
+        bh=34kp4aM/l1m2Tcf3HPRzMsU+Qjm7SBbDZ+vfVjP0k68=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=em7OVWB0LXXoEkZj+7aVx8B1E1D67tQSL6OX4f+dHqChjCEjhrSAvSok8N3KDb1X+
+         8Lz/brwOx2Rcf19O+KjApL8P+bh62fHA6DN24/h9K0J7B5VKQb49oG2Rirv2txSbCc
+         QAMyasSG09HqF85es7WeGM682pqEIetcF0Y+cSKAf7nClOVihor6yDEz7Tj4Sr6duD
+         3xoYKPE52tpTTFBzHKacv6iElMiH+mLSXaZ+f0TFDBej2Vb2ayxsgUAvjPTQ7G155w
+         JskvhvTbO6PYs/cphBr2W0xSw+8RoiB3RjtCqoFHSTuhpl06l6LnvppvOlmmJ68lGD
+         W3bnCwBqavuhQ==
+Received: by mail-lj1-f175.google.com with SMTP id d16so13124452ljq.4;
+        Mon, 16 Aug 2021 23:42:57 -0700 (PDT)
+X-Gm-Message-State: AOAM533LU5yPuPGTG6bxxx1CKy/5eulDPf2z4gOuUtJQQ8oNyEeIdtn9
+        Bcl8u7ZKQI6HvLJYRIBpWeExVof14vCohgRaV1o=
+X-Google-Smtp-Source: ABdhPJwvsYfSVRDvML5GBFkxuHQ4HPPPDvI93w9Qkrgmn64TslSnV1FfYdlixNxLaOPZYsYFJBQJNRHbaA29pbEiUZk=
+X-Received: by 2002:a05:651c:150a:: with SMTP id e10mr1793800ljf.285.1629182575957;
+ Mon, 16 Aug 2021 23:42:55 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5294.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 135eae1c-c8e6-4395-5388-08d9614a116c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Aug 2021 06:41:39.5922
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yoWDLhYuNPZ3punRfZqeQPrSC2F0a+jsDkbqhO80QPi4dkyMGyXgBs0Se9ix1+XSEJ8drG/6Kb/Wh+m8mHyLCg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3199
+References: <20210723214031.3251801-1-atish.patra@wdc.com> <mhng-11e1ab27-21eb-4b20-9185-c256fcaaab99@palmerdabbelt-glaptop>
+ <CAOnJCU+ip1ccc9CrREi3c+15ue4Grcq+ENbQ+z_gh3CH249aAg@mail.gmail.com>
+ <CAJF2gTSMtj05cduTZ6jEqDXtaG0QTY743MRQrv08B4cocZbXJQ@mail.gmail.com> <CAOnJCUKPitLD1g1LocTw8H+G7hg04-=Dd3biHGgDPMwer2cFpw@mail.gmail.com>
+In-Reply-To: <CAOnJCUKPitLD1g1LocTw8H+G7hg04-=Dd3biHGgDPMwer2cFpw@mail.gmail.com>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Tue, 17 Aug 2021 14:42:44 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTQcGiudC6X=xN-0U=wuVLE2jthjuY8R7BDo1CZTTZbuVA@mail.gmail.com>
+Message-ID: <CAJF2gTQcGiudC6X=xN-0U=wuVLE2jthjuY8R7BDo1CZTTZbuVA@mail.gmail.com>
+Subject: Re: [RFC 0/5] Support non-coherent DMA on RISC-V using a global pool
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Tobias Klauser <tklauser@distanz.ch>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        iommu@lists.linux-foundation.org,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Dmitry Vyukov <dvyukov@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBVbGYgSGFuc3NvbiBbbWFpbHRv
-OnVsZi5oYW5zc29uQGxpbmFyby5vcmddDQo+IFNlbnQ6IDIwMjHlubQ45pyIMTbml6UgMjE6NDMN
-Cj4gVG86IEJvdWdoIENoZW4gPGhhaWJvLmNoZW5AbnhwLmNvbT4NCj4gQ2M6IEFkcmlhbiBIdW50
-ZXIgPGFkcmlhbi5odW50ZXJAaW50ZWwuY29tPjsgU2hhd24gR3VvDQo+IDxzaGF3bmd1b0BrZXJu
-ZWwub3JnPjsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IFNhc2NoYSBIYXVlcg0K
-PiA8cy5oYXVlckBwZW5ndXRyb25peC5kZT47IFNhc2NoYSBIYXVlciA8a2VybmVsQHBlbmd1dHJv
-bml4LmRlPjsgRmFiaW8NCj4gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPjsgbGludXgtbW1j
-IDxsaW51eC1tbWNAdmdlci5rZXJuZWwub3JnPjsNCj4gZGwtbGludXgtaW14IDxsaW51eC1pbXhA
-bnhwLmNvbT47IERUTUwgPGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPjsgTGludXgNCj4gQVJN
-IDxsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0ggMy82XSBkdC1iaW5kaW5nczogbW1jOiBmc2wtaW14LWVzZGhjOiBhZGQNCj4gZnNsLHNk
-aW8tYXN5bmMtaW50ZXJydXB0LWVuYWJsZWQgYmluZGluZw0KPiANCj4gT24gTW9uLCAxNiBBdWcg
-MjAyMSBhdCAxNTowMCwgPGhhaWJvLmNoZW5AbnhwLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBGcm9t
-OiBIYWlibyBDaGVuIDxoYWliby5jaGVuQG54cC5jb20+DQo+ID4NCj4gPiBBZGQgYSBuZXcgZnNs
-LHNkaW8tYXN5bmMtaW50ZXJydXB0LWVuYWJsZWQgYmluZGluZyBmb3Igc2RpbyBkZXZpY2VzDQo+
-ID4gd2hpY2ggZW5hYmxlIHRoZSBhc3luYyBpbnRlcnJ1cHQgZnVuY3Rpb24uIFdoZW4gZ2V0IHRo
-aXMgcHJvcGVydHksDQo+ID4gZHJpdmVyIHdpbGwgYXZvaWQgdG8gdXNlIERBVFsxXSBmb3IgaGFy
-ZHdhcmUgYXV0byB0dW5pbmcgY2hlY2suDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBIYWlibyBD
-aGVuIDxoYWliby5jaGVuQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL21tYy9mc2wtaW14LWVzZGhjLnlhbWwgICAgICAgICB8IDEwDQo+ICsrKysrKysrKysN
-Cj4gPiAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1n
-aXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2ZzbC1pbXgtZXNkaGMu
-eWFtbA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9mc2wtaW14
-LWVzZGhjLnlhbWwNCj4gPiBpbmRleCBiNWJhZjQzOWZiYWMuLjhhOWYxNzc1YjBlMiAxMDA2NDQN
-Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL2ZzbC1pbXgt
-ZXNkaGMueWFtbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9t
-bWMvZnNsLWlteC1lc2RoYy55YW1sDQo+ID4gQEAgLTEyMiw2ICsxMjIsMTYgQEAgcHJvcGVydGll
-czoNCj4gPiAgICAgICAgLSBjb25zdDogc3RhdGVfMjAwbWh6DQo+ID4gICAgICAgIC0gY29uc3Q6
-IHNsZWVwDQo+ID4NCj4gPiArICBmc2wsc2Rpby1hc3luYy1pbnRlcnJ1cHQtZW5hYmxlZDoNCj4g
-PiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIFJlY29tbWVuZCBmb3IgU0RJTyBjYXJk
-cyB0aGF0IGVuYWJsZXMgU0RJTyBhc3luYyBpbnRlcnJ1cHQgZm9yDQo+IFNEUjEwNCBhbmQgU0RS
-NTANCj4gPiArICAgICAgb3BlcmF0aW5nIG1vZGVzLiBTRElPIGFzeW5jIGludGVycnVwdCB1c2Vz
-IERBVFsxXSB0byBzaWduYWwgdGhlDQo+IGNhcmQncyBpbnRlcnJ1cHQuDQo+ID4gKyAgICAgIHVT
-REhDIHR1bmluZyBtZWNoYW5pc20gbXVzdCB1c2UgREFUWzBdIGFuZCBDTUQgc2lnbmFscyB0byBh
-dm9pZA0KPiBhIHBvc3NpYmxlDQo+ID4gKyAgICAgIGNvbmZsaWN0IGFuZCBpbmNvcnJlY3QgZGVs
-YXkgbGluZSBjYWxjdWxhdGVkIGJ5IHRoZSB1U0RIQyBhdXRvIHR1bmluZw0KPiBtZWNoYW5pc20u
-DQo+ID4gKyAgICAgIEVuYWJsaW5nIHRoaXMgZGV2aWNlIHRyZWUgcHJvcGVydHkgaXMgb25seSBy
-ZWNvbW1lbmRlZCBmb3IgbGF5b3V0cw0KPiB0aGF0IGFyZQ0KPiA+ICsgICAgICBtYXRjaGluZyB0
-aGUgU0QgaW50ZXJmYWNlIGxlbmd0aC4NCj4gPiArICAgIHR5cGU6IGJvb2xlYW4NCj4gDQo+IFdl
-IGFscmVhZHkgaGF2ZSBhIGNvbW1vbiBtbWMgcHJvcGVydHksICJjYXAtc2Rpby1pcnEiLCB0aGF0
-IHRlbGxzIHdoZXRoZXINCj4gdGhlIGNvbnRyb2xsZXIgc3VwcG9ydHMgU0RJTyBpcnFzICh3aGlj
-aCBpcyBkZWxpdmVyZWQgb24gREFUMSkuDQo+IA0KPiBDYW4ndCB5b3UgdXNlIHRoaXMgaW5zdGVh
-ZD8NCj4gDQpIaSBVbGYsDQoNClRoYW5rcyBmb3IgeW91ciBxdWljayByZXBseSENCg0KQWNjb3Jk
-aW5nIHRvIG91ciBXaUZpIHRlYW0gcmVwbHksIHRoZSBzZGlvLWlycSBoYXMgdHdvIHR5cGVzLiBT
-eW5jIGludGVycnVwdCBhbmQgQXN5bmMgaW50ZXJydXB0Lg0KV2hlbiBXaUZpIHNlbmQgb3V0IHRo
-ZSBpbnRlcnJ1cHQgc2lnbmFsIGR1cmluZyB0aGUgaW50ZXJydXB0IHBlcmlvZCwgaWYgaXQgc3lu
-YyB3aXRoIGNsb2NrIHBhZChqdXN0IGFzDQp3aGVuIHNlbmQgb3V0IGRhdGEpLCB0aGVuIHRoaXMg
-aXMgc3luYyBpbnRlcnJ1cHQuIFdoZW4gdGhpcyBpbnRlcnJ1cHQgbm90IHN5bmMgd2l0aCBjbG9j
-aywgaXQgaXMgYXN5bmMNCmludGVycnVwdC4gQXN5bmMgaW50ZXJydXB0IGhhcyBhIGJldHRlciBv
-dmVyYWxsIHBlcmZvcm1hbmNlIHRoYW4gc3luYyBpbnRlcnJ1cHQuDQoNCkxvZ2ljYWxseSwgYXV0
-byB0dW5pbmcgY2lyY3VpdCBzaG91bGQgb25seSB0YWtlIGNhcmUgb2YgdGhlIGRhdGEgYW5kIGNt
-ZCBsaW5lLCBhbmQgaWdub3JlIGludGVycnVwdCBzaWduYWwuDQpCdXQgdW5mb3J0dW5hdGVseSBj
-dXJyZW50IGkubXgtdXNkaGMgSVAgZG8gbm90IGlnbm9yZSBpbnRlcnJ1cHQgc2lnbmFsLiBTbyBp
-dCBkZXRlY3QgdGhlIGludGVycnVwdCBzaWduYWwsDQphbmQgdGFrZSB0aGlzIHNpZ25hbCBhcyBh
-IGRhdGEgc2lnbmFsLCBhbmQgYWRqdXN0IHRoZSBkZWxheSBjZWxsIGFjY29yZGluZ2x5LiBGb3Ig
-c3luYyBpbnRlcnJ1cHQsIGR1ZSB0byBpdA0Kc3luYyB3aXRoIGNsb2NrLCBzbyBubyBhZmZlY3Qs
-IGJ1dCBmb3IgYXN5bmMgaW50ZXJydXB0LCBpdCB3aWxsIGludm9sdmUgd3JvbmcgZGVsYXkgY2Vs
-bCBjaGFuZ2UgcmFuZG9tbHkuDQoNCkkgaW52b2x2ZSBhIG5ldyBwcm9wZXJ0eSBoZXJlLCBiZWNh
-dXNlIGluIHNkaGNpLmMsIHdlIGRlZmF1bHQgdXNlIHRoaXMgImNhcC1zZGlvLWlycSIgZm9yIGFs
-bCBzZGlvL3NkL21tYy4NCkkgbmVlZCBvbmUgcHJvcGVydHkgd2hpY2ggY2FuIHVzZSBvbmx5IGZv
-ciBzZGlvIGRldmljZSwgYW5kIG9ubHkgd2hlbiBzZGlvIGRldmljZSBlbmFibGUgYXN5bmMtaW50
-ZXJydXB0Lg0KDQpCZXN0IFJlZ2FyZHMNCkhhaWJvIENoZW4NCg0KPiA+ICsNCj4gPiAgcmVxdWly
-ZWQ6DQo+ID4gICAgLSBjb21wYXRpYmxlDQo+ID4gICAgLSByZWcNCj4gPiAtLQ0KPiA+IDIuMTcu
-MQ0KPiA+DQo+IA0KPiBLaW5kIHJlZ2FyZHMNCj4gVWZmZQ0K
+On Tue, Aug 17, 2021 at 11:28 AM Atish Patra <atishp@atishpatra.org> wrote:
+>
+> On Mon, Aug 16, 2021 at 6:37 PM Guo Ren <guoren@kernel.org> wrote:
+> >
+> > 1
+> >
+> > On Thu, Jul 29, 2021 at 2:19 PM Atish Patra <atishp@atishpatra.org> wrote:
+> > >
+> > > On Wed, Jul 28, 2021 at 9:30 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> > > >
+> > > > On Fri, 23 Jul 2021 14:40:26 PDT (-0700), Atish Patra wrote:
+> > > > > RISC-V privilege specification doesn't define an IOMMU or any method modify
+> > > > > PMA attributes or PTE entries to allow non-coherent mappings yet. In
+> > > > > the beginning, this approach was adopted assuming that most of the RISC-V
+> > > > > platforms would support full cache-coherent IO. Here is excerpt from the
+> > > > > priv spec section 3.6.5
+> > > > >
+> > > > > "In RISC-V platforms, the use of hardware-incoherent regions is discouraged
+> > > > > due to software complexity, performance, and energy impacts."
+> > > > >
+> > > > > While some of the RISC-V platforms adhere to the above suggestion, not all
+> > > > > platforms can afford to build to fully cache-coherent I/O devices. To
+> > > > > address DMA for non-coherent I/O devices, we need to mark a region of memory
+> > > > > as non-cacheable. Some of the platforms rely on a fixed region of uncached
+> > > > > memory that is remapped to the system memory while some other modify
+> > > > > the PTE entries to achieve that.
+> > > > >
+> > > > > The patch3 solves the issue for the fist use case by using a global
+> > > > > pool of memory that is reserved for DMA. The device access the reserved area
+> > > > > of the region while corresponding CPU address will be from uncached region
+> > > > > As the uncached region is remapped to the beginning of the system ram, both
+> > > > > CPU and device get the same view.
+> > > > >
+> > > > > To facilitate streaming DMA APIs, patch 1 introduces a set of generic
+> > > > > cache operations. Any platform can use the generic ops to provide platform
+> > > > > specific cache management operations. Once the standard RISC-V CMO extension
+> > > > > is available, it will also use these generic ops.
+> > > > >
+> > > > > To address the second use case, Page Based Memory Attribute (PBMT) extension
+> > > > > is proposed. Once the extension is in good shape, we can leverage that
+> > > > > using CONFIG_DIRECT_REMAP. Currently, it is selected via a compile time config
+> > > > > option. We will probably need another arch specific hooks to know if the
+> > > > > platform supports direct remap at runtime. For RISC-V, it will check the
+> > > > > presence of PBMT extension while other arch function will simply return true
+> > > >
+> > > > IIUC this is another extension that's not yet frozen or implemented in
+> > > > hardware?  Is this one compatible with what's in the c906, or is it
+> > > > doing things its own way?
+> > >
+> > > Hi Palmer,
+> > > This series doesn't implement the PBMT extension which is still in discussion.
+> > > It simply reuse the existing non-coherent dma mapping support in
+> > > upstream kernel and enable
+> > > it for RISC-V. The current version uses a non-coherent global pool. I
+> > > will update it to use arch_set_uncached
+> > > as per Christoph's suggestion. It solves the non-coherent DMA problem
+> > > for beagleV and not c906.
+> > >
+> > > I briefly mentioned the PBMT extension just to provide an idea how the
+> > > RISC-V Linux kernel
+> > > can support both unached window and PBMT extension. PBMT extension is
+> > > planned to be frozen
+> > > by the end of this year and none of the hardware has implemented it.
+> > >
+> > > The implementation in c906 is a non-standard one and will not be
+> > > supported by the default PBMT
+> > > extension implementation.
+> > The default PBMT & c908 PBMT are similar, only BIT definitions are
+> > different. I propose to support default PBMT first and give the back
+> > door to modify the PBMT definition during boot.
+> > The "protection_map[] = (__P000, __P001 ..__S000, __S001)" in
+> > mm/mmap.c has been modified by arch/mips, arm, sparc, x86, so I think
+> > it's proper solution direction.
+> >
+> > The reset problem is how to passing custom PBMT at the very early boot
+> > stage. Now I'm trying to use the DTS parsing instead of boot param hdr
+> > which Anup objected to.
+> >
+>
+> IIRC, c906 has a compatible mode that has the compliant PTE bit modifications.
+> Can you use that mode iOn the Allwinner D1 board to boot Linux ? I am
+> not sure if you have any fallback method for non-coherent DMA
+> if custom DMA_COHERENT bits are not enabled through enhanced mode ?
+We need custom PBMT(enhanced mode) to enable the dma driver on D1
+(GMAC, USB, EMMC) or these drivers couldn't work.
+D1 hasn't any uncached region in SOC design.
+
+>
+> > ref: https://lore.kernel.org/linux-riscv/1623693067-53886-1-git-send-email-guoren@kernel.org/
+> >
+> > Any comments are welcome.
+> >
+> > >
+> > >
+> > > >
+> > > > > if DIRECT_REMAP is enabled. This is required as arious different config
+> > > > > (DIRECT_REMAP, GLOBAL_POOL) will be enabled in the defconfig so that a
+> > > > > unified kernel image can boot on all RISC-V platforms.
+> > > > >
+> > > > > This patch series depends on Christoph's global pool support series[1].
+> > > > > Tested on Qemu, HiFive unleashed and beagleV. This series is also available
+> > > > > at [2].
+> > > > > This series also solves the non-coherent DMA support on beagleV but requires
+> > > > > additional beagleV specific patches[3] which will be upstreamed soon.
+> > > > >
+> > > > >
+> > > > > [1] https://lists.linuxfoundation.org/pipermail/iommu/2021-July/057266.html
+> > > > > [2] https://github.com/atishp04/linux/tree/riscv_nc_global_pool
+> > > > > [3] https://github.com/atishp04/linux/tree/wip_beaglev_dma_nc_global
+> > > > >
+> > > > > Atish Patra (5):
+> > > > > RISC-V: Implement arch_sync_dma* functions
+> > > > > of: Move of_dma_get_range to of_address.h
+> > > > > dma-mapping: Enable global non-coherent pool support for RISC-V
+> > > > > dma-direct: Allocate dma pages directly if global pool allocation
+> > > > > fails
+> > > > > RISC-V: Support a new config option for non-coherent DMA
+> > > > >
+> > > > > arch/riscv/Kconfig                       |  8 +++
+> > > > > arch/riscv/include/asm/dma-noncoherent.h | 19 +++++++
+> > > > > arch/riscv/mm/Makefile                   |  1 +
+> > > > > arch/riscv/mm/dma-noncoherent.c          | 66 ++++++++++++++++++++++++
+> > > > > drivers/of/of_private.h                  | 10 ----
+> > > > > include/linux/of_address.h               | 12 +++++
+> > > > > kernel/dma/coherent.c                    | 49 +++++++++++++++---
+> > > > > kernel/dma/direct.c                      |  7 ++-
+> > > > > 8 files changed, 152 insertions(+), 20 deletions(-)
+> > > > > create mode 100644 arch/riscv/include/asm/dma-noncoherent.h
+> > > > > create mode 100644 arch/riscv/mm/dma-noncoherent.c
+> > > >
+> > > > Can you guys please make up your minds about how this is going to be
+> > > > supported at the ISA level?  I get a different answer every day here:
+> > > > sometimes it's that these systems are not compliant, sometimes that
+> > > > Linux is the compliance suite, sometimes that we're doing an ISA
+> > > > extension, and sometimes that we're doing the SBI stuff.
+> > > >
+> > >
+> > > I am not sure whom you have talked to. I would be happy to set up a
+> > > meeting so that everybody is on
+> > > the same page if you are getting different answers every time.
+> > >
+> > > > I don't really care all that much about what the decision is, but it's
+> > > > impossible to move forward without some semblance of a plan.
+> > > >
+> > > > _______________________________________________
+> > > > linux-riscv mailing list
+> > > > linux-riscv@lists.infradead.org
+> > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
+> > >
+> > >
+> > >
+> > > --
+> > > Regards,
+> > > Atish
+> > > _______________________________________________
+> > > iommu mailing list
+> > > iommu@lists.linux-foundation.org
+> > > https://lists.linuxfoundation.org/mailman/listinfo/iommu
+> >
+> >
+> >
+> > --
+> > Best Regards
+> >  Guo Ren
+> >
+> > ML: https://lore.kernel.org/linux-csky/
+>
+>
+>
+> --
+> Regards,
+> Atish
+
+
+
+-- 
+Best Regards
+ Guo Ren
+
+ML: https://lore.kernel.org/linux-csky/
