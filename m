@@ -2,98 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC703EF449
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 22:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C03813EF457
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:06:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232620AbhHQU64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 16:58:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53310 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229531AbhHQU64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 16:58:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 497DB61008;
-        Tue, 17 Aug 2021 20:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629233903;
-        bh=MULqZqcbkPPEtj1jxiY9GUQcWI+Q7NvPV6i8gA9vkMo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KqsoF1A96McXQaUBBSDoE58EYMTnnwSO80gtLPeFDipsXz6SsmYBqidgo5ixQ7Qyy
-         +pDd4vYp1u+D6I5eS6jseqdQIOWHE6Y7svPFGLgNgbUbPa0UVnH+T2p9h1Xc1gpl0s
-         SUtj8kV2vHRQ28y82jUdVjwQBTYdVv1KP7bYApAnJDWCAzUz6pDIrusPIeTNkRGMoA
-         gOqdaGnDceqfvPgbWVrX27SurYdXOQAfj+D+cCXHbpDJH3ls8/1DBp5sAWfuRURENX
-         wWZKHIX60vLTyjfuWOYRAu6qa7pizZnvNHO9F/Q9X5Fm3klg3B3mEy8tx2lfdQ7TbH
-         JLM5C25o3Zi3A==
-Date:   Tue, 17 Aug 2021 22:58:19 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Nyekjaer <sean@geanix.com>, devicetree@vger.kernel.org,
-        Jose Cazarin <joseespiriki@gmail.com>,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v1.1 2/2] iio: dac: dac5571: Fix chip id detection for OF
- devices
-Message-ID: <YRwi62E4xYcMyyFi@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>,
-        devicetree@vger.kernel.org, Jose Cazarin <joseespiriki@gmail.com>,
-        linux-i2c@vger.kernel.org
-References: <20210723183114.26017-3-laurent.pinchart@ideasonboard.com>
- <20210724000654.23168-1-laurent.pinchart@ideasonboard.com>
- <20210724154308.55afb03c@jic23-huawei>
- <YRwfpOuyVEstwsza@kunai>
- <YRwhej9Hz00qnvlQ@pendragon.ideasonboard.com>
+        id S230116AbhHQVGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 17:06:43 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:38737 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229531AbhHQVGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:06:43 -0400
+Received: by mail-ot1-f46.google.com with SMTP id 108-20020a9d01750000b029050e5cc11ae3so90513otu.5
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 14:06:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=GbGpb/xwQQG9y0Vp3DhoUVy8rf/rYNtkbhJ0LVp5Aqc=;
+        b=LSJ1i/6aHKSzzH8w/9L8ezUMj/rm/CHfEGSp1JZ2x9BeSqp8kSuxcasueLQDFljPdn
+         AUl12BZTBwm935U8OUhqv/J6LZlEvVna3/rJ2ZGKB8Znn6g4+0AAc2UEOkVAGgP3+60S
+         EtvtWaBFZ6RTVuV5uiI6g/C6tm3mon7buEe2y7vjRh+CtAHiUs58UsVNQXdfKOcQbl4Y
+         rUc8Y1zP21F3n3Fz0ECI4BeDcJLJHGGJp29IIuCcxL1qKe3O1EnCS70iphIWXfvxV8iB
+         IjHqYjr0g8PgwWC28RMUOvGxOKT+jIbMiszRqjle56jkW9LYxxxnWWgxxtVA0hm5slqF
+         zeWg==
+X-Gm-Message-State: AOAM531Gk5HtxRGwA14xAoV6ztwiCV94n846SQfJRJE7nYnGJInQbRoS
+        cD6bCLl9NLSFLBVXScNrAksAODsIjg==
+X-Google-Smtp-Source: ABdhPJzxQ+Yg8vnYfV5KjrjiyoHCMUIG5X5t/7zdRNUpcCrGG0stC/++ErO74x4+4lcMedgttVUT2w==
+X-Received: by 2002:a9d:6f16:: with SMTP id n22mr3954453otq.29.1629234368010;
+        Tue, 17 Aug 2021 14:06:08 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o7sm507283oih.34.2021.08.17.14.06.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Aug 2021 14:06:07 -0700 (PDT)
+Received: (nullmailer pid 838714 invoked by uid 1000);
+        Tue, 17 Aug 2021 21:06:06 -0000
+Date:   Tue, 17 Aug 2021 16:06:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Matt Johnston <matt@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+        Jeremy Kerr <jk@codeconstruct.com.au>
+Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
+Message-ID: <YRwkvjAuEd+9lTt7@robh.at.kernel.org>
+References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
+ <YRae8tDReDS67sM4@robh.at.kernel.org>
+ <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yoYTdBSMoMh3ORUv"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <YRwhej9Hz00qnvlQ@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 16, 2021 at 03:32:40PM +0800, Matt Johnston wrote:
+> On Fri, 2021-08-13 at 11:33 -0500, Rob Herring wrote:
+> > 
+> > Adding 'generic' is not an improvement nor does it change anything. 
+> 
+> I may have misunderstood the feedback then:
+> 
+> > Again, a protocol is not a device. We went thru the same thing with 
+> > HID-over-I2C.
+> 
+> Thanks for the pointer to HID-over-I2C, that helps to clarify things.
+> I'm a still a little unclear on what you mean by "protocol" - is that a 
+> DT-specific thing? If so, I can't see many references to what's required
+> for a protocol definition - do you have any pointers I can read up on?
 
---yoYTdBSMoMh3ORUv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Protocol is the format of the I2C data to access the device. Or maybe 
+it's the register interface definition. Another example is USB OHCI, 
+EHCI, XHCI. Those all define a register standard interface, but leave 
+out a whole bunch of properties of the h/w blocks. 
 
+I assume MCTP is some sort of spec. Spec's are typically not complete 
+in the sense of defining a whole device including power rails, 
+reset/enable lines, interrupts, etc. IOW, MCTP is just a subset of all 
+that.
 
-> > Couldn't you use the "new" probe_new() callback instead which will drop
-> > the i2c_device_id? Kieran was interested in such conversions IIRC.
->=20
-> It's a bit unrelated to this patch, but I can add another patch to the
-> series.
->=20
-> While I have your attention, there's a question for you in the cover
-> letter :-) Could you please have a look ?
+> I don't expect for there to be much extra in the way of I2C controller
+> quirks that we'll need, but I agree that we may need to accommodate
+> those in future. It looks like the HID example gives us a bit
+> of a precedent there - is that just through allowing further, more
+> specific compatible values later? (plus their binding-specified properties)
 
-? This was the answer to that question. Unless I misunderstood.
+There were a lot of discussions on HID and resistance to needing 
+specific compatibles. Then later it turns out not all HID-over-I2C 
+implementations are exactly the same and we need to know specific 
+devices sometimes. That is what I don't want to repeat.
 
+The problem with adding compatibles later is you have to change the DT 
+to fix problems vs. just an OS update. Maybe that's fine, maybe not. 
+Depends on the system.
 
+> Essentially at the moment we just need to flag which busses will need
+> to carry MCTP data, and this should work with any I2C controller. To do
+> that, this new binding defines which I2C busses in the system will be
+> accessible by MCTP and which local I2C client address will be used. If
+> there's a neater way to represent those in the DT we're happy to rework
+> the binding.
+> 
+> (MCTP I2C uses SMBus Block Write for messages in either direction. This
+> requires us to include the mux topology in the DT data so the system can
+> receive response messages. However all we need from the DT binding is to
+> flag the nodes in the tree that will host endpoints - a driver
+> implementation can work out the rest)
+> 
+> > There's still not any diagram to better understand what all this is.
+> 
+> I'll add one to 2/2, how's something like this:
+>                                        .-------.
+>                                        |eeprom |
+> .----------.   .------.               /'-------'
+> | adapter  |   | mux  --@0,i2c5------'
+> | i2c1     |-.-|      --@1,i2c6--.--.
+> |..........|  \'------'           \  \  .........
+> | mctp-i2c |   \                   \  \ .mctpB  .
+> | slave    |    \                   \  '.0x30   .
+> | 0x50     |     \  .........        \  '.......'
+> '----------'      \ .mctpA  .         \ .........
+>                    '.0x1d   .          '.mctpC  .
+>                     '.......'          '.0x31   .
+>                                         '.......'
+> 
+> This shows 3 MCTP peripherals in the system, one toplevel and two
+> behind a mux. This requires us to define two MCTP controllers: one
+> on i2c1 - the root controller, and one in i2c6 - an individual
+> downstream port of the mux.
 
---yoYTdBSMoMh3ORUv
-Content-Type: application/pgp-signature; name="signature.asc"
+Okay, looks pretty normal in terms of i2c bus muxing. That's all well 
+defined already.
 
------BEGIN PGP SIGNATURE-----
+> i2c1: i2cbus1 {
+>   compatible = "vendor,example-i2c-controller";
+>   #address-cells = <1>;
+>   #size-cells = <0>;
+>   mctp@50 {
+>     compatible = "mctp-i2c";
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmEcIusACgkQFA3kzBSg
-KbZ9bQ/8CTFmW2r/gvHCgQHXKxWam/yxiTxYWOOxpV7x+TIYRv+a7APvCequ7nvH
-HunE1bWdmx4VFloBIX5Dc79nUDpInBM/+sRdkUc6JUt1vz8jvQzbzf/ms5x4VZWB
-dnTd01p3CRzImMp7vvjNHQq434piYyonjwDNRo3OlIGXbjGBoCbmX/O6PxKiR7X0
-yQ9fzGEyJeXr5u0CJt46sTRR9PeSEzH67D/Gxd9SXpT/kSL3ZTalPIyeZVecnvpt
-AUBPsGU8JwAuxjN13fSOrdeEdFmc5v9yM+Ia34ZbyP3u7uZZ49/jib7pe1lVkjTQ
-1B7AJmRBuEGGMRoGh589CZnbJeq/IUc6lK6lgdsAnnTki1VLEU4ttiqDSIaVVtvJ
-t8iznRZ9nELeztWrQ7RTu2rOFY6G0fF/emnqoqJgZqNaIxOk+BNsihC9RXNVRF8Y
-ioKVbPA7UeYqr1Zam5pJ/rLdjSiacxX4JOKeB0SOzBi9AG/QSKb/+7P5VF2TB5LR
-3yfqIrDMYDrfmAwLfahQ+Ok0LitC2eEpE32A4cTpscd4TrZWDrcoeD2axI6/ofen
-WqBZ4T7aPqIEirlQEw2qxmjq7K24ALSvS0Jpv6WCtkNlOQWQtyfv2Az/feZnp1rB
-pirrNXtTYB1FwVRpkn3HPE+VF0TyIpLHuq++E/dbG/v/P53WWQg=
-=eY49
------END PGP SIGNATURE-----
+I guess 'mctp-i2c' alone here is fine given it's the I2C controller 
+slave implementation which is just a protocol. It's the external devices 
+where my concern is.
 
---yoYTdBSMoMh3ORUv--
+Though, don't you need a different compatible for it and external 
+devices?
+
+>     reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
+>     attach-bus = <&i2c1 &i2c6>;
+
+Why do you need to say you are attached to yourself?
+
+And you can walk the bus to find other MCTP devices. 
+
+>   };
+> };
+> 
+> i2cmux0 {
+>   compatible = "vendor,example-i2c-mux";
+>   #address-cells = <1>;
+>   #size-cells = <0>;
+>   i2c-parent = <&i2c1>;
+> 
+>   i2c5: i2c@0 {
+>     reg = <0>;
+>     eeprom@33 {
+>       compatible = "atmel,24c64";
+>       reg = <0x33>;
+>     };
+>   };
+> 
+>   i2c6: i2c@1 {
+>     reg = <1>;
+>   };
+> };
+> 
+> 
+> Regarding I2C_OWN_SLAVE_ADDRESS validation, I can add a i2c-own-
+> address.yaml schema (name pending) though can't see a way to perform a bit-
+> set test in json schema validation?
+
+You'll have to do a minimum/maximum range with the high bit set and 
+addresses 0-7f.
+
+Rob
