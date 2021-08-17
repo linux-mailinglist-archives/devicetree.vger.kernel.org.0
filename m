@@ -2,67 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A1663EEAC1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F8F23EEADA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235611AbhHQKRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 06:17:34 -0400
-Received: from mail-yb1-f177.google.com ([209.85.219.177]:37860 "EHLO
-        mail-yb1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234895AbhHQKRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 06:17:33 -0400
-Received: by mail-yb1-f177.google.com with SMTP id r4so15549635ybp.4;
-        Tue, 17 Aug 2021 03:17:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gxMsR1IWBs0Lk61k0jAWpBrlAFrzQnrb9nCTFB3yrx4=;
-        b=spDegW/oXy0VQOv1PpveTMEXurYr1Ht8Jh55xa8pA3+ddKZcB/Qe8HHH1QbxWOeWuL
-         7LzBaTPyZM1A2j1470OkBTy9++fc9JM+nExoGG3JRMLQ5bQMgtJGrwlhjX4U81vtUs3c
-         rgGh9EjEQLck8pjyFnVMBLQzJOrE5ot/LzPtVTrg2Nhnbcn/NiUpUddCNeP8qW6nO+NR
-         Hz2BNUbVOcqONkTsU+nXUZ6UmmitZ5V8lnLcxji3DmJ8oCLBeloOp29aiEcYvXSvcP+o
-         M/RYzBKG89gfUrUUe7yx1dN6n6es5KLxPUHe4p+Po64+/XbjHP+dvtBMPh4Jb7ZS3FI7
-         EvcA==
-X-Gm-Message-State: AOAM530MYTyMm22hNNQuUR+Ewkrg/9W1+0vD77WvbrlPexnWTUzDqoRs
-        zH5i41gUEM7mnCSpLm9KlN2+hT37Iha08yjRxKs=
-X-Google-Smtp-Source: ABdhPJwvZnKMs3lFFW/Id5/OLwGanBe4iPHTEvWKY+hRB61xXJa0joK7FfGUMFXjkVaq6kaxvRd17AgiYb4NgtuSeac=
-X-Received: by 2002:a25:d113:: with SMTP id i19mr3396679ybg.39.1629195420644;
- Tue, 17 Aug 2021 03:17:00 -0700 (PDT)
+        id S239474AbhHQKW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 06:22:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51056 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235204AbhHQKW4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 06:22:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 571F060F14;
+        Tue, 17 Aug 2021 10:22:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629195743;
+        bh=ZFAq4tNzIQzTRviQ8r6LSwQW3bkr+2nmdMRbQ7RZRsg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Go0Bezt4k+PVI8Qj0upYozJ00NOmTbzPu4M0awDHqDcsgWJdndB7ISgtdfZtLeaYG
+         Dt9d7RxnVcyOrXoGBSHtYJr9o+y+nXSEXaEKexgxEWYGa+ZH76KIv2sY2VHfmE8q5r
+         1SpEt34BkbGag+m6/yS+DwxaaVFiuSXKf+sZMdfujmWgXRHtoezgHH3f5STy6hl0to
+         OGbx8Yt1h0u8LdYH+oXiCJywSnX9Ps942ktu6kpWVIR3+MQocxZVIAzX+t5YV1Vfef
+         rNTPgDPsj3BIb0KopXt1U+xVS/1cVsfXAWdlGHMd3n6eSZRUZtnkvwd0UYUVjDJdTg
+         3vMg5Cku7rj2A==
+Date:   Tue, 17 Aug 2021 15:52:18 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Stanley Chu <stanley.chu@mediatek.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: phy: mediatek: tphy: support type
+ switch by pericfg
+Message-ID: <YRuN2tvQtO294+sE@matsya>
+References: <1629191987-20774-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-References: <20210629094038.18610-1-harini.katakam@xilinx.com>
- <20210629094038.18610-3-harini.katakam@xilinx.com> <20210714210803.GA3522064@robh.at.kernel.org>
-In-Reply-To: <20210714210803.GA3522064@robh.at.kernel.org>
-From:   Harini Katakam <harinik@xilinx.com>
-Date:   Tue, 17 Aug 2021 15:46:49 +0530
-Message-ID: <CAFcVECJXhjQLZdfQm8n_0cLsuh6CFPJbSA4A5XXQL+6+okb+CQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: mscc: Add RGMII RX and TX delay tuning
-To:     Rob Herring <robh@kernel.org>
-Cc:     Harini Katakam <harini.katakam@xilinx.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>, linux@armlinux.org.uk,
-        David Miller <davem@davemloft.net>, kuba@kernel.org,
-        steen.hegelund@microchip.com, bjarni.jonasson@microchip.com,
-        ioana.ciornei@nxp.com, likaige@loongson.cn,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Michal Simek <michal.simek@xilinx.com>,
-        radhey.shyam.pandey@xilinx.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1629191987-20774-1-git-send-email-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 17-08-21, 17:19, Chunfeng Yun wrote:
+> Add support type switch by pericfg register between USB3, PCIe,
+> SATA, SGMII, this is used to replace the way through efuse or
+> jumper.
 
-Thanks for the review and sorry I din't reply earlier.
-<snip>
-> > +- vsc8531,rx-delay   : RGMII RX delay. Allowed values are defined in
->
-> 'vsc8531' is not a vendor. The form is <vendor>,<propname>.
+Applied all, thanks
 
-I was just aligning it with existing optional property names in this document.
-Could you please let me know if mscc,rx-delay is more appropriate?
-
-Regards,
-Harini
+-- 
+~Vinod
