@@ -2,91 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D3A3EEC33
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 14:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87AE93EEC52
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 14:23:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237271AbhHQML0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 08:11:26 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:41556 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236113AbhHQMLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 08:11:23 -0400
-Received: by mail-ot1-f45.google.com with SMTP id w22-20020a056830411600b0048bcf4c6bd9so2005910ott.8;
-        Tue, 17 Aug 2021 05:10:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=jQ2l3WXqoH22mFDQEW/1VSsXU0XAw7Dnr3dv/FtM+pE=;
-        b=T6xdRfeT2AbrU9CtB8MAGkBykyhAv5vDgrkQ76UcLWQD+7L0cKNq973+UPOrG+5+MY
-         1I7K31qrtzcE5i7g7Bp0pQ4xSSbGP1PI4MgWoXksNiLlJLEfmTidhx3gdhMqZGmxTWi/
-         Sk91wN0Pd2ESjM6izMsRzM42GQFdxUbkXYMKlrgxJKEvRbo0tDcT46JGvHzjAHPEleWj
-         zkgl95by/8U4GoXAVxeb0rlVW+kztTBeHfUGPTOVW8zXULhwu20IiyENxS+0Vrxf1+Xe
-         Q6grshsUrHsabqE3qlCdEA7x49jh0/O2bp0fHFqbJKRxFid6AzxdElGYCMq69QRpi6Mm
-         PgOw==
-X-Gm-Message-State: AOAM533NJcxWcaF6ESRNad7Z49vwM+E27P/QyE/TCzcDpByyiGCuHBeV
-        zH10oByjNPgAIO53UVw1Ng==
-X-Google-Smtp-Source: ABdhPJyx5bUXH5T9Qhnhqxeq+w14eA1RIP7smOUbOTFqJYFnmnDAEPgvnRUQRvyS1m1hxMFMT6e+Pg==
-X-Received: by 2002:a05:6830:1105:: with SMTP id w5mr2354720otq.85.1629202250091;
-        Tue, 17 Aug 2021 05:10:50 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u15sm424438oiu.43.2021.08.17.05.10.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 05:10:49 -0700 (PDT)
-Received: (nullmailer pid 4133263 invoked by uid 1000);
-        Tue, 17 Aug 2021 12:10:48 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     linux-input@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Joel Selvaraj <jo@jsfamily.in>, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S235897AbhHQMXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 08:23:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37282 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234866AbhHQMXk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Aug 2021 08:23:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B1CB760FA0;
+        Tue, 17 Aug 2021 12:23:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629202987;
+        bh=c/PlC/W6yjxlV+Z7ZbF/hxgaIiNXDZlZo9QTekHzzto=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nmskkW06SeXdvESPFwWJP4iQi/AfZfa0vEFy+cuAqLmy+f4I2uJuGlWiIG3+qOPHv
+         xnda4sK3SpsR15EDLFwOPVpUWOowLkNLIk9ImApHVFPfJnKz/lhdsh+HFZYj/NbRHm
+         eXuH3smkHCoqx0QNay+eOr+RUqsGi1/LD/ASV8gvs921fqWRRcXPMo3BLK5Ue/LMAY
+         E7aHmfxbASTmbJ0PGpnfzkpkFQY6yMi66OmBVe1qXWlxHCeHepAgYCfKYqlUOjbUyt
+         lxKqpcb5n/55Qq2tzaqx1B4Vg1bUnEx45zv+Fl9rzaJm69xqekfjJ82brq5dSoJIe+
+         WqipDMJt6MCZg==
+Date:   Tue, 17 Aug 2021 13:22:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jami Kettunen <jami.kettunen@somainline.org>
-In-Reply-To: <20210816221931.1998187-2-caleb@connolly.tech>
-References: <20210816221931.1998187-1-caleb@connolly.tech> <20210816221931.1998187-2-caleb@connolly.tech>
-Subject: Re: [PATCH v3 1/6] dt-bindings: input: add Qualcomm SPMI haptics driver
-Date:   Tue, 17 Aug 2021 07:10:48 -0500
-Message-Id: <1629202248.430426.4133262.nullmailer@robh.at.kernel.org>
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 22/34] spi: tegra20-slink: Add OPP support
+Message-ID: <20210817122244.GA4290@sirena.org.uk>
+References: <20210817012754.8710-1-digetx@gmail.com>
+ <20210817012754.8710-23-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mP3DRpeJDSE+ciuQ"
+Content-Disposition: inline
+In-Reply-To: <20210817012754.8710-23-digetx@gmail.com>
+X-Cookie: Custer committed Siouxicide.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Aug 2021 22:19:55 +0000, Caleb Connolly wrote:
-> Add bindings for qcom PMIC SPMI haptics driver.
-> 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  .../bindings/input/qcom,spmi-haptics.yaml     | 128 ++++++++++++++++++
->  include/dt-bindings/input/qcom,spmi-haptics.h |  32 +++++
->  2 files changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
->  create mode 100644 include/dt-bindings/input/qcom,spmi-haptics.h
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--mP3DRpeJDSE+ciuQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-yamllint warnings/errors:
+On Tue, Aug 17, 2021 at 04:27:42AM +0300, Dmitry Osipenko wrote:
+> The SPI on Tegra belongs to the core power domain and we're going to
+> enable GENPD support for the core domain. Now SPI driver must use OPP
+> API for driving the controller's clock rate because OPP API takes care
+> of reconfiguring the domain's performance state in accordance to the
+> rate. Add OPP support to the driver.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/input/qcom,spmi-haptics.example.dt.yaml:0:0: /example-0/pmic@3: failed to match any schema with compatible: ['qcom,pmi8998', 'qcom,spmi-pmic']
-Documentation/devicetree/bindings/input/qcom,spmi-haptics.example.dt.yaml:0:0: /example-0/pmic@3: failed to match any schema with compatible: ['qcom,pmi8998', 'qcom,spmi-pmic']
+Acked-by: Mark Brown <broonie@kernel.org>
 
-doc reference errors (make refcheckdocs):
+Is there a concrete dependency here or can I merge this separately?
 
-See https://patchwork.ozlabs.org/patch/1517351
+--mP3DRpeJDSE+ciuQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+-----BEGIN PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEbqhMACgkQJNaLcl1U
+h9Buggf/d4C5+YzSeq0C2NHs0zamK8fHfoeCb5Qf7DbvwC4xNpUEoKAl6kFe6XlO
+ngiyDsMKDiDDirVRL6usRQkhxcB9hYlR9qZPZwTumcSB8omPU2d8ibg0bZlq6+EW
+bQf4R3TRA5YOFtGXxUejMSdK0+MO4I0QbuU6o4zLT3dzFtq+nK1Oct7FNyhjNrK/
+ELy4bDfbSewMfEPDjMsi05Qg7I6ftQiO3ZAqdTAj+0bLpHvsChKGv474uEXEw6vv
+FICFNW+bUCUC/oS3NykjRlVmWPr6eACJDT33krIuaX8/G0mN5kVjAfVPnOK1OzG+
+Y+z6bEN/Dr6UAjhZRQbizQRM04sR+w==
+=JJo7
+-----END PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+--mP3DRpeJDSE+ciuQ--
