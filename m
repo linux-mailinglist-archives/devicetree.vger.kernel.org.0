@@ -2,141 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1953EF4F5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6EBF3EF500
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234211AbhHQV3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 17:29:17 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:44791 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235067AbhHQV3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:29:15 -0400
-Received: by mail-oi1-f178.google.com with SMTP id w6so1201732oiv.11;
-        Tue, 17 Aug 2021 14:28:41 -0700 (PDT)
+        id S233866AbhHQVb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 17:31:26 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:43690 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232862AbhHQVbZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:31:25 -0400
+Received: by mail-ot1-f45.google.com with SMTP id x10-20020a056830408a00b004f26cead745so133422ott.10;
+        Tue, 17 Aug 2021 14:30:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/Mx0UVzNRYFUc4QkujNRHwvT1qaO2NYmFNn3GPRqcTo=;
-        b=TZr5aRTwiuZbFEbtWAA4Pl0xqKpAfutDrErgcCDXeenlmuHybzLxudxtrqypon3MLB
-         IWutsObm+alwvSaBZ35fMN7pwsDJYhIqWkWL5IKOmhRiKpdrcZve8iT2YiykVhzKyvQe
-         UcSO9Ubn2TJ7HW/YCrFr7l6x6gwU/eqNWBOPza+rdZwhxflRty6qDSObDaMbEV4S6jjx
-         1b4tb7Y8xWr28IZWo9GE5JFehzUqZzaOPLykD6tGesB5jsoNUuTnLzuPShc3HEpVa87Y
-         qoxxzojG16zgG1thObG3wceA7a4F/tben9NPRscQIW58rAO1RgZtmW58F8NGs9yR/RpC
-         N8gA==
-X-Gm-Message-State: AOAM531aqLa3aiOgeRN35OKF80lW+EzAdpppcYtG4horfz2qgHDAGR3C
-        g9oUdPnlfambnGdjxReFeQ==
-X-Google-Smtp-Source: ABdhPJyWfwcgnxxPtv29RdxjJg7igDW3al5JiPwNMeYVLchoN80AjbsevgMXxmfUee03utS4tclsLQ==
-X-Received: by 2002:a54:4008:: with SMTP id x8mr4029640oie.113.1629235721366;
-        Tue, 17 Aug 2021 14:28:41 -0700 (PDT)
+        bh=L8uWZm6U/wNMBuZeSRyfZraEH5jwhS4TJYlvnaSbDCg=;
+        b=msJr8sEWql1IOMKqLJlbu0iWdS++G/GxsSVRHWT/zHgnl+uP+2sHHYSudkfojOER4L
+         z2KxlgMKFl/iVziN4ZT2HSDVw5cJx7h+K6Xrfv9ihctGAy22OPvZy4I8NDqdbpEdhbbG
+         6Wkm8O6alTA/cZey3Hriya43n+zrgGjqQXWB1A8bv8/LidjHe9BSwwK+SuiT7Up8+XHq
+         mieuL1vmkrtWTFJLHpysGQV4aUKszxGnUIJdYeD8mGO2wycWc8E4QJw/ntL5IhSIAhYj
+         2w8+58iM0UmEEizSj6pIZnDi2V4k+XUNbGFTDaiYUkLiizEraHiEvtq3sveawlXhY4eM
+         TOIQ==
+X-Gm-Message-State: AOAM5312Z3IbGi580jZHILngAJaLj6KJek14xmsBWIyMoi8U3A+RlcKI
+        RTLn+SsbHqQ3jfl0k+RZuw==
+X-Google-Smtp-Source: ABdhPJyR75Ua//1nJMK6e0saEWk+VVaM7OLMsyOyiOR3yKOba13yG2FcdDRgAsTZ+9JDitqNSXacCw==
+X-Received: by 2002:a9d:331:: with SMTP id 46mr4271550otv.359.1629235851100;
+        Tue, 17 Aug 2021 14:30:51 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x60sm612178ota.72.2021.08.17.14.28.40
+        by smtp.gmail.com with ESMTPSA id u126sm669782ooa.23.2021.08.17.14.30.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 14:28:40 -0700 (PDT)
-Received: (nullmailer pid 872158 invoked by uid 1000);
-        Tue, 17 Aug 2021 21:28:39 -0000
-Date:   Tue, 17 Aug 2021 16:28:39 -0500
+        Tue, 17 Aug 2021 14:30:50 -0700 (PDT)
+Received: (nullmailer pid 875639 invoked by uid 1000);
+        Tue, 17 Aug 2021 21:30:48 -0000
+Date:   Tue, 17 Aug 2021 16:30:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: Re: [PATCH 2/3] dt-bindings: msm: Add QTI download mode support
- binding
-Message-ID: <YRwqBx4hNsbsPYY0@robh.at.kernel.org>
-References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
- <217c22d40e0a9db713e2a55623408eca88166897.1628757036.git.saiprakash.ranjan@codeaurora.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 01/29] dt-bindings: arm: renesas: Document more R-Car
+ Gen3e Socs and boards
+Message-ID: <YRwqiIHa/avcyvQp@robh.at.kernel.org>
+References: <cover.1628766192.git.geert+renesas@glider.be>
+ <55271d405112f327753945072cde5d158ab815b1.1628766192.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <217c22d40e0a9db713e2a55623408eca88166897.1628757036.git.saiprakash.ranjan@codeaurora.org>
+In-Reply-To: <55271d405112f327753945072cde5d158ab815b1.1628766192.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 12, 2021 at 02:47:41PM +0530, Sai Prakash Ranjan wrote:
-> Add device tree binding for QTI download mode cookies
-> region found in IMEM.
+On Thu, 12 Aug 2021 13:23:51 +0200, Geert Uytterhoeven wrote:
+> Document the compatible values for the remaining R-Car Gen3e SoCs: R-Car
+> H3e (R8A779M0), M3e (R8A779M2), M3Ne (R8A779M4), M3Ne-2G (R8A779M5), E3e
+> (R8A779M6), D3e (R8A779M7), and H3Ne (R8A779M8).  These are different
+> gradings of R-Car Gen3 SoCs.
 > 
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> All R-Car Gen3e on-SoC devices are identical to the devices on the
+> corresponding R-Car Gen3 SoCs, and thus just use the compatible values
+> for the latter.  The root compatible properties do gain an additional
+> value, to sort out integration issues if they ever arise.
+> 
+> Document the use of these SoCs on the Salvator-XS, ULCB (with and
+> without Kingfisher extension), Ebisu, and Draak development boards.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../bindings/arm/msm/qcom,dload-mode.yaml     | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
+> v2:
+>   - Typo s/R8A779M/R8A779M0/,
+>   - Add Reviewed-by.
+> ---
+>  .../devicetree/bindings/arm/renesas.yaml      | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
-> new file mode 100644
-> index 000000000000..90b9b6a9b75e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/msm/qcom,dload-mode.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Download Mode binding
-> +
-> +maintainers:
-> +  - Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> +
-> +description:
-> +  Qualcomm download mode cookies memory region in IMEM is used by SDI
-> +  (System Debug Image) firmware to determine whether to enter download
-> +  mode or not to collect ramdump for post mortem debug.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,dload-mode
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  qcom,sdi-disable-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle reference to a syscon representing TCSR followed by the
-> +      offset and length for SDI disable register.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    imem@146aa000 {
-> +      compatible = "simple-mfd";
 
-If this is just internal RAM, then we already have a binding for it and 
-'simple-mfd' is not it.
-
-> +      reg = <0x146aa000 0x2000>;
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      ranges = <0 0x146aa000 0x2000>;
-> +
-> +      dload-mode@1c00 {
-> +        compatible = "qcom,dload-mode";
-> +        reg = <0x1c00 0x1000>;
-
-0x1c00 + 0x1000 > 0x2000
-
-
-> +        qcom,sdi-disable-regs = <&tcsr_regs 0x3a000 0x4>;
-> +      };
-> +    };
-> +...
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
