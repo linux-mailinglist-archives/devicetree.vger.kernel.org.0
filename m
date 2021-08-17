@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91FC03EF4BE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 378AC3EF4C9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233836AbhHQVPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 17:15:44 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:44595 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233802AbhHQVPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:15:42 -0400
-Received: by mail-oi1-f180.google.com with SMTP id w6so1144917oiv.11;
-        Tue, 17 Aug 2021 14:15:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PM2enoDBVpEuZpWbvRhxMVpJH3XAHQlsUlPw3171kZA=;
-        b=HEEout4/Efp6X1vj9qiCLD7Mb9/WeObrPr08l4ZOp8krLytVn1O8+r1JoRCtqQjSPy
-         i3XNVski804Uv4gDpeKUfpCGYYl38IICjBnH9Vivq3NfvmgMRGWFFQ2aH9YWKbnWsEb3
-         9iOct/zQFQ/8dhVEXfZijkQDkh06k0yG3YouV0vms1VXB6WLcuKE+FrF3526fkZnf9FG
-         k5Vcw6Ar24TCqKkP+Gjy1Pc6ID88bL4AfJ5ydaeF7HghzPzrFBsLvRLh6SO8xGDHAO87
-         AJfhDY/WyOYcgv10sTF1+KDY4KGHhj5qEbMfouPV6QegUYiEnAJEgBaFh0t2zHBx/Hj7
-         4Mjg==
-X-Gm-Message-State: AOAM5338b4JZcie/NhN9FQbgAcUJIqKbfW2iFDU+lTEffQBskGTL+Tuo
-        Q7IuRyz4GfI8dQ8vNmlLIw==
-X-Google-Smtp-Source: ABdhPJxeKQH2Qe+oyN/Eb6NLA66EQFyOE9Rd/a//VVTyHHLmmtmQGWiK/UY92yF/ki7QTfEYTxWrEw==
-X-Received: by 2002:a05:6808:f13:: with SMTP id m19mr4147887oiw.127.1629234908413;
-        Tue, 17 Aug 2021 14:15:08 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n9sm613545otn.54.2021.08.17.14.15.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 14:15:07 -0700 (PDT)
-Received: (nullmailer pid 852498 invoked by uid 1000);
-        Tue, 17 Aug 2021 21:15:07 -0000
-Date:   Tue, 17 Aug 2021 16:15:07 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-crypto@vger.kernel.org,
-        Matt Mackall <mpm@selenic.com>,
-        =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>,
-        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        id S232481AbhHQVUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 17:20:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230515AbhHQVUp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:20:45 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 749F2C061764;
+        Tue, 17 Aug 2021 14:20:11 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E21A62C5;
+        Tue, 17 Aug 2021 23:20:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1629235210;
+        bh=h5ACte+IYkCtcopGlqXw02CqacNi0HiPaCVWx3i1Baw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wg+D7Whx7l0hPHEu5uotr47+W1S//1wOLYXYTpLJy53s5o1Cm8wiOl209zN7Nnpe3
+         PrpEjpP+mhcS7wrOeL+aCYIhgb5Tm0BoQ/YtFyb1US3D7kqk0zhQ9+V84rStnvEcfJ
+         o39SwTKp+bWLPwScnsFOD5Bv+Q9zmbBI17Ktt7PQ=
+Date:   Wed, 18 Aug 2021 00:20:02 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH 2/2] dt-bindings: rng: convert Samsung Exynos TRNG to
- dtschema
-Message-ID: <YRwm27L+PQx0TydS@robh.at.kernel.org>
-References: <20210811084306.28740-1-krzysztof.kozlowski@canonical.com>
- <20210811084306.28740-2-krzysztof.kozlowski@canonical.com>
+        Sean Nyekjaer <sean@geanix.com>, devicetree@vger.kernel.org,
+        Jose Cazarin <joseespiriki@gmail.com>,
+        linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v1.1 2/2] iio: dac: dac5571: Fix chip id detection for OF
+ devices
+Message-ID: <YRwoAgie/mDDunn9@pendragon.ideasonboard.com>
+References: <20210723183114.26017-3-laurent.pinchart@ideasonboard.com>
+ <20210724000654.23168-1-laurent.pinchart@ideasonboard.com>
+ <20210724154308.55afb03c@jic23-huawei>
+ <YRwfpOuyVEstwsza@kunai>
+ <YRwhej9Hz00qnvlQ@pendragon.ideasonboard.com>
+ <YRwi62E4xYcMyyFi@kunai>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210811084306.28740-2-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YRwi62E4xYcMyyFi@kunai>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Aug 2021 10:43:06 +0200, Krzysztof Kozlowski wrote:
-> Convert Samsung Exynos SoC True Random Number Generator bindings to DT
-> schema format using json-schema.
+On Tue, Aug 17, 2021 at 10:58:19PM +0200, Wolfram Sang wrote:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../bindings/rng/samsung,exynos5250-trng.txt  | 17 -------
->  .../bindings/rng/samsung,exynos5250-trng.yaml | 44 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 45 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->  create mode 100644 Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
+> > > Couldn't you use the "new" probe_new() callback instead which will drop
+> > > the i2c_device_id? Kieran was interested in such conversions IIRC.
+> > 
+> > It's a bit unrelated to this patch, but I can add another patch to the
+> > series.
+> > 
+> > While I have your attention, there's a question for you in the cover
+> > letter :-) Could you please have a look ?
 > 
+> ? This was the answer to that question. Unless I misunderstood.
 
-Applied, thanks!
+My point is that this patch shouldn't be needed. I'd like if the I2C
+core could get the driver data from the i2c_device_id table instead of
+duplicating it in the of_device_id. This isn't possible today as
+i2c_match_id() doesn't have the fallback mechanism that OF matching has.
+
+-- 
+Regards,
+
+Laurent Pinchart
