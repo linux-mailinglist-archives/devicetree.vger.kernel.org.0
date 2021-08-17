@@ -2,173 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7CF3EEA8B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96FD73EEAAA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236336AbhHQKGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 06:06:51 -0400
-Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:38140
-        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239258AbhHQKF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 06:05:56 -0400
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 59E4D40CB9
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 10:05:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629194723;
-        bh=GOIsTUQ+gJL63rEPiNcOFHz6lWCZ7WtQFp4xSBwe2Ag=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=KR3OuOLtFVIu4XExacpwX/8dSub2ngtOKv6LCQNweF4Bho7czM20sa/BgRekZufGS
-         xqs6bjy/F+imrKpHycy+QK9ESHEh2hH8nokCgByTQu4fgaRH+rB/QL2Ig76PjRmzIe
-         X1Wq/26umxem1Rq8kxaDGs+Udip/eTqfeOo6KvJMvpBMZxwUDNsJlny47pKlEXBGEO
-         SuBaHxX2G1VdkFQOMtEGLbPYZsB6BmuRTSXKOZSXYXipPJ07E6eSYVfTP6PWGzyoOD
-         9xbZTBNsbgUC1OIim5HLS051jMCZ8kQUZe6cgJqDfdfjhBxJIJADvx1j1I/EMnhchc
-         KEG3aBIKA7wxQ==
-Received: by mail-ed1-f70.google.com with SMTP id eg56-20020a05640228b8b02903be79801f9aso10275373edb.21
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 03:05:23 -0700 (PDT)
+        id S236197AbhHQKMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 06:12:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235376AbhHQKM3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 06:12:29 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9445AC061764;
+        Tue, 17 Aug 2021 03:11:56 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id gt38so16374288ejc.13;
+        Tue, 17 Aug 2021 03:11:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jqw1AzmRK6zGBEx+a2c5M5+dO2MAySjNQQ8o1qXDJs8=;
+        b=ZOD4sNytd4WPSZyPmbX2m9LgLSk9COCpOOmzj4bjLOzp2hFpikCaBnzFGgBEJXICwt
+         DFV6SrstOLxM3pjIJQkIqAsjum+an8vUqUMGq4tdyNV+qQLzWl24Xn6SIoHoZiT9HmYs
+         K6tTCTfaBYOh91jPdHHjTqZ9i22gfQjdka4U+GzF0Om23yB3MrVUsgNm8U+9JusW64Tz
+         V1BHhVIxeqkxBphRPnqyzO33KJn02nxmZ4XjS4gU2sPLGkTt+gWcF1QVjPF6t4Wljy+X
+         3UMt9JMbllLtSImr1hQHs/PyaM3QIy0V6JWU/I2K4yx+UPq+RTJBXjI6OSHlMMH9xHIq
+         Ie2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=GOIsTUQ+gJL63rEPiNcOFHz6lWCZ7WtQFp4xSBwe2Ag=;
-        b=DtPnJK4TdKo5OfCFIdwhaYu8RwL5i0cDaIiIjwRinTfPPKhz5Xrgy53loQJkjOW+Mf
-         u/Fbb2+pxFZDfoFdfFP6z9vAgJNqdcd6MmJZZ9vOFjDBa9rkxVFYeUB6n+CiZuwV7OvK
-         IXscox15Q5BxEHfucG5Jlnf8n0SG0rcBhivRAUX91MWWTZ4mw/xABULpqk8/29H7d4WC
-         0cU/VDajFWsG/HyqBvh78plqcoo7GsWzikiy6U40GyMisjdRS7RlqL0KBqdaPv2q3afb
-         pUEDHQrucXifLmcisMUBy8pIoXmcuprbfdt5jHK+/i3MvLit9WB7y3uxR+/jedEKRVF6
-         Vm0w==
-X-Gm-Message-State: AOAM5314N2WOyB0W3KCCNEN5QVY8qAJqlAKOLKMTMpcoafOSFJ2+x6Yw
-        6e/zkXObzmJkV2KDM+9O3hG6xOqSCi38sgJ+KPLoU/CBLYB1EXV4Q2BKLQlrHsRp+UrTE0hk87V
-        fhV8G0SLjBCl1WAKGuHyA/3BoQbUYRw0KqOAzMVU=
-X-Received: by 2002:a05:6402:214d:: with SMTP id bq13mr3229747edb.263.1629194722044;
-        Tue, 17 Aug 2021 03:05:22 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzC3ptiEqOWsybRDl1sa+LgQ0zWpCdCEsdKyWGPcbPrtTBHxez2xHpr+Za6aNluTlhnkIYe4g==
-X-Received: by 2002:a05:6402:214d:: with SMTP id bq13mr3229732edb.263.1629194721860;
-        Tue, 17 Aug 2021 03:05:21 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id p23sm559903ejc.19.2021.08.17.03.05.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Aug 2021 03:05:21 -0700 (PDT)
-Subject: Re: [PATCH 2/2] dt-bindings: rng: convert Samsung Exynos TRNG to
- dtschema
-To:     Lukasz Stelmach <l.stelmach@samsung.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        bh=Jqw1AzmRK6zGBEx+a2c5M5+dO2MAySjNQQ8o1qXDJs8=;
+        b=mkVR/tcovL/pyu+RRi5ixZ65fph16qHVqgW2AaMdVPwqm52M/G9NrKm1x7aXXMS51O
+         6+MRTgJwX6mURK1Gxk3ktpqQLHTJvUiKHCUcJ0yAFQ5xJXu8zcTBZcuoBaCW1oXyWfXj
+         NNtBOfaybmm4ucF/SBmqcrsyCM7LKv59l0kqlXdcgMpTOl5Nj9mm/wBVZnKD7p5HcW0f
+         4Srgi96I46c1htRE4nx5qbAWF/ZDPlmvK3PdVYFzMUyXWdh2RBzEd+ciS8iIeeUcM7Kt
+         NLKCswaiY3u5Mnz0Asx6j6moDVP2vmGnQXEkbekKCHQDRulSd/VLoG+quXO6BCB4tudr
+         UdDg==
+X-Gm-Message-State: AOAM5312VAVqOBGBDLyuOxYFukRPTOOz8iV0EupLrsqG6ln0snneNZ2p
+        +4kn46O/1CceCZDF0yHN+yo=
+X-Google-Smtp-Source: ABdhPJx7FraHwOny+E8f8qN3AMF/gbn3eNC37y6iQIiMzCrRbYBFSEtrtKJm1qLG9Pa6rK1MeNaVHg==
+X-Received: by 2002:a17:906:4e59:: with SMTP id g25mr3104501ejw.399.1629195115109;
+        Tue, 17 Aug 2021 03:11:55 -0700 (PDT)
+Received: from localhost.localdomain ([185.213.155.232])
+        by smtp.gmail.com with ESMTPSA id m6sm822920edq.22.2021.08.17.03.11.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Aug 2021 03:11:54 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-crypto@vger.kernel.org
-References: <20210811084306.28740-2-krzysztof.kozlowski@canonical.com>
- <CGME20210817095553eucas1p174e68fc6d7cfad9c2fd34f729272b01a@eucas1p1.samsung.com>
- <dleftjeeasfl9b.fsf%l.stelmach@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <c3a1d7d2-7b32-b7eb-4647-f86e22f5e5ff@canonical.com>
-Date:   Tue, 17 Aug 2021 12:05:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Rockchip I2S/TDM controller
+Date:   Tue, 17 Aug 2021 12:11:15 +0200
+Message-Id: <20210817101119.423853-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <dleftjeeasfl9b.fsf%l.stelmach@samsung.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2021 11:55, Lukasz Stelmach wrote:
-> It was <2021-08-11 śro 10:43>, when Krzysztof Kozlowski wrote:
->> Convert Samsung Exynos SoC True Random Number Generator bindings to DT
->> schema format using json-schema.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  .../bindings/rng/samsung,exynos5250-trng.txt  | 17 -------
->>  .../bindings/rng/samsung,exynos5250-trng.yaml | 44 +++++++++++++++++++
->>  MAINTAINERS                                   |  2 +-
->>  3 files changed, 45 insertions(+), 18 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->>  create mode 100644 Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->>
->> diff --git
->> a/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->> b/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->> deleted file mode 100644
->> index 5a613a4ec780..000000000000
->> --- a/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.txt
->> +++ /dev/null
->> @@ -1,17 +0,0 @@
->> -Exynos True Random Number Generator
->> -
->> -Required properties:
->> -
->> -- compatible  : Should be "samsung,exynos5250-trng".
->> -- reg         : Specifies base physical address and size of the registers map.
->> -- clocks      : Phandle to clock-controller plus clock-specifier pair.
->> -- clock-names : "secss" as a clock name.
->> -
->> -Example:
->> -
->> -	rng@10830600 {
->> -		compatible = "samsung,exynos5250-trng";
->> -		reg = <0x10830600 0x100>;
->> -		clocks = <&clock CLK_SSS>;
->> -		clock-names = "secss";
->> -	};
->> diff --git
->> a/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->> b/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->> new file mode 100644
->> index 000000000000..a50c34d5d199
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/rng/samsung,exynos5250-trng.yaml
->> @@ -0,0 +1,44 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id:
->> https://protect2.fireeye.com/v1/url?k=f38ca35b-ac179a0d-f38d2814-0cc47a31ce52-1faa1ecb65482b8a&q=1&e=8b3490f9-a5fc-4da0-b2ee-7b0aec781403&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Frng%2Fsamsung%2Cexynos5250-trng.yaml%23
->> +$schema:
->> https://protect2.fireeye.com/v1/url?k=9409519d-cb9268cb-9408dad2-0cc47a31ce52-12394c4409905980&q=1&e=8b3490f9-a5fc-4da0-b2ee-7b0aec781403&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
->> +
->> +title: Samsung Exynos SoC True Random Number Generator
->> +
->> +maintainers:
->> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> +  - Łukasz Stelmach <l.stelmach@samsung.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: samsung,exynos5250-trng
->> +
->> +  clocks:
->> +    maxItems: 1
-> 
-> How about copying description from above into the description: property?
+Hello,
 
-But what to copy? There is no description except generic clock bindings.
+I come bearing four patches for your consideration.
 
-> 
->> +
->> +  clock-names:
->> +    items:
->> +      - const: secss
->> +
->> +  reg:
->> +    maxItems: 1
-> 
-> ditto.
+The first of these four patches adds a driver for the Rockchip
+I2S/TDM controller, used in interfacing between the AHB bus and the
+I2S bus on some Rockchip SoCs. This allows for audio playback with
+a matching codec.
 
-The same, I have no clue what to copy. It's obvious that reg contains
-"physical address and size of the registers map".
+The controller has three different modes: I2S, I2S/TDM and PCM.
+It is distinct from the earlier Rockchip I2S controller, and
+therefore not just an extension of that driver.
 
+The driver is based on the downstream version, though various
+changes have been made to hopefully make it more palatable to
+upstream. Some needless code duplication has been refactored, and
+the probe function will no longer let wrong device tree values
+write nonsense to hardware registers. Properties have been renamed
+and had their semantics changed. I won't bore you with the details
+of what downstream did, since that's not what I'm submitting, but
+the changes are significant enough that I've added myself to the
+list of authors.
 
-Best regards,
-Krzysztof
+The second patch adds the YAML device tree bindings for this, which
+have been written from scratch by yours truly. Since I didn't like
+having random integers mean things, I defined them as constants in
+a header file for the bindings.
+
+The third patch adds the i2s1 controller to the rk356x device tree.
+I didn't add any of the other i2s controllers on that SoC for now as
+I have no way of testing them; in particular, i2s0 is tied to HDMI,
+so needs a functioning VOP2 driver to even have a chance of working.
+
+The fourth patch makes use of the i2s1 controller to enable analog
+audio output on the Quartz64 Model A through its RK817 codec. I've
+tested this to work properly at both 44.1 kHz and 96 kHz, so both
+mclk_root0 and mclk_root1 are definitely functioning.
+
+This is my first kernel contribution, so I most likely did
+something horribly wrong. That's why I'm more than happy to receive
+any criticisms and concerns over how the driver is implemented,
+because I've run out of ideas on how to make it clearly better
+myself.
+
+I'd also like to extend my thanks to Peter Geis, who has been
+acting as somewhat of a mentor and gave me occasional feedback
+and ideas during the writing of this patch series.
+
+Regards,
+Nicolas Frattaroli
+
+Nicolas Frattaroli (4):
+  ASoC: rockchip: add support for i2s-tdm controller
+  dt-bindings: sound: add rockchip i2s-tdm binding
+  arm64: dts: rockchip: add i2s1 on rk356x
+  arm64: dts: rockchip: add analog audio on Quartz64
+
+ .../bindings/sound/rockchip,i2s-tdm.yaml      |  221 ++
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |   36 +-
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   26 +
+ include/dt-bindings/sound/rockchip,i2s-tdm.h  |    9 +
+ sound/soc/rockchip/Kconfig                    |   11 +
+ sound/soc/rockchip/Makefile                   |    2 +
+ sound/soc/rockchip/rockchip_i2s_tdm.c         | 1804 +++++++++++++++++
+ sound/soc/rockchip/rockchip_i2s_tdm.h         |  400 ++++
+ 8 files changed, 2508 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+ create mode 100644 include/dt-bindings/sound/rockchip,i2s-tdm.h
+ create mode 100644 sound/soc/rockchip/rockchip_i2s_tdm.c
+ create mode 100644 sound/soc/rockchip/rockchip_i2s_tdm.h
+
+-- 
+2.32.0
+
