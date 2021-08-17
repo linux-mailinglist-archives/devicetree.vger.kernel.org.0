@@ -2,138 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FD73EEAAA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF1143EEAAD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 12:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236197AbhHQKMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 06:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        id S239269AbhHQKNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 06:13:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235376AbhHQKM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 06:12:29 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9445AC061764;
-        Tue, 17 Aug 2021 03:11:56 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id gt38so16374288ejc.13;
-        Tue, 17 Aug 2021 03:11:56 -0700 (PDT)
+        with ESMTP id S234895AbhHQKNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 06:13:06 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2843BC061764;
+        Tue, 17 Aug 2021 03:12:33 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id b7so30878344edu.3;
+        Tue, 17 Aug 2021 03:12:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jqw1AzmRK6zGBEx+a2c5M5+dO2MAySjNQQ8o1qXDJs8=;
-        b=ZOD4sNytd4WPSZyPmbX2m9LgLSk9COCpOOmzj4bjLOzp2hFpikCaBnzFGgBEJXICwt
-         DFV6SrstOLxM3pjIJQkIqAsjum+an8vUqUMGq4tdyNV+qQLzWl24Xn6SIoHoZiT9HmYs
-         K6tTCTfaBYOh91jPdHHjTqZ9i22gfQjdka4U+GzF0Om23yB3MrVUsgNm8U+9JusW64Tz
-         V1BHhVIxeqkxBphRPnqyzO33KJn02nxmZ4XjS4gU2sPLGkTt+gWcF1QVjPF6t4Wljy+X
-         3UMt9JMbllLtSImr1hQHs/PyaM3QIy0V6JWU/I2K4yx+UPq+RTJBXjI6OSHlMMH9xHIq
-         Ie2A==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=NAZ3iHRhwDa0VlHkXe1bEIQ5yvY78DPN6f7/EwPF9pU=;
+        b=ERgDuTUBHyA06UX4V6nQdVQ1RRdLdu5ViHA9SN3iAOnoJ5TxnKpVdkMqSihOCl6YOp
+         drNLp8Qi1wwNoVXQDPtaCJfXgOCbJt3j8W8kgF9oYNjrfQkgLaHt+pFQKFGsHhBcyLUX
+         +I+6ZKBd5xU+2k1v7OlD7pmbrSqUMpmIlSEnN8Wwh3PwAVCFULw5gywPjZLppu8WA7MC
+         7XFh+TFhOyjqtYy9hBSW8y5xtqA5/HOHJ0TkeQbj+Th3z/Vdq0sjaCqrGaCr2TSJgVB5
+         w684guCIgpwXdTTbpGb7PKj95Q74WEiY6i35HAuloDdkbQh5+f0PdU270Qv8+sI09sHp
+         wy0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jqw1AzmRK6zGBEx+a2c5M5+dO2MAySjNQQ8o1qXDJs8=;
-        b=mkVR/tcovL/pyu+RRi5ixZ65fph16qHVqgW2AaMdVPwqm52M/G9NrKm1x7aXXMS51O
-         6+MRTgJwX6mURK1Gxk3ktpqQLHTJvUiKHCUcJ0yAFQ5xJXu8zcTBZcuoBaCW1oXyWfXj
-         NNtBOfaybmm4ucF/SBmqcrsyCM7LKv59l0kqlXdcgMpTOl5Nj9mm/wBVZnKD7p5HcW0f
-         4Srgi96I46c1htRE4nx5qbAWF/ZDPlmvK3PdVYFzMUyXWdh2RBzEd+ciS8iIeeUcM7Kt
-         NLKCswaiY3u5Mnz0Asx6j6moDVP2vmGnQXEkbekKCHQDRulSd/VLoG+quXO6BCB4tudr
-         UdDg==
-X-Gm-Message-State: AOAM5312VAVqOBGBDLyuOxYFukRPTOOz8iV0EupLrsqG6ln0snneNZ2p
-        +4kn46O/1CceCZDF0yHN+yo=
-X-Google-Smtp-Source: ABdhPJx7FraHwOny+E8f8qN3AMF/gbn3eNC37y6iQIiMzCrRbYBFSEtrtKJm1qLG9Pa6rK1MeNaVHg==
-X-Received: by 2002:a17:906:4e59:: with SMTP id g25mr3104501ejw.399.1629195115109;
-        Tue, 17 Aug 2021 03:11:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=NAZ3iHRhwDa0VlHkXe1bEIQ5yvY78DPN6f7/EwPF9pU=;
+        b=TDd5va4Gqj3zX4gpRH6WG5Qqw9X18nlZpryDUAh7uBnB+EnYyB1nS3255WpBhiCAeD
+         8pjRpotjEGKLgfejZdo1VRg6PPZIXTOmxSVr1wkJHNDqkkQsLaGX/5f/2VcmKMennQhU
+         kMvRsJoQO1y4+N9N4BbEQSZUq2QKs5m3bxQCshFRQT7tvHndWbw7XkDDYIDS/Dem7m0E
+         FhssHBRyH3wVutx5+9EqTtCpG5SoHAQERkwqGAl581LFeQauRxyCtZX9wGd+CypOzLqU
+         pMEmt3xxf5q0vi84nBQfqzs8vgYXR+WnlZtDdigwfSlI3R6DFORJVP9pmXaLdmGbgX02
+         l7YA==
+X-Gm-Message-State: AOAM530ithy6ztfaDD34alooYap7QACZSXm50OjAVRprTId82Jt3w+AT
+        Dmu74ufLhlnVfB6FG5+IvSI=
+X-Google-Smtp-Source: ABdhPJxYz8f+mVFJRA/q2G+Cscc5uGswKuR6xxueeR30RVFhGSloF2s+aA6GlfdsmJfDhSZfrhgzeA==
+X-Received: by 2002:a05:6402:b7a:: with SMTP id cb26mr3297856edb.33.1629195151747;
+        Tue, 17 Aug 2021 03:12:31 -0700 (PDT)
 Received: from localhost.localdomain ([185.213.155.232])
-        by smtp.gmail.com with ESMTPSA id m6sm822920edq.22.2021.08.17.03.11.53
+        by smtp.gmail.com with ESMTPSA id m6sm822920edq.22.2021.08.17.03.12.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 03:11:54 -0700 (PDT)
+        Tue, 17 Aug 2021 03:12:31 -0700 (PDT)
 From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 0/4] Rockchip I2S/TDM controller
-Date:   Tue, 17 Aug 2021 12:11:15 +0200
-Message-Id: <20210817101119.423853-1-frattaroli.nicolas@gmail.com>
+Subject: [PATCH 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
+Date:   Tue, 17 Aug 2021 12:11:17 +0200
+Message-Id: <20210817101119.423853-3-frattaroli.nicolas@gmail.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210817101119.423853-1-frattaroli.nicolas@gmail.com>
+References: <20210817101119.423853-1-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+This adds the YAML bindings for the Rockchip I2S/TDM audio driver.
 
-I come bearing four patches for your consideration.
-
-The first of these four patches adds a driver for the Rockchip
-I2S/TDM controller, used in interfacing between the AHB bus and the
-I2S bus on some Rockchip SoCs. This allows for audio playback with
-a matching codec.
-
-The controller has three different modes: I2S, I2S/TDM and PCM.
-It is distinct from the earlier Rockchip I2S controller, and
-therefore not just an extension of that driver.
-
-The driver is based on the downstream version, though various
-changes have been made to hopefully make it more palatable to
-upstream. Some needless code duplication has been refactored, and
-the probe function will no longer let wrong device tree values
-write nonsense to hardware registers. Properties have been renamed
-and had their semantics changed. I won't bore you with the details
-of what downstream did, since that's not what I'm submitting, but
-the changes are significant enough that I've added myself to the
-list of authors.
-
-The second patch adds the YAML device tree bindings for this, which
-have been written from scratch by yours truly. Since I didn't like
-having random integers mean things, I defined them as constants in
-a header file for the bindings.
-
-The third patch adds the i2s1 controller to the rk356x device tree.
-I didn't add any of the other i2s controllers on that SoC for now as
-I have no way of testing them; in particular, i2s0 is tied to HDMI,
-so needs a functioning VOP2 driver to even have a chance of working.
-
-The fourth patch makes use of the i2s1 controller to enable analog
-audio output on the Quartz64 Model A through its RK817 codec. I've
-tested this to work properly at both 44.1 kHz and 96 kHz, so both
-mclk_root0 and mclk_root1 are definitely functioning.
-
-This is my first kernel contribution, so I most likely did
-something horribly wrong. That's why I'm more than happy to receive
-any criticisms and concerns over how the driver is implemented,
-because I've run out of ideas on how to make it clearly better
-myself.
-
-I'd also like to extend my thanks to Peter Geis, who has been
-acting as somewhat of a mentor and gave me occasional feedback
-and ideas during the writing of this patch series.
-
-Regards,
-Nicolas Frattaroli
-
-Nicolas Frattaroli (4):
-  ASoC: rockchip: add support for i2s-tdm controller
-  dt-bindings: sound: add rockchip i2s-tdm binding
-  arm64: dts: rockchip: add i2s1 on rk356x
-  arm64: dts: rockchip: add analog audio on Quartz64
-
- .../bindings/sound/rockchip,i2s-tdm.yaml      |  221 ++
- .../boot/dts/rockchip/rk3566-quartz64-a.dts   |   36 +-
- arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   26 +
- include/dt-bindings/sound/rockchip,i2s-tdm.h  |    9 +
- sound/soc/rockchip/Kconfig                    |   11 +
- sound/soc/rockchip/Makefile                   |    2 +
- sound/soc/rockchip/rockchip_i2s_tdm.c         | 1804 +++++++++++++++++
- sound/soc/rockchip/rockchip_i2s_tdm.h         |  400 ++++
- 8 files changed, 2508 insertions(+), 1 deletion(-)
+Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+---
+ .../bindings/sound/rockchip,i2s-tdm.yaml      | 221 ++++++++++++++++++
+ include/dt-bindings/sound/rockchip,i2s-tdm.h  |   9 +
+ 2 files changed, 230 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
  create mode 100644 include/dt-bindings/sound/rockchip,i2s-tdm.h
- create mode 100644 sound/soc/rockchip/rockchip_i2s_tdm.c
- create mode 100644 sound/soc/rockchip/rockchip_i2s_tdm.h
 
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+new file mode 100644
+index 000000000000..c3022620b47f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+@@ -0,0 +1,221 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/rockchip,i2s-tdm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip I2S/TDM Controller
++
++description:
++  The Rockchip I2S/TDM Controller is a Time Division Multiplexed
++  audio interface found in various Rockchip SoCs, allowing up
++  to 8 channels of audio over a serial interface.
++
++maintainers:
++  - Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - rockchip,px30-i2s-tdm
++      - rockchip,rk1808-i2s-tdm
++      - rockchip,rk3308-i2s-tdm
++      - rockchip,rk3568-i2s-tdm
++      - rockchip,rv1126-i2s-tdm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    minItems: 1
++    maxItems: 2
++
++  dma-names:
++    oneOf:
++      - const: rx
++      - items:
++          - const: tx
++          - const: rx
++
++  clocks:
++    items:
++      - description: clock for TX
++      - description: clock for RX
++      - description: clock for I2S bus
++
++  clock-names:
++    items:
++      - const: mclk_tx
++      - const: mclk_rx
++      - const: hclk
++
++  rockchip,frame-width:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 64
++    minimum: 32
++    maximum: 512
++    description:
++      Width of a frame, usually slot width multiplied by number of slots.
++      Must be even.
++
++  resets:
++    items:
++      - description: reset for TX
++      - description: reset for RX
++
++  reset-names:
++    items:
++      - const: tx-m
++      - const: rx-m
++
++  rockchip,cru:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The phandle of the cru.
++      Required if both playback and capture are used, i.e. if rockchip,clk-trcm
++      is 0.
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The phandle of the syscon node for the GRF register.
++
++  rockchip,mclk-calibrate:
++    description:
++      Enable mclk source calibration.
++    type: boolean
++
++  rockchip,trcm-sync:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Which lrck/bclk clocks each direction will sync to. You should use the
++      constants in <dt-bindings/sound/rockchip,i2s-tdm.h>
++    oneOf:
++      - const: 0
++        description:
++          RK_TRCM_TXRX. Use both the TX and the RX clock for TX and RX.
++      - const: 1
++        description:
++          RK_TRCM_TX. Use only the TX clock for TX and RX.
++      - const: 2
++        description:
++          RK_TRCM_RX. Use only the RX clock for TX and RX.
++
++  "#sound-dai-cells":
++    const: 0
++
++  rockchip,no-dmaengine:
++    description:
++      If present, driver will not register a pcm dmaengine, only the dai.
++      If the dai is part of multi-dais, the property should be present.
++    type: boolean
++
++  rockchip,playback-only:
++    description: Specify that the controller only has playback capability.
++    type: boolean
++
++  rockchip,capture-only:
++    description: Specify that the controller only has capture capability.
++    type: boolean
++
++  rockchip,i2s-rx-route:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Defines the mapping of I2S RX sdis to I2S data bus lines.
++      By default, they are mapped one-to-one.
++    items:
++      - description: which sdi to connect to data line 0
++      - description: which sdi to connect to data line 1
++      - description: which sdi to connect to data line 2
++      - description: which sdi to connect to data line 3
++
++  rockchip,i2s-tx-route:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Defines the mapping of I2S TX sdos to I2S data bus lines.
++      By default, they are mapped one-to-one.
++    items:
++      - description: which sdo to connect to data line 0
++      - description: which sdo to connect to data line 1
++      - description: which sdo to connect to data line 2
++      - description: which sdo to connect to data line 3
++
++  rockchip,tdm-fsync-half-frame:
++    description: Whether to use half frame fsync.
++    type: boolean
++
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - dmas
++  - dma-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - rockchip,grf
++  - "#sound-dai-cells"
++  - rockchip,trcm-sync
++
++allOf:
++  - if:
++      properties:
++        rockchip,clk-trcm:
++          contains:
++            enum: [0]
++    then:
++      required:
++        - rockchip,cru
++
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3568-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/sound/rockchip,i2s-tdm.h>
++
++
++    foo {
++        #address-cells = <2>;
++        #size-cells = <2>;
++        i2s@fe410000 {
++            compatible = "rockchip,rk3568-i2s-tdm";
++            reg = <0x0 0xfe410000 0x0 0x1000>;
++            interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&cru MCLK_I2S1_8CH_TX>, <&cru MCLK_I2S1_8CH_RX>,
++                     <&cru HCLK_I2S1_8CH>;
++            clock-names = "mclk_tx", "mclk_rx", "hclk";
++            dmas = <&dmac1 2>, <&dmac1 3>;
++            dma-names = "tx", "rx";
++            resets = <&cru SRST_M_I2S1_8CH_TX>, <&cru SRST_M_I2S1_8CH_RX>;
++            reset-names = "tx-m", "rx-m";
++            rockchip,trcm-sync = <RK_TRCM_TX>;
++            rockchip,cru = <&cru>;
++            rockchip,grf = <&grf>;
++            #sound-dai-cells = <0>;
++            pinctrl-names = "default";
++            pinctrl-0 =
++                <&i2s1m0_sclktx
++                &i2s1m0_sclkrx
++                &i2s1m0_lrcktx
++                &i2s1m0_lrckrx
++                &i2s1m0_sdi0
++                &i2s1m0_sdi1
++                &i2s1m0_sdi2
++                &i2s1m0_sdi3
++                &i2s1m0_sdo0
++                &i2s1m0_sdo1
++                &i2s1m0_sdo2
++                &i2s1m0_sdo3>;
++            status = "disabled";
++        };
++    };
+diff --git a/include/dt-bindings/sound/rockchip,i2s-tdm.h b/include/dt-bindings/sound/rockchip,i2s-tdm.h
+new file mode 100644
+index 000000000000..32494d64cf33
+--- /dev/null
++++ b/include/dt-bindings/sound/rockchip,i2s-tdm.h
+@@ -0,0 +1,9 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef _DT_BINDINGS_ROCKCHIP_I2S_TDM_H
++#define _DT_BINDINGS_ROCKCHIP_I2S_TDM_H
++
++#define RK_TRCM_TXRX 0
++#define RK_TRCM_TX 1
++#define RK_TRCM_RX 2
++
++#endif /* _DT_BINDINGS_ROCKCHIP_I2S_TDM_H */
 -- 
 2.32.0
 
