@@ -2,76 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2629B3EF4E5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A1953EF4F5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 23:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234998AbhHQVY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 17:24:57 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:38680 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbhHQVY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:24:57 -0400
-Received: by mail-ot1-f45.google.com with SMTP id 108-20020a9d01750000b029050e5cc11ae3so148279otu.5;
-        Tue, 17 Aug 2021 14:24:23 -0700 (PDT)
+        id S234211AbhHQV3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 17:29:17 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:44791 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235067AbhHQV3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 17:29:15 -0400
+Received: by mail-oi1-f178.google.com with SMTP id w6so1201732oiv.11;
+        Tue, 17 Aug 2021 14:28:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7W9npOknUtUU037y5TUXkyCwGRj5nJWHyHC1caEq6G0=;
-        b=KaPUtZkb+dBxxKHSQIF/5l2JzsO79gpKqdkEHiiN5vC+85hchaOfmAV6ZtP5dJlKaj
-         K4FenRRArgYw/UpLm/8fJkUTgJpk5lntVQvXlRUd8mBFu4dGwv6MgT58YSdM+SzhPXLg
-         XS3oYwHLsaRCwE2yH7LAWzyAf3nDSlphvC7p5kXsV9yWHiSSthw42w/H188oOtCn2X9g
-         slRVMHkGxYbMaeg0Ct1w+/EM5EcOd5p3DCpCxYLd237YXa1lSxCibEKiQ0iczAYpGO9h
-         Zuy96VtkGcPsqoN8w59fyZi5syZiEdz5KqHOMcA4jZ3sC607L48ZCG6f4bIjq9SCWc7D
-         nZsA==
-X-Gm-Message-State: AOAM5338r/SnTi0LhWU0KinwuvOSR5QqDrj0FasRb6rHZjmvieeCn518
-        d/uGvJcDOAYA53/b/hOw9A==
-X-Google-Smtp-Source: ABdhPJz5WjCQw00OSV19UzmnYoJNag5H4oeeak/snW4AcVvwi66ujDfDHn7AEgc1RlfMhusAaMvC0g==
-X-Received: by 2002:a9d:8ed:: with SMTP id 100mr4115192otf.232.1629235463552;
-        Tue, 17 Aug 2021 14:24:23 -0700 (PDT)
+        bh=/Mx0UVzNRYFUc4QkujNRHwvT1qaO2NYmFNn3GPRqcTo=;
+        b=TZr5aRTwiuZbFEbtWAA4Pl0xqKpAfutDrErgcCDXeenlmuHybzLxudxtrqypon3MLB
+         IWutsObm+alwvSaBZ35fMN7pwsDJYhIqWkWL5IKOmhRiKpdrcZve8iT2YiykVhzKyvQe
+         UcSO9Ubn2TJ7HW/YCrFr7l6x6gwU/eqNWBOPza+rdZwhxflRty6qDSObDaMbEV4S6jjx
+         1b4tb7Y8xWr28IZWo9GE5JFehzUqZzaOPLykD6tGesB5jsoNUuTnLzuPShc3HEpVa87Y
+         qoxxzojG16zgG1thObG3wceA7a4F/tben9NPRscQIW58rAO1RgZtmW58F8NGs9yR/RpC
+         N8gA==
+X-Gm-Message-State: AOAM531aqLa3aiOgeRN35OKF80lW+EzAdpppcYtG4horfz2qgHDAGR3C
+        g9oUdPnlfambnGdjxReFeQ==
+X-Google-Smtp-Source: ABdhPJyWfwcgnxxPtv29RdxjJg7igDW3al5JiPwNMeYVLchoN80AjbsevgMXxmfUee03utS4tclsLQ==
+X-Received: by 2002:a54:4008:: with SMTP id x8mr4029640oie.113.1629235721366;
+        Tue, 17 Aug 2021 14:28:41 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u127sm779604oib.16.2021.08.17.14.24.22
+        by smtp.gmail.com with ESMTPSA id x60sm612178ota.72.2021.08.17.14.28.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 14:24:22 -0700 (PDT)
-Received: (nullmailer pid 866082 invoked by uid 1000);
-        Tue, 17 Aug 2021 21:24:21 -0000
-Date:   Tue, 17 Aug 2021 16:24:21 -0500
+        Tue, 17 Aug 2021 14:28:40 -0700 (PDT)
+Received: (nullmailer pid 872158 invoked by uid 1000);
+        Tue, 17 Aug 2021 21:28:39 -0000
+Date:   Tue, 17 Aug 2021 16:28:39 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dawei Chien <dawei.chien@mediatek.com>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ryan Case <ryandcase@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        Arvin Wang <arvin.wang@mediatek.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, James Liao <jamesjj.liao@mediatek.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        linux-kernel@vger.kernel.org,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [V11,PATCH 11/19] dt-bindings: interconnect: add MT8195
- interconnect dt-bindings
-Message-ID: <YRwpBQu+rXPiUe3i@robh.at.kernel.org>
-References: <20210812085846.2628-1-dawei.chien@mediatek.com>
- <20210812085846.2628-12-dawei.chien@mediatek.com>
+To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: Re: [PATCH 2/3] dt-bindings: msm: Add QTI download mode support
+ binding
+Message-ID: <YRwqBx4hNsbsPYY0@robh.at.kernel.org>
+References: <cover.1628757036.git.saiprakash.ranjan@codeaurora.org>
+ <217c22d40e0a9db713e2a55623408eca88166897.1628757036.git.saiprakash.ranjan@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210812085846.2628-12-dawei.chien@mediatek.com>
+In-Reply-To: <217c22d40e0a9db713e2a55623408eca88166897.1628757036.git.saiprakash.ranjan@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Aug 2021 16:58:38 +0800, Dawei Chien wrote:
-> Add interconnect provider dt-bindings for MT8195
+On Thu, Aug 12, 2021 at 02:47:41PM +0530, Sai Prakash Ranjan wrote:
+> Add device tree binding for QTI download mode cookies
+> region found in IMEM.
 > 
-> Signed-off-by: Dawei Chien <dawei.chien@mediatek.com>
+> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 > ---
->  include/dt-bindings/interconnect/mtk,mt8195-emi.h | 42 +++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 include/dt-bindings/interconnect/mtk,mt8195-emi.h
+>  .../bindings/arm/msm/qcom,dload-mode.yaml     | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
+> new file mode 100644
+> index 000000000000..90b9b6a9b75e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,dload-mode.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/msm/qcom,dload-mode.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Download Mode binding
+> +
+> +maintainers:
+> +  - Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> +
+> +description:
+> +  Qualcomm download mode cookies memory region in IMEM is used by SDI
+> +  (System Debug Image) firmware to determine whether to enter download
+> +  mode or not to collect ramdump for post mortem debug.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,dload-mode
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  qcom,sdi-disable-regs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandle reference to a syscon representing TCSR followed by the
+> +      offset and length for SDI disable register.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    imem@146aa000 {
+> +      compatible = "simple-mfd";
 
-Acked-by: Rob Herring <robh@kernel.org>
+If this is just internal RAM, then we already have a binding for it and 
+'simple-mfd' is not it.
+
+> +      reg = <0x146aa000 0x2000>;
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      ranges = <0 0x146aa000 0x2000>;
+> +
+> +      dload-mode@1c00 {
+> +        compatible = "qcom,dload-mode";
+> +        reg = <0x1c00 0x1000>;
+
+0x1c00 + 0x1000 > 0x2000
+
+
+> +        qcom,sdi-disable-regs = <&tcsr_regs 0x3a000 0x4>;
+> +      };
+> +    };
+> +...
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
+> 
