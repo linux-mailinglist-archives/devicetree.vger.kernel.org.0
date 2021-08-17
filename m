@@ -2,96 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAA5C3EF1A2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 20:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0723EF1A7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 20:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232344AbhHQSS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 14:18:27 -0400
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:38691 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbhHQSSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 14:18:25 -0400
-Received: by mail-oo1-f50.google.com with SMTP id m11-20020a056820034b00b0028bb60b551fso2012091ooe.5;
-        Tue, 17 Aug 2021 11:17:52 -0700 (PDT)
+        id S233010AbhHQSSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 14:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233045AbhHQSSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 14:18:44 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5178AC0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 11:18:10 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id g21so18948340edw.4
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 11:18:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=kGqWqj6A17xI0jC/kFHtsK8oi1GicSVgBWPrUCLv92M=;
+        b=ZKv7qEuuOHQJszudOO1k9S6Yj2wdejbzp4uJnYJNiimKjN7P+xxHLMuFVlCc8EcD4T
+         ckKtkEOBHk73Cjz+WhmnV+dGQPM8tnx4t9H/fE6YysjVPlsWrASoku6g9RFjHTB+cPhY
+         M6r6YJAnGWLnNdLOIcwWxUsCC5cO2eWYtNr0NNhSU0kKY+aqxJ08XyjcI81dp/WHytSy
+         Vch44Tg8QB78yh1CsbTs8FHmTl/SEkABtQ4GjygQKDzCQkiFGNHwS2MCoZEFDOvV4SD7
+         +iFL0IkaK0XETty/2geWUqzplq3AAr2Q34XcM5PtmAIO7D2G/vD4Cr+4i+63QR18hAjO
+         K3ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=DLWFI+GPG5JMvw8QB510k7IFEr+jZGWWgLmkQQbrRKo=;
-        b=IiELC0NUrVbZ1yR7x8rchS6WGn82lWLNHWPpOm6V3gdlSB/zPHQZY8Ey/blCZ8u6fe
-         sCrPUP1Uyb9fTps4AFjd1oq57806VE3iy3ueQnm2i9akd4boCb2lkbf8GjoKtyV2UUHW
-         bRBu1xzjMf9+rEf/gOzIeO4FjL6MWwpUvGOx27fOIqea94ehoTOICjg8oYVVmO5u+9jf
-         s+HnTcbqgYG2C4c3eP2of8okM410Kf48LWNMNf4IZkKwTlVDl2ZQTLC0Pq79xedcytQw
-         3rfRXYcEF4mLOhe68r6ITuOayZmYML1S4pSwLCR0i8Zv7/owEWo/mF62WrniGU4HOYWf
-         F4WQ==
-X-Gm-Message-State: AOAM532WNNdNX0lEpXo6h5MVRGaraOXyS/yn9xq9Zs6axyn8C9VkgIq1
-        7ME4FuCQQtX7QOVEWJrDYg==
-X-Google-Smtp-Source: ABdhPJxKzWPRH2R4lMGCh2vpZEkEho1oQHFMv1Kw1X5iQCV+eQQriQ5tWlVqpdSC0eCYWsRUHu3sEw==
-X-Received: by 2002:a4a:e874:: with SMTP id m20mr3537958oom.29.1629224272205;
-        Tue, 17 Aug 2021 11:17:52 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e2sm526769otk.14.2021.08.17.11.17.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Aug 2021 11:17:51 -0700 (PDT)
-Received: (nullmailer pid 589512 invoked by uid 1000);
-        Tue, 17 Aug 2021 18:17:50 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, james.lo@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <1629193630-19994-3-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1629193630-19994-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1629193630-19994-3-git-send-email-hsin-hsiung.wang@mediatek.com>
-Subject: Re: [PATCH v11 2/5] dt-bindings: spmi: document binding for the Mediatek SPMI controller
-Date:   Tue, 17 Aug 2021 13:17:50 -0500
-Message-Id: <1629224270.762546.589511.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=kGqWqj6A17xI0jC/kFHtsK8oi1GicSVgBWPrUCLv92M=;
+        b=NbvpzW09yf59wut1Y0bu6h3poRyFNJg2xj3Cwfgcl/r9Y4TD/dfSRrTpqi2Uji9n50
+         nJNE5BcHUSsl5cH3SJ00OkOM9Eu1p0cBY/klNCVc261MzAKpR/20ZB2qC+TtIWjJRTjl
+         9tnS+b0ovTo4FL/t98ZX8Uua93hUHtj1sE/SgTQwZwpAA/qqZ2ay6SJD1KgU+JU0rV7O
+         F8jqbt7knsnReGH8phjOURhwF3s4kK/AqbhqiYgPFM0O1rf61JLKfgty9DNPrZeh6KCa
+         /kcO+MRQ/VYJ47KCt+xNyheU2arrIySk5DaW3f9bMca7UbOFSVpad1FjoRPu8KogFzNX
+         1GKg==
+X-Gm-Message-State: AOAM531cbmymRuywIKYrVwSIUFi92so/hdtUe2qLvATTO2ISmCPv9vV1
+        FCw6wurAI/dh6N2HIYlKLw3bhh8I3od0zuaJ79E=
+X-Google-Smtp-Source: ABdhPJyCQnJSoY+H0qL9A1QpHAx5LwXZCtckZqg59p9JYKvBxIyH7+8QIGo6ux9VbApED7gAwfm6WRvf1nKIo4QEDmA=
+X-Received: by 2002:a05:6402:2206:: with SMTP id cq6mr5418701edb.384.1629224288954;
+ Tue, 17 Aug 2021 11:18:08 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a17:907:3589:0:0:0:0 with HTTP; Tue, 17 Aug 2021 11:18:07
+ -0700 (PDT)
+Reply-To: 1234567officialnicole@gmail.com
+From:   Miss Nicole <nicolemmmm1111@gmail.com>
+Date:   Tue, 17 Aug 2021 18:18:07 +0000
+Message-ID: <CACygHG=scSAkSz=qiMZmc3aPW+z3X2WsZ_x0qo=N1zpC47xN8g@mail.gmail.com>
+Subject: Hi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Aug 2021 17:47:07 +0800, Hsin-Hsiung Wang wrote:
-> This adds documentation for the SPMI controller found on Mediatek SoCs.
-> 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> changes since v10:
-> - No change.
-> ---
->  .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
-   19 |         #include <dt-bindings/clock/mt8192-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1419: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1517677
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+I hope you are doing well?
+My name is Miss Nicole I am an Official Air Force Pilot by profession
+I have ($ 3.700.000.00.USD) kept on my behalf,
+I am seeking for your assistance to help me to secure the fund out of
+this Country (Lome Republic) to your own country until I come over to
+your country. I have survived two bomb attacks here on rescue mission,
+which prompted me to search out for a reliable and trust worthy person
+to help me out
+Please reply immediately for more details about myself
+Regards
+Miss Official Nicole
