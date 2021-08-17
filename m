@@ -2,252 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5617D3EE640
-	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 07:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D403EE655
+	for <lists+devicetree@lfdr.de>; Tue, 17 Aug 2021 07:44:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234119AbhHQFff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 01:35:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48332 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234071AbhHQFff (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Aug 2021 01:35:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 947AC60F58;
-        Tue, 17 Aug 2021 05:35:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629178502;
-        bh=O+SIJcizaMSZ52S2YGffBupIloQd3otabgPvB9b8e3s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XamexlgP1fCzsOp6YhVHAByyKuuy5ZElOxPTHZzXVYjVEHVyH+8ABoLguRKQ1FphX
-         0135B2pOlMwECYGl0qe8jvmK1d/B9dtFimiTEgDG2eiNpDgKFIRAig71PhAEmJ/Mag
-         bfoDodyhiExIGWkLcZHxt6ZMpYd0T+ibwXxoJyJTvXiddVlE6Iolx/0XwaSurw1fVL
-         8PpRs+VEqZjoJ4qE22Fc6f7y2C6HM4jCZ7OwZGMulPI5EUC0pF4NEeGsPlW11OvUGp
-         nOkWPuDpC9WaGwHe7A6wisxG3fZzmKYYiLnjEqRAiqv05zNSEkBNPjo8W1Fe0YJ1kl
-         itQ6lOlAaxm8w==
-Date:   Tue, 17 Aug 2021 11:04:57 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/2] phy: qcom-qmp: Add support for SM6115 UFS phy
-Message-ID: <YRtKgf/iXV6bND8w@matsya>
-References: <20210813201151.974512-1-iskren.chernev@gmail.com>
- <20210813201151.974512-3-iskren.chernev@gmail.com>
+        id S234261AbhHQFpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 01:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234237AbhHQFo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 01:44:59 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB288C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 22:44:26 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id x7so31050126ljn.10
+        for <devicetree@vger.kernel.org>; Mon, 16 Aug 2021 22:44:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YOKejl87y0ski0VdMRkyNRA2v7H+vqyupx7Esp13/wE=;
+        b=a6IvKzyOyIQZqQYz+g/aLPoRbm5h20bCZsjIxf2QcwFz0VIyf7oEIDWaVkrgyH8dVy
+         h4m6QRA7pfehKCUKoALq+XGDZt5U7OBbb0gKEDtP7fuIogf7goHUm/xLrW3OSFHRYE/2
+         l/S0skrt0NKW06MSkEcsSsY+vfCoBhM6F24NE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YOKejl87y0ski0VdMRkyNRA2v7H+vqyupx7Esp13/wE=;
+        b=UCjzrenCMhfHmKobLozpvFDOu6gwWuxcBPqvOXJ3Ny/K0qWkatxbwSU3XnKTpuV/gm
+         NgDOLH3jRgD8o3Ie5Y3+3XZH7dps9y2PW6oJ2db2jOBa6KGjMDez3Om7y1ocIGgNSwz2
+         o0rPPp7VrkXzAx7umCneWD8ocPTRdkFU2dxGpf51sLctdoEkHBeYq0dX/xAzMXVVEWdn
+         CbyRi3qGwXlAnJvmS7naXBsqg18HPCVlh6O08FkeZIeJXz0er51CJtP1vaq7u0iz8KfP
+         sLntxziwAVEjW2fU/hph1/T1y6c1mF3VbxF12NjAGLtGgAOn0C/Z6J/kaCb3Wo6HNjSl
+         P3fA==
+X-Gm-Message-State: AOAM5302bwsQ/qcGuiA6aX7NLL7ToaMyVIwCh2NGXbI6WT8h65JkvPoZ
+        n31AfHbIgNT0ltTeMod7LIUs5OYomYnmYqhwEoAgcw==
+X-Google-Smtp-Source: ABdhPJwDdjRJIqMRTx/tVA7vEY9ayN6r0dWnuWHx5K0aCWGb+5ATkAUHpOt5qq3zzCPruae3ZI8O0IO36YD+eRA8lIM=
+X-Received: by 2002:a05:651c:1785:: with SMTP id bn5mr1677465ljb.18.1629179065185;
+ Mon, 16 Aug 2021 22:44:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210813201151.974512-3-iskren.chernev@gmail.com>
+References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
+ <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
+ <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
+ <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
+ <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
+ <CACRpkdZ4k9Km3vBtdN6AnBM89c4355GtPMzCQ0_YHaTb4V5cKA@mail.gmail.com>
+ <CAGXv+5HohMwU8jow5QXO5MK1tO+u=5YsfhArBWCP4Dgm1Q8igg@mail.gmail.com>
+ <4fd12d5c53f6492e5fa3ba94a78b9a149f5b6ed9.camel@mediatek.com>
+ <CAGXv+5GCuNK=-z9VAOjkpJdZLUSZFPfUsQ09m1FhfTsbCYLLRw@mail.gmail.com>
+ <CACRpkdbZKh8cqqiDRUik6Ooo33e+feGwYsLjcLRvBQnT3x5M3A@mail.gmail.com> <a7c8ab68ac3513865698cde27e665bdd554f459e.camel@mediatek.com>
+In-Reply-To: <a7c8ab68ac3513865698cde27e665bdd554f459e.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 17 Aug 2021 13:44:13 +0800
+Message-ID: <CAGXv+5FtL2zaSWx4tUymx6mpCSb5dXG4XNWM9AJL+b6Ok3dxMg@mail.gmail.com>
+Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
+        Light Hsieh <light.hsieh@mediatek.com>,
+        Biao Huang <biao.huang@mediatek.com>,
+        Hongzhou Yang <hongzhou.yang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13-08-21, 23:11, Iskren Chernev wrote:
+On Tue, Aug 17, 2021 at 10:21 AM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+>
+> On Tue, 2021-08-17 at 01:00 +0200, Linus Walleij wrote:
+> > On Mon, Aug 16, 2021 at 5:38 PM Chen-Yu Tsai <wenst@chromium.org>
+> > wrote:
+> > > On Mon, Aug 16, 2021 at 6:48 PM zhiyong.tao <
+> > > zhiyong.tao@mediatek.com> wrote:
+> > > > > I'll take that as "use SI units whenever possible and
+> > > > > reasonable".
+> > > >
+> > > > ==> so It doesn't need to change the define, is it right?
+> > > > we will keep the common define.
+> > >
+> > > Actually I think it would be possible and reasonable to use SI
+> > > units
+> > > in this case, since you are the vendor and have the resistor values
+> > > to implement the support. Having different sets of values for
+> > > different
+> > > chips is nothing out of the ordinary. We already have to account
+> > > for
+> > > different number of pins and different pin functions. That is what
+> > > compatible strings are for.
+> >
+> > I fully agree with Chen-Yu's analysis here.
+> >
+> > Zhiyong can you make an attempt to use SI units (Ohms) and see
+> > what it will look like? I think it will look better for users and it
+> > will
+> > be less risk to make mistakes.
+> >
+> > Yours,
+> > Linus Walleij
+>
+> Hi Linus & chen-yu,
+>
+> The rsel actual bias resistance of each setting is different in
+> different IC. For example, in mt8195, the rsel actual bias resistance
+> setting like as:
+> MTK_PULL_SET_RSEL_000:75K in PU, 75k in PD;
+> MTK_PULL_SET
+> _RSEL_001:10k in PU, 5k in PD;
+> MTK_PULL_SET_RSEL_010:5k in PU, 75k in
+> PD;
+> MTK_PULL_SET_RSEL_011:4k in PU, 5K in PD;
+> MTK_PULL_SET_RSEL_100:3k in
+> PU, 75k in PD;
+> MTK_PULL_SET_RSEL_101:2k in PU, 5K in PD;
+> MTK_PULL_SET_RSE
+> L_110:1.5k in PU, 75k in PD;
+> MTK_PULL_SET_RSEL_111:1k in PU, 5k in PD.
+>
+> but in mt8192, the rsel actual bias resistance setting like as:
+> MTK_PULL_SET_RSEL_000:75K in PU, 75k in PD;
+> MTK_PULL_SET_RSEL_001:3k in PU, 5k in PD;
+> MTK_PULL_SET_RSEL_010:10k in PU, 75k in PD;
+> MTK_PULL_SET_RSEL_011:1k in PU, 5K in PD;
+>
+> Can you help me to provide a suggestion common define for the all
+> different IC?
+> It seems that we should add a new define, if we upstream a new IC
+> pinctrl driver in the future.
 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-> index 6592b58b13f6..fde1bff16e27 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-> @@ -280,6 +280,8 @@
->  #define QSERDES_V3_COM_SSC_PER2				0x020
->  #define QSERDES_V3_COM_SSC_STEP_SIZE1			0x024
->  #define QSERDES_V3_COM_SSC_STEP_SIZE2			0x028
-> +#define QSERDES_V3_COM_POST_DIV				0x02c
-> +#define QSERDES_V3_COM_POST_DIV_MUX			0x030
->  #define QSERDES_V3_COM_BIAS_EN_CLKBUFLR_EN		0x034
->  # define QSERDES_V3_COM_BIAS_EN				0x0001
->  # define QSERDES_V3_COM_BIAS_EN_MUX			0x0002
-> @@ -291,6 +293,7 @@
->  #define QSERDES_V3_COM_CLK_ENABLE1			0x038
->  #define QSERDES_V3_COM_SYS_CLK_CTRL			0x03c
->  #define QSERDES_V3_COM_SYSCLK_BUF_ENABLE		0x040
-> +#define QSERDES_V3_COM_PLL_EN				0x044
->  #define QSERDES_V3_COM_PLL_IVCO				0x048
->  #define QSERDES_V3_COM_LOCK_CMP1_MODE0			0x098
->  #define QSERDES_V3_COM_LOCK_CMP2_MODE0			0x09c
-> @@ -348,6 +351,100 @@
->  #define QSERDES_V3_COM_DEBUG_BUS_SEL			0x178
->  #define QSERDES_V3_COM_CMN_MODE				0x184
->  
-> +/* Only for QMP V3 660 PHY - QSERDES COM registers*/
-> +#define QSERDES_V3_660_COM_LOCK_CMP1_MODE0		0x04c
-> +#define QSERDES_V3_660_COM_LOCK_CMP2_MODE0		0x050
-> +#define QSERDES_V3_660_COM_LOCK_CMP3_MODE0		0x054
-> +#define QSERDES_V3_660_COM_LOCK_CMP1_MODE1		0x058
-> +#define QSERDES_V3_660_COM_LOCK_CMP2_MODE1		0x05c
-> +#define QSERDES_V3_660_COM_LOCK_CMP3_MODE1		0x060
-> +#define QSERDES_V3_660_COM_CMD_RSVD0			0x064
+I assume you mean the macros used in the device tree?
 
-Are you sure this is v3, this looks like V2 offsets:
+The point of using SI units is to get rid of the macros. Instead of:
 
-#define QSERDES_COM_LOCK_CMP1_MODE0                     0x04c
-#define QSERDES_COM_LOCK_CMP2_MODE0                     0x050
-#define QSERDES_COM_LOCK_CMP3_MODE0                     0x054
-#define QSERDES_COM_LOCK_CMP1_MODE1                     0x058
-#define QSERDES_COM_LOCK_CMP2_MODE1                     0x05c
-#define QSERDES_COM_LOCK_CMP3_MODE1                     0x060
+    bias-pull-up = <MTK_PULL_SET_RSEL_000>;
 
-> +#define QSERDES_V3_660_COM_EP_CLOCK_DETECT_CTRL		0x068
-> +#define QSERDES_V3_660_COM_SYSCLK_DET_COMP_STATUS	0x06c
+and
 
-This is new
+    bias-pull-down = <MTK_PULL_SET_RSEL_011>;
 
-> +#define QSERDES_V3_660_COM_BG_TRIM			0x070
-> +#define QSERDES_V3_660_COM_CLK_EP_DIV			0x074
-> +#define QSERDES_V3_660_COM_CP_CTRL_MODE0		0x078
+We want:
 
-Same as v2
+    bias-pull-up = <75000>;
 
-So can you run these offsets against v2 and recheck... there is some
-confusion always with version numbers with this IP!
+and
 
-> +#define QSERDES_V3_660_COM_CP_CTRL_MODE1		0x07c
-> +#define QSERDES_V3_660_COM_CMN_RSVD1			0x080
-> +#define QSERDES_V3_660_COM_PLL_RCTRL_MODE0		0x084
-> +#define QSERDES_V3_660_COM_PLL_RCTRL_MODE1		0x088
-> +#define QSERDES_V3_660_COM_CMN_RSVD2			0x08c
-> +#define QSERDES_V3_660_COM_PLL_CCTRL_MODE0		0x090
-> +#define QSERDES_V3_660_COM_PLL_CCTRL_MODE1		0x094
-> +#define QSERDES_V3_660_COM_CMN_RSVD3			0x098
-> +#define QSERDES_V3_660_COM_PLL_CNTRL			0x09c
-> +#define QSERDES_V3_660_COM_PHASE_SEL_CTRL		0x0a0
-> +#define QSERDES_V3_660_COM_PHASE_SEL_DC			0x0a4
-> +#define QSERDES_V3_660_COM_BIAS_EN_CTRL_BY_PSM		0x0a8
-> +#define QSERDES_V3_660_COM_SYSCLK_EN_SEL		0x0ac
-> +#define QSERDES_V3_660_COM_CML_SYSCLK_SEL		0x0b0
-> +#define QSERDES_V3_660_COM_RESETSM_CNTRL		0x0b4
-> +#define QSERDES_V3_660_COM_RESETSM_CNTRL2		0x0b8
-> +#define QSERDES_V3_660_COM_RESTRIM_CTRL			0x0bc
-> +#define QSERDES_V3_660_COM_RESTRIM_CTRL2		0x0c0
-> +#define QSERDES_V3_660_COM_LOCK_CMP_EN			0x0c8
-> +#define QSERDES_V3_660_COM_LOCK_CMP_CFG			0x0cc
-> +#define QSERDES_V3_660_COM_DEC_START_MODE0		0x0d0
-> +#define QSERDES_V3_660_COM_DEC_START_MODE1		0x0d4
-> +#define QSERDES_V3_660_COM_VCOCAL_DEADMAN_CTRL		0x0d8
-> +#define QSERDES_V3_660_COM_DIV_FRAC_START1_MODE0	0x0dc
-> +#define QSERDES_V3_660_COM_DIV_FRAC_START2_MODE0	0x0e0
-> +#define QSERDES_V3_660_COM_DIV_FRAC_START3_MODE0	0x0e4
-> +#define QSERDES_V3_660_COM_DIV_FRAC_START1_MODE1	0x0e8
-> +#define QSERDES_V3_660_COM_DIV_FRAC_START2_MODE1	0x0ec
-> +#define QSERDES_V3_660_COM_DIV_FRAC_START3_MODE1	0x0f0
-> +#define QSERDES_V3_660_COM_VCO_TUNE_MINVAL1		0x0f4
-> +#define QSERDES_V3_660_COM_VCO_TUNE_MINVAL2		0x0f8
-> +#define QSERDES_V3_660_COM_CMN_RSVD4			0x0fc
-> +#define QSERDES_V3_660_COM_INTEGLOOP_INITVAL		0x100
-> +#define QSERDES_V3_660_COM_INTEGLOOP_EN			0x104
-> +#define QSERDES_V3_660_COM_INTEGLOOP_GAIN0_MODE0	0x108
-> +#define QSERDES_V3_660_COM_INTEGLOOP_GAIN1_MODE0	0x10c
-> +#define QSERDES_V3_660_COM_INTEGLOOP_GAIN0_MODE1	0x110
-> +#define QSERDES_V3_660_COM_INTEGLOOP_GAIN1_MODE1	0x114
-> +#define QSERDES_V3_660_COM_VCO_TUNE_MAXVAL1		0x118
-> +#define QSERDES_V3_660_COM_VCO_TUNE_MAXVAL2		0x11c
-> +#define QSERDES_V3_660_COM_RES_TRIM_CONTROL2		0x120
-> +#define QSERDES_V3_660_COM_VCO_TUNE_CTRL		0x124
-> +#define QSERDES_V3_660_COM_VCO_TUNE_MAP			0x128
-> +#define QSERDES_V3_660_COM_VCO_TUNE1_MODE0		0x12c
-> +#define QSERDES_V3_660_COM_VCO_TUNE2_MODE0		0x130
-> +#define QSERDES_V3_660_COM_VCO_TUNE1_MODE1		0x134
-> +#define QSERDES_V3_660_COM_VCO_TUNE2_MODE1		0x138
-> +#define QSERDES_V3_660_COM_VCO_TUNE_INITVAL1		0x13c
-> +#define QSERDES_V3_660_COM_VCO_TUNE_INITVAL2		0x140
-> +#define QSERDES_V3_660_COM_VCO_TUNE_TIMER1		0x144
-> +#define QSERDES_V3_660_COM_VCO_TUNE_TIMER2		0x148
-> +#define QSERDES_V3_660_COM_SAR				0x14c
-> +#define QSERDES_V3_660_COM_SAR_CLK			0x150
-> +#define QSERDES_V3_660_COM_SAR_CODE_OUT_STATUS		0x154
-> +#define QSERDES_V3_660_COM_SAR_CODE_READY_STATUS	0x158
-> +#define QSERDES_V3_660_COM_CMN_STATUS			0x15c
-> +#define QSERDES_V3_660_COM_RESET_SM_STATUS		0x160
-> +#define QSERDES_V3_660_COM_RESTRIM_CODE_STATUS		0x164
-> +#define QSERDES_V3_660_COM_PLLCAL_CODE1_STATUS		0x168
-> +#define QSERDES_V3_660_COM_PLLCAL_CODE2_STATUS		0x16c
-> +#define QSERDES_V3_660_COM_BG_CTRL			0x170
-> +#define QSERDES_V3_660_COM_CLK_SELECT			0x174
-> +#define QSERDES_V3_660_COM_HSCLK_SEL			0x178
-> +#define QSERDES_V3_660_COM_INTEGLOOP_BINCODE_STATUS	0x17c
-> +#define QSERDES_V3_660_COM_PLL_ANALOG			0x180
-> +#define QSERDES_V3_660_COM_CORECLK_DIV			0x184
-> +#define QSERDES_V3_660_COM_SW_RESET			0x188
-> +#define QSERDES_V3_660_COM_CORE_CLK_EN			0x18c
-> +#define QSERDES_V3_660_COM_C_READY_STATUS		0x190
-> +#define QSERDES_V3_660_COM_CMN_CONFIG			0x194
-> +#define QSERDES_V3_660_COM_CMN_RATE_OVERRIDE		0x198
-> +#define QSERDES_V3_660_COM_SVS_MODE_CLK_SEL		0x19c
-> +#define QSERDES_V3_660_COM_DEBUG_BUS0			0x1a0
-> +#define QSERDES_V3_660_COM_DEBUG_BUS1			0x1a4
-> +#define QSERDES_V3_660_COM_DEBUG_BUS2			0x1a8
-> +#define QSERDES_V3_660_COM_DEBUG_BUS3			0x1ac
-> +#define QSERDES_V3_660_COM_DEBUG_BUS_SEL		0x1b0
-> +#define QSERDES_V3_660_COM_CMN_MISC1			0x1b4
-> +#define QSERDES_V3_660_COM_CORECLK_DIV_MODE1		0x1bc
-> +#define QSERDES_V3_660_COM_CMN_RSVD5			0x1c0
-> +
->  /* Only for QMP V3 PHY - TX registers */
->  #define QSERDES_V3_TX_BIST_MODE_LANENO			0x000
->  #define QSERDES_V3_TX_CLKBUF_ENABLE			0x008
-> @@ -380,6 +477,10 @@
->  #define QSERDES_V3_TX_TX_INTERFACE_MODE			0x0c4
->  #define QSERDES_V3_TX_VMODE_CTRL1			0x0f0
->  
-> +/* Only for QMP V3 660 PHY - TX registers */
-> +#define QSERDES_V3_660_TX_HIGHZ_TRANSCEIVER_BIAS_DRVR_EN	0x068
-> +#define QSERDES_V3_660_TX_LANE_MODE				0x094
-> +
->  /* Only for QMP V3 PHY - RX registers */
->  #define QSERDES_V3_RX_UCDR_FO_GAIN			0x008
->  #define QSERDES_V3_RX_UCDR_SO_GAIN_HALF			0x00c
-> @@ -411,6 +512,24 @@
->  #define QSERDES_V3_RX_RX_MODE_00			0x164
->  #define QSERDES_V3_RX_RX_MODE_01			0x168
->  
-> +/* Only for QMP V3 660 PHY - RX registers */
-> +#define QSERDES_V3_660_RX_UCDR_SVS_SO_GAIN_HALF		0x030
-> +#define QSERDES_V3_660_RX_UCDR_SVS_SO_GAIN_QUARTER	0x034
-> +#define QSERDES_V3_660_RX_UCDR_SVS_SO_GAIN_EIGHTH	0x038
-> +#define QSERDES_V3_660_RX_UCDR_SVS_SO_GAIN		0x03c
-> +#define QSERDES_V3_660_RX_UCDR_FASTLOCK_FO_GAIN		0x040
-> +#define QSERDES_V3_660_RX_UCDR_SO_SATURATION_ENABLE	0x048
-> +#define QSERDES_V3_660_RX_RX_TERM_BW			0x090
-> +#define QSERDES_V3_660_RX_RX_EQ_GAIN1_LSB		0x0c4
-> +#define QSERDES_V3_660_RX_RX_EQ_GAIN1_MSB		0x0c8
-> +#define QSERDES_V3_660_RX_RX_EQ_GAIN2_LSB		0x0cc
-> +#define QSERDES_V3_660_RX_RX_EQ_GAIN2_MSB		0x0d0
-> +#define QSERDES_V3_660_RX_RX_EQU_ADAPTOR_CNTRL2		0x0d8
-> +#define QSERDES_V3_660_RX_SIGDET_CNTRL			0x114
-> +#define QSERDES_V3_660_RX_SIGDET_LVL			0x118
-> +#define QSERDES_V3_660_RX_SIGDET_DEGLITCH_CNTRL		0x11c
-> +#define QSERDES_V3_660_RX_RX_INTERFACE_MODE		0x12c
-> +
->  /* Only for QMP V3 PHY - PCS registers */
->  #define QPHY_V3_PCS_POWER_DOWN_CONTROL			0x004
->  #define QPHY_V3_PCS_TXMGN_V0				0x00c
-> @@ -473,6 +592,21 @@
->  #define QPHY_V3_PCS_REFGEN_REQ_CONFIG1			0x20c
->  #define QPHY_V3_PCS_REFGEN_REQ_CONFIG2			0x210
->  
-> +/* Only for QMP V3 660 PHY - PCS registers */
-> +#define QPHY_V3_660_PCS_PHY_START			0x000
-> +#define QPHY_V3_660_PCS_POWER_DOWN_CONTROL		0x004
-> +#define QPHY_V3_660_PCS_TX_LARGE_AMP_DRV_LVL		0x034
-> +#define QPHY_V3_660_PCS_TX_LARGE_AMP_POST_EMP_LVL	0x038
-> +#define QPHY_V3_660_PCS_TX_SMALL_AMP_DRV_LVL		0x03c
-> +#define QPHY_V3_660_PCS_TX_SMALL_AMP_POST_EMP_LVL	0x040
-> +#define QPHY_V3_660_PCS_RX_MIN_STALL_NOCONFIG_TIME_CAP	0x0cc
-> +#define QPHY_V3_660_PCS_LINECFG_DISABLE			0x138
-> +#define QPHY_V3_660_PCS_RX_SYM_RESYNC_CTRL		0x13c
-> +#define QPHY_V3_660_PCS_RX_MIN_HIBERN8_TIME		0x140
-> +#define QPHY_V3_660_PCS_RX_SIGDET_CTRL2			0x148
-> +#define QPHY_V3_660_PCS_RX_PWM_GEAR_BAND		0x154
-> +#define QPHY_V3_660_PCS_PCS_READY_STATUS		0x168
-> +
->  /* Only for QMP V3 PHY - PCS_MISC registers */
->  #define QPHY_V3_PCS_MISC_CLAMP_ENABLE			0x0c
->  #define QPHY_V3_PCS_MISC_OSC_DTCT_CONFIG2		0x2c
-> -- 
-> 2.32.0
+    bias-pull-down = <5000>;
 
--- 
-~Vinod
+And the pinctrl driver then converts the real values in the device tree
+into register values using some lookup table.
+
+The DT schema could then enumerate all the valid resistor values,
+and get proper validity checking.
+
+Now if you really wanted to keep some symbols for mapping hardware
+register values to resistor values, you could have
+
+    #define MT8192_PULL_UP_RSEL_001      75000
+    #define MT8192_PULL_DOWN_RSEL_001     5000
+
+or have them all named MTK_PULL_{UP,DOWN}_RSEL_NNN, but split into
+different header files, one per SoC.
+
+Personally I think having the macros is a bad idea if proper values
+are available. It just adds another layer of indirection, and another
+area where errors can creep in.
+
+
+Regards
+ChenYu
