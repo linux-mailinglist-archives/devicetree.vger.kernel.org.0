@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CC3E3EFD65
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9DF33EFD95
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238493AbhHRHJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 03:09:39 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:48592 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238898AbhHRHJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 03:09:37 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id BFAAE1C0B7A; Wed, 18 Aug 2021 09:09:02 +0200 (CEST)
-Date:   Wed, 18 Aug 2021 09:09:02 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: imx6dl-yapp4: Remove the unused white LED
- channel
-Message-ID: <20210818070902.GH22282@amd>
-References: <20210818070209.1540451-1-michal.vokac@ysoft.com>
- <20210818070209.1540451-2-michal.vokac@ysoft.com>
+        id S239462AbhHRHNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 03:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239575AbhHRHNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 03:13:19 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E0CC0612A6
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:12:43 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1mGFkY-00050G-M3; Wed, 18 Aug 2021 09:12:34 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1mGFkX-0005NQ-NS; Wed, 18 Aug 2021 09:12:33 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, David Jander <david@protonic.nl>
+Subject: [PATCH v2 0/3] can: provide GPIO based termination 
+Date:   Wed, 18 Aug 2021 09:12:29 +0200
+Message-Id: <20210818071232.20585-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="Uu2n37VG4rOBDVuR"
-Content-Disposition: inline
-In-Reply-To: <20210818070209.1540451-2-michal.vokac@ysoft.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes v3:
+- use u32 instead of u16 for termination-ohms
+- extend error handling
 
---Uu2n37VG4rOBDVuR
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+changes v2:
+- add CAN_TERMINATION_GPIO_MAX
+- remove fsl,scu-index from yaml example. It is not used on imx6q
 
-On Wed 2021-08-18 09:02:09, Michal Vok=C3=A1=C4=8D wrote:
-> Since the reg property was added to each channel node in commit
-> b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5562
-> channel node") it is possible to skip unused channels.
->=20
-> Remove the actually unused white LED channel.
->=20
-> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
+Oleksij Rempel (3):
+  dt-bindings: can-controller: add support for termination-gpios
+  dt-bindings: can: fsl,flexcan: enable termination-* bindings
+  can: dev: provide optional GPIO based termination support
 
-Acked-by: Pavel Machek <pavel@ucw.cz>
+ .../bindings/net/can/can-controller.yaml      |  9 +++
+ .../bindings/net/can/fsl,flexcan.yaml         | 17 +++++
+ drivers/net/can/dev/dev.c                     | 66 +++++++++++++++++++
+ include/linux/can/dev.h                       |  8 +++
+ 4 files changed, 100 insertions(+)
 
---=20
-http://www.livejournal.com/~pavelmachek
+-- 
+2.30.2
 
---Uu2n37VG4rOBDVuR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAmEcsg4ACgkQMOfwapXb+vItPgCfS45AP+0FhJC8K4AVj9j3Aj8+
-T/YAnR7DJpwgkhHZycBroWk//I05RFn3
-=+qTp
------END PGP SIGNATURE-----
-
---Uu2n37VG4rOBDVuR--
