@@ -2,212 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 028C13F0198
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 12:27:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4DD3F01A8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 12:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233732AbhHRK2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 06:28:15 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:20348 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbhHRK2O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 06:28:14 -0400
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 18 Aug 2021 03:27:40 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 18 Aug 2021 03:27:38 -0700
-X-QCInternal: smtphost
-Received: from mkrishn-linux.qualcomm.com ([10.204.66.35])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 18 Aug 2021 15:57:10 +0530
-Received: by mkrishn-linux.qualcomm.com (Postfix, from userid 438394)
-        id EC86C21FCF; Wed, 18 Aug 2021 15:57:08 +0530 (IST)
-From:   Krishna Manikandan <mkrishn@codeaurora.org>
-To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Sankeerth Billakanti <sbillaka@codeaurora.org>,
-        kalyan_t@codeaurora.org, abhinavk@codeaurora.org,
-        robdclark@gmail.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, khsieh@codeaurora.org,
-        rajeevny@codeaurora.org, freedreno@lists.freedesktop.org,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org
-Subject: [PATCH v1 4/4] arm64: dts: qcom: sc7280: add edp display dt nodes
-Date:   Wed, 18 Aug 2021 15:57:04 +0530
-Message-Id: <1629282424-4070-4-git-send-email-mkrishn@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
-References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
+        id S231976AbhHRKc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 06:32:57 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49474 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230424AbhHRKc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 06:32:56 -0400
+X-UUID: d6b23e4ec1794ed392210f166d0c1cb4-20210818
+X-UUID: d6b23e4ec1794ed392210f166d0c1cb4-20210818
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1659944535; Wed, 18 Aug 2021 18:32:20 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 18 Aug 2021 18:32:19 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 18 Aug 2021 18:32:19 +0800
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <bicycle.tsai@mediatek.com>, <jiaxin.yu@mediatek.com>,
+        <cychiang@google.com>, <aaronyu@google.com>, <wenst@chromium.org>
+Subject: [PATCH v4 00/11] ASoC: mediatek: Add support for MT8195 SoC
+Date:   Wed, 18 Aug 2021 18:32:04 +0800
+Message-ID: <20210818103215.9186-1-trevor.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sankeerth Billakanti <sbillaka@codeaurora.org>
+This series of patches adds support for Mediatek AFE of MT8195 SoC.
+Patches are based on broonie tree "for-next" branch.
 
-Add edp controller and phy DT nodes for sc7280.
+Changes since v3:
+  - fixed warnings found by kernel test robot
+  - removed unused critical section
+  - corrected the lock protected sections on etdm driver
+  - added DPTX and HDMITX audio support
 
-Signed-off-by: Sankeerth Billakanti <sbillaka@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 127 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 126 insertions(+), 1 deletion(-)
+Changes since v2:
+  - added audio clock gate control
+  - added 'mediatek' prefix to private dts properties
+  - added consumed clocks to dt-bindins and adopted suggestions from Rob
+  - refined clock usage and remove unused clock and control code
+  - fixed typos
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index aadf55d..5be318e 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1412,7 +1412,7 @@
- 			reg = <0 0xaf00000 0 0x20000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
--				 <0>, <0>, <0>, <0>, <0>, <0>;
-+				 <0>, <0>, <0>, <0>, <&edp_phy 0>, <&edp_phy 1>;
- 			clock-names = "bi_tcxo", "gcc_disp_gpll0_clk",
- 				      "dsi0_phy_pll_out_byteclk",
- 				      "dsi0_phy_pll_out_dsiclk",
-@@ -1493,6 +1493,12 @@
- 							remote-endpoint = <&dsi0_in>;
- 						};
- 					};
-+					port@1 {
-+						reg = <1>;
-+						dpu_intf5_out: endpoint {
-+							remote-endpoint = <&edp_in>;
-+						};
-+					};
- 				};
- 
- 				mdp_opp_table: mdp-opp-table {
-@@ -1608,6 +1614,101 @@
- 
- 				status = "disabled";
- 			};
-+
-+			msm_edp: edp@aea0000 {
-+				status = "disabled";
-+				compatible = "qcom,sc7280-edp";
-+				reg = <0 0xaea0000 0 0x200>,
-+				      <0 0xaea0200 0 0x200>,
-+				      <0 0xaea0400 0 0xc00>,
-+				      <0 0xaea1000 0 0x400>;
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <14 IRQ_TYPE_NONE>;
-+
-+				clocks = <&rpmhcc RPMH_CXO_CLK>,
-+					 <&gcc GCC_EDP_CLKREF_EN>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_PIXEL_CLK>;
-+				clock-names = "core_xo", "core_ref",
-+					      "core_iface", "core_aux", "ctrl_link",
-+					      "ctrl_link_iface", "stream_pixel";
-+				#clock-cells = <1>;
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_EDP_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_EDP_PIXEL_CLK_SRC>;
-+				assigned-clock-parents = <&edp_phy 0>, <&edp_phy 1>;
-+
-+				phys = <&edp_phy>;
-+				phy-names = "dp";
-+
-+				vdda-1p2-supply = <&vreg_l6b_1p2>;
-+				vdda-0p9-supply = <&vreg_l10c_0p8>;
-+				operating-points-v2 = <&edp_opp_table>;
-+				power-domains = <&rpmhpd SC7280_CX>;
-+
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&edp_hot_plug_det>, <&edp_panel_power_on>;
-+
-+				panel-bklt-gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
-+				panel-pwm-gpio = <&pm8350c_gpios 8 GPIO_ACTIVE_HIGH>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					port@0 {
-+						reg = <0>;
-+						edp_in: endpoint {
-+							remote-endpoint = <&dpu_intf5_out>;
-+						};
-+					};
-+				};
-+
-+				edp_opp_table: edp-opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-160000000 {
-+						opp-hz = /bits/ 64 <160000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+			edp_phy: phy@aec2000 {
-+				status = "disabled";
-+				compatible = "qcom,sc7280-edp-phy";
-+				reg = <0 0xaec2a00 0 0x19c>,
-+				      <0 0xaec2200 0 0xa0>,
-+				      <0 0xaec2600 0 0xa0>,
-+				      <0 0xaec2000 0 0x1c0>;
-+
-+				clocks = <&rpmhcc RPMH_CXO_CLK>,
-+					 <&gcc GCC_EDP_CLKREF_EN>;
-+				clock-names = "aux", "cfg_ahb";
-+
-+				vdda-pll-supply = <&vreg_l6b_1p2>;
-+				vdda-phy-supply = <&vreg_l10c_0p8>;
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+			};
- 		};
- 
- 		pdc: interrupt-controller@b220000 {
-@@ -1704,6 +1805,30 @@
- 				function = "qup13";
- 			};
- 
-+			edp_hot_plug_det: edp-hot-plug-det {
-+				pinmux {
-+					pins = "gpio60";
-+					function = "edp_hot";
-+				};
-+				pinconf {
-+					pins = "gpio60";
-+					bias-pull-down;
-+					input-enable;
-+				};
-+			};
-+
-+			edp_panel_power_on: edp-panel-power-on {
-+				pinmux {
-+					pins = "gpio80";
-+					function = "gpio";
-+				};
-+				pinconf {
-+					pins = "gpio80";
-+					bias-disable;
-+					output-high;
-+				};
-+			};
-+
- 			sdc1_on: sdc1-on {
- 				clk {
- 					pins = "sdc1_clk";
+Changes since v1:
+  - fixed some problems related to dt-bindings
+  - added some missing properties to dt-bindings
+  - added depency declaration on dt-bindings
+  - fixed some warnings found by kernel test robot
+
+Trevor Wu (11):
+  ASoC: mediatek: mt8195: update mediatek common driver
+  ASoC: mediatek: mt8195: support audsys clock control
+  ASoC: mediatek: mt8195: support etdm in platform driver
+  ASoC: mediatek: mt8195: support adda in platform driver
+  ASoC: mediatek: mt8195: support pcm in platform driver
+  ASoC: mediatek: mt8195: add platform driver
+  dt-bindings: mediatek: mt8195: add audio afe document
+  ASoC: mediatek: mt8195: add machine driver with mt6359, rt1019 and
+    rt5682
+  ASoC: mediatek: mt8195: add DPTX audio support
+  ASoC: mediatek: mt8195: add HDMITX audio support
+  dt-bindings: mediatek: mt8195: add mt8195-mt6359-rt1019-rt5682
+    document
+
+ .../bindings/sound/mt8195-afe-pcm.yaml        |  184 +
+ .../sound/mt8195-mt6359-rt1019-rt5682.yaml    |   47 +
+ sound/soc/mediatek/Kconfig                    |   24 +
+ sound/soc/mediatek/Makefile                   |    1 +
+ sound/soc/mediatek/common/mtk-afe-fe-dai.c    |   22 +-
+ sound/soc/mediatek/common/mtk-base-afe.h      |   10 +-
+ sound/soc/mediatek/mt8195/Makefile            |   15 +
+ sound/soc/mediatek/mt8195/mt8195-afe-clk.c    |  441 +++
+ sound/soc/mediatek/mt8195/mt8195-afe-clk.h    |  109 +
+ sound/soc/mediatek/mt8195/mt8195-afe-common.h |  158 +
+ sound/soc/mediatek/mt8195/mt8195-afe-pcm.c    | 3281 +++++++++++++++++
+ sound/soc/mediatek/mt8195/mt8195-audsys-clk.c |  214 ++
+ sound/soc/mediatek/mt8195/mt8195-audsys-clk.h |   15 +
+ .../soc/mediatek/mt8195/mt8195-audsys-clkid.h |   93 +
+ sound/soc/mediatek/mt8195/mt8195-dai-adda.c   |  830 +++++
+ sound/soc/mediatek/mt8195/mt8195-dai-etdm.c   | 2639 +++++++++++++
+ sound/soc/mediatek/mt8195/mt8195-dai-pcm.c    |  389 ++
+ .../mt8195/mt8195-mt6359-rt1019-rt5682.c      | 1093 ++++++
+ sound/soc/mediatek/mt8195/mt8195-reg.h        | 2796 ++++++++++++++
+ 19 files changed, 12356 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
+ create mode 100644 sound/soc/mediatek/mt8195/Makefile
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-afe-clk.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-afe-clk.h
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-afe-common.h
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-afe-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-audsys-clk.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-audsys-clk.h
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-audsys-clkid.h
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-dai-adda.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-dai-etdm.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-dai-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+ create mode 100644 sound/soc/mediatek/mt8195/mt8195-reg.h
+
 -- 
-2.7.4
+2.18.0
 
