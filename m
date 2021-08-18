@@ -2,138 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA3E3EFCA1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 08:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A8DC3EFCAF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 08:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238134AbhHRG11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 02:27:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48380 "EHLO
+        id S238263AbhHRG2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 02:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240225AbhHRG1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 02:27:15 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FDFC061226
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 23:26:07 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id w4so1572703ljh.13
-        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 23:26:07 -0700 (PDT)
+        with ESMTP id S238508AbhHRG2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 02:28:01 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB3EC0617AD
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 23:27:26 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id m26so1111099pff.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 23:27:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0niOOKpLOqJWr+G2N4qsyCfMLmKR4C8+b8TBbZbKaU8=;
-        b=Et8efFBgzM1OWhTpqkovSGInq7BYnqTenDPJF5Sfp/8L2BDfO3pcqtdv6gK9Xf6rVi
-         bPlFqq3u2Mlnv1Oxq7zttZXNhuIFaIoCKH5Il61HHre6WKqQXBgZ2rtyo6Ql01WiAgAf
-         iqwYaadnd/cBDGdzYU20uWob0rjtS561A0+w4=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=ynpJGQ+aoMGoVR3/TzuLa6jhj83G7NCnezbFysKyDck=;
+        b=rkMxRzllxsu72p9VoE+F1Y2uNFqfHroY89seElO0F/IF9+njGBhH+JhTjiV6p10xBW
+         RZkVVmBoHTbmBO5qy0Cu5P7Yjfpn+Q0pDbpgd//DyVd9iIE8FToCC+snGEMZelh3paY/
+         +hPtSq0td+yzw80H6HXZomYGW6ujPphQgl+LDlsExLGmraR/J0ZHNe7yOVInyCFXmT/P
+         91wgqIKeFsyocJA7qECcUweDwMNTMng3I+m8yWPcUOWHp3ukJGcj7wwvK4fm1T2uIjDm
+         QM2rYu2cAoeXaM+8hLCXU5bhhQmCXVpZaudJg93f24DbqOKNah/15WaZUn/RqJ/MrtRh
+         mNtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0niOOKpLOqJWr+G2N4qsyCfMLmKR4C8+b8TBbZbKaU8=;
-        b=uF8t7I7meu4SVPQCzCexhV9A8nTH2L/viEf4n4cWRkaZYux3VyfbMqDCdIMU/M3R97
-         jIf7vMmhJbeTdF3PaD5J1A3lzXy9nEqexT894DUcK9aOLjRK49K19wfUB8WAHLQU1YUD
-         v1ON96v1oDx2kGULGU+zoa1Z8ltNOiXTxXQGYcG5vkVetnsZOCNKADDwNoUBqklqSH0A
-         U0uaor7tfPOIYvZZ75IVY11LZ6Zt+ojcezzTCgxpjqfnACbUbfY7Cqask7wfIN8fCjJS
-         j2ZqnN3gbSrsK7qx5GnKA3jd/hecSfKPuwlMpLff0/Kzva+45/lvRmceIXpljOHjhEIA
-         AWcw==
-X-Gm-Message-State: AOAM533vIKAbxk/m+3yNkPw4pqs8iJZieJKB2JGbNizJJL+GRrRPN1A5
-        6x/E0g8GkvHm8axCMb+pm/GwqTOjZZgSXvUrypHtqw==
-X-Google-Smtp-Source: ABdhPJycOOwNmb0zD73kqTDlXcUFSNdJdOw1Y3p1pB/PjGtP3t4iluned8prH8xjVYxNIs08EqJIS54IEOaxSu1nOPY=
-X-Received: by 2002:a2e:7d0e:: with SMTP id y14mr6438392ljc.251.1629267965676;
- Tue, 17 Aug 2021 23:26:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
- <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
- <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
- <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
- <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
- <CACRpkdZ4k9Km3vBtdN6AnBM89c4355GtPMzCQ0_YHaTb4V5cKA@mail.gmail.com>
- <CAGXv+5HohMwU8jow5QXO5MK1tO+u=5YsfhArBWCP4Dgm1Q8igg@mail.gmail.com>
- <4fd12d5c53f6492e5fa3ba94a78b9a149f5b6ed9.camel@mediatek.com>
- <CAGXv+5GCuNK=-z9VAOjkpJdZLUSZFPfUsQ09m1FhfTsbCYLLRw@mail.gmail.com>
- <CACRpkdbZKh8cqqiDRUik6Ooo33e+feGwYsLjcLRvBQnT3x5M3A@mail.gmail.com>
- <a7c8ab68ac3513865698cde27e665bdd554f459e.camel@mediatek.com>
- <CAGXv+5FtL2zaSWx4tUymx6mpCSb5dXG4XNWM9AJL+b6Ok3dxMg@mail.gmail.com>
- <d40f6d5fd26aedb13e7a393202e5794b1893ecf8.camel@mediatek.com> <CACRpkdYkwXr76Kq5WYdz=1KkLTpaByAL1vJFo8V+2mncqs8-3Q@mail.gmail.com>
-In-Reply-To: <CACRpkdYkwXr76Kq5WYdz=1KkLTpaByAL1vJFo8V+2mncqs8-3Q@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 18 Aug 2021 14:25:54 +0800
-Message-ID: <CAGXv+5EUAVFJd7VZsDgpOK_6fhs12ztwKHioghq5ZQHzFKY89w@mail.gmail.com>
-Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=ynpJGQ+aoMGoVR3/TzuLa6jhj83G7NCnezbFysKyDck=;
+        b=bgKVySdVWzgjSCuGgGVRAq2Eg66VjeB4gwxMrJX3OoJQieKSIEhZ/aQA491eJCNStW
+         v/81VsLhmUh428JauftjSoljKgm0ghgHid9t+kFEpSIAMuHwgK3WqqdWMUSKSRwMlf9D
+         tobi/s8kHnIDpzJIcXUWycT73uteTZ3+G19CXVneDYhsWS+3p3v1KpIPeV3IGQp8xcbi
+         Fn1sB9ZEsrT8IX60miguJ/L9cd2isryIH4fBnjNFVWS+0Gnupy7WhvWByF6+m+qmAm8L
+         kJSWI8DBiII7gM9MMmYgaYiBwvRt1jb1sXIcDG2p+0Ls9CQmPIcAT7EydOcHcqrXYEpp
+         Jlrg==
+X-Gm-Message-State: AOAM530JsNpE0IE4kU/G+VFT9afGFlYYVsgghlPtZ3tHiGMvKIut0jnT
+        +OFEGnRnsiHAIz10GcCrfD18rg==
+X-Google-Smtp-Source: ABdhPJyUhfdCbjMBESEOiqAS08eZgxAs7V5/0XRqW4UZTe3K4OmwyniXAPYZlVBrx4vmpFlW5lQzVA==
+X-Received: by 2002:a62:ea0f:0:b029:319:8eef:5ff1 with SMTP id t15-20020a62ea0f0000b02903198eef5ff1mr7706167pfh.74.1629268045601;
+        Tue, 17 Aug 2021 23:27:25 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id l12sm4457595pff.182.2021.08.17.23.27.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Aug 2021 23:27:24 -0700 (PDT)
+Date:   Wed, 18 Aug 2021 11:57:23 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+Message-ID: <20210818062723.dqamssfkf7lf7cf7@vireshk-i7>
+References: <20210817075515.vyyv7z37e6jcrhsl@vireshk-i7>
+ <710261d9-7ae3-5155-c0a2-f8aed2408d0b@gmail.com>
+ <20210818035533.ieqkexltfvvf2p4n@vireshk-i7>
+ <5b2a80c1-9743-e633-6257-ede94c8a274c@gmail.com>
+ <20210818043131.7klajx6drvvkftoc@vireshk-i7>
+ <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7>
+ <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7>
+ <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 4:09 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Tue, Aug 17, 2021 at 9:51 AM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
->
-> > In one chip, If GPIO is different, the MTXXXX_PULL_UP_RSEL_001 may
-> > means different actual bias resistance setting.
-> >
-> > For example,
-> >
-> > KPROW IO
-> > Paramters       Descriptions                   Min      Typ     Max
-> >  UNIT
-> > Rpd     Input pull-down resistance      40      75      190     Kohm
-> > Rpu     Input pull-up resistance        40      75      190     Kohm
-> > Rpd     Input pull-down resistance      0.8     1.6     2       Kohm
-> > Rpu     Input pull-up resistance        0.8     1.6     2       Kohm
->
-> This is exactly why we should try to use SI units in the device tree.
-> I assume that the software can eventually configure which resistance
-> it gets?
->
-> The electronics people will say make sure it is pulled down by around
-> 80 kOhm, they can put that on the device tree and your code can
-> say, "hm 40 < 80 < 190 this is OK" and let the value pass.
->
-> We do not define these exact semantics, it is up to the driver code
-> to decide what to do with the Ohm value 80000 in this case, but
-> it makes perfect sent for me to let it pass and fail if someone
-> for example requests 20 kOhm, or at least print a helpful warning:
->
-> dev_warn(dev, "the requested resistance %d is out of range, supported
-> range %d to %d kOhm\n",
->                  val, low, high);
->
-> This is what makes the SI units really helpful for people writing device
-> trees: solve real integration tasks and make it easy to do the right thing.
+On 18-08-21, 09:22, Dmitry Osipenko wrote:
+> 18.08.2021 08:58, Viresh Kumar пишет:
+> > What about calling dev_pm_opp_set_rate(dev, clk_get_rate(dev)) here
+> > instead ? That will work, right ? The advantage is it works without
+> > any special routine to do so.
+> 
+> It will work, but a dedicated helper is nicer.
+> 
+> > I also wonder looking at your gr3d.c changes, you set a set-opp
+> > helper, but the driver doesn't call set_opp_rate at all. Who calls it
+> > ?
+> 
+> dev_pm_opp_sync() calls it from _set_opp().
 
-I think this makes a lot of sense. The driver could select the closest
-setting. And from what Zhiyong mentioned offline, the resistor values
-aren't exact as specified in the datasheet. I suppose this is expected
-with any electronics. So the hardware integration will say to pull up
-or down by some value, and the driver will do its best to fulfill that
-request. That precludes DT schema checking for the values used, but I
-think that is a good compromise.
+Okay, please use dev_pm_opp_set_rate() instead then. New helper just
+adds to the confusion and isn't doing anything special apart from
+doing clk_get_rate() for you.
 
-Zhiyong also mentioned that some of their downstream integrators might
-not be able to deal with actual values, and would prefer symbols tied
-to specific RSEL values. I think that would be doable together using
-some _magic_ values, but I would prefer not to if it were avoidable.
+> > And if it is all about just syncing the genpd core, then can the genpd
+> > core do something like what clk framework does? i.e. allow a new
+> > optional genpd callback, get_performance_state() (just like
+> > set_performance_state()), which can be called initially by the core to
+> > get the performance to something other than zero. opp-set-rate is
+> > there to set the performance state and enable the stuff as well.
+> > That's why it looks incorrect in your case, where the function was
+> > only required to be called once, and you are ending up calling it on
+> > each resume. Limiting that with another local variable is bad as well.
+> 
+> We discussed variant with get_performance_state() previously and Ulf
+> didn't like it either since it still requires to touch 'internals' of GENPD.
 
+Hmm, I wonder if that would be a problem since only genpd core is
+going to call that routine anyway.
 
-Regards
-ChenYu
+-- 
+viresh
