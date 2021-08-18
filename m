@@ -2,68 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FE6C3F0A8F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 19:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D95E3F0AFC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 20:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbhHRRwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 13:52:38 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:43992 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbhHRRwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 13:52:35 -0400
-Received: by mail-oi1-f175.google.com with SMTP id bf25so4460180oib.10;
-        Wed, 18 Aug 2021 10:52:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8zGXh/RAPuDf810DfB04607FGfrFXnv4n4alUZkuGjw=;
-        b=nOg5H3xrX4cL57uE58GpFKyinQDSss5KHKZLY/dYFfj2juwvvTf47+f6zJox47s3zD
-         jATK+IKOYrwgia/Ne+fYR52mKh+SRKFtPUTysNyuNLFFuJ8kRgzWdvRozul65+Oxk1HB
-         t1fDFRN+Fp2rOuR7+kAyNnXXoP9BEMEptW72aqOmHY7+nO8hRHinxEvvTX8rCX4YEzzz
-         g/rF4se+rtq06bFd00qsUQHafmsHW+2DJ9STpFDiGf62/cg6XdfUOjqpXpH8grA5EUQf
-         bUKkyphP6aa60886N7Lt6uFALUSltaHbEFjDKfdviofDGiqzVyeLUe5cQDJ6XB8dqcRZ
-         iSaA==
-X-Gm-Message-State: AOAM53049lhkbxeyLBnKdU4luWSvFzAS/HJ7mos+mW5+64cUKMI01aJC
-        mwwuCw9PARGrII8DX/SeCQ==
-X-Google-Smtp-Source: ABdhPJxPZtmQIq+VmHFY1s0tpe+o/ow+qx6GwRkzGSWaX1ozZCDegAIlFNe7xXC0FYxjfF4ek5fMlw==
-X-Received: by 2002:a05:6808:286:: with SMTP id z6mr8136803oic.48.1629309120619;
-        Wed, 18 Aug 2021 10:52:00 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p64sm166549oib.4.2021.08.18.10.51.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 10:51:59 -0700 (PDT)
-Received: (nullmailer pid 2824526 invoked by uid 1000);
-        Wed, 18 Aug 2021 17:51:58 -0000
-Date:   Wed, 18 Aug 2021 12:51:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     haibo.chen@nxp.com
-Cc:     ulf.hansson@linaro.org, aisheng.dong@nxp.com, shawnguo@kernel.org,
-        festevam@gmail.com, linux-mmc@vger.kernel.org, robh+dt@kernel.org,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: add a new compatible
- string
-Message-ID: <YR1IvutH4RNxiivs@robh.at.kernel.org>
-References: <1629278277-7313-1-git-send-email-haibo.chen@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1629278277-7313-1-git-send-email-haibo.chen@nxp.com>
+        id S229535AbhHRSY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 14:24:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33282 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229448AbhHRSY6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 14:24:58 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6A0B36108D;
+        Wed, 18 Aug 2021 18:24:23 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mGQEf-005odj-Bu; Wed, 18 Aug 2021 19:24:21 +0100
+Date:   Wed, 18 Aug 2021 19:24:20 +0100
+Message-ID: <87a6lesjaj.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>
+Subject: Re: [PATCH v4 2/6] dt-bindings: arm: optee: add interrupt property
+In-Reply-To: <20210818101849.602257-3-jens.wiklander@linaro.org>
+References: <20210818101849.602257-1-jens.wiklander@linaro.org>
+        <20210818101849.602257-3-jens.wiklander@linaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: jens.wiklander@linaro.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, jerome@forissier.org, etienne.carriere@linaro.org, sumit.garg@linaro.org, vincent.guittot@linaro.org, robh+dt@kernel.org, corbet@lwn.net, ardb@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Aug 2021 17:17:57 +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On Wed, 18 Aug 2021 11:18:45 +0100,
+Jens Wiklander <jens.wiklander@linaro.org> wrote:
 > 
-> Lack a compatible string "fsl,imx6sll-usdhc", so add it here.
+> Adds an optional interrupt property to the optee binding.
 > 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/arm/firmware/linaro,optee-tz.yaml  | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> index c24047c1fdd5..40c9f1901e3f 100644
+> --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> @@ -24,6 +24,12 @@ properties:
+>    compatible:
+>      const: linaro,optee-tz
+>  
+> +  interrupts:
+> +    maxItems: 1
+> +    description: |
+> +      This interrupt which is used to signal an event by the secure world
+> +      software is expected to be edge-triggered.
+> +
+>    method:
+>      enum: [smc, hvc]
+>      description: |
+> @@ -46,6 +52,7 @@ examples:
+>          optee  {
+>              compatible = "linaro,optee-tz";
+>              method = "smc";
+> +            interrupts = <0 187 1>;
+>          };
+>      };
+>  
 
-Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Marc Zyngier <maz@kernel.org>
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
