@@ -2,195 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 413233F010A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A523F0122
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 12:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233132AbhHRJzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 05:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233170AbhHRJzp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 05:55:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45021C0613D9
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 02:55:10 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1mGIHn-0002rK-3S; Wed, 18 Aug 2021 11:55:03 +0200
-Subject: Re: [PATCH V3 2/3] dt-bindings: gpio: zynqmp: Add binding
- documentation for modepin
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Piyush Mehta <piyush.mehta@xilinx.com>, arnd@arndb.de,
-        zou_wei@huawei.com, gregkh@linuxfoundation.org,
-        linus.walleij@linaro.org, wendy.liang@xilinx.com,
-        iwamatsu@nigauri.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, rajan.vaja@xilinx.com
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        git@xilinx.com, sgoud@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20210818081018.2620544-1-piyush.mehta@xilinx.com>
- <20210818081018.2620544-3-piyush.mehta@xilinx.com>
- <5e44ee87-f727-99fd-9860-d3d58a035dc4@pengutronix.de>
- <50e468b1-9a32-0017-bd6a-8d47c3fa1a9c@xilinx.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <4a724736-8bb9-a21d-974c-d9598c3d7b37@pengutronix.de>
-Date:   Wed, 18 Aug 2021 11:55:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232505AbhHRKBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 06:01:03 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:53239 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231910AbhHRKBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 06:01:02 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 833265C0198;
+        Wed, 18 Aug 2021 06:00:25 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 18 Aug 2021 06:00:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=kZLyEeKCZry5SsJrdGDyx9YCfod
+        3H+Q8kZ+LUcg5WBM=; b=i7vLeEjKSGKlHFYzq5IsgVZcyuqpXY3rkMgGmvppWBO
+        Gc3McrpOVmnh7GPT0JCvBmLWauDx/atrJMyWjDRGii/OIp6KksZ1lbNYqktmqTM0
+        5z12NJeOiKU9cOE8R8EsHLAc8juXgzNZD9UllGR2ArGaUnZTiA6uP2okJMfjUyC7
+        wzvkHLc4clv5Q+iNuiEDlysslCwJQ8IIiU/akGGkE56djaWL0JIRwCaLL+JyEGdP
+        +6e3e/JYRTrD1DAknuAlzCtm5dmypZB3AYp9ylqVxAQOVy1AF/vxb/n4hj+RO1s/
+        zBg2tKcT0m8jRhqttQs4b78l78A0rfCL80h5D5vteEw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=kZLyEe
+        KCZry5SsJrdGDyx9YCfod3H+Q8kZ+LUcg5WBM=; b=SdSU0e1EFbHncFfDte8G+P
+        lMAx2ZD7omTeVAHrCo0RvQWQdRU3hXncDt16q6Mm2NT1gHOloiHdutXw2er3MSQ1
+        rT5qz1/SuaMNaPPXuIO8gu9TAAcwQA8Rb/A/wZQeoOOktuaufQLz7VdVmjnISbxn
+        3qfLt8RDV8faWRAk3kvV5bzp/+bLcWCjkqeqX01iBhlqk//WFKwt4Y+gO72nSIwc
+        lo4AeNBOjocAd/nSc/HSXeEtO8Pq6AmtdbJ0XXgMJufCimn+ol5NbuW6WwiRWhB2
+        EdJBMv9Ruua8QOvFamBWBCIBf4EG8rt/a7tY/Rwc96Fj9f+VUUGtWhIQQMDogH6g
+        ==
+X-ME-Sender: <xms:N9ocYXdqqO80L8kbXl5Bb7t0n2EY96mYLIMcn9SX10YvMj7o-V8M0g>
+    <xme:N9ocYdNaBvqt_xT_4jQM3hN9OxJvvg2tZGeTsglkRFGPWb0Pv6vInh1tVxU1-nUNy
+    iydyZ3FOhd2Rc2T4MY>
+X-ME-Received: <xmr:N9ocYQiWMtbBSfjLxFCyvWAxeqbJGINwk9eeWS4AwJ7xauvRwdJgGD14YSflTxQ00s_UfW-73SdwzfbjZA1XUZ75bv3R5ObCMbbk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgddvfecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeffteetveeijeetuefhffegkeetgffhieelheehtdduudethffhjedtvddtudel
+    vdenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordht
+    vggthh
+X-ME-Proxy: <xmx:N9ocYY99mCrSRR0a3wDATlyQEwnoYBwX6DZRb_jy2A0yz9Peul-g7w>
+    <xmx:N9ocYTu00yFvJI9NnHtEi7efWCLQCh9pprnVlTItfY2t3W5wsh7BWw>
+    <xmx:N9ocYXFbW2w5zAt18Wecd-FeEFRKTx-D9v9Mh0AfIB8ZpZYXTi26qg>
+    <xmx:OdocYc8_WMLhoy0zsktmPri1AhI-Vdccz3bsEP9_JEHEsZX5FrNfLw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 18 Aug 2021 06:00:23 -0400 (EDT)
+Date:   Wed, 18 Aug 2021 12:00:21 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Grant Likely <grant.likely@arm.com>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@googlegroups.com,
+        Mailing List <devicetree-spec@vger.kernel.org>
+Subject: Re: [PATCH 05/54] dt-bindings: Convert Reserved Memory binding to a
+ schema
+Message-ID: <20210818100021.yzzcuadkowy4tfv4@gilmour>
+References: <20210721140424.725744-1-maxime@cerno.tech>
+ <20210721140424.725744-6-maxime@cerno.tech>
+ <CAL_JsqKAZLBK2UDDUNrO4aaYr886oODB_N_yF70X44gPXs=k5Q@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <50e468b1-9a32-0017-bd6a-8d47c3fa1a9c@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="n7nlrbexrimtktxt"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKAZLBK2UDDUNrO4aaYr886oODB_N_yF70X44gPXs=k5Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.08.21 11:38, Michal Simek wrote:
-> Hi Ahmad,
-> 
-> On 8/18/21 11:00 AM, Ahmad Fatoum wrote:
->> On 18.08.21 10:10, Piyush Mehta wrote:
->>> This patch adds DT binding document for zynqmp modepin GPIO controller.
->>> Modepin GPIO controller has four GPIO pins which can be configurable
->>> as input or output.
->>>
->>> Modepin driver is a bridge between the peripheral driver and GPIO pins.
->>> It has set and get APIs for accessing GPIO pins, based on the device-tree
->>> entry of reset-gpio property in the peripheral driver, every pin can be
->>> configured as input/output and trigger GPIO pin.
->>>
->>> For more information please refer zynqMp TRM link:
->>> Link: https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf
->>> Chapter 2: Signals, Interfaces, and Pins
->>> Table 2-2: Clock, Reset, and Configuration Pins - PS_MODE
->>>
->>> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
->>> Acked-by: Michal Simek <michal.simek@xilinx.com>
->>> ---
->>> Changes in v2:
->>> - Addressed review comments: Update commit message
->>>
->>> Review Comments:
->>> https://lore.kernel.org/linux-arm-kernel/20210615080553.2021061-2-piyush.mehta@xilinx.com/T/#mbd1fbda813e33b19397b350bde75747c92a0d7e1
->>> https://lore.kernel.org/linux-arm-kernel/20210615080553.2021061-2-piyush.mehta@xilinx.com/T/#me82b1444ab3776162cdb0077dfc9256365c7e736
->>>
->>> Changes in v3:
->>> - Addressed Rob and Michal review comments:
->>>   - Update DT example. 
->>>
->>> Review Comments:
->>> https://lore.kernel.org/linux-arm-kernel/YRbBnRS0VosXcZWz@robh.at.kernel.org/
->>> https://lore.kernel.org/linux-arm-kernel/d71ad7f9-6972-8cc0-6dfb-b5306c9900d0@xilinx.com/
->>> ---
->>>  .../bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    | 41 ++++++++++++++++++++++
->>>  .../bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    | 43 ++++++++++++++++++++++
->>>  1 file changed, 43 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
->>> new file mode 100644
->>> index 0000000..1442815
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
->>> @@ -0,0 +1,43 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: "http://devicetree.org/schemas/gpio/xlnx,zynqmp-gpio-modepin.yaml#"
->>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>> +
->>> +title: ZynqMP Mode Pin GPIO controller
->>> +
->>> +description:
->>> +  PS_MODE is 4-bits boot mode pins sampled on POR deassertion. Mode Pin
->>> +  GPIO controller with configurable from numbers of pins (from 0 to 3 per
->>> +  PS_MODE). Every pin can be configured as input/output.
->> So, at Linux runtime, someone decides to boot the system into e.g. a USB
->> recovery mode and then toggles the appropriate GPIOs and does a system
->> reset?
->>
->> If so, are you aware of the reboot mode[1] infrastructure?
->>
->> A reboot-mode-gpio driver on top of this GPIO controller would allow you
->> to describe the supported reboot modes in the device tree and instead of
->> exporting GPIOs to userspace, users can then just do
->>
->> 	systemctl restart recovery
->>
->> to toggle the appropriate bits.
->>
->> Also to be sure: PS_MODE are actual GPIO pins that you could toggle
->> board level components with, right? i.e. it's not just a register that
->> overrides the values read from the boot mode pins? (In the latter case
->> a syscon-reboot-mode without GPIO controller would be the correct
->> abstraction).
->>
->> [1]: drivers/power/reset/reboot-mode.c
-> 
-> Thanks for these links. I wasn't aware about it.
-> But this device/IP is not working like this. Changing gpios to certain
-> state won't ensure that on reboot/reset (done in whatever way) won't
-> stay on values you chose.
 
-Ah, the "PS_MODE is 4-bits boot mode pins sampled on POR deassertion" part
-misled me. These pins are sampled on startup, but can afterwards be reused 
-via talking to firmware. Thanks for clearing this up.
-> modepin gpio driver is at BOOT_PIN_CTRL 	0xFF5E0250
-> 
-> (To be fair if you add additional external chip it could work like this
-> but I have never seen it).
+--n7nlrbexrimtktxt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ye, that would've been strange, that's why I asked. :)
+Hi Rob,
 
-> But when you bring this up. Xilinx ZynqMP is providing a way how to
-> setup alternative boot mode which is done via
-> BOOT_MODE_USER 	0xFF5E0200
-> Bit 8 and 15-12.
-> Then you can setup any bootmode.
-> 
-> ZynqMP supports couple of modes listed here
-> https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/mach-zynqmp/include/mach/hardware.h#L73
-> 
-> but again routing to this register needs to be done via firmware
-> interface but it should be done via separate driver.
+On Wed, Jul 21, 2021 at 08:30:43AM -0600, Rob Herring wrote:
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reserved-memory/reserved-memory.yam=
+l#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: /reserved-memory Node
+> > +
+> > +maintainers:
+> > +  - Devicetree Specification Mailing List <devicetree-spec@vger.kernel=
+=2Eorg>
+> > +
+> > +description: >
+> > +  Reserved memory is specified as a node under the /reserved-memory no=
+de. The
+> > +  operating system shall exclude reserved memory from normal usage one=
+ can
+> > +  create child nodes describing particular reserved (excluded from nor=
+mal use)
+> > +  memory regions. Such memory regions are usually designed for the spe=
+cial
+> > +  usage by various device drivers.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    const: reserved-memory
+> > +
+> > +  "#address-cells": true
+> > +  "#size-cells": true
+> > +  ranges: true
+> > +
+> > +patternProperties:
+> > +  "^(?!(ranges))[a-z,-]*(@[0-9]+)?$":
+>=20
+> Note that you could drop this and put under 'additionalProperties'.
+> You would lose some node name checking, but there's really little
+> standard on these nodes.
 
-Yes.
+I didn't realise it could be used that way too, I'll change it.
 
-> Is there an option to setup whatever modes you like?
-> 
-> I mean to simply cover all modes like this?
-> 
-> mode-jtag = <0>;
-> mode-sd = <3>;
-> mode-sd1 = <5>;
+> > +    type: object
+> > +
+> > +    description: >
+> > +      Each child of the reserved-memory node specifies one or more reg=
+ions of
+> > +      reserved memory. Each child node may either use a 'reg' property=
+ to
+> > +      specify a specific range of reserved memory, or a 'size' propert=
+y with
+> > +      optional constraints to request a dynamically allocated block of=
+ memory.
+> > +
+> > +      Following the generic-names recommended practice, node names sho=
+uld
+> > +      reflect the purpose of the node (ie. "framebuffer" or "dma-pool"=
+). Unit
+> > +      address (@<address>) should be appended to the name if the node =
+is a
+> > +      static allocation.
+> > +
+> > +    properties:
+> > +      reg: true
+> > +
+> > +      size:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        description: >
+> > +          Length based on parent's \#size-cells. Size in bytes of memo=
+ry to
+> > +          reserve.
+> > +
+> > +      alignment:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        description: >
+> > +          Length based on parent's \#size-cells. Address boundary for
+> > +          alignment of allocation.
+> > +
+> > +      alloc-ranges:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        description: >
+> > +          Address and Length pairs. Specifies regions of memory that a=
+re
+> > +          acceptable to allocate from.
+> > +
+> > +      compatible:
+> > +        oneOf:
+> > +          - const: shared-dma-pool
+> > +            description: >
+> > +              This indicates a region of memory meant to be used as a =
+shared
+> > +              pool of DMA buffers for a set of devices. It can be used=
+ by an
+> > +              operating system to instantiate the necessary pool manag=
+ement
+> > +              subsystem if necessary.
+> > +
+> > +          # Vendor-specific compatibles in the form <vendor>,[<device>=
+-]<usage>
+> > +          - const: mediatek,trustzone-bootinfo
+>=20
+> I think these should be separate schema files. At least, we're going
+> to need to support separate files because I don't think we want ones
+> adding custom properties here. This would fail unless we add every
+> compatible here. We could also be a bit more exact as to which
+> properties below apply (e.g. linux,.*-default is only valid for
+> shared-dma-pool).
 
-Yes, you can define the supported modes in the SoC dtsi
-and boards inherit that and can extend it as necessary.
+I'm not entirely sure how we can just ignore the vendor compatibles
+without raising a warning. Do you have any suggestion?
 
-> And then users/customers can say what normal/recovery/test modes are.
+Thanks!
+Maxime
 
-Yes, that would be nice. But after your clarification, I see that it's
-unrelated to this patch series. Binding is fine. Question on driver
-is still applicable.
+--n7nlrbexrimtktxt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Cheers,
-Ahmad
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> Thanks,
-> Michal
-> 
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzaNQAKCRDj7w1vZxhR
+xXoEAP0Wb+sDdQFVpE4TOpIzWL60pus62BaBAkK76+r+dEqmagD/ekGoQDd8MZv9
+FjRdZeu13zCexoQq5O+jibOPiKbmtwQ=
+=l7it
+-----END PGP SIGNATURE-----
 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--n7nlrbexrimtktxt--
