@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A768A3F0B18
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 20:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A74CD3F0B1D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 20:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231502AbhHRSer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 14:34:47 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:41852 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbhHRSep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 14:34:45 -0400
-Received: by mail-ot1-f47.google.com with SMTP id w22-20020a056830411600b0048bcf4c6bd9so5221354ott.8;
-        Wed, 18 Aug 2021 11:34:10 -0700 (PDT)
+        id S229808AbhHRSgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 14:36:21 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:33729 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229558AbhHRSgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 14:36:20 -0400
+Received: by mail-oi1-f171.google.com with SMTP id n27so4778314oij.0;
+        Wed, 18 Aug 2021 11:35:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Y6xxQgaQG8j61EQ4yuUC3VS5wpVpA7eoTa8n1oYpFBA=;
-        b=HmQ47sapG8g0tzfI3SO7k+bwBPl+dDizFrNsoygN4L7JaxnBA8aFpq+GkHAY5y9bOg
-         b1rI/eSeiLRACol/9Vd51vYLL9YaIU2ni4F9hjOK1J2FNkcshQV3VfLUD3xwowT77jvQ
-         e/KbApsnLbP3JJy9VDtX6lQ1WY+rr7gEgOCPR7FtTs9nmnk3WzwVFYXN3dtVmCtV7zcU
-         XeI7eY9J0IkA+kydOfV28gp6D0/dBIuGKkPlcu27sviUCe/N6rdu5trdVkKP//iNRyfn
-         7kNRmaFU7ttknXaZYTnlfPlNAKBFIcfo3t8LuxpaKzzEW5hv99i2PDuhDOhMmvilWQ27
-         /NKQ==
-X-Gm-Message-State: AOAM533hhk8BHw8bDgNDKEakpjMRd9xuNk9Vnl1yME7n4NTVTyZRvA0U
-        MDFLk726l3ARjD+H+Tb8sg==
-X-Google-Smtp-Source: ABdhPJyl9zeX3iSD4HzkmMLjuIXAFKX1KCG7J77Vc/AsRWwUSlykYRkWdOi1XrZCcuzZ4YSd/mm5lw==
-X-Received: by 2002:a05:6830:411a:: with SMTP id w26mr8095722ott.127.1629311650017;
-        Wed, 18 Aug 2021 11:34:10 -0700 (PDT)
+        bh=G6OJpccSRXfwKCZCc3v21OUpyBNmgZToXNskmRIyk7I=;
+        b=DU7D2/zjL71jyLspabULUhCyk+NgBAfaPbH2FcPZgMyJRX6uipNhdAfsQt/FCm7v1k
+         YUOBIiq0vaK9UvQ3dsMVx3t1iY0P8oclF2pshaCQZqnFm2lZ/TXkCM/m4p3wl2BKBNj0
+         nAHywyroMqb+omVMRfEZ9TTr/CDVr3R0rBFhgC14zGEnMHnsrrrUriRCOzkrVg66Yf+V
+         hBrFiICIHsrQ4oEr8BPKGpdV67T/Kb9lqAtjOEP26iaJfUbSPfrvE+l8B1qAFEUOEh9M
+         di4qtL+QkvZkG3e24TBquIVwbZSdsTyDMUbPHBx+3ZG4v+0Rmwgp7Wa66UFgC7ujx7c9
+         oWNA==
+X-Gm-Message-State: AOAM532XqZHrgeOe50kjbgVCgB+/LD/TBS/MSLJYaWShtzNddWcqXEH6
+        oog4cxYoZkUyvu+Ll/JscA==
+X-Google-Smtp-Source: ABdhPJzDmcf9pWIusWZYcIOPJehR9AWfMAQtPdaXvaovn8dyE8l2BM61R1bHHaOJCkoCYlGGuc4Tyg==
+X-Received: by 2002:aca:dd0a:: with SMTP id u10mr8087681oig.41.1629311744758;
+        Wed, 18 Aug 2021 11:35:44 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j70sm169666otj.38.2021.08.18.11.34.08
+        by smtp.gmail.com with ESMTPSA id i188sm193215oih.7.2021.08.18.11.35.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 11:34:09 -0700 (PDT)
-Received: (nullmailer pid 2880609 invoked by uid 1000);
-        Wed, 18 Aug 2021 18:34:08 -0000
-Date:   Wed, 18 Aug 2021 13:34:08 -0500
+        Wed, 18 Aug 2021 11:35:44 -0700 (PDT)
+Received: (nullmailer pid 2883079 invoked by uid 1000);
+        Wed, 18 Aug 2021 18:35:43 -0000
+Date:   Wed, 18 Aug 2021 13:35:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        op-tee@lists.trustedfirmware.org,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        devicetree@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 2/6] dt-bindings: arm: optee: add interrupt property
-Message-ID: <YR1SoO/GRao00Ugg@robh.at.kernel.org>
-References: <20210818101849.602257-1-jens.wiklander@linaro.org>
- <20210818101849.602257-3-jens.wiklander@linaro.org>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        linux-kernel@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
+        devicetree@vger.kernel.org,
+        Cory Tusar <cory.tusar@pid1solutions.com>
+Subject: Re: [PATCH v2] dt-bindings: eeprom-93xx46: Convert to json schema
+Message-ID: <YR1S/3dQBHBygnOL@robh.at.kernel.org>
+References: <20210818105626.31800-1-a-govindraju@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210818101849.602257-3-jens.wiklander@linaro.org>
+In-Reply-To: <20210818105626.31800-1-a-govindraju@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Aug 2021 12:18:45 +0200, Jens Wiklander wrote:
-> Adds an optional interrupt property to the optee binding.
+On Wed, 18 Aug 2021 16:26:21 +0530, Aswath Govindraju wrote:
+> Convert eeprom-93xx46 binding documentation from txt to yaml format
 > 
-> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
->  .../devicetree/bindings/arm/firmware/linaro,optee-tz.yaml  | 7 +++++++
->  1 file changed, 7 insertions(+)
+> 
+> Changes since v1:
+> - removed unnecessary '\' from the subject line
+> - removed nodename property
+> - added type as boolean for read-only property
+> - corrected the node name of spi in example
+> 
+>  .../bindings/misc/eeprom-93xx46.txt           | 29 --------
+>  .../bindings/misc/eeprom-93xx46.yaml          | 70 +++++++++++++++++++
+>  2 files changed, 70 insertions(+), 29 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/misc/eeprom-93xx46.txt
+>  create mode 100644 Documentation/devicetree/bindings/misc/eeprom-93xx46.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
