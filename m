@@ -2,348 +2,593 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 324D93F0CFA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 22:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BAC3F0D28
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 23:09:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233651AbhHRUwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 16:52:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36466 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230440AbhHRUv6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 16:51:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A8A356108E;
-        Wed, 18 Aug 2021 20:51:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629319883;
-        bh=Sl9oNcjdvaGC5ZCxO831r8XBsDC8b75aZ5QbNSNY50A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UEKPsb3+TuzUutteScIlS/g3HkvqLLME4lY3tflEKWT+eNCQ1aBeKV+M0VCyS25Sa
-         DqTD69LaVHtusV4ejfWlUMdJAHCW6QZmyh4JzeWTi4VC3GCN1Sv/EitCYxTHepxobZ
-         8WdZzzDPv/qDiPtkKhgPfi1DZ/ToaIjsk43hG8oRCwe2bGh0hFFv9zBE+cjJgk6M7B
-         LCOCDvH8ZroQt/zirTDYKU5qZq58WTnIm8acfqf7gAtVkHyT7X+0six7mOnOyLy/f6
-         mpvQeT/87kTfbdlH6xRBZqJT4aD2aOaZhrr0Nn6ZF0BEDoMM3Ijg5t9kPulaOKkJ5C
-         rcjsNH2+k/pfQ==
-Received: by mail-qk1-f169.google.com with SMTP id t66so4707807qkb.0;
-        Wed, 18 Aug 2021 13:51:23 -0700 (PDT)
-X-Gm-Message-State: AOAM531wGprO9FNxNH8W5Q3zb7uR1+wQ2BxhPA8aNJCOSOEwuEzFMU4c
-        GRVr9hE/nqU6+uEdjVySR7VltrLIzKFETB128Q==
-X-Google-Smtp-Source: ABdhPJzsXFLufScm5OLqx9ioRWJkzHawuyclMN7aVm+IWMfgM/GIQtrjm10ePLURM6Ln31c3t6kL2mGya1Mafw+z4m8=
-X-Received: by 2002:a37:b686:: with SMTP id g128mr231665qkf.68.1629319882796;
- Wed, 18 Aug 2021 13:51:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
- <20210726083204.93196-2-mark.kettenis@xs4all.nl> <20210726231848.GA1025245@robh.at.kernel.org>
- <87sfzt1pg9.wl-maz@kernel.org> <CAL_JsqLvqWiuib9s4PzX8pOQYJQ0eR7Gxz==J849eVJ5MDq4SA@mail.gmail.com>
- <8735ra1x8t.wl-maz@kernel.org> <CAL_JsqJ5M3soMT30ntSTbqqdrQP8TT26mHL-0xExsn10MWPofA@mail.gmail.com>
- <56140331bd735d61@bloch.sibelius.xs4all.nl>
-In-Reply-To: <56140331bd735d61@bloch.sibelius.xs4all.nl>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 18 Aug 2021 15:51:11 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ-YDNWOoo8TUupDox31YreUNQAPXHnMMtXakQs0S_BDA@mail.gmail.com>
-Message-ID: <CAL_JsqJ-YDNWOoo8TUupDox31YreUNQAPXHnMMtXakQs0S_BDA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S233978AbhHRVKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 17:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233753AbhHRVKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 17:10:13 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E00AC061764
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 14:09:37 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id s11so3649854pgr.11
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 14:09:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1fYbHQFwDNxtWtMyrAC8Dlv+L4VJuoAqKe8kdVOxhgA=;
+        b=TIVCMNdbmC4SWJVfvjayM9d50iu01mgxp7Su7uG8ipiAwW4A02UYt3GPqfDsCXzIo/
+         1Gd+xXeqo5J1EOHWMY+TNHujDAlBalHD2tMQ668d/C4npxfYtvvSM/RWwR+slqgbnyB7
+         Q500Ue2546DQGv6P9+tA+STDyZK43noDM/b1WEOWRnaOu5ELqVV363rlUjz6G/Dl4Qgj
+         HScMr2ZXIxgWcng6Q5zxM4zc+tjhqPsR7Yh88kj7u57nqLYQy+npcj7lX9zYeSsGVROR
+         vKCkSPlR8sVT8UWMIpk60raicN3zeEVOvmIBoYFDZQ/ek3QT0ncoa8r7HKPb/cA7INVw
+         greg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=1fYbHQFwDNxtWtMyrAC8Dlv+L4VJuoAqKe8kdVOxhgA=;
+        b=VkPXQeEJREFjT7lABiaHWfh4cbaDfEQemcKPWhY/lIgVrdberotpW2LWto2Z2mA0MD
+         eVRteQWo7D+6MFqtFsnbvJhmp1VhzlTyup5e8kQiijFlsSA/6mFar97grvipCULkBDmI
+         8nf7eGQMFZLEVTQyTnFKKj50wuw/WBmtXxbQGOVdOF0KJhwcT2LtqUDnc3t6k79fcKSn
+         2Bcfabrt0wLy/oSv1xFarC8g9tHHe9V+hOYQSNtxNy46MCHcsVrBahYZtZ/JETrAyMQM
+         +wEwe0/5mbzgt7zwa8o3ZO2snkIFzcS0mWXptPgFX9WzowF2IMy6WwofyqWwcpz1P2Pm
+         5wXw==
+X-Gm-Message-State: AOAM531F9YwA8EPYMLcvpUJ5IV78JD+QA9ZpsM16NLtZt6OdHdO6HONV
+        anYQcIuuQ4qBjnTykINUCEZatQ==
+X-Google-Smtp-Source: ABdhPJz7wgKTjAC5yUGcZQsvPeqygTnxs7SNNVpLj4ZWdI+MpWkQAfTBqMjjiikuxzW7wIIzSd2qnQ==
+X-Received: by 2002:a65:6717:: with SMTP id u23mr10842714pgf.28.1629320976923;
+        Wed, 18 Aug 2021 14:09:36 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id x69sm734570pfc.59.2021.08.18.14.09.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 14:09:35 -0700 (PDT)
+Date:   Wed, 18 Aug 2021 14:09:35 -0700 (PDT)
+X-Google-Original-Date: Wed, 18 Aug 2021 14:09:33 PDT (-0700)
+Subject:     Re: [PATCH v5 2/2 resend] clk: microchip: Add driver for Microchip PolarFire SoC
+In-Reply-To: <20210818141102.36655-3-daire.mcnamara@microchip.com>
+CC:     mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, cyril.jean@microchip.com,
+        conor.dooley@microchip.com, david.abdurachmanov@gmail.com,
+        daire.mcnamara@microchip.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     daire.mcnamara@microchip.com
+Message-ID: <mhng-2e959dbf-7344-4ddc-b133-06ef3c5abccf@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-,
-
-On Wed, Aug 18, 2021 at 2:56 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+On Wed, 18 Aug 2021 07:11:02 PDT (-0700), daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 >
-> > From: Rob Herring <robh@kernel.org>
-> > Date: Sun, 15 Aug 2021 14:19:57 -0500
-> >
-> > On Sun, Aug 15, 2021 at 11:36 AM Marc Zyngier <maz@kernel.org> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > Apologies for the delay, I somehow misplaced this email...
-> > >
-> > > On Mon, 02 Aug 2021 17:10:39 +0100,
-> > > Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Sun, Aug 1, 2021 at 3:31 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > > >
-> > > > > On Tue, 27 Jul 2021 00:18:48 +0100,
-> > > > > Rob Herring <robh@kernel.org> wrote:
-> > > > > >
-> > > > > > On Mon, Jul 26, 2021 at 10:32:00AM +0200, Mark Kettenis wrote:
-> > > > > > > From: Mark Kettenis <kettenis@openbsd.org>
-> > > > > > >
-> > > > > > > The Apple PCIe host controller is a PCIe host controller with
-> > > > > > > multiple root ports present in Apple ARM SoC platforms, including
-> > > > > > > various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > > > > > >
-> > > > > > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > > > > > > ---
-> > > > > > >  .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
-> > > > > > >  MAINTAINERS                                   |   1 +
-> > > > > > >  2 files changed, 167 insertions(+)
-> > > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..bfcbdee79c64
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > > @@ -0,0 +1,166 @@
-> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > > +%YAML 1.2
-> > > > > > > +---
-> > > > > > > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
-> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > > +
-> > > > > > > +title: Apple PCIe host controller
-> > > > > > > +
-> > > > > > > +maintainers:
-> > > > > > > +  - Mark Kettenis <kettenis@openbsd.org>
-> > > > > > > +
-> > > > > > > +description: |
-> > > > > > > +  The Apple PCIe host controller is a PCIe host controller with
-> > > > > > > +  multiple root ports present in Apple ARM SoC platforms, including
-> > > > > > > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > > > > > > +  The controller incorporates Synopsys DesigWare PCIe logic to
-> > > > > > > +  implements its root ports.  But the ATU found on most DesignWare
-> > > > > > > +  PCIe host bridges is absent.
-> > > > > >
-> > > > > > blank line
-> > > > > >
-> > > > > > > +  All root ports share a single ECAM space, but separate GPIOs are
-> > > > > > > +  used to take the PCI devices on those ports out of reset.  Therefore
-> > > > > > > +  the standard "reset-gpio" and "max-link-speed" properties appear on
-> > > > > >
-> > > > > > reset-gpios
-> > > > > >
-> > > > > > > +  the child nodes that represent the PCI bridges that correspond to
-> > > > > > > +  the individual root ports.
-> > > > > >
-> > > > > > blank line
-> > > > > >
-> > > > > > > +  MSIs are handled by the PCIe controller and translated into regular
-> > > > > > > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
-> > > > > > > +  distributed over the root ports as the OS sees fit by programming
-> > > > > > > +  the PCIe controller's port registers.
-> > > > > > > +
-> > > > > > > +allOf:
-> > > > > > > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > > > > > > +
-> > > > > > > +properties:
-> > > > > > > +  compatible:
-> > > > > > > +    items:
-> > > > > > > +      - const: apple,t8103-pcie
-> > > > > > > +      - const: apple,pcie
-> > > > > > > +
-> > > > > > > +  reg:
-> > > > > > > +    minItems: 3
-> > > > > > > +    maxItems: 5
-> > > > > > > +
-> > > > > > > +  reg-names:
-> > > > > > > +    minItems: 3
-> > > > > > > +    maxItems: 5
-> > > > > > > +    items:
-> > > > > > > +      - const: config
-> > > > > > > +      - const: rc
-> > > > > > > +      - const: port0
-> > > > > > > +      - const: port1
-> > > > > > > +      - const: port2
-> > > > > > > +
-> > > > > > > +  ranges:
-> > > > > > > +    minItems: 2
-> > > > > > > +    maxItems: 2
-> > > > > > > +
-> > > > > > > +  interrupts:
-> > > > > > > +    description:
-> > > > > > > +      Interrupt specifiers, one for each root port.
-> > > > > > > +    minItems: 1
-> > > > > > > +    maxItems: 3
-> > > > > > > +
-> > > > > > > +  msi-controller: true
-> > > > > > > +  msi-parent: true
-
-BTW, I don't think msi-parent and msi-controller together is valid?
-
-> > > > > > > +
-> > > > > > > +  msi-ranges:
-> > > > > > > +    description:
-> > > > > > > +      A list of pairs <intid span>, where "intid" is the first
-> > > > > > > +      interrupt number that can be used as an MSI, and "span" the size
-> > > > > > > +      of that range.
-> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > > > > > > +    items:
-> > > > > > > +      minItems: 2
-> > > > > > > +      maxItems: 2
-> > > > > >
-> > > > > > I still have issues I raised on v1 with this property. It's genericish
-> > > > > > looking, but not generic. 'intid' as a single cell can't specify any
-> > > > > > parent interrupt such as a GIC which uses 3 cells. You could put in all
-> > > > > > the cells, but you'd still be assuming which cell you can increment.
-> > > > >
-> > > > > The GIC bindings already use similar abstractions, see what we do for
-> > > > > both GICv2m and GICv3 MBIs. Other MSI controllers use similar
-> > > > > properties (alpine and loongson, for example).
-> > > >
-> > > > That's the problem. Everyone making up their own crap.
-> > >
-> > > And that crap gets approved:
-> > >
-> > > https://lore.kernel.org/lkml/20200512205704.GA10412@bogus/
-> > >
-> > > I'm not trying to be antagonistic here, but it seems that your
-> > > position on this very subject has changed recently.
-> >
-> > Not really, I think it's not the first time we've discussed this. But
-> > as I see things over and over, my tolerance for another instance
-> > without solving the problem for everyone diminishes. And what other
-> > leverage do I have?
-> >
-> > Additionally, how long we have to support something comes into play. I
-> > have no idea for a Loongson MSI controller. I have a better idea on an
-> > Apple product...
-> >
-> > > > > > I think you should just list all these under 'interrupts' using
-> > > > > > interrupt-names to make your life easier:
-> > > > > >
-> > > > > > interrupt-names:
-> > > > > >   items:
-> > > > > >     - const: port0
-> > > > > >     - const: port1
-> > > > > >     - const: port2
-> > > > > >     - const: msi0
-> > > > > >     - const: msi1
-> > > > > >     - const: msi2
-> > > > > >     - const: msi3
-> > > > > >     ...
-> > > > > >
-> > > > > > Yeah, it's kind of verbose, but if the h/w block handles N interrupts,
-> > > > > > you should list N interrupts. The worst case for the above is N entries
-> > > > > > too if not contiguous.
-> > > > >
-> > > > > And that's where I beg to differ, again.
-> > > > >
-> > > > > Specifying interrupts like this gives the false impression that these
-> > > > > interrupts are generated by the device that owns them (the RC). Which
-> > > > > for MSIs is not the case.
-> > > >
-> > > > It's no different than an interrupt controller node having an
-> > > > interrupts property. The source is downstream and the interrupt
-> > > > controller is combining/translating the interrupts.
-> > > >
-> > > > The physical interrupt signals are connected to and originating in
-> > > > this block.
-> > >
-> > > Oh, I also object to this, for the same reasons. The only case where
-> > > it makes sense IMHO is when the interrupt controller is a multiplexer.
-> >
-> > So we've had the same kind of property for interrupt multiplexers. I'm
-> > fine if you think an 'MSI to interrupts mapping property' should be
-> > named something else.
-> >
-> > > > That sounds like perfectly 'describing the h/w' to me.
-> > >
-> > > I guess we have a different view of about these things. At the end of
-> > > the day, I don't care enough as long as we can expose a range of
-> > > interrupts one way or another.
-> >
-> > I don't really either. I just don't want 10 ways AND another...
-> >
-> > > > > This is not only verbose, this is
-> > > > > semantically dubious. And what should we do when the number of
-> > > > > possible interrupt is ridiculously large, as it is for the GICv3 ITS?
-> > > >
-> > > > I don't disagree with the verbose part. But that's not really an issue
-> > > > in this case.
-> > > >
-> > > > > I wish we had a standard way to express these constraints. Until we
-> > > > > do, I don't think enumerating individual interrupts is a practical
-> > > > > thing to do, nor that it actually represents the topology of the
-> > > > > system.
-> > > >
-> > > > The only way a standard way will happen is to stop accepting the
-> > > > custom properties.
-> > > >
-> > > > All the custom properties suffer from knowledge of what the parent
-> > > > interrupt controller is. To fix that, I think we need something like
-> > > > this:
-> > > >
-> > > > msi-ranges = <intspec base>, <intspec step>, <intspec end>;
-> > > >
-> > > > 'intspec' is defined by the parent interrupt-controller cells. step is
-> > > > the value to add. And end is what to match on to stop aka the last
-> > > > interrupt in the range. For example, if the GIC is the parent, we'd
-> > > > have something like this:
-> > > >
-> > > > <GIC_SPI 123 0>, <0 1 0>, <GIC_SPI 124 0>
-> > > >
-> > > > Does this apply to cases other than MSI? I think so as don't we have
-> > > > the same type of properties with the low power mode shadow interrupt
-> > > > controllers?  So 'interrupt-ranges'?
-> > >
-> > > This would work, though the increment seems a bit over-engineered. You
-> > > also may need this property to accept multiple ranges.
-> >
-> > Yes, certainly. Worst case is a map.
-> >
-> > > > It looks to me like there's an assumption in the kernel that an MSI
-> > > > controller has a linear range of parent interrupts? Is that correct
-> > > > and something that's guaranteed? That assumption leaks into the
-> > > > existing bindings.
-> > >
-> > > Depends on how the controller works. In general, the range maps to the
-> > > MultiMSI requirements where the message is an offset from the base of
-> > > the interrupt range. So you generally end-up with ranges of at least
-> > > 32 contiguous MSIs. Anything under that is sub-par and probably not
-> > > worth supporting.
-> >
-> > Maybe just this is enough:
-> > msi-ranges = <intspec base>, <length>, <intspec base>, <length>, ...
-> >
-> > While I say 'length' here, that's really up to the interrupt parent to
-> > interpret the intspec cells.
+> Add support for clock configuration on Microchip PolarFire SoC
 >
-> So for the Apple PCIe controller we'd have:
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
+>  drivers/clk/Kconfig              |   1 +
+>  drivers/clk/Makefile             |   2 +-
+>  drivers/clk/microchip/Kconfig    |   7 +
+>  drivers/clk/microchip/Makefile   |   6 +-
+>  drivers/clk/microchip/clk-mpfs.c | 444 +++++++++++++++++++++++++++++++
+>  5 files changed, 457 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/clk/microchip/Kconfig
+>  create mode 100644 drivers/clk/microchip/clk-mpfs.c
 >
->    msi-ranges = <AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
->
-> That would work just fine.
->
-> Should this be documented in the apple,pcie binding, or somewhere more
-> generic?
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index a588d56502d4..ab604dd02acf 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -388,6 +388,7 @@ source "drivers/clk/keystone/Kconfig"
+>  source "drivers/clk/mediatek/Kconfig"
+>  source "drivers/clk/meson/Kconfig"
+>  source "drivers/clk/mstar/Kconfig"
+> +source "drivers/clk/microchip/Kconfig"
+>  source "drivers/clk/mvebu/Kconfig"
+>  source "drivers/clk/qcom/Kconfig"
+>  source "drivers/clk/renesas/Kconfig"
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index b22ae4f81e0b..fb87a18ae8ec 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -89,7 +89,7 @@ obj-$(CONFIG_ARCH_KEYSTONE)		+= keystone/
+>  obj-$(CONFIG_MACH_LOONGSON32)		+= loongson1/
+>  obj-y					+= mediatek/
+>  obj-$(CONFIG_ARCH_MESON)		+= meson/
+> -obj-$(CONFIG_MACH_PIC32)		+= microchip/
+> +obj-y					+= microchip/
+>  ifeq ($(CONFIG_COMMON_CLK), y)
+>  obj-$(CONFIG_ARCH_MMP)			+= mmp/
+>  endif
+> diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
+> new file mode 100644
+> index 000000000000..f5edc7b3c07c
+> --- /dev/null
+> +++ b/drivers/clk/microchip/Kconfig
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +config MCHP_CLK_MPFS
+> +	bool "Clk driver for PolarFire SoC"
+> +	depends on (RISCV && SOC_MICROCHIP_POLARFIRE) || COMPILE_TEST
 
-It doesn't have an 'apple,' prefix, so somewhere generic. Probably
-bindings/interrupt-controller/msi.txt. Or start an msi-controller.yaml
-schema as I'd rather not add things we can't validate, but I don't
-want to gate this on converting all the MSI bindings. Someone that
-understands MSI better than me should review too.
+This shouldn't depend on the SOC config.  Those were meant to just 
+enable a set of drivers, not restrict what can be enabled.  Also, 
+they're broken so we should get rid of them.
 
-Another thing I thought of is the above is assuming the interrupt
-parent is the same as any interrupts for the node and that all MSIs go
-to 1 interrupt controller. Also, given Marc doesn't think using
-'interrupts' is right, then using 'interrupt-parent' isn't either
-(though many of the examples below do just that). So maybe we need the
-phandle in there:
+> +	help
+> +	  Supports Clock Configuration for PolarFire SoC
+> diff --git a/drivers/clk/microchip/Makefile b/drivers/clk/microchip/Makefile
+> index f34b247e870f..0dce0b12eac4 100644
+> --- a/drivers/clk/microchip/Makefile
+> +++ b/drivers/clk/microchip/Makefile
+> @@ -1,3 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> -obj-$(CONFIG_COMMON_CLK_PIC32) += clk-core.o
+> -obj-$(CONFIG_PIC32MZDA) += clk-pic32mzda.o
+> +
+> +obj-$(CONFIG_COMMON_CLK_PIC32)	+= clk-core.o
+> +obj-$(CONFIG_PIC32MZDA)		+= clk-pic32mzda.o
+> +obj-$(CONFIG_MCHP_CLK_MPFS)	+= clk-mpfs.o
+> diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk-mpfs.c
+> new file mode 100644
+> index 000000000000..541f88181877
+> --- /dev/null
+> +++ b/drivers/clk/microchip/clk-mpfs.c
+> @@ -0,0 +1,444 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Daire McNamara,<daire.mcnamara@microchip.com>
+> + * Copyright (C) 2020 Microchip Technology Inc.  All rights reserved.
+> + */
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <dt-bindings/clock/microchip,mpfs-clock.h>
+> +
+> +/* address offset of control registers */
+> +#define REG_CLOCK_CONFIG_CR	0x08u
+> +#define REG_SUBBLK_CLOCK_CR	0x84u
+> +#define REG_SUBBLK_RESET_CR	0x88u
+> +
+> +struct mpfs_clock_data {
+> +	void __iomem *base;
+> +	struct clk_hw_onecell_data hw_data;
+> +};
+> +
+> +struct mpfs_cfg_clock {
+> +	unsigned int id;
+> +	const char *name;
+> +	u8 shift;
+> +	u8 width;
+> +	const struct clk_div_table *table;
+> +	unsigned long flags;
+> +};
+> +
+> +struct mpfs_cfg_hw_clock {
+> +	struct mpfs_cfg_clock cfg;
+> +	void __iomem *sys_base;
+> +	/* lock is used to prevent multiple writes */
+> +	spinlock_t *lock;
+> +	struct clk_hw hw;
+> +	struct clk_init_data init;
+> +};
+> +
+> +#define to_mpfs_cfg_clk(_hw) container_of(_hw, struct mpfs_cfg_hw_clock, hw)
+> +
+> +struct mpfs_periph_clock {
+> +	unsigned int id;
+> +	const char *name;
+> +	u8 shift;
+> +	unsigned long flags;
+> +};
+> +
+> +struct mpfs_periph_hw_clock {
+> +	struct mpfs_periph_clock periph;
+> +	void __iomem *sys_base;
+> +	/* lock is used to prevent multiple writes */
+> +	spinlock_t *lock;
+> +	struct clk_hw hw;
+> +};
+> +
+> +#define to_mpfs_periph_clk(_hw) container_of(_hw, struct mpfs_periph_hw_clock, hw)
+> +
+> +/*
+> + * mpfs_clk_lock prevents anything else from writing to the
+> + * mpfs clk block while a software locked register is being written.
+> + */
+> +static DEFINE_SPINLOCK(mpfs_clk_lock);
+> +
+> +static struct clk_parent_data mpfs_cfg_parent[] = {
+> +	{ .fw_name = "msspllclk", .name = "msspllclk" },
+> +};
+> +
+> +static const struct clk_div_table mpfs_div_cpu_axi_table[] = {
+> +	{ 0, 1 }, { 1, 2 }, { 2, 4 }, { 3, 8 },
+> +	{ 0, 0 }
+> +};
+> +
+> +static const struct clk_div_table mpfs_div_ahb_table[] = {
+> +	{ 1, 2 }, { 2, 4}, { 3, 8 },
+> +	{ 0, 0 }
+> +};
+> +
+> +static unsigned long mpfs_cfg_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
+> +{
+> +	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
+> +	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
+> +	void __iomem *base_addr = cfg_hw->sys_base;
+> +	unsigned long rate;
+> +	u32 val;
+> +
+> +	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR) >> cfg->shift;
+> +	val &= clk_div_mask(cfg->width);
+> +	rate = prate / (1u << val);
+> +
+> +	return rate;
+> +}
+> +
+> +static long mpfs_cfg_clk_round_rate(struct clk_hw *hw, unsigned long rate, unsigned long *prate)
+> +{
+> +	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
+> +	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
+> +
+> +	return divider_round_rate(hw, rate, prate, cfg->table, cfg->width, cfg->flags);
+> +}
+> +
+> +static int mpfs_cfg_clk_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long prate)
+> +{
+> +	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
+> +	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
+> +	void __iomem *base_addr = cfg_hw->sys_base;
+> +	unsigned long flags = 0;
+> +	u32 val;
+> +	int divider_setting;
+> +
+> +	divider_setting = divider_get_val(rate, prate, cfg->table, cfg->width, cfg_hw->cfg.flags);
+> +
+> +	if (divider_setting < 0)
+> +		return divider_setting;
+> +
+> +	if (cfg_hw->lock)
+> +		spin_lock_irqsave(cfg_hw->lock, flags);
+> +	else
+> +		__acquire(cfg_hw->lock);
+> +
+> +	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR);
+> +	val &= ~(clk_div_mask(cfg->width) << cfg_hw->cfg.shift);
+> +	val |= divider_setting << cfg->shift;
+> +	writel_relaxed(val, base_addr + REG_CLOCK_CONFIG_CR);
+> +
+> +	if (cfg_hw->lock)
+> +		spin_unlock_irqrestore(cfg_hw->lock, flags);
+> +	else
+> +		__release(cfg_hw->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct clk_ops mpfs_clk_cfg_ops = {
+> +	.recalc_rate = mpfs_cfg_clk_recalc_rate,
+> +	.round_rate = mpfs_cfg_clk_round_rate,
+> +	.set_rate = mpfs_cfg_clk_set_rate,
+> +};
+> +
+> +#define CLK_CFG(_id, _name, _parent, _shift, _width, _table, _flags) {	\
+> +		.cfg.id = _id,								\
+> +		.cfg.name = _name,							\
+> +		.cfg.shift = _shift,							\
+> +		.cfg.width = _width,							\
+> +		.cfg.table = _table,							\
+> +		.hw.init = CLK_HW_INIT_PARENTS_DATA(_name, _parent, &mpfs_clk_cfg_ops,	\
+> +						    _flags),				\
+> +	}
+> +
+> +static struct mpfs_cfg_hw_clock mpfs_cfg_clks[] = {
+> +	CLK_CFG(CLK_CPU, "clk_cpu", mpfs_cfg_parent, 0, 2, mpfs_div_cpu_axi_table, 0),
+> +	CLK_CFG(CLK_AXI, "clk_axi", mpfs_cfg_parent, 2, 2, mpfs_div_cpu_axi_table, 0),
+> +	CLK_CFG(CLK_AHB, "clk_ahb", mpfs_cfg_parent, 4, 2, mpfs_div_ahb_table, 0),
+> +};
+> +
+> +static void mpfs_clk_unregister_cfg(struct device *dev, struct clk_hw *hw)
+> +{
+> +	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
+> +
+> +	devm_clk_hw_unregister(dev, hw);
+> +	kfree(cfg_hw);
+> +}
+> +
+> +static struct clk_hw *mpfs_clk_register_cfg(struct device *dev,
+> +					    struct mpfs_cfg_hw_clock *cfg_hw,
+> +					    void __iomem *sys_base)
+> +{
+> +	struct clk_hw *hw;
+> +	int err;
+> +
+> +	cfg_hw->sys_base = sys_base;
+> +	cfg_hw->lock = &mpfs_clk_lock;
+> +
+> +	hw = &cfg_hw->hw;
+> +	err = devm_clk_hw_register(dev, hw);
+> +	if (err)
+> +		return ERR_PTR(err);
+> +
+> +	return hw;
+> +}
+> +
+> +static int mpfs_clk_register_cfgs(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hws,
+> +				  int num_clks, struct mpfs_clock_data *data)
+> +{
+> +	struct clk_hw *hw;
+> +	void __iomem *sys_base = data->base;
+> +	unsigned int i, id;
+> +
+> +	for (i = 0; i < num_clks; i++) {
+> +		struct mpfs_cfg_hw_clock *cfg_hw = &cfg_hws[i];
+> +
+> +		hw = mpfs_clk_register_cfg(dev, cfg_hw, sys_base);
+> +		if (IS_ERR(hw)) {
+> +			dev_err(dev, "%s: failed to register clock %s\n", __func__,
+> +				cfg_hw->cfg.name);
+> +			goto err_clk;
+> +		}
+> +
+> +		id = cfg_hws[i].cfg.id;
+> +		data->hw_data.hws[id] = hw;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_clk:
+> +	while (i--)
+> +		mpfs_clk_unregister_cfg(dev, data->hw_data.hws[cfg_hws[i].cfg.id]);
+> +
+> +	return PTR_ERR(hw);
+> +}
+> +
+> +static int mpfs_periph_clk_enable(struct clk_hw *hw)
+> +{
+> +	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
+> +	struct mpfs_periph_clock *periph = &periph_hw->periph;
+> +	void __iomem *base_addr = periph_hw->sys_base;
+> +	u32 reg, val;
+> +
+> +	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
+> +	val = reg & ~(1u << periph->shift);
+> +	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
+> +
+> +	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
+> +	val = reg | (1u << periph->shift);
+> +	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
+> +
+> +	return 0;
+> +}
+> +
+> +static void mpfs_periph_clk_disable(struct clk_hw *hw)
+> +{
+> +	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
+> +	struct mpfs_periph_clock *periph = &periph_hw->periph;
+> +	void __iomem *base_addr = periph_hw->sys_base;
+> +	u32 reg, val;
+> +
+> +	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
+> +	val = reg | (1u << periph->shift);
+> +	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
+> +
+> +	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
+> +	val = reg & ~(1u << periph->shift);
+> +	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
+> +}
+> +
+> +static int mpfs_periph_clk_is_enabled(struct clk_hw *hw)
+> +{
+> +	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
+> +	struct mpfs_periph_clock *periph = &periph_hw->periph;
+> +	void __iomem *base_addr = periph_hw->sys_base;
+> +	u32 reg;
+> +
+> +	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
+> +	if ((reg & (1u << periph->shift)) == 0u) {
+> +		reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
+> +		if (reg & (1u << periph->shift))
+> +			return 1;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned long mpfs_periph_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
+> +{
+> +	return prate;
+> +}
+> +
+> +static const struct clk_ops mpfs_periph_clk_ops = {
+> +	.enable = mpfs_periph_clk_enable,
+> +	.disable = mpfs_periph_clk_disable,
+> +	.is_enabled = mpfs_periph_clk_is_enabled,
+> +	.recalc_rate = mpfs_periph_clk_recalc_rate,
+> +};
+> +
+> +#define CLK_PERIPH(_id, _name, _parent, _shift, _flags) {				\
+> +		.periph.id = _id,							\
+> +		.periph.name = _name,							\
+> +		.periph.shift = _shift,							\
+> +		.hw.init = CLK_HW_INIT_HW(_name, _parent, &mpfs_periph_clk_ops,	\
+> +					  _flags),					\
+> +	}
+> +
+> +#define PARENT_CLK(PARENT) (&mpfs_cfg_clks[CLK_##PARENT].hw)
+> +
+> +static struct mpfs_periph_hw_clock mpfs_periph_clks[] = {
+> +	CLK_PERIPH(CLK_ENVM, "clk_periph_envm", PARENT_CLK(AHB), 0, CLK_IS_CRITICAL),
+> +	CLK_PERIPH(CLK_MAC0, "clk_periph_mac0", PARENT_CLK(AHB), 1, 0),
+> +	CLK_PERIPH(CLK_MAC1, "clk_periph_mac1", PARENT_CLK(AHB), 2, 0),
+> +	CLK_PERIPH(CLK_MMC, "clk_periph_mmc", PARENT_CLK(AHB), 3, 0),
+> +	CLK_PERIPH(CLK_TIMER, "clk_periph_timer", PARENT_CLK(AHB), 4, 0),
+> +	CLK_PERIPH(CLK_MMUART0, "clk_periph_mmuart0", PARENT_CLK(AHB), 5, CLK_IS_CRITICAL),
+> +	CLK_PERIPH(CLK_MMUART1, "clk_periph_mmuart1", PARENT_CLK(AHB), 6, 0),
+> +	CLK_PERIPH(CLK_MMUART2, "clk_periph_mmuart2", PARENT_CLK(AHB), 7, 0),
+> +	CLK_PERIPH(CLK_MMUART3, "clk_periph_mmuart3", PARENT_CLK(AHB), 8, 0),
+> +	CLK_PERIPH(CLK_MMUART4, "clk_periph_mmuart4", PARENT_CLK(AHB), 9, 0),
+> +	CLK_PERIPH(CLK_SPI0, "clk_periph_spi0", PARENT_CLK(AHB), 10, 0),
+> +	CLK_PERIPH(CLK_SPI1, "clk_periph_spi1", PARENT_CLK(AHB), 11, 0),
+> +	CLK_PERIPH(CLK_I2C0, "clk_periph_i2c0", PARENT_CLK(AHB), 12, 0),
+> +	CLK_PERIPH(CLK_I2C1, "clk_periph_i2c1", PARENT_CLK(AHB), 13, 0),
+> +	CLK_PERIPH(CLK_CAN0, "clk_periph_can0", PARENT_CLK(AHB), 14, 0),
+> +	CLK_PERIPH(CLK_CAN1, "clk_periph_can1", PARENT_CLK(AHB), 15, 0),
+> +	CLK_PERIPH(CLK_USB, "clk_periph_usb", PARENT_CLK(AHB), 16, 0),
+> +	CLK_PERIPH(CLK_RTC, "clk_periph_rtc", PARENT_CLK(AHB), 18, 0),
+> +	CLK_PERIPH(CLK_QSPI, "clk_periph_qspi", PARENT_CLK(AHB), 19, 0),
+> +	CLK_PERIPH(CLK_GPIO0, "clk_periph_gpio0", PARENT_CLK(AHB), 20, 0),
+> +	CLK_PERIPH(CLK_GPIO1, "clk_periph_gpio1", PARENT_CLK(AHB), 21, 0),
+> +	CLK_PERIPH(CLK_GPIO2, "clk_periph_gpio2", PARENT_CLK(AHB), 22, 0),
+> +	CLK_PERIPH(CLK_DDRC, "clk_periph_ddrc", PARENT_CLK(AHB), 23, CLK_IS_CRITICAL),
+> +	CLK_PERIPH(CLK_FIC0, "clk_periph_fic0", PARENT_CLK(AHB), 24, 0),
+> +	CLK_PERIPH(CLK_FIC1, "clk_periph_fic1", PARENT_CLK(AHB), 25, 0),
+> +	CLK_PERIPH(CLK_FIC2, "clk_periph_fic2", PARENT_CLK(AHB), 26, 0),
+> +	CLK_PERIPH(CLK_FIC3, "clk_periph_fic3", PARENT_CLK(AHB), 27, 0),
+> +	CLK_PERIPH(CLK_ATHENA, "clk_periph_athena", PARENT_CLK(AHB), 28, 0),
+> +	CLK_PERIPH(CLK_CFM, "clk_periph_cfm", PARENT_CLK(AHB), 29, 0),
+> +};
+> +
+> +static void mpfs_clk_unregister_periph(struct device *dev, struct clk_hw *hw)
+> +{
+> +	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
+> +
+> +	devm_clk_hw_unregister(dev, hw);
+> +	kfree(periph_hw);
+> +}
+> +
+> +static struct clk_hw *mpfs_clk_register_periph(struct device *dev,
+> +					       struct mpfs_periph_hw_clock *periph_hw,
+> +					       void __iomem *sys_base)
+> +{
+> +	struct clk_hw *hw;
+> +	int err;
+> +
+> +	periph_hw->sys_base = sys_base;
+> +	periph_hw->lock = &mpfs_clk_lock;
+> +
+> +	hw = &periph_hw->hw;
+> +	err = devm_clk_hw_register(dev, hw);
+> +	if (err)
+> +		return ERR_PTR(err);
+> +
+> +	return hw;
+> +}
+> +
+> +static int mpfs_clk_register_periphs(struct device *dev, struct mpfs_periph_hw_clock *periph_hws,
+> +				     int num_clks, struct mpfs_clock_data *data)
+> +{
+> +	struct clk_hw *hw;
+> +	void __iomem *sys_base = data->base;
+> +	unsigned int i, id;
+> +
+> +	for (i = 0; i < num_clks; i++) {
+> +		struct mpfs_periph_hw_clock *periph_hw = &periph_hws[i];
+> +
+> +		hw = mpfs_clk_register_periph(dev, periph_hw, sys_base);
+> +		if (IS_ERR(hw)) {
+> +			dev_err(dev, "%s: failed to register clock %s\n", __func__,
+> +				periph_hw->periph.name);
+> +			goto err_clk;
+> +		}
+> +
+> +		id = periph_hws[i].periph.id;
+> +		data->hw_data.hws[id] = hw;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_clk:
+> +	while (i--)
+> +		mpfs_clk_unregister_periph(dev, data->hw_data.hws[periph_hws[i].periph.id]);
+> +
+> +	return PTR_ERR(hw);
+> +}
+> +
+> +static int mpfs_clk_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mpfs_clock_data *clk_data;
+> +	struct resource *res;
+> +	int num_clks;
+> +	int ret;
+> +
+> +	num_clks = ARRAY_SIZE(mpfs_cfg_clks) + ARRAY_SIZE(mpfs_periph_clks);
+> +
+> +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hw_data.hws, num_clks), GFP_KERNEL);
+> +	if (!clk_data)
+> +		return -ENOMEM;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	clk_data->base = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(clk_data->base))
+> +		return PTR_ERR(clk_data->base);
+> +
+> +	clk_data->hw_data.num = num_clks;
+> +
+> +	ret = mpfs_clk_register_cfgs(dev, mpfs_cfg_clks, ARRAY_SIZE(mpfs_cfg_clks), clk_data);
+> +	if (ret)
+> +		goto err_clk;
+> +
+> +	ret = mpfs_clk_register_periphs(dev, mpfs_periph_clks, ARRAY_SIZE(mpfs_periph_clks),
+> +					clk_data);
+> +	if (ret)
+> +		goto err_clk;
+> +
+> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, &clk_data->hw_data);
+> +	if (ret)
+> +		goto err_clk;
+> +
+> +	dev_info(dev, "registered MPFS core clocks\n");
+> +	return ret;
+> +
+> +err_clk:
+> +	dev_err(dev, "failed to register MPFS core clocks\n");
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id mpfs_clk_of_match_table[] = {
+> +	{ .compatible = "microchip,mpfs-clkcfg", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, mpfs_clk_match_table);
+> +
+> +static struct platform_driver mpfs_clk_driver = {
+> +	.probe = mpfs_clk_probe,
+> +	.driver	= {
+> +		.name = "microchip-mpfs-clkcfg",
+> +		.of_match_table = mpfs_clk_of_match_table,
+> +	},
+> +};
+> +
+> +static int __init clk_mpfs_init(void)
+> +{
+> +	return platform_driver_register(&mpfs_clk_driver);
+> +}
+> +core_initcall(clk_mpfs_init);
+> +
+> +static void __exit clk_mpfs_exit(void)
+> +{
+> +	platform_driver_unregister(&mpfs_clk_driver);
+> +}
+> +module_exit(clk_mpfs_exit);
+> +
+> +MODULE_DESCRIPTION("Microchip PolarFire SoC Clock Driver");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_ALIAS("platform:clk-mpfs");
 
-msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+Aside from those small issues, this generally looks OK.  I'd much prefer 
+at least a review from a clock maintainer, though.
 
-Other examples of this type of property include:
-al,msi-base-spi/al,msi-base-spi
-arm,msi-base-spi/arm,msi-num-spis
-mbi-ranges
-loongson,msi-base-vec/loongson,msi-num-vecs
-marvell,spi-ranges
-ti,interrupt-ranges?
-
-We should make sure msi-ranges works for all of these cases at least
-even if we can't change them.
-
-Rob
+Thanks!
