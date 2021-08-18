@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35C2E3F0171
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 12:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B40183F0175
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 12:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232546AbhHRKTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 06:19:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47950 "EHLO
+        id S233740AbhHRKTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 06:19:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233271AbhHRKTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 06:19:42 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF25C061764
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 03:19:07 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id h11so4088482ljo.12
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 03:19:07 -0700 (PDT)
+        with ESMTP id S233576AbhHRKTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 06:19:43 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1FC9C061764
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 03:19:08 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id c12so4150486ljr.5
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 03:19:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3e91kQfirH6a922fd9k6DmPw5po4wAqiN1XqXe8pum4=;
-        b=Q8jjU+n7MIxJBH7wrWILgYWYOOJrsba3lzg9ln09V3DshmPDoPwzTVnksd12xNrA9g
-         ZRZ5NkmfwWJpFgdN37WlkhmIsKAcMPfgWNUx0Urb6hL9DMBiK0TFfvowwKxbklKoc9M2
-         KlypTgmPDzfA5i72/QYV0jpIhhXskpBFP/muUoLCS9SUu9gaXHyTXWuK8JTbPv96GRg1
-         rJyxsnLCpb0S1+50091V1Kc5VrJOj6yqmgNJOTAT0oIlQCorj1MHPn/I90fTnzfQ0RMG
-         1Ej6QsPKge03MgT1HtU5OOaDuQCjZjxfmyjANldUQH/RqsUota3x8pLCkgVScyUiQXdo
-         uOJw==
+        bh=+EURWhH8sGR9daHaYkT3BdDLoArts6pdVBSEXGUtCzg=;
+        b=BiJ9teTdKajkzKGPUoRipcHjcD3HB2lGdLC5Mk6PQ9QExSAsNPFeRM2BIhC50Bjxsr
+         plLphumV70hQBqVMeLKeQkW2mi6np9BsajgR59HEcABi2XJKqplwnv/Il1n4zd2HsxDQ
+         QGUef1FnT+JBikAyJ91dqi0Zp0cW22j1TE9pihWbx4N3vUSuOFU9vY/IdH+xEf8LsdCn
+         23dYqAtWqsr57aRbE6wCYJ5Ng/MyeJyFzEbmMBq9VVZcPiHTMN+d2Rngf2Ikmwickdq3
+         45CaKJmYxv/Klg0RYXb/HJANjeKuhZyh9I6N6uDH0eqRLAQTwd0Y868e+fTJF+slNR3z
+         8qZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3e91kQfirH6a922fd9k6DmPw5po4wAqiN1XqXe8pum4=;
-        b=CqeMt7g+FDSF7KZLuWrHwcK+uVDnlr83o0231yR2S2tJmRKHMkPT9e+v/ElaBy3Ggw
-         n4nijmRQq2MPr+RTW0YtGPe4916Hz4/ANYZYb5p62noCGItxVeyxtLP3wCly+kxDCoF1
-         N6IFMdUpSQ6KcaOo05AnG70VP7feCbmnrXwq29xE4w4LipSeU65nGUHpiddHlMZI5xsm
-         GWbm7h7zJTxyycF0gb8A9QH725BYe0BbzQM0T/omDhzST7XfCrGHT8fpmjbWAXuIJb0m
-         TLCUYF7ot+HKqvW7QvLZSns3lzQ/KCmUp0cShB4vh0tM01CqTpXbih88bpkFdfmnQiuQ
-         gknA==
-X-Gm-Message-State: AOAM5326NeGfc5pS2V6UhzYVHFxvQwy05hJ9c90HmwbPxHh2jrCYZq5V
-        O4uup1xUI8YinnjJtkfeo2PS1A==
-X-Google-Smtp-Source: ABdhPJxKlRCwnxfG5a1PM1Jrxd62jjhZ8/Bvf9gyq+mVIpPUefjihry3BTpVGdJK8Fe4SaWiaRJDFA==
-X-Received: by 2002:a2e:a370:: with SMTP id i16mr7355475ljn.444.1629281946193;
-        Wed, 18 Aug 2021 03:19:06 -0700 (PDT)
+        bh=+EURWhH8sGR9daHaYkT3BdDLoArts6pdVBSEXGUtCzg=;
+        b=P/cBS0GZVgZsw4qTTmGDAjoBdhypyISBoBeOK+LhMBJRsMus1mUVSm6I8SlL6rzs1l
+         lburDJZtBogAnPhu3xUoZuych8cGDS7+Ey/MSmGC4EVzww2HcNbsHYZaDDXRPFXHyw/Q
+         w68ymi+Wqcil2x5vdpFZhM/1PjSxMJ6Lvbp/qA3dZ/vtOzOkRLM6vc7B60wa6acraysH
+         2qTkHOjfGyRIPzhGOstzYo/oF69gGocT5zjXkTiZihDGnOnWy0HUWK4O57TJ5MIj7Iig
+         8jDI9nzqT0ZyX68dxgNXHjD15UMYRyS+FNhr8V8Kz9eyqFymYB7JY7Rr8u7hJjQ5JXle
+         SsWA==
+X-Gm-Message-State: AOAM530Vn1fAzzWUPry92jLBJNwieShQDtxIrGIbKGwxRUjNoGNxq5XQ
+        4WML5X3I8RDy3oCEI+9HrlcXRQ==
+X-Google-Smtp-Source: ABdhPJzOW7Kozgoiry8RIxKir+y+alfHCPtAaAe4Vn32DNb1r3/zYM1moeKdnBFFo1/nvx0mRBhdzA==
+X-Received: by 2002:a05:651c:490:: with SMTP id s16mr7228280ljc.214.1629281947028;
+        Wed, 18 Aug 2021 03:19:07 -0700 (PDT)
 Received: from jade.urgonet (h-94-254-48-165.A175.priv.bahnhof.se. [94.254.48.165])
-        by smtp.gmail.com with ESMTPSA id l27sm451160lfp.245.2021.08.18.03.19.05
+        by smtp.gmail.com with ESMTPSA id l27sm451160lfp.245.2021.08.18.03.19.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 03:19:05 -0700 (PDT)
+        Wed, 18 Aug 2021 03:19:06 -0700 (PDT)
 From:   Jens Wiklander <jens.wiklander@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
@@ -60,9 +60,9 @@ Cc:     Jerome Forissier <jerome@forissier.org>,
         Ard Biesheuvel <ardb@kernel.org>,
         Marc Zyngier <maz@kernel.org>,
         Jens Wiklander <jens.wiklander@linaro.org>
-Subject: [PATCH v4 1/6] docs: staging/tee.rst: add a section on OP-TEE notifications
-Date:   Wed, 18 Aug 2021 12:18:44 +0200
-Message-Id: <20210818101849.602257-2-jens.wiklander@linaro.org>
+Subject: [PATCH v4 2/6] dt-bindings: arm: optee: add interrupt property
+Date:   Wed, 18 Aug 2021 12:18:45 +0200
+Message-Id: <20210818101849.602257-3-jens.wiklander@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210818101849.602257-1-jens.wiklander@linaro.org>
 References: <20210818101849.602257-1-jens.wiklander@linaro.org>
@@ -72,53 +72,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds a section on notifications used by OP-TEE, synchronous and
-asynchronous.
+Adds an optional interrupt property to the optee binding.
 
 Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
 ---
- Documentation/staging/tee.rst | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ .../devicetree/bindings/arm/firmware/linaro,optee-tz.yaml  | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/staging/tee.rst b/Documentation/staging/tee.rst
-index 4d4b5f889603..951f07dd026b 100644
---- a/Documentation/staging/tee.rst
-+++ b/Documentation/staging/tee.rst
-@@ -184,6 +184,35 @@ order to support device enumeration. In other words, OP-TEE driver invokes this
- application to retrieve a list of Trusted Applications which can be registered
- as devices on the TEE bus.
+diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+index c24047c1fdd5..40c9f1901e3f 100644
+--- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
++++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+@@ -24,6 +24,12 @@ properties:
+   compatible:
+     const: linaro,optee-tz
  
-+OP-TEE notifications
-+--------------------
++  interrupts:
++    maxItems: 1
++    description: |
++      This interrupt which is used to signal an event by the secure world
++      software is expected to be edge-triggered.
 +
-+There are two kinds of notifications that secure world can use to make
-+normal world aware of some event.
-+
-+1. Synchronous notifications delivered with ``OPTEE_RPC_CMD_NOTIFICATION``
-+   using the ``OPTEE_RPC_NOTIFICATION_SEND`` parameter.
-+2. Asynchronous notifications delivered with a combination of a non-secure
-+   edge-triggered interrupt and a fast call from the non-secure interrupt
-+   handler.
-+
-+Synchronous notifications are limited by depending on RPC for delivery,
-+this is only usable when secure world is entered with a yielding call via
-+``OPTEE_SMC_CALL_WITH_ARG``. This excludes such notifications from secure
-+world interrupt handlers.
-+
-+An asynchronous notification is delivered via a non-secure edge-triggered
-+interrupt to an interrupt handler registered in the OP-TEE driver. The
-+actual notification value are retrieved with the fast call
-+``OPTEE_SMC_GET_ASYNC_NOTIF_VALUE``.
-+
-+One notification value ``OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF`` has a
-+special meaning. When this value is received it means that normal world is
-+supposed to make a yielding call ``OPTEE_MSG_CMD_DO_BOTTOM_HALF``. This
-+call is done from the thread assisting the interrupt handler. This is a
-+building block for OP-TEE OS in secure world to implement the top half and
-+bottom half style of device drivers.
-+
- AMD-TEE driver
- ==============
+   method:
+     enum: [smc, hvc]
+     description: |
+@@ -46,6 +52,7 @@ examples:
+         optee  {
+             compatible = "linaro,optee-tz";
+             method = "smc";
++            interrupts = <0 187 1>;
+         };
+     };
  
 -- 
 2.31.1
