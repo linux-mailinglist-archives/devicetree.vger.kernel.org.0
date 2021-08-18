@@ -2,93 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 827A03EFF9B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C9183EFF9E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbhHRIws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 04:52:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbhHRIwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 04:52:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D7C1C061764
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 01:52:13 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1mGHIs-0001JE-9s; Wed, 18 Aug 2021 10:52:06 +0200
-Subject: Re: [PATCH V3 3/3] gpio: modepin: Add driver support for modepin GPIO
+        id S229676AbhHRIxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 04:53:35 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:40537 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229574AbhHRIxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 04:53:35 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 78424580B7E;
+        Wed, 18 Aug 2021 04:53:00 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 18 Aug 2021 04:53:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=hUJVt56LeH6CO/Ss0tzAR6FmDaW
+        a16mjlZgsEEsdqPE=; b=pYT9qKre/I8UORqTDPdRqiZAvR0s0+Zf/e4KXNXARXC
+        Dltx7WKmLFvzXVJyyBcwamLjxN8KPv9E8Mf5hEPcYTmALdmjffHTknk7pdi8oEhI
+        ro01jWOnAwrbFX56ca682OM/n6/BOxNTYd+pmyBEZ9vfj+d/Uu0uje3G8sEhSWX2
+        +EgpFkHyFuzDAv7HO1JezhsShBkdw8z+gYhymH8SoSCpze/hm7Lg+L9QHOrXClAr
+        ofAiXjs+4c9XgddaugKmldpMcsZYN7RjDhggxsOHq2PhqkS0ZQTVRBSgQz3JARiL
+        Vh8GcexmAuu3bV9ZdwBh0me53dXH82f4UVAUkNCe1RA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=hUJVt5
+        6LeH6CO/Ss0tzAR6FmDaWa16mjlZgsEEsdqPE=; b=LmfS3yO2lH2slpO0GTxI+g
+        4zbx366vsWUtjixVyYHf6sly6syh3oIVawncgew3fOMJQW+D13CmO+tWkmMEMCbE
+        QPN3W9PyHucSV7M/ep7KAnKGWxAaFtlajaMmSRAuZH4y2XZXVAwbywRxpEU979d1
+        gG8hwyuEIyh9WlPIZANfQBC1DLQYByxkscHnZTXMSAMiF4oleUkOkLIHG/HDhNRT
+        BxkPN/7ebOtAq9nLgLt+kIxPkXSM1OyQiLYirzudMJVZpXdyqbFhjWkwvGvGMgil
+        b6Q5crwDFuslCoZUZTPrlPlAkkbX2vb1/FI0K8cm7EBtR/ylJV5WIxmEhSemZhiA
+        ==
+X-ME-Sender: <xms:asocYdQqtqgtk8UoEZRs-1VZtnwkIbujyOvucpMoqW3f9wBhuxaPpg>
+    <xme:asocYWzQcBsT2wWE9H2bu4HYAQV_TNJa6tC29BtLjnfQ8P1RXVr2lfecvMg3rPZ5v
+    1iU-_P2Um0hVrm_QXI>
+X-ME-Received: <xmr:asocYS0eOs2A317OTKjmTiv3UVcikHi3R6F1DAMtr7npsF4OtELoPJf36jb8Wad5o1iNcgvUW37kyRkFb1_y6mD1h7hdQrE4QNe5>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgddtlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:asocYVCzOrXCRlDmBHAOE9REI2pcCIg0M5Jo7Un3_bbufkW7aERkrg>
+    <xmx:asocYWj9G9HUdMRO7Uq-X-jw1Pf6Qa-is2BYX6DmszuIo_LQZeNlvA>
+    <xmx:asocYZrxXHtO2Y97AfvnyY8GN81TRs7nqPbuTOzQm6Y2KSeXCJHBSg>
+    <xmx:bMocYdqe2oTBkWjibi3sw_6qWLwM11CzMgv37jTLSXc9XJqXno0ivQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 18 Aug 2021 04:52:58 -0400 (EDT)
+Date:   Wed, 18 Aug 2021 10:52:56 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Icenowy Zheng <icenowy@sipeed.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 08/17] pinctrl: sunxi: add support for R329 R-PIO pin
  controller
-To:     Piyush Mehta <piyush.mehta@xilinx.com>, arnd@arndb.de,
-        zou_wei@huawei.com, gregkh@linuxfoundation.org,
-        linus.walleij@linaro.org, michal.simek@xilinx.com,
-        wendy.liang@xilinx.com, iwamatsu@nigauri.org,
-        bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        rajan.vaja@xilinx.com
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        git@xilinx.com, sgoud@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20210818081018.2620544-1-piyush.mehta@xilinx.com>
- <20210818081018.2620544-4-piyush.mehta@xilinx.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <b3d718af-6eb7-a212-f599-d0d91273afdc@pengutronix.de>
-Date:   Wed, 18 Aug 2021 10:52:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Message-ID: <20210818085256.p5m5zwri6jfkgihy@gilmour>
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-9-icenowy@sipeed.com>
 MIME-Version: 1.0
-In-Reply-To: <20210818081018.2620544-4-piyush.mehta@xilinx.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="y3qmd24y6c6k2nk5"
+Content-Disposition: inline
+In-Reply-To: <20210802062212.73220-9-icenowy@sipeed.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.08.21 10:10, Piyush Mehta wrote:
-> This patch adds driver support for the zynqmp modepin GPIO controller.
-> GPIO modepin driver set and get the value and status of the PS_MODE pin,
-> based on device-tree pin configuration. These four mode pins are
-> configurable as input/output. The mode pin has a control register, which
-> have lower four-bits [0:3] are configurable as input/output, next four-bits
-> can be used for reading the data  as input[4:7], and next setting the
-> output pin state output[8:11].
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-> Acked-by: Michal Simek <michal.simek@xilinx.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
 
-> +/**
-> + * modepin_gpio_dir_in - Set the direction of the specified GPIO pin as input
-> + * @chip:	gpio_chip instance to be worked on
-> + * @pin:	gpio pin number within the device
-> + *
-> + * Return: 0 always
-> + */
-> +static int modepin_gpio_dir_in(struct gpio_chip *chip, unsigned int pin)
-> +{
-> +	return 0;
-> +}
+--y3qmd24y6c6k2nk5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You say the gpio controller can configure pins as inputs or outputs.
-Yet, .direction_input is doing nothing. So it's not clear to me,
-how this sequence could work:
+On Mon, Aug 02, 2021 at 02:22:03PM +0800, Icenowy Zheng wrote:
+> Allwinner R320 SoC has a pin controller in the CPUS power domain.
+>=20
+> Add support for it.
+>=20
+> Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
 
- - set gpio output high (writes bootmode)
- - set gpio to input (no-op, pin will remain high, not high impedance)
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
-I didn't check the previous discussions, but if this indeed works as intended,
-the how should be written here into the driver. That is a more useful comment
-than kernel doc for a stub function.
+Maxime
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--y3qmd24y6c6k2nk5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzKaAAKCRDj7w1vZxhR
+xeb7AQCdPHQNxn+5UZz7+HuzV1Nz6N9y2L/WWbaPRQKiJ3QoBgEAo/E4qRSjVikO
+4Wi5L4ItXDMDwWnCI0H4yfl/iXK9XwI=
+=5Twl
+-----END PGP SIGNATURE-----
+
+--y3qmd24y6c6k2nk5--
