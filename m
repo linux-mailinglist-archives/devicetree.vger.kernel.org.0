@@ -2,78 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 994063EFD2F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 08:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE0E3EFD72
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238538AbhHRGzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 02:55:08 -0400
-Received: from ixit.cz ([94.230.151.217]:57516 "EHLO ixit.cz"
+        id S238778AbhHRHMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 03:12:03 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:58283 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238539AbhHRGzG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 02:55:06 -0400
-Received: from newone.lan (ixit.cz [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 159A124A25;
-        Wed, 18 Aug 2021 08:54:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1629269664;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=Mob8tdsRudWWnyeYi9/HzMgoqWt4HZbOD2Vwam7fWNo=;
-        b=qrVODYofm+3vv+rLkCwkYLHeZmHl4J2ZL+XJUe1c6ppdiv7U9RrwKxHZbYCOxmI+a149gS
-        4vA9DTxYCDNF1/TPwZs9Gerg1SvXNmUsKGhtCmBH3Fet6AFqBOjv9ozCN7zjxr7XWF5Who
-        G0tjSyQAe3f6Fy1lSVR+T2pNq7ylBHg=
-From:   David Heidelberg <david@ixit.cz>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>, stable@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom-apq8064: use compatible which contains chipid
-Date:   Wed, 18 Aug 2021 08:53:17 +0200
-Message-Id: <20210818065317.19822-1-david@ixit.cz>
-X-Mailer: git-send-email 2.32.0
+        id S237805AbhHRHMC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 03:12:02 -0400
+Received: from vokac-Latitude-7410.ysoft.local (unknown [10.1.22.96])
+        by uho.ysoft.cz (Postfix) with ESMTP id A51DAA01BF;
+        Wed, 18 Aug 2021 09:02:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1629270155;
+        bh=D3SoYq7cCf8X685kicAhxBhPpnT4tcM0Cnios45ggv8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=D7nvxhBK4BVqR08HV+1wdjdazYuFbHJ1Z0xNzGRf0iWmt3yJCOUzQrgGGCJ/NKaGb
+         JCo43iq0l7tp4z4w37qyEbuivD2ytuqa2KsBxBxLDyRto2ts4f6CJhe3/saOcTudNN
+         /UTCQPD4ZETFImvdHD/dEkv4/4beEnAlbFQsPV2g=
+From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
+        stable@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix lp5562 LED driver probe
+Date:   Wed, 18 Aug 2021 09:02:08 +0200
+Message-Id: <20210818070209.1540451-1-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Also resolves these kernel warnings for APQ8064:
-adreno 4300000.adreno-3xx: Using legacy qcom,chipid binding!
-adreno 4300000.adreno-3xx: Use compatible qcom,adreno-320.2 instead.
+Since the LED multicolor framework support was added in commit
+92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
+LEDs on this platform stopped working.
 
-Tested on Nexus 7 2013, no functional changes.
+Author of the framework attempted to accommodate this DT to the
+framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property
+to the lp5562 channel node") but that is not sufficient. A color property
+is now required even if the multicolor framework is not used, otherwise
+the driver probe fails:
 
+  lp5562: probe of 1-0030 failed with error -22
+
+Add the color property to fix this.
+
+Fixes: 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
 Cc: <stable@vger.kernel.org>
-
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Cc: linux-leds@vger.kernel.org
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 96b7755afabf..7e5e394ff16c 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1148,7 +1148,7 @@ tcsr: syscon@1a400000 {
+diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+index 7d2c72562c73..8c796551352b 100644
+--- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
++++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+@@ -5,6 +5,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pwm/pwm.h>
+ 
+ / {
+@@ -271,6 +272,7 @@ chan@0 {
+ 			led-cur = /bits/ 8 <0x20>;
+ 			max-cur = /bits/ 8 <0x60>;
+ 			reg = <0>;
++			color = <LED_COLOR_ID_RED>;
  		};
  
- 		gpu: adreno-3xx@4300000 {
--			compatible = "qcom,adreno-3xx";
-+			compatible = "qcom,adreno-320.2", "qcom,adreno";
- 			reg = <0x04300000 0x20000>;
- 			reg-names = "kgsl_3d0_reg_memory";
- 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-@@ -1163,7 +1163,6 @@ gpu: adreno-3xx@4300000 {
- 			    <&mmcc GFX3D_AHB_CLK>,
- 			    <&mmcc GFX3D_AXI_CLK>,
- 			    <&mmcc MMSS_IMEM_AHB_CLK>;
--			qcom,chipid = <0x03020002>;
+ 		chan@1 {
+@@ -278,6 +280,7 @@ chan@1 {
+ 			led-cur = /bits/ 8 <0x20>;
+ 			max-cur = /bits/ 8 <0x60>;
+ 			reg = <1>;
++			color = <LED_COLOR_ID_GREEN>;
+ 		};
  
- 			iommus = <&gfx3d 0
- 				  &gfx3d 1
+ 		chan@2 {
+@@ -285,6 +288,7 @@ chan@2 {
+ 			led-cur = /bits/ 8 <0x20>;
+ 			max-cur = /bits/ 8 <0x60>;
+ 			reg = <2>;
++			color = <LED_COLOR_ID_BLUE>;
+ 		};
+ 
+ 		chan@3 {
+@@ -292,6 +296,7 @@ chan@3 {
+ 			led-cur = /bits/ 8 <0x0>;
+ 			max-cur = /bits/ 8 <0x0>;
+ 			reg = <3>;
++			color = <LED_COLOR_ID_WHITE>;
+ 		};
+ 	};
+ 
 -- 
-2.32.0
+2.25.1
 
