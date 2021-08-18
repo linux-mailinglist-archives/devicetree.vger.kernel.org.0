@@ -2,66 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CD93F02C0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 13:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A673F02C6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 13:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234913AbhHRLcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 07:32:55 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:40150
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234645AbhHRLcy (ORCPT
+        id S235406AbhHRLeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 07:34:04 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:38798
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235256AbhHRLeE (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 07:32:54 -0400
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        Wed, 18 Aug 2021 07:34:04 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 1F14F40670
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 11:32:19 +0000 (UTC)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 2BF2E3F09C
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 11:33:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629286339;
-        bh=z1lwE7fvFQ0zk0zS1QadsjjuA/2iL/Y84eH5Hk9IVmc=;
+        s=20210705; t=1629286409;
+        bh=s81TGuRZwiBLUJDdn1CFX9wwF3yLRc0TxkRTxMwR41M=;
         h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=ToyNKVeRFs7Ttfqp3pG9eGIA05e/mVF9M0VFSwoaIcVhQUME6E3WbLCsLsgVgcRIr
-         cDNrVLpSEZJU6eSlM3nrUF2NCbllTTC9s3miKgO1p1Th1ZdzC75R47eZLxOMEaQ7Jv
-         i9yk+t0OkMBOtkG0xXleRzEuQ5GrcNh2PDcCacWJPAI5L1HHP7bs6IaAvuckJCkPY7
-         RQnFrdrafOw/40tqTyWTaB4AWx6tMNiQLN8UlMLTqtdJ/lK9QJxC61nJ6UHgd3oaRS
-         eVsgNXAGSh9aI03jKlnkGXod22NrhSN62rvwWF3sZ6Z5eUQRpEPJVcW/9Fjj5JQIX/
-         p7t3HCGslSN4g==
-Received: by mail-ej1-f71.google.com with SMTP id ne21-20020a1709077b95b029057eb61c6fdfso732834ejc.22
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 04:32:19 -0700 (PDT)
+        b=i6qKnCQwRZlGigf4MhyMplmGMer2FBy/IvnqH/7vvmpRswseECIRAPhol6QvcntnI
+         yhQUDZzqP4WksDgSzHHvAoQk5THv7t5XliR8N31CJuG0wswbz+onCiKo5QJkFIC8vK
+         T0KF0+LtoPZ4Mgxhw6pwDM/ltpABWvK2SRE3oKYkekByHkGJRtlRETjQ6VPtMDa444
+         JM6uX5is6i8qDdgYOHIvNPDvFqZwVpWKTGc1mNt0tnF4kO5Dc4FBtbFoCKAU7abgGy
+         7+LNkzoPJ7sDMdtnLJ/DR0xhvrONWJhZnK49CJuV79iosMIW71PICXGxFzmGnVuGmM
+         +9xiBqG+AcTqg==
+Received: by mail-ed1-f70.google.com with SMTP id x24-20020aa7dad8000000b003bed477317eso877634eds.18
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 04:33:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=z1lwE7fvFQ0zk0zS1QadsjjuA/2iL/Y84eH5Hk9IVmc=;
-        b=hK2PwcF/eVD+xrwmUR04GE8b+0+Zqlpmv62EwaGmpC2R3FAPrdNHKYSVJ6osELi5la
-         G2b+Ogw8TgmYY2Cw6bMHIBU9bBSeh/bnK8FdacFA/ol1+H/rqxMHYx3nsielcBj1Rdvi
-         uHJJp2ljN7UIXAI3wsKSEIWUvYSPbLdzfVJpZCG7ncv5LDA0LF5ioOzFgGQ++O8mFIx9
-         C5MX6kKOPgQIosTGXFvGBEAsxkKZlQ2Q9tj1o5cLTMKRNki09Ay51SEtexGhskNE2p24
-         Z0GyLWwFY9syxM4Mlenh4nH0d51x7RU2B0ZmGOSuqRvhRDRIKKoIAOF8IAEHuBFP8YPe
-         x6Sw==
-X-Gm-Message-State: AOAM530xv4JCI/1rwAv9bUSFpGnEfnyft0x3wnQsYqomxoEjC/8EllXj
-        hnpGeBGE+dOihJWiQhKe7Ltvwl7PSrCOLtaWDjx87MoYoRXrLnVX9kX2s1NkVAA0B0NM+eP4VFJ
-        M00FBoB32mGpFlJezZ4IOie40Em1NcFD4ctBD9FI=
-X-Received: by 2002:a17:906:53d3:: with SMTP id p19mr9327446ejo.509.1629286338828;
-        Wed, 18 Aug 2021 04:32:18 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz+03MoJFRg67NTzlscB7g3tDz8Ii/SWwTz4RtDzE9uKmYBmOM/VeQS3dXRHellgm0Wk9rt3w==
-X-Received: by 2002:a17:906:53d3:: with SMTP id p19mr9327424ejo.509.1629286338602;
-        Wed, 18 Aug 2021 04:32:18 -0700 (PDT)
+        bh=s81TGuRZwiBLUJDdn1CFX9wwF3yLRc0TxkRTxMwR41M=;
+        b=Y0fhNddW4TraF69ykA5PrR3HOQVdsvtrKpcDVeb+Fl7P2r+ZlA1mRXL1WHSQW9bFlY
+         7tzmgaVMrQoYYF403a95c10nz87NxVJUode/wccMHytOpnc4uL7NKVVqWhYWmBSPpiDI
+         gmLPlskTgX8tGwDvyUmEYCzxgeeisAbcQJ3lteAio1ZzYaEwj7X2/OoHBcxw5gd3Nygg
+         5irhnoEgT/53YWYz/2w+HxaU+JhXCpIK/WdKhWewYjadSW0GRrdbSc9KhCGeZvv1T+8F
+         vDTb5jWXyc8v0MMTh+/mqdA8hiwzYG0XAj8VAiDBZM/ywvzbwVIUIX4IPOU25vpwMQ8Z
+         hYlA==
+X-Gm-Message-State: AOAM530cqe5DtiSg3KrpKn2BK7TZwQeNVCX8hPT3Cr4oyc9lsLUZxqqI
+        CLauE6M6nU/dGSnfv45jwFBIAdLyeB1AUzBg34XQ8qVyvnqdAqrIJAYRo9QPyq3pI+Ki34ESOyj
+        TEVXVGO8cuxHAw+8We8e1kC9TckSSy3dRGzU+WSc=
+X-Received: by 2002:a17:906:6884:: with SMTP id n4mr9126636ejr.265.1629286408918;
+        Wed, 18 Aug 2021 04:33:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy5z51bjsNMxFkuXX9PWcuQT8bwmBKAAd0DCknaS+T6xU+Sol777Zqx+EX6leBGBdqXcPeGIQ==
+X-Received: by 2002:a17:906:6884:: with SMTP id n4mr9126619ejr.265.1629286408789;
+        Wed, 18 Aug 2021 04:33:28 -0700 (PDT)
 Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id kz15sm1945241ejc.103.2021.08.18.04.32.17
+        by smtp.gmail.com with ESMTPSA id w5sm1960024ejz.25.2021.08.18.04.33.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 04:32:18 -0700 (PDT)
+        Wed, 18 Aug 2021 04:33:28 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: memory: convert Synopsys IntelliDDR memory controller to dtschema
-Date:   Wed, 18 Aug 2021 13:31:39 +0200
-Message-Id: <20210818113139.84869-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH] dt-bindings: memory: convert TI a8xx DDR2/mDDR memory controller to dtschema
+Date:   Wed, 18 Aug 2021 13:32:48 +0200
+Message-Id: <20210818113248.85084-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -69,57 +68,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Synopsys IntelliDDR Multi Protocol memory controller (present in
-Xilinx Zynq and ZynqMP) bindings to DT schema format using json-schema.
-
-New binding contains copied parts of description from previous binding
-document, therefore the license is set as GPL-2.0-only.
+Convert Texas Instruments da8xx DDR2/mDDR memory controller bindings to
+DT schema format using json-schema.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../memory-controllers/synopsys,ddrc-ecc.yaml | 73 +++++++++++++++++++
- .../bindings/memory-controllers/synopsys.txt  | 32 --------
- 2 files changed, 73 insertions(+), 32 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/synopsys.txt
+ .../memory-controllers/ti,da8xx-ddrctl.yaml   | 35 +++++++++++++++++++
+ .../memory-controllers/ti-da8xx-ddrctl.txt    | 20 -----------
+ 2 files changed, 35 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,da8xx-ddrctl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/ti-da8xx-ddrctl.txt
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml b/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,da8xx-ddrctl.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,da8xx-ddrctl.yaml
 new file mode 100644
-index 000000000000..a24588474625
+index 000000000000..9ed51185ff99
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/synopsys,ddrc-ecc.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: GPL-2.0-only
++++ b/Documentation/devicetree/bindings/memory-controllers/ti,da8xx-ddrctl.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/memory-controllers/synopsys,ddrc-ecc.yaml#
++$id: http://devicetree.org/schemas/memory-controllers/ti,da8xx-ddrctl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Synopsys IntelliDDR Multi Protocol memory controller
++title: Texas Instruments da8xx DDR2/mDDR memory controller
 +
 +maintainers:
++  - Bartosz Golaszewski <bgolaszewski@baylibre.com>
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+  - Manish Narani <manish.narani@xilinx.com>
-+  - Michal Simek <michal.simek@xilinx.com>
 +
 +description: |
-+  The ZynqMP DDR ECC controller has an optional ECC support in 64-bit and
-+  32-bit bus width configurations.
-+
-+  The Zynq DDR ECC controller has an optional ECC support in half-bus width
-+  (16-bit) configuration.
-+
-+  These both ECC controllers correct single bit ECC errors and detect double bit
-+  ECC errors.
++  Documentation:
++    OMAP-L138 (DA850) - http://www.ti.com/lit/ug/spruh82c/spruh82c.pdf
 +
 +properties:
 +  compatible:
-+    enum:
-+      - xlnx,zynq-ddrc-a05
-+      - xlnx,zynqmp-ddrc-2.40a
-+
-+  interrupts:
-+    maxItems: 1
++    const: ti,da850-ddr-controller
 +
 +  reg:
 +    maxItems: 1
@@ -128,78 +112,40 @@ index 000000000000..a24588474625
 +  - compatible
 +  - reg
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: xlnx,zynqmp-ddrc-2.40a
-+    then:
-+      required:
-+        - interrupts
-+    else:
-+      properties:
-+        interrupts: false
-+
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    memory-controller@f8006000 {
-+        compatible = "xlnx,zynq-ddrc-a05";
-+        reg = <0xf8006000 0x1000>;
++    memory-controller@b0000000 {
++        compatible = "ti,da850-ddr-controller";
++        reg = <0xb0000000 0xe8>;
 +    };
-+
-+  - |
-+    axi {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        memory-controller@fd070000 {
-+            compatible = "xlnx,zynqmp-ddrc-2.40a";
-+            reg = <0x0 0xfd070000 0x0 0x30000>;
-+            interrupt-parent = <&gic>;
-+            interrupts = <0 112 4>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/synopsys.txt b/Documentation/devicetree/bindings/memory-controllers/synopsys.txt
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ti-da8xx-ddrctl.txt b/Documentation/devicetree/bindings/memory-controllers/ti-da8xx-ddrctl.txt
 deleted file mode 100644
-index 9d32762c47e1..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/synopsys.txt
+index ec1dd408d573..000000000000
+--- a/Documentation/devicetree/bindings/memory-controllers/ti-da8xx-ddrctl.txt
 +++ /dev/null
-@@ -1,32 +0,0 @@
--Binding for Synopsys IntelliDDR Multi Protocol Memory Controller
+@@ -1,20 +0,0 @@
+-* Device tree bindings for Texas Instruments da8xx DDR2/mDDR memory controller
 -
--The ZynqMP DDR ECC controller has an optional ECC support in 64-bit and 32-bit
--bus width configurations.
+-The DDR2/mDDR memory controller present on Texas Instruments da8xx SoCs features
+-a set of registers which allow to tweak the controller's behavior.
 -
--The Zynq DDR ECC controller has an optional ECC support in half-bus width
--(16-bit) configuration.
--
--These both ECC controllers correct single bit ECC errors and detect double bit
--ECC errors.
+-Documentation:
+-OMAP-L138 (DA850) - http://www.ti.com/lit/ug/spruh82c/spruh82c.pdf
 -
 -Required properties:
-- - compatible: One of:
--	- 'xlnx,zynq-ddrc-a05' : Zynq DDR ECC controller
--	- 'xlnx,zynqmp-ddrc-2.40a' : ZynqMP DDR ECC controller
-- - reg: Should contain DDR controller registers location and length.
 -
--Required properties for "xlnx,zynqmp-ddrc-2.40a":
-- - interrupts: Property with a value describing the interrupt number.
+-- compatible:		"ti,da850-ddr-controller" - for da850 SoC based boards
+-- reg:			a tuple containing the base address of the memory
+-			controller and the size of the memory area to map
 -
--Example:
--	memory-controller@f8006000 {
--		compatible = "xlnx,zynq-ddrc-a05";
--		reg = <0xf8006000 0x1000>;
--	};
+-Example for da850 shown below.
 -
--	mc: memory-controller@fd070000 {
--		compatible = "xlnx,zynqmp-ddrc-2.40a";
--		reg = <0x0 0xfd070000 0x0 0x30000>;
--		interrupt-parent = <&gic>;
--		interrupts = <0 112 4>;
--	};
+-ddrctl {
+-	compatible = "ti,da850-ddr-controller";
+-	reg = <0xb0000000 0xe8>;
+-};
 -- 
 2.30.2
 
