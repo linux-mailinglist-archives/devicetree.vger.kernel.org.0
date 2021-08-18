@@ -2,142 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BEB03F02C9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 13:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E51503F030C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 13:53:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235160AbhHRLek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 07:34:40 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:40290
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234645AbhHRLei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 07:34:38 -0400
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        id S232459AbhHRLxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 07:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231476AbhHRLxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 07:53:51 -0400
+X-Greylist: delayed 563 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 Aug 2021 04:53:17 PDT
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC69C061764;
+        Wed, 18 Aug 2021 04:53:17 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 3E1833F232
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 11:34:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629286443;
-        bh=xf9DtxhwlDMZTjASHbiI97nvVp/QO2eQKaINmZtiMMI=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=Ls5IdmESzQKd3VvY7JVN5VGyEnGSXPJkwFXVNRkvAByAa8ztlvC8CidH35U1cSNEm
-         e4+rtNz7zgu61Wf53qxPY66eRqMcZ6R0GVN/y+GGX7AUe3CHFgmtY914hLRFHyAVdG
-         PXwa6IJG/HijgnnXgNeG+FI9KO+BwSvZEZZcsZ5xb/mQEiqQnptFR7M6GEucpmIDlU
-         uTDs2d/a2nGuE4czxzeNrkDik1/wgzye0A8vpZrR+ER+C37GUU2D7qluRyBEcxyIBI
-         aKjE+NOpAizkm4VO8oSegwLF6GfxWcWzZeGwPLIJJQRMz/KJ4gkprOIYIS36bjciU9
-         ZMheAr9U+sG8w==
-Received: by mail-ej1-f70.google.com with SMTP id v3-20020a1709063383b02905b4d1d1e27cso738299eja.19
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 04:34:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xf9DtxhwlDMZTjASHbiI97nvVp/QO2eQKaINmZtiMMI=;
-        b=Kdir3vdR8AoB4RVTou45HLhMNtluak3QolgrHcIWuf+H1VtRlg/wYGtshbsRoa46/C
-         TtPUVNHF5gEhR7v83FadpVHu/j+gIMi4MW+H+q1KY+PdC8DwtN96crDCC5c6q9a2jvtz
-         Dv2uDDdKISdNgCJFkBFmnoWOe46VydbdDW4DF9PCU4hDORdJ9+38C6OeqAboLzYUydd9
-         2jzOFWDquT5GgYHJ0TLeNvyJryy0+e3L9tnlDNBwwV0RV2mr+jfKeJI8MTOiZfU5h5HF
-         1CPWA1rFYvxVQq3XEChrQpJfZUlOQyw0tEx2KBN2mBE+0j+A5fUWfim+J9JPHdDEdMZp
-         QYig==
-X-Gm-Message-State: AOAM533vsdAQSRssGs2eGJM3aSTiKxniIWHg1JnyerfwgJgmwwSRsqM+
-        iaYZapzy09ofFHSVaoZAbbG2acrS9tCHu3zBHGQnsfhDBx9fFRGRIRdzYN1oOwyd9Kpgb9YpIV2
-        QiyrYuHgDI6yqqdi2ii/v3BLGvGHN3j61o0aF/ec=
-X-Received: by 2002:a17:906:659:: with SMTP id t25mr9215117ejb.372.1629286442984;
-        Wed, 18 Aug 2021 04:34:02 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwGzPrE/RG8ucAVA49HtztLd7MsD18XKgb/JFNMyMjUCTwg5+ASBfW0PxVirFnRVVQtf10CHQ==
-X-Received: by 2002:a17:906:659:: with SMTP id t25mr9215107ejb.372.1629286442836;
-        Wed, 18 Aug 2021 04:34:02 -0700 (PDT)
-Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id s10sm1903141ejc.39.2021.08.18.04.34.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 04:34:02 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 5889A41F72;
+        Wed, 18 Aug 2021 11:43:50 +0000 (UTC)
+Subject: Re: [RFC PATCH 2/2] PCI: apple: Add driver for the Apple M1
+To:     Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc:     linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: memory: convert H8/300 bus controller to dtschema
-Date:   Wed, 18 Aug 2021 13:33:25 +0200
-Message-Id: <20210818113325.85216-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210815042525.36878-1-alyssa@rosenzweig.io>
+ <20210815042525.36878-3-alyssa@rosenzweig.io> <87a6lj17d1.wl-maz@kernel.org>
+ <8650c850-2642-4582-ae97-a95134bda3e2@www.fastmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <092a2de3-6760-6398-e4de-2b24d30ac856@marcan.st>
+Date:   Wed, 18 Aug 2021 20:43:48 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <8650c850-2642-4582-ae97-a95134bda3e2@www.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert H8/300 bus controller bindings to DT schema format using
-json-schema.
+On 15/08/2021 21.33, Sven Peter wrote:
+> The magic comes from the original Corellium driver. It first masks everything
+> except for the interrupts in the next line, then acks the interrupts it keeps
+> enabled and then probably wants to wait for PORT_INT_LINK_UP (or any of the
+> other interrupts which seem to indicate various error conditions) to fire but
+> instead polls for PORT_LINKSTS_UP.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../memory-controllers/renesas,h8300-bsc.txt  | 12 -------
- .../memory-controllers/renesas,h8300-bsc.yaml | 35 +++++++++++++++++++
- 2 files changed, 35 insertions(+), 12 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.txt
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.yaml
+Let's not take any magic numbers from their drivers (or what macOS does, 
+for that matter) without making an attempt to understand what they do, 
+unless it becomes clear it's incomprehensible. This has already bit us 
+in the past (the SError disable thing).
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.txt b/Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.txt
-deleted file mode 100644
-index cdf406c902e2..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--* H8/300 bus controller
--
--Required properties:
--  - compatible: Must be "renesas,h8300-bsc".
--  - reg: Base address and length of BSC registers.
--
--Example.
--	bsc: memory-controller@fee01e {
--		compatible = "renesas,h8300h-bsc", "renesas,h8300-bsc";
--		reg = <0xfee01e 8>;
--	};
--
-diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.yaml
-new file mode 100644
-index 000000000000..70487bb685cb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/renesas,h8300-bsc.yaml
-@@ -0,0 +1,35 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/renesas,h8300-bsc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: H8/300 bus controller
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+  - Yoshinori Sato <ysato@users.sourceforge.jp>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: renesas,h8300-bsc
-+      - items:
-+          - const: renesas,h8300h-bsc
-+          - const: renesas,h8300-bsc
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    memory-controller@fee01e {
-+        compatible = "renesas,h8300h-bsc", "renesas,h8300-bsc";
-+        reg = <0xfee01e 8>;
-+    };
 -- 
-2.30.2
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
