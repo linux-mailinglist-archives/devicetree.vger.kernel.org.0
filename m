@@ -2,111 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C9183EFF9E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A94BF3EFFC5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbhHRIxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 04:53:35 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:40537 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229574AbhHRIxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 04:53:35 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 78424580B7E;
-        Wed, 18 Aug 2021 04:53:00 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 18 Aug 2021 04:53:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=hUJVt56LeH6CO/Ss0tzAR6FmDaW
-        a16mjlZgsEEsdqPE=; b=pYT9qKre/I8UORqTDPdRqiZAvR0s0+Zf/e4KXNXARXC
-        Dltx7WKmLFvzXVJyyBcwamLjxN8KPv9E8Mf5hEPcYTmALdmjffHTknk7pdi8oEhI
-        ro01jWOnAwrbFX56ca682OM/n6/BOxNTYd+pmyBEZ9vfj+d/Uu0uje3G8sEhSWX2
-        +EgpFkHyFuzDAv7HO1JezhsShBkdw8z+gYhymH8SoSCpze/hm7Lg+L9QHOrXClAr
-        ofAiXjs+4c9XgddaugKmldpMcsZYN7RjDhggxsOHq2PhqkS0ZQTVRBSgQz3JARiL
-        Vh8GcexmAuu3bV9ZdwBh0me53dXH82f4UVAUkNCe1RA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=hUJVt5
-        6LeH6CO/Ss0tzAR6FmDaWa16mjlZgsEEsdqPE=; b=LmfS3yO2lH2slpO0GTxI+g
-        4zbx366vsWUtjixVyYHf6sly6syh3oIVawncgew3fOMJQW+D13CmO+tWkmMEMCbE
-        QPN3W9PyHucSV7M/ep7KAnKGWxAaFtlajaMmSRAuZH4y2XZXVAwbywRxpEU979d1
-        gG8hwyuEIyh9WlPIZANfQBC1DLQYByxkscHnZTXMSAMiF4oleUkOkLIHG/HDhNRT
-        BxkPN/7ebOtAq9nLgLt+kIxPkXSM1OyQiLYirzudMJVZpXdyqbFhjWkwvGvGMgil
-        b6Q5crwDFuslCoZUZTPrlPlAkkbX2vb1/FI0K8cm7EBtR/ylJV5WIxmEhSemZhiA
-        ==
-X-ME-Sender: <xms:asocYdQqtqgtk8UoEZRs-1VZtnwkIbujyOvucpMoqW3f9wBhuxaPpg>
-    <xme:asocYWzQcBsT2wWE9H2bu4HYAQV_TNJa6tC29BtLjnfQ8P1RXVr2lfecvMg3rPZ5v
-    1iU-_P2Um0hVrm_QXI>
-X-ME-Received: <xmr:asocYS0eOs2A317OTKjmTiv3UVcikHi3R6F1DAMtr7npsF4OtELoPJf36jb8Wad5o1iNcgvUW37kyRkFb1_y6mD1h7hdQrE4QNe5>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgddtlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:asocYVCzOrXCRlDmBHAOE9REI2pcCIg0M5Jo7Un3_bbufkW7aERkrg>
-    <xmx:asocYWj9G9HUdMRO7Uq-X-jw1Pf6Qa-is2BYX6DmszuIo_LQZeNlvA>
-    <xmx:asocYZrxXHtO2Y97AfvnyY8GN81TRs7nqPbuTOzQm6Y2KSeXCJHBSg>
-    <xmx:bMocYdqe2oTBkWjibi3sw_6qWLwM11CzMgv37jTLSXc9XJqXno0ivQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Aug 2021 04:52:58 -0400 (EDT)
-Date:   Wed, 18 Aug 2021 10:52:56 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Icenowy Zheng <icenowy@sipeed.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/17] pinctrl: sunxi: add support for R329 R-PIO pin
- controller
-Message-ID: <20210818085256.p5m5zwri6jfkgihy@gilmour>
-References: <20210802062212.73220-1-icenowy@sipeed.com>
- <20210802062212.73220-9-icenowy@sipeed.com>
+        id S230312AbhHRJAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 05:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230261AbhHRJAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 05:00:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3150C061764
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 02:00:13 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1mGHQc-0002M3-OJ; Wed, 18 Aug 2021 11:00:06 +0200
+Subject: Re: [PATCH V3 2/3] dt-bindings: gpio: zynqmp: Add binding
+ documentation for modepin
+To:     Piyush Mehta <piyush.mehta@xilinx.com>, arnd@arndb.de,
+        zou_wei@huawei.com, gregkh@linuxfoundation.org,
+        linus.walleij@linaro.org, michal.simek@xilinx.com,
+        wendy.liang@xilinx.com, iwamatsu@nigauri.org,
+        bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        rajan.vaja@xilinx.com
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        git@xilinx.com, sgoud@xilinx.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20210818081018.2620544-1-piyush.mehta@xilinx.com>
+ <20210818081018.2620544-3-piyush.mehta@xilinx.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <5e44ee87-f727-99fd-9860-d3d58a035dc4@pengutronix.de>
+Date:   Wed, 18 Aug 2021 11:00:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="y3qmd24y6c6k2nk5"
-Content-Disposition: inline
-In-Reply-To: <20210802062212.73220-9-icenowy@sipeed.com>
+In-Reply-To: <20210818081018.2620544-3-piyush.mehta@xilinx.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18.08.21 10:10, Piyush Mehta wrote:
+> This patch adds DT binding document for zynqmp modepin GPIO controller.
+> Modepin GPIO controller has four GPIO pins which can be configurable
+> as input or output.
+> 
+> Modepin driver is a bridge between the peripheral driver and GPIO pins.
+> It has set and get APIs for accessing GPIO pins, based on the device-tree
+> entry of reset-gpio property in the peripheral driver, every pin can be
+> configured as input/output and trigger GPIO pin.
+> 
+> For more information please refer zynqMp TRM link:
+> Link: https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf
+> Chapter 2: Signals, Interfaces, and Pins
+> Table 2-2: Clock, Reset, and Configuration Pins - PS_MODE
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> Acked-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+> Changes in v2:
+> - Addressed review comments: Update commit message
+> 
+> Review Comments:
+> https://lore.kernel.org/linux-arm-kernel/20210615080553.2021061-2-piyush.mehta@xilinx.com/T/#mbd1fbda813e33b19397b350bde75747c92a0d7e1
+> https://lore.kernel.org/linux-arm-kernel/20210615080553.2021061-2-piyush.mehta@xilinx.com/T/#me82b1444ab3776162cdb0077dfc9256365c7e736
+> 
+> Changes in v3:
+> - Addressed Rob and Michal review comments:
+>   - Update DT example. 
+> 
+> Review Comments:
+> https://lore.kernel.org/linux-arm-kernel/YRbBnRS0VosXcZWz@robh.at.kernel.org/
+> https://lore.kernel.org/linux-arm-kernel/d71ad7f9-6972-8cc0-6dfb-b5306c9900d0@xilinx.com/
+> ---
+>  .../bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    | 41 ++++++++++++++++++++++
+>  .../bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    | 43 ++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+> new file mode 100644
+> index 0000000..1442815
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/gpio/xlnx,zynqmp-gpio-modepin.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: ZynqMP Mode Pin GPIO controller
+> +
+> +description:
+> +  PS_MODE is 4-bits boot mode pins sampled on POR deassertion. Mode Pin
+> +  GPIO controller with configurable from numbers of pins (from 0 to 3 per
+> +  PS_MODE). Every pin can be configured as input/output.
+So, at Linux runtime, someone decides to boot the system into e.g. a USB
+recovery mode and then toggles the appropriate GPIOs and does a system
+reset?
 
---y3qmd24y6c6k2nk5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+If so, are you aware of the reboot mode[1] infrastructure?
 
-On Mon, Aug 02, 2021 at 02:22:03PM +0800, Icenowy Zheng wrote:
-> Allwinner R320 SoC has a pin controller in the CPUS power domain.
->=20
-> Add support for it.
->=20
-> Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
+A reboot-mode-gpio driver on top of this GPIO controller would allow you
+to describe the supported reboot modes in the device tree and instead of
+exporting GPIOs to userspace, users can then just do
 
-Acked-by: Maxime Ripard <maxime@cerno.tech>
+	systemctl restart recovery
 
-Maxime
+to toggle the appropriate bits.
 
---y3qmd24y6c6k2nk5
-Content-Type: application/pgp-signature; name="signature.asc"
+Also to be sure: PS_MODE are actual GPIO pins that you could toggle
+board level components with, right? i.e. it's not just a register that
+overrides the values read from the boot mode pins? (In the latter case
+a syscon-reboot-mode without GPIO controller would be the correct
+abstraction).
 
------BEGIN PGP SIGNATURE-----
+[1]: drivers/power/reset/reboot-mode.c
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzKaAAKCRDj7w1vZxhR
-xeb7AQCdPHQNxn+5UZz7+HuzV1Nz6N9y2L/WWbaPRQKiJ3QoBgEAo/E4qRSjVikO
-4Wi5L4ItXDMDwWnCI0H4yfl/iXK9XwI=
-=5Twl
------END PGP SIGNATURE-----
+Cheers,
+Ahmad
 
---y3qmd24y6c6k2nk5--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
