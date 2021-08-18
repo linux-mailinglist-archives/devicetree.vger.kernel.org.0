@@ -2,166 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D678A3F1697
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 11:48:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F14013F17CA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 13:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237872AbhHSJtH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 19 Aug 2021 05:49:07 -0400
-Received: from aposti.net ([89.234.176.197]:43072 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237739AbhHSJtC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 05:49:02 -0400
-Date:   Thu, 19 Aug 2021 11:48:11 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v7 09/11] dt-bindings: clock: Add X2000 clock bindings.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-        linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com
-Message-Id: <B8Z2YQ.ADXN95IYKYYB3@crapouillou.net>
-In-Reply-To: <1627119286-125821-10-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1627119286-125821-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1627119286-125821-10-git-send-email-zhouyanjie@wanyeetech.com>
+        id S233978AbhHSLQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 07:16:24 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:48955 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230089AbhHSLQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 07:16:24 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8423F5C0183;
+        Thu, 19 Aug 2021 07:15:47 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 19 Aug 2021 07:15:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=gzG3udI3AdEvoCdC3yMHecAclK
+        S/dCHsHIRkDLel0UY=; b=gGg044R+ymHy/nCZT0I2sFKTyVXApDsK8jozpwddXv
+        dMwzfp5e2d6AShgcqMwciH6Rhou/Bg5dhfR1UWm+A3SVefmSBQuWPKT3SVt2kclZ
+        4HN3LglTIru/HWEQ93YRaV2lpf2iFLPsc5eTCmI6GDiYFAepCnXPiCVMGH2AMQ5F
+        q5IMO6kkV+e+PXMxokMaVNFKccmw2EKlS3Xjp1SwczHTJyOwJzauKHF/EFydkhEW
+        yU0p/ATH3s70Yy1Ul656SKVzX1LQaSDuEoTVla4E2oh6ORERpUzfMB7fJnqX0Tw3
+        gHU67ihsvBLcSxASvIvDhYX9KYn49xIojqWtx1eRtn3w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=gzG3udI3AdEvoCdC3
+        yMHecAclKS/dCHsHIRkDLel0UY=; b=TumMCQgH+o6K2I4xn0J85r2ZLtFF6zSCE
+        oBoi29c28ooGPU2xks8RxURct0LzBIe7yLH2abdzSu/YH4FNDubTZEUgL3FOXVc+
+        CWsDeudfgw1G+Mnum1D2K2Sh0lZO5nYhRhKEEpnN2rjTJSuiz0HsbFYuxjmQ9Ob2
+        FJUdO98QnQQw4ZWqmUm/T/LLE4Hgx2DZahq3xiXIyYV8EKR/aLhP3WimWnSy5/Tt
+        9PcH6cZExSxuc/tD0+LLIlFgdCDa+YNuxbz7FCSvQIk5GbA/Ba+/LUdd0xfbOgzU
+        iG0OyjqQ7rZBtjZfDggrHzl4oTkD/UGw7G3R7kqhGK3a5lLfy2DTg==
+X-ME-Sender: <xms:Yj0eYcKiUvJcnzZ7cpGyU5N-BPCC68VhZS8o2bV0bCDh9aorvgn92g>
+    <xme:Yj0eYcK0N_p0fxsTzQJWu6Azqy7yA5wSV_uQrQSHEmefcZQg4Vg2w3N01g0eNELdI
+    iJ1CGIVaFPggCFow5s>
+X-ME-Received: <xmr:Yj0eYcuaVmx_SDAVhMXZvfM_IJFCQyyQoYmLAFnvSPvOLwaCoW9FEes80xNrWlAWFvyroyPTyl_12EICYmBClG7RyqH4o_y5hat5wROeMTVKGwM0Wg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleejgdefiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepjeeliefhvdetgfdtte
+    fhtdegffdtiefffeejiefffeevueeljeehjeevhfffueeknecuvehluhhsthgvrhfuihii
+    vgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrg
+    hirhdvfedrmhgv
+X-ME-Proxy: <xmx:Yj0eYZa2-fHfXYNR54fbPFueCiieq5tHeANw0NHmiQJMgUWNZHjF4g>
+    <xmx:Yj0eYTZG6QO2wPuPC2Ia0aV8Ku34enwhjFbvHQavAmvl0RtsQurohQ>
+    <xmx:Yj0eYVAFFk6GAOxv7UP0R6Aj6G7W9BV-O2wrvkD49uUuXrMV6Cr7bQ>
+    <xmx:Yz0eYX7z35FIAD5dHZv8IPX7Hg5rb1MqLnND4yw0JOVb6HiudLTpcA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Aug 2021 07:15:43 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v11 00/10] Add support for the silergy,sy7636a
+Date:   Thu, 19 Aug 2021 01:44:39 +1000
+Message-Id: <20210818154449.1037-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+This series applied on top of the "mfd: simple-mfd-i2c: Add support for
+registering devices via MFD cells" patch. Once "mfd: simple-mfd-i2c: Add
+support for registering devices via MFD cells" is merged this series is
+ready to go.
 
-Le sam., juil. 24 2021 at 17:34:44 +0800, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> Add the clock bindings for the X2000 SoC from Ingenic.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+v11:
+ - Address comments on hwmon
+ - Improve "mfd: simple-mfd-i2c: Add a Kconfig name" commit message
+v10:
+ - Use dev_get_regmap() instead of dev_get_drvdata()
+v9:
+ - Convert to use the simple-mfd-i2c instead
 
-Acked-by: Paul Cercueil <paul@crapouillou.net>
+Alistair Francis (10):
+  dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
+  mfd: simple-mfd-i2c: Add a Kconfig name
+  mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a
+  regulator: sy7636a: Remove requirement on sy7636a mfd
+  thermal: sy7636a: Add thermal driver for sy7636a
+  hwmon: sy7636a: Add temperature driver for sy7636a
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a
+  ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
+  ARM: imx_v6_v7_defconfig: Enable backlight class devices
+  ARM: dts: imx7d: remarkable2: Enable lcdif
 
-Cheers,
--Paul
+ .../bindings/mfd/silergy,sy7636a.yaml         |  79 ++++++++++++
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 115 ++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig          |   5 +
+ drivers/hwmon/Kconfig                         |  10 ++
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/sy7636a-hwmon.c                 |  77 ++++++++++++
+ drivers/mfd/Kconfig                           |   2 +-
+ drivers/mfd/simple-mfd-i2c.c                  |  12 ++
+ drivers/regulator/Kconfig                     |   1 -
+ drivers/regulator/sy7636a-regulator.c         |   2 +-
+ drivers/thermal/Kconfig                       |   6 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/sy7636a_thermal.c             |  94 ++++++++++++++
+ include/linux/mfd/sy7636a.h                   |  41 +++++++
+ 14 files changed, 443 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+ create mode 100644 drivers/hwmon/sy7636a-hwmon.c
+ create mode 100644 drivers/thermal/sy7636a_thermal.c
+ create mode 100644 include/linux/mfd/sy7636a.h
 
-> ---
-> 
-> Notes:
->     v5:
->     New patch.
-> 
->     v5->v6:
->     No change.
-> 
->     v6->v7:
->     Change to dual license.
-> 
->  include/dt-bindings/clock/x2000-cgu.h | 89 
-> +++++++++++++++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 include/dt-bindings/clock/x2000-cgu.h
-> 
-> diff --git a/include/dt-bindings/clock/x2000-cgu.h 
-> b/include/dt-bindings/clock/x2000-cgu.h
-> new file mode 100644
-> index 00000000..6d6faa2
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/x2000-cgu.h
-> @@ -0,0 +1,89 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-> +/*
-> + * This header provides clock numbers for the ingenic,x2000-cgu DT 
-> binding.
-> + *
-> + * They are roughly ordered as:
-> + *   - external clocks
-> + *   - PLLs
-> + *   - muxes/dividers in the order they appear in the x2000 
-> programmers manual
-> + *   - gates in order of their bit in the CLKGR* registers
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_X2000_CGU_H__
-> +#define __DT_BINDINGS_CLOCK_X2000_CGU_H__
-> +
-> +#define X2000_CLK_EXCLK			0
-> +#define X2000_CLK_RTCLK			1
-> +#define X2000_CLK_APLL			2
-> +#define X2000_CLK_MPLL			3
-> +#define X2000_CLK_EPLL			4
-> +#define X2000_CLK_OTGPHY		5
-> +#define X2000_CLK_SCLKA			6
-> +#define X2000_CLK_I2S0			7
-> +#define X2000_CLK_I2S1			8
-> +#define X2000_CLK_I2S2			9
-> +#define X2000_CLK_I2S3			10
-> +#define X2000_CLK_CPUMUX		11
-> +#define X2000_CLK_CPU			12
-> +#define X2000_CLK_L2CACHE		13
-> +#define X2000_CLK_AHB0			14
-> +#define X2000_CLK_AHB2PMUX		15
-> +#define X2000_CLK_AHB2			16
-> +#define X2000_CLK_PCLK			17
-> +#define X2000_CLK_DDR			18
-> +#define X2000_CLK_ISP			19
-> +#define X2000_CLK_MACPTP		20
-> +#define X2000_CLK_MACPHY		21
-> +#define X2000_CLK_MAC0TX		22
-> +#define X2000_CLK_MAC1TX		23
-> +#define X2000_CLK_RSA			24
-> +#define X2000_CLK_SSIPLL		25
-> +#define X2000_CLK_LCD			26
-> +#define X2000_CLK_MSC_EXCLK		27
-> +#define X2000_CLK_MSC0			28
-> +#define X2000_CLK_MSC1			29
-> +#define X2000_CLK_MSC2			30
-> +#define X2000_CLK_PWM			31
-> +#define X2000_CLK_SFC			32
-> +#define X2000_CLK_CIM			33
-> +#define X2000_CLK_DMIC_EXCLK	34
-> +#define X2000_CLK_DMIC			35
-> +#define X2000_CLK_EXCLK_DIV512	36
-> +#define X2000_CLK_RTC			37
-> +#define X2000_CLK_EMC			38
-> +#define X2000_CLK_EFUSE			39
-> +#define X2000_CLK_OTG			40
-> +#define X2000_CLK_SCC			41
-> +#define X2000_CLK_I2C0			42
-> +#define X2000_CLK_I2C1			43
-> +#define X2000_CLK_I2C2			44
-> +#define X2000_CLK_I2C3			45
-> +#define X2000_CLK_SADC			46
-> +#define X2000_CLK_UART0			47
-> +#define X2000_CLK_UART1			48
-> +#define X2000_CLK_UART2			49
-> +#define X2000_CLK_DTRNG			50
-> +#define X2000_CLK_TCU			51
-> +#define X2000_CLK_SSI0			52
-> +#define X2000_CLK_OST			53
-> +#define X2000_CLK_PDMA			54
-> +#define X2000_CLK_SSI1			55
-> +#define X2000_CLK_I2C4			56
-> +#define X2000_CLK_I2C5			57
-> +#define X2000_CLK_ISP0			58
-> +#define X2000_CLK_ISP1			59
-> +#define X2000_CLK_HASH			60
-> +#define X2000_CLK_UART3			61
-> +#define X2000_CLK_UART4			62
-> +#define X2000_CLK_UART5			63
-> +#define X2000_CLK_UART6			64
-> +#define X2000_CLK_UART7			65
-> +#define X2000_CLK_UART8			66
-> +#define X2000_CLK_UART9			67
-> +#define X2000_CLK_MAC0			68
-> +#define X2000_CLK_MAC1			69
-> +#define X2000_CLK_INTC			70
-> +#define X2000_CLK_CSI			71
-> +#define X2000_CLK_DSI			72
-> +
-> +#endif /* __DT_BINDINGS_CLOCK_X2000_CGU_H__ */
-> --
-> 2.7.4
-> 
-
+-- 
+2.31.1
 
