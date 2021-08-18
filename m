@@ -2,96 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2D13EFA05
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 07:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A183EFA70
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 07:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237435AbhHRF1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 01:27:12 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:30371 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234141AbhHRF1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 01:27:12 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1629264398; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=OD3bhfIfOCgRHQjgqA6MewvJUinJk6gIaknhjrubRj0=;
- b=sbXFCsnD/v2T0uapANuEdBtiZYVkYYDRc3CXId3vZGG+is5gI1kd3iLW9ZiBELBWzEieygqH
- lqNvk2j3aKPCeaST36iSxOmtbjtLmtYKwUNRkf8JHi/6p/wKmTQzm8+WV5olPVfPR/LWA4qB
- dKxt/yDUmVeohI2RmIVkb+VOEIQ=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 611c99fc66ff1079049e47e2 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 18 Aug 2021 05:26:20
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5E9C1C4360D; Wed, 18 Aug 2021 05:26:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B7948C4338F;
-        Wed, 18 Aug 2021 05:26:18 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 18 Aug 2021 10:56:18 +0530
-From:   skakit@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S237976AbhHRF72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 01:59:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237987AbhHRF70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 01:59:26 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC16C0617AF
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 22:58:52 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id w13-20020a17090aea0db029017897a5f7bcso1583512pjy.5
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 22:58:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=/oqvyX1+fZTz+wtMw2AZVqGvrykbTQj8oIvIXJk4fnQ=;
+        b=BiNyX/6IYojCpnpyPGFzrgnh8ilV1S48JvAdE+mM4BuP7CRu2FKtWLmHb+6pMAnjSh
+         /wfP9QCG/Q2Ukj1ZByvNzYSCb76F2+QCOquffMB7/VgJzMfI6biDam1D93oJFOcKLxY5
+         r0ui6XTLNwvZZ2QgeJ+nHG0xrCIvTYYP76CrkUOXqGHCkZrCx8j9IwfpGrJOMhMeq8y0
+         k2mkEWBfMzJhbTlNZAz6IL2S8V/0dB0U3qYFm8ylkevVbHpEgfdJ2weIyvMA0dAHIkMr
+         BJ+3m2Wz3q/+kbkLCXBH7Ci4zKCVmfsRmjz+f2zh3gygpbMTckDnXDsC8v0GIrUYRu/5
+         PVGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/oqvyX1+fZTz+wtMw2AZVqGvrykbTQj8oIvIXJk4fnQ=;
+        b=QrK3dJ47aMWoFV5YIG/64I14WHW8rTaAzilpCKd65XPQSjtJugMiDuA//lF4kxh+dm
+         tQ6Hn0vPv95Lp2K338EDKkg7OmjcZ1CMe59BmU21NnmLLfA9Z1Gj+mEs5rgExhcMEo6D
+         wuS55FLtkyfI7Vkoo4crBBn6ksEoe8d0UAGcFe46JjIFiSvJtSL4nDhwIHkdtYPyguf/
+         VN4BV0mahEhTAUMdzFMhE9CgL2fDxJUDSG/JmSqzOHk3saqcJIPh43aO0WnA/r3XuB7h
+         hX6e7OXdBHEaw/h/rT2sOp//XKgfA2BmBTHi2aaSPowko9TVjIi4AKay1c+JJDzD5LyK
+         bP5A==
+X-Gm-Message-State: AOAM5304Q4V6vn6PiXvMemAUdoQcj+qRwXLaqToZr4EiMrVU3Ay8Yq2D
+        MdoXhK8rpaJj+d9Myy/9P0oNGQ==
+X-Google-Smtp-Source: ABdhPJxmfawJmjScyveR+qRjue44WOBbTuswMGRMZAcW5NbsgTVLKIK8N3zHMPdQxwr8K+gezRoAzQ==
+X-Received: by 2002:a17:90a:db89:: with SMTP id h9mr7820049pjv.214.1629266331439;
+        Tue, 17 Aug 2021 22:58:51 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id g14sm4668532pfr.31.2021.08.17.22.58.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Aug 2021 22:58:51 -0700 (PDT)
+Date:   Wed, 18 Aug 2021 11:28:49 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        linux-gpio@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec
- translation
-In-Reply-To: <CAE-0n52Ki2tA6qy6ADym3r4UQ0tkvgz3bpif_Mm2q3Y+N=huGg@mail.gmail.com>
-References: <1628830531-14648-1-git-send-email-skakit@codeaurora.org>
- <1628830531-14648-2-git-send-email-skakit@codeaurora.org>
- <CACRpkdZteWY6X+prHeAF0rtPVbCk+X9=ZYgpjgAMH24LhOjhaQ@mail.gmail.com>
- <4af8171aefd6f0387438225666ec1ccc@codeaurora.org>
- <CAE-0n53sR12fEa_cNPeT5eGcQVzzL57pd-tYnJbpP0NXkHMTsw@mail.gmail.com>
- <6801879ddd0edf9a8d0e3605f3868e79@codeaurora.org>
- <CAE-0n52Ki2tA6qy6ADym3r4UQ0tkvgz3bpif_Mm2q3Y+N=huGg@mail.gmail.com>
-Message-ID: <5be25c9710b7706cff91f1db71f9e25e@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+Message-ID: <20210818055849.ybfajzu75ecpdrbn@vireshk-i7>
+References: <20210817012754.8710-1-digetx@gmail.com>
+ <20210817012754.8710-2-digetx@gmail.com>
+ <20210817075515.vyyv7z37e6jcrhsl@vireshk-i7>
+ <710261d9-7ae3-5155-c0a2-f8aed2408d0b@gmail.com>
+ <20210818035533.ieqkexltfvvf2p4n@vireshk-i7>
+ <5b2a80c1-9743-e633-6257-ede94c8a274c@gmail.com>
+ <20210818043131.7klajx6drvvkftoc@vireshk-i7>
+ <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7>
+ <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-18 00:45, Stephen Boyd wrote:
-> Quoting skakit@codeaurora.org (2021-08-17 02:06:42)
->> On 2021-08-17 02:38, Stephen Boyd wrote:
->> >
->> > Are there any boards supported upstream that have a gpio block that
->> > isn't at 0xc000?
->> 
->> yes, all the pmics used in sm8350-mtp.dts board have gpio block at
->> addresses different than 0xc000.
->> 
+On 18-08-21, 08:21, Dmitry Osipenko wrote:
+> Yes, GENPD will cache the perf state across suspend/resume and initially
+> cached value is out of sync with h/w.
 > 
-> So maybe
-> 
-> Fixes: f67cc6a91d88 ("arm64: dts: qcom: sm8350-mtp: Add PMICs")
-> 
-> is appropriate then?
+> Nothing else. But let me clarify it all again.
 
-This patch is actually fixing the pinctrl-spmi-gpio.c driver.
-So, I think we should add
+Thanks for your explanation.
 
-Fixes: ca69e2d165eb ("qcom: spmi-gpio: add support for hierarchical IRQ 
-chip")
+> Initially the performance state of all GENPDs is 0 for all devices.
+> 
+> The clock rate is preinitialized for all devices to a some default rate
+> by clk driver, or by bootloader or by assigned-clocks in DT.
+> 
+> When device is rpm-resumed, the resume callback of a device driver
+> enables the clock.
+> 
+> Before clock is enabled, the voltage needs to be configured in
+> accordance to the clk rate.
+> 
+> So now we have a GENPD with pstate=0 on a first rpm-resume, which
+> doesn't match the h/w configuration. Calling dev_pm_opp_sync() sets the
+> pstate in accordance to the h/w config.
+
+What about calling dev_pm_opp_set_rate(dev, clk_get_rate(dev)) here
+instead ? That will work, right ? The advantage is it works without
+any special routine to do so.
+
+I also wonder looking at your gr3d.c changes, you set a set-opp
+helper, but the driver doesn't call set_opp_rate at all. Who calls it
+?
+
+And if it is all about just syncing the genpd core, then can the genpd
+core do something like what clk framework does? i.e. allow a new
+optional genpd callback, get_performance_state() (just like
+set_performance_state()), which can be called initially by the core to
+get the performance to something other than zero. opp-set-rate is
+there to set the performance state and enable the stuff as well.
+That's why it looks incorrect in your case, where the function was
+only required to be called once, and you are ending up calling it on
+each resume. Limiting that with another local variable is bad as well.
+
+> In a previous v7 I proposed to preset the rpm_pstate of GENPD (perf
+> level that is restored before device is rpm-resumed) from PD's
+> attach_dev callback, but Ulf didn't like that because it requires to use
+> and modify GENPD 'private' variables from a PD driver. We decided that
+> will be better to make device drivers to explicitly sync the perf state,
+> which I implemented in this v8.
+
+-- 
+viresh
