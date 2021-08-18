@@ -2,178 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B60A3F03E5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 14:43:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBBB43F0409
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 14:55:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231500AbhHRMnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 08:43:47 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:51397 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234948AbhHRMnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 08:43:47 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.west.internal (Postfix) with ESMTP id BEF072B00522;
-        Wed, 18 Aug 2021 08:43:10 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 18 Aug 2021 08:43:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=xn8lxZ1v2YaL18d+jLVYt1ER07M
-        GK8YIdjOFzClmGOk=; b=pI4RWnclY66wMgooB2JgjrXzto+t5w9Ydkw2ELe3p/v
-        MkgDWfM2J2YEmuzhQsMaF9y7n2fVcq3i7sPwkK9CU49B70vkCfOfubd8koz9bYC9
-        dVgjPVi+Ppny1CMzLTfceP0CFrHFhruHBbr8y9iT+Yl09FtjlWHpwPUNeTqx0zLg
-        5W+LLPqXT5lMcKqP5dj0kFycu0lpS4AMJj9ZasTJklcWZhHj5+6++Gv/miMEi6/W
-        QhrguJoV7DeH+llXfrjn930lyHqXeSFYNPMUjlE5Hd8hD5f07ICmRZUp/xDEeRrN
-        bUKVtLFPEWdE0O3KTAu5zMXAF+zLZ4nBwTE4nSlErRg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=xn8lxZ
-        1v2YaL18d+jLVYt1ER07MGK8YIdjOFzClmGOk=; b=h0n4gO+g+zvmfSGgZesWZL
-        d4o+b9pk5Fmkk4lLE0e96zzVx24gPoOW6Kp6MPZhLT8XBdDMFnB2aeb0afdYBdhO
-        FWmm1ROO2kP/Utem3759PcVeLR+le7QuQa5x2juIOUAjFs9qNbSalerAC/xak6YP
-        ynn73sT1E4IHdDYsnwkj398elaHvvr70dQhZ6Z5WVunuyvn2WpBS+PGEqRyyrtwZ
-        SoB+EgRRQLEpLSIeFDzumPdRXuZcoN8xx0fchM0AdNRYz4ny7ixQRFfi7rCrqS8P
-        OHZNYxwCe6jL7/XKZS3acSSY8FsgTTZR/eKqd3nEfUhKbPU/HGuXzwTKYW7YvnTA
-        ==
-X-ME-Sender: <xms:WgAdYc9k8tNBqOFJXD55NQ1ztBbERNTMTP8UZt4NFj9uuYkA7vGEbw>
-    <xme:WgAdYUsCkb22CeboqyxDOKmoGGe_SXD91mirhGfCY7f3ilvPW0SQ4ivz-3lCI_wSu
-    o2yiuKZkj5OOJf4DpM>
-X-ME-Received: <xmr:WgAdYSC0UR1qQ1NTMWGAi-VrCDqPrB2wb0E4m91tJhqgy0J0upxIqOYTduBb8qTeAj1r7t2a9hiv3KIsEr-6uzfQAqgBcfm9ThRb>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgdehhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:WgAdYcfdAfZ4zK78m7MdzuFeDluN92nUn1VWjw7l-ugXRlqUqptn6g>
-    <xmx:WgAdYRP8w61V3BRcQ85zROVSP4uWH280UJbOmvClxKVA1VUOmSbLLA>
-    <xmx:WgAdYWkCVm2XxCSnHv8IXUUMl2J-RCNI-2M7S_CcZnZaJG12OHjNnQ>
-    <xmx:XgAdYUr-dbUHOU-8eN-QIjMhZglZuHg2-zmH8XE7s0ngi0U20bp5ptCYcmE>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Aug 2021 08:43:06 -0400 (EDT)
-Date:   Wed, 18 Aug 2021 14:43:04 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
+        id S235222AbhHRMzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 08:55:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57964 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234801AbhHRMzs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 08:55:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EDCDD6108E;
+        Wed, 18 Aug 2021 12:55:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629291314;
+        bh=qfimuz/xc2ShyihFDgQNSAdTOIIZ4oK4XRr5EFm9R2I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OFrXhTd4g/bAi0QZbPFyVKqhN00Z7DB0yuYoMnE7e4ge7IjKWkVa3VPATTyBcyGmP
+         8IbxWtoB7NQ3f/QXGJP0BwrF5fAmcEN1WdFHZfq9F9XGnrQEt9ovqUMrg5IL6WdGcT
+         C74RBdriBjr0wnMB8eI0qMTTwBdbaz7nBu4C/bbri2fvoqc3Aj9Jy6yE5mEJSax5Nz
+         Fc3ZLPn4wggTpoPPNVNXsphcbNAj4AZ5vFCEZNoD3wzeDBSyGe0ChPfMc2Mg9TKRiJ
+         PNBhNL3b0Gl9TuxPk7dgbcfNX89SLmFHvRoraFGbI6vxjATeCq//S7ECcQJcKrqC1L
+         MFjR9yKlimV5g==
+Received: by mail-ed1-f50.google.com with SMTP id by4so3067742edb.0;
+        Wed, 18 Aug 2021 05:55:13 -0700 (PDT)
+X-Gm-Message-State: AOAM5330ip4sXxZEXzSXpx7Q8IjMXrotjJLP2g7kX3vqH+5Et7FBIWdf
+        tvGXpZR0HU1+csqXGUWLRwALxpQej3BZQrb9/w==
+X-Google-Smtp-Source: ABdhPJzuNBTtBcYMCaYc9W5j3jR2kGlpRL7Yc/Is/o23NEzU55JTlCNHqsQzj+0z5W7mh/h3lTV812t9gnUkc0HkntM=
+X-Received: by 2002:aa7:cb19:: with SMTP id s25mr10215026edt.194.1629291311549;
+ Wed, 18 Aug 2021 05:55:11 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-6-maxime@cerno.tech>
+ <CAL_JsqKAZLBK2UDDUNrO4aaYr886oODB_N_yF70X44gPXs=k5Q@mail.gmail.com> <20210818100021.yzzcuadkowy4tfv4@gilmour>
+In-Reply-To: <20210818100021.yzzcuadkowy4tfv4@gilmour>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 18 Aug 2021 07:54:59 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK8ZDy=4_KmB_5ce4Z1=XcKH7EgydAVuC5Cko6F63ACrQ@mail.gmail.com>
+Message-ID: <CAL_JsqK8ZDy=4_KmB_5ce4Z1=XcKH7EgydAVuC5Cko6F63ACrQ@mail.gmail.com>
+Subject: Re: [PATCH 05/54] dt-bindings: Convert Reserved Memory binding to a schema
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Grant Likely <grant.likely@arm.com>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 10/54] dt-bindings: display: panel-lvds: Document panel
- compatibles
-Message-ID: <20210818124304.2jxsf44bcbprcvbk@gilmour>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-11-maxime@cerno.tech>
- <20210722022947.GA3168293@robh.at.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3qoevq2e2eipnuyt"
-Content-Disposition: inline
-In-Reply-To: <20210722022947.GA3168293@robh.at.kernel.org>
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@googlegroups.com,
+        Mailing List <devicetree-spec@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 18, 2021 at 5:00 AM Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi Rob,
+>
+> On Wed, Jul 21, 2021 at 08:30:43AM -0600, Rob Herring wrote:
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/reserved-memory/reserved-memory.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: /reserved-memory Node
+> > > +
+> > > +maintainers:
+> > > +  - Devicetree Specification Mailing List <devicetree-spec@vger.kernel.org>
+> > > +
+> > > +description: >
+> > > +  Reserved memory is specified as a node under the /reserved-memory node. The
+> > > +  operating system shall exclude reserved memory from normal usage one can
+> > > +  create child nodes describing particular reserved (excluded from normal use)
+> > > +  memory regions. Such memory regions are usually designed for the special
+> > > +  usage by various device drivers.
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    const: reserved-memory
+> > > +
+> > > +  "#address-cells": true
+> > > +  "#size-cells": true
+> > > +  ranges: true
+> > > +
+> > > +patternProperties:
+> > > +  "^(?!(ranges))[a-z,-]*(@[0-9]+)?$":
+> >
+> > Note that you could drop this and put under 'additionalProperties'.
+> > You would lose some node name checking, but there's really little
+> > standard on these nodes.
+>
+> I didn't realise it could be used that way too, I'll change it.
+>
+> > > +    type: object
+> > > +
+> > > +    description: >
+> > > +      Each child of the reserved-memory node specifies one or more regions of
+> > > +      reserved memory. Each child node may either use a 'reg' property to
+> > > +      specify a specific range of reserved memory, or a 'size' property with
+> > > +      optional constraints to request a dynamically allocated block of memory.
+> > > +
+> > > +      Following the generic-names recommended practice, node names should
+> > > +      reflect the purpose of the node (ie. "framebuffer" or "dma-pool"). Unit
+> > > +      address (@<address>) should be appended to the name if the node is a
+> > > +      static allocation.
+> > > +
+> > > +    properties:
+> > > +      reg: true
+> > > +
+> > > +      size:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +        description: >
+> > > +          Length based on parent's \#size-cells. Size in bytes of memory to
+> > > +          reserve.
+> > > +
+> > > +      alignment:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +        description: >
+> > > +          Length based on parent's \#size-cells. Address boundary for
+> > > +          alignment of allocation.
+> > > +
+> > > +      alloc-ranges:
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +        description: >
+> > > +          Address and Length pairs. Specifies regions of memory that are
+> > > +          acceptable to allocate from.
+> > > +
+> > > +      compatible:
+> > > +        oneOf:
+> > > +          - const: shared-dma-pool
+> > > +            description: >
+> > > +              This indicates a region of memory meant to be used as a shared
+> > > +              pool of DMA buffers for a set of devices. It can be used by an
+> > > +              operating system to instantiate the necessary pool management
+> > > +              subsystem if necessary.
+> > > +
+> > > +          # Vendor-specific compatibles in the form <vendor>,[<device>-]<usage>
+> > > +          - const: mediatek,trustzone-bootinfo
+> >
+> > I think these should be separate schema files. At least, we're going
+> > to need to support separate files because I don't think we want ones
+> > adding custom properties here. This would fail unless we add every
+> > compatible here. We could also be a bit more exact as to which
+> > properties below apply (e.g. linux,.*-default is only valid for
+> > shared-dma-pool).
+>
+> I'm not entirely sure how we can just ignore the vendor compatibles
+> without raising a warning. Do you have any suggestion?
 
---3qoevq2e2eipnuyt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You need 1 schema file with all the common (child) properties and then
+1 schema file for each compatible (maybe some can be grouped) that
+references the common schema.
 
-Hi Rob, Sam,
+You'd lose checking that the child nodes are actually children of
+/reserved-memory, but I'm not too worried about that.
 
-On Wed, Jul 21, 2021 at 08:29:47PM -0600, Rob Herring wrote:
-> On Wed, Jul 21, 2021 at 04:03:40PM +0200, Maxime Ripard wrote:
-> > The binding mentions that all the drivers using that driver must use a
-> > vendor-specific compatible but never enforces it, nor documents the
-> > vendor-specific compatibles.
-> >=20
-> > Let's make we document all of them, and that the binding will create an
-> > error if we add one that isn't.
-> >=20
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >  .../bindings/display/panel/lvds.yaml           | 18 ++++++++++++------
-> >  1 file changed, 12 insertions(+), 6 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml =
-b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > index 49460c9dceea..d1513111eb48 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > @@ -31,12 +31,18 @@ allOf:
-> > =20
-> >  properties:
-> >    compatible:
-> > -    contains:
-> > -      const: panel-lvds
-> > -    description:
-> > -      Shall contain "panel-lvds" in addition to a mandatory panel-spec=
-ific
-> > -      compatible string defined in individual panel bindings. The "pan=
-el-lvds"
-> > -      value shall never be used on its own.
-> > +    items:
-> > +      - enum:
-> > +          - advantech,idk-1110wr
->=20
-> At least this one is documented elsewhere.
-
-Indeed, I missed it.
-
-> You can add 'minItems: 2' if you want to just enforce having 2 compatible=
-s. Or do:
->=20
-> items:
->   - {}
->   - const: panel-lvds
->=20
-> Which also enforces the order.
-
-It's not just about the order since a missing compatible will also raise
-a warning.
-
-Some of those panels have a binding of their own, but some probably
-won't (and I can't find anything specific about the one I'm most
-interested in: tbs,a711-panel)
-
-Can we have something like:
-
-compatible:
-  oneOf:
-    - items:
-      - enum:
-	- tbs,a711-panel
-      - const: panel-lvds
-
-    - items:
-      - {}
-      - const: panel-lvds
-
-That would work for both cases I guess?
-
-Maxime
-
---3qoevq2e2eipnuyt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYR0AVwAKCRDj7w1vZxhR
-xSXTAP90zo+yKkWE46BIwnlwtxZOw5PaagPp4NF9o82iElH/VgD/fUz0Eksd047n
-ujG/vDaPDiReQY0FtuMI/iG0ijZWnQ8=
-=HwHr
------END PGP SIGNATURE-----
-
---3qoevq2e2eipnuyt--
+Rob
