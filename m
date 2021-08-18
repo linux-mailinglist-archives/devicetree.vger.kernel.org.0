@@ -2,114 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 618873EFDEC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E223EFE0A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239211AbhHRHlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 03:41:24 -0400
-Received: from egress-ip33b.ess.de.barracuda.com ([18.185.115.237]:43572 "EHLO
-        egress-ip33b.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239217AbhHRHlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 03:41:19 -0400
-X-Greylist: delayed 57360 seconds by postgrey-1.27 at vger.kernel.org; Wed, 18 Aug 2021 03:41:19 EDT
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198]) by mx-outbound47-213.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 18 Aug 2021 07:40:42 +0000
-Received: by mail-pg1-f198.google.com with SMTP id 135-20020a63058d0000b029023cdca61836so942679pgf.23
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:40:42 -0700 (PDT)
+        id S239059AbhHRHo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 03:44:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238942AbhHRHo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 03:44:28 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45324C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:43:54 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id i28so2760675lfl.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:43:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UkIuG9kG2oKl5x8f+ApK/mUtbc6w+fjs3SOOWN0kRIM=;
-        b=lr0HtKv9rPHKgCeJK6CrjS5BRAZ1C4gQekRy3DuWQbU6als+LRedy/my6VvNNdKrzL
-         oeepcNTjfgJEUIJB6A/fUlLESmSSfLP77HUvbevgfa4yUecJmIAGHdHdJXIY/5T/ZKpV
-         3/DSkwHpdm/UGUhK/7lqjaNCTabKq3+R8tSCo=
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2Pb+i4XV4pD9hHVrCfu2OguYuvXddQz4i1EZeyLXlSA=;
+        b=gU6KmWZ2VTtGU6MiqbJsuaCgeM+rsgd3JJa00KF9rgd6K9cenC2G4J0H6wZB5SCAqf
+         6Bo7La+IoqM78I2iW9kvnfoDUEdChf27ygxHLn8lkctJjJ2XKY28XcqOepRC3GrG/Iv9
+         cU1jo2AKfe+0ty10qvt5sCVfPTdG5UopO0ZaY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UkIuG9kG2oKl5x8f+ApK/mUtbc6w+fjs3SOOWN0kRIM=;
-        b=rOgRb9WAPrlL69bk5zDqeZL0K30sIngxsYH8qHdgezjRkDyDEelm7CYodVHvz1I1Nl
-         abiC+jKQtzr/1LexZq6Ht5hDB/KXPq5lbLv4qWGqQhPvzXM+srn6xcyu8X6EvayRpVcC
-         ThRryEz0hqS3CUYM18Tm/6tZWyz6p2E6I/9Cmdj6JF0hu+8C3NxST6aXO0BnX5jchCXe
-         lN9D6DPq9kEW0F/CxHrV3ytNbtMUh4v1sOcG6muQyURS/Zqnibaqzni0UIiFPc3DprCA
-         fNIuUvRP//VYCDwBEHjW9eXBsd80qtqXFgIHPFLb2JKeSgSI4zbP8D/d0Aedn3bC81fq
-         eopA==
-X-Gm-Message-State: AOAM533EB/LMNx2ig5+loE0hmy0+RFCGfSykBhcZqJuCB2s7dZxGaip1
-        d5CIv1Hymcy4qkTEYnLQ6uevjuPDTeSLxVNHzCgADRSc2u7NFHgvv+kSIEnB6xUvd8DgV5ZRTS1
-        bIg+876d/EzDf9BjjGklLO6HNsJQdQ3K48bU9pMWSfhGLIdf0p1sbl2ICpg==
-X-Received: by 2002:a17:903:248f:b029:128:d5ea:18a7 with SMTP id p15-20020a170903248fb0290128d5ea18a7mr6302807plw.83.1629272441675;
-        Wed, 18 Aug 2021 00:40:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzW12eztIemFNz4nqgJdsosiXRAEcL1J4Iw8uicr4OKsG4mgSPpr0fXRPt4Rust4y8D+4i9aA==
-X-Received: by 2002:a17:903:248f:b029:128:d5ea:18a7 with SMTP id p15-20020a170903248fb0290128d5ea18a7mr6302778plw.83.1629272441424;
-        Wed, 18 Aug 2021 00:40:41 -0700 (PDT)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id 186sm5224756pfg.11.2021.08.18.00.40.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 00:40:40 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        Suman Anna <s-anna@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V1] dt-bindings: remoteproc: k3-dsp: Update example to remove board specific
-Date:   Wed, 18 Aug 2021 13:10:30 +0530
-Message-Id: <20210818074030.1877-1-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.31.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Pb+i4XV4pD9hHVrCfu2OguYuvXddQz4i1EZeyLXlSA=;
+        b=PYaYtO5DdIIzNYD9KdysltPUfzg7RnkzkKM06x3FbVDVgFjvFjpHMta+YM4uSp+N5b
+         lWS39mQ8/8cj/z9fVgKRTAvo7MAcs12oPpwGJX2yZQTVIAbYR4yj8aJtcKFnJ7c63il2
+         XbdOFPiUNFCwN+VCGuln4bOq33PGz2xwS2LR3rnHH89Ubi9bG0G5Al1CmQAYlIINaMLB
+         HsAYvu4hhDNnQiCl1kKyYcun4hkc1gk260XJQIiwvDenyyMirJa+KLOdyEReGdgXaI7Q
+         PX3FrrtMuvwJuBTNRqX7CEE6K/Bmd9xZOVWYYXxjYv74Nah1VP/McEaBstAfC5R3Sc/p
+         TRWg==
+X-Gm-Message-State: AOAM532fX7cx8QdHQdpRWe6lJ160aHL5HQ4BZUVM4XOvynsHrjtgGR9X
+        T6Tc+6T3MldF1tFlfKQH6Ch0B1NPKno1Rg==
+X-Google-Smtp-Source: ABdhPJzMU/6UmKzC7dzU8QuRui/bvR3waSzai7lphniQLHifVVz1MWz1n0+YWA2uQE2vnGcF4fD8TQ==
+X-Received: by 2002:a05:6512:68e:: with SMTP id t14mr5680554lfe.429.1629272632480;
+        Wed, 18 Aug 2021 00:43:52 -0700 (PDT)
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com. [209.85.167.52])
+        by smtp.gmail.com with ESMTPSA id bn16sm341430ljb.74.2021.08.18.00.43.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Aug 2021 00:43:51 -0700 (PDT)
+Received: by mail-lf1-f52.google.com with SMTP id y34so2705690lfa.8
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:43:50 -0700 (PDT)
+X-Received: by 2002:a19:2d4e:: with SMTP id t14mr5421824lft.30.1629272630297;
+ Wed, 18 Aug 2021 00:43:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1629272442-312245-5607-5924-1
-X-BESS-VER: 2019.1_20210805.2250
-X-BESS-Apparent-Source-IP: 209.85.215.198
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.234026 [from 
-        cloudscan18-118.eu-central-1b.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
+References: <20210802121215.703023-1-eizan@chromium.org> <20210802220943.v6.7.I2049e180dca12e0d1b3178bfc7292dcf9e05ac28@changeid>
+ <bf98c5ee749bca755bd46832f858536dbf51a2a4.camel@mediatek.com>
+In-Reply-To: <bf98c5ee749bca755bd46832f858536dbf51a2a4.camel@mediatek.com>
+From:   Eizan Miyamoto <eizan@chromium.org>
+Date:   Wed, 18 Aug 2021 17:43:33 +1000
+X-Gmail-Original-Message-ID: <CAOak1e-oyzxbvHimMReQpZCAPyCtAsaGixjwmoa0EzMjqaUxVg@mail.gmail.com>
+Message-ID: <CAOak1e-oyzxbvHimMReQpZCAPyCtAsaGixjwmoa0EzMjqaUxVg@mail.gmail.com>
+Subject: Re: [PATCH v6 7/9] media: mtk-mdp: use mdp-rdma0 alias to point to
+ MDP master
+To:     houlong wei <houlong.wei@mediatek.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <yong.wu@mediatek.com>,
+        "enric.balletbo@collabora.com" <enric.balletbo@collabora.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?= 
+        <andrew-ct.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        =?UTF-8?B?TWluZ2hzaXUgVHNhaSAo6JSh5piO5L+uKQ==?= 
+        <minghsiu.tsai@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The example includes a board-specific compatible property, but developers
-need to add the board name each time when a new board is added to the K3
-J721E SoC list. This grows the compatible string-list. So, drop the
-board-specific compatible string and add cbass_main as a parent node to
-avoid parent node and child node address-cells mismatch error.
+Hi Houlong,
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
-Changes in V1:
-Fixed alignment issue which caused the yaml parse error.
+On Mon, Aug 16, 2021 at 1:00 PM houlong wei <houlong.wei@mediatek.com> wrote:
+> Hi Eizan,
+>
+> "mdp-rdma0" may be not the only one master device node. In fact, there
+> are 2 "mdp-rdma" in mt8173. You can see "mdp_rdma1" via below link.
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm64/boot/dts/mediatek/mt8173.dtsi?h=v5.13.11#n1016
+> If we add "mediatek,mt8173-mdp" to "mdp_rdma1" like below, we will have
+> one more V4L2 video devie node.
+>
+>                 mdp_rdma1: rdma@14002000 {
+>                         compatible = "mediatek,mt8173-mdp-rdma",
+>                                      "mediatek,mt8173-mdp";
+>                         ...
+>                 }
+>
+> We should consider the case that there are more than one "MDP_RDMA"
+> components.
 
- .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+Would it be okay with you if we added support for multiple MDP master
+device nodes in follow-up changes? My rationale is this:
+- As far as I can tell, the mediatek integration with V4L2 currently
+only handles a single MDP master device node. It's not clear to me the
+scope of changes that will be needed to make things work properly with
+multiple nodes.
+- The patch series makes video decode work (admittedly, in light of
+your comments not optimally) upstream, which is better than not
+landing these changes at all.
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-index 6070456a7b67..e44a9397b8db 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-@@ -132,10 +132,8 @@ required:
- unevaluatedProperties: false
- 
- examples:
--  - |
--    / {
--        model = "Texas Instruments K3 J721E SoC";
--        compatible = "ti,j721e";
-+  - |+
-+    cbass_main {
-         #address-cells = <2>;
-         #size-cells = <2>;
- 
--- 
-2.31.1
+I'd like to say that I'm very open to (and excited about) discussing
+further work to support multiple MDP master nodes, perhaps we can
+work together on this so I can understand what needs to be done.
 
+Please let me know your thoughts,
+
+Eizan
