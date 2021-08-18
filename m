@@ -2,155 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBBB43F0409
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 14:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 427353F0447
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 15:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235222AbhHRMzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 08:55:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57964 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234801AbhHRMzs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 08:55:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EDCDD6108E;
-        Wed, 18 Aug 2021 12:55:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629291314;
-        bh=qfimuz/xc2ShyihFDgQNSAdTOIIZ4oK4XRr5EFm9R2I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OFrXhTd4g/bAi0QZbPFyVKqhN00Z7DB0yuYoMnE7e4ge7IjKWkVa3VPATTyBcyGmP
-         8IbxWtoB7NQ3f/QXGJP0BwrF5fAmcEN1WdFHZfq9F9XGnrQEt9ovqUMrg5IL6WdGcT
-         C74RBdriBjr0wnMB8eI0qMTTwBdbaz7nBu4C/bbri2fvoqc3Aj9Jy6yE5mEJSax5Nz
-         Fc3ZLPn4wggTpoPPNVNXsphcbNAj4AZ5vFCEZNoD3wzeDBSyGe0ChPfMc2Mg9TKRiJ
-         PNBhNL3b0Gl9TuxPk7dgbcfNX89SLmFHvRoraFGbI6vxjATeCq//S7ECcQJcKrqC1L
-         MFjR9yKlimV5g==
-Received: by mail-ed1-f50.google.com with SMTP id by4so3067742edb.0;
-        Wed, 18 Aug 2021 05:55:13 -0700 (PDT)
-X-Gm-Message-State: AOAM5330ip4sXxZEXzSXpx7Q8IjMXrotjJLP2g7kX3vqH+5Et7FBIWdf
-        tvGXpZR0HU1+csqXGUWLRwALxpQej3BZQrb9/w==
-X-Google-Smtp-Source: ABdhPJzuNBTtBcYMCaYc9W5j3jR2kGlpRL7Yc/Is/o23NEzU55JTlCNHqsQzj+0z5W7mh/h3lTV812t9gnUkc0HkntM=
-X-Received: by 2002:aa7:cb19:: with SMTP id s25mr10215026edt.194.1629291311549;
- Wed, 18 Aug 2021 05:55:11 -0700 (PDT)
+        id S235423AbhHRNGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 09:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236615AbhHRNGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 09:06:14 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52DA1C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 06:05:39 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1mGLG6-0002LF-3u; Wed, 18 Aug 2021 15:05:30 +0200
+Subject: Re: [PATCH V3 3/3] gpio: modepin: Add driver support for modepin GPIO
+ controller
+To:     Piyush Mehta <piyushm@xilinx.com>, "arnd@arndb.de" <arnd@arndb.de>,
+        "zou_wei@huawei.com" <zou_wei@huawei.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        Michal Simek <michals@xilinx.com>,
+        Jiaying Liang <jliang@xilinx.com>,
+        "iwamatsu@nigauri.org" <iwamatsu@nigauri.org>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Rajan Vaja <RAJANV@xilinx.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        git <git@xilinx.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210818081018.2620544-1-piyush.mehta@xilinx.com>
+ <20210818081018.2620544-4-piyush.mehta@xilinx.com>
+ <b3d718af-6eb7-a212-f599-d0d91273afdc@pengutronix.de>
+ <SJ0PR02MB86443029095BF5949E51808AD4FF9@SJ0PR02MB8644.namprd02.prod.outlook.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <a1bd7d9f-5746-2d4c-8658-beb804468846@pengutronix.de>
+Date:   Wed, 18 Aug 2021 15:05:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-6-maxime@cerno.tech>
- <CAL_JsqKAZLBK2UDDUNrO4aaYr886oODB_N_yF70X44gPXs=k5Q@mail.gmail.com> <20210818100021.yzzcuadkowy4tfv4@gilmour>
-In-Reply-To: <20210818100021.yzzcuadkowy4tfv4@gilmour>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 18 Aug 2021 07:54:59 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK8ZDy=4_KmB_5ce4Z1=XcKH7EgydAVuC5Cko6F63ACrQ@mail.gmail.com>
-Message-ID: <CAL_JsqK8ZDy=4_KmB_5ce4Z1=XcKH7EgydAVuC5Cko6F63ACrQ@mail.gmail.com>
-Subject: Re: [PATCH 05/54] dt-bindings: Convert Reserved Memory binding to a schema
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Grant Likely <grant.likely@arm.com>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@googlegroups.com,
-        Mailing List <devicetree-spec@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <SJ0PR02MB86443029095BF5949E51808AD4FF9@SJ0PR02MB8644.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 5:00 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi Rob,
->
-> On Wed, Jul 21, 2021 at 08:30:43AM -0600, Rob Herring wrote:
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/reserved-memory/reserved-memory.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: /reserved-memory Node
-> > > +
-> > > +maintainers:
-> > > +  - Devicetree Specification Mailing List <devicetree-spec@vger.kernel.org>
-> > > +
-> > > +description: >
-> > > +  Reserved memory is specified as a node under the /reserved-memory node. The
-> > > +  operating system shall exclude reserved memory from normal usage one can
-> > > +  create child nodes describing particular reserved (excluded from normal use)
-> > > +  memory regions. Such memory regions are usually designed for the special
-> > > +  usage by various device drivers.
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    const: reserved-memory
-> > > +
-> > > +  "#address-cells": true
-> > > +  "#size-cells": true
-> > > +  ranges: true
-> > > +
-> > > +patternProperties:
-> > > +  "^(?!(ranges))[a-z,-]*(@[0-9]+)?$":
-> >
-> > Note that you could drop this and put under 'additionalProperties'.
-> > You would lose some node name checking, but there's really little
-> > standard on these nodes.
->
-> I didn't realise it could be used that way too, I'll change it.
->
-> > > +    type: object
-> > > +
-> > > +    description: >
-> > > +      Each child of the reserved-memory node specifies one or more regions of
-> > > +      reserved memory. Each child node may either use a 'reg' property to
-> > > +      specify a specific range of reserved memory, or a 'size' property with
-> > > +      optional constraints to request a dynamically allocated block of memory.
-> > > +
-> > > +      Following the generic-names recommended practice, node names should
-> > > +      reflect the purpose of the node (ie. "framebuffer" or "dma-pool"). Unit
-> > > +      address (@<address>) should be appended to the name if the node is a
-> > > +      static allocation.
-> > > +
-> > > +    properties:
-> > > +      reg: true
-> > > +
-> > > +      size:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +        description: >
-> > > +          Length based on parent's \#size-cells. Size in bytes of memory to
-> > > +          reserve.
-> > > +
-> > > +      alignment:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +        description: >
-> > > +          Length based on parent's \#size-cells. Address boundary for
-> > > +          alignment of allocation.
-> > > +
-> > > +      alloc-ranges:
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +        description: >
-> > > +          Address and Length pairs. Specifies regions of memory that are
-> > > +          acceptable to allocate from.
-> > > +
-> > > +      compatible:
-> > > +        oneOf:
-> > > +          - const: shared-dma-pool
-> > > +            description: >
-> > > +              This indicates a region of memory meant to be used as a shared
-> > > +              pool of DMA buffers for a set of devices. It can be used by an
-> > > +              operating system to instantiate the necessary pool management
-> > > +              subsystem if necessary.
-> > > +
-> > > +          # Vendor-specific compatibles in the form <vendor>,[<device>-]<usage>
-> > > +          - const: mediatek,trustzone-bootinfo
-> >
-> > I think these should be separate schema files. At least, we're going
-> > to need to support separate files because I don't think we want ones
-> > adding custom properties here. This would fail unless we add every
-> > compatible here. We could also be a bit more exact as to which
-> > properties below apply (e.g. linux,.*-default is only valid for
-> > shared-dma-pool).
->
-> I'm not entirely sure how we can just ignore the vendor compatibles
-> without raising a warning. Do you have any suggestion?
+Hello Piyush,
 
-You need 1 schema file with all the common (child) properties and then
-1 schema file for each compatible (maybe some can be grouped) that
-references the common schema.
+On 18.08.21 12:09, Piyush Mehta wrote:
+> Hi Ahmad,
+> 
+> -----Original Message-----
+> From: Ahmad Fatoum <a.fatoum@pengutronix.de> 
+> Sent: Wednesday, August 18, 2021 2:22 PM
+> To: Piyush Mehta <piyushm@xilinx.com>; arnd@arndb.de; zou_wei@huawei.com; gregkh@linuxfoundation.org; linus.walleij@linaro.org; Michal Simek <michals@xilinx.com>; Jiaying Liang <jliang@xilinx.com>; iwamatsu@nigauri.org; bgolaszewski@baylibre.com; robh+dt@kernel.org; Rajan Vaja <RAJANV@xilinx.com>
+> Cc: linux-gpio@vger.kernel.org; devicetree@vger.kernel.org; git <git@xilinx.com>; Srinivas Goud <sgoud@xilinx.com>; linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Pengutronix Kernel Team <kernel@pengutronix.de>
+> Subject: Re: [PATCH V3 3/3] gpio: modepin: Add driver support for modepin GPIO controller
+> 
+> On 18.08.21 10:10, Piyush Mehta wrote:
+>> This patch adds driver support for the zynqmp modepin GPIO controller.
+>> GPIO modepin driver set and get the value and status of the PS_MODE 
+>> pin, based on device-tree pin configuration. These four mode pins are 
+>> configurable as input/output. The mode pin has a control register, 
+>> which have lower four-bits [0:3] are configurable as input/output, 
+>> next four-bits can be used for reading the data  as input[4:7], and 
+>> next setting the output pin state output[8:11].
+>>
+>> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+>> Acked-by: Michal Simek <michal.simek@xilinx.com>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> ---
+> 
+>> +/**
+>> + * modepin_gpio_dir_in - Set the direction of the specified GPIO pin as input
+>> + * @chip:	gpio_chip instance to be worked on
+>> + * @pin:	gpio pin number within the device
+>> + *
+>> + * Return: 0 always
+>> + */
+>> +static int modepin_gpio_dir_in(struct gpio_chip *chip, unsigned int 
+>> +pin) {
+>> +	return 0;
+>> +}
+> 
+> You say the gpio controller can configure pins as inputs or outputs.
+> These pins are controller via firmware driver. We are updating BOOT_PIN_CTRL 	0xFF5E0250 register.
+> [0:3]  = When 0, the pins will be inputs from the board to the PS. When 1, the PS will drive these pins
 
-You'd lose checking that the child nodes are actually children of
-/reserved-memory, but I'm not too worried about that.
+Ok. So if you want to configure the pin as input, you should call zynqmp_pm_bootmode_write
+to write a zero into that bit.
 
-Rob
+But there's only one zynqmp_pm_bootmode_write in the GPIO driver and it's in modepin_gpio_set_value,
+which does output, not input. If I understand you right, there should be a modepin_gpio_set_value in
+modepin_gpio_dir_in as well?
+ 
+> Yet, .direction_input is doing nothing. So, it's not clear to me, how this sequence could work:
+> 
+>  - set gpio output high (writes bootmode)
+>  - set gpio to input (no-op, pin will remain high, not high impedance)
+
+This is a valid sequence for a GPIO consumer and I don't see how this GPIO driver could
+honor it. Could you clarify?
+
+Cheers,
+Ahmad
+
+> 
+> 
+> 
+> 
+> 
+> 
+> I didn't check the previous discussions, but if this indeed works as intended, the how should be written here into the driver. That is a more useful comment than kernel doc for a stub function.
+> 
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
