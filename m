@@ -2,252 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 333F63F08CF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 18:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE453F08EC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 18:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231196AbhHRQPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 12:15:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230481AbhHRQPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 12:15:17 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C177EC0613CF
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 09:14:42 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id c4so2096467plh.7
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 09:14:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/XpeMbE0cedXmwuwUc/IBOQeV2qs0fBRVLWO6KJw4i0=;
-        b=QVZS8hvaokW7Rt90QwrZr6OVmeqYKKPauf+0OHbWua3HvLKukt9vBjzQzxxt5jAe2H
-         4CNdUz/mlx6KsUV5AVf0WVwze9hgUZozU4Zx7o5NTjcTZ1EF1K9C+wHQNTv8lRGdoEnd
-         Iq0m6pMSmRBuLWXfnYNnRdw7NU4tKJaa3hqHU=
+        id S229549AbhHRQVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 12:21:43 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:46930 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229517AbhHRQVn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 12:21:43 -0400
+Received: by mail-ot1-f54.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso4699674ott.13;
+        Wed, 18 Aug 2021 09:21:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/XpeMbE0cedXmwuwUc/IBOQeV2qs0fBRVLWO6KJw4i0=;
-        b=DZPTUmvuOZoDJGriH4NaGDDNAea3VIoPHzLG0NUkpah6J5KravU5aQS76nZip6OptE
-         +SV5elJm4QTOYM85kz95qefXI3BCtroUGAh/rJzGnIelm1Vqvnrc7fF25867A00riM1f
-         +S8wKn/gvd+nqmMe49lIKTfIgMCQeTLerHfppitca/75bEc9sPhEy1GmHf6lvpAjyybU
-         AZScDaPmxz+RiGkROMWThVflCrSdee6Bad/GvbX4Ujjf2iIjB5rOLDHzT/4c0HGPxCDP
-         bLfcIF/uQ5QoI3aNDF2I6w0jRwymJV1OFHmoWxaiMsf0tZ5BvfvARueX2tb2HhXSGJCd
-         tFAQ==
-X-Gm-Message-State: AOAM531AuA2KmrK7JkhiaFB19xDPMOggOb68ZNORSyFZ05n91ZkZOXwT
-        E8iAzMObdoGv3Rmy97OzbcsC/A==
-X-Google-Smtp-Source: ABdhPJzNkC8cFHGOwPJN+VKQaqv1bzx4/CQLog8Y1S9d7RTSiSjA+HDu+dTUkyaI/W0BKb8LXl4D1A==
-X-Received: by 2002:a17:90b:f17:: with SMTP id br23mr3488420pjb.60.1629303282317;
-        Wed, 18 Aug 2021 09:14:42 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:1d24:fb00:9009:ffbe])
-        by smtp.gmail.com with UTF8SMTPSA id 22sm179892pgn.88.2021.08.18.09.14.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Aug 2021 09:14:41 -0700 (PDT)
-Date:   Wed, 18 Aug 2021 09:14:40 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Krishna Manikandan <mkrishn@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sankeerth Billakanti <sbillaka@codeaurora.org>,
-        kalyan_t@codeaurora.org, abhinavk@codeaurora.org,
-        robdclark@gmail.com, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, khsieh@codeaurora.org,
-        rajeevny@codeaurora.org, freedreno@lists.freedesktop.org,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        satya priya <skakit@codeaurora.org>
-Subject: Re: [PATCH v1 4/4] arm64: dts: qcom: sc7280: add edp display dt nodes
-Message-ID: <YR0x8NQw/Do3L0Zz@google.com>
-References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
- <1629282424-4070-4-git-send-email-mkrishn@codeaurora.org>
+        bh=RbUPdIpj6yeN9aS9cdAwX+bResK01EzdrmFUkYq3ioI=;
+        b=iqH0kyNUVxmSQ34GtcQHRKKFunGkBl94ZDG0tJNJXg0ETjdhhOksptgYqOap29OPHF
+         V222v4mGNPQzwIHxo9WZFcedEF1F5QObFhAK/eKeCgk2AALZ8J+fJUtd6uzDC/aYOPL7
+         ApeH1W9z/RnePsj1RmLCK2SEzRdyEhEMBh8PdfAq0JDgL5jjzXbpEckV9H7uV9qPkSUb
+         ps/sTp2Bb4KNfMRuW03WIRGSYgjkiz7T3p+ycNPCZ3MzMcr/PWz2Qydo8I1RveD6Joyf
+         RBAi9GSdm1qldAvy0PmwfczhlSNUEMZELp/Dmo3v9Mx2Mv89CYBtnICypu9+TxXJdIXr
+         d7Ng==
+X-Gm-Message-State: AOAM532jfemjiv7htBGGBN/3olyn0+ks79bTx0gRMN/j6NL/IcUghtvu
+        znfoInOAKwokNpdfyS+bOg==
+X-Google-Smtp-Source: ABdhPJyS5ZENuUOC3P+zY7kzgExcSiSclHa3BGSBieC0WlrMf1Lsxgs/rqgrg2D8zyryX34eBAevFw==
+X-Received: by 2002:a05:6830:1bc1:: with SMTP id v1mr7478873ota.246.1629303668299;
+        Wed, 18 Aug 2021 09:21:08 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w23sm88059otk.56.2021.08.18.09.21.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 09:21:07 -0700 (PDT)
+Received: (nullmailer pid 2708083 invoked by uid 1000);
+        Wed, 18 Aug 2021 16:21:06 -0000
+Date:   Wed, 18 Aug 2021 11:21:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Markus Mayer <mmayer@broadcom.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory: convert Broadcom DPFE to dtschema
+Message-ID: <YR0zchjUr073SoTO@robh.at.kernel.org>
+References: <20210817080617.14503-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1629282424-4070-4-git-send-email-mkrishn@codeaurora.org>
+In-Reply-To: <20210817080617.14503-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 03:57:04PM +0530, Krishna Manikandan wrote:
-> From: Sankeerth Billakanti <sbillaka@codeaurora.org>
+On Tue, 17 Aug 2021 10:06:17 +0200, Krzysztof Kozlowski wrote:
+> Convert Broadcom DDR PHY Front End (DPFE) bindings to DT schema format
+> using json-schema.
 > 
-> Add edp controller and phy DT nodes for sc7280.
-> 
-> Signed-off-by: Sankeerth Billakanti <sbillaka@codeaurora.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 127 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 126 insertions(+), 1 deletion(-)
+>  .../memory-controllers/brcm,dpfe-cpu.txt      | 27 -----------
+>  .../memory-controllers/brcm,dpfe-cpu.yaml     | 48 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 49 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index aadf55d..5be318e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1412,7 +1412,7 @@
->  			reg = <0 0xaf00000 0 0x20000>;
->  			clocks = <&rpmhcc RPMH_CXO_CLK>,
->  				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
-> -				 <0>, <0>, <0>, <0>, <0>, <0>;
-> +				 <0>, <0>, <0>, <0>, <&edp_phy 0>, <&edp_phy 1>;
->  			clock-names = "bi_tcxo", "gcc_disp_gpll0_clk",
->  				      "dsi0_phy_pll_out_byteclk",
->  				      "dsi0_phy_pll_out_dsiclk",
-> @@ -1493,6 +1493,12 @@
->  							remote-endpoint = <&dsi0_in>;
->  						};
->  					};
-> +					port@1 {
-> +						reg = <1>;
-> +						dpu_intf5_out: endpoint {
-> +							remote-endpoint = <&edp_in>;
-> +						};
-> +					};
->  				};
->  
->  				mdp_opp_table: mdp-opp-table {
-> @@ -1608,6 +1614,101 @@
->  
->  				status = "disabled";
->  			};
-> +
-> +			msm_edp: edp@aea0000 {
-> +				status = "disabled";
-> +				compatible = "qcom,sc7280-edp";
-> +				reg = <0 0xaea0000 0 0x200>,
-> +				      <0 0xaea0200 0 0x200>,
-> +				      <0 0xaea0400 0 0xc00>,
-> +				      <0 0xaea1000 0 0x400>;
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <14 IRQ_TYPE_NONE>;
-> +
-> +				clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +					 <&gcc GCC_EDP_CLKREF_EN>,
-> +					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_EDP_AUX_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_EDP_LINK_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_EDP_LINK_INTF_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_EDP_PIXEL_CLK>;
-> +				clock-names = "core_xo", "core_ref",
-> +					      "core_iface", "core_aux", "ctrl_link",
-> +					      "ctrl_link_iface", "stream_pixel";
-> +				#clock-cells = <1>;
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_EDP_LINK_CLK_SRC>,
-> +						  <&dispcc DISP_CC_MDSS_EDP_PIXEL_CLK_SRC>;
-> +				assigned-clock-parents = <&edp_phy 0>, <&edp_phy 1>;
-> +
-> +				phys = <&edp_phy>;
-> +				phy-names = "dp";
-> +
-> +				vdda-1p2-supply = <&vreg_l6b_1p2>;
-> +				vdda-0p9-supply = <&vreg_l10c_0p8>;
 
-These regulators are defined in the board .dts (sc7280-idp.dts), hence the SoC
-.dtsi shouldn't depend on them. My impression is that pm7325.dtsi and pm8350c.dtsi
-should include definitions for regulators that supply basic SoC blocks. If the
-configuration can vary depending on the SoC there could be SoC specific includes
-for each PMIC. If a board uses a different configuration it could overwrite the
-PMIC .dtsi settings.
-
-> +				operating-points-v2 = <&edp_opp_table>;
-> +				power-domains = <&rpmhpd SC7280_CX>;
-> +
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&edp_hot_plug_det>, <&edp_panel_power_on>;
-> +
-> +				panel-bklt-gpio = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
-> +				panel-pwm-gpio = <&pm8350c_gpios 8 GPIO_ACTIVE_HIGH>;
-
-The pins are board specific, hence they shouldn't be configured in the .dtsi of
-the SoC.
-
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +					port@0 {
-> +						reg = <0>;
-> +						edp_in: endpoint {
-> +							remote-endpoint = <&dpu_intf5_out>;
-> +						};
-> +					};
-> +				};
-> +
-> +				edp_opp_table: edp-opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					opp-160000000 {
-> +						opp-hz = /bits/ 64 <160000000>;
-> +						required-opps = <&rpmhpd_opp_low_svs>;
-> +					};
-> +
-> +					opp-270000000 {
-> +						opp-hz = /bits/ 64 <270000000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-> +					};
-> +
-> +					opp-540000000 {
-> +						opp-hz = /bits/ 64 <540000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +
-> +					opp-810000000 {
-> +						opp-hz = /bits/ 64 <810000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +				};
-> +			};
-> +
-> +			edp_phy: phy@aec2000 {
-> +				status = "disabled";
-> +				compatible = "qcom,sc7280-edp-phy";
-> +				reg = <0 0xaec2a00 0 0x19c>,
-> +				      <0 0xaec2200 0 0xa0>,
-> +				      <0 0xaec2600 0 0xa0>,
-> +				      <0 0xaec2000 0 0x1c0>;
-> +
-> +				clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +					 <&gcc GCC_EDP_CLKREF_EN>;
-> +				clock-names = "aux", "cfg_ahb";
-> +
-> +				vdda-pll-supply = <&vreg_l6b_1p2>;
-> +				vdda-phy-supply = <&vreg_l10c_0p8>;
-> +
-> +				#clock-cells = <1>;
-> +				#phy-cells = <0>;
-> +			};
->  		};
->  
->  		pdc: interrupt-controller@b220000 {
-> @@ -1704,6 +1805,30 @@
->  				function = "qup13";
->  			};
->  
-> +			edp_hot_plug_det: edp-hot-plug-det {
-> +				pinmux {
-> +					pins = "gpio60";
-> +					function = "edp_hot";
-> +				};
-> +				pinconf {
-> +					pins = "gpio60";
-> +					bias-pull-down;
-> +					input-enable;
-> +				};
-
-There should be no separate 'pinmux' and 'pinconf' nodes, see other entries
-in this section.
-
-> +			};
-> +
-> +			edp_panel_power_on: edp-panel-power-on {
-> +				pinmux {
-> +					pins = "gpio80";
-> +					function = "gpio";
-> +				};
-> +				pinconf {
-> +					pins = "gpio80";
-> +					bias-disable;
-> +					output-high;
-> +				};
-> +			};
-
-IIUC this could be any GPIO and hence should be configured by the board file.
+Applied, thanks!
