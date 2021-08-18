@@ -2,114 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94E503F0CE2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 22:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 324D93F0CFA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 22:51:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233554AbhHRUmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 16:42:19 -0400
-Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:52076
-        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232969AbhHRUmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 16:42:19 -0400
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 85A7040CDD
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 20:41:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629319303;
-        bh=UOE20OlnZGDBI1w8hzaIpuPN6xfmK8WguChjFrKnZuU=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=AMPMxxlzH93EbqKkvvLs1/DuQFC7yPashajwqCWDTb5Z9STiD2KQD41p3+feaJbPp
-         /cavtIUhM2VD1MxPW7G9Pv9TOz0eUjj1uCFo4t/f6c0z0V4e7J1eWINFZGX4DmGZwg
-         /V9g9bFGwUVunKivZPtwf+GOK3tvuP0OLH7ybfssKcqx9c51xRFTvCHxFn73IFxyHJ
-         xCOGkA/NksndsMW8fZQ6Abiu+eVTqGyJJ3lttmpJQ6IDjMTDMSWp5pOczdmsfKLXsn
-         elTPpgn1cjxoz4n6IVIyL+lyUFHLky2PUsVs/GC/3m11yuONC2thZ7mTLXMiewr1Vx
-         WFBrpiBsD0KsA==
-Received: by mail-ej1-f69.google.com with SMTP id e1-20020a170906c001b02905b53c2f6542so1336423ejz.7
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 13:41:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UOE20OlnZGDBI1w8hzaIpuPN6xfmK8WguChjFrKnZuU=;
-        b=qRWOkWx4wny7SVAagbwe8nV9pgmc+atFHV2wnoEDafEBTS1FHVwF2HvpA4ULIDaa9g
-         yHKdlAmHv5PtOKEP3xmvSZlHEzzgTT5mXhLdGGWu2aZ08HcPDTPL5lHRRwhVgAJ6glhf
-         rNjHeNPoBBjBBW5KtDoiqvCExL15Ou2ykla7lAn1sM+YHMmC6+qCcpjTFPG4IhEYPcJw
-         iiKA9i6JIY3CTAFxBEOs1B0udfm5EMgz5IrtFSGfHnnMT6tKs+au+y5R1BbYocrt8j5y
-         6nrqQE0ZtJ8ueLmZ3KlvQf/hh/zB53RLJwVH5nn5fMh2A3ylmS3+OPF3MgiNtr9n/ArX
-         Bavg==
-X-Gm-Message-State: AOAM533cAx4E4mMI/u235MonKvakpJonJbRHGCuMR5efCpFEO0I1cPyk
-        PtP8zK1jdSq0C0Pp7hcz25+dTBseTsBEMfJ6fOxFd72c7KDiCHLS5JmG6LMitDrIExWy6YQ/4m/
-        NCJGTsGbap5TZ5T0asesUHi5Wa9u0Qoe32BpWVAw=
-X-Received: by 2002:a17:906:bc81:: with SMTP id lv1mr11590266ejb.393.1629319303105;
-        Wed, 18 Aug 2021 13:41:43 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzuYU3uP7y//yQFosQFGT8VE96LJF4E5eKGo52ons6ugHXq2GC+IHUQY+3g7aV0U22I95MmCg==
-X-Received: by 2002:a17:906:bc81:: with SMTP id lv1mr11590254ejb.393.1629319302920;
-        Wed, 18 Aug 2021 13:41:42 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id kv4sm360228ejc.35.2021.08.18.13.41.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Aug 2021 13:41:42 -0700 (PDT)
-Subject: Re: [PATCH v3 00/13] MT8195 SMI support
-To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
-        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
-        Ikjoon Jang <ikjn@chromium.org>
-References: <20210810080859.29511-1-yong.wu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <1a160afd-ceeb-04a3-8213-fe781ec18e30@canonical.com>
-Date:   Wed, 18 Aug 2021 22:41:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S233651AbhHRUwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 16:52:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36466 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230440AbhHRUv6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 16:51:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A8A356108E;
+        Wed, 18 Aug 2021 20:51:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629319883;
+        bh=Sl9oNcjdvaGC5ZCxO831r8XBsDC8b75aZ5QbNSNY50A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UEKPsb3+TuzUutteScIlS/g3HkvqLLME4lY3tflEKWT+eNCQ1aBeKV+M0VCyS25Sa
+         DqTD69LaVHtusV4ejfWlUMdJAHCW6QZmyh4JzeWTi4VC3GCN1Sv/EitCYxTHepxobZ
+         8WdZzzDPv/qDiPtkKhgPfi1DZ/ToaIjsk43hG8oRCwe2bGh0hFFv9zBE+cjJgk6M7B
+         LCOCDvH8ZroQt/zirTDYKU5qZq58WTnIm8acfqf7gAtVkHyT7X+0six7mOnOyLy/f6
+         mpvQeT/87kTfbdlH6xRBZqJT4aD2aOaZhrr0Nn6ZF0BEDoMM3Ijg5t9kPulaOKkJ5C
+         rcjsNH2+k/pfQ==
+Received: by mail-qk1-f169.google.com with SMTP id t66so4707807qkb.0;
+        Wed, 18 Aug 2021 13:51:23 -0700 (PDT)
+X-Gm-Message-State: AOAM531wGprO9FNxNH8W5Q3zb7uR1+wQ2BxhPA8aNJCOSOEwuEzFMU4c
+        GRVr9hE/nqU6+uEdjVySR7VltrLIzKFETB128Q==
+X-Google-Smtp-Source: ABdhPJzsXFLufScm5OLqx9ioRWJkzHawuyclMN7aVm+IWMfgM/GIQtrjm10ePLURM6Ln31c3t6kL2mGya1Mafw+z4m8=
+X-Received: by 2002:a37:b686:: with SMTP id g128mr231665qkf.68.1629319882796;
+ Wed, 18 Aug 2021 13:51:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210810080859.29511-1-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
+ <20210726083204.93196-2-mark.kettenis@xs4all.nl> <20210726231848.GA1025245@robh.at.kernel.org>
+ <87sfzt1pg9.wl-maz@kernel.org> <CAL_JsqLvqWiuib9s4PzX8pOQYJQ0eR7Gxz==J849eVJ5MDq4SA@mail.gmail.com>
+ <8735ra1x8t.wl-maz@kernel.org> <CAL_JsqJ5M3soMT30ntSTbqqdrQP8TT26mHL-0xExsn10MWPofA@mail.gmail.com>
+ <56140331bd735d61@bloch.sibelius.xs4all.nl>
+In-Reply-To: <56140331bd735d61@bloch.sibelius.xs4all.nl>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 18 Aug 2021 15:51:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ-YDNWOoo8TUupDox31YreUNQAPXHnMMtXakQs0S_BDA@mail.gmail.com>
+Message-ID: <CAL_JsqJ-YDNWOoo8TUupDox31YreUNQAPXHnMMtXakQs0S_BDA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2021 10:08, Yong Wu wrote:
-> This patchset mainly adds SMI support for mt8195.
-> 
-> Comparing with the previous version, add two new functions:
-> a) add smi sub common
-> b) add initial setting for smi-common and smi-larb.
-> 
-> Change note:
-> v3:1) In the dt-binding:
->        a. Change mediatek,smi type from phandle-array to phandle from Rob.
->        b. Add a new bool property (mediatek,smi_sub_common)
->           to indicate if this is smi-sub-common.
->    2) Change the clock using bulk parting.
->       keep the smi-common's has_gals flag. more strict.
->    3) More comment about larb initial setting.
->    4) Add a maintain patch
+,
 
-The patchset looks good to me but I saw now comments from Rob, so I
-expect a resend. Therefore there is also time for additional review -
-maybe continued by Ikjoon Jang?
+On Wed, Aug 18, 2021 at 2:56 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+>
+> > From: Rob Herring <robh@kernel.org>
+> > Date: Sun, 15 Aug 2021 14:19:57 -0500
+> >
+> > On Sun, Aug 15, 2021 at 11:36 AM Marc Zyngier <maz@kernel.org> wrote:
+> > >
+> > > Hi Rob,
+> > >
+> > > Apologies for the delay, I somehow misplaced this email...
+> > >
+> > > On Mon, 02 Aug 2021 17:10:39 +0100,
+> > > Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Sun, Aug 1, 2021 at 3:31 AM Marc Zyngier <maz@kernel.org> wrote:
+> > > > >
+> > > > > On Tue, 27 Jul 2021 00:18:48 +0100,
+> > > > > Rob Herring <robh@kernel.org> wrote:
+> > > > > >
+> > > > > > On Mon, Jul 26, 2021 at 10:32:00AM +0200, Mark Kettenis wrote:
+> > > > > > > From: Mark Kettenis <kettenis@openbsd.org>
+> > > > > > >
+> > > > > > > The Apple PCIe host controller is a PCIe host controller with
+> > > > > > > multiple root ports present in Apple ARM SoC platforms, including
+> > > > > > > various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > > > > > >
+> > > > > > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > > > > > > ---
+> > > > > > >  .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
+> > > > > > >  MAINTAINERS                                   |   1 +
+> > > > > > >  2 files changed, 167 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..bfcbdee79c64
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > > > > > > @@ -0,0 +1,166 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: Apple PCIe host controller
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Mark Kettenis <kettenis@openbsd.org>
+> > > > > > > +
+> > > > > > > +description: |
+> > > > > > > +  The Apple PCIe host controller is a PCIe host controller with
+> > > > > > > +  multiple root ports present in Apple ARM SoC platforms, including
+> > > > > > > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > > > > > > +  The controller incorporates Synopsys DesigWare PCIe logic to
+> > > > > > > +  implements its root ports.  But the ATU found on most DesignWare
+> > > > > > > +  PCIe host bridges is absent.
+> > > > > >
+> > > > > > blank line
+> > > > > >
+> > > > > > > +  All root ports share a single ECAM space, but separate GPIOs are
+> > > > > > > +  used to take the PCI devices on those ports out of reset.  Therefore
+> > > > > > > +  the standard "reset-gpio" and "max-link-speed" properties appear on
+> > > > > >
+> > > > > > reset-gpios
+> > > > > >
+> > > > > > > +  the child nodes that represent the PCI bridges that correspond to
+> > > > > > > +  the individual root ports.
+> > > > > >
+> > > > > > blank line
+> > > > > >
+> > > > > > > +  MSIs are handled by the PCIe controller and translated into regular
+> > > > > > > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
+> > > > > > > +  distributed over the root ports as the OS sees fit by programming
+> > > > > > > +  the PCIe controller's port registers.
+> > > > > > > +
+> > > > > > > +allOf:
+> > > > > > > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    items:
+> > > > > > > +      - const: apple,t8103-pcie
+> > > > > > > +      - const: apple,pcie
+> > > > > > > +
+> > > > > > > +  reg:
+> > > > > > > +    minItems: 3
+> > > > > > > +    maxItems: 5
+> > > > > > > +
+> > > > > > > +  reg-names:
+> > > > > > > +    minItems: 3
+> > > > > > > +    maxItems: 5
+> > > > > > > +    items:
+> > > > > > > +      - const: config
+> > > > > > > +      - const: rc
+> > > > > > > +      - const: port0
+> > > > > > > +      - const: port1
+> > > > > > > +      - const: port2
+> > > > > > > +
+> > > > > > > +  ranges:
+> > > > > > > +    minItems: 2
+> > > > > > > +    maxItems: 2
+> > > > > > > +
+> > > > > > > +  interrupts:
+> > > > > > > +    description:
+> > > > > > > +      Interrupt specifiers, one for each root port.
+> > > > > > > +    minItems: 1
+> > > > > > > +    maxItems: 3
+> > > > > > > +
+> > > > > > > +  msi-controller: true
+> > > > > > > +  msi-parent: true
 
-If you sent a v4 with fixes rather soon and get ack from Rob, I could
-still try to get it into next merge window. After this weekend I won't
-be taking patches for this cycle and it will wait for the merge window
-to finish.
+BTW, I don't think msi-parent and msi-controller together is valid?
 
+> > > > > > > +
+> > > > > > > +  msi-ranges:
+> > > > > > > +    description:
+> > > > > > > +      A list of pairs <intid span>, where "intid" is the first
+> > > > > > > +      interrupt number that can be used as an MSI, and "span" the size
+> > > > > > > +      of that range.
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > > > > > +    items:
+> > > > > > > +      minItems: 2
+> > > > > > > +      maxItems: 2
+> > > > > >
+> > > > > > I still have issues I raised on v1 with this property. It's genericish
+> > > > > > looking, but not generic. 'intid' as a single cell can't specify any
+> > > > > > parent interrupt such as a GIC which uses 3 cells. You could put in all
+> > > > > > the cells, but you'd still be assuming which cell you can increment.
+> > > > >
+> > > > > The GIC bindings already use similar abstractions, see what we do for
+> > > > > both GICv2m and GICv3 MBIs. Other MSI controllers use similar
+> > > > > properties (alpine and loongson, for example).
+> > > >
+> > > > That's the problem. Everyone making up their own crap.
+> > >
+> > > And that crap gets approved:
+> > >
+> > > https://lore.kernel.org/lkml/20200512205704.GA10412@bogus/
+> > >
+> > > I'm not trying to be antagonistic here, but it seems that your
+> > > position on this very subject has changed recently.
+> >
+> > Not really, I think it's not the first time we've discussed this. But
+> > as I see things over and over, my tolerance for another instance
+> > without solving the problem for everyone diminishes. And what other
+> > leverage do I have?
+> >
+> > Additionally, how long we have to support something comes into play. I
+> > have no idea for a Loongson MSI controller. I have a better idea on an
+> > Apple product...
+> >
+> > > > > > I think you should just list all these under 'interrupts' using
+> > > > > > interrupt-names to make your life easier:
+> > > > > >
+> > > > > > interrupt-names:
+> > > > > >   items:
+> > > > > >     - const: port0
+> > > > > >     - const: port1
+> > > > > >     - const: port2
+> > > > > >     - const: msi0
+> > > > > >     - const: msi1
+> > > > > >     - const: msi2
+> > > > > >     - const: msi3
+> > > > > >     ...
+> > > > > >
+> > > > > > Yeah, it's kind of verbose, but if the h/w block handles N interrupts,
+> > > > > > you should list N interrupts. The worst case for the above is N entries
+> > > > > > too if not contiguous.
+> > > > >
+> > > > > And that's where I beg to differ, again.
+> > > > >
+> > > > > Specifying interrupts like this gives the false impression that these
+> > > > > interrupts are generated by the device that owns them (the RC). Which
+> > > > > for MSIs is not the case.
+> > > >
+> > > > It's no different than an interrupt controller node having an
+> > > > interrupts property. The source is downstream and the interrupt
+> > > > controller is combining/translating the interrupts.
+> > > >
+> > > > The physical interrupt signals are connected to and originating in
+> > > > this block.
+> > >
+> > > Oh, I also object to this, for the same reasons. The only case where
+> > > it makes sense IMHO is when the interrupt controller is a multiplexer.
+> >
+> > So we've had the same kind of property for interrupt multiplexers. I'm
+> > fine if you think an 'MSI to interrupts mapping property' should be
+> > named something else.
+> >
+> > > > That sounds like perfectly 'describing the h/w' to me.
+> > >
+> > > I guess we have a different view of about these things. At the end of
+> > > the day, I don't care enough as long as we can expose a range of
+> > > interrupts one way or another.
+> >
+> > I don't really either. I just don't want 10 ways AND another...
+> >
+> > > > > This is not only verbose, this is
+> > > > > semantically dubious. And what should we do when the number of
+> > > > > possible interrupt is ridiculously large, as it is for the GICv3 ITS?
+> > > >
+> > > > I don't disagree with the verbose part. But that's not really an issue
+> > > > in this case.
+> > > >
+> > > > > I wish we had a standard way to express these constraints. Until we
+> > > > > do, I don't think enumerating individual interrupts is a practical
+> > > > > thing to do, nor that it actually represents the topology of the
+> > > > > system.
+> > > >
+> > > > The only way a standard way will happen is to stop accepting the
+> > > > custom properties.
+> > > >
+> > > > All the custom properties suffer from knowledge of what the parent
+> > > > interrupt controller is. To fix that, I think we need something like
+> > > > this:
+> > > >
+> > > > msi-ranges = <intspec base>, <intspec step>, <intspec end>;
+> > > >
+> > > > 'intspec' is defined by the parent interrupt-controller cells. step is
+> > > > the value to add. And end is what to match on to stop aka the last
+> > > > interrupt in the range. For example, if the GIC is the parent, we'd
+> > > > have something like this:
+> > > >
+> > > > <GIC_SPI 123 0>, <0 1 0>, <GIC_SPI 124 0>
+> > > >
+> > > > Does this apply to cases other than MSI? I think so as don't we have
+> > > > the same type of properties with the low power mode shadow interrupt
+> > > > controllers?  So 'interrupt-ranges'?
+> > >
+> > > This would work, though the increment seems a bit over-engineered. You
+> > > also may need this property to accept multiple ranges.
+> >
+> > Yes, certainly. Worst case is a map.
+> >
+> > > > It looks to me like there's an assumption in the kernel that an MSI
+> > > > controller has a linear range of parent interrupts? Is that correct
+> > > > and something that's guaranteed? That assumption leaks into the
+> > > > existing bindings.
+> > >
+> > > Depends on how the controller works. In general, the range maps to the
+> > > MultiMSI requirements where the message is an offset from the base of
+> > > the interrupt range. So you generally end-up with ranges of at least
+> > > 32 contiguous MSIs. Anything under that is sub-par and probably not
+> > > worth supporting.
+> >
+> > Maybe just this is enough:
+> > msi-ranges = <intspec base>, <length>, <intspec base>, <length>, ...
+> >
+> > While I say 'length' here, that's really up to the interrupt parent to
+> > interpret the intspec cells.
+>
+> So for the Apple PCIe controller we'd have:
+>
+>    msi-ranges = <AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+>
+> That would work just fine.
+>
+> Should this be documented in the apple,pcie binding, or somewhere more
+> generic?
 
-Best regards,
-Krzysztof
+It doesn't have an 'apple,' prefix, so somewhere generic. Probably
+bindings/interrupt-controller/msi.txt. Or start an msi-controller.yaml
+schema as I'd rather not add things we can't validate, but I don't
+want to gate this on converting all the MSI bindings. Someone that
+understands MSI better than me should review too.
+
+Another thing I thought of is the above is assuming the interrupt
+parent is the same as any interrupts for the node and that all MSIs go
+to 1 interrupt controller. Also, given Marc doesn't think using
+'interrupts' is right, then using 'interrupt-parent' isn't either
+(though many of the examples below do just that). So maybe we need the
+phandle in there:
+
+msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+
+Other examples of this type of property include:
+al,msi-base-spi/al,msi-base-spi
+arm,msi-base-spi/arm,msi-num-spis
+mbi-ranges
+loongson,msi-base-vec/loongson,msi-num-vecs
+marvell,spi-ranges
+ti,interrupt-ranges?
+
+We should make sure msi-ranges works for all of these cases at least
+even if we can't change them.
+
+Rob
