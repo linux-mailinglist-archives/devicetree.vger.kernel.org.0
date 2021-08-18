@@ -2,118 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73CE63F05BD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BFAB3F05D0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238728AbhHROIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 10:08:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53910 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237887AbhHROIT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 10:08:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6AD14610A3;
-        Wed, 18 Aug 2021 14:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629295664;
-        bh=hGLlWsyvSf4AqdvWej7th3DOiRfeRhKplfyBiO2scnI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Gzai0b48N7Q8tCJJN53hvTcDbMHxQnGmBDyS23Pi5XB25fFs/omG6ojBTD0l2J0Kt
-         hcGF5k42AgA/9E0cVp+KkdmDweT2LNii2l+B6VjwhAzAOldDCQY/O+keXR2RKdsJ4F
-         cF7XdbGUv/fdGQTtl0UDLcec33qrQ28JWcSI5vYZf4wvTZIeoREtvP6ff+U53Ud9YW
-         Q5Re3Gbs3mmHrGllt6DR8GNxoHaYxb4die41n0sFa5YfCcqCtT5OaV3M4AFGLygiO7
-         0eqP74vaSV5mnLV10A1226CI1Mgl/jkndTQRZXGHgCgZh6+xXr1nI2lsu7wCS8zSyP
-         lJZ2joRSkPWHA==
-Received: by mail-ej1-f51.google.com with SMTP id u3so5359833ejz.1;
-        Wed, 18 Aug 2021 07:07:44 -0700 (PDT)
-X-Gm-Message-State: AOAM531bxE8ek4DN3UQCQxXW/cfhGI9ksTzzs7RCR5jYDSCBufD3cEsX
-        8gUGDNM3cVTangj7O+6IM7XqxB7RyHvr9+M/oA==
-X-Google-Smtp-Source: ABdhPJyMRU9wZavLT2iM1oxpue184YEj4Ok01jg2LrhdI+xH47FqlsX6LU8vqZAm3uqWGAejuZaCJKMLTeJts4wK0rA=
-X-Received: by 2002:a17:906:8cd:: with SMTP id o13mr10111594eje.341.1629295663029;
- Wed, 18 Aug 2021 07:07:43 -0700 (PDT)
+        id S238393AbhHROLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 10:11:19 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:40460 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235675AbhHROLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:11:19 -0400
+Received: by mail-ot1-f48.google.com with SMTP id h63-20020a9d14450000b02904ce97efee36so3788554oth.7;
+        Wed, 18 Aug 2021 07:10:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tqED2XFSCgXLMT9RVvhfNyDjVv93a0+pc2IUiiIQXGw=;
+        b=MHx8VqjOo52hRmx6toESBB5RtdrJfq+NuWriyW3htt5lykyriv8jD18GkYFIEeQSJ/
+         nQPFEvshu8q+H1fZeaSqnlaLWhhmNSP9UR5XZ7wCsSZFhqzaOyk1Rbz6z9NOqzcipVIH
+         Fd8HiMxBWk0x6Mut9ARaPVdFCHCuM3BbrWojKntVK7KdTsmvzhQ10tlFAqAczvvToF8Y
+         CXvNBfdoTsg+dMDIh7/a5AbyLnkj4lI9l7JKXME3HGCH37zpcz6qGhuXr3Jl3dQxG9zn
+         FfM5zfKnKvN0jpgxAye+yTk0QGkxAciUGm5RRZT6PSavIFY8tGHlALA4lRab/ml+Zazl
+         Gsog==
+X-Gm-Message-State: AOAM532J8HcVqMfnF/XzY1nFeY4mRmxBVM53AoLYEZ+7xHWue3E7TWBE
+        QNIhbRGpozeiFTJMW6+/9w==
+X-Google-Smtp-Source: ABdhPJydLRhTyxC612CzNagoCp20Xdt7VcCSkeTxxqNVNohU7xCnXV+ABAwS/hFimq1cZBHDMGFuGQ==
+X-Received: by 2002:aca:171a:: with SMTP id j26mr7075944oii.69.1629295844074;
+        Wed, 18 Aug 2021 07:10:44 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l8sm1070165oom.19.2021.08.18.07.10.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 07:10:43 -0700 (PDT)
+Received: (nullmailer pid 2532627 invoked by uid 1000);
+        Wed, 18 Aug 2021 14:10:42 -0000
+Date:   Wed, 18 Aug 2021 09:10:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        linux-usb@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH RESEND 1/9] dt-bindings: usb: mtk-xhci: add optional
+ property to disable usb2 ports
+Message-ID: <YR0U4irxNbITU2R5@robh.at.kernel.org>
+References: <1629189389-18779-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-References: <20210818130950.3715-1-Wentao_Liang_g@163.com>
-In-Reply-To: <20210818130950.3715-1-Wentao_Liang_g@163.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 18 Aug 2021 09:07:31 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLfvfi42QGkM_WqKUm0GPZ6z=ybBz9kaR5UakKd0mzGEw@mail.gmail.com>
-Message-ID: <CAL_JsqLfvfi42QGkM_WqKUm0GPZ6z=ybBz9kaR5UakKd0mzGEw@mail.gmail.com>
-Subject: Re: [PATCH] drivers:of:property.c: fix a potential double put
- (release) bug
-To:     Wentao_Liang <Wentao_Liang_g@163.com>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1629189389-18779-1-git-send-email-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Saravana
-
-On Wed, Aug 18, 2021 at 8:26 AM Wentao_Liang <Wentao_Liang_g@163.com> wrote:
->
-> In line 1423 (#1), of_link_to_phandle() is called. In the function
-> (line 1140, #2), "of_node_put(sup_np);" drops the reference to phandle
-> and may cause phandle to be released. However, after the function
-> returns, the phandle is subsequently dropped again (line 1424, #3) by
-> the same put function. Double putting the phandle can lead to an
-> incorrect reference count.
->
-> We believe that the first put of the phandle is unnecessary (#3). We
-> can fix the above bug by removing the redundant "of_node_put()" in line
-> 1423.
->
-> 1401 static int of_link_property(struct device_node *con_np,
->                                 const char *prop_name)
-> 1402 {
-> ...
-> 1409     while (!matched && s->parse_prop) {
-> ...
-> 1414
-> 1415         while ((phandle = s->parse_prop(con_np, prop_name, i))) {
-> ...
->                  //#1 phandle is dropped in this function
-> 1423             of_link_to_phandle(con_dev_np, phandle);
->
-> 1424             //#3 the second drop to phandle
->                  of_node_put(phandle);
->
-> 1425             of_node_put(con_dev_np);
-> 1426         }
-> ...
-> 1428     }
-> 1429     return 0;
-> 1430 }
->
-> 1095 static int of_link_to_phandle(struct device_node *con_np,
-> 1096                   struct device_node *sup_np)
-> 1097 {
-> 1098     struct device *sup_dev;
-> 1099     struct device_node *tmp_np = sup_np;
-> ...
-> 1140     of_node_put(sup_np);  //#2 the first drop to phandle
->                                //   (unnecessary)
-> 1141
-> 1142     return 0;
-> 1143 }
->
-> Signed-off-by: Wentao_Liang <Wentao_Liang_g@163.com>
+On Tue, 17 Aug 2021 16:36:21 +0800, Chunfeng Yun wrote:
+> Add support to disable specific usb2 host ports, it's useful when
+> a usb2 port is disabled on some platforms, but enabled on others for
+> the same SoC, another case is that the different package may support
+> different number of ports.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  drivers/of/property.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 6c028632f425..408fdde1a20c 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1137,7 +1137,6 @@ static int of_link_to_phandle(struct device_node *con_np,
->         put_device(sup_dev);
->
->         fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
-> -       of_node_put(sup_np);
->
->         return 0;
->  }
-> --
-> 2.25.1
->
+>  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
