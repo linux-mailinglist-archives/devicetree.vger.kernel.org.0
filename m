@@ -2,147 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 155D43F0997
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 18:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129D93F09B6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 18:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230158AbhHRQuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 12:50:13 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:39716 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbhHRQuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 12:50:12 -0400
-Received: by mail-ot1-f49.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so4854842otf.6;
-        Wed, 18 Aug 2021 09:49:38 -0700 (PDT)
+        id S232769AbhHRQ5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 12:57:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56926 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232577AbhHRQ5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 12:57:43 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CE7C061764;
+        Wed, 18 Aug 2021 09:57:08 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id p38so6111546lfa.0;
+        Wed, 18 Aug 2021 09:57:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9afXLHEiBRvQw+FqKQqGWY2brD9XGx9hPAmFRANM6E0=;
+        b=SkFjeie1BejmJMUfsJJa7cdKxHWnbIqV6yEx50leCh45/lOA2mtYHIhF2YuT+/qxMT
+         Kz4yDrQ39Ns52bpJRJ1nvYNdeOrbzSvGNVDSFXOIEZy/5g8lF1kLMJksTgXPJ8QmjHcg
+         iB+julVaTc7z/7axFMQXOnE7a569YrihqMFwkdkfwrYA1Olh6EVmg/hGR1JfF7Bo+IzT
+         5pn2hximEzVhmBcizH/3kj9vKvVTct62o0rKSGlLwd0/7BGb0XQ+by7ZLMa2P8L4PJg+
+         efMjguZzhJdMSLcJQv1Pv0yiP3TQGVx4otwdNVArVuo1hHYq6zxbh/irwSRReTHHDhIg
+         HoAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hgUeilmmvPU0xEekHvKIx2V/TUPmcvoEThDx7GYZZ4w=;
-        b=GR5bzoMSLB2ScPE+2CcoOrP3E3NDx7ZbsHpLZsAuSzcDxFIeuVKH/GvXp2Uowa3a3J
-         MWSEMGKQBQBEThEQf4B+uFwS5fx49i5ol43p0KF/P0VSwvNSrvyfCcPujHNw9l7Lbd7m
-         IblPytQ3yb25m3x+kWoanCRcnh7bEi39pBsS50IObUpU//fAk78olAU+sLqfEX1/qaP7
-         9D92OQ9YNDjnnk6ArqcfjsJESTlNHi1j11c4UuwPSlZs89guB/+3COa0ZOhU2qJfGxHc
-         0Nj3GQqg/8BuQhGK5sPNKFTt0v2krSBT+T3aqIr73zTGGdmwyzirmEr75oDIFBEtXzgp
-         r0ag==
-X-Gm-Message-State: AOAM533mPlkrl4f7+ked2nltCrtIRCi5uW1eby7qzQFTpSpQ6xKnGolx
-        LgTSNaK9ycsbtNImUphRJA==
-X-Google-Smtp-Source: ABdhPJxLoAkjNu1srPTTOJXfdPHKoAjR0hh3Z9t9WUVKsa/8K7C6Upp4n18c3yJtxpMImROBnwVbbw==
-X-Received: by 2002:a05:6830:2006:: with SMTP id e6mr8047817otp.257.1629305377788;
-        Wed, 18 Aug 2021 09:49:37 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s184sm124056oif.20.2021.08.18.09.49.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 09:49:37 -0700 (PDT)
-Received: (nullmailer pid 2744304 invoked by uid 1000);
-        Wed, 18 Aug 2021 16:49:36 -0000
-Date:   Wed, 18 Aug 2021 11:49:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: Document
- senseair,sunrise CO2 sensor
-Message-ID: <YR06IK8UzrsfPec+@robh.at.kernel.org>
-References: <20210817154951.50208-1-jacopo@jmondi.org>
- <20210817154951.50208-2-jacopo@jmondi.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9afXLHEiBRvQw+FqKQqGWY2brD9XGx9hPAmFRANM6E0=;
+        b=tD/Umr9dTSkop2zTtRdV7TcHbWWlaXs4KlMb7g8Vib1GLiIjZ7INO8VFnRT9o3oill
+         mMteg4ycFSzW1AhgTx+gXlTbtYmiQhDN4B1EUSqaVkhuCiNpId2g20uyxiJm93ZU7Js6
+         pUlSjaPzKFc49zNHsrt5DJ2ZE9+EvGGyuRG+8N+H3ixJdnAwEV3SFc7REMQ8RmMrHs4d
+         tVMnRrcquIPCtHf64kp+Zs/OZfm7IiOl6tC1d6iTpxpovkKOYFLWvT9euT/gimBsGJfk
+         upyP1ndZi/0flC2Rs7Sqv+RilIVJkS8rbZWRmcN/WHZ0BNSSfovgdApxlnYZqNaY089e
+         oenw==
+X-Gm-Message-State: AOAM5326V9bgmzHehg2E+0mByYDSFx807PjfcEJ8OgywcYtObjZKFhwk
+        LxWfC1g3wq816+FUIWRU02x4qPwQ6bA=
+X-Google-Smtp-Source: ABdhPJwoN3TrpzatYdR/vf/doNTOb6j8sY8QLs5kbR7gHEbbr6h18EW7bx2EM9tVNh0BF01dlvfX6g==
+X-Received: by 2002:a19:701a:: with SMTP id h26mr6902287lfc.443.1629305825693;
+        Wed, 18 Aug 2021 09:57:05 -0700 (PDT)
+Received: from [192.168.2.145] (46-138-85-91.dynamic.spd-mgts.ru. [46.138.85.91])
+        by smtp.googlemail.com with ESMTPSA id f19sm24809lfu.100.2021.08.18.09.57.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Aug 2021 09:57:05 -0700 (PDT)
+Subject: Re: [PATCH v8 06/34] dt-bindings: clock: tegra-car: Document new
+ tegra-clocks sub-node
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20210817012754.8710-1-digetx@gmail.com>
+ <20210817012754.8710-7-digetx@gmail.com> <YR0SSz7KMh7TwaFW@orome.fritz.box>
+ <eff5ef47-e6e0-3e03-cf1a-d931b0f2dc2a@gmail.com>
+ <YR033zuYWWLCeYpM@orome.fritz.box>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a5b942cb-1611-9ae1-6e89-4b68fdaf03e3@gmail.com>
+Date:   Wed, 18 Aug 2021 19:57:04 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210817154951.50208-2-jacopo@jmondi.org>
+In-Reply-To: <YR033zuYWWLCeYpM@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 17, 2021 at 05:49:50PM +0200, Jacopo Mondi wrote:
-> Add documentation for the Senseair Sunrise 006-0-0007 CO2 NDIR sensor.
+18.08.2021 19:39, Thierry Reding пишет:
+>> We don't have a platform device for CaR. I don't see how it's going to
+>> work. We need to create a platform device for each RPM-capable clock
+>> because that's how RPM works. The compatible string is required for
+>> instantiating OF-devices from a node, otherwise we will have to
+>> re-invent the OF core.
+> I think we do have a platform device for CAR. It's just not bound
+> against by the driver because these clock drivers are "special". But
+> from other parts of the series you're already trying to fix that, at
+> least partially.
 > 
-> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> ---
->  .../iio/chemical/senseair,sunrise.yaml        | 51 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  2 files changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml b/Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
-> new file mode 100644
-> index 000000000000..b77196666187
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/chemical/senseair,sunrise.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Senseair Sunrise 006-0-0007 CO2 Sensor
-> +
-> +maintainers:
-> +  - Jacopo Mondi <jacopo@jmondi.org>
-> +
-> +description: |
-> +  Senseair Sunrise 006-0-0007 is a NDIR CO2 sensor. It supports I2C or UART buses
-> +  for communications and control.
-> +
-> +  Datasheets:
-> +    https://rmtplusstoragesenseair.blob.core.windows.net/docs/Dev/publicerat/PSP11704.pdf
-> +    https://rmtplusstoragesenseair.blob.core.windows.net/docs/Dev/publicerat/PSH11649.pdf
-> +    https://rmtplusstoragesenseair.blob.core.windows.net/docs/Dev/publicerat/TDE5531.pdf
-> +    https://rmtplusstoragesenseair.blob.core.windows.net/docs/Market/publicerat/TDE7318.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: senseair,sunrise-006-0-0007
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ndry-gpios:
-> +    description: Phandle to the GPIO line connected to the nDRY pin. Active low.
-> +
-> +  en-gpios:
-> +    description: Phandle to the GPIO line connected to the EN pin. Active high.
+> But it doesn't seem right to create a platform device for each RPM-
+> capable clock. Why do they need to be devices? They aren't, so why
+> pretend? Is it that some API that we want to use here requires the
+> struct device?
 
-You need to define how many (maxItems: 1).
+The "device" representation is internal to the kernel. It's okay to me
+to have PLLs represented by a device, it's a distinct h/w by itself.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      sunrise@68 {
+CCF supports managing of clock's RPM and it requires to have clock to be
+backed by a device. That's what we are using here.
 
-'co2-sensor' perhaps.
+Please see
+https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/clk/clk.c#L109
 
-> +        compatible = "senseair,sunrise-006-0-0007";
-> +        reg = <0x68>;
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 944a14926e02..c60502eb3d36 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1000,6 +1000,8 @@ patternProperties:
->      description: Shenzhen SEI Robotics Co., Ltd
->    "^semtech,.*":
->      description: Semtech Corporation
-> +  "^senseair,.*":
-> +    description: Senseair AB
->    "^sensirion,.*":
->      description: Sensirion AG
->    "^sensortek,.*":
-> --
-> 2.32.0
-> 
-> 
+>>> Also, I don't think the tegra- prefix is necessary here. The parent node
+>>> is already identified as Tegra via the compatible string.
+>>>
+>>> In the case of CAR, I'd imagine something like:
+>>>
+>>> 	clocks {
+>>> 		sclk {
+>>> 			operating-points-v2 = <&opp_table>;
+>>> 			power-domains = <&domain>;
+>>> 		};
+>>> 	};
+>>>
+>>> Now you've only got the bare minimum in here that you actually add. All
+>>> the other data that you used to have is simply derived from the parent.
+>> 'clocks' is already a generic keyword in DT. It's probably not okay to
+>> redefine it.
+> "clocks" is not a generic keyword. It's the name of a property and given
+> that we're talking about the clock provider here, it doesn't need a
+> clocks property of its own, so it should be fine to use that for the
+> node.
+
+I'm curious what Rob thinks about it. Rob, does this sound okay to you?
