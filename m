@@ -2,137 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A45E93EF7E6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 04:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DB23EF7F7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 04:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236121AbhHRCH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Aug 2021 22:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46758 "EHLO
+        id S236053AbhHRCPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Aug 2021 22:15:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233920AbhHRCH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 22:07:57 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B294C061764;
-        Tue, 17 Aug 2021 19:07:23 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id w4so644021ljh.13;
-        Tue, 17 Aug 2021 19:07:22 -0700 (PDT)
+        with ESMTP id S233920AbhHRCPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Aug 2021 22:15:10 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 887F0C0613C1
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 19:14:36 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id z18so2197278ybg.8
+        for <devicetree@vger.kernel.org>; Tue, 17 Aug 2021 19:14:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZdWGOBRulL4VUr2nkxtGmp68zHpJN18S3Cy3ExunZB8=;
-        b=ZbJ4H3eCNv1Bvw3hVzD9YPDeNyOTQ/GmXBdTT71urRvt/nxoTwLH1fzA/K6qn+n13V
-         EMyJFOcQBAXmK3unujC0pekGKV+GhAYdJyvRHdQzj7rWIPi7xVLg/WMJcPcQ5PirKj3r
-         mCWcJAQa780CvmoxoDAaM90aUyQvNJACNApvjKFPAAm9WwsGGlEyD1f2fvSTTM9fYxeK
-         t5Z+FLcqvZcqhqpvPAUYUBL8uyZLNwpVWq6XOlWr029EcHcHjhy6C69qNnGWOe53OGMD
-         UD0ZHK+jZlCvKxlNNnLY/8mNCqP91QRuXBKGfyt7TpkAkHcvIpzE8oPTRJStoeU2i7/F
-         OFxA==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SfPD/quo7sa0Dpo/U3uNktkHfuBQTUg1wsbvhIPD8nQ=;
+        b=o0TIRwNL6dImpqI20vNESL3ayW0bE6P7cLXb57bn4NGNNHs+dYOeTtIhJw43QMl6fY
+         qB8FFz/oHrBw4e4FCmQbC4BxpnSkMMJGSpyefrmMkM3QsztsWx2nHDkASoM1paPpt3Pi
+         CdyeLrticS2SC4lT92o9Aq6br7dqYsc5I1R62I5bw6yeZ1G8Wjzk4Wh0ADRhnRGLPFZa
+         TpIVsjqY2sBRLY0+E6SS52q/IG8C3SxK8yQw2Sikv5gvtUT0srSFTP3aMART6oX/BIh4
+         SDEPvFPpub6YnSmIwQa5UuId3Xq9gpKcxNofa2pzV4fSr0nIOY+W6a9ZRkmtVu73ctUi
+         IX4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZdWGOBRulL4VUr2nkxtGmp68zHpJN18S3Cy3ExunZB8=;
-        b=IJviccCdFwT+KoMnlqEoCg7Us869jV85n22YQtA5Q6ILVQHVn8KYbaRjYw8/Mjalk3
-         HnlJMj5bEc2bcJaw4KKYg1fdCbnBDpen0uV4fP7tWMpuEeT965SG1QPqTJE6dUmqF6g/
-         ffZsl6Li5SVd7hxfENwsSEVONMOgQE05s6XUtJMDutlyFTSeKXd6H6Jy6ukS8TBB/6tz
-         P7Jjrj84BjD+JL7elTiMq3UamdI/YV/k/JZG8iDTl23xcxBm8ygOEMPXIdUSFjR3qkaj
-         0na7JQCzWoRDQtGyQeN4dgPbbXem0n+2wE186Uhj1KoFciI8RY7TyPVdgd91+ALMfRsi
-         G/3w==
-X-Gm-Message-State: AOAM530a5pyWArEVjR7lkY62q30zaHyZOABlML5OeI6Yv5PjjiXxTVKa
-        EDQXD6+pnadARhzmF8/pXayny/RpQHI=
-X-Google-Smtp-Source: ABdhPJxciZnUMzd7GVFJFA8FMA0hGtsUp4JHBzMUe6n55lLwaZhk7ErG9OStqzAcGbzrvom9TXW02A==
-X-Received: by 2002:a2e:9256:: with SMTP id v22mr5752535ljg.150.1629252441273;
-        Tue, 17 Aug 2021 19:07:21 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-85-91.dynamic.spd-mgts.ru. [46.138.85.91])
-        by smtp.googlemail.com with ESMTPSA id 27sm353157lfz.146.2021.08.17.19.07.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Aug 2021 19:07:20 -0700 (PDT)
-Subject: Re: [PATCH v8 09/34] dt-bindings: host1x: Document Memory Client
- resets of Host1x, GR2D and GR3D
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20210817012754.8710-1-digetx@gmail.com>
- <20210817012754.8710-10-digetx@gmail.com>
- <YRxfWJJ6+1GgVs33@robh.at.kernel.org>
- <fa9a1fb7-8a87-de1a-e40a-fdc4f4d05d57@gmail.com>
- <9deced25-b184-7b5b-cebf-0ad82bd959db@gmail.com>
-Message-ID: <7f35b432-d113-99fa-88ca-20601ccf7e04@gmail.com>
-Date:   Wed, 18 Aug 2021 05:07:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SfPD/quo7sa0Dpo/U3uNktkHfuBQTUg1wsbvhIPD8nQ=;
+        b=FIDgMrhtwNGHSCwBbuv70q0tOgQCW7T/KLxaZvI2d3TXj07BqB2icTllN1BLKuqE76
+         Pi7L86pXAT3LEBr5rOdce+6ayjV0Uj8Y/pQGZyDJ/Tm7WePPOAFGERK6RI+9AJdvKNVV
+         Hyy/Tm6J55VdVgIssLAHKUtTkYJrGvM9B2bwvHVsYnkiq8Tb+Gj0thh7gynkbI3ljOlS
+         Fzpm0gRePR5vVmYFEQ518m0IzrwoN7k1ZelVIH5BYdJwo+3Abk/CvqTY2IpO9cxQ2gMb
+         MEEqVQty2aNo0+jQlX3NNrZlstRAXZSV3e9nYWrv948IpTcnqdO75nGkqMBX5oY8bB7P
+         F8Kg==
+X-Gm-Message-State: AOAM530cLJ3ugFH4aDa3aSGIFvUfZam3QZ/5KuO5RvcXu3h7wQRbjB8l
+        eMiN+RL18WxWo2RMMvXDTtQ8lOOgzMqfgyF13jGZ7PeNZx0=
+X-Google-Smtp-Source: ABdhPJwsTi8md73+61thZhdX1FQ93d+S0urkqVdZduz0ednIv+UpLnakUoTxxmi9y/Zmz/zFN882OGjRHAspi6DnGzw=
+X-Received: by 2002:a25:614c:: with SMTP id v73mr8694727ybb.96.1629252875453;
+ Tue, 17 Aug 2021 19:14:35 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <9deced25-b184-7b5b-cebf-0ad82bd959db@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210814023132.2729731-1-saravanak@google.com>
+ <20210814023132.2729731-3-saravanak@google.com> <YRffzVgP2eBw7HRz@lunn.ch>
+ <CAGETcx-ETuH_axMF41PzfmKmT-M7URiua332WvzzzXQHg=Hj0w@mail.gmail.com> <YRrVYNi1E2QO+XSY@lunn.ch>
+In-Reply-To: <YRrVYNi1E2QO+XSY@lunn.ch>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 17 Aug 2021 19:13:59 -0700
+Message-ID: <CAGETcx9Yc6PAyrhzu4JN9fuVvHnOYOUnwgGhJ0kPdOBFe9eLbw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: property: fw_devlink: Add support for
+ "phy-handle" property
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-18.08.2021 05:04, Dmitry Osipenko пишет:
-> 18.08.2021 04:37, Dmitry Osipenko пишет:
->> 18.08.2021 04:16, Rob Herring пишет:
->>> On Tue, Aug 17, 2021 at 04:27:29AM +0300, Dmitry Osipenko wrote:
->>>> Memory Client should be blocked before hardware reset is asserted in order
->>>> to prevent memory corruption and hanging of memory controller.
->>>>
->>>> Document Memory Client resets of Host1x, GR2D and GR3D hardware units.
->>>>
->>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->>>> ---
->>>>  .../bindings/display/tegra/nvidia,tegra20-host1x.txt          | 4 ++++
->>>>  1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.txt b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.txt
->>>> index 62861a8fb5c6..07a08653798b 100644
->>>> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.txt
->>>> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.txt
->>>> @@ -18,6 +18,7 @@ Required properties:
->>>>  - resets: Must contain an entry for each entry in reset-names.
->>>>    See ../reset/reset.txt for details.
->>>>  - reset-names: Must include the following entries:
->>>> +  - mc
->>>>    - host1x
->>>
->>> New entries should be at the end. Order matters.
->>
->> Indeed, order matters. In this case it matters by the hardware because
->> memory reset must be asserted before the controller's reset. We rely on
->> it in the code of the GENPD driver. Hence it's the intended order in
->> this patch.
->>
-> 
-> Although, my bad. It should be to reorder items here, it's not a GENPD
-> binding.
-> 
+On Mon, Aug 16, 2021 at 2:15 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Mon, Aug 16, 2021 at 01:43:19PM -0700, Saravana Kannan wrote:
+> > On Sat, Aug 14, 2021 at 8:22 AM Andrew Lunn <andrew@lunn.ch> wrote:
+> > >
+> > > Hi Saravana
+> > >
+> > > > Hi Andrew,
+> > > >
+> > >
+> > > > Also there
+> > > > are so many phy related properties that my head is spinning. Is there a
+> > > > "phy" property (which is different from "phys") that treated exactly as
+> > > > "phy-handle"?
+> > >
+> > > Sorry, i don't understand your question.
+> >
+> > Sorry. I was just saying I understand the "phy-handle" DT property
+> > (seems specific to ethernet PHY) and "phys" DT property (seems to be
+> > for generic PHYs -- used mostly by display and USB?). But I noticed
+> > there's yet another "phy" DT property which I'm not sure I understand.
+> > It seems to be used by display and ethernet and seems to be a
+> > deprecated property. If you can explain that DT property in the
+> > context of networking and how to interpret it as a human, that'd be
+> > nice.
+>
+> Ah, i think i understand:
+>
+> Documentation/devicetree/bindings/net/ethernet-controller.yaml
+>
+>   phy:
+>     $ref: "#/properties/phy-handle"
+>     deprecated: true
+>
+> So it is used the same as phy-handle. I doubt there are many examples
+> of it, it has been deprecated a long time. Maybe look in the powerpc
+> dts files?
+>
+> > > > +     /*
+> > > > +      * Device tree nodes pointed to by phy-handle never have struct devices
+> > > > +      * created for them even if they have a "compatible" property. So
+> > > > +      * return the parent node pointer.
+> > > > +      */
+> > >
+> > > We have a classic bus with devices on it. The bus master is registers
+> > > with linux using one of the mdiobus_register() calls. That then
+> > > enumerates the bus, looking at the 32 possible address on the bus,
+> > > using mdiobus_scan. It then gets a little complex, due to
+> > > history.
+> > >
+> > > Originally, the only thing you could have on an MDIO bus was a
+> > > PHY. But devices on MDIO busses are more generic, and Linux gained
+> > > support for Ethernet switches on an MDIO bus, and there are a few
+> > > other sort device. So to keep the PHY API untouched, but to add these
+> > > extra devices, we added the generic struct mdio_device which
+> > > represents any sort of device on an MDIO bus. This has a struct device
+> > > embedded in it.
+> > >
+> > > When we scan the bus and find a PHY, a struct phy_device is created,
+> > > which has an embedded struct mdio_device. The struct device in that is
+> > > then registered with the driver core.
+> > >
+> > > So a phy-handle does point to a device, but you need to do an object
+> > > orientated style look at the base class to find it.
+> >
+> > Thanks for the detailed explanation. I didn't notice a phy_device had
+> > an mdio_device inside it. Makes sense. I think my comment is not
+> > worded accurately and it really should be:
+> >
+> > Device tree nodes pointed to by phy-handle (even if they have a
+> > "compatible" property) will never have struct devices probed and bound
+> > to a driver through the driver framework. It's the parent node/device
+> > that gets bound to a driver and initializes the PHY. So return the
+> > parent node pointer instead.
+> >
+> > Does this sound right? As opposed to PHYs the other generic mdio
+> > devices seem to actually have drivers that'll bind to them through the
+> > driver framework.
+>
+> That sounds wrong. The MDIO bus master is a linux device and has a
+> driver. Same as an I2C bus master, or an SPI bus master, or a USB
+> host. All these busses have devices on them, same as an MDIO bus. The
+> devices on the bus are found and registered with the driver
+> framework. The driver framework, with some help from the mdio bus
+> class, with then find the correct driver of the device, and probe
+> it. During probe, it gets initialized by the PHY driver.
+>
+> So for me, the parent of a PHY would be the MDIO bus master, and the
+> bus master is not driving the PHY, in the same way an I2C bus master
+> does not drive the tmp100 temperature sensor on an i2c bus.
+>
+> But maybe i don't understand your terminology here?
+>
+> Maybe this will help:
+>
+> root@370rd:/sys/class/mdio_bus# ls -l
+> total 0
+> lrwxrwxrwx 1 root root 0 Jan  2  2021 '!soc!internal-regs!mdio@72004!switch@10!mdio' -> '../../devices/platform/soc/soc:internal-regs/f1072004.mdio/mdio_bus/f1072004.mdio-mii/f1072004.mdio-mii:10/mdio_bus/!soc!internal-regs!mdio@72004!switch@10!mdio'
+> lrwxrwxrwx 1 root root 0 Jan  2  2021  f1072004.mdio-mii -> ../../devices/platform/soc/soc:internal-regs/f1072004.mdio/mdio_bus/f1072004.mdio-mii
+> lrwxrwxrwx 1 root root 0 Jan  2  2021  fixed-0 -> '../../devices/platform/Fixed MDIO bus.0/mdio_bus/fixed-0'
+>
+> So there are three MDIO bus masters.
+>
+> Going into f1072004.mdio-mii, we see there are two PHYs on this bus:
+>
+> root@370rd:/sys/class/mdio_bus/f1072004.mdio-mii# ls -l
+> total 0
+> lrwxrwxrwx 1 root root    0 Aug 16 21:03 device -> ../../../f1072004.mdio
+> drwxr-xr-x 5 root root    0 Jan  2  2021 f1072004.mdio-mii:00
+> drwxr-xr-x 6 root root    0 Jan  2  2021 f1072004.mdio-mii:10
+> lrwxrwxrwx 1 root root    0 Aug 16 21:03 of_node -> ../../../../../../../firmware/devicetree/base/soc/internal-regs/mdio@72004
+> drwxr-xr-x 2 root root    0 Aug 16 21:03 power
+> drwxr-xr-x 2 root root    0 Aug 16 21:03 statistics
+> lrwxrwxrwx 1 root root    0 Jan  2  2021 subsystem -> ../../../../../../../class/mdio_bus
+> -rw-r--r-- 1 root root 4096 Jan  2  2021 uevent
+> -r--r--r-- 1 root root 4096 Aug 16 21:03 waiting_for_supplier
+>
+> and going into one of the PHYs f1072004.mdio-mii:00
+>
+> lrwxrwxrwx 1 root root    0 Aug 16 20:54 attached_dev -> ../../../../f1070000.ethernet/net/eth0
+> lrwxrwxrwx 1 root root    0 Aug 16 20:54 driver -> '../../../../../../../../bus/mdio_bus/drivers/Marvell 88E1510'
+> drwxr-xr-x 3 root root    0 Jan  2  2021 hwmon
+> lrwxrwxrwx 1 root root    0 Aug 16 20:54 of_node -> ../../../../../../../../firmware/devicetree/base/soc/internal-regs/mdio@72004/ethernet-phy@0
+> -r--r--r-- 1 root root 4096 Aug 16 20:54 phy_dev_flags
+> -r--r--r-- 1 root root 4096 Aug 16 20:54 phy_has_fixups
+> -r--r--r-- 1 root root 4096 Aug 16 20:54 phy_id
+> -r--r--r-- 1 root root 4096 Aug 16 20:54 phy_interface
+> drwxr-xr-x 2 root root    0 Aug 16 20:54 power
+> drwxr-xr-x 2 root root    0 Aug 16 20:54 statistics
+> lrwxrwxrwx 1 root root    0 Jan  2  2021 subsystem -> ../../../../../../../../bus/mdio_bus
+> -rw-r--r-- 1 root root 4096 Jan  2  2021 uevent
+>
+> The phy-handle in the MAC node points to ethernet-phy@0.
 
-* should be fine
+Thanks! Looks like I got confused a bit based on some misconceptions I
+got when working on unrelated patches. I read through the code and now
+understand how this works. I'll fix up this patch and send out a v2
+(it actually makes the patch simpler).
 
-I'll change it in v9.
+On an unrelated note, I'm still a bit confused on what's going on in
+get_phy_device() when one PHY C45 device has multiple IDs found by
+get_phy_c45_ids(). Based on the comments, it looks like each of those
+IDs might be separate devices? Or am I misunderstanding the comment?
+If they are separate devices, how is one phy_device representing them
+all?
+
+-Saravana
