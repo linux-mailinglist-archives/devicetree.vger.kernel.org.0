@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E223EFE0A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB6653EFE34
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 09:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239059AbhHRHo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 03:44:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38890 "EHLO
+        id S238603AbhHRHve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 03:51:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238942AbhHRHo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 03:44:28 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45324C0613CF
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:43:54 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id i28so2760675lfl.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:43:54 -0700 (PDT)
+        with ESMTP id S238462AbhHRHve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 03:51:34 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B59EC0613CF
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:51:00 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id d4so2725189lfk.9
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:50:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2Pb+i4XV4pD9hHVrCfu2OguYuvXddQz4i1EZeyLXlSA=;
-        b=gU6KmWZ2VTtGU6MiqbJsuaCgeM+rsgd3JJa00KF9rgd6K9cenC2G4J0H6wZB5SCAqf
-         6Bo7La+IoqM78I2iW9kvnfoDUEdChf27ygxHLn8lkctJjJ2XKY28XcqOepRC3GrG/Iv9
-         cU1jo2AKfe+0ty10qvt5sCVfPTdG5UopO0ZaY=
+        bh=Iel16lsj6RMRR46Er5XdYCOwg9LzHhn4KhXWnbYd6I8=;
+        b=Z6UL4g1ShVuS90FHgfgXoDI0ewpCEgBdf/rZjBW7xBbfy2iaS+ch/kpFLuCG76wgsg
+         XjzJywFmHZyLb/7h1BhV8W++8I6HRHNqOXU1z09Ff1N1nsKiRPXfUPFbtuK5EegZ3NNL
+         qUHLFEliYdrejtMHhNSu19/d3oLe737Y9Z0JI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2Pb+i4XV4pD9hHVrCfu2OguYuvXddQz4i1EZeyLXlSA=;
-        b=PYaYtO5DdIIzNYD9KdysltPUfzg7RnkzkKM06x3FbVDVgFjvFjpHMta+YM4uSp+N5b
-         lWS39mQ8/8cj/z9fVgKRTAvo7MAcs12oPpwGJX2yZQTVIAbYR4yj8aJtcKFnJ7c63il2
-         XbdOFPiUNFCwN+VCGuln4bOq33PGz2xwS2LR3rnHH89Ubi9bG0G5Al1CmQAYlIINaMLB
-         HsAYvu4hhDNnQiCl1kKyYcun4hkc1gk260XJQIiwvDenyyMirJa+KLOdyEReGdgXaI7Q
-         PX3FrrtMuvwJuBTNRqX7CEE6K/Bmd9xZOVWYYXxjYv74Nah1VP/McEaBstAfC5R3Sc/p
-         TRWg==
-X-Gm-Message-State: AOAM532fX7cx8QdHQdpRWe6lJ160aHL5HQ4BZUVM4XOvynsHrjtgGR9X
-        T6Tc+6T3MldF1tFlfKQH6Ch0B1NPKno1Rg==
-X-Google-Smtp-Source: ABdhPJzMU/6UmKzC7dzU8QuRui/bvR3waSzai7lphniQLHifVVz1MWz1n0+YWA2uQE2vnGcF4fD8TQ==
-X-Received: by 2002:a05:6512:68e:: with SMTP id t14mr5680554lfe.429.1629272632480;
-        Wed, 18 Aug 2021 00:43:52 -0700 (PDT)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com. [209.85.167.52])
-        by smtp.gmail.com with ESMTPSA id bn16sm341430ljb.74.2021.08.18.00.43.50
+        bh=Iel16lsj6RMRR46Er5XdYCOwg9LzHhn4KhXWnbYd6I8=;
+        b=lk5du/ACctr3vK1C6ft9a61lN/AE99bUfYVrFD1qgoafX6TzeGr5L0QaqBz0mdUD/B
+         XmIhF0YYSraTtnDvWE59TxSzSTJcE74P7SHJfVz/FezXMzcVt2oeFjj9Cu2VAm5881U4
+         Uvu59SfgD5QP2TejU4MxCckP5N+6D5V4MtE2hLVtURwKwGA/R3+R5Qki9rEfTDu5cBJZ
+         MMwm8fdWO5qGaq9Uqn6FWfJoJbrb3E/0Gd6bvWeWgp0cz5C/c4DjGjbNxnJNATtVvWWf
+         0/24x3baCcnXBgoX/x0H+HSTRuN8fpaF1d8ByEgB9YclraW28vG87qu48lsrQWFyfa9A
+         bNfw==
+X-Gm-Message-State: AOAM532ZngvTIidjX+03lnT/BVqaHlxg2N8BaO+ZoT28IMqd0dREWL8j
+        MTF5P6n6FJBqrfqZ32vk8+F7uu4ZNJA6Qw==
+X-Google-Smtp-Source: ABdhPJxbMLdpqcdbGxiKWhvllVGZfMZ4v1SZLkqBulPlfmCbMmXs0AFie0S5cmAS0RGJikraUkvmaA==
+X-Received: by 2002:ac2:57cb:: with SMTP id k11mr5504188lfo.119.1629273058262;
+        Wed, 18 Aug 2021 00:50:58 -0700 (PDT)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id 10sm493032lji.88.2021.08.18.00.50.57
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Aug 2021 00:43:51 -0700 (PDT)
-Received: by mail-lf1-f52.google.com with SMTP id y34so2705690lfa.8
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:43:50 -0700 (PDT)
-X-Received: by 2002:a19:2d4e:: with SMTP id t14mr5421824lft.30.1629272630297;
- Wed, 18 Aug 2021 00:43:50 -0700 (PDT)
+        Wed, 18 Aug 2021 00:50:57 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id i28so3428128ljm.7
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 00:50:57 -0700 (PDT)
+X-Received: by 2002:a2e:b0e8:: with SMTP id h8mr6695165ljl.189.1629273056836;
+ Wed, 18 Aug 2021 00:50:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210802121215.703023-1-eizan@chromium.org> <20210802220943.v6.7.I2049e180dca12e0d1b3178bfc7292dcf9e05ac28@changeid>
- <bf98c5ee749bca755bd46832f858536dbf51a2a4.camel@mediatek.com>
-In-Reply-To: <bf98c5ee749bca755bd46832f858536dbf51a2a4.camel@mediatek.com>
+ <bf98c5ee749bca755bd46832f858536dbf51a2a4.camel@mediatek.com> <9f23beea197495d017a548ef483584714a3673f9.camel@mediatek.com>
+In-Reply-To: <9f23beea197495d017a548ef483584714a3673f9.camel@mediatek.com>
 From:   Eizan Miyamoto <eizan@chromium.org>
-Date:   Wed, 18 Aug 2021 17:43:33 +1000
-X-Gmail-Original-Message-ID: <CAOak1e-oyzxbvHimMReQpZCAPyCtAsaGixjwmoa0EzMjqaUxVg@mail.gmail.com>
-Message-ID: <CAOak1e-oyzxbvHimMReQpZCAPyCtAsaGixjwmoa0EzMjqaUxVg@mail.gmail.com>
+Date:   Wed, 18 Aug 2021 17:50:39 +1000
+X-Gmail-Original-Message-ID: <CAOak1e924x8E+kM2WJ3oGPxxt_R=b79BtbxPAdENamvjVamnEw@mail.gmail.com>
+Message-ID: <CAOak1e924x8E+kM2WJ3oGPxxt_R=b79BtbxPAdENamvjVamnEw@mail.gmail.com>
 Subject: Re: [PATCH v6 7/9] media: mtk-mdp: use mdp-rdma0 alias to point to
  MDP master
 To:     houlong wei <houlong.wei@mediatek.com>
@@ -84,39 +84,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Houlong,
 
-On Mon, Aug 16, 2021 at 1:00 PM houlong wei <houlong.wei@mediatek.com> wrote:
-> Hi Eizan,
->
-> "mdp-rdma0" may be not the only one master device node. In fact, there
-> are 2 "mdp-rdma" in mt8173. You can see "mdp_rdma1" via below link.
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm64/boot/dts/mediatek/mt8173.dtsi?h=v5.13.11#n1016
-> If we add "mediatek,mt8173-mdp" to "mdp_rdma1" like below, we will have
-> one more V4L2 video devie node.
->
->                 mdp_rdma1: rdma@14002000 {
->                         compatible = "mediatek,mt8173-mdp-rdma",
->                                      "mediatek,mt8173-mdp";
->                         ...
->                 }
->
-> We should consider the case that there are more than one "MDP_RDMA"
-> components.
+Thank you for your review on this series, it is much appreciated.
 
-Would it be okay with you if we added support for multiple MDP master
-device nodes in follow-up changes? My rationale is this:
-- As far as I can tell, the mediatek integration with V4L2 currently
-only handles a single MDP master device node. It's not clear to me the
-scope of changes that will be needed to make things work properly with
-multiple nodes.
-- The patch series makes video decode work (admittedly, in light of
-your comments not optimally) upstream, which is better than not
-landing these changes at all.
+On Mon, Aug 16, 2021 at 2:53 PM houlong wei <houlong.wei@mediatek.com> wrote:
+> Is your removing "mediatek,vpu" necessary for this series "Refactor MTK
+> MDP driver into core/components" ?
 
-I'd like to say that I'm very open to (and excited about) discussing
-further work to support multiple MDP master nodes, perhaps we can
-work together on this so I can understand what needs to be done.
+Removing it is not strictly necessary for the series to function, I
+will re-upload the series and omit the following changes:
+- [PATCH v6 8/9] dts: mtk-mdp: remove mediatek,vpu property from
+primary MDP device
+- [PATCH v6 9/9] dt-bindings: mediatek: remove vpu requirement from mtk-mdp
 
-Please let me know your thoughts,
+Do please let me know if you meant something different.
+
+Thanks,
 
 Eizan
+
+
+
+
+>
+> In some MediaTek projects (not upstream yet), the device-tree node name
+> "vpu" may be changed to something like "vpu0", "vpu1" or other name,
+> which depends on the implementation of "mtk-vpu" driver. We can specify
+> the different phandle to "mediatek,vpu" in .dtsi file. If we use
+> of_find_node_by_name() to get the vpu_node, we have to modify the name
+> string in different project.
+> If the answer of my previous questions is "No", I prefer to slow down
+> the modification of removing "mediatek,vpu".
+>
+> Sorry for late reply.
+>
+> Regards,
+> Houlong
