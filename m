@@ -2,65 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19D4A3F0B08
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 20:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D0943F0B12
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 20:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbhHRS3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 14:29:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34128 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229448AbhHRS3N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 14:29:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C6DB9610FD
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 18:28:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629311318;
-        bh=CQawXBz1AfPb4oe2wFxVPHcShmGB3Ksr0publsZQ4LI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=I/hdYec1ZGiUuameblcjpRaPK83Pb7ZUktrPGhtZDaNXJMBicrDq2mYQhqUgnLS3O
-         IjK+3Q3RX5Iqd1xUk54lBwFyZY8Qk0kdZrQTi9GgTzixVinOENH5tJvubOGrNjvIdc
-         nA3Q0IQR8dsDb0rQRc8YO+luk6dvklIePJXIj12vqnzN4gWJP2qH/ouaepMUTFWm0G
-         Js7MjFZ5GLKmAuJ31zfBDRdxKq8gGCiNttuDzBihVTObNBQFJlZVAvII1F2FxQ5rAR
-         LeAnR04JlpOLhKvEa13oEYHHN1nfrhzF2l1oju/I2oWtzNihEOste9yO8/7mDxoP/p
-         jOtcKtGbaI2Pw==
-Received: by mail-ed1-f49.google.com with SMTP id g21so4575828edw.4
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 11:28:38 -0700 (PDT)
-X-Gm-Message-State: AOAM530VdkMXVRskKkmerX05AkPLRB7QD7BWNXWeGZbDgR7WB3Xl+WOO
-        A93fujWRu6RkqXr9JY3FbggchYOpVbyBGNPtrA==
-X-Google-Smtp-Source: ABdhPJw1up3j+acIxUgzsJoQUnSkExQ9zXXbtlj0t6uT6IhKQsWlmSx2vypWRAH5EsK2mzkFXA6lp30Sjf9t7+XG1Ko=
-X-Received: by 2002:a05:6402:1215:: with SMTP id c21mr11749465edw.137.1629311317425;
- Wed, 18 Aug 2021 11:28:37 -0700 (PDT)
+        id S229661AbhHRSeE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 14:34:04 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:43746 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229448AbhHRSeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 14:34:03 -0400
+Received: by mail-oo1-f52.google.com with SMTP id y16-20020a4ad6500000b0290258a7ff4058so979308oos.10;
+        Wed, 18 Aug 2021 11:33:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vMo+8CpaZowa487/3sqLBnwPwXf0K3aLC0kkTt3bcrU=;
+        b=abaHx482Zh8HU/0sWiza7JKdQhnTwX86KhHmjdG1Oq8zNCu2uabAqyBX+a0hUN1ZPR
+         9smABWc8nHIap3I3v+AbbGEK6LTd9l9QlXuN/SUE0pPG5+FDYr83OvtHsyndL0PnDjpJ
+         oqaCldE6GHHQsum8+Kf0dMVJ1LK6oNtHkb25L1LMVA9LNb7Cs7r8VR+nGX2e85yRCNI6
+         L34wMWIODHMoN6fijU/elZLl6rCbByqayGoX9BYr6p9Pgo7PUmpjUynp0lHaOD4ehLbF
+         3mBcFkn6pHYqXCjxsCsRx1ctA9eilbE5RcMaMVNVYV5yRqQug7at36knszGPqlvM6pg8
+         zZHg==
+X-Gm-Message-State: AOAM531cCpD31EuB/nPls3oUI7/pT4vodcl2jSmfuGJAMAx8RjGBKhz7
+        2hHGTSZgCWKi5ah5Nm1Atg==
+X-Google-Smtp-Source: ABdhPJyyuODPJXGoyWMb6MBkpVANV0aA7zh7to3bVrP2cYuiZr85uz6iHDgDlTBDfFjisMLIS4v5ew==
+X-Received: by 2002:a4a:8d97:: with SMTP id i23mr7780375ook.4.1629311608153;
+        Wed, 18 Aug 2021 11:33:28 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m6sm157969otf.52.2021.08.18.11.33.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 11:33:27 -0700 (PDT)
+Received: (nullmailer pid 2879568 invoked by uid 1000);
+        Wed, 18 Aug 2021 18:33:26 -0000
+Date:   Wed, 18 Aug 2021 13:33:26 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     haibo.chen@nxp.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de,
+        ulf.hansson@linaro.org, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mmc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: change the
+ pinctrl-names rule
+Message-ID: <YR1SdhfM344Ii7BQ@robh.at.kernel.org>
+References: <1629279984-7397-1-git-send-email-haibo.chen@nxp.com>
 MIME-Version: 1.0
-References: <SJ0PR03MB6359D948CF6D8C2A8FF9757099FF9@SJ0PR03MB6359.namprd03.prod.outlook.com>
-In-Reply-To: <SJ0PR03MB6359D948CF6D8C2A8FF9757099FF9@SJ0PR03MB6359.namprd03.prod.outlook.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 18 Aug 2021 13:28:26 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKRzx8dsCMErir6Lm1f6HF-nru-sHUp6+eaE9Y_5d5psQ@mail.gmail.com>
-Message-ID: <CAL_JsqKRzx8dsCMErir6Lm1f6HF-nru-sHUp6+eaE9Y_5d5psQ@mail.gmail.com>
-Subject: Re: Express that at least one patternProperties is required
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1629279984-7397-1-git-send-email-haibo.chen@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 6:03 AM Sa, Nuno <Nuno.Sa@analog.com> wrote:
->
-> Hi Rob,
->
-> I'm preparing a patch to do a slight improvement in [1] where if there are no channels
-> given in the devicetree, it does not really make sense to probe the device. Now,
-> I want to express this in the bindings doc [2] but I'm failing to find a way to say that
-> at least one of the patternProperties channel has to be present. For my shame,
-> this is the only way I could express it:
+On Wed, Aug 18, 2021 at 05:46:24PM +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> Change the pinctrl-names rule to cover all cases.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  .../bindings/mmc/fsl-imx-esdhc.yaml           | 21 +++++++++++++------
+>  1 file changed, 15 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 17086f60f8a3..d324606a4f0a 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -116,12 +116,21 @@ properties:
+>        - const: per
+>  
+>    pinctrl-names:
+> -    minItems: 1
+> -    items:
+> -      - const: default
+> -      - const: state_100mhz
+> -      - const: state_200mhz
+> -      - const: sleep
+> +    oneOf:
+> +      - items:
+> +          - const: default
+> +          - const: state_100mhz
+> +          - const: state_200mhz
+> +          - const: sleep
+> +      - items:
+> +          - const: default
+> +          - const: state_100mhz
+> +          - const: state_200mhz
 
-No shame, there's actually not a better way. What you need is
-something like this[1], but you'll see it has been an open issue for
-some time.
+You can drop this one and add 'minItems: 3' to the first case.
 
-I don't think it's worth adding given the verbosity.
+> +      - items:
+> +          - const: default
+> +          - const: sleep
+> +      - items:
+> +          - const: default
+
+Similar here too with the prior case. Or use 'minItems: 1' in the first 
+case. That additional allows the 2 entry case, but why isn't that valid? 
+Couldn't a board only support default+state_100mhz?
 
 Rob
-
-[1] https://github.com/json-schema-org/json-schema-vocabularies/issues/16
