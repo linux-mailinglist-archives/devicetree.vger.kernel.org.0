@@ -2,70 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB55C3F09CE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 19:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCE33F09D8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 19:04:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232575AbhHRRCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 13:02:51 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:39825 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbhHRRCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 13:02:44 -0400
-Received: by mail-ot1-f51.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so4900910otf.6;
-        Wed, 18 Aug 2021 10:02:09 -0700 (PDT)
+        id S233351AbhHRREj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 13:04:39 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:33539 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229946AbhHRREP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 13:04:15 -0400
+Received: by mail-ot1-f48.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so4975546oti.0;
+        Wed, 18 Aug 2021 10:03:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cVPO0RsaG7ZZEe1S+shwggQUFadw+t7i37Gf0lJyhZc=;
-        b=NWaNr1TvhuxOqk/9L5CkBq7AhvXDHxVxMVJi30NKl8yKRT5vdCKeEogfr9TiJWTcxF
-         hMEsRJC3AK2M4Nqwfeg86dUQ8kgLy6ZyUM1flYR0SZIwp/ienjhFtOhvBktLp2InSG9L
-         hHtF6rgge0yZ1w9C4UNDhgR4Ktr5Lk5es3EF7EzVl38yXk6LXXICmAATZL6bWV3TKvpN
-         6zGk1aYGAWxuz9NcS4+kWWfbOuEuGZMZm7QLzpZulWH6R1EMezTxf6Kz6na10J6LHEAm
-         JLDiUri5JVmiq0doJmwoukvKtcOzatnOFNlU8mt/0yOFiYQT3HaEX385k2ewrC7pdyv3
-         eAoA==
-X-Gm-Message-State: AOAM533NeJjU/AviyatRF+JHB+lk7+2dxtFM6z86BXJP7OukLi+M0/oB
-        tN+g2q+z2Fd72jjvV68Pyg==
-X-Google-Smtp-Source: ABdhPJwIsX8I3VTAoTg8Y7M/qyV+hY63Vx99dlOgAMOVUleX/XZ21KM+WUakMXZAb0YpZ1QmYTezOw==
-X-Received: by 2002:a05:6830:1f5a:: with SMTP id u26mr7950563oth.135.1629306129355;
-        Wed, 18 Aug 2021 10:02:09 -0700 (PDT)
+        bh=Eo6vbBN+sMIqmgFNP0NRrf/cRm9sBhxTH+Nv1PO+yrI=;
+        b=CUpaNWD1/SDH6PT71mAISVzjRvb7RsVh0ru9k4l57Y1oJIEQccN6sn+veS49ECRj5M
+         pxqr0Ec1/c2KJ4n+qHKRg7IgIhFCQHpzrSHyjeG7079COzDcUbKBYKrlV4GXnWmedB6d
+         GxjoyTfah2zDrxdgO5CrwcFHQHNrkP6ojPNvElF8+ooSs/yDH+lSKaTnWKyK74AuxHPX
+         yt0ndQlxRQxhbFXtVHMcuoY2FyCkvgR86iAnmSK5Wr6FWaoBe8zoNQueMoA0RNvY/J3l
+         h9/q4eZy/VW8YqoYMIe8WQ0rVwI7eGI0GOjw/KOBHsFlKi378O+WIkNzMG05/yjxwWkQ
+         L1QQ==
+X-Gm-Message-State: AOAM530BhmPW9bVUM9IIyo90KfPkRtVIqWEq5XFoqt3XHEgWNv0wmnuW
+        xZmJd1zC3vrlQlHtc4OqQA==
+X-Google-Smtp-Source: ABdhPJzwGHBEWhUDKwV/R8H1tRothaXrBmNH+xzvQTSnuAeylgwBkyZG7YvOlOS2AOuUkSiraaN5bA==
+X-Received: by 2002:a9d:6c4c:: with SMTP id g12mr7671344otq.298.1629306220319;
+        Wed, 18 Aug 2021 10:03:40 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w16sm139213oiv.15.2021.08.18.10.02.08
+        by smtp.gmail.com with ESMTPSA id w14sm117365otl.58.2021.08.18.10.03.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 10:02:08 -0700 (PDT)
-Received: (nullmailer pid 2760403 invoked by uid 1000);
-        Wed, 18 Aug 2021 17:02:07 -0000
-Date:   Wed, 18 Aug 2021 12:02:07 -0500
+        Wed, 18 Aug 2021 10:03:39 -0700 (PDT)
+Received: (nullmailer pid 2762303 invoked by uid 1000);
+        Wed, 18 Aug 2021 17:03:38 -0000
+Date:   Wed, 18 Aug 2021 12:03:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     linux-can@vger.kernel.org, David Jander <david@protonic.nl>,
-        kernel@pengutronix.de, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: can: fsl,flexcan: enable
- termination-* bindings
-Message-ID: <YR09D7S9fNzID4bu@robh.at.kernel.org>
-References: <20210818071232.20585-1-o.rempel@pengutronix.de>
- <20210818071232.20585-3-o.rempel@pengutronix.de>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>, Suman Anna <s-anna@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH V1] dt-bindings: remoteproc: k3-dsp: Update example to
+ remove board specific
+Message-ID: <YR09antwlqven6fD@robh.at.kernel.org>
+References: <20210818074030.1877-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210818071232.20585-3-o.rempel@pengutronix.de>
+In-Reply-To: <20210818074030.1877-1-sinthu.raja@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Aug 2021 09:12:31 +0200, Oleksij Rempel wrote:
-> Enable termination-* binding and provide validation example for it.
+On Wed, Aug 18, 2021 at 01:10:30PM +0530, Sinthu Raja wrote:
+> The example includes a board-specific compatible property, but developers
+> need to add the board name each time when a new board is added to the K3
+> J721E SoC list. This grows the compatible string-list. So, drop the
+> board-specific compatible string and add cbass_main as a parent node to
+> avoid parent node and child node address-cells mismatch error.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../bindings/net/can/fsl,flexcan.yaml           | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The author and S-o-b emails don't match.
+
+> ---
+> Changes in V1:
+> Fixed alignment issue which caused the yaml parse error.
+> 
+>  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> index 6070456a7b67..e44a9397b8db 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> @@ -132,10 +132,8 @@ required:
+>  unevaluatedProperties: false
+>  
+>  examples:
+> -  - |
+> -    / {
+> -        model = "Texas Instruments K3 J721E SoC";
+> -        compatible = "ti,j721e";
+> +  - |+
+> +    cbass_main {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+>  
+> -- 
+> 2.31.1
+> 
+> 
