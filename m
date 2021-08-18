@@ -2,73 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EDD3F0928
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 18:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFED13F0930
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 18:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229465AbhHRQeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 12:34:03 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:36698 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbhHRQeD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 12:34:03 -0400
-Received: by mail-oi1-f170.google.com with SMTP id bd1so4165434oib.3;
-        Wed, 18 Aug 2021 09:33:28 -0700 (PDT)
+        id S231741AbhHRQfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 12:35:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51768 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230424AbhHRQfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 12:35:38 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D99C0613D9
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 09:35:03 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id n5so2968287pjt.4
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 09:35:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=m1+hMN42icqTlxVWLTEkH0/pkiGKB8NQcMU6EbHVJG8=;
+        b=Mt3IY0k0VkCNIkfPQhsBY3B4z79w4r4++PooLHAONBUnzJjrzVuEhPjAJwV2FL8xp7
+         PlhWqmkMBIDvGjH6i1IM7fMtFTAbntsgFrD6Qp3BuWQzTM0aBspGJJyKpSV1wQ8uHkBK
+         KdD7ohp4BxnIm8kEKQUkbL4T3wU0KSqNL+E74=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rVvsI0Xv1d0KYUJHwLCP2+hlZA1OJu/pLbegVr3lseM=;
-        b=puYhaY5SearGQuUdNvkRV/hydoV2eoCL25Bli8QAWzN6fzwEiRlpUBGIe2CxtkXPDt
-         ueSSzlE+JpyiyDVcRutdND3ASLVFSsk6Gv7ij4RztAvmUzp1SXPfx5caAfrJ0iAMxyWn
-         YkyZ2qW+N6yQCPVd+2dMzgCReSZYVuZ3WQgy9/RGAQYQWUwwSbGs6x3n7ad1oc3OaYmD
-         +UbJ0TrUd+slFPGlaGvKp5A1H0WUCV4wV/1B29M4UE6ab74yLDQLm5zs6RwQAl7kGRcx
-         qRBwYqtIymJ6NrTYT6yrKH2tFCtESa6W9AKiQl1x8kdCDaHnJwGAHVs/eyjUu72suO0g
-         8T0Q==
-X-Gm-Message-State: AOAM532qCLIcFziJwpAL6EFD85u2tmaRfG+iauCZ4j9qW/ScISCLD6Um
-        kXCFWiTNKIxltpKdWHfR0Q==
-X-Google-Smtp-Source: ABdhPJxNY4w/KPNUjuR1sW0fQOhWU9TBObGNk6n0bEPJ6RdxCp2Vg5AgNS8Cq1Qc/ZRFZhp0tuxv8Q==
-X-Received: by 2002:a54:4614:: with SMTP id p20mr7812388oip.136.1629304407995;
-        Wed, 18 Aug 2021 09:33:27 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n17sm99998otl.32.2021.08.18.09.33.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 09:33:27 -0700 (PDT)
-Received: (nullmailer pid 2723574 invoked by uid 1000);
-        Wed, 18 Aug 2021 16:33:26 -0000
-Date:   Wed, 18 Aug 2021 11:33:26 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jan =?iso-8859-1?Q?L=FCbbe?= <jlu@pengutronix.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] MAINTAINERS: EDAC/armada_xp: include dt-bindings
-Message-ID: <YR02VkXGgsF7W7OU@robh.at.kernel.org>
-References: <20210817093807.59531-1-krzysztof.kozlowski@canonical.com>
- <20210817093807.59531-2-krzysztof.kozlowski@canonical.com>
- <0f5ae210aab8ef5e00172928c341c0e6c88790a2.camel@pengutronix.de>
+         :mime-version:content-disposition:in-reply-to;
+        bh=m1+hMN42icqTlxVWLTEkH0/pkiGKB8NQcMU6EbHVJG8=;
+        b=czdwkRGC7X8VmO4CEi0TrRdSxLuhXyaqSB4otBszWn/DKP26a95ldHZYYlj/tdFRQ8
+         74BJVsETtLaqPvJztH2lV7/UiE59csqJf8HCIWW41sa3YhpUxscCpBEILKulZzzSgjs8
+         jHL+uIEUsRFxQKY0OQyAYL78z95QUqnJxrplkZ6mRH8tBMuGjUXn78w4Mshwbffkp40A
+         I9jyjVKZC3ILOFaEKw2seGTOUNde+PZLPEAPyXpLYVwDLk6vnWlSV5Oc9tZwl0XllL3B
+         lQYuywc9dnkXCbdgkv1xeBan0j5CwpGmWx6blWPCKTHLxgZd1+JOy+eZFgPs5Qo5BdK6
+         ySmQ==
+X-Gm-Message-State: AOAM530GaBKFwy/ICy/KcqghfI80LlFcSu3OhJcudhxCQ98/kuNMIyID
+        e3Q1+L90UvDc2GQi4++9UNUQnQ==
+X-Google-Smtp-Source: ABdhPJzW2zNeRcHd7qe6M0HKGzkNMa+UEgzEFvjDRd8IQcbcxugUUS9wiUmRFP2v2rVEL64AsplTrQ==
+X-Received: by 2002:a17:902:c94c:b0:12d:905f:d80d with SMTP id i12-20020a170902c94c00b0012d905fd80dmr8031229pla.21.1629304503073;
+        Wed, 18 Aug 2021 09:35:03 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:1d24:fb00:9009:ffbe])
+        by smtp.gmail.com with UTF8SMTPSA id p30sm261393pfh.116.2021.08.18.09.35.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Aug 2021 09:35:02 -0700 (PDT)
+Date:   Wed, 18 Aug 2021 09:35:00 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rajeev Nandan <rajeevny@codeaurora.org>,
+        kalyan_t@codeaurora.org, sbillaka@codeaurora.org,
+        abhinavk@codeaurora.org, robdclark@gmail.com, swboyd@chromium.org,
+        bjorn.andersson@linaro.org, khsieh@codeaurora.org,
+        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v1 3/4] arm64: dts: qcom: sc7280: Add DSI display nodes
+Message-ID: <YR02tKJcautEPQHC@google.com>
+References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org>
+ <1629282424-4070-3-git-send-email-mkrishn@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0f5ae210aab8ef5e00172928c341c0e6c88790a2.camel@pengutronix.de>
+In-Reply-To: <1629282424-4070-3-git-send-email-mkrishn@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 17, 2021 at 12:50:22PM +0200, Jan Lübbe wrote:
-> On Tue, 2021-08-17 at 11:38 +0200, Krzysztof Kozlowski wrote:
-> > Include dt-bindings for Marvell Armada XP SDRAM and L2 cache ECC in the
-> > EDAC-ARMADA entry.
+On Wed, Aug 18, 2021 at 03:57:03PM +0530, Krishna Manikandan wrote:
+> From: Rajeev Nandan <rajeevny@codeaurora.org>
 > 
-> The L2 cache binding is already described in
-> Documentation/devicetree/bindings/arm/l2c2x0.yaml, so this is only for the
-> SDRAM.
+> Add DSI controller and PHY nodes for sc7280.
+> 
+> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
 
-Fixed up and applied.
+You should sign off patches you send, even if you aren't the original author.
 
-Rob
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 101 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index fd7ff1c..aadf55d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1483,6 +1483,18 @@
+>  
+>  				status = "disabled";
+>  
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dpu_intf1_out: endpoint {
+> +							remote-endpoint = <&dsi0_in>;
+> +						};
+> +					};
+> +				};
+> +
+>  				mdp_opp_table: mdp-opp-table {
+>  					compatible = "operating-points-v2";
+>  
+> @@ -1507,6 +1519,95 @@
+>  					};
+>  				};
+>  			};
+> +
+> +			dsi0: dsi@ae94000 {
+> +				compatible = "qcom,mdss-dsi-ctrl";
+> +				reg = <0 0x0ae94000 0 0x400>;
+> +				reg-names = "dsi_ctrl";
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
+> +				clock-names = "byte",
+> +					      "byte_intf",
+> +					      "pixel",
+> +					      "core",
+> +					      "iface",
+> +					      "bus";
+> +
+> +				operating-points-v2 = <&dsi_opp_table>;
+> +				power-domains = <&rpmhpd SC7280_CX>;
+> +
+> +				phys = <&dsi_phy>;
+> +				phy-names = "dsi";
+> +
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dsi0_in: endpoint {
+> +							remote-endpoint = <&dpu_intf1_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						dsi0_out: endpoint {
+> +						};
+> +					};
+> +				};
+> +
+> +				dsi_opp_table: dsi-opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-187500000 {
+> +						opp-hz = /bits/ 64 <187500000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-300000000 {
+> +						opp-hz = /bits/ 64 <300000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-358000000 {
+> +						opp-hz = /bits/ 64 <358000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +				};
+> +			};
+> +
+> +			dsi_phy: dsi-phy@ae94400 {
+> +				compatible = "qcom,sc7280-dsi-phy-7nm";
+> +				reg = <0 0x0ae94400 0 0x200>,
+> +				      <0 0x0ae94600 0 0x280>,
+> +				      <0 0x0ae94900 0 0x280>;
+> +				reg-names = "dsi_phy",
+> +					    "dsi_phy_lane",
+> +					    "dsi_pll";
+> +
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&rpmhcc RPMH_CXO_CLK>;
+> +				clock-names = "iface", "ref";
+> +
+> +				status = "disabled";
+> +			};
+
+I'm not an expect, but this looks sane to me and it's very similar to the
+SC7180 config.
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
