@@ -2,60 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D07AC3F00BA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F4E13F00AA
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232078AbhHRJkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 05:40:20 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:33322 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231539AbhHRJkU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 05:40:20 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2717E1A070A;
-        Wed, 18 Aug 2021 11:39:45 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E295B1A4DB8;
-        Wed, 18 Aug 2021 11:39:44 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 63954183ACDE;
-        Wed, 18 Aug 2021 17:39:43 +0800 (+08)
-From:   haibo.chen@nxp.com
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        ulf.hansson@linaro.org
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: add a new compatible string
-Date:   Wed, 18 Aug 2021 17:17:57 +0800
-Message-Id: <1629278277-7313-1-git-send-email-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S233365AbhHRJh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 05:37:59 -0400
+Received: from lucky1.263xmail.com ([211.157.147.135]:40392 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232627AbhHRJfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 05:35:15 -0400
+Received: from localhost (unknown [192.168.167.69])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 08888B2BF7;
+        Wed, 18 Aug 2021 17:34:32 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from xxm-vm.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P14799T139698926233344S1629279256193094_;
+        Wed, 18 Aug 2021 17:34:31 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <a80ab476dd89923c144043ae702259f7>
+X-RL-SENDER: xxm@rock-chips.com
+X-SENDER: xxm@rock-chips.com
+X-LOGIN-NAME: xxm@rock-chips.com
+X-FST-TO: bhelgaas@google.com
+X-RCPT-COUNT: 11
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Simon Xue <xxm@rock-chips.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Simon Xue <xxm@rock-chips.com>, Rob Herring <robh@kernel.org>,
+        Kever Yang <kever.yang@rock-chips.com>
+Subject: [PATCH v9] dt-bindings: rockchip: Add DesignWare based PCIe controller
+Date:   Wed, 18 Aug 2021 17:34:06 +0800
+Message-Id: <20210818093406.157788-1-xxm@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+Document DT bindings for PCIe controller found on Rockchip SoC.
 
-Lack a compatible string "fsl,imx6sll-usdhc", so add it here.
-
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
+Signed-off-by: Simon Xue <xxm@rock-chips.com>
 ---
- Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+This patch got lost somewhere through the versions, resend it.
+ .../bindings/pci/rockchip-dw-pcie.yaml        | 141 ++++++++++++++++++
+ 1 file changed, 141 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
 
-diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-index 8a9f1775b0e2..1457eb21473e 100644
---- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-@@ -29,6 +29,7 @@ properties:
-           - fsl,imx53-esdhc
-           - fsl,imx6q-usdhc
-           - fsl,imx6sl-usdhc
-+          - fsl,imx6sll-usdhc
-           - fsl,imx6sx-usdhc
-           - fsl,imx6ull-usdhc
-           - fsl,imx7d-usdhc
+diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+new file mode 100644
+index 000000000000..142bbe577763
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+@@ -0,0 +1,141 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: DesignWare based PCIe controller on Rockchip SoCs
++
++maintainers:
++  - Shawn Lin <shawn.lin@rock-chips.com>
++  - Simon Xue <xxm@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
++
++description: |+
++  RK3568 SoC PCIe host controller is based on the Synopsys DesignWare
++  PCIe IP and thus inherits all the common properties defined in
++  designware-pcie.txt.
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++# We need a select here so we don't match all nodes with 'snps,dw-pcie'
++select:
++  properties:
++    compatible:
++      contains:
++        const: rockchip,rk3568-pcie
++  required:
++    - compatible
++
++properties:
++  compatible:
++    items:
++      - const: rockchip,rk3568-pcie
++      - const: snps,dw-pcie
++
++  reg:
++    items:
++      - description: Data Bus Interface (DBI) registers
++      - description: Rockchip designed configuration registers
++      - description: Config registers
++
++  reg-names:
++    items:
++      - const: dbi
++      - const: apb
++      - const: config
++
++  clocks:
++    items:
++      - description: AHB clock for PCIe master
++      - description: AHB clock for PCIe slave
++      - description: AHB clock for PCIe dbi
++      - description: APB clock for PCIe
++      - description: Auxiliary clock for PCIe
++
++  clock-names:
++    items:
++      - const: aclk_mst
++      - const: aclk_slv
++      - const: aclk_dbi
++      - const: pclk
++      - const: aux
++
++  msi-map: true
++
++  num-lanes: true
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    const: pcie-phy
++
++  power-domains:
++    maxItems: 1
++
++  ranges:
++    maxItems: 2
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: pipe
++
++  vpcie3v3-supply: true
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - msi-map
++  - num-lanes
++  - phys
++  - phy-names
++  - power-domains
++  - resets
++  - reset-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++
++    bus {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        pcie3x2: pcie@fe280000 {
++            compatible = "rockchip,rk3568-pcie", "snps,dw-pcie";
++            reg = <0x3 0xc0800000 0x0 0x390000>,
++                  <0x0 0xfe280000 0x0 0x10000>,
++                  <0x3 0x80000000 0x0 0x100000>;
++            reg-names = "dbi", "apb", "config";
++            bus-range = <0x20 0x2f>;
++            clocks = <&cru 143>, <&cru 144>,
++                     <&cru 145>, <&cru 146>,
++                     <&cru 147>;
++            clock-names = "aclk_mst", "aclk_slv",
++                          "aclk_dbi", "pclk",
++                          "aux";
++            device_type = "pci";
++            linux,pci-domain = <2>;
++            max-link-speed = <2>;
++            msi-map = <0x2000 &its 0x2000 0x1000>;
++            num-lanes = <2>;
++            phys = <&pcie30phy>;
++            phy-names = "pcie-phy";
++            power-domains = <&power 15>;
++            ranges = <0x81000000 0x0 0x80800000 0x3 0x80800000 0x0 0x100000>,
++                     <0x83000000 0x0 0x80900000 0x3 0x80900000 0x0 0x3f700000>;
++            resets = <&cru 193>;
++            reset-names = "pipe";
++            #address-cells = <3>;
++            #size-cells = <2>;
++        };
++    };
++...
 -- 
-2.17.1
+2.25.1
+
+
 
