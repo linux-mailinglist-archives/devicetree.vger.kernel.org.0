@@ -2,79 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C249B3F0683
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 357723F068A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238766AbhHROWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 10:22:47 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:43763 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238721AbhHROW3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:22:29 -0400
-Received: by mail-ot1-f51.google.com with SMTP id x10-20020a056830408a00b004f26cead745so3875457ott.10;
-        Wed, 18 Aug 2021 07:21:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uRqk+U7P8CB77+InoBKd76nld+/UqlRHh0k0BtJQUQ8=;
-        b=bG87FOoAukQV5Tsss1yzvGrINE6pjSZL/FxuMaWmeZoVKecOBFiyvsyC79k+4FWOxV
-         CmzbMHm0RP4YyiQYsHfPyHChPRY/hsGMjMNTffwoiSCmwpU9eQYYZU+vj4QqYFb7Skvk
-         R0bHZSmRzlHGvDCIKx0RW42T7iVvYgwOX1j5q+04Z0sJQO74fr+yHn7qvBaMhuAL8yUq
-         5ah65lBphFRyvkXhT0JOE9loe2Ca2GxtiK55l0ktAt3onqJidomjoFQdVT0ylw0zRjPM
-         1EfEPzVnD9pDS3dli+5ZtvUjlfAFwUb5uQQByzcn1QV2Vnz0QMqdi7thn2ABZ+Hsvzfl
-         OQkA==
-X-Gm-Message-State: AOAM5308dxsmxDtoEr9p22ws4QBf8U/jWkGAGomk8Z4uc85AZ9zvZ79/
-        LMvkT56Gtwi87MbG9vbEGA==
-X-Google-Smtp-Source: ABdhPJzSzGdu/UzM4VbciQ2C3+HRBHgm9WJK5uyZJJMUXc8CEkTRW/XQUnWI8D/ExXJCahhQ+KC8ag==
-X-Received: by 2002:a05:6830:10:: with SMTP id c16mr5994728otp.63.1629296514636;
-        Wed, 18 Aug 2021 07:21:54 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r7sm891524oog.48.2021.08.18.07.21.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 07:21:54 -0700 (PDT)
-Received: (nullmailer pid 2546705 invoked by uid 1000);
-        Wed, 18 Aug 2021 14:21:53 -0000
-Date:   Wed, 18 Aug 2021 09:21:53 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L
- bindings
-Message-ID: <YR0XgYKSii7R3kHR@robh.at.kernel.org>
-References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com>
- <20210817090313.31858-3-biju.das.jz@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210817090313.31858-3-biju.das.jz@bp.renesas.com>
+        id S239489AbhHROXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 10:23:22 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:60681 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238544AbhHROXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:23:16 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 3d105b57;
+        Wed, 18 Aug 2021 16:22:37 +0200 (CEST)
+Date:   Wed, 18 Aug 2021 16:22:37 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     sven@svenpeter.dev, maz@kernel.org, alyssa@rosenzweig.io,
+        linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, kw@linux.com, stan@corellium.com,
+        kettenis@openbsd.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <092a2de3-6760-6398-e4de-2b24d30ac856@marcan.st> (message from
+        Hector Martin on Wed, 18 Aug 2021 20:43:48 +0900)
+Subject: Re: [RFC PATCH 2/2] PCI: apple: Add driver for the Apple M1
+References: <20210815042525.36878-1-alyssa@rosenzweig.io>
+ <20210815042525.36878-3-alyssa@rosenzweig.io> <87a6lj17d1.wl-maz@kernel.org>
+ <8650c850-2642-4582-ae97-a95134bda3e2@www.fastmail.com> <092a2de3-6760-6398-e4de-2b24d30ac856@marcan.st>
+Message-ID: <56140239180269fd@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Aug 2021 10:03:13 +0100, Biju Das wrote:
-> Document RZ/G2L SDHI controller bindings.
+> From: Hector Martin <marcan@marcan.st>
+> Date: Wed, 18 Aug 2021 20:43:48 +0900
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v3->v4:
->  * Defined clock-names for RZ/G2L SoC and make it as a required property
-> v2->v3:
->  * split the patch into 2, first one for fixing dtbs-check issue and
->    later one for documenting RZ/G2L SDHI bindings.
-> v1->v2:
->  * Fixed dtbs-check issue for RZ/A{1,2} platforms.
-> ---
->  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 73 +++++++++++++------
->  1 file changed, 52 insertions(+), 21 deletions(-)
+> On 15/08/2021 21.33, Sven Peter wrote:
+> > The magic comes from the original Corellium driver. It first masks
+> > everything except for the interrupts in the next line, then acks
+> > the interrupts it keeps enabled and then probably wants to wait
+> > for PORT_INT_LINK_UP (or any of the other interrupts which seem to
+> > indicate various error conditions) to fire but instead polls for
+> > PORT_LINKSTS_UP.
 > 
+> Let's not take any magic numbers from their drivers (or what macOS does, 
+> for that matter) without making an attempt to understand what they do, 
+> unless it becomes clear it's incomprehensible. This has already bit us 
+> in the past (the SError disable thing).
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The driver should really only unmask the interrupts it handles in its
+interrupt handler.  We should know the meaning of those bits so using
+the appropriate symbolic names shouldn't be too difficult.
+
+Didn't delve into this yet since U-Boot doesn't do interrupts (so I
+don't touch the port interrupt registers there) and on OpenBSD I only
+implemented MSIs for now as all the integrated devices support MSIs
+just fine.  I'll need to revisit this at some point to support the
+Thunderbolt ports.
