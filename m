@@ -2,80 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E2E3F05F1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C283F0630
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239180AbhHRONG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 10:13:06 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:41555 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239193AbhHRONA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:13:00 -0400
-Received: by mail-ot1-f47.google.com with SMTP id w22-20020a056830411600b0048bcf4c6bd9so3800070ott.8;
-        Wed, 18 Aug 2021 07:12:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=O47TDvA2S+cn2NJMuVUQ8kaAwVqVE7L68+hyPUIghfE=;
-        b=FoBAaUiSodBeg4PeLEO6DeEcAeFFBQsEW59KPsqJpj3biUJVyCqmNEzcboxSlEQeYa
-         219yeupFUwlBT1PW/QtEKVEa6MwNUpXHASrOy70cyh0IsV7pCpqRGKWBcnYWHpSLhS1F
-         7l8N2P0GTJN2ebT5swWT9JB5dvw3a+q9Dm3BQAMzYijmdOj3Pm+Dz1Dw/7t2JaA8vKj+
-         sUuqTWUi5y2dhPCcBoERST59gWt7RJ5Owss7HtSg+YVIZ1UtCzN90fqhYolmcnzs0kdj
-         SwVmrBRSCYwgUEY1TWo+T9qKAC4p4x7GW14JGZvRoyCVxJeQIbApo6iwhfmb3PC+pHwo
-         Gv4w==
-X-Gm-Message-State: AOAM531MX0UIMkahsBbQ7XmCmU/qOCYXCpPlsHM/NO68m1wqZiZr69h5
-        TAq08xCaiQ+k6mF0AaEgBg==
-X-Google-Smtp-Source: ABdhPJz/jW2ks+HhNdtABYE7WjGFF1jl+3l2P/COxy95GLtyqxTVjgFNgZO3a4qxWmZdA0wyYZnNUQ==
-X-Received: by 2002:a9d:5603:: with SMTP id e3mr7134039oti.178.1629295945549;
-        Wed, 18 Aug 2021 07:12:25 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x60sm22702ota.72.2021.08.18.07.12.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 07:12:24 -0700 (PDT)
-Received: (nullmailer pid 2534955 invoked by uid 1000);
-        Wed, 18 Aug 2021 14:12:23 -0000
-Date:   Wed, 18 Aug 2021 09:12:23 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mmc: renesas,sdhi: Fix dtbs-check
- warning
-Message-ID: <YR0VR28YL/ErI4pC@robh.at.kernel.org>
-References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com>
- <20210817090313.31858-2-biju.das.jz@bp.renesas.com>
+        id S239160AbhHROQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 10:16:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48940 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239687AbhHROOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:14:16 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17IEDXwh035846;
+        Wed, 18 Aug 2021 09:13:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1629296013;
+        bh=efyRrMWGDBVWH4S8x4oL6voAOGjdIuqN12/Mqqc5CcE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=WqOB3ZKojmwfMnjVkSh2ytySlGc/G//oq5wr3yGh4AAguJ9u/ImUHUZfSb7bnlPj+
+         M5rXA4toG8vzOHh3dwixuIq5PPdwrG2YTSQnZHKr+nqQpRwRFTcIbRTpSInTZroiIB
+         XuYlvMVYH+3cbI95rDHSFDz0GDjB4NzSc8pAgJIs=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17IEDXfD091019
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 18 Aug 2021 09:13:33 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 18
+ Aug 2021 09:13:32 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 18 Aug 2021 09:13:32 -0500
+Received: from [128.247.81.242] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17IEDWFh069572;
+        Wed, 18 Aug 2021 09:13:32 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am64-mcu: Add pinctrl
+To:     Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210818111747.88569-1-christian.gmeiner@gmail.com>
+From:   Dave Gerlach <d-gerlach@ti.com>
+Message-ID: <13974a27-a90d-639d-d050-c97570fdf369@ti.com>
+Date:   Wed, 18 Aug 2021 09:13:32 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210817090313.31858-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210818111747.88569-1-christian.gmeiner@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Aug 2021 10:03:12 +0100, Biju Das wrote:
-> Fix dtbs-check warning pinctrl-names:0:'default' was expected
-> for r8a77470-iwg23s-sbc.dts file.
+Hi,
+
+On 8/18/21 6:17 AM, Christian Gmeiner wrote:
+> Add the definition of the pinctrl for the MCU domain.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Christian Gmeiner <christian.gmeiner@gmail.com>
 > ---
-> v3->v4:
->  * Removed duplicate clock-names for sdhi-r7sxxxx SoC's
->  Ref:- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210804161325.26996-2-biju.das.jz@bp.renesas.com/
-> v3:
->  * New patch to fix the dtbs-check warnings
->  Ref:- https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210804091940.23983-1-biju.das.jz@bp.renesas.com/
-> ---
->  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 60 ++++++++++++-------
->  1 file changed, 37 insertions(+), 23 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+> index 59cc58f7d0c8..2bb5c9ff172c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi
+> @@ -97,4 +97,12 @@ mcu_gpio0: gpio@4201000 {
+>  		clocks = <&k3_clks 79 0>;
+>  		clock-names = "gpio";
+>  	};
+> +
+> +	mcu_pmx0: pinctrl@4084000 {
+> +		compatible = "pinctrl-single";
+> +		reg = <0x00 0x4084000 0x00 0x84>;
+> +		#pinctrl-cells = <1>;
+> +		pinctrl-single,register-width = <32>;
+> +		pinctrl-single,function-mask = <0xffffffff>;
+> +	};
+>  };
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Dave Gerlach <d-gerlach@ti.com>
+
+Regards,
+Dave
