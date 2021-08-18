@@ -2,73 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BFAB3F05D0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:10:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0C53F05D8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 16:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238393AbhHROLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 10:11:19 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:40460 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235675AbhHROLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:11:19 -0400
-Received: by mail-ot1-f48.google.com with SMTP id h63-20020a9d14450000b02904ce97efee36so3788554oth.7;
-        Wed, 18 Aug 2021 07:10:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tqED2XFSCgXLMT9RVvhfNyDjVv93a0+pc2IUiiIQXGw=;
-        b=MHx8VqjOo52hRmx6toESBB5RtdrJfq+NuWriyW3htt5lykyriv8jD18GkYFIEeQSJ/
-         nQPFEvshu8q+H1fZeaSqnlaLWhhmNSP9UR5XZ7wCsSZFhqzaOyk1Rbz6z9NOqzcipVIH
-         Fd8HiMxBWk0x6Mut9ARaPVdFCHCuM3BbrWojKntVK7KdTsmvzhQ10tlFAqAczvvToF8Y
-         CXvNBfdoTsg+dMDIh7/a5AbyLnkj4lI9l7JKXME3HGCH37zpcz6qGhuXr3Jl3dQxG9zn
-         FfM5zfKnKvN0jpgxAye+yTk0QGkxAciUGm5RRZT6PSavIFY8tGHlALA4lRab/ml+Zazl
-         Gsog==
-X-Gm-Message-State: AOAM532J8HcVqMfnF/XzY1nFeY4mRmxBVM53AoLYEZ+7xHWue3E7TWBE
-        QNIhbRGpozeiFTJMW6+/9w==
-X-Google-Smtp-Source: ABdhPJydLRhTyxC612CzNagoCp20Xdt7VcCSkeTxxqNVNohU7xCnXV+ABAwS/hFimq1cZBHDMGFuGQ==
-X-Received: by 2002:aca:171a:: with SMTP id j26mr7075944oii.69.1629295844074;
-        Wed, 18 Aug 2021 07:10:44 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l8sm1070165oom.19.2021.08.18.07.10.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Aug 2021 07:10:43 -0700 (PDT)
-Received: (nullmailer pid 2532627 invoked by uid 1000);
-        Wed, 18 Aug 2021 14:10:42 -0000
-Date:   Wed, 18 Aug 2021 09:10:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        linux-usb@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH RESEND 1/9] dt-bindings: usb: mtk-xhci: add optional
- property to disable usb2 ports
-Message-ID: <YR0U4irxNbITU2R5@robh.at.kernel.org>
-References: <1629189389-18779-1-git-send-email-chunfeng.yun@mediatek.com>
+        id S238668AbhHROLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 10:11:54 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:10804 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237685AbhHROLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 10:11:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1629295877; x=1660831877;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4VmM9ZNVHVnJYp/t04FpAX6jOEInODFD5vbJTml5Jyk=;
+  b=SnaBoBiqOeltLUFmYQSyE982+7PnnFLikxF5lmKrP4h3ACfxDhCQH+A7
+   XDzXoaw83W8czXN2V80A0IRMPyOeim8b2BWZ7JogrWPiRnCd+vyUSDmRM
+   L1gkOEltEC+IzhEW/hRiciG1Di2LV444jYhDIFtmJ6IQcv0YvObBSK8me
+   vmm9QfUo1+GSjES+WWkpeHIR4D11TLUL24JtztMCX5bXcYYd0+lA7Owxy
+   5CioSLhlro2A3g/sFy9pKJxsFRRBl9UDdGOHx+LmBdiiZI6bYbC9qeMYE
+   FE6xBM02iahx/JRl3AgpSv1xC2BIN2xVAybGozScdw1cXIk4hYGJasAo0
+   A==;
+IronPort-SDR: RnkTIISZZHYz3I4T5HPtI7gLHwAk7SOsTI4Md0EuAFXY0qCc0mUumggh18y5dOYnSftpoaVfA+
+ ATSJ8Kfnj0ZZelPTxmzRouDyCNzAunHmhpgNmaYo/Udxq2F8oiqxTklxYm1LckLaWI+wmWElMX
+ ZcDevNxDYi4OyZmXsKWcUpiP1L54wsE27MBO+gDu1sxOlinMZMHfdzPzl3on6EE5wGegk+m2BY
+ RX4+XpZijvLX3ih43yw9FZAuIXzYKDjagPjyTULuW11J+bVdyrbny3msXm7TGJyvzladst4dX+
+ 3LZpd2G0DxAN1Jzqm7k0ciS/
+X-IronPort-AV: E=Sophos;i="5.84,330,1620716400"; 
+   d="scan'208";a="132736037"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Aug 2021 07:11:16 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 18 Aug 2021 07:11:15 -0700
+Received: from daire-X570.school.villiers.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 18 Aug 2021 07:11:13 -0700
+From:   <daire.mcnamara@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <cyril.jean@microchip.com>, <conor.dooley@microchip.com>,
+        <david.abdurachmanov@gmail.com>, <palmer@dabbelt.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>
+Subject: [PATCH v5 0/2 resend] CLK: microchip: Add clkcfg driver for Microchip PolarFire SoC
+Date:   Wed, 18 Aug 2021 15:11:00 +0100
+Message-ID: <20210818141102.36655-1-daire.mcnamara@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1629189389-18779-1-git-send-email-chunfeng.yun@mediatek.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Aug 2021 16:36:21 +0800, Chunfeng Yun wrote:
-> Add support to disable specific usb2 host ports, it's useful when
-> a usb2 port is disabled on some platforms, but enabled on others for
-> the same SoC, another case is that the different package may support
-> different number of ports.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+From: Daire McNamara <daire.mcnamara@microchip.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Not too sure what happened here.  Just resending to get things moving
+again.
+
+This patchset adds support for the Microchip PolarFire clkcfg
+hardware block.
+
+Major changes since v4:
+* Adjusted license for microchip,mpfs-clock.h to match microchip,mpfs.yaml
+* Corrected the number of clocks to 33 from 32
+
+Major changes since v3:
+* Patch reformatted so microchip,mpfs-clock.h is part of device-tree patch
+
+Major changes since v2:
+* In mpfs_cfg_clk_set_rate, return immediately if divider_get_val
+    returns <0 
+* rebased to v5.12-rc1
+
+Major changes since v1:
+ * Dependency on SOC_MICROCHIP_POLARFIRE
+ * All references to PFSOC/pfsoc changed to MPFS/mpfs
+ * Cleaned error handling in _probe
+ * Re-ordered code to place structs et al at top
+
+Daire McNamara (2):
+  dt-bindings: clk: microchip: Add Microchip PolarFire host binding
+  clk: microchip: Add driver for Microchip PolarFire SoC
+
+ .../bindings/clock/microchip,mpfs.yaml        |  67 +++
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   2 +-
+ drivers/clk/microchip/Kconfig                 |   7 +
+ drivers/clk/microchip/Makefile                |   6 +-
+ drivers/clk/microchip/clk-mpfs.c              | 444 ++++++++++++++++++
+ .../dt-bindings/clock/microchip,mpfs-clock.h  |  45 ++
+ 7 files changed, 569 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+ create mode 100644 drivers/clk/microchip/Kconfig
+ create mode 100644 drivers/clk/microchip/clk-mpfs.c
+ create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
+
+
+base-commit: 9f4ad9e425a1d3b6a34617b8ea226d56a119a717
+prerequisite-patch-id: 6f7f70120adfa8e938b97517f0c664e43e8745a0
+prerequisite-patch-id: 4ea37008d23838aa2e0658811fe15462f6cdbd87
+-- 
+2.25.1
+
