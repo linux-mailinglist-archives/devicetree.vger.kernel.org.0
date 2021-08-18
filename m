@@ -2,304 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9335C3F0C28
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 21:56:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76C763F0C38
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 21:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233370AbhHRT4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 15:56:55 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:56752 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232969AbhHRT4y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 15:56:54 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id e0d5b866;
-        Wed, 18 Aug 2021 21:56:10 +0200 (CEST)
-Date:   Wed, 18 Aug 2021 21:56:10 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Rob Herring <robh@kernel.org>
-Cc:     maz@kernel.org, devicetree@vger.kernel.org, robin.murphy@arm.com,
-        sven@svenpeter.dev, kettenis@openbsd.org, marcan@marcan.st,
-        bhelgaas@google.com, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <CAL_JsqJ5M3soMT30ntSTbqqdrQP8TT26mHL-0xExsn10MWPofA@mail.gmail.com>
-        (message from Rob Herring on Sun, 15 Aug 2021 14:19:57 -0500)
-Subject: Re: [PATCH v3 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
-References: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
- <20210726083204.93196-2-mark.kettenis@xs4all.nl> <20210726231848.GA1025245@robh.at.kernel.org>
- <87sfzt1pg9.wl-maz@kernel.org> <CAL_JsqLvqWiuib9s4PzX8pOQYJQ0eR7Gxz==J849eVJ5MDq4SA@mail.gmail.com>
- <8735ra1x8t.wl-maz@kernel.org> <CAL_JsqJ5M3soMT30ntSTbqqdrQP8TT26mHL-0xExsn10MWPofA@mail.gmail.com>
-Message-ID: <56140331bd735d61@bloch.sibelius.xs4all.nl>
+        id S234233AbhHRT6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 15:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233682AbhHRT6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 15:58:31 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 632ACC0617AD
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 12:57:56 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id h63-20020a9d14450000b02904ce97efee36so5532966oth.7
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 12:57:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=hMNsxaIVAKEhwUPAnI8A+Z1CyieSI/+ymj5IsPC0nx0=;
+        b=BJ8XxKqZWNK+GA6AyndO/j7cjNxJpKMSCuYSPWjgJb/ckKsC2wqsaTcfweihlV2vWF
+         xIWcJl8UHqrQrzoBABxdY/K72PeDLbRARVl/K7T6EH/q9oeNcAAet0rfK95TYcNtRI+e
+         pF7Eborol02KyGyWnTPBNZLI+uTm7BaBQnejM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=hMNsxaIVAKEhwUPAnI8A+Z1CyieSI/+ymj5IsPC0nx0=;
+        b=T7Z7OTiwWb0mqJeCPInKd42ZTchAzWwqdt6g9zcnSidBmkDXZjlu8VSkouodVOC1jS
+         p/vbt71tOQYo21zdxWOPQKmRPPYgtk6DZp5PF3d86MJteodj7Egp/lLhRIm0xzpjHRgV
+         kPWPXIA0xJZ72Vjsw2gsIADrcTp9/cLlgBm5R25XDgKHbRiFa9QGXZbolzSFbdL/hQI2
+         J3M7eJT6VkfWZszIK35hzQujyP8WbkTd55rrAJ8mCjDL7MTuBbBbaI2BghQAjEPvrUKG
+         xZvu5M81dHCaIn0PWnn6ADhg0xcE86hgfZQpChsydPQM0f/uM3Pb7XjNmKhU3ns6nLrm
+         x80g==
+X-Gm-Message-State: AOAM533aD5Bgtmrg1i6WvAZGl1lA4Pjsdo6e4cMOue+DucDsgyzs+FAI
+        w5kc5KQ93enqyix6plcI/SfdjEpxVIy1lROGpTJPeg==
+X-Google-Smtp-Source: ABdhPJzmXOb8xBARc+WzsJ0z34O3SnwrY4WwT/K/Ap9nVOEzk1VWjsLwQPpXUxpXxSI8WfoySmqZymyZv1fYbWdVLZw=
+X-Received: by 2002:a05:6830:2473:: with SMTP id x51mr1762198otr.34.1629316675810;
+ Wed, 18 Aug 2021 12:57:55 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 18 Aug 2021 12:57:55 -0700
+MIME-Version: 1.0
+In-Reply-To: <1629282424-4070-2-git-send-email-mkrishn@codeaurora.org>
+References: <1629282424-4070-1-git-send-email-mkrishn@codeaurora.org> <1629282424-4070-2-git-send-email-mkrishn@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 18 Aug 2021 12:57:55 -0700
+Message-ID: <CAE-0n50b=pX=1MFwGPDvDR=O03tUAkAgyMonGm2+SXBft=16KQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sc7280: add display dt nodes
+To:     Krishna Manikandan <mkrishn@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     kalyan_t@codeaurora.org, sbillaka@codeaurora.org,
+        abhinavk@codeaurora.org, robdclark@gmail.com,
+        bjorn.andersson@linaro.org, khsieh@codeaurora.org,
+        rajeevny@codeaurora.org, freedreno@lists.freedesktop.org,
+        dri-devel@lists.freedesktop.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Rob Herring <robh@kernel.org>
-> Date: Sun, 15 Aug 2021 14:19:57 -0500
-> 
-> On Sun, Aug 15, 2021 at 11:36 AM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > Apologies for the delay, I somehow misplaced this email...
-> >
-> > On Mon, 02 Aug 2021 17:10:39 +0100,
-> > Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Sun, Aug 1, 2021 at 3:31 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > >
-> > > > On Tue, 27 Jul 2021 00:18:48 +0100,
-> > > > Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Mon, Jul 26, 2021 at 10:32:00AM +0200, Mark Kettenis wrote:
-> > > > > > From: Mark Kettenis <kettenis@openbsd.org>
-> > > > > >
-> > > > > > The Apple PCIe host controller is a PCIe host controller with
-> > > > > > multiple root ports present in Apple ARM SoC platforms, including
-> > > > > > various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > > > > >
-> > > > > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
-> > > > > >  MAINTAINERS                                   |   1 +
-> > > > > >  2 files changed, 167 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..bfcbdee79c64
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > @@ -0,0 +1,166 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: Apple PCIe host controller
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Mark Kettenis <kettenis@openbsd.org>
-> > > > > > +
-> > > > > > +description: |
-> > > > > > +  The Apple PCIe host controller is a PCIe host controller with
-> > > > > > +  multiple root ports present in Apple ARM SoC platforms, including
-> > > > > > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > > > > > +  The controller incorporates Synopsys DesigWare PCIe logic to
-> > > > > > +  implements its root ports.  But the ATU found on most DesignWare
-> > > > > > +  PCIe host bridges is absent.
-> > > > >
-> > > > > blank line
-> > > > >
-> > > > > > +  All root ports share a single ECAM space, but separate GPIOs are
-> > > > > > +  used to take the PCI devices on those ports out of reset.  Therefore
-> > > > > > +  the standard "reset-gpio" and "max-link-speed" properties appear on
-> > > > >
-> > > > > reset-gpios
-> > > > >
-> > > > > > +  the child nodes that represent the PCI bridges that correspond to
-> > > > > > +  the individual root ports.
-> > > > >
-> > > > > blank line
-> > > > >
-> > > > > > +  MSIs are handled by the PCIe controller and translated into regular
-> > > > > > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
-> > > > > > +  distributed over the root ports as the OS sees fit by programming
-> > > > > > +  the PCIe controller's port registers.
-> > > > > > +
-> > > > > > +allOf:
-> > > > > > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +  compatible:
-> > > > > > +    items:
-> > > > > > +      - const: apple,t8103-pcie
-> > > > > > +      - const: apple,pcie
-> > > > > > +
-> > > > > > +  reg:
-> > > > > > +    minItems: 3
-> > > > > > +    maxItems: 5
-> > > > > > +
-> > > > > > +  reg-names:
-> > > > > > +    minItems: 3
-> > > > > > +    maxItems: 5
-> > > > > > +    items:
-> > > > > > +      - const: config
-> > > > > > +      - const: rc
-> > > > > > +      - const: port0
-> > > > > > +      - const: port1
-> > > > > > +      - const: port2
-> > > > > > +
-> > > > > > +  ranges:
-> > > > > > +    minItems: 2
-> > > > > > +    maxItems: 2
-> > > > > > +
-> > > > > > +  interrupts:
-> > > > > > +    description:
-> > > > > > +      Interrupt specifiers, one for each root port.
-> > > > > > +    minItems: 1
-> > > > > > +    maxItems: 3
-> > > > > > +
-> > > > > > +  msi-controller: true
-> > > > > > +  msi-parent: true
-> > > > > > +
-> > > > > > +  msi-ranges:
-> > > > > > +    description:
-> > > > > > +      A list of pairs <intid span>, where "intid" is the first
-> > > > > > +      interrupt number that can be used as an MSI, and "span" the size
-> > > > > > +      of that range.
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > > > > > +    items:
-> > > > > > +      minItems: 2
-> > > > > > +      maxItems: 2
-> > > > >
-> > > > > I still have issues I raised on v1 with this property. It's genericish
-> > > > > looking, but not generic. 'intid' as a single cell can't specify any
-> > > > > parent interrupt such as a GIC which uses 3 cells. You could put in all
-> > > > > the cells, but you'd still be assuming which cell you can increment.
-> > > >
-> > > > The GIC bindings already use similar abstractions, see what we do for
-> > > > both GICv2m and GICv3 MBIs. Other MSI controllers use similar
-> > > > properties (alpine and loongson, for example).
-> > >
-> > > That's the problem. Everyone making up their own crap.
-> >
-> > And that crap gets approved:
-> >
-> > https://lore.kernel.org/lkml/20200512205704.GA10412@bogus/
-> >
-> > I'm not trying to be antagonistic here, but it seems that your
-> > position on this very subject has changed recently.
-> 
-> Not really, I think it's not the first time we've discussed this. But
-> as I see things over and over, my tolerance for another instance
-> without solving the problem for everyone diminishes. And what other
-> leverage do I have?
-> 
-> Additionally, how long we have to support something comes into play. I
-> have no idea for a Loongson MSI controller. I have a better idea on an
-> Apple product...
-> 
-> > > > > I think you should just list all these under 'interrupts' using
-> > > > > interrupt-names to make your life easier:
-> > > > >
-> > > > > interrupt-names:
-> > > > >   items:
-> > > > >     - const: port0
-> > > > >     - const: port1
-> > > > >     - const: port2
-> > > > >     - const: msi0
-> > > > >     - const: msi1
-> > > > >     - const: msi2
-> > > > >     - const: msi3
-> > > > >     ...
-> > > > >
-> > > > > Yeah, it's kind of verbose, but if the h/w block handles N interrupts,
-> > > > > you should list N interrupts. The worst case for the above is N entries
-> > > > > too if not contiguous.
-> > > >
-> > > > And that's where I beg to differ, again.
-> > > >
-> > > > Specifying interrupts like this gives the false impression that these
-> > > > interrupts are generated by the device that owns them (the RC). Which
-> > > > for MSIs is not the case.
-> > >
-> > > It's no different than an interrupt controller node having an
-> > > interrupts property. The source is downstream and the interrupt
-> > > controller is combining/translating the interrupts.
-> > >
-> > > The physical interrupt signals are connected to and originating in
-> > > this block.
-> >
-> > Oh, I also object to this, for the same reasons. The only case where
-> > it makes sense IMHO is when the interrupt controller is a multiplexer.
-> 
-> So we've had the same kind of property for interrupt multiplexers. I'm
-> fine if you think an 'MSI to interrupts mapping property' should be
-> named something else.
-> 
-> > > That sounds like perfectly 'describing the h/w' to me.
-> >
-> > I guess we have a different view of about these things. At the end of
-> > the day, I don't care enough as long as we can expose a range of
-> > interrupts one way or another.
-> 
-> I don't really either. I just don't want 10 ways AND another...
-> 
-> > > > This is not only verbose, this is
-> > > > semantically dubious. And what should we do when the number of
-> > > > possible interrupt is ridiculously large, as it is for the GICv3 ITS?
-> > >
-> > > I don't disagree with the verbose part. But that's not really an issue
-> > > in this case.
-> > >
-> > > > I wish we had a standard way to express these constraints. Until we
-> > > > do, I don't think enumerating individual interrupts is a practical
-> > > > thing to do, nor that it actually represents the topology of the
-> > > > system.
-> > >
-> > > The only way a standard way will happen is to stop accepting the
-> > > custom properties.
-> > >
-> > > All the custom properties suffer from knowledge of what the parent
-> > > interrupt controller is. To fix that, I think we need something like
-> > > this:
-> > >
-> > > msi-ranges = <intspec base>, <intspec step>, <intspec end>;
-> > >
-> > > 'intspec' is defined by the parent interrupt-controller cells. step is
-> > > the value to add. And end is what to match on to stop aka the last
-> > > interrupt in the range. For example, if the GIC is the parent, we'd
-> > > have something like this:
-> > >
-> > > <GIC_SPI 123 0>, <0 1 0>, <GIC_SPI 124 0>
-> > >
-> > > Does this apply to cases other than MSI? I think so as don't we have
-> > > the same type of properties with the low power mode shadow interrupt
-> > > controllers?  So 'interrupt-ranges'?
-> >
-> > This would work, though the increment seems a bit over-engineered. You
-> > also may need this property to accept multiple ranges.
-> 
-> Yes, certainly. Worst case is a map.
-> 
-> > > It looks to me like there's an assumption in the kernel that an MSI
-> > > controller has a linear range of parent interrupts? Is that correct
-> > > and something that's guaranteed? That assumption leaks into the
-> > > existing bindings.
-> >
-> > Depends on how the controller works. In general, the range maps to the
-> > MultiMSI requirements where the message is an offset from the base of
-> > the interrupt range. So you generally end-up with ranges of at least
-> > 32 contiguous MSIs. Anything under that is sub-par and probably not
-> > worth supporting.
-> 
-> Maybe just this is enough:
-> msi-ranges = <intspec base>, <length>, <intspec base>, <length>, ...
-> 
-> While I say 'length' here, that's really up to the interrupt parent to
-> interpret the intspec cells.
+Quoting Krishna Manikandan (2021-08-18 03:27:02)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 53a21d0..fd7ff1c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+>   */
+>
+> +#include <dt-bindings/clock/qcom,dispcc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/interconnect/qcom,sc7280.h>
+> @@ -1424,6 +1425,90 @@
+>                         #power-domain-cells = <1>;
+>                 };
+>
+> +               mdss: mdss@ae00000 {
 
-So for the Apple PCIe controller we'd have:
+subsystem@ae00000
 
-   msi-ranges = <AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+> +                       compatible = "qcom,sc7280-mdss";
+> +                       reg = <0 0x0ae00000 0 0x1000>;
+> +                       reg-names = "mdss";
+> +
+> +                       power-domains = <&dispcc DISP_CC_MDSS_CORE_GDSC>;
+> +
+> +                       clocks = <&gcc GCC_DISP_AHB_CLK>,
+> +                                <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +                               <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +                       clock-names = "iface", "ahb", "core";
+> +
+> +                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +                       assigned-clock-rates = <300000000>;
+> +
+> +                       interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells = <1>;
+> +
+> +                       interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>;
+> +                       interconnect-names = "mdp0-mem";
+> +
+> +                       iommus = <&apps_smmu 0x900 0x402>;
+> +
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +                       ranges;
+> +
+> +                       status = "disabled";
+> +
+> +                       mdp: mdp@ae01000 {
 
-That would work just fine.
+display-controller@ae01000
 
-Should this be documented in the apple,pcie binding, or somewhere more
-generic?
+> +                               compatible = "qcom,sc7280-dpu";
+> +                               reg = <0 0x0ae01000 0 0x8f030>,
+> +                                       <0 0x0aeb0000 0 0x2008>;
+> +                               reg-names = "mdp", "vbif";
+> +
+> +                               clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+> +                                       <&gcc GCC_DISP_SF_AXI_CLK>,
+> +                                       <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +                                       <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+> +                                       <&dispcc DISP_CC_MDSS_MDP_CLK>,
+> +                                       <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +                               clock-names = "bus", "nrt_bus", "iface", "lut", "core",
+> +                                             "vsync";
 
-> > Of course, the controller may have some mapping facilities, which
-> > makes things more... interesting.
-> >
-> > > It's fine for the kernel to assume that until there's a case that's
-> > > not linear, but a common binding needs to be able handle a
-> > > non-linear case.
-> >
-> > Fair enough. I can probably work with Mark to upgrade the binding and
-> > the M1 PCIe code. Could you come up with a more formalised proposal?
-> 
-> Not my itch.
-> 
-> Rob
-> 
+One line per string please.
+
+> +                               assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
+> +                                               <&dispcc DISP_CC_MDSS_VSYNC_CLK>,
+> +                                               <&dispcc DISP_CC_MDSS_AHB_CLK>;
+> +                               assigned-clock-rates = <300000000>,
+> +                                                       <19200000>,
+> +                                                       <19200000>;
+> +                               operating-points-v2 = <&mdp_opp_table>;
+> +                               power-domains = <&rpmhpd SC7280_CX>;
+> +
+> +                               interrupt-parent = <&mdss>;
+> +                               interrupts = <0>;
+> +
+> +                               status = "disabled";
+> +
+> +                               mdp_opp_table: mdp-opp-table {
+
+mdp_opp_table: opp-table {
+
+> +                                       compatible = "operating-points-v2";
+> +
+> +                                       opp-200000000 {
+> +                                               opp-hz = /bits/ 64 <200000000>;
+> +                                               required-opps = <&rpmhpd_opp_low_svs>;
+> +                                       };
+> +
+> +                                       opp-300000000 {
+> +                                               opp-hz = /bits/ 64 <300000000>;
+> +                                               required-opps = <&rpmhpd_opp_svs>;
+> +                                       };
+> +
+> +                                       opp-380000000 {
+> +                                               opp-hz = /bits/ 64 <380000000>;
+> +                                               required-opps = <&rpmhpd_opp_svs_l1>;
+> +                                       };
+> +
+> +                                       opp-506666667 {
+> +                                               opp-hz = /bits/ 64 <506666667>;
+> +                                               required-opps = <&rpmhpd_opp_nom>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
