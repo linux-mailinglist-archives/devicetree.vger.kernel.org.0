@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D58FD3EFF6E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B31D3EFF77
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238582AbhHRIqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 04:46:20 -0400
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:51009 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229474AbhHRIqU (ORCPT
+        id S229705AbhHRIrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 04:47:52 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:45253 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229474AbhHRIrw (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 04:46:20 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id C56B62B00B95;
-        Wed, 18 Aug 2021 04:45:44 -0400 (EDT)
+        Wed, 18 Aug 2021 04:47:52 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5DCE1580BCE;
+        Wed, 18 Aug 2021 04:47:17 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 18 Aug 2021 04:45:45 -0400
+  by compute2.internal (MEProxy); Wed, 18 Aug 2021 04:47:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=gVF8x9/os7Hq80f5jXn4NGfCz4z
-        I9Ggl0mz751t0VxY=; b=HMVFEgsFZb0/aAsUkFKNAYZ2aGpyUAvFqTjlgXRSssM
-        PfyVJVq2zKqPjbZXG1+vhMi34Psu0Ob31N/p0hc69+KmIQ8p79Llao1EXlR+QTAB
-        Q6QK4J4EYgoaPbCTSOmKH2lt0XN4yGbShulofooITBH1WWG9CODQN8qbFNvjGn2P
-        U0h4WTi+VRhNPLwMN0v3mnWGnGt0KLAbzQl8xWsF6/YE2uTpl4ijH0ByhMzGEd20
-        PM8uJ8vgycJE2Gs1GhCS2kfBGxR3Yzh1W53x2VIVJAzcnXXjCjo2kSPDcH0i7Pvc
-        kCISgu2o5jWUr9bXwOdS6wlseyHryV0b1EXvmcBywZg==
+        :content-type:in-reply-to; s=fm3; bh=Wv1WmLMep7dFaT8jfGEaMi7tqlP
+        V+6Sld2o5UJJO29s=; b=YfQEpXEVxESCzSIj6K0QKj0RD4pot640SQiSflKmevd
+        jdYx2gWJbzNjVl2RAmeIVIscA3EUkCM1efA7B9DAK562np/XgCG0LqKKfg8UwUMm
+        6BfSixL5McURh/ek7NDvT+aha2i3VaBFuaWCHWPQi3KOf+PS5A5bnJcViBdTpURx
+        fdlvzq8EuFSaKAN7y1kiEtVCh+wI4hvSR9UzR2kHzj3pE1Ls2fNj2K1fVvv3m8FY
+        glpF1X5OEhvy5dJ+NY1Do9+3npqDzb2igbJmyi5EkEAjtzj7bJzjllwcaXffL+N0
+        N6Esmm/LII0xlPbvju6U6HCcUwGDIOcjKZjKIikGlCw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=gVF8x9
-        /os7Hq80f5jXn4NGfCz4zI9Ggl0mz751t0VxY=; b=Z9cXy/ZYbei0ZKf8W0hqzf
-        91LbYgxbs/TinjVIo7HKFfYdRs4aoTUnFKaebSJXAppdlUR3DYAPUGnACdiWkTxV
-        LNlmLh07rr4SblqOSjforLbxMe43/lEAFwIUcJQW1+K+MBtU1uU8cVz09YrKghIK
-        7jdhux7Xi0tJecHSM70w3MY5iPYsWG+eDjW6njxwIrUveagMqI52xV8CgljrfLsI
-        lTrwdVvA3hHWy94Z5oR3FShuQ31RbVMQcE4eMsJrE1UUK9bw3JSlUwgtwnOc+Cuw
-        Iu0jdIgvZdsMpY6quIEYIeZJV2ABm+cL1qqzva7JyWroWPgFqR1zVlzdX9mdwyNg
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Wv1WmL
+        Mep7dFaT8jfGEaMi7tqlPV+6Sld2o5UJJO29s=; b=NP14a4OiosHFqzQbEOcX6L
+        mfp9zEjfUPiA6K5WZBU/PUFh3H0hr9DXtLZSSLE1FMi7Pe56DBC0LTQeqSSr6gUa
+        4rELkoku/+OmQNd6+M5+5f+oht/8v+7hJev3bGsQ4UQsxU8fB353Zs2kB9r+K32J
+        KITRgh50kcgwkgWX7zP0yOieBtHCauuVk2LHp/p8MHKuKc1nd3kM/kZPkWXsOSNC
+        EJaxHj8yAwLIvj8GzPOK7kVDTG9u0TtBngwsGI+OFri1vPEDYWBoUKPf+7ZEERG3
+        KT3UmP9DOOmbDQL5Dc3LONbWoOgQsOvqLEojBiT/m5np26kwosBLpBfo3YUSB1dw
         ==
-X-ME-Sender: <xms:tsgcYWq-CO3B-5R0JP82K3vxmNqxfnGhcADWF1jev60HwCb6maPP6Q>
-    <xme:tsgcYUpreoVRzdcBk8Viykq84CDU-Jg2IzopUs6nEFrPfpC6poIkjJe8oJq8AnKMy
-    5139BAH3W9UOgQB8zg>
-X-ME-Received: <xmr:tsgcYbOCHN3UHDimLlsNrwVOzraPmfqdPu9FenKnzmvkUd3YPhzLlCoFR3nza8Keh5XeKOQGF-mhc-8jzv89gxDMwWFPoioTsTlb>
+X-ME-Sender: <xms:E8kcYcpOmx-QPn4ca8wKoBhFIZIoFObuITuwF7_kMrFQmACOveaiNg>
+    <xme:E8kcYSokGBSKAy16Mm3GkgTbhAYXnxbVu3JoVFdG-SSzWCxaW5Ebums7v0Ur0WUl9
+    CIitDcx-doRMbvSDDk>
+X-ME-Received: <xmr:E8kcYRN63fiaQMaMdbYHLreV2Z6kBisoHfJ1D4D_90q5EG894KS4RMpzW-myCKYwG2PHa_UTRrDN4rAVysreQnAHsUPHXYictOO0>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgddtkecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -49,87 +49,67 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgddtkecutefuodetggdote
     gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
     udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
     igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:tsgcYV7kd765tzB4qEfvDR2COzE_7yZ-uTV3TH-V8vMxxM2cWBa0Vg>
-    <xmx:tsgcYV50JBellncZaf7aE9M_BlypVGNI_aidSOMOiH_l2RQiBCrWKQ>
-    <xmx:tsgcYVicoOaeXzVMoBaUcmJ8Cxb-d1t69W8KybhLNMkDop1qP5eV5Q>
-    <xmx:uMgcYRh1duafOHGA--YDvrBi9OTkP5fGUwd3Av1rI06jmJV-nttl96_xZIE>
+X-ME-Proxy: <xmx:E8kcYT54YTpAF7LXDLpHckcvMp3KEFqkh2DmfLrzkQjfauZ74qknIg>
+    <xmx:E8kcYb6q80YXRnjZDaya95vLaPwMVRJSCXdgZkZfF6GGeB7AayDPiQ>
+    <xmx:E8kcYTgDNc2MQpE1GxDFi7OjBYRKoSNFbHBsP6B4CWdjIwRusAT73g>
+    <xmx:FckcYfhTcjjpQXUcCl9ob0paGIshs5Rzuyrfx-DO89-A980zBx4uFw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Aug 2021 04:45:42 -0400 (EDT)
-Date:   Wed, 18 Aug 2021 10:45:39 +0200
+ 18 Aug 2021 04:47:14 -0400 (EDT)
+Date:   Wed, 18 Aug 2021 10:47:13 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        "David S. Miller" <davem@davemloft.net>,
-        de Goede <hdegoede@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 27/54] dt-bindings: net: wireless: Convert ESP ESP8089
- binding to a schema
-Message-ID: <20210818084539.kw267o4dc5nqk2qt@gilmour>
-References: <20210721140424.725744-28-maxime@cerno.tech>
- <20210806084709.0C279C4338A@smtp.codeaurora.org>
+To:     Icenowy Zheng <icenowy@sipeed.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 12/17] dt-bindings: mmc: sunxi-mmc: add R329 MMC
+ compatible string
+Message-ID: <20210818084713.klz3ijd4tskhorzm@gilmour>
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-13-icenowy@sipeed.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4hpn24w3x2mvdec6"
+        protocol="application/pgp-signature"; boundary="ehiead6yfp2hmcse"
 Content-Disposition: inline
-In-Reply-To: <20210806084709.0C279C4338A@smtp.codeaurora.org>
+In-Reply-To: <20210802062212.73220-13-icenowy@sipeed.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4hpn24w3x2mvdec6
+--ehiead6yfp2hmcse
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Kalle,
-
-On Fri, Aug 06, 2021 at 08:47:09AM +0000, Kalle Valo wrote:
-> Maxime Ripard <maxime@cerno.tech> wrote:
+On Mon, Aug 02, 2021 at 02:22:07PM +0800, Icenowy Zheng wrote:
+> R329 SoC has two MMC controllers similar to ones in the previous
+> Allwinner SoCs. However, as R329 has no eMMC controller, the two MMC
+> controllers look like a mixture of previous SoCs' ordinary MMC
+> controller and eMMC controller.
 >=20
-> > The ESP8089 Wireless Chip is supported by Linux (through an out-of-tree
-> > driver) thanks to its device tree binding.
-> >=20
-> > Now that we have the DT validation in place, let's convert the device
-> > tree bindings for that driver over to a YAML schema.
-> >=20
-> > Cc: "David S. Miller" <davem@davemloft.net>
-> > Cc: de Goede <hdegoede@redhat.com>
-> > Cc: Jakub Kicinski <kuba@kernel.org>
-> > Cc: Kalle Valo <kvalo@codeaurora.org>
-> > Cc: linux-wireless@vger.kernel.org
-> > Cc: netdev@vger.kernel.org
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
+> Add a compatible string for R329 MMC controllers.
 >=20
-> We support out-of-tree drivers in DT?
+> Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
 
-Yeah, as long as the binding is stable we can merge it. This controller
-is one of these examples, but we supported multiple GPU that way too.
-
-> Via which tree is this supposed to go? I guess not via
-> wireless-drivers-next as this is an out-of-tree driver.
-
-It's up to you I guess. It was already part of the dt-bindings wireless
-directory, so either your tree or the DT maintainers if you'd prefer not
-to.
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
 Maxime
 
---4hpn24w3x2mvdec6
+--ehiead6yfp2hmcse
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzIswAKCRDj7w1vZxhR
-xeimAP9lnyCRsmUlFyHaAGKuDn/+dex3GP0IDQ3vJG4AV1E8gwEA4YPJVG80H85C
-fzFKnYkQugjE0pe/nvOnLDggi2q4/gY=
-=v1V8
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzJEQAKCRDj7w1vZxhR
+xZYnAP9B+XLHb8xJusE9+/MDItMQgZp3Fd4DgCaMnhkMmgOSmgEA41fsWU7UE5iR
+ICQf8x3MNt3DL8U/VoQAweINu9DDVwo=
+=Txi1
 -----END PGP SIGNATURE-----
 
---4hpn24w3x2mvdec6--
+--ehiead6yfp2hmcse--
