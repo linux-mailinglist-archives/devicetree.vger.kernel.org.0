@@ -2,321 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F24B53F0095
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D92DC3F001D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233673AbhHRJfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 05:35:41 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:49986 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233973AbhHRJe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 05:34:56 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 000C2204E51;
-        Wed, 18 Aug 2021 11:34:19 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 90C7A204E3B;
-        Wed, 18 Aug 2021 11:34:19 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 2C751183ACDC;
-        Wed, 18 Aug 2021 17:34:18 +0800 (+08)
-From:   haibo.chen@nxp.com
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, stefan@agner.ch, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: imx: add minor fix to pass schema dtb check
-Date:   Wed, 18 Aug 2021 17:12:30 +0800
-Message-Id: <1629277950-7230-1-git-send-email-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S231558AbhHRJO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 05:14:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229864AbhHRJOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 05:14:54 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810AEC061796
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 02:14:20 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id mq2-20020a17090b3802b0290178911d298bso1928723pjb.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 02:14:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=tDuCq4cpa/FhfVLg3d4eOXI0t92SH+lRUdr1ZBj+304=;
+        b=quAhTr+R/08xh/ignvyvF/El1dD/NQftWfiNTcAu87cJhuBhgI+As0zoEiydqeW6PP
+         Ex/zHp4EDoA27CiqypV1XRJjyjppnIr9cuHPeEqT4Jz0u4Gd7rGoODV0vOYF2r+fXVrC
+         O9YNeAY5lMNde/fcVIInzFs4EQNgUzhxxcNX6YMHjHSIPhU1rXEQOl9Aq3E25JLQ/9fv
+         VxP/TlWw72/n6skEH8miH2qbrmh27V7jR6dmqc1oF+jbwQP/bhXkGIrzGuJgVHwfQUpg
+         jLxJj1fuqBdXtzbuG0/ZFv6pjltmBS+1GsQZASCe+7q/ocD5Ye+29smqIZ7DN+BRR4O7
+         VT3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=tDuCq4cpa/FhfVLg3d4eOXI0t92SH+lRUdr1ZBj+304=;
+        b=fZGztCVEoPqw7f9V6r2s2kKJqRVHW5qPk5BFz20MTOWHvLfCnh1rqXLhtSEFet/Iuv
+         uyPXLj5SWhAwEo4TmOuUfS+j1xuwsGLzYHISbzLNVrNy/RUj2804yJ8xiuaoTUuyUe7w
+         PFXvJgLIGMG8YTolvnWZLVzRaVvhnkCLEwq4FKfsp46NEqvR5ZOk7hEJGkKz3cvTY/QA
+         NDzL/JNjm8cIASTSLIKVwvTC9CdD6v/Mo0/skMwCIaROvXTrkz37xBJbmIkIU8PXIfLY
+         /FPBREI7+Og2Jx5heyA507Irp2FOwTKuzxxyb5iAgna8WcmD5mawhc7SEZbfjw2HVcJb
+         rrnQ==
+X-Gm-Message-State: AOAM531KUgeJJuzdVLe36dinI8yr8JKQAFYMtc17jAocK5ureusSmt+F
+        zmCkZlAD1F3Skgk4hXO+f//MzA==
+X-Google-Smtp-Source: ABdhPJz4yEie/eMLpBAmymSzx5jt3Od7muuoKSX0aK0QfqCy9SYA7S2Wvgljmd2wM1mkIsijUEW0lQ==
+X-Received: by 2002:a17:90a:d791:: with SMTP id z17mr8231461pju.203.1629278059957;
+        Wed, 18 Aug 2021 02:14:19 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id a8sm1540816pfo.79.2021.08.18.02.14.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 02:14:19 -0700 (PDT)
+Date:   Wed, 18 Aug 2021 14:44:17 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+Message-ID: <20210818091417.dvlnsxlgybdsn76x@vireshk-i7>
+References: <20210818035533.ieqkexltfvvf2p4n@vireshk-i7>
+ <5b2a80c1-9743-e633-6257-ede94c8a274c@gmail.com>
+ <20210818043131.7klajx6drvvkftoc@vireshk-i7>
+ <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7>
+ <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7>
+ <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7>
+ <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+On 18-08-21, 10:29, Ulf Hansson wrote:
+> Me and Dmitry discussed adding a new genpd callback for this. I agreed
+> that it seems like a reasonable thing to add, if he insists.
+> 
+> The intent was to invoke the new callback from __genpd_dev_pm_attach()
+> when the device has been attached to its genpd. This allows the
+> callback, to invoke clk_get_rate() and then dev_pm_opp_set_rate(), to
+> update the vote according to the current state of the HW.
 
-Add some fix to pass schema dtb check for fsl-imx-esdhc.yaml
+I wouldn't call dev_pm_opp_set_rate() from there, since it means
+configure and enable (both) for different resources, clk, regulator,
+genpd, etc..
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- arch/arm/boot/dts/imx50.dtsi   | 8 ++++----
- arch/arm/boot/dts/imx6sl.dtsi  | 8 ++++----
- arch/arm/boot/dts/imx6sll.dtsi | 6 +++---
- arch/arm/boot/dts/imx6sx.dtsi  | 8 ++++----
- arch/arm/boot/dts/imx6ul.dtsi  | 4 ++--
- arch/arm/boot/dts/imx6ull.dtsi | 4 ++--
- arch/arm/boot/dts/imx7s.dtsi   | 6 +++---
- arch/arm/boot/dts/imx7ulp.dtsi | 4 ++--
- arch/arm/boot/dts/vfxxx.dtsi   | 4 ++--
- 9 files changed, 26 insertions(+), 26 deletions(-)
+What we need here is just configure. So something like this then:
 
-diff --git a/arch/arm/boot/dts/imx50.dtsi b/arch/arm/boot/dts/imx50.dtsi
-index a969f335b240..a1814f10f7f0 100644
---- a/arch/arm/boot/dts/imx50.dtsi
-+++ b/arch/arm/boot/dts/imx50.dtsi
-@@ -116,7 +116,7 @@
- 				ranges;
- 
- 				esdhc1: mmc@50004000 {
--					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-+					compatible = "fsl,imx53-esdhc";
- 					reg = <0x50004000 0x4000>;
- 					interrupts = <1>;
- 					clocks = <&clks IMX5_CLK_ESDHC1_IPG_GATE>,
-@@ -128,7 +128,7 @@
- 				};
- 
- 				esdhc2: mmc@50008000 {
--					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-+					compatible = "fsl,imx53-esdhc";
- 					reg = <0x50008000 0x4000>;
- 					interrupts = <2>;
- 					clocks = <&clks IMX5_CLK_ESDHC2_IPG_GATE>,
-@@ -177,7 +177,7 @@
- 				};
- 
- 				esdhc3: mmc@50020000 {
--					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-+					compatible = "fsl,imx53-esdhc";
- 					reg = <0x50020000 0x4000>;
- 					interrupts = <3>;
- 					clocks = <&clks IMX5_CLK_ESDHC3_IPG_GATE>,
-@@ -189,7 +189,7 @@
- 				};
- 
- 				esdhc4: mmc@50024000 {
--					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-+					compatible = "fsl,imx53-esdhc";
- 					reg = <0x50024000 0x4000>;
- 					interrupts = <4>;
- 					clocks = <&clks IMX5_CLK_ESDHC4_IPG_GATE>,
-diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-index 997b96c1c47b..e40e017b6f38 100644
---- a/arch/arm/boot/dts/imx6sl.dtsi
-+++ b/arch/arm/boot/dts/imx6sl.dtsi
-@@ -858,7 +858,7 @@
- 			};
- 
- 			usdhc1: mmc@2190000 {
--				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-+				compatible = "fsl,imx6sl-usdhc";
- 				reg = <0x02190000 0x4000>;
- 				interrupts = <0 22 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SL_CLK_USDHC1>,
-@@ -870,7 +870,7 @@
- 			};
- 
- 			usdhc2: mmc@2194000 {
--				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-+				compatible = "fsl,imx6sl-usdhc";
- 				reg = <0x02194000 0x4000>;
- 				interrupts = <0 23 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SL_CLK_USDHC2>,
-@@ -882,7 +882,7 @@
- 			};
- 
- 			usdhc3: mmc@2198000 {
--				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-+				compatible = "fsl,imx6sl-usdhc";
- 				reg = <0x02198000 0x4000>;
- 				interrupts = <0 24 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SL_CLK_USDHC3>,
-@@ -894,7 +894,7 @@
- 			};
- 
- 			usdhc4: mmc@219c000 {
--				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-+				compatible = "fsl,imx6sl-usdhc";
- 				reg = <0x0219c000 0x4000>;
- 				interrupts = <0 25 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SL_CLK_USDHC4>,
-diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
-index 04f8d637a501..82b248353386 100644
---- a/arch/arm/boot/dts/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/imx6sll.dtsi
-@@ -711,7 +711,7 @@
- 			};
- 
- 			usdhc1: mmc@2190000 {
--				compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-+				compatible = "fsl,imx6sll-usdhc";
- 				reg = <0x02190000 0x4000>;
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SLL_CLK_USDHC1>,
-@@ -725,7 +725,7 @@
- 			};
- 
- 			usdhc2: mmc@2194000 {
--				compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-+				compatible = "fsl,imx6sll-usdhc";
- 				reg = <0x02194000 0x4000>;
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SLL_CLK_USDHC2>,
-@@ -739,7 +739,7 @@
- 			};
- 
- 			usdhc3: mmc@2198000 {
--				compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-+				compatible = "fsl,imx6sll-usdhc";
- 				reg = <0x02198000 0x4000>;
- 				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SLL_CLK_USDHC3>,
-diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
-index 8516730778df..acab73c932c1 100644
---- a/arch/arm/boot/dts/imx6sx.dtsi
-+++ b/arch/arm/boot/dts/imx6sx.dtsi
-@@ -967,7 +967,7 @@
- 			};
- 
- 			usdhc1: mmc@2190000 {
--				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx6sx-usdhc";
- 				reg = <0x02190000 0x4000>;
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SX_CLK_USDHC1>,
-@@ -979,7 +979,7 @@
- 			};
- 
- 			usdhc2: mmc@2194000 {
--				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx6sx-usdhc";
- 				reg = <0x02194000 0x4000>;
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SX_CLK_USDHC2>,
-@@ -991,7 +991,7 @@
- 			};
- 
- 			usdhc3: mmc@2198000 {
--				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx6sx-usdhc";
- 				reg = <0x02198000 0x4000>;
- 				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SX_CLK_USDHC3>,
-@@ -1003,7 +1003,7 @@
- 			};
- 
- 			usdhc4: mmc@219c000 {
--				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx6sx-usdhc";
- 				reg = <0x0219c000 0x4000>;
- 				interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6SX_CLK_USDHC4>,
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index afeec01f6522..c066d85b2c0a 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -891,7 +891,7 @@
- 			};
- 
- 			usdhc1: mmc@2190000 {
--				compatible = "fsl,imx6ul-usdhc", "fsl,imx6sx-usdhc";
-+				compatible = "fsl,imx6sx-usdhc";
- 				reg = <0x02190000 0x4000>;
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_USDHC1>,
-@@ -905,7 +905,7 @@
- 			};
- 
- 			usdhc2: mmc@2194000 {
--				compatible = "fsl,imx6ul-usdhc", "fsl,imx6sx-usdhc";
-+				compatible = "fsl,imx6sx-usdhc";
- 				reg = <0x02194000 0x4000>;
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_USDHC2>,
-diff --git a/arch/arm/boot/dts/imx6ull.dtsi b/arch/arm/boot/dts/imx6ull.dtsi
-index 9bf67490ac49..8b1ed3bc7393 100644
---- a/arch/arm/boot/dts/imx6ull.dtsi
-+++ b/arch/arm/boot/dts/imx6ull.dtsi
-@@ -42,11 +42,11 @@
- };
- 
- &usdhc1 {
--	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
-+	compatible = "fsl,imx6ull-usdhc";
- };
- 
- &usdhc2 {
--	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
-+	compatible = "fsl,imx6ull-usdhc";
- };
- 
- / {
-diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-index 1843fc053870..075f8e5c0579 100644
---- a/arch/arm/boot/dts/imx7s.dtsi
-+++ b/arch/arm/boot/dts/imx7s.dtsi
-@@ -1158,7 +1158,7 @@
- 			};
- 
- 			usdhc1: mmc@30b40000 {
--				compatible = "fsl,imx7d-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx7d-usdhc";
- 				reg = <0x30b40000 0x10000>;
- 				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-@@ -1170,7 +1170,7 @@
- 			};
- 
- 			usdhc2: mmc@30b50000 {
--				compatible = "fsl,imx7d-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx7d-usdhc";
- 				reg = <0x30b50000 0x10000>;
- 				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-@@ -1182,7 +1182,7 @@
- 			};
- 
- 			usdhc3: mmc@30b60000 {
--				compatible = "fsl,imx7d-usdhc", "fsl,imx6sl-usdhc";
-+				compatible = "fsl,imx7d-usdhc";
- 				reg = <0x30b60000 0x10000>;
- 				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-index b7ea37ad4e55..456c3f5f393c 100644
---- a/arch/arm/boot/dts/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/imx7ulp.dtsi
-@@ -216,7 +216,7 @@
- 		};
- 
- 		usdhc0: mmc@40370000 {
--			compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
-+			compatible = "fsl,imx7ulp-usdhc";
- 			reg = <0x40370000 0x10000>;
- 			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&scg1 IMX7ULP_CLK_NIC1_BUS_DIV>,
-@@ -230,7 +230,7 @@
- 		};
- 
- 		usdhc1: mmc@40380000 {
--			compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
-+			compatible = "fsl,imx7ulp-usdhc";
- 			reg = <0x40380000 0x10000>;
- 			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&scg1 IMX7ULP_CLK_NIC1_BUS_DIV>,
-diff --git a/arch/arm/boot/dts/vfxxx.dtsi b/arch/arm/boot/dts/vfxxx.dtsi
-index d53f9c9db8bf..c5651f23b3fd 100644
---- a/arch/arm/boot/dts/vfxxx.dtsi
-+++ b/arch/arm/boot/dts/vfxxx.dtsi
-@@ -574,7 +574,7 @@
- 							<20000000>;
- 			};
- 
--			esdhc0: esdhc@400b1000 {
-+			esdhc0: mmc@400b1000 {
- 				compatible = "fsl,imx53-esdhc";
- 				reg = <0x400b1000 0x1000>;
- 				interrupts = <27 IRQ_TYPE_LEVEL_HIGH>;
-@@ -585,7 +585,7 @@
- 				status = "disabled";
- 			};
- 
--			esdhc1: esdhc@400b2000 {
-+			esdhc1: mmc@400b2000 {
- 				compatible = "fsl,imx53-esdhc";
- 				reg = <0x400b2000 0x1000>;
- 				interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
+- genpd->get_performance_state()
+  -> dev_pm_opp_get_current_opp() //New API
+  -> dev_pm_genpd_set_performance_state(dev, current_opp->pstate);
+
+This can be done just once from probe() then.
+
+> I am not sure if/why that approach seemed insufficient?
+> 
+> Another option to solve the problem, I think, is simply to patch
+> drivers to let them call dev_pm_opp_set_rate() during ->probe(), this
+> should synchronize the HW state too.
+
+Dmitry already mentioned that this will make the device start
+consuming power, and he doesn't want that, else we need an explicit
+disble call as well.
+
 -- 
-2.17.1
-
+viresh
