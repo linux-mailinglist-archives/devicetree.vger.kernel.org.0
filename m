@@ -2,160 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5FB03EFFDE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 839AD3EFFF4
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 11:07:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbhHRJEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 05:04:53 -0400
-Received: from foss.arm.com ([217.140.110.172]:38388 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229780AbhHRJEv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 05:04:51 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8EA6A101E;
-        Wed, 18 Aug 2021 02:04:16 -0700 (PDT)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7F7D53F40C;
-        Wed, 18 Aug 2021 02:04:14 -0700 (PDT)
-Date:   Wed, 18 Aug 2021 10:04:07 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
+        id S229982AbhHRJIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 05:08:14 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:59265 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230412AbhHRJIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 05:08:13 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.west.internal (Postfix) with ESMTP id 7458E2B0094B;
+        Wed, 18 Aug 2021 05:07:36 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Wed, 18 Aug 2021 05:07:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=z7ZxsuepG3y8/7tCBq9V+CXM2sV
+        9UAdzMVufzaRE13k=; b=Edlj8+3EALgXlGDt/c0FFAzN16mWjgVHIVPBd6D7AZb
+        FQLnqcYIirILU73d7SerLVWsiVNHE8vPs9mHJUJOEcFzfAYtQtxA1GZRgrnMjHKV
+        /xB4yhl8/vL4PCC/8+cCqjnjmjbSaGayS0cVlkJVBNlz7xk7aSmI3ynf7vhz60LB
+        U22K3+8bmlSl8lEggpjf617/dLwt7X6hCAHz6lueGluIU/LQmNSpr+uo94bqGHak
+        9klMALhepCdOccROUin0a+4MKHWY8ECUBN7zLmTYJ1JyZePePDnnsveM6cZL3O8x
+        kLU903noWfVl7B7wDJPuYHiC2N78s/w7BTBNS4layNg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=z7Zxsu
+        epG3y8/7tCBq9V+CXM2sV9UAdzMVufzaRE13k=; b=iIDqJv8vFvUmdMHfHICawC
+        T9+GMiZ7jmgZnQez3LVGbSJHMRX5oCSbwndYpOPjFOptH5evus3eJHTLMKiWkPxN
+        TXpsW2g72GOY5CGgg+NCr3YRCVIVUwy2c1hebCI4/Hvt/iKYeVLlrCIF+d9ViMqC
+        1rXO6J5Y+NXu5OJhhxTtooPgXjHkMj/E/mio7DdY2ivq0/MHKrzU5QRhmAkmzRql
+        gjF9fFrV8cUF3YBzZEkPAbYWQJGooSyBeWl2CLOzlNRyb4DB4TlekSXHyL6GpV9r
+        xOx/tiM6Qp6123DK7M/uNv6oP+LeoKbtE8H19fdWvD5NYIErfHKSiqWDEpnEi8Ww
+        ==
+X-ME-Sender: <xms:1s0cYeSY1VoDbvj8v1hwYiTkSN_bdm-p6ejhsshfocOJWHAPSNgYaQ>
+    <xme:1s0cYTwNdYap25FigqYS6YAmK-H88VV8XHGod-hplOPmEl50w8pXMhctRH1UKftZR
+    Ugz2UtlgNaAB7GJX1w>
+X-ME-Received: <xmr:1s0cYb3iapy_85xh0Q6EAruoublXzVjY3xVzA2Rnoh7sKZMi7Wy5h52SzCEv8iyGJYhONrk0-T0j0BNHzWGoY-0oO3JNWfL3brm->
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgdduvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:1s0cYaDEV9KA2JuQWiv-DnuUBNLx_3dMYTFWXQndvDWcyG7j2IJlpQ>
+    <xmx:1s0cYXg8yqki-J9Y-brp5tjEz8uJAyBvzliiiXyvAbqP6nOlORVtcQ>
+    <xmx:1s0cYWor9kybvC5ygdOBtG-EHz3u-he516QYVleA3XNXFnJVww0cwA>
+    <xmx:2M0cYWNNZ029ZIW4uQRJX-a2BmU823_XEkUHg0r9Waf1MWx42zzvDjmoUc4>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 18 Aug 2021 05:07:34 -0400 (EDT)
+Date:   Wed, 18 Aug 2021 11:07:32 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v8 02/11] dt-bindings: rtc: sun6i: Add H616 compatible
- string
-Message-ID: <20210818100407.7cf7cfb7@slackpad.fritz.box>
-In-Reply-To: <20210817073810.7stuzrppyjf4spab@gilmour>
-References: <20210723153838.6785-1-andre.przywara@arm.com>
-        <20210723153838.6785-3-andre.przywara@arm.com>
-        <20210726144137.6dauuxdssu7yszox@gilmour>
-        <20210802013938.29fa18ed@slackpad.fritz.box>
-        <20210817073810.7stuzrppyjf4spab@gilmour>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: sunxi: Add compatible for
+ R329
+Message-ID: <20210818090732.wdickyw67oc4zqpt@gilmour>
+References: <20210805045716.46141-1-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="eamo24t6pkxxpznb"
+Content-Disposition: inline
+In-Reply-To: <20210805045716.46141-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Aug 2021 09:38:10 +0200
-Maxime Ripard <maxime@cerno.tech> wrote:
 
-Hi Maxime,
+--eamo24t6pkxxpznb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Mon, Aug 02, 2021 at 01:39:38AM +0100, Andre Przywara wrote:
-> > On Mon, 26 Jul 2021 16:41:37 +0200
-> > Maxime Ripard <maxime@cerno.tech> wrote:
-> >   
-> > > Hi,
-> > > 
-> > > On Fri, Jul 23, 2021 at 04:38:29PM +0100, Andre Przywara wrote:  
-> > > > Add the obvious compatible name to the existing RTC binding.
-> > > > The actual RTC part of the device uses a different day/month/year
-> > > > storage scheme, so it's not compatible with the previous devices.
-> > > > Also the clock part is quite different, as there is no external 32K LOSC
-> > > > oscillator input.
-> > > > 
-> > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > >
-> > > > ---
-> > > >  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml      | 14 ++++++++++++++
-> > > >  1 file changed, 14 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> > > > index beeb90e55727..d8a6500e5840 100644
-> > > > --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> > > > +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> > > > @@ -26,6 +26,7 @@ properties:
-> > > >            - const: allwinner,sun50i-a64-rtc
-> > > >            - const: allwinner,sun8i-h3-rtc
-> > > >        - const: allwinner,sun50i-h6-rtc
-> > > > +      - const: allwinner,sun50i-h616-rtc
-> > > >  
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -104,6 +105,19 @@ allOf:
-> > > >            minItems: 3
-> > > >            maxItems: 3
-> > > >  
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: allwinner,sun50i-h616-rtc
-> > > > +
-> > > > +    then:
-> > > > +      properties:
-> > > > +        clock-output-names:
-> > > > +          minItems: 3
-> > > > +          maxItems: 3    
-> > > 
-> > > You don't need both of them when they are equal
-> > >   
-> > > > +        clocks: false
-> > > > +    
-> > > 
-> > > It's not entirely clear to me what those clocks are about though. If we
-> > > look at the clock output in the user manual, it looks like there's only
-> > > two clocks that are actually being output: the 32k "fanout" clock and
-> > > the losc. What are the 3 you're talking about?]  
-> > 
-> > I see three: the raw SYSTEM "CLK32K_LOSC", the RTC input + debounce
-> > clock (/32), and the multiplexed PAD.  
-> 
-> But the input and debounce clock is only for the RTC itself right? So it
-> should be local to the driver and doesn't need to be made available to
-> the other drivers
+Hi,
 
-I understood "debounce" as being the clock used for the pinctrl
-debouncer. What would it debounce otherwise? Do you think that this
-"debounce circuit" is something internal to the RTC and is totally
-irrelevant for us?
+On Wed, Aug 04, 2021 at 11:57:14PM -0500, Samuel Holland wrote:
+> On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
+> divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
+> an alternative clock source, with a bit to switch between them.
+>=20
+> Since 24 MHz / 750 =3D=3D 32 kHz, not 32.768 kHz, the hardware adjusts the
+> cycle counts to keep the timeouts independent of the clock source. This
+> keeps the programming interface backward-compatible.
+>=20
+> R329 also adds two new registers, to allow software to immediately drive
+> the SoC reset signal.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+> Changes v1 to v2:
+>  - Switch from enum to const
+>  - Add descriptions to "clocks" items
+>=20
+>  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 32 ++++++++++++++++++-
+>  1 file changed, 31 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a=
+10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a1=
+0-wdt.yaml
+> index 9aa3c313c49f..8fa5b0d32381 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.=
+yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.=
+yaml
+> @@ -24,6 +24,7 @@ properties:
+>                - allwinner,sun50i-a100-wdt
+>                - allwinner,sun50i-h6-wdt
+>                - allwinner,sun50i-h616-wdt
+> +              - allwinner,sun50i-r329-wdt
+>            - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,suniv-f1c100s-wdt
+> @@ -33,7 +34,18 @@ properties:
+>      maxItems: 1
+> =20
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - description: High-frequency oscillator input, divided internally
+> +      - description: Low-frequency oscillator input, only found on some =
+variants
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - const: hosc
+> +      - const: losc
+> =20
+>    interrupts:
+>      maxItems: 1
+> @@ -44,6 +56,24 @@ required:
+>    - clocks
+>    - interrupts
+> =20
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - allwinner,sun50i-r329-wdt
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      minItems: 2
+> +
+> +    clock-names:
+> +      minItems: 2
+> +
+> +  required:
+> +    - clock-names
+> +
 
-But in general I looked at how many *different* clocks this diagram
-describes, and I count: one unaltered ("SYSTEM"), one "div by
-32" (RTC/debounce), and one multiplexed. My aim was to avoid
-DT binding changes when we later discover we do need one of them for
-something (as happened in the past). So three seemed to be the safe
-choice here, to avoid surprises. In the worst case we just will never
-reference one of them.
+We should also make sure through an else clause that all the other SoCs
+have a length of one for both clocks and clock-names
 
-> Either way, what this list is must be documented.
+Also, it looks like you forgot the patch to enable the compatible in the
+driver?
 
-You mean to overwrite the "description" stanza for clock-output-names?
-And can this be done in the per-SoC parts in the later part of the
-binding, keeping the existing description?
+Maxime
 
-Cheers,
-Andre
+--eamo24t6pkxxpznb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> > > Also, it looks like the 32k fanout clock needs at least the hosc or
-> > > pll-periph in input, so we probably don't want to ask for no parent
-> > > clock?  
-> > 
-> > Well, we never seem to reference the HOSC this way, this was always
-> > somewhat explicit. And yes, there is PLL-PERIPH as an input, but we
-> > don't support this yet. So I went with 0 input clocks *for now*: the
-> > driver can then ignore all clocks, so any clock referenced in the DT
-> > later won't cause any harm. This will all be addressed by Samuel's RTC
-> > clock patch, which will also touch the H6, IIRC. And it looks like we
-> > will need to touch the binding anyway then, but can then just *extend*
-> > this.  
-> 
-> You mentioned that series several times already and never provided an
-> explanation for what it was supposed to be doing except fixing
-> everything. What's the general plan for that series?
-> 
-> Maxime
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzN1AAKCRDj7w1vZxhR
+xYXsAQDr5ekVM8uJrcHoLhj+ppOK2mKe5bJpApZXEwpgvVkFyQEA9cQNKQuAw8iE
+ndCLVdSf+DZW+tJkbTU4D1eAS22W5wA=
+=tBH9
+-----END PGP SIGNATURE-----
+
+--eamo24t6pkxxpznb--
