@@ -2,148 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D81B3EFEEF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 181DB3EFF18
+	for <lists+devicetree@lfdr.de>; Wed, 18 Aug 2021 10:24:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238550AbhHRIQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 04:16:06 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:59685 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239424AbhHRIQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 04:16:06 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id A7B09580AE8;
-        Wed, 18 Aug 2021 04:15:31 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Wed, 18 Aug 2021 04:15:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=yYt+4EJ3cWamqkGEsAvOSuOlm+F
-        MX0V4UjsXtAe6pK8=; b=ml3gnKHE4PYqlaOtY/4d/1MAfJkN6cf+Yn2CTAqz8bq
-        T5IbbMJyI8smWzB4TGQ2Tvko0wp7cdDxP1Pyfcc5FCpeNDgsu4QHJhOvMhJbYw3Y
-        Zu6vMKs76Un2vGA8UMm8nzp3vOZwIrIb6B7MtQVoPQqp84WaOilmAS+AwFHUuBi7
-        OQcV8ulV1C2DkJHcR599F0jfwb5QO67j7zVqS1D1t0wYLDb6cGZ+S3BWs6xioIek
-        moCtHMZJEN0vp095N8WJbBnHuEMxQWc2eImW6Te8zRpSwQfRfv9NxB3ey4sxFild
-        u/gDY7gR0e7IkTCUD/ACU4HnIdji3Ya/ZDfXzTgGIYA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=yYt+4E
-        J3cWamqkGEsAvOSuOlm+FMX0V4UjsXtAe6pK8=; b=iE6TghD30HnYXnkPqyg9Gz
-        Lyjw1Rmts6xoSN8/UyVdGi7dgMl8d3wIR3u6e/LBFv7XEYO9Wc3+YVvn4uI3OyUu
-        7TJqR5bri2SDJAOJSVnM5Z1fbpNjOGG6AP5M+oxMGNZEWkGwI7Hsb4sKNGxGmvhI
-        AUKPtfP6VSq9jUoZFyBPfnw3u8+U6+bNl/A5vG7WvW1LyTUBfBRD7r7oCXSBpQCx
-        TOphU837MkLxS8j1OsFEDtPYldlGdiZl1vvRHOTQmZ/70Hef+F0K6TjEVnLeQO/3
-        rwcWkMBzetthgrrKPFwJR31E5RkafFKLiixh1XU9lU8ft0Nm0Pp9DLLsGCRNd9bg
-        ==
-X-ME-Sender: <xms:oMEcYel3r6tW14ohxboieOvua6Q5_ag6QSdyjwU5rW7Rg8t1RgKKXw>
-    <xme:oMEcYV2AM6C5yNHUBzSX6suoda96Kx5pKinKTOcbxkcjnYYMvPRSHAJS3iuyfzf4y
-    9pmbXxd-mayDVkVLlo>
-X-ME-Received: <xmr:oMEcYcqNXW4cg_-7g3txMxRiiZ-q4_8ZTLXjrOeRrYyQ74NVbXE-zBPxqlBbbD-K7i0P-kvgNgfrR1CeHuMlSIGLpxxENkf9APpq>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleehgddtvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:oMEcYSlHVDKX5Xk1YEpyJOTIb9SfsDtZv1bZgw5e9pLBAVYpu9KK8A>
-    <xmx:oMEcYc3m4IlzrOwBIwSox9d8dCS_1lGCI278o_w_3Z5d5ChxVqL6hQ>
-    <xmx:oMEcYZsPAdDvsd5td1UVPfbWEZLBCTifd6eCiq_k-JwCt-IOl_XjnA>
-    <xmx:o8EcYX3Q52OikCWntV5thyGm7TtP1McnSk0X6b8iba9pipF5ZrKsfw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Aug 2021 04:15:28 -0400 (EDT)
-Date:   Wed, 18 Aug 2021 10:15:26 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v9 02/11] dt-bindings: rtc: sun6i: Add H616 compatible
- string
-Message-ID: <20210818081526.ejzqyz4tqvf2mmdj@gilmour>
-References: <20210802003952.19942-1-andre.przywara@arm.com>
- <20210802003952.19942-3-andre.przywara@arm.com>
+        id S239191AbhHRIZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 04:25:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48970 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239012AbhHRIZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 04:25:08 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331EEC061764;
+        Wed, 18 Aug 2021 01:24:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=TSnCTxSRjTwtgHcmESr4fWXccCLIJFCo0VVdeqHZ2L8=; b=jD5tzdmtd5oxN24uPULbq2bb6q
+        9xWzMjs7gpHr9VBVg+Cu6tuTZI30d0Kzc/Sk1dPF/Wz64qtqZimvmAPB9lincZx1AgUXY2SB+MQ2M
+        fRwSwsYWtqAxLaJbzPMXuJTiE6Z3WcDWo174VJGATmFMF1yx5sRhzpnbAo1hHWQ3RioGA1wPgCuau
+        huLVDQM8qWvd71JCO6Zn5g/M3d+hsr6Mf9Mi6txA9Q4naTtoHtuPEz5YeEaHe/ix8RZxQoyZxdOhl
+        IZJ23DeGBlDp83ddulJuHiosFXYPiCtH8B3NJ+5ACyPL8akoPa7st8T5jpmZR5F8Vq1GqcE9hVKjN
+        HGodTYfA==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1mGGs9-0006a5-9t; Wed, 18 Aug 2021 11:24:29 +0300
+Subject: Re: [PATCH v3 1/3] dt-bindings: Add YAML bindings for NVDEC
+To:     Rob Herring <robh@kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210811105030.3458521-1-mperttunen@nvidia.com>
+ <20210811105030.3458521-2-mperttunen@nvidia.com>
+ <YRwoKW4nOc52MAQV@robh.at.kernel.org>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+Message-ID: <1dfd5173-5654-9df8-1e8e-d0e365ed914d@kapsi.fi>
+Date:   Wed, 18 Aug 2021 11:24:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jw4w7fdrdj57gaky"
-Content-Disposition: inline
-In-Reply-To: <20210802003952.19942-3-andre.przywara@arm.com>
+In-Reply-To: <YRwoKW4nOc52MAQV@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 8/18/21 12:20 AM, Rob Herring wrote:
+> On Wed, Aug 11, 2021 at 01:50:28PM +0300, Mikko Perttunen wrote:
+>> Add YAML device tree bindings for NVDEC, now in a more appropriate
+>> place compared to the old textual Host1x bindings.
+>>
+>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>> ---
+>> v3:
+>> * Drop host1x bindings
+>> * Change read2 to read-1 in interconnect names
+>> v2:
+>> * Fix issues pointed out in v1
+>> * Add T194 nvidia,instance property
+>> ---
+>>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++++++++++++++++
+>>   MAINTAINERS                                   |   1 +
+>>   2 files changed, 110 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>> new file mode 100644
+>> index 000000000000..571849625da8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>> @@ -0,0 +1,109 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Device tree binding for NVIDIA Tegra NVDEC
+>> +
+>> +description: |
+>> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
+>> +  and newer chips. It is located on the Host1x bus and typically
+>> +  programmed through Host1x channels.
+>> +
+>> +maintainers:
+>> +  - Thierry Reding <treding@gmail.com>
+>> +  - Mikko Perttunen <mperttunen@nvidia.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^nvdec@[0-9a-f]*$"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - nvidia,tegra210-nvdec
+>> +      - nvidia,tegra186-nvdec
+>> +      - nvidia,tegra194-nvdec
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: nvdec
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: nvdec
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    items:
+>> +      - description: DMA read memory client
+>> +      - description: DMA read 2 memory client
+>> +      - description: DMA write memory client
+>> +
+>> +  interconnect-names:
+>> +    items:
+>> +      - const: dma-mem
+>> +      - const: read-1
+>> +      - const: write
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +  - power-domains
+>> +
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: nvidia,tegra194-host1x
+> 
+> host1x? This will never be true as the schema is only applied to nodes
+> with the nvdec compatible.
 
---jw4w7fdrdj57gaky
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Argh, it's a typo indeed. Should be nvidia,tegra194-nvdec.
 
-On Mon, Aug 02, 2021 at 01:39:43AM +0100, Andre Przywara wrote:
-> Add the obvious compatible name to the existing RTC binding.
-> The actual RTC part of the device uses a different day/month/year
-> storage scheme, so it's not compatible with the previous devices.
-> Also the clock part is quite different, as there is no external 32K LOSC
-> oscillator input.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rt=
-c.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> index beeb90e55727..d8a6500e5840 100644
-> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - const: allwinner,sun50i-a64-rtc
->            - const: allwinner,sun8i-h3-rtc
->        - const: allwinner,sun50i-h6-rtc
-> +      - const: allwinner,sun50i-h616-rtc
-> =20
->    reg:
->      maxItems: 1
-> @@ -104,6 +105,19 @@ allOf:
->            minItems: 3
->            maxItems: 3
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: allwinner,sun50i-h616-rtc
-> +
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          minItems: 3
-> +          maxItems: 3
+> 
+>> +then:
+>> +  properties:
+>> +    nvidia,instance:
+>> +      items:
+>> +        - description: 0 for NVDEC0, or 1 for NVDEC1
+> 
+> What's this for? We generally don't do indices in DT.
 
-The comments I made here on the v7 are still relevant: you only need one
-of these two, and the list of clocks should be documented.
+When programming the hardware through Host1x, we need to know the "class 
+ID" of the hardware, specific to each instance. So we need to know which 
+instance it is. Technically of course we could derive this from the MMIO 
+address but that seems more confusing.
 
-Maxime
+> 
+>> +
+>> +additionalProperties: true
+> 
+> This should be false or 'unevaluatedProperties: false'
 
---jw4w7fdrdj57gaky
-Content-Type: application/pgp-signature; name="signature.asc"
+I tried that but it resulted in validation failures; please see the 
+discussion in v2.
 
------BEGIN PGP SIGNATURE-----
+Thanks,
+Mikko
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYRzBngAKCRDj7w1vZxhR
-xdHnAQCthhOj0Myap+OgRtaGj1JPwv/wVtAEsOsf0ajXVyutfwD9FIh6MpNJ/GC7
-POzUJR3WJY93IHn9sXevpJMSQ3XLxAQ=
-=HwrA
------END PGP SIGNATURE-----
-
---jw4w7fdrdj57gaky--
+> 
+> Rob
+> 
