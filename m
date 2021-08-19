@@ -2,84 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 556F03F17C3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 13:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0BF13F17E7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 13:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237727AbhHSLMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 07:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233978AbhHSLMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 07:12:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B98A5C061575
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 04:11:30 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mGfxG-0002xY-RD; Thu, 19 Aug 2021 13:11:26 +0200
-Message-ID: <6e179b30d360e8151ad1aba5f49540009a2076a5.camel@pengutronix.de>
-Subject: Re: [PATCH v1 3/3] arm64: dts: imx8mq: fix the schema check errors
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Richard Zhu <hongxing.zhu@nxp.com>, robh@kernel.org,
-        galak@kernel.crashing.org, shawnguo@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 19 Aug 2021 13:11:25 +0200
-In-Reply-To: <20210819071408.3856475-4-hongxing.zhu@nxp.com>
-References: <20210819071408.3856475-1-hongxing.zhu@nxp.com>
-         <20210819071408.3856475-4-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+        id S235729AbhHSLVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 07:21:04 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:44243 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230193AbhHSLVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 07:21:03 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 602BE20005;
+        Thu, 19 Aug 2021 11:20:26 +0000 (UTC)
+Date:   Thu, 19 Aug 2021 13:20:25 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Hari.PrasathGE@microchip.com
+Cc:     Nicolas.Ferre@microchip.com, Ludovic.Desroches@microchip.com,
+        robh@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux@armlinux.org.uk
+Subject: Re: [PATCH 2/2] ARM: at91: dts: at91-sama5d2_xplained: Add comments
+ for sama5d29
+Message-ID: <YR4+eUWdeHRCOMo3@piout.net>
+References: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
+ <20210812140758.28273-2-Hari.PrasathGE@microchip.com>
+ <YRV13nfgpEEuOOxB@piout.net>
+ <78b26b01-b66f-5779-9f67-fdd13e473dfc@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <78b26b01-b66f-5779-9f67-fdd13e473dfc@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 19.08.2021 um 15:14 +0800 schrieb Richard Zhu:
-> The ranges should be aligned to $ref: /schemas/pci/pci-bus.yaml#
+On 19/08/2021 10:56:21+0000, Hari.PrasathGE@microchip.com wrote:
+> Hello,
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> On 13/08/21 12:56 am, Alexandre Belloni wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > Hello,
+> > 
+> > On 12/08/2021 19:37:58+0530, Hari Prasath wrote:
+> >> Add comments for the end user for modifying the DTS file for
+> >> instantiating the sama5d29 SoC.
+> >>
+> >> Signed-off-by: Hari Prasath <Hari.PrasathGE@microchip.com>
+> >> ---
+> >>   arch/arm/boot/dts/at91-sama5d2_xplained.dts | 5 +++++
+> >>   1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+> >> index 627b7bf88d83..faa30063d9a9 100644
+> >> --- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+> >> +++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+> >> @@ -6,6 +6,11 @@
+> >>    *                2015 Nicolas Ferre <nicolas.ferre@atmel.com>
+> >>    */
+> >>   /dts-v1/;
+> >> +/*
+> >> + * Replace the line below with "sama5d29.dtsi" in order to instantiate the
+> >> + * sama5d29 SoC of the sama5d2 family.Otherwise, leave it unchanged when
+> >> + * using sama5d27 SoC for instance.
+> >> + */
+> > 
+> > I guess it would be better to have a at91-sama5d29_xplained.dts (and we
+> > should have had a at91-sama5d27_xplained.dts), else, you can't create an
+> > image that will support both variants.
+> > 
+> > 
+> The new SoC 'sama5d29' belongs to the same sama5d2 family. It is 
+> essentially a new chip revision of the existing sama5d27 with a new GMAC 
+> controller IP that addresses few silicon issues. There wouldn't be 
+> separate evaluation boards that shall be made but we will be using the 
+> existing sama5d2 XPlained boards itself but with the new SoC populated. 
 
-Same comment as on the last patch, but still:
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+That's what I understood but a board with a different SoC is a
+different board.
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+> Hence we have taken this approach of having a separate DTSI file and 
+> reuse the existing board specific DTS file.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 91df9c5350ae..45895dad85e1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -1364,8 +1364,8 @@ pcie0: pcie@33800000 {
->  			#size-cells = <2>;
->  			device_type = "pci";
->  			bus-range = <0x00 0xff>;
-> -			ranges = <0x81000000 0 0x00000000 0x1ff80000 0 0x00010000 /* downstream I/O 64KB */
-> -			          0x82000000 0 0x18000000 0x18000000 0 0x07f00000>; /* non-prefetchable memory */
-> +			ranges = <0x81000000 0 0x00000000 0x1ff80000 0 0x00010000>, /* downstream I/O 64KB */
-> +				 <0x82000000 0 0x18000000 0x18000000 0 0x07f00000>; /* non-prefetchable memory */
->  			num-lanes = <1>;
->  			num-viewport = <4>;
->  			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -1402,8 +1402,8 @@ pcie1: pcie@33c00000 {
->  			#address-cells = <3>;
->  			#size-cells = <2>;
->  			device_type = "pci";
-> -			ranges =  <0x81000000 0 0x00000000 0x27f80000 0 0x00010000 /* downstream I/O 64KB */
-> -				   0x82000000 0 0x20000000 0x20000000 0 0x07f00000>; /* non-prefetchable memory */
-> +			ranges =  <0x81000000 0 0x00000000 0x27f80000 0 0x00010000>, /* downstream I/O 64KB */
-> +				  <0x82000000 0 0x20000000 0x20000000 0 0x07f00000>; /* non-prefetchable memory */
->  			num-lanes = <1>;
->  			num-viewport = <4>;
->  			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> We don't want to create single image that will support both variants. In 
+> fact, we don't want our customers to enable certain features that are 
+> broken at the silicon level in the existing revision of the SoC i.e 
+> sama5d27. Instead, they could do this change manually and use it in the 
+> new SoC i.e sama5d29.
+> 
+
+This will be confusing to your customers while you could make their
+lives simpler by having the bootloader chose the proper dtb instead of
+having them change that manually. They will then have to regenerate
+images with that change, see how your customers struggle to do that:
+
+https://stackoverflow.com/questions/68222619/update-custom-device-tree-on-yocto
+https://stackoverflow.com/questions/37347808/how-to-use-an-own-device-tree-and-modified-kernel-config-in-yocto
+https://stackoverflow.com/questions/63047955/overriding-defconfig-in-bbappend-file
 
 
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
