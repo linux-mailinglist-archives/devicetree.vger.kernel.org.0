@@ -2,191 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF233F1790
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 12:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1C53F17A0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 13:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237810AbhHSK5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 06:57:03 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:57013 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237730AbhHSK5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 06:57:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1629370586; x=1660906586;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=WWe+d8EC0cjNN9tExjKTdzPpVZcc2bhGs0PCpVpRckA=;
-  b=ulNZ1WwTGvVrkFyjtZAZ+h2b4PGzbG2UzAwqqh9z/kIt8eNQy4SqIk7S
-   v7leP0enhMf4LgrQXbAgJcjvP8I235GQeGbn3/jvl5KQYCGc7fBagpKUn
-   xD/UGd8SxNCFgTH7DXOx2Vn9cZLNNn7itVKabDAVwdPykK1lEPwQKQtzb
-   W3iX2sJwqSPO639KNzPACPdef8AJiWMhjsTMGhT2M/1zSaA94SLXS3wIS
-   U7NAlRTn+BCq5L4IvqJb+YbY8JuvsWCxnNVzwYcyOtNCtPyC5MEW1ypd1
-   qgynCgOkozQQ12d3klDcF7Flb+cfVJAKk8DRA7vL3cnqV0AVq08AZvFR+
-   g==;
-IronPort-SDR: 8gJeW+CDwKaWkKn99QG8VnPEAgaKqqSU5R11Ta424d5HNljTw/N3oOygoUkpcpH1yOyWVZobBz
- Y2SDsUxuyCivgXsyMZGtg6AjMTMaXNim6X8/HVlL0d+25GdNpYTKpJ9tAEl+xqstCVx53V85YY
- FK+Se5kFnWhn1qwH8IpQow7A6GFuG9FpXnsTWNp6xBnk1h6dIn6TeTyr8gZoksHa991WT3EMVd
- O0PxhE2iibkqQNhYmyPLpfwnHPRIWMVlz/xAk0/w4yyXntHAlpOsFrZ7HA9921JdAK+hb2Lnbe
- OVtEVXjMJDu73iQeX/vpxknV
-X-IronPort-AV: E=Sophos;i="5.84,334,1620716400"; 
-   d="scan'208";a="66413312"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Aug 2021 03:56:25 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 19 Aug 2021 03:56:24 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14 via Frontend
- Transport; Thu, 19 Aug 2021 03:56:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aBQSlBpCW3Cgq+GtUiPzanCstOdNB4wJVgRGw2UO4YJrtkw04R6VHktH4zkgSa1WCTQ/gic3exg57hjQH2FCj7+4zmnsj2CcYj+Wzp0ehrPiH9sCMXIRYD99kVj3WfHwFVqY8o3OkDtVEEvRs4YsrWSajqctI2eIJshjyKcb7s0RQaV2XwLbSBPjSkSChIBM4WLnS5fpRqQhPijBvhHufWFPITgcG1PxavER+tQ+phzb8mHSkERxciKiv7Qg0eeWHlEY4Vir66RMgljX/J6Jf9tJeJMxDJyI2ldUQC9jx4vP7DXSxCMsbSmmXuENLjy5Mj9UgfrQo/eXyDwkIkj1iQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWe+d8EC0cjNN9tExjKTdzPpVZcc2bhGs0PCpVpRckA=;
- b=oCnep08NYRQo/c+YQEfinIAWvqOxqj5oMU5I0Knk959xtuZrkqzUqp1RHmyXvVGhuvEcBYM+m7GBleiE/Ddhr1fZ3kCFkvptvP6gUrzvl+ZnqICXb0cs21jGNuEb1i3pw9+nrD0HMb9fIUykMR6vpncJYGlmMRtBm95ySbQwLccLWfjdB1DCRfOMFWkCP3GKlVDHy6/fMrkI1CFVX2o2FhfliLKjlsbyb+Q1+uOkxNHmzwCE5vfJwyfXsLBdONLMc0oibvccMsU4JEvxvuj8xNWgBv6YJ9uZYS/2OdXmXsfZ9mY8ZL2CJgsereQj6rHdEOOB94iBCXypmRsTxvIXrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S237843AbhHSLEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 07:04:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236149AbhHSLEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 07:04:00 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53127C061575;
+        Thu, 19 Aug 2021 04:03:24 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id w20so12028799lfu.7;
+        Thu, 19 Aug 2021 04:03:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WWe+d8EC0cjNN9tExjKTdzPpVZcc2bhGs0PCpVpRckA=;
- b=UKV4538s0UYmO3SmGXB45CWabyjFUG3jPUpMtGQV/leZF72QTkJJy793KwZ73ZDrODmXtyI+HuPpk1NhjrvDFgnnzD1d97UWt57v1QkIQ0uBclhjsDwaJrILJltZKbV6hWMah8gquRbNeyRzTE9v6WnOoISav7UVA6/7E+tOIMA=
-Received: from DM6PR11MB4185.namprd11.prod.outlook.com (2603:10b6:5:195::29)
- by DM4PR11MB5437.namprd11.prod.outlook.com (2603:10b6:5:398::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Thu, 19 Aug
- 2021 10:56:22 +0000
-Received: from DM6PR11MB4185.namprd11.prod.outlook.com
- ([fe80::199b:aeaf:73e5:c4ac]) by DM6PR11MB4185.namprd11.prod.outlook.com
- ([fe80::199b:aeaf:73e5:c4ac%6]) with mapi id 15.20.4436.019; Thu, 19 Aug 2021
- 10:56:22 +0000
-From:   <Hari.PrasathGE@microchip.com>
-To:     <alexandre.belloni@bootlin.com>
-CC:     <Nicolas.Ferre@microchip.com>, <Ludovic.Desroches@microchip.com>,
-        <robh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux@armlinux.org.uk>
-Subject: Re: [PATCH 2/2] ARM: at91: dts: at91-sama5d2_xplained: Add comments
- for sama5d29
-Thread-Topic: [PATCH 2/2] ARM: at91: dts: at91-sama5d2_xplained: Add comments
- for sama5d29
-Thread-Index: AQHXj4OHTkczeiuEmkWOx7AIRbtGAKtwQNYAgApx0gA=
-Date:   Thu, 19 Aug 2021 10:56:21 +0000
-Message-ID: <78b26b01-b66f-5779-9f67-fdd13e473dfc@microchip.com>
-References: <20210812140758.28273-1-Hari.PrasathGE@microchip.com>
- <20210812140758.28273-2-Hari.PrasathGE@microchip.com>
- <YRV13nfgpEEuOOxB@piout.net>
-In-Reply-To: <YRV13nfgpEEuOOxB@piout.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: bootlin.com; dkim=none (message not signed)
- header.d=none;bootlin.com; dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 401503e8-2474-43c1-7105-08d962fffb36
-x-ms-traffictypediagnostic: DM4PR11MB5437:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM4PR11MB5437A8416543F8A09088DE438EC09@DM4PR11MB5437.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wc5crzYmITxitaXhUvV21fJ/St78cXrTACOJbtkIBMTRybnYYu3ce8KzOdZpJPaOMIDpjRx0zr4qJgzvarUKCNTvP+B6Sh2//4Y8ENLU+1Qr4cUMuKdks2ANU2sZRI7F1zQvyaF3XissWPKkQnSltGQHjPBzRrO8ThzL6VP5zRCwPZuERtfc9zddWf5NZNdX9FBv/XtxgAw1jysFFfOLTMC68VAYddnH/AnnlGSX8mGW4mrMGOb10fUobB266kk0G5Qd7/e8iWuz/3Ea4Qr7GunM/bKn1JQ2ysrbmBHjzLDE+FbiYzl//rDHedqeEITUbzPw66uaTFZ3FA44zUqZ8b+zhbZUAkk1dd7hDJ3c21fBy/thjeULNDEZlmCMx6fbxHacmY7Yxhg6gGpXNmuzC40xaNgxxy9elxPfTj7SBv138V+2vO28hSizPa9qoVIt5NzGW8Jf1KhbzkEMHX2LrhChBNg4QemLlRF8/zoU3fPS3etJSW1neM8rMK5C8OICY9a58EM31LNUA7ficm2vhA4niCKhJ5yATrBw7/ijBPoIA1FeYoUvajgMHAYItHWtEXZ3nPC33hSKsFvrrZraniC1RlAcsJpOBbY8ueGkvcJg2hYbKiCwZKpSapRz85bREIrKMF9KwxdEm1YWQ/glsM5eR4YGQFtIBHefui8YxoLDecUgMAAkgVutGhP8AzfI0wzTzReNIZdWtykyhMZIBV1EOEbNtLsXukgnhv/Z+XXX5E2qsRgC0Xfs/EhlxfNiOot73+noHOsaG6Dk5KPjIxZ16jKlagTWC8lZyUkAPdZ0tn6Ue6jE/WuDvmCDgAx+qXZJpa47AGhWooji1Uh9biKOin7N0cMLlqo7aIz+htw=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4185.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(376002)(346002)(396003)(366004)(39860400002)(478600001)(66556008)(966005)(8676002)(66476007)(26005)(76116006)(91956017)(186003)(71200400001)(66946007)(54906003)(53546011)(6506007)(2906002)(36756003)(38070700005)(66446008)(5660300002)(38100700002)(122000001)(83380400001)(4326008)(6512007)(64756008)(6916009)(6486002)(31696002)(31686004)(316002)(86362001)(2616005)(8936002)(138113003)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y0o2bnZ5YXlpR1h1WTJhYTZHVWJkL0dNTTNSRFhXdnZWK29JNEVkbEtRbFVM?=
- =?utf-8?B?VEkyRVJDUmZacGRBR2FRN1lGREhiRTlJVzlrTnF3dlNDVHdnaHhZSEZ4cER0?=
- =?utf-8?B?TWVhb2VNV0J3NDlIU0paOGFXM2M3RjMyd2hFU244WHhGSmFNNUZpWWR2cEVM?=
- =?utf-8?B?WjYrVWZRR2hOY21mWXNpcU8yWFdmNE42VnhUSTNiTjBiNFUzR1IwVFV2Zmo1?=
- =?utf-8?B?cTdVZUk2MXEvSngrZ0R6VW85RFlFbFlOdXNQMVlHeWZrR0x0Vnl1eGtGdFdO?=
- =?utf-8?B?TlZmK3BKOHVUQnlTV0ZtSW1VVmFlcDBBeTNLa0ZvYXZLSnpMbUVHYnhiYU9D?=
- =?utf-8?B?enpRWlJQczlCWTE3aTdUWjJiN2JNQ2FyZjBjdGZnN25CWWZZb2FKaXZxOFdm?=
- =?utf-8?B?VWl6eERIL3l3bXRtdFJrTXY5ZTQ0WjBOLysxMXRDL2RidTNyNWtETk5TUUlV?=
- =?utf-8?B?RUw4TUIveTA5SU1kaGhLZDJBeS8ydnByMThWMU9nTkVrV3hSdHNZU0tNZFMv?=
- =?utf-8?B?cVlYU1RrTjJwZTZSQWM2bC90N29acFVBcjhPUWEwNzZXV3FldnEwb0kyY3dv?=
- =?utf-8?B?UG82Rm41ZXUvY0xxUWF1dUFUVy9COE1XdmtjWXIvT0Z2bUFwT3duYWZ2V0ND?=
- =?utf-8?B?M2ZyNU00anpSV3FYT3dtaW0vS0J2dS9WZE9ZOUp1SjlnUkNTNkV1YkFGQ1pm?=
- =?utf-8?B?aXIzUVhxV3dMMXRYY0MrSUdzK3NNNmp6LzFWZGw2d3l5aHlaQ3gyRml1eUhE?=
- =?utf-8?B?U0VOaVZGWitaNlhiZmtQejhzTXIyQ3FhYkREbitVVzZieTlpRTFwdG1NZ0Zh?=
- =?utf-8?B?T2gvbUZqbUg3bVhOZWJhcG9KRWgrSkoyVVJXNy9lRkt1M29xL21SRGZTR3RM?=
- =?utf-8?B?VjQxUDN4V0VRejF2c1NZbG1GVjc4bWZhVUhVSnNlSzliRGtSVHFjUld3MWR0?=
- =?utf-8?B?RWlvZm9XN1lnVVBRYm9OenFmTzdORTBJZjhuUWRGZng4TkZFUzZZNE0vZ3VD?=
- =?utf-8?B?UlRpNFFIOEtKbDcvU0VLRG5VOERSN1M0OTV6UXRKbmtoOCtPQjRKNHRIL3NC?=
- =?utf-8?B?MkhmU2dxdzF5MDF0Y0xoN08rbGlOa2ZPcDQ3c1BJMjJjeUdpN1FkdWM3Rkgr?=
- =?utf-8?B?ZlQ0OHM3UlpKN01xcVRCV1Q3RzFJcEczdDNKWUwwREFjS1F6Q0FCQXh1VnBF?=
- =?utf-8?B?eENqTnRvOVl3ZVNKNGdMcDNlM0FyeTBETlRQTWRGcmFUcHNqSVkwVy9hdHc3?=
- =?utf-8?B?QXBjVDZxYjBZRzhobXAyWXpLTkcyRGwzVHBub1pPcG5jeWdLOHRESnN0cjFB?=
- =?utf-8?B?TmRCSU4zd3c3UDFYNC9mUXNYWFFaSTNYOWhtQW1mMjdRVnFQQVBZUUJ2ZHli?=
- =?utf-8?B?UVBXYUlSK2U0UmhERkl6clZVMy9MalNoUGEwamhuNzJxNERSbEpSdjJ0NkUz?=
- =?utf-8?B?SVkyODR6THJ2Qld0MnNyRjRjZDZKTE5ITzVwSWFoMHhLOW9QREhLWGlCM3lr?=
- =?utf-8?B?enhnMkRpRFNXbnN4OXh0OU8yRFNIaUd5Q2c1cEg0NVF0c0tmYlVvV1JuTFpY?=
- =?utf-8?B?NnFCSUkrVkJWOEw1Q0YzZG82K2dsRi80UzBIbFNqSFFvZCt2eFdlelhoNmdU?=
- =?utf-8?B?SXBMTU15MVMvMERmczgvYjJmaVFUVkZ0REFSaU5Ma0RTUVQ1b1RjVDZzdzhj?=
- =?utf-8?B?OFhwSmtzMzQ0WkE3RWdYUkFtNElGQkVzclNHamcyOW9jSHZNeUY4SWo5dFdq?=
- =?utf-8?Q?EmUGMVADNc4o99zJnVesW91z0XAkh0YrGQ3aHq1?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C1E2DCF2DE36994DB7C9A21CC1FB5E07@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/xsfEEbUef+0PhexOPJnDNgUK0wlU6L3z6qq8pex2G4=;
+        b=ou2vOnvsg1YPX9EQb8p7nIbay+72BGHtmYxJ/uCF6Axg5uLF118aqBEqWOA6z3+SP3
+         TY8M7oETmOzxGVAOiJA0Yj16TeJsaNsDwgbMFTduSw/HOI8tBDqJee+FWp9aQTAfGc0A
+         JmRyuCiM6tZL2zbQ1LwZ5bCusAent7qD6d5vO6+/6g2hHBqjznHWWJydTY9wpv1GWOvg
+         amRo6xOMJdGYN04DGaIqoAN/1+Cu2JSQ6OkgDS8p+zco8ham2dd+jLbAfzbexUVjAy1C
+         h9LeYSL9fpEaYgH5g/7CU7CdEKlM7WOiPoBb7t5K6kuwsSrimCc56VzKO6rCQgzz80rs
+         sQOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/xsfEEbUef+0PhexOPJnDNgUK0wlU6L3z6qq8pex2G4=;
+        b=X/nZfxbZvFEZQ8G9v5csvDabYBHH1pBeIj/541F2JBFhfEmLCi+BcncX6BfRNs3W9i
+         ftUIm13nHqRUKZqZNz3N+oTKjkzdNWuLVWAJ9rRumcPfqqWuURpxzVSbse3FOqgk6QYN
+         jLg8ELj3bdVT5z9ceF97vobTFOai7BeiOvPuuMh6iNfoRed6qmm37ZskMNXG4tKQdo6f
+         c7neTanr8GVyU2eW/5fZS16NHDQvtQ3ij7ZQMCkS6OrUEBDAt4NweLPs9lXBoScnXSNO
+         R4bs5eY1afFiqMuxhmoCdo73kNNpe48/Y5lwcscwfsE+Z1TYepecL0NAWmmIUztC++vD
+         GSuA==
+X-Gm-Message-State: AOAM533u3c76AN2XehISImDUd4NLjo87hr5fA9MLiwZWt7uVa88yob1L
+        fMu4m7p5W4A+YYcN7+XKm7s=
+X-Google-Smtp-Source: ABdhPJz9GOmb4VA9APuG0iFfX3A7edPpmM5UdbUwO671XbEIM+3sLnQRi365KuptlzISZZWDKszW/g==
+X-Received: by 2002:ac2:549c:: with SMTP id t28mr9066731lfk.412.1629371002709;
+        Thu, 19 Aug 2021 04:03:22 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id e8sm235905ljj.132.2021.08.19.04.03.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 04:03:22 -0700 (PDT)
+Date:   Thu, 19 Aug 2021 14:03:20 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        John Stultz <john.stultz@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
+Message-ID: <20210819110320.ikri4yjkp3zfuvqx@mobilestation>
+References: <d853df77-8d36-30b0-dd26-da1bfcb068e0@kernel.org>
+ <20210721112531.xvu6ni5ksaehsrjh@mobilestation>
+ <CALAqxLViEqSO17P3JGRGYJh-wDoHaJiQQV48zeoRgnar4Xd5Bg@mail.gmail.com>
+ <20210722181221.xh3r5kyu7zlcojjx@mobilestation>
+ <YPnEO6NVFZDS1s//@yoga>
+ <CALAqxLUT0e+mHMVo685oVTxR8y76733cN0yciQ7ePS6GRE+_dg@mail.gmail.com>
+ <20210722220918.l7j6zw3aaa27qato@mobilestation>
+ <CALAqxLXrs0_Xs0JV5H-wS1q2CJ7XhW5Dj90eu=uazkRXXEMUxQ@mail.gmail.com>
+ <20210815194617.sbrkutxzldqbxfat@mobilestation>
+ <YRyCFx0ZOYTMhinf@builder.lan>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4185.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 401503e8-2474-43c1-7105-08d962fffb36
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 10:56:21.9458
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fkKtgyGJNBYO+ehHzzbbbBXeoOmsGqElbD/lQl8a/SfQrjHTUbOtqndc6z6v4wEx9LhryZ3Q9m3OIwKQgtJYyR7WTdLR3bdhC3yRMvcm6Ug=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5437
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YRyCFx0ZOYTMhinf@builder.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8sDQoNCk9uIDEzLzA4LzIxIDEyOjU2IGFtLCBBbGV4YW5kcmUgQmVsbG9uaSB3cm90ZToN
-Cj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRz
-IHVubGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBIZWxsbywNCj4gDQo+
-IE9uIDEyLzA4LzIwMjEgMTk6Mzc6NTgrMDUzMCwgSGFyaSBQcmFzYXRoIHdyb3RlOg0KPj4gQWRk
-IGNvbW1lbnRzIGZvciB0aGUgZW5kIHVzZXIgZm9yIG1vZGlmeWluZyB0aGUgRFRTIGZpbGUgZm9y
-DQo+PiBpbnN0YW50aWF0aW5nIHRoZSBzYW1hNWQyOSBTb0MuDQo+Pg0KPj4gU2lnbmVkLW9mZi1i
-eTogSGFyaSBQcmFzYXRoIDxIYXJpLlByYXNhdGhHRUBtaWNyb2NoaXAuY29tPg0KPj4gLS0tDQo+
-PiAgIGFyY2gvYXJtL2Jvb3QvZHRzL2F0OTEtc2FtYTVkMl94cGxhaW5lZC5kdHMgfCA1ICsrKysr
-DQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4+DQo+PiBkaWZmIC0tZ2l0
-IGEvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hNWQyX3hwbGFpbmVkLmR0cyBiL2FyY2gvYXJt
-L2Jvb3QvZHRzL2F0OTEtc2FtYTVkMl94cGxhaW5lZC5kdHMNCj4+IGluZGV4IDYyN2I3YmY4OGQ4
-My4uZmFhMzAwNjNkOWE5IDEwMDY0NA0KPj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1z
-YW1hNWQyX3hwbGFpbmVkLmR0cw0KPj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1h
-NWQyX3hwbGFpbmVkLmR0cw0KPj4gQEAgLTYsNiArNiwxMSBAQA0KPj4gICAgKiAgICAgICAgICAg
-ICAgICAyMDE1IE5pY29sYXMgRmVycmUgPG5pY29sYXMuZmVycmVAYXRtZWwuY29tPg0KPj4gICAg
-Ki8NCj4+ICAgL2R0cy12MS87DQo+PiArLyoNCj4+ICsgKiBSZXBsYWNlIHRoZSBsaW5lIGJlbG93
-IHdpdGggInNhbWE1ZDI5LmR0c2kiIGluIG9yZGVyIHRvIGluc3RhbnRpYXRlIHRoZQ0KPj4gKyAq
-IHNhbWE1ZDI5IFNvQyBvZiB0aGUgc2FtYTVkMiBmYW1pbHkuT3RoZXJ3aXNlLCBsZWF2ZSBpdCB1
-bmNoYW5nZWQgd2hlbg0KPj4gKyAqIHVzaW5nIHNhbWE1ZDI3IFNvQyBmb3IgaW5zdGFuY2UuDQo+
-PiArICovDQo+IA0KPiBJIGd1ZXNzIGl0IHdvdWxkIGJlIGJldHRlciB0byBoYXZlIGEgYXQ5MS1z
-YW1hNWQyOV94cGxhaW5lZC5kdHMgKGFuZCB3ZQ0KPiBzaG91bGQgaGF2ZSBoYWQgYSBhdDkxLXNh
-bWE1ZDI3X3hwbGFpbmVkLmR0cyksIGVsc2UsIHlvdSBjYW4ndCBjcmVhdGUgYW4NCj4gaW1hZ2Ug
-dGhhdCB3aWxsIHN1cHBvcnQgYm90aCB2YXJpYW50cy4NCj4gDQo+IA0KVGhlIG5ldyBTb0MgJ3Nh
-bWE1ZDI5JyBiZWxvbmdzIHRvIHRoZSBzYW1lIHNhbWE1ZDIgZmFtaWx5LiBJdCBpcyANCmVzc2Vu
-dGlhbGx5IGEgbmV3IGNoaXAgcmV2aXNpb24gb2YgdGhlIGV4aXN0aW5nIHNhbWE1ZDI3IHdpdGgg
-YSBuZXcgR01BQyANCmNvbnRyb2xsZXIgSVAgdGhhdCBhZGRyZXNzZXMgZmV3IHNpbGljb24gaXNz
-dWVzLiBUaGVyZSB3b3VsZG4ndCBiZSANCnNlcGFyYXRlIGV2YWx1YXRpb24gYm9hcmRzIHRoYXQg
-c2hhbGwgYmUgbWFkZSBidXQgd2Ugd2lsbCBiZSB1c2luZyB0aGUgDQpleGlzdGluZyBzYW1hNWQy
-IFhQbGFpbmVkIGJvYXJkcyBpdHNlbGYgYnV0IHdpdGggdGhlIG5ldyBTb0MgcG9wdWxhdGVkLiAN
-CkhlbmNlIHdlIGhhdmUgdGFrZW4gdGhpcyBhcHByb2FjaCBvZiBoYXZpbmcgYSBzZXBhcmF0ZSBE
-VFNJIGZpbGUgYW5kIA0KcmV1c2UgdGhlIGV4aXN0aW5nIGJvYXJkIHNwZWNpZmljIERUUyBmaWxl
-Lg0KDQpXZSBkb24ndCB3YW50IHRvIGNyZWF0ZSBzaW5nbGUgaW1hZ2UgdGhhdCB3aWxsIHN1cHBv
-cnQgYm90aCB2YXJpYW50cy4gSW4gDQpmYWN0LCB3ZSBkb24ndCB3YW50IG91ciBjdXN0b21lcnMg
-dG8gZW5hYmxlIGNlcnRhaW4gZmVhdHVyZXMgdGhhdCBhcmUgDQpicm9rZW4gYXQgdGhlIHNpbGlj
-b24gbGV2ZWwgaW4gdGhlIGV4aXN0aW5nIHJldmlzaW9uIG9mIHRoZSBTb0MgaS5lIA0Kc2FtYTVk
-MjcuIEluc3RlYWQsIHRoZXkgY291bGQgZG8gdGhpcyBjaGFuZ2UgbWFudWFsbHkgYW5kIHVzZSBp
-dCBpbiB0aGUgDQpuZXcgU29DIGkuZSBzYW1hNWQyOS4NCg0KUmVnYXJkcywNCkhhcmkNCg0KPiAt
-LQ0KPiBBbGV4YW5kcmUgQmVsbG9uaSwgY28tb3duZXIgYW5kIENPTywgQm9vdGxpbg0KPiBFbWJl
-ZGRlZCBMaW51eCBhbmQgS2VybmVsIGVuZ2luZWVyaW5nDQo+IGh0dHBzOi8vYm9vdGxpbi5jb20N
-Cj4gDQo=
+On Tue, Aug 17, 2021 at 10:44:23PM -0500, Bjorn Andersson wrote:
+> On Sun 15 Aug 14:46 CDT 2021, Serge Semin wrote:
+> 
+> > Hello John
+> > 
+> > On Fri, Aug 13, 2021 at 06:06:24PM -0700, John Stultz wrote:
+> > > On Thu, Jul 22, 2021 at 3:09 PM Serge Semin <fancer.lancer@gmail.com> wrote:
+> > > > On Thu, Jul 22, 2021 at 01:09:05PM -0700, John Stultz wrote:
+> > > > > On Thu, Jul 22, 2021 at 12:17 PM Bjorn Andersson
+> > > > > <bjorn.andersson@linaro.org> wrote:
+> > > > > > > On Jul 21, 2021, 1:45 PM +0200, Krzysztof Kozlowski wrote:
+> > > > > > > > I had impression that kernel defines interfaces which should be used and
+> > > > > > > > are stable (e.g. syscalls, sysfs and so on). This case is example of
+> > > > > > > > user-space relying on something not being marked as part of ABI. Instead
+> > > > > > > > they found something working for them and now it is being used in "we
+> > > > > > > > cannot break existing systems". Basically, AOSP unilaterally created a
+> > > > > > > > stable ABI and now kernel has to stick to it.
+> > > > > > > >
+> > > > > > > > Really, all normal systems depend on aliases or names and here we have
+> > > > > > > > dependency on device address. I proposed way how AOSP should be fixed.
+> > > > > > > > Anything happened? Nope.
+> > > > > > >
+> > > > > > > First time he sent a possible solution for the problem:
+> > > > > > > https://lore.kernel.org/lkml/20201221210423.GA2504@kozik-lap/
+> > > > > > >
+> > > > > > > To sum up you could have used one of the more portable approaches
+> > > > > > > 1. add an udc alias to the controller and use it then to refer to the
+> > > > > > > corresponding USB controller
+> > > > > >
+> > > > > > Is there such a thing as "UDC alias"? Or are you suggesting that we
+> > > > > > should add such feature?
+> > > > > >
+> > > > > > I think it would be wonderful if we could identify the UDCs on our
+> > > > > > boards as "USB1" and "USB2", or "the one and only USB-C connector". But
+> > > > > > unless that will fall back to the existing naming it would break John's
+> > > > > > _existing_ userspace.
+> > > > >
+> > > >
+> > > > > Well, I'd not hold up the existing userspace I'm using as sacrosanct
+> > > > > (AOSP devices still usually don't have to work cross-kernel versions -
+> > > > > devboards being the main exception). I'm fine if we can rework
+> > > > > userland as proposed, so that the issues can be avoided, but I
+> > > > > honestly don't have enough context to really understand what that
+> > > > > looks like (no idea what udc aliases are).
+> > > > >
+> > > > > And whatever we do, the main constraint is that userland has to be
+> > > > > able to work with existing LTS kernels and newer kernels.
+> > > >
+> > > > As I said in my response to Bjorn even if it is added to the kernel it
+> > > > won't get to the official LTSes as it would be a new kernel feature.
+> > > > New features aren't normally backported to the older kernels.
+> > > >
+> > > > >
+> > > > > > > 2. search through DT-nodes looking for a specific compatible/reg
+> > > > > > > DT-properties.
+> > > > > > >
+> > > > > >
+> > > > > > We could define that this is the way, but again we didn't yesterday so
+> > > > > > your proposal is not backwards compatible.
+> > > > >
+> > > >
+> > > > > It may be backwards compatible, but I'm still not clear exactly how it
+> > > > > would work.
+> > > > >
+> > > > > I guess if we look through all
+> > > > > sys/bus/platform/devices/*/of_node/compatbile strings for the desired
+> > > > > "snps,dwc3", then find which of the directories have the desired
+> > > > > address in the string? (The suggestion for looking at reg seems
+> > > > > better, but I don't get a char value out of the dwc3 of_node/reg
+> > > > > file).
+> > > >
+> > > > The algorithm is simple:
+> > > > 1) You know what USB controllers you have on your platform. They are
+> > > > supposed to be compatible with snps,dwc3 string and have some pre-defined
+> > > > base address.
+> > > > 2) Find all the files in the directory /sys/class/udc/.
+> > > > 3) Walk through all the directories in /sys/bus/platform/devices/ with
+> > > > names found in 2) and stop on the device with matching compatible/base
+> > > > address defined in 1).
+> > > >
+> > > > In my case the strings could be retrieved like this:
+> > > > USB_NAME_COMPAT=$(/sys/bus/platform/devices/1f100000.usb/of_node/compatible | tr '\0' '\t' | cut -f1)
+> > > > USB_DEVICE_ADDR="$(head -c 4 /sys/bus/platform/devices/1f100000.usb/of_node/reg | hexdump -ve '/1 "%02x"' | sed -e 's/^0*//g')"
+> > > 
+> > > 
+> > 
+> > > Hey Serge,
+> > >    I just wanted to follow up here.  Amit has reworked the db845c AOSP
+> > > userland so that it no longer uses the fixed node name, but instead
+> > > probes for it:
+> > >   https://android-review.googlesource.com/c/device/linaro/dragonboard/+/1774872
+> > > 
+> > > Admittedly, it does take a short-cut.  As your algorithm above,
+> > > digging up the devices and finding the sys/bus path to read the reg
+> > > value and pipe through hexdump (which android doesn't have) seemed
+> > > overly obtuse when the address is in the node name itself (while the
+> > > only way to be sure, one normally doesn't use spectroscopy to
+> > > determine the value of a coin when you can read what's printed on it
+> > > :).  But, should the node naming be further changed at least the
+> > > infrastructure we have can be reworked fairly easily to adapt now.
+> > > 
+> > > In any case, as we can handle the name change now, if you want to
+> > > resubmit your patch, we would no longer object (but can't promise no
+> > > one else might be bitten).  Sorry for the delay this caused, and we
+> > > appreciate you working with us to find a solution.
+> > 
+> > Great! Thanks for sending the notification. I'll resend the patch with a
+> > reference to your report and to the update made to AOSP, as soon as I
+> > am done with my current task.
+> > 
+> 
+
+> Amit's change makes future versions of AOSP able to cope with changes in
+> the UDC name, unfortunately it doesn't change the fact that renaming the
+> node breaks compatibility in non-Android user space (or any existing
+> branches/tags of AOSP).
+
+After looking over the whole discussion, as I see it there is no
+compatibility breakage in this case. But there is an improper UDC
+interface usage, which has been fixed by Amit and could be ported to
+another AOSP branches/tags if needed. As [1] says user-space is
+able to create a USB gadget only with controllers listed in the
+directory /sys/class/udc/*. That ABI doesn't change. Note the ABI
+doesn't say that if someone found a file there in some kernel
+version it will be available there in the in a next version with the
+same name. A developer just need to search for the UDC controllers ach
+time when a UDC gadget needs to be created.
+
+Anyway as I see it the UDC gadget creation ABI IS indeed abided by
+most of the developers since we haven't heard much complains so far
+except from John. In case of AOSP the problem has been fixed so we can
+get back the modification and proceed with the rest of the patches
+review.
+
+[1] Documentation/usb/gadget_configfs.rst
+
+-Sergey
+
+> 
+> Regards,
+> Bjorn
