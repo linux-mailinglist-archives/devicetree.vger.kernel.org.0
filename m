@@ -2,234 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D733F1A02
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 512713F1A0F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238308AbhHSNIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 09:08:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52432 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238379AbhHSNIX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:08:23 -0400
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336D2C061796
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:07:47 -0700 (PDT)
-Received: by mail-vs1-xe33.google.com with SMTP id a201so3983917vsd.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:07:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=1GCKu9c84zINYtTdflsWXKCWXkOZdKhJUWmHuvrkY+4=;
-        b=f+4CRpBzlKKi/DOaSNA/G+hiFrodgB7WwtvP6lDjHBbwMct5xJEnNRIBbwWd50HxVl
-         4zhiGfKdAN1zaQTNFhB6Vi8xqc4j40IY1vsyJhWmkAu9OGW99mwK9tXMUYa730kFsYI4
-         idKdGIien3FkWDSAe9a9bUwucupyJle2LRixnAHVpFbbr4u728pooiABojadky5czPhQ
-         T05rm31+E59u8E8W6WOHoHOIbfDCZtTsEcAVQYXP/NQkrFth/PCbSSe6c7z8JAzoaO1+
-         46BAA+NxWAouT+Gc5X4wCTy1dHtG/pP9SH4vbLZ8x03CSox6/vBN4JfPUqmpPE9U44nl
-         Iiow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=1GCKu9c84zINYtTdflsWXKCWXkOZdKhJUWmHuvrkY+4=;
-        b=SsIi3muZkf/Ecy5TFxfY4yBX1gzoGsB6BgLDendI8DqR/M/Fo0JBJSZ7r28+0B9rTo
-         foUachOYfPgROrqcg3yrzBqI3LUJRn310KPybzOPRoblgVKr6Rrm/CgG5mhwuTJILtOp
-         vgzdigZAY5x7x31aWsq3NXtuNVzigwR8Fz/rOHukaCu1sSNUgxQlnesY/1OOmlYCsLIH
-         EFtSDFw/N/gZdGG9ca5e8y4Cba4xM32nVEPixp31c7+bzEeqvSE/umvZNrAYhfbK85lf
-         nGaiwR6n6bT3foVv8UjdU84CoCrVwDGDVgUsB/t0s58xVaW+7MqKZ3m2pzsMhe6wZ3Mz
-         rbGA==
-X-Gm-Message-State: AOAM530fNVWPjcQakjQ0GNXgMFRW25ugoFAjt3vmUc4gM2nSkOjURZ4b
-        hlSvWEqWaF9lF0YRrYOlbMm5YM+un+tHly1PV1rtCA==
-X-Google-Smtp-Source: ABdhPJyJROokpzMBNet191tDOwD7eE8PakuStZsC4TgI99eWakoC4SNznlH+uH6MVn3jKPVb3Va23L7NrWpzQmbz4ck=
-X-Received: by 2002:a67:3212:: with SMTP id y18mr12074668vsy.19.1629378466059;
- Thu, 19 Aug 2021 06:07:46 -0700 (PDT)
+        id S239503AbhHSNLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 09:11:38 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3676 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232821AbhHSNLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:11:37 -0400
+Received: from fraeml705-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Gr4qw1JDvz6BHHt;
+        Thu, 19 Aug 2021 21:10:04 +0800 (CST)
+Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
+ fraeml705-chm.china.huawei.com (10.206.15.54) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.8; Thu, 19 Aug 2021 15:10:59 +0200
+Received: from [10.47.82.51] (10.47.82.51) by lhreml724-chm.china.huawei.com
+ (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Thu, 19 Aug
+ 2021 14:10:58 +0100
+Subject: Re: [EXT] Re: [PATCH v2 2/4] perf/marvell: CN10k DDR performance
+ monitor support
+To:     Bharat Bhushan <bbhushan2@marvell.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210810094307.29595-1-bbhushan2@marvell.com>
+ <20210810094307.29595-3-bbhushan2@marvell.com>
+ <c4e9c893-9130-7024-e24e-c63e232be4be@huawei.com>
+ <CO6PR18MB4465D5490C1F6141DB454064E3C09@CO6PR18MB4465.namprd18.prod.outlook.com>
+From:   John Garry <john.garry@huawei.com>
+Message-ID: <72430f0f-c22f-0e8a-76db-99fc95d68b49@huawei.com>
+Date:   Thu, 19 Aug 2021 14:10:57 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-References: <20210818043131.7klajx6drvvkftoc@vireshk-i7> <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
- <20210818045307.4brb6cafkh3adjth@vireshk-i7> <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
- <20210818055849.ybfajzu75ecpdrbn@vireshk-i7> <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
- <20210818062723.dqamssfkf7lf7cf7@vireshk-i7> <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
- <20210818091417.dvlnsxlgybdsn76x@vireshk-i7> <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
- <20210818095044.e2ntsm45h5cddk7s@vireshk-i7> <CAPDyKFrFF00xGDWPCQnPwF0_QkG4TB2UqggpuBpp8LY_CMKP-A@mail.gmail.com>
- <0354acbe-d856-4040-f453-8e8164102045@gmail.com>
-In-Reply-To: <0354acbe-d856-4040-f453-8e8164102045@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 19 Aug 2021 15:07:09 +0200
-Message-ID: <CAPDyKFoQdn1rm91iFNJwZwpSYcKJBjDLqtJB4KZAkhgY1Grm-Q@mail.gmail.com>
-Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CO6PR18MB4465D5490C1F6141DB454064E3C09@CO6PR18MB4465.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.82.51]
+X-ClientProxiedBy: lhreml730-chm.china.huawei.com (10.201.108.81) To
+ lhreml724-chm.china.huawei.com (10.201.108.75)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Aug 2021 at 17:43, Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> 18.08.2021 13:08, Ulf Hansson =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > On Wed, 18 Aug 2021 at 11:50, Viresh Kumar <viresh.kumar@linaro.org> wr=
-ote:
-> >>
-> >> On 18-08-21, 11:41, Ulf Hansson wrote:
-> >>> On Wed, 18 Aug 2021 at 11:14, Viresh Kumar <viresh.kumar@linaro.org> =
-wrote:
-> >>>> What we need here is just configure. So something like this then:
-> >>>>
-> >>>> - genpd->get_performance_state()
-> >>>>   -> dev_pm_opp_get_current_opp() //New API
-> >>>>   -> dev_pm_genpd_set_performance_state(dev, current_opp->pstate);
-> >>>>
-> >>>> This can be done just once from probe() then.
-> >>>
-> >>> How would dev_pm_opp_get_current_opp() work? Do you have a suggestion=
-?
-> >>
-> >> The opp core already has a way of finding current OPP, that's what
-> >> Dmitry is trying to use here. It finds it using clk_get_rate(), if
-> >> that is zero, it picks the lowest freq possible.
-> >>
-> >>> I am sure I understand the problem. When a device is getting probed,
-> >>> it needs to consume power, how else can the corresponding driver
-> >>> successfully probe it?
-> >>
-> >> Dmitry can answer that better, but a device doesn't necessarily need
-> >> to consume energy in probe. It can consume bus clock, like APB we
-> >> have, but the more energy consuming stuff can be left disabled until
-> >> the time a user comes up. Probe will just end up registering the
-> >> driver and initializing it.
-> >
-> > That's perfectly fine, as then it's likely that it won't vote for an
-> > OPP, but can postpone that as well.
-> >
-> > Perhaps the problem is rather that the HW may already carry a non-zero
-> > vote made from a bootloader. If the consumer driver tries to clear
-> > that vote (calling dev_pm_opp_set_rate(dev, 0), for example), it would
-> > still not lead to any updates of the performance state in genpd,
-> > because genpd internally has initialized the performance-state to
-> > zero.
->
-> We don't need to discover internal SoC devices because we use
-> device-tree on ARM. For most devices power isn't required at a probe
-> time because probe function doesn't touch h/w at all, thus devices are
-> left in suspended state after probe.
->
-> We have three components comprising PM on Tegra:
->
-> 1. Power gate
-> 2. Clock state
-> 3. Voltage state
->
-> GENPD on/off represents the 'power gate'.
->
-> Clock and reset are controlled by device drivers using clk and rst APIs.
->
-> Voltage state is represented by GENPD's performance level.
->
-> GENPD core assumes that at a first rpm-resume of a consumer device, its
-> genpd_performance=3D0. Not true for Tegra because h/w of the device is
-> preconfigured to a non-zero perf level initially, h/w may not support
-> zero level at all.
+On 19/08/2021 12:52, Bharat Bhushan wrote:
+>> Is there anything to stop using adding COMPILE_TEST as a dependency?
+>> This really helps build coverage testing for other archs
+> Just keeping same as other drivers
 
-I think you may be misunderstanding genpd's behaviour around this, but
-let me elaborate.
+I think then that may be something which could be improved for other 
+drivers.
 
-In genpd_runtime_resume(), we try to restore the performance state for
-the device that genpd_runtime_suspend() *may* have dropped earlier.
-That means, if genpd_runtime_resume() is called prior
-genpd_runtime_suspend() for the first time, it means that
-genpd_runtime_resume() will *not* restore a performance state, but
-instead just leave the performance state as is for the device (see
-genpd_restore_performance_state()).
-
-In other words, a consumer driver may use the following sequence to
-set an initial performance state for the device during ->probe():
+> 
+>>> +	help
+>>> +	  Enable perf support for Marvell DDR Performance monitoring
+>>> +	  event on CN10K platform.
+>>> +
+>>>    endmenu
+>>> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
+>>> index 5260b116c7da..ee1126219d8d 100644
+>>> --- a/drivers/perf/Makefile
+>>> +++ b/drivers/perf/Makefile
+>>> @@ -14,3 +14,4 @@ obj-$(CONFIG_THUNDERX2_PMU) += thunderx2_pmu.o
+>>>    obj-$(CONFIG_XGENE_PMU) += xgene_pmu.o
+>>>    obj-$(CONFIG_ARM_SPE_PMU) += arm_spe_pmu.o
+>>>    obj-$(CONFIG_ARM_DMC620_PMU) += arm_dmc620_pmu.o
+>>> +obj-$(CONFIG_MARVELL_CN10K_DDR_PMU) += marvell_cn10k_ddr_pmu.o
+>>> diff --git a/drivers/perf/marvell_cn10k_ddr_pmu.c
+>> b/drivers/perf/marvell_cn10k_ddr_pmu.c
+>>> new file mode 100644
+>>> index 000000000000..8f9e3d1fcd8d
+>>> --- /dev/null
+>>> +++ b/drivers/perf/marvell_cn10k_ddr_pmu.c
+>>> @@ -0,0 +1,606 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/* Marvell CN10K DRAM Subsystem (DSS) Performance Monitor Driver
+>>> + *
+>>> + * Copyright (C) 2021 Marvell.
+>>> + */
+>>> +
 
 ...
-rate =3D clk_get_rate()
-dev_pm_opp_set_rate(rate)
 
-pm_runtime_enable()
-pm_runtime_resume_and_get()
-...
+>>> +/* Event counter value registers */
+>>> +#define DDRC_PERF_CNT_VALUE_BASE		0x8080
+>>> +#define DDRC_PERF_CNT_VALUE(n)	(DDRC_PERF_CNT_VALUE_BASE + 8 * (n))
+>>> +
+>>> +/* Fixed event counter enable/disable register */
+>>> +#define DDRC_PERF_CNT_FREERUN_EN	0x80C0
+>>> +#define DDRC_PERF_FREERUN_WRITE_EN	0x1
+>>> +#define DDRC_PERF_FREERUN_READ_EN	0x2
+>>> +
+>>> +/* Fixed event counter control register */
+>>> +#define DDRC_PERF_CNT_FREERUN_CTRL	0x80C8
+>>> +#define DDRC_FREERUN_WRITE_CNT_CLR	0x1
+>>> +#define DDRC_FREERUN_READ_CNT_CLR	0x2
+>>> +
+>>> +/* Fixed event counter value register */
+>>> +#define DDRC_PERF_CNT_VALUE_WR_OP	0x80D0
+>>> +#define DDRC_PERF_CNT_VALUE_RD_OP	0x80D8
+>>> +#define DDRC_PERF_CNT_VALUE_OVERFLOW	BIT_ULL(48)
+>>> +#define DDRC_PERF_CNT_MAX_VALUE		GENMASK_ULL(48, 0)
+>> I assume all these macros are used...
+> Yes, do you see any unused?
 
-Note that, it's the consumer driver's responsibility to manage device
-specific resources, in its ->runtime_suspend|resume() callbacks.
-Typically that means dealing with clock gating/ungating, for example.
+I didn't check
 
-In the other scenario where a consumer driver prefers to *not* call
-pm_runtime_resume_and_get() in its ->probe(), because it doesn't need
-to power on the device to complete probing, then we don't want to vote
-for an OPP at all - and we also want the performance state for the
-device in genpd to be set to zero. Correct?
+> 
+>>> +
+>>> +struct cn10k_ddr_pmu {
+>>> +	struct pmu pmu;
 
-Is this the main problem you are trying to solve, because I think this
-doesn't work out of the box as of today?
-
-There is another concern though, but perhaps it's not a problem after
-all. Viresh told us that dev_pm_opp_set_rate() may turn on resources
-like clock/regulators. That could certainly be problematic, in
-particular if the device and its genpd have OPP tables associated with
-it and the consumer driver wants to follow the above sequence in
-probe.
-
-Viresh, can you please chime in here and elaborate on some of the
-magic happening behind dev_pm_opp_set_rate() API - is there a problem
-here or not?
-
->
-> GENPD core assumes that consumer devices can work at any performance
-> level. Not true for Tegra because voltage needs to be set in accordance
-> to the clock rate before clock is enabled, otherwise h/w won't work
-> properly, perhaps clock may be unstable or h/w won't be latching.
-
-Correct. Genpd relies on the callers to use the OPP framework if there
-are constraints like you describe above.
-
-That said, it's not forbidden for a consumer driver to call
-dev_pm_genpd_set_performance_state() directly, but then it better
-knows exactly what it's doing.
-
->
-> Performance level should be set to 0 while device is suspended.
-
-Do you mean system suspend or runtime suspend? Or both?
-
-> Performance level needs to be bumped on rpm-resume of a device in
-> accordance to h/w state before hardware is enabled.
-
-Assuming there was a performance state set for the device when
-genpd_runtime_suspend() was called, genpd_runtime_resume() will
-restore that state according to the sequence you described.
-
-Kind regards
-Uffe
+Thanks,
+john
