@@ -2,101 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7913F1B6D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 711CC3F1C06
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240330AbhHSORS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 10:17:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38922 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235352AbhHSORS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 10:17:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 93D20610FF;
-        Thu, 19 Aug 2021 14:16:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629382602;
-        bh=0uMlC15O+oh23cQEELPSg5hsjxTkiutg1Dl14TuNA2s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uFfLWw0XVYjN0YeCEeOw9d34neLFdGyTTycyb0AKBzkKwvJw0RaJfoxI34JSe3WL1
-         r7GynOaqWvGHOGOvkhdR9yJ3VjEseQ8pGl1iwhmQ2ZVJwwnIkEojsezZkpmygbrq1i
-         tU0zLeemaItq2qGwl4K/aWVCqzotZmIj21bza5ql2ZhSMAQw4Lych1rGy7qrZ5k9x+
-         i0249dOb5mCdV+lZ9eACZkjoYtTEEFCSo7DrjEYv56L9+y5jHdva/0+A6an8OgIpby
-         zGnrg0Hhvmjh5dk9JY0eln2pqlu+HrE9B8y+I1r0cIkLuaOnyfZQisIMx6ph2kOnpN
-         Tay5NsPYPQRcA==
-Date:   Thu, 19 Aug 2021 15:16:17 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
-Message-ID: <20210819141617.GM4177@sirena.org.uk>
-References: <20210817101119.423853-1-frattaroli.nicolas@gmail.com>
- <20210817101119.423853-3-frattaroli.nicolas@gmail.com>
- <deb50900-fcfd-23d0-ab8a-0e64b2abb063@arm.com>
- <2412250.zZEsDtmPgG@archbook>
+        id S240612AbhHSO4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 10:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240650AbhHSO4b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 10:56:31 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82D9C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:55:54 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id v26so4237579vsa.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:55:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=mm8paTdT0zaztfhC5Y4WPaOBPl8kLHQHgl7pXYxX3h4=;
+        b=qeDfX1TvtXFpaue7XSJcQGoXvoEPk6keQ3SefhHQYD/RQYSwXL/h7/nJ1tE1n2ZgGf
+         hgNQdBuev8q9YdqAn31QqEn+hl0Fw8o/I7j+pKewMg7BSKDExUMcgAG5ffW6TnVBaweA
+         awPBlmbVNdD0YyJLl/fecYVhU7UH2GjQaH+G3BKTeEFH67xcFXuuVoODzKyHu4OljnuW
+         y3YyyagNQ7/VVdr8UoQMvH7lyjCnnH9zaDfJmZrMJYrsb5yu8bZTEWP6ZCkq4ndYtqKT
+         KiXhZrvSOf9kLkVqOyobXMYfdScN3zuV6Y2fafpateAUvd8nG8k5/FLAhRgrUffP4ZSX
+         UqPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=mm8paTdT0zaztfhC5Y4WPaOBPl8kLHQHgl7pXYxX3h4=;
+        b=T0Ic6H1XJOP0RB7ajV+7ouc17WfOXfRvDlIMCp6Wah0/VgsXOmiYv+Q/my0AHeJL+z
+         1KTzJNUINcDncZVR24ILdUhwO9NHZrkz70yBd/osbbSbM30vtpMLT0BotK+aYvCpaKHD
+         ekKhXjIoSHrZnlPvFpvCi4VK2gGaqUv5LjZ1rm/eyguZRXTUzrBQm1YL9MwCcebOf77q
+         Hrh/a9/4p714mH5XLLxh75WrGWrjud3Uh/nsDqD/fd9CIjF21b68KL6D/x9cJCoVSAU7
+         g/C/Tat9r7G92sb0TzyJpcQtXnoxrBwIaljaAacdHsGW3BTVLXq7+fAEryI2CsK/t0Tb
+         jgAg==
+X-Gm-Message-State: AOAM53108chNRp0N9avGS2cescUN0+DESGIGcuculprZAuI7ixOQjinU
+        eFI4Zl63RhpFU+cXH0BhmzS9g6oys9cY1KpXKY1m0Q==
+X-Google-Smtp-Source: ABdhPJy9lhlHe3ZkjkK69gRHTqfsYZUpyU/u1QO9GNutRCvh27kC0oDOl0UN2vIh0G0BbPGuh3RFsxVqGIQ9yFmBme8=
+X-Received: by 2002:a67:f6d8:: with SMTP id v24mr12929204vso.48.1629384953702;
+ Thu, 19 Aug 2021 07:55:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yklP1rR72f9kjNtc"
-Content-Disposition: inline
-In-Reply-To: <2412250.zZEsDtmPgG@archbook>
-X-Cookie: She sells cshs by the cshore.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7> <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7> <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7> <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7> <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com> <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+In-Reply-To: <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 19 Aug 2021 16:55:16 +0200
+Message-ID: <CAPDyKFpg8ixT4AEjzVLTwQR7Nn9CctjnLCDS5GwkOrAERquyxw@mail.gmail.com>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 19 Aug 2021 at 08:17, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> On 18-08-21, 18:55, Dmitry Osipenko wrote:
+> > 18.08.2021 12:41, Ulf Hansson =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >
+> > Either way gives the equal result. The new callback allows to remove th=
+e
+> > boilerplate dev_pm_opp_set_rate(clk_get_rate() code from the rpm-resume
+> > of consumer devices, that's it.
+>
+> It may not be equal, as dev_pm_opp_set_rate() may do additional stuff,
+> now or in a later implementation. Currently it only does
+> regulator_enable() as a special case, but it can be clk_enable() as
+> well. Also, this tries to solve the problem in a tricky/hacky way,
+> while all you wanted was to make the genpd aware of what the
+> performance state should be.
+>
+> Your driver can break tomorrow if we started to do more stuff from
+> this API at another time.
+>
+> > > dev_pm_opp_set_rate() is best called from consumer drivers, as they
+> > > need to be in control.
+> > >> What we need here is just configure. So something like this then:
+> > The intent wasn't to use dev_pm_opp_set_rate() from
+> > __genpd_dev_pm_attach(), but to set genpd->rpm_pstate in accordance to
+> > the h/w configuration.
+>
+> Right.
+>
+> > On Tegra we have a chain of PDs and it's not trivial to convert the
+> > device's OPP into pstate because only the parent domain can translate
+> > the required OPP.
+>
+> The driver should just be required to make a call, and OPP/genpd core
+> should return it a value. This is already done today while setting the
+> pstate for a device. The same frameworks must be able to supply a
+> value to be used for the device.
 
---yklP1rR72f9kjNtc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Right, that sounds reasonable.
 
-On Thu, Aug 19, 2021 at 03:52:55PM +0200, Nicolas Frattaroli wrote:
-> On Donnerstag, 19. August 2021 14:08:36 CEST Robin Murphy wrote:
+We already have pm_genpd_opp_to_performance_state() which translates
+an OPP to a performance state. This function invokes the
+->opp_to_performance_state() for a genpd. Maybe we need to allow a
+genpd to not have ->opp_to_performance_state() callback assigned
+though, but continue up in the hierarchy to see if the parent has the
+callback assigned, to make this work for Tegra?
 
-> > > +  rockchip,no-dmaengine:
-> > > +    description:
-> > > +      If present, driver will not register a pcm dmaengine, only the dai.
-> > > +      If the dai is part of multi-dais, the property should be present.
-> > > +    type: boolean
+Perhaps we should add an API dev_pm_genpd_opp_to_performance_state(),
+allowing us to pass the device instead of the genpd. But that's a
+minor thing.
 
-> > That sounds a lot more like a policy decision specific to the Linux
-> > driver implementation, than something which really belongs in DT as a
-> > description of the platform.
+Finally, the precondition to use the above, is to first get a handle
+to an OPP table. This is where I am struggling to find a generic
+solution, because I guess that would be platform or even consumer
+driver specific for how to do this. And at what point should we do
+this?
 
-> I agree. Should I be refactoring this into a module parameter or
-> something along those lines? I'm unsure of where this goes.
+>
+> > Viresh, please take a look at what I did in [1]. Maybe it could be done
+> > in another way.
+>
+> I looked into this and looked like too much trouble. The
+> implementation needs to be simple. I am not sure I understand all the
+> problems you faced while doing that, would be better to start with a
+> simpler implementation of get_performance_state() kind of API for
+> genpd, after the domain is attached and its OPP table is initialized.
+>
+> Note, that the OPP table isn't required to be fully initialized for
+> the device at this point, we can parse the DT as well if needed be.
 
-Why is this even required?  What is "multi-dais" and why would
-registering the DMA stuff cause a problem?
+Sure, but as I indicated above, you need some kind of input data to
+figure out what OPP table to pick, before you can translate that into
+a performance state. Is that always the clock rate, for example?
 
-> The particular configuration may even vary per-board; an I2S/TDM
-> controller may be connected to an external codec which does not
-> support capture, whereas on another board it may be connected to
-> one that does.
+Perhaps, we should start with adding a dev_pm_opp_get_from_rate() or
+what do you think? Do you have other suggestions?
 
-If the external device doesn't support both directions then why does the
-driver for the I2S controller in the CPU care?  The constraint handling
-code in the core will ensure that nothing tries to start something that
-isn't supported
+>
+> --
+> viresh
 
---yklP1rR72f9kjNtc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEeZ7EACgkQJNaLcl1U
-h9BLTQf+NFP6G5gxloO6mI1KjGRABdmwB01kioQ+Wrt6Vw3VwRA/5Obtl1XcwDU6
-sMmqKjIMhNgfSvDKESHfSDL7E32hYMKUMOXCpEYW2pCEjN2hEbdxVwP+hbIdsmel
-z+z+ISyW3zl6K1ndvLbeniqwEZOsGNiz1EUvTygFCMvHdd9Yuory3/nufj92owBJ
-RgRiuIZJ52nPD1hdPQY1MRpP+Us3DaP8RNHLrF+FlZVtaj/hPftEwt62oTCNI0KO
-iQv81p2ueGYvqIVzD50HGC7sSc5pB2iU3VQ72XlWusgkLYdU22rbVvXGZWSRoaq1
-w8aXvCnwvc8ml4d7ZG4ROXBHzoY2oQ==
-=/YEY
------END PGP SIGNATURE-----
-
---yklP1rR72f9kjNtc--
+Kind regards
+Uffe
