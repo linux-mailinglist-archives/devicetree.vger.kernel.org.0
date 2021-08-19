@@ -2,110 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6171D3F1565
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 10:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E3E3F162E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 11:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237607AbhHSIn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 04:43:57 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:38448 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237477AbhHSInv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 04:43:51 -0400
-X-UUID: 1a1373e78c8f464e98226b919b422673-20210819
-X-UUID: 1a1373e78c8f464e98226b919b422673-20210819
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1587661433; Thu, 19 Aug 2021 16:43:11 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 19 Aug 2021 16:43:10 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 19 Aug 2021 16:43:10 +0800
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <bicycle.tsai@mediatek.com>, <jiaxin.yu@mediatek.com>,
-        <cychiang@google.com>, <aaronyu@google.com>, <wenst@chromium.org>
-Subject: [PATCH v5 11/11] dt-bindings: mediatek: mt8195: add mt8195-mt6359-rt1019-rt5682 document
-Date:   Thu, 19 Aug 2021 16:41:44 +0800
-Message-ID: <20210819084144.18483-12-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210819084144.18483-1-trevor.wu@mediatek.com>
-References: <20210819084144.18483-1-trevor.wu@mediatek.com>
+        id S234974AbhHSJbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 05:31:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234341AbhHSJbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 05:31:08 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF5FC061575
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 02:30:32 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id c17so5339735pgc.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 02:30:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mlxsOtjk3EQe8tY0Dl2bnQT6hDTIci57yhrirNK4WM4=;
+        b=QA9i8ROIYsA+zU2UaEHUmLlB078lcj9BDoGzFBe62urhEJAkBKMHIsgkyuWt3EjbSA
+         18fydOVz/bSrSOW5eNg7eCYof53xhRp1dDbtd1q+1HVnSnMN/2G4HmIyROq5VUwHhoR7
+         GFUoD64A4bRte4u7zimuz6u77yho2bxkaTSSgSGpklBV1EiVGcuWWAzIKbVDHZVsjwVP
+         e2fv8GLwmpibjVz3yyc/SloVvvxnOfRWi6TOlIWZG3QcYPHS9+/U67HAZswWRJLY6+0x
+         ud91n9fJ7CpdYR025yqJ8j3K3oOmWtCQLTeDL52UKjIeCTQCsS+VL7JI9UPgV44GZgad
+         GALg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mlxsOtjk3EQe8tY0Dl2bnQT6hDTIci57yhrirNK4WM4=;
+        b=PqDp3vnmxnJMck0RsyaRwwXPlWKamImTMaBeZtJq+S1/sbjVso1q5xiuDgWeS+qAsq
+         Tq49cLTd6X1xPE0Lv3P1cfaW68xLsqgrrkZatysR7x4F7dGON1fqVguqGbDukeQaI/Oq
+         cyVeL3LrS0lVL0WVu/hADrDsrfNRLOpsxi39RmJvUOA23ttoaeonhjNOjv8k7DMS6kWD
+         VVvuHdyezCaZNTtTsDdNQywtZ9de5/7zzFcro6ImswGYuitmlfOuxUXgLmWlnVCvp1RL
+         ISV1wuvTwJ3fiPAOCCBlbHHm6mfD4jhQZHFCMhIAhgz+b3aP7agGk0xK1X2DpmbLb1iG
+         PSYQ==
+X-Gm-Message-State: AOAM531Z7EHsjCih6R2UB8OCYkk5I8ZHVt8Kl4V6G2u3ernqEl73u+jX
+        aoOn1oGKWb0FJczml6znbCN0Cw==
+X-Google-Smtp-Source: ABdhPJyeugUXXFlUORsDl924iC5IC5L8o7JXyzE+GdxjfiwTaktTT09hgqxXFgSOPSEzNYFMdhEnrw==
+X-Received: by 2002:a05:6a00:791:b0:3e1:3316:2e8 with SMTP id g17-20020a056a00079100b003e1331602e8mr13888896pfu.10.1629365431721;
+        Thu, 19 Aug 2021 02:30:31 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.213])
+        by smtp.gmail.com with ESMTPSA id 11sm2601031pfl.41.2021.08.19.02.30.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 02:30:31 -0700 (PDT)
+From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, dianders@google.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        yangcong <yangcong5@huaqin.corp-partner.google.com>
+Subject: [v1 0/2] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+Date:   Thu, 19 Aug 2021 17:29:41 +0800
+Message-Id: <20210819092943.719433-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds document for mt8195 board with mt6359, rt1019 and rt5682
+The auo,b101uan08.3 panel (already supported by this driver) has
+a 3.3V rail that needs to be turned on. For previous users of
+this panel this voltage was directly output by pmic. On a new 
+user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
+to turn the 3.3V rail on. Add support in the driver for this.
 
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
----
- .../sound/mt8195-mt6359-rt1019-rt5682.yaml    | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
+yangcong (2):
+  drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+  dt-bindings: drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-new file mode 100644
-index 000000000000..20bc0ffd0e34
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8195-mt6359-rt1019-rt5682.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek MT8195 with MT6359, RT1019 and RT5682 ASoC sound card driver
-+
-+maintainers:
-+  - Trevor Wu <trevor.wu@mediatek.com>
-+
-+description:
-+  This binding describes the MT8195 sound card.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt8195_mt6359_rt1019_rt5682
-+
-+  mediatek,platform:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 ASoC platform.
-+
-+  mediatek,dptx-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 Display Port Tx codec node.
-+
-+  mediatek,hdmi-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 HDMI codec node.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+examples:
-+  - |
-+
-+    sound: mt8195-sound {
-+        compatible = "mediatek,mt8195_mt6359_rt1019_rt5682";
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&aud_pins_default>;
-+    };
-+
-+...
+ .../bindings/display/panel/boe,tv101wum-nl6.yaml      |  4 ++++
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c        | 11 +++++++++++
+ 2 files changed, 15 insertions(+)
+
 -- 
-2.18.0
+2.25.1
 
