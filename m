@@ -2,158 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AED933F0FEB
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 03:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 575A53F1067
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 04:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234261AbhHSBVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 21:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232954AbhHSBVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 21:21:22 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC37C061764
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 18:20:46 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id w17so9035251ybl.11
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 18:20:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3jR238mL29ayHcq8ehNBx0TNPsNwsYbo0pduyZlEib0=;
-        b=sAjURJV0DPl5iuEma3MDh24U2Ka/YPHGRAUt3czsmWjDpYIxJGsgV2yVVUbrr33lP6
-         RN77l8yeydxU33c80gLe/YCnN1O2KVqnqGyOW+OrDdTmy8Pefr5fQmjdI9q93973hZWX
-         vADWdXpmVvFG/tdnog039ZCR1huc/bOp7frcCs8OapspSjkjWijqCxtzqUWM03Q7BK+U
-         lt64M3eZAf9Sj8dWHjy9sh2+MruZxbo4NpzPNwdKUlKH9343dMXXmUh1Qb5Y3JwBUMwU
-         UgBPerxUHcj6EKp06w0fTRosuDk8pDkJUbdcFiHSZytEcp8PP16KoNcwxrdB9Yixb6Yw
-         DTmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3jR238mL29ayHcq8ehNBx0TNPsNwsYbo0pduyZlEib0=;
-        b=sGIrhd3ej9QICOQ/8jR/0dtO2wH3nj+ptkFnwnNHvNqRhYawsDEPJ1x5fbGIUd4wlF
-         nfH5cEuO5+gBDaKqscVSHKqFsS4kJuX4MHYwIkLil5tJvqkxWT0VDf8aueL8OdX/z4Z/
-         2BfGq4NncRG3AWTQiXYinduwWrP7ohm+GExcXyDHYBA8/YDWlPu0NDDWnDu+YAhIQKTc
-         BRHvlBAwIms8qY/ZfO/WLTaVaq8tE8u2gYwwudlhLJ6Wh0M6dG8CaYJxz9/hxZRRO9Tb
-         6HH39dEVby4g4niXrkOcBuNmI/bYFV18FBcrfUaBc4FEbDEz6+md3Xn/+Asuo70rAuQq
-         2zJA==
-X-Gm-Message-State: AOAM531wafG/j2Tsp8R/8ylYjzoLAU+CgLKZD6oALOz5HEUjS5JIHfL9
-        sROuwVKhWNCkXrp2dfwFo1wtITHdwUmpbIkq5HRXgA==
-X-Google-Smtp-Source: ABdhPJwPr1XPUwrW0ZAMTkrRFB8tYSV+KrVuPPIlTJEGG83mcyLrJI8HHKaE86XFYA+T76CahvFq+0xqER68MXdlnBk=
-X-Received: by 2002:a25:614c:: with SMTP id v73mr15720483ybb.96.1629336046025;
- Wed, 18 Aug 2021 18:20:46 -0700 (PDT)
+        id S235635AbhHSCde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 22:33:34 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:35535 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235558AbhHSCde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 22:33:34 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 30E41580E2A;
+        Wed, 18 Aug 2021 22:32:58 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 18 Aug 2021 22:32:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=x
+        LbvSMTiMYZxTLYR1GQDqD2mHnthLeMTRU2Ref6bLNg=; b=P1vDTC0GO6P646SRK
+        RgvJ+yN321l0O6+4AYHye+w7yBEYLku7DDMSD3wn/pXwl0BV7OehuGUeaeI6Hy0r
+        wfKP3jd6OUuaQbWDcAotmcIk5uPciX0c1jUAQ0wwg243ZFh35hKMZ+lUPmxyjywL
+        tlHQXD52C4C+o77T003wmsfacqTuYnIZd4Mkpa2lekgafD7LqR6L/J+l0IfKcNae
+        M4/P4zXvl68ROdbFYdty/SRt5frGGBQnwTLqMDvijrMmjhN03Ti0jOJRFvWaO8iP
+        jPHURjWP6mEPvnvVloerwcwNWUO1igDn6KWhLt6waj0wUQR5tF14sFWXXUc6KmuS
+        31kog==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=xLbvSMTiMYZxTLYR1GQDqD2mHnthLeMTRU2Ref6bL
+        Ng=; b=jpr8X/jlaa5vaZHNgVIaxcxIkezN2cH0bk/pU+l+fGP9YfwBOa5Q3wAZF
+        Tqp2NeXw5B7n/Nnxbjdf/+pvtpiYJVPvYV8j8u1L641e4QbfIObaUqCKlmrI0zYu
+        jGqHYpZSyhs/GszrIJ90UJ/n/ZCtZZXCFI6ZBxSIqeo+n5cLU/y933NIEm0CHyK7
+        7DH4sB20TgeoYRI0tSxfcpYAJPaNZaUflJiaYDc02Sn7+kKCu0BLpTOND/1j9clM
+        OJIr6NqECNH2SsUxSXM+V3NEMZPwtiO3kWu7wYLV3hViMQa1GS7CcqmAvRKgee1M
+        Au1kBq2GZPDt6gQKGL1sk4lAy8GJQ==
+X-ME-Sender: <xms:18IdYcH1rEoazMwVkcAHiEu7UZwy1Xz6Zue5C6yNoxnw3VpzfLEcLA>
+    <xme:18IdYVUlUmQ0hiyCoMButDKbcnezZk0UysnlIQmUfwcapbFkVQ_HT6Iye3ZLxl7px
+    koUAa1Sz_jwbI-9MQ>
+X-ME-Received: <xmr:18IdYWKbQJxc7HJgvyghJ7KtOdAJkdWzQi6cxjcagZL4F_PhFZ1ibBHR8RwmFLCqMxitFNorZhU_zLgxcTyGPfllHU07gVTPfWR8EvN3oO00gL2pRc6chE2kPw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleeigdehlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeekteejfefggfefgfevudelhfelhffghefgueelhefhleejjefgueej
+    tdeglefhkeenucffohhmrghinheplhhinhhugidqshhunhigihdrohhrghenucevlhhush
+    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhh
+    ohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:18IdYeGgVxLwjsTBoSb1fMu30CXWqq0tKVRfreCEOtX19b7yEcwf7w>
+    <xmx:18IdYSVqiTMIPjh6MrMcfv-6vW2Cc83lER6nuLYNGmg_f4vMTnt8SA>
+    <xmx:18IdYRMM4tfAzuPVdAq6onaeDNF6C8JZMU_zQQQu40Hpjvx-NCN9ow>
+    <xmx:2sIdYZNJr2uDoTnSglROrBEDU1Ju6fEft51F1e-uft0mlhRH-1GZ8w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 18 Aug 2021 22:32:54 -0400 (EDT)
+Subject: Re: [PATCH 15/17] arm64: allwinner: dts: add DTSI file for R329 SoC
+To:     Icenowy Zheng <icenowy@sipeed.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-16-icenowy@sipeed.com>
+ <20210818090139.rllz4fvvq3pzdkls@gilmour>
+ <74F51516-2470-4A49-972B-E19D8EDD9A3D@sipeed.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <75ae9ef8-496b-68ca-214e-e8b270648a50@sholland.org>
+Date:   Wed, 18 Aug 2021 21:32:53 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-References: <20210818130950.3715-1-Wentao_Liang_g@163.com> <CAL_JsqLfvfi42QGkM_WqKUm0GPZ6z=ybBz9kaR5UakKd0mzGEw@mail.gmail.com>
- <CAGETcx-C1avGdGLS=X7pc-q3u_BZv7wJwMWEJ6KFbDYYafeP2A@mail.gmail.com>
-In-Reply-To: <CAGETcx-C1avGdGLS=X7pc-q3u_BZv7wJwMWEJ6KFbDYYafeP2A@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 18 Aug 2021 18:20:10 -0700
-Message-ID: <CAGETcx-37i6npQpfK42bk-oyxnazvRE6_LXNW9Ske8K=PwFTxg@mail.gmail.com>
-Subject: Re: [PATCH] drivers:of:property.c: fix a potential double put
- (release) bug
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Wentao_Liang <Wentao_Liang_g@163.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <74F51516-2470-4A49-972B-E19D8EDD9A3D@sipeed.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 6:11 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Wed, Aug 18, 2021 at 7:07 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > +Saravana
-> >
-> > On Wed, Aug 18, 2021 at 8:26 AM Wentao_Liang <Wentao_Liang_g@163.com> wrote:
-> > >
-> > > In line 1423 (#1), of_link_to_phandle() is called. In the function
-> > > (line 1140, #2), "of_node_put(sup_np);" drops the reference to phandle
-> > > and may cause phandle to be released. However, after the function
-> > > returns, the phandle is subsequently dropped again (line 1424, #3) by
-> > > the same put function. Double putting the phandle can lead to an
-> > > incorrect reference count.
-> > >
-> > > We believe that the first put of the phandle is unnecessary (#3). We
-> > > can fix the above bug by removing the redundant "of_node_put()" in line
-> > > 1423.
-> > >
-> > > 1401 static int of_link_property(struct device_node *con_np,
-> > >                                 const char *prop_name)
-> > > 1402 {
-> > > ...
-> > > 1409     while (!matched && s->parse_prop) {
-> > > ...
-> > > 1414
-> > > 1415         while ((phandle = s->parse_prop(con_np, prop_name, i))) {
-> > > ...
-> > >                  //#1 phandle is dropped in this function
-> > > 1423             of_link_to_phandle(con_dev_np, phandle);
-> > >
-> > > 1424             //#3 the second drop to phandle
-> > >                  of_node_put(phandle);
-> > >
-> > > 1425             of_node_put(con_dev_np);
-> > > 1426         }
-> > > ...
-> > > 1428     }
-> > > 1429     return 0;
-> > > 1430 }
-> > >
-> > > 1095 static int of_link_to_phandle(struct device_node *con_np,
-> > > 1096                   struct device_node *sup_np)
-> > > 1097 {
-> > > 1098     struct device *sup_dev;
-> > > 1099     struct device_node *tmp_np = sup_np;
-> > > ...
-> > > 1140     of_node_put(sup_np);  //#2 the first drop to phandle
-> > >                                //   (unnecessary)
-> > > 1141
-> > > 1142     return 0;
-> > > 1143 }
-> > >
-> > > Signed-off-by: Wentao_Liang <Wentao_Liang_g@163.com>
-> > > ---
-> > >  drivers/of/property.c | 1 -
-> > >  1 file changed, 1 deletion(-)
-> > >
-> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > index 6c028632f425..408fdde1a20c 100644
-> > > --- a/drivers/of/property.c
-> > > +++ b/drivers/of/property.c
-> > > @@ -1137,7 +1137,6 @@ static int of_link_to_phandle(struct device_node *con_np,
-> > >         put_device(sup_dev);
-> > >
-> > >         fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
-> > > -       of_node_put(sup_np);
->
-> Hi Wentao,
->
-> Thanks for noticing and reporting the bug! Your analysis is correct,
-> but the fix is definitely wrong. For one, the reference to the node
-> phandle is pointing to can be dropped in of_link_to_phandle() when it
-> calls of_get_compat_node(). It could also be dropped in one of the
-> error paths. So, now you'll be incorrectly dropping the reference for
-> the wrong node. Let me send out a fix and  mention you as the
-> reporter.
->
+On 8/18/21 4:15 AM, Icenowy Zheng wrote:
+> 于 2021年8月18日 GMT+08:00 下午5:01:39, Maxime Ripard <maxime@cerno.tech> 写到:
+>> On Mon, Aug 02, 2021 at 02:22:10PM +0800, Icenowy Zheng wrote:
+>>> +		ccu: clock@2001000 {
+>>> +			compatible = "allwinner,sun50i-r329-ccu";
+>>> +			reg = <0x02001000 0x1000>;
+>>> +			clocks = <&osc24M>, <&rtc 0>, <&rtc 2>;
+>>> +			clock-names = "hosc", "losc", "iosc";
+>>
+>> Do we have a clock tree for the RTC? Is it the same than the H616?
+> 
+> Nope, it's the same with H6 because of external LOSC crystal is
+> possible. (Although production M2A SoMs has it NC for cost control.)
 
-I spoke too soon. I think there is no refcount problem because
-of_link_to_phandle() makes sure it doesn't change the ref count of any
-of the DT nodes passed in as input. If you see of_get_compat_node(),
-you'll notice that it does a of_node_get() first. So it returns a node
-pointer (that could be the same as the input) and it makes sure it
-increments that refcount for the node it's returning. And since we are
-doing:
+It is not the same as the H6, either. The clock tree _is_ identical to the D1,
+which has three diagrams on pages 363-364 of its user manual here:
 
-sup_np = of_get_compat_node(sup_np);
+https://dl.linux-sunxi.org/D1/D1_User_Manual_V0.1_Draft_Version.pdf
 
-We are ensuring that by the time of_link_phandle() returns, we haven't
-changed the refcount of any of the nodes.
+Compared to the H6, the R329/D1:
+ - Loses the LOSC calibration circuit
+ - Gains a third mux input for LOSC (not external 32k) to fanout
+ - Gains a mux to choose between LOSC and HOSC/750 for the RTC clock
+ - Gains an SPI bus clock input divided from the PRCM AHB
 
-So, I don't think there's any bug here.
+Compared to the H616, the R329/D1:
+ - Has an external 32k crystal input
+   - Gains the IOSC vs. external 32k crystal mux for LOSC
+   - Switches fanout mux input #1 from pll_periph0/N to external 32k
+ - Gains a mux to choose between LOSC and HOSC/750 for the RTC clock
+ - Gains an SPI bus clock input divided from the PRCM AHB
 
--Saravana
+So the R329/D1 RTC has three inputs:
+ - SPI clock from PRCM
+ - 24 MHz DCXO crystal
+ - 32 kHz external crystal (optional)
+
+and four outputs:
+ - 16 MHz "IOSC" RC oscillator
+ - 32 kHz "LOSC"
+ - ~1 kHz for RTC timekeeping
+ - 32 kHz fanout
+
+(Arguably, since the 24 MHz DCXO can be turned on/off from the RTC registers, it
+should be an "output" and not an "input".)
+
+Regards,
+Samuel
