@@ -2,89 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D5833F19B9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 14:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F343F19F2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:05:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239865AbhHSMt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 08:49:59 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:33643 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238389AbhHSMtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 08:49:49 -0400
-Received: by mail-oi1-f182.google.com with SMTP id n27so8472633oij.0;
-        Thu, 19 Aug 2021 05:49:13 -0700 (PDT)
+        id S237873AbhHSNGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 09:06:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236481AbhHSNGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:06:21 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45121C061757
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:05:45 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id o2so5840100pgr.9
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:05:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=j8qRe1VcgbKWgoFHwQvjx82rgCmqdfKPSvrqgoYqCbA=;
+        b=jdk7f1rzl3NRxVo1+xPnWg+iCvrUhWP14lkj84hbls/oNbMOmphY8w52NYVAxKp3h/
+         jUXYBmZ4cPn6QbmLihNW6zppH+1H6Evm6Wl6t99703iPjbUcosFND1eH1oAtZvVc6t+a
+         /mURa0GkFJ8Ux9Niv3UZlUx8NIa7m5w8yBQNU5DVHCIsON+KNdfDg8Sw3YRz81hBL3W7
+         1ws1vPcsoH6pAk1O+seh5qKXpuMAW8oVJMpFuA8+0D/s3coWn4BDcoEJz8anuqssKGya
+         ujsxN+9TSlSINtJrrHbYaJ+SrVLFUgENjLkDEQ+6KE1CflQTJ1NqE/3uqzyLFH/hHCFw
+         G2PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=zg3VPS1fKrsY8XB+1ftfUYl3cw7kXB5wzWtSZiId8do=;
-        b=Xz56Q8h7v4rJm5oVh6i6WU6SdWmDFcX1yS9Y45J4FmuxofAxdEp9i5tXMPxaR4GuNM
-         MLsCMjf9uVxuO82qHM00MOSXnNfxL/B1YhxyfOUF3+r3F3b2pQSd/TyhMR4BSvaH945A
-         wqd9A3RvjE7E+lRJRvq2TzOhPaH4gF/nX84mdZN/4c42sIKwHDcvvwlwxSVMyb8XcYGO
-         m4wsSxJb+xj8zC+a4E9H5N4vw2XRnJfC6v8vsS6pEYTDONDaFXD+h6YSlyundjHU+Yd5
-         KtQvQVdS6s2zrsVCyoLGCfFtLfHK+BsTqf+2jIdiZAxWgMcvWAhfVLXGQnoMOayPJdiK
-         6LAA==
-X-Gm-Message-State: AOAM531tBtNAET+oOia/xpwk/oXvWuccWebpdo2mryGxViieqsB0BT/P
-        G8K18+4ttgeswoKJT9iXzA==
-X-Google-Smtp-Source: ABdhPJxasodywzNSc6uJ4iwV43paF2LoulLSjp2aRVVDaH0jW5MB4naam6DRVd0hfPm4uL/TRc+LWA==
-X-Received: by 2002:a05:6808:1390:: with SMTP id c16mr2490439oiw.123.1629377352689;
-        Thu, 19 Aug 2021 05:49:12 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m16sm546305oop.3.2021.08.19.05.49.11
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=j8qRe1VcgbKWgoFHwQvjx82rgCmqdfKPSvrqgoYqCbA=;
+        b=dE1+DoE9rg7wXe2/A18abnhsJWGr10/Jxlevb9hna2BUWy7edgExu4FzlabH5haJb+
+         F81KRyUsSpbb1fK8ioWpSRnlUcxpLHKtOqgDBPJP7csCxRro+ZXD/35OK2Pnz3uXEE+c
+         tQxAZ2W/BC6RVdBYG2rsu+gl7ioglwQrMSVXrRmyh1TwC5/EkXIuFFnS7ed4R/bIwWIN
+         X2n9dph3OZwyA0/ckSj4pJv5xTEjgQMmzE2NZfZQIxkIh3fPniY7IUwFU1h8C/lITbOl
+         k/78JQL2Nv/velbdQvvO6mn/+sEgoojB8aw9y3BHZeJ4/Q+cfPQ2V7OSFxWSvFpcOpK1
+         FO3A==
+X-Gm-Message-State: AOAM532CnL5syF64B4qnpEWQC+tlTuXOy2jITnD59Q/fG4Bw6Uu3a7Xs
+        1yx2HGAopT0QAIatjcQSRSix
+X-Google-Smtp-Source: ABdhPJwlVNkMT+7xFKhx8E+8JStufdEOlSgD/pRBJfUXBKrF7CvNcdgxlg7uDkzV3BlxwcQZUAHUig==
+X-Received: by 2002:a63:2541:: with SMTP id l62mr14330979pgl.183.1629378344655;
+        Thu, 19 Aug 2021 06:05:44 -0700 (PDT)
+Received: from thinkpad ([2409:4072:6298:4497:5a1e:ff34:9091:5bac])
+        by smtp.gmail.com with ESMTPSA id fh2sm3135830pjb.12.2021.08.19.06.05.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 05:49:12 -0700 (PDT)
-Received: (nullmailer pid 288211 invoked by uid 1000);
-        Thu, 19 Aug 2021 12:49:09 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-Cc:     devicetree@vger.kernel.org, andrew@aj.id.au,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-aspeed@lists.ozlabs.org, ryan_chen@aspeedtech.com,
-        joel@jms.id.au, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210819080040.31242-2-chiawei_wang@aspeedtech.com>
-References: <20210819080040.31242-1-chiawei_wang@aspeedtech.com> <20210819080040.31242-2-chiawei_wang@aspeedtech.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: aspeed: Add eSPI controller
-Date:   Thu, 19 Aug 2021 07:49:09 -0500
-Message-Id: <1629377349.157361.288210.nullmailer@robh.at.kernel.org>
+        Thu, 19 Aug 2021 06:05:44 -0700 (PDT)
+Date:   Thu, 19 Aug 2021 18:35:37 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        robh@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, smohanad@codeaurora.org,
+        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
+        skananth@codeaurora.org, vpernami@codeaurora.org,
+        vbadigan@codeaurora.org
+Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
+Message-ID: <20210819130537.GA200135@thinkpad>
+References: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Aug 2021 16:00:36 +0800, Chia-Wei Wang wrote:
-> Add dt-bindings for Aspeed eSPI controller
+On Thu, Jul 22, 2021 at 05:42:39PM +0530, Manivannan Sadhasivam wrote:
+> Hello,
 > 
-> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-> ---
->  .../devicetree/bindings/soc/aspeed/espi.yaml  | 158 ++++++++++++++++++
->  1 file changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/espi.yaml
+> This series adds support for Qualcomm PCIe Endpoint controller found
+> in platforms like SDX55. The Endpoint controller is based on the designware
+> core with additional Qualcomm wrappers around the core.
+> 
+> The driver is added separately unlike other Designware based drivers that
+> combine RC and EP in a single driver. This is done to avoid complexity and
+> to maintain this driver autonomously.
+> 
+> The driver has been validated with an out of tree MHI function driver on
+> SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Ping on this series!
 
-yamllint warnings/errors:
+Thanks,
+Mani
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/soc/aspeed/espi.example.dts:35.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/soc/aspeed/espi.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1419: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1518493
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> Thanks,
+> Mani
+> 
+> Changes in v7:
+> 
+> * Used existing naming convention for callback functions
+> * Used active low state for PERST# gpio
+> 
+> Changes in v6:
+> 
+> * Removed status property in DT and added reviewed tag from Rob
+> * Switched to _relaxed variants as suggested by Rob
+> 
+> Changes in v5:
+> 
+> * Removed the DBI register settings that are not needed
+> * Used the standard definitions available in pci_regs.h
+> * Added defines for all the register fields
+> * Removed the left over code from previous iteration
+> 
+> Changes in v4:
+> 
+> * Removed the active_config settings needed for IPA integration
+> * Switched to writel for couple of relaxed versions that sneaked in
+> 
+> Changes in v3:
+> 
+> * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
+> * Noticeable changes are:
+>   - Got rid of _relaxed calls and used readl/writel
+>   - Got rid of separate TCSR memory region and used syscon for getting the
+>     register offsets for Perst registers
+>   - Changed the wake gpio handling logic
+>   - Added remove() callback and removed "suppress_bind_attrs"
+>   - stop_link() callback now just disables PERST IRQ
+> * Added MMIO region and doorbell interrupt to the binding
+> * Added logic to write MMIO physicall address to MHI base address as it is
+>   for the function driver to work
+> 
+> Changes in v2:
+> 
+> * Addressed the comments from Rob on bindings patch
+> * Modified the driver as per binding change
+> * Fixed the warnings reported by Kbuild bot
+> * Removed the PERST# "enable_irq" call from probe()
+> 
+> Manivannan Sadhasivam (3):
+>   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
+>     controller
+>   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
+>   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
+> 
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
+>  MAINTAINERS                                   |  10 +-
+>  drivers/pci/controller/dwc/Kconfig            |  10 +
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
+>  5 files changed, 888 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
+> 
+> -- 
+> 2.25.1
+> 
