@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 231BA3F1E82
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED7413F1E84
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbhHSQ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 12:59:55 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:46606
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229491AbhHSQ7y (ORCPT
+        id S230458AbhHSQ75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 12:59:57 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:56982
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230312AbhHSQ74 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 12:59:54 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        Thu, 19 Aug 2021 12:59:56 -0400
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id AEF90411F0
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 16:59:17 +0000 (UTC)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 11D1D411CD
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 16:59:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629392357;
-        bh=odiP8qNzCjQyM5ut6+4pfn5opT3C8BN5X2IXeYZ+uMg=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=qUxHeUdfUp1mJk1cY4Q5crjWDI4pI8nrCrlS3qw3oTeJkyKKwUd127M1HStyo4n3F
-         GHmKK+HOm1d7wgqSpCyTCvroLyyr7jL7oyTBSAPk6VHye0tjO8x+LZ4DsG5Mh6/p5t
-         9ANMCucPAPk5svp9GxU0FenmoYDkGtXTf4cnLxuPuACopclM7BAKDwhvx+JFdkIwr+
-         70V+q6lHxWJJXNm45muB1SyLbX+GF+senolPJcaCswbMNPFE6bQlA2f2H39JkbTRrk
-         Td+2z77MUYYVXzsnOT/ANl23RVPB0bJ090VdEo4ezQWEEosauUl9n1wOAFxQ+rtFlQ
-         Go3UfKf2iqeKg==
-Received: by mail-ed1-f71.google.com with SMTP id k13-20020aa7c04d000000b003bf04c03fc4so3130329edo.22
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
+        s=20210705; t=1629392359;
+        bh=eulTWffz2zcY1QHzF3VctUTdQdyWBbuhcOokJb1Arrg=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=rhtOTdmthNu2ThG+hY3/LzKIqTR9Droed/Mx6QU+buHVClI6aO8E1z/DNARz7IaN2
+         jVfYLBpBMy3r69LYb2H2O/n06OrkCLcnR9O3eVho/70XSv94RNGDA8ahrQrLCzOsPX
+         5/W3xF8adtdheZeSDKMdlMrYGdmSKjxuOpsdfi6XFTjI0kRpjd9O75ZEIwNj2ceaTC
+         WJdzp6wfpCoeGsp/hXs1PsKcsTixkSQMSdhy/TorPrd9wO8QaJAgD2aBHJD3U3tSdF
+         gzTis6ckblOOf8X/Ux1GyYrbTgE6X8u2hZ6XOH3gxP5lUFWvOK/V0kZR9OWHeCAtob
+         gE2zoJYQL+bYg==
+Received: by mail-ej1-f70.google.com with SMTP id k12-20020a170906680cb02905aeccdbd1efso2495772ejr.9
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 09:59:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=odiP8qNzCjQyM5ut6+4pfn5opT3C8BN5X2IXeYZ+uMg=;
-        b=is+3tEBsiy4SEEM+dkwzpGPoVr5nzSiTtGc/7UUtLiGEygs/7xLXNZbIxQDLxLCGP+
-         nbZGRY9RwL2OcuD07QOXXy/Pp4Y9oRGeVbNGj/6lk/NsS8CMEaXwjzzZujkQeobTkABZ
-         hCt7y4bZNqIyN8y78l/ylA6YXBlBo5q8KZrvVt5SBNQ5851i73Pq16NA/uRrwVXsX2Fs
-         ivIImvppY1auQ+9RwvUJgPywL12W11UakQ49IvgetxJV8YWkIPOLGLt3ejqymhLEnO13
-         c3XkSTs0FnFrQhO+Mjhtl6i/GP5UV71cTP0xjXA79YtkiWHwsgr1liMmTaEpKJeQePLZ
-         NREQ==
-X-Gm-Message-State: AOAM533Rel+7BEy09SJlr7y++FBafSOjbk/vm4905MFaXe4QLNOkDApd
-        2cj1CqdEXt+nQ983nqsmaxaFiWNslLqrc8Di/VbE5YgRdidVWCn4O1QhvkmMzTJXqkOK2WCpJ1n
-        WrA51bbdW4q8jbm9vNeOG1yFfseLRUorMS7dX3h8=
-X-Received: by 2002:aa7:da8c:: with SMTP id q12mr17338220eds.304.1629392357464;
-        Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx9NLI19XYdziHhF/9RoSTCqYZEy4vkbe0t27FhZYRkfyGlpzr7xF3AO+fMykRg6cWcoCzMyA==
-X-Received: by 2002:aa7:da8c:: with SMTP id q12mr17338204eds.304.1629392357351;
-        Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=eulTWffz2zcY1QHzF3VctUTdQdyWBbuhcOokJb1Arrg=;
+        b=jvQOd3jtMZNpuUp9laabiNSUBRoI5/NfCDLbjlolKKbiVFMA/wjRI4b+XFqOWtSz9K
+         A5NWgaALznWMTgvC1zkRNShw7jfWMTMJjMzJthWrMAglkQAG2T98PL80FLvk3rJUX/rQ
+         5IHifSsncXem2VLCHB4p27CWWjYivHlRbLNrKuT8s+az5gCRmFYeST7bgliRe820EZv6
+         hIiNahrsVygDY6GqK8V/0V8vCQnk692SHLMAnT+ftzUR/sXJHEyRP9SgOx/cfrSlhdbL
+         hQMnsy5ig7Gvwih6D4iEPOneDYCQRrUW9jeB13tqJtsNYGD6ppFmptKxQDsBBEbv50lf
+         98mg==
+X-Gm-Message-State: AOAM5304acRsGAIe2gVxfqMCFS+EO+CU/2FVAc054/5IOlb7wtURO3A2
+        wZ96fant+CV9GrOMxSzFSiQIKBEEg+/NOOzBNs7uvtE0NQLbiLcveUvjuqqFZSrsc6/a5vU9kAh
+        vww6eQMeLEBybl56whgcRCvAYV6rquVwF4hpUqYQ=
+X-Received: by 2002:a05:6402:781:: with SMTP id d1mr17839055edy.32.1629392358804;
+        Thu, 19 Aug 2021 09:59:18 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJww4UtUY6h9OU4l9uS3kIuoYiIOm0VucV6SoXDn0iXyU7Cxho1WRMomPQZIfagqOlV+lXh0nw==
+X-Received: by 2002:a05:6402:781:: with SMTP id d1mr17839040edy.32.1629392358686;
+        Thu, 19 Aug 2021 09:59:18 -0700 (PDT)
 Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id h8sm2023418edv.30.2021.08.19.09.59.16
+        by smtp.gmail.com with ESMTPSA id h8sm2023418edv.30.2021.08.19.09.59.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
+        Thu, 19 Aug 2021 09:59:18 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
@@ -66,35 +67,44 @@ To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 1/5] dt-bindings: mtd: jedec,spi-nor: document issi,is25wp256
-Date:   Thu, 19 Aug 2021 18:59:04 +0200
-Message-Id: <20210819165908.135591-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 2/5] riscv: dts: sifive: fix Unleashed board compatible
+Date:   Thu, 19 Aug 2021 18:59:05 +0200
+Message-Id: <20210819165908.135591-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210819165908.135591-1-krzysztof.kozlowski@canonical.com>
+References: <20210819165908.135591-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document bindings for the issi,is25wp256 SPI NOR flash.
+Add missing sifive,fu540 compatible to fix dtbs_check warnings:
+
+  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml: /: compatible: 'oneOf' conditional failed, one must be fixed:
+  ['sifive,hifive-unleashed-a00', 'sifive,fu540-c000'] is too short
+  'sifive,hifive-unleashed-a00' is not one of ['sifive,hifive-unmatched-a00']
+  'sifive,fu740-c000' was expected
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-index ed590d7c6e37..0db64ac7dc33 100644
---- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-+++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-@@ -33,6 +33,7 @@ properties:
-       - items:
-           - enum:
-               - issi,is25lp016d
-+              - issi,is25wp256
-               - micron,mt25qu02g
-               - mxicy,mx25r1635f
-               - mxicy,mx25u6435f
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 60846e88ae4b..c960e19cfa70 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -11,7 +11,8 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 	model = "SiFive HiFive Unleashed A00";
+-	compatible = "sifive,hifive-unleashed-a00", "sifive,fu540-c000";
++	compatible = "sifive,hifive-unleashed-a00", "sifive,fu540-c000",
++		     "sifive,fu540";
+ 
+ 	chosen {
+ 		stdout-path = "serial0";
 -- 
 2.30.2
 
