@@ -2,69 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EEE3F2280
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 23:52:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDFF33F22C7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 00:10:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233567AbhHSVx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 17:53:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35452 "EHLO mail.kernel.org"
+        id S236628AbhHSWLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 18:11:02 -0400
+Received: from mout.perfora.net ([74.208.4.197]:33231 "EHLO mout.perfora.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235679AbhHSVx2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 17:53:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 83803610CF;
-        Thu, 19 Aug 2021 21:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629409971;
-        bh=hz4ToEn11O2DiQ3bxZuN8OGUGc7W0kXGCy2CxI1VoXk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Kng3t7djpyX+7l91WqS70uHZCu/kiK7US//O1ZdEu2yJXPi5OjnT3+XbL9fWqW2r3
-         oOOC5ZcT9UfiilbP2KUrF4yNg7i9OHkYJAj1PZQsJrfiybepbQty3tIGbK0ZGpJ6Bz
-         tFM+ElKP3lxRGvUcLGKvDMvY5QNiPbUv5faLcqjK4b1URCH207khCLwlVG1FWcVNxm
-         08Bo8t9l4DH9VHK0FxqtJWae5Q/6+K+rDJRbVyLWP1HBc8QrZnnhuQdQuw6ujpcNy9
-         R+unuj2iZ1hXq9uGmVXKn1QRpm2MpA1pjXSMFfSQpvLLxghk6Pef9X3pR9v8i3OvHh
-         S5plU2uqokfeQ==
-Received: by mail-ed1-f43.google.com with SMTP id v2so10927039edq.10;
-        Thu, 19 Aug 2021 14:52:51 -0700 (PDT)
-X-Gm-Message-State: AOAM530l54/Xx5Y3g6dEbojjVctSquG9FIwWKtpj45yR83FdF4voo60k
-        m7docZoi/MwfR+YGAXAveAf/BD0K74+aIX2y0g==
-X-Google-Smtp-Source: ABdhPJw0hq/j5YRbpD02wnMJhEDVCeMQ0sCrUH9AvIo9gZG8TCf7667Nb/WyMEJegfKzTCD/BF4SZP3zTCNMf4ZT1/A=
-X-Received: by 2002:a05:6402:104b:: with SMTP id e11mr18790051edu.62.1629409970123;
- Thu, 19 Aug 2021 14:52:50 -0700 (PDT)
+        id S236766AbhHSWK6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 18:10:58 -0400
+Received: from toolbox.cardiotech.int ([81.221.236.183]) by mrelay.perfora.net
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MUYKb-1mgvhI3nyl-00RKn6;
+ Fri, 20 Aug 2021 00:09:24 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, Marek Vasut <marex@denx.de>,
+        Martin KaFai Lau <kafai@fb.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Olof Johansson <olof@lixom.net>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        Pascal Zimmermann <pzimmermann@dh-electronics.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Song Liu <songliubraving@fb.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Yonghong Song <yhs@fb.com>, bpf@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, soc@kernel.org
+Subject: [PATCH v2 0/9] ARM: prepare and add colibri imx6ull 1gb (emmc) support
+Date:   Fri, 20 Aug 2021 00:09:01 +0200
+Message-Id: <20210819220910.586819-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210819101020.26368-1-krzysztof.kozlowski@canonical.com> <20210819101020.26368-2-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20210819101020.26368-2-krzysztof.kozlowski@canonical.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 19 Aug 2021 16:52:38 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK1dhwSKbmCbuaWtBWQH0e-+rdJaWkzfx5b_5vX0toAjg@mail.gmail.com>
-Message-ID: <CAL_JsqK1dhwSKbmCbuaWtBWQH0e-+rdJaWkzfx5b_5vX0toAjg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: sound: rt1015p: correct indentation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:M7jZ1dV3SMzKEadODKaF8SQsj8meK+kkTJZ10fSsSmTujoPQ3+A
+ DB3wjDJ8+8oaqu00xJ68VSf6dLBG24Iu6X62NiJiDVB8y9FDg3WOmVdGOjdD0UnRmhberzd
+ J2jljSe/ue0HzlFhkpc9oGHDXqtSRWeETubdPTtXrgdHYWNCFBEfs3VEXdzkNF30zWuo2Tv
+ 1IGM1o3XZKZq6s0C7tLzg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:yFDIVQYoi3E=:4EZnkmZOdg0/SrB0ZKogLB
+ fdUNGtW3x39RntUiihgpR5nI8ZWLV9z1L8ut9781mTCnxyfd8/vF4xXk+0tVAjLqjW6vG+2af
+ YOfbuVuZEilyqM5ajgp9AFEYFJPAu/SrM/5LTCf0ukLHW/00C7k7kDzsAzAgMN8RVOyA5fFBB
+ e352fRP26DwGE6CjHpqwwEItIspaBbpQ1J1VG7di0ikkZy3KHaqym8IBn7bDL6dvsI8gcVWM3
+ oyf1l5cHA611lfKUS2Qamp6chrJHYtJ00iRJhWOnFX1SsBI3QW5GsLGaM++pASZnyGNNEZmy7
+ FSwNmDb9HygsTZb63kadqtTGMg/vKvL+aGQLu3V0S3b/uVprJ7z6GLUttrJn03QyiekmTOYQZ
+ amiWYSWj5v8mTqv6Jk8H0PlSGebJj+BnjlLkcOBmlJeKfB3NGIK5cN8z8YQu6A0MbIG0M8r4O
+ K4YNqbXqpouC41qZm7jkiI4Z/TSBqHvASFBGsWTZP3Qr9H8hD+mr12Y/MuvJnME7n2x9hHm9c
+ GS7+p21JbJdjG1Uop9+hA8p8eLtZEP8cI/cNFxRovsamN5aQOcOqSMgi+5Fye+qwA7P1Bw10a
+ ihgLpWPM8x+geW7eADnbc/SnIlUv/HsH73MH1jCdt4cVg6OeNNmeaTsCsv6hW3+hZInmELAkc
+ 51ecRMEamRqBSe+OhdMFGMkzOiV2ZPJeSXIQwTL271fkpjnIefoXq3C24LapGV4HXDWt4rrf+
+ y+iJjG06SsHHgb7ruCMILq/wTxSx7zXxNJgT8VieG71b0fErMm+U912smIETOpr8+IXrjJnjF
+ 8UX0oo79mzhyTCW73pY1V0Z/FUIGFYFrpuCrOaEaWlh5s3XJSZjg9o7uKmD0OSgT0ka+QDE
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 19, 2021 at 5:12 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Use common enum instead of oneOf and correct indentation warning:
->   realtek,rt1015p.yaml:18:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../devicetree/bindings/sound/realtek,rt1015p.yaml          | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+Clean-up imx_v6_v7_defconfig and then add support for the new Colibri
+iMX6ULL 1GB (eMMC) which builds on the success of the existing Colibri
+iMX6ULL SKUs using raw NAND but replaces this with more RAM (1 GB) and
+an eMMC (4 GB).
+
+Changes in v2:
+- New patch cleaning-up dt-bindings documentation.
+- Fix indentation.
+- Use latest agreed upon SPDX-License-Identifier GPL-2.0+ OR MIT.
+- Drop AG in our copyright statement as recommended by our legal.
+- New patch documenting dt-bindings.
+
+Marcel Ziswiler (8):
+  ARM: imx_v6_v7_defconfig: enable mtd physmap
+  ARM: imx_v6_v7_defconfig: enable fb
+  ARM: imx_v6_v7_defconfig: change snd soc tlv320aic3x to i2c variant
+  ARM: imx_v6_v7_defconfig: rebuild default configuration
+  ARM: imx_v6_v7_defconfig: build imx sdma driver as module
+  ARM: imx_v6_v7_defconfig: enable bpf syscall and cgroup bpf
+  dt-bindings: arm: fsl: clean-up all toradex boards/modules
+  dt-bindings: arm: fsl: add toradex,colibri-imx6ull-emmc
+
+Max Krummenacher (1):
+  ARM: dts: colibri-imx6ull-emmc: add device tree
+
+ .../devicetree/bindings/arm/fsl.yaml          |  87 ++++----
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/imx6ull-colibri-emmc-eval-v3.dts |  17 ++
+ .../dts/imx6ull-colibri-emmc-nonwifi.dtsi     | 185 ++++++++++++++++++
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        |  32 ++-
+ arch/arm/configs/imx_v6_v7_defconfig          |  46 ++---
+ 6 files changed, 299 insertions(+), 69 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-eval-v3.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-nonwifi.dtsi
+
+-- 
+2.26.2
+
