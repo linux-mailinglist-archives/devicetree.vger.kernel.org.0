@@ -2,111 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA573F1B1B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E0D3F1B55
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240204AbhHSOBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 10:01:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36712 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240164AbhHSOBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 10:01:33 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393DEC061756
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:00:57 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id b200so7767454iof.13
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:00:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T6c3uuIqhGJTSiY34t1mdYv7edPTrnbINRnZGTByZPE=;
-        b=BlMEWmipA/cQoLoc7SiiP+A3MSQ66TNqzbkmNBmnpGvskMITjFn/AknohpkpB5Cx5K
-         CZJB/KgpjJ8YDW9UClJg5zSSGiQN2ZGYlh1qm6kxQfhZ1Fceo8gNb1WMKwYp6bYJ9Ev4
-         sEsHaqfDkM7c+VEPq5CWbYKowz4hdkol7jCFwbx5x4vdubM8Ow6Cy0Noq/+bjr2MNT0o
-         HSXFBv6a8AuevGClVSgt0lQ5pJVx8B9YFcYRQ4X36dcLXKD/6fxw46A/4Y5L0v4ueiVo
-         UFRKnu2N5wL4JIBvfiGjXjUVlddOIiH8eD8DOIA/4E8uIceRI6DMSOXpqwg8bpLRD/71
-         YLyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T6c3uuIqhGJTSiY34t1mdYv7edPTrnbINRnZGTByZPE=;
-        b=Pi6EXiXk6EYaAdvdmIbtktk24l9T1anLD4MPEWcaM52mwo9VmNJ2mTvRC4HtQ8KvUH
-         P781Ej2qDuC9FZWxVYrip3PZNu5p8dakjs049fg9QlJW7srx+MwgWtIbY7nHnjZcpfRV
-         KbwTOgeITOr0c38BiKip8jaWvgXk1gRLq23VIf8MyHD/E2IYSbD806WtU2aiSvv6EaeN
-         ddXeEm6AvfTbaAsw6oUxHmy0SS0edVzTp6s0944FEm1XDGuNF52QgdT1PNfyDagNO79/
-         YSoA3OFj9liTOnSBDFGtdIEqUGg1MhkXnWyDsZVUHGt00JaJPhI3jWI9u2oOoG1xlLXK
-         leDw==
-X-Gm-Message-State: AOAM530RANyB3OHEzg2Ye9zfQWwzgnTOUDJvX7trK6snRa/bh6MwAm4p
-        dNZ/FrM01QcF7Olx3jOOWyAE8ZB3xZ/Zfnb1KIxbcw==
-X-Google-Smtp-Source: ABdhPJw66n9J4IMrZVgTxO7APnBV7DuWIAEv3w+5J7Lcm4qG/FVJtex8/Nepg+hMnS2LSgzMkD3z3PWxcRR8LQrpXMs=
-X-Received: by 2002:a02:cd2c:: with SMTP id h12mr13065060jaq.84.1629381655653;
- Thu, 19 Aug 2021 07:00:55 -0700 (PDT)
+        id S240557AbhHSOL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 10:11:29 -0400
+Received: from mout.perfora.net ([74.208.4.197]:44675 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240521AbhHSOL2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 10:11:28 -0400
+Received: from toolbox.cardiotech.int ([81.221.236.183]) by mrelay.perfora.net
+ (mreueus003 [74.208.5.2]) with ESMTPSA (Nemesis) id 0M7ZR3-1n1pE204ut-00xMEi;
+ Thu, 19 Aug 2021 16:03:57 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>, Marek Vasut <marex@denx.de>,
+        Martin KaFai Lau <kafai@fb.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Olof Johansson <olof@lixom.net>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        Pascal Zimmermann <pzimmermann@dh-electronics.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        bpf@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        soc@kernel.org
+Subject: [PATCH v1 0/7] ARM: prepare and add colibri imx6ull 1gb (emmc) support
+Date:   Thu, 19 Aug 2021 16:03:38 +0200
+Message-Id: <20210819140345.357167-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210819092943.719433-1-yangcong5@huaqin.corp-partner.google.com> <20210819092943.719433-3-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20210819092943.719433-3-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Thu, 19 Aug 2021 07:00:42 -0700
-Message-ID: <CAD=FV=VNLEcPjbUCC7W9Z1TEOud=We+OFdmQGa5Rhwi4TqLcBA@mail.gmail.com>
-Subject: Re: [v1 2/2] dt-bindings: drm/panel: boe-tv101wum-nl6: Support
- enabling a 3.3V rail
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:lx5GBGXPRAQ1C2RGAY9/BxYJ6AKfNJ32vg25PpQG17n/6Pk2u7J
+ j0IrCvlaDcncp28bcdtMZIR/DwKQVvCWFr7vbql1AglQzGyZwh9oLK0G32II0gQxXr+KoEO
+ YlarmDCsgoaZn3VKxmD9TDVL/XOw4pV+gxmsZRPGcCYDGOQ0+6A7pOHxAyDkALGxGqTawBq
+ oh5ehsLsIEqorCggir/4w==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:mXrkhIbGR/4=:gpDAe+MQG0MDnf7deXR+2t
+ 50k/pRMfwSbbCVF3rQ8KSgb2oiLAWFxxF0yRiDYgeSp+ihHCHZhhWr8NjKdwvxrCh6k0f9VLd
+ 4d2aZhyOMaylPR54zmWrUt23uyoXmiI1I76kJNPnWZ/NwyqngR4f8Urs+E3cCcxEZuu8RWHxq
+ nypxv1ZoN2O0ZlCHDDIXC0Obf4+f3f9BoE+eyxPAIlnjvIgEUFV/gP2cCMA3m2amoz2FuhB8O
+ qhmx5sguQQKM6Kw5ylbfCwywvdob1KFO5HjQDnipXTkPzopfjO2bnXe3pEs7slv92ujdzcQPT
+ maelNVPHwZfKJ0YBWd/c2nu9+MkTyqPFOXJim1tsbfaNbNqJLUyDog8Koxf26b5xfngwYsBTg
+ Tx6mWtXmIfMWqVD5DBWdgH3HYIZpCrCgwqK7E9A+I0YkIRaqqz3kRzokp1DkMp9BlE9atzmgc
+ i3JIfTx0V2x/FzsHaE8+FSKN/JW6iAouhD08/mfY5ZqB8ZaW3uBFvl568dfdwC/ir0cLd+/gV
+ Ie5L51CmbQN7zIExKIyZI1PO5s9RLJaY8nMIS5+H3dAUU278IrRVdTBGO7G6h9OKph9G/ZO09
+ 2pjibwWSkHVbFwk7X3qfoE4AaKGNycwJlNR5vcoS4ZwnsqH9U8tPEFIUsnqIjitI8HbLUsiwQ
+ ia10gA8i694SeE57Fjl2mxoKoQB2O13X1prDynb5X1xOcDW1pd18rSBXexy88JutsAV/m2D5S
+ vJf4CJ3E9g85Bk+mafOXD/KXsBKlO8Bobv4zgAUdc7AbzlblszZSXERlSS9fkNEqIUSN8okRb
+ F2N3lum8AWVz3fNSd1g4mHWrJVZeLPd+CsTXQJ57/+/J4npsRKHZJrsSsGUUDIbGTd+sscT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-On Thu, Aug 19, 2021 at 2:31 AM yangcong
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The auo,b101uan08.3 panel (already supported by this driver) has
-> a 3.3V rail that needs to be turned on. For previous users of
-> this panel this voltage was directly output by pmic. On a new
-> user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
-> to turn the 3.3V rail on.
->
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
->
-> ---
->  .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml   | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> index 38bc1d1b511e..e45de7a4360e 100644
-> --- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> @@ -36,6 +36,9 @@ properties:
->    pp1800-supply:
->      description: core voltage supply
->
-> +  pp3300-supply:
-> +    description: core voltage supply
-> +
->    avdd-supply:
->      description: phandle of the regulator that provides positive voltage
->
-> @@ -52,6 +55,7 @@ required:
->    - reg
->    - enable-gpios
->    - pp1800-supply
-> +  - pp3300-supply
 
-Please send a v2 _without_ this line. Old device trees that don't
-specify the 3.3V rail need to keep working fine and thus it's optional
-(not required) for people to include the 3.3 V rail.
+Clean-up imx_v6_v7_defconfig and then add support for the new Colibri
+iMX6ULL 1GB (eMMC) which builds on the success of the existing Colibri
+iMX6ULL SKUs using raw NAND but replaces this by more RAM (1 GB) and an
+eMMC (4 GB).
 
-(NOTE: in the source code things will work fine without any changes
-because the regulator framework will automatically create a "dummy"
-regulator for you if one wasn't specified in the device tree).
 
--Doug
+Marcel Ziswiler (6):
+  ARM: imx_v6_v7_defconfig: enable mtd physmap
+  ARM: imx_v6_v7_defconfig: enable fb
+  ARM: imx_v6_v7_defconfig: change snd soc tlv320aic3x to i2c variant
+  ARM: imx_v6_v7_defconfig: rebuild default configuration
+  ARM: imx_v6_v7_defconfig: build imx sdma driver as module
+  ARM: imx_v6_v7_defconfig: enable bpf syscall and cgroup bpf
+
+Max Krummenacher (1):
+  ARM: dts: colibri-imx6ull-emmc: add device trees
+
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/imx6ull-colibri-emmc-eval-v3.dts |  17 ++
+ .../dts/imx6ull-colibri-emmc-nonwifi.dtsi     | 185 ++++++++++++++++++
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        |  30 ++-
+ arch/arm/configs/imx_v6_v7_defconfig          |  46 ++---
+ 5 files changed, 249 insertions(+), 30 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-eval-v3.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-colibri-emmc-nonwifi.dtsi
+
+-- 
+2.26.2
+
