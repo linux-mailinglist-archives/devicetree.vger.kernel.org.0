@@ -2,138 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F183F0F07
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 02:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1F3A3F0FDA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 03:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235218AbhHSAFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 20:05:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42368 "EHLO
+        id S234686AbhHSBNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 21:13:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235005AbhHSAFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 20:05:10 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC930C061764
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 17:04:34 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id a13so5310431iol.5
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 17:04:34 -0700 (PDT)
+        with ESMTP id S232954AbhHSBNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Aug 2021 21:13:09 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF1BC061764
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 18:12:33 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id z128so8998870ybc.10
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 18:12:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=fEapmFlBKIuSpoPu4AyxSHs+c5eRGpigOktGw17Waoc=;
-        b=RymtZDJzEG5vx1du3BYZlbKOwsHfxlhsmAW5/gxLcPrWYezAkX6atoyRb9N8Y/1V+S
-         mVPlJytPA/Ap+BOLltZGwE6n+41KOFT8mVB6GgGClW7alh/gUBLat7aSJRwZ9yyoPo1Q
-         AVqoZbTXZYbJy4uXyI25ybPOpZOUsLcWXlZVM=
+        bh=nqKgp+4kxeKkHkpWnGTM9/4lqTjTkLI36sNXKnaG3TE=;
+        b=JBEnpVFqoKYSQA9YnCm98t4kD/T8yn6Snef5hlnqkSyLEfkdROTDgKG3Dh3D5FBxqq
+         buZHhQY54IxSI+aBiyJoEG/BGpiVVRl16/YqGMfN26HbbN9+8p1jAyZf2EozMK+2yuNz
+         3zDm3iSQcEoujVUAxXgADZUKOqXKmdGrl6qW7cGdcUrHUGWFgMtSF1Xe5F7msswgTC4d
+         8NIaNudNZ1miRxmh7FifUu3NQa9GvVA+03rXTiA5HEn8FjZQZjYcgF2DjESpIWoz/IPc
+         VR5HJJF9sOBAPq43t/nXoBum3cQnfOA55lUK5F8sA8QSiGT1K7L+psI41eyAQB+O/Rje
+         e2gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=fEapmFlBKIuSpoPu4AyxSHs+c5eRGpigOktGw17Waoc=;
-        b=aOdbF4unobulsoKMcmqM8hAA1uaLAmfJGk4HOl4CIOQHb+svEoRqjlGT6ZBPAaqMCA
-         dPVDb4F/OcffMENWcZAGmA2YtD+sb/oFUL5nDbCYRjruVwSkjoJVjAehGWOrO2uXmdVx
-         pcp7VWiKJELpOjcvGpuH4q3RXbU5BtXj6AcydI3aRVIjDsYI0e45HOLYdD9jfdVO2JRw
-         q/VpFjZEwFWpklvA5OJ9RtLIH1CGe/q6cngyhNZ6Uw0MiygSeSnCJRMdnVrGl0C0M172
-         NpDA1wokDJfdTjUKGiEKMWtjCl/RnIpXB8bngcWjHvE6n1egWdDaB0af5QtqALSu8sY+
-         0bMA==
-X-Gm-Message-State: AOAM531qytA54b7ZYKQzNVPoKwbl3HIdTjTyv5rkCP1j7XP0DCXFjAok
-        eN04nsrB5GPmd1ltGxdR4wfddYxlXX5gSQ==
-X-Google-Smtp-Source: ABdhPJx0J3MRiIkNeO+YrNoNcHiZK7gDYb86jP3AQXgE4JgNI327xy3kVbrkX9rHzbbj+4Qn2Fc7iQ==
-X-Received: by 2002:a02:1083:: with SMTP id 125mr10243834jay.34.1629331474045;
-        Wed, 18 Aug 2021 17:04:34 -0700 (PDT)
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com. [209.85.166.50])
-        by smtp.gmail.com with ESMTPSA id d20sm745946iow.33.2021.08.18.17.04.32
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Aug 2021 17:04:32 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id a13so5310332iol.5
-        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 17:04:32 -0700 (PDT)
-X-Received: by 2002:a5d:9eda:: with SMTP id a26mr9282243ioe.166.1629331471737;
- Wed, 18 Aug 2021 17:04:31 -0700 (PDT)
+        bh=nqKgp+4kxeKkHkpWnGTM9/4lqTjTkLI36sNXKnaG3TE=;
+        b=Sq8AS/0RX9rnryF49P+zUgYadKM0+mCVfelzT/lub/UcrJj7oywQZf95J48Wkk5anz
+         gvpai5RsnfCNK0NVShHbVAEZ9ct+6vWvxHuAWsPr2HD0S6ckC4QPec37EqupTCZC7lyC
+         9WGJnhmEl0aTeu0WD44LIusPaMrvqp2mJWuhUKd+been3+Wr/OW7lUDSkh1ZMsOWWx9N
+         eiReiuMroP/ZIryXygOa5mFl6naIPvHMImcnlp78tUcvjFM+xSeGIgnHkCRTU6PsU2Hw
+         2k+Se0hxQncplF/Is3thj949Obc+YPKl2Es4bjPukAF80mjQb6VFA5qWqpZ/VDLlprDX
+         2/8Q==
+X-Gm-Message-State: AOAM530Q7lH1SFZ6r9LqjfAD7M9rg6wAzhcPTpudsVgE4dkz35R8UByl
+        KhedqrdLLl9qRULEHdvo4C9Tu8jfi2CU1bBr4VNIdg==
+X-Google-Smtp-Source: ABdhPJyp7jXNQMocIf1VjjPKDk9B2vOcnnDh1bOIyGr6K3siuuocY301BduvWApFIPG1/MRVHSVgetKaX2kPzR4TDDc=
+X-Received: by 2002:a25:c056:: with SMTP id c83mr13242178ybf.228.1629335552976;
+ Wed, 18 Aug 2021 18:12:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <1628754078-29779-1-git-send-email-rajpat@codeaurora.org> <1628754078-29779-4-git-send-email-rajpat@codeaurora.org>
-In-Reply-To: <1628754078-29779-4-git-send-email-rajpat@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 18 Aug 2021 17:04:18 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vb2_K7QDvdMkjPLYqbVNQMa9e=3_PqREAHYMMVX-9QVQ@mail.gmail.com>
-Message-ID: <CAD=FV=Vb2_K7QDvdMkjPLYqbVNQMa9e=3_PqREAHYMMVX-9QVQ@mail.gmail.com>
-Subject: Re: [PATCH V5 3/7] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        msavaliy@qti.qualcomm.com, satya priya <skakit@codeaurora.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>
+References: <20210818130950.3715-1-Wentao_Liang_g@163.com> <CAL_JsqLfvfi42QGkM_WqKUm0GPZ6z=ybBz9kaR5UakKd0mzGEw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLfvfi42QGkM_WqKUm0GPZ6z=ybBz9kaR5UakKd0mzGEw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 18 Aug 2021 18:11:57 -0700
+Message-ID: <CAGETcx-C1avGdGLS=X7pc-q3u_BZv7wJwMWEJ6KFbDYYafeP2A@mail.gmail.com>
+Subject: Re: [PATCH] drivers:of:property.c: fix a potential double put
+ (release) bug
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Wentao_Liang <Wentao_Liang_g@163.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Aug 12, 2021 at 12:42 AM Rajesh Patil <rajpat@codeaurora.org> wrote:
+On Wed, Aug 18, 2021 at 7:07 AM Rob Herring <robh+dt@kernel.org> wrote:
 >
-> @@ -542,8 +561,305 @@
->                         #address-cells = <2>;
->                         #size-cells = <2>;
->                         ranges;
-> +                       iommus = <&apps_smmu 0x123 0x0>;
->                         status = "disabled";
+> +Saravana
 >
-> +                       i2c0: i2c@980000 {
+> On Wed, Aug 18, 2021 at 8:26 AM Wentao_Liang <Wentao_Liang_g@163.com> wrote:
+> >
+> > In line 1423 (#1), of_link_to_phandle() is called. In the function
+> > (line 1140, #2), "of_node_put(sup_np);" drops the reference to phandle
+> > and may cause phandle to be released. However, after the function
+> > returns, the phandle is subsequently dropped again (line 1424, #3) by
+> > the same put function. Double putting the phandle can lead to an
+> > incorrect reference count.
+> >
+> > We believe that the first put of the phandle is unnecessary (#3). We
+> > can fix the above bug by removing the redundant "of_node_put()" in line
+> > 1423.
+> >
+> > 1401 static int of_link_property(struct device_node *con_np,
+> >                                 const char *prop_name)
+> > 1402 {
+> > ...
+> > 1409     while (!matched && s->parse_prop) {
+> > ...
+> > 1414
+> > 1415         while ((phandle = s->parse_prop(con_np, prop_name, i))) {
+> > ...
+> >                  //#1 phandle is dropped in this function
+> > 1423             of_link_to_phandle(con_dev_np, phandle);
+> >
+> > 1424             //#3 the second drop to phandle
+> >                  of_node_put(phandle);
+> >
+> > 1425             of_node_put(con_dev_np);
+> > 1426         }
+> > ...
+> > 1428     }
+> > 1429     return 0;
+> > 1430 }
+> >
+> > 1095 static int of_link_to_phandle(struct device_node *con_np,
+> > 1096                   struct device_node *sup_np)
+> > 1097 {
+> > 1098     struct device *sup_dev;
+> > 1099     struct device_node *tmp_np = sup_np;
+> > ...
+> > 1140     of_node_put(sup_np);  //#2 the first drop to phandle
+> >                                //   (unnecessary)
+> > 1141
+> > 1142     return 0;
+> > 1143 }
+> >
+> > Signed-off-by: Wentao_Liang <Wentao_Liang_g@163.com>
+> > ---
+> >  drivers/of/property.c | 1 -
+> >  1 file changed, 1 deletion(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 6c028632f425..408fdde1a20c 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1137,7 +1137,6 @@ static int of_link_to_phandle(struct device_node *con_np,
+> >         put_device(sup_dev);
+> >
+> >         fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
+> > -       of_node_put(sup_np);
 
-Not a full review of your patch (I think Matthias has already looked
-in a bunch of detail), but can I also request that you add i2c and spi
-aliases in your next spin (I think you have to spin this anyway,
-right?) Add these under the "aliases" mode before the mmc ones (to
-keep sort order good):
+Hi Wentao,
 
-i2c0 = &i2c0;
-i2c1 = &i2c1;
-i2c2 = &i2c2;
-i2c3 = &i2c3;
-i2c4 = &i2c4;
-i2c5 = &i2c5;
-i2c6 = &i2c6;
-i2c7 = &i2c7;
-i2c8 = &i2c8;
-i2c9 = &i2c9;
-i2c10 = &i2c10;
-i2c11 = &i2c11;
-i2c12 = &i2c12;
-i2c13 = &i2c13;
-i2c14 = &i2c14;
-i2c15 = &i2c15;
+Thanks for noticing and reporting the bug! Your analysis is correct,
+but the fix is definitely wrong. For one, the reference to the node
+phandle is pointing to can be dropped in of_link_to_phandle() when it
+calls of_get_compat_node(). It could also be dropped in one of the
+error paths. So, now you'll be incorrectly dropping the reference for
+the wrong node. Let me send out a fix and  mention you as the
+reporter.
 
-...and these after:
-
-spi0 = &spi0;
-spi1 = &spi1;
-spi2 = &spi2;
-spi3 = &spi3;
-spi4 = &spi4;
-spi5 = &spi5;
-spi6 = &spi6;
-spi7 = &spi7;
-spi8 = &spi8;
-spi9 = &spi9;
-spi10 = &spi10;
-spi11 = &spi11;
-spi12 = &spi12;
-spi13 = &spi13;
-spi14 = &spi14;
-spi15 = &spi15;
-
-The "Quad SPI" doesn't get an alias, but that's OK. It doesn't have a
-well-defined number in the manual and it's fine to have it be
-auto-assigned. It's really just confusing when there's something with
-a well-defined number in the manual and it's a _different_ one in the
-logs. ;-)
-
--Doug
+Thanks,
+Saravana
