@@ -2,179 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA0A3F180E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 13:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4985A3F171B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 12:11:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239133AbhHSLWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 07:22:13 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:53079 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238865AbhHSLWD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 07:22:03 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 498B3580BC3;
-        Thu, 19 Aug 2021 07:21:27 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 19 Aug 2021 07:21:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=9COMIqJL2Ybx3
-        3JZ6BTNawSa1Jp0SEZ7LgvLm9CZf2M=; b=NmbUesK+MechTdvj0rIrg2HcUdkrZ
-        wxkOc04IruNeKOXmPdUk67Nm3G6+2w6Prdo8HtZTTLmhVb4KkRF/AYfI4YtEm4LC
-        OL7ebnm+tD7NGSKHRXbNAiQRef/YyCq94J6rJJqEo9P3kLpe5QmC55G79Y1Vu6WN
-        x2lvS6kMsMZRayTH99zaZnt5vPFwxR8s5ARHA1/0CTiiSgGVsnn86gQDlPwkp2CJ
-        sHa0cZlnB/d2e3PtRAFTAt6sSOeNuoOq1PquLYl0CcRmpdMiAfxGCKtCOTB11oK+
-        6ltGq8DZGHBA6K8TEBDZDymhdZcZxtppkBvopqLnoebjTT3N9yRVFjU7w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=9COMIqJL2Ybx33JZ6BTNawSa1Jp0SEZ7LgvLm9CZf2M=; b=whUtOHHh
-        9GThPGHKSfuW3SRKHHk7560a9pT62a9iR3QYdnz9e6sCFQ9hE9CKxyY7ZeeQ0yD+
-        KYmG9p/qJ7E+LHwf02fjX2eESrjP3K1EAYjcawMafXNUKLAynnQj9EWwJm/t78go
-        aqIzaovrKVIoXMRrPrtQD2/B52Zcfr0n0dGD+fI777xKMar9og1U0y64U3D4yRgf
-        NXtbpbI5lha4cuokGaylR40kbtO5zfcmM+liLt9hFZ3OA5YLqxJ5ecOdDHwGwqwr
-        +nl8LOGWAFsLaMjNBtn5ak5NJ9iE2o/UOPIr5cY1KHvS8x0iBx0zbvHNUdX7JWKO
-        X21AzpBD09NkgA==
-X-ME-Sender: <xms:tz4eYZU52GyUbvp0se-_2VMAFCBi4Jt--kC60KjGub4p74rOSPlw8A>
-    <xme:tz4eYZl-Hi8Ju_CNlvl8J-Gr-dc6jHYZsSpsSVIVWiiX6wiVDevaxksBAwG-dWC4Y
-    jeM3Uzn68nOTX1647o>
-X-ME-Received: <xmr:tz4eYVa1JdAZLw52t6EyGThq1ggLAhiQsOn18vP7bAMCh86IqtgnLJYfvTeGHfx2hq96zs0kRPbd9jk9Ky-XvJfdWHkAMWX6bxbAuBzS9zHDeEquEg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleejgdefjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepgeegtdetjeekge
-    eguefgheeuvedugedvteejveeiudegvddtkeffkeehtdetudfhnecuvehluhhsthgvrhfu
-    ihiivgepgeenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhish
-    htrghirhdvfedrmhgv
-X-ME-Proxy: <xmx:tz4eYcXlJIUfvaF6YX4NSYawmrqOuBs_LiVrU7Si1_kJWfi1SqFDVg>
-    <xmx:tz4eYTmXBLsYZbGBfvj9TN-fqeqmB2VFAO2cONgsLNDwndUEa-XSBA>
-    <xmx:tz4eYZc1RBi-iPOCM0ciR3EQ-wlML6p1hjwcFaZd9wvxUjjJ3ZNxWw>
-    <xmx:tz4eYcdpk_sYSiQNcTeF1Zd1np1Am4uCnRYGzVyG9RPxYSAs4ZM9bA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 19 Aug 2021 07:21:23 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, pinglinux@gmail.com,
-        tatsunosuke.tobita@wacom.com, junkpainting@gmail.com,
-        ping.cheng@wacom.com
-Cc:     linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v9 11/11] ARM: dts: imx7d: remarkable2: add wacom digitizer device
-Date:   Thu, 19 Aug 2021 01:49:35 +1000
-Message-Id: <20210818154935.1154-12-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210818154935.1154-1-alistair@alistair23.me>
-References: <20210818154935.1154-1-alistair@alistair23.me>
+        id S237700AbhHSKLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 06:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236149AbhHSKLj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 06:11:39 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C7AAC061575;
+        Thu, 19 Aug 2021 03:11:03 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id s3so10554738ljp.11;
+        Thu, 19 Aug 2021 03:11:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hRcUw4A9JUOH9E/HZUrcJBrNnU77uugOHMYye5z2kPk=;
+        b=oCgEXdoXT9js2xbiSTtP4LSKSH73+WdhaGoN3jjqgCDPNABybapX2RyG7W5BQZqdQ2
+         q2BeqynbMafnevVJxxhODBLUQkcb3mE/U+IEDskdRr/BJyf8l7oyg/5J51RzwtD0QF9/
+         /EnAQaIN5HGCFGsF6YHFwKtGH9vXI4OV18N75ZC1YdHXLnBYU269gcdYiT9MVNop25dX
+         HgUvV1GUHErFCQThXk3D/muI2t4kt16U384fnBs5eOBqXczF0ArJLQvYm+NiVcVFPYPd
+         cYtyuhhFBd6IDuY1BHqi68xftmXH3MDFV1jMSSatpne8gxK7VyxFRtd1yzdyZkaOSAkC
+         h5yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hRcUw4A9JUOH9E/HZUrcJBrNnU77uugOHMYye5z2kPk=;
+        b=DsL+UWkfnPaq3OeQykW4SE2AMz2eDzFVNmM+Tb+rtPEgbgqP1h1IzhIDx9Eaj8/yx3
+         MV0GCTf2rR1ly/wAFxbiGArvVlkp/eI/Dl8ozDt2o2+ygqJdYHfvuc2SkSDxCM9J0Szg
+         OHgLe6tGRpQd1NuJiI4b0YqxKqx7rVaGoT/SzEipHnL14O6+YqRMgQwISlCcDJCSdBLl
+         6w0a+5G6FpE4fmMUApyHZ4EKbbuA5c3oE7ZLyc/NXtIJBd0UiEoVwopIbpBaKg2LoUue
+         2eW8KC8Jr8UIijF8sScP7pBYoABsIW+Xn35cAmm9Bv8fKDwEpgV2oPj+aYtLzg7Yzo8R
+         uN7A==
+X-Gm-Message-State: AOAM532XUY/5sfSPPxIL9PbIRR2zbK/JwKCQZFl2kBgmPoO0UU4hYJZ8
+        QaL7W0ikIg0lzzZ9/Y5uMCs=
+X-Google-Smtp-Source: ABdhPJxhUgrY6cH0QDAknulavT6meRRprK+lfWsK0LPtnelokx10o9uM0goqC06AuFmVnrcCU16Vng==
+X-Received: by 2002:a2e:a5c8:: with SMTP id n8mr11243328ljp.317.1629367861963;
+        Thu, 19 Aug 2021 03:11:01 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id f16sm221595ljq.58.2021.08.19.03.11.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 03:11:01 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Doug Berger <opendmb@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: net: brcm,unimac-mdio: convert to the json-schema
+Date:   Thu, 19 Aug 2021 12:09:46 +0200
+Message-Id: <20210819100946.10748-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the wacom_i2c touchscreen for the reMarkable2.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
+This helps validating DTS files.
+
+Introduced example binding changes:
+1. Fixed reg formatting
+2. Swapped #address-cells and #size-cells incorrect values
+3. Renamed node: s/phy/ethernet-phy/
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm/boot/dts/imx7d-remarkable2.dts | 61 +++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+I've verified this new binding using:
+make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+---
+ .../bindings/net/brcm,unimac-mdio.txt         | 43 ----------
+ .../bindings/net/brcm,unimac-mdio.yaml        | 84 +++++++++++++++++++
+ 2 files changed, 84 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
+ create mode 100644 Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index 89cbf13097a4..052f9da32398 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -34,6 +34,19 @@ reg_brcm: regulator-brcm {
- 		startup-delay-us = <150>;
- 	};
- 
-+	reg_digitizer: regulator-digitizer {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_3V3_DIGITIZER";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pinctrl_digitizer_reg>;
-+		pinctrl-1 = <&pinctrl_digitizer_reg>;
-+		gpio = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100000>; /* 100 ms */
-+	};
+diff --git a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
+deleted file mode 100644
+index e15589f47787..000000000000
+--- a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-* Broadcom UniMAC MDIO bus controller
+-
+-Required properties:
+-- compatible: should one from "brcm,genet-mdio-v1", "brcm,genet-mdio-v2",
+-  "brcm,genet-mdio-v3", "brcm,genet-mdio-v4", "brcm,genet-mdio-v5" or
+-  "brcm,unimac-mdio"
+-- reg: address and length of the register set for the device, first one is the
+-  base register, and the second one is optional and for indirect accesses to
+-  larger than 16-bits MDIO transactions
+-- reg-names: name(s) of the register must be "mdio" and optional "mdio_indir_rw"
+-- #size-cells: must be 1
+-- #address-cells: must be 0
+-
+-Optional properties:
+-- interrupts: must be one if the interrupt is shared with the Ethernet MAC or
+-  Ethernet switch this MDIO block is integrated from, or must be two, if there
+-  are two separate interrupts, first one must be "mdio done" and second must be
+-  for "mdio error"
+-- interrupt-names: must be "mdio_done_error" when there is a share interrupt fed
+-  to this hardware block, or must be "mdio_done" for the first interrupt and
+-  "mdio_error" for the second when there are separate interrupts
+-- clocks: A reference to the clock supplying the MDIO bus controller
+-- clock-frequency: the MDIO bus clock that must be output by the MDIO bus
+-  hardware, if absent, the default hardware values are used
+-
+-Child nodes of this MDIO bus controller node are standard Ethernet PHY device
+-nodes as described in Documentation/devicetree/bindings/net/phy.txt
+-
+-Example:
+-
+-mdio@403c0 {
+-	compatible = "brcm,unimac-mdio";
+-	reg = <0x403c0 0x8 0x40300 0x18>;
+-	reg-names = "mdio", "mdio_indir_rw";
+-	#size-cells = <1>;
+-	#address-cells = <0>;
+-
+-	...
+-	phy@0 {
+-		compatible = "ethernet-phy-ieee802.3-c22";
+-		reg = <0>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+new file mode 100644
+index 000000000000..ffc1ee99613e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/brcm,unimac-mdio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		pinctrl-names = "default";
-@@ -51,6 +64,28 @@ &clks {
- 	assigned-clock-rates = <0>, <32768>;
- };
- 
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
++title: Broadcom UniMAC MDIO bus controller
 +
-+	wacom_digitizer: digitizer@9 {
-+		compatible = "wacom,i2c-30";
-+		reg = <0x09>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wacom>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-+		flip-tilt-x;
-+		flip-tilt-y;
-+		flip-pos-x;
-+		flip-pos-y;
-+		flip-distance;
-+		vdd-supply = <&reg_digitizer>;
-+	};
-+};
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
 +
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -117,6 +152,25 @@ &wdog1 {
- 	fsl,ext-reset-output;
- };
- 
-+&iomuxc_lpsr {
-+	pinctrl_digitizer_reg: digitizerreggrp {
-+		fsl,pins = <
-+			/* DIGITIZER_PWR_EN */
-+			MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x14
-+		>;
-+	};
++allOf:
++  - $ref: mdio.yaml#
 +
-+	pinctrl_wacom: wacomgrp {
-+		fsl,pins = <
-+			/*MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x00000014 /* FWE */
-+			MX7D_PAD_LPSR_GPIO1_IO04__GPIO1_IO4	0x00000074 /* PDCTB */
-+			MX7D_PAD_LPSR_GPIO1_IO01__GPIO1_IO1	0x00000034 /* WACOM INT */
-+			/*MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x00000014 /* WACOM PWR ENABLE */
-+			/*MX7D_PAD_LPSR_GPIO1_IO00__GPIO1_IO0	0x00000074 /* WACOM RESET */
-+		>;
-+	};
-+};
++properties:
++  compatible:
++    enum:
++      - brcm,genet-mdio-v1
++      - brcm,genet-mdio-v2
++      - brcm,genet-mdio-v3
++      - brcm,genet-mdio-v4
++      - brcm,genet-mdio-v5
++      - brcm,unimac-mdio
 +
- &iomuxc {
- 	pinctrl_brcm_reg: brcmreggrp {
- 		fsl,pins = <
-@@ -125,6 +179,13 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
- 		>;
- 	};
- 
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
-+			MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
-+		>;
-+	};
++  reg:
++    minItems: 1
++    items:
++      - description: base register
++      - description: indirect accesses to larger than 16-bits MDIO transactions
 +
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
++  reg-names:
++    minItems: 1
++    items:
++      - const: mdio
++      - const: mdio_indir_rw
++
++  interrupts:
++    oneOf:
++      - description: >
++          Tnterrupt shared with the Ethernet MAC or Ethernet switch this MDIO
++          block is integrated from
++      - items:
++          - description: |
++              "mdio done" interrupt
++          - description: |
++              "mdio error" interrupt
++
++  interrupt-names:
++    oneOf:
++      - const: mdio_done_error
++      - items:
++          - const: mdio_done
++          - const: mdio_error
++
++  clocks:
++    description: A reference to the clock supplying the MDIO bus controller
++
++  clock-frequency:
++    description: >
++      The MDIO bus clock that must be output by the MDIO bus hardware, if
++      absent, the default hardware values are used
++
++unevaluatedProperties: false
++
++required:
++  - reg
++  - reg-names
++  - '#address-cells'
++  - '#size-cells'
++
++examples:
++  - |
++    mdio@403c0 {
++        compatible = "brcm,unimac-mdio";
++        reg = <0x403c0 0x8>, <0x40300 0x18>;
++        reg-names = "mdio", "mdio_indir_rw";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ethernet-phy@0 {
++            compatible = "ethernet-phy-ieee802.3-c22";
++            reg = <0>;
++        };
++    };
 -- 
-2.31.1
+2.26.2
 
