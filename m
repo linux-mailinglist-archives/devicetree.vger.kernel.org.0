@@ -2,103 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB553F23A3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 01:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8223F23A7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 01:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233488AbhHSX0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 19:26:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60174 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229808AbhHSX0N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 19:26:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 099CF610CB;
-        Thu, 19 Aug 2021 23:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629415537;
-        bh=lDfLcMkKaHulnTMCEIwuK3Wkmz0K0OakW2zzDWc2MXQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FY0wZTfrZOjvTnYhmIPdjOI29K571ATtN2aYf4k/tGQKyIwJwp+Ygjb0ZymaDAJF0
-         4KfTUAUg6RRvQbQI6nhYkj88XF8OGaGzYo7hTA+l+tO6n7FOiSOYrBvRJ4gPstlQc+
-         /A7as4FtfgWNv1csr6zGnv6paUBj4MEi+8Kfo+kErXzeCnPWNfKba2Be16HBcBOQyb
-         nG3NFuy+HTKrRvHKm006BGLR41CPqAukZsRLH5i5NbQ6M3mX9z7l2TnmwTrhcJyQLi
-         q8Dw9mgcwuCaI7Kwo5LUt3bIpNZ7CUeVKZljDag08xUJo8XToCrOApmbdEeBoFdjkz
-         b1MKB8+gfkviA==
-Received: by mail-ed1-f48.google.com with SMTP id r19so11185234eds.13;
-        Thu, 19 Aug 2021 16:25:36 -0700 (PDT)
-X-Gm-Message-State: AOAM530MAQvsaRTSIhzYreR20WxyaZbfnO1MeeR5oX18qbTpTDSUKad6
-        2VhpbggfRfswhX0R3g7dnTEtciydTPt86XUe5A==
-X-Google-Smtp-Source: ABdhPJyqRKlKwq4wRR1ZLhH+D2awtd0tuQOpfkaT7U6/ZK+Er3r1zuqlZaXZ1G3+33lsQ6QF7lMQ2EOc1u8R/uHA4WA=
-X-Received: by 2002:aa7:c7c2:: with SMTP id o2mr18981861eds.166.1629415535694;
- Thu, 19 Aug 2021 16:25:35 -0700 (PDT)
+        id S236688AbhHSX03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 19:26:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236585AbhHSX03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 19:26:29 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554ADC061575
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 16:25:52 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id n7so14286232ljq.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 16:25:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=M1+GHBIER56bvoiEO/XH/RbJV9p/MJW6zqzAx52jbsc=;
+        b=WoJlt72YYCPglK8TAwUAXvTJx+OFz3L9OZhtK3vxaXZmZN9B1zuy+Xy6sfq5uC1aST
+         AgOzlw7oyzwbKTlOPltZ7QaVYUBEcFkIrPtjHZZHlIpwIuk7i0KJkSUqcUIrzsZ0i45Q
+         Z/bU0WRWIR8bZW3obeMwvrajrC/qWtToCrLd/eNEncCvDypXKIS1kClSdc6/4jlQlro8
+         FwOar2SjbadN6OsMsG2uAQsrOVjqBPram628FShbYWGv/Ut0l9HiNkXEbnFLgUDm/a+i
+         WnYF6Ud+j7AClveyPHrUdZQPkJalgsdtMoNczJ6xivl1FgHgoUqoqr2BfnoW51an/a38
+         K5Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=M1+GHBIER56bvoiEO/XH/RbJV9p/MJW6zqzAx52jbsc=;
+        b=cKu2SV3QsnTq8GkOKOmrsaMIPL6435xoM3fHzu6sVMDkh8J1O5rmiEv1x5WF+Jiw6r
+         ZuBqLRvsmm/tq5zyqicVEb+dAN03B78GX5ZMGTpRNGDe+XBVSvQ26rf/6VUDP1GK/cLu
+         hPO9FlaUq1QIamxgVQypzlGwjJ7gCbq63SsSApgzql3VuHVhgv9fsXrGy0u2xvXusTCZ
+         ZKKBi92IltYJ8+udLlUA2L+AHsE/XZiqZcOrfCGbFLLYvcxM0qi+KSgfcsv7VqCeWote
+         CQsKHww/PdFmQyFpTOrOxhE0t5M52cQSfY8NGKIJk3fK8tOuBG0yjMsPhGBnBvICw7Jp
+         ouyg==
+X-Gm-Message-State: AOAM530ZN/xvgj3QLRb03W497H4gJXbFg1pg8t2RsZihJlLE52T3kSfv
+        SGZAm6kPXgSpQQW14cdnI+y2gguPMekw92y5dWeQO+VAbjc=
+X-Google-Smtp-Source: ABdhPJzlDC/v/pF03+lDcLiXr114tfQChkfaJmOPe/hKz4Qu88FwZ+L8u4mjnWpC1pygoynHP/jepajuuBTppKBscZs=
+X-Received: by 2002:a2e:9e46:: with SMTP id g6mr13902666ljk.326.1629415550673;
+ Thu, 19 Aug 2021 16:25:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210818091847.8060-1-nancy.lin@mediatek.com> <20210818091847.8060-3-nancy.lin@mediatek.com>
-In-Reply-To: <20210818091847.8060-3-nancy.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 20 Aug 2021 07:25:24 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-mJ0WHK0pXqASprrc7GW0R_ZTRmJ8Yo8pu9js-cQ5HAw@mail.gmail.com>
-Message-ID: <CAAOTY_-mJ0WHK0pXqASprrc7GW0R_ZTRmJ8Yo8pu9js-cQ5HAw@mail.gmail.com>
-Subject: Re: [PATCH v3 02/15] dt-bindings: mediatek: add vdosys1 MERGE
- definition for mt8195
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        singo.chang@mediatek.com,
-        srv_heupstream <srv_heupstream@mediatek.com>
+References: <20210819184239.1192395-1-robh@kernel.org>
+In-Reply-To: <20210819184239.1192395-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 20 Aug 2021 01:25:39 +0200
+Message-ID: <CACRpkdavBq5vfvVQMJm-R32VP-FEO6j6L5pUGGCWEFSiN=tUDw@mail.gmail.com>
+Subject: Re: [PATCH 0/5] Arm VExpress/Juno motherboard bus clean-ups
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Nancy:
+On Thu, Aug 19, 2021 at 8:42 PM Rob Herring <robh@kernel.org> wrote:
 
-Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=8818=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:18=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Add vdosys1 MERGE definition.
->
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,merge.yaml    | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
-rge.yaml
-> index 1a27b037086b..ba1e0c837988 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> @@ -23,6 +23,8 @@ properties:
->            - const: mediatek,mt8173-disp-merge
->        - items:
->            - const: mediatek,mt8195-disp-merge
-> +      - items:
-> +          - const: mediatek,mt8195-vdo1-merge
+> I noticed we once again have warnings on VExpress/Juno bus nodes as the
+> simple-bus schema now expects child nodes to have a unit-address.
+> Digging into this I noticed the arm,vexpress-juno.yaml schema is out of
+> date and missing some properties (some of which are unused). I found the
+> 'ranges' handling to be odd as well. This series fixes all those issues.
 
-I don't know why create a new merge for mt8195. Provide more
-information about the difference of these two merge.
+The series looks good to me. Thanks for fixing this up!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Regards,
-Chun-Kuang.
-
->
->    reg:
->      maxItems: 1
-> --
-> 2.18.0
->
+Yours,
+Linus Walleij
