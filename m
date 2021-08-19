@@ -2,76 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 555BC3F1294
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 06:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB4F3F12C1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 07:29:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbhHSEiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 00:38:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51190 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229451AbhHSEiA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 00:38:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B15561042;
-        Thu, 19 Aug 2021 04:37:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629347845;
-        bh=pGZ5omv2oCYRcuBpQ6+cH1mFqh6u3/r87NghQa0XqeQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bCcmq2zDptuL9eg/KaLcY95BKAyJtutlIiZtToFeg93WGU1fNndPprWxkOTZglfGE
-         TuXWUuo0V5ZaP450tfq1hl3uwvqzlOXyc+tWI0a8nWM6hWLF2OScc+fS/C9V2JnHql
-         7UBUN8y0oKaUMMpUGzsUb6pKtEN/ba5PMZ+ZErAs6dsY9gc5zSp2y81Rx8DwhH7Oyk
-         ZHe5f/UkLcxN7NQ9JNET33brXd5DreNMH8acz5QyCzSXYWhD6dKT70hQJ417AwUJfg
-         ixsrfWJQJBhzZdj3Vg8oWIymYIlLsNv64zFT6fE2z0PP67WnhIr5Fc4u/b/1Tg1gXO
-         Th3opgZk7n3tw==
-Date:   Thu, 19 Aug 2021 10:07:20 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, swboyd@chromium.org,
-        mka@chromium.org, ohad@wizery.com, agross@kernel.org,
-        mathieu.poirier@linaro.org, robin.murphy@arm.com, joro@8bytes.org,
-        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        evgreen@chromium.org, dianders@chromium.org
-Subject: Re: [PATCH v3 06/10] arm64: dts: qcom: sc7280: Update reserved
- memory map
-Message-ID: <YR3gAD68xRtNJRhi@matsya>
-References: <1629344185-27368-1-git-send-email-sibis@codeaurora.org>
- <1629344185-27368-7-git-send-email-sibis@codeaurora.org>
+        id S229960AbhHSFaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 01:30:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229868AbhHSFaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 01:30:15 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B59C061756;
+        Wed, 18 Aug 2021 22:29:39 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id r9so10100369lfn.3;
+        Wed, 18 Aug 2021 22:29:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NkyQ99fSfjHhX/SIGvNhplWLTZKV19L1/kVLvts/VV8=;
+        b=OCGl5RWYQ4U424qw5IpvRjKffDKk9f3E9ILVxmtbXjdmTcZE1s8xrCxmDVYhOyNs3Q
+         wyq/MQSY/bhOs6Ezxmb5FnCzP8W6wkptZ6CRUodrhFG+zLrWkOKiMFOEHyu3rI7Di5XI
+         +1o/kJn/CEYtaaS2yfsvtgXcIPzrPnCh+vFk8JmKiRAJCmN2SJHY/PgivniAdOlYbMfO
+         o8vuTzd7NVXFH0EmHTLZVBqLwoREZ/DURnrTFRf/TFthYlCs+0HWqrOE6A+nBZDtFb9M
+         vh38idnrp408yKT7APUdwkVRAQLgI8ILjB7E5jSxO8/ax0ksoHur2VUg4Zt2MUMkIVTQ
+         743A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NkyQ99fSfjHhX/SIGvNhplWLTZKV19L1/kVLvts/VV8=;
+        b=H+VxuSURJpbSIGTtFy1gPG4Hp4Us825j1ZOL6joSCFrFYBp9h8LqFmFWX9RDWOZGdE
+         Pi6bKCo7vkv+dBfTMrbhofQeasJfrfQbg3e8UQzdsjpH20rJp3/2/dhzMaOEAW6L2F6N
+         FOExsDKV8oyintuBbsOL2SWT6uyWswbXPy0RRRKU2QgLR10H/0CpuWuURXUSEC/Rpfhv
+         zsud3ASmkO/5L8J5SPpwjyGWfIiSSDy4ljp7kajpkrz/Psps/6Ly0RgtlMD+PCEMfijZ
+         k/d3Q0fsTkM+fFZi2thrGEbpFVD7M8iGZAmiX7nqj5rNqhcvtw48KHamSWmdYiH+ZpgF
+         s8zA==
+X-Gm-Message-State: AOAM533iZ/I7tqUZ3VOWHlcoD37kSSeaIkCR9EyqTJtKKeNtYDRVDlHw
+        P7QhK97RJ5inO6RkQVlsrC0=
+X-Google-Smtp-Source: ABdhPJxQ8zfr6KrADfBGoHThIpvNI58GOifyv7ZdegN8ZzvixxWVRDRq9O1sdokhZOWlv4FQdEAOcA==
+X-Received: by 2002:ac2:4106:: with SMTP id b6mr8965460lfi.89.1629350977641;
+        Wed, 18 Aug 2021 22:29:37 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id s13sm186464lfd.53.2021.08.18.22.29.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 22:29:37 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: clock: brcm,iproc-clocks: fix armpll properties
+Date:   Thu, 19 Aug 2021 07:29:18 +0200
+Message-Id: <20210819052918.6753-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1629344185-27368-7-git-send-email-sibis@codeaurora.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sibi,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On 19-08-21, 09:06, Sibi Sankar wrote:
+armpll clocks (available on Cygnus and Northstar Plus) are simple clocks
+with no cells. Adjust binding props #clock-cells and clock-output-names
+to handle them.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 5e4f4f3b738a..894106efadfe 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -48,6 +48,16 @@
->  		#size-cells = <2>;
->  		ranges;
->  
-> +		hyp_mem: memory@80000000 {
-> +			reg = <0x0 0x80000000 0x0 0x600000>;
-> +			no-map;
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/clock/brcm,iproc-clocks.yaml     | 27 +++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-This should conflict with the memory defined in this file:
-
-        memory@80000000 {
-                device_type = "memory";
-                /* We expect the bootloader to fill in the size */
-                reg = <0 0x80000000 0 0>;
-        };
-
-I think this should be updated?
-
+diff --git a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+index 1174c9aa9934..5ad147d265e6 100644
+--- a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
++++ b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+@@ -61,13 +61,30 @@ properties:
+     maxItems: 1
+ 
+   '#clock-cells':
+-    const: 1
++    true
+ 
+   clock-output-names:
+     minItems: 1
+     maxItems: 45
+ 
+ allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - brcm,cygnus-armpll
++              - brcm,nsp-armpll
++    then:
++      properties:
++        '#clock-cells':
++          const: 0
++    else:
++      properties:
++        '#clock-cells':
++          const: 1
++      required:
++        - clock-output-names
+   - if:
+       properties:
+         compatible:
+@@ -358,7 +375,6 @@ required:
+   - reg
+   - clocks
+   - '#clock-cells'
+-  - clock-output-names
+ 
+ additionalProperties: false
+ 
+@@ -392,3 +408,10 @@ examples:
+         clocks = <&osc2>;
+         clock-output-names = "keypad", "adc/touch", "pwm";
+     };
++  - |
++    arm_clk@0 {
++        #clock-cells = <0>;
++        compatible = "brcm,nsp-armpll";
++        clocks = <&osc>;
++        reg = <0x0 0x1000>;
++    };
 -- 
-~Vinod
+2.26.2
+
