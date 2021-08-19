@@ -2,210 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 681733F1DC1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4303F1DDE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbhHSQZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 12:25:18 -0400
-Received: from mail-eopbgr10128.outbound.protection.outlook.com ([40.107.1.128]:36007
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229497AbhHSQZR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 12:25:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kFqqSUKGkF4y3dUBhWYvb+HDc7tU+jGvQ4qn0h0RTuAMGP7zGKcLz6zQcYImCsbwV4nC8DrNox1dtkPhaDLdQzFCfbDmvHjld9TJijCP3lwOUXNO6f1R1DldVXyyAVAMdx5BFzV0OkUaHdKxZxm6Et+Er/ZySUuxbljAsqAQSKS1MiOUN6MEjZJCTLLgMu/982HIJsA9jyTq34YnCt9GoTklEQ/o5xVVnyEOdQiiqVWbOUxidk0fmeMWU/FXCrAYAYHwG/Cx6btwfsBE8QdnTGPND+kDtLBmEVDrXkThA5jKB2ZHJpsOBrQGedLmAuVFHHm88vLybIEdSCeJvpL/RA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rZVIA7HCyOq6xn5unWCgqqVFq+IzEuRa32I5Ols+g98=;
- b=LamxPz5wrcRlp+YDLOF5E2tGtZesioxZsUwIo7E3ZKwbGXX8pil6YAGjzgG53UpJ9k8xl7fWqYgb6ZVGGotuHjKj0ITr1BjMrKyaBDOxFwOU22FZq806JI0lEVZcAzZLWhWBKvG4kywSHd9jDApIvVI967kLuYNJ2MTvnLyXn2MJMzaQznz/Np9YXqXecz8wy9VFDyNPNIvjc5s1pN0n6QBQrGAZXDUsSo/BXIk45eXKgOVrXqm1tMRbZnS34ouq2VukKfui3F5Ft2Nx19cHCODlGdgdYkUxENcQw5jHkEZyiz8V56m4gJ2H9DAnVW8hjWbBZbfsIrCAQrHwnYIj/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rZVIA7HCyOq6xn5unWCgqqVFq+IzEuRa32I5Ols+g98=;
- b=sTJVtak1m0Z0TA3ixQFZAvml/cx7YYCS65b/CX8lF3PIIeHxxrsi3qWOkNSCxo5jQ2jUGuKWHRH90vULZzQ2FhgeBPnvSWkFv16JSGArwuKozTxod1Fd0BtMsSCA6ZI9uzit8c7NnVKEUH2prdd7hLfoloiSqeT9p4l6MZdzFU4=
-Received: from DB7PR05MB5431.eurprd05.prod.outlook.com (2603:10a6:10:55::32)
- by DBAPR05MB7191.eurprd05.prod.outlook.com (2603:10a6:10:1a7::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.17; Thu, 19 Aug
- 2021 16:24:38 +0000
-Received: from DB7PR05MB5431.eurprd05.prod.outlook.com
- ([fe80::8f4:9f42:ea10:e8e7]) by DB7PR05MB5431.eurprd05.prod.outlook.com
- ([fe80::8f4:9f42:ea10:e8e7%3]) with mapi id 15.20.4415.024; Thu, 19 Aug 2021
- 16:24:38 +0000
-From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
-To:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-CC:     "soc@kernel.org" <soc@kernel.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>,
-        "olof@lixom.net" <olof@lixom.net>, "arnd@arndb.de" <arnd@arndb.de>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-Subject: Re: [PATCH v1 7/7] ARM: dts: colibri-imx6ull-emmc: add device trees
-Thread-Topic: [PATCH v1 7/7] ARM: dts: colibri-imx6ull-emmc: add device trees
-Thread-Index: AQHXlQMkuwghHZtcSUCQfnhPvcQ5Dqt7A2GA
-Date:   Thu, 19 Aug 2021 16:24:38 +0000
-Message-ID: <81b0c6edf6d2b50cea08a02650b07df95eb424d7.camel@toradex.com>
-References: <20210819140345.357167-1-marcel@ziswiler.com>
-         <20210819140345.357167-8-marcel@ziswiler.com>
-In-Reply-To: <20210819140345.357167-8-marcel@ziswiler.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=none action=none
- header.from=toradex.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8446c884-3a7c-448f-f6c7-08d9632dd716
-x-ms-traffictypediagnostic: DBAPR05MB7191:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DBAPR05MB71916DE5965013EEA5D9B149FBC09@DBAPR05MB7191.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LQql5lIUj0wa11RVKDBo7dlbXVbvKy+SnVFLjqvANcPd00KBmgaYgqjOTDFRu6wUsJcg9UQFfyjVLrHx5Q/jOkF2eikxLS0qJD2sespaPcwfd1K1ZTsNa0kN3QDDh5/6Y0FbIxcGeaECLOQfK3dgV22mtwZP4kvz+dB4qd7lXp5wuZsnNYFXJJgPtc5+cbb3qvg1HUiZywOnokYvtHCCJghtHmrQTH0G+VXhuzkYS3n1l3o9a6jpzZ31tx4y9pPGOub0qAgZDNmGTFznK6DIaHLb+bEogY+9XYwkkdZIVpKE6YnXdQdIeUGILGZPv0hw0xRE5L1UU78r0i3GNxTu5eofMjNnFMsNa1brhM4eBt4VXXTiJJYj9H3joL+Cmf0NaQ1YaXE3aTt7biZfLOBli23dx+f0naHbyOSuMAy8jC7YkupVDgW77t+2ebKYoAcb7kNOQ6gMPRs2BPHFmGYAoMMG3WGqAa0b/yZU57MBULt/13C9cZNMwPJd73IZvCm1F2m06Hh1x0YsA4jf52YuC7Nq7tzdd6Uvv4F75o1Pnxnq+df8pane9pNLhp2xg9ntyJJCfJRuF5GEg02qp76976szY2wv33vDsFIjVWKjqulS6tILoVWJO6lO5+rlEg+fHtxWSkhYGcO26SJcGM5le1yfR1F7gNul0X7Fq4r5sxCFBeUnUnf7CV+6yVDnGOqKzWGQECBCcnMHqDQFGIhC2Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR05MB5431.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39830400003)(366004)(346002)(136003)(396003)(376002)(6512007)(44832011)(5660300002)(38100700002)(122000001)(71200400001)(4326008)(2616005)(54906003)(38070700005)(7416002)(6486002)(186003)(36756003)(8676002)(66946007)(8936002)(478600001)(86362001)(76116006)(2906002)(64756008)(66446008)(83380400001)(316002)(66556008)(6916009)(91956017)(66476007)(6506007)(26005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?YlVaUnNTVkttM05MNm5ZNnhFSkd0YjJIUlhmc0FGV25JSWJXeWE4Zi81VzMz?=
- =?utf-8?B?U1pYZVBVS0VjVjdla0NUQlA0alpxTFJMR3VhaWZPMkEzTHJKWDQwRzA0M0tE?=
- =?utf-8?B?dVNNUXBQTGFTdm4xYkVpUGtST25oWmd2VkpIc2NCdXFqYzhPdGN2cGc4QXlU?=
- =?utf-8?B?alVDaEpNa1gzRm9pNUptQStrS093YUtIU1VESy9MU3lvMVpsRzJWTS9RSnhI?=
- =?utf-8?B?bXlrTkVWeW03dHhtdzFSVDcydjJzVmRiQUR5YUlVKzJnaVpja05XVzAva2VE?=
- =?utf-8?B?RjBTdUZ1VzNnTGpSMFJ4ZFhETUYreFFUNlJ6WFZBR0xnc3BDR0hvNWltS3Ez?=
- =?utf-8?B?RVdiVXJ6UVArZUJnUDRubXBtMWFoVVgwTmkyRUhaN2dtWjRrYS85QjYxaGJ0?=
- =?utf-8?B?LzJPcUN0Vy9ibm10NWppUkdqSVFaWis3dEhzSmZtM0E0bXVadnBDT2o0d05t?=
- =?utf-8?B?UjM4YzRha2tOMlIvM3A1UVllZC9yY2lYYmRBeDV1K1BTTWJwN1BDYjBCbjV1?=
- =?utf-8?B?L1ZrcTNTQ3g0RnB5NjV6THZYUk4xNG5Tdi8ybjhNdUkxVEhDOFphR3NRd056?=
- =?utf-8?B?cWZ3bndPT3orc2F3ZkVRU2pLUWF2ZnBNbmdzMVBMWi9HWHFvNmdmRSthdFBY?=
- =?utf-8?B?RjJJV1QvcFJDSVJCc05vbGkrVXpaRzBMZmdrMFdaSmo0RDdWR1l0VlNxS2RK?=
- =?utf-8?B?dTRKUFhHUXFnN29aYTE2K3dVamVBZ1dIdXpqT2wxTWRGZ1U2eXR2aFBDQnEv?=
- =?utf-8?B?cUFBUlVGcTN2aTRyVm5VRjBqZmNlS3JMbTNxWXEwblNtd1ZJdHNwa0Z5Tlp5?=
- =?utf-8?B?OXBEa3A1aUJlQWYzRjdpblZzcmJMOEJ5ckREVHlna0pPL001Mk9MMFhKNjFB?=
- =?utf-8?B?SnN6TXdJQjhPSHZFTFQybFZub0MzVmM0N0piT3BQYlYxNGJnOFh0M3NXemls?=
- =?utf-8?B?NnVQdlNSY29HNnh2VGVlY2U0SW1ld0FnbUllOFFxaFdpQmZMbCtZOWVUUEhN?=
- =?utf-8?B?djE5Nk9jOVdSRDJwaWRxQnRGMFJEQ3dmNmFRMTZVYXY5cDBwRDh2NkEzY2lW?=
- =?utf-8?B?R0I0SHN4bWd5K0NtWVI0alVsN0hRT085WlJxRW1uSDdyVFVySXB2b1g4L0tD?=
- =?utf-8?B?dERMZWtvWjRpV0JPS2poVXJhdzkwSU5ORGZ1bVNLU2FBZ3I3S29UV2xVWDJt?=
- =?utf-8?B?LzhzVU0xaUpuVW45TENQUjhJNHpPV2NhS1J0YStJbHppZzRjSnh0aDJWNWRn?=
- =?utf-8?B?TkRNcWRaQ2RrR1ppMTRwbkVuK21PUnptWi9WWjFMNWVGMklsOTRWZnJVN0Ni?=
- =?utf-8?B?ejlrL0dHcHVFUTRuajhIVnQyS3RGcXE4WC9pRHlWd25Fdm4rT21ZK1pvRWJC?=
- =?utf-8?B?M3VMKzZaanBIZ0JXQWhneWp5MnlWc3d6TXc3dyt1eEZadmlQYWc1amhKTENU?=
- =?utf-8?B?QTdhNE1JSG9BRE9UUm9TZ0ZGV1dQV2F1WHFXU2VkVkdFWUhWTEU4K2VodTlH?=
- =?utf-8?B?RmttdUg4MWJJc2pRSWFKbHM5cmhueG9wSnYyc0YzUE55d0tmWnB4K0NDVThK?=
- =?utf-8?B?S2ZidVYvK201SDh3TmdTOHg5OFYxclV6WkhiaTFxVFd4MVpuOFArSEQxSWhH?=
- =?utf-8?B?cG5vWS9HakRPcUhUZ0dOdjc0UTNpeTJMQi9YcUd1b0l2aW51NUtQK2dhaDU2?=
- =?utf-8?B?ODU3N0NuNThPZTEwQmQ2a2pkSW9zNm5uT2ZUSEZYK1loTExjOFVKL09tSEJL?=
- =?utf-8?B?SENXNytNdlJBUUN0UmQyQWx6ZTJtV3g0eUlHMXBVbktUZTNEQVcrOStzbVRm?=
- =?utf-8?B?R1pvL3g1alY2aW5qRnpmQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <52A690C217556349A0CE24FA2104330E@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S230421AbhHSQcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 12:32:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230416AbhHSQcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 12:32:01 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E93C2C061575;
+        Thu, 19 Aug 2021 09:31:24 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id k8so10005658wrn.3;
+        Thu, 19 Aug 2021 09:31:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xdfmGh23k0aNDX33xwOdlnspLCgiV2qSptJyQT4CArg=;
+        b=TqvsyYuIzPTFNISEaUDmY0h791HLIf4qH1WXS1GxVOvTPNRDVQWqqcXQlxGoSmEhYq
+         hmHtTmIeKTi83VzFGyYEcVObXx+9sz/n5eRC4i5PoGxDQ5FuJyqmzwZC3DZsTYvcC7lj
+         Pr/Hk6ZGcay72lFauB5YyEIy1wE9tdSBx7LT+U3/P67mkfLEUFIanjAo3tpK1Of8NDws
+         BwdnJJRNFFFrUFU5DylX11cauyAcPLYzFuHfmvb7prU10HBcx3ThlIFERG8TGHBfHyo4
+         yySdwCCzMSuAkV9jh3xYDU+0sLNNdvXISoBFguTvMb8H+aD1MJ35euCxfdXOs3xfCmJt
+         nByA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xdfmGh23k0aNDX33xwOdlnspLCgiV2qSptJyQT4CArg=;
+        b=mOZXduuE9bVwOCymxoqTm0O+CBy9fgiSmr0eIcat6+XSqs6xscM2EgCEQPWDDLlKTr
+         6UKjFFqIQGgpj+BrY5Dy+A+RTCUiZb2AQEseHdsqp7Fq2LKKGliJ8PeKXTBDdn08aUyF
+         K58k8wuSy+aPet8EXNYjlCNBfVRD40DmCLBgbZUoDrE44XCjyGn01nS9OcN5HAH3xcYu
+         sIjzHiSrCVRdZfV6aoT8OIXIsUaWOKXIcIS8fkDrZznpuTT3zoult23JDzQdveOlVT6D
+         yJTNiQMrVI1qVEkB+694QN2pnkYebeCKPUEdkgz2t3Oi2zRkd5df618QXxLnFmD++m5A
+         pqrA==
+X-Gm-Message-State: AOAM531aPwJhRjMZLO66z+Qsfv7BAAVOplA0JVb08FFWhDPyrPay55dR
+        0OolyrbbsiYe2E8q5aWCqpc=
+X-Google-Smtp-Source: ABdhPJw+layCx1zXDlaPhdMiFy7BJcVfdPSGx4BZzhnHtq808ns6k0cMS2cwB3t84/EUctnSBTQSPg==
+X-Received: by 2002:adf:f541:: with SMTP id j1mr4794858wrp.180.1629390683554;
+        Thu, 19 Aug 2021 09:31:23 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id p8sm7766709wme.22.2021.08.19.09.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 09:31:21 -0700 (PDT)
+Date:   Thu, 19 Aug 2021 18:31:20 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 06/34] dt-bindings: clock: tegra-car: Document new
+ tegra-clocks sub-node
+Message-ID: <YR6HWMuYcF6NIepi@orome.fritz.box>
+References: <20210817012754.8710-1-digetx@gmail.com>
+ <20210817012754.8710-7-digetx@gmail.com>
+ <YR0SSz7KMh7TwaFW@orome.fritz.box>
+ <eff5ef47-e6e0-3e03-cf1a-d931b0f2dc2a@gmail.com>
+ <YR033zuYWWLCeYpM@orome.fritz.box>
+ <a5b942cb-1611-9ae1-6e89-4b68fdaf03e3@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR05MB5431.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8446c884-3a7c-448f-f6c7-08d9632dd716
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 16:24:38.2140
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: i0uxqbddQedosKdGacyERuiOUQLQvNdiiWD0eIVcFpy+6WZrSc501gQlEQwcn0KKqUmBCbzCiaIctfObMQnwsaIVHoZnsWJTZgL8SH1n3Lg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR05MB7191
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rcVyDzt3QNLnQ9/o"
+Content-Disposition: inline
+In-Reply-To: <a5b942cb-1611-9ae1-6e89-4b68fdaf03e3@gmail.com>
+User-Agent: Mutt/2.1.1 (e2a89abc) (2021-07-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTA4LTE5IGF0IDE2OjAzICswMjAwLCBNYXJjZWwgWmlzd2lsZXIgd3JvdGU6
-Cj4gRnJvbTogTWF4IEtydW1tZW5hY2hlciA8bWF4LmtydW1tZW5hY2hlckB0b3JhZGV4LmNvbT4K
-PiAKPiBBZGQgZGV2aWNlcyB0cmVlcyBmb3IgYSBDb2xpYnJpIGlNWDZVTEwgMUdCIHdoaWNoIGhh
-cyBhIGVNTUMgaW5zdGVhZCBvZgo+IHRoZSByYXcgTkFORCB1c2VkIG9uIG90aGVyIFNLVXMuCj4g
-Cj4gUmVsYXRlZC10bzogRUxCLTQwNTYsIEVMQi00MDU4Cj4gU2lnbmVkLW9mZi1ieTogTWF4IEty
-dW1tZW5hY2hlciA8bWF4LmtydW1tZW5hY2hlckB0b3JhZGV4LmNvbT4KPiBTaWduZWQtb2ZmLWJ5
-OiBNYXJjZWwgWmlzd2lsZXIgPG1hcmNlbC56aXN3aWxlckB0b3JhZGV4LmNvbT4KPiAKPiAtLS0K
-PiAKPiDCoGFyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgfMKgwqAgMSArCj4gwqAuLi4vYm9vdC9kdHMvaW14NnVsbC1jb2xpYnJp
-LWVtbWMtZXZhbC12My5kdHMgfMKgIDE3ICsrCj4gwqAuLi4vZHRzL2lteDZ1bGwtY29saWJyaS1l
-bW1jLW5vbndpZmkuZHRzacKgwqDCoMKgIHwgMTg1ICsrKysrKysrKysrKysrKysrKwo+IMKgYXJj
-aC9hcm0vYm9vdC9kdHMvaW14NnVsbC1jb2xpYnJpLmR0c2nCoMKgwqDCoMKgwqDCoCB8wqAgMzAg
-KystCj4gwqA0IGZpbGVzIGNoYW5nZWQsIDIzMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0p
-Cj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9kdHMvaW14NnVsbC1jb2xpYnJp
-LWVtbWMtZXZhbC12My5kdHMKPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybS9ib290L2R0
-cy9pbXg2dWxsLWNvbGlicmktZW1tYy1ub253aWZpLmR0c2kKPiAKPiAuLi4KPgo+IGRpZmYgLS1n
-aXQgYS9hcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmkuZHRzaSBiL2FyY2gvYXJtL2Jv
-b3QvZHRzL2lteDZ1bGwtY29saWJyaS5kdHNpCj4gaW5kZXggMGNkYmY3YjZlNzI4NS4uZjQzMmZj
-MGE2YTUzMCAxMDA2NDQKPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmku
-ZHRzaQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZ1bGwtY29saWJyaS5kdHNpCj4gQEAg
-LTEsNiArMSw2IEBACj4gwqAvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1Ig
-TUlUKQo+IMKgLyoKPiAtICogQ29weXJpZ2h0IDIwMTggVG9yYWRleCBBRwo+ICsgKiBDb3B5cmln
-aHQgMjAxOC0yMDIxIFRvcmFkZXggQUcKPiDCoCAqLwo+IMKgCj4gwqAjaW5jbHVkZSAiaW14NnVs
-bC5kdHNpIgo+IEBAIC0zNDUsNiArMzQ1LDE5IEBAIE1YNlVMX1BBRF9FTkVUMV9SWF9EQVRBMV9f
-R1BJTzJfSU8wMcKgwqDCoMKgwqDCoMKgMHhiMGIwIC8qIFNPRElNTSA2MyAqLwo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPjsKPiDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoAo+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgKiBXaXRoIGFuIGVNTUMgaW5zdGVhZCBvZiBhIHJhdyBOQU5EIGRldmljZSB0aGUg
-Zm9sbG93aW5nIHBpbnMKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogYXJlIGF2
-YWlsYWJsZSBhdCBTT0RJTU0gcGlucwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-Ki8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGluY3RybF9ncG1pX2dwaW86IGdw
-bWktZ3Bpby1ncnAgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgZnNsLHBpbnMgPSA8Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgTVg2VUxfUEFEX05BTkRfQUxFX19HUElPNF9JTzEw
-wqDCoMKgwqDCoMKgwqDCoMKgwqAweDEwYjAgLyogU09ESU1NIDE0MCAqLwo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YNlVM
-X1BBRF9OQU5EX0NFMF9CX19HUElPNF9JTzEzwqDCoMKgwqDCoMKgwqDCoDB4MTBiMCAvKiBTT0RJ
-TU0gMTQ0ICovCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgTVg2VUxfUEFEX05BTkRfQ0xFX19HUElPNF9JTzE1wqDCoMKgwqDC
-oMKgwqDCoMKgwqAweDEwYjAgLyogU09ESU1NIDE0NiAqLwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YNlVMX1BBRF9OQU5E
-X1JFQURZX0JfX0dQSU80X0lPMTLCoMKgwqDCoMKgwqAweDEwYjAgLyogU09ESU1NIDE0MiAqLwo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPjsKPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArCgpKdXN0IG5vdGljZWQgdGhhdCBJIHNv
-bWVob3cgbWVzc2VkIHVwIHRoZSBpbmRlbnRhdGlvbiBhYm92ZSB3aXRoIG9uZSBzcHVyaW91cyB0
-YWIgdG9vIG11Y2guIFdpbGwgY29ycmVjdCB0aGF0CmluIGEgdjIuIFNvcnJ5IGFib3V0IHRoYXQu
-Cgo+IMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsX2dwbWlfbmFuZDogZ3BtaS1uYW5kLWdycCB7Cj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmc2wscGlucyA9IDwKPiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDZVTF9QQURfTkFORF9EQVRB
-MDBfX1JBV05BTkRfREFUQTAwwqDCoMKgMHgxMDBhOQo+IEBAIC01MzMsNiArNTQ2LDIxIEBAIE1Y
-NlVMX1BBRF9HUElPMV9JTzAzX19PU0MzMktfMzJLX09VVMKgwqDCoMKgwqDCoMKgMHgxMAo+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPjsKPiDCoMKgwqDCoMKgwqDCoMKgfTsKPiDC
-oAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsX3VzZGhjMmVtbWM6IHVz
-ZGhjMmVtbWNncnAgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgZnNsLHBpbnMgPSA8Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgTVg2VUxfUEFEX05BTkRfUkVfQl9fVVNESEMyX0NM
-S8KgwqDCoMKgIDB4MTcwNTkKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDZVTF9QQURfTkFORF9XRV9CX19VU0RIQzJfQ01E
-wqDCoMKgwqAgMHgxNzA1OQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YNlVMX1BBRF9OQU5EX0RBVEEwMF9fVVNESEMyX0RB
-VEEwIDB4MTcwNTkKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBNWDZVTF9QQURfTkFORF9EQVRBMDFfX1VTREhDMl9EQVRBMSAw
-eDE3MDU5Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgTVg2VUxfUEFEX05BTkRfREFUQTAyX19VU0RIQzJfREFUQTIgMHgxNzA1
-OQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoE1YNlVMX1BBRF9OQU5EX0RBVEEwM19fVVNESEMyX0RBVEEzIDB4MTcwNTkKPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBNWDZVTF9QQURfTkFORF9EQVRBMDRfX1VTREhDMl9EQVRBNCAweDE3MDU5Cj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-TVg2VUxfUEFEX05BTkRfREFUQTA1X19VU0RIQzJfREFUQTUgMHgxNzA1OQo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YNlVM
-X1BBRF9OQU5EX0RBVEEwNl9fVVNESEMyX0RBVEE2IDB4MTcwNTkKPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDZVTF9QQURf
-TkFORF9EQVRBMDdfX1VTREhDMl9EQVRBNyAweDE3MDU5Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqB9Owo+ICsKCkRpdHRvIGFib3ZlLgoKPiDCoMKgwqDCoMKgwqDCoMKgcGluY3RybF93ZG9n
-OiB3ZG9nLWdycCB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmc2wscGlucyA9
-IDwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDZV
-TF9QQURfTENEX1JFU0VUX19XRE9HMV9XRE9HX0FOWcKgwqDCoCAweDMwYjAKCkNoZWVycwoKTWFy
-Y2VsCg==
+
+--rcVyDzt3QNLnQ9/o
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 18, 2021 at 07:57:04PM +0300, Dmitry Osipenko wrote:
+> 18.08.2021 19:39, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >> We don't have a platform device for CaR. I don't see how it's going to
+> >> work. We need to create a platform device for each RPM-capable clock
+> >> because that's how RPM works. The compatible string is required for
+> >> instantiating OF-devices from a node, otherwise we will have to
+> >> re-invent the OF core.
+> > I think we do have a platform device for CAR. It's just not bound
+> > against by the driver because these clock drivers are "special". But
+> > from other parts of the series you're already trying to fix that, at
+> > least partially.
+> >=20
+> > But it doesn't seem right to create a platform device for each RPM-
+> > capable clock. Why do they need to be devices? They aren't, so why
+> > pretend? Is it that some API that we want to use here requires the
+> > struct device?
+>=20
+> The "device" representation is internal to the kernel. It's okay to me
+> to have PLLs represented by a device, it's a distinct h/w by itself.
+>=20
+> CCF supports managing of clock's RPM and it requires to have clock to be
+> backed by a device. That's what we are using here.
+>=20
+> Please see
+> https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/clk/clk.c#L109
+
+Looking at the implementation of __clk_register() and where that device
+pointer typically comes from, I don't think the way this is used here is
+what was intended. The way I interpret the code is that a clock is
+registered with a parent device (i.e. its provider) and
+clk_pm_runtime_get() is then used internally as a way to make sure that
+when a clock is prepared, it's parent device is runtime resumed. This is
+presumably to ensure that any registers that the driver might need to
+access in order to prepare and enable the clock are accessible (i.e. the
+CAR is not powered off or in reset).
+
+So the struct device that is passed to __clk_register() (or its callers)
+should be that of the CAR rather than virtual struct devices created by
+the CAR.
+
+And it's a bit debatable whether or not PLLs represent distinct
+hardware. Ultimately every transistor on a chip could be considered
+distinct hardware. But a platform device is a device on a platform bus,
+which is really just another way of saying it's a hardware block that's
+accessible from the CPU via a memory-mapped address. A PLL (just like
+other clocks) is merely a resource exposed by means of access to these
+registers. So I don't think they should be platform devices. Even making
+them struct device:s seems a bit of a stretch.
+
+Is there any reason why struct clk can't be used for this? I mean, the
+whole purpose of that structure is to represent clocks. Why do we need
+to make them special?
+
+> >>> Also, I don't think the tegra- prefix is necessary here. The parent n=
+ode
+> >>> is already identified as Tegra via the compatible string.
+> >>>
+> >>> In the case of CAR, I'd imagine something like:
+> >>>
+> >>> 	clocks {
+> >>> 		sclk {
+> >>> 			operating-points-v2 =3D <&opp_table>;
+> >>> 			power-domains =3D <&domain>;
+> >>> 		};
+> >>> 	};
+> >>>
+> >>> Now you've only got the bare minimum in here that you actually add. A=
+ll
+> >>> the other data that you used to have is simply derived from the paren=
+t.
+> >> 'clocks' is already a generic keyword in DT. It's probably not okay to
+> >> redefine it.
+> > "clocks" is not a generic keyword. It's the name of a property and given
+> > that we're talking about the clock provider here, it doesn't need a
+> > clocks property of its own, so it should be fine to use that for the
+> > node.
+>=20
+> I'm curious what Rob thinks about it. Rob, does this sound okay to you?
+
+Another alternative would be to omit that level altogether and just make
+sclk and siblings direct children of the CAR node.
+
+Thierry
+
+--rcVyDzt3QNLnQ9/o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmEeh1YACgkQ3SOs138+
+s6H2hw/9FHQE4gIC68lVuteJusivX3to+lSemB8K8zjRkcxT7nURgxWEiaqizxEC
+HdNxAuNdVDpD1v34JC2ZGJgnnYdMSrk9k4BhykGgn1+QhdgEQGSTAEXUhcxfK2Yg
+5Slk4jnHH9HF0GPYfbJ5SP6k3NgkeL8h0fCa2JviaoCOhzyRBJK71IG1cIOlj7Ud
+3nxcd1/NzHcPZnsGivm5Qd8saf1nyLrZghmyUsuaZp5tsH8Ct/x5HWiShOTVB6UT
++uRefYWMbuaJp/mCa+6N0gK2827S84iSRzO5sxI3nYZbRJsgLgD766fzdC/EDZ9G
+Zg5AZgzH67GoEicbdCQMgx6zVV6Y1LQF1+5mrHjpomm2OWRVZELLEfGa1pqVNIGu
+VJjQuIX618IKU5jBYUw18+vr2HiJNDEFCXX0PrBYXp/cc64fiq4I3M30clqQQoxr
+puehYCuiVtD9v6lr8tnEA79qUnn0XsWIpzzHbeLtwclpaqN5lTZUo6eXXFIGid+3
+ZauSDJzqa4qTX1fvwH23kMnkA91nI2A00rPQWtER0uhJGq8TjXFPeJ4JHsvTyXxg
+Xr77eogUzKs15p0Eh3BBBYCu5CLnaePC+kK5pcVnJLDmbmRW/gaS/RvCuw/YfIhE
+Q5nj2KNqZny4RL9VKn0X77bP0ngrfjlFjFsEDt+9MYgNMX3kjj8=
+=ibYp
+-----END PGP SIGNATURE-----
+
+--rcVyDzt3QNLnQ9/o--
