@@ -2,125 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 399973F1988
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 14:35:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8923F19AE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 14:48:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239542AbhHSMfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 08:35:53 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37444 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239899AbhHSMfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 08:35:53 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17JCYqMd032825;
-        Thu, 19 Aug 2021 07:34:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1629376492;
-        bh=poueu/euKtfcqbr8LzsTcjIQ1wgv6v/lzsChvHScOeU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZO3lyeAp/+ym6hviOL+iomxGGyQI32S9tJNCKz70lGObJ05m3i051CPdwOBtpOSzH
-         oCrtIw/S/Omrt8DwCOyIGLZFO8tZv4lezJ0u0tZ16nNWnS2NAFCfTV/VXwJ1AZbTll
-         0y93YdwVt9YFrEiKU0nccDh8JxtoiOupvRIDO62c=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17JCYqkM057235
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 19 Aug 2021 07:34:52 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 19
- Aug 2021 07:34:51 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 19 Aug 2021 07:34:52 -0500
-Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17JCXlZW035715;
-        Thu, 19 Aug 2021 07:34:45 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>, <linux-pci@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [PATCH v9 8/8] Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
-Date:   Thu, 19 Aug 2021 18:03:43 +0530
-Message-ID: <20210819123343.1951-9-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210819123343.1951-1-kishon@ti.com>
-References: <20210819123343.1951-1-kishon@ti.com>
+        id S239347AbhHSMt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 08:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47966 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239248AbhHSMt0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 08:49:26 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD61C061756
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 05:48:50 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id oa17so4887683pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 05:48:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mlxsOtjk3EQe8tY0Dl2bnQT6hDTIci57yhrirNK4WM4=;
+        b=C/c9qtXCbDh8ba0bEl5eqr8WQGeufHKR1Un4IT4bUXM4xXrkTxBFtgnckgQ50er66b
+         zxfX7mk5ZydlgtFQBh38HgP8oX/3dCPjFGRZSCFW+dGtz2RwMSmV37BKshYrgoSN+exl
+         3pwOIvrMoV4Sj+Zf5YoWB0mdSW+cYwMlMV0OlC5J8pMAOpT/xeGU3twXGkfj2y4CurHI
+         t64yylZZpzsR55ysItGwCinJuxjqC4rCcqgN9uSnT6a/E/ptDRLFW0/IBxsr1i5MS+hz
+         elGCD7jckU2m2z5L9n69lW2Rnhsfintij5PlkqN9+gweIhTkulOXORjEOJqUsqvW75BB
+         t+Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mlxsOtjk3EQe8tY0Dl2bnQT6hDTIci57yhrirNK4WM4=;
+        b=JNrb1RCablmTRRgCPIR8kVShpakGk4tsYSUjQzpF8Ci1+1uDz8B9Jx/tHRb+O/beNK
+         JQASERC4gNNxWQCwi72fEg2N1DmDCkZ5TOUzvbuboMj070OIVkJy50r99r8Z705XkCg3
+         jey018vcqFDl5cxzuYYVVcSTlOOb8jaSbhWMNM/8ex6yeVKwlaBDmalONQNnJ58zaG8E
+         d2cKSYCfndTNlkuDGNf44+eQYBECfsJFZol50M+KjpfQT93ttSGr/oFVnC/gSn4JpUyY
+         3bmc5CkHgB7qwmVPf/fHdyiI3PzJir5ZwmdqD7jC96GFDgAzOWrYUMmRxF0jkvvBQOjo
+         shhA==
+X-Gm-Message-State: AOAM533kLV4KuDd2Zg+ECgyYgwSYTohKiNOL/T4z1RR2xAKQAZoi6eqF
+        PhHq/It5mfl6NdmFwC+ls8SnBg==
+X-Google-Smtp-Source: ABdhPJw7+fjyC0SC3MOzj/6NzYAJjwgk/Nve1tUgxX32A0IY6i5qv5858pWqGdvPzn4v0Wu1pYc+cw==
+X-Received: by 2002:a17:90a:d595:: with SMTP id v21mr15360955pju.50.1629377329891;
+        Thu, 19 Aug 2021 05:48:49 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.213])
+        by smtp.gmail.com with ESMTPSA id c11sm3137210pji.24.2021.08.19.05.48.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 05:48:49 -0700 (PDT)
+From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, dianders@google.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        yangcong <yangcong5@huaqin.corp-partner.google.com>
+Subject: [v1 0/2] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+Date:   Thu, 19 Aug 2021 20:48:42 +0800
+Message-Id: <20210819124844.12424-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Documentation to help users use PCI endpoint to create virtual
-functions using configfs. An endpoint function is designated as a
-virtual endpoint function device when it is linked to a physical
-endpoint function device (instead of a endpoint controller).
+The auo,b101uan08.3 panel (already supported by this driver) has
+a 3.3V rail that needs to be turned on. For previous users of
+this panel this voltage was directly output by pmic. On a new 
+user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
+to turn the 3.3V rail on. Add support in the driver for this.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- Documentation/PCI/endpoint/pci-endpoint-cfs.rst | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+yangcong (2):
+  drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+  dt-bindings: drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
 
-diff --git a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-index db609b97ad58..fb73345cfb8a 100644
---- a/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-+++ b/Documentation/PCI/endpoint/pci-endpoint-cfs.rst
-@@ -43,6 +43,7 @@ entries corresponding to EPF driver will be created by the EPF core.
- 		.. <EPF Driver1>/
- 			... <EPF Device 11>/
- 			... <EPF Device 21>/
-+			... <EPF Device 31>/
- 		.. <EPF Driver2>/
- 			... <EPF Device 12>/
- 			... <EPF Device 22>/
-@@ -68,6 +69,7 @@ created)
- 				... subsys_vendor_id
- 				... subsys_id
- 				... interrupt_pin
-+			        ... <Symlink EPF Device 31>/
-                                 ... primary/
- 			                ... <Symlink EPC Device1>/
-                                 ... secondary/
-@@ -79,6 +81,13 @@ interface should be added in 'primary' directory and symlink of endpoint
- controller connected to secondary interface should be added in 'secondary'
- directory.
- 
-+The <EPF Device> directory can have a list of symbolic links
-+(<Symlink EPF Device 31>) to other <EPF Device>. These symbolic links should
-+be created by the user to represent the virtual functions that are bound to
-+the physical function. In the above directory structure <EPF Device 11> is a
-+physical function and <EPF Device 31> is a virtual function. An EPF device once
-+it's linked to another EPF device, cannot be linked to a EPC device.
-+
- EPC Device
- ==========
- 
-@@ -98,7 +107,8 @@ entries corresponding to EPC device will be created by the EPC core.
- 
- The <EPC Device> directory will have a list of symbolic links to
- <EPF Device>. These symbolic links should be created by the user to
--represent the functions present in the endpoint device.
-+represent the functions present in the endpoint device. Only <EPF Device>
-+that represents a physical function can be linked to a EPC device.
- 
- The <EPC Device> directory will also have a *start* field. Once
- "1" is written to this field, the endpoint device will be ready to
+ .../bindings/display/panel/boe,tv101wum-nl6.yaml      |  4 ++++
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c        | 11 +++++++++++
+ 2 files changed, 15 insertions(+)
+
 -- 
-2.17.1
+2.25.1
 
