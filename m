@@ -2,345 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 679353F1ADE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B5213F1AE4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240152AbhHSNqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 09:46:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33132 "EHLO
+        id S240157AbhHSNtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 09:49:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239919AbhHSNqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:46:23 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8EE0C061575
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:45:46 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mGiMY-0006SP-6Z; Thu, 19 Aug 2021 15:45:42 +0200
-Message-ID: <72e1194e10ccb4f87aed96265114f0963e805092.camel@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: imx: add minor fix to pass schema dtb check
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     haibo.chen@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     aisheng.dong@nxp.com, devicetree@vger.kernel.org, stefan@agner.ch,
-        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 19 Aug 2021 15:45:40 +0200
-In-Reply-To: <1629277950-7230-1-git-send-email-haibo.chen@nxp.com>
-References: <1629277950-7230-1-git-send-email-haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+        with ESMTP id S240112AbhHSNtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:49:46 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CDAC061575;
+        Thu, 19 Aug 2021 06:49:09 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id o10so13082168lfr.11;
+        Thu, 19 Aug 2021 06:49:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gcd3Ew/0S2MQDasYF7ODVmsRCEeC4AAQAE5enh/njaU=;
+        b=qHsAP5ZoDviH4gvXX/R/6ocPw2hnM33wOqZSW2C0QCpCkoZYjIvNYnsTWQUUDXMRIP
+         uSlwV3Wj7YGQcRyQK/UN4NrvV0GMQDNs69kIkyIVbkwMoCG76stV/i3pufTBWHsoaD+c
+         owdBgsZ4n/U9LHAwHLj1NhCLDJRcDZkT/5VfTNPMa5XJd+4o+PhgDX/FtcCq/hQigHd8
+         tqZ/gyc/ZdAP1ba75Za+RYgq+5ndurJpkqjS4D/p3Zo7P4qFwQ8EPQbzgKxl59zWEw42
+         PDy5dAPTGQD1sNtDzZAifPkBOI3kZKQV0s9O0Rv7f7HMwBmIJ+6D7GBYDSQrWM/lzIg2
+         WqHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Gcd3Ew/0S2MQDasYF7ODVmsRCEeC4AAQAE5enh/njaU=;
+        b=WuZPZII26IIKeEnbO38+zkR4E9iuEB0HI4VfCO5viRw6yuY2ZWH2nHaKlC47XWmyI/
+         yzyfVwZY0sEEP+E+pY9t8d1g9kjy9rAJQQGKQzN7RC7OFFwF9aXWO3DyBLphsTf+J3cN
+         IwPuIufANTc77hcVdSgHwYJL461vS1blPCtuXyOJDSz4A87oKXzLdj0xmIbL3dMwIoe/
+         KrHfvhtCWCVCqVVXfHvPJ9uOp+qDDEJHAs6WrClSeaqkzA0BbkNnAodQhEvz0YgdzeYb
+         8KE8bC0rSLw3+Ax5SioXmxo+sSvCqMH8ZSwMeIp5hmO6cmuQ7zZpL38xHwthPNNq3A1P
+         ZRUQ==
+X-Gm-Message-State: AOAM5330unggSPIjKZdnpuKvNXt4dJENyjB+w+VHcyzzeVyoxkyf6EYL
+        JbD1KCNX0QhnkEGh+V9E3ew=
+X-Google-Smtp-Source: ABdhPJy7atDVHoUfG8iQvpdQpfwFJJNZhQ/7r/ZOo8GiKCQGfvJGvqqZj4NAqCF3AcNnakpdZ7Ryxg==
+X-Received: by 2002:a05:6512:1082:: with SMTP id j2mr10635889lfg.560.1629380948240;
+        Thu, 19 Aug 2021 06:49:08 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id u2sm314115lfd.43.2021.08.19.06.49.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 06:49:07 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: serial: brcm,bcm6345-uart: convert to the json-schema
+Date:   Thu, 19 Aug 2021 15:48:59 +0200
+Message-Id: <20210819134859.19537-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 18.08.2021 um 17:12 +0800 schrieb haibo.chen@nxp.com:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> Add some fix to pass schema dtb check for fsl-imx-esdhc.yaml
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Nack.
+This helps validating DTS files.
 
-As far as I can see the controller is functionally compatible to the
-fallback compatibles (in some cases with reduced functionality, like no
-HS200) support. Removing those fallback compatibles will break older
-kernels that don't have support for the new, preferred compatibles and
-other software like bootloaders that might match to the fallback
-compatibles, as they don't make use of the extended functionality
-anyways.
+In example periph_clk@0 was replaced with periph_clk to fix validation.
 
-Please fix the schema to accept the valid fallback compatibles.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+I've verified this binding using the
+make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
+---
+ .../bindings/serial/brcm,bcm6345-uart.txt     | 36 ------------
+ .../bindings/serial/brcm,bcm6345-uart.yaml    | 57 +++++++++++++++++++
+ 2 files changed, 57 insertions(+), 36 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
 
-Regards,
-Lucas
-
-> 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  arch/arm/boot/dts/imx50.dtsi   | 8 ++++----
->  arch/arm/boot/dts/imx6sl.dtsi  | 8 ++++----
->  arch/arm/boot/dts/imx6sll.dtsi | 6 +++---
->  arch/arm/boot/dts/imx6sx.dtsi  | 8 ++++----
->  arch/arm/boot/dts/imx6ul.dtsi  | 4 ++--
->  arch/arm/boot/dts/imx6ull.dtsi | 4 ++--
->  arch/arm/boot/dts/imx7s.dtsi   | 6 +++---
->  arch/arm/boot/dts/imx7ulp.dtsi | 4 ++--
->  arch/arm/boot/dts/vfxxx.dtsi   | 4 ++--
->  9 files changed, 26 insertions(+), 26 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx50.dtsi b/arch/arm/boot/dts/imx50.dtsi
-> index a969f335b240..a1814f10f7f0 100644
-> --- a/arch/arm/boot/dts/imx50.dtsi
-> +++ b/arch/arm/boot/dts/imx50.dtsi
-> @@ -116,7 +116,7 @@
->  				ranges;
->  
->  				esdhc1: mmc@50004000 {
-> -					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-> +					compatible = "fsl,imx53-esdhc";
->  					reg = <0x50004000 0x4000>;
->  					interrupts = <1>;
->  					clocks = <&clks IMX5_CLK_ESDHC1_IPG_GATE>,
-> @@ -128,7 +128,7 @@
->  				};
->  
->  				esdhc2: mmc@50008000 {
-> -					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-> +					compatible = "fsl,imx53-esdhc";
->  					reg = <0x50008000 0x4000>;
->  					interrupts = <2>;
->  					clocks = <&clks IMX5_CLK_ESDHC2_IPG_GATE>,
-> @@ -177,7 +177,7 @@
->  				};
->  
->  				esdhc3: mmc@50020000 {
-> -					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-> +					compatible = "fsl,imx53-esdhc";
->  					reg = <0x50020000 0x4000>;
->  					interrupts = <3>;
->  					clocks = <&clks IMX5_CLK_ESDHC3_IPG_GATE>,
-> @@ -189,7 +189,7 @@
->  				};
->  
->  				esdhc4: mmc@50024000 {
-> -					compatible = "fsl,imx50-esdhc", "fsl,imx53-esdhc";
-> +					compatible = "fsl,imx53-esdhc";
->  					reg = <0x50024000 0x4000>;
->  					interrupts = <4>;
->  					clocks = <&clks IMX5_CLK_ESDHC4_IPG_GATE>,
-> diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
-> index 997b96c1c47b..e40e017b6f38 100644
-> --- a/arch/arm/boot/dts/imx6sl.dtsi
-> +++ b/arch/arm/boot/dts/imx6sl.dtsi
-> @@ -858,7 +858,7 @@
->  			};
->  
->  			usdhc1: mmc@2190000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x02190000 0x4000>;
->  				interrupts = <0 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC1>,
-> @@ -870,7 +870,7 @@
->  			};
->  
->  			usdhc2: mmc@2194000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x02194000 0x4000>;
->  				interrupts = <0 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC2>,
-> @@ -882,7 +882,7 @@
->  			};
->  
->  			usdhc3: mmc@2198000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x02198000 0x4000>;
->  				interrupts = <0 24 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC3>,
-> @@ -894,7 +894,7 @@
->  			};
->  
->  			usdhc4: mmc@219c000 {
-> -				compatible = "fsl,imx6sl-usdhc", "fsl,imx6q-usdhc";
-> +				compatible = "fsl,imx6sl-usdhc";
->  				reg = <0x0219c000 0x4000>;
->  				interrupts = <0 25 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SL_CLK_USDHC4>,
-> diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
-> index 04f8d637a501..82b248353386 100644
-> --- a/arch/arm/boot/dts/imx6sll.dtsi
-> +++ b/arch/arm/boot/dts/imx6sll.dtsi
-> @@ -711,7 +711,7 @@
->  			};
->  
->  			usdhc1: mmc@2190000 {
-> -				compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-> +				compatible = "fsl,imx6sll-usdhc";
->  				reg = <0x02190000 0x4000>;
->  				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SLL_CLK_USDHC1>,
-> @@ -725,7 +725,7 @@
->  			};
->  
->  			usdhc2: mmc@2194000 {
-> -				compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-> +				compatible = "fsl,imx6sll-usdhc";
->  				reg = <0x02194000 0x4000>;
->  				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SLL_CLK_USDHC2>,
-> @@ -739,7 +739,7 @@
->  			};
->  
->  			usdhc3: mmc@2198000 {
-> -				compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-> +				compatible = "fsl,imx6sll-usdhc";
->  				reg = <0x02198000 0x4000>;
->  				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SLL_CLK_USDHC3>,
-> diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
-> index 8516730778df..acab73c932c1 100644
-> --- a/arch/arm/boot/dts/imx6sx.dtsi
-> +++ b/arch/arm/boot/dts/imx6sx.dtsi
-> @@ -967,7 +967,7 @@
->  			};
->  
->  			usdhc1: mmc@2190000 {
-> -				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx6sx-usdhc";
->  				reg = <0x02190000 0x4000>;
->  				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SX_CLK_USDHC1>,
-> @@ -979,7 +979,7 @@
->  			};
->  
->  			usdhc2: mmc@2194000 {
-> -				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx6sx-usdhc";
->  				reg = <0x02194000 0x4000>;
->  				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SX_CLK_USDHC2>,
-> @@ -991,7 +991,7 @@
->  			};
->  
->  			usdhc3: mmc@2198000 {
-> -				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx6sx-usdhc";
->  				reg = <0x02198000 0x4000>;
->  				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SX_CLK_USDHC3>,
-> @@ -1003,7 +1003,7 @@
->  			};
->  
->  			usdhc4: mmc@219c000 {
-> -				compatible = "fsl,imx6sx-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx6sx-usdhc";
->  				reg = <0x0219c000 0x4000>;
->  				interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6SX_CLK_USDHC4>,
-> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-> index afeec01f6522..c066d85b2c0a 100644
-> --- a/arch/arm/boot/dts/imx6ul.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul.dtsi
-> @@ -891,7 +891,7 @@
->  			};
->  
->  			usdhc1: mmc@2190000 {
-> -				compatible = "fsl,imx6ul-usdhc", "fsl,imx6sx-usdhc";
-> +				compatible = "fsl,imx6sx-usdhc";
->  				reg = <0x02190000 0x4000>;
->  				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6UL_CLK_USDHC1>,
-> @@ -905,7 +905,7 @@
->  			};
->  
->  			usdhc2: mmc@2194000 {
-> -				compatible = "fsl,imx6ul-usdhc", "fsl,imx6sx-usdhc";
-> +				compatible = "fsl,imx6sx-usdhc";
->  				reg = <0x02194000 0x4000>;
->  				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX6UL_CLK_USDHC2>,
-> diff --git a/arch/arm/boot/dts/imx6ull.dtsi b/arch/arm/boot/dts/imx6ull.dtsi
-> index 9bf67490ac49..8b1ed3bc7393 100644
-> --- a/arch/arm/boot/dts/imx6ull.dtsi
-> +++ b/arch/arm/boot/dts/imx6ull.dtsi
-> @@ -42,11 +42,11 @@
->  };
->  
->  &usdhc1 {
-> -	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
-> +	compatible = "fsl,imx6ull-usdhc";
->  };
->  
->  &usdhc2 {
-> -	compatible = "fsl,imx6ull-usdhc", "fsl,imx6sx-usdhc";
-> +	compatible = "fsl,imx6ull-usdhc";
->  };
->  
->  / {
-> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-> index 1843fc053870..075f8e5c0579 100644
-> --- a/arch/arm/boot/dts/imx7s.dtsi
-> +++ b/arch/arm/boot/dts/imx7s.dtsi
-> @@ -1158,7 +1158,7 @@
->  			};
->  
->  			usdhc1: mmc@30b40000 {
-> -				compatible = "fsl,imx7d-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx7d-usdhc";
->  				reg = <0x30b40000 0x10000>;
->  				interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-> @@ -1170,7 +1170,7 @@
->  			};
->  
->  			usdhc2: mmc@30b50000 {
-> -				compatible = "fsl,imx7d-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx7d-usdhc";
->  				reg = <0x30b50000 0x10000>;
->  				interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-> @@ -1182,7 +1182,7 @@
->  			};
->  
->  			usdhc3: mmc@30b60000 {
-> -				compatible = "fsl,imx7d-usdhc", "fsl,imx6sl-usdhc";
-> +				compatible = "fsl,imx7d-usdhc";
->  				reg = <0x30b60000 0x10000>;
->  				interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clks IMX7D_IPG_ROOT_CLK>,
-> diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-> index b7ea37ad4e55..456c3f5f393c 100644
-> --- a/arch/arm/boot/dts/imx7ulp.dtsi
-> +++ b/arch/arm/boot/dts/imx7ulp.dtsi
-> @@ -216,7 +216,7 @@
->  		};
->  
->  		usdhc0: mmc@40370000 {
-> -			compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
-> +			compatible = "fsl,imx7ulp-usdhc";
->  			reg = <0x40370000 0x10000>;
->  			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&scg1 IMX7ULP_CLK_NIC1_BUS_DIV>,
-> @@ -230,7 +230,7 @@
->  		};
->  
->  		usdhc1: mmc@40380000 {
-> -			compatible = "fsl,imx7ulp-usdhc", "fsl,imx6sx-usdhc";
-> +			compatible = "fsl,imx7ulp-usdhc";
->  			reg = <0x40380000 0x10000>;
->  			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&scg1 IMX7ULP_CLK_NIC1_BUS_DIV>,
-> diff --git a/arch/arm/boot/dts/vfxxx.dtsi b/arch/arm/boot/dts/vfxxx.dtsi
-> index d53f9c9db8bf..c5651f23b3fd 100644
-> --- a/arch/arm/boot/dts/vfxxx.dtsi
-> +++ b/arch/arm/boot/dts/vfxxx.dtsi
-> @@ -574,7 +574,7 @@
->  							<20000000>;
->  			};
->  
-> -			esdhc0: esdhc@400b1000 {
-> +			esdhc0: mmc@400b1000 {
->  				compatible = "fsl,imx53-esdhc";
->  				reg = <0x400b1000 0x1000>;
->  				interrupts = <27 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -585,7 +585,7 @@
->  				status = "disabled";
->  			};
->  
-> -			esdhc1: esdhc@400b2000 {
-> +			esdhc1: mmc@400b2000 {
->  				compatible = "fsl,imx53-esdhc";
->  				reg = <0x400b2000 0x1000>;
->  				interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-
+diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt b/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt
+deleted file mode 100644
+index 8b2b0460259a..000000000000
+--- a/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt
++++ /dev/null
+@@ -1,36 +0,0 @@
+-* BCM63xx UART
+-
+-Required properties:
+-
+-- compatible: "brcm,bcm6345-uart"
+-
+-- reg: The base address of the UART register bank.
+-
+-- interrupts: A single interrupt specifier.
+-
+-- clocks: Clock driving the hardware; used to figure out the baud rate
+-  divisor.
+-
+-
+-Optional properties:
+-
+-- clock-names: Should be "refclk".
+-
+-Example:
+-
+-	uart0: serial@14e00520 {
+-		compatible = "brcm,bcm6345-uart";
+-		reg = <0x14e00520 0x18>;
+-		interrupt-parent = <&periph_intc>;
+-		interrupts = <2>;
+-		clocks = <&periph_clk>;
+-		clock-names = "refclk";
+-	};
+-
+-	clocks {
+-		periph_clk: periph_clk@0 {
+-			compatible = "fixed-clock";
+-			#clock-cells = <0>;
+-			clock-frequency = <54000000>;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
+new file mode 100644
+index 000000000000..0d4d03fc58ba
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/brcm,bcm6345-uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: BCM63xx UART
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++allOf:
++  - $ref: serial.yaml#
++
++properties:
++  compatible:
++    const: brcm,bcm6345-uart
++
++  reg:
++    maxItems: 1
++    description: The base address of the UART register bank
++
++  interrupts:
++    description: A single interrupt specifier
++
++  clocks:
++    description: >
++      Clock driving the hardware; used to figure out the baud rate divisor
++
++  clock-names:
++    const: refclk
++
++unevaluatedProperties: false
++
++required:
++  - reg
++  - interrupts
++  - clocks
++
++examples:
++  - |
++    serial@14e00520 {
++        compatible = "brcm,bcm6345-uart";
++        reg = <0x14e00520 0x18>;
++        interrupt-parent = <&periph_intc>;
++        interrupts = <2>;
++        clocks = <&periph_clk>;
++        clock-names = "refclk";
++    };
++
++    clocks {
++        periph_clk: periph_clk {
++            compatible = "fixed-clock";
++            #clock-cells = <0>;
++            clock-frequency = <54000000>;
++        };
++    };
+-- 
+2.26.2
 
