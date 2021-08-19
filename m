@@ -2,163 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB643F1185
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 05:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3702D3F119A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 05:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235679AbhHSDX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Aug 2021 23:23:29 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:56263 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230424AbhHSDX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Aug 2021 23:23:28 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 64445580E09;
-        Wed, 18 Aug 2021 23:22:52 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 18 Aug 2021 23:22:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=J
-        0hKvQPS8dExpxRPdMBJPpKCELXT/DpiSuWLnUrwnKk=; b=XmDbbMMi0IPdHkIga
-        /Dr8Tcd3+4kKG99+hsVFpZ8PWkmKP7DRNGI5dYUHBL7geWxnR5eqtQQCk70p+lcI
-        kYxoJKhIGg4qFXAMqVLpIRfMHpyBO1QGSBaVJEiBensGTSGrF6Lgqsh2sgL7fosk
-        sCT4n5+3donYmJJUbihq5V58gqOXigNjdmwXo9SCH6FuVSs9ganQASdjl8ubk5mq
-        FWm9c3tTNwejfXAryN/vLWsc7FTh3nCbShvd8kzMhaUrCeGCLCcb8yzjLSpmPY9Q
-        xafPqIPPqI+jU2Lp5e0ka4iNH9jBwyT6f7lM5gz33tFY63pxE7N7u+yuoPqS0t/0
-        b3l3g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=J0hKvQPS8dExpxRPdMBJPpKCELXT/DpiSuWLnUrwn
-        Kk=; b=ngovGQUngFRyRuClX8be3K6k1jC+4uCvbnmVt54Wfz/yB+pA/HPNQsYqu
-        2lp+npdjHgOyoy/smMOFrZsyKXw1JEnV1ZnmXelrh6siqyYX6IujJErtRUNcm4zo
-        9di1i9pxHWaZKLdp7cbL+Y0ynvNIzr0oZgOkzVlRx31gtxZ2xtJDti8ZvY7zb8ju
-        SgtaQOIyUw+FoRJftCJWQtVqDVPCFcExVxZWLNfkJ6w1EjxRjt8xRR73w28hgMZ0
-        GT05EC3zUU1S72cLGcMXx1aHMXEt/9ISfET3RCnwr1u0vedcHqI90Kv4B6LpEHCP
-        yDom5UmUlVj35Ru58naO43kz0T7gw==
-X-ME-Sender: <xms:ic4dYctXnVyGbbCuoZnLILjFa_1O61BSBqU3sg-PVTmaAXIMG2kn1g>
-    <xme:ic4dYZff-AwFXcLnXGaNvZY5n_tdOSUrIAH1uf3EORrlyRkaCEqEEicwdrgclM1vF
-    daSp4z9HP1WiMQr_Q>
-X-ME-Received: <xmr:ic4dYXw1bSdCgFIonTgyW2oF58c1yQFSdQ7rXJzvK0CHjleQ_8NDBfL23D5LpgcQ31I2BIRhT9JgkZBjr4Y1GqcKdom903OWNzeWY4ZEU5Cc8SWnTTOIqN68wg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleeigdeilecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
-    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:ic4dYfOZwAIZHuHzXbSDJVFZWdzuj9Dv92M-pViBEwG4HW-nW0c5qA>
-    <xmx:ic4dYc-imRgA87x1MS9NpA0kECZNEi0LTntWvJXK-Xkddonkzgq0Cg>
-    <xmx:ic4dYXXoaptD7lpuOOrSE9Ea07w-sS8iJ-E681liFt8Ez0LTPEv2_Q>
-    <xmx:jM4dYXUCkL91RXkzfsOzSzKbtB5HL_UkD2_FuHZ4LJ0Px1ecDEY1Kw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Aug 2021 23:22:49 -0400 (EDT)
-Subject: Re: [PATCH 08/17] pinctrl: sunxi: add support for R329 R-PIO pin
- controller
-To:     Icenowy Zheng <icenowy@sipeed.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andre Przywara <andre.przywara@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20210802062212.73220-1-icenowy@sipeed.com>
- <20210802062212.73220-9-icenowy@sipeed.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <e9937a23-8a8a-ebec-0a44-0d15a06b7e89@sholland.org>
-Date:   Wed, 18 Aug 2021 22:22:48 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <20210802062212.73220-9-icenowy@sipeed.com>
-Content-Type: text/plain; charset=utf-8
+        id S236048AbhHSDbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Aug 2021 23:31:14 -0400
+Received: from mail-eopbgr130074.outbound.protection.outlook.com ([40.107.13.74]:8519
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236181AbhHSDbN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Aug 2021 23:31:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TqaJZiJuuGc+RYST+MGgSlcRomCK0iWcYAdBKEpG9jvnCF00Co06AzRo3q374OizUA5N6XxZGFGD5H0lj7B5hDB7fTaqJ66t+al8nKIE86N/sNxV40PRRNIyudAIyGp+ZuityRlDFJUYb+AhgXyF/ozsC9EP06h6QRtyKx1MNQ+YSGAFHshw5dx6DD1hbkCJZARIclDZUDne95gRZcMNitFE3E9H8D8QPCVxJRrdjeQosyQulnh3OPL4v2mx66BJ3m9ts/W2ZcQVPsJ8GBu8I2nGi/ZV1QDqK5SVpX+ePtXbq/mYbNEAbASSN6COJzGdLWQ7OlZByjBXxwK6baRJrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zkRqQ/F99GoGV0tVgcTRvrJ9e7IpTfB7W5+d1x6lcPI=;
+ b=V+ExmP5ICwuvm7AN7eHRmYD1M+gcx/pdsIzOAAKSwa/K7cjbzdbvgOGPJLln3XyFC1gjSbc2rdJ3MJvTEVWRUdOQ6pSnuAhtjdLw1lMJ357T9lgM/7akEGiE4o0pfDeBgT9ZWqUl46qnLtzirMeWfN1jEweDVOS76mLDYK25NA4ThhrVVmfSrPLqcWQV3BuuORISTmVFl/38P2HCRfIRUY0siZkcvXk7mCxp5odmVU9ZkUFxO+2yVuikKNTdh5QYEIn6pcL6RJW/OiHyXPParZk85N163Fh0fJuCVAcMrRFYIOJjVQGuDIOklHxCSQwDm4XTedsPpyHGFnet2UQwLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zkRqQ/F99GoGV0tVgcTRvrJ9e7IpTfB7W5+d1x6lcPI=;
+ b=jDxurqJumjrtbLQJaaTBgr3ZB3xHrRdO2VLImtvYZVJcm1dpNChCvuFaHdWpE3bB1d4w+N+I+e0i3iSjwo9u9FCbEOm66qOTjUDzaW/nQ1GQGTqbAEo9OP9wWD4Se9ems2cGPundYQDPMEBVX3tcfqK2WRd2rRFPe8pUlkx4IJY=
+Received: from VI1PR04MB5294.eurprd04.prod.outlook.com (2603:10a6:803:5a::22)
+ by VI1PR04MB4429.eurprd04.prod.outlook.com (2603:10a6:803:6e::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.21; Thu, 19 Aug
+ 2021 03:30:33 +0000
+Received: from VI1PR04MB5294.eurprd04.prod.outlook.com
+ ([fe80::c59c:3e45:7b94:e5b7]) by VI1PR04MB5294.eurprd04.prod.outlook.com
+ ([fe80::c59c:3e45:7b94:e5b7%7]) with mapi id 15.20.4436.019; Thu, 19 Aug 2021
+ 03:30:33 +0000
+From:   Bough Chen <haibo.chen@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: change the pinctrl-names
+ rule
+Thread-Topic: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: change the
+ pinctrl-names rule
+Thread-Index: AQHXlBj0H1JVxh3hpke1DpSZl4mdB6t5lt4AgACLkMA=
+Date:   Thu, 19 Aug 2021 03:30:33 +0000
+Message-ID: <VI1PR04MB5294534C01DD24063937E79290C09@VI1PR04MB5294.eurprd04.prod.outlook.com>
+References: <1629279984-7397-1-git-send-email-haibo.chen@nxp.com>
+ <YR1SdhfM344Ii7BQ@robh.at.kernel.org>
+In-Reply-To: <YR1SdhfM344Ii7BQ@robh.at.kernel.org>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7493e3d8-d917-491b-75f2-08d962c1b3ee
+x-ms-traffictypediagnostic: VI1PR04MB4429:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB4429816ADC8CC25308FF065290C09@VI1PR04MB4429.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: yp9If3xFypeISywOgww0NJhCFBgDbwHz3ec2vr8L6fcLlHqDpJSr6ne3/s/oFzIdUVAkp6O4dZkzqtn+BjZwU/QfDvFAkiNPgyDzwdim+lZHwnQIKljU99vpDWTR+QZHaE3A23UwSCDIu2yG1Cbsn0yhWmoaICpEONPq7PbE1EipTVaQjO5jYdcLbr7PIt1XIw2uBHE9QERJpDjXrkTkXsT4SCI5EWPFB3zkekUFrnCcmZJXwBcI99I+LmKLEZ+0/ir/SYt4dCp2ku815l0iPgvCcBiWZNNsZAsCcG5itE215lbEUNWzEfXyFeD1rR76bHd9cMIE79p/ARJ7qFVduT3FicaktYBZQF4451m9+NzfMA7iTNbLf48dbuTZE4SlFoDxnRasI88w2luyDgcApiD7tuXwuQ3GgJIxJ1hZkszK2SOMSeZ/SE0K+wTOgajdl+o83VdcSvFcdQpGcx4C9JGvuqeAH6omVhb8C6aDR2xoHFIgr9xvelTDwi5U/sVawScGG8ovAR56Y3r7d3T7Wd1U9FgzWnNdjKs5IyVtXMu/OoIq+fC2MjilQKpqMktbQoq2FO+YcbKzzoGfhiLwrGWnFqeadCI1E3VaULO48gh1R/Tx98aHrmKml1MkeAmQBgzsytSTY/nHnfpYN8yM2WTcX+zWsWhzvM5X/bAkEdA4qyM6E4YCvpn86vmDbob7k4Zjyfp+a1VnGIPlYe7lNQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5294.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39850400004)(396003)(366004)(136003)(86362001)(66556008)(6916009)(122000001)(66446008)(186003)(54906003)(8676002)(38100700002)(38070700005)(53546011)(33656002)(8936002)(6506007)(71200400001)(7696005)(64756008)(316002)(76116006)(2906002)(83380400001)(4326008)(9686003)(478600001)(55016002)(66946007)(26005)(66476007)(5660300002)(52536014);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?OWR5VWFkWW1aWVVYOWZKTmFodThxYmRCait4cERocXI5Vkcwd1NWMW8zbzlO?=
+ =?gb2312?B?NE9JQngvN3V6cWxsTWx6N25rdVJ3SFJlMmdVWlVzYldPU2FKNGloTzZvRVVG?=
+ =?gb2312?B?ZFA0ejB2RW9LN3BOK0hZb0UzUnZ5MlJXMlJiUlpVUUQvM3I5Uy9hQW5ocXBX?=
+ =?gb2312?B?eGRsSHZmZ3A4ZGZ6U3c5TEpPQWlGajZjbnBXWENsZ3kwditHMWp6M2x2WkRr?=
+ =?gb2312?B?ZjVESGhEbm1kazNYVTV0Z0t0VXpDVTA2Y2J0S2cyK2F1eW9aQ1lORTFadTFk?=
+ =?gb2312?B?MU9sSWRPemV3bk1HdFRYNGY3cUxHb1VVSXJNVVpTWUVqeGlWNERGYjJPNkc4?=
+ =?gb2312?B?SnNscTJZRVFMeVk1QjhaZjdKdzhHTVI0ajUrWElvL3F2NWZVbkwxeGR3Q3Rn?=
+ =?gb2312?B?RURKaDN5cVNqdzdHMFVzWk9GQklId1kvdlJnY09KOXpTV2h5ZVRpcWdQdWUw?=
+ =?gb2312?B?cFJma2RoOGhYUVhWVGJISE1CT3I0aDFOWGpRQzZYbm5UVTlPc3NxL1FkWitp?=
+ =?gb2312?B?TjViaEcraS9YS0tCclVpaFJPOXIvcmQydjZ4czUrSW1NR3AzYVlFbDIwNWdU?=
+ =?gb2312?B?SitJOXhXTGlpS0k0NE9iK05Xc1lIMXRBR29lRDZLSHpBcGZreGZ1RnlwY0lj?=
+ =?gb2312?B?ckVuWS90aVZPSmdPMGk4QUE0MkhmRndFdk4zYk9UN3g0R2lxUlVzcUtEclhE?=
+ =?gb2312?B?ZnF3WGxhMW91QkluWWVOWTBlNmRmR0NiZWgzMkkrUENBRUh4N0xtRTRRMEhj?=
+ =?gb2312?B?V1cxN3hKM2xQajZRdTJEM24zbGZ3Y2lLMjg3UGJIR3BzK3hQanp2L3M0ajZV?=
+ =?gb2312?B?LzdZcEE5QVhGYldFelpNV1hrbnZSczhEL0lBT01nOVhvRmhvSUF5RkNlOFV3?=
+ =?gb2312?B?Wkw1cVltTy9wWTlKZ1JBWGVHNTFady9EL0cvY0Z6UG01eVZjTHJ2dlQzbUJz?=
+ =?gb2312?B?dmJyUVV2b0FmOXpKR0t2VTRVMERUcTI5NTltaUdiTnVwRlF2ZzFJN1ViRy9L?=
+ =?gb2312?B?RUtWUFRFR092Z0VodTlvQ3hWaHFJT3ZpTncwdEIyMVJuak5vSG1DaUpZQ2FQ?=
+ =?gb2312?B?TjZKRGEvdWhKckVQdGlZVXpCb1NsaXcrTFRxNlA3VWowNEdMK1M1aTNYN1lx?=
+ =?gb2312?B?Zy9HNUNoZ1hXRUxNMXhNc1labDJRVEt5SjZMRlZ4d2pFVFRuUC9VZFNqd0pO?=
+ =?gb2312?B?bU1KZjJMRjdmNUJQalpyN0FkbjNLNG02MWdpcmRLZUxnMjJtUkV5Y2FwT2hu?=
+ =?gb2312?B?SnhNVXdpSVBpeXFELy9ISzlBWS9EY3k3bkpVNjhmaUJQM3VudVNXeXRseVNa?=
+ =?gb2312?B?K29LZ1U3WHB6UkFWRUZ6Y3lpVjltMmRtSWRtd1REZXBxYTNyeW13djZSMTNi?=
+ =?gb2312?B?aXBGYU5tcFhqTjJ3VEJNcU5oVjhsaGRFQkVRUHVvMnp5OXo4WkovQk1yVjdx?=
+ =?gb2312?B?MW1PSFh5U2Q2REczYUQzRy8vTEg5Z1BxYlk2S1B6SzE5UzNla29hNDNMb2NB?=
+ =?gb2312?B?V3dGTDJDY1BsbzMyWmgrZkdyWnhRL0hyRWM0MjJEc01SK1MyM3lIdVBtOWZj?=
+ =?gb2312?B?OGpGeFQyYUF0U1BUU0xUcnZaODBqYW94NGduN2t6czR6YlE3Zy9pMmR0YlJY?=
+ =?gb2312?B?blA0Ni9vVHI4dWFkaVJNTWw1S2gxbU9wcmtwM2xCTER2cm4wNll2czJuWE82?=
+ =?gb2312?B?Y3kwbFhqd21QMWZaRktHTGV1VmJqVm9KcW10cDdEcWM1RkJMTzM2ZmN5QlIx?=
+ =?gb2312?Q?IYqd0jwVv1sv8mVGwmxuSfpPJFKYeIYhIr79mj0?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5294.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7493e3d8-d917-491b-75f2-08d962c1b3ee
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 03:30:33.4916
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eGXn9w03GoOl/gbI5w5Z3z3qqx2/hrO6dz1Vl6pSwdQkkLXE8tTAZme5Ez7iD6aVpu9ZB9GrH3nOzZOAad8EWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4429
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/2/21 1:22 AM, Icenowy Zheng wrote:
-> Allwinner R320 SoC has a pin controller in the CPUS power domain.
-> 
-> Add support for it.
-> 
-> Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
-> ---
->  drivers/pinctrl/sunxi/Kconfig                 |   5 +
->  drivers/pinctrl/sunxi/Makefile                |   1 +
->  drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c | 292 ++++++++++++++++++
->  3 files changed, 298 insertions(+)
->  create mode 100644 drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c
-> 
-> diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
-> index c662e8b1b351..abd60ff8daec 100644
-> --- a/drivers/pinctrl/sunxi/Kconfig
-> +++ b/drivers/pinctrl/sunxi/Kconfig
-> @@ -134,4 +134,9 @@ config PINCTRL_SUN50I_R329
->  	default ARM64 && ARCH_SUNXI
->  	select PINCTRL_SUNXI
->  
-> +config PINCTRL_SUN50I_R329_R
-> +	bool "Support for the Allwinner R329 R-PIO"
-> +	default ARM64 && ARCH_SUNXI
-> +	select PINCTRL_SUNXI
-> +
->  endif
-> diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
-> index e33f7c5f1ff9..245840a7959e 100644
-> --- a/drivers/pinctrl/sunxi/Makefile
-> +++ b/drivers/pinctrl/sunxi/Makefile
-> @@ -26,5 +26,6 @@ obj-$(CONFIG_PINCTRL_SUN50I_H6_R)	+= pinctrl-sun50i-h6-r.o
->  obj-$(CONFIG_PINCTRL_SUN50I_H616)	+= pinctrl-sun50i-h616.o
->  obj-$(CONFIG_PINCTRL_SUN50I_H616_R)	+= pinctrl-sun50i-h616-r.o
->  obj-$(CONFIG_PINCTRL_SUN50I_R329)	+= pinctrl-sun50i-r329.o
-> +obj-$(CONFIG_PINCTRL_SUN50I_R329_R)	+= pinctrl-sun50i-r329-r.o
->  obj-$(CONFIG_PINCTRL_SUN9I_A80)		+= pinctrl-sun9i-a80.o
->  obj-$(CONFIG_PINCTRL_SUN9I_A80_R)	+= pinctrl-sun9i-a80-r.o
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c b/drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c
-> new file mode 100644
-> index 000000000000..dc4792c685ba
-> --- /dev/null
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-r329-r.c
-> @@ -0,0 +1,292 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Allwinner H616 R_PIO pin controller driver
-
-This needs to be updated.
-
-> + *
-> + * Copyright (C) 2020 Arm Ltd.
-> + * Based on former work, which is:
-> + *   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-> + */
-> +
-> +#include <linux/init.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/reset.h>
-> +
-> +#include "pinctrl-sunxi.h"
-> +
-> +static const struct sunxi_desc_pin sun50i_r329_r_pins[] = {
-> +	SUNXI_PIN(SUNXI_PINCTRL_PIN(L, 0),
-> +		  SUNXI_FUNCTION(0x0, "gpio_in"),
-> +		  SUNXI_FUNCTION(0x1, "gpio_out"),
-> +		  SUNXI_FUNCTION(0x2, "s_i2s"),		/* LRCK */
-
-"s_i2s0" for these would match existing drivers (and the manual).
-
-Everything else matches the manual.
-
-Regards,
-Samuel
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmluZyBbbWFpbHRv
+OnJvYmhAa2VybmVsLm9yZ10NCj4gU2VudDogMjAyMcTqONTCMTnI1SAyOjMzDQo+IFRvOiBCb3Vn
+aCBDaGVuIDxoYWliby5jaGVuQG54cC5jb20+DQo+IENjOiBzaGF3bmd1b0BrZXJuZWwub3JnOyBz
+LmhhdWVyQHBlbmd1dHJvbml4LmRlOyB1bGYuaGFuc3NvbkBsaW5hcm8ub3JnOw0KPiBrZXJuZWxA
+cGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWlsLmNvbTsgZGwtbGludXgtaW14DQo+IDxsaW51
+eC1pbXhAbnhwLmNvbT47IEFpc2hlbmcgRG9uZyA8YWlzaGVuZy5kb25nQG54cC5jb20+Ow0KPiBk
+ZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRl
+YWQub3JnOw0KPiBsaW51eC1tbWNAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFU
+Q0hdIGR0LWJpbmRpbmdzOiBtbWM6IGZzbC1pbXgtZXNkaGM6IGNoYW5nZSB0aGUNCj4gcGluY3Ry
+bC1uYW1lcyBydWxlDQo+IA0KPiBPbiBXZWQsIEF1ZyAxOCwgMjAyMSBhdCAwNTo0NjoyNFBNICsw
+ODAwLCBoYWliby5jaGVuQG54cC5jb20gd3JvdGU6DQo+ID4gRnJvbTogSGFpYm8gQ2hlbiA8aGFp
+Ym8uY2hlbkBueHAuY29tPg0KPiA+DQo+ID4gQ2hhbmdlIHRoZSBwaW5jdHJsLW5hbWVzIHJ1bGUg
+dG8gY292ZXIgYWxsIGNhc2VzLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogSGFpYm8gQ2hlbiA8
+aGFpYm8uY2hlbkBueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbW1jL2ZzbC1p
+bXgtZXNkaGMueWFtbCAgICAgICAgICAgfCAyMSArKysrKysrKysrKysrLS0tLS0tDQo+ID4gIDEg
+ZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4g
+ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvZnNsLWlt
+eC1lc2RoYy55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1j
+L2ZzbC1pbXgtZXNkaGMueWFtbA0KPiA+IGluZGV4IDE3MDg2ZjYwZjhhMy4uZDMyNDYwNmE0ZjBh
+IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMv
+ZnNsLWlteC1lc2RoYy55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9mc2wtaW14LWVzZGhjLnlhbWwNCj4gPiBAQCAtMTE2LDEyICsxMTYsMjEgQEAg
+cHJvcGVydGllczoNCj4gPiAgICAgICAgLSBjb25zdDogcGVyDQo+ID4NCj4gPiAgICBwaW5jdHJs
+LW5hbWVzOg0KPiA+IC0gICAgbWluSXRlbXM6IDENCj4gPiAtICAgIGl0ZW1zOg0KPiA+IC0gICAg
+ICAtIGNvbnN0OiBkZWZhdWx0DQo+ID4gLSAgICAgIC0gY29uc3Q6IHN0YXRlXzEwMG1oeg0KPiA+
+IC0gICAgICAtIGNvbnN0OiBzdGF0ZV8yMDBtaHoNCj4gPiAtICAgICAgLSBjb25zdDogc2xlZXAN
+Cj4gPiArICAgIG9uZU9mOg0KPiA+ICsgICAgICAtIGl0ZW1zOg0KPiA+ICsgICAgICAgICAgLSBj
+b25zdDogZGVmYXVsdA0KPiA+ICsgICAgICAgICAgLSBjb25zdDogc3RhdGVfMTAwbWh6DQo+ID4g
+KyAgICAgICAgICAtIGNvbnN0OiBzdGF0ZV8yMDBtaHoNCj4gPiArICAgICAgICAgIC0gY29uc3Q6
+IHNsZWVwDQo+ID4gKyAgICAgIC0gaXRlbXM6DQo+ID4gKyAgICAgICAgICAtIGNvbnN0OiBkZWZh
+dWx0DQo+ID4gKyAgICAgICAgICAtIGNvbnN0OiBzdGF0ZV8xMDBtaHoNCj4gPiArICAgICAgICAg
+IC0gY29uc3Q6IHN0YXRlXzIwMG1oeg0KPiANCj4gWW91IGNhbiBkcm9wIHRoaXMgb25lIGFuZCBh
+ZGQgJ21pbkl0ZW1zOiAzJyB0byB0aGUgZmlyc3QgY2FzZS4NCg0KT2theSwgSSB3aWxsIGRvIHRo
+YXQuDQoNCj4gDQo+ID4gKyAgICAgIC0gaXRlbXM6DQo+ID4gKyAgICAgICAgICAtIGNvbnN0OiBk
+ZWZhdWx0DQo+ID4gKyAgICAgICAgICAtIGNvbnN0OiBzbGVlcA0KPiA+ICsgICAgICAtIGl0ZW1z
+Og0KPiA+ICsgICAgICAgICAgLSBjb25zdDogZGVmYXVsdA0KPiANCj4gU2ltaWxhciBoZXJlIHRv
+byB3aXRoIHRoZSBwcmlvciBjYXNlLiBPciB1c2UgJ21pbkl0ZW1zOiAxJyBpbiB0aGUgZmlyc3Qg
+Y2FzZS4gVGhhdA0KPiBhZGRpdGlvbmFsIGFsbG93cyB0aGUgMiBlbnRyeSBjYXNlLCBidXQgd2h5
+IGlzbid0IHRoYXQgdmFsaWQ/DQo+IENvdWxkbid0IGEgYm9hcmQgb25seSBzdXBwb3J0IGRlZmF1
+bHQrc3RhdGVfMTAwbWh6Pw0KDQpMb2dpY2FsbHkgbm90LCBmb3IgYm9hcmQsIGlmIHN1cHBvcnQg
+U0QzLjAgbW9kZSwgdGhpcyBtZWFucyBpdCBzdXBwb3J0IGJvdGggU0RSMTA0L1NEUjUwL0REUjUw
+L0hTMjAwL0hTNDAwDQpTdGF0ZV8xMDBtaHogaXMgdXNlZCBmb3IgU0RSNTAgYW5kIEREUjUwLCBz
+dGF0ZV8yMDBtaHogaXMgdXNlZCBmb3IgU0RSMTA0L0hTMjAwL0hTNDAwLg0KDQpTbywgaWYgdGhl
+cmUgaXMgc3RhdGVfMTAwbWh6LCB0aGVyZSBzaG91bGQgYmUgc3RhdGVfMjAwbWh6Lg0KDQpSZXN0
+IFJlZ2FyZHMNCkhhaWJvIENoZW4NCj4gDQo+IFJvYg0K
