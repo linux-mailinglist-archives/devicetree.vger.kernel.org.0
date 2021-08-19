@@ -2,163 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA97A3F1E71
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 231BA3F1E82
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbhHSQ4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 12:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229465AbhHSQ4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 12:56:12 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A033C061575;
-        Thu, 19 Aug 2021 09:55:36 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id j186so4412417vsc.10;
-        Thu, 19 Aug 2021 09:55:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=sH8eWequPHDWgDssOzyKI1BjAJXBRn3U8UTRbb2OxeA=;
-        b=isIMmXKXhlbg9KCfgacH/IeQnaRJHDNTP8PwE7sAxFrwQQiL+x8bcsJQfZpYSwAHCX
-         /iKpfW5xkVPhDJ3cSkSHdTOAKPZDfaYDRvoC4D7kbQM4uplQxBYzWWr4tL2gksFOtHKc
-         nHCyz6wJbc6Ftf88HqQt6ZQqjlqyELHKsDwI1+QHJSvy+BLcaF0YlgjyPZVGYwHPTJqV
-         t16DJstAMrBvpr1CSLvObzAe1thRMcC20HyXAPnP0tATuOKyPfJwp6IeswZKnBAgji52
-         w28OTwIyGulUIIm68m0l2YVwJpxKfjeTyS7A9rrnejKmt8pr5H6GDcG6FOahzt+Phgco
-         yfVA==
+        id S229642AbhHSQ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 12:59:55 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:46606
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229491AbhHSQ7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 12:59:54 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id AEF90411F0
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 16:59:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629392357;
+        bh=odiP8qNzCjQyM5ut6+4pfn5opT3C8BN5X2IXeYZ+uMg=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=qUxHeUdfUp1mJk1cY4Q5crjWDI4pI8nrCrlS3qw3oTeJkyKKwUd127M1HStyo4n3F
+         GHmKK+HOm1d7wgqSpCyTCvroLyyr7jL7oyTBSAPk6VHye0tjO8x+LZ4DsG5Mh6/p5t
+         9ANMCucPAPk5svp9GxU0FenmoYDkGtXTf4cnLxuPuACopclM7BAKDwhvx+JFdkIwr+
+         70V+q6lHxWJJXNm45muB1SyLbX+GF+senolPJcaCswbMNPFE6bQlA2f2H39JkbTRrk
+         Td+2z77MUYYVXzsnOT/ANl23RVPB0bJ090VdEo4ezQWEEosauUl9n1wOAFxQ+rtFlQ
+         Go3UfKf2iqeKg==
+Received: by mail-ed1-f71.google.com with SMTP id k13-20020aa7c04d000000b003bf04c03fc4so3130329edo.22
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=sH8eWequPHDWgDssOzyKI1BjAJXBRn3U8UTRbb2OxeA=;
-        b=B/mbSJxpb2cmOIApLiEEW7BzZNZh4nv5wqauKStBREkV+oy9sujrZWTuoGONA4CyoM
-         +OBmuik1xiyOM/ILhxDANxPqb2ldTfeEOaKPVqdEIOye7V4Yy4ywGjb8xMHEbOOwaF7i
-         hO4wW8YPyTjq6z7TVd7UDyXff+5QjwDOKZrtq5pWHs8iXaPNHDUyRjjJg4iZ6nUGG4j6
-         rTC6+ZEQjmQ0HK9Pu+WP0C5v45VA1tPntU/V2nLfQkrdPmF3qN9tJ0ltj+hvFgjt9S1u
-         SoWRIJ0u26KKW4OSGWEDn3Vb2pskSrNZdo8HZgaf9//J2eKfSygOUT8kh0W3qOqRKQ8r
-         CBFQ==
-X-Gm-Message-State: AOAM533a5Qc1WtOlLv/GmNFzEauAmgqh49n1O3UKbD4ijT58Ep4bwBXG
-        KOGfnazGZ2mZZVN58V1RX/J3AHoam9Z6kus66Ek=
-X-Google-Smtp-Source: ABdhPJxbJWiDarEkH1g0STsXWOZfjOOH2SuXX0PhD8lcQpwI3W2zoiPJvcDBXD9KnylYa93O21UL63bSv/uU7Dph0W8=
-X-Received: by 2002:a05:6102:3181:: with SMTP id c1mr13191231vsh.45.1629392135269;
- Thu, 19 Aug 2021 09:55:35 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=odiP8qNzCjQyM5ut6+4pfn5opT3C8BN5X2IXeYZ+uMg=;
+        b=is+3tEBsiy4SEEM+dkwzpGPoVr5nzSiTtGc/7UUtLiGEygs/7xLXNZbIxQDLxLCGP+
+         nbZGRY9RwL2OcuD07QOXXy/Pp4Y9oRGeVbNGj/6lk/NsS8CMEaXwjzzZujkQeobTkABZ
+         hCt7y4bZNqIyN8y78l/ylA6YXBlBo5q8KZrvVt5SBNQ5851i73Pq16NA/uRrwVXsX2Fs
+         ivIImvppY1auQ+9RwvUJgPywL12W11UakQ49IvgetxJV8YWkIPOLGLt3ejqymhLEnO13
+         c3XkSTs0FnFrQhO+Mjhtl6i/GP5UV71cTP0xjXA79YtkiWHwsgr1liMmTaEpKJeQePLZ
+         NREQ==
+X-Gm-Message-State: AOAM533Rel+7BEy09SJlr7y++FBafSOjbk/vm4905MFaXe4QLNOkDApd
+        2cj1CqdEXt+nQ983nqsmaxaFiWNslLqrc8Di/VbE5YgRdidVWCn4O1QhvkmMzTJXqkOK2WCpJ1n
+        WrA51bbdW4q8jbm9vNeOG1yFfseLRUorMS7dX3h8=
+X-Received: by 2002:aa7:da8c:: with SMTP id q12mr17338220eds.304.1629392357464;
+        Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx9NLI19XYdziHhF/9RoSTCqYZEy4vkbe0t27FhZYRkfyGlpzr7xF3AO+fMykRg6cWcoCzMyA==
+X-Received: by 2002:aa7:da8c:: with SMTP id q12mr17338204eds.304.1629392357351;
+        Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id h8sm2023418edv.30.2021.08.19.09.59.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 09:59:17 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atish.patra@wdc.com>,
+        Sagar Shrikant Kadam <sagar.kadam@sifive.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 1/5] dt-bindings: mtd: jedec,spi-nor: document issi,is25wp256
+Date:   Thu, 19 Aug 2021 18:59:04 +0200
+Message-Id: <20210819165908.135591-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210801160921.233081-1-romain.perier@gmail.com>
- <20210801160921.233081-3-romain.perier@gmail.com> <YQ2Pm7nrEFmdS6Ky@piout.net>
-In-Reply-To: <YQ2Pm7nrEFmdS6Ky@piout.net>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Thu, 19 Aug 2021 18:55:22 +0200
-Message-ID: <CABgxDo+deU3J1JCCSFTscQP8sm=XeXKJ=cPf4u78o37f3XBqwA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] rtc: Add support for the MSTAR MSC313 RTC
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Document bindings for the issi,is25wp256 SPI NOR flash.
 
-Le ven. 6 ao=C3=BBt 2021 =C3=A0 21:38, Alexandre Belloni
-<alexandre.belloni@bootlin.com> a =C3=A9crit :
->
-> Hello,
->
-> On 01/08/2021 18:09:20+0200, Romain Perier wrote:
-> > +static int msc313_rtc_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct msc313_rtc *priv;
-> > +     int ret;
-> > +     int irq;
-> > +     unsigned long rate;
-> > +     u16 reg;
-> > +
-> > +     priv =3D devm_kzalloc(&pdev->dev, sizeof(struct msc313_rtc), GFP_=
-KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +
-> > +     priv->rtc_base =3D devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(priv->rtc_base))
-> > +             return PTR_ERR(priv->rtc_base);
-> > +
-> > +     irq =3D platform_get_irq(pdev, 0);
-> > +     if (irq < 0)
-> > +             return -EINVAL;
-> > +
-> > +     priv->rtc_dev =3D devm_rtc_allocate_device(dev);
-> > +     if (IS_ERR(priv->rtc_dev))
-> > +             return PTR_ERR(priv->rtc_dev);
-> > +
-> > +     priv->rtc_dev->ops =3D &msc313_rtc_ops;
-> > +     priv->rtc_dev->range_min =3D RTC_TIMESTAMP_BEGIN_0000;
->
-> I'm pretty sure this doesn't fit in this RTC registers, you should
-> probably leave range_min to 0 (i.e. not set it at all).
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-ack
+diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+index ed590d7c6e37..0db64ac7dc33 100644
+--- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
++++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+@@ -33,6 +33,7 @@ properties:
+       - items:
+           - enum:
+               - issi,is25lp016d
++              - issi,is25wp256
+               - micron,mt25qu02g
+               - mxicy,mx25r1635f
+               - mxicy,mx25u6435f
+-- 
+2.30.2
 
->
-> > +     priv->rtc_dev->range_max =3D U32_MAX - 1; /* 2106-02-07 06:28:14 =
-*/
->
-> I guess this one should be U32_MAX
-
-ack
-
-> > +
-> > +     ret =3D devm_request_irq(dev, irq, msc313_rtc_interrupt, IRQF_SHA=
-RED,
-> > +                            dev_name(&pdev->dev), &pdev->dev);
-> > +     if (ret) {
-> > +             dev_err(dev, "Could not request IRQ\n");
-> > +             return ret;
-> > +     }
-> > +
-> > +     priv->clk =3D devm_clk_get(dev, NULL);
-> > +     if (IS_ERR(priv->clk)) {
-> > +             dev_err(dev, "No input reference clock\n");
-> > +             return PTR_ERR(priv->clk);
-> > +     }
-> > +
-> > +     ret =3D clk_prepare_enable(priv->clk);
-> > +     if (ret) {
-> > +             dev_err(dev, "Failed to enable the reference clock, %d\n"=
-, ret);
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret =3D devm_add_action_or_reset(dev, (void (*) (void *))clk_disa=
-ble_unprepare, priv->clk);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     rate =3D clk_get_rate(priv->clk);
-> > +     writew(rate & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_L);
-> > +     writew((rate >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_H)=
-;
-> > +
-> > +     reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
-> > +     reg |=3D CNT_EN_BIT;
-> > +     writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> > +
->
-> If on POR, CNT_EN_BIT is not set, then it would be nice to use that to
-> know whether the RTC is properly set. You can then check CNT_EN_BIT in
-> .read_time and return -EINVAL if it is not set. Then you can set the bit
-> in .set_time. It is anyway useless to let the RTC running if it is not
-> set.
-
-Yeah, this is to be sure that the RTC is alive with a valid value
-(which makes sense).
-Ok I will fix everything in v3, then.
-
-Romain
