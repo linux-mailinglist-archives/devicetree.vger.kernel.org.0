@@ -2,153 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F343F19F2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D733F1A02
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237873AbhHSNGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 09:06:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
+        id S238308AbhHSNIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 09:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236481AbhHSNGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:06:21 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45121C061757
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:05:45 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id o2so5840100pgr.9
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:05:45 -0700 (PDT)
+        with ESMTP id S238379AbhHSNIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:08:23 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336D2C061796
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:07:47 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id a201so3983917vsd.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 06:07:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=j8qRe1VcgbKWgoFHwQvjx82rgCmqdfKPSvrqgoYqCbA=;
-        b=jdk7f1rzl3NRxVo1+xPnWg+iCvrUhWP14lkj84hbls/oNbMOmphY8w52NYVAxKp3h/
-         jUXYBmZ4cPn6QbmLihNW6zppH+1H6Evm6Wl6t99703iPjbUcosFND1eH1oAtZvVc6t+a
-         /mURa0GkFJ8Ux9Niv3UZlUx8NIa7m5w8yBQNU5DVHCIsON+KNdfDg8Sw3YRz81hBL3W7
-         1ws1vPcsoH6pAk1O+seh5qKXpuMAW8oVJMpFuA8+0D/s3coWn4BDcoEJz8anuqssKGya
-         ujsxN+9TSlSINtJrrHbYaJ+SrVLFUgENjLkDEQ+6KE1CflQTJ1NqE/3uqzyLFH/hHCFw
-         G2PA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=1GCKu9c84zINYtTdflsWXKCWXkOZdKhJUWmHuvrkY+4=;
+        b=f+4CRpBzlKKi/DOaSNA/G+hiFrodgB7WwtvP6lDjHBbwMct5xJEnNRIBbwWd50HxVl
+         4zhiGfKdAN1zaQTNFhB6Vi8xqc4j40IY1vsyJhWmkAu9OGW99mwK9tXMUYa730kFsYI4
+         idKdGIien3FkWDSAe9a9bUwucupyJle2LRixnAHVpFbbr4u728pooiABojadky5czPhQ
+         T05rm31+E59u8E8W6WOHoHOIbfDCZtTsEcAVQYXP/NQkrFth/PCbSSe6c7z8JAzoaO1+
+         46BAA+NxWAouT+Gc5X4wCTy1dHtG/pP9SH4vbLZ8x03CSox6/vBN4JfPUqmpPE9U44nl
+         Iiow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j8qRe1VcgbKWgoFHwQvjx82rgCmqdfKPSvrqgoYqCbA=;
-        b=dE1+DoE9rg7wXe2/A18abnhsJWGr10/Jxlevb9hna2BUWy7edgExu4FzlabH5haJb+
-         F81KRyUsSpbb1fK8ioWpSRnlUcxpLHKtOqgDBPJP7csCxRro+ZXD/35OK2Pnz3uXEE+c
-         tQxAZ2W/BC6RVdBYG2rsu+gl7ioglwQrMSVXrRmyh1TwC5/EkXIuFFnS7ed4R/bIwWIN
-         X2n9dph3OZwyA0/ckSj4pJv5xTEjgQMmzE2NZfZQIxkIh3fPniY7IUwFU1h8C/lITbOl
-         k/78JQL2Nv/velbdQvvO6mn/+sEgoojB8aw9y3BHZeJ4/Q+cfPQ2V7OSFxWSvFpcOpK1
-         FO3A==
-X-Gm-Message-State: AOAM532CnL5syF64B4qnpEWQC+tlTuXOy2jITnD59Q/fG4Bw6Uu3a7Xs
-        1yx2HGAopT0QAIatjcQSRSix
-X-Google-Smtp-Source: ABdhPJwlVNkMT+7xFKhx8E+8JStufdEOlSgD/pRBJfUXBKrF7CvNcdgxlg7uDkzV3BlxwcQZUAHUig==
-X-Received: by 2002:a63:2541:: with SMTP id l62mr14330979pgl.183.1629378344655;
-        Thu, 19 Aug 2021 06:05:44 -0700 (PDT)
-Received: from thinkpad ([2409:4072:6298:4497:5a1e:ff34:9091:5bac])
-        by smtp.gmail.com with ESMTPSA id fh2sm3135830pjb.12.2021.08.19.06.05.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 06:05:44 -0700 (PDT)
-Date:   Thu, 19 Aug 2021 18:35:37 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        hemantk@codeaurora.org, smohanad@codeaurora.org,
-        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        vbadigan@codeaurora.org
-Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
-Message-ID: <20210819130537.GA200135@thinkpad>
-References: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=1GCKu9c84zINYtTdflsWXKCWXkOZdKhJUWmHuvrkY+4=;
+        b=SsIi3muZkf/Ecy5TFxfY4yBX1gzoGsB6BgLDendI8DqR/M/Fo0JBJSZ7r28+0B9rTo
+         foUachOYfPgROrqcg3yrzBqI3LUJRn310KPybzOPRoblgVKr6Rrm/CgG5mhwuTJILtOp
+         vgzdigZAY5x7x31aWsq3NXtuNVzigwR8Fz/rOHukaCu1sSNUgxQlnesY/1OOmlYCsLIH
+         EFtSDFw/N/gZdGG9ca5e8y4Cba4xM32nVEPixp31c7+bzEeqvSE/umvZNrAYhfbK85lf
+         nGaiwR6n6bT3foVv8UjdU84CoCrVwDGDVgUsB/t0s58xVaW+7MqKZ3m2pzsMhe6wZ3Mz
+         rbGA==
+X-Gm-Message-State: AOAM530fNVWPjcQakjQ0GNXgMFRW25ugoFAjt3vmUc4gM2nSkOjURZ4b
+        hlSvWEqWaF9lF0YRrYOlbMm5YM+un+tHly1PV1rtCA==
+X-Google-Smtp-Source: ABdhPJyJROokpzMBNet191tDOwD7eE8PakuStZsC4TgI99eWakoC4SNznlH+uH6MVn3jKPVb3Va23L7NrWpzQmbz4ck=
+X-Received: by 2002:a67:3212:: with SMTP id y18mr12074668vsy.19.1629378466059;
+ Thu, 19 Aug 2021 06:07:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+References: <20210818043131.7klajx6drvvkftoc@vireshk-i7> <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7> <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7> <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7> <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7> <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <20210818095044.e2ntsm45h5cddk7s@vireshk-i7> <CAPDyKFrFF00xGDWPCQnPwF0_QkG4TB2UqggpuBpp8LY_CMKP-A@mail.gmail.com>
+ <0354acbe-d856-4040-f453-8e8164102045@gmail.com>
+In-Reply-To: <0354acbe-d856-4040-f453-8e8164102045@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 19 Aug 2021 15:07:09 +0200
+Message-ID: <CAPDyKFoQdn1rm91iFNJwZwpSYcKJBjDLqtJB4KZAkhgY1Grm-Q@mail.gmail.com>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 05:42:39PM +0530, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series adds support for Qualcomm PCIe Endpoint controller found
-> in platforms like SDX55. The Endpoint controller is based on the designware
-> core with additional Qualcomm wrappers around the core.
-> 
-> The driver is added separately unlike other Designware based drivers that
-> combine RC and EP in a single driver. This is done to avoid complexity and
-> to maintain this driver autonomously.
-> 
-> The driver has been validated with an out of tree MHI function driver on
-> SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
-> 
+On Wed, 18 Aug 2021 at 17:43, Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> 18.08.2021 13:08, Ulf Hansson =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > On Wed, 18 Aug 2021 at 11:50, Viresh Kumar <viresh.kumar@linaro.org> wr=
+ote:
+> >>
+> >> On 18-08-21, 11:41, Ulf Hansson wrote:
+> >>> On Wed, 18 Aug 2021 at 11:14, Viresh Kumar <viresh.kumar@linaro.org> =
+wrote:
+> >>>> What we need here is just configure. So something like this then:
+> >>>>
+> >>>> - genpd->get_performance_state()
+> >>>>   -> dev_pm_opp_get_current_opp() //New API
+> >>>>   -> dev_pm_genpd_set_performance_state(dev, current_opp->pstate);
+> >>>>
+> >>>> This can be done just once from probe() then.
+> >>>
+> >>> How would dev_pm_opp_get_current_opp() work? Do you have a suggestion=
+?
+> >>
+> >> The opp core already has a way of finding current OPP, that's what
+> >> Dmitry is trying to use here. It finds it using clk_get_rate(), if
+> >> that is zero, it picks the lowest freq possible.
+> >>
+> >>> I am sure I understand the problem. When a device is getting probed,
+> >>> it needs to consume power, how else can the corresponding driver
+> >>> successfully probe it?
+> >>
+> >> Dmitry can answer that better, but a device doesn't necessarily need
+> >> to consume energy in probe. It can consume bus clock, like APB we
+> >> have, but the more energy consuming stuff can be left disabled until
+> >> the time a user comes up. Probe will just end up registering the
+> >> driver and initializing it.
+> >
+> > That's perfectly fine, as then it's likely that it won't vote for an
+> > OPP, but can postpone that as well.
+> >
+> > Perhaps the problem is rather that the HW may already carry a non-zero
+> > vote made from a bootloader. If the consumer driver tries to clear
+> > that vote (calling dev_pm_opp_set_rate(dev, 0), for example), it would
+> > still not lead to any updates of the performance state in genpd,
+> > because genpd internally has initialized the performance-state to
+> > zero.
+>
+> We don't need to discover internal SoC devices because we use
+> device-tree on ARM. For most devices power isn't required at a probe
+> time because probe function doesn't touch h/w at all, thus devices are
+> left in suspended state after probe.
+>
+> We have three components comprising PM on Tegra:
+>
+> 1. Power gate
+> 2. Clock state
+> 3. Voltage state
+>
+> GENPD on/off represents the 'power gate'.
+>
+> Clock and reset are controlled by device drivers using clk and rst APIs.
+>
+> Voltage state is represented by GENPD's performance level.
+>
+> GENPD core assumes that at a first rpm-resume of a consumer device, its
+> genpd_performance=3D0. Not true for Tegra because h/w of the device is
+> preconfigured to a non-zero perf level initially, h/w may not support
+> zero level at all.
 
-Ping on this series!
+I think you may be misunderstanding genpd's behaviour around this, but
+let me elaborate.
 
-Thanks,
-Mani
+In genpd_runtime_resume(), we try to restore the performance state for
+the device that genpd_runtime_suspend() *may* have dropped earlier.
+That means, if genpd_runtime_resume() is called prior
+genpd_runtime_suspend() for the first time, it means that
+genpd_runtime_resume() will *not* restore a performance state, but
+instead just leave the performance state as is for the device (see
+genpd_restore_performance_state()).
 
-> Thanks,
-> Mani
-> 
-> Changes in v7:
-> 
-> * Used existing naming convention for callback functions
-> * Used active low state for PERST# gpio
-> 
-> Changes in v6:
-> 
-> * Removed status property in DT and added reviewed tag from Rob
-> * Switched to _relaxed variants as suggested by Rob
-> 
-> Changes in v5:
-> 
-> * Removed the DBI register settings that are not needed
-> * Used the standard definitions available in pci_regs.h
-> * Added defines for all the register fields
-> * Removed the left over code from previous iteration
-> 
-> Changes in v4:
-> 
-> * Removed the active_config settings needed for IPA integration
-> * Switched to writel for couple of relaxed versions that sneaked in
-> 
-> Changes in v3:
-> 
-> * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
-> * Noticeable changes are:
->   - Got rid of _relaxed calls and used readl/writel
->   - Got rid of separate TCSR memory region and used syscon for getting the
->     register offsets for Perst registers
->   - Changed the wake gpio handling logic
->   - Added remove() callback and removed "suppress_bind_attrs"
->   - stop_link() callback now just disables PERST IRQ
-> * Added MMIO region and doorbell interrupt to the binding
-> * Added logic to write MMIO physicall address to MHI base address as it is
->   for the function driver to work
-> 
-> Changes in v2:
-> 
-> * Addressed the comments from Rob on bindings patch
-> * Modified the driver as per binding change
-> * Fixed the warnings reported by Kbuild bot
-> * Removed the PERST# "enable_irq" call from probe()
-> 
-> Manivannan Sadhasivam (3):
->   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
->     controller
->   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
->   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-> 
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
->  MAINTAINERS                                   |  10 +-
->  drivers/pci/controller/dwc/Kconfig            |  10 +
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
->  5 files changed, 888 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
-> 
-> -- 
-> 2.25.1
-> 
+In other words, a consumer driver may use the following sequence to
+set an initial performance state for the device during ->probe():
+
+...
+rate =3D clk_get_rate()
+dev_pm_opp_set_rate(rate)
+
+pm_runtime_enable()
+pm_runtime_resume_and_get()
+...
+
+Note that, it's the consumer driver's responsibility to manage device
+specific resources, in its ->runtime_suspend|resume() callbacks.
+Typically that means dealing with clock gating/ungating, for example.
+
+In the other scenario where a consumer driver prefers to *not* call
+pm_runtime_resume_and_get() in its ->probe(), because it doesn't need
+to power on the device to complete probing, then we don't want to vote
+for an OPP at all - and we also want the performance state for the
+device in genpd to be set to zero. Correct?
+
+Is this the main problem you are trying to solve, because I think this
+doesn't work out of the box as of today?
+
+There is another concern though, but perhaps it's not a problem after
+all. Viresh told us that dev_pm_opp_set_rate() may turn on resources
+like clock/regulators. That could certainly be problematic, in
+particular if the device and its genpd have OPP tables associated with
+it and the consumer driver wants to follow the above sequence in
+probe.
+
+Viresh, can you please chime in here and elaborate on some of the
+magic happening behind dev_pm_opp_set_rate() API - is there a problem
+here or not?
+
+>
+> GENPD core assumes that consumer devices can work at any performance
+> level. Not true for Tegra because voltage needs to be set in accordance
+> to the clock rate before clock is enabled, otherwise h/w won't work
+> properly, perhaps clock may be unstable or h/w won't be latching.
+
+Correct. Genpd relies on the callers to use the OPP framework if there
+are constraints like you describe above.
+
+That said, it's not forbidden for a consumer driver to call
+dev_pm_genpd_set_performance_state() directly, but then it better
+knows exactly what it's doing.
+
+>
+> Performance level should be set to 0 while device is suspended.
+
+Do you mean system suspend or runtime suspend? Or both?
+
+> Performance level needs to be bumped on rpm-resume of a device in
+> accordance to h/w state before hardware is enabled.
+
+Assuming there was a performance state set for the device when
+genpd_runtime_suspend() was called, genpd_runtime_resume() will
+restore that state according to the sequence you described.
+
+Kind regards
+Uffe
