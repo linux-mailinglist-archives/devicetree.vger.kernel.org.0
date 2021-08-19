@@ -2,88 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06A5C3F1B58
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E7913F1B6D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238560AbhHSOLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 10:11:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39294 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240577AbhHSOLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 10:11:49 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B42CC0613CF
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:11:12 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mGil6-0002Bo-5p; Thu, 19 Aug 2021 16:11:04 +0200
-Message-ID: <bb658c8013e2e8e38c21b83d59eec7046d939097.camel@pengutronix.de>
-Subject: Re: [PATCH v2 3/6] dt-bindings: mmc: fsl-imx-esdhc: add fsl,
- broken-auto-tuning binding
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     haibo.chen@nxp.com, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 19 Aug 2021 16:11:01 +0200
-In-Reply-To: <1629285415-7495-3-git-send-email-haibo.chen@nxp.com>
-References: <1629285415-7495-1-git-send-email-haibo.chen@nxp.com>
-         <1629285415-7495-3-git-send-email-haibo.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+        id S240330AbhHSORS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 10:17:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38922 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235352AbhHSORS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 10:17:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 93D20610FF;
+        Thu, 19 Aug 2021 14:16:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629382602;
+        bh=0uMlC15O+oh23cQEELPSg5hsjxTkiutg1Dl14TuNA2s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uFfLWw0XVYjN0YeCEeOw9d34neLFdGyTTycyb0AKBzkKwvJw0RaJfoxI34JSe3WL1
+         r7GynOaqWvGHOGOvkhdR9yJ3VjEseQ8pGl1iwhmQ2ZVJwwnIkEojsezZkpmygbrq1i
+         tU0zLeemaItq2qGwl4K/aWVCqzotZmIj21bza5ql2ZhSMAQw4Lych1rGy7qrZ5k9x+
+         i0249dOb5mCdV+lZ9eACZkjoYtTEEFCSo7DrjEYv56L9+y5jHdva/0+A6an8OgIpby
+         zGnrg0Hhvmjh5dk9JY0eln2pqlu+HrE9B8y+I1r0cIkLuaOnyfZQisIMx6ph2kOnpN
+         Tay5NsPYPQRcA==
+Date:   Thu, 19 Aug 2021 15:16:17 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
+Message-ID: <20210819141617.GM4177@sirena.org.uk>
+References: <20210817101119.423853-1-frattaroli.nicolas@gmail.com>
+ <20210817101119.423853-3-frattaroli.nicolas@gmail.com>
+ <deb50900-fcfd-23d0-ab8a-0e64b2abb063@arm.com>
+ <2412250.zZEsDtmPgG@archbook>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yklP1rR72f9kjNtc"
+Content-Disposition: inline
+In-Reply-To: <2412250.zZEsDtmPgG@archbook>
+X-Cookie: She sells cshs by the cshore.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Haibo,
 
-Am Mittwoch, dem 18.08.2021 um 19:16 +0800 schrieb haibo.chen@nxp.com:
-> From: Haibo Chen <haibo.chen@nxp.com>
-> 
-> Add a new fsl,broken-auto-tuning binding for sdio devices. When sdio
-> device support sdio interrupt, need to use this property to disable
-> auto-tuning. Auto-tuning circuit is conflict with sdio interrupt.
-> 
-Wouldn't it be possible to do this automatically by the driver without
-a DT property when a SDIO card is detected?
+--yklP1rR72f9kjNtc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Regards,
-Lucas
+On Thu, Aug 19, 2021 at 03:52:55PM +0200, Nicolas Frattaroli wrote:
+> On Donnerstag, 19. August 2021 14:08:36 CEST Robin Murphy wrote:
 
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index b5baf439fbac..d7c8e5880473 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -93,6 +93,15 @@ properties:
->        tuning step can't find the proper delay window within limited tuning retries.
->      default: 0
->  
-> +  fsl,broken-auto-tuning:
-> +    description: |
-> +      Recommend for SDIO cards that enables SDIO interrupt for SDR104 and SDR50 mode.
-> +      SDIO interrupt uses DAT[1] to signal the card's interrupt. Auto-tuning circuit
-> +      will detect this interrupt on DAT[1] when in 4Bit bus mode, and take it just
-> +      as normal data, wrongly adjust the delay cell. This property is used to disable
-> +      the auto-tuning function.
-> +    type: boolean
-> +
->    fsl,strobe-dll-delay-target:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: |
+> > > +  rockchip,no-dmaengine:
+> > > +    description:
+> > > +      If present, driver will not register a pcm dmaengine, only the dai.
+> > > +      If the dai is part of multi-dais, the property should be present.
+> > > +    type: boolean
 
+> > That sounds a lot more like a policy decision specific to the Linux
+> > driver implementation, than something which really belongs in DT as a
+> > description of the platform.
 
+> I agree. Should I be refactoring this into a module parameter or
+> something along those lines? I'm unsure of where this goes.
+
+Why is this even required?  What is "multi-dais" and why would
+registering the DMA stuff cause a problem?
+
+> The particular configuration may even vary per-board; an I2S/TDM
+> controller may be connected to an external codec which does not
+> support capture, whereas on another board it may be connected to
+> one that does.
+
+If the external device doesn't support both directions then why does the
+driver for the I2S controller in the CPU care?  The constraint handling
+code in the core will ensure that nothing tries to start something that
+isn't supported
+
+--yklP1rR72f9kjNtc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEeZ7EACgkQJNaLcl1U
+h9BLTQf+NFP6G5gxloO6mI1KjGRABdmwB01kioQ+Wrt6Vw3VwRA/5Obtl1XcwDU6
+sMmqKjIMhNgfSvDKESHfSDL7E32hYMKUMOXCpEYW2pCEjN2hEbdxVwP+hbIdsmel
+z+z+ISyW3zl6K1ndvLbeniqwEZOsGNiz1EUvTygFCMvHdd9Yuory3/nufj92owBJ
+RgRiuIZJ52nPD1hdPQY1MRpP+Us3DaP8RNHLrF+FlZVtaj/hPftEwt62oTCNI0KO
+iQv81p2ueGYvqIVzD50HGC7sSc5pB2iU3VQ72XlWusgkLYdU22rbVvXGZWSRoaq1
+w8aXvCnwvc8ml4d7ZG4ROXBHzoY2oQ==
+=/YEY
+-----END PGP SIGNATURE-----
+
+--yklP1rR72f9kjNtc--
