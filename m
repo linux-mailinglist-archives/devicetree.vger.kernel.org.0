@@ -2,91 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBD953F1CEF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 17:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16FC23F1D25
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 17:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239919AbhHSPht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 11:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238643AbhHSPhs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 11:37:48 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5D2BC061575
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 08:37:11 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id x7so12199442ljn.10
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 08:37:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=w3HuADI3+Adcs6DeSG8g1htzk8Lsgx0bYC8xQu6kJJU=;
-        b=M1Q6m1VCUAYvWfdFk9DEmM6kAEc+Ycf0l3ghNTZZhgyyxMf1ZvvZgeAK3p4ncQafm1
-         EyQLHiz634mq0Nuql6AHLVw61SnrGAonTI89/8Kw0/PME2we1kF4vYv51zmkZJ2r1MJV
-         ZItStD9iT/jmg5WNlqZJzhmQyB5t+TBys5Mr4BYdCOStikwXcW4hNEbwMQttl/cZKSZR
-         KcKM52J4trpwJ6OnYq0s7B7LOT2XJ44dG11aGUkrHVVDuqPiEFVrngDZlEFly/BQGv7r
-         6BxP9nFrA4cpjS9l80NGC9Fq7mxAVTg33NEuKfSfDT/Mx/V7sIOl46Zr4SaPIsxVmRkA
-         IrjQ==
+        id S240334AbhHSPpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 11:45:53 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:52710
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240038AbhHSPpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 11:45:53 -0400
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id CBEF540CCC
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 15:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629387915;
+        bh=oQMiOvmPhv/1z2rOKVbJqGE7XkhSX2/8Th51kVa/d5I=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=htBWlaaLdGvz0lxlml1X0CluvdqZon2zJK2DEszSZd8usVuPWLphcSYUz5nULn6Cr
+         caG/2Bd58qi+51NOO307um2X+C+uN21A5UN+/GNGUkW8gtUAaHvp4BVIU+YIPUX4Mh
+         Qj74/I5o9DBiw0b2l94eCK/Q3KKFJfuNgE2Pk6K+V5G4++on7CcD75VhiibpeJdNeC
+         dhv2+PfEZBDFP8yO/Ps5rzDH7lhkX/CJoobeJLNnJd3UJPwqrhmjRfJmr9jsj8pb7w
+         lASn3N9Ek2seiAJU3cei78cBUw0tXuglKgS/jeeOABDwu6Yr5lTUPvG7Rx+rwpnpnV
+         BC5wQUbcvCBoQ==
+Received: by mail-ed1-f72.google.com with SMTP id b16-20020a0564022790b02903be6352006cso3008496ede.15
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 08:45:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=w3HuADI3+Adcs6DeSG8g1htzk8Lsgx0bYC8xQu6kJJU=;
-        b=St3ZtBEIMAqldyMuT9j646hF1yLIyiPGkhvfajh2RbaZLmrKc2uR2EqQDQGMa1pI+v
-         c1SOBDv7ClWM2stqEdgXVEOPfRmejOt8l3l8TZ3E095OowqXd01J16mQYUzbqxIFMwMU
-         9pdCxUm77AXdrFZeNzL0mc+9BkUXoJ9W51qyhp4TMBBx43F2XXwEi8JZk/7+fD+RfIrv
-         eADGEnyJVMdDAEDmi+H0XtRt7NYAY8Zj1y0wQ8LhEcCsynk1hnWz1R4hi40ywbnglxCT
-         mvbGPCyIaVVVRpRjhQuTN7Ea+Ev0+oYWdwzXPyFKwSARGun5UxPLh0qyPGj9GAQOow8e
-         jzAQ==
-X-Gm-Message-State: AOAM530Xr2e4MW3Hfk0a4O7EXkrfQ3j6CfEEUiZPrzY4c+xvz5EgDy4E
-        sY9nPyb4aEHUFX4W0h02iDMB46HwsW4RaQ==
-X-Google-Smtp-Source: ABdhPJyCk2LDhSgnZ55+IqwMkK244sojuQvk9H0S99IKcMCa6u7ikYXy2tCRKK6ty2MH/XcWw8Qe8A==
-X-Received: by 2002:a2e:9ec8:: with SMTP id h8mr12539127ljk.454.1629387430352;
-        Thu, 19 Aug 2021 08:37:10 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id t12sm338855lfg.151.2021.08.19.08.37.09
+        bh=oQMiOvmPhv/1z2rOKVbJqGE7XkhSX2/8Th51kVa/d5I=;
+        b=VrvlQLtOhZGq/Ff233mSo/7WRc5r4TNySeCYTS/3QGBenItrWm7KvLdXSb8sNLck3U
+         s0ThdMhhgDysczGNmbWDaknrcGGEAgPxlBS/M7t4fIhAi1LvjPr6++9hF98H/FHwv0jC
+         TBiYCrXuVMBUNjfkN0zoyxngu7ni+L+J8sSMPWe/LHBuxIZ8WFm698Uvx9/HIEE/jVMb
+         c+ylwe05gwl3xnzXpkI2i8CEmpnDI9zscDTmuvUdb2e8g90XIVdNVw9PZqco7j+kyfMx
+         np5Yk4g2ILtadawFWmeFNHQAYw+QaZsRNBG/X76rvOaZ/O8E+0kE9DD/G7wSLMHAq2mO
+         4a4w==
+X-Gm-Message-State: AOAM530otSRrm/ueRvC0bN+7SOV5wAIO+oXnkK/9piKv8EZnjat9IW5g
+        svNeoLBUyDDdcs3qRP6cOJGLrJ7ykpI6P260HxV4SW25axeu+0dYcPBTjLGmRkI28Y6qvebC8ne
+        BRL03bWZkDfAnbhwnLd3xhnegwsFTpq32P3mhxWE=
+X-Received: by 2002:a05:6402:22ab:: with SMTP id cx11mr16901480edb.240.1629387915595;
+        Thu, 19 Aug 2021 08:45:15 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwAEWiZz1c1r34QEyTMCWKIodNsdb2JaUuRv2nhyWDs0CmReup5t8cL3kDjjf8lf3M4RXzjlw==
+X-Received: by 2002:a05:6402:22ab:: with SMTP id cx11mr16901463edb.240.1629387915485;
+        Thu, 19 Aug 2021 08:45:15 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id f16sm1925373edw.79.2021.08.19.08.45.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 08:37:10 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcm4908: Fix UART clock name
-Date:   Thu, 19 Aug 2021 17:37:02 +0200
-Message-Id: <20210819153702.24394-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        Thu, 19 Aug 2021 08:45:15 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Atish Patra <atish.patra@wdc.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH 1/6] dt-bindings: riscv: correct e51 and u54-mc CPU bindings
+Date:   Thu, 19 Aug 2021 17:44:31 +0200
+Message-Id: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+All existing boards with sifive,e51 and sifive,u54-mc use it on top of
+sifive,rocket0 compatible:
 
-According to the binding the correct clock name is "refclk".
+  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: cpu@0: compatible: 'oneOf' conditional failed, one must be fixed:
+    ['sifive,e51', 'sifive,rocket0', 'riscv'] is too long
+    Additional items are not allowed ('riscv' was unexpected)
+    Additional items are not allowed ('sifive,rocket0', 'riscv' were unexpected)
+    'riscv' was expected
 
-Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index 87076770f4bc..984c737fa627 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -292,7 +292,7 @@ uart0: serial@640 {
- 			reg = <0x640 0x18>;
- 			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&periph_clk>;
--			clock-names = "periph";
-+			clock-names = "refclk";
- 			status = "okay";
- 		};
- 
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index e534f6a7cfa1..aa5fb64d57eb 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -31,9 +31,7 @@ properties:
+               - sifive,bullet0
+               - sifive,e5
+               - sifive,e7
+-              - sifive,e51
+               - sifive,e71
+-              - sifive,u54-mc
+               - sifive,u74-mc
+               - sifive,u54
+               - sifive,u74
+@@ -41,6 +39,12 @@ properties:
+               - sifive,u7
+               - canaan,k210
+           - const: riscv
++      - items:
++          - enum:
++              - sifive,e51
++              - sifive,u54-mc
++          - const: sifive,rocket0
++          - const: riscv
+       - const: riscv    # Simulator only
+     description:
+       Identifies that the hart uses the RISC-V instruction set
 -- 
-2.26.2
+2.30.2
 
