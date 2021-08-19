@@ -2,162 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B8B93F1B4C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A5C3F1B58
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240341AbhHSOLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 10:11:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39086 "EHLO
+        id S238560AbhHSOLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 10:11:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240360AbhHSOLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 10:11:14 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A20C061575
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:10:38 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id g21so9085045edw.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:10:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Rb9V42rg0n45GVH3GY2bVeX0F+8SMJocuuGI1FyjcmM=;
-        b=iJEPUU5oZEQ+HWwTgTCgLhFsbcZY/sN4h/IMNe1p8EeCOxcgf3JVciTGX87OqGRILz
-         Urxhw5a2EAGgRMcidl2dwJCCCNjUGG+3Aq90qboKf6+1WMDC1oxL1rZspWV1ngDaYwsV
-         SSO5y5R0ILHZz2TBbDnJjnbVGQnmK6+W9FW53lMoxbuOFnxeBiFz1jk3h8V4EIdyBR0y
-         N+u/wHUfjMg9Ibs9phlJMeMO9p/VILY8p8K6VKTmAN7+7nOwCJw4kPu2KNOjA4HOElnP
-         14V9a4ullK9qeLa87hC5WKNqfxQrOQAMCWlXZVYnTUrLieLB0auCQCaenqpPDW1tlikX
-         tE+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Rb9V42rg0n45GVH3GY2bVeX0F+8SMJocuuGI1FyjcmM=;
-        b=hfXUpGjaqFLyrPfG4yGhPlcSuqpTU+0mOKSS8pzh2j6wn6w2Ln7kmPZv6Q3KEnqhFX
-         mqdrWYeRgeeJMFMQfy4TCZ1NhH2Qr5GdPqxGPQnyURpfhptUMPTXKxogFiAbHlkMg2ax
-         ii9IFPiillFYI+ghLTBrxUPZbX0E8y3DMsAxfiHo2NqDF79tTcfwqawHHW8gSUKrNOA6
-         gSTkZaWa93jG0N84Nofc6WftNcTAhSIC0Mzl5x8+AkTGmrHdvf/iby38xoRtouARK3oa
-         7J03ww/TI9QQZSB+0jysljNc5hez9XoBZl4POeAY07Rv4tu9K4YbJmXh0543zIPpOTGd
-         2CRw==
-X-Gm-Message-State: AOAM533UiUzRJrlQElbuPWl0Xxj2JZRsn3vpUh83N/f5lN6d5gCugn04
-        8ofVJ3EyDSD7ZX3NwND1q5NL8oaNhR6VJYCV4QuKxQ==
-X-Google-Smtp-Source: ABdhPJwsG2az69sF2C7NBuTLTqeCC9h1NnsP0/piYeVTCMnzsFbdwVTCtw/GXuxcx6yC4CKvqxzNAm07Sn6//4vK+aU=
-X-Received: by 2002:a05:6402:1514:: with SMTP id f20mr16652377edw.17.1629382236918;
- Thu, 19 Aug 2021 07:10:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
- <CAAEAJfDWOzCJxZFNtxeT7Cvr2pWbYrfz-YnA81sVNs-rM=8n4Q@mail.gmail.com> <1b79a67b703d2c894bc4d9458c760e082fc42958.camel@mediatek.com>
-In-Reply-To: <1b79a67b703d2c894bc4d9458c760e082fc42958.camel@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Thu, 19 Aug 2021 11:10:25 -0300
-Message-ID: <CAAEAJfCTrKj9AFExN-L-TKww4E=us1VVh8LHtZ8Q0j_eaCD4Eg@mail.gmail.com>
-Subject: Re: [PATCH v5, 00/15] Using component framework to support multi
- hardware decode
-To:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        George Sun <george.sun@mediatek.com>
+        with ESMTP id S240577AbhHSOLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 10:11:49 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B42CC0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:11:12 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mGil6-0002Bo-5p; Thu, 19 Aug 2021 16:11:04 +0200
+Message-ID: <bb658c8013e2e8e38c21b83d59eec7046d939097.camel@pengutronix.de>
+Subject: Re: [PATCH v2 3/6] dt-bindings: mmc: fsl-imx-esdhc: add fsl,
+ broken-auto-tuning binding
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     haibo.chen@nxp.com, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, shawnguo@kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Date:   Thu, 19 Aug 2021 16:11:01 +0200
+In-Reply-To: <1629285415-7495-3-git-send-email-haibo.chen@nxp.com>
+References: <1629285415-7495-1-git-send-email-haibo.chen@nxp.com>
+         <1629285415-7495-3-git-send-email-haibo.chen@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Aug 2021 at 04:13, yunfei.dong@mediatek.com
-<yunfei.dong@mediatek.com> wrote:
->
-> Hi Ezequiel,
->
-> Thanks for your suggestion.
->
-> On Wed, 2021-08-18 at 11:11 -0300, Ezequiel Garcia wrote:
-> > +danvet
-> >
-> > Hi,
-> >
-> > On Tue, 10 Aug 2021 at 23:58, Yunfei Dong <yunfei.dong@mediatek.com>
-> > wrote:
-> > >
-> > > This series adds support for multi hardware decode into mtk-vcodec,
-> > > by first
-> > > adding component framework to manage each hardware information:
-> > > interrupt,
-> > > clock, register bases and power. Secondly add core thread to deal
-> > > with core
-> > > hardware message, at the same time, add msg queue for different
-> > > hardware
-> > > share messages. Lastly, the architecture of different specs are not
-> > > the same,
-> > > using specs type to separate them.
-> > >
-> >
-> > I don't think it's a good idea to introduce the component API in the
-> > media subsystem. It doesn't seem to be maintained, IRC there's not
-> > even
-> > a maintainer for it, and it has some issues that were never
-> > addressed.
-> >
-> > It would be really important to avoid it. Is it really needed in the
-> > first place?
-> >
-> > Thanks,
-> > Ezequiel
->
-> For there are many hardware need to use, mt8192 is three and mt8195 is
-> five. Maybe need more to be used in the feature.
->
-> Each hardware has independent clk/power/iommu port/irq.
-> Use component interface in prob to get each component's information.
-> Just enable the hardware when need to use it, very convenient and
-> simple.
->
-> I found that there are many modules use component to manage hardware
-> information, such as iommu and drm etc.
->
+Hi Haibo,
 
-Many drivers support multiple hardware variants, where each variant
-has a different number of clocks or interrupts, see for instance
-struct hantro_variant which allows to expose different codec cores,
-some having both decoder/encoder, and some having just a decoder.
+Am Mittwoch, dem 18.08.2021 um 19:16 +0800 schrieb haibo.chen@nxp.com:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> Add a new fsl,broken-auto-tuning binding for sdio devices. When sdio
+> device support sdio interrupt, need to use this property to disable
+> auto-tuning. Auto-tuning circuit is conflict with sdio interrupt.
+> 
+Wouldn't it be possible to do this automatically by the driver without
+a DT property when a SDIO card is detected?
 
-The component API is mostly used by DRM to aggregate independent
-subdevices (called components) into an aggregated driver.
+Regards,
+Lucas
 
-For instance, a DRM driver needs to glue together the HDMI, MIPI,
-and plany controller, or any other hardware arrangement where
-devices can be described independently.
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index b5baf439fbac..d7c8e5880473 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -93,6 +93,15 @@ properties:
+>        tuning step can't find the proper delay window within limited tuning retries.
+>      default: 0
+>  
+> +  fsl,broken-auto-tuning:
+> +    description: |
+> +      Recommend for SDIO cards that enables SDIO interrupt for SDR104 and SDR50 mode.
+> +      SDIO interrupt uses DAT[1] to signal the card's interrupt. Auto-tuning circuit
+> +      will detect this interrupt on DAT[1] when in 4Bit bus mode, and take it just
+> +      as normal data, wrongly adjust the delay cell. This property is used to disable
+> +      the auto-tuning function.
+> +    type: boolean
+> +
+>    fsl,strobe-dll-delay-target:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: |
 
-The component API may look simple but has some issues, it's not easy
-to debug, and can cause troubles if not used as expected [1].
-It's worth making sure you actually need a framework
-to glue different devices together.
 
-> Do you have any other suggestion for this architecture?
->
-
-Looking at the different patchsets that are posted, it's not clear
-to me what exactly are the different architectures that you intend
-to support, can you some documentation which clarifies that?
-
-Thanks,
-Ezequiel
-
-[1] https://patchwork.kernel.org/project/linux-rockchip/cover/20200120170602.3832-1-ezequiel@collabora.com/
