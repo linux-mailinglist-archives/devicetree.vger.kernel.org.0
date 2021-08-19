@@ -2,180 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1858E3F12CD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 07:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CDC3F1328
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 08:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbhHSFfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 01:35:32 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51090 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229782AbhHSFf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 01:35:29 -0400
-X-UUID: 84bc1639523c4645bacce2ecfc530a5f-20210819
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=m9bp4O6+k9Tk1a0NJEL/0pD/rptC2O9OYRXyH59LgPw=;
-        b=Y8Vwpj/ggPH5K38W7cSFBsiBxj8STgB98XJxMPadVUR7KXlM+sGQ0Ot3RlVbHxyEjOV4qOG4TVWwEuwKBRAnCde6r+LNQSO004Q8Q8olpyKSHXC57KGXemny0ONNO7n9L6LRmaoZrKdVquqA5RMFzyXWbI4kr0lEkOkHKzq9Xd4=;
-X-UUID: 84bc1639523c4645bacce2ecfc530a5f-20210819
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2073319112; Thu, 19 Aug 2021 13:34:49 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 19 Aug 2021 13:34:48 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 19 Aug 2021 13:34:48 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qx7FsEpcJz6HtX4B+l2V8QSiaAk6rIT2snVz0pueT4WlXI/lcDjtCWvUNyjg52GBj5/UEmFiVU5cvz9D91NOU+afccomWGbxZGjFl+I0Up4IsXPtgUNzEzptZnkJd+si/ll2hkdWq1JtxYCSUiXeLtMijYqKUg52Mf1nw8OJWlRbxIT4IXsPInzsLy/fYb0sW2MZsy5HpMrOlyigBHqYAQBWyQYteBJqWnM/iUEl1AKT+8F7uqkYeEY2mWBcNlLa8bU2WGVv4cP0PcjH2gESMnzdSuKCyygJWAcsScShck6MDIXbqr0MTNV9vANu7JuEQVRrFhwWNJ0D/Dk0CozEzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m9bp4O6+k9Tk1a0NJEL/0pD/rptC2O9OYRXyH59LgPw=;
- b=B9u7Iq0LwhVkZmtKDMXeNoZPaBg+S425LhqE4RxYk3S+iw8XGa7pzDS8p4NAV6ksb9crj7KInT4woVBZf1FJifDL4xAVwVgE2yW8SyQIJhwPlLzNQ4do5bOlHltAKHYccXqoGiUFsyhegHFj8AN2u9z+WKMG6+dBaiYSC0L9mERNBI+zxzgzaA0y3jC6fPn468XM5T1+smgBtgROS5F9/ZudajH2v8uU+TpWGv09s899oLBV/5HgJs6Ku+Ln/Owa+vG2aHdRI/KnJ/iNYpk90q3oGik5Vs7GNlNgELd55wcDEuxLaKroaLWcCJKsJ8SQJPZbA57KUUYdf2TNhbngEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+        id S230519AbhHSGSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 02:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230390AbhHSGSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 02:18:05 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9182EC061757
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 23:17:29 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id mq3so4213648pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 18 Aug 2021 23:17:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m9bp4O6+k9Tk1a0NJEL/0pD/rptC2O9OYRXyH59LgPw=;
- b=TAI8Z448en9IoXU6Vpj1OQviLVDa6+M2jxQ6eOw/hUdjCa6TKm6zmBywxukq2W5vNIZ88Z8k4lvNwM1fG01QQJNPSvhAqHtpcBuu9f5puAiCTNjshkdAwjG9HxDNC+MTxWCXFRsHbjbIigBuaxBm1bB/EOvx7pEwmG5s1cTw34s=
-Received: from HK0PR03MB3139.apcprd03.prod.outlook.com (2603:1096:203:4b::11)
- by HK2PR0302MB2499.apcprd03.prod.outlook.com (2603:1096:202:3::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.15; Thu, 19 Aug
- 2021 05:34:34 +0000
-Received: from HK0PR03MB3139.apcprd03.prod.outlook.com
- ([fe80::9108:efd1:31ac:c6b0]) by HK0PR03MB3139.apcprd03.prod.outlook.com
- ([fe80::9108:efd1:31ac:c6b0%7]) with mapi id 15.20.4436.018; Thu, 19 Aug 2021
- 05:34:34 +0000
-From:   =?utf-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
-To:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "krzysztof.kozlowski@canonical.com" 
-        <krzysztof.kozlowski@canonical.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "tfiga@chromium.org" <tfiga@chromium.org>,
-        =?utf-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= 
-        <youlin.pei@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        =?utf-8?B?WWkgS3VvICjpg63mh78p?= <Yi.Kuo@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?utf-8?B?QW5hbiBTdW4gKOWtmeWuieWuiSk=?= <Anan.Sun@mediatek.com>,
-        =?utf-8?B?QW50aG9ueSBIdWFuZyAo6buD5bu65ZiJKQ==?= 
-        <Anthony.Huang@mediatek.com>,
-        "robin.murphy@arm.com" <robin.murphy@arm.com>,
-        "joro@8bytes.org" <joro@8bytes.org>,
-        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "ikjn@chromium.org" <ikjn@chromium.org>,
-        =?utf-8?B?TWluZy1GYW4gQ2hlbiAo6Zmz5piO5rGOKQ==?= 
-        <Ming-Fan.Chen@mediatek.com>, "will@kernel.org" <will@kernel.org>
-Subject: Re: [PATCH v3 00/13] MT8195 SMI support
-Thread-Topic: [PATCH v3 00/13] MT8195 SMI support
-Thread-Index: AQHXjb8Hll+XizX+WEmkps1CcJVtHKt5x2YAgACU4IA=
-Date:   Thu, 19 Aug 2021 05:34:34 +0000
-Message-ID: <5f4c25b27f347a1ae0e2941ab3e3584730a9970a.camel@mediatek.com>
-References: <20210810080859.29511-1-yong.wu@mediatek.com>
-         <1a160afd-ceeb-04a3-8213-fe781ec18e30@canonical.com>
-In-Reply-To: <1a160afd-ceeb-04a3-8213-fe781ec18e30@canonical.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fbc40bb0-fe2f-4c25-b69c-08d962d3071d
-x-ms-traffictypediagnostic: HK2PR0302MB2499:
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK2PR0302MB24991E45028B5617BF5557D598C09@HK2PR0302MB2499.apcprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sydXY7e5t8B/F7mHOhSUynyn5v+h+XGNj4xvaLmwjtGNUI6TDfyGGZxhue+iaBjP7XhAIQZtXQrPcP4BT+EWmaWpLCgEls+thwuVGRXjTNSNbKLAHl5V2wcK0Tr2N7naRkeiK1bK9Z1VdOMwrKosh8Fdjfiy+3/RqXLH8mtXNbd2ujw3I40OVECqzKYBKPlVHn9Wj+/WpLbRorOjgq4RXNl1t8K2G0j8bY5Vp37un3zBtRabkar8/Y+ENirGCSZUZ3jRU+KaPZ0E1/gq1C6gSRiJ8KGykfJZzUYigLos7xWbSddq3jlndfVO9mnY8pv+dzLuqZ5fVrVU7wlOrhsDsPVm1vy6sMbswaDCVBRWdk8UhhevpLexjhX7tghMvF14ZEiulBw27dLjWXYV0wVMoaW+c5B6dG6c9kJpHezeD2DmHGdQDQ4rhbCUhv9tM0bYom2tOwqsakjqzF4i1baO4A5LQM5+k2FwcH+vgol495+pnlaMietj48V9dskB++AKXHoHhvCKYRNow1dGwEQCkYaGS3LkNFXja+byGufibxNARinWo3xt6DT9k0Na+xj5ycQ3HMrPe/5tUet9xwKYz1a7VK1Xi5c034SvTRZXr30/PDqQx2QuQtOdXcJrKzFlUBJONa1BrZOwO7uP2M3P2bxyJcbJhtAavKmgSPnr3aacYXwcuZHXiIy8qCH4tB+2iv62DsxHpyV8Tzcn3sVLjDtP5OcopubOjFlE9RGOJ38=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR03MB3139.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(86362001)(6506007)(8936002)(4326008)(36756003)(5660300002)(7416002)(64756008)(26005)(8676002)(110136005)(316002)(2906002)(186003)(38100700002)(6512007)(76116006)(53546011)(2616005)(85182001)(6486002)(71200400001)(54906003)(122000001)(508600001)(83380400001)(38070700005)(66556008)(66476007)(66446008)(66946007)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZE1KSW00dzAweG4rOFArTkxtYklEUVdrM3hJTmFZOGljQWxjdHJPcVhOU0hL?=
- =?utf-8?B?dHlxZnU5TnpCVm5RNStBYkJKWk9CUzl6VGRrRVFKUVdvcC9yYXNFam1SNkxH?=
- =?utf-8?B?VWJ5MzNnanlmZ2wya1ZkMzdDZFA2NzlybUFWSGt6eHJhcW5sQjYwdzQ1Tk9K?=
- =?utf-8?B?QWJraTNrVGxuUjJtRUQ4amNTNWIzWkNRSklGemRpdWtsVUlOM090b0lJZ2lJ?=
- =?utf-8?B?N1F4bWZCMEhIdWlFaHRtWEJRbFhpVkJpaWhhNUY0eUhnVXhtYnZBK1g5a3V0?=
- =?utf-8?B?SU1yamY0N3Z5UXVqU3JmdXFSSHFkbnlwQmxyZWZKTkhVYnhtamR4a2hmMG1J?=
- =?utf-8?B?bVltUUZHemNtMkVxMHhNVzdpWGRCaHc1R2dSYlIrZENPZk9ZczMzUVlGcDM2?=
- =?utf-8?B?V0tGYmpyb1NCaStvNGRFUGpTelJKWUtVR2N3emJqTXBoRTBKbm9XRFJYRDRz?=
- =?utf-8?B?RmNMWHVXcHRkT1I1d2o1Q2RQUDYrMEpqWXNmOERHTHlJT3kwN1pwbkxHaW83?=
- =?utf-8?B?V3lGZXJmMU1YYUdwa21KZ3hRUEx5T1AvdEkxS2J1dkJxSFY3dE5zTmZGbEZC?=
- =?utf-8?B?TG1NQW1tS2VTODdSZGs4aVpDd1VCcDVSd1BYNC9GMFczYUR3N3ozSUgrNUlJ?=
- =?utf-8?B?d28yMnBQb1pxQXBqcTIxeDlDK2JTcUxLcjlPWjU4bXVuZER3YmRVMnRpSVpK?=
- =?utf-8?B?V2RqU29MQmk3WWptaXJSV3gzdUZRejh2SGw5ZUNNNHVGL3B2SnI4dExZeGFj?=
- =?utf-8?B?azhhWGVsVW5LdEFOVHBISVY5WG1qYlYxWHhNVlRrUDZ0UG1IWkxDMnVGeldB?=
- =?utf-8?B?VGYxZ2VzQ3F5SXVDVVN0TGk5QmF3T2pwSjE4c3ZabjJqTEc4Zi9MUFhPeGF4?=
- =?utf-8?B?N1pITUZ3amJKQUp5RVJmWStlZktVcEJqdjdveXVMR2pQRnkwYmsvOUpTMkdk?=
- =?utf-8?B?TnB2OVNJUkJWbUg1ZHBmMjRhUTBtQVMrTnpWRCtrZGtIVVdLaGh0UGwxN1Ra?=
- =?utf-8?B?V0NScDFKZGdaTnNpNmJoUnUwWnZYWCtoZU5SQVk0SHBGeXdMV1Ftd0NTKytC?=
- =?utf-8?B?djNoVDIwRnNrbFVLaVlnck96UWxIc1krZjNmVSt6TjNFUVhadnlsVHRxY2w2?=
- =?utf-8?B?WitpMmE4azlyZmpUR1hEaWdYQUNJbE9TWGQvL1RNUi85djdJcGwrU05raUdF?=
- =?utf-8?B?ZnM2RHJ0YWE2WmszYkhJMDhIcnlWK0MxQndJWnNIZjd2UUFxVUdtTXcxYXN1?=
- =?utf-8?B?WG5XVnFoaG5qYWVJMFhZMXc1KzFuTG5aRkRCL2lTMHVkUURKNzdCYWJTVXE4?=
- =?utf-8?B?UnFQUkU5QnhwbUREMTMrMVhFQmZrQUwzZUJKakZVY0g3WDRjL1FrdStsMUM1?=
- =?utf-8?B?L0pxWG5IblN0dkdoRjVhRjVTK0R0d1NvZFRLa05VUUN0eUljVG84YUVDMGZx?=
- =?utf-8?B?R2dyLzZ0S3AxS0JIVys5aVVieUt1WFlxdE8vdno2cEFxOTRUUTNnWGU1MzU3?=
- =?utf-8?B?TUR6Q1BoTXNiTVZaWjNVN0RxYTU2Yll0WnV2VWI0QW5MQkc1M01XZEVnNCth?=
- =?utf-8?B?QWJtbUhidWpYTHg1aWdaY3JJam9HRjdpaktTdG9DVmUwVGh2Y3BUaW5rVHBo?=
- =?utf-8?B?UUZjeG85dWcvMENGeFd6VDMvSEpLbTJBYVNhOEljRE1uUDBsSWNDRnZHL0kr?=
- =?utf-8?B?Uzk0a1l0Y0lQY0NiY2gwQmlWZ1pQQlE4eks0R0o4UEFYRnphSEd0bVUxVGF5?=
- =?utf-8?Q?qIFxWq2sCrJRtvvC+ZxUKKfFriLP1dZCQ7Ke/gX?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3F805D9607951246BE421B3EF4D3E1A1@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=Z7TQEkkTOfvT3y1VcK9cbeGmLxLBDuWce4oY9e31CIQ=;
+        b=n8Z7pceL3Q1hHrYhRGbE2Ft6ysYoV2T29GwsgsIk5zym7iZcje0CXVg1jI36aNnFP1
+         wEt31EiA2dUBQwlv5rK6Pb4jBRjUZnVnX9lq3yYWlZnsAiqoC84b2+sIg5qRcoOEikt2
+         Bl5OLXFHBLycojOK68FIhPW3b2fskqhF3vr/eyYOYKdL7QspG0UOJAgIVnJ/rUe4LZFr
+         9Mx+8O2v0d2rHrH3yazUPQGMQQQiYdzhDIVBgB1HMOdlKqueyQlS0Pa++oE7KDNseaKY
+         ZqQcskpZ4qIHBPun+Nz8BNcPrFRsCGUIgrdD9AWMNWaoX41LuxEow35zOBfD0rRFPHfn
+         o2nQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=Z7TQEkkTOfvT3y1VcK9cbeGmLxLBDuWce4oY9e31CIQ=;
+        b=msZXZL4sFO1NlMrEFNqLtD6C2eGdFTz7dAYmkLHYU1FQbaNiLf18SqqC3alrI2pPiD
+         BldYTFkLDQMc60aeGf7q04r5tq/51e/5ha67lhsedjlEoweDjBFmiDQy6ZvQgN1qQRWN
+         QOxLIFZ767eSgJXRSPZLBA8TZjtUXd0tGMvUFGJx+yteyjYPvKI0dvm1pLzDH6O78Bmm
+         xFgL45j8pnTkqio2Eu7f8SwflFtllCbYc0Ptq7mkFPOVeov53xIRPl99LwSPFggBxj3F
+         HzIB6VfMGc/fBC0f72XHSR/7k9b1YeV2ZCMWm+fUVgPaneWXSAat9+fW7yooxPhZ2Q8K
+         EMEQ==
+X-Gm-Message-State: AOAM531QDfl2HnP2GgoEOlpEFW7vuxIg3Ew3uO1Mi1vzD58GlA1uCDyj
+        3PkKJx5WE0lxhDvzO381C9pQBA==
+X-Google-Smtp-Source: ABdhPJwi8ECnFjz7ftlBUkQP1U01xvcbaFwYmCvSxRCVadF/ZCBCreA9Xq0KVJGpteNV1tSqbtF8Eg==
+X-Received: by 2002:a17:90a:ce88:: with SMTP id g8mr13456163pju.116.1629353849006;
+        Wed, 18 Aug 2021 23:17:29 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id r18sm2222724pgk.54.2021.08.18.23.16.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Aug 2021 23:16:53 -0700 (PDT)
+Date:   Thu, 19 Aug 2021 11:46:17 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+Message-ID: <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+References: <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7>
+ <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7>
+ <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7>
+ <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7>
+ <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR03MB3139.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbc40bb0-fe2f-4c25-b69c-08d962d3071d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 05:34:34.5915
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kxegxedq2MzOIRd7FYu7LDx5ENlqBQ7ybOrRNzFswpOLBj1Ce6XqadWt6FLbgxzPOLjDKhN2I+iT9gOvFNyUaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0302MB2499
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTA4LTE4IGF0IDIyOjQxICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiBPbiAxMC8wOC8yMDIxIDEwOjA4LCBZb25nIFd1IHdyb3RlOg0KPiA+IFRoaXMgcGF0
-Y2hzZXQgbWFpbmx5IGFkZHMgU01JIHN1cHBvcnQgZm9yIG10ODE5NS4NCj4gPiANCj4gPiBDb21w
-YXJpbmcgd2l0aCB0aGUgcHJldmlvdXMgdmVyc2lvbiwgYWRkIHR3byBuZXcgZnVuY3Rpb25zOg0K
-PiA+IGEpIGFkZCBzbWkgc3ViIGNvbW1vbg0KPiA+IGIpIGFkZCBpbml0aWFsIHNldHRpbmcgZm9y
-IHNtaS1jb21tb24gYW5kIHNtaS1sYXJiLg0KPiA+IA0KPiA+IENoYW5nZSBub3RlOg0KPiA+IHYz
-OjEpIEluIHRoZSBkdC1iaW5kaW5nOg0KPiA+ICAgICAgICBhLiBDaGFuZ2UgbWVkaWF0ZWssc21p
-IHR5cGUgZnJvbSBwaGFuZGxlLWFycmF5IHRvIHBoYW5kbGUNCj4gPiBmcm9tIFJvYi4NCj4gPiAg
-ICAgICAgYi4gQWRkIGEgbmV3IGJvb2wgcHJvcGVydHkgKG1lZGlhdGVrLHNtaV9zdWJfY29tbW9u
-KQ0KPiA+ICAgICAgICAgICB0byBpbmRpY2F0ZSBpZiB0aGlzIGlzIHNtaS1zdWItY29tbW9uLg0K
-PiA+ICAgIDIpIENoYW5nZSB0aGUgY2xvY2sgdXNpbmcgYnVsayBwYXJ0aW5nLg0KPiA+ICAgICAg
-IGtlZXAgdGhlIHNtaS1jb21tb24ncyBoYXNfZ2FscyBmbGFnLiBtb3JlIHN0cmljdC4NCj4gPiAg
-ICAzKSBNb3JlIGNvbW1lbnQgYWJvdXQgbGFyYiBpbml0aWFsIHNldHRpbmcuDQo+ID4gICAgNCkg
-QWRkIGEgbWFpbnRhaW4gcGF0Y2gNCj4gDQo+IFRoZSBwYXRjaHNldCBsb29rcyBnb29kIHRvIG1l
-IGJ1dCBJIHNhdyBub3cgY29tbWVudHMgZnJvbSBSb2IsIHNvIEkNCj4gZXhwZWN0IGEgcmVzZW5k
-LiBUaGVyZWZvcmUgdGhlcmUgaXMgYWxzbyB0aW1lIGZvciBhZGRpdGlvbmFsIHJldmlldyAtDQo+
-IG1heWJlIGNvbnRpbnVlZCBieSBJa2pvb24gSmFuZz8NCj4gDQo+IElmIHlvdSBzZW50IGEgdjQg
-d2l0aCBmaXhlcyByYXRoZXIgc29vbiBhbmQgZ2V0IGFjayBmcm9tIFJvYiwgSSBjb3VsZA0KPiBz
-dGlsbCB0cnkgdG8gZ2V0IGl0IGludG8gbmV4dCBtZXJnZSB3aW5kb3cuIEFmdGVyIHRoaXMgd2Vl
-a2VuZCBJDQo+IHdvbid0DQo+IGJlIHRha2luZyBwYXRjaGVzIGZvciB0aGlzIGN5Y2xlIGFuZCBp
-dCB3aWxsIHdhaXQgZm9yIHRoZSBtZXJnZQ0KPiB3aW5kb3cNCj4gdG8gZmluaXNoLg0KDQpIaSBL
-cnp5c3p0b2YsDQoNClRoYW5rcyB2ZXJ5IG11Y2ggZm9yIHlvdXIgaW5mb3JtYXRpb24uDQoNCkl0
-IGxvb2tzIHRoZSB0aW1lIGlzIHRvbyBzaG9ydCB0byBnZXQgUm9iJ3MgYWNrIGluIHRoaXMgd2Vl
-a2VuZC4gSSB3aWxsDQp3YWl0IGZvciBvbmUgb3IgdHdvIHdlZWtzIHRvIHNlZSBpZiB0aGVyZSBp
-cyBvdGhlciBjb21tZW50cywgdGhlbg0KcmVzZW5kLg0KDQo+IA0KPiANCj4gQmVzdCByZWdhcmRz
-LA0KPiBLcnp5c3p0b2YNCg==
+On 18-08-21, 18:55, Dmitry Osipenko wrote:
+> 18.08.2021 12:41, Ulf Hansson пишет:
+> 
+> Either way gives the equal result. The new callback allows to remove the
+> boilerplate dev_pm_opp_set_rate(clk_get_rate() code from the rpm-resume
+> of consumer devices, that's it.
+
+It may not be equal, as dev_pm_opp_set_rate() may do additional stuff,
+now or in a later implementation. Currently it only does
+regulator_enable() as a special case, but it can be clk_enable() as
+well. Also, this tries to solve the problem in a tricky/hacky way,
+while all you wanted was to make the genpd aware of what the
+performance state should be.
+
+Your driver can break tomorrow if we started to do more stuff from
+this API at another time.
+
+> > dev_pm_opp_set_rate() is best called from consumer drivers, as they
+> > need to be in control.
+> >> What we need here is just configure. So something like this then:
+> The intent wasn't to use dev_pm_opp_set_rate() from
+> __genpd_dev_pm_attach(), but to set genpd->rpm_pstate in accordance to
+> the h/w configuration.
+
+Right.
+
+> On Tegra we have a chain of PDs and it's not trivial to convert the
+> device's OPP into pstate because only the parent domain can translate
+> the required OPP.
+
+The driver should just be required to make a call, and OPP/genpd core
+should return it a value. This is already done today while setting the
+pstate for a device. The same frameworks must be able to supply a
+value to be used for the device.
+
+> Viresh, please take a look at what I did in [1]. Maybe it could be done
+> in another way.
+
+I looked into this and looked like too much trouble. The
+implementation needs to be simple. I am not sure I understand all the
+problems you faced while doing that, would be better to start with a
+simpler implementation of get_performance_state() kind of API for
+genpd, after the domain is attached and its OPP table is initialized.
+
+Note, that the OPP table isn't required to be fully initialized for
+the device at this point, we can parse the DT as well if needed be.
+
+-- 
+viresh
