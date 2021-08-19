@@ -2,164 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E33813F1AF0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 15:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BA573F1B1B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 16:00:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238498AbhHSNxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 09:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34780 "EHLO
+        id S240204AbhHSOBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 10:01:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240102AbhHSNxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 09:53:34 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E8EC061575;
-        Thu, 19 Aug 2021 06:52:58 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id lo4so13079379ejb.7;
-        Thu, 19 Aug 2021 06:52:58 -0700 (PDT)
+        with ESMTP id S240164AbhHSOBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 10:01:33 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393DEC061756
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:00:57 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id b200so7767454iof.13
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 07:00:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/HYaakT71hwEdcXvkxwyQsillUjSwTO59JhdjV9n6y4=;
-        b=BVG+5HrApNRX9+03fK0jt38W6Ps+UyhCQADZcdZe1QVPyVsrWh+RlxWohzju5i7IfV
-         IGO9cvRFPjCMp+i8l1kXqOyMt3QsOoyEyu6f7xLSY7Vs2LzpmsgFEuz3zLkK/6CTLrdj
-         F7nnKRo3DDRugBTcoyY2Rss9o2yUYfy9fQZb1Ep0lkSXVE8XYZuQuYlYw0PKM9C5vj1A
-         w2VGwE8UO4owDU0hs4h1DKqlg8np9j+vKv5jrARah7QGVhcuNxgx2j2bpqUMvH8vp+eV
-         vRUi7Sq+lk179LXgirigXKAzF0UqCguYyHo0hgqud7AZMK6uB2DFeBV2HxFX1QzBgUO8
-         +utQ==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T6c3uuIqhGJTSiY34t1mdYv7edPTrnbINRnZGTByZPE=;
+        b=BlMEWmipA/cQoLoc7SiiP+A3MSQ66TNqzbkmNBmnpGvskMITjFn/AknohpkpB5Cx5K
+         CZJB/KgpjJ8YDW9UClJg5zSSGiQN2ZGYlh1qm6kxQfhZ1Fceo8gNb1WMKwYp6bYJ9Ev4
+         sEsHaqfDkM7c+VEPq5CWbYKowz4hdkol7jCFwbx5x4vdubM8Ow6Cy0Noq/+bjr2MNT0o
+         HSXFBv6a8AuevGClVSgt0lQ5pJVx8B9YFcYRQ4X36dcLXKD/6fxw46A/4Y5L0v4ueiVo
+         UFRKnu2N5wL4JIBvfiGjXjUVlddOIiH8eD8DOIA/4E8uIceRI6DMSOXpqwg8bpLRD/71
+         YLyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/HYaakT71hwEdcXvkxwyQsillUjSwTO59JhdjV9n6y4=;
-        b=LotufcwczG5DolTfY7J1TFerP/Db/QLWe+IGDLqcK5+k97Gb1ao1nl0E5pN0+TVX5E
-         BWv+WWhF6xCkbh09Qpfuc8DOnx6NC65HbQ9EKHUtUvQIUgl4dK6fU4gL7GJ2K52LQmjk
-         erYPqwsMh+rh7Huv4M7C0XVRYQoIi+yQHRbD/Mn7vDYnM3VaSTRG89v6savN9rKyhACq
-         aoaBD8o6R9X3fp6ol2FzwI+x1Jftm3nnCoA50qt2qewWoMsdhzS5a28k7qKZbLBSbyhy
-         f7YpSkLgCl5aHpAZX+Xn/CSM9a7vFy5aVQ2Jqa3njq5+ESam4XYXy8UDG1PhQr4VAooJ
-         09hQ==
-X-Gm-Message-State: AOAM530BWg66EweUgtRo5lUv58Cl0d5U6Opc5aPqvjEYjoqXSefmuHah
-        k8uxyk19v0jjKsIAR39XBag=
-X-Google-Smtp-Source: ABdhPJxf6vkzIJ5gvRxJJnkoE76NF/NsXfuA1qI+2XbKik7L6dd//lHk57lp40vP12GLenGbbQ1fCQ==
-X-Received: by 2002:a17:906:1dd6:: with SMTP id v22mr9418467ejh.226.1629381176818;
-        Thu, 19 Aug 2021 06:52:56 -0700 (PDT)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id y23sm1294480ejp.115.2021.08.19.06.52.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 06:52:56 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
-Date:   Thu, 19 Aug 2021 15:52:55 +0200
-Message-ID: <2412250.zZEsDtmPgG@archbook>
-In-Reply-To: <deb50900-fcfd-23d0-ab8a-0e64b2abb063@arm.com>
-References: <20210817101119.423853-1-frattaroli.nicolas@gmail.com> <20210817101119.423853-3-frattaroli.nicolas@gmail.com> <deb50900-fcfd-23d0-ab8a-0e64b2abb063@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T6c3uuIqhGJTSiY34t1mdYv7edPTrnbINRnZGTByZPE=;
+        b=Pi6EXiXk6EYaAdvdmIbtktk24l9T1anLD4MPEWcaM52mwo9VmNJ2mTvRC4HtQ8KvUH
+         P781Ej2qDuC9FZWxVYrip3PZNu5p8dakjs049fg9QlJW7srx+MwgWtIbY7nHnjZcpfRV
+         KbwTOgeITOr0c38BiKip8jaWvgXk1gRLq23VIf8MyHD/E2IYSbD806WtU2aiSvv6EaeN
+         ddXeEm6AvfTbaAsw6oUxHmy0SS0edVzTp6s0944FEm1XDGuNF52QgdT1PNfyDagNO79/
+         YSoA3OFj9liTOnSBDFGtdIEqUGg1MhkXnWyDsZVUHGt00JaJPhI3jWI9u2oOoG1xlLXK
+         leDw==
+X-Gm-Message-State: AOAM530RANyB3OHEzg2Ye9zfQWwzgnTOUDJvX7trK6snRa/bh6MwAm4p
+        dNZ/FrM01QcF7Olx3jOOWyAE8ZB3xZ/Zfnb1KIxbcw==
+X-Google-Smtp-Source: ABdhPJw66n9J4IMrZVgTxO7APnBV7DuWIAEv3w+5J7Lcm4qG/FVJtex8/Nepg+hMnS2LSgzMkD3z3PWxcRR8LQrpXMs=
+X-Received: by 2002:a02:cd2c:: with SMTP id h12mr13065060jaq.84.1629381655653;
+ Thu, 19 Aug 2021 07:00:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210819092943.719433-1-yangcong5@huaqin.corp-partner.google.com> <20210819092943.719433-3-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20210819092943.719433-3-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@google.com>
+Date:   Thu, 19 Aug 2021 07:00:42 -0700
+Message-ID: <CAD=FV=VNLEcPjbUCC7W9Z1TEOud=We+OFdmQGa5Rhwi4TqLcBA@mail.gmail.com>
+Subject: Re: [v1 2/2] dt-bindings: drm/panel: boe-tv101wum-nl6: Support
+ enabling a 3.3V rail
+To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Donnerstag, 19. August 2021 14:08:36 CEST Robin Murphy wrote:
-> On 2021-08-17 11:11, Nicolas Frattaroli wrote:
-> > +  rockchip,trcm-sync:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Which lrck/bclk clocks each direction will sync to. You should use
-> > the +      constants in <dt-bindings/sound/rockchip,i2s-tdm.h>
-> > +    oneOf:
-> > +      - const: 0
-> > +        description:
-> > +          RK_TRCM_TXRX. Use both the TX and the RX clock for TX and RX.
-> > +      - const: 1
-> > +        description:
-> > +          RK_TRCM_TX. Use only the TX clock for TX and RX.
-> > +      - const: 2
-> > +        description:
-> > +          RK_TRCM_RX. Use only the RX clock for TX and RX.
-> 
-> I wonder if that might make sense to have boolean properties to describe
-> the latter two cases (which would effectively be mutually-exclusive),
-> rather than a magic number? Or possibly even just make the respective
-> clocks optional, if this is something which would be done per-SoC rather
-> than per-board?
-> 
+Hi,
 
-From what I know from downstream vendor device trees, these are per
-board, not for the SoC as a whole. There are I2S/TDM controllers on the
-SoC which I think are hardwired to certain other IP blocks, such as I2S0
-being connected to HDMI, but I2S1 can be routed outside of the SoC where
-these come into play I believe.
+On Thu, Aug 19, 2021 at 2:31 AM yangcong
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> The auo,b101uan08.3 panel (already supported by this driver) has
+> a 3.3V rail that needs to be turned on. For previous users of
+> this panel this voltage was directly output by pmic. On a new
+> user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
+> to turn the 3.3V rail on.
+>
+> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
+>
+> ---
+>  .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml   | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+> index 38bc1d1b511e..e45de7a4360e 100644
+> --- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+> @@ -36,6 +36,9 @@ properties:
+>    pp1800-supply:
+>      description: core voltage supply
+>
+> +  pp3300-supply:
+> +    description: core voltage supply
+> +
+>    avdd-supply:
+>      description: phandle of the regulator that provides positive voltage
+>
+> @@ -52,6 +55,7 @@ required:
+>    - reg
+>    - enable-gpios
+>    - pp1800-supply
+> +  - pp3300-supply
 
-As for making them boolean properties, I'd rather not. If I were to make it
-two mutually exclusive booleans, this would result in 4 possible states
-rather than 3, and require complexity to check it both in the schema and
-in the probe function. Like this, I can get away with a switch case that
-has a fallthrough, and a list of consts in the schema.
+Please send a v2 _without_ this line. Old device trees that don't
+specify the 3.3V rail need to keep working fine and thus it's optional
+(not required) for people to include the 3.3 V rail.
 
-> > +
-> > +  "#sound-dai-cells":
-> > +    const: 0
-> > +
-> > +  rockchip,no-dmaengine:
-> > +    description:
-> > +      If present, driver will not register a pcm dmaengine, only the dai.
-> > +      If the dai is part of multi-dais, the property should be present.
-> > +    type: boolean
-> 
-> That sounds a lot more like a policy decision specific to the Linux
-> driver implementation, than something which really belongs in DT as a
-> description of the platform.
+(NOTE: in the source code things will work fine without any changes
+because the regulator framework will automatically create a "dummy"
+regulator for you if one wasn't specified in the device tree).
 
-I agree. Should I be refactoring this into a module parameter or
-something along those lines? I'm unsure of where this goes.
-
-> 
-> > +
-> > +  rockchip,playback-only:
-> > +    description: Specify that the controller only has playback
-> > capability.
-> > +    type: boolean
-> > +
-> > +  rockchip,capture-only:
-> > +    description: Specify that the controller only has capture capability.
-> > +    type: boolean
-> 
-> Could those be inferred from the compatible string, or are there cases
-> where you have multiple instances of the IP block in different
-> configurations within the same SoC? (Or if it's merely reflecting
-> whether the respective interface is actually wired up externally, could
-> that be inferred from the attached codec?)
-> 
-> Robin.
-> 
-
-They can't be inferred from the SoC because there are indeed multiple
-instances of this IP block in different configurations on the same SoC.
-The RK3566 and RK3568 have four in total, of two different categories,
-each being able to be configured for a different format (though the
-number of channels and available formats vary for the two categories,
-one group only supports I2S and PCM with two channels)
-
-The particular configuration may even vary per-board; an I2S/TDM
-controller may be connected to an external codec which does not
-support capture, whereas on another board it may be connected to
-one that does.
-
-As an example, if I understand it correctly, I2S3 on the RK3566 and
-RK3568 can do 2 channels RX and TX in I2S mode, but only 2 channels
-either RX or TX in PCM mode, but I'm unsure of the language in the
-(still not public) documentation I have.
-
-Regards,
-Nicolas Frattaroli
-
-
+-Doug
