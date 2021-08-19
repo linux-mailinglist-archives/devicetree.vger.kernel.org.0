@@ -2,101 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E5353F1DB1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0389D3F1DB6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 18:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbhHSQWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 12:22:24 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:44506
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229491AbhHSQWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 12:22:23 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 79BC73F328
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 16:21:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629390106;
-        bh=+cZtuR9o2k87pvi0rgBoRi8/bFI7YeJU/qox3v5ZI5U=;
-        h=Subject:To:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=pcRb9JvReJSBc1KYUMrzYYjLBZ0qErR5GBZ/AeJYEQl68pbJ9hTL358hC0QTr5hLm
-         Xs4RbJIEckpzQwqL5OAliLhSfh2rZELGniA7N9R8YBz+8aaBpvl2jZIouAaKsja7T6
-         7gvT20t24i+T5+ivh93fBXHOXCP3FgJ+M55WJ4mFRjOIrGN33qNAr4Qj4udSD5NlwL
-         6YjnlPynMzLo4JDQGNT6QokYwlVjqDcbLPIbRIKvGF0+QksvhBvwEotx4ttxENPnUt
-         7vpb4e3zdyvx1I/PJ/LPBJ9l++TJWC5MfIs7ovl4wdKS5RZMSsB3dCtPzn9AM80hxl
-         jp/8uGyufjYKw==
-Received: by mail-ed1-f71.google.com with SMTP id di3-20020a056402318300b003bebf0828a2so3105443edb.8
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 09:21:46 -0700 (PDT)
+        id S229529AbhHSQXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 12:23:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229491AbhHSQXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 12:23:18 -0400
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 650FEC061575;
+        Thu, 19 Aug 2021 09:22:42 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id b5so4379400vsq.2;
+        Thu, 19 Aug 2021 09:22:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=nfMN3wENLabmsAjzpMDkfRlM5/KIH+Ze8LdVXKhpMjE=;
+        b=aWAMSkUCU45Ry0LxAltLG7tG9MJFn8koyyZzVuZXXSjYJkPMcfakvHBn/mUCyEZP+k
+         QsrEwgd19IwypR0ceZTD+GrhPtP3csaocWh2Zxj1itu4kM/XIcWKwysUJKrYdAmxy2GR
+         2po8dn4EldWJDOY8auFunk+o7Yr4o7vlX8BpIwVx7c+I6SDiRdNFZnOL2aIfcJ4DqYtK
+         u//mznLZUg11Cjv3aUM/CgGaqtc6gv9oPL2GrFE5LRFWOpD0b97Vsxw7osngUAQmmYnj
+         Cc/w6P+fzvbfTsq8Pf0MD3pn3y57qTEVCbLQ5VxcSP8/dfja3H4RwN699AenGDo1LfV/
+         XLsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+cZtuR9o2k87pvi0rgBoRi8/bFI7YeJU/qox3v5ZI5U=;
-        b=QM8cQMVRv48nH0Xd2L8nZYGjFuaIg9eYGGCmILs2hkOH0Pxx6D0q/F3EF40V/AZj72
-         S3d6oecDjjukQ4IMQwu6Cj7bFf2AoDWQeWUJGFPBlycS7LebUyU9X755Tzu92IEGh+cu
-         lSZX1yqA3lKo92XR5vBWHfItUfLuWmabsttaN2qmYJKiR+amTYgA0xsfn/RoRMFS5kHk
-         gNImiUViWQ2UwUq+uRuH80en8rsdzJGiexXzY6ieVsVlYDH1u/aG4+kMt1Amo1Y3AgBZ
-         5aL+raItCcfAp9z79yvMaEns7SIVRIN5UcstjvHJz6U1JHxCuz1XJRoXBICvCrJgeFsS
-         HCwg==
-X-Gm-Message-State: AOAM531GbHzIAcKrZemZLcCqc4uJi91UTaEQdCWorM2JgNvWaHCe8yge
-        oyjFMW7PEqRUM9foQXvAtQQNvTYk4GkFp64s1o+LJwgYisG+rKHyJuVVXWBWXjeatWNx/Yl7fDt
-        RlS9pfJN9TVjCLui9RqANiwrpLyPsPuTNAyIB3FI=
-X-Received: by 2002:a17:906:87c2:: with SMTP id zb2mr16503216ejb.322.1629390106277;
-        Thu, 19 Aug 2021 09:21:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxuaQqSj/y3QMWrvKAdgV8r7CJmiTSZ6zuwkSNkqhhy0AKGNuqM3cQONHkLBZcKm5Sw3vridg==
-X-Received: by 2002:a17:906:87c2:: with SMTP id zb2mr16503202ejb.322.1629390106161;
-        Thu, 19 Aug 2021 09:21:46 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id j11sm1478832ejy.112.2021.08.19.09.21.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Aug 2021 09:21:45 -0700 (PDT)
-Subject: Re: [PATCH 3/6] riscv: microchip: mpfs: drop duplicated nodes
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Atish Patra <atish.patra@wdc.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-References: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com>
- <20210819154436.117798-3-krzysztof.kozlowski@canonical.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <4d0d6290-8341-56d8-7902-5a8c36bc7bb5@canonical.com>
-Date:   Thu, 19 Aug 2021 18:21:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=nfMN3wENLabmsAjzpMDkfRlM5/KIH+Ze8LdVXKhpMjE=;
+        b=ijMqCu8lz1+PQI//YMs0yNFTlFObey8zkWJKX7TNEaMK99sEwtTUYwd9Trgz8RIot7
+         IHB+ukU9G4yDJl8nkSuNFruxzRY+NT+O1WRomDvEFvUwCy5iXSPj8VYGmOlaiQ/xz5Ga
+         yNI0ReKQQODtnTsyvNh3bxG6knpRdUgPiXX6OrS7vETd0h3CrDdyVIZ8eoVNOZOrRPY0
+         8APRsMARBf9qObVk+yGycrsW/AimnRIUBFsWh4vh7HY7H4uFwTl4CeuZzsXfJ0Ny4VrY
+         3o0eQESp0+piWbLwft8yA5F9k4osUlCa2Y9CRQe63nnhe1xGi2JMFfGGryg0V1BGRco+
+         Ptgw==
+X-Gm-Message-State: AOAM531w+ai3i8tpyy7uOTI6cfyLrPJhAc6Ad37cl7HXwf5GbcLuff9S
+        oeCAvOK2k3QVb0As1KD2kFyZ+5q8/ZcE5ZQOKOM=
+X-Google-Smtp-Source: ABdhPJwnkU+jQid1LWjPJTT7+M4mJmbVZZnEj10Ot++gI1N1NGw4DSpxpAcvvFsx6cjOdWMxunIeaJ9B9T5poQUkhqw=
+X-Received: by 2002:a67:fa84:: with SMTP id f4mr13114172vsq.59.1629390161584;
+ Thu, 19 Aug 2021 09:22:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210819154436.117798-3-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210801160921.233081-1-romain.perier@gmail.com>
+ <20210801160921.233081-4-romain.perier@gmail.com> <CAFr9PXmqiu=toGf9DjoH8XMbPaiXaWLV=GsmR7OCkkqix5tRvw@mail.gmail.com>
+In-Reply-To: <CAFr9PXmqiu=toGf9DjoH8XMbPaiXaWLV=GsmR7OCkkqix5tRvw@mail.gmail.com>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Thu, 19 Aug 2021 18:22:29 +0200
+Message-ID: <CABgxDoL0sQH4MRBA-1hJtXkNaphnKu7fbW9C++vEQSX4F6Q1yQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] ARM: dts: mstar: Add rtc device node
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2021 17:44, Krzysztof Kozlowski wrote:
-> The DTSI file defines soc node and address/size cells, so there is no
-> point in duplicating it in DTS file.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts | 5 -----
->  1 file changed, 5 deletions(-)
-> 
+Hi,
 
-Now I wonder whether the subject prefix should be "riscv: dts:
-microchip:" instead?
+As I need to send a v3, I can fix it, no worries.
 
+Cheers,
+Romain
 
-Best regards,
-Krzysztof
+Le lun. 2 ao=C3=BBt 2021 =C3=A0 12:40, Daniel Palmer <daniel@0x0f.com> a =
+=C3=A9crit :
+>
+> Hi Romain,
+>
+> On Mon, 2 Aug 2021 at 01:09, Romain Perier <romain.perier@gmail.com> wrot=
+e:
+> > +++ b/arch/arm/boot/dts/mstar-v7.dtsi
+> > @@ -116,6 +116,13 @@ watchdog@6000 {
+> >                                 clocks =3D <&xtal_div2>;
+> >                         };
+> >
+> > +                       rtc@2400 {
+>
+> I think the rtc should be before the watchdog as the address is lower.
+> I think maybe this got flipped around during cherry-picking.
+> I can flip it around when I pull this into an mstar dts for 5.15
+> branch so you don't need to fix it and send a v3 assuming everything
+> else is ok.
+>
+> Thanks,
+>
+> Daniel
