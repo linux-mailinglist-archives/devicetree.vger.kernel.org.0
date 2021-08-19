@@ -2,125 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47C1B3F1C64
-	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 17:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 166A93F1CA8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Aug 2021 17:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235893AbhHSPPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 11:15:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54364 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232821AbhHSPPA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Aug 2021 11:15:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 72327610F9;
-        Thu, 19 Aug 2021 15:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629386064;
-        bh=6RbiCLR/J3ApdDbLsZpuHB3TvFLX+SWaJ1+NjJtMJY8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AHyPiVBoomZwv4Xo5tk1EFmp1N/E2HBfNMARLkELCOYJ9dI/EEsPG4CveHebEmUmv
-         zvGhAgXRHaBBmkfo8a1vMdTSuAvstN00YmTIeiWZJ0qgZLWyn1dJ2mBNLq88xZLYaI
-         2616jUShd6FjuLGxuGAcmuiZWR3OtByJ82LOxqWjacg+E2fC1xTUzKuxpkzqifCPP2
-         S36iBh6O2H5PpME3yMtr9quGFHjxB/MYPxCAu1zGZo77fOso8S9lUmkgOGyhloQsge
-         LhkW3QGVkkVQGqdxg2GNLtsvgof3RZ9kAf887waxUrG6aZrISLmIIHyERyuCsMM2oX
-         C5ls+WQ3ef9nQ==
-Received: by mail-ej1-f43.google.com with SMTP id b15so13595645ejg.10;
-        Thu, 19 Aug 2021 08:14:24 -0700 (PDT)
-X-Gm-Message-State: AOAM5337aFc/fHJwwT+Zz3oSbx42eHNTcxNM2HSzbBKtqr2KsEOj+Tr2
-        IhQ9H7/1pBVaVWUOzmYtWOQiWTz5YeT8KLRuFg==
-X-Google-Smtp-Source: ABdhPJxNW1csyeYOicQ3nM6PcDuxFbu6S4tmvu4KMqvNMAFuMYOi/tLANBBPh57govVIbwsYHsNcG7N9//UyPl43KyQ=
-X-Received: by 2002:a17:906:f43:: with SMTP id h3mr16507585ejj.267.1629386062976;
- Thu, 19 Aug 2021 08:14:22 -0700 (PDT)
+        id S239249AbhHSP0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 11:26:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240040AbhHSP0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 11:26:51 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA0AC061575
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 08:26:15 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id d4so13745149lfk.9
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 08:26:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4BM8uArLWhZqMYBIRXZKs9FqZATS036SpIz7gyst2BE=;
+        b=HMFD2eR8yH4bPOiVarnaKqmXbrjcPAKhFCIeg9lAi/BA+OnNMV+OCOLFWBp+nRwf3i
+         rRMNIDmGb3TTFGdHT/LfvbjZTIVxGcde4pjkKk3Se7DrmdnzZgtDz71pR9PgSALimVQ9
+         +h5d9meXe9OLT37ka5C2ds31kmFXuJeu63CiS/6ZyuYkaUGTQr56tXJsLq44H7VijVu4
+         /suEBV/RlC5LQvjdhY0KgAUUT2n2O70kzaWgFa/0ljCAPJxvMatweBOWjDKsqgejtKCL
+         36glflBiTr2Xq0anDnESHsMFhRhzB25nAKUgQ2WiPlp+l5+lkNfXk03I34P4fl6N5RPK
+         ht5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4BM8uArLWhZqMYBIRXZKs9FqZATS036SpIz7gyst2BE=;
+        b=SaxpJhs8wA7VzJ4sX0tO1GDO/z0SIMVe1ccWQYQwgMHhcdD87GmmTeE2KXe0I+6Ft4
+         EQoCzOCwYosEl+PQIjCakqjNR0QXvAGJGugEx5fopUe085U3v0B2PcuRAr9Qu3xCMnAS
+         nqkhO45uE4j9EoEMKCLyYZHOxXpw5emKp/o0dDbFNuude5wbeaA3qY9k+e+TAqFhjXm6
+         DcL6dsEE9G42fy3C0f3XkiI0eP4ZTaPa0ZSesh6lA+8jyruXF1GP5ujl8lwSrkxtwCuw
+         MfhNegNkSySklfiT/YHbvyL3w+quBZ7UtikyrtNrxbMn35ehC1Wu2RBnyYG6Cq7sUlbj
+         OTaw==
+X-Gm-Message-State: AOAM532D70MO6hE63dy9VZIkJVe09brLVOVNh70Z/wIt7UEsshfzwTMZ
+        OLvGpCkSSuurUR9oXukkYaSkTOkm3HXMJQ==
+X-Google-Smtp-Source: ABdhPJwVxMX/+D618HzOzR6JILVKEFjjF1UnrI9w/hJFxAKGpfWDf+OvNt1rQ2wu7TxJoHqjeYD52Q==
+X-Received: by 2002:a05:6512:456:: with SMTP id y22mr10863044lfk.647.1629386773371;
+        Thu, 19 Aug 2021 08:26:13 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id j15sm304819ljq.108.2021.08.19.08.26.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 08:26:12 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: mfd: add Broadcom's MISC block
+Date:   Thu, 19 Aug 2021 17:25:52 +0200
+Message-Id: <20210819152552.23784-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210819022327.13040-1-jason-jh.lin@mediatek.com> <20210819022327.13040-9-jason-jh.lin@mediatek.com>
-In-Reply-To: <20210819022327.13040-9-jason-jh.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 19 Aug 2021 23:14:11 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9_YwZH4dLyVXmW7irQ8WJaKFzT+72Pgczu1X3u4jvnbg@mail.gmail.com>
-Message-ID: <CAAOTY_9_YwZH4dLyVXmW7irQ8WJaKFzT+72Pgczu1X3u4jvnbg@mail.gmail.com>
-Subject: Re: [PATCH v8 08/13] drm/mediatek: remove unused define in mtk_drm_ddp_comp.c
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>, fshao@chromium.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=881=
-9=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8810:23=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Remove the unsed define in mtk_drm_ddp_comp.c
+Broadcom's MISC is an MFD hardware block used on some of their SoCs like
+bcm63xx and bcm4908. At this point only PCIe reset is fully understood
+and documented. More functions may be added later.
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+Broadcom's BCM4908 struct with MISC block registers:
 
->
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 10 ----------
->  1 file changed, 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.c
-> index 75bc00e17fc4..aaa7450b3e2b 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -21,8 +21,6 @@
->  #include "mtk_drm_crtc.h"
->
->  #define DISP_OD_EN                             0x0000
-> -#define DISP_OD_INTEN                          0x0008
-> -#define DISP_OD_INTSTA                         0x000c
->  #define DISP_OD_CFG                            0x0020
->  #define DISP_OD_SIZE                           0x0030
->  #define DISP_DITHER_5                          0x0114
-> @@ -42,8 +40,6 @@
->  #define DITHER_ENGINE_EN                       BIT(1)
->  #define DISP_DITHER_SIZE                       0x0030
->
-> -#define LUT_10BIT_MASK                         0x03ff
-> -
->  #define OD_RELAYMODE                           BIT(0)
->
->  #define UFO_BYPASS                             BIT(2)
-> @@ -52,18 +48,12 @@
->
->  #define DISP_DITHERING                         BIT(2)
->  #define DITHER_LSB_ERR_SHIFT_R(x)              (((x) & 0x7) << 28)
-> -#define DITHER_OVFLW_BIT_R(x)                  (((x) & 0x7) << 24)
->  #define DITHER_ADD_LSHIFT_R(x)                 (((x) & 0x7) << 20)
-> -#define DITHER_ADD_RSHIFT_R(x)                 (((x) & 0x7) << 16)
->  #define DITHER_NEW_BIT_MODE                    BIT(0)
->  #define DITHER_LSB_ERR_SHIFT_B(x)              (((x) & 0x7) << 28)
-> -#define DITHER_OVFLW_BIT_B(x)                  (((x) & 0x7) << 24)
->  #define DITHER_ADD_LSHIFT_B(x)                 (((x) & 0x7) << 20)
-> -#define DITHER_ADD_RSHIFT_B(x)                 (((x) & 0x7) << 16)
->  #define DITHER_LSB_ERR_SHIFT_G(x)              (((x) & 0x7) << 12)
-> -#define DITHER_OVFLW_BIT_G(x)                  (((x) & 0x7) << 8)
->  #define DITHER_ADD_LSHIFT_G(x)                 (((x) & 0x7) << 4)
-> -#define DITHER_ADD_RSHIFT_G(x)                 (((x) & 0x7) << 0)
->
->  struct mtk_ddp_comp_dev {
->         struct clk *clk;
-> --
-> 2.18.0
->
+typedef struct Misc {
+   uint32 miscStrapBus; /* 0x00 */
+   uint32 miscStrapOverride;     /* 0x04 */
+   uint32 miscSoftwareDebug[6];  /* 0x08 */
+   uint32 miscWDResetCtrl;       /* 0x20 */
+   uint32 miscSoftwareDebugNW[2];/* 0x24 */
+   uint32 miscSoftResetB;        /* 0x2c */
+   uint32 miscQAMPllStatus;      /* 0x30 */
+   uint32 miscRsvd1;             /* 0x34 */
+   uint32 miscSpiMasterCtrl;     /* 0x38 */
+   uint32 miscAltBootVector;     /* 0x3c */
+   uint32 miscPeriphCtrl;        /* 0x40 */
+   uint32 miscPCIECtrl;          /* 0x44 */
+   uint32 miscAdsl_clock_sample; /* 0x48 */
+   uint32 miscRngCtrl;           /* 0x4c */
+   uint32 miscMbox_data[4];      /* 0x50 */
+   uint32 miscMbox_ctrl;         /* 0x60 */
+   uint32 miscxMIIPadCtrl[4];    /* 0x64 */
+   uint32 miscxMIIPullCtrl[4];    /* 0x74 */
+   uint32 miscWDResetEn;          /* 0x84 */
+   uint32 miscBootOverlayEn;      /* 0x88 */
+   uint32 miscSGMIIFiberDetect;   /* 0x8c */
+   uint32 miscUniMacCtrl;         /* 0x90 */
+   uint32 miscMaskUBUSErr;        /* 0x94 */
+   uint32 miscTOSsync;            /* 0x98 */
+   uint32 miscPM0_1_status;       /* 0x9c */
+   uint32 miscPM2_3_status;       /* 0xa0 */
+   uint32 miscSGB_status;         /* 0xa4 */
+   uint32 miscPM0_1_config;       /* 0xa8 */
+   uint32 miscPM2_3_config;       /* 0xac */
+   uint32 miscSGB_config;         /* 0xb0 */
+   uint32 miscPM0_1_tmon_config;  /* 0xb4 */
+   uint32 miscPM2_3_tmon_config;  /* 0xb8 */
+   uint32 miscSGB_tmon_config;    /* 0xbc */
+   uint32 miscMDIOmasterSelect;   /* 0xc0 */
+   uint32 miscUSIMCtrl;           /* 0xc4 */
+   uint32 miscUSIMPadCtrl;        /* 0xc8 */
+   uint32 miscPerSpareReg[3];     /* 0xcc - 0xd4 */
+   uint32 miscDgSensePadCtrl;     /* 0xd8 */
+   uint32 miscPeriphMiscCtrl;     /* 0xdc */
+   uint32 miscPeriphMiscStat;     /* 0xe0 */
+} Misc;
+---
+ .../devicetree/bindings/mfd/brcm,misc.yaml    | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/brcm,misc.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/brcm,misc.yaml b/Documentation/devicetree/bindings/mfd/brcm,misc.yaml
+new file mode 100644
+index 000000000000..cff7d772a7db
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/brcm,misc.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/brcm,misc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom's MISC block
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++description: |
++  Broadcom's MISC is a hardware block used on some SoCs (e.g. bcm63xx and
++  bcm4908). It's used to implement some simple functions like a watchdog, PCIe
++  reset, UniMAC control and more.
++
++properties:
++  compatible:
++    items:
++      - const: brcm,misc
++      - const: simple-mfd
++
++  reg:
++    description: MISC block registers
++
++  ranges: true
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++patternProperties:
++  '^reset-controller@[a-f0-9]+$':
++    $ref: ../reset/brcm,bcm4908-misc-pcie-reset.yaml
++
++additionalProperties: false
++
++required:
++  - reg
++  - '#address-cells'
++  - '#size-cells'
++
++examples:
++  - |
++    misc@ff802600 {
++        compatible = "brcm,misc", "simple-mfd";
++        reg = <0xff802600 0xe4>;
++
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges = <0x0 0x0 0xe4>;
++
++        reset-controller@44 {
++            compatible = "brcm,bcm4908-misc-pcie-reset";
++            reg = <0x44 0x4>;
++            #reset-cells = <1>;
++        };
++    };
+-- 
+2.26.2
+
