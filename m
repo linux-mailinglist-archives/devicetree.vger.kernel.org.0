@@ -2,191 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF8B3F2E95
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F663F2EAA
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238570AbhHTPI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 11:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240830AbhHTPIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 11:08:55 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59661C061756
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:08:17 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id cq23so14416568edb.12
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=KreEdl1ZV3JGsamvUXfmpDwGTb957yImRW3iLOmZShY=;
-        b=iszij/dRpbCYWWJyDAgx5YIAP5gI6zxa/COCIkfGrGWjx/42gJkoK/SPQMWqxq1kia
-         OTkJNzToAwSpSf2LpCpWxArRWltmfrT3LMl0S+ExJ2acsknh/fGL/CcMgmYgOsblF7t1
-         orA1llJ3to+nscxqrk7BBiduvJR3NKzAOEhiqt7k4ehFbh5ORiMRHS0/1rZqB9D8nbOI
-         l0nK1xJh8iyJi3pbybCd3wFZqpeq1GFgDxW63a2DncsntJfDG6J7ugcfeBWd1zK3zl4j
-         QWl9RkvZkn3R9O9CTAFdU8KB/xHxkLfeVz+t9knMYQ42bd0FafZZmE/sflcdo2rYEXGQ
-         kZRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=KreEdl1ZV3JGsamvUXfmpDwGTb957yImRW3iLOmZShY=;
-        b=nx7DjpiIHy5T7OGO0jsWU4abZfYpCSV11RVKOOvf97JGnGdqgAi5YNSnTR75rbfHup
-         76vTeQxffMA0zGicnrEPZMCingPNmUEaqQpWWJ1VFbe2DR0/dG+M2zGh/6bLDWZ78I53
-         9j1sKHAPG/TZ+a12tTAEWb2dnxiMBXf7HwkrkUkMsvNOshcvihNN5Hr5115tz+YPiaM2
-         SMVeI7yVK5pYtfGbQeSdXzGim/WiuAdUUTGYGZhr8gIm17TXb0CCLsUVZbMOdlHwfBhu
-         P9fIYel4clrosYGVVm3XNOOb/NQylMUzUDBTw/Y+Vk8vKRA+oi4qSw6Gd9zD8SfC2ws5
-         P4RQ==
-X-Gm-Message-State: AOAM5310neKdRv2i1evtfly8UyI3CiZz2J9VjNf0LkEyn07CdaEz0dyD
-        Q8z4wgcqIkFS03REBhkFqdY=
-X-Google-Smtp-Source: ABdhPJzqL1/CLcL3fwkKW7ZpPFL18ypYqncPP4BflvE5b5CxSVHmHJcJPsswnwBV4fsxJpNnRzI9xQ==
-X-Received: by 2002:aa7:db82:: with SMTP id u2mr23436183edt.299.1629472095878;
-        Fri, 20 Aug 2021 08:08:15 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id v13sm3003445ejx.24.2021.08.20.08.08.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Aug 2021 08:08:15 -0700 (PDT)
-Subject: Re: [PATCH v3 3/4] arm64: dts: rockchip: Add GPU node for rk3568
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20210805025948.10900-1-ezequiel@collabora.com>
- <20210805025948.10900-4-ezequiel@collabora.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <8574d096-94a7-296d-f9e8-a2e67ed80e2f@gmail.com>
-Date:   Fri, 20 Aug 2021 17:08:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S240974AbhHTPQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 11:16:51 -0400
+Received: from de-smtp-delivery-102.mimecast.com ([194.104.109.102]:20296 "EHLO
+        de-smtp-delivery-102.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240830AbhHTPQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 11:16:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=mimecast20200619;
+        t=1629472572;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=klp+6b8zvhTMY6DL3XHrPsuOrmt80/fuCsVxEmvC4dc=;
+        b=HG2BL5Pv+J+k2MCdxL1zAxeCrMsOwXY0XgrkbYj16oZpSq2wvFf86+kZjcuuDPQCgK9Uek
+        PzeT0o1kYAGn9ix5SPgkDZuDo0FabPyVo7EXxIrmaHMMV/CIYFyHqQkkBiK62OGnWSLG3+
+        K6W+41V5JA/ZD0TJ/zdWAXvy3l6/yYQ=
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com
+ (mail-vi1eur05lp2168.outbound.protection.outlook.com [104.47.17.168])
+ (Using TLS) by relay.mimecast.com with ESMTP id
+ de-mta-29-lVrR_MbcOru9p3goYepU_g-1; Fri, 20 Aug 2021 17:16:10 +0200
+X-MC-Unique: lVrR_MbcOru9p3goYepU_g-1
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fVWVaN/z35l80JMfj8EABijQnRZVMEQpgTDUrd8YPEQy32UljZdO5ATbin5aSTLvfntuOobujYObWIqVh7AvY5khXtlWAqI+hACqBx8T+BppjuTxBI71UmDkJo8KaTdMzJmn21rFmzAC3afbYkEuuJIMjPHwZgn1UwtW3XVr0y5+yB9cy6jUd1AYN/vlTpWQPeJ95CwGt2K1BnzkAqUPJb+vOmLFLNKC6MU+zoo5Bm48mukhjeKHOeN2OdJU8Zsw2vF4SsCvYrsLni9JZR1SzJF46g8d8Kfhn08WMEBVfwwwXQBKkU4SlNYM7ZTXeVV3LaVrwdk9uyVKld33gnQDcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u7RZ5YLSc7IwfRJf+8vFufugwpWAPmLIx++tFNe3+Jc=;
+ b=HdTSGGjtg2PtQRzkmUD1sbX6K6hMXOq9ll1kfu4UDkugU/eCaW3YfOSzfsTcQKDCWHYYtlghtAH71+n3/EHYjLlm2vwfeflnBBnP5SRCEQe7iUDFYLdtWWkNTRE/Jf73Y4CcCyXYxekIe6jK642X3biPIZ+1qi2TQ9O1xk48HEzDU/GRLRJdHTPxc23ZrXtcmXm/llz4T6siXHrPmtpun4ebrYkFMjteBxL7b8S6wx0KfT/ZPeup4G9uekgXKYwSNku+bmX2beLSRbobpKsSjlQVcN53/YliAbxMd2bUcae2gXjPFxX09yPcCwzPSDazRqbukTGYiOQbXQhrKIFq8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by VI1PR04MB4094.eurprd04.prod.outlook.com (2603:10a6:803:43::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.17; Fri, 20 Aug
+ 2021 15:16:09 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::504b:de61:1358:c344]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::504b:de61:1358:c344%4]) with mapi id 15.20.4436.019; Fri, 20 Aug 2021
+ 15:16:09 +0000
+Date:   Fri, 20 Aug 2021 23:15:49 +0800
+From:   Chester Lin <clin@suse.com>
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>, s32@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
+        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
+        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
+Subject: Re: [PATCH 4/8] arm64: dts: add NXP S32G2 support
+Message-ID: <YR/HJQDGJ1C+ku6O@linux-8mug>
+References: <20210805065429.27485-1-clin@suse.com>
+ <20210805065429.27485-5-clin@suse.com>
+ <d09ed0fd-83e7-a6aa-0bd6-f679ffb64eaf@suse.de>
+ <87o89sqmz6.wl-maz@kernel.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87o89sqmz6.wl-maz@kernel.org>
+X-ClientProxiedBy: HK2PR03CA0066.apcprd03.prod.outlook.com
+ (2603:1096:202:17::36) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
 MIME-Version: 1.0
-In-Reply-To: <20210805025948.10900-4-ezequiel@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from linux-8mug (118.160.215.224) by HK2PR03CA0066.apcprd03.prod.outlook.com (2603:1096:202:17::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.6 via Frontend Transport; Fri, 20 Aug 2021 15:15:59 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f0ae009a-d712-4d4a-3129-08d963ed6ffe
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4094:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB4094F4094F657B7E3F0AFCA3ADC19@VI1PR04MB4094.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EUJLr0uF7ZYSoMEwxQyaN2yqSpdDLMp2DRA2ztTGIVM7JWMl2vCdRvZhJXxCqh3at76OxtM64Mn/WOoYFCB+7gxqWx0BZ4w3oVyODF4lKN3nzSoegqlu8Fwt+e4BwqahcGxf4kFRNBmADhk4C1ET8kNeYDuG/IeuPTzu2LNZyuYRPeo6RF66oiQzO2Wrrpg/wQRXdQsidNo12KaISSWnWK6zy+78QB6nUhjYUVoSoe3lj4Ofx6tQaNZ7dipxHyLmJtolS41dotW2lt9/qmtqRvaXPYqgXBphTpojQA1ypAPLF41B8O6cGFM54XwA/RLMglkqYYkmUu87CHkfGWzF3ksaZ+8241mS71WKpa00zJcdu1C0mfs8BwliSbNSgSAs9xMyOMgR+wKyIG0PuA1Eo6i4X4eMB5vNU2vONPOMrWIR58xBxxcVSvnZCRf2lgFgeM5EaBCjTbsHc+9fBft7i3R1kfw8apv9d3pMQiTzo5/vmmsSGsIfIK+sqQKy4TsjaYfK3gneHzrYw0IlosVQaKzewBg4QLA89Czs6d0fReihkZPeIP8EEujUwUJYCCAoO5LVAgoV9ZpF+o1+7mq86aaL3zB6MHvCOcr9Yw51ejVpK9DceovO0xajISOeG2qzrRjajV5CT1Nfco8gXMbHNQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(346002)(136003)(39860400002)(376002)(38100700002)(26005)(86362001)(54906003)(66574015)(956004)(107886003)(6666004)(4326008)(55016002)(2906002)(9686003)(6496006)(5660300002)(55236004)(316002)(478600001)(33716001)(83380400001)(66476007)(66556008)(66946007)(8936002)(186003)(8676002)(6916009)(53546011)(7416002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?a1Ojzq6wiA1MGDJFEFl0Np4yoMqbmDVxadiEa52K6us4VnorNABc0jE/pWUf?=
+ =?us-ascii?Q?Jxyg9RmVxwhMn7VOAUml7gPXII/F08lvSzxL1eD5AVURgsbs7ZKZlOdUmoRH?=
+ =?us-ascii?Q?5nS0IZDTIOxkz+gUckljwLZvg2ajWSb2nniHNyOsqsZ/IRHvmKzpE7L88fMd?=
+ =?us-ascii?Q?Qkj9qHXuspC25fQO7od/ylVFHVWEAutgQqdRBomxfhhVQPz+GtX79ml+YbSP?=
+ =?us-ascii?Q?PFP93kZj/UQUD0vZ/I+7rGocBrV3MQ/2a8jJ3Ucc5GPvqkicj0baYHNRazCO?=
+ =?us-ascii?Q?nKoz2W1thp1/whYzVD1WzL4UxqA13t0iUXcie2E1hRB3l4mfpoNkUbrCkPk6?=
+ =?us-ascii?Q?rPikMKbcKf/tbsSRE0+OgJKwdA7R0NoeCJ6PMmqBJj5J4fxJYJ/AyjHdQ7wE?=
+ =?us-ascii?Q?OMeGb6ffIv3UFgAjK3ZJGNpDvey3XnzsuGPDmCAxcOMs+vZyqGBwRpr9kj/n?=
+ =?us-ascii?Q?v77BF7CQbo2BSBc3m09kHhLYL+UijkccBzb3Ti6WDIPYrt6y5b4Ml3gCgXQ9?=
+ =?us-ascii?Q?rcclDVaRzimwt5c0uJ+W3tj0sEZwyZdVYkIAZ4AJvSM4NxStkSHB5gNr5ANc?=
+ =?us-ascii?Q?Gv1DyvvcZ7V0jWhhJUwjhVm+3ua4rl70rRggEfwxs/F9poFd8+aX/XYe4m5O?=
+ =?us-ascii?Q?83P0V8WTEabr/51CdDyztY98PHNHwbiGlpdbFzJcz42E4Au89w8/h70QurdX?=
+ =?us-ascii?Q?teqcPSBsjwPuT0ARfdSmQC8OVINquW74TbdJLy+rVVf9tZ8vgUxWvGqaTmrx?=
+ =?us-ascii?Q?S/XFI0NwUbpFpzAaktxDI1JyQdMUQDLGR8nWYxSxp+FojFfVIIyYP2u86/8a?=
+ =?us-ascii?Q?H0043s1S+rsRXw3mVRdOkUQwBSo5ybEI5C6jyV3bZiRLsAx0u/+ojAjjhPJP?=
+ =?us-ascii?Q?AVmVns7aFRmpPAEEU3ywAmZvAS6HtuCwgb0J3h6lxP6xNPoh3VkUQktPanry?=
+ =?us-ascii?Q?hLZwpiLv4adSNuiHAw2YFKaGJZ7a2Erj+wuU+nfCl46AzGHToPle4s+1mCaj?=
+ =?us-ascii?Q?GjDaOT2raC2XdsqL3r3nAwAQBrwhuBmPkuGKPa1uX89rtQZrWIxE/HiihA+z?=
+ =?us-ascii?Q?zH0hetsZqfHd39fMZzWiHTl/wOCS7r+/c/RrdOQdYL75Xw3xPPYDKPMFISps?=
+ =?us-ascii?Q?3Hv6os5bvPO98LMdbduU3VaYxALq2/Ly4he9gz0gtDz4sPEdrq4pKVw2FXd8?=
+ =?us-ascii?Q?qFUp3h5uvz4XB9arjNSE0u62wv3E+9tV77U22a2coTq3fBu1nKHRsJ3NY9ZR?=
+ =?us-ascii?Q?bquzynoQ8aMZyzzcNjdSGZKzKvRQWWeFBnmNWLsXwaRMkI+N10dgXBi12qKM?=
+ =?us-ascii?Q?u1MqRPKkfbtaHx/ZX5XFllvo?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0ae009a-d712-4d4a-3129-08d963ed6ffe
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2021 15:16:09.0432
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rR6igNikNTwAb7MUnoO9zYCjN/aImMvRUup/zP3Ynw+Lz5OalLBfxZRWjKjiFynW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4094
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ezequiel,
+On Fri, Aug 20, 2021 at 02:12:13PM +0100, Marc Zyngier wrote:
+> On Thu, 12 Aug 2021 18:26:28 +0100,
+> Andreas F=E4rber <afaerber@suse.de> wrote:
+> >=20
+> > Hi Chester et al.,
+> >=20
+> > On 05.08.21 08:54, Chester Lin wrote:
+> > > Add an initial dtsi file for generic SoC features of NXP S32G2.
+> > >=20
+> > > Signed-off-by: Chester Lin <clin@suse.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/s32g2.dtsi | 98 ++++++++++++++++++++++=
+++
+> > >  1 file changed, 98 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/bo=
+ot/dts/freescale/s32g2.dtsi
+> > > new file mode 100644
+> > > index 000000000000..3321819c1a2d
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+>=20
+> [...]
+>=20
+> > > +		gic: interrupt-controller@50800000 {
+> > > +			compatible =3D "arm,gic-v3";
+> > > +			#interrupt-cells =3D <3>;
+> > > +			interrupt-controller;
+> > > +			reg =3D <0 0x50800000 0 0x10000>,
+> > > +			      <0 0x50880000 0 0x200000>,
+>=20
+> That's enough redistributor space for 16 CPUs. However, you only
+> describe 4. Either the number of CPUs is wrong, the size is wrong, or
+> the GIC has been configured for more cores than the SoC has.
 
-Some more comments. Have a look if it is useful.
+Confirmed the SoC can only find 4 redistributors:
 
-On 8/5/21 4:59 AM, Ezequiel Garcia wrote:
-> Rockchip SoCs RK3566 and RK3568 have a Mali Gondul core
-> which is based on the Bifrost architecture. It has
-> one shader core and two execution engines.
-> 
-> Quoting the datasheet:
-> 
-> Mali-G52 1-Core-2EE
-> * Support 1600Mpix/s fill rate when 800MHz clock frequency
-> * Support 38.4GLOPs when 800MHz clock frequency
-> 
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 50 ++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index bef747fb1fe2..f8173ba63be0 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -121,6 +121,40 @@ opp-1800000000 {
->  		};
->  	};
->  
+localhost:~ # dmesg | grep CPU
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] CPU features: detected: ARM erratum 845719
+[    0.000000] SLUB: HWalign=3D64, Order=3D0-3, MinObjects=3D0, CPUs=3D4, N=
+odes=3D1
+[    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=3D480 to nr_cpu_i=
+ds=3D4.
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x00000000508800=
+00
+[    0.063865] smp: Bringing up secondary CPUs ...
+[    0.068852] Detected VIPT I-cache on CPU1
+[    0.068894] GICv3: CPU1: found redistributor 1 region 0:0x00000000508a00=
+00
+[    0.068963] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.069809] Detected VIPT I-cache on CPU2
+[    0.069851] GICv3: CPU2: found redistributor 100 region 0:0x00000000508c=
+0000
+[    0.069903] CPU2: Booted secondary processor 0x0000000100 [0x410fd034]
+[    0.070698] Detected VIPT I-cache on CPU3
+[    0.070722] GICv3: CPU3: found redistributor 101 region 0:0x00000000508e=
+0000
+[    0.070749] CPU3: Booted secondary processor 0x0000000101 [0x410fd034]
+[    0.070847] smp: Brought up 1 node, 4 CPUs
+<..snip..>
 
-> +	gpu_opp_table: gpu-opp-table {
+I will correct the size to 0x80000, thanks!
 
-	gpu_opp_table: opp-table-1 {
+>=20
+> > > +			      <0 0x50400000 0 0x2000>,
+> > > +			      <0 0x50410000 0 0x2000>,
+> > > +			      <0 0x50420000 0 0x2000>;
+> >=20
+> > Please order reg after compatible by convention, and sort
+> > interrupt-controller or at least #interrupt-cells (applying to
+> > consumers) last, after the below one applying to this device itself.
+> >=20
+> > > +			interrupts =3D <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) |
+> > > +						 IRQ_TYPE_LEVEL_HIGH)>;
+> > > +		};
+> >=20
+> > CC'ing Marc for additional GIC scrutiny, often the sizes are wrong.
+>=20
+> There is more than just sizes. The interrupt specifier for the
+> maintenance interrupt is also wrong.
+>=20
+> 	M.
 
-Excuse for the inconvenience, but rob+dt just made a patch for opp last
-month...
-See opp-v2-base.yaml:
-'^opp-table(-[a-z0-9]+)?$'
+I will remove the wrong interrupt specifier. Thanks!
 
-[PATCH v3 3/3] dt-bindings: opp: Convert to DT schema
-https://lore.kernel.org/lkml/20210720144121.66713-3-robh@kernel.org/
+Chester.
 
-===
-A look in the manufacturer tree we can expect one more opp table in the
-number sequence.
-	npu_opp_table: opp-table-2 {}
-https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>=20
+> --=20
+> Without deviation from the norm, progress is not possible.
+>=20
 
-
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-200000000 {
-> +			opp-hz = /bits/ 64 <200000000>;
-> +			opp-microvolt = <825000>;
-> +		};
-> +
-> +		opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			opp-microvolt = <825000>;
-> +		};
-> +
-> +		opp-400000000 {
-> +			opp-hz = /bits/ 64 <400000000>;
-> +			opp-microvolt = <825000>;
-> +		};
-> +
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <825000>;
-> +		};
-> +
-> +		opp-700000000 {
-> +			opp-hz = /bits/ 64 <700000000>;
-> +			opp-microvolt = <900000>;
-> +		};
-> +
-> +		opp-800000000 {
-> +			opp-hz = /bits/ 64 <800000000>;
-> +			opp-microvolt = <1000000>;
-> +		};
-> +	};
-> +
->  	firmware {
->  		scmi: scmi {
->  			compatible = "arm,scmi-smc";
-> @@ -332,6 +366,22 @@ power-domain@RK3568_PD_RKVENC {
->  		};
->  	};
->  
-> +	gpu: gpu@fde60000 {
-> +		compatible = "rockchip,rk3568-mali", "arm,mali-bifrost";
-> +		reg = <0x0 0xfde60000 0x0 0x4000>;
-
-> +
-
-Maybe remove this empty line as well?
-
-> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "job", "mmu", "gpu";
-> +		clocks = <&scmi_clk 1>, <&cru CLK_GPU>;
-> +		clock-names = "core", "bus";
-> +		operating-points-v2 = <&gpu_opp_table>;
-
-> +		#cooling-cells = <2>;
-
-Not a big issue, but things with "#" are only needed for dt
-interpretation (not a real property). I try to drop them as far down the
-list when not sort alphabetically or connected to a real property.
-
-> +		power-domains = <&power RK3568_PD_GPU>;
-
-> +		status = "disabled";
-> +	};
-> +
->  	sdmmc2: mmc@fe000000 {
->  		compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
->  		reg = <0x0 0xfe000000 0x0 0x4000>;
-> 
