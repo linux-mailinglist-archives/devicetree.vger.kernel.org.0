@@ -2,146 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D423F2D72
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 15:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050313F2DB4
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 16:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240765AbhHTNyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 09:54:20 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:35736
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240733AbhHTNyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 09:54:20 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S235407AbhHTOKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 10:10:01 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:48134 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240403AbhHTOKB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 10:10:01 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629468563; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=fVCSE7hz6ko9DvjFHxEH90YGtVAG7qCFoGVMBJSP10E=;
+ b=FzS17rHm0+qvhPiq7BPvrd+7XBWGDD/vSZXfdGfLYfeIuXaaNvsguzo7LqL4dafcgB64ubSa
+ 77CjnUaWRItsxCraHDv4BKgSpL7zK8bnmERx0xKdUviQlWEr6uOgrDN97tlgcWc10KYp3P1k
+ zJT+82Hg/5dphpDQ2Pt3pQf7OiM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 611fb7912b9e91b688427463 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 20 Aug 2021 14:09:21
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 78CEBC4361B; Fri, 20 Aug 2021 14:09:21 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3799F4079B
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 13:53:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629467621;
-        bh=L6n8EwvoF0TqxFnTQHNETcblmy409V9jfAs/6ldvq4k=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=FeilRYNz1W5Jqhafz4g+znI3Wce/mZtgWiB5qSiU1qXQjTAPqV/4iZAC+NkC34/Cs
-         s6HCXvkhXMj1qUQi4FWYqCCU+puaYyVjbAO6323gUIjDPodAX7Zt/e6d7Rgs1hjT+y
-         hz/e6bh9m6xsVKrLGhh2secEtD8qZqJ3MsFBuG+/611tYI84PqxC9nwqNas7o+INF1
-         VYdOVgT4VntJN1uYfWiQZBRG07uCo0frxtg7pDh5Xc1WxAUcRBPdxvJmKbOj+ZpAF7
-         njLMHRvQRk0G1Tw/MB2iNi9pmxvCiWzjyi530b6+TmL5Tewc6/bVlPF6pgp9+AJ82P
-         hQL1KCArKSDYg==
-Received: by mail-ed1-f71.google.com with SMTP id t8-20020aa7db08000000b003c0e65039baso240939eds.4
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 06:53:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=L6n8EwvoF0TqxFnTQHNETcblmy409V9jfAs/6ldvq4k=;
-        b=kTHoT4YqguodeI2602bx704H0AgTN33m54FZ1fMJHSK3kltFm7Ryp7M46uDXumLQ0T
-         IXpQrUd1NJ+smuFLuzBPvbYKt6J9KfVJqIhSB5ODW7fGPy3TX+kQn9qwcqlCfChAQypb
-         ocMkicFxcukneSj4AZl4ktZYg0Oc51QwnrfQIJ3NEuXmzwnT9+6z+CKEI9ltzAMj5l5p
-         lSIlKq+vv4d9esCoAHvLZDyF83LH+mpxHhD25b43m6Osnx5i6aMPfqxhSL4h4pPv58ua
-         BfgGTnu8xyGLc1UVQnJc1oal/7tH38v759vofiAkM4jsLZB6351Nimakma0WeUeSIDNx
-         nmZw==
-X-Gm-Message-State: AOAM532daWPa87A6d4I4YnaW4VPkH6YtvLVhLIFuLwp1S0AnnqyYliTi
-        yTys703JROPopv0uOIIGAt+/lQOzvIEldUrNUcrLUeSRb+1TS85w8xx+2s6zsXpEi9Q4PKIm5TP
-        KGTSnPqPcuBrkqW/LRLo6tJWFXskDwfPOXGIOFUA=
-X-Received: by 2002:a17:907:2168:: with SMTP id rl8mr1189850ejb.42.1629467620857;
-        Fri, 20 Aug 2021 06:53:40 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyRnazCb0WSvIZUIOXuiwlWppcOzwDCP8XkmoOFIi4wo1QoT4XNNQeCS37G86Ssi7hlQsUy1w==
-X-Received: by 2002:a17:907:2168:: with SMTP id rl8mr1189834ejb.42.1629467620713;
-        Fri, 20 Aug 2021 06:53:40 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id bm26sm2914357ejb.16.2021.08.20.06.53.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Aug 2021 06:53:40 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: memory: convert Samsung Exynos DMC to
- dtschema
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>
-References: <20210813125414.104467-1-krzysztof.kozlowski@canonical.com>
- <73eebe7b-46da-137b-1938-09a5b453320a@arm.com>
- <0ec05a0b-9499-3bf4-a231-ea53b1cf99ed@canonical.com>
- <CAL_JsqLOHY0P=Y8-Ss0cYr54SWgpV0zktEg8p-Cj_F+juDQNoA@mail.gmail.com>
- <aaa53a2a-c15b-8017-4e44-dd3f883b2378@canonical.com>
- <CAL_Jsq+iG1t=yxsyp2whd_L4p=9udrSvZMiy-y75ppcLYK9acA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <d3cf3485-6996-5cb9-6a8a-9b868f86bbea@canonical.com>
-Date:   Fri, 20 Aug 2021 15:53:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9E786C4338F;
+        Fri, 20 Aug 2021 14:09:20 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+iG1t=yxsyp2whd_L4p=9udrSvZMiy-y75ppcLYK9acA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Fri, 20 Aug 2021 19:39:20 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
+        saiprakash.ranjan@codeaurora.org, swboyd@chromium.org,
+        mka@chromium.org, ohad@wizery.com, agross@kernel.org,
+        mathieu.poirier@linaro.org, robin.murphy@arm.com, joro@8bytes.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        evgreen@chromium.org, dianders@chromium.org
+Subject: Re: [PATCH v3 06/10] arm64: dts: qcom: sc7280: Update reserved memory
+ map
+In-Reply-To: <YR3gAD68xRtNJRhi@matsya>
+References: <1629344185-27368-1-git-send-email-sibis@codeaurora.org>
+ <1629344185-27368-7-git-send-email-sibis@codeaurora.org>
+ <YR3gAD68xRtNJRhi@matsya>
+Message-ID: <39da02506af192de14d346cdf80d0e4c@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2021 15:31, Rob Herring wrote:
-> On Wed, Aug 18, 2021 at 9:43 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> On 18/08/2021 16:31, Rob Herring wrote:
->>> On Mon, Aug 16, 2021 at 3:32 AM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@canonical.com> wrote:
->>>>
->>>> On 16/08/2021 09:53, Lukasz Luba wrote:
->>>>> Hi Krzysztof,
->>>>>
->>>>> On 8/13/21 1:54 PM, Krzysztof Kozlowski wrote:
->>>>>> Convert Samsung Exynos5422 SoC frequency and voltage scaling for
->>>>>> Dynamic Memory Controller to DT schema format using json-schema.
->>>>>>
->>>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>>>>> ---
->>>>>>   .../memory-controllers/exynos5422-dmc.txt     |  84 -----------
->>>>>>   .../samsung,exynos5422-dmc.yaml               | 137 ++++++++++++++++++
->>>>>>   MAINTAINERS                                   |   2 +-
->>>>>
->>>>> I'm not an expert in this DT scripts and why it complains. Maybe it
->>>>> complains because the "samsung,exynos-ppmu" is defined in the .txt
->>>>> file... (?)
->>>>> Although, in general looks OK.
->>>>>
->>>>> Acked-by: Lukasz Luba <lukasz.luba@arm.com>
->>>>
->>>> I think the warning (triggered by DT_CHECKER_FLAGS=-m) can be ignored
->>>> because it complains about compatible in example which is not present in
->>>> the bindings. Usually it means someone wrote example not matching the
->>>> bindings (e.g. a typo in compatible) but here it is on purpose.
->>>
->>> Ultimately, it will mean the binding is undocumented (or a typo). But
->>> right now, it means the binding is undocumented with a schema. It's
->>> off by default because there's still about 80 warnings. It's turned on
->>> for the bot so we don't add more. So please don't ignore it.
->>>
->>
->> By "Ignore" I meant here that it is a false positive, so it can be
->> ignored. The warning is about compatible "samsung,exynos-ppmu" used in
->> the example. However this exynos-ppmu is not part of this bindings and
->> is documented elsewhere:
->> Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
+On 2021-08-19 10:07, Vinod Koul wrote:
+> Hi Sibi,
 > 
-> Yes, I understood all that. Let me be clear. I don't want examples
-> which don't have a schema. So drop the node or convert
-> exynos-ppmu.txt.
+> On 19-08-21, 09:06, Sibi Sankar wrote:
 > 
-> First, when we do add a schema, then we likely have to go fix the
-> examples. It happens a lot and is not caught with folks using
-> DT_SCHEMA_FILES. Second, I don't like reporting errors that users
-> should have gotten by default. We can't turn this check on by default
-> until the 80 or so cases we already have in the binding examples are
-> fixed.
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 5e4f4f3b738a..894106efadfe 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -48,6 +48,16 @@
+>>  		#size-cells = <2>;
+>>  		ranges;
+>> 
+>> +		hyp_mem: memory@80000000 {
+>> +			reg = <0x0 0x80000000 0x0 0x600000>;
+>> +			no-map;
+> 
+> This should conflict with the memory defined in this file:
+> 
+>         memory@80000000 {
+>                 device_type = "memory";
+>                 /* We expect the bootloader to fill in the size */
+>                 reg = <0 0x80000000 0 0>;
+>         };
+> 
+> I think this should be updated?
 
-Understood, I'll send both of these bindings.
+Vinod,
 
+I prefer we leave ^^ node untouched.
+For platforms using hyp_mem, the
+regions defined in the memory map
+are valid and for the other platforms
+not using hyp_mem we would just delete
+them in the board files anyway.
 
-Best regards,
-Krzysztof
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
