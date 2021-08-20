@@ -2,129 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 429503F2853
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F6233F285C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230077AbhHTI0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 04:26:16 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46272
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232371AbhHTI0Q (ORCPT
+        id S233303AbhHTI0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 04:26:21 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52572
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232601AbhHTI0S (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 04:26:16 -0400
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        Fri, 20 Aug 2021 04:26:18 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 11F354076E
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:17:14 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2F4C9407A2
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:17:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629447434;
-        bh=d03dy1rcCZjZBdaEw0qJ/QqtbIi4Drzv7TBwZtFL+yY=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=oMjk+RK//WtFVMwmzwK4MnVfohBPmndN2w0zSfysvcVGkZhC0KhMtTmL6vaju6iHN
-         rPznhGR2nqB7SPjmR0vySKuD9eHkPbk/g2NYNhaji1FaojmuYBules0+Kd5kFAx8rr
-         gk8ujcdvyugGCCdK/UVSOtTpiXDT7TI0R89x4A8397GRzOqZHjmt5r0wwU7m3ctTKW
-         PrWq8/FygS5ynkXWRqcYhqVfzEhbY1dAjGZftlJGHZ/S92igsnaU7yX0s2eoIstlmX
-         OT+F57zxyYmU8glwnu0DmRULeWGfdQO+DyOyrs5CUNkIevH86mtKyujo1suEm3RXIc
-         KkYLHrGO4tCeA==
-Received: by mail-ej1-f72.google.com with SMTP id j10-20020a17090686cab02905b86933b59dso3400748ejy.18
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:17:14 -0700 (PDT)
+        s=20210705; t=1629447459;
+        bh=d8xM/AjEqi+D82F4uBDDQrAWzl08FrG+YxG5akZl0IU=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=QgSbiPhRLy4RKgEz9TYJttmAk2UNP6zJREJAwHOMoiVuVhYWemjUBWXYAP70dbd12
+         BXQzDUdFkW8XNgrfFQvAPuNIuf7tce++FG8zVlxf4mOjlM6S6dUuDBxo6Q2FBgRc4d
+         NZ57Xn1xCok7lnTWVJidqvH+rF4ZodaEyW3egFFuwLxfL6gcYLe/RdsPdW5V2tSJDw
+         5uG2+XmLpRJhZUZVN53kH1yH5nyawvP8i1VBPxQCD2KCeS4VJgXuy1HT3V+IdYGZvl
+         xjGr3oUiSD9heIWyjPRb8Bt5VkxcOYx2Nke7NbfnHc9akxjr2KbvhjEX3skiT/ilOs
+         IjxuMYMtAfb9A==
+Received: by mail-ed1-f71.google.com with SMTP id bx23-20020a0564020b5700b003bf2eb11718so4148396edb.20
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:17:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=d03dy1rcCZjZBdaEw0qJ/QqtbIi4Drzv7TBwZtFL+yY=;
-        b=AzIoruQtRiCSfaIoh30EJErBrf6YXHfaA5NPb08+k1CrB064ECLYHK0spAKeCJwQ4l
-         PJR97tiPa6xhey0Pq7rXHXCWwGJBFUa+6X7zpp9IMw72ctG5XpHLJ9ZM4sQqSMe2EmOH
-         Ovvw0tw2rm1DCcHPU2iRBlthjwGNYfODhB+AHd/Ncnt/drOJAzDgvlvTX4Jj6k8+5mgH
-         3W6VW68ScNLnU8VmALcfHOwMvzYPDlzLgqKB7KMXK6L6nsFYKhRrtou3RPQ69oNsYVMA
-         fpe9af/Tov5WvDTAbUWKqljPmMn2N8H+gx5jLJySQ24hX0/GWMPo7GBy1rmAobCXeBnz
-         t1fA==
-X-Gm-Message-State: AOAM530ZTcT1Q4PehFi4+ALdnz0HO59JPZGoJ2taldm/Fx6ey6mv1ado
-        ASulkhaVr20YLm6vB3OKVhcwG1B7WfxxOdj1p9xQWKuId9N3YGnKc1qdnNJ/6VzeARBgzRjplnK
-        jaDix1DgXfhK3HaY2Z+UX2D2xvMDYPkylBuQegn8=
-X-Received: by 2002:a05:6402:4d1:: with SMTP id n17mr20751533edw.337.1629447433649;
-        Fri, 20 Aug 2021 01:17:13 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzFnpC44j4euQKERdJuEdfV4P/mgu5OPbnNEnWrmEm3YnkCOTLfb4hyb1Ab4h2xdol0XI1y1A==
-X-Received: by 2002:a05:6402:4d1:: with SMTP id n17mr20751515edw.337.1629447433530;
-        Fri, 20 Aug 2021 01:17:13 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d8xM/AjEqi+D82F4uBDDQrAWzl08FrG+YxG5akZl0IU=;
+        b=G+ZVQ0gCNNUHZf7Vbh79B+ZjR/1yFL9ImLHAIdERv4qmH110Lw7Pn1I1gZcxCV3GrD
+         tPKxxHxpcU1nV6Cmy0eXthFGmyPGDfPhlcErb+Yt5/fehSzOeciSs8AItCNG60qT2tDA
+         su0/udTtEveo/UhBO5PWHGTmHBxN2RZPhSvv7q+b1svu5pVvZRl3xAPk1DnJxU5apVLt
+         m1l51m7t3wp1oB6163cvdedzNIMmwUBA6TA85NngmtVyF2w2QgPw/Q0gcFahbWzj2V9F
+         2myk4kFyjZYJSWMcfyIB/64zDx16oxHlqzH45bNz9xp52sJ3QNZsdDisQCgfBTp3z8IP
+         2ZKQ==
+X-Gm-Message-State: AOAM530raIyYXCPOuDAbbLeqvyRSqou6khy8RJ1SgsRyXJTo0aLbxYqx
+        +VETsjqg/AmTV7qSkQf4VlFh7QTVn5opMD3k2pkV3MKrMYFaCIlusa4+Nh+5RsJKK6acPY5PY5h
+        U6s51cJw3Ey5DuXPV7LxNJEWWvhxcrtwIt/p/GoI=
+X-Received: by 2002:a17:906:1416:: with SMTP id p22mr19936537ejc.364.1629447457995;
+        Fri, 20 Aug 2021 01:17:37 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyedBftyAz+28KskU/X2mqtpXdfrTDtjkZC8gEQB+dg5iHeoEDxeeEa0X5sxtezOQDUYByLOQ==
+X-Received: by 2002:a17:906:1416:: with SMTP id p22mr19936525ejc.364.1629447457819;
+        Fri, 20 Aug 2021 01:17:37 -0700 (PDT)
 Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id l9sm3158943edt.55.2021.08.20.01.17.12
+        by smtp.gmail.com with ESMTPSA id d22sm2488041ejk.5.2021.08.20.01.17.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 01:17:13 -0700 (PDT)
+        Fri, 20 Aug 2021 01:17:37 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+To:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 2/2] arm64: dts: allwinner: align thermal zone node names with dtschema
-Date:   Fri, 20 Aug 2021 10:17:10 +0200
-Message-Id: <20210820081710.83908-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 1/3] arm64: dts: arm: align watchdog and mmc node names with dtschema
+Date:   Fri, 20 Aug 2021 10:17:31 +0200
+Message-Id: <20210820081733.83976-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210820081645.83796-1-krzysztof.kozlowski@canonical.com>
-References: <20210820081645.83796-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align the name of thermal zone node to dtschema to fix warnings like:
+Align the watchdog and mmc device node names with the schema to fix
+warnings like:
 
-  arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dt.yaml:
-    thermal-zones: 'cpu-thermal-zone', 'ddr-thermal-zone', 'gpu-thermal-zone' do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
+  mmci@50000: $nodename:0: 'mmci@50000' does not match '^mmc(@.*)?$'
+  wdt@f0000: $nodename:0: 'wdt@f0000' does not match '^watchdog(@.*|-[0-9a-f])?$'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 6 +++---
- arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi   | 2 +-
+ arch/arm64/boot/dts/arm/juno-motherboard.dtsi    | 4 ++--
+ arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi | 4 ++--
  2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index cc321c04f121..f6d7d7f7fdab 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -343,19 +343,19 @@ r_i2c1: i2c@7081800 {
- 	};
+diff --git a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+index 40d95c58b55e..f45c912b2806 100644
+--- a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
+@@ -218,7 +218,7 @@ led7 {
+ 					};
+ 				};
  
- 	thermal-zones {
--		cpu-thermal-zone {
-+		cpu-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 0>;
- 		};
+-				mmci@50000 {
++				mmc@50000 {
+ 					compatible = "arm,pl180", "arm,primecell";
+ 					reg = <0x050000 0x1000>;
+ 					interrupts = <5>;
+@@ -246,7 +246,7 @@ kmi@70000 {
+ 					clock-names = "KMIREFCLK", "apb_pclk";
+ 				};
  
--		ddr-thermal-zone {
-+		ddr-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 2>;
- 		};
+-				wdt@f0000 {
++				watchdog@f0000 {
+ 					compatible = "arm,sp805", "arm,primecell";
+ 					reg = <0x0f0000 0x10000>;
+ 					interrupts = <7>;
+diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+index 4c4a381d2c75..7260bcf4b2ab 100644
+--- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
++++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
+@@ -130,7 +130,7 @@ aaci@40000 {
+ 					clock-names = "apb_pclk";
+ 				};
  
--		gpu-thermal-zone {
-+		gpu-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 1>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-index 578a63dedf46..9988e87ea7b3 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-@@ -217,7 +217,7 @@ cpu-hot-limit {
- 			};
- 		};
+-				mmci@50000 {
++				mmc@50000 {
+ 					compatible = "arm,pl180", "arm,primecell";
+ 					reg = <0x050000 0x1000>;
+ 					interrupts = <9>, <10>;
+@@ -190,7 +190,7 @@ v2m_serial3: serial@c0000 {
+ 					clock-names = "uartclk", "apb_pclk";
+ 				};
  
--		gpu_thermal {
-+		gpu-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 1>;
+-				wdt@f0000 {
++				watchdog@f0000 {
+ 					compatible = "arm,sp805", "arm,primecell";
+ 					reg = <0x0f0000 0x1000>;
+ 					interrupts = <0>;
 -- 
 2.30.2
 
