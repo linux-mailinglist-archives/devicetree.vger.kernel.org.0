@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D44AE3F2FEA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A98CF3F2FF6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:47:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241141AbhHTPqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 11:46:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52972 "EHLO
+        id S241211AbhHTPrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 11:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241226AbhHTPqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 11:46:20 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DFB6C061756
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:45:42 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id b10so779695ioq.9
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:45:42 -0700 (PDT)
+        with ESMTP id S238124AbhHTPrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 11:47:31 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D9AC061575
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:46:52 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id b7so12837227iob.4
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:46:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jG0is8q04G4No7iVp51Nm6RxWzS7meHDr4YzqKJBfEA=;
-        b=PP6k/9RYzXUlkTfc50ROUtr1LKoy6RXBaDB9f62RibGA1DzZF20C2XZ2mZIf7mCfAm
-         xT/qF4WUj4IqB8L0bMhyPJhW5OhrsBJ6eonZdSsSGrph3rhqceLsMbk3vcO8h23y+Ynn
-         u6ROpxxAZMhxS9oOvVYqogoDNACM804//hYk9GU42B/rxiBtEGR9HKnGmRy/uTts/n5R
-         +KjoD2d+2zBR1JDeB6cNi4B4/NzmSWbF1axyE2+vhqv79bfV27QvMEvJyb/aqz97Xbaz
-         Ri6ibP3UM6w0CjmFDQx7W2zCBph4Fm9jG3PanvqYRboXy0Q3IlsvL26rTFRmR1iIbp9w
-         en6A==
+        bh=92ifLfUdCfgzu4dobglorYhOZke3wvKfuSJrLJppmSI=;
+        b=PNYN10dYDhFe0EbJZmnbL2MpCc/Phz+KekA56PuYlXGfyhrgadC8ZBvqP4bgYpHkrD
+         c2NV9qlj5/XxJrm1f5erIMDqX8r37yNUz6tT+xYNmRz4LnKQL400qBwAXSZ5vavybAHB
+         nq3oU74XvwgJ7R8daQQsXnf3Ste24aetEfBeA1H31in6MI2EyaFoKvWIjoKLcV8zxTpV
+         c0vR23TBx0Ul3wqKuqc39RVQMyDBBxgAdnkqdQSgTxNEgVi/YN0sn246I6wEzw7BWwmq
+         SDTDniiYRrRkYvS90ZsL67MedF0t9Z/SfccTQlPILAXazDy0obz1nyx7gNxfzMB1SFpE
+         H7Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jG0is8q04G4No7iVp51Nm6RxWzS7meHDr4YzqKJBfEA=;
-        b=rj045r8YrBu6EPRGskLQ8ghwL+i1Y+mb56J1nLP6cUBnw4CZqon/R7H6rYYQ5BJGfP
-         OTOsed2SyHrWkiD9eDCS0j5mODbBJ89QCpyTOuRoqjiT6blZHeaB31YVON7O9XaKAPxI
-         UG3bTfLPEXJ+OozVh8Lkl5RhWBiuu/IEyK5lJfadYoKUI4pcJ9AsocIVzdSEDoGHeYmB
-         Fon5A7K675ZoPSn54dC6m5TLEY+MTNc6Oep+JotlN2CT/L5ZbiaNGwCARCQg1NyuYtaF
-         ixI2s/Fa7bCr/5I0fjI7Vs3qPueL72v7y4eXQsGs656DnSdYRD1m+ELRYvxkY1SLtoSI
-         pDUg==
-X-Gm-Message-State: AOAM531Z/VweeACPAd+/5+bL12qCwkHHWZCUbrmyiw0g9Xmp6MmDvqCJ
-        0IwsMxkb+AA915ka89S+MxVdBqgHl1r5AzUlR0lkeg==
-X-Google-Smtp-Source: ABdhPJwxXuqszLUo7soyfPQwdUNIXwfFEuhZ0Hjek6KxH//hCiC6j/0C6kYQLTZqqcs5czNxRg1wQF4UiIHClVgRnvQ=
-X-Received: by 2002:a02:cb45:: with SMTP id k5mr17979205jap.112.1629474341466;
- Fri, 20 Aug 2021 08:45:41 -0700 (PDT)
+        bh=92ifLfUdCfgzu4dobglorYhOZke3wvKfuSJrLJppmSI=;
+        b=NoHJXKNc7xBYqkUaM6odcL7oWolVWIpm4LfNY4/Vasx3OrJZeQyc9HEVhBTazRBP0a
+         fsAhcFEtSdhARfpXKRtg5+sxp2fEL8IVrJXdhTy2LDNOD6ODX743n7ZqlRrvtLhbKLYN
+         kETOg7LRPeUD4BQWTIs4k7OTQ1Fvjl8OLUBuQSKm3d+ToK7jc+DfOOOOTmOzoJPRNgkF
+         3c3x5zn3cGjCGdZDvnpPP7udizSXWXxr5r5p0ZgjqKZONGQHISD1rpO3bYMzfeSFEzQ6
+         ke0Q/Jih3UPIPyd8oagVKa7kFwfMJUjuCGR6VjgjivVFb+J/wuBqYE+tBB+DvRngZdNZ
+         aw/Q==
+X-Gm-Message-State: AOAM533MeX0w+q24+2XO0AKf/B7RqWa83xtPrUotB/3+6a2YLS3d7TGu
+        abjzBujL2aNQ6K7QWA1Cw2k7+H0IcTVHJkAj2HcZqg==
+X-Google-Smtp-Source: ABdhPJyeDULv+E/a2RqKOUTOS0IIYgxZw7LAHi9Cjof6nWXftZVSKfx+/Uvzqc2gH3xg/vAkChi9QjcC53vMuWU9SEA=
+X-Received: by 2002:a02:cf18:: with SMTP id q24mr18404225jar.5.1629474411859;
+ Fri, 20 Aug 2021 08:46:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210819124844.12424-1-yangcong5@huaqin.corp-partner.google.com>
- <20210820070113.45191-1-yangcong5@huaqin.corp-partner.google.com> <20210820070113.45191-3-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20210820070113.45191-3-yangcong5@huaqin.corp-partner.google.com>
+ <20210820070113.45191-1-yangcong5@huaqin.corp-partner.google.com> <20210820070113.45191-2-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20210820070113.45191-2-yangcong5@huaqin.corp-partner.google.com>
 From:   Doug Anderson <dianders@google.com>
-Date:   Fri, 20 Aug 2021 08:45:29 -0700
-Message-ID: <CAD=FV=UAD1dM9EqGDr1zLDUmrLMPxmAp7-da+ifqXvDcRbpqdQ@mail.gmail.com>
-Subject: Re: [v2 2/2] dt-bindings: drm/panel: boe-tv101wum-nl6: Support
- enabling a 3.3V rail
+Date:   Fri, 20 Aug 2021 08:46:38 -0700
+Message-ID: <CAD=FV=UTQz8_a+nNE9JiaD-bAa_jxDyho6VBMfqG5Jz6qwcUSw@mail.gmail.com>
+Subject: Re: [v2 1/2] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
 To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -74,35 +73,11 @@ On Fri, Aug 20, 2021 at 12:01 AM yangcong
 > a 3.3V rail that needs to be turned on. For previous users of
 > this panel this voltage was directly output by pmic. On a new
 > user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
-> to turn the 3.3V rail on.
+> to turn the 3.3V rail on. Add support in the driver for this.
 >
 > Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
 > ---
->  .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml    | 3 +++
->  1 file changed, 3 insertions(+)
-
-
-However you're sending your patches is really confusing my email
-client. I think part of the problem is that you sent "v2" as
-"In-Reply-To" your "v1". You shouldn't do that. You also seem to be
-sending duplicates. :(
-
-Might I suggest using "patman" to simplify things for you?
-
-https://source.denx.de/u-boot/u-boot/blob/master/tools/patman/README
-
-> diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> index 38bc1d1b511e..a7091ae0f791 100644
-> --- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-> @@ -36,6 +36,9 @@ properties:
->    pp1800-supply:
->      description: core voltage supply
->
-> +  pp3300-supply:
-> +    description: core voltage supply
-
-This would probably be slightly better if it said "3.3 V supply"
-instead of "core voltage supply", but it doesn't matter a ton to me.
+>  drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
