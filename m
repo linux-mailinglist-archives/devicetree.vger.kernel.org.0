@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A98CF3F2FF6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4213F30D6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 18:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241211AbhHTPrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 11:47:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53300 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238124AbhHTPrb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 11:47:31 -0400
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D9AC061575
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:46:52 -0700 (PDT)
-Received: by mail-io1-xd29.google.com with SMTP id b7so12837227iob.4
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:46:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=92ifLfUdCfgzu4dobglorYhOZke3wvKfuSJrLJppmSI=;
-        b=PNYN10dYDhFe0EbJZmnbL2MpCc/Phz+KekA56PuYlXGfyhrgadC8ZBvqP4bgYpHkrD
-         c2NV9qlj5/XxJrm1f5erIMDqX8r37yNUz6tT+xYNmRz4LnKQL400qBwAXSZ5vavybAHB
-         nq3oU74XvwgJ7R8daQQsXnf3Ste24aetEfBeA1H31in6MI2EyaFoKvWIjoKLcV8zxTpV
-         c0vR23TBx0Ul3wqKuqc39RVQMyDBBxgAdnkqdQSgTxNEgVi/YN0sn246I6wEzw7BWwmq
-         SDTDniiYRrRkYvS90ZsL67MedF0t9Z/SfccTQlPILAXazDy0obz1nyx7gNxfzMB1SFpE
-         H7Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=92ifLfUdCfgzu4dobglorYhOZke3wvKfuSJrLJppmSI=;
-        b=NoHJXKNc7xBYqkUaM6odcL7oWolVWIpm4LfNY4/Vasx3OrJZeQyc9HEVhBTazRBP0a
-         fsAhcFEtSdhARfpXKRtg5+sxp2fEL8IVrJXdhTy2LDNOD6ODX743n7ZqlRrvtLhbKLYN
-         kETOg7LRPeUD4BQWTIs4k7OTQ1Fvjl8OLUBuQSKm3d+ToK7jc+DfOOOOTmOzoJPRNgkF
-         3c3x5zn3cGjCGdZDvnpPP7udizSXWXxr5r5p0ZgjqKZONGQHISD1rpO3bYMzfeSFEzQ6
-         ke0Q/Jih3UPIPyd8oagVKa7kFwfMJUjuCGR6VjgjivVFb+J/wuBqYE+tBB+DvRngZdNZ
-         aw/Q==
-X-Gm-Message-State: AOAM533MeX0w+q24+2XO0AKf/B7RqWa83xtPrUotB/3+6a2YLS3d7TGu
-        abjzBujL2aNQ6K7QWA1Cw2k7+H0IcTVHJkAj2HcZqg==
-X-Google-Smtp-Source: ABdhPJyeDULv+E/a2RqKOUTOS0IIYgxZw7LAHi9Cjof6nWXftZVSKfx+/Uvzqc2gH3xg/vAkChi9QjcC53vMuWU9SEA=
-X-Received: by 2002:a02:cf18:: with SMTP id q24mr18404225jar.5.1629474411859;
- Fri, 20 Aug 2021 08:46:51 -0700 (PDT)
+        id S234909AbhHTQEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 12:04:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43936 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234629AbhHTQC2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 12:02:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CF9D361264;
+        Fri, 20 Aug 2021 16:01:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629475311;
+        bh=TiOt/P4/QPtCLS0E75RDsmJdhwnKcPRpnT639l4Hm7M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fbXqToDF0pob26JIQat1YGMYZB1Ra+SJh+gk3xPZErpX29cyXON2Hgi/9TQm+cd69
+         v1BapGh4LaWO9UNKqeGRC/I1YMzQIS2CA2HRSOg+f7okUq6KwtHkDPRFOiXaSOH7ke
+         ulWiHtwqhJQfjqwZF58fEofoQU0csU0+NsfadrD3zIJ1+U9hJIIZVj+LV3LIXP43xc
+         Ze9W0AtHO/AKJlVbfPVnK0M0rMlcUkIehJuveigdQjFD3UH1bZf1Z/9KookP5oeD//
+         3YxDyr79NIIQf68xgGmQErtBszubS5/VUZQSnoY+loZe8DMCblq8j6O+qGrHwhCjnL
+         uZ03IwL/7BIDQ==
+Received: by pali.im (Postfix)
+        id 662797C5; Fri, 20 Aug 2021 18:01:48 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Rob Herring <robh@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/3] PCI: Define slot-power-limit DT property
+Date:   Fri, 20 Aug 2021 18:00:20 +0200
+Message-Id: <20210820160023.3243-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20210819124844.12424-1-yangcong5@huaqin.corp-partner.google.com>
- <20210820070113.45191-1-yangcong5@huaqin.corp-partner.google.com> <20210820070113.45191-2-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20210820070113.45191-2-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Fri, 20 Aug 2021 08:46:38 -0700
-Message-ID: <CAD=FV=UTQz8_a+nNE9JiaD-bAa_jxDyho6VBMfqG5Jz6qwcUSw@mail.gmail.com>
-Subject: Re: [v2 1/2] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is RFC patch series which define a new PCIe slot-power-limit DT
+property (first patch) and show example how to use it in pci-aardvark.c
+driver (second and third patch). Second and third patches depends on other
+pci-aardvark patches which are under review. I included them here just to
+show how this new slot-power-limit DT property can be used.
 
-On Fri, Aug 20, 2021 at 12:01 AM yangcong
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The auo,b101uan08.3 panel (already supported by this driver) has
-> a 3.3V rail that needs to be turned on. For previous users of
-> this panel this voltage was directly output by pmic. On a new
-> user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
-> to turn the 3.3V rail on. Add support in the driver for this.
->
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+Please let me know what do you think about this approach of defining Slot
+Power Limit in DTS file.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Pali Rohár (3):
+  dt-bindings: Add 'slot-power-limit' PCIe port property
+  PCI: aardvark: Add support for sending Set_Slot_Power_Limit message
+  arm64: dts: armada-3720-turris-mox: Define slot-power-limit for PCIe
+
+ .../devicetree/bindings/pci/aardvark-pci.txt  |  2 +
+ Documentation/devicetree/bindings/pci/pci.txt |  6 ++
+ .../dts/marvell/armada-3720-turris-mox.dts    |  1 +
+ drivers/pci/controller/pci-aardvark.c         | 66 ++++++++++++++++++-
+ 4 files changed, 74 insertions(+), 1 deletion(-)
+
+-- 
+2.20.1
+
