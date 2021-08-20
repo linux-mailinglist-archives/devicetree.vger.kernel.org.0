@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B86D23F285B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 991B33F2854
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233006AbhHTI0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 04:26:20 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46280
+        id S232371AbhHTI0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 04:26:16 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46276
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232435AbhHTI0R (ORCPT
+        by vger.kernel.org with ESMTP id S232380AbhHTI0Q (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 04:26:17 -0400
+        Fri, 20 Aug 2021 04:26:16 -0400
 Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AB18140202
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:16:19 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 15D194076D
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629447379;
-        bh=OmtSKxexi252yLpsd09SnFUuzqXU2/zeUXsYaGlChyE=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=pmN7qgHi+EARqniZH47Yo17cxIVOm/IfX3R7dZro17DaQWzlGaAbNEkj8szan4gCb
-         lpe0S1v0TW4zc01rnTbF0V3i+D3kznsuWZBHGIzg+k6ldxePImRO3Y8ri5qujO0/d3
-         BmvNMwq42rRH8rsQZNVnO49+7HIlLGy7m4nHmH2+a31e/X3McNbRmvXaE8geIzvTip
-         XZpGlyI256ouiQvMlCURAVZ9s8fROKILiMn9KPOysSvTLxExGHRjnwa5IPZpFktRGI
-         4gUFndtKkcLzT1lKTytUzWeSIZquzo8C/8snlz6MGJYBu1R1dir5GkS7Su6FW23MbV
-         LmxrR1gur0EoQ==
-Received: by mail-ed1-f69.google.com with SMTP id k13-20020aa7c04d000000b003bf04c03fc4so4170440edo.22
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:16:19 -0700 (PDT)
+        s=20210705; t=1629447381;
+        bh=rFYV7pHtPVAhRCoujACv0nbWtGdLJ18YOanrxxZY/lQ=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=HjjEX/0lyfdQAwADA7DN2m4DIKJb6dD8TjkUCFnrrW8XTDccUAXglXcFQyOaQirJr
+         NpsBTsnhSXShUuQJl/OJiRnPR++I/isRYU0hdyi+LVL/2byr8SQfS+HxHfUyOrAYig
+         eNb5qOgU1oquwYALzSEFEz2hfL+J3vopMqJO73+cWsLjW+CCXs+1AIZD3sJIbLWHNZ
+         67s4wx2vMjxF5a1tKbp1EKiSWBVluuqzYLFu/fQehVK9QiN9PzmrRA2hOiufvh6qPA
+         kJQv97LuWijwI1zBVA3i9GEDdoKpIld11/4BEy7Xt2ev4Xa/unxF8u5CRzAY4eXMeL
+         DYNpj0A+aIgAQ==
+Received: by mail-ed1-f69.google.com with SMTP id bx23-20020a0564020b5700b003bf2eb11718so4145733edb.20
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:16:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OmtSKxexi252yLpsd09SnFUuzqXU2/zeUXsYaGlChyE=;
-        b=f6+8ZactNI1W+WcEwoc2D6MBJoBw6dYwpDK7i/hEIOuhNLQuk9cP4XT9GTrptpId4l
-         KVx/rXWP06DWQB333u52hxTFXalt1m4zm7572m7+pAzGvl65Sik3JNsONiQOXdgTKOhI
-         HeMxw58EENtCboOIOBWarbI3XmQ9dxkjRxFwPiqrs027A1KJz81rp2OQYMntfLeK40or
-         JJvpweUtyLJRev3OcN8yvh3ZQEQ+IHQu0/oj69tYduFfHTekEQ+yb7/i8fnAatvgGWY3
-         fLptUexdXh+VzwwxSVl8wkn/wEdoIfTb2Jgc58zqxljOQxT8KOWAoEZubxEz8VrBx2N7
-         JM8A==
-X-Gm-Message-State: AOAM532rHLjD9UNPPS0Dlh3z1TEioZqsoQARIaQjNsm1HwxmWfdK4IEG
-        it1YP7VqfTX8+VKPyTIA9fQlwi25uwPwhiPLtnLQAGFhls1u690lbeugQIrGGvcz55KSuzJZviI
-        5SMtvlqUHLfv1RHndqYXlVeuoNIRh4U/NsziufeM=
-X-Received: by 2002:a05:6402:152:: with SMTP id s18mr20736027edu.221.1629447379439;
-        Fri, 20 Aug 2021 01:16:19 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyCE7w2Hupb+KqkRVqDnp7hgDcT/qC/auwCzygTdxXxygjTPKNmYAIQZ65smv9XcUCZyL7j5g==
-X-Received: by 2002:a05:6402:152:: with SMTP id s18mr20736014edu.221.1629447379330;
-        Fri, 20 Aug 2021 01:16:19 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=rFYV7pHtPVAhRCoujACv0nbWtGdLJ18YOanrxxZY/lQ=;
+        b=Ljcwbr1X9VBwZTQmNamnIQ8oQCkvcDttSOOkRoX8LRVU4GOTSJ2zhxlBOv/wg6xRKL
+         jrpQUH3WQI7eniaXviH4X1l1ew1oiom+VWq9uUcJL66QXxULG/M06X4JLs/amXqTmlbz
+         z3PK02tTZ+4dTnJgqyOPahsdNR7ZFU30/kdz48+33B19pyEX6JqT07Jk48B5rr+WYxXE
+         n+LIiWcw3Ony5eg/KBUkG9tdCGVCAYQyIbu8gVu8hCG9ApS3D5cXXl2lPlVfdefwSiEq
+         93s8qt1zS54RrsY7dKYsJWZboKZl+b2S0j/XPWCiTGX2cb1U0Zqi5Co+2KpUTQFA64Sz
+         8BdQ==
+X-Gm-Message-State: AOAM533J3/tvTHOq+GIlbUDRpcN22iiWzE0vj+L0CrC+2HeSJbOyXamq
+        19QziZ5pbGb280JXovUhsp7m1t2+RjspjbI5Sy7Fpj7/aVaMI5VcjWptTP1xLnDEe26CDO+wP1s
+        RRDSZ1Bl3RGH4puqKp2V4doH81+kuGro1tv9F+Js=
+X-Received: by 2002:a05:6402:13cf:: with SMTP id a15mr21006887edx.117.1629447380409;
+        Fri, 20 Aug 2021 01:16:20 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwhFPcjbeXROTX7e6+Upaf75ZvqQGL1rcjdhNt9+IdhuGxzIbim1t5Pp3fsAw4KLjqKWlg5QA==
+X-Received: by 2002:a05:6402:13cf:: with SMTP id a15mr21006874edx.117.1629447380301;
+        Fri, 20 Aug 2021 01:16:20 -0700 (PDT)
 Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id w13sm351632edx.67.2021.08.20.01.16.18
+        by smtp.gmail.com with ESMTPSA id w13sm351632edx.67.2021.08.20.01.16.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 01:16:19 -0700 (PDT)
+        Fri, 20 Aug 2021 01:16:20 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,41 +61,44 @@ To:     Matthias Brugger <matthias.bgg@gmail.com>,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 1/2] arm64: dts: mediatek: align operating-points table name with dtschema
-Date:   Fri, 20 Aug 2021 10:16:15 +0200
-Message-Id: <20210820081616.83674-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 2/2] arm64: dts: mediatek: align thermal zone node names with dtschema
+Date:   Fri, 20 Aug 2021 10:16:16 +0200
+Message-Id: <20210820081616.83674-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210820081616.83674-1-krzysztof.kozlowski@canonical.com>
+References: <20210820081616.83674-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align the name of operating-points node to dtschema to fix warnings like:
+Align the name of thermal zone node to dtschema to fix warnings like:
 
   arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml:
-    opp_table0: $nodename:0: 'opp_table0' does not match '^opp-table(-[a-z0-9]+)?$'
+    thermal-zones: 'cpu_thermal' does not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi | 4 ++--
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi  | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi  | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index d9e005ae5bb0..49c6b6a5b489 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -57,7 +57,7 @@ aliases {
- 		serial3 = &uart3;
- 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
+index a9cca9c146fd..640d4fdaa611 100644
+--- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
+@@ -19,7 +19,7 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
  
 -	cluster0_opp: opp_table0 {
 +	cluster0_opp: opp-table-0 {
  		compatible = "operating-points-v2";
  		opp-shared;
- 		opp-507000000 {
-@@ -94,7 +94,7 @@ opp-1703000000 {
+ 		opp00 {
+@@ -36,7 +36,7 @@ opp02 {
  		};
  	};
  
@@ -102,20 +106,33 @@ index d9e005ae5bb0..49c6b6a5b489 100644
 +	cluster1_opp: opp-table-1 {
  		compatible = "operating-points-v2";
  		opp-shared;
- 		opp-507000000 {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 409cf827970c..caab109add28 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -197,7 +197,7 @@ CLUSTER_SLEEP1: cluster-sleep-1 {
- 		};
+ 		opp00 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+index 49c6b6a5b489..066025d80ca4 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+@@ -273,7 +273,7 @@ cpum_ck: oscillator2 {
  	};
  
--	gpu_opp_table: opp_table0 {
-+	gpu_opp_table: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
+ 	thermal-zones {
+-		cpu_thermal: cpu_thermal {
++		cpu_thermal: cpu-thermal {
+ 			polling-delay-passive = <1000>; /* milliseconds */
+ 			polling-delay = <1000>; /* milliseconds */
  
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index caab109add28..d836769b87bb 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -759,7 +759,7 @@ thermal: thermal@1100b000 {
+ 		};
+ 
+ 		thermal_zones: thermal-zones {
+-			cpu_thermal: cpu_thermal {
++			cpu_thermal: cpu-thermal {
+ 				polling-delay-passive = <100>;
+ 				polling-delay = <500>;
+ 				thermal-sensors = <&thermal 0>;
 -- 
 2.30.2
 
