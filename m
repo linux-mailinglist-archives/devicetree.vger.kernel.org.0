@@ -2,174 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B77F73F2581
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 06:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA643F25E1
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 06:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbhHTEFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 00:05:35 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:47489 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229457AbhHTEFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 00:05:35 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.west.internal (Postfix) with ESMTP id 16E592B01222;
-        Fri, 20 Aug 2021 00:04:57 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Fri, 20 Aug 2021 00:04:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=b
-        9n8FHHgB7n5u9D8RC9mb2DdWFB5BNJvEHs32+cU4qs=; b=qJqaqGL6pvo9EXe29
-        js30k3msoz5yqpOxMzJvXJuXPP77IcK/QYEgNX3wJcmy+B3uAxBOKL/Dmu+qb5Hs
-        IgjrI7z7H0xm4fJmhosRB09ZvRYrSSZXy5APwYbH9Ucz4GBdCdvuY2qbp8yYXATn
-        CeIA1AHUc3mxaVpwzcG0dU6MxPR+/lpwIaB3asF5NkotSKtNQLyCjgMJ6gLLSyaH
-        JYC2mAvz/Xcv4HBr64DKcR49+ky0y4SOPeaO5KyL82NhRcXMwNGFDDwf2aNO2MOR
-        he5+FywrmsDx83NSj0H1T3YSq1Cn/N072quKKxbXyltlsBOI6g0WWn8buoAU1/is
-        MCkHA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=b9n8FHHgB7n5u9D8RC9mb2DdWFB5BNJvEHs32+cU4
-        qs=; b=GQv/zb2BvjDnXsLzad63nSdXBfCS0IXLUfgfmJNtsxlhY3HG9OdBXrRCy
-        mX94NHVXw/YiBUE3IokZEpLa3b/IsBz6LF42nSEQqZZEyPisIkSYIKifbRE8Gs7w
-        fR3UtoGKMfnNbm69bxOzFZ4JmgW9JiPuVxVLgJPZo0nlw8WBgLyUvZZa5nT+tx3s
-        Bckvg/0zNxJmhd+f9fMjOacU31SoH4x5m7PAAZmimpmympXGpAX3NlHpP9NY7F5S
-        NsW4nFgwL1ci5mOyZDkw1bLMrEAbqLfZwWWx3Q9z8eAUwJ8ot+K7WthrDphOqc94
-        +DXctOpPMWp9n6iTD5meB0vQQM5wg==
-X-ME-Sender: <xms:5ikfYYsxSEmzEnuJqa8Y2AcqufbUWw_4Hk2gSPVwTDjI1W0Uz-ekiQ>
-    <xme:5ikfYVcWWo6vhP2OyMhnmCc-QVw8-AfN2zJgESSgAnusL7n8JFGWI5xeuL4svgzbr
-    xe1Pm4IF-3fbnDLwg>
-X-ME-Received: <xmr:5ikfYTwFAo6QvXPHHKDsOL43o2UuyN3XI9KWcYy3DQgnDZlCFUZMnioMJnD-q3JSnM_8bevMG_sng0MTErMHDD-fOoAZaqA0rQBEiUfgQfn3AZyLAZS3hTOxTQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleekgdejiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
-    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:5ikfYbOOw2ep0wGByRHzma11LZDXi9zLrlUuKzfIBpcWauOoVmJn7A>
-    <xmx:5ikfYY9YwOPZlh4-PErgUOehQ-Mybq-_OjKijqkdJQt5Kna0Wl2YUA>
-    <xmx:5ikfYTXLMO_lSu8q9lkyXvLTURMHYPnIyMyJ9ptNC_8XkN4m5i53KQ>
-    <xmx:6CkfYTbC9cXYJ-vHOpchVNp1H6hwRtOu9GvTL8h4RpExaBRT2XTA3Wmb79Y>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 20 Aug 2021 00:04:53 -0400 (EDT)
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: sunxi: Add compatible for
- R329
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210805045716.46141-1-samuel@sholland.org>
- <20210818090732.wdickyw67oc4zqpt@gilmour>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <791b7548-cd7b-6cdf-8364-671f6a2029a9@sholland.org>
-Date:   Thu, 19 Aug 2021 23:04:52 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <20210818090732.wdickyw67oc4zqpt@gilmour>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S229888AbhHTEcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 00:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38840 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229690AbhHTEcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 00:32:32 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF59BC061756
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 21:31:54 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id 18so7535172pfh.9
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 21:31:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kGUsXVjhYVNqqDUplUqGfaMv9a3sMzZvTTWSgXAKeoA=;
+        b=vysr45wmx6bUrXF0N/a2X2lB6TLNMruSRTGPFJV/qeHb/7wLiD/NnDnckqkgw8ag9L
+         er9i67FuRz37SrgS4x3Lc6pdZrdH6z3JyJ2tUzuAKZWCUDu86DUbWD8T9InE30hGWdpv
+         LmSavBQepWO20MenUktfU5N5htBdN6E4djZP1D/qLSbhv3Tm9Mu1EvOWQIA9lQwpgO8v
+         GCDumNLUm3X+kL5kEMatRRPkcEze+KkBDVtXpuU4S/ZFkUwflpQZFA06ZeYYS3usefSh
+         SpAljBrSt7Qjo7XRH9XzSX/CcNzq4dsKDwR16DEY/EF/n3oypdljgFnoLtyQA6jp4OCH
+         6CYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=kGUsXVjhYVNqqDUplUqGfaMv9a3sMzZvTTWSgXAKeoA=;
+        b=U0claBJ9Vym4fzs2DyEkhDAD28aSF2C+paR6GE7mrf0/f4zWpKyBi/YZKv9cxeM8mm
+         0W4Oth0gg7zoJc06gcP3EUndvsDN6d9pkrWnifBygaQazSsnrsihVEffMapOQe8lsdfU
+         vbMPv30GE48nK/F9Ap6T/uhS4H7nkWknl8rrdQVcQMThcAkiaiq6Nx1nSC+dBaUyVh01
+         O2uQaRKIE9dM15/6TW7zJEl7Y2z26jk78XTIBsWh7jteEjzY76xYqF2F97I6GpOkXfHe
+         hH77skMt0Am8YqmozcBDZ/YwuWxL1VTF5d+83duA4YWAKLLwOHYw4JYFxzcs9tP0B8NV
+         efOg==
+X-Gm-Message-State: AOAM533GBsIse6KoTwMlGGGkwvaTLGoENnauWmlyhb6E5FdCi4aXIc9M
+        1z5gJvnbBH+ySXVMCb2eTpPbfVggX/kmJA==
+X-Google-Smtp-Source: ABdhPJyS1DqIzxR93iVwZIP2G0nZomzW8c6Lq4fpfYaMPWsqFpt79VvtUo0LKUPICC7P9n/ka3YrGw==
+X-Received: by 2002:a63:4005:: with SMTP id n5mr16785065pga.140.1629433914057;
+        Thu, 19 Aug 2021 21:31:54 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id a8sm5131173pfo.79.2021.08.19.21.31.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 21:31:53 -0700 (PDT)
+Date:   Thu, 19 Aug 2021 21:31:53 -0700 (PDT)
+X-Google-Original-Date: Thu, 19 Aug 2021 20:55:39 PDT (-0700)
+Subject:     Re: [PATCH] dt-bindings: sifive-l2-cache: Fix 'select' matching
+In-Reply-To: <20210817174755.541735-1-robh@kernel.org>
+CC:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, sagar.kadam@sifive.com,
+        yash.shah@sifive.com, linux-riscv@lists.infradead.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     robh@kernel.org
+Message-ID: <mhng-25484677-27e9-4456-b497-0c7bd00bab18@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/18/21 4:07 AM, Maxime Ripard wrote:
-> Hi,
-> 
-> On Wed, Aug 04, 2021 at 11:57:14PM -0500, Samuel Holland wrote:
->> On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
->> divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
->> an alternative clock source, with a bit to switch between them.
->>
->> Since 24 MHz / 750 == 32 kHz, not 32.768 kHz, the hardware adjusts the
->> cycle counts to keep the timeouts independent of the clock source. This
->> keeps the programming interface backward-compatible.
->>
->> R329 also adds two new registers, to allow software to immediately drive
->> the SoC reset signal.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->> Changes v1 to v2:
->>  - Switch from enum to const
->>  - Add descriptions to "clocks" items
->>
->>  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 32 ++++++++++++++++++-
->>  1 file changed, 31 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
->> index 9aa3c313c49f..8fa5b0d32381 100644
->> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
->> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
->> @@ -24,6 +24,7 @@ properties:
->>                - allwinner,sun50i-a100-wdt
->>                - allwinner,sun50i-h6-wdt
->>                - allwinner,sun50i-h616-wdt
->> +              - allwinner,sun50i-r329-wdt
->>            - const: allwinner,sun6i-a31-wdt
->>        - items:
->>            - const: allwinner,suniv-f1c100s-wdt
->> @@ -33,7 +34,18 @@ properties:
->>      maxItems: 1
->>  
->>    clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->> +    items:
->> +      - description: High-frequency oscillator input, divided internally
->> +      - description: Low-frequency oscillator input, only found on some variants
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 2
->> +    items:
->> +      - const: hosc
->> +      - const: losc
->>  
->>    interrupts:
->>      maxItems: 1
->> @@ -44,6 +56,24 @@ required:
->>    - clocks
->>    - interrupts
->>  
->> +if:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        enum:
->> +          - allwinner,sun50i-r329-wdt
->> +
->> +then:
->> +  properties:
->> +    clocks:
->> +      minItems: 2
->> +
->> +    clock-names:
->> +      minItems: 2
->> +
->> +  required:
->> +    - clock-names
->> +
-> 
-> We should also make sure through an else clause that all the other SoCs
-> have a length of one for both clocks and clock-names
+On Tue, 17 Aug 2021 10:47:55 PDT (-0700), robh@kernel.org wrote:
+> When the schema fixups are applied to 'select' the result is a single
+> entry is required for a match, but that will never match as there should
+> be 2 entries. Also, a 'select' schema should have the widest possible
+> match, so use 'contains' which matches the compatible string(s) in any
+> position and not just the first position.
+>
+> Fixes: 993dcfac64eb ("dt-bindings: riscv: sifive-l2-cache: convert bindings to json-schema")
+> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Palmer Dabbelt <palmer@dabbelt.com>
+> Cc: Albert Ou <aou@eecs.berkeley.edu>
+> Cc: Sagar Kadam <sagar.kadam@sifive.com>
+> Cc: Yash Shah <yash.shah@sifive.com>
+> Cc: linux-riscv@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/riscv/sifive-l2-cache.yaml        | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> index 1d38ff76d18f..2b1f91603897 100644
+> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> @@ -24,10 +24,10 @@ allOf:
+>  select:
+>    properties:
+>      compatible:
+> -      items:
+> -        - enum:
+> -            - sifive,fu540-c000-ccache
+> -            - sifive,fu740-c000-ccache
+> +      contains:
+> +        enum:
+> +          - sifive,fu540-c000-ccache
+> +          - sifive,fu740-c000-ccache
+>
+>    required:
+>      - compatible
 
-Yes, I'll do that for v3.
-
-> Also, it looks like you forgot the patch to enable the compatible in the
-> driver?
-
-R329 has a fallback to A31, so it doesn't need any changes to the driver.
-
-Regards,
-Samuel
+Thanks, this is on fixes.
