@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 828623F2E8D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EF8B3F2E95
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 17:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240931AbhHTPFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 11:05:45 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60694
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240995AbhHTPFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 11:05:43 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0CFAC40202
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 15:05:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629471905;
-        bh=j0dYi0KupqdKnWz5W7Du03JuCWQtXHT/rpVxperl5M4=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=OVQAXF5ToM/xkt0HfwjC5AonObTs5AdoSuRjLGZ1Dhork3A0fYwaQCJbbwxwl6lYe
-         u5Xgm5Jsj6/auyLT8JrO2O9dANuCQ0v2UqSgf2Y9+qdYIUG+Q01qdqyzwVpZYAdL0O
-         aNyneP3fVB61ZDrXcBA8RdHuBJmZAHBME0N3uTZrie+P8w7Bf5U37flteP1PH2VJ6y
-         Nv3jxzAAEC/TQ4tLCUDJlUh6XyT5LL+JxkuMo0zdc3H2gCQmbvFRlOsXsLSC1PsWu2
-         mQl06hN77TLNr5EdExnyMRRgF0/bj/MyT37+mDyRpMSJdnfa54gcBOVveTf5RKq4d7
-         25NqBye/5/tAw==
-Received: by mail-ed1-f71.google.com with SMTP id l18-20020a0564021252b02903be7bdd65ccso4723592edw.12
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:05:05 -0700 (PDT)
+        id S238570AbhHTPI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 11:08:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240830AbhHTPIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 11:08:55 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59661C061756
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:08:17 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id cq23so14416568edb.12
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:08:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=KreEdl1ZV3JGsamvUXfmpDwGTb957yImRW3iLOmZShY=;
+        b=iszij/dRpbCYWWJyDAgx5YIAP5gI6zxa/COCIkfGrGWjx/42gJkoK/SPQMWqxq1kia
+         OTkJNzToAwSpSf2LpCpWxArRWltmfrT3LMl0S+ExJ2acsknh/fGL/CcMgmYgOsblF7t1
+         orA1llJ3to+nscxqrk7BBiduvJR3NKzAOEhiqt7k4ehFbh5ORiMRHS0/1rZqB9D8nbOI
+         l0nK1xJh8iyJi3pbybCd3wFZqpeq1GFgDxW63a2DncsntJfDG6J7ugcfeBWd1zK3zl4j
+         QWl9RkvZkn3R9O9CTAFdU8KB/xHxkLfeVz+t9knMYQ42bd0FafZZmE/sflcdo2rYEXGQ
+         kZRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=j0dYi0KupqdKnWz5W7Du03JuCWQtXHT/rpVxperl5M4=;
-        b=XifFmeYAHQUkSgivXtFheF7CuylRb6PIICUXXUDdrp/R2CE5GX0wLpwGPS5vjLn92I
-         m/8xLc7SSD0kLNMZVz0VHTEvmDJTCH0/vavbQkEpSGD3pAUqPFtzSQOvJkFvMBODYj3F
-         VPf8c89dBznkhU0mBjSAN2R2G4WyQdPJlltoorTWRKVcjNw3e7DIoFhEGOGjJDg1BX5H
-         pDohVjEBgsx2GnSk7XT7Qlu2xWRjDJInt46rhX1OVi0FqK7GtOupV+94OBcvFMnKyLV+
-         edCA/eRm2LZ8DMIIC/gcpF6agzwKjlzbVm7DabM5iILkAFgTKaJJh6XVFUvNUX26OYwm
-         +wig==
-X-Gm-Message-State: AOAM533vVh27TT6FwRQnxmP3TVoSYW+OOY5zMey2277mW24acb7p6LZ+
-        c8Qi9mIs0O/BZttkvMwhmAE8WxbhDuFkGD9D/V+Z7pdszmvk8rUdvSyqXzV/MmBskuUPaiF/gMS
-        lpCTizugv0WK3X3EePd0jm6h5NejD4jYsNzRyRYk=
-X-Received: by 2002:a05:6402:50c6:: with SMTP id h6mr14531793edb.3.1629471904770;
-        Fri, 20 Aug 2021 08:05:04 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwKW9WSIpRJLoykrE+AkG4eBlKpM8Vni9qzYCXxPUlR6EMgj8hG6t6dywWH/oxBp6h55QhRdg==
-X-Received: by 2002:a05:6402:50c6:: with SMTP id h6mr14531779edb.3.1629471904650;
-        Fri, 20 Aug 2021 08:05:04 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id cx18sm2986223ejb.33.2021.08.20.08.05.03
+        bh=KreEdl1ZV3JGsamvUXfmpDwGTb957yImRW3iLOmZShY=;
+        b=nx7DjpiIHy5T7OGO0jsWU4abZfYpCSV11RVKOOvf97JGnGdqgAi5YNSnTR75rbfHup
+         76vTeQxffMA0zGicnrEPZMCingPNmUEaqQpWWJ1VFbe2DR0/dG+M2zGh/6bLDWZ78I53
+         9j1sKHAPG/TZ+a12tTAEWb2dnxiMBXf7HwkrkUkMsvNOshcvihNN5Hr5115tz+YPiaM2
+         SMVeI7yVK5pYtfGbQeSdXzGim/WiuAdUUTGYGZhr8gIm17TXb0CCLsUVZbMOdlHwfBhu
+         P9fIYel4clrosYGVVm3XNOOb/NQylMUzUDBTw/Y+Vk8vKRA+oi4qSw6Gd9zD8SfC2ws5
+         P4RQ==
+X-Gm-Message-State: AOAM5310neKdRv2i1evtfly8UyI3CiZz2J9VjNf0LkEyn07CdaEz0dyD
+        Q8z4wgcqIkFS03REBhkFqdY=
+X-Google-Smtp-Source: ABdhPJzqL1/CLcL3fwkKW7ZpPFL18ypYqncPP4BflvE5b5CxSVHmHJcJPsswnwBV4fsxJpNnRzI9xQ==
+X-Received: by 2002:aa7:db82:: with SMTP id u2mr23436183edt.299.1629472095878;
+        Fri, 20 Aug 2021 08:08:15 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id v13sm3003445ejx.24.2021.08.20.08.08.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Aug 2021 08:05:04 -0700 (PDT)
-Subject: Re: [PATCH 2/2] arm64: dts: exynos: add proper comaptible FSYS syscon
- in Exynos5433
-To:     Alim Akhtar <alim.akhtar@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210820081458.83406-1-krzysztof.kozlowski@canonical.com>
- <20210820082149.84613-1-krzysztof.kozlowski@canonical.com>
- <CAGOxZ53CeRYafwjP45CsDRgBQtuvyVxJQR4CX4qChWyHzO4_fA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <b21ceda4-c960-791b-6d09-a7579a35c3a4@canonical.com>
-Date:   Fri, 20 Aug 2021 17:05:02 +0200
+        Fri, 20 Aug 2021 08:08:15 -0700 (PDT)
+Subject: Re: [PATCH v3 3/4] arm64: dts: rockchip: Add GPU node for rk3568
+To:     Ezequiel Garcia <ezequiel@collabora.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20210805025948.10900-1-ezequiel@collabora.com>
+ <20210805025948.10900-4-ezequiel@collabora.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <8574d096-94a7-296d-f9e8-a2e67ed80e2f@gmail.com>
+Date:   Fri, 20 Aug 2021 17:08:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAGOxZ53CeRYafwjP45CsDRgBQtuvyVxJQR4CX4qChWyHzO4_fA@mail.gmail.com>
+In-Reply-To: <20210805025948.10900-4-ezequiel@collabora.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -79,27 +71,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2021 16:47, Alim Akhtar wrote:
-> On Fri, Aug 20, 2021 at 1:52 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> The syscon nodes should come with specific compatible.  Correct theh
-> s/theh/the?
+Hi Ezequiel,
 
-Indeed, thanks!
+Some more comments. Have a look if it is useful.
 
+On 8/5/21 4:59 AM, Ezequiel Garcia wrote:
+> Rockchip SoCs RK3566 and RK3568 have a Mali Gondul core
+> which is based on the Bifrost architecture. It has
+> one shader core and two execution engines.
 > 
->> FSYS syscon to fix dtbs_check warnings:
->>
->>   syscon@156f0000: compatible: 'anyOf' conditional failed, one must be fixed:
->>   ['syscon'] is too short
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
-> With typo fixed above,
-> Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Quoting the datasheet:
+> 
+> Mali-G52 1-Core-2EE
+> * Support 1600Mpix/s fill rate when 800MHz clock frequency
+> * Support 38.4GLOPs when 800MHz clock frequency
+> 
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 50 ++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index bef747fb1fe2..f8173ba63be0 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -121,6 +121,40 @@ opp-1800000000 {
+>  		};
+>  	};
+>  
+
+> +	gpu_opp_table: gpu-opp-table {
+
+	gpu_opp_table: opp-table-1 {
+
+Excuse for the inconvenience, but rob+dt just made a patch for opp last
+month...
+See opp-v2-base.yaml:
+'^opp-table(-[a-z0-9]+)?$'
+
+[PATCH v3 3/3] dt-bindings: opp: Convert to DT schema
+https://lore.kernel.org/lkml/20210720144121.66713-3-robh@kernel.org/
+
+===
+A look in the manufacturer tree we can expect one more opp table in the
+number sequence.
+	npu_opp_table: opp-table-2 {}
+https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi
 
 
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-200000000 {
+> +			opp-hz = /bits/ 64 <200000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +
+> +		opp-300000000 {
+> +			opp-hz = /bits/ 64 <300000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +
+> +		opp-400000000 {
+> +			opp-hz = /bits/ 64 <400000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +
+> +		opp-700000000 {
+> +			opp-hz = /bits/ 64 <700000000>;
+> +			opp-microvolt = <900000>;
+> +		};
+> +
+> +		opp-800000000 {
+> +			opp-hz = /bits/ 64 <800000000>;
+> +			opp-microvolt = <1000000>;
+> +		};
+> +	};
+> +
+>  	firmware {
+>  		scmi: scmi {
+>  			compatible = "arm,scmi-smc";
+> @@ -332,6 +366,22 @@ power-domain@RK3568_PD_RKVENC {
+>  		};
+>  	};
+>  
+> +	gpu: gpu@fde60000 {
+> +		compatible = "rockchip,rk3568-mali", "arm,mali-bifrost";
+> +		reg = <0x0 0xfde60000 0x0 0x4000>;
 
-Best regards,
-Krzysztof
+> +
+
+Maybe remove this empty line as well?
+
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "job", "mmu", "gpu";
+> +		clocks = <&scmi_clk 1>, <&cru CLK_GPU>;
+> +		clock-names = "core", "bus";
+> +		operating-points-v2 = <&gpu_opp_table>;
+
+> +		#cooling-cells = <2>;
+
+Not a big issue, but things with "#" are only needed for dt
+interpretation (not a real property). I try to drop them as far down the
+list when not sort alphabetically or connected to a real property.
+
+> +		power-domains = <&power RK3568_PD_GPU>;
+
+> +		status = "disabled";
+> +	};
+> +
+>  	sdmmc2: mmc@fe000000 {
+>  		compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
+>  		reg = <0x0 0xfe000000 0x0 0x4000>;
+> 
