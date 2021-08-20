@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285A33F2844
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 225A13F2842
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:20:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232341AbhHTIVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 04:21:19 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52418
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230490AbhHTIVS (ORCPT
+        id S231479AbhHTIVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 04:21:16 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46106
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230077AbhHTIVP (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 04:21:18 -0400
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        Fri, 20 Aug 2021 04:21:15 -0400
+X-Greylist: delayed 335 seconds by postgrey-1.27 at vger.kernel.org; Fri, 20 Aug 2021 04:21:15 EDT
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E44DD3F31F
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:15:02 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B6E0D40760
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629447302;
-        bh=+kHKFGwTKXn41PWg7UfAuln8Q8OXBJ2CxByz+s3vd2w=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=VfAjkU2RhE7SpWHE+Po8uN9QLt5auoj5GunfLbwNazy8G9Np9PjIIjrCH2G+vej5y
-         PlG+eSMI1rV6wh1D4bXyLT7Ea5oydhGZCBAMefpbmYJWD8HHjykYg3/sGFvQss3V3v
-         s+87nojBSXml7ATNxhScmYmE6Jk1Q1ty8esWTYC+qOAgKCCY/wvcDjLUDX2JozF9a3
-         ALQlun7Zr3y2tskRmv7n6jmARY2d2bwlBjPhHnZMFEkBCGI1fBhzatpqSlmUtsE+4n
-         dULFBjx7nYaiu8OS5lsVfsbiNQju08DFUndEZddjnVvclFzF8+/P4P3WO1YL7OoGvH
-         flKr7TJFTUQkg==
-Received: by mail-ej1-f70.google.com with SMTP id kf21-20020a17090776d5b02905af6ad96f02so3405441ejc.12
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:15:02 -0700 (PDT)
+        s=20210705; t=1629447326;
+        bh=FZxj6uyq9kWABBNkZHq7h3ZwUYrfv7xqPnlJENowyLs=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=MJt08P9Awq7cH0Fcixa0A0dnSFh0nnOiEDrDiyqWq7pJ8AWwuQuxU1geL9yOaFUWk
+         CYC3DQHLnBP1qC2Kl/qlCZLCqhLrt60WVgXBs/ig7Souxjle4STM5ESrpHtZTR7crN
+         xCfkbRoSipMDfbr8Edw5wlYGyWkLlpK7xo8b2Zmh2KWB1PZsJCsOWlFHAERvNbgEHP
+         3qth/nogf3XjzFeK0jt6ptS5SgYAjKBX6p+2vd9Cz/ThJ4ClYlFbMpHdULhecK0bae
+         FV2lX3JODF2BdwPMqRjKQdBTLi2iFl/GHA8NIZhthuM24e/qTW2mxix+8FIFe+5Y5K
+         cCg19u4QINHlA==
+Received: by mail-ej1-f72.google.com with SMTP id o7-20020a170906288700b005bb05cb6e25so3387726ejd.23
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:15:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+kHKFGwTKXn41PWg7UfAuln8Q8OXBJ2CxByz+s3vd2w=;
-        b=UEil4HzoNrISBIrqFlT1PBgK8caULyzQwde/L3Eo9x1E4oa+eGs8l3eYaU5fS20fMd
-         Ur/5kGH8HdcWR1/9d2vtoet4hHGMp9ONfnhO8oM25uplktf8a1DTdIBK43jy+w+A28IS
-         8uvRNYM8yVx1trgt063YKATF9wRtJe/Z6Wq9cMlE4L/hJuHwKcEt52EO/NfLI7jHAK6f
-         xTY4ivlz0yLMKO1pkd9MAShjYMwtn3uz3UeoGMzGNoQofrvyeiBiwvGJZ8NJ9xdwuEYz
-         YA1jyDihkf1iu7TuQqKWiNS/cNjRkfIuw65euYHtTu/o0cNfQXzX3VCh3nshPexQeuB3
-         3RqQ==
-X-Gm-Message-State: AOAM533NBm5zAev1DpFo1zaWHPwgCzJ6OZgJsVkdQ4Slq43JtSTCeM8m
-        dDionXcZeDQE/i1yxQxStAkQg4+YXcPn6zhUBiQhS+NkXmvW+uWRg367IMVqH7cyqivdyVAP7dr
-        zryFpRqRb3JPGa5K6Vx9evHWi1JZk4jsrE4j0vH8=
-X-Received: by 2002:a05:6402:50c9:: with SMTP id h9mr21654132edb.357.1629447302482;
-        Fri, 20 Aug 2021 01:15:02 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzMEqHxaJILqth3tDzX13eqFAO3EJLWJDrrCnn+vkSZOV4tjYEACJCJ7+O/QLcOpMQv2o3JsQ==
-X-Received: by 2002:a05:6402:50c9:: with SMTP id h9mr21654120edb.357.1629447302372;
-        Fri, 20 Aug 2021 01:15:02 -0700 (PDT)
+        bh=FZxj6uyq9kWABBNkZHq7h3ZwUYrfv7xqPnlJENowyLs=;
+        b=eXHWokK0+czxe/F/DC6MES1hkW5VL8JV5mj7sxrQlIVwqUTUUeFi8ySDevZbC9dXvA
+         VW5u2e/P3nLEntUApkjSmyW0brbhowUbIG93oxKsXw53YUING84FXoagkX+swyX3ZIT5
+         T+6Rogx/CyERN1ljJtngn7dilO3HJUbqNRc9A4BSzVkGYHFwqUkEEBz2ogKuR85ZIuJb
+         ctSYm9C5KOs16km/YdD7Vx93vzZNiAvz0Mnv5A8YnHEA5Y1aqyf7b8eBXiSLeABMFoEa
+         hENjSf+aiwMSULA33B2wKfF4U/xSmTw5UNF6rmLKqqPgG/yqRaGlPSxmPz5JASBVJwc2
+         cMCg==
+X-Gm-Message-State: AOAM532EVLDs17LKKScBBjbVJ+YO997edHtN4rj8wZKFJkaHLHFS/ERG
+        C8e6SuX20wzNScHcFRX9AS6L5nsyWWQt6icmGGdOAqQzAgNT4yie0D/c82077N7LbODqKR/GD2U
+        rFtFA0OGR4BEGHnaXGdKIvraLvLVrWSGlqzJKwAQ=
+X-Received: by 2002:a17:906:858:: with SMTP id f24mr5731434ejd.145.1629447325480;
+        Fri, 20 Aug 2021 01:15:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzuo3Vdq6zLRK/WcVhaGL1NNX/d2ueqr+Sxi38Ec5+1qRS3Ozv2g6t00lxfXD7VhhPga32rEg==
+X-Received: by 2002:a17:906:858:: with SMTP id f24mr5731422ejd.145.1629447325352;
+        Fri, 20 Aug 2021 01:15:25 -0700 (PDT)
 Received: from localhost.localdomain ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id a2sm3284071edm.72.2021.08.20.01.15.01
+        by smtp.gmail.com with ESMTPSA id k19sm2487099ejq.42.2021.08.20.01.15.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 01:15:01 -0700 (PDT)
+        Fri, 20 Aug 2021 01:15:25 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: exynos: align operating-points table name with dtschema in Exynos5433
-Date:   Fri, 20 Aug 2021 10:14:57 +0200
-Message-Id: <20210820081458.83406-1-krzysztof.kozlowski@canonical.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH] arm64: dts: hisilicon: align operating-points table name with dtschema
+Date:   Fri, 20 Aug 2021 10:15:22 +0200
+Message-Id: <20210820081522.83512-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -70,80 +71,46 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Align the name of operating-points node to dtschema to fix warnings like:
 
+  cpu_opp_table: $nodename:0: 'cpu_opp_table' does not match '^opp-table(-[a-z0-9]+)?$'
+
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi | 10 +++++-----
- arch/arm64/boot/dts/exynos/exynos5433.dtsi     |  4 ++--
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
-index 8997f8f2b96c..72ccf18eb9d1 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
-@@ -87,7 +87,7 @@ bus_noc2: bus9 {
- 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+index 2d5c1a348716..19a979779bdb 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+@@ -210,7 +210,7 @@ A73_L2: l2-cache1 {
+ 		};
  	};
  
--	bus_g2d_400_opp_table: opp-table2 {
-+	bus_g2d_400_opp_table: opp-table-2 {
+-	cluster0_opp: opp_table0 {
++	cluster0_opp: opp-table-0 {
  		compatible = "operating-points-v2";
  		opp-shared;
  
-@@ -117,7 +117,7 @@ opp-100000000 {
+@@ -245,7 +245,7 @@ opp04 {
  		};
  	};
  
--	bus_g2d_266_opp_table: opp-table3 {
-+	bus_g2d_266_opp_table: opp-table-3 {
- 		compatible = "operating-points-v2";
- 
- 		opp-267000000 {
-@@ -137,7 +137,7 @@ opp-100000000 {
- 		};
- 	};
- 
--	bus_gscl_opp_table: opp-table4 {
-+	bus_gscl_opp_table: opp-table-4 {
- 		compatible = "operating-points-v2";
- 
- 		opp-333000000 {
-@@ -151,7 +151,7 @@ opp-166500000 {
- 		};
- 	};
- 
--	bus_hevc_opp_table: opp-table5 {
-+	bus_hevc_opp_table: opp-table-5 {
+-	cluster1_opp: opp_table1 {
++	cluster1_opp: opp-table-1 {
  		compatible = "operating-points-v2";
  		opp-shared;
  
-@@ -175,7 +175,7 @@ opp-100000000 {
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+index dde9371dc545..3f2134779115 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+@@ -193,7 +193,7 @@ CLUSTER1_L2: l2-cache1 {
  		};
  	};
  
--	bus_noc2_opp_table: opp-table6 {
-+	bus_noc2_opp_table: opp-table-6 {
- 		compatible = "operating-points-v2";
- 
- 		opp-400000000 {
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index 6a6f7dd1d65c..ebd5091d68b4 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -239,7 +239,7 @@ cluster_a53_l2: l2-cache1 {
- 		};
- 	};
- 
--	cluster_a53_opp_table: opp-table0 {
-+	cluster_a53_opp_table: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -285,7 +285,7 @@ opp-1300000000 {
- 		};
- 	};
- 
--	cluster_a57_opp_table: opp-table1 {
-+	cluster_a57_opp_table: opp-table-1 {
+-	cpu_opp_table: cpu_opp_table {
++	cpu_opp_table: opp-table-0 {
  		compatible = "operating-points-v2";
  		opp-shared;
  
