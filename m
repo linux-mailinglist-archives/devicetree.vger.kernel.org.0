@@ -2,18 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7793F3F3558
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 22:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDDB83F3564
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 22:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239093AbhHTUhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 16:37:10 -0400
-Received: from relay07.th.seeweb.it ([5.144.164.168]:50031 "EHLO
-        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbhHTUhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 16:37:10 -0400
+        id S239403AbhHTUio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 16:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239000AbhHTUio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 16:38:44 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1896EC061756;
+        Fri, 20 Aug 2021 13:38:06 -0700 (PDT)
 Received: from localhost.localdomain (83.6.167.97.neoplus.adsl.tpnet.pl [83.6.167.97])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 5580F3F34A;
-        Fri, 20 Aug 2021 22:36:30 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id E6B7C3F34A;
+        Fri, 20 Aug 2021 22:38:03 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -22,299 +25,207 @@ Cc:     martin.botka@somainline.org,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: clock: Add SM6350 GCC clock bindings
-Date:   Fri, 20 Aug 2021 22:36:23 +0200
-Message-Id: <20210820203624.232268-2-konrad.dybcio@somainline.org>
+Subject: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SM6350 pinctrl bindings
+Date:   Fri, 20 Aug 2021 22:37:50 +0200
+Message-Id: <20210820203751.232645-2-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210820203624.232268-1-konrad.dybcio@somainline.org>
-References: <20210820203624.232268-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210820203751.232645-1-konrad.dybcio@somainline.org>
+References: <20210820203751.232645-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for global clock controller on SM6350 SoC.
+Add device tree binding Documentation details for Qualcomm SM6350
+pinctrl driver.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- .../bindings/clock/qcom,gcc-sm6350.yaml       |  76 ++++++++
- include/dt-bindings/clock/qcom,gcc-sm6350.h   | 178 ++++++++++++++++++
- 2 files changed, 254 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6350.yaml
- create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6350.h
+ .../bindings/pinctrl/qcom,sm6350-pinctrl.yaml | 156 ++++++++++++++++++
+ .../bindings/pinctrl/qcom,tlmm-common.yaml    |   2 +-
+ 2 files changed, 157 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm6350.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6350.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
 new file mode 100644
-index 000000000000..20926cd8293e
+index 000000000000..e4d8b7a044e6
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6350.yaml
-@@ -0,0 +1,76 @@
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
+@@ -0,0 +1,156 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/clock/qcom,gcc-sm6350.yaml#
++$id: http://devicetree.org/schemas/pinctrl/qcom,sm6350-pinctrl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Global Clock & Reset Controller Binding for SM6350
++title: Qualcomm Technologies, Inc. SM6350 TLMM block
 +
 +maintainers:
 +  - Konrad Dybcio <konrad.dybcio@somainline.org>
 +
 +description: |
-+  Qualcomm global clock control module which supports the clocks, resets and
-+  power domains on SM6350.
++  This binding describes the Top Level Mode Multiplexer (TLMM) block found
++  in the SM6350 platform.
 +
-+  See also:
-+  - dt-bindings/clock/qcom,gcc-sm6350.h
++allOf:
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
 +
 +properties:
 +  compatible:
-+    const: qcom,gcc-sm6350
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: Board active XO source
-+      - description: Sleep clock source
-+
-+  clock-names:
-+    items:
-+      - const: bi_tcxo
-+      - const: bi_tcxo_ao
-+      - const: sleep_clk
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
++    const: qcom,sm6350-tlmm
 +
 +  reg:
 +    maxItems: 1
 +
-+  protected-clocks:
-+    description:
-+      Protected clock specifier list as per common clock binding.
++  interrupts: true
++  interrupt-controller: true
++  '#interrupt-cells': true
++  gpio-controller: true
++  gpio-reserved-ranges: true
++  '#gpio-cells': true
++  gpio-ranges: true
++  wakeup-parent: true
 +
 +required:
 +  - compatible
-+  - clocks
-+  - clock-names
 +  - reg
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
 +
 +additionalProperties: false
 +
++patternProperties:
++  '-state$':
++    oneOf:
++      - $ref: "#/$defs/qcom-sm6350-tlmm-state"
++      - patternProperties:
++          ".*":
++            $ref: "#/$defs/qcom-sm6350-tlmm-state"
++
++$defs:
++  qcom-sm6350-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-3])$"
++            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, atest_char1, atest_char2,
++                atest_char3, atest_tsens, atest_tsens2, atest_usb1, atest_usb10, atest_usb11,
++                atest_usb12, atest_usb13, atest_usb2, atest_usb20, atest_usb21, atest_usb22,
++                atest_usb23, audio_ref, btfm_slimbus, cam_mclk0, cam_mclk1, cam_mclk2, cam_mclk3,
++                cam_mclk4, cci_async, cci_i2c, cci_timer0, cci_timer1, cci_timer2, cci_timer3,
++                cci_timer4, cri_trng, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1, ddr_pxi2, ddr_pxi3,
++                dp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3, gp_pdm0, gp_pdm1, gp_pdm2, gpio,
++                gps_tx, ibi_i3c, jitter_bist, ldo_en, ldo_update, lpass_ext, m_voc, mclk,
++                mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s_0, mi2s_1, mi2s_2,
++                mss_lte, nav_gpio, nav_pps, pa_indicator, pcie0_clk, phase_flag0, phase_flag1,
++                phase_flag10, phase_flag11, phase_flag12, phase_flag13, phase_flag14, phase_flag15,
++                phase_flag16, phase_flag17, phase_flag18, phase_flag19, phase_flag2, phase_flag20,
++                phase_flag21, phase_flag22, phase_flag23, phase_flag24, phase_flag25, phase_flag26,
++                phase_flag27, phase_flag28, phase_flag29, phase_flag3, phase_flag30, phase_flag31,
++                phase_flag4, phase_flag5, phase_flag6, phase_flag7, phase_flag8, phase_flag9,
++                pll_bist, pll_bypassnl, pll_reset, prng_rosc, qdss_cti, qdss_gpio, qdss_gpio0,
++                qdss_gpio1, qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
++                qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5, qdss_gpio6,
++                qdss_gpio7, qdss_gpio8, qdss_gpio9, qlink0_enable, qlink0_request, qlink0_wmss,
++                qlink1_enable, qlink1_request, qlink1_wmss, qup00, qup01, qup02, qup10, qup11,
++                qup12, qup13_f1, qup13_f2, qup14, rffe0_clk, rffe0_data, rffe1_clk, rffe1_data,
++                rffe2_clk, rffe2_data, rffe3_clk, rffe3_data, rffe4_clk, rffe4_data, sd_write,
++                sdc1_tb, sdc2_tb, sp_cmu, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm1,
++                tsense_pwm2, uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk, uim2_data,
++                uim2_present, uim2_reset, usb_phy, vfr_1, vsense_trigger, wlan1_adc0, wlan1_adc1,
++                wlan2_adc0, wlan2_adc1, ]
++
++
++      bias-disable: true
++      bias-pull-down: true
++      bias-pull-up: true
++      drive-strength: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    clock-controller@100000 {
-+      compatible = "qcom,gcc-sm6350";
-+      reg = <0x00100000 0x1f0000>;
-+      clocks = <&rpmhcc RPMH_CXO_CLK>,
-+               <&rpmhcc RPMH_CXO_CLK_A>,
-+               <&sleep_clk>;
-+      clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        pinctrl@f100000 {
++                compatible = "qcom,sm6350-tlmm";
++                reg = <0x0f100000 0x300000>;
++                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
++                            <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++                gpio-ranges = <&tlmm 0 0 156>;
++
++                gpio-wo-subnode-state {
++                        pins = "gpio1";
++                        function = "gpio";
++                };
++
++                uart-w-subnodes-state {
++                        rx {
++                                pins = "gpio25";
++                                function = "qup13_f2";
++                                bias-disable;
++                        };
++
++                        tx {
++                                pins = "gpio26";
++                                function = "qup13_f2";
++                                bias-disable;
++                        };
++                };
++        };
 +...
-diff --git a/include/dt-bindings/clock/qcom,gcc-sm6350.h b/include/dt-bindings/clock/qcom,gcc-sm6350.h
-new file mode 100644
-index 000000000000..ba584ca33c39
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,gcc-sm6350.h
-@@ -0,0 +1,178 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SM6350_H
-+#define _DT_BINDINGS_CLK_QCOM_GCC_SM6350_H
-+
-+/* GCC clocks */
-+#define GPLL0					0
-+#define GPLL0_OUT_EVEN				1
-+#define GPLL0_OUT_ODD				2
-+#define GPLL6					3
-+#define GPLL6_OUT_EVEN				4
-+#define GPLL7					5
-+#define GCC_AGGRE_CNOC_PERIPH_CENTER_AHB_CLK	6
-+#define GCC_AGGRE_NOC_CENTER_AHB_CLK		7
-+#define GCC_AGGRE_NOC_PCIE_SF_AXI_CLK		8
-+#define GCC_AGGRE_NOC_PCIE_TBU_CLK		9
-+#define GCC_AGGRE_NOC_WLAN_AXI_CLK		10
-+#define GCC_AGGRE_UFS_PHY_AXI_CLK		11
-+#define GCC_AGGRE_USB3_PRIM_AXI_CLK		12
-+#define GCC_BOOT_ROM_AHB_CLK			13
-+#define GCC_CAMERA_AHB_CLK			14
-+#define GCC_CAMERA_AXI_CLK			15
-+#define GCC_CAMERA_THROTTLE_NRT_AXI_CLK		16
-+#define GCC_CAMERA_THROTTLE_RT_AXI_CLK		17
-+#define GCC_CAMERA_XO_CLK			18
-+#define GCC_CE1_AHB_CLK				19
-+#define GCC_CE1_AXI_CLK				20
-+#define GCC_CE1_CLK				21
-+#define GCC_CFG_NOC_USB3_PRIM_AXI_CLK		22
-+#define GCC_CPUSS_AHB_CLK			23
-+#define GCC_CPUSS_AHB_CLK_SRC			24
-+#define GCC_CPUSS_AHB_DIV_CLK_SRC		25
-+#define GCC_CPUSS_GNOC_CLK			26
-+#define GCC_CPUSS_RBCPR_CLK			27
-+#define GCC_DDRSS_GPU_AXI_CLK			28
-+#define GCC_DISP_AHB_CLK			29
-+#define GCC_DISP_AXI_CLK			30
-+#define GCC_DISP_CC_SLEEP_CLK			31
-+#define GCC_DISP_CC_XO_CLK			32
-+#define GCC_DISP_GPLL0_CLK			33
-+#define GCC_DISP_THROTTLE_AXI_CLK		34
-+#define GCC_DISP_XO_CLK				35
-+#define GCC_GP1_CLK				36
-+#define GCC_GP1_CLK_SRC				37
-+#define GCC_GP2_CLK				38
-+#define GCC_GP2_CLK_SRC				39
-+#define GCC_GP3_CLK				40
-+#define GCC_GP3_CLK_SRC				41
-+#define GCC_GPU_CFG_AHB_CLK			42
-+#define GCC_GPU_GPLL0_CLK			43
-+#define GCC_GPU_GPLL0_DIV_CLK			44
-+#define GCC_GPU_MEMNOC_GFX_CLK			45
-+#define GCC_GPU_SNOC_DVM_GFX_CLK		46
-+#define GCC_NPU_AXI_CLK				47
-+#define GCC_NPU_BWMON_AXI_CLK			48
-+#define GCC_NPU_BWMON_DMA_CFG_AHB_CLK		49
-+#define GCC_NPU_BWMON_DSP_CFG_AHB_CLK		50
-+#define GCC_NPU_CFG_AHB_CLK			51
-+#define GCC_NPU_DMA_CLK				52
-+#define GCC_NPU_GPLL0_CLK			53
-+#define GCC_NPU_GPLL0_DIV_CLK			54
-+#define GCC_PCIE_0_AUX_CLK			55
-+#define GCC_PCIE_0_AUX_CLK_SRC			56
-+#define GCC_PCIE_0_CFG_AHB_CLK			57
-+#define GCC_PCIE_0_MSTR_AXI_CLK			58
-+#define GCC_PCIE_0_PIPE_CLK			59
-+#define GCC_PCIE_0_SLV_AXI_CLK			60
-+#define GCC_PCIE_0_SLV_Q2A_AXI_CLK		61
-+#define GCC_PCIE_PHY_RCHNG_CLK			62
-+#define GCC_PCIE_PHY_RCHNG_CLK_SRC		63
-+#define GCC_PDM2_CLK				64
-+#define GCC_PDM2_CLK_SRC			65
-+#define GCC_PDM_AHB_CLK				66
-+#define GCC_PDM_XO4_CLK				67
-+#define GCC_PRNG_AHB_CLK			68
-+#define GCC_QUPV3_WRAP0_CORE_2X_CLK		69
-+#define GCC_QUPV3_WRAP0_CORE_CLK		70
-+#define GCC_QUPV3_WRAP0_S0_CLK			71
-+#define GCC_QUPV3_WRAP0_S0_CLK_SRC		72
-+#define GCC_QUPV3_WRAP0_S1_CLK			73
-+#define GCC_QUPV3_WRAP0_S1_CLK_SRC		74
-+#define GCC_QUPV3_WRAP0_S2_CLK			75
-+#define GCC_QUPV3_WRAP0_S2_CLK_SRC		76
-+#define GCC_QUPV3_WRAP0_S3_CLK			77
-+#define GCC_QUPV3_WRAP0_S3_CLK_SRC		78
-+#define GCC_QUPV3_WRAP0_S4_CLK			79
-+#define GCC_QUPV3_WRAP0_S4_CLK_SRC		80
-+#define GCC_QUPV3_WRAP0_S5_CLK			81
-+#define GCC_QUPV3_WRAP0_S5_CLK_SRC		82
-+#define GCC_QUPV3_WRAP1_CORE_2X_CLK		83
-+#define GCC_QUPV3_WRAP1_CORE_CLK		84
-+#define GCC_QUPV3_WRAP1_S0_CLK			85
-+#define GCC_QUPV3_WRAP1_S0_CLK_SRC		86
-+#define GCC_QUPV3_WRAP1_S1_CLK			87
-+#define GCC_QUPV3_WRAP1_S1_CLK_SRC		88
-+#define GCC_QUPV3_WRAP1_S2_CLK			89
-+#define GCC_QUPV3_WRAP1_S2_CLK_SRC		90
-+#define GCC_QUPV3_WRAP1_S3_CLK			91
-+#define GCC_QUPV3_WRAP1_S3_CLK_SRC		92
-+#define GCC_QUPV3_WRAP1_S4_CLK			93
-+#define GCC_QUPV3_WRAP1_S4_CLK_SRC		94
-+#define GCC_QUPV3_WRAP1_S5_CLK			95
-+#define GCC_QUPV3_WRAP1_S5_CLK_SRC		96
-+#define GCC_QUPV3_WRAP_0_M_AHB_CLK		97
-+#define GCC_QUPV3_WRAP_0_S_AHB_CLK		98
-+#define GCC_QUPV3_WRAP_1_M_AHB_CLK		99
-+#define GCC_QUPV3_WRAP_1_S_AHB_CLK		100
-+#define GCC_SDCC1_AHB_CLK			101
-+#define GCC_SDCC1_APPS_CLK			102
-+#define GCC_SDCC1_APPS_CLK_SRC			103
-+#define GCC_SDCC1_ICE_CORE_CLK			104
-+#define GCC_SDCC1_ICE_CORE_CLK_SRC		105
-+#define GCC_SDCC2_AHB_CLK			106
-+#define GCC_SDCC2_APPS_CLK			107
-+#define GCC_SDCC2_APPS_CLK_SRC			108
-+#define GCC_SYS_NOC_CPUSS_AHB_CLK		109
-+#define GCC_UFS_MEM_CLKREF_CLK			110
-+#define GCC_UFS_PHY_AHB_CLK			111
-+#define GCC_UFS_PHY_AXI_CLK			112
-+#define GCC_UFS_PHY_AXI_CLK_SRC			113
-+#define GCC_UFS_PHY_ICE_CORE_CLK		114
-+#define GCC_UFS_PHY_ICE_CORE_CLK_SRC		115
-+#define GCC_UFS_PHY_PHY_AUX_CLK			116
-+#define GCC_UFS_PHY_PHY_AUX_CLK_SRC		117
-+#define GCC_UFS_PHY_RX_SYMBOL_0_CLK		118
-+#define GCC_UFS_PHY_RX_SYMBOL_1_CLK		119
-+#define GCC_UFS_PHY_TX_SYMBOL_0_CLK		120
-+#define GCC_UFS_PHY_UNIPRO_CORE_CLK		121
-+#define GCC_UFS_PHY_UNIPRO_CORE_CLK_SRC		122
-+#define GCC_USB30_PRIM_MASTER_CLK		123
-+#define GCC_USB30_PRIM_MASTER_CLK_SRC		124
-+#define GCC_USB30_PRIM_MOCK_UTMI_CLK		125
-+#define GCC_USB30_PRIM_MOCK_UTMI_CLK_SRC	126
-+#define GCC_USB30_PRIM_MOCK_UTMI_DIV_CLK_SRC	127
-+#define GCC_USB3_PRIM_CLKREF_CLK		128
-+#define GCC_USB30_PRIM_SLEEP_CLK		129
-+#define GCC_USB3_PRIM_PHY_AUX_CLK		130
-+#define GCC_USB3_PRIM_PHY_AUX_CLK_SRC		131
-+#define GCC_USB3_PRIM_PHY_COM_AUX_CLK		132
-+#define GCC_USB3_PRIM_PHY_PIPE_CLK		133
-+#define GCC_VIDEO_AHB_CLK			134
-+#define GCC_VIDEO_AXI_CLK			135
-+#define GCC_VIDEO_THROTTLE_AXI_CLK		136
-+#define GCC_VIDEO_XO_CLK			137
-+#define GCC_UFS_PHY_PHY_AUX_HW_CTL_CLK		138
-+#define GCC_UFS_PHY_AXI_HW_CTL_CLK		139
-+#define GCC_AGGRE_UFS_PHY_AXI_HW_CTL_CLK	140
-+#define GCC_UFS_PHY_UNIPRO_CORE_HW_CTL_CLK	141
-+#define GCC_UFS_PHY_ICE_CORE_HW_CTL_CLK		142
-+#define GCC_RX5_PCIE_CLKREF_CLK			143
-+#define GCC_GPU_GPLL0_MAIN_DIV_CLK_SRC		144
-+#define GCC_NPU_PLL0_MAIN_DIV_CLK_SRC		145
-+
-+/* GCC resets */
-+#define GCC_QUSB2PHY_PRIM_BCR			0
-+#define GCC_QUSB2PHY_SEC_BCR			1
-+#define GCC_SDCC1_BCR				2
-+#define GCC_SDCC2_BCR				3
-+#define GCC_UFS_PHY_BCR				4
-+#define GCC_USB30_PRIM_BCR			5
-+#define GCC_PCIE_0_BCR				6
-+#define GCC_PCIE_0_PHY_BCR			7
-+#define GCC_QUPV3_WRAPPER_0_BCR			8
-+#define GCC_QUPV3_WRAPPER_1_BCR			9
-+#define GCC_USB3_PHY_PRIM_BCR			10
-+#define GCC_USB3_DP_PHY_PRIM_BCR		11
-+
-+/* GCC GDSCs */
-+#define USB30_PRIM_GDSC				0
-+#define UFS_PHY_GDSC				1
-+#define HLOS1_VOTE_MMNOC_MMU_TBU_HF0_GDSC	2
-+#define HLOS1_VOTE_MMNOC_MMU_TBU_HF1_GDSC	3
-+
-+#endif
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
+index 3b37cf102d41..99975122a2ce 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,tlmm-common.yaml
+@@ -17,7 +17,7 @@ properties:
+   interrupts:
+     description:
+       Specifies the TLMM summary IRQ
+-    maxItems: 1
++    maxItems: 9
+ 
+   interrupt-controller: true
+ 
 -- 
 2.33.0
 
