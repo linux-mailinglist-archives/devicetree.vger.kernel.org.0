@@ -2,171 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 129AD3F2B11
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 13:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13263F2B20
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 13:24:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237651AbhHTLS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 07:18:59 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:44570 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S240271AbhHTLSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 07:18:41 -0400
-X-UUID: f5c917b471d3473c870d7bb68e943ee7-20210820
-X-UUID: f5c917b471d3473c870d7bb68e943ee7-20210820
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1105559771; Fri, 20 Aug 2021 19:18:00 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 20 Aug 2021 19:17:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 20 Aug 2021 19:17:58 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v2 24/24] clk: mediatek: Add MT8195 apusys clock support
-Date:   Fri, 20 Aug 2021 19:15:04 +0800
-Message-ID: <20210820111504.350-25-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210820111504.350-1-chun-jie.chen@mediatek.com>
-References: <20210820111504.350-1-chun-jie.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S239208AbhHTLY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 07:24:59 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:20770 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238769AbhHTLY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 07:24:58 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629458660; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=SG52N9WIyiOqT17cKV2tk26WvWqqcDSXT0zoL77AdGM=; b=QkArKBzvslO9OaLfJW2Xt/r/nfhsbjCgmiRE+8po8lmXY47ZNadS9EKQ8gKppeTEyJdDRKy9
+ Pp07J5YAi/48Bs3Dl8PFyeBQf1LalHteKCY3PZQYrcEqCZpMnWWbwlP4qotDC380R0pkOKwf
+ qWLy0x5I6d/yIxWiEGvScTPgE7U=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 611f90d989fbdf3ffe389da8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 20 Aug 2021 11:24:09
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 68EF2C43619; Fri, 20 Aug 2021 11:24:08 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CE631C4338F;
+        Fri, 20 Aug 2021 11:23:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org CE631C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Odelu Kukatla <okukatla@codeaurora.org>
+To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        evgreen@google.com, Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     sboyd@kernel.org, mdtipton@codeaurora.org, saravanak@google.com,
+        okukatla@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-arm-msm-owner@vger.kernel.org
+Subject: [v7 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
+Date:   Fri, 20 Aug 2021 16:53:39 +0530
+Message-Id: <1629458622-4915-2-git-send-email-okukatla@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org>
+References: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT8195 apusys clock controller which provides PLLs
-in AI processor Unit.
+Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+SoCs.
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
 ---
- drivers/clk/mediatek/Makefile                |  2 +-
- drivers/clk/mediatek/clk-mt8195-apusys_pll.c | 92 ++++++++++++++++++++
- 2 files changed, 93 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/mediatek/clk-mt8195-apusys_pll.c
+ .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  9 ++++++++-
+ include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 +++++++++-
+ 2 files changed, 17 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index 4288ad39ba41..e10b1d6b0cf4 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -83,6 +83,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
- obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-mt8195-cam.o \
- 					clk-mt8195-ccu.o clk-mt8195-img.o clk-mt8195-ipe.o clk-mt8195-mfg.o clk-mt8195-scp_adsp.o \
- 					clk-mt8195-vdec.o clk-mt8195-vdo0.o clk-mt8195-vdo1.o clk-mt8195-venc.o clk-mt8195-vpp0.o \
--					clk-mt8195-vpp1.o clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o
-+					clk-mt8195-vpp1.o clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o clk-mt8195-apusys_pll.o
- obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
- obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt8195-apusys_pll.c b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-new file mode 100644
-index 000000000000..6868c9ff3e18
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-@@ -0,0 +1,92 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+//
-+// Copyright (c) 2021 MediaTek Inc.
-+// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mt8195-clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#define MT8195_PLL_FMAX		(3800UL * MHZ)
-+#define MT8195_PLL_FMIN		(1500UL * MHZ)
-+#define MT8195_INTEGER_BITS	(8)
-+#define MT8195_PCW_BITS		(22)
-+#define MT8195_POSDIV_SHIFT	(24)
-+#define MT8195_PLL_EN_BIT	(0)
-+#define MT8195_PCW_SHIFT	(0)
-+
-+/*
-+ * The "en_reg" and "pcw_chg_reg" fields are standard offset register compared
-+ * with "reg" field, so set zero to imply it.
-+ * No tuner control in apu pll, so set "tuner_XXX" as zero to imply it.
-+ * No rst or post divider enable in apu pll, so set "rst_bar_mask" and "en_mask"
-+ * as zero to imply it.
-+ */
-+#define PLL(_id, _name, _reg, _pwr_reg, _pd_reg, _pcw_reg) {		\
-+		.id = _id,						\
-+		.name = _name,						\
-+		.reg = _reg,						\
-+		.pwr_reg = _pwr_reg,					\
-+		.en_mask = 0,						\
-+		.flags = 0,						\
-+		.rst_bar_mask = 0,					\
-+		.fmax = MT8195_PLL_FMAX,				\
-+		.fmin = MT8195_PLL_FMIN,				\
-+		.pcwbits = MT8195_PCW_BITS,				\
-+		.pcwibits = MT8195_INTEGER_BITS,			\
-+		.pd_reg = _pd_reg,					\
-+		.pd_shift = MT8195_POSDIV_SHIFT,			\
-+		.tuner_reg = 0,						\
-+		.tuner_en_reg = 0,					\
-+		.tuner_en_bit = 0,					\
-+		.pcw_reg = _pcw_reg,					\
-+		.pcw_shift = MT8195_PCW_SHIFT,				\
-+		.pcw_chg_reg = 0,					\
-+		.en_reg = 0,						\
-+		.pll_en_bit = MT8195_PLL_EN_BIT,			\
-+	}
-+
-+static const struct mtk_pll_data apusys_plls[] = {
-+	PLL(CLK_APUSYS_PLL_APUPLL, "apusys_pll_apupll", 0x008, 0x014, 0x00c, 0x00c),
-+	PLL(CLK_APUSYS_PLL_NPUPLL, "apusys_pll_npupll", 0x018, 0x024, 0x01c, 0x01c),
-+	PLL(CLK_APUSYS_PLL_APUPLL1, "apusys_pll_apupll1", 0x028, 0x034, 0x02c, 0x02c),
-+	PLL(CLK_APUSYS_PLL_APUPLL2, "apusys_pll_apupll2", 0x038, 0x044, 0x03c, 0x03c),
-+};
-+
-+static int clk_mt8195_apusys_pll_probe(struct platform_device *pdev)
-+{
-+	struct clk_onecell_data *clk_data;
-+	struct device_node *node = pdev->dev.of_node;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(CLK_APUSYS_PLL_NR_CLK);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	mtk_clk_register_plls(node, apusys_plls, ARRAY_SIZE(apusys_plls), clk_data);
-+	r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-+	if (r)
-+		goto free_apusys_pll_data;
-+
-+	return r;
-+
-+free_apusys_pll_data:
-+	mtk_free_clk_data(clk_data);
-+	return r;
-+}
-+
-+static const struct of_device_id of_match_clk_mt8195_apusys_pll[] = {
-+	{ .compatible = "mediatek,mt8195-apusys_pll", },
-+	{}
-+};
-+
-+static struct platform_driver clk_mt8195_apusys_pll_drv = {
-+	.probe = clk_mt8195_apusys_pll_probe,
-+	.driver = {
-+		.name = "clk-mt8195-apusys_pll",
-+		.of_match_table = of_match_clk_mt8195_apusys_pll,
-+	},
-+};
-+builtin_platform_driver(clk_mt8195_apusys_pll_drv);
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+index e701524..919fce4 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+@@ -18,13 +18,20 @@ properties:
+   compatible:
+     enum:
+       - qcom,sc7180-osm-l3
++      - qcom,sc7280-epss-l3
+       - qcom,sc8180x-osm-l3
+       - qcom,sdm845-osm-l3
+       - qcom,sm8150-osm-l3
+       - qcom,sm8250-epss-l3
+ 
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 4
++    items:
++      - description: OSM clock domain-0 base address and size
++      - description: OSM clock domain-1 base address and size
++      - description: OSM clock domain-2 base address and size
++      - description: OSM clock domain-3 base address and size
+ 
+   clocks:
+     items:
+diff --git a/include/dt-bindings/interconnect/qcom,osm-l3.h b/include/dt-bindings/interconnect/qcom,osm-l3.h
+index 61ef649..99534a5 100644
+--- a/include/dt-bindings/interconnect/qcom,osm-l3.h
++++ b/include/dt-bindings/interconnect/qcom,osm-l3.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+ /*
+- * Copyright (C) 2019 The Linux Foundation. All rights reserved.
++ * Copyright (C) 2019, 2021 The Linux Foundation. All rights reserved.
+  */
+ 
+ #ifndef __DT_BINDINGS_INTERCONNECT_QCOM_OSM_L3_H
+@@ -11,5 +11,13 @@
+ 
+ #define MASTER_EPSS_L3_APPS	0
+ #define SLAVE_EPSS_L3_SHARED	1
++#define SLAVE_EPSS_L3_CPU0	2
++#define SLAVE_EPSS_L3_CPU1	3
++#define SLAVE_EPSS_L3_CPU2	4
++#define SLAVE_EPSS_L3_CPU3	5
++#define SLAVE_EPSS_L3_CPU4	6
++#define SLAVE_EPSS_L3_CPU5	7
++#define SLAVE_EPSS_L3_CPU6	8
++#define SLAVE_EPSS_L3_CPU7	9
+ 
+ #endif
 -- 
-2.18.0
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
