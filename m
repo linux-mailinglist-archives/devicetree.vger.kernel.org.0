@@ -2,198 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18E433F26C6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 08:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0FEB3F26D3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 08:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231761AbhHTG1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 02:27:18 -0400
-Received: from egress-ip33a.ess.de.barracuda.com ([18.185.115.192]:46434 "EHLO
-        egress-ip33a.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238396AbhHTG1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 02:27:17 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71]) by mx-outbound9-222.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 20 Aug 2021 06:26:33 +0000
-Received: by mail-wr1-f71.google.com with SMTP id a13-20020adfed0d000000b00156fd70137aso2371979wro.8
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 23:26:33 -0700 (PDT)
+        id S232727AbhHTGeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 02:34:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231998AbhHTGeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 02:34:21 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6CFC061575
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 23:33:44 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id x4so8178011pgh.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 23:33:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hcuPJzI48ACDUsy7FQfltiq6GrliZ7PQzihG218WNKY=;
-        b=ehFoCCvzT0rbZ7ht4RKXR47svEKDf/oQh5OE/A1Bgp19SIELkIxdcqp+igW66HWyLr
-         qjxlLZTrmk74xo2GaD5NmJtfvlj7NZH7DvyN+U5uw7g1GZCEiDU8i4nuim/bo5xu3bTP
-         yR2jO8K88rRnOc7XOAgAyt2Pg96/AJFPtYVig=
+        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=uizvbGrAGell6LdMB1pzSSzYApXRoXyVsqw6ZRcvWA4=;
+        b=1FzClz4/cP22vIiJuVHlGAzTd7Ib7PAHSg++BBzrNQtZk87GbqGXy33+JHRwf2bG9w
+         /V0nlxAvcTWDyoxqzpRitPEur2uuK0JjEeAQn5sVKYYw1vg5x2QJ3nMjtQW1JL0a2xg2
+         5nhStFIcR+G5IRnwzRVyz8irwDXqNtlKGnCjjECvPtu7SQneOWh2nyFqxpTN6TunXVuP
+         dZcbr0y8GdXgoT/sK3cl+fBc19NSRh+Yt5+JnikFM5omtG/nNKhBi1imRFMJQGPGRP0q
+         eBxA0spBPqp0bKuF8yK7T/zHFoDkzxdKTMF/S+cSm6auSGc/Eq1UTY3B1GZXHM+f15SY
+         5sTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hcuPJzI48ACDUsy7FQfltiq6GrliZ7PQzihG218WNKY=;
-        b=bZUpM2gF57aw6YbozorUk/ea3flOe3n5sRAM+im4Yr7sD6IGLMFIodKxbWceVczTx7
-         SvIOzHCyfjzwUSLkMrbyETkVnyUw0uFb5G6HtVLDudXSo3KZIYAaR8wyLEFRdwuTNIBD
-         Jjn236TWPrBCVeuYeUzCQORz3tTYcEwFvTDmIyJNUrBtIqxi7t347Z/sgdEcNx9ht/iu
-         DYMAMoJ7zK9vCFTdEmQWT58KIEb9JZO5nVgcaNdN6e+bAP5lXIQctpcoy/9EYX7S4qbb
-         34ccy8yFO/ERxU7Jtd03OTVyLwF2d2ubBkspaTq+/9yJ8gURdSkJy95gKE3VJ1nW+VMx
-         24TA==
-X-Gm-Message-State: AOAM532vPohCGtPd+jwPdpJOzn3THKDi2jaQijsTpzA/VmWUce2e0nBo
-        36tQk3NaNcXW5Y2f4W07sQexl5NbOMZRPk/KZzPo3CkaEXnEdJZ+t22AT5Mr47awbdnxdcTcmpQ
-        DHdp2837GmHbTDjYF7v5Va4EkRVf/HMeDXxmow1YJAHuWyc1di7ywd8Ty4gcqYpD+XdJNruNq7A
-        ==
-X-Received: by 2002:a7b:cb02:: with SMTP id u2mr2081798wmj.103.1629440793518;
-        Thu, 19 Aug 2021 23:26:33 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwUpTVpY5loxCylXUXl3QzaPyMvv2z8srnQpPVyv3dpCPkhvSqbLiBl6xuULNB+8ghw1qIJ+8C6IiVC6SPpXn0=
-X-Received: by 2002:a7b:cb02:: with SMTP id u2mr2081780wmj.103.1629440793277;
- Thu, 19 Aug 2021 23:26:33 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=uizvbGrAGell6LdMB1pzSSzYApXRoXyVsqw6ZRcvWA4=;
+        b=k26jxQqWk4ZTWJndnJWsqN2/99TBz5eOhEv0SE5SXsaqN01O2IbHevzq8lQ+bk6q7D
+         USkJmqhDwkSdgcRN/BtkulR1gQYJpk6f6hLcf4xe4GZtLs3yWBdSfr8FCfi9xxfaRxZv
+         XbpvaXpOdNGR0NP7TTqgmc6WFgEpvqsztCx+OJQ6I9BC9+BBq4wvFrabba+OayY/eaZF
+         h1jcOUsqrQm5BmTV5VzAZrT7TBz5xt2FpeE/ur+0WBCBk6noRPBhDkjvOMyS/9O03AJK
+         YqehhVPIeByk/9fQYEIfxttFdPissVvi4/GFf4U5vRp0RFftKIzcD5vyXs2aBfRTXM9j
+         HNWQ==
+X-Gm-Message-State: AOAM532HGLWLZrFGIvLLY++JUjn2+58LcaNmskMu7JzwDmIpzTbYseuv
+        hl9f+PLWVcVpI9INngqZTsHCTw==
+X-Google-Smtp-Source: ABdhPJz4dCXSZ33XEWhwSZMTETDWB1y7AOtiIjlAEa80L0dWADYvBITxJsFjeraeegigfhEzzLTfUQ==
+X-Received: by 2002:a63:1460:: with SMTP id 32mr17343074pgu.323.1629441223783;
+        Thu, 19 Aug 2021 23:33:43 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.213])
+        by smtp.gmail.com with ESMTPSA id a10sm5612160pfn.48.2021.08.19.23.33.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Aug 2021 23:33:43 -0700 (PDT)
+From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, dianders@google.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        yangcong <yangcong5@huaqin.corp-partner.google.com>
+Subject: [v2 0/2] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+Date:   Fri, 20 Aug 2021 14:33:35 +0800
+Message-Id: <20210820063337.44580-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210819124844.12424-1-yangcong5@huaqin.corp-partner.google.com>
+References: <20210819124844.12424-1-yangcong5@huaqin.corp-partner.google.com>
 MIME-Version: 1.0
-References: <20210818074030.1877-1-sinthu.raja@ti.com> <20210818130535.siv7jpjjzfwonwdt@unsteady>
-In-Reply-To: <20210818130535.siv7jpjjzfwonwdt@unsteady>
-From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Date:   Fri, 20 Aug 2021 11:56:21 +0530
-Message-ID: <CAEd-yTQgWLZUKPJQvByWfo3w=gNFLz=F6q6_oF_0WC7cRpZ6dw@mail.gmail.com>
-Subject: Re: [PATCH V1] dt-bindings: remoteproc: k3-dsp: Update example to
- remove board specific
-To:     Nishanth Menon <nm@ti.com>
-Cc:     "Nagalla, Hari" <hnagalla@ti.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-remoteproc@vger.kernel.org,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        linux-kernel@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-BESS-ID: 1629440793-302526-18216-13315-1
-X-BESS-VER: 2019.1_20210819.2207
-X-BESS-Apparent-Source-IP: 209.85.221.71
-X-BESS-Outbound-Spam-Score: 0.40
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.234048 [from 
-        cloudscan12-73.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_SA085b, BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With Regards
+Compared to v1, "pp3300-supply" is removed in the required list:
+dt-bindings: drm/panel:
+   - reg
+   - enable-gpios
+   - pp1800-supply
+-  - pp3300-supply
+   - avdd-supply
+   - avee-supply
 
-Sinthu Raja
+yangcong (2):
+  drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+  dt-bindings: drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
 
+ .../bindings/display/panel/boe,tv101wum-nl6.yaml      |  3 +++
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c        | 11 +++++++++++
+ 2 files changed, 14 insertions(+)
 
-On Wed, Aug 18, 2021 at 6:35 PM Nishanth Menon <nm@ti.com> wrote:
->
-> On 13:10-20210818, Sinthu Raja wrote:
-> > The example includes a board-specific compatible property, but developers
-> > need to add the board name each time when a new board is added to the K3
-> > J721E SoC list. This grows the compatible string-list. So, drop the
-> > board-specific compatible string and add cbass_main as a parent node to
->
-> What is cbass_main node?
->
-> > avoid parent node and child node address-cells mismatch error.
-> >
->
-> I think you mean that since the existing example uses address cells and
-> size for 64bit addresses and sizes, you are introducing a bus segment
-> indicative of the same capability to reduce the churn in the binding.
-> Correct? if so, rephrase accordingly.
->
-> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
->
-> Your From: and Signed-off-by email IDs do not match. You might want to
-> re-read the contribution guidelines documentation in linux kernel.
->
-> This should be also tagged with Fixes: since it is fixing a pre-existing
-> binding that slipped through our review.
+-- 
+2.25.1
 
-Hi Nishanth,
-May I know to which commit I have to tag the Fixes. If you are
-referring to the below review, then the patch is not merged and how
-shall we add the Fixes tag for this patch.
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210607093314.23909-2-sinthu.raja@ti.com/
-
-
->
-> NOTE: at least my test.. (I think rob's system will still complain)
-> base: next-20210818
-> b4 am -o  ~/tmp -3 -g -t -l -c -s --no-cover 20210818074030.1877-1-sinthu.raja@ti.com
->         https://pastebin.ubuntu.com/p/VxzzvzpY9N/
->
-> I mean, both these can be caught with checkpatch and standard checks, so
-> did you see that in your basic vett prior to posting?
-
-It didn't catch in my basic patch verification. But the generated
-patch does have the From header, but sometimes the From header is
-getting truncated when submitting for review. Still working on that to
-fix it. (using Gmail client to submitting the patch)
-
-With Regards
-Sinthu Raja
->
-> > ---
-> > Changes in V1:
-> > Fixed alignment issue which caused the yaml parse error.
->
-> Some 101 comments:
->
-> A) when you post a new revision, post a url like previous versions in
->    diffstat - :
->    https://lore.kernel.org/linux-devicetree/20210817152005.21575-1-sinthu.raja@ti.com/
-> B) When you are sending the very first patch, it is already V1 and
->    does'nt need to be explicitly stated. this update to your original
->    post is a V2, so, when you update this patch to address the review
->    comments, the next revision will be V3.
->
-> >
-> >  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 6 ++----
-> >  1 file changed, 2 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> > index 6070456a7b67..e44a9397b8db 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> > @@ -132,10 +132,8 @@ required:
-> >  unevaluatedProperties: false
-> >
-> >  examples:
-> > -  - |
-> > -    / {
-> > -        model = "Texas Instruments K3 J721E SoC";
-> > -        compatible = "ti,j721e";
-> > +  - |+
->
-> minor detail: you are also doing one additional change -> you are now using
-> the standard example template and adding the example node instead of a
-> complete example node as well here. Personally, I do prefer this
-> approach rather than the previous example.
->
-> > +    cbass_main {
-> >          #address-cells = <2>;
-> >          #size-cells = <2>;
->
->
->
-> Usually, when one sees problems like these, they tend to be
-> symptomatic, and we need to look if there is a similar pattern of
-> error else where in the codebase.
->
-> Sigh, in this case, I see the same problem in:
-> a) Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-> b) Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
->
-> Hari, Sinthu,
-> Can we fix these in a series that belongs to each maintainer?
->
-> >
-> > --
-> > 2.31.1
-> >
->
-> --
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
