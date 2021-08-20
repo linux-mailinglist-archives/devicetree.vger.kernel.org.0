@@ -2,62 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DA13F3260
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 19:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75CBF3F327F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 19:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233320AbhHTRlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 13:41:49 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:32920 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229940AbhHTRlt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 13:41:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=jQD2OATswpHp4bNzlY3nCz9N+HNVVMddP1vTz/Eobi4=; b=oEIIcNTZ77tkcpIYxVQ7660CA0
-        DQ9L9PJCx48VE/0l6QeLOhpsNtXJZbTsh5mQ1rpx/JJRw8JYBt4YyR32H0ZiW6FyzpYfILqqfU1W6
-        XiG2m2odoOcWSMB7PEaGLd07gkcvLB1FHehzm9qObvzugwbw3CpTrRbUmWEFv3fdGa9w=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mH8Vr-001CJX-JT; Fri, 20 Aug 2021 19:41:03 +0200
-Date:   Fri, 20 Aug 2021 19:41:03 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: Add bindings for LiteETH
-Message-ID: <YR/pLw8EDKJWt8Uw@lunn.ch>
-References: <20210820074726.2860425-1-joel@jms.id.au>
- <20210820074726.2860425-2-joel@jms.id.au>
+        id S234797AbhHTRvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 13:51:07 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42146 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233386AbhHTRvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 13:51:07 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17KHoMHO005168;
+        Fri, 20 Aug 2021 12:50:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1629481822;
+        bh=VlN9CEo0ijCBuzud8EHgmTvwHGz/WL0hJVCP9JU59zM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=iKq/JkK2/FxnNL3zuXMyVLuYsvNsNhx74Ft1bH93N7f9zLJx/RDkmJWwANp0w0P6z
+         G7zKcw0TJT1C7q6DWat+iK1KoxWgwI8xI62DZ5PfDsqrIrEbAK0OP1+r09vi7ODlnO
+         Mwi70VEHfl6khEPss6NSF7HrXpM8EJwMv77IpZPQ=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17KHoMGE114005
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 20 Aug 2021 12:50:22 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 20
+ Aug 2021 12:50:22 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 20 Aug 2021 12:50:22 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17KHoMIv125749;
+        Fri, 20 Aug 2021 12:50:22 -0500
+Date:   Fri, 20 Aug 2021 12:50:22 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@kernel.org>
+CC:     <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: da850-evm: Change aemif node status from "ok"
+ to "okay"
+Message-ID: <20210820175022.vdx53s4aih2r2xce@joyride>
+References: <20210820093744.4877-1-rogerq@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210820074726.2860425-2-joel@jms.id.au>
+In-Reply-To: <20210820093744.4877-1-rogerq@kernel.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 05:17:25PM +0930, Joel Stanley wrote:
-> LiteETH is a small footprint and configurable Ethernet core for FPGA
-> based system on chips.
+On 12:37-20210820, Roger Quadros wrote:
+> As per Device Tree core schema, status parameter of nodes can be either
+> "okay" or "disabled".
+> 
+> U-boot Driver Model does not recognize status="ok" either and treats
+> the node as disabled.
+> 
+> [1] https://github.com/devicetree-org/dt-schema/blob/master/schemas/dt-core.yaml#L36
 
-Hi Joel
+May be pointing to the spec is better here..? 
 
-Just an FYI.
 
-DT is considered ABI. Once released, you should not be making changes
-which are not backwards compatible.
 
-All the PHY and MDIO properties you are adding here are unused in the
-driver. They all look sensible, and you should be able to make it
-work. But when you do come to make that implementation, this
-definition is the base of what you have to work with.
+https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  arch/arm/boot/dts/da850-evm.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
+> index 87c517d65f62..9dc79b5977bf 100644
+> --- a/arch/arm/boot/dts/da850-evm.dts
+> +++ b/arch/arm/boot/dts/da850-evm.dts
+> @@ -415,7 +415,7 @@
+>  &aemif {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&nand_pins>;
+> -	status = "ok";
+> +	status = "okay";
+>  	cs3 {
+>  		#address-cells = <2>;
+>  		#size-cells = <1>;
+> -- 
+> 2.17.1
+> 
 
-	   Andrew
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
