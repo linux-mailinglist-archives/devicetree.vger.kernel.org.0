@@ -2,234 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE3813F315E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 18:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80EB43F31B7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 18:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbhHTQQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 12:16:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60296 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhHTQQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 12:16:23 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FD4C061575;
-        Fri, 20 Aug 2021 09:15:45 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id d16so18127621ljq.4;
-        Fri, 20 Aug 2021 09:15:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=R2W3zLfEON5B5SjCNOHj6nt3A7BTwp4MUfhCTRtc9N4=;
-        b=bRnyCXR55ZGsR2jNnt+1cn6a3vWpF6UeMC4hi1t5BnEmFbWHoqUNF69En3CWqduUG4
-         43LjAhXrlNGRMCdgMCR0qmFXj6vTIXRyS0mShagUGj6cHa4lLeybZGpwAGtt0PUqYUPZ
-         4XeWbzA4YKGD0IalovZyJJuy+yUQlymVol+TDNKHBIYFgFkVv3OVudwfWOfl0a5al6sw
-         Ad6awGtFmbUl5pqZyNxLvnEJuyG+i5xwIUKW9YhFhzZ4J/CCkEEsbeuhh6WdX0SoiXl4
-         mKSUWl6Uh5PdGh2VsFZuzMv3zTY/6gpnSRfay2k2AGJpeZrna5ZA4UTn8dRLiRhOByfh
-         BwYQ==
+        id S230483AbhHTQuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 12:50:52 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:43826 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230036AbhHTQuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 12:50:52 -0400
+Received: by mail-ot1-f49.google.com with SMTP id x10-20020a056830408a00b004f26cead745so15135286ott.10;
+        Fri, 20 Aug 2021 09:50:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=R2W3zLfEON5B5SjCNOHj6nt3A7BTwp4MUfhCTRtc9N4=;
-        b=XZ8OARg59GLqp+RX0bXb1OgGIsRmGFEb80takcuOeXrBOGBeTdTsFb/EOGWffJ6lgQ
-         UcmmBYeGbe7umrA7Nui14VyYEylr6al9Q/BUA466O0IAXJCLHt6BKIk002xUEoOp1oZe
-         UlQPXIK+u1NVyBZhQKDip5dSOeoxQwabB9ZlzStzRiRexcv8msGkni3PTyIfNHuN/rvO
-         fanm42FJB5nFpfDTx3sn2Ip4L+8Td4RnTRMaL8nM86vRY7IbsDbQ+6xULqJAKEGGeEmY
-         p01/vREycsovqcdwOkWQSK2erA+ibUO0LvsZbTrjFt2cc6KIbzy51DYfPc7wupFT9mRc
-         8Y9A==
-X-Gm-Message-State: AOAM533wIju03dD5mEl3op27QqlEkCeagX7gtUpZT/Ktst9Byv7PineP
-        YfWNkb/Pesx7WbGLPgG4Lc0=
-X-Google-Smtp-Source: ABdhPJy+cWMGZ7saO/rACuVgsZcyPM0jLK1QwXRcsr1B3uISX3HtKZ6lXMUHr0V8MTOjuf8XHIow4Q==
-X-Received: by 2002:a2e:2f1c:: with SMTP id v28mr16158640ljv.476.1629476143717;
-        Fri, 20 Aug 2021 09:15:43 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id o1sm670183lfl.67.2021.08.20.09.15.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tjr8j38/Os90LSyEfVorRWiWmsdEDRT1v3ba1dHBUUE=;
+        b=Hk+6U/osbztUDvYheEvn5jhPORo1YRM1VmeCdDzYBjVK+mhUHIe6VkFU10B4/FQOjJ
+         g3yGeyxfydSOP5nRKkje1qJgiGYp1ADhyDwOZT6Kq3R22BHh1ecGpX8iyRqnk33tKj2e
+         3taO4sbRsposoERlsz77k04YfIi/VQUa16YRVmX3OV4ywt5CnkaZlfbFTko2kydxqNsZ
+         r2jKFOON1XRzfsLCNyTTESbIwayezbF4n85XL8/NDVury3JlwoK+LL9jsSwnFjXNUZ2j
+         yKpS0H9Yu7WjICsyLsEU7UoMlmRTNX1dDzaz5JB4cPJRonv0o21pTRZ/VIzBstaRnRV+
+         F6Mw==
+X-Gm-Message-State: AOAM533eEgiuw7qB62+ybNTqcSJItzV46XiuZwXWjGQIhOmU5X0uk3KQ
+        G9pwbGxEkqlioZawnEkzcCmrYUGdrQ==
+X-Google-Smtp-Source: ABdhPJy5fLcI0xBVDHqTw60PRbNNC2mIVzZQpGLTCC3DLbu/aupFUri+AAM0yDq7nqUEeb2bZZBnGw==
+X-Received: by 2002:a05:6808:140c:: with SMTP id w12mr3725698oiv.22.1629478213602;
+        Fri, 20 Aug 2021 09:50:13 -0700 (PDT)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id v11sm1601771oto.22.2021.08.20.09.50.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 09:15:43 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Doug Berger <opendmb@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: net: brcm,unimac-mdio: convert to the json-schema
-Date:   Fri, 20 Aug 2021 18:15:33 +0200
-Message-Id: <20210820161533.20611-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210819100946.10748-1-zajec5@gmail.com>
-References: <20210819100946.10748-1-zajec5@gmail.com>
+        Fri, 20 Aug 2021 09:50:12 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>, soc@kernel.org
+Subject: [PATCH] kbuild: Enable dtc 'pci_device_reg' warning by default
+Date:   Fri, 20 Aug 2021 11:50:11 -0500
+Message-Id: <20210820165011.3257112-1-robh@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+There's only a couple of instances of the 'pci_device_reg' warnings left
+and they look legit, so let's enable the warning by default.
 
-This helps validating DTS files.
-
-Introduced example binding changes:
-1. Fixed reg formatting
-2. Swapped #address-cells and #size-cells incorrect values
-3. Renamed node: s/phy/ethernet-phy/
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: soc@kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-I've verified this new binding using:
-make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+These are the 2 remaining warnings:
 
-V2: Fix typo: s/Tnterrupt/Interrupt/ - thanks Andrew
+arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning (pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not configuration space
+arch/arm/boot/dts/bcm2711-rpi-4-b.dts:220.10-231.4: Warning (pci_device_reg): /scb/pcie@7d500000/pci@1,0: PCI unit address format error, expected "0,0"
 ---
- .../bindings/net/brcm,unimac-mdio.txt         | 43 ----------
- .../bindings/net/brcm,unimac-mdio.yaml        | 84 +++++++++++++++++++
- 2 files changed, 84 insertions(+), 43 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
- create mode 100644 Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+ scripts/Makefile.lib | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
-deleted file mode 100644
-index e15589f47787..000000000000
---- a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--* Broadcom UniMAC MDIO bus controller
--
--Required properties:
--- compatible: should one from "brcm,genet-mdio-v1", "brcm,genet-mdio-v2",
--  "brcm,genet-mdio-v3", "brcm,genet-mdio-v4", "brcm,genet-mdio-v5" or
--  "brcm,unimac-mdio"
--- reg: address and length of the register set for the device, first one is the
--  base register, and the second one is optional and for indirect accesses to
--  larger than 16-bits MDIO transactions
--- reg-names: name(s) of the register must be "mdio" and optional "mdio_indir_rw"
--- #size-cells: must be 1
--- #address-cells: must be 0
--
--Optional properties:
--- interrupts: must be one if the interrupt is shared with the Ethernet MAC or
--  Ethernet switch this MDIO block is integrated from, or must be two, if there
--  are two separate interrupts, first one must be "mdio done" and second must be
--  for "mdio error"
--- interrupt-names: must be "mdio_done_error" when there is a share interrupt fed
--  to this hardware block, or must be "mdio_done" for the first interrupt and
--  "mdio_error" for the second when there are separate interrupts
--- clocks: A reference to the clock supplying the MDIO bus controller
--- clock-frequency: the MDIO bus clock that must be output by the MDIO bus
--  hardware, if absent, the default hardware values are used
--
--Child nodes of this MDIO bus controller node are standard Ethernet PHY device
--nodes as described in Documentation/devicetree/bindings/net/phy.txt
--
--Example:
--
--mdio@403c0 {
--	compatible = "brcm,unimac-mdio";
--	reg = <0x403c0 0x8 0x40300 0x18>;
--	reg-names = "mdio", "mdio_indir_rw";
--	#size-cells = <1>;
--	#address-cells = <0>;
--
--	...
--	phy@0 {
--		compatible = "ethernet-phy-ieee802.3-c22";
--		reg = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
-new file mode 100644
-index 000000000000..f4f4c37f1d4e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/brcm,unimac-mdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom UniMAC MDIO bus controller
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+allOf:
-+  - $ref: mdio.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,genet-mdio-v1
-+      - brcm,genet-mdio-v2
-+      - brcm,genet-mdio-v3
-+      - brcm,genet-mdio-v4
-+      - brcm,genet-mdio-v5
-+      - brcm,unimac-mdio
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description: base register
-+      - description: indirect accesses to larger than 16-bits MDIO transactions
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: mdio
-+      - const: mdio_indir_rw
-+
-+  interrupts:
-+    oneOf:
-+      - description: >
-+          Interrupt shared with the Ethernet MAC or Ethernet switch this MDIO
-+          block is integrated from
-+      - items:
-+          - description: |
-+              "mdio done" interrupt
-+          - description: |
-+              "mdio error" interrupt
-+
-+  interrupt-names:
-+    oneOf:
-+      - const: mdio_done_error
-+      - items:
-+          - const: mdio_done
-+          - const: mdio_error
-+
-+  clocks:
-+    description: A reference to the clock supplying the MDIO bus controller
-+
-+  clock-frequency:
-+    description: >
-+      The MDIO bus clock that must be output by the MDIO bus hardware, if
-+      absent, the default hardware values are used
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - reg
-+  - reg-names
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+examples:
-+  - |
-+    mdio@403c0 {
-+        compatible = "brcm,unimac-mdio";
-+        reg = <0x403c0 0x8>, <0x40300 0x18>;
-+        reg-names = "mdio", "mdio_indir_rw";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-phy@0 {
-+            compatible = "ethernet-phy-ieee802.3-c22";
-+            reg = <0>;
-+        };
-+    };
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index 10950559b223..c57f14ac6f99 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -309,8 +309,7 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
+ 	-Wno-alias_paths \
+ 	-Wno-graph_child_address \
+ 	-Wno-simple_bus_reg \
+-	-Wno-unique_unit_address \
+-	-Wno-pci_device_reg
++	-Wno-unique_unit_address
+ endif
+ 
+ ifneq ($(findstring 2,$(KBUILD_EXTRA_WARN)),)
 -- 
-2.26.2
+2.30.2
 
