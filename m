@@ -2,156 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7657B3F2CD3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 15:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6E33F2CE9
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 15:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240713AbhHTNJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 09:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240725AbhHTNJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 09:09:25 -0400
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C995C06179A
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 06:08:47 -0700 (PDT)
-Received: by mail-ua1-x92b.google.com with SMTP id 37so628314uau.13
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 06:08:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1jeLsd0F5nu8VxBSxWPjs9ij/vCzMSfR5Tmv5iuwd6s=;
-        b=WC/dbJiZXZbYao7JhIntQY4TZ71VEiAo3x28NE7fEM5kyH3E5QMkrYaKxo+tOHuBq2
-         4fOoN/8kF20QYOvTlDeczofK7BcIqjasNY7CBq53XfqL9k8ztpMQHfVcSzVO71rO64Zq
-         McT44tin8yfog5Tj3F9uEcMm8s9RXuEY0am/zJIYxZIPBOSKQ0gPSUGTqV2fLnNdUMyA
-         Udra5icYrRXmu3Bub8tb1oL++vAVtV4op8H5c4RaKOsboeh/aX+gQt/xKF7m6+TffsNV
-         KpFsGCqib0Qpb9uD4iaINA3IeiJAs50v1pCyq6JF3tpma3/8Ou1apbdGh5FgySUdxEte
-         6zRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1jeLsd0F5nu8VxBSxWPjs9ij/vCzMSfR5Tmv5iuwd6s=;
-        b=hck4HV5d29BTP/5lJirNr4fwt//U+cKf4+Ii0etfr31K1r+08YMxzo+nrWTxicJ/Ig
-         qy7Ct6C41+8gAz4BRGu8B98V0vg4vOUshiWiliT0k6pCmdlU0bYu8PTj42yyYjKT439c
-         K9z1Soetc1ux1S8G6JGjB7hWA6BnRqZ3sjtqr9iSrMqCOnQ5a8END5+sZukP4gStP1K7
-         Pu9Kk4iyZ4PLXOzZ2jZUqykX5An2dM5OfIZoKinUomUKz3Y8lc7Ps+zOHvnNQMLZtr/B
-         Z8o1z/oMoKUDvk9sumGFimtmGIlQI3A631D3g5brHv3bNIA0N6rIMug+UMhvBeVzkH+Z
-         huIQ==
-X-Gm-Message-State: AOAM531vwxUHTBQB6TJLWEBnkBt5LS6O/e74GrFHo+Ar8Zb2UGVJqL7d
-        RonsFEtubEtmMjCoVEoKi1Sm5MfgXEU7R7p4YVhr7w==
-X-Google-Smtp-Source: ABdhPJyudXWst0uOFOvLTh4dvpAObwIHCZFQbOR7Ax2SinJKzLNlpYWdAnSEO7YQ/BLnbTZWMq48nnebeaOpVOjUigE=
-X-Received: by 2002:ab0:60a9:: with SMTP id f9mr15039087uam.19.1629464926939;
- Fri, 20 Aug 2021 06:08:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210817012754.8710-1-digetx@gmail.com> <20210817012754.8710-8-digetx@gmail.com>
- <YR0UBi/ejy+oF4Hm@orome.fritz.box> <da7356cb-05ee-ba84-8a7c-6e69d853a805@gmail.com>
- <YR04YHGEluqLIZeo@orome.fritz.box> <ad99db08-4696-1636-5829-5260f93dc681@gmail.com>
- <YR6Mvips3HAntDy0@orome.fritz.box> <e17bbe8d-7c0f-fc3d-03c7-d75c54c24a43@gmail.com>
- <YR+VDZzTihmpENp6@orome.fritz.box>
-In-Reply-To: <YR+VDZzTihmpENp6@orome.fritz.box>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 20 Aug 2021 15:08:10 +0200
-Message-ID: <CAPDyKFpJ+TK0w1GZEA7G=rtAjq5ipmVR4P0wy7uHiEGVWRk5yA@mail.gmail.com>
-Subject: Re: [PATCH v8 07/34] clk: tegra: Support runtime PM and power domain
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S240750AbhHTNMz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 Aug 2021 09:12:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44674 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240739AbhHTNMy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 09:12:54 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BDE7560F91;
+        Fri, 20 Aug 2021 13:12:15 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mH4Jh-006C42-Qa; Fri, 20 Aug 2021 14:12:13 +0100
+Date:   Fri, 20 Aug 2021 14:12:13 +0100
+Message-ID: <87o89sqmz6.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Andreas =?UTF-8?B?RsOkcmJlcg==?= <afaerber@suse.de>
+Cc:     Chester Lin <clin@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        s32@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
+        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
+        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
+Subject: Re: [PATCH 4/8] arm64: dts: add NXP S32G2 support
+In-Reply-To: <d09ed0fd-83e7-a6aa-0bd6-f679ffb64eaf@suse.de>
+References: <20210805065429.27485-1-clin@suse.com>
+        <20210805065429.27485-5-clin@suse.com>
+        <d09ed0fd-83e7-a6aa-0bd6-f679ffb64eaf@suse.de>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: afaerber@suse.de, clin@suse.com, robh+dt@kernel.org, s32@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org, gregkh@linuxfoundation.org, shawnguo@kernel.org, krzk@kernel.org, linux@rempel-privat.de, s.riedmueller@phytec.de, matthias.schiffer@ew.tq-group.com, leoyang.li@nxp.com, festevam@gmail.com, matteo.lisi@engicam.com, frieder.schrempf@kontron.de, tharvey@gateworks.com, jagan@amarulasolutions.com, catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com, bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com, radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com, matthias.bgg@gmail.com, iivanov@suse.de, jlee@suse.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 12 Aug 2021 18:26:28 +0100,
+Andreas Färber <afaerber@suse.de> wrote:
+> 
+> Hi Chester et al.,
+> 
+> On 05.08.21 08:54, Chester Lin wrote:
+> > Add an initial dtsi file for generic SoC features of NXP S32G2.
+> > 
+> > Signed-off-by: Chester Lin <clin@suse.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/s32g2.dtsi | 98 ++++++++++++++++++++++++
+> >  1 file changed, 98 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > new file mode 100644
+> > index 000000000000..3321819c1a2d
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+
 [...]
 
-> >
-> > I'm creating platform device for the clocks that require DVFS. These
-> > clocks don't use regulator, they are attached to the CORE domain.
-> > GENPD framework manages the performance state, aggregating perf votes
-> > from each device, i.e. from each clock individually.
-> >
-> > You want to reinvent another layer of aggregation on top of GENPD.
-> > This doesn't worth the effort, we won't get anything from it, it
-> > should be a lot of extra complexity for nothing. We will also lose
-> > from it because pm_genpd_summary won't show you a per-device info.
-> >
-> > domain                          status          children                           performance
-> >     /device                                             runtime status
-> > ----------------------------------------------------------------------------------------------
-> > heg                             on                                                 1000000
-> >     /devices/soc0/50000000.host1x                       active                     1000000
-> >     /devices/soc0/50000000.host1x/54140000.gr2d         suspended                  0
-> > mpe                             off-0                                              0
-> > vdec                            off-0                                              0
-> >     /devices/soc0/6001a000.vde                          suspended                  0
-> > venc                            off-0                                              0
-> > 3d1                             off-0                                              0
-> >     /devices/genpd:1:54180000.gr3d                      suspended                  0
-> > 3d0                             off-0                                              0
-> >     /devices/genpd:0:54180000.gr3d                      suspended                  0
-> > core-domain                     on                                                 1000000
-> >                                                 3d0, 3d1, venc, vdec, mpe, heg
-> >     /devices/soc0/7d000000.usb                          active                     1000000
-> >     /devices/soc0/78000400.mmc                          active                     950000
-> >     /devices/soc0/7000f400.memory-controller            unsupported                1000000
-> >     /devices/soc0/7000a000.pwm                          active                     1000000
-> >     /devices/soc0/60006000.clock/tegra_clk_pll_c        active                     1000000
-> >     /devices/soc0/60006000.clock/tegra_clk_pll_e        suspended                  0
-> >     /devices/soc0/60006000.clock/tegra_clk_pll_m        active                     1000000
-> >     /devices/soc0/60006000.clock/tegra_clk_sclk         active                     1000000
-> >
->
-> I suppose if there's really no good way of doing this other than
-> providing a struct device, then so be it. I think the cleaned up sysfs
-> shown in the summary above looks much better than what the original
-> would've looked like.
->
-> Perhaps an additional tweak to that would be to not create platform
-> devices. Instead, just create struct device. Those really have
-> everything you need (.of_node, and can be used with RPM and GENPD). As I
-> mentioned earlier, platform device implies a CPU-memory-mapped bus,
-> which this clearly isn't. It's kind of a separate "bus" if you want, so
-> just using struct device directly seems more appropriate.
+> > +		gic: interrupt-controller@50800000 {
+> > +			compatible = "arm,gic-v3";
+> > +			#interrupt-cells = <3>;
+> > +			interrupt-controller;
+> > +			reg = <0 0x50800000 0 0x10000>,
+> > +			      <0 0x50880000 0 0x200000>,
 
-Just a heads up. If you don't use a platform device or have a driver
-associated with it for probing, you need to manage the attachment to
-genpd yourself. That means calling one of the dev_pm_domain_attach*()
-APIs, but that's perfectly fine, ofcourse.
+That's enough redistributor space for 16 CPUs. However, you only
+describe 4. Either the number of CPUs is wrong, the size is wrong, or
+the GIC has been configured for more cores than the SoC has.
 
->
-> We did something similar for XUSB pads, see drivers/phy/tegra/xusb.[ch]
-> for an example of how that was done. I think you can do something
-> similar here.
->
-> Thierry
+> > +			      <0 0x50400000 0 0x2000>,
+> > +			      <0 0x50410000 0 0x2000>,
+> > +			      <0 0x50420000 0 0x2000>;
+> 
+> Please order reg after compatible by convention, and sort
+> interrupt-controller or at least #interrupt-cells (applying to
+> consumers) last, after the below one applying to this device itself.
+> 
+> > +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) |
+> > +						 IRQ_TYPE_LEVEL_HIGH)>;
+> > +		};
+> 
+> CC'ing Marc for additional GIC scrutiny, often the sizes are wrong.
 
-Kind regards
-Uffe
+There is more than just sizes. The interrupt specifier for the
+maintenance interrupt is also wrong.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
