@@ -2,119 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF223F2C6F
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 14:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 390333F2C96
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 14:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239917AbhHTMti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 08:49:38 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54844
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237844AbhHTMth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 08:49:37 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 80FCF40766
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 12:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629463734;
-        bh=e6+/LPJwCnWwvmlU9AwLblFP9pPUPAQRXF2MXzGKarc=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=IRWeyC9tM8DU0pjZ8OrWJow5DXutX9MwbWU48QGNjqYfXoMoexInKuT5JOjWt4zvN
-         CXO4xW8MHoCr0Mzyx1/yHgQD3R2SFzzQreS79ewNcchGF+BdnnRvVBrh4NEgiJbK+2
-         QXgOQgdYpm0BYV11CS7gG5Tn8AjVFup+LJMJ5pG4xe3qpCHBPaHHelVUCo2h3m+5HO
-         dHjBKvF/PfNd9ALaKYwJoJ8KlcWQH77IUCOl8LVe7NzPAp090nNEtosq7uP1bjSz/M
-         nMaTMGtmWzQhrNEng95kVeH4pNeaWcffV+wT0erjaHTBPOR7CGn7RvTnvA7abXEo75
-         +58sjspfTHBEw==
-Received: by mail-ed1-f71.google.com with SMTP id bx23-20020a0564020b5700b003bf2eb11718so4472452edb.20
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 05:48:54 -0700 (PDT)
+        id S237844AbhHTM6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 08:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240262AbhHTM6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 08:58:46 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43284C061575
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 05:58:08 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id l22so6143212vsi.1
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 05:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VSaFeBdX4kWGJjrK0LDIdAG7HMHyEVXfRCzRhlCm2Vc=;
+        b=DnhQLGM/mJBYM14dOuxq+G21zQDLVubpP7oZsUxJRpqY3uVOSAs9B5niS+x3uyTre7
+         OY65Ox4XCQkPwIIGObNgixcuUbaA0/pd1FB1Qo2ODsYfIBziSCun36IE9isJ3506pXpF
+         1ecf2r9wVgXbr/9QFjwW0VOiK0pGJUOmyNQXonlOuHCAOSpdd8cj85h6sjjS6N0HUfRU
+         JG2biriboTkHUtYnQwws5fcglapOqHqn2aq4ItDnRLAMkRsQbfB5v6w1xfxzn4Mat3vo
+         rreigmWF3PCK6SScj/XbW99E8SMa2IrssaqGiq9CflV2XUtvkisBvF3/Z2VuEfCmGOrP
+         jh6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e6+/LPJwCnWwvmlU9AwLblFP9pPUPAQRXF2MXzGKarc=;
-        b=bINZ8CPdNSv0/Cf7Oob0JV3aJA5TiVmOi43ucnFKVlFgDGXW/1oXv0OiLwzitAvldX
-         e315rxgRGt3Jqm+vid7fXLRDX1jVWznauFwquzcrN44bDmi7UTwqgfdzapDmgCt5EMxa
-         nsnJGZCADIfNIoUtz2fc+OqhkbRDnabgU5/eyeoIWoqnzv5v7saDNO0KVwtKv41HG8AD
-         LwkptW92AK3kzRw6lIsJvLW04lE/Dl8lI0DuOf2o4aXZI3p2FEzOMYjeLZooB4gWwHZx
-         SwT153b+V31V36eR0g/MxhX6MrQdrPhYyiC35/KA87LlggD0k/ZyMRV6FSKF4PwG3KWb
-         Ynog==
-X-Gm-Message-State: AOAM530jrhy2Afdf8Nph73gV7cFWmN5DKIWuNSv0xtJZ4OiE6NVkHQ5y
-        gJDr7mieQImsx4cYsN0zyGQeG2IRw6afB4Ug0W7M2iVjM+Gy3/uU6TAhu0UhR5RKLPOieO+uDR0
-        k97Ho4EtnRnlIuz9efdCMdczh02n5Xa+WOM0vdtc=
-X-Received: by 2002:a17:906:30d8:: with SMTP id b24mr21486603ejb.358.1629463733476;
-        Fri, 20 Aug 2021 05:48:53 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyzEA4LvHamf6qG6ri+17OoBEIe8kZxRulHqECry6rlL5gh8PL/y/8DEYXFpdW+LnXDSZLDtA==
-X-Received: by 2002:a17:906:30d8:: with SMTP id b24mr21486588ejb.358.1629463733338;
-        Fri, 20 Aug 2021 05:48:53 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id q21sm2800011eji.59.2021.08.20.05.48.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Aug 2021 05:48:53 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: allwinner: h5: align operating-points
- table name with dtschema
-To:     wens@csie.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20210820081645.83796-1-krzysztof.kozlowski@canonical.com>
- <CAGb2v66EnW+iO2CPueauRob+b53pNFEuL6LUoSYb09_TN+=_cw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <adea5de5-30db-72b4-9a65-121b0c3032b5@canonical.com>
-Date:   Fri, 20 Aug 2021 14:48:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VSaFeBdX4kWGJjrK0LDIdAG7HMHyEVXfRCzRhlCm2Vc=;
+        b=uGJXOhW/2OUaYKva1N3d3B/RNHLR3XABxTLLeS6trILy8c/8+BlcvE71/CKMYoGpPI
+         fGtHY0lrJbyUxiFamVf+JUC5iBlD1mtyXmDV78IWMuJef83d2eEGtkkoMncOtsbznegm
+         uQ9oRoe9Si1U7Id25eGgp35cWA0YBMJV1EQLXcrANMxt/4tO1dcaoplzIKNu/fwjJyI8
+         9URT5BNd0Tn1aG2GJ+QXwdTs410JqY2WAkf0HG8emfg4CowNo9eTi5vEZZrxW5EvAGEH
+         w2h/rVbcQh5+goqkWtgSSgVU1ZyKZclrB3bONJv+sJnC01sDYqoqnTL3c2qDGRo+2WYx
+         BJxA==
+X-Gm-Message-State: AOAM531e13qcPNfqiHUFQs3knWT1xEgznMlXU24o1QOVAYqoHfTFFcNL
+        znkZ3VW/kRoTNIgxRdIC1XmulxL4KC6JZqJ9Dfggyg==
+X-Google-Smtp-Source: ABdhPJyCu5OoKXB/ZnU0BhDnI9FQ/nriFA8C9gxuFpc66zGzEUSQ7NZWEdQGpN5i65y/ydiL4YG1C5HABdRFQK6zhTY=
+X-Received: by 2002:a67:3212:: with SMTP id y18mr16683598vsy.19.1629464287428;
+ Fri, 20 Aug 2021 05:58:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAGb2v66EnW+iO2CPueauRob+b53pNFEuL6LUoSYb09_TN+=_cw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7> <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7> <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7> <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com> <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+ <CAPDyKFpg8ixT4AEjzVLTwQR7Nn9CctjnLCDS5GwkOrAERquyxw@mail.gmail.com> <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
+In-Reply-To: <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 20 Aug 2021 14:57:31 +0200
+Message-ID: <CAPDyKFo0rzHT4AhueWjyz9k2ZqUy8N6Od5pbr8sL_m0Jf2AwUg@mail.gmail.com>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2021 14:11, Chen-Yu Tsai wrote:
-> On Fri, Aug 20, 2021 at 4:16 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> Align the name of operating-points node to dtschema to fix warnings like:
->>
->>   arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dt.yaml:
->>     cpu-opp-table: $nodename:0: 'cpu-opp-table' does not match '^opp-table(-[a-z0-9]+)?$'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
->> index b2657201957e..0b6914a165b0 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
->> @@ -2,7 +2,7 @@
->>  // Copyright (C) 2020 Chen-Yu Tsai <wens@csie.org>
->>
->>  / {
->> -       cpu_opp_table: cpu-opp-table {
->> +       cpu_opp_table: opp-table-0 {
-> 
-> Maybe we should just reorder the name? Name it "opp-table-cpu" instead.
-> That way if and when we add one for the GPU, we don't accidentally
-> clash on the name.
+On Fri, 20 Aug 2021 at 07:18, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> On 19-08-21, 16:55, Ulf Hansson wrote:
+> > Right, that sounds reasonable.
+> >
+> > We already have pm_genpd_opp_to_performance_state() which translates
+> > an OPP to a performance state. This function invokes the
+> > ->opp_to_performance_state() for a genpd. Maybe we need to allow a
+> > genpd to not have ->opp_to_performance_state() callback assigned
+> > though, but continue up in the hierarchy to see if the parent has the
+> > callback assigned, to make this work for Tegra?
+> >
+> > Perhaps we should add an API dev_pm_genpd_opp_to_performance_state(),
+> > allowing us to pass the device instead of the genpd. But that's a
+> > minor thing.
+>
+> I am not concerned a lot about how it gets implemented, and am not
+> sure as well, as I haven't looked into these details since sometime.
+> Any reasonable thing will be accepted, as simple as that.
+>
+> > Finally, the precondition to use the above, is to first get a handle
+> > to an OPP table. This is where I am struggling to find a generic
+> > solution, because I guess that would be platform or even consumer
+> > driver specific for how to do this. And at what point should we do
+> > this?
+>
+> Hmm, I am not very clear with the whole picture at this point of time.
+>
+> Dmitry, can you try to frame a sequence of events/calls/etc that will
+> define what kind of devices we are looking at here, and how this can
+> be made to work ?
+>
+> > > > Viresh, please take a look at what I did in [1]. Maybe it could be done
+> > > > in another way.
+> > >
+> > > I looked into this and looked like too much trouble. The
+> > > implementation needs to be simple. I am not sure I understand all the
+> > > problems you faced while doing that, would be better to start with a
+> > > simpler implementation of get_performance_state() kind of API for
+> > > genpd, after the domain is attached and its OPP table is initialized.
+> > >
+> > > Note, that the OPP table isn't required to be fully initialized for
+> > > the device at this point, we can parse the DT as well if needed be.
+> >
+> > Sure, but as I indicated above, you need some kind of input data to
+> > figure out what OPP table to pick, before you can translate that into
+> > a performance state. Is that always the clock rate, for example?
+>
+> Eventually it can be clock, bandwidth, or pstate of anther genpd, not
+> sure what all we are looking for now. It should be just clock right
+> now as far as I can imagine :)
+>
+> > Perhaps, we should start with adding a dev_pm_opp_get_from_rate() or
+> > what do you think? Do you have other suggestions?
+>
+> We already have similar APIs, so that won't be a problem. We also have
+> a mechanism inside the OPP core, frequency based, which is used to
+> guess the current OPP. Maybe we can enhance and use that directly
+> here.
 
-Although the schema allows such name, but still the devicetree
-specification says that name should be generic (representing generic
-type of a device). Just like there is a "clock-controller" or
-"nand-controller", there should be generic "opp-table".
+After reading the last reply from Dmitry, I am starting to think that
+the problem he is facing can be described and solved in a much easier
+way.
 
+If I am correct, it looks like we don't need to add APIs to get OPPs
+for a clock rate or set initial performance state values according to
+the HW in genpd.
 
-Best regards,
-Krzysztof
+See my other response to Dmitry, let's see where that leads us.
+
+Kind regards
+Uffe
