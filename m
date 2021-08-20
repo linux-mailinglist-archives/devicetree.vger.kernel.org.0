@@ -2,91 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C55653F34DE
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 21:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF12D3F34E8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 22:01:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237503AbhHTT66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 15:58:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55294 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237272AbhHTT66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 15:58:58 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015C0C061575;
-        Fri, 20 Aug 2021 12:58:20 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id o2so10261355pgr.9;
-        Fri, 20 Aug 2021 12:58:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+h705EnRDH2hW6ZSNEyHm+JKcWt62ky1ja/Tpo9gbEA=;
-        b=JNN8D2+AbXA9C4Nrk9qKwQsvZ6Gr/GFKwR0zENSwK8tmPZbzTFGR8Q8GCn3s6Z4lNM
-         yJvpVZBsddxkEYmOYzOvj05dDh/NaJF4R0u+EWlp6S+FQZF2TksOlqLPBg8u7AOedoLp
-         ByPH60gzMxPc4Jk2uD7qseC2nCUx9m6XGihIazh9H40lDPJaAei7wzYx+TM8UgGOj8HN
-         sIxaHy9iCvfbrC2HMhRlBpjl/7x99On8G8WWCgPM+JawkaWgghUNuppIpzltGAp4InIG
-         0/vRDM6DD/+g2QOMpjTptflDJh/P6fW4FLMdRqSPn98pdheHExZJmaj/0+ahLNBJoqcB
-         zXuA==
+        id S237272AbhHTUCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 16:02:36 -0400
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:41911 "EHLO
+        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236881AbhHTUCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 16:02:35 -0400
+Received: by mail-oo1-f43.google.com with SMTP id f33-20020a4a89240000b029027c19426fbeso3212760ooi.8;
+        Fri, 20 Aug 2021 13:01:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+h705EnRDH2hW6ZSNEyHm+JKcWt62ky1ja/Tpo9gbEA=;
-        b=m8JnujTNmQZYcinOL1rx0gOnI1EJbc2IZAgpwqoMg/ek8wm46R+jNUX1kytaV+yo18
-         jNrHtJJsyzne4xg7LkPA56N3TKoRIflb2aSiNvXfpkT09DmlFrTXgZ0qkBdK+Oa1OXcr
-         S+slHGIUP3sfYKR8Rsez+2YFlBckl9bgEoNwXZN2XM8YljSBQ3ngIm2EfniU78RzU1Pb
-         8eDqjL9VL4PzHSBm12JwQsogKdCRTu4AWzPU67A9h68F7alV2cijdETf01g6vaGPdZbm
-         fin8vFaxHab6aVwKV5wfvrhJRx0t/DU5+rcWzEpP+CvnSKdYzyy3FTdAiHgIEnzOV5PW
-         dDtw==
-X-Gm-Message-State: AOAM533RjN0boL1NaeJZwQmvO2IT208dkNqy+jqLflsQrIh69rcYNvdv
-        nLjpenQ4VXUSDXrWTXDtGOCzV8+Ky9zwgw==
-X-Google-Smtp-Source: ABdhPJzNxRns6J5gNCRPQUJLpO/2DMosR70t+lV/9DnaC8+gK/PzHE4iHLlXRCUZ/Ii1DNYJaUNffQ==
-X-Received: by 2002:a63:d14c:: with SMTP id c12mr19979450pgj.412.1629489499347;
-        Fri, 20 Aug 2021 12:58:19 -0700 (PDT)
-Received: from [10.230.32.55] ([192.19.148.250])
-        by smtp.gmail.com with ESMTPSA id j6sm7626467pfi.220.2021.08.20.12.58.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Aug 2021 12:58:18 -0700 (PDT)
-Subject: Re: [PATCH V2] dt-bindings: net: brcm,unimac-mdio: convert to the
- json-schema
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Doug Berger <opendmb@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210819100946.10748-1-zajec5@gmail.com>
- <20210820161533.20611-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <2e6807c0-6b52-a35c-b14a-7fc579e44254@gmail.com>
-Date:   Fri, 20 Aug 2021 21:58:12 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wlbFPYPY/Xtj1KW5rp0UccGo9s5jQlV0fCqX0LEM8rA=;
+        b=e/59TO5cJ69b/pa1GrdqAeWrgKfn8mLoOiv2MhI89dMXLbf2LWZPAksP6TWMalF4uD
+         kJebtNNCOLBYTTEREwoZ8tTzgbWrV9zMM+UsyuLXA6ANmxIOcFo1QHR+EAnZ4uIfZKRi
+         D159CARt5t8vxFw4Z5no3IknwBXbTrnYlEVTp3CgKyWoSi7t4GswiOr2V10qwnX2mF/d
+         erO/BUTSUtOYyYLoXOWcoK8++xc2Tg7evBHzS2qzDR+GTV6LpSSOAIC1l5+fyInhzBiB
+         rlmozJHRwAQB9hEHYUe3xXNlkDiPHNZLhL+K8c6FrXrpdPW2P9dOLYBrKrcZyH1ZlkNz
+         jX4A==
+X-Gm-Message-State: AOAM530YgZy0Xi6MVUojjMQivf/qQ3t3LU2nh7n8UDmnzRrlys0E7ogu
+        a4zy6dETeItqrJL0Exbtzw==
+X-Google-Smtp-Source: ABdhPJys2nyF9UYQYqZJu3h13pyM0x7e7+IP1RxgPq7sPk58kOG6bqF1k5cdEbYjpsmGblW/KXee2Q==
+X-Received: by 2002:a4a:bc90:: with SMTP id m16mr17240148oop.33.1629489717171;
+        Fri, 20 Aug 2021 13:01:57 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w15sm1385177oiw.19.2021.08.20.13.01.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Aug 2021 13:01:56 -0700 (PDT)
+Received: (nullmailer pid 3886974 invoked by uid 1000);
+        Fri, 20 Aug 2021 20:01:55 -0000
+Date:   Fri, 20 Aug 2021 15:01:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Cc:     joel@jms.id.au, andrew@aj.id.au, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        ryan_chen@aspeedtech.com
+Subject: Re: [PATCH v2 1/5] dt-bindings: aspeed: Add eSPI controller
+Message-ID: <YSAKM16WLx4UWIQu@robh.at.kernel.org>
+References: <20210819080040.31242-1-chiawei_wang@aspeedtech.com>
+ <20210819080040.31242-2-chiawei_wang@aspeedtech.com>
 MIME-Version: 1.0
-In-Reply-To: <20210820161533.20611-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210819080040.31242-2-chiawei_wang@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/20/2021 6:15 PM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, Aug 19, 2021 at 04:00:36PM +0800, Chia-Wei Wang wrote:
+> Add dt-bindings for Aspeed eSPI controller
 > 
-> This helps validating DTS files.
+> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> ---
+>  .../devicetree/bindings/soc/aspeed/espi.yaml  | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/espi.yaml
 > 
-> Introduced example binding changes:
-> 1. Fixed reg formatting
-> 2. Swapped #address-cells and #size-cells incorrect values
-> 3. Renamed node: s/phy/ethernet-phy/
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> diff --git a/Documentation/devicetree/bindings/soc/aspeed/espi.yaml b/Documentation/devicetree/bindings/soc/aspeed/espi.yaml
+> new file mode 100644
+> index 000000000000..fec3d37f3ffd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/aspeed/espi.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# # Copyright (c) 2021 Aspeed Technology Inc.
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/soc/aspeed/espi.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Aspeed eSPI Controller
+> +
+> +maintainers:
+> +  - Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> +  - Ryan Chen <ryan_chen@aspeedtech.com>
+> +
+> +description:
+> +  Aspeed eSPI controller implements a slave side eSPI endpoint device
+> +  supporting the four eSPI channels, namely peripheral, virtual wire,
+> +  out-of-band, and flash.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - aspeed,ast2500-espi
+> +          - aspeed,ast2600-espi
+> +      - const: simple-mfd
+> +      - const: syscon
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Is this really 2 sub devices that could be used individually or in a 
+different combination? If not, then I'd make all this 1 node.
+
+Rob
