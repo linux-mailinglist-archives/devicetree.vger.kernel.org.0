@@ -2,119 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 683C83F31F4
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 19:04:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B51BF3F323C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 19:28:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232609AbhHTRFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 13:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232745AbhHTRFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 13:05:30 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C11EEC06175F
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 10:04:52 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id o16-20020a9d2210000000b0051b1e56c98fso443891ota.8
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 10:04:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Qq2zv8NidueXDY9RTP1XJuRvSThnlS4Tgw1w5ySGQso=;
-        b=Ytw/TvevBJJxmZa6v3680rG8IdGuSSouHc+vk1jAd56rLtVmS0gGLVXQtUg/J3egdM
-         K2ob+s5ABx/4KKfUf4O2M/c143PU72dI09LGRepF7DGG3feZgUwIDijuB2P+vrs29rN6
-         0hjjPEeYGP5HUOY4RuHR2Wy6ebUz402nb49W4is+Itpa1cp6j9eN2X+zRb026WCwTJZP
-         BaLMM2CfHKKtnDuV2CFyfYMRk/N6d02okEsyBaoSAwHH/uzht9GWm9S3Rqrz/FgWG1gn
-         RqmDyzVc+WpK7PvSwRP6NchHXiMEcw7buAVCB9PJRvaNsz9RCg3XPb8FN02TzqR+/ByH
-         DZeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Qq2zv8NidueXDY9RTP1XJuRvSThnlS4Tgw1w5ySGQso=;
-        b=Hui3Mm8GGYn3Y4obzL1m3pKwfP36S4OxDkowPxu5p+15Aaww8KyeGaU/qF1u6nos8S
-         u83URK4+3j3sY5x28eRPzr30JYiVtb28zx/Xh8DgxWPUAhn5RNuSuZrQKKkc270Tafnz
-         ATuEcoFSKEJ9dKGepH+8mEnHd6+nigmVddODDM1dihDOLmcu4uv9DjJvP07zlWjh9eE3
-         +na2EpX1p0GnLDy5UiXmJ5fzgN0Sde7UB0te6y6IKVxAMgAQjIJe766rWKdQ2SZi4KUm
-         bJlpFKnzaaiEdhLJ0Ja8/lQiwEqelJCpyq9/qcKrk4rxU2vtWqbc4LUEhqwEe0RUGdFU
-         Tauw==
-X-Gm-Message-State: AOAM530acspUqokytmUJMYLh6phG04DZ6e5XVsuocyNAbYFIvcsFaQDY
-        Cr7fa5w0cdq/wxxZxb+CG7EZEQ==
-X-Google-Smtp-Source: ABdhPJzf9sPEVI5OzR130ghE05XTbi5B3J4mkCHel8gpOF4PQEyk1+jhfPwySwCC8YhKiqcXpJYHKw==
-X-Received: by 2002:a05:6830:2808:: with SMTP id w8mr15018728otu.244.1629479092057;
-        Fri, 20 Aug 2021 10:04:52 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id u27sm1720689otj.6.2021.08.20.10.04.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 10:04:51 -0700 (PDT)
-Date:   Fri, 20 Aug 2021 10:06:13 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, swboyd@chromium.org,
-        mka@chromium.org, ohad@wizery.com, agross@kernel.org,
-        mathieu.poirier@linaro.org, robin.murphy@arm.com, joro@8bytes.org,
-        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        evgreen@chromium.org, dianders@chromium.org
-Subject: Re: [PATCH v3 06/10] arm64: dts: qcom: sc7280: Update reserved
- memory map
-Message-ID: <YR/hBYyYuYWN68LV@ripper>
-References: <1629344185-27368-1-git-send-email-sibis@codeaurora.org>
- <1629344185-27368-7-git-send-email-sibis@codeaurora.org>
- <YR3gAD68xRtNJRhi@matsya>
- <39da02506af192de14d346cdf80d0e4c@codeaurora.org>
+        id S233041AbhHTR2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 13:28:42 -0400
+Received: from smtprelay0233.hostedemail.com ([216.40.44.233]:36192 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233320AbhHTR2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 13:28:42 -0400
+Received: from omf19.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay01.hostedemail.com (Postfix) with ESMTP id C2CF5101CE23F;
+        Fri, 20 Aug 2021 17:28:02 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf19.hostedemail.com (Postfix) with ESMTPA id D00E220D764;
+        Fri, 20 Aug 2021 17:28:00 +0000 (UTC)
+Message-ID: <37ec9a36a5f7c71a8e23ab45fd3b7f20efd5da24.camel@perches.com>
+Subject: What is the oldest perl version being used with the kernel ? update
+ oldest supported to 5.14 ?
+From:   Joe Perches <joe@perches.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Dave Hansen <dave.hansen@linux.intel.com>,
+        Matthew Wilcox <willy@infradead.org>,
+        Dwaipayan Ray <dwaipayanray1@gmail.com>,
+        LukasBulwahn <lukas.bulwahn@gmail.com>,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
+        linux-csky@vger.kernel.org
+Date:   Fri, 20 Aug 2021 10:27:59 -0700
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <39da02506af192de14d346cdf80d0e4c@codeaurora.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=2.59
+X-Stat-Signature: wojh18d5ecfq9mr8d36u5p8pct8mmia8
+X-Rspamd-Server: rspamout05
+X-Rspamd-Queue-Id: D00E220D764
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX18C1in7YDsawPZeoRsFE518C5c7FR0zQJA=
+X-HE-Tag: 1629480480-234339
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 20 Aug 07:09 PDT 2021, Sibi Sankar wrote:
+Perl 5.8 is nearly 20 years old now.
 
-> On 2021-08-19 10:07, Vinod Koul wrote:
-> > Hi Sibi,
-> > 
-> > On 19-08-21, 09:06, Sibi Sankar wrote:
-> > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index 5e4f4f3b738a..894106efadfe 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -48,6 +48,16 @@
-> > >  		#size-cells = <2>;
-> > >  		ranges;
-> > > 
-> > > +		hyp_mem: memory@80000000 {
-> > > +			reg = <0x0 0x80000000 0x0 0x600000>;
-> > > +			no-map;
-> > 
-> > This should conflict with the memory defined in this file:
-> > 
-> >         memory@80000000 {
-> >                 device_type = "memory";
-> >                 /* We expect the bootloader to fill in the size */
-> >                 reg = <0 0x80000000 0 0>;
-> >         };
-> > 
-> > I think this should be updated?
-> 
-> Vinod,
-> 
-> I prefer we leave ^^ node untouched.  For platforms using hyp_mem, the
-> regions defined in the memory map are valid and for the other
-> platforms not using hyp_mem we would just delete them in the board
-> files anyway.
+https://en.wikipedia.org/wiki/Perl_5_version_history
 
-Logically this node describes where there is RAM, the reserved-memory
-then subtracts blocks of memory out of that. So I think it's perfectly
-legal for a region at the base to be marked as no-map.
+checkpatch uses regexes that are incompatible with perl versions
+earlier than 5.10, but these uses are currently runtime checked
+and skipped if the perl version is too old.  This runtime checking
+skips several useful tests.
 
-That said, isn't the address in the memory node just a placeholder?
+There is also some desire for tools like kernel-doc, checkpatch and
+get_maintainer to use a common library of regexes and functions:
+https://lore.kernel.org/lkml/YR2lexDd9N0sWxIW@casper.infradead.org/
 
-Regards,
-Bjorn
+It'd be useful to set the minimum perl version to something more modern.
+
+I believe perl 5.14, now only a decade old, is a reasonable target.
+
+Any objections or suggestions for a newer minimum version?
+
