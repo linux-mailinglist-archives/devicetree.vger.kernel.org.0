@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5415B3F2D22
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 15:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33FD93F2D2C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 15:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231320AbhHTNbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 09:31:20 -0400
-Received: from mout.gmx.net ([212.227.17.21]:56799 "EHLO mout.gmx.net"
+        id S232010AbhHTNcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 09:32:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50746 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229707AbhHTNbU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 09:31:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1629466229;
-        bh=CzX7hi+vbXIJgCjKxc7ExDQbURD/bhsHAtQOZWHlHuE=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=ZdhM5JAm6Bgufr2p8xjVLPSBTrnLh4J7rhuCBBG5sF9cLqYtVZrucIMj0cXNJtRhs
-         oYs2IXtMyv/BgBzkYo9CTFv640a3tVHO/PzsR/dCniTsRmFSuEQ8BjLGG5D/3iLMJb
-         fflXtafxrIFgN8lkbsW3Ln0ipzS57LtmTE+/QRQA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.178.6] ([91.64.210.93]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MzQkK-1n3Q1d0Dho-00vPL9; Fri, 20
- Aug 2021 15:30:29 +0200
-Subject: Re: [PATCH v4 2/9] usb: isp1760: move to regmap for register access
-To:     Rui Miguel Silva <rui.silva@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sebastian Siewior <bigeasy@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210513084717.2487366-1-rui.silva@linaro.org>
- <20210513084717.2487366-3-rui.silva@linaro.org>
-From:   Dietmar Eggemann <deggeman@gmx.de>
-Message-ID: <11ed5458-4b88-ad72-4497-89ff9346a40b@gmx.de>
-Date:   Fri, 20 Aug 2021 15:30:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S231650AbhHTNcf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 09:32:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5784B61130;
+        Fri, 20 Aug 2021 13:31:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629466317;
+        bh=flH25F+TTMbb26RM+9KRiRwMhiahdmc88FEXT4P9Da8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JixvCAUgFLad9puk0BvheLUgbsEhE+TYMyun4Axhm5O6rfTplqvauZVe0XuLvbjsK
+         xiYjUZgukagWOTrH36McpNsFke9BgOhsSeYXFIlsxoPiB7db1PU6uqRabJpC0cTyzR
+         doGskhBkubYujeiNHNOGc377WBVb/Qo+W4N9QoYDgHvbms2sXGm+ULbgCUgF6tiXLE
+         Xvg4m67Ttmsi4+gbmY0uz//DRAJDO476rVBsEUKmTIPqA/DOgsU28klg3B2z+WVa1+
+         QNKOuoeBTjvhdXJLHhp026jtgckqpRmMnEibOB1v3MY6YDnUiGBATk+NJRLLyE2icZ
+         K8fo8vjaOQuPw==
+Received: by mail-ej1-f45.google.com with SMTP id lo4so20243089ejb.7;
+        Fri, 20 Aug 2021 06:31:57 -0700 (PDT)
+X-Gm-Message-State: AOAM5324LJUfh/+6V14RnMGaqij6cWF3F/RSlUnLy1oN6DIhollbDvM/
+        FEknp27k4EJSJGo86utk0YP2vDebBqY7vvYKHA==
+X-Google-Smtp-Source: ABdhPJxcwX6J+xKLTdo24oHcgfnCsZhLEWql7EghchrvXYGlT46uPqvu2EfHTt8E3Cv8Nu6FOiWaifZePdaCS9kuu3E=
+X-Received: by 2002:a17:907:393:: with SMTP id ss19mr22486666ejb.468.1629466316006;
+ Fri, 20 Aug 2021 06:31:56 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210513084717.2487366-3-rui.silva@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:npqCNr8ExQrz5AI4K5EBJHi2PCFEMdp0Yz0plVD/QVUULpzWNKB
- oipIcZUuEpZakWpIqs16b2PBzHa22772NaAFjDZdo8dwDyEs4MtMKH0yMzdD58kz+OC5Eud
- eYdg48GYWZ0uotfu0kKUC7Q9sXuV3EXPJEQQr6RmCvE2uFy6H9/se8duVbLTBCcMiAUfM05
- ovVf5dEajDjJYwwmeQNPg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dgjU/O3nP9s=:vMgUjk4Emx0OVOz8qOK7dB
- +FzXabBsOIBF6BChOlM+SqMigTi5JbopuY90+jo/u+mGOpsh1YIBKW/aX07XX5Y1bWkq1RAYF
- OUO0m+NZybMnHVr2Y7zey1ghXN2zp3yE7Hy3/JtkSW2E3rzk3cbXNluJrCN5lWHm20rlDwHgS
- ACSqTLNzamQChu6kZZmkfcl+zR8SlGzRTMEP0ugxOUGGOnTfZZnzmIuRt1WOLkBAD9xEUZFXk
- GP5WSVYAq07tM0ONKTNQRyOXwTwyOpp754Tc8jNZ4vbDLfmOQaU85A4HY4Z+TdTedYB50bQdR
- HDO7gllupdhZV9f9OY+4USBhcCgvvrSHkszy1YbyTekKauTQnfNpTgy/+Muj9uPCo2c9y3xLf
- a6OAMWMfyc6bCny+Zh1fVuvgIYy7kNAPmVpYnMaI3FfUzPcwgryNT5FG4iWhDY4XKYFgPIiZA
- buYnR2tlYLW2iNTV7iVTtj1I74628yxVw0x1l/pd3Mjad8xpl5Ug2uafOVlVvvRC48umA4gAR
- q/RaAn+sJzEgQiqY/9BtL/+8XS46xntr14wpc6ArfIPYe1AGmahXdz0MtU2F8v+ml0AlHzIxy
- PHdqsONCJHNOQZyv+m3rhQOAnBENSRfytCio8rCgNMxyBxvcUm0GNKPeF24gP1/VDbodEs08r
- 5ZbBKQpNVPL8ffrcBblS0TRN7ih1O0ULvRhaggJc7sRZNwlUAlIQjKzBdQpl9BaFrQkOIoKUb
- Ty3ZZeJ0nfpk+iXS5kTyBGOYE7J5w+rQJj5NtuAnyGWnhkiFDT8Om8CaNUnB20hhrOvSTp6Zd
- +nxjTb/YyFIMsXpESmxJgqZG37hRdE0FfaTyOP+D4YDYTE3rUYL19yo7oFkKlqXzR7DHLlwaI
- iH/t381czPQJQDB+NSHqPLrYmKAHFxJ3a2lOynVBjc6P3iWPyF6o1fUl5jkDBnO0jiFv3KsLT
- xGVGYLDk4SWVcCANod0nFy2q+qXE/M6Il5G1n2ECAZ6qoaJ99K5BOhNsEj5opWufkdWpYtUoQ
- abMclu2oC/WPj4Z6rZURFWBIXMyuiTTU9COT+Vjlx5Hrva5tIJTtyW+bbuTkz7ova4YHzmeQv
- 1JY+5M6cTzdDH1KNg43y1cLdGxHNVl/ZLDwe7YYJpb1/aLMt3KJwg0Kuw==
+References: <20210813125414.104467-1-krzysztof.kozlowski@canonical.com>
+ <73eebe7b-46da-137b-1938-09a5b453320a@arm.com> <0ec05a0b-9499-3bf4-a231-ea53b1cf99ed@canonical.com>
+ <CAL_JsqLOHY0P=Y8-Ss0cYr54SWgpV0zktEg8p-Cj_F+juDQNoA@mail.gmail.com> <aaa53a2a-c15b-8017-4e44-dd3f883b2378@canonical.com>
+In-Reply-To: <aaa53a2a-c15b-8017-4e44-dd3f883b2378@canonical.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 20 Aug 2021 08:31:43 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+iG1t=yxsyp2whd_L4p=9udrSvZMiy-y75ppcLYK9acA@mail.gmail.com>
+Message-ID: <CAL_Jsq+iG1t=yxsyp2whd_L4p=9udrSvZMiy-y75ppcLYK9acA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: convert Samsung Exynos DMC to dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Lukasz Luba <lukasz.luba@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rui,
-
-On 13/05/2021 10:47, Rui Miguel Silva wrote:
-> Rework access to registers and memory to use regmap framework.
-> No change in current feature or way of work is intended with this
-> change.
+On Wed, Aug 18, 2021 at 9:43 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> This will allow to reuse this driver with other IP of this family,
-> for example isp1763, with little changes and effort.
+> On 18/08/2021 16:31, Rob Herring wrote:
+> > On Mon, Aug 16, 2021 at 3:32 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@canonical.com> wrote:
+> >>
+> >> On 16/08/2021 09:53, Lukasz Luba wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>> On 8/13/21 1:54 PM, Krzysztof Kozlowski wrote:
+> >>>> Convert Samsung Exynos5422 SoC frequency and voltage scaling for
+> >>>> Dynamic Memory Controller to DT schema format using json-schema.
+> >>>>
+> >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> >>>> ---
+> >>>>   .../memory-controllers/exynos5422-dmc.txt     |  84 -----------
+> >>>>   .../samsung,exynos5422-dmc.yaml               | 137 ++++++++++++++++++
+> >>>>   MAINTAINERS                                   |   2 +-
+> >>>
+> >>> I'm not an expert in this DT scripts and why it complains. Maybe it
+> >>> complains because the "samsung,exynos-ppmu" is defined in the .txt
+> >>> file... (?)
+> >>> Although, in general looks OK.
+> >>>
+> >>> Acked-by: Lukasz Luba <lukasz.luba@arm.com>
+> >>
+> >> I think the warning (triggered by DT_CHECKER_FLAGS=-m) can be ignored
+> >> because it complains about compatible in example which is not present in
+> >> the bindings. Usually it means someone wrote example not matching the
+> >> bindings (e.g. a typo in compatible) but here it is on purpose.
+> >
+> > Ultimately, it will mean the binding is undocumented (or a typo). But
+> > right now, it means the binding is undocumented with a schema. It's
+> > off by default because there's still about 80 warnings. It's turned on
+> > for the bot so we don't add more. So please don't ignore it.
+> >
 >
+> By "Ignore" I meant here that it is a false positive, so it can be
+> ignored. The warning is about compatible "samsung,exynos-ppmu" used in
+> the example. However this exynos-ppmu is not part of this bindings and
+> is documented elsewhere:
+> Documentation/devicetree/bindings/devfreq/event/exynos-ppmu.txt
 
-1da9e1c06873 - usb: isp1760: move to regmap for register access
+Yes, I understood all that. Let me be clear. I don't want examples
+which don't have a schema. So drop the node or convert
+exynos-ppmu.txt.
 
-Starting from this patch, our Arm TC2 platform (multi_v7_defconfig,
-vexpress-v2p-ca15_a7.dts) doesn't boot anymore.
-We discovered this in our v5.14-rc1 based task scheduler test build.
+First, when we do add a schema, then we likely have to go fix the
+examples. It happens a lot and is not caught with folks using
+DT_SCHEMA_FILES. Second, I don't like reporting errors that users
+should have gotten by default. We can't turn this check on by default
+until the 80 or so cases we already have in the binding examples are
+fixed.
 
-With 1da9e1c06873^1 :
-
-# lsusb
-Bus 001 Device 001: ID 1d6b:0002 <-- NXP ISP1760 USB Host Controller
-Bus 001 Device 002: ID 0471:3526
-Bus 001 Device 003: ID 0781:5591
-
-# dmesg | grep -i isp
-[    4.014307] isp1760 1b000000.usb: bus width: 32, oc: digital
-[    4.014442] isp1760 1b000000.usb: NXP ISP1760 USB Host Controller
-[    4.014715] isp1760 1b000000.usb: new USB bus registered, assigned bus =
-number 1
-[    4.025076] isp1760 1b000000.usb: irq 32, io mem 0x1b000000
-[    4.025288] isp1760 1b000000.usb: USB ISP 1761 HW rev. 1 started
-[    4.055802] ISP1760 USB device initialised
-[    4.257911] isp1760 1b000000.usb: port 1 high speed
-[    4.325662] usb 1-1: new high-speed USB device number 2 using isp1760
-[    4.475670] isp1760 1b000000.usb: port 1 high speed
-[   14.320372] usb 1-1.2: new high-speed USB device number 3 using isp1760
-
-With v5.14-rc1 :
-
-there is no boot output at all, but I debugged it a little bit and the
-system seems to hang here:
-
-[    1.847494] [<c0cac46c>] (isp1760_udc_register) from [<c0ca668c>] (isp1=
-760_register+0x5d0/0x5f0)
-[    1.847527] [<c0ca668c>] (isp1760_register) from [<c0ca6b7c>] (isp1760_=
-plat_probe+0x150/0x1b0)
-[    1.847557] [<c0ca6b7c>] (isp1760_plat_probe) from [<c0a46ef0>] (platfo=
-rm_probe+0x5c/0xb8)
-[    1.847589] [<c0a46ef0>] (platform_probe) from [<c0a44924>] (really_pro=
-be.part.0+0x9c/0x32c)
-...
-
-    isp1760_udc_register()->isp1760_udc_init()
-
-        ....
-        /* Reset the device controller. */
-        isp1760_udc_set(udc, DC_SFRESET); <-- hangs here !!!
-        usleep_range(10000, 11000);
-        isp1760_reg_write(udc->regs, ISP176x_DC_MODE, 0);
-        usleep_range(10000, 11000);
-
-[...]
+Rob
