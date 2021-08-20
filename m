@@ -2,68 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E503F30DA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 18:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D543F314F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 18:12:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238410AbhHTQEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 12:04:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43980 "EHLO mail.kernel.org"
+        id S230505AbhHTQMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 12:12:54 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:32794 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234797AbhHTQCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 12:02:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 359376125F;
-        Fri, 20 Aug 2021 16:01:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629475312;
-        bh=E0spK2WvLv0kR6hFChEuyMy0Zl7nye/F5istWij8HSY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UCrloWHJSOMX1LJD7jHHyA9GepGsK+T3wFE+RRSHNJaZyFRQ8B0Oy/PjSJLJXgbdV
-         w6MotSpZt5Bm6PNrMtbAY/q7a4HTT6U/7fe6N778Y0ZO7vH1pfIZMOvSAjhq46DNjP
-         i16X4uHrU/z8EP3BIwvjt0Crg0UeRPPckFxI6RjeWjQ6s9VK7Z86BkMMLhOXKgvp4L
-         iwaH8/EZkIyecDDceDPowGhxW1A2mjGrcwA5rSISfOSN8NOnS+Ul3isWwuYijJBuOm
-         sQmLrAVs8uGYWk1PpRdx1eJBl+wsWoYd7iV7xjM6RAhCNy4jGYYaENzWXxjxL8S08R
-         O9cm8dS55A+jA==
-Received: by pali.im (Postfix)
-        id EC4F17C5; Fri, 20 Aug 2021 18:01:51 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Rob Herring <robh@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 3/3] arm64: dts: armada-3720-turris-mox: Define slot-power-limit for PCIe
-Date:   Fri, 20 Aug 2021 18:00:23 +0200
-Message-Id: <20210820160023.3243-4-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210820160023.3243-1-pali@kernel.org>
-References: <20210820160023.3243-1-pali@kernel.org>
+        id S231955AbhHTQMs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 12:12:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=+qSVY5sV8V2bh7iMOY20ymxPZqm7yqT4YtSL85pNV4Q=; b=TM5KR+bxWA1751LM1MD0Y0FPG8
+        KKHGKgBpGs8Adv8Cv9ojW9CMXJHgPsjiWnvsPGBFm7SLsaCGMLN+0WdRJDNqvZxdZkcM4vjlvrDoS
+        Fef666uDtwA0ECthfDg2+0+sxGpWMom7KghSfVpndRzfbLxzr0xPGZSqYAavhvQjSZKU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mH77h-001BhH-Ut; Fri, 20 Aug 2021 18:12:01 +0200
+Date:   Fri, 20 Aug 2021 18:12:01 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Doug Berger <opendmb@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: net: brcm,unimac-mdio: convert to the
+ json-schema
+Message-ID: <YR/UUZ5EZDe9s969@lunn.ch>
+References: <20210819100946.10748-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210819100946.10748-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PCIe Slot Power Limit on Turris Mox is 10W.
+> +  interrupts:
+> +    oneOf:
+> +      - description: >
+> +          Tnterrupt shared with the Ethernet MAC or Ethernet switch this MDIO
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
- 1 file changed, 1 insertion(+)
+Interrupt.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 86b3025f174b..1db928dff9ec 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -134,6 +134,7 @@
- 	pinctrl-0 = <&pcie_reset_pins &pcie_clkreq_pins>;
- 	status = "okay";
- 	reset-gpios = <&gpiosb 3 GPIO_ACTIVE_LOW>;
-+	slot-power-limit = <10000>;
- 	/*
- 	 * U-Boot port for Turris Mox has a bug which always expects that "ranges" DT property
- 	 * contains exactly 2 ranges with 3 (child) address cells, 2 (parent) address cells and
--- 
-2.20.1
-
+	Andrew
