@@ -2,512 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D68933F27D9
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 09:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 930893F27E8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 09:52:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239026AbhHTHsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 03:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239053AbhHTHs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 03:48:29 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9BCC0617A8;
-        Fri, 20 Aug 2021 00:47:46 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id w68so7883662pfd.0;
-        Fri, 20 Aug 2021 00:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MdWcibuzYPxpwZQdWUfMKvV3nwhq/ILLm5T9uuP4c6Y=;
-        b=QHMZ19d8d3dWKuuQ0wSyB8QkqbyI1qK5To3hjXfYGSpHc3z076A5ymfWVM+QbzJnpR
-         u+ZPkej6ysdppAkT9f+QLIZ50SXxsn2qPxmIFCplJcVoYH0fdXaygYPv4U9qCkMGIrlV
-         WKl74RvVur3tQurKyuyZ+9Tk0JS8R+6+07foarARaJhQ0UMms5vmPQs4RN7wZLCLMqZF
-         CHBMuXYyvCvYjnJNlCnDRSIshYTneh0Gt7Gy+Ds9QKW02fQB9SKxJvVcclIhTSnE9812
-         mLnQ6S2gnCyi5gWfne+0rrp41YaLGwvvafAT1yzBs/H7TlG2Gh7vTpLBaaWEXAfbGbED
-         RvDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=MdWcibuzYPxpwZQdWUfMKvV3nwhq/ILLm5T9uuP4c6Y=;
-        b=pZW/FlzSxGHo00IexYCmdWFrTm+4Htaf6nhLgFHyXtZfNVmki6WE82EWaV5IGuMBuI
-         ocInIrH9C7HarGY+OKUQtV/M32Q/La9St3HPHJH2kzKt49MaiRclbWqTatFIrlA2VNEN
-         MN4SXkQNLhG1Sj4vMPzTGxPkExcEjnYaStGSumeMEC6CmMoUnj14oWBUadBMvjv79QYH
-         9kFRGW0OX5Y4ZLpa4K5kaS6B9+Si5Gv/nhTr7a2fG5sO9i1RjFfC7qRYHn7UCCjiQSb9
-         a2KfkBXJ/NGNvI0jka3viSOrTcPJerJGD9s3dMNpZZ4Z257CAQj+LxBhLVfLX+SGF58t
-         PgYQ==
-X-Gm-Message-State: AOAM5301/JG8fLAuhLc58dUHt9WXd+XgY+lbECHAVUseyTRWWYhqAYoQ
-        feQUd6TdzJHJYLB3nVi0/n1v3FBmk50=
-X-Google-Smtp-Source: ABdhPJwspldCAM6U7kZXIirydb2iPAl+9rpLLXU9e9L6mb73BRztOumWkiZVLVIAp9GxVgCVGl8jLw==
-X-Received: by 2002:a63:fd12:: with SMTP id d18mr17469387pgh.129.1629445666472;
-        Fri, 20 Aug 2021 00:47:46 -0700 (PDT)
-Received: from localhost.localdomain ([45.124.203.15])
-        by smtp.gmail.com with ESMTPSA id o11sm5937534pfd.124.2021.08.20.00.47.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 00:47:45 -0700 (PDT)
-Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Gabriel Somlo <gsomlo@gmail.com>,
-        David Shah <dave@ds0.me>, Stafford Horne <shorne@gmail.com>
-Subject: [PATCH v2 2/2] net: Add driver for LiteX's LiteEth network interface
-Date:   Fri, 20 Aug 2021 17:17:26 +0930
-Message-Id: <20210820074726.2860425-3-joel@jms.id.au>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210820074726.2860425-1-joel@jms.id.au>
-References: <20210820074726.2860425-1-joel@jms.id.au>
+        id S238931AbhHTHvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 03:51:25 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:55394 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S238872AbhHTHvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 03:51:24 -0400
+X-UUID: d1b59904a2f14868a184c7763b514239-20210820
+X-UUID: d1b59904a2f14868a184c7763b514239-20210820
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <sean.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1075305483; Fri, 20 Aug 2021 15:50:42 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 20 Aug 2021 15:50:40 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 Aug 2021 15:50:40 +0800
+From:   <sean.wang@mediatek.com>
+To:     <sam.shih@mediatek.com>
+CC:     <robh+dt@kernel.org>, <sean.wang@kernel.org>,
+        <linus.walleij@linaro.org>, <matthias.bgg@gmail.com>,
+        <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
+        <gregkh@linuxfoundation.org>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <hsinyi@chromium.org>,
+        <enric.balletbo@collabora.com>, <fparent@baylibre.com>,
+        <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-crypto@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <john@phrozen.org>, <Ryder.Lee@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Subject: Re: [v2,06/12] pinctrl: mediatek: add support for MT7986 SoC
+Date:   Fri, 20 Aug 2021 15:50:40 +0800
+Message-ID: <1629445840-25510-1-git-send-email-sean.wang@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <20210817074557.30953-5-sam.shih@mediatek.com--annotate>
+References: <20210817074557.30953-5-sam.shih@mediatek.com--annotate>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LiteX is a soft system-on-chip that targets FPGAs. LiteEth is a basic
-network device that is commonly used in LiteX designs.
+From: Sean Wang <sean.wang@mediatek.com>
 
-The driver was first written in 2017 and has been maintained by the
-LiteX community in various trees. Thank you to all who have contributed.
+>This commit includes pinctrl driver for Mediatek MT7986
+>
+>The difference of pinctrl between mt7986a and mt7986b
+>is that pin-41 to pin-65 do not exist on mt7986b
+>
+>Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+>
+>---
+>v2: applied the comment suggested by reviewers:
+>    - for the pins not ballout, we can fill .name in struct mtk_pin_desc
+>      as NULL and return -ENOTSUPP in gpio/pinconf ops.
+>
+>---
+> drivers/pinctrl/mediatek/Kconfig          |    7 +
+> drivers/pinctrl/mediatek/Makefile         |    1 +
+> drivers/pinctrl/mediatek/pinctrl-mt7986.c | 1217 +++++++++++++++++++++
+> 3 files changed, 1225 insertions(+)
+> create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt7986.c
+>
+>diff --git a/drivers/pinctrl/mediatek/Kconfig b/drivers/pinctrl/mediatek/Kconfig
+>index 7040a7a7bd5d..66db4ac5d169 100644
+>--- a/drivers/pinctrl/mediatek/Kconfig
+>+++ b/drivers/pinctrl/mediatek/Kconfig
+>@@ -119,6 +119,13 @@ config PINCTRL_MT7622
+>	default ARM64 && ARCH_MEDIATEK
+>	select PINCTRL_MTK_MOORE
+>
+>+config PINCTRL_MT7986
+>+	bool "Mediatek MT7986 pin control"
+>+	depends on OF
+>+	depends on ARM64 || COMPILE_TEST
+>+	default ARM64 && ARCH_MEDIATEK
+>+	select PINCTRL_MTK_MOORE
+>+
+> config PINCTRL_MT8167
+>	bool "Mediatek MT8167 pin control"
+>	depends on OF
+>diff --git a/drivers/pinctrl/mediatek/Makefile b/drivers/pinctrl/mediatek/Makefile
+>index 1bb7f9c65bc2..1e3931d924e7 100644
+>--- a/drivers/pinctrl/mediatek/Makefile
+>+++ b/drivers/pinctrl/mediatek/Makefile
+>@@ -17,6 +17,7 @@ obj-$(CONFIG_PINCTRL_MT6797)	+= pinctrl-mt6797.o
+> obj-$(CONFIG_PINCTRL_MT7622)	+= pinctrl-mt7622.o
+> obj-$(CONFIG_PINCTRL_MT7623)	+= pinctrl-mt7623.o
+> obj-$(CONFIG_PINCTRL_MT7629)	+= pinctrl-mt7629.o
+>+obj-$(CONFIG_PINCTRL_MT7986)	+= pinctrl-mt7986.o
+> obj-$(CONFIG_PINCTRL_MT8167)	+= pinctrl-mt8167.o
+> obj-$(CONFIG_PINCTRL_MT8173)	+= pinctrl-mt8173.o
+> obj-$(CONFIG_PINCTRL_MT8183)	+= pinctrl-mt8183.o
+>diff --git a/drivers/pinctrl/mediatek/pinctrl-mt7986.c b/drivers/pinctrl/mediatek/pinctrl-mt7986.c
+>new file mode 100644
+>index 000000000000..808ae4e03eb2
+>--- /dev/null
+>+++ b/drivers/pinctrl/mediatek/pinctrl-mt7986.c
+>@@ -0,0 +1,1217 @@
+>+// SPDX-License-Identifier: GPL-2.0
+>+/*
+>+ * The MT7986 driver based on Linux generic pinctrl binding.
+>+ *
+>+ * Copyright (C) 2021 MediaTek Inc.
+>+ * Author: Sam Shih <sam.shih@mediatek.com>
+>+ */
+>+
+>+#include "pinctrl-moore.h"
+>+
+>+#define MT7986_PIN(_number, _name) MTK_PIN(_number, _name, 0, _number, DRV_GRP4)
+>+#define MT7986_NOT_BALLOUT_PIN(_number) { .number = _number }
 
-Co-developed-by: Gabriel Somlo <gsomlo@gmail.com>
-Co-developed-by: David Shah <dave@ds0.me>
-Co-developed-by: Stafford Horne <shorne@gmail.com>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
-v2:
- - check for bad len in liteeth_rx before getting skb
- - use netdev_alloc_skb_ip_align
- - remove unused duplex/speed and mii_bus variables
- - set carrier off when stopping device
- - increment packet count in the same place as bytes
- - fix error return code when irq could not be found
- - remove request of mdio base address until it is used
- - fix of_property_read line wrapping/alignment
- - only check that reader isn't busy, and then send off next packet
- - drop phy reset, it was incorrect (wrong address)
- - Add an description to the kconfig text
- - stop tx queue when busy and re-start after tx complete irq fires
- - use litex accessors to support big endian socs
- - clean up unused includes
- - use standard fifo-depth properties, which are in bytes
+I preferred explict set .name to NULL to indicate the pin is not ball out.
 
- drivers/net/ethernet/Kconfig               |   1 +
- drivers/net/ethernet/Makefile              |   1 +
- drivers/net/ethernet/litex/Kconfig         |  27 ++
- drivers/net/ethernet/litex/Makefile        |   5 +
- drivers/net/ethernet/litex/litex_liteeth.c | 327 +++++++++++++++++++++
- 5 files changed, 361 insertions(+)
- create mode 100644 drivers/net/ethernet/litex/Kconfig
- create mode 100644 drivers/net/ethernet/litex/Makefile
- create mode 100644 drivers/net/ethernet/litex/litex_liteeth.c
+>+
+>+#define PIN_FIELD_BASE(_s_pin, _e_pin, _i_base, _s_addr, _x_addrs, _s_bit,	\
+>+			   _x_bits)														\
+>+	PIN_FIELD_CALC(_s_pin, _e_pin, _i_base, _s_addr, _x_addrs, _s_bit,		\
+>+			   _x_bits, 32, 0)
+>+
+>+/**
+>+ * enum - Locking variants of the iocfg bases
+>+ *
+>+ * MT7986 have multiple bases to program pin configuration listed as the below:
+>+ * iocfg_rt:0x11c30000, iocfg_rb:0x11c40000, iocfg_lt:0x11e20000,
+>+ * iocfg_lb:0x11e30000, iocfg_tr:0x11f00000, iocfg_tl:0x11f10000,
+>+ * _i_based could be used to indicate what base the pin should be mapped into.
+>+ *
+>+ * Each iocfg register base control different group of pads on the SoC
+>+ *
+>+ *
+>+ *  chip carrier
+>+ *
+>+ *      A  B  C  D  E  F  G  H
+>+ *    +------------------------+
+>+ *  8 | o  o  o  o  o  o  o  o |
+>+ *  7 | o  o  o  o  o  o  o  o |
+>+ *  6 | o  o  o  o  o  o  o  o |
+>+ *  5 | o  o  o  o  o  o  o  o |
+>+ *  4 | o  o  o  o  o  o  o  o |
+>+ *  3 | o  o  o  o  o  o  o  o |
+>+ *  2 | o  o  o  o  o  o  o  o |
+>+ *  1 | o  o  o  o  o  o  o  o |
+>+ *    +------------------------+
+>+ *
+>+ *  inside Chip carrier
+>+ *
+>+ *      A  B  C  D  E  F  G  H
+>+ *    +------------------------+
+>+ *  8 |                        |
+>+ *  7 |        TL  TR          |
+>+ *  6 |      +---------+       |
+>+ *  5 |   LT |         | RT    |
+>+ *  4 |      |         |       |
+>+ *  3 |   LB |         | RB    |
+>+ *  2 |      +---------+       |
+>+ *  1 |                        |
+>+ *    +------------------------+
+>+ *
+>+ */
+>+
+>+enum {
+>+	GPIO_BASE,
+>+	IOCFG_RT_BASE,
+>+	IOCFG_RB_BASE,
+>+	IOCFG_LT_BASE,
+>+	IOCFG_LB_BASE,
+>+	IOCFG_TR_BASE,
+>+	IOCFG_TL_BASE,
+>+};
+>+
+>+static const char *const mt7986_pinctrl_register_base_names[] = {
+>+	"gpio_base", "iocfg_rt_base", "iocfg_rb_base", "iocfg_lt_base",
+>+	"iocfg_lb_base", "iocfg_tr_base", "iocfg_tl_base",
+>+};
+>+
+>+static const struct mtk_pin_field_calc mt7986_pin_mode_range[] = {
+>+	PIN_FIELD(0, 40, 0x300, 0x10, 0, 4),
+>+	PIN_FIELD(41, 65, 0x350, 0x10, 4, 4),
+>+	PIN_FIELD(66, 68, 0x380, 0x10, 8, 4),
+>+	PIN_FIELD(69, 100, 0x380, 0x10, 20, 4),
+>+};
+>+
+>+static const struct mtk_pin_field_calc mt7986_pin_dir_range[] = {
+>+	PIN_FIELD(0, 40, 0x0, 0x10, 0, 1),
+>+	PIN_FIELD(41, 65, 0x10, 0x10, 9, 1),
+>+	PIN_FIELD(66, 68, 0x20, 0x10, 2, 1),
+>+	PIN_FIELD(69, 100, 0x20, 0x10, 5, 1),
+>+};
+>+
+>+static const struct mtk_pin_field_calc mt7986_pin_di_range[] = {
+>+	PIN_FIELD(0, 40, 0x200, 0x10, 0, 1),
+>+	PIN_FIELD(41, 65, 0x210, 0x10, 9, 1),
+>+	PIN_FIELD(66, 68, 0x220, 0x10, 2, 1),
+>+	PIN_FIELD(69, 100, 0x220, 0x10, 5, 1),
+>+};
+>+
+>+static const struct mtk_pin_field_calc mt7986_pin_do_range[] = {
+>+	PIN_FIELD(0, 40, 0x100, 0x10, 0, 1),
+>+	PIN_FIELD(41, 65, 0x110, 0x10, 9, 1),
+>+	PIN_FIELD(66, 68, 0x120, 0x10, 2, 1),
+>+	PIN_FIELD(69, 100, 0x120, 0x10, 5, 1),
+>+};
+>+
+>+static const struct mtk_pin_field_calc mt7986_pin_ies_range[] = {
+>+	PIN_FIELD_BASE(0, 0, IOCFG_RB_BASE, 0x40, 0x10, 17, 1),
+>+	PIN_FIELD_BASE(1, 1, IOCFG_LT_BASE, 0x20, 0x10, 10, 1),
+>+	PIN_FIELD_BASE(2, 2, IOCFG_LT_BASE, 0x20, 0x10, 11, 1),
+>+	PIN_FIELD_BASE(3, 3, IOCFG_LB_BASE, 0x20, 0x10, 0, 1),
+>+	PIN_FIELD_BASE(4, 4, IOCFG_LB_BASE, 0x20, 0x10, 1, 1),
+>+	PIN_FIELD_BASE(5, 5, IOCFG_RB_BASE, 0x40, 0x10, 0, 1),
+>+	PIN_FIELD_BASE(6, 6, IOCFG_RB_BASE, 0x40, 0x10, 1, 1),
+>+	PIN_FIELD_BASE(7, 7, IOCFG_LT_BASE, 0x20, 0x10, 0, 1),
+>+	PIN_FIELD_BASE(8, 8, IOCFG_LT_BASE, 0x20, 0x10, 1, 1),
+>+	PIN_FIELD_BASE(9, 9, IOCFG_LT_BASE, 0x20, 0x10, 2, 1),
+>+	PIN_FIELD_BASE(10, 10, IOCFG_LT_BASE, 0x20, 0x10, 3, 1),
+>+	PIN_FIELD_BASE(11, 11, IOCFG_RB_BASE, 0x40, 0x10, 8, 1),
+>+	PIN_FIELD_BASE(12, 12, IOCFG_RB_BASE, 0x40, 0x10, 9, 1),
+>+	PIN_FIELD_BASE(13, 13, IOCFG_RB_BASE, 0x40, 0x10, 10, 1),
+>+	PIN_FIELD_BASE(14, 14, IOCFG_RB_BASE, 0x40, 0x10, 11, 1),
+>+	PIN_FIELD_BASE(15, 15, IOCFG_RB_BASE, 0x40, 0x10, 2, 1),
+>+	PIN_FIELD_BASE(16, 16, IOCFG_RB_BASE, 0x40, 0x10, 3, 1),
+>+	PIN_FIELD_BASE(17, 17, IOCFG_RB_BASE, 0x40, 0x10, 4, 1),
+>+	PIN_FIELD_BASE(18, 18, IOCFG_RB_BASE, 0x40, 0x10, 5, 1),
+>+	PIN_FIELD_BASE(19, 19, IOCFG_RB_BASE, 0x40, 0x10, 6, 1),
+>+	PIN_FIELD_BASE(20, 20, IOCFG_RB_BASE, 0x40, 0x10, 7, 1),
 
-diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
-index 1cdff1dca790..d796684ec9ca 100644
---- a/drivers/net/ethernet/Kconfig
-+++ b/drivers/net/ethernet/Kconfig
-@@ -118,6 +118,7 @@ config LANTIQ_XRX200
- 	  Support for the PMAC of the Gigabit switch (GSWIP) inside the
- 	  Lantiq / Intel VRX200 VDSL SoC
- 
-+source "drivers/net/ethernet/litex/Kconfig"
- source "drivers/net/ethernet/marvell/Kconfig"
- source "drivers/net/ethernet/mediatek/Kconfig"
- source "drivers/net/ethernet/mellanox/Kconfig"
-diff --git a/drivers/net/ethernet/Makefile b/drivers/net/ethernet/Makefile
-index cb3f9084a21b..aaa5078cd7d1 100644
---- a/drivers/net/ethernet/Makefile
-+++ b/drivers/net/ethernet/Makefile
-@@ -51,6 +51,7 @@ obj-$(CONFIG_JME) += jme.o
- obj-$(CONFIG_KORINA) += korina.o
- obj-$(CONFIG_LANTIQ_ETOP) += lantiq_etop.o
- obj-$(CONFIG_LANTIQ_XRX200) += lantiq_xrx200.o
-+obj-$(CONFIG_NET_VENDOR_LITEX) += litex/
- obj-$(CONFIG_NET_VENDOR_MARVELL) += marvell/
- obj-$(CONFIG_NET_VENDOR_MEDIATEK) += mediatek/
- obj-$(CONFIG_NET_VENDOR_MELLANOX) += mellanox/
-diff --git a/drivers/net/ethernet/litex/Kconfig b/drivers/net/ethernet/litex/Kconfig
-new file mode 100644
-index 000000000000..265dba414b41
---- /dev/null
-+++ b/drivers/net/ethernet/litex/Kconfig
-@@ -0,0 +1,27 @@
-+#
-+# LiteX device configuration
-+#
-+
-+config NET_VENDOR_LITEX
-+	bool "LiteX devices"
-+	default y
-+	help
-+	  If you have a network (Ethernet) card belonging to this class, say Y.
-+
-+	  Note that the answer to this question doesn't directly affect the
-+	  kernel: saying N will just cause the configurator to skip all
-+	  the questions about LiteX devices. If you say Y, you will be asked
-+	  for your specific card in the following questions.
-+
-+if NET_VENDOR_LITEX
-+
-+config LITEX_LITEETH
-+	tristate "LiteX Ethernet support"
-+	help
-+	  If you wish to compile a kernel for hardware with a LiteX LiteEth
-+	  device then you should answer Y to this.
-+
-+	  LiteX is a soft system-on-chip that targets FPGAs. LiteETH is a basic
-+	  network device that is commonly used in LiteX designs.
-+
-+endif # NET_VENDOR_LITEX
-diff --git a/drivers/net/ethernet/litex/Makefile b/drivers/net/ethernet/litex/Makefile
-new file mode 100644
-index 000000000000..9343b73b8e49
---- /dev/null
-+++ b/drivers/net/ethernet/litex/Makefile
-@@ -0,0 +1,5 @@
-+#
-+# Makefile for the LiteX network device drivers.
-+#
-+
-+obj-$(CONFIG_LITEX_LITEETH) += litex_liteeth.o
-diff --git a/drivers/net/ethernet/litex/litex_liteeth.c b/drivers/net/ethernet/litex/litex_liteeth.c
-new file mode 100644
-index 000000000000..e9c5d817e1f9
---- /dev/null
-+++ b/drivers/net/ethernet/litex/litex_liteeth.c
-@@ -0,0 +1,327 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * LiteX Liteeth Ethernet
-+ *
-+ * Copyright 2017 Joel Stanley <joel@jms.id.au>
-+ *
-+ */
-+
-+#include <linux/etherdevice.h>
-+#include <linux/interrupt.h>
-+#include <linux/litex.h>
-+#include <linux/module.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+
-+#define LITEETH_WRITER_SLOT       0x00
-+#define LITEETH_WRITER_LENGTH     0x04
-+#define LITEETH_WRITER_ERRORS     0x08
-+#define LITEETH_WRITER_EV_STATUS  0x0C
-+#define LITEETH_WRITER_EV_PENDING 0x10
-+#define LITEETH_WRITER_EV_ENABLE  0x14
-+#define LITEETH_READER_START      0x18
-+#define LITEETH_READER_READY      0x1C
-+#define LITEETH_READER_LEVEL      0x20
-+#define LITEETH_READER_SLOT       0x24
-+#define LITEETH_READER_LENGTH     0x28
-+#define LITEETH_READER_EV_STATUS  0x2C
-+#define LITEETH_READER_EV_PENDING 0x30
-+#define LITEETH_READER_EV_ENABLE  0x34
-+#define LITEETH_PREAMBLE_CRC      0x38
-+#define LITEETH_PREAMBLE_ERRORS   0x3C
-+#define LITEETH_CRC_ERRORS        0x40
-+
-+#define LITEETH_PHY_CRG_RESET     0x00
-+#define LITEETH_MDIO_W            0x04
-+#define LITEETH_MDIO_R            0x0C
-+
-+#define DRV_NAME	"liteeth"
-+
-+#define LITEETH_BUFFER_SIZE		0x800
-+#define MAX_PKT_SIZE			LITEETH_BUFFER_SIZE
-+
-+struct liteeth {
-+	void __iomem *base;
-+	struct net_device *netdev;
-+	struct device *dev;
-+
-+	/* Tx */
-+	int tx_slot;
-+	int num_tx_slots;
-+	void __iomem *tx_base;
-+
-+	/* Rx */
-+	int rx_slot;
-+	int num_rx_slots;
-+	void __iomem *rx_base;
-+};
-+
-+static int liteeth_rx(struct net_device *netdev)
-+{
-+	struct liteeth *priv = netdev_priv(netdev);
-+	struct sk_buff *skb;
-+	unsigned char *data;
-+	u8 rx_slot;
-+	int len;
-+
-+	rx_slot = litex_read8(priv->base + LITEETH_WRITER_SLOT);
-+	len = litex_read32(priv->base + LITEETH_WRITER_LENGTH);
-+
-+	if (len == 0 || len > 2048)
-+		goto rx_drop;
-+
-+	skb = netdev_alloc_skb_ip_align(netdev, len);
-+	if (!skb) {
-+		netdev_err(netdev, "couldn't get memory\n");
-+		goto rx_drop;
-+	}
-+
-+	data = skb_put(skb, len);
-+	memcpy_fromio(data, priv->rx_base + rx_slot * LITEETH_BUFFER_SIZE, len);
-+	skb->protocol = eth_type_trans(skb, netdev);
-+
-+	netdev->stats.rx_packets++;
-+	netdev->stats.rx_bytes += len;
-+
-+	return netif_rx(skb);
-+
-+rx_drop:
-+	netdev->stats.rx_dropped++;
-+	netdev->stats.rx_errors++;
-+
-+	return NET_RX_DROP;
-+}
-+
-+static irqreturn_t liteeth_interrupt(int irq, void *dev_id)
-+{
-+	struct net_device *netdev = dev_id;
-+	struct liteeth *priv = netdev_priv(netdev);
-+	u8 reg;
-+
-+	reg = litex_read8(priv->base + LITEETH_READER_EV_PENDING);
-+	if (reg) {
-+		if (netif_queue_stopped(netdev))
-+			netif_wake_queue(netdev);
-+		litex_write8(priv->base + LITEETH_READER_EV_PENDING, reg);
-+	}
-+
-+	reg = litex_read8(priv->base + LITEETH_WRITER_EV_PENDING);
-+	if (reg) {
-+		liteeth_rx(netdev);
-+		litex_write8(priv->base + LITEETH_WRITER_EV_PENDING, reg);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int liteeth_open(struct net_device *netdev)
-+{
-+	struct liteeth *priv = netdev_priv(netdev);
-+	int err;
-+
-+	/* Clear pending events */
-+	litex_write8(priv->base + LITEETH_WRITER_EV_PENDING, 1);
-+	litex_write8(priv->base + LITEETH_READER_EV_PENDING, 1);
-+
-+	err = request_irq(netdev->irq, liteeth_interrupt, 0, netdev->name, netdev);
-+	if (err) {
-+		netdev_err(netdev, "failed to request irq %d\n", netdev->irq);
-+		return err;
-+	}
-+
-+	/* Enable IRQs */
-+	litex_write8(priv->base + LITEETH_WRITER_EV_ENABLE, 1);
-+	litex_write8(priv->base + LITEETH_READER_EV_ENABLE, 1);
-+
-+	netif_carrier_on(netdev);
-+	netif_start_queue(netdev);
-+
-+	return 0;
-+}
-+
-+static int liteeth_stop(struct net_device *netdev)
-+{
-+	struct liteeth *priv = netdev_priv(netdev);
-+
-+	netif_stop_queue(netdev);
-+	netif_carrier_off(netdev);
-+
-+	litex_write8(priv->base + LITEETH_WRITER_EV_ENABLE, 0);
-+	litex_write8(priv->base + LITEETH_READER_EV_ENABLE, 0);
-+
-+	free_irq(netdev->irq, netdev);
-+
-+	return 0;
-+}
-+
-+static int liteeth_start_xmit(struct sk_buff *skb, struct net_device *netdev)
-+{
-+	struct liteeth *priv = netdev_priv(netdev);
-+	void __iomem *txbuffer;
-+
-+	if (!litex_read8(priv->base + LITEETH_READER_READY)) {
-+		if (net_ratelimit())
-+			netdev_err(netdev, "LITEETH_READER_READY not ready\n");
-+
-+		netif_stop_queue(netdev);
-+
-+		return NETDEV_TX_BUSY;
-+	}
-+
-+	/* Reject oversize packets */
-+	if (unlikely(skb->len > MAX_PKT_SIZE)) {
-+		if (net_ratelimit())
-+			netdev_err(netdev, "tx packet too big\n");
-+
-+		dev_kfree_skb_any(skb);
-+		netdev->stats.tx_dropped++;
-+		netdev->stats.tx_errors++;
-+
-+		return NETDEV_TX_OK;
-+	}
-+
-+	txbuffer = priv->tx_base + priv->tx_slot * LITEETH_BUFFER_SIZE;
-+	memcpy_toio(txbuffer, skb->data, skb->len);
-+	litex_write8(priv->base + LITEETH_READER_SLOT, priv->tx_slot);
-+	litex_write16(priv->base + LITEETH_READER_LENGTH, skb->len);
-+	litex_write8(priv->base + LITEETH_READER_START, 1);
-+
-+	netdev->stats.tx_bytes += skb->len;
-+	netdev->stats.tx_packets++;
-+
-+	priv->tx_slot = (priv->tx_slot + 1) % priv->num_tx_slots;
-+	dev_kfree_skb_any(skb);
-+
-+	return NETDEV_TX_OK;
-+}
-+
-+static const struct net_device_ops liteeth_netdev_ops = {
-+	.ndo_open		= liteeth_open,
-+	.ndo_stop		= liteeth_stop,
-+	.ndo_start_xmit         = liteeth_start_xmit,
-+};
-+
-+int liteeth_setup_slots(struct liteeth *priv)
-+{
-+	struct device_node *np = priv->dev->of_node;
-+	int err, depth;
-+
-+	err = of_property_read_u32(np, "rx-fifo-depth", &depth);
-+	if (err) {
-+		dev_err(priv->dev, "unable to get rx-fifo-depth\n");
-+		return err;
-+	}
-+	if (depth < LITEETH_BUFFER_SIZE) {
-+		dev_err(priv->dev, "invalid tx-fifo-depth: %d\n", depth);
-+		return -EINVAL;
-+	}
-+	priv->num_rx_slots = depth / LITEETH_BUFFER_SIZE;
-+
-+	err = of_property_read_u32(np, "tx-fifo-depth", &depth);
-+	if (err) {
-+		dev_err(priv->dev, "unable to get tx-fifo-depth\n");
-+		return err;
-+	}
-+	if (depth < LITEETH_BUFFER_SIZE) {
-+		dev_err(priv->dev, "invalid rx-fifo-depth: %d\n", depth);
-+		return -EINVAL;
-+	}
-+	priv->num_tx_slots = depth / LITEETH_BUFFER_SIZE;
-+
-+	return 0;
-+}
-+
-+static int liteeth_probe(struct platform_device *pdev)
-+{
-+	struct net_device *netdev;
-+	void __iomem *buf_base;
-+	struct resource *res;
-+	struct liteeth *priv;
-+	int irq, err;
-+
-+	netdev = devm_alloc_etherdev(&pdev->dev, sizeof(*priv));
-+	if (!netdev)
-+		return -ENOMEM;
-+
-+	SET_NETDEV_DEV(netdev, &pdev->dev);
-+	platform_set_drvdata(pdev, netdev);
-+
-+	priv = netdev_priv(netdev);
-+	priv->netdev = netdev;
-+	priv->dev = &pdev->dev;
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		dev_err(&pdev->dev, "Failed to get IRQ %d\n", irq);
-+		return irq;
-+	}
-+	netdev->irq = irq;
-+
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mac");
-+	priv->base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "buffer");
-+	buf_base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(buf_base))
-+		return PTR_ERR(buf_base);
-+
-+	err = liteeth_setup_slots(priv);
-+	if (err)
-+		return err;
-+
-+	/* Rx slots */
-+	priv->rx_base = buf_base;
-+	priv->rx_slot = 0;
-+
-+	/* Tx slots come after Rx slots */
-+	priv->tx_base = buf_base + priv->num_rx_slots * LITEETH_BUFFER_SIZE;
-+	priv->tx_slot = 0;
-+
-+	err = of_get_mac_address(pdev->dev.of_node, netdev->dev_addr);
-+	if (err)
-+		eth_hw_addr_random(netdev);
-+
-+	netdev->netdev_ops = &liteeth_netdev_ops;
-+
-+	err = register_netdev(netdev);
-+	if (err) {
-+		dev_err(&pdev->dev, "Failed to register netdev %d\n", err);
-+		return err;
-+	}
-+
-+	netdev_info(netdev, "irq %d tx slots %d rx slots %d",
-+		    netdev->irq, priv->num_tx_slots, priv->num_rx_slots);
-+
-+	return 0;
-+}
-+
-+static int liteeth_remove(struct platform_device *pdev)
-+{
-+	struct net_device *netdev = platform_get_drvdata(pdev);
-+
-+	unregister_netdev(netdev);
-+	free_netdev(netdev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id liteeth_of_match[] = {
-+	{ .compatible = "litex,liteeth" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, liteeth_of_match);
-+
-+static struct platform_driver liteeth_driver = {
-+	.probe = liteeth_probe,
-+	.remove = liteeth_remove,
-+	.driver = {
-+		.name = DRV_NAME,
-+		.of_match_table = liteeth_of_match,
-+	},
-+};
-+module_platform_driver(liteeth_driver);
-+
-+MODULE_AUTHOR("Joel Stanley <joel@jms.id.au>");
-+MODULE_LICENSE("GPL");
--- 
-2.32.0
+Actually, we can merge the consecutive entries into one to reduce the table size
+For example, we can merge those entries pin 15 ~ 20 into one, from
 
+PIN_FIELD_BASE(15, 15, IOCFG_RB_BASE, 0x40, 0x10, 2, 1),
+PIN_FIELD_BASE(16, 16, IOCFG_RB_BASE, 0x40, 0x10, 3, 1),
+PIN_FIELD_BASE(17, 17, IOCFG_RB_BASE, 0x40, 0x10, 4, 1),
+PIN_FIELD_BASE(18, 18, IOCFG_RB_BASE, 0x40, 0x10, 5, 1),
+PIN_FIELD_BASE(19, 19, IOCFG_RB_BASE, 0x40, 0x10, 6, 1),
+PIN_FIELD_BASE(20, 20, IOCFG_RB_BASE, 0x40, 0x10, 7, 1),
+
+to
+
+PIN_FIELD_BASE(15, 20, IOCFG_RB_BASE, 0x40, 0x10, 2, 1).
+
+Also please consider merging all the similar occurrences elsewhere to optimize them.
+
+>+	PIN_FIELD_BASE(21, 21, IOCFG_RT_BASE, 0x30, 0x10, 12, 1),
+>+	PIN_FIELD_BASE(22, 22, IOCFG_RT_BASE, 0x30, 0x10, 13, 1),
+>+	PIN_FIELD_BASE(23, 23, IOCFG_RT_BASE, 0x30, 0x10, 14, 1),
+>+	PIN_FIELD_BASE(24, 24, IOCFG_RT_BASE, 0x30, 0x10, 18, 1),
+>+	PIN_FIELD_BASE(25, 25, IOCFG_RT_BASE, 0x30, 0x10, 17, 1),
+>+	PIN_FIELD_BASE(26, 26, IOCFG_RT_BASE, 0x30, 0x10, 15, 1),
+>+	PIN_FIELD_BASE(27, 27, IOCFG_RT_BASE, 0x30, 0x10, 16, 1),
+
+<snip>
