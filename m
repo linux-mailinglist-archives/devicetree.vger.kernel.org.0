@@ -2,122 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32AC13F2E0E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 16:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FE43F2E2E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 16:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240778AbhHTO1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 10:27:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34154 "EHLO
+        id S240835AbhHTOhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 10:37:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240721AbhHTO1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 10:27:23 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E144FC061575;
-        Fri, 20 Aug 2021 07:26:45 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id x10-20020a056830408a00b004f26cead745so14009127ott.10;
-        Fri, 20 Aug 2021 07:26:45 -0700 (PDT)
+        with ESMTP id S231706AbhHTOhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 10:37:02 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2370FC061575
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 07:36:24 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id c8-20020a7bc008000000b002e6e462e95fso9293902wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 07:36:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XbgFcWZTGZ4Mw5/yAsceqeHzdJQFpavhF8zlUtwnN/U=;
-        b=c4Lsz9b+TELHfZqJ58UMFlIgzJZv0wCuSQhChT6sNZRYs9SNqOqAAiYwQk9i0ghuxJ
-         OU0+PlDLRxps7k+LSnx1xXoyUOBzJbwah2KdIgHVYgPcxzVe3BuLYDqowQxXS3buN1MK
-         fAMHa4lvxvNTV7fzKhODMMAPikK6KAES+OndE/9/PVgRtPb6f1tub/IIwpMCoHkc3QyX
-         kAy8Yce5VdPdVQDrWPPpdw127Czvut96oCjKVcM+vfFeJlmdd0sVq3PdwhlyqelfDsPg
-         ai12+QfWt6chCqK+x45YKFMLccUPJadD0Xbkxrq5ItzX1RZNGalogv8OIA6WrneHAJfO
-         zB7Q==
+        d=linaro.org; s=google;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=VVH5cjbejgdKr2IOUs76t8Kb6I7GHF6NXDSy37N+NBk=;
+        b=aAgNJkDJftUIGTTNJBfe1LWoyvL3jbUJ6hpHavTd1gw3/O03m2NZdz7T8Ase/K9lBl
+         zc1I3QkpHLT0rlVzUfhLKkIvWlNVjDfroeNt00uGpQIXDP8ce3GCK/vWCf071s9QRWTd
+         7LfpAasFawFGzl6/8EUs524nLGCRgdB0v27eKu7PnkqJLaDeMJ8oCvzivYnryh4uuJu6
+         r0ZcMDHVj8MRSBKAS/xbK/2DaEIenf61trDZY534uRpC4fj9aEPSAHn+lOvOa7UgUOE5
+         auBP+kQAmukKFDPOm0pHEn2dVSP20BdH7qjxq15r7gf6vBWGzUVYwk712CdgUHcsu88Y
+         22Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=XbgFcWZTGZ4Mw5/yAsceqeHzdJQFpavhF8zlUtwnN/U=;
-        b=U+5ZTtLEDzcR/TGLG7c/YyFhByp37mkkOr3W6nxPLO3NemxIaRy5dMQrK6VnKT+I26
-         E8BDQwUTk7rUN1bA/hBIGK7KeLe1VkIHqY/go0tUBLv7z6yIza5seQqextyHck8FNf3S
-         84I++yjtT+D7ID8FEGyL3GE/vWxOrXnMfm9nGLITQKqLBFfQYHKnYObOjNC+cdPzxVtY
-         52yPHAGiP6ewXJkmoDMb/ihXgso24ZygyWNP0ri9h/FMrT1I/XcoMVUJQM2yheMTHn6o
-         vvSzIqujPcHfTLxglh8EGHg4wjNxYQzCqKC0Fa2JbQghhkusD7nWmPaJHlmvYQb0aTBE
-         PUCQ==
-X-Gm-Message-State: AOAM531muMn5xAbhdvtHuJ+G1VkraEtQdYIyWqxmkfZ2rbpVKbuipp2m
-        sdkL1TWR4e4jbbRs6IuXQDES7zO4mWw=
-X-Google-Smtp-Source: ABdhPJzUnVGEaGUG0EazPsTIEWjz2rpuE18GFl9qQkI+3kjxuvEMCQVdmfWeHlg/Df9zNvUjnn/08A==
-X-Received: by 2002:a05:6808:209b:: with SMTP id s27mr2666362oiw.98.1629469605094;
-        Fri, 20 Aug 2021 07:26:45 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o68sm1498323ota.33.2021.08.20.07.26.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Aug 2021 07:26:44 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: merge max1619 into trivial
- devices
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Kosina <trivial@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210819182544.224121-1-krzysztof.kozlowski@canonical.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <441b28c9-a997-7143-825f-f272e399d60f@roeck-us.net>
-Date:   Fri, 20 Aug 2021 07:26:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210819182544.224121-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=VVH5cjbejgdKr2IOUs76t8Kb6I7GHF6NXDSy37N+NBk=;
+        b=FW43EKs9Z9VfUFnTWwfXsA9uCc55Qm8uZGE38V2UHHvaGcxpwvhonns15ql/sXDnGl
+         Aa5J7rnF3DYEKYSt0bcIaC6u04mrjwaIXOuF847GpimImhPwL0A9eMORuhy+xB6di/wh
+         Fze9o0U/Zp96e4sErStyju/SC/alOj8PGG93NJ7CvTJzXmHyck7zUbFQmkgpSBr2jzzd
+         fQxFzdC2k1OCIgwP6MntmlpZf9mXM+uFrv519uhMsSwbTL+O9Mv53Pgluk6eNcTVqprA
+         SKH6Wx2x7p/XXeJKda5A5LSpEFsu0UL47zIIgI2dB7GAFBY6RGE1pSemzO4b62um/Gv8
+         sTzw==
+X-Gm-Message-State: AOAM533+uH4Oi3jKNocwxuaVQdHCCfl1eJOMNXOCQMkbwSzClzmEn7hP
+        rNJiVIQfxGhRK+nnwUGg59NUfQ==
+X-Google-Smtp-Source: ABdhPJx2Gwy428ggXkCEjHyctr7/pRb7S8/XrMM0hN3pZToLlOcJqbh/KwHkVF8vC2J0UTAWD0c3mg==
+X-Received: by 2002:a1c:40c:: with SMTP id 12mr4312068wme.158.1629470182754;
+        Fri, 20 Aug 2021 07:36:22 -0700 (PDT)
+Received: from localhost (a109-49-46-234.cpe.netcabo.pt. [109.49.46.234])
+        by smtp.gmail.com with ESMTPSA id s17sm10727273wmj.12.2021.08.20.07.36.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Aug 2021 07:36:22 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 20 Aug 2021 15:36:21 +0100
+Message-Id: <CDOEYZ9OFK75.NCZ1WGVTMSVK@arch-thunder>
+Cc:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 2/9] usb: isp1760: move to regmap for register access
+From:   "Rui Miguel Silva" <rui.silva@linaro.org>
+To:     "Dietmar Eggemann" <deggeman@gmx.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Sebastian Siewior" <bigeasy@linutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        "Rob Herring" <robh+dt@kernel.org>
+References: <20210513084717.2487366-1-rui.silva@linaro.org>
+ <20210513084717.2487366-3-rui.silva@linaro.org>
+ <11ed5458-4b88-ad72-4497-89ff9346a40b@gmx.de>
+In-Reply-To: <11ed5458-4b88-ad72-4497-89ff9346a40b@gmx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/19/21 11:25 AM, Krzysztof Kozlowski wrote:
-> Ther Maxim max1619 bindings are trivial, so simply merge it into
-> trivial-devices.yaml.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Hey Dietmar,
+On Fri Aug 20, 2021 at 2:30 PM WEST, Dietmar Eggemann wrote:
 
-Do we have a general guideline on how to handle such trivial bindings ?
-I normally leave it up to the driver author to decide one way or another.
+> Hi Rui,
+>
+> On 13/05/2021 10:47, Rui Miguel Silva wrote:
+> > Rework access to registers and memory to use regmap framework.
+> > No change in current feature or way of work is intended with this
+> > change.
+> >
+> > This will allow to reuse this driver with other IP of this family,
+> > for example isp1763, with little changes and effort.
+> >
+>
+> 1da9e1c06873 - usb: isp1760: move to regmap for register access
+>
+> Starting from this patch, our Arm TC2 platform (multi_v7_defconfig,
+> vexpress-v2p-ca15_a7.dts) doesn't boot anymore.
 
-Guenter
+:( sorry about that
 
-> ---
->   Documentation/devicetree/bindings/hwmon/max1619.txt  | 12 ------------
->   .../devicetree/bindings/trivial-devices.yaml         |  2 ++
->   2 files changed, 2 insertions(+), 12 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/hwmon/max1619.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/max1619.txt b/Documentation/devicetree/bindings/hwmon/max1619.txt
-> deleted file mode 100644
-> index c70dbbe1e56f..000000000000
-> --- a/Documentation/devicetree/bindings/hwmon/max1619.txt
-> +++ /dev/null
-> @@ -1,12 +0,0 @@
-> -Bindings for MAX1619 Temperature Sensor
-> -
-> -Required properties:
-> -- compatible : "maxim,max1619"
-> -- reg        : I2C address, one of 0x18, 0x19, 0x1a, 0x29, 0x2a, 0x2b, 0x4c, or
-> -               0x4d, 0x4e
-> -
-> -Example:
-> -	temp@4c {
-> -		compatible = "maxim,max1619";
-> -		reg = <0x4c>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index fb03febc6616..1e4b3464d734 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -147,6 +147,8 @@ properties:
->             - maxim,ds1803-100
->               # Low-Power, 4-/12-Channel, 2-Wire Serial, 12-Bit ADCs
->             - maxim,max1237
-> +            # Temperature Sensor, I2C interface
-> +          - maxim,max1619
->               # 10-bit 10 kOhm linear programable voltage divider
->             - maxim,max5481
->               # 10-bit 50 kOhm linear programable voltage divider
-> 
+> We discovered this in our v5.14-rc1 based task scheduler test build.
+>
+> With 1da9e1c06873^1 :
+>
+> # lsusb
+> Bus 001 Device 001: ID 1d6b:0002 <-- NXP ISP1760 USB Host Controller
+> Bus 001 Device 002: ID 0471:3526
+> Bus 001 Device 003: ID 0781:5591
+>
+> # dmesg | grep -i isp
+> [    4.014307] isp1760 1b000000.usb: bus width: 32, oc: digital
+> [    4.014442] isp1760 1b000000.usb: NXP ISP1760 USB Host Controller
+> [    4.014715] isp1760 1b000000.usb: new USB bus registered, assigned bus=
+ number 1
+> [    4.025076] isp1760 1b000000.usb: irq 32, io mem 0x1b000000
+> [    4.025288] isp1760 1b000000.usb: USB ISP 1761 HW rev. 1 started
+
+Never managed to get my hands in a board with  1761, I will try to get
+one of this.
+
+> [    4.055802] ISP1760 USB device initialised
+> [    4.257911] isp1760 1b000000.usb: port 1 high speed
+> [    4.325662] usb 1-1: new high-speed USB device number 2 using isp1760
+> [    4.475670] isp1760 1b000000.usb: port 1 high speed
+> [   14.320372] usb 1-1.2: new high-speed USB device number 3 using isp176=
+0
+>
+> With v5.14-rc1 :
+>
+> there is no boot output at all, but I debugged it a little bit and the
+> system seems to hang here:
+>
+> [    1.847494] [<c0cac46c>] (isp1760_udc_register) from [<c0ca668c>] (isp=
+1760_register+0x5d0/0x5f0)
+> [    1.847527] [<c0ca668c>] (isp1760_register) from [<c0ca6b7c>] (isp1760=
+_plat_probe+0x150/0x1b0)
+> [    1.847557] [<c0ca6b7c>] (isp1760_plat_probe) from [<c0a46ef0>] (platf=
+orm_probe+0x5c/0xb8)
+> [    1.847589] [<c0a46ef0>] (platform_probe) from [<c0a44924>] (really_pr=
+obe.part.0+0x9c/0x32c)
+> ...
+>
+>     isp1760_udc_register()->isp1760_udc_init()
+>
+>         ....
+>         /* Reset the device controller. */
+>         isp1760_udc_set(udc, DC_SFRESET); <-- hangs here !!!
+
+Thanks for the hint, I will take a better look here, to find if some
+register or mapping is wrongly set.
+
+------
+Cheers,
+     Rui
+>         usleep_range(10000, 11000);
+>         isp1760_reg_write(udc->regs, ISP176x_DC_MODE, 0);
+>         usleep_range(10000, 11000);
+>
+> [...]
+
+
 
