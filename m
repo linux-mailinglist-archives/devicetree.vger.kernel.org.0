@@ -2,137 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4546C3F24FB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 04:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5573F250F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 04:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237643AbhHTCwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Aug 2021 22:52:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44780 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237636AbhHTCwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Aug 2021 22:52:16 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9915FC061575;
-        Thu, 19 Aug 2021 19:51:38 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id w20so17265865lfu.7;
-        Thu, 19 Aug 2021 19:51:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zboB1Q6i9oYgbkK+DWfMo5HokGy8eox3TcOGLTI8/TQ=;
-        b=MSPObL9gtIfvXhGm8vmuM1WlsX8S9aqUcJKehk6hQXt2kTc0FpmAMpCNdosprR8DEi
-         /yWFr3UlXiFd2ptrMNopWEd4mvb/K8eNekkIVvnlp6AKdEAvU+jGXH5uVDxvGcdGZoGg
-         7d0zSU30Fr03L6Jyi08Us+ikNmam6soR3xc9TnEUbHxYKYK/+DxyeuIlb2H/R67utUeG
-         f8Hx0eRqtRpuLlOkbbDR3VqVNtgKs+C8IJnFlLq0D7i7HgCycFYmI+7YKNlKYZOsIZqi
-         M8cceb7ZJ2VG2spCfJmWhEcSNn6fxBgRnLJwFtl+p9dAcHXGqIRgt1IqsRHAMWfqn/Mz
-         6mnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zboB1Q6i9oYgbkK+DWfMo5HokGy8eox3TcOGLTI8/TQ=;
-        b=Fte0SRty0Uxt3DppV1yP+tZesHgOhbSKOlOlG8XOO4C7v4bn6eRSmMIYCcPFIjQx4Y
-         m9+LEH06oTnnPBpy4iCQ9CihyfKJQ5hKM+y/Yv6DZT6hKzLuU1hR89T0F/KjiI+bHHe+
-         UCKLw8TyX/REKdwNGQ1yZbCjLn8EdsYvg8tiIx2JxUKDoBojSER7AZtFeBkIpXRGQcrD
-         Tp7LffUKVdqVtMgjVQkNl54jE/nNIuum/zFppghEjq3ITApPIL6xZZBpZ7jplj0hHSTJ
-         ipBoU41s8N3k5luR1SZXKyhT1RiDbKfg2g0ljP64isLZ4GYWFjX+qgBJtgduOVBc1oG8
-         o7Iw==
-X-Gm-Message-State: AOAM533Tq8igYXOdZTPeWdpW7U7elfm3hAcEu/JYAyWryyzWbSoavb7T
-        SdUhkP0PPyOoI2gWPzN0HF00eNjcRDk=
-X-Google-Smtp-Source: ABdhPJxyaLUy3vFiucIY3S77FtdQqbUhTA2/WSHmXMHR7V1HqPjJvW4kwuD0WLGfg5N30COber68xA==
-X-Received: by 2002:ac2:4c94:: with SMTP id d20mr12622519lfl.640.1629427896895;
-        Thu, 19 Aug 2021 19:51:36 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-120-72.dynamic.spd-mgts.ru. [46.138.120.72])
-        by smtp.googlemail.com with ESMTPSA id w9sm2965ljo.36.2021.08.19.19.51.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Aug 2021 19:51:36 -0700 (PDT)
-Subject: Re: [PATCH v8 06/34] dt-bindings: clock: tegra-car: Document new
- tegra-clocks sub-node
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
+        id S237883AbhHTC7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Aug 2021 22:59:51 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:37607 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234797AbhHTC7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Aug 2021 22:59:50 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3FC41580B51;
+        Thu, 19 Aug 2021 22:59:13 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 19 Aug 2021 22:59:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=W
+        4csqGF7EaCVQldDEP3prZ8OVQrteF1bQXmpxlvS0MU=; b=TvXK8//vl0XRoOqZ2
+        C6a7geG3s3ZbGnxUZCsDNXc+023N1sy6gYH9IuZVgdSYc4OH6EHzSubEn6RHa4xM
+        ROCBzVNPDvoQ9iOJCgwt5Q3owFsJb3P1+BB0Ta1LXDKdbo553mLIFKnjq5KJ/8If
+        qCHtmBHCezOukFQ0NmXcoLCiDmUpAwVDeR2jNUvuOlzeV57zsL1ph7nGFGKxMYf+
+        ZXtARtH0MydN65laKAlEu1RgZWhmyK52sf/t6nvgovSXJry3O1XkezGNMRtJeGP2
+        G8i11DuLiKRf9K/Yb6J2e79Ai7ylpdIfrJ7DJIVnOuP0LVVKrqPN3cLUH9n7XapG
+        uI0oQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=W4csqGF7EaCVQldDEP3prZ8OVQrteF1bQXmpxlvS0
+        MU=; b=XiW/wQd79FiWRlvKJbBCB4kxzSdBP6NtnDSt+gxv/PGEhnrSSdJ2MCUxv
+        m5yPhooO0apj7S+/Xc5LSHxAfvP3a9fgIORh9o/reTnZdserZkLYG/35cot3XTqc
+        /a9ZIeKCvy4uQMtvhkjO+1FHcnjtOT3p6tXXebIE6Qy4e05dJ/8WVmSAho8Py+J1
+        9aD/3bFaPu+yqV16T3ey4BX13BM2bbtsjWi+CzOmz8sJGRkMqL/t0E/RVHUjm9aA
+        9oAX/7C+psAltrgdwrURA48KSFe5yiyzb+G/kWXUxieVqIU2agsErGbwezVwl5qY
+        ozJIW/86/dDg9dbrQd025jfb29W4Q==
+X-ME-Sender: <xms:fhofYVc4NjDcSwrkWsUocQ1Bnt4ulGdSJuIOJaDdBfVXw5eN3yY_Jg>
+    <xme:fhofYTND3ue24QH4ZrpC5Y5dJW9JZbavjdsyucRMV3g0yV7Vvx2lcxEAtJB8cipRB
+    e_V5Cm4gpAGRpNC4w>
+X-ME-Received: <xmr:fhofYejGZo4G9XbkM2Xh9he6HIChrA5EcWtoZCU3ZEwuzMJ2jZ3x5hFPFuqBkVdAv8fYHbecipRLEJX0HtyLZVvGIU0xslfFGnX46j4R_75eAJkcKTA_WsX-wQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleekgdeivdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpefgveffteelheffjeeukedvkedviedtheevgeefkeehueeiieeuteeu
+    gfettdeggeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:fhofYe-MOstNYwS3psbp0Nd9WfwC2Lf18M1IVcsLVka8AcHvwLQZkw>
+    <xmx:fhofYRuAJI0Qo1Xb86kGnwRdWgqoOPrH8oS9IiNv-faScT-LSUu71A>
+    <xmx:fhofYdFpbefr-jY9pxUNPvX_z-qxPgRYgyDTXUhYx0HDJbKiKU-eWw>
+    <xmx:gRofYdGS5S6pbBsv7ptKqWQ0ZEGNXU1QBKo3m6BgsHIZy2y7WB2SIw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 19 Aug 2021 22:59:09 -0400 (EDT)
+Subject: Re: [PATCH 15/17] arm64: allwinner: dts: add DTSI file for R329 SoC
+To:     Icenowy Zheng <icenowy@sipeed.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20210817012754.8710-1-digetx@gmail.com>
- <20210817012754.8710-7-digetx@gmail.com> <YR0SSz7KMh7TwaFW@orome.fritz.box>
- <eff5ef47-e6e0-3e03-cf1a-d931b0f2dc2a@gmail.com>
- <YR033zuYWWLCeYpM@orome.fritz.box>
- <a5b942cb-1611-9ae1-6e89-4b68fdaf03e3@gmail.com>
- <YR6HWMuYcF6NIepi@orome.fritz.box>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <cad7c578-f533-12f8-3dc0-d2854344148c@gmail.com>
-Date:   Fri, 20 Aug 2021 05:51:35 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-16-icenowy@sipeed.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <6863e247-9ae5-0f90-bf99-8989efd45352@sholland.org>
+Date:   Thu, 19 Aug 2021 21:59:08 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-In-Reply-To: <YR6HWMuYcF6NIepi@orome.fritz.box>
+In-Reply-To: <20210802062212.73220-16-icenowy@sipeed.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-19.08.2021 19:31, Thierry Reding пишет:
->> The "device" representation is internal to the kernel. It's okay to me
->> to have PLLs represented by a device, it's a distinct h/w by itself.
->>
->> CCF supports managing of clock's RPM and it requires to have clock to be
->> backed by a device. That's what we are using here.
->>
->> Please see
->> https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/clk/clk.c#L109
-> Looking at the implementation of __clk_register() and where that device
-> pointer typically comes from, I don't think the way this is used here is
-> what was intended. The way I interpret the code is that a clock is
-> registered with a parent device (i.e. its provider) and
-> clk_pm_runtime_get() is then used internally as a way to make sure that
-> when a clock is prepared, it's parent device is runtime resumed. This is
-> presumably to ensure that any registers that the driver might need to
-> access in order to prepare and enable the clock are accessible (i.e. the
-> CAR is not powered off or in reset).
+On 8/2/21 1:22 AM, Icenowy Zheng wrote:
+> Allwinner R329 is a new SoC focused on smart audio devices.
 > 
-> So the struct device that is passed to __clk_register() (or its callers)
-> should be that of the CAR rather than virtual struct devices created by
-> the CAR.
+> Add a DTSI file for it.
 > 
-> And it's a bit debatable whether or not PLLs represent distinct
-> hardware. Ultimately every transistor on a chip could be considered
-> distinct hardware. But a platform device is a device on a platform bus,
-> which is really just another way of saying it's a hardware block that's
-> accessible from the CPU via a memory-mapped address. A PLL (just like
-> other clocks) is merely a resource exposed by means of access to these
-> registers. So I don't think they should be platform devices. Even making
-> them struct device:s seems a bit of a stretch.
-> 
-> Is there any reason why struct clk can't be used for this? I mean, the
-> whole purpose of that structure is to represent clocks. Why do we need
-> to make them special?
+> Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
+> ---
+>  .../arm64/boot/dts/allwinner/sun50i-r329.dtsi | 244 ++++++++++++++++++
+>  1 file changed, 244 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-r329.dtsi
 
-Because we need to perform DVFS for PLLs. The only way to do it without
-having to reinvent existing frameworks is to use these frameworks and
-they require a device.
+One comment below.
+
+All of my other concerns are about the CCU and RTC bindings, which I have
+commented on elsewhere.
+
+Regards,
+Samuel
+
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-r329.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-r329.dtsi
+> new file mode 100644
+> index 000000000000..bfefa2b734b0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-r329.dtsi
+> @@ -0,0 +1,244 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +// Copyright (c) 2021 Sipeed
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/sun50i-r329-ccu.h>
+> +#include <dt-bindings/reset/sun50i-r329-ccu.h>
+> +#include <dt-bindings/clock/sun50i-r329-r-ccu.h>
+> +#include <dt-bindings/reset/sun50i-r329-r-ccu.h>
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <1>;
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	osc24M: osc24M_clk {
+> +		#clock-cells = <0>;
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "osc24M";
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		arm,no-tick-in-suspend;
+> +		interrupts = <GIC_PPI 13
+> +			(GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 14
+> +			(GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 11
+> +			(GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 10
+> +			(GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		pio: pinctrl@2000400 {
+> +			compatible = "allwinner,sun50i-r329-pinctrl";
+> +			reg = <0x02000400 0x400>;
+> +			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+
+There is an IRQ documented for port C (at SPI 70). Do those pins possibly have
+interrupt capability?
+
+> +				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_APB1>, <&osc24M>, <&rtc 0>;
+> +			clock-names = "apb", "hosc", "losc";
+> +			gpio-controller;
+> +			#gpio-cells = <3>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
