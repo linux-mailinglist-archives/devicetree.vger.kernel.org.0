@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 179603F28C8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 11:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D6F3F2922
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 11:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231949AbhHTJDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 05:03:23 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:45632 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbhHTJDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 05:03:22 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 47CD81C0B80; Fri, 20 Aug 2021 11:02:44 +0200 (CEST)
-Date:   Fri, 20 Aug 2021 11:02:43 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 6/7] leds: pca955x: Let the core process the fwnode
-Message-ID: <20210820090243.GD22757@amd>
-References: <20210716220331.49303-1-eajames@linux.ibm.com>
- <20210716220331.49303-7-eajames@linux.ibm.com>
+        id S233511AbhHTJbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 05:31:01 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:62293 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234754AbhHTJbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 05:31:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1629451824; x=1660987824;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=nvPVSBB3/HXIc6A8s1TwSP8IKFC5JSli53f2nV415nk=;
+  b=WB16cTQf0NwHVlyVUrdTMEiXDhNNwJDWOgumg2FMaciifwRckBP7IJSQ
+   HdSclUt4554rq4eyqBmx2LwtKlWTnqmJxC261QFNGi4fzHXc/AlZlPWZA
+   8DTYpnDfq6LfCBeCSpHnC42YCZ2SQFVimY99aWwnUH1hzlNyICIVNfmwz
+   fMj8T6W1rPHKQEe+uUNsTzzb/jWycVZmvsNrKjFeSS2y2SGUWaYK0Mj+J
+   R31ZZV1v08xKruzJQLxiKh2zC2btnYwIjYRLuX5si4tixptxXMt5+9V1h
+   +VPy4XPJor7yQrOnkMdy79eP+SVhrCtCqC5+TQv9Nwz+q6UudrjNd8k2U
+   g==;
+IronPort-SDR: IUbTvMJ/fy72Ol5jFHVaFfqq3Ig1rep97fpMsAyg3EPyoKqPnxlTfWhqd/B2k0q7s1vMTtJBgA
+ 3HHpr/Zq+iwa7WrWDR+of+zUAOXyYaD2VnTykxvJzGxwfQD+yuj4WnS6vPsuvxUcWsqAaL4CFi
+ pgLPZtKC2iLydAiuze1OaZ3FaL+brdP21Vy7FuDNJyQE0D5zaOOV0wi1HnDuzOYjVGrSe1Nfwg
+ qLT9VMy2fLOEz9dxjvub6ghm8452ebVBlRas9so+pJyxy6QsLySzCqqMPxvUBQos9HoFObpP7/
+ hxUVpzTEME6H8gKKe9fEtAVs
+X-IronPort-AV: E=Sophos;i="5.84,337,1620716400"; 
+   d="scan'208";a="128997094"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Aug 2021 02:30:23 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 20 Aug 2021 02:30:22 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 20 Aug 2021 02:30:15 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v3 0/4] mmc: pwrseq: sd8787: add support wilc1000 devices
+Date:   Fri, 20 Aug 2021 12:27:59 +0300
+Message-ID: <20210820092803.78523-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="vni90+aGYgRvsTuO"
-Content-Disposition: inline
-In-Reply-To: <20210716220331.49303-7-eajames@linux.ibm.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---vni90+aGYgRvsTuO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> -			err =3D devm_led_classdev_register(&client->dev, led);
-> +			init_data.fwnode =3D pdata->leds[i].fwnode;
-> +
-> +			if (is_of_node(init_data.fwnode)) {
-> +				if (to_of_node(init_data.fwnode)->name[0] =3D=3D
-> +				    '\0')
-> +					set_default_label =3D true;
-> +				else
-> +					set_default_label =3D false;
-> +			} else {
-> +				set_default_label =3D true;
-> +			}
-
-I'd write it as
-
-		set_default_label =3D true;
-		if (... && ...)
-			set_default_label =3D false;
-
-> +			if (set_default_label) {
-> +				snprintf(default_label, sizeof(default_label),
-> +					 "%d", i);
-> +				init_data.default_label =3D default_label;
-> +			} else {
-> +				init_data.default_label =3D NULL;
-> +			}
-
-		init_data.default_label =3D NULL;
-		if (...) {
-		      set_default_label) {
-> +				snprintf(default_label, sizeof(default_label),
-> +					 "%d", i);
-> +				init_data.default_label =3D default_label;
-		}
-
+This series adds support for WILC1000 devices on pwrseq-sd8787 driver.
+WILC1000 devices needs a minimum delay of 5ms b/w reset and power lines.
+Adapt the sd8787 driver for this by adding a new compatible for WILC1000
+devices and specify the delay on .data field of struct of_device_id.
 
 Thank you,
-							Pavel
---=20
-http://www.livejournal.com/~pavelmachek
+Claudiu Beznea
 
---vni90+aGYgRvsTuO
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Changes in v3:
+- fixed dt binding compilation
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+Changes in v2:
+- changed cover letter title (it was: mmc: pwrseq: sd8787: add support
+  for selectable)
+- use new compatible in pwrseq-sd8787 driver instead of adding a new
+  binding for specifying the delay; with this, the patch 1/1 from v1 is
+  not necessary
+- adapt patch 3/3 from this version with the new compatible
 
-iEYEARECAAYFAmEfb7MACgkQMOfwapXb+vINNQCgxOB8A6SZDYvoBV4gqdSMkLPn
-+OkAoI6ewF8RpHCETWOKUqGRM/AkOI9j
-=CMuK
------END PGP SIGNATURE-----
 
---vni90+aGYgRvsTuO--
+Claudiu Beznea (3):
+  dt-bindings: pwrseq-sd8787: add binding for wilc1000
+  mmc: pwrseq: sd8787: add support for wilc1000
+  mmc: pwrseq: add wilc1000_sdio dependency for pwrseq_sd8787
+
+Eugen Hristev (1):
+  ARM: dts: at91: sama5d27_wlsom1: add wifi device
+
+ .../bindings/mmc/mmc-pwrseq-sd8787.yaml       |  4 +-
+ arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi   | 71 +++++++++++++++++++
+ drivers/mmc/core/Kconfig                      |  2 +-
+ drivers/mmc/core/pwrseq_sd8787.c              | 11 ++-
+ 4 files changed, 84 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
+
