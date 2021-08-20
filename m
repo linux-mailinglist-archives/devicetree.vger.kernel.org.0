@@ -2,86 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C793B3F26BB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 08:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E433F26C6
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 08:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232732AbhHTGXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 02:23:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231761AbhHTGXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 02:23:25 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C21C061756
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 23:22:48 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id 17so8155319pgp.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 23:22:48 -0700 (PDT)
+        id S231761AbhHTG1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 02:27:18 -0400
+Received: from egress-ip33a.ess.de.barracuda.com ([18.185.115.192]:46434 "EHLO
+        egress-ip33a.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238396AbhHTG1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 02:27:17 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71]) by mx-outbound9-222.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 20 Aug 2021 06:26:33 +0000
+Received: by mail-wr1-f71.google.com with SMTP id a13-20020adfed0d000000b00156fd70137aso2371979wro.8
+        for <devicetree@vger.kernel.org>; Thu, 19 Aug 2021 23:26:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=99KnB+URAYBtBEFeaEEoqvbN3Lia8bbvXa6b4D4VGvk=;
-        b=AelbYVYXhvB2C9bFtneY/yrgfG2toP1CjqK6lvDsXri4wpxXyhmsJgoDY6ahx/XN61
-         vKAczg+E4fXnnS8G0G93MoK9T+n8JSHY8ekq/8I4u69XNDvXXmaeliXWl3ny7DbR459m
-         W50jTwNToE1LmUUokyr6le1aob0gVY3GnP1Ka3mI4XHwRz2fWCsY/l4SMPzwsS0xTXB9
-         EixGvESxoBHqQEVnBddxUt4aKYU3B3NSH4JBU4qDMkK7Jhzi3FgC5Vb8HdCiGR2LwcMT
-         sxBxULIIw3r+NvwPaEY2Ixaz7kUmSTr4+dFabybVlm+sD0srX/k7GhsedXDOGcsj6xyH
-         5o7A==
+        d=mistralsolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hcuPJzI48ACDUsy7FQfltiq6GrliZ7PQzihG218WNKY=;
+        b=ehFoCCvzT0rbZ7ht4RKXR47svEKDf/oQh5OE/A1Bgp19SIELkIxdcqp+igW66HWyLr
+         qjxlLZTrmk74xo2GaD5NmJtfvlj7NZH7DvyN+U5uw7g1GZCEiDU8i4nuim/bo5xu3bTP
+         yR2jO8K88rRnOc7XOAgAyt2Pg96/AJFPtYVig=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=99KnB+URAYBtBEFeaEEoqvbN3Lia8bbvXa6b4D4VGvk=;
-        b=kWMfRK873UeJdAbi1+Xhz+8FvnuS1vBiun4SIEhPx8fcUa+DTsAdy7QC0BeOjNfYsQ
-         +SjXJAeye9vTxbdlWLOmUrxWxaOS9kSYSd7zEhVGCHqUz7MVITMuuy8HbCN9H7rjOjXX
-         8VHRHL4efz3aMKYTBebTDnilHtLWO2bAeT+JcZEjsD+COT+r9R0lpBBIs4hCu2jYWCuY
-         gjS43FjgGtMeDxCbJ5vyfGD7bPC/7e/iQpGeZGwjZ92NjBQVirncMof6MECE3WDx6hA7
-         ADZVcBJZ4pm7Ov4xud9snH8sGLEBBBgcjgkUG1WHeZ1mclkQlL6OOd9fZdQS/+Jw8xj0
-         suiw==
-X-Gm-Message-State: AOAM533qE/TdQGPE2iRs5dhlL8l5huPomTDXj8F/P0PDWM52qupG/Cyu
-        EugqCdPW+YFSSM8vpD2jkbousA==
-X-Google-Smtp-Source: ABdhPJypGMO2Ed7IdFKaQRO9FolvH4ihNSVV3QakhuP+Wz6bn/ypKEJCBJHQBshWUbxfQ2Oh/Vy6BA==
-X-Received: by 2002:a62:b414:0:b029:317:52d:7fd5 with SMTP id h20-20020a62b4140000b0290317052d7fd5mr18445201pfn.30.1629440567069;
-        Thu, 19 Aug 2021 23:22:47 -0700 (PDT)
-Received: from google.com ([2401:fa00:1:10:549a:ad5a:e5bd:8c8a])
-        by smtp.gmail.com with ESMTPSA id x7sm5507625pfj.200.2021.08.19.23.22.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Aug 2021 23:22:46 -0700 (PDT)
-Date:   Fri, 20 Aug 2021 14:22:43 +0800
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH 2/2] dt-bindings: sound: rt1015p: correct indentation
-Message-ID: <YR9KM5ubMr9JLLb5@google.com>
-References: <20210819101020.26368-1-krzysztof.kozlowski@canonical.com>
- <20210819101020.26368-2-krzysztof.kozlowski@canonical.com>
- <CAL_JsqK1dhwSKbmCbuaWtBWQH0e-+rdJaWkzfx5b_5vX0toAjg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hcuPJzI48ACDUsy7FQfltiq6GrliZ7PQzihG218WNKY=;
+        b=bZUpM2gF57aw6YbozorUk/ea3flOe3n5sRAM+im4Yr7sD6IGLMFIodKxbWceVczTx7
+         SvIOzHCyfjzwUSLkMrbyETkVnyUw0uFb5G6HtVLDudXSo3KZIYAaR8wyLEFRdwuTNIBD
+         Jjn236TWPrBCVeuYeUzCQORz3tTYcEwFvTDmIyJNUrBtIqxi7t347Z/sgdEcNx9ht/iu
+         DYMAMoJ7zK9vCFTdEmQWT58KIEb9JZO5nVgcaNdN6e+bAP5lXIQctpcoy/9EYX7S4qbb
+         34ccy8yFO/ERxU7Jtd03OTVyLwF2d2ubBkspaTq+/9yJ8gURdSkJy95gKE3VJ1nW+VMx
+         24TA==
+X-Gm-Message-State: AOAM532vPohCGtPd+jwPdpJOzn3THKDi2jaQijsTpzA/VmWUce2e0nBo
+        36tQk3NaNcXW5Y2f4W07sQexl5NbOMZRPk/KZzPo3CkaEXnEdJZ+t22AT5Mr47awbdnxdcTcmpQ
+        DHdp2837GmHbTDjYF7v5Va4EkRVf/HMeDXxmow1YJAHuWyc1di7ywd8Ty4gcqYpD+XdJNruNq7A
+        ==
+X-Received: by 2002:a7b:cb02:: with SMTP id u2mr2081798wmj.103.1629440793518;
+        Thu, 19 Aug 2021 23:26:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwUpTVpY5loxCylXUXl3QzaPyMvv2z8srnQpPVyv3dpCPkhvSqbLiBl6xuULNB+8ghw1qIJ+8C6IiVC6SPpXn0=
+X-Received: by 2002:a7b:cb02:: with SMTP id u2mr2081780wmj.103.1629440793277;
+ Thu, 19 Aug 2021 23:26:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK1dhwSKbmCbuaWtBWQH0e-+rdJaWkzfx5b_5vX0toAjg@mail.gmail.com>
+References: <20210818074030.1877-1-sinthu.raja@ti.com> <20210818130535.siv7jpjjzfwonwdt@unsteady>
+In-Reply-To: <20210818130535.siv7jpjjzfwonwdt@unsteady>
+From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
+Date:   Fri, 20 Aug 2021 11:56:21 +0530
+Message-ID: <CAEd-yTQgWLZUKPJQvByWfo3w=gNFLz=F6q6_oF_0WC7cRpZ6dw@mail.gmail.com>
+Subject: Re: [PATCH V1] dt-bindings: remoteproc: k3-dsp: Update example to
+ remove board specific
+To:     Nishanth Menon <nm@ti.com>
+Cc:     "Nagalla, Hari" <hnagalla@ti.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-remoteproc@vger.kernel.org,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-BESS-ID: 1629440793-302526-18216-13315-1
+X-BESS-VER: 2019.1_20210819.2207
+X-BESS-Apparent-Source-IP: 209.85.221.71
+X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.234048 [from 
+        cloudscan12-73.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_SA085b, BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 19, 2021 at 04:52:38PM -0500, Rob Herring wrote:
-> On Thu, Aug 19, 2021 at 5:12 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
+With Regards
+
+Sinthu Raja
+
+
+On Wed, Aug 18, 2021 at 6:35 PM Nishanth Menon <nm@ti.com> wrote:
+>
+> On 13:10-20210818, Sinthu Raja wrote:
+> > The example includes a board-specific compatible property, but developers
+> > need to add the board name each time when a new board is added to the K3
+> > J721E SoC list. This grows the compatible string-list. So, drop the
+> > board-specific compatible string and add cbass_main as a parent node to
+>
+> What is cbass_main node?
+>
+> > avoid parent node and child node address-cells mismatch error.
 > >
-> > Use common enum instead of oneOf and correct indentation warning:
-> >   realtek,rt1015p.yaml:18:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+>
+> I think you mean that since the existing example uses address cells and
+> size for 64bit addresses and sizes, you are introducing a bus segment
+> indicative of the same capability to reduce the churn in the binding.
+> Correct? if so, rephrase accordingly.
+>
+> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+>
+> Your From: and Signed-off-by email IDs do not match. You might want to
+> re-read the contribution guidelines documentation in linux kernel.
+>
+> This should be also tagged with Fixes: since it is fixing a pre-existing
+> binding that slipped through our review.
+
+Hi Nishanth,
+May I know to which commit I have to tag the Fixes. If you are
+referring to the below review, then the patch is not merged and how
+shall we add the Fixes tag for this patch.
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210607093314.23909-2-sinthu.raja@ti.com/
+
+
+>
+> NOTE: at least my test.. (I think rob's system will still complain)
+> base: next-20210818
+> b4 am -o  ~/tmp -3 -g -t -l -c -s --no-cover 20210818074030.1877-1-sinthu.raja@ti.com
+>         https://pastebin.ubuntu.com/p/VxzzvzpY9N/
+>
+> I mean, both these can be caught with checkpatch and standard checks, so
+> did you see that in your basic vett prior to posting?
+
+It didn't catch in my basic patch verification. But the generated
+patch does have the From header, but sometimes the From header is
+getting truncated when submitting for review. Still working on that to
+fix it. (using Gmail client to submitting the patch)
+
+With Regards
+Sinthu Raja
+>
+> > ---
+> > Changes in V1:
+> > Fixed alignment issue which caused the yaml parse error.
+>
+> Some 101 comments:
+>
+> A) when you post a new revision, post a url like previous versions in
+>    diffstat - :
+>    https://lore.kernel.org/linux-devicetree/20210817152005.21575-1-sinthu.raja@ti.com/
+> B) When you are sending the very first patch, it is already V1 and
+>    does'nt need to be explicitly stated. this update to your original
+>    post is a V2, so, when you update this patch to address the review
+>    comments, the next revision will be V3.
+>
 > >
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-Acked-by: Tzung-Bi Shih <tzungbi@google.com>
+> >  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml     | 6 ++----
+> >  1 file changed, 2 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> > index 6070456a7b67..e44a9397b8db 100644
+> > --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> > @@ -132,10 +132,8 @@ required:
+> >  unevaluatedProperties: false
+> >
+> >  examples:
+> > -  - |
+> > -    / {
+> > -        model = "Texas Instruments K3 J721E SoC";
+> > -        compatible = "ti,j721e";
+> > +  - |+
+>
+> minor detail: you are also doing one additional change -> you are now using
+> the standard example template and adding the example node instead of a
+> complete example node as well here. Personally, I do prefer this
+> approach rather than the previous example.
+>
+> > +    cbass_main {
+> >          #address-cells = <2>;
+> >          #size-cells = <2>;
+>
+>
+>
+> Usually, when one sees problems like these, they tend to be
+> symptomatic, and we need to look if there is a similar pattern of
+> error else where in the codebase.
+>
+> Sigh, in this case, I see the same problem in:
+> a) Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+> b) Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
+>
+> Hari, Sinthu,
+> Can we fix these in a series that belongs to each maintainer?
+>
+> >
+> > --
+> > 2.31.1
+> >
+>
+> --
+> Regards,
+> Nishanth Menon
+> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
