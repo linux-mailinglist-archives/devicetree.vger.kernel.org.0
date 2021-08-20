@@ -2,264 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 930893F27E8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 09:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 346D63F280B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238931AbhHTHvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 03:51:25 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:55394 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S238872AbhHTHvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 03:51:24 -0400
-X-UUID: d1b59904a2f14868a184c7763b514239-20210820
-X-UUID: d1b59904a2f14868a184c7763b514239-20210820
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <sean.wang@mediatek.com>)
+        id S230051AbhHTIAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 04:00:31 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:48330 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229586AbhHTIA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 04:00:27 -0400
+X-UUID: 67d87111147f49deb1e6ed22dd5dcb45-20210820
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VluiAbKGQy/3Yr6UxPnDDXbjlygkyrql8mDiSJPOAdY=;
+        b=u2x3ECk9IHJHuyY7+rigAOuyNreL9ujO4lyz7u1/Bx7LiQoh0Z7IhGZbugghUOHs4IOVN4ZXHHa8DFb4vQdj35XJMs+aOANZ8OyGjlIcd8V++l6FcngmuUOQ/YdHoN2XowjOV3YJHqH0e9R49AwgvV9i9RxXmo6+jqEuKrVYXLg=;
+X-UUID: 67d87111147f49deb1e6ed22dd5dcb45-20210820
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1075305483; Fri, 20 Aug 2021 15:50:42 +0800
+        with ESMTP id 994131274; Fri, 20 Aug 2021 15:59:42 +0800
 Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 20 Aug 2021 15:50:40 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 20 Aug 2021 15:59:40 +0800
+Received: from [10.17.3.153] (10.17.3.153) by mtkcas07.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 20 Aug 2021 15:50:40 +0800
-From:   <sean.wang@mediatek.com>
-To:     <sam.shih@mediatek.com>
-CC:     <robh+dt@kernel.org>, <sean.wang@kernel.org>,
-        <linus.walleij@linaro.org>, <matthias.bgg@gmail.com>,
-        <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
-        <gregkh@linuxfoundation.org>, <wim@linux-watchdog.org>,
-        <linux@roeck-us.net>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <hsinyi@chromium.org>,
-        <enric.balletbo@collabora.com>, <fparent@baylibre.com>,
-        <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-crypto@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <john@phrozen.org>, <Ryder.Lee@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Subject: Re: [v2,06/12] pinctrl: mediatek: add support for MT7986 SoC
-Date:   Fri, 20 Aug 2021 15:50:40 +0800
-Message-ID: <1629445840-25510-1-git-send-email-sean.wang@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <20210817074557.30953-5-sam.shih@mediatek.com--annotate>
-References: <20210817074557.30953-5-sam.shih@mediatek.com--annotate>
+ Transport; Fri, 20 Aug 2021 15:59:38 +0800
+Message-ID: <1629446378.18871.27.camel@mhfsdcap03>
+Subject: Re: [PATCH v5, 00/15] Using component framework to support multi
+ hardware decode
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+CC:     Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tzung-Bi Shih" <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        George Sun <george.sun@mediatek.com>
+Date:   Fri, 20 Aug 2021 15:59:38 +0800
+In-Reply-To: <CAAEAJfCTrKj9AFExN-L-TKww4E=us1VVh8LHtZ8Q0j_eaCD4Eg@mail.gmail.com>
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
+         <CAAEAJfDWOzCJxZFNtxeT7Cvr2pWbYrfz-YnA81sVNs-rM=8n4Q@mail.gmail.com>
+         <1b79a67b703d2c894bc4d9458c760e082fc42958.camel@mediatek.com>
+         <CAAEAJfCTrKj9AFExN-L-TKww4E=us1VVh8LHtZ8Q0j_eaCD4Eg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Wang <sean.wang@mediatek.com>
+SGkgRXplcXVpZWwsDQoNClRoYW5rcyBmb3IgeW91ciBkZXRhaWwgZmVlZGJhY2suIA0KDQpPbiBU
+aHUsIDIwMjEtMDgtMTkgYXQgMTE6MTAgLTAzMDAsIEV6ZXF1aWVsIEdhcmNpYSB3cm90ZToNCj4g
+T24gVGh1LCAxOSBBdWcgMjAyMSBhdCAwNDoxMywgeXVuZmVpLmRvbmdAbWVkaWF0ZWsuY29tDQo+
+IDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gSGkgRXplcXVpZWws
+DQo+ID4NCj4gPiBUaGFua3MgZm9yIHlvdXIgc3VnZ2VzdGlvbi4NCj4gPg0KPiA+IE9uIFdlZCwg
+MjAyMS0wOC0xOCBhdCAxMToxMSAtMDMwMCwgRXplcXVpZWwgR2FyY2lhIHdyb3RlOg0KPiA+ID4g
+K2RhbnZldA0KPiA+ID4NCj4gPiA+IEhpLA0KPiA+ID4NCj4gPiA+IE9uIFR1ZSwgMTAgQXVnIDIw
+MjEgYXQgMjM6NTgsIFl1bmZlaSBEb25nIDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5jb20+DQo+ID4g
+PiB3cm90ZToNCj4gPiA+ID4NCj4gPiA+ID4gVGhpcyBzZXJpZXMgYWRkcyBzdXBwb3J0IGZvciBt
+dWx0aSBoYXJkd2FyZSBkZWNvZGUgaW50byBtdGstdmNvZGVjLA0KPiA+ID4gPiBieSBmaXJzdA0K
+PiA+ID4gPiBhZGRpbmcgY29tcG9uZW50IGZyYW1ld29yayB0byBtYW5hZ2UgZWFjaCBoYXJkd2Fy
+ZSBpbmZvcm1hdGlvbjoNCj4gPiA+ID4gaW50ZXJydXB0LA0KPiA+ID4gPiBjbG9jaywgcmVnaXN0
+ZXIgYmFzZXMgYW5kIHBvd2VyLiBTZWNvbmRseSBhZGQgY29yZSB0aHJlYWQgdG8gZGVhbA0KPiA+
+ID4gPiB3aXRoIGNvcmUNCj4gPiA+ID4gaGFyZHdhcmUgbWVzc2FnZSwgYXQgdGhlIHNhbWUgdGlt
+ZSwgYWRkIG1zZyBxdWV1ZSBmb3IgZGlmZmVyZW50DQo+ID4gPiA+IGhhcmR3YXJlDQo+ID4gPiA+
+IHNoYXJlIG1lc3NhZ2VzLiBMYXN0bHksIHRoZSBhcmNoaXRlY3R1cmUgb2YgZGlmZmVyZW50IHNw
+ZWNzIGFyZSBub3QNCj4gPiA+ID4gdGhlIHNhbWUsDQo+ID4gPiA+IHVzaW5nIHNwZWNzIHR5cGUg
+dG8gc2VwYXJhdGUgdGhlbS4NCj4gPiA+ID4NCj4gPiA+DQo+ID4gPiBJIGRvbid0IHRoaW5rIGl0
+J3MgYSBnb29kIGlkZWEgdG8gaW50cm9kdWNlIHRoZSBjb21wb25lbnQgQVBJIGluIHRoZQ0KPiA+
+ID4gbWVkaWEgc3Vic3lzdGVtLiBJdCBkb2Vzbid0IHNlZW0gdG8gYmUgbWFpbnRhaW5lZCwgSVJD
+IHRoZXJlJ3Mgbm90DQo+ID4gPiBldmVuDQo+ID4gPiBhIG1haW50YWluZXIgZm9yIGl0LCBhbmQg
+aXQgaGFzIHNvbWUgaXNzdWVzIHRoYXQgd2VyZSBuZXZlcg0KPiA+ID4gYWRkcmVzc2VkLg0KPiA+
+ID4NCj4gPiA+IEl0IHdvdWxkIGJlIHJlYWxseSBpbXBvcnRhbnQgdG8gYXZvaWQgaXQuIElzIGl0
+IHJlYWxseSBuZWVkZWQgaW4gdGhlDQo+ID4gPiBmaXJzdCBwbGFjZT8NCj4gPiA+DQo+ID4gPiBU
+aGFua3MsDQo+ID4gPiBFemVxdWllbA0KPiA+DQo+ID4gRm9yIHRoZXJlIGFyZSBtYW55IGhhcmR3
+YXJlIG5lZWQgdG8gdXNlLCBtdDgxOTIgaXMgdGhyZWUgYW5kIG10ODE5NSBpcw0KPiA+IGZpdmUu
+IE1heWJlIG5lZWQgbW9yZSB0byBiZSB1c2VkIGluIHRoZSBmZWF0dXJlLg0KPiA+DQo+ID4gRWFj
+aCBoYXJkd2FyZSBoYXMgaW5kZXBlbmRlbnQgY2xrL3Bvd2VyL2lvbW11IHBvcnQvaXJxLg0KPiA+
+IFVzZSBjb21wb25lbnQgaW50ZXJmYWNlIGluIHByb2IgdG8gZ2V0IGVhY2ggY29tcG9uZW50J3Mg
+aW5mb3JtYXRpb24uDQo+ID4gSnVzdCBlbmFibGUgdGhlIGhhcmR3YXJlIHdoZW4gbmVlZCB0byB1
+c2UgaXQsIHZlcnkgY29udmVuaWVudCBhbmQNCj4gPiBzaW1wbGUuDQo+ID4NCj4gPiBJIGZvdW5k
+IHRoYXQgdGhlcmUgYXJlIG1hbnkgbW9kdWxlcyB1c2UgY29tcG9uZW50IHRvIG1hbmFnZSBoYXJk
+d2FyZQ0KPiA+IGluZm9ybWF0aW9uLCBzdWNoIGFzIGlvbW11IGFuZCBkcm0gZXRjLg0KPiA+DQo+
+IA0KPiBNYW55IGRyaXZlcnMgc3VwcG9ydCBtdWx0aXBsZSBoYXJkd2FyZSB2YXJpYW50cywgd2hl
+cmUgZWFjaCB2YXJpYW50DQo+IGhhcyBhIGRpZmZlcmVudCBudW1iZXIgb2YgY2xvY2tzIG9yIGlu
+dGVycnVwdHMsIHNlZSBmb3IgaW5zdGFuY2UNCj4gc3RydWN0IGhhbnRyb192YXJpYW50IHdoaWNo
+IGFsbG93cyB0byBleHBvc2UgZGlmZmVyZW50IGNvZGVjIGNvcmVzLA0KPiBzb21lIGhhdmluZyBi
+b3RoIGRlY29kZXIvZW5jb2RlciwgYW5kIHNvbWUgaGF2aW5nIGp1c3QgYSBkZWNvZGVyLg0KPiAN
+Cj4gVGhlIGNvbXBvbmVudCBBUEkgaXMgbW9zdGx5IHVzZWQgYnkgRFJNIHRvIGFnZ3JlZ2F0ZSBp
+bmRlcGVuZGVudA0KPiBzdWJkZXZpY2VzIChjYWxsZWQgY29tcG9uZW50cykgaW50byBhbiBhZ2dy
+ZWdhdGVkIGRyaXZlci4NCj4gDQo+IEZvciBpbnN0YW5jZSwgYSBEUk0gZHJpdmVyIG5lZWRzIHRv
+IGdsdWUgdG9nZXRoZXIgdGhlIEhETUksIE1JUEksDQo+IGFuZCBwbGFueSBjb250cm9sbGVyLCBv
+ciBhbnkgb3RoZXIgaGFyZHdhcmUgYXJyYW5nZW1lbnQgd2hlcmUNCj4gZGV2aWNlcyBjYW4gYmUg
+ZGVzY3JpYmVkIGluZGVwZW5kZW50bHkuDQo+IA0KVGhlIHVzYWdlIHNjZW5hcmlvIGlzIHZlcnkg
+c2ltaWxhciB3aXRoIGRybSBhbmQgaW9tbXUsIFNvIGRlY2lkZSB0byB1c2UNCmNvbXBvbmVudCBm
+cmFtZXdvcmsuDQpEZWNvZGUgaGFzIHRocmVlL2ZpdmUgb3IgbW9yZSBoYXJkd2FyZXMsIHRoZXNl
+IGhhcmR3YXJlIGFyZSBpbmRlcGVuZGVudC4NCkZvciBtdDgxODMganVzdCBuZWVkIGNvcmUgaGFy
+ZHdhcmUgdG8gZGVjb2RlLCBidXQgbXQ4MTkyIGhhcyBsYXQsc29jIGFuZA0KY29yZSBoYXJkd2Fy
+ZSB0byBkZWNvZGUuIFdoZW4gbGF0IG5lZWQgdG8gdXNlLCBqdXN0IGVuYWJsZSBsYXQgaGFyZHdh
+cmUsDQpjb3JlIGlzIHRoZSBzYW1lLkFuZCBtdDgxOTUgd2lsbCBoYXMgdHdvIGNvcmVzLCBlYWNo
+IGNvcmUgY2FuIHdvcmsgd2VsbA0KaW5kZXBlbmRlbnQuDQoNCkZvciBlYWNoIGNvbXBvbmVudCBk
+ZXZpY2UganVzdCB1c2VkIHRvIG9wZW4gdGhlaXIgcG93ZXIvY2xrL2lvbW11DQpwb3J0L2lycSB3
+aGVuIG1hc3RlciBuZWVkIHRvIGVuYWJsZSBpdC4gVGhlIG1haW4gbG9naWMgaXMgaW4gbWFzdGVy
+DQpkZXZpY2UuDQoNCj4gVGhlIGNvbXBvbmVudCBBUEkgbWF5IGxvb2sgc2ltcGxlIGJ1dCBoYXMg
+c29tZSBpc3N1ZXMsIGl0J3Mgbm90IGVhc3kNCj4gdG8gZGVidWcsIGFuZCBjYW4gY2F1c2UgdHJv
+dWJsZXMgaWYgbm90IHVzZWQgYXMgZXhwZWN0ZWQgWzFdLg0KPiBJdCdzIHdvcnRoIG1ha2luZyBz
+dXJlIHlvdSBhY3R1YWxseSBuZWVkIGEgZnJhbWV3b3JrDQo+IHRvIGdsdWUgZGlmZmVyZW50IGRl
+dmljZXMgdG9nZXRoZXIuDQo+IA0KRWFjaCBoYXJkd2FyZSBoYXMgaXRzIGluZGV4LCBtYXN0ZXIg
+Y2FuIGdldCBoYXJkd2FyZSBpbmZvcm1hdGlvbg0KYWNjb3JkaW5nIHRoZXNlIGluZGV4LCBsb29r
+cyBub3QgY29tcGxleC4gV2hhdCBkbyB5b3UgbWVhbiBhYm91dCBub3QNCmVhc3kgdG8gZGVidWc/
+DQoNCj4gPiBEbyB5b3UgaGF2ZSBhbnkgb3RoZXIgc3VnZ2VzdGlvbiBmb3IgdGhpcyBhcmNoaXRl
+Y3R1cmU/DQo+ID4NCj4gDQo+IExvb2tpbmcgYXQgdGhlIGRpZmZlcmVudCBwYXRjaHNldHMgdGhh
+dCBhcmUgcG9zdGVkLCBpdCdzIG5vdCBjbGVhcg0KPiB0byBtZSB3aGF0IGV4YWN0bHkgYXJlIHRo
+ZSBkaWZmZXJlbnQgYXJjaGl0ZWN0dXJlcyB0aGF0IHlvdSBpbnRlbmQNCj4gdG8gc3VwcG9ydCwg
+Y2FuIHlvdSBzb21lIGRvY3VtZW50YXRpb24gd2hpY2ggY2xhcmlmaWVzIHRoYXQ/DQo+IA0KSGF2
+ZSBmaXZlIGhhcmR3YXJlcyBsYXQsc29jLGNvcmUwLGNvcmUxIGFuZCBtYWluLiBMYXQgdGhyZWFk
+IGNhbiB1c2UgbGF0DQpzb2MgYW5kIG1haW4sIGNvcmUgdGhyZWFkIGNhbiB1c2Ugc29jLGxhdCwg
+Y29yZTAgYW5kIGNvcmUxLiBDb3JlIHRocmVhZA0KY2FuIGJlIHVzZWQgb3Igbm90IGZvciBkaWZm
+ZXJlbnQgcHJvamVjdC4gQWxzbyBOZWVkIHRvIHVzZSB0aGVzZQ0KaGFyZHdhcmUgZHluYW1pYyBh
+dCB0aGUgc2FtZSB0aW1lLiBTbyBJIHVzZSBjb21wb25lbnQgZnJhbWV3b3JrLCBqdXN0DQpuZWVk
+IHRvIGtub3cgdGhlIHVzZWQgIGhhcmR3YXJlIGluZGV4IGFjY29yZGluZyB0byBkaWZmZXJlbnQN
+CnByb2plY3QuTmVlZCBub3QgdG8gZG8gY29tcGxleCBsb2dpYyB0byBtYW5hZ2UgdGhlc2UgaGFy
+ZHdhcmVzLg0KDQoNCj4gVGhhbmtzLA0KPiBFemVxdWllbA0KPiANCj4gWzFdIGh0dHBzOi8vcGF0
+Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1yb2NrY2hpcC9jb3Zlci8yMDIwMDEyMDE3
+MDYwMi4zODMyLTEtZXplcXVpZWxAY29sbGFib3JhLmNvbS8NCg0KDQpUaGFua3MsDQpZdW5mZWkg
+RG9uZw0KDQoNCg0KDQo=
 
->This commit includes pinctrl driver for Mediatek MT7986
->
->The difference of pinctrl between mt7986a and mt7986b
->is that pin-41 to pin-65 do not exist on mt7986b
->
->Signed-off-by: Sam Shih <sam.shih@mediatek.com>
->
->---
->v2: applied the comment suggested by reviewers:
->    - for the pins not ballout, we can fill .name in struct mtk_pin_desc
->      as NULL and return -ENOTSUPP in gpio/pinconf ops.
->
->---
-> drivers/pinctrl/mediatek/Kconfig          |    7 +
-> drivers/pinctrl/mediatek/Makefile         |    1 +
-> drivers/pinctrl/mediatek/pinctrl-mt7986.c | 1217 +++++++++++++++++++++
-> 3 files changed, 1225 insertions(+)
-> create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt7986.c
->
->diff --git a/drivers/pinctrl/mediatek/Kconfig b/drivers/pinctrl/mediatek/Kconfig
->index 7040a7a7bd5d..66db4ac5d169 100644
->--- a/drivers/pinctrl/mediatek/Kconfig
->+++ b/drivers/pinctrl/mediatek/Kconfig
->@@ -119,6 +119,13 @@ config PINCTRL_MT7622
->	default ARM64 && ARCH_MEDIATEK
->	select PINCTRL_MTK_MOORE
->
->+config PINCTRL_MT7986
->+	bool "Mediatek MT7986 pin control"
->+	depends on OF
->+	depends on ARM64 || COMPILE_TEST
->+	default ARM64 && ARCH_MEDIATEK
->+	select PINCTRL_MTK_MOORE
->+
-> config PINCTRL_MT8167
->	bool "Mediatek MT8167 pin control"
->	depends on OF
->diff --git a/drivers/pinctrl/mediatek/Makefile b/drivers/pinctrl/mediatek/Makefile
->index 1bb7f9c65bc2..1e3931d924e7 100644
->--- a/drivers/pinctrl/mediatek/Makefile
->+++ b/drivers/pinctrl/mediatek/Makefile
->@@ -17,6 +17,7 @@ obj-$(CONFIG_PINCTRL_MT6797)	+= pinctrl-mt6797.o
-> obj-$(CONFIG_PINCTRL_MT7622)	+= pinctrl-mt7622.o
-> obj-$(CONFIG_PINCTRL_MT7623)	+= pinctrl-mt7623.o
-> obj-$(CONFIG_PINCTRL_MT7629)	+= pinctrl-mt7629.o
->+obj-$(CONFIG_PINCTRL_MT7986)	+= pinctrl-mt7986.o
-> obj-$(CONFIG_PINCTRL_MT8167)	+= pinctrl-mt8167.o
-> obj-$(CONFIG_PINCTRL_MT8173)	+= pinctrl-mt8173.o
-> obj-$(CONFIG_PINCTRL_MT8183)	+= pinctrl-mt8183.o
->diff --git a/drivers/pinctrl/mediatek/pinctrl-mt7986.c b/drivers/pinctrl/mediatek/pinctrl-mt7986.c
->new file mode 100644
->index 000000000000..808ae4e03eb2
->--- /dev/null
->+++ b/drivers/pinctrl/mediatek/pinctrl-mt7986.c
->@@ -0,0 +1,1217 @@
->+// SPDX-License-Identifier: GPL-2.0
->+/*
->+ * The MT7986 driver based on Linux generic pinctrl binding.
->+ *
->+ * Copyright (C) 2021 MediaTek Inc.
->+ * Author: Sam Shih <sam.shih@mediatek.com>
->+ */
->+
->+#include "pinctrl-moore.h"
->+
->+#define MT7986_PIN(_number, _name) MTK_PIN(_number, _name, 0, _number, DRV_GRP4)
->+#define MT7986_NOT_BALLOUT_PIN(_number) { .number = _number }
-
-I preferred explict set .name to NULL to indicate the pin is not ball out.
-
->+
->+#define PIN_FIELD_BASE(_s_pin, _e_pin, _i_base, _s_addr, _x_addrs, _s_bit,	\
->+			   _x_bits)														\
->+	PIN_FIELD_CALC(_s_pin, _e_pin, _i_base, _s_addr, _x_addrs, _s_bit,		\
->+			   _x_bits, 32, 0)
->+
->+/**
->+ * enum - Locking variants of the iocfg bases
->+ *
->+ * MT7986 have multiple bases to program pin configuration listed as the below:
->+ * iocfg_rt:0x11c30000, iocfg_rb:0x11c40000, iocfg_lt:0x11e20000,
->+ * iocfg_lb:0x11e30000, iocfg_tr:0x11f00000, iocfg_tl:0x11f10000,
->+ * _i_based could be used to indicate what base the pin should be mapped into.
->+ *
->+ * Each iocfg register base control different group of pads on the SoC
->+ *
->+ *
->+ *  chip carrier
->+ *
->+ *      A  B  C  D  E  F  G  H
->+ *    +------------------------+
->+ *  8 | o  o  o  o  o  o  o  o |
->+ *  7 | o  o  o  o  o  o  o  o |
->+ *  6 | o  o  o  o  o  o  o  o |
->+ *  5 | o  o  o  o  o  o  o  o |
->+ *  4 | o  o  o  o  o  o  o  o |
->+ *  3 | o  o  o  o  o  o  o  o |
->+ *  2 | o  o  o  o  o  o  o  o |
->+ *  1 | o  o  o  o  o  o  o  o |
->+ *    +------------------------+
->+ *
->+ *  inside Chip carrier
->+ *
->+ *      A  B  C  D  E  F  G  H
->+ *    +------------------------+
->+ *  8 |                        |
->+ *  7 |        TL  TR          |
->+ *  6 |      +---------+       |
->+ *  5 |   LT |         | RT    |
->+ *  4 |      |         |       |
->+ *  3 |   LB |         | RB    |
->+ *  2 |      +---------+       |
->+ *  1 |                        |
->+ *    +------------------------+
->+ *
->+ */
->+
->+enum {
->+	GPIO_BASE,
->+	IOCFG_RT_BASE,
->+	IOCFG_RB_BASE,
->+	IOCFG_LT_BASE,
->+	IOCFG_LB_BASE,
->+	IOCFG_TR_BASE,
->+	IOCFG_TL_BASE,
->+};
->+
->+static const char *const mt7986_pinctrl_register_base_names[] = {
->+	"gpio_base", "iocfg_rt_base", "iocfg_rb_base", "iocfg_lt_base",
->+	"iocfg_lb_base", "iocfg_tr_base", "iocfg_tl_base",
->+};
->+
->+static const struct mtk_pin_field_calc mt7986_pin_mode_range[] = {
->+	PIN_FIELD(0, 40, 0x300, 0x10, 0, 4),
->+	PIN_FIELD(41, 65, 0x350, 0x10, 4, 4),
->+	PIN_FIELD(66, 68, 0x380, 0x10, 8, 4),
->+	PIN_FIELD(69, 100, 0x380, 0x10, 20, 4),
->+};
->+
->+static const struct mtk_pin_field_calc mt7986_pin_dir_range[] = {
->+	PIN_FIELD(0, 40, 0x0, 0x10, 0, 1),
->+	PIN_FIELD(41, 65, 0x10, 0x10, 9, 1),
->+	PIN_FIELD(66, 68, 0x20, 0x10, 2, 1),
->+	PIN_FIELD(69, 100, 0x20, 0x10, 5, 1),
->+};
->+
->+static const struct mtk_pin_field_calc mt7986_pin_di_range[] = {
->+	PIN_FIELD(0, 40, 0x200, 0x10, 0, 1),
->+	PIN_FIELD(41, 65, 0x210, 0x10, 9, 1),
->+	PIN_FIELD(66, 68, 0x220, 0x10, 2, 1),
->+	PIN_FIELD(69, 100, 0x220, 0x10, 5, 1),
->+};
->+
->+static const struct mtk_pin_field_calc mt7986_pin_do_range[] = {
->+	PIN_FIELD(0, 40, 0x100, 0x10, 0, 1),
->+	PIN_FIELD(41, 65, 0x110, 0x10, 9, 1),
->+	PIN_FIELD(66, 68, 0x120, 0x10, 2, 1),
->+	PIN_FIELD(69, 100, 0x120, 0x10, 5, 1),
->+};
->+
->+static const struct mtk_pin_field_calc mt7986_pin_ies_range[] = {
->+	PIN_FIELD_BASE(0, 0, IOCFG_RB_BASE, 0x40, 0x10, 17, 1),
->+	PIN_FIELD_BASE(1, 1, IOCFG_LT_BASE, 0x20, 0x10, 10, 1),
->+	PIN_FIELD_BASE(2, 2, IOCFG_LT_BASE, 0x20, 0x10, 11, 1),
->+	PIN_FIELD_BASE(3, 3, IOCFG_LB_BASE, 0x20, 0x10, 0, 1),
->+	PIN_FIELD_BASE(4, 4, IOCFG_LB_BASE, 0x20, 0x10, 1, 1),
->+	PIN_FIELD_BASE(5, 5, IOCFG_RB_BASE, 0x40, 0x10, 0, 1),
->+	PIN_FIELD_BASE(6, 6, IOCFG_RB_BASE, 0x40, 0x10, 1, 1),
->+	PIN_FIELD_BASE(7, 7, IOCFG_LT_BASE, 0x20, 0x10, 0, 1),
->+	PIN_FIELD_BASE(8, 8, IOCFG_LT_BASE, 0x20, 0x10, 1, 1),
->+	PIN_FIELD_BASE(9, 9, IOCFG_LT_BASE, 0x20, 0x10, 2, 1),
->+	PIN_FIELD_BASE(10, 10, IOCFG_LT_BASE, 0x20, 0x10, 3, 1),
->+	PIN_FIELD_BASE(11, 11, IOCFG_RB_BASE, 0x40, 0x10, 8, 1),
->+	PIN_FIELD_BASE(12, 12, IOCFG_RB_BASE, 0x40, 0x10, 9, 1),
->+	PIN_FIELD_BASE(13, 13, IOCFG_RB_BASE, 0x40, 0x10, 10, 1),
->+	PIN_FIELD_BASE(14, 14, IOCFG_RB_BASE, 0x40, 0x10, 11, 1),
->+	PIN_FIELD_BASE(15, 15, IOCFG_RB_BASE, 0x40, 0x10, 2, 1),
->+	PIN_FIELD_BASE(16, 16, IOCFG_RB_BASE, 0x40, 0x10, 3, 1),
->+	PIN_FIELD_BASE(17, 17, IOCFG_RB_BASE, 0x40, 0x10, 4, 1),
->+	PIN_FIELD_BASE(18, 18, IOCFG_RB_BASE, 0x40, 0x10, 5, 1),
->+	PIN_FIELD_BASE(19, 19, IOCFG_RB_BASE, 0x40, 0x10, 6, 1),
->+	PIN_FIELD_BASE(20, 20, IOCFG_RB_BASE, 0x40, 0x10, 7, 1),
-
-Actually, we can merge the consecutive entries into one to reduce the table size
-For example, we can merge those entries pin 15 ~ 20 into one, from
-
-PIN_FIELD_BASE(15, 15, IOCFG_RB_BASE, 0x40, 0x10, 2, 1),
-PIN_FIELD_BASE(16, 16, IOCFG_RB_BASE, 0x40, 0x10, 3, 1),
-PIN_FIELD_BASE(17, 17, IOCFG_RB_BASE, 0x40, 0x10, 4, 1),
-PIN_FIELD_BASE(18, 18, IOCFG_RB_BASE, 0x40, 0x10, 5, 1),
-PIN_FIELD_BASE(19, 19, IOCFG_RB_BASE, 0x40, 0x10, 6, 1),
-PIN_FIELD_BASE(20, 20, IOCFG_RB_BASE, 0x40, 0x10, 7, 1),
-
-to
-
-PIN_FIELD_BASE(15, 20, IOCFG_RB_BASE, 0x40, 0x10, 2, 1).
-
-Also please consider merging all the similar occurrences elsewhere to optimize them.
-
->+	PIN_FIELD_BASE(21, 21, IOCFG_RT_BASE, 0x30, 0x10, 12, 1),
->+	PIN_FIELD_BASE(22, 22, IOCFG_RT_BASE, 0x30, 0x10, 13, 1),
->+	PIN_FIELD_BASE(23, 23, IOCFG_RT_BASE, 0x30, 0x10, 14, 1),
->+	PIN_FIELD_BASE(24, 24, IOCFG_RT_BASE, 0x30, 0x10, 18, 1),
->+	PIN_FIELD_BASE(25, 25, IOCFG_RT_BASE, 0x30, 0x10, 17, 1),
->+	PIN_FIELD_BASE(26, 26, IOCFG_RT_BASE, 0x30, 0x10, 15, 1),
->+	PIN_FIELD_BASE(27, 27, IOCFG_RT_BASE, 0x30, 0x10, 16, 1),
-
-<snip>
