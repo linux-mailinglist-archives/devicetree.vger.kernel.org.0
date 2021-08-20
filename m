@@ -2,147 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 346D63F280B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 285A33F2844
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 10:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230051AbhHTIAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 04:00:31 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:48330 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229586AbhHTIA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 04:00:27 -0400
-X-UUID: 67d87111147f49deb1e6ed22dd5dcb45-20210820
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VluiAbKGQy/3Yr6UxPnDDXbjlygkyrql8mDiSJPOAdY=;
-        b=u2x3ECk9IHJHuyY7+rigAOuyNreL9ujO4lyz7u1/Bx7LiQoh0Z7IhGZbugghUOHs4IOVN4ZXHHa8DFb4vQdj35XJMs+aOANZ8OyGjlIcd8V++l6FcngmuUOQ/YdHoN2XowjOV3YJHqH0e9R49AwgvV9i9RxXmo6+jqEuKrVYXLg=;
-X-UUID: 67d87111147f49deb1e6ed22dd5dcb45-20210820
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 994131274; Fri, 20 Aug 2021 15:59:42 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 20 Aug 2021 15:59:40 +0800
-Received: from [10.17.3.153] (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 20 Aug 2021 15:59:38 +0800
-Message-ID: <1629446378.18871.27.camel@mhfsdcap03>
-Subject: Re: [PATCH v5, 00/15] Using component framework to support multi
- hardware decode
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-CC:     Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        George Sun <george.sun@mediatek.com>
-Date:   Fri, 20 Aug 2021 15:59:38 +0800
-In-Reply-To: <CAAEAJfCTrKj9AFExN-L-TKww4E=us1VVh8LHtZ8Q0j_eaCD4Eg@mail.gmail.com>
-References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
-         <CAAEAJfDWOzCJxZFNtxeT7Cvr2pWbYrfz-YnA81sVNs-rM=8n4Q@mail.gmail.com>
-         <1b79a67b703d2c894bc4d9458c760e082fc42958.camel@mediatek.com>
-         <CAAEAJfCTrKj9AFExN-L-TKww4E=us1VVh8LHtZ8Q0j_eaCD4Eg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S232341AbhHTIVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 04:21:19 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52418
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230490AbhHTIVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 04:21:18 -0400
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E44DD3F31F
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 08:15:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629447302;
+        bh=+kHKFGwTKXn41PWg7UfAuln8Q8OXBJ2CxByz+s3vd2w=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=VfAjkU2RhE7SpWHE+Po8uN9QLt5auoj5GunfLbwNazy8G9Np9PjIIjrCH2G+vej5y
+         PlG+eSMI1rV6wh1D4bXyLT7Ea5oydhGZCBAMefpbmYJWD8HHjykYg3/sGFvQss3V3v
+         s+87nojBSXml7ATNxhScmYmE6Jk1Q1ty8esWTYC+qOAgKCCY/wvcDjLUDX2JozF9a3
+         ALQlun7Zr3y2tskRmv7n6jmARY2d2bwlBjPhHnZMFEkBCGI1fBhzatpqSlmUtsE+4n
+         dULFBjx7nYaiu8OS5lsVfsbiNQju08DFUndEZddjnVvclFzF8+/P4P3WO1YL7OoGvH
+         flKr7TJFTUQkg==
+Received: by mail-ej1-f70.google.com with SMTP id kf21-20020a17090776d5b02905af6ad96f02so3405441ejc.12
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 01:15:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+kHKFGwTKXn41PWg7UfAuln8Q8OXBJ2CxByz+s3vd2w=;
+        b=UEil4HzoNrISBIrqFlT1PBgK8caULyzQwde/L3Eo9x1E4oa+eGs8l3eYaU5fS20fMd
+         Ur/5kGH8HdcWR1/9d2vtoet4hHGMp9ONfnhO8oM25uplktf8a1DTdIBK43jy+w+A28IS
+         8uvRNYM8yVx1trgt063YKATF9wRtJe/Z6Wq9cMlE4L/hJuHwKcEt52EO/NfLI7jHAK6f
+         xTY4ivlz0yLMKO1pkd9MAShjYMwtn3uz3UeoGMzGNoQofrvyeiBiwvGJZ8NJ9xdwuEYz
+         YA1jyDihkf1iu7TuQqKWiNS/cNjRkfIuw65euYHtTu/o0cNfQXzX3VCh3nshPexQeuB3
+         3RqQ==
+X-Gm-Message-State: AOAM533NBm5zAev1DpFo1zaWHPwgCzJ6OZgJsVkdQ4Slq43JtSTCeM8m
+        dDionXcZeDQE/i1yxQxStAkQg4+YXcPn6zhUBiQhS+NkXmvW+uWRg367IMVqH7cyqivdyVAP7dr
+        zryFpRqRb3JPGa5K6Vx9evHWi1JZk4jsrE4j0vH8=
+X-Received: by 2002:a05:6402:50c9:: with SMTP id h9mr21654132edb.357.1629447302482;
+        Fri, 20 Aug 2021 01:15:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzMEqHxaJILqth3tDzX13eqFAO3EJLWJDrrCnn+vkSZOV4tjYEACJCJ7+O/QLcOpMQv2o3JsQ==
+X-Received: by 2002:a05:6402:50c9:: with SMTP id h9mr21654120edb.357.1629447302372;
+        Fri, 20 Aug 2021 01:15:02 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id a2sm3284071edm.72.2021.08.20.01.15.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Aug 2021 01:15:01 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: exynos: align operating-points table name with dtschema in Exynos5433
+Date:   Fri, 20 Aug 2021 10:14:57 +0200
+Message-Id: <20210820081458.83406-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRXplcXVpZWwsDQoNClRoYW5rcyBmb3IgeW91ciBkZXRhaWwgZmVlZGJhY2suIA0KDQpPbiBU
-aHUsIDIwMjEtMDgtMTkgYXQgMTE6MTAgLTAzMDAsIEV6ZXF1aWVsIEdhcmNpYSB3cm90ZToNCj4g
-T24gVGh1LCAxOSBBdWcgMjAyMSBhdCAwNDoxMywgeXVuZmVpLmRvbmdAbWVkaWF0ZWsuY29tDQo+
-IDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gSGkgRXplcXVpZWws
-DQo+ID4NCj4gPiBUaGFua3MgZm9yIHlvdXIgc3VnZ2VzdGlvbi4NCj4gPg0KPiA+IE9uIFdlZCwg
-MjAyMS0wOC0xOCBhdCAxMToxMSAtMDMwMCwgRXplcXVpZWwgR2FyY2lhIHdyb3RlOg0KPiA+ID4g
-K2RhbnZldA0KPiA+ID4NCj4gPiA+IEhpLA0KPiA+ID4NCj4gPiA+IE9uIFR1ZSwgMTAgQXVnIDIw
-MjEgYXQgMjM6NTgsIFl1bmZlaSBEb25nIDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5jb20+DQo+ID4g
-PiB3cm90ZToNCj4gPiA+ID4NCj4gPiA+ID4gVGhpcyBzZXJpZXMgYWRkcyBzdXBwb3J0IGZvciBt
-dWx0aSBoYXJkd2FyZSBkZWNvZGUgaW50byBtdGstdmNvZGVjLA0KPiA+ID4gPiBieSBmaXJzdA0K
-PiA+ID4gPiBhZGRpbmcgY29tcG9uZW50IGZyYW1ld29yayB0byBtYW5hZ2UgZWFjaCBoYXJkd2Fy
-ZSBpbmZvcm1hdGlvbjoNCj4gPiA+ID4gaW50ZXJydXB0LA0KPiA+ID4gPiBjbG9jaywgcmVnaXN0
-ZXIgYmFzZXMgYW5kIHBvd2VyLiBTZWNvbmRseSBhZGQgY29yZSB0aHJlYWQgdG8gZGVhbA0KPiA+
-ID4gPiB3aXRoIGNvcmUNCj4gPiA+ID4gaGFyZHdhcmUgbWVzc2FnZSwgYXQgdGhlIHNhbWUgdGlt
-ZSwgYWRkIG1zZyBxdWV1ZSBmb3IgZGlmZmVyZW50DQo+ID4gPiA+IGhhcmR3YXJlDQo+ID4gPiA+
-IHNoYXJlIG1lc3NhZ2VzLiBMYXN0bHksIHRoZSBhcmNoaXRlY3R1cmUgb2YgZGlmZmVyZW50IHNw
-ZWNzIGFyZSBub3QNCj4gPiA+ID4gdGhlIHNhbWUsDQo+ID4gPiA+IHVzaW5nIHNwZWNzIHR5cGUg
-dG8gc2VwYXJhdGUgdGhlbS4NCj4gPiA+ID4NCj4gPiA+DQo+ID4gPiBJIGRvbid0IHRoaW5rIGl0
-J3MgYSBnb29kIGlkZWEgdG8gaW50cm9kdWNlIHRoZSBjb21wb25lbnQgQVBJIGluIHRoZQ0KPiA+
-ID4gbWVkaWEgc3Vic3lzdGVtLiBJdCBkb2Vzbid0IHNlZW0gdG8gYmUgbWFpbnRhaW5lZCwgSVJD
-IHRoZXJlJ3Mgbm90DQo+ID4gPiBldmVuDQo+ID4gPiBhIG1haW50YWluZXIgZm9yIGl0LCBhbmQg
-aXQgaGFzIHNvbWUgaXNzdWVzIHRoYXQgd2VyZSBuZXZlcg0KPiA+ID4gYWRkcmVzc2VkLg0KPiA+
-ID4NCj4gPiA+IEl0IHdvdWxkIGJlIHJlYWxseSBpbXBvcnRhbnQgdG8gYXZvaWQgaXQuIElzIGl0
-IHJlYWxseSBuZWVkZWQgaW4gdGhlDQo+ID4gPiBmaXJzdCBwbGFjZT8NCj4gPiA+DQo+ID4gPiBU
-aGFua3MsDQo+ID4gPiBFemVxdWllbA0KPiA+DQo+ID4gRm9yIHRoZXJlIGFyZSBtYW55IGhhcmR3
-YXJlIG5lZWQgdG8gdXNlLCBtdDgxOTIgaXMgdGhyZWUgYW5kIG10ODE5NSBpcw0KPiA+IGZpdmUu
-IE1heWJlIG5lZWQgbW9yZSB0byBiZSB1c2VkIGluIHRoZSBmZWF0dXJlLg0KPiA+DQo+ID4gRWFj
-aCBoYXJkd2FyZSBoYXMgaW5kZXBlbmRlbnQgY2xrL3Bvd2VyL2lvbW11IHBvcnQvaXJxLg0KPiA+
-IFVzZSBjb21wb25lbnQgaW50ZXJmYWNlIGluIHByb2IgdG8gZ2V0IGVhY2ggY29tcG9uZW50J3Mg
-aW5mb3JtYXRpb24uDQo+ID4gSnVzdCBlbmFibGUgdGhlIGhhcmR3YXJlIHdoZW4gbmVlZCB0byB1
-c2UgaXQsIHZlcnkgY29udmVuaWVudCBhbmQNCj4gPiBzaW1wbGUuDQo+ID4NCj4gPiBJIGZvdW5k
-IHRoYXQgdGhlcmUgYXJlIG1hbnkgbW9kdWxlcyB1c2UgY29tcG9uZW50IHRvIG1hbmFnZSBoYXJk
-d2FyZQ0KPiA+IGluZm9ybWF0aW9uLCBzdWNoIGFzIGlvbW11IGFuZCBkcm0gZXRjLg0KPiA+DQo+
-IA0KPiBNYW55IGRyaXZlcnMgc3VwcG9ydCBtdWx0aXBsZSBoYXJkd2FyZSB2YXJpYW50cywgd2hl
-cmUgZWFjaCB2YXJpYW50DQo+IGhhcyBhIGRpZmZlcmVudCBudW1iZXIgb2YgY2xvY2tzIG9yIGlu
-dGVycnVwdHMsIHNlZSBmb3IgaW5zdGFuY2UNCj4gc3RydWN0IGhhbnRyb192YXJpYW50IHdoaWNo
-IGFsbG93cyB0byBleHBvc2UgZGlmZmVyZW50IGNvZGVjIGNvcmVzLA0KPiBzb21lIGhhdmluZyBi
-b3RoIGRlY29kZXIvZW5jb2RlciwgYW5kIHNvbWUgaGF2aW5nIGp1c3QgYSBkZWNvZGVyLg0KPiAN
-Cj4gVGhlIGNvbXBvbmVudCBBUEkgaXMgbW9zdGx5IHVzZWQgYnkgRFJNIHRvIGFnZ3JlZ2F0ZSBp
-bmRlcGVuZGVudA0KPiBzdWJkZXZpY2VzIChjYWxsZWQgY29tcG9uZW50cykgaW50byBhbiBhZ2dy
-ZWdhdGVkIGRyaXZlci4NCj4gDQo+IEZvciBpbnN0YW5jZSwgYSBEUk0gZHJpdmVyIG5lZWRzIHRv
-IGdsdWUgdG9nZXRoZXIgdGhlIEhETUksIE1JUEksDQo+IGFuZCBwbGFueSBjb250cm9sbGVyLCBv
-ciBhbnkgb3RoZXIgaGFyZHdhcmUgYXJyYW5nZW1lbnQgd2hlcmUNCj4gZGV2aWNlcyBjYW4gYmUg
-ZGVzY3JpYmVkIGluZGVwZW5kZW50bHkuDQo+IA0KVGhlIHVzYWdlIHNjZW5hcmlvIGlzIHZlcnkg
-c2ltaWxhciB3aXRoIGRybSBhbmQgaW9tbXUsIFNvIGRlY2lkZSB0byB1c2UNCmNvbXBvbmVudCBm
-cmFtZXdvcmsuDQpEZWNvZGUgaGFzIHRocmVlL2ZpdmUgb3IgbW9yZSBoYXJkd2FyZXMsIHRoZXNl
-IGhhcmR3YXJlIGFyZSBpbmRlcGVuZGVudC4NCkZvciBtdDgxODMganVzdCBuZWVkIGNvcmUgaGFy
-ZHdhcmUgdG8gZGVjb2RlLCBidXQgbXQ4MTkyIGhhcyBsYXQsc29jIGFuZA0KY29yZSBoYXJkd2Fy
-ZSB0byBkZWNvZGUuIFdoZW4gbGF0IG5lZWQgdG8gdXNlLCBqdXN0IGVuYWJsZSBsYXQgaGFyZHdh
-cmUsDQpjb3JlIGlzIHRoZSBzYW1lLkFuZCBtdDgxOTUgd2lsbCBoYXMgdHdvIGNvcmVzLCBlYWNo
-IGNvcmUgY2FuIHdvcmsgd2VsbA0KaW5kZXBlbmRlbnQuDQoNCkZvciBlYWNoIGNvbXBvbmVudCBk
-ZXZpY2UganVzdCB1c2VkIHRvIG9wZW4gdGhlaXIgcG93ZXIvY2xrL2lvbW11DQpwb3J0L2lycSB3
-aGVuIG1hc3RlciBuZWVkIHRvIGVuYWJsZSBpdC4gVGhlIG1haW4gbG9naWMgaXMgaW4gbWFzdGVy
-DQpkZXZpY2UuDQoNCj4gVGhlIGNvbXBvbmVudCBBUEkgbWF5IGxvb2sgc2ltcGxlIGJ1dCBoYXMg
-c29tZSBpc3N1ZXMsIGl0J3Mgbm90IGVhc3kNCj4gdG8gZGVidWcsIGFuZCBjYW4gY2F1c2UgdHJv
-dWJsZXMgaWYgbm90IHVzZWQgYXMgZXhwZWN0ZWQgWzFdLg0KPiBJdCdzIHdvcnRoIG1ha2luZyBz
-dXJlIHlvdSBhY3R1YWxseSBuZWVkIGEgZnJhbWV3b3JrDQo+IHRvIGdsdWUgZGlmZmVyZW50IGRl
-dmljZXMgdG9nZXRoZXIuDQo+IA0KRWFjaCBoYXJkd2FyZSBoYXMgaXRzIGluZGV4LCBtYXN0ZXIg
-Y2FuIGdldCBoYXJkd2FyZSBpbmZvcm1hdGlvbg0KYWNjb3JkaW5nIHRoZXNlIGluZGV4LCBsb29r
-cyBub3QgY29tcGxleC4gV2hhdCBkbyB5b3UgbWVhbiBhYm91dCBub3QNCmVhc3kgdG8gZGVidWc/
-DQoNCj4gPiBEbyB5b3UgaGF2ZSBhbnkgb3RoZXIgc3VnZ2VzdGlvbiBmb3IgdGhpcyBhcmNoaXRl
-Y3R1cmU/DQo+ID4NCj4gDQo+IExvb2tpbmcgYXQgdGhlIGRpZmZlcmVudCBwYXRjaHNldHMgdGhh
-dCBhcmUgcG9zdGVkLCBpdCdzIG5vdCBjbGVhcg0KPiB0byBtZSB3aGF0IGV4YWN0bHkgYXJlIHRo
-ZSBkaWZmZXJlbnQgYXJjaGl0ZWN0dXJlcyB0aGF0IHlvdSBpbnRlbmQNCj4gdG8gc3VwcG9ydCwg
-Y2FuIHlvdSBzb21lIGRvY3VtZW50YXRpb24gd2hpY2ggY2xhcmlmaWVzIHRoYXQ/DQo+IA0KSGF2
-ZSBmaXZlIGhhcmR3YXJlcyBsYXQsc29jLGNvcmUwLGNvcmUxIGFuZCBtYWluLiBMYXQgdGhyZWFk
-IGNhbiB1c2UgbGF0DQpzb2MgYW5kIG1haW4sIGNvcmUgdGhyZWFkIGNhbiB1c2Ugc29jLGxhdCwg
-Y29yZTAgYW5kIGNvcmUxLiBDb3JlIHRocmVhZA0KY2FuIGJlIHVzZWQgb3Igbm90IGZvciBkaWZm
-ZXJlbnQgcHJvamVjdC4gQWxzbyBOZWVkIHRvIHVzZSB0aGVzZQ0KaGFyZHdhcmUgZHluYW1pYyBh
-dCB0aGUgc2FtZSB0aW1lLiBTbyBJIHVzZSBjb21wb25lbnQgZnJhbWV3b3JrLCBqdXN0DQpuZWVk
-IHRvIGtub3cgdGhlIHVzZWQgIGhhcmR3YXJlIGluZGV4IGFjY29yZGluZyB0byBkaWZmZXJlbnQN
-CnByb2plY3QuTmVlZCBub3QgdG8gZG8gY29tcGxleCBsb2dpYyB0byBtYW5hZ2UgdGhlc2UgaGFy
-ZHdhcmVzLg0KDQoNCj4gVGhhbmtzLA0KPiBFemVxdWllbA0KPiANCj4gWzFdIGh0dHBzOi8vcGF0
-Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1yb2NrY2hpcC9jb3Zlci8yMDIwMDEyMDE3
-MDYwMi4zODMyLTEtZXplcXVpZWxAY29sbGFib3JhLmNvbS8NCg0KDQpUaGFua3MsDQpZdW5mZWkg
-RG9uZw0KDQoNCg0KDQo=
+Align the name of operating-points node to dtschema to fix warnings like:
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi | 10 +++++-----
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi     |  4 ++--
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
+index 8997f8f2b96c..72ccf18eb9d1 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
+@@ -87,7 +87,7 @@ bus_noc2: bus9 {
+ 		status = "disabled";
+ 	};
+ 
+-	bus_g2d_400_opp_table: opp-table2 {
++	bus_g2d_400_opp_table: opp-table-2 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+@@ -117,7 +117,7 @@ opp-100000000 {
+ 		};
+ 	};
+ 
+-	bus_g2d_266_opp_table: opp-table3 {
++	bus_g2d_266_opp_table: opp-table-3 {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-267000000 {
+@@ -137,7 +137,7 @@ opp-100000000 {
+ 		};
+ 	};
+ 
+-	bus_gscl_opp_table: opp-table4 {
++	bus_gscl_opp_table: opp-table-4 {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-333000000 {
+@@ -151,7 +151,7 @@ opp-166500000 {
+ 		};
+ 	};
+ 
+-	bus_hevc_opp_table: opp-table5 {
++	bus_hevc_opp_table: opp-table-5 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+@@ -175,7 +175,7 @@ opp-100000000 {
+ 		};
+ 	};
+ 
+-	bus_noc2_opp_table: opp-table6 {
++	bus_noc2_opp_table: opp-table-6 {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-400000000 {
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+index 6a6f7dd1d65c..ebd5091d68b4 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+@@ -239,7 +239,7 @@ cluster_a53_l2: l2-cache1 {
+ 		};
+ 	};
+ 
+-	cluster_a53_opp_table: opp-table0 {
++	cluster_a53_opp_table: opp-table-0 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+@@ -285,7 +285,7 @@ opp-1300000000 {
+ 		};
+ 	};
+ 
+-	cluster_a57_opp_table: opp-table1 {
++	cluster_a57_opp_table: opp-table-1 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+-- 
+2.30.2
 
