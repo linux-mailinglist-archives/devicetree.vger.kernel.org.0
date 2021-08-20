@@ -2,152 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 917BD3F35BA
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 22:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD163F35DB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 23:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241187AbhHTUun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 16:50:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38874 "EHLO
+        id S239615AbhHTVFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 17:05:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241029AbhHTUuc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 16:50:32 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D34C0612A4;
-        Fri, 20 Aug 2021 13:49:53 -0700 (PDT)
-Received: from localhost.localdomain (83.6.167.97.neoplus.adsl.tpnet.pl [83.6.167.97])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 153211F54F;
-        Fri, 20 Aug 2021 22:49:51 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 17/17] arm64: dts: qcom: Add device tree for Sony Xperia 10 III
-Date:   Fri, 20 Aug 2021 22:49:26 +0200
-Message-Id: <20210820204926.235192-18-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210820204926.235192-1-konrad.dybcio@somainline.org>
-References: <20210820204926.235192-1-konrad.dybcio@somainline.org>
+        with ESMTP id S231171AbhHTVFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 17:05:43 -0400
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A3B6C061756
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 14:05:05 -0700 (PDT)
+Received: by mail-il1-x129.google.com with SMTP id r6so10767267ilt.13
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 14:05:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AHuE68SZeZJgo+ZJ5047NRixzSrlnFN0gqAr82i7YR8=;
+        b=mn6E6ELoWiFgPJPOOfbw3ckSVf0xoK3tXZ1RucjWFtWtIdk6bbX+bhVl69KHevLS6o
+         5eT2qowd6SG4JEwqxjmWQcE+aL1SElXiJ+ofmGEyhpny9Fr8O6OEd3blMOBTfn4xPnFj
+         Y0EcBTzvH76uzG2rh5QuY6BYihUcoEm2QMrQs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AHuE68SZeZJgo+ZJ5047NRixzSrlnFN0gqAr82i7YR8=;
+        b=JhPAlDZHIW8YXSvTC74VVnfu0uCTaKpm+e3kxFEIsDuD8pA6HVwErbF8ciz8/nbNXv
+         4yHwsP+/j3lX0YiTAuZRaxJYlcQsqitx9RfGJd0IzMB50vPXzYvUdM0K8AKQJ2N01Ulh
+         Ygxulcte5FXlqZ3LX5Ja0todPybbZECrnhySIoCoqG7gW8RQj4xTG0QnKm4NrA5+LL7V
+         yFGNohp2HROus8RJKGD4FdXgRpYLZSo2QwBjdpbUwGkEj+5Q/FYEDmKxViLE83ryuOy1
+         B8vr6K/czzrJKe8ndt5ld6FxYhdYq12sgRv5Wt2VQcstgXMKBU0l/Ax295Y4itUsCRM0
+         zuKA==
+X-Gm-Message-State: AOAM530sjiwcCI8XcBmRj3/QbqdrRGV7xuaeK7FWnin/XVQkBgo6MZL4
+        QbR5AA1s3uMe0jQ/+F9vl7SDjhKubyeGsA==
+X-Google-Smtp-Source: ABdhPJzuQRDQWAznQGrh8Uo4PIVdYqOzruQDPImd2DFEXpJZUCnZ0JVw4Ae8nOXGgyDmMJ+VTbgc6Q==
+X-Received: by 2002:a05:6e02:13f3:: with SMTP id w19mr14528744ilj.164.1629493504650;
+        Fri, 20 Aug 2021 14:05:04 -0700 (PDT)
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com. [209.85.166.170])
+        by smtp.gmail.com with ESMTPSA id h8sm3868055ile.39.2021.08.20.14.05.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Aug 2021 14:05:04 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id h29so10816325ila.2
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 14:05:04 -0700 (PDT)
+X-Received: by 2002:a92:d304:: with SMTP id x4mr15198676ila.82.1629493503689;
+ Fri, 20 Aug 2021 14:05:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210820133829.1.Ica46f428de8c3beb600760dbcd63cf879ec24baf@changeid>
+In-Reply-To: <20210820133829.1.Ica46f428de8c3beb600760dbcd63cf879ec24baf@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 20 Aug 2021 14:04:51 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UwAcJEDE3BQYuCDq4kRKPFAsuzPOseGY66wfXcW8Wn7A@mail.gmail.com>
+Message-ID: <CAD=FV=UwAcJEDE3BQYuCDq4kRKPFAsuzPOseGY66wfXcW8Wn7A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: add RK3399 Gru gpio-line-names
+To:     Brian Norris <briannorris@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial SM6350 SoC and Sony Xperia 10 III (PDX213, Lena platform) device
-trees. There is no sign of another Lena devices on the horizon, so a common
-DTSI is not created for now. 10 III features a Full HD OLED display and 5G
-support, among other nice things like USB3.
+Hi,
 
-The bootloader is VERY unpleasant, to get a bootable setup you have to run:
+On Fri, Aug 20, 2021 at 1:38 PM Brian Norris <briannorris@chromium.org> wrote:
+>
+> It's convenient to get nice names for GPIOs. In particular, Chrome OS
+> tooling looks for "AP_FLASH_WP" and "AP_FLASH_WP_L". The rest are
+> provided for convenience.
+>
+> Gru-Bob and Gru-Kevin share the gru-chromebook.dtsi, and for the most
+> part they share pin meanings. I omitted a few areas where components
+> were available only on one or the other.
+>
+> Signed-off-by: Brian Norris <briannorris@chromium.org>
+> ---
+>
+>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   | 176 +++++++++++++++++
+>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 180 ++++++++++++++++++
+>  2 files changed, 356 insertions(+)
 
-mkbootimg --kernel arch/arm64/boot/Image.gz --ramdisk [some initrd] \
---dtb arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dtb \
---cmdline "[some cmdline]" --base 0 --kernel_offset 0x8000 \
---ramdisk_offset 0x1000000 --dtb_offset 0x1f00000 --os_version 11 \
---os_patch_level "2021-08" --tags_offset 0x100 --pagesize 4096 \
---header_version 2 -o mainline.img
+I didn't walk through the schematics and double-check the rails
+personally, but the idea here is right. This matches the type of thing
+we did for veyron, like in commit ca3516b32cd9 ("ARM: dts: rockchip:
+Add pin names for rk3288-veyron-minnie")
 
-adb reboot bootloader
+I guess one minor nit (now that I look back on the veyron patch where
+I mentioned it explicitly in the commit message) is that on the veyron
+ones we sorted this down at the bottom with the other pinctrl stuff
+instead of sorting it alphabetically with everything else. I'll let
+Heiko say which he likes better.
 
-// You have to either pull vbmeta{"","_system"} from
-// /dev/block/bootdevice/by-name/ or build one as a part of AOSP build process
-fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
-fastboot --disable-verity --disable-verification flash vbmeta_system \
-vbmeta_system.img
+I also notice for veyron that we had a second "ABI" exception for the
+recovery mode pin, but I believe that goes through a different
+mechanism now so we're good there.
 
-fastboot flash boot mainline.img
-fastboot erase dtbo // This will take approx 70s...
-fastboot reboot
+Even though I didn't do a line-by-line review, I'll still give:
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../qcom/sm6350-sony-xperia-lena-pdx213.dts   | 57 +++++++++++++++++++
- 2 files changed, 58 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 5bbeb058e1f2..d1ace2541ce1 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akatsuki.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-apollo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-microsoft-surface-duo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-new file mode 100644
-index 000000000000..a26c23754f5d
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-+ */
-+/dts-v1/;
-+
-+#include "sm6350.dtsi"
-+
-+/ {
-+	model = "Sony Xperia 10 III";
-+	compatible = "sony,pdx213", "qcom,sm6350";
-+	qcom,msm-id = <434 0x10000>, <459 0x10000>;
-+	qcom,board-id = <0x1000B 0>;
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer: framebuffer@a0000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0xa0000000 0 0x2300000>;
-+			width = <1080>;
-+			height = <2520>;
-+			stride = <(1080 * 4)>;
-+			format = "a8r8g8b8";
-+			clocks = <&gcc GCC_DISP_AXI_CLK>;
-+		};
-+	};
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+
-+	cd-gpios = <&tlmm 94 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <13 4>, <45 2>, <56 2>;
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	maximum-speed = "super-speed";
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+};
--- 
-2.33.0
+...though it's possible an "Acked-by" would be more in the spirit of
+that? Not sure...
 
+-Doug
