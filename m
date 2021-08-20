@@ -2,128 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E68333F34A5
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 21:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 662683F34C3
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 21:46:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbhHTT0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 15:26:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229923AbhHTT0l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 15:26:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E7F460F4A
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 19:26:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629487563;
-        bh=HCjjk24p5sQxyUTi/B/s9W2DqwHU5mJ8/0/kxaYoz5w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bZTdzxYOHRxrSM4ciNLJBqnEdwYF7Js+ZU6tY1R8s+JI9Na/vV8doszkOR/5q1xxv
-         FUykkc0PA2IhZKoy/a/PNMlJ2E3rGdIxtsr2h9FQkg+mwpwp/rsSNiyWh1VmykkxWi
-         Jntq7wfKyV2wk9HUPhlOpzKjmDwBM/MDfiWmyBPUgdBqzDiXDytXzpzzT8c1IS9ete
-         jmrxo0eiezjKSidANxYlwmzqBi46SGOAMreQbxKNwD7dXNKi1ivznseURW4N9+ejlS
-         P8/mdN6RvZB9DiOSW0w70bumvNqE4on9bzHMMPmXkbA6XeU7aD9QmuEnpZiaSBZoNN
-         aO1MH0h/7jIwA==
-Received: by mail-ej1-f50.google.com with SMTP id gr13so22238954ejb.6
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 12:26:03 -0700 (PDT)
-X-Gm-Message-State: AOAM533X+XTbDANZgJDCBhu5M10z4nziqri8eFZuhlbUTv5SFAykAdHQ
-        gsOdldu0FDPi/HCutS374hgXpvsEnz3QKDucTg==
-X-Google-Smtp-Source: ABdhPJy/UiUMlbSszlvFz6b/g6XRumctRq5ts8DXKwK2qO+K2bnzEJHKOzohnP7aE89GC6z5VlDSf43UQKOQSr4b/qY=
-X-Received: by 2002:a17:906:eb02:: with SMTP id mb2mr2039415ejb.360.1629487561779;
- Fri, 20 Aug 2021 12:26:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
- <YRae8tDReDS67sM4@robh.at.kernel.org> <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
- <YRwkvjAuEd+9lTt7@robh.at.kernel.org> <6ed12f1a09fb1f3e6ebe05992a9232bc7c34213c.camel@codeconstruct.com.au>
-In-Reply-To: <6ed12f1a09fb1f3e6ebe05992a9232bc7c34213c.camel@codeconstruct.com.au>
+        id S235167AbhHTTqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 15:46:53 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:33532 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230380AbhHTTqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 15:46:53 -0400
+Received: by mail-ot1-f51.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so16463286oti.0;
+        Fri, 20 Aug 2021 12:46:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=dPjBhc5PoJzOzyxmfR83kp4COKv5CtNRdj8GGDoPG0w=;
+        b=B9wUjPc8pDagJ6vD+BYM/wx8vb71Orc7WAp+id0dvi2FSmdZYaClQ6KReMAGv0b573
+         trxpR4knT/Hzg+g8OIsvKz5r1ylgD1S+4Y5iCOnqs7Z58QSL6L53NPBSR115zMyhx/Yo
+         gYyA4jBALzeFy1ePh7I2zegKzYVxPIrfuqM9eT6f4pVnmPP8qSgGudKVEtMikLDKMTse
+         h4hW81nJSUV386POU0AxsJsAQAsPXhwcTldaFUJLux+g8sNNRn/sGzI4BlWBtQfVfHL4
+         +hGDbt6SVv4NPZmNB/lbdFANfJKE76S1tdDjLQqGk3xfAeKNB3uC+6ys1gJVsltMn6vf
+         K35Q==
+X-Gm-Message-State: AOAM531XP9ieryGLi17t9Zeo8z97leDDjMrJa6WeQ4NUG/LQg9pGTAWF
+        DGRshzFZEkviRMUzo4cxuQ==
+X-Google-Smtp-Source: ABdhPJy1ep63eo2x2TXkk8cP+Qx29c5ITXWsNLBeI01BjukKpkifq0B0JARsDRR/S50XsJ+zpemxkA==
+X-Received: by 2002:a9d:6310:: with SMTP id q16mr18716544otk.203.1629488774479;
+        Fri, 20 Aug 2021 12:46:14 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p2sm1616085oip.35.2021.08.20.12.46.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Aug 2021 12:46:13 -0700 (PDT)
+Received: (nullmailer pid 3663911 invoked by uid 1000);
+        Fri, 20 Aug 2021 19:46:12 -0000
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 20 Aug 2021 14:25:50 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+EMV=bA__+sHnC-WSoZf_OPxqL+bCGRBjdo12RL=aw9A@mail.gmail.com>
-Message-ID: <CAL_Jsq+EMV=bA__+sHnC-WSoZf_OPxqL+bCGRBjdo12RL=aw9A@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
-To:     Matt Johnston <matt@codeconstruct.com.au>
-Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-iio@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Lars-Peter Clausen <lars@metafoo.de>
+In-Reply-To: <20210820133821.159239-2-jacopo@jmondi.org>
+References: <20210820133821.159239-1-jacopo@jmondi.org> <20210820133821.159239-2-jacopo@jmondi.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: chemical: Document senseair,sunrise CO2 sensor
+Date:   Fri, 20 Aug 2021 14:46:12 -0500
+Message-Id: <1629488772.355778.3663899.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 17, 2021 at 11:19 PM Matt Johnston
-<matt@codeconstruct.com.au> wrote:
->
-> On Tue, 2021-08-17 at 16:06 -0500, Rob Herring wrote:
-> On Mon, Aug 16, 2021 at 03:32:40PM +0800, Matt Johnston wrote:
-> > >                                        .-------.
-> > >                                        |eeprom |
-> > > .----------.   .------.               /'-------'
-> > > > adapter  |   | mux  --@0,i2c5------'
-> > > > i2c1     |-.-|      --@1,i2c6--.--.
-> > > > ..........|  \'------'           \  \  .........
-> > > > mctp-i2c |   \                   \  \ .mctpB  .
-> > > > slave    |    \                   \  '.0x30   .
-> > > > 0x50     |     \  .........        \  '.......'
-> > > '----------'      \ .mctpA  .         \ .........
-> > >                    '.0x1d   .          '.mctpC  .
-> > >                     '.......'          '.0x31   .
-> > >                                         '.......'
-> > >
-> >
-> > I guess 'mctp-i2c' alone here is fine given it's the I2C controller
-> > slave implementation which is just a protocol. It's the external devices
-> > where my concern is.
-> >
-> > Though, don't you need a different compatible for it and external
-> > devices?
->
-> We are only defining a binding for the system's own MCTP "controller"
-> here, not the external devices on the other side of the I2C link. Those are
-> probed outside of DT, for example hotplug NVMe disks can expose MCTP-over-
-> I2C.
->
-> This ends up describing something like a network interface, which
-> happens to use I2C as a transport in this case. (There are other
-> transports like MCTP-over-serial, but those don't require DT topology
-> data). For other network-type DT bindings (say, ethernet@), we don't
-> describe remote network endpoints either, so we're proposing the same
-> pattern for MCTP.
+On Fri, 20 Aug 2021 15:38:19 +0200, Jacopo Mondi wrote:
+> Add documentation for the Senseair Sunrise 006-0-0007 CO2 NDIR sensor.
+> 
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> ---
+> v1->v2:
+> - Add maxItems to -gpios properties as suggested by Rob
+> - Add a label to the device node in the example as suggested by Rob
+> 
+> ---
+>  .../iio/chemical/senseair,sunrise.yaml        | 53 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
+> 
 
-When a switch becomes integrated in, we do.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > >     reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
-> > >     attach-bus = <&i2c1 &i2c6>;
-> >
-> > Why do you need to say you are attached to yourself?
->
-> This indicates that the top-level MCTP controller needs to talk to MCTP
-> endpoints, eg mctpA on the directly attached bus i2c1. In some topologies
-> there will be no directly-attached endpoints, in which case we would omit
-> i2c1 from the list. We need to specify the attach-bus property since we
-> don't have a list of external device endpoints to walk.
+yamllint warnings/errors:
 
-Okay, so it's a 'what I2C buses should be scanned for MCTP devices'.
-Why can't that just be all the buses under i2c1 in this example?
-Limiting it seems like an optimization only. You don't know the
-endpoint addresses, so you are scanning the whole bus, right?
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.example.dts:23.21-22 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1419: dt_binding_check] Error 2
 
-In any case, 'attach-bus' sounds very generic and I'm not sure this
-is. I'd like to hear from others familiar with I2C on this aspect at
-least.
+doc reference errors (make refcheckdocs):
 
-> [In the case of not directly attached, we still need to plant the mctp-i2c@
-> node at the root controller level, as the claimed client address (in reg)
-> is global across the entire bus. The attach-bus list gives us the set of
-> interfaces that are necessary for the OS to control]
->
-> > > Regarding I2C_OWN_SLAVE_ADDRESS validation
-> > You'll have to do a minimum/maximum range with the high bit set and
-> > addresses 0-7f.
->
-> OK, that will work fine for our binding. The general I2C slave client case
-> would also have to allow for I2C_TEN_BIT_ADDRESS (1<<31), but MCTP-over-I2C
-> only accepts 7 bit.
+See https://patchwork.ozlabs.org/patch/1519042
 
-TBC, requiring I2C_OWN_SLAVE_ADDRESS being set is specific to
-MCTP-over-I2C and also serves to document the binding is only for the
-host side.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Rob
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
