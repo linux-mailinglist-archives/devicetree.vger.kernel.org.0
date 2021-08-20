@@ -2,80 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A330F3F34D3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 21:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C55653F34DE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 21:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232417AbhHTT4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 15:56:49 -0400
-Received: from mout.kundenserver.de ([212.227.17.24]:38371 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbhHTT4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 15:56:49 -0400
-Received: from mail-wr1-f46.google.com ([209.85.221.46]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mi23L-1mvCKe1wi9-00e5XP; Fri, 20 Aug 2021 21:56:09 +0200
-Received: by mail-wr1-f46.google.com with SMTP id x12so15712968wrr.11;
-        Fri, 20 Aug 2021 12:56:09 -0700 (PDT)
-X-Gm-Message-State: AOAM533XIR7RoESpMDFEl4xCveGTGfuz0wRwnWy8BDtQohlQP3Nc36yn
-        jmLlCwnIpSbVdoeyOHl+vocCRTK5MblTeWFE27g=
-X-Google-Smtp-Source: ABdhPJxlsOZO56JajrT3f4dcrPBCUnIdfw1q5w7mc1qjtBPwrpWswZjsj3ahvDK6RwyOb2e2+QJZRAZJL69/UIIllqY=
-X-Received: by 2002:adf:e107:: with SMTP id t7mr485780wrz.165.1629489369140;
- Fri, 20 Aug 2021 12:56:09 -0700 (PDT)
+        id S237503AbhHTT66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 15:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55294 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237272AbhHTT66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 15:58:58 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015C0C061575;
+        Fri, 20 Aug 2021 12:58:20 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id o2so10261355pgr.9;
+        Fri, 20 Aug 2021 12:58:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=+h705EnRDH2hW6ZSNEyHm+JKcWt62ky1ja/Tpo9gbEA=;
+        b=JNN8D2+AbXA9C4Nrk9qKwQsvZ6Gr/GFKwR0zENSwK8tmPZbzTFGR8Q8GCn3s6Z4lNM
+         yJvpVZBsddxkEYmOYzOvj05dDh/NaJF4R0u+EWlp6S+FQZF2TksOlqLPBg8u7AOedoLp
+         ByPH60gzMxPc4Jk2uD7qseC2nCUx9m6XGihIazh9H40lDPJaAei7wzYx+TM8UgGOj8HN
+         sIxaHy9iCvfbrC2HMhRlBpjl/7x99On8G8WWCgPM+JawkaWgghUNuppIpzltGAp4InIG
+         0/vRDM6DD/+g2QOMpjTptflDJh/P6fW4FLMdRqSPn98pdheHExZJmaj/0+ahLNBJoqcB
+         zXuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+h705EnRDH2hW6ZSNEyHm+JKcWt62ky1ja/Tpo9gbEA=;
+        b=m8JnujTNmQZYcinOL1rx0gOnI1EJbc2IZAgpwqoMg/ek8wm46R+jNUX1kytaV+yo18
+         jNrHtJJsyzne4xg7LkPA56N3TKoRIflb2aSiNvXfpkT09DmlFrTXgZ0qkBdK+Oa1OXcr
+         S+slHGIUP3sfYKR8Rsez+2YFlBckl9bgEoNwXZN2XM8YljSBQ3ngIm2EfniU78RzU1Pb
+         8eDqjL9VL4PzHSBm12JwQsogKdCRTu4AWzPU67A9h68F7alV2cijdETf01g6vaGPdZbm
+         fin8vFaxHab6aVwKV5wfvrhJRx0t/DU5+rcWzEpP+CvnSKdYzyy3FTdAiHgIEnzOV5PW
+         dDtw==
+X-Gm-Message-State: AOAM533RjN0boL1NaeJZwQmvO2IT208dkNqy+jqLflsQrIh69rcYNvdv
+        nLjpenQ4VXUSDXrWTXDtGOCzV8+Ky9zwgw==
+X-Google-Smtp-Source: ABdhPJzNxRns6J5gNCRPQUJLpO/2DMosR70t+lV/9DnaC8+gK/PzHE4iHLlXRCUZ/Ii1DNYJaUNffQ==
+X-Received: by 2002:a63:d14c:: with SMTP id c12mr19979450pgj.412.1629489499347;
+        Fri, 20 Aug 2021 12:58:19 -0700 (PDT)
+Received: from [10.230.32.55] ([192.19.148.250])
+        by smtp.gmail.com with ESMTPSA id j6sm7626467pfi.220.2021.08.20.12.58.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Aug 2021 12:58:18 -0700 (PDT)
+Subject: Re: [PATCH V2] dt-bindings: net: brcm,unimac-mdio: convert to the
+ json-schema
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Doug Berger <opendmb@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210819100946.10748-1-zajec5@gmail.com>
+ <20210820161533.20611-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <2e6807c0-6b52-a35c-b14a-7fc579e44254@gmail.com>
+Date:   Fri, 20 Aug 2021 21:58:12 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-References: <20210820173108.01d5c6de@xhacker.debian> <29e96ece-8541-a7a2-c6a9-453be6644eed@canonical.com>
- <20210820182708.51d13e29@xhacker.debian>
-In-Reply-To: <20210820182708.51d13e29@xhacker.debian>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 20 Aug 2021 21:55:53 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2vkZVt1bb7-iDGaSHp20U9d8QXu6AcrUMceJSS9Q_-4Q@mail.gmail.com>
-Message-ID: <CAK8P3a2vkZVt1bb7-iDGaSHp20U9d8QXu6AcrUMceJSS9Q_-4Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: synaptics: add DT for AS370-RDK
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Arnd Bergmann <arnd@arndb.de>, SoC Team <soc@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:QimpFDRslHCiuY63cyRM+AAa7RQ8Z9xxAuK1gjDezpm3GVvJuEh
- p5CLs+z3EixRSaw6tjsF/NTP5DIzEgx0kuT4tlfAYQD4DbJUZFz+NxVLCK3/8RR+wl7hroa
- hXAITDyQe5cdbG1e8gR8FOAQMcz0gtLhbOajS6GoGqnfmsyXXYWG3LIk//vl6BRq1Na36dO
- 6ezvm8CLyRXpl3PqQAqHQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:mLwtpR0sOQ0=:T0fTHYR5S5lsmlPd0tTNEx
- n38jf770zHkF5KbhPwOWOXm5DHuzSeuFnZGWGkd9aoOSOSMBI2YGehNDUu9Nx3gPu31YmcHMl
- 0xDPdkJa0JqtXHCMkebr9V3ja+3kIAIFGh2XzIiJmni4wg6nedzFk8lMMs70NMTMQvDYQtYEn
- VvLnYwMMGncaPfgzEYiej0NrD369Dj/4iCswsv/89y6qwQyguRg2gtJSg3N5ZVTSQHbnDleMA
- DFoD4lc4FUgniWFBGZyERmXSGbF3eQu7hNqh9ihT87SMF2JGAWLLi7qxtQHOPtx2x5a6dnBih
- 1IC7kv++8AssIzXZB27rbyO1SessWkI2DKJsEKoinvzIOqcHXXU7CpcoC25g/l6wabQpDCac4
- muEkpVEMzDYWEKyCbkxHK5tOJv9socRfyCqM3qvl6PgmmfuxL3CcjA4sflitGdU1NQlAtQlaI
- tkdivyVJV1yLLLY3JFbGCJAVZosTz5hXZexKKqKgGeP+f53niXi7n1S8dGT5Hascu+/0DOSLD
- bR7Huz8l+0an6TrpSTcOG9wsGCP2rklencgyIimquAwH50aTI301uWtBouO2qVzv1Hcf45Hk8
- MmWzUQvkNlEmhVtXZeYCUjkFvhZUeaG7Q0+kTcuCoc3qbXnX4/c1qMjyzWb7+yRJqwevcsUct
- WlCTR0om0GDgk674hY3DsBAQjy/2z+FtuuYp819KT2bwe31SmGbr9jYgy5ggwBrkZDVFuwTqC
- M5a3flpfPY1BbUaI2+ELCWzPY4xSuI0Iw3JXXSj9Shw9BsvJjTa+4DBMmvoCGrBkIC4YvrFxx
- MBmwUxQkM/AhH3C18yFHcx1hO02zIfUorjsykpRWGIE8+CoaTUJOoHH8MG5PQVhN1VM3fTY
+In-Reply-To: <20210820161533.20611-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 12:27 PM Jisheng Zhang
-<Jisheng.Zhang@synaptics.com> wrote:
-> On Fri, 20 Aug 2021 11:59:30 +0200 Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
-> > On 20/08/2021 11:31, Jisheng Zhang wrote:
-> >
-> > There is no such binding. You need to update the bindings file (first
-> > patch in the series).
->
-> This is my plan ;) In fact, "berlin4ct" related binding is also missing.
-> I want to convert Documentation/devicetree/bindings/arm/syna.txt
-> to yaml, then add missing bindings. But it's too late for 5.15,
->
-> If it's fine to keep as370.dtsi without board user(s), we can drop
-> this patch. I will solve this issue in next development window.
 
-Yes, doing it for the next cycle is ok.
 
-        Arnd
+On 8/20/2021 6:15 PM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This helps validating DTS files.
+> 
+> Introduced example binding changes:
+> 1. Fixed reg formatting
+> 2. Swapped #address-cells and #size-cells incorrect values
+> 3. Renamed node: s/phy/ethernet-phy/
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
