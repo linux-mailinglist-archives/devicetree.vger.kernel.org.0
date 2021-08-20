@@ -2,297 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCE03F32AB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 20:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9423F32C8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Aug 2021 20:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234160AbhHTSBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 14:01:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41400 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235172AbhHTSBD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 14:01:03 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0181A61166;
-        Fri, 20 Aug 2021 18:00:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629482425;
-        bh=7Gz9SPlKF29yEU4rLc/GG+EOsYXfql5Aal+QHu7Igeg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=h6QYuOzRbrjQY68moCms30kSkYrHpJcu2Vt+BLBhMibhEgZfWlciRG0aNnWJgF4vV
-         AKTqgaZWraWcxYGLHAFFomyw5u7LSVig6fLnhcSBUQX14/Z0mWRY2flYiUX+XqHyue
-         T4E8wlSyHQ9whkwI2Vr5DqulWV76uvrksZ5GNpl17z1h+tJeqlNeLtsgyEAXLE27V6
-         heXiYtDpdAe5FGIQ1dLgAJ+BwoYwhRulLJsa9lHN6RFxVT8Fl5k04XfeQkX47tConw
-         HDJnuKb3OQ6esT1Mq2DMHaICjBECU1T1wDxREGc4TB191pbpOx11GFE5f0DbPmvGxz
-         TJ49aBMqODprA==
-Received: by mail-ej1-f47.google.com with SMTP id u3so21842462ejz.1;
-        Fri, 20 Aug 2021 11:00:24 -0700 (PDT)
-X-Gm-Message-State: AOAM531KJ8WT/GS9YkSlxz5g9J6G9dBpKLDkiJv7J3DS292H+Mhb1WPZ
-        Bgp4jjlSkQof4FlmwTRFSq0oHi/pqshIR+3YuQ==
-X-Google-Smtp-Source: ABdhPJzCg01o0GVcbKggUJdrRxr7LQdQj/GR9SqTyTz2LtrjjgVYqF5ahged+VRhyA3Apm+R6NJsgM1nWobV9pBgjG4=
-X-Received: by 2002:a17:906:558d:: with SMTP id y13mr21682439ejp.130.1629482423396;
- Fri, 20 Aug 2021 11:00:23 -0700 (PDT)
+        id S231196AbhHTSJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 14:09:00 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:43446 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229512AbhHTSI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Aug 2021 14:08:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1629482901;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=VXoUUvmHBcVRhJY5rRRNheTdgRQ1IG/QNgX7foOSjd8=;
+        b=MNUzJWucdcUNYVPVNE6p/Rm6BeEguNIZhIdHedv9OShXCTMwoAvGnHjnj9UKxtBT6dUShH
+        I/kGjjzh3Fout7XeM3oN7k/bDP8EZAbqpWV0XRFONRp4opDE2RdbrZOggHQ0zXO6XC3Cb0
+        K02ZsXS0pUVXyEgdb/Znd2coHDZUB8M=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-39-A9IuaFUeP4ysxosMvfzblw-1; Fri, 20 Aug 2021 14:08:19 -0400
+X-MC-Unique: A9IuaFUeP4ysxosMvfzblw-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id D4067760C0;
+        Fri, 20 Aug 2021 18:08:17 +0000 (UTC)
+Received: from cmirabil.remote.csb (unknown [10.22.9.218])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 559A05D9D5;
+        Fri, 20 Aug 2021 18:08:16 +0000 (UTC)
+From:   Charles Mirabile <cmirabil@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Charles Mirabile <cmirabil@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Serge Schneider <serge@raspberrypi.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
+        linux-rpi-kernel@lists.infradead.org, fedora-rpi@googlegroups.com,
+        Mwesigwa Guma <mguma@redhat.com>,
+        Joel Savitz <jsavitz@redhat.com>
+Subject: [RFC PATCH v2 0/4] Raspberry Pi Sense HAT driver
+Date:   Fri, 20 Aug 2021 14:07:57 -0400
+Message-Id: <20210820180801.561119-1-cmirabil@redhat.com>
 MIME-Version: 1.0
-References: <20210811105030.3458521-1-mperttunen@nvidia.com>
- <20210811105030.3458521-2-mperttunen@nvidia.com> <YRwoKW4nOc52MAQV@robh.at.kernel.org>
- <1dfd5173-5654-9df8-1e8e-d0e365ed914d@kapsi.fi> <YR0InKtLCO1ohcHW@orome.fritz.box>
-In-Reply-To: <YR0InKtLCO1ohcHW@orome.fritz.box>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 20 Aug 2021 13:00:08 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ6i4T7cZCDpo3r6JQ_dBBHNHGiXFHm_EBwudtAD7qSsg@mail.gmail.com>
-Message-ID: <CAL_JsqJ6i4T7cZCDpo3r6JQ_dBBHNHGiXFHm_EBwudtAD7qSsg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: Add YAML bindings for NVDEC
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Mikko Perttunen <cyndis@kapsi.fi>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 8:18 AM Thierry Reding <thierry.reding@gmail.com> wrote:
->
-> On Wed, Aug 18, 2021 at 11:24:28AM +0300, Mikko Perttunen wrote:
-> > On 8/18/21 12:20 AM, Rob Herring wrote:
-> > > On Wed, Aug 11, 2021 at 01:50:28PM +0300, Mikko Perttunen wrote:
-> > > > Add YAML device tree bindings for NVDEC, now in a more appropriate
-> > > > place compared to the old textual Host1x bindings.
-> > > >
-> > > > Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> > > > ---
-> > > > v3:
-> > > > * Drop host1x bindings
-> > > > * Change read2 to read-1 in interconnect names
-> > > > v2:
-> > > > * Fix issues pointed out in v1
-> > > > * Add T194 nvidia,instance property
-> > > > ---
-> > > >   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++++++++++++++++
-> > > >   MAINTAINERS                                   |   1 +
-> > > >   2 files changed, 110 insertions(+)
-> > > >   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..571849625da8
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> > > > @@ -0,0 +1,109 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
-> > > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > > +
-> > > > +title: Device tree binding for NVIDIA Tegra NVDEC
-> > > > +
-> > > > +description: |
-> > > > +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
-> > > > +  and newer chips. It is located on the Host1x bus and typically
-> > > > +  programmed through Host1x channels.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Thierry Reding <treding@gmail.com>
-> > > > +  - Mikko Perttunen <mperttunen@nvidia.com>
-> > > > +
-> > > > +properties:
-> > > > +  $nodename:
-> > > > +    pattern: "^nvdec@[0-9a-f]*$"
-> > > > +
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - nvidia,tegra210-nvdec
-> > > > +      - nvidia,tegra186-nvdec
-> > > > +      - nvidia,tegra194-nvdec
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: nvdec
-> > > > +
-> > > > +  resets:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  reset-names:
-> > > > +    items:
-> > > > +      - const: nvdec
-> > > > +
-> > > > +  power-domains:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  iommus:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interconnects:
-> > > > +    items:
-> > > > +      - description: DMA read memory client
-> > > > +      - description: DMA read 2 memory client
-> > > > +      - description: DMA write memory client
-> > > > +
-> > > > +  interconnect-names:
-> > > > +    items:
-> > > > +      - const: dma-mem
-> > > > +      - const: read-1
-> > > > +      - const: write
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - clocks
-> > > > +  - clock-names
-> > > > +  - resets
-> > > > +  - reset-names
-> > > > +  - power-domains
-> > > > +
-> > > > +if:
-> > > > +  properties:
-> > > > +    compatible:
-> > > > +      contains:
-> > > > +        const: nvidia,tegra194-host1x
-> > >
-> > > host1x? This will never be true as the schema is only applied to nodes
-> > > with the nvdec compatible.
-> >
-> > Argh, it's a typo indeed. Should be nvidia,tegra194-nvdec.
-> >
-> > >
-> > > > +then:
-> > > > +  properties:
-> > > > +    nvidia,instance:
-> > > > +      items:
-> > > > +        - description: 0 for NVDEC0, or 1 for NVDEC1
-> > >
-> > > What's this for? We generally don't do indices in DT.
-> >
-> > When programming the hardware through Host1x, we need to know the "class ID"
-> > of the hardware, specific to each instance. So we need to know which
-> > instance it is. Technically of course we could derive this from the MMIO
-> > address but that seems more confusing.
-> >
-> > >
-> > > > +
-> > > > +additionalProperties: true
-> > >
-> > > This should be false or 'unevaluatedProperties: false'
-> >
-> > I tried that but it resulted in validation failures; please see the
-> > discussion in v2.
->
-> Rob mentioned that there is now support for unevaluatedProperties in
-> dt-schema. I was able to test this, though with only limited success. I
-> made the following changes on top of this patch:
+This patch series adds a set of drivers for operating the Sense HAT
+peripheral device. This board is an add on for the Raspberry Pi that is
+designed to connect using the GPIO connector via I2C.
 
-Here's a branch that works with current jsonschema master:
+It features:
+	- a joystick
+	- an 8x8 RGB LED matrix display
+	- a whole bunch of environmental sensors with their own drivers
+	(those are already in upstream Linux)
 
-https://github.com/robherring/dt-schema/tree/draft2020-12
+This is a refactor of the work of Serge Schneider, the author of a
+version of this driver that is currently in the Raspberry Pi downstream
+kernel. We modified his code to make it suitable for upstream Linux.
 
-> --- >8 ---
-> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> index d2681c98db7e..0bdf05fc8fc7 100644
-> --- a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> @@ -73,14 +73,18 @@ if:
->    properties:
->      compatible:
->        contains:
-> -        const: nvidia,tegra194-host1x
-> +        const: nvidia,tegra194-nvdec
->  then:
->    properties:
->      nvidia,instance:
-> +      $ref: /schemas/types.yaml#/definitions/uint32
->        items:
->          - description: 0 for NVDEC0, or 1 for NVDEC1
->
-> -additionalProperties: true
-> +  required:
-> +    - nvidia,instance
-> +
-> +unevaluatedProperties: false
->
->  examples:
->    - |
-> @@ -105,3 +109,28 @@ examples:
->              interconnect-names = "dma-mem", "read-1", "write";
->              iommus = <&smmu TEGRA186_SID_NVDEC>;
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/clock/tegra194-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/tegra194-mc.h>
-> +    #include <dt-bindings/power/tegra194-powergate.h>
-> +    #include <dt-bindings/reset/tegra194-reset.h>
-> +
-> +    nvdec@15480000 {
-> +            compatible = "nvidia,tegra194-nvdec";
-> +            reg = <0x15480000 0x40000>;
-> +            clocks = <&bpmp TEGRA194_CLK_NVDEC>;
-> +            clock-names = "nvdec";
-> +            resets = <&bpmp TEGRA194_RESET_NVDEC>;
-> +            reset-names = "nvdec";
-> +
-> +            nvidia,instance = <0>;
-> +
-> +            power-domains = <&bpmp TEGRA194_POWER_DOMAIN_NVDECA>;
-> +            interconnects = <&mc TEGRA194_MEMORY_CLIENT_NVDECSRD &emc>,
-> +                            <&mc TEGRA194_MEMORY_CLIENT_NVDECSRD1 &emc>,
-> +                            <&mc TEGRA194_MEMORY_CLIENT_NVDECSWR &emc>;
-> +            interconnect-names = "dma-mem", "read-1", "write";
-> +            iommus = <&smmu TEGRA194_SID_NVDEC>;
-> +    };
-> --- >8 ---
->
-> As I said, this only works partially. One thing I have to do is comment
-> out the whole "if:" block in meta-schemas/base.yaml in order to get rid
-> of this error:
->
->         Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml: 'additionalProperties' is a required property
->         hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
->         from schema $id: http://devicetree.org/meta-schemas/base.yaml#
->
-> which basically makes the whole file invalid. The reason seems to be
-> that dt-schema will only allow unevaluatedProperties if there are any
-> $ref references in the schema. Although I'm not sure I understand how
-> exactly that works because I tried to inject a dummy $ref but that
-> didn't fix the above error.
+A couple of tests are available for the driver in this repo:
+https://github.com/underground-software/sensehat/tree/master/tests
+	- color_test displays various solid colors on the LED panel
+	- framebuffer_test diplays a single lit cell that is
+	  controllable via the arrow keys or the joystick
 
-I think we'll end up relaxing this with 'unevaluatedProperties'
-supported. Primarily for just this case with a conditionally defined
-property.
+Known issue:
+	- We are not sure how to integrate the device tree overlay for the
+	Sense HAT into mainline Linux, or if we even should at this time.
 
-> Once that's worked around, though, I do get the examples to validate
-> with just a small caveat: nvidia,instance is recognized as being
-> required in the Tegra194 case (if I remove it from the example, I do get
-> an error, as expected), but if I add nvidia,instance to the Tegra186
-> example, it doesn't actually produce an error and will just accept it as
-> valid, even though the compatible is not nvidia,tegra194-nvdec.
->
-> I don't have time at the moment to investigate why that is, but just
-> thought I'd report this here in the meantime. Perhaps it's already a
-> known issue?
->
-> We could potentially side-step this by getting rid of the custom
-> nvidia,instance property altogether. Unfortunately of_device_id table
-> matching only supports matching by name, but not by unit-address, which
-> would've been nice in this case. Matching by base address manually is a
-> bit suboptimal, but it's not that bad.
->
-> In any case, there are other examples I know of which need this type of
-> functionality (a bunch of devices where the number and names of power
-> supplies change from one generation to another), so this problem isn't
-> going entirely away anyway.
+Fortunately, most Linux distrubtions that can run on the Raspberry Pi
+already include an appropriate device tree overlay since they often import
+all of the overlays from the downstream Raspberry Pi kernel.
 
-That's pretty common (though I think we get more variation than we
-should), but why would you need the instance or base address for this?
+We have included a hypothetical overlay that would work for the sensehat
+as a fourth patch in this series but we just put it in the root of the
+source tree for the time being so that patch should not be merged unless a
+consensus is reached that the overlay should be in the tree, and a proper
+location is found to put it.
 
-Rob
+Suggestions are welcome and appreciated.
+
+For more information about the Sense HAT, visit:
+https://www.raspberrypi.org/products/sense-hat/
+
+Changes since v1:
+	- We included a device tree overlay for the Sense HAT
+	- Based on Feedback from v1 we:
+		- Changed the style of a few lines
+		- Adding more error logging
+		- Changed the compatible strings to use the more common
+		"raspberrypi" instead of just "rpi"
+		- Renamed everything from rpisense to sensehat
+
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+
+Charles Mirabile (4):
+  Add core driver and config
+  Add joystick driver and config
+  Add display driver and config
+  Add sensehat device tree overlay
+
+ arch/arm/boot/dts/sensehat.dtbs            |  51 +++++
+ drivers/auxdisplay/Kconfig                 |   7 +
+ drivers/auxdisplay/Makefile                |   1 +
+ drivers/auxdisplay/sensehat-display.c      | 234 +++++++++++++++++++++
+ drivers/input/joystick/Kconfig             |   8 +
+ drivers/input/joystick/Makefile            |   1 +
+ drivers/input/joystick/sensehat-joystick.c | 124 +++++++++++
+ drivers/mfd/Kconfig                        |   8 +
+ drivers/mfd/Makefile                       |   1 +
+ drivers/mfd/sensehat-core.c                | 168 +++++++++++++++
+ include/linux/mfd/sensehat.h               |  55 +++++
+ 11 files changed, 658 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sensehat.dtbs
+ create mode 100644 drivers/auxdisplay/sensehat-display.c
+ create mode 100644 drivers/input/joystick/sensehat-joystick.c
+ create mode 100644 drivers/mfd/sensehat-core.c
+ create mode 100644 include/linux/mfd/sensehat.h
+
+-- 
+2.27.0
+
