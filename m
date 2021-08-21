@@ -2,112 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE69A3F38E0
-	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 07:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56EE13F3922
+	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 08:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231835AbhHUFnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Aug 2021 01:43:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43242 "EHLO
+        id S232384AbhHUGog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Aug 2021 02:44:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231488AbhHUFnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Aug 2021 01:43:49 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D319C06175F
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 22:43:11 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id mw10-20020a17090b4d0a00b0017b59213831so3426036pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 22:43:11 -0700 (PDT)
+        with ESMTP id S232342AbhHUGof (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Aug 2021 02:44:35 -0400
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4984C061575
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 23:43:56 -0700 (PDT)
+Received: by mail-qk1-x744.google.com with SMTP id t66so13365114qkb.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Aug 2021 23:43:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=9sE8/Gezsq3ktVT1yBNWUnjMOxfVYbA50Rdyo+0rKjg=;
-        b=i+WrkoXjNKg4kf7Ku0gUlQx7eIoc5b0b0YLG92TKYL9BVo0rPqj+uzdLB+MjPabU3J
-         HjWDWfEsdrVtR+NH2G9+XReIX26V18hHaRdIgzgV8JpSXS7H5HUc9NyL4mjtoZdJexDM
-         PZIXoQghEQmI+ZcvoTlg3lVMhlUTAKbTqJLVM=
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=0zxPduS5IUlaKoDmCEn68k89T9YkKaQNgugxVbUHaKI=;
+        b=hF7hiVRYj/OzC/fGZHXeBMXfx2wdlXc36bhNMM3+6k0c0l7ssGm3kJGYh8e8QEqEpq
+         4MpMo+Shf7qMUj8idz/tyCsFfVWnsibCsPO/VFomPZqDnSLpg2PjgUWSqEBSsxfCom2B
+         UnVu39p1ruRLmYgv3kBWLxzveTxh6iRs3HEVgkSUxpJ+lta6wtO7poL8HcQKsgWwpGqZ
+         GuK3VUTTg1oagqHLKeGodcPbD/ThXgY4EE/NGWim+/7XENzGKpK++LYCn+ETdEEwNzFQ
+         C+Zx3J7GDwQgRn74uAqNylWcY0KRRzmQod8+LQQr9EKWHufl8CNo6Jpge38Bv9F/2UZB
+         VeHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9sE8/Gezsq3ktVT1yBNWUnjMOxfVYbA50Rdyo+0rKjg=;
-        b=Z2efFQ1/+SuLNTty4o2smGsd/af/UeaBxt/+vAsLOTVy0NYpWxWZovZIbAcqFYX1HS
-         9dXZmmB/ZaPoDi/zuReEW8E3vRURdo8LZBK2whPPVWhinQiVsUFfwoab4cxPwoo5OEY7
-         mik7S6j6yHt5cFCsDP7lmLIDvGK36U0hG3005uev89KFAPSrwKDJoA1V6gzMt9Es8oX0
-         QziGhRlkuMY9TACWINfZKARqZta65RCSO08+4zDk77G1wxt6joKtYfDQ62qBKv1TNHZ/
-         2psHScUGOKVmpJPyjkQnMAWd+m+F/cz796/xmu6UH/0RpWEzXcFFqPCH+rrXYVRRB7Fm
-         qd7w==
-X-Gm-Message-State: AOAM531qIVv7pOJnn56qLewYyb4/Zd9UhjHuuhbGxLQpP39YnH8Jx5UO
-        2YAOlf3sl1GPdVxEqKz3XnYljg==
-X-Google-Smtp-Source: ABdhPJzgQUYdkk9J8dqAROFTOnmvvqyCpq+uP6WafjZ2SeuiM0a5Vtnmi8qv2wGXx2oleUl8CurB6g==
-X-Received: by 2002:a17:902:bb92:b0:12d:ad99:7fb6 with SMTP id m18-20020a170902bb9200b0012dad997fb6mr19095378pls.49.1629524590503;
-        Fri, 20 Aug 2021 22:43:10 -0700 (PDT)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
-        by smtp.gmail.com with ESMTPSA id n11sm7570761pjf.17.2021.08.20.22.43.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 22:43:09 -0700 (PDT)
-Date:   Fri, 20 Aug 2021 22:43:08 -0700
-From:   Kees Cook <keescook@chromium.org>
-To:     Matthew Wilcox <willy@infradead.org>
-Cc:     Joe Perches <joe@perches.com>, LKML <linux-kernel@vger.kernel.org>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        Dwaipayan Ray <dwaipayanray1@gmail.com>,
-        LukasBulwahn <lukas.bulwahn@gmail.com>,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-riscv@lists.infradead.org, netdev@vger.kernel.org,
-        linux-csky@vger.kernel.org
-Subject: Re: What is the oldest perl version being used with the kernel ?
- update oldest supported to 5.14 ?
-Message-ID: <202108201856.41AB391@keescook>
-References: <37ec9a36a5f7c71a8e23ab45fd3b7f20efd5da24.camel@perches.com>
- <YR/zrjiCwnzMMcmA@casper.infradead.org>
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=0zxPduS5IUlaKoDmCEn68k89T9YkKaQNgugxVbUHaKI=;
+        b=javxV1Qes+qWa/n/IzMD+zJw+KZDcR1Fua5Rgl0b4J3MUJkuaBGi755mF8lrMNmaMZ
+         zpdwlf9tMl7fLU9pjl+f9012w+8YDylvIsQMiSVJXq3u7zCaiJauszwF1mYXZdwwoyPl
+         97Z4HLxE4VbH40SlVtkelI79b6zCghcVztxTxWtyTl9dYagemsIn+z0CXdz9ICTTrKdu
+         TcsOU1M6F6aR0qmiBKm627T+dlEyHTL2rXL0rM86KlORU4WuwG42SqWs3kjrusm2YeSa
+         DSQdwLiUoJev5wsanGqgWPouXGJ45+z5OTpE+qBqAjnt1xeMUxyaiiKlysvNy+6eaV5x
+         Y1dg==
+X-Gm-Message-State: AOAM530PaFMi3fpNQVO2LDyX5jDREA+JzTM7zT1tEqKMPjm2eTVSmMw3
+        I4qCXvPeEXa8ltjsWc+NXgn5RxjuMqQdBk0yyQ==
+X-Google-Smtp-Source: ABdhPJxDERlIq1odmop6/pi1KBHSlWFc0J1/90rohBwzxfiEjbEpG5//vbh6785RZvoCTTMWhvRS4eXaC56EM4E6YQs=
+X-Received: by 2002:a37:58b:: with SMTP id 133mr12148936qkf.146.1629528235981;
+ Fri, 20 Aug 2021 23:43:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YR/zrjiCwnzMMcmA@casper.infradead.org>
+Reply-To: tofilbamar@gmail.com
+Sender: aliftomarn0@gmail.com
+Received: by 2002:ad4:594b:0:0:0:0:0 with HTTP; Fri, 20 Aug 2021 23:43:55
+ -0700 (PDT)
+From:   Tofil Bama <tofilbamarn@gmail.com>
+Date:   Fri, 20 Aug 2021 23:43:55 -0700
+X-Google-Sender-Auth: jcTsK7iTlHDpAacWkgmcsDXZmTU
+Message-ID: <CAFzt4xVRcifRPkAfZ=bA_h4YiDaKr9Ao7mNeLeVBS7HoV-juYw@mail.gmail.com>
+Subject: GOOD NEWS.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 07:25:50PM +0100, Matthew Wilcox wrote:
-> On Fri, Aug 20, 2021 at 10:27:59AM -0700, Joe Perches wrote:
-> > Perl 5.8 is nearly 20 years old now.
-> > 
-> > https://en.wikipedia.org/wiki/Perl_5_version_history
-> > 
-> > checkpatch uses regexes that are incompatible with perl versions
-> > earlier than 5.10, but these uses are currently runtime checked
-> > and skipped if the perl version is too old.  This runtime checking
-> > skips several useful tests.
-> > 
-> > There is also some desire for tools like kernel-doc, checkpatch and
-> > get_maintainer to use a common library of regexes and functions:
-> > https://lore.kernel.org/lkml/YR2lexDd9N0sWxIW@casper.infradead.org/
-> > 
-> > It'd be useful to set the minimum perl version to something more modern.
-> > 
-> > I believe perl 5.14, now only a decade old, is a reasonable target.
-> > 
-> > Any objections or suggestions for a newer minimum version?
-> 
-> Not an objection per se, but some data points.
-> 
-> Oracle Linux 5 (released 2007, still under support) has perl 5.8.8
-> Oracle Linux 6 (released 2011) has perl 5.10.1
-> Oracle Linux 7 (released 2014) has perl 5.16.3
-> Oracle Linux 8 (released 2019) has perl 5.26.3
-> 
-> I don't know that we need to be able to build on a distro from 2007
-> or even from 2011.  I think it's reasonable to require updating to a
-> 2014 distro in order to build a 2021 kernel.
-> 
-> For comparison, we currently require gcc-4.9 to build the kernel, and
-> 4.9.0 was released in 2014.  So perl-5.16 wouldn't be an unreasonable
-> requirement, I believe.
+Dear,
 
-Ubuntu name/version mapping: https://wiki.ubuntu.com/
-Ubuntu Perl versions: https://launchpad.net/ubuntu/+source/perl
+My name is Mr Tofil Bama, I am the Bill and Exchange assistant
+Manager in Bank of Africa Ouagadougou Burkina Faso. In my department
+I discovered an abandoned sum of eighteen million three hundred
+thousand United State of American dollars (18.3MILLION USA DOLLARS)
+in an account that belongs to one of our foreign customer
+(late Mr Shitu Nuri) who died in Ethiopian Airlines Flight 409 that
+crashed into the Mediterranean Sea on 25th January 2010.
 
-The oldest publicly supported Ubuntu (18.04 Bionic) uses Perl 5.26.
+Since I got information about his death I have been expecting
+his next of kin to come over and claim his money because we
+cannot release it unless somebody applies for it as the next
+of kin or relation to the deceased as indicated in our banking
+guidelines, unfortunately we learnt that all his supposed next of
+kin or relation died alongside with him in the plane crash leaving
+nobody behind for the claim.
 
--- 
-Kees Cook
+It is therefore upon this discovery that I decided to make this
+business proposal to you and release the money to you as next of kin
+to the deceased for safety and subsequent disbursement since nobody
+is coming for the fund, it is 11 years now the money is lying pending
+in the account of our deceased and I don't want the money to go into
+the bank treasury as unclaimed bill.
+
+You will be entitled with 40% of the total sum while 60% will be for
+me after which I will visit your Country to invest my own share when
+the fund is successfully transferred into your account, Please I would
+like you to keep this transaction confidential and as a top secret
+between me and you until we successfully achieve this golden
+opportunity.
+
+Yours sincerely,
+Mr Tofil Bama.
