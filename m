@@ -2,116 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEF683F3C57
-	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 22:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 855E83F3C5C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 22:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbhHUUDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Aug 2021 16:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33236 "EHLO
+        id S230212AbhHUUFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Aug 2021 16:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbhHUUDk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Aug 2021 16:03:40 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352ABC061575;
-        Sat, 21 Aug 2021 13:03:00 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id u16so19373923wrn.5;
-        Sat, 21 Aug 2021 13:03:00 -0700 (PDT)
+        with ESMTP id S230179AbhHUUFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Aug 2021 16:05:07 -0400
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8406DC061575
+        for <devicetree@vger.kernel.org>; Sat, 21 Aug 2021 13:04:27 -0700 (PDT)
+Received: by mail-vs1-xe2d.google.com with SMTP id i1so8445913vsk.8
+        for <devicetree@vger.kernel.org>; Sat, 21 Aug 2021 13:04:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PFf7oO4eQliVPCuqPr65nAGjdn4BIKZ/Y6b3PBt2/Ys=;
-        b=NH4YJFOlOEiRG08rjfAZMP/z1aHgsSkBHVyx/5v7mrEdmTp0mov+Ms7tshH8Ytjhap
-         obZaHfw8vHLobVFy2bPxWIF3119d+VVdP6UuPKAvYFB8Tyij1mCGPNBKnVOdRS21Ll5w
-         8O0EsDir+c3Xb6CwsdzEl5Z9biK0pzoT7bA0EuxFqjcFhg/qyraXl+pRYbqSt+67K7Ie
-         ddWToC6zSKiMgWRDI3Sv7RZoUNsi0KcfABI4H0sybkC3hRwtverRIwi+fYz7QZN4+Raq
-         VYJaIUj4Sdm1hiXuZGbFIOvEHwSJIICIOsX3C45SIxoWHns9ZIEmKyGNuxxqY9p+OGF4
-         IyEQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=G38jY1tilTGN6yDwHsom5S6bcpGnsNsFIqj6vHXaM+4=;
+        b=jbszNntP7qTNXuYqeSDrSwyTEJRUxrFw9Tszq2ShHFrKt+c5lI5tR1iD4bTU5W0CY6
+         +CIRYtl6wu5OzPTlhRq4xVu2fyRkkCshIJnzMGm8Uz+VgmoICIPSkqID4iLESFOzwJzO
+         FfI3xg/pnuBnsa9QCjryMzEjzqIcvpU6cCqRUJkED4JBHaNQ8h3pmRDbtXD3XiLZP+sY
+         D2kiu9zD3NZ04mNunkmIyGotJoS9joa0JNQy4rYj2iUaQiyJvG6w4rW+k55A6NaoBE1e
+         qVnAgI0ULUX2/mmEHX0WIhzB6wxlAeydUSx6CNxYtUtb+CSqUsxo2EEA8huQ9kk+eTvO
+         usRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PFf7oO4eQliVPCuqPr65nAGjdn4BIKZ/Y6b3PBt2/Ys=;
-        b=XrAgTUDE1FRtT5/U/8EAit2ag+5QaNda7GOcJ8PHpaeu7hWYJCupSKkaHM9AH3AE7I
-         RkQwtUiCrnfI+6aZWU8l/NsotVfGU+26/ReL6szIQODPF7IwNh7NQSaWCKzL+Cs6H+F6
-         hMJ6PkZtqKbPyIBw7wYvICQp+xSy/UZuEOGBj2mOpkJaffGaQm2bOrwm5Ay+ncMHGq7h
-         AXwNvuv3b/uO1UzsmTnUdAg5i9WyKQrqLXM1+ab9dEgLdw3DS1wK+osfAOz8FqcoiUqV
-         NhopaaPfZSBotYytacpXByLdzklUQho5L6FqqIx638dLHJd043EA2WN4HSaZEZEr07NF
-         ouuA==
-X-Gm-Message-State: AOAM532yn4S5Kx4QuxlXQFHn3QSrSYw6WFcpI9BIj+24it8X6YY4hcqv
-        lQw0srhrNh0yxptkuJj6oAw=
-X-Google-Smtp-Source: ABdhPJwts5NwWCTpLwyBMv2GOfSSV2aoEnUUL9FanMTfYGBeXv6zmDqD4ZFyAHl7hNemSONnUd25Ew==
-X-Received: by 2002:a5d:4ac5:: with SMTP id y5mr5347164wrs.125.1629576178747;
-        Sat, 21 Aug 2021 13:02:58 -0700 (PDT)
-Received: from debian64.daheim (p4fd09b15.dip0.t-ipconnect.de. [79.208.155.21])
-        by smtp.gmail.com with ESMTPSA id o17sm2704044wrm.8.2021.08.21.13.02.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Aug 2021 13:02:58 -0700 (PDT)
-Received: from localhost.daheim ([127.0.0.1])
-        by debian64.daheim with esmtp (Exim 4.94.2)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1mHXCf-000Dne-4d; Sat, 21 Aug 2021 22:02:57 +0200
-Subject: Re: [RFC PATCH v1 1/3] dt-bindings:net:wireless:qca,ath9k: add
- nvmem-cells for calibration data
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        ath9k-devel@qca.qualcomm.com, Rob Herring <robh+dt@kernel.org>
-References: <91e68ca7f65bee7197ed5829ef91bc526df16e8a.1629508039.git.chunkeey@gmail.com>
- <87ilzz9wzf.fsf@tynnyri.adurom.net>
-From:   Christian Lamparter <chunkeey@gmail.com>
-Message-ID: <cf25eb4a-197d-161a-5902-64830c383746@gmail.com>
-Date:   Sat, 21 Aug 2021 22:02:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=G38jY1tilTGN6yDwHsom5S6bcpGnsNsFIqj6vHXaM+4=;
+        b=J3pGQgEMoqd+040naNqx8pYCXrbLOwUjj8e+7JVi0DmwqS6G6wwzwkyiKkKGC2bcrk
+         8wqONvvLpFJ0c93zfsff73ot5Kri7z6WEadQ/vtTCDEw2j0g3tQ2Fo+nFpUN/C56DCxj
+         T8WftJLqbkxcFgjSC7jM8tTzQWWuPtkpoiFei4iQPaKq34qtzqJzDmL5hsV5GzCcUoTq
+         kC1b+oOaI0+jHmT3RUzYJkYu5IFuNqX2ey5bqGaxHsxlL2Xc+FRPQWNUGWmuccVF4z2n
+         195+iWmfAQINp+cLiSeaLL4l65V5pN1cbVpdP4sCmxMPV+ZCcNrAT6EJw1MYzprWL4Yq
+         W+gg==
+X-Gm-Message-State: AOAM53241P4Rfg38igJi2yC4WWrb8L6w44YI1/4mdamDlle9MxWCW5nA
+        1SMwJvtezUIAhDxa6cSmlj1l1zDMNxEiTfjeRgN3Zw==
+X-Google-Smtp-Source: ABdhPJzU7hnomubaSHIzPBGsiWg0WU5H7lkMGJVnVU/4N1qnPmwHy/BZu/KqOcfxg7pCte4q8mzlxNLvP7gLbwusFfw=
+X-Received: by 2002:a67:16c1:: with SMTP id 184mr20698442vsw.14.1629576266521;
+ Sat, 21 Aug 2021 13:04:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <87ilzz9wzf.fsf@tynnyri.adurom.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210811114827.27322-1-semen.protsenko@linaro.org>
+ <20210811114827.27322-8-semen.protsenko@linaro.org> <YRwDETpe019RFU/q@robh.at.kernel.org>
+In-Reply-To: <YRwDETpe019RFU/q@robh.at.kernel.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sat, 21 Aug 2021 23:04:14 +0300
+Message-ID: <CAPLW+4mt8x3XacrOHBSgOPZckUbhs=7ee4MCZwEP3ziPYRD7bw@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] arm64: dts: exynos: Add Exynos850 SoC support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Marc Zyngier <maz@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2021 07:40, Kalle Valo wrote:
-> Christian Lamparter <chunkeey@gmail.com> writes:
-> 
->> On most embedded ath9k devices (like range extenders,
->> routers, accesspoints, ...) the calibration data for
->> the RF/PHY is simply stored in a MTD partition named
->> "ART", "caldata"/"calibration", etc.
->>
->> Any mtd partition is automatically registered in the
->> nvmem subsystem. This makes is possible to fetch the
->> necessary calibration directly from there at the low
->> cost of adding nvmem cell information via the
->> device-tree or via similar means.
->>
->> This speeds up the driver's initialization a lot,
->> because the driver doesn't have to wait for userspace
->> to provide the data via helpers.
->>
->> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> 
-> The series looks good to me. But I'm curious, why you marked this as
-> RFC? Is there something controversial I missed?
+On Tue, 17 Aug 2021 at 21:42, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Aug 11, 2021 at 02:48:27PM +0300, Sam Protsenko wrote:
+> > Samsung Exynos850 is ARMv8-based mobile-oriented SoC.
+> >
+> > This patch adds minimal SoC support by including next Device Tree nodes:
+> >
+> > 1. Octa cores (Cortex-A55), supporting PSCI v1.0
+> > 2. ARM architecture timer (armv8-timer)
+> > 3. Interrupt controller (GIC-400)
+> > 4. Pinctrl nodes for GPIO
+> > 5. Serial node
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v3:
+> >  - Used generic fixed clock for serial
+> >
+> > Changes in v2:
+> >  * Commit message:
+> >    - Documented added dts features instead of CPU features
+> >
+> >  * exynos850-usi.dtsi:
+> >    - Removed, moved everything to exynos850.dtsi
+> >
+> >  * exynos850.dtsi:
+> >    - Root node:
+> >      - Added comment about engineering name (Exynos3830)
+> >      - Renamed pinctrl nodes, adding domain names
+> >      - Used hard coded IRQ numbers instead of named constants everywhere
+> >      - Added soc node, moved next nodes there: gic, clock, pinctrls and
+> >        serial
+> >      - Used address-cells=1 for soc node and removed unneeded 0x0 from
+> >        reg properties
+> >      - Moved exynos850-pinctrl.dtsi include line to the end of
+> >        exynos850.dtsi
+> >      - Coding style fixes
+> >    - cpus:
+> >      - Used address-cells=1 for cpus node
+> >      - Renamed cpu@0001 to cpu@1, and so on
+> >      - Left only "arm,cortex-a55" for cpus compatible
+> >      - Renamed reg = <0x0001> to <0x1> for cpus
+> >    - armv8 timer:
+> >      - Add comment about missing HV timer IRQ to armv8 timer node
+> >      - Removed not existing properties from armv8 timer node
+> >      - Fixed cpu number in CPU_MASK()
+> >      - Removed obsolete clock-frequency property
+> >    - GIC:
+> >      - Fixed GIC type to be GIC-400
+> >      - Fixed size of GIC's 2nd region to be 0x2000
+> >    - serial node:
+> >      - Hard coded clock number for serial_0 for now; will replace with
+> >        named const once proper clock driver is implemented
+> >      - Removed gate_uart_clk0 clock from serial_0, as that clock is not
+> >        supported in serial driver anyway (yet)
+> >    - clock node:
+> >      - Fixed clock controller node name (@0x12.. -> @12..)
+> >
+> >  * exynos850-pinctrl.dtsi:
+> >    - Referenced pinctrl nodes instead of defining those again in root node
+> >    - Fixed interrupt-cells (3 -> 2)
+> >    - Fixed USI related comments for pin config nodes
+> >    - Removed decon_f_te_* and fm_lna_en nodes (won't be used)
+> >    - Reordered pin config nodes by pin numbers
+> >    - Improved all comments
+> >    - Used existing named constants for pin-function and pin-pud
+> >    - Fixed node names (used hyphens instead of underscore)
+> >    - Fixed warnings found in W=1 build
+> >
+> >  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 748 ++++++++++++++++++
+> >  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 261 ++++++
+> >  2 files changed, 1009 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> >  create mode 100644 arch/arm64/boot/dts/exynos/exynos850.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> > new file mode 100644
+> > index 000000000000..ba5d5f33e2f6
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> > @@ -0,0 +1,748 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Samsung's Exynos850 SoC pin-mux and pin-config device tree source
+> > + *
+> > + * Copyright (C) 2017 Samsung Electronics Co., Ltd.
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + *
+> > + * Samsung's Exynos850 SoC pin-mux and pin-config options are listed as device
+> > + * tree nodes in this file.
+> > + */
+> > +
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include <dt-bindings/pinctrl/samsung.h>
+> > +
+> > +&pinctrl_alive {
+> > +     gpa0: gpa0 {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +             interrupt-parent = <&gic>;
+> > +             interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> > +     };
+> > +
+> > +     gpa1: gpa1 {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +             interrupt-parent = <&gic>;
+> > +             interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> > +     };
+> > +
+> > +     gpa2: gpa2 {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +             interrupt-parent = <&gic>;
+> > +             interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+> > +     };
+> > +
+> > +     gpa3: gpa3 {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +             interrupt-parent = <&gic>;
+> > +             interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> > +     };
+> > +
+> > +     gpa4: gpa4 {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +             interrupt-parent = <&gic>;
+> > +             interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
+> > +                          <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+> > +     };
+> > +
+> > +     gpq0: gpq0 {
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +
+> > +             interrupt-controller;
+> > +             #interrupt-cells = <2>;
+> > +     };
+> > +
+> > +     /* I2C5 (also called CAM_PMIC_I2C in TRM) */
+> > +     i2c5_bus: i2c5-bus {
+>
+> Please name all the pinctrl nodes with some pattern you can match on
+> once there is a schema. '-pins$' is my suggestion.
+>
 
-yeah. Last night (it was already really late) I was tunnel-visioning
-at the thought that device-tree binding update was a must there.
-... And ath9k's qca,ath9k.txt is still in that .txt and not .yaml
-format. So, I'm not sure if that file has to be converted first.
-(I couldn't get Rob's tools to work. And without them, I've no idea
-what error messages a converted .yaml of it will pop up)
+Done. This looks much better, the change will be present in new patch
+series including board dts.
 
-However... since then, I had the change to re-read:
-<https://www.kernel.org/doc/Documentation/nvmem/nvmem.txt>
+Can I ask for more info about schema you mentioned: is there some doc
+or examples I can check? And is it something generic, or I have to
+implement it for Exynos850 dts?
 
-And found that nvmem cells and lookups can be specified in
-the old platform data way as well... So that binding patch
-1/3 is optional.
+Thanks!
 
-So, yeah. If nobody has an comment until next week, I'll post this
-series with only patches 2/3 and 3/3.
-
-Cheers,
-Christian
+> > +             samsung,pins = "gpa3-5", "gpa3-6";
+> > +             samsung,pin-function = <EXYNOS_PIN_FUNC_3>;
+> > +             samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+> > +             samsung,pin-drv = <0>;
+> > +     };
+> > +
+> > +     /* I2C6 (also called MOTOR_I2C in TRM) */
+> > +     i2c6_bus: i2c6-bus {
+> > +             samsung,pins = "gpa3-7", "gpa4-0";
+> > +             samsung,pin-function = <EXYNOS_PIN_FUNC_3>;
+> > +             samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
+> > +             samsung,pin-drv = <0>;
+> > +     };
