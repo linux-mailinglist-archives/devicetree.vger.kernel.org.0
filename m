@@ -2,408 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5091D3F39E9
-	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 11:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233DF3F3A9D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 14:39:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233445AbhHUJlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Aug 2021 05:41:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38726 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232408AbhHUJlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Aug 2021 05:41:51 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261AFC061756
-        for <devicetree@vger.kernel.org>; Sat, 21 Aug 2021 02:41:12 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id v10so6551225wrd.4
-        for <devicetree@vger.kernel.org>; Sat, 21 Aug 2021 02:41:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=defXgJNMGstYRhCF8ONqO9+5/XVgcipP497hoW+zv1g=;
-        b=arxZhscJnhuNRya/y63eouJWZpRFVlWoC5RJ31m1zQtriCSx1fo/nOYWtppDcptQxp
-         8GLlL5xyWTvYe6dkzBWa6FS7UtK/BUhxtviFMvG4uxWFSmLD0xc4ZqEMaNt/fXmHStOA
-         lZI2kWarNUL9jCrG9nHw8n0G+OJVAwGEqDRDcYKDvmYRmC3Qp2E3ANv5lK3Hq220Vegz
-         BRFhTauacxoG53kG3RtvrXN7wmC1DZluJ16jPChbvUh3nRailltADT6bXlWkr4W1FUv9
-         x4Nn3VjUA7syhPflVaV6b9DVSyABz2QEL4p+Dh0kxALDrdWfQn4BdlhIdfsKYT8Si7kr
-         dHmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=defXgJNMGstYRhCF8ONqO9+5/XVgcipP497hoW+zv1g=;
-        b=WCQA6S+5dtsbzvrxNA+TAz5HN0mUVHTX5ig5bmlImURyBabdIBM8FChNnpLkP3GWhU
-         1/f/UsCQUDwH9K6vwiGMF9uSjiCLCYOaSUN9rIwdhDXmorhe4DJxuIYKjZs9r7NZyiVw
-         gqjMTD+D/swXj5ouflqUcHwBipRr1gXfJasLCyeTYaylLwsxkIA7UmnORYCV5RUqKIzX
-         6Nmvn9bVB3QdUT0H90Liix3NCXoishEiRZooF3L2nLIZTY7DNc3J56CNkA0fGH83Mczi
-         kLxRIAIHzENve+n/Q6JxwLDAqfRwPCPT/kFLL4FZRf4w9h5qPvQ5erqFT5OhMruHH3X5
-         fscw==
-X-Gm-Message-State: AOAM5305XNn4y4yV/SSLp5WxZMOPmGJ25uSB/l/cgIVMZrt+PazrSPic
-        Ziw17i94yAWA3tEskTagGP58/F/5fbGTWgNU
-X-Google-Smtp-Source: ABdhPJzmr5nWYtmDQhUCWlxXi83+L6HsLQnQ08FPu9AFcKawPHv82sQWrP5/KBIDBfLJt2jOs5b+jA==
-X-Received: by 2002:adf:c044:: with SMTP id c4mr3001815wrf.275.1629538870421;
-        Sat, 21 Aug 2021 02:41:10 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:e7c:3055:aad:f62d? ([2a01:e34:ed2f:f020:e7c:3055:aad:f62d])
-        by smtp.googlemail.com with ESMTPSA id q11sm248813wrx.85.2021.08.21.02.41.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 Aug 2021 02:41:09 -0700 (PDT)
-Subject: Re: [Patch v5 2/6] thermal: qcom: Add support for LMh driver
-To:     Thara Gopinath <thara.gopinath@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        viresh.kumar@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org
-Cc:     steev@kali.org, tdas@codeaurora.org, mka@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210809191605.3742979-1-thara.gopinath@linaro.org>
- <20210809191605.3742979-3-thara.gopinath@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <fcbb6d64-7e39-7f03-e76c-512946124777@linaro.org>
-Date:   Sat, 21 Aug 2021 11:41:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S234239AbhHUMkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Aug 2021 08:40:02 -0400
+Received: from de-smtp-delivery-102.mimecast.com ([194.104.109.102]:53204 "EHLO
+        de-smtp-delivery-102.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234001AbhHUMkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 21 Aug 2021 08:40:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=mimecast20200619;
+        t=1629549560;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=XydOQQcCjoJuqcQTUUALkGwEOuIQ9Xu8BQVrHtd+pEs=;
+        b=UwWLMCsbyEj49CQIW+Bc2rk4tJLZ0mZhwnREeOPIJMRHGU9xkg2ssT+RbwIlkKHIj+ytSO
+        e9TtrhH3ylij68dOiG1bYZDReL6OzMTLGUsF4xm7h7XKVCOIJVdmLgsKjELOjxyiqXNjGv
+        bNtLgq5l09/LCdlmS8iCzhX4uBWo8JQ=
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com
+ (mail-am6eur05lp2110.outbound.protection.outlook.com [104.47.18.110])
+ (Using TLS) by relay.mimecast.com with ESMTP id
+ de-mta-13-1Cfl5meYOTWZEaUsZ6aUWg-1; Sat, 21 Aug 2021 14:39:19 +0200
+X-MC-Unique: 1Cfl5meYOTWZEaUsZ6aUWg-1
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bSbUcuRn8eP1AJF8/aD64IKK9zXGUU4VLfYlMILJQEY65NO/2lJ6CUuESlCVPOrSK/ISAChe7K+4AF2QXhDrOKi2A3BYuL0wD86C1w9FY3JaBagzULGbm1UpjQDSiv/2gU4mIc0hnnJsuCiCPgieQt1aGs/zMRpUMja48MHdGzRi+RZMXtQTrE7HGlRY6JrKmJmwVLLZg1qc8ZAaTVGPluoZUvLeBooZrqohUHpnrWWuU8xGrjychZ63/++4ahTjd4JZ8wku1HnP5TNLDJO3D26KT4uFlIXbxacsU5gor0tu3K5jLYmBdO6clMRxUO+Duxzv/mZJMN3Q/pafXLM3+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v5/0JDtMZnUe3MiIXlfusLo4XnTKw5E2RyewV2hookk=;
+ b=QtBQAVPux7cgLwGIZbTeCtZ8//dD3UZjCQ2irM46QqxshTFKB7fTCcAE2iVAfdWYLfYOq7x8hgx36ula4yx7hpRPqJ+iKlKmC5dK+2eWis6g79YuuFaYsDd4DpBgOjfwEg3Sdd+pFuHpK4vXA7giaoPNutR+/4z6gfUIbHZJ8slAgnVAjGriGVPWFf6wyZPXHgFY7Wbne1YLLxuudlqEBZM7BdU5pEDbbTg3Bpek3z88gsTtNz4Wus9tigIkDS71s5Svy9ksbGzYQ0wbIzZubVXE/zGMHYroob63CMqcIgZmzPDZfoK8yaptgW+XCJAntWSwkEM7hJiL7BUgvdk5UA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
+ dkim=pass header.d=suse.com; arc=none
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=suse.com;
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
+ by VI1PR04MB6031.eurprd04.prod.outlook.com (2603:10a6:803:102::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Sat, 21 Aug
+ 2021 12:39:16 +0000
+Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::504b:de61:1358:c344]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
+ ([fe80::504b:de61:1358:c344%4]) with mapi id 15.20.4436.022; Sat, 21 Aug 2021
+ 12:39:16 +0000
+Date:   Sat, 21 Aug 2021 20:39:04 +0800
+From:   Chester Lin <clin@suse.com>
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>, s32@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
+        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
+        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
+Subject: Re: [PATCH 4/8] arm64: dts: add NXP S32G2 support
+Message-ID: <YSDz6EiNifqV2NAT@linux-8mug>
+References: <20210805065429.27485-1-clin@suse.com>
+ <20210805065429.27485-5-clin@suse.com>
+ <d09ed0fd-83e7-a6aa-0bd6-f679ffb64eaf@suse.de>
+ <87o89sqmz6.wl-maz@kernel.org>
+ <YR/HJQDGJ1C+ku6O@linux-8mug>
+ <87lf4wqgn7.wl-maz@kernel.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87lf4wqgn7.wl-maz@kernel.org>
+X-ClientProxiedBy: PR3P191CA0010.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:102:54::15) To VI1PR0402MB3439.eurprd04.prod.outlook.com
+ (2603:10a6:803:4::13)
 MIME-Version: 1.0
-In-Reply-To: <20210809191605.3742979-3-thara.gopinath@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from linux-8mug (36.224.140.201) by PR3P191CA0010.EURP191.PROD.OUTLOOK.COM (2603:10a6:102:54::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend Transport; Sat, 21 Aug 2021 12:39:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 319d2460-d37d-4291-dd1d-08d964a0afc7
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6031:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB60319B305BDCAE7A960F2A4FADC29@VI1PR04MB6031.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8jDZ9UBtsfRmPGFzJ9Ed3HAzmYSuSRgdp/7j4auxR7b/UR+4U8cGODou4T/Il8jJzDPoIrm5GGCfKfTnCIzXAT4ryNPpkH3Io+2p+CcLSEoBfuj4Z/IhvKHkzvxHYHQYuSpUc1oT5zOBBwim891shEZICwJ4A1XPDhu2lGrjF0vjw0AWDkQ2Sy9ED2UpxaoTnZuljHo3uEP2aD+liUnqYZqfXAx58Tjc1l7WCExevJ9tgKniJJy73NN9NSXcvUgfRu9j9YOjhFYjQgNd5ShWzcT1sfcmwYLDDYT5JLxd9bIDDUHjKLrMtkgTdPIu9BPdBUTA1aOsjdQaaRAtnbYGYLfpd52fN2Z/MMzCaEIlF6RsPiwWbvg/EJ/8GzyVRePWuqKw1jB/Jl73EWxkjwHqmVdrR3pAAlR3/77ggHDZF9dKEs3AveDq7/dayOQoiU0PIPQPen0wvBX9zxdVV3br1Na6gB1vd0Ab8v6wCfowIn0xb8w7RUNXZfUOWKCpoJKByd5nQA1n1H+j0rEPrCG+dHhjTNZz7AmU2phtmRMxuXh0uCGQSwYro5BWBtqPLsR/crilVUFBzIlt+6O6c0iikSysyflBoJ70/PwNQAocfblXPKbsDpE5tBMcW+oOj+28SqzZ3AweRI2XWIyDJqp3vQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(9686003)(83380400001)(66574015)(8936002)(38100700002)(53546011)(6916009)(55016002)(6496006)(316002)(7416002)(26005)(8676002)(6666004)(2906002)(5660300002)(956004)(66946007)(66476007)(54906003)(33716001)(107886003)(66556008)(4326008)(508600001)(86362001)(186003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pPOk76kVxUXoJ0DeFhMqYDfVw0KpGEE8q7kpbdBUUEhoOR7wYZCm3jKXw9Ee?=
+ =?us-ascii?Q?6Ky2v0tYw94voOpQiR/yVn/IBuER+BGZzvgJWq/6Pp1tm+qZgt1uaJBatCqE?=
+ =?us-ascii?Q?br+LqVcSirZe8ncpqlskhdTqgZVdBPtQM3YXjQGAfc3xlvwSv3UsncQBcIjL?=
+ =?us-ascii?Q?BeKn4UUlglqCBZ2vg69Lb01WAihCDeGSUhCbSoW4DVvv+Jz1fBW/LHWX0jmp?=
+ =?us-ascii?Q?IZ2uoF4kKvhJFxEPMdA7u86PuVx+JQusgtSyldeKkfQbZi2SpPQNj8WCjyOn?=
+ =?us-ascii?Q?YyItGMKa1eO5zhzRaaqecJ0xQJSUq9PowxiWmqqdq4YnzJbP5HjktgRVrkPC?=
+ =?us-ascii?Q?/2fTPDkQB8B5eEfVZ3bgDM05J+0AqkcA94fuMv+ZK3wanMLIy8CZbqTBbQC9?=
+ =?us-ascii?Q?1qezzaWnndGLQMfkaF8/1h9mfDmVKmNrHBVtonxwAnzuwJCOsGKX4WxOHMAD?=
+ =?us-ascii?Q?9a5XEVSW0/Y8CbelB6r/VN8xPMN6WpeKcFMUU+cJQIPVNx0elcxp1OLou8cJ?=
+ =?us-ascii?Q?gG0Dx6koDbs9OV6hmkU2fThU/fQGNB3ULpfy1lSS7FTCNzudqfmFx4rYCGx+?=
+ =?us-ascii?Q?Dsw+3n7x9Gv/GLrxiohGNYHS85zYaEhbNWn7uhtUEnqsD0MKuzNgHr8eXcEd?=
+ =?us-ascii?Q?jDWdcL/C7oodh7INIRtgMznHhzKrO4VlBJbI+4sLrbITqvSmzaVCmYG8RGdU?=
+ =?us-ascii?Q?ojek98QQoLqzOYZDPF0v7QrL2rXDwy/KNckzDewCR4UTDQ/ruKycpaDM5CHf?=
+ =?us-ascii?Q?JZUKe2luoQ+iF9qFZoYVuZFyy9fG6w1c26/kbW3qKUiX30wDgIpLwsP+qAT/?=
+ =?us-ascii?Q?TGlGnhP05pLKlK/EHPHn1ZzxlIO2A2YdgpuaOFtjbgrrUk1h3ua4VbRPpZcZ?=
+ =?us-ascii?Q?lp+KdAhzS888v1mtfMije9XU7FKCpKCaXc3b1Xs/QkRuzv+UYP7pJXM5ZQ5a?=
+ =?us-ascii?Q?RBn85a9TpLOMcFfXVZVh5B5pNPj9U1ypWfCQ+63WBGQNZ/RGHt83iAKtXzOM?=
+ =?us-ascii?Q?gXCV7mZAIxxqY7694gVsCsNqlVeTbRBRsr9EkRx42YqagclG4HB8aveEbed9?=
+ =?us-ascii?Q?F0ZXZeYYC0o0OQkq5mgiZKvsDS44N1CayXyyozMrmntZeDNc77jj0yIokFF9?=
+ =?us-ascii?Q?KLHb5qM/SGaPDJyVEi1niQHU4UFOdkFHlZisCIIZ4lx8UN3MeHo6pCcAqtx5?=
+ =?us-ascii?Q?fdkBb0ugH1K1HyeIF7n7z/AD7qNVFMsNxwwBkwi1oMkUsne930yUvv4naElD?=
+ =?us-ascii?Q?bDy8a6cAeZqsnKhnNzoIxJgsRom/Cej+g/J/LCzW6WUdn4s9JEoCfxht/GvZ?=
+ =?us-ascii?Q?CtiauVGDJq3trO4sLpnxvtx9?=
+X-OriginatorOrg: suse.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 319d2460-d37d-4291-dd1d-08d964a0afc7
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2021 12:39:16.2828
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rHWiU6k6WfcV51tGHG85g4mfCyAr513eV/Gy7DoOjJB5QHRScR1PNpcFPwzaKU8f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6031
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marc,
 
-Hi Thara,
+On Fri, Aug 20, 2021 at 04:29:00PM +0100, Marc Zyngier wrote:
+> On Fri, 20 Aug 2021 16:15:49 +0100,
+> Chester Lin <clin@suse.com> wrote:
+> >=20
+> > On Fri, Aug 20, 2021 at 02:12:13PM +0100, Marc Zyngier wrote:
+> > > On Thu, 12 Aug 2021 18:26:28 +0100,
+> > > Andreas F=E4rber <afaerber@suse.de> wrote:
+> > > >=20
+> > > > Hi Chester et al.,
+> > > >=20
+> > > > On 05.08.21 08:54, Chester Lin wrote:
+> > > > > Add an initial dtsi file for generic SoC features of NXP S32G2.
+> > > > >=20
+> > > > > Signed-off-by: Chester Lin <clin@suse.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/freescale/s32g2.dtsi | 98 ++++++++++++++++++=
+++++++
+> > > > >  1 file changed, 98 insertions(+)
+> > > > >  create mode 100644 arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > > > >=20
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm6=
+4/boot/dts/freescale/s32g2.dtsi
+> > > > > new file mode 100644
+> > > > > index 000000000000..3321819c1a2d
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> > >=20
+> > > [...]
+> > >=20
+> > > > > +		gic: interrupt-controller@50800000 {
+> > > > > +			compatible =3D "arm,gic-v3";
+> > > > > +			#interrupt-cells =3D <3>;
+> > > > > +			interrupt-controller;
+> > > > > +			reg =3D <0 0x50800000 0 0x10000>,
+> > > > > +			      <0 0x50880000 0 0x200000>,
+> > >=20
+> > > That's enough redistributor space for 16 CPUs. However, you only
+> > > describe 4. Either the number of CPUs is wrong, the size is wrong, or
+> > > the GIC has been configured for more cores than the SoC has.
+> >=20
+> > Confirmed the SoC can only find 4 redistributors:
+> >=20
+> > localhost:~ # dmesg | grep CPU
+> > [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+> > [    0.000000] Detected VIPT I-cache on CPU0
+> > [    0.000000] CPU features: detected: GIC system register CPU interfac=
+e
+> > [    0.000000] CPU features: detected: ARM erratum 845719
+> > [    0.000000] SLUB: HWalign=3D64, Order=3D0-3, MinObjects=3D0, CPUs=3D=
+4, Nodes=3D1
+> > [    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=3D480 to nr_c=
+pu_ids=3D4.
+> > [    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x0000000050=
+880000
+> > [    0.063865] smp: Bringing up secondary CPUs ...
+> > [    0.068852] Detected VIPT I-cache on CPU1
+> > [    0.068894] GICv3: CPU1: found redistributor 1 region 0:0x0000000050=
+8a0000
+> > [    0.068963] CPU1: Booted secondary processor 0x0000000001 [0x410fd03=
+4]
+> > [    0.069809] Detected VIPT I-cache on CPU2
+> > [    0.069851] GICv3: CPU2: found redistributor 100 region 0:0x00000000=
+508c0000
+> > [    0.069903] CPU2: Booted secondary processor 0x0000000100 [0x410fd03=
+4]
+> > [    0.070698] Detected VIPT I-cache on CPU3
+> > [    0.070722] GICv3: CPU3: found redistributor 101 region 0:0x00000000=
+508e0000
+> > [    0.070749] CPU3: Booted secondary processor 0x0000000101 [0x410fd03=
+4]
+> > [    0.070847] smp: Brought up 1 node, 4 CPUs
+> > <..snip..>
+>=20
+> That's not the correct way to find out. Each CPU tries to find its
+> matching RD in the region. This doesn't mean there aren't more RDs
+> present in the GIC.
+>=20
+> You need to iterate over all the RDs in the region until you find one
+> that has GICR_TYPER.Last =3D=3D 1. This will give you the actual count.
+> Alternatively, you can check whether the RD at 508e0000 has that bit
+> set. If it doesn't, then you know there are more RDs than CPUs.
+>=20
+> 	M.
+>=20
 
-On 09/08/2021 21:16, Thara Gopinath wrote:
-> Driver enabling various pieces of Limits Management Hardware(LMh) for cpu
-> cluster0 and cpu cluster1 namely kick starting monitoring of temperature,
-> current, battery current violations, enabling reliability algorithm and
-> setting up various temperature limits.
-> 
-> The following has been explained in the cover letter. I am including this
-> here so that this remains in the commit message as well.
-> 
-> LMh is a hardware infrastructure on some Qualcomm SoCs that can enforce
-> temperature and current limits as programmed by software for certain IPs
-> like CPU. On many newer LMh is configured by firmware/TZ and no programming
-> is needed from the kernel side. But on certain SoCs like sdm845 the
-> firmware does not do a complete programming of the h/w. On such soc's
-> kernel software has to explicitly set up the temperature limits and turn on
-> various monitoring and enforcing algorithms on the hardware.
-> 
-> Tested-by: Steev Klimaszewski <steev@kali.org> # Lenovo Yoga C630
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-
-Is it possible to have an option to disable/enable the LMh driver at
-runtime, for instance with a module parameter ?
-
-> ---
-> 
-> v4->v5:
-> 	- Minor change related to renaming of dt binding property qcom,lmh-cpu
-> 	  to cpus as per Rob Herring's review comments.
-> 
-> v3->v4:
-> 	- Minor code re-arrangement and removal of redundant code as per Bjorn's
-> 	  review comments
-> 	- Added suppress_bind_attrs to driver as per Bjorn's review comments.
-> 	- Changes to support changes in LMh dt node properties naming and types.
-> 
-> v2->v3:
-> 	- Rearranged enabling of various LMh subfunction and removed returning
-> 	  on error in enabling any one subfunction as the different pieces can
-> 	  operate and thus be enabled independently.
-> 	- Other minor cosmetic fixes.
-> 
-> v1->v2:
-> 	- Cosmetic and spelling fixes from review comments from Randy Dunlap
-> 	- Added irq_disable to lmh_irq_ops and removed disabling of irq from
-> 	  lmh_handle_irq. Now cpufreq explicitly disables irq prior to
-> 	  handling it as per Bjorn's suggestion.
-> 	- Rebased to new version of qcom_scm_lmh_dcvsh as changed in patch 1.
-> 	- Removed generic dt compatible string and introduced platform specific one
-> 	  as per Bjorn's suggestion.
-> 	- Take arm, low and high temp thresholds for LMh from dt properties instead of
-> 	  #defines in the driver as per Daniel's suggestion.
-> 	- Other minor fixes.
-> 
->  drivers/thermal/qcom/Kconfig  |  10 ++
->  drivers/thermal/qcom/Makefile |   1 +
->  drivers/thermal/qcom/lmh.c    | 232 ++++++++++++++++++++++++++++++++++
->  3 files changed, 243 insertions(+)
->  create mode 100644 drivers/thermal/qcom/lmh.c
-> 
-> diff --git a/drivers/thermal/qcom/Kconfig b/drivers/thermal/qcom/Kconfig
-> index 8d5ac2df26dc..7d942f71e532 100644
-> --- a/drivers/thermal/qcom/Kconfig
-> +++ b/drivers/thermal/qcom/Kconfig
-> @@ -31,3 +31,13 @@ config QCOM_SPMI_TEMP_ALARM
->  	  trip points. The temperature reported by the thermal sensor reflects the
->  	  real time die temperature if an ADC is present or an estimate of the
->  	  temperature based upon the over temperature stage value.
-> +
-> +config QCOM_LMH
-> +	tristate "Qualcomm Limits Management Hardware"
-> +	depends on ARCH_QCOM
-> +	help
-> +	  This enables initialization of Qualcomm limits management
-> +	  hardware(LMh). LMh allows for hardware-enforced mitigation for cpus based on
-> +	  input from temperature and current sensors.  On many newer Qualcomm SoCs
-> +	  LMh is configured in the firmware and this feature need not be enabled.
-> +	  However, on certain SoCs like sdm845 LMh has to be configured from kernel.
-> diff --git a/drivers/thermal/qcom/Makefile b/drivers/thermal/qcom/Makefile
-> index 252ea7d9da0b..0fa2512042e7 100644
-> --- a/drivers/thermal/qcom/Makefile
-> +++ b/drivers/thermal/qcom/Makefile
-> @@ -5,3 +5,4 @@ qcom_tsens-y			+= tsens.o tsens-v2.o tsens-v1.o tsens-v0_1.o \
->  				   tsens-8960.o
->  obj-$(CONFIG_QCOM_SPMI_ADC_TM5)	+= qcom-spmi-adc-tm5.o
->  obj-$(CONFIG_QCOM_SPMI_TEMP_ALARM)	+= qcom-spmi-temp-alarm.o
-> +obj-$(CONFIG_QCOM_LMH)		+= lmh.o
-> diff --git a/drivers/thermal/qcom/lmh.c b/drivers/thermal/qcom/lmh.c
-> new file mode 100644
-> index 000000000000..eafa7526eb8b
-> --- /dev/null
-> +++ b/drivers/thermal/qcom/lmh.c
-> @@ -0,0 +1,232 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/*
-> + * Copyright (C) 2021, Linaro Limited. All rights reserved.
-> + */
-> +#include <linux/module.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/err.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/slab.h>
-> +#include <linux/qcom_scm.h>
-> +
-> +#define LMH_NODE_DCVS			0x44435653
-> +#define LMH_CLUSTER0_NODE_ID		0x6370302D
-> +#define LMH_CLUSTER1_NODE_ID		0x6370312D
-> +
-> +#define LMH_SUB_FN_THERMAL		0x54484D4C
-> +#define LMH_SUB_FN_CRNT			0x43524E54
-> +#define LMH_SUB_FN_REL			0x52454C00
-> +#define LMH_SUB_FN_BCL			0x42434C00
-> +
-> +#define LMH_ALGO_MODE_ENABLE		0x454E424C
-> +#define LMH_TH_HI_THRESHOLD		0x48494748
-> +#define LMH_TH_LOW_THRESHOLD		0x4C4F5700
-> +#define LMH_TH_ARM_THRESHOLD		0x41524D00
-> +
-> +#define LMH_REG_DCVS_INTR_CLR		0x8
-> +
-> +struct lmh_hw_data {
-> +	void __iomem *base;
-> +	struct irq_domain *domain;
-> +	int irq;
-> +};
-> +
-> +static irqreturn_t lmh_handle_irq(int hw_irq, void *data)
-> +{
-> +	struct lmh_hw_data *lmh_data = data;
-> +	int irq = irq_find_mapping(lmh_data->domain, 0);
-> +
-> +	/* Call the cpufreq driver to handle the interrupt */
-> +	if (irq)
-> +		generic_handle_irq(irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static void lmh_enable_interrupt(struct irq_data *d)
-> +{
-> +	struct lmh_hw_data *lmh_data = irq_data_get_irq_chip_data(d);
-> +
-> +	/* Clear the existing interrupt */
-> +	writel(0xff, lmh_data->base + LMH_REG_DCVS_INTR_CLR);
-> +	enable_irq(lmh_data->irq);
-> +}
-> +
-> +static void lmh_disable_interrupt(struct irq_data *d)
-> +{
-> +	struct lmh_hw_data *lmh_data = irq_data_get_irq_chip_data(d);
-> +
-> +	disable_irq_nosync(lmh_data->irq);
-> +}
-> +
-> +static struct irq_chip lmh_irq_chip = {
-> +	.name           = "lmh",
-> +	.irq_enable	= lmh_enable_interrupt,
-> +	.irq_disable	= lmh_disable_interrupt
-> +};
-> +
-> +static int lmh_irq_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
-> +{
-> +	struct lmh_hw_data *lmh_data = d->host_data;
-> +
-> +	irq_set_chip_and_handler(irq, &lmh_irq_chip, handle_simple_irq);
-> +	irq_set_chip_data(irq, lmh_data);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops lmh_irq_ops = {
-> +	.map = lmh_irq_map,
-> +	.xlate = irq_domain_xlate_onecell,
-> +};
-> +
-> +static int lmh_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *cpu_node;
-> +	struct lmh_hw_data *lmh_data;
-> +	int temp_low, temp_high, temp_arm, cpu_id, ret;
-> +	u32 node_id;
-> +
-> +	lmh_data = devm_kzalloc(dev, sizeof(*lmh_data), GFP_KERNEL);
-> +	if (!lmh_data)
-> +		return -ENOMEM;
-> +
-> +	lmh_data->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(lmh_data->base))
-> +		return PTR_ERR(lmh_data->base);
-> +
-> +	cpu_node = of_parse_phandle(np, "cpus", 0);
-> +	if (!cpu_node)
-> +		return -EINVAL;
-> +	cpu_id = of_cpu_node_to_id(cpu_node);
-> +	of_node_put(cpu_node);
-> +
-> +	ret = of_property_read_u32(np, "qcom,lmh-temp-high-millicelsius", &temp_high);
-> +	if (ret) {
-> +		dev_err(dev, "missing qcom,lmh-temp-high-millicelsius property\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = of_property_read_u32(np, "qcom,lmh-temp-low-millicelsius", &temp_low);
-> +	if (ret) {
-> +		dev_err(dev, "missing qcom,lmh-temp-low-millicelsius property\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = of_property_read_u32(np, "qcom,lmh-temp-arm-millicelsius", &temp_arm);
-> +	if (ret) {
-> +		dev_err(dev, "missing qcom,lmh-temp-arm-millicelsius property\n");
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Only sdm845 has lmh hardware currently enabled from hlos. If this is needed
-> +	 * for other platforms, revisit this to check if the <cpu-id, node-id> should be part
-> +	 * of a dt match table.
-> +	 */
-> +	if (cpu_id == 0) {
-> +		node_id = LMH_CLUSTER0_NODE_ID;
-> +	} else if (cpu_id == 4) {
-> +		node_id = LMH_CLUSTER1_NODE_ID;
-> +	} else {
-> +		dev_err(dev, "Wrong CPU id associated with LMh node\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!qcom_scm_lmh_dcvsh_available())
-> +		return -EINVAL;
-> +
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret)
-> +		dev_err(dev, "Error %d enabling current subfunction\n", ret);
-> +
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret)
-> +		dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
-> +
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret)
-> +		dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
-> +
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret) {
-> +		dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = qcom_scm_lmh_profile_change(0x1);
-> +	if (ret) {
-> +		dev_err(dev, "Error %d changing profile\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Set default thermal trips */
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_TH_ARM_THRESHOLD, temp_arm,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret) {
-> +		dev_err(dev, "Error setting thermal ARM threshold%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_TH_HI_THRESHOLD, temp_high,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret) {
-> +		dev_err(dev, "Error setting thermal HI threshold%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_TH_LOW_THRESHOLD, temp_low,
-> +				 LMH_NODE_DCVS, node_id, 0);
-> +	if (ret) {
-> +		dev_err(dev, "Error setting thermal ARM threshold%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	lmh_data->irq = platform_get_irq(pdev, 0);
-> +	lmh_data->domain = irq_domain_add_linear(np, 1, &lmh_irq_ops, lmh_data);
-> +	if (!lmh_data->domain) {
-> +		dev_err(dev, "Error adding irq_domain\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Disable the irq and let cpufreq enable it when ready to handle the interrupt */
-> +	irq_set_status_flags(lmh_data->irq, IRQ_NOAUTOEN);
-> +	ret = devm_request_irq(dev, lmh_data->irq, lmh_handle_irq,
-> +			       IRQF_ONESHOT | IRQF_NO_SUSPEND,
-> +			       "lmh-irq", lmh_data);
-> +	if (ret) {
-> +		dev_err(dev, "Error %d registering irq %x\n", ret, lmh_data->irq);
-> +		irq_domain_remove(lmh_data->domain);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id lmh_table[] = {
-> +	{ .compatible = "qcom,sdm845-lmh", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, lmh_table);
-> +
-> +static struct platform_driver lmh_driver = {
-> +	.probe = lmh_probe,
-> +	.driver = {
-> +		.name = "qcom-lmh",
-> +		.of_match_table = lmh_table,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +module_platform_driver(lmh_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_DESCRIPTION("QCOM LMh driver");
-> 
+Thanks for your guidance. Not sure if any debug log can be enabled for this
+check so I temporarily add an ugly message as below:
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+index e0f4debe64e1..5998306fff39 100644
+--- a/drivers/irqchip/irq-gic-v3.c
++++ b/drivers/irqchip/irq-gic-v3.c
+@@ -866,10 +866,11 @@ static int __gic_populate_rdist(struct redist_region =
+*region, void __iomem *ptr)
+ 		gic_data_rdist_rd_base() =3D ptr;
+ 		gic_data_rdist()->phys_base =3D region->phys_base + offset;
+=20
+-		pr_info("CPU%d: found redistributor %lx region %d:%pa\n",
++		pr_info("CPU%d: found redistributor %lx region %d:%pa last: %d\n",
+ 			smp_processor_id(), mpidr,
+ 			(int)(region - gic_data.redist_regions),
+-			&gic_data_rdist()->phys_base);
++			&gic_data_rdist()->phys_base,
++			(typer & GICR_TYPER_LAST) ? 1 : 0);
+ 		return 0;
+ 	}
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+
+The following log shows that the "Last" bit (GICR_TYPER[4]) of RD at
+508e0000 has been set.
+
+localhost:~ # dmesg | grep GIC
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] GICv3: 544 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] GICv3: Distributor has no Range Selector support
+[    0.000000] GICv3: 16 PPIs implemented
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x00000000508800=
+00 last: 0
+[    0.078745] GICv3: CPU1: found redistributor 1 region 0:0x00000000508a00=
+00 last: 0
+[    0.089598] GICv3: CPU2: found redistributor 100 region 0:0x00000000508c=
+0000 last: 0
+[    0.100395] GICv3: CPU3: found redistributor 101 region 0:0x00000000508e=
+0000 last: 1
+
