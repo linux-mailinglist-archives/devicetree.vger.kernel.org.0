@@ -2,96 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB5153F3756
-	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 01:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 089733F37DE
+	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 03:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239551AbhHTXi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 19:38:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54950 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231506AbhHTXi1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Aug 2021 19:38:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EEBEE611AE;
-        Fri, 20 Aug 2021 23:37:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629502669;
-        bh=OxoHRSxJUs/DBlJkRYNoMKiQU91unoLQ5Gw7U19zjro=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iutSkFHMi5IM7UGKgwlUCO6Rvp8RsehZouuXbR0LnvuWxu7EGGjB3JznVkOLUDnTI
-         ZnzSp7r8BVQBIyFRiM6bqLknfCxlnlg9JBv5SRUK+E7Qet3AtFhdqZtFj45uF91VqZ
-         0Snkc85VJijOSkdnI4tqD42gwqXoWHBRZ3uqp3K3ch9vJnmjCTRIxTpZv7nCAD2KKU
-         reVkbWX7GIgfiZkRVQlmtqXQJqPc6xgOjVWPSCB9SdXWHMLG4FHUlJCv8swtDPhFz5
-         lPvjgTnqa7fE8qZ7e/nGHrIhDOBELVocOCSth2LrmeK2et+5tLIzYDtyNE07lEnmDe
-         2kQ2/mkDn6+0w==
-Received: by mail-ej1-f43.google.com with SMTP id bt14so23255895ejb.3;
-        Fri, 20 Aug 2021 16:37:48 -0700 (PDT)
-X-Gm-Message-State: AOAM531o8ugh/Jm1rET93rUdtjTJOp6xjTXNQRsmNL0blQMUCJ4gLzZ6
-        H92rOqeUWWPUqvRay1G4sBQtepATNFp8wJRCdA==
-X-Google-Smtp-Source: ABdhPJyoX0rsifcLfFn0ncpSIxDlcJSTh5JTTO8orl9BlrUHsW13D079t4m+j2HQ+MYksTHDBQ3wtRBxiw+0NGaDS1Y=
-X-Received: by 2002:a17:906:81cb:: with SMTP id e11mr1673753ejx.310.1629502667599;
- Fri, 20 Aug 2021 16:37:47 -0700 (PDT)
+        id S240864AbhHUBJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 21:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40268 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232466AbhHUBJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 21:09:57 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327F1C061756;
+        Fri, 20 Aug 2021 18:09:18 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id k5-20020a05600c1c85b02902e699a4d20cso7039847wms.2;
+        Fri, 20 Aug 2021 18:09:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AcYSAh37tYGfOcz68oPLczgRQrzJo44tg66hXDfFigc=;
+        b=OG1FxgjXGBWAxGA1anG/qouatpziretSb3btXyjQ0HvbXcQqium0ZqecGus6IbGl+H
+         HzhLD7XrmsuuaHPsNI0ei/6UpTRU9Ro3mKJLEkubLn8rwj6nwEHT3snMDRWpYbRfg8Jt
+         aPPw3S0cB+5/fFWfdQaw4ncloi7juZFnXElENdg0qFHnRManGUDp99u5xsILxjnWg5Gv
+         tfGRmStx8SGrUsD7n68Geg1n/zDriEBhBAcKubbX4z9U8KgObDpvGMerQUKmDreOlkW7
+         ZVH7lBbl18aKIkmiO4dmXsVKodrUAe6ZZerOvRonTo18BAWL6Lv5H4gk+VDftlL+t7Ma
+         nrog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AcYSAh37tYGfOcz68oPLczgRQrzJo44tg66hXDfFigc=;
+        b=W9aYyYagvb2DALE797ijhPsSUQDZ7DnyKsVYf4lzyf/BDWglvdf2Iwr4Ne2+TH9jjQ
+         1U8ya20kL8EkpABvXCJbZR03rf+OIwY3tV3C3NIeTN3gkwCaCFhnec/g2GY5SAI5d/iY
+         1vZOaP4+rgKRbiIN8AB56YD1SbdP1K4nrLsBW1avOaytUDXVVfve60QYbnN6xobyCNDh
+         pzKrz0Age9ZVd8WIMrWv1fhkLDq4tDA4slP04hBbB5EhX4ahKyRQln3Jf6oVZ9q7Ep2y
+         hzfMmOPPe6qYs6JlfwYfvyKTWGpz9lW7enTkFUKLCKAGbBFy23+fDCNhHYlG4tAB/wox
+         n69Q==
+X-Gm-Message-State: AOAM533uHflOs3SkpyKplM8k1jGn7wwKqEPN2mE880Wuzs33tosHLCCI
+        7IuwPSltKCbkhrednHQDF+RniH/Eq1c=
+X-Google-Smtp-Source: ABdhPJz8gPzOw/Nwv9WuHVXNJHIvT9HbNHiCjMybUfwnKcGqS3vHqS8ZYOd8sZzoLU3K+xl7zUgYoA==
+X-Received: by 2002:a1c:a7c2:: with SMTP id q185mr6186956wme.91.1629508156517;
+        Fri, 20 Aug 2021 18:09:16 -0700 (PDT)
+Received: from debian64.daheim (pd9e297bb.dip0.t-ipconnect.de. [217.226.151.187])
+        by smtp.gmail.com with ESMTPSA id o6sm7498992wru.92.2021.08.20.18.09.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Aug 2021 18:09:15 -0700 (PDT)
+Received: from chuck by debian64.daheim with local (Exim 4.94.2)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1mHFVb-0046Wv-7e; Sat, 21 Aug 2021 03:09:15 +0200
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        ath9k-devel@qca.qualcomm.com
+Subject: [RFC PATCH v1 1/3] dt-bindings:net:wireless:qca,ath9k: add nvmem-cells for calibration data
+Date:   Sat, 21 Aug 2021 03:09:13 +0200
+Message-Id: <91e68ca7f65bee7197ed5829ef91bc526df16e8a.1629508039.git.chunkeey@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210818091847.8060-1-nancy.lin@mediatek.com> <20210818091847.8060-16-nancy.lin@mediatek.com>
-In-Reply-To: <20210818091847.8060-16-nancy.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 21 Aug 2021 07:37:36 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8UUyT1u1bNqK-rNjKaFUo5=MVVrfMF6CUXmcXDb-xV1w@mail.gmail.com>
-Message-ID: <CAAOTY_8UUyT1u1bNqK-rNjKaFUo5=MVVrfMF6CUXmcXDb-xV1w@mail.gmail.com>
-Subject: Re: [PATCH v3 15/15] drm/mediatek: add mediatek-drm of vdosys1
- support for MT8195
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        singo.chang@mediatek.com,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Nancy:
+On most embedded ath9k devices (like range extenders,
+routers, accesspoints, ...) the calibration data for
+the RF/PHY is simply stored in a MTD partition named
+"ART", "caldata"/"calibration", etc.
 
-Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=8818=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:18=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Add driver data of mt8195 vdosys1 to mediatek-drm and modify drm for
-> multi-mmsys support. The two mmsys (vdosys0 and vdosys1) will bring
-> up two drm drivers, only one drm driver register as the drm device.
-> Each drm driver binds its own component. The first bind drm driver
-> will allocate the drm device, and the last bind drm driver registers
-> the drm device to drm core. Each crtc path is created with the
-> corresponding drm driver data.
+Any mtd partition is automatically registered in the
+nvmem subsystem. This makes is possible to fetch the
+necessary calibration directly from there at the low
+cost of adding nvmem cell information via the
+device-tree or via similar means.
 
-Separate this patch to two patch. One is support two mmsys, and
-another one is support mt8195 vdosys1.
+This speeds up the driver's initialization a lot,
+because the driver doesn't have to wait for userspace
+to provide the data via helpers.
 
-Regards,
-Chun-Kuang.
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+---
+ .../devicetree/bindings/net/wireless/qca,ath9k.txt     | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
->
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_disp_merge.c   |   4 +
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.c     |  25 +-
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.h     |   3 +-
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  15 +
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c      | 372 ++++++++++++++++----
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   8 +-
->  7 files changed, 354 insertions(+), 74 deletions(-)
->
->
+diff --git a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt
+index aaaeeb5f935b..88b322b55dd8 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt
++++ b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.txt
+@@ -34,6 +34,13 @@ Optional properties:
+ 			ath9k wireless chip (in this case the calibration /
+ 			EEPROM data will be loaded from userspace using the
+ 			kernel firmware loader).
++- nvmem-cells: A phandle pointing to a nvmem-cells node representing registers
++			that has information about the MAC-Address or
++			calibration data.
++			Please refer the for nvmem-cells bindings
++			Documentation/devicetree/bindings/nvmem/nvmem.yaml.
++- nvmem-cell-names: Should be "address" for the MAC address. "calibration"
++			for ART/caldata.
+ 
+ The MAC address will be determined using the optional properties defined in
+ net/ethernet.txt.
+@@ -44,5 +51,8 @@ In this example, the node is defined as child node of the PCI controller:
+ 		compatible = "pci168c,002d";
+ 		reg = <0x7000 0 0 0 0x1000>;
+ 		qca,no-eeprom;
++
++		nvmem-cells = <&macaddr_art_c>, <&cal_art_1000>;
++		nvmem-cell-names = "mac-address", "calibration";
+ 	};
+ };
+-- 
+2.33.0
+
