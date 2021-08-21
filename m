@@ -2,247 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 136A43F37DF
-	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 03:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA72F3F37EA
+	for <lists+devicetree@lfdr.de>; Sat, 21 Aug 2021 03:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232300AbhHUBJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Aug 2021 21:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40266 "EHLO
+        id S232498AbhHUBd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Aug 2021 21:33:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbhHUBJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 21:09:57 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD4BC061575;
-        Fri, 20 Aug 2021 18:09:18 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id u16so16580841wrn.5;
-        Fri, 20 Aug 2021 18:09:18 -0700 (PDT)
+        with ESMTP id S229783AbhHUBdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Aug 2021 21:33:55 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A54C061575;
+        Fri, 20 Aug 2021 18:33:17 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id t190so12792566qke.7;
+        Fri, 20 Aug 2021 18:33:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=/oZ+KBthaGg5R0Lga8JYmghLqYOInCSyoGhUWJuf5Fg=;
-        b=up9NvqsaE1X2uNtv+tk/1rrTTQbblNZNzEcLUB/WChGmUnCXK84hnflgjqpxQYSvqa
-         W3t+8i0SMMwOXyQ0oQjZx2vK4BBCswkRNp3qWl/T0KSg3pJzZ5SwtjKBsVae0Cpa5aMq
-         gOYroB91h7ce52yYY73Llpl1mhdNO+HbsOmgjdjTdyMDUq2iTm/ZEHA+AC4pR5H3jK7z
-         kXigEL3kWzcxZNjK0i/7t1SdgmUjA9tDV3/mfkxgQrGL4IFScDR9nX233/A1p38kV9+l
-         iiupy6Bt4ePOGv5HcFY5YJOQxaUjhZ2CoGRxSoQMcqnTmw2pk/twPUBhsMZIfFQ0JSI+
-         8EQQ==
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=B4298Vbahy2JXlz0xdPNcw6YwLJivhPPsoL7ofiBcYE=;
+        b=DzqAnbvJBrxk/6qkkGeTdcLFMYfuyvYXzoNoNzNnNyVcXa60gRE6YdGYNfkZWRtelQ
+         LReB+W7R6Pu1ZUrIBO2jEnvqRqwonHenD7eIeRaCRQ7LAVAxZ+QWVO3TgpFTR2J/FGSt
+         9eK9X8MYs09Fft35vIo8/tRi+ZuoUT7jM7oTZ/q2+Q0xMANsw7m7HcxyV7cbiF6PdE1V
+         uOXslJrMgr11az3OS368w6vLBcjpDWaiuPgJ4tWNDZ7PqV21vuZRSjcFfpH1fnht6FJp
+         JFlF1ZhaQzMOjXAic+qLcasQWUG47lgCqQXeJxX9WtmEvxLQElh18zJnmaqOox794jkJ
+         57WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/oZ+KBthaGg5R0Lga8JYmghLqYOInCSyoGhUWJuf5Fg=;
-        b=ZON41UBmch/HXDXswhZT7MyCgj7BgGTH+EApIneGb8NrVZRcksKd/ygHDZWksRMg5i
-         CDcEvKVmTY3DrWWrBAzmwLaQoKKKk1X9k36CvkCyw1Bm82IwZXZsQDIuvO+z6PeHL4NC
-         Vi8ALbZCHJAwhkyE/d+DSzzsk7cjLWprHvBMOuMvvjKb9nfOGsuhKx6urBD6fhwEvv8d
-         HUBl0HG3u6X6ZCa4wLXob8yk93dvFpo3+l0PSfitko63QuBcQx5vE9HBnHLsSzzm9x7z
-         j8e1laN20e3Ue2JBqBmCjkTqR3Eui23EoqO55CJwRd7tb/bvB8FqMrywETus9haGx6T6
-         UtZQ==
-X-Gm-Message-State: AOAM530sjKRZmxNtnaglhellFKhRxlrqZyUKGTPxFipoEkLSngL9BgVK
-        J+QzEx+RSC2dUGqz346z1hoWon/niAI=
-X-Google-Smtp-Source: ABdhPJwpdjjbaIAnSrbGQoygE55Z+vBB6F0UybfUhi+lUEQsOdkvJMCBE+2qRupVS6Q4O+aRf9SLJA==
-X-Received: by 2002:adf:c006:: with SMTP id z6mr1442666wre.157.1629508156374;
-        Fri, 20 Aug 2021 18:09:16 -0700 (PDT)
-Received: from debian64.daheim (pd9e297bb.dip0.t-ipconnect.de. [217.226.151.187])
-        by smtp.gmail.com with ESMTPSA id u5sm7349201wrr.94.2021.08.20.18.09.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Aug 2021 18:09:15 -0700 (PDT)
-Received: from chuck by debian64.daheim with local (Exim 4.94.2)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1mHFVb-0046Wz-9A; Sat, 21 Aug 2021 03:09:15 +0200
-From:   Christian Lamparter <chunkeey@gmail.com>
-To:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        ath9k-devel@qca.qualcomm.com
-Subject: [RFC PATCH v1 3/3] ath9k: owl-loader: fetch pci init values through nvmem
-Date:   Sat, 21 Aug 2021 03:09:15 +0200
-Message-Id: <b7ce5cccc99f7ff05fb9e669b32a7c3dbcffafd2.1629508039.git.chunkeey@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <91e68ca7f65bee7197ed5829ef91bc526df16e8a.1629508039.git.chunkeey@gmail.com>
-References: <91e68ca7f65bee7197ed5829ef91bc526df16e8a.1629508039.git.chunkeey@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=B4298Vbahy2JXlz0xdPNcw6YwLJivhPPsoL7ofiBcYE=;
+        b=USMyQwK45sqb9y+WyQ293W6H3pN0z1dq70hez2SOusY1smdZA+QymTcOsXiSjH4m56
+         1BXDELa8yGX2kjP/RqVXUoZOrDO54KZuQ+995SYhU6VGeGMWNTTjH2fOojeV8YXwNHC3
+         juO5H9Ith/xLRel8fB/hEtKXcsDeRw6o3fuJ5BPkdALcrtXwpnJ2gLmhyZcT1hVhsw90
+         S0qym/OP4UT3k3gYS267wr6B6qFMgPKXPv0r7URGNITB8GsTlygnq6geUU7P73RzDHjw
+         5wkhCPZWFaQg7oikJ7VZ1GLIEoOuafmQRKAg1dNQjeSqgOOwwd7YqXg4QasBI4/WWJ0d
+         bZDQ==
+X-Gm-Message-State: AOAM530v9POxejy6sljJ0sguVo8UXqSh7+RqIzcOOQ6FitaiurFfdjtV
+        1hl4qL5IZrdf6OciKfJOa7s=
+X-Google-Smtp-Source: ABdhPJw/5KudlBWYhiP2GC/wSVSvdztTerKSC4GpfPxJWKD7oMBrSNVgz63msjH618Nrzl7dChtSYA==
+X-Received: by 2002:a05:620a:228a:: with SMTP id o10mr11723057qkh.342.1629509594983;
+        Fri, 20 Aug 2021 18:33:14 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id d7sm3389019qth.70.2021.08.20.18.33.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Aug 2021 18:33:14 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 20 Aug 2021 21:33:13 -0400
+Message-Id: <CDOSXWS42V5H.4Q06IYCLIBTG@shaak>
+Cc:     <kbuild-all@lists.01.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>
+Subject: Re: [PATCH v8 09/14] iio: afe: rescale: fix accuracy for small
+ fractional scales
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "kernel test robot" <lkp@intel.com>, <peda@axentia.se>,
+        <jic23@kernel.org>, <lars@metafoo.de>
+References: <20210820191714.69898-10-liambeguin@gmail.com>
+ <202108210716.pxy9O6XW-lkp@intel.com>
+In-Reply-To: <202108210716.pxy9O6XW-lkp@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-extends the owl loader to fetch important pci initialization
-values - which are stored together with the calibration data -
-through the nvmem subsystem.
+On Fri Aug 20, 2021 at 7:37 PM EDT, kernel test robot wrote:
+> Hi Liam,
+>
+> Thank you for the patch! Yet something to improve:
+>
+> [auto build test ERROR on 6cbb3aa0f9d5d23221df787cf36f74d3866fdb78]
+>
+> url:
+> https://github.com/0day-ci/linux/commits/Liam-Beguin/iio-afe-add-temperat=
+ure-rescaling-support/20210821-032112
+> base: 6cbb3aa0f9d5d23221df787cf36f74d3866fdb78
+> config: nds32-buildonly-randconfig-r005-20210821 (attached as .config)
+> compiler: nds32le-linux-gcc (GCC) 11.2.0
+> reproduce (this is a W=3D1 build):
+> wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross
+> -O ~/bin/make.cross
+> chmod +x ~/bin/make.cross
+> #
+> https://github.com/0day-ci/linux/commit/e5c2e1505fa3f8cf9fe6d3a21f3a5c585=
+efc6dce
+> git remote add linux-review https://github.com/0day-ci/linux
+> git fetch --no-tags linux-review
+> Liam-Beguin/iio-afe-add-temperature-rescaling-support/20210821-032112
+> git checkout e5c2e1505fa3f8cf9fe6d3a21f3a5c585efc6dce
+> # save the attached .config to linux build tree
+> mkdir build_dir
+> COMPILER_INSTALL_PATH=3D$HOME/0day COMPILER=3Dgcc-11.2.0 make.cross
+> O=3Dbuild_dir ARCH=3Dnds32 SHELL=3D/bin/bash
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> All errors (new ones prefixed by >>):
+>
+> nds32le-linux-ld: drivers/iio/afe/iio-rescale.o: in function
+> `rescale_process_scale':
+> >> iio-rescale.c:(.text+0x5f4): undefined reference to `__divdi3'
+> >> nds32le-linux-ld: iio-rescale.c:(.text+0x5f8): undefined reference to =
+`__divdi3'
 
-This allows for much faster WIFI/ath9k initializations on devices
-that do not require to perform any post-processing (like XOR'ing/
-reversal or unpacking) since no userspace helper is required.
+My mistake, I'll replace the division by a div64_s64().
 
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
- .../wireless/ath/ath9k/ath9k_pci_owl_loader.c | 105 +++++++++++++-----
- 1 file changed, 76 insertions(+), 29 deletions(-)
+--- a/drivers/iio/afe/iio-rescale.c
++++ b/drivers/iio/afe/iio-rescale.c
+@@ -53,7 +53,7 @@ int rescale_process_scale(struct rescale *rescale, int sc=
+ale_type,
+ 		else
+ 			tmp =3D 1 << *val2;
+=20
+-		 if (abs(rem) > 10000000 && abs(*val / tmp) < 100) {
++		 if (abs(rem) > 10000000 && abs(div64_s64(*val, tmp)) < 100) {
+ 			*val =3D div_s64_rem(*val, tmp, &rem2);
+=20
+ 			*val2 =3D div_s64(rem, tmp);
 
-diff --git a/drivers/net/wireless/ath/ath9k/ath9k_pci_owl_loader.c b/drivers/net/wireless/ath/ath9k/ath9k_pci_owl_loader.c
-index 56d1a7764b9f..708c8969b503 100644
---- a/drivers/net/wireless/ath/ath9k/ath9k_pci_owl_loader.c
-+++ b/drivers/net/wireless/ath/ath9k/ath9k_pci_owl_loader.c
-@@ -19,9 +19,14 @@
- #include <linux/delay.h>
- #include <linux/platform_device.h>
- #include <linux/ath9k_platform.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/workqueue.h>
- 
- struct owl_ctx {
-+	struct pci_dev *pdev;
- 	struct completion eeprom_load;
-+	struct work_struct work;
-+	struct nvmem_cell *cell;
- };
- 
- #define EEPROM_FILENAME_LEN 100
-@@ -42,6 +47,12 @@ static int ath9k_pci_fixup(struct pci_dev *pdev, const u16 *cal_data,
- 	u32 bar0;
- 	bool swap_needed = false;
- 
-+	/* also note that we are doing *u16 operations on the file */
-+	if (cal_len > 4096 || cal_len < 0x200 || (cal_len & 1) == 1) {
-+		dev_err(&pdev->dev, "eeprom has an invalid size.\n");
-+		return -EINVAL;
-+	}
-+
- 	if (*cal_data != AR5416_EEPROM_MAGIC) {
- 		if (*cal_data != swab16(AR5416_EEPROM_MAGIC)) {
- 			dev_err(&pdev->dev, "invalid calibration data\n");
-@@ -99,38 +110,31 @@ static int ath9k_pci_fixup(struct pci_dev *pdev, const u16 *cal_data,
- 	return 0;
- }
- 
--static void owl_fw_cb(const struct firmware *fw, void *context)
-+static void owl_rescan(struct pci_dev *pdev)
- {
--	struct pci_dev *pdev = (struct pci_dev *)context;
--	struct owl_ctx *ctx = (struct owl_ctx *)pci_get_drvdata(pdev);
--	struct pci_bus *bus;
--
--	complete(&ctx->eeprom_load);
--
--	if (!fw) {
--		dev_err(&pdev->dev, "no eeprom data received.\n");
--		goto release;
--	}
--
--	/* also note that we are doing *u16 operations on the file */
--	if (fw->size > 4096 || fw->size < 0x200 || (fw->size & 1) == 1) {
--		dev_err(&pdev->dev, "eeprom file has an invalid size.\n");
--		goto release;
--	}
--
--	if (ath9k_pci_fixup(pdev, (const u16 *)fw->data, fw->size))
--		goto release;
-+	struct pci_bus *bus = pdev->bus;
- 
- 	pci_lock_rescan_remove();
--	bus = pdev->bus;
- 	pci_stop_and_remove_bus_device(pdev);
- 	/* the device should come back with the proper
- 	 * ProductId. But we have to initiate a rescan.
- 	 */
- 	pci_rescan_bus(bus);
- 	pci_unlock_rescan_remove();
-+}
-+
-+static void owl_fw_cb(const struct firmware *fw, void *context)
-+{
-+	struct owl_ctx *ctx = (struct owl_ctx *)context;
-+
-+	complete(&ctx->eeprom_load);
- 
--release:
-+	if (fw) {
-+		ath9k_pci_fixup(ctx->pdev, (const u16 *)fw->data, fw->size);
-+		owl_rescan(ctx->pdev);
-+	} else {
-+		dev_err(&ctx->pdev->dev, "no eeprom data received.\n");
-+	}
- 	release_firmware(fw);
- }
- 
-@@ -152,6 +156,43 @@ static const char *owl_get_eeprom_name(struct pci_dev *pdev)
- 	return eeprom_name;
- }
- 
-+static void owl_nvmem_work(struct work_struct *work)
-+{
-+	struct owl_ctx *ctx = container_of(work, struct owl_ctx, work);
-+	void *buf;
-+	size_t len;
-+
-+	complete(&ctx->eeprom_load);
-+
-+	buf = nvmem_cell_read(ctx->cell, &len);
-+	if (!IS_ERR(buf)) {
-+		ath9k_pci_fixup(ctx->pdev, buf, len);
-+		kfree(buf);
-+		owl_rescan(ctx->pdev);
-+	} else {
-+		dev_err(&ctx->pdev->dev, "no nvmem data received.\n");
-+	}
-+}
-+
-+static int owl_nvmem_probe(struct owl_ctx *ctx)
-+{
-+	int err;
-+
-+	ctx->cell = devm_nvmem_cell_get(&ctx->pdev->dev, "calibration");
-+	if (IS_ERR(ctx->cell)) {
-+		err = PTR_ERR(ctx->cell);
-+		if (err == -ENOENT || err == -EOPNOTSUPP)
-+			return 1; /* not present, try firmware_request */
-+
-+		return err;
-+	}
-+
-+	INIT_WORK(&ctx->work, owl_nvmem_work);
-+	schedule_work(&ctx->work);
-+
-+	return 0;
-+}
-+
- static int owl_probe(struct pci_dev *pdev,
- 		     const struct pci_device_id *id)
- {
-@@ -164,21 +205,27 @@ static int owl_probe(struct pci_dev *pdev,
- 
- 	pcim_pin_device(pdev);
- 
--	eeprom_name = owl_get_eeprom_name(pdev);
--	if (!eeprom_name) {
--		dev_err(&pdev->dev, "no eeprom filename found.\n");
--		return -ENODEV;
--	}
--
- 	ctx = devm_kzalloc(&pdev->dev, sizeof(*ctx), GFP_KERNEL);
- 	if (!ctx)
- 		return -ENOMEM;
- 
- 	init_completion(&ctx->eeprom_load);
-+	ctx->pdev = pdev;
- 
- 	pci_set_drvdata(pdev, ctx);
-+
-+	err = owl_nvmem_probe(ctx);
-+	if (err <= 0)
-+		return err;
-+
-+	eeprom_name = owl_get_eeprom_name(pdev);
-+	if (!eeprom_name) {
-+		dev_err(&pdev->dev, "no eeprom filename found.\n");
-+		return -ENODEV;
-+	}
-+
- 	err = request_firmware_nowait(THIS_MODULE, true, eeprom_name,
--				      &pdev->dev, GFP_KERNEL, pdev, owl_fw_cb);
-+				      &pdev->dev, GFP_KERNEL, ctx, owl_fw_cb);
- 	if (err)
- 		dev_err(&pdev->dev, "failed to request caldata (%d).\n", err);
- 
--- 
-2.33.0
+
+The if statement is also misaligned here. I'll fix that too.
+
+Thanks,
+Liam
+
+>
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
