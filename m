@@ -2,86 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2729F3F3EFE
-	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 12:34:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE9C3F3F48
+	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 14:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233335AbhHVKfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 06:35:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233001AbhHVKfG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 06:35:06 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C89C061575
-        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 03:34:26 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id 28-20020a17090a031cb0290178dcd8a4d1so11710801pje.0
-        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 03:34:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=p6T5NwhoaU5Nl0UiPoYz3qYw3l2tL6Ut8glFQveZ/hw=;
-        b=cjpW7mZ0gGcWRgsAmV1YJDiPw+64CjQqvVpLDoTs7V3v6ntNGO39K6HgYL2reaJpUW
-         +PXo8adRK9YTVc6Krw/ACbOqdDof8LZPf801KZI1SGsdaGwocS+O8RvbBW7GSb9mvF+k
-         TSlUEi5HTudzl8vd1nOcp9aRt5LNSBDBfG8naQvNc7DAp8WEJdf9djgfWmj0FvWElOAM
-         xg8xVse0e4r2I9ZqvoFlJtzP1B/9zaM7Mv4EgrDGlahy1of5g+N3EUa/XmjmZM4uDm2j
-         PN4bruoJlWFNtYF2VNbuDozpjFTuXUtylZzRml6L+VEyzdQ/4thtN+vVFuM3lStjRl/i
-         XdlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=p6T5NwhoaU5Nl0UiPoYz3qYw3l2tL6Ut8glFQveZ/hw=;
-        b=mw45APlwXKwwa6vn+2UqLC+ZZW/Ij9v7XTx6bktqRY+qkkufem1TSXVkuMQQSwGLTP
-         NsSJ7J/gbP/ultLYKq3vBWxeGKCHxGvekf0Mf3pX2zF/QR4aBO7Mg98ikTPwHr72vEri
-         ewVnbvknZ6Mr3whSXPyk6Ygda6lUmvGBhyKATX1g4RwQFbq4vKr0OYBwdv8VA5fVv8MB
-         CdECZdlKPZ72jy/CLB/ph+uIg+mX3qrb2f/O8YDAQQiMPJ3Q+n/DTkr3LYNOQL33vkXA
-         6WJ5O5jCoOGrSlJEulLb8afpsV6SeBlOHl08VdNTPnGFVTdICZ1XMOML1E1FZLQJ0y+t
-         Mddw==
-X-Gm-Message-State: AOAM531R1VNoTWzN30gt1ob0mKmGna3yKVRK0qB9ZNLaL2QlJeQKChZ3
-        ZE/Hv/JCP+yqiHPNNg4TkR4=
-X-Google-Smtp-Source: ABdhPJzLluZXbRA0LttAg8AdwJYAOrynHiE+7k6CwdbEwaItqspVXbk8tBu9KcxYjKVD3o9ie8Fa1g==
-X-Received: by 2002:a17:90a:6fe2:: with SMTP id e89mr14151140pjk.188.1629628465844;
-        Sun, 22 Aug 2021 03:34:25 -0700 (PDT)
-Received: from [192.168.1.22] (amarseille-551-1-7-65.w92-145.abo.wanadoo.fr. [92.145.152.65])
-        by smtp.gmail.com with ESMTPSA id z9sm12462264pfa.2.2021.08.22.03.34.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Aug 2021 03:34:25 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: mfd: add Broadcom's MISC block
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20210819152552.23784-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <b4647c69-6727-79c4-7881-938ec19841ce@gmail.com>
-Date:   Sun, 22 Aug 2021 12:34:14 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S231376AbhHVMj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 08:39:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34910 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230495AbhHVMj2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Aug 2021 08:39:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A5A746128A;
+        Sun, 22 Aug 2021 12:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629635927;
+        bh=muvvoBs3oUAwLkFvn/dXSRDVyPPnG/XlYO7Kc0FDXI8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=OeND9lDcBkhjmaB/0jcrN29hGzyDqadcJYo5fYIyc8WoLfMY5k1SIROBaJB1US56E
+         GWfQWCYB7Oyt1spE288LCfi9RqBusL0PGXJqpezCmNIXm7X3xLTwH0zDtIt7gsWNJf
+         lUM11tmv4m/ah0q4XWJBL4Q1812vLx2OkaaCumbA7MQ9hISqgC1JAq2aZTYBcVTX/n
+         tte5AIIXg9hU1ETbEc0wnYVrbizOam14+KG8o/T1Zt38nQ4OFFUWRsmpZgGTJVHsvw
+         Dzbd4jPD9bW5fwp57JWr8cHB+4hK7HAskiUFuFIvqeVMS5jDcBUW+ptqW2QaENVHEa
+         b2RpTlh/mAkww==
+Date:   Sun, 22 Aug 2021 14:38:43 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/3] dt-bindings: Add 'slot-power-limit' PCIe port
+ property
+Message-ID: <20210822143843.4f4985a4@thinkpad>
+In-Reply-To: <20210820160023.3243-2-pali@kernel.org>
+References: <20210820160023.3243-1-pali@kernel.org>
+        <20210820160023.3243-2-pali@kernel.org>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210819152552.23784-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 20 Aug 2021 18:00:21 +0200
+Pali Roh=C3=A1r <pali@kernel.org> wrote:
 
+> This property specifies slot power limit in mW unit. It is form-factor and
+> board specific value and must be initialized by hardware.
+>=20
+> Some PCIe controllers delegates this work to software to allow hardware
+> flexibility and therefore this property basically specifies what should
+> host bridge programs into PCIe Slot Capabilities registers.
+>=20
+> Property needs to be specified in mW unit, and not in special format
+> defined by Slot Capabilities (which encodes scaling factor or different
+> unit). Host drivers should convert value from mW unit to their format.
+>=20
+> Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentatio=
+n/devicetree/bindings/pci/pci.txt
+> index 6a8f2874a24d..e67d5db21514 100644
+> --- a/Documentation/devicetree/bindings/pci/pci.txt
+> +++ b/Documentation/devicetree/bindings/pci/pci.txt
+> @@ -32,6 +32,12 @@ driver implementation may support the following proper=
+ties:
+>     root port to downstream device and host bridge drivers can do program=
+ming
+>     which depends on CLKREQ signal existence. For example, programming ro=
+ot port
+>     not to advertise ASPM L1 Sub-States support if there is no CLKREQ sig=
+nal.
+> +- slot-power-limit:
+> +   If present this property specifies slot power limit in mW unit. Host =
+drivers
+> +   can parse this slot power limit and use it for programming Root Port =
+or host
+> +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit message
+> +   through the Root Port or host bridge when transitioning PCIe link fro=
+m a
+> +   non-DL_Up Status to a DL_Up Status.
+> =20
+>  PCI-PCI Bridge properties
+>  -------------------------
 
-On 8/19/2021 5:25 PM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Broadcom's MISC is an MFD hardware block used on some of their SoCs like
-> bcm63xx and bcm4908. At this point only PCIe reset is fully understood
-> and documented. More functions may be added later.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+SFP uses something similar for maximum power, but since the units are
+in milliwatt, the name of the property is maximum-power-milliwatt, to
+avoid problems. I think it should be done here as well, i.e.
+  slot-maximum-power-milliwatt
+or maybe even
+  maximum-power-milliwatt.
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Marek
