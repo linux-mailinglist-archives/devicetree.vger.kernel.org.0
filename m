@@ -2,208 +2,380 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 373623F40D9
-	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 20:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 674BA3F40DE
+	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 20:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231452AbhHVS3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 14:29:25 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:50940 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbhHVS3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 14:29:24 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 28f884f6;
-        Sun, 22 Aug 2021 20:28:41 +0200 (CEST)
-Date:   Sun, 22 Aug 2021 20:28:41 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc:     linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
-        lorenzo.pieralisi@arm.com, kw@linux.com, alyssa@rosenzweig.io,
-        stan@corellium.com, maz@kernel.org, kettenis@openbsd.org,
-        sven@svenpeter.dev, marcan@marcan.st, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20210816031621.240268-7-alyssa@rosenzweig.io> (message from
-        Alyssa Rosenzweig on Sun, 15 Aug 2021 23:16:21 -0400)
-Subject: Re: [PATCH v2 6/6] arm64: apple: Add PCIe node
-References: <20210816031621.240268-1-alyssa@rosenzweig.io> <20210816031621.240268-7-alyssa@rosenzweig.io>
-Message-ID: <56140c9183a8d1c2@bloch.sibelius.xs4all.nl>
+        id S231757AbhHVSgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 14:36:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231465AbhHVSgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 14:36:21 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5207FC061756;
+        Sun, 22 Aug 2021 11:35:40 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id x27so32986850lfu.5;
+        Sun, 22 Aug 2021 11:35:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=llXGzOlVfQ1z+fZShplnuKhCoBoaDlqiYpJmC9GU0+A=;
+        b=pUd9pFzrQoz3MNBZyhe492j7Qpwx+o85iQRD6cvmN/8plmaCSQzruh0RLDBLu8kjbl
+         TH2YjBmZbqDFv62c43rrm+RSWCswEPx259Y0lUalUz7YpM8zV3SoOyvmYKqbVGEh6DVy
+         rniJPhXV2GJnOp3rJirXiqPIfyPVSXebHcrNvf4rhd1A6hnKj1F21t4SULzx78RQFoSZ
+         4NCdZ2we55lY8RlkJy5ZNHKATACU0drXFlBD/8zAouMBw5X7N8H5OzPaiNUpTvt7Ps7a
+         dj4vDtsop6JYSgrAGC0sGSlmLTOoLXQ2XsB7rZBKZmLc5jalVGskLtiCPRnUqfBevgil
+         IVLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=llXGzOlVfQ1z+fZShplnuKhCoBoaDlqiYpJmC9GU0+A=;
+        b=nSA2sgzX16KsgCKBdEuj/L8Wa1IkynuUBYZZKRI8AybbHuoqMrC62dJZp385Rx4x6S
+         tLLmCJwje+3Mmvy41d3KYPjZCFU1WoInHVaE6TQqrEdZChseRb2Za7ZE6dzLDj/lALp3
+         1wcLyZHlsEGl6MuYV9pwacEh9S333nd/LQYU24Pp+5RfPabplTVXqynph9UW/kVygh4m
+         nYjA5JsVLBEtdSXWDkC8xbUjiNv6LO3ekzqqr2ex8JQuSEjAaTMfAWvhy+qn4Pcv9zuE
+         3AMIWa0MwVVVmmzvpL1vhdpepdXW5O0VtLlCUYnnw9eDN90VGOPhf2P9p/wDIflyiE77
+         w8BA==
+X-Gm-Message-State: AOAM532EU0S7Ndma4PYUEdssBupO7kD2p6tzSW6JyBesddwHxoiqEqFV
+        Lw6ypHG0rjZXeEpYqS3N2MiWmAu0wWs=
+X-Google-Smtp-Source: ABdhPJxSIOhcKe6yMzphYPwAYvHArYXqPo3XV3R2pB+pvoKJx2vc7UTHUQczHFEp2jjlznO4dsdqvg==
+X-Received: by 2002:ac2:5fa8:: with SMTP id s8mr23353475lfe.514.1629657338302;
+        Sun, 22 Aug 2021 11:35:38 -0700 (PDT)
+Received: from [192.168.2.145] (46-138-120-72.dynamic.spd-mgts.ru. [46.138.120.72])
+        by smtp.googlemail.com with ESMTPSA id i12sm226942ljm.116.2021.08.22.11.35.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Aug 2021 11:35:37 -0700 (PDT)
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+References: <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7>
+ <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7>
+ <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7>
+ <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com>
+ <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+ <CAPDyKFpg8ixT4AEjzVLTwQR7Nn9CctjnLCDS5GwkOrAERquyxw@mail.gmail.com>
+ <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <b887de8c-a40b-a62e-8abf-698e67cdb70c@gmail.com>
+Date:   Sun, 22 Aug 2021 21:35:36 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> Date: Sun, 15 Aug 2021 23:16:21 -0400
+20.08.2021 08:18, Viresh Kumar пишет:
+> On 19-08-21, 16:55, Ulf Hansson wrote:
+>> Right, that sounds reasonable.
+>>
+>> We already have pm_genpd_opp_to_performance_state() which translates
+>> an OPP to a performance state. This function invokes the
+>> ->opp_to_performance_state() for a genpd. Maybe we need to allow a
+>> genpd to not have ->opp_to_performance_state() callback assigned
+>> though, but continue up in the hierarchy to see if the parent has the
+>> callback assigned, to make this work for Tegra?
+>>
+>> Perhaps we should add an API dev_pm_genpd_opp_to_performance_state(),
+>> allowing us to pass the device instead of the genpd. But that's a
+>> minor thing.
 > 
-> From: Mark Kettenis <kettenis@openbsd.org>
+> I am not concerned a lot about how it gets implemented, and am not
+> sure as well, as I haven't looked into these details since sometime.
+> Any reasonable thing will be accepted, as simple as that.
 > 
-> Add node corresponding to the apcie,t8103 node in the Apple device tree
-> for the Mac mini (M1, 2020).
-> 
-> Clock references are left out at the moment and will be added once the
-> appropriate bindings have been settled on.
-> 
-> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
-> ---
->  arch/arm64/boot/dts/apple/t8103.dtsi | 124 +++++++++++++++++++++++++++
->  1 file changed, 124 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 342e01c6098e..c0d3b2fb0366 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -214,5 +214,129 @@ pinctrl_aop: pinctrl@24a820000 {
->  				     <AIC_IRQ 273 IRQ_TYPE_LEVEL_HIGH>,
->  				     <AIC_IRQ 274 IRQ_TYPE_LEVEL_HIGH>;
->  		};
-> +
-> +		pcie0_dart_0: dart@681008000 {
-> +			compatible = "apple,t8103-dart";
-> +			reg = <0x6 0x81008000 0x0 0x4000>;
-> +			#iommu-cells = <1>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 696 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pcie0_dart_1: dart@682008000 {
-> +			compatible = "apple,t8103-dart";
-> +			reg = <0x6 0x82008000 0x0 0x4000>;
-> +			#iommu-cells = <1>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 699 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pcie0_dart_2: dart@683008000 {
-> +			compatible = "apple,t8103-dart";
-> +			reg = <0x6 0x83008000 0x0 0x4000>;
-> +			#iommu-cells = <1>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 702 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		pcie0: pcie@690000000 {
-> +			compatible = "apple,t8103-pcie", "apple,pcie";
-> +			device_type = "pci";
-> +
-> +			reg = <0x6 0x90000000 0x0 0x1000000>,
-> +			      <0x6 0x80000000 0x0 0x100000>,
-> +			      <0x6 0x81000000 0x0 0x4000>,
-> +			      <0x6 0x82000000 0x0 0x4000>,
-> +			      <0x6 0x83000000 0x0 0x4000>;
-> +			reg-names = "config", "rc", "port0", "port1", "port2";
-> +
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 704 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 705 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 706 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 707 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 708 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 709 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 710 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 711 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 712 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 713 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 714 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 715 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 716 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 717 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 718 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 719 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 720 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 721 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 722 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 723 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 724 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 725 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 726 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 727 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 728 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 729 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 730 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 731 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 732 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 733 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 734 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <AIC_IRQ 735 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			msi-controller;
-> +			msi-parent = <&pcie0>;
-> +			msi-ranges = <704 32>;
-> +
-> +			iommu-map = <0x100 &pcie0_dart_0 0 1>,
-> +				    <0x200 &pcie0_dart_1 0 1>,
-> +				    <0x300 &pcie0_dart_2 0 1>;
-> +			iommu-map-mask = <0xff00>;
+>> Finally, the precondition to use the above, is to first get a handle
+>> to an OPP table. This is where I am struggling to find a generic
+>> solution, because I guess that would be platform or even consumer
+>> driver specific for how to do this. And at what point should we do
+>> this?
 
-So this will need a little bit more thought.
+GENPD core can't get OPP table handle, setting up OPP table is a platform/driver specific operation.
 
-The PCIe bridge hardware has logic to map a PCIe Requester ID (RID) to
-an IOMMU Stream ID (SID).  The RID is basically just the PCI
-bus/device/function number of the PCI device that initiates the DMA.
-As far as I can tell if the RID isn't matched by the PCIe bridge
-RID-to-SID mapping hardware it will be mapped to SID 0.  Your driver
-doesn't program the RID-to-SID hardware so using 0 as the SID in your
-device tree makes some sense.
-
-However, since SID 0 is the default used when there is no match for an
-RID, we should probably avoid it if we can.  That's why in my
-apple,pcie DT binding series I used SID 1.  But this would require
-additional code in the driver to parse the iommu-map property and
-program the RID-to-SID hardware accordingly.
-
-Now until we support the Tunderbolt ports, this isn't all that
-important and we can go with your current driver and DT.  I can adjust
-the U-Boot DT accordingly.
-
-> +
-> +			bus-range = <0 3>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
-> +				 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
-> +
-> +			pinctrl-0 = <&pcie_pins>;
-> +			pinctrl-names = "default";
-> +
-> +			pci@0,0 {
-> +				device_type = "pci";
-> +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> +				reset-gpios = <&pinctrl_ap 152 0>;
-> +				max-link-speed = <2>;
-> +
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +			};
-> +
-> +			pci@1,0 {
-> +				device_type = "pci";
-> +				reg = <0x800 0x0 0x0 0x0 0x0>;
-> +				reset-gpios = <&pinctrl_ap 153 0>;
-> +				max-link-speed = <2>;
-> +
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +			};
-> +
-> +			pci@2,0 {
-> +				device_type = "pci";
-> +				reg = <0x1000 0x0 0x0 0x0 0x0>;
-> +				reset-gpios = <&pinctrl_ap 33 0>;
-> +				max-link-speed = <1>;
-> +
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +			};
-> +		};
->  	};
->  };
-> -- 
-> 2.30.2
+> Hmm, I am not very clear with the whole picture at this point of time.
 > 
-> 
+> Dmitry, can you try to frame a sequence of events/calls/etc that will
+> define what kind of devices we are looking at here, and how this can
+> be made to work ?
+
+Could you please clarify what do you mean by a "kind of devices"?
+
+I made hack based on the recent discussions and it partially works. Getting clock rate involves resuming device which backs the clock and it also may use GENPD, so lockings are becoming complicated. It doesn't work at all if device uses multiple domains because virtual domain device doesn't have OPP table.
+
+Setting up the performance state from a consumer driver is a cleaner variant so far. 
+
+diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+index e1c8994ae225..faa0bbe99c98 100644
+--- a/drivers/base/power/domain.c
++++ b/drivers/base/power/domain.c
+@@ -410,11 +410,16 @@ static int genpd_drop_performance_state(struct device *dev)
+ 	return 0;
+ }
+ 
+-static void genpd_restore_performance_state(struct device *dev,
+-					    unsigned int state)
++static int genpd_restore_performance_state(struct generic_pm_domain *genpd,
++					   struct device *dev,
++					   unsigned int state)
+ {
++	int ret = 0;
++
+ 	if (state)
+-		genpd_set_performance_state(dev, state);
++		ret = genpd_set_performance_state(dev, state);
++
++	return ret;
+ }
+ 
+ /**
+@@ -435,7 +440,7 @@ static void genpd_restore_performance_state(struct device *dev,
+ int dev_pm_genpd_set_performance_state(struct device *dev, unsigned int state)
+ {
+ 	struct generic_pm_domain *genpd;
+-	int ret;
++	int ret = 0;
+ 
+ 	genpd = dev_to_genpd_safe(dev);
+ 	if (!genpd)
+@@ -446,7 +451,10 @@ int dev_pm_genpd_set_performance_state(struct device *dev, unsigned int state)
+ 		return -EINVAL;
+ 
+ 	genpd_lock(genpd);
+-	ret = genpd_set_performance_state(dev, state);
++	if (pm_runtime_suspended(dev))
++		dev_gpd_data(dev)->rpm_pstate = state;
++	else
++		ret = genpd_set_performance_state(dev, state);
+ 	genpd_unlock(genpd);
+ 
+ 	return ret;
+@@ -959,10 +967,25 @@ static int genpd_runtime_resume(struct device *dev)
+ 		goto out;
+ 	}
+ 
++	if (genpd->get_performance_state) {
++		ret = genpd->get_performance_state(genpd, dev);
++		if (ret < 0)
++			return ret;
++
++		if (ret > 0)
++			gpd_data->rpm_pstate = ret;
++	}
++
+ 	genpd_lock(genpd);
+ 	ret = genpd_power_on(genpd, 0);
+-	if (!ret)
+-		genpd_restore_performance_state(dev, gpd_data->rpm_pstate);
++	if (!ret) {
++		ret = genpd_restore_performance_state(genpd, dev,
++						      gpd_data->rpm_pstate);
++		if (ret)
++			genpd_power_off(genpd, true, 0);
++		else
++			gpd_data->rpm_pstate = 0;
++	}
+ 	genpd_unlock(genpd);
+ 
+ 	if (ret)
+diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+index 18016e49605f..982be2dba21e 100644
+--- a/drivers/opp/core.c
++++ b/drivers/opp/core.c
+@@ -2967,3 +2967,33 @@ int dev_pm_opp_sync(struct device *dev)
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(dev_pm_opp_sync);
++
++/**
++ * dev_pm_opp_from_clk_rate() - Get OPP from current clock rate
++ * @dev:	device for which we do this operation
++ *
++ * Get OPP which corresponds to the current clock rate of a device.
++ *
++ * Return: pointer to 'struct dev_pm_opp' on success and errorno otherwise.
++ */
++struct dev_pm_opp *dev_pm_opp_from_clk_rate(struct device *dev)
++{
++	struct dev_pm_opp *opp = ERR_PTR(-ENODEV);
++	struct opp_table *opp_table;
++	unsigned long freq;
++
++	opp_table = _find_opp_table(dev);
++	if (IS_ERR(opp_table))
++		return ERR_CAST(opp_table);
++
++	if (!IS_ERR(opp_table->clk)) {
++		freq = clk_get_rate(opp_table->clk);
++		opp = _find_freq_ceil(opp_table, &freq);
++	}
++
++	/* Drop reference taken by _find_opp_table() */
++	dev_pm_opp_put_opp_table(opp_table);
++
++	return opp;
++}
++EXPORT_SYMBOL_GPL(dev_pm_opp_from_clk_rate);
+diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+index 7c9bc93147f1..03bad16e5318 100644
+--- a/drivers/soc/tegra/pmc.c
++++ b/drivers/soc/tegra/pmc.c
+@@ -506,6 +506,63 @@ static void tegra_pmc_scratch_writel(struct tegra_pmc *pmc, u32 value,
+ 		writel(value, pmc->scratch + offset);
+ }
+ 
++static const char * const tegra_skip_compats[] = {
++	"nvidia,tegra20-sclk",
++	"nvidia,tegra30-sclk",
++	"nvidia,tegra30-pllc",
++	"nvidia,tegra30-plle",
++	"nvidia,tegra30-pllm",
++	"nvidia,tegra20-dc",
++	"nvidia,tegra30-dc",
++	"nvidia,tegra20-emc",
++	"nvidia,tegra30-emc",
++	NULL,
++};
++
++static int tegra_pmc_pd_get_performance_state(struct generic_pm_domain *genpd,
++					      struct device *dev)
++{
++	struct dev_pm_opp *opp;
++	int ret;
++
++	/*
++	 * Tegra114+ SocS don't support OPP yet.  But if they will get OPP
++	 * support, then we want to skip OPP for older kernels to preserve
++	 * compatibility of newer DTBs with older kernels.
++	 */
++	if (!pmc->soc->supports_core_domain)
++		return 0;
++
++	/*
++	 * The EMC devices are a special case because we have a protection
++	 * from non-EMC drivers getting clock handle before EMC driver is
++	 * fully initialized.  The goal of the protection is to prevent
++	 * devfreq driver from getting failures if it will try to change
++	 * EMC clock rate until clock is fully initialized.  The EMC drivers
++	 * will initialize the performance state by themselves.
++	 *
++	 * Display controller also is a special case because only controller
++	 * driver could get the clock rate based on configuration of internal
++	 * divider.
++	 *
++	 * Clock driver uses its own state syncing.
++	 */
++	if (of_device_compatible_match(dev->of_node, tegra_skip_compats))
++		return 0;
++
++	opp = dev_pm_opp_from_clk_rate(dev);
++	if (IS_ERR(opp)) {
++		dev_err(&genpd->dev, "failed to get current OPP for %s: %pe\n",
++			dev_name(dev), opp);
++		ret = PTR_ERR(opp);
++	} else {
++		ret = dev_pm_opp_get_required_pstate(opp, 0);
++		dev_pm_opp_put(opp);
++	}
++
++	return ret;
++}
++
+ /*
+  * TODO Figure out a way to call this with the struct tegra_pmc * passed in.
+  * This currently doesn't work because readx_poll_timeout() can only operate
+@@ -1238,6 +1295,7 @@ static int tegra_powergate_add(struct tegra_pmc *pmc, struct device_node *np)
+ 
+ 	pg->id = id;
+ 	pg->genpd.name = np->name;
++	pg->genpd.get_performance_state = tegra_pmc_pd_get_performance_state;
+ 	pg->genpd.power_off = tegra_genpd_power_off;
+ 	pg->genpd.power_on = tegra_genpd_power_on;
+ 	pg->pmc = pmc;
+@@ -1354,6 +1412,7 @@ static int tegra_pmc_core_pd_add(struct tegra_pmc *pmc, struct device_node *np)
+ 		return -ENOMEM;
+ 
+ 	genpd->name = "core";
++	genpd->get_performance_state = tegra_pmc_pd_get_performance_state;
+ 	genpd->set_performance_state = tegra_pmc_core_pd_set_performance_state;
+ 	genpd->opp_to_performance_state = tegra_pmc_core_pd_opp_to_performance_state;
+ 
+diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+index 67017c9390c8..abe33be9828f 100644
+--- a/include/linux/pm_domain.h
++++ b/include/linux/pm_domain.h
+@@ -133,6 +133,8 @@ struct generic_pm_domain {
+ 						 struct dev_pm_opp *opp);
+ 	int (*set_performance_state)(struct generic_pm_domain *genpd,
+ 				     unsigned int state);
++	int (*get_performance_state)(struct generic_pm_domain *genpd,
++				     struct device *dev);
+ 	struct gpd_dev_ops dev_ops;
+ 	s64 max_off_time_ns;	/* Maximum allowed "suspended" time. */
+ 	ktime_t next_wakeup;	/* Maintained by the domain governor */
+diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
+index 686122b59935..e7fd0dd493ca 100644
+--- a/include/linux/pm_opp.h
++++ b/include/linux/pm_opp.h
+@@ -169,6 +169,7 @@ void dev_pm_opp_remove_table(struct device *dev);
+ void dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask);
+ int dev_pm_opp_sync_regulators(struct device *dev);
+ int dev_pm_opp_sync(struct device *dev);
++struct dev_pm_opp *dev_pm_opp_from_clk_rate(struct device *dev);
+ #else
+ static inline struct opp_table *dev_pm_opp_get_opp_table(struct device *dev)
+ {
+@@ -440,6 +441,11 @@ static inline int dev_pm_opp_sync(struct device *dev)
+ 	return -EOPNOTSUPP;
+ }
+ 
++static struct inline dev_pm_opp *dev_pm_opp_from_clk_rate(struct device *dev)
++{
++	return ERR_PTR(-EOPNOTSUPP);
++}
++
+ #endif		/* CONFIG_PM_OPP */
+ 
+ #if defined(CONFIG_PM_OPP) && defined(CONFIG_OF)
+-- 
+
