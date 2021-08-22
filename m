@@ -2,356 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0037B3F40B6
-	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 19:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC9C3F40BF
+	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 19:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbhHVRpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 13:45:06 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:54463 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbhHVRpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 13:45:06 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id a8d0cc6e;
-        Sun, 22 Aug 2021 19:44:22 +0200 (CEST)
-Date:   Sun, 22 Aug 2021 19:44:22 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Rob Herring <robh@kernel.org>
-Cc:     maz@kernel.org, devicetree@vger.kernel.org, robin.murphy@arm.com,
-        sven@svenpeter.dev, kettenis@openbsd.org, marcan@marcan.st,
-        bhelgaas@google.com, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <CAL_JsqJ-YDNWOoo8TUupDox31YreUNQAPXHnMMtXakQs0S_BDA@mail.gmail.com>
-        (message from Rob Herring on Wed, 18 Aug 2021 15:51:11 -0500)
-Subject: Re: [PATCH v3 1/2] dt-bindings: pci: Add DT bindings for apple,pcie
-References: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
- <20210726083204.93196-2-mark.kettenis@xs4all.nl> <20210726231848.GA1025245@robh.at.kernel.org>
- <87sfzt1pg9.wl-maz@kernel.org> <CAL_JsqLvqWiuib9s4PzX8pOQYJQ0eR7Gxz==J849eVJ5MDq4SA@mail.gmail.com>
- <8735ra1x8t.wl-maz@kernel.org> <CAL_JsqJ5M3soMT30ntSTbqqdrQP8TT26mHL-0xExsn10MWPofA@mail.gmail.com>
- <56140331bd735d61@bloch.sibelius.xs4all.nl> <CAL_JsqJ-YDNWOoo8TUupDox31YreUNQAPXHnMMtXakQs0S_BDA@mail.gmail.com>
-Message-ID: <56140c26d86f4733@bloch.sibelius.xs4all.nl>
+        id S231788AbhHVR6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 13:58:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231698AbhHVR6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 13:58:08 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CDAFC061757
+        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 10:57:27 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id s16so14857363ilo.9
+        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 10:57:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tO3FpggPumUudO2O7Ir/fs1af6Qf8hcFO9g7I6cp01Q=;
+        b=NDkEoB50cJIffh8DEmD3xfV5OH8ema/PjNX2L8kixdAdzju1+1Q+RfI4dvsWmf6ckV
+         cbsUqLyLFzaRWyrxKHgk9HO+WkFNp66FjMC0xCvO73mpe2AOuKEOT9losiWcUW3PDPNm
+         I0Juj2PjGLAqKt2+Iz9cmX6gBy5MzrvAzxAH8s1TYKJbJaqQKfMgWI5aiYeXRCwwh3kd
+         CJI4TEZHABSCNMA2IhdFQIizIVfW37pxWIzkxkAqqzqK5tmPuWInXDStw52NSqp8XXny
+         pVSXtZOL/inFPT0NN6u8kmBCcSiariw/dIe5ePYIn0HTiy7GwQL7GtGEqlmgztShSjIB
+         r2/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tO3FpggPumUudO2O7Ir/fs1af6Qf8hcFO9g7I6cp01Q=;
+        b=MueOJn4Ngr8btyyz3d+JLCTAU4mxbsaxk4m9nH1y/cp395NlxYy19vt5SOrN/34UOK
+         UVmHnTtc+RBVylZYchSmsKDkauc0HF3uV8XInSpZi/TEqt4rRfZrU/EdAxYeBI6jBfw5
+         SQvHjWKe4jRspWFf4q7FKcZzdfrVoFUhAB7ejjAOgxvMVzVcFs28OE75cLROoxV2KDjU
+         6y0NxNl6PWOTVYUVS3CB+kzfEIb1DJIhuqJ1ZiDoL/oYP/WCcwXR9P0V865Xa5DVuIsH
+         X5sbPBs+InxMF/uYGMNufEDX+Vem2R69uQt67vBp7ZagrrP8DJ3MGjZQCsW0OB57TlkV
+         kveQ==
+X-Gm-Message-State: AOAM533D46e5wrl0uyRNVScPB8jD9HeCy8QNMIIir7K0V6Dd790hIDCX
+        XpazSqov3bIBqihBAGJV+ChDp8Su9pVfe4vEdVwLVA==
+X-Google-Smtp-Source: ABdhPJxAy4F4JBrNf2BEXyC2jHsLYTKqTZpEvWl47iBJSnZyLzmCveu6cLApJEwjHW6shDTLnoCxAWArc0HfBTHBbuc=
+X-Received: by 2002:a92:ca89:: with SMTP id t9mr21038515ilo.178.1629655046630;
+ Sun, 22 Aug 2021 10:57:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
+ <CAAEAJfDWOzCJxZFNtxeT7Cvr2pWbYrfz-YnA81sVNs-rM=8n4Q@mail.gmail.com> <CAKMK7uFW3Z=Up=OCJO4dNR9ffaTdFjHwoND9CrUw6LHmQ4t_AQ@mail.gmail.com>
+In-Reply-To: <CAKMK7uFW3Z=Up=OCJO4dNR9ffaTdFjHwoND9CrUw6LHmQ4t_AQ@mail.gmail.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Sun, 22 Aug 2021 14:57:15 -0300
+Message-ID: <CAAEAJfB3CoTU7bZe08wYEfTTm6=6UPOae9u39AtdbJ9saYknBA@mail.gmail.com>
+Subject: Re: [PATCH v5, 00/15] Using component framework to support multi
+ hardware decode
+To:     Daniel Vetter <daniel@ffwll.ch>
+Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        George Sun <george.sun@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Rob Herring <robh@kernel.org>
-> Date: Wed, 18 Aug 2021 15:51:11 -0500
-
-Hi Rob,
-
-> On Wed, Aug 18, 2021 at 2:56 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+On Sun, 22 Aug 2021 at 13:50, Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Wed, Aug 18, 2021 at 4:12 PM Ezequiel Garcia
+> <ezequiel@vanguardiasur.com.ar> wrote:
 > >
-> > > From: Rob Herring <robh@kernel.org>
-> > > Date: Sun, 15 Aug 2021 14:19:57 -0500
-> > >
-> > > On Sun, Aug 15, 2021 at 11:36 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > >
-> > > > Hi Rob,
-> > > >
-> > > > Apologies for the delay, I somehow misplaced this email...
-> > > >
-> > > > On Mon, 02 Aug 2021 17:10:39 +0100,
-> > > > Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Sun, Aug 1, 2021 at 3:31 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > > > >
-> > > > > > On Tue, 27 Jul 2021 00:18:48 +0100,
-> > > > > > Rob Herring <robh@kernel.org> wrote:
-> > > > > > >
-> > > > > > > On Mon, Jul 26, 2021 at 10:32:00AM +0200, Mark Kettenis wrote:
-> > > > > > > > From: Mark Kettenis <kettenis@openbsd.org>
-> > > > > > > >
-> > > > > > > > The Apple PCIe host controller is a PCIe host controller with
-> > > > > > > > multiple root ports present in Apple ARM SoC platforms, including
-> > > > > > > > various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > > > > > > > ---
-> > > > > > > >  .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
-> > > > > > > >  MAINTAINERS                                   |   1 +
-> > > > > > > >  2 files changed, 167 insertions(+)
-> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > > >
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > > > new file mode 100644
-> > > > > > > > index 000000000000..bfcbdee79c64
-> > > > > > > > --- /dev/null
-> > > > > > > > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > > > > > > > @@ -0,0 +1,166 @@
-> > > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > > > +%YAML 1.2
-> > > > > > > > +---
-> > > > > > > > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
-> > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > > > +
-> > > > > > > > +title: Apple PCIe host controller
-> > > > > > > > +
-> > > > > > > > +maintainers:
-> > > > > > > > +  - Mark Kettenis <kettenis@openbsd.org>
-> > > > > > > > +
-> > > > > > > > +description: |
-> > > > > > > > +  The Apple PCIe host controller is a PCIe host controller with
-> > > > > > > > +  multiple root ports present in Apple ARM SoC platforms, including
-> > > > > > > > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > > > > > > > +  The controller incorporates Synopsys DesigWare PCIe logic to
-> > > > > > > > +  implements its root ports.  But the ATU found on most DesignWare
-> > > > > > > > +  PCIe host bridges is absent.
-> > > > > > >
-> > > > > > > blank line
-> > > > > > >
-> > > > > > > > +  All root ports share a single ECAM space, but separate GPIOs are
-> > > > > > > > +  used to take the PCI devices on those ports out of reset.  Therefore
-> > > > > > > > +  the standard "reset-gpio" and "max-link-speed" properties appear on
-> > > > > > >
-> > > > > > > reset-gpios
-> > > > > > >
-> > > > > > > > +  the child nodes that represent the PCI bridges that correspond to
-> > > > > > > > +  the individual root ports.
-> > > > > > >
-> > > > > > > blank line
-> > > > > > >
-> > > > > > > > +  MSIs are handled by the PCIe controller and translated into regular
-> > > > > > > > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
-> > > > > > > > +  distributed over the root ports as the OS sees fit by programming
-> > > > > > > > +  the PCIe controller's port registers.
-> > > > > > > > +
-> > > > > > > > +allOf:
-> > > > > > > > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > > > > > > > +
-> > > > > > > > +properties:
-> > > > > > > > +  compatible:
-> > > > > > > > +    items:
-> > > > > > > > +      - const: apple,t8103-pcie
-> > > > > > > > +      - const: apple,pcie
-> > > > > > > > +
-> > > > > > > > +  reg:
-> > > > > > > > +    minItems: 3
-> > > > > > > > +    maxItems: 5
-> > > > > > > > +
-> > > > > > > > +  reg-names:
-> > > > > > > > +    minItems: 3
-> > > > > > > > +    maxItems: 5
-> > > > > > > > +    items:
-> > > > > > > > +      - const: config
-> > > > > > > > +      - const: rc
-> > > > > > > > +      - const: port0
-> > > > > > > > +      - const: port1
-> > > > > > > > +      - const: port2
-> > > > > > > > +
-> > > > > > > > +  ranges:
-> > > > > > > > +    minItems: 2
-> > > > > > > > +    maxItems: 2
-> > > > > > > > +
-> > > > > > > > +  interrupts:
-> > > > > > > > +    description:
-> > > > > > > > +      Interrupt specifiers, one for each root port.
-> > > > > > > > +    minItems: 1
-> > > > > > > > +    maxItems: 3
-> > > > > > > > +
-> > > > > > > > +  msi-controller: true
-> > > > > > > > +  msi-parent: true
-> 
-> BTW, I don't think msi-parent and msi-controller together is valid?
-
-There is an existing example in:
-
-arm64/boot/dts/marvell/armada-37xx.dtsi
-
-I think it makes sense as the pcie bridge itself serves as the MSI
-controller.
-
-> > > > > > > > +
-> > > > > > > > +  msi-ranges:
-> > > > > > > > +    description:
-> > > > > > > > +      A list of pairs <intid span>, where "intid" is the first
-> > > > > > > > +      interrupt number that can be used as an MSI, and "span" the size
-> > > > > > > > +      of that range.
-> > > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > > > > > > > +    items:
-> > > > > > > > +      minItems: 2
-> > > > > > > > +      maxItems: 2
-> > > > > > >
-> > > > > > > I still have issues I raised on v1 with this property. It's genericish
-> > > > > > > looking, but not generic. 'intid' as a single cell can't specify any
-> > > > > > > parent interrupt such as a GIC which uses 3 cells. You could put in all
-> > > > > > > the cells, but you'd still be assuming which cell you can increment.
-> > > > > >
-> > > > > > The GIC bindings already use similar abstractions, see what we do for
-> > > > > > both GICv2m and GICv3 MBIs. Other MSI controllers use similar
-> > > > > > properties (alpine and loongson, for example).
-> > > > >
-> > > > > That's the problem. Everyone making up their own crap.
-> > > >
-> > > > And that crap gets approved:
-> > > >
-> > > > https://lore.kernel.org/lkml/20200512205704.GA10412@bogus/
-> > > >
-> > > > I'm not trying to be antagonistic here, but it seems that your
-> > > > position on this very subject has changed recently.
-> > >
-> > > Not really, I think it's not the first time we've discussed this. But
-> > > as I see things over and over, my tolerance for another instance
-> > > without solving the problem for everyone diminishes. And what other
-> > > leverage do I have?
-> > >
-> > > Additionally, how long we have to support something comes into play. I
-> > > have no idea for a Loongson MSI controller. I have a better idea on an
-> > > Apple product...
-> > >
-> > > > > > > I think you should just list all these under 'interrupts' using
-> > > > > > > interrupt-names to make your life easier:
-> > > > > > >
-> > > > > > > interrupt-names:
-> > > > > > >   items:
-> > > > > > >     - const: port0
-> > > > > > >     - const: port1
-> > > > > > >     - const: port2
-> > > > > > >     - const: msi0
-> > > > > > >     - const: msi1
-> > > > > > >     - const: msi2
-> > > > > > >     - const: msi3
-> > > > > > >     ...
-> > > > > > >
-> > > > > > > Yeah, it's kind of verbose, but if the h/w block handles N interrupts,
-> > > > > > > you should list N interrupts. The worst case for the above is N entries
-> > > > > > > too if not contiguous.
-> > > > > >
-> > > > > > And that's where I beg to differ, again.
-> > > > > >
-> > > > > > Specifying interrupts like this gives the false impression that these
-> > > > > > interrupts are generated by the device that owns them (the RC). Which
-> > > > > > for MSIs is not the case.
-> > > > >
-> > > > > It's no different than an interrupt controller node having an
-> > > > > interrupts property. The source is downstream and the interrupt
-> > > > > controller is combining/translating the interrupts.
-> > > > >
-> > > > > The physical interrupt signals are connected to and originating in
-> > > > > this block.
-> > > >
-> > > > Oh, I also object to this, for the same reasons. The only case where
-> > > > it makes sense IMHO is when the interrupt controller is a multiplexer.
-> > >
-> > > So we've had the same kind of property for interrupt multiplexers. I'm
-> > > fine if you think an 'MSI to interrupts mapping property' should be
-> > > named something else.
-> > >
-> > > > > That sounds like perfectly 'describing the h/w' to me.
-> > > >
-> > > > I guess we have a different view of about these things. At the end of
-> > > > the day, I don't care enough as long as we can expose a range of
-> > > > interrupts one way or another.
-> > >
-> > > I don't really either. I just don't want 10 ways AND another...
-> > >
-> > > > > > This is not only verbose, this is
-> > > > > > semantically dubious. And what should we do when the number of
-> > > > > > possible interrupt is ridiculously large, as it is for the GICv3 ITS?
-> > > > >
-> > > > > I don't disagree with the verbose part. But that's not really an issue
-> > > > > in this case.
-> > > > >
-> > > > > > I wish we had a standard way to express these constraints. Until we
-> > > > > > do, I don't think enumerating individual interrupts is a practical
-> > > > > > thing to do, nor that it actually represents the topology of the
-> > > > > > system.
-> > > > >
-> > > > > The only way a standard way will happen is to stop accepting the
-> > > > > custom properties.
-> > > > >
-> > > > > All the custom properties suffer from knowledge of what the parent
-> > > > > interrupt controller is. To fix that, I think we need something like
-> > > > > this:
-> > > > >
-> > > > > msi-ranges = <intspec base>, <intspec step>, <intspec end>;
-> > > > >
-> > > > > 'intspec' is defined by the parent interrupt-controller cells. step is
-> > > > > the value to add. And end is what to match on to stop aka the last
-> > > > > interrupt in the range. For example, if the GIC is the parent, we'd
-> > > > > have something like this:
-> > > > >
-> > > > > <GIC_SPI 123 0>, <0 1 0>, <GIC_SPI 124 0>
-> > > > >
-> > > > > Does this apply to cases other than MSI? I think so as don't we have
-> > > > > the same type of properties with the low power mode shadow interrupt
-> > > > > controllers?  So 'interrupt-ranges'?
-> > > >
-> > > > This would work, though the increment seems a bit over-engineered. You
-> > > > also may need this property to accept multiple ranges.
-> > >
-> > > Yes, certainly. Worst case is a map.
-> > >
-> > > > > It looks to me like there's an assumption in the kernel that an MSI
-> > > > > controller has a linear range of parent interrupts? Is that correct
-> > > > > and something that's guaranteed? That assumption leaks into the
-> > > > > existing bindings.
-> > > >
-> > > > Depends on how the controller works. In general, the range maps to the
-> > > > MultiMSI requirements where the message is an offset from the base of
-> > > > the interrupt range. So you generally end-up with ranges of at least
-> > > > 32 contiguous MSIs. Anything under that is sub-par and probably not
-> > > > worth supporting.
-> > >
-> > > Maybe just this is enough:
-> > > msi-ranges = <intspec base>, <length>, <intspec base>, <length>, ...
-> > >
-> > > While I say 'length' here, that's really up to the interrupt parent to
-> > > interpret the intspec cells.
+> > +danvet
 > >
-> > So for the Apple PCIe controller we'd have:
+> > Hi,
 > >
-> >    msi-ranges = <AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+> > On Tue, 10 Aug 2021 at 23:58, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+> > >
+> > > This series adds support for multi hardware decode into mtk-vcodec, by first
+> > > adding component framework to manage each hardware information: interrupt,
+> > > clock, register bases and power. Secondly add core thread to deal with core
+> > > hardware message, at the same time, add msg queue for different hardware
+> > > share messages. Lastly, the architecture of different specs are not the same,
+> > > using specs type to separate them.
+> > >
 > >
-> > That would work just fine.
-> >
-> > Should this be documented in the apple,pcie binding, or somewhere more
-> > generic?
-> 
-> It doesn't have an 'apple,' prefix, so somewhere generic. Probably
-> bindings/interrupt-controller/msi.txt. Or start an msi-controller.yaml
-> schema as I'd rather not add things we can't validate, but I don't
-> want to gate this on converting all the MSI bindings. Someone that
-> understands MSI better than me should review too.
+> > I don't think it's a good idea to introduce the component API in the
+> > media subsystem. It doesn't seem to be maintained, IRC there's not even
+> > a maintainer for it, and it has some issues that were never addressed.
+>
+> Defacto dri-devel folks are maintainer component.c, but also I'm not
+> aware of anything missing there?
+>
 
-Yes, I'd like to avoid converting all the MSI bindings, but I could
-add an msi-controller.yaml file and use it in the appropriate
-interrupt controller and pci host bridge bindings that have been
-converted to yaml.
+A while ago, I tried to fix a crash in the Rockchip DRM driver
+(I was then told there can be similar issues on the IMX driver too,
+but I forgot the details of that).
 
-> Another thing I thought of is the above is assuming the interrupt
-> parent is the same as any interrupts for the node and that all MSIs go
-> to 1 interrupt controller. Also, given Marc doesn't think using
-> 'interrupts' is right, then using 'interrupt-parent' isn't either
-> (though many of the examples below do just that). So maybe we need the
-> phandle in there:
-> 
-> msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+I sent a patchset trying to address it and got total silence back.
+Although you could argue the issue is in how drivers use the component
+API, AFAICR the abuse is spreaded across a few drivers, so it felt
+more reasonable to improve the component API itself, instead of changing
+all the drivers.
 
-That makes sense.
+See below:
 
-> Other examples of this type of property include:
-> al,msi-base-spi/al,msi-base-spi
-> arm,msi-base-spi/arm,msi-num-spis
-> mbi-ranges
-> loongson,msi-base-vec/loongson,msi-num-vecs
-> marvell,spi-ranges
-> ti,interrupt-ranges?
-> 
-> We should make sure msi-ranges works for all of these cases at least
-> even if we can't change them.
+https://patchwork.kernel.org/project/linux-rockchip/cover/20200120170602.3832-1-ezequiel@collabora.com/
 
-I think this scheme would work for all of these although it isn't
-entirely clear to me whether ti,interrupt-ranges is about just MSIs or
-if it also maps some other kind of interrupts.
+> There has been discussions that in various drm subsystems like
+> drm_bridge or drm_panel a few things are missing, which prevent
+> drivers from moving _away_ from component.c to the more specific
+> solutions for panel/bridges. But nothing that's preventing them from
+> using component.c itself.
+>
+> I'm happy to merge a MAINTAINERS patch to clarify the situation if
+> that's needed.
 
-marvell,spi-ranges is an interesting one since it typically specifies
-two ranges of 64 MSIs.  But that's something your proposal addresses
-just fine.  I suppose we will provide a phandle for the parent
-interrupt controller for each individual range?
-
-If Marc agrees, I'll get working on implementing the
-msi-controller.yaml schema.
+Indeed, that would be good.
 
 Thanks,
-
-Mark
+Ezequiel
