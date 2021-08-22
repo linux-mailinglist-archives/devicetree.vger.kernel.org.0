@@ -2,135 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37BA83F3EFA
-	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 12:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24ADE3F3EFD
+	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 12:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233182AbhHVKc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 06:32:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51118 "EHLO
+        id S233258AbhHVKd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 06:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233001AbhHVKc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 06:32:57 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B27C061575;
-        Sun, 22 Aug 2021 03:32:16 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id om1-20020a17090b3a8100b0017941c44ce4so16750381pjb.3;
-        Sun, 22 Aug 2021 03:32:16 -0700 (PDT)
+        with ESMTP id S233001AbhHVKd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 06:33:57 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93859C061575;
+        Sun, 22 Aug 2021 03:33:16 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id r2so13820382pgl.10;
+        Sun, 22 Aug 2021 03:33:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hQj5hxFiqLom8YIi6YlB58FDTgWBUik0cwCE54AMCVw=;
-        b=R8C8lTWTUW+KgqVpcRCRbQGT3c4g3H2PFiCko36yeUJ8jSx8PM+DssNQqPPVLfsrfw
-         Nsc1nKBH0iaPcM2kF0Lgnz7X0uYq5D/ZyAb6HxtI89IC+PPKE9fyvug7VIRDeTtTmfuS
-         5pOldl+e7SalRpNeBYO+6qb/5yYfIbIs7eA4gSj17gWkR4PcnonGbe1iF68eTPcI08an
-         gjOWIrLiWgTUr59D5a9yjTmACIREyx9eDQKIam3f0rI38oZrwbwF1RZnC4R7B0yQQlIV
-         vPZx14Cn645FmhHp5mI1LRo6qQ7e/bDKvmU6pfWpMEafUoo4rXdRPRNnTgD9q+J09dv0
-         wJTQ==
+        bh=ADLfZopKXvKa0Ld8s4Xxltpx94A/+7/XhSuJdVPpzww=;
+        b=LbaSt3p8b0mPgTKBtdufkbN3nKW7dTL1ddnIoT1b/rKH5VvmJxpImtkrX1oUheQCdS
+         7xmyC5oMR8WqOXSHEkf/F32ks5Ldtshy9fTvRyYLAqGrtVd7MHJMAyh9HtTcnMb9Ir1Y
+         +9Q8kyPUVlu/JM0f2n93EMd6krMEmj8xbBg8O431r9bIdzZxTSYJiV47mPPYX/P1+Voh
+         Gvz3haydwJDiwIWwb7FlW3IgJKbiY0zgn4KFRsU9HipvAZ1sFRK0cwUPLCRfE7Kpr0mb
+         brz7KuMuiTblFdnI9g/VWBeRIWER2iqHnz5WIoCgtv2SeerkQsvq0DUomtfq1YENEIbQ
+         W8Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=hQj5hxFiqLom8YIi6YlB58FDTgWBUik0cwCE54AMCVw=;
-        b=tzDdmpfjJExyz9K2kWHw/qIv7X3F7hT2/fUnuiiBhp3XuACC4rO7PhfQcjavyJ0cNL
-         lunV14Jh27KMB8gUldiY0dxtEngZUfMHs0tChmIu3slxjiNY1vZiEid+wxvQ7r/MyqJI
-         AlWbIwW0exRYRPjA7erRHAc9OVWb5ya+PzWdnhQEYFnPVW2R6hr1TTpAFVChgl/DMAa5
-         OQl74ltUwh/P8DoFiCZ6gOPEP/HI84eGD58zhQZQeCGnZZYt3jlDo0hLP2v1wCAN1Itb
-         6k69lgrW+p9ye9hrk2YI0dfeL83R+rQbRxtf1yqMTdUWRHuiYETMwE9Qyc3zLzKU5ElS
-         Up+g==
-X-Gm-Message-State: AOAM531o1QbtLbGq4S6cqy2BFD/WQ40CDuLu8dQwzK3spe+GZPCX6apI
-        UER1lp9+x2casH7E4LM63Bc=
-X-Google-Smtp-Source: ABdhPJzHwqbDwoJSEscKZMXLfyYCuP5AiKczhok2dYkcbu7dQU3jiHKKBGvc9NS2g6UnZrcctYS5iw==
-X-Received: by 2002:a17:90a:3d4d:: with SMTP id o13mr14593378pjf.34.1629628336342;
-        Sun, 22 Aug 2021 03:32:16 -0700 (PDT)
+        bh=ADLfZopKXvKa0Ld8s4Xxltpx94A/+7/XhSuJdVPpzww=;
+        b=UQfjmtDal0ipEvHZ1jerMOHZQ55V+WdU+lXJY4eZ3/xZZu5tM+m2FuvCQZXV1uCIZE
+         caZR+xErVbwHFaLqGVMPCXFthV9XcQk1TSSeuY4V8nmJdJZN+k9gEh/0ZxaBpE/Ynd2A
+         NfeA0wb/l3hQQ2570iDmEKrR3+BpYPm6/8juVnSAzuAIWZ3qkiEw9J9PTWWgkCp992NJ
+         zNTQdDf0AG2MGPGFF0AjFu/Qs5uKf6L5wWjhNxVsidEx07f8TK3YlAZ9kZxeREIkgOox
+         sHVvWwIfvAT91yux18sAaUN3I4E1MVGXRnC2JPH2gyjnp/Y/Kd5Aapu6h0AN7yJ/+aQA
+         boug==
+X-Gm-Message-State: AOAM530i/jwnG/fHkZtXnwBr0vjhiLjD+cyFpXyth5HsM0i6xeshVCHj
+        D/6BtJP8tQtZ6cYQfesjQvM=
+X-Google-Smtp-Source: ABdhPJxzse1wQ8Sv1uTM+tcU77pDwrjBONPCjo8NXCZ8HNQ7lT3JjLYu1WFroggY7W8PO6M6csj1Gg==
+X-Received: by 2002:aa7:8ec1:0:b029:3cd:cd3c:b85c with SMTP id b1-20020aa78ec10000b02903cdcd3cb85cmr27967881pfr.15.1629628396102;
+        Sun, 22 Aug 2021 03:33:16 -0700 (PDT)
 Received: from [192.168.1.22] (amarseille-551-1-7-65.w92-145.abo.wanadoo.fr. [92.145.152.65])
-        by smtp.gmail.com with ESMTPSA id m18sm11376080pjq.32.2021.08.22.03.32.05
+        by smtp.gmail.com with ESMTPSA id z19sm12639513pfn.94.2021.08.22.03.33.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Aug 2021 03:32:15 -0700 (PDT)
-Subject: Re: [PATCH V2 00/10] ARM: dts: Add Raspberry Pi CM4 & CM4 IO Board
- support
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Sun, 22 Aug 2021 03:33:15 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: serial: brcm,bcm6345-uart: convert to the
+ json-schema
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, iivanov@suse.de,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com>
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20210819134859.19537-1-zajec5@gmail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <fb80f7a5-8fd4-73e3-4c64-77f120546cc4@gmail.com>
-Date:   Sun, 22 Aug 2021 12:31:58 +0200
+Message-ID: <205daa26-660d-3a65-3c9b-b2c540abd31e@gmail.com>
+Date:   Sun, 22 Aug 2021 12:33:06 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.12.0
 MIME-Version: 1.0
-In-Reply-To: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <20210819134859.19537-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 8/7/2021 1:06 PM, Stefan Wahren wrote:
-> This series add support for the Raspberry Pi Compute Module 4 and its
-> IO board.
+On 8/19/2021 3:48 PM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Changes in V2:
-> - drop emmc2bus patch as it affects userspace (thanks to Marc Zyngier)
-> - tested with CM4 and integrate sdhci patches from Nicolas (just include kHz fixups)
-> - add Rob's Acked-by
-> - add HS200 property to emmc2 node for a slight performance gain
-> - move antenna comment to the proper position
+> This helps validating DTS files.
+> 
+> In example periph_clk@0 was replaced with periph_clk to fix validation.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Nicolas, I am assuming you will be picking up these patches and submit a 
-BCM283x pull request with them. Thanks!
-
-> 
-> Nicolas Saenz Julienne (2):
->    mmc: sdhci-iproc: Cap min clock frequency on BCM2711
->    mmc: sdhci-iproc: Set SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN on BCM2711
-> 
-> Stefan Wahren (8):
->    ARM: dts: bcm2711: fix MDIO #address- and #size-cells
->    ARM: dts: bcm2711-rpi-4-b: fix sd_io_1v8_reg regulator states
->    dt-bindings: display: bcm2835: add optional property power-domains
->    ARM: dts: bcm283x-rpi: Move Wifi/BT into separate dtsi
->    dt-bindings: arm: bcm2835: Add Raspberry Pi Compute Module 4
->    ARM: dts: Add Raspberry Pi Compute Module 4
->    ARM: dts: Add Raspberry Pi Compute Module 4 IO Board
->    arm64: dts: broadcom: Add reference to RPi CM4 IO Board
-> 
->   .../devicetree/bindings/arm/bcm/bcm2835.yaml       |   1 +
->   .../bindings/display/brcm,bcm2835-dsi0.yaml        |   3 +
->   .../bindings/display/brcm,bcm2835-hdmi.yaml        |   3 +
->   .../bindings/display/brcm,bcm2835-v3d.yaml         |   3 +
->   .../bindings/display/brcm,bcm2835-vec.yaml         |   3 +
->   arch/arm/boot/dts/Makefile                         |   1 +
->   arch/arm/boot/dts/bcm2711-rpi-4-b.dts              |  42 ++-----
->   arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts           | 138 +++++++++++++++++++++
->   arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi             | 113 +++++++++++++++++
->   arch/arm/boot/dts/bcm2711.dtsi                     |   4 +-
->   arch/arm/boot/dts/bcm2835-rpi-zero-w.dts           |  31 ++---
->   arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts         |  36 ++----
->   arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts         |  36 ++----
->   arch/arm/boot/dts/bcm2837-rpi-3-b.dts              |  36 ++----
->   arch/arm/boot/dts/bcm283x-rpi-wifi-bt.dtsi         |  34 +++++
->   arch/arm64/boot/dts/broadcom/Makefile              |   1 +
->   .../arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts |   2 +
->   drivers/mmc/host/sdhci-iproc.c                     |  21 +++-
->   18 files changed, 366 insertions(+), 142 deletions(-)
->   create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
->   create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
->   create mode 100644 arch/arm/boot/dts/bcm283x-rpi-wifi-bt.dtsi
->   create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
-> 
-
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
 Florian
