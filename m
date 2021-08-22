@@ -2,136 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC9C3F40BF
-	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 19:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 787DB3F40C3
+	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 20:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231788AbhHVR6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 13:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35284 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231698AbhHVR6I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 13:58:08 -0400
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CDAFC061757
-        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 10:57:27 -0700 (PDT)
-Received: by mail-il1-x12c.google.com with SMTP id s16so14857363ilo.9
-        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 10:57:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tO3FpggPumUudO2O7Ir/fs1af6Qf8hcFO9g7I6cp01Q=;
-        b=NDkEoB50cJIffh8DEmD3xfV5OH8ema/PjNX2L8kixdAdzju1+1Q+RfI4dvsWmf6ckV
-         cbsUqLyLFzaRWyrxKHgk9HO+WkFNp66FjMC0xCvO73mpe2AOuKEOT9losiWcUW3PDPNm
-         I0Juj2PjGLAqKt2+Iz9cmX6gBy5MzrvAzxAH8s1TYKJbJaqQKfMgWI5aiYeXRCwwh3kd
-         CJI4TEZHABSCNMA2IhdFQIizIVfW37pxWIzkxkAqqzqK5tmPuWInXDStw52NSqp8XXny
-         pVSXtZOL/inFPT0NN6u8kmBCcSiariw/dIe5ePYIn0HTiy7GwQL7GtGEqlmgztShSjIB
-         r2/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tO3FpggPumUudO2O7Ir/fs1af6Qf8hcFO9g7I6cp01Q=;
-        b=MueOJn4Ngr8btyyz3d+JLCTAU4mxbsaxk4m9nH1y/cp395NlxYy19vt5SOrN/34UOK
-         UVmHnTtc+RBVylZYchSmsKDkauc0HF3uV8XInSpZi/TEqt4rRfZrU/EdAxYeBI6jBfw5
-         SQvHjWKe4jRspWFf4q7FKcZzdfrVoFUhAB7ejjAOgxvMVzVcFs28OE75cLROoxV2KDjU
-         6y0NxNl6PWOTVYUVS3CB+kzfEIb1DJIhuqJ1ZiDoL/oYP/WCcwXR9P0V865Xa5DVuIsH
-         X5sbPBs+InxMF/uYGMNufEDX+Vem2R69uQt67vBp7ZagrrP8DJ3MGjZQCsW0OB57TlkV
-         kveQ==
-X-Gm-Message-State: AOAM533D46e5wrl0uyRNVScPB8jD9HeCy8QNMIIir7K0V6Dd790hIDCX
-        XpazSqov3bIBqihBAGJV+ChDp8Su9pVfe4vEdVwLVA==
-X-Google-Smtp-Source: ABdhPJxAy4F4JBrNf2BEXyC2jHsLYTKqTZpEvWl47iBJSnZyLzmCveu6cLApJEwjHW6shDTLnoCxAWArc0HfBTHBbuc=
-X-Received: by 2002:a92:ca89:: with SMTP id t9mr21038515ilo.178.1629655046630;
- Sun, 22 Aug 2021 10:57:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
- <CAAEAJfDWOzCJxZFNtxeT7Cvr2pWbYrfz-YnA81sVNs-rM=8n4Q@mail.gmail.com> <CAKMK7uFW3Z=Up=OCJO4dNR9ffaTdFjHwoND9CrUw6LHmQ4t_AQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uFW3Z=Up=OCJO4dNR9ffaTdFjHwoND9CrUw6LHmQ4t_AQ@mail.gmail.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Sun, 22 Aug 2021 14:57:15 -0300
-Message-ID: <CAAEAJfB3CoTU7bZe08wYEfTTm6=6UPOae9u39AtdbJ9saYknBA@mail.gmail.com>
-Subject: Re: [PATCH v5, 00/15] Using component framework to support multi
- hardware decode
-To:     Daniel Vetter <daniel@ffwll.ch>
-Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        George Sun <george.sun@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S230315AbhHVSED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 14:04:03 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:53092 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230245AbhHVSEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 14:04:02 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 217fc3f5;
+        Sun, 22 Aug 2021 20:03:18 +0200 (CEST)
+Date:   Sun, 22 Aug 2021 20:03:18 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Cc:     maz@kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com,
+        robh+dt@kernel.org, lorenzo.pieralisi@arm.com, kw@linux.com,
+        stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev,
+        marcan@marcan.st, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <YRnArENaLb5SgSfQ@sunset> (message from Alyssa Rosenzweig on Sun,
+        15 Aug 2021 21:34:36 -0400)
+Subject: Re: [RFC PATCH 1/2] dt-bindings: PCI: Add Apple PCI controller
+References: <20210815042525.36878-1-alyssa@rosenzweig.io>
+ <20210815042525.36878-2-alyssa@rosenzweig.io>
+ <87bl5z18vt.wl-maz@kernel.org> <YRnArENaLb5SgSfQ@sunset>
+Message-ID: <56140c6524624af0@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 22 Aug 2021 at 13:50, Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> On Wed, Aug 18, 2021 at 4:12 PM Ezequiel Garcia
-> <ezequiel@vanguardiasur.com.ar> wrote:
-> >
-> > +danvet
-> >
-> > Hi,
-> >
-> > On Tue, 10 Aug 2021 at 23:58, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
-> > >
-> > > This series adds support for multi hardware decode into mtk-vcodec, by first
-> > > adding component framework to manage each hardware information: interrupt,
-> > > clock, register bases and power. Secondly add core thread to deal with core
-> > > hardware message, at the same time, add msg queue for different hardware
-> > > share messages. Lastly, the architecture of different specs are not the same,
-> > > using specs type to separate them.
-> > >
-> >
-> > I don't think it's a good idea to introduce the component API in the
-> > media subsystem. It doesn't seem to be maintained, IRC there's not even
-> > a maintainer for it, and it has some issues that were never addressed.
->
-> Defacto dri-devel folks are maintainer component.c, but also I'm not
-> aware of anything missing there?
->
+> Date: Sun, 15 Aug 2021 21:34:36 -0400
+> From: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> 
+> Hi Marc,
+> 
+> > > Document the properties used by the Apple PCI controller. This is a
+> > > fairly standard PCI controller, although it is not derived from any
+> > > known non-Apple IP.
+> > > 
+> > > Signed-off-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> > 
+> > I would rather you post something as an extension to Mark's work, for
+> > multiple reasons:
+> > 
+> > - Mark's patch is still being discussed, and is the current
+> >   reference (specially given that it is already in use in OpenBSD and
+> >   u-boot).
+> >   
+> > - we cannot have multiple bindings. There can only be one, shared
+> >   across implementations. Otherwise, you need a different kernel
+> >   depending on whether you are booting from m1n1 or u-boot.
+> > 
+> > - what you have here is vastly inconsistent (you are describing the
+> >   MSIs twice, using two different methods).
+> 
+> Absolutely agree, the frankenstein bindings here were the main reason v1
+> was marked RFC. For v2, I've rebased on Mark's patch, which makes a
+> bunch of driver magic disappear.
 
-A while ago, I tried to fix a crash in the Rockchip DRM driver
-(I was then told there can be similar issues on the IMX driver too,
-but I forgot the details of that).
+I updated the t8103.dtsi bindings on the apple-m1-m1n1-nvme branch in
+my u-boot repository to be more in line with the current DT binding
+proposal.
 
-I sent a patchset trying to address it and got total silence back.
-Although you could argue the issue is in how drivers use the component
-API, AFAICR the abuse is spreaded across a few drivers, so it felt
-more reasonable to improve the component API itself, instead of changing
-all the drivers.
+Note that the format of the msi-ranges property is still under
+discussion.  See:
 
-See below:
+http://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210726083204.93196-2-mark.kettenis@xs4all.nl/
 
-https://patchwork.kernel.org/project/linux-rockchip/cover/20200120170602.3832-1-ezequiel@collabora.com/
+Cheers,
 
-> There has been discussions that in various drm subsystems like
-> drm_bridge or drm_panel a few things are missing, which prevent
-> drivers from moving _away_ from component.c to the more specific
-> solutions for panel/bridges. But nothing that's preventing them from
-> using component.c itself.
->
-> I'm happy to merge a MAINTAINERS patch to clarify the situation if
-> that's needed.
-
-Indeed, that would be good.
-
-Thanks,
-Ezequiel
+Mark
