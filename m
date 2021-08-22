@@ -2,176 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F613F3CB6
-	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 01:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4A13F3CF0
+	for <lists+devicetree@lfdr.de>; Sun, 22 Aug 2021 03:14:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230454AbhHUXOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Aug 2021 19:14:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60646 "EHLO mail.kernel.org"
+        id S230174AbhHVBPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Aug 2021 21:15:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46692 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230343AbhHUXOw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 21 Aug 2021 19:14:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C4F916127C;
-        Sat, 21 Aug 2021 23:14:12 +0000 (UTC)
+        id S229950AbhHVBPR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 21 Aug 2021 21:15:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 017F76128A;
+        Sun, 22 Aug 2021 01:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629587652;
-        bh=tdGAnKxM6kcsoZk3AJYnO2VXuyN1lhYFWXouYEoZxx8=;
+        s=k20201202; t=1629594877;
+        bh=zCzuD/gSEAZz6whQU8OxleDxwzLhRBG1uIqnRGpvqP8=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RVI+ysbAJjBVl8En6Vs6QLGPSDp6AF0fy0i7mrmaMSSjeQpz5Pf+r0dc0wQhRI7TV
-         Kwvrkg+yiFOhgR4iCbVQOo7tKeD4yasJQl6UTs6ErZdFrr0+uR2VrGY7QUNxDzH6+w
-         9iH8RVxmt+kqUpV0zJs4jF8hwCVbOyPJqrZkcRLTarM1NqycsWOMv6tMTgh7pwbd+n
-         rj5hf9VhejMa/2NxaC5/3DtAZF80309hB0zAUPeOvYpyFZDCSuDkH/fbdE3nG5kOCc
-         3lkT4RZ6V+vrqBJ94Bp92JJ/0fdZy6A1HR6zxEgWlomfN1/Yn8LQG9cGsqywL0Y39u
-         bkpGgl9NeBvaA==
-Received: by mail-ej1-f48.google.com with SMTP id u3so28129901ejz.1;
-        Sat, 21 Aug 2021 16:14:12 -0700 (PDT)
-X-Gm-Message-State: AOAM533ojJiQOEugzYQ6rJPzB4OGK/x06/xBkS5IGEtENSfFUBmgwJS/
-        hBDlcAr+dl/k/4UZmflg427J9QEBhAuRa0sM6Q==
-X-Google-Smtp-Source: ABdhPJwTRztprBtYY7QES1iZ4ScD8mkXMBE/wRVHlguKZVJ/TxTvzU9+aJ8opXWxfoCtbK7Nd3DULgP8hMTBvn6pcmo=
-X-Received: by 2002:a17:906:f43:: with SMTP id h3mr29009091ejj.267.1629587651408;
- Sat, 21 Aug 2021 16:14:11 -0700 (PDT)
+        b=o7jAL41cV1Q05ea7fZSRvzv0vZ5APxyLyXwqZQX5/Qab2O1tdaSDk66vm/LNZy8fo
+         U0wrcOc69+Sfa1T/XIcGMMf8oR5/fPHm+Vk+TDsqcrYosh8V+5qdko8InUVg+19TwD
+         zWTmsHpkn+PPv4mbUgW6RZ5P7yUSNikeFdOcZ6DKmhm3k0+s6Janm0YtbJ6PlFG3uR
+         UQM+8zDahpFfnfm0AljOy2ZR4ana+oP+ZWw8HPdRCjHNHZQqFGLXKZfnSYqjRE7osf
+         tzfLxf/C2/NFw/n/U1dSm6059t7bAu6T1APRfPPyg/S4WI0C35xLNLuyxptlp34MHe
+         lbQJxoXBsePkQ==
+Received: by mail-ej1-f43.google.com with SMTP id ia27so6244577ejc.10;
+        Sat, 21 Aug 2021 18:14:36 -0700 (PDT)
+X-Gm-Message-State: AOAM532DSMnfyJmLpdw40m9wqy0mmB+tbWHHlonspaFRNbFzgo1O4i02
+        z1XQDbkozJwx/aJD32R1RH0Gqm1OpZBoEATK/Q==
+X-Google-Smtp-Source: ABdhPJwurie+/j4gMgYRtvN6TgPa5fnIdmGdu2j/ak4r2YT1v1vuwSfGu0NBvpD/c6uzXnaqD7U33HlKS+77I74lBsU=
+X-Received: by 2002:a17:906:b18e:: with SMTP id w14mr28931433ejy.63.1629594875631;
+ Sat, 21 Aug 2021 18:14:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210819022327.13040-1-jason-jh.lin@mediatek.com> <20210819022327.13040-4-jason-jh.lin@mediatek.com>
-In-Reply-To: <20210819022327.13040-4-jason-jh.lin@mediatek.com>
+References: <20210818091847.8060-1-nancy.lin@mediatek.com> <20210818091847.8060-16-nancy.lin@mediatek.com>
+In-Reply-To: <20210818091847.8060-16-nancy.lin@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 22 Aug 2021 07:14:00 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9BUZ3x01FXY=UKmcrqGxmP7bfpqyz7zCJXK=+2xUhrYA@mail.gmail.com>
-Message-ID: <CAAOTY_9BUZ3x01FXY=UKmcrqGxmP7bfpqyz7zCJXK=+2xUhrYA@mail.gmail.com>
-Subject: Re: [PATCH v8 03/13] dt-bindings: mediatek: add mediatek,dsc.yaml for
- mt8195 SoC binding
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>, fshao@chromium.org,
+Date:   Sun, 22 Aug 2021 09:14:24 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_99QLpRHLei2PzD8vsuoOaZae++NqczPCM+r9YMZ01btw@mail.gmail.com>
+Message-ID: <CAAOTY_99QLpRHLei2PzD8vsuoOaZae++NqczPCM+r9YMZ01btw@mail.gmail.com>
+Subject: Re: [PATCH v3 15/15] drm/mediatek: add mediatek-drm of vdosys1
+ support for MT8195
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        singo.chang@mediatek.com,
+        srv_heupstream <srv_heupstream@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+Hi, Nancy:
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=881=
-9=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8A=E5=8D=8810:23=E5=AF=AB=E9=81=93=EF=
-=BC=9A
+Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=8818=E6=
+=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:18=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> 1. Add mediatek,dsc.yaml to describe DSC module in details.
-> 2. Add mt8195 SoC binding to mediatek,dsc.yaml.
+> Add driver data of mt8195 vdosys1 to mediatek-drm and modify drm for
+> multi-mmsys support. The two mmsys (vdosys0 and vdosys1) will bring
+> up two drm drivers, only one drm driver register as the drm device.
+> Each drm driver binds its own component. The first bind drm driver
+> will allocate the drm device, and the last bind drm driver registers
+> the drm device to drm core. Each crtc path is created with the
+> corresponding drm driver data.
 >
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
->  .../display/mediatek/mediatek,dsc.yaml        | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,dsc.yaml
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
 >
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-dsc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.=
-yaml
-> new file mode 100644
-> index 000000000000..f94a95c6a1c5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yam=
-l
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,dsc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: mediatek display DSC controller
-> +
-> +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
+>
+> +static const struct mtk_ddp_comp_funcs ddp_ovl_adaptor =3D {
+> +       .clk_enable =3D mtk_ethdr_clk_enable,
+> +       .clk_disable =3D mtk_ethdr_clk_disable,
+> +       .config =3D mtk_ethdr_config,
+> +       .start =3D mtk_ethdr_start,
+> +       .stop =3D mtk_ethdr_stop,
+> +       .layer_nr =3D mtk_ethdr_layer_nr,
+> +       .layer_config =3D mtk_ethdr_layer_config,
+> +       .enable_vblank =3D mtk_ethdr_enable_vblank,
+> +       .disable_vblank =3D mtk_ethdr_disable_vblank,
+> +};
 
-According to [1], the maintainer should be
+I think ethdr is inside the group of ovl_adpator. I preter this
+function is implemented by ovl_adaptor, and ovl_adaptor control rdma,
+merge, ethdr.
 
-Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix=
-.de>
-
-[1] https://www.kernel.org/doc/html/latest/process/maintainers.html
+Regards,
+Chun-Kuang.
 
 > +
-> +description: |
-> +  The DSC standard is a specification of the algorithms used for
-> +  compressing and decompressing image display streams, including
-> +  the specification of the syntax and semantics of the compressed
-> +  video bit stream. DSC is designed for real-time systems with
-> +  real-time compression, transmission, decompression and Display.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: mediatek,mt8195-disp-dsc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: DSC Wrapper Clock
-> +
-> +  power-domains:
-> +    description: A phandle and PM domain specifier as defined by binding=
-s of
-> +      the power controller specified by phandle. See
-> +      Documentation/devicetree/bindings/power/power-domain.yaml for deta=
-ils.
-> +
-> +  mediatek,gce-client-reg:
-> +      description:
-> +        The register of display function block to be set by gce. There a=
-re 4 arguments,
-> +        such as gce node, subsys id, offset and register size. The subsy=
-s id that is
-> +        mapping to the register of display function blocks is defined in=
- the gce header
-> +        include/include/dt-bindings/gce/<chip>-gce.h of each chips.
-> +      $ref: /schemas/types.yaml#/definitions/phandle-array
-> +      maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - power-domains
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    dsc0: disp_dsc_wrap@1c009000 {
-> +        compatible =3D "mediatek,mt8195-disp-dsc";
-> +        reg =3D <0 0x1c009000 0 0x1000>;
-> +        interrupts =3D <GIC_SPI 645 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-> +        clocks =3D <&vdosys0 CLK_VDO0_DSC_WRAP0>;
-> +        mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c00XXXX 0x9000 0x1000=
->;
-> +    };
-> +
-> --
-> 2.18.0
 >
