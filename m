@@ -2,147 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B744B3F4B64
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 15:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8B9F3F4B77
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 15:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235649AbhHWNGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 09:06:38 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:47934 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237333AbhHWNGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 09:06:36 -0400
-X-UUID: 48ef46ac57a24f93a249b1e5f371a3b7-20210823
-X-UUID: 48ef46ac57a24f93a249b1e5f371a3b7-20210823
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 713664978; Mon, 23 Aug 2021 21:05:49 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 23 Aug 2021 21:05:47 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 23 Aug 2021 21:05:46 +0800
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
-        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>
-Subject: [PATCH 7/7] i2c: mediatek: modify bus speed calculation formula
-Date:   Mon, 23 Aug 2021 21:05:37 +0800
-Message-ID: <1629723937-10839-8-git-send-email-kewei.xu@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1629723937-10839-1-git-send-email-kewei.xu@mediatek.com>
-References: <1629723937-10839-1-git-send-email-kewei.xu@mediatek.com>
+        id S237202AbhHWNKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 09:10:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59230 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236025AbhHWNKn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Aug 2021 09:10:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 780CB6124B;
+        Mon, 23 Aug 2021 13:09:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629724200;
+        bh=18IORdqVvusrH0Fj0VVDXtKaaRMxUkPef6MJrsmm2qg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Zr/Om5YQvfTbx5iZSQxSvUT2T4TP0mok/H3UYcEwfBFV4uY7Wkhaa91+Q3D7RnEJr
+         Q6q7RTdllb5TzFks6JcP2UE0M+/ejY3Qg+bxzd/ZOSxsfJnZ3VNzlKaTpW+rmufNLE
+         D+ELrwjJX6EgXuse3vsn4/6mIUzwGzZ5UQR26icKafYCEyYmti8/9zcdo/pBzLhuT+
+         /Wa/AbHAnL34jRH/QzcoCyu72OfTvH8ky4A5Lrpk+M63+F6UUnTVIsu3XqLRGB2zoC
+         NVQ7i1fp4Z2AC15e5q3E2MyAF+qjJSrq6CfOnw15O2cm+S7DTPyA7fzDAEO4FGIbQv
+         44kKLojONqI8Q==
+Date:   Mon, 23 Aug 2021 16:09:47 +0300
+From:   Mike Rapoport <rppt@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        kexec@lists.infradead.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 1/9] MIPS: Avoid future duplicate elf core header
+ reservation
+Message-ID: <YSOeGzowhV/R9QS/@kernel.org>
+References: <cover.1628670468.git.geert+renesas@glider.be>
+ <92b6718f5618d5469f67b48fbea189cca0c12f4b.1628670468.git.geert+renesas@glider.be>
+ <YRn9DHlB/pdNPJyP@kernel.org>
+ <CAMuHMdVdqR7gw+2O2v=qv_BB=+X2wEXN9jXV=np=jRayadwj7g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVdqR7gw+2O2v=qv_BB=+X2wEXN9jXV=np=jRayadwj7g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When clock-div is 0 or greater than 1, the bus speed
-calculated by the old speed calculation formula will be
-larger than the target speed. So we update the formula.
+On Mon, Aug 23, 2021 at 12:17:50PM +0200, Geert Uytterhoeven wrote:
+> Hi Mike,
+> 
+> On Mon, Aug 16, 2021 at 7:52 AM Mike Rapoport <rppt@kernel.org> wrote:
+> > On Wed, Aug 11, 2021 at 10:50:59AM +0200, Geert Uytterhoeven wrote:
+> > > Prepare for early_init_fdt_scan_reserved_mem() reserving the memory
+> > > occupied by an elf core header described in the device tree.
+> > > As arch_mem_init() calls early_init_fdt_scan_reserved_mem() before
+> > > mips_reserve_vmcore(), the latter needs to check if the memory has
+> > > already been reserved before.
+> >
+> > Doing memblock_reserve() for the same region is usually fine, did you
+> > encounter any issues without this patch?
+> 
+> Does it also work if the same region is part of an earlier larger
+> reservation?  I am no memblock expert, so I don't know.
+> I didn't run into any issues, as my MIPS platform is non-DT, but I
+> assume arch/arm64/mm/init.c:reserve_elfcorehdr() had the check for
+> a reason.
 
-Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
----
- drivers/i2c/busses/i2c-mt65xx.c | 35 +++++++++++++++++++++++++----------
- 1 file changed, 25 insertions(+), 10 deletions(-)
+The memory will be reserved regardless of the earlier reservation, the
+issue may appear when the reservations are made for different purpose. E.g.
+if there was crash kernel allocation before the reservation of elfcorehdr.
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index 18b5659..0b42acd8 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -69,11 +69,12 @@
- #define I2C_DEFAULT_CLK_DIV		5
- #define MAX_SAMPLE_CNT_DIV		8
- #define MAX_STEP_CNT_DIV		64
--#define MAX_CLOCK_DIV			256
-+#define MAX_CLOCK_DIV_8BITS		256
-+#define MAX_CLOCK_DIV_5BITS		32
- #define MAX_HS_STEP_CNT_DIV		8
--#define I2C_STANDARD_MODE_BUFFER	(1000 / 2)
--#define I2C_FAST_MODE_BUFFER		(300 / 2)
--#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 2)
-+#define I2C_STANDARD_MODE_BUFFER	(1000 / 3)
-+#define I2C_FAST_MODE_BUFFER		(300 / 3)
-+#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 3)
- 
- #define I2C_CONTROL_RS                  (0x1 << 1)
- #define I2C_CONTROL_DMA_EN              (0x1 << 2)
-@@ -725,14 +726,26 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	unsigned int best_mul;
- 	unsigned int cnt_mul;
- 	int ret = -EINVAL;
-+	int clock_div_constraint = 0;
- 
- 	if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
- 		target_speed = I2C_MAX_HIGH_SPEED_MODE_FREQ;
- 
-+	if (i2c->use_default_timing) {
-+		clock_div_constraint = 0;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div > 1) {
-+		clock_div_constraint = 1;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div == 0) {
-+		clock_div_constraint = -1;
-+	}
-+
- 	max_step_cnt = mtk_i2c_max_step_cnt(target_speed);
- 	base_step_cnt = max_step_cnt;
- 	/* Find the best combination */
--	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed);
-+	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed) +
-+		  clock_div_constraint;
- 	best_mul = MAX_SAMPLE_CNT_DIV * max_step_cnt;
- 
- 	/* Search for the best pair (sample_cnt, step_cnt) with
-@@ -767,7 +780,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	sample_cnt = base_sample_cnt;
- 	step_cnt = base_step_cnt;
- 
--	if ((clk_src / (2 * sample_cnt * step_cnt)) > target_speed) {
-+	if ((clk_src / (2 * (sample_cnt * step_cnt - clock_div_constraint))) >
-+		 target_speed) {
- 		/* In this case, hardware can't support such
- 		 * low i2c_bus_freq
- 		 */
-@@ -854,13 +868,16 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 	target_speed = i2c->speed_hz;
- 	parent_clk /= i2c->clk_src_div;
- 
--	if (i2c->dev_comp->timing_adjust)
--		max_clk_div = MAX_CLOCK_DIV;
-+	if (i2c->dev_comp->timing_adjust && i2c->dev_comp->ltiming_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_5BITS;
-+	else if (i2c->dev_comp->timing_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_8BITS;
- 	else
- 		max_clk_div = 1;
- 
- 	for (clk_div = 1; clk_div <= max_clk_div; clk_div++) {
- 		clk_src = parent_clk / clk_div;
-+		i2c->ac_timing.inter_clk_div = clk_div - 1;
- 
- 		if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ) {
- 			/* Set master code speed register */
-@@ -907,8 +924,6 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 		break;
- 	}
- 
--	i2c->ac_timing.inter_clk_div = clk_div - 1;
--
- 	return 0;
- }
- 
+The check in such case will prevent the second reservation, but, at least
+in arch/arm64/mm/init.c:reserve_elfcorehdr() it does not seem to prevent
+different users of the overlapping regions to step on each others toes.
+
+Moreover, arm64::reserve_elfcorehdr() seems buggy to me, because of there
+is only a partial overlap of the elfcorehdr with the previous reservation,
+the non-overlapping part of elfcorehdr won't get reserved at all.
+
+> Thanks!
+> 
+> >
+> > > Note that mips_reserve_vmcore() cannot just be removed, as not all MIPS
+> > > systems use DT.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > > v5:
+> > >   - New.
+> > > ---
+> > >  arch/mips/kernel/setup.c | 3 ++-
+> > >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
+> > > index 23a140327a0bac1b..4693add05743d78b 100644
+> > > --- a/arch/mips/kernel/setup.c
+> > > +++ b/arch/mips/kernel/setup.c
+> > > @@ -429,7 +429,8 @@ static void __init mips_reserve_vmcore(void)
+> > >       pr_info("Reserving %ldKB of memory at %ldKB for kdump\n",
+> > >               (unsigned long)elfcorehdr_size >> 10, (unsigned long)elfcorehdr_addr >> 10);
+> > >
+> > > -     memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
+> > > +     if (!memblock_is_region_reserved(elfcorehdr_addr, elfcorehdr_size)
+> > > +             memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
+> > >  #endif
+> > >  }
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
 -- 
-1.9.1
-
+Sincerely yours,
+Mike.
