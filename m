@@ -2,220 +2,400 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF573F4330
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 03:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6C753F4335
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 03:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234631AbhHWBxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 21:53:43 -0400
-Received: from mail-eopbgr70079.outbound.protection.outlook.com ([40.107.7.79]:61951
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234583AbhHWBxn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Aug 2021 21:53:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LWCA6o4DBdsf0Epiy2dCLAb50nBkx/lui/zK4q07cFKQ4IPmBFVq1nNOvPFX2gM1Cgpok1EYP8riNzn5vcZuGdFMQZfp4nzNculGG5gt/xpOXJfZeoQ1uZPD4pzWwH9aMbvUccclbWJd13S+z8O6PbLoxbbUVegillbE9pmhZDMgOpGc1Ve/s2lcI99L1/rA+olnZoFD3wehEwJU3FVUlGRJSLBFg5Zb+ZhOysfDB4tBvHHt7rTKp8uLB1LlSFGvmt9ACu1fWACJN9CFt9yU/a5f7+UNNBH4urweb/gLgRYdLDfmUqSr+wz6KcJQpEbsH8B6jdt6Ul7lX/bkZ6UvRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pnu52SX0O50LAinky/oXblyKrK0HvdrWYp6EUgq4MaM=;
- b=SkQsfn35oK5g0/OmU1bEfFcH3IZeOOLUQC+OEVNY7YtYoroObS6KceJq0eL49/KmUm7ZejImb+A/3+XBT8IeVDXrfATWzpxWh5IcgFY2Sl/acAIxXFNcNpqrj5thAHlBQo3D6Asv4efc/1zMpRh4KKxZIsgnXegtSnm8+mMXbl6kE3BYlLIuP5gva5zSJAfm+wJgdpfraC7vF8XCUCoNENqMfORmTl4nkDgo0L0fUYYw3V5Dyxp3MYCj/gUcrBINy7kp2b+ck3Tr0HBHIItJCOjxazBTr0nMv9GrE16Vf0uYtAN7lK3tZ1yhazRk1IGn4KwI8rcz0dHEuzdKFtQ5GA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pnu52SX0O50LAinky/oXblyKrK0HvdrWYp6EUgq4MaM=;
- b=pAMe1WyDN2kKy6dSPHmXD9amEHViW1uhDgTu49nncHaeYmlMNfBuniK1Okp/1PIZF+AFvDRPD8/0zQUVoIiwU6XT1NKlPOQGBoZ3FNxR6JGc7KYAqDjRFL2c9ii6HPnPmcQzLRiq2f+wxiHoXrVQyvLmGGBuM/Xv9ZXMTOYh/IA=
-Received: from VI1PR04MB5853.eurprd04.prod.outlook.com (2603:10a6:803:e3::25)
- by VE1PR04MB7325.eurprd04.prod.outlook.com (2603:10a6:800:1af::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15; Mon, 23 Aug
- 2021 01:52:58 +0000
-Received: from VI1PR04MB5853.eurprd04.prod.outlook.com
- ([fe80::d010:8002:44b8:117b]) by VI1PR04MB5853.eurprd04.prod.outlook.com
- ([fe80::d010:8002:44b8:117b%7]) with mapi id 15.20.4436.024; Mon, 23 Aug 2021
- 01:52:57 +0000
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v1 2/3] arm: dts: imx: fix the schema check errors
-Thread-Topic: [PATCH v1 2/3] arm: dts: imx: fix the schema check errors
-Thread-Index: AQHXlMnw7oweqEOZQ0uRq7btk3u33at6rBuAgAWtADA=
-Date:   Mon, 23 Aug 2021 01:52:57 +0000
-Message-ID: <VI1PR04MB585360C501595D8EAE9F0E468CC49@VI1PR04MB5853.eurprd04.prod.outlook.com>
-References: <20210819071408.3856475-1-hongxing.zhu@nxp.com>
-         <20210819071408.3856475-3-hongxing.zhu@nxp.com>
- <cbd278b1828d4b8fbfd885e56731d82355d2112b.camel@pengutronix.de>
-In-Reply-To: <cbd278b1828d4b8fbfd885e56731d82355d2112b.camel@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 255e5aed-65d1-45d4-5bce-08d965d8bb44
-x-ms-traffictypediagnostic: VE1PR04MB7325:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB732560D6674142E6448D11A28CC49@VE1PR04MB7325.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sfMQyksFhDxezQIL7W3W/w5s0GNxwhd9BDckyJRDfV1C7fxJDboMWbhCrF7qu/cNVLeh//m+0R28Qz+DQsJUsnYimZ36nOR451oPygL9MOGvN+7nDYJijjrb91eIneuw6m5gV4/8KXmN0WmNQHkqhdyvyynPuOVMR3+fmp2vqIt8wuYUMr0imD+CqOc3i9hgJYsLJB58+y9NXE8Vvrvqh7Kl8dVFoOiBqTpdFTILNlz0neV3ZIrF+GqQWiIFllMLMhH9NJvBYELRz68GJ55numkc5LrXApsabvsUWTwrz4FSOgmyYzzZHY1jantpbJvp2KTP8ktcZwphZZibO4KcZ6q8DtOsXei8O5Ajz/NtDQZu6hDFAbiMV76uW+rSZbiofJvn6lvNuuzG+FZd7qLaYYfkiP8xtr3cLu6VH4YCBNIHEc9HEla3VbbUIdG4tYQpcUDVMbJnf2ZAdeeGhHiE6dGF0VTthAd0emqJMFYZyMSe0U8oLLZ/PMB9rzIymea3t6Ud4Gw5h7ZoT04uJ4aBM8lh+BjzTOe+xy5i4Tn23EGRBq/jUebN4i1J5QfnCqf0lJgob5ZzUlp24kMoy5zDYPdd0PutLIWBD4PV6SdZomLgLRMEmP1M69mlwnLjvm8a0b6gbag2xJNesc6Qlfom483ft9g5IpjfznNesIX70zswhs8PiGudLYkB2cC6uKUZToBNLHmYTUB3W6fg87JmYA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5853.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(396003)(366004)(39860400002)(346002)(53546011)(33656002)(66556008)(316002)(8936002)(186003)(5660300002)(38070700005)(55016002)(86362001)(54906003)(8676002)(26005)(478600001)(6506007)(7696005)(4326008)(122000001)(52536014)(66446008)(66946007)(66476007)(71200400001)(64756008)(110136005)(9686003)(38100700002)(2906002)(83380400001)(76116006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WmdueWgyajNxVklkMUZzZWNXRENwM05GSnRLUEZSendjY2ZMaFBpSHVUOVd1?=
- =?utf-8?B?aFJaY0NGSFd3NE5lV29aS3pCVERpMzdJVmQwUE82THlscEJlOEhGR2FPenIx?=
- =?utf-8?B?cXNzQjhtVEhvbXhtTFhCbDBqeko0TTFHbmlVS2Z6Y0NpajBDSHpYTVVYY0NB?=
- =?utf-8?B?NGszTlVFcmc1QlZMVkhTQlNvK25Gcmxnd2Q0bW1yRGc1dWFLRkt6ak1oYS9r?=
- =?utf-8?B?MTNya3JzUENOcWp4bmNYTW5lTEJQc3RiRjhaNnlMckFlRDVySlFsc0YxTTJ5?=
- =?utf-8?B?cXArQlpKUk1BNVUvVkJKakVRaXg3d29UMTlWMEViaVdkVWhtK3NHMndHRHdD?=
- =?utf-8?B?WnBNS3RqZlVHaGF0NGttNVY1WGtHbkhML2wvWEhrTDBBaGd2ZkFyZExkRTdL?=
- =?utf-8?B?M29mWWxmTXR1WE1kc08yRGg5SzkxRjVTUXBLS1A1eFZuak9CcW9QazJNTHVz?=
- =?utf-8?B?R2F0eThORFlaNk9DMmM4V0g3aVpwVTROZUt5bUg1cVh2Z3BCYVhBZVVneFNC?=
- =?utf-8?B?MlJZV2lnMHBYMFhwSFRLTmFMUGpzMHA2M2RCZHhldW1uTHZyeVI2dWhHcDJk?=
- =?utf-8?B?cHpPR2FLVnRtYnNHTmhIU0IvVHgvamlsUDB2dGdUYnpMalhBcG85SkxNcUp0?=
- =?utf-8?B?T1Qza2V6S1N5enE0ZUZ4RTNCbGMrbnZ0amdsZ2JjeS9VbkxncXpZWEZYL3Uy?=
- =?utf-8?B?SGh5ZDdyVytUSkhCbC9NOUpGNjJsUngvbUNFUGNmVmpBQTdvMERjZTVqeVRQ?=
- =?utf-8?B?SC9UdEUrdElUR3Z0SXlMTmJJbWphZTQxWDRXQmxkVGVUZTJpMzBuWE5UVTJy?=
- =?utf-8?B?V0ptaDhlR3VGZDhqZnpRYWtIM25TMmxHQ0dRa0kyd1hDWXlvdUtudStIWnor?=
- =?utf-8?B?NUNpL3JYck5LZ25KV2JqM0VDS3NraitDSVZwMGxFSEhSUVFVY1BsZ3lHM1ZO?=
- =?utf-8?B?RjZBcWZGREVJcjAxL3l5RHFyeWpYMDBvdncvSkQ1b3d1dVhJalF3bk4vNVhY?=
- =?utf-8?B?WGQ2dWd2NzFiYmxOeVM2RkJwRE5MaHZ1TmhlMmd0L054VEFMVXZkdGw3dHAx?=
- =?utf-8?B?aitObEJmcU1XQmczQldIWHlCOHpQdS9WeVpuRzcySEUvaVlOem54RWNRNmJj?=
- =?utf-8?B?U2J1QkMxdVl1UmlPNlAyWFZRRlI0dS9YdjhpOU1Tazc5NTBnK0JiaHQ4TDlm?=
- =?utf-8?B?MHR2d3I4dHRMUlZzOWl3MDNreThjV3IyNVhldndFdjFTdjFUYVJtRkFSbEpJ?=
- =?utf-8?B?RW9reFRtbE5YTTlHN1RWWC9CNExONyt3aElLdUg1QytGbVQxbmZXWk9sQzdu?=
- =?utf-8?B?Z1ZTVExtUXdVMmtSeUhmSEhZdGxMVnVidFlNOGxyUFlldXlEUEhTSnZEN1M4?=
- =?utf-8?B?K05tbFJrV0ZHWjd0aXhXb1JQWlVDWVp2SE83OWtCK2hnZG5YNTAzSGJxd1FZ?=
- =?utf-8?B?Q0RLeE1mUXJMa0F3clFWajc2bUFUdVQvcnh1SXdySTFXT3dURGgybjdaSWVI?=
- =?utf-8?B?c0xJOUE0TmZ4Zm91ZkV0WEtWREpYUlpZSUg4K1JoUDVqOWk3bjEvYk44ZUcv?=
- =?utf-8?B?Q3ZwVkg1VFRHQ2Y4TG5iRGNST2ZKQlRaVExzR3hJS1VSWk5RSW4rN1l5RitC?=
- =?utf-8?B?V1p0aUNneXY5Vzk1YmhFRUE5aDIxck9WZUNUYi94N1puTXphT0xDbkhBVDQ5?=
- =?utf-8?B?bktUL1o4RHNIaW95QnFNb3BiUks1SllxakpkSmJMdUlqZ3RLMmxMaFBUUU5E?=
- =?utf-8?Q?eaIzy/pNRfaQaiOcxe5Vx1/ucOTiUR5buwvG61N?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S234667AbhHWB41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 21:56:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233258AbhHWB40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 21:56:26 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D476EC061575
+        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 18:55:44 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id d11so33509726eja.8
+        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 18:55:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Tz31Ip+d88q4notp2SJUNTDQ11/lHsjf6zS5pkBEzRM=;
+        b=X77g2JFcmN9ReUaC1GUwBLrk97TiOf4784B5Aq01SQ3KP4uasQf+RjpZ9cRrJ+PB+n
+         gOA0cwcz0BHkZLQyhlN7rQB0lr4PPnpSIRRaLMp3KWWNz2oInfxj97zFRR1aaYtfjj0+
+         NRwsv4beCFTxC7Ym5mSgf+CCji1Ylvff4+2ssuWtv4TTUGqFxZNAgjn2AXhWu8xp0Bud
+         eXUOYT1ip06L/spnrndG4aYBPULkNPRuuzKOiCp4DZKC8RKmfawYNs5HFrAgM50xo2v8
+         jQaDWoZekHC2guKCcy+se7bvVUdpKiGLzH6IkPzthHOxhWQcvZsvY3dPOZkEY2EyTExi
+         fGDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Tz31Ip+d88q4notp2SJUNTDQ11/lHsjf6zS5pkBEzRM=;
+        b=TOnOxUwAuOR+Y2NkL+VNauHW/lQU9cJVFbwefBoFninmG8+cIKxYUfPpyV6DRY4kbd
+         Q9vxiIvMod+q8GyTJMEga0TFdCIAr7WLOgPcDGeICXj8CgCiUdgAgajffRz9o1vCHPsl
+         yGFHxV3wi/F80rsRjmtfVXiviFDtKdt93vlVCrF7X/GLz6URZvM1VWsBXzO1WrOZ479o
+         1dc1CoiS6HTr3DkNDEDDBTDfcNwpoI4n76R86IGJ44GBJ8kw1qymh41pbfhPp0mENSM5
+         FlQqZiRpYk1bXqxd8CcvJv7zvZSHHRF0gHnud3woBqWsH6m/qbSoTneUE5s5TUY0NdrG
+         AWFw==
+X-Gm-Message-State: AOAM531bY7Smsj0gnD8f43MJOWeThmFuBO+vl63PDXH+FfszSD8qJ1cQ
+        9bkB3SW/LC5qukn1dIPalgAhiqys6+ks88eokztb7g==
+X-Google-Smtp-Source: ABdhPJyHPzxNPnHQM6zwsVpAgSZKmdLIp7fNDAUA/Rnx1mUlz0Ajztr5YkW8HM5iXXVjpW15H3Vc+5ea769kyjz6DfE=
+X-Received: by 2002:a17:906:2305:: with SMTP id l5mr33543905eja.72.1629683743423;
+ Sun, 22 Aug 2021 18:55:43 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5853.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 255e5aed-65d1-45d4-5bce-08d965d8bb44
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2021 01:52:57.7197
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GWoLLWMSn/0DXpbp4Qdq3RtS5WitZtrzbodsNg+ERuEdXgHceO5McuKh9Y7Ni+bEro+hU0IXSBzXPQJoKul/7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7325
+References: <20210329015938.20316-1-brad@pensando.io> <20210329015938.20316-8-brad@pensando.io>
+ <20210331175130.mhub5yxc3szfsl5q@mobilestation>
+In-Reply-To: <20210331175130.mhub5yxc3szfsl5q@mobilestation>
+From:   Brad Larson <brad@pensando.io>
+Date:   Sun, 22 Aug 2021 18:55:32 -0700
+Message-ID: <CAK9rFnxX+AOkZ6TWogG7G=FqMs_JhH2RUDw=8gZ=Gsf=Vk+9aw@mail.gmail.com>
+Subject: Re: [PATCH v2 07/13] arm64: dts: Add Pensando Elba SoC support
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMdWNhcyBTdGFjaCA8bC5zdGFj
-aEBwZW5ndXRyb25peC5kZT4NCj4gU2VudDogVGh1cnNkYXksIEF1Z3VzdCAxOSwgMjAyMSA3OjEx
-IFBNDQo+IFRvOiBSaWNoYXJkIFpodSA8aG9uZ3hpbmcuemh1QG54cC5jb20+OyByb2JoQGtlcm5l
-bC5vcmc7DQo+IGdhbGFrQGtlcm5lbC5jcmFzaGluZy5vcmc7IHNoYXduZ3VvQGtlcm5lbC5vcmcN
-Cj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJu
-ZWwub3JnOyBkbC1saW51eC1pbXgNCj4gPGxpbnV4LWlteEBueHAuY29tPjsga2VybmVsQHBlbmd1
-dHJvbml4LmRlOw0KPiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gU3Vi
-amVjdDogUmU6IFtQQVRDSCB2MSAyLzNdIGFybTogZHRzOiBpbXg6IGZpeCB0aGUgc2NoZW1hIGNo
-ZWNrIGVycm9ycw0KPiANCj4gSGkgUmljaGFyZCwNCj4gDQo+IEFtIERvbm5lcnN0YWcsIGRlbSAx
-OS4wOC4yMDIxIHVtIDE1OjE0ICswODAwIHNjaHJpZWIgUmljaGFyZCBaaHU6DQo+ID4gLSB0aGUg
-cmFuZ2VzIHNob3VsZCBiZSBhbGlnbmVkIHRvICRyZWY6IC9zY2hlbWFzL3BjaS9wY2ktYnVzLnlh
-bWwjDQo+IA0KPiBJIGZhaWxlZCB0byBwYXJzZSB0aGlzIHBhcnQgb2YgdGhlIGNvbW1pdCBtZXNz
-YWdlIGFuZCBleHBlY3RlZCB0byBzZWUgYW4NCj4gYWN0dWFsIGNoYW5nZSBpbiB0aGUgYWRkcmVz
-c2VzIG9mIHRoZSByYW5nZXMgb3Igc29tZXRoaW5nLiBJIHRoaW5rIGl0IHdvdWxkIGJlDQo+IGJl
-dHRlciB0byBwaHJhc2UgdGhpcyBzb21ldGhpbmcgbGlrZTogImdyb3VwIHJhbmdlcyBwcm9wZXJ0
-eSBieSByZWdpb24iIG9yDQo+IHNvbWV0aGluZyB0byBtYWtlIGl0IGNsZWFyIHRoYXQgdGhpcyBp
-cyBwdXJlbHkgYSBEVFMgcmVwcmVzZW50YXRpb24gY2hhbmdlLA0KPiB3aXRoIG5vIGZ1bmN0aW9u
-YWwgY2hhbmdlLg0KPiANCltSaWNoYXJkIFpodV0gSGkgTHVjYXM6DQpUaGFua3MuDQpXb3VsZCBj
-aGFuZ2UgYXMgImdyb3VwIHJhbmdlcyBwcm9wZXJ0eSBieSByZWdpb24iIHJlZmVyIHRvIHlvdXIg
-cmV2aWV3IGNvbW1lbnRzLg0KDQpCZXN0IFJlZ2FyZHMNClJpY2hhcmQgWmh1DQoNCj4gPiAtIG51
-bS12aWV3cG9ydCBpcyByZXF1aXJlZCwgYWRkIGl0IGluIGlteDZzeC5kdHNpLg0KPiA+IC0gb25s
-eSBvbmUgcHJvcGVydCBpcyBhbGxvd2VkIGluIHRoZSBjb21wYXRpYmxlIHN0cmluZywgcmVtb3Zl
-DQo+ID4gICAic25wcyxkdy1wY2llIi4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFJpY2hhcmQg
-Wmh1IDxob25neGluZy56aHVAbnhwLmNvbT4NCj4gDQo+IE90aGVyIHRoYW4gdGhlIG5pdCBhYm92
-ZSwgdGhpcyBpczoNCj4gUmV2aWV3ZWQtYnk6IEx1Y2FzIFN0YWNoIDxsLnN0YWNoQHBlbmd1dHJv
-bml4LmRlPg0KPiANCj4gPiAtLS0NCj4gPiAgYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFkbC5kdHNp
-IHwgNiArKystLS0NCj4gPiBhcmNoL2FybS9ib290L2R0cy9pbXg2cXAuZHRzaSAgfCAyICstICBh
-cmNoL2FybS9ib290L2R0cy9pbXg2c3guZHRzaQ0KPiA+IHwgNyArKysrLS0tDQo+ID4gIGFyY2gv
-YXJtL2Jvb3QvZHRzL2lteDdkLmR0c2kgICB8IDYgKysrLS0tDQo+ID4gIDQgZmlsZXMgY2hhbmdl
-ZCwgMTEgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
-IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFkbC5kdHNpDQo+ID4gYi9hcmNoL2FybS9ib290L2R0
-cy9pbXg2cWRsLmR0c2kgaW5kZXggODJlMDFjZTAyNmVhLi5jYjQzYzcyODA2YTENCj4gPiAxMDA2
-NDQNCj4gPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9pbXg2cWRsLmR0c2kNCj4gPiArKysgYi9h
-cmNoL2FybS9ib290L2R0cy9pbXg2cWRsLmR0c2kNCj4gPiBAQCAtMjY0LDcgKzI2NCw3IEBAIEwy
-OiBjYWNoZS1jb250cm9sbGVyQGEwMjAwMCB7DQo+ID4gIAkJfTsNCj4gPg0KPiA+ICAJCXBjaWU6
-IHBjaWVAMWZmYzAwMCB7DQo+ID4gLQkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDZxLXBjaWUiLCAi
-c25wcyxkdy1wY2llIjsNCj4gPiArCQkJY29tcGF0aWJsZSA9ICJmc2wsaW14NnEtcGNpZSI7DQo+
-ID4gIAkJCXJlZyA9IDwweDAxZmZjMDAwIDB4MDQwMDA+LA0KPiA+ICAJCQkgICAgICA8MHgwMWYw
-MDAwMCAweDgwMDAwPjsNCj4gPiAgCQkJcmVnLW5hbWVzID0gImRiaSIsICJjb25maWciOw0KPiA+
-IEBAIC0yNzIsOCArMjcyLDggQEAgcGNpZTogcGNpZUAxZmZjMDAwIHsNCj4gPiAgCQkJI3NpemUt
-Y2VsbHMgPSA8Mj47DQo+ID4gIAkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gIAkJCWJ1cy1y
-YW5nZSA9IDwweDAwIDB4ZmY+Ow0KPiA+IC0JCQlyYW5nZXMgPSA8MHg4MTAwMDAwMCAwIDAgICAg
-ICAgICAgMHgwMWY4MDAwMCAwDQo+IDB4MDAwMTAwMDAgLyogZG93bnN0cmVhbSBJL08gKi8NCj4g
-PiAtCQkJCSAgMHg4MjAwMDAwMCAwIDB4MDEwMDAwMDAgMHgwMTAwMDAwMCAwIDB4MDBmMDAwMDA+
-Ow0KPiAvKiBub24tcHJlZmV0Y2hhYmxlIG1lbW9yeSAqLw0KPiA+ICsJCQlyYW5nZXMgPSA8MHg4
-MTAwMDAwMCAwIDAgICAgICAgICAgMHgwMWY4MDAwMCAwDQo+IDB4MDAwMTAwMDA+LCAvKiBkb3du
-c3RyZWFtIEkvTyAqLw0KPiA+ICsJCQkJIDwweDgyMDAwMDAwIDAgMHgwMTAwMDAwMCAweDAxMDAw
-MDAwIDAgMHgwMGYwMDAwMD47DQo+IC8qDQo+ID4gK25vbi1wcmVmZXRjaGFibGUgbWVtb3J5ICov
-DQo+ID4gIAkJCW51bS1sYW5lcyA9IDwxPjsNCj4gPiAgCQkJbnVtLXZpZXdwb3J0ID0gPDQ+Ow0K
-PiA+ICAJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTIwIElSUV9UWVBFX0xFVkVMX0hJR0g+OyBk
-aWZmIC0tZ2l0DQo+ID4gYS9hcmNoL2FybS9ib290L2R0cy9pbXg2cXAuZHRzaSBiL2FyY2gvYXJt
-L2Jvb3QvZHRzL2lteDZxcC5kdHNpIGluZGV4DQo+ID4gYjMxMGYxM2E1M2YyLi4wNTAzNjU1MTM4
-MzYgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFwLmR0c2kNCj4gPiAr
-KysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2cXAuZHRzaQ0KPiA+IEBAIC0xMTAsNSArMTEwLDUg
-QEAgJm1tZGMwIHsNCj4gPiAgfTsNCj4gPg0KPiA+ICAmcGNpZSB7DQo+ID4gLQljb21wYXRpYmxl
-ID0gImZzbCxpbXg2cXAtcGNpZSIsICJzbnBzLGR3LXBjaWUiOw0KPiA+ICsJY29tcGF0aWJsZSA9
-ICJmc2wsaW14NnFwLXBjaWUiOw0KPiA+ICB9Ow0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9i
-b290L2R0cy9pbXg2c3guZHRzaQ0KPiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnN4LmR0c2kg
-aW5kZXggODUxNjczMDc3OGRmLi4wMzI0ZjllMTczODkNCj4gPiAxMDA2NDQNCj4gPiAtLS0gYS9h
-cmNoL2FybS9ib290L2R0cy9pbXg2c3guZHRzaQ0KPiA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
-L2lteDZzeC5kdHNpDQo+ID4gQEAgLTEzOTUsMTYgKzEzOTUsMTcgQEAgcHdtODogcHdtQDIyYjAw
-MDAgew0KPiA+ICAJCX07DQo+ID4NCj4gPiAgCQlwY2llOiBwY2llQDhmZmMwMDAgew0KPiA+IC0J
-CQljb21wYXRpYmxlID0gImZzbCxpbXg2c3gtcGNpZSIsICJzbnBzLGR3LXBjaWUiOw0KPiA+ICsJ
-CQljb21wYXRpYmxlID0gImZzbCxpbXg2c3gtcGNpZSI7DQo+ID4gIAkJCXJlZyA9IDwweDA4ZmZj
-MDAwIDB4MDQwMDA+LCA8MHgwOGYwMDAwMCAweDgwMDAwPjsNCj4gPiAgCQkJcmVnLW5hbWVzID0g
-ImRiaSIsICJjb25maWciOw0KPiA+ICAJCQkjYWRkcmVzcy1jZWxscyA9IDwzPjsNCj4gPiAgCQkJ
-I3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gIAkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gIAkJ
-CWJ1cy1yYW5nZSA9IDwweDAwIDB4ZmY+Ow0KPiA+IC0JCQlyYW5nZXMgPSA8MHg4MTAwMDAwMCAw
-IDAgICAgICAgICAgMHgwOGY4MDAwMCAwDQo+IDB4MDAwMTAwMDAgLyogZG93bnN0cmVhbSBJL08g
-Ki8NCj4gPiAtCQkJCSAgMHg4MjAwMDAwMCAwIDB4MDgwMDAwMDAgMHgwODAwMDAwMCAwIDB4MDBm
-MDAwMDA+Ow0KPiAvKiBub24tcHJlZmV0Y2hhYmxlIG1lbW9yeSAqLw0KPiA+ICsJCQlyYW5nZXMg
-PSA8MHg4MTAwMDAwMCAwIDAgICAgICAgICAgMHgwOGY4MDAwMCAwDQo+IDB4MDAwMTAwMDA+LCAv
-KiBkb3duc3RyZWFtIEkvTyAqLw0KPiA+ICsJCQkJIDwweDgyMDAwMDAwIDAgMHgwODAwMDAwMCAw
-eDA4MDAwMDAwIDAgMHgwMGYwMDAwMD47DQo+IC8qDQo+ID4gK25vbi1wcmVmZXRjaGFibGUgbWVt
-b3J5ICovDQo+ID4gIAkJCW51bS1sYW5lcyA9IDwxPjsNCj4gPiArCQkJbnVtLXZpZXdwb3J0ID0g
-PDQ+Ow0KPiA+ICAJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTIwIElSUV9UWVBFX0xFVkVMX0hJ
-R0g+Ow0KPiA+ICAJCQlpbnRlcnJ1cHQtbmFtZXMgPSAibXNpIjsNCj4gPiAgCQkJI2ludGVycnVw
-dC1jZWxscyA9IDwxPjsNCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14N2Qu
-ZHRzaQ0KPiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14N2QuZHRzaSBpbmRleCBiMGJjZmE5MDk0
-YTMuLjBjYjhjOGRmODdlZg0KPiAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9p
-bXg3ZC5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14N2QuZHRzaQ0KPiA+IEBA
-IC0xNjQsNyArMTY0LDcgQEAgZmVjMjogZXRoZXJuZXRAMzBiZjAwMDAgew0KPiA+ICAJfTsNCj4g
-Pg0KPiA+ICAJcGNpZTogcGNpZUAzMzgwMDAwMCB7DQo+ID4gLQkJY29tcGF0aWJsZSA9ICJmc2ws
-aW14N2QtcGNpZSIsICJzbnBzLGR3LXBjaWUiOw0KPiA+ICsJCWNvbXBhdGlibGUgPSAiZnNsLGlt
-eDdkLXBjaWUiOw0KPiA+ICAJCXJlZyA9IDwweDMzODAwMDAwIDB4NDAwMD4sDQo+ID4gIAkJICAg
-ICAgPDB4NGZmMDAwMDAgMHg4MDAwMD47DQo+ID4gIAkJcmVnLW5hbWVzID0gImRiaSIsICJjb25m
-aWciOw0KPiA+IEBAIC0xNzIsOCArMTcyLDggQEAgcGNpZTogcGNpZUAzMzgwMDAwMCB7DQo+ID4g
-IAkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gIAkJZGV2aWNlX3R5cGUgPSAicGNpIjsNCj4gPiAg
-CQlidXMtcmFuZ2UgPSA8MHgwMCAweGZmPjsNCj4gPiAtCQlyYW5nZXMgPSA8MHg4MTAwMDAwMCAw
-IDAgICAgICAgICAgMHg0ZmY4MDAwMCAwIDB4MDAwMTAwMDANCj4gLyogZG93bnN0cmVhbSBJL08g
-Ki8NCj4gPiAtCQkJICAweDgyMDAwMDAwIDAgMHg0MDAwMDAwMCAweDQwMDAwMDAwIDAgMHgwZmYw
-MDAwMD47IC8qDQo+IG5vbi1wcmVmZXRjaGFibGUgbWVtb3J5ICovDQo+ID4gKwkJcmFuZ2VzID0g
-PDB4ODEwMDAwMDAgMCAwICAgICAgICAgIDB4NGZmODAwMDAgMCAweDAwMDEwMDAwPiwNCj4gLyog
-ZG93bnN0cmVhbSBJL08gKi8NCj4gPiArCQkJIDwweDgyMDAwMDAwIDAgMHg0MDAwMDAwMCAweDQw
-MDAwMDAwIDAgMHgwZmYwMDAwMD47IC8qDQo+ID4gK25vbi1wcmVmZXRjaGFibGUgbWVtb3J5ICov
-DQo+ID4gIAkJbnVtLWxhbmVzID0gPDE+Ow0KPiA+ICAJCW51bS12aWV3cG9ydCA9IDw0PjsNCj4g
-PiAgCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTIyIElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiAN
-Cg0K
+Hi Sergey,
+
+On Wed, Mar 31, 2021 at 10:51 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+>
+> Rob,
+> Could you give your opinion on my comment regarding the nodes
+> layout in this dts-file. I was told to fix a similar problem in one of
+> patches submitted by me some time ago. Please see my last comment in
+> this message.
+>
+> On Sun, Mar 28, 2021 at 06:59:32PM -0700, Brad Larson wrote:
+> > Add Pensando common and Elba SoC specific device nodes
+[...]
+> > +
+>
+> > +             // CLUSTER 0
+>
+> What does chackpatch.pl tell you about C++ comment?
+
+I don't recall a warning for this but I think I forgot to use W=1 to
+check dtbs.  Will make sure it's clean before submitting the v3
+patchset.
+
+[...]
+> > +             // CLUSTER 1
+>
+> ditto
+
+I've changed all C++ comments to C syntax
+
+[...]
+> > diff --git a/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi b/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
+> > new file mode 100644
+> > index 000000000000..7de2c35e7fcc
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
+> > @@ -0,0 +1,112 @@
+> > +
+> > +/ {
+> > +     model = "Elba ASIC Board";
+> > +
+> > +     aliases {
+>
+> > +             serial0 = &uart0;
+> > +                spi0 = &spi0;
+> > +                spi1 = &qspi;
+>
+> Brad, if you checkpatch.pl'ed this patch, that would have told you
+> regarding leading spaces here.
+
+I did run it but must have missed that or used it incorrectly for the
+dtsi files.
+
+[...]
+> > +             pxc0_intr: intc@20102200 {
+> > +                     compatible = "pensando,soc-ictlr-csrintr";
+> > +                     interrupt-controller;
+>
+> > +                     reg = <0x0 0x20102200 0x0 0x4>;
+>
+> Rob, please note the reg-space size here.
+>
+> > +                     #interrupt-cells = <3>;
+> > +                     interrupt-parent = <&gic>;
+> > +                     interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     interrupt-names = "pxc0_intr";
+> > +             };
+> > +
+> > +             uart0: serial@4800 {
+> > +                     device_type = "serial";
+> > +                     compatible = "ns16550a";
+> > +                     reg = <0x0 0x4800 0x0 0x100>;
+> > +                     clocks = <&ref_clk>;
+> > +                     interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     reg-shift = <2>;
+> > +                     reg-io-width = <4>;
+> > +             };
+> > +
+> > +             qspi: spi@2400 {
+> > +                     compatible = "pensando,cdns-qspi";
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +                     reg = <0x0 0x2400 0x0 0x400>,
+> > +                           <0x0 0x7fff0000 0x0 0x1000>;
+> > +                     interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks = <&flash_clk>;
+> > +                     cdns,fifo-depth = <1024>;
+> > +                     cdns,fifo-width = <4>;
+> > +                     cdns,trigger-address = <0x7fff0000>;
+> > +                     status = "disabled";
+> > +             };
+> > +
+> > +             gpio0: gpio@4000 {
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +                     compatible = "snps,dw-apb-gpio";
+>
+>
+> > +                     reg = <0x0 0x4000 0x0 0x78>;
+>
+> Brad, are you sure the reg-space is just 0x78 bytes in this DW GPIO
+> module? Normally the system bus blocks are aligned to something
+> no less than 1KB...
+
+In the memory map the devices stride 1KB but the last register for
+this IP is at 0x74..0x77.  Looks like this will need to be revisited
+should a working syscon usage be discovered.
+
+>
+> > +                     status = "disabled";
+> > +
+>
+> > +                     porta: gpio-controller@0 {
+>
+> Brad, I'd prefer to name the sub-nodes as "gpio-port" for DW APB GPIO
+> because hardware considers each of them as dedicated port of the
+> GPIO controller. I know the bindings file permits using "-controller"
+> suffix, but that is allowed only because the bindings file was submitted
+> much later than the driver was. So I didn't want to have the dtbs_check
+> printing errors for already available dts-files.
+>
+
+Named these sub-nodes "gpio-port"
+
+> > +                             compatible = "snps,dw-apb-gpio-port";
+> > +                             reg = <0>;
+> > +                             gpio-controller;
+> > +                             #gpio-cells = <2>;
+> > +                             ngpios = <8>;
+> > +                             interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+> > +                             interrupt-controller;
+> > +                             interrupt-parent = <&gic>;
+> > +                             #interrupt-cells = <2>;
+> > +                     };
+> > +                     portb: gpio-controller@1 {
+> > +                             compatible = "snps,dw-apb-gpio-port";
+> > +                             reg = <1>;
+> > +                             gpio-controller;
+> > +                             #gpio-cells = <2>;
+> > +                             ngpios = <8>;
+> > +                     };
+> > +             };
+> > +
+> > +             i2c0: i2c@400 {
+> > +                     compatible = "snps,designware-i2c";
+> > +                     reg = <0x0 0x400 0x0 0x100>;
+> > +                     clocks = <&ahb_clk>;
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +                     i2c-sda-hold-time-ns = <480>;
+> > +                     snps,sda-timeout-ms = <750>;
+> > +                     interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status = "disabled";
+> > +             };
+> > +
+> > +             /* UIO device using interrupt line PCIEMAC */
+> > +             pciemac@20102200 {
+> > +                     #address-cells = <2>;
+> > +                     #size-cells = <2>;
+> > +                     #interrupt-cells = <3>;
+> > +
+> > +                     compatible = "pensando,uio_pciemac";
+> > +                     register-type = "csr-interrupt";
+> > +                     interrupt-parent = <&pxc0_intr>;
+> > +                     interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     reg = <0x0 0x20102200 0x0 0x10>; /* pxc0_intr */
+> > +
+> > +                     enable_csr_paddr = <0x0 0x20102200 0x0 0x10>;
+> > +                     enable_mask = <(1 << 0)>;
+> > +             };
+> > +
+> > +             /* MSI UIO device 1 */
+> > +             uio_penmsi1@520000 {
+> > +                     compatible = "pensando,uio_penmsi1";
+> > +                     reg = <0x0 0x520000 0x0 0x10000>;
+> > +                     msi-parent = <&its 0xa>;
+> > +                     num-interrupts = <16>;  /* # MSI interrupts to get */
+> > +             };
+> > +
+> > +             spics: spics@307c2468 {
+> > +                     compatible = "pensando,elba-spics";
+>
+> > +                     reg = <0x0 0x307c2468 0x0 0x4>;
+>
+> Rob, please note the reg-space base address and size here.
+>
+> > +                     gpio-controller;
+> > +                     #gpio-cells = <2>;
+> > +             };
+> > +
+> > +             spi0: spi@2800 {
+> > +                     compatible = "pensando,elba-spi";
+> > +                     reg = <0x0 0x2800 0x0 0x100>;
+> > +                     clocks = <&ahb_clk>;
+> > +                     interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +                     num-cs = <2>;
+> > +                     status = "disabled";
+> > +             };
+> > +
+> > +             wdt0: watchdog@1400 {
+> > +                     compatible = "snps,dw-wdt";
+> > +                     reg = <0x0 0x1400 0x0 0x100>;
+> > +                     clocks = <&ahb_clk>;
+> > +                     interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status = "disabled";
+> > +             };
+> > +             wdt1: watchdog@1800 {
+> > +                     compatible = "snps,dw-wdt";
+> > +                     reg = <0x0 0x1800 0x0 0x100>;
+> > +                     clocks = <&ahb_clk>;
+> > +                     interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status = "disabled";
+> > +             };
+> > +             wdt2: watchdog@1c00 {
+> > +                     compatible = "snps,dw-wdt";
+> > +                     reg = <0x0 0x1c00 0x0 0x100>;
+> > +                     clocks = <&ahb_clk>;
+> > +                     interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status = "disabled";
+> > +             };
+> > +             wdt3: watchdog@2000 {
+> > +                     compatible = "snps,dw-wdt";
+> > +                     reg = <0x0 0x2000 0x0 0x100>;
+> > +                     clocks = <&ahb_clk>;
+> > +                     interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status = "disabled";
+> > +             };
+> > +
+> > +             emmc: mmc@30440000 {
+> > +                     compatible = "pensando,elba-emmc", "cdns,sd4hc";
+> > +                     clocks = <&emmc_clk>;
+> > +                     interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     reg = <0x0 0x30440000 0x0 0x10000
+>
+> > +                            0x0 0x30480044 0x0 0x4>;
+>
+> Rob, please also note the reg-space base address and size here.
+> Brad just writes some magic numbers to this register in the MMC drive.
+> The field is named as "ctl_addr" in the driver.
+>
+> > +                     cdns,phy-input-delay-sd-highspeed = <0x4>;
+> > +                     cdns,phy-input-delay-legacy = <0x4>;
+> > +                     cdns,phy-input-delay-sd-uhs-sdr50 = <0x6>;
+> > +                     cdns,phy-input-delay-sd-uhs-ddr50 = <0x16>;
+> > +                     cdns,mmc-ddr-1_8v;
+> > +                     status = "disabled";
+> > +             } ;
+> > +
+> > +             pcie@307c2480 {
+> > +                     compatible = "pensando,pcie";
+>
+> > +                     reg = <0x0 0x307c2480 0x0 0x4   /* MS CFG_WDT */
+>
+> Rob, please note the reg-space base address and size here.
+>
+> > +                            0x0 0x00001400 0x0 0x10  /* WDT0 */
+> > +                            0x0 0x20000000 0x0 0x00380000>; /* PXB Base */
+> > +             };
+> > +
+> > +             panic: panicdump@0 {
+> > +                     compatible = "pensando,pen-crash";
+> > +                     status = "disabled";
+> > +             };
+> > +
+> > +             bsm@307c2080 {
+> > +                     compatible = "pensando,bsm";
+>
+> > +                     reg = <0x0 0x307c2080 0x0 0x4>;
+>
+> Rob, please see here having a small sized reg-space one more time.
+> Having so many small-sized registers scattered around the dts file
+> makes me thinking that most of them likely belong to some bigger
+> block like "System Controller". If so then there must be a main node
+> compatible with "syscon" device, which phandle would be referenced in
+> the particular device nodes. Like this:
+>
+> \ {
+>         soc {
+>                 syscon: syscon@307c0000 {
+>                         compatible = "pensando,elba-sys-con", "syscon", "simple-mfd";
+>                         reg = <0x0 0x307c0000 0x0 0x10000>;
+>
+>                         spics: spics@307c2468 {
+>                                 compatible = "pensando,elba-spics";
+>                                 gpio-controller;
+>                                 #gpio-cells = <2>;
+>                         };
+>                 };
+>
+>                 pcie@307c2480 {
+>                         compatible = "pensando,pcie";
+>                         reg = <0x0 0x20000000 0x0 0x00380000>; /* PXB Base */
+>
+>                         syscon = <&syscon>;
+>                 };
+>
+>                 /* etc */
+>         };
+> };
+>
+> Rob, what do you think about that? Correct me if I am wrong.
+>
+> Brad, it's not about "To us it was more understandable" like you
+> responded to my comment in v1, but about having the DTS correctly
+> describing the hardware. Splitting the system controller registers up
+> isn't good in that regard even if you think it makes the driver code
+> more "understandable" and so on.
+>
+> Also Brad, don't hurry with re-sending the patchset before finishing
+> all the discussions. I'd understand you doing so if noone would have
+> given you any comment in a long time, but you've got tons of them
+> nearly within one-two days after the v1 patchset submission. So you
+> should have answered to the comments first, settled all the issues,
+> then respined the series. Otherwise it seems as if you just disregard
+> all the work the reviewers did giving you the comments.
+
+Yes I appreciate the feedback and only recently had time to go through
+all of the input, refactor, clean-up, and test on our 5.10 production
+server.  Once all issues are resolved and tested on 5.10 and works
+then I can redo the series using the latest linux-next.  Syscon in the
+DT as mentioned above I've taken a few passes at with DT and
+accompanying device driver changes and no joy yet.
+
+Regards,
+Brad
