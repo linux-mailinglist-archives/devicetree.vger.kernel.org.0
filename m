@@ -2,134 +2,349 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D3B93F495D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 13:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32DB73F4983
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 13:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233170AbhHWLIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 07:08:24 -0400
-Received: from mail-eopbgr60061.outbound.protection.outlook.com ([40.107.6.61]:40773
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236305AbhHWLIV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 07:08:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n3I0SVGUD1kbJ75itjCNO/6cu+wVQj3wMLJ8aEbrHbfYzixQfv2coXzFM6YMl1uTbAl/C6hL+Jal214ME5QibEoHyrzjDaZR5aROTEAgv++WcvvNE85DORXf0s1JCqzlhTbfjPWZVSbzdRd/OOSB4zUxCwFMLHHZDDL6mJ0vSDeH71yka0Dwe0wT3qh9RglpILc62IH1ZxYwrwZ06QGavx/UNMmFVj5euMiurRDtlxkJAqkMZmPGjVauv7eY++4ogQV/nsiHFOu770LRA/g9ZjgP5fNphqs/sfDj2cklM6Eqx8Z6uTFPw21WKf3bilDzzaXoQnMwipc+I230z4wrzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LR9fb/y/SwBDL9xh0ayjptgcvGABEIum6YT1hk1HTD0=;
- b=XpBjQUw1qQO+S8qGYNUEVPAjUztDyhvfr6dowQzFwSxDbADsXHNJCBeoRfgqH16/Vl4nRH5xmTjYZHx4juB066WuRACTgqY5K2Ku3x3FMGUkR7uswJGoEOaPiwoLwJKkpYxzjDaSCMnYY37KE7ysQkXGI9aue9AL4fe/fBigO9MYaYWZbvVY6VvIXUfjpLqhHa0fYhdaLi6fL1Nc1uSRdvlfp3yK8/9sw7mYxtemq98O1njIvoLqXKn+6xmxMcm3Hh/BbihKbAQ2M8eueGiv5QD58lSZr/mGNd900u2tv0npmDoDDUaasCpBBq4tLICwEXVunW3AcvNep8mWv6OIlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LR9fb/y/SwBDL9xh0ayjptgcvGABEIum6YT1hk1HTD0=;
- b=jogiyrCLSfVoNMWaXa62IOOuXZ+aEgiCBjSYNmClXAhF46nJzokzPdj/XgJDsff3VvM+y3ZS2og/g80D1KRmk/lS4SMyF348mKrj+AxncZ0i6b6nsBu7QooyzK3Ix08oc8BLyX48mgOAaFsIoSJ2lo1bNfHbllMaJWblPxkpDAM=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=wolfvision.net;
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
- by DB9PR08MB7007.eurprd08.prod.outlook.com (2603:10a6:10:2c8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Mon, 23 Aug
- 2021 11:07:37 +0000
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4436.024; Mon, 23 Aug 2021
- 11:07:37 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: [PATCH] arm64: dts: rockchip: add saradc to rk3568-evb1-v10
-Date:   Mon, 23 Aug 2021 13:07:16 +0200
-Message-Id: <20210823110716.10038-1-michael.riesch@wolfvision.net>
-X-Mailer: git-send-email 2.20.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR0801CA0077.eurprd08.prod.outlook.com
- (2603:10a6:800:7d::21) To DBBPR08MB4523.eurprd08.prod.outlook.com
- (2603:10a6:10:c8::19)
+        id S236407AbhHWLRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 07:17:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236380AbhHWLRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 07:17:51 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A601DC061757
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 04:17:08 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id i9so37142421lfg.10
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 04:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8iLaZTWeQJl6iGd266WbOlLff6luDbqFrxB/cAn80YQ=;
+        b=TcCgBTHb/Rs9nRpQG++G77unwTBKtjJ4Dp7AZlW7FIncIs94bCVvQ5U4sDTfvgf9Xt
+         KV9b4PeuzP5DeplauxcUhcDxI+g8ZQ5ax6ytlADE2+L1eWBrNdaOeAtgMjjwwoHQiosB
+         Sj4NtVNfk2tA4/djiKPnhoeM1poW2B29JjvWI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8iLaZTWeQJl6iGd266WbOlLff6luDbqFrxB/cAn80YQ=;
+        b=giWd7IYhEY36eypd5+7ia7+8zELo8dXxBqkJ9V+ForHWMj41DVidO64cSMqEXi9Oie
+         lBf9abbsp/N4OqgsqAhFriXEcTUPXFxnUAbmNrY/xfQ8tWeyUNaBxo1qrVvpca2RxLqK
+         8s3n2hSWBFOChQTWqGkVzWnJAY2actf+T23B1DQlOJZOyP0CobC4FWu6qhVekTtgv35p
+         xFXEgiwyn/5YtkaPW5riudGfKNuyUbU72dPRKQPStGxcjbDIIy7OVJsGQq8FFTnxiVl3
+         us4IVOtlfVnMYT7XNSIqov1n21uI+96T1qt9xPmb/OEf0xBCJnFJO68RjcK6uM4VLthj
+         I06A==
+X-Gm-Message-State: AOAM530/hEdMjviArIhcmRyj4CcYZkCH8S4cx4yXSnlGVx9ZQKHN2Uz8
+        XzhFDFqMO/z69DWCkDN5mXMf1MNYe8cSb764JflVlA==
+X-Google-Smtp-Source: ABdhPJxMxt92OJ2YG0/F1XWWeVdd/8FS5KcGSQF5fZ9YbMu+oL61YlsJqouyFzi4LPLGPqg4hSE5facaGcpocjicWqg=
+X-Received: by 2002:a05:6512:3b98:: with SMTP id g24mr17084296lfv.276.1629717427045;
+ Mon, 23 Aug 2021 04:17:07 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from carlos.wolfvision-at.intra (91.118.163.37) by VI1PR0801CA0077.eurprd08.prod.outlook.com (2603:10a6:800:7d::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend Transport; Mon, 23 Aug 2021 11:07:36 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 696d0d41-4041-4db3-f56f-08d96626370d
-X-MS-TrafficTypeDiagnostic: DB9PR08MB7007:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB9PR08MB70075B9B1DB26D6FDE82B231F2C49@DB9PR08MB7007.eurprd08.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Id8ikoEGcYq9Xqt0vnXWSCwiiCSdqpw+Z1bPBB2vLtRRm79y4iHb0ZQS2BrG0Iv0XPeWeEVlLaZDdLsc7lwMk5kNAoMjPZvUTICSNtTKWzc2nLAvqjNRDls1YC6DEGJj1RpBPVaA7SOKrmV4KlGtzim4breHw38iRjWQmkb+PteAZtEXnq2uI6Xzu7npICBb23dkFoFbcPyAY3w/7x6uW1++DiKJDHgnjUmA49nGsWHIGCm69VAgohMVutSJSYQxKZbHeqtO/NmSybM2hIxZ1SFFxR07gtI2kUXHrIEM3woSKXXaDuzprgpPx8lfqet7h+sPOKdxBMXZDIfIQejKmIlI5NVLDA0Oojx4ns5ioeWoVCCd2BEXqA1Ngj0a4ZzCaUz5czy1B180lm2uyTH94uwOLUYpCTOR3UdNa+C+E5n/F+kXYL7UFUZnlu1bmI+T01MpLzfuM7nFQMDei6RA2cYACzyRQm8KWAyVpYU1Te7vaA4pbbvwvwMAAJyfTzghhxcqTbTWsaMETfBBPjPP+0w0I3DiEzaPtSbjf/6/f/+40l8oXnmgcOqjYgPxdZGHk3ozCLb9bSf2JrPu/jCQ18O54xevCJ8O8AgLlfEwEcXODD2IFXATBq5r+mEq8OKHwmjie3W/WbfGXVvdT5A1JoZOiljQ836QSfeWgl3V1Jo/SVZsWmTwpRdDaiRZzCTTOCsup/d0aBkrssrlH/zC0Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66556008)(66476007)(6512007)(36756003)(44832011)(2906002)(66946007)(1076003)(107886003)(6506007)(52116002)(508600001)(26005)(6486002)(956004)(6666004)(8936002)(2616005)(38100700002)(316002)(38350700002)(4744005)(8676002)(5660300002)(86362001)(54906003)(186003)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kK89eoP9nFfVtT7eZrR9DVWw/IKW7PGpTq2g2jmajvovV6MwbLzSxFKpW9dc?=
- =?us-ascii?Q?KaXm0IyQbFKLFkCf7oFk3xNgbriQD3/3pegTqrTk/Jt7bbzTz6qnb2FE1eLo?=
- =?us-ascii?Q?w5VeDNKdQiHzPaFFOwU5I/0ICR24OP06IDptDJWcLMWXsJyG2LZ6NRAlAmER?=
- =?us-ascii?Q?oubTLZiX2QFGkma3pSSs28ekz1q1o5EHXCFVUXRtX9jr4V0+ARGIzw7M8E5i?=
- =?us-ascii?Q?vZbep+/p2KY5VWXDALP8tiIvEjhTGU4nNkoIJZWDVZXGQLqPmFQeh2GYugnh?=
- =?us-ascii?Q?l41o7C6YmZxYhCKcbTKf++9aT5lQA4eMl0/eijfJFGNlW4TaWzG8p8u1sCGg?=
- =?us-ascii?Q?xRd+770pDqXtBJL63nyvlzH0Mfg4i08M/0KV6X2yKIWPQjynU2y7xKcaihil?=
- =?us-ascii?Q?lryElUtBHrjnSFsExCrbRr5Jo2Alg/E1l7tkrjw++J8pH7ASUZfXtr6U8FTE?=
- =?us-ascii?Q?NuhGasP0ziY1Q9VzOnS59gYak3zmusmTE63vIdLp2IneOvpboPqUz6jW2WhY?=
- =?us-ascii?Q?akOy7UGAgtVMQuD0P9/u0b+AygLuXmoxtvJWV/seKQbYbC6PP05tiedfCQDY?=
- =?us-ascii?Q?nZdY4OpINKSGAqfyZgyTGRPQtC6OwOC7Sef5Mp1zwUiKoDK5ZNiYp6qc7zbN?=
- =?us-ascii?Q?LtzFOC9fY4qgjsJlOJTsFCLAvmlvtL/FEJB2HXeXYrP3uP+ouKHV/0YxASEX?=
- =?us-ascii?Q?ScdVUG5qQSOV/jjXd2sVPdNroyr2oBw0F7l+d3pFviTMsg71xV3Q2N1YM+6a?=
- =?us-ascii?Q?7hvrGuwVx6Pod+46R3z90EhMTQu23YEdQQrSzPD6NGd5fWITMsUgSh/Z5+Qw?=
- =?us-ascii?Q?yGYOQ3fJc0EW9Fl9i8L3VPFWxwu0B5zGPWufk3nsVSgU9R1AqyarnkT2WP4R?=
- =?us-ascii?Q?pfNLLOzNvgI0Z1QHk92ycSlfoINaPUbt7p7EX07BnAnPh+rEjqadtZcFPyww?=
- =?us-ascii?Q?00gX2BhUf/TuVunbOWAdYOAGc44LTgkNrro3QE/2Y7aeel6ADzXdmjKixAmq?=
- =?us-ascii?Q?PWx63ko0nOuPkc/+V590LFU5BuyzR7JAUSq0w2pK6aO/aLvIQXL/wyeKpWub?=
- =?us-ascii?Q?jeKhDQqfhOX5WKBE6UHID6b4J5zdFRoHeOYPalGKxhNOMftRkbaVo2OrvK0M?=
- =?us-ascii?Q?a1o32DrV9dJbcV5M1TkYY5Z9MSKlWOdcZuwqp0ws2KTfXPdGwH9T5MoCj9wo?=
- =?us-ascii?Q?pnCFqicHNMcQJxZBfZYPxZlqSasygtOHQRp3LIayW8MQFu4YVTsHrbaSXjYw?=
- =?us-ascii?Q?nYAIzo3rCWMhXOd+QDxbdPohWLqUL8hKDnExGGIIO1apwlorcyU3limzl7d6?=
- =?us-ascii?Q?QCfYTvjoFTtf2+Ha53hsI3RL?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 696d0d41-4041-4db3-f56f-08d96626370d
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2021 11:07:36.9737
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6SRD71OpS6Q50e7ggk9yLLfJmgtVIsyVqRD6ckCVEdOt3RMySFe3CgmQLJ/ZlEDLM/vbedK+Y7PQ1cVj3L5CGInzvqaOrxT6Kt5KV0N/+Tc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB7007
+References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-8-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210820111504.350-8-chun-jie.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 23 Aug 2021 19:16:56 +0800
+Message-ID: <CAGXv+5GaUBWV0tD4uP6Gx6Pg7BvF_Dzp5pdV73b_0MD1kYr03A@mail.gmail.com>
+Subject: Re: [v2 07/24] clk: mediatek: Add MT8195 topckgen clock support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the SARADC to the device tree of the RK3568 EVB1.
+On Fri, Aug 20, 2021 at 7:20 PM Chun-Jie Chen
+<chun-jie.chen@mediatek.com> wrote:
+>
+> Add MT8195 topckgen clock controller which provides muxes, dividers
+> to handle variety clock selection in other IP blocks.
+>
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> ---
+> The changes as follow:
+> 1. remove 1 on 1 divider
+> 2. merge parent source data in muxes
+> 3. add some comment if the clock is not model by CCF or has special flag
+> 4. remove _SEL suffix in clock name
+> ---
+>  drivers/clk/mediatek/Makefile              |    2 +-
+>  drivers/clk/mediatek/clk-mt8195-topckgen.c | 1298 ++++++++++++++++++++
+>  2 files changed, 1299 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8195-topckgen.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index d4157cfca865..a142342a0cea 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -80,6 +80,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-mt8192-msdc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
+> -obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o
+> +obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o
+>  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
+>  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
+> diff --git a/drivers/clk/mediatek/clk-mt8195-topckgen.c b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+> new file mode 100644
+> index 000000000000..3cf113544f59
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8195-topckgen.c
+> @@ -0,0 +1,1298 @@
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
- arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+[...]
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index 1bc79e95b2fb..184e2aa2416a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -360,6 +360,11 @@
- 	status = "okay";
- };
- 
-+&saradc {
-+	vref-supply = <&vcca_1v8>;
-+	status = "okay";
-+};
-+
- &sdhci {
- 	bus-width = <8>;
- 	max-frequency = <200000000>;
--- 
-2.17.1
+> +static const char * const dsp_parents[] = {
+> +       "clk26m",
+> +       "univpll_d6_d2",
+> +       "univpll_d4_d2",
+> +       "univpll_d5",
+> +       "univpll_d4",
+> +       "mmpll_d4",
+> +       "mainpll_d3",
+> +       "univpll_d3"
+> +};
+> +
+> +static const char * const dsp1_parents[] = {
+> +       "clk26m",
+> +       "univpll_d6_d2",
+> +       "mainpll_d4_d2",
+> +       "univpll_d5",
+> +       "mmpll_d5",
+> +       "univpll_d4",
+> +       "mainpll_d3",
+> +       "univpll_d3"
+> +};
+> +
+> +static const char * const dsp2_parents[] = {
+> +       "clk26m",
+> +       "univpll_d6_d2",
+> +       "univpll_d4_d2",
+> +       "mainpll_d4",
+> +       "univpll_d4",
+> +       "mmpll_d4",
+> +       "mainpll_d3",
+> +       "univpll_d3"
+> +};
+> +
+> +static const char * const dsp3_parents[] = {
+> +       "clk26m",
+> +       "univpll_d6_d2",
+> +       "univpll_d4_d2",
+> +       "univpll_d5",
+> +       "univpll_d4",
+> +       "mmpll_d4",
+> +       "mainpll_d3",
+> +       "univpll_d3"
+> +};
 
+dsp3_parents looks like it matches dsp_parents. If so, please deduplicate.
+
+[...]
+
+> +static const struct mtk_mux top_mtk_muxes[] = {
+
+[...]
+
+> +       /* CLK_CFG_29 */
+> +       MUX_GATE_CLR_SET_UPD(CLK_TOP_DVIO_DGI_REF, "top_dvio_dgi_ref",
+> +               dvio_dgi_ref_parents, 0x017C, 0x0180, 0x0184, 0, 3, 7, 0x010, 20),
+> +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_ULPOSC, "top_ulposc",
+> +               ulposc_parents, 0x017C, 0x0180, 0x0184, 8, 2, 15, 0x010, 21, CLK_IS_CRITICAL),
+> +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_ULPOSC_CORE, "top_ulposc_core",
+> +               ulposc_core_parents, 0x017C, 0x0180, 0x0184, 16, 2, 23, 0x010, 22, CLK_IS_CRITICAL),
+> +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_SRCK, "top_srck",
+> +               srck_parents, 0x017C, 0x0180, 0x0184, 24, 1, 31, 0x010, 23, CLK_IS_CRITICAL),
+
+Any comments regarding the three critical clocks?
+
+> +       /*
+> +        * the clocks in CLK_CFG_30 ~ 37 are backup clock source, no need to handled
+> +        * by Linux.
+> +        */
+> +};
+> +
+> +static struct mtk_composite top_muxes[] = {
+> +       /* CLK_MISC_CFG_3 */
+> +       MUX(CLK_TOP_MFG_CK_FAST_REF, "mfg_ck_fast_ref", mfg_fast_parents, 0x0250, 8, 1),
+> +};
+> +
+> +/*
+> + * apll12_div5 ~ 9 are not used in MT8195.
+> + */
+> +static const struct mtk_composite top_adj_divs[] = {
+> +       DIV_GATE(CLK_TOP_APLL12_DIV0, "apll12_div0", "top_i2si1_mck", 0x0320, 0, 0x0328, 8, 0),
+> +       DIV_GATE(CLK_TOP_APLL12_DIV1, "apll12_div1", "top_i2si2_mck", 0x0320, 1, 0x0328, 8, 8),
+> +       DIV_GATE(CLK_TOP_APLL12_DIV2, "apll12_div2", "top_i2so1_mck", 0x0320, 2, 0x0328, 8, 16),
+> +       DIV_GATE(CLK_TOP_APLL12_DIV3, "apll12_div3", "top_i2so2_mck", 0x0320, 3, 0x0328, 8, 24),
+> +       DIV_GATE(CLK_TOP_APLL12_DIV4, "apll12_div4", "top_aud_iec_clk", 0x0320, 4, 0x0334, 8, 0),
+
+The comment could be inlined here directly:
+
+          /* apll12_div5 ~ 9 are not used in MT8195 */
+
+> +       DIV_GATE(CLK_TOP_APLL12_DIV9, "apll12_div9", "top_dptx_mck", 0x0320, 9, 0x0338, 8, 8),
+> +};
+> +
+> +static const struct mtk_gate_regs top0_cg_regs = {
+> +       .set_ofs = 0x238,
+> +       .clr_ofs = 0x238,
+> +       .sta_ofs = 0x238,
+> +};
+> +
+> +static const struct mtk_gate_regs top1_cg_regs = {
+> +       .set_ofs = 0x250,
+> +       .clr_ofs = 0x250,
+> +       .sta_ofs = 0x250,
+> +};
+> +
+> +#define GATE_TOP0_FLAGS(_id, _name, _parent, _shift, _flag)            \
+> +       GATE_MTK_FLAGS(_id, _name, _parent, &top0_cg_regs, _shift,      \
+> +               &mtk_clk_gate_ops_no_setclr_inv, _flag)
+> +
+> +#define GATE_TOP0(_id, _name, _parent, _shift)                 \
+> +       GATE_TOP0_FLAGS(_id, _name, _parent, _shift, 0)
+> +
+> +#define GATE_TOP1(_id, _name, _parent, _shift)                 \
+> +       GATE_MTK(_id, _name, _parent, &top1_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr_inv)
+> +
+> +/*
+> + * cfg_axi_east, cfg_axi_east_north, cfg_axi_north and cfg_axi_south
+> + * are peripheral bus clock branches.
+> + */
+> +static const struct mtk_gate top_clks[] = {
+> +       /* TOP0 */
+> +       GATE_TOP0(CLK_TOP_CFG_VPP0, "cfg_vpp0", "top_vpp", 0),
+> +       GATE_TOP0(CLK_TOP_CFG_VPP1, "cfg_vpp1", "top_vpp", 1),
+> +       GATE_TOP0(CLK_TOP_CFG_VDO0, "cfg_vdo0", "top_vpp", 2),
+> +       GATE_TOP0(CLK_TOP_CFG_VDO1, "cfg_vdo1", "top_vpp", 3),
+> +       GATE_TOP0(CLK_TOP_CFG_UNIPLL_SES, "cfg_unipll_ses", "univpll_d2", 4),
+> +       GATE_TOP0(CLK_TOP_CFG_26M_VPP0, "cfg_26m_vpp0", "clk26m", 5),
+> +       GATE_TOP0(CLK_TOP_CFG_26M_VPP1, "cfg_26m_vpp1", "clk26m", 6),
+> +       GATE_TOP0(CLK_TOP_CFG_26M_AUD, "cfg_26m_aud", "clk26m", 9),
+> +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_EAST, "cfg_axi_east", "top_axi", 10, CLK_IS_CRITICAL),
+> +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_EAST_NORTH, "cfg_axi_east_north", "top_axi", 11,
+> +               CLK_IS_CRITICAL),
+> +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_NORTH, "cfg_axi_north", "top_axi", 12, CLK_IS_CRITICAL),
+> +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_SOUTH, "cfg_axi_south", "top_axi", 13, CLK_IS_CRITICAL),
+> +       GATE_TOP0(CLK_TOP_CFG_EXT_TEST, "cfg_ext_test", "msdcpll_d2", 15),
+> +       /* TOP1 */
+> +       GATE_TOP1(CLK_TOP_SSUSB_REF, "ssusb_ref", "clk26m", 0),
+> +       GATE_TOP1(CLK_TOP_SSUSB_PHY_REF, "ssusb_phy_ref", "clk26m", 1),
+> +       GATE_TOP1(CLK_TOP_SSUSB_P1_REF, "ssusb_p1_ref", "clk26m", 2),
+> +       GATE_TOP1(CLK_TOP_SSUSB_PHY_P1_REF, "ssusb_phy_p1_ref", "clk26m", 3),
+> +       GATE_TOP1(CLK_TOP_SSUSB_P2_REF, "ssusb_p2_ref", "clk26m", 4),
+> +       GATE_TOP1(CLK_TOP_SSUSB_PHY_P2_REF, "ssusb_phy_p2_ref", "clk26m", 5),
+> +       GATE_TOP1(CLK_TOP_SSUSB_P3_REF, "ssusb_p3_ref", "clk26m", 6),
+> +       GATE_TOP1(CLK_TOP_SSUSB_PHY_P3_REF, "ssusb_phy_p3_ref", "clk26m", 7),
+> +};
+> +
+> +static struct clk_onecell_data *top_clk_data;
+> +
+> +static void clk_mt8195_top_init_early(struct device_node *node)
+> +{
+> +       int i;
+> +
+> +       top_clk_data = mtk_alloc_clk_data(CLK_TOP_NR_CLK);
+> +       if (!top_clk_data)
+> +               return;
+> +
+> +       for (i = 0; i < CLK_TOP_NR_CLK; i++)
+> +               top_clk_data->clks[i] = ERR_PTR(-EPROBE_DEFER);
+> +
+> +       mtk_clk_register_factors(top_early_divs, ARRAY_SIZE(top_early_divs), top_clk_data);
+
+It's still not clear to me why this is needed...
+
+> +
+> +       if (of_clk_add_provider(node, of_clk_src_onecell_get, top_clk_data)) {
+> +               mtk_free_clk_data(top_clk_data);
+> +               top_clk_data = NULL;
+> +       }
+> +}
+> +
+> +CLK_OF_DECLARE_DRIVER(mt8195_topckgen, "mediatek,mt8195-topckgen",
+> +                       clk_mt8195_top_init_early);
+> +
+> +static const struct of_device_id of_match_clk_mt8195_topck[] = {
+> +       { .compatible = "mediatek,mt8195-topckgen", },
+> +       {}
+> +};
+> +
+> +static int clk_mt8195_topck_probe(struct platform_device *pdev)
+> +{
+> +       struct device_node *node = pdev->dev.of_node;
+> +       int r;
+> +       void __iomem *base;
+> +
+> +       if (!top_clk_data)
+> +               return -EFAULT;
+
+-ENODEV is more appropriate. -EFAULT signals a bad address (access).
+
+See include/uapi/asm-generic/errno-base.h
+
+> +
+> +       base = devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(base))
+> +               return PTR_ERR(base);
+> +
+> +       mtk_clk_register_fixed_clks(top_fixed_clks, ARRAY_SIZE(top_fixed_clks),
+> +                                       top_clk_data);
+> +       mtk_clk_register_factors(top_early_divs, ARRAY_SIZE(top_early_divs), top_clk_data);
+
+And this second invocation will fail because the same clocks have already
+been registered. It seems like this invocation is enough to have "clk26m_d2"
+registered before all of its children.
+
+If so then CLK_OF_DECLARE_DRIVER is not necessary, that part could be
+dropped, and the clk_data initialization moved into this probe function.
+And `top_early_divs` could be merged with `top_divs`.
+
+> +       mtk_clk_register_factors(top_divs, ARRAY_SIZE(top_divs), top_clk_data);
+> +       mtk_clk_register_muxes(top_mtk_muxes, ARRAY_SIZE(top_mtk_muxes), node,
+> +                                       &mt8195_clk_lock, top_clk_data);
+> +       mtk_clk_register_composites(top_muxes, ARRAY_SIZE(top_muxes), base,
+> +                                       &mt8195_clk_lock, top_clk_data);
+> +       mtk_clk_register_composites(top_adj_divs, ARRAY_SIZE(top_adj_divs), base,
+> +                                       &mt8195_clk_lock, top_clk_data);
+
+Please align wrapped lines with the opening parenthesis.
+
+
+Regards
+ChenYu
+
+> +       r = mtk_clk_register_gates(node, top_clks, ARRAY_SIZE(top_clks), top_clk_data);
+> +       if (r)
+> +               return r;
+> +
+> +       return of_clk_add_provider(node, of_clk_src_onecell_get, top_clk_data);
+> +}
+> +
+> +static struct platform_driver clk_mt8195_topck_drv = {
+> +       .probe = clk_mt8195_topck_probe,
+> +       .driver = {
+> +               .name = "clk-mt8195-topck",
+> +               .of_match_table = of_match_clk_mt8195_topck,
+> +       },
+> +};
+> +builtin_platform_driver(clk_mt8195_topck_drv);
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
