@@ -2,32 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 383F63F5080
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E410A3F5081
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229953AbhHWSnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 14:43:09 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:54050 "EHLO gloria.sntech.de"
+        id S231223AbhHWSnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 14:43:10 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:54100 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230511AbhHWSnJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 14:43:09 -0400
+        id S231151AbhHWSnK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Aug 2021 14:43:10 -0400
 Received: from dynamic-046-114-139-102.46.114.pool.telefonica.de ([46.114.139.102] helo=phil.sntech)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1mIEtp-0002Jl-QA; Mon, 23 Aug 2021 20:42:21 +0200
+        id 1mIEtr-0002Jl-Ei; Mon, 23 Aug 2021 20:42:23 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
+To:     Michael Riesch <michael.riesch@wolfvision.net>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix GPU register width for RK3328
-Date:   Mon, 23 Aug 2021 20:42:13 +0200
-Message-Id: <162974163915.2977894.9290643400538669916.b4-ty@sntech.de>
+Subject: Re: [PATCH 0/1] arm64: dts: rockchip: add missing rockchip,grf property to rk356x
+Date:   Mon, 23 Aug 2021 20:42:15 +0200
+Message-Id: <162974163915.2977894.4550089121639046770.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210623115926.164861-1-knaerzche@gmail.com>
-References: <20210623115926.164861-1-knaerzche@gmail.com>
+In-Reply-To: <20210823123911.12095-1-michael.riesch@wolfvision.net>
+References: <20210823123911.12095-1-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -35,17 +37,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Jun 2021 13:59:26 +0200, Alex Bee wrote:
-> As can be seen in RK3328's TRM the register range for the GPU is
-> 0xff300000 to 0xff330000.
-> It would (and does in vendor kernel) overlap with the registers of
-> the HEVC encoder (node/driver do not exist yet in upstream kernel).
-> See already existing h265e_mmu node.
+On Mon, 23 Aug 2021 14:39:10 +0200, Michael Riesch wrote:
+> The following error messages appear on my RK3568 EVB1 board during boot:
+> 
+>   rockchip_clk_register_muxgrf: regmap not available
+>   rockchip_clk_register_branches: failed to register clock clk_ddr1x: -524
+> 
+> These can be fixed by providing the missing rockchip,grf property to the
+> device tree (similar to other Rockchip SoCs, such as the RK3399).
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Fix GPU register width for RK3328
-      commit: 3f1c9b99f22c4784bd6f439a63bbf8a61c0335b1
+[1/1] arm64: dts: rockchip: add missing rockchip,grf property to rk356x
+      commit: 7e0a31c49b5a1dc16540581d2a9cbe35da97c06c
 
 Best regards,
 -- 
