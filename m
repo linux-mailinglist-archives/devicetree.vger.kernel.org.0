@@ -2,86 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5893F464C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 10:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 689FF3F4651
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 10:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235274AbhHWIDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 04:03:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235243AbhHWIDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 04:03:14 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC610C061757
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 01:02:31 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id i8so32451458ybt.7
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 01:02:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oXzMxxld3s2Dy1bK0gxfs2jef+dVB9Nrv3kOY/Biy+g=;
-        b=JYiPssS2z4+oMXz3A3i/ogjMwXw45BTvgVH6vJCtqr0i1eAOotuf+6rhihEizx5jQm
-         HjofxSO+AcH01QRqdNEPaikNcdYnl9lT4JRMdoVsgwDQcgYx4+0tCQlB1O+IS29tCUo3
-         IXGvzMILUOsG1LrKR054CjvSVkHRsAvcX4UTEvIBGh93PL67dGh0NbnYBLwQMBpujmt0
-         fI+xjz6fOo+j/Q/rT6vmGdWTwtmoiN8Zwihrit09ngz5TQNYmrCJ3lVllrr29uigz4ZZ
-         3plDvYtNtstB5JUtvIxnjQ+gMZtrhDan4QP/DBnKwGCIYPGBdq93E7JZWpPMj7Jra6of
-         aLog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oXzMxxld3s2Dy1bK0gxfs2jef+dVB9Nrv3kOY/Biy+g=;
-        b=Jfw6fR3QZxXnUDi8jJBObUXUZSFHMt+QK5ig2cQqU+CMLJmKcCsUAOxhxTyG/1Ob/S
-         wGbpbkwjgASNFTzyjOU24GAoD4jnVXISLUBbcR9UKII9y0qjrShfnRx9Syr9n3DFKvQq
-         OC2PSDhcGVqYX4xyfdCg9dHa6MN/j5r0dtp30Y+BDLP5mvXermNTJgrevtMipRHoMzZn
-         H+OFcAAuOiOZ5GVkDbLQwuug3GM2kMZXACk97TpW+710ZWU9tb3kVwNXDTnoqf8EbCrj
-         H/SS7kWnNd2chf5/uuSXYDYseIzOj8OjRxS7H60AkT1SCVgpqz/97D9D7S4pxU4gbgL9
-         DGag==
-X-Gm-Message-State: AOAM533TR7Yx+HHS2e6TCUhH5WJK8Cu9GGkagiitvzWVw3uF0u1Tu0ZR
-        G4UnVyN62GdTuf3d9K3TMnjUHLT0R2wmsawNbJM0Kw==
-X-Google-Smtp-Source: ABdhPJxZ0SNxd8m59bIsv9eTzocBS/hTPHlPQXnS+yKhs/4v6dJs5M2U6pP7eBBjzio13VxL0AUVgCXT48b5Eqnh2JU=
-X-Received: by 2002:a25:48c7:: with SMTP id v190mr39791370yba.312.1629705751134;
- Mon, 23 Aug 2021 01:02:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210818081018.2620544-1-piyush.mehta@xilinx.com> <20210818081018.2620544-4-piyush.mehta@xilinx.com>
-In-Reply-To: <20210818081018.2620544-4-piyush.mehta@xilinx.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 23 Aug 2021 10:02:20 +0200
-Message-ID: <CAMpxmJUvPg3LvT1EJa-ZecXMWpR82EQMr8vhTjBpO3_6iiGecQ@mail.gmail.com>
-Subject: Re: [PATCH V3 3/3] gpio: modepin: Add driver support for modepin GPIO controller
-To:     Piyush Mehta <piyush.mehta@xilinx.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Zou Wei <zou_wei@huawei.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>, wendy.liang@xilinx.com,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
-        Rob Herring <robh+dt@kernel.org>, rajan.vaja@xilinx.com,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        git <git@xilinx.com>, Srinivas Goud <sgoud@xilinx.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S235275AbhHWIFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 04:05:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42168 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235168AbhHWIFF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Aug 2021 04:05:05 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6B6E26136F;
+        Mon, 23 Aug 2021 08:04:23 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mI4wP-006buO-AZ; Mon, 23 Aug 2021 09:04:21 +0100
+Date:   Mon, 23 Aug 2021 09:04:20 +0100
+Message-ID: <87eeakr3i3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, kernel-team@android.com
+Subject: Re: [PATCH] of: Don't allow __of_attached_node_sysfs() without CONFIG_SYSFS
+In-Reply-To: <a67743f9-869b-28df-d714-db15da4ebe06@gmail.com>
+References: <20210820144722.169226-1-maz@kernel.org>
+        <a67743f9-869b-28df-d714-db15da4ebe06@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: frowand.list@gmail.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 10:11 AM Piyush Mehta <piyush.mehta@xilinx.com> wrote:
->
-> This patch adds driver support for the zynqmp modepin GPIO controller.
-> GPIO modepin driver set and get the value and status of the PS_MODE pin,
-> based on device-tree pin configuration. These four mode pins are
-> configurable as input/output. The mode pin has a control register, which
-> have lower four-bits [0:3] are configurable as input/output, next four-bits
-> can be used for reading the data  as input[4:7], and next setting the
-> output pin state output[8:11].
->
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-> Acked-by: Michal Simek <michal.simek@xilinx.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+Hi Frank,
 
-Which tree should this go through?
+On Mon, 23 Aug 2021 05:01:15 +0100,
+Frank Rowand <frowand.list@gmail.com> wrote:
+> 
+> Hi Marc,
+> 
+> On 8/20/21 9:47 AM, Marc Zyngier wrote:
+> > Trying to boot without SYSFS, but with OF_DYNAMIC quickly
+> > results in a crash:
+> > 
+> > [    0.088460] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000070
+> > [...]
+> > [    0.103927] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.14.0-rc3 #4179
+> > [    0.105810] Hardware name: linux,dummy-virt (DT)
+> > [    0.107147] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+> > [    0.108876] pc : kernfs_find_and_get_ns+0x3c/0x7c
+> > [    0.110244] lr : kernfs_find_and_get_ns+0x3c/0x7c
+> > [...]
+> > [    0.134087] Call trace:
+> > [    0.134800]  kernfs_find_and_get_ns+0x3c/0x7c
+> > [    0.136054]  safe_name+0x4c/0xd0
+> > [    0.136994]  __of_attach_node_sysfs+0xf8/0x124
+> > [    0.138287]  of_core_init+0x90/0xfc
+> > [    0.139296]  driver_init+0x30/0x4c
+> > [    0.140283]  kernel_init_freeable+0x160/0x1b8
+> > [    0.141543]  kernel_init+0x30/0x140
+> > [    0.142561]  ret_from_fork+0x10/0x18
+> > 
+> > While not having sysfs isn't a very common option these days,
+> > it is still expected that such configuration would work.
+> > 
+> > Paper over it by bailing out from __of_attach_node_sysfs() if
+> > CONFIG_SYSFS isn't enabled.
+> 
+> CONFIG_SYSFS should be automatically selected when CONFIG_OF_DYNAMIC
+> is enabled, and it should not be possible to disable CONFIG_SYSFS
+> in this case.
 
-Bart
+OF_DYNAMIC selects OF_KOBJ, which itself doesn't actually depends on
+SYSFS. It merely has a "def_bool SYSFS". If a stronger dependency is
+expected, that's probably where it should be expressed.
+
+However, kobj.c already has a couple of
+
+	if (!IS_ENABLED(CONFIG_SYSFS))
+		return 0;
+
+sprinkled over it, so there is already an assumption that it can be
+build without SYSFS.
+
+> 
+> Can you send your .config?
+
+https://pastebin.com/MmRWuxLr
+
+> What ARCH did you build the kernel with?
+
+That's an arm64 build.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
