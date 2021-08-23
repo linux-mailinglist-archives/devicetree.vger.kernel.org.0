@@ -2,139 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 436823F4297
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 02:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFF13F42AF
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 02:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231928AbhHWAcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 20:32:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37050 "EHLO
+        id S233356AbhHWAzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 20:55:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231835AbhHWAcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 20:32:17 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 917F8C061575;
-        Sun, 22 Aug 2021 17:31:35 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id lc21so880629ejc.7;
-        Sun, 22 Aug 2021 17:31:35 -0700 (PDT)
+        with ESMTP id S231924AbhHWAzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 20:55:04 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D43C061756
+        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 17:54:22 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id lc21so955134ejc.7
+        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 17:54:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jowtOTpjNwqucfYjuJgTUiClzxtr7mn0OII0JVTDIs4=;
-        b=sV4cROVbci+qn31l06I0BOL/BjGaS1l9u8CR9wXrVGw9el/mdkBh+WRWUyFI030YuE
-         kse5xB/cxs+MUdVH8uVIVHgkJno+uO9k4hufQfbQR1gEZICJupBHiaEA76BeENv2drBl
-         m7FBq5K0NekFivSccitH49IWI6ZqQ1ey6DIwMgnUSF2mIVsMNgmSA92QrSICKjSVB9VV
-         UigtYNpI7xL+dvQfhAp4gEUQy6uttMDKCpx+A5IqUejlDO/kxC9XHemsDSowrXn4X5oT
-         ycQT4zIJaavZUOJpBxNt/fv16BsWBv0k2Ul2R6/HjAggIX3U4lO9wKZKynpyNnXp/zV4
-         XetA==
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tCfKmnJmqqI7jJQlcyiuI5mMfUQXjNPCJKCttWb1qt8=;
+        b=A4h2GLHXtRVS9vQdzorylmvzR7vxvIcjGZ0eFMklc7Fc4BUBoXPk3oB0cRyz8oceV9
+         6SaGpAVvzJpYyTJe7GTd5+2E67N5vJm+hJZetckGUfODc6bXQMAyXh7545E49TqVJ0uR
+         2ngVNAsQus/k2BhAQUJ9n3AJxb00EQobu/cpC+s4hucFhEN6oN+f+UZeEUADR1rMwCHz
+         8+L+dFKH6a8y8qVp1hrDW+wzXXrmQSqIaiUKEDuiwumaHKPdZhVqBhD+ZaHlOGnEjPfF
+         irEyg+erpbbo63ClBkNBsKeau1qqea+NBhQ5ZbgNxf4NGGlpqbW5ei9HyZM1kc4W7tKk
+         mPgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jowtOTpjNwqucfYjuJgTUiClzxtr7mn0OII0JVTDIs4=;
-        b=GftcEhEj9JayXONrjjhY4lnPBJNc+9LHVLR+Mzm47UY38kIwMnhqs5J9+3IC/mz2Jq
-         8YiqYClRotkUO9ckv+Sytm6Ff9kWl4Mu6Tx2OYJYBn6Ak74ruD2nHjgmO8bgIVVIry1A
-         HmTag9PdZFOqelbtuerM0z/Q6VJgd5JELWnKooT8cZLkIIqQ1dwMvAwivLEKcoYGKmTI
-         zCr2Hzp0fEhDPlemtPUfyxJtW9K18QzpiELSuJUOeUfiYvuCSf0V1ah0sybqP6KZbeRS
-         xS7XGoKzLEIu7F01CT8FxA5ZQ6hGTy74CaNZCbFIZ4CONR9QmU9hLB7FFvhql/rcV8k0
-         IcmA==
-X-Gm-Message-State: AOAM533RlTc32pPuOAGlEDJs9t7eZGI4TuY1cyhCMYv35BNXkv5RpjYi
-        /BZsXvdIYyk6aRkGzQqb6PE=
-X-Google-Smtp-Source: ABdhPJxDGc/GUX1m73NPQNXtTRrERjbgD1KmnZNNVG7t8kgUpusl+RxLu6QqCgpLC4d/ItjQPake/A==
-X-Received: by 2002:a17:907:a043:: with SMTP id gz3mr10487959ejc.366.1629678694239;
-        Sun, 22 Aug 2021 17:31:34 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id cr9sm8090439edb.17.2021.08.22.17.31.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Aug 2021 17:31:34 -0700 (PDT)
-Date:   Mon, 23 Aug 2021 03:31:32 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
-Cc:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Rasmussen <MIR@bang-olufsen.dk>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 3/5] net: dsa: tag_rtl8_4: add realtek 8
- byte protocol 4 tag
-Message-ID: <20210823003132.fdafjnci4y56cmnd@skbuf>
-References: <20210822193145.1312668-1-alvin@pqrs.dk>
- <20210822193145.1312668-4-alvin@pqrs.dk>
- <20210822221307.mh4bggohdvx2yehy@skbuf>
- <9d6af614-d9f9-6e7b-b6b5-a5f5f0eb8af2@bang-olufsen.dk>
- <20210822232538.pkjsbipmddle5bdt@skbuf>
- <0606e849-5a4e-08c9-fcd1-d4661c10a51c@bang-olufsen.dk>
- <20210822234516.pwlu4wk3s3pfzbmi@skbuf>
- <e92dd0b2-0720-b848-900d-7f383f133111@bang-olufsen.dk>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tCfKmnJmqqI7jJQlcyiuI5mMfUQXjNPCJKCttWb1qt8=;
+        b=A2IBlKlNWzhQC3rm2V4mYENm+nDYKwb+otvUfYYf+HGGoawjD5Nb774Dtxk/fMpyZ2
+         XzgLuy7ck3r1I4b7a6Fr8Ol7TaikbH5yPNykOscJfH2EnC3gyuOlQ88PJIVZx/KJq8Qw
+         rW+yDMt7YTz4tO2vThkdeOTs6v1eoopJeEdyX8VFEo4BiFV3W408Mwmk1MU9fi4e5ubo
+         hFmeRlDvN8A67k3C4P/NXrMgg/qWTPumkpwCQ4Y66yWFqnszbud4VmISgFNyUmIih79p
+         5UTw7vDz5NHqe2oNUEXIhBtB5aQK720+JJy6fnu7PFi7rP88295prkXBiwwedw8KHxpy
+         09XA==
+X-Gm-Message-State: AOAM530zJlNG3VMJslEBKl+Kbz02Kaw9BXbtKXhTRdWdlP5yVNw8vNaA
+        FUysBMPwOO7nyCN1tN6NJoyvitsO8L52/qQKdY0ISw==
+X-Google-Smtp-Source: ABdhPJyr6R4LC87uphsxySvEXCIWhOfzIxR0G9gDmPD+Fl8kr+9oUkEZA1IOgIEGr6eAgBrQ72fwayTcK8phJKWSOcU=
+X-Received: by 2002:a17:906:3bc1:: with SMTP id v1mr4525657ejf.182.1629680060829;
+ Sun, 22 Aug 2021 17:54:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e92dd0b2-0720-b848-900d-7f383f133111@bang-olufsen.dk>
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-8-brad@pensando.io>
+ <20210304080355.cc37g7jagswro3dg@mobilestation>
+In-Reply-To: <20210304080355.cc37g7jagswro3dg@mobilestation>
+From:   Brad Larson <brad@pensando.io>
+Date:   Sun, 22 Aug 2021 17:54:10 -0700
+Message-ID: <CAK9rFnzBNjiUARvAe6k9DnDV-RCG9L0ARaiFVPQbUhv1UqTDRA@mail.gmail.com>
+Subject: Re: [PATCH 7/8] arm64: dts: Add Pensando Elba SoC support
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 12:28:51AM +0000, Alvin Šipraga wrote:
-> On 8/23/21 1:45 AM, Vladimir Oltean wrote:
-> > On Sun, Aug 22, 2021 at 11:37:28PM +0000, Alvin Šipraga wrote:
-> >>>>>> +	skb->offload_fwd_mark = 1;
-> >>>>>
-> >>>>> At the very least, please use
-> >>>>>
-> >>>>> 	dsa_default_offload_fwd_mark(skb);
-> >>>>>
-> >>>>> which does the right thing when the port is not offloading the bridge.
-> >>>>
-> >>>> Sure. Can you elaborate on what you mean by "at the very least"? Can it
-> >>>> be improved even further?
-> >>>
-> >>> The elaboration is right below. skb->offload_fwd_mark should be set to
-> >>> zero for packets that have been forwarded only to the host (like packets
-> >>> that have hit a trapping rule). I guess the switch will denote this
-> >>> piece of info through the REASON code.
-> >>
-> >> Yes, I think it will be communicated in REASON too. I haven't gotten to
-> >> deciphering the contents of this field since it has not been needed so
-> >> far: the ports are fully isolated and all bridging is done in software.
-> >
-> > In that case, setting skb->offload_fwd_mark to true is absolutely wrong,
-> > since the bridge is told that no software forwarding should be done
-> > between ports, as it was already done in hardware (see nbp_switchdev_allowed_egress).
-> >
-> > I wonder how this has ever worked? Are you completely sure that bridging
-> > is done in software?
->
-> You are absolutely right, and indeed I checked just now and the bridging
-> is not working at all.
->
-> Deleting the line (i.e. skb->offload_fwd_mark = 0) restores the expected
-> bridging behaviour.
->
-> Based on what you have said, do I understand correctly that
-> offload_fwd_mark shouldn't be set until bridge hardware offloading has
-> been implemented?
->
-> Thanks for your detailed review so far.
+Hi Sergey,
 
-So back to my initial suggestion:
+On Thu, Mar 4, 2021 at 12:03 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+>
+> On Wed, Mar 03, 2021 at 07:41:40PM -0800, Brad Larson wrote:
+> > Add Pensando common and Elba SoC specific device nodes
+> > and corresponding binding documentation.
+>
+> This also needs to be split up into sub-patches seeing these are
+> unrelated changes like device bindings update, new platform DT file.
+>
+> Note text-based bindings are deprecated in favor of the DT schemas.
+> Also note dts needs to pass dtbs_check validation. So all new HW/DT
+> nodes need to be reflected in the DT-schemas. See [1] for details.
+>
+> [1] Documentation/devicetree/writing-schema.rst
 
-| At the very least, please use
-|
-| 	dsa_default_offload_fwd_mark(skb);
-|
-| which does the right thing when the port is not offloading the bridge.
+Yes, patchset v2 was a first cut at organizing into sub-patches and in
+v2 I used DT schemas for new files.  I will need to add additional new
+sub-patches per review comments for v3 of the patchset.
 
-This way, you won't have to touch this code even after you start
-implementing .port_bridge_join and .port_bridge_leave. It deals with
-both cases.
+> > diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > index af7442f73881..645ae696ba24 100644
+> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > @@ -122,7 +122,7 @@ unevaluatedProperties: false
+> >  examples:
+> >    - |
+> >      emmc: mmc@5a000000 {
+>
+> > -        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc";
+> > +        compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc", "pensando,elba-emmc";
+>
+> Alas it's not enough. New HW compatible strings shall be defined in the
+> binding schema.
+
+Based upon the next-20210818 version of cdns,sdhci.yaml below is the
+proposed change.  In terms of defining new HW compatible strings is an
+added example sufficient for pensando,elba-emmc?  There is no
+additional definition for socionext,uniphier-sd4hc other than the
+example in this file.
+
+--- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+@@ -15,9 +15,12 @@ allOf:
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - socionext,uniphier-sd4hc
++    oneOf:
++      - items:
++          - enum:
++              - socionext,uniphier-sd4hc
++              - pensando,elba-emmc
++          - const: cdns,sd4hc
+       - const: cdns,sd4hc
+
+   reg:
+@@ -132,3 +135,17 @@ examples:
+         mmc-hs400-1_8v;
+         cdns,phy-dll-delay-sdclk = <0>;
+     };
++  - |
++    emmc: mmc@30440000 {
++        compatible = "pensando,elba-emmc", "cdns,sd4hc";
++        clocks = <&emmc_clk>;
++        interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
++        reg = <0x0 0x30440000 0x0 0x10000
++               0x0 0x30480044 0x0 0x4>;
++        cdns,phy-input-delay-sd-highspeed = <0x4>;
++        cdns,phy-input-delay-legacy = <0x4>;
++        cdns,phy-input-delay-sd-uhs-sdr50 = <0x6>;
++        cdns,phy-input-delay-sd-uhs-ddr50 = <0x16>;
++        cdns,mmc-ddr-1_8v;
++    };
+
+> > diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+> > index 8ace832a2d80..dbb346b2b1d7 100644
+> > --- a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+> > +++ b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
+> > @@ -6,6 +6,7 @@ Required properties:
+> >       For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
+> >       For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
+> >       For Intel LGM SoC - "intel,lgm-qspi", "cdns,qspi-nor".
+>
+> > +     For Pensando SoC - "pensando,cdns-qspi".
+>
+> What about converting this file to DT-schema and adding new HW
+> bindings in there?
+
+The file cadence-quadspi.txt has been converted to cdns,qspi-nor.yaml
+in next-20210818.  This would be the updated change where
+pensando,cdns-qspi is now pensando,elba-qspi to be more specific.
+
+--- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -20,6 +20,7 @@ properties:
+               - ti,k2g-qspi
+               - ti,am654-ospi
+               - intel,lgm-qspi
++              - pensando,elba-qspi
+           - const: cdns,qspi-nor
+       - const: cdns,qspi-nor
+
+> > +     chosen {
+>
+> > +             stdout-path = "serial0:19200n8";
+>
+> Baudrate of 19200? So sad.(
+
+The default baudrate for patchset v3 will be 115200  :-)
+
+> > +&spi0 {
+> > +     num-cs = <4>;
+>
+> > +     cs-gpios = <&spics 0 0>, <&spics 1 0>, <&porta 1 0>, <&porta 7 0>;
+>
+> Oh, you've got four peripheral SPI devices connected with only two native CS
+> available. Hmm, then I don't really know a better way, but just to forget about
+> the native DW APB CS functionality and activate the direct driving of
+> all the CS-pins at the moment of the DW APB SPI controller probe
+> procedure. Then indeed you'll need a custom CS function defined in the DW APB
+> SPI driver to handle that.
+
+Right, confusion was created by leaving in code implying that the two
+native CS are supported.  CS0 is used just to start the serial engine.
+The existing dw_spi_set_cs() function works fine resulting in this
+implementation.
+
+static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+{
+        spi->chip_select = 0;
+        dw_spi_set_cs(spi, enable);
+}
+
+> > +             spics: spics@307c2468 {
+> > +                     compatible = "pensando,elba-spics";
+> > +                     reg = <0x0 0x307c2468 0x0 0x4>;
+> > +                     gpio-controller;
+> > +                     #gpio-cells = <2>;
+> > +             };
+>
+> So that GPIO-controller is just a single register which provides a way
+> to toggle the DW APB SPI CS-mode together with their output value.
+> If so and seeing there are a few more tiny spaces of config
+> registers added to eMMC, PCI, etc DT node, I suppose all of them
+> belong to some bigger config space of the SoC. Thus I'd suggest to at
+> least implement them as part of a System Controller DT node. Then use
+> that device service to switch on/off corresponding functionality.
+> See [2] and the rest of added to the kernel DTS files with
+> syscon-nodes for example.
+>
+> [2] Documentation/devicetree/bindings/mfd/syscon.yaml
+>
+> -Sergey
+>
+
+I've looked at the syscon documentation, other drivers that use it and
+tried the below proposed example with variations.  The result is Elba
+works ok for its four SPI devices but the host has a machine check
+which must be due to a pcie access error.  From another thread on this
+topic here is the recommended change to using syscon.
+
+> Rob, please see here having a small sized reg-space one more time.
+> Having so many small-sized registers scattered around the dts file
+> makes me thinking that most of them likely belong to some bigger
+> block like "System Controller". If so then there must be a main node
+> compatible with "syscon" device, which phandle would be referenced in
+> the particular device nodes. Like this:
+>
+> \ {
+>         soc {
+>                 syscon: syscon@307c0000 {
+>                         compatible = "pensando,elba-sys-con", "syscon", "simple-mfd";
+>                         reg = <0x0 0x307c0000 0x0 0x10000>;
+>
+>                         spics: spics@307c2468 {
+>                                 compatible = "pensando,elba-spics";
+>                                 gpio-controller;
+>                                 #gpio-cells = <2>;
+>                         };
+>                 };
+>                 pcie@307c2480 {
+>                         compatible = "pensando,pcie";
+>                         reg = <0x0 0x20000000 0x0 0x00380000>; /* PXB Base */
+>
+>                         syscon = <&syscon>;
+>                 };
+>
+>                 /* etc */
+>         };
+> };
+
+The current pcie node is
+
+>         pcie@307c2480 {
+>                 compatible = "pensando,pcie";
+>                 reg = <0x0 0x307c2480 0x0 0x4           /* MS CFG_WDT */
+>                        0x0 0x1400 0x0 0x10              /* WDT0 */
+>                        0x0 0x20000000 0x0 0x380000>;    /* PXB Base */
+>         };
+
+Regards,
+Brad
