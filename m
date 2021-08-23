@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4116A3F4B15
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C563F4B1F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:51:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236050AbhHWMtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 08:49:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
+        id S237140AbhHWMvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 08:51:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235954AbhHWMtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 08:49:21 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543A4C061575
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:48:38 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id f2so31332560ljn.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:48:38 -0700 (PDT)
+        with ESMTP id S237070AbhHWMvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 08:51:08 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E63C061575
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:50:26 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u22so37630606lfq.13
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:50:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jW88Mmr9kKDSsQvXNUmfFT239ViVAMgYapLhyDQd6No=;
-        b=jrcE9KAVRTDTCyaS7h3RvPgbiT1PjcDchBYeawJaqWt4FU+7CQhua86DdX45l9VL82
-         aAmXjPTB1MJySt1b7k0J68jdTSMw8ar/eQf6gtNlcknCNDhTgTFHu1cHjqxzhXpVYFIJ
-         Q2NvBezkST/1wLHB79f4zjGRQKIfGVGBQhX4w=
+        bh=JaVX46aQ+V25UIMXASQYuq5exbppMpl9+jwK0qjbA9w=;
+        b=QHyjy8vxmJ2E7RBLJOkvcAQat6PnacE5+TOWtL32+HgOI/BMwW2ecb+uDywPWjwt2Q
+         XvXjbMsPMxSe/1ZLPpHXxbAGA4N7d9U8L6mpZnk8FnH6YaQp7XYaI/LCoXv2n5oy4mAu
+         gBChrriDPr7/Arrz4k75yo7ELEVuQe+5+V59U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jW88Mmr9kKDSsQvXNUmfFT239ViVAMgYapLhyDQd6No=;
-        b=GZYm5dRMPS2WR+jR/bMmWFPhfLQQmfAfaeGlraaw85KJE3aQpc/0k9mWUR0IQvpBJP
-         oqgPRCIkFNg57Vn1sFo/XPvwHjjgoYDe/FRaBxw8HNk8xbk1IhTyXvTknygxp6GIaDaH
-         MGAM9z7de4LXo+Hlf5NeqvEnJ/Jm4rLmiouv3uFVOpVgRReUeVLi82UnSZXIsf06O8P/
-         ZzCVHsFwcSwFbKkBqBuKJCli9BAsGswtrtmViL7EkOJ5W9YKG6H02+hyKF0bdLozQxyR
-         O9NNKMlHIo91gr3Pffr08kMbsnpo4YsMBW/poqUbXpWSwB+8TVRI4T2o5HR1Q/uiijxq
-         SUWA==
-X-Gm-Message-State: AOAM533AYxtuD9AKlX0ipGAxjgy9c2Ibd55DvB1YEG/y8Qvw8MJDNifQ
-        /HbOc8F+dUPLlNRCnABUfgQbbSk6MrGkTHZfaGNgxw==
-X-Google-Smtp-Source: ABdhPJxVdu+J2/ouZrq35GIQglMEtR89HwwgR9u2T2JxSfcRKL1Jm3K4FSNW8564lZ+iNMFT8P5OiCEU/eXRM3gABIc=
-X-Received: by 2002:a05:651c:211a:: with SMTP id a26mr14057616ljq.305.1629722916767;
- Mon, 23 Aug 2021 05:48:36 -0700 (PDT)
+        bh=JaVX46aQ+V25UIMXASQYuq5exbppMpl9+jwK0qjbA9w=;
+        b=O/i+cw/tRZdPOGptQDqmY6C/GsDqTbiqGUF0BSRmHydCpqXE0O5xzXl6YS818r6Mow
+         ALp/CJnCGHOotMv9hP/ChidCLM9KEdiGYX3ZKlYK6nx22XRBSvVwNdLNvyZDcIj1lC+o
+         IYaUslCMsClYyTfeWJjkqLR7aCSLnTW2+N+KOZI3gskVeUf+I8hnp6luca8ow6vSz7yi
+         hnjEArYBIDisb2XCcP+UuxNdy4ve2E97nl7WDKEbEEA5ThY6sXTs9+s+yOtJXTnTsACK
+         Ws+LjLVUr9byPBWcT8Gl1VsZ2kMwYo237EVCMtKG+qL1VQvqg8+EmuMqQGTjzEnDIeFk
+         slbA==
+X-Gm-Message-State: AOAM530zvohRkjohcv70M+HkvBF117AU5WM6NlN+IhMJhyuivT57jArM
+        MeFa8VAZOILgmLUMRHiRHiTOu+SSxnF3iOIY9uPMPA==
+X-Google-Smtp-Source: ABdhPJw6toCNVTyqjq3up8DTak/+y7rMwN30zZbzOMJMC3UnKVTDsk/Re2QMsobWKxKRqccqaE7mhnKWfSo1ip9RYOY=
+X-Received: by 2002:a05:6512:3b98:: with SMTP id g24mr17315353lfv.276.1629723024425;
+ Mon, 23 Aug 2021 05:50:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-25-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210820111504.350-25-chun-jie.chen@mediatek.com>
+References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-24-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210820111504.350-24-chun-jie.chen@mediatek.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 23 Aug 2021 20:48:25 +0800
-Message-ID: <CAGXv+5H6pLtNk_KzAoCreX24t4Fs-7wswPwiZaJYmpXo=9p5iw@mail.gmail.com>
-Subject: Re: [v2 24/24] clk: mediatek: Add MT8195 apusys clock support
+Date:   Mon, 23 Aug 2021 20:50:13 +0800
+Message-ID: <CAGXv+5EDn=OjghzN6wzx0RF4k=h6eKAY6qdf278WZbANHnoGUw@mail.gmail.com>
+Subject: Re: [v2 23/24] clk: mediatek: Add MT8195 imp i2c wrapper clock support
 To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -66,31 +66,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 7:37 PM Chun-Jie Chen
+On Fri, Aug 20, 2021 at 7:36 PM Chun-Jie Chen
 <chun-jie.chen@mediatek.com> wrote:
 >
-> Add MT8195 apusys clock controller which provides PLLs
-> in AI processor Unit.
->
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> ---
->  drivers/clk/mediatek/Makefile                |  2 +-
->  drivers/clk/mediatek/clk-mt8195-apusys_pll.c | 92 ++++++++++++++++++++
->  2 files changed, 93 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/mediatek/clk-mt8195-apusys_pll.c
->
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index 4288ad39ba41..e10b1d6b0cf4 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -83,6 +83,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
->  obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-mt8195-cam.o \
->                                         clk-mt8195-ccu.o clk-mt8195-img.o clk-mt8195-ipe.o clk-mt8195-mfg.o clk-mt8195-scp_adsp.o \
->                                         clk-mt8195-vdec.o clk-mt8195-vdo0.o clk-mt8195-vdo1.o clk-mt8195-venc.o clk-mt8195-vpp0.o \
-> -                                       clk-mt8195-vpp1.o clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o
-> +                                       clk-mt8195-vpp1.o clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o clk-mt8195-apusys_pll.o
+> Add MT8195 imp i2c wrapper clock controllers which provide clock gate
+> control in IIC IP blocks.
 
-Wrap line ...
+Standard terminology is I2C.
 
 Otherwise,
 
