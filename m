@@ -2,116 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C52B63F49AE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 13:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 002D13F49B4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 13:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235855AbhHWLYY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 23 Aug 2021 07:24:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235405AbhHWLYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 07:24:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D632EC061575
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 04:23:41 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mI83C-0006WW-6T; Mon, 23 Aug 2021 13:23:34 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mI83B-0006gU-MT; Mon, 23 Aug 2021 13:23:33 +0200
-Message-ID: <197a021684ea01ba50b3ab86f71525878042a8ee.camel@pengutronix.de>
-Subject: Re: [PATCH v2 9/9] clk: imx: Add the pcc reset controller support
- on imx8ulp
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Jacky Bai <ping.bai@nxp.com>, shawnguo@kernel.org,
-        robh+dt@kernel.org, abel.vesa@nxp.com, sboyd@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org
-Date:   Mon, 23 Aug 2021 13:23:33 +0200
-In-Reply-To: <20210810062820.1062884-10-ping.bai@nxp.com>
-References: <20210810062820.1062884-1-ping.bai@nxp.com>
-         <20210810062820.1062884-10-ping.bai@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S235341AbhHWL1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 07:27:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36198 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234997AbhHWL1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Aug 2021 07:27:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B692D6120C;
+        Mon, 23 Aug 2021 11:26:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629718001;
+        bh=SNXPezX13mfcuVusqi9++jw0PbkmIdb33Xu6aIl7Cps=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k52MX7bckBei8Fe5kTMVB2Guq+tsMgybPciSKFS/WOBJSWPdQSQrHefK1uwzWYhl9
+         9MHzvxwm3QJ/h81UhyWihlSQxx0Opcwd54kc5LFohHqbwrfNAo7/Pjcv7rCwqFrczB
+         BnfIDgjJItd6fL0AwMnRidpCgR8qrQy3pY/yUbFLr+Yom3DSo3ppOh8wBPBTVgdUlj
+         1R6D/QwQP9KdRt31sdoj/pzvA+HBsi+mn4gmQaXFoEP2jrVND/1YTgNtKzxq3FeWGj
+         unVZIblEwxr2bsw8iPpEXlPk7PBQ34MZkkAX0ZIFpIIthS+1K6VUIDXnr6E4juUisX
+         VcGfexLSrwDsg==
+Date:   Mon, 23 Aug 2021 12:26:15 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Dillon Min <dillon.minfei@gmail.com>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 2/2] dt-bindings: sound: rt1015p: correct indentation
+Message-ID: <20210823112615.GD4380@sirena.org.uk>
+References: <20210819101020.26368-1-krzysztof.kozlowski@canonical.com>
+ <20210819101020.26368-2-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d01dLTUuW90fS44H"
+Content-Disposition: inline
+In-Reply-To: <20210819101020.26368-2-krzysztof.kozlowski@canonical.com>
+X-Cookie: APL hackers do it in the quad.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacky,
 
-On Tue, 2021-08-10 at 14:28 +0800, Jacky Bai wrote:
-> On i.MX8ULP, for some of the PCCs, it has a peripheral SW RST bit
-> resides in the same registers as the clock controller. So add this
-> SW RST controller support alongs with the pcc clock initialization.
-> 
-> the reset and clock shared the same register, to avoid  accessing
-> the same register by reset control and clock control concurrently,
-> locking is necessary, so reuse the imx_ccm_lock spinlock to simplify
-> the code.
-> 
-> Suggested-by: Liu Ying <victor.liu@nxp.com>
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> ---
->   v2 changes:
->     - add 'Suggested-by' as suggested by Victor Liu
-> ---
->  drivers/clk/imx/Kconfig              |   1 +
->  drivers/clk/imx/clk-composite-7ulp.c |  10 +++
->  drivers/clk/imx/clk-imx8ulp.c        | 115 ++++++++++++++++++++++++++-
->  3 files changed, 123 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
-> index b81d6437ed95..0d1e3a6ac32a 100644
-> --- a/drivers/clk/imx/Kconfig
-> +++ b/drivers/clk/imx/Kconfig
-> @@ -102,5 +102,6 @@ config CLK_IMX8QXP
->  config CLK_IMX8ULP
->  	tristate "IMX8ULP CCM Clock Driver"
->  	depends on ARCH_MXC || COMPILE_TEST
-> +	select RESET_CONTROLLER
+--d01dLTUuW90fS44H
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This shouldn't be required anymore, devm_reset_controller_register() has
-a stub since commit 48a74b1147f7 ("reset: Add compile-test stubs").
+On Thu, Aug 19, 2021 at 12:10:20PM +0200, Krzysztof Kozlowski wrote:
+> Use common enum instead of oneOf and correct indentation warning:
+>   realtek,rt1015p.yaml:18:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
 
-[...]
-> diff --git a/drivers/clk/imx/clk-imx8ulp.c b/drivers/clk/imx/clk-imx8ulp.c
-> index 6aad04114658..ea596cd6855a 100644
-> --- a/drivers/clk/imx/clk-imx8ulp.c
-> +++ b/drivers/clk/imx/clk-imx8ulp.c
-> @@ -9,6 +9,7 @@
->  #include <linux/module.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
->  #include <linux/slab.h>
->  
->  #include "clk.h"
-> @@ -48,6 +49,98 @@ static const char * const nic_per_divplat[] = { "nic_per_divplat" };
->  static const char * const lpav_axi_div[] = { "lpav_axi_div" };
->  static const char * const lpav_bus_div[] = { "lpav_bus_div" };
->  
-> +struct pcc_reset_dev {
-> +	void __iomem *base;
-> +	struct reset_controller_dev rcdev;
-> +	const u32 *resets;
-> +	spinlock_t *lock;
+For stuff like this where there's no relationship between the things
+being patched it's probably better to just send a bunch of individual
+patches rather than a series, it works better with tooling and makes it
+clear there's no interdependencies or anything.
 
-I'd add a comment to this lock, stating that it is set to imx_ccm_lock
-and protects access to registers shared with clock control.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-With these addressed,
+--d01dLTUuW90fS44H
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+-----BEGIN PGP SIGNATURE-----
 
-regards
-Philipp
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEjhdYACgkQJNaLcl1U
+h9Ah2wf/WfM7XjJE/ztslTnuMDDI4tC7FvozpC17wxbK3oNxPlzluBz+r0Bu664m
+GEFc1PpVWxMEzRcVVa3axO+jTlNcRqWNpUHPxtINqUdZ1s1JSEsHdvyfdXKAytx3
+N9T7OWRHi4LQagC+FRKlVsDY3UkyzL83pCC3gdZXxs3icKhr/zpFePWa9r04yAVl
+l3qrndJpATla6IPu9OQuxyPpyyxkChYMkS0KDvAWNscIU1XCkDQgUXnBS0VRUOKP
+heIksdtyfDK/93XpGyWRB8PqSba6QMljBLbvRBpGV3v4gQbON/Lvyde4MCmXnoLA
+wXaLGSkpbItq31bZJcipEPb0dBZXNQ==
+=65Xc
+-----END PGP SIGNATURE-----
+
+--d01dLTUuW90fS44H--
