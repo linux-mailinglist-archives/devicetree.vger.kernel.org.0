@@ -2,673 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 630CF3F4EBB
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 18:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D14883F4EBC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 18:51:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbhHWQwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 12:52:17 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:46977 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbhHWQwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 12:52:17 -0400
-Received: by mail-ot1-f51.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso37971089ott.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 09:51:34 -0700 (PDT)
+        id S230287AbhHWQw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 12:52:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230245AbhHWQw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 12:52:27 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC3CAC06175F
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 09:51:44 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id g11so14330201qtk.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 09:51:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dDE00UpxBXJH5bTVnGFJxhddPj7ZtpRhyqPmw4zr1UM=;
+        b=B0vOREiJZtFnTO/Vh7DSrYvQiGJ4g03NJ22FSHXJFkKcsF9da79RkAKvDZ7ooixGfH
+         dWc0ETkCsHbOwAyq40IQWQWEQjzTXbHCb1+kKNRKG7rSCDonc6XWILyjf2QsEqOgkaPf
+         J7kJuvkjG0VniLqg7UxaveAY3JeIhEJPLhxQdm7zYJROxpVZL+A/PBhC7QLAC3H/VMdq
+         I6b0r8KxN2N9El20NcJz77cA1V5jWsDM8MuP64FkBVx4dhhVW2pRKmFJtZ0+xi3Cu+by
+         t2ZrfJup/swSmOC0ma43Fpu5zR29UB5HLZaNHHhIlmwnern9ml6ojE+QfCzjbw4k8Ua/
+         jV8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UDttmrL3qkGY99O3sazRRvmpTIwGQDXC9kFpDK8dALQ=;
-        b=MIlQ1y3ORk/fT262TSqIW7ij1jMkHrNahcW/RDdtKjdXKFuZ6cSzLE3vI/uxlJQMgX
-         jF+GoHXtVe8WP3JW5kWiQi00AZE8owj4PFQYogNHQpV2sEAot9aot8fmz+V25/MASWDt
-         hpEbtqCDl1vuowBbfRoULtMzZzkqDa/r2ZVWY11gDC8koJAzBlNiOosn7I7XBs+s1956
-         m7k9inzImZBq0M8Pip5SWJCgyxM7uEGW9ViUORKIBNwTHPt6EksAws9N+he2TdAkHR4D
-         NMvoIMMjDOXSReAksNAYfEjAlwYmAxxwOj8IVSkelyvzKAbljBL6+YdDjQ1TU9814pu2
-         A3SQ==
-X-Gm-Message-State: AOAM531t5Sti9EDCIqiMEehRHe3H2EDrCYbTKvlpqQ6z/1Y5tE1WOWqb
-        0/QXLVeXQLSO+I0rPwcEtg==
-X-Google-Smtp-Source: ABdhPJzVPFNHjoTnOGse9poCrgW5sZyAhkWWGtqRCkFEDQzIi/Lsc/nIF3km+UJ55+z7k475BhIgOQ==
-X-Received: by 2002:a9d:6a4b:: with SMTP id h11mr29603442otn.5.1629737494070;
-        Mon, 23 Aug 2021 09:51:34 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id l8sm3524141oom.19.2021.08.23.09.51.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 09:51:33 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     soc@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] arm/arm64: dts: Fix remaining dtc 'unit_address_format' warnings
-Date:   Mon, 23 Aug 2021 11:51:26 -0500
-Message-Id: <20210823165126.2320910-1-robh@kernel.org>
-X-Mailer: git-send-email 2.30.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dDE00UpxBXJH5bTVnGFJxhddPj7ZtpRhyqPmw4zr1UM=;
+        b=FyBNzF72BrFU9DuKsT0DKXHvxx5CTMiSYBDr/ikSgG0kiFlXfo3KQsHyCZ2urehmTK
+         iEHeUKG42PtmSMAKImj0rTYOfiTmS8uJW8S6+kHQ1AR2u5MEzYp7m/CAJKsGZcLCIEEI
+         kdBKfTuT7z/475xb6BfiRAxk/3kvCA/8AQMDO4ywj1zQ5xWUPeM6WGeHAGaorY5w8zUh
+         slGgJSN16JBZNJWWUkujwMtmB+ny0QXT2tITy4mpREPT7cvyJINKGfe9EjqTmmIMEKDO
+         3VIEMu9T2jc6EHFkyp8UpsOWkZHS/EmOQKOTrGRQ4RUFQRm2O6Wih/6B4yMBzqMQCi6Z
+         QX/w==
+X-Gm-Message-State: AOAM533LDF9VlU6TBF9+FpeP2/UFzm6/zp7g2fiYQej0vmaTe0Qa0NqA
+        OtBjpvY7kMLRJR0lFlI/SNBLrciencjkv9ih5ixsmw==
+X-Google-Smtp-Source: ABdhPJyF8KHJlq3bUVej5HJNFAYVBOfrTJxlhvyhbtsZxt4r2kfgv67lAOdMh11Ms6SFs2NRUW+WMe/9qtEO65suJaI=
+X-Received: by 2002:ac8:66da:: with SMTP id m26mr30101290qtp.273.1629737504103;
+ Mon, 23 Aug 2021 09:51:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210823095603.5538-1-shawn.guo@linaro.org> <20210823095603.5538-4-shawn.guo@linaro.org>
+In-Reply-To: <20210823095603.5538-4-shawn.guo@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 23 Aug 2021 19:51:32 +0300
+Message-ID: <CAA8EJpqPMMvtDL5NqUJTDfVEAqX9VD9Y_TWmXxh8DpS8hwDuJg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm630: Add missing a2noc qos clocks
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Georgi Djakov <djakov@kernel.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix all the remaining dtc 'unit_address_format' warnings except for the ones
-related to 'register-bit-led'. For those, we need to decide on and document
-the node name.
+On Mon, 23 Aug 2021 at 12:56, Shawn Guo <shawn.guo@linaro.org> wrote:
+>
+> It adds the missing a2noc clocks required for QoS registers programming
+> per downstream kernel[1].
+>
+> [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
+>
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 9153e6616ba4..b3a7f3bf1560 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -652,11 +652,22 @@
+>
+>                 a2noc: interconnect@1704000 {
+>                         compatible = "qcom,sdm660-a2noc";
+> -                       reg = <0x01704000 0xc100>;
+> +                       reg = <0x01704000 0x1c000>;
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Add back intergrator vco1/2 labels.
+Shawn, as you are at it, do we want to keep these nocs shifted
+compared to the downstream dtsi (so that the offset of QoS registers
+is 0) or we'd better introduce QoS register offset and move noc start
+address to the same address as in downstream?
 
-Arnd, Olof,
+>                         #interconnect-cells = <1>;
+> -                       clock-names = "bus", "bus_a";
+> +                       clock-names = "bus",
+> +                                     "bus_a",
+> +                                     "ipa",
+> +                                     "ufs_axi",
+> +                                     "aggre2_ufs_axi",
+> +                                     "aggre2_usb3_axi",
+> +                                     "cfg_noc_usb2_axi";
+>                         clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
+> -                                <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
+> +                                <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
+> +                                <&rpmcc RPM_SMD_IPA_CLK>,
+> +                                <&gcc GCC_UFS_AXI_CLK>,
+> +                                <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
+> +                                <&gcc GCC_AGGRE2_USB3_AXI_CLK>,
+> +                                <&gcc GCC_CFG_NOC_USB2_AXI_CLK>;
+>                 };
+>
+>                 mnoc: interconnect@1745000 {
+> --
+> 2.17.1
+>
 
-Please apply this directly.
 
-Rob
----
- arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts  |  2 +-
- arch/arm/boot/dts/at91-sama5d27_som1.dtsi     | 12 ++++----
- arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts     |  4 +--
- arch/arm/boot/dts/at91-sama5d2_xplained.dts   | 14 +++++-----
- arch/arm/boot/dts/dm8148-evm.dts              |  8 +++---
- arch/arm/boot/dts/dm8168-evm.dts              |  8 +++---
- arch/arm/boot/dts/integratorap-im-pd1.dts     |  4 +--
- arch/arm/boot/dts/keystone-k2e-netcp.dtsi     |  2 +-
- arch/arm/boot/dts/keystone-k2hk-netcp.dtsi    |  2 +-
- arch/arm/boot/dts/keystone-k2l-netcp.dtsi     |  2 +-
- arch/arm/boot/dts/nuvoton-npcm750-evb.dts     |  4 +--
- arch/arm/boot/dts/qcom-apq8064.dtsi           | 24 ++++++++--------
- arch/arm/boot/dts/qcom-sdx55.dtsi             |  2 +-
- arch/arm/boot/dts/ste-ab8500.dtsi             | 28 +++++++++----------
- arch/arm/boot/dts/ste-ab8505.dtsi             | 24 ++++++++--------
- arch/arm/boot/dts/ste-db8500.dtsi             |  6 ++--
- arch/arm/boot/dts/ste-db8520.dtsi             |  6 ++--
- .../arm/boot/dts/ste-ux500-samsung-janice.dts |  2 +-
- arch/arm/boot/dts/stm32429i-eval.dts          |  2 +-
- arch/arm/boot/dts/stm32f469-disco.dts         |  2 +-
- .../marvell/armada-8040-clearfog-gt-8k.dts    |  2 +-
- arch/arm64/boot/dts/marvell/cn9130-db.dts     |  2 +-
- arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  2 +-
- 23 files changed, 82 insertions(+), 82 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-index d26a9e16ff7c..97cc217fb099 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-@@ -303,7 +303,7 @@ gpio@0 {
- 			type = <PCA955X_TYPE_GPIO>;
- 		};
- 
--		gpio@01 {
-+		gpio@1 {
- 			reg = <1>;
- 			type = <PCA955X_TYPE_GPIO>;
- 		};
-diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-index e3251f3e3eaa..b48ac3b62a31 100644
---- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-+++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
-@@ -47,32 +47,32 @@ flash@0 {
- 					spi-rx-bus-width = <4>;
- 					m25p,fast-read;
- 
--					at91bootstrap@00000000 {
-+					at91bootstrap@0 {
- 						label = "at91bootstrap";
- 						reg = <0x00000000 0x00040000>;
- 					};
- 
--					bootloader@00040000 {
-+					bootloader@40000 {
- 						label = "bootloader";
- 						reg = <0x00040000 0x000c0000>;
- 					};
- 
--					bootloaderenvred@00100000 {
-+					bootloaderenvred@100000 {
- 						label = "bootloader env redundant";
- 						reg = <0x00100000 0x00040000>;
- 					};
- 
--					bootloaderenv@00140000 {
-+					bootloaderenv@140000 {
- 						label = "bootloader env";
- 						reg = <0x00140000 0x00040000>;
- 					};
- 
--					dtb@00180000 {
-+					dtb@180000 {
- 						label = "device tree";
- 						reg = <0x00180000 0x00080000>;
- 					};
- 
--					kernel@00200000 {
-+					kernel@200000 {
- 						label = "kernel";
- 						reg = <0x00200000 0x00600000>;
- 					};
-diff --git a/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts b/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-index dfd150eb0fd8..a5515b0dd346 100644
---- a/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts
-@@ -93,12 +93,12 @@ bootloader@40000 {
- 							reg = <0x40000 0xc0000>;
- 						};
- 
--						bootloaderenvred@0x100000 {
-+						bootloaderenvred@100000 {
- 							label = "bootloader env redundant";
- 							reg = <0x100000 0x40000>;
- 						};
- 
--						bootloaderenv@0x140000 {
-+						bootloaderenv@140000 {
- 							label = "bootloader env";
- 							reg = <0x140000 0x40000>;
- 						};
-diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-index 509c732a0d8b..908b2cc22844 100644
---- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-@@ -95,37 +95,37 @@ flash@0 {
- 					spi-rx-bus-width = <4>;
- 					m25p,fast-read;
- 
--					at91bootstrap@00000000 {
-+					at91bootstrap@0 {
- 						label = "at91bootstrap";
- 						reg = <0x00000000 0x00040000>;
- 					};
- 
--					bootloader@00040000 {
-+					bootloader@40000 {
- 						label = "bootloader";
- 						reg = <0x00040000 0x000c0000>;
- 					};
- 
--					bootloaderenvred@00100000 {
-+					bootloaderenvred@100000 {
- 						label = "bootloader env redundant";
- 						reg = <0x00100000 0x00040000>;
- 					};
- 
--					bootloaderenv@00140000 {
-+					bootloaderenv@140000 {
- 						label = "bootloader env";
- 						reg = <0x00140000 0x00040000>;
- 					};
- 
--					dtb@00180000 {
-+					dtb@180000 {
- 						label = "device tree";
- 						reg = <0x00180000 0x00080000>;
- 					};
- 
--					kernel@00200000 {
-+					kernel@200000 {
- 						label = "kernel";
- 						reg = <0x00200000 0x00600000>;
- 					};
- 
--					misc@00800000 {
-+					misc@800000 {
- 						label = "misc";
- 						reg = <0x00800000 0x00000000>;
- 					};
-diff --git a/arch/arm/boot/dts/dm8148-evm.dts b/arch/arm/boot/dts/dm8148-evm.dts
-index 91d1018ab75f..8ef48c00f98d 100644
---- a/arch/arm/boot/dts/dm8148-evm.dts
-+++ b/arch/arm/boot/dts/dm8148-evm.dts
-@@ -80,19 +80,19 @@ partition@0 {
- 			label = "X-Loader";
- 			reg = <0 0x80000>;
- 		};
--		partition@0x80000 {
-+		partition@80000 {
- 			label = "U-Boot";
- 			reg = <0x80000 0x1c0000>;
- 		};
--		partition@0x1c0000 {
-+		partition@1c0000 {
- 			label = "Environment";
- 			reg = <0x240000 0x40000>;
- 		};
--		partition@0x280000 {
-+		partition@280000 {
- 			label = "Kernel";
- 			reg = <0x280000 0x500000>;
- 		};
--		partition@0x780000 {
-+		partition@780000 {
- 			label = "Filesystem";
- 			reg = <0x780000 0xf880000>;
- 		};
-diff --git a/arch/arm/boot/dts/dm8168-evm.dts b/arch/arm/boot/dts/dm8168-evm.dts
-index cf05d532db65..5126e2d72ed7 100644
---- a/arch/arm/boot/dts/dm8168-evm.dts
-+++ b/arch/arm/boot/dts/dm8168-evm.dts
-@@ -154,19 +154,19 @@ partition@0 {
- 			label = "X-Loader";
- 			reg = <0 0x80000>;
- 		};
--		partition@0x80000 {
-+		partition@80000 {
- 			label = "U-Boot";
- 			reg = <0x80000 0x1c0000>;
- 		};
--		partition@0x1c0000 {
-+		partition@1c0000 {
- 			label = "Environment";
- 			reg = <0x240000 0x40000>;
- 		};
--		partition@0x280000 {
-+		partition@280000 {
- 			label = "Kernel";
- 			reg = <0x280000 0x500000>;
- 		};
--		partition@0x780000 {
-+		partition@780000 {
- 			label = "Filesystem";
- 			reg = <0x780000 0xf880000>;
- 		};
-diff --git a/arch/arm/boot/dts/integratorap-im-pd1.dts b/arch/arm/boot/dts/integratorap-im-pd1.dts
-index 1412a1a968fc..0614f82b808e 100644
---- a/arch/arm/boot/dts/integratorap-im-pd1.dts
-+++ b/arch/arm/boot/dts/integratorap-im-pd1.dts
-@@ -29,7 +29,7 @@ syscon@0 {
- 		compatible = "arm,im-pd1-syscon", "syscon";
- 		reg = <0x00000000 0x1000>;
- 
--		vco1: clock@00 {
-+		vco1: vco1-clock {
- 			compatible = "arm,impd1-vco1";
- 			#clock-cells = <0>;
- 			lock-offset = <0x08>;
-@@ -38,7 +38,7 @@ vco1: clock@00 {
- 			clock-output-names = "IM-PD1-VCO1";
- 		};
- 
--		vco2: clock@04 {
-+		vco2: vco2-clock {
- 			compatible = "arm,impd1-vco2";
- 			#clock-cells = <0>;
- 			lock-offset = <0x08>;
-diff --git a/arch/arm/boot/dts/keystone-k2e-netcp.dtsi b/arch/arm/boot/dts/keystone-k2e-netcp.dtsi
-index ad15e77874b1..71064483d34f 100644
---- a/arch/arm/boot/dts/keystone-k2e-netcp.dtsi
-+++ b/arch/arm/boot/dts/keystone-k2e-netcp.dtsi
-@@ -95,7 +95,7 @@ pdsps {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges;
--		pdsp0@0x2a10000 {
-+		pdsp0@2a10000 {
- 			reg = <0x2a10000 0x1000    /*iram */
- 			       0x2a0f000 0x100     /*reg*/
- 			       0x2a0c000 0x3c8	   /*intd */
-diff --git a/arch/arm/boot/dts/keystone-k2hk-netcp.dtsi b/arch/arm/boot/dts/keystone-k2hk-netcp.dtsi
-index d5a6c1f5633c..022d93c366c7 100644
---- a/arch/arm/boot/dts/keystone-k2hk-netcp.dtsi
-+++ b/arch/arm/boot/dts/keystone-k2hk-netcp.dtsi
-@@ -112,7 +112,7 @@ pdsps {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges;
--		pdsp0@0x2a10000 {
-+		pdsp0@2a10000 {
- 			reg = <0x2a10000 0x1000    /*iram */
- 			       0x2a0f000 0x100     /*reg*/
- 			       0x2a0c000 0x3c8	   /*intd */
-diff --git a/arch/arm/boot/dts/keystone-k2l-netcp.dtsi b/arch/arm/boot/dts/keystone-k2l-netcp.dtsi
-index c1f982604145..e96ca664abc2 100644
---- a/arch/arm/boot/dts/keystone-k2l-netcp.dtsi
-+++ b/arch/arm/boot/dts/keystone-k2l-netcp.dtsi
-@@ -94,7 +94,7 @@ pdsps {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges;
--		pdsp0@0x2a10000 {
-+		pdsp0@2a10000 {
- 			reg = <0x2a10000 0x1000    /*iram */
- 			       0x2a0f000 0x100     /*reg*/
- 			       0x2a0c000 0x3c8	   /*intd */
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-index dea3dbc4a6a5..0334641f8829 100644
---- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-@@ -105,11 +105,11 @@ rootfs@600000 {
- 				label = "rootfs";
- 				reg = <0x0600000 0x700000>;
- 				};
--			spare1@D00000 {
-+			spare1@d00000 {
- 				label = "spare1";
- 				reg = <0x0D00000 0x200000>;
- 				};
--			spare2@0F00000 {
-+			spare2@f00000 {
- 				label = "spare2";
- 				reg = <0x0F00000 0x200000>;
- 				};
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 2687c4e890ba..8294ad1548fc 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -766,40 +766,40 @@ xoadc: xoadc@197 {
- 					#size-cells = <0>;
- 					#io-channel-cells = <2>;
- 
--					vcoin: adc-channel@00 {
-+					vcoin: adc-channel@0 {
- 						reg = <0x00 0x00>;
- 					};
--					vbat: adc-channel@01 {
-+					vbat: adc-channel@1 {
- 						reg = <0x00 0x01>;
- 					};
--					dcin: adc-channel@02 {
-+					dcin: adc-channel@2 {
- 						reg = <0x00 0x02>;
- 					};
--					vph_pwr: adc-channel@04 {
-+					vph_pwr: adc-channel@4 {
- 						reg = <0x00 0x04>;
- 					};
--					batt_therm: adc-channel@08 {
-+					batt_therm: adc-channel@8 {
- 						reg = <0x00 0x08>;
- 					};
--					batt_id: adc-channel@09 {
-+					batt_id: adc-channel@9 {
- 						reg = <0x00 0x09>;
- 					};
--					usb_vbus: adc-channel@0a {
-+					usb_vbus: adc-channel@a {
- 						reg = <0x00 0x0a>;
- 					};
--					die_temp: adc-channel@0b {
-+					die_temp: adc-channel@b {
- 						reg = <0x00 0x0b>;
- 					};
--					ref_625mv: adc-channel@0c {
-+					ref_625mv: adc-channel@c {
- 						reg = <0x00 0x0c>;
- 					};
--					ref_1250mv: adc-channel@0d {
-+					ref_1250mv: adc-channel@d {
- 						reg = <0x00 0x0d>;
- 					};
--					chg_temp: adc-channel@0e {
-+					chg_temp: adc-channel@e {
- 						reg = <0x00 0x0e>;
- 					};
--					ref_muxoff: adc-channel@0f {
-+					ref_muxoff: adc-channel@f {
- 						reg = <0x00 0x0f>;
- 					};
- 				};
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-index 0057c7c04d31..1e6ce035f76a 100644
---- a/arch/arm/boot/dts/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -143,7 +143,7 @@ tz_mem: memory@8ff00000 {
- 			reg = <0x8ff00000 0x100000>;
- 		};
- 
--		tz_apps_mem: memory@0x90000000 {
-+		tz_apps_mem: memory@90000000 {
- 			no-map;
- 			reg = <0x90000000 0x500000>;
- 		};
-diff --git a/arch/arm/boot/dts/ste-ab8500.dtsi b/arch/arm/boot/dts/ste-ab8500.dtsi
-index d0fe3f9aa183..9b735919a4d1 100644
---- a/arch/arm/boot/dts/ste-ab8500.dtsi
-+++ b/arch/arm/boot/dts/ste-ab8500.dtsi
-@@ -58,46 +58,46 @@ gpadc: ab8500-gpadc {
- 					#io-channel-cells = <1>;
- 
- 					/* GPADC channels */
--					bat_ctrl: channel@01 {
-+					bat_ctrl: channel@1 {
- 						reg = <0x01>;
- 					};
--					btemp_ball: channel@02 {
-+					btemp_ball: channel@2 {
- 						reg = <0x02>;
- 					};
--					main_charger_v: channel@03 {
-+					main_charger_v: channel@3 {
- 						reg = <0x03>;
- 					};
--					acc_detect1: channel@04 {
-+					acc_detect1: channel@4 {
- 						reg = <0x04>;
- 					};
--					acc_detect2: channel@05 {
-+					acc_detect2: channel@5 {
- 						reg = <0x05>;
- 					};
--					adc_aux1: channel@06 {
-+					adc_aux1: channel@6 {
- 						reg = <0x06>;
- 					};
--					adc_aux2: channel@07 {
-+					adc_aux2: channel@7 {
- 						reg = <0x07>;
- 					};
--					main_batt_v: channel@08 {
-+					main_batt_v: channel@8 {
- 						reg = <0x08>;
- 					};
--					vbus_v: channel@09 {
-+					vbus_v: channel@9 {
- 						reg = <0x09>;
- 					};
--					main_charger_c: channel@0a {
-+					main_charger_c: channel@a {
- 						reg = <0x0a>;
- 					};
--					usb_charger_c: channel@0b {
-+					usb_charger_c: channel@b {
- 						reg = <0x0b>;
- 					};
--					bk_bat_v: channel@0c {
-+					bk_bat_v: channel@c {
- 						reg = <0x0c>;
- 					};
--					die_temp: channel@0d {
-+					die_temp: channel@d {
- 						reg = <0x0d>;
- 					};
--					usb_id: channel@0e {
-+					usb_id: channel@e {
- 						reg = <0x0e>;
- 					};
- 					xtal_temp: channel@12 {
-diff --git a/arch/arm/boot/dts/ste-ab8505.dtsi b/arch/arm/boot/dts/ste-ab8505.dtsi
-index 0defc15b9bbc..02ce833d142a 100644
---- a/arch/arm/boot/dts/ste-ab8505.dtsi
-+++ b/arch/arm/boot/dts/ste-ab8505.dtsi
-@@ -54,40 +54,40 @@ gpadc: ab8500-gpadc {
- 					#io-channel-cells = <1>;
- 
- 					/* GPADC channels */
--					bat_ctrl: channel@01 {
-+					bat_ctrl: channel@1 {
- 						reg = <0x01>;
- 					};
--					btemp_ball: channel@02 {
-+					btemp_ball: channel@2 {
- 						reg = <0x02>;
- 					};
--					acc_detect1: channel@04 {
-+					acc_detect1: channel@4 {
- 						reg = <0x04>;
- 					};
--					acc_detect2: channel@05 {
-+					acc_detect2: channel@5 {
- 						reg = <0x05>;
- 					};
--					adc_aux1: channel@06 {
-+					adc_aux1: channel@6 {
- 						reg = <0x06>;
- 					};
--					adc_aux2: channel@07 {
-+					adc_aux2: channel@7 {
- 						reg = <0x07>;
- 					};
--					main_batt_v: channel@08 {
-+					main_batt_v: channel@8 {
- 						reg = <0x08>;
- 					};
--					vbus_v: channel@09 {
-+					vbus_v: channel@9 {
- 						reg = <0x09>;
- 					};
--					charger_c: channel@0b {
-+					charger_c: channel@b {
- 						reg = <0x0b>;
- 					};
--					bk_bat_v: channel@0c {
-+					bk_bat_v: channel@c {
- 						reg = <0x0c>;
- 					};
--					die_temp: channel@0d {
-+					die_temp: channel@d {
- 						reg = <0x0d>;
- 					};
--					usb_id: channel@0e {
-+					usb_id: channel@e {
- 						reg = <0x0e>;
- 					};
- 				};
-diff --git a/arch/arm/boot/dts/ste-db8500.dtsi b/arch/arm/boot/dts/ste-db8500.dtsi
-index 344d29853bf7..b67d3bd65de8 100644
---- a/arch/arm/boot/dts/ste-db8500.dtsi
-+++ b/arch/arm/boot/dts/ste-db8500.dtsi
-@@ -19,19 +19,19 @@ reserved-memory {
- 		ranges;
- 
- 		/* Modem trace memory */
--		ram@06000000 {
-+		ram@6000000 {
- 			reg = <0x06000000 0x00f00000>;
- 			no-map;
- 		};
- 
- 		/* Modem shared memory */
--		ram@06f00000 {
-+		ram@6f00000 {
- 			reg = <0x06f00000 0x00100000>;
- 			no-map;
- 		};
- 
- 		/* Modem private memory */
--		ram@07000000 {
-+		ram@7000000 {
- 			reg = <0x07000000 0x01000000>;
- 			no-map;
- 		};
-diff --git a/arch/arm/boot/dts/ste-db8520.dtsi b/arch/arm/boot/dts/ste-db8520.dtsi
-index 287804e9e183..60d5fb806969 100644
---- a/arch/arm/boot/dts/ste-db8520.dtsi
-+++ b/arch/arm/boot/dts/ste-db8520.dtsi
-@@ -19,19 +19,19 @@ reserved-memory {
- 		ranges;
- 
- 		/* Modem trace memory */
--		ram@06000000 {
-+		ram@6000000 {
- 			reg = <0x06000000 0x00f00000>;
- 			no-map;
- 		};
- 
- 		/* Modem shared memory */
--		ram@06f00000 {
-+		ram@6f00000 {
- 			reg = <0x06f00000 0x00100000>;
- 			no-map;
- 		};
- 
- 		/* Modem private memory */
--		ram@07000000 {
-+		ram@7000000 {
- 			reg = <0x07000000 0x01000000>;
- 			no-map;
- 		};
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-janice.dts b/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-index 25af066f6f3a..aee8439b7e8f 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-@@ -580,7 +580,7 @@ i2c-gate {
- 					#size-cells = <0>;
- 
- 					/* Bosch BMA222 accelerometer */
--					accelerometer@08 {
-+					accelerometer@8 {
- 						compatible = "bosch,bma222";
- 						reg = <0x08>;
- 						mount-matrix = "0", "1", "0",
-diff --git a/arch/arm/boot/dts/stm32429i-eval.dts b/arch/arm/boot/dts/stm32429i-eval.dts
-index 9ac1ffe53413..cb46326a8c75 100644
---- a/arch/arm/boot/dts/stm32429i-eval.dts
-+++ b/arch/arm/boot/dts/stm32429i-eval.dts
-@@ -60,7 +60,7 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory@00000000 {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x2000000>;
- 	};
-diff --git a/arch/arm/boot/dts/stm32f469-disco.dts b/arch/arm/boot/dts/stm32f469-disco.dts
-index 8c982ae79f43..30905ce672a0 100644
---- a/arch/arm/boot/dts/stm32f469-disco.dts
-+++ b/arch/arm/boot/dts/stm32f469-disco.dts
-@@ -60,7 +60,7 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory@00000000 {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x1000000>;
- 	};
-diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-index 0ec0d5625818..8729c6467303 100644
---- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-@@ -20,7 +20,7 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory@00000000 {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x80000000>;
- 	};
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dts b/arch/arm64/boot/dts/marvell/cn9130-db.dts
-index 9758609541c7..47a3b97a0363 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-db.dts
-+++ b/arch/arm64/boot/dts/marvell/cn9130-db.dts
-@@ -27,7 +27,7 @@ aliases {
- 		spi2 = &cp0_spi1;
- 	};
- 
--	memory@00000000 {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x80000000>;
- 	};
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 9fa5b028e4f3..23ee1bfa4318 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -151,7 +151,7 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
--		rpm_msg_ram: memory@0x60000 {
-+		rpm_msg_ram: memory@60000 {
- 			reg = <0x0 0x60000 0x0 0x6000>;
- 			no-map;
- 		};
 -- 
-2.30.2
-
+With best wishes
+Dmitry
