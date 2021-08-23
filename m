@@ -2,212 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 364FE3F4E63
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 18:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 967F93F4E8F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 18:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229667AbhHWQcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 12:32:03 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:46397 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229454AbhHWQcD (ORCPT
+        id S230124AbhHWQjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 12:39:53 -0400
+Received: from [115.28.160.31] ([115.28.160.31]:50534 "EHLO
+        mailbox.box.xen0n.name" rhost-flags-FAIL-FAIL-OK-OK)
+        by vger.kernel.org with ESMTP id S230226AbhHWQju (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 12:32:03 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 41F1658039B;
-        Mon, 23 Aug 2021 12:31:20 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Mon, 23 Aug 2021 12:31:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=T0T2IQIdQxYTEIzrXLU/J/hA1hB
-        QCXbH3bEfulkB1MM=; b=O1OvYF3DwxwKsvgI3LFqEfPZoyYhk/UUm1GcsPNvoE0
-        Y5wQTlW+BbfwnRjlpGXVoaUcstFKDdhlsB6PWomJn5gDI2XBl1W+cl7LCxg7hZLt
-        N6e7KkqRnG+W7AzgwZ0+56lWBGZcEseMNlqOif7ZuQ/DWE7jUC6o9MW6DpySidUJ
-        J0sZbxSklW5+l3bk7GaP2zuJU0jRBla+z+NZZb87Q5hur/A49BdUred2e3uT/ai4
-        VxW8QfZB74G64G30wQTa9fS+SawV0iXCBUfhn9LvVkEgQ02vLs7wFEETlpba0Jo5
-        aHDQuH9WG73aKtKdE/gEB2DY56oWjMGLypvW/lxEGyw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=T0T2IQ
-        IdQxYTEIzrXLU/J/hA1hBQCXbH3bEfulkB1MM=; b=f9OksScv9+UuVenQdj20su
-        FH3n3SWzXatLhC92VcRl5ZFpQdiT3ZymtJMrVKbig8PJJXc5klNhP/r70P8Iwwvn
-        3Hxl4RwHFr0+17IYzSFDVgZT8nUIAfA+/m2+XYzQzdAbebJtkeV0tIoBn891AiwK
-        qAEjusouyIWNapPt8sZ2cJiZXuctru/cn+D7HFiZki8tqlkW2geQGNuc9OIxFni4
-        oBhyfiqUfShinpcg7rreKmgauRCsbu/J87PcEUjD7xNL0mZvvxyqnNCAWilRT7rI
-        1dxfxKqW2HEN/sFZyuCEbNdC1ZXX3qv5HVRb3k1XMCAJtdxWVv2zErwlrSov6pYw
-        ==
-X-ME-Sender: <xms:Vc0jYZNiA8sIsk0g1MbXHuqX69JR2cUB7vuZ3I8u1kTreV7qKk02OA>
-    <xme:Vc0jYb8mexwVk4Dl8rdhhhyHCl9gk8BxoATUr3ZNaZMDuTd_PRdMlEbvSy2esDOR-
-    6A9FsL2EslKN0IkyXI>
-X-ME-Received: <xmr:Vc0jYYRxsxYvwkhItf5eo09HwLoiAqQgiMowhA1mDhEcBDfO9KjAJkF6xl0IhodXu0llNYxXt4T0srOSii5nBzZJNc1pMlMopS7v>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddthedguddtvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:Vc0jYVtZ90SISuDHUpXVoLUPz2NF7gKjG9J9IGZc6OQvbGDOT7ZFWQ>
-    <xmx:Vc0jYReSwB0c3v0XDGt1iCHX24PrN93ztJJICIKkrw4rhNqkrWM2iA>
-    <xmx:Vc0jYR16Wc5_6uTsPIrzzGIGuxL4Vmdw6b6s1vDPs2o9k3vNpEGDAA>
-    <xmx:WM0jYd6G0StUl4iTH8_FvwRsudQUPigZcjgzW8sR2ZqveNOntqe5Kg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 23 Aug 2021 12:31:16 -0400 (EDT)
-Date:   Mon, 23 Aug 2021 18:31:14 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@googlegroups.com,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 10/54] dt-bindings: display: panel-lvds: Document panel
- compatibles
-Message-ID: <20210823163114.ohmdpc7pn22p5ycd@gilmour>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-11-maxime@cerno.tech>
- <20210722022947.GA3168293@robh.at.kernel.org>
- <20210818124304.2jxsf44bcbprcvbk@gilmour>
- <CAL_JsqJjnGhXpfvPWU0HM8YHk5PyDup7ors3ewa17vc0bnVCmQ@mail.gmail.com>
+        Mon, 23 Aug 2021 12:39:50 -0400
+Received: from ld50.lan (unknown [101.88.30.186])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mailbox.box.xen0n.name (Postfix) with ESMTPSA id D897A60091;
+        Tue, 24 Aug 2021 00:31:46 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=xen0n.name; s=mail;
+        t=1629736307; bh=V6RSRR90Ws4Iuhqs3uHJEng/UiOCuLvgTuY18AE6/2U=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aJpnNDCZiSmdCnYl4YO84XMFJJKaEDihBxaiw+jneGZMwPyoGvvnz38lrB0JjH2/s
+         K086/cVTJh5dVDI/FzbaCi+1Y23b0+DhuKtB60PNwxQEjyg1TZfIoeyVT8SUKgZbEQ
+         COPLpT+T14V2w5zDs54oTlEQ5Y8HRoiCyNwQJQPI=
+From:   WANG Xuerui <git@xen0n.name>
+To:     linux-rtc@vger.kernel.org
+Cc:     WANG Xuerui <git@xen0n.name>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH RESEND v5 0/6] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+Date:   Tue, 24 Aug 2021 00:31:36 +0800
+Message-Id: <20210823163142.586529-1-git@xen0n.name>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gc4zibryza3dkjdm"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJjnGhXpfvPWU0HM8YHk5PyDup7ors3ewa17vc0bnVCmQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I'm resending the series after waiting for seven rc's without any response;
+did I overlook any submission procedure? Rebased against current rtc-next
+and tweaked Cc's for this submission, though.
 
---gc4zibryza3dkjdm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is all compiled and tested on a 3A4000 box, as usual. 3A3000+7A and
+2K systems are tested previously, and these should not be affected. (To
+Loongson employees reading this: please test on your rigs and give
+feedback, for getting this done before the next merge window!)
 
-Hi,
+While we're at it, I'd like to know which tree should this series go in via;
+is it rtc-next or mips-next? I'd prefer mips-next, since the last 4 patches
+all deal with MIPS things.
 
-On Wed, Aug 18, 2021 at 08:48:46AM -0500, Rob Herring wrote:
-> On Wed, Aug 18, 2021 at 7:43 AM Maxime Ripard <maxime@cerno.tech> wrote:
-> >
-> > Hi Rob, Sam,
-> >
-> > On Wed, Jul 21, 2021 at 08:29:47PM -0600, Rob Herring wrote:
-> > > On Wed, Jul 21, 2021 at 04:03:40PM +0200, Maxime Ripard wrote:
-> > > > The binding mentions that all the drivers using that driver must us=
-e a
-> > > > vendor-specific compatible but never enforces it, nor documents the
-> > > > vendor-specific compatibles.
-> > > >
-> > > > Let's make we document all of them, and that the binding will creat=
-e an
-> > > > error if we add one that isn't.
-> > > >
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > > > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > > > ---
-> > > >  .../bindings/display/panel/lvds.yaml           | 18 ++++++++++++--=
-----
-> > > >  1 file changed, 12 insertions(+), 6 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/display/panel/lvds.y=
-aml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > > > index 49460c9dceea..d1513111eb48 100644
-> > > > --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > > > @@ -31,12 +31,18 @@ allOf:
-> > > >
-> > > >  properties:
-> > > >    compatible:
-> > > > -    contains:
-> > > > -      const: panel-lvds
-> > > > -    description:
-> > > > -      Shall contain "panel-lvds" in addition to a mandatory panel-=
-specific
-> > > > -      compatible string defined in individual panel bindings. The =
-"panel-lvds"
-> > > > -      value shall never be used on its own.
-> > > > +    items:
-> > > > +      - enum:
-> > > > +          - advantech,idk-1110wr
-> > >
-> > > At least this one is documented elsewhere.
-> >
-> > Indeed, I missed it.
-> >
-> > > You can add 'minItems: 2' if you want to just enforce having 2 compat=
-ibles. Or do:
-> > >
-> > > items:
-> > >   - {}
-> > >   - const: panel-lvds
-> > >
-> > > Which also enforces the order.
-> >
-> > It's not just about the order since a missing compatible will also raise
-> > a warning.
-> >
-> > Some of those panels have a binding of their own, but some probably
-> > won't (and I can't find anything specific about the one I'm most
-> > interested in: tbs,a711-panel)
-> >
-> > Can we have something like:
-> >
-> > compatible:
-> >   oneOf:
-> >     - items:
-> >       - enum:
-> >         - tbs,a711-panel
-> >       - const: panel-lvds
-> >
-> >     - items:
-> >       - {}
-> >       - const: panel-lvds
-> >
-> > That would work for both cases I guess?
->=20
-> No, both conditions will be true. If you use 'anyOf', then we're never
-> really checking the specific compatible.
->=20
-> I think the problem here is trying to mix a common binding (aka an
-> incomplete collection of properties) and a specific binding.
 
-I'm not entirely sure why we have specific bindings for this in the
-first place.
+Original cover letter:
 
-We currently have 6 specific bindings, and for 5 of them the only
-specific thing in there are the data-mapping value to force and their
-dimension.
+This patch series adds support for the RTC module found on various
+Loongson systems with the Loongson-2K SoC or the LS7A bridge chip.
+The driver is rewritten from an out-of-tree version to meet mainline
+standards. I write kernel code as a hobby, though, so there might still
+be overlooked issues. Any suggestions are welcome.
 
-I'd argue that the dimension shouldn't even be set in stone: you could
-very well imagine a screen with exactly the same timings but a different
-size. We would consider it compatible.
+v5:
+- Minor changes per Nobuhiro-san's review
+  - Simplified one register-write-and-return
+  - Explicitly depend on OF, remove of_match_ptr usage for now
+- Tested on Loongson-3A4000; 2K should work too because there's no
+  functional change either
 
-And the data-mapping can be dealt with with an if clause fairly easily.
+v4:
+- Rebased on top of next-20210628
+- Added Jiaxun's Tested-by tag for Loongson-2K; no functional changes
+- Addressed all review comments from v3
+  - Rewritten field operations with FIELD_GET/FIELD_PREP
+  - Removed all error logs
+  - Removed unnecessary spinlocking (RTC core already protects against
+    concurrent device file operations)
 
-And for the last one, the specific thing about it is that it's using a
-dual-link output, which is a generic binding and could thus be described
-in panel-lvds too.
+v3:
+- Fixed compile error not discovered after rebase (blame sleep
+  deprivation)
+- Tested on Loongson-3A4000 and Loongson-2K
 
-Maxime
+v2:
+- Rebased on top of latest linux-next
+- Updated Huacai's e-mail address to the kernel.org one
+- Added collected tags
+- Added adaptation for newly upstreamed Loongson-2K platforms
 
---gc4zibryza3dkjdm
-Content-Type: application/pgp-signature; name="signature.asc"
+WANG Xuerui (6):
+  rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+  dt-bindings: rtc: Add bindings for LS2X RTC
+  MIPS: Loongson64: DTS: Add RTC support to LS7A
+  MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
+  MIPS: Loongson64: DTS: Add RTC support to Loongson-2K
+  MIPS: Loongson: Enable LS2X RTC in loongson2k_defconfig
 
------BEGIN PGP SIGNATURE-----
+ .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   5 +
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   5 +
+ arch/mips/configs/loongson2k_defconfig        |   1 +
+ arch/mips/configs/loongson3_defconfig         |   1 +
+ drivers/rtc/Kconfig                           |  11 ++
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ls2x.c                        | 180 ++++++++++++++++++
+ 8 files changed, 206 insertions(+)
+ create mode 100644 drivers/rtc/rtc-ls2x.c
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYSPNUgAKCRDj7w1vZxhR
-xTI2AP9NomBLo9Y5OqIN8rhni9FhgNloWJ7wVZ4JXn72s2OPEgEAweFc/UriqVXv
-5geR/VICigGlB1UIS1Q8Oo/reVrKCgg=
-=xQy8
------END PGP SIGNATURE-----
 
---gc4zibryza3dkjdm--
+base-commit: 8158da6a33f2656c2a98c30eb9185a44e215a6b6
+-- 
+2.33.0
+
