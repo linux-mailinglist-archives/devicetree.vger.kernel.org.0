@@ -2,72 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8CF43F525B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 22:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC10A3F526A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 22:49:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232537AbhHWUpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 16:45:14 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:41530 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232237AbhHWUpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 16:45:13 -0400
-Received: by mail-ot1-f43.google.com with SMTP id o16-20020a9d2210000000b0051b1e56c98fso25039590ota.8;
-        Mon, 23 Aug 2021 13:44:30 -0700 (PDT)
+        id S232589AbhHWUtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 16:49:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232486AbhHWUtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 16:49:42 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9E2C061575
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 13:48:59 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id k65so36572010yba.13
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 13:48:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c4QWnKvyWpOH8RqtwiwvK1dM7ed/hnT2KBqNw0j6U7A=;
+        b=WbLChwgFihPdWlSC5y/qfShp0sIMtUsZdd/qhdA8yq+uKZnAylNBckILex07AGi/wm
+         rgZ5uYq0OPLEDOjJjQNpJ+Ju8diDdxaDfCQwrnIx6lNmgzG/K2/mjgJLi6O9hgP9CCSf
+         dAr8SWboRRD53wvgWYtAkjNiKwtx3QVlmKpOmrZzZczCSdPUvwPvbZTPXzhzLvAdAErk
+         L9Q1MmJtxS/hNGKqRBqgzPLO1pCbAe5NUB7lFPq7KGs+5AAx41fIbogLHTls71Tlvoad
+         RCv0gxozyF+yls+T9/8vUIxB2JtDhqhZt2c8n/mXIiynaLbj1SkY6RzF6Plg37vpje3f
+         AtGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pnr2xBK6f14eA69KuSvKgWmz6GZszF17FwIvkm7oDPQ=;
-        b=TgVKODDU201gj8GFMShejoxGML2gktiRIaYEkEJVYQF5k3erIE8wRqZ+H52kfTqiqZ
-         dYPOjs5vN8Gjj30bOqWhwMrWjA0Dgw43qh4lDgmplucCjZAHzzgQ/kp5Cu3K5NKJwIRN
-         OylBWQmspH54ZZZABAcI61yYpRY4rRebsJPJTrp+kl9Ff4/SxrfmLmPwHYA0HRL3w0y7
-         E0dMV7cvH8BpBCauEpVUDmrj/VIVTmMdbx6ubKTIx7JJuIanmLjsYqJtExcEM3fC9xqa
-         9/IYbxV01cC6s9vJf6LQuu0uZfWYmc4v6gYEwkeZXt0gzroOuNZiHN0SdQEHEMyQnXih
-         S0qg==
-X-Gm-Message-State: AOAM533KsTaxOxbWBxZgY1PdPRaBRdJFCnbPtWeaVx9SA6QEcmKkV9IJ
-        5jKw5iOvYr4cyRz6Xq7j/Q==
-X-Google-Smtp-Source: ABdhPJymyma9K8zi/fJwYE1whIW0bn8y6+qCPO73H/lWchveQw3/xnjL7fxLXL0v8fKNbN7U/MLrUw==
-X-Received: by 2002:a9d:6490:: with SMTP id g16mr29309183otl.184.1629751470513;
-        Mon, 23 Aug 2021 13:44:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b2sm3072327ook.46.2021.08.23.13.44.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 13:44:28 -0700 (PDT)
-Received: (nullmailer pid 2691639 invoked by uid 1000);
-        Mon, 23 Aug 2021 20:44:27 -0000
-Date:   Mon, 23 Aug 2021 15:44:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Odelu Kukatla <okukatla@codeaurora.org>
-Cc:     elder@linaro.org, linux-kernel@vger.kernel.org, evgreen@google.com,
-        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>, mdtipton@codeaurora.org,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-msm-owner@vger.kernel.org, devicetree@vger.kernel.org,
-        seansw@qti.qualcomm.com, saravanak@google.com, sboyd@kernel.org,
-        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
-        Sibi Sankar <sibis@codeaurora.org>, georgi.djakov@linaro.org
-Subject: Re: [v7 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on
- SC7280
-Message-ID: <YSQIq3jNK0eRCOaD@robh.at.kernel.org>
-References: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org>
- <1629458622-4915-2-git-send-email-okukatla@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c4QWnKvyWpOH8RqtwiwvK1dM7ed/hnT2KBqNw0j6U7A=;
+        b=aE7Af5c6dVPFEbzsqTHSfL6d6m+Z+k8PuZ9Vo1Qf2k4n44LADga/Nyv9gWpjDbFyEy
+         bNTGKi0IlWyS9ypupBFPliPsmZkETFVP2HfB/iI07u+LzyYgrbWDA/B+wslplAi2ACL+
+         Up24w3cqCkaaCUNBr0/Qv+LmtDAPgwG5JNG57Th58hGk+br/N+KbBVdd27yRsxXngQYI
+         0V/PEQfeTixp6NwyiPmTrA+HEzAAL/1FZ8wtg3dm/I1kC9oQBR1RteCEQaoYWI6smvum
+         7n8i/pYbp8+qEkz8Fmr/mY46qcTtASan8ftEULAnMs4FU2QkqkPO6qze+zXeP1tmOHKy
+         O8IA==
+X-Gm-Message-State: AOAM531VoVWFpXPpjp6XGaoZMDB5AjM2dJG4oNWpxfTEdla3TjyZZVn9
+        EhNoS5+r3wGEPctZIB75WTYS8aCRIAeEtB5+jkuyTQ==
+X-Google-Smtp-Source: ABdhPJwU4w+ipd7j7HdZ0lrNLOvWfCuRfa/YomiIcCCPAc8CHcQ0D0Ea8O7+8nRuOQnuqDlL/BU0zgvC8Y9HniorxT0=
+X-Received: by 2002:a25:8445:: with SMTP id r5mr47936513ybm.20.1629751738986;
+ Mon, 23 Aug 2021 13:48:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1629458622-4915-2-git-send-email-okukatla@codeaurora.org>
+References: <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
+ <20210818021717.3268255-1-saravanak@google.com> <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
+ <CAGETcx_xJCqOWtwZ9Ee2+0sPGNLM5=F=djtbdYENkAYZa0ynqQ@mail.gmail.com> <YSP91FfbzUHKiv+L@lunn.ch>
+In-Reply-To: <YSP91FfbzUHKiv+L@lunn.ch>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 23 Aug 2021 13:48:23 -0700
+Message-ID: <CAGETcx8j+bOPL_-qFzHHJkX41Ljzq8HBkbBqtd4E0-2u6a3_Hg@mail.gmail.com>
+Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for "phy-handle" property
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
+        kernel-team@android.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Aug 2021 16:53:39 +0530, Odelu Kukatla wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
-> SoCs.
-> 
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
-> ---
->  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  9 ++++++++-
->  include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 +++++++++-
->  2 files changed, 17 insertions(+), 2 deletions(-)
-> 
+On Mon, Aug 23, 2021 at 12:58 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > PHY seems to be one of those cases where it's okay to have the
+> > compatible property but also okay to not have it.
+>
+> Correct. They are like PCI or USB devices. You can ask it, what are
+> you? There are two registers in standard locations which give you a
+> vendor and product ID. We use that to find the correct driver.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+For all the cases of PHYs that currently don't need any compatible
+string, requiring a compatible string of type "ethernet-phy-standard"
+would have been nice. That would have made PHYs consistent with the
+general DT norm of "you need a compatible string to be matched with
+the device". Anyway, it's too late to do that now. So I'll have to
+deal with this some other way (I have a bunch of ideas, so it's not
+the end of the world).
+
+> You only need a compatible when things are not so simple.
+>
+> 1) The IDs are wrong. Some silicon vendors do stupid things
+>
+> 2) Chicken/egg problems, you cannot read the ID registers until you
+>    load the driver and some resource is enabled.
+>
+> 3) It is a C45 devices, e.g. part of clause 45 of 802.3, which
+>    requires a different protocol to be talked over the bus. So the
+>    compatible string tells you to talk C45 to get the IDs.
+>
+> 4) It is not a PHY, but some sort of other MDIO device, and hence
+>    there are no ID registers.
+
+Yeah, I was digging through of_mdiobus_child_is_phy() when I was doing
+the mdio-mux fixes and noticed this. But I missed/forgot the mdiobus
+doesn't probe part when I sent out the phy-handle patch.
+
+-Saravana
