@@ -2,166 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD09D3F47D4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 616DB3F47E4
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235918AbhHWJmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 05:42:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47376 "EHLO
+        id S230265AbhHWJqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 05:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbhHWJmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:42:02 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846F0C061575
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 02:41:17 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id m17so2754960plc.6
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 02:41:17 -0700 (PDT)
+        with ESMTP id S230118AbhHWJqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:46:14 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494E0C061575;
+        Mon, 23 Aug 2021 02:45:32 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id ay33so7013929qkb.10;
+        Mon, 23 Aug 2021 02:45:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=59YVNoAHghXrJOXBJcWLjTuxbid6YF3SI87m42J17Q0=;
-        b=gbWMwZ3nq7etjCnuCvxfCnWJXwJ8zAbX4Ms0DCGR5VR1jmwS6MC1ZWySqf0GgiRiqY
-         IjmU2xtzkD40NqvNnQ8L9fznZU3rWVMKJd0mZ/nKR5tdWDWB19hNC23V0pSsL7J2H5Tt
-         Bq2Dz2I6lSXovfwvmdQFykTUCWvAo1uSUeR9klurDrqR07Y93zhIw7+++DrXjD6xklYt
-         RvgkBY2cyncYuixQXYoyU0Z/mKFLarZa6xHzWgv5pc3LqagSxo/T6/p/z9wEoRqd4Ovv
-         Q/RE3BMQ+lNTmiP3FyP7ucLJwsYngG9xfch6rZoTHeeUoa6GkLDrR2R3nhcKzuB1HZLt
-         bELA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=F7puqGkfeq2gGVbcmofYcE+ip9S4w+Znt/a7BmCuaiA=;
+        b=OSftcU2iVhgfPFOaPErRQTCll/bJZOKkUusefGZa8BYEUnQ75P+vSwxeYWSsJqoinv
+         dfWGRCWPGME0eQxGzjQtLWfNQPy4pUDYRRHpQ50KUXHvWQzM3+fRgldsmeli/KlOusHY
+         28kyryvy0/lNuO/bhpUqo7iy5IQnUl6uz8uTWhl1RozNAOErgFb2Y+9VR9qf5Oz3oygB
+         bxq2L8q8gOxhwbq4FlgOQZhIY9KSz+7Qxjw8vGNtbx+qXdCZeJ+8Oe5pGJHkqzPysYZN
+         CTQWSLTKpAf45wGqwzoLEPymWk12XbstYh/8yV4HO8IdrqJbgwVr0uud9Nkt4lA1Hy/Z
+         OMLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=59YVNoAHghXrJOXBJcWLjTuxbid6YF3SI87m42J17Q0=;
-        b=jD1GFxNwoDlgBFonQABQXKc1awAsM2TBK5RbWVLA89ERd//umXa8lqE8hWgHreyNLE
-         olr57hkM4pg8rAerDnsLB9NsbNWFBd7l5oc+cxXub81vs6NLotnEZwd4yO3nbE8A91yW
-         O9E6ewoy3rTkTSnDc9+kcUJmYHfJzs/al7UTRgfBEMPOv859oiEEWUgoU1B6Y8au0Hkb
-         c52/n2e6ScH9uPJxLZ1ETBgeDuTa49J1puB6Y2s0VrfqeHpWm92X7lEKn096VVUUqeNZ
-         NMGDi/bGSwfFIhqKOXDPGLWvFxiU+AJWNt7EGs3hqnokGg2Ea7vbRLprxnq70oc12CuM
-         nVfQ==
-X-Gm-Message-State: AOAM533LItYBQXed6KlBfZc88RVP5eIoJ3nGkUSzf4/k5eAVl59SDzqN
-        zmwJNPFjSBrpULqdwb12VCLnrA==
-X-Google-Smtp-Source: ABdhPJwG3pkvSi2qfi44MfiIuMVRPahIUv461kNadzm506l+fNVr9SQR4jUJk6t49M5U4BzbWftc5Q==
-X-Received: by 2002:a17:902:9a02:b029:118:307e:a9dd with SMTP id v2-20020a1709029a02b0290118307ea9ddmr27623510plp.47.1629711677137;
-        Mon, 23 Aug 2021 02:41:17 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.213])
-        by smtp.gmail.com with ESMTPSA id p10sm14453192pjv.39.2021.08.23.02.41.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 02:41:16 -0700 (PDT)
-From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dianders@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        yangcong <yangcong5@huaqin.corp-partner.google.com>
-Subject: [v1 2/2] dt-bindngs: display: panel: Add BOE tv110c9m-ll3 panel bindings
-Date:   Mon, 23 Aug 2021 17:41:02 +0800
-Message-Id: <20210823094102.1064716-3-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210823094102.1064716-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20210823094102.1064716-1-yangcong5@huaqin.corp-partner.google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=F7puqGkfeq2gGVbcmofYcE+ip9S4w+Znt/a7BmCuaiA=;
+        b=UY9FLyU3KwhOI8Z30sQxfWuN1MKcYAqm+D/72ShQRZb9VN9uXWrPonf4hD7y4l60OK
+         5HOCUYe4q6BOrPkxWf7Kn1LJs8Wp3cw9Lgo8wF+izlRsM5C5ODCHyZWVs6vxrOy7TjOo
+         5I340uuSfPT9fq5kd0LzD9T2aWpONbPyaptWy7hgxZMyfpM/bpgV9EiYQJ9f2U0u2d6D
+         uZlzgsg8ntMpm8S0dBeWrSKWCxSZT98BIt+KKTC6TqyQ5HFgds+LiVCc4hAKp65LGwU0
+         UUH5umuwKP0GA7o5EEIV4iu0dugjvXEPufw2UI9mKuSwHJaHSeiqYYjositJXkXSWmTE
+         Qxcw==
+X-Gm-Message-State: AOAM532VVkxQfzXHtV0JTaO2ZidFtSaQRmuulJCkvbJPBIh1mnHOs7Ay
+        4zGt7+zEu9fUylHnUgNCOtisEjMU5LzLqQP7aD4=
+X-Google-Smtp-Source: ABdhPJyFmowjR5zIGMC0Vgvyna9Kic4jnFTLMo+xE44ALt5B0HuBVM2mxtoSwJRz/bmkw+T0BqVkugQmPeZyRIbYTjA=
+X-Received: by 2002:a05:620a:14b1:: with SMTP id x17mr19679850qkj.37.1629711931478;
+ Mon, 23 Aug 2021 02:45:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1629453791-10580-1-git-send-email-shengjiu.wang@nxp.com> <YSAQgywy8UW540h9@robh.at.kernel.org>
+In-Reply-To: <YSAQgywy8UW540h9@robh.at.kernel.org>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Mon, 23 Aug 2021 17:45:20 +0800
+Message-ID: <CAA+D8AM1Ti5+LAwx+b5ZEy7Xi8Tx4n2Dh0ZW9faFDB04pLECRw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add fsl,imx-dsp-rproc
+ binding document
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>, ohad@wizery.com,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-remoteproc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for boe tv110c9m-ll3 panel.
+Hi Rob
 
-Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
----
- .../display/panel/boe,tv110c9m-ll3.yaml       | 83 +++++++++++++++++++
- 1 file changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.yaml
+On Sat, Aug 21, 2021 at 4:28 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Aug 20, 2021 at 06:03:10PM +0800, Shengjiu Wang wrote:
+> > Define the compatible string and properties needed by imx_dsp_rproc
+> > driver.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  .../remoteproc/fsl,imx-dsp-rproc.yaml         | 123 ++++++++++++++++++
+> >  1 file changed, 123 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
+> > new file mode 100644
+> > index 000000000000..7eba49aa959e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
+> > @@ -0,0 +1,123 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/remoteproc/fsl,imx-dsp-rproc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: i.MX DSP Remoteproc Devices
+> > +
+> > +maintainers:
+> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > +
+> > +description:
+> > +  This binding provides support for DSP processors found on i.mX family of SoCs
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx8qxp-hifi4
+> > +      - fsl,imx8qm-hifi4
+> > +      - fsl,imx8mp-hifi4
+> > +      - fsl,imx8ulp-hifi4
+> > +
+> > +  clocks:
+> > +    description: |
+> > +      Main functional clock for the remote processor
+>
+> Don't need '|' if no formatting.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.yaml
-new file mode 100644
-index 000000000000..3593405241af
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/boe,tv110c9m-ll3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: BOE TV110C9M-LL3 DSI Display Panel
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Sam Ravnborg <sam@ravnborg.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+        # BOE TV110C9M-LL3 10.95" WUXGA TFT LCD panel
-+      - boe,tv110c9m-ll3
-+        # INX HJ110IZ-01A 10.95" WUXGA TFT LCD panel
-+      - inx,hj110iz-01a
-+
-+  reg:
-+    description: the virtual channel number of a DSI peripheral
-+
-+  enable-gpios:
-+    description: a GPIO spec for the enable pin
-+
-+  pp1800-supply:
-+    description: core voltage supply
-+
-+  pp3300-supply:
-+    description: core voltage supply
-+
-+  avdd-supply:
-+    description: phandle of the regulator that provides positive voltage
-+
-+  avee-supply:
-+    description: phandle of the regulator that provides negative voltage
-+
-+  backlight:
-+    description: phandle of the backlight device attached to the panel
-+
-+  port: true
-+
-+required:
-+ - compatible
-+ - reg
-+ - enable-gpios
-+ - pp1800-supply
-+ - pp3300-supply
-+ - avdd-supply
-+ - avee-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dsi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel@0 {
-+            compatible = "boe,tv110c9m-ll3";
-+            reg = <0>;
-+            enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&vdd_reset_1800>;
-+            avdd-supply = <&avdd_lcd>;
-+            avee-supply = <&avee_lcd>;
-+            pp1800-supply = <&v1p8_mipi>;
-+            pp3300-supply = <&pp3300_dx_edp>;
-+            backlight = <&backlight>;
-+            status = "okay";
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint = <&dsi_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.25.1
+Ok,  will update it.
 
+>
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +
+> > +  clock-names:
+> > +    description:
+> > +      List of clock names for the remote processor.
+> > +      dsp_clkx for clocks of dsp itself.
+> > +      per_clkx for clocks of peripherals used by dsp.
+>
+> Sounds like constraints that should be a schema. But this looks like
+> some random collection of clocks, not clocks for the DSP h/w.
+
+The DSP may use some peripheral devices, then we need to
+enable the clock in this driver. Using which peripherals
+depends on the DSP firmware, so we didn't specify the clock
+name here.
+
+I will add below items for this.
+    items:
+      - const: dsp_clk1
+      - const: dsp_clk2
+      - const: dsp_clk3
+      - const: dsp_clk4
+      - const: dsp_clk5
+      - const: dsp_clk6
+      - const: dsp_clk7
+      - const: dsp_clk8
+      - const: per_clk1
+      - const: per_clk2
+      - const: per_clk3
+      - const: per_clk4
+      - const: per_clk5
+      - const: per_clk6
+      - const: per_clk7
+      - const: per_clk8
+      - const: per_clk9
+      - const: per_clk10
+      - const: per_clk11
+      - const: per_clk12
+      - const: per_clk13
+      - const: per_clk14
+      - const: per_clk15
+      - const: per_clk16
+      - const: per_clk17
+      - const: per_clk18
+
+>
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +
+> > +  syscon:
+>
+> Vendor prefix and name it based on what it points to or is used for.
+
+Ok, will update it.
+
+best regards
+Wang shengjiu
