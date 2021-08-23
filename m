@@ -2,47 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D373F5082
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 299523F508E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231258AbhHWSnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 14:43:11 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:54096 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231147AbhHWSnK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 14:43:10 -0400
-Received: from dynamic-046-114-139-102.46.114.pool.telefonica.de ([46.114.139.102] helo=phil.sntech)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mIEts-0002Jl-9S; Mon, 23 Aug 2021 20:42:24 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Heiko Stuebner <heiko@sntech.de>, Liang Chen <cl@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: add saradc to rk3568-evb1-v10
-Date:   Mon, 23 Aug 2021 20:42:16 +0200
-Message-Id: <162974163916.2977894.3931424916722931571.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210823110716.10038-1-michael.riesch@wolfvision.net>
-References: <20210823110716.10038-1-michael.riesch@wolfvision.net>
+        id S229962AbhHWSox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 14:44:53 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:40495 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229883AbhHWSow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 14:44:52 -0400
+Received: by mail-ot1-f47.google.com with SMTP id x9-20020a056830278900b0051b8be1192fso18235385otu.7;
+        Mon, 23 Aug 2021 11:44:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kdAQTBVBdpO3tKzp/N2wLGvECx2POADKDdUfZBY9y4U=;
+        b=eM965Yf6NIYc5SEkC+/+gDAUB0nhOnUDbrNb81A6A+R49acNOVTcmeTfUJDZChRSPF
+         hLY9iaKJaQgyhne1yvOm93FXWkTFiDrN3XN2oWyazzOK7dOw+sik6eswbOovti1gZRVC
+         aLkZdneJ1rtMpU9aSPN5IL88/2U5R5UVeskNg+h9NM+H6/tQWH/uenbbofVkyX1iZDC9
+         3YlGUV3tJNnimw4dpQA0ylnAb5POUkyLHpvRq8EUHW0XeIPPpPqu3fqO97tUa0zTnHN0
+         x6GOPCzcWAUJDomBTg3RuOBjUm2AjlfsfOtqxnVmuVz2Ov2mTsgS8joZyYK9WEHPr+Rl
+         UQtg==
+X-Gm-Message-State: AOAM533/Qw8O0LggqPR6vD4lkZmFoWRBRA2/H7ppZbpv1PXpTv9oihXy
+        9AlleSlUjhckf3xgDINK+w==
+X-Google-Smtp-Source: ABdhPJzZjR+Nj4QG2ogBy2F/h0usSwcnHjOq8GIRulKwQlUZzmGAcvWhHmwS0xgGWgh2ZYyIKkX38g==
+X-Received: by 2002:a05:6808:1522:: with SMTP id u34mr4330332oiw.76.1629744249675;
+        Mon, 23 Aug 2021 11:44:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j17sm3976492ots.10.2021.08.23.11.44.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 11:44:09 -0700 (PDT)
+Received: (nullmailer pid 2499843 invoked by uid 1000);
+        Mon, 23 Aug 2021 18:44:08 -0000
+Date:   Mon, 23 Aug 2021 13:44:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: Add bindings for LiteETH
+Message-ID: <YSPseMd1nDHnF/Db@robh.at.kernel.org>
+References: <20210820074726.2860425-1-joel@jms.id.au>
+ <20210820074726.2860425-2-joel@jms.id.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210820074726.2860425-2-joel@jms.id.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Aug 2021 13:07:16 +0200, Michael Riesch wrote:
-> Add the SARADC to the device tree of the RK3568 EVB1.
+On Fri, Aug 20, 2021 at 05:17:25PM +0930, Joel Stanley wrote:
+> LiteETH is a small footprint and configurable Ethernet core for FPGA
+> based system on chips.
+> 
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+> v2:
+>  - Fix dtschema check warning relating to registers
+>  - Add names to the registers to make it easier to distinguish which is
+>    what region
+>  - Add mdio description
+>  - Includ ethernet-controller parent description
+> 
+>  .../bindings/net/litex,liteeth.yaml           | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/litex,liteeth.yaml b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> new file mode 100644
+> index 000000000000..30f8f8b0b657
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/litex,liteeth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LiteX LiteETH ethernet device
+> +
+> +maintainers:
+> +  - Joel Stanley <joel@jms.id.au>
+> +
+> +description: |
+> +  LiteETH is a small footprint and configurable Ethernet core for FPGA based
+> +  system on chips.
+> +
+> +  The hardware source is Open Source and can be found on at
+> +  https://github.com/enjoy-digital/liteeth/.
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: litex,liteeth
+> +
+> +  reg:
+> +    minItems: 3
+> +    items:
+> +      - description: MAC registers
+> +      - description: MDIO registers
+> +      - description: Packet buffer
+> +
+> +  reg-names:
+> +    minItems: 3
 
-Applied, thanks!
+Need to define the names here.
 
-[1/1] arm64: dts: rockchip: add saradc to rk3568-evb1-v10
-      commit: b12a5946f5ea7a54b8b983c42f0812152e3122de
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> +  rx-fifo-depth: true
+> +  tx-fifo-depth: true
+
+Needs a vendor prefix, type, description and constraints.
+
+> +  mac-address: true
+> +  local-mac-address: true
+> +  phy-handle: true
+> +
+> +  mdio:
+> +    $ref: mdio.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mac: ethernet@8020000 {
+> +        compatible = "litex,liteeth";
+> +        reg = <0x8021000 0x100>,
+> +              <0x8020800 0x100>,
+> +              <0x8030000 0x2000>;
+> +        reg-names = "mac", "mdio", "buffer";
+> +        rx-fifo-depth = <1024>;
+> +        tx-fifo-depth = <1024>;
+> +        interrupts = <0x11 0x1>;
+> +        phy-handle = <&eth_phy>;
+> +
+> +        mdio {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          eth_phy: ethernet-phy@0 {
+> +            reg = <0>;
+> +          };
+> +        };
+> +    };
+> +...
+> +
+> +#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
+> -- 
+> 2.32.0
+> 
+> 
