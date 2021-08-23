@@ -2,128 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3FBC3F4606
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 09:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 530003F4638
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 09:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235282AbhHWHvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 03:51:47 -0400
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:39760 "EHLO
-        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235247AbhHWHvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 03:51:18 -0400
-Received: by mail-vs1-f44.google.com with SMTP id e9so10495974vst.6;
-        Mon, 23 Aug 2021 00:50:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ho3P9pBdgd42CBBqO6PTExhHf40DO+XVUYi0PLvvDcU=;
-        b=Tnr5p0YBYnazRD2Ux+8Z2KBq+evjNl1zJuA/CLqhtId2E1EsGsU53PVzpnbCmJuQ8g
-         G7UmJR4V+rAxpuSPB9HbIKLj00kLPtTgYX0Dldm09OzfxQso8IhZP4wwon19QEgrrEcS
-         IrrkkAskDUNn+ACgpzJBitW0Ln4f2w+XvGyA8ow70mHdRZe1JkiClOI1kN/nTDdkjQcy
-         RPTh/jlT2CSKe/Yfp9SGZ5Lln92NW8H5kIuckj4oVt/1MOSDx3+lazEtLHztSvDtp6c8
-         WBySiYp+1xryhz1DdwyI3OmauFZE1JuthS8J//8XBwFDk67S+biRlgcpkHI/IMCECuu6
-         Pmxg==
-X-Gm-Message-State: AOAM530kFAY5SquwExfPqv87d8vYJlvHiOrUOm7UNGxkoBpAUK/l76Jt
-        DR6KoY5T7w+8+m/rP1w/TUwBjwZQOcTXKlY3WbQ=
-X-Google-Smtp-Source: ABdhPJwnddl0CNzxKVNjXlZCRb2Igz6ludKlJHQ+IsyXtT1SETsb4n8hdAEokGACKnU9D507Yh2RQoDqVqVaLusqNtA=
-X-Received: by 2002:a67:c789:: with SMTP id t9mr23194381vsk.60.1629705028211;
- Mon, 23 Aug 2021 00:50:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
- <CAHp75VcG9KajNpDbewDq7QzotB6t7MfwiGk15FaobX+cmMVSzg@mail.gmail.com>
- <CAK9rFnwrA=W2Vk5yFwG4N_WS=eBXXnhtexA+tqgAYb6xOAO4oQ@mail.gmail.com>
- <CAHp75VdfrJ3JV_gL3xCLHOiw6Tj-5Ep7z5JKWUFKFbUt8gobcw@mail.gmail.com> <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
-In-Reply-To: <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 23 Aug 2021 09:50:16 +0200
-Message-ID: <CAMuHMdUz4vUQzXBHA9AiT3w6L20yBpgd0emVZJb=v_qw70qiJQ@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Brad Larson <brad@pensando.io>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S235100AbhHWH6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 03:58:22 -0400
+Received: from pi.codeconstruct.com.au ([203.29.241.158]:44048 "EHLO
+        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235262AbhHWH6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 03:58:21 -0400
+X-Greylist: delayed 338 seconds by postgrey-1.27 at vger.kernel.org; Mon, 23 Aug 2021 03:58:21 EDT
+Received: from [172.16.65.181] (unknown [49.255.141.98])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 585FC20018;
+        Mon, 23 Aug 2021 15:51:59 +0800 (AWST)
+Message-ID: <ae72879d25da3e56e3a1eefe101aad7cbe47515e.camel@codeconstruct.com.au>
+Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Rob Herring <robh@kernel.org>,
+        Matt Johnston <matt@codeconstruct.com.au>
+Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Date:   Mon, 23 Aug 2021 15:51:58 +0800
+In-Reply-To: <CAL_Jsq+EMV=bA__+sHnC-WSoZf_OPxqL+bCGRBjdo12RL=aw9A@mail.gmail.com>
+References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
+         <YRae8tDReDS67sM4@robh.at.kernel.org>
+         <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
+         <YRwkvjAuEd+9lTt7@robh.at.kernel.org>
+         <6ed12f1a09fb1f3e6ebe05992a9232bc7c34213c.camel@codeconstruct.com.au>
+         <CAL_Jsq+EMV=bA__+sHnC-WSoZf_OPxqL+bCGRBjdo12RL=aw9A@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad,
+Hi Rob,
 
-On Mon, Aug 23, 2021 at 3:14 AM Brad Larson <brad@pensando.io> wrote:
-> On Mon, Mar 29, 2021 at 3:40 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> >
-> > On Mon, Mar 29, 2021 at 4:19 AM Brad Larson <brad@pensando.io> wrote:
-> > > On Sun, Mar 7, 2021 at 11:21 AM Andy Shevchenko
-> > > <andy.shevchenko@gmail.com> wrote:
-> > > > On Thu, Mar 4, 2021 at 4:40 PM Brad Larson <brad@pensando.io> wrote:
-> >
-> > ...
-> >
-> > > > > +config GPIO_ELBA_SPICS
-> > > > > +       bool "Pensando Elba SPI chip-select"
-> > > >
-> > > > Can't it be a module? Why?
-> > >
-> > > All Elba SoC based platforms require this driver to be built-in to boot and
-> > > removing the module would result in a variety of exceptions/errors.
-> >
-> > Needs to be at least in the commit message.
-> >
-> > > > > +       depends on ARCH_PENSANDO_ELBA_SOC
-> > > > > +       help
-> > > > > +         Say yes here to support the Pensndo Elba SoC SPI chip-select driver
+> > This ends up describing something like a network interface, which
+> > happens to use I2C as a transport in this case. (There are other
+> > transports like MCTP-over-serial, but those don't require DT
+> > topology
+> > data). For other network-type DT bindings (say, ethernet@), we
+> > don't
+> > describe remote network endpoints either, so we're proposing the
+> > same
+> > pattern for MCTP.
+> 
+> When a switch becomes integrated in, we do.
 
-Pensando
+OK, we'll allow for cases like that, where we do need a representation
+of a "remote" endpoint. However, we don't *currently* have a scenario
+where that is necessary.
 
-> > > >
-> > > > Please give more explanation what it is and why users might need it,
-> > > > and also tell users how the module will be named (if there is no
-> > > > strong argument why it can't be a  module).
-> > > >
-> > > Fixed the typo.
-> >
-> > Yeah, according to the above, you better elaborate what this module is
-> > and why people would need it.
-> > Also can be a good hint to add
-> > default ARCH_MY_COOL_PLATFORM
->
-> Regarding the above module question and Kconfig definition, since I
-> first looked at this and reviewed the comments I realized I should be
-> using builtin.  The file gpio/Kconfig is currently this
->
-> config GPIO_ELBA_SPICS
->         def_bool y
->         depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
+> > > >     reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
+> > > >     attach-bus = <&i2c1 &i2c6>;
+> > > 
+> > > Why do you need to say you are attached to yourself?
+> > 
+> > This indicates that the top-level MCTP controller needs to talk to
+> > MCTP
+> > endpoints, eg mctpA on the directly attached bus i2c1. In some
+> > topologies
+> > there will be no directly-attached endpoints, in which case we
+> > would omit
+> > i2c1 from the list. We need to specify the attach-bus property
+> > since we
+> > don't have a list of external device endpoints to walk.
+> 
+> Okay, so it's a 'what I2C buses should be scanned for MCTP devices'.
 
-That means the driver will default to yes by merely enabling
-COMPILE_TEST, which is a no-go.
+Not quite "scanned", more "marked as MCTP-capable". The indication that
+an i2c bus is a MCTP controller doesn't initiate any scanning, but
+rather provides a facility for software further up the stack to perform
+any scanning / monitoring for hotplug devices / setting up fixed remote
+endpoints - whatever is suitable for the system.
 
-    config GPIO_ELBA_SPICS
-            bool "one-line summary"
-            depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
-            default y if ARCH_PENSANDO_ELBA_SOC
+> Why can't that just be all the buses under i2c1 in this example?
+> Limiting it seems like an optimization only.
 
-Gr{oetje,eeting}s,
+It's not so much an optimisation, rather a way to avoid overly complex
+network topologies. We may have on the order of 100 i2c busses
+(including both root busses and mux subordinates) on some platforms.
+Since physical addressing requires knowing both the SMBus address plus
+the MUX state, any software/user that deals with physical addreses
+will need to know about those ~100 busses.
 
-                        Geert
+If I can use the Linux implementation as an example: flagging an i2c
+controller as MCTP-capable will create a MCTP netdev, which allows
+communicating with specific physaddrs on that segment of the bus. I'd
+like to avoid creating ~100 netdevs, all visible to userspace, when only
+a small subset of those can carry actual MCTP data.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+If we can limit the possible MCTP controllers to just the i2c busses
+that host MCTP hardware downstream, that makes things much easier for
+any OS implementation to deal with. While we can do the i2c/MCTP mapping
+at a higher level (ie. userspace), representing this in the DT does
+keep the local-hardware-specific data all in the one place.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> In any case, 'attach-bus' sounds very generic and I'm not sure this
+> is. I'd like to hear from others familiar with I2C on this aspect at
+> least.
+
+We're certainly open to other structures for flagging busses as
+MCTP-capable; we can use a more representative name for this phandle
+list, or switch to boolean properties on the subordinate nodes
+themselves (something like the gpio-controller boolean props, perhaps?
+though that seems harder to confine to a schema for mctp-i2c...)
+
+Cheers,
+
+
+Jeremy
+
