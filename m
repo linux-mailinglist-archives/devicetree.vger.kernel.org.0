@@ -2,145 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 681C53F504F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:23:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9ECE3F5056
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:24:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231421AbhHWSXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 14:23:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56298 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231402AbhHWSXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 14:23:51 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB360C06175F
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 11:23:08 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id f15so7559807ybg.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 11:23:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rukoF0zTAyPgRjsb/qETsAXh6HDn8z2HPuAWUcpMQpw=;
-        b=mrRHQszk4xM/P0iqPOgIvzHk9Gi79/0pgATlZnfPGDvzxyVjOuDAzTGWx2032SoaZN
-         h0ILJaEukh+Jswu65Fn+bOFsV40J9CeZkSjhLr/C96wRAK+7XGkP7ULhInEZcHuj4/q7
-         AQM0+2tatgJ0VZu2EuQR5AcGZn3CIrLSMRq+0Ja4L+8azEnIHTXDNn0kQIWOqJDqQiLI
-         QH66OIKdJicFgCoGAWLnzR6JXD6qMjQLOvG/YjctJOrPpywQqldUASRaXoTC8SQsrqpe
-         0XkMnm7ujPcD7C0mEu35y2JkjBqw5Pc/Xejsaw6mK6iXWiplXQLe7OSUZqgE/gD+HL7E
-         2mAw==
+        id S232077AbhHWSZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 14:25:18 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:43717 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231716AbhHWSZS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 14:25:18 -0400
+Received: by mail-ot1-f49.google.com with SMTP id x10-20020a056830408a00b004f26cead745so38777297ott.10;
+        Mon, 23 Aug 2021 11:24:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rukoF0zTAyPgRjsb/qETsAXh6HDn8z2HPuAWUcpMQpw=;
-        b=p3RZKkSfKLtoSH/0db92N8Oarw+uPbEaS21MN2h+Its+w1WnhvTsBPsXtanrbLInB+
-         0V93iK0kjcb8kCF/zJBvw8Yqg5IOK8iu6uH9mcjWr/6eE4GfU1sqTqlzF3RvLXaH940y
-         VEeJtqbAUTALq8r7WFr2d8AKstkgUfau7Bb3ifMuVh2j3VdJfulQbj9kUvHgqDAsBTfD
-         sLpkp6fRIeDMpwW2sxnHazYymjCxoGtiyJ+wk/NI8+UCflQaBPRhrIoE2KtE+mDCa2eA
-         YGFiIavNKjcYqiHKKj6Sz9PJ04nY0bOgcwa1EI89vwy3rc0qUUY2h+pSIWy4LIYlqBvN
-         7dzQ==
-X-Gm-Message-State: AOAM532YmuTcZqsbOijYW5dFzc9XoL+flkvOJcdzVmv0MZJdI9AyGJlv
-        TWhSFIFCaq1JrhFQwi8UlUejelMz+WSlSWmt2hKMdg==
-X-Google-Smtp-Source: ABdhPJz/GExcyseR2MWqjTeotuxEd+SktGcaeLmh0s2UAgoTjDdqIDVWpDLD4AKnPaMocG9V7d1xGoW8yzA5XBnFcjg=
-X-Received: by 2002:a25:c64f:: with SMTP id k76mr45962791ybf.412.1629742987747;
- Mon, 23 Aug 2021 11:23:07 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9LVr7Ep9kqEYckDFYHzb6AN+kIKu8SgVX7aZO3k6n8Q=;
+        b=AK7v7ZsvKksNNasZpsuHYwhUp0codH0UjvUvEgR5pZF57WgQJ72I/mKajV510pQ0lW
+         2f4t9aTUnEsQ5ZCoOtiP0P1K8ONPrW0rBbZHTiKniLBeAt4ROP7cs1B6tdj9MxGaDh8T
+         22fhsyR/kuG7vppC1d993ngXE3ZeVKorLpbFxm/9Y3JTP9Cdv5YSOlndoji6dYDNR5th
+         y7dYIGSvIc1ANfcofJbRwURYuAi+zIwCOYwoghC5CIl+quna+P0lg14m5yugghun2CQU
+         ksPWx/PrBr7onBaKXm7KMbi8xJR+ZqHLF3mH3ng3RWAhbjkZkK6Gxbp2xTqeYiWcJXFP
+         3f3g==
+X-Gm-Message-State: AOAM533p+2/TD3skT8Yo1KuJiXJKzEdmE/7Zuc24etbuQCrp6TKWVarE
+        p6qtmsPA02evcIBC8bTh2w==
+X-Google-Smtp-Source: ABdhPJyY0P+WUkUmlfUESlAS+W72x+H1/jlqO4sbnjW7EVuaPu2IdLyeGjgxi2joYuUmznBunXSf2A==
+X-Received: by 2002:a05:6830:40c1:: with SMTP id h1mr8992262otu.10.1629743075189;
+        Mon, 23 Aug 2021 11:24:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id m35sm3529657ooi.38.2021.08.23.11.24.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 11:24:34 -0700 (PDT)
+Received: (nullmailer pid 2469398 invoked by uid 1000);
+        Mon, 23 Aug 2021 18:24:33 -0000
+Date:   Mon, 23 Aug 2021 13:24:33 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH] dt-bindings: clock: brcm,iproc-clocks: fix armpll
+ properties
+Message-ID: <YSPn4Y+Rgs83lg/g@robh.at.kernel.org>
+References: <20210819052918.6753-1-zajec5@gmail.com>
 MIME-Version: 1.0
-References: <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
- <20210818021717.3268255-1-saravanak@google.com> <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
-In-Reply-To: <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 23 Aug 2021 11:22:31 -0700
-Message-ID: <CAGETcx_xJCqOWtwZ9Ee2+0sPGNLM5=F=djtbdYENkAYZa0ynqQ@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for "phy-handle" property
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210819052918.6753-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 5:08 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
->
-> Hi,
->
-> On 18.08.2021 04:17, Saravana Kannan wrote:
-> > Allows tracking dependencies between Ethernet PHYs and their consumers.
-> >
-> > Cc: Andrew Lunn <andrew@lunn.ch>
-> > Cc: netdev@vger.kernel.org
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
->
-> This patch landed recently in linux-next as commit cf4b94c8530d ("of:
-> property: fw_devlink: Add support for "phy-handle" property"). It breaks
-> ethernet operation on my Amlogic-based ARM64 boards: Odroid C4
-> (arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts) and N2
-> (meson-g12b-odroid-n2.dts) as well as Khadas VIM3/VIM3l
-> (meson-g12b-a311d-khadas-vim3.dts and meson-sm1-khadas-vim3l.dts).
->
-> In case of OdroidC4 I see the following entries in the
-> /sys/kernel/debug/devices_deferred:
->
-> ff64c000.mdio-multiplexer
-> ff3f0000.ethernet
->
-> Let me know if there is anything I can check to help debugging this issue.
+On Thu, 19 Aug 2021 07:29:18 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> armpll clocks (available on Cygnus and Northstar Plus) are simple clocks
+> with no cells. Adjust binding props #clock-cells and clock-output-names
+> to handle them.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bindings/clock/brcm,iproc-clocks.yaml     | 27 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 2 deletions(-)
+> 
 
-I'm fairly certain you are hitting this issue because the PHY device
-doesn't have a compatible property. And so the device link dependency
-is propagated up to the mdio bus. But busses as suppliers aren't good
-because busses never "probe".
-
-PHY seems to be one of those cases where it's okay to have the
-compatible property but also okay to not have it. You can confirm my
-theory by checking for the list of suppliers under
-ff64c000.mdio-multiplexer. You'd see mdio@0 (ext_mdio) and if you look
-at the "status" file under the folder it should be "dormant". If you
-add a compatible property that fits the formats a PHY node can have,
-that should also fix your issue (not the solution though).
-
-I'll send out a fix this week (once you confirm my analysis). Thanks
-for reporting it.
-
--Saravana
-
->
-> > ---
-> > v1 -> v2:
-> > - Fixed patch to address my misunderstanding of how PHYs get
-> >    initialized.
-> >
-> >   drivers/of/property.c | 2 ++
-> >   1 file changed, 2 insertions(+)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 931340329414..0c0dc2e369c0 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1291,6 +1291,7 @@ DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
-> >   DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
-> >   DEFINE_SIMPLE_PROP(leds, "leds", NULL)
-> >   DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
-> > +DEFINE_SIMPLE_PROP(phy_handle, "phy-handle", NULL)
-> >   DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> >   DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> >
-> > @@ -1379,6 +1380,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
-> >       { .parse_prop = parse_resets, },
-> >       { .parse_prop = parse_leds, },
-> >       { .parse_prop = parse_backlight, },
-> > +     { .parse_prop = parse_phy_handle, },
-> >       { .parse_prop = parse_gpio_compat, },
-> >       { .parse_prop = parse_interrupts, },
-> >       { .parse_prop = parse_regulators, },
->
-> Best regards
-> --
-> Marek Szyprowski, PhD
-> Samsung R&D Institute Poland
->
+Reviewed-by: Rob Herring <robh@kernel.org>
