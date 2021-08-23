@@ -2,161 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC3C3F42DE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 03:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D59E23F42E1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 03:14:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234499AbhHWBOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Aug 2021 21:14:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234471AbhHWBOo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Aug 2021 21:14:44 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C94FC061760
-        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 18:14:02 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id x11so33556128ejv.0
-        for <devicetree@vger.kernel.org>; Sun, 22 Aug 2021 18:14:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L2x6wvetmC+m3UtkL6g+zeogyV7VcFydZqaTYT0Kj0E=;
-        b=f6WZ0aMYqLMnLSFNcuxgKdLhyI7/W0P27ao7SR9Kc+qqodcoakQ85WKGOafWNzUXMd
-         h2WG+KWDZ0UHdOmJAhErULZrM5xIKaRGgqGDeEuAF+40+yVN7wbf84SQzPf+zgjoV/k+
-         bkTvLJD2KnYD7sGZmfRxYe+iiq93N0cL8DFnhLLjWpmfslVf0Mhae59Dwnanex0R2wiv
-         EbkGZ9pgt5zl8JjmkCLuJEVGLU1eb9VsjwXg1vwTIxZkZsX6ZBolUVi+bT3jUYAupleK
-         ur5PBioCl8pOrWnNJ8cRo3cHYOcxgj6ytr8C2kVuxdkAR0gxsQyV9X7H3KnBYVcsRvbN
-         wpNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L2x6wvetmC+m3UtkL6g+zeogyV7VcFydZqaTYT0Kj0E=;
-        b=YhgP783HTPCHQVjBn7reyG4tO2fRe75GyCjkDfxgUe+BqCiUAwqD/YIO9ZaMmvWi04
-         oPAJJTeNKExy3t6HB1B1/rWfepBLva+QZHPOfMEJe1WRH9R2N+7m8PtTsUowUoLpDEoM
-         omt98qqD3qArqc68lKGEbwm4xbbajSt0jEVMVxiMWxaZz2sjcdGBJVQy88nNZN0yGH8a
-         zfawt20ZkJED1qCrQ0vmuggxaNofRZ3/wOATSBBkzJ9EZPkIV3Y6CYrxEGce8K8eR4pH
-         xlpM5b3Lw0dWwxWzyBTD8p4CVn7Z8PPqFZ9vt2nFiTnbGUswcwpk4Nx+MzO3VpjbYPwz
-         ohFw==
-X-Gm-Message-State: AOAM533alquNp21A+2DCW3CTHRowd/h4MaxUitDsscAaDj1+vrLASI5i
-        mz44t7m6u/AdNGVEOqpcmLZMyXLkHanbNBmWNhtTxA==
-X-Google-Smtp-Source: ABdhPJx/ilGFoEBONN+wOqzr/Rs2Jbpamch8GsxeU1GPLtfMrCOMPkXfFgX7Vkr74BvouHL25Sh1oxDmLMtRialHZx4=
-X-Received: by 2002:a17:906:38c8:: with SMTP id r8mr33459917ejd.172.1629681240780;
- Sun, 22 Aug 2021 18:14:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
- <CAHp75VcG9KajNpDbewDq7QzotB6t7MfwiGk15FaobX+cmMVSzg@mail.gmail.com>
- <CAK9rFnwrA=W2Vk5yFwG4N_WS=eBXXnhtexA+tqgAYb6xOAO4oQ@mail.gmail.com> <CAHp75VdfrJ3JV_gL3xCLHOiw6Tj-5Ep7z5JKWUFKFbUt8gobcw@mail.gmail.com>
-In-Reply-To: <CAHp75VdfrJ3JV_gL3xCLHOiw6Tj-5Ep7z5JKWUFKFbUt8gobcw@mail.gmail.com>
-From:   Brad Larson <brad@pensando.io>
-Date:   Sun, 22 Aug 2021 18:13:50 -0700
-Message-ID: <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+        id S234557AbhHWBO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Aug 2021 21:14:59 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:35850 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234399AbhHWBO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Aug 2021 21:14:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=wbnAYhyJCCQuqsnRX8KSLXK76ZWOG7IY6CLRzf1Po2Q=; b=tiPUNZsMUQZ4OP0ZbMfGArMxe1
+        gchNctkkyBaMZwvNDnNZZWxzQk39DUdfnuQ2IECyNi4kOJT2T2bTGXWimrgt55WcFpEJayDhnhDZV
+        +sZ1Oz73FocHoMk0qJwIAhKbjtyqC300H15jxG0eX/MZZCC4sbTpInXyIW+duu6XNeio=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mHyXN-003OwD-5x; Mon, 23 Aug 2021 03:14:05 +0200
+Date:   Mon, 23 Aug 2021 03:14:05 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
+Cc:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Rasmussen <MIR@bang-olufsen.dk>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 4/5] net: dsa: realtek-smi: add rtl8365mb
+ subdriver for RTL8365MB-VC
+Message-ID: <YSL2XcUmb7PO5H0y@lunn.ch>
+References: <20210822193145.1312668-1-alvin@pqrs.dk>
+ <20210822193145.1312668-5-alvin@pqrs.dk>
+ <YSLX7qhyZ4YGec83@lunn.ch>
+ <283675c4-90cf-6e5c-8178-5e3eba7592ba@bang-olufsen.dk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <283675c4-90cf-6e5c-8178-5e3eba7592ba@bang-olufsen.dk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+> Just to clarify, this means I should set the physical port number in the 
+> reg field of the device tree? i.e.:
+> 
+> 	port@4 {
+> 		reg = <6>; /* <--- instead of <4>? */
+> 		label = "cpu";
+> 		ethernet = <&fec1>;
+> 		phy-mode = "rgmii-id";
+> 		fixed-link {
+> 			speed = <1000>;
+> 			full-duplex;
+> 			pause;
+> 		};
+> 	};
 
-On Mon, Mar 29, 2021 at 3:40 AM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Mon, Mar 29, 2021 at 4:19 AM Brad Larson <brad@pensando.io> wrote:
-> > On Sun, Mar 7, 2021 at 11:21 AM Andy Shevchenko
-> > <andy.shevchenko@gmail.com> wrote:
-> > > On Thu, Mar 4, 2021 at 4:40 PM Brad Larson <brad@pensando.io> wrote:
->
-> ...
->
-> > > > +config GPIO_ELBA_SPICS
-> > > > +       bool "Pensando Elba SPI chip-select"
-> > >
-> > > Can't it be a module? Why?
-> >
-> > All Elba SoC based platforms require this driver to be built-in to boot and
-> > removing the module would result in a variety of exceptions/errors.
->
-> Needs to be at least in the commit message.
->
->
->
-> > > > +       depends on ARCH_PENSANDO_ELBA_SOC
-> > > > +       help
-> > > > +         Say yes here to support the Pensndo Elba SoC SPI chip-select driver
-> > >
-> > > Please give more explanation what it is and why users might need it,
-> > > and also tell users how the module will be named (if there is no
-> > > strong argument why it can't be a  module).
-> > >
-> > Fixed the typo.
->
-> Yeah, according to the above, you better elaborate what this module is
-> and why people would need it.
-> Also can be a good hint to add
-> default ARCH_MY_COOL_PLATFORM
+Yes, this is fine.
 
-Regarding the above module question and Kconfig definition, since I
-first looked at this and reviewed the comments I realized I should be
-using builtin.  The file gpio/Kconfig is currently this
+> >> +static int rtl8365mb_port_enable(struct dsa_switch *ds, int port,
+> >> +				 struct phy_device *phy)
+> >> +{
+> >> +	struct realtek_smi *smi = ds->priv;
+> >> +	int val;
+> >> +
+> >> +	if (dsa_is_user_port(ds, port)) {
+> >> +		/* Power up the internal PHY and restart autonegotiation */
+> >> +		val = rtl8365mb_phy_read(smi, port, MII_BMCR);
+> >> +		if (val < 0)
+> >> +			return val;
+> >> +
+> >> +		val &= ~BMCR_PDOWN;
+> >> +		val |= BMCR_ANRESTART;
+> >> +
+> >> +		return rtl8365mb_phy_write(smi, port, MII_BMCR, val);
+> >> +	}
+> > 
+> > There should not be any need to do this. phylib should do it. In
+> > generally, you should not need to touch any PHY registers, you just
+> > need to allow access to the PHY registers.
+> 
+> Will phylib also the opposite when the interface is administratively put 
+> down (e.g. ip link set dev swp2 down)? The switch doesn't seem to have 
+> any other handle for stopping the flow of packets from a port except to 
+> power down the internal PHY, hence why I put this in for port_disable. 
+> For port_enable I just did the opposite but I can see why it's not 
+> necessary.
 
-config GPIO_ELBA_SPICS
-        def_bool y
-        depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
+When the MAC and PHY are attached phy_attach_direct() gets called,
+which calls phy_resume(phydev); The generic implementation clears the
+BMCR_PDOWN bit.
 
-> ...
->
-> > > > +#include <linux/of.h>
-> > >
-> > > It's not used here, but you missed mod_devicetable.h.
-> >
-> > Removed <linux/of.h>.  There is no dependency on mod_devicetable.h.
->
-> What do you mean? You don't use data structures from that?
-> of_device_id or other ID structures are defined there. Your module
-> works without them?
->
-I typed the wrong filename.  I do still have <linux/of.h>
+phy_detach() will suspend the PHY, which sets the BMCR_PDOWN bit.
 
-> > > > +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > > +       p->base = devm_ioremap_resource(&pdev->dev, res);
-> > >
-> > > p->base = devm_platform_ioremap_resource(pdev, 0);
-> >
-> > Implementation follows devm_ioremap_resource() example in lib/devres.c.
->
-> So? How does this make it impossible to address my comment?
+But there are two different schemes for doing this.  Some MAC drivers
+connect the PHY during probe. Others do it at open. DSA does it at
+probe. So this is generic feature is not going to work for you. You
+might want to put some printk() in phy_suspend and phy_resume to check
+that.
 
-I was simply stating that I followed the recommended API per the
-source code although I don't recall if I was looking at 4.14, 5.10 or
-linux-next at the time.  Changed to using
-devm_platform_ioremap_resource().
+So, setting/clearing the PDOWN bit does seems reasonable. But please
+document in the functions why you are doing this. Also, don't restart
+autoneg. That really should be up to phylib, and it should be
+triggered by phylink_start() which should be called directly after
+port_enable().
 
-> > > > +       if (IS_ERR(p->base)) {
-> > >
-> > > > +               dev_err(&pdev->dev, "failed to remap I/O memory\n");
-> > >
-> > > Duplicate noisy message.
-> > >
-> > > > +               return PTR_ERR(p->base);
-> > > > +       }
-
-Yep, I've removed the extraneous log message.
-
-Regards,
-Brad
+	Andrew
