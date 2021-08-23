@@ -2,169 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B50643F4A59
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1323F4A71
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236719AbhHWMJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 08:09:35 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:26226 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236623AbhHWMJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 08:09:34 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20210823120850euoutp011b831d272a1d77938b8b3f50aaab234c~d7jAip_z71322413224euoutp01N
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 12:08:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20210823120850euoutp011b831d272a1d77938b8b3f50aaab234c~d7jAip_z71322413224euoutp01N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1629720530;
-        bh=pJfmX1Sm9JXU9J42wTwyNLfJJPgLGvYFX3GU9wt5Dg4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=YFkmRmS1y4ZnPWFLpVnJsy72C5lCQBJzLGfNeJVkol6iR6SE6fkp19G6G4o6l4mGs
-         NYu2zMAL2UXATNdoAIXGXa6X7eGYAcTagPEIdjBViseouQupbWMfD5kemx2Ul+CsIf
-         0pWz0lyorb6vRJUJMhoeiCQ1zrPWxvCzhb+zaeCM=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20210823120850eucas1p2b3a337e39360696e08827ad1ad02d47e~d7jATp0G62022220222eucas1p29;
-        Mon, 23 Aug 2021 12:08:50 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 77.54.56448.2DF83216; Mon, 23
-        Aug 2021 13:08:50 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20210823120849eucas1p11d3919886444358472be3edd1c662755~d7i-vN8cw1232312323eucas1p1e;
-        Mon, 23 Aug 2021 12:08:49 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210823120849eusmtrp1d7348b4da291ef7d77a1f7f7850283be~d7i-uU-SB1534715347eusmtrp1y;
-        Mon, 23 Aug 2021 12:08:49 +0000 (GMT)
-X-AuditID: cbfec7f5-d3bff7000002dc80-ae-61238fd21db6
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 76.75.20981.1DF83216; Mon, 23
-        Aug 2021 13:08:49 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20210823120849eusmtip17606a090bec84df892e21773f339aa9d~d7i-Dy6TU2428124281eusmtip1C;
-        Mon, 23 Aug 2021 12:08:49 +0000 (GMT)
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for
- "phy-handle" property
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
-Date:   Mon, 23 Aug 2021 14:08:48 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.13.0
+        id S236828AbhHWMP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 08:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55142 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236951AbhHWMPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 08:15:24 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE7DC0619FB
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:14:09 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id v19so12237796lfo.7
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:14:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eVtZNqos1Uj8nVU7A68cFH5SksBGPlDtgJ1wjTiX97U=;
+        b=RhqJDGeOtqUx7Razl8VfrpFJnXXewY+c6hqjK5nNkefvqqjvEaQoYZxF0bodUfAEuQ
+         RNYypGJdSGrTiAm07z/iI68GyQtYiGIsmq5DVyq+Yt/dRY8PsDOufqsZdOsHTKN96iYL
+         1NCvNjcs0Ws6E5UXLCj0RB9rI1YNhwb9TXNc4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eVtZNqos1Uj8nVU7A68cFH5SksBGPlDtgJ1wjTiX97U=;
+        b=txLOmDBSvpAqYYsBn6JQN2hW1a68yoUoQRF/UHndKqqlE0NSi1QmkJ2MTGALL5/ObR
+         OLUa9XkFPn+1KKWcvx3npgcH8DHa3ZCJxQjwIXK2hfgMWLl6pPNOo+9vnnBXxbqeUERM
+         oevQ2dfoCoIbuEEYRwBxMxlWyBnOk/vgxzWNDwIfuwiD0CdN/HNIlcb/4rQmVvtKrrP8
+         +L9rUPphD354cEvrst/TAAvK3+4RlLXRS2gseupJoxkFeMAS6w619hRZKhT4bWP+2PrF
+         ZPYLhMOkKwb56Yf09tWX2XcyP+QE9tqTVvhfQmRu5R+ugRbLSTSu13IiTgaA1SLPflIQ
+         lxxw==
+X-Gm-Message-State: AOAM532OSNVd0bEnuQDOb/p2s9VOvRdxK+xi1Q+YqZiTonenawj+8Waq
+        zE/s3Sa2iAAV7sn8oy5st3uQuvgNzS2VD18EwqHiaQ==
+X-Google-Smtp-Source: ABdhPJwrlfSQYMdqbYrEgwxn7wBOO+2G6mAsp2Jq0PdZ+FDkTRSbUkreb53Sw0fdjMpceYj13dgvGxu/2HRe+7mlXHQ=
+X-Received: by 2002:a05:6512:ac7:: with SMTP id n7mr25121383lfu.479.1629720847844;
+ Mon, 23 Aug 2021 05:14:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210818021717.3268255-1-saravanak@google.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOKsWRmVeSWpSXmKPExsWy7djP87qX+pUTDY5eELI4f/cQs8X8I+dY
-        LWa++c9msWO7iMWC2dwWl3fNYbM41BdtcWyBmEXr3iPsFl2H/rI5cHls272N1eP9jVZ2j52z
-        7rJ7LNhU6rFpVSebx+Yl9R47d3xm8vi8SS6AI4rLJiU1J7MstUjfLoEr48PM96wFswQq/mw5
-        ydjAuJW3i5GTQ0LAROLpqmb2LkYuDiGBFYwSey5NZYZwvjBKrFi9lAnC+cwoce5qIwtMy7+2
-        /awQieVAVVsvsEA4Hxkllr3Zyw5SJSwQKXF23142EFtEoFTi2e3DjCBFzAL3GCVm/dvKCpJg
-        EzCU6HrbBVbEK2AnsX3SKjCbRUBV4uqCl8wgtqhAssTEJ5NYIWoEJU7OfAJ2BqeAjURj8x2w
-        OLOAvMT2t3OYIWxxiVtP5oPdLSHQzCmx/PQdoAYOIMdF4mqLNMQLwhKvjm9hh7BlJE5P7mGB
-        qmeUeHhuLTuE08MocblpBiNElbXEnXO/2EAGMQtoSqzfpQ8RdpT43f6YFWI+n8SNt4IQN/BJ
-        TNo2nRkizCvR0SYEUa0mMev4Ori1By9cYp7AqDQLyWezkHwzC8k3sxD2LmBkWcUonlpanJue
-        Wmycl1quV5yYW1yal66XnJ+7iRGYtk7/O/51B+OKVx/1DjEycTAeYpTgYFYS4f3LpJwoxJuS
-        WFmVWpQfX1Sak1p8iFGag0VJnHfX1jXxQgLpiSWp2ampBalFMFkmDk6pBqbAzLPzT1lNfnRj
-        yl8+60OrD2u94Sg+5+xy8ch/zvNy8xWeqARnXl59qmVDgpaI6OXCl/9sWlm/3/WVmLb02sGW
-        583XcqUNhW6u0+yu6H33ptnO09fhX2HtlCsfbD9c2Hywb2qbpYx076nkc8fDj39Y2WLXlP9p
-        cUjQRIbtlbeUlsgxFShntAasYX2ZVysxf52zNneD/6ejfUwP0nZpal570jWrvF/V+u3rL+/n
-        b2ZZ9HbWphp/qcY7vRt2P/bXn3G6Z0LlZvu1p9k3G93Y18JzfMbuQusr31UfqxycsPZ90Euu
-        bfI3yqS0Ko4uO/Di6pVPQg/M5fs9M7Z9V9bv9Z50c3HFrU+fN9xWiv9d/5tJSomlOCPRUIu5
-        qDgRAOIrzXvKAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBIsWRmVeSWpSXmKPExsVy+t/xu7oX+5UTDdbf17Y4f/cQs8X8I+dY
-        LWa++c9msWO7iMWC2dwWl3fNYbM41BdtcWyBmEXr3iPsFl2H/rI5cHls272N1eP9jVZ2j52z
-        7rJ7LNhU6rFpVSebx+Yl9R47d3xm8vi8SS6AI0rPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jE
-        Us/Q2DzWyshUSd/OJiU1J7MstUjfLkEv48PM96wFswQq/mw5ydjAuJW3i5GTQ0LAROJf235W
-        EFtIYCmjxNMV/BBxGYmT0xpYIWxhiT/Xuti6GLmAat4zSizb1skEkhAWiJT4/uwkI4gtIlAq
-        sePAT3aQImaBe4wSp25cYoKYai0xf8ZuFhCbTcBQoustyCRODl4BO4ntk1aB2SwCqhJXF7xk
-        BrFFBZIlPpxeygpRIyhxcuYTsF5OARuJxuY7YHFmATOJeZsfMkPY8hLb386BssUlbj2ZzzSB
-        UWgWkvZZSFpmIWmZhaRlASPLKkaR1NLi3PTcYiO94sTc4tK8dL3k/NxNjMAo3Xbs55YdjCtf
-        fdQ7xMjEwXiIUYKDWUmE9y+TcqIQb0piZVVqUX58UWlOavEhRlOgfyYyS4km5wPTRF5JvKGZ
-        gamhiZmlgamlmbGSOK/JkTXxQgLpiSWp2ampBalFMH1MHJxSDUzxd96FSHzwOnXlOk8nz7Fr
-        pnmzwh7M9p18dkmThjfn/oq+83ziz0TLZu44mZN7d57B1etx652KmN4+/LzqwH5rrhk7Dh7d
-        sOPK283m+dalsk/yAr/NvFtzueNmaO0Ml5I0xmlJFbMPrU2zEfetqd5V4Z7/znJ5uSJDWf1H
-        LWu1LTXCPz49P+LOanXjAqNtRtNXVfMNT72cXtZOiF91aOGlug+b7+0TN/4xz+LNqv2+5q9S
-        ed/POZ4SqqLg8PCp9pW/SpInnr3cWj4p5emBci6OTW/MGGYnPm1OfXtCOvvbjdYLT36Zvn1x
-        TsRzzf8JbX73fxlHa+xZnHe4ddUaB33TWufptiZG7x9Lz3F6ueXlfyWW4oxEQy3mouJEALpD
-        UjtbAwAA
-X-CMS-MailID: 20210823120849eucas1p11d3919886444358472be3edd1c662755
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210823120849eucas1p11d3919886444358472be3edd1c662755
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210823120849eucas1p11d3919886444358472be3edd1c662755
-References: <20210818021717.3268255-1-saravanak@google.com>
-        <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
+References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-12-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210820111504.350-12-chun-jie.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 23 Aug 2021 20:13:56 +0800
+Message-ID: <CAGXv+5EMoZq8BohUA_OoChmEdHL988pphxUJX077hO88htRUtA@mail.gmail.com>
+Subject: Re: [v2 11/24] clk: mediatek: Add MT8195 ccusys clock support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 18.08.2021 04:17, Saravana Kannan wrote:
-> Allows tracking dependencies between Ethernet PHYs and their consumers.
+On Fri, Aug 20, 2021 at 7:23 PM Chun-Jie Chen
+<chun-jie.chen@mediatek.com> wrote:
 >
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: netdev@vger.kernel.org
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Add MT8195 ccusys clock controller which provides clock gate
+> control in Camera Computing Unit.
 
-This patch landed recently in linux-next as commit cf4b94c8530d ("of: 
-property: fw_devlink: Add support for "phy-handle" property"). It breaks 
-ethernet operation on my Amlogic-based ARM64 boards: Odroid C4 
-(arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts) and N2 
-(meson-g12b-odroid-n2.dts) as well as Khadas VIM3/VIM3l 
-(meson-g12b-a311d-khadas-vim3.dts and meson-sm1-khadas-vim3l.dts).
+Could you offer a bit more explanation about this unit? Is it an ISP?
+Or some other function that does computation on images?
 
-In case of OdroidC4 I see the following entries in the 
-/sys/kernel/debug/devices_deferred:
-
-ff64c000.mdio-multiplexer
-ff3f0000.ethernet
-
-Let me know if there is anything I can check to help debugging this issue.
-
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 > ---
-> v1 -> v2:
-> - Fixed patch to address my misunderstanding of how PHYs get
->    initialized.
+>  drivers/clk/mediatek/Makefile         |  3 +-
+>  drivers/clk/mediatek/clk-mt8195-ccu.c | 50 +++++++++++++++++++++++++++
+>  2 files changed, 52 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8195-ccu.c
 >
->   drivers/of/property.c | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 931340329414..0c0dc2e369c0 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1291,6 +1291,7 @@ DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
->   DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
->   DEFINE_SIMPLE_PROP(leds, "leds", NULL)
->   DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
-> +DEFINE_SIMPLE_PROP(phy_handle, "phy-handle", NULL)
->   DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
->   DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
->   
-> @@ -1379,6 +1380,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
->   	{ .parse_prop = parse_resets, },
->   	{ .parse_prop = parse_leds, },
->   	{ .parse_prop = parse_backlight, },
-> +	{ .parse_prop = parse_phy_handle, },
->   	{ .parse_prop = parse_gpio_compat, },
->   	{ .parse_prop = parse_interrupts, },
->   	{ .parse_prop = parse_regulators, },
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index 718bbb04191b..03fb020834f3 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -80,6 +80,7 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-mt8192-msdc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
+> -obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-mt8195-cam.o
+> +obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-mt8195-cam.o \
+> +                                       clk-mt8195-ccu.o
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+When wrapping, please align with previous line. "clk-mt8195-ccu.o" should
+align with "clk-mt8195-apmixedsys.o".
 
+
+ChenYu
