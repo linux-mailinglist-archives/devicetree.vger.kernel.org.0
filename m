@@ -2,165 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E213D3F474A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 830133F4750
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235762AbhHWJWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 05:22:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229967AbhHWJWq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:22:46 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEED9C061757
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 02:22:03 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id u22so36517801lfq.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 02:22:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2+DCF0QhaWRzk8EBok5WHzptu4bm9hyUmXTl5rTjDN4=;
-        b=Gfinkx+aU5xV0QUh6Q8ESgjgDLwMNCjzU7N9LE0J+Q3ockZDdHegqJ4joob2fdYOb2
-         qL76p8LbsKJvVy6Y4LBNHVcVZGu8UcMpKBjsM8yRzCgI2sF2sKWDXuwmf88SSeMLcYDP
-         VscaE3eYGJ/BGm+OefggTSvdLngVgJq6/2IS0=
+        id S231444AbhHWJXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 05:23:31 -0400
+Received: from mail-vs1-f44.google.com ([209.85.217.44]:47095 "EHLO
+        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231258AbhHWJXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:23:31 -0400
+Received: by mail-vs1-f44.google.com with SMTP id f13so10610108vsl.13;
+        Mon, 23 Aug 2021 02:22:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2+DCF0QhaWRzk8EBok5WHzptu4bm9hyUmXTl5rTjDN4=;
-        b=lr+Lezf40og6963gj6a/7DbphVawRZX2Rr6txFzmYxFAVT0lsWeHKqO/ifAJpnsp0Z
-         yudSzkh7CC5qlkfYK46xOyXW1GiUkdKrjZ8IewINXQ6w276GOTdYDOVdi9rUIWPQ/qfk
-         ffFKGbRK2yX/KtOItUwPCKNsTTSZ2OrSDaBFDQa7tvgHrXhotkM3Aw6dB0f9oDgPVrDM
-         46Z6EH0ES4qCRUUkXPRjJ96LDuFh6Yt3UamJWiZ9FvqObd0wtmmb5gBNWpbLMFuAj30J
-         7WMYlwzBWUqMCccYcNF6blxYKnKLZuFSkXBIi11vV+q/t15RiTmsy2NQ9RqIRggr85H2
-         mKxQ==
-X-Gm-Message-State: AOAM5302xJcOJzFD2MZScXZfTkbecFwbXUar9YMh9ZBKDkSpZD58/qYN
-        DcK/0//0XcF5B0dvwV9GsYSVAkr3yQKEUOakUT2bKA==
-X-Google-Smtp-Source: ABdhPJxPsFJw/b7ioRTc/3MTl9OvvjMlHdGDY9j9HIjziEvQfETvT0xku/Ri9Tv+bLyJm99FfIXDXZlidcGyqR5heuc=
-X-Received: by 2002:ac2:4116:: with SMTP id b22mr24879487lfi.587.1629710522138;
- Mon, 23 Aug 2021 02:22:02 -0700 (PDT)
+        bh=Gt+eojLYgADvAa13MxSZYGtUVyb5L5ebuzo5ONxZgrI=;
+        b=BnmQ1yr/AnjAJB0x3XpXN9UZ36Onkk+a6DJE3xEBI2elkbOqtGiiI3OAmdGmQAozD1
+         KUbyJIK3HmQGFmFVVcH4ok0FBRIlTM/Oume5ShU1ObcpfprAR+iiSD3aX5awwGPDnc+L
+         D8PN4zJXEi5SMa7nyBlz6IRfNJiR51P5YekqfdzcYJN5gXU8i+jJk9+PxWtXrZDLCANq
+         fEVrLn5qTnl01WWERhBA0wj5dLzAQLaG8Lg1U1dHK1kgQ0C3RJjojBhfehqH5TrD00ss
+         qmpQDmVabFlnsFIz2xQ5U+YiIAeTFTgbhAvD02y8OQiCIcTQZctk1ALdN0/DRHQy0+dA
+         9ARQ==
+X-Gm-Message-State: AOAM530hqRcr2TA1h9T/nl30QRqmidb/7Jm9tHg7YB4TA0QLK8Q1nQAk
+        oqP0inDWFWqHJwwHqg8BP2TXN307TDovR9E4Ns4=
+X-Google-Smtp-Source: ABdhPJz28fxMG9kfJf8GETxTvqUtwihBTWhZXmcu12UH1nD6e1mE1lJ+gKdP0AYCAbP1FuvP0Zlts11yKSODJ4rQIdU=
+X-Received: by 2002:a67:cb0a:: with SMTP id b10mr22882432vsl.9.1629710568318;
+ Mon, 23 Aug 2021 02:22:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-7-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210820111504.350-7-chun-jie.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 23 Aug 2021 17:21:50 +0800
-Message-ID: <CAGXv+5FVGQkR=OpyBA7rjE0sLLqVoTpgHJuG8YDaCnWFCdDM8A@mail.gmail.com>
-Subject: Re: [v2 06/24] clk: mediatek: Add MT8195 apmixedsys clock support
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
+References: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
+ <20210812151808.7916-4-biju.das.jz@bp.renesas.com> <2f5f8999-260d-e9c0-731e-df644b528b61@gmail.com>
+ <OS0PR01MB59221C4884E0667F75748A1686F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <OS0PR01MB5922205202921BA8EC12C26686FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <05bdd9e8-e68f-c8b4-a7d9-a83f2ca97a58@omp.ru>
+In-Reply-To: <05bdd9e8-e68f-c8b4-a7d9-a83f2ca97a58@omp.ru>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 23 Aug 2021 11:22:36 +0200
+Message-ID: <CAMuHMdVAMX7-SwguMZHJGua1h-Kp5KGw4u0GEeZ7eByccdxYQw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] arm64: dts: renesas: r9a07g044: Add USB2.0 device support
+To:     Sergey Shtylyov <s.shtylyov@omp.ru>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 7:20 PM Chun-Jie Chen
-<chun-jie.chen@mediatek.com> wrote:
+Hi Sergey,
+
+On Tue, Aug 17, 2021 at 6:41 PM Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
+> On 8/17/21 2:12 PM, Biju Das wrote:
+> [...]
+> >>>> Add USB2.0 device support to RZ/G2L SoC DT.
+> >>>>
+> >>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >>>> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >>> [...]
+> >>>> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> >>> b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> >>>> index de78c921af22..2f313c2a81c7 100644
+> >>>> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+> >>>> @@ -391,6 +391,25 @@
+> >>>>                    power-domains = <&cpg>;
+> >>>>                    status = "disabled";
+> >>>>            };
+> >>>> +
+> >>>> +          hsusb: usb@11c60000 {
+> >>>> +                  compatible = "renesas,usbhs-r9a07g044",
+> >>>> +                               "renesas,rza2-usbhs";
+> >>>> +                  reg = <0 0x11c60000 0 0x10000>;
+> >>>> +                  interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
+> >>>> +                               <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+> >>>> +                               <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+> >>>> +                               <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> >>>
+> >>>    Don't we need to specify "interrupt-names" when there a more than 1
+> >>> interrupts?
+> >>
+> >> This dtsi changes, as per binding documentation [1]. As you see,
+> >> "interrupt-names" is optional.
+> >
+> > For now I will go with current dt changes.
+> >
+> > Later  I will create incremental patches for dt-binding with optional "interrupt-names",
+> > "clock-names" and "reset names" for all the SoC's supported by this binding doc.
+> >
+> > After that, will send an incremental patch with adding optional properties in all SoC dtsi.
+> >
+> > Does it make sense?
 >
-> Add MT8195 apmixedsys clock controller which provides Plls
-> generated from SoC 26m and ssusb clock gate control.
->
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> ---
->  drivers/clk/mediatek/Kconfig                 |   8 +
->  drivers/clk/mediatek/Makefile                |   1 +
->  drivers/clk/mediatek/clk-mt8195-apmixedsys.c | 145 +++++++++++++++++++
->  3 files changed, 154 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt8195-apmixedsys.c
->
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index 576babd86f98..7ba1f4118e0d 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -580,6 +580,14 @@ config COMMON_CLK_MT8192_VENCSYS
->         help
->           This driver supports MediaTek MT8192 vencsys clocks.
->
-> +config COMMON_CLK_MT8195
-> +        bool "Clock driver for MediaTek MT8195"
-> +        depends on ARM64 || COMPILE_TEST
-> +        select COMMON_CLK_MEDIATEK
-> +        default ARM64
-> +        help
-> +          This driver supports MediaTek MT8195 basic clocks.
+>    I had the impression that the "*-names" prop was mandatory for a "*" prop having 2 values or mores.
+> If it's now allowed to be optional, don't bother with that at all.
 
-Since we will have all clocks under the same Kconfig option, please
-drop the word "basic".
+There's a difference between "mandatory according to good DT
+binding design" and "mandatory according to the actual json-schema
+DT bindings".  For now the tools only enforce the latter...
 
-> +
->  config COMMON_CLK_MT8516
->         bool "Clock driver for MediaTek MT8516"
->         depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index 15bc045f0b71..d4157cfca865 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -80,5 +80,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-mt8192-msdc.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
-> +obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o
->  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
->  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-> diff --git a/drivers/clk/mediatek/clk-mt8195-apmixedsys.c b/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
-> new file mode 100644
-> index 000000000000..253eb30b22d4
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
-> @@ -0,0 +1,145 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +//
-> +// Copyright (c) 2021 MediaTek Inc.
-> +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +#include "clk-gate.h"
-> +#include "clk-mtk.h"
-> +
-> +#include <dt-bindings/clock/mt8195-clk.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +
-> +static const struct mtk_gate_regs apmixed_cg_regs = {
-> +       .set_ofs = 0x8,
-> +       .clr_ofs = 0x8,
-> +       .sta_ofs = 0x8,
-> +};
-> +
-> +#define GATE_APMIXED(_id, _name, _parent, _shift)                      \
-> +       GATE_MTK(_id, _name, _parent, &apmixed_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr_inv)
-> +
-> +static const struct mtk_gate apmixed_clks[] = {
-> +       GATE_APMIXED(CLK_APMIXED_PLL_SSUSB26M, "pll_ssusb26m", "clk26m", 1),
-> +};
-> +
-> +#define MT8195_PLL_FMAX                (3800UL * MHZ)
-> +#define MT8195_PLL_FMIN                (1500UL * MHZ)
-> +#define MT8195_INTEGER_BITS    8
-> +
-> +#define PLL(_id, _name, _reg, _pwr_reg, _en_mask, _flags,              \
-> +                       _rst_bar_mask, _pcwbits, _pd_reg, _pd_shift,    \
-> +                       _tuner_reg, _tuner_en_reg, _tuner_en_bit,       \
-> +                       _pcw_reg, _pcw_shift, _pcw_chg_reg,             \
-> +                       _en_reg, _pll_en_bit) {                         \
+Gr{oetje,eeting}s,
 
-Nit: Even for macro definitions, you could align the lines to the opening
-parenthesis. That would give you more room. And it would make it slightly
-easier to read.
+                        Geert
 
-Otherwise,
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
-[...]
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
