@@ -2,104 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADB13F4F4F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 19:16:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50FF63F4F98
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 19:36:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231432AbhHWRRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 13:17:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40780 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232060AbhHWRRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 13:17:08 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EFDC061757;
-        Mon, 23 Aug 2021 10:16:25 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id v20-20020a1cf714000000b002e71f4d2026so330307wmh.1;
-        Mon, 23 Aug 2021 10:16:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hxfU4hWH4ciaa87KiutkqT0bdAg+UYy0+Bwkt7eXstw=;
-        b=DQE1rq5GI4duIJUWfHtryvxhKChz+3QryiGactvg2cIKNx15DUwvyFbBDVfkrwRqUw
-         aM3Zyxzsb7VeEiSpxV5RVa0Kh7hrkRV9k0ALfQSv+4IWETaamKl9gwMY6mVC9RKd42Mr
-         KjvN7NXAoZQNV/w8b40pHb9SCpy5zD1IFYguD4rOo2x3Km58NVhDYr7kehpmxeCI7c/O
-         PMzgN+8L3oRSeyTOpyjUZHrHN0Wp3jFqX1oujMQxVquK4uAA/VgL87JkUaewrZbiym1I
-         XZBnOjmDBXHy5B0p3yvv46Q9YuVFdKqNalssNVuXWYgQdzcJ3+84Cv3nkfDIRU7doTf2
-         fmnQ==
+        id S231652AbhHWRhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 13:37:02 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:33668 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231616AbhHWRhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 13:37:01 -0400
+Received: by mail-ot1-f53.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so38470823oti.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 10:36:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hxfU4hWH4ciaa87KiutkqT0bdAg+UYy0+Bwkt7eXstw=;
-        b=lycJgF48YsvixPoR7cQo8lqmqf9HVK0E3MGVjypPPueVxHnzGuv4Fr1Qvme/uRAyfd
-         mq6LrFIbJ9k0p2SMfRQ+cdFMK8n0ahwAb9WyrmMWNbcuGHPpUvQ19tvhUfzenD8OS0P4
-         V23gXofAw/Hnj4LrqT2ePPqOyohDpYb/NR9npVT/8dHVnDhpQni/1J+OP0WHbx2kdkse
-         ZdSpm0ax4jsQM7wSNoXKzIUT6fIBwkDnUsRFWxYN5dzLySCntFeX0Nt/u2U5Kn1WFNDN
-         kkPJVvzzuMtBUrRXI5+VPkS7dk+WSkP2n26PM3/1BymlJI+Gu9yPau5dE0NmVbGJ80H2
-         Ogsg==
-X-Gm-Message-State: AOAM532U8ti67UgHfm3gmFO6GrNwn/vTDeeVbQ4zyHTopghqdYd4MMOz
-        37Ps8ocVTjPbzWHrPqP1iso=
-X-Google-Smtp-Source: ABdhPJyaBw8itjnEkV5Aq7qtJ2SkPIx3F7l1lqtxafvtQhPgSwh3eIDXaSbpzuadoGHj6Xg/HDQa0w==
-X-Received: by 2002:a7b:c442:: with SMTP id l2mr17567600wmi.131.1629738983809;
-        Mon, 23 Aug 2021 10:16:23 -0700 (PDT)
-Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
-        by smtp.gmail.com with ESMTPSA id d4sm15854207wrz.35.2021.08.23.10.16.23
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0uu/qRmiaveg5OXmKGJu7wUbjS4DkO9J3oLG/+RhLjo=;
+        b=TxhOrNlnQAC/rY3rhe2ypdmdE1bgWXSAIf4RAZtg6tAm5RiQlRGn9Kn9bB4Gvjt0oj
+         U2pt9qAAY0bh4YwxWykwffGn5L1qfa80DE1CZN2GHR7RmU14PI/WGK+IQdni8mYJ6tVL
+         sxKiM90PvzJxPgwnMFn7OWl0SrgS3gpzB30G9RnmPAkkbBuklFY0+FtzkGhZohUk6Bid
+         uTVuy46ry0lFnIz2cAfXXIV4YtR1dKkEdO8NauEqiMpJJfUyfGzRa79xIoZMU8nQ4c2p
+         cs6kb1zWmtyBucPJe8cSvRm3altXYqZPBBv1XZOxkcClA6RnT1FRSrmjZ5xRt5G/3hJS
+         D9zw==
+X-Gm-Message-State: AOAM531aGib/9qTN8Gyq+OFMIGhKgYvjvKTRIeQdQ87XJf6RxlRZ9+b2
+        ONTbyc5d1yHVMsDIO9An8w==
+X-Google-Smtp-Source: ABdhPJzxNu7vQjCCQQ+lFTIt44LyottIgRBnx8/87Z4bi0rH3Du9CTiqIdTchQRYLX9R+i2P7dkMCw==
+X-Received: by 2002:a9d:7dd4:: with SMTP id k20mr27971832otn.68.1629740178875;
+        Mon, 23 Aug 2021 10:36:18 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id i9sm3895014otp.18.2021.08.23.10.36.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 10:16:23 -0700 (PDT)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 3/3] ARM: dts: mstar: Add rtc device node
-Date:   Mon, 23 Aug 2021 19:16:13 +0200
-Message-Id: <20210823171613.18941-4-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210823171613.18941-1-romain.perier@gmail.com>
-References: <20210823171613.18941-1-romain.perier@gmail.com>
+        Mon, 23 Aug 2021 10:36:18 -0700 (PDT)
+Received: (nullmailer pid 2390403 invoked by uid 1000);
+        Mon, 23 Aug 2021 17:36:17 -0000
+Date:   Mon, 23 Aug 2021 12:36:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     broonie@kernel.org, heiko@sntech.de,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH 15/15] ASoC: dt-bindings: rockchip: i2s: Document
+ property 'clk-trcm'
+Message-ID: <YSPckWacS4kk270r@robh.at.kernel.org>
+References: <1629715710-21137-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629716132-21544-1-git-send-email-sugar.zhang@rock-chips.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1629716132-21544-1-git-send-email-sugar.zhang@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the definition of the rtc device node. The RTC being able to
-work with the oscillator at 12Mhz for now, it shares the same xtal than
-the watchdog.
+On Mon, Aug 23, 2021 at 06:55:32PM +0800, Sugar Zhang wrote:
+> This patch documents property 'rockchip,clk-trcm' which is used
+> to specify the lrck.
+> 
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Change-Id: I648142c57c568bbed209f2b9188b1f539a3285b2
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
----
- arch/arm/boot/dts/mstar-v7.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Drop this.
 
-diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-index 982dba9d28eb..89ebfe4f29da 100644
---- a/arch/arm/boot/dts/mstar-v7.dtsi
-+++ b/arch/arm/boot/dts/mstar-v7.dtsi
-@@ -110,12 +110,20 @@ reboot {
- 				mask = <0x79>;
- 			};
- 
-+			rtc@2400 {
-+				compatible = "mstar,msc313-rtc";
-+				reg = <0x2400 0x40>;
-+				clocks = <&xtal_div2>;
-+				interrupts-extended = <&intc_irq GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
- 			watchdog@6000 {
- 				compatible = "mstar,msc313e-wdt";
- 				reg = <0x6000 0x1f>;
- 				clocks = <&xtal_div2>;
- 			};
- 
-+
- 			intc_fiq: interrupt-controller@201310 {
- 				compatible = "mstar,mst-intc";
- 				reg = <0x201310 0x40>;
--- 
-2.30.2
+> ---
+>  Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+> index 11e911a..8d9dfed 100644
+> --- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+> @@ -72,6 +72,15 @@ properties:
+>    resets:
+>      maxItems: 2
+>  
+> +  rockchip,clk-trcm:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +    description:
+> +      tx and rx lrck/bclk common use.
+> +      0: both tx_lrck/bclk and rx_lrck/bclk are used
+> +      1: only tx_lrck/bclk is used
+> +      2: only rx_lrck/bclk is used
 
+Sounds like constraints. Make a schema.
+
+> +
+>    rockchip,capture-channels:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      default: 2
+> -- 
+> 2.7.4
+> 
+> 
+> 
+> 
