@@ -2,96 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D64A3F49A8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 13:23:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C52B63F49AE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 13:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236465AbhHWLXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 07:23:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43364 "EHLO
+        id S235855AbhHWLYY convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 23 Aug 2021 07:24:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236598AbhHWLXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 07:23:34 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20ADCC0613CF
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 04:22:52 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id u22so37151784lfq.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 04:22:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ELGM60ioRNSpEBzYZwyHjOCmGIGPOYG6GuLk6IRUkX8=;
-        b=Zltmc5NLRVbIQ8NyRHU2exemKEv33SP1S6SB4IcnWOtnDM5jBR+Kaq6FJ37spEGpU4
-         9xILArIF32MOXrRQA6vRU4rd+wWWbkLgyQbBgKSAImUFGA3B3/zXzkBY3uncPeM8kSFB
-         FzQk8innsUI2hULjvtCr50zg667kzG2noY9gI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ELGM60ioRNSpEBzYZwyHjOCmGIGPOYG6GuLk6IRUkX8=;
-        b=sAAj1Ik9zC5t5H7B/lJnLxqB618iPt1eGU4yXiA8LM4PZZGxDUrQZhh8QZyKcd2XiL
-         +qa870M+FqV3/TMa7nmhXPuwimeQrTp+v6xYtkObsZAG1o9F+4qVv464UnOy9nH/d4V8
-         o5mV+NSAZR6YaporaunAB0o7I7tU80ke4lil7N/34Ugx4U3rlJqDLwx6JBr4UeI9mQug
-         GWMFdEMu04DaNyJ5wGevijFdPmscX4NWT/DPltPU5XA82To4eoFyyRy0CczhWWUsJGuo
-         CT7wAY+FnWUz0G37Gy3rufzjFFXNf3+0SQ7W/LUrMcOd973YP1f/XXh0zKpf0My9rwxJ
-         hGmg==
-X-Gm-Message-State: AOAM533SqBAVUTEgMlmh7zUewoHrbjpZthizxQNdXw0ZQKC03wtc62Xd
-        gbQ4Q3jCkfWfp2cC8qlWXxFkpR6mfez1LgImSnbmAA==
-X-Google-Smtp-Source: ABdhPJwP9D31B1uYiBuq2tMnF2HScsZGxvRJlqQkq5AEq3DdOVXuXbdYvtGrLT0w0XdcfiX69R1/S0lj0GEqrYmeyrU=
-X-Received: by 2002:a19:ca09:: with SMTP id a9mr9039073lfg.342.1629717770496;
- Mon, 23 Aug 2021 04:22:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-9-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210820111504.350-9-chun-jie.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 23 Aug 2021 19:22:39 +0800
-Message-ID: <CAGXv+5GqELj5QEx7bCvyMkKdjG5jOFziefA4pHZGqiZgHR58BQ@mail.gmail.com>
-Subject: Re: [v2 08/24] clk: mediatek: Add MT8195 peripheral clock support
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+        with ESMTP id S235405AbhHWLYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 07:24:24 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D632EC061575
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 04:23:41 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mI83C-0006WW-6T; Mon, 23 Aug 2021 13:23:34 +0200
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mI83B-0006gU-MT; Mon, 23 Aug 2021 13:23:33 +0200
+Message-ID: <197a021684ea01ba50b3ab86f71525878042a8ee.camel@pengutronix.de>
+Subject: Re: [PATCH v2 9/9] clk: imx: Add the pcc reset controller support
+ on imx8ulp
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Jacky Bai <ping.bai@nxp.com>, shawnguo@kernel.org,
+        robh+dt@kernel.org, abel.vesa@nxp.com, sboyd@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org
+Date:   Mon, 23 Aug 2021 13:23:33 +0200
+In-Reply-To: <20210810062820.1062884-10-ping.bai@nxp.com>
+References: <20210810062820.1062884-1-ping.bai@nxp.com>
+         <20210810062820.1062884-10-ping.bai@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 7:20 PM Chun-Jie Chen
-<chun-jie.chen@mediatek.com> wrote:
->
-> Add MT8195 peripheral clock controller which provides clock
-> gate control for ethernet/flashif/pcie/ssusb.
->
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Hi Jacky,
+
+On Tue, 2021-08-10 at 14:28 +0800, Jacky Bai wrote:
+> On i.MX8ULP, for some of the PCCs, it has a peripheral SW RST bit
+> resides in the same registers as the clock controller. So add this
+> SW RST controller support alongs with the pcc clock initialization.
+> 
+> the reset and clock shared the same register, to avoid  accessing
+> the same register by reset control and clock control concurrently,
+> locking is necessary, so reuse the imx_ccm_lock spinlock to simplify
+> the code.
+> 
+> Suggested-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 > ---
->  drivers/clk/mediatek/Makefile             |  2 +-
->  drivers/clk/mediatek/clk-mt8195-peri_ao.c | 62 +++++++++++++++++++++++
->  2 files changed, 63 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/mediatek/clk-mt8195-peri_ao.c
->
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index a142342a0cea..d5ee396dcded 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -80,6 +80,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-mt8192-msdc.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
->  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
-> -obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o
-> +obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o clk-mt8195-peri_ao.o
+>   v2 changes:
+>     - add 'Suggested-by' as suggested by Victor Liu
+> ---
+>  drivers/clk/imx/Kconfig              |   1 +
+>  drivers/clk/imx/clk-composite-7ulp.c |  10 +++
+>  drivers/clk/imx/clk-imx8ulp.c        | 115 ++++++++++++++++++++++++++-
+>  3 files changed, 123 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
+> index b81d6437ed95..0d1e3a6ac32a 100644
+> --- a/drivers/clk/imx/Kconfig
+> +++ b/drivers/clk/imx/Kconfig
+> @@ -102,5 +102,6 @@ config CLK_IMX8QXP
+>  config CLK_IMX8ULP
+>  	tristate "IMX8ULP CCM Clock Driver"
+>  	depends on ARCH_MXC || COMPILE_TEST
+> +	select RESET_CONTROLLER
 
-This line is getting too long. Please wrap it to within 100 characters.
+This shouldn't be required anymore, devm_reset_controller_register() has
+a stub since commit 48a74b1147f7 ("reset: Add compile-test stubs").
 
-Otherwise,
+[...]
+> diff --git a/drivers/clk/imx/clk-imx8ulp.c b/drivers/clk/imx/clk-imx8ulp.c
+> index 6aad04114658..ea596cd6855a 100644
+> --- a/drivers/clk/imx/clk-imx8ulp.c
+> +++ b/drivers/clk/imx/clk-imx8ulp.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+>  #include <linux/slab.h>
+>  
+>  #include "clk.h"
+> @@ -48,6 +49,98 @@ static const char * const nic_per_divplat[] = { "nic_per_divplat" };
+>  static const char * const lpav_axi_div[] = { "lpav_axi_div" };
+>  static const char * const lpav_bus_div[] = { "lpav_bus_div" };
+>  
+> +struct pcc_reset_dev {
+> +	void __iomem *base;
+> +	struct reset_controller_dev rcdev;
+> +	const u32 *resets;
+> +	spinlock_t *lock;
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+I'd add a comment to this lock, stating that it is set to imx_ccm_lock
+and protects access to registers shared with clock control.
+
+With these addressed,
+
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
