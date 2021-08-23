@@ -2,80 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D20473F4B14
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4116A3F4B15
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:48:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235979AbhHWMs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 08:48:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35086 "EHLO
+        id S236050AbhHWMtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 08:49:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235738AbhHWMs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 08:48:57 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B4CC061575
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:48:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id g13so37616474lfj.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:48:14 -0700 (PDT)
+        with ESMTP id S235954AbhHWMtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 08:49:21 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 543A4C061575
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:48:38 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id f2so31332560ljn.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 05:48:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=RiAjPakc25K2XRVgLRmfqleb+V4f5pHUi/CDXsGfvAU=;
-        b=hPRtcyjVUr+92XoYMpZlM05sG2YUkFhYn9dBTWDlUM+xgVHj1ghnBHOnvpXj+bjOoV
-         6WmihvVl4kFQY26LEn6ejYt932oSBNBYoCaEvwt/FpZxJZVbm8eaXJ4ZZ9iCOpzsQGIy
-         GyP3iN67p9sYQxjaXgWfVWigVJ63Kh2gMFnPCMxCzQhYvAkGbJbruuUVzjuurY+ZRReb
-         fMSnK/dA9F6IqTwH69EWtD/hJ/Cvr3PGAQa81Q7LxJBxoPBUQGs7/7M7p53+cYEtB7pM
-         Djv4s7me6mGMTAG7zD7R+OvgVM7BEOvwPRXAcwE2AifKYCM6XqTlQtyO4cy/cjCbMUIF
-         JVeQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jW88Mmr9kKDSsQvXNUmfFT239ViVAMgYapLhyDQd6No=;
+        b=jrcE9KAVRTDTCyaS7h3RvPgbiT1PjcDchBYeawJaqWt4FU+7CQhua86DdX45l9VL82
+         aAmXjPTB1MJySt1b7k0J68jdTSMw8ar/eQf6gtNlcknCNDhTgTFHu1cHjqxzhXpVYFIJ
+         Q2NvBezkST/1wLHB79f4zjGRQKIfGVGBQhX4w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=RiAjPakc25K2XRVgLRmfqleb+V4f5pHUi/CDXsGfvAU=;
-        b=ags7mcJ5Lzk6fsb7hPjabU6if7uxH6FCHsUJxAxS1vuSIrC1AXBbCn/QvLULf0qXM0
-         xbxjGxuzFpy5yel1vSkyvYrdpkyLrgOZIt++6/A9IYoMwji4Y83p7J1V9nehbIvfXaLF
-         46c/5JrK3sEJHI4E/+q1PQyPx3LOhXD1U5e3ZcuRyIxNQcI14Sd1uILv3JVXpgcInaDw
-         gy1XfHuEW+3ZRpTGbtSJq0POjkGEsRicphz2XCVyJ1on+N34Q8PUJtFP5Y6hRJ0I0FC+
-         LhIP7sxcl2lKsjPonJL32UcvZ0ELZwU3SrsRDp5eu1GkGSOBKvoty74IaPeWM2CjLmSf
-         P5MQ==
-X-Gm-Message-State: AOAM532ZVo1fgfqvfgqRVyb/RjfH9IW/srvfknOyDpTBa9/cBRsyA3eS
-        JNwwtDWFf4n1rtSflQMR18pIX2MhLQA5dAuy7YM=
-X-Google-Smtp-Source: ABdhPJwJk/A4nMCPNpxrSMyi/LZDfGvuC5bxoBofo0oGqXT/Vk08lWX52K1TGi5rX9ae6FxfTdgTXeiWtu7E0JBZfqE=
-X-Received: by 2002:a19:7711:: with SMTP id s17mr24593216lfc.597.1629722893325;
- Mon, 23 Aug 2021 05:48:13 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jW88Mmr9kKDSsQvXNUmfFT239ViVAMgYapLhyDQd6No=;
+        b=GZYm5dRMPS2WR+jR/bMmWFPhfLQQmfAfaeGlraaw85KJE3aQpc/0k9mWUR0IQvpBJP
+         oqgPRCIkFNg57Vn1sFo/XPvwHjjgoYDe/FRaBxw8HNk8xbk1IhTyXvTknygxp6GIaDaH
+         MGAM9z7de4LXo+Hlf5NeqvEnJ/Jm4rLmiouv3uFVOpVgRReUeVLi82UnSZXIsf06O8P/
+         ZzCVHsFwcSwFbKkBqBuKJCli9BAsGswtrtmViL7EkOJ5W9YKG6H02+hyKF0bdLozQxyR
+         O9NNKMlHIo91gr3Pffr08kMbsnpo4YsMBW/poqUbXpWSwB+8TVRI4T2o5HR1Q/uiijxq
+         SUWA==
+X-Gm-Message-State: AOAM533AYxtuD9AKlX0ipGAxjgy9c2Ibd55DvB1YEG/y8Qvw8MJDNifQ
+        /HbOc8F+dUPLlNRCnABUfgQbbSk6MrGkTHZfaGNgxw==
+X-Google-Smtp-Source: ABdhPJxVdu+J2/ouZrq35GIQglMEtR89HwwgR9u2T2JxSfcRKL1Jm3K4FSNW8564lZ+iNMFT8P5OiCEU/eXRM3gABIc=
+X-Received: by 2002:a05:651c:211a:: with SMTP id a26mr14057616ljq.305.1629722916767;
+ Mon, 23 Aug 2021 05:48:36 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a9a:1f8e:0:b0:138:9f95:67f1 with HTTP; Mon, 23 Aug 2021
- 05:48:12 -0700 (PDT)
-Reply-To: lindabensonabc@gmail.com
-From:   linda benson <lindabensonabc3@gmail.com>
-Date:   Mon, 23 Aug 2021 14:48:12 +0200
-Message-ID: <CAMkE=H1NT8Ug9f3=xfhobZ8p21t0hXubyC3kKHQ1BTLavcoAKg@mail.gmail.com>
-Subject: Dear
-To:     undisclosed-recipients:;
+References: <20210820111504.350-1-chun-jie.chen@mediatek.com> <20210820111504.350-25-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210820111504.350-25-chun-jie.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 23 Aug 2021 20:48:25 +0800
+Message-ID: <CAGXv+5H6pLtNk_KzAoCreX24t4Fs-7wswPwiZaJYmpXo=9p5iw@mail.gmail.com>
+Subject: Re: [v2 24/24] clk: mediatek: Add MT8195 apusys clock support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is my pleasure to write you after consideration, since i cannot be
-able to see you face to face, at first, please I need your help. I am
-Miss. Linda Benson the only daughter of late Mr. Lambert Benson, from
-Cote d=E2=80=99Ivoire. My father deposited the sum of ($4,500,000.00) in a
-bank here in Rep of Lome Togo before his death, he used my name as his
-next of kin and the inheritor to the money after his death, and he
-left a will with the bank that restrained me from accessing the money
-here unless transferred overseas for investment purpose.
+On Fri, Aug 20, 2021 at 7:37 PM Chun-Jie Chen
+<chun-jie.chen@mediatek.com> wrote:
+>
+> Add MT8195 apusys clock controller which provides PLLs
+> in AI processor Unit.
+>
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> ---
+>  drivers/clk/mediatek/Makefile                |  2 +-
+>  drivers/clk/mediatek/clk-mt8195-apusys_pll.c | 92 ++++++++++++++++++++
+>  2 files changed, 93 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8195-apusys_pll.c
+>
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index 4288ad39ba41..e10b1d6b0cf4 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -83,6 +83,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-mt8195-cam.o \
+>                                         clk-mt8195-ccu.o clk-mt8195-img.o clk-mt8195-ipe.o clk-mt8195-mfg.o clk-mt8195-scp_adsp.o \
+>                                         clk-mt8195-vdec.o clk-mt8195-vdo0.o clk-mt8195-vdo1.o clk-mt8195-venc.o clk-mt8195-vpp0.o \
+> -                                       clk-mt8195-vpp1.o clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o
+> +                                       clk-mt8195-vpp1.o clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o clk-mt8195-apusys_pll.o
 
-I am now seeking for your assistance to help me transfer this money
-out  to your account abroad so that we can invest it in any meaningful
-and lucrative business in your country because this is my only hope in
-life. I am willing to offer you 20% of the total fund if only you can
-help me out of my present predicament.
+Wrap line ...
 
-Please reply back so that I will give you more details for us to
-transfer this money.
+Otherwise,
 
-Thank you as I wait for your reply.
-
-Miss. Linda Benson
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
