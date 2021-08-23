@@ -2,255 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A9A3F48AE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 12:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BE23F48E3
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 12:47:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233399AbhHWKca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 06:32:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59440 "EHLO
+        id S236226AbhHWKrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 06:47:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233118AbhHWKcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 06:32:25 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A204C061575;
-        Mon, 23 Aug 2021 03:31:42 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id cn28so25454947edb.6;
-        Mon, 23 Aug 2021 03:31:42 -0700 (PDT)
+        with ESMTP id S236196AbhHWKrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 06:47:42 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16FCDC06179A
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 03:46:57 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id h9so30668291ljq.8
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 03:46:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+zmOKLVe4p641MtwlvZ4lgNgbnXQJz9bSnVr4+6Miso=;
-        b=SejR1MUfsQ1xBHooEOk9WaCSESHOjadmxZEemiaVpaRy7TXXDHKAu5dm89w7SNBtzS
-         /E5djJZDGkYbC6KtVyHnVqIlYeTYpWooslRQTOgolefitvDRKlSjsBNm82AWljH492pj
-         fa33pQMA4oh2vtwsXwlOuhvYPhgAzrpDVv3LghJK7QxHqpILGCXL1K5khWeT4NynAlde
-         J4mIIWHbMsPRlDC0MqDeFbRcC71B2DXd9bvow7pc6FjM5s4o64I2mG8lx+Ogwz3w1KRa
-         VqIWA4PlNtaWkGA5QjTTBmvQm7jiie3Ff6BMyjc0ktHyWoWylfDLAe9eYqOPQYp7c7f2
-         PnBA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UmkfXGaYCdqSsvCrogHGEUgWw+TJ4SlfmjU5MN/PEBE=;
+        b=cjqU7CIQQYnl3N9VSH9OdTpbfhx84HH/grPgOc+tCGAo2Yn2hAV0cMn3z8HTaVOuhA
+         8Brg4z73NnaY2Z/CE8IaG11T82l0gL1ZP2mAHcCMwXtNviOz1cwQ7atSvkRP33js82FC
+         tL3OJS+qxvVYzF3TYhi7jJG99T8jOBJM8RSwrLmSS6vtDNlXueNOFv50Q4BmfSf/V2kW
+         jpK8t4qSsEu0v76ajcR4UzKY9YBd/hRYx4cCU6l6AsBCSBWNe3JTai52Wv7UVRmBdbxJ
+         Pg+Ik2kyI7qbtIeypuO3uLwLKp7JZuw0yQNYCSOl6O3FaQojbcATlzG1xxwJABfP9fIQ
+         rH8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+zmOKLVe4p641MtwlvZ4lgNgbnXQJz9bSnVr4+6Miso=;
-        b=DDR+L5GSN3N0abcGrrOJkfR8/6ZO42NC/bZjj3y6VCMAzZkU4fc3Aj5g8Dr7Sr34jV
-         FH8R5/zYk4pK7woojPsKcwrkIErz6ZgVPVwY4skfbbPEHK1Dvo/y/Qu1ByrzMkGuZ4ZB
-         76i+ZMauvi8Pl5cVa3FM7v2P9zYY/iKfz31Uc7NX6m7VwaVxCSeElOM48t6UQwNdfvZI
-         fl/Ezt6Ee18QHY6fgwbuXohWrQMJ2SpS5FcnX473IcIdvl74pjMyOd2f3nfV76sdsFk6
-         dERw22wI0xz68DfLUc5r5cYboo7SBLCR8CT0wlvdwXijp4J0EUupHQJBEawvY2c12Xp0
-         EFgQ==
-X-Gm-Message-State: AOAM530GBk6trECkLAli20pkOL9BtTeNMwwvCSdQQ2JGo0gF0T6sQTlO
-        5jPTJYvoK0KvoNv6PmtVoZQ=
-X-Google-Smtp-Source: ABdhPJw3VkZNQ6clkFng8umx1KNscQpsDoMn7ItKPicoFSyX2F0tUP9x+EBw4jstQ9Lu1HGx4bnDWQ==
-X-Received: by 2002:a05:6402:546:: with SMTP id i6mr37306155edx.80.1629714700741;
-        Mon, 23 Aug 2021 03:31:40 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id i6sm7095742ejr.68.2021.08.23.03.31.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 03:31:40 -0700 (PDT)
-Date:   Mon, 23 Aug 2021 13:31:38 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
-Cc:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Rasmussen <MIR@bang-olufsen.dk>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 4/5] net: dsa: realtek-smi: add rtl8365mb
- subdriver for RTL8365MB-VC
-Message-ID: <20210823103138.iwbtrksra2f6vl4d@skbuf>
-References: <20210822193145.1312668-1-alvin@pqrs.dk>
- <20210822193145.1312668-5-alvin@pqrs.dk>
- <20210822224805.p4ifpynog2jvx3il@skbuf>
- <dd2947d5-977d-b150-848e-fb9a20c16668@bang-olufsen.dk>
- <20210823001953.rsss4fvnvkcqtebj@skbuf>
- <75d2820b-9429-5145-c02d-9c5ce8ceb78f@bang-olufsen.dk>
- <20210823021213.tqnnjdquxywhaprq@skbuf>
- <4928f92c-ed7d-9474-8b6b-21a4baa3a610@bang-olufsen.dk>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UmkfXGaYCdqSsvCrogHGEUgWw+TJ4SlfmjU5MN/PEBE=;
+        b=Js/JZtANv6l9bqW47AvoVDYLaIx1cfdx2xBUH8Ooy15BQNatb9plxNlErsgfovF1K9
+         efoGRz09JD71tuVEVw8oTzRJJl5P/pVU48jYNST5vsjTRLASlXo9wrzbSBiGvMncqyKA
+         pbB3MnJ650RIhkwNKc3WeYZ3yit1x7CcDT9FFO0Q2izPxCl1WoaU9tDyhyffUTy+8MI1
+         gjPeR+wb8iqrGLQM3CnIkd2XdbnPxfK869/cD3q+8VH2bc6/h8XexQYA1DdYy2lgY313
+         N3JhlC0JxUP49iXBWO5G0+ie+keR13VPx8Eow2YynSCwp2TYkPLdlQBd5qXFYP+41355
+         HPDA==
+X-Gm-Message-State: AOAM533Z4x5V/6H5rzDOzJsLyuY20N1nTI4K7SlLjgfTKLsc6XyBFzIN
+        /LRP3yu4PGegcE6rAHiSjlNcqmQ3rlEP7OknE1O6iA==
+X-Google-Smtp-Source: ABdhPJwROTbhLIghdJiFv3Mpx4km5TKucbukHEV5v0NDix1jHpH6ITt9xOVwuMgiEW0EE35GC/hK1ms310RYHiQipIA=
+X-Received: by 2002:a2e:a410:: with SMTP id p16mr25247179ljn.364.1629715615237;
+ Mon, 23 Aug 2021 03:46:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4928f92c-ed7d-9474-8b6b-21a4baa3a610@bang-olufsen.dk>
+References: <20210818043131.7klajx6drvvkftoc@vireshk-i7> <a2a3c41f-c5e4-ee7e-7d48-03af8bac8863@gmail.com>
+ <20210818045307.4brb6cafkh3adjth@vireshk-i7> <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7> <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7> <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7> <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <20210818095044.e2ntsm45h5cddk7s@vireshk-i7> <CAPDyKFrFF00xGDWPCQnPwF0_QkG4TB2UqggpuBpp8LY_CMKP-A@mail.gmail.com>
+ <0354acbe-d856-4040-f453-8e8164102045@gmail.com> <CAPDyKFoQdn1rm91iFNJwZwpSYcKJBjDLqtJB4KZAkhgY1Grm-Q@mail.gmail.com>
+ <87073fc2-d7b3-98f4-0067-29430ea2adef@gmail.com> <CAPDyKFqSsAk8a5CTNpRT2z4Wvf8BehJKDbVhUKfHc2Jzj7aTNA@mail.gmail.com>
+ <9129a9f0-8c9b-d8e0-ddf5-c8820871fb7f@gmail.com>
+In-Reply-To: <9129a9f0-8c9b-d8e0-ddf5-c8820871fb7f@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 23 Aug 2021 12:46:19 +0200
+Message-ID: <CAPDyKFrWeQVNgxzmiLBXJ2gQW=iFf4aG16xvZ+ag1MkhXs9-BQ@mail.gmail.com>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 10:06:39AM +0000, Alvin Šipraga wrote:
-> I tested your patch with some small modifications to make it apply (I'm
-> running 5.14-rc5 right now and it's not so trivial to bump right now -
-> let me know if you think it's important).
->
-> However I still observe the VLAN ops of my driver getting called (now
-> with "tagged, no PVID", which is not what I thought was intended -
-> previously it was "untagged, PVID"):
->
-> [   45.727777] realtek-smi ethernet-switch swp2: configuring for phy/link mode
-> [   45.730173] realtek-smi ethernet-switch: add VLAN 1 on port 2, tagged, no PVID
-> [   45.733457] CPU: 1 PID: 595 Comm: systemd-network Tainted: G   O      5.14.0-rc5-20210811-1-rt6 #1
-> [   45.733477] Hardware name: B&O (DT)
-> [   45.733481] Call trace:
-> [   45.733482]  dump_backtrace+0x0/0x1f8
-> [   45.733500]  show_stack+0x1c/0x28
-> [   45.733508]  dump_stack_lvl+0x64/0x7c
-> [   45.733516]  dump_stack+0x14/0x2c
-> [   45.733524]  rtl8365mb_set_vlan_4k+0x3c/0xa6c [realtek_smi]
-> [   45.733547]  rtl8366_set_vlan+0xb8/0x1f8 [realtek_smi]
-> [   45.733564]  rtl8366_vlan_add+0x174/0x228 [realtek_smi]
-> [   45.733582]  dsa_switch_event+0x2c4/0xde8
-> [   45.733591]  notifier_call_chain+0x80/0xd8
-> [   45.733598]  raw_notifier_call_chain+0x1c/0x28
-> [   45.733603]  dsa_tree_notify+0x18/0x38
-> [   45.733612]  dsa_port_vlan_add+0x54/0x78
-> [   45.733620]  dsa_slave_vlan_rx_add_vid+0x80/0x130
-> [   45.733627]  vlan_add_rx_filter_info+0x5c/0x80
-> [   45.733636]  vlan_vid_add+0xec/0x1c8
+[...]
 
-This is an unintended consequence for sure. The bridge is persistent and
-finds a leak in our defense, see __vlan_vid_add:
-
-	/* Try switchdev op first. In case it is not supported, fallback to
-	 * 8021q add.
-	 */
-	err = br_switchdev_port_vlan_add(dev, v->vid, flags, extack);
-	if (err == -EOPNOTSUPP)
-		return vlan_vid_add(dev, br->vlan_proto, v->vid);
-
-We return -EOPNOTSUPP to br_switchdev_port_vlan_add, then the bridge
-tries with vlan_vid_add, which makes us think it's an 8021q upper, and
-we say "oh, yes, but sure!"
-
-Btw, the fact that DSA thinks it's an 8021q upper is also the reason why
-your VLAN gets added with different flags, see dsa_slave_vlan_rx_add_vid:
-
-	/* This API only allows programming tagged, non-PVID VIDs */
-
-There is a larger problem at hand, which is that the logic behind
-dsa_slave_vlan_rx_add_vid currently adds VLANs to hardware even for many
-switch drivers that don't need that. It does not even give the switch
-driver the opportunity to distinguish between a bridge VLAN and a VLAN
-coming from a VLAN upper interface. I need to think about that too.
-
-This should work if you replace all:
-
-	case SWITCHDEV_OBJ_ID_PORT_VLAN:
-		if (!dsa_port_offloads_bridge_port(dp, obj->orig_dev))
-			return -EOPNOTSUPP;
-
-with:
-
-	case SWITCHDEV_OBJ_ID_PORT_VLAN:
-		if (!dsa_port_offloads_bridge_port(dp, obj->orig_dev))
-			return 0;
-
-but I need a bit more time to think of any drawbacks of doing that.
-
-> [   45.733643]  __vlan_add+0x748/0x8c8
-> [   45.733650]  nbp_vlan_add+0xf4/0x170
-> [   45.733656]  br_vlan_info.isra.0+0x6c/0x120
-> [   45.733662]  br_process_vlan_info+0x244/0x368
-> [   45.733669]  br_afspec+0x170/0x190
-> [   45.733674]  br_setlink+0x174/0x218
-> [   45.733679]  rtnl_bridge_setlink+0xbc/0x258
-> [   45.733688]  rtnetlink_rcv_msg+0x11c/0x338
-> ...
->
-> I hope it's clear that even with software bridging, I still want to use
-> VLAN to achieve the network topology I described in one of my previous
-> replies. I think we are in agreement now that this should be handled
-> entirely in software, with the switch being completely VLAN-unaware and
-> not touching the VLAN tags. To that end I think I will strip all the
-> VLAN ops from the v2 series to make this unambiguous. But regardless of
-> that, shouldn't your patch ensure that no VLAN operations are offloaded
-> to the switch hardware if .port_bridge_{join,leave} are not implemented?
-
-See above for the 2 corner cases that exist. The only reason why
-dsa_slave_vlan_rx_add_vid() exists is to work around some hardware
-quirks where some switches cannot put their standalone ports in
-VLAN-unaware mode. So to accept VLAN-tagged packets, DSA needs to trap
-the vlan_vid_add() calls to perform VLAN RX filtering on these
-standalone ports. You do not need this functionality at all, but we do
-not distinguish between switches that need it and switches that don't,
-hence the issues.
-
-> > I can understand why a lot of things didn't make sense for you. I thought
-> > we were on the same page about what is happening, but we weren't.
->
-> Yeah, the fact that my VLAN ops were still getting called led me to
-> believe that there was still utility in keeping them there. I was not
-> aware of the details of the implementation, but your explanation is
-> making things a lot clearer to me. I hope you can answer the above
-> question which I think will clear up any other misunderstandings I might
-> have here.
-
-I fail to see any reason why any external factors would modify the state
-of a standalone switch port.
-
-> >> Perhaps I could rephrase my question as follows: If
-> >> the switch driver behaves properly (i.e. does not strip or tag frames)
-> >> despite the switch being VLAN-aware, is it a problem?
-> >>
-> >> (We can of course argue whether the switch is behaving correctly with my
-> >> driver, but the question assumes that it is.)
-> >>
-> >> The VLAN code will be of use when implementing bridge offload, so I'm
-> >> seeking some advice from you with regards to the process. I can remove
-> >> all the VLAN stuff and resubmit the driver such that the switch behaves
-> >> in a completely VLAN-unaware fashion, but that will require some
-> >> backtracking and the work will have to be done again if any offloading
-> >> is to be implemented. So if we can agree that it doesn't cause any harm,
-> >> I would think that it's OK to keep it in.
-> >
-> > With DSA now doing the right thing with the patch I just sent, I hope it is
-> > now clearer why having VLAN ops does not make sense if you don't offload
-> > the bridge. They were not supposed to be called.
->
-> Per the above, your explanation makes sense, except that my VLAN ops are
-> still getting called. If I can understand why that's (not) supposed to
-> happen, I think we'll be on the same page.
-
-See above.
-
-> >>> My best guess is: you have a problem with transmitting VLAN-tagged
-> >>> packets on a port, even if that port doesn't offload the bridge
-> >>> forwarding process. You keep transmitting the packet to the switch as
-> >>> VLAN-tagged and the switch keeps stripping the tag. You need the VLAN
-> >>> ops to configure the VLAN 2 as egress-tagged on the port, so the switch
-> >>> will leave it alone.
-> >>> It all has to do with the KEEP bit from the xmit DSA header. The switch
-> >>> has VLAN ingress filtering disabled but is not VLAN-unaware. A standalone
-> >>> port (one which does not offload a Linux bridge) is expected to be
-> >>> completely VLAN-unaware and not inject or strip any VLAN header from any
-> >>> packet, at least not in any user-visible manner. It should behave just
-> >>> like any other network interface. Packet in, packet out, and the skb
-> >>> that the network stack sees, after stripping the DSA tag, should look
-> >>> like the packet that was on the wire (and similarly in the reverse direction).
+> >>>> We have three components comprising PM on Tegra:
+> >>>>
+> >>>> 1. Power gate
+> >>>> 2. Clock state
+> >>>> 3. Voltage state
+> >>>>
+> >>>> GENPD on/off represents the 'power gate'.
+> >>>>
+> >>>> Clock and reset are controlled by device drivers using clk and rst APIs.
+> >>>>
+> >>>> Voltage state is represented by GENPD's performance level.
+> >>>>
+> >>>> GENPD core assumes that at a first rpm-resume of a consumer device, its
+> >>>> genpd_performance=0. Not true for Tegra because h/w of the device is
+> >>>> preconfigured to a non-zero perf level initially, h/w may not support
+> >>>> zero level at all.
 > >>>
+> >>> I think you may be misunderstanding genpd's behaviour around this, but
+> >>> let me elaborate.
+> >>>
+> >>> In genpd_runtime_resume(), we try to restore the performance state for
+> >>> the device that genpd_runtime_suspend() *may* have dropped earlier.
+> >>> That means, if genpd_runtime_resume() is called prior
+> >>> genpd_runtime_suspend() for the first time, it means that
+> >>> genpd_runtime_resume() will *not* restore a performance state, but
+> >>> instead just leave the performance state as is for the device (see
+> >>> genpd_restore_performance_state()).
+> >>>
+> >>> In other words, a consumer driver may use the following sequence to
+> >>> set an initial performance state for the device during ->probe():
+> >>>
+> >>> ...
+> >>> rate = clk_get_rate()
+> >>> dev_pm_opp_set_rate(rate)
+> >>>
+> >>> pm_runtime_enable()
+> >>> pm_runtime_resume_and_get()
+> >>> ...
+> >>>
+> >>> Note that, it's the consumer driver's responsibility to manage device
+> >>> specific resources, in its ->runtime_suspend|resume() callbacks.
+> >>> Typically that means dealing with clock gating/ungating, for example.
+> >>>
+> >>> In the other scenario where a consumer driver prefers to *not* call
+> >>> pm_runtime_resume_and_get() in its ->probe(), because it doesn't need
+> >>> to power on the device to complete probing, then we don't want to vote
+> >>> for an OPP at all - and we also want the performance state for the
+> >>> device in genpd to be set to zero. Correct?
 > >>
-> >> I am actually enabling VLAN ingress filtering. And I don't have a
-> >> problem transmitting VLAN 2-tagged packets on swp3 in my example.
-> >> Whether or not the driver is following the best practices - I'm not
-> >> sure. Following on from above: is the best practice to make the switch
-> >> completely VLAN-unaware if I am submitting a driver which does not
-> >> support any bridge offloading?
+> >> Yes
+> >>
+> >>> Is this the main problem you are trying to solve, because I think this
+> >>> doesn't work out of the box as of today?
+> >>
+> >> The main problem is that the restored performance state is zero for the
+> >> first genpd_runtime_resume(), while it's not zero from the h/w perspective.
 > >
-> > VLAN unaware, no ingress filtering, no address learning, all ports
-> > forward to the CPU port and only to the CPU port.
+> > This should not be a problem, but can be handled by the consumer driver.
+> >
+> > genpd_runtime_resume() calls genpd_restore_performance_state() to
+> > restore a performance state for the device. However, in the scenario
+> > you describe, "gpd_data->rpm_pstate" is zero, which makes
+> > genpd_restore_performance_state() to just leave the device's
+> > performance state as is - it will *not* restore the performance state
+> > to zero.
+> >
+> > To make the consumer driver deal with this, it would need to call
+> > dev_pm_opp_set_rate() from within its ->runtime_resume() callback.
+> >
+> >>
+> >>> There is another concern though, but perhaps it's not a problem after
+> >>> all. Viresh told us that dev_pm_opp_set_rate() may turn on resources
+> >>> like clock/regulators. That could certainly be problematic, in
+> >>> particular if the device and its genpd have OPP tables associated with
+> >>> it and the consumer driver wants to follow the above sequence in
+> >>> probe.
+> >>
+> >> dev_pm_opp_set_rate() won't enable clocks and regulators, but it may
+> >> change the clock rate and voltage. This is also platform/driver specific
+> >> because it's up to OPP user how to configure OPP table. On Tegra we only
+> >> assign clock to OPP table, regulators are unused.
+> >>
+> >>> Viresh, can you please chime in here and elaborate on some of the
+> >>> magic happening behind dev_pm_opp_set_rate() API - is there a problem
+> >>> here or not?
+> >>>
+> >>>>
+> >>>> GENPD core assumes that consumer devices can work at any performance
+> >>>> level. Not true for Tegra because voltage needs to be set in accordance
+> >>>> to the clock rate before clock is enabled, otherwise h/w won't work
+> >>>> properly, perhaps clock may be unstable or h/w won't be latching.
+> >>>
+> >>> Correct. Genpd relies on the callers to use the OPP framework if there
+> >>> are constraints like you describe above.
+> >>>
+> >>> That said, it's not forbidden for a consumer driver to call
+> >>> dev_pm_genpd_set_performance_state() directly, but then it better
+> >>> knows exactly what it's doing.
+> >>>
+> >>>>
+> >>>> Performance level should be set to 0 while device is suspended.
+> >>>
+> >>> Do you mean system suspend or runtime suspend? Or both?
+> >>
+> >> Runtime suspend.
+> >
+> > Alright. So that's already taken care of for us in genpd_runtime_suspend().
+> >
+> > Or perhaps you have discovered some problem with this?
+> >
+> >>
+> >>>> Performance level needs to be bumped on rpm-resume of a device in
+> >>>> accordance to h/w state before hardware is enabled.
+> >>>
+> >>> Assuming there was a performance state set for the device when
+> >>> genpd_runtime_suspend() was called, genpd_runtime_resume() will
+> >>> restore that state according to the sequence you described.
+> >>
+> >> What do you think about adding API that will allow drivers to explicitly
+> >> set the restored performance state of a power domain?
+> >>
+> >> Another option could be to change the GENPD core, making it to set the
+> >> rpm_pstate when dev_pm_genpd_set_performance_state(dev) is invoked and
+> >> device is rpm-suspended, instead of calling the
+> >> genpd->set_performance_state callback.
+> >>
+> >> Then drivers will be able to sync the perf state at a probe time.
+> >>
+> >> What do you think?
+> >
+> > I don't think it's needed, see my reply earlier above. However your
+> > change touches another problem though, see below.
+> >
+> >>
+> >> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+> >> index a934c679e6ce..cc15ab9eacc9 100644
+> >> --- a/drivers/base/power/domain.c
+> >> +++ b/drivers/base/power/domain.c
+> >> @@ -435,7 +435,7 @@ static void genpd_restore_performance_state(struct
+> >> device *dev,
+> >>  int dev_pm_genpd_set_performance_state(struct device *dev, unsigned int
+> >> state)
+> >>  {
+> >>         struct generic_pm_domain *genpd;
+> >> -       int ret;
+> >> +       int ret = 0;
+> >>
+> >>         genpd = dev_to_genpd_safe(dev);
+> >>         if (!genpd)
+> >> @@ -446,7 +446,10 @@ int dev_pm_genpd_set_performance_state(struct
+> >> device *dev, unsigned int state)
+> >>                 return -EINVAL;
+> >>
+> >>         genpd_lock(genpd);
+> >> -       ret = genpd_set_performance_state(dev, state);
+> >> +       if (pm_runtime_suspended(dev))
+> >> +               dev_gpd_data(dev)->rpm_pstate = state;
+> >> +       else
+> >> +               ret = genpd_set_performance_state(dev, state);
+> >>         genpd_unlock(genpd);
+> >
+> > This doesn't work for all cases. For example, when a consumer driver
+> > deploys runtime PM support in its ->probe() according to the below
+> > sequence:
+> >
+> > ...
+> > dev_pm_opp_set_rate(rate)
+> > pm_runtime_get_noresume()
+> > pm_runtime_set_active()
+> > pm_runtime_enable()
+> > ...
+> > pm_runtime_put()
+> > ...
+> >
+> > We need to call genpd_set_performance_state() independently of whether
+> > the device is runtime suspended or not.
 >
-> Got it. I'll make sure this is the case in v2 unless I find the time to
-> work on the offloading functionality in the interim. Thanks again.
+> I don't see where is the problem in yours example.
+>
+> pm_runtime_suspended() = false while RPM is disabled. When device is
+> resumed, the rpm_pstate=0, so it won't change the pstate on resume.
 
-Even if you find the time to work on bridge offloading, standalone ports
-should still behave like that: no learning, VLAN-unaware, no ingress
-filtering, forward only to the CPU, flood all packets. You may find that
-the switchover from one state to the other is a bit tricky, but it needs
-to be consistent.
+Yes, you are certainly correct, my bad! I mixed it up with
+pm_runtime_status_suspended(), which only cares about the status.
+
+So, after a second thought, your suggestion sounds very much
+reasonable to me! I have also tried to consider all different
+scenarios, including the system suspend/resume path, but I think it
+should be fine.
+
+I also think that a patch like the above should be considered as a
+fix, because it actually fixes a problem, according to what I said in
+my earlier reply, below.
+
+Fixes : 5937c3ce2122 ("PM: domains: Drop/restore performance state
+votes for devices at runtime PM").
+
+>
+> > Although, it actually seems like good idea to update
+> > dev_gpd_data(dev)->rpm_pstate = state here, as to make sure
+> > genpd_runtime_resume() doesn't restore an old/invalid value that was
+> > saved while dropping the performance state vote for the device in
+> > genpd_runtime_suspend() earlier.
+> >
+> > Let me send a patch for this shortly, to close this window of a possible error.
+>
+> It will also remove the need to resume device just to change the clock
+> rate, like I needed to do it in the PWM patch of this series.
+
+Do you want to send the patch formally? Or do you prefer it if I do it?
+
+Kind regards
+Uffe
