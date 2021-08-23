@@ -2,123 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BF033F4DD9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 17:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC1FA3F4E23
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 18:16:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231747AbhHWP5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 11:57:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231469AbhHWP5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 11:57:19 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98698C061575
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 08:56:36 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso26298282ots.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 08:56:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3lcZudzQ7vfqb/InrksY2qHfhZLERO9wRMG6pb4Ol/8=;
-        b=jAsAHXLQAnFPW7dQtPCfuuO+9ZvsT/9HyBIrvKpkaCFuvJNqVTlFbwD2fPhhU78VHI
-         D+WMnc3MHh42G6bRD2Yh4n9IU24YYE/3NVZgC2cRg6jLm7VUU6Ir2l113CSPqQcZfoB5
-         rxZaLiPO2ZWc6b2k0z591InfO0UI/25ZwC2v5Epe1ViB+DY7iP0ot5zgAYIn07g9CZeL
-         At2BsrmSgETGqwcw22eiV/AiyqgkII3MGhJaYsUam4FovDMB2aaY3g/E1XmEPaqgkYo5
-         cm6xydqlMnEArK4spzJn4FwSPaCZUvl+zq2hcJ3ak2yc43kORMEGZ6TyNzBQjrLW8wRY
-         qs+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3lcZudzQ7vfqb/InrksY2qHfhZLERO9wRMG6pb4Ol/8=;
-        b=uhvdy0C2zdQw9+COS4jcFanpp40Ep5JHmg/BRsGAo4nAysphb8vffBNGaZdxGTq4dq
-         iNcdPoqHMXmITuyLNRaK44Ks/Zr5aEVgQ3X+bkGiTNB6Gnp3PAvCKt5w8yw/R/DKkNJr
-         5Rx21C33fgyeD7kcnMqp5TPz/RFIWu8TtvDJcV6KhEqj7Yc2Mg+GT8jgMF+Tk23Qbikq
-         wPdZRQMe/ak5iZfSniOmBzcHxTuZLACXaCZ6bDXNTEJ2ZZJrAMCkqxZQH6IqXs6dUzM4
-         8Leyn8jbDSISzx7/uZ+OFnDUNTQ4QzzTOSvyx9/oF4HxHJL8dsFg2LWra2LQrzFZ0aJ3
-         iqfA==
-X-Gm-Message-State: AOAM530EOAnC6RE1vSnqdsKRdgIdcKi9/KX5PUzrmVofBwWmdTuvDkiK
-        goG5Fm0Gif9wdXjrxSFk4W1WbA==
-X-Google-Smtp-Source: ABdhPJzncQPxjyl/rnDKt15VwxFNkMsr5tahgz2GkveS2Z5VVpYOk4mpJdPuZoBCPTw0Lpkw8BSetA==
-X-Received: by 2002:a9d:730a:: with SMTP id e10mr2467831otk.120.1629734195964;
-        Mon, 23 Aug 2021 08:56:35 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 14sm3991315otl.78.2021.08.23.08.56.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 08:56:35 -0700 (PDT)
-Date:   Mon, 23 Aug 2021 08:57:54 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/3] interconnect: qcom: sdm660: Add missing a2noc qos
- clocks
-Message-ID: <YSPFgsWVW0pCYvBw@ripper>
-References: <20210823095603.5538-1-shawn.guo@linaro.org>
- <20210823095603.5538-3-shawn.guo@linaro.org>
+        id S229539AbhHWQRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 12:17:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60730 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229477AbhHWQRb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Aug 2021 12:17:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3973461374
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 16:16:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629735409;
+        bh=mG9bSaKlOrxw932jK+vYket1joC9tZNfipKkO5JpswE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Szv1/4lrm6Uhgrgb1YEstiNGfoPbF5B5izC+p/iKRZnjThxI2WiHy48cZULgTM7aY
+         dMiPhL8fhEcm7i/n3RjJuc2zUVtuZTxzAf7p/eMV/LOivWFx3u03b16xnW8TPYzNVe
+         Gq5lOJToPVF7s0QcjlO/1pBGsEgGsNgGLLQTuGBTM5AJky6SWQ/1mSaXRXXP0lINh8
+         4PHVKsT9BvvGd1JsZQg06GmPg6y4V4U4JubAX5d78GWAWY8av37U3AReQpSXUj0WqU
+         jCunj003b/uZBVkMnU/uiACT4DpS7mNqk2IV7QVbZVI7l3rsNTKZCmbWgZAYw2r/k8
+         FvsXlh/MOs5cw==
+Received: by mail-ed1-f42.google.com with SMTP id i6so27039721edu.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 09:16:49 -0700 (PDT)
+X-Gm-Message-State: AOAM533LnZ0vdzyF7K9uMs8cezEOoSz39qXhG0xTvfdFyyqp5hWfuQic
+        vxSw7zzibcLU5DjTP4Mgc2n+ur5n9jnzwrFKwA==
+X-Google-Smtp-Source: ABdhPJydqaKeNN5xeH8/Di09lfFgk0FzGy2IVS3SlK3g/rm9Hw/TeVmK9a+DnLRAu8UAVvzjaqkGbV298v5yg38b0I0=
+X-Received: by 2002:a50:fd87:: with SMTP id o7mr38729687edt.289.1629735407812;
+ Mon, 23 Aug 2021 09:16:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210823095603.5538-3-shawn.guo@linaro.org>
+References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
+ <YRae8tDReDS67sM4@robh.at.kernel.org> <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
+ <YRwkvjAuEd+9lTt7@robh.at.kernel.org> <6ed12f1a09fb1f3e6ebe05992a9232bc7c34213c.camel@codeconstruct.com.au>
+ <CAL_Jsq+EMV=bA__+sHnC-WSoZf_OPxqL+bCGRBjdo12RL=aw9A@mail.gmail.com> <ae72879d25da3e56e3a1eefe101aad7cbe47515e.camel@codeconstruct.com.au>
+In-Reply-To: <ae72879d25da3e56e3a1eefe101aad7cbe47515e.camel@codeconstruct.com.au>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 23 Aug 2021 11:16:35 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+5ujcLLqDezsnzkVANkM9GifxA5BUccMVwZOfBUutACw@mail.gmail.com>
+Message-ID: <CAL_Jsq+5ujcLLqDezsnzkVANkM9GifxA5BUccMVwZOfBUutACw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     Matt Johnston <matt@codeconstruct.com.au>,
+        devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 23 Aug 02:56 PDT 2021, Shawn Guo wrote:
+On Mon, Aug 23, 2021 at 2:52 AM Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+>
+> Hi Rob,
+>
+> > > This ends up describing something like a network interface, which
+> > > happens to use I2C as a transport in this case. (There are other
+> > > transports like MCTP-over-serial, but those don't require DT
+> > > topology
+> > > data). For other network-type DT bindings (say, ethernet@), we
+> > > don't
+> > > describe remote network endpoints either, so we're proposing the
+> > > same
+> > > pattern for MCTP.
+> >
+> > When a switch becomes integrated in, we do.
+>
+> OK, we'll allow for cases like that, where we do need a representation
+> of a "remote" endpoint. However, we don't *currently* have a scenario
+> where that is necessary.
 
-> It adds the missing a2noc clocks required for QoS registers programming
-> per downstream kernel[1].  Otherwise, qcom_icc_noc_set_qos_priority()
-> call on mas_ufs or mas_usb_hs node will simply result in a hardware hang
-> on SDM660 SoC.
-> 
-> [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
-> 
+The issue here tends to be we design things based on not having nodes
+in DT and then eventually evolve to the point where we should have had
+a separate node. Connectors or per slot PCI properties are some
+examples. Just something to keep in mind.
 
-Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > >     reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
+> > > > >     attach-bus = <&i2c1 &i2c6>;
+> > > >
+> > > > Why do you need to say you are attached to yourself?
+> > >
+> > > This indicates that the top-level MCTP controller needs to talk to
+> > > MCTP
+> > > endpoints, eg mctpA on the directly attached bus i2c1. In some
+> > > topologies
+> > > there will be no directly-attached endpoints, in which case we
+> > > would omit
+> > > i2c1 from the list. We need to specify the attach-bus property
+> > > since we
+> > > don't have a list of external device endpoints to walk.
+> >
+> > Okay, so it's a 'what I2C buses should be scanned for MCTP devices'.
+>
+> Not quite "scanned", more "marked as MCTP-capable". The indication that
+> an i2c bus is a MCTP controller doesn't initiate any scanning, but
+> rather provides a facility for software further up the stack to perform
+> any scanning / monitoring for hotplug devices / setting up fixed remote
+> endpoints - whatever is suitable for the system.
+>
+> > Why can't that just be all the buses under i2c1 in this example?
+> > Limiting it seems like an optimization only.
+>
+> It's not so much an optimisation, rather a way to avoid overly complex
+> network topologies. We may have on the order of 100 i2c busses
+> (including both root busses and mux subordinates) on some platforms.
+> Since physical addressing requires knowing both the SMBus address plus
+> the MUX state, any software/user that deals with physical addreses
+> will need to know about those ~100 busses.
 
-Regards,
-Bjorn
+Any system with muxes has them described in DT as I'm not aware of any
+way muxes are discoverable.
 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> ---
->  drivers/interconnect/qcom/sdm660.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/interconnect/qcom/sdm660.c b/drivers/interconnect/qcom/sdm660.c
-> index c89c991a80a0..661eb3635d21 100644
-> --- a/drivers/interconnect/qcom/sdm660.c
-> +++ b/drivers/interconnect/qcom/sdm660.c
-> @@ -174,6 +174,16 @@ static const struct clk_bulk_data bus_mm_clocks[] = {
->  	{ .id = "iface" },
->  };
->  
-> +static const struct clk_bulk_data bus_a2noc_clocks[] = {
-> +	{ .id = "bus" },
-> +	{ .id = "bus_a" },
-> +	{ .id = "ipa" },
-> +	{ .id = "ufs_axi" },
-> +	{ .id = "aggre2_ufs_axi" },
-> +	{ .id = "aggre2_usb3_axi" },
-> +	{ .id = "cfg_noc_usb2_axi" },
-> +};
-> +
->  /**
->   * struct qcom_icc_provider - Qualcomm specific interconnect provider
->   * @provider: generic interconnect provider
-> @@ -811,6 +821,10 @@ static int qnoc_probe(struct platform_device *pdev)
->  		qp->bus_clks = devm_kmemdup(dev, bus_mm_clocks,
->  					    sizeof(bus_mm_clocks), GFP_KERNEL);
->  		qp->num_clks = ARRAY_SIZE(bus_mm_clocks);
-> +	} else if (of_device_is_compatible(dev->of_node, "qcom,sdm660-a2noc")) {
-> +		qp->bus_clks = devm_kmemdup(dev, bus_a2noc_clocks,
-> +					    sizeof(bus_a2noc_clocks), GFP_KERNEL);
-> +		qp->num_clks = ARRAY_SIZE(bus_a2noc_clocks);
->  	} else {
->  		if (of_device_is_compatible(dev->of_node, "qcom,sdm660-bimc"))
->  			qp->is_bimc_node = true;
-> -- 
-> 2.17.1
-> 
+> If I can use the Linux implementation as an example: flagging an i2c
+> controller as MCTP-capable will create a MCTP netdev, which allows
+> communicating with specific physaddrs on that segment of the bus. I'd
+> like to avoid creating ~100 netdevs, all visible to userspace, when only
+> a small subset of those can carry actual MCTP data.
+>
+> If we can limit the possible MCTP controllers to just the i2c busses
+> that host MCTP hardware downstream, that makes things much easier for
+> any OS implementation to deal with. While we can do the i2c/MCTP mapping
+> at a higher level (ie. userspace), representing this in the DT does
+> keep the local-hardware-specific data all in the one place.
+>
+> > In any case, 'attach-bus' sounds very generic and I'm not sure this
+> > is. I'd like to hear from others familiar with I2C on this aspect at
+> > least.
+>
+> We're certainly open to other structures for flagging busses as
+> MCTP-capable; we can use a more representative name for this phandle
+> list, or switch to boolean properties on the subordinate nodes
+> themselves (something like the gpio-controller boolean props, perhaps?
+> though that seems harder to confine to a schema for mctp-i2c...)
+
+Either option is fine with me. A per bus property scales better (you
+can add buses without changing the root MCTP node). We already have
+per bus properties such as 'smbus' and 'multi-master'.
+
+Rob
