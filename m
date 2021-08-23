@@ -2,95 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E966D3F4869
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 12:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBFC3F486F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 12:16:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233145AbhHWKQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 06:16:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55500 "EHLO
+        id S236075AbhHWKRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 06:17:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231539AbhHWKQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 06:16:03 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B05C061575;
-        Mon, 23 Aug 2021 03:15:20 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id x2-20020a1c7c02000000b002e6f1f69a1eso13633238wmc.5;
-        Mon, 23 Aug 2021 03:15:20 -0700 (PDT)
+        with ESMTP id S236019AbhHWKRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 06:17:35 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1A2C061757
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 03:16:53 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id g14so14925364pfm.1
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 03:16:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZmR7Gv23NUaTJo4E+5MKNgsxk7YjPqzu97xkHjlGKW0=;
-        b=LXOJ5U7KRt4dzxzT/5y/TCQH+XLpETilOlJ0KohlKDuKh633D/1EG1BSpPNrzDIAHX
-         4XOYcTxVdmn5ZDVg3vje/fum8syjXoVsP97WlleZLRi9ZTTBVr9S0QLDV+/OV4Saq15n
-         GRGyKxq7D4sC09mQpxUao40W/dGrAteZChQJr7IACyISj/hp6EdejZOXSbVbcV/oS6aw
-         K0qr41g6qdzvpU6ji+drd1HofBCcA1T51ojCY/CQQRv96Fvb6JYtezCQxAoJzDkn6kDK
-         fPiOCID7qzFSUHl+jBkqSlFGXv+JNfHE5DZuRqM/lOT0DltjZbZ+j5dW2GIsIrPbGeAs
-         vRIQ==
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9sK/RO+vAHWLBWoM3ZyA29r4bWb/1hcnS47SNH5khGc=;
+        b=wQBC/gwt1+LStQC2ASYvn+IHLUg1RkDC7LLqbN852KwAQDHhT7TvSognZ5nzBxFR8Y
+         f0+WCGa4TsHPsSI+esH7OPVRGqU+gOqsgyi1cGgx7DgMOZEfpQFzmsCpo9clJte0DI0J
+         D46kyX45RpcOK6WNk0hwAQht6Z5+xpZ3dti1KfOfkQMdru5v7J7VFz16cmeTisU8/xXQ
+         QtE0Wp0V3ZTjmQjs8NosQQrxYcGkKaCBgniW6eKWE5bHk5T0uKP6qpVX2QKuNtHzjWmz
+         800yWoY4Rb0KzL6mX1yGLo0lMU7DQKPDGylyPd84FsF1ar8fBlPeeeF5JHq039hw5qtJ
+         BXhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZmR7Gv23NUaTJo4E+5MKNgsxk7YjPqzu97xkHjlGKW0=;
-        b=dFqErlMqXwzzSXbzmjFskORX2qHRrwx1C+OdvpaGB9e3T9sXBeM9/CNRhLukGRdAl/
-         2uC1O86ICxzGCR08UFPChBd8sErHvqfkrvi7nNJlTl/N15uEUBpcNtk6M9CiJpaGhdlB
-         6whdvQkPJ96M9m40Cyccb9Lprzox9P3a6jqdOGSnO/Xt5mGcZgVt96iusHM263eSL19D
-         TdrKpuJP7UZkFLQFNMeVvuh4bkrqxRGOB6LMVDptk2JnK6vE3W4YxKfX8vXaEzA/R6Kx
-         e5zautzKUTXuzGRxn+Bk8fOAYLHbbsU0VXHPjNx1ELKvilRnut4VhwMtM2+hW72pq1mx
-         BzkA==
-X-Gm-Message-State: AOAM533W9fic7AoEisCtmgUWIZ1LNIveHHlgXNpNcdLw+y+JNMNJdlJ0
-        QWFHp7EM/79Dm5J85pgkqMs=
-X-Google-Smtp-Source: ABdhPJyydLsTNgu4PmnxEa2xeXceH7vGga9mxFHC77YcbpVLHGewqchz+PTApBv3dFjv1p/VnPDWkw==
-X-Received: by 2002:a7b:cd82:: with SMTP id y2mr15756541wmj.4.1629713719354;
-        Mon, 23 Aug 2021 03:15:19 -0700 (PDT)
-Received: from ?IPV6:2a01:cb05:8192:e700:d8d0:123c:2bc1:6888? (2a01cb058192e700d8d0123c2bc16888.ipv6.abo.wanadoo.fr. [2a01:cb05:8192:e700:d8d0:123c:2bc1:6888])
-        by smtp.gmail.com with UTF8SMTPSA id w29sm14819905wra.88.2021.08.23.03.15.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Aug 2021 03:15:19 -0700 (PDT)
-Message-ID: <8b32c616-8c76-206f-30b2-6286104f9705@gmail.com>
-Date:   Mon, 23 Aug 2021 12:15:18 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.0.2
-Subject: Re: [RFC PATCH net-next 2/5] dt-bindings: net: dsa: realtek-smi:
- document new compatible rtl8365mb
-Content-Language: en-US
-To:     =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alvin@pqrs.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9sK/RO+vAHWLBWoM3ZyA29r4bWb/1hcnS47SNH5khGc=;
+        b=XZNyYJguh+gKke7oEh2LTYt6yp4qEUFFmo87Qi3zriqS5uF/zTtM3IcmSt1eoUj/aj
+         Rdz6ANLmWrBA5th+nvqf4/wNYmqm7SjeTZCh6kKHbTFPttMt7hba3X+3gUMGkH5W9Wd1
+         KZfrEO6fp/gSoPTkaoYMouv1cRsAOVnJlYR/fVNZ+ZoYHdyt7WtVQSZ7Zxqv2o6oRvXl
+         EhXrtzEO5qSKkdr2K6y71TK9iT+RxfQTgeyqlpFPyiT2E+tBBDvKj4g1PGBYKpNQDXDz
+         dITqDwQKmIqJwZjVuKvMuYL1ARKkiFqDERmeuby5vIIyj9962JxjG1/gVNhdC6aUe3Eu
+         vLig==
+X-Gm-Message-State: AOAM530wzFiuMBeXz4v3v3UyNwhE/IV0MR1VoGVjL+iA+iOrjOD+RhDv
+        umCKcMLFCiIyVi+WL5MQkNX94A==
+X-Google-Smtp-Source: ABdhPJyRWj7JJ3uSCqHFjtFJri25dJ4A+gm2UzaZ6kNWYFkB1lyGxchigxCWWxBH8xmZnrvu7go3+g==
+X-Received: by 2002:a63:5f88:: with SMTP id t130mr31596784pgb.6.1629713812275;
+        Mon, 23 Aug 2021 03:16:52 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:bc5a:af6a:3f08:a084])
+        by smtp.gmail.com with ESMTPSA id x42sm15258542pfh.205.2021.08.23.03.16.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 03:16:51 -0700 (PDT)
+Date:   Mon, 23 Aug 2021 18:16:47 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     mir@bang-olufsen.dk,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210822193145.1312668-1-alvin@pqrs.dk>
- <20210822193145.1312668-3-alvin@pqrs.dk>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20210822193145.1312668-3-alvin@pqrs.dk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 3/9] media: mtk-vcodec: Rewrite venc power manage
+ interface
+Message-ID: <YSN1j7o5+Tzk0HlH@google.com>
+References: <20210816105934.28265-1-irui.wang@mediatek.com>
+ <20210816105934.28265-4-irui.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210816105934.28265-4-irui.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/22/2021 9:31 PM, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
-> 
-> rtl8365mb is a new realtek-smi subdriver for the RTL8365MB-VC 4+1 port
-> 10/100/1000M Ethernet switch controller. Its compatible string is
-> "realtek,rtl8365mb".
-> 
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+On Mon, Aug 16, 2021 at 06:59:28PM +0800, Irui Wang wrote:
+> @@ -105,6 +106,14 @@ static int mtk_venc_comp_probe(struct platform_device *pdev)
+>  
+>  	comp_dev->plat_dev = pdev;
+>  
+> +	ret = mtk_vcodec_init_enc_pm(pdev, &comp_dev->pm);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "Failed to get venc component clock source!");
+> +		return ret;
+> +	}
+> +
+> +	pm_runtime_enable(&pdev->dev);
+mtk_vcodec_init_enc_pm() and mtk_vcodec_release_enc_pm() is more like a pair.  Does it make more sense to call pm_runtime_enable() in mtk_vcodec_init_enc_pm()?
