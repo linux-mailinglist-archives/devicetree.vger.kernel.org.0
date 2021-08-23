@@ -2,180 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 616DB3F47E4
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0553D3F4800
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230265AbhHWJqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 05:46:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48422 "EHLO
+        id S235697AbhHWJ5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 05:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbhHWJqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:46:14 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494E0C061575;
-        Mon, 23 Aug 2021 02:45:32 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id ay33so7013929qkb.10;
-        Mon, 23 Aug 2021 02:45:32 -0700 (PDT)
+        with ESMTP id S232634AbhHWJ5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:57:04 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA7E7C06175F
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 02:56:19 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id n5so11583177pjt.4
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 02:56:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F7puqGkfeq2gGVbcmofYcE+ip9S4w+Znt/a7BmCuaiA=;
-        b=OSftcU2iVhgfPFOaPErRQTCll/bJZOKkUusefGZa8BYEUnQ75P+vSwxeYWSsJqoinv
-         dfWGRCWPGME0eQxGzjQtLWfNQPy4pUDYRRHpQ50KUXHvWQzM3+fRgldsmeli/KlOusHY
-         28kyryvy0/lNuO/bhpUqo7iy5IQnUl6uz8uTWhl1RozNAOErgFb2Y+9VR9qf5Oz3oygB
-         bxq2L8q8gOxhwbq4FlgOQZhIY9KSz+7Qxjw8vGNtbx+qXdCZeJ+8Oe5pGJHkqzPysYZN
-         CTQWSLTKpAf45wGqwzoLEPymWk12XbstYh/8yV4HO8IdrqJbgwVr0uud9Nkt4lA1Hy/Z
-         OMLA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=+HcYX4o3oYabXOVjOFPvNIFXnMCujvnBt9jGvMZEMNQ=;
+        b=cmYV78ghXsy4hjtR3Z117IW2pU/YgW/Xlv/y/3eea6DCXCAMlwvzYmSE95Mi/znrIi
+         sHc9IoOoV+KBpBu3EipOfMbPVtgYDExm+iM7aT9G5I5IZZqcZT5qpNjtpFHh7Y2ES/2P
+         PQYeISUXrny4nVFTUrKh0PpPj2RI2dfkCHOJV4tLZFIwyn/UiidKHADujfYSbnqACWxB
+         PGLVVZHTgmi3ltfXqczTKvC3wzVfkLqjdkYNVu1GUtjUY4tNOE4CWVtaj+qyWyq8XupV
+         FN7kBqUMgRYF+EX0jKiEP2E89bSuHcqXao8QGczw0uEPC4O0NRrKFTyu3kI+Dum5LJ0F
+         zcaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F7puqGkfeq2gGVbcmofYcE+ip9S4w+Znt/a7BmCuaiA=;
-        b=UY9FLyU3KwhOI8Z30sQxfWuN1MKcYAqm+D/72ShQRZb9VN9uXWrPonf4hD7y4l60OK
-         5HOCUYe4q6BOrPkxWf7Kn1LJs8Wp3cw9Lgo8wF+izlRsM5C5ODCHyZWVs6vxrOy7TjOo
-         5I340uuSfPT9fq5kd0LzD9T2aWpONbPyaptWy7hgxZMyfpM/bpgV9EiYQJ9f2U0u2d6D
-         uZlzgsg8ntMpm8S0dBeWrSKWCxSZT98BIt+KKTC6TqyQ5HFgds+LiVCc4hAKp65LGwU0
-         UUH5umuwKP0GA7o5EEIV4iu0dugjvXEPufw2UI9mKuSwHJaHSeiqYYjositJXkXSWmTE
-         Qxcw==
-X-Gm-Message-State: AOAM532VVkxQfzXHtV0JTaO2ZidFtSaQRmuulJCkvbJPBIh1mnHOs7Ay
-        4zGt7+zEu9fUylHnUgNCOtisEjMU5LzLqQP7aD4=
-X-Google-Smtp-Source: ABdhPJyFmowjR5zIGMC0Vgvyna9Kic4jnFTLMo+xE44ALt5B0HuBVM2mxtoSwJRz/bmkw+T0BqVkugQmPeZyRIbYTjA=
-X-Received: by 2002:a05:620a:14b1:: with SMTP id x17mr19679850qkj.37.1629711931478;
- Mon, 23 Aug 2021 02:45:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <1629453791-10580-1-git-send-email-shengjiu.wang@nxp.com> <YSAQgywy8UW540h9@robh.at.kernel.org>
-In-Reply-To: <YSAQgywy8UW540h9@robh.at.kernel.org>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Mon, 23 Aug 2021 17:45:20 +0800
-Message-ID: <CAA+D8AM1Ti5+LAwx+b5ZEy7Xi8Tx4n2Dh0ZW9faFDB04pLECRw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add fsl,imx-dsp-rproc
- binding document
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>, ohad@wizery.com,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-remoteproc@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=+HcYX4o3oYabXOVjOFPvNIFXnMCujvnBt9jGvMZEMNQ=;
+        b=tMj1G86kQ614RJ2/bNpHLnYFw1sKk0wrfZC+zFqGEdcX5ZSIpQXBvKIro8XJf+6x1i
+         /PF/V3of4AnDEEvMtFBnuXOCOasKPxSrTDT4iEd93B7ft7txiOFhA3/4/CUPGYVjJ07o
+         wkz0KhubYMGWnEjcsUYDCvfMA1hy9nE/byBD01r728kjHDWnUfKzdjmmFsgtl+TSHWqO
+         imECaiwb7slsWV9KwCfBTi9+hBo4rCHuPSg48X3oS8f5nBda8zxEPgienl7qTmVdMUdL
+         Dd7N8c4QGf27bjW8L+khb+AEB53YMHUJzpaRenixNDH/zqegWyf4GQqP8hgMdVO65XKz
+         /noQ==
+X-Gm-Message-State: AOAM530GrLoqjvbMBCReLqlfdF3OKcspri+Z2XisWFYakYV7DM7qgVNB
+        5GE95ZwbJ4NwRLrQOWkyE+S+jA==
+X-Google-Smtp-Source: ABdhPJyojLzAIU8oA6E7pgKoWx1updv6tv/T/1Pj7USfwiU/5uJ/llsOkcLobIAW08B9ShwhwJQGwA==
+X-Received: by 2002:a17:902:8d8a:b029:12d:3774:3630 with SMTP id v10-20020a1709028d8ab029012d37743630mr28229682plo.65.1629712579445;
+        Mon, 23 Aug 2021 02:56:19 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id z24sm18708230pjq.43.2021.08.23.02.56.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 02:56:19 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Georgi Djakov <djakov@kernel.org>
+Cc:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH 0/3] Add missing A2NoC QoS clocks for SDM660 interconnect driver
+Date:   Mon, 23 Aug 2021 17:56:00 +0800
+Message-Id: <20210823095603.5538-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+The series updates SDM660 interconnect bindings, driver and device tree
+to add A2NoC clocks required for QoS registers programming per downstream
+kernel[1].  Otherwise, qcom_icc_noc_set_qos_priority() call on mas_ufs or
+mas_usb_hs node will simply result in a hardware hang on SDM660 SoC.
 
-On Sat, Aug 21, 2021 at 4:28 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Aug 20, 2021 at 06:03:10PM +0800, Shengjiu Wang wrote:
-> > Define the compatible string and properties needed by imx_dsp_rproc
-> > driver.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../remoteproc/fsl,imx-dsp-rproc.yaml         | 123 ++++++++++++++++++
-> >  1 file changed, 123 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
-> > new file mode 100644
-> > index 000000000000..7eba49aa959e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
-> > @@ -0,0 +1,123 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/remoteproc/fsl,imx-dsp-rproc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: i.MX DSP Remoteproc Devices
-> > +
-> > +maintainers:
-> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> > +
-> > +description:
-> > +  This binding provides support for DSP processors found on i.mX family of SoCs
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8qxp-hifi4
-> > +      - fsl,imx8qm-hifi4
-> > +      - fsl,imx8mp-hifi4
-> > +      - fsl,imx8ulp-hifi4
-> > +
-> > +  clocks:
-> > +    description: |
-> > +      Main functional clock for the remote processor
->
-> Don't need '|' if no formatting.
+[1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
 
-Ok,  will update it.
+Shawn Guo (3):
+  dt-bindings: interconnect: sdm660: Add missing a2noc qos clocks
+  interconnect: qcom: sdm660: Add missing a2noc qos clocks
+  arm64: dts: qcom: sdm630: Add missing a2noc qos clocks
 
->
-> > +    minItems: 1
-> > +    maxItems: 32
-> > +
-> > +  clock-names:
-> > +    description:
-> > +      List of clock names for the remote processor.
-> > +      dsp_clkx for clocks of dsp itself.
-> > +      per_clkx for clocks of peripherals used by dsp.
->
-> Sounds like constraints that should be a schema. But this looks like
-> some random collection of clocks, not clocks for the DSP h/w.
+ .../bindings/interconnect/qcom,sdm660.yaml    | 41 ++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          | 17 ++++++--
+ drivers/interconnect/qcom/sdm660.c            | 14 +++++++
+ 3 files changed, 67 insertions(+), 5 deletions(-)
 
-The DSP may use some peripheral devices, then we need to
-enable the clock in this driver. Using which peripherals
-depends on the DSP firmware, so we didn't specify the clock
-name here.
+-- 
+2.17.1
 
-I will add below items for this.
-    items:
-      - const: dsp_clk1
-      - const: dsp_clk2
-      - const: dsp_clk3
-      - const: dsp_clk4
-      - const: dsp_clk5
-      - const: dsp_clk6
-      - const: dsp_clk7
-      - const: dsp_clk8
-      - const: per_clk1
-      - const: per_clk2
-      - const: per_clk3
-      - const: per_clk4
-      - const: per_clk5
-      - const: per_clk6
-      - const: per_clk7
-      - const: per_clk8
-      - const: per_clk9
-      - const: per_clk10
-      - const: per_clk11
-      - const: per_clk12
-      - const: per_clk13
-      - const: per_clk14
-      - const: per_clk15
-      - const: per_clk16
-      - const: per_clk17
-      - const: per_clk18
-
->
-> > +    minItems: 1
-> > +    maxItems: 32
-> > +
-> > +  syscon:
->
-> Vendor prefix and name it based on what it points to or is used for.
-
-Ok, will update it.
-
-best regards
-Wang shengjiu
