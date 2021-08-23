@@ -2,70 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBCC3F5198
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 21:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB343F51BC
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 22:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbhHWT7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 15:59:03 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:37348 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229622AbhHWT7D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 15:59:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=GpyOlPjzkVman/xz6U9nRO0hrxXvVycp3ftxTY9a7NE=; b=KA2u/854Aag+RH3uz7vKq/MMSv
-        rhyn0HsPvD6jQ6R5qbpNU6feqBmdpCE/utd3Fc7QUNTfasXY0+S7AlD/IIekWVdh6W5e78QKCcXs5
-        Xu26CuvkmjF6Wgw5ClUibFJqPzx+oZfVEMPYP1AFibW7pdv9ehRX/7KantFyCCRIJBlQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mIG5E-003Vi4-U5; Mon, 23 Aug 2021 21:58:12 +0200
-Date:   Mon, 23 Aug 2021 21:58:12 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for
- "phy-handle" property
-Message-ID: <YSP91FfbzUHKiv+L@lunn.ch>
-References: <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
- <20210818021717.3268255-1-saravanak@google.com>
- <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
- <CAGETcx_xJCqOWtwZ9Ee2+0sPGNLM5=F=djtbdYENkAYZa0ynqQ@mail.gmail.com>
+        id S232133AbhHWUMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 16:12:23 -0400
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:41889 "EHLO
+        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231716AbhHWUMW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 16:12:22 -0400
+Received: by mail-ua1-f48.google.com with SMTP id 75so8628582uav.8;
+        Mon, 23 Aug 2021 13:11:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AUpBckzMvXVbMxlgD0BPIwC+4lv7J+IVl66jvYDUuHo=;
+        b=b/b73x2JZ4KjhsEwbh5qDWlakyitUjKztvAIJ2rAAS4I4bNKH+9KGyptdIZoxFWiDs
+         xQ/JCbD6F/C+01FIMrGXBChGCGpFU8WOaTevRNKmehs/N1R1QuDMmDQvQqtFoAwFSQcS
+         nHwi55DtxdZh7Ti9Vvjqwh4TOGEq2ZccpGCkDiiZkl34QyVdGaOzdAB3dNugpW6ItK2A
+         i8FNJobWm6h2P6tNbJEbh6zdm7bko7rp/n+06ZbOqLaDwOEihCYapfnXO/SnHl4Fo8Yz
+         KxTOcqZkMrBKZWH06K0/wurAt6tuwMu9t36vhdnGK3T8mYFytmwnNVfALqScEc4hMqkC
+         Ydjw==
+X-Gm-Message-State: AOAM530bdWMhqCjhvhTk+pTYI9PsLqsxz4jvhMEzCNeWqOd3888NK55r
+        UarhKBuKCqKEwMvXHvR/MjVBdfIeBkGr1IokwoA=
+X-Google-Smtp-Source: ABdhPJwDCxee7jV2n8a1Svw2CcluiW33jrACAl+tVwINni9XvoTwC+e80Xv1R19D9/bVXLChNcBX2LeY5QOT0/9jxzU=
+X-Received: by 2002:a67:c789:: with SMTP id t9mr25809822vsk.60.1629749499174;
+ Mon, 23 Aug 2021 13:11:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_xJCqOWtwZ9Ee2+0sPGNLM5=F=djtbdYENkAYZa0ynqQ@mail.gmail.com>
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
+ <CAHp75VcG9KajNpDbewDq7QzotB6t7MfwiGk15FaobX+cmMVSzg@mail.gmail.com>
+ <CAK9rFnwrA=W2Vk5yFwG4N_WS=eBXXnhtexA+tqgAYb6xOAO4oQ@mail.gmail.com>
+ <CAHp75VdfrJ3JV_gL3xCLHOiw6Tj-5Ep7z5JKWUFKFbUt8gobcw@mail.gmail.com>
+ <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
+ <CAMuHMdUz4vUQzXBHA9AiT3w6L20yBpgd0emVZJb=v_qw70qiJQ@mail.gmail.com> <CAK9rFnw-j8whcsK-NQ4w4+sCdrumCk7Bb=J+KfsF9ZO2Tf5r5g@mail.gmail.com>
+In-Reply-To: <CAK9rFnw-j8whcsK-NQ4w4+sCdrumCk7Bb=J+KfsF9ZO2Tf5r5g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 23 Aug 2021 22:11:27 +0200
+Message-ID: <CAMuHMdW0s=x+DBZffeuEcyifDRfy8YM3c_wEAZscO7twR2wj3Q@mail.gmail.com>
+Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
+To:     Brad Larson <brad@pensando.io>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> PHY seems to be one of those cases where it's okay to have the
-> compatible property but also okay to not have it.
+Hi Brad,
 
-Correct. They are like PCI or USB devices. You can ask it, what are
-you? There are two registers in standard locations which give you a
-vendor and product ID. We use that to find the correct driver.
+On Mon, Aug 23, 2021 at 6:31 PM Brad Larson <brad@pensando.io> wrote:
+> On Mon, Aug 23, 2021 at 12:50 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Mon, Aug 23, 2021 at 3:14 AM Brad Larson <brad@pensando.io> wrote:
+> > > On Mon, Mar 29, 2021 at 3:40 AM Andy Shevchenko
+> [...]
+> > > Regarding the above module question and Kconfig definition, since I
+> > > first looked at this and reviewed the comments I realized I should be
+> > > using builtin.  The file gpio/Kconfig is currently this
+> > >
+> > > config GPIO_ELBA_SPICS
+> > >         def_bool y
+> > >         depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
+> >
+> > That means the driver will default to yes by merely enabling
+> > COMPILE_TEST, which is a no-go.
+> >
+> >     config GPIO_ELBA_SPICS
+> >             bool "one-line summary"
+> >             depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
+> >             default y if ARCH_PENSANDO_ELBA_SOC
+>
+> Thanks Geert, changed to this
+>
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -241,8 +241,9 @@ config GPIO_EIC_SPRD
+>           Say yes here to support Spreadtrum EIC device.
+>
+>  config GPIO_ELBA_SPICS
+> +       bool "Pensando Elba SoC SPI Chip Select as GPIO support"
+> +       depends on ARCH_PENSANDO_ELBA_SOC
+>         def_bool y
+> -       depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
 
-You only need a compatible when things are not so simple.
+So we're losing the COMPILE_TEST ability again?
 
-1) The IDs are wrong. Some silicon vendors do stupid things
+Gr{oetje,eeting}s,
 
-2) Chicken/egg problems, you cannot read the ID registers until you
-   load the driver and some resource is enabled.
+                        Geert
 
-3) It is a C45 devices, e.g. part of clause 45 of 802.3, which
-   requires a different protocol to be talked over the bus. So the
-   compatible string tells you to talk C45 to get the IDs.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-4) It is not a PHY, but some sort of other MDIO device, and hence
-   there are no ID registers.
-
-Andrew
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
