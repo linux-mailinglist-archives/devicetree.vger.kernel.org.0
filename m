@@ -2,57 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 752A43F4B2B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 14:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 956C83F4B59
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 15:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237034AbhHWM4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 08:56:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53600 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232574AbhHWM4X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 08:56:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B3C32613AC;
-        Mon, 23 Aug 2021 12:55:36 +0000 (UTC)
-Date:   Mon, 23 Aug 2021 13:55:33 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Nicolas Pitre <nico@fluxnic.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Mike Rapoport <rppt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 8/9] arm64: kdump: Remove custom
- linux,usable-memory-range handling
-Message-ID: <20210823125533.GE8603@arm.com>
-References: <cover.1628670468.git.geert+renesas@glider.be>
- <7356c531c49a24b4a55577bf8e46d93f4d8ae460.1628670468.git.geert+renesas@glider.be>
+        id S237164AbhHWNGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 09:06:33 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:53740 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235649AbhHWNGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 09:06:32 -0400
+X-UUID: 0802132c3032473ba51729c45abcab01-20210823
+X-UUID: 0802132c3032473ba51729c45abcab01-20210823
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 392248089; Mon, 23 Aug 2021 21:05:42 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 23 Aug 2021 21:05:40 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 23 Aug 2021 21:05:39 +0800
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
+        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>
+Subject: [PATCH v5 0/7] Introducing an attribute to select the time setting
+Date:   Mon, 23 Aug 2021 21:05:30 +0800
+Message-ID: <1629723937-10839-1-git-send-email-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7356c531c49a24b4a55577bf8e46d93f4d8ae460.1628670468.git.geert+renesas@glider.be>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 10:51:06AM +0200, Geert Uytterhoeven wrote:
-> Remove the architecture-specific code for handling the
-> "linux,usable-memory-range" property under the "/chosen" node in DT, as
-> the platform-agnostic FDT core code already takes care of this.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+v5:
+1. Replace the previous variable name "default_timing_adjust" with "use-default-timing"
+2. Added waiting for dma reset mechanism
+3. Remove received patch(dt-bindings: i2c: update bindings for MT8195 SOC)
 
-Acked-by: Catalin Marinas <catalin.marinas@arm.com>
+v4:
+1. Remove the repeated assignment of the inter_clk_div parameter
+2. Modify the wrong assignment of OFFSET_MULTI_DMA
+3. Unify the log print format of the i2c_dump_register() and drop the extra outer parentheses
+4. Place the fixes at the very least
+5. Add fixed tags 25708278f810 ("i2c: mediatek: Add i2c support for MediaTek MT8183")
+6. Add "i2c: mediatek: modify bus speed calculation formula"
+7. Fix single line characters exceeding 80 characters
+8. Combine two different series of patches.
+
+v3:
+1. Fix code errors caused by v2 modification
+
+v2:
+1. Add "dt-bindings: i2c: add attribute default-timing-adjust"
+2. Split the fix into sepatate patch.
+
+Kewei Xu (7):
+  i2c: mediatek: fixing the incorrect register offset
+  i2c: mediatek: Reset the handshake signal between i2c and dma
+  i2c: mediatek: Dump i2c/dma register when a timeout occurs
+  dt-bindings: i2c: add attribute use-default-timing
+  i2c: mediatek: Add OFFSET_EXT_CONF setting back
+  i2c: mediatek: Isolate speed setting via dts for special devices
+  i2c: mediatek: modify bus speed calculation formula
+
+ .../devicetree/bindings/i2c/i2c-mt65xx.txt    |   2 +
+ drivers/i2c/busses/i2c-mt65xx.c               | 207 ++++++++++++++++--
+ 2 files changed, 192 insertions(+), 17 deletions(-)
+
+-- 
+2.18.0
