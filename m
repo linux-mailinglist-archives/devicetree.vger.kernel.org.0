@@ -2,426 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 545D13F45C9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 09:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3FBC3F4606
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 09:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235016AbhHWHaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 03:30:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235006AbhHWHaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 03:30:02 -0400
-Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807C4C061757
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 00:29:20 -0700 (PDT)
-Received: by mail-vk1-xa31.google.com with SMTP id j12so2169959vka.6
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 00:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=r6abzW5EhxD1q5GgfkrzW3RElYYvwZP+C4Q5YRXXnBc=;
-        b=y1Sgm4+taI5iG99iQ3ElrepMNxGp8blUTCM/p5vkAdRlhbCnrJtdsxt8w93sCuB84q
-         HtcoYxyAV0bWdVT3LL98YCrTPIfjX7IABZseT9v1E4WAKdKOmg8SRWqT+24bvoQUlI3k
-         9pwMG0Jrnr9zoYAatfV94QUyht9qxMmsnkkW9ENwzV7b7Vf57VuzJY3NJqBwvyDsRyE1
-         CHLdAxfP1MHhE5p6hoL2mDJc2rYJpvFvRKyLVqmUiAQM2xpmg+foLP/FsdxU4gl7j535
-         L0zFf1rj5i8yz8ltmeoHEDd9SF/qcsHKh18a/Qr8aE3GOn2hDI5/zCjwLjeHmeo/ZAfw
-         +7eQ==
+        id S235282AbhHWHvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 03:51:47 -0400
+Received: from mail-vs1-f44.google.com ([209.85.217.44]:39760 "EHLO
+        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235247AbhHWHvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 03:51:18 -0400
+Received: by mail-vs1-f44.google.com with SMTP id e9so10495974vst.6;
+        Mon, 23 Aug 2021 00:50:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=r6abzW5EhxD1q5GgfkrzW3RElYYvwZP+C4Q5YRXXnBc=;
-        b=cZbwQD7gYqebIe+rGGUsO2cUdt3TJj5shch8Vqdx0p8OAbHyXw0X5rWJmB/gzTQzRj
-         U5gnp6U0P+vU+pUwV1Yiu8HArod1iTbWBQcCdflpaW7+05BbeRO2uzvlmSb6NAfumiT1
-         86TCLtDMmeBTEod88Nazi0ixcgAg5LOkohNPZ1wUS77p7Kzy+082RpdwiegMMDM8b8sn
-         H2C5J5OzRdLGEDbnrCWNoEU3iDfS1koP4XHK9mMXnceMBIHIioewEJNhkTcwOMUnar4q
-         98OV3r/Rw7iVS6J60XAZnUhZEeEJBFubyF35hUzrfvNtoNEUtZ2f8GVV7S6sI6ui9hjd
-         RioQ==
-X-Gm-Message-State: AOAM530+CdkGx9P3bnJ3vm+14HgDJ+rxvsq2SNWS+zq8lmOTmRzL16mC
-        Ues56l0SBiztpChkGcf6Hi2ADmPuj9LvNM6CnWG0
-X-Google-Smtp-Source: ABdhPJzXg0QLDKC3ypVOLJ8LF+Hnwvf/dzKpGyMpqKTbNZDoVCtszzAT8fU9HhMQeUE9pL0O9BMtnx4Bln3psySzSUA=
-X-Received: by 2002:a05:6122:e04:: with SMTP id bk4mr20872064vkb.20.1629703758877;
- Mon, 23 Aug 2021 00:29:18 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=ho3P9pBdgd42CBBqO6PTExhHf40DO+XVUYi0PLvvDcU=;
+        b=Tnr5p0YBYnazRD2Ux+8Z2KBq+evjNl1zJuA/CLqhtId2E1EsGsU53PVzpnbCmJuQ8g
+         G7UmJR4V+rAxpuSPB9HbIKLj00kLPtTgYX0Dldm09OzfxQso8IhZP4wwon19QEgrrEcS
+         IrrkkAskDUNn+ACgpzJBitW0Ln4f2w+XvGyA8ow70mHdRZe1JkiClOI1kN/nTDdkjQcy
+         RPTh/jlT2CSKe/Yfp9SGZ5Lln92NW8H5kIuckj4oVt/1MOSDx3+lazEtLHztSvDtp6c8
+         WBySiYp+1xryhz1DdwyI3OmauFZE1JuthS8J//8XBwFDk67S+biRlgcpkHI/IMCECuu6
+         Pmxg==
+X-Gm-Message-State: AOAM530kFAY5SquwExfPqv87d8vYJlvHiOrUOm7UNGxkoBpAUK/l76Jt
+        DR6KoY5T7w+8+m/rP1w/TUwBjwZQOcTXKlY3WbQ=
+X-Google-Smtp-Source: ABdhPJwnddl0CNzxKVNjXlZCRb2Igz6ludKlJHQ+IsyXtT1SETsb4n8hdAEokGACKnU9D507Yh2RQoDqVqVaLusqNtA=
+X-Received: by 2002:a67:c789:: with SMTP id t9mr23194381vsk.60.1629705028211;
+ Mon, 23 Aug 2021 00:50:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210819170301.10520-1-romain.perier@gmail.com> <20210819170301.10520-3-romain.perier@gmail.com>
-In-Reply-To: <20210819170301.10520-3-romain.perier@gmail.com>
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date:   Mon, 23 Aug 2021 16:28:52 +0900
-Message-ID: <CABMQnVJwFf4nX6ApdobBnwfzmWSsYHcabFqZd8rUQw=T7V=vcA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] rtc: Add support for the MSTAR MSC313 RTC
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
+ <CAHp75VcG9KajNpDbewDq7QzotB6t7MfwiGk15FaobX+cmMVSzg@mail.gmail.com>
+ <CAK9rFnwrA=W2Vk5yFwG4N_WS=eBXXnhtexA+tqgAYb6xOAO4oQ@mail.gmail.com>
+ <CAHp75VdfrJ3JV_gL3xCLHOiw6Tj-5Ep7z5JKWUFKFbUt8gobcw@mail.gmail.com> <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
+In-Reply-To: <CAK9rFnx--z_pr_yR6CqGsH04ddwUtx4rxc7MxNNmy7ZSF86+Mg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 23 Aug 2021 09:50:16 +0200
+Message-ID: <CAMuHMdUz4vUQzXBHA9AiT3w6L20yBpgd0emVZJb=v_qw70qiJQ@mail.gmail.com>
+Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
+To:     Brad Larson <brad@pensando.io>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hi Brad,
 
-2021=E5=B9=B48=E6=9C=8820=E6=97=A5(=E9=87=91) 2:03 Romain Perier <romain.pe=
-rier@gmail.com>:
+On Mon, Aug 23, 2021 at 3:14 AM Brad Larson <brad@pensando.io> wrote:
+> On Mon, Mar 29, 2021 at 3:40 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> >
+> > On Mon, Mar 29, 2021 at 4:19 AM Brad Larson <brad@pensando.io> wrote:
+> > > On Sun, Mar 7, 2021 at 11:21 AM Andy Shevchenko
+> > > <andy.shevchenko@gmail.com> wrote:
+> > > > On Thu, Mar 4, 2021 at 4:40 PM Brad Larson <brad@pensando.io> wrote:
+> >
+> > ...
+> >
+> > > > > +config GPIO_ELBA_SPICS
+> > > > > +       bool "Pensando Elba SPI chip-select"
+> > > >
+> > > > Can't it be a module? Why?
+> > >
+> > > All Elba SoC based platforms require this driver to be built-in to boot and
+> > > removing the module would result in a variety of exceptions/errors.
+> >
+> > Needs to be at least in the commit message.
+> >
+> > > > > +       depends on ARCH_PENSANDO_ELBA_SOC
+> > > > > +       help
+> > > > > +         Say yes here to support the Pensndo Elba SoC SPI chip-select driver
+
+Pensando
+
+> > > >
+> > > > Please give more explanation what it is and why users might need it,
+> > > > and also tell users how the module will be named (if there is no
+> > > > strong argument why it can't be a  module).
+> > > >
+> > > Fixed the typo.
+> >
+> > Yeah, according to the above, you better elaborate what this module is
+> > and why people would need it.
+> > Also can be a good hint to add
+> > default ARCH_MY_COOL_PLATFORM
 >
-> From: Daniel Palmer <daniel@0x0f.com>
+> Regarding the above module question and Kconfig definition, since I
+> first looked at this and reviewed the comments I realized I should be
+> using builtin.  The file gpio/Kconfig is currently this
 >
-> This adds support for the RTC block on the Mstar MSC313e SoCs and newer.
->
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> Co-developed-by: Romain Perier <romain.perier@gmail.com>
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> ---
->  MAINTAINERS              |   1 +
->  drivers/rtc/Kconfig      |  10 ++
->  drivers/rtc/Makefile     |   1 +
->  drivers/rtc/rtc-msc313.c | 258 +++++++++++++++++++++++++++++++++++++++
->  4 files changed, 270 insertions(+)
->  create mode 100644 drivers/rtc/rtc-msc313.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fd25e4ecf0b9..ebacdd5e8878 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2220,6 +2220,7 @@ F:        arch/arm/boot/dts/mstar-*
->  F:     arch/arm/mach-mstar/
->  F:     drivers/clk/mstar/
->  F:     drivers/gpio/gpio-msc313.c
-> +F:     drivers/rtc/rtc-msc313.c
->  F:     drivers/watchdog/msc313e_wdt.c
->  F:     include/dt-bindings/clock/mstar-*
->  F:     include/dt-bindings/gpio/msc313-gpio.h
-> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> index 12153d5801ce..9ce4baab5fcf 100644
-> --- a/drivers/rtc/Kconfig
-> +++ b/drivers/rtc/Kconfig
-> @@ -1925,4 +1925,14 @@ config RTC_DRV_WILCO_EC
->           This can also be built as a module. If so, the module will
->           be named "rtc_wilco_ec".
->
-> +config RTC_DRV_MSC313
-> +       tristate "MStar MSC313 RTC"
-> +        depends on ARCH_MSTARV7 || COMPILE_TEST
-> +       help
-> +         If you say yes here you get support for the Mstar MSC313e On-Ch=
-ip
-> +         Real Time Clock.
-> +
-> +         This driver can also be built as a module, if so, the module
-> +         will be called "rtc-msc313".
-> +
->  endif # RTC_CLASS
-> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-> index 2dd0dd956b0e..5efda8a60cee 100644
-> --- a/drivers/rtc/Makefile
-> +++ b/drivers/rtc/Makefile
-> @@ -101,6 +101,7 @@ obj-$(CONFIG_RTC_DRV_MCP795)        +=3D rtc-mcp795.o
->  obj-$(CONFIG_RTC_DRV_MESON)    +=3D rtc-meson.o
->  obj-$(CONFIG_RTC_DRV_MOXART)   +=3D rtc-moxart.o
->  obj-$(CONFIG_RTC_DRV_MPC5121)  +=3D rtc-mpc5121.o
-> +obj-$(CONFIG_RTC_DRV_MSC313)   +=3D rtc-msc313.o
->  obj-$(CONFIG_RTC_DRV_MSM6242)  +=3D rtc-msm6242.o
->  obj-$(CONFIG_RTC_DRV_MT2712)   +=3D rtc-mt2712.o
->  obj-$(CONFIG_RTC_DRV_MT6397)   +=3D rtc-mt6397.o
-> diff --git a/drivers/rtc/rtc-msc313.c b/drivers/rtc/rtc-msc313.c
-> new file mode 100644
-> index 000000000000..8cf5d5fb298f
-> --- /dev/null
-> +++ b/drivers/rtc/rtc-msc313.c
-> @@ -0,0 +1,258 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Real time clocks driver for MStar/SigmaStar ARMv7 SoCs.
-> + * Based on "Real Time Clock driver for msb252x." that was contained
-> + * in various MStar kernels.
-> + *
-> + * (C) 2019 Daniel Palmer
-> + * (C) 2021 Romain Perier
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/rtc.h>
-> +
-> +/* Registers */
-> +#define REG_RTC_CTRL           0x00
-> +#define REG_RTC_FREQ_CW_L      0x04
-> +#define REG_RTC_FREQ_CW_H      0x08
-> +#define REG_RTC_LOAD_VAL_L     0x0C
-> +#define REG_RTC_LOAD_VAL_H     0x10
-> +#define REG_RTC_MATCH_VAL_L    0x14
-> +#define REG_RTC_MATCH_VAL_H    0x18
-> +#define REG_RTC_STATUS_INT     0x1C
-> +#define REG_RTC_CNT_VAL_L      0x20
-> +#define REG_RTC_CNT_VAL_H      0x24
-> +
-> +/* Control bits for REG_RTC_CTRL */
-> +#define SOFT_RSTZ_BIT          BIT(0)
-> +#define CNT_EN_BIT             BIT(1)
-> +#define WRAP_EN_BIT            BIT(2)
-> +#define LOAD_EN_BIT            BIT(3)
-> +#define READ_EN_BIT            BIT(4)
-> +#define INT_MASK_BIT           BIT(5)
-> +#define INT_FORCE_BIT          BIT(6)
-> +#define INT_CLEAR_BIT          BIT(7)
-> +
-> +/* Control bits for REG_RTC_STATUS_INT */
-> +#define RAW_INT_BIT            BIT(0)
-> +#define ALM_INT_BIT            BIT(1)
-> +
-> +struct msc313_rtc {
-> +       struct rtc_device *rtc_dev;
-> +       void __iomem *rtc_base;
-> +       struct clk *clk;
+> config GPIO_ELBA_SPICS
+>         def_bool y
+>         depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
 
-The clk variable is only used in msc313_rtc_probe(). Therefore, it is
-not necessary to have it in this structure.
+That means the driver will default to yes by merely enabling
+COMPILE_TEST, which is a no-go.
 
-> +};
-> +
-> +static int msc313_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *=
-alarm)
-> +{
-> +       struct msc313_rtc *priv =3D dev_get_drvdata(dev);
-> +       unsigned long seconds;
-> +
-> +       seconds =3D readw(priv->rtc_base + REG_RTC_MATCH_VAL_L)
-> +                       | (readw(priv->rtc_base + REG_RTC_MATCH_VAL_H) <<=
- 16);
-> +
-> +       rtc_time64_to_tm(seconds, &alarm->time);
-> +
-> +       if (!(readw(priv->rtc_base + REG_RTC_CTRL) & INT_MASK_BIT))
-> +               alarm->enabled =3D 1;
-> +
-> +       return 0;
-> +}
-> +
-> +static int msc313_rtc_alarm_irq_enable(struct device *dev, unsigned int =
-enabled)
-> +{
-> +       struct msc313_rtc *priv =3D dev_get_drvdata(dev);
-> +       u16 reg;
-> +
-> +       reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
-> +       if (enabled)
-> +               reg &=3D ~INT_MASK_BIT;
-> +       else
-> +               reg |=3D INT_MASK_BIT;
-> +       writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> +       return 0;
-> +}
-> +
-> +static int msc313_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *a=
-larm)
-> +{
-> +       struct msc313_rtc *priv =3D dev_get_drvdata(dev);
-> +       unsigned long seconds;
-> +
-> +       seconds =3D rtc_tm_to_time64(&alarm->time);
-> +       writew((seconds & 0xFFFF), priv->rtc_base + REG_RTC_MATCH_VAL_L);
-> +       writew((seconds >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_MATCH_V=
-AL_H);
-> +
-> +       msc313_rtc_alarm_irq_enable(dev, alarm->enabled);
-> +
-> +       return 0;
-> +}
-> +
-> +static bool msc313_rtc_get_enabled(struct msc313_rtc *priv)
-> +{
-> +       return readw(priv->rtc_base + REG_RTC_CTRL) & CNT_EN_BIT;
-> +}
-> +
-> +static void msc313_rtc_set_enabled(struct msc313_rtc *priv)
-> +{
-> +       u16 reg;
-> +
-> +       reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
-> +       reg |=3D CNT_EN_BIT;
-> +       writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> +}
-> +
-> +static int msc313_rtc_read_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +       struct msc313_rtc *priv =3D dev_get_drvdata(dev);
-> +       u32 seconds;
-> +       u16 reg;
-> +
-> +       if (!msc313_rtc_get_enabled(priv))
-> +               return -EINVAL;
-> +
-> +       reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
-> +       writew(reg | READ_EN_BIT, priv->rtc_base + REG_RTC_CTRL);
-> +
-> +       /* Wait for HW latch done */
-> +       while (readw(priv->rtc_base + REG_RTC_CTRL) & READ_EN_BIT)
-> +               udelay(1);
-> +
-> +       seconds =3D readw(priv->rtc_base + REG_RTC_CNT_VAL_L)
-> +                       | (readw(priv->rtc_base + REG_RTC_CNT_VAL_H) << 1=
-6);
-> +
-> +       rtc_time64_to_tm(seconds, tm);
-> +
-> +       return 0;
-> +}
-> +
-> +static int msc313_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +       struct msc313_rtc *priv =3D dev_get_drvdata(dev);
-> +       unsigned long seconds;
-> +       u16 reg;
-> +
-> +       seconds =3D rtc_tm_to_time64(tm);
-> +       writew(seconds & 0xFFFF, priv->rtc_base + REG_RTC_LOAD_VAL_L);
-> +       writew((seconds >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_LOAD_VA=
-L_H);
-> +
-> +       /* Enable load for loading value into internal RTC counter */
-> +       reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
-> +       writew(reg | LOAD_EN_BIT, priv->rtc_base + REG_RTC_CTRL);
-> +
-> +       /* Wait for HW latch done */
-> +       while (readw(priv->rtc_base + REG_RTC_CTRL) & LOAD_EN_BIT)
-> +               udelay(1);
-> +       msc313_rtc_set_enabled(priv);
-> +       return 0;
-> +}
-> +
-> +static const struct rtc_class_ops msc313_rtc_ops =3D {
-> +       .read_time =3D msc313_rtc_read_time,
-> +       .set_time =3D msc313_rtc_set_time,
-> +       .read_alarm =3D msc313_rtc_read_alarm,
-> +       .set_alarm =3D msc313_rtc_set_alarm,
-> +       .alarm_irq_enable =3D msc313_rtc_alarm_irq_enable,
-> +};
-> +
-> +static irqreturn_t msc313_rtc_interrupt(s32 irq, void *dev_id)
-> +{
-> +       struct msc313_rtc *priv =3D dev_get_drvdata(dev_id);
-> +       u16 reg;
-> +
-> +       reg =3D readw(priv->rtc_base + REG_RTC_STATUS_INT);
-> +       if (!(reg & ALM_INT_BIT))
-> +               return IRQ_NONE;
-> +
-> +       reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
-> +       reg |=3D INT_CLEAR_BIT;
-> +       reg &=3D ~INT_FORCE_BIT;
-> +       writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> +
-> +       rtc_update_irq(priv->rtc_dev, 1, RTC_IRQF | RTC_AF);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int msc313_rtc_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct msc313_rtc *priv;
-> +       int ret;
-> +       int irq;
-> +       unsigned long rate;
+    config GPIO_ELBA_SPICS
+            bool "one-line summary"
+            depends on ARCH_PENSANDO_ELBA_SOC || COMPILE_TEST
+            default y if ARCH_PENSANDO_ELBA_SOC
 
-Please use reverse christmas tree ordering for local variable.
+Gr{oetje,eeting}s,
 
-> +
-> +       priv =3D devm_kzalloc(&pdev->dev, sizeof(struct msc313_rtc), GFP_=
-KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       priv->rtc_base =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(priv->rtc_base))
-> +               return PTR_ERR(priv->rtc_base);
-> +
-> +       irq =3D platform_get_irq(pdev, 0);
-> +       if (irq < 0)
-> +               return -EINVAL;
-> +
-> +       priv->rtc_dev =3D devm_rtc_allocate_device(dev);
-> +       if (IS_ERR(priv->rtc_dev))
-> +               return PTR_ERR(priv->rtc_dev);
-> +
-> +       priv->rtc_dev->ops =3D &msc313_rtc_ops;
-> +       priv->rtc_dev->range_max =3D U32_MAX;
-> +
-> +       ret =3D devm_request_irq(dev, irq, msc313_rtc_interrupt, IRQF_SHA=
-RED,
-> +                              dev_name(&pdev->dev), &pdev->dev);
-> +       if (ret) {
-> +               dev_err(dev, "Could not request IRQ\n");
-> +               return ret;
-> +       }
-> +
-> +       priv->clk =3D devm_clk_get(dev, NULL);
-> +       if (IS_ERR(priv->clk)) {
-> +               dev_err(dev, "No input reference clock\n");
-> +               return PTR_ERR(priv->clk);
-> +       }
-> +
-> +       ret =3D clk_prepare_enable(priv->clk);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to enable the reference clock, %d\n"=
-, ret);
-> +               return ret;
-> +       }
-> +
-> +       ret =3D devm_add_action_or_reset(dev, (void (*) (void *))clk_disa=
-ble_unprepare, priv->clk);
-> +       if (ret)
-> +               return ret;
-> +
-> +       rate =3D clk_get_rate(priv->clk);
-> +       writew(rate & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_L);
-> +       writew((rate >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_H)=
-;
-> +
-> +       platform_set_drvdata(pdev, priv);
-> +
-> +       return devm_rtc_register_device(priv->rtc_dev);
-> +}
-> +
-> +static const struct of_device_id msc313_rtc_of_match_table[] =3D {
-> +       { .compatible =3D "mstar,msc313-rtc" },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, ms_rtc_of_match_table);
+                        Geert
 
-msc313_rtc_of_match_table ?
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> +
-> +static struct platform_driver msc313_rtc_driver =3D {
-> +       .probe =3D msc313_rtc_probe,
-> +       .driver =3D {
-> +               .name =3D "msc313-rtc",
-> +               .of_match_table =3D msc313_rtc_of_match_table,
-> +       },
-> +};
-> +
-> +module_platform_driver(msc313_rtc_driver);
-> +
-> +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
-> +MODULE_AUTHOR("Romain Perier <romain.perier@gmail.com>");
-> +MODULE_DESCRIPTION("MStar RTC Driver");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.30.2
->
-
-Best regards,
-  Nobuhiro
-
---=20
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org / kernel.org}
-   GPG ID: 40AD1FA6
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
