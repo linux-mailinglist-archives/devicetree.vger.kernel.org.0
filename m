@@ -2,118 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 830133F4750
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79E063F4755
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 11:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231444AbhHWJXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 05:23:31 -0400
-Received: from mail-vs1-f44.google.com ([209.85.217.44]:47095 "EHLO
-        mail-vs1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231258AbhHWJXb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:23:31 -0400
-Received: by mail-vs1-f44.google.com with SMTP id f13so10610108vsl.13;
-        Mon, 23 Aug 2021 02:22:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gt+eojLYgADvAa13MxSZYGtUVyb5L5ebuzo5ONxZgrI=;
-        b=BnmQ1yr/AnjAJB0x3XpXN9UZ36Onkk+a6DJE3xEBI2elkbOqtGiiI3OAmdGmQAozD1
-         KUbyJIK3HmQGFmFVVcH4ok0FBRIlTM/Oume5ShU1ObcpfprAR+iiSD3aX5awwGPDnc+L
-         D8PN4zJXEi5SMa7nyBlz6IRfNJiR51P5YekqfdzcYJN5gXU8i+jJk9+PxWtXrZDLCANq
-         fEVrLn5qTnl01WWERhBA0wj5dLzAQLaG8Lg1U1dHK1kgQ0C3RJjojBhfehqH5TrD00ss
-         qmpQDmVabFlnsFIz2xQ5U+YiIAeTFTgbhAvD02y8OQiCIcTQZctk1ALdN0/DRHQy0+dA
-         9ARQ==
-X-Gm-Message-State: AOAM530hqRcr2TA1h9T/nl30QRqmidb/7Jm9tHg7YB4TA0QLK8Q1nQAk
-        oqP0inDWFWqHJwwHqg8BP2TXN307TDovR9E4Ns4=
-X-Google-Smtp-Source: ABdhPJz28fxMG9kfJf8GETxTvqUtwihBTWhZXmcu12UH1nD6e1mE1lJ+gKdP0AYCAbP1FuvP0Zlts11yKSODJ4rQIdU=
-X-Received: by 2002:a67:cb0a:: with SMTP id b10mr22882432vsl.9.1629710568318;
- Mon, 23 Aug 2021 02:22:48 -0700 (PDT)
+        id S235703AbhHWJY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 05:24:58 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44800 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235699AbhHWJY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 05:24:56 -0400
+X-UUID: 8be3143b3fe740b5a63841f2196c9ed1-20210823
+X-UUID: 8be3143b3fe740b5a63841f2196c9ed1-20210823
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 363415715; Mon, 23 Aug 2021 17:24:11 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 23 Aug 2021 17:24:10 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 23 Aug 2021 17:24:10 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [v4 1/5] dt-bindings: power: Add MT8195 power domains
+Date:   Mon, 23 Aug 2021 17:23:49 +0800
+Message-ID: <20210823092353.3502-2-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210823092353.3502-1-chun-jie.chen@mediatek.com>
+References: <20210823092353.3502-1-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-References: <20210812151808.7916-1-biju.das.jz@bp.renesas.com>
- <20210812151808.7916-4-biju.das.jz@bp.renesas.com> <2f5f8999-260d-e9c0-731e-df644b528b61@gmail.com>
- <OS0PR01MB59221C4884E0667F75748A1686F99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <OS0PR01MB5922205202921BA8EC12C26686FE9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <05bdd9e8-e68f-c8b4-a7d9-a83f2ca97a58@omp.ru>
-In-Reply-To: <05bdd9e8-e68f-c8b4-a7d9-a83f2ca97a58@omp.ru>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 23 Aug 2021 11:22:36 +0200
-Message-ID: <CAMuHMdVAMX7-SwguMZHJGua1h-Kp5KGw4u0GEeZ7eByccdxYQw@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] arm64: dts: renesas: r9a07g044: Add USB2.0 device support
-To:     Sergey Shtylyov <s.shtylyov@omp.ru>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
+Add power domains dt-bindings for MT8195.
 
-On Tue, Aug 17, 2021 at 6:41 PM Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
-> On 8/17/21 2:12 PM, Biju Das wrote:
-> [...]
-> >>>> Add USB2.0 device support to RZ/G2L SoC DT.
-> >>>>
-> >>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> >>>> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >>>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >>> [...]
-> >>>> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> >>> b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> >>>> index de78c921af22..2f313c2a81c7 100644
-> >>>> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> >>>> @@ -391,6 +391,25 @@
-> >>>>                    power-domains = <&cpg>;
-> >>>>                    status = "disabled";
-> >>>>            };
-> >>>> +
-> >>>> +          hsusb: usb@11c60000 {
-> >>>> +                  compatible = "renesas,usbhs-r9a07g044",
-> >>>> +                               "renesas,rza2-usbhs";
-> >>>> +                  reg = <0 0x11c60000 0 0x10000>;
-> >>>> +                  interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
-> >>>> +                               <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-> >>>> +                               <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-> >>>> +                               <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> >>>
-> >>>    Don't we need to specify "interrupt-names" when there a more than 1
-> >>> interrupts?
-> >>
-> >> This dtsi changes, as per binding documentation [1]. As you see,
-> >> "interrupt-names" is optional.
-> >
-> > For now I will go with current dt changes.
-> >
-> > Later  I will create incremental patches for dt-binding with optional "interrupt-names",
-> > "clock-names" and "reset names" for all the SoC's supported by this binding doc.
-> >
-> > After that, will send an incremental patch with adding optional properties in all SoC dtsi.
-> >
-> > Does it make sense?
->
->    I had the impression that the "*-names" prop was mandatory for a "*" prop having 2 values or mores.
-> If it's now allowed to be optional, don't bother with that at all.
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
+remove unused power domain like audio_src, nna and hdmi_rx.
+---
+ .../power/mediatek,power-controller.yaml      |  2 +
+ include/dt-bindings/power/mt8195-power.h      | 46 +++++++++++++++++++
+ 2 files changed, 48 insertions(+)
+ create mode 100644 include/dt-bindings/power/mt8195-power.h
 
-There's a difference between "mandatory according to good DT
-binding design" and "mandatory according to the actual json-schema
-DT bindings".  For now the tools only enforce the latter...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+index f234a756c193..d6ebd77d28a7 100644
+--- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
++++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+@@ -27,6 +27,7 @@ properties:
+       - mediatek,mt8173-power-controller
+       - mediatek,mt8183-power-controller
+       - mediatek,mt8192-power-controller
++      - mediatek,mt8195-power-controller
+ 
+   '#power-domain-cells':
+     const: 1
+@@ -64,6 +65,7 @@ patternProperties:
+               "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
+               "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
+               "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
++              "include/dt-bindings/power/mt8195-power.h" - for MT8195 type power domain.
+         maxItems: 1
+ 
+       clocks:
+diff --git a/include/dt-bindings/power/mt8195-power.h b/include/dt-bindings/power/mt8195-power.h
+new file mode 100644
+index 000000000000..b20ca4b3e3a8
+--- /dev/null
++++ b/include/dt-bindings/power/mt8195-power.h
+@@ -0,0 +1,46 @@
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
++/*
++ * Copyright (c) 2021 MediaTek Inc.
++ * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
++ */
++
++#ifndef _DT_BINDINGS_POWER_MT8195_POWER_H
++#define _DT_BINDINGS_POWER_MT8195_POWER_H
++
++#define MT8195_POWER_DOMAIN_PCIE_MAC_P0		0
++#define MT8195_POWER_DOMAIN_PCIE_MAC_P1		1
++#define MT8195_POWER_DOMAIN_PCIE_PHY		2
++#define MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY	3
++#define MT8195_POWER_DOMAIN_CSI_RX_TOP		4
++#define MT8195_POWER_DOMAIN_ETHER		5
++#define MT8195_POWER_DOMAIN_ADSP		6
++#define MT8195_POWER_DOMAIN_AUDIO		7
++#define MT8195_POWER_DOMAIN_MFG0		8
++#define MT8195_POWER_DOMAIN_MFG1		9
++#define MT8195_POWER_DOMAIN_MFG2		10
++#define MT8195_POWER_DOMAIN_MFG3		11
++#define MT8195_POWER_DOMAIN_MFG4		12
++#define MT8195_POWER_DOMAIN_MFG5		13
++#define MT8195_POWER_DOMAIN_MFG6		14
++#define MT8195_POWER_DOMAIN_VPPSYS0		15
++#define MT8195_POWER_DOMAIN_VDOSYS0		16
++#define MT8195_POWER_DOMAIN_VPPSYS1		17
++#define MT8195_POWER_DOMAIN_VDOSYS1		18
++#define MT8195_POWER_DOMAIN_DP_TX		19
++#define MT8195_POWER_DOMAIN_EPD_TX		20
++#define MT8195_POWER_DOMAIN_HDMI_TX		21
++#define MT8195_POWER_DOMAIN_WPESYS		22
++#define MT8195_POWER_DOMAIN_VDEC0		23
++#define MT8195_POWER_DOMAIN_VDEC1		24
++#define MT8195_POWER_DOMAIN_VDEC2		25
++#define MT8195_POWER_DOMAIN_VENC		26
++#define MT8195_POWER_DOMAIN_VENC_CORE1		27
++#define MT8195_POWER_DOMAIN_IMG			28
++#define MT8195_POWER_DOMAIN_DIP			29
++#define MT8195_POWER_DOMAIN_IPE			30
++#define MT8195_POWER_DOMAIN_CAM			31
++#define MT8195_POWER_DOMAIN_CAM_RAWA		32
++#define MT8195_POWER_DOMAIN_CAM_RAWB		33
++#define MT8195_POWER_DOMAIN_CAM_MRAW		34
++
++#endif /* _DT_BINDINGS_POWER_MT8195_POWER_H */
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.18.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
