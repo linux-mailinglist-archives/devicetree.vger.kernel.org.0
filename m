@@ -2,98 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64B1D3F4B85
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 15:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F8283F4B8D
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 15:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237227AbhHWNRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 09:17:35 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:36734 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236163AbhHWNRf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 09:17:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=gN2erQa4xHFleHaPe8a5OvdToFtGAqPESdt/RHJIVNs=; b=zWC+lJqsd06WF7ILg+Thgu9mE1
-        ZtNqlLoOFhBmLLS/ePijatX5aumiOoXsqBcgdLd5kVN38TsPXrlRbHKvRlYUfpmI3bpAqjtOq04D+
-        b8i3wUaXqWbQ6f4RvaXSiHJvgkMgBLYR8C6AzHIucciniJaT5whL3C+oR+Y5KkAl5J6M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mI9oi-003T7N-Rk; Mon, 23 Aug 2021 15:16:44 +0200
-Date:   Mon, 23 Aug 2021 15:16:44 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for
- "phy-handle" property
-Message-ID: <YSOfvMIltzWPCKc/@lunn.ch>
-References: <20210818021717.3268255-1-saravanak@google.com>
- <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
- <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
+        id S236709AbhHWNUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 09:20:04 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:58043 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236614AbhHWNUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 09:20:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1629724761; x=1661260761;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=NN+RmRO+ICIl+sv2UO9mWnmI/qOtLU3PVSl7VwGkagU=;
+  b=dRVbGXDqGacBIQ/GrXq6Q00cGBHjK5dvsluSZzC8CeRpWI9j0x6f6bKq
+   L3273kRORcoZUEXj2DpFAVvu6iYlvUQx6d4jHjzghLpfcOfQXHDFdwFHd
+   vEpqH7KXlwaQsJyMQ+4ywogpUOMK6at1r7mA7SwQhaRVDoKGRhPWwup/G
+   YsdlnYPcqIgvyBSzkvu9ypXLYjEhHY0GAv7J7u/AqBwVlRxp2ecLIQUaP
+   WdQqfk6K+RIZCgGiByT5YznZ8YHkayKzAf2mg7aAeC+ynv0pbHzywvIy5
+   vv8lpGlhPtvZqxdVD8txth3LqpuVqKldG+qVqOfXgDEdGhRr40sqS3cbt
+   Q==;
+IronPort-SDR: Dn53Ca7DIJTDalHurftDyM8bf5t4Gu/vawhLk8HxgQ6PxJYKiHsg9GTKre/Yijiclpi2IKxgsu
+ pROrxOKPm1flCovMtRTD4kjTksKyRh+l0TIiGY6I6A43US82T3zr6QfwjPCi6B/UbjG2aGTGPr
+ blM+FC0DJoyqLrB8vFEKtB3jLJr0Tz4lWDHxwMonKCDLFpCJbl6mNGJYRkVzvwSA/i8c9C1xgc
+ Kx+aJ6QSn441b6S2W9CEKFQt290N5DA/w7uy966Yva3IRzBgF0E0kxW6QikyYDSfIBTDWBYxRl
+ JBChXM4zWOMuOjgL7s43gI1L
+X-IronPort-AV: E=Sophos;i="5.84,344,1620716400"; 
+   d="scan'208";a="141194692"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Aug 2021 06:19:20 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 23 Aug 2021 06:19:20 -0700
+Received: from rob-dk-mpu01.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 23 Aug 2021 06:19:17 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>,
+        <linux@armlinux.org.uk>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v2 0/4] ARM: at91: add new nodes to DT and fix for PM
+Date:   Mon, 23 Aug 2021 16:19:11 +0300
+Message-ID: <20210823131915.23857-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 02:08:48PM +0200, Marek Szyprowski wrote:
-> Hi,
-> 
-> On 18.08.2021 04:17, Saravana Kannan wrote:
-> > Allows tracking dependencies between Ethernet PHYs and their consumers.
-> >
-> > Cc: Andrew Lunn <andrew@lunn.ch>
-> > Cc: netdev@vger.kernel.org
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> 
-> This patch landed recently in linux-next as commit cf4b94c8530d ("of: 
-> property: fw_devlink: Add support for "phy-handle" property"). It breaks 
-> ethernet operation on my Amlogic-based ARM64 boards: Odroid C4 
-> (arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts) and N2 
-> (meson-g12b-odroid-n2.dts) as well as Khadas VIM3/VIM3l 
-> (meson-g12b-a311d-khadas-vim3.dts and meson-sm1-khadas-vim3l.dts).
-> 
-> In case of OdroidC4 I see the following entries in the 
-> /sys/kernel/debug/devices_deferred:
-> 
-> ff64c000.mdio-multiplexer
-> ff3f0000.ethernet
-> 
-> Let me know if there is anything I can check to help debugging this issue.
+Hi,
 
-Hi Marek
+The following patches enable UDDRC, DDR3 PHY, SECURAM and SHDWC IPs
+on SAMA7G5.
 
-Please try this. Completetly untested, not even compile teseted:
+Besides this patch 1/1 avoid the panic on PM initialization code allowing
+the system to boot when PM is enabled but not enough information is
+provided in DT.
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 0c0dc2e369c0..7c4e257c0a81 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1292,6 +1292,7 @@ DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
- DEFINE_SIMPLE_PROP(leds, "leds", NULL)
- DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
- DEFINE_SIMPLE_PROP(phy_handle, "phy-handle", NULL)
-+DEFINE_SIMPLE_PROP(mdio_parent_bus, "mdio-parent-bus", NULL);
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- 
-@@ -1381,6 +1382,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
-        { .parse_prop = parse_leds, },
-        { .parse_prop = parse_backlight, },
-        { .parse_prop = parse_phy_handle, },
-+       { .parse_prop = parse_mdio_parent_bus, },
-        { .parse_prop = parse_gpio_compat, },
-        { .parse_prop = parse_interrupts, },
-        { .parse_prop = parse_regulators, },
+Thank you,
+Claudiu Beznea
 
-	Andrew
+Changes in v2:
+- changes cover letter title from
+  "ARM: dts: at91: enable ips for sama7g5" to
+  "ARM: at91: add new nodes to DT and fix for PM"
+- update the device tree patches title and description
+- added patch "ARM: at91: pm: do not panic if ram controllers are not
+  enabled"
+
+Claudiu Beznea (4):
+  ARM: at91: pm: do not panic if ram controllers are not enabled
+  ARM: dts: at91: sama7g5: add ram controllers
+  ARM: dts: at91: sama7g5: add securam node
+  ARM: dts: at91: sama7g5: add shdwc node
+
+ arch/arm/boot/dts/at91-sama7g5ek.dts |  9 ++++
+ arch/arm/boot/dts/sama7g5.dtsi       | 34 ++++++++++++
+ arch/arm/mach-at91/pm.c              | 78 ++++++++++++++++++++++------
+ 3 files changed, 105 insertions(+), 16 deletions(-)
+
+-- 
+2.25.1
+
