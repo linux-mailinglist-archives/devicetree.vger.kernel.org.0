@@ -2,122 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E17333F4D4D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 17:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE693F4D58
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 17:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbhHWPVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 11:21:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50718 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231324AbhHWPVO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Aug 2021 11:21:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B9C6061406;
-        Mon, 23 Aug 2021 15:20:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629732031;
-        bh=qreQnG9EH+SLqs9cxYafKtRpnrXgjkJipzrUHxRm8AI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RGjW/286CluzlorhZhA12uBlEH3uhRoRK1S/j3K064/Shsa1wyggzEKZ+qBLhJnq4
-         gRNV2wTAu/HjHiWh2f8lDroX68ilJ+YROIaiewKam0s1N8A50OJJWefyUImpM5E2eF
-         23BcN2czeN9GNVN/lCJogN+4552M5+pHKvniKKEJEUx8otTEcVGWHyeI3OR3rj1qMi
-         Hi+i0DsYD+9xTYJ7MrtjEFxhLsW1VCy64kf+eN2MBlr4L1PcNpyAXM2UcO+pR7vBQY
-         FLye4cqCOX/Qx8AxadC/oQ1G2/s7ZAxLxG8DqtLBtsk0QFfiMvLtb9egfLJszfwr1w
-         PQAw/Rb0cjfWQ==
-Date:   Mon, 23 Aug 2021 18:20:20 +0300
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Nicolas Pitre <nico@fluxnic.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        kexec@lists.infradead.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 1/9] MIPS: Avoid future duplicate elf core header
- reservation
-Message-ID: <YSO8tJxbuADEeL7I@kernel.org>
-References: <cover.1628670468.git.geert+renesas@glider.be>
- <92b6718f5618d5469f67b48fbea189cca0c12f4b.1628670468.git.geert+renesas@glider.be>
- <YRn9DHlB/pdNPJyP@kernel.org>
- <CAMuHMdVdqR7gw+2O2v=qv_BB=+X2wEXN9jXV=np=jRayadwj7g@mail.gmail.com>
- <YSOeGzowhV/R9QS/@kernel.org>
- <CAL_JsqLMv4fKebJEOv=7UXvy_qqut0N42psS-PSgRMU-qhiFLQ@mail.gmail.com>
+        id S230457AbhHWPWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 11:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229883AbhHWPWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 11:22:34 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CC0C061575;
+        Mon, 23 Aug 2021 08:21:51 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id j187so15662448pfg.4;
+        Mon, 23 Aug 2021 08:21:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nMC47Ws8/3+IS1dfmrDboZCOs/IMnqcveU9oBYbSlCc=;
+        b=W0sbUjNzVJxK723QQwl9y+dxePcbgZmgY4c5xPppItZH1I5Y3C01hpwbsW3a7GcBBm
+         0Hq6Uy18H9QZLmv9fjLtUSxDGz5g6w0EVv10NJk59+/IpVrnHpqP8Cw8HNX99O7BHp9w
+         ylUUlkjRl57Um8tkhGFNmgXGL09vl841zaqOj5qV6m5b2do78+LiiSBip/97CrlqLpI9
+         vlRFMq96KYI4V6coNiYLIaOxkAu1m7y58BkIssWhB9EQmFE+uLgRbEAgcMx4w1N1ASJY
+         OBX597k3fXrPmVIKN/2WGgVvQ4C1iWEvddLM0uB99eHObXkNlrJ6jnFUKMO0inUyutx6
+         PCRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nMC47Ws8/3+IS1dfmrDboZCOs/IMnqcveU9oBYbSlCc=;
+        b=WDPkOapzg5xW0fcndEZLnankM/Q+VB8JAy/3xFQkYxF3BmqGYCoYSRzYOr8Np577TY
+         CBjuuH+AN+k8X6cNGjA8TJYYurdhQ82b40CYE7gTkY2mLVnmjZngtuRmvUnQMumJTAH+
+         BLIiSaNEH+Il7gz41hJ1Z7FnG4DkWfWDX/0dWGKDqEpPU6y9P22+bgRC73f6FwyO3WcO
+         0SR4e9AlnnLOtxKljIM9qe58lBk4mjsaV5Jnt8WZ7n6NflkXYfATAjjRfyugvxGJs/IX
+         FiGcIp/Bn/ej/UEud3GWPQV/qqUZ9x6qjRqinRTV19GRmiGldBjZfBt8Itv1kzh47aWs
+         qcOw==
+X-Gm-Message-State: AOAM530tMj/Ehvwon4qnone1K8h4OfSuxAJ0yR/yPJnj2IQFJ76eZyQZ
+        mWxhaIHXU0O4wNugr4Biqaz+PDkLhIURhC35sNs=
+X-Google-Smtp-Source: ABdhPJxthONvJTTn3DdQlicHRYKFgTLzGAsdhfwPO/YO3Ef3vQ0Z0tlOG+qQgTWVpl/hBeR1GxcTaEzvmHr1xoBE+i8=
+X-Received: by 2002:a05:6a00:d41:b0:3e1:3316:2ef with SMTP id
+ n1-20020a056a000d4100b003e1331602efmr34908253pfv.40.1629732111030; Mon, 23
+ Aug 2021 08:21:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLMv4fKebJEOv=7UXvy_qqut0N42psS-PSgRMU-qhiFLQ@mail.gmail.com>
+References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
+ <2e01c435-9ecc-4e3b-f55c-612a86667020@codeaurora.org> <2ae9fa6a-3bb1-3742-0dd3-59678bdd8643@gmail.com>
+ <ebea75fe-5334-197b-f67a-cb6e1e30b39e@codeaurora.org> <bafa93bb-11e3-c8a5-e14a-b0a6d5695055@gmail.com>
+ <87v951ldlt.fsf@kernel.org> <d9aef50c-4bd1-4957-13d8-0b6a14b9fcd0@gmail.com>
+ <87pmv9l1dv.fsf@kernel.org> <9dc6cd83-17b9-7075-0934-6b9d41b6875d@gmail.com>
+ <87a6mbudvc.fsf@kernel.org> <6e8bb4ad-fe68-ad36-7416-2b8e10b6ae96@gmail.com>
+ <877dhev68a.fsf@kernel.org> <cca69e90-b0ef-00b8-75d3-3bf959a93b45@gmail.com>
+ <874kchvcq0.fsf@kernel.org> <e59f1201-2aa2-9075-1f94-a6ae7a046dc1@gmail.com>
+ <8735raj766.fsf@kernel.org> <b3417c2c-613b-8ef6-2e2d-6e2cf9a5d5fd@gmail.com>
+ <b3e820f0-9c94-7cba-a248-3b2ec5378ab0@gmail.com> <d298df65-417b-f318-9374-b463a15d8308@ivitera.com>
+ <a7d7f0dd-dfbb-5eef-d1da-8cbdab5fc4a7@gmail.com> <c4e29ac0-1df1-3c64-1218-3687f07e7f77@ivitera.com>
+ <1fb52c92-9319-c035-722f-695ab34723dd@gmail.com> <702c72cd-40e4-e641-797a-764e7e611afb@ivitera.com>
+In-Reply-To: <702c72cd-40e4-e641-797a-764e7e611afb@ivitera.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 23 Aug 2021 18:21:11 +0300
+Message-ID: <CAHp75VeZBLgf8YhEjdOV1Hva_dJh_=VHRGyVb=r44yh-9n+F4A@mail.gmail.com>
+Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP bursting
+To:     Pavel Hofman <pavel.hofman@ivitera.com>
+Cc:     Ferry Toth <fntoth@gmail.com>, Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, frowand.list@gmail.com,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        jackp@codeaurora.org, heikki.krogerus@linux.intel.com,
+        Ruslan Bilovol <ruslan.bilovol@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 09:44:55AM -0500, Rob Herring wrote:
-> On Mon, Aug 23, 2021 at 8:10 AM Mike Rapoport <rppt@kernel.org> wrote:
-> >
-> > On Mon, Aug 23, 2021 at 12:17:50PM +0200, Geert Uytterhoeven wrote:
-> > > Hi Mike,
-> > >
-> > > On Mon, Aug 16, 2021 at 7:52 AM Mike Rapoport <rppt@kernel.org> wrote:
-> > > > On Wed, Aug 11, 2021 at 10:50:59AM +0200, Geert Uytterhoeven wrote:
-> > > > > Prepare for early_init_fdt_scan_reserved_mem() reserving the memory
-> > > > > occupied by an elf core header described in the device tree.
-> > > > > As arch_mem_init() calls early_init_fdt_scan_reserved_mem() before
-> > > > > mips_reserve_vmcore(), the latter needs to check if the memory has
-> > > > > already been reserved before.
-> > > >
-> > > > Doing memblock_reserve() for the same region is usually fine, did you
-> > > > encounter any issues without this patch?
-> > >
-> > > Does it also work if the same region is part of an earlier larger
-> > > reservation?  I am no memblock expert, so I don't know.
-> > > I didn't run into any issues, as my MIPS platform is non-DT, but I
-> > > assume arch/arm64/mm/init.c:reserve_elfcorehdr() had the check for
-> > > a reason.
-> >
-> > The memory will be reserved regardless of the earlier reservation, the
-> > issue may appear when the reservations are made for different purpose. E.g.
-> > if there was crash kernel allocation before the reservation of elfcorehdr.
-> >
-> > The check in such case will prevent the second reservation, but, at least
-> > in arch/arm64/mm/init.c:reserve_elfcorehdr() it does not seem to prevent
-> > different users of the overlapping regions to step on each others toes.
-> 
-> If the kernel has been passed in overlapping regions, is there
-> anything you can do other than hope to get a message out?
+On Mon, Aug 23, 2021 at 5:59 PM Pavel Hofman <pavel.hofman@ivitera.com> wrote:
+> Dne 22. 08. 21 v 21:43 Ferry Toth napsal(a):
+> > Op 19-08-2021 om 23:04 schreef Pavel Hofman:
+> >> Dne 19. 08. 21 v 22:10 Ferry Toth napsal(a):
+> >>> Op 19-08-2021 om 09:51 schreef Pavel Hofman:
+> >>>> Dne 18. 08. 21 v 21:07 Ferry Toth napsal(a):
+> >>>>> Op 18-08-2021 om 00:00 schreef Ferry Toth:
 
-Nothing really. I've been thinking about adding flags to memblock.reserved
-to at least distinguish firmware regions from the kernel allocations, but I
-never got to that.
- 
-> > Moreover, arm64::reserve_elfcorehdr() seems buggy to me, because of there
-> > is only a partial overlap of the elfcorehdr with the previous reservation,
-> > the non-overlapping part of elfcorehdr won't get reserved at all.
-> 
-> What do you suggest as the arm64 version is not the common version?
+...
 
-I'm not really familiar with crash dump internals, so I don't know if
-resetting elfcorehdr_addr to ELFCORE_ADDR_ERR is a good idea. I think at
-least arm64::reserve_elfcorehdr() should reserve the entire elfcorehdr area
-regardless of the overlap. Otherwise it might get overwritten by a random
-memblock_alloc().
+> >>>>> So, where do we go from here?
+> >>>>
+> >>>> I know the patches have been tested on dwc2 (by me and others).  I
+> >>>> do not know if Ruslan or Jerome tested them on dwc3 but probably
+> >>>> not. Ruslan has talked about RPi (my case too) and BeagleboneBlack,
+> >>>> both with dwc2. Perhaps the dwc2 behaves a bit differently than dwc3?
+> >>>>
+> >>>> The patches add a new EP-IN for async feedback. I am sorry I have
+> >>>> not followed your long thread (it started as unrelated to uac). Does
+> >>>> the problem appear with f_uac1 or f_uac2? Please how have you
+> >>>> reached the above problem?
+> >>>
+> >>> I'm sorry too. I first believed the issue was related to the patch
+> >>> mentioned in the subject line.
+> >>>
+> >>> The problem appaers with f_uac2. I bost Edison_Arduino board in host
+> >>> mode (there is a switch allowing to select host/device mode). When
+> >>> flipping the switch to device mode udev run a script:
+> >>> But as I am using configfs (excerpt follows) and just disabling the
+> >>> last 2 line resolves the issue, I'm guessing uac2 is the issue. Or
+> >>> exceeding the available resources.
+> >>>
+> >>> # Create directory structure
+> >>> mkdir "${GADGET_BASE_DIR}"
+> >>> cd "${GADGET_BASE_DIR}"
+> >>> mkdir -p configs/c.1/strings/0x409
+> >>> mkdir -p strings/0x409
+> >>>
+> >>> # Serial device
+> >>> mkdir functions/gser.usb0
+> >>> ln -s functions/gser.usb0 configs/c.1/
+> >>> ###
+> >>>
+> >>> # Ethernet device
+> >>> mkdir functions/eem.usb0
+> >>> echo "${DEV_ETH_ADDR}" > functions/eem.usb0/dev_addr
+> >>> echo "${HOST_ETH_ADDR}" > functions/eem.usb0/host_addr
+> >>> ln -s functions/eem.usb0 configs/c.1/
+> >>>
+> >>> # Mass Storage device
+> >>> mkdir functions/mass_storage.usb0
+> >>> echo 1 > functions/mass_storage.usb0/stall
+> >>> echo 0 > functions/mass_storage.usb0/lun.0/cdrom
+> >>> echo 0 > functions/mass_storage.usb0/lun.0/ro
+> >>> echo 0 > functions/mass_storage.usb0/lun.0/nofua
+> >>> echo "${USBDISK}" > functions/mass_storage.usb0/lun.0/file
+> >>> ln -s functions/mass_storage.usb0 configs/c.1/
+> >>>
+> >>> # UAC2 device
+> >>> mkdir functions/uac2.usb0
+> >>> ln -s functions/uac2.usb0 configs/c.1
+> >>> ....
+> >>
+> >> As you say, could perhaps the reason be that the extra EP-IN added in
+> >> those patches (previously 1, now 2 with the default config you use)
+> >> exceeds your EP-IN max count or available fifos somehow?  You have a
+> >> number of functions initialized. If you change the load order of the
+> >> functions, do you get the error later with a different function? Just
+> >> guessing...
+> >>
+> >> You should be able to switch the default async EP-OUT (which
+> >> configures the new feedback EP-IN ) to adaptive EP-OUT (which requires
+> >> no feedback EP) with c_sync=8 parameter of f_uac2.
+> >>
+> >> https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/usb/gadget/function/f_uac2.c#L47
+> >>
+> >> https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/usb/gadget/function/f_uac2.c#L830
+> >>
+> >> https://elixir.bootlin.com/linux/v5.14-rc6/source/include/uapi/linux/usb/ch9.h#L453
+> >>
+> >> Does that fix the problem?
+> >
+> > Not sure how to do that. Do you mean the module should have a parameter
+> > called c_sync? `modinfo` list no parameters for usb_f_uac2.
+>
+> Those are configfs params, not available in modinfo.
+>
+> I checked and the value is "adaptive"
+> https://elixir.bootlin.com/linux/v5.14-rc7/source/drivers/usb/gadget/function/f_uac2.c#L1312
 
-> Rob
+> In your configfs script:
+
+Kernel shouldn't crash with any available set of configuration
+parameters, right? So, even if the parameter would fix the crash the
+series is buggy and has to be reverted in my opinion.
+
+> # UAC2 device
+> mkdir functions/uac2.usb0
+> ln -s functions/uac2.usb0 configs/c.1
+>
+>
+> On the USB Host:
+> cat /proc/asound/Gadget/stream:
+> Playback:
+>    Status: Stop
+>    Interface 1
+>      Altset 1
+>      Format: S16_LE
+>      Channels: 2
+>      Endpoint: 0x01 (1 OUT) (ASYNC)
+>      Rates: 64000
+>      Data packet interval: 125 us
+>      Bits: 16
+>      Channel map: FL FR
+>      Sync Endpoint: 0x82 (2 IN)
+>      Sync EP Interface: 1
+>      Sync EP Altset: 1
+>      Implicit Feedback Mode: No
+>
+> lsusb -v -d 1d6b:0104 | | grep EP.*IN
+>          bEndpointAddress     0x81  EP 1 IN
+>          bEndpointAddress     0x82  EP 2 IN
+>          bEndpointAddress     0x83  EP 3 IN
+>
+> I have additional patches applied which define controls via EP IN
+> interrupt mode, not part of that patchset.
+>
+> Switching to the adaptive mode:
+> # UAC2 device
+> mkdir functions/uac2.usb0
+> echo "adaptive" > functions/uac2.usb0/c_sync
+> ln -s functions/uac2.usb0 configs/c.1
+>
+> On the USB Host:
+> cat /proc/asound/Gadget/stream:
+> Playback:
+>    Status: Stop
+>    Interface 1
+>      Altset 1
+>      Format: S16_LE
+>      Channels: 2
+>      Endpoint: 0x01 (1 OUT) (ADAPTIVE)
+>      Rates: 64000
+>      Data packet interval: 125 us
+>      Bits: 16
+>      Channel map: FL FR
+>
+> lsusb -v -d 1d6b:0104 | grep EP.*IN
+>          bEndpointAddress     0x81  EP 1 IN
+>          bEndpointAddress     0x82  EP 2 IN
+>
+> The feedback EP-IN is gone because the mode is adaptive now.
+>
+> If you think the new input endpoints should not be created by default
+> for resource-compatibility reasons, the adaptive mode can be set by
+> default in a fixed patch.
+
+Would it be possible to change the mode? If so, then the user may
+configure it and crash again.
+
+> Also the patches defining the new interrupt endpoints can have the
+> controls disabled by default (and not allocate the EP-IN). These patches
+> on top of the async patches are already accepted by Greg for usb-next
+> branch
+> https://kernel.googlesource.com/pub/scm/linux/kernel/git/gregkh/usb/+/eaf6cbe0992052a46d93047dc122fad5126aa3bd
+> . That's why I was trying to sort out the async patches without
+> reverting them as it will call for more reverts.
 
 -- 
-Sincerely yours,
-Mike.
+With Best Regards,
+Andy Shevchenko
