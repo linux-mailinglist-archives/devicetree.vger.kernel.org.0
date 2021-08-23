@@ -2,131 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4FE3F502E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A34CF3F5037
+	for <lists+devicetree@lfdr.de>; Mon, 23 Aug 2021 20:15:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231800AbhHWSO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 14:14:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbhHWSO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 14:14:28 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C40F7C06175F
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 11:13:45 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id z128so35758229ybc.10
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 11:13:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qcrJUn9SIsn9OtjuWFuCLDPINuV6hNlpD1UCcJXEpKA=;
-        b=TXhX6kzROMX7aShYApBsIAaTL/0UNLI2yhyqlPz1I1AyHDfKPAGux7G0aKABOlIh6E
-         14COCM9PSN/nXqGZwo3uWS2B1FnmkpV9CA88m4ZYeuzvScQMZgXAvmvUhK2TlfwKMVPl
-         Xv3Mn2AIJD4unJGAxw4Bf2bB7A02pZ0zmy0wJFmrHsgEgJj6TcwhYhZZZvq7eAmwq6uR
-         jGFBxgtszxDNR6tP695CDgQgcowfRy2gr5Pq4F/6EToWr9BQlNx1M7iGQ9ggeq7z1dbg
-         tVxgeP+2tWlztMPB7mprWN6vRK683goLVDdA0Xp4ZiRlEF1KpyFtmsLRwSA5dXVoYI7V
-         FyCQ==
+        id S231936AbhHWSP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 14:15:57 -0400
+Received: from mail-oo1-f45.google.com ([209.85.161.45]:42548 "EHLO
+        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229837AbhHWSP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 14:15:56 -0400
+Received: by mail-oo1-f45.google.com with SMTP id n1-20020a4ac7010000b0290262f3c22a63so5680971ooq.9;
+        Mon, 23 Aug 2021 11:15:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qcrJUn9SIsn9OtjuWFuCLDPINuV6hNlpD1UCcJXEpKA=;
-        b=YS3SaptLtFqhd3BPugU6Ce9jeqGahS5TVL15c5rqn+WpHJHcszoTeontkuVZCU8UpR
-         /M7Y8RLPqfo0RJgWYPDIYw1eyGcgfXs/ucHjanACWTu+ei0q2+f6jbYXyA25qCZPnUte
-         bQfWI6nnnuXJwo46bD9Nt+wVWAZ2OMlgYhZ5VEkYhdEt83b0kUAtJTiXz97PYFtDFbIj
-         fN+mgP32hEF7JAPskiaPCpsPOd9gLLo+pptxZMVJYHOPcXlA6JzMbzjCS2g7E7ZH8Ur0
-         yN1hirFDnOJkPd0+t8qo0awxVBgMmR5/m7qPbHIkRgNmNaBA/QMIXDlf85X652KXncHB
-         G/ag==
-X-Gm-Message-State: AOAM533SNNQd1FkVOeQ2Dqn0tJ8sS9MevybZ5zyfCD6rA5OKR7j3Hfe4
-        ap7kCj0Frd/hU+ntXAPZEMQ5p3jY3nCDbDaOSRKWpA==
-X-Google-Smtp-Source: ABdhPJzqw6BPhf6oRCv5BRo82ewq6xgec0g4rBKEuXqPvbalz4BrNgRFkSM+GKVVNHr1aceAGL/E82+5mc8jUR1HrVw=
-X-Received: by 2002:a25:b7c8:: with SMTP id u8mr44633182ybj.268.1629742424526;
- Mon, 23 Aug 2021 11:13:44 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5oD4U2sM5eushDUG8RX15S68sy802nG0Vq5oU+SDopo=;
+        b=YpwqKJ2BL9yU8ucGyIjNsSXEc+fQHXj6SSjaUyMKghHIxZupZlqLRhOYHR/1LvGOBv
+         Wp9CQz5qZPfpJhSiXQiRKqAK2a+7K53nAHFvCvf8WEexkmlpaMj6VR/uAvwJUxvrZOZA
+         1QopBJyPnuerYIiUDoj1NbmOnPrn1I41fSWijzywUs6pwP9g5kdRPQahj2VSGeBRom7g
+         Ai5KLSeMGbLkKSQ1HlnlHUeLUrbfj+kugnwIvA+fKWKwnOWG75eDDP70zDzBA9jR/q9+
+         N00F9j2ORlqm6iVc+QMvglENGmJcVmT0JLglccfqzY76B76uhsrTS0LBGAgTDceRTBv/
+         yVFA==
+X-Gm-Message-State: AOAM533YshCna1E1oEQJUTx60rYiClBL0U5ereRJz+Lu50m9W8E7NbN1
+        bcWEJ8r9VZprWW9AGJnILw==
+X-Google-Smtp-Source: ABdhPJxada6ILqWk/igshNxxe0Z3oTkb37FNP3Nw2H73kKBkd95Py2y1LqQtCp5R+s8Ata15Mnd2RQ==
+X-Received: by 2002:a4a:98e1:: with SMTP id b30mr26744530ooj.34.1629742513317;
+        Mon, 23 Aug 2021 11:15:13 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e2sm3984766otk.14.2021.08.23.11.15.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 11:15:12 -0700 (PDT)
+Received: (nullmailer pid 2454645 invoked by uid 1000);
+        Mon, 23 Aug 2021 18:15:11 -0000
+Date:   Mon, 23 Aug 2021 13:15:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, pinglinux@gmail.com,
+        tatsunosuke.tobita@wacom.com, junkpainting@gmail.com,
+        ping.cheng@wacom.com, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 09/11] Input: wacom_i2c - Allow flipping the values
+ from the DT
+Message-ID: <YSPlr0X+3B9nxHW1@robh.at.kernel.org>
+References: <20210818154935.1154-1-alistair@alistair23.me>
+ <20210818154935.1154-10-alistair@alistair23.me>
 MIME-Version: 1.0
-References: <20210818021717.3268255-1-saravanak@google.com>
- <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
- <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com> <YSOfvMIltzWPCKc/@lunn.ch>
-In-Reply-To: <YSOfvMIltzWPCKc/@lunn.ch>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 23 Aug 2021 11:13:08 -0700
-Message-ID: <CAGETcx_eUE1gLAaqXdLjCb2XxttH20066kXs969khnrEZQ71mA@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for "phy-handle" property
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, netdev@vger.kernel.org,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210818154935.1154-10-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 6:16 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Mon, Aug 23, 2021 at 02:08:48PM +0200, Marek Szyprowski wrote:
-> > Hi,
-> >
-> > On 18.08.2021 04:17, Saravana Kannan wrote:
-> > > Allows tracking dependencies between Ethernet PHYs and their consumers.
-> > >
-> > > Cc: Andrew Lunn <andrew@lunn.ch>
-> > > Cc: netdev@vger.kernel.org
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >
-> > This patch landed recently in linux-next as commit cf4b94c8530d ("of:
-> > property: fw_devlink: Add support for "phy-handle" property"). It breaks
-> > ethernet operation on my Amlogic-based ARM64 boards: Odroid C4
-> > (arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts) and N2
-> > (meson-g12b-odroid-n2.dts) as well as Khadas VIM3/VIM3l
-> > (meson-g12b-a311d-khadas-vim3.dts and meson-sm1-khadas-vim3l.dts).
-> >
-> > In case of OdroidC4 I see the following entries in the
-> > /sys/kernel/debug/devices_deferred:
-> >
-> > ff64c000.mdio-multiplexer
-> > ff3f0000.ethernet
-> >
-> > Let me know if there is anything I can check to help debugging this issue.
->
-> Hi Marek
->
-> Please try this. Completetly untested, not even compile teseted:
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 0c0dc2e369c0..7c4e257c0a81 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1292,6 +1292,7 @@ DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
->  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
->  DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
->  DEFINE_SIMPLE_PROP(phy_handle, "phy-handle", NULL)
-> +DEFINE_SIMPLE_PROP(mdio_parent_bus, "mdio-parent-bus", NULL);
->  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
->  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
->
-> @@ -1381,6 +1382,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
->         { .parse_prop = parse_leds, },
->         { .parse_prop = parse_backlight, },
->         { .parse_prop = parse_phy_handle, },
-> +       { .parse_prop = parse_mdio_parent_bus, },
->         { .parse_prop = parse_gpio_compat, },
->         { .parse_prop = parse_interrupts, },
->         { .parse_prop = parse_regulators, },
+On Thu, Aug 19, 2021 at 01:49:33AM +1000, Alistair Francis wrote:
+> Allow the device tree properties to flip the tilx, position or distance
+> values.
+> 
+> This is required for the stylus to work correctly on the reMarkable 2.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  .../input/touchscreen/wacom,generic.yaml      | 18 ++++++++++
+>  drivers/input/touchscreen/wacom_i2c.c         | 33 +++++++++++++++++++
+>  2 files changed, 51 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/wacom,generic.yaml b/Documentation/devicetree/bindings/input/touchscreen/wacom,generic.yaml
+> index a8a7f362b0ce..0da63fd92ea1 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/wacom,generic.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/wacom,generic.yaml
+> @@ -25,6 +25,24 @@ properties:
+>    vdd-supply:
+>      description: Power Supply
+>  
+> +  flip-tilt-x:
+> +    type: boolean
 
-Looking at the code, I'm fairly certain that the device that
-corresponds to a DT node pointed to by mdio-parent-bus will be a "bus"
-device that's registered with the mdio_bus_class.
+These all need descriptions.
 
-If my understanding is right, then Nak for this patch. It'll break a
-lot of probes.
+> +
+> +  flip-tilt-y:
+> +    type: boolean
+> +
+> +  flip-pos-x:
+> +    type: boolean
+> +
+> +  flip-pos-y:
+> +    type: boolean
+> +
+> +  flip-distance:
+> +    type: boolean
+> +
+> +  flip-pressure:
+> +    type: boolean
 
-TL;DR is that stateful/managed device links don't make sense for
-devices that are never probed/bound to a driver. I plan to improve
-device links to try and accommodate these cases nicely, but that's in
-my TO DO list. Until that's completed, this patch will break stuff.
+I don't understand how you flip pressure?
 
--Saravana
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/drivers/input/touchscreen/wacom_i2c.c b/drivers/input/touchscreen/wacom_i2c.c
+> index c6579a1a8d04..82b62a768451 100644
+> --- a/drivers/input/touchscreen/wacom_i2c.c
+> +++ b/drivers/input/touchscreen/wacom_i2c.c
+> @@ -72,6 +72,13 @@ struct wacom_i2c {
+>  	u8 data[WACOM_QUERY_SIZE];
+>  	bool prox;
+>  	int tool;
+> +
+> +	bool flip_tilt_x;
+> +	bool flip_tilt_y;
+> +	bool flip_pos_x;
+> +	bool flip_pos_y;
+> +	bool flip_distance;
+> +	bool flip_pressure;
+>  };
+>  
+>  static int wacom_query_device(struct i2c_client *client,
+> @@ -140,6 +147,20 @@ static int wacom_query_device(struct i2c_client *client,
+>  	return 0;
+>  }
+>  
+> +#ifdef CONFIG_OF
+
+
+Use 'if (!IS_ENABLED(CONFIG_OF))' in the function and drop all the 
+ifdefs.
+
+> +static void wacom_of_read(struct wacom_i2c *wac_i2c)
+> +{
+> +	struct i2c_client *client = wac_i2c->client;
+> +
+> +	wac_i2c->flip_tilt_x = of_property_read_bool(client->dev.of_node, "flip-tilt-x");
+> +	wac_i2c->flip_tilt_y = of_property_read_bool(client->dev.of_node, "flip-tilt-y");
+> +	wac_i2c->flip_pos_x = of_property_read_bool(client->dev.of_node, "flip-pos-x");
+> +	wac_i2c->flip_pos_y = of_property_read_bool(client->dev.of_node, "flip-pos-y");
+> +	wac_i2c->flip_distance = of_property_read_bool(client->dev.of_node, "flip-distance");
+> +	wac_i2c->flip_pressure = of_property_read_bool(client->dev.of_node, "flip-pressure");
+> +}
+> +#endif
+> +
+>  static irqreturn_t wacom_i2c_irq(int irq, void *dev_id)
+>  {
+>  	struct wacom_i2c *wac_i2c = dev_id;
+> @@ -176,6 +197,14 @@ static irqreturn_t wacom_i2c_irq(int irq, void *dev_id)
+>  
+>  	wac_i2c->prox = data[3] & 0x20;
+>  
+> +	// Flip the values based on properties from the device tree
+> +	pressure = wac_i2c->flip_pressure ? (features->pressure_max - pressure) : pressure;
+> +	distance = wac_i2c->flip_distance ? -distance : distance;
+> +	x = wac_i2c->flip_pos_x ? (features->x_max - x) : x;
+> +	y = wac_i2c->flip_pos_y ? (features->y_max - y) : y;
+> +	tilt_x = wac_i2c->flip_tilt_x ? -tilt_x : tilt_x;
+> +	tilt_y = wac_i2c->flip_tilt_y ? -tilt_y : tilt_y;
+> +
+>  	touchscreen_report_pos(input, &wac_i2c->props, features->x_max,
+>  			       features->y_max, true);
+>  	input_report_key(input, BTN_TOUCH, tsw || ers);
+> @@ -303,6 +332,10 @@ static int wacom_i2c_probe(struct i2c_client *client,
+>  		return error;
+>  	}
+>  
+> +#ifdef CONFIG_OF
+> +	wacom_of_read(wac_i2c);
+> +#endif
+> +
+>  	return 0;
+>  }
+>  
+> -- 
+> 2.31.1
+> 
+> 
