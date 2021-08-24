@@ -2,95 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4812A3F55C2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 04:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D39FE3F55F3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 04:48:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233745AbhHXCUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 22:20:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233681AbhHXCUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 22:20:12 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 722FCC061760
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 19:19:28 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id y11so17003642pfl.13
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 19:19:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=SAYfyHfKtEIZUA145VWKAPDNQgImJMaU3dtgNUZKT2M=;
-        b=bzltG0ACe6O5otAzfzo149Fyy+9jQuYkdpMBDOsQBI6oFyGX563Qe1j7ECEGld4L0R
-         ZLjTIN7WECTa/lXMapRT1N971z/p5UvrsYz7AaNeZ36MiiBiMzRDoJqp68qQJbzDgrfO
-         zzNIoiCzUtREbgb7JUnSUjP67fPUvK5t6GpI+g0YofB1IcGmkYyO/WiCOsdg/AckNSml
-         F8a1ayCCAl7jGuUD16Hsdv+J6NJ2PdRKfrqyPMRBRvCzdGqqG4LUHmPJ8ymhbYlIzTnU
-         2GOkU/fpWIuOLHk7p4v5b7D2frCi+eI99ABp3UtEA7LbP8Gn53CayrzRyb2yGOJGa5+l
-         n+VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=SAYfyHfKtEIZUA145VWKAPDNQgImJMaU3dtgNUZKT2M=;
-        b=nmrXVW5jOEtqAK1EXO4bV3ws1carrT3g0B2juIp1emxQnvooZkJS43bAE8s6B0qqm7
-         hEb43sA2DnaW+YJ8KmsnR6+OrBXHEIUKV0PVjBrlT81xvw/K6t88FiHswifF0MF1M3Yq
-         apGgnO2ghkjIcHYeC6vb1WPVbqLKl/ZWLfPVHSWDfseGurmAiMJ3g1pgFC1w4u0kpP6s
-         nIfe5xto83oH7xGavT7D/5HboQuUOK8/hUmb/fHmtJ4UEFGgweyLTQTINQjxazG+Xcib
-         WvUk+rkvD/Rsyg0Y5u22C8tjeaR3hJv93c7GpTKQCgmFAhRsUFb9TBBQ17b1qJa765TL
-         k5GQ==
-X-Gm-Message-State: AOAM5304frq0yeWwr+jNth1huAjRHpBrA2mv4mANg0sLMumnJ6bBOwY9
-        Z8q+dcTYQ6A0Zjd0wruWB3G8bw==
-X-Google-Smtp-Source: ABdhPJx9a7n9WfBw4x3JMROREY8974jeXERbzJ2CFcFAIL4WaSscmhQNA9OrD7o+lj/j0OzHlrQ/AQ==
-X-Received: by 2002:a63:5f94:: with SMTP id t142mr1064973pgb.166.1629771567958;
-        Mon, 23 Aug 2021 19:19:27 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id x4sm499231pjq.20.2021.08.23.19.19.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 19:19:27 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: pm660: Add reboot mode support
-Date:   Tue, 24 Aug 2021 10:19:18 +0800
-Message-Id: <20210824021918.17271-1-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        id S233798AbhHXCs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 22:48:59 -0400
+Received: from regular1.263xmail.com ([211.150.70.202]:43784 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233399AbhHXCs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 22:48:58 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by regular1.263xmail.com (Postfix) with ESMTP id EE3B6808;
+        Tue, 24 Aug 2021 10:48:08 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.19] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P32762T139760316184320S1629773288152537_;
+        Tue, 24 Aug 2021 10:48:08 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <d93d28eb9fc7cd6118c5e0f95ce892d3>
+X-RL-SENDER: sugar.zhang@rock-chips.com
+X-SENDER: zxg@rock-chips.com
+X-LOGIN-NAME: sugar.zhang@rock-chips.com
+X-FST-TO: alsa-devel@alsa-project.org
+X-RCPT-COUNT: 6
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_15/15=5d_ASoC=3a_dt-bindings=3a_rockchip?=
+ =?UTF-8?B?OiBpMnM6IERvY3VtZW50IHByb3BlcnR5ICdjbGstdHJjbSfjgJDor7fms6jmhI8=?=
+ =?UTF-8?B?77yM6YKu5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R44CR?=
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, heiko@sntech.de,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+References: <1629715710-21137-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629716132-21544-1-git-send-email-sugar.zhang@rock-chips.com>
+ <YSPckWacS4kk270r@robh.at.kernel.org>
+From:   sugar zhang <sugar.zhang@rock-chips.com>
+Message-ID: <068b1fdc-3f93-6bcd-247b-95e68e1ba8e7@rock-chips.com>
+Date:   Tue, 24 Aug 2021 10:48:07 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <YSPckWacS4kk270r@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It turns out that the pm660 PON is a GEN2 device.  Update the compatible
-to "qcom,pm8998-pon" and add reboot mode support, so that devices can be
-rebooted into bootloader and recovery mode.  Tested on Xiaomi Redmi Note
-7 phone.
 
-While at it, drop the unnecessary newline between 'compatible' and 'reg'
-property.
-
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm660.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/pm660.dtsi b/arch/arm64/boot/dts/qcom/pm660.dtsi
-index e847d7209afc..d0ef8a1675e2 100644
---- a/arch/arm64/boot/dts/qcom/pm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm660.dtsi
-@@ -49,9 +49,10 @@
- 		};
- 
- 		pon: pon@800 {
--			compatible = "qcom,pm8916-pon";
--
-+			compatible = "qcom,pm8998-pon";
- 			reg = <0x800>;
-+			mode-bootloader = <0x2>;
-+			mode-recovery = <0x1>;
- 
- 			pwrkey {
- 				compatible = "qcom,pm8941-pwrkey";
+On 2021/8/24 1:36, Rob Herring wrote:
+> On Mon, Aug 23, 2021 at 06:55:32PM +0800, Sugar Zhang wrote:
+>> This patch documents property 'rockchip,clk-trcm' which is used
+>> to specify the lrck.
+>>
+>> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+>> Change-Id: I648142c57c568bbed209f2b9188b1f539a3285b2
+> Drop this.
+okay, will do in v2.
+>> ---
+>>   Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 9 +++++++++
+>>   1 file changed, 9 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+>> index 11e911a..8d9dfed 100644
+>> --- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+>> @@ -72,6 +72,15 @@ properties:
+>>     resets:
+>>       maxItems: 2
+>>   
+>> +  rockchip,clk-trcm:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    default: 0
+>> +    description:
+>> +      tx and rx lrck/bclk common use.
+>> +      0: both tx_lrck/bclk and rx_lrck/bclk are used
+>> +      1: only tx_lrck/bclk is used
+>> +      2: only rx_lrck/bclk is used
+> Sounds like constraints. Make a schema.
+will split into two properties: rockchip,trcm-sync-tx-only, 
+rockchip,trcm-sync-rx-only.
+>> +
+>>     rockchip,capture-channels:
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>       default: 2
+>> -- 
+>> 2.7.4
+>>
+>>
+>>
+>>
+>
+>
 -- 
-2.17.1
+Best Regards!
+张学广/Sugar
+瑞芯微电子股份有限公司
+Rockchip Electronics Co., Ltd.
+
+
 
