@@ -2,162 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2503F5906
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 09:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1323F5914
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 09:35:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234664AbhHXHci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 03:32:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
+        id S235051AbhHXHgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 03:36:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234817AbhHXHcg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 03:32:36 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1672DC06175F
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 00:31:43 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id a93so39239377ybi.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 00:31:43 -0700 (PDT)
+        with ESMTP id S234816AbhHXHgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 03:36:15 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1905C061757
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 00:35:31 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id g9so25160684ioq.11
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 00:35:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nAbhJg9KzDnSNui0yJFPZ9VTbEY+6KHkXkiM9wTMo7U=;
-        b=nw4GMUAkEusgHcP8d+XatSp56K8mVrgcAEDxlvnhk5nj3gCmkWNUhunL8PbtN2+Su2
-         aAE8EeODCWz5wgPJtYsnyCsiaBlaonNAUyXmi49vtlFPWD+bIzy9D9MtWMGtg2UddqPY
-         frTZm0fjszj+0N3xpRKkIhJT8Hvl1lpr4Dt+Lf//YDmw+FID7xex/zLoXT76jJ0ohc7F
-         2E62YNsI9hbs4mxQncZc6hIvbELPWQhroUCkJLB5QuCJ/WmKemulF0GYj63+xCG4dQFq
-         UjDRMt2JEPyRRu7U0qIMdJpC/puZIpFCl2Z71FWFkrC5UnIFWGpK1nImA0Oy4nhku4CO
-         acUQ==
+        bh=kdn/xtZAvZYiwKwxxhtoDSWZxutSGdv9Zf0EjwepvWk=;
+        b=dFmqKGM4M8xwkez/7hO/m5icTM2376t5o0aNOCOsIxs5i4hiT5sr79kQdXWQq4TEDQ
+         J/MeqGYzCjKUF5OToXwp6ZB4LNLWm37WAs1DA2MsvaACyMGlWLQz+RR81Uv9YdjMjoG2
+         JqhbsZ+4S6XyrncPUOCD08O7+s+aOQbEB5RHU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nAbhJg9KzDnSNui0yJFPZ9VTbEY+6KHkXkiM9wTMo7U=;
-        b=OGjL37rjG/ikN9suxy0NCbuSsWg2pyIWK+LzdolBxyBQ0X5y0uhzAwxWS/52HZaT/t
-         4tzNlqlIrZKkLtVuaZPAC6frkF+fOgUUpGhDHsLjL6Qf3yuhPDBIAtvRqg/OoShW3+4K
-         cO8QBEDq67I855PgxfYksxMuf/3o0hznNHWpAJPjVEpLrqzfaKPTNYKsWFPNSntvzgZG
-         U8vvIW3gPABAojDwVWbGL3nc/GCUP3ip4vEW8dn5HeeOjzr09vJ3IXZ1DKdIFolmRkxx
-         NOGX66zU2cPhpNcgh4YqzrLhgRYRfLEAB1+koECxD0KNqaXhEHdk1+v+9SVpEyjSkb4p
-         M7aQ==
-X-Gm-Message-State: AOAM531CBmL6LwtsYK1mLO6yRsb1Jsrc44J8jNguc7OxLUWkV8KmDD3n
-        A0SoktWIzyY//Iqo1pk97fnT+bBw/LEdw9luW9KPXA==
-X-Google-Smtp-Source: ABdhPJymfsqgvR+b9ZJBIHgV7DoRSEBfuTSnP4UhGjvYXCirnQKW+aO1kLAlKKbxF8PIZ0jHatdmxdXWNg621TxPflU=
-X-Received: by 2002:a25:da50:: with SMTP id n77mr19168506ybf.96.1629790302026;
- Tue, 24 Aug 2021 00:31:42 -0700 (PDT)
+        bh=kdn/xtZAvZYiwKwxxhtoDSWZxutSGdv9Zf0EjwepvWk=;
+        b=X7QwdpOOt28lKlF/lpy4SrXQgd7rasRI/2fC+cOHavDxpJIKKtKVCE63+x2maZ3lXx
+         E/+JemWj0AK3GERzKFObPFQW37Dnnc3ToEjWQ7xMqswCuq4CGH8oVAUlKltB6NjJWdlz
+         WrDCW3Pf0gCDzEez7G0Ms/qiDeiCwrozNeg/Qf8Dt2pEVnVS7kQhOHjQzkgmr1ayiYyO
+         om8j+2H2WUyeT05JXzWmfDHOBkzw/rTMba209zOmWHkLH26fqKgGQT6SUpu6itRCwC9f
+         raNSgMNXH2wf77npOd2MaUp+cJDjFiEklXdG9dUvQg4VYKF5p3bjdFYs8lFqyRU/YoY8
+         4DmQ==
+X-Gm-Message-State: AOAM533up45dEuTll+wy0Or4GVZu9ii0vtx0Y1PbM0xxcDSmUBVMskqX
+        CwYh5xaVfh2eVPxLDGKWGTyG7uYGbfJ/y52NxyxXGg==
+X-Google-Smtp-Source: ABdhPJzCaKQQqFiKu2GYGl51DjDrCHWW0khxqU+TJuIKD2Qiaa6IC9r0Xva1qe+ermS6tmqpaGovvcP+MP7vZ5pGN64=
+X-Received: by 2002:a6b:6319:: with SMTP id p25mr30729776iog.100.1629790531099;
+ Tue, 24 Aug 2021 00:35:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <CGME20210823120849eucas1p11d3919886444358472be3edd1c662755@eucas1p1.samsung.com>
- <20210818021717.3268255-1-saravanak@google.com> <0a2c4106-7f48-2bb5-048e-8c001a7c3fda@samsung.com>
- <CAGETcx_xJCqOWtwZ9Ee2+0sPGNLM5=F=djtbdYENkAYZa0ynqQ@mail.gmail.com> <427ce8cd-977b-03ae-2020-f5ddc7439390@samsung.com>
-In-Reply-To: <427ce8cd-977b-03ae-2020-f5ddc7439390@samsung.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 24 Aug 2021 00:31:05 -0700
-Message-ID: <CAGETcx8cRXDciKiRMSb=ybKo8=SyiNyAv=7oeHU1HUhkZ60qmg@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for "phy-handle" property
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org
+References: <20210813065324.29220-1-yong.wu@mediatek.com> <20210813065324.29220-17-yong.wu@mediatek.com>
+In-Reply-To: <20210813065324.29220-17-yong.wu@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 24 Aug 2021 15:35:05 +0800
+Message-ID: <CAJMQK-ir-wLy4OHkWEWZf=CZcURMhRvHnOjBLWXaezhukJh2JA@mail.gmail.com>
+Subject: Re: [PATCH v2 16/29] iommu/mediatek: Adjust device link when it is sub-common
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, srv_heupstream@mediatek.com,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 24, 2021 at 12:03 AM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
+On Fri, Aug 13, 2021 at 3:03 PM Yong Wu <yong.wu@mediatek.com> wrote:
 >
-> Hi,
+> For MM IOMMU, We always add device link between smi-common and IOMMU HW.
+> In mt8195, we add smi-sub-common. Thus, if the node is sub-common, we still
+> need find again to get smi-common, then do device link.
 >
-> On 23.08.2021 20:22, Saravana Kannan wrote:
-> > On Mon, Aug 23, 2021 at 5:08 AM Marek Szyprowski
-> > <m.szyprowski@samsung.com> wrote:
-> >> On 18.08.2021 04:17, Saravana Kannan wrote:
-> >>> Allows tracking dependencies between Ethernet PHYs and their consumers.
-> >>>
-> >>> Cc: Andrew Lunn <andrew@lunn.ch>
-> >>> Cc: netdev@vger.kernel.org
-> >>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >> This patch landed recently in linux-next as commit cf4b94c8530d ("of:
-> >> property: fw_devlink: Add support for "phy-handle" property"). It breaks
-> >> ethernet operation on my Amlogic-based ARM64 boards: Odroid C4
-> >> (arm64/boot/dts/amlogic/meson-sm1-odroid-c4.dts) and N2
-> >> (meson-g12b-odroid-n2.dts) as well as Khadas VIM3/VIM3l
-> >> (meson-g12b-a311d-khadas-vim3.dts and meson-sm1-khadas-vim3l.dts).
-> >>
-> >> In case of OdroidC4 I see the following entries in the
-> >> /sys/kernel/debug/devices_deferred:
-> >>
-> >> ff64c000.mdio-multiplexer
-> >> ff3f0000.ethernet
-> >>
-> >> Let me know if there is anything I can check to help debugging this issue.
-> > I'm fairly certain you are hitting this issue because the PHY device
-> > doesn't have a compatible property. And so the device link dependency
-> > is propagated up to the mdio bus. But busses as suppliers aren't good
-> > because busses never "probe".
-> >
-> > PHY seems to be one of those cases where it's okay to have the
-> > compatible property but also okay to not have it. You can confirm my
-> > theory by checking for the list of suppliers under
-> > ff64c000.mdio-multiplexer. You'd see mdio@0 (ext_mdio) and if you look
-> > at the "status" file under the folder it should be "dormant". If you
-> > add a compatible property that fits the formats a PHY node can have,
-> > that should also fix your issue (not the solution though).
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/iommu/mtk_iommu.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 >
-> Where should I look for the mentioned device links 'status' file?
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index a4479916ad33..a72241724adb 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -845,6 +845,17 @@ static int mtk_iommu_mm_dts_parse(struct device *dev,
+>         if (!smicomm_node)
+>                 return -EINVAL;
 >
-> # find /sys -name ff64c000.mdio-multiplexer
-> /sys/devices/platform/soc/ff600000.bus/ff64c000.mdio-multiplexer
-> /sys/bus/platform/devices/ff64c000.mdio-multiplexer
->
-> # ls -l /sys/devices/platform/soc/ff600000.bus/ff64c000.mdio-multiplexer
-> total 0
+> +       /* Find smi-common again if this is smi-sub-common */
+> +       if (of_property_read_bool(smicomm_node, "mediatek,smi_sub_common")) {
+> +               of_node_put(smicomm_node); /* put the sub common */
+> +
+> +               smicomm_node = of_parse_phandle(smicomm_node, "mediatek,smi", 0);
 
-This is the folder I wanted you to check.
+This only checks 1 level here, and does not check if the mediatek,smi
+of a sub-common node is not another sub-common node.
+So maybe add a check that the updated node here doesn't have
+mediatek,smi_sub_common property.
 
-> lrwxrwxrwx 1 root root    0 Jan  1 00:04
-> consumer:platform:ff3f0000.ethernet ->
-> ../../../../virtual/devlink/platform:ff64c000.mdio-multiplexer--platform:ff3f0000.ethernet
-
-But I should have asked to look for the consumer list and not the
-supplier list. In any case, we can see that the ethernet is marked as
-the consumer of the mdio-multiplexer instead of the PHY device. So my
-hunch seems to be right.
-
-> -rw-r--r-- 1 root root 4096 Jan  1 00:04 driver_override
-> -r--r--r-- 1 root root 4096 Jan  1 00:04 modalias
-> lrwxrwxrwx 1 root root    0 Jan  1 00:04 of_node ->
-> ../../../../../firmware/devicetree/base/soc/bus@ff600000/mdio-multiplexer@4c000
-> drwxr-xr-x 2 root root    0 Jan  1 00:02 power
-> lrwxrwxrwx 1 root root    0 Jan  1 00:04 subsystem ->
-> ../../../../../bus/platform
-> lrwxrwxrwx 1 root root    0 Jan  1 00:04
-> supplier:platform:ff63c000.system-controller:clock-controller ->
-> ../../../../virtual/devlink/platform:ff63c000.system-controller:clock-controller--platform:ff64c000.mdio-multiplexer
-> -rw-r--r-- 1 root root 4096 Jan  1 00:04 uevent
-> -r--r--r-- 1 root root 4096 Jan  1 00:04 waiting_for_supplier
->
-> # cat
-> /sys/devices/platform/soc/ff600000.bus/ff64c000.mdio-multiplexer/waiting_for_supplier
-> 0
->
-> I'm also not sure what compatible string should I add there.
-
-It should have been added to external_phy: ethernet-phy@0. But don't
-worry about it (because you need to use a specific format for the
-compatible string).
-
--Saravana
-
->
-> > I'll send out a fix this week (once you confirm my analysis). Thanks
-> > for reporting it.
->
-> Best regards
->
+> +               if (!smicomm_node) {
+> +                       dev_err(dev, "sub-comm has no common.\n");
+> +                       return -EINVAL;
+> +               }
+> +       }
+> +
+>         plarbdev = of_find_device_by_node(smicomm_node);
+>         of_node_put(smicomm_node);
+>         data->smicomm_dev = &plarbdev->dev;
 > --
-> Marek Szyprowski, PhD
-> Samsung R&D Institute Poland
->
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
