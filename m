@@ -2,150 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD6A83F60D5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C43013F60D9
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237864AbhHXOp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 10:45:26 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:44665 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237582AbhHXOp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:45:26 -0400
-Received: by mail-ot1-f47.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so38181401otg.11;
-        Tue, 24 Aug 2021 07:44:42 -0700 (PDT)
+        id S237860AbhHXOpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 10:45:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53140 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238037AbhHXOpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:45:32 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FF6C061764
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:44:48 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso35447056ots.5
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:44:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=AeRXMAsFKFtCmgO4aNf9vhF215sQMxa0Gch/8WOqfAM=;
+        b=eyWlUTkwhOd0cFWHm8X30LzO/K/KeLiPSU/BsB3sXTZChAtoqXj8FbzYThh5W19/Qe
+         CiYT8dd6zlJzDEteo+RXCzGZ+CG43gaJ+qZH/dx2EbT7Rko+mRyP+/tPf1Q4MS2eov13
+         vMM+NFJ2eIiOBugMLiAyb8DcfwP0XGdvCixVCF7ppjOngF3550ISqaeCRVkExUCiUYcT
+         1yelGthl31bS/NXyAzjy0xaIWWvhcdwpXKuA9yf8YyEZDz4kXZM2jyjHvIpzw+GqwVGH
+         lbxIk7z9Z0N/yA/s1qEAVJb3uQIfjFtjMlu2TcN2CyvRb5kScqnBxvk55F2owTs8A55B
+         Uxkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aJH/4Wz71I23MU2srknICQJ9rD7Y4ljj2of9b/CEP0E=;
-        b=c6jJQbS6GP1scZEqUv7IljEQKgEPIUZgw4A13CfIV0tkM60M9XxmWaJgKaoKThbM6X
-         jHaGCOgtmk45CAkQYnfjVthPqHfrfNyCTJ/pwmzsDyAf9X25t4sIdpR+M/YjHuPufopl
-         szMxJbNLEhE0T2e2T2JibPXRUEkoqk7T0h55c5191M14tiDmzmx2im+foPrt3Rpp3LZE
-         7rtQ9W0fD8bzNaOZrJbs5nxoMSmAaAsyIujdZNWJDl1jMxdp9OSV3e0Hs3ZS8o6hxLkf
-         Q01Ts8PNMrCBd77RneWxB409Z+dYNtNC00bVilqEN4aqH0EJY6zuYXK0Y9Jie1WonFqT
-         5ZMA==
-X-Gm-Message-State: AOAM531ms8wLln+mv5yYe4LeI7Bk1QnhtExZLf2hGQjKK/HlRtd5JWvI
-        OfHWsTlecy3IcqMGuVFpOA==
-X-Google-Smtp-Source: ABdhPJy6vDSJt+2Ck3xeOse/ZCrzza/jwGRdp/B+jAHApeYlfASuRvLwRR/YsKxDPNWiiIv9Vr8qpg==
-X-Received: by 2002:a9d:798c:: with SMTP id h12mr28578498otm.215.1629816282067;
-        Tue, 24 Aug 2021 07:44:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t1sm4592857otp.9.2021.08.24.07.44.40
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=AeRXMAsFKFtCmgO4aNf9vhF215sQMxa0Gch/8WOqfAM=;
+        b=oA1X518NxUXxedQqMYaVZ6IHVp78r9rPfU0PjZVp0X2pJsmUWSvZvMvoBo7hgPLTyF
+         k50f5oCWw5OrcqKcZJ7bLfhChkmvnWzlB8hz6WIrUtvdz70UuZWtWPQgFXKWU77PZa3O
+         G4iJAFS2fUhDwHF8M6ChSwdLl8mQ8xgubUhLrWNmdYpQhQuoJL3K0QcpSbVMQ4nDYEJm
+         dv27bQ+lIMpGOZHmtbTEDKU9Y3Htrc5+9n7kT2sNHCC5bgi1oZtTP86ZEDLo31wBYgWL
+         v68c84M0kU9wuWgb8DUmzeT7svLEJxMAKKdkgNmRPhdiszLAE2uHY5eAtw59PUxIzvIB
+         sPBA==
+X-Gm-Message-State: AOAM531N8PYpuNjk2LFukjK4WsQ1z4qXWD/QMsuq27b8aEG7aRlErDEW
+        V7jrS/9qt6NBKz268LU+X1+jGg==
+X-Google-Smtp-Source: ABdhPJyjK+cseOpauaCEYkJSxmOEm7lMp3SVSrhTVW0tyOit41rfYetFtw7kZrCji3qezu8PJBGa7g==
+X-Received: by 2002:a9d:5f07:: with SMTP id f7mr32002492oti.183.1629816287441;
+        Tue, 24 Aug 2021 07:44:47 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m206sm4378456oif.23.2021.08.24.07.44.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 07:44:41 -0700 (PDT)
-Received: (nullmailer pid 416238 invoked by uid 1000);
-        Tue, 24 Aug 2021 14:44:40 -0000
-Date:   Tue, 24 Aug 2021 09:44:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: Re: [v2 01/24] dt-bindings: ARM: Mediatek: Add new document bindings
- of MT8195 clock
-Message-ID: <YSUF18AZ2HgOnkce@robh.at.kernel.org>
-References: <20210820111504.350-1-chun-jie.chen@mediatek.com>
- <20210820111504.350-2-chun-jie.chen@mediatek.com>
- <CAGXv+5FAEFD+dQsZzyZOzmwDDnwLZO3Z8wv8Z-=wVYdjjc3FYg@mail.gmail.com>
+        Tue, 24 Aug 2021 07:44:47 -0700 (PDT)
+Date:   Tue, 24 Aug 2021 07:46:04 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        An?bal Lim?n <anibal.limon@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss
+ and mpss
+Message-ID: <YSUGLFx2QST9vgIU@ripper>
+References: <20200108055735.660475-1-bjorn.andersson@linaro.org>
+ <20210217223406.1422005-1-anibal.limon@linaro.org>
+ <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <CAGXv+5FAEFD+dQsZzyZOzmwDDnwLZO3Z8wv8Z-=wVYdjjc3FYg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 02:53:34PM +0800, Chen-Yu Tsai wrote:
-> Hi,
+On Tue 24 Aug 05:39 PDT 2021, Dmitry Baryshkov wrote:
+
+> On Thu, 18 Feb 2021 at 01:38, Aníbal Limón <anibal.limon@linaro.org> wrote:
+> >
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >
+> > Enable the mpss remoteproc node and specify the firmware-name for this
+> > and the wcnss remoteproc on the Dragonboard 410c.
+> >
+> > Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@linaro.org
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > [rebased and moved to use pronto label]
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > Tested-by: Aníbal Limón <anibal.limon@linaro.org>
 > 
-> On Fri, Aug 20, 2021 at 7:17 PM Chun-Jie Chen
-> <chun-jie.chen@mediatek.com> wrote:
-> >
-> > This patch adds the new binding documentation for system clock
-> > and functional clock on Mediatek MT8195.
-> >
-> > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+
+Thanks Dmitry, not sure why this hasn't been merged yet.
+
+Taking a further look at this I noticed that we never pushed the
+firmware to linux-firmware either, which I think was because we where
+uncertain of the directory structure at the time - a discussion which
+has been settled since.
+
 > > ---
-> >  .../arm/mediatek/mediatek,mt8195-clock.yaml   | 254 ++++++++++++++++++
-> >  .../mediatek/mediatek,mt8195-sys-clock.yaml   |  73 +++++
-> >  2 files changed, 327 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-sys-clock.yaml
+> >  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
+> >  1 file changed, 6 insertions(+)
 > >
-> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml
-> > new file mode 100644
-> > index 000000000000..17fcbb45d121
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml
-> > @@ -0,0 +1,254 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt8195-clock.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> > index 3c7f97539390..8f1ada75d3ed 100644
+> > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> > @@ -301,6 +301,11 @@ &lpass {
+> >         status = "okay";
+> >  };
+> >
+> > +&mpss {
+> > +       status = "okay";
+> > +       firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt";
+
+But if we're pushing things to linux-firmware, does anyone object
+against following the existing style and squashing the mdt+bNN files
+into .mbn (and thereby making this modem.mbn and below wcnss.mbn)?
+
+Regards,
+Bjorn
+
+> > +};
 > > +
-> > +title: MediaTek Functional Clock Controller for MT8195
-> > +
-> > +maintainers:
-> > +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> > +
-> > +description:
-> > +  The clock architecture in Mediatek like below
-> > +  PLLs -->
-> > +          dividers -->
-> > +                      muxes
-> > +                           -->
-> > +                              clock gate
-> > +
-> > +  The devices except apusys_pll provide clock gate control in different IP blocks.
-> > +  The apusys_pll provides Plls which generated from SoC 26m for AI Processing Unit.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - mediatek,mt8195-scp_adsp
-> > +          - mediatek,mt8195-imp_iic_wrap_s
-> > +          - mediatek,mt8195-imp_iic_wrap_w
-> > +          - mediatek,mt8195-mfgcfg
-> > +          - mediatek,mt8195-vppsys0
-> > +          - mediatek,mt8195-wpesys
-> > +          - mediatek,mt8195-wpesys_vpp0
-> > +          - mediatek,mt8195-wpesys_vpp1
-> > +          - mediatek,mt8195-vppsys1
-> > +          - mediatek,mt8195-imgsys
-> > +          - mediatek,mt8195-imgsys1_dip_top
-> > +          - mediatek,mt8195-imgsys1_dip_nr
-> > +          - mediatek,mt8195-imgsys1_wpe
-> > +          - mediatek,mt8195-ipesys
-> > +          - mediatek,mt8195-camsys
-> > +          - mediatek,mt8195-camsys_rawa
-> > +          - mediatek,mt8195-camsys_yuva
-> > +          - mediatek,mt8195-camsys_rawb
-> > +          - mediatek,mt8195-camsys_yuvb
-> > +          - mediatek,mt8195-camsys_mraw
-> > +          - mediatek,mt8195-ccusys
-> > +          - mediatek,mt8195-vdecsys_soc
-> > +          - mediatek,mt8195-vdecsys
-> > +          - mediatek,mt8195-vdecsys_core1
-> > +          - mediatek,mt8195-vencsys
-> > +          - mediatek,mt8195-vencsys_core1
-> > +          - mediatek,mt8195-apusys_pll
+> >  &pm8916_resin {
+> >         status = "okay";
+> >         linux,code = <KEY_VOLUMEDOWN>;
+> > @@ -308,6 +313,7 @@ &pm8916_resin {
+> >
+> >  &pronto {
+> >         status = "okay";
+> > +       firmware-name = "qcom/msm8916/wcnss.mdt";
+> >  };
+> >
+> >  &sdhc_1 {
+> > --
+> > 2.30.0
+> >
 > 
-> The indentation is slightly off by 2 extra spaces.
-
-No it's not. Indentation is always 2 more that the prior keyword. If in 
-doubt, make sure yamllint is installed and this is checked as part of 
-the build.
-
-Rob
+> 
+> -- 
+> With best wishes
+> Dmitry
