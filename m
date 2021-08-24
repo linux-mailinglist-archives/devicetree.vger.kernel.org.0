@@ -2,106 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 011413F5CC3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 13:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8093F5CCA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 13:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236403AbhHXLDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 07:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236377AbhHXLDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 07:03:51 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF89C0613C1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 04:03:07 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id mf2so24950884ejb.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 04:03:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=a2CBr8Y/Dow61CgVXEVrXJocGobHhog5GoqPqKXEIU0=;
-        b=xLUhwRfV6ghCPJC9K9hAyn3lJmTZl/DPfNh7qdJTbfFUdd7Z43g9wfrtJ/V6wRdFrc
-         UdhpDEjRz2b0DfILeEiM+bdHLCwuXcqg3tmMkKkZke6rhQ6REb0HoVzWjOMc89Lm9jC8
-         VHyt2FAY/uGShYY8f2R+xP/K+v1cGW3RnX1ogPkVxHUObnE5nbw3dHb1RvvW+O2D7XsH
-         Bfy5VC3eRBD+PmgLryCqdfLgN8cZv16LDuesONnf6cgyy9y0G6U76+HozeHu9e5ucHaa
-         CIIyS0iopDqAtc6Dbgse7V6P7IXCenRKpL0AlhpCmjhcYBZpJFsqCoBkZfTww495S6uj
-         5saA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=a2CBr8Y/Dow61CgVXEVrXJocGobHhog5GoqPqKXEIU0=;
-        b=SQzkOJDd4F3/vavK6CCOyo/Et+56DvqDqOYcmDPP6t6BudRBqPz6UoFppzVjJL2EBn
-         8gwIEzMecf/guTe4l48SFdt+sh4SrehFj4CldAOr3hHibsv3jnZ64L4D8NVDr88Ij9jk
-         Dfa75+7OFk/mWynKZaYOiQjX1pTWOHjleZveOKx5Y9ZGUz5hI26Trymj6afTqBTEzMp2
-         EHcNwqJeHM5vcLJGeeAzTgutv+BVinJjzR66HJeiOX85J9bpIArkhTiiAKShYI7ZydbR
-         bJ0Z21x4xexN0mJOTdg52DH5MV5SHbbP/1vf26bQgOppq9A9vofLTg1urXvJ4i4I2ZTc
-         I0ZA==
-X-Gm-Message-State: AOAM5334VEPn1P+gSZIF1YbxubJeo07qSlZjEvIq71Pz8azh+fNtObn+
-        BlWe8K8O75JlKhV+eV8Td1S5GXLoiNhsyVE/FshE5Q==
-X-Google-Smtp-Source: ABdhPJy4RlvmR3GM4zZQW53D/YonuubsjtWskr93uh0HMIKrEIy6PvPo+v9bss3hc/9UYs1ggviBpLB43fyvBWQVFR8=
-X-Received: by 2002:a17:906:a0c9:: with SMTP id bh9mr8326387ejb.51.1629802986001;
- Tue, 24 Aug 2021 04:03:06 -0700 (PDT)
+        id S236609AbhHXLGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 07:06:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41828 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236471AbhHXLGC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 07:06:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 27EEE61371;
+        Tue, 24 Aug 2021 11:05:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629803116;
+        bh=Wn9y68nsnD1iwKPhsS9XKANDPvq3iwni4Zmc1ibzZMk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=WyhPh3uHZw8gHE1jFIFQVvhYCwcDClpf+FKaMqkI55YNhj/T7ZZF+9i4i8LJQHzAK
+         yTkDrxZcOPFfhstIZW/KJylahC2SgAuYPvdiTSVASc+a18qgbub5JLe5KuDkr/F93G
+         VPfsy+9NLoRe6ZtJ8mYfnOrl/Tlf+QgfAtK4Q+HN13gEs6IjaU7aJsqM5xaDVD6XdE
+         tisGz5gBlp3bvX9XuOEjG2VQxZoer95z/MmwLNIrcR5p42wwfBDDKyg5+lfzHO4oe4
+         jZLRQPo00jzvn0Oqc/eAmdSTnLK3Zlxa0GYbeXV36m27Bea6g0jyQjramxSZ7RbECo
+         0Qd/pSg0Fft6w==
+Subject: Re: [PATCH v2 0/2] ARM: dts: keystone-k2*-evm: Fix mdio and dss node
+ status
+To:     ssantosh@kernel.org
+Cc:     nm@ti.com, lokeshvutla@ti.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210824105858.19496-1-rogerq@kernel.org>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <6e5a4ef9-3611-25b4-9f79-5776f708dafa@kernel.org>
+Date:   Tue, 24 Aug 2021 14:05:09 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210816105934.28265-1-irui.wang@mediatek.com> <20210816105934.28265-2-irui.wang@mediatek.com>
-In-Reply-To: <20210816105934.28265-2-irui.wang@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Tue, 24 Aug 2021 08:02:54 -0300
-Message-ID: <CAAEAJfDoSW3F85bFKTRvvGZXTZbCBRpUwZzEyx3zhrA6psiZfA@mail.gmail.com>
-Subject: Re: [PATCH 1/9] dt-bindings: media: mtk-vcodec: Add binding for
- MT8195 two venc cores
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210824105858.19496-1-rogerq@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Irui,
 
-On Mon, 16 Aug 2021 at 08:00, Irui Wang <irui.wang@mediatek.com> wrote:
->
-> Enable MT8195 two H.264 venc cores, updates vcodec binding document.
->
-> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/media/mediatek-vcodec.txt | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> index de961699ba0a..eb2e24c32426 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> +++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> @@ -11,6 +11,8 @@ Required properties:
->    "mediatek,mt8173-vcodec-dec" for MT8173 decoder.
->    "mediatek,mt8192-vcodec-enc" for MT8192 encoder.
->    "mediatek,mt8195-vcodec-enc" for MT8195 encoder.
-> +  "mediatek,mtk-venc-core0" for MT8195 avc core0 device.
-> +  "mediatek,mtk-venc-core1" for MT8195 avc core1 device.
 
-What is the difference between core0 and core1?
+On 24/08/2021 13:58, Roger Quadros wrote:
+> Hi Santosh,
+> 
+> This series fixes mdio and dss status nodes from "ok" to "okay"
+> 
+> As per Device Tree Specification [1], the status parameter of nodes can
+> be "okay", "disabled", etc. "ok" is not a valid parameter.
+> 
+> U-boot Driver Model does not recognize status="ok" either and treats
+> the node as disabled.
+> 
+> [1] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+> 
+> cheers,
+> -roger
+> 
+> Roger Quadros (2):
+>   ARM: dts: keystone-k2*-evm: Fix mdio node status to "okay"
+>   ARM: dts: keystone-k2g-evm: Fix dss node status to "okay"
+> 
+>  arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
+>  arch/arm/boot/dts/keystone-k2g-evm.dts  | 2 +-
+>  arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
+>  arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
 
-Thanks,
-Ezequiel
+Changes in this version:
+- updated commit message to point to DT spec instead of schema.
