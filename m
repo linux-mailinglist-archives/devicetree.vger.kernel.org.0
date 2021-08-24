@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E81EF3F6114
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:57:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C3B3F6118
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238013AbhHXO5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 10:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56078 "EHLO
+        id S238033AbhHXO5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 10:57:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237990AbhHXO5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:57:50 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED1FC0613C1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:57:06 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id f2so38224554ljn.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:57:06 -0700 (PDT)
+        with ESMTP id S237990AbhHXO5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:57:53 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16EE7C0613C1
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:57:09 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id y34so46115416lfa.8
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:57:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=q47KpM04JtXbjrX4Th8KJJ2WJfmQTigKdxRxjyOEcFo=;
-        b=irzcDqLfZcL8M9bY1pfhENXo7KmRfT4Wa6liQxiru7DlQIPrr1a1jcv+sdlnVTnfNF
-         kTz3nq4Terj5e/D8wMuUpLch/sXpwIiGVaq/EdRAeC7Xgc2CuBuDMHzM5AJFzczgmdbP
-         kK7r68SgojvNOSfuRDLqBqnDF/bg+ugza3KEjo6vIH50Eb9gFaSWJIgIhUwGtgtTwIoh
-         C3nNBskl60FUC8rW3xPt7l7xfXwFnzHL2r+nJvVQhdav3DmrDGvkOqQgLLTDWOPBM67c
-         cYhCheaEK39sFD1rWMqyYpBsWve18iBR7JNHv2FHSYV37DsIH86p5FEl5d21EtJAxhuN
-         moRA==
+        bh=66Nr9cfWRLjl+l/VaDJPhMnvKpMeK9HDiQZYQNyEOxQ=;
+        b=WyWjr7on/dLv0JuqVzpGqlpiGngQhRG6oXHi6kqQiJRVT57Folkq3XbCjPRnzr0RMq
+         3+1YCcao/7RDdsY3jRzPPVfv9BqGeCA7gca0YxRV+1rusPhovzjDOMKlTQQCjGEy6I+B
+         k1eHxh+Nc2Sh6oDKoNQxq0M/Lzd2hQQcqc1M7s1nOElhMKZ8rnEgeOR0jj+E+rVgicnf
+         k/KepYkenxL1EocPZjjaDm6Os9TktopF9mIFxCC/x9YfuaL7HQ/ExAncFTwDo0TU9eTI
+         1hkBKjkxHgL/du4i5djxtJnqAQHX90kVjCJ9wGSBAhVtKCnZ+HFxtb3mFUItFqXQouMY
+         r4TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=q47KpM04JtXbjrX4Th8KJJ2WJfmQTigKdxRxjyOEcFo=;
-        b=ABRrS2DXjO1LYhKNElJwKJrbgIonKzVFGU6D53EGvfhK6/+GMyu1ZzvG46gmpLttnB
-         FPzqIccakCV+xlLD+Lja0VDk2ZPgNcpa0K9XRJGFOqLJAAkgnjjJsCpucqptWoWV2KRE
-         S05Teic28jROedTv42mo3eWYpBjMmuLy6bvBrQxsZJsxKWZQrkcycKq+dLF1SnQWIWhP
-         h5MpLbjLwy6c5t47BP5+0cjr5Hw2FYjz1Zky6hZBvDojG+/o5ss38MQglj2QHqQ7XrcL
-         FKzN/NsDZ7DZavPibrkD05/bKPN286mWqzxjmj5aXZlHShLv1OdJEqLJrQJwSQQZLuSX
-         Y8IQ==
-X-Gm-Message-State: AOAM533g6Jb9PZHo2tWV1qqkaovDDvpRyte6RZabObmx8djvBHpv4sIe
-        au9SxdZyO1dAWk/v50PoaAG2mNHVEHHEjpjgHTx4qLa+BXziSw==
-X-Google-Smtp-Source: ABdhPJwfFJKHpnxXv8/1gum9S+upuN8rQP4xRwN2p75hcpwjG5NXTI3vyGKYLQMErsI6Eqom9XZxt10tCGCE/VjFsV0=
-X-Received: by 2002:a2e:84ca:: with SMTP id q10mr18815903ljh.182.1629817024632;
- Tue, 24 Aug 2021 07:57:04 -0700 (PDT)
+        bh=66Nr9cfWRLjl+l/VaDJPhMnvKpMeK9HDiQZYQNyEOxQ=;
+        b=q4r+9e7LmNhu+f6AM5U+RaUU6i9lW5bbHH16V3I+Q43bV/rGDej87IC4EN7bFhdmx0
+         Ol7SadXYDqHQ+23C5e9eRCGO2lSl40Xrc75EIx2kLUTHGTxK5wZLE6Lx9N2j6iFII7lA
+         kqAaLzmodzwsgTPFlDMLG/FB3wyPgtyRhteoLKkbk+aSZvm8JIUKEG8iE+oerHy8Cixw
+         05WDBQriyPdWy4fAbiQ002akJfdGYvRD6deUcsnFXKxo9hBsGQljOQyMxDGwvjpBQxoD
+         S1xwXb6x83xlM7XWVm+VkUb7eZ6c6jMciDXa6SFGL64VV+0mBy4ZByNhbc33/Otf6Z+v
+         4qNw==
+X-Gm-Message-State: AOAM530JS0iFT5NHbv05dVDzKp0Lt9wfuX7fucJbdQK5mJ7af+3SWP4c
+        AtG4DRy2ngBfkxqRqherMuqiQ0vFuZy4hWpb597vtg==
+X-Google-Smtp-Source: ABdhPJztWj6Zah9h6x7ZemArdgM8oqu2mVNIyCXtmL1d0aTqWhgNIaI/271g56lSQZnptFJOyg7XxN5tijzA1YTBab4=
+X-Received: by 2002:a05:6512:ad6:: with SMTP id n22mr30706458lfu.532.1629817027412;
+ Tue, 24 Aug 2021 07:57:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com> <20210817090313.31858-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210817090313.31858-2-biju.das.jz@bp.renesas.com>
+References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com> <20210817090313.31858-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210817090313.31858-3-biju.das.jz@bp.renesas.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 24 Aug 2021 16:56:27 +0200
-Message-ID: <CAPDyKFrTKSLS8+Wsgj1m_2FtidQJ629ZJXswtxn3JbahozSHOg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mmc: renesas,sdhi: Fix dtbs-check warning
+Date:   Tue, 24 Aug 2021 16:56:31 +0200
+Message-ID: <CAPDyKFop5B1eZyrg3Q=h_RYRJPuFk7XCSm-sfn+wC1Q=LYz9cQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
 To:     Biju Das <biju.das.jz@bp.renesas.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Wolfram Sang <wsa+renesas@sang-engineering.com>,
@@ -67,8 +67,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, 17 Aug 2021 at 11:03, Biju Das <biju.das.jz@bp.renesas.com> wrote:
 >
-> Fix dtbs-check warning pinctrl-names:0:'default' was expected
-> for r8a77470-iwg23s-sbc.dts file.
+> Document RZ/G2L SDHI controller bindings.
 >
 > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -81,103 +80,115 @@ Uffe
 
 > ---
 > v3->v4:
->  * Removed duplicate clock-names for sdhi-r7sxxxx SoC's
->  Ref:- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210804161325.26996-2-biju.das.jz@bp.renesas.com/
-> v3:
->  * New patch to fix the dtbs-check warnings
->  Ref:- https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210804091940.23983-1-biju.das.jz@bp.renesas.com/
+>  * Defined clock-names for RZ/G2L SoC and make it as a required property
+> v2->v3:
+>  * split the patch into 2, first one for fixing dtbs-check issue and
+>    later one for documenting RZ/G2L SDHI bindings.
+> v1->v2:
+>  * Fixed dtbs-check issue for RZ/A{1,2} platforms.
 > ---
->  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 60 ++++++++++++-------
->  1 file changed, 37 insertions(+), 23 deletions(-)
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 73 +++++++++++++------
+>  1 file changed, 52 insertions(+), 21 deletions(-)
 >
 > diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> index 677989bc5924..43584f4f4c7e 100644
+> index 43584f4f4c7e..9f1e7092cf44 100644
 > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
 > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -9,9 +9,6 @@ title: Renesas SDHI SD/MMC controller
->  maintainers:
->    - Wolfram Sang <wsa+renesas@sang-engineering.com>
+> @@ -44,19 +44,20 @@ properties:
+>            - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
+>        - items:
+>            - enum:
+> -              - renesas,sdhi-r8a774a1 # RZ/G2M
+> -              - renesas,sdhi-r8a774b1 # RZ/G2N
+> -              - renesas,sdhi-r8a774c0 # RZ/G2E
+> -              - renesas,sdhi-r8a774e1 # RZ/G2H
+> -              - renesas,sdhi-r8a7795  # R-Car H3
+> -              - renesas,sdhi-r8a7796  # R-Car M3-W
+> -              - renesas,sdhi-r8a77961 # R-Car M3-W+
+> -              - renesas,sdhi-r8a77965 # R-Car M3-N
+> -              - renesas,sdhi-r8a77970 # R-Car V3M
+> -              - renesas,sdhi-r8a77980 # R-Car V3H
+> -              - renesas,sdhi-r8a77990 # R-Car E3
+> -              - renesas,sdhi-r8a77995 # R-Car D3
+> -              - renesas,sdhi-r8a779a0 # R-Car V3U
+> +              - renesas,sdhi-r8a774a1  # RZ/G2M
+> +              - renesas,sdhi-r8a774b1  # RZ/G2N
+> +              - renesas,sdhi-r8a774c0  # RZ/G2E
+> +              - renesas,sdhi-r8a774e1  # RZ/G2H
+> +              - renesas,sdhi-r8a7795   # R-Car H3
+> +              - renesas,sdhi-r8a7796   # R-Car M3-W
+> +              - renesas,sdhi-r8a77961  # R-Car M3-W+
+> +              - renesas,sdhi-r8a77965  # R-Car M3-N
+> +              - renesas,sdhi-r8a77970  # R-Car V3M
+> +              - renesas,sdhi-r8a77980  # R-Car V3H
+> +              - renesas,sdhi-r8a77990  # R-Car E3
+> +              - renesas,sdhi-r8a77995  # R-Car D3
+> +              - renesas,sdhi-r8a779a0  # R-Car V3U
+> +              - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
+>            - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
 >
-> -allOf:
-> -  - $ref: "mmc-controller.yaml"
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -104,14 +101,46 @@ properties:
->    pinctrl-1:
->      maxItems: 1
+>    reg:
+> @@ -66,15 +67,9 @@ properties:
+>      minItems: 1
+>      maxItems: 3
 >
-> -  pinctrl-names:
+> -  clocks:
+> -    minItems: 1
+> -    maxItems: 2
+> +  clocks: true
+>
+> -  clock-names:
 > -    minItems: 1
 > -    items:
-> -      - const: default
-> -      - const: state_uhs
-> +  pinctrl-names: true
+> -      - const: core
+> -      - const: cd
+> +  clock-names: true
 >
->    max-frequency: true
+>    dmas:
+>      minItems: 4
+> @@ -108,6 +103,42 @@ properties:
+>  allOf:
+>    - $ref: "mmc-controller.yaml"
 >
-> +allOf:
-> +  - $ref: "mmc-controller.yaml"
-> +
 > +  - if:
 > +      properties:
 > +        compatible:
 > +          contains:
-> +            const: renesas,sdhi-mmc-r8a77470
+> +            const: renesas,sdhi-r9a07g044
 > +    then:
 > +      properties:
-> +        pinctrl-names:
+> +        clocks:
 > +          items:
-> +            - const: state_uhs
-> +    else:
-> +      properties:
-> +        pinctrl-names:
-> +          minItems: 1
+> +            - description: IMCLK, SDHI channel main clock1.
+> +            - description: IMCLK2, SDHI channel main clock2. When this clock is
+> +                           turned off, external SD card detection cannot be
+> +                           detected.
+> +            - description: CLK_HS, SDHI channel High speed clock which operates
+> +                           4 times that of SDHI channel main clock1.
+> +            - description: ACLK, SDHI channel bus clock.
+> +        clock-names:
 > +          items:
-> +            - const: default
-> +            - const: state_uhs
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,sdhi-r7s72100
-> +              - renesas,sdhi-r7s9210
-> +    then:
+> +            - const: imclk
+> +            - const: imclk2
+> +            - const: clk_hs
+> +            - const: aclk
 > +      required:
 > +        - clock-names
-> +      description:
-> +        The internal card detection logic that exists in these controllers is
-> +        sectioned off to be run by a separate second clock source to allow
-> +        the main core clock to be turned off to save power.
+> +        - resets
+> +    else:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
+> +          maxItems: 2
+> +        clock-names:
+> +          minItems: 1
+> +          items:
+> +            - const: core
+> +            - const: cd
 > +
->  required:
->    - compatible
->    - reg
-> @@ -119,21 +148,6 @@ required:
->    - clocks
->    - power-domains
->
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        enum:
-> -          - renesas,sdhi-r7s72100
-> -          - renesas,sdhi-r7s9210
-> -then:
-> -  required:
-> -    - clock-names
-> -  description:
-> -    The internal card detection logic that exists in these controllers is
-> -    sectioned off to be run by a separate second clock source to allow
-> -    the main core clock to be turned off to save power.
-> -
->  unevaluatedProperties: false
->
->  examples:
+>    - if:
+>        properties:
+>          compatible:
 > --
 > 2.17.1
 >
