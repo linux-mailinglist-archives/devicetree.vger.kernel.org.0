@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C12C3F62E3
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF0EE3F62EB
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232494AbhHXQnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 12:43:12 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:44855 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbhHXQnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:43:12 -0400
-Received: by mail-ot1-f42.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so39224450otg.11;
-        Tue, 24 Aug 2021 09:42:28 -0700 (PDT)
+        id S232698AbhHXQni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 12:43:38 -0400
+Received: from mail-oo1-f48.google.com ([209.85.161.48]:43903 "EHLO
+        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232713AbhHXQnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:43:35 -0400
+Received: by mail-oo1-f48.google.com with SMTP id y16-20020a4ad6500000b0290258a7ff4058so6709490oos.10;
+        Tue, 24 Aug 2021 09:42:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xS+QtzQiuoAe6e5m4kKcB1AtgOWvkfG4yNkCC1KF3aw=;
-        b=HsW2DMWxrwwILGmeLoZpAGXqhHgT7dfl/mPY6AvvO3SJ5a023G2dH9e10RRoaWR1DW
-         c2dHSerzYa/meQxRyBO0hwchId7pNEeV45tgx4M6C2XVvSNFK+YbZL/atHmr6FBU66I/
-         Nuw/GWZWVCKVG6/A+fKpINCdRQ5jbTc/m6F+5ioSrEhr824hSWR72V8xRu2WDTM5NKDx
-         rdKlql0uhcXrQW591KApwCbFoBd9GvNvqmrJmciy1l769RMkLZC4zuwkFwSIwEVxYY6i
-         u07I0kcDmDKUXMLPaXdsWX7/VGXbsyuRNaX40jM6bn+Wolr3naO+YsQyzL5CdLQSPSr6
-         VLvg==
-X-Gm-Message-State: AOAM5327emRRzCSxaofceGxkFc9Nnrt4wuJWvRxGDp29aWdk+ng3Uqff
-        qIC7FW0MI1XOGzExLxpZxA==
-X-Google-Smtp-Source: ABdhPJzHioaZD2owbUBwVjdP9XBsuI/CgwMh0zF/+mLlYSdJS+bvBe2j/4nYeICM4bxxPP4xM2bsuA==
-X-Received: by 2002:a9d:4e98:: with SMTP id v24mr20477465otk.228.1629823347901;
-        Tue, 24 Aug 2021 09:42:27 -0700 (PDT)
+        bh=hhHlpptcTpuZfc3ki276UoFwiPzlLWRosRVN+oyfAP8=;
+        b=IUhjeaieHEkH73L0wCKrGWPW3kAQseqDj03NtXnVrIPhi3goqrvyiDN/V+HOApBqZR
+         +Gcm7IQCiST8BMlqGMwuONbgvh8OdEDukbfPLmd3lxT+7mb9hjDXAP0iF6yvWlJrkHo1
+         ub9uTOoZVmmwCD5DCajNektho0NwwE/yVlYSPRJJLZv+7poWYhp4kMYumfx45mF+7Bik
+         K+ibLhf3JF+MguuREEhc+SzRtoQo8G8eK4+bWvAN5a89USLl+A5W6ZfcCZ0PtQmoZiTJ
+         7i5u0lb11YKC7jGoDfYDGu+1/wT3BWIBtAmysCZfz2V67r3lRRt8CfogYcUTrcXXNmUh
+         J6hA==
+X-Gm-Message-State: AOAM5303FExdywcCIn03R/D8H420AJKQtQBitNl9hJjRNJ7ybIu5XRqi
+        n10oER/MqzLEGtF6geBGuXkb0QUQ+g==
+X-Google-Smtp-Source: ABdhPJzUbM12NadcegpKF8o+y4R9VXy4G6mc8UlumeZjQ6smiTwqh/STt1xCyu23cb/zQg+fqwPqQA==
+X-Received: by 2002:a4a:ba86:: with SMTP id d6mr30812461oop.61.1629823370704;
+        Tue, 24 Aug 2021 09:42:50 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o15sm3592677oos.1.2021.08.24.09.42.26
+        by smtp.gmail.com with ESMTPSA id h2sm2399896otu.76.2021.08.24.09.42.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 09:42:27 -0700 (PDT)
-Received: (nullmailer pid 599220 invoked by uid 1000);
-        Tue, 24 Aug 2021 16:42:25 -0000
-Date:   Tue, 24 Aug 2021 11:42:25 -0500
+        Tue, 24 Aug 2021 09:42:50 -0700 (PDT)
+Received: (nullmailer pid 599895 invoked by uid 1000);
+        Tue, 24 Aug 2021 16:42:49 -0000
+Date:   Tue, 24 Aug 2021 11:42:49 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, jamipkettunen@somainline.org,
-        martin.botka@somainline.org, linux-kernel@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, iommu@lists.linux-foundation.org,
-        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible for SM6350 SoC
-Message-ID: <YSUhcfEIY/wOiOIt@robh.at.kernel.org>
-References: <20210820202906.229292-1-konrad.dybcio@somainline.org>
+Cc:     martin.botka@somainline.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        marijn.suijten@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        jamipkettunen@somainline.org,
+        angelogioacchino.delregno@somainline.org
+Subject: Re: [PATCH 1/6] dt-bindings: soc: qcom: aoss: Add SM6350 compatible
+Message-ID: <YSUhiSiO5Wx//IaX@robh.at.kernel.org>
+References: <20210820203105.229764-1-konrad.dybcio@somainline.org>
+ <20210820203105.229764-2-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210820202906.229292-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210820203105.229764-2-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Aug 2021 22:29:04 +0200, Konrad Dybcio wrote:
-> Add the SoC specific compatible for SM6350 implementing
-> arm,mmu-500.
+On Fri, 20 Aug 2021 22:31:00 +0200, Konrad Dybcio wrote:
+> Add SM6350 AOSS QMP compatible to the list of possible bindings.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+>  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
