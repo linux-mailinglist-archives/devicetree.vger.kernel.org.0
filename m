@@ -2,360 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C413F6A99
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 22:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 987F13F6AF3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 23:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235211AbhHXUpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 16:45:11 -0400
-Received: from relay03.th.seeweb.it ([5.144.164.164]:54821 "EHLO
-        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235160AbhHXUpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 16:45:11 -0400
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id BEB351F4C4;
-        Tue, 24 Aug 2021 22:44:24 +0200 (CEST)
-Subject: Re: [PATCH] arm64: dts: qcom: sdm660: Add initial IFC6560 board
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20210824151036.678802-1-bjorn.andersson@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <b57c7272-2f84-dfde-65ba-ff71793f360e@somainline.org>
-Date:   Tue, 24 Aug 2021 22:44:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+        id S229514AbhHXVWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 17:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234317AbhHXVWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 17:22:43 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B830C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 14:21:58 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso18125732otv.12
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 14:21:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KtIOJH8PBF1/iH8MyRGz0pTPExah6uG34M1IBP8eNO4=;
+        b=IJPW8hx9wZXO1P2lbLZGy2iF7pmxdjBbXoIzRccBZfoFZP+kENipRioMSQe3y0pznI
+         MbCrgpQGrn0cXAyP7Ay6ypTEobRSrdg8/KTj+kwwI8+mhZb0D0o7Xf65Cqlp2gxWAYhr
+         /a/ymkaN8ZZTrbVjI5jNWIRUop9riRgzPQrryVtnzo5geaPgegMrZKm8aO4mNWVgRN6Y
+         8CKrtnKbKbUnLG6kHvxD9yc6xfniM2+6sN/YEMKnNQJEYL7qX4heMAq8r1TKteNIAGjt
+         gFPkcI+yg1U628xpQHnqktPX8D/a5mxY0a64s1r9x8BDqbRd/+D3ua4oV3KPS+dOeIT5
+         eljQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KtIOJH8PBF1/iH8MyRGz0pTPExah6uG34M1IBP8eNO4=;
+        b=oTW/wPKmn1kabyU3iOQTeejD6KNmOIMnm8VV1t0vY5D4hHON3zxulbTv2C2lHcxFNU
+         LCpdIqjWr08BinvsHlNs5K4xWu62wDYdgIU9rudlIcVDeqvs+Frw1TJmIcP34OqezpHF
+         xMFzzrZPzle90hy4guA34hZixFCdOZwqzYXCbyboJUbdJM5y0DKAOXJfLpCF1SIhpc9p
+         /Gqm25/NOiO80MrDHl2oVDE5fyx2BDbpcXnEDbNofPNvlSMn926QBMi8IPrdl/ohnAMc
+         7itddSxFxZrYAgTMivE42gWvWaexfE9/NtkZ/YGQIVMt+HINcQAmAzfhJqnAYi7BBUoG
+         ZiTw==
+X-Gm-Message-State: AOAM533nmmGrqQ4QpUZJjNa5JOz3ofc3S4nu9dMolsN3Q2ZxDQJgl13n
+        z8t4NSz4s7lY+53yIyK79d5W4A==
+X-Google-Smtp-Source: ABdhPJxuJcLxPQAlEmc0AL12sf8aq7NBOiIdeVjFqiE4i9qnJS5dCWKdp2zESJmeK95e0wFsK1TOyA==
+X-Received: by 2002:a05:6830:4124:: with SMTP id w36mr25092577ott.72.1629840117620;
+        Tue, 24 Aug 2021 14:21:57 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 2sm4692902oto.50.2021.08.24.14.21.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Aug 2021 14:21:56 -0700 (PDT)
+Date:   Tue, 24 Aug 2021 14:23:14 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] PCI: dwc: Perform host_init() before registering
+ msi
+Message-ID: <YSVjQgDmatkkCxtn@ripper>
+References: <YSVTdedrDSgSYgwm@ripper>
+ <20210824202925.GA3491441@bjorn-Precision-5520>
 MIME-Version: 1.0
-In-Reply-To: <20210824151036.678802-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210824202925.GA3491441@bjorn-Precision-5520>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/08/21 17:10, Bjorn Andersson ha scritto:
-> The IFC6560 is a board from Inforce Computing, built around the SDA660
-> SoC. This patch describes core clocks, some regulators from the two
-> PMICs, debug uart, storage, bluetooth and audio DSP remoteproc.
-> 
-> The regulator settings are inherited from prior work by Konrad Dybcio
-> and AngeloGioacchino Del Regno.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Tue 24 Aug 13:29 PDT 2021, Bjorn Helgaas wrote:
 
-Nice!!!
-
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-
-> ---
->   arch/arm64/boot/dts/qcom/Makefile           |   1 +
->   arch/arm64/boot/dts/qcom/sdm660-ifc6560.dts | 279 ++++++++++++++++++++
->   2 files changed, 280 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sdm660-ifc6560.dts
+> On Tue, Aug 24, 2021 at 01:15:49PM -0700, Bjorn Andersson wrote:
+> > On Tue 24 Aug 12:05 PDT 2021, Bjorn Helgaas wrote:
+> > 
+> > > On Mon, Aug 23, 2021 at 08:49:57AM -0700, Bjorn Andersson wrote:
+> > > > On the Qualcomm sc8180x platform the bootloader does something related
+> > > > to PCI that leaves a pending "msi" interrupt, which with the current
+> > > > ordering often fires before init has a chance to enable the clocks that
+> > > > are necessary for the interrupt handler to access the hardware.
+> > > > 
+> > > > Move the host_init() call before the registration of the "msi" interrupt
+> > > > handler to ensure the host driver has a chance to enable the clocks.
+> > > 
+> > > Did you audit other drivers for similar issues?  If they do, we should
+> > > fix them all at once.
+> > 
+> > I only looked at the DesignWware drivers, in an attempt to find any
+> > issues the proposed reordering.
+> > 
+> > The set of bugs causes by drivers registering interrupts before critical
+> > resources tends to be rather visible and I don't know if there's much
+> > value in speculatively "fixing" drivers.
+> > 
+> > E.g. a quick look through the drivers I see a similar pattern in
+> > pci-tegra.c, but it's unlikely that they have the similar problem in
+> > practice and I have no way to validate that a change to the order would
+> > have a positive effect - or any side effects.
+> > 
+> > Or am I misunderstanding your request?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 70516508be56..88abcfeb4d38 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -73,6 +73,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-ifc6560.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660-ifc6560.dts b/arch/arm64/boot/dts/qcom/sdm660-ifc6560.dts
-> new file mode 100644
-> index 000000000000..2244529bc6bf
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm660-ifc6560.dts
-> @@ -0,0 +1,279 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, Linaro Ltd.
-> + * Copyright (c) 2020, Konrad Dybcio <konrad.dybcio@somainline.org>
-> + * Copyright (c) 2020, AngeloGioacchino Del Regno
-> + *                     <angelogioacchino.delregno@somainline.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sdm660.dtsi"
-> +#include "pm660.dtsi"
-> +#include "pm660l.dtsi"
-> +
-> +/ {
-> +	model = "Inforce 6560 Single Board Computer";
-> +	compatible = "inforce,ifc6560", "qcom,sdm660";
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart2;
-> +		serial1 = &blsp2_uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +	};
-> +
-> +	v3p3_bck_bst: v3p3-bck-bst-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "v3p3_bck_bst";
-> +
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		vin-supply = <&vph_pwr>;
-> +	};
-> +
-> +	v1p2_ldo: v1p2-ldo-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "v1p2_ldo";
-> +
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +
-> +		vin-supply = <&vph_pwr>;
-> +	};
-> +
-> +	v5p0_boost: v5p0-boost-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "v5p0_boost";
-> +
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +
-> +		vin-supply = <&vph_pwr>;
-> +	};
-> +};
-> +
-> +&adsp_pil {
-> +	firmware-name = "qcom/inforce/ifc6560/adsp.mbn";
-> +};
-> +
-> +&blsp1_uart2 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart_active>;
-> +};
-> +
-> +&blsp2_uart1 {
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn3990-bt";
-> +
-> +		vddio-supply = <&vreg_l13a_1p8>;
-> +		vddxo-supply = <&vreg_l9a_1p8>;
-> +		vddrf-supply = <&vreg_l6a_1p3>;
-> +		vddch0-supply = <&vreg_l19a_3p3>;
-> +		max-speed = <3200000>;
-> +	};
-> +};
-> +
-> +&rpm_requests {
-> +	pm660-regulators {
-> +		compatible = "qcom,rpm-pm660-regulators";
-> +
-> +		vdd_s1-supply = <&vph_pwr>;
-> +		vdd_s2-supply = <&vph_pwr>;
-> +		vdd_s3-supply = <&vph_pwr>;
-> +		vdd_s4-supply = <&vph_pwr>;
-> +		vdd_s5-supply = <&vph_pwr>;
-> +		vdd_s6-supply = <&vph_pwr>;
-> +
-> +		vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
-> +		vdd_l2_l3-supply = <&vreg_s2b_1p05>;
-> +		vdd_l5-supply = <&vreg_s2b_1p05>;
-> +		vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
-> +		vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
-> +
-> +		vreg_s4a_2p04: s4 {
-> +			regulator-min-microvolt = <2040000>;
-> +			regulator-max-microvolt = <2040000>;
-> +			regulator-enable-ramp-delay = <200>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-always-on;
-> +		};
-> +
-> +		vreg_s5a_1p35: s5 {
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1350000>;
-> +			regulator-enable-ramp-delay = <200>;
-> +			regulator-ramp-delay = <0>;
-> +		};
-> +
-> +		vreg_l6a_1p3: l6 {
-> +			regulator-min-microvolt = <1304000>;
-> +			regulator-max-microvolt = <1368000>;
-> +			regulator-allow-set-load;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +		};
-> +
-> +		vreg_l8a_1p8: l8 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-system-load = <325000>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l9a_1p8: l9 {
-> +			regulator-min-microvolt = <1804000>;
-> +			regulator-max-microvolt = <1896000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l13a_1p8: l13 {
-> +			/* This gives power to the LPDDR4: never turn it off! */
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1944000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-boot-on;
-> +			regulator-always-on;
-> +		};
-> +
-> +		vreg_l19a_3p3: l19 {
-> +			regulator-min-microvolt = <3312000>;
-> +			regulator-max-microvolt = <3400000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-allow-set-load;
-> +		};
-> +	};
-> +
-> +	pm660l-regulators {
-> +		compatible = "qcom,rpm-pm660l-regulators";
-> +
-> +		vdd_s1-supply = <&vph_pwr>;
-> +		vdd_s2-supply = <&vph_pwr>;
-> +		vdd_s3_s4-supply = <&vph_pwr>;
-> +		vdd_s5-supply = <&vph_pwr>;
-> +		vdd_s6-supply = <&vph_pwr>;
-> +
-> +		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
-> +		vdd_l2-supply = <&vreg_bob>;
-> +		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
-> +		vdd_l4_l6-supply = <&vreg_bob>;
-> +		vdd_bob-supply = <&vph_pwr>;
-> +
-> +		vreg_s2b_1p05: s2 {
-> +			regulator-min-microvolt = <1050000>;
-> +			regulator-max-microvolt = <1050000>;
-> +			regulator-enable-ramp-delay = <200>;
-> +			regulator-ramp-delay = <0>;
-> +		};
-> +
-> +		vreg_l2b_2p95: l2 {
-> +			/*
-> +			 * This regulator supports 1.648 - 3.104V on this board
-> +			 * but we set a max voltage of anything less than 2.7V
-> +			 * to satisfy a condition in sdhci.c that will disable
-> +			 * 3.3V SDHCI signaling, which happens to be not really
-> +			 * supported on the Xperia Nile/Ganges platform.
-> +			 */
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <2696000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l4b_29p5: l4 {
-> +			regulator-min-microvolt = <2944000>;
-> +			regulator-max-microvolt = <2952000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +
-> +			regulator-min-microamp = <200>;
-> +			regulator-max-microamp = <600000>;
-> +			regulator-system-load = <570000>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l5b_29p5: l5 {
-> +			/*
-> +			 * Downstream specifies a range of 1721-3600mV,
-> +			 * but the only assigned consumers are SDHCI2 VMMC
-> +			 * and Coresight QPDI that both request pinned 2.95V.
-> +			 * Tighten the range to 1.8-3.328 (closest to 3.3) to
-> +			 * make the mmc driver happy.
-> +			 */
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <3328000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +			regulator-allow-set-load;
-> +			regulator-system-load = <800000>;
-> +		};
-> +
-> +		vreg_l8b_3p3: l8 {
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <3400000>;
-> +			regulator-enable-ramp-delay = <250>;
-> +			regulator-ramp-delay = <0>;
-> +		};
-> +
-> +		vreg_bob: bob {
-> +			regulator-min-microvolt = <3304000>;
-> +			regulator-max-microvolt = <3624000>;
-> +			regulator-enable-ramp-delay = <500>;
-> +			regulator-ramp-delay = <0>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	status = "okay";
-> +	supports-cqe;
-> +
-> +	mmc-ddr-1_8v;
-> +	mmc-hs400-1_8v;
-> +	mmc-hs400-enhanced-strobe;
-> +
-> +	vmmc-supply = <&vreg_l4b_29p5>;
-> +	vqmmc-supply = <&vreg_l8a_1p8>;
-> +};
-> +
-> +&sdhc_2 {
-> +	status = "okay";
-> +
-> +	vmmc-supply = <&vreg_l5b_29p5>;
-> +	vqmmc-supply = <&vreg_l2b_2p95>;
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <8 4>;
-> +
-> +	uart_active: uart-active-state {
-> +		pins = "gpio4", "gpio5";
-> +		function = "blsp_uart2";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +};
+> That is exactly my request.
+
+Okay.
+
+> I'm not sure if the potential issue you
+> noticed in pci-tegra.c is similar to the one I mentioned here:
+> 
+>   https://lore.kernel.org/linux-pci/20210624224040.GA3567297@bjorn-Precision-5520/
 > 
 
+As I still have the tegra driver open, I share your concern about the
+use of potentially uninitialized variables.
+
+The problem I was concerned about was however the same as in my patch
+and the rockchip one, that if the tegra hardware isn't clocked the
+pm_runtime_get_sync() (which would turn on power and clock) happens
+after setting up the msi chain handler...
+
+> but I am actually in favor of speculatively fixing drivers even though
+> they're hard to test.  Code like this tends to get copied to other
+> places, and fixing several drivers sometimes exposes opportunities for
+> refactoring and sharing code.
+> 
+
+Looking through the other cases mentioned in your reply above certainly
+gives a feeling that this problem has been inherited from driver to
+driver...
+
+I've added a ticket to my backlog to take a deeper look at this.
+
+Regards,
+Bjorn
