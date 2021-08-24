@@ -2,184 +2,563 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D24B33F69AE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 21:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F4D3F6A05
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 21:43:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234343AbhHXTVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 15:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
+        id S234529AbhHXToA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 15:44:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234059AbhHXTVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 15:21:30 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC05C061764
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 12:20:45 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id oa17so14962008pjb.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 12:20:45 -0700 (PDT)
+        with ESMTP id S231417AbhHXTn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 15:43:59 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6373BC061757;
+        Tue, 24 Aug 2021 12:43:15 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id r21so17789830qtw.11;
+        Tue, 24 Aug 2021 12:43:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=mVPoYVWoIvb5FZ8mV7/5paxx0nV7NsVnW/KlyUCKuhA=;
-        b=ItO9aTgPCLyylgqQH5P4MQ6LZ82koN27g+C017e7/xl7kVMH5aX3KWis8yt4wUVkjz
-         wXxAZo1Q8eLMiOAddoLWaM84tLRf81rhbCmAohc/2+/UwUqeEdhOAiL2+G12JlKhzbpH
-         ekC6QRzWvElQU52222Pns750NpbfIXJVUjyIbd4tPpOEExnSXybjVvgl56ljNmeLDmUN
-         esoFzVFtQVpkl3aOw9YJyy9pQN97CxAds/fk+M8Q7QfvwMGmer7737do2vcvZU5l+FuF
-         DbHrw2ZIHuglgesi++0vAVfK3geqR/zo/P07zpo8GBT95HUJApgtaMVW1g0nSBFqGu82
-         wQag==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :in-reply-to;
+        bh=zBd/UKu6RYkJwzOer0cfQtBzoFIUvC8rt1cVcFn20Xg=;
+        b=Dl8ZxC4LAIEgBRNJSu744ISXyrVlatyqWjAkxSfoWrYqiisRTlOO9RQCzIH4uT+/xX
+         RHIgWqjJzgqW6mgZgOHi2B07V85tFQVjyct8UPHAINGJ+D0qvlOU4jJ5SYA9pf107aPa
+         tT0JextLP01u9vc1cPR1Ewd+XygVgfwP7/p3B4kDRI70sz708YND9XEGjMcF28CweGJt
+         uAc9Bc1lwWlzPkYXy1DRHyWUdc+zFI7CsHqJEZUrIBB2A/UKxmMR9lLR1ohvzfvwdHSc
+         tIac71KtYPrDw/+2C8yVMiSJf/6vd7gyyYfFzF/uaBWcm/vEe3BCoW+svbYQsZzzOdbo
+         0uTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mVPoYVWoIvb5FZ8mV7/5paxx0nV7NsVnW/KlyUCKuhA=;
-        b=OrOcgDE31WOc+IvF+Fjwl3R5NyQGcoLsFL0HClFK5W+k6hHqMTvv6CNJvQNNwAVt9h
-         /+z8DcH+zeKc7CGP9F4QK2AkqPUPNtX7P83+MY8vS5EyQ1Cu8ifZBJ2Jy8zRZ6MnwAT0
-         /pbAZs4sZnEOZLByl4bQYbPHhG5jepXdr7L/bx1PF9zNi+Ka7G5DTa7eSBvwiYZWCowN
-         Lx9pDWcsITVbmYAsYdkGlKa3JA4sisewd3cqnWc5ZEUPEc/qpRcaJRHFcmYhx3Fntzfe
-         Djw/Kd0vMuCYXeNRjiQjY2fjPjviaATpNSsdIVlTOZvIQKevxD7mJ2gVNyTK5yLE64UG
-         YPPw==
-X-Gm-Message-State: AOAM532uJYzEj7/yLg30tojwnoHW22g3qmEr44wkb3m0eWrMHN9l/mSL
-        RlGUtNy3iAaRUZtallsXRYuuwA==
-X-Google-Smtp-Source: ABdhPJzSrMM4MxmIH6A8jSFtIdKi3nUJc7HYA8i2icWXwYCfSIFFuVlTcRtN6GWtJN/aAKArKjaNiw==
-X-Received: by 2002:a17:902:e0cc:b0:134:7191:f39 with SMTP id e12-20020a170902e0cc00b0013471910f39mr10468342pla.36.1629832844892;
-        Tue, 24 Aug 2021 12:20:44 -0700 (PDT)
-Received: from google.com ([2401:fa00:1:10:4a93:46f4:da9a:4371])
-        by smtp.gmail.com with ESMTPSA id 22sm23515422pgn.88.2021.08.24.12.20.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:in-reply-to;
+        bh=zBd/UKu6RYkJwzOer0cfQtBzoFIUvC8rt1cVcFn20Xg=;
+        b=JKuu5T8PEIPntwhtWwEcgAa7A2TqM8voE67ocOysRnIMdEVPcACbO20QQr612AAV9/
+         19J1uV7kyBH/Y2OEPxriLxvTCCxpzFynYMY+ducdY4rvcezeaDRhmFPsDygPhjK/fjPU
+         zUSYp9TuW5DAfS2Wb0RLixekYA/3/RfTP7mesBKo5hKs9tg+Qf3Vste6dRsaAQwo3bF+
+         B3Cbx5LORL4WWMHu7Y+ypzgTHENGam1a3rwH7UjryP0ZaealEOhiyOsyf8lbcNBIHK59
+         lFg7h+NrKYL9XSNEnkP5wIv2jidLMmrWu4dXkYGir5PeY30rdvfLZwe5RSwQyHaUEe4U
+         xwcw==
+X-Gm-Message-State: AOAM532AYLAG17SjU40ZFFckDieKqm2l9aqhKPRVy/5bvbbXUMXvbeVt
+        LlCTeMRxQmrmtI/Mk8Fp+HruDzzv1FM7lw==
+X-Google-Smtp-Source: ABdhPJwMLav+kJbe+w7ATTnlefg5quv9HCg7M3d8HJ+OD/5ZQN4sDnAFTj8dIq/QsaL+G2UKEkVsmA==
+X-Received: by 2002:a05:622a:1910:: with SMTP id w16mr35574353qtc.227.1629834194490;
+        Tue, 24 Aug 2021 12:43:14 -0700 (PDT)
+Received: from errol.ini.cmu.edu (pool-71-112-192-175.pitbpa.fios.verizon.net. [71.112.192.175])
+        by smtp.gmail.com with ESMTPSA id b1sm1228513qtj.76.2021.08.24.12.43.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 12:20:44 -0700 (PDT)
-Date:   Wed, 25 Aug 2021 03:20:39 +0800
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tue, 24 Aug 2021 12:43:13 -0700 (PDT)
+Date:   Tue, 24 Aug 2021 15:43:11 -0400
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 7/9] media: mtk-vcodec: Add frame racing mode encode
- process
-Message-ID: <YSVGh0/6mAgHFmPb@google.com>
-References: <20210816105934.28265-1-irui.wang@mediatek.com>
- <20210816105934.28265-8-irui.wang@mediatek.com>
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Shah <dave@ds0.me>,
+        Stafford Horne <shorne@gmail.com>
+Subject: Re: [PATCH v2 2/2] net: Add driver for LiteX's LiteEth network
+ interface
+Message-ID: <YSVLz0Se+hTVr0DA@errol.ini.cmu.edu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210816105934.28265-8-irui.wang@mediatek.com>
+In-Reply-To: <20210820074726.2860425-3-joel@jms.id.au>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 16, 2021 at 06:59:32PM +0800, Irui Wang wrote:
-> The frame_racing mode encoding is try to use the two venc cores:
-s/is try/tries/
+Hi Joel,
 
-> frame#0 use core#0, frame#1 use core#1, frame#2 use core#0...,
-s/use/uses/g
+Couple of comments below:
 
-> Lock the device and enabe the clock by used core, for sequence
-s/enabe/enable/
-
-> header encoding, it always used core#0.
-s/used/uses/
-
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> @@ -273,6 +273,7 @@ struct vdec_pic_info {
->   * @decoded_frame_cnt: number of decoded frames
->   * @lock: protect variables accessed by V4L2 threads and worker thread such as
->   *	  mtk_video_dec_buf.
-> + * @enc_idx: used to record encoded frame count
->   */
->  struct mtk_vcodec_ctx {
->  	enum mtk_instance_type type;
-> @@ -313,6 +314,8 @@ struct mtk_vcodec_ctx {
->  	int decoded_frame_cnt;
->  	struct mutex lock;
+On Fri, Aug 20, 2021 at 05:17:26PM +0930, Joel Stanley wrote:
+> LiteX is a soft system-on-chip that targets FPGAs. LiteEth is a basic
+> network device that is commonly used in LiteX designs.
+> 
+> The driver was first written in 2017 and has been maintained by the
+> LiteX community in various trees. Thank you to all who have contributed.
+> 
+> Co-developed-by: Gabriel Somlo <gsomlo@gmail.com>
+> Co-developed-by: David Shah <dave@ds0.me>
+> Co-developed-by: Stafford Horne <shorne@gmail.com>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+> v2:
+>  - check for bad len in liteeth_rx before getting skb
+>  - use netdev_alloc_skb_ip_align
+>  - remove unused duplex/speed and mii_bus variables
+>  - set carrier off when stopping device
+>  - increment packet count in the same place as bytes
+>  - fix error return code when irq could not be found
+>  - remove request of mdio base address until it is used
+>  - fix of_property_read line wrapping/alignment
+>  - only check that reader isn't busy, and then send off next packet
+>  - drop phy reset, it was incorrect (wrong address)
+>  - Add an description to the kconfig text
+>  - stop tx queue when busy and re-start after tx complete irq fires
+>  - use litex accessors to support big endian socs
+>  - clean up unused includes
+>  - use standard fifo-depth properties, which are in bytes
+> 
+>  drivers/net/ethernet/Kconfig               |   1 +
+>  drivers/net/ethernet/Makefile              |   1 +
+>  drivers/net/ethernet/litex/Kconfig         |  27 ++
+>  drivers/net/ethernet/litex/Makefile        |   5 +
+>  drivers/net/ethernet/litex/litex_liteeth.c | 327 +++++++++++++++++++++
+>  5 files changed, 361 insertions(+)
+>  create mode 100644 drivers/net/ethernet/litex/Kconfig
+>  create mode 100644 drivers/net/ethernet/litex/Makefile
+>  create mode 100644 drivers/net/ethernet/litex/litex_liteeth.c
+> 
+> diff --git a/drivers/net/ethernet/Kconfig b/drivers/net/ethernet/Kconfig
+> index 1cdff1dca790..d796684ec9ca 100644
+> --- a/drivers/net/ethernet/Kconfig
+> +++ b/drivers/net/ethernet/Kconfig
+> @@ -118,6 +118,7 @@ config LANTIQ_XRX200
+>  	  Support for the PMAC of the Gigabit switch (GSWIP) inside the
+>  	  Lantiq / Intel VRX200 VDSL SoC
 >  
-> +	int hw_id;
-> +	int enc_idx;
-hw_id lacks of kerneldoc which could introduce smatch warning.
-
-> --- a/drivers/media/platform/mtk-vcodec/venc_drv_if.c
-> +++ b/drivers/media/platform/mtk-vcodec/venc_drv_if.c
-> @@ -15,6 +15,7 @@
->  
->  #include "mtk_vcodec_enc.h"
->  #include "mtk_vcodec_enc_pm.h"
-> +#include "mtk_vcodec_enc_hw.h"
-Please try to maintain the order.
-
-> @@ -34,9 +35,9 @@ int venc_if_init(struct mtk_vcodec_ctx *ctx, unsigned int fourcc)
->  		return -EINVAL;
->  	}
->  
-> -	mtk_venc_lock(ctx);
-> +	mtk_venc_lock(ctx, 0);
-Does it make more sense to use ctx->hw_id instead 0 (even if it is always 0 in the path)?
-
->  	ret = ctx->enc_if->init(ctx);
-> -	mtk_venc_unlock(ctx);
-> +	mtk_venc_unlock(ctx, 0);
-Same.
-
-> @@ -46,9 +47,9 @@ int venc_if_set_param(struct mtk_vcodec_ctx *ctx,
->  {
->  	int ret = 0;
->  
-> -	mtk_venc_lock(ctx);
-> +	mtk_venc_lock(ctx, 0);
-Same.
-
->  	ret = ctx->enc_if->set_param(ctx->drv_handle, type, in);
-> -	mtk_venc_unlock(ctx);
-> +	mtk_venc_unlock(ctx, 0);
-Same.
-
-> @@ -87,11 +76,67 @@ int venc_if_deinit(struct mtk_vcodec_ctx *ctx)
->  	if (!ctx->drv_handle)
->  		return 0;
->  
-> -	mtk_venc_lock(ctx);
-> +	mtk_venc_lock(ctx, 0);
-Same.
-
->  	ret = ctx->enc_if->deinit(ctx->drv_handle);
-> -	mtk_venc_unlock(ctx);
-> +	mtk_venc_unlock(ctx, 0);
-Same.
-
-> +void venc_encode_unprepare(struct mtk_vcodec_ctx *ctx,
-> +			   enum venc_start_opt opt)
-> +{
-> +	unsigned long flags;
-> +	struct mtk_venc_comp_dev *venc;
+> +source "drivers/net/ethernet/litex/Kconfig"
+>  source "drivers/net/ethernet/marvell/Kconfig"
+>  source "drivers/net/ethernet/mediatek/Kconfig"
+>  source "drivers/net/ethernet/mellanox/Kconfig"
+> diff --git a/drivers/net/ethernet/Makefile b/drivers/net/ethernet/Makefile
+> index cb3f9084a21b..aaa5078cd7d1 100644
+> --- a/drivers/net/ethernet/Makefile
+> +++ b/drivers/net/ethernet/Makefile
+> @@ -51,6 +51,7 @@ obj-$(CONFIG_JME) += jme.o
+>  obj-$(CONFIG_KORINA) += korina.o
+>  obj-$(CONFIG_LANTIQ_ETOP) += lantiq_etop.o
+>  obj-$(CONFIG_LANTIQ_XRX200) += lantiq_xrx200.o
+> +obj-$(CONFIG_NET_VENDOR_LITEX) += litex/
+>  obj-$(CONFIG_NET_VENDOR_MARVELL) += marvell/
+>  obj-$(CONFIG_NET_VENDOR_MEDIATEK) += mediatek/
+>  obj-$(CONFIG_NET_VENDOR_MELLANOX) += mellanox/
+> diff --git a/drivers/net/ethernet/litex/Kconfig b/drivers/net/ethernet/litex/Kconfig
+> new file mode 100644
+> index 000000000000..265dba414b41
+> --- /dev/null
+> +++ b/drivers/net/ethernet/litex/Kconfig
+> @@ -0,0 +1,27 @@
+> +#
+> +# LiteX device configuration
+> +#
 > +
-> +	/*clock off and unlock after irq done*/
-> +	if (ctx->dev->venc_pdata->hw_mode == VENC_FRAME_RACING_MODE) {
-> +		if (opt == VENC_START_OPT_ENCODE_SEQUENCE_HEADER) {
-> +			mtk_vcodec_enc_clock_off(ctx->dev, ctx->hw_id);
-> +			spin_lock_irqsave(&ctx->dev->irqlock, flags);
-> +			venc = ctx->dev->enc_comp_dev[ctx->hw_id];
-> +			venc->curr_ctx = NULL;
-> +			spin_unlock_irqrestore(&ctx->dev->irqlock, flags);
-> +			mtk_venc_unlock(ctx, ctx->hw_id);
-> +		}
-> +	} else {
-> +		mtk_vcodec_enc_clock_off(ctx->dev, ctx->hw_id);
-> +		spin_lock_irqsave(&ctx->dev->irqlock, flags);
-> +		ctx->dev->curr_ctx = NULL;
-> +		spin_unlock_irqrestore(&ctx->dev->irqlock, flags);
-> +		mtk_venc_unlock(ctx, ctx->hw_id);
-The few statements are identical.  Should try to reuse them.
+> +config NET_VENDOR_LITEX
+> +	bool "LiteX devices"
+> +	default y
+> +	help
+> +	  If you have a network (Ethernet) card belonging to this class, say Y.
+> +
+> +	  Note that the answer to this question doesn't directly affect the
+> +	  kernel: saying N will just cause the configurator to skip all
+> +	  the questions about LiteX devices. If you say Y, you will be asked
+> +	  for your specific card in the following questions.
+> +
+> +if NET_VENDOR_LITEX
+> +
+> +config LITEX_LITEETH
+> +	tristate "LiteX Ethernet support"
+
+Mostly cosmetic, but should there be a "depends on LITEX" statement in here?
+Maybe also "select MII" and "select PHYLIB"?
+
+> +	help
+> +	  If you wish to compile a kernel for hardware with a LiteX LiteEth
+> +	  device then you should answer Y to this.
+> +
+> +	  LiteX is a soft system-on-chip that targets FPGAs. LiteETH is a basic
+> +	  network device that is commonly used in LiteX designs.
+> +
+> +endif # NET_VENDOR_LITEX
+> diff --git a/drivers/net/ethernet/litex/Makefile b/drivers/net/ethernet/litex/Makefile
+> new file mode 100644
+> index 000000000000..9343b73b8e49
+> --- /dev/null
+> +++ b/drivers/net/ethernet/litex/Makefile
+> @@ -0,0 +1,5 @@
+> +#
+> +# Makefile for the LiteX network device drivers.
+> +#
+> +
+> +obj-$(CONFIG_LITEX_LITEETH) += litex_liteeth.o
+> diff --git a/drivers/net/ethernet/litex/litex_liteeth.c b/drivers/net/ethernet/litex/litex_liteeth.c
+> new file mode 100644
+> index 000000000000..e9c5d817e1f9
+> --- /dev/null
+> +++ b/drivers/net/ethernet/litex/litex_liteeth.c
+> @@ -0,0 +1,327 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * LiteX Liteeth Ethernet
+> + *
+> + * Copyright 2017 Joel Stanley <joel@jms.id.au>
+> + *
+> + */
+> +
+> +#include <linux/etherdevice.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/litex.h>
+> +#include <linux/module.h>
+> +#include <linux/of_net.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define LITEETH_WRITER_SLOT       0x00
+> +#define LITEETH_WRITER_LENGTH     0x04
+> +#define LITEETH_WRITER_ERRORS     0x08
+> +#define LITEETH_WRITER_EV_STATUS  0x0C
+> +#define LITEETH_WRITER_EV_PENDING 0x10
+> +#define LITEETH_WRITER_EV_ENABLE  0x14
+> +#define LITEETH_READER_START      0x18
+> +#define LITEETH_READER_READY      0x1C
+> +#define LITEETH_READER_LEVEL      0x20
+> +#define LITEETH_READER_SLOT       0x24
+> +#define LITEETH_READER_LENGTH     0x28
+> +#define LITEETH_READER_EV_STATUS  0x2C
+> +#define LITEETH_READER_EV_PENDING 0x30
+> +#define LITEETH_READER_EV_ENABLE  0x34
+> +#define LITEETH_PREAMBLE_CRC      0x38
+> +#define LITEETH_PREAMBLE_ERRORS   0x3C
+> +#define LITEETH_CRC_ERRORS        0x40
+> +
+> +#define LITEETH_PHY_CRG_RESET     0x00
+> +#define LITEETH_MDIO_W            0x04
+> +#define LITEETH_MDIO_R            0x0C
+> +
+> +#define DRV_NAME	"liteeth"
+> +
+> +#define LITEETH_BUFFER_SIZE		0x800
+> +#define MAX_PKT_SIZE			LITEETH_BUFFER_SIZE
+> +
+> +struct liteeth {
+> +	void __iomem *base;
+> +	struct net_device *netdev;
+> +	struct device *dev;
+> +
+> +	/* Tx */
+> +	int tx_slot;
+> +	int num_tx_slots;
+> +	void __iomem *tx_base;
+> +
+> +	/* Rx */
+> +	int rx_slot;
+> +	int num_rx_slots;
+> +	void __iomem *rx_base;
+> +};
+> +
+> +static int liteeth_rx(struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	struct sk_buff *skb;
+> +	unsigned char *data;
+> +	u8 rx_slot;
+> +	int len;
+> +
+> +	rx_slot = litex_read8(priv->base + LITEETH_WRITER_SLOT);
+> +	len = litex_read32(priv->base + LITEETH_WRITER_LENGTH);
+> +
+> +	if (len == 0 || len > 2048)
+> +		goto rx_drop;
+> +
+> +	skb = netdev_alloc_skb_ip_align(netdev, len);
+> +	if (!skb) {
+> +		netdev_err(netdev, "couldn't get memory\n");
+> +		goto rx_drop;
+> +	}
+> +
+> +	data = skb_put(skb, len);
+> +	memcpy_fromio(data, priv->rx_base + rx_slot * LITEETH_BUFFER_SIZE, len);
+> +	skb->protocol = eth_type_trans(skb, netdev);
+> +
+> +	netdev->stats.rx_packets++;
+> +	netdev->stats.rx_bytes += len;
+> +
+> +	return netif_rx(skb);
+> +
+> +rx_drop:
+> +	netdev->stats.rx_dropped++;
+> +	netdev->stats.rx_errors++;
+> +
+> +	return NET_RX_DROP;
+> +}
+> +
+> +static irqreturn_t liteeth_interrupt(int irq, void *dev_id)
+> +{
+> +	struct net_device *netdev = dev_id;
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	u8 reg;
+> +
+> +	reg = litex_read8(priv->base + LITEETH_READER_EV_PENDING);
+> +	if (reg) {
+> +		if (netif_queue_stopped(netdev))
+> +			netif_wake_queue(netdev);
+> +		litex_write8(priv->base + LITEETH_READER_EV_PENDING, reg);
+> +	}
+> +
+> +	reg = litex_read8(priv->base + LITEETH_WRITER_EV_PENDING);
+> +	if (reg) {
+> +		liteeth_rx(netdev);
+> +		litex_write8(priv->base + LITEETH_WRITER_EV_PENDING, reg);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int liteeth_open(struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	int err;
+> +
+> +	/* Clear pending events */
+> +	litex_write8(priv->base + LITEETH_WRITER_EV_PENDING, 1);
+> +	litex_write8(priv->base + LITEETH_READER_EV_PENDING, 1);
+> +
+> +	err = request_irq(netdev->irq, liteeth_interrupt, 0, netdev->name, netdev);
+> +	if (err) {
+> +		netdev_err(netdev, "failed to request irq %d\n", netdev->irq);
+> +		return err;
+> +	}
+> +
+> +	/* Enable IRQs */
+> +	litex_write8(priv->base + LITEETH_WRITER_EV_ENABLE, 1);
+> +	litex_write8(priv->base + LITEETH_READER_EV_ENABLE, 1);
+> +
+> +	netif_carrier_on(netdev);
+> +	netif_start_queue(netdev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int liteeth_stop(struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +
+> +	netif_stop_queue(netdev);
+> +	netif_carrier_off(netdev);
+> +
+> +	litex_write8(priv->base + LITEETH_WRITER_EV_ENABLE, 0);
+> +	litex_write8(priv->base + LITEETH_READER_EV_ENABLE, 0);
+> +
+> +	free_irq(netdev->irq, netdev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int liteeth_start_xmit(struct sk_buff *skb, struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	void __iomem *txbuffer;
+> +
+> +	if (!litex_read8(priv->base + LITEETH_READER_READY)) {
+> +		if (net_ratelimit())
+> +			netdev_err(netdev, "LITEETH_READER_READY not ready\n");
+> +
+> +		netif_stop_queue(netdev);
+> +
+> +		return NETDEV_TX_BUSY;
+> +	}
+> +
+> +	/* Reject oversize packets */
+> +	if (unlikely(skb->len > MAX_PKT_SIZE)) {
+> +		if (net_ratelimit())
+> +			netdev_err(netdev, "tx packet too big\n");
+> +
+> +		dev_kfree_skb_any(skb);
+> +		netdev->stats.tx_dropped++;
+> +		netdev->stats.tx_errors++;
+> +
+> +		return NETDEV_TX_OK;
+> +	}
+> +
+> +	txbuffer = priv->tx_base + priv->tx_slot * LITEETH_BUFFER_SIZE;
+> +	memcpy_toio(txbuffer, skb->data, skb->len);
+> +	litex_write8(priv->base + LITEETH_READER_SLOT, priv->tx_slot);
+> +	litex_write16(priv->base + LITEETH_READER_LENGTH, skb->len);
+> +	litex_write8(priv->base + LITEETH_READER_START, 1);
+> +
+> +	netdev->stats.tx_bytes += skb->len;
+> +	netdev->stats.tx_packets++;
+> +
+> +	priv->tx_slot = (priv->tx_slot + 1) % priv->num_tx_slots;
+> +	dev_kfree_skb_any(skb);
+> +
+> +	return NETDEV_TX_OK;
+> +}
+> +
+> +static const struct net_device_ops liteeth_netdev_ops = {
+> +	.ndo_open		= liteeth_open,
+> +	.ndo_stop		= liteeth_stop,
+> +	.ndo_start_xmit         = liteeth_start_xmit,
+> +};
+> +
+> +int liteeth_setup_slots(struct liteeth *priv)
+> +{
+> +	struct device_node *np = priv->dev->of_node;
+> +	int err, depth;
+> +
+> +	err = of_property_read_u32(np, "rx-fifo-depth", &depth);
+> +	if (err) {
+> +		dev_err(priv->dev, "unable to get rx-fifo-depth\n");
+> +		return err;
+> +	}
+> +	if (depth < LITEETH_BUFFER_SIZE) {
+
+If I set depth to be *equal* to LITEETH_BUFFER_SIZE (2048) in DTS,
+no traffic makes it out of my network interface (linux-on-litex-rocket
+on an ecpix5 board, see github.com/litex-hub/linux-on-litex-rocket).
+
+May I suggest rejecting if (depth / LITEETH_BUFFER_SIZE < 2) instead?
+When that's enforced, the interface actually works fine for me.
+
+> +		dev_err(priv->dev, "invalid tx-fifo-depth: %d\n", depth);
+
+This should read "rx-fifo-depth".
+
+> +		return -EINVAL;
+> +	}
+> +	priv->num_rx_slots = depth / LITEETH_BUFFER_SIZE;
+> +
+> +	err = of_property_read_u32(np, "tx-fifo-depth", &depth);
+> +	if (err) {
+> +		dev_err(priv->dev, "unable to get tx-fifo-depth\n");
+> +		return err;
+> +	}
+> +	if (depth < LITEETH_BUFFER_SIZE) {
+
+Ditto reject if (depth / LITEETH_BUFFER_SIZE < 2) instead.
+
+> +		dev_err(priv->dev, "invalid rx-fifo-depth: %d\n", depth);
+
+This should read "tx-fifo-depth".
+
+> +		return -EINVAL;
+> +	}
+> +	priv->num_tx_slots = depth / LITEETH_BUFFER_SIZE;
+> +
+> +	return 0;
+> +}
+> +
+> +static int liteeth_probe(struct platform_device *pdev)
+> +{
+> +	struct net_device *netdev;
+> +	void __iomem *buf_base;
+> +	struct resource *res;
+> +	struct liteeth *priv;
+> +	int irq, err;
+> +
+> +	netdev = devm_alloc_etherdev(&pdev->dev, sizeof(*priv));
+> +	if (!netdev)
+> +		return -ENOMEM;
+> +
+> +	SET_NETDEV_DEV(netdev, &pdev->dev);
+> +	platform_set_drvdata(pdev, netdev);
+> +
+> +	priv = netdev_priv(netdev);
+> +	priv->netdev = netdev;
+> +	priv->dev = &pdev->dev;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		dev_err(&pdev->dev, "Failed to get IRQ %d\n", irq);
+> +		return irq;
+
+At this point, netdev has been dynamically allocated, and should
+probably be free'd before liteeth_probe() is allowed to fail,
+to avoid any potential leaks...
+
+Something like "err = irq; goto err_free;" maybe?
+
+> +	}
+> +	netdev->irq = irq;
+> +
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mac");
+> +	priv->base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+
+goto err_free instead?
+
+> +
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "buffer");
+> +	buf_base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(buf_base))
+> +		return PTR_ERR(buf_base);
+
+goto err_free, again?
+
+Same for everywhere we return with an error, from here to the end of the
+probe function...
+
+> +
+> +	err = liteeth_setup_slots(priv);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Rx slots */
+> +	priv->rx_base = buf_base;
+> +	priv->rx_slot = 0;
+> +
+> +	/* Tx slots come after Rx slots */
+> +	priv->tx_base = buf_base + priv->num_rx_slots * LITEETH_BUFFER_SIZE;
+> +	priv->tx_slot = 0;
+> +
+> +	err = of_get_mac_address(pdev->dev.of_node, netdev->dev_addr);
+> +	if (err)
+> +		eth_hw_addr_random(netdev);
+> +
+> +	netdev->netdev_ops = &liteeth_netdev_ops;
+> +
+> +	err = register_netdev(netdev);
+> +	if (err) {
+> +		dev_err(&pdev->dev, "Failed to register netdev %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	netdev_info(netdev, "irq %d tx slots %d rx slots %d",
+> +		    netdev->irq, priv->num_tx_slots, priv->num_rx_slots);
+> +
+> +	return 0;
+
+err_free:
+	free_netdev(netdev);
+	return err;
+
+Thanks,
+--Gabriel
+
+> +}
+> +
+> +static int liteeth_remove(struct platform_device *pdev)
+> +{
+> +	struct net_device *netdev = platform_get_drvdata(pdev);
+> +
+> +	unregister_netdev(netdev);
+> +	free_netdev(netdev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id liteeth_of_match[] = {
+> +	{ .compatible = "litex,liteeth" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, liteeth_of_match);
+> +
+> +static struct platform_driver liteeth_driver = {
+> +	.probe = liteeth_probe,
+> +	.remove = liteeth_remove,
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +		.of_match_table = liteeth_of_match,
+> +	},
+> +};
+> +module_platform_driver(liteeth_driver);
+> +
+> +MODULE_AUTHOR("Joel Stanley <joel@jms.id.au>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.32.0
+> 
