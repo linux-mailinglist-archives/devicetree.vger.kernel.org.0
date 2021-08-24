@@ -2,95 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FE943F6BEA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 00:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A2C3F6C23
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 01:20:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231300AbhHXWxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 18:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231444AbhHXWxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 18:53:14 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE3EC061796
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 15:52:27 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id b7so28435106iob.4
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 15:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gaFUFYkq0aAQb9fBgckSLrpv7E3PmSpqoTQXohZW4cw=;
-        b=IvPy+MabaZ/Bejpu9hF3104ynjKW9brt/qnAFarovpAHfVE+su5MGecyK0USm1S/TP
-         gv+Ii7noRCgKZpU+IbZOBMPtf7xGO2HOjtHNFDsuSb4qW2gy/9DiqKx5AsTsBuyYfuiJ
-         +E1hjLs3fjG3YKjZg1reMsmh46TSbvjKiIzfg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gaFUFYkq0aAQb9fBgckSLrpv7E3PmSpqoTQXohZW4cw=;
-        b=Mxkgbkc5I0XqJ8FYyWIVnoHy5shzKmNqXdc7TM+/Oz5T4TXV4C/3J2bAxNo7Q8uQqw
-         7fUL+qcdz6I3iX6vuRuWwSsj1EsGIuBkrYs1pF/WAgt2zTRW6R14q0V/6b0eAquRcfnW
-         Tf0bMZPViQtpFrjiMLVOhJLrDmHjWkekIiTPVvyBg3nZagwXm1WnvwjhjhqwsJuTlCwr
-         ZozhRCOTT2Yp3WtsyfTFTM1SU8B5462sJBxqgeZLyyZXlhql9SE9QmyXYp3iiEcX75l9
-         NwxIomfjUuM0EiCmogBeZm+lRABZfiUq4V9kKw9dfcsDt6hh9MyUm/k9RCuUwKv76qxb
-         DJyw==
-X-Gm-Message-State: AOAM530LiPPLZEpvxRyeAxqgEAysORCH/r3L7ZNIv4y28RLsj9ZlqmLF
-        U/6MCbtt0m11/o7Tpnk2cDi3FNG2qkg5Og==
-X-Google-Smtp-Source: ABdhPJw1T5By+8YnRqg/ndYAVq8HW40E6aGmuAhoj/vVten6HsNlU+2/SkcXs6hmXCa7Zl0NBHMJkQ==
-X-Received: by 2002:a5d:9eda:: with SMTP id a26mr33454000ioe.166.1629845547164;
-        Tue, 24 Aug 2021 15:52:27 -0700 (PDT)
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com. [209.85.166.173])
-        by smtp.gmail.com with ESMTPSA id i18sm10690083ilk.84.2021.08.24.15.52.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Aug 2021 15:52:26 -0700 (PDT)
-Received: by mail-il1-f173.google.com with SMTP id r6so22081167ilt.13
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 15:52:26 -0700 (PDT)
-X-Received: by 2002:a92:cf4a:: with SMTP id c10mr24580250ilr.269.1629845546303;
- Tue, 24 Aug 2021 15:52:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <1628642571-25383-1-git-send-email-tdas@codeaurora.org>
-In-Reply-To: <1628642571-25383-1-git-send-email-tdas@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 24 Aug 2021 15:52:14 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U1zARov=8q9ZSOS4BRe919uFLJh56b8WKk-9LF0r5KZA@mail.gmail.com>
-Message-ID: <CAD=FV=U1zARov=8q9ZSOS4BRe919uFLJh56b8WKk-9LF0r5KZA@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add clock controller ID headers
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S232767AbhHXXVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 19:21:24 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:52719 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229618AbhHXXVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 19:21:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629847239; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=+hqb204QRL2EPxKMGNmO/oBWGOBKdNFKw5QUoXVhKro=; b=IodNQu6fr6HBan7qaUNSqHZhUbmWslRLfU34LdCVempbij6QFMSZ93MyzaVpoe6e3RAt7B7S
+ Y6bk4LvegyA/N6Y9Q/uVjy/LZ8XWff8qM96qWSWV0t+8lIA0NTW2XEqcOZcTObXTBUl/eepQ
+ 1fcaPXWEv5jNpLaIuhLZMv1IoCU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 61257ec44cd9015037b8d94d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 24 Aug 2021 23:20:36
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 746B0C43619; Tue, 24 Aug 2021 23:20:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 40E07C4338F;
+        Tue, 24 Aug 2021 23:20:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 40E07C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kuogee Hsieh <khsieh@codeaurora.org>
+To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        khsieh@codeaurora.org, mkrishn@codeaurora.org,
+        kalyan_t@codeaurora.org, rajeevny@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7280: Add Display Port node
+Date:   Tue, 24 Aug 2021 16:20:26 -0700
+Message-Id: <1629847226-10112-1-git-send-email-khsieh@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add display port supported node for sc7280. Also correct dp-phy node
+tx/rx/pcs/tx2/rx2 base reg address to fix aux channel read/write
+failure issue.
 
-On Tue, Aug 10, 2021 at 5:43 PM Taniya Das <tdas@codeaurora.org> wrote:
->
-> Add the GPUCC, DISPCC and VIDEOCC clock headers which were dropped
-> earlier.
->
-> Fixes: 422a295221bb ("arm64: dts: qcom: sc7280: Add clock controller nodes")
+Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts |  9 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 98 +++++++++++++++++++++++++++++---
+ 2 files changed, 100 insertions(+), 7 deletions(-)
 
-IMO drop the "Fixes". To me having the "Fixes" there means that there
-was a bug in the old patch. This isn't really fixing a bug.
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+index b1cf70e..4aea369 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+@@ -202,3 +202,12 @@ ap_h1_spi: &spi14 {};
+ 		backlight = <&backlight>;
+ 	};
+ };
++
++&msm_dp {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&dp_hot_plug_det>;
++	data-lanes = <0 1>;
++	vdda-1p2-supply = <&vreg_l6b_1p2>;
++	vdda-0p9-supply = <&vreg_l1b_0p8>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index c29226b..a350d84 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2918,15 +2918,11 @@
+ 			dp_phy: dp-phy@88ea200 {
+ 				reg = <0 0x088ea200 0 0x200>,
+ 				      <0 0x088ea400 0 0x200>,
+-				      <0 0x088eac00 0 0x400>,
++				      <0 0x088eaa00 0 0x200>,
+ 				      <0 0x088ea600 0 0x200>,
+-				      <0 0x088ea800 0 0x200>,
+-				      <0 0x088eaa00 0 0x100>;
++				      <0 0x088ea800 0 0x200>;
+ 				#phy-cells = <0>;
+ 				#clock-cells = <1>;
+-				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+-				clock-names = "pipe0";
+-				clock-output-names = "usb3_phy_pipe_clk_src";
+ 			};
+ 		};
+ 
+@@ -3202,6 +3198,13 @@
+ 							remote-endpoint = <&edp_in>;
+ 						};
+ 					};
++
++					port@2 {
++                                                reg = <2>;
++                                                dpu_intf0_out: endpoint {
++                                                        remote-endpoint = <&dp_in>;
++                                                };
++                                        };
+ 				};
+ 
+ 				mdp_opp_table: mdp-opp-table {
+@@ -3389,6 +3392,74 @@
+ 					};
+ 				};
+ 			};
++
++			msm_dp: displayport-controller@ae90000 {
++				status = "disabled";
++				compatible = "qcom,sc7180-dp";
++
++				reg = <0 0x0ae90000 0 0x1400>;
++
++				interrupt-parent = <&mdss>;
++				interrupts = <12 IRQ_TYPE_NONE>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
++				clock-names = "core_iface", "core_aux", "ctrl_link",
++					      "ctrl_link_iface", "stream_pixel";
++				#clock-cells = <1>;
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
++				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
++				phys = <&dp_phy>;
++				phy-names = "dp";
++
++				operating-points-v2 = <&dp_opp_table>;
++				power-domains = <&rpmhpd SC7180_CX>;
++
++				#sound-dai-cells = <0>;
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					port@0 {
++						reg = <0>;
++						dp_in: endpoint {
++							remote-endpoint = <&dpu_intf0_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						dp_out: endpoint { };
++					};
++				};
++
++				dp_opp_table: dp-opp-table {
++					compatible = "operating-points-v2";
++
++					opp-160000000 {
++						opp-hz = /bits/ 64 <160000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-270000000 {
++						opp-hz = /bits/ 64 <270000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-540000000 {
++						opp-hz = /bits/ 64 <540000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-810000000 {
++						opp-hz = /bits/ 64 <810000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
+ 		};
+ 
+ 		dispcc: clock-controller@af00000 {
+@@ -3398,7 +3469,8 @@
+ 				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
+ 				 <&dsi_phy 0>,
+ 				 <&dsi_phy 1>,
+-				 <0>, <0>,
++			  	 <&dp_phy 0>,
++			  	 <&dp_phy 1>,
+ 				 <&msm_edp 0>,
+ 				 <&msm_edp 1>;
+ 			clock-names = "bi_tcxo", "gcc_disp_gpll0_clk",
+@@ -3525,6 +3597,18 @@
+                                 };
+                         };
+ 
++			dp_hot_plug_det: dp-hot-plug-det {
++                                pinmux {
++                                        pins = "gpio47";
++                                        function = "dp_hot";
++                                };
++
++				pinconf {
++			                pins = "gpio47";
++			                bias-disable;
++			        };
++                        };
++
+ 			qspi_clk: qspi-clk {
+ 				pins = "gpio14";
+ 				function = "qspi_clk";
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-
-Other than removing the "Fixes" then this seems like it would be nice
-to land soon after the next -rc1 comes out so that patches that start
-referring to the clocks in these controllers can take advantage of
-them. Snooze 3 weeks till (presumably) -rc1 might come out.
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
