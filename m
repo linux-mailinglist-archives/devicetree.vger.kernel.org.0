@@ -2,147 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 633473F56BD
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 05:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D143F56D8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 05:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234220AbhHXDb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 23:31:29 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:37570 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232937AbhHXDb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 23:31:27 -0400
-X-UUID: e13adde845df445da4c0281484c3e099-20210824
-X-UUID: e13adde845df445da4c0281484c3e099-20210824
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 708686720; Tue, 24 Aug 2021 11:30:40 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 24 Aug 2021 11:30:39 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 24 Aug 2021 11:30:38 +0800
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
-        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
-        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>
-Subject: [RESEND PATCH v5 7/7] i2c: mediatek: modify bus speed calculation formula
-Date:   Tue, 24 Aug 2021 11:30:28 +0800
-Message-ID: <1629775828-19993-8-git-send-email-kewei.xu@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1629775828-19993-1-git-send-email-kewei.xu@mediatek.com>
-References: <1629775828-19993-1-git-send-email-kewei.xu@mediatek.com>
+        id S234250AbhHXDwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 23:52:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234052AbhHXDwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 23:52:46 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35B8C061575;
+        Mon, 23 Aug 2021 20:52:02 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id u21so12741426qtw.8;
+        Mon, 23 Aug 2021 20:52:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b/Xe9BrdtCP5Xgn+FmLnep/WdGNC7xAM2yhlmxtBW00=;
+        b=OgMcuX96vDlm/KLkFpuE2LJqhdB41RIhIR13T7PyJyUr2EoVQWco3MqWAbAIF2mc48
+         W6iS2NZ0Wl4lNUaeMUh1SQ0nUnvhsBRLE5u60M5+ilGEGcZFx0sujD5ymozVY8BHPxP+
+         b14Qm+Vzn7I4J3XNmzZDFJKBzXThrMuKejz14=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b/Xe9BrdtCP5Xgn+FmLnep/WdGNC7xAM2yhlmxtBW00=;
+        b=n3CjfA7bYrpOgqw1/gymInmZRSSDQ7eEVpavXUJYuZ13w7chWg4665ckFh/4jvbfCO
+         YkAF7b/ftAwzxH/QZG3HwJ3oQQq3t4GDYMDpAcNQgW5aTYbCulnEdDlQSM7wB+yr+YjU
+         89V77vHvqyDDLZvzsToX+onsASgZ2jVt0Isft0tokfJGmdCR+4tarBnOS2aw4p3UPABm
+         l3n6u4cKTCzJQM1Erv44eU+W80uXUf71MFNYyAF7h+sDOtePOjgxIR/rbCv3TWNUU5Sj
+         sycheKGUbVqssNfWObXlYqSyc6AB+hN7JiFyalFOxTVac3WAMnf8BMWwMdyvi6UJ8Bn6
+         qiag==
+X-Gm-Message-State: AOAM531/goN4RgGpCO8Bwv5LCOEh0jsW0vr24s5Jafl7/9KefX2LSrxq
+        B3MlJ/sAxPGPY6uL3jAT2LxsSQtsMIA/zWVh7CM=
+X-Google-Smtp-Source: ABdhPJxPQ1whYJqyb+DVQIpoaOvkiKBee48TTPF/5PSSM8eQqBDcXZORp0+1x1AS5ivbcJPAoLfmf3ZN3XQB9N62GPY=
+X-Received: by 2002:ac8:7dd2:: with SMTP id c18mr5376801qte.363.1629777121912;
+ Mon, 23 Aug 2021 20:52:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210820074726.2860425-1-joel@jms.id.au> <20210820074726.2860425-2-joel@jms.id.au>
+ <YSPseMd1nDHnF/Db@robh.at.kernel.org>
+In-Reply-To: <YSPseMd1nDHnF/Db@robh.at.kernel.org>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 24 Aug 2021 03:51:49 +0000
+Message-ID: <CACPK8XcU+i6hQeTWpYmt=w7A=1EzwgYcMucz7y6oLxwTFTJsiQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: Add bindings for LiteETH
+To:     Rob Herring <robh@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When clock-div is 0 or greater than 1, the bus speed
-calculated by the old speed calculation formula will be
-larger than the target speed. So we update the formula.
+On Mon, 23 Aug 2021 at 18:44, Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Aug 20, 2021 at 05:17:25PM +0930, Joel Stanley wrote:
 
-Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
----
- drivers/i2c/busses/i2c-mt65xx.c | 35 +++++++++++++++++++++++++----------
- 1 file changed, 25 insertions(+), 10 deletions(-)
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+>
+> > +  rx-fifo-depth: true
+> > +  tx-fifo-depth: true
+>
+> Needs a vendor prefix, type, description and constraints.
 
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index 18b5659..0b42acd8 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -69,11 +69,12 @@
- #define I2C_DEFAULT_CLK_DIV		5
- #define MAX_SAMPLE_CNT_DIV		8
- #define MAX_STEP_CNT_DIV		64
--#define MAX_CLOCK_DIV			256
-+#define MAX_CLOCK_DIV_8BITS		256
-+#define MAX_CLOCK_DIV_5BITS		32
- #define MAX_HS_STEP_CNT_DIV		8
--#define I2C_STANDARD_MODE_BUFFER	(1000 / 2)
--#define I2C_FAST_MODE_BUFFER		(300 / 2)
--#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 2)
-+#define I2C_STANDARD_MODE_BUFFER	(1000 / 3)
-+#define I2C_FAST_MODE_BUFFER		(300 / 3)
-+#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 3)
- 
- #define I2C_CONTROL_RS                  (0x1 << 1)
- #define I2C_CONTROL_DMA_EN              (0x1 << 2)
-@@ -725,14 +726,26 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	unsigned int best_mul;
- 	unsigned int cnt_mul;
- 	int ret = -EINVAL;
-+	int clock_div_constraint = 0;
- 
- 	if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
- 		target_speed = I2C_MAX_HIGH_SPEED_MODE_FREQ;
- 
-+	if (i2c->use_default_timing) {
-+		clock_div_constraint = 0;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div > 1) {
-+		clock_div_constraint = 1;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div == 0) {
-+		clock_div_constraint = -1;
-+	}
-+
- 	max_step_cnt = mtk_i2c_max_step_cnt(target_speed);
- 	base_step_cnt = max_step_cnt;
- 	/* Find the best combination */
--	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed);
-+	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed) +
-+		  clock_div_constraint;
- 	best_mul = MAX_SAMPLE_CNT_DIV * max_step_cnt;
- 
- 	/* Search for the best pair (sample_cnt, step_cnt) with
-@@ -767,7 +780,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	sample_cnt = base_sample_cnt;
- 	step_cnt = base_step_cnt;
- 
--	if ((clk_src / (2 * sample_cnt * step_cnt)) > target_speed) {
-+	if ((clk_src / (2 * (sample_cnt * step_cnt - clock_div_constraint))) >
-+		 target_speed) {
- 		/* In this case, hardware can't support such
- 		 * low i2c_bus_freq
- 		 */
-@@ -854,13 +868,16 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 	target_speed = i2c->speed_hz;
- 	parent_clk /= i2c->clk_src_div;
- 
--	if (i2c->dev_comp->timing_adjust)
--		max_clk_div = MAX_CLOCK_DIV;
-+	if (i2c->dev_comp->timing_adjust && i2c->dev_comp->ltiming_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_5BITS;
-+	else if (i2c->dev_comp->timing_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_8BITS;
- 	else
- 		max_clk_div = 1;
- 
- 	for (clk_div = 1; clk_div <= max_clk_div; clk_div++) {
- 		clk_src = parent_clk / clk_div;
-+		i2c->ac_timing.inter_clk_div = clk_div - 1;
- 
- 		if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ) {
- 			/* Set master code speed register */
-@@ -907,8 +924,6 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 		break;
- 	}
- 
--	i2c->ac_timing.inter_clk_div = clk_div - 1;
--
- 	return 0;
- }
- 
--- 
-1.9.1
+These are the standard properties from the ethernet-controller.yaml. I
+switched the driver to using those once I discovered they existed (v1
+defined these in terms of slots, whereas the ethernet-controller
+bindings use bytes).
 
+Cheers,
+
+Joel
