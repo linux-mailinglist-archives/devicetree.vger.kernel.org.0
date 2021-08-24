@@ -2,179 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E01443F6989
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 21:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D24B33F69AE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 21:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234234AbhHXTID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 15:08:03 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:58368
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232117AbhHXTIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Aug 2021 15:08:02 -0400
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5F26E4076D
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 19:07:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629832037;
-        bh=JpRp0VKOepmJFb28VmqG/rgWxsh/ZZpFinNf4XIR7QM=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=PlqLQpyZ7073uQZpTapVqkLdCFa65K863R/NL52Wom0vvsNNfJXYjiPQVmCnxDw8e
-         SQbL3bdh4RAX5zvzaXTCsWRjbeMVAECleeNV3B966Ju+HbphX/JJM68o3Fx/ToYnlj
-         fpLi8J7VMS+UuU47mgqZp1QrjYKbmEJsX1niivL+3oiBq2c4BGAaPRNIOTF/Xmo4PI
-         n5xQJf7VEnnM/u29D0Epv6aTvbuLw3e3mx9Xtu1jE3LvSMxUivuo5bEBdIe/CjI/VU
-         RW4PEnQvuIzVDk3ksvcJJYW7FJtG2wJSiuvbL9Z4GRdvVJUTB/t2NJLZJFvB6fxBJE
-         S4M4yMu6jAMOg==
-Received: by mail-wm1-f69.google.com with SMTP id y188-20020a1c7dc5000000b002e80e0b2f87so1652587wmc.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 12:07:17 -0700 (PDT)
+        id S234343AbhHXTVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 15:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234059AbhHXTVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 15:21:30 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC05C061764
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 12:20:45 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id oa17so14962008pjb.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 12:20:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mVPoYVWoIvb5FZ8mV7/5paxx0nV7NsVnW/KlyUCKuhA=;
+        b=ItO9aTgPCLyylgqQH5P4MQ6LZ82koN27g+C017e7/xl7kVMH5aX3KWis8yt4wUVkjz
+         wXxAZo1Q8eLMiOAddoLWaM84tLRf81rhbCmAohc/2+/UwUqeEdhOAiL2+G12JlKhzbpH
+         ekC6QRzWvElQU52222Pns750NpbfIXJVUjyIbd4tPpOEExnSXybjVvgl56ljNmeLDmUN
+         esoFzVFtQVpkl3aOw9YJyy9pQN97CxAds/fk+M8Q7QfvwMGmer7737do2vcvZU5l+FuF
+         DbHrw2ZIHuglgesi++0vAVfK3geqR/zo/P07zpo8GBT95HUJApgtaMVW1g0nSBFqGu82
+         wQag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JpRp0VKOepmJFb28VmqG/rgWxsh/ZZpFinNf4XIR7QM=;
-        b=BtrDlGyoN8ofo6X/yDU/4snKaDsV0l9WsbkRk/Tql3jSEWzwkYbcYtQgNtOn0qmc8z
-         ZWdsEwJ7zUZ6J3qhUdnVoiPSF7Xxci1T74/hU/6UjVq8+iBDBfatEBKdqF6G8pgsDu/b
-         Q/sDnRMlsXBjqrQ+xOHxZwv1oBc3gHMOc9CXiB0J5D9xPTbah5iigLC4ta6p+1UJA3id
-         fKfJzSR2KqNN2EmahFKSrHSDDttmL86sjskU8ACwWJso5jwTRqeZ4K4gD4JRttbNIS9H
-         BiWrv/bxnBSgYp69hjRqzzAiugId5on1shCX6Ifod1ntvTsAQeCKGX/6CqtSvR/rOr4f
-         eJYA==
-X-Gm-Message-State: AOAM5330btxvh2SGdTrT493iMGEnlxPOcGdkfPaOykZzmZ41tJrCXW83
-        16bVxUdyGR+Ga6r/KhtAY1R6+cMcF8G3omzBHoCIAd99BKswH+NqAnNB4XZagba+6ArQ9njGDxy
-        xok9Qc3GNpxxTF9YbcT2ty+p3tRGFc2B6bi7bkrs=
-X-Received: by 2002:a5d:4fc7:: with SMTP id h7mr19839332wrw.333.1629832037020;
-        Tue, 24 Aug 2021 12:07:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyeoMUDqGDEYSbaq1nM+F0db0NK2Q1pZrBBRtGCTmNXFAADL4Ln6NrT8uwtmhR4uFIDABktKQ==
-X-Received: by 2002:a5d:4fc7:: with SMTP id h7mr19839314wrw.333.1629832036855;
-        Tue, 24 Aug 2021 12:07:16 -0700 (PDT)
-Received: from [192.168.0.103] ([79.98.113.249])
-        by smtp.gmail.com with ESMTPSA id t8sm22065855wrx.27.2021.08.24.12.07.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Aug 2021 12:07:16 -0700 (PDT)
-Subject: Re: [PATCH 5/6] riscv: microchip: mpfs: drop duplicated MMC/SDHC node
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mVPoYVWoIvb5FZ8mV7/5paxx0nV7NsVnW/KlyUCKuhA=;
+        b=OrOcgDE31WOc+IvF+Fjwl3R5NyQGcoLsFL0HClFK5W+k6hHqMTvv6CNJvQNNwAVt9h
+         /+z8DcH+zeKc7CGP9F4QK2AkqPUPNtX7P83+MY8vS5EyQ1Cu8ifZBJ2Jy8zRZ6MnwAT0
+         /pbAZs4sZnEOZLByl4bQYbPHhG5jepXdr7L/bx1PF9zNi+Ka7G5DTa7eSBvwiYZWCowN
+         Lx9pDWcsITVbmYAsYdkGlKa3JA4sisewd3cqnWc5ZEUPEc/qpRcaJRHFcmYhx3Fntzfe
+         Djw/Kd0vMuCYXeNRjiQjY2fjPjviaATpNSsdIVlTOZvIQKevxD7mJ2gVNyTK5yLE64UG
+         YPPw==
+X-Gm-Message-State: AOAM532uJYzEj7/yLg30tojwnoHW22g3qmEr44wkb3m0eWrMHN9l/mSL
+        RlGUtNy3iAaRUZtallsXRYuuwA==
+X-Google-Smtp-Source: ABdhPJzSrMM4MxmIH6A8jSFtIdKi3nUJc7HYA8i2icWXwYCfSIFFuVlTcRtN6GWtJN/aAKArKjaNiw==
+X-Received: by 2002:a17:902:e0cc:b0:134:7191:f39 with SMTP id e12-20020a170902e0cc00b0013471910f39mr10468342pla.36.1629832844892;
+        Tue, 24 Aug 2021 12:20:44 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:4a93:46f4:da9a:4371])
+        by smtp.gmail.com with ESMTPSA id 22sm23515422pgn.88.2021.08.24.12.20.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Aug 2021 12:20:44 -0700 (PDT)
+Date:   Wed, 25 Aug 2021 03:20:39 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Atish Patra <atish.patra@wdc.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-References: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com>
- <20210819154436.117798-5-krzysztof.kozlowski@canonical.com>
- <CAMuHMdWN3Y9Ca9J-iJFpmDAYKpNH5GQuf3yFdyyb2rem8z_spg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <feb9b49b-9e5d-1459-f177-21b3c2ae4add@canonical.com>
-Date:   Tue, 24 Aug 2021 21:07:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 7/9] media: mtk-vcodec: Add frame racing mode encode
+ process
+Message-ID: <YSVGh0/6mAgHFmPb@google.com>
+References: <20210816105934.28265-1-irui.wang@mediatek.com>
+ <20210816105934.28265-8-irui.wang@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdWN3Y9Ca9J-iJFpmDAYKpNH5GQuf3yFdyyb2rem8z_spg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210816105934.28265-8-irui.wang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2021 17:37, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Thu, Aug 19, 2021 at 5:45 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->> Devicetree source is a description of hardware and hardware has only one
->> block @20008000 which can be configured either as eMMC or SDHC.  Having
->> two node for different modes is an obscure, unusual and confusing way to
->> configure it.  Instead the board file is supposed to customize the block
->> to its needs, e.g. to SDHC mode.
->>
->> This fixes dtbs_check warning:
->>   arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: $nodename:0: 'sdhc@20008000' does not match '^mmc(@.*)?$'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> 
-> Thanks for your patch!
-> 
->> --- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
->> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
->> @@ -43,8 +43,16 @@ &serial3 {
->>         status = "okay";
->>  };
->>
->> -&sdcard {
->> +&mmc {
->>         status = "okay";
->> +
->> +       disable-wp;
->> +       cap-sd-highspeed;
->> +       card-detect-delay = <200>;
->> +       sd-uhs-sdr12;
->> +       sd-uhs-sdr25;
->> +       sd-uhs-sdr50;
->> +       sd-uhs-sdr104;
->>  };
->>
->>  &emac0 {
->> diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->> index cb54da0cc3c4..c4ccd7e4d3eb 100644
->> --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
->> @@ -262,25 +262,7 @@ serial3: serial@20104000 {
->>                         status = "disabled";
->>                 };
->>
->> -               emmc: mmc@20008000 {
->> -                       compatible = "cdns,sd4hc";
->> -                       reg = <0x0 0x20008000 0x0 0x1000>;
->> -                       interrupt-parent = <&plic>;
->> -                       interrupts = <88 89>;
-> 
-> Note that the other node has only a single interrupt.
-> Which one is correct?
+On Mon, Aug 16, 2021 at 06:59:32PM +0800, Irui Wang wrote:
+> The frame_racing mode encoding is try to use the two venc cores:
+s/is try/tries/
 
-I assume the one put there initially, since it was tested (sdcard wsas
-enabled, emmc was disabled).
+> frame#0 use core#0, frame#1 use core#1, frame#2 use core#0...,
+s/use/uses/g
 
-> 
->> -                       pinctrl-names = "default";
->> -                       clocks = <&clkcfg 6>;
->> -                       bus-width = <4>;
->> -                       cap-mmc-highspeed;
->> -                       mmc-ddr-3_3v;
->> -                       max-frequency = <200000000>;
->> -                       non-removable;
->> -                       no-sd;
->> -                       no-sdio;
->> -                       voltage-ranges = <3300 3300>;
->> -                       status = "disabled";
->> -               };
->> -
->> -               sdcard: sdhc@20008000 {
->> +               mmc: mmc@20008000 {
->>                         compatible = "cdns,sd4hc";
->>                         reg = <0x0 0x20008000 0x0 0x1000>;
->>                         interrupt-parent = <&plic>;
->> @@ -288,13 +270,6 @@ sdcard: sdhc@20008000 {
->>                         pinctrl-names = "default";
->>                         clocks = <&clkcfg 6>;
->>                         bus-width = <4>;
-> 
-> I think bus-width should be moved to the board .dts, too.
+> Lock the device and enabe the clock by used core, for sequence
+s/enabe/enable/
 
-Makes sense. Thanks for review!
+> header encoding, it always used core#0.
+s/used/uses/
 
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> @@ -273,6 +273,7 @@ struct vdec_pic_info {
+>   * @decoded_frame_cnt: number of decoded frames
+>   * @lock: protect variables accessed by V4L2 threads and worker thread such as
+>   *	  mtk_video_dec_buf.
+> + * @enc_idx: used to record encoded frame count
+>   */
+>  struct mtk_vcodec_ctx {
+>  	enum mtk_instance_type type;
+> @@ -313,6 +314,8 @@ struct mtk_vcodec_ctx {
+>  	int decoded_frame_cnt;
+>  	struct mutex lock;
+>  
+> +	int hw_id;
+> +	int enc_idx;
+hw_id lacks of kerneldoc which could introduce smatch warning.
 
-Best regards,
-Krzysztof
+> --- a/drivers/media/platform/mtk-vcodec/venc_drv_if.c
+> +++ b/drivers/media/platform/mtk-vcodec/venc_drv_if.c
+> @@ -15,6 +15,7 @@
+>  
+>  #include "mtk_vcodec_enc.h"
+>  #include "mtk_vcodec_enc_pm.h"
+> +#include "mtk_vcodec_enc_hw.h"
+Please try to maintain the order.
+
+> @@ -34,9 +35,9 @@ int venc_if_init(struct mtk_vcodec_ctx *ctx, unsigned int fourcc)
+>  		return -EINVAL;
+>  	}
+>  
+> -	mtk_venc_lock(ctx);
+> +	mtk_venc_lock(ctx, 0);
+Does it make more sense to use ctx->hw_id instead 0 (even if it is always 0 in the path)?
+
+>  	ret = ctx->enc_if->init(ctx);
+> -	mtk_venc_unlock(ctx);
+> +	mtk_venc_unlock(ctx, 0);
+Same.
+
+> @@ -46,9 +47,9 @@ int venc_if_set_param(struct mtk_vcodec_ctx *ctx,
+>  {
+>  	int ret = 0;
+>  
+> -	mtk_venc_lock(ctx);
+> +	mtk_venc_lock(ctx, 0);
+Same.
+
+>  	ret = ctx->enc_if->set_param(ctx->drv_handle, type, in);
+> -	mtk_venc_unlock(ctx);
+> +	mtk_venc_unlock(ctx, 0);
+Same.
+
+> @@ -87,11 +76,67 @@ int venc_if_deinit(struct mtk_vcodec_ctx *ctx)
+>  	if (!ctx->drv_handle)
+>  		return 0;
+>  
+> -	mtk_venc_lock(ctx);
+> +	mtk_venc_lock(ctx, 0);
+Same.
+
+>  	ret = ctx->enc_if->deinit(ctx->drv_handle);
+> -	mtk_venc_unlock(ctx);
+> +	mtk_venc_unlock(ctx, 0);
+Same.
+
+> +void venc_encode_unprepare(struct mtk_vcodec_ctx *ctx,
+> +			   enum venc_start_opt opt)
+> +{
+> +	unsigned long flags;
+> +	struct mtk_venc_comp_dev *venc;
+> +
+> +	/*clock off and unlock after irq done*/
+> +	if (ctx->dev->venc_pdata->hw_mode == VENC_FRAME_RACING_MODE) {
+> +		if (opt == VENC_START_OPT_ENCODE_SEQUENCE_HEADER) {
+> +			mtk_vcodec_enc_clock_off(ctx->dev, ctx->hw_id);
+> +			spin_lock_irqsave(&ctx->dev->irqlock, flags);
+> +			venc = ctx->dev->enc_comp_dev[ctx->hw_id];
+> +			venc->curr_ctx = NULL;
+> +			spin_unlock_irqrestore(&ctx->dev->irqlock, flags);
+> +			mtk_venc_unlock(ctx, ctx->hw_id);
+> +		}
+> +	} else {
+> +		mtk_vcodec_enc_clock_off(ctx->dev, ctx->hw_id);
+> +		spin_lock_irqsave(&ctx->dev->irqlock, flags);
+> +		ctx->dev->curr_ctx = NULL;
+> +		spin_unlock_irqrestore(&ctx->dev->irqlock, flags);
+> +		mtk_venc_unlock(ctx, ctx->hw_id);
+The few statements are identical.  Should try to reuse them.
