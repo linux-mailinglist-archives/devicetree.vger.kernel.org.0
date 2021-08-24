@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD5F3F696D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 21:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3BC33F6975
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 21:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233770AbhHXTCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 15:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57070 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234047AbhHXTCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 15:02:43 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0630C0613D9;
-        Tue, 24 Aug 2021 12:01:57 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id j4so12741895lfg.9;
-        Tue, 24 Aug 2021 12:01:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=C+vFyNR/1OJe5NmRgGHzvjWmVVpiLWeRk5VXwkNwTqw=;
-        b=V/wCt0DFLylUr9ZPvdE2XKZ9h4ERCiKlsgv4WtIjOPkVI7qFAypR3OJghkrRChvnaS
-         FquS9aoLz7fuYJuQfOUgXVabeccoVYEdIWqHQCFRvOfpwLdNL2hIJD4b8TJK5I0moRHf
-         bWc9z8BC/dD5NaKvDKUCoTzw9EqtNqnB8WijHTCL19FDbdTV/gize12qJlCs9fqT6kKD
-         MM0CbPorSI051t3w+zyRfQ8oz3TBmZPkSxyR2Xyp3Dw7nXQXgkktSIj0pX4T5BsgI3QG
-         3aT5I5H0iV+89krwA8FsFkrV54BrCMWqGpYwRcP2OzxHa5QphdjqcBSkLc5OfmeEgodj
-         Futw==
+        id S234110AbhHXTDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 15:03:39 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:58234
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234304AbhHXTDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 15:03:38 -0400
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 473104076E
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 19:02:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629831772;
+        bh=tXo6FALvM7TQ/HZAw0MdLp6mungZZc7pCeMeJQgnDkk=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=g3i5l2M92xF6rlKhhhjhEw20C2jPprR6TPI92Mavqcu1r6qpmsBWswxwDJVsCybM/
+         67IuDWKL4ZOMHEQFB4fctTnWVwbvpHDoz9oudzfyEobjvhseHx9rVMWhLp5elMb29N
+         naO+cqV92Mol7JLt58FHyEr4fuMXvWjf30GkEP3LFQz1Xo7zTvrM7KGjyK/wSR+8rO
+         Mo7eATR6WHWJA51E7CbH+EivZlJmLdKSVmW7Xo+e+cn+K1xR61Ihz8D66xiREerVMY
+         LPGDgGHPwUvXvqYhl4E3v7fYXSLWeedWjY6bpSgQivjBjNwjFIchXjUNngi/CEkbmd
+         MaWg5SlmB8vAA==
+Received: by mail-wr1-f70.google.com with SMTP id d12-20020a056000186cb02901548bff164dso6018205wri.18
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 12:02:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=C+vFyNR/1OJe5NmRgGHzvjWmVVpiLWeRk5VXwkNwTqw=;
-        b=XvRZbTKhLMXV0WeW8otExyWpm+PGEUH5Xa/YiWtYwm8zkU4kfRJ1AdsMVeVUMfkafU
-         +uTiUYu/Pr4FJGqMUiXuqjkgw2GkfyH124bmoTp0mKxXNCdOYphHrBFCZw8Ka2r3VwmU
-         ZZT2kTDAqY2GLOyjMRq3ZUbGyFtmUgwEcSwMMTM9UQc502mXYrQeiJJDzYaZZscf7N8l
-         OeREkPPLrgEhEkd2HVmKI9M3ucwmdTSJfRN4lrjEE9PG/T2a/LnZIxMM3rhyK3bht+Pz
-         xFDsyKuLiaNcfDy/GNBzRM7vHCC6IPARqeq3KwHH620gES3MG38erfYOyr19bjsrb1yl
-         Fnsw==
-X-Gm-Message-State: AOAM533dCRpr9PEWkJMbAgAm30rX10zzxUzcXQMsTE44YVtcXaA4OtU5
-        nDyotNVCZdgwtz5b+YTzwXM=
-X-Google-Smtp-Source: ABdhPJwXaKZXB/bWN0z2ppWaZDJEZ+/xduLV2hKgJ/OJMHxrWIf5W70gcp4NK16ucMTnVESwmSChUw==
-X-Received: by 2002:ac2:434f:: with SMTP id o15mr29455145lfl.124.1629831716325;
-        Tue, 24 Aug 2021 12:01:56 -0700 (PDT)
-Received: from mobilestation ([95.79.127.110])
-        by smtp.gmail.com with ESMTPSA id y4sm1829677lfl.38.2021.08.24.12.01.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 12:01:55 -0700 (PDT)
-Date:   Tue, 24 Aug 2021 22:01:53 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     nandhini.srikandan@intel.com
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, kris.pan@intel.com,
-        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
-        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
-        rashmi.a@intel.com
-Subject: Re: [PATCH v2 0/2] Add support for Intel Thunder Bay SPI
-Message-ID: <20210824190153.nscabdjuk4num3ly@mobilestation>
-References: <20210824085856.12714-1-nandhini.srikandan@intel.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tXo6FALvM7TQ/HZAw0MdLp6mungZZc7pCeMeJQgnDkk=;
+        b=anI0xwbxtOoA5MENI+4JxzD0qlV30t8xPSAr0NJpWDVykmze1snKWicLlFwLP2D7yg
+         ZaoFQ5z/Tr8tIy3P1vPNat2tEO3R8UaZERwChIsGbpXDlORVk4SEr19TLIJUjrJQIX+j
+         BvsnUPCl1RViQvI+o5zOqysphDywYrqQu8odW/UKzbtss2H0FojMy0lJ6vWT1P27yib6
+         DUb9hrVY3qe5URn8miLismN/DOlvA0p3w5eQ+D7iAIL3iOjOyqJVXTvv9cFWWdgOhhpb
+         qfjJrSRElHki6NZ5CMEGh+A7YDlYNbBptX/3zDxMyY6SAEizXs+vFHqlbW79GbWLrqzx
+         k47g==
+X-Gm-Message-State: AOAM532zXoIJyzjdWMLdYCHUIRiUixgbd6X8C+M7R4cVstdTGd+S6LBF
+        SMwNHZKVpyVmckQAj3taY/mrASQ3LJE7/5j5T/4KbhA0XbI0ZsIKfxm+kzDyOqJ+zQAnMkdcp41
+        Bl9o7vwOtvmAhlKra/WD/8J8paiLtPtxIhDbCe10=
+X-Received: by 2002:a05:6000:1081:: with SMTP id y1mr19755877wrw.415.1629831771809;
+        Tue, 24 Aug 2021 12:02:51 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx/Nq9ck+jffd623Tc7f2vLQxJV7O8vjvKSyxvbiu6imcb5omWNkifvBcdaBd6SM5xESLiGyg==
+X-Received: by 2002:a05:6000:1081:: with SMTP id y1mr19755866wrw.415.1629831771683;
+        Tue, 24 Aug 2021 12:02:51 -0700 (PDT)
+Received: from [192.168.0.103] ([79.98.113.31])
+        by smtp.gmail.com with ESMTPSA id t14sm7449255wrw.59.2021.08.24.12.02.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Aug 2021 12:02:51 -0700 (PDT)
+Subject: Re: [PATCH 2/6] dt-bindings: mmc: cdns: match MPFS MMC/SDHCI
+ controller
+To:     Rob Herring <robh@kernel.org>, Atish Patra <atish.patra@wdc.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Yash Shah <yash.shah@sifive.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com>
+ <20210819154436.117798-2-krzysztof.kozlowski@canonical.com>
+ <YSUDTSuNlsOmu/G+@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <9423ddab-4635-ea15-7a9d-dbcf1bc215dc@canonical.com>
+Date:   Tue, 24 Aug 2021 21:02:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210824085856.12714-1-nandhini.srikandan@intel.com>
+In-Reply-To: <YSUDTSuNlsOmu/G+@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Nandhini
+On 24/08/2021 16:33, Rob Herring wrote:
+> On Thu, Aug 19, 2021 at 05:44:32PM +0200, Krzysztof Kozlowski wrote:
+>> The Microchip MPFS Icicle Kit uses Cadence SD/SDIO/eMMC Host Controller
+>> without any additional vendor compatible:
+> 
+> I think the lack of vendor compatible is the error here. Experience has 
+> shown that vendor specific compatibles are needed for licensed IP.
+> 
 
-On Tue, Aug 24, 2021 at 04:58:54PM +0800, nandhini.srikandan@intel.com wrote:
-> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
-> 
-> Hi,
-> 
-> This patch set enables support for Designware SPI on the Intel Thunder Bay SoC.
-> 
-> Patch 1: SPI DT bindings for Intel Thunder Bay SoC.
-> Patch 2: Adds support for Designware SPI on Intel Thunderbay SoC.
-> 
-> The driver is tested on Keem Bay and Thunder Bay evaluation board
-> 
-> Changes from v1:
-> 1) Designware CR0 specific macros are named in a generic way.
-> 2) SPI CAP macros are named in generic way rather than naming project specific.
-> 3) SPI KEEM BAY specific macros are replaced by generic macros.
-> 4) Resued the existing SPI deassert API instead of adding another reset
+In such case this could be:
+1. a specific "microchip,mpfs250t-sd4hc", which
+seems to be on MPFS Icicle Kit:
+https://www.digikey.co.uk/en/product-highlight/m/microchip-technology/mpfs-icicle-kit-es--polarfire-soc-fpga-icicle-kit
 
-Thanks for the update. I'll have a look at the series on the next
-week.
+2. or a generic "microchip,mpfs-sd4hc"
 
-Regards,
--Sergey
+Any hints here?
 
-> 
-> Thanks & Regards,
-> Nandhini
-> 
-> Nandhini Srikandan (2):
->   dt-bindings: spi: Add bindings for Intel Thunder Bay SoC
->   spi: dw: Add support for Intel Thunder Bay SPI
-> 
->  .../bindings/spi/snps,dw-apb-ssi.yaml         |  2 ++
->  drivers/spi/spi-dw-core.c                     |  7 +++++--
->  drivers/spi/spi-dw-mmio.c                     | 20 ++++++++++++++++++-
->  drivers/spi/spi-dw.h                          | 12 ++++++++---
->  4 files changed, 35 insertions(+), 6 deletions(-)
-> 
-> -- 
-> 2.17.1
-> 
+Best regards,
+Krzysztof
