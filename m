@@ -2,230 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14C3F3F628F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D2B3F62DC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:42:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhHXQSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 12:18:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53588 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231346AbhHXQSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Aug 2021 12:18:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 420F261212;
-        Tue, 24 Aug 2021 16:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629821873;
-        bh=GUXwIYc6FaOdmgtM2ZwBXAD1QvNFWgpSegPQtCdnS40=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JToGNrqle6gG5bOMSybTxYIdm57OwDmTLOh3Tz2Kam/6dCW0SkWUsSMoKan9h4Qc5
-         QacXgcF+QWFx6ulG3dQc/bOAp98GOx10W8ik6FfJVqmP/M9D/K1f0RrI9Y4U7cPrnX
-         xK+P/U8T14IkNsqPTl2S4rAXfLHec+XD06oKnPq9cIBvzn/ZsveCo6C4OSz5ED2Bt3
-         e5DrqAGe5gSRZZVdvbfp0fdrp+IP6SvsjkCaNqYrPc7h2ZFhETQF4xG/iXGzmktW26
-         IQNX2f6JEcNndMAJeuzd1RUTb1hb2gXZPQTktNO2Llj5uFBVg7Zd1cldH0dh7OKJwf
-         SwluuioxepARg==
-Received: by pali.im (Postfix)
-        id D5CC17A5; Tue, 24 Aug 2021 18:17:50 +0200 (CEST)
-Date:   Tue, 24 Aug 2021 18:17:50 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/3] PCI: aardvark: Add support for sending
- Set_Slot_Power_Limit message
-Message-ID: <20210824161750.lfkovha2jmymr4om@pali>
-References: <20210820160023.3243-1-pali@kernel.org>
- <20210820160023.3243-3-pali@kernel.org>
- <YSUXJwrpLpzzjgvO@robh.at.kernel.org>
+        id S229954AbhHXQmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 12:42:52 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:40690 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229830AbhHXQmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:42:51 -0400
+Received: by mail-ot1-f49.google.com with SMTP id x9-20020a056830278900b0051b8be1192fso27019926otu.7;
+        Tue, 24 Aug 2021 09:42:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9PP+NZauXcNMWN8qyU06xGoppEYovljaWj1vu5JQDXs=;
+        b=a4g8ODy05f3DSNmEuFrYKk5LVRdSHN5nRf4Nj1VqA9JCD4SLou5IWr4TMVG6RtxZf2
+         hKc/cR/6l+/MwT2e8JUjVrKlj4C4UMq3N3b5Jn3YqpaLYTllsvkrNk5mVPUixvnvx/Pa
+         tBjI/vSU6ecsaZ9Rs2IdcSpOnavRjx50aFc6ZyE9mJG0Tg+PiHvVFT59NUl9bVpGTuoA
+         We7zbmGCM2BMnUFmrnVDkWt0sylNjwlmHZ90Fcr6kx6R4FRUwu1jTHBlGO3qeKsQfsft
+         gdYzgoKkUcZ3uAF2/z1TX9iW9HrXE+jV7dlGqG/+e3wHkW4Ujtw2EwAvUcEgxwNy62hc
+         x65A==
+X-Gm-Message-State: AOAM531JuQ6wRBpaTui/h/MbPGehkh13pA1LUeC4N2C0u4iL4edriBid
+        KZMw4TU5x6oUkqInfQscvA==
+X-Google-Smtp-Source: ABdhPJybWg8KCAZHRkAMhS4loBDKnuPnJnsUS39u2FRxoGca9cSSu7QPEsJ/G9RGeBKIZCTNQAhlBQ==
+X-Received: by 2002:a05:6830:156:: with SMTP id j22mr25277496otp.75.1629823326966;
+        Tue, 24 Aug 2021 09:42:06 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p124sm4446567oia.8.2021.08.24.09.42.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Aug 2021 09:42:06 -0700 (PDT)
+Received: (nullmailer pid 598564 invoked by uid 1000);
+        Tue, 24 Aug 2021 16:42:05 -0000
+Date:   Tue, 24 Aug 2021 11:42:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: sound: add rockchip i2s-tdm binding
+Message-ID: <YSUhXa0o4aWGXN0B@robh.at.kernel.org>
+References: <20210820182731.29370-1-frattaroli.nicolas@gmail.com>
+ <20210820182731.29370-3-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YSUXJwrpLpzzjgvO@robh.at.kernel.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20210820182731.29370-3-frattaroli.nicolas@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 24 August 2021 10:58:31 Rob Herring wrote:
-> On Fri, Aug 20, 2021 at 06:00:22PM +0200, Pali Rohár wrote:
-> > According to PCIe Base specification 3.0, when transitioning from a
-> > non-DL_Up Status to a DL_Up Status, the Port must initiate the
-> > transmission of a Set_Slot_Power_Limit Message to the other component
-> > on the Link to convey the value programmed in the Slot Power Limit
-> > Scale and Value fields of the Slot Capabilities register. This
-> > Transmission is optional if the Slot Capabilities register has not
-> > yet been initialized.
-> > 
-> > As PCIe Root Bridge is emulated by kernel emulate readback of Slot Power
-> > Limit Scale and Value bits in Slot Capabilities register.
-> > 
-> > Also send that Set_Slot_Power_Limit message via Message Generation Control
-> > Register in Link Up handler when link changes from down to up state and
-> > slot power limit value was defined.
-> > 
-> > Slot power limit value is read from DT property 'slot-power-limit' which
-> > value is in mW unit. When this DT property is not specified then it is
-> > treated as "Slot Capabilities register has not yet been initialized".
-> > 
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > ---
-> >  .../devicetree/bindings/pci/aardvark-pci.txt  |  2 +
-> >  drivers/pci/controller/pci-aardvark.c         | 66 ++++++++++++++++++-
-> >  2 files changed, 67 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/aardvark-pci.txt b/Documentation/devicetree/bindings/pci/aardvark-pci.txt
-> > index 2b8ca920a7fa..bb658f261db0 100644
-> > --- a/Documentation/devicetree/bindings/pci/aardvark-pci.txt
-> > +++ b/Documentation/devicetree/bindings/pci/aardvark-pci.txt
-> > @@ -20,6 +20,7 @@ contain the following properties:
-> >     define the mapping of the PCIe interface to interrupt numbers.
-> >   - bus-range: PCI bus numbers covered
-> >   - phys: the PCIe PHY handle
-> > + - slot-power-limit: see pci.txt
-> >   - max-link-speed: see pci.txt
-> >   - reset-gpios: see pci.txt
-> >  
-> > @@ -52,6 +53,7 @@ Example:
-> >  				<0 0 0 3 &pcie_intc 2>,
-> >  				<0 0 0 4 &pcie_intc 3>;
-> >  		phys = <&comphy1 0>;
-> > +		slot-power-limit: <10000>;
-> >  		pcie_intc: interrupt-controller {
-> >  			interrupt-controller;
-> >  			#interrupt-cells = <1>;
-> > diff --git a/drivers/pci/controller/pci-aardvark.c b/drivers/pci/controller/pci-aardvark.c
-> > index f94898f6072f..cf704c199c15 100644
-> > --- a/drivers/pci/controller/pci-aardvark.c
-> > +++ b/drivers/pci/controller/pci-aardvark.c
-> > @@ -166,6 +166,11 @@
-> >  #define VENDOR_ID_REG				(LMI_BASE_ADDR + 0x44)
-> >  #define DEBUG_MUX_CTRL_REG			(LMI_BASE_ADDR + 0x208)
-> >  #define     DIS_ORD_CHK				BIT(30)
-> > +#define PME_MSG_GEN_CTRL			(LMI_BASE_ADDR + 0x220)
-> > +#define     SEND_SET_SLOT_POWER_LIMIT		BIT(13)
-> > +#define     SEND_PME_TURN_OFF			BIT(14)
-> > +#define     SLOT_POWER_LIMIT_DATA_SHIFT		16
-> > +#define     SLOT_POWER_LIMIT_DATA_MASK		GENMASK(25, 16)
-> >  
-> >  /* PCIe core controller registers */
-> >  #define CTRL_CORE_BASE_ADDR			0x18000
-> > @@ -267,6 +272,7 @@ static bool advk_pcie_link_up(struct advk_pcie *pcie)
-> >  {
-> >  	u32 val, ltssm_state;
-> >  	u16 slotsta, slotctl;
-> > +	u32 slotpwr;
-> >  	bool link_up;
-> >  
-> >  	val = advk_readl(pcie, CFG_REG);
-> > @@ -277,7 +283,25 @@ static bool advk_pcie_link_up(struct advk_pcie *pcie)
-> >  		pcie->link_up = true;
-> >  		slotsta = le16_to_cpu(pcie->bridge.pcie_conf.slotsta);
-> >  		slotctl = le16_to_cpu(pcie->bridge.pcie_conf.slotctl);
-> > +		slotpwr = (le32_to_cpu(pcie->bridge.pcie_conf.slotcap) &
-> > +			   (PCI_EXP_SLTCAP_SPLV | PCI_EXP_SLTCAP_SPLS)) >> 7;
-> >  		pcie->bridge.pcie_conf.slotsta = cpu_to_le16(slotsta | PCI_EXP_SLTSTA_DLLSC);
-> > +		if (!(slotctl & PCI_EXP_SLTCTL_ASPL_DISABLE) && slotpwr) {
-> > +			/*
-> > +			 * According to PCIe Base specification 3.0, when transitioning from a
-> > +			 * non-DL_Up Status to a DL_Up Status, the Port must initiate the
-> > +			 * transmission of a Set_Slot_Power_Limit Message to the other component
-> > +			 * on the Link to convey the value programmed in the Slot Power Limit
-> > +			 * Scale and Value fields of the Slot Capabilities register. This
-> > +			 * Transmission is optional if the Slot Capabilities register has not
-> > +			 * yet been initialized.
-> > +			 */
-> > +			val = advk_readl(pcie, PME_MSG_GEN_CTRL);
-> > +			val &= ~SLOT_POWER_LIMIT_DATA_MASK;
-> > +			val |= slotpwr << SLOT_POWER_LIMIT_DATA_SHIFT;
-> > +			val |= SEND_SET_SLOT_POWER_LIMIT;
-> > +			advk_writel(pcie, val, PME_MSG_GEN_CTRL);
-> > +		}
-> >  		if ((slotctl & PCI_EXP_SLTCTL_DLLSCE) && (slotctl & PCI_EXP_SLTCTL_HPIE))
-> >  			mod_timer(&pcie->link_up_irq_timer, jiffies + 1);
-> >  	}
-> > @@ -956,6 +980,9 @@ static struct pci_bridge_emul_ops advk_pci_bridge_emul_ops = {
-> >  static int advk_sw_pci_bridge_init(struct advk_pcie *pcie)
-> >  {
-> >  	struct pci_bridge_emul *bridge = &pcie->bridge;
-> > +	struct device *dev = &pcie->pdev->dev;
-> > +	u8 slot_power_limit_scale, slot_power_limit_value;
-> > +	u32 slot_power_limit;
-> >  	int ret;
-> >  
-> >  	bridge->conf.vendor =
-> > @@ -988,6 +1015,40 @@ static int advk_sw_pci_bridge_init(struct advk_pcie *pcie)
-> >  	/* Indicates supports for Completion Retry Status */
-> >  	bridge->pcie_conf.rootcap = cpu_to_le16(PCI_EXP_RTCAP_CRSVIS);
-> >  
+On Fri, Aug 20, 2021 at 08:27:29PM +0200, Nicolas Frattaroli wrote:
+> This adds the YAML bindings for the Rockchip I2S/TDM audio driver.
 > 
-> > +	if (of_property_read_u32(dev->of_node, "slot-power-limit", &slot_power_limit))
-> > +		slot_power_limit = 0;
-> > +
-> > +	if (slot_power_limit)
-> > +		dev_info(dev, "Slot power limit %u.%uW\n", slot_power_limit / 1000,
-> > +			 (slot_power_limit / 100) % 10);
+> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> ---
+>  .../bindings/sound/rockchip,i2s-tdm.yaml      | 193 ++++++++++++++++++
+>  1 file changed, 193 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
 > 
-> Add a wrapper function for this.
-> 
-> > +
-> > +	/* Calculate Slot Power Limit Value and Slot Power Limit Scale */
-> > +	if (slot_power_limit == 0) {
-> > +		slot_power_limit_scale = 0;
-> > +		slot_power_limit_value = 0x00;
-> > +	} else if (slot_power_limit <= 255) {
-> > +		slot_power_limit_scale = 3;
-> > +		slot_power_limit_value = slot_power_limit;
-> > +	} else if (slot_power_limit <= 255*10) {
-> > +		slot_power_limit_scale = 2;
-> > +		slot_power_limit_value = slot_power_limit / 10;
-> > +	} else if (slot_power_limit <= 255*100) {
-> > +		slot_power_limit_scale = 1;
-> > +		slot_power_limit_value = slot_power_limit / 100;
-> > +	} else if (slot_power_limit <= 239*1000) {
-> > +		slot_power_limit_scale = 0;
-> > +		slot_power_limit_value = slot_power_limit / 1000;
-> > +	} else if (slot_power_limit <= 250*1000) {
-> > +		slot_power_limit_scale = 0;
-> > +		slot_power_limit_value = 0xF0;
-> > +	} else if (slot_power_limit <= 275*1000) {
-> > +		slot_power_limit_scale = 0;
-> > +		slot_power_limit_value = 0xF1;
-> > +	} else {
-> > +		slot_power_limit_scale = 0;
-> > +		slot_power_limit_value = 0xF2;
-> > +	}
-> 
-> This all looks like it should be common code.
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+> new file mode 100644
+> index 000000000000..1e8c1500ba40
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+> @@ -0,0 +1,193 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/rockchip,i2s-tdm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip I2S/TDM Controller
+> +
+> +description:
+> +  The Rockchip I2S/TDM Controller is a Time Division Multiplexed
+> +  audio interface found in various Rockchip SoCs, allowing up
+> +  to 8 channels of audio over a serial interface.
+> +
+> +maintainers:
+> +  - Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,px30-i2s-tdm
+> +      - rockchip,rk1808-i2s-tdm
+> +      - rockchip,rk3308-i2s-tdm
+> +      - rockchip,rk3568-i2s-tdm
+> +      - rockchip,rv1126-i2s-tdm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    minItems: 1
+> +    items:
+> +      - const: rx
+> +      - const: tx
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for TX
+> +      - description: clock for RX
+> +      - description: AHB clock driving the interface
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk_tx
+> +      - const: mclk_rx
+> +      - const: hclk
+> +
+> +  rockchip,frame-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 64
+> +    minimum: 32
+> +    maximum: 512
+> +    description:
+> +      Width of a frame, usually slot width multiplied by number of slots.
+> +      Must be even.
+> +
+> +  resets:
+> +    items:
+> +      - description: reset for TX
+> +      - description: reset for RX
+> +
+> +  reset-names:
+> +    items:
+> +      - const: tx-m
+> +      - const: rx-m
+> +
+> +  rockchip,cru:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the cru.
+> +      Required if both playback and capture are used, i.e. if rockchip,clk-trcm
+> +      is 0.
 
-Yes, this is common code. I will put it into some common function.
+Another case of the nonexistent rockchip,clk-trcm.
 
-> > +
-> >  	/*
-> >  	 * Mark bridge as Hot-Plug Capable to allow delivering Data Link Layer
-> >  	 * State Changed interrupt. No Command Completed Support is set because
-> > @@ -996,7 +1057,10 @@ static int advk_sw_pci_bridge_init(struct advk_pcie *pcie)
-> >  	 * bit permanently as there is no support for unplugging PCIe card from
-> >  	 * the slot. Assume that PCIe card is always connected in slot.
-> >  	 */
-> > -	bridge->pcie_conf.slotcap = cpu_to_le32(PCI_EXP_SLTCAP_NCCS | PCI_EXP_SLTCAP_HPC);
-> > +	bridge->pcie_conf.slotcap = cpu_to_le32(PCI_EXP_SLTCAP_NCCS |
-> > +						PCI_EXP_SLTCAP_HPC |
-> 
-> While not new, how does the driver know the board is hotplug capable. 
-> IIRC, we have a property for that.
 
-Just ignore it for now. It is part of unfinished patches. I sent it to
-show how slot_power_limit would be configured via emulated root bridge.
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the GRF register.
+> +
+> +  rockchip,mclk-calibrate:
+> +    description:
+> +      Enable mclk source calibration.
+> +    type: boolean
+> +
+> +  rockchip,trcm-sync-tx-only:
+> +    type: boolean
+> +    description: Use TX BCLK/LRCK for both TX and RX.
+> +
+> +  rockchip,trcm-sync-rx-only:
+> +    type: boolean
+> +    description: Use RX BCLK/LRCK for both TX and RX.
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  rockchip,i2s-rx-route:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      Defines the mapping of I2S RX sdis to I2S data bus lines.
+> +      By default, they are mapped one-to-one.
+> +    items:
+> +      - description: which sdi to connect to data line 0
+> +      - description: which sdi to connect to data line 1
+> +      - description: which sdi to connect to data line 2
+> +      - description: which sdi to connect to data line 3
+> +
+> +  rockchip,i2s-tx-route:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      Defines the mapping of I2S TX sdos to I2S data bus lines.
+> +      By default, they are mapped one-to-one.
+> +    items:
+> +      - description: which sdo to connect to data line 0
+> +      - description: which sdo to connect to data line 1
+> +      - description: which sdo to connect to data line 2
+> +      - description: which sdo to connect to data line 3
+> +
+> +  rockchip,tdm-fsync-half-frame:
+> +    description: Whether to use half frame fsync.
+> +    type: boolean
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - dmas
+> +  - dma-names
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - rockchip,grf
+> +  - "#sound-dai-cells"
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        rockchip,trcm-sync-tx-only: false
+> +        rockchip,trcm-sync-rx-only: false
+> +    then:
+> +      required:
+> +        - rockchip,cru
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +
+> +    foo {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        i2s@fe410000 {
+> +            compatible = "rockchip,rk3568-i2s-tdm";
+> +            reg = <0x0 0xfe410000 0x0 0x1000>;
+> +            interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&cru MCLK_I2S1_8CH_TX>, <&cru MCLK_I2S1_8CH_RX>,
+> +                     <&cru HCLK_I2S1_8CH>;
+> +            clock-names = "mclk_tx", "mclk_rx", "hclk";
+> +            dmas = <&dmac1 3>, <&dmac1 2>;
+> +            dma-names = "rx", "tx";
+> +            resets = <&cru SRST_M_I2S1_8CH_TX>, <&cru SRST_M_I2S1_8CH_RX>;
+> +            reset-names = "tx-m", "rx-m";
+> +            rockchip,trcm-sync-tx-only;
+> +            rockchip,cru = <&cru>;
+> +            rockchip,grf = <&grf>;
+> +            #sound-dai-cells = <0>;
+> +            pinctrl-names = "default";
+> +            pinctrl-0 =
+> +                <&i2s1m0_sclktx
+> +                &i2s1m0_sclkrx
+> +                &i2s1m0_lrcktx
+> +                &i2s1m0_lrckrx
+> +                &i2s1m0_sdi0
+> +                &i2s1m0_sdi1
+> +                &i2s1m0_sdi2
+> +                &i2s1m0_sdi3
+> +                &i2s1m0_sdo0
+> +                &i2s1m0_sdo1
+> +                &i2s1m0_sdo2
+> +                &i2s1m0_sdo3>;
+> +            status = "okay";
 
-> > +						slot_power_limit_value << 7 |
-> > +						slot_power_limit_scale << 15);
-> >  	bridge->pcie_conf.slotsta = cpu_to_le16(PCI_EXP_SLTSTA_PDS);
-> >  
-> >  	return 0;
-> > -- 
-> > 2.20.1
-> > 
-> > 
+Sorry if I wasn't clear, but you don't need status at all in examples as 
+okay is the default.
+
+Rob
