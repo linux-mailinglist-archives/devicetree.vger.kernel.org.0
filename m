@@ -2,129 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1698D3F6200
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 17:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1503F6220
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 17:58:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238421AbhHXPuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 11:50:11 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.167]:13341 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238287AbhHXPuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 11:50:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1629820163;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Z/5zWNp0e+XXevjZGGIjoXisq5NlaUH+55xKsFFvgjA=;
-    b=qMfJSybJDcqmJaJ0zJVIfFYndAkBTZ4r9p8IVFbjdd5mdaAVMz4DMDeu53/zqOg6B+
-    D4EZxZxkpZo9dNwmcxqR0UFQCulMfP2WmK4eaHCtXGI+3ytCOt8fUxgj2XAfIXedTDFJ
-    GKjBwJozxuJEsvAppKmpqkkhB71MzXMv8n61CO09kAJsvlMoqWFmTZd+TXY4VcRYSVCV
-    3JQrqIYS1XhqA7dGkelaPt1T7Bu9DzVsLbFFqcmZ8Qa1L/UvzpLNWcjODJP3EyBWTQs8
-    29L+kNjpHTG49GBoEdkLzc+ZGmjF2DsF3wwPJ2KEmxqpsGY1AVowIA7i6/AFTMCS9qTj
-    jgiA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8puK1A=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.31.0 DYNA|AUTH)
-    with ESMTPSA id L01e9cx7OFnMmOL
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 24 Aug 2021 17:49:22 +0200 (CEST)
-Date:   Tue, 24 Aug 2021 17:49:18 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        An?bal Lim?n <anibal.limon@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss
- and mpss
-Message-ID: <YSUU/r9OdK5OtNNn@gerhold.net>
-References: <20200108055735.660475-1-bjorn.andersson@linaro.org>
- <20210217223406.1422005-1-anibal.limon@linaro.org>
- <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
- <YSUGLFx2QST9vgIU@ripper>
+        id S238527AbhHXP7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 11:59:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48760 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236565AbhHXP7e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 11:59:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1FF07600D1;
+        Tue, 24 Aug 2021 15:58:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629820730;
+        bh=U8+RW0mVTPZE39+nt5vVJlMy+0Wop2n2o4Ei54ETabg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QE/aBwWkLg4RPWAgV/v8ivnPelaFvUpa4y/Auz4C9JCzXSWkVJBdPx80MCpiHMFwX
+         gRgnxwIVpcx2IP52qk9lOd+SDLy00qNlahEXjflKxZdPfddSt6dMrzZmyuz/8lEjx7
+         qQzL29rI3D9jVDQeQqWuQfODupcu33rDf9wTMoi2r6cDXBD7tySa04wUVjuKpRCmsC
+         dc2RFZD8ZcTgswno6qgdav9yvh+24cbQ2NvP9QHL43U7Q9zU8Gxo1CfaKiieeW/pdb
+         nXawyPqadKfKEOLKHk9EvgNZcxU513SiMK4DqI1qs0Fig1YGYLJAljp7HM7Om4QkUA
+         zUxWtE41hGTfA==
+Date:   Tue, 24 Aug 2021 16:58:23 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Luting Guo <luting.guo@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: spi: Convert sprd ADI bindings to yaml
+Message-ID: <20210824155823.GE4393@sirena.org.uk>
+References: <20210824092745.2093640-1-zhang.lyra@gmail.com>
+ <20210824092745.2093640-3-zhang.lyra@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="19uQFt6ulqmgNgg1"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YSUGLFx2QST9vgIU@ripper>
+In-Reply-To: <20210824092745.2093640-3-zhang.lyra@gmail.com>
+X-Cookie: Sentient plasmoids are a gas.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 24, 2021 at 07:46:04AM -0700, Bjorn Andersson wrote:
-> On Tue 24 Aug 05:39 PDT 2021, Dmitry Baryshkov wrote:
-> 
-> > On Thu, 18 Feb 2021 at 01:38, Aníbal Limón <anibal.limon@linaro.org> wrote:
-> > >
-> > > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > >
-> > > Enable the mpss remoteproc node and specify the firmware-name for this
-> > > and the wcnss remoteproc on the Dragonboard 410c.
-> > >
-> > > Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@linaro.org
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > [rebased and moved to use pronto label]
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > Tested-by: Aníbal Limón <anibal.limon@linaro.org>
-> > 
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > 
-> 
-> Thanks Dmitry, not sure why this hasn't been merged yet.
-> 
 
-This patch keeps getting stuck for some reason.
-It was sent several times already but always forgotten. :)
+--19uQFt6ulqmgNgg1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Taking a further look at this I noticed that we never pushed the
-> firmware to linux-firmware either, which I think was because we where
-> uncertain of the directory structure at the time - a discussion which
-> has been settled since.
-> 
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > > index 3c7f97539390..8f1ada75d3ed 100644
-> > > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > > @@ -301,6 +301,11 @@ &lpass {
-> > >         status = "okay";
-> > >  };
-> > >
-> > > +&mpss {
-> > > +       status = "okay";
-> > > +       firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt";
-> 
-> But if we're pushing things to linux-firmware, does anyone object
-> against following the existing style and squashing the mdt+bNN files
-> into .mbn (and thereby making this modem.mbn and below wcnss.mbn)?
-> 
+On Tue, Aug 24, 2021 at 05:27:44PM +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+>=20
+> Convert spi-sprd-adi.txt to yaml.
 
-You made this change in some version already :)
-https://lore.kernel.org/linux-arm-msm/20210312003318.3273536-6-bjorn.andersson@linaro.org/
+It's better to put DT binding conversion patches as the last patch in a
+series, there's often a bit of a backlog on reviews for them so putting
+them after other changes means that the other changes can proceed while
+waiting for the review of the YAML conversion.
 
-I think there was no real objection back then but more confusion about
-how to get the squashed .mbn variant. Having it in linux-firmware would
-certainly make it a lot easier overall if you can make that happen. :)
+--19uQFt6ulqmgNgg1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The latest version of this patch that I am aware of is the following one:
-https://lore.kernel.org/linux-arm-msm/20210531224453.783218-1-bjorn.andersson@linaro.org/
+-----BEGIN PGP SIGNATURE-----
 
-As I wrote there it's mainly stuck on getting the related wcn36xx patch [1]
-merged. Can you resend that one maybe?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmElFx4ACgkQJNaLcl1U
+h9DbtQf/Vh+leO67pIQqyyEidCXPZ+NLNuwZ+JzRnL2325ufCbh60R9OII20CSgp
+AWQOkldMweKQ6kPAe6dTOuEjFfWj0u5EsLLn5gq0grGTs//EWu/v7h6GFPaaNs/z
+E6jU+Slqf79MBF6QAd+/GaLImwoGQlIYHqBBLDU4sBIpxa3F1Mx2CJZAmwrsUkCn
+5qfe08n5kTcP6/9Ow1Xb65kk9x0fiQM0d4/ucJ3+FD8KB6mZ6yCUXLtuDxd2xOEX
+F9zBEhwDm9kUM6NC37uhUCvSld75PITssAY0dPdabn7ah6JbsgiT+u4OwlbgI17y
+oM0bJCvTEXOlanADynzvkFsr3irJnw==
+=QanL
+-----END PGP SIGNATURE-----
 
-Thanks,
-Stephan
-
-[1]: https://lore.kernel.org/linux-arm-msm/20210312003318.3273536-3-bjorn.andersson@linaro.org/
+--19uQFt6ulqmgNgg1--
