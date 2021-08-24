@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4473F6306
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C3F83F6309
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232627AbhHXQq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 12:46:28 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:34618 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbhHXQq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:46:28 -0400
-Received: by mail-ot1-f51.google.com with SMTP id k12-20020a056830150c00b0051abe7f680bso42686317otp.1;
-        Tue, 24 Aug 2021 09:45:43 -0700 (PDT)
+        id S230463AbhHXQrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 12:47:14 -0400
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:40758 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230460AbhHXQrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:47:14 -0400
+Received: by mail-oo1-f50.google.com with SMTP id j11-20020a4a92cb000000b002902ae8cb10so1400429ooh.7;
+        Tue, 24 Aug 2021 09:46:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HTNrEdHfu/JVsa4/oS2zca6zG8eXisDO5m0wWvyc+xQ=;
-        b=BZtJWqUYn3OKgPO9bHDHkqCSyLSncQSPu0satsYs51UvOgnN58LHzYFpR8g5UNXmGr
-         l19b8u59xUMkLNd5JNf+roEDssNVvwbt3A6n31rNX1yweS8wI3zApHXiJhzlwsb3yxz2
-         ympqTZs7BB2Z2gYg66vUOv6cWK5r9ydKsoiys9+mrxQprAW4QbA1l9xa+Xg4WuDO4XL8
-         /h9Wsm2m/DObkHE1z+rAsxiBz0ahydBCigwUKNPGdpCoW5L2YrOhDPK8PlVKHbxJypYE
-         OdegGq4HCo0w3xK4mt0yv3eY5iaX7iATDcZB64zx/VkiM+VgeH7DKj0qz0co2Psj5hgf
-         Jm2w==
-X-Gm-Message-State: AOAM533M5hj7Ka5Pwn1OUNzw4xi8Fvt8kR6DQ9INbsm2Gl9Xgq1RYu6M
-        MB72mqmJNQM14nMGjjuXoQ==
-X-Google-Smtp-Source: ABdhPJwaqdnE9tf4A6lBcKSURs78vjFAi3N58TLUm6sBDMimVaeRILpmxROvjVJc8UHiw3yjS5iOzg==
-X-Received: by 2002:aca:afc3:: with SMTP id y186mr3333067oie.65.1629823543508;
-        Tue, 24 Aug 2021 09:45:43 -0700 (PDT)
+        bh=G/Go7mYfTsGdoHm9R20lm5CkXSoHk7jMuDjAICMbtHM=;
+        b=aOjZLKUdo2DIuY9ERBqDACuxpkWLYR+eW92ILg1Wr+8MtsgC2gBmQZNgeJl2wqnj1j
+         dxpnN1XjcF8pCaOmPMTEHKYLAbQvy1UAsY/k6JOInwF7/j/KpRVeVfbtSlQusJP0yFj6
+         AeUg93t2O/kIjCHGLXL84C33pH0lMJSlwJTkcFOJ37s26/SVyvLWtGxAxYVGQytbYwM5
+         nQNyqQU6uGvdjEXbxSGuD5+LMr5vo9yk9X8xQaPokY8gjptQVfPyxCaEu/uhoYEH8kuM
+         6Xi8Hwy+jHDDdzMbFAkPRmF3h1637HtIXs1vCdV/IMHkrvncY+j7FvuujAb0lOZ+ubCy
+         1Npg==
+X-Gm-Message-State: AOAM533VbL9mJQ+gS9o1gMUwZRoC9aFDbNlPpBjvFofVVUndhLK5VeFN
+        T7EDYutOz1/RQGttWs494w==
+X-Google-Smtp-Source: ABdhPJyRkbgoI/M8uUuVo/tXkAUtJhkRyDwN3DW6AfdYq//2HKkaQLZzqmozsgAE6Zvuu/xcW8++mg==
+X-Received: by 2002:a4a:bc90:: with SMTP id m16mr30351409oop.33.1629823589757;
+        Tue, 24 Aug 2021 09:46:29 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j17sm4636725ots.10.2021.08.24.09.45.41
+        by smtp.gmail.com with ESMTPSA id x8sm4138094oof.27.2021.08.24.09.46.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 09:45:42 -0700 (PDT)
-Received: (nullmailer pid 604978 invoked by uid 1000);
-        Tue, 24 Aug 2021 16:45:41 -0000
-Date:   Tue, 24 Aug 2021 11:45:41 -0500
+        Tue, 24 Aug 2021 09:46:29 -0700 (PDT)
+Received: (nullmailer pid 606294 invoked by uid 1000);
+        Tue, 24 Aug 2021 16:46:28 -0000
+Date:   Tue, 24 Aug 2021 11:46:28 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        marijn.suijten@somainline.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+Cc:     martin.botka@somainline.org, Mark Brown <broonie@kernel.org>,
+        jamipkettunen@somainline.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, marijn.suijten@somainline.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Hector Martin <marcan@marcan.st>,
         angelogioacchino.delregno@somainline.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jamipkettunen@somainline.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add SM6350 GCC clock bindings
-Message-ID: <YSUiNaVyPkKFanJp@robh.at.kernel.org>
-References: <20210820203624.232268-1-konrad.dybcio@somainline.org>
- <20210820203624.232268-2-konrad.dybcio@somainline.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 01/17] dt-bindings: arm: cpus: Add Kryo 560 CPUs
+Message-ID: <YSUiZDvn6cqgKvjz@robh.at.kernel.org>
+References: <20210820204926.235192-1-konrad.dybcio@somainline.org>
+ <20210820204926.235192-2-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210820203624.232268-2-konrad.dybcio@somainline.org>
+In-Reply-To: <20210820204926.235192-2-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Aug 2021 22:36:23 +0200, Konrad Dybcio wrote:
-> Add device tree bindings for global clock controller on SM6350 SoC.
+On Fri, 20 Aug 2021 22:49:10 +0200, Konrad Dybcio wrote:
+> Document Kryo 560 CPUs found in Qualcomm Snapdragon 690 (SM6350).
 > 
+> Reviewed-by:  AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
->  .../bindings/clock/qcom,gcc-sm6350.yaml       |  76 ++++++++
->  include/dt-bindings/clock/qcom,gcc-sm6350.h   | 178 ++++++++++++++++++
->  2 files changed, 254 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6350.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6350.h
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
