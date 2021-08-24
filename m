@@ -2,1065 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C83193F5EC4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 15:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 890CA3F5F62
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 15:44:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237421AbhHXNOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 09:14:50 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:33790 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236443AbhHXNOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 09:14:49 -0400
-Received: by mail-ot1-f46.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so45964322oti.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 06:14:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Zr3BcHUyxibPN+ApMMdJs2vTxDa8LN9oiNR6W9SoGBg=;
-        b=aw4U9qXq/MQdYdDmqI5tB1fquLzk7AfFulQsnGurfeZHzHBp7Wq6f+x1sfAXsFf8iS
-         V3t9sC3+61v1nN0HF3TnnmxAU78gL2XUlFcLpVQVBUjsI21F82t1DFbd0rrQ2DdzdNbt
-         5MDzJDH+o0pwvoLiQaa/7jeG4Ipc2G0IHkejppVFG9FIl9As7Kkx9xDeRQYdkh4E11FQ
-         CfHn/Od7lk8hfymHfeJCPefJYwhHVyQNkrBvP1GB0IN+n7x17sWAyKrRokXV8blxSRl3
-         Rfwk+jI7ejdEWde2hW3QHRQ8u3sscajBjsfQJmtlF/c30LcE627vo674TT9eAp8h9o0Q
-         mBAQ==
-X-Gm-Message-State: AOAM531G0ZK0fci5OSwXy+5Yj0OC9EtZ3OUcI0uJ0QNqadXTGbOHX8Wz
-        Wb1BCrUjLIwYulEp7nhj2A==
-X-Google-Smtp-Source: ABdhPJyLWOe2CKyxAb1poukDtW4ZoAyxGXUP7NKsV18xKcKsa7QoctCY3A8MEDEliv/l0MB3SFZfaw==
-X-Received: by 2002:a9d:7742:: with SMTP id t2mr5226926otl.202.1629810843838;
-        Tue, 24 Aug 2021 06:14:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 97sm4582185otv.26.2021.08.24.06.14.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 06:14:03 -0700 (PDT)
-Received: (nullmailer pid 137569 invoked by uid 1000);
-        Tue, 24 Aug 2021 13:14:02 -0000
-Date:   Tue, 24 Aug 2021 08:14:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        lee.jones@linaro.org, heiko@sntech.de,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [RFC] dt-bindings: mfd: rk808: Convert bindings to yaml
-Message-ID: <YSTwms6+17fw8bcN@robh.at.kernel.org>
-References: <20210824041922.30586-1-macroalpha82@gmail.com>
+        id S233532AbhHXNp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 09:45:28 -0400
+Received: from smtp.radex.nl ([178.250.146.7]:34079 "EHLO radex-web.radex.nl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229517AbhHXNp1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 09:45:27 -0400
+Received: from [192.168.1.35] (cust-178-250-146-69.breedbanddelft.nl [178.250.146.69])
+        by radex-web.radex.nl (Postfix) with ESMTPS id 650112406A;
+        Tue, 24 Aug 2021 15:44:41 +0200 (CEST)
+From:   Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP
+ bursting
+To:     Pavel Hofman <pavel.hofman@ivitera.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "jackp@codeaurora.org" <jackp@codeaurora.org>,
+        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
+        Ruslan Bilovol <ruslan.bilovol@gmail.com>
+References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
+ <87pmv9l1dv.fsf@kernel.org> <9dc6cd83-17b9-7075-0934-6b9d41b6875d@gmail.com>
+ <87a6mbudvc.fsf@kernel.org> <6e8bb4ad-fe68-ad36-7416-2b8e10b6ae96@gmail.com>
+ <877dhev68a.fsf@kernel.org> <cca69e90-b0ef-00b8-75d3-3bf959a93b45@gmail.com>
+ <874kchvcq0.fsf@kernel.org> <e59f1201-2aa2-9075-1f94-a6ae7a046dc1@gmail.com>
+ <8735raj766.fsf@kernel.org> <b3417c2c-613b-8ef6-2e2d-6e2cf9a5d5fd@gmail.com>
+ <b3e820f0-9c94-7cba-a248-3b2ec5378ab0@gmail.com>
+ <d298df65-417b-f318-9374-b463a15d8308@ivitera.com>
+ <a7d7f0dd-dfbb-5eef-d1da-8cbdab5fc4a7@gmail.com>
+ <c4e29ac0-1df1-3c64-1218-3687f07e7f77@ivitera.com>
+ <1fb52c92-9319-c035-722f-695ab34723dd@gmail.com>
+ <702c72cd-40e4-e641-797a-764e7e611afb@ivitera.com>
+ <CAHp75VeZBLgf8YhEjdOV1Hva_dJh_=VHRGyVb=r44yh-9n+F4A@mail.gmail.com>
+ <d1fb0ad5-e304-8864-a2e4-42d5f652a6a7@ivitera.com>
+ <7ad8b755-1fa0-3be4-3f2e-a4d95858e450@synopsys.com>
+ <c84135c3-c730-208b-dde8-916c7bde1d73@ivitera.com>
+Message-ID: <84236328-750e-700a-855b-19b362362d25@gmail.com>
+Date:   Tue, 24 Aug 2021 15:44:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210824041922.30586-1-macroalpha82@gmail.com>
+In-Reply-To: <c84135c3-c730-208b-dde8-916c7bde1d73@ivitera.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 11:19:22PM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> This is an RFC to convert the rk808 bindings into yaml format. Please
-> note that currently there are a few errors that appear when performing
-> a make dtbs_check. However, after looking at the errors it appears
-> in most cases it occurs on device trees which are not following
-> the current rk808.txt document today. For example for the rk808
-> there are multiple errors regarding vcc13-supply, vcc14-supply, and
-> vddio-supply; however these supplies are not listed in the current
-> driver or cared for in any way.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../devicetree/bindings/mfd/rk808.txt         | 503 ------------------
->  .../bindings/mfd/rockchip,rk805.yaml          |  89 ++++
->  .../bindings/mfd/rockchip,rk808.yaml          | 255 +++++++++
->  .../bindings/mfd/rockchip,rk809.yaml          | 101 ++++
->  .../bindings/mfd/rockchip,rk817.yaml          | 365 +++++++++++++
->  .../bindings/mfd/rockchip,rk818.yaml          | 109 ++++
->  6 files changed, 919 insertions(+), 503 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/rk808.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
+Hi
 
-Most of the comments below apply to all the files...
+Op 24-08-2021 om 07:39 schreef Pavel Hofman:
+>
+>
+> Dne 24. 08. 21 v 0:50 Thinh Nguyen napsal(a):
+>> Pavel Hofman wrote:
+>>>
+>>>
+>>> Dne 23. 08. 21 v 17:21 Andy Shevchenko napsal(a):
+>>>> On Mon, Aug 23, 2021 at 5:59 PM Pavel Hofman
+>>>> <pavel.hofman@ivitera.com> wrote:
+>>>>> Dne 22. 08. 21 v 21:43 Ferry Toth napsal(a):
+>>>>>> Op 19-08-2021 om 23:04 schreef Pavel Hofman:
+>>>>>>> Dne 19. 08. 21 v 22:10 Ferry Toth napsal(a):
+>>>>>>>> Op 19-08-2021 om 09:51 schreef Pavel Hofman:
+>>>>>>>>> Dne 18. 08. 21 v 21:07 Ferry Toth napsal(a):
+>>>>>>>>>> Op 18-08-2021 om 00:00 schreef Ferry Toth:
+>>>>
+>>>> ...
+>>>>
+>>>>>>>>>> So, where do we go from here?
+>>>>>>>>>
+>>>>>>>>> I know the patches have been tested on dwc2 (by me and 
+>>>>>>>>> others).  I
+>>>>>>>>> do not know if Ruslan or Jerome tested them on dwc3 but probably
+>>>>>>>>> not. Ruslan has talked about RPi (my case too) and 
+>>>>>>>>> BeagleboneBlack,
+>>>>>>>>> both with dwc2. Perhaps the dwc2 behaves a bit differently than
+>>>>>>>>> dwc3?
+>>>>>>>>>
+>>>>>>>>> The patches add a new EP-IN for async feedback. I am sorry I have
+>>>>>>>>> not followed your long thread (it started as unrelated to 
+>>>>>>>>> uac). Does
+>>>>>>>>> the problem appear with f_uac1 or f_uac2? Please how have you
+>>>>>>>>> reached the above problem?
+>>>>>>>>
+>>>>>>>> I'm sorry too. I first believed the issue was related to the patch
+>>>>>>>> mentioned in the subject line.
+>>>>>>>>
+>>>>>>>> The problem appaers with f_uac2. I bost Edison_Arduino board in 
+>>>>>>>> host
+>>>>>>>> mode (there is a switch allowing to select host/device mode). When
+>>>>>>>> flipping the switch to device mode udev run a script:
+>>>>>>>> But as I am using configfs (excerpt follows) and just disabling 
+>>>>>>>> the
+>>>>>>>> last 2 line resolves the issue, I'm guessing uac2 is the issue. Or
+>>>>>>>> exceeding the available resources.
+>>>>>>>>
+>>>>>>>> # Create directory structure
+>>>>>>>> mkdir "${GADGET_BASE_DIR}"
+>>>>>>>> cd "${GADGET_BASE_DIR}"
+>>>>>>>> mkdir -p configs/c.1/strings/0x409
+>>>>>>>> mkdir -p strings/0x409
+>>>>>>>>
+>>>>>>>> # Serial device
+>>>>>>>> mkdir functions/gser.usb0
+>>>>>>>> ln -s functions/gser.usb0 configs/c.1/
+>>>>>>>> ###
+>>>>>>>>
+>>>>>>>> # Ethernet device
+>>>>>>>> mkdir functions/eem.usb0
+>>>>>>>> echo "${DEV_ETH_ADDR}" > functions/eem.usb0/dev_addr
+>>>>>>>> echo "${HOST_ETH_ADDR}" > functions/eem.usb0/host_addr
+>>>>>>>> ln -s functions/eem.usb0 configs/c.1/
+>>>>>>>>
+>>>>>>>> # Mass Storage device
+>>>>>>>> mkdir functions/mass_storage.usb0
+>>>>>>>> echo 1 > functions/mass_storage.usb0/stall
+>>>>>>>> echo 0 > functions/mass_storage.usb0/lun.0/cdrom
+>>>>>>>> echo 0 > functions/mass_storage.usb0/lun.0/ro
+>>>>>>>> echo 0 > functions/mass_storage.usb0/lun.0/nofua
+>>>>>>>> echo "${USBDISK}" > functions/mass_storage.usb0/lun.0/file
+>>>>>>>> ln -s functions/mass_storage.usb0 configs/c.1/
+>>>>>>>>
+>>>>>>>> # UAC2 device
+>>>>>>>> mkdir functions/uac2.usb0
+>>>>>>>> ln -s functions/uac2.usb0 configs/c.1
+>>>>>>>> ....
+>>>>>>>
+>>>>>>> As you say, could perhaps the reason be that the extra EP-IN 
+>>>>>>> added in
+>>>>>>> those patches (previously 1, now 2 with the default config you use)
+>>>>>>> exceeds your EP-IN max count or available fifos somehow?  You 
+>>>>>>> have a
+>>>>>>> number of functions initialized. If you change the load order of 
+>>>>>>> the
+>>>>>>> functions, do you get the error later with a different function? 
+>>>>>>> Just
+>>>>>>> guessing...
+>>>>>>>
+>>>>>>> You should be able to switch the default async EP-OUT (which
+>>>>>>> configures the new feedback EP-IN ) to adaptive EP-OUT (which 
+>>>>>>> requires
+>>>>>>> no feedback EP) with c_sync=8 parameter of f_uac2.
+>>>>>>>
+>>>>>>> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/usb/gadget/function/f_uac2.c*L47__;Iw!!A4F2R9G_pg!LBySrM_zgMGV0x-zZ7nSrs54yJw1GlnpUVUVxdQE8PeszSMZ6OkFX8lSoigwRbWQzLcU$ 
+>>>>>>>
+>>>>>>>
+>>>>>>> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.14-rc6/source/drivers/usb/gadget/function/f_uac2.c*L830__;Iw!!A4F2R9G_pg!LBySrM_zgMGV0x-zZ7nSrs54yJw1GlnpUVUVxdQE8PeszSMZ6OkFX8lSoigwRfP5TdZC$ 
+>>>>>>>
+>>>>>>>
+>>>>>>> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.14-rc6/source/include/uapi/linux/usb/ch9.h*L453__;Iw!!A4F2R9G_pg!LBySrM_zgMGV0x-zZ7nSrs54yJw1GlnpUVUVxdQE8PeszSMZ6OkFX8lSoigwRejzMbWO$ 
+>>>>>>>
+>>>>>>>
+>>>>>>> Does that fix the problem?
+>>>>>>
+>>>>>> Not sure how to do that. Do you mean the module should have a 
+>>>>>> parameter
+>>>>>> called c_sync? `modinfo` list no parameters for usb_f_uac2.
+>>>>>
+>>>>> Those are configfs params, not available in modinfo.
+>>>>>
+>>>>> I checked and the value is "adaptive"
+>>>>> https://urldefense.com/v3/__https://elixir.bootlin.com/linux/v5.14-rc7/source/drivers/usb/gadget/function/f_uac2.c*L1312__;Iw!!A4F2R9G_pg!LBySrM_zgMGV0x-zZ7nSrs54yJw1GlnpUVUVxdQE8PeszSMZ6OkFX8lSoigwRTETcbsN$ 
+>>>>>
+>>>>
+>>>>
+>>>>> In your configfs script:
+>>>>
+>>>> Kernel shouldn't crash with any available set of configuration
+>>>> parameters, right? So, even if the parameter would fix the crash the
+>>>> series is buggy and has to be reverted in my opinion.
+>>>
+>>> Sure, no problem with reverting. I am just trying to start up some
+>>> troubleshooting. A resource exhaustion was mentioned here, that's why I
+>>> suggested a way to test the patch with the original number of endpoints
+>>> allocated. I do not get any crashes on my setup which uses fewer gadget
+>>> functions. That's why I asked what happens if the functions load order
+>>> is changed. I am afraid this thread is so complex that the actual
+>>> problem has been burried in the history.
+>>>
+>>
+>> As I pointed out previously, the crash is probably because of f_uac2
+>> prematurely freeing feedback request before its completion.
+>> usb_ep_dequeue() is asynchronous. dwc2() may treat it as a synchronous
+>> call so you didn't get a crash.
+>
+> Thanks for your hint, it greatly helps.
+>>>
+>>
+>> I'm not sure how easy it is for you to obtain/test a device with dwc3,
+>> but it would be great to also have it as part of your testing suite. :)
+>
+> Can you recommend a reasonably priced device with viable kernel 
+> updates for the testing? Optionally with SS which you mentioned last 
+> time? Thanks.
+>
+Edison-Arduino kit 2nd hand with display on ebay ~$100 :-)
 
-
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
-> new file mode 100644
-> index 000000000000..347696f1709c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/rockchip,rk805.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RK808 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Chris Zhong <zyw@rock-chips.com>
-> +  - Zhang Qing <zhangqing@rock-chips.com>
-> +
-> +description: |
-> +  Rockchip RK805 series PMIC. This device consists of an i2c controlled MFD
-> +  that includes multiple switchable regulators.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk805
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The I2C slave address.
-
-Don't need generic descriptions. Drop
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt output of the controller.
-
-Drop.
-
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      From common clock binding; shall be set to 1 (multiple clock outputs).
-
-Drop.
-
-> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    description:
-> +      From common clock binding to override the default output clock name.
-
-maxItems: ?
-
-(and minItems if it is a range, but I think this is all clocks or none)
-
-> +
-> +  rockchip,system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Telling whether or not this PMIC is controlling the system power.
-> +
-> +  wakeup-source:
-> +    type: boolean
-> +    description:
-> +      Device can be used as a wakeup source.
-> +
-> +  vcc1-supply:
-> +    description:
-> +      The input supply for DCDC_REG1.
-> +
-> +  vcc2-supply:
-> +    description:
-> +      The input supply for DCDC_REG2.
-> +
-> +  vcc3-supply:
-> +    description:
-> +      The input supply for DCDC_REG3.
-> +
-> +  vcc4-supply:
-> +    description:
-> +      The input supply for DCDC_REG4.
-> +
-> +  vcc5-supply:
-> +    description:
-> +      The input supply for LDO_REG1 and LDO_REG2.
-> +
-> +  vcc6-supply:
-> +    description:
-> +      The input supply for LDO_REG3.
-> +
-> +  regulators:
-> +    type: object
-> +    patternProperties:
-> +      "^(DCDC_REG[1-4]|LDO_REG[1-3])$":
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-
-           unevaluatedProperties: false
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
-> new file mode 100644
-> index 000000000000..6bec1d9e4640
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
-> @@ -0,0 +1,255 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/rockchip,rk808.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RK808 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Chris Zhong <zyw@rock-chips.com>
-> +  - Zhang Qing <zhangqing@rock-chips.com>
-> +
-> +description: |
-> +  Rockchip RK808 series PMIC. This device consists of an i2c controlled MFD
-> +  that includes regulators, an RTC, and a power button.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk808
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The I2C slave address.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt output of the controller.
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      From common clock binding; shall be set to 1 (multiple clock outputs).
-> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    description:
-> +      From common clock binding to override the default output clock name.
-> +
-> +  rockchip,system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Telling whether or not this PMIC is controlling the system power.
-> +
-> +  wakeup-source:
-> +    type: boolean
-> +    description:
-> +      Device can be used as a wakeup source.
-> +
-> +  vcc1-supply:
-> +    description:
-> +      The input supply for DCDC_REG1.
-> +
-> +  vcc2-supply:
-> +    description:
-> +      The input supply for DCDC_REG2.
-> +
-> +  vcc3-supply:
-> +    description:
-> +      The input supply for DCDC_REG3.
-> +
-> +  vcc4-supply:
-> +    description:
-> +      The input supply for DCDC_REG4.
-> +
-> +  vcc6-supply:
-> +    description:
-> +      The input supply for LDO_REG1 and LDO_REG2.
-> +
-> +  vcc7-supply:
-> +    description:
-> +      The input supply for LDO_REG3 and LDO_REG7.
-> +
-> +  vcc8-supply:
-> +    description:
-> +      The input supply for SWITCH_REG1.
-> +
-> +  vcc9-supply:
-> +    description:
-> +      The input supply for LDO_REG4 and LDO_REG5.
-> +
-> +  vcc10-supply:
-> +    description:
-> +      The input supply for LDO_REG6.
-> +
-> +  vcc11-supply:
-> +    description:
-> +      The input supply for LDO_REG8.
-> +
-> +  vcc12-supply:
-> +    description:
-> +      The input supply for SWITCH_REG2.
-> +
-> +  dvs-gpios:
-> +    description: |
-> +      buck1/2 can be controlled by gpio dvs, this is GPIO specifiers for
-> +      2 host gpio's used for dvs. The format of the gpio specifier
-> +      depends in the gpio controller. If DVS GPIOs aren't present,
-> +      voltage changes will happen very quickly with no slow ramp time.
-
-maxItems: 2
-
-> +
-> +  regulators:
-> +    type: object
-> +    patternProperties:
-> +      "^(DCDC_REG[1-4]|LDO_REG[1-8]|SWITCH_REG[1-2])$":
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/pinctrl/rockchip.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c0 {
-
-i2c {
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rk808: pmic@1b {
-> +            compatible = "rockchip,rk808";
-> +            clock-output-names = "xin32k", "rk808-clkout2";
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&pmic_int &dvs_1 &dvs_2>;
-> +            dvs-gpios = <&gpio7 11 GPIO_ACTIVE_HIGH>,
-> +                <&gpio7 15 GPIO_ACTIVE_HIGH>;
-> +            reg = <0x1b>;
-> +            rockchip,system-power-controller;
-> +            wakeup-source;
-> +            #clock-cells = <1>;
-> +
-> +            vcc8-supply = <&vcc_18>;
-> +            vcc9-supply = <&vcc_io>;
-> +            vcc10-supply = <&vcc_io>;
-> +            vcc12-supply = <&vcc_io>;
-> +            vddio-supply = <&vccio_pmu>;
-> +
-> +            regulators {
-> +                vdd_cpu: DCDC_REG1 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <750000>;
-> +                    regulator-max-microvolt = <1300000>;
-> +                    regulator-name = "vdd_arm";
-> +                };
-> +
-> +                vdd_gpu: DCDC_REG2 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <850000>;
-> +                    regulator-max-microvolt = <1250000>;
-> +                    regulator-name = "vdd_gpu";
-> +                };
-> +
-> +                vcc_ddr: DCDC_REG3 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-name = "vcc_ddr";
-> +                };
-> +
-> +                vcc_io: DCDC_REG4 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-name = "vcc_io";
-> +                };
-> +
-> +                vccio_pmu: LDO_REG1 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-name = "vccio_pmu";
-> +                };
-> +
-> +                vcc_tp: LDO_REG2 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-name = "vcc_tp";
-> +                };
-> +
-> +                vdd_10: LDO_REG3 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <1000000>;
-> +                    regulator-max-microvolt = <1000000>;
-> +                    regulator-name = "vdd_10";
-> +                };
-> +
-> +                vcc18_lcd: LDO_REG4 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <1800000>;
-> +                    regulator-max-microvolt = <1800000>;
-> +                    regulator-name = "vcc18_lcd";
-> +                };
-> +
-> +                vccio_sd: LDO_REG5 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <1800000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-name = "vccio_sd";
-> +                };
-> +
-> +                vdd10_lcd: LDO_REG6 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <1000000>;
-> +                    regulator-max-microvolt = <1000000>;
-> +                    regulator-name = "vdd10_lcd";
-> +                };
-> +
-> +                vcc_18: LDO_REG7 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <1800000>;
-> +                    regulator-max-microvolt = <1800000>;
-> +                    regulator-name = "vcc_18";
-> +                };
-> +
-> +                vcca_codec: LDO_REG8 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-name = "vcca_codec";
-> +                };
-> +
-> +                vcc_wl: SWITCH_REG1 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-name = "vcc_wl";
-> +                };
-> +
-> +                vcc_lcd: SWITCH_REG2 {
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                    regulator-name = "vcc_lcd";
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
-> new file mode 100644
-> index 000000000000..6d509e863da3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/rockchip,rk809.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RK817 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Chris Zhong <zyw@rock-chips.com>
-> +  - Zhang Qing <zhangqing@rock-chips.com>
-> +
-> +description: |
-> +  Rockchip RK809 series PMIC. This device consists of an i2c controlled MFD
-> +  that includes regulators, an RTC, and power button.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk809
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The I2C slave address.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt output of the controller.
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      From common clock binding; shall be set to 1 (multiple clock outputs).
-> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    description:
-> +      From common clock binding to override the default output clock name.
-> +
-> +  rockchip,system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Telling whether or not this PMIC is controlling the system power.
-> +
-> +  wakeup-source:
-> +    type: boolean
-> +    description:
-> +      Device can be used as a wakeup source.
-> +
-> +  vcc1-supply:
-> +    description:
-> +      The input supply for DCDC_REG1.
-> +
-> +  vcc2-supply:
-> +    description:
-> +      The input supply for DCDC_REG2.
-> +
-> +  vcc3-supply:
-> +    description:
-> +      The input supply for DCDC_REG3.
-> +
-> +  vcc4-supply:
-> +    description:
-> +      The input supply for DCDC_REG4.
-> +
-> +  vcc5-supply:
-> +    description:
-> +      The input supply for LDO_REG1, LDO_REG2, and LDO_REG3.
-> +
-> +  vcc6-supply:
-> +    description:
-> +      The input supply for LDO_REG4, LDO_REG5, and LDO_REG6.
-> +
-> +  vcc7-supply:
-> +    description:
-> +      The input supply for LDO_REG7, LDO_REG8, and LDO_REG9.
-> +
-> +  vcc8-supply:
-> +    description:
-> +      The input supply for SWITCH_REG1.
-> +
-> +  vcc9-supply:
-> +    description:
-> +      The input supply for DCDC_REG5 and SWITCH_REG2.
-> +
-> +  regulators:
-> +    type: object
-> +    patternProperties:
-> +      "^(LDO_REG[1-9]|DCDC_REG[1-5]|SWITCH_REG[1-2])$":
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
-> new file mode 100644
-> index 000000000000..cbe6c2a9f254
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
-> @@ -0,0 +1,365 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/rockchip,rk817.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RK817 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Chris Zhong <zyw@rock-chips.com>
-> +  - Zhang Qing <zhangqing@rock-chips.com>
-> +
-> +description: |
-> +  Rockchip RK817 series PMIC. This device consists of an i2c controlled MFD
-> +  that includes regulators, an RTC, a power button, an audio codec, and a
-> +  battery charger manager.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk817
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The I2C slave address.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt output of the controller.
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      From common clock binding; shall be set to 1 (multiple clock outputs).
-> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    description:
-> +      From common clock binding to override the default output clock name.
-> +
-> +  rockchip,system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Telling whether or not this PMIC is controlling the system power.
-> +
-> +  wakeup-source:
-> +    type: boolean
-> +    description:
-> +      Device can be used as a wakeup source.
-> +
-> +  vcc1-supply:
-> +    description:
-> +      The input supply for DCDC_REG1.
-> +
-> +  vcc2-supply:
-> +    description:
-> +      The input supply for DCDC_REG2.
-> +
-> +  vcc3-supply:
-> +    description:
-> +      The input supply for DCDC_REG3.
-> +
-> +  vcc4-supply:
-> +    description:
-> +      The input supply for DCDC_REG4.
-> +
-> +  vcc5-supply:
-> +    description:
-> +      The input supply for LDO_REG1, LDO_REG2, and LDO_REG3.
-> +
-> +  vcc6-supply:
-> +    description:
-> +      The input supply for LDO_REG4, LDO_REG5, and LDO_REG6.
-> +
-> +  vcc7-supply:
-> +    description:
-> +      The input supply for LDO_REG7, LDO_REG8, and LDO_REG9.
-> +
-> +  vcc8-supply:
-> +    description:
-> +      The input supply for BOOST.
-> +
-> +  vcc9-supply:
-> +    description:
-> +      The input supply for OTG_SWITCH.
-> +
-> +  regulators:
-> +    type: object
-> +    patternProperties:
-> +      "^(LDO_REG[1-9]|DCDC_REG[1-4]|BOOST|OTG_SWITCH)$":
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +  clocks:
-> +    description:
-> +      The input clock for the audio codec.
-> +
-> +  clock-names:
-> +    description:
-> +      The clock name for the codec clock.
-> +    items:
-> +      - const: mclk
-> +
-> +  '#sound-dai-cells':
-> +    description:
-> +      Needed for the interpretation of sound dais.
-> +    const: 0
-> +
-> +  codec:
-> +    description: |
-> +      The child node for the codec to hold additional properties. If no
-> +      additional properties are required for the codec, this node can be
-> +      omitted.
-> +    type: object
-> +    properties:
-> +      rockchip,mic-in-differential:
-> +        type: boolean
-> +        description:
-> +          Describes if the microphone uses differential mode.
-> +
-> +  battery:
-
-Is this the only PMIC with the battery monitoring? If not and the node 
-is the same on others (or will be), you should make this a separate 
-schema file and reference it.
-
-> +    description: |
-> +      The child node for the charger to hold additional properties. If a
-> +      battery is not in use, this node can be omitted.
-> +    type: object
-> +    properties:
-> +      monitored-battery:
-> +        description: |
-> +          A phandle to a monitored battery node that contains a valid
-> +          value for:
-> +          charge-full-design-microamp-hours,
-> +          charge-term-current-microamp,
-> +          constant-charge-current-max-microamp,
-> +          constant-charge-voltage-max-microvolt,
-> +          voltage-max-design-microvolt,
-> +          voltage-min-design-microvolt,
-> +          and a valid ocv-capacity table.
-> +
-> +      rockchip,resistor-sense-micro-ohms:
-> +        description: |
-> +          Value in microohms of the battery sense resistor. This value is
-> +          used by the driver to set the correct divisor value to translate
-> +          ADC readings into the proper units of measure.
-> +        enum: [10000, 20000]
-> +
-> +      rockchip,sleep-enter-current-microamp:
-> +        description: |
-> +          Value in microamps of the sleep enter current for the charger.
-> +          Value is used by the driver to calibrate the relax threshold.
-> +
-> +      rockchip,sleep-filter-current-microamp:
-> +        description:
-> +          Value in microamps of the sleep filter current for the charger.
-> +          Value is used by the driver to derive the sleep sample current.
-> +
-> +    required:
-> +      - monitored-battery
-> +      - rockchip,resistor-sense-micro-ohms
-> +      - rockchip,sleep-enter-current-microamp
-> +      - rockchip,sleep-filter-current-microamp
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/px30-cru.h>
-> +    #include <dt-bindings/pinctrl/rockchip.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rk817: pmic@20 {
-> +            compatible = "rockchip,rk817";
-> +            reg = <0x20>;
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
-> +            clock-output-names = "rk808-clkout1", "xin32k";
-> +            clock-names = "mclk";
-> +            clocks = <&cru SCLK_I2S1_OUT>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&pmic_int>, <&i2s1_2ch_mclk>;
-> +            wakeup-source;
-> +            #clock-cells = <1>;
-> +            #sound-dai-cells = <0>;
-> +
-> +            vcc1-supply = <&vccsys>;
-> +            vcc2-supply = <&vccsys>;
-> +            vcc3-supply = <&vccsys>;
-> +            vcc4-supply = <&vccsys>;
-> +            vcc5-supply = <&vccsys>;
-> +            vcc6-supply = <&vccsys>;
-> +            vcc7-supply = <&vccsys>;
-> +
-> +            regulators {
-> +                vdd_logic: DCDC_REG1 {
-> +                    regulator-name = "vdd_logic";
-> +                    regulator-min-microvolt = <950000>;
-> +                    regulator-max-microvolt = <1150000>;
-> +                    regulator-ramp-delay = <6001>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                        regulator-suspend-microvolt = <950000>;
-> +                    };
-> +                };
-> +
-> +                vdd_arm: DCDC_REG2 {
-> +                    regulator-name = "vdd_arm";
-> +                    regulator-min-microvolt = <950000>;
-> +                    regulator-max-microvolt = <1350000>;
-> +                    regulator-ramp-delay = <6001>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-off-in-suspend;
-> +                        regulator-suspend-microvolt = <950000>;
-> +                    };
-> +                };
-> +
-> +                vcc_ddr: DCDC_REG3 {
-> +                    regulator-name = "vcc_ddr";
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                    };
-> +                };
-> +
-> +                vcc_3v3: DCDC_REG4 {
-> +                    regulator-name = "vcc_3v3";
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-off-in-suspend;
-> +                        regulator-suspend-microvolt = <3300000>;
-> +                    };
-> +                };
-> +
-> +                vcc_1v8: LDO_REG2 {
-> +                    regulator-name = "vcc_1v8";
-> +                    regulator-min-microvolt = <1800000>;
-> +                    regulator-max-microvolt = <1800000>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                        regulator-suspend-microvolt = <1800000>;
-> +                    };
-> +                };
-> +
-> +                vdd_1v0: LDO_REG3 {
-> +                    regulator-name = "vdd_1v0";
-> +                    regulator-min-microvolt = <1000000>;
-> +                    regulator-max-microvolt = <1000000>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                        regulator-suspend-microvolt = <1000000>;
-> +                    };
-> +                };
-> +
-> +                vcc3v3_pmu: LDO_REG4 {
-> +                    regulator-name = "vcc3v3_pmu";
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                        regulator-suspend-microvolt = <3300000>;
-> +                    };
-> +                };
-> +
-> +                vccio_sd: LDO_REG5 {
-> +                    regulator-name = "vccio_sd";
-> +                    regulator-min-microvolt = <1800000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                        regulator-suspend-microvolt = <3300000>;
-> +                    };
-> +                };
-> +
-> +                vcc_sd: LDO_REG6 {
-> +                    regulator-name = "vcc_sd";
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +                    regulator-boot-on;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-on-in-suspend;
-> +                        regulator-suspend-microvolt = <3300000>;
-> +                    };
-> +                };
-> +
-> +                vcc_bl: LDO_REG7 {
-> +                    regulator-name = "vcc_bl";
-> +                    regulator-min-microvolt = <3300000>;
-> +                    regulator-max-microvolt = <3300000>;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-off-in-suspend;
-> +                        regulator-suspend-microvolt = <3300000>;
-> +                    };
-> +                };
-> +
-> +                vcc_lcd: LDO_REG8 {
-> +                    regulator-name = "vcc_lcd";
-> +                    regulator-min-microvolt = <2800000>;
-> +                    regulator-max-microvolt = <2800000>;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-off-in-suspend;
-> +                        regulator-suspend-microvolt = <2800000>;
-> +                    };
-> +                };
-> +
-> +                vcc_cam: LDO_REG9 {
-> +                    regulator-name = "vcc_cam";
-> +                    regulator-min-microvolt = <3000000>;
-> +                    regulator-max-microvolt = <3000000>;
-> +
-> +                    regulator-state-mem {
-> +                        regulator-off-in-suspend;
-> +                        regulator-suspend-microvolt = <3000000>;
-> +                    };
-> +                };
-> +            };
-> +
-> +            rk817_battery: battery {
-> +                monitored-battery = <&battery_cell>;
-> +                rockchip,resistor-sense-micro-ohms = <10000>;
-> +                rockchip,sleep-enter-current-microamp = <300000>;
-> +                rockchip,sleep-filter-current-microamp = <100000>;
-> +            };
-> +
-> +            rk817_codec: codec {
-> +                rockchip,mic-in-differential;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
-> new file mode 100644
-> index 000000000000..8440353e5dbf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/rockchip,rk818.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RK818 Power Management Integrated Circuit
-> +
-> +maintainers:
-> +  - Chris Zhong <zyw@rock-chips.com>
-> +  - Zhang Qing <zhangqing@rock-chips.com>
-> +
-> +description: |
-> +  Rockchip RK818 series PMIC. This device consists of an i2c controlled MFD
-> +  that includes regulators, an RTC, and a power button.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk818
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The I2C slave address.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The interrupt output of the controller.
-> +
-> +  '#clock-cells':
-> +    description: |
-> +      From common clock binding; shall be set to 1 (multiple clock outputs).
-> +      See <dt-bindings/clock/rockchip,rk808.h> for clock IDs.
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    description:
-> +      From common clock binding to override the default output clock name.
-> +
-> +  rockchip,system-power-controller:
-> +    type: boolean
-> +    description:
-> +      Telling whether or not this PMIC is controlling the system power.
-> +
-> +  wakeup-source:
-> +    type: boolean
-> +    description:
-> +      Device can be used as a wakeup source.
-> +
-> +  vcc1-supply:
-> +    description:
-> +      The input supply for DCDC_REG1.
-> +
-> +  vcc2-supply:
-> +    description:
-> +      The input supply for DCDC_REG2.
-> +
-> +  vcc3-supply:
-> +    description:
-> +      The input supply for DCDC_REG3.
-> +
-> +  vcc4-supply:
-> +    description:
-> +      The input supply for DCDC_REG4.
-> +
-> +  boost-supply:
-> +    description:
-> +      The input supply for DCDC_BOOST
-> +
-> +  vcc6-supply:
-> +    description:
-> +      The input supply for LDO_REG1 and LDO_REG2.
-> +
-> +  vcc7-supply:
-> +    description:
-> +      The input supply for LDO_REG3, LDO_REG5, and LDO_REG7.
-> +
-> +  vcc8-supply:
-> +    description:
-> +      The input supply for LDO_REG4, LDO_REG6, and LDO_REG8.
-> +
-> +  vcc9-supply:
-> +    description:
-> +      The input supply for LDO_REG9 and SWITCH_REG.
-> +
-> +  h_5v-supply:
-> +    description:
-> +      The input supply for HDMI_SWITCH.
-> +
-> +  usb-supply:
-> +    description:
-> +      The input supply for OTG_SWITCH.
-> +
-> +  regulators:
-> +    type: object
-> +    patternProperties:
-> +      "^(DCDC_REG[1-4]|LDO_REG[1-9]|SWITCH_REG|HDMI_SWITCH|OTG_SWITCH)$":
-> +        type: object
-> +        $ref: ../regulator/regulator.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#clock-cells"
-> +
-> +additionalProperties: false
-> -- 
-> 2.25.1
-> 
-> 
+> Best regards,
+>
+> Pavel.
