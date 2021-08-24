@@ -2,89 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0940D3F5B78
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 11:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5C03F5B84
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 12:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235803AbhHXJ6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 05:58:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235915AbhHXJ52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 05:57:28 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76FAC061757;
-        Tue, 24 Aug 2021 02:56:44 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id n11so1564440edv.11;
-        Tue, 24 Aug 2021 02:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jZHjIuwbjXpPZGfV2+SVrqgdjS+2JAKYK34q2xPh0xA=;
-        b=OCSo8cTz5kPszOIvYXG7Mtg2XJ1KtNM7nfb3KCxWGsEm11UxovUvk4/f4Qhu7Vtuuw
-         5rhr/nk9+6OrhTFyAQOnJLXk0oqP9Nkl5a1Erv26U6vYAuZY+uN0yMD+B6IwTgdAMb6y
-         tQJN1ScA69w3BgwBzlBW9T0/7GiALm2yzYbgqzIf/zNRbxWpOBVTmwr6pL+vi12Lz4lV
-         G8JfGzY+28fz4UzNzoqeUeqXeiRjVj/OLU3W3vS1KoPGZ7xCqFC3EBnzK7d5tHVdq2jK
-         zMAvtP7LTqgMD0RzJ0r0f13w5sT3EzzaAljvK6MMLfYrslzitT4B8ZGNSYeEoC/Te9kw
-         K1rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jZHjIuwbjXpPZGfV2+SVrqgdjS+2JAKYK34q2xPh0xA=;
-        b=QcqZUdmhXeXYtHb4HQ8slU6xjunUDosgVk6MZq1anvIDYVx+exXqFwTcHUzqsrsxG4
-         gFzGnRR9htNraAwoj8FsI49Q0VLVuc5guL8+xA7cUe0qacFfcZOg3BxUZjQSR2XIUDPe
-         nGwoFsKKW4kvy3ZYJzNKKgimiaQ8xQIFGFeTg0e+WuqHsSC9NfByV+cpsIbwstPyxGXq
-         UnmMSJj0ohKoCzjTHQNt2htY2PYKJ5XG+947JgxEoB12EajRqrnqB7xbyEAkEcXlygJv
-         xghYFI9Va6leY0k49An/Fm5hxz00t1WKrdmdPfvGN0wTNtl7d5QG2O1JepUc5YZTGbSJ
-         cXsw==
-X-Gm-Message-State: AOAM532DKiMCSbqIFSHhwNKO0t0psfIGifasoT6G0WaQXX0GUmszYCOj
-        L0+fBbL6Xvqbw4FcvprYbiw=
-X-Google-Smtp-Source: ABdhPJyRfq9VETKCteTsYN0ZD/x7BGT+N4SffLf3FhsdSt/ExfCu5fEo/8NZupdgJ7twVTTfLy27+Q==
-X-Received: by 2002:a05:6402:3589:: with SMTP id y9mr42483656edc.247.1629799003531;
-        Tue, 24 Aug 2021 02:56:43 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id ne22sm7832761ejc.113.2021.08.24.02.56.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 02:56:42 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: timer: remove rockchip,rk3066-timer compatible string from rockchip,rk-timer.yaml
-Date:   Tue, 24 Aug 2021 11:56:37 +0200
-Message-Id: <20210824095637.2547-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        id S235979AbhHXKBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 06:01:21 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:43050 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235900AbhHXKBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 06:01:19 -0400
+X-UUID: 884c4857c37e4f31973d1d2839daf103-20210824
+X-UUID: 884c4857c37e4f31973d1d2839daf103-20210824
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1553220195; Tue, 24 Aug 2021 18:00:31 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 24 Aug 2021 18:00:29 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 24 Aug 2021 18:00:29 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <tfiga@chromium.org>,
+        <drinkcat@chromium.org>, <acourbot@chromium.org>,
+        <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
+        <sj.huang@mediatek.com>, <ben.lok@mediatek.com>,
+        <randy.wu@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <hsinyi@google.com>
+Subject: [PATCH v7 0/5] media: mediatek: support mdp3 on mt8183 platform
+Date:   Tue, 24 Aug 2021 18:00:22 +0800
+Message-ID: <20210824100027.25989-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Rockchip rk3066 timers have a different register layout then rk3288
-with only a 32 vs 64 bits timer channel. The timers in rk3066a.dtsi have
-"snps,dw-apb-timer" as compatible string, so remove the
-"rockchip,rk3066-timer" from rockchip,rk-timer.yaml
+Changes since v6:
+- Refactor GCE event to corresponding node.
+- Fix dt_binding_check fail.
+- Fix compilation errors.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml | 1 -
- 1 file changed, 1 deletion(-)
+Changes since v5:
+- Rebase on v5.14-rc6.
+- Move MMSYS/Mutex settings to corresponding driver.
+- Revise the software license description and copyright.
+- Remove unnecessary enum. or definitions.
+- Optimize platform/chip definition conditions.
+- Use general printing functions instead of MDP3 private ones.
+- Fix compile warning.
 
-diff --git a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-index e26ecb589..5d157d87d 100644
---- a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-+++ b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-@@ -18,7 +18,6 @@ properties:
-           - enum:
-               - rockchip,rv1108-timer
-               - rockchip,rk3036-timer
--              - rockchip,rk3066-timer
-               - rockchip,rk3188-timer
-               - rockchip,rk3228-timer
-               - rockchip,rk3229-timer
+Changes since v4:
+- Rebase on v5.13-rc1.
+- Remove the CMDQ flush flow to match the CMDQ API change.
+- Integrate four of MDP's direct-link subcomponents into MDP controller node
+  from syscon node to avoid illegal clock usage.
+- Rewrite dt-binding in a JSON compatible subset of YAML
+- Fix a bit of macro argument precedence.
+
+Changes since v3:
+- Rebase on v5.9-rc1.
+- modify code for review comment from Rob Herring, cancel multiple nodes using
+  same register base situation.
+- control IOMMU port through pm runtime get/put to DMA components' device.
+- SCP(VPU) driver revision.
+- stop queuing jobs(remove flush_workqueue()) after mdp_m2m_release().
+- add computation of plane address with data_offset.
+- fix scale ratio check issue.
+- add default v4l2_format setting.
+
+Changes since v2:
+- modify code for review comment from Tomasz Figa & Alexandre Courbot
+- review comment from Rob Herring will offer code revision in v4, due to
+  it's related to device node modification, will need to modify code
+  architecture
+
+Changes since v1:
+- modify code for CMDQ v3 API support
+- EC ipi cmd migration
+- fix compliance test fail item (m2m cmd with -f) due to there is two problem in runing all format(-f) cmd:
+1. out of memory before test complete
+        Due to capture buffer mmap (refcount + 1) after reqbuf but seems
+        no corresponding munmap called before device close.
+        There are total 12XX items(formats) in format test and each format
+        alloc 8 capture/output buffers.
+2. unceasingly captureBufs() (randomly)
+        Seems the break statement didn't catch the count == 0 situation:
+        In v4l2-test-buffers.cpp, function: captureBufs()
+                        ...
+                        count--;
+                        if (!node->is_m2m && !count)
+                                break;
+        Log is as attachment
+
+I will paste the test result with problem part in another e-mail
+
+Hi,
+
+This is the first version of RFC patch for Media Data Path 3 (MDP3),
+MDP3 is used for scaling and color format conversion.
+support using GCE to write register in critical time limitation.
+support V4L2 m2m device control.
+
+Moudy Ho (5):
+  soc: mediatek: mutex: add support for MDP
+  soc: mediatek: mmsys: Add support for MDP
+  dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+  dts: arm64: mt8183: Add Mediatek MDP3 nodes
+  media: platform: mtk-mdp3: Add Mediatek MDP3 driver
+
+ .../bindings/media/mediatek,mdp3-ccorr.yaml   |   57 +
+ .../bindings/media/mediatek,mdp3-rdma.yaml    |  207 +++
+ .../bindings/media/mediatek,mdp3-rsz.yaml     |   65 +
+ .../bindings/media/mediatek,mdp3-wdma.yaml    |   71 +
+ .../bindings/media/mediatek,mdp3-wrot.yaml    |   71 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  110 ++
+ drivers/media/platform/Kconfig                |   19 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/mtk-mdp3/Makefile      |    6 +
+ .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   19 +
+ drivers/media/platform/mtk-mdp3/mdp_reg_isp.h |   27 +
+ .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   65 +
+ drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |   39 +
+ .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |   47 +
+ .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   55 +
+ drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  280 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  507 +++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   46 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1307 +++++++++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  147 ++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  329 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   75 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  801 ++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   41 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  746 ++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  372 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  312 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   78 +
+ drivers/soc/mediatek/mt8183-mmsys.h           |  235 +++
+ drivers/soc/mediatek/mtk-mmsys.c              |  164 +++
+ drivers/soc/mediatek/mtk-mmsys.h              |    9 +-
+ drivers/soc/mediatek/mtk-mutex.c              |  106 +-
+ include/linux/soc/mediatek/mtk-mmsys.h        |   81 +
+ include/linux/soc/mediatek/mtk-mutex.h        |    8 +
+ 34 files changed, 6495 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+ create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ccorr.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_isp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
+
 -- 
-2.20.1
+2.18.0
 
