@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D433F5DE9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 14:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5988D3F5DFA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 14:28:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237178AbhHXMYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 08:24:52 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:38766 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbhHXMYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 08:24:51 -0400
-Received: by mail-ot1-f45.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso34210440ots.5;
-        Tue, 24 Aug 2021 05:24:07 -0700 (PDT)
+        id S237232AbhHXM2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 08:28:50 -0400
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:35328 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230132AbhHXM2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 08:28:50 -0400
+Received: by mail-oo1-f49.google.com with SMTP id o17-20020a4a64110000b0290263e1ba7ff9so6433633ooc.2;
+        Tue, 24 Aug 2021 05:28:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YOpisWwE2AtZUvDm9pU+nX/33+ebZs5q4FxhHFD85u4=;
-        b=kf7NamiL14sz6rOFEtSw5QaD53JYPdRjHj+v7RWtcXfsZoIJYzg+nlvRyVhss58Hb8
-         yn1168g2wVwxwDuTyYgFoCixtNuKkfdhi7LmPTOpSOBAEvgtEqtxUdZT4rn6dJFQ34yu
-         kvZmFHs3CcPmj/v2enFSDNFqKgzPeJnJhF6bPD2iQoCH6ThKTPyKnkbxkDj8lzMpglYU
-         y5jnsaddMxuicweXeiAfdBGaclnAsG6tRGZE7dCSKLnPydCZHWX4a18ApbFl4lIUzOuu
-         +6cW3lgnk3+8yCuqMULbK4Av7phnP5AMTLMkCQMpoXpssg6UdzB4vZ6gIDBoxW3xsxcI
-         6DHQ==
-X-Gm-Message-State: AOAM533TyFwguQVTysajfNxRs1jKiHtPuWJX5MS9g747FgVI0GvCrD/8
-        mJjPzXcLmyjzqlUL8vSAbw==
-X-Google-Smtp-Source: ABdhPJwVBjO0Ez+4iwU9v9RKrH3MYflFy6b7Ssq2UV4pK3ZXl9j2oQAbFWwrK9+S0RBdlPW9ZwR3nQ==
-X-Received: by 2002:a9d:17c2:: with SMTP id j60mr33147836otj.128.1629807847166;
-        Tue, 24 Aug 2021 05:24:07 -0700 (PDT)
+        bh=uytETCdTYH7zYm638OpCPQhienPtJvPvpm9AsV+41jY=;
+        b=c1iPdCljf5IiS4o5TO+YT5qAvofrSxBjrGMe+YKWgIP7IL5Cyd21fMh4dYogllnIuo
+         j6VvRjZp6uzlNubed+cQnsV7KSGMDSBt77HsKfaLk8Su5FOayXcaOfU2ttbsuxzTGB6d
+         wtPbtDQzUDGe+89+hpAsiybg/LdzmWfvgeOJ5yE0OvWbFqBGvzC/bcJyT2PEope0Xg/O
+         pjD8x1MjnQBTbIJUwdfpWXW1t0x7obe105ksNKfvPVs2X8rcGUArNvtrZ+Bk2lndp7bB
+         R0741ZO0AIRz0lZ3lbSRoKwX0LTXYgRULGPgZ0OaNFSPUhM0N8+NSTOHckn6Fh4AtZkJ
+         XQnQ==
+X-Gm-Message-State: AOAM532XVxuCpGwWqjyOtmKOqYWQzZNQPA8BIw8cVYzpE9ECJ/JxXaPC
+        AZ4vMXCD3zHTkZgi4AxhJg==
+X-Google-Smtp-Source: ABdhPJyUiS/ppMDAOP2s9nFPC4Ys3GDxLfh08N/rOFcCLdJi0T2d/kGnruFHvZ0NuJoO3QUBnJEA7Q==
+X-Received: by 2002:a4a:3e58:: with SMTP id t85mr29684525oot.81.1629808086143;
+        Tue, 24 Aug 2021 05:28:06 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id z26sm4362417oih.3.2021.08.24.05.24.05
+        by smtp.gmail.com with ESMTPSA id f17sm3176408otl.24.2021.08.24.05.28.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 05:24:06 -0700 (PDT)
-Received: (nullmailer pid 51545 invoked by uid 1000);
-        Tue, 24 Aug 2021 12:24:05 -0000
-Date:   Tue, 24 Aug 2021 07:24:05 -0500
+        Tue, 24 Aug 2021 05:28:05 -0700 (PDT)
+Received: (nullmailer pid 58470 invoked by uid 1000);
+        Tue, 24 Aug 2021 12:28:04 -0000
+Date:   Tue, 24 Aug 2021 07:28:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     ulf.hansson@linaro.org, alexandre.belloni@bootlin.com,
-        linux-mmc@vger.kernel.org, robh+dt@kernel.org,
-        ludovic.desroches@microchip.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, nicolas.ferre@microchip.com
-Subject: Re: [PATCH v3 1/4] dt-bindings: pwrseq-sd8787: add binding for
- wilc1000
-Message-ID: <YSTk5cbpne4QPazI@robh.at.kernel.org>
-References: <20210820092803.78523-1-claudiu.beznea@microchip.com>
- <20210820092803.78523-2-claudiu.beznea@microchip.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        devicetree@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: chemical: Document
+ senseair,sunrise CO2 sensor
+Message-ID: <YSTl1Ku9jZnDLL21@robh.at.kernel.org>
+References: <20210822184927.94673-1-jacopo@jmondi.org>
+ <20210822184927.94673-2-jacopo@jmondi.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210820092803.78523-2-claudiu.beznea@microchip.com>
+In-Reply-To: <20210822184927.94673-2-jacopo@jmondi.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Aug 2021 12:28:00 +0300, Claudiu Beznea wrote:
-> Add binding for wilc1000 devices.
+On Sun, 22 Aug 2021 20:49:25 +0200, Jacopo Mondi wrote:
+> Add documentation for the Senseair Sunrise 006-0-0007 CO2 NDIR sensor.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 > ---
->  Documentation/devicetree/bindings/mmc/mmc-pwrseq-sd8787.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> v2->v3:
+> - Fix syntax error reported by dt_binding_check
+>   The device node label in the example cannot contain '-'
+> - Add 'Typically' to the gpios polarities description
+> 
+> v1->v2:
+> - Add maxItems to -gpios properties as suggested by Rob
+> - Add a label to the device node in the example as suggested by Rob
+> ---
+>  .../iio/chemical/senseair,sunrise.yaml        | 55 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
