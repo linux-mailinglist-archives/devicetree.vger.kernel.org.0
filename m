@@ -2,72 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4793F568D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 05:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1409D3F56AE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 05:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233826AbhHXDPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 23:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233885AbhHXDPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 23:15:40 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B40C061575
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 20:14:56 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id a21so24546361ioq.6
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 20:14:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=bCnVayHBuVpPrP1LlpTrGujU7UxkSLVqSyea5lPLgkc=;
-        b=n3BHFTh4ifXr8L6OX8Y9jUuRrZu4yYUfcpTeqcwarwgDfz6NQRZxF88q++qkxermaA
-         WsrA1+03KxUacVMp6JFGw47KCPay4K1QUoK8nHReiQnSY28BcXmtIYnSOlE/WbyjOg+W
-         6kks3fCrRt4E3yC/2T8IuAPZtNnAJY2RGUQBv0TNHNTpt4uOnPdB4Rr/YUbI7waKchBB
-         OMhRdkVdSl7IhJMm7v8CPkqaOQ3yeseWkaA6MpeGuzlJ7Xfzy74pUDzkVM4tnjKC2l+e
-         tWTaKEIQy4SpP1zyRUvj3ztNfcidIKFSJkcJNqX7zTGnLajlDj4UdQfdXyQgpceV/z0V
-         PN0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=bCnVayHBuVpPrP1LlpTrGujU7UxkSLVqSyea5lPLgkc=;
-        b=lShz5YzawCa4KkRQ3EocMBwmUsLeT/smtFIsyyrHR87OWyvjb5KJxWLxSEE07fFU3c
-         Tu05R6N2gl0fwoX1RQQON7NZRb0JPL9Izln4q4MUA2XQAIK7TM0MPq+x4buWl1s0LlXC
-         otBq23XusQDNDS0rZRDFd6a32gGcvwP4jW/a8+/ft+iT9UubwCmR4eXix577ZxQ/v2id
-         z4mFPyEPj8RWEap79/Y5/Z2fFzkEi9vVT60c4jxChw+zWA+X/PXpf2ZSK7gEy58K+DO/
-         R0RnKhK7wWV9XaqO9wPiQndkbVIMyVHjgYRIRYIArn7GK+LwcK/FwZ6PzDe4p+IqJxic
-         Wj/A==
-X-Gm-Message-State: AOAM5314ECLVHktWSwAEzpzkjqO4bb2WzCQHJM1sDyPBlshs3q8pivv4
-        9xw0y8N1cedb9beOTdWrWHgeTvodYxBS05gHFzs=
-X-Google-Smtp-Source: ABdhPJz009FnIskgNKyo7vwWV0e+p6yaxd3oRtw6sKs0eRHJRe/y4CNbFXipRA4Z8KGytUxiBIYVmAnP8HsNDEub4K0=
-X-Received: by 2002:a6b:f007:: with SMTP id w7mr28901252ioc.112.1629774896347;
- Mon, 23 Aug 2021 20:14:56 -0700 (PDT)
+        id S233997AbhHXDbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 23:31:21 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56084 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232605AbhHXDbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 23:31:20 -0400
+X-UUID: e3251f992b184ad29520da5bd1691e4a-20210824
+X-UUID: e3251f992b184ad29520da5bd1691e4a-20210824
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 731564968; Tue, 24 Aug 2021 11:30:33 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 24 Aug 2021 11:30:31 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 24 Aug 2021 11:30:31 +0800
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
+        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>
+Subject: [RESEND PATCH v5 0/7] Introducing an attribute to select the time setting
+Date:   Tue, 24 Aug 2021 11:30:21 +0800
+Message-ID: <1629775828-19993-1-git-send-email-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Received: by 2002:ad5:4bc5:0:0:0:0:0 with HTTP; Mon, 23 Aug 2021 20:14:56
- -0700 (PDT)
-Reply-To: ramonaqino002@aol.com
-From:   "Mr. Ramon Aquino" <ibrahyusuf112@gmail.com>
-Date:   Tue, 24 Aug 2021 11:14:56 +0800
-Message-ID: <CAD-k=6vYHbAFcncJVE+KnTTmYeNpm3KQHChrwcaoTy+quxvNkA@mail.gmail.com>
-Subject: Greetings with Urgent Info.
-To:     aaptel@suse.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v5:
+1. Replace the previous variable name "default_timing_adjust" with "use-default-timing"
+2. Added waiting for dma reset mechanism
+3. Remove received patch(dt-bindings: i2c: update bindings for MT8195 SOC)
+
+v4:
+1. Remove the repeated assignment of the inter_clk_div parameter
+2. Modify the wrong assignment of OFFSET_MULTI_DMA
+3. Unify the log print format of the i2c_dump_register() and drop the extra outer parentheses
+4. Place the fixes at the very least
+5. Add fixed tags 25708278f810 ("i2c: mediatek: Add i2c support for MediaTek MT8183")
+6. Add "i2c: mediatek: modify bus speed calculation formula"
+7. Fix single line characters exceeding 80 characters
+8. Combine two different series of patches.
+
+v3:
+1. Fix code errors caused by v2 modification
+
+v2:
+1. Add "dt-bindings: i2c: add attribute default-timing-adjust"
+2. Split the fix into sepatate patch.
+
+Kewei Xu (7):
+  i2c: mediatek: fixing the incorrect register offset
+  i2c: mediatek: Reset the handshake signal between i2c and dma
+  i2c: mediatek: Dump i2c/dma register when a timeout occurs
+  dt-bindings: i2c: add attribute use-default-timing
+  i2c: mediatek: Add OFFSET_EXT_CONF setting back
+  i2c: mediatek: Isolate speed setting via dts for special devices
+  i2c: mediatek: modify bus speed calculation formula
+
+ .../devicetree/bindings/i2c/i2c-mt65xx.txt         |   2 +
+ drivers/i2c/busses/i2c-mt65xx.c                    | 207 +++++++++++++++++++--
+ 2 files changed, 192 insertions(+), 17 deletions(-)
+
 -- 
-Greetings and Peace of God  to you
+1.9.1
 
-How are you doing today and I hope you're having a great day? You have
-not replied to my Proposal Message to you? Which you know that it
-needs an Urgent Attention.
-
-However, I'm seeking your support and co-operation towards a private
-business transaction that we will both stand to gain tremendously on
-the success of the transaction. Please if you are interested do not
-hesitate to indicate with immediate respond.
-
-Am waiting to hear from you soon.
-Best Regards,
-Mr. Ramon Aquino
