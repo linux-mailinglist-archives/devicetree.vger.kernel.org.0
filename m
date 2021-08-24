@@ -2,415 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7601B3F68AA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 20:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D35A3F68B0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 20:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238562AbhHXSDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 14:03:48 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:39529 "EHLO
+        id S239302AbhHXSES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 14:04:18 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:38471 "EHLO
         mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231863AbhHXSDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 14:03:42 -0400
-Received: by mail-ot1-f44.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so48350698otf.6;
-        Tue, 24 Aug 2021 11:02:58 -0700 (PDT)
+        with ESMTP id S235098AbhHXSEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 14:04:04 -0400
+Received: by mail-ot1-f44.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso37139533ots.5;
+        Tue, 24 Aug 2021 11:03:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uNMRYMllxWL8XGJk3ETIsCnQBUzMHoUdrT2h5SkH/6Y=;
-        b=oZSww1SfBYuf9Gbq8uNnuKhNj5qhaHEQ5ihj4QA83GFSpuuntUm7k3AjSUZsOSnRsj
-         A3X8ZvduNYSdNIGgc1+hKdDdOkQ6gHR8lkuMg3K94ndin69YZefLoC7qFAD0T/TBIYhd
-         98bYv4B8VW6PKLKBA/yVMrofwDhDRIsM9tuQXQ2ZYkaVTfCOXE8GaVOUOzmRuHx7TJYG
-         3FIeltBc59yAsLXAfrspfip8/66ukUaZqFG6fBAdgJ+gnnBQzVdFyW48j8Zr3JLkLvFQ
-         fdhFBxrpSe5rgMQbtSeSp4TtjoEr0qiuZlkBi9JTLsMOTgd1sbDmGhS8iJnt/mMxcEL3
-         nhcA==
-X-Gm-Message-State: AOAM531XUeZ7GeGrXvv90LJkPEkHvWs8Ec3d0CeWHm5mQ1FimSN5XRlI
-        ZnR0Lva67j3HvUyUksKxGQ==
-X-Google-Smtp-Source: ABdhPJx7GMzxBvvweeX3MRXjWRK901bURfGJIMnVZwwutLazSpJSraaQ0ZU64MXeBUVS/xase701ng==
-X-Received: by 2002:aca:d06:: with SMTP id 6mr3707372oin.105.1629828176982;
-        Tue, 24 Aug 2021 11:02:56 -0700 (PDT)
+        bh=pzcR6KfvbOWTe3o73soBGsabxlr0DD0//iL4Tmb4lKw=;
+        b=KNuOiNgN5uu9w403gOxaMH3ok6i0TRY0LIQwFYEbdY89Iugv341B5tgysKBxPMWJsO
+         YJ2ZVrssR7IyMsTB5iIWy1juvX1YTb9SjqgrcAsvUPVU7zhYl0Rl6/9fAJ34lQmVel+q
+         eUjSbPUj7fDvkzZR8kbpmnx0iqfvdQEvGpfx6chUYCQCSSeO22+CwHE0cxAPB/4WcdAV
+         HuAUkQ+X3UYF8ln1KWKgWehvcjMvslPSysrOJEPRv9FjXZRY8zVxlbRATRVfK7NsKBJJ
+         PrAVTCWB6t+9Is1GklR5Af3MqFlW6K3+2hKepDgj8Gk93EwAHWgQFwskgGiggy7POe1r
+         8E9Q==
+X-Gm-Message-State: AOAM533S2ieK60PLty+eQAzEiBQDnUuiDBqY1jQu/xHlLOPUhPPJxonh
+        7Tjb0aW3eXnxVSFfuWm5pA==
+X-Google-Smtp-Source: ABdhPJwUCQ0B+E1Lp9msS+XzKTGdquG6FeiXzSimbNOU3cWCcnsa1SXe0WgxlpKbAWQKc3CrIlWVKA==
+X-Received: by 2002:aca:bfc4:: with SMTP id p187mr3742944oif.21.1629828200154;
+        Tue, 24 Aug 2021 11:03:20 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t1sm4702931otp.9.2021.08.24.11.02.55
+        by smtp.gmail.com with ESMTPSA id bg9sm4676161oib.26.2021.08.24.11.03.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 11:02:56 -0700 (PDT)
-Received: (nullmailer pid 725482 invoked by uid 1000);
-        Tue, 24 Aug 2021 18:02:54 -0000
-Date:   Tue, 24 Aug 2021 13:02:54 -0500
+        Tue, 24 Aug 2021 11:03:19 -0700 (PDT)
+Received: (nullmailer pid 726225 invoked by uid 1000);
+        Tue, 24 Aug 2021 18:03:18 -0000
+Date:   Tue, 24 Aug 2021 13:03:18 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Moudy Ho <moudy.ho@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tfiga@chromium.org, drinkcat@chromium.org, acourbot@chromium.org,
-        pihsun@chromium.org, menghui.lin@mediatek.com,
-        sj.huang@mediatek.com, ben.lok@mediatek.com, randy.wu@mediatek.com,
-        srv_heupstream@mediatek.com, hsinyi@google.com
-Subject: Re: [PATCH v7 3/5] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
-Message-ID: <YSU0TrfFCsaI1TqV@robh.at.kernel.org>
-References: <20210824100027.25989-1-moudy.ho@mediatek.com>
- <20210824100027.25989-4-moudy.ho@mediatek.com>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Rob Herring <robh+dt@kernel.org>, broonie@kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        heiko@sntech.de, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 4/4] ASoC: dt-bindings: rockchip: Add compatible for
+ rk3568 spdif
+Message-ID: <YSU0Zk5LpSX9xZG1@robh.at.kernel.org>
+References: <1629800162-12824-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629800162-12824-5-git-send-email-sugar.zhang@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210824100027.25989-4-moudy.ho@mediatek.com>
+In-Reply-To: <1629800162-12824-5-git-send-email-sugar.zhang@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 24, 2021 at 06:00:25PM +0800, Moudy Ho wrote:
-> This patch adds DT binding document for Media Data Path 3 (MDP3)
-> a unit in multimedia system used for scaling and color format convert.
+On Tue, 24 Aug 2021 18:16:02 +0800, Sugar Zhang wrote:
+> This patch adds compatible string for rk3568 spdif.
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
 > ---
->  .../bindings/media/mediatek,mdp3-ccorr.yaml   |  57 +++++
->  .../bindings/media/mediatek,mdp3-rdma.yaml    | 207 ++++++++++++++++++
->  .../bindings/media/mediatek,mdp3-rsz.yaml     |  65 ++++++
->  .../bindings/media/mediatek,mdp3-wdma.yaml    |  71 ++++++
->  .../bindings/media/mediatek,mdp3-wrot.yaml    |  71 ++++++
->  5 files changed, 471 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wdma.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
-> new file mode 100644
-> index 000000000000..59fd68b46022
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-ccorr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek Media Data Path 3 CCORR Device Tree Bindings
-> +
-> +maintainers:
-> +  - Daoyuan Huang <daoyuan.huang@mediatek.com>
-> +  - Moudy Ho <moudy.ho@mediatek.com>
-> +
-> +description: |
-> +  One of Media Data Path 3 (MDP3) components used to do color correction with 3X3 matrix.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - mediatek,mt8183-mdp3-ccorr
-> +
-> +  mediatek,mdp3-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +    description: |
-> +      HW index to distinguish same functionality modules.
+>  Documentation/devicetree/bindings/sound/rockchip-spdif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-If we wanted h/w indexes in DT, we'd have a standard property. Why do 
-you need this?
-
-> +
-> +  reg:
-> +    description: |
-> +      Physical base address and length of the function block
-> +      register space, the number aligns with the component
-> +      and its own subcomponent.
-
-Drop and add 'maxItems: 1'
-
-> +
-> +  mediatek,gce-client-reg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      sub-system id corresponding to the global command engine (GCE)
-
-You mean 'phandle to GCE and sub-system id'?
-
-> +      register address.
-> +      $ref: /schemas/mailbox/mtk-gce.txt
-
-Kind of looks like jsonschema but in the description and to a .txt 
-file...
-
-> +
-> +  clocks:
-> +    minItems: 1
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    #include <dt-bindings/gce/mt8183-gce.h>
-> +
-> +    mdp3_ccorr: mdp3_ccorr@1401c000 {
-> +      compatible = "mediatek,mt8183-mdp3-ccorr";
-> +      mediatek,mdp3-id = <0>;
-> +      reg = <0x1401c000 0x1000>;
-> +      mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xc000 0x1000>;
-> +      clocks = <&mmsys CLK_MM_MDP_CCORR>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> new file mode 100644
-> index 000000000000..b355d7fe791e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> @@ -0,0 +1,207 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-rdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek Media Data Path 3 Device Tree Bindings
-> +
-> +maintainers:
-> +  - Daoyuan Huang <daoyuan.huang@mediatek.com>
-> +  - Moudy Ho <moudy.ho@mediatek.com>
-> +
-> +description: |
-> +  One of Media Data Path 3 (MDP3) components used to do read DMA.
-> +  RDMA0 is also used to be a controller node containing MMSYS,
-> +  MUTEX, GCE and SCP settings.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - enum:
-
-Should be indented 2 more spaces. Install yamllint and check with 'make 
-dt_binding_check'.
-
-> +          # controller node
-> +          - mediatek,mt8183-mdp3
-
-And then 2 more here.
-
-> +        - enum:
-> +          - mediatek,mt8183-mdp3-rdma
-> +
-> +      - items:
-> +        - enum:
-> +          # read DMA
-> +          - mediatek,mt8183-mdp3-rdma
-> +
-> +  mediatek,scp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
-> +    description: |
-> +      The node of system control processor (SCP), using
-> +      the remoteproc & rpmsg framework.
-> +      $ref: /schemas/remoteproc/mtk,scp.yaml
-> +
-> +  mediatek,mdp3-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    maxItems: 1
-> +    description: |
-> +      In MDP3, it can allocate multiple identical modules for
-> +      different data path selection or multi-pipeline execution.
-> +      This node is used to indicate the ID of each module.
-> +
-> +  mdp3-comps:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    items:
-> +        - enum:
-
-And this is 2 too many spaces...
-
-> +          # MDP direct-link input path selection, create a
-> +          # component for path connectedness of HW pipe control
-> +          - mediatek,mt8183-mdp3-dl1
-> +        - enum:
-> +          - mediatek,mt8183-mdp3-dl2
-> +        - enum:
-> +          # MDP direct-link output path selection, create a
-> +          # component for path connectedness of HW pipe control
-> +          - mediatek,mt8183-mdp3-path1
-> +        - enum:
-> +          - mediatek,mt8183-mdp3-path2
-> +        - enum:
-> +          # Input DMA of ISP PASS2 (DIP) module for raw image input
-> +          - mediatek,mt8183-mdp3-imgi
-> +        - enum:
-> +          # Output DMA of ISP PASS2 (DIP) module for YUV image output
-> +          - mediatek,mt8183-mdp3-exto
-> +
-> +  mdp3-comp-ids:
-> +    maxItems: 1
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-If only a single item, then it's a 'uint32' not an array.
-
-> +    description: |
-> +      Pipeline ID of MDP direct-link or DIP.
-> +
-> +  reg:
-> +    description: |
-> +      Physical base address and length of the function block
-> +      register space, the number aligns with the component
-> +      and its own subcomponent.
-> +
-> +  mediatek,gce-client-reg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      sub-system id corresponding to the global command engine (GCE)
-> +      register address.
-> +      $ref: /schemas/mailbox/mtk-gce.txt
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 6
-
-Need to define what they are.
-
-> +
-> +  iommus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-iommus already has a type definition.
-
-> +    description: |
-> +      Should point to the respective IOMMU block with master
-> +      port as argument.
-> +      $ref: /schemas/iommu/mediatek,iommu.yaml
-
-No. Drop (the whole description because you don't need generic 
-descriptions for common properties).
-
-What's needed is how many entries (maxItems: 1).
-
-> +
-> +  mediatek,mmsys:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
-> +    description: |
-> +      The node of mux(multiplexer) controller for HW connections.
-> +
-> +  mediatek,mm-mutex:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
-> +    description: |
-> +      The node of sof(start of frame) signal controller.
-> +
-> +  mediatek,mailbox-gce:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      The node of global command engine (GCE), used to read/write
-> +      registers with critical time limitation.
-> +      $ref: /schemas/mailbox/mtk-gce.txt
-> +
-> +  mboxes:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      $ref: /schemas/mailbox/mailbox.txt
-> +
-> +  gce-subsys:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: |
-> +      sub-system id corresponding to the global command engine (GCE)
-> +      register address.
-> +      $ref: /schemas/mailbox/mtk-gce.txt
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      items:
-> +        - enum:
-> +          - mediatek,mt8183-mdp3
-> +        - enum:
-> +          - mediatek,mt8183-mdp3-rdma
-
-Normally, you want to use 'contains' for if/then schemas:
-
-compatible:
-  contains:
-    const: mediatek,mt8183-mdp3
-
-> +
-> +then:
-> +  required:
-> +    - mediatek,scp
-> +    - mediatek,mmsys
-> +    - mediatek,mm-mutex
-> +    - mediatek,mailbox-gce
-> +    - mboxes
-> +    - gce-subsys
-> +
-> +required:
-> +  - compatible
-> +  - mediatek,mdp3-id
-> +  - reg
-> +  - clocks
-> +  - mediatek,gce-client-reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    #include <dt-bindings/gce/mt8183-gce.h>
-> +    #include <dt-bindings/power/mt8183-power.h>
-> +    #include <dt-bindings/memory/mt8183-larb-port.h>
-> +
-> +    mdp3_rdma0: mdp3_rdma0@14001000 {
-> +      compatible = "mediatek,mt8183-mdp3",
-> +                   "mediatek,mt8183-mdp3-rdma";
-> +      mediatek,scp = <&scp>;
-> +      mediatek,mdp3-id = <0>;
-> +      mdp3-comps = "mediatek,mt8183-mdp3-dl1", "mediatek,mt8183-mdp3-dl2",
-> +                   "mediatek,mt8183-mdp3-path1", "mediatek,mt8183-mdp3-path2",
-> +                   "mediatek,mt8183-mdp3-imgi", "mediatek,mt8183-mdp3-exto";
-> +      mdp3-comp-ids = <0 1 0 1 0 1>;
-> +      reg = <0x14001000 0x1000>,
-> +            <0x14000000 0x1000>,
-> +            <0x14005000 0x1000>,
-> +            <0x14006000 0x1000>,
-> +            <0x15020000 0x1000>;
-> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x1000 0x1000>,
-> +                                <&gce SUBSYS_1400XXXX 0 0x1000>,
-> +                                <&gce SUBSYS_1400XXXX 0x5000 0x1000>,
-> +                                <&gce SUBSYS_1400XXXX 0x6000 0x1000>,
-> +                                <&gce SUBSYS_1502XXXX 0 0x1000>;
-> +      power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
-> +      clocks = <&mmsys CLK_MM_MDP_RDMA0>,
-> +               <&mmsys CLK_MM_MDP_RSZ1>,
-> +               <&mmsys CLK_MM_MDP_DL_TXCK>,
-> +               <&mmsys CLK_MM_MDP_DL_RX>,
-> +               <&mmsys CLK_MM_IPU_DL_TXCK>,
-> +               <&mmsys CLK_MM_IPU_DL_RX>;
-> +      iommus = <&iommu>;
-> +      mediatek,mmsys = <&mmsys>;
-> +      mediatek,mm-mutex = <&mutex>;
-> +      mediatek,mailbox-gce = <&gce>;
-> +      mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST 0>,
-> +               <&gce 21 CMDQ_THR_PRIO_LOWEST 0>,
-> +               <&gce 22 CMDQ_THR_PRIO_LOWEST 0>,
-> +               <&gce 23 CMDQ_THR_PRIO_LOWEST 0>;
-> +      gce-subsys = <&gce 0x14000000 SUBSYS_1400XXXX>,
-> +                   <&gce 0x14010000 SUBSYS_1401XXXX>,
-> +                   <&gce 0x14020000 SUBSYS_1402XXXX>,
-> +                   <&gce 0x15020000 SUBSYS_1502XXXX>;
-> +    };
-> \ No newline at end of file
-
-Fix this.
-
-Similar comments on the rest.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
