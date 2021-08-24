@@ -2,158 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C183F61CB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 17:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1698D3F6200
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 17:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235683AbhHXPim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 11:38:42 -0400
-Received: from mail-vk1-f181.google.com ([209.85.221.181]:44941 "EHLO
-        mail-vk1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234546AbhHXPim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 11:38:42 -0400
-Received: by mail-vk1-f181.google.com with SMTP id n200so5627126vke.11;
-        Tue, 24 Aug 2021 08:37:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8W/b4Zs7QlTFiLiHqg4R1eNWEYzfOGp8NKoTU4rVhKA=;
-        b=RPeurstyYiWf/UhoO+FkDXR0YD7x6jifnJTYErbm91f9WiOWytWrMCGaibfFbzckre
-         cJ4tLbKN7B5Sgnf234ok95WkZ05PmYoAE8fwJ2QjlY2Y17M5R0l2Ktv9OU1v88AnIopm
-         DSxjbiv4bO2+4Rz6ngl1eBUEgRD8R0AHpbwIbi+FUD+mcWTGdtnE3uLOzI5xoFBfX/lB
-         vWIrHBbBM4KYtbQQ9fer9C4JmceploOqpVXFS/UphtcdpSx1AJ9fUkc/ydBFtmXkPCr1
-         ChSpSW0kJmkxWisgpplrZCfaOzLLhN/lz47KLWLKI83ElIwo7WJschSIj9Dr8TxZwSlR
-         jOsw==
-X-Gm-Message-State: AOAM531pCHLdOaONbHRlY3zIweQmV59AODZ2XXP4pe/D6n602fXqGGbf
-        Ns4XVhhzkyR7pmertaeX03H4YaZDOfaQdZhCgHU=
-X-Google-Smtp-Source: ABdhPJw7X4YBRuB9DCRyn1OtJxsT/kOHIFh2YwXUt+EqIC8Jx4d0sSzrsnrXnQx1sQoSqUrpfEzwwX8ZXeMi/JsubkE=
-X-Received: by 2002:a1f:2c97:: with SMTP id s145mr22706660vks.24.1629819477568;
- Tue, 24 Aug 2021 08:37:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com> <20210819154436.117798-5-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20210819154436.117798-5-krzysztof.kozlowski@canonical.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 24 Aug 2021 17:37:46 +0200
-Message-ID: <CAMuHMdWN3Y9Ca9J-iJFpmDAYKpNH5GQuf3yFdyyb2rem8z_spg@mail.gmail.com>
-Subject: Re: [PATCH 5/6] riscv: microchip: mpfs: drop duplicated MMC/SDHC node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Atish Patra <atish.patra@wdc.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
+        id S238421AbhHXPuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 11:50:11 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.167]:13341 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238287AbhHXPuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 11:50:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1629820163;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Z/5zWNp0e+XXevjZGGIjoXisq5NlaUH+55xKsFFvgjA=;
+    b=qMfJSybJDcqmJaJ0zJVIfFYndAkBTZ4r9p8IVFbjdd5mdaAVMz4DMDeu53/zqOg6B+
+    D4EZxZxkpZo9dNwmcxqR0UFQCulMfP2WmK4eaHCtXGI+3ytCOt8fUxgj2XAfIXedTDFJ
+    GKjBwJozxuJEsvAppKmpqkkhB71MzXMv8n61CO09kAJsvlMoqWFmTZd+TXY4VcRYSVCV
+    3JQrqIYS1XhqA7dGkelaPt1T7Bu9DzVsLbFFqcmZ8Qa1L/UvzpLNWcjODJP3EyBWTQs8
+    29L+kNjpHTG49GBoEdkLzc+ZGmjF2DsF3wwPJ2KEmxqpsGY1AVowIA7i6/AFTMCS9qTj
+    jgiA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8puK1A=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.31.0 DYNA|AUTH)
+    with ESMTPSA id L01e9cx7OFnMmOL
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 24 Aug 2021 17:49:22 +0200 (CEST)
+Date:   Tue, 24 Aug 2021 17:49:18 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        An?bal Lim?n <anibal.limon@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss
+ and mpss
+Message-ID: <YSUU/r9OdK5OtNNn@gerhold.net>
+References: <20200108055735.660475-1-bjorn.andersson@linaro.org>
+ <20210217223406.1422005-1-anibal.limon@linaro.org>
+ <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
+ <YSUGLFx2QST9vgIU@ripper>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YSUGLFx2QST9vgIU@ripper>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Tue, Aug 24, 2021 at 07:46:04AM -0700, Bjorn Andersson wrote:
+> On Tue 24 Aug 05:39 PDT 2021, Dmitry Baryshkov wrote:
+> 
+> > On Thu, 18 Feb 2021 at 01:38, Aníbal Limón <anibal.limon@linaro.org> wrote:
+> > >
+> > > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > >
+> > > Enable the mpss remoteproc node and specify the firmware-name for this
+> > > and the wcnss remoteproc on the Dragonboard 410c.
+> > >
+> > > Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@linaro.org
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > [rebased and moved to use pronto label]
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > Tested-by: Aníbal Limón <anibal.limon@linaro.org>
+> > 
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > 
+> 
+> Thanks Dmitry, not sure why this hasn't been merged yet.
+> 
 
-On Thu, Aug 19, 2021 at 5:45 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
-> Devicetree source is a description of hardware and hardware has only one
-> block @20008000 which can be configured either as eMMC or SDHC.  Having
-> two node for different modes is an obscure, unusual and confusing way to
-> configure it.  Instead the board file is supposed to customize the block
-> to its needs, e.g. to SDHC mode.
->
-> This fixes dtbs_check warning:
->   arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: $nodename:0: 'sdhc@20008000' does not match '^mmc(@.*)?$'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+This patch keeps getting stuck for some reason.
+It was sent several times already but always forgotten. :)
 
-Thanks for your patch!
+> Taking a further look at this I noticed that we never pushed the
+> firmware to linux-firmware either, which I think was because we where
+> uncertain of the directory structure at the time - a discussion which
+> has been settled since.
+> 
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> > > index 3c7f97539390..8f1ada75d3ed 100644
+> > > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+> > > @@ -301,6 +301,11 @@ &lpass {
+> > >         status = "okay";
+> > >  };
+> > >
+> > > +&mpss {
+> > > +       status = "okay";
+> > > +       firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt";
+> 
+> But if we're pushing things to linux-firmware, does anyone object
+> against following the existing style and squashing the mdt+bNN files
+> into .mbn (and thereby making this modem.mbn and below wcnss.mbn)?
+> 
 
-> --- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> @@ -43,8 +43,16 @@ &serial3 {
->         status = "okay";
->  };
->
-> -&sdcard {
-> +&mmc {
->         status = "okay";
-> +
-> +       disable-wp;
-> +       cap-sd-highspeed;
-> +       card-detect-delay = <200>;
-> +       sd-uhs-sdr12;
-> +       sd-uhs-sdr25;
-> +       sd-uhs-sdr50;
-> +       sd-uhs-sdr104;
->  };
->
->  &emac0 {
-> diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> index cb54da0cc3c4..c4ccd7e4d3eb 100644
-> --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> @@ -262,25 +262,7 @@ serial3: serial@20104000 {
->                         status = "disabled";
->                 };
->
-> -               emmc: mmc@20008000 {
-> -                       compatible = "cdns,sd4hc";
-> -                       reg = <0x0 0x20008000 0x0 0x1000>;
-> -                       interrupt-parent = <&plic>;
-> -                       interrupts = <88 89>;
+You made this change in some version already :)
+https://lore.kernel.org/linux-arm-msm/20210312003318.3273536-6-bjorn.andersson@linaro.org/
 
-Note that the other node has only a single interrupt.
-Which one is correct?
+I think there was no real objection back then but more confusion about
+how to get the squashed .mbn variant. Having it in linux-firmware would
+certainly make it a lot easier overall if you can make that happen. :)
 
-> -                       pinctrl-names = "default";
-> -                       clocks = <&clkcfg 6>;
-> -                       bus-width = <4>;
-> -                       cap-mmc-highspeed;
-> -                       mmc-ddr-3_3v;
-> -                       max-frequency = <200000000>;
-> -                       non-removable;
-> -                       no-sd;
-> -                       no-sdio;
-> -                       voltage-ranges = <3300 3300>;
-> -                       status = "disabled";
-> -               };
-> -
-> -               sdcard: sdhc@20008000 {
-> +               mmc: mmc@20008000 {
->                         compatible = "cdns,sd4hc";
->                         reg = <0x0 0x20008000 0x0 0x1000>;
->                         interrupt-parent = <&plic>;
-> @@ -288,13 +270,6 @@ sdcard: sdhc@20008000 {
->                         pinctrl-names = "default";
->                         clocks = <&clkcfg 6>;
->                         bus-width = <4>;
+The latest version of this patch that I am aware of is the following one:
+https://lore.kernel.org/linux-arm-msm/20210531224453.783218-1-bjorn.andersson@linaro.org/
 
-I think bus-width should be moved to the board .dts, too.
+As I wrote there it's mainly stuck on getting the related wcn36xx patch [1]
+merged. Can you resend that one maybe?
 
-> -                       disable-wp;
-> -                       cap-sd-highspeed;
-> -                       card-detect-delay = <200>;
-> -                       sd-uhs-sdr12;
-> -                       sd-uhs-sdr25;
-> -                       sd-uhs-sdr50;
-> -                       sd-uhs-sdr104;
->                         max-frequency = <200000000>;
->                         status = "disabled";
->                 };
+Thanks,
+Stephan
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[1]: https://lore.kernel.org/linux-arm-msm/20210312003318.3273536-3-bjorn.andersson@linaro.org/
