@@ -2,149 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B513D3F5A53
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 11:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA133F5AB1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 11:13:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235508AbhHXJAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 05:00:53 -0400
-Received: from mga17.intel.com ([192.55.52.151]:21969 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235488AbhHXJAx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Aug 2021 05:00:53 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10085"; a="197517193"
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; 
-   d="scan'208";a="197517193"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2021 02:00:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,346,1620716400"; 
-   d="scan'208";a="597515663"
-Received: from ubuntu18.png.intel.com ([10.88.229.69])
-  by fmsmga001.fm.intel.com with ESMTP; 24 Aug 2021 02:00:05 -0700
-From:   nandhini.srikandan@intel.com
-To:     fancer.lancer@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, mgross@linux.intel.com,
-        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
-        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
-        mahesh.r.vaidya@intel.com, nandhini.srikandan@intel.com,
-        rashmi.a@intel.com
-Subject: [PATCH v2 2/2] spi: dw: Add support for Intel Thunder Bay SPI
-Date:   Tue, 24 Aug 2021 16:58:56 +0800
-Message-Id: <20210824085856.12714-3-nandhini.srikandan@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210824085856.12714-1-nandhini.srikandan@intel.com>
-References: <20210824085856.12714-1-nandhini.srikandan@intel.com>
+        id S235603AbhHXJOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 05:14:39 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:54365 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232653AbhHXJOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 05:14:38 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 17O8rEbJ098381;
+        Tue, 24 Aug 2021 16:53:14 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 24 Aug
+ 2021 17:11:46 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <p.zabel@pengutronix.de>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [RESEND v4 00/15] Add support for ast2600 ADC
+Date:   Tue, 24 Aug 2021 17:12:28 +0800
+Message-ID: <20210824091243.9393-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 17O8rEbJ098381
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+This patch serials make aspeed_adc.c can support ast2600 and backward
+compatible.
 
-Add support for Intel Thunder Bay SPI controller, which uses DesignWare
-DWC_ssi core.
-Bit 31 of CTRLR0 register is set for Thunder Bay, to
-configure the device as a master or as a slave serial peripheral.
-Bit 14(SSTE) of CTRLR0 register should be set(1) for Thunder Bay.
+RESEND due to miss some patches when sent patch v4.
+Change since v3:
+dt-bindings:
+  - Fix properties:aspeed,int_vref_mv type error.
 
-Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
----
- drivers/spi/spi-dw-core.c |  7 +++++--
- drivers/spi/spi-dw-mmio.c | 20 +++++++++++++++++++-
- drivers/spi/spi-dw.h      | 12 +++++++++---
- 3 files changed, 33 insertions(+), 6 deletions(-)
+Change since v2:
+dt-bindings:
+  - Create a new dt-bindings for ast2600 adc
+aspeed_adc.c:
+  - Splits the patch for more details
+  - Remove version enum and use the flags in model data to distinguish
+  hardware feature
+  - Support trimming data get and set.
+  - Use devm_add_action_or_reset to simplify probe error handling.
 
-diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-index a305074c482e..f7d45318db8a 100644
---- a/drivers/spi/spi-dw-core.c
-+++ b/drivers/spi/spi-dw-core.c
-@@ -300,8 +300,11 @@ static u32 dw_spi_prepare_cr0(struct dw_spi *dws, struct spi_device *spi)
- 		/* CTRLR0[13] Shift Register Loop */
- 		cr0 |= ((spi->mode & SPI_LOOP) ? 1 : 0) << DWC_SSI_CTRLR0_SRL_OFFSET;
- 
--		if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
--			cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
-+		if (dws->caps & DW_SPI_CAP_DWC_MST)
-+			cr0 |= DWC_SSI_CTRLR0_MST;
-+
-+		if (dws->caps & DW_SPI_CAP_DWC_SSTE)
-+			cr0 |= DWC_SSI_CTRLR0_SSTE;
- 	}
- 
- 	return cr0;
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 3379720cfcb8..2bd1dedd90b0 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -217,7 +217,24 @@ static int dw_spi_dwc_ssi_init(struct platform_device *pdev,
- static int dw_spi_keembay_init(struct platform_device *pdev,
- 			       struct dw_spi_mmio *dwsmmio)
- {
--	dwsmmio->dws.caps = DW_SPI_CAP_KEEMBAY_MST | DW_SPI_CAP_DWC_SSI;
-+	/*
-+	 * Set MST to make keem bay SPI as master.
-+	 */
-+	dwsmmio->dws.caps = DW_SPI_CAP_DWC_MST | DW_SPI_CAP_DWC_SSI;
-+
-+	return 0;
-+}
-+
-+static int dw_spi_thunderbay_init(struct platform_device *pdev,
-+				  struct dw_spi_mmio *dwsmmio)
-+{
-+	/*
-+	 * Set MST to make thunder bay SPI as master.
-+	 * Set SSTE to enable slave select toggle bit which is required
-+	 * for the slave devices connected to the thunder bay SPI controller.
-+	 */
-+	dwsmmio->dws.caps = DW_SPI_CAP_DWC_MST | DW_SPI_CAP_DWC_SSTE |
-+			    DW_SPI_CAP_DWC_SSI;
- 
- 	return 0;
- }
-@@ -349,6 +366,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
- 	{ .compatible = "renesas,rzn1-spi", .data = dw_spi_dw_apb_init},
- 	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
- 	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
-+	{ .compatible = "intel,thunderbay-ssi", .data = dw_spi_thunderbay_init},
- 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
- 	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
- 	{ /* end of table */}
-diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-index b665e040862c..9fffe0a02f3a 100644
---- a/drivers/spi/spi-dw.h
-+++ b/drivers/spi/spi-dw.h
-@@ -76,11 +76,16 @@
- #define DWC_SSI_CTRLR0_DFS_OFFSET	0
- 
- /*
-- * For Keem Bay, CTRLR0[31] is used to select controller mode.
-+ * CTRLR0[31] is used to select controller mode.
-  * 0: SSI is slave
-  * 1: SSI is master
-  */
--#define DWC_SSI_CTRLR0_KEEMBAY_MST	BIT(31)
-+#define DWC_SSI_CTRLR0_MST		BIT(31)
-+
-+/*
-+ * CTRLR0[14] is used to enable/disable Slave Select Toggle bit
-+ */
-+#define DWC_SSI_CTRLR0_SSTE		BIT(14)
- 
- /* Bit fields in CTRLR1 */
- #define SPI_NDF_MASK			GENMASK(15, 0)
-@@ -122,9 +127,10 @@ enum dw_ssi_type {
- 
- /* DW SPI capabilities */
- #define DW_SPI_CAP_CS_OVERRIDE		BIT(0)
--#define DW_SPI_CAP_KEEMBAY_MST		BIT(1)
-+#define DW_SPI_CAP_DWC_MST		BIT(1)
- #define DW_SPI_CAP_DWC_SSI		BIT(2)
- #define DW_SPI_CAP_DFS32		BIT(3)
-+#define DW_SPI_CAP_DWC_SSTE		BIT(4)
- 
- /* Slave spi_transfer/spi_mem_op related */
- struct dw_spi_cfg {
+Changes since v1:
+dt-bindings:
+  - Fix the aspeed,adc.yaml check error.
+  - Add battery-sensing property.
+aspeed_adc.c:
+  - Change the init flow:
+    Clock and reference voltage setting should be completed before adc
+    engine enable.
+  - Change the default sampling rate to meet most user case.
+  - Add patch #8 to suppoert battery sensing mode.
+
+Billy Tsai (15):
+  dt-bindings: iio: adc: Add ast2600-adc bindings
+  iio: adc: aspeed: completes the bitfield declare.
+  iio: adc: aspeed: set driver data when adc probe.
+  iio: adc: aspeed: Keep model data to driver data.
+  iio: adc: aspeed: Refactory model data structure
+  iio: adc: aspeed: Add vref config function
+  iio: adc: aspeed: Set num_channels with model data
+  iio: adc: aspeed: Use model_data to set clk scaler.
+  iio: adc: aspeed: Use devm_add_action_or_reset.
+  iio: adc: aspeed: Support ast2600 adc.
+  iio: adc: aspeed: Fix the calculate error of clock.
+  iio: adc: aspeed: Add func to set sampling rate.
+  iio: adc: aspeed: Add compensation phase.
+  iio: adc: aspeed: Support battery sensing.
+  iio: adc: aspeed: Get and set trimming data.
+
+ .../bindings/iio/adc/aspeed,ast2600-adc.yaml  |  97 +++
+ drivers/iio/adc/aspeed_adc.c                  | 562 +++++++++++++++---
+ 2 files changed, 569 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml
+
 -- 
-2.17.1
+2.25.1
 
