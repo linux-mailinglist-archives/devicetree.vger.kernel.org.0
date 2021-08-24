@@ -2,200 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D701F3F5595
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 03:48:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D681A3F5587
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 03:41:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232355AbhHXBss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 21:48:48 -0400
-Received: from regular1.263xmail.com ([211.150.70.206]:44906 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232186AbhHXBsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 21:48:47 -0400
-X-Greylist: delayed 376 seconds by postgrey-1.27 at vger.kernel.org; Mon, 23 Aug 2021 21:48:47 EDT
-Received: from localhost (unknown [192.168.167.32])
-        by regular1.263xmail.com (Postfix) with ESMTP id A09A71B42;
-        Tue, 24 Aug 2021 09:41:28 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.19] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P4269T140595588744960S1629769282126384_;
-        Tue, 24 Aug 2021 09:41:23 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <dfd36154bac7861c5a1b7918fe326a5b>
-X-RL-SENDER: sugar.zhang@rock-chips.com
-X-SENDER: zxg@rock-chips.com
-X-LOGIN-NAME: sugar.zhang@rock-chips.com
-X-FST-TO: zhengxing@rock-chips.com
-X-RCPT-COUNT: 7
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH 14/15] ASoC: rockchip: i2s: Add support for 'rockchip,
- clk-trcm' property
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        broonie@kernel.org, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Xing Zheng <zhengxing@rock-chips.com>
-References: <1629715710-21137-1-git-send-email-sugar.zhang@rock-chips.com>
- <1629716076-21465-5-git-send-email-sugar.zhang@rock-chips.com>
- <5017702.Vq9jUBFu5T@archbook>
-From:   sugar zhang <sugar.zhang@rock-chips.com>
-Message-ID: <a17f688f-3219-33e2-bf75-3c5d197ba274@rock-chips.com>
-Date:   Tue, 24 Aug 2021 09:41:21 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S233573AbhHXBmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 21:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42278 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229742AbhHXBmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 21:42:12 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4808FC061757
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 18:41:29 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id w68so16933951pfd.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 18:41:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=r45wkiYyF8/1VbTkxokZIQKR4JTP9pwQ0FkD+cQcN5Y=;
+        b=VlMloLwXKazHvYh00p8ygCg4WckEC7kxtg4QGGQNK6Lb9YQiAI4VrFVeyfhXlIaMiX
+         w5j9cl3IpA6D5lJLvJ7SdpCESpAnEPelAjfqfxKNRoo6gM877OPhGj1oITP7ESQ14MH2
+         +bx7FH81EgKqLR1SQeQupAW8mKX7nrtP5QDtwPAJgsHCMi+dnaagM6v7mKrir8DRDxWw
+         i9/N/ggMMbmS1mEBTXXS0wdy3VqkOA7YIDPGDQM4H2/NVcdxNjdx/As6z2njwKyQShOH
+         aYjbeBOuAaXqCWsZy/CqHG3vVtD1ye1YlqVove76ZGQOELm4r+NEAfhiUX1vr4yL4/G3
+         G/zQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=r45wkiYyF8/1VbTkxokZIQKR4JTP9pwQ0FkD+cQcN5Y=;
+        b=tDkhsCRJaoao7fiy5HwHpkuGcXmZBG4Q39zdjflwiv5E1UlYQ8zvBGi97Hn221mrLx
+         F3uFaWYCIXwwN1RK26cCUSGEmWfvXxbnX5QXihW0bmmXx+4OjSjr0E2KSzMAUipdfRLi
+         T3KWLDB1U5wxcg3JKmRlB/rFbT4pHPt3Nr8tyJb22nh2Cs5DQ/YrQryYBV3sAAZtTS4t
+         lGzkNSrtnoeIfeQi6gGtP6dfoYM7A9mVmutRzhI0PM7k1IVlpprzaAbgu290LIbs4uL8
+         mlDS/677BDkFv/ekEbBI0XvSg2TD/q2TWDZtAYzq8dak13zkTHuDlt1Dtvs5CkrioT/R
+         7qHQ==
+X-Gm-Message-State: AOAM533mtGdt6hkW85dJnzJPqRzKM8+kBWHZ51D7Kdl0dhwi60P55u7Y
+        +COXCl32c7MI+jrgjAazeGfHLw==
+X-Google-Smtp-Source: ABdhPJyrSRULA0ot4zGJ13mvsrw2Rp1qlYatCGISkmx89QcR50tlecrk0ZIOj4XzlSHRrf5ipnzU/A==
+X-Received: by 2002:a05:6a00:24ca:b0:3e1:14fc:e34c with SMTP id d10-20020a056a0024ca00b003e114fce34cmr35700393pfv.76.1629769288759;
+        Mon, 23 Aug 2021 18:41:28 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id p3sm457377pjt.0.2021.08.23.18.41.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 18:41:28 -0700 (PDT)
+From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
+To:     sam@ravnborg.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org,
+        dianders@google.com, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+        yangcong5@huaqin.corp-partner.google.com
+Subject: Re: [v2 0/2] Add driver for BOE tv110c9m-ll3 panel
+Date:   Tue, 24 Aug 2021 09:41:24 +0800
+Message-Id: <20210824014124.1080798-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <YSPAseE6WD8dDRuz@ravnborg.org>
+References: <YSPAseE6WD8dDRuz@ravnborg.org>
 MIME-Version: 1.0
-In-Reply-To: <5017702.Vq9jUBFu5T@archbook>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+Hi Sam,
+  This driver support boe tv1110c9m-ll3 and inx hj110iz-01a panel.The IC chip is used NT36523, which is a new IC.
+ 
+1: panel-boe-tv101wum-nl6.c driver cannot meet the timing requirements of the current two panel.
 
-On 2021/8/23 19:47, Nicolas Frattaroli wrote:
-> On Montag, 23. August 2021 12:54:35 CEST Sugar Zhang wrote:
->> From: Xing Zheng <zhengxing@rock-chips.com>
->>
->> If there is only one lrck (tx or rx) by hardware, we need to
->> use 'rockchip,clk-trcm' to specify which lrck can be used.
->>
->> Change-Id: I3bf8d87a6bc8c45e183040012d87d8be21a4c133
->> Signed-off-by: Xing Zheng <zhengxing@rock-chips.com>
->> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
->> ---
->>   sound/soc/rockchip/rockchip_i2s.c | 22 +++++++++++++---------
->>   1 file changed, 13 insertions(+), 9 deletions(-)
->>
->> diff --git a/sound/soc/rockchip/rockchip_i2s.c
->> b/sound/soc/rockchip/rockchip_i2s.c index 6ccb62e..b9d9c88 100644
->> --- a/sound/soc/rockchip/rockchip_i2s.c
->> +++ b/sound/soc/rockchip/rockchip_i2s.c
->> @@ -54,6 +54,7 @@ struct rk_i2s_dev {
->>   	bool is_master_mode;
->>   	const struct rk_i2s_pins *pins;
->>   	unsigned int bclk_ratio;
->> +	unsigned int clk_trcm;
->>   };
->>
->>   /* tx/rx ctrl lock */
->> @@ -321,7 +322,6 @@ static int rockchip_i2s_hw_params(struct
->> snd_pcm_substream *substream, struct snd_soc_dai *dai)
->>   {
->>   	struct rk_i2s_dev *i2s = to_info(dai);
->> -	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
->>   	unsigned int val = 0;
->>   	unsigned int mclk_rate, bclk_rate, div_bclk, div_lrck;
->>
->> @@ -421,13 +421,6 @@ static int rockchip_i2s_hw_params(struct
->> snd_pcm_substream *substream, regmap_update_bits(i2s->regmap, I2S_DMACR,
->> I2S_DMACR_RDL_MASK,
->>   			   I2S_DMACR_RDL(16));
->>
->> -	val = I2S_CKR_TRCM_TXRX;
->> -	if (dai->driver->symmetric_rate && rtd->dai_link->symmetric_rate)
->> -		val = I2S_CKR_TRCM_TXONLY;
->> -
->> -	regmap_update_bits(i2s->regmap, I2S_CKR,
->> -			   I2S_CKR_TRCM_MASK,
->> -			   val);
->>   	return 0;
->>   }
->>
->> @@ -531,7 +524,6 @@ static struct snd_soc_dai_driver rockchip_i2s_dai = {
->>   			    SNDRV_PCM_FMTBIT_S32_LE),
->>   	},
->>   	.ops = &rockchip_i2s_dai_ops,
->> -	.symmetric_rate = 1,
->>   };
->>
->>   static const struct snd_soc_component_driver rockchip_i2s_component = {
->> @@ -750,6 +742,18 @@ static int rockchip_i2s_probe(struct platform_device
->> *pdev) else if (of_property_read_bool(node, "rockchip,capture-only"))
->>   		soc_dai->playback.channels_min = 0;
->>
->> +	i2s->clk_trcm = I2S_CKR_TRCM_TXRX;
->> +	if (!of_property_read_u32(node, "rockchip,clk-trcm", &val)) {
->> +		if (val >= 0 && val <= 2) {
->> +			i2s->clk_trcm = val << I2S_CKR_TRCM_SHIFT;
->> +			if (i2s->clk_trcm)
->> +				soc_dai->symmetric_rate = 1;
->> +		}
->> +	}
->> +
->> +	regmap_update_bits(i2s->regmap, I2S_CKR,
->> +			   I2S_CKR_TRCM_MASK, i2s->clk_trcm);
->> +
->>   	ret = devm_snd_soc_register_component(&pdev->dev,
->>   					      &rockchip_i2s_component,
->>   					      soc_dai, 1);
-> Hello,
->
-> I recommend doing the same thing with clk-trcm that I'm going to do in v3 of
-> my i2s-tdm driver, as per Robin Murphy's suggestion:
->
-> Have tx-only and rx-only be two boolean properties. I named them
-> rockchip,trcm-sync-tx-only and rockchip,trcm-sync-rx-only.
->
-> I also recommend only shifting the value when writing it to registers, and
-> storing it in its unshifted state for debug reasons.
-okay, will do in v2.
-> My probe function looks like this:
->
-> 	i2s_tdm->clk_trcm = TRCM_TXRX;
-> 	if (of_property_read_bool(node, "rockchip,trcm-sync-tx-only"))
-> 		i2s_tdm->clk_trcm = TRCM_TX;
-> 	if (of_property_read_bool(node, "rockchip,trcm-sync-rx-only")) {
-> 		if (i2s_tdm->clk_trcm) {
-> 			dev_err(i2s_tdm->dev, "invalid trcm-sync
-> configuration\n");
-> 			return -EINVAL;
-> 		}
-> 		i2s_tdm->clk_trcm = TRCM_RX;
-> 	}
-> 	if (i2s_tdm->clk_trcm != TRCM_TXRX)
-> 		i2s_tdm_dai.symmetric_rate = 1;
->
-> When writing clk_trcm to a register, I then just do:
->
-> 	regmap_update_bits(i2s_tdm->regmap, I2S_CKR, I2S_CKR_TRCM_MASK,
-> 			   i2s_tdm->clk_trcm << I2S_CKR_TRCM_SHIFT);
->
-> This way if I need to add an error message or debug print somewhere, then
-> clk_trcm is still either 0, 1 or 2.
->
-> In general, we should look into supporting both i2s and i2s-tdm controllers in
-> the same driver if possible. This way we don't need to duplicate work like
-> this. Do you think this is feasible to do? When I looked at the register maps
-> I saw that the bits I2S/TDM uses were reserved in the I2S version of the
-> controller, so I think it should work.
+2: The screen cannot be work in HS mode, panel-boe-tv101wum-nl6.c will switch to HS mode when boe_panel_enter_sleep_mode.
 
-It's possible, but will make the driver much more complicate(a lot of 
-'if...else...').
+static int boe_panel_enter_sleep_mode(struct boe_panel *boe)
+{
+	struct mipi_dsi_device *dsi = boe->dsi;
+	int ret;
 
-Though the registers were compatible, but the design is totally 
-different, such as clks, reset signal,  pins and core logic.
+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+	...
+	...
+}
 
-so, split into two drivers to support old controller and new one.
-
-> Regards,
-> Nicolas Frattaroli
->
->
->
->
->
--- 
-Best Regards!
-张学广/Sugar
-瑞芯微电子股份有限公司
-Rockchip Electronics Co., Ltd.
-
-
-
+thanks.
