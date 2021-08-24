@@ -2,139 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 011E33F5571
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 03:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D701F3F5595
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 03:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233575AbhHXBS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 21:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233567AbhHXBS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 21:18:28 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A141DC061757
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 18:17:45 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id y23so18269093pgi.7
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 18:17:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Hqn67LxL3lG3twDFl2dpaEiJy0jyMcHPR1Uu+GiQgVA=;
-        b=v73Zr5Q8pN7sStTrMPxEY3ITjm7HbhS4Dw7jKdD4VGbGcZG72luOiHCDKRu5C5LuEW
-         Tsyj2Ep9MJI3t/W2YLYwY8OaHQy8UbQQaHtNyjFw0yX6VO0sxXKFZ1O2ILzCnlgV0KjH
-         XMTesil4WZ9dWMCZ+zJ74rwNJrr8yvWOblfMPlGNWN+TXqhsK+0rFyNLdNbfYpr7IamA
-         zC7a4HOfxwsfSIEo/NZcuJ0zDADfBUAigPRiJwelVIGAGFTu/vVExDHk0ux1whKuDC5U
-         SuOCk9R3Na1fwlB8v8FCd022NesV626edWrG5zGhHtfGjec5Io/CJNaU/BiwCFtmn83+
-         p2Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Hqn67LxL3lG3twDFl2dpaEiJy0jyMcHPR1Uu+GiQgVA=;
-        b=Ti59AKD9dwhRgbfeeEQIaCvj8auKtA0L5YrC3LvcVJe0pEAZER2bEmO05VhAjP3ey6
-         9mkCtyANYIc8H6SQFKcodN89rcgWaJDje0TJezZcP5d9suanZzF1vL5PyYVytHtqD/v4
-         q1Prhc2Xwpo9gdvy4wbkN78bNb2x9dPWF8QRYUXT/PqwlaOR81LL11pdbT4IK5lvYBAX
-         q9Y/S7StJYVC+dTV3rUVudXeWipEKIrerLOU8KDRFKyRA93m/B43Rg0ACWxVOOq3VyGr
-         AGXb/dgcAVKrkUdFI92cftbPy4nvXnbxNsCDoQYQh5pRNmIzZRg920wtkp1LabmJu42+
-         O+ww==
-X-Gm-Message-State: AOAM533rvcgunQAihNP4SSiT0MrKuyJNH/72RgF35cWxkPJ/gkWsavNb
-        UEx06u4QlBPwNu7KYTQ/zZZZ3Q==
-X-Google-Smtp-Source: ABdhPJzoptsMtsMBaGJ1f/2Nl5/lIr6SJerpLtnEjmXym1WbcktKQBRjUA2lqjy2dTRi9CQ/Qjs6pQ==
-X-Received: by 2002:a05:6a00:134e:b0:3e1:1ed:80ff with SMTP id k14-20020a056a00134e00b003e101ed80ffmr36035307pfu.34.1629767865125;
-        Mon, 23 Aug 2021 18:17:45 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id c17sm416876pjq.16.2021.08.23.18.17.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 23 Aug 2021 18:17:44 -0700 (PDT)
-Date:   Tue, 24 Aug 2021 09:17:38 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm630: Add missing a2noc qos
- clocks
-Message-ID: <20210824011737.GA22595@dragon>
-References: <20210823095603.5538-1-shawn.guo@linaro.org>
- <20210823095603.5538-4-shawn.guo@linaro.org>
- <CAA8EJpqPMMvtDL5NqUJTDfVEAqX9VD9Y_TWmXxh8DpS8hwDuJg@mail.gmail.com>
+        id S232355AbhHXBss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 21:48:48 -0400
+Received: from regular1.263xmail.com ([211.150.70.206]:44906 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232186AbhHXBsr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 21:48:47 -0400
+X-Greylist: delayed 376 seconds by postgrey-1.27 at vger.kernel.org; Mon, 23 Aug 2021 21:48:47 EDT
+Received: from localhost (unknown [192.168.167.32])
+        by regular1.263xmail.com (Postfix) with ESMTP id A09A71B42;
+        Tue, 24 Aug 2021 09:41:28 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.19] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P4269T140595588744960S1629769282126384_;
+        Tue, 24 Aug 2021 09:41:23 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <dfd36154bac7861c5a1b7918fe326a5b>
+X-RL-SENDER: sugar.zhang@rock-chips.com
+X-SENDER: zxg@rock-chips.com
+X-LOGIN-NAME: sugar.zhang@rock-chips.com
+X-FST-TO: zhengxing@rock-chips.com
+X-RCPT-COUNT: 7
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH 14/15] ASoC: rockchip: i2s: Add support for 'rockchip,
+ clk-trcm' property
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        broonie@kernel.org, heiko@sntech.de,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Xing Zheng <zhengxing@rock-chips.com>
+References: <1629715710-21137-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629716076-21465-5-git-send-email-sugar.zhang@rock-chips.com>
+ <5017702.Vq9jUBFu5T@archbook>
+From:   sugar zhang <sugar.zhang@rock-chips.com>
+Message-ID: <a17f688f-3219-33e2-bf75-3c5d197ba274@rock-chips.com>
+Date:   Tue, 24 Aug 2021 09:41:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpqPMMvtDL5NqUJTDfVEAqX9VD9Y_TWmXxh8DpS8hwDuJg@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <5017702.Vq9jUBFu5T@archbook>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 07:51:32PM +0300, Dmitry Baryshkov wrote:
-> On Mon, 23 Aug 2021 at 12:56, Shawn Guo <shawn.guo@linaro.org> wrote:
-> >
-> > It adds the missing a2noc clocks required for QoS registers programming
-> > per downstream kernel[1].
-> >
-> > [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
-> >
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm630.dtsi | 17 ++++++++++++++---
-> >  1 file changed, 14 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > index 9153e6616ba4..b3a7f3bf1560 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > @@ -652,11 +652,22 @@
-> >
-> >                 a2noc: interconnect@1704000 {
-> >                         compatible = "qcom,sdm660-a2noc";
-> > -                       reg = <0x01704000 0xc100>;
-> > +                       reg = <0x01704000 0x1c000>;
-> 
-> Shawn, as you are at it, do we want to keep these nocs shifted
-> compared to the downstream dtsi (so that the offset of QoS registers
-> is 0) or we'd better introduce QoS register offset and move noc start
-> address to the same address as in downstream?
+Hi Nicolas,
 
-Dmitry, thanks for spotting this!  This is really an unintended leftover
-from debugging.  I will drop it in v2.  For address alignment with
-downstream, I do not really have a strong opinion and I can live with
-either of them :)
+On 2021/8/23 19:47, Nicolas Frattaroli wrote:
+> On Montag, 23. August 2021 12:54:35 CEST Sugar Zhang wrote:
+>> From: Xing Zheng <zhengxing@rock-chips.com>
+>>
+>> If there is only one lrck (tx or rx) by hardware, we need to
+>> use 'rockchip,clk-trcm' to specify which lrck can be used.
+>>
+>> Change-Id: I3bf8d87a6bc8c45e183040012d87d8be21a4c133
+>> Signed-off-by: Xing Zheng <zhengxing@rock-chips.com>
+>> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+>> ---
+>>   sound/soc/rockchip/rockchip_i2s.c | 22 +++++++++++++---------
+>>   1 file changed, 13 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/sound/soc/rockchip/rockchip_i2s.c
+>> b/sound/soc/rockchip/rockchip_i2s.c index 6ccb62e..b9d9c88 100644
+>> --- a/sound/soc/rockchip/rockchip_i2s.c
+>> +++ b/sound/soc/rockchip/rockchip_i2s.c
+>> @@ -54,6 +54,7 @@ struct rk_i2s_dev {
+>>   	bool is_master_mode;
+>>   	const struct rk_i2s_pins *pins;
+>>   	unsigned int bclk_ratio;
+>> +	unsigned int clk_trcm;
+>>   };
+>>
+>>   /* tx/rx ctrl lock */
+>> @@ -321,7 +322,6 @@ static int rockchip_i2s_hw_params(struct
+>> snd_pcm_substream *substream, struct snd_soc_dai *dai)
+>>   {
+>>   	struct rk_i2s_dev *i2s = to_info(dai);
+>> -	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
+>>   	unsigned int val = 0;
+>>   	unsigned int mclk_rate, bclk_rate, div_bclk, div_lrck;
+>>
+>> @@ -421,13 +421,6 @@ static int rockchip_i2s_hw_params(struct
+>> snd_pcm_substream *substream, regmap_update_bits(i2s->regmap, I2S_DMACR,
+>> I2S_DMACR_RDL_MASK,
+>>   			   I2S_DMACR_RDL(16));
+>>
+>> -	val = I2S_CKR_TRCM_TXRX;
+>> -	if (dai->driver->symmetric_rate && rtd->dai_link->symmetric_rate)
+>> -		val = I2S_CKR_TRCM_TXONLY;
+>> -
+>> -	regmap_update_bits(i2s->regmap, I2S_CKR,
+>> -			   I2S_CKR_TRCM_MASK,
+>> -			   val);
+>>   	return 0;
+>>   }
+>>
+>> @@ -531,7 +524,6 @@ static struct snd_soc_dai_driver rockchip_i2s_dai = {
+>>   			    SNDRV_PCM_FMTBIT_S32_LE),
+>>   	},
+>>   	.ops = &rockchip_i2s_dai_ops,
+>> -	.symmetric_rate = 1,
+>>   };
+>>
+>>   static const struct snd_soc_component_driver rockchip_i2s_component = {
+>> @@ -750,6 +742,18 @@ static int rockchip_i2s_probe(struct platform_device
+>> *pdev) else if (of_property_read_bool(node, "rockchip,capture-only"))
+>>   		soc_dai->playback.channels_min = 0;
+>>
+>> +	i2s->clk_trcm = I2S_CKR_TRCM_TXRX;
+>> +	if (!of_property_read_u32(node, "rockchip,clk-trcm", &val)) {
+>> +		if (val >= 0 && val <= 2) {
+>> +			i2s->clk_trcm = val << I2S_CKR_TRCM_SHIFT;
+>> +			if (i2s->clk_trcm)
+>> +				soc_dai->symmetric_rate = 1;
+>> +		}
+>> +	}
+>> +
+>> +	regmap_update_bits(i2s->regmap, I2S_CKR,
+>> +			   I2S_CKR_TRCM_MASK, i2s->clk_trcm);
+>> +
+>>   	ret = devm_snd_soc_register_component(&pdev->dev,
+>>   					      &rockchip_i2s_component,
+>>   					      soc_dai, 1);
+> Hello,
+>
+> I recommend doing the same thing with clk-trcm that I'm going to do in v3 of
+> my i2s-tdm driver, as per Robin Murphy's suggestion:
+>
+> Have tx-only and rx-only be two boolean properties. I named them
+> rockchip,trcm-sync-tx-only and rockchip,trcm-sync-rx-only.
+>
+> I also recommend only shifting the value when writing it to registers, and
+> storing it in its unshifted state for debug reasons.
+okay, will do in v2.
+> My probe function looks like this:
+>
+> 	i2s_tdm->clk_trcm = TRCM_TXRX;
+> 	if (of_property_read_bool(node, "rockchip,trcm-sync-tx-only"))
+> 		i2s_tdm->clk_trcm = TRCM_TX;
+> 	if (of_property_read_bool(node, "rockchip,trcm-sync-rx-only")) {
+> 		if (i2s_tdm->clk_trcm) {
+> 			dev_err(i2s_tdm->dev, "invalid trcm-sync
+> configuration\n");
+> 			return -EINVAL;
+> 		}
+> 		i2s_tdm->clk_trcm = TRCM_RX;
+> 	}
+> 	if (i2s_tdm->clk_trcm != TRCM_TXRX)
+> 		i2s_tdm_dai.symmetric_rate = 1;
+>
+> When writing clk_trcm to a register, I then just do:
+>
+> 	regmap_update_bits(i2s_tdm->regmap, I2S_CKR, I2S_CKR_TRCM_MASK,
+> 			   i2s_tdm->clk_trcm << I2S_CKR_TRCM_SHIFT);
+>
+> This way if I need to add an error message or debug print somewhere, then
+> clk_trcm is still either 0, 1 or 2.
+>
+> In general, we should look into supporting both i2s and i2s-tdm controllers in
+> the same driver if possible. This way we don't need to duplicate work like
+> this. Do you think this is feasible to do? When I looked at the register maps
+> I saw that the bits I2S/TDM uses were reserved in the I2S version of the
+> controller, so I think it should work.
 
-Shawn
+It's possible, but will make the driver much more complicate(a lot of 
+'if...else...').
 
-> >                         #interconnect-cells = <1>;
-> > -                       clock-names = "bus", "bus_a";
-> > +                       clock-names = "bus",
-> > +                                     "bus_a",
-> > +                                     "ipa",
-> > +                                     "ufs_axi",
-> > +                                     "aggre2_ufs_axi",
-> > +                                     "aggre2_usb3_axi",
-> > +                                     "cfg_noc_usb2_axi";
-> >                         clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
-> > -                                <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
-> > +                                <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
-> > +                                <&rpmcc RPM_SMD_IPA_CLK>,
-> > +                                <&gcc GCC_UFS_AXI_CLK>,
-> > +                                <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
-> > +                                <&gcc GCC_AGGRE2_USB3_AXI_CLK>,
-> > +                                <&gcc GCC_CFG_NOC_USB2_AXI_CLK>;
-> >                 };
-> >
-> >                 mnoc: interconnect@1745000 {
-> > --
-> > 2.17.1
-> >
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+Though the registers were compatible, but the design is totally 
+different, such as clks, reset signal,  pins and core logic.
+
+so, split into two drivers to support old controller and new one.
+
+> Regards,
+> Nicolas Frattaroli
+>
+>
+>
+>
+>
+-- 
+Best Regards!
+张学广/Sugar
+瑞芯微电子股份有限公司
+Rockchip Electronics Co., Ltd.
+
+
+
