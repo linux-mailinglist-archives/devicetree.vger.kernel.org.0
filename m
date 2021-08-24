@@ -2,144 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C43013F60D9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E81EF3F6114
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:57:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237860AbhHXOpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 10:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53140 "EHLO
+        id S238013AbhHXO5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 10:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238037AbhHXOpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:45:32 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FF6C061764
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:44:48 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso35447056ots.5
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:44:48 -0700 (PDT)
+        with ESMTP id S237990AbhHXO5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:57:50 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED1FC0613C1
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:57:06 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id f2so38224554ljn.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 07:57:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=AeRXMAsFKFtCmgO4aNf9vhF215sQMxa0Gch/8WOqfAM=;
-        b=eyWlUTkwhOd0cFWHm8X30LzO/K/KeLiPSU/BsB3sXTZChAtoqXj8FbzYThh5W19/Qe
-         CiYT8dd6zlJzDEteo+RXCzGZ+CG43gaJ+qZH/dx2EbT7Rko+mRyP+/tPf1Q4MS2eov13
-         vMM+NFJ2eIiOBugMLiAyb8DcfwP0XGdvCixVCF7ppjOngF3550ISqaeCRVkExUCiUYcT
-         1yelGthl31bS/NXyAzjy0xaIWWvhcdwpXKuA9yf8YyEZDz4kXZM2jyjHvIpzw+GqwVGH
-         lbxIk7z9Z0N/yA/s1qEAVJb3uQIfjFtjMlu2TcN2CyvRb5kScqnBxvk55F2owTs8A55B
-         Uxkw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=q47KpM04JtXbjrX4Th8KJJ2WJfmQTigKdxRxjyOEcFo=;
+        b=irzcDqLfZcL8M9bY1pfhENXo7KmRfT4Wa6liQxiru7DlQIPrr1a1jcv+sdlnVTnfNF
+         kTz3nq4Terj5e/D8wMuUpLch/sXpwIiGVaq/EdRAeC7Xgc2CuBuDMHzM5AJFzczgmdbP
+         kK7r68SgojvNOSfuRDLqBqnDF/bg+ugza3KEjo6vIH50Eb9gFaSWJIgIhUwGtgtTwIoh
+         C3nNBskl60FUC8rW3xPt7l7xfXwFnzHL2r+nJvVQhdav3DmrDGvkOqQgLLTDWOPBM67c
+         cYhCheaEK39sFD1rWMqyYpBsWve18iBR7JNHv2FHSYV37DsIH86p5FEl5d21EtJAxhuN
+         moRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AeRXMAsFKFtCmgO4aNf9vhF215sQMxa0Gch/8WOqfAM=;
-        b=oA1X518NxUXxedQqMYaVZ6IHVp78r9rPfU0PjZVp0X2pJsmUWSvZvMvoBo7hgPLTyF
-         k50f5oCWw5OrcqKcZJ7bLfhChkmvnWzlB8hz6WIrUtvdz70UuZWtWPQgFXKWU77PZa3O
-         G4iJAFS2fUhDwHF8M6ChSwdLl8mQ8xgubUhLrWNmdYpQhQuoJL3K0QcpSbVMQ4nDYEJm
-         dv27bQ+lIMpGOZHmtbTEDKU9Y3Htrc5+9n7kT2sNHCC5bgi1oZtTP86ZEDLo31wBYgWL
-         v68c84M0kU9wuWgb8DUmzeT7svLEJxMAKKdkgNmRPhdiszLAE2uHY5eAtw59PUxIzvIB
-         sPBA==
-X-Gm-Message-State: AOAM531N8PYpuNjk2LFukjK4WsQ1z4qXWD/QMsuq27b8aEG7aRlErDEW
-        V7jrS/9qt6NBKz268LU+X1+jGg==
-X-Google-Smtp-Source: ABdhPJyjK+cseOpauaCEYkJSxmOEm7lMp3SVSrhTVW0tyOit41rfYetFtw7kZrCji3qezu8PJBGa7g==
-X-Received: by 2002:a9d:5f07:: with SMTP id f7mr32002492oti.183.1629816287441;
-        Tue, 24 Aug 2021 07:44:47 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m206sm4378456oif.23.2021.08.24.07.44.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 07:44:47 -0700 (PDT)
-Date:   Tue, 24 Aug 2021 07:46:04 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        An?bal Lim?n <anibal.limon@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss
- and mpss
-Message-ID: <YSUGLFx2QST9vgIU@ripper>
-References: <20200108055735.660475-1-bjorn.andersson@linaro.org>
- <20210217223406.1422005-1-anibal.limon@linaro.org>
- <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=q47KpM04JtXbjrX4Th8KJJ2WJfmQTigKdxRxjyOEcFo=;
+        b=ABRrS2DXjO1LYhKNElJwKJrbgIonKzVFGU6D53EGvfhK6/+GMyu1ZzvG46gmpLttnB
+         FPzqIccakCV+xlLD+Lja0VDk2ZPgNcpa0K9XRJGFOqLJAAkgnjjJsCpucqptWoWV2KRE
+         S05Teic28jROedTv42mo3eWYpBjMmuLy6bvBrQxsZJsxKWZQrkcycKq+dLF1SnQWIWhP
+         h5MpLbjLwy6c5t47BP5+0cjr5Hw2FYjz1Zky6hZBvDojG+/o5ss38MQglj2QHqQ7XrcL
+         FKzN/NsDZ7DZavPibrkD05/bKPN286mWqzxjmj5aXZlHShLv1OdJEqLJrQJwSQQZLuSX
+         Y8IQ==
+X-Gm-Message-State: AOAM533g6Jb9PZHo2tWV1qqkaovDDvpRyte6RZabObmx8djvBHpv4sIe
+        au9SxdZyO1dAWk/v50PoaAG2mNHVEHHEjpjgHTx4qLa+BXziSw==
+X-Google-Smtp-Source: ABdhPJwfFJKHpnxXv8/1gum9S+upuN8rQP4xRwN2p75hcpwjG5NXTI3vyGKYLQMErsI6Eqom9XZxt10tCGCE/VjFsV0=
+X-Received: by 2002:a2e:84ca:: with SMTP id q10mr18815903ljh.182.1629817024632;
+ Tue, 24 Aug 2021 07:57:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
+References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com> <20210817090313.31858-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210817090313.31858-2-biju.das.jz@bp.renesas.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 24 Aug 2021 16:56:27 +0200
+Message-ID: <CAPDyKFrTKSLS8+Wsgj1m_2FtidQJ629ZJXswtxn3JbahozSHOg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: mmc: renesas,sdhi: Fix dtbs-check warning
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 24 Aug 05:39 PDT 2021, Dmitry Baryshkov wrote:
+On Tue, 17 Aug 2021 at 11:03, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>
+> Fix dtbs-check warning pinctrl-names:0:'default' was expected
+> for r8a77470-iwg23s-sbc.dts file.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> On Thu, 18 Feb 2021 at 01:38, Aníbal Limón <anibal.limon@linaro.org> wrote:
-> >
-> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> >
-> > Enable the mpss remoteproc node and specify the firmware-name for this
-> > and the wcnss remoteproc on the Dragonboard 410c.
-> >
-> > Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@linaro.org
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > [rebased and moved to use pronto label]
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > Tested-by: Aníbal Limón <anibal.limon@linaro.org>
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
+Applied for next, thanks!
 
-Thanks Dmitry, not sure why this hasn't been merged yet.
+Kind regards
+Uffe
 
-Taking a further look at this I noticed that we never pushed the
-firmware to linux-firmware either, which I think was because we where
-uncertain of the directory structure at the time - a discussion which
-has been settled since.
 
-> > ---
-> >  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > index 3c7f97539390..8f1ada75d3ed 100644
-> > --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> > @@ -301,6 +301,11 @@ &lpass {
-> >         status = "okay";
-> >  };
-> >
-> > +&mpss {
-> > +       status = "okay";
-> > +       firmware-name = "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt";
-
-But if we're pushing things to linux-firmware, does anyone object
-against following the existing style and squashing the mdt+bNN files
-into .mbn (and thereby making this modem.mbn and below wcnss.mbn)?
-
-Regards,
-Bjorn
-
-> > +};
-> > +
-> >  &pm8916_resin {
-> >         status = "okay";
-> >         linux,code = <KEY_VOLUMEDOWN>;
-> > @@ -308,6 +313,7 @@ &pm8916_resin {
-> >
-> >  &pronto {
-> >         status = "okay";
-> > +       firmware-name = "qcom/msm8916/wcnss.mdt";
-> >  };
-> >
-> >  &sdhc_1 {
-> > --
-> > 2.30.0
-> >
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+> ---
+> v3->v4:
+>  * Removed duplicate clock-names for sdhi-r7sxxxx SoC's
+>  Ref:- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210804161325.26996-2-biju.das.jz@bp.renesas.com/
+> v3:
+>  * New patch to fix the dtbs-check warnings
+>  Ref:- https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210804091940.23983-1-biju.das.jz@bp.renesas.com/
+> ---
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 60 ++++++++++++-------
+>  1 file changed, 37 insertions(+), 23 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index 677989bc5924..43584f4f4c7e 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -9,9 +9,6 @@ title: Renesas SDHI SD/MMC controller
+>  maintainers:
+>    - Wolfram Sang <wsa+renesas@sang-engineering.com>
+>
+> -allOf:
+> -  - $ref: "mmc-controller.yaml"
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -104,14 +101,46 @@ properties:
+>    pinctrl-1:
+>      maxItems: 1
+>
+> -  pinctrl-names:
+> -    minItems: 1
+> -    items:
+> -      - const: default
+> -      - const: state_uhs
+> +  pinctrl-names: true
+>
+>    max-frequency: true
+>
+> +allOf:
+> +  - $ref: "mmc-controller.yaml"
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,sdhi-mmc-r8a77470
+> +    then:
+> +      properties:
+> +        pinctrl-names:
+> +          items:
+> +            - const: state_uhs
+> +    else:
+> +      properties:
+> +        pinctrl-names:
+> +          minItems: 1
+> +          items:
+> +            - const: default
+> +            - const: state_uhs
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,sdhi-r7s72100
+> +              - renesas,sdhi-r7s9210
+> +    then:
+> +      required:
+> +        - clock-names
+> +      description:
+> +        The internal card detection logic that exists in these controllers is
+> +        sectioned off to be run by a separate second clock source to allow
+> +        the main core clock to be turned off to save power.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -119,21 +148,6 @@ required:
+>    - clocks
+>    - power-domains
+>
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        enum:
+> -          - renesas,sdhi-r7s72100
+> -          - renesas,sdhi-r7s9210
+> -then:
+> -  required:
+> -    - clock-names
+> -  description:
+> -    The internal card detection logic that exists in these controllers is
+> -    sectioned off to be run by a separate second clock source to allow
+> -    the main core clock to be turned off to save power.
+> -
+>  unevaluatedProperties: false
+>
+>  examples:
+> --
+> 2.17.1
+>
