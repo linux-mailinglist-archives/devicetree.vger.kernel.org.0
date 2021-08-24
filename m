@@ -2,88 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A52C3F562E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 04:58:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EA843F566E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 05:06:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234594AbhHXC71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Aug 2021 22:59:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
+        id S234102AbhHXDHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Aug 2021 23:07:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234480AbhHXC7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 22:59:21 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7FDEC0617AF
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 19:58:37 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id q21so2373826plq.3
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 19:58:37 -0700 (PDT)
+        with ESMTP id S235105AbhHXDFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Aug 2021 23:05:44 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDFB6C0612AB
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 20:04:24 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id w6so11364868plg.9
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 20:04:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=cR4LFc7S07bWHTemhgUSaM7+YiJk/gSHobFlY19oG8U=;
-        b=HzQlA7kVyZcfnvGLEDf69hx8YOKNKekkd58wq0xVJYZxGmMAM2QV52kvKCq2R5sPl9
-         DYXXTCSn68pbKs01tWF+IKDCWVzwu/w9ha8RwV+yBLf1qedcNX8EBdEecvijJ+qss7EM
-         8W53CiP9kAjMdgxO3XJk6nLmteK+wtfOpIwoikFpXEy3SqugiijTWBQuyjkmWc8R47/Q
-         GcvdhdthXKHfa2RUBWU9uZIT38ZrUDOdKDuz7L9MzXMVdoMAROVcOMXSZ72OBpyxVvCc
-         EqHc4J38QWTtun/HByXOhvlTWevwka42InpoxdEUhg63S9FmVaCiquRiRr/66m/u+Fkk
-         1fmg==
+        bh=ftVLBcz2CA6HVw5Sak06NSKiX7H+vKeynT4dia9GcmU=;
+        b=k+9ugNQMNP1T757zCmBjD0HZ4Cm6T3BE+v/X7Wxf65qXhZ4Y1Om/ZwreVVsFldU5ED
+         26Au5VziBd3fTRw9qajnc5Q1bzTZtCXlNbNzYEhhdrLy0j6q3RP41Bfsx2Vet4JiZwHE
+         HpssKarI+iW9nKfS+aZW4kug15wwleM1PIEsfGzs+E/ENGb7NoFhvlaUVQuCR3IWspbE
+         1jdc92yTGvHUY8w5qgAHpd6F4jZjsLSyz7OphX6zYHG1h8uepViMakkTUt9Apji0AqlD
+         h496UE7ulnKIyaYIIz+9WlMWKL7f+UCly0DgUoeMlhVK/OeculmtFoztQ69V1z3oNjW5
+         BaQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cR4LFc7S07bWHTemhgUSaM7+YiJk/gSHobFlY19oG8U=;
-        b=Tof8QYmIMqEhep2SQFgjmCF4OAgQUEnHqW4zYBswP2C6xjxWHwkuGW/zCSdxEXWbUZ
-         SjfbBc/pojwQsL/KV0D3c1FdzqW/wqmMu8+nixsXAG8um2fT4VAfGM57O3fhYgnLGnce
-         NAYRdJfuVoUFcpi7UzLTNY/LZ5l9fVcy5SfJWdMXePlymMNIsmS00nsYjKG75WizLMR6
-         XdUPhwuLcj8WFn6A4CYRPB5FgVsbhKRie60mU/r8iABBe3nZEFmRaBJoS4/rHpHQfdQr
-         laRaKUh7FhkdiAqTooPeEP2K38mb8Frut+r9twUDDXn19Hzm8rZh0SrHTclJCkNKbOvA
-         /T8g==
-X-Gm-Message-State: AOAM530zVZlXGWJ3fzFMj4uCc4rULUxQ6rc+RfnjDGegFdk2eQiMwTTF
-        QPMH0qGpaXDN+Wv2m2BtiR3pxw==
-X-Google-Smtp-Source: ABdhPJyHLbIOrGSNtbbJc1v7CQb/74OAs+mRskKm2Dp5/tbVuu04vcTkktt8Ab1BiXjzk218qBJi1w==
-X-Received: by 2002:a17:90a:4812:: with SMTP id a18mr1917135pjh.40.1629773917317;
-        Mon, 23 Aug 2021 19:58:37 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id o14sm19982112pgl.85.2021.08.23.19.58.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 23 Aug 2021 19:58:37 -0700 (PDT)
-Date:   Tue, 24 Aug 2021 10:58:31 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        bh=ftVLBcz2CA6HVw5Sak06NSKiX7H+vKeynT4dia9GcmU=;
+        b=qV6TKykjMFyd6mbH5+TPozg+GMwjEtd/rXOYYPWIy8Ij6jqCW+b3ERZGlQ9cI42DfM
+         FVsvICRer8wb8R4QFkYEDucZ2Jt9HGaKmrybUvd1htV09wGk6LCj6BBjGu1ygn/6MFSz
+         uNS48O2XLFBxS2qa8R28T08Wrc4wMWIHlcGLhshUtt4jTL8sA8L+zbdls8PyJ1K4agTX
+         h2KKnldVj0ozSxXWi3ScjPrAYrnuUFgt8qizhCdWeSgJatLmqyXOmjVBGhdLX0oxagMX
+         PvK3emVNxrFFQ81eoIf+wUFSXdyiQLC8k4W9Fqi/L5wwq/jBIIhwRsG1znKnRuqM0jPw
+         AsEw==
+X-Gm-Message-State: AOAM531kOrQ9Qz2QDwlUpLwpRZx9MBnqrioql/xWDo9rCH9VDFWiz+yI
+        M0WSQ4nsDJXpUp2XQtCYgglVIg==
+X-Google-Smtp-Source: ABdhPJxgNZPrPk9tzmxpkCehrPdfFes88M8DqFhHlA/X7V8qZTGRmqZiqGy9NJMzzCPLtwobPdjSGw==
+X-Received: by 2002:a17:902:e547:b029:12c:563c:4a03 with SMTP id n7-20020a170902e547b029012c563c4a03mr30922945plf.46.1629774264209;
+        Mon, 23 Aug 2021 20:04:24 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id c12sm16184839pfl.56.2021.08.23.20.04.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Aug 2021 20:04:23 -0700 (PDT)
+Date:   Tue, 24 Aug 2021 08:34:21 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm/panel: Add Sony Tulip Truly NT35521 driver
-Message-ID: <20210824025831.GB22595@dragon>
-References: <20210809051008.6172-1-shawn.guo@linaro.org>
- <20210809051008.6172-3-shawn.guo@linaro.org>
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+Message-ID: <20210824030421.3tjfjkx3c2silbnz@vireshk-i7>
+References: <20210818062723.dqamssfkf7lf7cf7@vireshk-i7>
+ <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7>
+ <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com>
+ <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+ <CAPDyKFpg8ixT4AEjzVLTwQR7Nn9CctjnLCDS5GwkOrAERquyxw@mail.gmail.com>
+ <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
+ <CAPDyKFo0rzHT4AhueWjyz9k2ZqUy8N6Od5pbr8sL_m0Jf2AwUg@mail.gmail.com>
+ <085d1a2e-57b0-222e-c569-12f3c6bc8161@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210809051008.6172-3-shawn.guo@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <085d1a2e-57b0-222e-c569-12f3c6bc8161@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 09, 2021 at 01:10:08PM +0800, Shawn Guo wrote:
-> It adds a DRM panel driver for Sony Tulip Truly NT35521 5.24" 1280x720
-> DSI panel, which can be found on Sony Xperia M4 Aqua phone.  The panel
-> backlight is managed through DSI link.
+On 23-08-21, 23:24, Dmitry Osipenko wrote:
+> It's not clear to me whether it will be okay to add a generic OPP syncing by clock rate or should it be a Tegra-specific helper. Viresh, what do you think about this generic OPP helper:
 > 
-> The driver is built using linux-mdss-dsi-panel-driver-generator[1], and
-> additionally modeling the 5V control GPIOs with regulators and adding
-> Backlight GPIO support.
+> /**
+>  * dev_pm_opp_sync_with_clk_rate() - Sync OPP state with clock rate
+>  * @dev:	device for which we do this operation
+>  *
+>  * Sync OPP table state with the current clock rate of device.
+>  *
+>  * Return: 0 on success or a negative error value.
+>  */
+> int dev_pm_opp_sync_with_clk_rate(struct device *dev)
+> {
+> 	struct opp_table *opp_table;
+> 	int ret = 0;
 > 
-> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+> 	/* Device may not have OPP table */
+> 	opp_table = _find_opp_table(dev);
+> 	if (IS_ERR(opp_table))
+> 		return 0;
 > 
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> 	/* Device may not use clock */
+> 	if (IS_ERR(opp_table->clk))
+> 		goto put_table;
+> 
+> 	/* Device may have empty OPP table */
+> 	if (!_get_opp_count(opp_table))
+> 		goto put_table;
+> 
+> 	ret = dev_pm_opp_set_rate(dev, clk_get_rate(opp_table->clk));
+> put_table:
+> 	/* Drop reference taken by _find_opp_table() */
+> 	dev_pm_opp_put_opp_table(opp_table);
+> 
+> 	return ret;
+> }
+> EXPORT_SYMBOL_GPL(dev_pm_opp_sync_with_clk_rate);
 
-Sam, Stephan,
+I am not sure why you still need this, hope we were going another way
+? Anyway I will have a look at what you have posted now.
 
-Thank you for the review comments on v1!  How does v2 look to you?
-
-Shawn
+-- 
+viresh
