@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 933943F574F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 06:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE1A3F5754
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 06:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbhHXEf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 00:35:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52548 "EHLO
+        id S229695AbhHXEfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 00:35:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhHXEf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 00:35:28 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFF1C06175F
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 21:34:44 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id n12so42016plk.10
-        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 21:34:44 -0700 (PDT)
+        with ESMTP id S229568AbhHXEfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 00:35:30 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61895C061575
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 21:34:47 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id e1so4529236plt.11
+        for <devicetree@vger.kernel.org>; Mon, 23 Aug 2021 21:34:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=q8uzaPXyIk7Lcvi592FTGr3MgKXDVxicIMraBhYYobU=;
-        b=MOqWr+rYqzs9v5DGkcIzlsNEj+S78cflalafLAXsMg38vy4TPgOxS8QLtGdongQ6wh
-         K8IG3goZ1Nzs8V8uFJc/Im6kt4eLN0kSQzxAML7JXnOaxnREqSwOj46LJyvDWKimK/yi
-         UIwg6Qj0Nv6NNdCPNIxnKQ362kTJhj+8NORcQ5YFMEat5v2cJ+MbDV5kkKtMbEIrM+QD
-         363ggDyLRMFXJ/uqv3shKPSnHYVmQDIlI8XKS8DAWSloM43+dNn2dyCbyiL52rT0UUGu
-         srmED6GhVR9H8I1wkZHoered2tYWhTq2dHOPRh3ErLBlM/5RcTnkgHF5L085Wn5b/Pry
-         SWPg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=WlARBdCH0G+Q0Gto74EDeCNkdp2jkLi1fyvWJUCNQck=;
+        b=i8mgH6afafIWcLr3/bxaHLNd22F+f+UHMMkbxKDu04L958bJB5GpP8mRswRU/xNlom
+         w3Gpve+ZyVC+0BAsueL4vTkJdnooN2IvconYPiA645UTs0xKuNT5nI9A0TYOr8U40Tob
+         mykXu38kKpwZoooU2guS8trQYzxUrkwBLpULyytM5chbT29hKjCWShmlV82aGvGhLFKl
+         Q8jNLQx8lcgy67aXUPTTCfpmZ2Lt+ivroWp5VO5EJijLkhzFxFxPbHxxzcO8l0vKqbt8
+         mCq8lH4ri0qMbCXEqCAwBUZHEIJ/0WSwD5HYQMUUzLdUCXs0eDTz4fKVnIWzf4MxH/aj
+         4ANg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=q8uzaPXyIk7Lcvi592FTGr3MgKXDVxicIMraBhYYobU=;
-        b=oRmQGPVthd/0E6cwi8QWoBqi0RVm+jRiBX3Ij+KjsLWi0CQDrvYVwpHX2Zlps7VCt2
-         aR4M9C2WY+Func1emNTwuPJl7EDb7JDsgq7SsbFHOf+PXwINvKaOYtQET6PBBD+KqbcK
-         buMEpeLJRVVFqUJkWaC3bda3omuS17L2H39D9KR0m1F7Jm38EgvXTmZBl82HlapG+oxt
-         7XokGmt8KhfZGpfgzsqH+4GVOqtkvtEcFUiadnAdMjLHP62/Rgq0KVCHBziGybc4u9F0
-         dC4pf63WXgfVXrEBcTTNPrH1z79OfqLHIkPQavZxvatBVn3Q86AHyuGGEpiZmGHhonw7
-         PjUA==
-X-Gm-Message-State: AOAM532klmZhcaShNmktJtY/M6x/F5U0FZ2DZSX3IacrRqvrxGOHDGeG
-        KsjyW7PX+wYHUUNIefKaXNMmcw==
-X-Google-Smtp-Source: ABdhPJz4PUk9snxRhgduyAbRQLaYlZ9h2aubaN3MV5x2WQGNtpLvkCy1pbtlyJ6VHwer1jpbQdcutw==
-X-Received: by 2002:a17:903:1cb:b0:12d:b9c8:4e22 with SMTP id e11-20020a17090301cb00b0012db9c84e22mr31577278plh.42.1629779684108;
-        Mon, 23 Aug 2021 21:34:44 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=WlARBdCH0G+Q0Gto74EDeCNkdp2jkLi1fyvWJUCNQck=;
+        b=Gi9ztGMfRC2QffEB9hHQ83rbv8LcoT7KEyqyvXYVo8f9V2QX+JoBV0iyvC2EVo3xRQ
+         VV+dLMoUO2ITogKdGJBrbgAw6hQqV7RI1BeBkCG0uVrVXu0DQUaDx/UM65PnsIRbANvY
+         hfnm0IqKRcqRiLhFE+C0M1X8MwcAuLlJkBOa1LLICSnHv8cj4REngLjyYn1KPghVeeMe
+         ajLboSFCO/U0v+OfbsBjZ3uKjVPqS+M+Xoy1mDvX5kYnJRZlGPHJMm0B/3ekQRgJz/K4
+         mMIuUNo5ixa+aRkwywKRtR5/yH4+rdTbUB5GaEVk1CMuRvqfJX0Eyqo1qKQT6w+9gX3K
+         QDJg==
+X-Gm-Message-State: AOAM533uZ/jN9NvjvmxFGzW05N7BYByspo/GjBi2fPeQ2Un1UrW7Ye2P
+        56pQ6pd0VUBYQOKzt3JOXy64ig==
+X-Google-Smtp-Source: ABdhPJy/k9e4jPmt414tRt8dqF8IDjfHZOzJ8yKQ+opLJIqljmM6+E3fNmAG2J3sBCocbtw8625Hfw==
+X-Received: by 2002:a17:903:31d6:b0:133:9932:6998 with SMTP id v22-20020a17090331d600b0013399326998mr9449165ple.45.1629779686991;
+        Mon, 23 Aug 2021 21:34:46 -0700 (PDT)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id p10sm789401pjv.39.2021.08.23.21.34.41
+        by smtp.gmail.com with ESMTPSA id p10sm789401pjv.39.2021.08.23.21.34.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Aug 2021 21:34:43 -0700 (PDT)
+        Mon, 23 Aug 2021 21:34:46 -0700 (PDT)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Georgi Djakov <djakov@kernel.org>
 Cc:     AngeloGioacchino Del Regno 
@@ -54,36 +55,108 @@ Cc:     AngeloGioacchino Del Regno
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v2 0/3] Add missing A2NoC QoS clocks for SDM660 interconnect driver
-Date:   Tue, 24 Aug 2021 12:34:32 +0800
-Message-Id: <20210824043435.23190-1-shawn.guo@linaro.org>
+Subject: [PATCH v2 1/3] dt-bindings: interconnect: sdm660: Add missing a2noc qos clocks
+Date:   Tue, 24 Aug 2021 12:34:33 +0800
+Message-Id: <20210824043435.23190-2-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210824043435.23190-1-shawn.guo@linaro.org>
+References: <20210824043435.23190-1-shawn.guo@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The series updates SDM660 interconnect bindings, driver and device tree
-to add A2NoC clocks required for QoS registers programming per downstream
-kernel[1].  Otherwise, qcom_icc_noc_set_qos_priority() call on mas_ufs or
-mas_usb_hs node will simply result in a hardware hang on SDM660 SoC.
-
-Changes for v2:
-- Fix dt_binding_check issues
-- Drop 'reg' change from DTS patch
-- Add Tested-by tag from Bjorn
+It adds the missing a2noc clocks required for QoS registers programming
+per downstream kernel[1].
 
 [1] https://source.codeaurora.org/quic/la/kernel/msm-4.4/tree/arch/arm/boot/dts/qcom/sdm660-bus.dtsi?h=LA.UM.8.2.r1-04800-sdm660.0#n43
 
-Shawn Guo (3):
-  dt-bindings: interconnect: sdm660: Add missing a2noc qos clocks
-  interconnect: qcom: sdm660: Add missing a2noc qos clocks
-  arm64: dts: qcom: sdm630: Add missing a2noc qos clocks
-
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+---
  .../bindings/interconnect/qcom,sdm660.yaml    | 46 +++++++++++++++++--
- arch/arm64/boot/dts/qcom/sdm630.dtsi          | 15 +++++-
- drivers/interconnect/qcom/sdm660.c            | 14 ++++++
- 3 files changed, 69 insertions(+), 6 deletions(-)
+ 1 file changed, 42 insertions(+), 4 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
+index 29de7807df54..bcd41e491f1d 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
+@@ -31,11 +31,11 @@ properties:
+ 
+   clocks:
+     minItems: 1
+-    maxItems: 3
++    maxItems: 7
+ 
+   clock-names:
+     minItems: 1
+-    maxItems: 3
++    maxItems: 7
+ 
+ required:
+   - compatible
+@@ -72,6 +72,32 @@ allOf:
+           contains:
+             enum:
+               - qcom,sdm660-a2noc
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Bus Clock.
++            - description: Bus A Clock.
++            - description: IPA Clock.
++            - description: UFS AXI Clock.
++            - description: Aggregate2 UFS AXI Clock.
++            - description: Aggregate2 USB3 AXI Clock.
++            - description: Config NoC USB2 AXI Clock.
++        clock-names:
++          items:
++            - const: bus
++            - const: bus_a
++            - const: ipa
++            - const: ufs_axi
++            - const: aggre2_ufs_axi
++            - const: aggre2_usb3_axi
++            - const: cfg_noc_usb2_axi
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
+               - qcom,sdm660-bimc
+               - qcom,sdm660-cnoc
+               - qcom,sdm660-gnoc
+@@ -91,6 +117,7 @@ examples:
+   - |
+       #include <dt-bindings/clock/qcom,rpmcc.h>
+       #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
++      #include <dt-bindings/clock/qcom,gcc-sdm660.h>
+ 
+       bimc: interconnect@1008000 {
+               compatible = "qcom,sdm660-bimc";
+@@ -123,9 +150,20 @@ examples:
+               compatible = "qcom,sdm660-a2noc";
+               reg = <0x01704000 0xc100>;
+               #interconnect-cells = <1>;
+-              clock-names = "bus", "bus_a";
++              clock-names = "bus",
++                            "bus_a",
++                            "ipa",
++                            "ufs_axi",
++                            "aggre2_ufs_axi",
++                            "aggre2_usb3_axi",
++                            "cfg_noc_usb2_axi";
+               clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
+-                       <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
++                       <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>,
++                       <&rpmcc RPM_SMD_IPA_CLK>,
++                       <&gcc GCC_UFS_AXI_CLK>,
++                       <&gcc GCC_AGGRE2_UFS_AXI_CLK>,
++                       <&gcc GCC_AGGRE2_USB3_AXI_CLK>,
++                       <&gcc GCC_CFG_NOC_USB2_AXI_CLK>;
+       };
+ 
+       mnoc: interconnect@1745000 {
 -- 
 2.17.1
 
