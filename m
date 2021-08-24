@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD51A3F5DB7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 14:13:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9254A3F5DC0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 14:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236886AbhHXMOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 08:14:40 -0400
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:36523 "EHLO
-        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236676AbhHXMOj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 08:14:39 -0400
-Received: by mail-oo1-f47.google.com with SMTP id z3-20020a4a98430000b029025f4693434bso6428953ooi.3;
-        Tue, 24 Aug 2021 05:13:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KXH2+4FT2YmUfsDT7O/Je4Jc14/p7vgTI8fzfghAdso=;
-        b=BqYkU48FeJtxCI/gdMwN1RsdWWlo9fHujLF18scRX/7hpM17lJu39LvX+SZEBK/DWH
-         Nek/BrdeTm+f637pO0C2V4EMZeo4QX1NlYviiu39CsTqFkZcUlvyg8yIPVTjbh8bAaGm
-         XMCmYdMPmjNaJTw8XEhnjOcb8eNDqQYDc/6U8zeaEZXPGJASayFMOAvkSKCa6xsvwqzo
-         i7/o3TmNrn6wWwJUjojwHf1+x88p/swKrO59WJhmEA4FxNKe2v0KLCbicJBloHjOvxW6
-         U7lLufWrltgL1thxeXhffrqmWFZIdj6mPRcOujKtO7JJm7vcw6/eQuOJcH4XAsW6xMva
-         IlFQ==
-X-Gm-Message-State: AOAM533VjLNW+YxZgpLQcAmsjRyy4iHo/Bh8HE1zOEkr5dXjsQlKo9ir
-        NY9xmzuQUfJskD6t0j10Sw==
-X-Google-Smtp-Source: ABdhPJzFowHmOhXdEYonOpzAvGyaulhAxmkrJcC02oheLCQweoKWE1MFuI+5KD4JvpkvWJ278Hd3Sw==
-X-Received: by 2002:a4a:984c:: with SMTP id z12mr29598923ooi.78.1629807235127;
-        Tue, 24 Aug 2021 05:13:55 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v29sm4053541ooe.31.2021.08.24.05.13.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 05:13:54 -0700 (PDT)
-Received: (nullmailer pid 23997 invoked by uid 1000);
-        Tue, 24 Aug 2021 12:13:53 -0000
-Date:   Tue, 24 Aug 2021 07:13:53 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Daniel Palmer <daniel@0x0f.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: rtc: Add Mstar MSC313e RTC
- devicetree bindings documentation
-Message-ID: <YSTigWESfHO5VLtH@robh.at.kernel.org>
-References: <20210823171613.18941-1-romain.perier@gmail.com>
- <20210823171613.18941-2-romain.perier@gmail.com>
+        id S237097AbhHXMRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 08:17:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52896 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237061AbhHXMRW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 08:17:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B1D1061265;
+        Tue, 24 Aug 2021 12:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629807393;
+        bh=TlLJj6zLLzBdv2HSNGk+qzRVPF2HKHeEMxZ7zzJzfFs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sBun4D1I9TzudinaoL3TH6mHzu6XUsG5N4pGS/dv64yK4WGJ3/u79kVW66iQcgFtq
+         ECV9f8JxaHGFaYq+0tjPtfV7ueGfRBCZYUyUc7FHYF1/XV68MWLNx/H6NMsijt3vnx
+         CuqWdx/NH6ReTkAL/Fek0Y1FPWo1v8M/nnVt4g3Nt8sScdn2mtt623wW3tHc62vLNV
+         zUqZkM/2AvzwxxJ/WvkZWTquGlG8iqO/HoyOZWSye3JUQVCnu7YYCdo9I3SPvOxOkh
+         TBDdq/rLImaqr8HBoqt6Z7Rh5LwEWpY0gNc88B17klSpbgx+6/yHN2gjUFtmBwEUQ3
+         AZA89+UztXdlQ==
+Received: by mail-ed1-f50.google.com with SMTP id dm15so6345635edb.10;
+        Tue, 24 Aug 2021 05:16:33 -0700 (PDT)
+X-Gm-Message-State: AOAM532gXvhJhSsf9gHEfnL7ZnoitM6QVcaqns1nYttwPqhd0H+asXGT
+        eaBRc2TwSeEtxJoABxjpnYpk7pDpCaWo1Fer3g==
+X-Google-Smtp-Source: ABdhPJz3c6u1jiP1lu34d+Kbp9KtCdpp/7ehtLyyK24t1BUgmm4I48TNzP6IR9TGB8OhuaK6iQ7bswcn7+ySzVFJCgI=
+X-Received: by 2002:a50:fd87:: with SMTP id o7mr43573058edt.289.1629807392311;
+ Tue, 24 Aug 2021 05:16:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210823171613.18941-2-romain.perier@gmail.com>
+References: <20210824064503.60168-1-deng.changcheng@zte.com.cn>
+In-Reply-To: <20210824064503.60168-1-deng.changcheng@zte.com.cn>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 24 Aug 2021 07:16:20 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKOjFPfY8OW=8_zkbTaJ2H4zAwTSTWzWZ3-i3ZD7+NjdA@mail.gmail.com>
+Message-ID: <CAL_JsqKOjFPfY8OW=8_zkbTaJ2H4zAwTSTWzWZ3-i3ZD7+NjdA@mail.gmail.com>
+Subject: Re: [PATCH linux-next] scripts/dtc/util: fix boolreturn.cocci warnings
+To:     CGEL <cgel.zte@gmail.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jing Yangyang <jing.yangyang@zte.com.cn>,
+        Zeal Robot <zealci@zte.com.cn>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Aug 2021 19:16:11 +0200, Romain Perier wrote:
-> This adds the documentation for the devicetree bindings of the Mstar
-> MSC313e RTC driver, found from MSC313e SoCs and newer.
-> 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+On Tue, Aug 24, 2021 at 1:45 AM CGEL <cgel.zte@gmail.com> wrote:
+>
+> From: Jing Yangyang <jing.yangyang@zte.com.cn>
+>
+> Return statements in functions returning bool should use true/false
+> instead of 1/0.
+>
+> Generated by: scripts/coccinelle/misc/boolreturn.cocci
+>
+> Reported-by: Zeal Robot <zealci@zte.com.cn>
+> Signed-off-by: Jing Yangyang <jing.yangyang@zte.com.cn>
 > ---
->  .../bindings/rtc/mstar,msc313-rtc.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,msc313-rtc.yaml
-> 
+>  scripts/dtc/util.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+scripts/dtc/ is synced from upstream dtc, so if you want to make any
+changes you need to submit patches against upstream and to the dtc
+list.
+
+Rob
