@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EE923F6C8F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 02:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 200A83F6C94
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 02:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236508AbhHYAZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 20:25:19 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:42054 "EHLO
+        id S236525AbhHYA0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 20:26:04 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:3075 "EHLO
         twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236318AbhHYAZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 20:25:19 -0400
+        with ESMTP id S236545AbhHYAZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 20:25:56 -0400
 Received: (from root@localhost)
-        by twspam01.aspeedtech.com id 17P05xvU096624
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 08:05:59 +0800 (GMT-8)
+        by twspam01.aspeedtech.com id 17P06aDp097322
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 08:06:36 +0800 (GMT-8)
         (envelope-from billy_tsai@aspeedtech.com)
-Message-Id: <202108250005.17P05xvU096624@twspam01.aspeedtech.com>
+Message-Id: <202108250006.17P06aDp097322@twspam01.aspeedtech.com>
 Received: from mail.aspeedtech.com ([192.168.0.24])
         by twspam01.aspeedtech.com with ESMTP id 17O8rGgR098397;
         Tue, 24 Aug 2021 16:53:16 +0800 (GMT-8)
@@ -44,7 +44,7 @@ X-Originating-IP: [192.168.2.149]
 X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
  (192.168.0.24)
 X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 17P05xvU096624
+X-MAIL: twspam01.aspeedtech.com 17P06aDp097322
 X-MSS:  FORWARD@twspam01.aspeedtech.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
