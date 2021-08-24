@@ -2,167 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAC3C3F5776
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 07:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCBD13F5798
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 07:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbhHXFDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 01:03:18 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:43082 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229709AbhHXFDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 01:03:18 -0400
-X-UUID: a33b0a67c7f0424eb4801a777972e657-20210824
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=0texKuvZteNxt9wEtesBFIUFqL8ARY8YyhEvugrvtV0=;
-        b=RhaQJSOw0AJ1agMDllI9i8YlrAfkRs8SDUwjbPgAaVSeFB5G4rCj04EdeVWh1HYuw7YtdnI29BtuDh5iP9cxt8gHUnM307mc94jWmmIA4bK3AR8Kp3q+A02N2A/SS6gNuXb4tceQJP5yzmE/EXi7BxIvKlj0SGMtbLH6N81NWz4=;
-X-UUID: a33b0a67c7f0424eb4801a777972e657-20210824
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2033969587; Tue, 24 Aug 2021 13:02:33 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 24 Aug 2021 13:02:31 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 24 Aug 2021 13:02:31 +0800
-Message-ID: <1629781351.32243.3.camel@mtksdaap41>
-Subject: Re: [PATCH v6 4/5] dts: arm64: mt8183: Add Mediatek MDP3 nodes
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Moudy Ho <moudy.ho@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <tfiga@chromium.org>,
-        <drinkcat@chromium.org>, <acourbot@chromium.org>,
-        <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
-        <sj.huang@mediatek.com>, <ben.lok@mediatek.com>,
-        <randy.wu@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <hsinyi@google.com>
-Date:   Tue, 24 Aug 2021 13:02:31 +0800
-In-Reply-To: <20210819070954.16679-5-moudy.ho@mediatek.com>
-References: <20210819070954.16679-1-moudy.ho@mediatek.com>
-         <20210819070954.16679-5-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S229901AbhHXFaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 01:30:10 -0400
+Received: from gproxy4-pub.mail.unifiedlayer.com ([69.89.23.142]:56687 "EHLO
+        gproxy4-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229885AbhHXFaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 01:30:09 -0400
+X-Greylist: delayed 1261 seconds by postgrey-1.27 at vger.kernel.org; Tue, 24 Aug 2021 01:30:09 EDT
+Received: from cmgw11.mail.unifiedlayer.com (unknown [10.0.90.126])
+        by gproxy4.mail.unifiedlayer.com (Postfix) with ESMTP id DC41C8030EAA
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 05:08:24 +0000 (UTC)
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTP
+        id IOfemUZfLtxnyIOffmntq3; Tue, 24 Aug 2021 05:08:24 +0000
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.4 cv=C+EsdSD+ c=1 sm=1 tr=0 ts=61247ec8
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=LfuyaZh/8e9VOkaVZk0aRw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=MhDmnRu9jo8A:10:nop_rcvd_month_year
+ a=oz0wMknONp8A:10:endurance_base64_authed_username_1 a=vU9dKmh3AAAA:8
+ a=gEfo2CItAAAA:8 a=jtbBNqsHAAAA:8 a=-5KMCkUntxd5Z1t9gYsA:9
+ a=rsP06fVo5MYu2ilr0aT5:22 a=sptkURWiP4Gy88Gu7hUp:22 a=RWaeYqt-Cn-VcsFsiLGo:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=W/AymKeoHSfLUuRKlptGcYxIuqB0gsHM2oq89IBZLKg=; b=P6UsbKfnPihTPc85sKE2/oaeAr
+        pbsDFxoda/d4uALhLOb5BeSEbRcTPFxQJZkYU0M7cXTmk8N+1zI57q/YiVvRmX5JFydbRSTX3vSrF
+        Nh051VKoCbly8hND5hua/4VmD2+4iwgN4SZR+bxmF8nj29O9UpbEwQKXL4+Ntl/sLRUS4V1XYXANJ
+        fHL6dbskrk4/Mk93MrsDTybSJLbnyi/90R6GmJY6z2f+u3wXJsnDHCjotQt/TPg/qbSAQoRhe9Csy
+        WNcjH8qZ0l+eqd8zosNsq8Y1bpNFeT1ToTBOY2R+8EGx5FzIjMxYhxDtNp4tr8ricklqVIoqkBPLC
+        9fwPH6Vw==;
+Received: from [117.193.211.180] (port=56148 helo=localhost.localdomain)
+        by md-in-79.webhostbox.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <navin@linumiz.com>)
+        id 1mIOfd-000R5G-Hn; Tue, 24 Aug 2021 05:08:21 +0000
+From:   Navin Sankar Velliangiri <navin@linumiz.com>
+To:     jic23@kernel.org
+Cc:     navin@linumiz.com, lars@metafoo.de, pmeerw@pmeerw.net,
+        linux-iio@vger.kernel.org, ardeleanalex@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 2/2] dt-bindings: iio: temperature: add MAXIM max31865 support
+Date:   Tue, 24 Aug 2021 10:36:50 +0530
+Message-Id: <20210824050650.72619-1-navin@linumiz.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 117.193.211.180
+X-Source-L: No
+X-Exim-ID: 1mIOfd-000R5G-Hn
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (localhost.localdomain) [117.193.211.180]:56148
+X-Source-Auth: linumcmc
+X-Email-Count: 6
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIE1vdWR5Og0KDQpPbiBUaHUsIDIwMjEtMDgtMTkgYXQgMTU6MDkgKzA4MDAsIE1vdWR5IEhv
-IHdyb3RlOg0KPiBBZGQgZGV2aWNlIG5vZGVzIGZvciBNZWRpYSBEYXRhIFBhdGggMyAoTURQMykg
-bW9kdWxlcy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFBpbmctSHN1biBXdSA8cGluZy1oc3VuLnd1
-QG1lZGlhdGVrLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogZGFveXVhbiBodWFuZyA8ZGFveXVhbi5o
-dWFuZ0BtZWRpYXRlay5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IE1vdWR5IEhvIDxtb3VkeS5ob0Bt
-ZWRpYXRlay5jb20+DQo+IC0tLQ0KPiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgx
-ODMuZHRzaSB8IDExMCArKysrKysrKysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDExMCBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0
-cy9tZWRpYXRlay9tdDgxODMuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4
-MTgzLmR0c2kNCj4gaW5kZXggZjkwZGY2NDM5YzA4Li43Y2IxZmNmZWVmYjYgMTAwNjQ0DQo+IC0t
-LSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLmR0c2kNCj4gKysrIGIvYXJj
-aC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaQ0KPiBAQCAtMTIzMiw2ICsxMjMy
-LDEwOCBAQA0KPiAgCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8JmdjZSBTVUJTWVNfMTQw
-MFhYWFggMCAweDEwMDA+Ow0KPiAgCQl9Ow0KPiAgDQo+ICsJCW1kcDNfcmRtYTA6IG1kcDNfcmRt
-YTBAMTQwMDEwMDAgew0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtbWRwMyIs
-DQo+ICsJCQkJICAgICAibWVkaWF0ZWssbXQ4MTgzLW1kcDMtcmRtYSI7DQo+ICsJCQltZWRpYXRl
-ayxzY3AgPSA8JnNjcD47DQo+ICsJCQltZWRpYXRlayxtZHAzLWlkID0gPDA+Ow0KPiArCQkJbWRw
-My1jb21wcyA9ICJtZWRpYXRlayxtdDgxODMtbWRwMy1kbDEiLCAibWVkaWF0ZWssbXQ4MTgzLW1k
-cDMtZGwyIiwNCj4gKwkJCQkgICAgICJtZWRpYXRlayxtdDgxODMtbWRwMy1wYXRoMSIsICJtZWRp
-YXRlayxtdDgxODMtbWRwMy1wYXRoMiIsDQo+ICsJCQkJICAgICAibWVkaWF0ZWssbXQ4MTgzLW1k
-cDMtaW1naSIsICJtZWRpYXRlayxtdDgxODMtbWRwMy1leHRvIjsNCj4gKwkJCW1kcDMtY29tcC1p
-ZHMgPSA8MCAxIDAgMSAwIDE+Ow0KPiArCQkJcmVnID0gPDAgMHgxNDAwMTAwMCAwIDB4MTAwMD4s
-DQo+ICsJCQkgICAgICA8MCAweDE0MDAwMDAwIDAgMHgxMDAwPiwNCj4gKwkJCSAgICAgIDwwIDB4
-MTQwMDUwMDAgMCAweDEwMDA+LA0KPiArCQkJICAgICAgPDAgMHgxNDAwNjAwMCAwIDB4MTAwMD4s
-DQo+ICsJCQkgICAgICA8MCAweDE1MDIwMDAwIDAgMHgxMDAwPjsNCj4gKwkJCW1lZGlhdGVrLGdj
-ZS1jbGllbnQtcmVnID0gPCZnY2UgU1VCU1lTXzE0MDBYWFhYIDB4MTAwMCAweDEwMDA+LA0KPiAr
-CQkJCQkJICA8JmdjZSBTVUJTWVNfMTQwMFhYWFggMCAweDEwMDA+LA0KPiArCQkJCQkJICA8Jmdj
-ZSBTVUJTWVNfMTQwMFhYWFggMHg1MDAwIDB4MTAwMD4sDQo+ICsJCQkJCQkgIDwmZ2NlIFNVQlNZ
-U18xNDAwWFhYWCAweDYwMDAgMHgxMDAwPiwNCj4gKwkJCQkJCSAgPCZnY2UgU1VCU1lTXzE1MDJY
-WFhYIDAgMHgxMDAwPjsNCj4gKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnNwbSBNVDgxODNfUE9XRVJf
-RE9NQUlOX0RJU1A+Ow0KPiArCQkJY2xvY2tzID0gPCZtbXN5cyBDTEtfTU1fTURQX1JETUEwPiwN
-Cj4gKwkJCQkgPCZtbXN5cyBDTEtfTU1fTURQX1JTWjE+LA0KPiArCQkJCSA8Jm1tc3lzIENMS19N
-TV9NRFBfRExfVFhDSz4sDQo+ICsJCQkJIDwmbW1zeXMgQ0xLX01NX01EUF9ETF9SWD4sDQo+ICsJ
-CQkJIDwmbW1zeXMgQ0xLX01NX0lQVV9ETF9UWENLPiwNCj4gKwkJCQkgPCZtbXN5cyBDTEtfTU1f
-SVBVX0RMX1JYPjsNCj4gKwkJCWlvbW11cyA9IDwmaW9tbXUgTTRVX1BPUlRfTURQX1JETUEwPjsN
-Cj4gKwkJCW1lZGlhdGVrLG1tc3lzID0gPCZtbXN5cz47DQo+ICsJCQltZWRpYXRlayxtbS1tdXRl
-eCA9IDwmbXV0ZXg+Ow0KPiArCQkJbWVkaWF0ZWssbWFpbGJveC1nY2UgPSA8JmdjZT47DQo+ICsJ
-CQltYm94ZXMgPSA8JmdjZSAyMCBDTURRX1RIUl9QUklPX0xPV0VTVCAwPiwNCj4gKwkJCQkgPCZn
-Y2UgMjEgQ01EUV9USFJfUFJJT19MT1dFU1QgMD4sDQo+ICsJCQkJIDwmZ2NlIDIyIENNRFFfVEhS
-X1BSSU9fTE9XRVNUIDA+LA0KPiArCQkJCSA8JmdjZSAyMyBDTURRX1RIUl9QUklPX0xPV0VTVCAw
-PjsNCj4gKwkJCWdjZS1zdWJzeXMgPSA8JmdjZSAweDE0MDAwMDAwIFNVQlNZU18xNDAwWFhYWD4s
-DQo+ICsJCQkJICAgICA8JmdjZSAweDE0MDEwMDAwIFNVQlNZU18xNDAxWFhYWD4sDQo+ICsJCQkJ
-ICAgICA8JmdjZSAweDE0MDIwMDAwIFNVQlNZU18xNDAyWFhYWD4sDQo+ICsJCQkJICAgICA8Jmdj
-ZSAweDE1MDIwMDAwIFNVQlNZU18xNTAyWFhYWD47DQo+ICsJCQltZWRpYXRlayxnY2UtZXZlbnRz
-ID0gPENNRFFfRVZFTlRfTURQX1JETUEwX1NPRj4sDQo+ICsJCQkJCSAgICAgIDxDTURRX0VWRU5U
-X01EUF9SRE1BMF9FT0Y+LA0KPiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9NRFBfUlNaMF9TT0Y+
-LA0KDQpDTURRX0VWRU5UX01EUF9SU1owX1NPRiBpcyBzZW50IGZyb20gcnN6MCB0byBnY2UsIHNv
-IG1vdmUgdGhpcyBldmVudCB0bw0KcnN6MC4NCg0KUmVnYXJkcywNCkNLDQoNCj4gKwkJCQkJICAg
-ICAgPENNRFFfRVZFTlRfTURQX1JTWjFfU09GPiwNCj4gKwkJCQkJICAgICAgPENNRFFfRVZFTlRf
-TURQX1REU0hQX1NPRj4sDQo+ICsJCQkJCSAgICAgIDxDTURRX0VWRU5UX01EUF9XUk9UMF9TT0Y+
-LA0KPiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9NRFBfV1JPVDBfRU9GPiwNCj4gKwkJCQkJICAg
-ICAgPENNRFFfRVZFTlRfTURQX1dETUEwX1NPRj4sDQo+ICsJCQkJCSAgICAgIDxDTURRX0VWRU5U
-X01EUF9XRE1BMF9FT0Y+LA0KPiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9JU1BfRlJBTUVfRE9O
-RV9QMl8wPiwNCj4gKwkJCQkJICAgICAgPENNRFFfRVZFTlRfSVNQX0ZSQU1FX0RPTkVfUDJfMT4s
-DQo+ICsJCQkJCSAgICAgIDxDTURRX0VWRU5UX0lTUF9GUkFNRV9ET05FX1AyXzI+LA0KPiArCQkJ
-CQkgICAgICA8Q01EUV9FVkVOVF9JU1BfRlJBTUVfRE9ORV9QMl8zPiwNCj4gKwkJCQkJICAgICAg
-PENNRFFfRVZFTlRfSVNQX0ZSQU1FX0RPTkVfUDJfND4sDQo+ICsJCQkJCSAgICAgIDxDTURRX0VW
-RU5UX0lTUF9GUkFNRV9ET05FX1AyXzU+LA0KPiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9JU1Bf
-RlJBTUVfRE9ORV9QMl82PiwNCj4gKwkJCQkJICAgICAgPENNRFFfRVZFTlRfSVNQX0ZSQU1FX0RP
-TkVfUDJfNz4sDQo+ICsJCQkJCSAgICAgIDxDTURRX0VWRU5UX0lTUF9GUkFNRV9ET05FX1AyXzg+
-LA0KPiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9JU1BfRlJBTUVfRE9ORV9QMl85PiwNCj4gKwkJ
-CQkJICAgICAgPENNRFFfRVZFTlRfSVNQX0ZSQU1FX0RPTkVfUDJfMTA+LA0KPiArCQkJCQkgICAg
-ICA8Q01EUV9FVkVOVF9JU1BfRlJBTUVfRE9ORV9QMl8xMT4sDQo+ICsJCQkJCSAgICAgIDxDTURR
-X0VWRU5UX0lTUF9GUkFNRV9ET05FX1AyXzEyPiwNCj4gKwkJCQkJICAgICAgPENNRFFfRVZFTlRf
-SVNQX0ZSQU1FX0RPTkVfUDJfMTM+LA0KPiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9JU1BfRlJB
-TUVfRE9ORV9QMl8xND4sDQo+ICsJCQkJCSAgICAgIDxDTURRX0VWRU5UX1dQRV9BX0RPTkU+LA0K
-PiArCQkJCQkgICAgICA8Q01EUV9FVkVOVF9TUEVfQl9ET05FPjsNCj4gKwkJfTsNCj4gKw0KPiAr
-CQltZHAzX3JzejA6IG1kcDNfcnN6MEAxNDAwMzAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10ODE4My1tZHAzLXJzeiI7DQo+ICsJCQltZWRpYXRlayxtZHAzLWlkID0gPDA+Ow0K
-PiArCQkJcmVnID0gPDAgMHgxNDAwMzAwMCAwIDB4MTAwMD47DQo+ICsJCQltZWRpYXRlayxnY2Ut
-Y2xpZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweDMwMDAgMHgxMDAwPjsNCj4gKwkJ
-CWNsb2NrcyA9IDwmbW1zeXMgQ0xLX01NX01EUF9SU1owPjsNCj4gKwkJfTsNCj4gKw0KPiArCQlt
-ZHAzX3JzejE6IG1kcDNfcnN6MUAxNDAwNDAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10ODE4My1tZHAzLXJzeiI7DQo+ICsJCQltZWRpYXRlayxtZHAzLWlkID0gPDE+Ow0KPiAr
-CQkJcmVnID0gPDAgMHgxNDAwNDAwMCAwIDB4MTAwMD47DQo+ICsJCQltZWRpYXRlayxnY2UtY2xp
-ZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweDQwMDAgMHgxMDAwPjsNCj4gKwkJCWNs
-b2NrcyA9IDwmbW1zeXMgQ0xLX01NX01EUF9SU1oxPjsNCj4gKwkJfTsNCj4gKw0KPiArCQltZHAz
-X3dyb3QwOiBtZHAzX3dyb3QwQDE0MDA1MDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssbXQ4MTgzLW1kcDMtd3JvdCI7DQo+ICsJCQltZWRpYXRlayxtZHAzLWlkID0gPDA+Ow0KPiAr
-CQkJcmVnID0gPDAgMHgxNDAwNTAwMCAwIDB4MTAwMD47DQo+ICsJCQltZWRpYXRlayxnY2UtY2xp
-ZW50LXJlZyA9IDwmZ2NlIFNVQlNZU18xNDAwWFhYWCAweDUwMDAgMHgxMDAwPjsNCj4gKwkJCXBv
-d2VyLWRvbWFpbnMgPSA8JnNwbSBNVDgxODNfUE9XRVJfRE9NQUlOX0RJU1A+Ow0KPiArCQkJY2xv
-Y2tzID0gPCZtbXN5cyBDTEtfTU1fTURQX1dST1QwPjsNCj4gKwkJCWlvbW11cyA9IDwmaW9tbXUg
-TTRVX1BPUlRfTURQX1dST1QwPjsNCj4gKwkJfTsNCj4gKw0KPiArCQltZHAzX3dkbWE6IG1kcDNf
-d2RtYUAxNDAwNjAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1tZHAz
-LXdkbWEiOw0KPiArCQkJbWVkaWF0ZWssbWRwMy1pZCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4
-MTQwMDYwMDAgMCAweDEwMDA+Ow0KPiArCQkJbWVkaWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8Jmdj
-ZSBTVUJTWVNfMTQwMFhYWFggMHg2MDAwIDB4MTAwMD47DQo+ICsJCQlwb3dlci1kb21haW5zID0g
-PCZzcG0gTVQ4MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsNCj4gKwkJCWNsb2NrcyA9IDwmbW1zeXMg
-Q0xLX01NX01EUF9XRE1BMD47DQo+ICsJCQlpb21tdXMgPSA8JmlvbW11IE00VV9QT1JUX01EUF9X
-RE1BMD47DQo+ICsJCX07DQo+ICsNCj4gIAkJb3ZsMDogb3ZsQDE0MDA4MDAwIHsNCj4gIAkJCWNv
-bXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgzLWRpc3Atb3ZsIjsNCj4gIAkJCXJlZyA9IDwwIDB4
-MTQwMDgwMDAgMCAweDEwMDA+Ow0KPiBAQCAtMTM3OCw2ICsxNDgwLDE0IEBADQo+ICAJCQlwb3dl
-ci1kb21haW5zID0gPCZzcG0gTVQ4MTgzX1BPV0VSX0RPTUFJTl9ESVNQPjsNCj4gIAkJfTsNCj4g
-IA0KPiArCQltZHAzX2Njb3JyOiBtZHAzX2Njb3JyQDE0MDFjMDAwIHsNCj4gKwkJCWNvbXBhdGli
-bGUgPSAibWVkaWF0ZWssbXQ4MTgzLW1kcDMtY2NvcnIiOw0KPiArCQkJbWVkaWF0ZWssbWRwMy1p
-ZCA9IDwwPjsNCj4gKwkJCXJlZyA9IDwwIDB4MTQwMWMwMDAgMCAweDEwMDA+Ow0KPiArCQkJbWVk
-aWF0ZWssZ2NlLWNsaWVudC1yZWcgPSA8JmdjZSBTVUJTWVNfMTQwMVhYWFggMHhjMDAwIDB4MTAw
-MD47DQo+ICsJCQljbG9ja3MgPSA8Jm1tc3lzIENMS19NTV9NRFBfQ0NPUlI+Ow0KPiArCQl9Ow0K
-PiArDQo+ICAJCWltZ3N5czogc3lzY29uQDE1MDIwMDAwIHsNCj4gIAkJCWNvbXBhdGlibGUgPSAi
-bWVkaWF0ZWssbXQ4MTgzLWltZ3N5cyIsICJzeXNjb24iOw0KPiAgCQkJcmVnID0gPDAgMHgxNTAy
-MDAwMCAwIDB4MTAwMD47DQoNCg==
+Add DT bindings for MAXIM max31865 RTD sensor.
+
+Signed-off-by: Navin Sankar Velliangiri <navin@linumiz.com>
+
+---
+Note:
+Changes in v2:
+	-> Changed the name RTD to Resistance Temperature Detector
+	-> renamed maxim,no-of-wires to 3-wire
+	-> fixed code alignment for the example
+
+Changes in v3:
+	-> Added more information about 3 wire RTD connection
+---
+ .../iio/temperature/maxim,max31865.yaml       | 52 +++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml b/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
+new file mode 100644
+index 000000000000..aafb33b16549
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/temperature/maxim,max31865.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX31865 Resistance Temperature Detector.
++
++maintainers:
++  - Navin Sankar Velliangiri <navin@linumiz.com>
++
++description: |
++  https://datasheets.maximintegrated.com/en/ds/MAX31865.pdf
++
++properties:
++  compatible:
++    const: maxim,max31865
++
++  reg:
++    maxItems: 1
++
++  maxim,3-wire:
++    description:
++      Identifies the number of wires used by the RTD. Setting this property
++      enables 3-wire RTD connection. Else 2-wire or 4-wire RTD connection.
++    type: boolean
++
++  spi-max-frequency: true
++  spi-cpha: true
++
++required:
++  - compatible
++  - reg
++  - spi-cpha
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++       #address-cells = <1>;
++       #size-cells = <0>;
++
++       temp_sensor@0 {
++         compatible = "maxim,max31865";
++         reg = <0>;
++         spi-max-frequency = <400000>;
++         spi-cpha;
++         maxim,3-wire;
++       };
++    };
++...
+-- 
+2.32.0
 
