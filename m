@@ -2,161 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC8F43F604B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:26:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779743F605F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 16:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237606AbhHXO0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 10:26:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48406 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235997AbhHXO0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:26:48 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD80EC061757;
-        Tue, 24 Aug 2021 07:26:03 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 61-20020a9d0d430000b02903eabfc221a9so46603102oti.0;
-        Tue, 24 Aug 2021 07:26:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=cLmu7zgJaXKzK4Rf3xZy8rbXQ8G9iiiCS2AqbbVSdr4=;
-        b=W/vnTArXnkUTeAWPhVsCsNx9G1AaqqjMh7JGGCeKMkNnaOWP3sAbf+15/nLoCNmR3g
-         q5YdGS8A1cXpAtJlYg19EzxhKY4ftiJkULVtdpcPrc3JdAsQuBkyHELZ+nm35chlenyd
-         B1EUk7sT/qRPK4Ufw9SGcQJoAGqm8fBuCmyUjLn+ofRgVfuPflWOJHcCCZEENzbQUeyQ
-         VmavwAVWpqeeI9XEBe9u66mgOWxsXHJm3RTYGIcz6konO25IcoN22AqYojFn8mbqHxKg
-         qRzCfRvKs4A+5DaC8fRnZWJa7UOCRmoYWPgWVuJeEHetkAAVaEkEKj7Ut9tMesrOQeKz
-         uFVg==
+        id S237367AbhHXO2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 10:28:41 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:38887 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237325AbhHXO2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 10:28:40 -0400
+Received: by mail-ot1-f48.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso35288948ots.5;
+        Tue, 24 Aug 2021 07:27:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=cLmu7zgJaXKzK4Rf3xZy8rbXQ8G9iiiCS2AqbbVSdr4=;
-        b=hw63h3ARUUBYommE/qzioPu6SJGj8BoEoRfp96rMxuHgPhqJixtTdKfIC5xHFIZdZm
-         WugrFMcrjgX/IT2yNRqDQYjjYQn9G8lZW5W1jj7C/xtfBKL0UkuvBaZrC+/bpMmgrFG7
-         Z+bVjaAy4q6xrdEg5r8LuS8BdOYAgrS4Pv/Rf4D4DivMHfHFFeFMT+n00yWdBuN0YUWC
-         ISlPkg6Yo6Zb6jARKU6C/8KIqq4tzEPaLsxs+/rrxbAPBFPPcj6f5AL2g9mRttC7tV/v
-         FXstbS2d4+QD7Oc391M1of45xS2eOLhpU5CG6aIXgOocF9268Bt20ne/wMIYxBAQybYV
-         w4Vw==
-X-Gm-Message-State: AOAM533ngQOaJHUrcm09VA5Y+HjWSqLsE1cDU5OdydcfYytA3lipdp6K
-        rKmxHFWFHWYbiNMsToQve0g=
-X-Google-Smtp-Source: ABdhPJwwcoIM6BcsOG2f+J3p/MRlA0Dk0tp13V1qbyu4iB7WMMjh+hei/xpqfoPCtwiA6Z7Inf6E6w==
-X-Received: by 2002:a54:4513:: with SMTP id l19mr3045512oil.143.1629815163193;
-        Tue, 24 Aug 2021 07:26:03 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id w23sm4515362otk.56.2021.08.24.07.26.01
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Nb+8b7sSd8DLl7W6dDpH/W4tZiNwLlo8PJewGNallnc=;
+        b=SeheYcQfW6gkNJc0kPesUgjx5uCOQlabZ6HHcXGRvCcR0MJdVyymW6pJ1/Y5yc5PXF
+         gp8V9mbDxHZ1RUi2tEryBzrLkGAl6OFPg1WdGHkSYBF3t3qAISrT1NQ0mz+hUVgJH06V
+         NMN2hSMyIagB+nm9TvpttEP1PLGw1dOzRFIJNAXMFi8f/nkg3OBYsj3QRZEkA06fho5f
+         VDptfh8M3cNHvM57rOU7bwJIzEr2/ZCiszNrS0cBHPtu+NP3dwXH+cckOnR1NtB0ZPm+
+         Jwd+oqhOgRLC/MvCRfIIyfdXcXDlB7UDjQGob15o1FcyHDL+Ciz2Zujqsd2oDNP3+wAM
+         2pfA==
+X-Gm-Message-State: AOAM530X6oLA29RzmIeIgNKgBoi3em7hz9a3GbrbRdhZjxZSKKI26KBa
+        L5WUw23VQn2y+4epy7peqg==
+X-Google-Smtp-Source: ABdhPJzR178d7Yu+gOhF1hpzef9SkuG5gyZGtS8YWXdxG+WfUBRoOM907Ov0YHXUEte5ai9XJH4wfw==
+X-Received: by 2002:a05:6830:1657:: with SMTP id h23mr23525649otr.315.1629815276317;
+        Tue, 24 Aug 2021 07:27:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q7sm1329066otl.68.2021.08.24.07.27.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 07:26:02 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 24 Aug 2021 07:26:01 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
-        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
-        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
-        jxgao@google.com, joonas.lahtinen@linux.intel.com,
-        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
-        matthew.auld@intel.com, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com, thomas.lendacky@amd.com,
-        quic_qiancai@quicinc.com
-Subject: Re: [PATCH v15 10/12] swiotlb: Add restricted DMA pool initialization
-Message-ID: <20210824142601.GA3393158@roeck-us.net>
-References: <20210624155526.2775863-1-tientzu@chromium.org>
- <20210624155526.2775863-11-tientzu@chromium.org>
+        Tue, 24 Aug 2021 07:27:55 -0700 (PDT)
+Received: (nullmailer pid 389410 invoked by uid 1000);
+        Tue, 24 Aug 2021 14:27:54 -0000
+Date:   Tue, 24 Aug 2021 09:27:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: serial: brcm,bcm6345-uart: convert to the
+ json-schema
+Message-ID: <YSUB6v84Ds+SisgY@robh.at.kernel.org>
+References: <20210819134859.19537-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210624155526.2775863-11-tientzu@chromium.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210819134859.19537-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Claire,
-
-On Thu, Jun 24, 2021 at 11:55:24PM +0800, Claire Chang wrote:
-> Add the initialization function to create restricted DMA pools from
-> matching reserved-memory nodes.
+On Thu, Aug 19, 2021 at 03:48:59PM +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Regardless of swiotlb setting, the restricted DMA pool is preferred if
-> available.
+> This helps validating DTS files.
 > 
-> The restricted DMA pools provide a basic level of protection against the
-> DMA overwriting buffer contents at unexpected times. However, to protect
-> against general data leakage and system memory corruption, the system
-> needs to provide a way to lock down the memory access, e.g., MPU.
+> In example periph_clk@0 was replaced with periph_clk to fix validation.
 > 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-> Tested-by: Will Deacon <will@kernel.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  include/linux/swiotlb.h |  3 +-
->  kernel/dma/Kconfig      | 14 ++++++++
->  kernel/dma/swiotlb.c    | 76 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 92 insertions(+), 1 deletion(-)
+> I've verified this binding using the
+> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
+> ---
+>  .../bindings/serial/brcm,bcm6345-uart.txt     | 36 ------------
+>  .../bindings/serial/brcm,bcm6345-uart.yaml    | 57 +++++++++++++++++++
+>  2 files changed, 57 insertions(+), 36 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
 > 
-> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-> index 3b9454d1e498..39284ff2a6cd 100644
-> --- a/include/linux/swiotlb.h
-> +++ b/include/linux/swiotlb.h
-> @@ -73,7 +73,8 @@ extern enum swiotlb_force swiotlb_force;
->   *		range check to see if the memory was in fact allocated by this
->   *		API.
->   * @nslabs:	The number of IO TLB blocks (in groups of 64) between @start and
-> - *		@end. This is command line adjustable via setup_io_tlb_npages.
-> + *		@end. For default swiotlb, this is command line adjustable via
-> + *		setup_io_tlb_npages.
->   * @used:	The number of used IO TLB block.
->   * @list:	The free list describing the number of free entries available
->   *		from each index.
-> diff --git a/kernel/dma/Kconfig b/kernel/dma/Kconfig
-> index 77b405508743..3e961dc39634 100644
-> --- a/kernel/dma/Kconfig
-> +++ b/kernel/dma/Kconfig
-> @@ -80,6 +80,20 @@ config SWIOTLB
->  	bool
->  	select NEED_DMA_MAP_STATE
->  
-> +config DMA_RESTRICTED_POOL
-> +	bool "DMA Restricted Pool"
-> +	depends on OF && OF_RESERVED_MEM
-> +	select SWIOTLB
+> diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt b/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt
+> deleted file mode 100644
+> index 8b2b0460259a..000000000000
+> --- a/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.txt
+> +++ /dev/null
+> @@ -1,36 +0,0 @@
+> -* BCM63xx UART
+> -
+> -Required properties:
+> -
+> -- compatible: "brcm,bcm6345-uart"
+> -
+> -- reg: The base address of the UART register bank.
+> -
+> -- interrupts: A single interrupt specifier.
+> -
+> -- clocks: Clock driving the hardware; used to figure out the baud rate
+> -  divisor.
+> -
+> -
+> -Optional properties:
+> -
+> -- clock-names: Should be "refclk".
+> -
+> -Example:
+> -
+> -	uart0: serial@14e00520 {
+> -		compatible = "brcm,bcm6345-uart";
+> -		reg = <0x14e00520 0x18>;
+> -		interrupt-parent = <&periph_intc>;
+> -		interrupts = <2>;
+> -		clocks = <&periph_clk>;
+> -		clock-names = "refclk";
+> -	};
+> -
+> -	clocks {
+> -		periph_clk: periph_clk@0 {
+> -			compatible = "fixed-clock";
+> -			#clock-cells = <0>;
+> -			clock-frequency = <54000000>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
+> new file mode 100644
+> index 000000000000..0d4d03fc58ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/brcm,bcm6345-uart.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/brcm,bcm6345-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BCM63xx UART
+> +
+> +maintainers:
+> +  - Rafał Miłecki <rafal@milecki.pl>
+> +
+> +allOf:
+> +  - $ref: serial.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm6345-uart
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: The base address of the UART register bank
 
-This makes SWIOTLB user configurable, which in turn results in
+Drop. Don't need generic descriptions.
 
-mips64-linux-ld: arch/mips/kernel/setup.o: in function `arch_mem_init':
-setup.c:(.init.text+0x19c8): undefined reference to `plat_swiotlb_setup'
-make[1]: *** [Makefile:1280: vmlinux] Error 1
+> +
+> +  interrupts:
+> +    description: A single interrupt specifier
 
-when building mips:allmodconfig.
+Replace with 'maxItems: 1'
 
-Should this possibly be "depends on SWIOTLB" ?
+> +
+> +  clocks:
+> +    description: >
+> +      Clock driving the hardware; used to figure out the baud rate divisor
 
-Thanks,
-Guenter
+Replace with 'maxItems: 1'
+
+> +
+> +  clock-names:
+> +    const: refclk
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +examples:
+> +  - |
+> +    serial@14e00520 {
+> +        compatible = "brcm,bcm6345-uart";
+> +        reg = <0x14e00520 0x18>;
+> +        interrupt-parent = <&periph_intc>;
+> +        interrupts = <2>;
+> +        clocks = <&periph_clk>;
+> +        clock-names = "refclk";
+> +    };
+> +
+> +    clocks {
+> +        periph_clk: periph_clk {
+> +            compatible = "fixed-clock";
+> +            #clock-cells = <0>;
+> +            clock-frequency = <54000000>;
+> +        };
+
+You don't need to show the clock provider (or any other) in examples.
+
+> +    };
+> -- 
+> 2.26.2
+> 
+> 
