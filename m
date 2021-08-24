@@ -2,75 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 232EB3F63C4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:57:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDDE3F641A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 19:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237937AbhHXQ6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 12:58:06 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:37837 "EHLO
+        id S234872AbhHXRAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 13:00:50 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:45798 "EHLO
         mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234334AbhHXQ5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:57:35 -0400
-Received: by mail-ot1-f43.google.com with SMTP id i3-20020a056830210300b0051af5666070so38110590otc.4;
-        Tue, 24 Aug 2021 09:56:51 -0700 (PDT)
+        with ESMTP id S238958AbhHXQ7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:59:23 -0400
+Received: by mail-ot1-f43.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso16139566otv.12
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 09:58:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=C7txPjPjbsp8XuclaI5qbJQ3gQnsw2SWCgSeRaywFZQ=;
-        b=iK0W/8PnK9hFYuFlFcy4yOhQKan4jlYuto9nlV1RRWFYp6V6lpSdUivvG7atz1qPr1
-         eKGPZSuqJlE5CfaPzPIahN9mM3HfFzmp3o9XQdGSjDYzrz/Gc+jIHcfJ4terBWz312ID
-         jLeWV4T+3C7LPgjYfz8sP5eKHMwMF8xk5rjDFBYYc1MfR3kjJZqoyxDHnEdljegmV9k2
-         5YIDqq6ujvTdrbStSPv43m08DFgX/9JPj4i56zngz7nyn/tgRHFNNwj+A0F4Hsgm0Zej
-         /eejXMKkFlIduNvE3o28F1p7Jmm9RbQJFU9jU+3/VO12c31r6xC2IcuVunVG5rHmmHaO
-         bsew==
-X-Gm-Message-State: AOAM532fkw7A/AatSQ8jEB6Syglo8K2wVzmp/rEDUgGXll0RAcwCSs6V
-        H3btaeXmNouAga5VK9e9HA==
-X-Google-Smtp-Source: ABdhPJzkiNL6iSxtcJl9nTdq2oHs5KYVn1yCRary5Wk5G/v93BTTPpM9RS39MpM82OuagU7zLghLfw==
-X-Received: by 2002:a05:6830:156:: with SMTP id j22mr25337495otp.75.1629824211300;
-        Tue, 24 Aug 2021 09:56:51 -0700 (PDT)
+        bh=gLpwSrgDVrehm6j3+KekuLUcZGEgcjkIq/MzS6C4s2Q=;
+        b=ufRpjwebLN8W8VBUeZrRRxDLsM33+sQTOrelvCFZoDeBVr6CU5s4wEWHOBSE0ai6FV
+         LMlLS+tNIAqeDtp/Hrx3BCGSvzjGH3GsW6WAvc0aPiRBckHLGyiIozOVIzLOfKIp83DQ
+         kJFflosUFCgo/DnPPZXL/BqdyrLqF7qBR+KBRWVWcLJcWHdFSZUKiEnxNrIuP0S76Aqc
+         pAPaHTNJIUvACeiPxJktP1EWVnyz9XCqq86ugnFr889wgXKFxwdn+E/DGHf6n0BXamp3
+         qF1OssHucx+FQ+0ioCRMhjUDwPYr+ldGcTnHKaYp1iK67l7CIcHq8GFFY0keV//6iIiY
+         Fg+A==
+X-Gm-Message-State: AOAM5316r5aBUbdLw6rxG2SDPE2IkJ9aYR0n6+BiOV1TLWG05P+KdOJT
+        QNhokd7s9nURSB9IjBNKVQ==
+X-Google-Smtp-Source: ABdhPJxznu0po8jvGOG/R35j+O3vsQwjCgnWz2hyBX4naV/clJHvdyP+gZ5KOtm8KTStXZyLTR4ZRg==
+X-Received: by 2002:aca:aa88:: with SMTP id t130mr3493936oie.3.1629824318887;
+        Tue, 24 Aug 2021 09:58:38 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n13sm2971351otr.11.2021.08.24.09.56.50
+        by smtp.gmail.com with ESMTPSA id v5sm4172939oos.17.2021.08.24.09.58.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 09:56:50 -0700 (PDT)
-Received: (nullmailer pid 622951 invoked by uid 1000);
-        Tue, 24 Aug 2021 16:56:49 -0000
-Date:   Tue, 24 Aug 2021 11:56:49 -0500
+        Tue, 24 Aug 2021 09:58:38 -0700 (PDT)
+Received: (nullmailer pid 625890 invoked by uid 1000);
+        Tue, 24 Aug 2021 16:58:37 -0000
+Date:   Tue, 24 Aug 2021 11:58:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Navin Sankar Velliangiri <navin@linumiz.com>
-Cc:     ardeleanalex@gmail.com, jic23@kernel.org, lars@metafoo.de,
-        pmeerw@pmeerw.net, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: iio: temperature: add MAXIM max31865
- support
-Message-ID: <YSUk0eiz0ETc1J8W@robh.at.kernel.org>
-References: <20210824050650.72619-1-navin@linumiz.com>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     broonie@kernel.org, heiko@sntech.de,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v1 6/7] ASoC: dt-bindings: rockchip: pdm: Document
+ property 'rockchip,path-map'
+Message-ID: <YSUlPU+yxepPrcvL@robh.at.kernel.org>
+References: <1629791446-13528-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629791656-13698-1-git-send-email-sugar.zhang@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210824050650.72619-1-navin@linumiz.com>
+In-Reply-To: <1629791656-13698-1-git-send-email-sugar.zhang@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Aug 2021 10:36:50 +0530, Navin Sankar Velliangiri wrote:
-> Add DT bindings for MAXIM max31865 RTD sensor.
+On Tue, Aug 24, 2021 at 03:54:15PM +0800, Sugar Zhang wrote:
+> This is an optional property to describe data path mapping.
 > 
-> Signed-off-by: Navin Sankar Velliangiri <navin@linumiz.com>
-> 
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
 > ---
-> Note:
-> Changes in v2:
-> 	-> Changed the name RTD to Resistance Temperature Detector
-> 	-> renamed maxim,no-of-wires to 3-wire
-> 	-> fixed code alignment for the example
 > 
-> Changes in v3:
-> 	-> Added more information about 3 wire RTD connection
-> ---
->  .../iio/temperature/maxim,max31865.yaml       | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/maxim,max31865.yaml
+>  Documentation/devicetree/bindings/sound/rockchip,pdm.txt | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt b/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+> index 54d94438..b2d7e47 100644
+> --- a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+> +++ b/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+> @@ -24,6 +24,22 @@ Required properties:
+>  	     pinctrl-names. See ../pinctrl/pinctrl-bindings.txt
+>  	     for details of the property values.
+>  
+> +Optional properties:
+> +- rockchip,path-map: This is a variable length array, that shows the mapping
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The schema says this is a fixed length array.
+
+> +  of SDIx to PATHx. By default, they are one-to-one mapping as follows:
+> +
+> +   path0 <-- sdi0
+> +   path1 <-- sdi1
+> +   path2 <-- sdi2
+> +   path3 <-- sdi3
+> +
+> +  e.g. "rockchip,path-map = <3 2 1 0>" means the mapping as follows:
+> +
+> +   path0 <-- sdi3
+> +   path1 <-- sdi2
+> +   path2 <-- sdi1
+> +   path3 <-- sdi0
+> +
+>  Example for rk3328 PDM controller:
+>  
+>  pdm: pdm@ff040000 {
+> -- 
+> 2.7.4
+> 
+> 
+> 
+> 
