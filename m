@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9D223F635B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9EF3F6365
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 18:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233028AbhHXQw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 12:52:29 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:36697 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233753AbhHXQwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:52:22 -0400
-Received: by mail-ot1-f42.google.com with SMTP id a20-20020a0568300b9400b0051b8ca82dfcso26869894otv.3;
-        Tue, 24 Aug 2021 09:51:38 -0700 (PDT)
+        id S233749AbhHXQw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 12:52:59 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:40958 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233322AbhHXQw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:52:56 -0400
+Received: by mail-ot1-f53.google.com with SMTP id x9-20020a056830278900b0051b8be1192fso27104706otu.7;
+        Tue, 24 Aug 2021 09:52:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=TqDTocubplmJ8KIunSvtYYFh2tdzr0o4H6aSnsFWwoQ=;
-        b=FajAzifi4PglX2qAAZvtbVMhll47upp6HknWOrPTgwem6GWwkElSrZ0jEWTwweFFNG
-         CEQ3T77ZpCTUeSCGvk+Zy+wnEPRaXmGKU0McGXEo4fD6T+3hx2/UTgPkPB7Rjd9MZJoe
-         hvhTEFvrqwGPd4ZXHlJfmJoVCZH7TtPhfvwDkf/W9ycAqg547QmEwCMF9HgcEs35ubJI
-         hzmJiQGrbIbgSzms2R/+/qNufkiaOOKIopynD66VzT7gYPqCXYK5mTbUXh0CerY9sRNH
-         ovLfy3qpEzlqJw80T9LH23YW8qzBjcSpLoNXhwxXhQWK5cda/nno2XTivcpcvlJlPcVp
-         DVtw==
-X-Gm-Message-State: AOAM531Qkgm0QiR8iAsUx290nRm/MtyqNVq+Uh5axZ83jNtrEFoAj9d6
-        WjUHp+/jYnT5/atG4/CF4w==
-X-Google-Smtp-Source: ABdhPJw2Hya/lTKLZYUqyBceJAvjGguwwCvu6T1Gp8q0wDr42rjLwqv+cAQ7rocAmn8afcP6DRhdhw==
-X-Received: by 2002:a9d:de1:: with SMTP id 88mr34275329ots.60.1629823898082;
-        Tue, 24 Aug 2021 09:51:38 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=XjC4STvYn5W673hggvPcu+zT6dRzkoKFblKiVNLm9w0=;
+        b=kn9J5cTXF6r1utyo+MBSYFnhhxcDf/xly7Y3Yzs6LwBi2/Ucj+BICIOvMl90Pvp32y
+         qVG53MAV58Su9CrOPljxvfgDrNA/e9te66A2oi++C01tl/O4lqInvmhoSefmqQJDHJ91
+         9G/z/MJs4vYRHjIXGzIQCcFFgqlpwY0zy9SNl2DSjrsQ8cV48W8IMWD9B6w2PFJKtCX6
+         Im+iD3BBWGUZ/CDYq4yZRUFc5DtuRL1mlB/dyUaMM0fxl5W/QeBhV3+aHXw2gZ0PFqYd
+         SgIjp3Q3OUfkMbisNPRQt2JiX7kgFi+pYsNDLrpndqmYADoxw99Bdu0lkvdtBDD+eeOT
+         e7Xw==
+X-Gm-Message-State: AOAM530OUhisy9NMZ7C08HjscLhkeQQZhYckzOk+ipbvl52v9fpiC4ED
+        jsD8kE8zDO8vXQNCdKjqzQ==
+X-Google-Smtp-Source: ABdhPJyfRa/4/UxZyZYdKKDtCptKTyJfMBe9SKVFGHC+BeiS3FEVP6mX3eUI16zgpdl2Uv7NcHU3Dw==
+X-Received: by 2002:a9d:de1:: with SMTP id 88mr34277576ots.60.1629823931550;
+        Tue, 24 Aug 2021 09:52:11 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g8sm4048072otk.34.2021.08.24.09.51.36
+        by smtp.gmail.com with ESMTPSA id 31sm4644150oti.63.2021.08.24.09.52.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 09:51:37 -0700 (PDT)
-Received: (nullmailer pid 614406 invoked by uid 1000);
-        Tue, 24 Aug 2021 16:51:36 -0000
-Date:   Tue, 24 Aug 2021 11:51:36 -0500
+        Tue, 24 Aug 2021 09:52:10 -0700 (PDT)
+Received: (nullmailer pid 615362 invoked by uid 1000);
+        Tue, 24 Aug 2021 16:52:09 -0000
+Date:   Tue, 24 Aug 2021 11:52:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>, mir@bang-olufsen.dk,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 2/5] dt-bindings: net: dsa: realtek-smi:
- document new compatible rtl8365mb
-Message-ID: <YSUjmFdtX5uUutPt@robh.at.kernel.org>
-References: <20210822193145.1312668-1-alvin@pqrs.dk>
- <20210822193145.1312668-3-alvin@pqrs.dk>
+To:     Kewei Xu <kewei.xu@mediatek.com>
+Cc:     yuhan.wei@mediatek.com, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        linux-arm-kernel@lists.infradead.org, wsa@the-dreams.de,
+        liguo.zhang@mediatek.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, qii.wang@mediatek.com,
+        linux-i2c@vger.kernel.org, caiyu.chen@mediatek.com,
+        matthias.bgg@gmail.com, ot_daolong.zhu@mediatek.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH v5 4/7] dt-bindings: i2c: add attribute
+ use-default-timing
+Message-ID: <YSUjuZIm4C2B0sDs@robh.at.kernel.org>
+References: <1629775828-19993-1-git-send-email-kewei.xu@mediatek.com>
+ <1629775828-19993-5-git-send-email-kewei.xu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210822193145.1312668-3-alvin@pqrs.dk>
+In-Reply-To: <1629775828-19993-5-git-send-email-kewei.xu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 22 Aug 2021 21:31:40 +0200, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+On Tue, 24 Aug 2021 11:30:25 +0800, Kewei Xu wrote:
+> Add attribute use-default-timing for DT-binding document.
 > 
-> rtl8365mb is a new realtek-smi subdriver for the RTL8365MB-VC 4+1 port
-> 10/100/1000M Ethernet switch controller. Its compatible string is
-> "realtek,rtl8365mb".
-> 
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
+> Fixes: be5ce0e97cc7 ("i2c: mediatek: Add i2c ac-timing adjust support")
+> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/net/dsa/realtek-smi.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
