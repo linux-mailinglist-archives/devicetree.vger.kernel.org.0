@@ -2,156 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 265A83F5999
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 10:03:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5776F3F59AC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 10:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232038AbhHXIEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 04:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235068AbhHXID4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 04:03:56 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2D5C06175F
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 01:03:12 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id z1so25248359ioh.7
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 01:03:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L63odCo4yNap7uJZXQxb32IpEjuy5tIEHRzlg7AD9/Q=;
-        b=JFacL5p5al23wT7l/I0YIM9ewuicMzmhsmVh4xzL+NJEmXtWF9H+spTUu7eW3moo/N
-         cvKKZrur8YB+y083vmI0LZpzgLdVvKY7iTkAeyHeXUS/zxHNx1jsOZbZYV5z5nqw0APi
-         U6eCpQdfATUsKX9oL5yrrxbsL+tf3uauXMNr4aqjlD4AVd0jOE74kzpPTDpmnNme+CsV
-         RHwLFJuWd/biPWAxwgMAdtYBvXxvipegC3Jf/fn1+sdusuJAN4WeQh4Y8/uWe4J4DEwP
-         lwDIDKrjn3nXcI8gyDcXEnBROKWPCrlyXugOx0/xEgA47Trqa1xQuyur54N2VO67wxWj
-         BAgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L63odCo4yNap7uJZXQxb32IpEjuy5tIEHRzlg7AD9/Q=;
-        b=Uz4VehSfx0fHRrYQJj2L9b3aBzJAwYv8RNVxLIHyMu6A2GgWv4z4Jy7zT2FqD2qf28
-         d2ckaTzsnVfEfQy/GvFDnvNa0s0eCEmADcoFB1sTe7sZvCh1CpHqvI+gf/hcCiWWQVUY
-         cYL0dUiNC8T+gixS3xA9sEeOuc2JOi9duTgoy21j6w4qZqxfB8QQWdGE/pNfgfrpMWW4
-         kTdDQGITnr1k6wnDLrXEqWv1iMN3bj6psAaIeJOECbT+pFqM+K1fjUAtlmc48IF0ZoIk
-         /MkHeKchx73/WST2DXxriaQ6JsX1WK3nfDJNRJ6p9WbRKAlRfvHtN3ZQunc2uxDOdX+4
-         LxKQ==
-X-Gm-Message-State: AOAM5319CM0dGXFQzOJFK4T96cPGCFnTPUkrOu7h9T110Nwesjv96rON
-        Kwzg+iY2rk65crEgEnuDhQ+qZHjgaZkmwXS5hXGziQ==
-X-Google-Smtp-Source: ABdhPJwK3nWLpscquSTWrXSuAus1oucKx3/G5sEauT7L1N+e9fWuQlSHmQPzBD2SSzjoUPMdl2AivUqmrfqfd/Vu+dA=
-X-Received: by 2002:a05:6638:d0a:: with SMTP id q10mr32900691jaj.88.1629792191590;
- Tue, 24 Aug 2021 01:03:11 -0700 (PDT)
+        id S235108AbhHXILi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 04:11:38 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:51934 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235068AbhHXILh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Aug 2021 04:11:37 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629792654; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=ZvmDGo5JvtaJAXLkf0eBgrFDnHbWT3Gwp4OipUJ/4z4=;
+ b=nYysTbq51qFd+4BASvQhXphdyTNRf5TLucxCOa3cKI48yixZKL3ovy6Rmvzb+jGLmsSZSCaM
+ 2AGir9e/OSc2VDlZGuqRIPMLmeofoaPg+Yejeik6VnCYc8rLiDheIEi1M7qX06WqBawA4Ld2
+ f1qI+hSd9O+2efEWPpOSRwJjsVY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 6124a98d1567234b8c77add9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 24 Aug 2021 08:10:53
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D7813C43460; Tue, 24 Aug 2021 08:10:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4D042C4338F;
+        Tue, 24 Aug 2021 08:10:48 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr>
- <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
- <20210713222528.GA952399@robh.at.kernel.org> <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
- <20210719225906.GA2769608@robh.at.kernel.org> <CACRpkdbq6Jow6AT9OpsR7Q0JVCWVMcmamh9KHPXMtUnkoe7ZFw@mail.gmail.com>
- <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com> <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com>
-In-Reply-To: <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 24 Aug 2021 10:03:01 +0200
-Message-ID: <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 24 Aug 2021 13:40:48 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
+ init in SC7280
+In-Reply-To: <349b1178f071407dfad8ba3050482772@codeaurora.org>
+References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
+ <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
+ <349b1178f071407dfad8ba3050482772@codeaurora.org>
+Message-ID: <e54b4f62dbcd670a0e0658598e045051@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 11, 2021 at 2:17 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Tue, Aug 3, 2021 at 9:23 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> > The pins that this driver wants to expose are used for SFP-s only,
-> > they are provided by the Lattice CPLD which also does other things.
-> >
-> > Linux has a generic SFP driver which is used to manage these SFP
-> > ports, but it only supports GPIO-s, it has no concept of anything else.
-> > Since the driver is fully generic, I have no idea how could one extend it
-> > to effectively handle these pins internally, especially since I have more
-> > switches that use the CPLD for SFP-s as well, even for 48 ports and 192
-> > pins for them.
->
-> Which file is this driver in so I can look?
+On 2021-08-17 22:56, Prasad Malisetty wrote:
+> On 2021-08-10 09:38, Prasad Malisetty wrote:
+>> On the SC7280, By default the clock source for pcie_1_pipe is
+>> TCXO for gdsc enable. But after the PHY is initialized, the clock
+>> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
+>> 
+>> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+>> ---
+>>  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
+>>  1 file changed, 18 insertions(+)
+>> 
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c
+>> b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 8a7a300..39e3b21 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -166,6 +166,8 @@ struct qcom_pcie_resources_2_7_0 {
+>>  	struct regulator_bulk_data supplies[2];
+>>  	struct reset_control *pci_reset;
+>>  	struct clk *pipe_clk;
+>> +	struct clk *gcc_pcie_1_pipe_clk_src;
+>> +	struct clk *phy_pipe_clk;
+>>  };
+>> 
+>>  union qcom_pcie_resources {
+>> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct
+>> qcom_pcie *pcie)
+>>  	if (ret < 0)
+>>  		return ret;
+>> 
+>> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+>> +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+>> +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+>> +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+>> +
+>> +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+>> +		if (IS_ERR(res->phy_pipe_clk))
+>> +			return PTR_ERR(res->phy_pipe_clk);
+>> +	}
+>> +
+> 
+> Hi All,
+> 
+> Greetings!
+> 
+> I would like to check is there any other better approach instead of
+> compatible method here as well or is it fine to use compatible method.
+> 
+> Thanks
+> -Prasad
+> 
+>>  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>>  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>>  }
+>> @@ -1255,6 +1267,12 @@ static void qcom_pcie_deinit_2_7_0(struct
+>> qcom_pcie *pcie)
+>>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>>  {
+>>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>> +	struct dw_pcie *pci = pcie->pci;
+>> +	struct device *dev = pci->dev;
+>> +	struct device_node *node = dev->of_node;
+>> +
+>> +	if (of_property_read_bool(node, "pipe-clk-source-switch"))
+>> +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
+>> 
+>>  	return clk_prepare_enable(res->pipe_clk);
+>>  }
 
-Hi Linus,
-Sorry for the late reply.
+Hi,
 
-Sure, here is the generic Linux driver that is used for SFP handling:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/sfp.c?h=v5.14-rc7
+Kindly provide your inputs and confirmation on latest queries, I will 
+share new patch version.
 
->
-> Maybe it is not a good idea to look for generic code just because
-> it is convenient? I have had this problem before with GPIO, along
-> the lines "lemme just do this dirty thing this one time because it
-> is so convenient for me" (more or less) and the answer is still
-> "no".
->
-> Can you either augment the driver to handle a regmap with bit indices
-> instead or write a new similar driver for that or refactor it some other
-> way?
->
-> It is not a simple solution to your problem, but it might be the right
-> solution even if it means some more work.
-
-I understand your position, believe me, I spend some time looking at
-what would be the logical way for these switches.
-But I see no way how could the SFP driver be extended in a generic way
-that would allow supporting different register layouts when it comes to pins.
-
->
-> > GPIO regmap works perfectly for this as its generic enough to cover all of
-> > these cases.
->
-> Yeah but it might be the wrong thing to do even if it is simple
-> to use and works.
->
-> > CPLD also provides pins to test the port LED-s per color as well,
-> > but I have chosen not to expose them so far.
->
-> Have you considered
-> Documentation/devicetree/bindings/leds/register-bit-led.txt
-
-Yeah, but unfortunately in this case it wont work as the LED-s
-are for debugging/test purposes only and you first need to switch
-the CPLD out of it interpreting the LED state with a BIT flip.
-
-Regards,
-Robert
->
-> > > If it is a regmap in Linux then that is fine, just pass the regmap
-> > > around inside the kernel, OK finished. But really that is an OS
-> > > detail.
-> >
-> > Yes, its regmap but I cant really pass it to the SFP driver as I don't have
-> > special driver handling the SFP but rather the generic kernel one.
-> > It only knows how to handle GPIO-s.
->
-> Of course you have to program it. If I know which driver it
-> is it is easier to provide architecture ideas.
->
-> Yours,
-> Linus Walleij
-
-
-
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Thanks
+-Prasad
