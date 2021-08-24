@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06C353F641D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 19:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0201A3F647D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 19:04:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237289AbhHXRAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 13:00:52 -0400
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:35622 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239033AbhHXQ7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 12:59:42 -0400
-Received: by mail-oo1-f43.google.com with SMTP id o17-20020a4a64110000b0290263e1ba7ff9so6716403ooc.2;
-        Tue, 24 Aug 2021 09:58:58 -0700 (PDT)
+        id S230374AbhHXRFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 13:05:08 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:37662 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239263AbhHXRC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 13:02:28 -0400
+Received: by mail-ot1-f41.google.com with SMTP id i3-20020a056830210300b0051af5666070so38153207otc.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 10:01:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Ff9JKUI/YKVZ1f9QB3+ggQG4cbY+edkZDleJXyfV8CI=;
-        b=UfRtpKu7f6MWUALctxzeuzf/0SBCRAbsVDELmNyq9HqQMLp5RL0/mmzYMq982AjAYR
-         jRiMrWG6+61yLBSnLX0mV5N3T7jgfKX5OLnWoftN/hjE2Im5ExIXK4jLrOLYNYgYs0iO
-         uoMChHRsksQ7to3rv/s4d79nql4WmSN062b0wzGqGmmqig3RzmeHTw+wEjLJrPrC4QDN
-         CTdVBZjOu5iiToM+BpnfVARlQEk4C4tcEUlZCJ+UpZQzNIoUIQKPYqYBwi8kDXtI5mM+
-         nzR9pufH2Fm00mEHjeMJ2rrPfwuEwLCdP43l11WkJo5J85oRLjm8xhEcSmmsLnByXlHS
-         WLjA==
-X-Gm-Message-State: AOAM532JNuSthYGSOez2k43Ma6MTIc+7EMM3dge8duAn0hQgNG4pAhh1
-        85oqnlPAmGVnlRbyKn0LzQ==
-X-Google-Smtp-Source: ABdhPJwYumjG9VNceksmJBMvBD1W4nsmUqiq3U/CYXDeBtKUEVseR8qOkTVNr93EahjSAidk1/Uxww==
-X-Received: by 2002:a4a:b481:: with SMTP id b1mr30805640ooo.79.1629824337981;
-        Tue, 24 Aug 2021 09:58:57 -0700 (PDT)
+        bh=nUUWA5CRF6HLqmKmoi7Vjo2ILY+GNb621NKyvGmJA8s=;
+        b=CzDy4lkE+KO65QBRpk911fXwqDNa8HVzmvLwihkYAN8OjwLTycgqlN8K5VgQ/Q6UIi
+         guNO2V0Qn1bO4bFQwTZ5ScngbQVVnAFQZHegmzU1KP6yl+zh920yzxRhVfFW0rQDt6di
+         6dgIAIkGNhnrVHFmjyx1GfEzimidoUTQ0iNSr4P4ntH7X5jiAO0IeCRZvSnAMxPMABwU
+         X8FQYTwJ91ub9lWcZaT5EmgvsfnbMOa20kfN25uY1qi+w8wfRz1cgqlPa+/fyPAUBQcK
+         pV0nSBgjC3nTLJA6Pn4/uv0plk4/Qy61TIrJjPZ1d49VpPMaoA8kvboC9oQRTJvP2TTg
+         uAZQ==
+X-Gm-Message-State: AOAM5328LkNYw1Iqv94vRk/Pk3KjM9B8x1LCR03XhqMadXtzV/338ABJ
+        vwiBVhs+t81/zrDwSFX64g==
+X-Google-Smtp-Source: ABdhPJxk3xxIG5/F1f6fBOsunCUzkOVmpUpV1nAU+ih3BbcLVZRf59oAnpIFJdiE4ZUhjqGI5dUqUg==
+X-Received: by 2002:a9d:7ccc:: with SMTP id r12mr33420960otn.350.1629824503999;
+        Tue, 24 Aug 2021 10:01:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l67sm4667332otl.3.2021.08.24.09.58.56
+        by smtp.gmail.com with ESMTPSA id 33sm4499216ott.19.2021.08.24.10.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Aug 2021 09:58:57 -0700 (PDT)
-Received: (nullmailer pid 626496 invoked by uid 1000);
-        Tue, 24 Aug 2021 16:58:56 -0000
-Date:   Tue, 24 Aug 2021 11:58:56 -0500
+        Tue, 24 Aug 2021 10:01:42 -0700 (PDT)
+Received: (nullmailer pid 630780 invoked by uid 1000);
+        Tue, 24 Aug 2021 17:01:41 -0000
+Date:   Tue, 24 Aug 2021 12:01:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     nandhini.srikandan@intel.com
-Cc:     furong.zhou@intel.com, devicetree@vger.kernel.org,
-        rashmi.a@intel.com, mgross@linux.intel.com, robh+dt@kernel.org,
-        mahesh.r.vaidya@intel.com, broonie@kernel.org,
-        mallikarjunappa.sangannavar@intel.com,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        kenchappa.demakkanavar@intel.com, fancer.lancer@gmail.com,
-        kris.pan@intel.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Add bindings for Intel Thunder
- Bay SoC
-Message-ID: <YSUlUDQEB/5sNCRQ@robh.at.kernel.org>
-References: <20210824085856.12714-1-nandhini.srikandan@intel.com>
- <20210824085856.12714-2-nandhini.srikandan@intel.com>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org, heiko@sntech.de,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 07/15] ASoC: dt-bindings: rockchip: Document reset
+ property for i2s
+Message-ID: <YSUl9aqF8AP2Kb8n@robh.at.kernel.org>
+References: <1629796561-4025-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629796682-4170-2-git-send-email-sugar.zhang@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210824085856.12714-2-nandhini.srikandan@intel.com>
+In-Reply-To: <1629796682-4170-2-git-send-email-sugar.zhang@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Aug 2021 16:58:55 +0800, nandhini.srikandan@intel.com wrote:
-> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+On Tue, 24 Aug 2021 17:17:54 +0800, Sugar Zhang wrote:
+> This patch documents reset property for i2s.
 > 
-> Add documentation for SPI controller in Intel Thunder Bay SoC.
-> 
-> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
 > ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> 
+> Changes in v2: None
+> 
+>  Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
