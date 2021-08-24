@@ -2,122 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 421CC3F5E1F
-	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 14:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9E863F5E35
+	for <lists+devicetree@lfdr.de>; Tue, 24 Aug 2021 14:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237288AbhHXMke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 08:40:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51648 "EHLO
+        id S237002AbhHXMr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 08:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237296AbhHXMkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 08:40:33 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF97C0613C1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 05:39:48 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id l24so16601041qtj.4
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 05:39:48 -0700 (PDT)
+        with ESMTP id S236858AbhHXMrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 08:47:25 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F68C061757
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 05:46:41 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id j17-20020a05600c1c1100b002e754875260so2228541wms.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 05:46:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jYL2wpiZiuaAykF/w7oCYx5Pz3MuG8lwi2emKCRsqr4=;
-        b=b3lCRttdj6RYL82j4m9nYhYCMYpvJnJKQBwo4F7+KiWtrRETKcZkzThm9WdaTTOU+w
-         l6HmzUJz8WPHAM4cgnCiQUHLMR9d4BGSZTHqyS2LRuU6hwJo8oFsbOcRe3IDPBAgOE4E
-         YSLxokh1aZMHqba4IXbhJ3nlXvmchjlP2XFu4r2A/iRFFFTem43YH5FEoDN/WMRZ70AX
-         vguE/37qWbzzAaKOgBuUbDJOUv3rWQ52f3eXxhlcogsVSKqUNIWDAEz3pgz4+Litd0lX
-         9CyS7uuNba9NVbuZOPNTIST53NNx12iksKr9bc98fOP2jXRHKmJG0ISgcUKDMJfKZEq+
-         c2aA==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2ITgBrnsXxYt5ExpwAjy0F9kmoKjlzzIxaEpH+sT/Rk=;
+        b=QBtxPtjwG4dfo9XZYXEZnqNkMHCffokDdBKiI5SeAVA8McCkKuICiG38qL7tujK4OE
+         Fkse0XEGHa0/LrCkdnBufyDDk/i4kgUbk5h0/DqumwDMK8y2L1+3AV0kgvaqUEnquuI0
+         T/AYhpSvdJ9MGy+Mf/3Y2jr+fwvQodi/UMw2lpElHMvFuHmp6MW9iSYFIn2ZMpm5Jkab
+         O3a2T+/S2D85S0ixmw40pU0mYjDQtbOCuZvxCT/s9Pog/NTuoVKx0okGH0Jdj+AULYUu
+         lvMMe/ZC76gIcMKUISEBlZBvqKpp/P6bkJ8ROBxcjLQPttqaJh5qHpdoBAqfHLQFwShU
+         2cbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jYL2wpiZiuaAykF/w7oCYx5Pz3MuG8lwi2emKCRsqr4=;
-        b=BUk8Hh93SSJmN7DypMkYkt+FfiDxCazxw7fry66RTNlGBLOmoatjVaJhV//+eLuWCK
-         gHc+l9PTFFD2pPhFRtNv/cu7UwDtTt/FrT48Opgfi/bffZGx6vtAqZ4KfbaXHr7Vi2KD
-         dm28D40tphwSmMJt1I1dBX6AExE7b4H9eylbiX0XmGZACCs5hWmTE8B68m8aPu8/veQ2
-         8pcV981PNXSGGOhVlkF1PUekD6U439XHrf4+DE5CbWkMt0L2LNFldWs4BgOK8aIkLCet
-         oOwwRXY75fblZIUzbNLwEKDuNcHRZ1GpHxMylCSRJUDjZETsX/NZljnXn+TGr4MDuM9P
-         QsWQ==
-X-Gm-Message-State: AOAM533//EAgVMBIHLLMlbOjjFLxki7PkQZlBU+Jl5mJSjCD1aqMMtOf
-        7IgP/lN5auteYaahSI2+DSTMArMq+aOeowWo43g4KA==
-X-Google-Smtp-Source: ABdhPJwi/02PRDYIqjDZ/e77bICQ0BYen2kVIisJ1pDQHa6CGjY3VFRADsbx48VOUWerGUdBNTMex8fi9d2wcJyqgMA=
-X-Received: by 2002:ac8:7d07:: with SMTP id g7mr3170523qtb.238.1629808788014;
- Tue, 24 Aug 2021 05:39:48 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2ITgBrnsXxYt5ExpwAjy0F9kmoKjlzzIxaEpH+sT/Rk=;
+        b=QEh4iMF6cnydZcCmqUwMQCwpTIuCaGEgsFk8Xuhby91c0phr6tuwi4WUHrbxKyeG6X
+         msRbZ0vHvEmMZ47JDmAnD9P786d6GXDL0y+c1CnDqflbuQJteJxwbdYJZPGBt4EmI+uU
+         TXsZOfdOVsizfyWIo7KKKK88Nu3//JMO38LSQZPGMXcoDmXftUgFyc6tGEQBMV43CIWY
+         AOWRQMKmJ/p9B/QTee9Bj45zSj8beoYnpLa+G+8aWQlGGsuWpz6N0utYvvXv3GoiqIkK
+         dve/Sy+4vmWtYhH/L9RC0Utqh89ZC6pA5ncittpoGp0QbJR+PKWqwRraaElzm7/zeTqR
+         o7ZA==
+X-Gm-Message-State: AOAM532pNrs2Sqi1EPiqH9vPuhImnJWHsJeI8BXVQ+MsPUTMhgk1FJ4e
+        zCGQ0Yx/DUeLlMhzicDyXBJuTjI3Bvk2tw==
+X-Google-Smtp-Source: ABdhPJyQncu3C98MMppeelVklXU66lwyJO4PyyVNy0drV5Eh39UqMaUwwAgDeOaLk3lOd2fu/Waofw==
+X-Received: by 2002:a1c:f610:: with SMTP id w16mr4023868wmc.116.1629809200179;
+        Tue, 24 Aug 2021 05:46:40 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:ee2:4b0d:3001:fe74:75c8:e909:251b])
+        by smtp.gmail.com with ESMTPSA id i14sm2255454wmq.40.2021.08.24.05.46.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Aug 2021 05:46:39 -0700 (PDT)
+From:   Luka Kovacic <luka.kovacic@sartura.hr>
+To:     linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, geert+renesas@glider.be,
+        Max.Merchel@tq-group.com, linux@rempel-privat.de, daniel@0x0f.com,
+        shawnguo@kernel.org, sam@ravnborg.org, arnd@arndb.de,
+        krzysztof.kozlowski@canonical.com, pavo.banicevic@sartura.hr,
+        corbet@lwn.net, lee.jones@linaro.org, pavel@ucw.cz,
+        robh+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com,
+        goran.medic@sartura.hr, luka.perkov@sartura.hr,
+        robert.marko@sartura.hr
+Cc:     Luka Kovacic <luka.kovacic@sartura.hr>
+Subject: [PATCH v9 0/7] Add support for the IEI WT61P803 PUZZLE MCU
+Date:   Tue, 24 Aug 2021 14:44:31 +0200
+Message-Id: <20210824124438.14519-1-luka.kovacic@sartura.hr>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20200108055735.660475-1-bjorn.andersson@linaro.org> <20210217223406.1422005-1-anibal.limon@linaro.org>
-In-Reply-To: <20210217223406.1422005-1-anibal.limon@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 24 Aug 2021 15:39:36 +0300
-Message-ID: <CAA8EJpqXyQCFGgTRk+dqxD6TdJycLeGx4EQ0OBov5_3hVogM1g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: db410c: Update firmware-name for wcnss
- and mpss
-To:     =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Feb 2021 at 01:38, An=C3=ADbal Lim=C3=B3n <anibal.limon@linaro.o=
-rg> wrote:
->
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
->
-> Enable the mpss remoteproc node and specify the firmware-name for this
-> and the wcnss remoteproc on the Dragonboard 410c.
->
-> Link: https://lore.kernel.org/r/20200108055735.660475-1-bjorn.andersson@l=
-inaro.org
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> [rebased and moved to use pronto label]
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Tested-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linaro.org>
+This patchset adds support for the IEI WT61P803 PUZZLE microcontroller,
+which enables some board specific features like fan and LED control,
+system power management and temperature sensor reading on some IEI
+Puzzle series boards.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+The first board to use this functionality is IEI Puzzle-M801 1U
+Rackmount Network Appliance and is since v4 sent separately, as a
+standalone patch.
 
-> ---
->  arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/=
-dts/qcom/apq8016-sbc.dtsi
-> index 3c7f97539390..8f1ada75d3ed 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-> @@ -301,6 +301,11 @@ &lpass {
->         status =3D "okay";
->  };
->
-> +&mpss {
-> +       status =3D "okay";
-> +       firmware-name =3D "qcom/msm8916/mba.mbn", "qcom/msm8916/modem.mdt=
-";
-> +};
-> +
->  &pm8916_resin {
->         status =3D "okay";
->         linux,code =3D <KEY_VOLUMEDOWN>;
-> @@ -308,6 +313,7 @@ &pm8916_resin {
->
->  &pronto {
->         status =3D "okay";
-> +       firmware-name =3D "qcom/msm8916/wcnss.mdt";
->  };
->
->  &sdhc_1 {
-> --
-> 2.30.0
->
+Changes for v2:
+   - Use LAAs for local-mac-address and match reg values
+   - Code styling changes
+   - Error handling moved to the end of the function
+   - Define all magic numbers in the main header file
+   - Convert the driver to make it OF independent
+   - Refactor hwmon to use devm_hwmon_device_register_with_info()
+   - Reduce the number of mutex locks
+   - Allocate memory once for the response buffer
+   - Reduce managed memory allocations
+Changes for v3:
+   - Move iei-wt61p803-puzzle driver sysfs interface documentation to testing
+   - Change some internal functions to static
+   - Sync dt-bindings examples with the IEI Puzzle-M801 board dts
+   - Remove obsolete device tree properties and correct LED functions
+   - Reverse christmas tree variable declaration order, where possible
+   - MAC address sysfs function rewrite
+   - Fixed struct members size, where reasonable (MFD driver)
+   - Add an error check for hwmon_dev
+   - Use devm_led_classdev_register_ext() in the LED driver
+Changes for v4:
+   - Clean up sensible checks reported by checkpatch --strict
+   - Document the mutex lock usage in the LED driver
+   - Fix error handling and code styling issues in the HWMON driver
+   - Break up the patchset and send the IEI Puzzle-M801 board support
+     patch separately
+Changes for v5:
+   - Remove the return before goto to also fwnode_handle_put(child)
+     when ret is 0 (LED driver)
+   - Change unsigned char arrays to static where applicable
+   - Fix unconventional line indentations
+   - Remove unnecessary checks in the HWMON driver
+   - Remove unnecessary type casts
+   - Clear up command array assignments, where the command array is
+     modified before it is sent
+   - Resolve a checksum calculation issue
+   - Add Luka Perkov to MAINTAINERS
+Changes for v6:
+   - Use the container_of() macro to get the led_cdev parent struct
+   - Use %u instead of %lu in a printf() (LED driver)
+Changes for v7:
+   - Use the correct vendor title (IEI instead of iEi)
+   - Add missing properties to dt-bindings and fix styling issues
+   - Styling changes in the IEI WT61P803 PUZZLE HWMON driver
+   - Add missing commas in array definitions
+   - Check reply_size, where possible
+   - Clean up kernel-doc comments
+Changes for v8:
+   - Fix multiple style issues
+   - Reduce number of special allocations
+   - Remove unnecessary special state tracking with write/read commands
+   - Remove most of commands calls from probing of driver
+   - Add hwmon documentation file
+   - Replace some sprintf() calls with safer scnprintf()
+   - Remove unused defines
+   - Remove all explicit castings
+   - Shorter name of device for hwmon driver so snprintf() can
+     store device number
+   - Remove special kobj usage
+   - Use dev groups in place of deprecated device attributes
+   - Extend documentation for some descriptions of ABI documentation
+   - Add missing locking for response buffer in hwmon driver
+   - Fix inconsistency with license versions
+   - Check return value of iei_wt61p803_puzzle_sysfs_create()
+   - Remove unneeded initializations of reply_size variable in drivers
+   - Use define for fixed number of MAC addresses
+   - Reorder some variable declarations to follow preferred style
+   - Spell whole WoL acronym
+   - Drop __func__ from device error message
+   - Use sizeof() where it is possible
+   - Use hex_asc[] array for converting number to ascii value
+   - Remove unnecessary hwmon-sysfs.h include
+   - Stop being overly verbose when probing mfd driver
+Changes for v9:
+   - Add hwmon documentation to index.rst
+   - Describe the temperature sensors in hwmon documentation
+   - Only describe 1 LED in the dt-bindings
+   - Use absoulute references in dt-bindings, instead of relative ones
 
+Luka Kovacic (7):
+  dt-bindings: Add IEI vendor prefix and IEI WT61P803 PUZZLE driver
+    bindings
+  drivers: mfd: Add a driver for IEI WT61P803 PUZZLE MCU
+  drivers: hwmon: Add the IEI WT61P803 PUZZLE HWMON driver
+  drivers: leds: Add the IEI WT61P803 PUZZLE LED driver
+  Documentation/ABI: Add iei-wt61p803-puzzle driver sysfs interface
+    documentation
+  Documentation/hwmon: Add iei-wt61p803-puzzle hwmon driver
+    documentation
+  MAINTAINERS: Add an entry for the IEI WT61P803 PUZZLE driver
 
---=20
-With best wishes
-Dmitry
+ .../testing/sysfs-driver-iei-wt61p803-puzzle  |  61 ++
+ .../hwmon/iei,wt61p803-puzzle-hwmon.yaml      |  53 +
+ .../leds/iei,wt61p803-puzzle-leds.yaml        |  39 +
+ .../bindings/mfd/iei,wt61p803-puzzle.yaml     |  82 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../hwmon/iei-wt61p803-puzzle-hwmon.rst       |  43 +
+ Documentation/hwmon/index.rst                 |   1 +
+ MAINTAINERS                                   |  16 +
+ drivers/hwmon/Kconfig                         |   8 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/iei-wt61p803-puzzle-hwmon.c     | 413 ++++++++
+ drivers/leds/Kconfig                          |   8 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-iei-wt61p803-puzzle.c       | 147 +++
+ drivers/mfd/Kconfig                           |   8 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/iei-wt61p803-puzzle.c             | 908 ++++++++++++++++++
+ include/linux/mfd/iei-wt61p803-puzzle.h       |  66 ++
+ 18 files changed, 1858 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-iei-wt61p803-puzzle
+ create mode 100644 Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+ create mode 100644 Documentation/hwmon/iei-wt61p803-puzzle-hwmon.rst
+ create mode 100644 drivers/hwmon/iei-wt61p803-puzzle-hwmon.c
+ create mode 100644 drivers/leds/leds-iei-wt61p803-puzzle.c
+ create mode 100644 drivers/mfd/iei-wt61p803-puzzle.c
+ create mode 100644 include/linux/mfd/iei-wt61p803-puzzle.h
+
+-- 
+2.31.1
+
