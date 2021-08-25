@@ -2,206 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A0F3F7ACB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AE3F3F7AF4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241260AbhHYQjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 12:39:20 -0400
-Received: from mail-oo1-f51.google.com ([209.85.161.51]:44621 "EHLO
-        mail-oo1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242059AbhHYQjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:39:17 -0400
-Received: by mail-oo1-f51.google.com with SMTP id t1-20020a4a54010000b02902638ef0f883so7770271ooa.11;
-        Wed, 25 Aug 2021 09:38:31 -0700 (PDT)
+        id S232399AbhHYQyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 12:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230490AbhHYQyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:54:00 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D80C061757;
+        Wed, 25 Aug 2021 09:53:14 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id n13-20020a17090a4e0d00b0017946980d8dso4577443pjh.5;
+        Wed, 25 Aug 2021 09:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a1796Hm7LQw6smAYsrKNPJogW0RnP+E+pRLLuJInkfI=;
+        b=WHdWBl+l4m1fwzZQ8HT6indM7uORWUDZLUHX77GTT465fUvndZ2v41DO1GNCfSTPlT
+         r5XEO1fIj8xBrMPjNOxJ6S/T7/5DvRG1/cJgmP0gerFUWfIe/Q3Z6ow7DsHBNL89wqa6
+         hDC647Ww7FwGtpwXNsbdtppEeJ8TcTUWaXEvDOJ2hREWbFQYpr+BrTJqwu91o5N+xQxC
+         oJlIXGaTxQHfR2ENpTS23sWSrERT3PxcK0by8PemSuL/kImhfQXffGjyRSozgHV13sF7
+         9EtJOeAtTHSh4BCyPMW0rYZH+dC9DSIg8c6njqkxXNiu6ZeS81GwG6gELQT6KXVlWvyz
+         mxhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AD/hPSNzIYnzA+6DdM2HAQVIs1u68PymAU53OjEcN5E=;
-        b=p1v4oZlWed1r3pi8qdQCrTCTHxpuGf6mhLU580iXbfWeP0K+ER2Fz81LSh9lcB/VtM
-         qkZaIheJhOQZqMIBmDTdY3WmAk+IvZqdkLO3MPf/7+sqnxeJNm9kTjXltsmlgRygtk44
-         h/V3pCWktZk5fcjLps2xFdOYKCLvpZuxG+pu3K5NGyFYUGK8KiPIew69wXLSJ8g0jmYP
-         xrbV+ItU3rK466bItGjbIORqVTOgmWMDAe0ofDEFApGQTLcLGmdebdhQizgq/QsZkqro
-         PWoYkVRJs2xYqVskqCDk+lJwJ5GjdvkPPLZFrwsvL9rgrkQAtgN0N77BoMC59TIwd1IQ
-         JXaw==
-X-Gm-Message-State: AOAM531SEoVZ2oRP404IFedCL7z+VYl2j3l3DYeAR7oIikyi5mgbsMZm
-        2cHgBYw2UqQxfvc38ePEcw==
-X-Google-Smtp-Source: ABdhPJzfHUhDqS0xr9XhaJ1quQvFLTLm/QkO4W8erZn4nY+BsrBGyg4gLpyaLO3An4YgoGUnZpf4ew==
-X-Received: by 2002:a4a:d65b:: with SMTP id y27mr9676424oos.17.1629909511428;
-        Wed, 25 Aug 2021 09:38:31 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j17sm60330ots.10.2021.08.25.09.38.30
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a1796Hm7LQw6smAYsrKNPJogW0RnP+E+pRLLuJInkfI=;
+        b=Y4/qnN4zazbGkcs+HZUf7xuKy7Xfwe60cQFtSlAJuegfIL5Pl8o6O9HUuIYVvj+Pw/
+         e00clBu3rFusk7kAyGxoazkLg8pz7f8Dh/7phnnWMrjdiXWuDsJ/5wQsLZPG118UBttp
+         mrI7+5C6Btxa9mYU8HkFdURb5TRP0DH8pfHX5gg9AS30SCD9kK4jz1qZthdaWXgYLQrN
+         y6UHJ+HSLi6yqbGKQBExfiINCQ+jXHa17vKWKhD9MEqHUxNGg2IW/KtBG2iVlDhzofJN
+         hfmViZTHIFjl41pZyFTgCzddvUhrOLmw7ITkuDYbWKoL7qJ0u6M1d9UyF1nMrFAxrhpd
+         OxvA==
+X-Gm-Message-State: AOAM5317tj7RxxFbU/OLFkNMob4XVMbCAgyDcg+nz1bD/hwnmTKrYcXE
+        TA5113HTvIAe01RQGAvYtyI=
+X-Google-Smtp-Source: ABdhPJzS0aGZ9AoaQaARKQRJDzPQtz8j/qKpE1lP01ti02kyGpX5pV7nSR2TIy+dL2NKtCIfZxiTng==
+X-Received: by 2002:a17:90a:d686:: with SMTP id x6mr11676307pju.8.1629910392798;
+        Wed, 25 Aug 2021 09:53:12 -0700 (PDT)
+Received: from skynet-linux.local ([106.201.63.141])
+        by smtp.googlemail.com with ESMTPSA id f10sm496010pgm.77.2021.08.25.09.53.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 09:38:30 -0700 (PDT)
-Received: (nullmailer pid 2914154 invoked by uid 1000);
-        Wed, 25 Aug 2021 16:38:29 -0000
-Date:   Wed, 25 Aug 2021 11:38:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree@vger.kernel.org,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        "Gabriel L . Somlo" <gsomlo@gmail.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: Add bindings for LiteETH
-Message-ID: <YSZyBVyb+AgDhkua@robh.at.kernel.org>
-References: <20210825124655.3104348-1-joel@jms.id.au>
- <20210825124655.3104348-2-joel@jms.id.au>
+        Wed, 25 Aug 2021 09:53:12 -0700 (PDT)
+From:   Sireesh Kodali <sireeshkodali1@gmail.com>
+To:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
+        rnayak@codeaurora.org
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Sireesh Kodali <sireeshkodali1@gmail.com>
+Subject: [PATCH 0/4] Add MSM8953 RPM support
+Date:   Wed, 25 Aug 2021 22:22:47 +0530
+Message-Id: <20210825165251.18358-1-sireeshkodali1@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210825124655.3104348-2-joel@jms.id.au>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 25, 2021 at 10:16:54PM +0930, Joel Stanley wrote:
-> LiteETH is a small footprint and configurable Ethernet core for FPGA
-> based system on chips.
-> 
-> The hardware is parametrised by the size and number of the slots in it's
-> receive and send buffers. These are described as properties, with the
-> commonly used values set as the default.
-> 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
-> v2:
->  - Fix dtschema check warning relating to registers
->  - Add names to the registers to make it easier to distinguish which is
->    what region
->  - Add mdio description
->  - Include ethernet-controller parent description
-> v3:
->  - Define names for reg-names
->  - update example to match common case
->  - describe the hardware using slots and slot sizes. This is how the
->    hardware is pramaterised, and it makes more sense than trying to use
->    the rx/tx-fifo-size properties
-> ---
->  .../bindings/net/litex,liteeth.yaml           | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/litex,liteeth.yaml b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
-> new file mode 100644
-> index 000000000000..62911b8e913c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/litex,liteeth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LiteX LiteETH ethernet device
-> +
-> +maintainers:
-> +  - Joel Stanley <joel@jms.id.au>
-> +
-> +description: |
-> +  LiteETH is a small footprint and configurable Ethernet core for FPGA based
-> +  system on chips.
-> +
-> +  The hardware source is Open Source and can be found on at
-> +  https://github.com/enjoy-digital/liteeth/.
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: litex,liteeth
-> +
-> +  reg:
-> +    minItems: 3
+This patch series adds support for the RPM SMD regulators and power domains
+ as found on the MSM8953 platform (SMD450, SDA450, SDM625, SDM632, APQ8053)
 
-Don't need minItems if it is equal to 'items' length.
+Vladimir Lypak (4):
+  dt-bindings: soc: qcom: smd-rpm: Add compatible for MSM8953 SoC
+  soc: qcom: smd-rpm: Add compatible for MSM8953 SoC
+  dt-bindings: power: rpmpd: Add MSM8953 to rpmpd binding
+  soc: qcom: rpmpd: Add power domains for MSM8953
 
-> +    items:
-> +      - description: MAC registers
-> +      - description: MDIO registers
-> +      - description: Packet buffer
-> +
-> +  reg-names:
-> +    minItems: 3
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+ .../bindings/soc/qcom/qcom,smd-rpm.yaml       |  2 ++
+ drivers/soc/qcom/rpmpd.c                      | 24 +++++++++++++++++++
+ drivers/soc/qcom/smd-rpm.c                    |  1 +
+ include/dt-bindings/power/qcom-rpmpd.h        |  9 +++++++
+ 5 files changed, 37 insertions(+)
 
-And here.
+-- 
+2.33.0
 
-With that fixed:
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +    items:
-> +      - const: mac
-> +      - const: mdio
-> +      - const: buffer
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  litex,rx-slots:
-> +    description: Number of slots in the receive buffer
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    default: 2
-> +
-> +  litex,tx-slots:
-> +    description: Number of slots in the transmit buffer
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    default: 2
-> +
-> +  litex,slot-size:
-> +    description: Size in bytes of a slot in the tx/rx buffer
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0x800
-> +    default: 0x800
-> +
-> +  mac-address: true
-> +  local-mac-address: true
-> +  phy-handle: true
-> +
-> +  mdio:
-> +    $ref: mdio.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mac: ethernet@8020000 {
-> +        compatible = "litex,liteeth";
-> +        reg = <0x8021000 0x100>,
-> +              <0x8020800 0x100>,
-> +              <0x8030000 0x2000>;
-> +        reg-names = "mac", "mdio", "buffer";
-> +        litex,rx-slots = <2>;
-> +        litex,tx-slots = <2>;
-> +        litex,slot-size = <0x800>;
-> +        interrupts = <0x11 0x1>;
-> +        phy-handle = <&eth_phy>;
-> +
-> +        mdio {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          eth_phy: ethernet-phy@0 {
-> +            reg = <0>;
-> +          };
-> +        };
-> +    };
-> +...
-> +
-> +#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
-> -- 
-> 2.33.0
-> 
-> 
