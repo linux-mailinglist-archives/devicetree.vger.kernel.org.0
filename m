@@ -2,121 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A9F23F7939
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66EA03F77ED
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239968AbhHYPl0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 25 Aug 2021 11:41:26 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:43943 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231995AbhHYPl0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 11:41:26 -0400
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id D5A7944090A;
-        Wed, 25 Aug 2021 18:40:30 +0300 (IDT)
-References: <3b70f9e757e018d3cd91a882282040c4c0589a93.1629884907.git.baruch@tkos.co.il>
- <dbf064fb60b1654af25f65d89f75bd397162d701.1629884907.git.baruch@tkos.co.il>
- <1629900658.219829.2719822.nullmailer@robh.at.kernel.org>
-User-agent: mu4e 1.6.3; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        linux-pwm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v7 3/4] dt-bindings: pwm: add IPQ6018 binding
-Date:   Wed, 25 Aug 2021 17:59:45 +0300
-In-reply-to: <1629900658.219829.2719822.nullmailer@robh.at.kernel.org>
-Message-ID: <87ilzta5xn.fsf@tarshish>
+        id S241895AbhHYPBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 11:01:37 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37715 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241879AbhHYPBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 11:01:37 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5818A5810BD;
+        Wed, 25 Aug 2021 11:00:51 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 25 Aug 2021 11:00:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=WID1l5X7U8YxqjXZqsmvhcrAsPo
+        oKsOJYvzqLrJdSPA=; b=dGGywyYmJerrUumTc+XYh1IDqk7X305XDPOgV88/Cqo
+        RHh7qvj4lHFMO7IR8FFGn7yow5UHM0oGvITQb2aA40D6j6bekRZScyfwuFhb6+EA
+        qKTQOju/Lj0MV8p0Ch7z0QoM2iuNDNCab4agNizW2iCEjTw08JQyUuum+r4sVDDE
+        W1RJAjOMb2kfgNJWeSNSty7nvNknxYEgvkGI7eI6cDyG1pT0cluLF39jGUvqpFwV
+        5Ky8eicmOGtxpqgaiAGP5KVntFRLTP8awqpRaV5DLIMy+Zy3EE1Kei35Q2kA0HHk
+        YPkoQvQtnQN3lYCG0qkTIkaDWNNGJ3efGUP5EWyeSng==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=WID1l5
+        X7U8YxqjXZqsmvhcrAsPooKsOJYvzqLrJdSPA=; b=mGJ3ThWY5sMMhf8+rEnpNK
+        46Q/Ic0ZLdwU3APnmNnFEMfXR14mStZXPkeQ1/f1kFPbFgeXTn2Yv0gHHp8bRySS
+        AOwdFDkUYYzLqq4RG/tRzFOkdCsYoPCQpoK3vCqYVM0yx7bwC7Lg/J5joc10bD3U
+        DKmt6EuH/Cs5fPBEnTss6V0zIezTLOgUWYBgoHW74Wd0W2X9wi/nFsZF+d/h4ceU
+        msqHyAaESe/pZbTnuKQ0Wd1FMafGnnhlKDGC7U61QTbNY7Q9ndC8+nMCALY2vRfJ
+        7UFOPOGNc5DDAlgTYeqR8hTZPJP/oab/pa1o7IBQ7MjjuSDXkSnp2bDDinvnFDFA
+        ==
+X-ME-Sender: <xms:IFsmYXcGf2UAMSy7q9ORwsqXv7rVvv0lHTt6e1qM0fC0dMtNMCy8MQ>
+    <xme:IFsmYdPGjsY823OrKansCHiPQFJCjcPUW1xOSKMwkpPPrbY9gVzW2x62u1fDg-WJT
+    vB9WMP9-ms6jzswz0Q>
+X-ME-Received: <xmr:IFsmYQiSUA0eBeYPXyZ42IWiHL5wkjcSXJJakjVCSKW0AO0tkRBMGJhwzmXCqvdg1Ie9R7gYXUtobuEgds_i1mMS1Zg69WOyMwyJ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddtledgkeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepuedvtdffteetleegffefjedujefgieegveeivdekfefggeejffejlefhudeg
+    fedunecuffhomhgrihhnpehlihhnuhigqdhsuhhngihirdhorhhgnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhho
+    rdhtvggthh
+X-ME-Proxy: <xmx:IFsmYY_JxOIRHgMQIZfrIvDXW4DcXxWFY4P1RTPsqCgK7oWFmXS-iQ>
+    <xmx:IFsmYTsQ-GiwyBwppQMem4qGjH4g_CDK1bbj9DpaQ6hvwmaftIpiXQ>
+    <xmx:IFsmYXGHfjExtDvzXEEKvz-oT-4xA-rrv9Pp748HJyXZF4fvIikFfg>
+    <xmx:I1smYXFY-YtYdFy8YD7q3OL9rHwQccGslc0mqMuEbm9a0PVVqNPYXg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 25 Aug 2021 11:00:47 -0400 (EDT)
+Date:   Wed, 25 Aug 2021 17:00:46 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Icenowy Zheng <icenowy@sipeed.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 15/17] arm64: allwinner: dts: add DTSI file for R329 SoC
+Message-ID: <20210825150046.dpua45aeqrndxzbu@gilmour>
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-16-icenowy@sipeed.com>
+ <20210818090139.rllz4fvvq3pzdkls@gilmour>
+ <74F51516-2470-4A49-972B-E19D8EDD9A3D@sipeed.com>
+ <75ae9ef8-496b-68ca-214e-e8b270648a50@sholland.org>
+ <8e4a49b8-8f17-d659-0952-0c96b0098139@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qbmzml4ir2p77uxu"
+Content-Disposition: inline
+In-Reply-To: <8e4a49b8-8f17-d659-0952-0c96b0098139@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On Wed, Aug 25 2021, Rob Herring wrote:
+--qbmzml4ir2p77uxu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Wed, 25 Aug 2021 12:48:26 +0300, Baruch Siach wrote:
->> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
->> 
->> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
->> ---
->> v7:
->> 
->>   Use 'reg' instead of 'offset' (Rob)
->> 
->>   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
->> 
->>   Use single cell address/size in example node (Bjorn)
->> 
->>   Move '#pwm-cells' lower in example node (Bjorn)
->> 
->>   List 'reg' as required
->> 
->> v6:
->> 
->>   Device node is child of TCSR; remove phandle (Rob Herring)
->> 
->>   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
->> 
->> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
->>     Andersson, Kathiravan T)
->> 
->> v4: Update the binding example node as well (Rob Herring's bot)
->> 
->> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
->> 
->> v2: Make #pwm-cells const (Rob Herring)
->> ---
->>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 +++++++++++++++++++
->>  1 file changed, 52 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0:
-> /example-0/syscon@1937000: failed to match any schema with compatible:
-> ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
+On Thu, Aug 19, 2021 at 10:06:43PM -0500, Samuel Holland wrote:
+> On 8/18/21 9:32 PM, Samuel Holland wrote:
+> > On 8/18/21 4:15 AM, Icenowy Zheng wrote:
+> >> =E4=BA=8E 2021=E5=B9=B48=E6=9C=8818=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=
+=885:01:39, Maxime Ripard <maxime@cerno.tech> =E5=86=99=E5=88=B0:
+> >>> On Mon, Aug 02, 2021 at 02:22:10PM +0800, Icenowy Zheng wrote:
+> >>>> +		ccu: clock@2001000 {
+> >>>> +			compatible =3D "allwinner,sun50i-r329-ccu";
+> >>>> +			reg =3D <0x02001000 0x1000>;
+> >>>> +			clocks =3D <&osc24M>, <&rtc 0>, <&rtc 2>;
+> >>>> +			clock-names =3D "hosc", "losc", "iosc";
+> >>>
+> >>> Do we have a clock tree for the RTC? Is it the same than the H616?
+> >>
+> >> Nope, it's the same with H6 because of external LOSC crystal is
+> >> possible. (Although production M2A SoMs has it NC for cost control.)
+> >=20
+> > It is not the same as the H6, either. The clock tree _is_ identical to =
+the D1,
+> > which has three diagrams on pages 363-364 of its user manual here:
+> >=20
+> > https://dl.linux-sunxi.org/D1/D1_User_Manual_V0.1_Draft_Version.pdf
+> >=20
+> > Compared to the H6, the R329/D1:
+> >  - Loses the LOSC calibration circuit
+> >  - Gains a third mux input for LOSC (not external 32k) to fanout
+> >  - Gains a mux to choose between LOSC and HOSC/750 for the RTC clock
+> >  - Gains an SPI bus clock input divided from the PRCM AHB
+> >=20
+> > Compared to the H616, the R329/D1:
+> >  - Has an external 32k crystal input
+> >    - Gains the IOSC vs. external 32k crystal mux for LOSC
+> >    - Switches fanout mux input #1 from pll_periph0/N to external 32k
+> >  - Gains a mux to choose between LOSC and HOSC/750 for the RTC clock
+> >  - Gains an SPI bus clock input divided from the PRCM AHB
+> >=20
+> > So the R329/D1 RTC has three^Wfour inputs:
+> >  - SPI clock from PRCM
+> >  - 24 MHz DCXO crystal
+> >  - 32 kHz external crystal (optional)
+>=20
+> Whoops, I missed one here:
+>  - Bus clock from PRCM
+>=20
+> The SPI clock is new for R329, but the bus clock has been around since H6.
+>=20
+> > and four outputs:
+> >  - 16 MHz "IOSC" RC oscillator
+> >  - 32 kHz "LOSC"
+> >  - ~1 kHz for RTC timekeeping
+>=20
+> Even though this is internal to the RTC, it is still useful to model, as =
+it can
+> be used to correct for known RTC drift. (For example, HOSC/750 is 32000 Hz
+> instead of 32768 Hz, so 2.34375% slow. But that is better than IOSC, whic=
+h has
+> unknown error.)
 
-What can I do about that? Is it because qcom,tcsr-ipq6018 is documented
-in a non-yaml plain .txt file?
+If it's not useful to any other device, there's no real reason to model
+it in the clock framework. We should still force the source of the RTC
+to the most accurate option we have, but we can do that without the CCF.
 
-Thanks,
-baruch
+Maxime
 
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1520591
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
+--qbmzml4ir2p77uxu
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYSZbHgAKCRDj7w1vZxhR
+xatPAP9SpY3ZG2Q2edvu8/rFpZAHUNCGGnz4rAG/qaugjp1l2AD8CnjkVWrr8xFL
+TtZt3w3Zrp8/E1OFyaW5O76k4StSzgo=
+=l0B8
+-----END PGP SIGNATURE-----
+
+--qbmzml4ir2p77uxu--
