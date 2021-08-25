@@ -2,152 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B5633F77F3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60DE73F77F8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237799AbhHYPEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 11:04:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231995AbhHYPET (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 11:04:19 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93C0C061757;
-        Wed, 25 Aug 2021 08:03:33 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id z9-20020a7bc149000000b002e8861aff59so356199wmi.0;
-        Wed, 25 Aug 2021 08:03:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ux7Lx8zf6ajxZKAoqzyCK78arXZQbpaBRVWqe+SfbQs=;
-        b=EdHWAIS4/fhniuXlCJllaGm9aTliPC+TZkhYe02dR8MzvdvgkNlCgkfh571TYFzJqG
-         JVhpzTy1xBNFWRHheHZNvYN8LEdTnqsUlYZN8bh6O2z8jVPnHC9oD22vR6bHjBHQDnkQ
-         Trzjj9bWlBf5zrRtL3JJnlvCdFErJALpHXMnurlGK3cdHRG7Ovq/vMKBCzVjH55Vz3IF
-         zE5wMKJyDg/ZLsBMYkdK6ADUVojplJZhdTKEN5zeqoiBO6YUu6BcaZ/gsv/2meSfPYoI
-         qebX9ovuXjv7rqYkXezDCoYHLkhoCWnohCu92sZRPue7p31OvGqAYOtMtcVQCa3BQMAl
-         L6XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ux7Lx8zf6ajxZKAoqzyCK78arXZQbpaBRVWqe+SfbQs=;
-        b=DI4D1viueaBRzsKjtFh9WI2Q68mPhICNBVoTRp0rbooDbLLPp1ZcTHVsW9hAlthIN/
-         1lA7UO+cvMsmRy6KL8OCDQ7UvDs4LPHAkMcwFB9rZuf1N4SsYsgUYZvBJQYOAXpsN7Z0
-         yOxLzOolmkpdhZIfCm292IEONjM5Nn6oM61XWKNBvBjOqNMjedb8aJXfqZRBr6U0dDaz
-         /WBSD2XoVCqs9BaZoH4YRYfH+SotkOROgeA61Y6nTUHTDSI58z9bnxSQt64eaCrM13xZ
-         oehq7pO6njAEkxP0oUd2xziDbA4EgpAU4GrG4A/MqP5PqSpD/uYzvsFkeKrh4lfwAtEE
-         morw==
-X-Gm-Message-State: AOAM532QN3gMgkmOafdbITUYYpZdPLrN2+KDXYBD8d4UlvR3kZUcWt4K
-        xM4AnsbGWMQ+KDrhy4aIzBZCPSK5Uyz1bg==
-X-Google-Smtp-Source: ABdhPJyH76gAEIdov99EVjI78hQXaDX6mFzZyCgjynTCqvVpMKFZAkxb6ffzZlsyNRsemTO8aNAOsw==
-X-Received: by 2002:a05:600c:4f96:: with SMTP id n22mr9338543wmq.17.1629903812305;
-        Wed, 25 Aug 2021 08:03:32 -0700 (PDT)
-Received: from jernej-laptop.localnet (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id l15sm120580wrv.84.2021.08.25.08.03.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 08:03:31 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Icenowy Zheng <icenowy@sipeed.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 10/17] clk: sunxi=ng: add support for R329 R-CCU
-Date:   Wed, 25 Aug 2021 17:03:30 +0200
-Message-ID: <3221818.pD4rYpbbZ1@jernej-laptop>
-In-Reply-To: <20210825145027.ixc7wnh3x5w6wzny@gilmour>
-References: <20210802062212.73220-1-icenowy@sipeed.com> <5432230.1UTMcGJKg4@jernej-laptop> <20210825145027.ixc7wnh3x5w6wzny@gilmour>
+        id S239643AbhHYPEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 11:04:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56774 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231995AbhHYPEu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 11:04:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A202861176;
+        Wed, 25 Aug 2021 15:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629903844;
+        bh=SQu8ZriBWtkrMhexm27oLfTLE3woK/0rAxCFoPeJSWs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IkW0uZDXe3xbv33KgBw8Bo8H2mB81KwIUiIRJgNP9/vTaKWXH2sxZJrN4+oO1nMxQ
+         YplMbJk33i1nTVfjIzni2O6dVbOMkObGGFB8oEI0wE7XVQh5r1HHJ3fzyzv43b48E/
+         s/1FBAQc2gRVVUILKtSOpR+AxQGCmSfQGqbQEK7NFCKk/cCWbKFIpsBozaZn81414n
+         TeMharqkFIFQKYjkkMu62pMuUgOCwjxLCo4LgmfECxfA6LUVZ4THpARepXaPGu69tA
+         Q2D/PyjaRO8x68LPnYZjWzI14snOQ+Z5kT2Vhrl2izpFPfCC5xTBHPj1SfSad++V6z
+         //mmZeEZTboqg==
+Received: by mail-ej1-f54.google.com with SMTP id t19so2195260ejr.8;
+        Wed, 25 Aug 2021 08:04:04 -0700 (PDT)
+X-Gm-Message-State: AOAM533wV9aUqc9RnGjHEAwSS4inPiKQ7udVtvieOX3gg8Ddgt7efDsF
+        TNaC0qGAe21GvrwDDVS0Cx7hJG7aNrEUcgAxWw==
+X-Google-Smtp-Source: ABdhPJxewKcJ+3Eb7Es36Smt8z5TpesvKwiuyO4A/wqa6BX0T3ZI8RR8aZzlwJux6eaj2JM70CZMGA4Mxv1AsLONrLQ=
+X-Received: by 2002:a17:906:ff41:: with SMTP id zo1mr16030386ejb.525.1629903843136;
+ Wed, 25 Aug 2021 08:04:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <cover.1620203062.git.baruch@tkos.co.il> <e17461407cf4bb79fed5925ec81196a0b84e7827.1620203062.git.baruch@tkos.co.il>
+ <CAL_JsqKOGo4eXKA7FZK7AQQ24MDDbg2-ngUQF9CJK=8eH_pxHQ@mail.gmail.com>
+ <87o89lahqp.fsf@tarshish> <CAL_Jsq+wkTbGjyk_i-_1Sad80xcJwAFdf5gBTGBR_TORRA-AoQ@mail.gmail.com>
+ <87lf4pa9i0.fsf@tarshish>
+In-Reply-To: <87lf4pa9i0.fsf@tarshish>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 25 Aug 2021 10:03:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKLijW0H-f0Ptd3EKrE5mRwtQK5StOTzs3b5UesuuVKdg@mail.gmail.com>
+Message-ID: <CAL_JsqKLijW0H-f0Ptd3EKrE5mRwtQK5StOTzs3b5UesuuVKdg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] PCI: qcom: add support for IPQ60xx PCIe controller
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        PCI <linux-pci@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sreda, 25. avgust 2021 ob 16:50:27 CEST je Maxime Ripard napisal(a):
-> Hi,
->=20
-> On Fri, Aug 20, 2021 at 06:34:38AM +0200, Jernej =C5=A0krabec wrote:
-> > > > +static void __init sun50i_r329_r_ccu_setup(struct device_node *nod=
-e)
-> > > > +{
-> > > > +	void __iomem *reg;
-> > > > +	u32 val;
-> > > > +	int i;
-> > > > +
-> > > > +	reg =3D of_io_request_and_map(node, 0, of_node_full_name(node));
-> > > > +	if (IS_ERR(reg)) {
-> > > > +		pr_err("%pOF: Could not map clock registers\n", node);
-> > > > +		return;
-> > > > +	}
-> > > > +
-> > > > +	/* Enable the lock bits and the output enable bits on all PLLs */
-> > > > +	for (i =3D 0; i < ARRAY_SIZE(pll_regs); i++) {
-> > > > +		val =3D readl(reg + pll_regs[i]);
-> > > > +		val |=3D BIT(29) | BIT(27);
-> > > > +		writel(val, reg + pll_regs[i]);
-> > > > +	}
-> > > > +
-> > > > +	/*
-> > > > +	 * Force the I/O dividers of PLL-AUDIO1 to reset default value
-> > > > +	 *
-> > > > +	 * See the comment before pll-audio1 definition for the reason.
-> > > > +	 */
-> > > > +
-> > > > +	val =3D readl(reg + SUN50I_R329_PLL_AUDIO1_REG);
-> > > > +	val &=3D ~BIT(1);
-> > > > +	val |=3D BIT(0);
-> > > > +	writel(val, reg + SUN50I_R329_PLL_AUDIO1_REG);
-> > > > +
-> > > > +	i =3D sunxi_ccu_probe(node, reg, &sun50i_r329_r_ccu_desc);
-> > > > +	if (i)
-> > > > +		pr_err("%pOF: probing clocks fails: %d\n", node, i);
-> > > > +}
-> > > > +
-> > > > +CLK_OF_DECLARE(sun50i_r329_r_ccu, "allwinner,sun50i-r329-r-ccu",
-> > > > +	       sun50i_r329_r_ccu_setup);
-> > >=20
-> > > Please make this a platform driver. There is no particular reason why=
- it
-> > > needs to be an early OF clock provider.
-> >=20
-> > Why? It's good to have it as early clock provider. It has no dependenci=
-es
-> > and other drivers that depends on it, like IR, can be deferred, if this
-> > is loaded later.
->=20
-> No, Samuel is right, we should make them regular drivers as much as we
-> can.
->=20
-> The reason we had CLK_OF_DECLARE in the first place is that timers
-> usually have a parent clock, and you need the timers before the device
-> model is set up.
->=20
-> Fortunately for us, since the A20, the architected timers don't require
-> a parent clock from us, and we can thus boot up fine.
+On Wed, Aug 25, 2021 at 9:23 AM Baruch Siach <baruch@tkos.co.il> wrote:
+>
+> Hi Rob,
+>
+> On Wed, Aug 25 2021, Rob Herring wrote:
+> > On Wed, Aug 25, 2021 at 6:25 AM Baruch Siach <baruch@tkos.co.il> wrote:
+> >> On Fri, Aug 06 2021, Rob Herring wrote:
+> >> > On Wed, May 5, 2021 at 3:18 AM Baruch Siach <baruch@tkos.co.il> wrote:
+> >> >> +       writel(PCI_EXP_DEVCTL2_COMP_TMOUT_DIS, pci->dbi_base + offset +
+> >> >> +                       PCI_EXP_DEVCTL2);
+> >> >> +
+> >> >> +       writel(PCIE_CAP_CURR_DEEMPHASIS | SPEED_GEN3,
+> >> >> +                       pci->dbi_base + offset + PCI_EXP_DEVCTL2);
+> >> >
+> >> > Doesn't this overwrite the prior register write?
+> >>
+> >> It does. There are two mistakes here. The writel() above should set
+> >> PCIE20_DEVICE_CONTROL2_STATUS2 (offset 0x98).
+> >
+> > No. Did you check what 'offset' is? PCIE20_DEVICE_CONTROL2_STATUS2 is
+> > PCI_EXP_DEVCTL2 plus the status reg. What's wrong is it should be a
+> > 16-bit write.
+>
+> Thanks for enlightening me. 'offset' is 0x70 here. So PCI_EXP_DEVCTL2 is
+> at 0x98, and PCI_EXP_LNKCTL2 is at 0xa0. Only the second writel() is
+> wrong. But since generic code handles speed, I can drop it entirely.
+>
+> I see that dw_pcie_link_set_max_speed() uses dw_pcie_writel_dbi() to
+> write to PCI_EXP_LNKCTL2. Is that 16-bit write?
 
-There are other timers. A lot of SoCs, newer than A20 (like H6), have High=
-=20
-Speed Timer, which requires parent clock to be enabled. We just choose not =
-to=20
-add node for it to DT, even if it's there and driver already exists.
+No, that may be because some platforms can only do 32-bit accesses and
+dw_pcie_writew_dbi would be a RMW in that case. Or maybe there's some
+reliance on clearing the status register.
 
-Best regards,
-Jernej
+> Why are pci_regs.h register offsets in decimal?
 
->=20
-> Since the dependencies are minimal, it should probe fairly early and
-> with the on-demand probing from the device links you might not even tell
-> the difference for most consumers.
->=20
-> Maxime
+No idea...
 
-
-
-
+Rob
