@@ -2,162 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C06463F6CF8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 03:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23F483F6D3A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 03:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237174AbhHYBMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 21:12:47 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:54518 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237165AbhHYBMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 21:12:44 -0400
-X-UUID: 80c691fd9bf84cbf81f10f7d12309179-20210825
-X-UUID: 80c691fd9bf84cbf81f10f7d12309179-20210825
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 557206151; Wed, 25 Aug 2021 09:11:55 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 25 Aug 2021 09:11:54 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 25 Aug 2021 09:11:53 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v1 5/5] arm64: dts: mediatek: Correct I2C clock of MT8192
-Date:   Wed, 25 Aug 2021 09:11:20 +0800
-Message-ID: <20210825011120.30481-6-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210825011120.30481-1-chun-jie.chen@mediatek.com>
-References: <20210825011120.30481-1-chun-jie.chen@mediatek.com>
+        id S236959AbhHYBxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 21:53:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236442AbhHYBxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 21:53:09 -0400
+X-Greylist: delayed 1133 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 Aug 2021 18:52:24 PDT
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D002C061757
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 18:52:24 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1mIhnG-0007sr-4b; Wed, 25 Aug 2021 03:33:29 +0200
+Date:   Wed, 25 Aug 2021 02:33:23 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     linux-mediatek@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Ryder Lee <ryder.lee@mediatek.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Felix Fietkau <nbd@nbd.name>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Subject: [PATCH 2/2] dt: bindings: net: mt76: add eeprom-data property
+Message-ID: <YSWdv7ZKz7SBtF+v@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-update i2c 0 ~ 9 clocks to the real ones.
+EEPROM data for mt76 can be embedded into device-tree as an array.
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 30 ++++++++++++++++--------
- 1 file changed, 20 insertions(+), 10 deletions(-)
+ .../devicetree/bindings/net/wireless/mediatek,mt76.yaml      | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index db6f4c6dc404..866b04e78690 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -484,7 +484,8 @@
- 			reg = <0 0x11cb0000 0 0x1000>,
- 			      <0 0x10217300 0 0x80>;
- 			interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_e CLK_IMP_IIC_WRAP_E_I2C3>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -503,7 +504,8 @@
- 			reg = <0 0x11d00000 0 0x1000>,
- 			      <0 0x10217600 0 0x180>;
- 			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_s CLK_IMP_IIC_WRAP_S_I2C7>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -516,7 +518,8 @@
- 			reg = <0 0x11d01000 0 0x1000>,
- 			      <0 0x10217780 0 0x180>;
- 			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_s CLK_IMP_IIC_WRAP_S_I2C8>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -529,7 +532,8 @@
- 			reg = <0 0x11d02000 0 0x1000>,
- 			      <0 0x10217900 0 0x180>;
- 			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_s CLK_IMP_IIC_WRAP_S_I2C9>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -548,7 +552,8 @@
- 			reg = <0 0x11d20000 0 0x1000>,
- 			      <0 0x10217100 0 0x80>;
- 			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_ws CLK_IMP_IIC_WRAP_WS_I2C1>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -561,7 +566,8 @@
- 			reg = <0 0x11d21000 0 0x1000>,
- 			      <0 0x10217180 0 0x180>;
- 			interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_ws CLK_IMP_IIC_WRAP_WS_I2C2>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -574,7 +580,8 @@
- 			reg = <0 0x11d22000 0 0x1000>,
- 			      <0 0x10217380 0 0x180>;
- 			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_ws CLK_IMP_IIC_WRAP_WS_I2C4>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -593,7 +600,8 @@
- 			reg = <0 0x11e00000 0 0x1000>,
- 			      <0 0x10217500 0 0x80>;
- 			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_w CLK_IMP_IIC_WRAP_W_I2C5>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -612,7 +620,8 @@
- 			reg = <0 0x11f00000 0 0x1000>,
- 			      <0 0x10217080 0 0x80>;
- 			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_n CLK_IMP_IIC_WRAP_N_I2C0>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
-@@ -625,7 +634,8 @@
- 			reg = <0 0x11f01000 0 0x1000>,
- 			      <0 0x10217580 0 0x80>;
- 			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
--			clocks = <&clk26m>, <&clk26m>;
-+			clocks = <&imp_iic_wrap_n CLK_IMP_IIC_WRAP_N_I2C6>,
-+				 <&infracfg CLK_INFRA_AP_DMA>;
- 			clock-names = "main", "dma";
- 			clock-div = <1>;
- 			#address-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 3e2c2e43175e5..1489d3c1cd6ec 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -47,6 +47,11 @@ properties:
+ 
+   ieee80211-freq-limit: true
+ 
++  mediatek,eeprom-data:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      EEPROM data embedded as array.
++
+   mediatek,mtd-eeprom:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     description:
 -- 
-2.18.0
+2.32.0
 
