@@ -2,215 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE99B3F77D5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 812C53F77DC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240761AbhHYOzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 10:55:24 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:60719 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234380AbhHYOzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 10:55:24 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 4942D581075;
-        Wed, 25 Aug 2021 10:54:38 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 25 Aug 2021 10:54:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=IqJM9t4viIksZpN3cNv1P81kyYI
-        WsJz+PszGrJJmalk=; b=q0s2segFpoUph9ozZyNmF175KEKs6Jw9GmRitRQibTD
-        KlsRtCsrwUtITeiUXVIfefFSqFR3WHjhdv4GY5lNJ0fQyzm9Yjk+ph/jw3r3Lp4m
-        STdFxzfQiXSnaekbeA3dt5p46YqG+HKHP2favJ5qegt9vXNl9THGVKk9ADU9C5k1
-        c3QCpVRB8H8Hr+RLBETaTXFB0/cYwOwtdH5xAfn8/eaiGExCqc0vvMMwbAlTGj6R
-        nGsJ+9csqoAj8FejrSwPy1SW7fBKvp2fBks9YKvio8zCHTfJCVLNJoP2MRZWlQAS
-        0tELQsIMTZmCUVgDeXZHOh4pAU6d/mcGoLSjKO0zMfw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=IqJM9t
-        4viIksZpN3cNv1P81kyYIWsJz+PszGrJJmalk=; b=noD1zg8iL2XnTLBPh+0OWT
-        MVo4oaUJFG8knVLYoYtfJQkKl2Ih59G5GFOGPZBJxwBBSSY5M7/WUg5TWY+8ZA4h
-        kAKInzBShxqjWyeNlFEGR22jgmdiwoE5W0VvhvvXbtu1muMV3VMnboZQNvQtwoaj
-        8mM4OvMrWxiGPuyxO/l8LEAw7VWQPwYVweMXMsX3h/IZkwFAU6qr3lrjhNK0UABj
-        ST9ps2d697SGL7Mb9jSHlIObLoyBBqwVL8Wf64Z346LQvH888nBAtyP7jQFYi1iM
-        +zxjijY1REKfu0Mt0oRTYYz0RzSWWqZDcOllr+ilWzynP/GAa0vfuZM9f2gKxR6w
-        ==
-X-ME-Sender: <xms:rFkmYSMV0JB1vBFiDtusGG3tX6WrCQD0ew2UiLk349WsVA00J_xBQQ>
-    <xme:rFkmYQ-O0LlivwPriktmL0hPlgSlwJvMBExUlz8iwByS8OXFi3BRCemQsuT8Aa5OL
-    MBlljn6HwijPlwDvpA>
-X-ME-Received: <xmr:rFkmYZROomxG6Q9lU4m2nB26ZW4HxflpoKPLIeT3mGVroMcpWn1q_73cVKy8qMQClX8J127Il8D10AKyFqcW_PC4qjRrkdQJ0dRc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddtledgkeefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:rFkmYSvZByGSCuHIEr1Wd9vWY6OlBG3GZ5u1W80CjZlXkfWzL8d3nQ>
-    <xmx:rFkmYafdW9dNvgVrYVcGc0tIDVyVIeVH4UsLfUDxsBlQceUVQLURjg>
-    <xmx:rFkmYW0GHOQhCUeuFLRgJHNzN27jieRrsRngYMJyKXwc5lbo-rJtjg>
-    <xmx:rlkmYW2OJCvYMC4APBf6mcrQ1_930_A78G9qUVVtSxA19XL34fj9Kg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 25 Aug 2021 10:54:36 -0400 (EDT)
-Date:   Wed, 25 Aug 2021 16:54:34 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Icenowy Zheng <icenowy@sipeed.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/17] clk: sunxi-ng: add support for Allwinner R329 CCU
-Message-ID: <20210825145434.vdrhgrgblnnmvmve@gilmour>
-References: <20210802062212.73220-1-icenowy@sipeed.com>
- <20210802062212.73220-12-icenowy@sipeed.com>
- <3e56e53f-e6df-50cf-5545-e9132e521ed1@sholland.org>
+        id S239928AbhHYO6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 10:58:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55320 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231975AbhHYO6u (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 10:58:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E54BC610E6;
+        Wed, 25 Aug 2021 14:58:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629903484;
+        bh=XuKq1zIIMq/OtChRUdQ0vOQzAnhzbI0dxtVr4wcAgDA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YvV8UlOvjbvsB0RkZMgL4YbyeKBKjZqzYhbbkQKcATpLeGd2BrN9PpesAoyiWbIhC
+         GeWvz7A9Lb/XXxEkUf6+NTd9Cyfno/JEZLq8JHsx1KPe71/46buyRZqnUAc+sKZHRF
+         qEnJrMf1uWfNIsab9i7m2F0cK/tUCg+i+Gc1qoXekwpq/eJc8dqoH1XyL0jlDVoDmR
+         qgWgdHPfvxWvM7kSa8P+DQnWJuKXseZhaARLJRcmVp5109C0BVruamxYinLk8G6tRv
+         IhN41+5Q53W5fyLDDuxZKPE37LRWPtYdS+c8l7lDW6Ex0UmXG5RRXWca5lOhBSy2QE
+         s60AFQLQRsDig==
+Received: by mail-ed1-f45.google.com with SMTP id q3so37444789edt.5;
+        Wed, 25 Aug 2021 07:58:04 -0700 (PDT)
+X-Gm-Message-State: AOAM533OoH12hbMccK6ITunfktWPZQaXXfmOKYJGJd1EfQ9oiPwFyNIK
+        SqD5U9BNZw/E/78Yn+FrqHhRTNuD5GcKoo9bGw==
+X-Google-Smtp-Source: ABdhPJwPn9HhyJ/B+5FAoAdEgoxYV2mtd8rUO27aqvKNxs57ww2VmIrdKZuZXvoWjCyEPb5V7XMr2dA7WkL3ZPQqLek=
+X-Received: by 2002:a50:9b52:: with SMTP id a18mr49080750edj.165.1629903483580;
+ Wed, 25 Aug 2021 07:58:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jd6omazv7t4jt7hs"
-Content-Disposition: inline
-In-Reply-To: <3e56e53f-e6df-50cf-5545-e9132e521ed1@sholland.org>
+References: <20210820160023.3243-1-pali@kernel.org> <20210820160023.3243-2-pali@kernel.org>
+ <YSURxtc7UAaSEfSy@robh.at.kernel.org> <20210824161409.2mxzpy5r32tm3kgu@pali>
+In-Reply-To: <20210824161409.2mxzpy5r32tm3kgu@pali>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 25 Aug 2021 09:57:52 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL1NzTp8v+kw1M_aS5OmJMuRiuys4RKYTT2yYy4pKNzJA@mail.gmail.com>
+Message-ID: <CAL_JsqL1NzTp8v+kw1M_aS5OmJMuRiuys4RKYTT2yYy4pKNzJA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: Add 'slot-power-limit' PCIe port property
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 24, 2021 at 11:14 AM Pali Roh=C3=A1r <pali@kernel.org> wrote:
+>
+> On Tuesday 24 August 2021 10:35:34 Rob Herring wrote:
+> > On Fri, Aug 20, 2021 at 06:00:21PM +0200, Pali Roh=C3=A1r wrote:
+> > > This property specifies slot power limit in mW unit. It is form-facto=
+r and
+> > > board specific value and must be initialized by hardware.
+> > >
+> > > Some PCIe controllers delegates this work to software to allow hardwa=
+re
+> > > flexibility and therefore this property basically specifies what shou=
+ld
+> > > host bridge programs into PCIe Slot Capabilities registers.
+> > >
+> > > Property needs to be specified in mW unit, and not in special format
+> > > defined by Slot Capabilities (which encodes scaling factor or differe=
+nt
+> > > unit). Host drivers should convert value from mW unit to their format=
+.
+> > >
+> > > Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> >
+> > This needs to be in dtschema schemas/pci/pci-bus.yaml instead.
+> >
+> > (pci.txt is still here because it needs to be relicensed to move all th=
+e
+> > descriptions to pci-bus.yaml.)
+>
+> Ok, this is just a proposal for a new DTS property. So documentation
+> issues will be fixed in real patch.
+>
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Document=
+ation/devicetree/bindings/pci/pci.txt
+> > > index 6a8f2874a24d..e67d5db21514 100644
+> > > --- a/Documentation/devicetree/bindings/pci/pci.txt
+> > > +++ b/Documentation/devicetree/bindings/pci/pci.txt
+> > > @@ -32,6 +32,12 @@ driver implementation may support the following pr=
+operties:
+> > >     root port to downstream device and host bridge drivers can do pro=
+gramming
+> > >     which depends on CLKREQ signal existence. For example, programmin=
+g root port
+> > >     not to advertise ASPM L1 Sub-States support if there is no CLKREQ=
+ signal.
+> > > +- slot-power-limit:
+> > > +   If present this property specifies slot power limit in mW unit. H=
+ost drivers
+> >
+> > As mentioned, this should have a unit suffix. I'm not sure it is
+> > beneficial to share with SFP in this case though.
+> >
+> > > +   can parse this slot power limit and use it for programming Root P=
+ort or host
+> > > +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit me=
+ssage
+> > > +   through the Root Port or host bridge when transitioning PCIe link=
+ from a
+> > > +   non-DL_Up Status to a DL_Up Status.
+> >
+> > I no nothing about how this mechanism works, but I think this belongs i=
+n
+> > the next section as for PCIe, a slot is always below a PCI-PCI bridge.
+> > If we have N slots, then there's N bridges and needs to be N
+> > slot-power-limit properties, right?
+> >
+> > (The same is probably true for all the properties here except
+> > linux,pci-domain.) There's no distinction between host and PCI bridges
+> > in pci-bus.yaml though.
+> >
+> > Rob
+>
+> This slot-power-limit property belongs to same place where are also
+> other slot properties (link speed, reset gpios, clkreq). So I put it in
+> place where others are.
+>
+> But I'm not sure where it should be as it affects link/slot. Because
+> link has two sides. I guess that link speed and slot power limit could
+> belong to the root/downstream port and reset gpio to the endpoint card
+> or upstream port...
 
---jd6omazv7t4jt7hs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I wasn't debating whether it goes upstream or downstream, but just
+that it can apply to more than just the host bridge or root port(s).
+We have that now already with reset-gpios. Look at the hikey970 case
+that's queued for 5.15. It's got RP -> switch -> slots/devices with
+reset gpio on each slot.
 
-On Thu, Aug 19, 2021 at 09:41:26PM -0500, Samuel Holland wrote:
-> On 8/2/21 1:22 AM, Icenowy Zheng wrote:
-> > Allwinner R329 has a CCU that is similar to the H616 one, but it's cut
-> > down and have PLLs moved out.
-> >=20
-> > Add support for it.
-> >=20
-> > Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
-> > ---
-> >  drivers/clk/sunxi-ng/Kconfig                |   5 +
-> >  drivers/clk/sunxi-ng/Makefile               |   1 +
-> >  drivers/clk/sunxi-ng/ccu-sun50i-r329.c      | 526 ++++++++++++++++++++
-> >  drivers/clk/sunxi-ng/ccu-sun50i-r329.h      |  32 ++
-> >  include/dt-bindings/clock/sun50i-r329-ccu.h |  73 +++
-> >  include/dt-bindings/reset/sun50i-r329-ccu.h |  45 ++
-> >  6 files changed, 682 insertions(+)
-> >  create mode 100644 drivers/clk/sunxi-ng/ccu-sun50i-r329.c
-> >  create mode 100644 drivers/clk/sunxi-ng/ccu-sun50i-r329.h
-> >  create mode 100644 include/dt-bindings/clock/sun50i-r329-ccu.h
-> >  create mode 100644 include/dt-bindings/reset/sun50i-r329-ccu.h
-> >=20
-> > diff --git a/drivers/clk/sunxi-ng/Kconfig b/drivers/clk/sunxi-ng/Kconfig
-> > index e49b2c2fa5b7..4b32d5f81ea8 100644
-> > --- a/drivers/clk/sunxi-ng/Kconfig
-> > +++ b/drivers/clk/sunxi-ng/Kconfig
-> > @@ -42,6 +42,11 @@ config SUN50I_H6_R_CCU
-> >  	default ARM64 && ARCH_SUNXI
-> >  	depends on (ARM64 && ARCH_SUNXI) || COMPILE_TEST
-> > =20
-> > +config SUN50I_R329_CCU
-> > +	bool "Support for the Allwinner R329 CCU"
-> > +	default ARM64 && ARCH_SUNXI
-> > +	depends on (ARM64 && ARCH_SUNXI) || COMPILE_TEST
-> > +
-> >  config SUN50I_R329_R_CCU
-> >  	bool "Support for the Allwinner R329 PRCM CCU"
-> >  	default ARM64 && ARCH_SUNXI
-> > diff --git a/drivers/clk/sunxi-ng/Makefile b/drivers/clk/sunxi-ng/Makef=
-ile
-> > index db338a2188fd..62f3c5bf331c 100644
-> > --- a/drivers/clk/sunxi-ng/Makefile
-> > +++ b/drivers/clk/sunxi-ng/Makefile
-> > @@ -28,6 +28,7 @@ obj-$(CONFIG_SUN50I_A100_R_CCU)	+=3D ccu-sun50i-a100-=
-r.o
-> >  obj-$(CONFIG_SUN50I_H6_CCU)	+=3D ccu-sun50i-h6.o
-> >  obj-$(CONFIG_SUN50I_H616_CCU)	+=3D ccu-sun50i-h616.o
-> >  obj-$(CONFIG_SUN50I_H6_R_CCU)	+=3D ccu-sun50i-h6-r.o
-> > +obj-$(CONFIG_SUN50I_R329_CCU)	+=3D ccu-sun50i-r329.o
-> >  obj-$(CONFIG_SUN50I_R329_R_CCU)	+=3D ccu-sun50i-r329-r.o
-> >  obj-$(CONFIG_SUN4I_A10_CCU)	+=3D ccu-sun4i-a10.o
-> >  obj-$(CONFIG_SUN5I_CCU)		+=3D ccu-sun5i.o
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-r329.c b/drivers/clk/sunxi=
--ng/ccu-sun50i-r329.c
-> > new file mode 100644
-> > index 000000000000..a0b4cfd6e1db
-> > --- /dev/null
-> > +++ b/drivers/clk/sunxi-ng/ccu-sun50i-r329.c
-> > @@ -0,0 +1,526 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Based on the H616 CCU driver, which is:
-> > + *   Copyright (c) 2020 Arm Ltd.
-> > + */
-> > +
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "ccu_common.h"
-> > +#include "ccu_reset.h"
-> > +
-> > +#include "ccu_div.h"
-> > +#include "ccu_gate.h"
-> > +#include "ccu_mp.h"
-> > +#include "ccu_mult.h"
-> > +#include "ccu_nk.h"
-> > +#include "ccu_nkm.h"
-> > +#include "ccu_nkmp.h"
-> > +#include "ccu_nm.h"
-> > +
-> > +#include "ccu-sun50i-r329.h"
-> > +
-> > +/*
-> > + * An external divider of PLL-CPUX is controlled here. As it's similar=
- to
-> > + * the external divider of PLL-CPUX on previous SoCs (only usable under
-> > + * 288MHz}, ignore it.
->=20
-> Mismatched (braces} here
->=20
-> > + */
-> > +static const char * const cpux_parents[] =3D { "osc24M", "osc32k", "io=
-sc",
-> > +					     "pll-cpux", "pll-periph",
-> > +					     "pll-periph-2x",
-> > +					     "pll=3Dperiph-800m" };
->=20
-> =3D should be a -.
->=20
-> Now that these PLLs are in a different device, how is this supposed to af=
-fect
-> the DT binding? Do we put all of them in the clocks property?
->=20
-> If so, we can use .fw_name at some point. If not, why bother with the clo=
-cks
-> property at all? This is another part of the "let's get the clock tree ri=
-ght
-> from the start" discussion.
+As for upstream vs. downstream side, this is one of those cases where
+we didn't represent the downstream side in DT, so everything gets
+stuffed in the upstream side. As PCIe is point to point, it doesn't
+matter so much. It would be a bigger issue on old PCI.
 
-Agreed
-
-Maxime
-
---jd6omazv7t4jt7hs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYSZZqgAKCRDj7w1vZxhR
-xf7MAQCaA0w3oNAOvdQ5ITxY5Ab2GivujOLUDDhU3UcM2ZnHEAEAxNsnCPVFwlPY
-bfCv++67RwNPa1FPsCUxvKudlvWfWQc=
-=Z5kK
------END PGP SIGNATURE-----
-
---jd6omazv7t4jt7hs--
+Rob
