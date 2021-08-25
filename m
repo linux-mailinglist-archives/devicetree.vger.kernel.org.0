@@ -2,253 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7415E3F7BB7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 19:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3CE3F7BE6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 19:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242380AbhHYRuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 13:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242329AbhHYRue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 13:50:34 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFCA6C061757
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 10:49:48 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso30728ots.5
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 10:49:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=IHLTZuGBoBlIFXswVu7bXC/9iKMJE13qU6Y1SgFjzlc=;
-        b=KOn72M/be1SVIlEd8SkIJsZJ97/eGvxHtqGd4iwCylW1lrZ85kbyU90MVU9O3ZDdxU
-         IZom4HK739dYulYJMozQ+TkGBDLOuq+uCZDciXjLmMduA1hSsyahSyzY5WY+JXaJO4d3
-         zTxV04LhDNnqD8IxBRwE81AIw7TYp+OiPklG4=
+        id S235334AbhHYSA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 14:00:26 -0400
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:41815 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230112AbhHYSAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 14:00:25 -0400
+Received: by mail-oo1-f44.google.com with SMTP id b5-20020a4ac285000000b0029038344c3dso61901ooq.8;
+        Wed, 25 Aug 2021 10:59:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=IHLTZuGBoBlIFXswVu7bXC/9iKMJE13qU6Y1SgFjzlc=;
-        b=XFx9GQOSQI7j29AHJ7O7F8VMSarGVCcet4hKkDKi94wHQIGazFbpPRiVjolvZRGwzy
-         x1SjT3PKr6MV6aLQdTok7mLzGIQac58ozOSFxA9D6ni9hCZVdGNFClzUkjmbiaO2A7Ss
-         d6mQ3q6o1NxgGIGddM3dGFJTx9uQDp9oZpvA6PkJ51J9D1+fk5GMzHSK2b0GMYB36IPl
-         UjPFqC0TmQOEY5Z5NuudW1D/FNdJlCQILXjnXLTO8P2lpeN3pXhJz3GVSrqgIANYNTty
-         +4i/NxKAK32X6m9psMKX5YB3xNqkQoMhYCnbn7omrAveHuATqolTprz9g6ANZI5tPtT0
-         9GpA==
-X-Gm-Message-State: AOAM530u4nE9Q8RJ2RVuSqAnC7mf+KmUtWsIgDCkSPyZEPCIUvAWyBR5
-        EYNNx61+z7af9KyF6jPj5OffL3DMAKTbrhLYDfCGlg==
-X-Google-Smtp-Source: ABdhPJxW5wHzEiRPZArcpHDa60XkS4gMZuHdU4SRDUo0pRaGJR5599SJE1ynpdZmPBns6PhWB8W+Ii3SYlSa1hgLSao=
-X-Received: by 2002:a05:6830:2473:: with SMTP id x51mr31144560otr.34.1629913788390;
- Wed, 25 Aug 2021 10:49:48 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 25 Aug 2021 17:49:47 +0000
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZrM5Epoo74sm/kt4wx9mo69TrpmEQ3qMo82ZHzdzhGo=;
+        b=fEnwNCwTN8dKXPFegHgqFQs9h5Mnu7rtMTszr/ONDdwYJfLioSSaItCTNC0JRM5Ihm
+         /szpLCj8gsb/ZFpPKnTvn6WV9wHVaRNLBU6JS5CBQGqNhyNSx+ZoElgOg5VXpsSAjviY
+         jFKhrh/Fap2WjmlnIXYdMlo9OoR/xrUSDVM0x0R8aSP7ivZbHRXdDYV0uksa7TV80d5X
+         WbG0X8kwgFcDqbBp002/jCojzZ81cMJWLzwOItBsFFIy4kWNffzO2hY+lriVNOgTK8AL
+         L9avh/IW1G/994lvdAzh5p98qkbzySBfnx59Q7DV4LBSXETrJM/ja22FuIqSRN9nd+WT
+         ZLsw==
+X-Gm-Message-State: AOAM530aQiGZp0E1MtM3JOJIaztmk3xUA2fik+IDoDQq8cvuCOJTf6YN
+        +I18LT+xwncd1tDRz9Q85w==
+X-Google-Smtp-Source: ABdhPJw7ri7y/07bKnMFJT3Wt2+BTJxAWa45zytD0FdTHGGzylw1Wx617wSCb5O/A+c+duS7VJ3hxw==
+X-Received: by 2002:a4a:e923:: with SMTP id a3mr35184661ooe.45.1629914379560;
+        Wed, 25 Aug 2021 10:59:39 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id u18sm101188ooi.40.2021.08.25.10.59.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Aug 2021 10:59:38 -0700 (PDT)
+Received: (nullmailer pid 3021286 invoked by uid 1000);
+        Wed, 25 Aug 2021 17:59:37 -0000
+Date:   Wed, 25 Aug 2021 12:59:37 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: clock: samsung: convert Exynos5250
+ to dtschema
+Message-ID: <YSaFCcsNGp9Ut5fS@robh.at.kernel.org>
+References: <20210825134056.219884-1-krzysztof.kozlowski@canonical.com>
+ <20210825134056.219884-2-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <1629847775-16767-1-git-send-email-khsieh@codeaurora.org>
-References: <1629847775-16767-1-git-send-email-khsieh@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 25 Aug 2021 17:49:47 +0000
-Message-ID: <CAE-0n52obotsMwXLHm8Fkd3+7QnXCEZgVhO_FNSY7RsbC+pbcA@mail.gmail.com>
-Subject: Re: [PATCH] phy: qcom-qmp: add support for voltage and pre emphesis swing
-To:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
-        vkoul@kernel.org
-Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com, p.zabel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210825134056.219884-2-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Kuogee Hsieh (2021-08-24 16:29:35)
-> Add voltage and pre emphesis swing tables so that voltage and
-
-Is it "pre-emphasis"?
-
-> pre emphsis swing level can be configured base on link rate.
-
-This one is also different.
-
->
-> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
-
-Presumably
-
-Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
-
+On Wed, 25 Aug 2021 15:40:49 +0200, Krzysztof Kozlowski wrote:
+> Convert Samsung Exynos5250 clock controller bindings to DT schema format
+> using json-schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp.c | 95 ++++++++++++++++++++++++++++++++-----
->  1 file changed, 82 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> index 31036aa..52bab6e 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> @@ -1916,7 +1916,7 @@ static const struct qmp_phy_init_tbl qmp_v4_dp_tx_tbl[] = {
->         QMP_PHY_INIT_CFG(QSERDES_V4_TX_RES_CODE_LANE_OFFSET_RX, 0x11),
->         QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_BAND, 0x4),
->         QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_POL_INV, 0x0a),
-> -       QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_DRV_LVL, 0x2a),
-> +       QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_DRV_LVL, 0x22),
+>  .../bindings/clock/exynos5250-clock.txt       | 41 -----------------
+>  .../bindings/clock/samsung,exynos-clock.yaml  | 46 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 47 insertions(+), 41 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/exynos5250-clock.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-clock.yaml
+> 
 
-Is 0x22 the better "default"? Can that be described in the commit text?
-
->         QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_EMP_POST1_LVL, 0x20),
->  };
->
-> @@ -3727,6 +3727,81 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
->
->         return 0;
->  }
-
-Nitpick: Newline here please.
-
-> +/*
-> + * 0x20 deducted from tables
-> + *
-> + * swing_value |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> + * pre_emphasis_value |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-> +*/
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[4][4] = {
-> +       /* p0    p1    p2    p3 */
-> +       { 0x00, 0x0c, 0x15, 0x1b },     /* s0 */
-> +       { 0x02, 0x0e, 0x16, 0xff },     /* s1 */
-> +       { 0x02, 0x11, 0xff, 0xff },     /* s2 */
-> +       { 0x04, 0xff, 0xff, 0xff }      /* s3 */
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[4][4] = {
-
-This looks the same as qmp_dp_v3_voltage_swing_hbr3_hbr2. Can that be
-used?
-
-> +       /* p0    p1    p2    p3 */
-> +       { 0x02, 0x12, 0x16, 0x1a },     /* s0 */
-> +       { 0x09, 0x19, 0x1f, 0xff },     /* s1 */
-> +       { 0x10, 0x1f, 0xff, 0xff },     /* s2 */
-> +       { 0x1f, 0xff, 0xff, 0xff }      /* s3 */
-> +};
-> +
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[4][4] = {
-> +       /* p0    p1    p2    p3 */
-> +       { 0x00, 0x0e, 0x15, 0x1b },     /* s0 */
-> +       { 0x00, 0x0e, 0x15, 0xff },     /* s1 */
-> +       { 0x00, 0x0e, 0xff, 0xff },     /* s2 */
-> +       { 0x04, 0xff, 0xff, 0xff }      /* s3 */
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[4][4] = {
-> +       /* p0    p1    p2    p3 */
-> +       { 0x08, 0x0f, 0x16, 0x1f },     /* s0 */
-> +       { 0x11, 0x1e, 0x1f, 0xff },     /* s1 */
-> +       { 0x16, 0x1f, 0xff, 0xff },     /* s2 */
-> +       { 0x1f, 0xff, 0xff, 0xff }      /* s3 */
-
-Do these comments add any value? Can we drop them?
-
-> +};
-> +
-> +static int qcom_qmp_v4_phy_configure_dp_swing(struct qmp_phy *qphy,
-> +               unsigned int drv_lvl_reg, unsigned int emp_post_reg)
-> +{
-> +       const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
-> +       unsigned int v_level = 0, p_level = 0;
-> +       u8 voltage_swing_cfg, pre_emphasis_cfg;
-> +       int i;
-> +
-> +       for (i = 0; i < dp_opts->lanes; i++) {
-> +               v_level = max(v_level, dp_opts->voltage[i]);
-> +               p_level = max(p_level, dp_opts->pre[i]);
-> +       }
-> +
-> +
-
-Nitpick: Drop extra newline.
-
-> +       if (dp_opts->link_rate <= 2700) {
-> +               voltage_swing_cfg = qmp_dp_v4_voltage_swing_hbr_rbr[v_level][p_level];
-> +               pre_emphasis_cfg = qmp_dp_v4_pre_emphasis_hbr_rbr[v_level][p_level];
-> +       } else {
-> +               voltage_swing_cfg = qmp_dp_v4_voltage_swing_hbr3_hbr2[v_level][p_level];
-> +               pre_emphasis_cfg = qmp_dp_v4_pre_emphasis_hbr3_hbr2[v_level][p_level];
-> +       }
-> +
-> +       /* TODO: Move check to config check */
-> +       if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
-> +               return -EINVAL;
-> +
-> +       /* Enable MUX to use Cursor values from these registers */
-> +       voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> +       pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-> +
-> +       writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
-> +       writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
-> +       writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
-> +       writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
-
-This is copy/pasted from qcom_qmp_phy_configure_dp_swing() right? How
-about making a function
-
-static int
-__qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
-				  unsigned int drv_lvl_reg,
-				  unsigned int emp_post_reg,
-				  const u8 **voltage_rbr_hbr,
-				  const u8 **pre_emphasis_rbr_hbr,
-				  const u8 **voltage_hbr3_hbr2,
-				  const u8 **pre_emphasis_hbr3_hbr2)
-
-that does the same stuff but allows the tables to be different.
-
-> +
-> +       return 0;
-> +}
->
->  static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  {
-> @@ -3757,14 +3832,7 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->
->  static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
->  {
-> -       /* Program default values before writing proper values */
-> -       writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -       writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> -
-> -       writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -       writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -
-> -       qcom_qmp_phy_configure_dp_swing(qphy,
-> +       qcom_qmp_v4_phy_configure_dp_swing(qphy,
->                         QSERDES_V4_TX_TX_DRV_LVL,
->                         QSERDES_V4_TX_TX_EMP_POST1_LVL);
->  }
-> @@ -3885,6 +3953,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->         writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
->         writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
->
-> +       writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> +       writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
-
-Is this mentioned in the commit text? Is this fixing the sequence?
-It doesn't look like we're adding tables.
-
-> +
->         writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
->         udelay(2000);
->         writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
-> @@ -3896,11 +3967,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->                         10000))
->                 return -ETIMEDOUT;
->
-> -       writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> -       writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
->
-> -       writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -       writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> +       writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> +       writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
->
->         writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
->         writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+Reviewed-by: Rob Herring <robh@kernel.org>
