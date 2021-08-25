@@ -2,119 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F08B3F76ED
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D7F3F7770
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240726AbhHYOLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 10:11:46 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:43658 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229760AbhHYOLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 10:11:46 -0400
-Received: by mail-oi1-f177.google.com with SMTP id w19so933699oik.10;
-        Wed, 25 Aug 2021 07:11:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ae6tzqkTqYhXXLFz/45g2hcXJMbI6ZYjt4sYjcfQmZ4=;
-        b=mduBfrUe5izQEsq9JrF3UHzDK1UitzWFO9kypLoQe2NWMZGneXTaVOmP1FScq7q+VM
-         qcfSlCJ0K8ccxl9EarrH0nTJu/jrDSWaiqhdDW0JZG/QWtFr+crUV5TBtjausPxCT5m1
-         5slb2b/T6jiHDYwvsRd5DbDG4QXnHUyzJglMmLzkuOHjQcHDGY/GlXhkEAxpKXnqzVQn
-         TO71BaIWC/qyEpH7eztdkVAobIeMsge6V3Jdn41yYE8ezhuhxdN5eKb3bKkPmbHRGtb/
-         XxTFgXVNaV5xnY8fm1APGLSKHp+uh2/J0jDpwoQKl0AC5tduodsxAZdhsgVg2F/2u8zz
-         5TuA==
-X-Gm-Message-State: AOAM531jUbdkyvieAD6crRYBMt3i3LRwX6O4oqe9aKjghzvkLPPg0Yzu
-        GzWWzsspPJcLOjxDPWEeXRE4ISI14g==
-X-Google-Smtp-Source: ABdhPJyIBRLRakUPng4izpT886WMSVH6PSY8Vio9ic7QPmSzexWwZCd8E3/ssDFo/Y3Be/PHzuYuUg==
-X-Received: by 2002:a05:6808:2002:: with SMTP id q2mr7010329oiw.1.1629900660071;
-        Wed, 25 Aug 2021 07:11:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i1sm4081429oiy.25.2021.08.25.07.10.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 07:10:59 -0700 (PDT)
-Received: (nullmailer pid 2719823 invoked by uid 1000);
-        Wed, 25 Aug 2021 14:10:58 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        linux-pwm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Lee Jones <lee.jones@linaro.org>
-In-Reply-To: <dbf064fb60b1654af25f65d89f75bd397162d701.1629884907.git.baruch@tkos.co.il>
-References: <3b70f9e757e018d3cd91a882282040c4c0589a93.1629884907.git.baruch@tkos.co.il> <dbf064fb60b1654af25f65d89f75bd397162d701.1629884907.git.baruch@tkos.co.il>
-Subject: Re: [PATCH v7 3/4] dt-bindings: pwm: add IPQ6018 binding
-Date:   Wed, 25 Aug 2021 09:10:58 -0500
-Message-Id: <1629900658.219829.2719822.nullmailer@robh.at.kernel.org>
+        id S241734AbhHYOdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 10:33:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50910 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241379AbhHYOdI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 10:33:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2C66A610C7;
+        Wed, 25 Aug 2021 14:32:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629901942;
+        bh=ZF7rvnNgNU4ktDqZEiJblxdPxr1L2Wok/qHEDFtokss=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NkC/sLxz0rzlnTbPGE0xLEbV/FkC+Zkx0DIabr970q3f24w6D4yMT/l8oayyVK9DY
+         3OryYhzcpkQsEjgy7hurQBnsE+OkEs3HZmbFbSjvfz8GOnvvX6VwPForFOf50rdiyr
+         0nZUEy2gVSUi9bmxENtolZ6/J80Paq9FulseVqH6FDwN23XNcCFbdnNUyYWQiZAgYO
+         1/CmEtXRwYzqtZStWDBAoFAMOX74i7i6/bZMnrjoi9X6WNPCPl45BzgTHJhA0+oO8k
+         k5DDi6LO46cLgc2Yz7bxy6kDtoz8AAn9eisHHrZdtSYeHk1EHqnA6PlF+eSZK14KrA
+         cn6fjd9WtE+kg==
+Date:   Wed, 25 Aug 2021 20:02:17 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v7 0/3] Add RZ/G2L DMAC support
+Message-ID: <YSZUcanmMRPG7ODQ@matsya>
+References: <20210806095322.2326-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210806095322.2326-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 12:48:26 +0300, Baruch Siach wrote:
-> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+On 06-08-21, 10:53, Biju Das wrote:
+> This patch series aims to add DMAC support on RZ/G2L SoC's.
 > 
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> ---
-> v7:
-> 
->   Use 'reg' instead of 'offset' (Rob)
-> 
->   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
-> 
->   Use single cell address/size in example node (Bjorn)
-> 
->   Move '#pwm-cells' lower in example node (Bjorn)
-> 
->   List 'reg' as required
-> 
-> v6:
-> 
->   Device node is child of TCSR; remove phandle (Rob Herring)
-> 
->   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-> 
-> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
->     Andersson, Kathiravan T)
-> 
-> v4: Update the binding example node as well (Rob Herring's bot)
-> 
-> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-> 
-> v2: Make #pwm-cells const (Rob Herring)
-> ---
->  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> 
+> It is based on the work done by Chris Brandt for RZ/A DMA driver.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied all after fixing the subsystem tag for patch 3!
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0: /example-0/syscon@1937000: failed to match any schema with compatible: ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1520591
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+~Vinod
