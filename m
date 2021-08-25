@@ -2,94 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D26F3F7319
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 12:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 066133F7334
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 12:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240054AbhHYK1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 06:27:33 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:48080 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239987AbhHYK1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 06:27:30 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 0A1941F43716
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     matthias.bgg@gmail.com, hsinyi@chromium.org,
-        linux-mediatek@lists.infradead.org, jitao.shi@mediatek.com,
-        eizan@chromium.org, drinkcat@chromium.org, chunkuang.hu@kernel.org,
-        kernel@collabora.com, Rob Herring <robh@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 5/7] arm64: dts: mt8183: Add the mmsys reset bit to reset the dsi0
-Date:   Wed, 25 Aug 2021 12:26:30 +0200
-Message-Id: <20210825122613.v3.5.I933f1532d7a1b2910843a9644c86a7d94a4b44e1@changeid>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210825102632.601614-1-enric.balletbo@collabora.com>
-References: <20210825102632.601614-1-enric.balletbo@collabora.com>
+        id S240153AbhHYK23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 06:28:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39992 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240167AbhHYK2P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 06:28:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 14E3161212;
+        Wed, 25 Aug 2021 10:27:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629887249;
+        bh=/dGcdnDJQSuikSxYpLybghGo6DeDQ9TcuR3g7ByXcx8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YzQfIITYt+EvmJkw15OcJ5ISgWzmfAAa9l1OY26UMXJYFyuibz1c+h+8Mk1FZCuHQ
+         kAJTQSl0ONbTNT/9lrv6hzN6QhLVWUwE815h7VOrCdY8YvCWgS3u1bctTLujiM8iyu
+         M2sRBLq78Vru85NB9m3LEF3gSubrENg5UHN8Qhq244f/WJpBeL5APGDRjTizsqga+P
+         R+am+zkLRFhNBWRZjsjF1VkOahqzMZZHXYrgTUgbynHQ0MUTdn3jtNfP6dJ5fNKPOR
+         2OS8+sxjO8jOeELe4bpM0maGGU4KaC22/bulQY5Ka345TX0/+psJIL/4XIVTsRsbp1
+         lpZrdGca7ZZAQ==
+Date:   Wed, 25 Aug 2021 11:27:01 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Vignesh R <vigneshr@ti.com>, Marc Zyngier <maz@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Use 'enum' instead of 'oneOf' plus 'const'
+ entries
+Message-ID: <20210825102701.GB5186@sirena.org.uk>
+References: <20210824202014.978922-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7ZAtKRhVyVSsbBD2"
+Content-Disposition: inline
+In-Reply-To: <20210824202014.978922-1-robh@kernel.org>
+X-Cookie: MY income is ALL disposable!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reset the DSI hardware is needed to prevent different settings between
-the bootloader and the kernel.
 
-While here, also remove the undocumented and also not used
-'mediatek,syscon-dsi' property.
+--7ZAtKRhVyVSsbBD2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
+On Tue, Aug 24, 2021 at 03:20:14PM -0500, Rob Herring wrote:
 
-(no changes since v1)
+> 'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 'enum'
+> is more concise and yields better error messages.
 
- arch/arm64/boot/dts/mediatek/mt8183.dtsi  | 3 ++-
- include/dt-bindings/reset/mt8183-resets.h | 3 +++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+Acked-by: Mark Brown <broonie@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 9f72701a3b2e..7c47a76b3d02 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1251,6 +1251,7 @@ mmsys: syscon@14000000 {
- 			compatible = "mediatek,mt8183-mmsys", "syscon";
- 			reg = <0 0x14000000 0 0x1000>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
- 				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
-@@ -1365,11 +1366,11 @@ dsi0: dsi@14014000 {
- 			reg = <0 0x14014000 0 0x1000>;
- 			interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_LOW>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
--			mediatek,syscon-dsi = <&mmsys 0x140>;
- 			clocks = <&mmsys CLK_MM_DSI0_MM>,
- 				 <&mmsys CLK_MM_DSI0_IF>,
- 				 <&mipi_tx0>;
- 			clock-names = "engine", "digital", "hs";
-+			resets = <&mmsys MT8183_MMSYS_SW0_RST_B_DISP_DSI0>;
- 			phys = <&mipi_tx0>;
- 			phy-names = "dphy";
- 		};
-diff --git a/include/dt-bindings/reset/mt8183-resets.h b/include/dt-bindings/reset/mt8183-resets.h
-index a1bbd41e0d12..48c5d2de0a38 100644
---- a/include/dt-bindings/reset/mt8183-resets.h
-+++ b/include/dt-bindings/reset/mt8183-resets.h
-@@ -80,6 +80,9 @@
- 
- #define MT8183_INFRACFG_SW_RST_NUM				128
- 
-+/* MMSYS resets */
-+#define MT8183_MMSYS_SW0_RST_B_DISP_DSI0			25
-+
- #define MT8183_TOPRGU_MM_SW_RST					1
- #define MT8183_TOPRGU_MFG_SW_RST				2
- #define MT8183_TOPRGU_VENC_SW_RST				3
--- 
-2.30.2
+--7ZAtKRhVyVSsbBD2
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEmGvUACgkQJNaLcl1U
+h9AfCwf/TPAwmd3i8vLyV5kU4MWAOn8zovhbZ+gXG2hJek5nLRjdW7eTl2yXz1gx
+xdOp2MMA5ldnXUjncRKHMJYykdL7ZtEsOUWT44WgHT0h1WEQzTHSnoVgkt/DDbsP
+tuovH5NV986VPCJXIC+mBkt5a4MPzdD1nYVmPss+8R+HXfTRZauTlZefXvwCzNDT
+Md/IxPvIbcqw5Ks12P4kdojbEGB92MONTO3vRYkzCeY1toRL9fOY3DJE30Kd6o3+
+hzCYzeRkTgoibpK8oG+ZqMOJ38/shj8Wiyfovdhd7LOj9orgkbGdGRi10R1997IR
+tDWFSsOVWZ8p+r2ZuI06T7GlVjygag==
+=GpUP
+-----END PGP SIGNATURE-----
+
+--7ZAtKRhVyVSsbBD2--
