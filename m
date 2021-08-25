@@ -2,148 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 812C53F77DC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9F23F7939
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239928AbhHYO6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 10:58:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55320 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231975AbhHYO6u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 10:58:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E54BC610E6;
-        Wed, 25 Aug 2021 14:58:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629903484;
-        bh=XuKq1zIIMq/OtChRUdQ0vOQzAnhzbI0dxtVr4wcAgDA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YvV8UlOvjbvsB0RkZMgL4YbyeKBKjZqzYhbbkQKcATpLeGd2BrN9PpesAoyiWbIhC
-         GeWvz7A9Lb/XXxEkUf6+NTd9Cyfno/JEZLq8JHsx1KPe71/46buyRZqnUAc+sKZHRF
-         qEnJrMf1uWfNIsab9i7m2F0cK/tUCg+i+Gc1qoXekwpq/eJc8dqoH1XyL0jlDVoDmR
-         qgWgdHPfvxWvM7kSa8P+DQnWJuKXseZhaARLJRcmVp5109C0BVruamxYinLk8G6tRv
-         IhN41+5Q53W5fyLDDuxZKPE37LRWPtYdS+c8l7lDW6Ex0UmXG5RRXWca5lOhBSy2QE
-         s60AFQLQRsDig==
-Received: by mail-ed1-f45.google.com with SMTP id q3so37444789edt.5;
-        Wed, 25 Aug 2021 07:58:04 -0700 (PDT)
-X-Gm-Message-State: AOAM533OoH12hbMccK6ITunfktWPZQaXXfmOKYJGJd1EfQ9oiPwFyNIK
-        SqD5U9BNZw/E/78Yn+FrqHhRTNuD5GcKoo9bGw==
-X-Google-Smtp-Source: ABdhPJwPn9HhyJ/B+5FAoAdEgoxYV2mtd8rUO27aqvKNxs57ww2VmIrdKZuZXvoWjCyEPb5V7XMr2dA7WkL3ZPQqLek=
-X-Received: by 2002:a50:9b52:: with SMTP id a18mr49080750edj.165.1629903483580;
- Wed, 25 Aug 2021 07:58:03 -0700 (PDT)
+        id S239968AbhHYPl0 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 25 Aug 2021 11:41:26 -0400
+Received: from guitar.tcltek.co.il ([192.115.133.116]:43943 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231995AbhHYPl0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 11:41:26 -0400
+Received: from tarshish (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id D5A7944090A;
+        Wed, 25 Aug 2021 18:40:30 +0300 (IDT)
+References: <3b70f9e757e018d3cd91a882282040c4c0589a93.1629884907.git.baruch@tkos.co.il>
+ <dbf064fb60b1654af25f65d89f75bd397162d701.1629884907.git.baruch@tkos.co.il>
+ <1629900658.219829.2719822.nullmailer@robh.at.kernel.org>
+User-agent: mu4e 1.6.3; emacs 27.1
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        linux-pwm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v7 3/4] dt-bindings: pwm: add IPQ6018 binding
+Date:   Wed, 25 Aug 2021 17:59:45 +0300
+In-reply-to: <1629900658.219829.2719822.nullmailer@robh.at.kernel.org>
+Message-ID: <87ilzta5xn.fsf@tarshish>
 MIME-Version: 1.0
-References: <20210820160023.3243-1-pali@kernel.org> <20210820160023.3243-2-pali@kernel.org>
- <YSURxtc7UAaSEfSy@robh.at.kernel.org> <20210824161409.2mxzpy5r32tm3kgu@pali>
-In-Reply-To: <20210824161409.2mxzpy5r32tm3kgu@pali>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 25 Aug 2021 09:57:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL1NzTp8v+kw1M_aS5OmJMuRiuys4RKYTT2yYy4pKNzJA@mail.gmail.com>
-Message-ID: <CAL_JsqL1NzTp8v+kw1M_aS5OmJMuRiuys4RKYTT2yYy4pKNzJA@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: Add 'slot-power-limit' PCIe port property
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 24, 2021 at 11:14 AM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Tuesday 24 August 2021 10:35:34 Rob Herring wrote:
-> > On Fri, Aug 20, 2021 at 06:00:21PM +0200, Pali Roh=C3=A1r wrote:
-> > > This property specifies slot power limit in mW unit. It is form-facto=
-r and
-> > > board specific value and must be initialized by hardware.
-> > >
-> > > Some PCIe controllers delegates this work to software to allow hardwa=
-re
-> > > flexibility and therefore this property basically specifies what shou=
-ld
-> > > host bridge programs into PCIe Slot Capabilities registers.
-> > >
-> > > Property needs to be specified in mW unit, and not in special format
-> > > defined by Slot Capabilities (which encodes scaling factor or differe=
-nt
-> > > unit). Host drivers should convert value from mW unit to their format=
-.
-> > >
-> > > Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> >
-> > This needs to be in dtschema schemas/pci/pci-bus.yaml instead.
-> >
-> > (pci.txt is still here because it needs to be relicensed to move all th=
-e
-> > descriptions to pci-bus.yaml.)
->
-> Ok, this is just a proposal for a new DTS property. So documentation
-> issues will be fixed in real patch.
->
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Document=
-ation/devicetree/bindings/pci/pci.txt
-> > > index 6a8f2874a24d..e67d5db21514 100644
-> > > --- a/Documentation/devicetree/bindings/pci/pci.txt
-> > > +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> > > @@ -32,6 +32,12 @@ driver implementation may support the following pr=
-operties:
-> > >     root port to downstream device and host bridge drivers can do pro=
-gramming
-> > >     which depends on CLKREQ signal existence. For example, programmin=
-g root port
-> > >     not to advertise ASPM L1 Sub-States support if there is no CLKREQ=
- signal.
-> > > +- slot-power-limit:
-> > > +   If present this property specifies slot power limit in mW unit. H=
-ost drivers
-> >
-> > As mentioned, this should have a unit suffix. I'm not sure it is
-> > beneficial to share with SFP in this case though.
-> >
-> > > +   can parse this slot power limit and use it for programming Root P=
-ort or host
-> > > +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit me=
-ssage
-> > > +   through the Root Port or host bridge when transitioning PCIe link=
- from a
-> > > +   non-DL_Up Status to a DL_Up Status.
-> >
-> > I no nothing about how this mechanism works, but I think this belongs i=
-n
-> > the next section as for PCIe, a slot is always below a PCI-PCI bridge.
-> > If we have N slots, then there's N bridges and needs to be N
-> > slot-power-limit properties, right?
-> >
-> > (The same is probably true for all the properties here except
-> > linux,pci-domain.) There's no distinction between host and PCI bridges
-> > in pci-bus.yaml though.
-> >
-> > Rob
->
-> This slot-power-limit property belongs to same place where are also
-> other slot properties (link speed, reset gpios, clkreq). So I put it in
-> place where others are.
->
-> But I'm not sure where it should be as it affects link/slot. Because
-> link has two sides. I guess that link speed and slot power limit could
-> belong to the root/downstream port and reset gpio to the endpoint card
-> or upstream port...
+Hi Rob,
 
-I wasn't debating whether it goes upstream or downstream, but just
-that it can apply to more than just the host bridge or root port(s).
-We have that now already with reset-gpios. Look at the hikey970 case
-that's queued for 5.15. It's got RP -> switch -> slots/devices with
-reset gpio on each slot.
+On Wed, Aug 25 2021, Rob Herring wrote:
 
-As for upstream vs. downstream side, this is one of those cases where
-we didn't represent the downstream side in DT, so everything gets
-stuffed in the upstream side. As PCIe is point to point, it doesn't
-matter so much. It would be a bigger issue on old PCI.
+> On Wed, 25 Aug 2021 12:48:26 +0300, Baruch Siach wrote:
+>> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+>> 
+>> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+>> ---
+>> v7:
+>> 
+>>   Use 'reg' instead of 'offset' (Rob)
+>> 
+>>   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
+>> 
+>>   Use single cell address/size in example node (Bjorn)
+>> 
+>>   Move '#pwm-cells' lower in example node (Bjorn)
+>> 
+>>   List 'reg' as required
+>> 
+>> v6:
+>> 
+>>   Device node is child of TCSR; remove phandle (Rob Herring)
+>> 
+>>   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
+>> 
+>> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
+>>     Andersson, Kathiravan T)
+>> 
+>> v4: Update the binding example node as well (Rob Herring's bot)
+>> 
+>> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+>> 
+>> v2: Make #pwm-cells const (Rob Herring)
+>> ---
+>>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 +++++++++++++++++++
+>>  1 file changed, 52 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0:
+> /example-0/syscon@1937000: failed to match any schema with compatible:
+> ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
 
-Rob
+What can I do about that? Is it because qcom,tcsr-ipq6018 is documented
+in a non-yaml plain .txt file?
+
+Thanks,
+baruch
+
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/patch/1520591
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+
+-- 
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
