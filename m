@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED61F3F6F17
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 07:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 056243F6F44
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 08:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235411AbhHYF6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 01:58:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34774 "EHLO
+        id S238436AbhHYGQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 02:16:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232480AbhHYF6u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 01:58:50 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF626C061757;
-        Tue, 24 Aug 2021 22:58:04 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id x12so34547709wrr.11;
-        Tue, 24 Aug 2021 22:58:04 -0700 (PDT)
+        with ESMTP id S238139AbhHYGQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 02:16:41 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BF3C061757
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 23:15:56 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id m4so2659267pll.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 23:15:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=06re+8WkU5VebI6jGZJpR94faNEVrf1aGvqVrEKuNZ8=;
-        b=pQ5mfYQkyicvUv+HmDsuJldwQaLH4mo5OLOFTL+ou3qR9/qkYRqQLEtalhbzKA7Hvk
-         zkdUJORyKDHVh/pN1pAl8Tes20DF9t/fkmvrffnEDNMj3UZupTHh5hugmCC9nvwd9J6M
-         o7zg83Ev+48a43qas7JNev+EclyLIPQqMMS6g7fYQjUOZiidfnwDXz/OvTzI197RwSSb
-         0ByJH/Upur4ciZ7OVuIhFSb0cNmK87NyAqf51QEirytBxNM9NeG7PFXtyZq9qCfTZOoQ
-         kOfCGspePDSdNqOWrL06N0sOcU6pDkYs3QUenSMtBuQXTPWygircD58JyJz1EQkXg52N
-         Gx2A==
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=Aauu7gYvMaBruI9Zt1CgTlkxSZ8evQwPBhKOMH6jf8s=;
+        b=hoSB6TJgXFlMnaZz3uFORDcZA63wbXFhbVr28ml50HTk2UOVfj/TXt00ZJdYUVndCC
+         wCAtnqVsRv7Jvps/r/OQOUKvGSI2mTLukj4Y94yyaF37Qq6aAtROuUL24x6T2/ie/gDq
+         Oujp6P91a/6k6OWGpNZW59Ly89YjqVfqk6t/E/pU4y2rzK+eNZEWfPPxAY1Mw/tjnRTm
+         bUR4/3oYjxtTKEeOrGmtZ45su35sUCzDG+uQkG3CUmMicBiIdk5irXJPIhRQXlToL8+k
+         /FhYWY4WcZkyf5SSkmxrQfcSn6hyNVZihqTrNF4dRXgxv7BS8qy82Tm1gyOGSXwJuMu1
+         SOgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=06re+8WkU5VebI6jGZJpR94faNEVrf1aGvqVrEKuNZ8=;
-        b=lKevcdkc2o3/tLZbp0bJESIonaA4cCne1AickdO8UqZKA2WTedIs5v5DaoYHfSpXWA
-         zF4rIpvJrfNycZMQJPNrjOAxqoq35yyMiBZWxIv81fYUQKxI5L+Lv1t4M7j+WTmskDCe
-         zuk0WLSV3gDzMt6Wm7SOE5DE58CDBqoFdWl03J8qtR+R/8hy6HIbuh87JyYRQ9syeH1J
-         6uJuZJwi9YZmftiBmNdMV4UP2VgUtzKQkC/+RNzQ2pXn9Tf+PPsnIxjzMLA0lUBq8m5T
-         9ukr/rD9r3Y4prb/p8WuwGa2erLSAG6ttrfNHfloCSzyIxdIOuEisbx3fgYzirxf61x1
-         YVfA==
-X-Gm-Message-State: AOAM532PTFUoY75c9xFWqeFgk8VqcWWNFHVNjxdHejm7jE2kF+u73l05
-        v4ciIHGnpTrgmjtJ9ser+cVpiv9XXEbRXootIt8=
-X-Google-Smtp-Source: ABdhPJzwzxF8orbHe3jSD7Uncwqg+1GJSzVyQKn+14id/SsYjNHfF5dA6n7ltPp7GgPDmJqj53j5yWUhmkjN8MIsKpw=
-X-Received: by 2002:adf:e6c5:: with SMTP id y5mr18746301wrm.198.1629871083425;
- Tue, 24 Aug 2021 22:58:03 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=Aauu7gYvMaBruI9Zt1CgTlkxSZ8evQwPBhKOMH6jf8s=;
+        b=ckMUomh6A/C6BVwKE/e9ugBTFA7VvfkAfE4qATlAOntkw2LlTUOFgFwiSzfKz27GG2
+         YjpoJN0COsmwNzdyNSvzffFcZlaWn4coz44SN+OYpnWkO0hJIq+KUoOmuA8D7xzihbfT
+         zoy1V7QTHIqvBqv00Uh+7f140XCNNnbCZbqW1tyzEhmmfxy0TvwqW7JCxtpjp4s5wJDh
+         A1KMoaDzs5uX+yMibF9YICe3xUPcYoMQjHaqqW2QDQRNX/9kptn2bCnXHlRODrkAflyj
+         kc1NXQnudzUYnfAfjDtf02MyPqdldhY0hwkJpQBa2eELncqsvWYBYq9KPuCdWc/ZB7GR
+         MnzA==
+X-Gm-Message-State: AOAM530IE7sYiyE5mVZsWut59eyQoCrOCFQSSmkkjoJHdAmhSLN772j1
+        giIR3bazSXAmSstA0T4JoZVKmzq/IcuyXkGRQ3E=
+X-Google-Smtp-Source: ABdhPJwQWq9ZSfLeKjvNMqO8f3oe4zWoGgwwJeJtYpT0GDdSCy9+WeWuIfXUr5rbBNH7nN0yHPPgoIZBNjSy9Tmlrtg=
+X-Received: by 2002:a17:90a:c481:: with SMTP id j1mr8727514pjt.164.1629872155667;
+ Tue, 24 Aug 2021 23:15:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210824092745.2093640-1-zhang.lyra@gmail.com>
- <20210824092745.2093640-3-zhang.lyra@gmail.com> <20210824155823.GE4393@sirena.org.uk>
-In-Reply-To: <20210824155823.GE4393@sirena.org.uk>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Wed, 25 Aug 2021 13:57:09 +0800
-Message-ID: <CAAfSe-v3uJRu2qZ_zNeR-WRdy2U-BBtOdznHfL8k0QqGuXHscQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: spi: Convert sprd ADI bindings to yaml
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Luting Guo <luting.guo@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
+Reply-To: godwinppter@gmail.com
+Sender: dr.nikitarehan@gmail.com
+Received: by 2002:a05:6a10:f491:0:0:0:0 with HTTP; Tue, 24 Aug 2021 23:15:55
+ -0700 (PDT)
+From:   Godwin Pete <godwinnpeter@gmail.com>
+Date:   Wed, 25 Aug 2021 08:15:55 +0200
+X-Google-Sender-Auth: B07d64EihhKUj2AtUdiCgn8G3M4
+Message-ID: <CALd83H0Ffrsu_fWkeXDeFog-wt9asYsh__nOia1PXUzmpPTHsA@mail.gmail.com>
+Subject: Important message to you
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+My good friend,
 
-On Tue, 24 Aug 2021 at 23:58, Mark Brown <broonie@kernel.org> wrote:
->
-> On Tue, Aug 24, 2021 at 05:27:44PM +0800, Chunyan Zhang wrote:
-> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >
-> > Convert spi-sprd-adi.txt to yaml.
->
-> It's better to put DT binding conversion patches as the last patch in a
-> series, there's often a bit of a backlog on reviews for them so putting
-> them after other changes means that the other changes can proceed while
-> waiting for the review of the YAML conversion.
+I just want to know if you, can help me to transfer the amount of
+($6Million). After the transfer we have to share it, 50% for me, and
+50% for you. Please let me know if you can help me for more
+information in regards with the transfer. I hope you can work with me
+honestly?
 
-Yes, the last two patches are DT bindings, the last one is based on this.
-Thanks for telling me, I didn't notice this indeed :)
+
+Thanks.
+
+Godwin Peter,
