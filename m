@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C5F3F7592
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 15:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C673F7594
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 15:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241128AbhHYNHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 09:07:43 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57322
+        id S241109AbhHYNIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 09:08:18 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57366
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229547AbhHYNHl (ORCPT
+        by vger.kernel.org with ESMTP id S229547AbhHYNIR (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 09:07:41 -0400
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        Wed, 25 Aug 2021 09:08:17 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D35BF3F322
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:06:54 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 886F740766
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:07:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629896814;
-        bh=UfizrBJBT6h793qifWAMSREo4JNWpi+qoZht6aRmJGE=;
+        s=20210705; t=1629896851;
+        bh=o56Vii3vIaufxY0yhYD75jzw1vAZOzm1fMDFt3af7a0=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=V3N72qZ7ra27C6pMBhoIkTPHkpkk11qxR5DmQ3t0QLG2zbkOJpfx6q5vJZKOkekh+
-         1PWunNRuMwmAYlxFaVsSiIaArzdCM2rJdPrEIOs6/lDeXoG5rQF6puIx5CIp0TVEUa
-         1ILGEviLLoSU0eamDdQN+9wBX3tKdKR+HaELBtPmn8zzwWW8pMXe7UY3O1Da9SOTAr
-         0hBasxcMAtu/aqBScRTcocdDN+sk9gEWFVgazyL5P5ApVaq6wRajj2eXexdcKE9MNE
-         tNtA7jlPj4ySu+Jv6h6TZcKP5hgU3c+xVcjmyCLiZMULOtSgmwE53yaErq3nlqDd+N
-         MvzsfwrBsEXrw==
-Received: by mail-wr1-f72.google.com with SMTP id v6-20020adfe4c6000000b001574f9d8336so2612429wrm.15
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 06:06:54 -0700 (PDT)
+        b=fJja3WGYNvIORmNbwyJ/tP3npLKl+tpRx/qg9Pt9f8taQXQbCrlYY4iLWThterY/B
+         RehMqkohcV1wuSZ6gh4iYK8tXi7XQ8/dcZADvSyA+IVVlN+oqFPI6nzvBL2EE+4MWB
+         xCQX4a19ucQLXgikW3pYbt3ARJrabxUmuYr7OTgq9nQy/fsiM827INxZhGRKwhL4VZ
+         0PfbsGKxgRAV0leA239Mj9f8bkLCU5u53CvY/HgackMhWWn+o18BHtLPmrBWa+FNGb
+         Qx/leAapat5reB4n4OKKChtp3jo4UNpKghyaM05G7pT70ca2C7iiNB1+MI7H4NdkJg
+         OavatMlPhcebw==
+Received: by mail-wr1-f71.google.com with SMTP id z15-20020adff74f000000b001577d70c98dso120136wrp.12
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 06:07:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UfizrBJBT6h793qifWAMSREo4JNWpi+qoZht6aRmJGE=;
-        b=WKOtXlL3rBNE3tXV9XMJEARXVpL21sdKP192wWcizPB1yU9skkESjEqxYIcV2IOrmk
-         oG/1yTskGFl3Xp7ZmyoTExJbQiNh6rZkLV51+mMIV3ZxQmuxJfeVk2BfbaAImv9sg6Lc
-         o40lQ4VcoD9a03Sp6UQrlLIKNPYE73JEtPQNsur8JN4kYb1nDO7X9ZSxsvpfVhwDf57h
-         6gADd9gnVoxvh4s0jyHMHQQM1pGyb0OCRaQ1yE9Hn6Od+kdSu9rKDKdJ6stib5Pqb8YC
-         L2P5eztGzup0wG2OdAEwLT3FLTn3Aqztv57G3Fxf/MOy6KofapdRFlz2vCGwT5woc+q5
-         RGSQ==
-X-Gm-Message-State: AOAM531Y63pUygr1ZMJsLgSdOhHRyDo4a3HKt34lSgI9V+hxEYzMBwza
-        albiWg/7yrDwLXpw8eTFthzsPp4BtwT+nEeTK5bt/EdNT9f7NcUMcNbTpfti41q+WnKhuOfmw/K
-        o5CNPnXsKcW4Qte+jg3LPKr4xzXypt3X2f9Q2bPs=
-X-Received: by 2002:a1c:40c:: with SMTP id 12mr9149918wme.158.1629896811088;
-        Wed, 25 Aug 2021 06:06:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzixd6QysPlsvWL7nertMLrUP2YTQueOD1OTVHyup8rVWyTa/PXx9YKm+yhpgfRrSNjfxxakQ==
-X-Received: by 2002:a1c:40c:: with SMTP id 12mr9149906wme.158.1629896810959;
-        Wed, 25 Aug 2021 06:06:50 -0700 (PDT)
-Received: from localhost.localdomain ([79.98.113.15])
-        by smtp.gmail.com with ESMTPSA id r20sm13300842wrr.47.2021.08.25.06.06.49
+        bh=o56Vii3vIaufxY0yhYD75jzw1vAZOzm1fMDFt3af7a0=;
+        b=XOt2W+UgY4VC7Hn2kYla873qi/89xLUkesSGe7Jj2iBgDRloMsyH4HHvw20DvP36q2
+         y4vikowLOGDvzGLBwCXGHfPXnV2ZLCco7qkS44kVw2OxrEoWV7LzmDgFJhFfYloYlKik
+         6+vV+g3BiMinVZaS40O48fTzVPMnjZbv89ZdboAEDumT67cVyeJ2ea96ZrI6/XGbYGnf
+         3pXZw76C/OPtG60OlKp2h1l0qeuiTXINKWwARYONIB9ZdJPK1pFAAjhVluwAOakcLcXT
+         eQAhuU0lKYMhtkHTArYWhcR0IbAjATn54EBLb/Re2kZdDpNWJTTs1on3/ICgTWXgsCY4
+         qijA==
+X-Gm-Message-State: AOAM531T6RMBnDBLXvZ+PHCoHYhLG743SGdjqs7mM9pBKM1c8wguIoQF
+        1ZBx2raE9V3ZeTPbe820oshaUPDJDTEWPhwReLjRxklwPAdjaY9VDBWEDftbfKK4u8n81JY0O5k
+        MkCuUlnxaqeQEB710GEvzSeLVPWmWOXyur37XrIU=
+X-Received: by 2002:a5d:4844:: with SMTP id n4mr9558350wrs.191.1629896851260;
+        Wed, 25 Aug 2021 06:07:31 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxbzP/WWqwkYlUeY6Mf6Rxm0/Z0NF1FU4ZMQ5NiuU2i6Evp8bK3D0s5JVHwwbaNlLo12KS46A==
+X-Received: by 2002:a5d:4844:: with SMTP id n4mr9558330wrs.191.1629896851121;
+        Wed, 25 Aug 2021 06:07:31 -0700 (PDT)
+Received: from localhost.localdomain ([79.98.113.172])
+        by smtp.gmail.com with ESMTPSA id l15sm5131706wms.38.2021.08.25.06.07.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 06:06:50 -0700 (PDT)
+        Wed, 25 Aug 2021 06:07:30 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -64,9 +64,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Sagar Shrikant Kadam <sagar.kadam@sifive.com>,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/5] riscv: dts: sifive: drop duplicated nodes and properties in sifive
-Date:   Wed, 25 Aug 2021 15:06:04 +0200
-Message-Id: <20210825130604.203601-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 4/5] riscv: dts: microchip: add missing compatibles for clint and plic
+Date:   Wed, 25 Aug 2021 15:06:39 +0200
+Message-Id: <20210825130639.203657-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210825130452.203407-1-krzysztof.kozlowski@canonical.com>
 References: <20210825130452.203407-1-krzysztof.kozlowski@canonical.com>
@@ -76,8 +76,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DTSI file defines soc node and address/size cells, so there is no
-point in duplicating it in DTS file.
+The Microchip Icicle kit uses SiFive E51 and U54 cores, so it looks that
+also Core Local Interruptor and Platform-Level Interrupt Controller are
+coming from SiFive.  Add proper compatibles to silence dtbs_check
+warnings:
+
+  clint@2000000: compatible:0: 'sifive,clint0' is not one of ['sifive,fu540-c000-clint', 'canaan,k210-clint']
+  interrupt-controller@c000000: compatible:0: 'sifive,plic-1.0.0' is not one of ['sifive,fu540-c000-plic', 'canaan,k210-plic']
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
@@ -86,56 +91,31 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Changes since v1:
 1. None
 ---
- arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 5 -----
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 -----
- 2 files changed, 10 deletions(-)
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 2b4af7b4cc2f..ba304d4c455c 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -8,8 +8,6 @@
- #define RTCCLK_FREQ		1000000
+diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+index d9f7ee747d0d..6f843afacfad 100644
+--- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+@@ -161,7 +161,7 @@ cache-controller@2010000 {
+ 		};
  
- / {
--	#address-cells = <2>;
--	#size-cells = <2>;
- 	model = "SiFive HiFive Unleashed A00";
- 	compatible = "sifive,hifive-unleashed-a00", "sifive,fu540-c000",
- 		     "sifive,fu540";
-@@ -27,9 +25,6 @@ memory@80000000 {
- 		reg = <0x0 0x80000000 0x2 0x00000000>;
- 	};
+ 		clint@2000000 {
+-			compatible = "sifive,clint0";
++			compatible = "sifive,fu540-c000-clint", "sifive,clint0";
+ 			reg = <0x0 0x2000000 0x0 0xC000>;
+ 			interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7
+ 						&cpu1_intc 3 &cpu1_intc 7
+@@ -172,7 +172,7 @@ &cpu3_intc 3 &cpu3_intc 7
  
--	soc {
--	};
--
- 	hfclk: hfclk {
- 		#clock-cells = <0>;
- 		compatible = "fixed-clock";
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index 9b0b9b85040e..4f66919215f6 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -8,8 +8,6 @@
- #define RTCCLK_FREQ		1000000
- 
- / {
--	#address-cells = <2>;
--	#size-cells = <2>;
- 	model = "SiFive HiFive Unmatched A00";
- 	compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000",
- 		     "sifive,fu740";
-@@ -27,9 +25,6 @@ memory@80000000 {
- 		reg = <0x0 0x80000000 0x4 0x00000000>;
- 	};
- 
--	soc {
--	};
--
- 	hfclk: hfclk {
- 		#clock-cells = <0>;
- 		compatible = "fixed-clock";
+ 		plic: interrupt-controller@c000000 {
+ 			#interrupt-cells = <1>;
+-			compatible = "sifive,plic-1.0.0";
++			compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
+ 			reg = <0x0 0xc000000 0x0 0x4000000>;
+ 			riscv,ndev = <186>;
+ 			interrupt-controller;
 -- 
 2.30.2
 
