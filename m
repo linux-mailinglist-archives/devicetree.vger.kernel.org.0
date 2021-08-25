@@ -2,88 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 066133F7334
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 12:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0CAA3F736B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 12:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240153AbhHYK23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 06:28:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39992 "EHLO mail.kernel.org"
+        id S234177AbhHYKi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 06:38:27 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:15530 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240167AbhHYK2P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 06:28:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 14E3161212;
-        Wed, 25 Aug 2021 10:27:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629887249;
-        bh=/dGcdnDJQSuikSxYpLybghGo6DeDQ9TcuR3g7ByXcx8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YzQfIITYt+EvmJkw15OcJ5ISgWzmfAAa9l1OY26UMXJYFyuibz1c+h+8Mk1FZCuHQ
-         kAJTQSl0ONbTNT/9lrv6hzN6QhLVWUwE815h7VOrCdY8YvCWgS3u1bctTLujiM8iyu
-         M2sRBLq78Vru85NB9m3LEF3gSubrENg5UHN8Qhq244f/WJpBeL5APGDRjTizsqga+P
-         R+am+zkLRFhNBWRZjsjF1VkOahqzMZZHXYrgTUgbynHQ0MUTdn3jtNfP6dJ5fNKPOR
-         2OS8+sxjO8jOeELe4bpM0maGGU4KaC22/bulQY5Ka345TX0/+psJIL/4XIVTsRsbp1
-         lpZrdGca7ZZAQ==
-Date:   Wed, 25 Aug 2021 11:27:01 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Vignesh R <vigneshr@ti.com>, Marc Zyngier <maz@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-media@vger.kernel.org, netdev@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Use 'enum' instead of 'oneOf' plus 'const'
- entries
-Message-ID: <20210825102701.GB5186@sirena.org.uk>
-References: <20210824202014.978922-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7ZAtKRhVyVSsbBD2"
-Content-Disposition: inline
-In-Reply-To: <20210824202014.978922-1-robh@kernel.org>
-X-Cookie: MY income is ALL disposable!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S237307AbhHYKi0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 06:38:26 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1629887861; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=mfxDi7TPC7GKCBS2MnbXyato/IpTITHEBXZ+qax5Hxc=; b=cjCeGly4yfvjDh49qAzXmnnxBvX2wnRNoHArCqcbX4pbxMyJ2NhYcwVyCzlfml41Z0CHph/L
+ mA/fQtKYEzSJtcFkDr8PX2AYoRvO2BhyD89QRTKSKXbISiALjllAhbfzYw6Z0ihwCAAXpOk/
+ Eplfzre+7lp8fgWWCO3SCf/zcAU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61261d64b52e91333c8a6093 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 25 Aug 2021 10:37:24
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A4807C43618; Wed, 25 Aug 2021 10:37:24 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 648DEC4360D;
+        Wed, 25 Aug 2021 10:37:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 648DEC4360D
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        swboyd@chromium.org, Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: sc7280: Define CPU topology
+Date:   Wed, 25 Aug 2021 16:06:58 +0530
+Message-Id: <1629887818-28489-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+sc7280 has 8 big.LITTLE CPUs setup with DynamIQ, so all cores are
+within the same CPU cluster. Add cpu-map to define the CPU topology.
 
---7ZAtKRhVyVSsbBD2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-On Tue, Aug 24, 2021 at 03:20:14PM -0500, Rob Herring wrote:
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 53a21d0..05bf748 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -219,6 +219,42 @@
+ 			};
+ 		};
+ 
++		cpu-map {
++			cluster0 {
++				core0 {
++					cpu = <&CPU0>;
++				};
++
++				core1 {
++					cpu = <&CPU1>;
++				};
++
++				core2 {
++					cpu = <&CPU2>;
++				};
++
++				core3 {
++					cpu = <&CPU3>;
++				};
++
++				core4 {
++					cpu = <&CPU4>;
++				};
++
++				core5 {
++					cpu = <&CPU5>;
++				};
++
++				core6 {
++					cpu = <&CPU6>;
++				};
++
++				core7 {
++					cpu = <&CPU7>;
++				};
++			};
++		};
++
+ 		idle-states {
+ 			entry-method = "psci";
+ 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-> 'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 'enum'
-> is more concise and yields better error messages.
-
-Acked-by: Mark Brown <broonie@kernel.org>
-
---7ZAtKRhVyVSsbBD2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEmGvUACgkQJNaLcl1U
-h9AfCwf/TPAwmd3i8vLyV5kU4MWAOn8zovhbZ+gXG2hJek5nLRjdW7eTl2yXz1gx
-xdOp2MMA5ldnXUjncRKHMJYykdL7ZtEsOUWT44WgHT0h1WEQzTHSnoVgkt/DDbsP
-tuovH5NV986VPCJXIC+mBkt5a4MPzdD1nYVmPss+8R+HXfTRZauTlZefXvwCzNDT
-Md/IxPvIbcqw5Ks12P4kdojbEGB92MONTO3vRYkzCeY1toRL9fOY3DJE30Kd6o3+
-hzCYzeRkTgoibpK8oG+ZqMOJ38/shj8Wiyfovdhd7LOj9orgkbGdGRi10R1997IR
-tDWFSsOVWZ8p+r2ZuI06T7GlVjygag==
-=GpUP
------END PGP SIGNATURE-----
-
---7ZAtKRhVyVSsbBD2--
