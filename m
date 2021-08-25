@@ -2,78 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C90BC3F79D8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B3BC3F79EC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237904AbhHYQGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 12:06:44 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:40928 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235365AbhHYQGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:06:44 -0400
-Received: by mail-ot1-f52.google.com with SMTP id x9-20020a056830278900b0051b8be1192fso34797685otu.7
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 09:05:58 -0700 (PDT)
+        id S231489AbhHYQNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 12:13:35 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:35736 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229628AbhHYQNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:13:35 -0400
+Received: by mail-oi1-f176.google.com with SMTP id r26so378969oij.2;
+        Wed, 25 Aug 2021 09:12:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6B/RU3QQJyY4Yz0pNwefBYsy/M+wDG4+xpzlsRF/atk=;
-        b=hKMr0WViYgnXtqqLhTDN21yepGtidlaND8/5P1Cn4gfqORWS7rbetUAe8VIhLRnBgl
-         tD4emZuLigyB58uj3wEzNrruxOfA5mQYyPrrSh01YxmbaFE13KJiNOP+3p3UmUoIDbV2
-         XpUGLLo874nIEK7T6yceBwo5ysSDBew1z1SDbY0/FYKJHFiDABlfdlN52zG4NiqiOilP
-         wJZQ3pYCgfXkCLc5VI1DUU6LD5vys5Ch4oUvm3IwDBg4pNJCwhG1dnAKZnMcb7xZrPUU
-         0suupPI78Eg2w46ebqu2UTzmydSHJyHlIUTTT7QhrB8pU/yUZ/UZzufasGe9gw8F9RCP
-         CjMg==
-X-Gm-Message-State: AOAM532WXCyU4jgzJltCANCqsMcvhIJpVRy8q3ZCPS0bkDxdK3xEheLJ
-        nuT2Cbg7w9Du27PYm3hOZFjxUzXKdg==
-X-Google-Smtp-Source: ABdhPJwxhnQTT7fn3qSSxZhTEcdvBaMpTzt9QPopFRD9riM7WWoPV9BEhy1UjL2xrFYlQY0H+wlNgA==
-X-Received: by 2002:a9d:20a4:: with SMTP id x33mr37856813ota.43.1629907557975;
-        Wed, 25 Aug 2021 09:05:57 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=YEmE8S1S2FpZxoj7vCBgXPaRtZHDLRa7c7YhuXp2BMg=;
+        b=VD9ZAjeSl5rEsMfMBBaXG9PXluFY5KhRFawNmJIRLehODx7MQTxhonXLm0iIsh8EPx
+         VYo3NFgkBgDrJxNfGMptUHQJJUQuJPcU2NpFlfRsMxfg+ny1bEWBskTT9x8ETDDDDh9p
+         9OYA+VH1LSOilTOhIwERoYpNLiuihNHE3E2DrVPcGtvj6bVkck+/n+LLrdFezeVZSvD+
+         raqJOCH6PUiy7jrS0jk2CLg8t4lotzj2Llf0/xhy6pqxL+CrqwEWYVweBTww0C1aawRp
+         XRWi99pdsjXJOo9n8EWXLdRM1Z5mm7/xvpVYTfBqhYQu3vwbxb7J7Nbhb1CUpjB/i7aW
+         fGWA==
+X-Gm-Message-State: AOAM531n18EOPGTHDjuLqGra31L4wK319cABmHz2e0or+ewFrop1Z1j9
+        7exrAe+UESkZglVXsEiIGg==
+X-Google-Smtp-Source: ABdhPJzTqMi3HwCG0dj4SVKilrtaWKGA/e40IYlN+I/U8GNGR8FuVoGBTIztwKLNxwszoVD8AkfH3w==
+X-Received: by 2002:a05:6808:1494:: with SMTP id e20mr7371883oiw.111.1629907969073;
+        Wed, 25 Aug 2021 09:12:49 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f17sm41399otl.24.2021.08.25.09.05.56
+        by smtp.gmail.com with ESMTPSA id b24sm53305oic.33.2021.08.25.09.12.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 09:05:57 -0700 (PDT)
-Received: (nullmailer pid 2872178 invoked by uid 1000);
-        Wed, 25 Aug 2021 16:05:56 -0000
-Date:   Wed, 25 Aug 2021 11:05:56 -0500
+        Wed, 25 Aug 2021 09:12:48 -0700 (PDT)
+Received: (nullmailer pid 2880915 invoked by uid 1000);
+        Wed, 25 Aug 2021 16:12:47 -0000
+Date:   Wed, 25 Aug 2021 11:12:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        kernel test robot <lkp@intel.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH] of: fdt: Rename reserve_elfcorehdr() to
- fdt_reserve_elfcorehdr()
-Message-ID: <YSZqZFdNbzwk4ZXH@robh.at.kernel.org>
-References: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        linux-pwm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v7 3/4] dt-bindings: pwm: add IPQ6018 binding
+Message-ID: <YSZr/xo2a60PYTuW@robh.at.kernel.org>
+References: <3b70f9e757e018d3cd91a882282040c4c0589a93.1629884907.git.baruch@tkos.co.il>
+ <dbf064fb60b1654af25f65d89f75bd397162d701.1629884907.git.baruch@tkos.co.il>
+ <1629900658.219829.2719822.nullmailer@robh.at.kernel.org>
+ <87ilzta5xn.fsf@tarshish>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87ilzta5xn.fsf@tarshish>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 11:40:40 +0200, Geert Uytterhoeven wrote:
-> On ia64/allmodconfig:
+On Wed, Aug 25, 2021 at 05:59:45PM +0300, Baruch Siach wrote:
+> Hi Rob,
 > 
->     drivers/of/fdt.c:609:20: error: conflicting types for 'reserve_elfcorehdr'; have 'void(void)'
->       609 | static void __init reserve_elfcorehdr(void)
-> 	  |                    ^~~~~~~~~~~~~~~~~~
->     arch/ia64/include/asm/meminit.h:43:12: note: previous declaration of 'reserve_elfcorehdr' with type 'int(u64 *, u64 *)' {aka 'int(long long unsigned int *, long long unsigned int *)'}
->        43 | extern int reserve_elfcorehdr(u64 *start, u64 *end);
-> 	  |            ^~~~~~~~~~~~~~~~~~
+> On Wed, Aug 25 2021, Rob Herring wrote:
 > 
-> Fix this by prefixing the FDT function name with "fdt_".
+> > On Wed, 25 Aug 2021 12:48:26 +0300, Baruch Siach wrote:
+> >> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+> >> 
+> >> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> >> ---
+> >> v7:
+> >> 
+> >>   Use 'reg' instead of 'offset' (Rob)
+> >> 
+> >>   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
+> >> 
+> >>   Use single cell address/size in example node (Bjorn)
+> >> 
+> >>   Move '#pwm-cells' lower in example node (Bjorn)
+> >> 
+> >>   List 'reg' as required
+> >> 
+> >> v6:
+> >> 
+> >>   Device node is child of TCSR; remove phandle (Rob Herring)
+> >> 
+> >>   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
+> >> 
+> >> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
+> >>     Andersson, Kathiravan T)
+> >> 
+> >> v4: Update the binding example node as well (Rob Herring's bot)
+> >> 
+> >> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+> >> 
+> >> v2: Make #pwm-cells const (Rob Herring)
+> >> ---
+> >>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 +++++++++++++++++++
+> >>  1 file changed, 52 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0:
+> > /example-0/syscon@1937000: failed to match any schema with compatible:
+> > ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
 > 
-> Fixes: f7e7ce93aac13118 ("of: fdt: Add generic support for handling elf core headers property")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> This change was planned for v6.
-> Feel free to fold into the original.
-> ---
->  drivers/of/fdt.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
+> What can I do about that? Is it because qcom,tcsr-ipq6018 is documented
+> in a non-yaml plain .txt file?
 
-Applied, thanks!
+No, it is not documented at all.
+
+Rob
