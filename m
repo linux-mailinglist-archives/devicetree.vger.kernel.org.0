@@ -2,124 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F2153F71BA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 11:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E383D3F720F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 11:40:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236856AbhHYJbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 05:31:42 -0400
-Received: from regular1.263xmail.com ([211.150.70.203]:58056 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233076AbhHYJbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 05:31:42 -0400
-Received: from localhost (unknown [192.168.167.32])
-        by regular1.263xmail.com (Postfix) with ESMTP id 70121A13;
-        Wed, 25 Aug 2021 17:30:27 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.19] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P4269T140595525805824S1629883826350068_;
-        Wed, 25 Aug 2021 17:30:27 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <1de1da1e743f70d276baa9b3dbdfbda5>
-X-RL-SENDER: sugar.zhang@rock-chips.com
-X-SENDER: zxg@rock-chips.com
-X-LOGIN-NAME: sugar.zhang@rock-chips.com
-X-FST-TO: alsa-devel@alsa-project.org
-X-RCPT-COUNT: 6
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v2_10/15=5d_ASoC=3a_dt-bindings=3a_rockchi?=
- =?UTF-8?Q?p=3a_i2s=3a_Document_property_for_playback/capture=e3=80=90?=
- =?UTF-8?B?6K+35rOo5oSP77yM6YKu5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R?=
- =?UTF-8?B?44CR?=
-To:     Rob Herring <robh@kernel.org>
-Cc:     broonie@kernel.org, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-References: <1629796561-4025-1-git-send-email-sugar.zhang@rock-chips.com>
- <1629796682-4170-5-git-send-email-sugar.zhang@rock-chips.com>
- <YSUnL4xISXIPLdRv@robh.at.kernel.org>
-From:   sugar zhang <sugar.zhang@rock-chips.com>
-Message-ID: <eceed26d-6d29-17b7-2996-5fe479676a83@rock-chips.com>
-Date:   Wed, 25 Aug 2021 17:30:26 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S236546AbhHYJld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 05:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236573AbhHYJlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 05:41:32 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DE56C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 02:40:47 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:fd1d:ce2:c16e:185a])
+        by laurent.telenet-ops.be with bizsmtp
+        id llgk2500A4wgRL101lgkhE; Wed, 25 Aug 2021 11:40:44 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mIpOm-005hZf-7S; Wed, 25 Aug 2021 11:40:44 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mIpOl-00DA7E-Pr; Wed, 25 Aug 2021 11:40:43 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH] of: fdt: Rename reserve_elfcorehdr() to fdt_reserve_elfcorehdr()
+Date:   Wed, 25 Aug 2021 11:40:40 +0200
+Message-Id: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YSUnL4xISXIPLdRv@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On ia64/allmodconfig:
 
-On 2021/8/25 1:06, Rob Herring wrote:
-> On Tue, Aug 24, 2021 at 05:17:57PM +0800, Sugar Zhang wrote:
->> This patch documents property for playback-only and capture-only.
->>
->> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
->> ---
->>
->> Changes in v2: None
->>
->>   Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
->> index 9f9cc48..005b6e6 100644
->> --- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
->> +++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
->> @@ -81,6 +81,16 @@ properties:
->>       description:
->>         Max playback channels, if not set, 8 channels default.
->>   
->> +  rockchip,capture-only:
->> +    type: boolean
->> +    description:
->> +      Specify that the controller has capture only capability.
->> +
->> +  rockchip,playback-only:
->> +    type: boolean
->> +    description:
->> +      Specify that the controller has playback only capability.
-> In the Rockchip TDM-I2S binding[1], these were dropped. Perhaps comment
-> there why they are needed.
+    drivers/of/fdt.c:609:20: error: conflicting types for 'reserve_elfcorehdr'; have 'void(void)'
+      609 | static void __init reserve_elfcorehdr(void)
+	  |                    ^~~~~~~~~~~~~~~~~~
+    arch/ia64/include/asm/meminit.h:43:12: note: previous declaration of 'reserve_elfcorehdr' with type 'int(u64 *, u64 *)' {aka 'int(long long unsigned int *, long long unsigned int *)'}
+       43 | extern int reserve_elfcorehdr(u64 *start, u64 *end);
+	  |            ^~~~~~~~~~~~~~~~~~
 
-It was used to specify the controller capatiblity, some controller has 
-capture or playback only.
+Fix this by prefixing the FDT function name with "fdt_".
 
-maybe we can implement it by judge property 'dma-names'.  such as:
+Fixes: f7e7ce93aac13118 ("of: fdt: Add generic support for handling elf core headers property")
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+This change was planned for v6.
+Feel free to fold into the original.
+---
+ drivers/of/fdt.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-of_property_for_each_string(np, "dma-names", dma_names, name)
-
-if (!strcmp(name, "tx"))
-
-     has capture capability...
-
-if (!strcmp(name, "rx"))
-
-     has capture capability...
-
-will do in v3.
-
->
-> Rob
->
-> [1] https://lore.kernel.org/lkml/20210820182731.29370-1-frattaroli.nicolas@gmail.com/
->
->
->
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index a26199022d2fc54d..4546572af24bbf14 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -599,14 +599,14 @@ static int __init __fdt_scan_reserved_mem(unsigned long node, const char *uname,
+ }
+ 
+ /*
+- * reserve_elfcorehdr() - reserves memory for elf core header
++ * fdt_reserve_elfcorehdr() - reserves memory for elf core header
+  *
+  * This function reserves the memory occupied by an elf core header
+  * described in the device tree. This region contains all the
+  * information about primary kernel's core image and is used by a dump
+  * capture kernel to access the system memory on primary kernel.
+  */
+-static void __init reserve_elfcorehdr(void)
++static void __init fdt_reserve_elfcorehdr(void)
+ {
+ 	if (!IS_ENABLED(CONFIG_CRASH_DUMP) || !elfcorehdr_size)
+ 		return;
+@@ -647,7 +647,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
+ 
+ 	of_scan_flat_dt(__fdt_scan_reserved_mem, NULL);
+ 	fdt_init_reserved_mem();
+-	reserve_elfcorehdr();
++	fdt_reserve_elfcorehdr();
+ }
+ 
+ /**
 -- 
-Best Regards!
-张学广/Sugar
-瑞芯微电子股份有限公司
-Rockchip Electronics Co., Ltd.
-
-
+2.25.1
 
