@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 508AC3F7A8D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 066773F7AC2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235845AbhHYQb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 12:31:59 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:44707 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233395AbhHYQb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:31:59 -0400
-Received: by mail-ot1-f45.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so47102492otg.11;
-        Wed, 25 Aug 2021 09:31:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tMEQ5rSS37SXZ86EXg6wb4SRLylx3WacUr1VwiLL/Ng=;
-        b=Kf/5zzAhvWOIr+h1x/fWWoMGDkOWt2xQbkuJ2aSI93CUvtLBazWZHgMGFRoSBHpNLe
-         rp91Oe4as8RBftXZNx5pHAbDx04eGlMAHbBVxNYst8F5PxgFk8VZgKszH3inVB1Vk6Ss
-         SwTHqZkdisuec8l+aGwP/R3wbYBgMvoLrXg2Jo69mv+N+/zAuggqBle5wN8hNsCDf+Gi
-         yqfVHfBNAz46Z4/MBliWO7srsPRKcnS390X7c8YATkHzcgHv7+1NshC75oNgQbp5x70h
-         sxTk6Vjtp9qsgCLnmi62oxUmaYazLukGF4px/h4e5L02k9sWNxGTmv7CtVpoSmtZpOEW
-         02HA==
-X-Gm-Message-State: AOAM530MEq5/zHhSujOBP1wXlo980swr0SroF7FaIxSXdbkJ7n0uVGuV
-        25/HgA2sZQAO0E0gsXHJzA==
-X-Google-Smtp-Source: ABdhPJxfTu0ee+tYGYmnlkF+0uBzIVdwz+W40xhaEOvLrBXPblsCrnPz+qZSsntwz86pKMcuTxI+sA==
-X-Received: by 2002:a9d:6e0a:: with SMTP id e10mr34241962otr.259.1629909073115;
-        Wed, 25 Aug 2021 09:31:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r20sm66162oot.16.2021.08.25.09.31.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 09:31:12 -0700 (PDT)
-Received: (nullmailer pid 2904615 invoked by uid 1000);
-        Wed, 25 Aug 2021 16:31:11 -0000
-Date:   Wed, 25 Aug 2021 11:31:11 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, kernel@collabora.com,
-        jitao.shi@mediatek.com, eizan@chromium.org,
-        linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, chunkuang.hu@kernel.org,
-        hsinyi@chromium.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, drinkcat@chromium.org
-Subject: Re: [PATCH v3 2/7] dt-bindings: mediatek: Add #reset-cells to mmsys
- system controller
-Message-ID: <YSZwT8QahCfWE5N3@robh.at.kernel.org>
-References: <20210825102632.601614-1-enric.balletbo@collabora.com>
- <20210825122613.v3.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
+        id S231915AbhHYQi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 12:38:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36190 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229791AbhHYQi0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 12:38:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1563860F5C;
+        Wed, 25 Aug 2021 16:37:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629909460;
+        bh=N72KKszat2eurPq6Rq0lAoXAPysG/3U7/Mw/+e7I324=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=omCp8M1WBd8MHOqFiIUGp0HkP5mgHlX3wnDg2GdzRdfC46d+zijrDdu+ZkgK7hVZI
+         iM/uog3O6yv+2UOR6CLYIyQ8WdIJDmGS/IzQmavks/9uW1xsFOENSuYW6mpBRnogJ+
+         C39dTfoEVo+iXeciXDYTaPqDhxNkfYQEx/IwtKC36aNpPBwaKiLVY3tKCdHyNDspwN
+         IcfMjgOqN5UVwM2+irGa+rAi/WRNDfSkY4q7j4tbyhi9yVuzyVgaXTVytICyMznu34
+         8ioVnYZdBqBzAW2BQK2fKAvPm8EhTeOtoZRqdbxxDGnG2qrLIRpmYJxQJEonFgSgcv
+         k/vh/srhvHd0Q==
+Date:   Wed, 25 Aug 2021 11:37:38 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] PCI: qcom: add support for IPQ60xx PCIe controller
+Message-ID: <20210825163738.GA3576149@bjorn-Precision-5520>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210825122613.v3.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
+In-Reply-To: <e17461407cf4bb79fed5925ec81196a0b84e7827.1620203062.git.baruch@tkos.co.il>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 12:26:27 +0200, Enric Balletbo i Serra wrote:
-> The mmsys system controller exposes a set of memory client resets and
-> needs to specify the #reset-cells property in order to advertise the
-> number of cells needed to describe each of the resets.
-> 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> ---
-> 
-> Changes in v3:
-> - Based on top of the patch that converts mmsys to schema
-> 
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml      | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+In subject:
 
-Acked-by: Rob Herring <robh@kernel.org>
+s/add support/Add support/ to match previous history.
+
+On Wed, May 05, 2021 at 12:18:30PM +0300, Baruch Siach wrote:
+> From: Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>
+> 
+> IPQ60xx series of SoCs have one port of PCIe gen 3. Add support for that
+> platform.
+> 
+> The code is based on downstream Codeaurora kernel v5.4. Split out the
+> DBI registers access part from .init into .post_init. DBI registers are
+> only accessible after phy_power_on().
+
+The "downstream Codeaurora kernel v5.4" reference would be more useful
+if there were a URL reference to that driver.
+
+> +#define AXI_CLK_RATE				200000000
+> +#define RCHNG_CLK_RATE				100000000
+
+These are unused.
+
+> +	for (i = 0;i < 256;i++)
+
+Add spaces after semicolons.
