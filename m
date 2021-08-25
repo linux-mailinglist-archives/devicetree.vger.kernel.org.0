@@ -2,110 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 777FE3F71A1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 11:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F2153F71BA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 11:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237508AbhHYJX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 05:23:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234032AbhHYJX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 05:23:57 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27EFC0613C1
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 02:23:11 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id m28so5227005lfj.6
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 02:23:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=771qu+rp6BGafDpnrM7TfmSbulL3Y6LRyi6bHCZ59SE=;
-        b=LjVRBD97AoDFirac+tcvdpXdVyFR41dyauVow1TKQLexDAwfhUl93uz5nFPTA5Tgq/
-         9ZPcK1dIb8iqHi/R6Vchd9ZiptuDxctvYJvEApP3WVbCCahEfUmIEyoWZErvxs5scDZR
-         4lXgAg0RGgXrtKIjf/JudDddln9q7MBefIvOA9ag2i/vJwJrFmtcwEvddNRLy5sy7fYm
-         PIFNG9qJ0qETCf4SjltAX3BDDYOfScFt5skEZ0yJFPygs0gHofPaKp+zaevQWeq0szOa
-         aq+GLpDi+zu1shjseVAYKbxXL8afhXaskx58mTLtkoxpQ7B3O9mgpoc8rE3tLlQOs3ey
-         ckcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=771qu+rp6BGafDpnrM7TfmSbulL3Y6LRyi6bHCZ59SE=;
-        b=JW4kBkPVG4zmPVRQ+kvlH5zxgV4DhI23Vd9w4H1GT5Fd23NarlHiyd2G+y3T+raC1Q
-         Tt7Q1kY0esEip/8Uyh0niU5kxf8aYQVoftRpKraJPCuUpRhQpcHN962JbBIOrQt1RoRx
-         S62ZxpStCreYEZJ6jMPqhgEMO8mYMhHgFRIUe25QCEXgUgO7Ax3ee51QaK5pcpzRx6HY
-         l9L0HHGJ8TaqSb3nUdrFBSlt4T3Pj/JV0jeqffmWyAG2AkN+6NQbkKjzcJBabrfPMIU1
-         1f2O62iwotHHAzKX6rXx5OPuUOMC8cGRfEFC2jou1n3uS4LXWzFESvxyz0T9rqDbG60L
-         qWPw==
-X-Gm-Message-State: AOAM531EltC4mlWw7enNh3qMAhD29HL32SBBqSgVBTrSJ06F+sCQopJY
-        ufQxpHeO31UBL3GIINv5DTCHeQSCJF94/rzpd7724w==
-X-Google-Smtp-Source: ABdhPJwYvcNUxeodfv8be5srORL/NbwXKV09h1a6yC3RGliZE4vRHmh+2BPUYpsRAlrLL+O+DDViBQwverphTfXiW6I=
-X-Received: by 2002:a05:6512:318e:: with SMTP id i14mr32916390lfe.113.1629883390286;
- Wed, 25 Aug 2021 02:23:10 -0700 (PDT)
+        id S236856AbhHYJbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 05:31:42 -0400
+Received: from regular1.263xmail.com ([211.150.70.203]:58056 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233076AbhHYJbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 05:31:42 -0400
+Received: from localhost (unknown [192.168.167.32])
+        by regular1.263xmail.com (Postfix) with ESMTP id 70121A13;
+        Wed, 25 Aug 2021 17:30:27 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.19] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P4269T140595525805824S1629883826350068_;
+        Wed, 25 Aug 2021 17:30:27 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <1de1da1e743f70d276baa9b3dbdfbda5>
+X-RL-SENDER: sugar.zhang@rock-chips.com
+X-SENDER: zxg@rock-chips.com
+X-LOGIN-NAME: sugar.zhang@rock-chips.com
+X-FST-TO: alsa-devel@alsa-project.org
+X-RCPT-COUNT: 6
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_v2_10/15=5d_ASoC=3a_dt-bindings=3a_rockchi?=
+ =?UTF-8?Q?p=3a_i2s=3a_Document_property_for_playback/capture=e3=80=90?=
+ =?UTF-8?B?6K+35rOo5oSP77yM6YKu5Lu255Sxcm9iaGVycmluZzJAZ21haWwuY29t5Luj5Y+R?=
+ =?UTF-8?B?44CR?=
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, heiko@sntech.de,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+References: <1629796561-4025-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1629796682-4170-5-git-send-email-sugar.zhang@rock-chips.com>
+ <YSUnL4xISXIPLdRv@robh.at.kernel.org>
+From:   sugar zhang <sugar.zhang@rock-chips.com>
+Message-ID: <eceed26d-6d29-17b7-2996-5fe479676a83@rock-chips.com>
+Date:   Wed, 25 Aug 2021 17:30:26 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <1629117508-4886-1-git-send-email-haibo.chen@nxp.com>
- <CAPDyKFr2z6t0uefxioLHaszvwrc9Pkf1OJDi=jozjpEZcKP5ng@mail.gmail.com> <VI1PR04MB5294D4EE6173C4897ABF496090C69@VI1PR04MB5294.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB5294D4EE6173C4897ABF496090C69@VI1PR04MB5294.eurprd04.prod.outlook.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 25 Aug 2021 11:22:33 +0200
-Message-ID: <CAPDyKFrA929iRMdZMmA1qYcYtufRzahcP7uc3Vwsw1C1MGeTJA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] mmc: sdhci-esdhc-imx: remove redundant code for
- manual tuning
-To:     Bough Chen <haibo.chen@nxp.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YSUnL4xISXIPLdRv@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 at 04:16, Bough Chen <haibo.chen@nxp.com> wrote:
+Hi Rob,
+
+On 2021/8/25 1:06, Rob Herring wrote:
+> On Tue, Aug 24, 2021 at 05:17:57PM +0800, Sugar Zhang wrote:
+>> This patch documents property for playback-only and capture-only.
+>>
+>> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+>> ---
+>>
+>> Changes in v2: None
+>>
+>>   Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+>> index 9f9cc48..005b6e6 100644
+>> --- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
+>> @@ -81,6 +81,16 @@ properties:
+>>       description:
+>>         Max playback channels, if not set, 8 channels default.
+>>   
+>> +  rockchip,capture-only:
+>> +    type: boolean
+>> +    description:
+>> +      Specify that the controller has capture only capability.
+>> +
+>> +  rockchip,playback-only:
+>> +    type: boolean
+>> +    description:
+>> +      Specify that the controller has playback only capability.
+> In the Rockchip TDM-I2S binding[1], these were dropped. Perhaps comment
+> there why they are needed.
+
+It was used to specify the controller capatiblity, some controller has 
+capture or playback only.
+
+maybe we can implement it by judge property 'dma-names'.  such as:
+
+of_property_for_each_string(np, "dma-names", dma_names, name)
+
+if (!strcmp(name, "tx"))
+
+     has capture capability...
+
+if (!strcmp(name, "rx"))
+
+     has capture capability...
+
+will do in v3.
+
 >
-> > -----Original Message-----
-> > From: Ulf Hansson [mailto:ulf.hansson@linaro.org]
-> > Sent: 2021=E5=B9=B48=E6=9C=8824=E6=97=A5 21:53
-> > To: Bough Chen <haibo.chen@nxp.com>
-> > Cc: Adrian Hunter <adrian.hunter@intel.com>; Shawn Guo
-> > <shawnguo@kernel.org>; Rob Herring <robh+dt@kernel.org>; Sascha Hauer
-> > <s.hauer@pengutronix.de>; Sascha Hauer <kernel@pengutronix.de>; Fabio
-> > Estevam <festevam@gmail.com>; linux-mmc <linux-mmc@vger.kernel.org>;
-> > dl-linux-imx <linux-imx@nxp.com>; DTML <devicetree@vger.kernel.org>; Li=
-nux
-> > ARM <linux-arm-kernel@lists.infradead.org>
-> > Subject: Re: [PATCH 1/6] mmc: sdhci-esdhc-imx: remove redundant code fo=
-r
-> > manual tuning
-> >
-> > On Mon, 16 Aug 2021 at 15:00, <haibo.chen@nxp.com> wrote:
-> > >
-> > > From: Haibo Chen <haibo.chen@nxp.com>
-> > >
-> > > For manual tuning method, already call esdhc_prepare_tuning() config
-> > > the necessary registers, so remove the redundant code in
-> > > esdhc_writew_le() for SDHCI_HOST_CONTROL2.
-> > >
-> > > Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> >
-> > While discussions on the DT binding, etc, continue with Lucas and Rob o=
-n patch
-> > 3 - do you want me to apply patch1 and patch2?
+> Rob
 >
-> Yes, thanks!
-> Let's wait comments for patch 3.
+> [1] https://lore.kernel.org/lkml/20210820182731.29370-1-frattaroli.nicolas@gmail.com/
+>
+>
+>
+-- 
+Best Regards!
+张学广/Sugar
+瑞芯微电子股份有限公司
+Rockchip Electronics Co., Ltd.
 
-Alright, patch1 and pacth2 applied for next, thanks!
 
-[...]
 
-Kind regards
-Uffe
