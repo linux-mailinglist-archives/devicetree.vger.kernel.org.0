@@ -2,162 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9CB3F6DE8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 05:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09E7D3F6E11
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 06:05:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238895AbhHYDvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 23:51:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238597AbhHYDuk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 23:50:40 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC44BC0613C1
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 20:49:54 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id q3so34909597edt.5
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 20:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=3kZXI1vtvS0Yvb6slBFRI9pS9XAeJXzQm2yXW938Umo=;
-        b=rYLlw4fbNP1HTkXasUqH8ZRD7nxcL0P7KPGpLdqgwnOWslAsIhC9jnsZlxrx5otqpo
-         0N0Z+R3+Qd9VBsJP0pp/X6mjgcKX3uDeXXaB5/YKqIdbBniid8BqTFbbBMuUFH7VRQ2T
-         Gzc7ZpquX6irb4GDSnakgLUYLUbs6xRt4YJIpJX+XMSY3x77cXB6jDgxNm+O18zr5b8A
-         kTeVsXIQ2igplvXzF6erSAKUInYqMD2njfkNLSEu8YQh/71OI4SqC48mpwOC+CZoa+ol
-         I86mqWiZk1OM2fNoHpEGJrBm8W8vMZr1pSS/ixy3CwCqtxKi/Hz96FMuVoW6m/o4UpRv
-         PLHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3kZXI1vtvS0Yvb6slBFRI9pS9XAeJXzQm2yXW938Umo=;
-        b=gMj9w8UK6SrseXvsWhrd0DgDPFI2jw7AIfErAe0jEfkQ7wDXHceDZHEkORcGTJAU3Z
-         OA6ZNjSb8CbCU+gGsEUSoJdrKqYeZDILXWOuUF76gTxFIcEL0Vqz98hJvhqao2+MCFk5
-         oqiGXyKYqpUcDBQYNBP1z8a9tkWNG7CSe1tXVMCW9c3YtpwUnToo3dA+KsSHMofInv5G
-         dd76ZVpIqNK5iGFapZZhJCK/Dk26P0XR7GoAuU+Q7FAjpzXJ1JM+8pb94P3dppoTbdus
-         dpH1grcOh1X9jqZGLEVfcWShlrNpLmmFsGJeKQQCaOM3gE8bDhAXXIKOITwVmavjUgMT
-         G3rQ==
-X-Gm-Message-State: AOAM532Th/hyrJWgHuPT1lDgiE3MYhKO72IP1BvMC1c1JNffv6nVyoAN
-        tqKw2xWXa2JtHci+Jn8geJiUcgvOIcOOhOJJv6t23A==
-X-Google-Smtp-Source: ABdhPJz6WxJB9n9R0lhxCYrp90OGkbSPfI3upiI7vUcraPT3a8lXeVRKeYJ+3pLVzsidvy6f73vg7LbF70pb18gBPoI=
-X-Received: by 2002:a05:6402:693:: with SMTP id f19mr20106726edy.213.1629863393359;
- Tue, 24 Aug 2021 20:49:53 -0700 (PDT)
+        id S229437AbhHYEGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 00:06:02 -0400
+Received: from szxga02-in.huawei.com ([45.249.212.188]:14412 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229379AbhHYEGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 00:06:01 -0400
+Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.54])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4GvXN50KX5zbdcY;
+        Wed, 25 Aug 2021 12:01:25 +0800 (CST)
+Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
+ dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 25 Aug 2021 12:05:14 +0800
+Received: from [10.174.177.243] (10.174.177.243) by
+ dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 25 Aug 2021 12:05:14 +0800
+Subject: Re: [PATCH 3/3] amba: Properly handle device probe without IRQ domain
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Ruizhe Lin <linruizhe@huawei.com>, <wangkefeng.wang@huawei.com>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com>
+ <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+From:   Kefeng Wang <wangkefeng.wang@huawei.com>
+Message-ID: <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
+Date:   Wed, 25 Aug 2021 12:05:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20210816105934.28265-1-irui.wang@mediatek.com>
- <20210816105934.28265-2-irui.wang@mediatek.com> <CAAEAJfDoSW3F85bFKTRvvGZXTZbCBRpUwZzEyx3zhrA6psiZfA@mail.gmail.com>
- <6efbfdbac55c5c8175168be96d3a2e63b4ac0f07.camel@mediatek.com>
-In-Reply-To: <6efbfdbac55c5c8175168be96d3a2e63b4ac0f07.camel@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Wed, 25 Aug 2021 00:49:41 -0300
-Message-ID: <CAAEAJfBvWDqtb8oqxx9zosEbBhFVMiszG2cu=Y7OXx3-T4gAOQ@mail.gmail.com>
-Subject: Re: [PATCH 1/9] dt-bindings: media: mtk-vcodec: Add binding for
- MT8195 two venc cores
-To:     =?UTF-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        =?UTF-8?B?TG9uZ2ZlaSBXYW5nICjnjovpvpnpo54p?= 
-        <Longfei.Wang@mediatek.com>,
-        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
-        <tiffany.lin@mediatek.com>,
-        "frkoenig@chromium.org" <frkoenig@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        =?UTF-8?B?TWFvZ3VhbmcgTWVuZyAo5a2f5q+b5bm/KQ==?= 
-        <Maoguang.Meng@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "tzungbi@chromium.org" <tzungbi@chromium.org>,
-        =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
-        <Yunfei.Dong@mediatek.com>,
-        =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "tfiga@google.com" <tfiga@google.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "hsinyi@chromium.org" <hsinyi@chromium.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?= 
-        <Andrew-CT.Chen@mediatek.com>,
-        "acourbot@chromium.org" <acourbot@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.174.177.243]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggpemm500001.china.huawei.com (7.185.36.107)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Aug 2021 at 23:04, Irui Wang (=E7=8E=8B=E7=91=9E) <Irui.Wang@med=
-iatek.com> wrote:
->
-> Hi,Ezequiel,
->
-> Thanks for your reviewing.
->
-> On Tue, 2021-08-24 at 08:02 -0300, Ezequiel Garcia wrote:
-> > Hi Irui,
-> >
-> > On Mon, 16 Aug 2021 at 08:00, Irui Wang <irui.wang@mediatek.com>
-> > wrote:
-> > >
-> > > Enable MT8195 two H.264 venc cores, updates vcodec binding
-> > > document.
-> > >
-> > > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/media/mediatek-vcodec.txt | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/mediatek-
-> > > vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-
-> > > vcodec.txt
-> > > index de961699ba0a..eb2e24c32426 100644
-> > > --- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> > > +++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
-> > > @@ -11,6 +11,8 @@ Required properties:
-> > >    "mediatek,mt8173-vcodec-dec" for MT8173 decoder.
-> > >    "mediatek,mt8192-vcodec-enc" for MT8192 encoder.
-> > >    "mediatek,mt8195-vcodec-enc" for MT8195 encoder.
-> > > +  "mediatek,mtk-venc-core0" for MT8195 avc core0 device.
-> > > +  "mediatek,mtk-venc-core1" for MT8195 avc core1 device.
-> >
-> > What is the difference between core0 and core1?
-> >
-> > Thanks,
-> > Ezequiel
->
-> Both core0 and core1 are H264 encoder hardware, they have their own
-> hardware register base, used power-domains/clocks/irqs. We can use any
-> of them for H.264 encoding, but the two cores can work together for
-> higher performance, it's called "frame racing", a hardware encoding
-> mode, control flow just like in the commit messages:
->
-> core0 frame#0.frame#2.frame#4...
-> core1    frame#1.frame#3.frame#5...
->
 
-If they are two encoder cores, why do you need different compatible strings=
-?
+On 2021/8/25 4:08, Saravana Kannan wrote:
+> On Tue, Aug 24, 2021 at 1:05 PM Rob Herring <robh+dt@kernel.org> wrote:
+>> +Saravana
+>>
+>> Saravana mentioned to me there may be some issues with this one...
+>>
+>>
+>> On Mon, Aug 16, 2021 at 2:43 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>> of_amba_device_create() uses irq_of_parse_and_map() to translate
+>>> a DT interrupt specification into a Linux virtual interrupt number.
+>>>
+>>> But it doesn't properly handle the case where the interrupt controller
+>>> is not yet available, eg, when pl011 interrupt is connected to MBIGEN
+>>> interrupt controller, because the mbigen initialization is too late,
+>>> which will lead to no IRQ due to no IRQ domain found, log is shown below,
+>>>    "irq: no irq domain found for uart0 !"
+>>>
+>>> use of_irq_get() to return -EPROBE_DEFER as above, and in the function
+>>> amba_device_try_add()/amba_device_add(), it will properly handle in such
+>>> case, also return 0 in other fail cases to be consistent as before.
+>>>
+>>> Cc: Russell King <linux@armlinux.org.uk>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>> Cc: Frank Rowand <frowand.list@gmail.com>
+>>> Reported-by: Ruizhe Lin <linruizhe@huawei.com>
+>>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+>>> ---
+>>>   drivers/amba/bus.c    | 27 +++++++++++++++++++++++++++
+>>>   drivers/of/platform.c |  6 +-----
+>>>   2 files changed, 28 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+>>> index 36f2f42c8014..720aa6cdd402 100644
+>>> --- a/drivers/amba/bus.c
+>>> +++ b/drivers/amba/bus.c
+>>> @@ -19,6 +19,7 @@
+>>>   #include <linux/clk/clk-conf.h>
+>>>   #include <linux/platform_device.h>
+>>>   #include <linux/reset.h>
+>>> +#include <linux/of_irq.h>
+>>>
+>>>   #include <asm/irq.h>
+>>>
+>>> @@ -371,12 +372,38 @@ static void amba_device_release(struct device *dev)
+>>>          kfree(d);
+>>>   }
+>>>
+>>> +static int of_amba_device_decode_irq(struct amba_device *dev)
+>>> +{
+>>> +       struct device_node *node = dev->dev.of_node;
+>>> +       int i, irq = 0;
+>>> +
+>>> +       if (IS_ENABLED(CONFIG_OF_IRQ) && node) {
+>>> +               /* Decode the IRQs and address ranges */
+>>> +               for (i = 0; i < AMBA_NR_IRQS; i++) {
+>>> +                       irq = of_irq_get(node, i);
+>>> +                       if (irq < 0) {
+>>> +                               if (irq == -EPROBE_DEFER)
+>>> +                                       return irq;
+>>> +                               irq = 0;
+>>> +                       }
+>>> +
+>>> +                       dev->irq[i] = irq;
+>>> +               }
+>>> +       }
+>>> +
+>>> +       return 0;
+>>> +}
+>>> +
+>>>   static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+>>>   {
+>>>          u32 size;
+>>>          void __iomem *tmp;
+>>>          int i, ret;
+>>>
+>>> +       ret = of_amba_device_decode_irq(dev);
+>>> +       if (ret)
+>>> +               goto err_out;
+>>> +
+> Similar to other resources the AMBA bus "gets" for the device, I think
+> this should be moved into amba_probe() and not here. There's no reason
+> to delay the addition of the device (and loading its module) because
+> the IRQ isn't ready yet.
 
-It would be interesting to see a device tree which shows how this should
-be used in the real world, but from the looks of it, it seems you don't
-need a separate compatible.
+The following code in the amba_device_try_add() will be called, it uses irq[0]
+and irq[1], so I put of_amba_device_decode_irq() into amba_device_try_add().
 
-It seems this series is somewhat related to Yunfei's "[PATCH v5,
-00/15] Using component framework to support multi hardware decode",
-but I don't see a device tree patch either in that series.
+470         if (dev->irq[0])
+471                 ret = device_create_file(&dev->dev, &dev_attr_irq0);
+472         if (ret == 0 && dev->irq[1])
+473                 ret = device_create_file(&dev->dev, &dev_attr_irq1);
+474         if (ret == 0)
+475                 return ret;
 
-Given this is a complex architecture, I don't know if it
-makes sense to discuss decoder and encoder independently.
+of_amba_device_decode_irq() in amba_device_try_add() won't lead to issue,
+only delay the device add, right?
 
-If you guys unify the two series, and add the device tree patches for it,
-or at least for the most complex cases, maybe that will surface the
-architecture more clearly and come up with an easier solution that
-doesn't involve
-an async framework to pull in the parts together.
+If make it into amba_probe(), the above code should be moved too, could we
+make a new patch to move both of them, or don't move them?
 
-Thanks,
-Ezequiel
