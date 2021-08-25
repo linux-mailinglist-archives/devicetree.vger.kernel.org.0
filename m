@@ -2,252 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DE6A3F7D68
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 22:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 587F53F7DB8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 23:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231672AbhHYU5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 16:57:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230025AbhHYU5Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 16:57:24 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4FAC0613C1
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:56:37 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id y14-20020a0568302a0e00b0051acbdb2869so680644otu.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:56:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ezxYJuB5+DPwLQMhcOC4dJ+od4nl/giL4m1EpPE7Y2M=;
-        b=rHQbo1MnEf8p6biTTcw6ebRelV9inX4oWWUMM8/t01OqgbpiCZny3ZdI6CE1FBiE3K
-         sTWqCbR7gh3WGzyEEHbQKqeO9fxgs1j2cFsj4HesEj0TUAO+x98xPn0cNB0mR/iGHfy4
-         8C/lIo0ljkdiToLnICz2KE2YGPLxrSmq2G7KEtCMbBOOu9aV0NORXYDoeeRMtRn8WRUP
-         oqVzQuWSj+3Q3MAs+kgllJgFt7zv691TR8HuZ17WcLnoIr0mY1Uo2EGU4L/IqshhyxtS
-         N3jKEXDfnvJqduVAzFawbLmUTtvLP0gt7TwFBqw2ib43OE3/WWJN8sGKxIo0TCvB/PfF
-         0ZZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ezxYJuB5+DPwLQMhcOC4dJ+od4nl/giL4m1EpPE7Y2M=;
-        b=bFemVD0r+lT7HSZj6IWPQIjnMhY6VUPb0q/2iglPeVlF/NJFZQjxaPtUMDK05XXmQ2
-         om18Hg94TWdo3ag5JQeFTAGRdW5EFmpuylksZWjdGlA254w5TRoKbWaKREI5jCsEqEj0
-         zH78/0u1UR0qdUkFZmxLFW1ras6wC0nALI5pS2TxkX280n5N52zma9XkdvrY15ijpkZp
-         PYPXe8ooSLV5mb9e4YlhLbD9WsOqkifTANSaGBB1TD8DuGH2Yy6Ko97Loa2Us80RZTCY
-         TBCmRg5TV9p3mNYINcduHzLkuzaSJciXYJ/2VD3AYxNW7NwPqbUCjaFDwlvy9GUz6UCt
-         QveA==
-X-Gm-Message-State: AOAM532oPob5hCWHEIniigXsbm/QTyGTNlHpAvd9CWOMkolR6zD7tPbS
-        NT9V2DnRyaj8AzsAz0Yy2rZO9g==
-X-Google-Smtp-Source: ABdhPJwfMEkSmISvoitevz6s3lkfvIwiZ22UHmmWIow+l4jG2ft/Yhhn7RD281SJu+FbYrURwujnDw==
-X-Received: by 2002:a9d:4104:: with SMTP id o4mr321206ote.139.1629924997078;
-        Wed, 25 Aug 2021 13:56:37 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b3sm220878oie.1.2021.08.25.13.56.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 13:56:36 -0700 (PDT)
-Date:   Wed, 25 Aug 2021 13:57:52 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kuogee Hsieh <khsieh@codeaurora.org>
-Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
-        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
-        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kishon@ti.com, p.zabel@pengutronix.de
-Subject: Re: [PATCH] phy: qcom-qmp: add support for voltage and pre emphesis
- swing
-Message-ID: <YSau0HrLMZOAu2Nx@ripper>
-References: <1629847775-16767-1-git-send-email-khsieh@codeaurora.org>
+        id S232710AbhHYV0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 17:26:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33588 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229923AbhHYV0h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 17:26:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 79419610A1;
+        Wed, 25 Aug 2021 21:25:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629926750;
+        bh=xQDrtgT6uthmEGov/Ldo+EaOEsSjtEqV6roEUR4U2co=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=fASCj+Go18/tQH72Frrh86vQVUhFBKTCcQ9o3Ad3urEcD8hJY/IVjmN/1OlNCuXM4
+         7JHmj+5rcXAer/IJ5s5nNiWQN44+Wzp2sr83a87R1CCPRsMKBGBQIH+6UKRHirnyas
+         wPVtWIKNENPU02jJD6GFFXh1J0YuLxlengl+em2Gt5AdRTxcLXm3lq/u+SnHoFANyy
+         GAemNjEbynsA+w9EusA1aYNMqsnfKT/CgqIfBhQLMN3yeqoGmDtCXqtkzI8KNCv7iO
+         +a/vZ9eADe/hwGSLkGP6I/AoRwgMGYHBduxWGD42U57kaBGxpBic1W/I8SmgF28hOe
+         Vrciu66nkn5+g==
+Date:   Wed, 25 Aug 2021 16:25:49 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
+        bhelgaas@google.com, bjorn.andersson@linaro.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
+        manivannan.sadhasivam@linaro.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
+ init in SC7280
+Message-ID: <20210825212549.GA3609092@bjorn-Precision-5520>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1629847775-16767-1-git-send-email-khsieh@codeaurora.org>
+In-Reply-To: <CAE-0n50cnWf_3LQ6P9KMaT4dnryWW9JemP95JDZt5WE1G4mZuQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 24 Aug 16:29 PDT 2021, Kuogee Hsieh wrote:
+[+cc linux-pci; patches to drivers/pci/ should always be cc'd there]
 
-> Add voltage and pre emphesis swing tables so that voltage and
-> pre emphsis swing level can be configured base on link rate.
+On Wed, Aug 25, 2021 at 07:30:09PM +0000, Stephen Boyd wrote:
+> Quoting Prasad Malisetty (2021-08-24 01:10:48)
+> > On 2021-08-17 22:56, Prasad Malisetty wrote:
+> > > On 2021-08-10 09:38, Prasad Malisetty wrote:
+> > >> On the SC7280, By default the clock source for pcie_1_pipe is
+> > >> TCXO for gdsc enable. But after the PHY is initialized, the clock
+> > >> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
+> > >>
+> > >> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> > >> ---
+> > >>  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
+> > >>  1 file changed, 18 insertions(+)
+> > >>
+> > >> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c
+> > >> b/drivers/pci/controller/dwc/pcie-qcom.c
+> > >> index 8a7a300..39e3b21 100644
+> > >> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > >> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > >> @@ -166,6 +166,8 @@ struct qcom_pcie_resources_2_7_0 {
+> > >>      struct regulator_bulk_data supplies[2];
+> > >>      struct reset_control *pci_reset;
+> > >>      struct clk *pipe_clk;
+> > >> +    struct clk *gcc_pcie_1_pipe_clk_src;
+> > >> +    struct clk *phy_pipe_clk;
+> > >>  };
+> > >>
+> > >>  union qcom_pcie_resources {
+> > >> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct
+> > >> qcom_pcie *pcie)
+> > >>      if (ret < 0)
+> > >>              return ret;
+> > >>
+> > >> +    if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> > >> +            res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> > >> +            if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+> > >> +                    return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+> > >> +
+> > >> +            res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> > >> +            if (IS_ERR(res->phy_pipe_clk))
+> > >> +                    return PTR_ERR(res->phy_pipe_clk);
+> > >> +    }
+> > >
+> > > I would like to check is there any other better approach instead of
+> > > compatible method here as well or is it fine to use compatible method.
 > 
+> I'd prefer the compatible method. If nobody is responding then it's best
+> to just resend the patches with the approach you prefer instead of
+> waiting for someone to respond to a review comment.
 
-I think it would be nice if $subject, or at least the commit message
-mentioned that this relates to the DisplayPort part of the QMP driver.
+I'm missing some context here, so I'm not exactly sure what your
+question is, Prasad, but IMO drivers generally should not need to use
+of_device_is_compatible() if they've already called
+of_device_get_match_data() (as qcom_pcie_probe() has).
 
-Also the commit message states that this allows someone/something to
-configure the properties based on link rate. But it doesn't state why
-this is needed.
+of_device_is_compatible() does basically the same work of looking for
+a match in qcom_pcie_match[] that of_device_get_match_data() does, so
+it seems pointless to repeat it.
 
-> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp.c | 95 ++++++++++++++++++++++++++++++++-----
->  1 file changed, 82 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> index 31036aa..52bab6e 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> @@ -1916,7 +1916,7 @@ static const struct qmp_phy_init_tbl qmp_v4_dp_tx_tbl[] = {
->  	QMP_PHY_INIT_CFG(QSERDES_V4_TX_RES_CODE_LANE_OFFSET_RX, 0x11),
->  	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_BAND, 0x4),
->  	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_POL_INV, 0x0a),
-> -	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_DRV_LVL, 0x2a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_DRV_LVL, 0x22),
+I am a little confused because while [1] adds "qcom,pcie-sc7280" to
+qcom,pcie.txt, I don't see a patch that adds it to qcom_pcie_match[].
 
-Why is this initial value changed in order to make the swing and
-emphasis configurable?
-
->  	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TX_EMP_POST1_LVL, 0x20),
->  };
->  
-> @@ -3727,6 +3727,81 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
->  
->  	return 0;
->  }
-> +/*
-> + * 0x20 deducted from tables
-> + *
-> + * swing_value |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> + * pre_emphasis_value |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-
-How about rewriting this as something like
-  "The values in these tables are given without MUX_EN (0x20) bit set"
-
-?
-
-> +*/
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[4][4] = {
-> +	/* p0    p1    p2    p3 */
-> +	{ 0x00, 0x0c, 0x15, 0x1b },	/* s0 */
-> +	{ 0x02, 0x0e, 0x16, 0xff },	/* s1 */
-> +	{ 0x02, 0x11, 0xff, 0xff },	/* s2 */
-> +	{ 0x04, 0xff, 0xff, 0xff }	/* s3 */
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[4][4] = {
-> +	/* p0    p1    p2    p3 */
-> +	{ 0x02, 0x12, 0x16, 0x1a },	/* s0 */
-> +	{ 0x09, 0x19, 0x1f, 0xff },	/* s1 */
-> +	{ 0x10, 0x1f, 0xff, 0xff },	/* s2 */
-> +	{ 0x1f, 0xff, 0xff, 0xff }	/* s3 */
-> +};
-> +
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[4][4] = {
-> +	/* p0    p1    p2    p3 */
-> +	{ 0x00, 0x0e, 0x15, 0x1b },	/* s0 */
-> +	{ 0x00, 0x0e, 0x15, 0xff },	/* s1 */
-> +	{ 0x00, 0x0e, 0xff, 0xff },	/* s2 */
-> +	{ 0x04, 0xff, 0xff, 0xff }	/* s3 */
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[4][4] = {
-> +	/* p0    p1    p2    p3 */
-> +	{ 0x08, 0x0f, 0x16, 0x1f },	/* s0 */
-> +	{ 0x11, 0x1e, 0x1f, 0xff },	/* s1 */
-> +	{ 0x16, 0x1f, 0xff, 0xff },	/* s2 */
-> +	{ 0x1f, 0xff, 0xff, 0xff }	/* s3 */
-> +};
-> +
-> +static int qcom_qmp_v4_phy_configure_dp_swing(struct qmp_phy *qphy,
-> +		unsigned int drv_lvl_reg, unsigned int emp_post_reg)
-> +{
-> +	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
-> +	unsigned int v_level = 0, p_level = 0;
-> +	u8 voltage_swing_cfg, pre_emphasis_cfg;
-
-The "_cfg" suffix on these variables doesn't really add any value.
-Frankly, calling them "voltage" (or "swing") and "emphasis" seems just
-as expressive, but easier to read.
-
-> +	int i;
-> +
-> +	for (i = 0; i < dp_opts->lanes; i++) {
-> +		v_level = max(v_level, dp_opts->voltage[i]);
-> +		p_level = max(p_level, dp_opts->pre[i]);
-> +	}
-> +
-> +
-> +	if (dp_opts->link_rate <= 2700) {
-> +		voltage_swing_cfg = qmp_dp_v4_voltage_swing_hbr_rbr[v_level][p_level];
-> +		pre_emphasis_cfg = qmp_dp_v4_pre_emphasis_hbr_rbr[v_level][p_level];
-> +	} else {
-> +		voltage_swing_cfg = qmp_dp_v4_voltage_swing_hbr3_hbr2[v_level][p_level];
-> +		pre_emphasis_cfg = qmp_dp_v4_pre_emphasis_hbr3_hbr2[v_level][p_level];
-> +	}
-> +
-> +	/* TODO: Move check to config check */
-> +	if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
-
-Why is this && and not || ? 
-
-> +		return -EINVAL;
-> +
-> +	/* Enable MUX to use Cursor values from these registers */
-> +	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> +	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-> +
-> +	writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
-> +	writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
-> +	writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
-> +	writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
-> +
-
-This function is called once, so why is drv_lvl_reg and emp_post_reg
-variables passed to the function, rather than just using the defines
-directly?
-
-Regards,
 Bjorn
 
-> +	return 0;
-> +}
->  
->  static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  {
-> @@ -3757,14 +3832,7 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  
->  static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
->  {
-> -	/* Program default values before writing proper values */
-> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> -
-> -	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -
-> -	qcom_qmp_phy_configure_dp_swing(qphy,
-> +	qcom_qmp_v4_phy_configure_dp_swing(qphy,
->  			QSERDES_V4_TX_TX_DRV_LVL,
->  			QSERDES_V4_TX_TX_EMP_POST1_LVL);
->  }
-> @@ -3885,6 +3953,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->  	writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
->  	writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
->  
-> +	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> +	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
-> +
->  	writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
->  	udelay(2000);
->  	writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
-> @@ -3896,11 +3967,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->  			10000))
->  		return -ETIMEDOUT;
->  
-> -	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> -	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
->  
-> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> +	writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> +	writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
->  
->  	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
->  	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+[1] https://lore.kernel.org/linux-arm-msm/1628568516-24155-2-git-send-email-pmaliset@codeaurora.org/
