@@ -2,84 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 158063F755E
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1129B3F7572
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232236AbhHYMuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 08:50:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46616 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229759AbhHYMuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 08:50:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4C59461165
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 12:49:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629895763;
-        bh=hzsvVp5GpEc7PzWa6r5XggRFfYmq4XhYwGCYrYog9VU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QHg5RyitDe5BZdkuyXir9WSPPtHQjZuBiSjumXod1YDmOSbrSHpmRLhJCRMZepZ+W
-         KuoCngzKmasxc0wPQ2EQMSu7oTGqBSxR2fVN2hWLzry/gspJwv7H4dnlhLrXrDqHRZ
-         C5eDLQlSFdeXjEishyTIVB+z6sC5g1C47Y1ACu2pvEo/IzaoCz43gZ1i1/EJesVWWQ
-         Uxcuyy9bhMqbqkKU1LP3J1k0SVqj/EKS960fMy5k8xjFDWFc17ImDTh4hlcTjOjkP4
-         XFz/8vyXdJpsvHrsQEtqziOCa7fNi8sUDBwiaqhdqbt5dtrHM66s90gw3ghXSwIA4A
-         yvPFfVZNnXEPQ==
-Received: by mail-ed1-f51.google.com with SMTP id b7so36807189edu.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 05:49:23 -0700 (PDT)
-X-Gm-Message-State: AOAM533L8XN85D2ZbmxlaIetB9Ov1eKjKa4jTkG+rBK2zmEYMOsaVEn6
-        WnbqmhoPoFzalgIzNcv3jKlIz/EcI1dWU2HReg==
-X-Google-Smtp-Source: ABdhPJxGEaD9pcqWOUraPhN4c3Vf7LkAfiHIHkfkObtWb2tXb4RrH44JLZ2QkwsTTKyGIX3kSSpui3y8eNnPT1VI+yg=
-X-Received: by 2002:a05:6402:70c:: with SMTP id w12mr5844304edx.289.1629895761924;
- Wed, 25 Aug 2021 05:49:21 -0700 (PDT)
+        id S240163AbhHYM5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 08:57:39 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33942
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234268AbhHYM5i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 08:57:38 -0400
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 83FBF40792
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 12:56:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1629896212;
+        bh=J/tSZXGbbVX7jq/a3ssqSdjqxH4DgxG+yQPijZgaVeg=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=qK2zxW07oVUKSM30tMetlfFFQwiZPNf97uO/7VTd0LhNpmwCFPcnc41KtXGAORyvF
+         Y1m8423oIma0suhOOt7MisvPqmUuNOiwEOpKbfdeYUWPbMkJ5UcdUm1lAUvJ8vqOrV
+         rgpztMO2/x5KFrKh3u3s41Whcrf+dVHhRCeSuspNWncgDlq7d5wnJ/M69r8NPNxA1W
+         d268r00obI0K22jFuBp1I3SKUuBRLh5wpWnkbaJ3wrHIQ3yK+l6C/Rcy5UX0RaVrWC
+         ikt6fu/YaMmHqdLX89P1VNjzm8lPnaZ7ovMgnxYcrKuyQ7NNnfp09YHntZYorIXn4W
+         EumEt8LAXnanw==
+Received: by mail-wm1-f70.google.com with SMTP id r4-20020a1c4404000000b002e728beb9fbso2792108wma.9
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 05:56:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=J/tSZXGbbVX7jq/a3ssqSdjqxH4DgxG+yQPijZgaVeg=;
+        b=fsDsD/uH4zfRfH+LxClL1khA/j0VMVoAxLbIGLUDFx+HwHQNXMEiaba0a5ch5TwsF1
+         YSsfQSdNXJBzbjS3Bo/3St0RoNN93VKKNxRofbgHgCEyHRQ8sqqFIYEQQM71lshuexiA
+         AAZCMUwKbAzQFPCqZawRF2TNvdirQgghYnCOsnHvF/jxldiHbRUn50dNUvz5UzPqUKK+
+         CoHxU7f/ylDDbUEv6gttPNaa1pGFt7P/wcEFPfkt6ekaYzxe8UOL8hmZccc1B0rNMsBr
+         7FLFUbUZ7NPrCBefpppNZuieW2LyQJJDCuIwzWCTmY63HPvj2efefCgLIHFezfBNR2DC
+         X3MA==
+X-Gm-Message-State: AOAM530HvVLKO3gYbTf3GfdyO7qliPBNf9hk6jfS/E6U9m55/5TDn/3h
+        ZJwHPOut/1tC9dBal64U2B8HVpV5hqjOoNU6cKnZNW6N/DtRwyCW4bPGCBhoxfLLxObvyDjypGB
+        7MntYgsUUDGLtIxtcy2fFFWuFWMuavZXIFuPoeTc=
+X-Received: by 2002:a1c:2702:: with SMTP id n2mr9151046wmn.78.1629896212255;
+        Wed, 25 Aug 2021 05:56:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx19exlQXFyThlRhadSTOudioZ5LJmmgmFwb5+25rV2AcBZRK30aXzWxi2nBrwdS83mcw53+g==
+X-Received: by 2002:a1c:2702:: with SMTP id n2mr9151037wmn.78.1629896212095;
+        Wed, 25 Aug 2021 05:56:52 -0700 (PDT)
+Received: from [192.168.0.103] ([79.98.113.15])
+        by smtp.gmail.com with ESMTPSA id k18sm5294991wmi.25.2021.08.25.05.56.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Aug 2021 05:56:51 -0700 (PDT)
+Subject: Re: [PATCH 1/5] dt-bindings: mtd: jedec,spi-nor: document
+ issi,is25wp256
+To:     Tudor.Ambarus@microchip.com, p.yadav@ti.com
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, atish.patra@wdc.com, sagar.kadam@sifive.com,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20210819165908.135591-1-krzysztof.kozlowski@canonical.com>
+ <20210819172852.b26mybrdr33wso62@ti.com>
+ <5bff5a0c-48e5-3721-5595-836ce0562c6f@canonical.com>
+ <ae4c58fe-0af5-3f1d-cc16-27b78772cbb5@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <abd7496d-7aaa-7f23-bdae-441906277577@canonical.com>
+Date:   Wed, 25 Aug 2021 14:56:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
- <CAL_JsqJg=3iVNqOS2scFf34WvnXKzB5sR_quZaGgSECKttXUug@mail.gmail.com> <CAMuHMdWdgOjeBJY1ANf28yZZUEpA2oT9numFNVtN0AnLTqQG_w@mail.gmail.com>
-In-Reply-To: <CAMuHMdWdgOjeBJY1ANf28yZZUEpA2oT9numFNVtN0AnLTqQG_w@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 25 Aug 2021 07:49:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKjF9OvDUEJAefMG7h50gQf7BeGViEa_2VUTPXyzqdDJw@mail.gmail.com>
-Message-ID: <CAL_JsqKjF9OvDUEJAefMG7h50gQf7BeGViEa_2VUTPXyzqdDJw@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: Rename reserve_elfcorehdr() to fdt_reserve_elfcorehdr()
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <ae4c58fe-0af5-3f1d-cc16-27b78772cbb5@microchip.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 25, 2021 at 7:44 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Wed, Aug 25, 2021 at 2:21 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > On Wed, Aug 25, 2021 at 4:40 AM Geert Uytterhoeven
-> > <geert+renesas@glider.be> wrote:
-> > >
-> > > On ia64/allmodconfig:
-> > >
-> > >     drivers/of/fdt.c:609:20: error: conflicting types for 'reserve_elfcorehdr'; have 'void(void)'
-> > >       609 | static void __init reserve_elfcorehdr(void)
-> > >           |                    ^~~~~~~~~~~~~~~~~~
-> > >     arch/ia64/include/asm/meminit.h:43:12: note: previous declaration of 'reserve_elfcorehdr' with type 'int(u64 *, u64 *)' {aka 'int(long long unsigned int *, long long unsigned int *)'}
-> > >        43 | extern int reserve_elfcorehdr(u64 *start, u64 *end);
-> > >           |            ^~~~~~~~~~~~~~~~~~
-> >
-> > There's no need for the ia64 version to be non-static. Just needs a
-> > forward declaration.
-> >
-> > arch/ia64/include/asm/meminit.h:extern int reserve_elfcorehdr(u64
-> > *start, u64 *end);
-> > arch/ia64/kernel/setup.c:       if (reserve_elfcorehdr(&rsvd_region[n].start,
-> > arch/ia64/kernel/setup.c:int __init reserve_elfcorehdr(u64 *start, u64 *end)
->
-> I know ;-)
->
-> https://lore.kernel.org/r/fe236cd73b64abc4abd03dd808cb015c907f4c8c.1629884459.git.geert+renesas@glider.be/
+On 20/08/2021 15:28, Tudor.Ambarus@microchip.com wrote:
+> On 8/19/21 8:36 PM, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 19/08/2021 19:28, Pratyush Yadav wrote:
+>>> + Tudor (you should be listed as a maintainer for this file IMO)
+>>>
+>>> On 19/08/21 06:59PM, Krzysztof Kozlowski wrote:
+>>>> Document bindings for the issi,is25wp256 SPI NOR flash.
+>>>>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>>>> index ed590d7c6e37..0db64ac7dc33 100644
+>>>> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>>>> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+>>>> @@ -33,6 +33,7 @@ properties:
+>>>>        - items:
+>>>>            - enum:
+>>>>                - issi,is25lp016d
+>>>> +              - issi,is25wp256
+>>>
+>>> I don't think we want to add any new flash specific compatibles. Why is
+>>> "jedec,spi-nor" not enough for you?
+>>
+>> It's fine for me. I had impression that specific compatibles are still
+>> preferred and one of boards is using this one. The other way is to
+>> remove this compatible from the board DTS.
+>>
+> 
+> Pratyush is right, we prefer to bind just to the generic "jedec,spi-nor"
+> compatible whenever possible.
 
-Ah, too much mail sorting...
+Thanks for confirming this. I'll fixup the dts.
 
-I guess applying this too doesn't hurt.
 
-Rob
+Best regards,
+Krzysztof
