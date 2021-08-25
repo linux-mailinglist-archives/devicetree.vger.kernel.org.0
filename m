@@ -2,291 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F29D3F7ECF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 00:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A123F7ED8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 01:03:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbhHYW7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 18:59:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        id S232756AbhHYXDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 19:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231270AbhHYW7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 18:59:51 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6CFFC0613C1
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 15:59:04 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id w19-20020a17090aaf9300b00191e6d10a19so892949pjq.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 15:59:04 -0700 (PDT)
+        with ESMTP id S231535AbhHYXDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 19:03:55 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9044AC061757
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 16:03:08 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id f10so598222wml.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 16:03:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=intel-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jjpd+6Tkj8BgAWV6v+XCBx0rlbb+NUWeFyE7jkLpQ1k=;
-        b=iAh988u8pEDhR1u1+NwvQuyLrnH1m2WLNKg8/J7jmqi87o50icpHKwaWVCiqODTY0P
-         tb3Fjl2lTTItneH7R8xNYg3W2YPW6gSNEWTT5xbX+keJ8Ld7xfr7JJzAtCpAUrnaR7wL
-         u+APYHoIUU3TdXYmUjnL7N0CsvF2Q1UOullJ0zPV8KiIW468cy0gPObegFFsmc94pvvi
-         FOZ0MlYWDjr0PpROP6UIiwqBt3gQYhJq83HduPbWWo5jm/WLXCgM4JQ4yFlXypyziRKO
-         7dd+lcVcZnQTajm02jMrK4ygLPx+LvALFNIXwni0kVJ6qJN8wpcdd5hCOEo97PUy6LR+
-         bwYg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Cm6c7hFNakADjloCVmJSXuiCFhhriT1Qx0X20C3Kl7c=;
+        b=khzvqlxQf5CBzXWQPHCXwnB0671jsehkTA/CFYFuDJx8QGYIkTniffcyrzWV5Q+pAt
+         pmDYlmczRHefdwfrUT+KE9ZpxQE9mr0rVg5CoBedZuM93IonbTMRWHmYHxgNzfv+BmGl
+         xEsx256i+pqRAOa7c47xRu8fq1fnHZYCdlL4q7EPiNyXIrWU9WANJIiwvEXVZkHbc9Pq
+         rfUoy8QZWFi3GejEBHiWjkIhhM83ak1SJsvUeuJ+bVEQaEsuXM77eGncsues+pLbBphN
+         sEQ8kaH3gIOZxjCeWOSTiJlLZiwk64jMn212LqGvqPbsnCUwccjQC8yLMqDA5XXEHSWl
+         lTQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jjpd+6Tkj8BgAWV6v+XCBx0rlbb+NUWeFyE7jkLpQ1k=;
-        b=t0bsdzXl9xq+Qn7M0tRG+7b3wojn8cXG3N//Sv3lNmQkwQWcFl2gsY1D5HagHxb3/J
-         qTZl2p42cxH6tWOo2tG3UlIkd8xmJ5ISiAo0+wb1NgdScCvEokUgANqo2tAFsMq2aRLQ
-         3OmSQPwlBfIa3422vQDMrOHtjk7jTwl88iVewZBH4IcKlxUSds6YYWVwloj5oCHpVAnX
-         O3Ijko/Fc+4p6U2qRe8kzfF33bNNpao6NDiX9NhHLzb63i4RX+0kdDZdeUlhmuzdWdPT
-         zBTuc3knBSjdR5XLVdkKvQSQzup+0lg60OiaYwXbcAPEA/bQkIWbZrwXD8wJHOLqOyo/
-         6yfQ==
-X-Gm-Message-State: AOAM533UbXedXLCzdkMlnlJXDEV7lNSFrQT0fuvjkShcwfWtwbAs7Rsq
-        i+8Rs+7hMvWfJOu6w+kv0PrXT8T9ZY+yb9AI3cujeQ==
-X-Google-Smtp-Source: ABdhPJx+NsBGX+c8+wggJKsFYh0kOCsfhHj0McL3arbWNJl4J7SNXCvWTZH3iT1Dl4y5DfRHyE86J/48TBUJkj3j1wI=
-X-Received: by 2002:a17:90a:708c:: with SMTP id g12mr13271794pjk.13.1629932344184;
- Wed, 25 Aug 2021 15:59:04 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Cm6c7hFNakADjloCVmJSXuiCFhhriT1Qx0X20C3Kl7c=;
+        b=miTPP7IWhptLXld4iPXsju/bGUaCVk8bawrXVZ4KnPhKw9PvMK4Jb4QAVbLmGm42KK
+         c9xbuSRojIfRgnK5s2bNDfD1RK4uk9zhGvz2Hu6hErOd0la9xeQmhOBQG44us+s/02fo
+         C0z1H7WeYnqrKd3tlMldbBekDyhhvCyx8g7IO07nnLIKhxvL4IaPuetya+h4NqzlfWbh
+         STqNae5i2MyLSMzsD/FooqiTmMw9tfgt1zrOTGdZA4ouP5Nva0gWQXapU1bzbNhQFpv/
+         fXEb90T6pNyeM+m0Zmkp5avs8z2A4j4x72VuF1Ryt4PdM9AkoajioKc+k8HGfi9v8Mu9
+         bfTA==
+X-Gm-Message-State: AOAM532zMQVshJlzExWjTE2QrwgSZgTt0cvgE7fA8AsB768rWlbaiXaN
+        7EHTclOaf50pV/sH7qU0McA=
+X-Google-Smtp-Source: ABdhPJyZX8vP16ssTcxswljgsJu/rjKv++m8C0Xptcb4SywM+pcgvJGuSAREfnbudE+TDRr+u2/MYA==
+X-Received: by 2002:a7b:c4c2:: with SMTP id g2mr733342wmk.134.1629932587119;
+        Wed, 25 Aug 2021 16:03:07 -0700 (PDT)
+Received: from skbuf ([82.78.148.104])
+        by smtp.gmail.com with ESMTPSA id n3sm915428wmi.0.2021.08.25.16.03.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Aug 2021 16:03:06 -0700 (PDT)
+Date:   Thu, 26 Aug 2021 02:03:05 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Tom Rini <trini@konsulko.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Michael Walle <michael@walle.cc>,
+        Priyanka Jain <priyanka.jain@nxp.com>, u-boot@lists.denx.de,
+        heiko.thiery@gmail.com
+Subject: Re: incompatible device trees between u-boot and linux
+Message-ID: <20210825230305.hbxhshhbdhe56iod@skbuf>
+References: <51c2a92f6bf771769f1e2da5157727e8@walle.cc>
+ <20210825140045.GR858@bill-the-cat>
+ <20210825141816.qfn25xlech55rwsg@skbuf>
+ <20210825142610.GU858@bill-the-cat>
+ <20210825151220.xkpxxucce2oicfvy@skbuf>
+ <20210825152408.GW858@bill-the-cat>
+ <20210825154323.reksf2nyncech6so@skbuf>
+ <20210825200950.GY858@bill-the-cat>
 MIME-Version: 1.0
-References: <20210803113134.2262882-1-iwona.winiarska@intel.com> <20210803113134.2262882-7-iwona.winiarska@intel.com>
-In-Reply-To: <20210803113134.2262882-7-iwona.winiarska@intel.com>
-From:   Dan Williams <dan.j.williams@intel.com>
-Date:   Wed, 25 Aug 2021 15:58:53 -0700
-Message-ID: <CAPcyv4giVBjZWjXO2H+vYSR29Vapi6_FvMwO7nvts-JXmCHcOA@mail.gmail.com>
-Subject: Re: [PATCH v2 06/15] peci: Add core infrastructure
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        X86 ML <x86@kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>,
-        linux-aspeed@lists.ozlabs.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-hwmon@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Lutomirski <luto@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        Yazen Ghannam <yazen.ghannam@amd.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zev Weiss <zweiss@equinix.com>,
-        David Muller <d.mueller@elsoft.ch>,
-        Jason M Bills <jason.m.bills@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210825200950.GY858@bill-the-cat>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 3, 2021 at 4:35 AM Iwona Winiarska
-<iwona.winiarska@intel.com> wrote:
->
-> Intel processors provide access for various services designed to support
-> processor and DRAM thermal management, platform manageability and
-> processor interface tuning and diagnostics.
-> Those services are available via the Platform Environment Control
-> Interface (PECI) that provides a communication channel between the
-> processor and the Baseboard Management Controller (BMC) or other
-> platform management device.
->
-> This change introduces PECI subsystem by adding the initial core module
-> and API for controller drivers.
->
-> Co-developed-by: Jason M Bills <jason.m.bills@linux.intel.com>
-> Signed-off-by: Jason M Bills <jason.m.bills@linux.intel.com>
-> Co-developed-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-> ---
->  MAINTAINERS             |   9 +++
->  drivers/Kconfig         |   3 +
->  drivers/Makefile        |   1 +
->  drivers/peci/Kconfig    |  15 ++++
->  drivers/peci/Makefile   |   5 ++
->  drivers/peci/core.c     | 155 ++++++++++++++++++++++++++++++++++++++++
->  drivers/peci/internal.h |  16 +++++
->  include/linux/peci.h    |  99 +++++++++++++++++++++++++
->  8 files changed, 303 insertions(+)
->  create mode 100644 drivers/peci/Kconfig
->  create mode 100644 drivers/peci/Makefile
->  create mode 100644 drivers/peci/core.c
->  create mode 100644 drivers/peci/internal.h
->  create mode 100644 include/linux/peci.h
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7cdab7229651..d411974aaa5e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14503,6 +14503,15 @@ L:     platform-driver-x86@vger.kernel.org
->  S:     Maintained
->  F:     drivers/platform/x86/peaq-wmi.c
->
-> +PECI SUBSYSTEM
-> +M:     Iwona Winiarska <iwona.winiarska@intel.com>
-> +R:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> +L:     openbmc@lists.ozlabs.org (moderated for non-subscribers)
-> +S:     Supported
-> +F:     Documentation/devicetree/bindings/peci/
-> +F:     drivers/peci/
-> +F:     include/linux/peci.h
-> +
->  PENSANDO ETHERNET DRIVERS
->  M:     Shannon Nelson <snelson@pensando.io>
->  M:     drivers@pensando.io
-> diff --git a/drivers/Kconfig b/drivers/Kconfig
-> index 8bad63417a50..f472b3d972b3 100644
-> --- a/drivers/Kconfig
-> +++ b/drivers/Kconfig
-> @@ -236,4 +236,7 @@ source "drivers/interconnect/Kconfig"
->  source "drivers/counter/Kconfig"
->
->  source "drivers/most/Kconfig"
-> +
-> +source "drivers/peci/Kconfig"
-> +
->  endmenu
-> diff --git a/drivers/Makefile b/drivers/Makefile
-> index 27c018bdf4de..8d96f0c3dde5 100644
-> --- a/drivers/Makefile
-> +++ b/drivers/Makefile
-> @@ -189,3 +189,4 @@ obj-$(CONFIG_GNSS)          += gnss/
->  obj-$(CONFIG_INTERCONNECT)     += interconnect/
->  obj-$(CONFIG_COUNTER)          += counter/
->  obj-$(CONFIG_MOST)             += most/
-> +obj-$(CONFIG_PECI)             += peci/
-> diff --git a/drivers/peci/Kconfig b/drivers/peci/Kconfig
-> new file mode 100644
-> index 000000000000..71a4ad81225a
-> --- /dev/null
-> +++ b/drivers/peci/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +menuconfig PECI
-> +       tristate "PECI support"
-> +       help
-> +         The Platform Environment Control Interface (PECI) is an interface
-> +         that provides a communication channel to Intel processors and
-> +         chipset components from external monitoring or control devices.
-> +
-> +         If you are building a Baseboard Management Controller (BMC) kernel
-> +         for Intel platform say Y here and also to the specific driver for
-> +         your adapter(s) below. If unsure say N.
-> +
-> +         This support is also available as a module. If so, the module
-> +         will be called peci.
-> diff --git a/drivers/peci/Makefile b/drivers/peci/Makefile
-> new file mode 100644
-> index 000000000000..e789a354e842
-> --- /dev/null
-> +++ b/drivers/peci/Makefile
-> @@ -0,0 +1,5 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +# Core functionality
-> +peci-y := core.o
-> +obj-$(CONFIG_PECI) += peci.o
-> diff --git a/drivers/peci/core.c b/drivers/peci/core.c
-> new file mode 100644
-> index 000000000000..7b3938af0396
-> --- /dev/null
-> +++ b/drivers/peci/core.c
-> @@ -0,0 +1,155 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +// Copyright (c) 2018-2021 Intel Corporation
-> +
-> +#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+On Wed, Aug 25, 2021 at 04:09:50PM -0400, Tom Rini wrote:
+> I'm saying that because it's what's been said for what feels like 10+
+> years.  I don't want to think how many countless hours have been spent
+> on that point at conferences over the years.  It's not even a Linux
+> thing.  I would swear you can (or could, unless it got broken) take the
+> same DTB for some platforms and boot Linux or FreeBSD or some other BSD
+> or maybe even VxWorks and it works.
 
-This looks like overkill for only one print statement in this module,
-especially when the dev_ print helpers offer more detail.
+So I absolutely do not oppose the greater goal, and if you say that
+other silicon vendors do it, then shame on us really, NXP should step up
+their game and be way stricter during internal review and such for things
+that matter.
 
-> +
-> +#include <linux/bug.h>
-> +#include <linux/device.h>
-> +#include <linux/export.h>
-> +#include <linux/idr.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/peci.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/property.h>
-> +#include <linux/slab.h>
-> +
-> +#include "internal.h"
-> +
-> +static DEFINE_IDA(peci_controller_ida);
-> +
-> +static void peci_controller_dev_release(struct device *dev)
-> +{
-> +       struct peci_controller *controller = to_peci_controller(dev);
-> +
-> +       pm_runtime_disable(&controller->dev);
+I'm afraid it's something that must trickle down from the management and
+maintainership level before it could be effective.
 
-This seems late to be disabling power management, the device is about
-to be freed. Keep in mind the lifetime of the this object can be
-artificially prolonged. I expect this to be done when the device is
-unregistered from the bus.
+In any case, it doesn't sound absurd at all, with a bit of passion it
+could be done on all Layerscapes. I would be absolutely glad to help on
+the Ethernet / DSA side of things (which I believe is the reason why
+Michael summoned me into this thread), but I don't believe that's where
+the problem is right now. When I added the DM_DSA uclass to U-Boot I did
+my best to pick a reasonable subset of Linux DSA, and with compatible
+device tree bindings. Also maintaining the Linux side of things, I did
+provide feedback to Tim Harvey for the Microchip KSZ switches as to
+what is the subset supported by U-Boot that would also be DT-compatible
+with Linux. If it turns out that I failed at that, I am willing to
+rework what we have.
 
-> +
-> +       mutex_destroy(&controller->bus_lock);
-> +       ida_free(&peci_controller_ida, controller->id);
-> +       fwnode_handle_put(controller->dev.fwnode);
-
-Shouldn't the get / put of this handle reference be bound to specific
-accesses not held for the entire lifetime of the object? At a minimum
-it seems to be a reference that can taken at registration and dropped
-at unregistration.
-
-> +       kfree(controller);
-> +}
-> +
-> +struct device_type peci_controller_type = {
-> +       .release        = peci_controller_dev_release,
-> +};
-> +
-> +static struct peci_controller *peci_controller_alloc(struct device *dev,
-> +                                                    struct peci_controller_ops *ops)
-> +{
-> +       struct fwnode_handle *node = fwnode_handle_get(dev_fwnode(dev));
-> +       struct peci_controller *controller;
-> +       int ret;
-> +
-> +       if (!ops->xfer)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       controller = kzalloc(sizeof(*controller), GFP_KERNEL);
-> +       if (!controller)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       ret = ida_alloc_max(&peci_controller_ida, U8_MAX, GFP_KERNEL);
-> +       if (ret < 0)
-> +               goto err;
-> +       controller->id = ret;
-> +
-> +       controller->ops = ops;
-> +
-> +       controller->dev.parent = dev;
-> +       controller->dev.bus = &peci_bus_type;
-> +       controller->dev.type = &peci_controller_type;
-> +       controller->dev.fwnode = node;
-> +       controller->dev.of_node = to_of_node(node);
-> +
-> +       device_initialize(&controller->dev);
-> +
-> +       mutex_init(&controller->bus_lock);
-> +
-> +       pm_runtime_no_callbacks(&controller->dev);
-> +       pm_suspend_ignore_children(&controller->dev, true);
-> +       pm_runtime_enable(&controller->dev);
-
-Per above, are you sure unregistered devices need pm_runtime enabled?
-
-Rest looks ok to me.
+I have been known on a few occasions to say "U-Boot does not parse this
+part of the device tree, you can just strip it away", but I will keep my
+mouth shut from now on.
