@@ -2,86 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9A13F7492
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 13:48:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E453F7496
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 13:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240272AbhHYLtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 07:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
+        id S240163AbhHYLvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 07:51:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240109AbhHYLtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 07:49:21 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E39C061796
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 04:48:35 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:91f7:1ea1:147b:586f])
-        by laurent.telenet-ops.be with bizsmtp
-        id lnoX2500234CCxU01noXjY; Wed, 25 Aug 2021 13:48:34 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mIrOQ-005kYT-OX; Wed, 25 Aug 2021 13:48:30 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mIrOQ-00DDKU-7r; Wed, 25 Aug 2021 13:48:30 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Andrew Morton <akpm@linux-foundation.org>,
-        Simon Horman <horms@verge.net.au>,
-        Tony Luck <tony.luck@intel.com>, Jay Lan <jlan@sgi.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Mike Rapoport <rppt@linux.vnet.ibm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-ia64@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 3/3] ia64: Make num_rsvd_regions static
-Date:   Wed, 25 Aug 2021 13:48:29 +0200
-Message-Id: <a377b5437e3e9da93d02f996fe06a2b956cb0990.1629884459.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1629884459.git.geert+renesas@glider.be>
-References: <cover.1629884459.git.geert+renesas@glider.be>
+        with ESMTP id S240010AbhHYLvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 07:51:15 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26015C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 04:50:30 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id l3so19526728qtk.10
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 04:50:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qCJ85EGARublB/DPvAvE10PnE4a7leOnf3RaeUHyVEw=;
+        b=LbgNAJLQqHwAL5o3fCfBl02muzZ1EDYGsw9kaLlV5AIpxM304WhNYiKrtPyriOVTJ0
+         vR/ZYlWUBsRvQJGduZnAr6glcn9UK60ie6/B3hYHNHjMHqwJe2etGZeqHSD8YavpfS4X
+         ck6aIrtwSrsy6FHdMefOTvN2PFyEhkk53ZCfw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qCJ85EGARublB/DPvAvE10PnE4a7leOnf3RaeUHyVEw=;
+        b=IbRwsR9vwPy7bvRCBYbv+IbgULFKaif9RrDIKhFOwGvN8VKuj+DHUlrnDmMbXene9Y
+         +A67p9Cy+Oic8Fdnl/TAqSf3SkMtwTnU56LK9WKKsHVXc+Df9UErM/nWHnLHkuPyFyjh
+         HXyGpazdg3t1WBrJm8F1XhwgV10/4xGDVtCmgG2/+1PCipQuXz9rRON8f2G2luTAowwe
+         KxJrMRscfSrEd/Zb++SwMsEKhKK8ZUSiHOQ/Jre5A+qKkI65FUw+/0MC+eiAyJOuogci
+         c+4SN1Pvfkthz7neCEquYO38iHqyBS4ZSQSaRizM63GiUG63Sw4l6s6PZGRMEaRKBkzL
+         lYqw==
+X-Gm-Message-State: AOAM533M4KO8uZA0ZT/AtqRM1NOlo4buNXqDulOHg0O3HY/FJvfzw5Rh
+        zZv0qqE8pg3uLLuvGNxLPWiHQayaSj9PtdhqUVI2wg==
+X-Google-Smtp-Source: ABdhPJxpqXw6fKZPDYAWX50CG23urulDwyDXfcLlrB94FwnQrKdRN9La8xXFxfd9Pqw4CB14ACowRv7d8m7fucB7vZg=
+X-Received: by 2002:ac8:7ee4:: with SMTP id r4mr7602882qtc.148.1629892229184;
+ Wed, 25 Aug 2021 04:50:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210717045627.1739959-1-daniel@0x0f.com> <CACRpkdbE+_DJFhBCmtz5JwJupf7QkkWZhXrgf1KG_3rPqvEm0w@mail.gmail.com>
+In-Reply-To: <CACRpkdbE+_DJFhBCmtz5JwJupf7QkkWZhXrgf1KG_3rPqvEm0w@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 25 Aug 2021 20:50:18 +0900
+Message-ID: <CAFr9PXmFHanrx4Frg3hQwo-RbAY-UXxC=FOAj++cshSHa99z3g@mail.gmail.com>
+Subject: Re: [PATCH 00/10] gpio: msc313: Add gpio support for ssd20xd
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Romain Perier <romain.perier@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit f62800992e5917f2 ("ia64: switch to NO_BOOTMEM") removed the last
-user of num_rsvd_regions outside arch/ia64/kernel/setup.c.
++ Bartosz
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/ia64/include/asm/meminit.h | 1 -
- arch/ia64/kernel/setup.c        | 2 +-
- 2 files changed, 1 insertion(+), 2 deletions(-)
+Hi Linus, Bartosz,
 
-diff --git a/arch/ia64/include/asm/meminit.h b/arch/ia64/include/asm/meminit.h
-index 2738f62b5f989492..f1d5bf2ba847a135 100644
---- a/arch/ia64/include/asm/meminit.h
-+++ b/arch/ia64/include/asm/meminit.h
-@@ -29,7 +29,6 @@ struct rsvd_region {
- };
- 
- extern struct rsvd_region rsvd_region[IA64_MAX_RSVD_REGIONS + 1];
--extern int num_rsvd_regions;
- 
- extern void find_memory (void);
- extern void reserve_memory (void);
-diff --git a/arch/ia64/kernel/setup.c b/arch/ia64/kernel/setup.c
-index 5e6ee8939092a2df..31fb84de2d21469a 100644
---- a/arch/ia64/kernel/setup.c
-+++ b/arch/ia64/kernel/setup.c
-@@ -131,7 +131,7 @@ unsigned long ia64_cache_stride_shift = ~0;
-  * We use a special marker for the end of memory and it uses the extra (+1) slot
-  */
- struct rsvd_region rsvd_region[IA64_MAX_RSVD_REGIONS + 1] __initdata;
--int num_rsvd_regions __initdata;
-+static int num_rsvd_regions __initdata;
- 
- 
- /*
--- 
-2.25.1
+On Fri, 30 Jul 2021 at 19:12, Linus Walleij <linus.walleij@linaro.org> wrote:
+> I suppose Bartosz can just merge the 4 first patches into the
+> GPIO tree and you can take the rest into the SoC tree?
+>
+> Yours,
+> Linus Walleij
 
+I just noticed I hadn't to'd Bartosz about these. Is there anything I
+need to do for the first patches?
+
+Cheers,
+
+Daniel
