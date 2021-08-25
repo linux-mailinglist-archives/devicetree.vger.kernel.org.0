@@ -2,119 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9BD3F7CB9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 21:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 206A03F7D07
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 22:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234220AbhHYTa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 15:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
+        id S242572AbhHYUKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 16:10:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241667AbhHYTa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 15:30:57 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0EC4C0613D9
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 12:30:10 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id v2so892709oie.6
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 12:30:10 -0700 (PDT)
+        with ESMTP id S238571AbhHYUKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 16:10:42 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5800C061757
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:09:55 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id r21so511762qtw.11
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:09:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=JLcefyKSKqjrSJBjDwRPhSlprne7V+zJmYbnypztomQ=;
-        b=H0Ernshf//ofwPK9XKjTZSg/dMtEYnrdSaZ+jw/BmPdPeTLAS9z5nLjtKaxufq8vS5
-         6HOhqHwXWnQz/p9BxLauB9gVo9Usz+VMM99fOO5Xi2EeTqjgJgIN3F/o/EvmsqfpFevu
-         +drnbaTMTdKMLtbyJ0J40Ulep22EhtrAza9fY=
+        d=konsulko.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Pu2xclqe7askIqOaX+3mGYeofnSrKHiQ+1H01tiDNNo=;
+        b=WA0UqVD0DFbRWs0oGB0v6KxL2unOUDAyqUFBkJk6ECN7553RznecQg642BcLi4XuC4
+         tLHNZCS5w2JcqAMbWPmT4id9F0nUPk10j39/fes2AG9QUADi0+pond/w0WrlPqqt0TbR
+         I2gM64EUlr13An2yJFMdVIYp748VFyyQJlupo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=JLcefyKSKqjrSJBjDwRPhSlprne7V+zJmYbnypztomQ=;
-        b=tc2TC3/qwtRD4u/6jk+lyoz6Y3SEElLnFUFSVCYd3+rSh3ykH0P6ZSXEOBEj2mgb0s
-         Lh+aHuiWTFAB1tkJ7kWruiVeP3eeIO+JF+72qmtnSiaGX/Brv5Q5i4SGIIGj+ibD/q6S
-         EA+EMPjl0Cknc06d61udRWyWSN8A1FaOMMTkQ5n6l1Jegs6f3WLA3Y1odr9HV9cJgGz/
-         OxouVVO4xi5K1waKJab62fdNZ3z9C5J7fjpbHtzNrFmm3RrtteRC+j1Ku8kFuFWTqPgR
-         zm/UQms024uxb0PzvuVaHAstodMC8wuUcsW2c7NdkkXEKUI3DoBR4tVGRpAwHv5QwQo/
-         jj6Q==
-X-Gm-Message-State: AOAM530PY/t2aCI6VtpcDp1lZQft1yAMMbuWekF9KdRv6H+QEnH/Y1cE
-        CCOINBPnwHiim69hixhM8C7cuhXGtb/DsG6fhZ8V7A==
-X-Google-Smtp-Source: ABdhPJz5kKrkvonN2F69o4kqTbjRO+SWZp3mHOvfJVqkOn6Guyq9jgCetnKtG3j0rp8HaNWPw8iPPt7s22TDjDpBZPA=
-X-Received: by 2002:a54:468d:: with SMTP id k13mr8278136oic.125.1629919810210;
- Wed, 25 Aug 2021 12:30:10 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 25 Aug 2021 19:30:09 +0000
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Pu2xclqe7askIqOaX+3mGYeofnSrKHiQ+1H01tiDNNo=;
+        b=Ghsw/To1zHV+CV7b8bCNv5UXx9D2D8paxZrQnLs5PrUwpxE95loSyKSHb83HuPNQI4
+         ek539kzHDb8LdJ04cIilJoj8DvoY5gvKWfzh5IY5pDnVmoUttwS8sdpVNl3F9Nm55Ob9
+         P3ZYRDpFZcdvz4d7UauWs1Ysguu3gPRd6J90bcv6GMQyQYS0PqECLqQVFjyZS5GBmBYZ
+         B9ZzeGxm5drtApdY20seoWVfkcuq21h44j5HUWeJrj1ke9j2KetOQcbrCfoot5xRLqPw
+         5l/PuU1G65kVNhwA/kBOa6tOM9+3kwXzWLw8/3jpuLarZ9Nw5jFZE5FM5f5pcGakGKGJ
+         R+jw==
+X-Gm-Message-State: AOAM530ebjXTrFoVF/FK6tk2nrDipxQ2Oiv1PLPEYxl3cTrw1mQD/crG
+        c0YKl9M2vkIij/2F7MDTn9tz9w==
+X-Google-Smtp-Source: ABdhPJw9UpZh9hcvLm3e118ijL/heMkJ6B4mioRRJ6vf3Myj3yv76bz/zvj9oi9LZveSuHUYsxYgBQ==
+X-Received: by 2002:a05:622a:106:: with SMTP id u6mr20601qtw.288.1629922193984;
+        Wed, 25 Aug 2021 13:09:53 -0700 (PDT)
+Received: from bill-the-cat (2603-6081-7b01-cbda-519a-4843-2801-9790.res6.spectrum.com. [2603:6081:7b01:cbda:519a:4843:2801:9790])
+        by smtp.gmail.com with ESMTPSA id g7sm496227qtj.28.2021.08.25.13.09.52
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 25 Aug 2021 13:09:53 -0700 (PDT)
+Date:   Wed, 25 Aug 2021 16:09:50 -0400
+From:   Tom Rini <trini@konsulko.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Michael Walle <michael@walle.cc>,
+        Priyanka Jain <priyanka.jain@nxp.com>, u-boot@lists.denx.de,
+        heiko.thiery@gmail.com
+Subject: Re: incompatible device trees between u-boot and linux
+Message-ID: <20210825200950.GY858@bill-the-cat>
+References: <51c2a92f6bf771769f1e2da5157727e8@walle.cc>
+ <20210825140045.GR858@bill-the-cat>
+ <20210825141816.qfn25xlech55rwsg@skbuf>
+ <20210825142610.GU858@bill-the-cat>
+ <20210825151220.xkpxxucce2oicfvy@skbuf>
+ <20210825152408.GW858@bill-the-cat>
+ <20210825154323.reksf2nyncech6so@skbuf>
 MIME-Version: 1.0
-In-Reply-To: <e54b4f62dbcd670a0e0658598e045051@codeaurora.org>
-References: <1628568516-24155-1-git-send-email-pmaliset@codeaurora.org>
- <1628568516-24155-5-git-send-email-pmaliset@codeaurora.org>
- <349b1178f071407dfad8ba3050482772@codeaurora.org> <e54b4f62dbcd670a0e0658598e045051@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 25 Aug 2021 19:30:09 +0000
-Message-ID: <CAE-0n50cnWf_3LQ6P9KMaT4dnryWW9JemP95JDZt5WE1G4mZuQ@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] PCI: qcom: Switch pcie_1_pipe_clk_src after PHY
- init in SC7280
-To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
-        bhelgaas@google.com, bjorn.andersson@linaro.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org, svarbanov@mm-sol.com
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="q2KifZ2SSffcbUVw"
+Content-Disposition: inline
+In-Reply-To: <20210825154323.reksf2nyncech6so@skbuf>
+X-Clacks-Overhead: GNU Terry Pratchett
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Prasad Malisetty (2021-08-24 01:10:48)
-> On 2021-08-17 22:56, Prasad Malisetty wrote:
-> > On 2021-08-10 09:38, Prasad Malisetty wrote:
-> >> On the SC7280, By default the clock source for pcie_1_pipe is
-> >> TCXO for gdsc enable. But after the PHY is initialized, the clock
-> >> source must be switched to gcc_pcie_1_pipe_clk from TCXO.
-> >>
-> >> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> >> ---
-> >>  drivers/pci/controller/dwc/pcie-qcom.c | 18 ++++++++++++++++++
-> >>  1 file changed, 18 insertions(+)
-> >>
-> >> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c
-> >> b/drivers/pci/controller/dwc/pcie-qcom.c
-> >> index 8a7a300..39e3b21 100644
-> >> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> >> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> >> @@ -166,6 +166,8 @@ struct qcom_pcie_resources_2_7_0 {
-> >>      struct regulator_bulk_data supplies[2];
-> >>      struct reset_control *pci_reset;
-> >>      struct clk *pipe_clk;
-> >> +    struct clk *gcc_pcie_1_pipe_clk_src;
-> >> +    struct clk *phy_pipe_clk;
-> >>  };
-> >>
-> >>  union qcom_pcie_resources {
-> >> @@ -1167,6 +1169,16 @@ static int qcom_pcie_get_resources_2_7_0(struct
-> >> qcom_pcie *pcie)
-> >>      if (ret < 0)
-> >>              return ret;
-> >>
-> >> +    if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
-> >> +            res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
-> >> +            if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
-> >> +                    return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
-> >> +
-> >> +            res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
-> >> +            if (IS_ERR(res->phy_pipe_clk))
-> >> +                    return PTR_ERR(res->phy_pipe_clk);
-> >> +    }
-> >> +
-> >
-> > Hi All,
-> >
-> > Greetings!
-> >
-> > I would like to check is there any other better approach instead of
-> > compatible method here as well or is it fine to use compatible method.
-> >
 
-I'd prefer the compatible method. If nobody is responding then it's best
-to just resend the patches with the approach you prefer instead of
-waiting for someone to respond to a review comment.
+--q2KifZ2SSffcbUVw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 25, 2021 at 06:43:23PM +0300, Vladimir Oltean wrote:
+> On Wed, Aug 25, 2021 at 11:24:08AM -0400, Tom Rini wrote:
+> > On Wed, Aug 25, 2021 at 06:12:20PM +0300, Vladimir Oltean wrote:
+> > > On Wed, Aug 25, 2021 at 10:26:10AM -0400, Tom Rini wrote:
+> > > > On Wed, Aug 25, 2021 at 05:18:16PM +0300, Vladimir Oltean wrote:
+> > > > > On Wed, Aug 25, 2021 at 10:00:45AM -0400, Tom Rini wrote:
+> > > > > > On Wed, Aug 25, 2021 at 03:58:10PM +0200, Michael Walle wrote:
+> > > > > >
+> > > > > > > Hi,
+> > > > > > >
+> > > > > > > I noticed that there is a fallback to the u-boot device tree =
+for linux
+> > > > > > > (esp. EFI boot) if no other device tree was found, see [1]. I=
+t seems this
+> > > > > > > is working fine for imx devices, for example, where you can j=
+ust boot a
+> > > > > > > stock installer iso via EFI. It will just work and it is quit=
+e a nice
+> > > > > > > feature as a fallback.
+> > > > > > >
+> > > > > > > Now for the layerscape architecture, the ls1028a in my case, =
+things are
+> > > > > > > more difficult because the bindings differ between u-boot and=
+ linux - one
+> > > > > > > which comes to mind is DSA and ethernet.
+> > > > > > >
+> > > > > > > Which begs the general question, is it encouraged to have bot=
+h bindings
+> > > > > > > diverge? To me it seems, that most bindings in u-boot are ad-=
+hoc and there
+> > > > > > > is no real review or alignment but just added as needed, whic=
+h is ok if
+> > > > > > > they are local to u-boot. But since they are nowadays passed =
+to linux
+> > > > > > > (by default!) I'm not so sure anymore.
+> > > > > > >
+> > > > > > > OTOH The whole structure around a .dts{,i} and -u-boot.dtsi l=
+ooks like
+> > > > > > > they should (could?) be shared between linux and u-boot.
+> > > > > > >
+> > > > > > > -michael
+> > > > > > >
+> > > > > > > [1]
+> > > > > > > https://elixir.bootlin.com/u-boot/v2021.10-rc2/source/common/=
+board_r.c#L471
+> > > > > >
+> > > > > > The U-Boot device tree is supposed to be able to be passed on t=
+o Linux
+> > > > > > and Just Work.  The bindings are not supposed to be different b=
+etween
+> > > > > > the two (except for when we take the binding while it's being h=
+ashed out
+> > > > > > upstream BUT THEN RESYNCED).
+> > > > >
+> > > > > You might need to spell that out a bit clearer.
+> > > > >
+> > > > > You are saying that both U-Boot and Linux are allowed to have the=
+ir own
+> > > > > custom properties (like 'u-boot,dm-spl' for U-Boot, and 'managed =
+=3D "in-band-status"'
+> > > > > for Linux), as long as the device tree files themselves are in sy=
+nc, and
+> > > > > the subset of the device tree blob understood by Linux (i.e. the =
+U-Boot
+> > > > > blob sans the U-Boot specifics) is compatible with the Linux DT b=
+lob?
+> > > >
+> > > > I don't know what about the Linux example makes it Linux specific. =
+ But
+> > > > yes, 'u-boot,dm-spl' is clearly in our namespace and should be igno=
+red
+> > > > by Linux.  The whole reason we have the -u-boot.dtsi automatic drop=
+-in
+> > > > logic (as much as it can be used is that device trees are device tr=
+ees
+> > >         ^
+> > >         I don't think this parenthesis ever closes...
+> >
+> > Ah, whoops.  Should have been "(as much as it can be used)" because it
+> > does get #included instead in some cases, for reasons.
+> >
+> > >
+> > > > and describe the hardware and developers don't need to write a devi=
+ce
+> > > > tree for Linux and a device tree for U-Boot and a device tree for
+> > > > FreeBSD and ...  So yes, you're supposed to use the device tree for=
+ a
+> > >                 ^
+> > >                 so I never get the answer to "the whole reason is...".
+> > >
+> > > > platform and it works here and there and every where.
+> > >
+> > > The fact that only Linux uses it makes it Linux specific.
+> > >
+> > > > > To expand even further on that, it means we should put 'managed =
+=3D "in-band-status"'
+> > > > > in U-Boot, which is a Linux phylink device tree property, even if=
+ U-Boot
+> > > > > does not use phylink?
+> > > >
+> > > > We should be able to drop in the device trees from Linux and use th=
+em.
+> > > > Custodians should be re-syncing them periodically.  Some are, even.
+> > >
+> > > Are you ready to take up device tree bindings for PTP timers, PCIe ro=
+ot
+> > > complex event collectors, cascaded interrupt controllers, things which
+> > > U-Boot will never ever need to support?
+> > >
+> > > At least in Linux there is a policy to not add device tree nodes that=
+ do
+> > > not have drivers. Is the same policy not true for U-Boot? At least yo=
+ur
+> > > ./scripts/checkpatch.pl does have the same "check for DT compatible
+> > > documentation" section as Linux. You might consider removing it if you
+> > > want people to not strip the DTs they submit to U-Boot.
+> > >
+> > > And why do we even maintain the device tree bindings in Linux at all?
+> > > It seems rather counter-productive for both ends to do that, if it is
+> > > expected that the kernel works with DT blobs provided by third partie=
+s too,
+> > > and if all third parties need to resync with it (there are other boot
+> > > loaders too beyond U-Boot, and other kernels beyond Linux). Somehow it
+> > > doesn't feel right for the reference to be the Linux kernel. Maybe th=
+is
+> > > is something that needs to be brought up with higher-level Linux main=
+tainers.
+> > >
+> > > I have no problem at all with structuring the device tree in the same
+> > > way in U-Boot as in Linux, as long as that proves to not be a foolish
+> > > endeavor.
+> >
+> > DT is ABI is hardware description and OS-agnostic has been the rule for
+> > 10+ years.  If that's no longer the case, can someone please tell me?
+>=20
+> So if Michael's board with DT provided by U-Boot doesn't work for some
+> stupid reason like "Linux expects the pcie node to be under /soc", or
+> "Linux wants all PCIe BARs of a RCIEP ECAM to be spelled out in the
+> 'ranges' property, because it's too dumb to detect them itself", or
+> something like that, I've got no argument against that, let's go ahead
+> and resync U-Boot with Linux.
+>=20
+> But "DT is ABI is hardware description" is a pretty vague truism that
+> does not actually help here.
+
+I'm saying that because it's what's been said for what feels like 10+
+years.  I don't want to think how many countless hours have been spent
+on that point at conferences over the years.  It's not even a Linux
+thing.  I would swear you can (or could, unless it got broken) take the
+same DTB for some platforms and boot Linux or FreeBSD or some other BSD
+or maybe even VxWorks and it works.
+
+> Will you accept device trees with devices for which a driver will never
+> probe in U-Boot,
+
+Yes, I will absolutely take device trees that have devices we don't need
+in U-Boot since the point is, and many SoC vendors are doing (and the
+ones that aren't are, I am not happy about / with) right now.
+
+> and will you remove the checkpatch warnings about those,
+> to not discourage people from submitting them prior to the actual public
+> review?
+
+With respect to checkpatch.pl, maybe I'm just missing the line in
+question?  Or maybe it's a kernel-related warning we need to disable in
+our .checkpatch.conf.  But I don't want to side-track over this part.
+
+> If a U-Boot driver will be written for a device that does not have a
+> driver yet in Linux, then the Linux driver will be written but with
+> DT bindings incompatible with what was established in U-Boot, will you
+> wake up the U-Boot developer from the grave and ask them to resync the
+> driver to follow Linux? Or will you accept drivers at all for hardware
+> that is not supported by Linux?
+
+What I've said for years (but yes, I've missed changes, maybe the yaml
+dt binding stuff would help so I could make CI fail or at least require
+manual override?) is that U-Boot will take immature bindings but it's on
+the developer to re-sync once the bindings are fully reviewed.  This is
+to help with the chicken-and-egg problem.  But old bindings are not
+intended to be supported, once it's finalized.  That is part of the
+bargain.
+
+> I also think there are various degrees of what it means "to work" with a
+> device tree provided directly by U-Boot. Distros like Arch Linux ARM
+> have a package for device tree blobs, and it is expected that these are
+> updated by the distro, and U-Boot just loads them. As Michael points out,
+> the DT provided by U-Boot is just a fallback. The OS should boot to
+> prompt and have a network connection to set itself up properly again.
+> But we need to draw a harder line on what we _actually_ desire to work
+> beyond that.
+
+Every distribution has a package for device tree binaries, because
+that's how you get a device tree on the still vast majority of platforms
+that don't ship one in-flash (RPis being the modern exception) and to my
+knowledge none of them are happy about having to build and pass and make
+sure the right one is used on a given board at boot.  So yes, U-Boot
+being able to pass a device tree on to the next stage is one of those
+things to help everything Just Work and be boring.
+
+--=20
+Tom
+
+--q2KifZ2SSffcbUVw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCgAdFiEEGjx/cOCPqxcHgJu/FHw5/5Y0tywFAmEmo4cACgkQFHw5/5Y0
+tyyspwv/X1fIjk+OXTy/Nk/CwwlO8ua2HP4smgf1dSy00rdPIWyUD5Se9EZi1Fq6
+aqKc7624hCGiZhvIe5CbO4xvUEW0gN4LO64jkzQeimSKkSnzC0unvvFXbpA6ycNh
+/gwYAOgglBxu7brAlxfbWHSdaoW1DYtOK8nD+ADxymtCUsmUfjvMcCQguRC4687i
+EG8gaYZGaO5fCXn2Q8RlXRuKkQ80XEFTK86EHgp27anHLlInpHeiWM7jI+gxbrFR
+7wrKHddSD9DMgwioqYDh3O/GaxlRXiLuXd8Nra8walnh2ygNeO6L4s4R00H1v9Rs
+sSJcgsmRXeixH6Pf6gDG8ZlGt4IpS6JpjYAW6s1BV3m6KeHiAo/OPu0qH/XXn8Xy
+WdMaSsvZiUCqfB46mQFzNvgvmwxuF2lgvzf2H7x4LGH6pI4Tbd18B3ldQFQSJsIo
+3BZbDbHkDzO7RxaVPwx9V0kfiQSAunigpy3Tl72/tnYn+foueMwFQIV8Z6nPxYyK
+jbSfuQTj
+=nv6B
+-----END PGP SIGNATURE-----
+
+--q2KifZ2SSffcbUVw--
