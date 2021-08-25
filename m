@@ -2,109 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD7BA3F74AD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3953F74FF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240422AbhHYMA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 08:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34494 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240252AbhHYMA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 08:00:56 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3BC6C061757;
-        Wed, 25 Aug 2021 05:00:10 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id f22so17021277qkm.5;
-        Wed, 25 Aug 2021 05:00:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=mIKPjNSOg6AxDB4D3W6zqs6Hlakd7gYX5dh+dl4t6MY=;
-        b=J1p19cUC7UX0hatinDkEWGutHdtc2d3/EZZHzaWcX+rNEz6buzewbl/ntnkzqwU5Hc
-         K0S2sxRHIYDRs2RTjEO5qjK5tHax5nsBYyOiucLZwDElb3+NtNjfkoQl/tmTnbxQNPAh
-         TR3nQZdYK2R5ikcXtc9lyygjCUgVqoekJRqU3iIYgCnv19CJxqlvKL66mT/CVbg7vRGW
-         p2/tn9DKnmUXLUYr3/qsYh60HueBtSwO4JeIGQceyBhxDsEin7ql3SD731A5+sV20HP4
-         D++T2Bck3Q3PtnsfCw0NF3pOuUJ5BTQQEYD0prLleKs/qU3lN6AF/6xfy4kLzhPYTwCH
-         6cWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mIKPjNSOg6AxDB4D3W6zqs6Hlakd7gYX5dh+dl4t6MY=;
-        b=m2f3KZE0lW0pR3u7bN9bQ60DCaew7irtZ4kHkJ1vXUyqlHEngqH18BCoGv5KtHjPLZ
-         1QbsW4UfpN1oz1rP4paYyubHyaNpglfwpiW9ygg2qeMs/XaKG+YkT4bhc7EUlBbNUlvh
-         82ENNJDs4yVgj/Q5Z7pb/QDsxevn4SrV5tlcid8oN+R5Fbs4uCgdIN2QrnY08kx5IYaM
-         Lfn9xDGL7NGmKDaws/AhV7uhYOqiaiwwea20ze63GxB5ySqOGVBRcS8hVmTiEkidxmMN
-         AvvY+r9eQWBaUU7QUqmpGOEwXGrQjMK6VATHeEEencvchfQ9LfPMZvLuuyaHFZS9HdmS
-         McGw==
-X-Gm-Message-State: AOAM530+aWd28F24x1QTszBcVDDsAgxUkdmQYkEDolpUW22ffbbz/NgV
-        Y2OVuiCS2zC52J2t55YTC7pYWnFcSrbgjQoR
-X-Google-Smtp-Source: ABdhPJw8bTC+MC+3CepTQhKomN1uZUG8Oz1LtP2pWSF7xdCIY0vMayYP7RibIAHE/9HDvEXdCOWx5g==
-X-Received: by 2002:a37:a88a:: with SMTP id r132mr31852066qke.212.1629892809872;
-        Wed, 25 Aug 2021 05:00:09 -0700 (PDT)
-Received: from errol.ini.cmu.edu (pool-71-112-192-175.pitbpa.fios.verizon.net. [71.112.192.175])
-        by smtp.gmail.com with ESMTPSA id y19sm7432978qtv.21.2021.08.25.05.00.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 05:00:09 -0700 (PDT)
-Date:   Wed, 25 Aug 2021 08:00:06 -0400
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Florent Kermarrec <florent@enjoy-digital.fr>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        David Shah <dave@ds0.me>, Stafford Horne <shorne@gmail.com>
-Subject: Re: [PATCH v2 2/2] net: Add driver for LiteX's LiteEth network
- interface
-Message-ID: <YSYwxmCqDKL+qvY/@errol.ini.cmu.edu>
-References: <20210820074726.2860425-3-joel@jms.id.au>
- <YSVLz0Se+hTVr0DA@errol.ini.cmu.edu>
- <CACPK8Xf9LGQBUHmS9sQ4zG1akk5SoQ-31MD-GMWVSRuByAT7KQ@mail.gmail.com>
+        id S240683AbhHYMVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 08:21:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34226 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240602AbhHYMVp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 08:21:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EF3F460F92
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 12:20:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629894060;
+        bh=XGpnL7KuNQk0xAQVk7AuLTvp103UYtyqAmiSPY85z3Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p8NHMh6UklkboCXQKKX2dA2OrAYU++J/Iuyw9VqVXCmLW3DdGb4A1T17NNTv3DGmb
+         Z7xJtx+2+a2MKcwj+KxEF/XmSWSI6YY8y2SmlAXCGYMFbZ3MdxmTodlvFv0Y6HNM6x
+         tDtXN/dn7kzlvDmSNi2VmqB0q+p+r7+yrMJs/wcG8D93nHQcygI9fAOC5Tw2TEjAU0
+         c+oD2Z0JSAaRs/Mg/Vie3GB5UktJuM8Qif1JVrG9t0+paakSw2LZJmWexKDcSC+gt2
+         k3dl1ODyPGFNaxxf9YfwhLdGmTmsE5ODzdJ/IIWqNog7Tt0f0dXd9uOv9IOp6LyVT9
+         Ep5DhTo29LUbQ==
+Received: by mail-ej1-f52.google.com with SMTP id u14so26294624ejf.13
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 05:20:59 -0700 (PDT)
+X-Gm-Message-State: AOAM530yKCiK6XvjIEsgurg+ywhjAU11J494EyE2TepJK5ZB1AoXeLRZ
+        q+e8b3qNkLMVrcY2BquS/cVm+y6cm4dWJRCXtw==
+X-Google-Smtp-Source: ABdhPJyUSCw4wbbr/lr395+jYr1Nf21Xe7vUkirUHpgjTkFhbyI9ljR0kGx/oZJ4cGZTDWKJU5JM3qz7SGnnLFnmol0=
+X-Received: by 2002:a17:906:8cd:: with SMTP id o13mr46502504eje.341.1629894058558;
+ Wed, 25 Aug 2021 05:20:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACPK8Xf9LGQBUHmS9sQ4zG1akk5SoQ-31MD-GMWVSRuByAT7KQ@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+References: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
+In-Reply-To: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 25 Aug 2021 07:20:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJg=3iVNqOS2scFf34WvnXKzB5sR_quZaGgSECKttXUug@mail.gmail.com>
+Message-ID: <CAL_JsqJg=3iVNqOS2scFf34WvnXKzB5sR_quZaGgSECKttXUug@mail.gmail.com>
+Subject: Re: [PATCH] of: fdt: Rename reserve_elfcorehdr() to fdt_reserve_elfcorehdr()
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 25, 2021 at 06:35:17AM +0000, Joel Stanley wrote:
-> > > +
-> > > +     netdev = devm_alloc_etherdev(&pdev->dev, sizeof(*priv));
-> > > +     if (!netdev)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     SET_NETDEV_DEV(netdev, &pdev->dev);
-> > > +     platform_set_drvdata(pdev, netdev);
-> > > +
-> > > +     priv = netdev_priv(netdev);
-> > > +     priv->netdev = netdev;
-> > > +     priv->dev = &pdev->dev;
-> > > +
-> > > +     irq = platform_get_irq(pdev, 0);
-> > > +     if (irq < 0) {
-> > > +             dev_err(&pdev->dev, "Failed to get IRQ %d\n", irq);
-> > > +             return irq;
-> >
-> > At this point, netdev has been dynamically allocated, and should
-> > probably be free'd before liteeth_probe() is allowed to fail,
-> > to avoid any potential leaks...
-> 
-> We use the managed variant of alloc_etherdev, which means the
-> structure is freed by the driver core when the driver is removed. This
-> saves having to open code the cleanup/free code.
-> 
-> Have a read of Documentation/driver-api/driver-model/devres.rst for
-> more information.
+On Wed, Aug 25, 2021 at 4:40 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> On ia64/allmodconfig:
+>
+>     drivers/of/fdt.c:609:20: error: conflicting types for 'reserve_elfcorehdr'; have 'void(void)'
+>       609 | static void __init reserve_elfcorehdr(void)
+>           |                    ^~~~~~~~~~~~~~~~~~
+>     arch/ia64/include/asm/meminit.h:43:12: note: previous declaration of 'reserve_elfcorehdr' with type 'int(u64 *, u64 *)' {aka 'int(long long unsigned int *, long long unsigned int *)'}
+>        43 | extern int reserve_elfcorehdr(u64 *start, u64 *end);
+>           |            ^~~~~~~~~~~~~~~~~~
 
-That makes sense, thanks for the link!
+There's no need for the ia64 version to be non-static. Just needs a
+forward declaration.
 
-Cheers,
---Gabriel
+arch/ia64/include/asm/meminit.h:extern int reserve_elfcorehdr(u64
+*start, u64 *end);
+arch/ia64/kernel/setup.c:       if (reserve_elfcorehdr(&rsvd_region[n].start,
+arch/ia64/kernel/setup.c:int __init reserve_elfcorehdr(u64 *start, u64 *end)
+
+Rob
