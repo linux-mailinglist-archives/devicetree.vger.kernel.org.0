@@ -2,124 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76C7B3F7790
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871213F77BD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 16:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbhHYOmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 10:42:15 -0400
-Received: from szxga01-in.huawei.com ([45.249.212.187]:8774 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhHYOmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 10:42:06 -0400
-Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.54])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GvpYl0PgdzYrGg;
-        Wed, 25 Aug 2021 22:40:43 +0800 (CST)
-Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
- dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 25 Aug 2021 22:41:16 +0800
-Received: from [10.174.177.243] (10.174.177.243) by
- dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 25 Aug 2021 22:41:16 +0800
-Subject: Re: [PATCH 3/3] amba: Properly handle device probe without IRQ domain
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Saravana Kannan <saravanak@google.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Ruizhe Lin <linruizhe@huawei.com>
-References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
- <20210816074619.177383-4-wangkefeng.wang@huawei.com>
- <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
- <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
- <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
- <CAL_Jsq+0rq6u5d7itETOnQWx_V+J3aP1m1Zgehi5QKVoKvdbvQ@mail.gmail.com>
-From:   Kefeng Wang <wangkefeng.wang@huawei.com>
-Message-ID: <d7a1d3a8-bda4-7a29-b66d-22ed4926f9c8@huawei.com>
-Date:   Wed, 25 Aug 2021 22:41:15 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S241836AbhHYOvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 10:51:18 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:47657 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229553AbhHYOvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 10:51:18 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id EA6975810A7;
+        Wed, 25 Aug 2021 10:50:31 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Wed, 25 Aug 2021 10:50:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=j25qG8ukGnHu+GbG45H46dChMEe
+        xlabwoRMynBr2xQU=; b=wVFPjE3MTevKsL7NaaHJE9zSwMBfgYJGOnMnoreO3AX
+        vk1O/cfAFCBEQJW2L9B8JoYEWYLQJdAI5KIn4Wg4+x4Y6VlmlZ1BG6ImYNx542zv
+        G9T3VKCY9v0TxTqVkaKuI9D6W5CzAES/W6iKJXWy+ui7nmoZ609OH5ERQx1YR8ur
+        IPK0UfMgEY7knOBO2qJFN+mEVcht6sgiSWRUXEqMbskGagO0qAWnIzACvD3rdzwg
+        hplhXB+FqckBRoNI7rpurBpEmzK2IrbzRdxy6UVNdeO+AQJSrqU03pZ2i1Ng969p
+        sXX5jhsWfUrDhqt+EuPTH+Dab1Oom9Axy7O7U1ap0pw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=j25qG8
+        ukGnHu+GbG45H46dChMEexlabwoRMynBr2xQU=; b=R7bAv9tR+HlbzPrN/rR+Nk
+        o3C5o2WqYYqhlDyY0BUR3xrz6jhciIJtYchoOWaGZISQJV9tT4QuDUg1q5M9tMVK
+        kE9+M2AkV0jm96CSBGUbRXkT2bzpY5A4IXwZBymVzbzFYdihxl3D1mXgRgQbU6P9
+        C5j+yrHrEmdyME9iGbZWXAVvNpFdmanHTeyJyQwFirpHBic8r1/9wNlRpl0xdCxR
+        MUYEndKm8tEeJJpwiTJ90h3zj+wm6Hc1wdKKjM9vnG9MMHVI1+OPS4vHuLS4t4MP
+        BejePOQa9MjVVxP9ClMomsjXLLKU49bts241TRraMaauZvT/6Qu8nOB4j36+bgfg
+        ==
+X-ME-Sender: <xms:tVgmYdVgF9flf2GSdFBmL7HcJupf808NuWROnLgOJ1wC7TcMUbkiSw>
+    <xme:tVgmYdm0Rdipl-dI3gZWe3-KmIp00lMpX4lb1vfiKkgjldDhYfH39AEiNs6CwWC7H
+    Dlyt89bpJ93xIpK-n4>
+X-ME-Received: <xmr:tVgmYZZOlZNlU_aP1H4ifQDVubyL06XATXfR5GbO0CMUin_TZoHFzI70QKCCogLzTgD0TLQhXewSQbXB2KysJLceCtiXKCyvSybr>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddtledgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:tVgmYQWmWMZ8XdEcYmO4Mb1LLHGBOQtGGUpVrfmZuJEkUK-X2ZYS5A>
+    <xmx:tVgmYXnyxrdWekkYo6Y50byHM6awvwK4hsM1JVpD6BV9Z0rQpqm0nw>
+    <xmx:tVgmYdePAPRyJRQLp4E4wnhL3Yts9Ci-RhXNvTnK8dCrovnH9_esPQ>
+    <xmx:t1gmYVdGRgEdEgnktFIjj6c_5IXTieARkO9Y1WDKEmbzFNbYS9djug>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 25 Aug 2021 10:50:29 -0400 (EDT)
+Date:   Wed, 25 Aug 2021 16:50:27 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     Icenowy Zheng <icenowy@sipeed.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 10/17] clk: sunxi=ng: add support for R329 R-CCU
+Message-ID: <20210825145027.ixc7wnh3x5w6wzny@gilmour>
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-11-icenowy@sipeed.com>
+ <99a74950-fdc0-ecfe-e5f0-ba4a7d8751f0@sholland.org>
+ <5432230.1UTMcGJKg4@jernej-laptop>
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+0rq6u5d7itETOnQWx_V+J3aP1m1Zgehi5QKVoKvdbvQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.174.177.243]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggpemm500001.china.huawei.com (7.185.36.107)
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="l3qwbvgcz3gjr7tn"
+Content-Disposition: inline
+In-Reply-To: <5432230.1UTMcGJKg4@jernej-laptop>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2021/8/25 20:33, Rob Herring wrote:
-> On Tue, Aug 24, 2021 at 11:05 PM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+--l3qwbvgcz3gjr7tn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
+Hi,
 
->>> Similar to other resources the AMBA bus "gets" for the device, I think
->>> this should be moved into amba_probe() and not here. There's no reason
->>> to delay the addition of the device (and loading its module) because
->>> the IRQ isn't ready yet.
->> The following code in the amba_device_try_add() will be called, it uses irq[0]
->> and irq[1], so I put of_amba_device_decode_irq() into amba_device_try_add().
->>
->> 470         if (dev->irq[0])
->> 471                 ret = device_create_file(&dev->dev, &dev_attr_irq0);
->> 472         if (ret == 0 && dev->irq[1])
->> 473                 ret = device_create_file(&dev->dev, &dev_attr_irq1);
->> 474         if (ret == 0)
->> 475                 return ret;
-> I wonder if we could just remove these. Why does userspace need them
-> in the first place? It's only an ABI if someone notices. Looking at
-> the history, AMBA bus was added in 2003 with just 'irq' and then
-> changed (ABI break) in 2004 to 'irq0' and 'irq1'.
->
-> Rob
+On Fri, Aug 20, 2021 at 06:34:38AM +0200, Jernej =C5=A0krabec wrote:
+> > > +static void __init sun50i_r329_r_ccu_setup(struct device_node *node)
+> > > +{
+> > > +	void __iomem *reg;
+> > > +	u32 val;
+> > > +	int i;
+> > > +
+> > > +	reg =3D of_io_request_and_map(node, 0, of_node_full_name(node));
+> > > +	if (IS_ERR(reg)) {
+> > > +		pr_err("%pOF: Could not map clock registers\n", node);
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	/* Enable the lock bits and the output enable bits on all PLLs */
+> > > +	for (i =3D 0; i < ARRAY_SIZE(pll_regs); i++) {
+> > > +		val =3D readl(reg + pll_regs[i]);
+> > > +		val |=3D BIT(29) | BIT(27);
+> > > +		writel(val, reg + pll_regs[i]);
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * Force the I/O dividers of PLL-AUDIO1 to reset default value
+> > > +	 *
+> > > +	 * See the comment before pll-audio1 definition for the reason.
+> > > +	 */
+> > > +
+> > > +	val =3D readl(reg + SUN50I_R329_PLL_AUDIO1_REG);
+> > > +	val &=3D ~BIT(1);
+> > > +	val |=3D BIT(0);
+> > > +	writel(val, reg + SUN50I_R329_PLL_AUDIO1_REG);
+> > > +
+> > > +	i =3D sunxi_ccu_probe(node, reg, &sun50i_r329_r_ccu_desc);
+> > > +	if (i)
+> > > +		pr_err("%pOF: probing clocks fails: %d\n", node, i);
+> > > +}
+> > > +
+> > > +CLK_OF_DECLARE(sun50i_r329_r_ccu, "allwinner,sun50i-r329-r-ccu",
+> > > +	       sun50i_r329_r_ccu_setup);
+> >=20
+> > Please make this a platform driver. There is no particular reason why it
+> > needs to be an early OF clock provider.
+>=20
+> Why? It's good to have it as early clock provider. It has no dependencies=
+ and=20
+> other drivers that depends on it, like IR, can be deferred, if this is lo=
+aded=20
+> later.
 
-Ok, I will kill all irq parts,
+No, Samuel is right, we should make them regular drivers as much as we
+can.
 
-diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-index 962041148482..c08e8b30e02c 100644
---- a/drivers/amba/bus.c
-+++ b/drivers/amba/bus.c
-@@ -20,8 +20,6 @@
-  #include <linux/platform_device.h>
-  #include <linux/reset.h>
+The reason we had CLK_OF_DECLARE in the first place is that timers
+usually have a parent clock, and you need the timers before the device
+model is set up.
 
--#include <asm/irq.h>
--
-  #define to_amba_driver(d)      container_of(d, struct amba_driver, drv)
+Fortunately for us, since the A20, the architected timers don't require
+a parent clock from us, and we can thus boot up fine.
 
-  /* called on periphid match and class 0x9 coresight device. */
-@@ -135,8 +133,6 @@ static ssize_t name##_show(struct device 
-*_dev,                             \
-  static DEVICE_ATTR_RO(name)
+Since the dependencies are minimal, it should probe fairly early and
+with the on-demand probing from the device links you might not even tell
+the difference for most consumers.
 
-  amba_attr_func(id, "%08x\n", dev->periphid);
--amba_attr_func(irq0, "%u\n", dev->irq[0]);
--amba_attr_func(irq1, "%u\n", dev->irq[1]);
-  amba_attr_func(resource, "\t%016llx\t%016llx\t%016lx\n",
-          (unsigned long long)dev->res.start, (unsigned long 
-long)dev->res.end,
-          dev->res.flags);
-@@ -467,10 +463,6 @@ static int amba_device_try_add(struct amba_device 
-*dev, struct resource *parent)
-         if (ret)
-                 goto err_release;
+Maxime
 
--       if (dev->irq[0])
--               ret = device_create_file(&dev->dev, &dev_attr_irq0);
--       if (ret == 0 && dev->irq[1])
--               ret = device_create_file(&dev->dev, &dev_attr_irq1);
+--l3qwbvgcz3gjr7tn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-and do some cleanup about error handling in the next version.
+-----BEGIN PGP SIGNATURE-----
 
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/tglx/history.git/log/arch/arm/common/amba.c
-> .
->
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYSZYswAKCRDj7w1vZxhR
+xSPEAP9Zhi9W1anVqHAPOuCAL6FS67fx29ak4D6qwqqA9LiJzgEApDVyVFqkg5H3
+IG8aBvBUnCeV6HIK+MZOyJENIasJwQM=
+=NwLi
+-----END PGP SIGNATURE-----
+
+--l3qwbvgcz3gjr7tn--
