@@ -2,98 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B49DF3F6D94
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 05:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9CB3F6DE8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 05:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237089AbhHYDB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Aug 2021 23:01:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51968 "EHLO
+        id S238895AbhHYDvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Aug 2021 23:51:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236811AbhHYDB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 23:01:26 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982B3C061757;
-        Tue, 24 Aug 2021 20:00:41 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id t190so25622571qke.7;
-        Tue, 24 Aug 2021 20:00:41 -0700 (PDT)
+        with ESMTP id S238597AbhHYDuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Aug 2021 23:50:40 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC44BC0613C1
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 20:49:54 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id q3so34909597edt.5
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 20:49:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QHaHVfC9ZxdCotTX4ZlHKoxMecl4et3Tc+Q5i4v+294=;
-        b=Nm5KC+mwaP5nSOwDKdt5G/qE9bXDYFPJYJSgz4UdqogrQe4unOKPDA2nrXmqCCBS+z
-         gtPspbN/wzGVbOH2toSxpv+josum4DrKzylgAsnwRN4BkOpheBxD6/rlWTMTMaaixKnc
-         R6pj8hEAyWp2CXC0nkQrM/i3FQji7GHNPa2lI=
+         :cc:content-transfer-encoding;
+        bh=3kZXI1vtvS0Yvb6slBFRI9pS9XAeJXzQm2yXW938Umo=;
+        b=rYLlw4fbNP1HTkXasUqH8ZRD7nxcL0P7KPGpLdqgwnOWslAsIhC9jnsZlxrx5otqpo
+         0N0Z+R3+Qd9VBsJP0pp/X6mjgcKX3uDeXXaB5/YKqIdbBniid8BqTFbbBMuUFH7VRQ2T
+         Gzc7ZpquX6irb4GDSnakgLUYLUbs6xRt4YJIpJX+XMSY3x77cXB6jDgxNm+O18zr5b8A
+         kTeVsXIQ2igplvXzF6erSAKUInYqMD2njfkNLSEu8YQh/71OI4SqC48mpwOC+CZoa+ol
+         I86mqWiZk1OM2fNoHpEGJrBm8W8vMZr1pSS/ixy3CwCqtxKi/Hz96FMuVoW6m/o4UpRv
+         PLHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QHaHVfC9ZxdCotTX4ZlHKoxMecl4et3Tc+Q5i4v+294=;
-        b=DPSNI0cH7q2uoHVQU+zEIdp84ByLAkyshE/MiISHJW3bXtQuIr4wyaoWtGpY4K1vJ+
-         QTlG9tKVv4oW4JL5CzHPUYkF5PCrUVDihFNo+Byl1H8BokDCAsaSdRJHe4r8qUBQXOUM
-         uqjDSP8NVxalx7GpT5DF5nXszxE5c6gNrKTg/69fCVv4JFfOqnfMDN4Nmhs2trkRlqOB
-         U/cKj5r5869av4aVekALMczpue6KwdJ6bEhhLhxn50+///wK3zOY60ScyFE81b/x5mIG
-         bOnO5yIb7Fop3Zt+78S1XY5bW4rCK5wX4/AWDeb1FI7ThnAu2lL/fjGhOlLfSgLzkNl5
-         iuJw==
-X-Gm-Message-State: AOAM531oK0FrgMa/IQ+FGR3LoqmyPhE/wMT0taDeXNoXwc6+y8JVJ19r
-        3L/ufsyY1tmjSsjAUD58zSEuHZcnoQAYJ7giNi4=
-X-Google-Smtp-Source: ABdhPJwD0kTW8mIAWxw5LZiPoTqn2EmnDmUw4QVy9ogHF2fbLdzS9nl9FYamNANpFM5qtQTEND97mxvtWAt4bt6ARYY=
-X-Received: by 2002:a05:620a:2223:: with SMTP id n3mr5811879qkh.66.1629860440525;
- Tue, 24 Aug 2021 20:00:40 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=3kZXI1vtvS0Yvb6slBFRI9pS9XAeJXzQm2yXW938Umo=;
+        b=gMj9w8UK6SrseXvsWhrd0DgDPFI2jw7AIfErAe0jEfkQ7wDXHceDZHEkORcGTJAU3Z
+         OA6ZNjSb8CbCU+gGsEUSoJdrKqYeZDILXWOuUF76gTxFIcEL0Vqz98hJvhqao2+MCFk5
+         oqiGXyKYqpUcDBQYNBP1z8a9tkWNG7CSe1tXVMCW9c3YtpwUnToo3dA+KsSHMofInv5G
+         dd76ZVpIqNK5iGFapZZhJCK/Dk26P0XR7GoAuU+Q7FAjpzXJ1JM+8pb94P3dppoTbdus
+         dpH1grcOh1X9jqZGLEVfcWShlrNpLmmFsGJeKQQCaOM3gE8bDhAXXIKOITwVmavjUgMT
+         G3rQ==
+X-Gm-Message-State: AOAM532Th/hyrJWgHuPT1lDgiE3MYhKO72IP1BvMC1c1JNffv6nVyoAN
+        tqKw2xWXa2JtHci+Jn8geJiUcgvOIcOOhOJJv6t23A==
+X-Google-Smtp-Source: ABdhPJz6WxJB9n9R0lhxCYrp90OGkbSPfI3upiI7vUcraPT3a8lXeVRKeYJ+3pLVzsidvy6f73vg7LbF70pb18gBPoI=
+X-Received: by 2002:a05:6402:693:: with SMTP id f19mr20106726edy.213.1629863393359;
+ Tue, 24 Aug 2021 20:49:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210820074726.2860425-1-joel@jms.id.au> <20210820074726.2860425-2-joel@jms.id.au>
- <YSPseMd1nDHnF/Db@robh.at.kernel.org> <CACPK8XcU+i6hQeTWpYmt=w7A=1EzwgYcMucz7y6oLxwTFTJsiQ@mail.gmail.com>
- <CAL_Jsq+q6o88_6910brD4wEWBTi068jGDmaD8pucEFrT5FcWMw@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+q6o88_6910brD4wEWBTi068jGDmaD8pucEFrT5FcWMw@mail.gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 25 Aug 2021 03:00:28 +0000
-Message-ID: <CACPK8Xey50=7CGb--Myue-KzFLqGKWRMiW5j0z+fp4PLnYBUqA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: Add bindings for LiteETH
-To:     Rob Herring <robh@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210816105934.28265-1-irui.wang@mediatek.com>
+ <20210816105934.28265-2-irui.wang@mediatek.com> <CAAEAJfDoSW3F85bFKTRvvGZXTZbCBRpUwZzEyx3zhrA6psiZfA@mail.gmail.com>
+ <6efbfdbac55c5c8175168be96d3a2e63b4ac0f07.camel@mediatek.com>
+In-Reply-To: <6efbfdbac55c5c8175168be96d3a2e63b4ac0f07.camel@mediatek.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Wed, 25 Aug 2021 00:49:41 -0300
+Message-ID: <CAAEAJfBvWDqtb8oqxx9zosEbBhFVMiszG2cu=Y7OXx3-T4gAOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: media: mtk-vcodec: Add binding for
+ MT8195 two venc cores
+To:     =?UTF-8?B?SXJ1aSBXYW5nICjnjovnkZ4p?= <Irui.Wang@mediatek.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        =?UTF-8?B?TG9uZ2ZlaSBXYW5nICjnjovpvpnpo54p?= 
+        <Longfei.Wang@mediatek.com>,
+        =?UTF-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
+        <tiffany.lin@mediatek.com>,
+        "frkoenig@chromium.org" <frkoenig@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        =?UTF-8?B?TWFvZ3VhbmcgTWVuZyAo5a2f5q+b5bm/KQ==?= 
+        <Maoguang.Meng@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "tzungbi@chromium.org" <tzungbi@chromium.org>,
+        =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= 
+        <Yunfei.Dong@mediatek.com>,
+        =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "tfiga@google.com" <tfiga@google.com>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        =?UTF-8?B?QW5kcmV3LUNUIENoZW4gKOmZs+aZuui/qik=?= 
+        <Andrew-CT.Chen@mediatek.com>,
+        "acourbot@chromium.org" <acourbot@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Aug 2021 at 11:52, Rob Herring <robh@kernel.org> wrote:
+On Tue, 24 Aug 2021 at 23:04, Irui Wang (=E7=8E=8B=E7=91=9E) <Irui.Wang@med=
+iatek.com> wrote:
 >
-> On Mon, Aug 23, 2021 at 10:52 PM Joel Stanley <joel@jms.id.au> wrote:
-> >
-> > On Mon, 23 Aug 2021 at 18:44, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Fri, Aug 20, 2021 at 05:17:25PM +0930, Joel Stanley wrote:
-> >
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1
-> > > > +
-> > >
-> > > > +  rx-fifo-depth: true
-> > > > +  tx-fifo-depth: true
-> > >
-> > > Needs a vendor prefix, type, description and constraints.
-> >
-> > These are the standard properties from the ethernet-controller.yaml. I
-> > switched the driver to using those once I discovered they existed (v1
-> > defined these in terms of slots, whereas the ethernet-controller
-> > bindings use bytes).
+> Hi,Ezequiel,
 >
-> Indeed (grepping the wrong repo didn't work too well :) ).
+> Thanks for your reviewing.
 >
-> Still, I'd assume there's some valid range for this h/w you can
-> define? Or 0 - 2^32 is valid?
+> On Tue, 2021-08-24 at 08:02 -0300, Ezequiel Garcia wrote:
+> > Hi Irui,
+> >
+> > On Mon, 16 Aug 2021 at 08:00, Irui Wang <irui.wang@mediatek.com>
+> > wrote:
+> > >
+> > > Enable MT8195 two H.264 venc cores, updates vcodec binding
+> > > document.
+> > >
+> > > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/media/mediatek-vcodec.txt | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/mediatek-
+> > > vcodec.txt b/Documentation/devicetree/bindings/media/mediatek-
+> > > vcodec.txt
+> > > index de961699ba0a..eb2e24c32426 100644
+> > > --- a/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+> > > +++ b/Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+> > > @@ -11,6 +11,8 @@ Required properties:
+> > >    "mediatek,mt8173-vcodec-dec" for MT8173 decoder.
+> > >    "mediatek,mt8192-vcodec-enc" for MT8192 encoder.
+> > >    "mediatek,mt8195-vcodec-enc" for MT8195 encoder.
+> > > +  "mediatek,mtk-venc-core0" for MT8195 avc core0 device.
+> > > +  "mediatek,mtk-venc-core1" for MT8195 avc core1 device.
+> >
+> > What is the difference between core0 and core1?
+> >
+> > Thanks,
+> > Ezequiel
+>
+> Both core0 and core1 are H264 encoder hardware, they have their own
+> hardware register base, used power-domains/clocks/irqs. We can use any
+> of them for H.264 encoding, but the two cores can work together for
+> higher performance, it's called "frame racing", a hardware encoding
+> mode, control flow just like in the commit messages:
+>
+> core0 frame#0.frame#2.frame#4...
+> core1    frame#1.frame#3.frame#5...
+>
 
-0 would be problematic, but there's not really any bound on it.
+If they are two encoder cores, why do you need different compatible strings=
+?
 
-I'll send a v3 with the reg-names documented. Thanks for the review.
+It would be interesting to see a device tree which shows how this should
+be used in the real world, but from the looks of it, it seems you don't
+need a separate compatible.
 
-Cheers,
+It seems this series is somewhat related to Yunfei's "[PATCH v5,
+00/15] Using component framework to support multi hardware decode",
+but I don't see a device tree patch either in that series.
 
-Joel
+Given this is a complex architecture, I don't know if it
+makes sense to discuss decoder and encoder independently.
+
+If you guys unify the two series, and add the device tree patches for it,
+or at least for the most complex cases, maybe that will surface the
+architecture more clearly and come up with an easier solution that
+doesn't involve
+an async framework to pull in the parts together.
+
+Thanks,
+Ezequiel
