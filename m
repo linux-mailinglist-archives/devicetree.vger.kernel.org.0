@@ -2,98 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7EE53F6F0F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 07:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED61F3F6F17
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 07:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232420AbhHYFza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 01:55:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38086 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232265AbhHYFza (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 01:55:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 25EF361357;
-        Wed, 25 Aug 2021 05:54:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629870885;
-        bh=17R6CFi26OkMcA1IXVU7URfswjpzF+gER56JrIECCKs=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=Vyye6PRqPFZKLwvl098lwC1bVyHGVa4+z8YaY5eXZRfCs71xud+UnySH/MSkCH8Wi
-         GwQxAENGWpdE0CpijJH5Ry1Zn1zk8Fv5rYeUVnDPNE9WH2Yfy2M3IAxJ8RRHwcY40z
-         NvrLjnrl0kQhs0zQAOY69+Ev6AbrvnXVIAD9MTapUKJQl8rVc5JhMsmpQVev/yhJ9J
-         iNHV1TkW0DNdgMfz9tfdR+D8d75Vgreh9gS/cgs9jVviLIim1QFvOMdJcsOEX5pNGL
-         IwbQrMuGejfEE3OSXbB5uTAoJndnqbTSnss12WtzTw6QcbVkjA/6Od9DkirZPkZ2BC
-         W2YppeGxTTJWQ==
-References: <20210824201433.11385-1-ftoth@exalondelft.nl>
- <20210824201433.11385-3-ftoth@exalondelft.nl>
-User-agent: mu4e 1.6.4; emacs 27.2
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Ferry Toth <ftoth@exalondelft.nl>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Ruslan Bilovol <ruslan.bilovol@gmail.com>,
-        Oded Gabbay <oded.gabbay@gmail.com>,
-        Cezary Rojewski <cezary.rojewski@intel.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Jack Pham <jackp@codeaurora.org>, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-doc@vger.kernel.org,
-        Jonathan Corbet <corbet@lwn.net>,
-        Lorenzo Colitti <lorenzo@google.com>,
-        Wesley Cheng <wcheng@codeaurora.org>, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, heikki.krogerus@linux.intel.com,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Pavel Hofman <pavel.hofman@ivitera.com>,
-        Ferry Toth <fntoth@gmail.com>
-Subject: Re: [PATCH v1 3/3] Revert "usb: gadget: f_uac2/u_audio: add
- feedback endpoint support"
-Date:   Wed, 25 Aug 2021 08:54:28 +0300
-In-reply-to: <20210824201433.11385-3-ftoth@exalondelft.nl>
-Message-ID: <87mtp65ash.fsf@kernel.org>
+        id S235411AbhHYF6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 01:58:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34774 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232480AbhHYF6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 01:58:50 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF626C061757;
+        Tue, 24 Aug 2021 22:58:04 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id x12so34547709wrr.11;
+        Tue, 24 Aug 2021 22:58:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=06re+8WkU5VebI6jGZJpR94faNEVrf1aGvqVrEKuNZ8=;
+        b=pQ5mfYQkyicvUv+HmDsuJldwQaLH4mo5OLOFTL+ou3qR9/qkYRqQLEtalhbzKA7Hvk
+         zkdUJORyKDHVh/pN1pAl8Tes20DF9t/fkmvrffnEDNMj3UZupTHh5hugmCC9nvwd9J6M
+         o7zg83Ev+48a43qas7JNev+EclyLIPQqMMS6g7fYQjUOZiidfnwDXz/OvTzI197RwSSb
+         0ByJH/Upur4ciZ7OVuIhFSb0cNmK87NyAqf51QEirytBxNM9NeG7PFXtyZq9qCfTZOoQ
+         kOfCGspePDSdNqOWrL06N0sOcU6pDkYs3QUenSMtBuQXTPWygircD58JyJz1EQkXg52N
+         Gx2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=06re+8WkU5VebI6jGZJpR94faNEVrf1aGvqVrEKuNZ8=;
+        b=lKevcdkc2o3/tLZbp0bJESIonaA4cCne1AickdO8UqZKA2WTedIs5v5DaoYHfSpXWA
+         zF4rIpvJrfNycZMQJPNrjOAxqoq35yyMiBZWxIv81fYUQKxI5L+Lv1t4M7j+WTmskDCe
+         zuk0WLSV3gDzMt6Wm7SOE5DE58CDBqoFdWl03J8qtR+R/8hy6HIbuh87JyYRQ9syeH1J
+         6uJuZJwi9YZmftiBmNdMV4UP2VgUtzKQkC/+RNzQ2pXn9Tf+PPsnIxjzMLA0lUBq8m5T
+         9ukr/rD9r3Y4prb/p8WuwGa2erLSAG6ttrfNHfloCSzyIxdIOuEisbx3fgYzirxf61x1
+         YVfA==
+X-Gm-Message-State: AOAM532PTFUoY75c9xFWqeFgk8VqcWWNFHVNjxdHejm7jE2kF+u73l05
+        v4ciIHGnpTrgmjtJ9ser+cVpiv9XXEbRXootIt8=
+X-Google-Smtp-Source: ABdhPJzwzxF8orbHe3jSD7Uncwqg+1GJSzVyQKn+14id/SsYjNHfF5dA6n7ltPp7GgPDmJqj53j5yWUhmkjN8MIsKpw=
+X-Received: by 2002:adf:e6c5:: with SMTP id y5mr18746301wrm.198.1629871083425;
+ Tue, 24 Aug 2021 22:58:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210824092745.2093640-1-zhang.lyra@gmail.com>
+ <20210824092745.2093640-3-zhang.lyra@gmail.com> <20210824155823.GE4393@sirena.org.uk>
+In-Reply-To: <20210824155823.GE4393@sirena.org.uk>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Wed, 25 Aug 2021 13:57:09 +0800
+Message-ID: <CAAfSe-v3uJRu2qZ_zNeR-WRdy2U-BBtOdznHfL8k0QqGuXHscQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: spi: Convert sprd ADI bindings to yaml
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Luting Guo <luting.guo@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark,
 
-Ferry Toth <ftoth@exalondelft.nl> writes:
+On Tue, 24 Aug 2021 at 23:58, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Tue, Aug 24, 2021 at 05:27:44PM +0800, Chunyan Zhang wrote:
+> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> >
+> > Convert spi-sprd-adi.txt to yaml.
+>
+> It's better to put DT binding conversion patches as the last patch in a
+> series, there's often a bit of a backlog on reviews for them so putting
+> them after other changes means that the other changes can proceed while
+> waiting for the review of the YAML conversion.
 
-> This reverts commit 24f779dac8f3efb9629adc0e486914d93dc45517.
->
-> The commit is part of a series with commit
-> 24f779dac8f3efb9629adc0e486914d93dc45517 causing a BUG on dwc3
-> hardware, at least on Intel Merrifield platform when configured
-> through configfs:
-> BUG: kernel NULL pointer dereference, address: 0000000000000008
-> ...
-> RIP: 0010:dwc3_gadget_del_and_unmap_request+0x19/0xe0
-> ...
-> Call Trace:
->  dwc3_remove_requests.constprop.0+0x12f/0x170
->  __dwc3_gadget_ep_disable+0x7a/0x160
->  dwc3_gadget_ep_disable+0x3d/0xd0
->  usb_ep_disable+0x1c/0x70
->  u_audio_stop_capture+0x79/0x120 [u_audio]
->  afunc_set_alt+0x73/0x80 [usb_f_uac2]
->  composite_setup+0x224/0x1b90 [libcomposite]
->
-> Pavel's suggestion to add
-> `echo "adaptive" > functions/uac2.usb0/c_sync` to the configfs script
-> resolves the issue.
-> Thinh suggests "the crash is probably because of f_uac2 prematurely
-> freeing feedback request before its completion. usb_ep_dequeue() is
-> asynchronous. dwc2() may treat it as a synchronous call so you didn't
-> get a crash."
->
-> Revert as this is a regression and the kernel shouldn't crash depending
-> on configuration parameters.
->
-> Reported-by: Ferry Toth <fntoth@gmail.com>
-
-Signed-off-by?
-
--- 
-balbi
+Yes, the last two patches are DT bindings, the last one is based on this.
+Thanks for telling me, I didn't notice this indeed :)
