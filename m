@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 003A23F6F68
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 08:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2236D3F6F6A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 08:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238739AbhHYGWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 02:22:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40364 "EHLO
+        id S238812AbhHYGXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 02:23:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238139AbhHYGWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 02:22:51 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F5A3C061757
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 23:22:06 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id h9so49281635ejs.4
-        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 23:22:06 -0700 (PDT)
+        with ESMTP id S238197AbhHYGXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 02:23:24 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC88C061757
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 23:22:39 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id q3so35341426edt.5
+        for <devicetree@vger.kernel.org>; Tue, 24 Aug 2021 23:22:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=XTWhmsKgwbDFsVJhts9Qh7GBwT3/hbH2uX+PR+DVBu8=;
-        b=lKOkexaTXaucGOHXzmEynjn5hUr74w+ENkl2G+KxGNXThWrbM2MyiCbrZ3BuJp0Uay
-         lcozOkcclK0s1YlIu1e/mo4YxnxH76YSJloh94L0WiflsaFM4RdbGkBmL7oDOyhxML9d
-         G2ljW7ZSubJ4lDnvrtFlLz/8TZYrR+X2opHUFGOhTQXHCxFHx+k869yTQcqDDtf4WstP
-         Lb4IUt4UU4h8us/k+1EnUXN84ZBe9p2yPyRePeuhBIPCnnmes0G0FTsNyiu/Wh89aTqQ
-         MzYzNM9sxFtVnfodtaIlnJ6XGaoJ6zvdrORlsrVWUjdXh4/C81ShNZ5KJV6h2iZm8tuT
-         cFwg==
+        bh=eF2sy8oNTsdMLU6pLrdZdA0MNtuollQXR7O5tJyRoik=;
+        b=RhhiFl7xn7hJR1KbDCWdVPWdy1WHeR3Y77IJoHIxNfkPePvhTkDmnzJcafSXkRYC2K
+         z/s4QHYISMoZd96G/Hx0Z7Yxt3Ibxh1DBIEmU36fTAL1pF5/Dsbf2JJs0+YA9Hj96QY7
+         KeZxnxZxYXPLam1wXJs1lOisHxYxuQOiTFYm2RmWTq2C7YAbYIg4DO8Oc4bEbJl+kWWo
+         xg1i/wSgWvfQawWGyQq+O7XmybqVd9CWiJ/G56ICt2/VGZBeYV6PwvCq/dDfS9cODYT/
+         eQ5dojtOyL4biJPT59+TlwhgEglXu31hevF3kCEG6446L6QTRHitZMK8LPvzR/smhsWM
+         7GPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XTWhmsKgwbDFsVJhts9Qh7GBwT3/hbH2uX+PR+DVBu8=;
-        b=NYm8XAxu8h9K2WaQ82gA3ez3IG87WvAW/2yiqhTtDRZ5naatZ7SakNE95N0wy1ttWh
-         cs0+Uc29n+sflDusa5rvGEYL2EYWy55W7q9CPkZ8um3ijs+Rhdub7HjK9pyaMoUaJ5jE
-         O1caZ7zS11sG2CJhwdmxjJkBvS/GU3uRSLTwgmtCt6GPXvBwmFpiUPnNqn2uqPdnuiEs
-         9VdFIysK01efsxt42wLfD0JvF8dtbsL6o8bns64LEZbmgRB4X661t0odnFhLErpjE1QR
-         soTh8nh361TFEf27NmkJTWgPZyaItEKGcsfp4g1lSgXk94SyRCkgfc1KovbrXg/aKmEp
-         tC/w==
-X-Gm-Message-State: AOAM532GeNKTpE6sTsjD0mwVBWdluC8rME745RKSewlTtRxMNiqK2or7
-        3gWGrKLvfQI2L6DstDlpyJkK7Cq4xXg5SbcWskBTww==
-X-Google-Smtp-Source: ABdhPJwFakTRrrBQO6AZDqGsGJCmtdAWT6x8a95rhHSe35Ks+xJsxJzdV1rbOyqb4MvvF6r6gdrmEjwEUdejK7/pxjY=
-X-Received: by 2002:a17:906:d04f:: with SMTP id bo15mr43914505ejb.309.1629872524751;
- Tue, 24 Aug 2021 23:22:04 -0700 (PDT)
+        bh=eF2sy8oNTsdMLU6pLrdZdA0MNtuollQXR7O5tJyRoik=;
+        b=BvBFqmxxhab6QMRVWJd+rLY05oHZkIIE2d8oJMrTz+1EVAtD1OoUkWZfCFd/V31ae/
+         MNq72eee2IVq10QMkXX9D15ahgsVWDCJHM5nVHBa8uaqvV1GOEOeaSCliGj0PQiVuOAZ
+         FPJ9fESOBAH70qD5rrL+QLbvAMuWVqKT2xflxXIbGYqbyUTED6KnvG3i/ih4Hw5uqdmY
+         OERDKe4mMlWePvJJ5n1xLEyPFRUrXp2hvCdTNemewLRh0v/dMEE+Q0vX3AfDEKYy7yeb
+         DaZ0uQ7rGHpLDTiDzxUxneVej8lP8b7s9ue/+4T8Ll9LpHEglyP1XKKsyhjaOw8Xfxol
+         RUwQ==
+X-Gm-Message-State: AOAM5319gw7U/Yt6+cX8KIr+6u/tpGoKHI3//3Wx+3YnuGYJTRlsPi6F
+        SLKQT1bsWrwJg3lLtoeC3GjaEK4LwRCRGFU87I97tQ==
+X-Google-Smtp-Source: ABdhPJzqvn3pevoyyWnIEzgF9K/gYAD3tejldgkNie2UVrI48oKDfgaaumvaIDAkYL/oE5ZVGxEROrLd/7U/XrZXiLE=
+X-Received: by 2002:aa7:cc02:: with SMTP id q2mr46439428edt.154.1629872558097;
+ Tue, 24 Aug 2021 23:22:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <839d833133318feeb2755c4431204b0ef4788cce.1628244299.git.michal.simek@xilinx.com>
-In-Reply-To: <839d833133318feeb2755c4431204b0ef4788cce.1628244299.git.michal.simek@xilinx.com>
+References: <8c78625f08c16385a4798e0a62d20df7491ac00e.1628244860.git.michal.simek@xilinx.com>
+In-Reply-To: <8c78625f08c16385a4798e0a62d20df7491ac00e.1628244860.git.michal.simek@xilinx.com>
 From:   Michal Simek <monstr@monstr.eu>
-Date:   Wed, 25 Aug 2021 08:21:54 +0200
-Message-ID: <CAHTX3d+Tan44uNNzbwfc7gYxhagAioms+qVRFD62weS=cHDB4Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: zynqmp: Enable gpio and qspi for zc1275-revA
+Date:   Wed, 25 Aug 2021 08:22:27 +0200
+Message-ID: <CAHTX3dJUH_DEKsLYNO0Z2StOBcnD5qynraJz_JLY_q_W6-nTTw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: zynqmp: Wire psgtr for zc1751-xm013
 To:     LKML <linux-kernel@vger.kernel.org>,
         Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -61,61 +61,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-p=C3=A1 6. 8. 2021 v 12:05 odes=C3=ADlatel Michal Simek <michal.simek@xilin=
+p=C3=A1 6. 8. 2021 v 12:14 odes=C3=ADlatel Michal Simek <michal.simek@xilin=
 x.com> napsal:
 >
-> Add missing gpio and qspio for zc1275-revA board.
+> Add psgtr description for SATA and USB.
 >
 > Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
 >
->  .../boot/dts/xilinx/zynqmp-zc1275-revA.dts     | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+> Based on https://lore.kernel.org/r/cover.1628244703.git.michal.simek@xili=
+nx.com
+> ---
+>  .../dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts b/arch/arm=
-64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
-> index 66a90483b004..e971ba8c1418 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Xilinx ZynqMP ZC1275
->   *
-> - * (C) Copyright 2017 - 2019, Xilinx, Inc.
-> + * (C) Copyright 2017 - 2021, Xilinx, Inc.
->   *
->   * Michal Simek <michal.simek@xilinx.com>
->   * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
-> @@ -20,6 +20,7 @@ / {
->         aliases {
->                 serial0 =3D &uart0;
->                 serial1 =3D &dcc;
-> +               spi0 =3D &qspi;
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts b/arc=
+h/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+> index 4394ec3b6a23..381cc682cef9 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+> @@ -11,6 +11,7 @@
+>
+>  #include "zynqmp.dtsi"
+>  #include "zynqmp-clk-ccf.dtsi"
+> +#include <dt-bindings/phy/phy.h>
+>
+>  / {
+>         model =3D "ZynqMP zc1751-xm017-dc3 RevA";
+> @@ -37,6 +38,18 @@ memory@0 {
+>                 device_type =3D "memory";
+>                 reg =3D <0x0 0x0 0x0 0x80000000>, <0x8 0x00000000 0x0 0x8=
+0000000>;
 >         };
->
->         chosen {
-> @@ -37,6 +38,21 @@ &dcc {
->         status =3D "okay";
->  };
->
-> +&gpio {
-> +       status =3D "okay";
-> +};
 > +
-> +&qspi {
-> +       status =3D "okay";
-> +       flash@0 {
-> +               compatible =3D "m25p80", "jedec,spi-nor";
-> +               reg =3D <0x0>;
-> +               spi-tx-bus-width =3D <1>;
-> +               spi-rx-bus-width =3D <4>;
-> +               spi-max-frequency =3D <108000000>;
+> +       clock_si5338_2: clk26 {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <26000000>;
 > +       };
+> +
+> +       clock_si5338_3: clk125 {
+> +               compatible =3D "fixed-clock";
+> +               #clock-cells =3D <0>;
+> +               clock-frequency =3D <125000000>;
+> +       };
+>  };
+>
+>  &fpd_dma_chan1 {
+> @@ -116,6 +129,13 @@ &nand0 {
+>         num-cs =3D <2>;
+>  };
+>
+> +&psgtr {
+> +       status =3D "okay";
+> +       /* usb3, sata */
+> +       clocks =3D <&clock_si5338_2>, <&clock_si5338_3>;
+> +       clock-names =3D "ref2", "ref3";
 > +};
 > +
->  &uart0 {
+>  &rtc {
 >         status =3D "okay";
 >  };
+> @@ -131,6 +151,8 @@ &sata {
+>         ceva,p1-comwake-params =3D /bits/ 8 <0x06 0x19 0x08 0x0E>;
+>         ceva,p1-burst-params =3D /bits/ 8 <0x13 0x08 0x4A 0x06>;
+>         ceva,p1-retry-params =3D /bits/ 16 <0x96A4 0x3FFC>;
+> +       phy-names =3D "sata-phy";
+> +       phys =3D <&psgtr 2 PHY_TYPE_SATA 0 3>;
+>  };
+>
+>  &sdhci1 { /* emmc with some settings */
+> @@ -149,6 +171,8 @@ &uart1 {
+>
+>  &usb0 {
+>         status =3D "okay";
+> +       phy-names =3D "usb3-phy";
+> +       phys =3D <&psgtr 0 PHY_TYPE_USB3 0 2>;
+>  };
+>
+>  &dwc3_0 {
+> @@ -161,6 +185,8 @@ &dwc3_0 {
+>  /* ULPI SMSC USB3320 */
+>  &usb1 {
+>         status =3D "okay";
+> +       phy-names =3D "usb3-phy";
+> +       phys =3D <&psgtr 3 PHY_TYPE_USB3 1 2>;
+>  };
+>
+>  &dwc3_1 {
 > --
 > 2.32.0
 >
