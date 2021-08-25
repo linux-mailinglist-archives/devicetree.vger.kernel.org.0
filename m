@@ -2,171 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1BAE3F7215
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 11:43:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6122B3F7220
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 11:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236399AbhHYJoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 05:44:03 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:31134 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234372AbhHYJoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 05:44:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1629884597; x=1661420597;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=qyh5WgATX9Xy0HOqROUyqu7EUpT8CmuQVGV9fQ0MnF8=;
-  b=XTYtk2ZhjbVtIdPS4p66xIzaKczM2iirgmSva5jneRGunDxbQWtBQAjD
-   /T37e96lbZPIOVb8Ee0AJ8mmCXQu4aVjHlF9ymwufACKDqB8rOp29gdQ5
-   iQInpgjwKfAIhuZXLtpWUGVX4P9b2lee6RHxC7MAFWI9fZq6D42Fzwr5A
-   cbPE4ZnhIUvhycsMtKQWXc2A4UGnoFJIMgNdtkf0yFbV9inzBpp+WO3nb
-   gkPRPIZKPL0n4r31azhYx2Mlw2Y4+3lk9PnwH4bvRl6TYFNqQ+7pd4irq
-   YC6R5euSKh1zLbwt7ZYSc5+PlzOpE31UdX/b97WutlUF+rt+vaWeIxO7m
-   Q==;
-IronPort-SDR: ixp3ZCRhTlN34kOJT6vexmzvrvaSckmpkQvhIkfBHtceC4NAJRRu0LxVaiNvtqCaQGlJEC3IYN
- L2k7OzylpXI8e4IfXXGR51cVEAnvuC8oYB6GnRuxwJslVj35HRFSQ6dOhCD3saewmlOrtT4aF6
- LF3Ap+fZuCoqw/sETVYZzaMoYF2HkAuPCEIxesstD9Zvul/VMr+8lf2hVii9nrC9iRMrPL3M86
- hDNSBU95F7avhxm4Nnh7owNjEr9lquLgxz98412nVdOHK7ulaYffUY8YaH/GMyy3kv7vk7YQaV
- V+cg7lkP1M5EV6+I2KpQ9ynE
-X-IronPort-AV: E=Sophos;i="5.84,350,1620716400"; 
-   d="scan'208";a="141504717"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Aug 2021 02:43:16 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 25 Aug 2021 02:43:16 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 25 Aug 2021 02:43:10 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v4] ARM: dts: at91: sama5d27_wlsom1: add wifi device
-Date:   Wed, 25 Aug 2021 12:40:55 +0300
-Message-ID: <20210825094055.642941-1-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        id S236914AbhHYJpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 05:45:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236314AbhHYJpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 05:45:50 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74419C0613C1;
+        Wed, 25 Aug 2021 02:45:04 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id g13so51592399lfj.12;
+        Wed, 25 Aug 2021 02:45:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=E7cNoLLVAVafjNCc4brMRUN01zZAHm0abXpnMpPuTt4=;
+        b=XcByKSJRdga/HRYU9DdYIrJkJ5aCKCn6sFPQhJpp+zqLBFptssdthmbwTTqrJU2O1y
+         Fh9T4cOSANuA0NBWqKrxyE6rpE3VUg9YurSVTT9N3ewKp/QELYAgj+C6HkBCJMlVTiOb
+         M7DocgSIXf8gWx7DP6hz+XSoX32UueKJZitZdD1fhIKA/N5U6YwHLEpd41Qt4bCHL0G4
+         ZtJc+vpaJ07T3DdXx/qHSdSN5QI3+K4IqS5ki+/rdR5v1sPFOYpfj0rw4qkKgMj2ioo3
+         hQKDnoVXbW3M/+9DGxJ8r4dLnR6TG4RgZNyl3L7PnWj5GlgkD82og3xcltkjAKoMzhav
+         ZUNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=E7cNoLLVAVafjNCc4brMRUN01zZAHm0abXpnMpPuTt4=;
+        b=kX4mhi2MEArMqlWwXAvwxKRSEGu+orZ+Tb20DbE0/SOUaNzKWrsE/Cfehguc/rRhAx
+         5wg+NHNHglmQxJ/xrBtTAa6NKP6vSBhpeOYYAna1nYPg8RJPLP9VwIFWyfByBDZ8bWT1
+         qIGnMJpK/7dNAliMmJWJ4MjLjoc/dCHFg9i2BEwNUjkL45XqirzVQXiFLAnybxVFBbE0
+         BtuMCnZ9i+BhxsXFlDe2MmFHhaaBT8ShJQP23ucacRTknPY93RcwHNL1j4lLNbWRLFDp
+         DpY5qorjFG/sdu3Yjd3mYpe4j+WqkBHXrHibLHIOiXEuChK8vvobOqMiMSIjiX7t6NCr
+         dcQA==
+X-Gm-Message-State: AOAM531C/U/yonuXTKSRver+ew/62xRu4iNGbFSP/+qgAQLozoW8b3KW
+        Cv2O9UMmJdQ27ENyPf+g4NIBuVpHmus=
+X-Google-Smtp-Source: ABdhPJxxgQwWKc4KlfaiaB2F9L+jo3PpEaZtT5gXKDmMvuZmO5i5+f3TfZJ4xZuLO6DnWagwNOSZkQ==
+X-Received: by 2002:a05:6512:3190:: with SMTP id i16mr32170681lfe.340.1629884702691;
+        Wed, 25 Aug 2021 02:45:02 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-17-251.dynamic.spd-mgts.ru. [94.29.17.251])
+        by smtp.googlemail.com with ESMTPSA id z13sm2103349ljj.43.2021.08.25.02.45.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Aug 2021 02:45:02 -0700 (PDT)
+Subject: Re: [PATCH v8 20/34] mmc: sdhci-tegra: Add runtime PM and OPP support
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20210817012754.8710-1-digetx@gmail.com>
+ <20210817012754.8710-21-digetx@gmail.com> <YR6O9Om+HzMMG8AR@orome.fritz.box>
+ <05b7ff28-4c01-fb56-deeb-595a5797394b@gmail.com>
+ <YR+TgfCHKOPS3Ng8@orome.fritz.box>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <5a15647c-bc6a-294d-61c8-91efa33c681e@gmail.com>
+Date:   Wed, 25 Aug 2021 12:45:01 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <YR+TgfCHKOPS3Ng8@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eugen Hristev <eugen.hristev@microchip.com>
+20.08.2021 14:35, Thierry Reding пишет:
+> On Fri, Aug 20, 2021 at 01:37:13AM +0300, Dmitry Osipenko wrote:
+>> 19.08.2021 20:03, Thierry Reding пишет:
+>>> On Tue, Aug 17, 2021 at 04:27:40AM +0300, Dmitry Osipenko wrote:
+>>>> The SDHCI on Tegra belongs to the core power domain and we're going to
+>>>> enable GENPD support for the core domain. Now SDHCI must be resumed using
+>>>> runtime PM API in order to initialize the SDHCI power state. The SDHCI
+>>>> clock rate must be changed using OPP API that will reconfigure the power
+>>>> domain performance state in accordance to the rate. Add runtime PM and OPP
+>>>> support to the SDHCI driver.
+>>>>
+>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>>> ---
+>>>>  drivers/mmc/host/sdhci-tegra.c | 146 ++++++++++++++++++++++++---------
+>>>>  1 file changed, 105 insertions(+), 41 deletions(-)
+>>>>
+>>>> diff --git a/drivers/mmc/host/sdhci-tegra.c b/drivers/mmc/host/sdhci-tegra.c
+>>>> index 387ce9cdbd7c..a3583359c972 100644
+>>>> --- a/drivers/mmc/host/sdhci-tegra.c
+>>>> +++ b/drivers/mmc/host/sdhci-tegra.c
+>>>> @@ -15,6 +15,8 @@
+>>>>  #include <linux/of.h>
+>>>>  #include <linux/of_device.h>
+>>>>  #include <linux/pinctrl/consumer.h>
+>>>> +#include <linux/pm_opp.h>
+>>>> +#include <linux/pm_runtime.h>
+>>>>  #include <linux/regulator/consumer.h>
+>>>>  #include <linux/reset.h>
+>>>>  #include <linux/mmc/card.h>
+>>>> @@ -24,6 +26,8 @@
+>>>>  #include <linux/gpio/consumer.h>
+>>>>  #include <linux/ktime.h>
+>>>>  
+>>>> +#include <soc/tegra/common.h>
+>>>> +
+>>>>  #include "sdhci-pltfm.h"
+>>>>  #include "cqhci.h"
+>>>>  
+>>>> @@ -123,6 +127,12 @@
+>>>>  					 SDHCI_TRNS_BLK_CNT_EN | \
+>>>>  					 SDHCI_TRNS_DMA)
+>>>>  
+>>>> +enum {
+>>>> +	TEGRA_CLK_BULK_SDHCI,
+>>>> +	TEGRA_CLK_BULK_TMCLK,
+>>>> +	TEGRA_CLK_BULK_NUM,
+>>>> +};
+>>>> +
+>>>>  struct sdhci_tegra_soc_data {
+>>>>  	const struct sdhci_pltfm_data *pdata;
+>>>>  	u64 dma_mask;
+>>>> @@ -171,6 +181,8 @@ struct sdhci_tegra {
+>>>>  	bool enable_hwcq;
+>>>>  	unsigned long curr_clk_rate;
+>>>>  	u8 tuned_tap_delay;
+>>>> +
+>>>> +	struct clk_bulk_data clocks[TEGRA_CLK_BULK_NUM];
+>>>
+>>> This doesn't seem worth it to me. There's a lot of churn in this driver
+>>> that's only needed to convert this to the clk_bulk API and it makes the
+>>> code a lot more difficult to read, in my opinion.
+>>>
+>>> It looks like the only benefit that this gives us is that runtime
+>>> suspend and resume become a few lines shorter.
+>>
+>> The driver probe code looks cleaner with that. You should be looking at
+>> the final result and not at the patch to see it.
+> 
+> I did look at the final result and didn't find it cleaner at all. =)
 
-SAMA5D27 WLSOM1 boards has a WILC3000 device soldered. Add proper
-device tree nodes for this.
-
-[eugen.hristev: original author of this code]
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-[nicolas.ferre: original author of this code]
-Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-[claudiu.beznea: adapt such that make dtbs_check is happy, remove status
- for wifi_pwrseq and wifi nodes]
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
-
-Changes in v4:
-- keep only this patch as the rest from series were applied on mmc tree
-- remove status="okay" on wifi node and pwrseq node
-- adapt to remove all warnings thown by make dtbs_check
-
- arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 70 +++++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-index 025a78310e3a..21c86171e462 100644
---- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-+++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-@@ -30,6 +30,14 @@ main_xtal {
- 			clock-frequency = <24000000>;
- 		};
- 	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-wilc1000";
-+		reset-gpios = <&pioA PIN_PA27 GPIO_ACTIVE_HIGH>;
-+		powerdown-gpios = <&pioA PIN_PA29 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pinctrl_wilc_pwrseq>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &flx1 {
-@@ -310,5 +318,67 @@ pinctrl_qspi1_default: qspi1_default {
- 			 <PIN_PB10__QSPI1_IO3>;
- 		bias-pull-up;
- 	};
-+
-+	pinctrl_sdmmc1_default: sdmmc1_default {
-+		cmd-data {
-+			pinmux = <PIN_PA28__SDMMC1_CMD>,
-+				 <PIN_PA18__SDMMC1_DAT0>,
-+				 <PIN_PA19__SDMMC1_DAT1>,
-+				 <PIN_PA20__SDMMC1_DAT2>,
-+				 <PIN_PA21__SDMMC1_DAT3>;
-+			bias-disable;
-+		};
-+
-+		conf-ck {
-+			pinmux = <PIN_PA22__SDMMC1_CK>;
-+			bias-disable;
-+		};
-+	};
-+
-+	pinctrl_wilc_default: wilc_default {
-+		conf-irq {
-+			pinmux = <PIN_PB25__GPIO>;
-+			bias-disable;
-+		};
-+	};
-+
-+	pinctrl_wilc_pwrseq: wilc_pwrseq {
-+		conf-ce-nrst {
-+			pinmux = <PIN_PA27__GPIO>,
-+				 <PIN_PA29__GPIO>;
-+			bias-disable;
-+		};
-+
-+		conf-rtcclk {
-+			pinmux = <PIN_PB13__PCK1>;
-+			bias-disable;
-+		};
-+	};
-+};
-+
-+&sdmmc1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc1_default>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	no-1-8-v;
-+	non-removable;
-+	bus-width = <4>;
-+	status = "okay";
-+
-+	wilc: wifi@0 {
-+		reg = <0>;
-+		compatible = "microchip,wilc1000";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wilc_default>;
-+		clocks = <&pmc PMC_TYPE_SYSTEM 9>;
-+		clock-names = "rtc";
-+		interrupts = <PIN_PB25 IRQ_TYPE_NONE>;
-+		interrupt-parent = <&pioA>;
-+		assigned-clocks = <&pmc PMC_TYPE_SYSTEM 9>;
-+		assigned-clock-rates = <32768>;
-+	};
- };
- 
--- 
-2.25.1
-
+There is UAF bug in this patch that was spotted by kasan. The
+sdhci_tegra_soc_data isn't resource-managed, but clk_bulk_data is. I'm
+now thinking that it should be okay to keep tmclk always-on, so I'll
+replace the bulk clks back with the sdhci clk in v9.
