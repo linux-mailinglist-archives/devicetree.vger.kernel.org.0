@@ -2,88 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1BAB3F7A17
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 209FB3F7A4B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241529AbhHYQSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 12:18:42 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52094 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241084AbhHYQS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:18:29 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17PGHb12081156;
-        Wed, 25 Aug 2021 11:17:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1629908257;
-        bh=kzGGimG+y5/ntQhZxmDZwGOQPr7PcLvVeeunP3ssRiI=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=hM9T/b5XUWCg6tQq0IUgXkwqkX8ZHGuJvcmKzivLarlZyEkOc3WItlBou03+0AH2S
-         l3ASUXdY56/RYLW0i+FktKlapc1koDGBKqVbQO3C+OIFfayCfR7Zd2Z8fHP0UI/g++
-         u6oAWECQeKKUtlvy2fh5w0aGkIuvWHZCx0/ifJ6U=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17PGHbiL085489
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 25 Aug 2021 11:17:37 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 25
- Aug 2021 11:17:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 25 Aug 2021 11:17:37 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17PGHafH051470;
-        Wed, 25 Aug 2021 11:17:37 -0500
-Date:   Wed, 25 Aug 2021 11:17:36 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@kernel.org>
-CC:     <ssantosh@kernel.org>, <lokeshvutla@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] ARM: dts: keystone-k2*-evm: Fix mdio and dss node
- status
-Message-ID: <20210825161736.ikx344bxfl5eqzgt@celibate>
-References: <20210824105858.19496-1-rogerq@kernel.org>
+        id S239743AbhHYQUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 12:20:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55888 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235078AbhHYQTj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 12:19:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 798046120A;
+        Wed, 25 Aug 2021 16:18:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629908333;
+        bh=xYgq4UqeZ57viPLlU1+mZdtyZ6HlMPj2SXftb4EQy/g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hbNPwf3z+qxrnY3+Dnn28q8GVGnoMriIspV1HPWx8fNhwim1aMQ3RUQdfC2HU2ZZa
+         9aA4FnZ5/l5Gj997kTM5OPvALwoLEW0Q85sbAr7XsWUs6uToScpG9ktPJpEVogPUDd
+         z7PPb6Pvu54OFoU2TFl+d1wp7A0QnsDmqHFa2gacnIguti4EdB2dw8h3yoHnH2yQoD
+         7eUcVtzTRQYM3V1jNUIxDFqdyeyYvi/17ccPtVXKR5mPsM9uRmsiGwCavldPXIdzcE
+         dacpjRHE8VhfI7BISB02YRUWqHcqjkQuTgq1B3O2zFVyLpLks8lQHal8DnZO8HrqNw
+         94Jfu96B2Crbg==
+Received: by mail-ed1-f43.google.com with SMTP id r19so37747836eds.13;
+        Wed, 25 Aug 2021 09:18:53 -0700 (PDT)
+X-Gm-Message-State: AOAM533i+W0QbhLSdGOCRCE0FYXpYj8NcCIxQC0CzCDljwviEtL2GMDl
+        t/vZgpRH+268Jggk3jM/EUn8I620sJmAoJZjZg==
+X-Google-Smtp-Source: ABdhPJxEhciPcbYe1l/5i/0MQashTN8jTOcmq6Duojsg/XqjGPI0pnbWQ2L2MXVjj5RGb/NM5mC/GoWgNriidFK2I1c=
+X-Received: by 2002:aa7:c49a:: with SMTP id m26mr50617955edq.258.1629908332121;
+ Wed, 25 Aug 2021 09:18:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210824105858.19496-1-rogerq@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <3b70f9e757e018d3cd91a882282040c4c0589a93.1629884907.git.baruch@tkos.co.il>
+ <dbf064fb60b1654af25f65d89f75bd397162d701.1629884907.git.baruch@tkos.co.il>
+ <1629900658.219829.2719822.nullmailer@robh.at.kernel.org> <87ilzta5xn.fsf@tarshish>
+ <YSZr/xo2a60PYTuW@robh.at.kernel.org>
+In-Reply-To: <YSZr/xo2a60PYTuW@robh.at.kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 25 Aug 2021 11:18:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJsOjmUWkWCzcbSFQO5hDLW0MBKEncOyN4kEE5zY=pbPQ@mail.gmail.com>
+Message-ID: <CAL_JsqJsOjmUWkWCzcbSFQO5hDLW0MBKEncOyN4kEE5zY=pbPQ@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] dt-bindings: pwm: add IPQ6018 binding
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:58-20210824, Roger Quadros wrote:
-> Hi Santosh,
-> 
-> This series fixes mdio and dss status nodes from "ok" to "okay"
-> 
-> As per Device Tree Specification [1], the status parameter of nodes can
-> be "okay", "disabled", etc. "ok" is not a valid parameter.
-> 
-> U-boot Driver Model does not recognize status="ok" either and treats
-> the node as disabled.
+On Wed, Aug 25, 2021 at 11:12 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Aug 25, 2021 at 05:59:45PM +0300, Baruch Siach wrote:
+> > Hi Rob,
+> >
+> > On Wed, Aug 25 2021, Rob Herring wrote:
+> >
+> > > On Wed, 25 Aug 2021 12:48:26 +0300, Baruch Siach wrote:
+> > >> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+> > >>
+> > >> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> > >> ---
+> > >> v7:
+> > >>
+> > >>   Use 'reg' instead of 'offset' (Rob)
+> > >>
+> > >>   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
+> > >>
+> > >>   Use single cell address/size in example node (Bjorn)
+> > >>
+> > >>   Move '#pwm-cells' lower in example node (Bjorn)
+> > >>
+> > >>   List 'reg' as required
+> > >>
+> > >> v6:
+> > >>
+> > >>   Device node is child of TCSR; remove phandle (Rob Herring)
+> > >>
+> > >>   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-K=C3=B6nig)
+> > >>
+> > >> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
+> > >>     Andersson, Kathiravan T)
+> > >>
+> > >> v4: Update the binding example node as well (Rob Herring's bot)
+> > >>
+> > >> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+> > >>
+> > >> v2: Make #pwm-cells const (Rob Herring)
+> > >> ---
+> > >>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 ++++++++++++++++=
++++
+> > >>  1 file changed, 52 insertions(+)
+> > >>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.ya=
+ml
+> > >
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_ch=
+eck'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > >
+> > > yamllint warnings/errors:
+> > >
+> > > dtschema/dtc warnings/errors:
+> > > Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0:
+> > > /example-0/syscon@1937000: failed to match any schema with compatible=
+:
+> > > ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
+> >
+> > What can I do about that? Is it because qcom,tcsr-ipq6018 is documented
+> > in a non-yaml plain .txt file?
+>
+> No, it is not documented at all.
 
-^^ I suspect the above comment in the patches is to indicate side effect
-of non-compliance.
+Sorry, I should read patch 1 first... Still, before adding new
+features to an MFD, the base MFD should be converted.
 
-> 
-> [1] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
-> 
-> cheers,
-> -roger
-> 
-> Roger Quadros (2):
->   ARM: dts: keystone-k2*-evm: Fix mdio node status to "okay"
->   ARM: dts: keystone-k2g-evm: Fix dss node status to "okay"
-
-
-Reviewed-by: Nishanth Menon <nm@ti.com>
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Rob
