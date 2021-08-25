@@ -2,123 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1129B3F7572
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567893F758A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 15:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240163AbhHYM5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 08:57:39 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33942
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234268AbhHYM5i (ORCPT
+        id S240945AbhHYNGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 09:06:23 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57250
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240851AbhHYNGW (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 08:57:38 -0400
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        Wed, 25 Aug 2021 09:06:22 -0400
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 83FBF40792
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 12:56:52 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9010D4076B
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629896212;
-        bh=J/tSZXGbbVX7jq/a3ssqSdjqxH4DgxG+yQPijZgaVeg=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=qK2zxW07oVUKSM30tMetlfFFQwiZPNf97uO/7VTd0LhNpmwCFPcnc41KtXGAORyvF
-         Y1m8423oIma0suhOOt7MisvPqmUuNOiwEOpKbfdeYUWPbMkJ5UcdUm1lAUvJ8vqOrV
-         rgpztMO2/x5KFrKh3u3s41Whcrf+dVHhRCeSuspNWncgDlq7d5wnJ/M69r8NPNxA1W
-         d268r00obI0K22jFuBp1I3SKUuBRLh5wpWnkbaJ3wrHIQ3yK+l6C/Rcy5UX0RaVrWC
-         ikt6fu/YaMmHqdLX89P1VNjzm8lPnaZ7ovMgnxYcrKuyQ7NNnfp09YHntZYorIXn4W
-         EumEt8LAXnanw==
-Received: by mail-wm1-f70.google.com with SMTP id r4-20020a1c4404000000b002e728beb9fbso2792108wma.9
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 05:56:52 -0700 (PDT)
+        s=20210705; t=1629896732;
+        bh=lrFOqJg8K+1XmVsF/GpvrcRXBvTi8X1Jdxp9tcz+qM4=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=GABSUjE+Fl/asVQF557BfZJ0qbfYayqHleFpFsCTMi86+dib5w20Y89snZBkmAcRy
+         C36TPK4wQC//3n+x3x9jIucrLh0y42DrkT7k+oxz54ocYxpFzou4gswWhb+ZfnxHNy
+         7xeNE/oQmkt4RkzcOOyyPhqNK68NdUlWxEaiYjSGozESlT/9wuZlWGh4sKRqUAmwR3
+         8Lj3WIWfyd3EfjrbJnCQ1zUcCjoiv4iulEIGwjth4LzkHH7x5SULCqYf/1imBEIlmT
+         jhH9y5CmwlJPaubqqN6s8x75v3/N+SQvq4Z85hiwphTLKGxE478yakTlwZ5eQ8PGaA
+         t6fIMfv/KPPpA==
+Received: by mail-wm1-f71.google.com with SMTP id y188-20020a1c7dc5000000b002e80e0b2f87so2830444wmc.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 06:05:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=J/tSZXGbbVX7jq/a3ssqSdjqxH4DgxG+yQPijZgaVeg=;
-        b=fsDsD/uH4zfRfH+LxClL1khA/j0VMVoAxLbIGLUDFx+HwHQNXMEiaba0a5ch5TwsF1
-         YSsfQSdNXJBzbjS3Bo/3St0RoNN93VKKNxRofbgHgCEyHRQ8sqqFIYEQQM71lshuexiA
-         AAZCMUwKbAzQFPCqZawRF2TNvdirQgghYnCOsnHvF/jxldiHbRUn50dNUvz5UzPqUKK+
-         CoHxU7f/ylDDbUEv6gttPNaa1pGFt7P/wcEFPfkt6ekaYzxe8UOL8hmZccc1B0rNMsBr
-         7FLFUbUZ7NPrCBefpppNZuieW2LyQJJDCuIwzWCTmY63HPvj2efefCgLIHFezfBNR2DC
-         X3MA==
-X-Gm-Message-State: AOAM530HvVLKO3gYbTf3GfdyO7qliPBNf9hk6jfS/E6U9m55/5TDn/3h
-        ZJwHPOut/1tC9dBal64U2B8HVpV5hqjOoNU6cKnZNW6N/DtRwyCW4bPGCBhoxfLLxObvyDjypGB
-        7MntYgsUUDGLtIxtcy2fFFWuFWMuavZXIFuPoeTc=
-X-Received: by 2002:a1c:2702:: with SMTP id n2mr9151046wmn.78.1629896212255;
-        Wed, 25 Aug 2021 05:56:52 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx19exlQXFyThlRhadSTOudioZ5LJmmgmFwb5+25rV2AcBZRK30aXzWxi2nBrwdS83mcw53+g==
-X-Received: by 2002:a1c:2702:: with SMTP id n2mr9151037wmn.78.1629896212095;
-        Wed, 25 Aug 2021 05:56:52 -0700 (PDT)
-Received: from [192.168.0.103] ([79.98.113.15])
-        by smtp.gmail.com with ESMTPSA id k18sm5294991wmi.25.2021.08.25.05.56.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Aug 2021 05:56:51 -0700 (PDT)
-Subject: Re: [PATCH 1/5] dt-bindings: mtd: jedec,spi-nor: document
- issi,is25wp256
-To:     Tudor.Ambarus@microchip.com, p.yadav@ti.com
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, atish.patra@wdc.com, sagar.kadam@sifive.com,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20210819165908.135591-1-krzysztof.kozlowski@canonical.com>
- <20210819172852.b26mybrdr33wso62@ti.com>
- <5bff5a0c-48e5-3721-5595-836ce0562c6f@canonical.com>
- <ae4c58fe-0af5-3f1d-cc16-27b78772cbb5@microchip.com>
+        bh=lrFOqJg8K+1XmVsF/GpvrcRXBvTi8X1Jdxp9tcz+qM4=;
+        b=qDGSvN3rRr6nq5x42NeM1yktwXukBnkHaVG3t3+b+12ARBpzmbsS2V2JqXp3BjkOWS
+         VbEA38uv9MjQqaYFeJdLAbQiitP6W7Geq0abgK8XcUW5pIRy72oWTWjeZS2MTKiAYMMj
+         mMgds1pRh+OJaWUjNxTCCwW6F9Hf3W30htivo+rgowwFDKRjuASaoF+mxY52QgLRyFlL
+         VcFrPzKq/N2GLUa4BHl18ENXxM89zi+lAcw4AigE6/Qey09sBtgi2lRTEnvW/a1HayWj
+         gqH7y8+/nWB3cBm7yxCAtRhWbBPAKc/IwRQX1/rWXPZWOmPF9fxmwX61ZJTCTzfGmhoZ
+         QqUQ==
+X-Gm-Message-State: AOAM531e2I+h8lyZJTgBrUfV80TrSxJj3GCQ4blsfdSiua9kM0E+oQ34
+        pvxujTTT3KZVJPnsOy6izZxubQQZY2RumSaPmWA0ZutelkW/gPIuxBV5A/MaebtoZiyiX2KEwqP
+        m7VM5rQNJaXNvLcIfSvaC8FOegDN6OAQok34Qrnw=
+X-Received: by 2002:a05:6000:23a:: with SMTP id l26mr9316787wrz.369.1629896732194;
+        Wed, 25 Aug 2021 06:05:32 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyADruAn41uaMoIibr3RD756bAEGF/fXXqaWRQ4x7Vv3pmlISb8rI06kiDTgzghEeX1S6dBhg==
+X-Received: by 2002:a05:6000:23a:: with SMTP id l26mr9316757wrz.369.1629896732021;
+        Wed, 25 Aug 2021 06:05:32 -0700 (PDT)
+Received: from localhost.localdomain ([79.98.113.233])
+        by smtp.gmail.com with ESMTPSA id 11sm5338828wmi.15.2021.08.25.06.05.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Aug 2021 06:05:31 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <abd7496d-7aaa-7f23-bdae-441906277577@canonical.com>
-Date:   Wed, 25 Aug 2021 14:56:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Sagar Shrikant Kadam <sagar.kadam@sifive.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/5] riscv: dts: sifive: use only generic JEDEC SPI NOR flash compatible
+Date:   Wed, 25 Aug 2021 15:04:48 +0200
+Message-Id: <20210825130452.203407-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <ae4c58fe-0af5-3f1d-cc16-27b78772cbb5@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2021 15:28, Tudor.Ambarus@microchip.com wrote:
-> On 8/19/21 8:36 PM, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 19/08/2021 19:28, Pratyush Yadav wrote:
->>> + Tudor (you should be listed as a maintainer for this file IMO)
->>>
->>> On 19/08/21 06:59PM, Krzysztof Kozlowski wrote:
->>>> Document bindings for the issi,is25wp256 SPI NOR flash.
->>>>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 1 +
->>>>  1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->>>> index ed590d7c6e37..0db64ac7dc33 100644
->>>> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->>>> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
->>>> @@ -33,6 +33,7 @@ properties:
->>>>        - items:
->>>>            - enum:
->>>>                - issi,is25lp016d
->>>> +              - issi,is25wp256
->>>
->>> I don't think we want to add any new flash specific compatibles. Why is
->>> "jedec,spi-nor" not enough for you?
->>
->> It's fine for me. I had impression that specific compatibles are still
->> preferred and one of boards is using this one. The other way is to
->> remove this compatible from the board DTS.
->>
-> 
-> Pratyush is right, we prefer to bind just to the generic "jedec,spi-nor"
-> compatible whenever possible.
+The compatible "issi,is25wp256" is undocumented and instead only a
+generic jedec,spi-nor should be used (if appropriate).
 
-Thanks for confirming this. I'll fixup the dts.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+---
 
-Best regards,
-Krzysztof
+Changes since v1:
+1. New patch
+---
+ arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 2 +-
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+index 60846e88ae4b..633b31b6e25c 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+@@ -63,7 +63,7 @@ &i2c0 {
+ &qspi0 {
+ 	status = "okay";
+ 	flash@0 {
+-		compatible = "issi,is25wp256", "jedec,spi-nor";
++		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <50000000>;
+ 		m25p,fast-read;
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index 2e4ea84f27e7..9b0b9b85040e 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -211,7 +211,7 @@ vdd_ldo11: ldo11 {
+ &qspi0 {
+ 	status = "okay";
+ 	flash@0 {
+-		compatible = "issi,is25wp256", "jedec,spi-nor";
++		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <50000000>;
+ 		m25p,fast-read;
+-- 
+2.30.2
+
