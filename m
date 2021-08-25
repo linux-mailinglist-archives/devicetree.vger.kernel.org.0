@@ -2,101 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6CB3F79F5
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1BAB3F7A17
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:18:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbhHYQQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 12:16:01 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60754 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhHYQQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:16:01 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17PGF6GP126733;
-        Wed, 25 Aug 2021 11:15:06 -0500
+        id S241529AbhHYQSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 12:18:42 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52094 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241084AbhHYQS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:18:29 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17PGHb12081156;
+        Wed, 25 Aug 2021 11:17:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1629908106;
-        bh=NhOMSA/IyBpG0GANEr+mpRgHHqSD773oASYsgzAIcnE=;
+        s=ti-com-17Q1; t=1629908257;
+        bh=kzGGimG+y5/ntQhZxmDZwGOQPr7PcLvVeeunP3ssRiI=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=g5L/OxmiLTynIiHv06C/YLAa1Vn6x58E0Qb3J/BXTfmWEJU0vdOmQ3xIraU2rXv1t
-         fKIDtdZFKC7JFHHMR1/VTRqTk6zpENQdVnWXJcovyPY1xl0DkijuqJfb7LQWxAZ4w2
-         SxdPfcH3SzfVVHFL2Pu7jfuU9GWLIxc5H5wsx/ts=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17PGF6U6057518
+        b=hM9T/b5XUWCg6tQq0IUgXkwqkX8ZHGuJvcmKzivLarlZyEkOc3WItlBou03+0AH2S
+         l3ASUXdY56/RYLW0i+FktKlapc1koDGBKqVbQO3C+OIFfayCfR7Zd2Z8fHP0UI/g++
+         u6oAWECQeKKUtlvy2fh5w0aGkIuvWHZCx0/ifJ6U=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17PGHbiL085489
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 25 Aug 2021 11:15:06 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 25 Aug 2021 11:17:37 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 25
- Aug 2021 11:15:04 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 25 Aug 2021 11:15:03 -0500
+ Aug 2021 11:17:37 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 25 Aug 2021 11:17:37 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17PGF319048958;
-        Wed, 25 Aug 2021 11:15:03 -0500
-Date:   Wed, 25 Aug 2021 11:15:02 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17PGHafH051470;
+        Wed, 25 Aug 2021 11:17:37 -0500
+Date:   Wed, 25 Aug 2021 11:17:36 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Roger Quadros <rogerq@kernel.org>
-CC:     <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
-        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+CC:     <ssantosh@kernel.org>, <lokeshvutla@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] ARM: dts: da850-evm: Change aemif node status from
- "ok" to "okay"
-Message-ID: <20210825161502.ap2clalwfljezoqk@perfume>
-References: <20210824105512.19242-1-rogerq@kernel.org>
+Subject: Re: [PATCH v2 0/2] ARM: dts: keystone-k2*-evm: Fix mdio and dss node
+ status
+Message-ID: <20210825161736.ikx344bxfl5eqzgt@celibate>
+References: <20210824105858.19496-1-rogerq@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210824105512.19242-1-rogerq@kernel.org>
+In-Reply-To: <20210824105858.19496-1-rogerq@kernel.org>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:55-20210824, Roger Quadros wrote:
+On 13:58-20210824, Roger Quadros wrote:
+> Hi Santosh,
+> 
+> This series fixes mdio and dss status nodes from "ok" to "okay"
+> 
 > As per Device Tree Specification [1], the status parameter of nodes can
 > be "okay", "disabled", etc. "ok" is not a valid parameter.
 > 
 > U-boot Driver Model does not recognize status="ok" either and treats
 > the node as disabled.
 
-^^ the above comment might be fine to indicate the side effect of
-non-compliance
+^^ I suspect the above comment in the patches is to indicate side effect
+of non-compliance.
 
 > 
 > [1] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
 > 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> cheers,
+> -roger
+> 
+> Roger Quadros (2):
+>   ARM: dts: keystone-k2*-evm: Fix mdio node status to "okay"
+>   ARM: dts: keystone-k2g-evm: Fix dss node status to "okay"
+
 
 Reviewed-by: Nishanth Menon <nm@ti.com>
-
-> ---
-> Changelog:
-> v2
-> -refer to DT spec instead of schema in commit log.
-> 
->  arch/arm/boot/dts/da850-evm.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
-> index 87c517d65f62..9dc79b5977bf 100644
-> --- a/arch/arm/boot/dts/da850-evm.dts
-> +++ b/arch/arm/boot/dts/da850-evm.dts
-> @@ -415,7 +415,7 @@
->  &aemif {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&nand_pins>;
-> -	status = "ok";
-> +	status = "okay";
->  	cs3 {
->  		#address-cells = <2>;
->  		#size-cells = <1>;
-> -- 
-> 2.17.1
-> 
 
 -- 
 Regards,
