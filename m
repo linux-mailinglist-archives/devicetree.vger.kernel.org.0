@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C29D33F758B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 15:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C5F3F7592
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 15:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241055AbhHYNGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 09:06:24 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:34336
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241036AbhHYNGX (ORCPT
+        id S241128AbhHYNHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 09:07:43 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57322
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229547AbhHYNHl (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 09:06:23 -0400
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        Wed, 25 Aug 2021 09:07:41 -0400
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BC89840658
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:05:36 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D35BF3F322
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 13:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1629896736;
+        s=20210705; t=1629896814;
         bh=UfizrBJBT6h793qifWAMSREo4JNWpi+qoZht6aRmJGE=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=ZM4WRgEKiFu4emREJsvcpdegETCZbnTLHsMvMgsj4DUKF4e+E8tXzsBYqs8a4bpYj
-         gBZZyIbV9Z0Nt8G9TzuiWRNMIna3E442zJRjcpuMr4oZ6+N7fJ3JD6CP0xt6OGCLgF
-         uoh5UCwvR067+lUeBzVTNQ8kbC8BEfGMoM1cOCu+KwxiqoaHocsD5wYVcUZEIXM1kJ
-         Bow4mbyrC2l1CYUU2WAcmG1fWBZ+T+yU1L6/1Elsrxl2YorXojo4QtkJynsl1HrDs+
-         pEr+Ej7N/IUERoAangvQO10m/0is/wQk3iyW0TL7DRbqJVC64iUKCVEYnArWoMyCTT
-         PazJpyJWlwAsA==
-Received: by mail-wr1-f70.google.com with SMTP id b8-20020a5d5508000000b001574e8e9237so2688420wrv.16
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 06:05:36 -0700 (PDT)
+        b=V3N72qZ7ra27C6pMBhoIkTPHkpkk11qxR5DmQ3t0QLG2zbkOJpfx6q5vJZKOkekh+
+         1PWunNRuMwmAYlxFaVsSiIaArzdCM2rJdPrEIOs6/lDeXoG5rQF6puIx5CIp0TVEUa
+         1ILGEviLLoSU0eamDdQN+9wBX3tKdKR+HaELBtPmn8zzwWW8pMXe7UY3O1Da9SOTAr
+         0hBasxcMAtu/aqBScRTcocdDN+sk9gEWFVgazyL5P5ApVaq6wRajj2eXexdcKE9MNE
+         tNtA7jlPj4ySu+Jv6h6TZcKP5hgU3c+xVcjmyCLiZMULOtSgmwE53yaErq3nlqDd+N
+         MvzsfwrBsEXrw==
+Received: by mail-wr1-f72.google.com with SMTP id v6-20020adfe4c6000000b001574f9d8336so2612429wrm.15
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 06:06:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
         bh=UfizrBJBT6h793qifWAMSREo4JNWpi+qoZht6aRmJGE=;
-        b=ide09RqOI+rSyw4rTn72ka7PrfqQZSs25+jQKflamqeWAQlynvKNLiLOQJyeeX1hxH
-         t6D2laY64TJYrT9Cayb2FaJH5+bAjRa/AYjjviei2SMwqV4wRM5YVNTFnOI9pTGaplpM
-         smNPxtdGDjtRErr6Hkz3AEhQ4eq5Nnj4LeJaHs1lz/+irZcgQ4c+9WIk++ENuZEvWhVK
-         t2gHj4/840JCU9gmKtd3E5aIRE5rkmtyRUmcjVJS2/hJmQ8e1/NIv60RdISVBLdc97Pg
-         BsZ4JIHV9cxVBbjgFPA7DELXoO+duTUxj+IQBSApl8V86EMOnbcBVMRaKLrTOhmn+Rmo
-         uMLw==
-X-Gm-Message-State: AOAM532p/R8kKjVeV3e7/2gTzTapUUk012WAC53re/CgVkPtXc3oo4Go
-        mNa/iLcC2A2w/0D6Zl2Mczg0vC4r1Mb6dnuNXu4NADDwMaBEBDQWyNxcSrOObFFDmKJMIwd2O/Y
-        TZTRvcmJXhhCJlzc5GHfZ7CFfBWFb4lwZWc0C3LY=
-X-Received: by 2002:a05:6000:92:: with SMTP id m18mr18711693wrx.293.1629896734660;
-        Wed, 25 Aug 2021 06:05:34 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwLGSV31y+kVM+3CidhWNxCQ29UIuSq21ADvfXfOGHO2Gp5VvBVX5SwObpLHLgExu1hCrgJxw==
-X-Received: by 2002:a05:6000:92:: with SMTP id m18mr18711663wrx.293.1629896734471;
-        Wed, 25 Aug 2021 06:05:34 -0700 (PDT)
-Received: from localhost.localdomain ([79.98.113.233])
-        by smtp.gmail.com with ESMTPSA id 11sm5338828wmi.15.2021.08.25.06.05.33
+        b=WKOtXlL3rBNE3tXV9XMJEARXVpL21sdKP192wWcizPB1yU9skkESjEqxYIcV2IOrmk
+         oG/1yTskGFl3Xp7ZmyoTExJbQiNh6rZkLV51+mMIV3ZxQmuxJfeVk2BfbaAImv9sg6Lc
+         o40lQ4VcoD9a03Sp6UQrlLIKNPYE73JEtPQNsur8JN4kYb1nDO7X9ZSxsvpfVhwDf57h
+         6gADd9gnVoxvh4s0jyHMHQQM1pGyb0OCRaQ1yE9Hn6Od+kdSu9rKDKdJ6stib5Pqb8YC
+         L2P5eztGzup0wG2OdAEwLT3FLTn3Aqztv57G3Fxf/MOy6KofapdRFlz2vCGwT5woc+q5
+         RGSQ==
+X-Gm-Message-State: AOAM531Y63pUygr1ZMJsLgSdOhHRyDo4a3HKt34lSgI9V+hxEYzMBwza
+        albiWg/7yrDwLXpw8eTFthzsPp4BtwT+nEeTK5bt/EdNT9f7NcUMcNbTpfti41q+WnKhuOfmw/K
+        o5CNPnXsKcW4Qte+jg3LPKr4xzXypt3X2f9Q2bPs=
+X-Received: by 2002:a1c:40c:: with SMTP id 12mr9149918wme.158.1629896811088;
+        Wed, 25 Aug 2021 06:06:51 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzixd6QysPlsvWL7nertMLrUP2YTQueOD1OTVHyup8rVWyTa/PXx9YKm+yhpgfRrSNjfxxakQ==
+X-Received: by 2002:a1c:40c:: with SMTP id 12mr9149906wme.158.1629896810959;
+        Wed, 25 Aug 2021 06:06:50 -0700 (PDT)
+Received: from localhost.localdomain ([79.98.113.15])
+        by smtp.gmail.com with ESMTPSA id r20sm13300842wrr.47.2021.08.25.06.06.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 06:05:34 -0700 (PDT)
+        Wed, 25 Aug 2021 06:06:50 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -65,8 +65,8 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Subject: [PATCH v2 3/5] riscv: dts: sifive: drop duplicated nodes and properties in sifive
-Date:   Wed, 25 Aug 2021 15:04:50 +0200
-Message-Id: <20210825130452.203407-3-krzysztof.kozlowski@canonical.com>
+Date:   Wed, 25 Aug 2021 15:06:04 +0200
+Message-Id: <20210825130604.203601-1-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210825130452.203407-1-krzysztof.kozlowski@canonical.com>
 References: <20210825130452.203407-1-krzysztof.kozlowski@canonical.com>
