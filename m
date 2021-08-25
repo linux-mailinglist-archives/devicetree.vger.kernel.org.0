@@ -2,74 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 685D33F79CB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:05:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5387F3F79CD
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 18:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239343AbhHYQGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 12:06:00 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:42982 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237877AbhHYQF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 12:05:58 -0400
-Received: by mail-oi1-f176.google.com with SMTP id t35so8421oiw.9;
-        Wed, 25 Aug 2021 09:05:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IqpEITfkV4Wt3cISCrksmZlI+boyCTVaH8b3BA4buIg=;
-        b=cjbUkgkMUI6Bq7zZaUwzWTT+1pucBFioL1BMW4OIBrntzg8UMAfNFFZ8TraWnmMhuQ
-         8symo8BszlsafiCoL1lTOMOhb4ZbFV19JirWYOrQmPRYxl1TitUBCQW9kbIelkzpKR+f
-         XByTSN6TH2zQiKrsoOlLRJDYSFD7bYpBZzZ6Yhel2ctM+XmTl85j+bK07+sm8vxrvjfz
-         1vqChOT+Ucvf0IzcPvH/tyOjjeXcJFvzBsMY4/IDTg13MyHXCRx15rIYjRe59qXdv/qX
-         s6xjn0KfQCHuyLsfuDADwFsRNpv+/grNZPpGSaf0XPkYaFGccjKKBiDeLz/NJNPmtZym
-         VYpQ==
-X-Gm-Message-State: AOAM5305zRnpxJBeTKxQB3wvj1BqfmVEmyeH74GV84RgxYcs4ZX21C40
-        nJNh7zQNEgNIO2QAhOueHA==
-X-Google-Smtp-Source: ABdhPJzCPpYtm6/iGvl+r1ybnHX0Bv8WDdpUA/RqvixAyG6vfBXb37UAinwFxeulWsgm+g8poW8cog==
-X-Received: by 2002:aca:918:: with SMTP id 24mr7613654oij.58.1629907512282;
-        Wed, 25 Aug 2021 09:05:12 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s198sm44906oie.47.2021.08.25.09.05.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 09:05:11 -0700 (PDT)
-Received: (nullmailer pid 2870703 invoked by uid 1000);
-        Wed, 25 Aug 2021 16:05:10 -0000
-Date:   Wed, 25 Aug 2021 11:05:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        Orson Zhai <orsonzhai@gmail.com>, linux-spi@vger.kernel.org,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Luting Guo <luting.guo@unisoc.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: Re: [PATCH V2 2/3] dt-bindings: spi: Convert sprd ADI bindings to
- yaml
-Message-ID: <YSZqNsnvtIfhLbOT@robh.at.kernel.org>
-References: <20210825065931.2111159-1-zhang.lyra@gmail.com>
- <20210825065931.2111159-3-zhang.lyra@gmail.com>
+        id S239683AbhHYQGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 12:06:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49434 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239700AbhHYQGD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 12:06:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AB3E1611F0;
+        Wed, 25 Aug 2021 16:05:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629907518;
+        bh=3lcphP5vKv3qnP/DNojhiVnGIPCbkTuJflFv/9dmYpA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=d5AJV3dabXN9lVbVDzAxoxDSMEfw9H23+MJQcJHp9ewBmTbfpmkl6CekJsGffGQIU
+         5K6Iiq+we5kvSoSKKXK1zKtUzHAVh5MKeOwZOQRE32AnvLkybRi6ouxkPmbWzObXRZ
+         X6H/6EB8HTkoS5tv/tuDl7QOVBcaZrEqwf+6uGoyeEHGh0toxcuLJxw9MWY0V9KJnx
+         l6stObsbtxBRn60begy/F4gER/Y0v5Q9iTlnDEzPsOdcGNW9b+0/nQ0J4dIYmUSGui
+         0dwLms/9GNLatGp69v6oB/r8XqDj8m7QAvQ9GkY8KwUFkcYl7UwTUOVz4B90+V+Rt+
+         +/MZH4AXQhHOg==
+Date:   Wed, 25 Aug 2021 11:05:16 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        PCI <linux-pci@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] PCI: qcom: add support for IPQ60xx PCIe controller
+Message-ID: <20210825160516.GA3576414@bjorn-Precision-5520>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210825065931.2111159-3-zhang.lyra@gmail.com>
+In-Reply-To: <CAL_JsqKLijW0H-f0Ptd3EKrE5mRwtQK5StOTzs3b5UesuuVKdg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 14:59:30 +0800, Chunyan Zhang wrote:
-> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> 
-> Convert spi-sprd-adi.txt to yaml.
-> 
-> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> ---
->  .../devicetree/bindings/spi/spi-sprd-adi.txt  |  63 -----------
->  .../devicetree/bindings/spi/sprd,spi-adi.yaml | 102 ++++++++++++++++++
->  2 files changed, 102 insertions(+), 63 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-sprd-adi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
-> 
+On Wed, Aug 25, 2021 at 10:03:51AM -0500, Rob Herring wrote:
+> On Wed, Aug 25, 2021 at 9:23 AM Baruch Siach <baruch@tkos.co.il> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> > Why are pci_regs.h register offsets in decimal?
+> 
+> No idea...
+
+That does seem confusing and error prone.  I'd merge a patch that made
+them hex to match the spec.
