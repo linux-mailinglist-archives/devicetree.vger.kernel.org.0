@@ -2,85 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 632F83F7540
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:44:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B28A33F754C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 14:47:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240282AbhHYMpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 08:45:02 -0400
-Received: from mail-ua1-f49.google.com ([209.85.222.49]:41970 "EHLO
-        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbhHYMpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 08:45:01 -0400
-Received: by mail-ua1-f49.google.com with SMTP id 75so15028607uav.8
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 05:44:16 -0700 (PDT)
+        id S240423AbhHYMr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 08:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229873AbhHYMr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 08:47:56 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947AEC061757;
+        Wed, 25 Aug 2021 05:47:10 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id t42so18599229pfg.12;
+        Wed, 25 Aug 2021 05:47:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7duThHeJjxw1i1HwqENqMgEFWO8144Pl5kuBz52Xjek=;
+        b=IN4QMy5y401zq8WXwcAwqoe67+TVk9BJmkJaaJVhPjVPsVfC0n9PkskoEVmTerVpuW
+         /8IQ/SYP/MoHImTyc8dTzcF4SUFivC8hOVDCW8wmtcpDltxxabsizcAIa5ff9LhYJHCQ
+         HWBCEchU2idveA5tp37LYYSXLT78rfSnd0XdHuNtyK9N/jDK4hnYNPbiJ4UFxJ29R+PW
+         9Z2MtBg/y0KtcDa5nWM+ebM9lD96+eMT6EisaHHgxW6cAO4OB2Vz22PS6wzFY4uLjrM0
+         y9980Qa42NbbLpJmx0iQUQgNt3X8lAgN+8lHKUfV3Oethl6v+m7/BHni7zI8g6ckwgkZ
+         vhSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hDHLjWKPUbj57/Gp8d2jgssIb66YUQ5Pm3ux2drPJDE=;
-        b=DA2BUMhMk0dJCSTI2UfZH8hTXQiyfWP3BDMvVYCgjkHuR8CdPtW61cuOpDi20bpQYu
-         2acjKji/HgSEltGaVpeE/JspMaiDSsJ8V4NyEygG6VZXkg+GYWisPxzM9Bs4G/R1SSeT
-         OcNpbZMMyOr50mc2xPeBeandsjAtBqyrF8MZnh1LfNLQV53S3T8Kub/2nGrtjZYf3cO7
-         42h4jqzQrFNz0ex98f0Q1UxdAb+qULE/nSw3/O58ZQ8CDnsHIvvWiYKzNjusbR82nfUz
-         bP56UuJ+8uInJHDdR5Q9YA9b6dsQoObT6OfbrVFhhFgkqVIfG9M5kOERNmodUcJpk6v1
-         aoTQ==
-X-Gm-Message-State: AOAM531vL4jIVhTOaLsmgGLcXIjTntuMu+tjpia6Yj1x0m1IPhU2V5MO
-        zKa/8l1wvfCEsGEbq9C3j8iHrEz5nKHUjxmLp2Y=
-X-Google-Smtp-Source: ABdhPJzSJWzYKEl/60x+KwoB+j8+ijP9JWhDv8jLmrzeXy/gPn5roWjoOEjugWdI90nb/j9fBUEnj8PvSyHPw6yBW7c=
-X-Received: by 2002:ab0:2989:: with SMTP id u9mr1201161uap.122.1629895455628;
- Wed, 25 Aug 2021 05:44:15 -0700 (PDT)
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=7duThHeJjxw1i1HwqENqMgEFWO8144Pl5kuBz52Xjek=;
+        b=QUPYvqWB/wfbAmo5vYQLPjP5GGd0ccLHHZUlz3v6WDoCoNqpNIlRfkEIksQUQjA+NW
+         bw8v2GmQHTrHbGMYpYq/eTqqXPsBIW81M0WsLTtWpueV6jbL3eUeaWfxcMcqmkidMKkt
+         5YErCZE8DAaj3vn3bmiH3k0VQmhohuY1aUbt1ODR9MW3vK1fuUV0Kjc4L57adRH8dYWt
+         Udpyon7kE5OVkP70TpnVLJSv0eUnZS+6bQFV8o3IcUTvcykeLxD7epjOicUoU8CFhYTR
+         DITMgnoMIApgUiQx70nrDA0C+cBgSSYI9IK3eBwMH4RVYpydjs8rqkPxMbgJ74x2/hOi
+         NeBQ==
+X-Gm-Message-State: AOAM532x83ld+9Zoax3HfNIl4SdowBczsoDhI5G4MuKoYOCSFNnQZg1Z
+        t1Zo6wAuHbBsbeCUlFNYyzw=
+X-Google-Smtp-Source: ABdhPJypUuKtzhdSbO2d/dZteEkLcdz+85GjpKa0gYpvloytIUB+dQ6faHVIrrVXF+HLNPI6y7BeiQ==
+X-Received: by 2002:a63:fd51:: with SMTP id m17mr41616827pgj.395.1629895630017;
+        Wed, 25 Aug 2021 05:47:10 -0700 (PDT)
+Received: from localhost.localdomain ([45.124.203.15])
+        by smtp.gmail.com with ESMTPSA id s16sm21511301pfk.185.2021.08.25.05.47.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Aug 2021 05:47:08 -0700 (PDT)
+Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree@vger.kernel.org,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        "Gabriel L . Somlo" <gsomlo@gmail.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] net: Add LiteETH network driver
+Date:   Wed, 25 Aug 2021 22:16:53 +0930
+Message-Id: <20210825124655.3104348-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <f6eabbbce0fba6da3da0264c1e1cf23c01173999.1629884393.git.geert+renesas@glider.be>
- <CAL_JsqJg=3iVNqOS2scFf34WvnXKzB5sR_quZaGgSECKttXUug@mail.gmail.com>
-In-Reply-To: <CAL_JsqJg=3iVNqOS2scFf34WvnXKzB5sR_quZaGgSECKttXUug@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 Aug 2021 14:44:03 +0200
-Message-ID: <CAMuHMdWdgOjeBJY1ANf28yZZUEpA2oT9numFNVtN0AnLTqQG_w@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: Rename reserve_elfcorehdr() to fdt_reserve_elfcorehdr()
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This adds a driver for the LiteX network device, LiteEth.
 
-On Wed, Aug 25, 2021 at 2:21 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Wed, Aug 25, 2021 at 4:40 AM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> >
-> > On ia64/allmodconfig:
-> >
-> >     drivers/of/fdt.c:609:20: error: conflicting types for 'reserve_elfcorehdr'; have 'void(void)'
-> >       609 | static void __init reserve_elfcorehdr(void)
-> >           |                    ^~~~~~~~~~~~~~~~~~
-> >     arch/ia64/include/asm/meminit.h:43:12: note: previous declaration of 'reserve_elfcorehdr' with type 'int(u64 *, u64 *)' {aka 'int(long long unsigned int *, long long unsigned int *)'}
-> >        43 | extern int reserve_elfcorehdr(u64 *start, u64 *end);
-> >           |            ^~~~~~~~~~~~~~~~~~
->
-> There's no need for the ia64 version to be non-static. Just needs a
-> forward declaration.
->
-> arch/ia64/include/asm/meminit.h:extern int reserve_elfcorehdr(u64
-> *start, u64 *end);
-> arch/ia64/kernel/setup.c:       if (reserve_elfcorehdr(&rsvd_region[n].start,
-> arch/ia64/kernel/setup.c:int __init reserve_elfcorehdr(u64 *start, u64 *end)
+v3 Updates the bindings to describe the slots in a way that makes more
+sense for the hardware, instead of trying to fit some existing
+properties. The driver is updated to use these bindings, and fix some
+issues pointed out by Gabriel.
 
-I know ;-)
+v2 Addresses feedback from Jakub, with detailed changes in each patch.
 
-https://lore.kernel.org/r/fe236cd73b64abc4abd03dd808cb015c907f4c8c.1629884459.git.geert+renesas@glider.be/
+It also moves to the litex register accessors so the system works on big
+endian litex platforms. I tested with mor1k on an Arty A7-100T.
 
-Gr{oetje,eeting}s,
+I have removed the mdio aspects of the driver as they are not needed for
+basic operation. I will continue to work on adding support in the
+future, but I don't think it needs to block the mac driver going in.
 
-                        Geert
+The binding describes the mdio registers, and has been fixed to not show
+any warnings against dtschema master.
+
+LiteEth is a simple driver for the FPGA based Ethernet device used in various
+RISC-V, PowerPC's microwatt, OpenRISC's mor1k and other FPGA based
+systems on chip.
+
+Joel Stanley (2):
+  dt-bindings: net: Add bindings for LiteETH
+  net: Add driver for LiteX's LiteETH network interface
+
+ .../bindings/net/litex,liteeth.yaml           | 100 ++++++
+ drivers/net/ethernet/Kconfig                  |   1 +
+ drivers/net/ethernet/Makefile                 |   1 +
+ drivers/net/ethernet/litex/Kconfig            |  27 ++
+ drivers/net/ethernet/litex/Makefile           |   5 +
+ drivers/net/ethernet/litex/litex_liteeth.c    | 317 ++++++++++++++++++
+ 6 files changed, 451 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
+ create mode 100644 drivers/net/ethernet/litex/Kconfig
+ create mode 100644 drivers/net/ethernet/litex/Makefile
+ create mode 100644 drivers/net/ethernet/litex/litex_liteeth.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.33.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
