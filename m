@@ -2,178 +2,390 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4313F792D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D29153F793E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Aug 2021 17:41:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237968AbhHYPi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 11:38:26 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:52353 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233573AbhHYPi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Aug 2021 11:38:26 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CD8E9581083;
-        Wed, 25 Aug 2021 11:37:39 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 25 Aug 2021 11:37:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=/0eVR1LO8zbGReZXGH8OHCw0mxS
-        kJRrqtSARXT+ndjE=; b=jOJoLOZJ7qqIkWp6K7FpTOChGd2qZmIRXLmSWjlJqRO
-        dQblvhua/6eE+Jt9fE8sbongC2crCLUSrfuLXEB24ESruSTwCM6CkhnUwcqxFNbY
-        uLP9YHVAyfzCcWG+EIQhcp4XXa+lSkJJKk4rjvtDFC9tW1sGxP547FTA3wqVH3oZ
-        1G2tZSQ9oJPKob+ToTi4396mjeDSANBauZTG3jeP5W/cn+S9jH8E1UOCFz8dxq7w
-        TJNjnyrayo3vrTs2Bvik7r/XDcTHOEQSCPb0GLhJlqE/X2fiuBeTRIO/dnbGMW1P
-        jLvoagU4A2J7qAWmzRahj4zGv1aCzrMIijvELcGYBPA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=/0eVR1
-        LO8zbGReZXGH8OHCw0mxSkJRrqtSARXT+ndjE=; b=ChzAkc6XRxFFWDxmLe9OTf
-        nhPLQSPOH9FW3yTzhJFXc3LYrqPB6yuDnV+al0sLOpcSX92N9q2oGnlw1AqpeKHn
-        arPkznBwpy9V2HgIYM1ZZFRFcpukVoEXEv4bHZbFglsX4UquxVwhEfuZWBPjIvF/
-        90eCztKUJjttdPPh7slJPAr3JT+L3543JmGeCrezchXTnQsg4B07Nd/45Sw+SHo4
-        QCIfzLIWlRg99+seytJOe1aEpBtF+krEw0WAK8OdqVsAOG/sfLTu+7odouUQeoVl
-        pUOHlb2+WsK15GyK0BwWS9ad6dmV+IE8arI3ZmpVyXbX8jwOPjG3ncQEfIBxjv8g
-        ==
-X-ME-Sender: <xms:wGMmYaOx6PU9g5zpPTMk0xavlo2KZrCYc7MjBG-E5dxsZenG3J4LMg>
-    <xme:wGMmYY8w5ieXwOZSGWLwYLWqgEQykpIc1HJWdb5BlG_7wtsRlz2zYQHeJUpMs6zpT
-    dzIoeNoIqfgOx-TX0Y>
-X-ME-Received: <xmr:wGMmYRR_14ki0BgOD3QDXfE-sTab2EUT9bmzCk_R66UtJpPeiPeVCnH2fmsj4zyXpVd6CAhtkBiFzl_Q9IqDBnsOV4fp8AOip9wQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddtledgleduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:wGMmYat_QBC7cfDUTgFkenPs_zYq0rJu85JLMSP_htH1Xjgah0MHSg>
-    <xmx:wGMmYSfCERYHwBrYVDj_5JPoCbF_WOJgINH0pXCIfNofHeBo6WKN8w>
-    <xmx:wGMmYe1Q2ahKsgSOwaiB-6YhJC6UqRTz1SGN3NJ3SgfJEWOcFVL69w>
-    <xmx:w2MmYe14yVuP9zsqrKPxmCVDC-XVE0jny2BzZCLuShtq3cHkrCbaiA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 25 Aug 2021 11:37:36 -0400 (EDT)
-Date:   Wed, 25 Aug 2021 17:37:34 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     Icenowy Zheng <icenowy@sipeed.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 10/17] clk: sunxi=ng: add support for R329 R-CCU
-Message-ID: <20210825153734.3cwlufietc63ma3m@gilmour>
-References: <20210802062212.73220-1-icenowy@sipeed.com>
- <5432230.1UTMcGJKg4@jernej-laptop>
- <20210825145027.ixc7wnh3x5w6wzny@gilmour>
- <3221818.pD4rYpbbZ1@jernej-laptop>
+        id S240053AbhHYPml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 11:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231995AbhHYPmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 11:42:40 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A160DC061757;
+        Wed, 25 Aug 2021 08:41:54 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y34so53838911lfa.8;
+        Wed, 25 Aug 2021 08:41:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Jh8WQ9yiN9zpRyuwMdWH53fKRiHl78imM33rFUTmvQc=;
+        b=VXTFuvzR5bLNZdHnuy92VMQKovkT2EzOUb9OcN3psg2tkN1i5/AsTKc7AKSGtEXF85
+         Kv3LG6+Tn57EqgqQdIFu7fcyD00uYC3VVRasNFaW2hIC3i/hNcdl5MBDtJB3kzhxdCet
+         wVwD4YkAEaQHK7uISBdatlDIYJE880IZdnG6G02/xPA2tk5n2zH3MPPJXANijDrbhcYx
+         17tod+tgRF+2C8YFqB6X18apDZJm9NiAVIa6wfWKXbvUt4khhVeaLLmRBxhXOo+nP5HW
+         B7+AKTu9GxrwBwjGazKwKUpgLJM7aheacozAFUxo3uu0zy3pZvy+b3kjVm+63moLaebu
+         VFDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Jh8WQ9yiN9zpRyuwMdWH53fKRiHl78imM33rFUTmvQc=;
+        b=oO2e8BxBoQ3IZxeiTU8K2wUnky3tUt0zWHOKCh7yma82NUNDzMEyfc454nNDyxBceu
+         gW6XkPpNBFTwAFQcCkU/YF5i3j8yKky0Nukp+tw0xMRuQFUfYe1RLv7vu/jCLUzPdKzN
+         BmUDlM9p+v4XsRGfjruDwBHso8fY6yJ5418LgjXiI4LvgK/cjYwCEtTLXdbXBDpNxaug
+         mILqfgeJJvsc+VvyaT+nibXvoToW65JOklYxL9BN5PAVovbZRuwgxlvM8gmf4yBml9RD
+         a4agahU1xr3WqXB2VfPzUzslip+I/m8Eb0Par8FymCFa4AR29TPtn0iKCij2gg05cIND
+         4pOg==
+X-Gm-Message-State: AOAM531gvhQlN+wiNNPgAvNkeQdgsEY9SHHyY6wIV5RxJMYIIcR7iJox
+        ocoWtg6NNR8vunVy+uUA1YncWtvqvug=
+X-Google-Smtp-Source: ABdhPJynPPjKhDfBdRrXu4deYFfQEOhUbJJoP2KAxKZEnwK6Q+6Z6UDmYAY47Ok5OqvkDNllzN7VAQ==
+X-Received: by 2002:ac2:592c:: with SMTP id v12mr27667572lfi.249.1629906112733;
+        Wed, 25 Aug 2021 08:41:52 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-17-251.dynamic.spd-mgts.ru. [94.29.17.251])
+        by smtp.googlemail.com with ESMTPSA id j14sm33529lfe.203.2021.08.25.08.41.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Aug 2021 08:41:52 -0700 (PDT)
+Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+References: <080469b3-612b-3a34-86e5-7037a64de2fe@gmail.com>
+ <20210818055849.ybfajzu75ecpdrbn@vireshk-i7>
+ <f1c76f23-086d-ef36-54ea-0511b0ebe0e1@gmail.com>
+ <20210818062723.dqamssfkf7lf7cf7@vireshk-i7>
+ <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
+ <20210818091417.dvlnsxlgybdsn76x@vireshk-i7>
+ <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
+ <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com>
+ <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
+ <CAPDyKFpg8ixT4AEjzVLTwQR7Nn9CctjnLCDS5GwkOrAERquyxw@mail.gmail.com>
+ <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
+ <b887de8c-a40b-a62e-8abf-698e67cdb70c@gmail.com>
+Message-ID: <ed70e422-e0e9-8c2a-7ce6-e39cb6fd8108@gmail.com>
+Date:   Wed, 25 Aug 2021 18:41:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ujvj4sh6srxe5rru"
-Content-Disposition: inline
-In-Reply-To: <3221818.pD4rYpbbZ1@jernej-laptop>
+In-Reply-To: <b887de8c-a40b-a62e-8abf-698e67cdb70c@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+22.08.2021 21:35, Dmitry Osipenko пишет:
+> 20.08.2021 08:18, Viresh Kumar пишет:
+>> On 19-08-21, 16:55, Ulf Hansson wrote:
+>>> Right, that sounds reasonable.
+>>>
+>>> We already have pm_genpd_opp_to_performance_state() which translates
+>>> an OPP to a performance state. This function invokes the
+>>> ->opp_to_performance_state() for a genpd. Maybe we need to allow a
+>>> genpd to not have ->opp_to_performance_state() callback assigned
+>>> though, but continue up in the hierarchy to see if the parent has the
+>>> callback assigned, to make this work for Tegra?
+>>>
+>>> Perhaps we should add an API dev_pm_genpd_opp_to_performance_state(),
+>>> allowing us to pass the device instead of the genpd. But that's a
+>>> minor thing.
+>>
+>> I am not concerned a lot about how it gets implemented, and am not
+>> sure as well, as I haven't looked into these details since sometime.
+>> Any reasonable thing will be accepted, as simple as that.
+>>
+>>> Finally, the precondition to use the above, is to first get a handle
+>>> to an OPP table. This is where I am struggling to find a generic
+>>> solution, because I guess that would be platform or even consumer
+>>> driver specific for how to do this. And at what point should we do
+>>> this?
+> 
+> GENPD core can't get OPP table handle, setting up OPP table is a platform/driver specific operation.
+> 
+>> Hmm, I am not very clear with the whole picture at this point of time.
+>>
+>> Dmitry, can you try to frame a sequence of events/calls/etc that will
+>> define what kind of devices we are looking at here, and how this can
+>> be made to work ?
+> 
+> Could you please clarify what do you mean by a "kind of devices"?
+> 
+> I made hack based on the recent discussions and it partially works. Getting clock rate involves resuming device which backs the clock and it also may use GENPD, so lockings are becoming complicated. It doesn't work at all if device uses multiple domains because virtual domain device doesn't have OPP table.
+> 
+> Setting up the performance state from a consumer driver is a cleaner variant so far. 
 
---ujvj4sh6srxe5rru
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thinking a bit more about this, I got a nicer variant which actually works in all cases for Tegra.
 
-On Wed, Aug 25, 2021 at 05:03:30PM +0200, Jernej =C5=A0krabec wrote:
-> Dne sreda, 25. avgust 2021 ob 16:50:27 CEST je Maxime Ripard napisal(a):
-> > Hi,
-> >=20
-> > On Fri, Aug 20, 2021 at 06:34:38AM +0200, Jernej =C5=A0krabec wrote:
-> > > > > +static void __init sun50i_r329_r_ccu_setup(struct device_node *n=
-ode)
-> > > > > +{
-> > > > > +	void __iomem *reg;
-> > > > > +	u32 val;
-> > > > > +	int i;
-> > > > > +
-> > > > > +	reg =3D of_io_request_and_map(node, 0, of_node_full_name(node));
-> > > > > +	if (IS_ERR(reg)) {
-> > > > > +		pr_err("%pOF: Could not map clock registers\n", node);
-> > > > > +		return;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Enable the lock bits and the output enable bits on all PLLs =
-*/
-> > > > > +	for (i =3D 0; i < ARRAY_SIZE(pll_regs); i++) {
-> > > > > +		val =3D readl(reg + pll_regs[i]);
-> > > > > +		val |=3D BIT(29) | BIT(27);
-> > > > > +		writel(val, reg + pll_regs[i]);
-> > > > > +	}
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Force the I/O dividers of PLL-AUDIO1 to reset default value
-> > > > > +	 *
-> > > > > +	 * See the comment before pll-audio1 definition for the reason.
-> > > > > +	 */
-> > > > > +
-> > > > > +	val =3D readl(reg + SUN50I_R329_PLL_AUDIO1_REG);
-> > > > > +	val &=3D ~BIT(1);
-> > > > > +	val |=3D BIT(0);
-> > > > > +	writel(val, reg + SUN50I_R329_PLL_AUDIO1_REG);
-> > > > > +
-> > > > > +	i =3D sunxi_ccu_probe(node, reg, &sun50i_r329_r_ccu_desc);
-> > > > > +	if (i)
-> > > > > +		pr_err("%pOF: probing clocks fails: %d\n", node, i);
-> > > > > +}
-> > > > > +
-> > > > > +CLK_OF_DECLARE(sun50i_r329_r_ccu, "allwinner,sun50i-r329-r-ccu",
-> > > > > +	       sun50i_r329_r_ccu_setup);
-> > > >=20
-> > > > Please make this a platform driver. There is no particular reason w=
-hy it
-> > > > needs to be an early OF clock provider.
-> > >=20
-> > > Why? It's good to have it as early clock provider. It has no dependen=
-cies
-> > > and other drivers that depends on it, like IR, can be deferred, if th=
-is
-> > > is loaded later.
-> >=20
-> > No, Samuel is right, we should make them regular drivers as much as we
-> > can.
-> >=20
-> > The reason we had CLK_OF_DECLARE in the first place is that timers
-> > usually have a parent clock, and you need the timers before the device
-> > model is set up.
-> >=20
-> > Fortunately for us, since the A20, the architected timers don't require
-> > a parent clock from us, and we can thus boot up fine.
->=20
-> There are other timers. A lot of SoCs, newer than A20 (like H6), have Hig=
-h=20
-> Speed Timer, which requires parent clock to be enabled. We just choose no=
-t to=20
-> add node for it to DT, even if it's there and driver already exists.
+Viresh / Ulf, what do you think about this:
 
-Yeah, I know. The thing is, we just need one timer in order to boot to
-the point where the DM is there. We can totally have a timer driver
-probing just like any other driver, through the DM, later on.
+diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+index 3a13a942d012..814b0f7a1909 100644
+--- a/drivers/base/power/domain.c
++++ b/drivers/base/power/domain.c
+@@ -2700,15 +2700,28 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+ 		goto err;
+ 	} else if (pstate > 0) {
+ 		ret = dev_pm_genpd_set_performance_state(dev, pstate);
+-		if (ret)
++		if (ret) {
++			dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
++				pd->name, ret);
+ 			goto err;
++		}
+ 		dev_gpd_data(dev)->default_pstate = pstate;
+ 	}
++
++	if (pd->get_performance_state) {
++		ret = pd->get_performance_state(pd, base_dev);
++		if (ret < 0) {
++			dev_err(dev, "failed to get performance state for power-domain %s: %d\n",
++				pd->name, ret);
++			goto err;
++		}
++
++		dev_gpd_data(dev)->rpm_pstate = ret;
++	}
++
+ 	return 1;
+ 
+ err:
+-	dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
+-		pd->name, ret);
+ 	genpd_remove_device(pd, dev);
+ 	return ret;
+ }
+diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+index 2f1da33c2cd5..5f045030879b 100644
+--- a/drivers/opp/core.c
++++ b/drivers/opp/core.c
+@@ -2136,7 +2136,7 @@ struct opp_table *dev_pm_opp_set_clkname(struct device *dev, const char *name)
+ 	}
+ 
+ 	/* clk shouldn't be initialized at this point */
+-	if (WARN_ON(opp_table->clk)) {
++	if (WARN_ON(!IS_ERR_OR_NULL(opp_table->clk))) {
+ 		ret = -EBUSY;
+ 		goto err;
+ 	}
+@@ -2967,3 +2967,33 @@ int dev_pm_opp_sync(struct device *dev)
+ 	return ret;
+ }
+ EXPORT_SYMBOL_GPL(dev_pm_opp_sync);
++
++/**
++ * dev_pm_opp_from_clk_rate() - Get OPP from current clock rate
++ * @dev:	device for which we do this operation
++ *
++ * Get OPP which corresponds to the current clock rate of a device.
++ *
++ * Return: pointer to 'struct dev_pm_opp' on success and errorno otherwise.
++ */
++struct dev_pm_opp *dev_pm_opp_from_clk_rate(struct device *dev)
++{
++	struct dev_pm_opp *opp = ERR_PTR(-ENODEV);
++	struct opp_table *opp_table;
++	unsigned long freq;
++
++	opp_table = _find_opp_table(dev);
++	if (IS_ERR(opp_table))
++		return ERR_CAST(opp_table);
++
++	if (!IS_ERR(opp_table->clk)) {
++		freq = clk_get_rate(opp_table->clk);
++		opp = _find_freq_ceil(opp_table, &freq);
++	}
++
++	/* Drop reference taken by _find_opp_table() */
++	dev_pm_opp_put_opp_table(opp_table);
++
++	return opp;
++}
++EXPORT_SYMBOL_GPL(dev_pm_opp_from_clk_rate);
+diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
+index 7c9bc93147f1..fc863d84f8d5 100644
+--- a/drivers/soc/tegra/pmc.c
++++ b/drivers/soc/tegra/pmc.c
+@@ -506,6 +506,96 @@ static void tegra_pmc_scratch_writel(struct tegra_pmc *pmc, u32 value,
+ 		writel(value, pmc->scratch + offset);
+ }
+ 
++static const char * const tegra_pd_no_perf_compats[] = {
++	"nvidia,tegra20-sclk",
++	"nvidia,tegra30-sclk",
++	"nvidia,tegra30-pllc",
++	"nvidia,tegra30-plle",
++	"nvidia,tegra30-pllm",
++	"nvidia,tegra20-dc",
++	"nvidia,tegra30-dc",
++	"nvidia,tegra20-emc",
++	"nvidia,tegra30-emc",
++	NULL,
++};
++
++static int tegra_pmc_pd_get_performance_state(struct generic_pm_domain *genpd,
++					      struct device *dev)
++{
++	struct opp_table *hw_opp_table, *clk_opp_table;
++	struct dev_pm_opp *opp;
++	u32 hw_version;
++	int ret;
++
++	/*
++	 * Tegra114+ SocS don't support OPP yet.  But if they will get OPP
++	 * support, then we want to skip OPP for older kernels to preserve
++	 * compatibility of newer DTBs with older kernels.
++	 */
++	if (!pmc->soc->supports_core_domain)
++		return 0;
++
++	/*
++	 * The EMC devices are a special case because we have a protection
++	 * from non-EMC drivers getting clock handle before EMC driver is
++	 * fully initialized.  The goal of the protection is to prevent
++	 * devfreq driver from getting failures if it will try to change
++	 * EMC clock rate until clock is fully initialized.  The EMC drivers
++	 * will initialize the performance state by themselves.
++	 *
++	 * Display controller also is a special case because only controller
++	 * driver could get the clock rate based on configuration of internal
++	 * divider.
++	 *
++	 * Clock driver uses its own state syncing.
++	 */
++	if (of_device_compatible_match(dev->of_node, tegra_pd_no_perf_compats))
++		return 0;
++
++	if (of_machine_is_compatible("nvidia,tegra20"))
++		hw_version = BIT(tegra_sku_info.soc_process_id);
++	else
++		hw_version = BIT(tegra_sku_info.soc_speedo_id);
++
++	hw_opp_table = dev_pm_opp_set_supported_hw(dev, &hw_version, 1);
++	if (IS_ERR(hw_opp_table)){
++		dev_err(dev, "failed to set OPP supported HW: %pe\n",
++			hw_opp_table);
++		return PTR_ERR(hw_opp_table);
++	}
++
++	clk_opp_table = dev_pm_opp_set_clkname(dev, NULL);
++	if (IS_ERR(clk_opp_table)){
++		dev_err(dev, "failed to set OPP clk: %pe\n", clk_opp_table);
++		ret = PTR_ERR(clk_opp_table);
++		goto put_hw;
++	}
++
++	ret = devm_pm_opp_of_add_table(dev);
++	if (ret) {
++		dev_err(dev, "failed to add OPP table: %d\n", ret);
++		goto put_clk;
++	}
++
++	opp = dev_pm_opp_from_clk_rate(dev);
++	if (IS_ERR(opp)) {
++		dev_err(&genpd->dev, "failed to get current OPP for %s: %pe\n",
++			dev_name(dev), opp);
++		ret = PTR_ERR(opp);
++	} else {
++		ret = dev_pm_opp_get_required_pstate(opp, 0);
++		dev_pm_opp_put(opp);
++	}
++
++	dev_pm_opp_of_remove_table(dev);
++put_clk:
++	dev_pm_opp_put_clkname(clk_opp_table);
++put_hw:
++	dev_pm_opp_put_supported_hw(hw_opp_table);
++
++	return ret;
++}
++
+ /*
+  * TODO Figure out a way to call this with the struct tegra_pmc * passed in.
+  * This currently doesn't work because readx_poll_timeout() can only operate
+@@ -1238,6 +1328,7 @@ static int tegra_powergate_add(struct tegra_pmc *pmc, struct device_node *np)
+ 
+ 	pg->id = id;
+ 	pg->genpd.name = np->name;
++	pg->genpd.get_performance_state = tegra_pmc_pd_get_performance_state;
+ 	pg->genpd.power_off = tegra_genpd_power_off;
+ 	pg->genpd.power_on = tegra_genpd_power_on;
+ 	pg->pmc = pmc;
+@@ -1354,6 +1445,7 @@ static int tegra_pmc_core_pd_add(struct tegra_pmc *pmc, struct device_node *np)
+ 		return -ENOMEM;
+ 
+ 	genpd->name = "core";
++	genpd->get_performance_state = tegra_pmc_pd_get_performance_state;
+ 	genpd->set_performance_state = tegra_pmc_core_pd_set_performance_state;
+ 	genpd->opp_to_performance_state = tegra_pmc_core_pd_opp_to_performance_state;
+ 
+diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+index 67017c9390c8..abe33be9828f 100644
+--- a/include/linux/pm_domain.h
++++ b/include/linux/pm_domain.h
+@@ -133,6 +133,8 @@ struct generic_pm_domain {
+ 						 struct dev_pm_opp *opp);
+ 	int (*set_performance_state)(struct generic_pm_domain *genpd,
+ 				     unsigned int state);
++	int (*get_performance_state)(struct generic_pm_domain *genpd,
++				     struct device *dev);
+ 	struct gpd_dev_ops dev_ops;
+ 	s64 max_off_time_ns;	/* Maximum allowed "suspended" time. */
+ 	ktime_t next_wakeup;	/* Maintained by the domain governor */
+diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
+index 686122b59935..e7fd0dd493ca 100644
+--- a/include/linux/pm_opp.h
++++ b/include/linux/pm_opp.h
+@@ -169,6 +169,7 @@ void dev_pm_opp_remove_table(struct device *dev);
+ void dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask);
+ int dev_pm_opp_sync_regulators(struct device *dev);
+ int dev_pm_opp_sync(struct device *dev);
++struct dev_pm_opp *dev_pm_opp_from_clk_rate(struct device *dev);
+ #else
+ static inline struct opp_table *dev_pm_opp_get_opp_table(struct device *dev)
+ {
+@@ -440,6 +441,11 @@ static inline int dev_pm_opp_sync(struct device *dev)
+ 	return -EOPNOTSUPP;
+ }
+ 
++static struct inline dev_pm_opp *dev_pm_opp_from_clk_rate(struct device *dev)
++{
++	return ERR_PTR(-EOPNOTSUPP);
++}
++
+ #endif		/* CONFIG_PM_OPP */
+ 
+ #if defined(CONFIG_PM_OPP) && defined(CONFIG_OF)
 
-Maxime
-
---ujvj4sh6srxe5rru
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYSZjvgAKCRDj7w1vZxhR
-xX+TAP0WGHG2s4yHamp+fjkYZIyN3blRmTbmA8bbbYAZDDpWPAD8D3b0gM0/5VYF
-c22yVcU2bytiqTiat5LMPSwOhQzTCQo=
-=zJhK
------END PGP SIGNATURE-----
-
---ujvj4sh6srxe5rru--
