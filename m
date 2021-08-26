@@ -2,130 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0942D3F80C3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 04:55:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5CA3F8117
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 05:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbhHZC4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 22:56:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
+        id S232139AbhHZDah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 23:30:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237644AbhHZC4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 22:56:42 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF2BC061796
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 19:55:55 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id b9so887329plx.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 19:55:55 -0700 (PDT)
+        with ESMTP id S229533AbhHZDah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 23:30:37 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0599AC061757;
+        Wed, 25 Aug 2021 20:29:51 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id e16so1094476pfc.6;
+        Wed, 25 Aug 2021 20:29:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XZJy3B7m2q1WQYxMFNJqVt+qoddOU66BMzkNgwutOWg=;
-        b=BqMyQF/pRrF5xvz5gMLvg1PjbQE0frktW1h8fThSOxAyiiCfj3dL0xTey26htEbkAU
-         qVk4YC/4pxXxGHnr1GTo9bAoMJ4eX1tti5O7V1wnRrIafIwyVqmUZ2m6I0wxB2W1enrU
-         HYOhVAex2Ke6zlvt61UNmgKkPh0dFb29lz983ZdH0aQ73RTHtAt7M1/VCP+x5TO9AjAI
-         IJ3QFiGrCxXaLSKuBsbiYJZ42RDh74ChanCbedOwOUd6kuh7jO/uAx7AqCUeER3jlnSQ
-         JtlHN1LIH4ywCIyB5pTCzFG5gUqpfLooaOTxS3rQYlWnLCOQf96ZEpwgb/6YUmVVCCWa
-         uEzw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:subject:message-id:mime-version:content-disposition;
+        bh=XtPfIMAUlTL7iDQoQvHB8+nZAxqrvLZEj9yQzJVKyuI=;
+        b=aMkAaEnCl/7RVWlXQgdSIUOVDeucvFNXh1W7GIwr6Wi77qHBV6jDkYsZdYmjj7LXjx
+         HpoC6ClJubwRPvqM3UD+L/f9oRzdEXO6jDssMoggWKHrpmiUGbUmibOEFfeB9EYBUlat
+         Xnz7FOlMNL1BBuAAqU17Iz9NucgWLCxJYMgBzFs4PQ/SL2TG2ziAjtjmtfaSRlfh3Svm
+         Oezz/Y0HRkgv93yHHEH7cM8PJzz7Gc1J8jKWEcrtzZM38X6Ry+tDDa7goZ6wgElGWiMz
+         OehUtmeu0D3D7SBvuulfmHUL9Ulw8J6+jXPj9k8c4xvol1VHX60r04w6SSeL6rTQhea9
+         bKww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XZJy3B7m2q1WQYxMFNJqVt+qoddOU66BMzkNgwutOWg=;
-        b=PNwO/Z3ovVB9rmhUjLPSyRZDHbJtfwTbLR/O3P/INxh4CTccN6QsqBP7C96izRmuT8
-         YuoU9EIlpkuAnaB8ikUxDgdFcHLRASbzUfZ4JeLGbQjmYZfzoXPL3skQi12pOfoHPh5I
-         1dW4EIGsMevWI+Zl6jpelQBenrOYP2pqUiirj0R76CKP6mYKQ0FYgtlbMkRAr+i0mMoi
-         UtMlqkWPPUqJd75akkDrN/nRzGLs9ueN8eDGOOB8YAGmO+8a+XStc+XOObaYOcTiYwIq
-         kf/3EhuC6iJ+jhKl9EmJmMHxr1krjv1VWMIIEao1YOyc4RQNqQLAPphvLZxz2I3iD87A
-         40+w==
-X-Gm-Message-State: AOAM5314bTYsKfK6XwYdf4K7h8hXejpnWvggf4g9onbBK9C9bU6/uGek
-        EwmMvSQ5LUwavUfnaK+bHBlCgw==
-X-Google-Smtp-Source: ABdhPJxp/UrPyXCwFMVDb4P8xsIyAd9gtXZ72kFLG9qw2YDutl/4rgLBxJGBT6WkpyrCaGfD2F0KiA==
-X-Received: by 2002:a17:90b:3144:: with SMTP id ip4mr14265346pjb.22.1629946555282;
-        Wed, 25 Aug 2021 19:55:55 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id 22sm1308517pgn.88.2021.08.25.19.55.54
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition;
+        bh=XtPfIMAUlTL7iDQoQvHB8+nZAxqrvLZEj9yQzJVKyuI=;
+        b=TUOgdU0oD7xRw2yreo/9mK7EIdIpC99KvYv2MNH/WMkAQnaNPUS5HyRPN7FoTJ1tNA
+         Q1kzk1mTKQCALv1yytAC50nZLIxF5A43JyGK/8eKUJObmlSByabCIIWx6wiUTM5hAxju
+         kmQ+CqSs5P6F4dwa0MsJDHujb72+tTTqZYncNh+ZZFJ68QmpnxSYVPTjqMtt0ZzKSgpj
+         d5Dux/yLuxlJ24KSLxAx3FRJZPAm0oQU4URbkkqswgb958aMIVaplCwDSe4zxgYcYwys
+         mE5E48DtB7GVdQ0eiejCC2eyXUNIZ9rF4m20201xo405+jzAjXZkthi8gMXE0mKzEzLa
+         S3eQ==
+X-Gm-Message-State: AOAM531esWjRLOszV0vIOAmBZ60OAkGiX86yAMsQ50yJ/LrzwLjlN02J
+        m5npgLCn2QT0M2A766Nd2GNxNzuKjjI=
+X-Google-Smtp-Source: ABdhPJy7D7ZZZbObXJ/oELYx4GyEUqtSa5Gauz5XIuF7o64Gh6T5tJU3oIb9j0reAx70EYFXDo90KA==
+X-Received: by 2002:a62:32c7:0:b029:3cd:fba0:3218 with SMTP id y190-20020a6232c70000b02903cdfba03218mr1668755pfy.52.1629948590503;
+        Wed, 25 Aug 2021 20:29:50 -0700 (PDT)
+Received: from anyang-linuxfactory-or-kr ([106.250.177.234])
+        by smtp.gmail.com with ESMTPSA id p18sm1441194pgk.28.2021.08.25.20.29.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 19:55:54 -0700 (PDT)
-Date:   Thu, 26 Aug 2021 08:25:50 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v8 01/34] opp: Add dev_pm_opp_sync() helper
-Message-ID: <20210826025550.sshd7xl3gsuendoi@vireshk-i7>
-References: <CAPDyKFrZqWtZOp4MwDN6fShoLLbw5NM039bpE3-shB+fCEZOog@mail.gmail.com>
- <20210818091417.dvlnsxlgybdsn76x@vireshk-i7>
- <CAPDyKFrVxhrWGr2pKduehshpLFd_db2NTPGuD7fSqvuHeyzT4w@mail.gmail.com>
- <f1314a47-9e8b-58e1-7c3f-0afb1ec8e70a@gmail.com>
- <20210819061617.r4kuqxafjstrv3kt@vireshk-i7>
- <CAPDyKFpg8ixT4AEjzVLTwQR7Nn9CctjnLCDS5GwkOrAERquyxw@mail.gmail.com>
- <20210820051843.5mueqpnjbqt3zdzc@vireshk-i7>
- <b887de8c-a40b-a62e-8abf-698e67cdb70c@gmail.com>
- <ed70e422-e0e9-8c2a-7ce6-e39cb6fd8108@gmail.com>
- <20210826025427.exdinwkuavyfcp3f@vireshk-i7>
+        Wed, 25 Aug 2021 20:29:49 -0700 (PDT)
+Date:   Thu, 26 Aug 2021 12:28:32 +0900
+From:   Dongjin Kim <tobetter@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson: sm1: add Ethernet PHY reset line for
+ ODROID-C4/HC4
+Message-ID: <YScKYFWlYymgGw3l@anyang-linuxfactory-or-kr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210826025427.exdinwkuavyfcp3f@vireshk-i7>
-User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-08-21, 08:24, Viresh Kumar wrote:
-> On 25-08-21, 18:41, Dmitry Osipenko wrote:
-> > Thinking a bit more about this, I got a nicer variant which actually works in all cases for Tegra.
-> > 
-> > Viresh / Ulf, what do you think about this:
-> 
-> This is what I have been suggesting from day 1 :)
-> 
-> https://lore.kernel.org/linux-staging/20210818055849.ybfajzu75ecpdrbn@vireshk-i7/
-> 
->  "
->   And if it is all about just syncing the genpd core, then can the
->   genpd core do something like what clk framework does? i.e. allow a
->   new optional genpd callback, get_performance_state() (just like
->   set_performance_state()), which can be called initially by the core
->   to get the performance to something other than zero.
->  "
-> 
-> Looks good to me :)
+This patch is to fix an issue that the ethernet link doesn't come up
+when using ip link set down/up:
+   [   11.428114] meson8b-dwmac ff3f0000.ethernet eth0: Link is Down
+   [   14.428595] meson8b-dwmac ff3f0000.ethernet eth0: PHY [0.0:00] driver [RTL8211F Gigabit Ethernet] (irq=31)
+   [   14.428610] meson8b-dwmac ff3f0000.ethernet: Failed to reset the dma
+   [   14.428974] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_hw_setup: DMA engine initialization failed
+   [   14.711185] meson8b-dwmac ff3f0000.ethernet eth0: stmmac_open: Hw setup failed
 
-When you refresh this stuff, please send only 3-4 patches to update
-the core stuff and show an example. Once we finalize with the
-interface, you can update all the users. Else this is just noise for
-everyone else.
+This fix has been referred two commits applied for ODROID-N2 (G12B).
+    commit 658e4129bb81 ("arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line")
+    commit 1c7412530d5d0 ("arm64: dts: meson: g12b: odroid-n2: fix PHY deassert timing requirements")
 
+Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index d14716b3d0f1..1230beba04aa 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -256,6 +256,10 @@ external_phy: ethernet-phy@0 {
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 
++		reset-assert-us = <10000>;
++		reset-deassert-us = <80000>;
++		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
++
+ 		interrupt-parent = <&gpio_intc>;
+ 		/* MAC_INTR on GPIOZ_14 */
+ 		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
 -- 
-viresh
+2.30.2
+
