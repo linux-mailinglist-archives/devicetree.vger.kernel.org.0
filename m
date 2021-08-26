@@ -2,425 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E690F3F8E94
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 21:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 098C93F8EA8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 21:22:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243390AbhHZTQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 15:16:06 -0400
-Received: from mailfilter05-out40.webhostingserver.nl ([195.211.74.36]:28547
-        "EHLO mailfilter05-out40.webhostingserver.nl" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243462AbhHZTQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Aug 2021 15:16:05 -0400
-X-Greylist: delayed 963 seconds by postgrey-1.27 at vger.kernel.org; Thu, 26 Aug 2021 15:16:05 EDT
+        id S243364AbhHZTXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 15:23:09 -0400
+Received: from mail-vi1eur05on2071.outbound.protection.outlook.com ([40.107.21.71]:10016
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S243356AbhHZTXJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Aug 2021 15:23:09 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RGNh9EuUYsZtv5fDDNX23xEg8BuWok2pMpUN7BEWCed8aiGdFa/Pu32HMkhUQeiH4xIoBtFN1gRDT19EeNsgqjq1pU8fsQ1yUB6SnTQTkAFWpBQCzrlEMxUxeFaQD61zO4nVfqA4BBOLv8/KaFttRfOyV2y8mH4iVUpU7xJjJWla06sqG0a7ZplDMv9srGHyZaEhYJfoARiD0il44wCybsJspzl+dugPrKP3UWHAj0dGZ5kvzl6nC5LO/zfrpMk5gyRVVDlWp2qgCHSvZpnarW5Cb8PjCd84yqNlaWiRnvwY3WVqGjx/WvaE3a6Wv+/ge4zhdX6k90kAlsg820vRCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4uWZ9CfbQNyHLva/vkGrfYmIwP3/toXaJz3rcXogjBM=;
+ b=DjDCKqfTHaczC9rpkJfx0h2Bh/uDvxSmON3Fpyt2ubXIkPoaCjoWORw3HPordW8wKoaGuTuBzh017saSdPeIjIv9OZIZFCHzBVNJb1HVLcunK6avaIMhbsUxLMpRx+Ii9mEzMgj2+vi+sRfuiQAJmHMOcGR/FdxjWFqjWEitOuT0hFtsDGL9Tz98nvjk3nxo0lsNF+wxEkj6VqPXMmF40jntf62kz42rHZiEffP9yfKuri8uoUfNPv6H0Vb2YC/NbmK3LOe0AI0R2zd+kb08iw6qlbXjNKutuaZXrwieJsio0c5Lx/v355Fx61Nzx+9u7rN2oLFexn5Dnk9yER361Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=exalondelft.nl; s=whs1;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:message-id:date:
-         subject:cc:to:from:from;
-        bh=HMuEEu4uHVXJlnlSWbD6E0RyqKUtkAopwNxZWCagDfw=;
-        b=jPi0yKuXsNq261eUFw4/JhpTZcz6zhKugrLx5KE196XtCkrCsukJdJG4XEfuCyTdJuOxRfoCjzj1T
-         YmLFv+jYYLKLjqtOv8LqHXhQG5ovisG6eX8Fjt31MoGVZjW+nySxQ3OF+MCmh3CsNnL6DQeuw/liS6
-         Zk+5v18sFuFsU28UAIfR3Ov8I65V/NLq++x24lcE/NH8JbTcwfvTwhECCxe4nrrGNfrukGxkmyiWJh
-         OKYAdx0Q+QPcZPSdkt79ZspI0oK0LWtKrs8tkUPqNT5DbAgG+TEwoPbJTT7tiMf5gra51LZE6LsQre
-         N5vc7HHlJ6m9+c8nCL+z77JqMIIDqKQ==
-X-Halon-ID: b02d5335-069f-11ec-adfe-001a4a4cb933
-Received: from s198.webhostingserver.nl (s198.webhostingserver.nl [141.138.168.154])
-        by mailfilter05.webhostingserver.nl (Halon) with ESMTPSA
-        id b02d5335-069f-11ec-adfe-001a4a4cb933;
-        Thu, 26 Aug 2021 20:59:06 +0200 (CEST)
-Received: from [2001:981:6fec:1:f9ad:97f3:2f9b:d8ba] (helo=localhost.localdomain)
-        by s198.webhostingserver.nl with esmtpa (Exim 4.94.2)
-        (envelope-from <ftoth@exalondelft.nl>)
-        id 1mJKai-009E4p-Gj; Thu, 26 Aug 2021 20:59:06 +0200
-From:   Ferry Toth <ftoth@exalondelft.nl>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ferry Toth <ftoth@exalondelft.nl>,
-        Ruslan Bilovol <ruslan.bilovol@gmail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Jack Pham <jackp@codeaurora.org>, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-doc@vger.kernel.org
-Cc:     Lorenzo Colitti <lorenzo@google.com>,
-        Wesley Cheng <wcheng@codeaurora.org>, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, heikki.krogerus@linux.intel.com,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Pavel Hofman <pavel.hofman@ivitera.com>
-Subject: [PATCH v2 3/3] Revert "usb: gadget: f_uac2/u_audio: add feedback endpoint support"
-Date:   Thu, 26 Aug 2021 20:57:39 +0200
-Message-Id: <20210826185739.3868-4-ftoth@exalondelft.nl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210826185739.3868-1-ftoth@exalondelft.nl>
-References: <20210826185739.3868-1-ftoth@exalondelft.nl>
-MIME-Version: 1.0
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4uWZ9CfbQNyHLva/vkGrfYmIwP3/toXaJz3rcXogjBM=;
+ b=GDjMz4GU9NGNAJibPq5c1CmTTlE/2tRd76HpFirrldzsx+QPY/Gvo/CILJNH+f0bEfHzZ0VjELRU2QSbMQ3JfGB5+1q3K7evv7RUxTFoG/fo+LGask/OciqLR6LA8/vx29v8xhDJ2rCXfLBNqZ4eJ13aOkBntCN8oqP/v6eX5eM=
+Authentication-Results: barco.com; dkim=none (message not signed)
+ header.d=none;barco.com; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DBBPR03MB6748.eurprd03.prod.outlook.com (2603:10a6:10:204::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Thu, 26 Aug
+ 2021 19:22:12 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::dc6c:815b:2062:d1f1]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::dc6c:815b:2062:d1f1%7]) with mapi id 15.20.4436.025; Thu, 26 Aug 2021
+ 19:22:12 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     Peter Korsgaard <peter.korsgaard@barco.com>,
+        Peter Korsgaard <peter@korsgaard.com>,
+        linux-serial@vger.kernel.org
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Rich Felker <dalias@libc.org>, Rob Herring <robh@kernel.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/4] tty: serial: uartlite: Disable changing fixed parameters
+Date:   Thu, 26 Aug 2021 15:21:50 -0400
+Message-Id: <20210826192154.3202269-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-Antivirus-Scanner: Clean mail though you should still use an Antivirus
+Content-Type: text/plain
+X-ClientProxiedBy: BL1PR13CA0046.namprd13.prod.outlook.com
+ (2603:10b6:208:257::21) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from plantagenet.inhand.com (50.195.82.171) by BL1PR13CA0046.namprd13.prod.outlook.com (2603:10b6:208:257::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.8 via Frontend Transport; Thu, 26 Aug 2021 19:22:11 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 72eda558-a091-4ff7-82e9-08d968c6ce2d
+X-MS-TrafficTypeDiagnostic: DBBPR03MB6748:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBBPR03MB674876AC1382234C0F43778D96C79@DBBPR03MB6748.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: InaGx+gmxaxuc3iEzSTusd3I8fr8hqzP2NPEbq9d5H+r146hjKkxeAVbG3ljiSiLbPEgfOwrdySWSYylixCtKQ3fvrhk2XRwtDdhoik9Ec0huxfGQzExIaIzASa7Tg7ppw3OaC+ak5zKXr4uq+O9pNfjoSrlkLmk2C23knX7Z2zk/U4lryLfvqMw7ExRVAmzvGzzg8d0DxElKsPDF9kHWMPWps86VfhQ6NziRjUvSKKgK3NVO6XEyZHRHwi3YPhLZBgq8olTxT0ULtVnfF4IGjHlScKwfjtQ3UJMwlFp2BShzrHVQEMGWWwLOmL15ODC5IwF7RbvuIxoqd6PE91VpaNZLRBLBPO43U3a9DC3TBNVMnF2VVNP4AfDjGXyoywEBdTsgNAsgZO4R8AnED+KZRN0l1hPs6q1eBzZbKE81cds6GAA1VU6UYPO7F0QxQZjJXlEx+LdiQK4K8bbzCoZ6fgIIub6gbACQ/bYO2EWAMVenPHPcuvLWtMB3uW3YfVaetPWWif9XyEgn0Ej3+avCvpH4wjS3XeyfhkCme+aFOzKpuMlzWTnmizwgiAJI2Mobk0KOEFNmtfU/EN3LdwUoAuEBIfO1YtjqlybiddDAssUmv/xzPyV0In6qyy1xAnYfmLtE6eQJqw8w8OlpXe0DG0jXjl1XIxZ2B9z5P409uyc9ueF5x6RdI+w8qHEpnRIG7OGgnFer2YybRxSWQRyvA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(346002)(136003)(366004)(396003)(376002)(83380400001)(6512007)(66476007)(86362001)(478600001)(110136005)(186003)(66556008)(4326008)(54906003)(38100700002)(36756003)(38350700002)(316002)(6486002)(52116002)(8676002)(26005)(6506007)(6666004)(2616005)(44832011)(956004)(5660300002)(66946007)(2906002)(1076003)(7416002)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HmGRqBNsy7AFK75UujNhLIUvfQGtp9kgSsHQhwB+mK1tyNzo1Mo1HfyvNrHF?=
+ =?us-ascii?Q?Y2m9SLWOvLx1DStBEbg4b4xjr8SbmxZqM48MgxSXzy6uajIGJPHKmp3snpKa?=
+ =?us-ascii?Q?l94TeDY1ybNCbesWBPYICA4P5iKfXLnj9Wq3yqiV863GI7AeCltpyVuimLxF?=
+ =?us-ascii?Q?UzrpbU4ARx66NwLcuEIsfglhQ1j9lFZ/V7BuF4h0WT05fId749QAuSaX0LDB?=
+ =?us-ascii?Q?cJikRyqbd3XWlS5SrvhM0msNo8F6UepjTIINjLzzu9f/E3ptJWsfu+Qrnkgy?=
+ =?us-ascii?Q?LkexvxV0cHtKnj4J7bC9uNpdvyWTAg0xTPG/FfJVFNvnkBsnxDisPKumtrTM?=
+ =?us-ascii?Q?EtBozsMErJ3a0R0PmXD7o0j/yulu4JLICBxjvrEookOvhua/9ZRf/zGVsIQK?=
+ =?us-ascii?Q?8MI0eQi89MTA36Zo8GLajVVMXlBnds9c2NzDUdtdv+pcpqgrsVNdOdfiSHBi?=
+ =?us-ascii?Q?i6EyEYkIj0fYOMVqhL433LnDu3Olou+/W3J5cvOZ0qBkBD5wA3sZ9dX2rTzH?=
+ =?us-ascii?Q?M/qngSAkEtwqTgILBXvd344dPrEiGrdMLQXlccZOt9p245/cVEuLe0tLa9qr?=
+ =?us-ascii?Q?QTigXOzDWOYplyWqWeo61VwVJ4nDWh2TW1hweXlmIFSG0yygamcqNQeDtjea?=
+ =?us-ascii?Q?Vt+Zc2dqgBsDJVOjJhF0L/H/sCnSn3azUC43nC+v9Ew8u1PKO07wsjzBD2Xe?=
+ =?us-ascii?Q?/BuwF7CHXWGqaFbD2GliNXPcKhT5mgh01hnl4hq3qF3hIweJgwzahQ6xJLTU?=
+ =?us-ascii?Q?GxJ0rsF79qSToSK5NBUa58u5YAfsorUMsQsXZTzCNZ27bYmeYEllSu8pWyfJ?=
+ =?us-ascii?Q?61Z0A3iainfCrtwyt8H6TX4rrBw/prcyjV4Odobh5zLMEOfsyqvndifirUHD?=
+ =?us-ascii?Q?09wBrGRRW6HrqjJsKDT8C7f8My7/l/U8FzaxGLfVgxlF9wqQP2U71bPM06b8?=
+ =?us-ascii?Q?qkUl50XL99kp2ow5ncGA31jys1V995Aww34PW2QHsS4l/s7/nFclxJDCtYdU?=
+ =?us-ascii?Q?qWAHD7zECiv9w6wTobINqgBSC4qKzpq4MGq8C4AxSQKo2ozsVui31OplrQY9?=
+ =?us-ascii?Q?jqyddwmkWxq/2yIUWoL1wz3imLzXm4C0tkZIPxLs8nR16WLm5/HSWw1kDZqN?=
+ =?us-ascii?Q?+8hQ95qvSygOz7vMV4qPvMz/l/nqvMtncfG1Q15gQTxxyj+uJqURwwFVOQLA?=
+ =?us-ascii?Q?oIYVWYWBUpXQfHXe1xZxqQtVOMljv8W0surSzxcE9c6dKozu91LKl+1FafnQ?=
+ =?us-ascii?Q?6m2o3w40ecgNjh4Kf65t7RDrXZcwt58Uc0AVr4MqhLWMohxZ/lGXB5pumTe/?=
+ =?us-ascii?Q?XAQn9TFqlFuL/ZO3AM9poer0?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72eda558-a091-4ff7-82e9-08d968c6ce2d
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 19:22:12.3197
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ufiTRKGXgVAHKQdpVOgVqmwb0WAY/iGrp7tOQ0T3ZEikHLZejPJDHzEiLwImltuKuuVRpv/nCXvDpgO9QpFwHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB6748
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 24f779dac8f3efb9629adc0e486914d93dc45517.
+The uartlite device is a "soft" device and certain parameters (such as
+data bits, parity, and baud) are configured at synthesis time, and
+cannot be discovered at runtime. Fortunately, bindings for this device
+typically include some of these parameters (especially baud rate).
+Instead of silently letting Linux's termios drift away from what the
+hardware is actually doing, make the termios reflect the hardware, and
+prevent them from being changed. With this series applied, the user
+recieves an error message when they try to change these parameters:
 
-The commit is part of a series with commit
-24f779dac8f3efb9629adc0e486914d93dc45517 causing a BUG on dwc3
-hardware, at least on Intel Merrifield platform when configured
-through configfs:
-BUG: kernel NULL pointer dereference, address: 0000000000000008
-...
-RIP: 0010:dwc3_gadget_del_and_unmap_request+0x19/0xe0
-...
-Call Trace:
- dwc3_remove_requests.constprop.0+0x12f/0x170
- __dwc3_gadget_ep_disable+0x7a/0x160
- dwc3_gadget_ep_disable+0x3d/0xd0
- usb_ep_disable+0x1c/0x70
- u_audio_stop_capture+0x79/0x120 [u_audio]
- afunc_set_alt+0x73/0x80 [usb_f_uac2]
- composite_setup+0x224/0x1b90 [libcomposite]
+    # stty parity
+    stty: standard input: cannot perform all requested operations
 
-Pavel's suggestion to add
-`echo "adaptive" > functions/uac2.usb0/c_sync` to the configfs script
-resolves the issue.
-Thinh suggests "the crash is probably because of f_uac2 prematurely
-freeing feedback request before its completion. usb_ep_dequeue() is
-asynchronous. dwc2() may treat it as a synchronous call so you didn't
-get a crash."
+Changes in v3:
+- Use unevaluatedProperties: false instead of additionalProperties
+- Removed defaults for required properties
+- Remove warnings about unsupported termios
+- Set defaults for xlnx,data-bits and xlnx,use-parity
 
-Revert as this is a regression and the kernel shouldn't crash depending
-on configuration parameters.
+Changes in v2:
+- Compare the baud computed with uart_get_baud_rate to pdata->baud,
+  instead of just checking c_cflag. This will catch anything that messes
+  with ispeed and ospeed.
+- Don't bother trying to set the initial termios. Instead, just skip
+  warning if old is NULL.
+- Because we no longer use uart_set_options, just convert the devicetree
+  properties directly to clflags.
 
-Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
----
- drivers/usb/gadget/function/f_uac2.c  |  49 +----------
- drivers/usb/gadget/function/u_audio.c | 119 +-------------------------
- drivers/usb/gadget/function/u_audio.h |   3 -
- 3 files changed, 3 insertions(+), 168 deletions(-)
+Sean Anderson (4):
+  dt-bindings: serial: uartlite: Convert to json-schema
+  dt-bindings: serial: uartlite: Add properties for synthesis-time
+    parameters
+  sh: j2: Update uartlite binding with data and parity properties
+  tty: serial: uartlite: Prevent changing fixed parameters
 
-diff --git a/drivers/usb/gadget/function/f_uac2.c b/drivers/usb/gadget/function/f_uac2.c
-index 5d63244ba319..7aa4c8bc5a1a 100644
---- a/drivers/usb/gadget/function/f_uac2.c
-+++ b/drivers/usb/gadget/function/f_uac2.c
-@@ -240,7 +240,7 @@ static struct usb_interface_descriptor std_as_out_if1_desc = {
- 	.bDescriptorType = USB_DT_INTERFACE,
- 
- 	.bAlternateSetting = 1,
--	.bNumEndpoints = 2,
-+	.bNumEndpoints = 1,
- 	.bInterfaceClass = USB_CLASS_AUDIO,
- 	.bInterfaceSubClass = USB_SUBCLASS_AUDIOSTREAMING,
- 	.bInterfaceProtocol = UAC_VERSION_2,
-@@ -317,37 +317,6 @@ static struct uac2_iso_endpoint_descriptor as_iso_out_desc = {
- 	.wLockDelay = 0,
- };
- 
--/* STD AS ISO IN Feedback Endpoint */
--static struct usb_endpoint_descriptor fs_epin_fback_desc = {
--	.bLength = USB_DT_ENDPOINT_SIZE,
--	.bDescriptorType = USB_DT_ENDPOINT,
--
--	.bEndpointAddress = USB_DIR_IN,
--	.bmAttributes = USB_ENDPOINT_XFER_ISOC | USB_ENDPOINT_USAGE_FEEDBACK,
--	.wMaxPacketSize = cpu_to_le16(3),
--	.bInterval = 1,
--};
--
--static struct usb_endpoint_descriptor hs_epin_fback_desc = {
--	.bLength = USB_DT_ENDPOINT_SIZE,
--	.bDescriptorType = USB_DT_ENDPOINT,
--
--	.bmAttributes = USB_ENDPOINT_XFER_ISOC | USB_ENDPOINT_USAGE_FEEDBACK,
--	.wMaxPacketSize = cpu_to_le16(4),
--	.bInterval = 4,
--};
--
--static struct usb_endpoint_descriptor ss_epin_fback_desc = {
--	.bLength = USB_DT_ENDPOINT_SIZE,
--	.bDescriptorType = USB_DT_ENDPOINT,
--
--	.bEndpointAddress = USB_DIR_IN,
--	.bmAttributes = USB_ENDPOINT_XFER_ISOC | USB_ENDPOINT_USAGE_FEEDBACK,
--	.wMaxPacketSize = cpu_to_le16(4),
--	.bInterval = 4,
--};
--
--
- /* Audio Streaming IN Interface - Alt0 */
- static struct usb_interface_descriptor std_as_in_if0_desc = {
- 	.bLength = sizeof std_as_in_if0_desc,
-@@ -462,7 +431,6 @@ static struct usb_descriptor_header *fs_audio_desc[] = {
- 	(struct usb_descriptor_header *)&as_out_fmt1_desc,
- 	(struct usb_descriptor_header *)&fs_epout_desc,
- 	(struct usb_descriptor_header *)&as_iso_out_desc,
--	(struct usb_descriptor_header *)&fs_epin_fback_desc,
- 
- 	(struct usb_descriptor_header *)&std_as_in_if0_desc,
- 	(struct usb_descriptor_header *)&std_as_in_if1_desc,
-@@ -493,7 +461,6 @@ static struct usb_descriptor_header *hs_audio_desc[] = {
- 	(struct usb_descriptor_header *)&as_out_fmt1_desc,
- 	(struct usb_descriptor_header *)&hs_epout_desc,
- 	(struct usb_descriptor_header *)&as_iso_out_desc,
--	(struct usb_descriptor_header *)&hs_epin_fback_desc,
- 
- 	(struct usb_descriptor_header *)&std_as_in_if0_desc,
- 	(struct usb_descriptor_header *)&std_as_in_if1_desc,
-@@ -525,7 +492,6 @@ static struct usb_descriptor_header *ss_audio_desc[] = {
- 	(struct usb_descriptor_header *)&ss_epout_desc,
- 	(struct usb_descriptor_header *)&ss_epout_desc_comp,
- 	(struct usb_descriptor_header *)&as_iso_out_desc,
--	(struct usb_descriptor_header *)&ss_epin_fback_desc,
- 
- 	(struct usb_descriptor_header *)&std_as_in_if0_desc,
- 	(struct usb_descriptor_header *)&std_as_in_if1_desc,
-@@ -602,26 +568,22 @@ static void setup_headers(struct f_uac2_opts *opts,
- 	struct usb_ss_ep_comp_descriptor *epin_desc_comp = NULL;
- 	struct usb_endpoint_descriptor *epout_desc;
- 	struct usb_endpoint_descriptor *epin_desc;
--	struct usb_endpoint_descriptor *epin_fback_desc;
- 	int i;
- 
- 	switch (speed) {
- 	case USB_SPEED_FULL:
- 		epout_desc = &fs_epout_desc;
- 		epin_desc = &fs_epin_desc;
--		epin_fback_desc = &fs_epin_fback_desc;
- 		break;
- 	case USB_SPEED_HIGH:
- 		epout_desc = &hs_epout_desc;
- 		epin_desc = &hs_epin_desc;
--		epin_fback_desc = &hs_epin_fback_desc;
- 		break;
- 	default:
- 		epout_desc = &ss_epout_desc;
- 		epin_desc = &ss_epin_desc;
- 		epout_desc_comp = &ss_epout_desc_comp;
- 		epin_desc_comp = &ss_epin_desc_comp;
--		epin_fback_desc = &ss_epin_fback_desc;
- 	}
- 
- 	i = 0;
-@@ -649,7 +611,6 @@ static void setup_headers(struct f_uac2_opts *opts,
- 			headers[i++] = USBDHDR(epout_desc_comp);
- 
- 		headers[i++] = USBDHDR(&as_iso_out_desc);
--		headers[i++] = USBDHDR(epin_fback_desc);
- 	}
- 	if (EPIN_EN(opts)) {
- 		headers[i++] = USBDHDR(&std_as_in_if0_desc);
-@@ -883,12 +844,6 @@ afunc_bind(struct usb_configuration *cfg, struct usb_function *fn)
- 			dev_err(dev, "%s:%d Error!\n", __func__, __LINE__);
- 			return -ENODEV;
- 		}
--		agdev->in_ep_fback = usb_ep_autoconfig(gadget,
--						       &fs_epin_fback_desc);
--		if (!agdev->in_ep_fback) {
--			dev_err(dev, "%s:%d Error!\n", __func__, __LINE__);
--			return -ENODEV;
--		}
- 	}
- 
- 	if (EPIN_EN(uac2_opts)) {
-@@ -912,10 +867,8 @@ afunc_bind(struct usb_configuration *cfg, struct usb_function *fn)
- 				le16_to_cpu(ss_epout_desc.wMaxPacketSize));
- 
- 	hs_epout_desc.bEndpointAddress = fs_epout_desc.bEndpointAddress;
--	hs_epin_fback_desc.bEndpointAddress = fs_epin_fback_desc.bEndpointAddress;
- 	hs_epin_desc.bEndpointAddress = fs_epin_desc.bEndpointAddress;
- 	ss_epout_desc.bEndpointAddress = fs_epout_desc.bEndpointAddress;
--	ss_epin_fback_desc.bEndpointAddress = fs_epin_fback_desc.bEndpointAddress;
- 	ss_epin_desc.bEndpointAddress = fs_epin_desc.bEndpointAddress;
- 
- 	setup_descriptor(uac2_opts);
-diff --git a/drivers/usb/gadget/function/u_audio.c b/drivers/usb/gadget/function/u_audio.c
-index f637ebec80b0..5fbceee897a3 100644
---- a/drivers/usb/gadget/function/u_audio.c
-+++ b/drivers/usb/gadget/function/u_audio.c
-@@ -38,10 +38,6 @@ struct uac_rtd_params {
- 	unsigned int max_psize;	/* MaxPacketSize of endpoint */
- 
- 	struct usb_request **reqs;
--
--	struct usb_request *req_fback; /* Feedback endpoint request */
--	unsigned int ffback; /* Real frequency reported by feedback endpoint */
--	bool fb_ep_enabled; /* if the ep is enabled */
- };
- 
- struct snd_uac_chip {
-@@ -74,32 +70,6 @@ static const struct snd_pcm_hardware uac_pcm_hardware = {
- 	.periods_min = MIN_PERIODS,
- };
- 
--static void u_audio_set_fback_frequency(enum usb_device_speed speed,
--					unsigned int freq, void *buf)
--{
--	u32 ff = 0;
--
--	if (speed == USB_SPEED_FULL) {
--		/*
--		 * Full-speed feedback endpoints report frequency
--		 * in samples/microframe
--		 * Format is encoded in Q10.10 left-justified in the 24 bits,
--		 * so that it has a Q10.14 format.
--		 */
--		ff = DIV_ROUND_UP((freq << 14), 1000);
--	} else {
--		/*
--		 * High-speed feedback endpoints report frequency
--		 * in samples/microframe.
--		 * Format is encoded in Q12.13 fitted into four bytes so that
--		 * the binary point is located between the second and the third
--		 * byte fromat (that is Q16.16)
--		 */
--		ff = DIV_ROUND_UP((freq << 13), 1000);
--	}
--	*(__le32 *)buf = cpu_to_le32(ff);
--}
--
- static void u_audio_iso_complete(struct usb_ep *ep, struct usb_request *req)
- {
- 	unsigned int pending;
-@@ -203,34 +173,6 @@ static void u_audio_iso_complete(struct usb_ep *ep, struct usb_request *req)
- 		dev_err(uac->card->dev, "%d Error!\n", __LINE__);
- }
- 
--static void u_audio_iso_fback_complete(struct usb_ep *ep,
--				       struct usb_request *req)
--{
--	struct uac_rtd_params *prm = req->context;
--	struct snd_uac_chip *uac = prm->uac;
--	struct g_audio *audio_dev = uac->audio_dev;
--	int status = req->status;
--	unsigned long flags;
--
--	/* i/f shutting down */
--	if (!prm->fb_ep_enabled || req->status == -ESHUTDOWN)
--		return;
--
--	/*
--	 * We can't really do much about bad xfers.
--	 * Afterall, the ISOCH xfers could fail legitimately.
--	 */
--	if (status)
--		pr_debug("%s: iso_complete status(%d) %d/%d\n",
--			__func__, status, req->actual, req->length);
--
--	u_audio_set_fback_frequency(audio_dev->gadget->speed,
--				    prm->ffback, req->buf);
--
--	if (usb_ep_queue(ep, req, GFP_ATOMIC))
--		dev_err(uac->card->dev, "%d Error!\n", __LINE__);
--}
--
- static int uac_pcm_trigger(struct snd_pcm_substream *substream, int cmd)
- {
- 	struct snd_uac_chip *uac = snd_pcm_substream_chip(substream);
-@@ -393,33 +335,14 @@ static inline void free_ep(struct uac_rtd_params *prm, struct usb_ep *ep)
- 		dev_err(uac->card->dev, "%s:%d Error!\n", __func__, __LINE__);
- }
- 
--static inline void free_ep_fback(struct uac_rtd_params *prm, struct usb_ep *ep)
--{
--	struct snd_uac_chip *uac = prm->uac;
--
--	if (!prm->fb_ep_enabled)
--		return;
--
--	prm->fb_ep_enabled = false;
--
--	if (prm->req_fback) {
--		usb_ep_dequeue(ep, prm->req_fback);
--		kfree(prm->req_fback->buf);
--		usb_ep_free_request(ep, prm->req_fback);
--		prm->req_fback = NULL;
--	}
--
--	if (usb_ep_disable(ep))
--		dev_err(uac->card->dev, "%s:%d Error!\n", __func__, __LINE__);
--}
- 
- int u_audio_start_capture(struct g_audio *audio_dev)
- {
- 	struct snd_uac_chip *uac = audio_dev->uac;
- 	struct usb_gadget *gadget = audio_dev->gadget;
- 	struct device *dev = &gadget->dev;
--	struct usb_request *req, *req_fback;
--	struct usb_ep *ep, *ep_fback;
-+	struct usb_request *req;
-+	struct usb_ep *ep;
- 	struct uac_rtd_params *prm;
- 	struct uac_params *params = &audio_dev->params;
- 	int req_len, i;
-@@ -451,42 +374,6 @@ int u_audio_start_capture(struct g_audio *audio_dev)
- 			dev_err(dev, "%s:%d Error!\n", __func__, __LINE__);
- 	}
- 
--	ep_fback = audio_dev->in_ep_fback;
--	if (!ep_fback)
--		return 0;
--
--	/* Setup feedback endpoint */
--	config_ep_by_speed(gadget, &audio_dev->func, ep_fback);
--	prm->fb_ep_enabled = true;
--	usb_ep_enable(ep_fback);
--	req_len = ep_fback->maxpacket;
--
--	req_fback = usb_ep_alloc_request(ep_fback, GFP_ATOMIC);
--	if (req_fback == NULL)
--		return -ENOMEM;
--
--	prm->req_fback = req_fback;
--	req_fback->zero = 0;
--	req_fback->context = prm;
--	req_fback->length = req_len;
--	req_fback->complete = u_audio_iso_fback_complete;
--
--	req_fback->buf = kzalloc(req_len, GFP_ATOMIC);
--	if (!req_fback->buf)
--		return -ENOMEM;
--
--	/*
--	 * Configure the feedback endpoint's reported frequency.
--	 * Always start with original frequency since its deviation can't
--	 * be meauserd at start of playback
--	 */
--	prm->ffback = params->c_srate;
--	u_audio_set_fback_frequency(audio_dev->gadget->speed,
--				    prm->ffback, req_fback->buf);
--
--	if (usb_ep_queue(ep_fback, req_fback, GFP_ATOMIC))
--		dev_err(dev, "%s:%d Error!\n", __func__, __LINE__);
--
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(u_audio_start_capture);
-@@ -495,8 +382,6 @@ void u_audio_stop_capture(struct g_audio *audio_dev)
- {
- 	struct snd_uac_chip *uac = audio_dev->uac;
- 
--	if (audio_dev->in_ep_fback)
--		free_ep_fback(&uac->c_prm, audio_dev->in_ep_fback);
- 	free_ep(&uac->c_prm, audio_dev->out_ep);
- }
- EXPORT_SYMBOL_GPL(u_audio_stop_capture);
-diff --git a/drivers/usb/gadget/function/u_audio.h b/drivers/usb/gadget/function/u_audio.h
-index 53e6baf55cbf..5ea6b86f1fda 100644
---- a/drivers/usb/gadget/function/u_audio.h
-+++ b/drivers/usb/gadget/function/u_audio.h
-@@ -30,10 +30,7 @@ struct g_audio {
- 	struct usb_gadget *gadget;
- 
- 	struct usb_ep *in_ep;
--
- 	struct usb_ep *out_ep;
--	/* feedback IN endpoint corresponding to out_ep */
--	struct usb_ep *in_ep_fback;
- 
- 	/* Max packet size for all in_ep possible speeds */
- 	unsigned int in_ep_maxpsize;
+ .../bindings/serial/xlnx,opb-uartlite.txt     | 23 -----
+ .../bindings/serial/xlnx,opb-uartlite.yaml    | 90 ++++++++++++++++++
+ arch/sh/boot/dts/j2_mimas_v2.dts              |  2 +
+ drivers/tty/serial/uartlite.c                 | 91 ++++++++++++++++---
+ 4 files changed, 172 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+
 -- 
-2.30.2
+2.25.1
 
