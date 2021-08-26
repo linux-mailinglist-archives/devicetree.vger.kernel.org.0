@@ -2,117 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54FD33F89D3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 16:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1ACE3F89DD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 16:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231354AbhHZOKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 10:10:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:47624 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229451AbhHZOKj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Aug 2021 10:10:39 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 56FBA31B;
-        Thu, 26 Aug 2021 07:09:52 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 36B033F66F;
-        Thu, 26 Aug 2021 07:09:52 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
-        id DDBDB682B70; Thu, 26 Aug 2021 15:09:50 +0100 (BST)
-Date:   Thu, 26 Aug 2021 15:09:50 +0100
-From:   Liviu Dudau <liviu.dudau@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: arm: align watchdog and mmc node names
- with dtschema
-Message-ID: <YSegrnil/5rn/EVH@e110455-lin.cambridge.arm.com>
-References: <20210820081733.83976-1-krzysztof.kozlowski@canonical.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210820081733.83976-1-krzysztof.kozlowski@canonical.com>
+        id S230281AbhHZOOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 10:14:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56542 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230273AbhHZOOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 10:14:15 -0400
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D7EC061757
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 07:13:27 -0700 (PDT)
+Received: by mail-yb1-xb49.google.com with SMTP id r15-20020a056902154f00b00598b87f197cso3119741ybu.13
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 07:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=nm+oiHEoErhLfJkTgcszJpOfbpflkR0r1rY3Z0g5QV0=;
+        b=CsGke3pT3fJP6JLQT+9VD+YgQExAPN4tlPZTSDIwom9RNnEjrP8ZgfHyk96mjzc1pa
+         zSuj/5PAt0BwQIuVIrOoitm9EyZ6R7UP4a2lrQhtoW57Tear0WpfAtTOsX/RZadnyy8z
+         WsORYtgLCbJ/QEwdxlMdfaK4iQc1MpIWbasm+v//tvB4pY1UvYFYgGXOSuan2uzqbF3m
+         j+b0vIETiJZt0U+KpnhunkofN20OwfH+wBMye8XnWbSk6DcrbSko15CtLbTc8xodrryQ
+         1VcZdvbavRM/j4VuwhuU5fPwdIvUq/4wp3M6jgTlF1RHS64y5+/Vd7C346nZ5G3fnCOY
+         HZjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=nm+oiHEoErhLfJkTgcszJpOfbpflkR0r1rY3Z0g5QV0=;
+        b=mi+JSLEL/+f9KoNEcjqPKkYqP5jt1A5eSxHZFbZfu7G0/0VEGhvEg3xaGe11/OE8VA
+         CqUODAdwhvRQdjuNdvI5xyql4SSY+umUtdqmOlURu/BH0fMtuy267hb4zT7CzFgih6OM
+         PEglVfCUMIuFjDVCRaNchqSbEbvMX+UGyP2iF7U/9MoAo8PFpWGcUCwbtACKaaagpwE2
+         1INJFdFIEMaZbeYd6TKyYD1M3mrLhruzwryeW6OIlrbO7UCq8w2984IjzffvfrrvBN6C
+         U6jOsT47aB08pu1oroGLEJMwdiTnsoqMobeezZNzpnFp8w7918qKCg7wSYRuA3G2XMsZ
+         Cp7w==
+X-Gm-Message-State: AOAM532Kw63A+VV0855o00s8fJqJ0ztqfiozdHP4Ib6nOAkf42+7t/Ek
+        UgEaRpzT4uOkEV2o6Or12Qo3ZSZncBty
+X-Google-Smtp-Source: ABdhPJyyldb60iXwXIUmLQ2NRoZGUEHnOlHcar0/lCfrUXEuWf+dZk4mQi7FUgmLBrmg7kr5Fef/Yjg8/K4s
+X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:10:2061:3627:c077:944c])
+ (user=tzungbi job=sendgmr) by 2002:a25:4f55:: with SMTP id
+ d82mr5579894ybb.365.1629987206815; Thu, 26 Aug 2021 07:13:26 -0700 (PDT)
+Date:   Thu, 26 Aug 2021 22:13:14 +0800
+Message-Id: <20210826141314.3720975-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.33.0.rc2.250.ged5fa647cd-goog
+Subject: [PATCH] ASoC: dt-bindings: mediatek: mt8192: re-add audio afe document
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     broonie@kernel.org, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, tzungbi@google.com,
+        jiaxin.yu@mediatek.com, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 20, 2021 at 10:17:31AM +0200, Krzysztof Kozlowski wrote:
-> Align the watchdog and mmc device node names with the schema to fix
-> warnings like:
-> 
->   mmci@50000: $nodename:0: 'mmci@50000' does not match '^mmc(@.*)?$'
->   wdt@f0000: $nodename:0: 'wdt@f0000' does not match '^watchdog(@.*|-[0-9a-f])?$'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+The document was removed temporarily by commit 7d94ca3c8acd ("ASoC:
+mt8192: revert add audio afe document") because the dependency
+was not merged at that time.
 
-For the whole series: Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+The dependency has merged.  Re-adds back the document.
 
-Many thanks,
-Liviu
+Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
+---
 
-> ---
->  arch/arm64/boot/dts/arm/juno-motherboard.dtsi    | 4 ++--
->  arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
-> index 40d95c58b55e..f45c912b2806 100644
-> --- a/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-motherboard.dtsi
-> @@ -218,7 +218,7 @@ led7 {
->  					};
->  				};
->  
-> -				mmci@50000 {
-> +				mmc@50000 {
->  					compatible = "arm,pl180", "arm,primecell";
->  					reg = <0x050000 0x1000>;
->  					interrupts = <5>;
-> @@ -246,7 +246,7 @@ kmi@70000 {
->  					clock-names = "KMIREFCLK", "apb_pclk";
->  				};
->  
-> -				wdt@f0000 {
-> +				watchdog@f0000 {
->  					compatible = "arm,sp805", "arm,primecell";
->  					reg = <0x0f0000 0x10000>;
->  					interrupts = <7>;
-> diff --git a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
-> index 4c4a381d2c75..7260bcf4b2ab 100644
-> --- a/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
-> +++ b/arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi
-> @@ -130,7 +130,7 @@ aaci@40000 {
->  					clock-names = "apb_pclk";
->  				};
->  
-> -				mmci@50000 {
-> +				mmc@50000 {
->  					compatible = "arm,pl180", "arm,primecell";
->  					reg = <0x050000 0x1000>;
->  					interrupts = <9>, <10>;
-> @@ -190,7 +190,7 @@ v2m_serial3: serial@c0000 {
->  					clock-names = "uartclk", "apb_pclk";
->  				};
->  
-> -				wdt@f0000 {
-> +				watchdog@f0000 {
->  					compatible = "arm,sp805", "arm,primecell";
->  					reg = <0x0f0000 0x1000>;
->  					interrupts = <0>;
-> -- 
-> 2.30.2
-> 
+More context:
+- [1] reported `dt_binding_check` was broken.
+- [2] reverted.
+- The dependency has merged in [3] and it can be found from linux-next.
 
+[1]: https://patchwork.kernel.org/project/alsa-devel/patch/1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com/#23736701
+[2]: https://patchwork.kernel.org/project/alsa-devel/patch/1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com/
+[3]: https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-next&id=f35f1a23e0e12e3173e9e9dedbc150d139027189
+
+ .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+new file mode 100644
+index 000000000000..0170c93802d2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek AFE PCM controller for mt8192
++
++maintainers:
++   - Jiaxin Yu <jiaxin.yu@mediatek.com>
++   - Shane Chien <shane.chien@mediatek.com>
++
++properties:
++  compatible:
++      const: mediatek,mt8192-audio
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    const: audiosys
++
++  mediatek,apmixedsys:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: The phandle of the mediatek apmixedsys controller
++
++  mediatek,infracfg:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: The phandle of the mediatek infracfg controller
++
++  mediatek,topckgen:
++    $ref: "/schemas/types.yaml#/definitions/phandle"
++    description: The phandle of the mediatek topckgen controller
++
++  power-domains:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: AFE clock
++      - description: ADDA DAC clock
++      - description: ADDA DAC pre-distortion clock
++      - description: audio infra sys clock
++      - description: audio infra 26M clock
++
++  clock-names:
++    items:
++      - const: aud_afe_clk
++      - const: aud_dac_clk
++      - const: aud_dac_predis_clk
++      - const: aud_infra_clk
++      - const: aud_infra_26m_clk
++
++required:
++  - compatible
++  - interrupts
++  - resets
++  - reset-names
++  - mediatek,apmixedsys
++  - mediatek,infracfg
++  - mediatek,topckgen
++  - power-domains
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt8192-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/power/mt8192-power.h>
++    #include <dt-bindings/reset-controller/mt8192-resets.h>
++
++    afe: mt8192-afe-pcm {
++        compatible = "mediatek,mt8192-audio";
++        interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>;
++        resets = <&watchdog MT8192_TOPRGU_AUDIO_SW_RST>;
++        reset-names = "audiosys";
++        mediatek,apmixedsys = <&apmixedsys>;
++        mediatek,infracfg = <&infracfg>;
++        mediatek,topckgen = <&topckgen>;
++        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
++        clocks = <&audsys CLK_AUD_AFE>,
++                 <&audsys CLK_AUD_DAC>,
++                 <&audsys CLK_AUD_DAC_PREDIS>,
++                 <&infracfg CLK_INFRA_AUDIO>,
++                 <&infracfg CLK_INFRA_AUDIO_26M_B>;
++        clock-names = "aud_afe_clk",
++                      "aud_dac_clk",
++                      "aud_dac_predis_clk",
++                      "aud_infra_clk",
++                      "aud_infra_26m_clk";
++    };
++
++...
 -- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+2.33.0.rc2.250.ged5fa647cd-goog
+
