@@ -2,80 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 630783F8245
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 08:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77B2A3F8261
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 08:22:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238759AbhHZGRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 02:17:36 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:55372 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238582AbhHZGRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 02:17:36 -0400
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 17Q5vkVu058462;
-        Thu, 26 Aug 2021 13:57:47 +0800 (GMT-8)
-        (envelope-from chiawei_wang@aspeedtech.com)
-Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 26 Aug
- 2021 14:16:25 +0800
-From:   Chia-Wei Wang <chiawei_wang@aspeedtech.com>
-To:     <joel@jms.id.au>, <robh+dt@kernel.org>, <andrew@aj.id.au>,
-        <linux-aspeed@lists.ozlabs.org>, <openbmc@lists.ozlabs.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 4/4] ARM: dts: aspeed: Add eSPI node
-Date:   Thu, 26 Aug 2021 14:16:23 +0800
-Message-ID: <20210826061623.6352-5-chiawei_wang@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210826061623.6352-1-chiawei_wang@aspeedtech.com>
-References: <20210826061623.6352-1-chiawei_wang@aspeedtech.com>
+        id S238369AbhHZGXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 02:23:14 -0400
+Received: from szxga02-in.huawei.com ([45.249.212.188]:14421 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239133AbhHZGXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 02:23:14 -0400
+Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.57])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4GwCMr27LMzbdKT;
+        Thu, 26 Aug 2021 14:18:32 +0800 (CST)
+Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
+ dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 26 Aug 2021 14:22:22 +0800
+Received: from [10.174.177.243] (10.174.177.243) by
+ dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 26 Aug 2021 14:22:21 +0800
+Subject: Re: [PATCH 3/3] amba: Properly handle device probe without IRQ domain
+To:     Saravana Kannan <saravanak@google.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Ruizhe Lin <linruizhe@huawei.com>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com>
+ <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+ <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
+ <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+ <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com>
+ <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+From:   Kefeng Wang <wangkefeng.wang@huawei.com>
+Message-ID: <245f3ce5-1d8b-79c2-31af-4dc13536505d@huawei.com>
+Date:   Thu, 26 Aug 2021 14:22:20 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.2.66]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 17Q5vkVu058462
+In-Reply-To: <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.174.177.243]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500001.china.huawei.com (7.185.36.107)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add eSPI to the device tree for Aspeed 5/6th generation SoCs.
 
-Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index f96607b7b4e2..47dc0b3993d1 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -364,6 +364,23 @@
- 				status = "disabled";
- 			};
- 
-+			espi: espi@1e6ee000 {
-+				compatible = "aspeed,ast2600-espi", "simple-mfd", "syscon";
-+				reg = <0x1e6ee000 0x1000>;
-+
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1e6ee000 0x1000>;
-+
-+				espi_ctrl: espi-ctrl@0 {
-+					compatible = "aspeed,ast2600-espi-ctrl";
-+					reg = <0x0 0x800>;
-+					interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+					clocks = <&syscon ASPEED_CLK_GATE_ESPICLK>;
-+					status = "disabled";
-+				};
-+			};
-+
- 			gpio0: gpio@1e780000 {
- 				#gpio-cells = <2>;
- 				gpio-controller;
--- 
-2.17.1
-
+On 2021/8/26 12:45, Saravana Kannan wrote:
+> On Wed, Aug 25, 2021 at 7:45 PM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>
+>> On 2021/8/25 16:04, Saravana Kannan wrote:
+>>> On Tue, Aug 24, 2021 at 9:05 PM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>> On 2021/8/25 4:08, Saravana Kannan wrote:
+>>>>> On Tue, Aug 24, 2021 at 1:05 PM Rob Herring <robh+dt@kernel.org> wrote:
+>>>>>> +Saravana
+>>>>>>
+>>>>>> Saravana mentioned to me there may be some issues with this one...
+>>>>>>
+>>>>>>
+>>>>>> On Mon, Aug 16, 2021 at 2:43 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>>>>> of_amba_device_create() uses irq_of_parse_and_map() to translate
+>>>>>>> a DT interrupt specification into a Linux virtual interrupt number.
+>>>>>>>
+>>>>>>> But it doesn't properly handle the case where the interrupt controller
+>>>>>>> is not yet available, eg, when pl011 interrupt is connected to MBIGEN
+>>>>>>> interrupt controller, because the mbigen initialization is too late,
+>>>>>>> which will lead to no IRQ due to no IRQ domain found, log is shown below,
+>>>>>>>      "irq: no irq domain found for uart0 !"
+>>>>>>>
+>>>>>>> use of_irq_get() to return -EPROBE_DEFER as above, and in the function
+>>>>>>> amba_device_try_add()/amba_device_add(), it will properly handle in such
+>>>>>>> case, also return 0 in other fail cases to be consistent as before.
+>>>>>>>
+>>>>>>> Cc: Russell King <linux@armlinux.org.uk>
+>>>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>>>> Cc: Frank Rowand <frowand.list@gmail.com>
+>>>>>>> Reported-by: Ruizhe Lin <linruizhe@huawei.com>
+>>>>>>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+>>>>>>> ---
+...
+>>>>> Similar to other resources the AMBA bus "gets" for the device, I think
+>>>>> this should be moved into amba_probe() and not here. There's no reason
+>>>>> to delay the addition of the device (and loading its module) because
+>>>>> the IRQ isn't ready yet.
+>>>> The following code in the amba_device_try_add() will be called, it uses irq[0]
+>>>> and irq[1], so I put of_amba_device_decode_irq() into amba_device_try_add().
+>>>>
+>>>> 470         if (dev->irq[0])
+>>>> 471                 ret = device_create_file(&dev->dev, &dev_attr_irq0);
+>>>> 472         if (ret == 0 && dev->irq[1])
+>>>> 473                 ret = device_create_file(&dev->dev, &dev_attr_irq1);
+>>>> 474         if (ret == 0)
+>>>> 475                 return ret;
+>>>>
+>>>> of_amba_device_decode_irq() in amba_device_try_add() won't lead to issue,
+>>>> only delay the device add, right?
+>>> But delaying the device add is the issue. For example, adding a device
+>>> could trigger the loading of the corresponding module using uevents.
+>>> But now this change would delay that step. That can have other
+>>> unintended consequences -- slowing down boot, what if the driver was
+>>> working fine without the IRQ, etc.
+>>>
+>>>> If make it into amba_probe(), the above code should be moved too, could we
+>>>> make a new patch to move both of them, or don't move them?
+>>> I'd say move them both. If Russell hasn't already picked this up, then
+>>> I'd say redo your Patch 3/3.
+>> I will resend with put it into amba_probe.
+>>> Btw, I've been working on [1] cleaning up the one-off deferred probe
+>>> solution that we have for amba devices. That causes a bunch of other
+>>> headaches. Your patch 3/3 takes us further in the wrong direction by
+>>> adding more reasons for delaying the addition of the device.
+>> Got it,  and I could resend all combine your patch(due to context conflict
+>>
+>> when changing same function) if you no object.
+> If you want to resolve the conflict with my patch and resend it while
+> keeping me as the author, I would definitely appreciate it.
+Yes, I will keep it, and rebase my patch based on it.
+>
+> -Saravana
+>>
+>>> -Saravana
+>>>
+>>> [1] - https://lore.kernel.org/lkml/CAGETcx8b228nDUho3cX9AAQ-pXOfZTMv8cj2vhdx9yc_pk8q+A@mail.gmail.com/
+>>> .
+>>>
+> .
+>
