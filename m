@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C00B3F88D3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 15:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1160C3F88D5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 15:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242740AbhHZN1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 09:27:08 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:44745 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242704AbhHZN0y (ORCPT
+        id S242692AbhHZN1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 09:27:09 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:45647 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242697AbhHZN0y (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 09:26:54 -0400
-Received: by mail-ot1-f47.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so3418244otg.11;
-        Thu, 26 Aug 2021 06:26:06 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id q39so4459904oiw.12;
+        Thu, 26 Aug 2021 06:26:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=2o4OhJ2JQkPtoaQGdSaMZ6wV1LKdoU5Xo2BeBtn6dQo=;
-        b=MKcnI26r7TqYm1xoDQA6kaM54GqIvIjKKWJc22zoj7HNYGGsI2tiYiaM7ni2B1IavS
-         97WceNTwlvCL9Lk2RtmtPBVmQAoub//lTwFWr6FDG3b9j9MefxK9DT6JTMQhtyU1voFG
-         fvqY2/umbTyKAHB5Pz+3giK8emdcP7IDezR6tnTDbcwtcxzWZ4IbIsSr7bm4JhTN4TD4
-         MV7YhjEI+UhXECb5DvIbQRK6kvpO7Nsf76C1MnStoHHO0annX5b4itrrm6c0SIVSiH3l
-         2MZYl31/veKnC5cFxxjQ0amFnXWxg8axhg2y3+b9EdydDWWcHiMpcW9HSWPvvp2/1VT5
-         HgXQ==
-X-Gm-Message-State: AOAM532jrhXLyvRzdDM8HO3OWzcXTYq4vhBYUY6KwPc+ZNfR4WnKu9vO
-        8WpSqrpvzO7o/S9+BbqjpQ==
-X-Google-Smtp-Source: ABdhPJwgIxeiiEIYRJSGhRksrfozuX03sL79KteMqhx3Q4ivlxzWPU1LZCt26qy+FhsGzG9JshpPpA==
-X-Received: by 2002:a9d:798c:: with SMTP id h12mr3034753otm.215.1629984366555;
-        Thu, 26 Aug 2021 06:26:06 -0700 (PDT)
+        bh=qufLi4mKRTkscRC7vpQ3Mm2vfDa/EHLDpUYXZ1BfFnY=;
+        b=Asgua0W+6M4TBG0DWlXPZ/LMCWX9Fk8pVD/at1y4/cx9loTXNSRkpljdYN4oYNaICw
+         Lq93ZBKJNKoyx2KICwdzbqANhZca63RnF3QbsTYTFBi/If9Whm73PXIpN9IMgF5dmAG2
+         9tagoCoapd+ni9dQh7XsrdCuFRKyZ0dbVObJJHXhUDVe8+ddur/TYWuJ5fWTT4FMbxxb
+         M+kTHVeIxZjL/4W0mpCIiDXaKrVAdbxjnvby3Hb1+L+vEQonMTjNaastbdku5QmfHmvm
+         wTvPYhQEQM03D/tJpu1jm8P3YazPbJJyR1V1Uy5BUUQIU30y6X7IfpAaDsnGXvLta2MP
+         +N8Q==
+X-Gm-Message-State: AOAM530CY1sTyfFixGN/Asqk0Nc/mV1a2I9DXM2x3b1NL2DIlQJ/glX2
+        yWpc8oZizOCpJ66SBPpeSw==
+X-Google-Smtp-Source: ABdhPJyFOyPAhNjI9w6NY4VdLDffLd5xdVg58r0phf4E35lbkQXgJCb8wdzMavL7X+ULwtKTLmeeTg==
+X-Received: by 2002:a05:6808:1513:: with SMTP id u19mr11302474oiw.109.1629984364800;
+        Thu, 26 Aug 2021 06:26:04 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b3sm634202oie.1.2021.08.26.06.26.05
+        by smtp.gmail.com with ESMTPSA id r15sm575293oth.7.2021.08.26.06.26.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Aug 2021 06:26:05 -0700 (PDT)
-Received: (nullmailer pid 1033388 invoked by uid 1000);
+        Thu, 26 Aug 2021 06:26:04 -0700 (PDT)
+Received: (nullmailer pid 1033386 invoked by uid 1000);
         Thu, 26 Aug 2021 13:26:01 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
-        dri-devel@lists.freedesktop.org, dianders@google.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        airlied@linux.ie, daniel@ffwll.ch
-In-Reply-To: <20210826110311.613396-3-yangcong5@huaqin.corp-partner.google.com>
-References: <20210826110311.613396-1-yangcong5@huaqin.corp-partner.google.com> <20210826110311.613396-3-yangcong5@huaqin.corp-partner.google.com>
-Subject: Re: [v3 2/2] dt-bindngs: display: panel: Add BOE tv110c9m-ll3 panel bindings
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, tony@atomide.com, nm@ti.com,
+        lokeshvutla@ti.com, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, robh+dt@kernel.org
+In-Reply-To: <20210826085731.15300-1-rogerq@kernel.org>
+References: <20210826085731.15300-1-rogerq@kernel.org>
+Subject: Re: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
 Date:   Thu, 26 Aug 2021 08:26:01 -0500
-Message-Id: <1629984361.395478.1033387.nullmailer@robh.at.kernel.org>
+Message-Id: <1629984361.367999.1033385.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Aug 2021 19:03:11 +0800, yangcong wrote:
-> Add documentation for boe tv110c9m-ll3 panel.
+On Thu, 26 Aug 2021 11:57:31 +0300, Roger Quadros wrote:
+> Convert omap-gpmc.txt to ti,gpmc.yaml.
 > 
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 > ---
->  .../display/panel/boe,tv110c9m-ll3.yaml       | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.yaml
+>  .../bindings/memory-controllers/omap-gpmc.txt | 157 --------
+>  .../bindings/memory-controllers/ti,gpmc.yaml  | 360 ++++++++++++++++++
+>  2 files changed, 360 insertions(+), 157 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -66,15 +67,23 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.example.dts:25.42-43 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/display/panel/boe,tv110c9m-ll3.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1419: dt_binding_check] Error 2
+Documentation/devicetree/bindings/memory-controllers/ti,gpmc.example.dt.yaml:0:0: /example-0/memory-controller@50000000/nand-controller@0,0: failed to match any schema with compatible: ['ti,omap2-nand']
 
 doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/mtd/gpmc-nand.txt references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Warning: Documentation/devicetree/bindings/mtd/gpmc-nor.txt references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Warning: Documentation/devicetree/bindings/mtd/gpmc-nor.txt references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Warning: Documentation/devicetree/bindings/mtd/gpmc-onenand.txt references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Warning: Documentation/devicetree/bindings/net/gpmc-eth.txt references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Warning: Documentation/devicetree/bindings/net/gpmc-eth.txt references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Documentation/devicetree/bindings/mtd/gpmc-nand.txt: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Documentation/devicetree/bindings/mtd/gpmc-nor.txt: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Documentation/devicetree/bindings/mtd/gpmc-nor.txt: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Documentation/devicetree/bindings/mtd/gpmc-onenand.txt: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Documentation/devicetree/bindings/net/gpmc-eth.txt: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+Documentation/devicetree/bindings/net/gpmc-eth.txt: Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
 
-See https://patchwork.ozlabs.org/patch/1521039
+See https://patchwork.ozlabs.org/patch/1521000
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
