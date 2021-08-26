@@ -2,95 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C280F3F8458
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 11:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6923F8471
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 11:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241020AbhHZJRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 05:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
+        id S240674AbhHZJX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 05:23:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241029AbhHZJRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 05:17:20 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178F1C06179A;
-        Thu, 26 Aug 2021 02:16:32 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id z24-20020a17090acb1800b0018e87a24300so1949729pjt.0;
-        Thu, 26 Aug 2021 02:16:32 -0700 (PDT)
+        with ESMTP id S233744AbhHZJX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 05:23:27 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6611AC061757
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 02:22:40 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id m28so5387258lfj.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 02:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LDoHbMmNmpCXjL+1LQmy12F8mGDRmsYjHo9WcFavq1Y=;
-        b=BAiZGGqI+HHBBO684td2NHcmUlE2atxF+SiCXSrdcS22tmzszXW82yidM3mCfN1NA8
-         4MDpaAWspDA2YhwyaBVduE6cKwb7FHuaRAFxdWMWpgfbmSrFdWaQY2EmOcmocDb2vyPj
-         qg9aUThsxZnFlidsP2E9GiXYp2wQoj58gYREtf4nUYMlrHtfv41Hr183VEJZe1ntgrPa
-         NcrVh9ouGjkVT0rY7TKb1MICB+PMPCcydRJdB9Iz7K/yQH5HxhhUhnjCbmhRU2d2YQUV
-         806PtoA3QYrtgQ/XAVSzUSWQA+HBX2imZw3IGfhHPbYXzy7EzqbZVBHxZhHWpfT7mj3W
-         OM2A==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ln71NXDn7wvph7LBOORUowfvnMpMXm1vamjGgvVaYek=;
+        b=MpW00whc4gH76YG1L2S+VOCGyGDkxXj6APkQiAkVq7cx5kM6PnAFO9wqRCovbtX7sX
+         nBzQ0Mw6U7mwn3fLlmNoDDSwvKOQmdHyV2rrP2/2vWbi1xQGQ/lNbBUEEgqHO8lM9ANu
+         +M7s9tA4d4tvb5YZug/b7/F69tDOgab5mn3t+I4UIehqc+JQSVPGADla+DZzqmBvdikq
+         Hu3vnh4i1d5hCGEdqt1ziwfVji/QOZqEA9JXaJW7Om587Q5ncEMMlBf4H695uRAdWTNX
+         +NHndArmyt2TX86gJIT2sLnNVOScwskL5k1rGP1amOLhKbGTDJoB0VvBeN84InV8MCDN
+         XRhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LDoHbMmNmpCXjL+1LQmy12F8mGDRmsYjHo9WcFavq1Y=;
-        b=BUEovS58LH5cpeHlVidHXIAkLNPxh30b4dlUGvp6aaAf6448F1GSGqfRBYVxj+cm3e
-         AX0HTEUFzmQCZJFZNfIBDBnw4T/QusXAIE5WUXqVtpJj845ELbAAkw6/GfIz0f8pgjzj
-         wVmM1cS39oNCgrYd5M8cC+L4MHVttqBEwaZy1IVpzVCPKmcK96/vfOnsZE93fAFdVnX/
-         RbGFv3XRpkly327k0bjb0t+Nz7If2AImuIHZDC0pdY7QHNVM/CrIeW20neW/86FSs8AG
-         UO2AzVo4RusjqlhYWY74dYkFz0o34O4sp+5YcYmDMYXaNIJlQQswbLc4m6tk/35Gl3tm
-         Ja1A==
-X-Gm-Message-State: AOAM530KQbAlXFk8UTCFNYAnTLTlyPKtQK5TBfVeigRfXNxDixJXmaaT
-        R8HVWqwLJPYNIfOyv9EsCok=
-X-Google-Smtp-Source: ABdhPJzjWfySGAYnKw3HLlI9HzwebEDcTkorRHFV/cZD1c84/1Igd8F+YlZIc0tLn4VzaE+WvnVkVA==
-X-Received: by 2002:a17:902:ab07:b0:133:dad9:ee80 with SMTP id ik7-20020a170902ab0700b00133dad9ee80mr2881482plb.38.1629969391636;
-        Thu, 26 Aug 2021 02:16:31 -0700 (PDT)
-Received: from ubt.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id j20sm2777569pgb.2.2021.08.26.02.16.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Aug 2021 02:16:31 -0700 (PDT)
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-spi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Luting Guo <luting.guo@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: [PATCH V3 4/4] dt-bindings: spi: add sprd ADI for sc9863 and ums512
-Date:   Thu, 26 Aug 2021 17:15:49 +0800
-Message-Id: <20210826091549.2138125-5-zhang.lyra@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210826091549.2138125-1-zhang.lyra@gmail.com>
-References: <20210826091549.2138125-1-zhang.lyra@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ln71NXDn7wvph7LBOORUowfvnMpMXm1vamjGgvVaYek=;
+        b=iJ6vPpppcPyc+L3mbstd+b/hvRJCqKYDriLctG8aAjzVGjLTrQZEwOug2p7yMYzA8+
+         rJ6VpWTPFjxad/xA8LjrJSxEEFCC95Jp/Rx0mWpH3hjEF5vR0zZxp4qiyeYwmxH/wu+D
+         EfK8VUgkDiloinqa7J59vMVheZAdZVT2egTVbSHNvXPxHHOvJWSOc7Pw36ZnfU2teDo9
+         uRx1dWmIMgq6fKcxW1IzbPidX2uovg2y+LTurFHzRMPScntEcdUwpKBZHWAoFvpiuFhJ
+         74AYtZN/EkGCp5zeO/H7N0YnAkR/HXdMNiKRFy7jFlIezYalN9jZHodiVy8AeYhz8RHl
+         FAPg==
+X-Gm-Message-State: AOAM532I9rA784JiX76kf0gkFvGLPxuMNNLUmRADrpHS+2rLrrKm+vAR
+        15L3NwVk8G028tDdgnuJtYUjJGK1z9CUtz5zOC8ExA==
+X-Google-Smtp-Source: ABdhPJyHUPy/Ouf9Ph+Ka143JqGyEYFP5BB2Y1Ua+88WOLVsy4CllZ0Osm1JjtVWdZgl9HksM8p+j0LLtA23vf1IbTc=
+X-Received: by 2002:a19:c107:: with SMTP id r7mr1952433lff.29.1629969758761;
+ Thu, 26 Aug 2021 02:22:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com>
+ <1628334401-6577-6-git-send-email-stefan.wahren@i2se.com> <3e8bfa67-e3fe-bcfd-1941-90cae7ed0176@arm.com>
+In-Reply-To: <3e8bfa67-e3fe-bcfd-1941-90cae7ed0176@arm.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 26 Aug 2021 11:22:02 +0200
+Message-ID: <CAPDyKFpGoMVywNFMskTTYYOvLZMK-1u2+5V_q1uW2H5AZJ_W7Q@mail.gmail.com>
+Subject: Re: [PATCH V2 05/10] mmc: sdhci-iproc: Set SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN
+ on BCM2711
+To:     Jeremy Linton <jeremy.linton@arm.com>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Maxime Ripard <maxime@cerno.tech>, iivanov@suse.de,
+        DTML <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2835..." 
+        <linux-rpi-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On Thu, 26 Aug 2021 at 08:36, Jeremy Linton <jeremy.linton@arm.com> wrote:
+>
+> Hi,
+>
+>
+> On 8/7/21 6:06 AM, Stefan Wahren wrote:
+> > From: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> >
+> > The controller doesn't seem to pick-up on clock changes, so set the
+> > SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN flag to query the clock frequency
+> > directly from the clock.
+> >
+> > Fixes: f84e411c85be ("mmc: sdhci-iproc: Add support for emmc2 of the BCM2711")
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> > ---
+> >   drivers/mmc/host/sdhci-iproc.c | 3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
+> > index 032bf85..e7565c6 100644
+> > --- a/drivers/mmc/host/sdhci-iproc.c
+> > +++ b/drivers/mmc/host/sdhci-iproc.c
+> > @@ -295,7 +295,8 @@ static const struct sdhci_ops sdhci_iproc_bcm2711_ops = {
+> >   };
+> >
+> >   static const struct sdhci_pltfm_data sdhci_bcm2711_pltfm_data = {
+> > -     .quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
+> > +     .quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12 |
+> > +               SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
+> >       .ops = &sdhci_iproc_bcm2711_ops,
+> >   };
+>
+> I just noticed that this got merged to rc7, and it breaks the ACPI based
+> rpi's because it causes the 100Mhz max clock to be overridden to the
+> return from sdhci_iproc_get_max_clock() which is 0 because there isn't a
+> OF/DT based clock device.
 
-This patch adds support for sc9863 and ums512.
+Thanks for reporting! I allow Stefan to respond in a day or two,
+before I do a revert of it.
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml b/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
-index 3e399d31168b..fe014020da69 100644
---- a/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
-+++ b/Documentation/devicetree/bindings/spi/sprd,spi-adi.yaml
-@@ -50,6 +50,8 @@ properties:
-   compatible:
-     enum:
-       - sprd,sc9860-adi
-+      - sprd,sc9863-adi
-+      - sprd,ums512-adi
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
-
+Kind regards
+Uffe
