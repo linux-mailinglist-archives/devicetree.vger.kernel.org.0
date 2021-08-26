@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A90F3F7FC1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 03:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C28423F7FC8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 03:21:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236215AbhHZBUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 21:20:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
+        id S235699AbhHZBWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 21:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236077AbhHZBUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 21:20:04 -0400
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D46C0613C1
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 18:19:17 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id l12-20020a4a94cc0000b02902618ad2ea55so397886ooi.4
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 18:19:17 -0700 (PDT)
+        with ESMTP id S235318AbhHZBWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 21:22:39 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6212C0613C1
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 18:21:52 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id w19so2079892oik.10
+        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 18:21:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=pMEYeQ5q1Ljq7RCcgbyvAyGrNej+EFBY9zbAdIRIdF8=;
-        b=NhrGT6GzQFV+9/cdB57tP92jyn9EG5QfIpEhiPDZ4mpxnF8I9IDZ/81f0dFiujSo7b
-         JpjHlq3NazHVfSNNQMkKHmAyqxhdqgHYMxmX61QkXGCX8cM95uLVKqgXb4dNQy42IMAK
-         pB1sI1ZaWXYCep+QHy0y8K7qTwWK20ggRmViM=
+        bh=6nXlei/Gzl2kgJrjUypJPJMbLWWtXj8x5vv2RmtYCFk=;
+        b=Fl2zoS01SxGzy75oar1XNbzccL+NIMw8VXIazGxrv9mtTk3t4A/gX5nocJDAK3e4ym
+         2pJb0fRgXs3r/GgRnsO6IFoFzOoWgEeImeTfwI2gd+1179p6Qf16ndE5pC9YsWH29gW2
+         /n2x2Y+ste2OcTlK787bUn/Hyv9BIubrPaq7o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=pMEYeQ5q1Ljq7RCcgbyvAyGrNej+EFBY9zbAdIRIdF8=;
-        b=bqMB6Re452QdVz+6YcayX16aNveLSJKTtL2jyTV3cQBVktENkO0AnhkRr4BHRPtqR/
-         bFxkADIIhDPParpUXWAObnAoMirw6eW+4HzfurL7CSzVCIcWajcIqxucpkcka32fh1Rg
-         zHRh2zok/wOwnf9VjGSUt8WUTg55/TaKLisA+02PYDJJf4gilHKDgV+HEojgsig7RmRa
-         FFLowLyfgl2up0ZkQSLw+0c5HvTlWAR1u82F9ZdbKamoewstLZN/M/a42U7D+208oZoE
-         3f5MSoZ110vThxiHwG0Wgk0Dtd+N8DyWPp66w+dox5QTBg9v+gaqLftq7ZyXMo7XF44/
-         3grA==
-X-Gm-Message-State: AOAM5326GiOyHhIu3jNLlZzhziUvkepWxP0q67wabNf6bJ93Fk6U0OrH
-        ETPKXy8yTbVR8KUUxl3eEJiJRtgOcjm6U89/69NDshjOnrQ=
-X-Google-Smtp-Source: ABdhPJxomUf9wQZ9jtRySIGLFv4shWsL8IPxBTC8ui4hVyxgpcgUn6qSY5GKjS1RD2eDnA8/l8osgey4KpfBW93K2J0=
-X-Received: by 2002:a4a:a841:: with SMTP id p1mr987058oom.92.1629940756961;
- Wed, 25 Aug 2021 18:19:16 -0700 (PDT)
+        bh=6nXlei/Gzl2kgJrjUypJPJMbLWWtXj8x5vv2RmtYCFk=;
+        b=sQaanzoEpBMeD/yuzlayfMl4bhR3V6PV8VfXyKBvqi8BC4gnByjevVGBiFSwk0WOQa
+         lDsWuXjKCzu4IMyfssC/gNQHy9LQcSpUnsuTh7DRoRjbz5L1Mk8lL/Whd6ZSE8tJm64O
+         vOfbOErw+RPC5ZjkfQG+PNoxuLzRigtyiN+0DoEXtEPAlAkR1g7PSTlFRLaurQX/xGKA
+         dzRBmEwqO0MyPPUn0LnNXwG8Jm3I4Hv2rXFgpyDDT4OEaZbFkqgKKfk1snw8D7hk3In8
+         jlvOV4xgZXVot9Rc5CeYf1ae7mpDgkMqx9yw3rdlhNP4cTBBMphlGMFA0GPe0UDpNfLQ
+         QCdw==
+X-Gm-Message-State: AOAM532GI3OYOTgtX6z0QfsmmL2nJK3VoymjEuDPBipxQV53V+8ipAii
+        DQXRsD8YISec9Qz6Ed8czEMrm5e+ES2eBUDoMqGApQ==
+X-Google-Smtp-Source: ABdhPJz1PrTQ46AFZgnsHo3RwaOgObBPJwNmVa81VCkWSx1FhF7a08m5xnynvSJw6aQm8FOE9v9zVAEx6nn1AokhkX4=
+X-Received: by 2002:a05:6808:181a:: with SMTP id bh26mr9465358oib.166.1629940912164;
+ Wed, 25 Aug 2021 18:21:52 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 26 Aug 2021 01:19:16 +0000
+ HTTPREST; Thu, 26 Aug 2021 01:21:51 +0000
 MIME-Version: 1.0
-In-Reply-To: <20210825222557.1499104-4-bjorn.andersson@linaro.org>
-References: <20210825222557.1499104-1-bjorn.andersson@linaro.org> <20210825222557.1499104-4-bjorn.andersson@linaro.org>
+In-Reply-To: <20210825222557.1499104-5-bjorn.andersson@linaro.org>
+References: <20210825222557.1499104-1-bjorn.andersson@linaro.org> <20210825222557.1499104-5-bjorn.andersson@linaro.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Thu, 26 Aug 2021 01:19:16 +0000
-Message-ID: <CAE-0n53ZVf7E0q_cMEmuQH7q+xytRd-pjerrNnoVHBwqGMr6ZA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] drm/msm/dp: Refactor ioremap wrapper
+Date:   Thu, 26 Aug 2021 01:21:51 +0000
+Message-ID: <CAE-0n53EySs6UbKrcE1x1n0S22CtzneRm4fx328UzMDy5eHADA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] drm/msm/dp: Store each subblock in the io region
 To:     Abhinav Kumar <abhinavk@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -67,87 +67,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-08-25 15:25:55)
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
-> index c064ced78278..215065336268 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
-> @@ -19,40 +19,30 @@ static const struct dp_regulator_cfg sdm845_dp_reg_cfg = {
->         },
->  };
+Quoting Bjorn Andersson (2021-08-25 15:25:56)
+> Not all platforms has DP_P0 at offset 0x1000 from the beginning of the
+> DP block. So split the dss_io_data memory region into a set of
+> sub-regions, to make it possible in the next patch to specify each of
+> the sub-regions individually.
 >
-> -static int msm_dss_ioremap(struct platform_device *pdev,
-> -                               struct dss_io_data *io_data)
-> +static void __iomem *dp_ioremap(struct platform_device *pdev, int idx, size_t *len)
->  {
-> -       struct resource *res = NULL;
-> +       struct resource *res;
->
-> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, idx);
->         if (!res) {
->                 DRM_ERROR("%pS->%s: msm_dss_get_res failed\n",
->                         __builtin_return_address(0), __func__);
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
 
-This error can be removed too, right? At least I thought passing in NULL
-as 'res' to devm_ioremap_resource() did that. It actually looks like we
-can use devm_platform_get_and_ioremap_resource() and then pass in &res
+One nit below:
 
-	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-	if (!IS_ERR(base))
-		*len = resource_size(res);
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-	return base;
 
-> -               return -ENODEV;
-> +               return ERR_PTR(-ENODEV);
->         }
 >
-> -       io_data->len = (u32)resource_size(res);
-> -       io_data->base = devm_ioremap(&pdev->dev, res->start, io_data->len);
-> -       if (!io_data->base) {
-> -               DRM_ERROR("%pS->%s: ioremap failed\n",
-> -                       __builtin_return_address(0), __func__);
-> -               return -EIO;
-> -       }
-> -
-> -       return 0;
-> +       *len = resource_size(res);
-> +       return devm_ioremap_resource(&pdev->dev, res);
->  }
->
->  static int dp_parser_ctrl_res(struct dp_parser *parser)
->  {
-> -       int rc = 0;
->         struct platform_device *pdev = parser->pdev;
->         struct dp_io *io = &parser->io;
-> +       struct dss_io_data *dss = &io->dp_controller;
->
-> -       rc = msm_dss_ioremap(pdev, &io->dp_controller);
-> -       if (rc) {
-> -               DRM_ERROR("unable to remap dp io resources, rc=%d\n", rc);
-> -               return rc;
-> -       }
-> +       dss->base = dp_ioremap(pdev, 0, &dss->len);
-> +       if (IS_ERR(dss->base))
-> +               return PTR_ERR(dss->base);
->
->         io->phy = devm_phy_get(&pdev->dev, "dp");
->         if (IS_ERR(io->phy))
 > diff --git a/drivers/gpu/drm/msm/dp/dp_parser.h b/drivers/gpu/drm/msm/dp/dp_parser.h
-> index 34b49628bbaf..dc62e70b1640 100644
+> index dc62e70b1640..a95b05dbb11c 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_parser.h
 > +++ b/drivers/gpu/drm/msm/dp/dp_parser.h
-> @@ -26,7 +26,7 @@ enum dp_pm_type {
+> @@ -25,9 +25,16 @@ enum dp_pm_type {
+>         DP_MAX_PM
 >  };
 >
->  struct dss_io_data {
-> -       u32 len;
+> -struct dss_io_data {
+> -       size_t len;
+> +struct dss_io_region {
+>         void __iomem *base;
 > +       size_t len;
 
-len is a resource_size_t above, not sure if that really matters in
-practice to indicate it here though.
+It flip flops here. Would be nice to the diff if len was where it really
+wanted to be.
 
->         void __iomem *base;
+> +};
+> +
+> +struct dss_io_data {
+> +       struct dss_io_region ahb;
+> +       struct dss_io_region aux;
+> +       struct dss_io_region link;
+> +       struct dss_io_region p0;
 >  };
->
