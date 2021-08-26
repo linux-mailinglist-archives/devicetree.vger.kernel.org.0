@@ -2,116 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE6923F8471
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 11:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294483F8474
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 11:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240674AbhHZJX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 05:23:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44480 "EHLO
+        id S240949AbhHZJXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 05:23:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233744AbhHZJX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 05:23:27 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6611AC061757
-        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 02:22:40 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id m28so5387258lfj.6
-        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 02:22:40 -0700 (PDT)
+        with ESMTP id S233249AbhHZJXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 05:23:32 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76305C0613C1
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 02:22:45 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id v10so3955541wrd.4
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 02:22:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ln71NXDn7wvph7LBOORUowfvnMpMXm1vamjGgvVaYek=;
-        b=MpW00whc4gH76YG1L2S+VOCGyGDkxXj6APkQiAkVq7cx5kM6PnAFO9wqRCovbtX7sX
-         nBzQ0Mw6U7mwn3fLlmNoDDSwvKOQmdHyV2rrP2/2vWbi1xQGQ/lNbBUEEgqHO8lM9ANu
-         +M7s9tA4d4tvb5YZug/b7/F69tDOgab5mn3t+I4UIehqc+JQSVPGADla+DZzqmBvdikq
-         Hu3vnh4i1d5hCGEdqt1ziwfVji/QOZqEA9JXaJW7Om587Q5ncEMMlBf4H695uRAdWTNX
-         +NHndArmyt2TX86gJIT2sLnNVOScwskL5k1rGP1amOLhKbGTDJoB0VvBeN84InV8MCDN
-         XRhw==
+        d=ffwll.ch; s=google;
+        h=date:from:to:cc:subject:message-id:mail-followup-to:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Z5nGZgvsyXA2v5RBRhfghmqhLLrwrK3N/HAosQKFTGU=;
+        b=gPVYqvarTNOfAMXnLrOwhAZEMjPHA9JBmY7uaVY5mZDlUw6TWlUKedc1ZYtK0GBZ1f
+         Mwo/R9M9Fk9Fa9LVqGsfUKkr5xcapuuftVZBe4bxEQqm7oug5gtIaPjOyrnS5nc/ylnm
+         8TaYJ9AZ76dyPC/sNv1v2ua8pWaTrWYynyuNw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ln71NXDn7wvph7LBOORUowfvnMpMXm1vamjGgvVaYek=;
-        b=iJ6vPpppcPyc+L3mbstd+b/hvRJCqKYDriLctG8aAjzVGjLTrQZEwOug2p7yMYzA8+
-         rJ6VpWTPFjxad/xA8LjrJSxEEFCC95Jp/Rx0mWpH3hjEF5vR0zZxp4qiyeYwmxH/wu+D
-         EfK8VUgkDiloinqa7J59vMVheZAdZVT2egTVbSHNvXPxHHOvJWSOc7Pw36ZnfU2teDo9
-         uRx1dWmIMgq6fKcxW1IzbPidX2uovg2y+LTurFHzRMPScntEcdUwpKBZHWAoFvpiuFhJ
-         74AYtZN/EkGCp5zeO/H7N0YnAkR/HXdMNiKRFy7jFlIezYalN9jZHodiVy8AeYhz8RHl
-         FAPg==
-X-Gm-Message-State: AOAM532I9rA784JiX76kf0gkFvGLPxuMNNLUmRADrpHS+2rLrrKm+vAR
-        15L3NwVk8G028tDdgnuJtYUjJGK1z9CUtz5zOC8ExA==
-X-Google-Smtp-Source: ABdhPJyHUPy/Ouf9Ph+Ka143JqGyEYFP5BB2Y1Ua+88WOLVsy4CllZ0Osm1JjtVWdZgl9HksM8p+j0LLtA23vf1IbTc=
-X-Received: by 2002:a19:c107:: with SMTP id r7mr1952433lff.29.1629969758761;
- Thu, 26 Aug 2021 02:22:38 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to;
+        bh=Z5nGZgvsyXA2v5RBRhfghmqhLLrwrK3N/HAosQKFTGU=;
+        b=l0P5HQz6k0L1Gny4y1tyvfIYsjaQoZPBTZsULDcQBSHMpex2iLZ/9BrPYBtPgU/J8N
+         La+id/Qdr6bQztLVJKW2K5J2ERCc+g0FPn/iMAFm7+fjDi9fzccLbnL8PQSrGYmfch1t
+         3E8ka3QJKC5YomRUjnT178Oz/5+E6sXTLQdl4IXP0ImeVgBrigGgN1FQgYPrtQhhHKuf
+         s/8sNphnd9aHVA/YxgoUaNk6gER0g8fkZzgzfZ1+lDoUf5OXWv5VlpqCa/tN898n7rX1
+         5ig9Qn+2ZMXLnwKyKu9p26DVZaDZUNw2bv/aVt0p961NEe3Ze3JSMq3GVsCanvwEPnF4
+         7BOA==
+X-Gm-Message-State: AOAM531jS89SzbiznjW3L5tRfIcRqMaQEc/lSG7ubUHdOK47zypRvAXp
+        ssvIZHq7VqDpkuFR5lMBdUalAFEYcuHh5g==
+X-Google-Smtp-Source: ABdhPJywIjK24u44KRC9Fyl/LBYQf/UtyuZhNV+15XNUicx6WL1eBmZ28GqU1x/tJY9ZhVWwQcJQoA==
+X-Received: by 2002:a5d:438a:: with SMTP id i10mr2650396wrq.285.1629969764058;
+        Thu, 26 Aug 2021 02:22:44 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id v21sm2697421wra.92.2021.08.26.02.22.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Aug 2021 02:22:43 -0700 (PDT)
+Date:   Thu, 26 Aug 2021 11:22:41 +0200
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Zenghui Yu <yuzenghui@huawei.com>, tzimmermann@suse.de,
+        Arnd Bergmann <arnd@arndb.de>, wanghaibin.wang@huawei.com,
+        Jun Nie <jun.nie@linaro.org>, airlied@linux.ie,
+        Shawn Guo <shawnguo@kernel.org>, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+        linux-kernel@vger.kernel.org, mripard@kernel.org,
+        devicetree@vger.kernel.org, maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH] drm: remove zxdrm driver
+Message-ID: <YSddYSKvGneVKNjW@phenom.ffwll.local>
+Mail-Followup-To: Rob Herring <robh@kernel.org>,
+        Zenghui Yu <yuzenghui@huawei.com>, tzimmermann@suse.de,
+        Arnd Bergmann <arnd@arndb.de>, wanghaibin.wang@huawei.com,
+        Jun Nie <jun.nie@linaro.org>, airlied@linux.ie,
+        Shawn Guo <shawnguo@kernel.org>, robh+dt@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        mripard@kernel.org, devicetree@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com
+References: <20210821031357.289-1-yuzenghui@huawei.com>
+ <YSPuMqd1QgnRIVCB@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com>
- <1628334401-6577-6-git-send-email-stefan.wahren@i2se.com> <3e8bfa67-e3fe-bcfd-1941-90cae7ed0176@arm.com>
-In-Reply-To: <3e8bfa67-e3fe-bcfd-1941-90cae7ed0176@arm.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 26 Aug 2021 11:22:02 +0200
-Message-ID: <CAPDyKFpGoMVywNFMskTTYYOvLZMK-1u2+5V_q1uW2H5AZJ_W7Q@mail.gmail.com>
-Subject: Re: [PATCH V2 05/10] mmc: sdhci-iproc: Set SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN
- on BCM2711
-To:     Jeremy Linton <jeremy.linton@arm.com>
-Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        Maxime Ripard <maxime@cerno.tech>, iivanov@suse.de,
-        DTML <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2835..." 
-        <linux-rpi-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YSPuMqd1QgnRIVCB@robh.at.kernel.org>
+X-Operating-System: Linux phenom 5.10.0-7-amd64 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Aug 2021 at 08:36, Jeremy Linton <jeremy.linton@arm.com> wrote:
->
-> Hi,
->
->
-> On 8/7/21 6:06 AM, Stefan Wahren wrote:
-> > From: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> >
-> > The controller doesn't seem to pick-up on clock changes, so set the
-> > SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN flag to query the clock frequency
-> > directly from the clock.
-> >
-> > Fixes: f84e411c85be ("mmc: sdhci-iproc: Add support for emmc2 of the BCM2711")
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+On Mon, Aug 23, 2021 at 01:51:30PM -0500, Rob Herring wrote:
+> On Sat, 21 Aug 2021 11:13:57 +0800, Zenghui Yu wrote:
+> > The zte zx platform had been removed in commit 89d4f98ae90d ("ARM: remove
+> > zte zx platform"), so this driver is no longer needed.
+> > 
+> > Cc: Arnd Bergmann <arnd@arndb.de>
+> > Cc: Jun Nie <jun.nie@linaro.org>
+> > Cc: Shawn Guo <shawnguo@kernel.org>
+> > Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
 > > ---
-> >   drivers/mmc/host/sdhci-iproc.c | 3 ++-
-> >   1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
-> > index 032bf85..e7565c6 100644
-> > --- a/drivers/mmc/host/sdhci-iproc.c
-> > +++ b/drivers/mmc/host/sdhci-iproc.c
-> > @@ -295,7 +295,8 @@ static const struct sdhci_ops sdhci_iproc_bcm2711_ops = {
-> >   };
-> >
-> >   static const struct sdhci_pltfm_data sdhci_bcm2711_pltfm_data = {
-> > -     .quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12,
-> > +     .quirks = SDHCI_QUIRK_MULTIBLOCK_READ_ACMD12 |
-> > +               SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-> >       .ops = &sdhci_iproc_bcm2711_ops,
-> >   };
->
-> I just noticed that this got merged to rc7, and it breaks the ACPI based
-> rpi's because it causes the 100Mhz max clock to be overridden to the
-> return from sdhci_iproc_get_max_clock() which is 0 because there isn't a
-> OF/DT based clock device.
+> >  .../devicetree/bindings/display/zte,vou.txt   | 120 ---
+> >  drivers/gpu/drm/Kconfig                       |   2 -
+> >  drivers/gpu/drm/Makefile                      |   1 -
+> >  drivers/gpu/drm/zte/Kconfig                   |  10 -
+> >  drivers/gpu/drm/zte/Makefile                  |  10 -
+> >  drivers/gpu/drm/zte/zx_common_regs.h          |  28 -
+> >  drivers/gpu/drm/zte/zx_drm_drv.c              | 190 ----
+> >  drivers/gpu/drm/zte/zx_drm_drv.h              |  34 -
+> >  drivers/gpu/drm/zte/zx_hdmi.c                 | 760 ---------------
+> >  drivers/gpu/drm/zte/zx_hdmi_regs.h            |  66 --
+> >  drivers/gpu/drm/zte/zx_plane.c                | 537 ----------
+> >  drivers/gpu/drm/zte/zx_plane.h                |  26 -
+> >  drivers/gpu/drm/zte/zx_plane_regs.h           | 120 ---
+> >  drivers/gpu/drm/zte/zx_tvenc.c                | 400 --------
+> >  drivers/gpu/drm/zte/zx_tvenc_regs.h           |  27 -
+> >  drivers/gpu/drm/zte/zx_vga.c                  | 527 ----------
+> >  drivers/gpu/drm/zte/zx_vga_regs.h             |  33 -
+> >  drivers/gpu/drm/zte/zx_vou.c                  | 921 ------------------
+> >  drivers/gpu/drm/zte/zx_vou.h                  |  64 --
+> >  drivers/gpu/drm/zte/zx_vou_regs.h             | 212 ----
+> >  20 files changed, 4088 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/display/zte,vou.txt
+> >  delete mode 100644 drivers/gpu/drm/zte/Kconfig
+> >  delete mode 100644 drivers/gpu/drm/zte/Makefile
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_common_regs.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_drm_drv.c
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_drm_drv.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_hdmi.c
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_hdmi_regs.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_plane.c
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_plane.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_plane_regs.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_tvenc.c
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_tvenc_regs.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_vga.c
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_vga_regs.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_vou.c
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_vou.h
+> >  delete mode 100644 drivers/gpu/drm/zte/zx_vou_regs.h
+> > 
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Thanks for reporting! I allow Stefan to respond in a day or two,
-before I do a revert of it.
-
-Kind regards
-Uffe
+I just merged another patch to delete the zte driver.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
