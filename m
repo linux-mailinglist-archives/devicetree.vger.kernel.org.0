@@ -2,91 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 724A73F8B65
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 17:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 086763F8B61
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 17:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242974AbhHZQAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 12:00:25 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41948 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbhHZQAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 12:00:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=uL5vfEwr2WigDObDrhULFOFtOV6tp1kXQN1wFhcEZS8=; b=F9ngiYuFosmnUoQseSs+POC1wl
-        7/p4Z+ARUpFaN38TNLdW/PSlg6NIK7QgJdij8xumYvUdqtAaYf1iJ48psnbI5ECmDDeBA8afnMNP+
-        iDH6HCzhfGy5+uiaeXLBhLtx7MxxJT+VJqKN+rmQ42RIyRxtue8sgaOOMi1fHCzGC4p0=;
-Received: from 94.196.67.80.threembb.co.uk ([94.196.67.80] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1mJHmq-00FUer-5h; Thu, 26 Aug 2021 15:59:28 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 25A79D01AC2; Thu, 26 Aug 2021 16:48:53 +0100 (BST)
-Date:   Thu, 26 Aug 2021 16:48:53 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     robh+dt@kernel.org, alsa-devel@alsa-project.org,
-        Jiaxin.Yu@mediatek.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: mt8192: re-add audio afe
- document
-Message-ID: <YSe35dOicFFDiXAy@sirena.org.uk>
-References: <20210826141314.3720975-1-tzungbi@google.com>
- <YSevGntb3mmYlZGE@sirena.org.uk>
- <CA+Px+wWr99PxEz6qROhj7H8LXFiRZ1sxrn-BcB7ZODJA1Suh+A@mail.gmail.com>
+        id S240900AbhHZP6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 11:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52190 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234972AbhHZP6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 11:58:21 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8159C061757;
+        Thu, 26 Aug 2021 08:57:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=MIME-Version:Content-Transfer-Encoding:Content-Type:References
+        :In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=ZnGe1nVJ1CjSDZDcZI0kLv7JieGOOXz8IXiGfM2vWOg=; b=vCwqW1gApWpdGNv1xOnZEngggZ
+        tapUoSvNGbDkeiGebQoMw5auiTyvm1Bf+8L2tTnwQUrcU9hKH9zEpThL0jphg8B4cCVg1zRpn3zsK
+        e5RriResuYJf+iIpnb5blFK2vNvMK/WGSq9P0ANhriDGHHVS+92EV54qoDWipGXG7oj4VMmV6L0j0
+        3Srwy3i36F8r1cam65UIgDSl3AoNAl0XSs8bwCENdQMYq6+oRVl5NpDz8AKgqlt1r6DrlqXhbGHK9
+        r/p/K5srrlj0pNAQ6iQGKjMhirW7YXhDGurLKyyUk2JT1qOVWEMr2HteoAnKECnf8dOdltGtSPx+p
+        y6tQ1MDQ==;
+Received: from 83-245-197-237.elisa-laajakaista.fi ([83.245.197.237] helo=localhost)
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <jarkko.sakkinen@iki.fi>)
+        id 1mJHkX-0006ux-Oe; Thu, 26 Aug 2021 18:57:05 +0300
+Message-ID: <284e47260b22b8f308a1efa6754845329f6c89a5.camel@iki.fi>
+Subject: Re: [PATCH v13 1/7] tpm: Make read{16, 32}() and write32() in 
+ tpm_tis_phy_ops optional
+From:   Jarkko Sakkinen <jarkko.sakkinen@iki.fi>
+To:     amirmizi6@gmail.com, Eyal.Cohen@nuvoton.com,
+        jarkko.sakkinen@linux.intel.com, oshrialkoby85@gmail.com,
+        alexander.steffen@infineon.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org, benoit.houyere@st.com,
+        eajames@linux.ibm.com, joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
+Date:   Thu, 26 Aug 2021 18:57:04 +0300
+In-Reply-To: <20210826111908.117278-2-amirmizi6@gmail.com>
+References: <20210826111908.117278-1-amirmizi6@gmail.com>
+         <20210826111908.117278-2-amirmizi6@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.36.5-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YzpHw64aXvjaQKnF"
-Content-Disposition: inline
-In-Reply-To: <CA+Px+wWr99PxEz6qROhj7H8LXFiRZ1sxrn-BcB7ZODJA1Suh+A@mail.gmail.com>
-X-Cookie: I can relate to that.
+X-SA-Exim-Connect-IP: 83.245.197.237
+X-SA-Exim-Mail-From: jarkko.sakkinen@iki.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 2021-08-26 at 14:19 +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+>=20
+> Only tpm_tis can use memory-mapped I/O, which is truly mapped into
+> the kernel's memory space. Therefore, using ioread16/ioread32/iowrite32
+> turns into a straightforward pointer dereference.
+> Every other driver requires more complicated operations to read more than
+> one byte at a time and will just fall back to read_bytes/write_bytes.
 
---YzpHw64aXvjaQKnF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+s/Every other driver/Some drivers, such as tpm_tis_spi,/g.
 
-On Thu, Aug 26, 2021 at 11:28:15PM +0800, Tzung-Bi Shih wrote:
-> On Thu, Aug 26, 2021 at 11:19 PM Mark Brown <broonie@kernel.org> wrote:
+> Therefore, move this common code out of tpm_tis_spi and into tpm_tis_core
+> so that it is used automatically when low-level drivers do not implement
+> the specialized methods.
 
-> > > The dependency has merged.  Re-adds back the document.
+This does not really explain why you are moving the code.
 
-> > What is the dependency and where wsa it merged?
+You are moving it so that you don't have to reimplement things both in
+SPI and I2C drivers?
 
-> The context is in the original email after "---".  Do you think it
-> needs to be part of the commit message?
+Perhaps:
 
-I was looking for a description of what these things are and
-where things are in words - I'm on a train with spotty network
-access which makes them not as useful as they might be.
+"Re-implement tpm_tis_{read, write}_{16, 32}, so that they check
+ if implementations for {read, write}_{16, 32} in tpm_tis_phys_ops
+ exist, and if not, fallback to {read, write}_bytes()."
 
-Please include human readable descriptions of things like commits and
-issues being discussed in e-mail in your mails, this makes them much
-easier for humans to read especially when they have no internet access.
-I do frequently catch up on my mail on flights or while otherwise
-travelling so this is even more pressing for me than just being about
-making things a bit easier to read.
+> Co-developed-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
+> Reviewed-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+> Tested-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
 
---YzpHw64aXvjaQKnF
-Content-Type: application/pgp-signature; name="signature.asc"
+Since there's been a while, it'd be better if you dropped my tags.
+I consider them as expired by now. Please do this for all patches.
 
------BEGIN PGP SIGNATURE-----
+/Jarkko
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEnt+QACgkQJNaLcl1U
-h9CBVwf5AXb06SsToU0IxExtwACFaktJrMHHAkc+VOtxnyEJqt5jGgQvpG6THAUA
-NJDsJ0NpxR119GPqMA3sOwxC/tbpIR6nUXl4c+UQHlp2+IfQVUzXPWMnR8fhX3Kt
-y5VFZsz2muIbSRvRoBHH6iIlzJVceVwOrJGTd5BvMB2O4rErcjTWiUruGp6Yf8AX
-v9wcffXQB6Ofgvew+3TXlma7dK3C5CQHl2Dd0BfsI/fPGYq4j/oqnWCUqVTDKnN9
-U40OpstBsZ2xUxoxQ/XgxdyOdtp8Xe1CmbJquYGO8o8nf0Sl3YVMcC3U9hcG9YUW
-QYl9jn3BDEAnKY0uBHKimmdQUUJ7Uw==
-=91jm
------END PGP SIGNATURE-----
-
---YzpHw64aXvjaQKnF--
