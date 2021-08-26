@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B12F33F8809
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 14:52:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9825B3F8815
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 14:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237301AbhHZMxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 08:53:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60186 "EHLO mail.kernel.org"
+        id S242362AbhHZMyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 08:54:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:46324 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233687AbhHZMxW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Aug 2021 08:53:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A07E60E0B;
-        Thu, 26 Aug 2021 12:52:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1629982355;
-        bh=k+jKDPMkrQDoBPL6bBTji+fg/yJH4WCO5skRGfORL90=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R5ii20vj8IZkbZ2ySUYS1CHi5JAfY0HZFhupeuFGb6R8VxaE+14Didhpc0zKN8Mh6
-         S0XUSNNx/0d/ALp90WOgZre9BuUtOk/HErVQd2Fa500wynIxd48Yx0mn0bdiPjmCe7
-         DNJ0YSiKNKqqF6UQ1iqvuuadEQqASkrYYjNXnsAdiWG35aNNqWkZeGY4zCn9CBJXAg
-         XvZIE77Wtw82mJz43QDq4vfYJCjkpr2HwpnUTGY1C+lIHlOurrlLaRC+9Uuef/UKJw
-         eO+AuCuiUnnRA2xYBgnoLnr1t9afSlhm0auWKCGuT3zGf3kgdzhjtMmCbgQHEwhQlO
-         CsZkFkBWO86hQ==
-Date:   Thu, 26 Aug 2021 13:52:06 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sugar Zhang <sugar.zhang@rock-chips.com>
-Cc:     heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: Re: [PATCH v3 05/14] ASoC: rockchip: i2s: Fix concurrency between
- tx/rx
-Message-ID: <20210826125206.GD4148@sirena.org.uk>
-References: <1629950441-14118-1-git-send-email-sugar.zhang@rock-chips.com>
- <1629950520-14190-5-git-send-email-sugar.zhang@rock-chips.com>
+        id S237352AbhHZMyO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Aug 2021 08:54:14 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B998106F;
+        Thu, 26 Aug 2021 05:53:27 -0700 (PDT)
+Received: from e123427-lin.arm.com (unknown [10.57.41.138])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DA5143F766;
+        Thu, 26 Aug 2021 05:53:23 -0700 (PDT)
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     robh+dt@kernel.org, bhelgaas@google.com,
+        Chuanjia Liu <chuanjia.liu@mediatek.com>,
+        matthias.bgg@gmail.com
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, yong.wu@mediatek.com,
+        devicetree@vger.kernel.org, ryder.lee@mediatek.com,
+        jianjun.wang@mediatek.com, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v12 0/6] PCI: mediatek: Spilt PCIe node to comply with hardware design
+Date:   Thu, 26 Aug 2021 13:53:12 +0100
+Message-Id: <162998235864.26306.15150607621994016843.b4-ty@arm.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210823032800.1660-1-chuanjia.liu@mediatek.com>
+References: <20210823032800.1660-1-chuanjia.liu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sgneBHv3152wZ8jf"
-Content-Disposition: inline
-In-Reply-To: <1629950520-14190-5-git-send-email-sugar.zhang@rock-chips.com>
-X-Cookie: /earth: file system full.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 23 Aug 2021 11:27:54 +0800, Chuanjia Liu wrote:
+> There are two independent PCIe controllers in MT2712 and MT7622 platform.
+> Each of them should contain an independent MSI domain.
+> 
+> In old dts architecture, MSI domain will be inherited from the root
+> bridge, and all of the devices will share the same MSI domain.Hence that,
+> the PCIe devices will not work properly if the irq number which required
+> is more than 32.
+> 
+> [...]
 
---sgneBHv3152wZ8jf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied to pci/mediatek, thanks!
 
-On Thu, Aug 26, 2021 at 12:01:51PM +0800, Sugar Zhang wrote:
+[1/4] dt-bindings: PCI: mediatek: Update the Device tree bindings
+      https://git.kernel.org/lpieralisi/pci/c/aa6eca5b81
+[2/4] PCI: mediatek: Add new method to get shared pcie-cfg base address
+      https://git.kernel.org/lpieralisi/pci/c/87e8657ba9
+[3/4] PCI: mediatek: Add new method to get irq number
+      https://git.kernel.org/lpieralisi/pci/c/436960bb00
+[4/4] PCI: mediatek: Use PCI domain to handle ports detection
+      https://git.kernel.org/lpieralisi/pci/c/77216702c8
 
-> +/* tx/rx ctrl lock */
-> +static DEFINE_SPINLOCK(lock);
-> +
-
-Why is this a global and not part of the driver data?  It's also not
-clear to me why this is a spinlock and not a mutex.
-
---sgneBHv3152wZ8jf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEnjnUACgkQJNaLcl1U
-h9DhSgf+MgL/IQ9Mq6omKDRWYltsw14qyPu33shx7ZijOx+Opu9cYlPB75kmxRWv
-ylkwSG6o1RVEmHD/Y7XifgmrS7/pk9aqxCYTF7fdgfzA6Vj20AwJxcdRq5hXtGXg
-3rCgH6yqOL3qysd2VYiNOTO8jPNaq9wzeB4kwS8HC8DtBNvXXCtgID85w6Ihmqd+
-FNm9G7td36rGQWX2OFy/pGWAo77ZR55VtaLM/7WWBeC0oxZ6QXO/3xwFvbFqgXF/
-gLWxHGW5siQgtzqk1NDS/fmSjlQtQgTjKY3PxawKGwtTW/smMt6mp+Jz94YvbT8J
-JaZ90zWGfcxu9o8JkUqGN8YIbk8k/Q==
-=FFmq
------END PGP SIGNATURE-----
-
---sgneBHv3152wZ8jf--
+Thanks,
+Lorenzo
