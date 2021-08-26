@@ -2,64 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC6C3F88D6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 15:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54DFB3F88D8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 15:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242698AbhHZN1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 09:27:09 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:42935 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242709AbhHZN04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 09:26:56 -0400
-Received: by mail-oi1-f171.google.com with SMTP id bi4so749399oib.9;
-        Thu, 26 Aug 2021 06:26:09 -0700 (PDT)
+        id S242705AbhHZN1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 09:27:10 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:40515 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242719AbhHZN07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 09:26:59 -0400
+Received: by mail-ot1-f43.google.com with SMTP id x9-20020a056830278900b0051b8be1192fso3447275otu.7;
+        Thu, 26 Aug 2021 06:26:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=MVwvIDZK2/7Y4951WHMhhdQzU7LUf/3BWIAcj7PEAtg=;
-        b=qNVwjG0oT0MOCfdbB6AWBEv2r468zxYqB1EqrdIZsnm1KCB88huX4jHvl1L1eyh/Wf
-         7Uh7yrOo5o5wea3DGmpDGtYcDuS2D11RG9cr0t9Bpf6kp/sL16Cu8LmzYBFxpjQil0zI
-         aFb3oD1nkhpImS5rKyC/zZBljBdyyn4nDwkzrR67j3j2sbmv+jES1AIYvB0o4LFMXWzv
-         B6wvHa4gx1ULbCs6cIZh8QdD+NviRP+BX9Ijkb5exHK5q+URJdGX+KupyZWR3qu61LUz
-         GW2bZdUNeLi0IgID8eXCPeNtX+03zQyXVGrFjOVtjVkloj/AcXdSlvM0C7XyBj7MsbUk
-         nbtQ==
-X-Gm-Message-State: AOAM531VdCNqqP8H48HvMZj3dLStyavyN/qNmqUgcZXrA8QY33oErm58
-        JkqMIOUPP2YZmYFWym2D3g==
-X-Google-Smtp-Source: ABdhPJxQgh36d/Z8oPQJ2kZdPSroKU7uJI2G1etE76FJfI7pF24X/EZtJ5/N57d2bHja0Z6MHeT+MA==
-X-Received: by 2002:aca:b808:: with SMTP id i8mr10141154oif.62.1629984368953;
-        Thu, 26 Aug 2021 06:26:08 -0700 (PDT)
+        bh=uIS+8gYdkJjlrt+Ek4uoUfWZb6Pa8S7tyRKs39tOyHo=;
+        b=mETh4Se60dRVzqor2YEmRipKwwOKzBJCkzuA5IbmUgctGZsAO6GL5PrWQpUs5ceoAg
+         njB+Oxr2PZr9+jtbScOR7GGnr4FeJ3tPy9oD29Hcd4fyHWCv/n8RmTn0PcW4jRWO5pHP
+         9BUNKmRC9vdyOETQ0+wi4h3iRPIl1dVwZksOmOZhzbCrOywugzt/mC5GxPuE+9usDoyv
+         NO+raFnTXDJFviIl9RkV/1gZ6rJfk9bZuq6PUeqPzm6jrPdNxIqeuxrKAre1i1HmBIqV
+         S1BklyKhfNmCY4KCKSXp4aeYM4qtCXL4VZJ5+Cd9MnONB0jD0gNrzzOZVsuInBlJEeel
+         qgxQ==
+X-Gm-Message-State: AOAM533vYkOWy5fWYiHsq9cWeahjNNVsiaKjCaakqNxhd6y4BG18BJAc
+        29Jk1EH4ZrEagXwiVVmcdSfFLY+5lw==
+X-Google-Smtp-Source: ABdhPJxNI0g7Dxl6NJmuGLI5tee2rarhhWN6VNmz8YZLrFfLMJvu2ENDDI4aJHTclCNLT0H7r6+O1Q==
+X-Received: by 2002:a9d:5f07:: with SMTP id f7mr3198978oti.183.1629984371677;
+        Thu, 26 Aug 2021 06:26:11 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x1sm554628otu.8.2021.08.26.06.26.07
+        by smtp.gmail.com with ESMTPSA id n17sm564601otl.32.2021.08.26.06.26.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Aug 2021 06:26:07 -0700 (PDT)
-Received: (nullmailer pid 1033392 invoked by uid 1000);
+        Thu, 26 Aug 2021 06:26:10 -0700 (PDT)
+Received: (nullmailer pid 1033390 invoked by uid 1000);
         Thu, 26 Aug 2021 13:26:01 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        linux-phy@lists.infradead.org, vkoul@kernel.org, heiko@sntech.de,
-        michael.riesch@wolfvision.net, kishon@ti.com,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        p.zabel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210826123844.8464-2-yifeng.zhao@rock-chips.com>
-References: <20210826123844.8464-1-yifeng.zhao@rock-chips.com> <20210826123844.8464-2-yifeng.zhao@rock-chips.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: phy: rockchip: Add Naneng combo PHY bindings
+To:     amirmizi6@gmail.com
+Cc:     oshri.alkoby@nuvoton.com, tmaimon77@gmail.com, peterhuewe@gmx.de,
+        jarkko.sakkinen@linux.intel.com, kgoldman@us.ibm.com,
+        oshrialkoby85@gmail.com, jgg@ziepe.ca, shmulik.hager@nuvoton.com,
+        robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        mark.rutland@arm.com, benoit.houyere@st.com,
+        amir.mizinski@nuvoton.com, oren.tanami@nuvoton.com, joel@jms.id.au,
+        devicetree@vger.kernel.org, gcwilson@us.ibm.com,
+        alexander.steffen@infineon.com, Dan.Morav@nuvoton.com,
+        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
+        Eyal.Cohen@nuvoton.com, eajames@linux.ibm.com, arnd@arndb.de
+In-Reply-To: <20210826111908.117278-8-amirmizi6@gmail.com>
+References: <20210826111908.117278-1-amirmizi6@gmail.com> <20210826111908.117278-8-amirmizi6@gmail.com>
+Subject: Re: [PATCH v13 7/7] tpm: Add YAML schema for TPM TIS I2C options
 Date:   Thu, 26 Aug 2021 08:26:01 -0500
-Message-Id: <1629984361.449016.1033391.nullmailer@robh.at.kernel.org>
+Message-Id: <1629984361.421167.1033389.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Aug 2021 20:38:42 +0800, Yifeng Zhao wrote:
-> Add the compatible strings for the Naneng combo PHY found on rockchip SoC.
+On Thu, 26 Aug 2021 14:19:08 +0300, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
 > 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> Added a YAML schema to support tpm tis i2c related dt-bindings for the I2c
+> PTP based physical layer.
+> 
+> This patch adds the documentation for corresponding device tree bindings of
+> I2C based Physical TPM.
+> Refer to the 'I2C Interface Definition' section in
+> 'TCG PC Client PlatformTPMProfile(PTP) Specification' publication
+> for specification.
+> 
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
-> 
->  .../phy/phy-rockchip-naneng-combphy.yaml      | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
+>  .../bindings/security/tpm/tpm-tis-i2c.yaml         | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -68,12 +82,17 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.example.dt.yaml:0:0: /example-0/syscon@fdc50000: failed to match any schema with compatible: ['rockchip,rk3568-pipegrf', 'syscon']
-Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.example.dt.yaml:0:0: /example-0/syscon@fdc70000: failed to match any schema with compatible: ['rockchip,pipe-phy-grf', 'syscon']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml: 'additionalProperties' is a required property
+	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.example.dt.yaml:0:0: /example-0/i2c/tpm@2e: failed to match any schema with compatible: ['nuvoton,npct75x', 'tcg,tpm-tis-i2c']
+Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.example.dt.yaml:0:0: /example-0/i2c/tpm@2e: failed to match any schema with compatible: ['nuvoton,npct75x', 'tcg,tpm-tis-i2c']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1521096
+See https://patchwork.ozlabs.org/patch/1521079
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
