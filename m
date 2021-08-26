@@ -2,95 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9287C3F8890
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 15:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5580B3F88D0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 15:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242685AbhHZNRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 09:17:03 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:48550 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242680AbhHZNRB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 09:17:01 -0400
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 26 Aug 2021 06:16:14 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 26 Aug 2021 06:16:13 -0700
-X-QCInternal: smtphost
-Received: from rajpat-linux.qualcomm.com ([10.206.21.0])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 26 Aug 2021 18:45:55 +0530
-Received: by rajpat-linux.qualcomm.com (Postfix, from userid 2344945)
-        id 50EF821288; Thu, 26 Aug 2021 18:45:56 +0530 (IST)
-From:   Rajesh Patil <rajpat@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, sboyd@kernel.org,
-        Rajesh Patil <rajpat@codeaurora.org>
-Subject: [PATCH V6 7/7] arm64: dts: sc7280: Add aliases for I2C and SPI
-Date:   Thu, 26 Aug 2021 18:45:31 +0530
-Message-Id: <1629983731-10595-8-git-send-email-rajpat@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1629983731-10595-1-git-send-email-rajpat@codeaurora.org>
-References: <1629983731-10595-1-git-send-email-rajpat@codeaurora.org>
+        id S242736AbhHZN1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 09:27:08 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:43815 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242278AbhHZN0u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 09:26:50 -0400
+Received: by mail-oi1-f172.google.com with SMTP id w19so4482378oik.10;
+        Thu, 26 Aug 2021 06:26:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=yGrmY0Wm9zImGOy/o3LCoKO0Ng/hLTcj4XnHAPE/eDs=;
+        b=KhPZETYFGzQTe61EkA+RCR+EPRVfs9B/TQidWuqXLx37OYJ0CG1H/92NHDRueaQ3jI
+         kZ1mhhDEcIlGUxBDlFzoahtBbjL0etth9W6ZLf+U0pROgmNdsgwEcbDZFrCRfb/omUwK
+         rf6/CVncHnjUO+RWjlwhsdjCl9umS6gP9v6uRJNrS16LhMJWYKZ7z1rvkVF1vnUBeyuf
+         JawvqaTHmtqxBxberOHVJzXg52rtEs+5DCufEGKPLJXv2Eolwgf9i2+ZoFbevrB/wYs3
+         aQPPut0/wxLeO9bTfUU5R8K7izmVczVcAJNnh1b7ZobJnOGDZeDyNRXFpginE59IgosK
+         Fsfw==
+X-Gm-Message-State: AOAM530COZvRD4TjZPTlqk9yDqCl0MJOmJJXGrueZ9LFwj4nolYCpYUj
+        hXqurRiwx47WqH70C7x2Ng==
+X-Google-Smtp-Source: ABdhPJwolzkhSzZMufONuxtdvIMwlkvhTNBvyCc9Y5tP4vHtKhzTpiQyufCG5WCn30VqdDSpmGRVXg==
+X-Received: by 2002:a05:6808:690:: with SMTP id k16mr2382166oig.152.1629984363205;
+        Thu, 26 Aug 2021 06:26:03 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c24sm576169otf.71.2021.08.26.06.26.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Aug 2021 06:26:02 -0700 (PDT)
+Received: (nullmailer pid 1033383 invoked by uid 1000);
+        Thu, 26 Aug 2021 13:26:01 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org
+In-Reply-To: <20210826061623.6352-2-chiawei_wang@aspeedtech.com>
+References: <20210826061623.6352-1-chiawei_wang@aspeedtech.com> <20210826061623.6352-2-chiawei_wang@aspeedtech.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: aspeed: Add eSPI controller
+Date:   Thu, 26 Aug 2021 08:26:01 -0500
+Message-Id: <1629984361.334223.1033382.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add aliases for i2c and spi for sc7280 soc.
+On Thu, 26 Aug 2021 14:16:20 +0800, Chia-Wei Wang wrote:
+> Add dt-bindings for Aspeed eSPI controller
+> 
+> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> ---
+>  .../devicetree/bindings/soc/aspeed/espi.yaml  | 157 ++++++++++++++++++
+>  1 file changed, 157 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/espi.yaml
+> 
 
-Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 32f411f..c659f61 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -28,6 +28,38 @@
- 	aliases {
- 		mmc1 = &sdhc_1;
- 		mmc2 = &sdhc_2;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+		i2c3 = &i2c3;
-+		i2c4 = &i2c4;
-+		i2c5 = &i2c5;
-+		i2c6 = &i2c6;
-+		i2c7 = &i2c7;
-+		i2c8 = &i2c8;
-+		i2c9 = &i2c9;
-+		i2c10 = &i2c10;
-+		i2c11 = &i2c11;
-+		i2c12 = &i2c12;
-+		i2c13 = &i2c13;
-+		i2c14 = &i2c14;
-+		i2c15 = &i2c15;
-+		spi0 = &spi0;
-+		spi1 = &spi1;
-+		spi2 = &spi2;
-+		spi3 = &spi3;
-+		spi4 = &spi4;
-+		spi5 = &spi5;
-+		spi6 = &spi6;
-+		spi7 = &spi7;
-+		spi8 = &spi8;
-+		spi9 = &spi9;
-+		spi10 = &spi10;
-+		spi11 = &spi11;
-+		spi12 = &spi12;
-+		spi13 = &spi13;
-+		spi14 = &spi14;
-+		spi15 = &spi15;
- 	};
- 
- 	clocks {
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/aspeed/espi.example.dt.yaml: espi@1e6ee000: 'espi-ctrl@0', 'espi-mmbi@800' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/aspeed/espi.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1520968
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
