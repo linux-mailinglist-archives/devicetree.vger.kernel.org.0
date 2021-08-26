@@ -2,191 +2,431 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 898EA3F8391
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 10:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 387233F83B3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 10:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240207AbhHZIMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 04:12:12 -0400
-Received: from mail-eopbgr60098.outbound.protection.outlook.com ([40.107.6.98]:1074
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233052AbhHZIML (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Aug 2021 04:12:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jnRaFvxP18zzsoRkm6m5jmAlP8xSmkw++qt5mqJwapo6qWQ2ZTK2tUKrYIFvxDAM6LLoQj3ZlX52B0H70jSWqsi6f0K9T1ZsqlZIE52Mm7loSHgkD/bF5yEZJ4oVQJcy39Mweu6bGMhbdRJ5nZjLDrbzftZhh484Kl874u47r0IqnCfDAqvLRi0V3vesz89UJr5P69qjwZTliYccgdauW/jjyX/c2Cm2lIW4kyhFK6pMS0TiR2XD6OZbC39sdWSCqW/7q6q4y79MsAsAO95DNh8AIboQmFbFSR+jkArt8zONHc5bwnw2RN3sasil8qPWnSkP+1oz0gIYOSBu4fOFgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D8YVeAiqEcEdAshbFcF5VxCINWaUgyGwmUXoFi4NpN8=;
- b=PWd+uwrpiUEfPWSB8X7WxBZ6qoP6rpcA+egIDydq2ovuWU0zuAm+7hVIp1fvFD0CJG2KvlvB3x/2Fg50pWxXRfsBEGZnZZgv25gDp0lLa+v1m3EN6au/Ly45w5OPONa82M7zl4IHy3cRjCV+tI1+im8VZAcePg1SHRjzyLasg4aR+zLyftvmydeFUiWOHI86aGFtQZtFaCx4rqkafo9k1oBaFig+4kICTZAAqnJUhTzy4Fzr9xF04czYoJVP2kaT27osaY08D18BFVaPgsUT7WW3BRK1By/L8NfbDCL3HB98GhF+jnHg5nTuEoYGFZFEyM45lvJf5bvTNR1/PT1PgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D8YVeAiqEcEdAshbFcF5VxCINWaUgyGwmUXoFi4NpN8=;
- b=WhTuUPpljTRfX+vScqI8dETU/zUp/KoYmXxFx3laP7A/M/C6tVep53wGAEZ/vybgaKkqrt6pdjqnrCkns1zWflhFMBODwXiXoy57qqblHbvuroyP9C3i6ZW1ys5/3GcrtNuJW3Dw169biaiYFs6IhPg8XK32+BDLBt7PvgYV2s8=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB7PR02MB5003.eurprd02.prod.outlook.com (2603:10a6:10:30::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17; Thu, 26 Aug
- 2021 08:11:21 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::35c9:1008:f5af:55a]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::35c9:1008:f5af:55a%4]) with mapi id 15.20.4457.020; Thu, 26 Aug 2021
- 08:11:21 +0000
-Subject: Re: [PATCH v8 05/14] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-To:     Liam Beguin <liambeguin@gmail.com>, jic23@kernel.org,
-        lars@metafoo.de
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20210820191714.69898-1-liambeguin@gmail.com>
- <20210820191714.69898-6-liambeguin@gmail.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-Message-ID: <9a7aa55f-0dd0-3fc7-13a4-5cb9c5d0a252@axentia.se>
-Date:   Thu, 26 Aug 2021 10:11:18 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20210820191714.69898-6-liambeguin@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: sv-SE
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: HE1PR06CA0127.eurprd06.prod.outlook.com
- (2603:10a6:7:16::14) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+        id S240449AbhHZIXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 04:23:33 -0400
+Received: from szxga03-in.huawei.com ([45.249.212.189]:15254 "EHLO
+        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240315AbhHZIXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 04:23:33 -0400
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.56])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4GwG6q3b4wz89bY;
+        Thu, 26 Aug 2021 16:22:27 +0800 (CST)
+Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 26 Aug 2021 16:22:43 +0800
+Received: from [10.174.177.243] (10.174.177.243) by
+ dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 26 Aug 2021 16:22:41 +0800
+Subject: [BUG] amba: Remove deferred device addition
+To:     Saravana Kannan <saravanak@google.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com>
+ <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+ <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
+ <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+ <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com>
+ <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+From:   Kefeng Wang <wangkefeng.wang@huawei.com>
+Message-ID: <df8e7756-8b0d-d7de-a9ff-3f6eb0ffa8a5@huawei.com>
+Date:   Thu, 26 Aug 2021 16:22:41 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.13.3] (85.229.94.233) by HE1PR06CA0127.eurprd06.prod.outlook.com (2603:10a6:7:16::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20 via Frontend Transport; Thu, 26 Aug 2021 08:11:20 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b5fc8b8-a9c1-44ad-94dc-08d9686916c3
-X-MS-TrafficTypeDiagnostic: DB7PR02MB5003:
-X-Microsoft-Antispam-PRVS: <DB7PR02MB5003286504283120E1736195BCC79@DB7PR02MB5003.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W+OPQ3zwdpNS7RbLHwvepFnnCXE2uzL2qQ3KLhKukB/EdmtSR2bXj797FHo7Jmn/JFnDC9JjGhaQnfTM+/KUCQ1kgctGBfl7lMJBVvIzH4sLBj/aU8d1Eell6re+VwCh97wkuSuvrNlEIi+V4Iu4YB9Pen7y2KQ5gMdot+CJb2v9j9IiNg9W1If3r5c5QWw+1OspjgLqKyOgX6ik7ELEHC9eoDXc35uoCB1CVl1HN47asPtkeDTga2+3N+baQI8/my69GDv84BGShMbPXEXowo5D367JeXE9t2xPs/iZUSDNaxRWLE6TeQdsDp4GNwoB63hL7fHAkWDEmzSAs8RN51viz3gE2DKyowIShhvvCDK1faYriflVEJQy6+umyKR9jixZNIss1bo0tg2piiSw8immjKoyB6seAQpUcNyVLLu4eUBA5PCsR5RwzGQnXNtp7u1Kn4Xhn2b2JIzXVLM84MyT+rTSTPLCCp7BBsDdgA/Daw/licQK8S5KKszoRN6SidLWLacsyh4Al8BhNkmppz9Z/FL+pT+VdGzZDKoiVMLnIuyHWXEPgPnzMVubmNyoHNxyfQrG6dxx467oBzeEHVS1St4bYRMKaqPewAZcE5wCBzBgj4RLQFrx55EI7TZvjg5ixfsu04cp6BguZI6NoEo5Cp2N5UolnyEF7evVeELPVgLbABwtutO/iWzZRCq0UNQRSfiDsmbHdnqspeYiA9jUmidFplTs36bEe5BNNpo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(39830400003)(346002)(396003)(136003)(366004)(53546011)(26005)(38100700002)(186003)(86362001)(478600001)(36756003)(8676002)(8936002)(31696002)(36916002)(956004)(4326008)(66476007)(6486002)(2616005)(16576012)(316002)(5660300002)(31686004)(66556008)(2906002)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWZpZzJNTmZJVG9hN2hIVXVqZUJ6SUgxRVNIaTYzUmE5bVdyZEVJWEwwVEF1?=
- =?utf-8?B?OVlYZ0ZaVCtWUkVlTi9hZDIvemhKcHZ5Tk5pNFd4WHkrTVlobmxlczFqeFYw?=
- =?utf-8?B?M0xRZTJvRWJBZklLakc4cjRrYUwwcnZraS9vdklLMnFoam1DSGxPUUhsZmxZ?=
- =?utf-8?B?NjlqaUl0SEdMTEcreG5GeDcwYVFzanZlem1Oc3dQc1Y0YUpYa1FWRHpxaDNu?=
- =?utf-8?B?M1F4OThCbHNUdUFqUWdvc2VPN1UzVC9XVTJkMWN0SDMwdjZiTW5iOG9Fc2Vi?=
- =?utf-8?B?eHZ4TnZDU3ZVbGFyN3hReEJLUGpielY0dlhlQXFlL0dDTUx0VVFSWnlRSnFT?=
- =?utf-8?B?bjhJRTdUTlFuaEFhUXlzajhmUkhYeC9mcCsyZU9JSmNUUXNPekVTR2FXRXNr?=
- =?utf-8?B?ZE41NWtuMnlsTmlxMURFTDlvRldUeE9xSnB4dTI3QkxRNklPUHFhekJzQXVO?=
- =?utf-8?B?aUpZS0tPcXZITlNSQWpyNUoxM1Myb2lyZlhEODRMUDVkUTMwUXRwNUUwYlds?=
- =?utf-8?B?c1NFd21KQXNxQ3J4K1pLWk9LUVRIY3NTd1JSY21NakVyRUVkNUFRVVFUZldD?=
- =?utf-8?B?UE0rZTB0U21WaHpPZE9wcFV6OGhxYTNQR1g5d2RMamdmZnVPOGJETWd4M1Yv?=
- =?utf-8?B?YmRTQmY4ZkVwUXpkQ1lLejE0eXBJUmFUQmt4bnBDbUszQnBFWmU5cklMRGVM?=
- =?utf-8?B?d0dPQ0tBcVd5Ry9veTloeTdWeDcxcFlyUVdxdTFSNjZUVGdkR2I5S1VWYndV?=
- =?utf-8?B?VEdSTGxXTGFVT2xoZ1plVmpJYmdrbTQxL1RKdW5XeGVWK2VKK1FJZ2ZFMFMr?=
- =?utf-8?B?VmNNdjIzL1MwMDE0L3JIV05xTW1lUHEzNGxIOWNhcGM2RUlvNjZsdlZZR2pG?=
- =?utf-8?B?dTcwcE5RWU9ZTWk5TGM5clJlSTBUblE2M3BPSmZtUWpkK3dNZWlUTkJaOWtO?=
- =?utf-8?B?L0NSSmlJa3lpZzJCa01nYWJ6bi9jQ0RNL25CM0xwSVlpVFRRNE5YVjVYd2Z3?=
- =?utf-8?B?eGNIMUFDVWhhNTYxam1QZ2xKcnRLMG9vdUsyRUhpanhrQ0hFaE5RZjFGOEhT?=
- =?utf-8?B?dUFwRVZmR3JMWEtvVS8rMHhwVHlQK1g0bW4yUDhDRGVuU3NZVlREZmI3ZUhH?=
- =?utf-8?B?Z0FvSjZEd3l0OVNHaHBDd0xnZXdaUjgvWFRsODVxUnY5aDRPUzlMK05yNGMy?=
- =?utf-8?B?YTZyazYxeDJITStGdVJ1NzlEd05YQ1JrSUpYcEtxY0gvVjlKSGQzRnZpc3ZI?=
- =?utf-8?B?aFB0Yi9ZNHpRMFROTlJUOVhsQ2cwaGV1cnE1QXl6Um1vT0RBWHpYd0tEL0Vn?=
- =?utf-8?B?d1lxc2hwREMvRURaUENmcG00Z2JjZnhPTEdkU2ZpUitKWU1DZmxFYk1iQ2kv?=
- =?utf-8?B?Z3hDUVpaTHdhZlpzOHZ4M0FSYWJ6Uk1PK3hqZm8ya09RNlhMaUp5WlFRZ3JG?=
- =?utf-8?B?dmEzMXRScHN0N1cwdVZEcjgvbmk5VVRKRnZCK2ZmV2JGL25SemdBU3Y1TzFh?=
- =?utf-8?B?b0FCa2tvL2kwQU9FQzE5Qkdod1ZSak9JYVhnd2hNT1NvNEpXVUY2NE0xWWRP?=
- =?utf-8?B?YWVXVVhJRDdLTnFsdHpOUWlZVFpXYWNKbGVFQ2RaeG9kN0svb1NPd2NVL0VE?=
- =?utf-8?B?TXVMQTF4ODBZVmR6Sm5nMGVYWFJWd092aWE3OUpCSFVaWHpnclQrRmtzNWU4?=
- =?utf-8?B?MEMvRXBqSnRsdW5uSG9xcEZOSDlTOFBacXNJTDRTSnloSThGbFY3QUJNdGh3?=
- =?utf-8?Q?t6EskHtzFDnq/hUwXtNdjNeZyMmMElwijFVdXcP?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b5fc8b8-a9c1-44ad-94dc-08d9686916c3
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 08:11:21.4995
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BjCIcFP/bD4LzNJ4pAcwfJx4/xzUvz/LTm/cT7mN43ygOBqD0Fpne+lS2CX6h5mA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR02MB5003
+In-Reply-To: <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [10.174.177.243]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500001.china.huawei.com (7.185.36.107)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-20 21:17, Liam Beguin wrote:
-> From: Liam Beguin <lvb@xiphos.com>
-> 
-> Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
-> Add support for these to allow using the iio-rescaler with them.
-> 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> ---
->  drivers/iio/afe/iio-rescale.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
-> 
-> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
-> index d0669fd8eac5..8488f1d83527 100644
-> --- a/drivers/iio/afe/iio-rescale.c
-> +++ b/drivers/iio/afe/iio-rescale.c
-> @@ -22,6 +22,9 @@ int rescale_process_scale(struct rescale *rescale, int scale_type,
->  			  int *val, int *val2)
->  {
->  	unsigned long long tmp;
-> +	s32 rem;
-> +	u32 mult;
-> +	u32 neg;
->  
->  	switch (scale_type) {
->  	case IIO_VAL_FRACTIONAL:
-> @@ -40,6 +43,38 @@ int rescale_process_scale(struct rescale *rescale, int scale_type,
->  		tmp *= rescale->numerator;
->  		do_div(tmp, 1000000000LL);
->  		*val = tmp;
-> +		return scale_type;
-> +	case IIO_VAL_INT_PLUS_NANO:
-> +	case IIO_VAL_INT_PLUS_MICRO:
-> +		if (scale_type == IIO_VAL_INT_PLUS_NANO)
-> +			mult = 1000000000LL;
-> +		else
-> +			mult = 1000000LL;
-> +		/*
-> +		 * For IIO_VAL_INT_PLUS_{MICRO,NANO} scale types if *val OR
-> +		 * *val2 is negative the schan scale is negative
 
-The last line doesn't parse for me. It doesn't end with a period either, so
-it looks like you moved on before you finished it?
+>>> Btw, I've been working on [1] cleaning up the one-off deferred probe
+>>> solution that we have for amba devices. That causes a bunch of other
+>>> headaches. Your patch 3/3 takes us further in the wrong direction by
+>>> adding more reasons for delaying the addition of the device.
 
-Cheers,
-Peter
+Hi Saravana, I try the link[1], but with it, there is a crash when boot 
+(qemu-system-arm -M vexpress-a15),
 
-> +		 */
-> +		neg = *val < 0 || *val2 < 0;
-> +
-> +		tmp = (s64)abs(*val) * abs(rescale->numerator);
-> +		*val = div_s64_rem(tmp, abs(rescale->denominator), &rem);
-> +
-> +		tmp = (s64)rem * mult + (s64)abs(*val2) * abs(rescale->numerator);
-> +		tmp = div_s64(tmp, abs(rescale->denominator));
-> +
-> +		*val += div_s64_rem(tmp, mult, val2);
-> +
-> +		/*
-> +		 * If only one of the rescaler elements or the schan scale is
-> +		 * negative, the combined scale is negative.
-> +		 */
-> +		if (neg ^ ((rescale->numerator < 0) ^ (rescale->denominator < 0))) {
-> +			if (*val)
-> +				*val = -*val;
-> +			else
-> +				*val2 = -*val2;
-> +		}
-> +
->  		return scale_type;
->  	default:
->  		return -EOPNOTSUPP;
-> 
+without it, boot successfully.
+
+[    2.246057] aaci-pl041 1c040000.aaci: ARM AC'97 Interface PL041 rev0 
+at 0x1c040000, irq 36
+[    2.246357] aaci-pl041 1c040000.aaci: FIFO 512 entries
+[    2.248617] NET: Registered PF_PACKET protocol family
+[    2.250481] 9pnet: Installing 9P2000 support
+[    2.251474] Registering SWP/SWPB emulation handler
+[    2.284374] 1c090000.serial: ttyAMA0 at MMIO 0x1c090000 (irq = 41, 
+base_baud = 0) is a PL011 rev1
+[    2.287797] printk: console [ttyAMA0] enabled
+[    2.287797] printk: console [ttyAMA0] enabled
+[    2.288262] input: AT Raw Set 2 keyboard as 
+/devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@8000000:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
+[    2.288262] input: AT Raw Set 2 keyboard as 
+/devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@8000000:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
+[    2.288755] printk: bootconsole [earlycon0] disabled
+[    2.288755] printk: bootconsole [earlycon0] disabled
+[    2.294507] 1c0a0000.serial: ttyAMA1 at MMIO 0x1c0a0000 (irq = 42, 
+base_baud = 0) is a PL011 rev1
+[    2.296950] 1c0b0000.serial: ttyAMA2 at MMIO 0x1c0b0000 (irq = 43, 
+base_baud = 0) is a PL011 rev1
+[    2.298636] 1c0c0000.serial: ttyAMA3 at MMIO 0x1c0c0000 (irq = 44, 
+base_baud = 0) is a PL011 rev1
+[    2.300496] 8<--- cut here ---
+[    2.300775] ------------[ cut here ]------------
+[    2.301260] Unable to handle kernel NULL pointer dereference at 
+virtual address 00000000
+[    2.300928] WARNING: CPU: 1 PID: 27 at 
+/home/wkf/work/hulk/lib/refcount.c:25 refcount_warn_saturate+0x108/0x174
+[    2.301700] pgd = (ptrval)
+[    2.302002] refcount_t: addition on 0; use-after-free.
+[    2.302184] [00000000] *pgd=00000000
+[    2.302363] Modules linked in:
+[    2.302384]
+[    2.302753]
+[    2.303501] CPU: 1 PID: 27 Comm: kworker/u4:1 Not tainted 5.14.0-rc7+ 
+#193
+[    2.303990] Hardware name: ARM-Versatile Express
+[    2.304198] Internal error: Oops: 5 [#1] SMP ARM
+[    2.304537] Workqueue: events_unbound deferred_probe_work_func
+[    2.304829] Modules linked in:
+[    2.304865]
+[    2.305133]
+[    2.305401] Backtrace:
+[    2.305562] CPU: 0 PID: 41 Comm: kworker/0:2 Not tainted 5.14.0-rc7+ #193
+[    2.305614] Hardware name: ARM-Versatile Express
+[    2.305576]
+[    2.305781] [<c010c780>] (dump_backtrace) from [<c010cacc>] 
+(show_stack+0x20/0x24)
+[    2.306266] Workqueue: events_long serio_handle_event
+[    2.306732]  r7:00000009 r6:00000000 r5:c0b1efb8 r4:600b0093
+[    2.306889] PC is at strcmp+0x18/0x44
+[    2.307115] [<c010caac>] (show_stack) from [<c091eba4>] 
+(dump_stack_lvl+0x48/0x54)
+[    2.307263] LR is at platform_match+0xb8/0xcc
+[    2.307498] [<c091eb5c>] (dump_stack_lvl) from [<c091ebc8>] 
+(dump_stack+0x18/0x1c)
+[    2.307739] pc : [<c0560aec>]    lr : [<c064626c>]    psr: 60000013
+[    2.307988]  r5:c0b4ef98 r4:c165ddc4
+[    2.308317] sp : c1675d70  ip : c1675d80  fp : c1675d7c
+[    2.308433] [<c091ebb0>] (dump_stack) from [<c01289c4>] 
+(__warn+0x110/0x114)
+[    2.308743] r10: 00000000  r9 : 00000000  r8 : 00000001
+[    2.308961] [<c01288b4>] (__warn) from [<c0128a4c>] 
+(warn_slowpath_fmt+0x84/0xc0)
+[    2.309252] r7 : c0d04d08  r6 : c13aed18  r5 : c1090fc0  r4 : c13aed18
+[    2.309547]  r9:00000009 r8:c0504f10 r7:00000019 r6:c0b4ef98 
+r5:c0b4efbc r4:c0d04d08
+[    2.309975] [<c01289cc>] (warn_slowpath_fmt) from [<c0504f10>] 
+(refcount_warn_saturate+0x108/0x174)
+[    2.310531] r3 : c0a5e1c0  r2 : 00000002  r1 : c0b82860  r0 : 00000000
+[    2.311263] Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  
+Segment none
+[    2.311298]  r9:600b0013 r8:00000000 r7:00000000 r6:c1787eb8 
+r5:c165de3c r4:c1702b38
+[    2.311899] Control: 10c5387d  Table: 8000406a  DAC: 00000051
+[    2.312117] [<c0504e08>] (refcount_warn_saturate) from [<c055657c>] 
+(klist_next+0x134/0x138)
+[    2.312755] Register r0 information:
+[    2.312964] [<c0556448>] (klist_next) from [<c06411dc>] 
+(bus_for_each_drv+0x74/0xc8)
+[    2.313345]  NULL pointer
+[    2.313690] Register r1 information:
+[    2.313736]  r9:00000000 r8:00000001 r7:c0d04d08 r6:c064373c 
+r5:c165de6c r4:00000000
+[    2.313933]  non-slab/vmalloc memory
+[    2.314172] [<c0641168>] (bus_for_each_drv) from [<c0642f38>] 
+(__device_attach+0xf0/0x15c)
+[    2.315042]  r7:c10846b8 r6:c13ae444 r5:c13ae400 r4:c0d04d08
+[    2.315060] Register r2 information:
+[    2.315243] [<c0642e48>] (__device_attach) from [<c064390c>] 
+(device_initial_probe+0x1c/0x20)
+[    2.315276]  non-paged memory
+[    2.315569]  r8:00000000 r7:c10846b8 r6:c13ae400 r5:c107d690 r4:c13ae400
+[    2.315593] [<c06438f0>] (device_initial_probe) from [<c0642080>] 
+(bus_probe_device+0x94/0x9c)
+[    2.316192] [<c0641fec>] (bus_probe_device) from [<c064259c>] 
+(deferred_probe_work_func+0x8c/0xb8)
+[    2.316939]  r7:c10846b8 r6:c10846a4 r5:c10846a4 r4:c13ae400
+[    2.317573] [<c0642510>] (deferred_probe_work_func) from [<c01475a4>] 
+(process_one_work+0x238/0x594)
+[    2.318513]  r9:00000000 r8:00000000 r7:c1225b00 r6:c1206200 
+r5:c16b6f80 r4:c10846d4
+[    2.318931] Register r3 information: non-slab/vmalloc memory
+[    2.319218] [<c014736c>] (process_one_work) from [<c0147bc4>] 
+(worker_thread+0x2c4/0x5f4)
+[    2.320001]  r10:c0d03d00 r9:00000088 r8:ffffe000 r7:c1206218 
+r6:c16b6f94 r5:c1206200
+[    2.320280] Register r4 information:
+[    2.320614]  r4:c16b6f80
+[    2.320942] [<c0147900>] (worker_thread) from [<c014feb4>] 
+(kthread+0x178/0x194)
+[    2.321111]  slab kmalloc-1k
+[    2.321403]  r10:c165c000 r9:c1313e74 r8:00000000 r7:c16b6f80 
+r6:c0147900 r5:c16b5580
+[    2.321391]  start c13aec00 pointer offset 280
+[    2.321993]  r4:c13d4980
+[    2.322006]  size 1024
+[    2.322176] [<c014fd3c>] (kthread) from [<c0100150>] 
+(ret_from_fork+0x14/0x24)
+[    2.323165] Exception stack(0xc165dfb0 to 0xc165dff8)
+[    2.323187]
+[    2.323371] Register r5 information: non-slab/vmalloc memory
+[    2.323535] Register r6 information: slab kmalloc-1k start c13aec00 
+pointer offset 280 size 1024
+[    2.324594] Register r7 information:
+[    2.324597] dfa0:                                     00000000 
+00000000 00000000 00000000
+[    2.325507]  non-slab/vmalloc memory
+[    2.325830] Register r8 information: non-paged memory
+[    2.326267] Register r9 information:
+[    2.326274] dfc0: 00000000 00000000 00000000 00000000 00000000 
+00000000 00000000 00000000
+[    2.326453]  NULL pointer
+[    2.326942] Register r10 information: NULL pointer
+[    2.327159] dfe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[    2.327258] Register r11 information: non-slab/vmalloc memory
+[    2.327904] Register r12 information:
+[    2.327928]  r10:00000000 r9:00000000 r8:00000000 r7:00000000 
+r6:00000000 r5:c014fd3c
+[    2.327937]  non-slab/vmalloc memory
+[    2.328057] Process kworker/0:2 (pid: 41, stack limit = 0x(ptrval))
+[    2.328204] Stack: (0xc1675d70 to 0xc1676000)
+[    2.328479]  r4:c16b5580
+[    2.329851] ---[ end trace f293b13f591ee203 ]---
+[    2.330027] 5d60:                                     c1675d9c 
+c1675d80 c064626c c0560ae0
+[    2.331070] 5d80: c1090fc0 c1675df4 c13aed18 c0d04d08 c1675dbc 
+c1675da0 c0643778 c06461c0
+[    2.331120] 8<--- cut here ---
+[    2.331739] Unhandled fault: page domain fault (0x01b) at 0x00000010
+[    2.331915] 5da0: 00000000 c1675df4 c064373c c0d04d08 c1675dec 
+c1675dc0 c06411d0 c0643748
+[    2.332379] pgd = (ptrval)
+[    2.332408] 5dc0: c1675dec c16bf06c c1787eb8 76076098 c0d04d08 
+c13aed18 c13aed5c c13aa800
+[    2.332889] [00000010] *pgd=00000000
+[    2.332951] 5de0: c1675e24 c1675df0 c0642f38 c0641174 c1675e44 
+c13aed18 00000001 76076098
+[    2.333535] 5e00: 00000000 c13aed18 c108ea84 c13aed18 c13aa800 
+c10843a0 c1675e34 c1675e28
+[    2.334201] 5e20: c064390c c0642e54 c1675e54 c1675e38 c0642080 
+c06438fc c13aed18 00000000
+[    2.334845] 5e40: c0d04d08 c13aa800 c1675eb4 c1675e58 c063fa1c 
+c0641ff8 c13a5180 c1706380
+[    2.335464] 5e60: eee2e0c0 c1201180 c071c008 c11ea558 c0b7f260 
+c0b7f28c c1675eb4 c1675e88
+[    2.336088] 5e80: c02e6368 76076098 00000001 c1706f4c c13aec00 
+c108ea54 c1706f40 c11ea558
+[    2.336758] 5ea0: c0b7f260 c0b7f28c c1675ef4 c1675eb8 c071c0e4 
+c063f620 c0923300 c0158300
+[    2.337399] 5ec0: 00000000 c13aed18 c1675ef4 c108ea70 c1702e80 
+effc4400 effc7700 00000000
+[    2.338025] 5ee0: 00000000 c10b2580 c1675f34 c1675ef8 c01475a4 
+c071bf38 c13a5100 ffffe000
+[    2.338663] 5f00: c1675f1c c1675f10 c0149250 c1702e80 effc4400 
+c1702e94 effc4418 ffffe000
+[    2.339296] 5f20: 00000008 c0d03d00 c1675f74 c1675f38 c014795c 
+c0147378 c130fe74 c0b0c2c4
+[    2.340102] 5f40: c10b1d2a effc4400 c1675f74 c1706000 c1706880 
+c0147900 c1702e80 00000000
+[    2.340736] 5f60: c130fe74 c1674000 c1675fac c1675f78 c014feb4 
+c014790c c1706024 c1706024
+[    2.341315] 5f80: c1675fac c1706880 c014fd3c 00000000 00000000 
+00000000 00000000 00000000
+[    2.341852] 5fa0: 00000000 c1675fb0 c0100150 c014fd48 00000000 
+00000000 00000000 00000000
+[    2.342407] 5fc0: 00000000 00000000 00000000 00000000 00000000 
+00000000 00000000 00000000
+[    2.342957] 5fe0: 00000000 00000000 00000000 00000000 00000013 
+00000000 00000000 00000000
+[    2.343361] Backtrace:
+[    2.343573] [<c0560ad4>] (strcmp) from [<c064626c>] 
+(platform_match+0xb8/0xcc)
+[    2.343954] [<c06461b4>] (platform_match) from [<c0643778>] 
+(__device_attach_driver+0x3c/0xc4)
+[    2.344369]  r7:c0d04d08 r6:c13aed18 r5:c1675df4 r4:c1090fc0
+[    2.344615] [<c064373c>] (__device_attach_driver) from [<c06411d0>] 
+(bus_for_each_drv+0x68/0xc8)
+[    2.345015]  r7:c0d04d08 r6:c064373c r5:c1675df4 r4:00000000
+[    2.345283] [<c0641168>] (bus_for_each_drv) from [<c0642f38>] 
+(__device_attach+0xf0/0x15c)
+[    2.345654]  r7:c13aa800 r6:c13aed5c r5:c13aed18 r4:c0d04d08
+[    2.345903] [<c0642e48>] (__device_attach) from [<c064390c>] 
+(device_initial_probe+0x1c/0x20)
+[    2.346325]  r8:c10843a0 r7:c13aa800 r6:c13aed18 r5:c108ea84 r4:c13aed18
+[    2.346635] [<c06438f0>] (device_initial_probe) from [<c0642080>] 
+(bus_probe_device+0x94/0x9c)
+[    2.347038] [<c0641fec>] (bus_probe_device) from [<c063fa1c>] 
+(device_add+0x408/0x8b8)
+[    2.347419]  r7:c13aa800 r6:c0d04d08 r5:00000000 r4:c13aed18
+[    2.347695] [<c063f614>] (device_add) from [<c071c0e4>] 
+(serio_handle_event+0x1b8/0x234)
+[    2.348094]  r10:c0b7f28c r9:c0b7f260 r8:c11ea558 r7:c1706f40 
+r6:c108ea54 r5:c13aec00
+[    2.348453]  r4:c1706f4c
+[    2.348604] [<c071bf2c>] (serio_handle_event) from [<c01475a4>] 
+(process_one_work+0x238/0x594)
+[    2.348968]  r10:c10b2580 r9:00000000 r8:00000000 r7:effc7700 
+r6:effc4400 r5:c1702e80
+[    2.349315]  r4:c108ea70
+[    2.349468] [<c014736c>] (process_one_work) from [<c014795c>] 
+(worker_thread+0x5c/0x5f4)
+[    2.349875]  r10:c0d03d00 r9:00000008 r8:ffffe000 r7:effc4418 
+r6:c1702e94 r5:effc4400
+[    2.350169]  r4:c1702e80
+[    2.350315] [<c0147900>] (worker_thread) from [<c014feb4>] 
+(kthread+0x178/0x194)
+[    2.350687]  r10:c1674000 r9:c130fe74 r8:00000000 r7:c1702e80 
+r6:c0147900 r5:c1706880
+[    2.351038]  r4:c1706000
+[    2.351182] [<c014fd3c>] (kthread) from [<c0100150>] 
+(ret_from_fork+0x14/0x24)
+[    2.351500] Exception stack(0xc1675fb0 to 0xc1675ff8)
+[    2.351855] 5fa0:                                     00000000 
+00000000 00000000 00000000
+[    2.352415] 5fc0: 00000000 00000000 00000000 00000000 00000000 
+00000000 00000000 00000000
+[    2.352923] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[    2.353283]  r10:00000000 r9:00000000 r8:00000000 r7:00000000 
+r6:00000000 r5:c014fd3c
+[    2.353618]  r4:c1706880
+[    2.354146] Code: e24cb004 ea000001 e3530000 0a000006 (e4d03001)
+[    2.354860] Internal error: : 1b [#2] SMP ARM
+[    2.355172] Modules linked in:
+[    2.355254] ---[ end trace f293b13f591ee204 ]---
+[    2.355650] CPU: 1 PID: 27 Comm: kworker/u4:1 Tainted: G      D 
+W         5.14.0-rc7+ #193
+[    2.355888] Kernel panic - not syncing: Fatal exception
+[    2.355990] Hardware name: ARM-Versatile Express
+[    2.356735] Workqueue: events_unbound deferred_probe_work_func
+[    2.357217] PC is at klist_put+0x20/0xa4
+[    2.357537] LR is at klist_iter_exit+0x24/0x30
+[    2.357872] pc : [<c0556280>]    lr : [<c0556340>]    psr: a00b0013
+[    2.358299] sp : c165de00  ip : c165de20  fp : c165de1c
+[    2.358655] r10: c10b2580  r9 : 00000000  r8 : 00000001
+[    2.359009] r7 : c1702b38  r6 : 00000000  r5 : c165de6c  r4 : 00000000
+[    2.359440] r3 : 00000000  r2 : 76076098  r1 : 00000000  r0 : 00000000
+[    2.359893] Flags: NzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  
+Segment none
+[    2.360368] Control: 10c5387d  Table: 8177806a  DAC: 00000051
+[    2.360759] Register r0 information: NULL pointer
+[    2.361126] Register r1 information: NULL pointer
+[    2.361477] Register r2 information: non-paged memory
+[    2.361835] Register r3 information: NULL pointer
+[    2.362162] Register r4 information: NULL pointer
+[    2.362486] Register r5 information: non-slab/vmalloc memory
+[    2.362887] Register r6 information: NULL pointer
+[    2.363226] Register r7 information: slab kmalloc-128 start c1702b00 
+pointer offset 56 size 128
+[    2.363919] Register r8 information: non-paged memory
+[    2.364299] Register r9 information: NULL pointer
+[    2.364668] Register r10 information: non-slab/vmalloc memory
+[    2.365089] Register r11 information: non-slab/vmalloc memory
+[    2.365466] Register r12 information: non-slab/vmalloc memory
+[    2.365872] Process kworker/u4:1 (pid: 27, stack limit = 0x(ptrval))
+[    2.366297] Stack: (0xc165de00 to 0xc165e000)
+[    2.366769] de00: c165de3c c165de6c c064373c c0d04d08 c165de34 
+c165de20 c0556340 c055626c
+[    2.367478] de20: 00000000 c165de6c c165de64 c165de38 c0641208 
+c0556328 c165de64 c136996c
+[    2.368192] de40: c1702b38 76076098 c0d04d08 c13ae400 c13ae444 
+c10846b8 c165de9c c165de68
+[    2.368934] de60: c0642f38 c0641174 c063c4c4 c13ae400 00000001 
+76076098 00000000 c13ae400
+[    2.369654] de80: c107d690 c13ae400 c10846b8 00000000 c165deac 
+c165dea0 c064390c c0642e54
+[    2.370367] dea0: c165decc c165deb0 c0642080 c06438fc c13ae400 
+c10846a4 c10846a4 c10846b8
+[    2.371046] dec0: c165def4 c165ded0 c064259c c0641ff8 c10846d4 
+c16b6f80 c1206200 c1225b00
+[    2.371774] dee0: 00000000 00000000 c165df34 c165def8 c01475a4 
+c064251c c13906c0 ffffe000
+[    2.372470] df00: c165df1c c165df10 c0149250 c16b6f80 c1206200 
+c16b6f94 c1206218 ffffe000
+[    2.373189] df20: 00000088 c0d03d00 c165df74 c165df38 c0147bc4 
+c0147378 c1313e74 c0b0c2c4
+[    2.373925] df40: c10b1d2a c1206200 c165df74 c13d4980 c16b5580 
+c0147900 c16b6f80 00000000
+[    2.374628] df60: c1313e74 c165c000 c165dfac c165df78 c014feb4 
+c014790c c13d49a4 c13d49a4
+[    2.375345] df80: c165dfac c16b5580 c014fd3c 00000000 00000000 
+00000000 00000000 00000000
+[    2.376080] dfa0: 00000000 c165dfb0 c0100150 c014fd48 00000000 
+00000000 00000000 00000000
+[    2.376807] dfc0: 00000000 00000000 00000000 00000000 00000000 
+00000000 00000000 00000000
+[    2.377534] dfe0: 00000000 00000000 00000000 00000000 00000013 
+00000000 00000000 00000000
+[    2.378080] Backtrace:
+[    2.378297] [<c0556260>] (klist_put) from [<c0556340>] 
+(klist_iter_exit+0x24/0x30)
+[    2.378819]  r7:c0d04d08 r6:c064373c r5:c165de6c r4:c165de3c
+[    2.379199] [<c055631c>] (klist_iter_exit) from [<c0641208>] 
+(bus_for_each_drv+0xa0/0xc8)
+[    2.379701]  r5:c165de6c r4:00000000
+[    2.379932] [<c0641168>] (bus_for_each_drv) from [<c0642f38>] 
+(__device_attach+0xf0/0x15c)
+[    2.380482]  r7:c10846b8 r6:c13ae444 r5:c13ae400 r4:c0d04d08
+[    2.380871] [<c0642e48>] (__device_attach) from [<c064390c>] 
+(device_initial_probe+0x1c/0x20)
+[    2.381453]  r8:00000000 r7:c10846b8 r6:c13ae400 r5:c107d690 r4:c13ae400
+[    2.381851] [<c06438f0>] (device_initial_probe) from [<c0642080>] 
+(bus_probe_device+0x94/0x9c)
+[    2.382364] [<c0641fec>] (bus_probe_device) from [<c064259c>] 
+(deferred_probe_work_func+0x8c/0xb8)
+[    2.382936]  r7:c10846b8 r6:c10846a4 r5:c10846a4 r4:c13ae400
+[    2.383266] [<c0642510>] (deferred_probe_work_func) from [<c01475a4>] 
+(process_one_work+0x238/0x594)
+[    2.383885]  r9:00000000 r8:00000000 r7:c1225b00 r6:c1206200 
+r5:c16b6f80 r4:c10846d4
+[    2.384344] [<c014736c>] (process_one_work) from [<c0147bc4>] 
+(worker_thread+0x2c4/0x5f4)
+[    2.384893]  r10:c0d03d00 r9:00000088 r8:ffffe000 r7:c1206218 
+r6:c16b6f94 r5:c1206200
+[    2.385341]  r4:c16b6f80
+[    2.385536] [<c0147900>] (worker_thread) from [<c014feb4>] 
+(kthread+0x178/0x194)
+[    2.386030]  r10:c165c000 r9:c1313e74 r8:00000000 r7:c16b6f80 
+r6:c0147900 r5:c16b5580
+[    2.386540]  r4:c13d4980
+[    2.386742] [<c014fd3c>] (kthread) from [<c0100150>] 
+(ret_from_fork+0x14/0x24)
+[    2.387211] Exception stack(0xc165dfb0 to 0xc165dff8)
+[    2.387653] dfa0:                                     00000000 
+00000000 00000000 00000000
+[    2.388374] dfc0: 00000000 00000000 00000000 00000000 00000000 
+00000000 00000000 00000000
+[    2.389071] dfe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[    2.389546]  r10:00000000 r9:00000000 r8:00000000 r7:00000000 
+r6:00000000 r5:c014fd3c
+[    2.390037]  r4:c16b5580
+[    2.390376] Code: e1a07000 e1a06001 e3c44001 e1a00004 (e5945010)
+[    2.390836] ---[ end trace f293b13f591ee205 ]---
+[    2.391580] ---[ end Kernel panic - not syncing: Fatal exception ]---
+
+
+>>> -Saravana
+>>>
+>>> [1] - https://lore.kernel.org/lkml/CAGETcx8b228nDUho3cX9AAQ-pXOfZTMv8cj2vhdx9yc_pk8q+A@mail.gmail.com/
+>>> .
+>>>
+> .
+>
