@@ -2,117 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C7F3F8074
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 04:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBDDA3F809C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 04:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237533AbhHZC2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 22:28:10 -0400
-Received: from pi.codeconstruct.com.au ([203.29.241.158]:44924 "EHLO
-        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236800AbhHZC2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 22:28:10 -0400
-Received: from [192.168.12.102] (unknown [159.196.94.94])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BD25B20134;
-        Thu, 26 Aug 2021 10:27:21 +0800 (AWST)
-Message-ID: <e1e761e10df0beac3786edef1aa8f2e84ccad8fd.camel@codeconstruct.com.au>
-Subject: Re: [RFC PATCH v2 0/2] MCTP I2C devicetree binding
-From:   Matt Johnston <matt@codeconstruct.com.au>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>
-Date:   Thu, 26 Aug 2021 10:27:21 +0800
-In-Reply-To: <CAL_Jsq+5ujcLLqDezsnzkVANkM9GifxA5BUccMVwZOfBUutACw@mail.gmail.com>
-References: <20210811034345.2424442-1-matt@codeconstruct.com.au>
-         <YRae8tDReDS67sM4@robh.at.kernel.org>
-         <0400d77489ba5350aefe576b91afb52cff3ebb48.camel@codeconstruct.com.au>
-         <YRwkvjAuEd+9lTt7@robh.at.kernel.org>
-         <6ed12f1a09fb1f3e6ebe05992a9232bc7c34213c.camel@codeconstruct.com.au>
-         <CAL_Jsq+EMV=bA__+sHnC-WSoZf_OPxqL+bCGRBjdo12RL=aw9A@mail.gmail.com>
-         <ae72879d25da3e56e3a1eefe101aad7cbe47515e.camel@codeconstruct.com.au>
-         <CAL_Jsq+5ujcLLqDezsnzkVANkM9GifxA5BUccMVwZOfBUutACw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0-1 
+        id S236087AbhHZCqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 22:46:13 -0400
+Received: from szxga03-in.huawei.com ([45.249.212.189]:14322 "EHLO
+        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232441AbhHZCqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 22:46:12 -0400
+Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.54])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4Gw6db6Pf1z89TW;
+        Thu, 26 Aug 2021 10:45:07 +0800 (CST)
+Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
+ dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 26 Aug 2021 10:45:23 +0800
+Received: from [10.174.177.243] (10.174.177.243) by
+ dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 26 Aug 2021 10:45:22 +0800
+Subject: Re: [PATCH 3/3] amba: Properly handle device probe without IRQ domain
+To:     Saravana Kannan <saravanak@google.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Ruizhe Lin <linruizhe@huawei.com>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com>
+ <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+ <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
+ <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+From:   Kefeng Wang <wangkefeng.wang@huawei.com>
+Message-ID: <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com>
+Date:   Thu, 26 Aug 2021 10:45:22 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [10.174.177.243]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500001.china.huawei.com (7.185.36.107)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-08-23 at 11:16 -0500, Rob Herring wrote:
-> On Mon, Aug 23, 2021 at 2:52 AM Jeremy Kerr <jk@codeconstruct.com.au>
-> wrote:
 
-> The issue here tends to be we design things based on not having nodes
-> in DT and then eventually evolve to the point where we should have had
-> a separate node. Connectors or per slot PCI properties are some
-> examples. Just something to keep in mind.
+On 2021/8/25 16:04, Saravana Kannan wrote:
+> On Tue, Aug 24, 2021 at 9:05 PM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>
+>> On 2021/8/25 4:08, Saravana Kannan wrote:
+>>> On Tue, Aug 24, 2021 at 1:05 PM Rob Herring <robh+dt@kernel.org> wrote:
+>>>> +Saravana
+>>>>
+>>>> Saravana mentioned to me there may be some issues with this one...
+>>>>
+>>>>
+>>>> On Mon, Aug 16, 2021 at 2:43 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>>> of_amba_device_create() uses irq_of_parse_and_map() to translate
+>>>>> a DT interrupt specification into a Linux virtual interrupt number.
+>>>>>
+>>>>> But it doesn't properly handle the case where the interrupt controller
+>>>>> is not yet available, eg, when pl011 interrupt is connected to MBIGEN
+>>>>> interrupt controller, because the mbigen initialization is too late,
+>>>>> which will lead to no IRQ due to no IRQ domain found, log is shown below,
+>>>>>     "irq: no irq domain found for uart0 !"
+>>>>>
+>>>>> use of_irq_get() to return -EPROBE_DEFER as above, and in the function
+>>>>> amba_device_try_add()/amba_device_add(), it will properly handle in such
+>>>>> case, also return 0 in other fail cases to be consistent as before.
+>>>>>
+>>>>> Cc: Russell King <linux@armlinux.org.uk>
+>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>> Cc: Frank Rowand <frowand.list@gmail.com>
+>>>>> Reported-by: Ruizhe Lin <linruizhe@huawei.com>
+>>>>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+>>>>> ---
+>>>>>    drivers/amba/bus.c    | 27 +++++++++++++++++++++++++++
+>>>>>    drivers/of/platform.c |  6 +-----
+>>>>>    2 files changed, 28 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+>>>>> index 36f2f42c8014..720aa6cdd402 100644
+>>>>> --- a/drivers/amba/bus.c
+>>>>> +++ b/drivers/amba/bus.c
+>>>>> @@ -19,6 +19,7 @@
+>>>>>    #include <linux/clk/clk-conf.h>
+>>>>>    #include <linux/platform_device.h>
+>>>>>    #include <linux/reset.h>
+>>>>> +#include <linux/of_irq.h>
+>>>>>
+>>>>>    #include <asm/irq.h>
+>>>>>
+>>>>> @@ -371,12 +372,38 @@ static void amba_device_release(struct device *dev)
+>>>>>           kfree(d);
+>>>>>    }
+>>>>>
+>>>>> +static int of_amba_device_decode_irq(struct amba_device *dev)
+>>>>> +{
+>>>>> +       struct device_node *node = dev->dev.of_node;
+>>>>> +       int i, irq = 0;
+>>>>> +
+>>>>> +       if (IS_ENABLED(CONFIG_OF_IRQ) && node) {
+>>>>> +               /* Decode the IRQs and address ranges */
+>>>>> +               for (i = 0; i < AMBA_NR_IRQS; i++) {
+>>>>> +                       irq = of_irq_get(node, i);
+>>>>> +                       if (irq < 0) {
+>>>>> +                               if (irq == -EPROBE_DEFER)
+>>>>> +                                       return irq;
+>>>>> +                               irq = 0;
+>>>>> +                       }
+>>>>> +
+>>>>> +                       dev->irq[i] = irq;
+>>>>> +               }
+>>>>> +       }
+>>>>> +
+>>>>> +       return 0;
+>>>>> +}
+>>>>> +
+>>>>>    static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+>>>>>    {
+>>>>>           u32 size;
+>>>>>           void __iomem *tmp;
+>>>>>           int i, ret;
+>>>>>
+>>>>> +       ret = of_amba_device_decode_irq(dev);
+>>>>> +       if (ret)
+>>>>> +               goto err_out;
+>>>>> +
+>>> Similar to other resources the AMBA bus "gets" for the device, I think
+>>> this should be moved into amba_probe() and not here. There's no reason
+>>> to delay the addition of the device (and loading its module) because
+>>> the IRQ isn't ready yet.
+>> The following code in the amba_device_try_add() will be called, it uses irq[0]
+>> and irq[1], so I put of_amba_device_decode_irq() into amba_device_try_add().
+>>
+>> 470         if (dev->irq[0])
+>> 471                 ret = device_create_file(&dev->dev, &dev_attr_irq0);
+>> 472         if (ret == 0 && dev->irq[1])
+>> 473                 ret = device_create_file(&dev->dev, &dev_attr_irq1);
+>> 474         if (ret == 0)
+>> 475                 return ret;
+>>
+>> of_amba_device_decode_irq() in amba_device_try_add() won't lead to issue,
+>> only delay the device add, right?
+> But delaying the device add is the issue. For example, adding a device
+> could trigger the loading of the corresponding module using uevents.
+> But now this change would delay that step. That can have other
+> unintended consequences -- slowing down boot, what if the driver was
+> working fine without the IRQ, etc.
+>
+>> If make it into amba_probe(), the above code should be moved too, could we
+>> make a new patch to move both of them, or don't move them?
+> I'd say move them both. If Russell hasn't already picked this up, then
+> I'd say redo your Patch 3/3.
+I will resend with put it into amba_probe.
+>
+> Btw, I've been working on [1] cleaning up the one-off deferred probe
+> solution that we have for amba devices. That causes a bunch of other
+> headaches. Your patch 3/3 takes us further in the wrong direction by
+> adding more reasons for delaying the addition of the device.
 
-When these are needed we can define a DT binding for endpoint devices, as a
-I2C client node. I've given the example 'mctp-device' below as a possible
-future binding.
+Got it,  and I could resend all combine your patch(due to context conflict
 
-> > We're certainly open to other structures for flagging busses as
-> > MCTP-capable; we can use a more representative name for this phandle
-> > list, or switch to boolean properties on the subordinate nodes
-> > themselves (something like the gpio-controller boolean props, perhaps?
-> > though that seems harder to confine to a schema for mctp-i2c...)
-> 
-> Either option is fine with me. A per bus property scales better (you
-> can add buses without changing the root MCTP node). We already have
-> per bus properties such as 'smbus' and 'multi-master'.
-
-How does this look, adding a property to the generic I2C bus? We'll define
-a 'mctp-controller' property that can be set on any I2C bus to flag it as
-having MCTP endpoints. A 'mctp-i2c-controller' binding client node is
-placed on the root bus to define the local I2C address, that needs to be
-present if any child mux busses have the mctp-controller property. So
-busses i2c1 and i2c6 will handle MCTP devices. We could omit mctp-
-controller from i2c1, in that case only i2c6 would have MCTP devices,
-though we still need the 'mctp-i2c-controller' at the root.
-
-i2c1: i2cbus1 {
-  compatible = "vendor,example-i2c-controller";
-  #address-cells = <1>;
-  #size-cells = <0>;
-  mctp-controller;
-
-  mctp@50 {
-    compatible = "mctp-i2c-controller";
-    reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
-  };
-};
-
-i2cmux0 {
-  compatible = "vendor,example-i2c-mux";
-  #address-cells = <1>;
-  #size-cells = <0>;
-  i2c-parent = <&i2c1>;
-
-  i2c5: i2c@0 {
-    reg = <0>;
-    eeprom@33 {
-      compatible = "atmel,24c64";
-      reg = <0x33>;
-    };
-  };
-
-  i2c6: i2c@1 {
-    reg = <1>;
-    mctp-controller;
-
-    // A endpoint device can optionally be described in DT.
-    // (as an example, not defining it in this patch series)
-    nvme@0x20 {
-      compatible = "mctp-device";
-      reg = <0x20>;
-      // only accepts a fixed MCTP address, not using MCTP control protocol
-      mctp-fixed-address = 180;
-    };
-  };
-};
+when changing same function) if you no object.
 
 
-Cheers,
-Matt
-
-
+>
+> -Saravana
+>
+> [1] - https://lore.kernel.org/lkml/CAGETcx8b228nDUho3cX9AAQ-pXOfZTMv8cj2vhdx9yc_pk8q+A@mail.gmail.com/
+> .
+>
