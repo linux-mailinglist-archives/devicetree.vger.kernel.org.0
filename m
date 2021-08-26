@@ -2,154 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE053F87B3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 14:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D55F3F8802
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 14:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242277AbhHZMjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 08:39:48 -0400
-Received: from lucky1.263xmail.com ([211.157.147.130]:60058 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241129AbhHZMjr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 08:39:47 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 69BEBD731C;
-        Thu, 26 Aug 2021 20:38:53 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P32763T139761010153216S1629981525980003_;
-        Thu, 26 Aug 2021 20:38:53 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <5edbae06160058b9826b59ee43e0d716>
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 12
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     heiko@sntech.de, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, vkoul@kernel.org,
-        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kishon@ti.com,
-        p.zabel@pengutronix.de, Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v1 3/3] arm64: dts: rockchip: add naneng combo phy nodes for rk3568
-Date:   Thu, 26 Aug 2021 20:38:44 +0800
-Message-Id: <20210826123844.8464-4-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210826123844.8464-1-yifeng.zhao@rock-chips.com>
-References: <20210826123844.8464-1-yifeng.zhao@rock-chips.com>
+        id S242502AbhHZMw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 08:52:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59770 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237292AbhHZMw0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Aug 2021 08:52:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DB6660184;
+        Thu, 26 Aug 2021 12:51:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629982299;
+        bh=G0g5qoxtqChHUFJNJcPrQux80ciZrW4m+9nezijEiHk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=k5Xopvhpw36SdBTiAc/TE8o9kk4Baga4HvAHPNQtj4wiaaev2xmWnhYM0iuJB+//H
+         IwSulDZPMOzlTPmVSJTrVyYuu2pvwoqDa5FTvX2kQYtZZ+4OEWASGpJaKLWF+3zvh4
+         tDmEsw1kjDSolSTym5lLQJVtiJOoWZ9v01Sw/XQFvPjepN7lDga5oHLFMntJf5lSrc
+         bfzc8KQtGaknG18IrF2QQD8r7qOXEZ9mhiVoMDvJb/jxJmd2ypXLMOqGLSfAakAg2g
+         tZljomFw0E1KaOl8pAnMlsx8ni0XxoeVeRdLuYxxphs+NTDFT9KfjUUQ3kU8quj5cA
+         iphxJ/2jmrdvw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        linux-spi@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Luting Guo <luting.guo@unisoc.com>
+Subject: Re: [PATCH V3 0/4] Add sprd ADI r3 support
+Date:   Thu, 26 Aug 2021 13:51:07 +0100
+Message-Id: <162998226397.33692.16363707556815113095.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210826091549.2138125-1-zhang.lyra@gmail.com>
+References: <20210826091549.2138125-1-zhang.lyra@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the core dt-node for the rk3568's naneng combo phys.
+On Thu, 26 Aug 2021 17:15:45 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> 
+> This patchset adds new ADI version (r3) support which used on sc9863 and
+> some other Unisoc's SoCs.
+> 
+> Since v2:
+> * Added Rob's and Baolin's Reviewed-by;
+> * Seprated a stable patch for wrong macro fix from the last version patch 1/3;
+> * Removed redundant empty line from spi-sprd-adi.c.
+> 
+> [...]
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
+Applied to
 
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 68 ++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index d89831bee1eb..b421e3d52412 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -214,11 +214,31 @@
- 		};
- 	};
- 
-+	pipegrf: syscon@fdc50000 {
-+		compatible = "rockchip,rk3568-pipegrf", "syscon";
-+		reg = <0x0 0xfdc50000 0x0 0x1000>;
-+	};
-+
- 	grf: syscon@fdc60000 {
- 		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
- 		reg = <0x0 0xfdc60000 0x0 0x10000>;
- 	};
- 
-+	pipe_phy_grf0: syscon@fdc70000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc70000 0x0 0x1000>;
-+	};
-+
-+	pipe_phy_grf1: syscon@fdc80000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc80000 0x0 0x1000>;
-+	};
-+
-+	pipe_phy_grf2: syscon@fdc90000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc90000 0x0 0x1000>;
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -862,6 +882,54 @@
- 		status = "disabled";
- 	};
- 
-+	combphy0_us: phy@fe820000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe820000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY0_REF>, <&cru PCLK_PIPEPHY0>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY0>, <&cru SRST_PIPEPHY0>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-+		status = "disabled";
-+	};
-+
-+	combphy1_usq: phy@fe830000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe830000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY1_REF>, <&cru PCLK_PIPEPHY1>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY1>, <&cru SRST_PIPEPHY1>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-+		status = "disabled";
-+	};
-+
-+	combphy2_psq: phy@fe840000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe840000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY2_REF>, <&cru PCLK_PIPEPHY2>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY2>, <&cru SRST_PIPEPHY2>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-+		status = "disabled";
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
--- 
-2.17.1
+Thanks!
 
+[1/4] spi: sprd: Fix the wrong WDG_LOAD_VAL
+      commit: 245ca2cc212bb2a078332ec99afbfbb202f44c2d
+[2/4] spi: sprd: Add ADI r3 support
+      commit: 3b66ca9783d1d1b7be7bf41e8934ca2eaf50a9c0
+[3/4] dt-bindings: spi: Convert sprd ADI bindings to yaml
+      commit: f15e60d460391d16bdad2e446e9dca4f264ccdfe
+[4/4] dt-bindings: spi: add sprd ADI for sc9863 and ums512
+      commit: 0f887ac82971cbde59e563d6490c05c6b15aa82f
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
