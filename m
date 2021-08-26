@@ -2,105 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A123F7ED8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 01:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C01003F7F42
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 02:23:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232756AbhHYXDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Aug 2021 19:03:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231535AbhHYXDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Aug 2021 19:03:55 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9044AC061757
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 16:03:08 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id f10so598222wml.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Aug 2021 16:03:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Cm6c7hFNakADjloCVmJSXuiCFhhriT1Qx0X20C3Kl7c=;
-        b=khzvqlxQf5CBzXWQPHCXwnB0671jsehkTA/CFYFuDJx8QGYIkTniffcyrzWV5Q+pAt
-         pmDYlmczRHefdwfrUT+KE9ZpxQE9mr0rVg5CoBedZuM93IonbTMRWHmYHxgNzfv+BmGl
-         xEsx256i+pqRAOa7c47xRu8fq1fnHZYCdlL4q7EPiNyXIrWU9WANJIiwvEXVZkHbc9Pq
-         rfUoy8QZWFi3GejEBHiWjkIhhM83ak1SJsvUeuJ+bVEQaEsuXM77eGncsues+pLbBphN
-         sEQ8kaH3gIOZxjCeWOSTiJlLZiwk64jMn212LqGvqPbsnCUwccjQC8yLMqDA5XXEHSWl
-         lTQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Cm6c7hFNakADjloCVmJSXuiCFhhriT1Qx0X20C3Kl7c=;
-        b=miTPP7IWhptLXld4iPXsju/bGUaCVk8bawrXVZ4KnPhKw9PvMK4Jb4QAVbLmGm42KK
-         c9xbuSRojIfRgnK5s2bNDfD1RK4uk9zhGvz2Hu6hErOd0la9xeQmhOBQG44us+s/02fo
-         C0z1H7WeYnqrKd3tlMldbBekDyhhvCyx8g7IO07nnLIKhxvL4IaPuetya+h4NqzlfWbh
-         STqNae5i2MyLSMzsD/FooqiTmMw9tfgt1zrOTGdZA4ouP5Nva0gWQXapU1bzbNhQFpv/
-         fXEb90T6pNyeM+m0Zmkp5avs8z2A4j4x72VuF1Ryt4PdM9AkoajioKc+k8HGfi9v8Mu9
-         bfTA==
-X-Gm-Message-State: AOAM532zMQVshJlzExWjTE2QrwgSZgTt0cvgE7fA8AsB768rWlbaiXaN
-        7EHTclOaf50pV/sH7qU0McA=
-X-Google-Smtp-Source: ABdhPJyZX8vP16ssTcxswljgsJu/rjKv++m8C0Xptcb4SywM+pcgvJGuSAREfnbudE+TDRr+u2/MYA==
-X-Received: by 2002:a7b:c4c2:: with SMTP id g2mr733342wmk.134.1629932587119;
-        Wed, 25 Aug 2021 16:03:07 -0700 (PDT)
-Received: from skbuf ([82.78.148.104])
-        by smtp.gmail.com with ESMTPSA id n3sm915428wmi.0.2021.08.25.16.03.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Aug 2021 16:03:06 -0700 (PDT)
-Date:   Thu, 26 Aug 2021 02:03:05 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Tom Rini <trini@konsulko.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Michael Walle <michael@walle.cc>,
-        Priyanka Jain <priyanka.jain@nxp.com>, u-boot@lists.denx.de,
-        heiko.thiery@gmail.com
-Subject: Re: incompatible device trees between u-boot and linux
-Message-ID: <20210825230305.hbxhshhbdhe56iod@skbuf>
-References: <51c2a92f6bf771769f1e2da5157727e8@walle.cc>
- <20210825140045.GR858@bill-the-cat>
- <20210825141816.qfn25xlech55rwsg@skbuf>
- <20210825142610.GU858@bill-the-cat>
- <20210825151220.xkpxxucce2oicfvy@skbuf>
- <20210825152408.GW858@bill-the-cat>
- <20210825154323.reksf2nyncech6so@skbuf>
- <20210825200950.GY858@bill-the-cat>
+        id S232544AbhHZAVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Aug 2021 20:21:46 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:57661 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231210AbhHZAVp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Aug 2021 20:21:45 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id CAE0D580CEF;
+        Wed, 25 Aug 2021 20:20:58 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 25 Aug 2021 20:20:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=5
+        ujsR+nWOM34qVhCf5iPx4BoztRKl0Ef/LKi3phS+UI=; b=cBa9ZeCTqXipij9Qf
+        L+kzwosi2cv1djoF6kzDSrCZ030qkVzOB2pEdiBiTRcCsq2mdpCES4fSY7ivS4Eg
+        tg7eOEQEMPbt5mZHHSRyaMPh12vCd/scNQ0LZaCWNV4gWgjdEju8qcrA9v0SU6w2
+        W0BcIzF3txTM6xNCNCjqrSnpRkrg32speLWFa3+NUZjXusf5769X5lQxUoxy2VOA
+        /IATrEJuBTX7zEa3JY2pF6ko1gvGlOwSbZy5/H21Kkz5QKmxHN92NX7yyjPSwj9C
+        I70BvUW1SOKX60m5SbC3k5TMw/TCKfg6FlBylws7S9uz9gNGu+kXTJhvZ26jdhwl
+        Jf6Zg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=5ujsR+nWOM34qVhCf5iPx4BoztRKl0Ef/LKi3phS+
+        UI=; b=Q1tYLPCHfF/cdUS1nRjZFN0jAYRwejRNYXLaW6uYu2pEIoaFCZYkOU2DR
+        qvCx03Zm1YtPixX6zEexSA9G5XvMARuf0VLWdOqZCTZQ885eqlX2LGOZAO6y4w51
+        KyheuycgwFmA7kvHJWsU8xcm2XJaR5APWSYfHdJGttjij+gtIx/IsZmJg5vzlnEN
+        hN7/prKy2RzW1gBBM43XkPtuCepSR2Q2IS8Mdq416gkja6ZUe/AaapPG3ZlGLwFa
+        nN+8YwkcZgkSJS8JuiqK8/IlaYFX+HMxcZMQfyBZzRIlP4hPCGlp92DLm9/tgD0B
+        W7aNNQ8HN0nfJcRUxJxnDD8349faQ==
+X-ME-Sender: <xms:Z94mYZWspjgS2bHXeI6po_VqnVEsm5DW-i2FIZT7Wzu1EJNTA2abBA>
+    <xme:Z94mYZl1V3WlGHQXeTsOjULiw3ZZXstJy-157_uHIQMJnKShOuQkc7AE9tg_kX2XI
+    oPHJEm-CEahJuoKQQ>
+X-ME-Received: <xmr:Z94mYVbgUJhpyDYS_RjuQm5I1LITDLJTPtqFrfMXEEaMPnVI1ts1d-myqwFJKPcqZD7ItTx0fQGCn3QzxD7s9HV83P4_PAfE74kEBXJCf1t-wPcdWGzGmYEPSA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddutddgfedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:Z94mYcU0KCy-dkAcySGlHKoP0cpFiIvscZ2p7ihOFG5R0YLBkNnZ2g>
+    <xmx:Z94mYTk6Z6RwqrCd0iQAZb8_RuZti-XC29M-R4KTYvLU0FArk9ESGw>
+    <xmx:Z94mYZectVkQdWOuKpgzFdtYn8CkgY0Nrhps96G7WDYBR8Oj7aF5UA>
+    <xmx:at4mYRcDWAVTM-2c03H53IysZ2KzsyU9QizwW323f5vyNw6dDv6J-A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 25 Aug 2021 20:20:55 -0400 (EDT)
+To:     =?UTF-8?Q?Jernej_=c5=a0krabec?= <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Icenowy Zheng <icenowy@sipeed.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andre Przywara <andre.przywara@arm.com>
+References: <20210802062212.73220-1-icenowy@sipeed.com>
+ <20210802062212.73220-11-icenowy@sipeed.com>
+ <99a74950-fdc0-ecfe-e5f0-ba4a7d8751f0@sholland.org>
+ <5432230.1UTMcGJKg4@jernej-laptop>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 10/17] clk: sunxi=ng: add support for R329 R-CCU
+Message-ID: <5d0489ac-0693-f1f0-17d5-bfe9ca5df0ff@sholland.org>
+Date:   Wed, 25 Aug 2021 19:20:54 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210825200950.GY858@bill-the-cat>
+In-Reply-To: <5432230.1UTMcGJKg4@jernej-laptop>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 25, 2021 at 04:09:50PM -0400, Tom Rini wrote:
-> I'm saying that because it's what's been said for what feels like 10+
-> years.  I don't want to think how many countless hours have been spent
-> on that point at conferences over the years.  It's not even a Linux
-> thing.  I would swear you can (or could, unless it got broken) take the
-> same DTB for some platforms and boot Linux or FreeBSD or some other BSD
-> or maybe even VxWorks and it works.
+On 8/19/21 11:34 PM, Jernej Škrabec wrote:
+>>> +static void __init sun50i_r329_r_ccu_setup(struct device_node *node)
+>>> +{
+>>> +	void __iomem *reg;
+>>> +	u32 val;
+>>> +	int i;
+>>> +
+>>> +	reg = of_io_request_and_map(node, 0, of_node_full_name(node));
+>>> +	if (IS_ERR(reg)) {
+>>> +		pr_err("%pOF: Could not map clock registers\n", node);
+>>> +		return;
+>>> +	}
+>>> +
+>>> +	/* Enable the lock bits and the output enable bits on all PLLs */
+>>> +	for (i = 0; i < ARRAY_SIZE(pll_regs); i++) {
+>>> +		val = readl(reg + pll_regs[i]);
+>>> +		val |= BIT(29) | BIT(27);
+>>> +		writel(val, reg + pll_regs[i]);
+>>> +	}
+>>> +
+>>> +	/*
+>>> +	 * Force the I/O dividers of PLL-AUDIO1 to reset default value
+>>> +	 *
+>>> +	 * See the comment before pll-audio1 definition for the reason.
+>>> +	 */
+>>> +
+>>> +	val = readl(reg + SUN50I_R329_PLL_AUDIO1_REG);
+>>> +	val &= ~BIT(1);
+>>> +	val |= BIT(0);
+>>> +	writel(val, reg + SUN50I_R329_PLL_AUDIO1_REG);
+>>> +
+>>> +	i = sunxi_ccu_probe(node, reg, &sun50i_r329_r_ccu_desc);
+>>> +	if (i)
+>>> +		pr_err("%pOF: probing clocks fails: %d\n", node, i);
+>>> +}
+>>> +
+>>> +CLK_OF_DECLARE(sun50i_r329_r_ccu, "allwinner,sun50i-r329-r-ccu",
+>>> +	       sun50i_r329_r_ccu_setup);
+>>
+>> Please make this a platform driver. There is no particular reason why it
+>> needs to be an early OF clock provider.
+> 
+> Why? It's good to have it as early clock provider. It has no dependencies and 
+> other drivers that depends on it, like IR, can be deferred, if this is loaded 
+> later.
 
-So I absolutely do not oppose the greater goal, and if you say that
-other silicon vendors do it, then shame on us really, NXP should step up
-their game and be way stricter during internal review and such for things
-that matter.
+Another reason is so the driver can be built as a module. Each of these
+CCU drivers has 30k-70k of data in it (lots of pointers, plus lots of
+relocations). So it saves some RAM to only load the ones you need,
+especially if that is none of them.
 
-I'm afraid it's something that must trickle down from the management and
-maintainership level before it could be effective.
-
-In any case, it doesn't sound absurd at all, with a bit of passion it
-could be done on all Layerscapes. I would be absolutely glad to help on
-the Ethernet / DSA side of things (which I believe is the reason why
-Michael summoned me into this thread), but I don't believe that's where
-the problem is right now. When I added the DM_DSA uclass to U-Boot I did
-my best to pick a reasonable subset of Linux DSA, and with compatible
-device tree bindings. Also maintaining the Linux side of things, I did
-provide feedback to Tim Harvey for the Microchip KSZ switches as to
-what is the subset supported by U-Boot that would also be DT-compatible
-with Linux. If it turns out that I failed at that, I am willing to
-rework what we have.
-
-I have been known on a few occasions to say "U-Boot does not parse this
-part of the device tree, you can just strip it away", but I will keep my
-mouth shut from now on.
+Regards,
+Samuel
