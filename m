@@ -2,212 +2,579 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D373F83FF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 10:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6E53F8405
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 10:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240532AbhHZI5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 04:57:04 -0400
-Received: from mail-eopbgr130092.outbound.protection.outlook.com ([40.107.13.92]:63502
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229785AbhHZI5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Aug 2021 04:57:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fR34n4o687PcRzUQYukCTaqY5pNilmSAlbqsIpqhhNJNUDdEQg7OtJEBUfFxdyIP5DlKkkDYQpQmxNOYvg5xp7/E6veJI24pZiGfzjMS42n4ID2w5vevH9sSn988FjnUYHvFQ8+Y2d5jLbCHZr6Ch4hkckrQteCmqTOSr1zPwyKzpmXSeos5bC4Ss8c3Bh4n2yJA31QL50Wl2n7BKH0J+XZ+QFGDACeWqtfTAH0drblV8CxKvnelBqCV0m3TR47oXaMZMZl11kNNj/DfFw1vnc0deZJS6p4iEPJ4hSn72GTbsR+cnLr+IZENsgIsylvr0Sla+ODCvJAbG2FmvcLeoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PJf52XOd8g7yVe3zMkC0lysgEZoCJBDwRktvRBE9zr4=;
- b=oDZ9sx8nIgEqpEctkUpQ/ml1xrqHfr+wiFOv8Zvb6aL4jgvMYe0QENEkMW4OwUEzC3+yyZodZFMerICkFhN1GzAOWB01znkLKcLnlttaifYOCsMMUur+lQlng/nH8dtAMTm7jd3TaMBq65bHD9NWYNHA46Usd/EXkZoC50OYHyYY427RKSYp7YLiLZNKJQLzf+lYqi41NshN/8mLwKbfzObDLPII47vfePYVaZSuNdkhOiNQCz/q+0MThxHi3+mjy1oNDPAeJHzoDlsrgKNdKjIjd+QIC4Wwhmf+k2qkDLisHXZZVMpHcHwD+QTOGCJbKh6aE/+y1/pGb3/krPtmPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PJf52XOd8g7yVe3zMkC0lysgEZoCJBDwRktvRBE9zr4=;
- b=jx0KsQwrDlveXG2VOcU7jt8SF6P3Gg6qu78VOYZcOZURJDcvKcE1DjNxxWzTQGKgSQfHcdrFJxhcNkVOXmaHLg7TNYhVBciFsZidIjrkXnX00kE2OiTTN46oz0lldK/1iiP3qhZqZEUdWig2iL7CChLLGBncHY3OqFRbGeMoPVI=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB8PR02MB5962.eurprd02.prod.outlook.com (2603:10a6:10:f8::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.22; Thu, 26 Aug
- 2021 08:56:14 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::35c9:1008:f5af:55a]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::35c9:1008:f5af:55a%4]) with mapi id 15.20.4457.020; Thu, 26 Aug 2021
- 08:56:14 +0000
-Subject: Re: [PATCH v8 12/14] iio: afe: rescale: add temperature transducers
-To:     Liam Beguin <liambeguin@gmail.com>, jic23@kernel.org,
-        lars@metafoo.de
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-References: <20210820191714.69898-1-liambeguin@gmail.com>
- <20210820191714.69898-13-liambeguin@gmail.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-Message-ID: <e6815e85-2b0e-cb24-e677-c3324a299b3a@axentia.se>
-Date:   Thu, 26 Aug 2021 10:56:11 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20210820191714.69898-13-liambeguin@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: sv-SE
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: HE1PR05CA0170.eurprd05.prod.outlook.com
- (2603:10a6:3:f8::18) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.13.3] (85.229.94.233) by HE1PR05CA0170.eurprd05.prod.outlook.com (2603:10a6:3:f8::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.18 via Frontend Transport; Thu, 26 Aug 2021 08:56:13 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2eaaeea0-a715-4ac5-e3ea-08d9686f5c04
-X-MS-TrafficTypeDiagnostic: DB8PR02MB5962:
-X-Microsoft-Antispam-PRVS: <DB8PR02MB59629E3D1879C04C153DE9D2BCC79@DB8PR02MB5962.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XUPMU6BRJh0MKEI2ZAXcnV/n4dNtUXJTxrBM0B6gPVL8ym7AkJ/5z4k7OyDbm3aYFBi4wqO+x87YBbotExpAx8f77C42+y8yhvWcdXyV0ZKvDeHc8yEXudoPLqcKDd5IuNmMhdMy53x57OJ2wdhHHV8kM65ltA9RssKDxMoEZcQyUlCjnx9Fkj8MimYOvBkwEEexAIjB2MuMP2qwAFFQLgVXLj8Tmt9T2BuhRWYF5waM+sj4uDLux5dj4VoTbX6kgaQ/DYz/zbz+po2iWo80czHdy1fpDMGM4QoY80FnqA+JR0I5LclRrqe/hHWGhSpkgQ5aUlM/K4mBUvoUdOM5jkPDYCyT7jmF2PhnIUMmVJAGB8bKgvXPu/e4QYdFg8beXNKbB7YWvGOpvDNVdITkFmBXIJhgljHQ2anIlEnLsSegesocH0VcwdFSVYg+E7xWijMFBH+GzkS9uzKjpSarjM26mAy/8POuqe/luczUqQRtHm3f4E9QiwJgHscaB1zs1ofBDcz5h5M26wgMHE8xd+q9sBC9LvGCMwYaSWS4lhwl/lO6nmScELwqFEFt0i2tYp1PTvsTXQPahddSJzlkkzH+A7tUV37clFcfjskfpzarNVeG8FPrdgeHNW1X94jYLPEI86F9qyvP5Y17KKnd7c/F4u+uvXqQ9hsCbyB/AlNjHTJe35ZBSqbNTCdcuOWebfziafylEDZ5N3Ay47QDGd+Sfrbh4+O9UvlSwUA3A9E=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(136003)(346002)(39830400003)(366004)(396003)(16576012)(36916002)(8936002)(8676002)(316002)(6486002)(36756003)(31686004)(38100700002)(5660300002)(66556008)(66946007)(26005)(66476007)(186003)(86362001)(53546011)(2906002)(31696002)(2616005)(508600001)(956004)(4326008)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUlBWkk3RjBLNUVCRktrdEJLVzVmNjlRQWQwdVMreDRITTN1c1VyMSs2cjI3?=
- =?utf-8?B?aks3QVUxWTFudVhNSjdnR1dPaDJ3VUlYVGQ2dzJBQ0ZQWXFabVM2WnYwT21t?=
- =?utf-8?B?cTYySmQ0amsvdmhjT1ZKNHJXVWFrWVVTb0xCeVQ5M2xsVHRSalZiVHlzQVFR?=
- =?utf-8?B?NXk5TXk2RlJiZTBrdkRPZ1JIaEVDMFFFbHhwU1RLTzlrUkF5dkc1Zi95cjZE?=
- =?utf-8?B?cTlqYnBUNm1BeFRrZTlxZVM3dVI3SUZJNElTb2xFbVJRYmhSQTBuRHFVaDZa?=
- =?utf-8?B?U25mWDVYMTJVdnFaTEh5OCtCY3NzSGRlOGtmVGdLRFNzakVoTzFkTWl4TTBM?=
- =?utf-8?B?b3JqSnI4RlNmNHNudHFZU2Fjb3Fnblc0YlJPUE5COU04R1pmUlJ4T2hLNkhK?=
- =?utf-8?B?TU1na2prQ1ZzbE5jWjNrVFVvc1c2YmIvTm1UUVVCcnRyWWxjd3VodzhYaU0y?=
- =?utf-8?B?N290UXpOWXhMeE5UNEJ0cjN5ajI0eWdFZGJFRmZIUExXVC9mK2h3aW9HblZm?=
- =?utf-8?B?a0s1RUxqR0NzeTdYYXUxWENJWUtING5rdlFON2Y5SGdCWmE1TzZJMnBlS0Ey?=
- =?utf-8?B?alZJUHRDVmsrTTBqeFFleTZjaHVFMTQrMGZFZHB6K0g4ZFV2SUVwQ2o4SjEr?=
- =?utf-8?B?YTU2S1luWStrZU16WkQ4Y0hVcVQ1RFkwcVAwTXR0Q01VcVk0Y1hMRURQT0xJ?=
- =?utf-8?B?K29YTkdPUkxlUmFjZkxGUHptVENRRkw2L1hnMEx5NnhpMDJUWE16WWtka2Rn?=
- =?utf-8?B?YzYvekVjZStFRHNRRHdGRDRIT2NVOXF3UW9Db0txZGo0M1cwREZXaFNBc1Nw?=
- =?utf-8?B?WGhSU2tLdzZGVnJ5Nit6QWl6N2hiY2NRRGxScVhRZzZzQWhjejBFWnV4YU1P?=
- =?utf-8?B?T0pLQlphMjRZSWRBWS95RXFoNTZFTTFFWlpZMUQ4MWpodnFYSUFzcHB2QUsw?=
- =?utf-8?B?N0duMWM5WitDaWFqYkU5UlRzRnJrSXdOWTlkMXp4MUFGNWZKaGh6NGpvVjV3?=
- =?utf-8?B?YUtvbGxuQWZKb3FKSGk2cFp0YzcwNHVwTWo2Ylh4VWhDaGpHZ0Mza05tK2Jt?=
- =?utf-8?B?akpXZVkycmY3V1ByaFYxZzZOUnU2U0dYSTZIY0doZmY1eGZOaGJlanl2VHF4?=
- =?utf-8?B?T0gvRnI4R0xrcUlYL0hGREtwSHlCQnFidng5cjJwd3BueXlncHF1Z0hrVDNa?=
- =?utf-8?B?ZVNQa3pENFMxOVZhVm14dit6c2FkZDNBcTIrWmR2ajg2aUFXbnRXVWxxZ0Vh?=
- =?utf-8?B?djB4dVluU1lWMUFZVFFCREY2QzVuUGVuVXY1WXhYS0RFR0hCV2NpTVh4TVpJ?=
- =?utf-8?B?YWdLemdNY3VSVWoxbHJVTzBMUnlsYmFjdkxPNmlOM1MrVFRsaDE0VW9wQXNK?=
- =?utf-8?B?c1k2YVJ3WVVZTzFkOVpGcG84Yi9ZS3UyblU5eVBFcXl3cm91cmZmVUVab1VD?=
- =?utf-8?B?ZW5URHBieEEwSVByQTNEdEpvMm1ka3FaeERsVTl2SDZLdTBINGhMM25Vb1Bq?=
- =?utf-8?B?S29vMHMxRHhhcFY4UUh1MVh5OTNSR2ViRkVER29UdElLR1ZZZStIRTI5Tm1I?=
- =?utf-8?B?L1FIWVhNOEVQY0hNM3J3TXBMSGJjclY0Zk1NdjdJMW9NcHlrbklIaHB1cGdZ?=
- =?utf-8?B?UHFnQjhzVUlzQ1VIVXQxVFViMDFHMTBKdlJnaDNSWGg2Unl1elQ1Wk8zenZM?=
- =?utf-8?B?RDN6Y1E1MnVVSDR1S2NqQy93VUt4Z1RWMlllRE5kcTZVU1dSUW9OTkhOeTNH?=
- =?utf-8?Q?IYCNg8sWZfF6K01Gw7S93pSxqcCtGMfOmih4/3t?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2eaaeea0-a715-4ac5-e3ea-08d9686f5c04
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 08:56:14.6067
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2oXSmR51XTRPj0SfeJhHR84lvG8eVHNG16UTyOgJEqAKR4w4P7GqT/78i1/oB7tb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR02MB5962
+        id S240497AbhHZI6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 04:58:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52990 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229785AbhHZI6X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Aug 2021 04:58:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A789860F11;
+        Thu, 26 Aug 2021 08:57:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1629968256;
+        bh=zLqBrPgIwCqW6GtyhT4XOo23BxkNdQvB2zmHEpNxkb8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mHt8UPCIRb1f2OrdvSRcmvV3k0y29lFvOZEdBzPMpH2C4zpDbPYKUUUeS9vGCfBEH
+         cGaLPtKMEKybC/85UFDr2VxXAq/h9FTfxyBzcCTGnEcs2KAdcAjMetssSJH0P87EUW
+         IOCp/vo6F8MIhsL5tErLnGPOZMp30UUcoclVJuq8mYqt6nvxF2lJ+JvfdZheBlalvF
+         aJGPSrqh6lLv0ULEA8FZkhdcoJXgy3ydm372s3+OnXVydqPzI4raty6gozq+HTE8Lw
+         NtrskxnQiti6PLF8xUnulwmeLqg5JRRR0VDW/AN9jctjQ/IugjzYPfrnV8acSMHWzi
+         Ezf3E89fHDoXA==
+From:   Roger Quadros <rogerq@kernel.org>
+To:     tony@atomide.com
+Cc:     robh+dt@kernel.org, nm@ti.com, lokeshvutla@ti.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
+Date:   Thu, 26 Aug 2021 11:57:31 +0300
+Message-Id: <20210826085731.15300-1-rogerq@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-20 21:17, Liam Beguin wrote:
-> From: Liam Beguin <lvb@xiphos.com>
-> 
-> A temperature transducer is a device that converts a thermal quantity
-> into any other physical quantity. This patch add support for temperature
-> to voltage (like the LTC2997) and temperature to current (like the
-> AD590) linear transducers.
-> In both cases these are assumed to be connected to a voltage ADC.
-> 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> ---
->  drivers/iio/afe/iio-rescale.c | 33 +++++++++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
-> index 8cdcb6ffb563..12de44058bea 100644
-> --- a/drivers/iio/afe/iio-rescale.c
-> +++ b/drivers/iio/afe/iio-rescale.c
-> @@ -427,11 +427,38 @@ static int rescale_temp_sense_rtd_props(struct device *dev,
->  	return 0;
->  }
->  
-> +static int rescale_temp_transducer_props(struct device *dev,
-> +					 struct rescale *rescale)
-> +{
-> +	s32 offset = 0;
-> +	s32 sense = 1;
-> +	s32 alpha;
-> +	s64 tmp;
-> +	int ret;
-> +
-> +	device_property_read_u32(dev, "sense-offset-millicelsius", &offset);
-> +	device_property_read_u32(dev, "sense-resistor-ohms", &sense);
-> +	ret = device_property_read_u32(dev, "alpha-ppm-per-celsius", &alpha);
-> +	if (ret) {
-> +		dev_err(dev, "failed to read alpha-ppm-per-celsius: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	rescale->numerator = 1000000;
-> +	rescale->denominator = alpha * sense;
-> +
-> +	tmp = (s64)offset * (s64)alpha * (s64)sense;
-> +	rescale->offset = div_s64(tmp, (s32)1000000);
+Convert omap-gpmc.txt to ti,gpmc.yaml.
 
-Error: Too many casts :-)
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+---
+ .../bindings/memory-controllers/omap-gpmc.txt | 157 --------
+ .../bindings/memory-controllers/ti,gpmc.yaml  | 360 ++++++++++++++++++
+ 2 files changed, 360 insertions(+), 157 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
 
-I think it would make sense to lose tmp, and just spell it out in one
-statement?
+diff --git a/Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt b/Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+deleted file mode 100644
+index c1359f4d48d7..000000000000
+--- a/Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
++++ /dev/null
+@@ -1,157 +0,0 @@
+-Device tree bindings for OMAP general purpose memory controllers (GPMC)
+-
+-The actual devices are instantiated from the child nodes of a GPMC node.
+-
+-Required properties:
+-
+- - compatible:		Should be set to one of the following:
+-
+-			ti,omap2420-gpmc (omap2420)
+-			ti,omap2430-gpmc (omap2430)
+-			ti,omap3430-gpmc (omap3430 & omap3630)
+-			ti,omap4430-gpmc (omap4430 & omap4460 & omap543x)
+-			ti,am3352-gpmc   (am335x devices)
+-
+- - reg:			A resource specifier for the register space
+-			(see the example below)
+- - ti,hwmods:		Should be set to "ti,gpmc" until the DT transition is
+-			completed.
+- - #address-cells:	Must be set to 2 to allow memory address translation
+- - #size-cells:		Must be set to 1 to allow CS address passing
+- - gpmc,num-cs:		The maximum number of chip-select lines that controller
+-			can support.
+- - gpmc,num-waitpins:	The maximum number of wait pins that controller can
+-			support.
+- - ranges:		Must be set up to reflect the memory layout with four
+-			integer values for each chip-select line in use:
+-
+-			   <cs-number> 0 <physical address of mapping> <size>
+-
+-			Currently, calculated values derived from the contents
+-			of the per-CS register GPMC_CONFIG7 (as set up by the
+-			bootloader) are used for the physical address decoding.
+-			As this will change in the future, filling correct
+-			values here is a requirement.
+- - interrupt-controller: The GPMC driver implements and interrupt controller for
+-			the NAND events "fifoevent" and "termcount" plus the
+-			rising/falling edges on the GPMC_WAIT pins.
+-			The interrupt number mapping is as follows
+-			0 - NAND_fifoevent
+-			1 - NAND_termcount
+-			2 - GPMC_WAIT0 pin edge
+-			3 - GPMC_WAIT1 pin edge, and so on.
+- - interrupt-cells:	Must be set to 2
+- - gpio-controller:	The GPMC driver implements a GPIO controller for the
+-			GPMC WAIT pins that can be used as general purpose inputs.
+-			0 maps to GPMC_WAIT0 pin.
+- - gpio-cells:		Must be set to 2
+-
+-Required properties when using NAND prefetch dma:
+- - dmas			GPMC NAND prefetch dma channel
+- - dma-names		Must be set to "rxtx"
+-
+-Timing properties for child nodes. All are optional and default to 0.
+-
+- - gpmc,sync-clk-ps:	Minimum clock period for synchronous mode, in picoseconds
+-
+- Chip-select signal timings (in nanoseconds) corresponding to GPMC_CONFIG2:
+- - gpmc,cs-on-ns:	Assertion time
+- - gpmc,cs-rd-off-ns:	Read deassertion time
+- - gpmc,cs-wr-off-ns:	Write deassertion time
+-
+- ADV signal timings (in nanoseconds) corresponding to GPMC_CONFIG3:
+- - gpmc,adv-on-ns:	Assertion time
+- - gpmc,adv-rd-off-ns:	Read deassertion time
+- - gpmc,adv-wr-off-ns:	Write deassertion time
+- - gpmc,adv-aad-mux-on-ns:	Assertion time for AAD
+- - gpmc,adv-aad-mux-rd-off-ns:	Read deassertion time for AAD
+- - gpmc,adv-aad-mux-wr-off-ns:	Write deassertion time for AAD
+-
+- WE signals timings (in nanoseconds) corresponding to GPMC_CONFIG4:
+- - gpmc,we-on-ns	Assertion time
+- - gpmc,we-off-ns:	Deassertion time
+-
+- OE signals timings (in nanoseconds) corresponding to GPMC_CONFIG4:
+- - gpmc,oe-on-ns:	Assertion time
+- - gpmc,oe-off-ns:	Deassertion time
+- - gpmc,oe-aad-mux-on-ns:	Assertion time for AAD
+- - gpmc,oe-aad-mux-off-ns:	Deassertion time for AAD
+-
+- Access time and cycle time timings (in nanoseconds) corresponding to
+- GPMC_CONFIG5:
+- - gpmc,page-burst-access-ns: 	Multiple access word delay
+- - gpmc,access-ns:		Start-cycle to first data valid delay
+- - gpmc,rd-cycle-ns:		Total read cycle time
+- - gpmc,wr-cycle-ns:		Total write cycle time
+- - gpmc,bus-turnaround-ns:	Turn-around time between successive accesses
+- - gpmc,cycle2cycle-delay-ns:	Delay between chip-select pulses
+- - gpmc,clk-activation-ns: 	GPMC clock activation time
+- - gpmc,wait-monitoring-ns:	Start of wait monitoring with regard to valid
+-				data
+-
+-Boolean timing parameters. If property is present parameter enabled and
+-disabled if omitted:
+- - gpmc,adv-extra-delay:	ADV signal is delayed by half GPMC clock
+- - gpmc,cs-extra-delay:		CS signal is delayed by half GPMC clock
+- - gpmc,cycle2cycle-diffcsen:	Add "cycle2cycle-delay" between successive
+-				accesses to a different CS
+- - gpmc,cycle2cycle-samecsen:	Add "cycle2cycle-delay" between successive
+-				accesses to the same CS
+- - gpmc,oe-extra-delay:		OE signal is delayed by half GPMC clock
+- - gpmc,we-extra-delay:		WE signal is delayed by half GPMC clock
+- - gpmc,time-para-granularity:	Multiply all access times by 2
+-
+-The following are only applicable to OMAP3+ and AM335x:
+- - gpmc,wr-access-ns:		In synchronous write mode, for single or
+-				burst accesses, defines the number of
+-				GPMC_FCLK cycles from start access time
+-				to the GPMC_CLK rising edge used by the
+-				memory device for the first data capture.
+- - gpmc,wr-data-mux-bus-ns:	In address-data multiplex mode, specifies
+-				the time when the first data is driven on
+-				the address-data bus.
+-
+-GPMC chip-select settings properties for child nodes. All are optional.
+-
+-- gpmc,burst-length	Page/burst length. Must be 4, 8 or 16.
+-- gpmc,burst-wrap	Enables wrap bursting
+-- gpmc,burst-read	Enables read page/burst mode
+-- gpmc,burst-write	Enables write page/burst mode
+-- gpmc,device-width	Total width of device(s) connected to a GPMC
+-			chip-select in bytes. The GPMC supports 8-bit
+-			and 16-bit devices and so this property must be
+-			1 or 2.
+-- gpmc,mux-add-data	Address and data multiplexing configuration.
+-			Valid values are 1 for address-address-data
+-			multiplexing mode and 2 for address-data
+-			multiplexing mode.
+-- gpmc,sync-read	Enables synchronous read. Defaults to asynchronous
+-			is this is not set.
+-- gpmc,sync-write	Enables synchronous writes. Defaults to asynchronous
+-			is this is not set.
+-- gpmc,wait-pin		Wait-pin used by client. Must be less than
+-			"gpmc,num-waitpins".
+-- gpmc,wait-on-read	Enables wait monitoring on reads.
+-- gpmc,wait-on-write	Enables wait monitoring on writes.
+-
+-Example for an AM33xx board:
+-
+-	gpmc: gpmc@50000000 {
+-		compatible = "ti,am3352-gpmc";
+-		ti,hwmods = "gpmc";
+-		reg = <0x50000000 0x2000>;
+-		interrupts = <100>;
+-		dmas = <&edma 52 0>;
+-		dma-names = "rxtx";
+-		gpmc,num-cs = <8>;
+-		gpmc,num-waitpins = <2>;
+-		#address-cells = <2>;
+-		#size-cells = <1>;
+-		ranges = <0 0 0x08000000 0x10000000>; /* CS0 @addr 0x8000000, size 0x10000000 */
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-
+-		/* child nodes go here */
+-	};
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+new file mode 100644
+index 000000000000..6e6164f56d57
+--- /dev/null
++++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+@@ -0,0 +1,360 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-controllers/ti,gpmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments GPMC Memory Controller device-tree bindings
++
++maintainers:
++  - Tony Lindgren <tony@atomide.com>
++  - Roger Quadros <rogerq@kernel.org>
++
++description:
++  The GPMC is a unified memory controller dedicated for interfacing
++  with external memory devices like
++  - Asynchronous SRAM-like memories and ASICs
++  - Asynchronous, synchronous, and page mode burst NOR flash
++  - NAND flash
++  - Pseudo-SRAM devices
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - ti,omap2420-gpmc
++          - ti,omap2430-gpmc
++          - ti,omap3430-gpmc
++          - ti,omap4430-gpmc
++          - ti,am3352-gpmc
++
++  reg:
++    items:
++      - description:
++          Configuration registers for the controller.
++
++  interrupts: true
++
++  clocks:
++    maxItems: 1
++    description: |
++      Functional clock. Used for bus timing calculations and
++      GPMC configuration.
++
++  clock-names:
++    items:
++      - const: fck
++
++  dmas:
++    items:
++      - description: DMA channel for GPMC NAND prefetch
++
++  dma-names:
++    items:
++      - const: rxtx
++
++  "#address-cells":
++    const: 2
++
++  "#size-cells":
++    const: 1
++
++  gpmc,num-cs:
++    description: maximum number of supported chip-select lines.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  gpmc,num-waitpins:
++    description: maximum number of supported wait pins.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  ranges:
++    minItems: 1
++    description: |
++      Must be set up to reflect the memory layout with four
++      integer values for each chip-select line in use,
++      <cs-number> 0 <physical address of mapping> <size>
++
++    items:
++      - description: NAND bank 0
++      - description: NOR/SRAM bank 0
++      - description: NOR/SRAM bank 1
++
++  '#interrupt-cells':
++    const: 2
++
++  interrupt-controller:
++    description: |
++      The GPMC driver implements and interrupt controller for
++      the NAND events "fifoevent" and "termcount" plus the
++      rising/falling edges on the GPMC_WAIT pins.
++      The interrupt number mapping is as follows
++      0 - NAND_fifoevent
++      1 - NAND_termcount
++      2 - GPMC_WAIT0 pin edge
++      3 - GPMC_WAIT1 pin edge, and so on.
++
++  '#gpio-cells':
++     const: 2
++
++  gpio-controller:
++    description: |
++      The GPMC driver implements a GPIO controller for the
++      GPMC WAIT pins that can be used as general purpose inputs.
++      0 maps to GPMC_WAIT0 pin.
++
++patternProperties:
++  "@[0-3],[a-f0-9]+$":
++    type: object
++    description: |
++      The child device node represents the device connected to the GPMC
++      bus. The device can be a NAND controller, SRAM device, NOR device
++      or an ASIC.
++
++    properties:
++      compatible:
++        description:
++          Compatible of attached device.
++
++      reg:
++        items:
++          - items:
++              - description: |
++                  Chip Select number, as in the parent range property (cs-number).
++              - description: |
++                  Offset of the memory region required by the device.
++              - description: |
++                  Length of the memory region required by the device.
++
++# GPMC Timing properties for child nodes. All are optional and default to 0.
++
++      gpmc,sync-clk-ps:
++        description: Minimum clock period for synchronous mode, in picoseconds
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# Chip-select signal timings (in nanoseconds) corresponding to GPMC_CONFIG2:
++      gpmc,cs-on-ns:
++        description: Assertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,cs-rd-off-ns:
++        description: Read deassertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,cs-wr-off-ns:
++        description: Write deassertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# ADV signal timings (in nanoseconds) corresponding to GPMC_CONFIG3:
++      gpmc,adv-on-ns:
++        description: Assertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,adv-rd-off-ns:
++        description: Read deassertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,adv-wr-off-ns:
++        description: Write deassertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,adv-aad-mux-on-ns:
++        description: Assertion time for AAD
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,adv-aad-mux-rd-off-ns:
++        description: Read deassertion time for AAD
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,adv-aad-mux-wr-off-ns:
++        description: Write deassertion time for AAD
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# WE signals timings (in nanoseconds) corresponding to GPMC_CONFIG4:
++      gpmc,we-on-ns:
++        description: Assertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,we-off-ns:
++        description: Deassertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# OE signals timings (in nanoseconds) corresponding to GPMC_CONFIG4:
++      gpmc,oe-on-ns:
++        description: Assertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,oe-off-ns:
++        description: Deassertion time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,oe-aad-mux-on-ns:
++        description:       Assertion time for AAD
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,oe-aad-mux-off-ns:
++        description:      Deassertion time for AAD
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# Access time and cycle time timings (in nanoseconds) corresponding to
++# GPMC_CONFIG5:
++      gpmc,page-burst-access-ns:
++        description:   Multiple access word delay
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,access-ns:
++        description:              Start-cycle to first data valid delay
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,rd-cycle-ns:
++        description:            Total read cycle time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,wr-cycle-ns:
++        description:            Total write cycle time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,bus-turnaround-ns:
++        description:      Turn-around time between successive accesses
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,cycle2cycle-delay-ns:
++        description:   Delay between chip-select pulses
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,clk-activation-ns:
++        description:      GPMC clock activation time
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,wait-monitoring-ns:
++        description:     Start of wait monitoring with regard to valid data
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# Boolean timing parameters. If property is present, parameter is enabled
++# otherwise disabled.
++      gpmc,adv-extra-delay:
++        description:        ADV signal is delayed by half GPMC clock
++        type: boolean
++      gpmc,cs-extra-delay:
++        description:         CS signal is delayed by half GPMC clock
++        type: boolean
++      gpmc,cycle2cycle-diffcsen:
++        description: |
++          Add "cycle2cycle-delay" between successive accesses
++          to a different CS
++        type: boolean
++      gpmc,cycle2cycle-samecsen:
++        description: |
++          Add "cycle2cycle-delay" between successive accesses
++          to the same CS
++        type: boolean
++      gpmc,oe-extra-delay:
++        description:         OE signal is delayed by half GPMC clock
++        type: boolean
++      gpmc,we-extra-delay:
++        description:         WE signal is delayed by half GPMC clock
++        type: boolean
++      gpmc,time-para-granularity:
++        description:  Multiply all access times by 2
++        type: boolean
++
++# The following two properties are applicable only to OMAP3+ and AM335x:
++      gpmc,wr-access-ns:
++        description: |
++          In synchronous write mode, for single or
++          burst accesses, defines the number of
++          GPMC_FCLK cycles from start access time
++          to the GPMC_CLK rising edge used by the
++          memory device for the first data capture.
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,wr-data-mux-bus-ns:
++        description: |
++          In address-data multiplex mode, specifies
++          the time when the first data is driven on
++          the address-data bus.
++        $ref: /schemas/types.yaml#/definitions/uint32
++
++# GPMC chip-select settings properties for child nodes. All are optional.
++
++      gpmc,burst-length:
++        description:     Page/burst length. Must be 4, 8 or 16.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [4, 8, 16]
++      gpmc,burst-wrap:
++        description:       Enables wrap bursting
++        type: boolean
++      gpmc,burst-read:
++        description:       Enables read page/burst mode
++        type: boolean
++      gpmc,burst-write:
++        description:      Enables write page/burst mode
++        type: boolean
++      gpmc,device-width:
++        description: |
++          Total width of device(s) connected to a GPMC
++          chip-select in bytes. The GPMC supports 8-bit
++          and 16-bit devices and so this property must be
++          1 or 2.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [1, 2]
++      gpmc,mux-add-data:
++        description: |
++          Address and data multiplexing configuration.
++          Valid values are 1 for address-address-data
++          multiplexing mode and 2 for address-data
++          multiplexing mode.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [1, 2]
++      gpmc,sync-read:
++        description: |
++          Enables synchronous read. Defaults to asynchronous
++          is this is not set.
++        type: boolean
++      gpmc,sync-write:
++        description: |
++          Enables synchronous writes. Defaults to asynchronous
++          is this is not set.
++        type: boolean
++      gpmc,wait-pin:
++        description: |
++          Wait-pin used by client. Must be less than "gpmc,num-waitpins".
++        $ref: /schemas/types.yaml#/definitions/uint32
++      gpmc,wait-on-read:
++        description:     Enables wait monitoring on reads.
++        type: boolean
++      gpmc,wait-on-write:
++        description:    Enables wait monitoring on writes.
++        type: boolean
++
++    required:
++      - compatible
++      - reg
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - gpmc,num-cs
++  - gpmc,num-waitpins
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    gpmc: memory-controller@50000000 {
++      compatible = "ti,am3352-gpmc";
++      reg = <0x50000000 0x2000>;
++      interrupts = <100>;
++      clocks = <&l3s_clkctrl>;
++      clock-names = "fck";
++      dmas = <&edma 52 0>;
++      dma-names = "rxtx";
++      gpmc,num-cs = <8>;
++      gpmc,num-waitpins = <2>;
++      #address-cells = <2>;
++      #size-cells = <1>;
++      ranges = <0 0 0x08000000 0x10000000>; /* CS0 @addr 0x8000000, size 0x10000000 */
++      interrupt-controller;
++      #interrupt-cells = <2>;
++      gpio-controller;
++      #gpio-cells = <2>;
++
++      nand0: nand-controller@0,0 {
++        compatible = "ti,omap2-nand";
++        reg = <0 0 4>;
++        interrupt-parent = <&gpmc>;
++        interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
++                     <1 IRQ_TYPE_NONE>; /* termcount */
++        rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>; /* gpmc_wait0 pin */
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++      };
++    };
+-- 
+2.17.1
 
-	rescale->offset = div_s64((s64)offset * rescale->denominator,
-				  rescale->numerator);
-
-Because you are prepping the offset so that it will survive a later rescaler
-multiplication, and all the "random" multiplications and divisions don't
-make that very clear.
-
-Cheers,
-Peter
-
-> +
-> +	return 0;
-> +}
-> +
->  enum rescale_variant {
->  	CURRENT_SENSE_AMPLIFIER,
->  	CURRENT_SENSE_SHUNT,
->  	VOLTAGE_DIVIDER,
->  	TEMP_SENSE_RTD,
-> +	TEMP_TRANSDUCER,
->  };
->  
->  static const struct rescale_cfg rescale_cfg[] = {
-> @@ -451,6 +478,10 @@ static const struct rescale_cfg rescale_cfg[] = {
->  		.type = IIO_TEMP,
->  		.props = rescale_temp_sense_rtd_props,
->  	},
-> +	[TEMP_TRANSDUCER] = {
-> +		.type = IIO_TEMP,
-> +		.props = rescale_temp_transducer_props,
-> +	},
->  };
->  
->  static const struct of_device_id rescale_match[] = {
-> @@ -462,6 +493,8 @@ static const struct of_device_id rescale_match[] = {
->  	  .data = &rescale_cfg[VOLTAGE_DIVIDER], },
->  	{ .compatible = "temperature-sense-rtd",
->  	  .data = &rescale_cfg[TEMP_SENSE_RTD], },
-> +	{ .compatible = "temperature-transducer",
-> +	  .data = &rescale_cfg[TEMP_TRANSDUCER], },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, rescale_match);
-> 
