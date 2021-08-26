@@ -2,87 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF8F3F8CE1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 19:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21FCD3F8D79
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 20:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243167AbhHZRW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 13:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43798 "EHLO
+        id S243250AbhHZSDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 14:03:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbhHZRW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 13:22:56 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D33FC061757
-        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 10:22:08 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id b4so4022228ilr.11
-        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 10:22:08 -0700 (PDT)
+        with ESMTP id S238087AbhHZSDF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 14:03:05 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8374FC0613C1
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 11:02:18 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id r26so6080016oij.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 11:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qKQjjsM4J8O5CgSWAuv+6gyXK0hCVd/AxIuqKbifVi8=;
-        b=c5DyMLynQk1gn4WXQI278terFJZS6NE0EbIEyUor/Df3RXEATH9/MTDp2/GBb+5mPd
-         Cq1tHPUfEhEuzDPPiFJPCHKQlf10zJxJ8h68Nq3ZH4yMP837kdjazwLbnbPymm7UH629
-         yNB3j6kxRc7fWi+9sdt9TmGchIiCjY81a9kEE/puyORvKpHae0aSEORdzQH8MrPP5sX4
-         DKHTC8exfKX1zbTSqdain05CO2fSIYxjZLcJpTGZSUFi6HUbPOD818vVvNqdFfL23gR5
-         6tmJPrJlnZXKYj7oOXjDwniYn/FUdIYpC9iioYnzIwW+OOUsC+j/8HtK09Eu3q/HL3mq
-         31mQ==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=gM9UQ3luKM6FWAIK1n04nas0tD0/piW22rsZNRbG95w=;
+        b=Yk9wa7PsI1JDzYJznsmi4lULZ30TTgiB5q3tk0Fr9+WQwYSGJYrt+DhQvZedn3m6RN
+         C4rluFHGyIkD6BcpydfDdTh6L0ZffXZSvyv+RRzlkzFweIMvhXBJLbkvPuWaulAGgC3B
+         DvixDneV1mp5EKYptJdXgu/8uL3E8GACmkw5U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qKQjjsM4J8O5CgSWAuv+6gyXK0hCVd/AxIuqKbifVi8=;
-        b=DvTDNKcbSvtq9uRUNm5p0UkxyJKZlNwh4NW3gTvbAgoMhKWfP/6NglVMUln+NZ7ayr
-         FL9irnL0WfAG3LpPMeXX8/Ccxxa8edr6tiOod7e5cAmwnHgFobUFLaxFU/DDBk+V8jjK
-         puYdTd7tiL7fqWIxDr/TqPRX45oThSSyZUx//JgOlleVBLg8j+XAnqjTCZkBB0vbSWxE
-         bUq7/XZ1cHpmJ0mxKTlvZQY7bT1u1vPtrXIHsTxg5QliOOXcmzonoOaIM3m6OxGiQ2mu
-         ikyzKR4VyVlykYi8xFLshBzRcvdzBgyW1Douo89u2wb4oGGIWiq79vQnPYrBZ8Aix2/1
-         QeYg==
-X-Gm-Message-State: AOAM5310QugJuADXXuW+rbvNR0yglsTIcFsQ7ZFyiWRfgvw/A8m51b/K
-        EtvQaZaou63w+IctEMiTZcaHuMGJ/S0VyoF3L465Fm1HEE0Uxkhq
-X-Google-Smtp-Source: ABdhPJzEP6d3k2PmiDaAY6pcR6U/TWQ8ba7bFfwnlUzENowhcCUx9XWHwgdsT9momgcLgJkyDpiLoam3ywnLdyU69E8=
-X-Received: by 2002:a05:6e02:168d:: with SMTP id f13mr3602680ila.12.1629998527624;
- Thu, 26 Aug 2021 10:22:07 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=gM9UQ3luKM6FWAIK1n04nas0tD0/piW22rsZNRbG95w=;
+        b=c+928MtX1bF+REZRXOTPziJcIOrOxb+UBpVRYMpv69wjMDQPTy8tlwMF/Qek/CoaBc
+         /XL0XMbiHec1JspBj2tG0sgfNOTdZxvmY9Bl/f3nSF66mMx7lk/wBL0k1qnSMLL5cr8+
+         K3cK5Pznez2BYf6JFzvZy+e7Ul3ZDgJIummvgXH1xHLh5UW8XLXFsnZ0ZBK5we3K+SIR
+         brJZwucKyT/uDyudZZBNFO/iclXZFjc622MUOHTPfEbwwqi+aIMSUn8yBxUdAj50kbCj
+         Zefa3YP/AwePnKlrYfd70PV6PcR1L0zb15uyOWjTMF5YS65L0ET7fV9QUFFX5P7WqFPt
+         jegw==
+X-Gm-Message-State: AOAM531uwPUWlpcbzXX5B2T2g9ITOdCfotSBzafjogbVHuVnqO72pieK
+        Ns0FrCHWpLRlD6QSkcp6bIAAGOGic25H6b0XFg+Czw==
+X-Google-Smtp-Source: ABdhPJyNJiCTp6DQlklvNtQfWWztXYaKjt4Mbg9yx82+lZscI2OatspIL//FZ/NEC2rvIE1wyzT3pLaAogdTxObMVpY=
+X-Received: by 2002:a54:468d:: with SMTP id k13mr12007332oic.125.1630000937901;
+ Thu, 26 Aug 2021 11:02:17 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 26 Aug 2021 18:02:17 +0000
 MIME-Version: 1.0
-References: <20210826110311.613396-1-yangcong5@huaqin.corp-partner.google.com> <20210826110311.613396-2-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20210826110311.613396-2-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Thu, 26 Aug 2021 10:21:54 -0700
-Message-ID: <CAD=FV=WSQBpGTxYKur03VoR1=UN6MekbSxT_sOy7udxWXDG95g@mail.gmail.com>
-Subject: Re: [v3 1/2] drm/panel: support for BOE tv1110c9m-ll3 wuxga dsi video
- mode panel
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+In-Reply-To: <1629983731-10595-2-git-send-email-rajpat@codeaurora.org>
+References: <1629983731-10595-1-git-send-email-rajpat@codeaurora.org> <1629983731-10595-2-git-send-email-rajpat@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 26 Aug 2021 18:02:17 +0000
+Message-ID: <CAE-0n50-9df1riEwcbbS9Dxd5WhKFBKqXAHu-bkwdP4z1NKTWA@mail.gmail.com>
+Subject: Re: [PATCH V6 1/7] arm64: dts: sc7280: Add QSPI node
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rajesh Patil <rajpat@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Can you please Cc folks who have reviewed prior series when you send
+again?
 
-On Thu, Aug 26, 2021 at 4:03 AM yangcong
-<yangcong5@huaqin.corp-partner.google.com> wrote:
+Quoting Rajesh Patil (2021-08-26 06:15:25)
+> From: Roja Rani Yarubandi <rojay@codeaurora.org>
 >
-> Add driver for BOE tv110c9m-ll3 panel is a 10.95" 1200x2000 panel.
+> Add QSPI DT node and qspi_opp_table for SC7280 SoC.
+
+Might be worth adding here that we put the opp table in / because SPI
+nodes assume any child node is a spi device and so we can't put the
+table underneath the spi controller.
+
 >
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
+> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
 > ---
->  drivers/gpu/drm/panel/Kconfig              |   10 +
->  drivers/gpu/drm/panel/Makefile             |    1 +
->  drivers/gpu/drm/panel/panel-boe-tv110c9m.c | 1303 ++++++++++++++++++++
->  3 files changed, 1314 insertions(+)
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 62 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 53a21d0..f8dd5ff 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1318,6 +1337,24 @@
+>                         };
+>                 };
+>
+> +               qspi: spi@88dc000 {
+> +                       compatible = "qcom,qspi-v1";
+> +                       reg = <0 0x088dc000 0 0x1000>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&gcc GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
+> +                                <&gcc GCC_QSPI_CORE_CLK>;
+> +                       clock-names = "iface", "core";
+> +                       interconnects = <&gem_noc MASTER_APPSS_PROC 0
+> +                                       &cnoc2 SLAVE_QSPI_0 0>;
+> +                       interconnect-names = "qspi-config";
+> +                       power-domains = <&rpmhpd SC7280_CX>;
+> +                       operating-points-v2 = <&qspi_opp_table>;
+> +                       status = "disabled";
+> +
 
-Breadcrumbs: discussion continues in the cover letter of the earlier patchset:
+Nitpick: Drop newline above.
 
-https://lore.kernel.org/r/CAD=FV=UFDRG9TJis28Wtsz9RVhp3Xk35stpLyY5ExLx3=8yxPQ@mail.gmail.com
-
-Quick summary: discussion is leaning toward just supporting these new
-panels with the existing `panel-boe-tv101wum-nl6.c` driver.
-
--Doug
+> +               };
+> +
+>                 dc_noc: interconnect@90e0000 {
+>                         reg = <0 0x090e0000 0 0x5080>;
+>                         compatible = "qcom,sc7280-dc-noc";
