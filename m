@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E4633F8D81
-	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 20:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E826F3F8D92
+	for <lists+devicetree@lfdr.de>; Thu, 26 Aug 2021 20:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243271AbhHZSD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 14:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53166 "EHLO
+        id S243255AbhHZSHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 14:07:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbhHZSD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 14:03:59 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B3ACC0613CF
-        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 11:03:11 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso4595963otv.12
-        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 11:03:11 -0700 (PDT)
+        with ESMTP id S231612AbhHZSHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 14:07:47 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42A6BC0613C1
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 11:07:00 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso4611375otv.12
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 11:07:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=00ODvXs1l1HYHHrVAuYyIJapQwyyGrk/oOlWTo9m+TU=;
-        b=WbggYB2Lvr7+Q/6+NWHy46OZj1WFebI+KRiOz5W47r894IlWRkmgYlRsc0tHKqJpjZ
-         +M/TDvww4SI/dyAX7iYUs36JT2KQxaNSG1L/w8NHlO2IBkJP42xMc0IeIo5vC8R0ReZS
-         ZwcwgTwVFW2fs5wWIHBshyL6Km5LgYwUSeHeg=
+        bh=iDcfALxS7ByXsLTcygSiTE5KZoBVvL1dJ5SQ9WFxeXw=;
+        b=KP/AXzf4Kf8O33BenwJXPa4AGRe8qX8UGMH7hQ3lCQPmHBtfgqoF81Vdxp9GuRKmVt
+         JCpHzaf1Je60ZFI5ErVxgtdT5dE6eWyTGG0A6N+Sy7CYKaa0TewR+HJ8PbO+F3udo5Ow
+         +Ngrg1UV7K5orFGM2iZesofpa9DEdzgHna9Wg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=00ODvXs1l1HYHHrVAuYyIJapQwyyGrk/oOlWTo9m+TU=;
-        b=jNVKROtFQt6f2n/qcNPSc4vEJyfGXpgvjncP5XV4XvmejQjdXVMsjomD+j+dnPW0qK
-         MSIzL+dIMNOCQiJZH8xGBi0l8ExDCfcwZYHC2UTHSgca7PlaOodIk4yp4yWeETVO9o7j
-         BfVljm27xaX5lG1T8sQqBCIqWtSYy7MTptAf6AVrFb6NGYStw+IRTaEGwPPAdVZF2mbm
-         8PRUEK4F2S0fELO05DvCCr5prxAblXP5q0ISjHFZP0QMjO0uJX3uWpau8gpEqcrRxlVK
-         TAfPEMDs/RTBUhgtHSj1sFJKBGhoKDo5xLX44MeXzCJgcGqYDhFUWEWtBfbhZdKLOzPQ
-         8NkA==
-X-Gm-Message-State: AOAM533NbC2tznXp2SU27y9RW2yB8IqjYV5wdpygB2szuBwLDL0kUzMv
-        WsIBpxnyqN4Y+fzlgj4oGJgo8vDPXn7Rmz4QxbXUm09g9xY=
-X-Google-Smtp-Source: ABdhPJwmkQ2w0Xwjdr/f/uXXwZO/sebVNyhc77oliNLZi0eNUmH/M3BHPOskp1JOzWaKTs0k1iO2Ws1l/ruAWBkZVaA=
-X-Received: by 2002:a05:6830:2b24:: with SMTP id l36mr4328242otv.25.1630000990926;
- Thu, 26 Aug 2021 11:03:10 -0700 (PDT)
+        bh=iDcfALxS7ByXsLTcygSiTE5KZoBVvL1dJ5SQ9WFxeXw=;
+        b=CNTQyff7pPCTOpsRC5rOJ6hHr2DMMu3OD10KsVjyiQlpTGS1zxsKceaTZ65itkjUyr
+         JuEubec+gaKaFYpJd6smQC06jQYvrs+MA23lozwC3altadE5BgsOl8OaO1OIkLqXpnWx
+         dxE6Ia9l0EbcziOGhGF/jCJW979Y3C/v5bvENgikGb5UUFzgDr7lVX3WpU3C5fOYXoS0
+         lolJ+WzkiEAs4Ij2JP2AZqnIDYG8LzVfvqIayQ+t5WAehOa5yuQRPA1Rz9p/hs9dTUBs
+         tVN8BXm8jZSwBy7nWEebi35rtgrme8X3G7x4HLaX2OzFviLsL44E7kcmN/LwwwUKt/h6
+         x9GA==
+X-Gm-Message-State: AOAM532apRU9Jd3jVuu7ptPkeFfIZdXMKmqg9nruFeu3RD95GwbZg37O
+        q355xiN4FI2rUr/uh/DHLaZKyDZKdCM+d0FmJMDqMQ==
+X-Google-Smtp-Source: ABdhPJxxPrSqGTyaYVZpZnL5e+CzVpcreV6iVDVWMMVq5TCa7ulq66CSbIOHcde0IJi3HPymgMPyxeruGoRPTZwp//k=
+X-Received: by 2002:a05:6830:2b24:: with SMTP id l36mr4344238otv.25.1630001219637;
+ Thu, 26 Aug 2021 11:06:59 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 26 Aug 2021 18:03:10 +0000
+ HTTPREST; Thu, 26 Aug 2021 18:06:59 +0000
 MIME-Version: 1.0
-In-Reply-To: <1629983731-10595-3-git-send-email-rajpat@codeaurora.org>
-References: <1629983731-10595-1-git-send-email-rajpat@codeaurora.org> <1629983731-10595-3-git-send-email-rajpat@codeaurora.org>
+In-Reply-To: <1629983731-10595-4-git-send-email-rajpat@codeaurora.org>
+References: <1629983731-10595-1-git-send-email-rajpat@codeaurora.org> <1629983731-10595-4-git-send-email-rajpat@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Thu, 26 Aug 2021 18:03:10 +0000
-Message-ID: <CAE-0n50u1Jfa-HEkM0Hj2p5B7wwy0XQ8cu5DBacpVGZdG4SkaA@mail.gmail.com>
-Subject: Re: [PATCH V6 2/7] arm64: dts: sc7280: Configure SPI-NOR FLASH for sc7280-idp
+Date:   Thu, 26 Aug 2021 18:06:59 +0000
+Message-ID: <CAE-0n51BUENLOP2vxg+HTfNyGZ9216tTpSQQot9_aZvJW_s-Ow@mail.gmail.com>
+Subject: Re: [PATCH V6 3/7] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rajesh Patil <rajpat@codeaurora.org>,
@@ -57,17 +57,112 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, rnayak@codeaurora.org,
         saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org
+        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajesh Patil (2021-08-26 06:15:26)
-> Add spi-nor flash node and pinctrl configurations for the SC7280 IDP.
+Quoting Rajesh Patil (2021-08-26 06:15:27)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index f8dd5ff..da3cf19 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -434,6 +434,25 @@
+>                 };
+>         };
 >
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
+> +       qup_opp_table: qup-opp-table {
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Surely this could be placed under /soc@0/geniqup@9c0000 alongside the
+other devices and the node name could be opp-table?
+
+> +               compatible = "operating-points-v2";
+> +
+> +               opp-75000000 {
+> +                       opp-hz = /bits/ 64 <75000000>;
+> +                       required-opps = <&rpmhpd_opp_low_svs>;
+> +               };
+> +
+> +               opp-100000000 {
+> +                       opp-hz = /bits/ 64 <100000000>;
+> +                       required-opps = <&rpmhpd_opp_svs>;
+> +               };
+> +
+> +               opp-128000000 {
+> +                       opp-hz = /bits/ 64 <128000000>;
+> +                       required-opps = <&rpmhpd_opp_nom>;
+> +               };
+> +       };
+> +
+>         soc: soc@0 {
+>                 #address-cells = <2>;
+>                 #size-cells = <2>;
+> @@ -536,24 +555,425 @@
+>                 qupv3_id_0: geniqup@9c0000 {
+>                         compatible = "qcom,geni-se-qup";
+>                         reg = <0 0x009c0000 0 0x2000>;
+> -                       clock-names = "m-ahb", "s-ahb";
+>                         clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+>                                  <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+> +                       clock-names = "m-ahb", "s-ahb";
+>                         #address-cells = <2>;
+>                         #size-cells = <2>;
+>                         ranges;
+> +                       iommus = <&apps_smmu 0x123 0x0>;
+>                         status = "disabled";
+>
+[...]
+> @@ -1575,11 +1995,311 @@
+>                                 function = "qspi_data";
+>                         };
+>
+> +                       qup_i2c0_data_clk:qup-i2c0-data-clk {
+
+Please unstick the colon from the node name.
+
+	qup_i2c0_data_clk: qup-i2c0-data-clk {
+
+	};
+
+> +                               pins = "gpio0", "gpio1";
+> +                               function = "qup00";
+> +                       };
+> +
+> +                       qup_i2c1_data_clk:qup-i2c1-data-clk {
+> +                               pins = "gpio4", "gpio5";
+> +                               function = "qup01";
+> +                       };
+> +
+> +                       qup_i2c2_data_clk:qup-i2c2-data-clk {
+> +                               pins = "gpio8", "gpio9";
+> +                               function = "qup02";
+> +                       };
+> +
+> +                       qup_i2c3_data_clk:qup-i2c3-data-clk {
+> +                               pins = "gpio12", "gpio13";
+> +                               function = "qup03";
+> +                       };
+> +
+> +                       qup_i2c4_data_clk:qup-i2c4-data-clk {
+> +                               pins = "gpio16", "gpio17";
+> +                               function = "qup04";
+> +                       };
+> +
+> +                       qup_i2c5_data_clk:qup-i2c5-data-clk {
+> +                               pins = "gpio20", "gpio21";
+> +                               function = "qup05";
+> +                       };
+> +
+> +                       qup_i2c6_data_clk:qup-i2c6-data-clk {
+> +                               pins = "gpio24", "gpio25";
+> +                               function = "qup06";
+> +                       };
+> +
+> +                       qup_i2c7_data_clk:qup-i2c7-data-clk {
+> +                               pins = "gpio28", "gpio29";
+> +                               function = "qup07";
+> +                       };
+> +
+
+For all of these.
