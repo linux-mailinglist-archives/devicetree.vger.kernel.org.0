@@ -2,301 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 873E23F9C5C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45CFD3F9C6E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232951AbhH0QZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 12:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47134 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbhH0QZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 12:25:50 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C237C061796
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 09:25:01 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id q3so4255782plx.4
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 09:25:01 -0700 (PDT)
+        id S233956AbhH0Qai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 12:30:38 -0400
+Received: from mail-eopbgr80057.outbound.protection.outlook.com ([40.107.8.57]:16831
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231852AbhH0Qah (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Aug 2021 12:30:37 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RwhDRmiasd1WJfQYagA8U7qYUxFp6DlD+nImbp3JN9pEWFcCcxJz63MWwVDab68cht/6AQsxLQbaZ0VW24hDiGqHx5Cr+FfeGV4Vav5fSaWXcpi4ogCFfFIWMXNZwyueS0hCtAK6Z+vlxRVW4+yFmgVbybyxm/621jqGrxtK9XTwCulCIfbIm5EZ6B7pWIX2V7VCzFJUsXFVpYbD0GD6x3KmtEsb8VwnOfX4zgNRoUPYwmqmXerKDtDVCrdyQKMSZ1d2hKrQBF7tI01ZqXOlCnjUkFDN0kRXSZ8ie4EjtSKYR9TDahY6hNYRcvaHnVTJbhlmCqUuXJis9IfOBSeu1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pj4Fq7ObgvXjrsdkmEIz5ZJGmCzydmLNVog1Rb+MdMI=;
+ b=Pd64V6YhnBB92ODDioV4o3kbr2ZDbhHuWScuS6/bPY3qR+hGJ7MLdZyF9hfRNjBSWPVQEoZuAPgBLcX3SBCBaowdLtoAZBjAC1funatnHfsG8k/wYNW+7sl0g54RzrMYuMB2Tlg99XiatLHaaRx+MC+Vn6oHV48Gm/sMLKrD24KMC+DOunoe48jrSn6U7v0kVcNKQmP2W7/MxAhopnVzFCCWkGrjPY+wpX2O6RMskpHTWu3VE4JVb7Wk7Vy8nYK3jDWelKqHkrazG2c6pu36W56FF7ywQ7ffxv9XVgKSR2ALeuqe9wg9cn+AH0zqzjUNHKmTcr0/cP0aeDBJnVdBWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=intel-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=olUZYI52FUW5gVkrVAMR5duictYeHKMMzQr6nXakedQ=;
-        b=aNaHRKsiD+SM+Lu9zvZtUAsPhN72aJZEO5ggEUbd+9i2E2zx+tYCvMVsH57GRkwHdf
-         TEaqxgEcVqpk2OQ9H7VyX1+9BLBU1szPxLHX49NuTsQbgdwMV28fkCyIXIQW5Xd+QD3R
-         WQ8/mhACDBZ1RuZyFTGtQQEZWkuERfp+C3Hd1pWoNSnZkvtdCCCdX43x97hoWme9ZdEO
-         45oFzDbvZXtq0iWx7LSdO55FY2oYiiyByKOWYg3IoUUbV30sBk3aaucbioyl2Cd8PO6k
-         bo+KZEykhRVe2BTh/XS6P2KQyoHNyAxEkUHVXaf1/Vmq1vtUC/5rzUkbwFKRZBjsF7bZ
-         26nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=olUZYI52FUW5gVkrVAMR5duictYeHKMMzQr6nXakedQ=;
-        b=agxWpaNOVuZx4SO/YqBtts5b43Sdz0iKpU1DY3X9TAfx50/i13/cglw7VJkYANYGC8
-         pLyJgVNp89n2lt+p8bylg+mFmwEzpNiAzsHDZLvLRUEOdPPvcbgW6Nyl8VMUiqQQfgOf
-         L8tSxAj3l8DcELlJ5bAcDViJjpvZdukinlZrRH0NYrgeM8MOQ8whOEBKRkcLnkWTH7hP
-         kYkY83SLpt/LT/GQAz28b1HHcEXDmU5gfXAGCaHI8YoC6L+nv2Qs1hcU3L8HhpDtvPYk
-         +PHeuI007WDZ2kaADKTsEUbVJYZu2HOINSIKRt9AlhANtf6bc19/+D4w0kd2/PQ3RGkx
-         nQdw==
-X-Gm-Message-State: AOAM533HNqofzx4ZJnpTE9au4XIFXVegwo27UP60a+PIqvqcFXOuWfCe
-        t+9Zk2VrkLH5/leviPSNOLsArb+D/5i/Y6at3uknww==
-X-Google-Smtp-Source: ABdhPJy9Fys2MKe+4NKONrWKg51ffmdsBaOmd1A6Uev8PSTHXgB2mLpKO7Fg2ktC2vZ1DnSMGf/U9PYBzR/IUsq76cs=
-X-Received: by 2002:a17:90a:708c:: with SMTP id g12mr24462608pjk.13.1630081500678;
- Fri, 27 Aug 2021 09:25:00 -0700 (PDT)
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Pj4Fq7ObgvXjrsdkmEIz5ZJGmCzydmLNVog1Rb+MdMI=;
+ b=wicasUeI1k8fumokg8jESwUBHixTXQyQb5oUsvCK1gf1pM0vzmwZLrF18SNK9bx7CU8sxzjM38EtB3ZS5BflEXOVt6+47nc4Kvfqlyid5CogrAGXjaq9cHrVuwOuy4hfqn/i9mYTnS6TBN3+71qiB+C7NWJTNVErArL/5yCDA/c=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DB7PR03MB4522.eurprd03.prod.outlook.com (2603:10a6:10:1a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Fri, 27 Aug
+ 2021 16:29:46 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::dc6c:815b:2062:d1f1]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::dc6c:815b:2062:d1f1%7]) with mapi id 15.20.4436.025; Fri, 27 Aug 2021
+ 16:29:45 +0000
+Subject: Re: [PATCH v6 3/3] pwm: Add support for Xilinx AXI Timer
+To:     kernel test robot <lkp@intel.com>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>, michal.simek@xilinx.com,
+        linux-kernel@vger.kernel.org
+References: <20210826211830.3311140-3-sean.anderson@seco.com>
+ <202108271550.btqnrtGU-lkp@intel.com>
+From:   Sean Anderson <sean.anderson@seco.com>
+Message-ID: <c57c4b16-dc8c-76c7-3ac4-63a5b62144d3@seco.com>
+Date:   Fri, 27 Aug 2021 12:29:40 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <202108271550.btqnrtGU-lkp@intel.com>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR15CA0004.namprd15.prod.outlook.com
+ (2603:10b6:208:1b4::17) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
 MIME-Version: 1.0
-References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
- <20210803113134.2262882-8-iwona.winiarska@intel.com> <CAPcyv4jPVSt9Wr2TkDActFVLP+ygaDwBnsKG410Nf1qfP_MB9A@mail.gmail.com>
- <b26ee278838698289869964fe59578f0d5f7b19c.camel@intel.com>
-In-Reply-To: <b26ee278838698289869964fe59578f0d5f7b19c.camel@intel.com>
-From:   Dan Williams <dan.j.williams@intel.com>
-Date:   Fri, 27 Aug 2021 09:24:49 -0700
-Message-ID: <CAPcyv4hUm0Ec1+_n0PZ+S0A9Tt1=8oLdeYtEiEnAmntm8PtmKQ@mail.gmail.com>
-Subject: Re: [PATCH v2 07/15] peci: Add peci-aspeed controller driver
-To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
-        "d.mueller@elsoft.ch" <d.mueller@elsoft.ch>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "Luck, Tony" <tony.luck@intel.com>,
-        "Lutomirski, Andy" <luto@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "mingo@redhat.com" <mingo@redhat.com>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "zweiss@equinix.com" <zweiss@equinix.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "x86@kernel.org" <x86@kernel.org>, "bp@alien8.de" <bp@alien8.de>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.27.1.65] (50.195.82.171) by MN2PR15CA0004.namprd15.prod.outlook.com (2603:10b6:208:1b4::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20 via Frontend Transport; Fri, 27 Aug 2021 16:29:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9bc87eb4-1d27-498d-1834-08d96977e163
+X-MS-TrafficTypeDiagnostic: DB7PR03MB4522:
+X-Microsoft-Antispam-PRVS: <DB7PR03MB45221ED7A7A61C19329ECEF196C89@DB7PR03MB4522.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LYc4Hm+aOxWLfg1eiz5PyE2NNx27OVHqJXx5F31wMoW4xTrk77wbZ3dk+ffZqxwT+mwsl/NWm4qMN3fMXFJy5I1WZH03o1rAWXFQLmLLdyLJ+q6gyHd3zn59Pgc41yXNqPQQxH1svH3TXrY6cdABbni8m8t4fw7ASVhOtwNdRwZRieykROlYEwC3GfUB5v0CJwJ1PwNNxU5Ma6rRVlrLfUWp8+z4Kfntp7BuKydd5jHqOEXLuZHFmgc90zFvjOAcrOdjozuilEJnGxeXlBy7zwP1XX7n2sjP7IdLLRYQwonpHRkxHFsGOR2wxD8ARnHkzxB47ZXvOTAGP/APb5n2FRhKhgQlDp0bbV3Oz1FSSK+hBP6ApPBjyYM1f3IMrzNdXTUrIAD3kHU2NN9Z1I7mIprpC+RDBcc6P3NRrVQHDL7hORvAePeR/tNcQYiTNag3O0rUeJCEQXzLJB/DWmsQDoEMO6OoNFF0PFqzduLRvlB6BzyatZNBdCQ9wREHm/k6yw7DmWccWIMWZoS/W/JcPEYiKiEOcGWn0V6HiyaMNAqQt/TWN87Zi98mhJKNqP6feRBsTAWuNl63DSq8ybQRQ9omwk6n7WdSuz8is/IuDA0vojqvwWeErltpwdmPVrKEKUv4X3Aq66z8JqqxHH8G5BFk4pS1ec5JwNaI++PrFnFd8c5iuFeVlZCFWgOS5R/rhnl3hNDcgo+pmr5RvgFc/GmUOKWTqxmjabTSjN4G+n6XME2x0ZoG+0+bLbvgzXwes4tzhecO/xqoM1dkafQxOuJLg9FKYpQil4ruRq370NKAYLtahN8CWaBve4cUXajKw+f4khnM8Uz74qbUSLPzqGzMyaVn+7KoCcou6/qN3so=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39840400004)(366004)(346002)(376002)(396003)(110136005)(2616005)(31696002)(31686004)(44832011)(4326008)(2906002)(26005)(16576012)(36756003)(6486002)(956004)(83380400001)(316002)(54906003)(6666004)(53546011)(38100700002)(52116002)(38350700002)(66556008)(478600001)(5660300002)(66476007)(8936002)(966005)(66946007)(186003)(86362001)(7416002)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?Windows-1252?Q?XsyWJKfZeNIEw5seMR2IfhPZl7i1FItEC+5lJv2Fvfvuq42f4sKumH9d?=
+ =?Windows-1252?Q?9R4VXe4+E39M/AapL01CtMGMMTpqfNdLkelfMX2DaTMglhQrERTs0gMQ?=
+ =?Windows-1252?Q?Nc8cHE3mg6bIPRTbZw+3EU2wyB2dByO9OhGw8TrFFenKfYIKBKcaInlo?=
+ =?Windows-1252?Q?Dwri50eBiLmeQVMXoFZlkFdEgzhjFbM/epBOg/WdMNUjY9F8O+wJqgXV?=
+ =?Windows-1252?Q?IXU6QqknpDHC74Oo1HnG0zh2bPYVETWiM8ZFnVG3xjvuyb8mpPTKHvff?=
+ =?Windows-1252?Q?dWMb8+uuyGAYUMFoMlut8ZHYiNP3NCpKoHsz1pIcN8RQznPJniQRRBTa?=
+ =?Windows-1252?Q?fn9aRwW87sL4RsJ/e9W8HB+px5qccbTVDA+owGybme73TsWJweniwhoo?=
+ =?Windows-1252?Q?Y4lRaBGYLsPT7FYlflId7jmygXGW5O6qaDmnzQmoeu9DIG1Q1hj4xEK9?=
+ =?Windows-1252?Q?E17HUXu/vWmeKGU8HXdobmNMwQJwIlGBNY7+bfob+ijloA8ydLijs5MX?=
+ =?Windows-1252?Q?2SYT8pZ7WF6raCbedJ+h3xYUXMJA7FI3zi/3PX3vpjOnCi+6kG90P5wB?=
+ =?Windows-1252?Q?P3HFi+0Beuo9zKL0O7MJqm94JLMQCuFWAU/SZXW1fDGgtlIc5jQhJcut?=
+ =?Windows-1252?Q?l2EVP5lfjfhyhMM3fdpk9KorAQ6HPtJZh6zqsQP4QCsZbQVzM8HDDo4o?=
+ =?Windows-1252?Q?87mHTBQne1OlZAP6ZFqwpjbMgyNNHTbWC3vT2ASFAiUO8334gcEmaeAB?=
+ =?Windows-1252?Q?MXBFXW0b0yWc5tNUbN1QwAeaV9CS3c2fIwdJ5A/8NEWNe+yNSMN9dvZz?=
+ =?Windows-1252?Q?EGdgRBHeYrYFqObbRdDjs8oJ64Wv4lGc4M4IxY3hpQUCF8qORRU/2mh1?=
+ =?Windows-1252?Q?yfvrOcTI58QUFRiEtxuRBEwVLCPuvgiUEYnyyr9+Vfd0hrB8q+3OOur4?=
+ =?Windows-1252?Q?/zB/dCJ2+VrN6U6IQbogI98uQ9TMLAk2LN1jye4EY53+OjhRT+U1492Z?=
+ =?Windows-1252?Q?ZQTwIUY0WKXoTNsdEOLBfzyMQDznrz6w+gu9uD8F86CkHR59UNj5+7+s?=
+ =?Windows-1252?Q?demZgRwtYXZSrwKUJ4h+VKHrE5YNfIB36ApMr7BVwnpH1Na4EHlhgfJV?=
+ =?Windows-1252?Q?9Fe3MyYS7uNGGGvQXDZbVs6SjZIjnqCKkRqBRCNHnbG9e3Zf+G1WnlZW?=
+ =?Windows-1252?Q?IapQTLrKKpw/OuTAnst0d35PiY5epS45M41KkNn32BsxZLocAyAeRPD+?=
+ =?Windows-1252?Q?QLLKiJkz2Tvas9jAxSUgQ0L4PYn0QIZ/qZWu7wO8hJWy826E1eQXcyj7?=
+ =?Windows-1252?Q?OytvMj8vN9gOEW87TBHrWrnA4GDp+mDDUF65HE3UaWWmrQtRTsrBRqDR?=
+ =?Windows-1252?Q?nxBxt7d1jOyLZB4dOiQHoNR8setIQ3WZtdRbXNgWxJaNvq3F4SDhWS2I?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bc87eb4-1d27-498d-1834-08d96977e163
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 16:29:45.6006
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: e03iNKWVQ21SsVH56TecNEDuIUHVugnxoL72D8uKq4mdCvMo64yWXKrc70dwTt9cSLlRCnsnYmFkasIHbYRzDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB4522
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 26, 2021 at 4:55 PM Winiarska, Iwona
-<iwona.winiarska@intel.com> wrote:
->
-> On Wed, 2021-08-25 at 18:35 -0700, Dan Williams wrote:
-> > On Tue, Aug 3, 2021 at 4:35 AM Iwona Winiarska
-> > <iwona.winiarska@intel.com> wrote:
-> > >
-> > > From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> > >
-> > > ASPEED AST24xx/AST25xx/AST26xx SoCs supports the PECI electrical
-> > > interface (a.k.a PECI wire).
-> >
-> > Maybe a one sentence blurb here and in the Kconfig reminding people
-> > why they should care if they have a PECI driver or not?
->
-> Ok, I'll expand it a bit.
-[..]
-> > > +static int aspeed_peci_xfer(struct peci_controller *controller,
-> > > +                           u8 addr, struct peci_request *req)
-> > > +{
-> > > +       struct aspeed_peci *priv = dev_get_drvdata(controller->dev.parent);
-> > > +       unsigned long flags, timeout = msecs_to_jiffies(priv-
-> > > >cmd_timeout_ms);
-> > > +       u32 peci_head;
-> > > +       int ret;
-> > > +
-> > > +       if (req->tx.len > ASPEED_PECI_DATA_BUF_SIZE_MAX ||
-> > > +           req->rx.len > ASPEED_PECI_DATA_BUF_SIZE_MAX)
-> > > +               return -EINVAL;
-> > > +
-> > > +       /* Check command sts and bus idle state */
-> > > +       ret = aspeed_peci_check_idle(priv);
-> > > +       if (ret)
-> > > +               return ret; /* -ETIMEDOUT */
-> > > +
-> > > +       spin_lock_irqsave(&priv->lock, flags);
-> > > +       reinit_completion(&priv->xfer_complete);
-> > > +
-> > > +       peci_head = FIELD_PREP(ASPEED_PECI_TARGET_ADDR_MASK, addr) |
-> > > +                   FIELD_PREP(ASPEED_PECI_WR_LEN_MASK, req->tx.len) |
-> > > +                   FIELD_PREP(ASPEED_PECI_RD_LEN_MASK, req->rx.len);
-> > > +
-> > > +       writel(peci_head, priv->base + ASPEED_PECI_RW_LENGTH);
-> > > +
-> > > +       memcpy_toio(priv->base + ASPEED_PECI_WR_DATA0, req->tx.buf,
-> > > min_t(u8, req->tx.len, 16));
-> > > +       if (req->tx.len > 16)
-> > > +               memcpy_toio(priv->base + ASPEED_PECI_WR_DATA4, req->tx.buf +
-> > > 16,
-> > > +                           req->tx.len - 16);
-> > > +
-> > > +       dev_dbg(priv->dev, "HEAD : 0x%08x\n", peci_head);
-> > > +       print_hex_dump_bytes("TX : ", DUMP_PREFIX_NONE, req->tx.buf, req-
-> > > >tx.len);
-> >
-> > On CONFIG_DYNAMIC_DEBUG=n builds the kernel will do all the work of
-> > reading through this buffer, but skip emitting it. Are you sure you
-> > want to pay that overhead for every transaction?
->
-> I can remove it or I can add something like:
->
-> #if IS_ENABLED(CONFIG_PECI_DEBUG)
-> #define peci_debug(fmt, ...) pr_debug(fmt, ##__VA_ARGS__)
-> #else
-> #define peci_debug(...) do { } while (0)
-> #endif
 
-It's the hex dump I'm worried about, not the debug statements as much.
 
-I think the choices are remove the print_hex_dump_bytes(), put it
-behind an IS_ENABLED(CONFIG_DYNAMIC_DEBUG) to ensure the overhead is
-skipped in the CONFIG_DYNAMIC_DEBUG=n case, or live with the overhead
-if this is not a fast path / infrequently used.
+On 8/27/21 3:16 AM, kernel test robot wrote:
+> Hi Sean,
+> 
+> I love your patch! Perhaps something to improve:
+> 
+> [auto build test WARNING on tip/timers/core]
+> [also build test WARNING on pwm/for-next linus/master v5.14-rc7 next-20210826]
+> [cannot apply to xlnx/master]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Sean-Anderson/dt-bindings-pwm-Add-Xilinx-AXI-Timer/20210827-052011
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git 127c92feb74a6721f62587f1b89128808f049cf1
+> config: mips-randconfig-r025-20210827 (attached as .config)
+> compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 1076082a0d97bd5c16a25ee7cf3dbb6ee4b5a9fe)
+> reproduce (this is a W=1 build):
+>          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>          chmod +x ~/bin/make.cross
+>          # install mips cross compiling tool for clang build
+>          # apt-get install binutils-mips-linux-gnu
+>          # https://github.com/0day-ci/linux/commit/eab56f0b0c5a62e40c04916eb1b4f21f478cec3a
+>          git remote add linux-review https://github.com/0day-ci/linux
+>          git fetch --no-tags linux-review Sean-Anderson/dt-bindings-pwm-Add-Xilinx-AXI-Timer/20210827-052011
+>          git checkout eab56f0b0c5a62e40c04916eb1b4f21f478cec3a
+>          # save the attached .config to linux build tree
+>          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=mips
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All warnings (new ones prefixed by >>):
+> 
+>>> drivers/pwm/pwm-xilinx.c:249:34: warning: unused variable 'xilinx_timer_of_match' [-Wunused-const-variable]
+>     static const struct of_device_id xilinx_timer_of_match[] = {
+>                                      ^
+>     1 warning generated.
+> 
+> 
+> vim +/xilinx_timer_of_match +249 drivers/pwm/pwm-xilinx.c
+> 
+>     248	
+>   > 249	static const struct of_device_id xilinx_timer_of_match[] = {
+>     250		{ .compatible = "xlnx,xps-timer-1.00.a", },
+>     251		{},
+>     252	};
+>     253	MODULE_DEVICE_TABLE(of, xilinx_timer_of_match);
+>     254	
 
->
-> (and similar peci_trace with trace_printk for usage in IRQ handlers and such).
->
-> What do you think?
+For this and the error on the previous patch it looks like I am missing a dependency on OF_ADDR. Will add.
 
-In general, no, don't wrap the base level print routines with
-driver-specific ones. Also, trace_printk() is only for debug builds.
-Note that trace points are built to be even less overhead than
-dev_dbg(), so there's no overhead concern with disabled tracepoints,
-they literally translate to nops when disabled.
-
->
-> >
-> > > +
-> > > +       priv->status = 0;
-> > > +       writel(ASPEED_PECI_CMD_FIRE, priv->base + ASPEED_PECI_CMD);
-> > > +       spin_unlock_irqrestore(&priv->lock, flags);
-> > > +
-> > > +       ret = wait_for_completion_interruptible_timeout(&priv-
-> > > >xfer_complete, timeout);
-> >
-> > spin_lock_irqsave() says "I don't know if interrupts are disabled
-> > already, so I'll save the state, whatever it is, and restore later"
-> >
-> > wait_for_completion_interruptible_timeout() says "I know I am in a
-> > sleepable context where interrupts are enabled"
-> >
-> > So, one of those is wrong, i.e. should it be spin_{lock,unlock}_irq()?
->
-> You're right - I'll fix it.
->
-> >
-> >
-> > > +       if (ret < 0)
-> > > +               return ret;
-> > > +
-> > > +       if (ret == 0) {
-> > > +               dev_dbg(priv->dev, "Timeout waiting for a response!\n");
-> > > +               return -ETIMEDOUT;
-> > > +       }
-> > > +
-> > > +       spin_lock_irqsave(&priv->lock, flags);
-> > > +
-> > > +       writel(0, priv->base + ASPEED_PECI_CMD);
-> > > +
-> > > +       if (priv->status != ASPEED_PECI_INT_CMD_DONE) {
-> > > +               spin_unlock_irqrestore(&priv->lock, flags);
-> > > +               dev_dbg(priv->dev, "No valid response!\n");
-> > > +               return -EIO;
-> > > +       }
-> > > +
-> > > +       spin_unlock_irqrestore(&priv->lock, flags);
-> > > +
-> > > +       memcpy_fromio(req->rx.buf, priv->base + ASPEED_PECI_RD_DATA0,
-> > > min_t(u8, req->rx.len, 16));
-> > > +       if (req->rx.len > 16)
-> > > +               memcpy_fromio(req->rx.buf + 16, priv->base +
-> > > ASPEED_PECI_RD_DATA4,
-> > > +                             req->rx.len - 16);
-> > > +
-> > > +       print_hex_dump_bytes("RX : ", DUMP_PREFIX_NONE, req->rx.buf, req-
-> > > >rx.len);
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static irqreturn_t aspeed_peci_irq_handler(int irq, void *arg)
-> > > +{
-> > > +       struct aspeed_peci *priv = arg;
-> > > +       u32 status;
-> > > +
-> > > +       spin_lock(&priv->lock);
-> > > +       status = readl(priv->base + ASPEED_PECI_INT_STS);
-> > > +       writel(status, priv->base + ASPEED_PECI_INT_STS);
-> > > +       priv->status |= (status & ASPEED_PECI_INT_MASK);
-> > > +
-> > > +       /*
-> > > +        * In most cases, interrupt bits will be set one by one but also
-> > > note
-> > > +        * that multiple interrupt bits could be set at the same time.
-> > > +        */
-> > > +       if (status & ASPEED_PECI_INT_BUS_TIMEOUT)
-> > > +               dev_dbg_ratelimited(priv->dev,
-> > > "ASPEED_PECI_INT_BUS_TIMEOUT\n");
-> > > +
-> > > +       if (status & ASPEED_PECI_INT_BUS_CONTENTION)
-> > > +               dev_dbg_ratelimited(priv->dev,
-> > > "ASPEED_PECI_INT_BUS_CONTENTION\n");
-> > > +
-> > > +       if (status & ASPEED_PECI_INT_WR_FCS_BAD)
-> > > +               dev_dbg_ratelimited(priv->dev,
-> > > "ASPEED_PECI_INT_WR_FCS_BAD\n");
-> > > +
-> > > +       if (status & ASPEED_PECI_INT_WR_FCS_ABORT)
-> > > +               dev_dbg_ratelimited(priv->dev,
-> > > "ASPEED_PECI_INT_WR_FCS_ABORT\n");
-> >
-> > Are you sure these would not be better as tracepoints? If you're
-> > debugging an interrupt related failure, the ratelimiting might get in
-> > your way when you really need to know when one of these error
-> > interrupts fire relative to another event.
->
-> Tracepoints are ABI(ish), and using a full blown tracepoint just for IRQ status
-> would probably be too much.
-
-Tracepoints become ABI once someone ships tooling that depends on them
-being there. These don't look  attractive for a tool, and they don't
-look difficult to maintain if the interrupt handler needs to be
-reworked. I.e. it would be trivial to keep a dead tracepoint around if
-worse came to worse to keep a tool from failing to load.
-
-> I was thinking about something like trace_printk hidden under a
-> "CONFIG_PECI_DEBUG" (see above), but perhaps that's something for the future
-> improvement?
-
-Again trace_printk() is only for private builds.
-
->
-> >
-> > > +
-> > > +       /*
-> > > +        * All commands should be ended up with a ASPEED_PECI_INT_CMD_DONE
-> > > bit
-> > > +        * set even in an error case.
-> > > +        */
-> > > +       if (status & ASPEED_PECI_INT_CMD_DONE)
-> > > +               complete(&priv->xfer_complete);
-> >
-> > Hmm, no need to check if there was a sequencing error, like a command
-> > was never submitted?
->
-> It's handled by checking if HW is idle in xfer before a command is sent, where
-> we just expect a single interrupt per command.
-
-I'm asking how do you determine if this status was spurious, or there
-was a sequencing error in the driver?
+--Sean
