@@ -2,137 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37FD63F966C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 10:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA4C3F96B6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 11:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244640AbhH0IuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 04:50:08 -0400
-Received: from mail-eopbgr1310135.outbound.protection.outlook.com ([40.107.131.135]:2880
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S244643AbhH0IuH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Aug 2021 04:50:07 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ry7LhI9S+zUbszThSr8XLLd+Q92FBOpelygK8OlFltlyjKU4AHwmT3BeEA/IO3kDB37hxba1ZBu2T6q1sFkHQqYET6SQRQf/bajaze8KzCvj7sEpkqPjW7t94TlodCB74Yi1PtxNTanClW41xdtjfupcaODEIgmn3n6MaYyoGFD6B/GIzotVkLgw/JF8dJzgL6rxI/rAd1LPeZzK0N+E7ghLzMrJ2Uk/wZXBR8w6Yyov+h5bIhIMpGsg8Te1V1j52J5702zgb1UwJZcAWo2JEsAWOHZSRqzk2OgV2uIZD3dbCHa5MwRJzXnwLl0KU9Jyx3GfWcWmzqBOS57jXlVyLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uH3S7LybM2AjVNtMe0A8PBKpWi8Vhv0S1++R4s8Rhwg=;
- b=S4aF9rDrsImGdslciczG0kcyPPViGYmu/GX4wff0sf8HXK1ohNt5tsS5Zs25BRSPTNGXCZtX+rLgUKgRqq6oGXTnAwwE8nQaFkh2spugwEYzkAJzsyxLAD7oVyWlIEna0tB5On6hUjLzGC95t2sZC0QCs/Vdop3VftFsLARVGFej7kRMfjgt4BR3ITDeoz78EpQISWZXg0AfVBfScLDF9zjWOVq+f4p2YLKXnLvSGlNrpB2OZWS8jst8hjssggSUr856KSRgd35q98cne8NV9BB+Uz0F0YtNYzFVGZ0dWVWO39BzTZO37OMB33k1IMeDmiFBNPT+rODifu7r9Y0j0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uH3S7LybM2AjVNtMe0A8PBKpWi8Vhv0S1++R4s8Rhwg=;
- b=o+WrVWAMOGDz0g6u02PmmzACKd2XVXnLX6zBLjWV74EgvcJeFsDjKVToRcuMYpO4pwbLscZ8OEXvY8DUlEWVZeAK6k6z5sci8JLd4BCAygRbgRx0G7DhBZuw3ZbaLRsYsIegWrjuWM3xj7pYadKEjhnL18A47TSCZYXrScQNLLKC58s0AzY7LCqlBE5jGmFsUQryzIVSdrETW2tPc77MGZ9MbreRprcLyvQVYf+jDsmYXPY9swz2koEWzHi5aOY9o/qF6Y/0irrZneXGxU4ZJbaTYkDkhnM/3fX+FoRvvL9JuPOwyC945udfy/qYpiW7kDF9618nC77EAZQ7m9M0mQ==
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
- by HK2PR06MB3458.apcprd06.prod.outlook.com (2603:1096:202:38::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.18; Fri, 27 Aug
- 2021 08:49:16 +0000
-Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::4c26:6668:f551:3a62]) by HK0PR06MB3779.apcprd06.prod.outlook.com
- ([fe80::4c26:6668:f551:3a62%3]) with mapi id 15.20.4436.025; Fri, 27 Aug 2021
- 08:49:16 +0000
-From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
-To:     Joel Stanley <joel@jms.id.au>
-CC:     kernel test robot <lkp@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>
-Subject: RE: [PATCH v3 3/4] soc: aspeed: Add eSPI driver
-Thread-Topic: [PATCH v3 3/4] soc: aspeed: Add eSPI driver
-Thread-Index: AQHXmkI+4Lhg3IxgrEO2OY2fsCr5kauGcBUAgABIZaCAACFtAIAAIuCA
-Date:   Fri, 27 Aug 2021 08:49:16 +0000
-Message-ID: <HK0PR06MB3779B6CD28A84D3DC651211191C89@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20210826061623.6352-4-chiawei_wang@aspeedtech.com>
- <202108270732.OvBQ4K3D-lkp@intel.com>
- <HK0PR06MB377927BDCA9CC79B598251B291C89@HK0PR06MB3779.apcprd06.prod.outlook.com>
- <CACPK8Xf1g2fp5X3ELBUyjzP6Fmvt1XWLU_UgCKdZaDVjdyKryQ@mail.gmail.com>
-In-Reply-To: <CACPK8Xf1g2fp5X3ELBUyjzP6Fmvt1XWLU_UgCKdZaDVjdyKryQ@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: jms.id.au; dkim=none (message not signed)
- header.d=none;jms.id.au; dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 85f78bdb-f028-4943-f5a6-08d969378d67
-x-ms-traffictypediagnostic: HK2PR06MB3458:
-x-microsoft-antispam-prvs: <HK2PR06MB34589D8F591F4B00BB24462691C89@HK2PR06MB3458.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: qtFHvyRrm2kEu9berQZhbY097jhv1G8ZrR06niou+T6L6Zh39QPNI0QiIA+fhisTTpDT1FxLXkVVJMQvYkOp49ds0ui2ZEfD0E7uStnTlnqriBs0vXRcwzRE5LRIXZyw6gDr5ZARWEuoBQRDcckRc1/anMdAnosHGIGU5WwjsYY8xBt5t7R53xCZzy7f7j9YqRcHHi4Ynn/2BZ2R8cCn/yJ/uTZIJ1kvYUYI7zJtuV8el/JHXR1A06a9TpRF710+xoxK10T7RsROpviklt2hox/HEmRiThjlJW5VY8K6w+vNHEIzCr7/Bg7LAOvUTvBW1I00pArcjhiwMuxTTvDV4YMHH5h8Z4uSsozKXu1S1jMlHBYfLRiRBSLVhAUUuS7bomjUrWketLgWyq9xryLWLsW7wGKof1/Uw5SbjTrRNoSLVgvKmY3wbjrKCnqodkOTeH8m8y/QaY6A7k84iD4Y7aOCluUTV00wl4yVU+XQNLXRgocAdAkYACAhVA8iXUVNi7xP51Lpvxjg40uFg2LRb2vob70OFc0UNM3Eobq69FFSXZKylSiI8nCXlbiOaJTPuYNOEWdVEHDaoPMNmlnv3882Ms28gZC6iw3rk63SaXHOv6din04sA8x0xgybzciiEDo7EAE+W6dd/oFQw3bdV8Pmr55PeAPg9laI/SPPfHq34PTkB9bxXBKcTCb8t3q84dKzNheCjIqHocQTbhReBA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(346002)(376002)(396003)(366004)(39840400004)(54906003)(76116006)(64756008)(66556008)(66476007)(9686003)(2906002)(316002)(86362001)(66946007)(66446008)(7416002)(38070700005)(5660300002)(6916009)(52536014)(71200400001)(4326008)(26005)(8936002)(33656002)(122000001)(4744005)(8676002)(7696005)(6506007)(186003)(38100700002)(478600001)(55016002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TERDaVFUMTJaR3hmUWlMZkJaQzYwV3RsUWdzaE5zS0prWEJubHR5eHUxNlU2?=
- =?utf-8?B?S0dIcVN3aGVnSEkxcVQ4RkpFUjNEU2RBcEY3dUR6OU1Ic1dUTCtrb3I2eDRM?=
- =?utf-8?B?SjlBaTl4ZUNLczBKczU0Q2p3d3pxcGtaQUl3bld5NDVveEVQaXoxUitvZHhN?=
- =?utf-8?B?NmludTVDUGNTZ1pRV01oc0RXZDhoZUh0bEFxbC95UTRHM0pISjRLRFJnemo1?=
- =?utf-8?B?VllHUVJUMlpZL0Zkai90MjR2YjRzSFk5bEpPWnRhWWQ0NWw1eWpYWktzU2Rl?=
- =?utf-8?B?NDNndjAvcjFLSitWb1JJaElpUHdtejluQlFGcUIweFF0MjBocXJvdmJaTjBk?=
- =?utf-8?B?QWx3VmZtZGhWTktlY1BUY0IzM1lGU0dzOWNkZXlnUnpEcWkvQi92TnByUkln?=
- =?utf-8?B?MlFsRDhTZnZZYkpDeENiN2RUQU1nZFA3QmxmK0hGWlYxNysxc3h1cmtNK0sx?=
- =?utf-8?B?S25acE1pTGo1SElmTExwelpVdnZvblZjQnViazJ1TFFRZnhLcXI0Nzk4eWhh?=
- =?utf-8?B?clJGMDdtU2N6Zm80RW16dHVpL1JGbEkrSGdwSnZHSitOWCtWSDYrTkNtWCtR?=
- =?utf-8?B?aVBaejQ5eHArM2xxRnJrSGIyelZWTmRyOEpNQng3NkxIQmlVMWVpMjZUbkk4?=
- =?utf-8?B?S3JxcDZ4MGRnTFJFemNqblVwT3dUclVqMVlqZldmRnJKUk56VkxLSFVqTDg4?=
- =?utf-8?B?enBDMGtlQWNRakhSRG9yVmtwNnB4VHh5M0NUQ2s3NitiWTBmZCt3MVhtWWxv?=
- =?utf-8?B?bkdoL0IwZkY1dm84ZWttVnpIL280RlJBWmVjdVUvdDFSd2tqcXMvbWVJdldY?=
- =?utf-8?B?OWJqZ0I4V1JDd0M0UkVCV05HZDYrWHVxZzExR1plVlNFY1pWUlFGSXR4Q3F1?=
- =?utf-8?B?Vk5lWVBLbEtsUTNrc3VuQ1BWbVVWTU1LN2Z5ZEUvNUE3WjZLUjdPV0ozQlc5?=
- =?utf-8?B?cHUvb0Y4YUd4TVQ2RE5lcW9KVWJJMVJTVEI0b1hER05NSjRyMjJ5VkJzd291?=
- =?utf-8?B?SEsvbldFZk9TSzJKT1VYMjJuQzh5cWtkZVVPVHBodnk4aWk2MGQzbWltWFEw?=
- =?utf-8?B?RUgwa0NHbzZDVE9LQ3dQb1VkTUdxMmEwaFE4MGNzMlF4ZWtIT0pETUIvUEVu?=
- =?utf-8?B?WHlZYVhteWVaRG5IYU80eXVrNXAxcWFUZjJ3bStCTjZDY3AxWWVIWkFRSmRP?=
- =?utf-8?B?R2dmb1k0cEgyWWRaMXFPS0JnajVOZVd5bTlLblV2eHFZcm4yWmxxTUx3VGxM?=
- =?utf-8?B?VTg0aDVPV2lucklWWFdFTERSSWR3SmVQNlV5YWd0Z1FBaVFNVFR6UlE0VGtI?=
- =?utf-8?B?UHloZi96ZzJRTGtTQVNiME1mR05DSlp0WU1hYXd1dW5mc1o3TkMxckc4TzRp?=
- =?utf-8?B?bUhDTGxLKzFwYTVzKzg0WTNBalM0aTVudUg2eHVuVTJIdXh2UDQ4a2tDYWFX?=
- =?utf-8?B?MEJkd1dRcFFOVDMvUlFjdC9mRERYUGpZZWV2TWVUSldjdlA4THJBa1N6QW5r?=
- =?utf-8?B?U01xOHB5R1UycjBSbEFMUjliRTUxQTRyOVVocjV3dXc5cE1TVXluUU9PU0Ey?=
- =?utf-8?B?S1RwL0tVZ3ExVlFueGNUelpURG9FWE5nQ3l6bjJGYnd4THhRYXVCQnRrMyti?=
- =?utf-8?B?RXk0cEN4UlpsMEs2YXdWaytPZ05IYTQ5ejNEQ2lzQUJadXZna2tLMDM4SFpw?=
- =?utf-8?B?WlV6cDhKUTRIOUozeklWOHRtZXJwcnhmbWw4TjlSVG1LQmZKSktaM244MVlq?=
- =?utf-8?Q?XRO59P/vlmAZJt70XxFKgIY9s7O+SixHGtmN9Ka?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S244548AbhH0JRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 05:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232282AbhH0JRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 05:17:10 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A0FC061757;
+        Fri, 27 Aug 2021 02:16:22 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id fz10so4147112pjb.0;
+        Fri, 27 Aug 2021 02:16:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d3XRTlq16t0wJ8HaEjtxOV1ZKnV6ECbNojq2Fi7Sq0w=;
+        b=jSGxin7FakfqGuTj23IY9L2oNrl/AOVnfwZsB7vywp1smzg2kJFQVnbrc1EszHV0IX
+         gbiBgpk8B6F5eGuoU7skjAoqJRhhcD/4CSliMbLEafVbhpOZacDq1grQH8jffNKFsR9W
+         aFGOkoZk7nMniiag4Hr/RkILfElroDBMW80W1E1m63j8dOpsHn5SDNEMZKsTHDts95ra
+         HZskFv9+RF8RgyinudRjLyhbtByK8qYp3PCFrw8nzwHrzqv7druae5yYcC6x1BdNXLV8
+         2I7G7peQO5luoPa8tysTMqlVmL+tRg8m5zBTHqe0z1mgoS8t1fRLs8EJVRKwY3art00T
+         nRtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d3XRTlq16t0wJ8HaEjtxOV1ZKnV6ECbNojq2Fi7Sq0w=;
+        b=l0BoUdl0gkGUWaxwpjid6w+WmzSpuo5MvXXEDQk6Jzen7+jgL+2e+mclIQlKlK7dma
+         vFuU38WAGW+C8XDppFU2tgqEWjAGFFZTLgFF2d6lEjngdKWjh7WOiBEZ7HWbRc+LLRmt
+         gBdTsRljs+YudWPzZDutbBgkliPn8UBaJ/kPUowmGkKyawnEcsCged9Pgu1DVx5Rt/dn
+         8yBG+1dxPINd3GhJ/MSeS34bAcIlqAsM9yisu5d6TOLACiRkinKoZ6ZOKU4FqM81Zif7
+         PR+B32b3wKoZ0ovEACKShBrybYYoA20Y55jqaSqjRI7PK0Fc87IM8aXaKIAhkkqywwQM
+         whSQ==
+X-Gm-Message-State: AOAM530cpQwoj0x/g6r2BXFUALklU8pXYE75L1hv4wuZ/WHUETQTNM3Z
+        Kv1GWBEGopkurZm5Qk5giOQj1iefa6t05ldX3ho=
+X-Google-Smtp-Source: ABdhPJyzeMozxSYqalhjT7ul9ZDWu9jJQD7ANoKobe0jVGOY+MJkoh9ZDaPGeAZoVoZmIL4s/eMt3vlsrp2fTMl/noo=
+X-Received: by 2002:a17:90a:6502:: with SMTP id i2mr22150491pjj.129.1630055781885;
+ Fri, 27 Aug 2021 02:16:21 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85f78bdb-f028-4943-f5a6-08d969378d67
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2021 08:49:16.4675
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1Vw+evIYvjSp101Rsys6yrxUwHUISURpPV5lAZu7txitaSVvB1jRBDScgOIy+Z4a7iDCVissZWpexkKqO+uWvPpWvtJWyxRoo14FH+th8oA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR06MB3458
+References: <20210826185739.3868-1-ftoth@exalondelft.nl> <1j4kbbxqgr.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1j4kbbxqgr.fsf@starbuckisacylon.baylibre.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 27 Aug 2021 12:15:42 +0300
+Message-ID: <CAHp75Vdu8v1QSi0CQw7qp-yPhMtwJ_hQO=GT5pWoD0nxmKoF_w@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Revert "usb: gadget: u_audio: add real feedback implementation"
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ferry Toth <ftoth@exalondelft.nl>,
+        Ruslan Bilovol <ruslan.bilovol@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Jack Pham <jackp@codeaurora.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        Linux Documentation List <linux-doc@vger.kernel.org>,
+        Lorenzo Colitti <lorenzo@google.com>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Pavel Hofman <pavel.hofman@ivitera.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBGcm9tOiBKb2VsIFN0YW5sZXkgPGpvZWxAam1zLmlkLmF1Pg0KPiBTZW50OiBGcmlkYXksIEF1
-Z3VzdCAyNywgMjAyMSAxOjQ5IFBNDQo+IA0KPiBPbiBGcmksIDI3IEF1ZyAyMDIxIGF0IDAzOjUy
-LCBDaGlhV2VpIFdhbmcNCj4gPGNoaWF3ZWlfd2FuZ0Bhc3BlZWR0ZWNoLmNvbT4gd3JvdGU6DQo+
-ID4NCj4gPiBBc3BlZWQgNXRoIGFuZCA2dGggZ2VuZXJhdGlvbiBTb0NzIGFyZSBiYXNlZCBvbiB0
-aGUgQVJNIDMyLWJpdHMNCj4gYXJjaGl0ZWN0dXJlLg0KPiA+IFNob3VsZCB3ZSBmb2xsb3cgdGhl
-IHJlcG9ydCB0byBtYWtlIHRoZSBkcml2ZXIgNjQtYml0cyBjb21wYXRpYmxlPw0KPiA+IE9yIHJl
-dmlzZSB0aGUgZHJpdmVyIHRvIHVzZSBtb3JlIHNwZWNpZmljIGRhdGEgdHlwZXM/DQo+IA0KPiBZ
-ZXMsIGluIGdlbmVyYWwgaXQncyBleHBlY3RlZCB5b3VyIGRyaXZlciB3aWxsIGNvbXBpbGUgY2xl
-YW5seSBmb3IgNjQtYml0DQo+IGFyY2hpdGVjdHVyZXMuIFRoaXMgaGVscHMgd2l0aCB0ZXN0aW5n
-IGFuZCBzdGF0aWMgYW5hbHlzaXMsIHdoZXJlIENJIGJ1aWxkcyBhbGwgdGhlDQo+IGRyaXZlcnMg
-Zm9yIHg4Ni4NCg0KVW5kZXJzdG9vZC4gV2lsbCBmaXggdGhlIGRhdGEgdHlwZSBpc3N1ZSBpbiB0
-aGUgbmV4dCBzdWJtaXNzaW9uLg0KVGhhbmtzLg0KDQpDaGlhd2VpDQo=
+On Fri, Aug 27, 2021 at 11:05 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On Thu 26 Aug 2021 at 20:57, Ferry Toth <ftoth@exalondelft.nl> wrote:
+>
+> > Although there is a patch resolving this issue (see
+> > https://lore.kernel.org/linux-usb/1jilzsy8g7.fsf@starbuckisacylon.baylibre.com/T/#u)
+> > it needs a little work and will not be ready for v5.14.0 release. Until then
+> > revert the series.
+>
+> Seems like a quite messy solution when the fix available :/
+
+Is it? AFAIR Thing pointed out to some problems with the proposed
+solution. Have those been addressed?
+
+> Change with the updated commit description is avaialable BTW [0]
+
+> [0]: https://lore.kernel.org/20210827075853.266912-1-jbrunet@baylibre.com
+
+Dunno, but this gives me 404.
+
+-- 
+With Best Regards,
+Andy Shevchenko
