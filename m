@@ -2,78 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E668E3F91F7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 03:38:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2663F9238
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 04:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbhH0BiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 21:38:10 -0400
-Received: from regular1.263xmail.com ([211.150.70.206]:55600 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231481AbhH0BiK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 21:38:10 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by regular1.263xmail.com (Postfix) with ESMTP id 9816C1B5B;
-        Fri, 27 Aug 2021 09:37:20 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.19] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P702T139881362753280S1630028240323457_;
-        Fri, 27 Aug 2021 09:37:20 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <6dcc37658b0229364e9fc103e0cfe35f>
-X-RL-SENDER: sugar.zhang@rock-chips.com
-X-SENDER: zxg@rock-chips.com
-X-LOGIN-NAME: sugar.zhang@rock-chips.com
-X-FST-TO: alsa-devel@alsa-project.org
-X-RCPT-COUNT: 5
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH v3 05/14] ASoC: rockchip: i2s: Fix concurrency between
- tx/rx
-To:     Mark Brown <broonie@kernel.org>
-Cc:     heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-References: <1629950441-14118-1-git-send-email-sugar.zhang@rock-chips.com>
- <1629950520-14190-5-git-send-email-sugar.zhang@rock-chips.com>
- <20210826125206.GD4148@sirena.org.uk>
-From:   sugar zhang <sugar.zhang@rock-chips.com>
-Message-ID: <a6d7a5af-0efd-72db-b144-cf51cd0907a3@rock-chips.com>
-Date:   Fri, 27 Aug 2021 09:37:19 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S243978AbhH0CMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 22:12:06 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:44202 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241128AbhH0CMG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Aug 2021 22:12:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=CZAl2d77Ht15SARXwtHBnTj5q6I65Bl6hgGHiA77reA=; b=yWuP8aKLExX1fnPAlpWZ99iSk4
+        Vc2zyl1uK02K/oiZeuNM2Dh7XomQZQhnF8DZCWtWU4irRB2YduWXHefVEucdTPzzM7/usSbvh/4sn
+        gbcBWiC/zAPKgG3vEHeSAB0XZ3DGRN6Jdb/5elDwTH3sFnTGNtt8iGcbp7+l0sRgPmwo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mJRKp-0042gK-Do; Fri, 27 Aug 2021 04:11:11 +0200
+Date:   Fri, 27 Aug 2021 04:11:11 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     "Gabriel L. Somlo" <gsomlo@gmail.com>,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        David Shah <dave@ds0.me>, Stafford Horne <shorne@gmail.com>
+Subject: Re: [PATCH v2 2/2] net: Add driver for LiteX's LiteEth network
+ interface
+Message-ID: <YShJv2XRud7pSseZ@lunn.ch>
+References: <20210820074726.2860425-3-joel@jms.id.au>
+ <YSVLz0Se+hTVr0DA@errol.ini.cmu.edu>
+ <CACPK8Xf9LGQBUHmS9sQ4zG1akk5SoQ-31MD-GMWVSRuByAT7KQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210826125206.GD4148@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACPK8Xf9LGQBUHmS9sQ4zG1akk5SoQ-31MD-GMWVSRuByAT7KQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+On Wed, Aug 25, 2021 at 06:35:17AM +0000, Joel Stanley wrote:
+> On Tue, 24 Aug 2021 at 19:43, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> >
+> > Hi Joel,
+> >
+> > Couple of comments below:
+> >
+> > On Fri, Aug 20, 2021 at 05:17:26PM +0930, Joel Stanley wrote:
+> 
+> > > diff --git a/drivers/net/ethernet/litex/Kconfig b/drivers/net/ethernet/litex/Kconfig
+> > > new file mode 100644
+> > > index 000000000000..265dba414b41
+> > > --- /dev/null
+> > > +++ b/drivers/net/ethernet/litex/Kconfig
+> 
+> > > +
+> > > +config LITEX_LITEETH
+> > > +     tristate "LiteX Ethernet support"
+> >
+> > Mostly cosmetic, but should there be a "depends on LITEX" statement in here?
+> 
+> No, there's as there is no dependency on the litex soc driver.
 
-On 2021/8/26 20:52, Mark Brown wrote:
-> On Thu, Aug 26, 2021 at 12:01:51PM +0800, Sugar Zhang wrote:
->
->> +/* tx/rx ctrl lock */
->> +static DEFINE_SPINLOCK(lock);
->> +
-> Why is this a global and not part of the driver data?  It's also not
-> clear to me why this is a spinlock and not a mutex.
+Which is good, you will get more build coverage that way, it will be
+built of x86, arm, mips, etc...
 
-Yes, this should be moved into driver data, will do in v4.
+> 
+> > Maybe also "select MII" and "select PHYLIB"?
+> 
+> Again, there is no mii or phy code so the driver doesn't need these.
 
-it's not allowed to sleep in this context, so use spinlock instead.
+Yet.
 
--- 
-Best Regards!
-张学广/Sugar
-瑞芯微电子股份有限公司
-Rockchip Electronics Co., Ltd.
+At some point i expect you will need these, but you don't need them
+now.
 
-
-
+	Andrew
