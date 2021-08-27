@@ -2,94 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C1A73F97A8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 11:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3692C3F987F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 13:38:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245083AbhH0JtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 05:49:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:38190 "EHLO foss.arm.com"
+        id S245013AbhH0Lj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 07:39:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38766 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245045AbhH0JtM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Aug 2021 05:49:12 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 418FC31B;
-        Fri, 27 Aug 2021 02:48:23 -0700 (PDT)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8E5C3F766;
-        Fri, 27 Aug 2021 02:48:21 -0700 (PDT)
-Date:   Fri, 27 Aug 2021 10:48:15 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     nobuhiro1.iwamatsu@toshiba.co.jp
-Cc:     robh+dt@kernel.org, bhelgaas@google.com, kishon@ti.com,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, kw@linux.com,
-        punit1.agrawal@toshiba.co.jp, devicetree@vger.kernel.org,
+        id S235295AbhH0Lj1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Aug 2021 07:39:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F2E7260FC4;
+        Fri, 27 Aug 2021 11:38:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630064319;
+        bh=ve29pPm/8F7On55yD7S+uc8qqP4GUkW7r7zweAeVCYM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cmC6lwxwMu9u5MXbRtjwnmrcNHDejWMZXLntKFAveiAZ3klLnXuoN6/WRsr8dskmL
+         TCQ4+r7rA+WJ4jKiDOFuLTP5T7vVj9PrBcWITQiHh7OIzxZiki5mh837jH2/y4PIHH
+         X/o3ua2AqZE5z3rBHk2EDHoXKCL9XrNRGRQIqkRvpbgSTtvlSQwHwSHmb8lu7yO0nt
+         TMKsk4TlUce1qzH8rorHZtFt6ePReYWKDJ/0eP2u0w6TG3RBjj31Cp136NT4PF8P/f
+         RDlrgZHJ3Tr8dGvJ8XlwOz2ktQY/kZtGX2BOIHMqnbKwIIWikGopD3V2faOtMiEXAy
+         1OPZEKvKZayNQ==
+Received: by pali.im (Postfix)
+        id A24A0617; Fri, 27 Aug 2021 13:38:36 +0200 (CEST)
+Date:   Fri, 27 Aug 2021 13:38:36 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Scott Wood <oss@buserror.net>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] Visconti: Add Toshiba Visconti PCIe host
- controller driver
-Message-ID: <20210827094815.GA13112@lpieralisi>
-References: <20210811083830.784065-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <162998285902.30814.11206633831020646086.b4-ty@arm.com>
- <TYAPR01MB6252A29B56BBF8921822824F92C79@TYAPR01MB6252.jpnprd01.prod.outlook.com>
+Subject: Re: [PATCH] powerpc/fsl/dts: Fix phy-connection-type for fm1mac3
+Message-ID: <20210827113836.hvqvaln65gexg5ps@pali>
+References: <20210604233455.fwcu2chlsed2gwmu@pali>
+ <20210704134325.24842-1-pali@kernel.org>
+ <63a72f648297e96c140a1412c20bd3796398a932.camel@buserror.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYAPR01MB6252A29B56BBF8921822824F92C79@TYAPR01MB6252.jpnprd01.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <63a72f648297e96c140a1412c20bd3796398a932.camel@buserror.net>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 26, 2021 at 11:49:04PM +0000, nobuhiro1.iwamatsu@toshiba.co.jp wrote:
-> Hi,
-> 
-> > -----Original Message-----
-> > From: Lorenzo Pieralisi [mailto:lorenzo.pieralisi@arm.com]
-> > Sent: Thursday, August 26, 2021 10:01 PM
-> > To: iwamatsu nobuhiro(岩松 信洋 □ＳＷＣ◯ＡＣＴ) <nobuhiro1.iwamatsu@toshiba.co.jp>; Rob Herring
-> > <robh+dt@kernel.org>; Bjorn Helgaas <bhelgaas@google.com>
-> > Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>; Kishon Vijay Abraham I <kishon@ti.com>; ishikawa yuji(石川 悠司
-> > ○ＲＤＣ□ＡＩＴＣ○ＥＡ開) <yuji2.ishikawa@toshiba.co.jp>; linux-arm-kernel@lists.infradead.org;
-> > linux-pci@vger.kernel.org; Krzysztof Wilczyński <kw@linux.com>; agrawal punit(アグラワル プニト □ＳＷＣ◯ＡＣＴ)
-> > <punit1.agrawal@toshiba.co.jp>; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH v6 0/3] Visconti: Add Toshiba Visconti PCIe host controller driver
+On Wednesday 14 July 2021 12:11:49 Scott Wood wrote:
+> On Sun, 2021-07-04 at 15:43 +0200, Pali Rohár wrote:
+> > Property phy-connection-type contains invalid value "sgmii-2500" per scheme
+> > defined in file ethernet-controller.yaml.
 > > 
-> > On Wed, 11 Aug 2021 17:38:27 +0900, Nobuhiro Iwamatsu wrote:
-> > > This series is the PCIe driver for Toshiba's ARM SoC, Visconti[0].
-> > > This provides DT binding documentation, device driver, MAINTAINER files.
-> > >
-> > > Best regards,
-> > >   Nobuhiro
-> > >
-> > > [0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
-> > >
-> > > [...]
+> > Correct phy-connection-type value should be "2500base-x".
 > > 
-> > Applied to pci/dwc, thanks!
-> 
-> Thanks! But...
+> > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > Fixes: 84e0f1c13806 ("powerpc/mpc85xx: Add MDIO bus muxing support to the
+> > board device tree(s)")
+> > ---
+> >  arch/powerpc/boot/dts/fsl/t1023rdb.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
 > > 
-> > [1/3] dt-bindings: pci: Add DT binding for Toshiba Visconti PCIe controller
-> >       https://git.kernel.org/lpieralisi/pci/c/a655ce4000
-> > [2/3] PCI: visconti: Add Toshiba Visconti PCIe host controller driver
-> >       https://git.kernel.org/lpieralisi/pci/c/09436f819c
+> > diff --git a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > index 5ba6fbfca274..f82f85c65964 100644
+> > --- a/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > +++ b/arch/powerpc/boot/dts/fsl/t1023rdb.dts
+> > @@ -154,7 +154,7 @@
+> >  
+> >                         fm1mac3: ethernet@e4000 {
+> >                                 phy-handle = <&sgmii_aqr_phy3>;
+> > -                               phy-connection-type = "sgmii-2500";
+> > +                               phy-connection-type = "2500base-x";
+> >                                 sleep = <&rcpm 0x20000000>;
+> >                         };
+> >  
 > 
-> Only drivers/pci/controller/dwc/Makefile is applied. Could you check this?	
-
-I fixed this. Please don't write patch versions changes in the commit
-log - I had to delete those myself, I did not notice while applying
-them.
-
-Please let me know if the branch looks OK now.
-
-Lorenzo
-
-> > [3/3] MAINTAINERS: Add entries for Toshiba Visconti PCIe controller
-> >       https://git.kernel.org/lpieralisi/pci/c/34af7aace1
-> > 
-> > Thanks,
-> > Lorenzo
+> Acked-by: Scott Wood <oss@buserror.net>
 > 
-> Best regards,
->   Nobuhiro
+> -Scott
+
+Hello! If there is not any objection, could you take this patch?
