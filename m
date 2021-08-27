@@ -2,70 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D70DA3F9255
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 04:29:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8153F9287
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 04:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244042AbhH0C1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 22:27:44 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:41644 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231641AbhH0C1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 22:27:44 -0400
-X-UUID: c2c8aed9563249638ed22e1b9c31ec59-20210827
-X-UUID: c2c8aed9563249638ed22e1b9c31ec59-20210827
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 73569141; Fri, 27 Aug 2021 10:26:53 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 27 Aug 2021 10:26:52 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 27 Aug 2021 10:26:51 +0800
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        <Rex-BC.Chen@mediatek.com>, <TingHan.Shen@mediatek.com>
-Subject: [PATCH v2] dt-bindings: PCI: mediatek-gen3: Add support for MT8195
-Date:   Fri, 27 Aug 2021 10:26:38 +0800
-Message-ID: <20210827022638.3573-1-jianjun.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S231216AbhH0Crt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 22:47:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231154AbhH0Crt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 22:47:49 -0400
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED339C061757
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 19:47:00 -0700 (PDT)
+Received: by mail-oo1-xc2e.google.com with SMTP id g4-20020a4ab044000000b002900bf3b03fso574612oon.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 19:47:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=QRVLfUMQ5fu6vtJy73BDfahhdXal2jJSb82M51StH1c=;
+        b=DTfp5nMagOj0IHJgxOExiZi0YEEVNpBye6XTgQ0aY5iNS2rIUkjaC/oRPY8FJPI4k4
+         FQ4YWSA34cb9NGVh4VALQWN8wHE9lci9Rb5WvJGMeQhU4o3tZDAVZDqEV3k4CpK5pJcC
+         fQqIJYwYTxUa5XXjtB7ldEpeU6+bIpPop0/8gM9rwSj4PU5b6afQk6Ya5EZ4e+F5YG+P
+         4XaYDiTl/uh69ykihvN+88QLdj3S/aTLla57VmKLk8Zw6By+aHAJ76aNld9SQwGm6zyl
+         K/cPUcMno2jqCFiBxDWDd7Z1f+SaOyAqmwPCHLZN8CxqwC8G5kgKjhodE4MJtSPGyZ7F
+         upGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=QRVLfUMQ5fu6vtJy73BDfahhdXal2jJSb82M51StH1c=;
+        b=JGAZ9egadjws3xKyCih/Uqx90pxmU4f4FBdYGKEkWfBdcq/X6j83VcNWXz+wV/NoMw
+         3rNz676nX6AfxEW5NIFahHB1zBOICG+PCDBwQfiy02aPMcAxuzwBCpdvuGjfd+bXaMUk
+         +CkxxEILmFVUS25O/60lTX/z7SOt0sv4sLMHrAlDvZkp3rZZ4xYLyogB0kua9SeqLR6T
+         pOHYfR8nx0/VDM2xkenZI+blyzI7dAaJY5ZD3G9Rl2MBJ2ztkgG5U6QJgrYZOsJTFmMH
+         7DRLqAEXa5Y5+BXdm8wAq7rtsIdJu0c8soXMOVc64jjMJg/6YwJnGKakcg9RmZEopHew
+         1kVA==
+X-Gm-Message-State: AOAM531+n7jTaj14oUXWLPHeJUXe+xAS9xIv2uQ5iOkhshn44Q6Qobew
+        qUFfF5giYDAHlkU0aWMQjLdMrW8l1Tr2vIS/nys=
+X-Google-Smtp-Source: ABdhPJypdExqEh2DoJJ0k/SYSWj8scbMfoblPtUi4cSaQ47sZgdyz7aNZVCF7Li88kmFr6LK3KNeh3i/PpDgo2SvzUo=
+X-Received: by 2002:a4a:94e2:: with SMTP id l31mr5769307ooi.62.1630032420015;
+ Thu, 26 Aug 2021 19:47:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Received: by 2002:a05:6838:5acb:0:0:0:0 with HTTP; Thu, 26 Aug 2021 19:46:59
+ -0700 (PDT)
+Reply-To: deedeepaul@yandex.com
+From:   Deedee Paul <hon.barrister.agbornkongho@gmail.com>
+Date:   Fri, 27 Aug 2021 02:46:59 +0000
+Message-ID: <CAL8=Ok7yXm=5QVCjF2MeLVVwwnryHdCp856pyRD1eSTXqp6jTA@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT8195 is an ARM platform SoC which has the same PCIe IP with MT8192.
+Attention: Beneficiary,
 
-Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
----
- Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+This is to officially inform you that we have been having meetings for
+the past weeks now which ended Two days ago with Mr. John W. Ashe,
+President of the 68th session of the UN General Assembly, Mr. David
+R.Malpass. the World Bank President and Hon. Mrs. Christine Laggard
+(IMF) Director General, in the meeting we talked about how to
+compensate Scam victim's people and all the people that were affected
+the most by this Coronavirus pandemic.
 
-diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-index 742206dbd965..93e09c3029b7 100644
---- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-+++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-@@ -48,7 +48,9 @@ allOf:
- 
- properties:
-   compatible:
--    const: mediatek,mt8192-pcie
-+    enum:
-+      - mediatek,mt8192-pcie
-+      - mediatek,mt8195-pcie
- 
-   reg:
-     maxItems: 1
--- 
-2.18.0
+Your email address was successfully selected for this donation with others.
 
+The United Nations have agreed to compensate you with the sum of
+($150,000.00) One hundred and fifty thousand United States Dollars. We
+have arranged your payment through WORLD ATM MASTERCARD which is the
+latest instruction from the World Bank Group.
+
+For the collection of your WORLD ATM MASTERCARD contact our
+representative Rev. David Wood, forward to him this message and your
+contact address where you want your MASTERCARD to be sent to you, like
+
+1. Your Full Name: .........
+2. Your Country and Your Delivery Home Address: ........
+3. Your Telephone: ..............
+
+His e-mail address: (ddavidwood1@yandex.com) He is a Canadian (UN)
+representative Agent.
+
+Thanks.
+Tel: 1 513 452 4352.
+Mr. Michael M=C3=B8ller Director-General of the United Nations Office
