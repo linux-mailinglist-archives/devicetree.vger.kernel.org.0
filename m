@@ -2,99 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B053F9BDB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 17:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 873E23F9C5C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245132AbhH0Pn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 11:43:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37472 "EHLO
+        id S232951AbhH0QZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 12:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244505AbhH0Pn7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 11:43:59 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C806C0613D9
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 08:43:10 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id me10so14711978ejb.11
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 08:43:10 -0700 (PDT)
+        with ESMTP id S230287AbhH0QZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 12:25:50 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C237C061796
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 09:25:01 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id q3so4255782plx.4
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 09:25:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=intel-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=oZPGVp92VaS3dLowjetEls763eL/Q9YUNevyNpL1JuM=;
-        b=i5Kxex2KDW8eLSLlwjXmG/+a/FmluMZPNPJFNSy66Tvt+wf9rhzjE8Pd48qZNMetaz
-         G09WE9Q+ms2dF/pP64j3VS3pgUqxMZJqwenYV6987xndMpo/wRdrQ5RokRCSR+fbndIA
-         95ikxf0WSuo4QZUM3T/MxuGC5GmEPfkDQR37HoHMO6FDWY97/V5zqj91aj6nJLRpsjpN
-         duMqcaQ8DmktwD0Kd/WOByzmlEn0pwa4E0UM7u5Rv7+gQjgG5tCtfy0VbwLinKf4Ep6B
-         jzMojJLxZ1QV7IVI6oaR4xlZmRDobHWTOpPWXkCDFrmZv7nxhciY71NYbSo7+esAgCKn
-         1V0g==
+        bh=olUZYI52FUW5gVkrVAMR5duictYeHKMMzQr6nXakedQ=;
+        b=aNaHRKsiD+SM+Lu9zvZtUAsPhN72aJZEO5ggEUbd+9i2E2zx+tYCvMVsH57GRkwHdf
+         TEaqxgEcVqpk2OQ9H7VyX1+9BLBU1szPxLHX49NuTsQbgdwMV28fkCyIXIQW5Xd+QD3R
+         WQ8/mhACDBZ1RuZyFTGtQQEZWkuERfp+C3Hd1pWoNSnZkvtdCCCdX43x97hoWme9ZdEO
+         45oFzDbvZXtq0iWx7LSdO55FY2oYiiyByKOWYg3IoUUbV30sBk3aaucbioyl2Cd8PO6k
+         bo+KZEykhRVe2BTh/XS6P2KQyoHNyAxEkUHVXaf1/Vmq1vtUC/5rzUkbwFKRZBjsF7bZ
+         26nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=oZPGVp92VaS3dLowjetEls763eL/Q9YUNevyNpL1JuM=;
-        b=WUiPTAm4nryjW8f72xSqS2QcU/pG1nSJdjB7+NyyIQoUPg4mrsHiFrKeLvYP6FBsm6
-         1YuKCtAjry77ffn1+n8Wadcb/fkHFYVWEH8jrOWY9kHiBdOiba/ADaulDRX6CDmhjXuC
-         WUm5lmTBl4XzaT7lzkLSTYeYkXtJc2QWgCZJvBAuXK3LhR/emnEnLuGpZpaZCtOESlz1
-         5JTWOUeuvrSi4U0l+SU29pKwYa2G35NroudUhng8rbiY/12nR+DLW6gteJNyCmFnlOfn
-         /UTZzKPlrL0ModwTLke7FNTNZVKVvlyfkf2N4K4Efd8oxHZTrdo1e8D4utR6Lm19dwCQ
-         6uDg==
-X-Gm-Message-State: AOAM532Z9mtQTP1iRyUz3m0VbPhftvJNO1Q2jQZYwryt90dVe9X5ot5F
-        uig0Wgd/BdYIgabnFcd42vgpTd+HL6WW5G1GDMaJbw==
-X-Google-Smtp-Source: ABdhPJyH36GOAC0XBuOQ2fDNT72ll8GhA/IBuvrzOLPOcb/QCzQFNY/p11kajRzZ3QRbsaXgiQXkzZVqanSS1R/qstM=
-X-Received: by 2002:a17:906:fa10:: with SMTP id lo16mr10680576ejb.342.1630078988646;
- Fri, 27 Aug 2021 08:43:08 -0700 (PDT)
+        bh=olUZYI52FUW5gVkrVAMR5duictYeHKMMzQr6nXakedQ=;
+        b=agxWpaNOVuZx4SO/YqBtts5b43Sdz0iKpU1DY3X9TAfx50/i13/cglw7VJkYANYGC8
+         pLyJgVNp89n2lt+p8bylg+mFmwEzpNiAzsHDZLvLRUEOdPPvcbgW6Nyl8VMUiqQQfgOf
+         L8tSxAj3l8DcELlJ5bAcDViJjpvZdukinlZrRH0NYrgeM8MOQ8whOEBKRkcLnkWTH7hP
+         kYkY83SLpt/LT/GQAz28b1HHcEXDmU5gfXAGCaHI8YoC6L+nv2Qs1hcU3L8HhpDtvPYk
+         +PHeuI007WDZ2kaADKTsEUbVJYZu2HOINSIKRt9AlhANtf6bc19/+D4w0kd2/PQ3RGkx
+         nQdw==
+X-Gm-Message-State: AOAM533HNqofzx4ZJnpTE9au4XIFXVegwo27UP60a+PIqvqcFXOuWfCe
+        t+9Zk2VrkLH5/leviPSNOLsArb+D/5i/Y6at3uknww==
+X-Google-Smtp-Source: ABdhPJy9Fys2MKe+4NKONrWKg51ffmdsBaOmd1A6Uev8PSTHXgB2mLpKO7Fg2ktC2vZ1DnSMGf/U9PYBzR/IUsq76cs=
+X-Received: by 2002:a17:90a:708c:: with SMTP id g12mr24462608pjk.13.1630081500678;
+ Fri, 27 Aug 2021 09:25:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210622203759.566716-1-iskren.chernev@gmail.com> <20210622203759.566716-2-iskren.chernev@gmail.com>
-In-Reply-To: <20210622203759.566716-2-iskren.chernev@gmail.com>
-From:   Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date:   Fri, 27 Aug 2021 17:42:58 +0200
-Message-ID: <CAP71WjxRpdoN9MMTH2Y2Xgc==tC2jWfm7X0_A1CrzZ40N_rg8Q@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] mailbox: qcom: Add support for sm4125 sm6115 APCS IPC
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
+References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
+ <20210803113134.2262882-8-iwona.winiarska@intel.com> <CAPcyv4jPVSt9Wr2TkDActFVLP+ygaDwBnsKG410Nf1qfP_MB9A@mail.gmail.com>
+ <b26ee278838698289869964fe59578f0d5f7b19c.camel@intel.com>
+In-Reply-To: <b26ee278838698289869964fe59578f0d5f7b19c.camel@intel.com>
+From:   Dan Williams <dan.j.williams@intel.com>
+Date:   Fri, 27 Aug 2021 09:24:49 -0700
+Message-ID: <CAPcyv4hUm0Ec1+_n0PZ+S0A9Tt1=8oLdeYtEiEnAmntm8PtmKQ@mail.gmail.com>
+Subject: Re: [PATCH v2 07/15] peci: Add peci-aspeed controller driver
+To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>
+Cc:     "corbet@lwn.net" <corbet@lwn.net>,
+        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
+        "d.mueller@elsoft.ch" <d.mueller@elsoft.ch>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "Luck, Tony" <tony.luck@intel.com>,
+        "Lutomirski, Andy" <luto@kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "mingo@redhat.com" <mingo@redhat.com>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "zweiss@equinix.com" <zweiss@equinix.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "x86@kernel.org" <x86@kernel.org>, "bp@alien8.de" <bp@alien8.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 22, 2021 at 10:38 PM Iskren Chernev
-<iskren.chernev@gmail.com> wrote:
+On Thu, Aug 26, 2021 at 4:55 PM Winiarska, Iwona
+<iwona.winiarska@intel.com> wrote:
 >
-> SM4125 and SM6115, codename bengal, have APCS mailbox setup similar to
-> msm8998 and msm8916.
+> On Wed, 2021-08-25 at 18:35 -0700, Dan Williams wrote:
+> > On Tue, Aug 3, 2021 at 4:35 AM Iwona Winiarska
+> > <iwona.winiarska@intel.com> wrote:
+> > >
+> > > From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+> > >
+> > > ASPEED AST24xx/AST25xx/AST26xx SoCs supports the PECI electrical
+> > > interface (a.k.a PECI wire).
+> >
+> > Maybe a one sentence blurb here and in the Kconfig reminding people
+> > why they should care if they have a PECI driver or not?
+>
+> Ok, I'll expand it a bit.
+[..]
+> > > +static int aspeed_peci_xfer(struct peci_controller *controller,
+> > > +                           u8 addr, struct peci_request *req)
+> > > +{
+> > > +       struct aspeed_peci *priv = dev_get_drvdata(controller->dev.parent);
+> > > +       unsigned long flags, timeout = msecs_to_jiffies(priv-
+> > > >cmd_timeout_ms);
+> > > +       u32 peci_head;
+> > > +       int ret;
+> > > +
+> > > +       if (req->tx.len > ASPEED_PECI_DATA_BUF_SIZE_MAX ||
+> > > +           req->rx.len > ASPEED_PECI_DATA_BUF_SIZE_MAX)
+> > > +               return -EINVAL;
+> > > +
+> > > +       /* Check command sts and bus idle state */
+> > > +       ret = aspeed_peci_check_idle(priv);
+> > > +       if (ret)
+> > > +               return ret; /* -ETIMEDOUT */
+> > > +
+> > > +       spin_lock_irqsave(&priv->lock, flags);
+> > > +       reinit_completion(&priv->xfer_complete);
+> > > +
+> > > +       peci_head = FIELD_PREP(ASPEED_PECI_TARGET_ADDR_MASK, addr) |
+> > > +                   FIELD_PREP(ASPEED_PECI_WR_LEN_MASK, req->tx.len) |
+> > > +                   FIELD_PREP(ASPEED_PECI_RD_LEN_MASK, req->rx.len);
+> > > +
+> > > +       writel(peci_head, priv->base + ASPEED_PECI_RW_LENGTH);
+> > > +
+> > > +       memcpy_toio(priv->base + ASPEED_PECI_WR_DATA0, req->tx.buf,
+> > > min_t(u8, req->tx.len, 16));
+> > > +       if (req->tx.len > 16)
+> > > +               memcpy_toio(priv->base + ASPEED_PECI_WR_DATA4, req->tx.buf +
+> > > 16,
+> > > +                           req->tx.len - 16);
+> > > +
+> > > +       dev_dbg(priv->dev, "HEAD : 0x%08x\n", peci_head);
+> > > +       print_hex_dump_bytes("TX : ", DUMP_PREFIX_NONE, req->tx.buf, req-
+> > > >tx.len);
+> >
+> > On CONFIG_DYNAMIC_DEBUG=n builds the kernel will do all the work of
+> > reading through this buffer, but skip emitting it. Are you sure you
+> > want to pay that overhead for every transaction?
+>
+> I can remove it or I can add something like:
+>
+> #if IS_ENABLED(CONFIG_PECI_DEBUG)
+> #define peci_debug(fmt, ...) pr_debug(fmt, ##__VA_ARGS__)
+> #else
+> #define peci_debug(...) do { } while (0)
+> #endif
 
-subject and commit refer to SM4125/SM6115, but the diff below is about
-4250/6115. I suppose it's a typo here, since 6115 is similar to 4250,
-not 4125, right?
+It's the hex dump I'm worried about, not the debug statements as much.
+
+I think the choices are remove the print_hex_dump_bytes(), put it
+behind an IS_ENABLED(CONFIG_DYNAMIC_DEBUG) to ensure the overhead is
+skipped in the CONFIG_DYNAMIC_DEBUG=n case, or live with the overhead
+if this is not a fast path / infrequently used.
 
 >
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> ---
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 2 ++
->  1 file changed, 2 insertions(+)
+> (and similar peci_trace with trace_printk for usage in IRQ handlers and such).
 >
-> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> index f25324d03842..1a4d8cca5881 100644
-> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> @@ -166,6 +166,8 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
->         { .compatible = "qcom,sc8180x-apss-shared", .data = &apps_shared_apcs_data },
->         { .compatible = "qcom,sdm660-apcs-hmss-global", .data = &sdm660_apcs_data },
->         { .compatible = "qcom,sdm845-apss-shared", .data = &apps_shared_apcs_data },
-> +       { .compatible = "qcom,sm4250-apcs-hmss-global", .data = &sdm660_apcs_data },
-> +       { .compatible = "qcom,sm6115-apcs-hmss-global", .data = &sdm660_apcs_data },
->         { .compatible = "qcom,sm8150-apss-shared", .data = &apps_shared_apcs_data },
->         { .compatible = "qcom,sdx55-apcs-gcc", .data = &sdx55_apcs_data },
->         {}
-> --
-> 2.31.1
+> What do you think?
+
+In general, no, don't wrap the base level print routines with
+driver-specific ones. Also, trace_printk() is only for debug builds.
+Note that trace points are built to be even less overhead than
+dev_dbg(), so there's no overhead concern with disabled tracepoints,
+they literally translate to nops when disabled.
+
 >
+> >
+> > > +
+> > > +       priv->status = 0;
+> > > +       writel(ASPEED_PECI_CMD_FIRE, priv->base + ASPEED_PECI_CMD);
+> > > +       spin_unlock_irqrestore(&priv->lock, flags);
+> > > +
+> > > +       ret = wait_for_completion_interruptible_timeout(&priv-
+> > > >xfer_complete, timeout);
+> >
+> > spin_lock_irqsave() says "I don't know if interrupts are disabled
+> > already, so I'll save the state, whatever it is, and restore later"
+> >
+> > wait_for_completion_interruptible_timeout() says "I know I am in a
+> > sleepable context where interrupts are enabled"
+> >
+> > So, one of those is wrong, i.e. should it be spin_{lock,unlock}_irq()?
+>
+> You're right - I'll fix it.
+>
+> >
+> >
+> > > +       if (ret < 0)
+> > > +               return ret;
+> > > +
+> > > +       if (ret == 0) {
+> > > +               dev_dbg(priv->dev, "Timeout waiting for a response!\n");
+> > > +               return -ETIMEDOUT;
+> > > +       }
+> > > +
+> > > +       spin_lock_irqsave(&priv->lock, flags);
+> > > +
+> > > +       writel(0, priv->base + ASPEED_PECI_CMD);
+> > > +
+> > > +       if (priv->status != ASPEED_PECI_INT_CMD_DONE) {
+> > > +               spin_unlock_irqrestore(&priv->lock, flags);
+> > > +               dev_dbg(priv->dev, "No valid response!\n");
+> > > +               return -EIO;
+> > > +       }
+> > > +
+> > > +       spin_unlock_irqrestore(&priv->lock, flags);
+> > > +
+> > > +       memcpy_fromio(req->rx.buf, priv->base + ASPEED_PECI_RD_DATA0,
+> > > min_t(u8, req->rx.len, 16));
+> > > +       if (req->rx.len > 16)
+> > > +               memcpy_fromio(req->rx.buf + 16, priv->base +
+> > > ASPEED_PECI_RD_DATA4,
+> > > +                             req->rx.len - 16);
+> > > +
+> > > +       print_hex_dump_bytes("RX : ", DUMP_PREFIX_NONE, req->rx.buf, req-
+> > > >rx.len);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static irqreturn_t aspeed_peci_irq_handler(int irq, void *arg)
+> > > +{
+> > > +       struct aspeed_peci *priv = arg;
+> > > +       u32 status;
+> > > +
+> > > +       spin_lock(&priv->lock);
+> > > +       status = readl(priv->base + ASPEED_PECI_INT_STS);
+> > > +       writel(status, priv->base + ASPEED_PECI_INT_STS);
+> > > +       priv->status |= (status & ASPEED_PECI_INT_MASK);
+> > > +
+> > > +       /*
+> > > +        * In most cases, interrupt bits will be set one by one but also
+> > > note
+> > > +        * that multiple interrupt bits could be set at the same time.
+> > > +        */
+> > > +       if (status & ASPEED_PECI_INT_BUS_TIMEOUT)
+> > > +               dev_dbg_ratelimited(priv->dev,
+> > > "ASPEED_PECI_INT_BUS_TIMEOUT\n");
+> > > +
+> > > +       if (status & ASPEED_PECI_INT_BUS_CONTENTION)
+> > > +               dev_dbg_ratelimited(priv->dev,
+> > > "ASPEED_PECI_INT_BUS_CONTENTION\n");
+> > > +
+> > > +       if (status & ASPEED_PECI_INT_WR_FCS_BAD)
+> > > +               dev_dbg_ratelimited(priv->dev,
+> > > "ASPEED_PECI_INT_WR_FCS_BAD\n");
+> > > +
+> > > +       if (status & ASPEED_PECI_INT_WR_FCS_ABORT)
+> > > +               dev_dbg_ratelimited(priv->dev,
+> > > "ASPEED_PECI_INT_WR_FCS_ABORT\n");
+> >
+> > Are you sure these would not be better as tracepoints? If you're
+> > debugging an interrupt related failure, the ratelimiting might get in
+> > your way when you really need to know when one of these error
+> > interrupts fire relative to another event.
+>
+> Tracepoints are ABI(ish), and using a full blown tracepoint just for IRQ status
+> would probably be too much.
+
+Tracepoints become ABI once someone ships tooling that depends on them
+being there. These don't look  attractive for a tool, and they don't
+look difficult to maintain if the interrupt handler needs to be
+reworked. I.e. it would be trivial to keep a dead tracepoint around if
+worse came to worse to keep a tool from failing to load.
+
+> I was thinking about something like trace_printk hidden under a
+> "CONFIG_PECI_DEBUG" (see above), but perhaps that's something for the future
+> improvement?
+
+Again trace_printk() is only for private builds.
+
+>
+> >
+> > > +
+> > > +       /*
+> > > +        * All commands should be ended up with a ASPEED_PECI_INT_CMD_DONE
+> > > bit
+> > > +        * set even in an error case.
+> > > +        */
+> > > +       if (status & ASPEED_PECI_INT_CMD_DONE)
+> > > +               complete(&priv->xfer_complete);
+> >
+> > Hmm, no need to check if there was a sequencing error, like a command
+> > was never submitted?
+>
+> It's handled by checking if HW is idle in xfer before a command is sent, where
+> we just expect a single interrupt per command.
+
+I'm asking how do you determine if this status was spurious, or there
+was a sequencing error in the driver?
