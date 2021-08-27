@@ -2,152 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A4E73F9CB9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDDC3F9D16
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbhH0QrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 12:47:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37442 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229560AbhH0QrY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Aug 2021 12:47:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 67D0960FD8;
-        Fri, 27 Aug 2021 16:46:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630082795;
-        bh=hMhFii5SEnyesU+J3DnJAqd9NcCDRrvpJCnbR/n6FBY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=B/tcAg/jio1dncVSKclmFp0GAyYR0lBls+lVdKbgBAHYy6xLf3QSrst94KvbUbKbO
-         zgffjO0KvcZAqS1BibHrhskCc5wjfo2WbZvu7Y8k2NGzc6Yw+H2FuttJv7R23dLrZ4
-         EZfmEODkqHx/Xre09qo7Wf2QpY7rZLiQoV/S5hsmrIoRu4L+7xI1N3Sx/toGLRHEK9
-         btPWBH1NcHlU8uOiLkFLWxkGud9ccL/h0H4fAXwpBETCrcbcn921HenLA02jFjyYYa
-         IQgkiSunEAQGswpfPzZUD4RcN1oIMHls85ag4dybbvQmWQHWJXw4pqRPDAu1J1UrwZ
-         iEky6AUjHTZvw==
-Date:   Fri, 27 Aug 2021 11:46:34 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
-Cc:     robh+dt@kernel.org, bhelgaas@google.com, matthias.bgg@gmail.com,
-        lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com,
-        jianjun.wang@mediatek.com, yong.wu@mediatek.com,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        id S232017AbhH0Q43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 12:56:29 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:27033 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231944AbhH0Q42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 12:56:28 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630083339; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=MSpuInI2Ya9FQMQo9vEHYIhYMW5aeYY8bnIKR5TldBE=; b=YeQEATCgf9Sjb4iBj1KRXMKqLgok6PNbOc/qiQxNDJ+x4/eWhrq2+ZNufb4viLlbiEpLmSas
+ XL0GrLvJnKWl8+1kfSm+jUSglHLwIXx7Bc0J/04mxBFN0JUl1XfTMUsqmelAb7jM42fcSeZ3
+ /l+oNmeFLKQbO82tranP+4u50Sk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 612918fde0fcecca1970b5cf (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 27 Aug 2021 16:55:25
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5F8AEC43460; Fri, 27 Aug 2021 16:55:24 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B6097C4338F;
+        Fri, 27 Aug 2021 16:55:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B6097C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kuogee Hsieh <khsieh@codeaurora.org>
+To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        khsieh@codeaurora.org, mkrishn@codeaurora.org,
+        kalyan_t@codeaurora.org, rajeevny@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
- pcie-cfg base address
-Message-ID: <20210827164634.GA3779223@bjorn-Precision-5520>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210823032800.1660-3-chuanjia.liu@mediatek.com>
+Subject: [PATCH] arm64: dts: qcom: sc7280: fix display port phy base address offset
+Date:   Fri, 27 Aug 2021 09:55:16 -0700
+Message-Id: <1630083316-2028-1-git-send-email-khsieh@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 11:27:56AM +0800, Chuanjia Liu wrote:
-> For the new dts format, add a new method to get
-> shared pcie-cfg base address and use it to configure
-> the PCIECFG controller
+Fixes: 9886e8fd8438 ("arm64: dts: qcom: sc7280: Add USB related nodes")
+Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-Rewrap this to fill 75 columns.
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index c29226b..77b0b4e 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2918,15 +2918,11 @@
+ 			dp_phy: dp-phy@88ea200 {
+ 				reg = <0 0x088ea200 0 0x200>,
+ 				      <0 0x088ea400 0 0x200>,
+-				      <0 0x088eac00 0 0x400>,
++				      <0 0x088eaa00 0 0x200>,
+ 				      <0 0x088ea600 0 0x200>,
+-				      <0 0x088ea800 0 0x200>,
+-				      <0 0x088eaa00 0 0x100>;
++				      <0 0x088ea800 0 0x200>;
+ 				#phy-cells = <0>;
+ 				#clock-cells = <1>;
+-				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+-				clock-names = "pipe0";
+-				clock-output-names = "usb3_phy_pipe_clk_src";
+ 			};
+ 		};
+ 
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-> ---
->  drivers/pci/controller/pcie-mediatek.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-> index 25bee693834f..4296d9e04240 100644
-> --- a/drivers/pci/controller/pcie-mediatek.c
-> +++ b/drivers/pci/controller/pcie-mediatek.c
-> @@ -14,6 +14,7 @@
->  #include <linux/irqchip/chained_irq.h>
->  #include <linux/irqdomain.h>
->  #include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/msi.h>
->  #include <linux/module.h>
->  #include <linux/of_address.h>
-> @@ -23,6 +24,7 @@
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
->  #include <linux/reset.h>
->  
->  #include "../pci.h"
-> @@ -207,6 +209,7 @@ struct mtk_pcie_port {
->   * struct mtk_pcie - PCIe host information
->   * @dev: pointer to PCIe device
->   * @base: IO mapped register base
-> + * @cfg: IO mapped register map for PCIe config
->   * @free_ck: free-run reference clock
->   * @mem: non-prefetchable memory resource
->   * @ports: pointer to PCIe port information
-> @@ -215,6 +218,7 @@ struct mtk_pcie_port {
->  struct mtk_pcie {
->  	struct device *dev;
->  	void __iomem *base;
-> +	struct regmap *cfg;
->  	struct clk *free_ck;
->  
->  	struct list_head ports;
-> @@ -682,6 +686,10 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
->  		val |= PCIE_CSR_LTSSM_EN(port->slot) |
->  		       PCIE_CSR_ASPM_L1_EN(port->slot);
->  		writel(val, pcie->base + PCIE_SYS_CFG_V2);
-> +	} else if (pcie->cfg) {
-> +		val = PCIE_CSR_LTSSM_EN(port->slot) |
-> +		      PCIE_CSR_ASPM_L1_EN(port->slot);
-> +		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
->  	}
->  
->  	/* Assert all reset signals */
-> @@ -985,6 +993,7 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
->  	struct device *dev = pcie->dev;
->  	struct platform_device *pdev = to_platform_device(dev);
->  	struct resource *regs;
-> +	struct device_node *cfg_node;
->  	int err;
->  
->  	/* get shared registers, which are optional */
-> @@ -995,6 +1004,14 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
->  			return PTR_ERR(pcie->base);
->  	}
->  
-> +	cfg_node = of_find_compatible_node(NULL, NULL,
-> +					   "mediatek,generic-pciecfg");
-
-This looks wrong to me.  IIUC, since we start at NULL, this searches
-the entire device tree for any node with
-
-  compatible = "mediatek,generic-pciecfg"
-
-but we should only care about the specific device/node this driver
-claimed.
-
-Should this be part of the match data, i.e., struct mtk_pcie_soc?
-
-> +	if (cfg_node) {
-> +		pcie->cfg = syscon_node_to_regmap(cfg_node);
-
-Other drivers in drivers/pci/controller/ use
-syscon_regmap_lookup_by_phandle() (j721e, dra7xx, keystone,
-layerscape, artpec6) or syscon_regmap_lookup_by_compatible() (imx6,
-kirin, v3-semi).
-
-You should do it the same way unless there's a need to be different.
-It's also nice if you can use the same struct member name
-("mtk_pcie.cfg") as other drivers.  They're not all consistent, but I
-don't see any other "cfg".
-
-> +		if (IS_ERR(pcie->cfg))
-> +			return PTR_ERR(pcie->cfg);
-> +	}
-> +
->  	pcie->free_ck = devm_clk_get(dev, "free_ck");
->  	if (IS_ERR(pcie->free_ck)) {
->  		if (PTR_ERR(pcie->free_ck) == -EPROBE_DEFER)
-> -- 
-> 2.18.0
-> 
