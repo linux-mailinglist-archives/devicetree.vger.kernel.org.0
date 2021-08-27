@@ -2,80 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CF23F95FE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 10:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE6313F9605
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 10:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233046AbhH0IZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 04:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49916 "EHLO
+        id S244457AbhH0IZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 04:25:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232688AbhH0IZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 04:25:02 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E87C061757
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:13 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id e15so3466380plh.8
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:13 -0700 (PDT)
+        with ESMTP id S244562AbhH0IZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 04:25:14 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1F5C061757
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:21 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id j1so4021218pjv.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CnQHZ7OHj8PYIqCneFXHqZGg6bFZw4p6vs1f3Gs6uwM=;
-        b=dxJqFOoPY8wPi8gLe0f2xlGZmgweXxliaEtfzrMiuc21g4Bj750eiDF/bS7XKfr9H0
-         mcKcZvq2EATPKfJwP9Oe/vr51jxfb7Qf0uhwnViklEkeoPuX9ZtkacK55ZRj0uTOwbqk
-         2wgWucaMvLs8/csJtOYxvXEj+ZhDlS/vePLO5H23dPOYqL92EE3ywjragTUNYUojPnvT
-         M7qhIGHIsUbXc7Rr2Ehd4KwOXR+POqnpt1S4GPzMqyBodG8XixXQFFdRxn7Cc0BUGlWf
-         C2pecOJdTKIKunoLFYymLhyv/fvue9FH+LVAz14KWlA1hcZSdIMQRtvq80yvLgXIZsoO
-         S4Ew==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=SUMawJHmaVN55KeOYmXXMpF4IBtsM0ibJxP9InePT3U=;
+        b=Fxz3N2mtWJOZp20H0H62tCm4G/B9tJRiU8nyFNZfIi03dLktL6JeLV2ddV8aeHW1XL
+         rcTUerdmA+4w7InZ2c4LDfKKVXup97tUe1oyRvTdSpezfuA9IL6AALY0kkJfYHj4GkHC
+         EK2gCHg/OgOTlOL/BxSwrORqv/CDstWDgqQi1ritbdlseNn/OXk0l8eZMjfEVnE3rnQM
+         BldzUtyfqgYIwZeWJsTFGa+pKaBf4fJpGQ87mU+pNctj6pcBJUmPKQQ6/wQz990KGYYV
+         QM+T3NnjCT3sOzbHkJQ6zTRKbxakaxgSYY0KnxKQDBtW1WOvHULBFzsGh9cC95CY0ef1
+         oTCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CnQHZ7OHj8PYIqCneFXHqZGg6bFZw4p6vs1f3Gs6uwM=;
-        b=AsunXWgA3cSAt6boKjbfnWGGIDKfEOr2l5c9zm/zVAfN4VGXqRcpURC10pHAEq4aMB
-         DJXZ1eX31tmEzRQq/2JWqeySEYF93sXB5I57kA9zujV97pYiZnp7B0/R8HKKK1gmFFQk
-         l6coyETrB1X9xt8QAihUAuqa8dT3cH88ovxYmUko5gyNNxIQpzQBoGiIVeMUOWAJbiXx
-         gM+aYigd2LJkUoW+FcrYbbP6rFgYqi5Yl0LQWC4qoNdyUsR2Ml+1uCv4GErsaZUiE2nX
-         NORfR6GupNjadUpZ3Vvscd7dzvl8qb/VS89CHRyRmbP0a0EAcBHWZZxp+iT4oNuc1Jhz
-         kVOA==
-X-Gm-Message-State: AOAM532OmezXQGxSrzbFcXcHumHwfrTWh1hZFtcnyDwq3aFSA8QEBerK
-        Dj5RN9sMxaXg4YhPA+mzjhZN/Q==
-X-Google-Smtp-Source: ABdhPJzw4pDHx0EMRNGp+WS529vxWxckErf3pl+6/0Z0VJdHVur0BVdRZEVSEldDiI+i+NCCTDWBlw==
-X-Received: by 2002:a17:902:7882:b0:131:2e12:c928 with SMTP id q2-20020a170902788200b001312e12c928mr7555092pll.74.1630052653443;
-        Fri, 27 Aug 2021 01:24:13 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=SUMawJHmaVN55KeOYmXXMpF4IBtsM0ibJxP9InePT3U=;
+        b=PUxL7O4pMEDFyJ/GPKla4hve8RxGaBmXX3AG74tq8aY8YVEqD4qmehSrQp8jJZLxic
+         JCPoUZZBFma0mAe3CFiqQ0bDYBEFJRFIYihlyEHEoGl7/WHeZqsyjV4NSfwQZgeajmmW
+         SdDne2hjmyG7FkNVX4Q3M0fsZIpmmdmmMJiatgjXVteCwSOzu7yAqfAh6YbbvJ3YwoTS
+         BDDMXTo8KjwsAZnMGl2sXALxbJ+ZxMCcoPWo/UTellTZ7ndLWWRhcPb3Zs4xFzLMOmbp
+         H4JVDbMCRgJCx2XnnYJzrtvT3DewgF02JPAb3AtZiWx5N4NdYgwm8TMFW7ZR3PnVJY0f
+         8kGw==
+X-Gm-Message-State: AOAM532LNmNpk+XocrxBVFPzyArnsHgRzxnLm8L9aEejlOLtvRzr2Y/k
+        Ssy7d6F0jXDh/zj/pnzfcPyjM0GrBljugwWZ
+X-Google-Smtp-Source: ABdhPJyzCDsAtLBRyrr7IK7R5ii+ILlKFQQetonZ4oNTJIEEdsAFGzET5At0VHFtXpVBYWGvRR/itg==
+X-Received: by 2002:a17:90a:7642:: with SMTP id s2mr21771104pjl.128.1630052660932;
+        Fri, 27 Aug 2021 01:24:20 -0700 (PDT)
 Received: from yc.huaqin.com ([101.78.151.213])
-        by smtp.gmail.com with ESMTPSA id m18sm5391371pjq.32.2021.08.27.01.24.11
+        by smtp.gmail.com with ESMTPSA id m18sm5391371pjq.32.2021.08.27.01.24.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Aug 2021 01:24:13 -0700 (PDT)
+        Fri, 27 Aug 2021 01:24:20 -0700 (PDT)
 From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
 To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
         daniel@ffwll.ch, dianders@google.com
 Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         yangcong <yangcong5@huaqin.corp-partner.google.com>
-Subject: [v3 0/4] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
-Date:   Fri, 27 Aug 2021 16:24:03 +0800
-Message-Id: <20210827082407.101053-1-yangcong5@huaqin.corp-partner.google.com>
+Subject: [v3 1/4] drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
+Date:   Fri, 27 Aug 2021 16:24:04 +0800
+Message-Id: <20210827082407.101053-2-yangcong5@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210827082407.101053-1-yangcong5@huaqin.corp-partner.google.com>
+References: <20210827082407.101053-1-yangcong5@huaqin.corp-partner.google.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compared to v2, support for BOE tv1110c9m-ll3 and Inx hj110iz-01a 
-video mode panel.
+The auo,b101uan08.3 panel (already supported by this driver) has
+a 3.3V rail that needs to be turned on. For previous users of
+this panel this voltage was directly output by pmic. On a new
+user (the not-yet-upstream sc7180-trogdor-mrbland board) we need
+to turn the 3.3V rail on. Add support in the driver for this.
 
-yangcong (4):
-  drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
-  dt-bindings: drm/panel: boe-tv101wum-nl6: Support enabling a 3.3V rail
-  drm/panel: support for BOE and INX video mode panel
-  dt-bindngs: display: panel: Add BOE and INX panel bindings
+Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
+---
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../display/panel/boe,tv101wum-nl6.yaml       |   7 +
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 926 +++++++++++++++++-
- 2 files changed, 930 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+index db9d0b86d542..9a644433629e 100644
+--- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
++++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+@@ -45,6 +45,7 @@ struct boe_panel {
+ 	const struct panel_desc *desc;
+ 
+ 	enum drm_panel_orientation orientation;
++	struct regulator *pp3300;
+ 	struct regulator *pp1800;
+ 	struct regulator *avee;
+ 	struct regulator *avdd;
+@@ -511,6 +512,7 @@ static int boe_panel_unprepare(struct drm_panel *panel)
+ 		gpiod_set_value(boe->enable_gpio, 0);
+ 		usleep_range(5000, 7000);
+ 		regulator_disable(boe->pp1800);
++		regulator_disable(boe->pp3300);
+ 	} else {
+ 		gpiod_set_value(boe->enable_gpio, 0);
+ 		usleep_range(500, 1000);
+@@ -518,6 +520,7 @@ static int boe_panel_unprepare(struct drm_panel *panel)
+ 		regulator_disable(boe->avdd);
+ 		usleep_range(5000, 7000);
+ 		regulator_disable(boe->pp1800);
++		regulator_disable(boe->pp3300);
+ 	}
+ 
+ 	boe->prepared = false;
+@@ -536,6 +539,10 @@ static int boe_panel_prepare(struct drm_panel *panel)
+ 	gpiod_set_value(boe->enable_gpio, 0);
+ 	usleep_range(1000, 1500);
+ 
++	ret = regulator_enable(boe->pp3300);
++	if (ret < 0)
++		return ret;
++
+ 	ret = regulator_enable(boe->pp1800);
+ 	if (ret < 0)
+ 		return ret;
+@@ -767,6 +774,10 @@ static int boe_panel_add(struct boe_panel *boe)
+ 	if (IS_ERR(boe->avee))
+ 		return PTR_ERR(boe->avee);
+ 
++	boe->pp3300 = devm_regulator_get(dev, "pp3300");
++	if (IS_ERR(boe->pp3300))
++		return PTR_ERR(boe->pp3300);
++
+ 	boe->pp1800 = devm_regulator_get(dev, "pp1800");
+ 	if (IS_ERR(boe->pp1800))
+ 		return PTR_ERR(boe->pp1800);
 -- 
 2.25.1
 
