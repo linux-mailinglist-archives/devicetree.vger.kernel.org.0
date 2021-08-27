@@ -2,315 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B8223F9FAB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 21:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9891C3F9FB4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 21:15:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbhH0TME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 15:12:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbhH0TMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 15:12:01 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389D1C061757
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:11:12 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id x16so2877899pll.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=intel-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Yl8JaGwDYWpLzn1wS9SWOQbcJPOi0ZPRWqv06q6Qt74=;
-        b=LQBqohKiZF1hUQMSKbFutNRYNB2ZNBVrhxEGrV1/8QVmiiiwLqYpSys8ZACniFIdH4
-         xM7xdYhXcyegGoPyE3+qtuehpOFqNA9gFUXKXAZxnyBlokhrZBx7v8e2Z3A1rAWhrbl7
-         R3Ce4Ww+tmlx/5NmV8nIRwz0kvJpH70SjEOHC0z0zsUh5vi4iEK2ZdFwLHc6XCKTosnr
-         avjP30EP8hNygZms28yK8TAHbPcuQi3xyn8YVpSapvous8V0ILQ+MCQDC/GgUrWRJ4Ca
-         SkB39+e/WmHAULwChUJz/Q05W1pMC7ddj20rj/H7iZmu4pJdHZu9gx6J4FFy/j6yRrId
-         WjmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Yl8JaGwDYWpLzn1wS9SWOQbcJPOi0ZPRWqv06q6Qt74=;
-        b=azJbGSvVekA5qIYySJUd56K30As3dBPD7Du4wAvGQtnJ78INCRCbtE4ypjbEAZWhPP
-         8c51qU76/ewXVNQ9RJf8mULVhoLg7T4d5TnS+qEu4H09oVDKLkoJ4qFQjs2cpwmNcy89
-         LWykTW+kF5obaGKk16ttZyu/ip0VlRmIl5zZFY9+9zykPvQRhuy2LDvWYNH5tMS3RRzP
-         mETe94N112Z2AwnEid3WCfQ8W17ClFcDZyjQwjMopabQOi+PctRyx9wj3Te2W5MrQq20
-         fdakDzCDSZfRgeXjQF1DZm73vIyc+3WXahRsr94FBK2Sio4yXgm5cMw5PAQR4BnDxBIN
-         4aaQ==
-X-Gm-Message-State: AOAM532yYcnSJX8S9QhF8gp4/8S8SSDGpZYwNjfLhfxJ20CYkV4Vh6Sa
-        l62NqskDOINo8F1y/P7jsCkjAk67LcLuvZB2Q/Pcpw==
-X-Google-Smtp-Source: ABdhPJxPpy9zsWh8K3XJaMk4z9lCRsqU/ns24+nAno2osjLNoWIhEDfFvosicD/8oRBRu6WenkwxjYSnfuhYhnlHAWs=
-X-Received: by 2002:a17:90a:1991:: with SMTP id 17mr15779481pji.149.1630091471578;
- Fri, 27 Aug 2021 12:11:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210803113134.2262882-1-iwona.winiarska@intel.com> <20210803113134.2262882-10-iwona.winiarska@intel.com>
-In-Reply-To: <20210803113134.2262882-10-iwona.winiarska@intel.com>
-From:   Dan Williams <dan.j.williams@intel.com>
-Date:   Fri, 27 Aug 2021 12:11:00 -0700
-Message-ID: <CAPcyv4hhtTi+dKspjoamYj53GxT4Ot_1pG5-eavUJdihD8iAEg@mail.gmail.com>
-Subject: Re: [PATCH v2 09/15] peci: Add sysfs interface for PECI bus
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        X86 ML <x86@kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>,
-        linux-aspeed@lists.ozlabs.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-hwmon@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Lutomirski <luto@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        Yazen Ghannam <yazen.ghannam@amd.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zev Weiss <zweiss@equinix.com>,
-        David Muller <d.mueller@elsoft.ch>
-Content-Type: text/plain; charset="UTF-8"
+        id S230255AbhH0TQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 15:16:08 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:63904 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229691AbhH0TQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 15:16:08 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id f7d4fb37;
+        Fri, 27 Aug 2021 21:15:11 +0200 (CEST)
+Date:   Fri, 27 Aug 2021 21:15:11 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
+        kettenis@openbsd.org, tglx@linutronix.de, maz@kernel.org,
+        robh+dt@kernel.org, marcan@marcan.st, bhelgaas@google.com,
+        nsaenz@kernel.org, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+        daire.mcnamara@microchip.com, nsaenzjulienne@suse.de,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+In-Reply-To: <20210827171534.62380-2-mark.kettenis@xs4all.nl> (message from
+        Mark Kettenis on Fri, 27 Aug 2021 19:15:26 +0200)
+Subject: Re: [PATCH v4 1/4] dt-bindings: interrupt-controller: Convert MSI controller to json-schema
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl> <20210827171534.62380-2-mark.kettenis@xs4all.nl>
+Message-ID: <561420d562d3e421@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 3, 2021 at 4:35 AM Iwona Winiarska
-<iwona.winiarska@intel.com> wrote:
->
-> PECI devices may not be discoverable at the time when PECI controller is
-> being added (e.g. BMC can boot up when the Host system is still in S5).
-> Since we currently don't have the capabilities to figure out the Host
-> system state inside the PECI subsystem itself, we have to rely on
-> userspace to do it for us.
->
-> In the future, PECI subsystem may be expanded with mechanisms that allow
-> us to avoid depending on userspace interaction (e.g. CPU presence could
-> be detected using GPIO, and the information on whether it's discoverable
-> could be obtained over IPMI).
-
-Thanks for this detail.
-
-> Unfortunately, those methods may ultimately not be available (support
-> will vary from platform to platform), which means that we still need
-> platform independent method triggered by userspace.
->
-> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> From: Mark Kettenis <mark.kettenis@xs4all.nl>
+> Date: Fri, 27 Aug 2021 19:15:26 +0200
+> 
+> From: Mark Kettenis <kettenis@openbsd.org>
+> 
+> Split the MSI controller bindings from the MSI binding document
+> into DT schema format using json-schema.
+> 
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
 > ---
->  Documentation/ABI/testing/sysfs-bus-peci | 16 +++++
->  drivers/peci/Makefile                    |  2 +-
->  drivers/peci/core.c                      |  3 +-
->  drivers/peci/device.c                    |  1 +
->  drivers/peci/internal.h                  |  5 ++
->  drivers/peci/sysfs.c                     | 82 ++++++++++++++++++++++++
->  6 files changed, 107 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
->  create mode 100644 drivers/peci/sysfs.c
->
-> diff --git a/Documentation/ABI/testing/sysfs-bus-peci b/Documentation/ABI/testing/sysfs-bus-peci
+>  .../interrupt-controller/msi-controller.yaml  | 34 +++++++++++++++++++
+>  .../bindings/pci/brcm,stb-pcie.yaml           |  1 +
+>  .../bindings/pci/microchip,pcie-host.yaml     |  1 +
+>  3 files changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
 > new file mode 100644
-> index 000000000000..56c2b2216bbd
+> index 000000000000..5ed6cd46e2e0
 > --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-peci
-> @@ -0,0 +1,16 @@
-> +What:          /sys/bus/peci/rescan
-> +Date:          July 2021
-> +KernelVersion: 5.15
-> +Contact:       Iwona Winiarska <iwona.winiarska@intel.com>
-> +Description:
-> +               Writing a non-zero value to this attribute will
-> +               initiate scan for PECI devices on all PECI controllers
-> +               in the system.
-> +
-> +What:          /sys/bus/peci/devices/<controller_id>-<device_addr>/remove
-> +Date:          July 2021
-> +KernelVersion: 5.15
-> +Contact:       Iwona Winiarska <iwona.winiarska@intel.com>
-> +Description:
-> +               Writing a non-zero value to this attribute will
-> +               remove the PECI device and any of its children.
-> diff --git a/drivers/peci/Makefile b/drivers/peci/Makefile
-> index c5f9d3fe21bb..917f689e147a 100644
-> --- a/drivers/peci/Makefile
-> +++ b/drivers/peci/Makefile
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->
->  # Core functionality
-> -peci-y := core.o request.o device.o
-> +peci-y := core.o request.o device.o sysfs.o
->  obj-$(CONFIG_PECI) += peci.o
->
->  # Hardware specific bus drivers
-> diff --git a/drivers/peci/core.c b/drivers/peci/core.c
-> index d143f1a7fe98..c473acb3c2a0 100644
-> --- a/drivers/peci/core.c
-> +++ b/drivers/peci/core.c
-> @@ -34,7 +34,7 @@ struct device_type peci_controller_type = {
->         .release        = peci_controller_dev_release,
->  };
->
-> -static int peci_controller_scan_devices(struct peci_controller *controller)
-> +int peci_controller_scan_devices(struct peci_controller *controller)
->  {
->         int ret;
->         u8 addr;
-> @@ -159,6 +159,7 @@ EXPORT_SYMBOL_NS_GPL(devm_peci_controller_add, PECI);
->
->  struct bus_type peci_bus_type = {
->         .name           = "peci",
-> +       .bus_groups     = peci_bus_groups,
->  };
->
->  static int __init peci_init(void)
-> diff --git a/drivers/peci/device.c b/drivers/peci/device.c
-> index 32811248997b..d77d9dabd51e 100644
-> --- a/drivers/peci/device.c
-> +++ b/drivers/peci/device.c
-> @@ -110,5 +110,6 @@ static void peci_device_release(struct device *dev)
->  }
->
->  struct device_type peci_device_type = {
-> +       .groups         = peci_device_groups,
->         .release        = peci_device_release,
->  };
-> diff --git a/drivers/peci/internal.h b/drivers/peci/internal.h
-> index 57d11a902c5d..978e12c8e1d3 100644
-> --- a/drivers/peci/internal.h
-> +++ b/drivers/peci/internal.h
-> @@ -8,6 +8,7 @@
->  #include <linux/types.h>
->
->  struct peci_controller;
-> +struct attribute_group;
->  struct peci_device;
->  struct peci_request;
->
-> @@ -19,12 +20,16 @@ struct peci_request *peci_request_alloc(struct peci_device *device, u8 tx_len, u
->  void peci_request_free(struct peci_request *req);
->
->  extern struct device_type peci_device_type;
-> +extern const struct attribute_group *peci_device_groups[];
->
->  int peci_device_create(struct peci_controller *controller, u8 addr);
->  void peci_device_destroy(struct peci_device *device);
->
->  extern struct bus_type peci_bus_type;
-> +extern const struct attribute_group *peci_bus_groups[];
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
 
-To me, sysfs.c is small enough to just fold into core.c, then no need
-to declare public attribute arrays like this, but up to you if you
-prefer the sysfs.c split.
+Noticed that checkpatch complains that the preferred license for new
+binding schemas is (GPL-2.0-only OR BSD-2-Clause) so I'll fix that in
+the next version.
 
->
->  extern struct device_type peci_controller_type;
->
-> +int peci_controller_scan_devices(struct peci_controller *controller);
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/msi-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  #endif /* __PECI_INTERNAL_H */
-> diff --git a/drivers/peci/sysfs.c b/drivers/peci/sysfs.c
-> new file mode 100644
-> index 000000000000..db9ef05776e3
-> --- /dev/null
-> +++ b/drivers/peci/sysfs.c
-> @@ -0,0 +1,82 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +// Copyright (c) 2021 Intel Corporation
+> +title: MSI controller
 > +
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/peci.h>
+> +maintainers:
+> +  - Marc Zyngier <marc.zyngier@arm.com>
 > +
-> +#include "internal.h"
+> +description: |
+> +  An MSI controller signals interrupts to a CPU when a write is made
+> +  to an MMIO address by some master. An MSI controller may feature a
+> +  number of doorbells.
 > +
-> +static int rescan_controller(struct device *dev, void *data)
-> +{
-> +       if (dev->type != &peci_controller_type)
-> +               return 0;
+> +properties:
+> +  "#msi-cells":
+> +    description: |
+> +      The number of cells in an msi-specifier, required if not zero.
 > +
-> +       return peci_controller_scan_devices(to_peci_controller(dev));
-> +}
+> +      Typically this will encode information related to sideband data,
+> +      and will not encode doorbells or payloads as these can be
+> +      configured dynamically.
 > +
-> +static ssize_t rescan_store(struct bus_type *bus, const char *buf, size_t count)
-> +{
-> +       bool res;
-> +       int ret;
+> +      The meaning of the msi-specifier is defined by the device tree
+> +      binding of the specific MSI controller.
 > +
-> +       ret = kstrtobool(buf, &res);
-> +       if (ret)
-> +               return ret;
+> +  msi-controller:
+> +    description:
+> +      Identifies the node as an MSI controller.
+> +    $ref: /schemas/types.yaml#/definitions/flag
 > +
-> +       if (!res)
-> +               return count;
-> +
-> +       ret = bus_for_each_dev(&peci_bus_type, NULL, NULL, rescan_controller);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return count;
-> +}
-> +static BUS_ATTR_WO(rescan);
-> +
-> +static struct attribute *peci_bus_attrs[] = {
-> +       &bus_attr_rescan.attr,
-> +       NULL
-> +};
-> +
-> +static const struct attribute_group peci_bus_group = {
-> +       .attrs = peci_bus_attrs,
-> +};
-> +
-> +const struct attribute_group *peci_bus_groups[] = {
-> +       &peci_bus_group,
-> +       NULL
-> +};
-> +
-> +static ssize_t remove_store(struct device *dev, struct device_attribute *attr,
-> +                           const char *buf, size_t count)
-> +{
-> +       struct peci_device *device = to_peci_device(dev);
-> +       bool res;
-> +       int ret;
-> +
-> +       ret = kstrtobool(buf, &res);
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (res && device_remove_file_self(dev, attr))
-> +               peci_device_destroy(device);
-
-How do you solve races between sysfs device remove and controller
-device remove? Looks like double-free at first glance. Have a look at
-the  kill_device() helper as one way to resolve this double-delete
-race..
-
-> +
-> +       return count;
-> +}
-> +static DEVICE_ATTR_IGNORE_LOCKDEP(remove, 0200, NULL, remove_store);
-> +
-> +static struct attribute *peci_device_attrs[] = {
-> +       &dev_attr_remove.attr,
-> +       NULL
-> +};
-> +
-> +static const struct attribute_group peci_device_group = {
-> +       .attrs = peci_device_attrs,
-> +};
-> +
-> +const struct attribute_group *peci_device_groups[] = {
-> +       &peci_device_group,
-> +       NULL
-> +};
-> --
-> 2.31.1
->
+> +additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index b9589a0daa5c..5c67976a8dc2 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -88,6 +88,7 @@ required:
+>  
+>  allOf:
+>    - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: ../interrupt-controller/msi-controller.yaml#
+>    - if:
+>        properties:
+>          compatible:
+> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> index fb95c276a986..684d9d036f48 100644
+> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> @@ -11,6 +11,7 @@ maintainers:
+>  
+>  allOf:
+>    - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: ../interrupt-controller/msi-controller.yaml#
+>  
+>  properties:
+>    compatible:
+> -- 
+> 2.32.0
+> 
+> 
