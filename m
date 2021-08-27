@@ -2,78 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E1123F9421
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 07:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 194B23F945C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 08:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230461AbhH0FuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 01:50:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
+        id S244326AbhH0GYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 02:24:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbhH0Ft6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 01:49:58 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C86EC061757;
-        Thu, 26 Aug 2021 22:49:10 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id t9so4513569qtp.2;
-        Thu, 26 Aug 2021 22:49:10 -0700 (PDT)
+        with ESMTP id S244328AbhH0GYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 02:24:14 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFBC1C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 23:23:25 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id z2so12237095lft.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Aug 2021 23:23:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=MSsI/7qJw1DvArF1vTWLSwP6sgJus0lYgVXPHZzbWNw=;
-        b=NlNKNb+4bv2FUlOgawKpK9Syn6Uunn5dhrsmVyo9BrxycCda079nn2w9aRBTasSyZz
-         BedTU3R22l6Jv10f+tSvk6aATiBtFM9PR4H5ir6SE8e8SWVfMLhhsg26/Hfx5PH4fef+
-         Lpl8XUy0u49lRz4H884vkokOXXNiWTxMQrx28=
+        bh=Rpedwb5yaPZmRQ7TUMaWIQcNQoBLY0k4x2IcEMbGMoc=;
+        b=g91pVJkUFlpUnXEtC/VPwHZLsELfWsBERNq168TcegldJ6g1/xcj9vWLRFbAVgTR71
+         8VYl6Sa2flrqyrnxSxH/UW6LxsofP/m+dvphUoGcyiJ8rGMRPhm1gGbHemr68MCj5Ixq
+         M5nIPFeL/e45tVFYvbvKyP2qBxFygkf7DXqCd0y0kNWubxMNbe3Q2RJF813quihB/vRn
+         fJz87KPuuma68ILIz/DY+RXPp7+DylbKjmFq8lXY2zytNqYnxHDjnldxoP/BRJjI7yRs
+         MLHXnD23EzZ+qpb2UC7hTTiaN8DpZOtCTilJvpxIBpdFpyg3O9LGjL+fVxldYLwVE2d+
+         Rtug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MSsI/7qJw1DvArF1vTWLSwP6sgJus0lYgVXPHZzbWNw=;
-        b=AsjgAmK1sM1q4fMkWyUfeT47ACXfBvW1zUT/nESOyCre3If1ONQD2uneZ3LdOG16Tm
-         iOYuovQwz1248qbO30sf4xov01JHxA/xdvPRSh/+5e4TGL3EgH+hzM5PxcURzRvcSptw
-         MrhCJYIQ0YVbnwfpFpyXd2sKRWW4V7dHq9aWTJX64VA0NzHn9dFYTXri9dSTNEXFH7CZ
-         aAYUOj6J9RfxHrnwelxSH20t7ZWjZao3uMkFrIyKfcUzdeYJ8oPcYR0CmsDvRSHk6t9k
-         EJ4bgZ7qoySA/ajma223jg2uEvDny/XRZZ5YdsHf/vIssotMEnfOQASCugTuieO4ZPYE
-         BoLw==
-X-Gm-Message-State: AOAM532AIPJhiXe6ekZQx5wseQsDf4BvoysWE0BbEyqWgmRHSdQ/3K41
-        GDUQjMSosXTebVFrtLdshs3y++R237c97OrJcffJkFmw
-X-Google-Smtp-Source: ABdhPJwx0VRG+mEdKimqU3fnKkuUHiC7yML4WfO0SFrgcfCEd2XorGNmSgGMqMdj87H5pAQvxCgvZCfzwVWhrfJffuw=
-X-Received: by 2002:ac8:4b64:: with SMTP id g4mr6983536qts.263.1630043343101;
- Thu, 26 Aug 2021 22:49:03 -0700 (PDT)
+        bh=Rpedwb5yaPZmRQ7TUMaWIQcNQoBLY0k4x2IcEMbGMoc=;
+        b=dQB8xXotFKhWO63k310FaeNK6/rONuDRpLY4LeJiUvIitkPaxzzn7DuCtapoiPJnV3
+         1X8xZkpwTyYlgtcOQgkMNZS7uaJZ5ZbdQNRe89qgoTaP1dai0nlGyUCr6eISbwSXr7oU
+         4Xc3z/97LAFBXJu006uuku5d19RAIqFL7bn/hITjuIkgrH6R0p2t2ysQicl3kgmKdLw+
+         FbHFoyNbm5eCKSwCT6sSOXJ/cZ+q3c5wFJ2ZoqPPRgIpk7fcfsmGjnmkWucE3yqTc4YF
+         PcUI0meA+bjJOTMVoTIL7Ptiz8w68su6pqtxUxCeL5nSNqwVbBNu+aUrkhkLRhfJ8YAt
+         qJ/A==
+X-Gm-Message-State: AOAM5310KTTzJNwy7gzH2CfjFhYV3N83abzd6bCaSM1KOb0ra+yuYh/U
+        T/oaR6pb5k43obA2dm9Gzg/pFQW1q+VeJ0bxafd9L/Tx+eCdQQ==
+X-Google-Smtp-Source: ABdhPJwTvYKnJhrnKjTE/y6SJpS8GE8XhPgJ2W27p+unVTmLnnQUa8SmaQFQZruEseDfZUFlGFW2T9MK6LJULh6jLuw=
+X-Received: by 2002:a05:6512:3487:: with SMTP id v7mr5544143lfr.302.1630045404094;
+ Thu, 26 Aug 2021 23:23:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210826061623.6352-4-chiawei_wang@aspeedtech.com>
- <202108270732.OvBQ4K3D-lkp@intel.com> <HK0PR06MB377927BDCA9CC79B598251B291C89@HK0PR06MB3779.apcprd06.prod.outlook.com>
-In-Reply-To: <HK0PR06MB377927BDCA9CC79B598251B291C89@HK0PR06MB3779.apcprd06.prod.outlook.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 27 Aug 2021 05:48:50 +0000
-Message-ID: <CACPK8Xf1g2fp5X3ELBUyjzP6Fmvt1XWLU_UgCKdZaDVjdyKryQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] soc: aspeed: Add eSPI driver
-To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>
-Cc:     kernel test robot <lkp@intel.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>
+References: <20210826123032.1732926-1-jens.wiklander@linaro.org> <20210826123032.1732926-5-jens.wiklander@linaro.org>
+In-Reply-To: <20210826123032.1732926-5-jens.wiklander@linaro.org>
+From:   Sumit Garg <sumit.garg@linaro.org>
+Date:   Fri, 27 Aug 2021 11:53:12 +0530
+Message-ID: <CAFA6WYM_zaVsWzP-sDuD6_xf3qgv-sQsbEAebZG6vtFrKfRpag@mail.gmail.com>
+Subject: Re: [PATCH v5 4/6] tee: add tee_dev_open_helper() primitive
+To:     Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Aug 2021 at 03:52, ChiaWei Wang <chiawei_wang@aspeedtech.com> wrote:
+On Thu, 26 Aug 2021 at 18:00, Jens Wiklander <jens.wiklander@linaro.org> wrote:
 >
-> Aspeed 5th and 6th generation SoCs are based on the ARM 32-bits architecture.
-> Should we follow the report to make the driver 64-bits compatible?
-> Or revise the driver to use more specific data types?
+> Adds tee_dev_open_helper() and tee_dev_ctx_put() to make it easier to
+> create a driver internal struct tee_context without the usual
+> tee_device_get() on the struct tee_device as that adds a circular
+> reference counter dependency and would prevent the struct tee_device
+> from ever being released again.
 
-Yes, in general it's expected your driver will compile cleanly for
-64-bit architectures. This helps with testing and static analysis,
-where CI builds all the drivers for x86.
+Can you elaborate regarding the circular dependency issue you are
+referring to? IIUC, lifespan for struct tee_device would look like
+below with normal teedev_open():
 
-Cheers,
+optee_probe() {
+  ...
+  tee_device_alloc()            <- teedev->num_users = 1
+  tee_device_register()
+  optee_notif_init()               <- tee_device_get()
+  ...
+}
 
-Joel
+optee_remove() {
+  ...
+  optee_notif_uninit()           <- tee_device_put()
+  tee_device_unregister()    <- tee_device_put()
+  ...
+}
+
+-Sumit
+
+>
+> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> ---
+>  drivers/tee/tee_core.c  | 33 ++++++++++++++++++++++++---------
+>  include/linux/tee_drv.h | 27 +++++++++++++++++++++++++++
+>  2 files changed, 51 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/tee/tee_core.c b/drivers/tee/tee_core.c
+> index 85102d12d716..3beb682684a8 100644
+> --- a/drivers/tee/tee_core.c
+> +++ b/drivers/tee/tee_core.c
+> @@ -43,14 +43,11 @@ static DEFINE_SPINLOCK(driver_lock);
+>  static struct class *tee_class;
+>  static dev_t tee_devt;
+>
+> -static struct tee_context *teedev_open(struct tee_device *teedev)
+> +struct tee_context *tee_dev_open_helper(struct tee_device *teedev)
+>  {
+>         int rc;
+>         struct tee_context *ctx;
+>
+> -       if (!tee_device_get(teedev))
+> -               return ERR_PTR(-EINVAL);
+> -
+>         ctx = kzalloc(sizeof(*ctx), GFP_KERNEL);
+>         if (!ctx) {
+>                 rc = -ENOMEM;
+> @@ -66,10 +63,30 @@ static struct tee_context *teedev_open(struct tee_device *teedev)
+>         return ctx;
+>  err:
+>         kfree(ctx);
+> -       tee_device_put(teedev);
+>         return ERR_PTR(rc);
+>
+>  }
+> +EXPORT_SYMBOL_GPL(tee_dev_open_helper);
+> +
+> +void tee_dev_ctx_put(struct tee_context *ctx)
+> +{
+> +       teedev_ctx_put(ctx);
+> +}
+> +EXPORT_SYMBOL_GPL(tee_dev_ctx_put);
+> +
+> +static struct tee_context *teedev_open(struct tee_device *teedev)
+> +{
+> +       struct tee_context *ctx;
+> +
+> +       if (!tee_device_get(teedev))
+> +               return ERR_PTR(-EINVAL);
+> +
+> +       ctx = tee_dev_open_helper(teedev);
+> +       if (IS_ERR(ctx))
+> +               tee_device_put(teedev);
+> +
+> +       return ctx;
+> +}
+>
+>  void teedev_ctx_get(struct tee_context *ctx)
+>  {
+> @@ -90,10 +107,8 @@ static void teedev_ctx_release(struct kref *ref)
+>
+>  void teedev_ctx_put(struct tee_context *ctx)
+>  {
+> -       if (ctx->releasing)
+> -               return;
+> -
+> -       kref_put(&ctx->refcount, teedev_ctx_release);
+> +       if (ctx && !ctx->releasing)
+> +               kref_put(&ctx->refcount, teedev_ctx_release);
+>  }
+>
+>  static void teedev_close_context(struct tee_context *ctx)
+> diff --git a/include/linux/tee_drv.h b/include/linux/tee_drv.h
+> index 3ebfea0781f1..00a31ff03049 100644
+> --- a/include/linux/tee_drv.h
+> +++ b/include/linux/tee_drv.h
+> @@ -458,6 +458,33 @@ static inline int tee_shm_get_id(struct tee_shm *shm)
+>   */
+>  struct tee_shm *tee_shm_get_from_id(struct tee_context *ctx, int id);
+>
+> +/**
+> + * tee_dev_open_helper() - helper function to make a struct tee_context
+> + * @teedev:    Device to open
+> + *
+> + * Creates the struct tee_context without increasing the reference counter
+> + * on @teedev. This is needed for instance when a driver need an internal
+> + * struct tee_context to operate on. By skipping the reference counter
+> + * the circular dependency is broken.
+> + *
+> + * Note that this struct tee_context need special care when freeing in
+> + * order to avoid the normal put on the struct tee_device.
+> + * tee_dev_ctx_put() is the best choice for this.
+> + *
+> + * @returns a pointer 'struct tee_context' on success or an ERR_PTR on failure
+> + */
+> +struct tee_context *tee_dev_open_helper(struct tee_device *teedev);
+> +
+> +/**
+> + * tee_dev_ctx_put() - helper function to release a struct tee_context
+> + * @ctx:       The struct tee_context to release
+> + *
+> + * Note that this function doesn't do a tee_device_put() on the internal
+> + * struct tee_device so this function should normal only be used when
+> + * releasing a struct tee_context obtained with tee_dev_open_helper().
+> + */
+> +void tee_dev_ctx_put(struct tee_context *ctx);
+> +
+>  /**
+>   * tee_client_open_context() - Open a TEE context
+>   * @start:     if not NULL, continue search after this context
+> --
+> 2.31.1
+>
