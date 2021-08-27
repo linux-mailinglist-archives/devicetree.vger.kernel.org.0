@@ -2,91 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9453F960C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 10:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 037E73F9606
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 10:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244669AbhH0IZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 04:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50050 "EHLO
+        id S244562AbhH0IZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 04:25:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244645AbhH0IZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 04:25:27 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E34C0617AD
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:38 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id g13-20020a17090a3c8d00b00196286963b9so1461219pjc.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:38 -0700 (PDT)
+        with ESMTP id S244524AbhH0IZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 04:25:15 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE99C0617A8
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:26 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id q3so7467471iot.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 01:24:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jLsLHxbd3S4fLhjqH4jOQcn0e2LX+uyZe1sVTwZGed0=;
-        b=kWMrAoKSV+P98zUQj80khcge2kuQuZ9TplBLiiFuxmahSR3sar03XWITz8IRu5NlEg
-         2yPEqDlAg4xU40qPy7BDI2010AjkKoZvuMJfDB5Q0PitN31kZ08/08aw/RPCq+LMzIfT
-         wdYmCh0Jjg/HmjIbYuUcx5ndcDqUE6vPauBi3jJk6c0l09JDWH7Oh10Hlebi7Urbv/0a
-         DedX27D+K2EmKs9LS8TrjNr57xqLpXM7+e8D2SVH0dh5FGb9ujAqABq937MG+s0yv3uH
-         to/zh+xcZC0vexcpm3iAyD4E6GHiRLdVB9DzUMTPpSxGrM81H6qogMJ3qZsvhgwEZV8e
-         zG/A==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Ta9KGZrEXdXbBbrP5+76a5dJyHsEL2M26EYd/ydrx6w=;
+        b=Av2xyXBS6WoFsmoeGtsX7Yyu8MOTxSNeP+l/nEeOAVhPwNpZR+Jg2nI/7j98nFB5Dl
+         VH3c1AfvRHN4uuPaSghCaCiQ2Agi1nnu3kWod7Owj3nE5E51/9bRcH7jfc5z8LqJhtZ6
+         27U7Ka2Pcw86nQ/ecuJgtcTceYNwUkt3kroTI5Ky1m0VXZNgZOCPE0D9R0qY4f+iOmNw
+         oXgo0Zgr3fHWAD8xwZ8W1ixFtPtF2dS0Q3l7S/uLlTNobvxPgGOjFVVq2uwcLWwjobjk
+         A68tKEGTf7+NB/QWDIkNxb6OCjFeOBQvoxbYYdbZsNutktezFzjcKNHUQcVgkrlHnNQg
+         +pjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jLsLHxbd3S4fLhjqH4jOQcn0e2LX+uyZe1sVTwZGed0=;
-        b=iXX5z3T6rBcQhKk96lADbWKQZc/nUTDfvItX3AHdWPXbDyabMv8cC9ldMV922j0mlZ
-         GBD/ES7PoUhcNcaK73ahKWxEpNSbH3Cny2dkaavkL5fynZCHUb121+nllxnwZ2i9unoY
-         O3/LDS63U1tD1M+dA2F/cEHRsPx4/KIrdpUbDhClwj1+CF4bHdUpipV2TeUXJIc8elt5
-         wu0JojHF8SlmryDfIbuUHyNACJ3EHEfpD+f2/9mkd/OKHPQedd2k6tuSoTztdERhxv4W
-         B8LiRIXYixTMV3KoH5jF/XMMsYmXblbbpKQF7mRRLzOg+p/BUhiE6Rk0fEQapAypb7vr
-         ZJVQ==
-X-Gm-Message-State: AOAM533CqmoXn4EtnaAHryAxBxb9aTHReSGUIgJiofR6K/ptMqRmk1Xp
-        Eh8BrJDnIYWxgFv4uFLiW4SpgA==
-X-Google-Smtp-Source: ABdhPJyFwInI9upXRx4q+KT8Bp36P/OXbwoFTTpiMb9TyNAh25Zf/DLxOU3ql5iXB18AsaHtfmLj+A==
-X-Received: by 2002:a17:902:ba81:b0:132:3a70:c16 with SMTP id k1-20020a170902ba8100b001323a700c16mr7538652pls.60.1630052678314;
-        Fri, 27 Aug 2021 01:24:38 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.213])
-        by smtp.gmail.com with ESMTPSA id m18sm5391371pjq.32.2021.08.27.01.24.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Aug 2021 01:24:38 -0700 (PDT)
-From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dianders@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        yangcong <yangcong5@huaqin.corp-partner.google.com>
-Subject: [v3 4/4] dt-bindngs: display: panel: Add BOE and INX panel bindings
-Date:   Fri, 27 Aug 2021 16:24:07 +0800
-Message-Id: <20210827082407.101053-5-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210827082407.101053-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20210827082407.101053-1-yangcong5@huaqin.corp-partner.google.com>
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Ta9KGZrEXdXbBbrP5+76a5dJyHsEL2M26EYd/ydrx6w=;
+        b=iKMU4tYzhi93lTqw3VJAy0V3ZA3f4EGLTQFF+ii57a+k8engkQ2266EgLioR2QBno0
+         mpkZJYxrTDThI3ifDtuMhxhcobprS0MwgnBSZ7SJAfxfZDAMTTIxRurs24lQQ2XgVRRQ
+         /8wHy21PkvJKWHdew3K41VSZdwBAYU338u4RomuLZc3z1eV5Sa8GdBkIsqq4lzgof08g
+         I/vdtI5GOIEBzSOioNhWYCVmSfIT2EnEiaZxFmYXJ9e4jP8AeJ5yQm8WX86iZiYdHzyn
+         LQqhg4PqCuK5kemE5ccqeotrYqUPfKDiqoRoqM5ovDpaRExH3D8CzIp/b2kAZXKYraJE
+         7SkQ==
+X-Gm-Message-State: AOAM533y6wvt21Dszg6Y9v1esp3d0t/jVgggnL6UcsB5NPwLxCqpEVxe
+        DscTDqhPzNq8K9581ZMqF0fnRNcEWq8yI14sLWs=
+X-Google-Smtp-Source: ABdhPJzN0skVrBIC8l47kpGx0ztLXYGDNOxsPSIIeD5dBAZ9GTqw7M5Sv4KyATGPrtjExN0sb9u+q0G2xEz5ne4lJTU=
+X-Received: by 2002:a5d:990c:: with SMTP id x12mr6770175iol.122.1630052665931;
+ Fri, 27 Aug 2021 01:24:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:6602:2bf3:0:0:0:0 with HTTP; Fri, 27 Aug 2021 01:24:25
+ -0700 (PDT)
+From:   Hassan Duku <zinabhassan91@gmail.com>
+Date:   Fri, 27 Aug 2021 01:24:25 -0700
+Message-ID: <CAENewnbVKMtcw8cMOpZhRLgEc+szERXS94TUCdb6oYGC+U9XHg@mail.gmail.com>
+Subject: Greeting to you,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for boe tv110c9m-ll3, inx hj110iz-01a panel.
+Greetings to you,
 
-Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
----
- .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml   | 4 ++++
- 1 file changed, 4 insertions(+)
+How are you doing today?, my name is Hassan Duku, I live in Ghana and
+work for the Operational Manager with Royal Bank Ghana Limited.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-index a7091ae0f791..45bd82931805 100644
---- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
-@@ -26,6 +26,10 @@ properties:
-       - auo,b101uan08.3
-         # BOE TV105WUM-NW0 10.5" WUXGA TFT LCD panel
-       - boe,tv105wum-nw0
-+        # BOE TV110C9M-LL3 10.95" WUXGA TFT LCD panel
-+      - boe,tv110c9m-ll3
-+        # INX HJ110IZ-01A 10.95" WUXGA TFT LCD panel
-+      - inx,hj110iz-01a
- 
-   reg:
-     description: the virtual channel number of a DSI peripheral
--- 
-2.25.1
+I am glad to be connected with you. I have a business proposal I would
+like to discuss with you in private. It involves a business
+opportunity that will be of huge financial benefit to both us. further
+details will be shared after I receive your response.
 
+Kindly reply with your full name and your country of Origin/residence,
+
+Yours Truly,
+
+Hassan Duku
+Operational Manager.
