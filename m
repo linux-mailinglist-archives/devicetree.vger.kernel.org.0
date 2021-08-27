@@ -2,145 +2,388 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2833F9F5D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 20:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF553F9F68
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 21:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbhH0S6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 14:58:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54772 "EHLO
+        id S230362AbhH0TCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 15:02:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbhH0S6t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 14:58:49 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4F8C061757;
-        Fri, 27 Aug 2021 11:58:00 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id x11so16038008ejv.0;
-        Fri, 27 Aug 2021 11:58:00 -0700 (PDT)
+        with ESMTP id S230353AbhH0TCG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 15:02:06 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AABC0613D9
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:01:17 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id u15so4487644plg.13
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:01:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=intel-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=pFgF/5yzy8h/uQFvUpdFC8Vraw1yd6xUZU7Dag6hLSI=;
-        b=oGwTmpZvNFI0ClOuczO7mD72azHgn5pORuZzoy5WZJ5awI1Z8ek+8eziGsqBlsEAzI
-         B5c9aXmt9S+RmWrb6i22fwzsCs5S+2UFPetrJ9nfO3usGqRt+HAJTzY0jCPi42x4nuQd
-         gXPKjW84VACZ7QymK38tiYwJMFW9HCwsbKc9RDjzCvY5P6tRRwBSaicIJq2bXgdfdU5v
-         +CImNQ5JpHS0uZ4gjdKe0mJzs6adzchFLAQJwHvCzJjiBdSzY0ZYoA8RXvGn28Klaxit
-         xIS5aaLfzDTuhUkunysnhRQ3u0rwHCJI2dUNv9hM7Teq5XdjV8B2LtWrBq8uIe5qYY3w
-         5E0Q==
+        bh=x/U7J2zbHihSdDWyMksV/TtPa1+B5X6iFwKDUZ4o7Zw=;
+        b=sNiLRr0jnkRhT0wgY8kV7FUDGk9UCmwtOo4CLz4mVmrUvRZQ1k66UkBAaWVrf05Pf8
+         SidchKjAWmO5yBjR3lsgVTfcfRVxHsuBcVJZ2EETSlxr8GqGehoDyG7mmX+69YR5nBCf
+         UPBEcajkZB1mkw2BNgnhBSOvBNh9gxFqAozC7nbTpCvzSbNEgrgiHj4F1m8HwIDGE3JJ
+         aewbwFkDW1E8r78472WlBd9AoO0zutKNwJI+S7M3TUUxUpyubMeQPR5Ry7NSVZxXK32A
+         8BVGTGjzDFculpRZeheVLC7E5i1R2SxEtUNyn2wqpMBdBkUxFH3cIM9p8hpOd0avFJjK
+         dk4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=pFgF/5yzy8h/uQFvUpdFC8Vraw1yd6xUZU7Dag6hLSI=;
-        b=eZKFWJ9FmKTWOXbEL+LhOLS8jkydqfzw496GoLY+pBPgx0JOz2HLFRb+315e8DosCU
-         fiOGO4/uLmHXc8oSvUnbBRRRJ69JnN/mDVA5mI1kAEBq2UHnKWvy4YOAQOQuMw+JUl2A
-         g9qmU4xfZ1gzuwKR5bsdf5g+vQsV7rmR4e/bb88vwPWVy2C8kLDB8kCGOgGihQJWZ/Ff
-         xbYhmjvvcoum/dae725sABHDlxNBBxJDgrcFKZRtEQ06GSGbFW1ir33OYBDDFIshDThp
-         kr0pP+g8X0fydriDKS7qXOsMaVZTO1yCXgbtDsIXHHWnSAiNJGVY+Tc7G3D8dA9UIYTL
-         lztg==
-X-Gm-Message-State: AOAM532lqwFNdW9MmZ/vnrk/HJskcJ8UDd6b+LN5YEK2eTJfsZnGDGS8
-        1NG+6owDnahhmPd7FW7aW3JOOIpBjKJ2CaOJp4J9voiK3DcWnw==
-X-Google-Smtp-Source: ABdhPJz6iozh/3D2nGo2kcbEHGLGPEI5fUuzht04Z7PM9AgJzjkjGN+KjfBctNQzrCntj3g3cO59qg+X5JPu+zUt2zI=
-X-Received: by 2002:a17:906:93ef:: with SMTP id yl15mr11692083ejb.229.1630090678983;
- Fri, 27 Aug 2021 11:57:58 -0700 (PDT)
+        bh=x/U7J2zbHihSdDWyMksV/TtPa1+B5X6iFwKDUZ4o7Zw=;
+        b=E9MuGgt6AopMpppHsBms8X+PmAOEHFvJpaFI4r7El/XQ2fBhgzJHBsr1LurrEhm75A
+         K5q/jYv1m5pUXcPIkl6NuMLgmnYmudu9N1cFr9Q6R5k+J3D932DhhrwgdJp7R2r46uYb
+         4QBffEPiCb/qjpdZFhYTS/xtRm8C2plmbBgh54m44qRgm8wePpz92qwotn1UM0eQA7O0
+         da6S40bnW2UyQGEL1Qfw7RbvouDHx2QVzMnVpGj3qlC/OjnvoB5sasFxPxuxRL6BASco
+         znvD3qkCb5SXXfefiIA4xYeBAtaQQtHDKaq0mIsz/ZFn+SUm2zdeYINdPkDadGv2EUGz
+         gsSw==
+X-Gm-Message-State: AOAM5306YP8ywPcsgTnwLbjKRqNs5XFCq0rQOMVJ7ESz917HPUR4zb5T
+        q3gpwTB6Nu1wQ0sgEvMwy/6hjhZ8pa+asDqa5p5sow==
+X-Google-Smtp-Source: ABdhPJyDHGtcUmamBi1VJ/OEE/F574NsPBSWaCUCkgBo2sbiTYmr6i2tzPq3PLz1T1+kWen10Mmg+phyLSrOwyeHzHE=
+X-Received: by 2002:a17:902:ba90:b0:135:6709:705 with SMTP id
+ k16-20020a170902ba9000b0013567090705mr9825009pls.79.1630090877059; Fri, 27
+ Aug 2021 12:01:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210630173042.186394-1-aford173@gmail.com> <20210630173042.186394-2-aford173@gmail.com>
- <CAMuHMdXoWZMj8+LhUPSpqa4t-G1WrW-wfOy3XzEDe0ihSKQkCw@mail.gmail.com> <TY2PR01MB3692DA5F92178F1ECC31BACDD8009@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY2PR01MB3692DA5F92178F1ECC31BACDD8009@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 27 Aug 2021 13:57:48 -0500
-Message-ID: <CAHCN7xJrP9Aug6jQzWqdSZ3Tr1_A9qhssc6SYW0rS-VE9Yg9PA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] usb: renesas_usbhs: Enable support for more than two clks
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
+References: <20210803113134.2262882-1-iwona.winiarska@intel.com> <20210803113134.2262882-9-iwona.winiarska@intel.com>
+In-Reply-To: <20210803113134.2262882-9-iwona.winiarska@intel.com>
+From:   Dan Williams <dan.j.williams@intel.com>
+Date:   Fri, 27 Aug 2021 12:01:06 -0700
+Message-ID: <CAPcyv4hPLReB6wGTDBM_tnqRUXxNASFCtgCw0=aDW+PPfSJ57A@mail.gmail.com>
+Subject: Re: [PATCH v2 08/15] peci: Add device detection
+To:     Iwona Winiarska <iwona.winiarska@intel.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        openbmc@lists.ozlabs.org,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        X86 ML <x86@kernel.org>,
+        Device Tree <devicetree@vger.kernel.org>,
+        linux-aspeed@lists.ozlabs.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-hwmon@vger.kernel.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Lutomirski <luto@kernel.org>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        Yazen Ghannam <yazen.ghannam@amd.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 1, 2021 at 6:34 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
+On Tue, Aug 3, 2021 at 4:35 AM Iwona Winiarska
+<iwona.winiarska@intel.com> wrote:
 >
-> Hi Adam, Geert-san,
+> Since PECI devices are discoverable, we can dynamically detect devices
+> that are actually available in the system.
 >
-> > From: Geert Uytterhoeven, Sent: Thursday, July 1, 2021 6:07 PM
-> <snip>
-> > To: Adam Ford <aford173@gmail.com>
-> > Cc: USB list <linux-usb@vger.kernel.org>; Adam Ford-BE <aford@beaconembedded.com>; Greg Kroah-Hartman
-> > <gregkh@linuxfoundation.org>; Rob Herring <robh+dt@kernel.org>; Magnus Damm <magnus.damm@gmail.com>; Yoshihiro Shimoda
-> > <yoshihiro.shimoda.uh@renesas.com>; open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-> > <devicetree@vger.kernel.org>; Linux Kernel Mailing List <linux-kernel@vger.kernel.org>; Linux-Renesas
-> > <linux-renesas-soc@vger.kernel.org>
-> > Subject: Re: [PATCH 2/3] usb: renesas_usbhs: Enable support for more than two clks
-> >
-> > Hi Adam,
-> >
-> > Thanks for your patch!
-> >
-> > On Wed, Jun 30, 2021 at 7:30 PM Adam Ford wrote:
-> <snip>
-> > > diff --git a/drivers/usb/renesas_usbhs/common.c b/drivers/usb/renesas_usbhs/common.c
-> > > index 3af91b2b8f76..255e4bd68ed3 100644
-> > > --- a/drivers/usb/renesas_usbhs/common.c
-> > > +++ b/drivers/usb/renesas_usbhs/common.c
-> <snip>
-> > > @@ -309,11 +311,13 @@ static int usbhsc_clk_get(struct device *dev, struct usbhs_priv *priv)
-> > >          * To backward compatibility with old DT, this driver checks the return
-> > >          * value if it's -ENOENT or not.
-> > >          */
-> > > -       priv->clks[1] = of_clk_get(dev_of_node(dev), 1);
-> > > -       if (PTR_ERR(priv->clks[1]) == -ENOENT)
-> > > -               priv->clks[1] = NULL;
-> > > -       else if (IS_ERR(priv->clks[1]))
-> > > -               return PTR_ERR(priv->clks[1]);
-> > > +       for (i = 1; i < ARRAY_SIZE(priv->clks); i++) {
-> > > +               priv->clks[1] = of_clk_get(dev->of_node, i);
+> This change complements the earlier implementation by rescanning PECI
+> bus to detect available devices. For this purpose, it also introduces the
+> minimal API for PECI requests.
 >
-> s/clks[1]/[i]/
+> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
+> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> ---
+>  drivers/peci/Makefile   |   2 +-
+>  drivers/peci/core.c     |  33 ++++++++++++
+>  drivers/peci/device.c   | 114 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/peci/internal.h |  14 +++++
+>  drivers/peci/request.c  |  50 ++++++++++++++++++
+>  5 files changed, 212 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/peci/device.c
+>  create mode 100644 drivers/peci/request.c
 >
-> > > +               if (PTR_ERR(priv->clks[i]) == -ENOENT)
-> > > +                       priv->clks[i] = NULL;
-> > > +               else if (IS_ERR(priv->clks[i]))
-> > > +                       return PTR_ERR(priv->clks[i]);
-> > > +       }
-> >
-> > This is identical to the current code, as ARRAY_SIZE(priv->clks) == 2.
-> > Probably you wanted to increase usbhs_priv.clks[], too?
+> diff --git a/drivers/peci/Makefile b/drivers/peci/Makefile
+> index 926d8df15cbd..c5f9d3fe21bb 100644
+> --- a/drivers/peci/Makefile
+> +++ b/drivers/peci/Makefile
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>
+>  # Core functionality
+> -peci-y := core.o
+> +peci-y := core.o request.o device.o
+>  obj-$(CONFIG_PECI) += peci.o
+>
+>  # Hardware specific bus drivers
+> diff --git a/drivers/peci/core.c b/drivers/peci/core.c
+> index 7b3938af0396..d143f1a7fe98 100644
+> --- a/drivers/peci/core.c
+> +++ b/drivers/peci/core.c
+> @@ -34,6 +34,20 @@ struct device_type peci_controller_type = {
+>         .release        = peci_controller_dev_release,
+>  };
+>
+> +static int peci_controller_scan_devices(struct peci_controller *controller)
+> +{
+> +       int ret;
+> +       u8 addr;
+> +
+> +       for (addr = PECI_BASE_ADDR; addr < PECI_BASE_ADDR + PECI_DEVICE_NUM_MAX; addr++) {
+> +               ret = peci_device_create(controller, addr);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static struct peci_controller *peci_controller_alloc(struct device *dev,
+>                                                      struct peci_controller_ops *ops)
+>  {
+> @@ -76,10 +90,23 @@ static struct peci_controller *peci_controller_alloc(struct device *dev,
+>         return ERR_PTR(ret);
+>  }
+>
+> +static int unregister_child(struct device *dev, void *dummy)
+> +{
+> +       peci_device_destroy(to_peci_device(dev));
+> +
+> +       return 0;
+> +}
+> +
+>  static void unregister_controller(void *_controller)
+>  {
+>         struct peci_controller *controller = _controller;
+>
+> +       /*
+> +        * Detach any active PECI devices. This can't fail, thus we do not
+> +        * check the returned value.
+> +        */
+> +       device_for_each_child_reverse(&controller->dev, NULL, unregister_child);
+> +
+>         device_unregister(&controller->dev);
+>  }
+>
+> @@ -115,6 +142,12 @@ struct peci_controller *devm_peci_controller_add(struct device *dev,
+>         if (ret)
+>                 return ERR_PTR(ret);
+>
+> +       /*
+> +        * Ignoring retval since failures during scan are non-critical for
+> +        * controller itself.
+> +        */
+> +       peci_controller_scan_devices(controller);
+> +
+>         return controller;
+>
+>  err:
+> diff --git a/drivers/peci/device.c b/drivers/peci/device.c
+> new file mode 100644
+> index 000000000000..32811248997b
+> --- /dev/null
+> +++ b/drivers/peci/device.c
+> @@ -0,0 +1,114 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +// Copyright (c) 2018-2021 Intel Corporation
+> +
+> +#include <linux/peci.h>
+> +#include <linux/slab.h>
+> +
+> +#include "internal.h"
+> +
+> +static int peci_detect(struct peci_controller *controller, u8 addr)
+> +{
+> +       struct peci_request *req;
+> +       int ret;
+> +
+> +       /*
+> +        * PECI Ping is a command encoded by tx_len = 0, rx_len = 0.
+> +        * We expect correct Write FCS if the device at the target address
+> +        * is able to respond.
+> +        */
+> +       req = peci_request_alloc(NULL, 0, 0);
+> +       if (!req)
+> +               return -ENOMEM;
 
-Thanks for the review.  Sorry for my delayed response.  I broke my
-wrist on the evening on June 30, and I was on medical leave for 6
-weeks.  I am now trying to get caught up to where I was.
->
-> I think so.
-> # I realized the clks array is only 2, so that this driver cannot
-> # enable usb2_clksel...
->
-> > Does it make sense to start using the clk_bulk*() API?
->
-> clk_bulk*() API seems to need clock-names property.
-> Is my understanding correct? However, the hsusb nodes doesn't
-> have the property for now...
+Seems a waste to do a heap allocation for this routine. Why not:
 
-The usb2_clksel has the names "ehci_ohci" and "hs-usb-if" for <&cpg
-CPG_MOD 703> and <&cpg CPG_MOD 704>, respectively.
+       /*
+        * PECI Ping is a command encoded by tx_len = 0, rx_len = 0.
+        * We expect correct Write FCS if the device at the target address
+        * is able to respond.
+        */
+       struct peci_request req = { 0 };
 
-What if I add the clock-names property, then switch to the clk_bulk
-IO?  I think we can just turn them all on together if that's
-acceptable
+> +
+> +       mutex_lock(&controller->bus_lock);
+> +       ret = controller->ops->xfer(controller, addr, req);
+> +       mutex_unlock(&controller->bus_lock);
+> +
+> +       peci_request_free(req);
+> +
+> +       return ret;
+> +}
+> +
+> +static bool peci_addr_valid(u8 addr)
+> +{
+> +       return addr >= PECI_BASE_ADDR && addr < PECI_BASE_ADDR + PECI_DEVICE_NUM_MAX;
+> +}
+> +
+> +static int peci_dev_exists(struct device *dev, void *data)
+> +{
+> +       struct peci_device *device = to_peci_device(dev);
+> +       u8 *addr = data;
+> +
+> +       if (device->addr == *addr)
+> +               return -EBUSY;
+> +
+> +       return 0;
+> +}
+> +
+> +int peci_device_create(struct peci_controller *controller, u8 addr)
+> +{
+> +       struct peci_device *device;
+> +       int ret;
+> +
+> +       if (WARN_ON(!peci_addr_valid(addr)))
 
-adam
+The WARN_ON is overkill, especially as there is only one caller of
+this and it loops through valid addresses.
+
+> +               return -EINVAL;
+> +
+> +       /* Check if we have already detected this device before. */
+> +       ret = device_for_each_child(&controller->dev, &addr, peci_dev_exists);
+> +       if (ret)
+> +               return 0;
+> +
+> +       ret = peci_detect(controller, addr);
+> +       if (ret) {
+> +               /*
+> +                * Device not present or host state doesn't allow successful
+> +                * detection at this time.
+> +                */
+> +               if (ret == -EIO || ret == -ETIMEDOUT)
+> +                       return 0;
+> +
+> +               return ret;
+> +       }
+> +
+> +       device = kzalloc(sizeof(*device), GFP_KERNEL);
+> +       if (!device)
+> +               return -ENOMEM;
+> +
+> +       device->addr = addr;
+> +       device->dev.parent = &controller->dev;
+> +       device->dev.bus = &peci_bus_type;
+> +       device->dev.type = &peci_device_type;
+> +
+> +       ret = dev_set_name(&device->dev, "%d-%02x", controller->id, device->addr);
+> +       if (ret)
+> +               goto err_free;
+
+It's cleaner to just have one unified error exit using put_device().
+Use the device_initialize() + device_add() pattern, not
+device_register().
 
 
+> +
+> +       ret = device_register(&device->dev);
+> +       if (ret)
+> +               goto err_put;
+> +
+> +       return 0;
+> +
+> +err_put:
+> +       put_device(&device->dev);
+> +err_free:
+> +       kfree(device);
+> +
+> +       return ret;
+> +}
+> +
+> +void peci_device_destroy(struct peci_device *device)
+> +{
+> +       device_unregister(&device->dev);
+
+No clear value for this wrapper, in fact in one caller it causes it to
+do a to_peci_device() just this helper can undo that up-cast.
+
+> +}
+> +
+> +static void peci_device_release(struct device *dev)
+> +{
+> +       struct peci_device *device = to_peci_device(dev);
+> +
+> +       kfree(device);
+> +}
+> +
+> +struct device_type peci_device_type = {
+> +       .release        = peci_device_release,
+> +};
+> diff --git a/drivers/peci/internal.h b/drivers/peci/internal.h
+> index 918dea745a86..57d11a902c5d 100644
+> --- a/drivers/peci/internal.h
+> +++ b/drivers/peci/internal.h
+> @@ -8,6 +8,20 @@
+>  #include <linux/types.h>
 >
-> Best regards,
-> Yoshihiro Shimoda
+>  struct peci_controller;
+> +struct peci_device;
+> +struct peci_request;
+> +
+> +/* PECI CPU address range 0x30-0x37 */
+> +#define PECI_BASE_ADDR         0x30
+> +#define PECI_DEVICE_NUM_MAX    8
+> +
+> +struct peci_request *peci_request_alloc(struct peci_device *device, u8 tx_len, u8 rx_len);
+> +void peci_request_free(struct peci_request *req);
+> +
+> +extern struct device_type peci_device_type;
+> +
+> +int peci_device_create(struct peci_controller *controller, u8 addr);
+> +void peci_device_destroy(struct peci_device *device);
 >
+>  extern struct bus_type peci_bus_type;
+>
+> diff --git a/drivers/peci/request.c b/drivers/peci/request.c
+> new file mode 100644
+> index 000000000000..81b567bc7b87
+> --- /dev/null
+> +++ b/drivers/peci/request.c
+> @@ -0,0 +1,50 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +// Copyright (c) 2021 Intel Corporation
+> +
+> +#include <linux/export.h>
+> +#include <linux/peci.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+> +
+> +#include "internal.h"
+> +
+> +/**
+> + * peci_request_alloc() - allocate &struct peci_requests
+> + * @device: PECI device to which request is going to be sent
+> + * @tx_len: TX length
+> + * @rx_len: RX length
+> + *
+> + * Return: A pointer to a newly allocated &struct peci_request on success or NULL otherwise.
+> + */
+> +struct peci_request *peci_request_alloc(struct peci_device *device, u8 tx_len, u8 rx_len)
+> +{
+> +       struct peci_request *req;
+> +
+> +       if (WARN_ON_ONCE(tx_len > PECI_REQUEST_MAX_BUF_SIZE || rx_len > PECI_REQUEST_MAX_BUF_SIZE))
+
+WARN_ON_ONCE() should only be here to help other kernel developers not
+make this mistake However, another way to enforce this is to stop
+exporting peci_request_alloc() and instead export helpers for specific
+command types, and keep this detail internal to the core. If you keep
+this, it needs a comment that it is only here to warn other
+peci-client developers of their bug before it goes upstream.
