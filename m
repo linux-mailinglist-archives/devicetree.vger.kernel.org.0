@@ -2,88 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2663F9238
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 04:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D70DA3F9255
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 04:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243978AbhH0CMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Aug 2021 22:12:06 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:44202 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241128AbhH0CMG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Aug 2021 22:12:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=CZAl2d77Ht15SARXwtHBnTj5q6I65Bl6hgGHiA77reA=; b=yWuP8aKLExX1fnPAlpWZ99iSk4
-        Vc2zyl1uK02K/oiZeuNM2Dh7XomQZQhnF8DZCWtWU4irRB2YduWXHefVEucdTPzzM7/usSbvh/4sn
-        gbcBWiC/zAPKgG3vEHeSAB0XZ3DGRN6Jdb/5elDwTH3sFnTGNtt8iGcbp7+l0sRgPmwo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mJRKp-0042gK-Do; Fri, 27 Aug 2021 04:11:11 +0200
-Date:   Fri, 27 Aug 2021 04:11:11 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     "Gabriel L. Somlo" <gsomlo@gmail.com>,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        David Shah <dave@ds0.me>, Stafford Horne <shorne@gmail.com>
-Subject: Re: [PATCH v2 2/2] net: Add driver for LiteX's LiteEth network
- interface
-Message-ID: <YShJv2XRud7pSseZ@lunn.ch>
-References: <20210820074726.2860425-3-joel@jms.id.au>
- <YSVLz0Se+hTVr0DA@errol.ini.cmu.edu>
- <CACPK8Xf9LGQBUHmS9sQ4zG1akk5SoQ-31MD-GMWVSRuByAT7KQ@mail.gmail.com>
+        id S244042AbhH0C1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Aug 2021 22:27:44 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:41644 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231641AbhH0C1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Aug 2021 22:27:44 -0400
+X-UUID: c2c8aed9563249638ed22e1b9c31ec59-20210827
+X-UUID: c2c8aed9563249638ed22e1b9c31ec59-20210827
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 73569141; Fri, 27 Aug 2021 10:26:53 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 27 Aug 2021 10:26:52 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 27 Aug 2021 10:26:51 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <Rex-BC.Chen@mediatek.com>, <TingHan.Shen@mediatek.com>
+Subject: [PATCH v2] dt-bindings: PCI: mediatek-gen3: Add support for MT8195
+Date:   Fri, 27 Aug 2021 10:26:38 +0800
+Message-ID: <20210827022638.3573-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACPK8Xf9LGQBUHmS9sQ4zG1akk5SoQ-31MD-GMWVSRuByAT7KQ@mail.gmail.com>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 25, 2021 at 06:35:17AM +0000, Joel Stanley wrote:
-> On Tue, 24 Aug 2021 at 19:43, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> >
-> > Hi Joel,
-> >
-> > Couple of comments below:
-> >
-> > On Fri, Aug 20, 2021 at 05:17:26PM +0930, Joel Stanley wrote:
-> 
-> > > diff --git a/drivers/net/ethernet/litex/Kconfig b/drivers/net/ethernet/litex/Kconfig
-> > > new file mode 100644
-> > > index 000000000000..265dba414b41
-> > > --- /dev/null
-> > > +++ b/drivers/net/ethernet/litex/Kconfig
-> 
-> > > +
-> > > +config LITEX_LITEETH
-> > > +     tristate "LiteX Ethernet support"
-> >
-> > Mostly cosmetic, but should there be a "depends on LITEX" statement in here?
-> 
-> No, there's as there is no dependency on the litex soc driver.
+MT8195 is an ARM platform SoC which has the same PCIe IP with MT8192.
 
-Which is good, you will get more build coverage that way, it will be
-built of x86, arm, mips, etc...
+Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+---
+ Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> 
-> > Maybe also "select MII" and "select PHYLIB"?
-> 
-> Again, there is no mii or phy code so the driver doesn't need these.
+diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+index 742206dbd965..93e09c3029b7 100644
+--- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
++++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+@@ -48,7 +48,9 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: mediatek,mt8192-pcie
++    enum:
++      - mediatek,mt8192-pcie
++      - mediatek,mt8195-pcie
+ 
+   reg:
+     maxItems: 1
+-- 
+2.18.0
 
-Yet.
-
-At some point i expect you will need these, but you don't need them
-now.
-
-	Andrew
