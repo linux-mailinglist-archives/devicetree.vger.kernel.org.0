@@ -2,388 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF553F9F68
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 21:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EAA23F9FA7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 21:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbhH0TCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 15:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55556 "EHLO
+        id S231185AbhH0TKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 15:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230353AbhH0TCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 15:02:06 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AABC0613D9
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:01:17 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id u15so4487644plg.13
-        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:01:17 -0700 (PDT)
+        with ESMTP id S230420AbhH0TKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 15:10:48 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE51C0613D9
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:09:59 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id z5so14445263ybj.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Aug 2021 12:09:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=intel-com.20150623.gappssmtp.com; s=20150623;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=x/U7J2zbHihSdDWyMksV/TtPa1+B5X6iFwKDUZ4o7Zw=;
-        b=sNiLRr0jnkRhT0wgY8kV7FUDGk9UCmwtOo4CLz4mVmrUvRZQ1k66UkBAaWVrf05Pf8
-         SidchKjAWmO5yBjR3lsgVTfcfRVxHsuBcVJZ2EETSlxr8GqGehoDyG7mmX+69YR5nBCf
-         UPBEcajkZB1mkw2BNgnhBSOvBNh9gxFqAozC7nbTpCvzSbNEgrgiHj4F1m8HwIDGE3JJ
-         aewbwFkDW1E8r78472WlBd9AoO0zutKNwJI+S7M3TUUxUpyubMeQPR5Ry7NSVZxXK32A
-         8BVGTGjzDFculpRZeheVLC7E5i1R2SxEtUNyn2wqpMBdBkUxFH3cIM9p8hpOd0avFJjK
-         dk4A==
+        bh=AmqpPyCViUdQ6lV2XGHo1KoClyvYrg1o5PhxAHxFrNU=;
+        b=r/YqS1x4EeqispNU89qAK/xlc4TzaN4m3mOoOi3mTjNnJKjhznNasDf/9eIADbDelD
+         0CDsilL8J4JRfB6z6JIZAe3cy4WN+26vfyKeO3mMW2dtHMxWAJHmCEonJhzhRFDqk1yb
+         czL/CZx8zlQlvX9bwr2d8QGjjzHGdMUffXOaBNXAmL0QKWaQOObISPDdH7UuayD5X0/d
+         m/k2hQmocayd68Id0D6EKkUHz6yBVveMdJEn7xSYPgPoS4mpYk2qTINVPEDH9E50xlxR
+         u3xwNczNqf18h9dqHEEfQmQ080JEx8z/2peNox30LVoxAbF/ULIKtv1gQaKthrIb8mMg
+         V1fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=x/U7J2zbHihSdDWyMksV/TtPa1+B5X6iFwKDUZ4o7Zw=;
-        b=E9MuGgt6AopMpppHsBms8X+PmAOEHFvJpaFI4r7El/XQ2fBhgzJHBsr1LurrEhm75A
-         K5q/jYv1m5pUXcPIkl6NuMLgmnYmudu9N1cFr9Q6R5k+J3D932DhhrwgdJp7R2r46uYb
-         4QBffEPiCb/qjpdZFhYTS/xtRm8C2plmbBgh54m44qRgm8wePpz92qwotn1UM0eQA7O0
-         da6S40bnW2UyQGEL1Qfw7RbvouDHx2QVzMnVpGj3qlC/OjnvoB5sasFxPxuxRL6BASco
-         znvD3qkCb5SXXfefiIA4xYeBAtaQQtHDKaq0mIsz/ZFn+SUm2zdeYINdPkDadGv2EUGz
-         gsSw==
-X-Gm-Message-State: AOAM5306YP8ywPcsgTnwLbjKRqNs5XFCq0rQOMVJ7ESz917HPUR4zb5T
-        q3gpwTB6Nu1wQ0sgEvMwy/6hjhZ8pa+asDqa5p5sow==
-X-Google-Smtp-Source: ABdhPJyDHGtcUmamBi1VJ/OEE/F574NsPBSWaCUCkgBo2sbiTYmr6i2tzPq3PLz1T1+kWen10Mmg+phyLSrOwyeHzHE=
-X-Received: by 2002:a17:902:ba90:b0:135:6709:705 with SMTP id
- k16-20020a170902ba9000b0013567090705mr9825009pls.79.1630090877059; Fri, 27
- Aug 2021 12:01:17 -0700 (PDT)
+        bh=AmqpPyCViUdQ6lV2XGHo1KoClyvYrg1o5PhxAHxFrNU=;
+        b=bkNcjcsEkELNwo2q6uUqJmWQhEKkiihZqInE0WzqwthjHNtZxUmTmUmvry2bbEoTyr
+         uk+pm12F+AjfHnSSXJ4pfRGa4gRBDWEUROoJFU7wq92Sj+eoiHYnT7tDKu6O6WEihpwU
+         Lbd5vSr5Gs4+on1IatqmU8mmAHGIm+Q9wdvo72ZQtC3U8wcRglXTcqeV1G8TZksJyd+W
+         6IA89vb3VZmy9GGPu3YOEz9ltl2BXnu5VXHW4NY/JVzIyW+P9bf/tx0eorxVbHDfsDuK
+         0PUSmr2uVs18BMBC4GU9JKdQuvA+bEmKK1Ym8dnRqdvXquCDhctgSbSJfpNeHweEcbyG
+         g+3Q==
+X-Gm-Message-State: AOAM531nXwy/qpoXlLkUeb1ADnD0vgD1Da7DoZOwDBGiJf2OpnWx/g2i
+        qHj0U1RTfw2s7ehfk8l/BgFgWn9Esamr2CGHu1LhVKZMK0K0iA==
+X-Google-Smtp-Source: ABdhPJyAq8493Ze/4BngPeKPMZmgpY2Y0wSygyb4JFj8HUfSp1QLt0YKKUJUFwKtDYkigqneF6kkcm8lGTeTRW+nL5s=
+X-Received: by 2002:a25:d213:: with SMTP id j19mr7541214ybg.20.1630091398019;
+ Fri, 27 Aug 2021 12:09:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210803113134.2262882-1-iwona.winiarska@intel.com> <20210803113134.2262882-9-iwona.winiarska@intel.com>
-In-Reply-To: <20210803113134.2262882-9-iwona.winiarska@intel.com>
-From:   Dan Williams <dan.j.williams@intel.com>
-Date:   Fri, 27 Aug 2021 12:01:06 -0700
-Message-ID: <CAPcyv4hPLReB6wGTDBM_tnqRUXxNASFCtgCw0=aDW+PPfSJ57A@mail.gmail.com>
-Subject: Re: [PATCH v2 08/15] peci: Add device detection
-To:     Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        X86 ML <x86@kernel.org>,
-        Device Tree <devicetree@vger.kernel.org>,
-        linux-aspeed@lists.ozlabs.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-hwmon@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Lutomirski <luto@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        Yazen Ghannam <yazen.ghannam@amd.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Zev Weiss <zweiss@equinix.com>,
-        David Muller <d.mueller@elsoft.ch>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com> <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+ <ee649111-dc07-d6db-8872-dcb692802236@huawei.com> <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+ <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com> <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+ <df8e7756-8b0d-d7de-a9ff-3f6eb0ffa8a5@huawei.com> <CAGETcx-47yRUcBjEdWFBtroSEkHXRNrJ4zaD8WpE0DPEPp9NxQ@mail.gmail.com>
+ <85b28900-5f42-b997-2ded-0b952bc2a03e@huawei.com>
+In-Reply-To: <85b28900-5f42-b997-2ded-0b952bc2a03e@huawei.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 27 Aug 2021 12:09:22 -0700
+Message-ID: <CAGETcx-N4+u0iw9n5ncx_9MNnTa3ViyesxsDD7xN3jtEPT-uBw@mail.gmail.com>
+Subject: Re: [BUG] amba: Remove deferred device addition
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 3, 2021 at 4:35 AM Iwona Winiarska
-<iwona.winiarska@intel.com> wrote:
+On Fri, Aug 27, 2021 at 7:38 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
 >
-> Since PECI devices are discoverable, we can dynamically detect devices
-> that are actually available in the system.
 >
-> This change complements the earlier implementation by rescanning PECI
-> bus to detect available devices. For this purpose, it also introduces the
-> minimal API for PECI requests.
->
-> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
-> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-> ---
->  drivers/peci/Makefile   |   2 +-
->  drivers/peci/core.c     |  33 ++++++++++++
->  drivers/peci/device.c   | 114 ++++++++++++++++++++++++++++++++++++++++
->  drivers/peci/internal.h |  14 +++++
->  drivers/peci/request.c  |  50 ++++++++++++++++++
->  5 files changed, 212 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/peci/device.c
->  create mode 100644 drivers/peci/request.c
->
-> diff --git a/drivers/peci/Makefile b/drivers/peci/Makefile
-> index 926d8df15cbd..c5f9d3fe21bb 100644
-> --- a/drivers/peci/Makefile
-> +++ b/drivers/peci/Makefile
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->
->  # Core functionality
-> -peci-y := core.o
-> +peci-y := core.o request.o device.o
->  obj-$(CONFIG_PECI) += peci.o
->
->  # Hardware specific bus drivers
-> diff --git a/drivers/peci/core.c b/drivers/peci/core.c
-> index 7b3938af0396..d143f1a7fe98 100644
-> --- a/drivers/peci/core.c
-> +++ b/drivers/peci/core.c
-> @@ -34,6 +34,20 @@ struct device_type peci_controller_type = {
->         .release        = peci_controller_dev_release,
->  };
->
-> +static int peci_controller_scan_devices(struct peci_controller *controller)
-> +{
-> +       int ret;
-> +       u8 addr;
-> +
-> +       for (addr = PECI_BASE_ADDR; addr < PECI_BASE_ADDR + PECI_DEVICE_NUM_MAX; addr++) {
-> +               ret = peci_device_create(controller, addr);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
->  static struct peci_controller *peci_controller_alloc(struct device *dev,
->                                                      struct peci_controller_ops *ops)
->  {
-> @@ -76,10 +90,23 @@ static struct peci_controller *peci_controller_alloc(struct device *dev,
->         return ERR_PTR(ret);
->  }
->
-> +static int unregister_child(struct device *dev, void *dummy)
-> +{
-> +       peci_device_destroy(to_peci_device(dev));
-> +
-> +       return 0;
-> +}
-> +
->  static void unregister_controller(void *_controller)
->  {
->         struct peci_controller *controller = _controller;
->
-> +       /*
-> +        * Detach any active PECI devices. This can't fail, thus we do not
-> +        * check the returned value.
-> +        */
-> +       device_for_each_child_reverse(&controller->dev, NULL, unregister_child);
-> +
->         device_unregister(&controller->dev);
->  }
->
-> @@ -115,6 +142,12 @@ struct peci_controller *devm_peci_controller_add(struct device *dev,
->         if (ret)
->                 return ERR_PTR(ret);
->
-> +       /*
-> +        * Ignoring retval since failures during scan are non-critical for
-> +        * controller itself.
-> +        */
-> +       peci_controller_scan_devices(controller);
-> +
->         return controller;
->
->  err:
-> diff --git a/drivers/peci/device.c b/drivers/peci/device.c
-> new file mode 100644
-> index 000000000000..32811248997b
-> --- /dev/null
-> +++ b/drivers/peci/device.c
-> @@ -0,0 +1,114 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +// Copyright (c) 2018-2021 Intel Corporation
-> +
-> +#include <linux/peci.h>
-> +#include <linux/slab.h>
-> +
-> +#include "internal.h"
-> +
-> +static int peci_detect(struct peci_controller *controller, u8 addr)
-> +{
-> +       struct peci_request *req;
-> +       int ret;
-> +
-> +       /*
-> +        * PECI Ping is a command encoded by tx_len = 0, rx_len = 0.
-> +        * We expect correct Write FCS if the device at the target address
-> +        * is able to respond.
-> +        */
-> +       req = peci_request_alloc(NULL, 0, 0);
-> +       if (!req)
-> +               return -ENOMEM;
+> On 2021/8/27 8:04, Saravana Kannan wrote:
+> > On Thu, Aug 26, 2021 at 1:22 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+> >>
+> >>>>> Btw, I've been working on [1] cleaning up the one-off deferred probe
+> >>>>> solution that we have for amba devices. That causes a bunch of other
+> >>>>> headaches. Your patch 3/3 takes us further in the wrong direction by
+> >>>>> adding more reasons for delaying the addition of the device.
+> >> Hi Saravana, I try the link[1], but with it, there is a crash when boot
+> >> (qemu-system-arm -M vexpress-a15),
 
-Seems a waste to do a heap allocation for this routine. Why not:
+I'm assuming it's this one?
+arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
 
-       /*
-        * PECI Ping is a command encoded by tx_len = 0, rx_len = 0.
-        * We expect correct Write FCS if the device at the target address
-        * is able to respond.
-        */
-       struct peci_request req = { 0 };
-
-> +
-> +       mutex_lock(&controller->bus_lock);
-> +       ret = controller->ops->xfer(controller, addr, req);
-> +       mutex_unlock(&controller->bus_lock);
-> +
-> +       peci_request_free(req);
-> +
-> +       return ret;
-> +}
-> +
-> +static bool peci_addr_valid(u8 addr)
-> +{
-> +       return addr >= PECI_BASE_ADDR && addr < PECI_BASE_ADDR + PECI_DEVICE_NUM_MAX;
-> +}
-> +
-> +static int peci_dev_exists(struct device *dev, void *data)
-> +{
-> +       struct peci_device *device = to_peci_device(dev);
-> +       u8 *addr = data;
-> +
-> +       if (device->addr == *addr)
-> +               return -EBUSY;
-> +
-> +       return 0;
-> +}
-> +
-> +int peci_device_create(struct peci_controller *controller, u8 addr)
-> +{
-> +       struct peci_device *device;
-> +       int ret;
-> +
-> +       if (WARN_ON(!peci_addr_valid(addr)))
-
-The WARN_ON is overkill, especially as there is only one caller of
-this and it loops through valid addresses.
-
-> +               return -EINVAL;
-> +
-> +       /* Check if we have already detected this device before. */
-> +       ret = device_for_each_child(&controller->dev, &addr, peci_dev_exists);
-> +       if (ret)
-> +               return 0;
-> +
-> +       ret = peci_detect(controller, addr);
-> +       if (ret) {
-> +               /*
-> +                * Device not present or host state doesn't allow successful
-> +                * detection at this time.
-> +                */
-> +               if (ret == -EIO || ret == -ETIMEDOUT)
-> +                       return 0;
-> +
-> +               return ret;
-> +       }
-> +
-> +       device = kzalloc(sizeof(*device), GFP_KERNEL);
-> +       if (!device)
-> +               return -ENOMEM;
-> +
-> +       device->addr = addr;
-> +       device->dev.parent = &controller->dev;
-> +       device->dev.bus = &peci_bus_type;
-> +       device->dev.type = &peci_device_type;
-> +
-> +       ret = dev_set_name(&device->dev, "%d-%02x", controller->id, device->addr);
-> +       if (ret)
-> +               goto err_free;
-
-It's cleaner to just have one unified error exit using put_device().
-Use the device_initialize() + device_add() pattern, not
-device_register().
-
-
-> +
-> +       ret = device_register(&device->dev);
-> +       if (ret)
-> +               goto err_put;
-> +
-> +       return 0;
-> +
-> +err_put:
-> +       put_device(&device->dev);
-> +err_free:
-> +       kfree(device);
-> +
-> +       return ret;
-> +}
-> +
-> +void peci_device_destroy(struct peci_device *device)
-> +{
-> +       device_unregister(&device->dev);
-
-No clear value for this wrapper, in fact in one caller it causes it to
-do a to_peci_device() just this helper can undo that up-cast.
-
-> +}
-> +
-> +static void peci_device_release(struct device *dev)
-> +{
-> +       struct peci_device *device = to_peci_device(dev);
-> +
-> +       kfree(device);
-> +}
-> +
-> +struct device_type peci_device_type = {
-> +       .release        = peci_device_release,
-> +};
-> diff --git a/drivers/peci/internal.h b/drivers/peci/internal.h
-> index 918dea745a86..57d11a902c5d 100644
-> --- a/drivers/peci/internal.h
-> +++ b/drivers/peci/internal.h
-> @@ -8,6 +8,20 @@
->  #include <linux/types.h>
+> > Hi,
+> >
+> > It's hard to make sense of the logs. Looks like two different threads
+> > might be printing to the log at the same time? Can you please enable
+> > the config that prints the thread ID (forgot what it's called) and
+> > collect this again? With what I could tell the crash seems to be
+> > happening somewhere in platform_match(), but that's not related to
+> > this patch at all?
 >
->  struct peci_controller;
-> +struct peci_device;
-> +struct peci_request;
-> +
-> +/* PECI CPU address range 0x30-0x37 */
-> +#define PECI_BASE_ADDR         0x30
-> +#define PECI_DEVICE_NUM_MAX    8
-> +
-> +struct peci_request *peci_request_alloc(struct peci_device *device, u8 tx_len, u8 rx_len);
-> +void peci_request_free(struct peci_request *req);
-> +
-> +extern struct device_type peci_device_type;
-> +
-> +int peci_device_create(struct peci_controller *controller, u8 addr);
-> +void peci_device_destroy(struct peci_device *device);
->
->  extern struct bus_type peci_bus_type;
->
-> diff --git a/drivers/peci/request.c b/drivers/peci/request.c
-> new file mode 100644
-> index 000000000000..81b567bc7b87
-> --- /dev/null
-> +++ b/drivers/peci/request.c
-> @@ -0,0 +1,50 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +// Copyright (c) 2021 Intel Corporation
-> +
-> +#include <linux/export.h>
-> +#include <linux/peci.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-> +
-> +#include "internal.h"
-> +
-> +/**
-> + * peci_request_alloc() - allocate &struct peci_requests
-> + * @device: PECI device to which request is going to be sent
-> + * @tx_len: TX length
-> + * @rx_len: RX length
-> + *
-> + * Return: A pointer to a newly allocated &struct peci_request on success or NULL otherwise.
-> + */
-> +struct peci_request *peci_request_alloc(struct peci_device *device, u8 tx_len, u8 rx_len)
-> +{
-> +       struct peci_request *req;
-> +
-> +       if (WARN_ON_ONCE(tx_len > PECI_REQUEST_MAX_BUF_SIZE || rx_len > PECI_REQUEST_MAX_BUF_SIZE))
+> Can you reproduce it? it is very likely related(without your patch, the
+> boot is fine),
 
-WARN_ON_ONCE() should only be here to help other kernel developers not
-make this mistake However, another way to enforce this is to stop
-exporting peci_request_alloc() and instead export helpers for specific
-command types, and keep this detail internal to the core. If you keep
-this, it needs a comment that it is only here to warn other
-peci-client developers of their bug before it goes upstream.
+Sorry, I haven't ever setup qemu and booted vexpress. Thanks for your help.
+
+> the NULL ptr is about serio, it is registed from amba driver.
+>
+> ambakmi_driver_init
+>
+>   -- amba_kmi_probe
+>
+>     -- __serio_register_port
+
+Thanks for the pointer. I took a look at the logs and the code. It's
+very strange. As you can see from the backtrace, platform_match() is
+being called for the device_add() from serio_handle_event(). But the
+device that gets added there is on the serio_bus which obviously
+should be using the serio_bus_match.
+
+>
+> +Dmitry and input maillist, is there some known issue about serio ?
+>
+> I add some debug, the full log is attached.
+>
+> [    2.958355][   T41] input: AT Raw Set 2 keyboard as
+> /devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@8000000:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
+> [    2.977441][   T41] serio serio1: pdev c1e05508, pdev->name (null),
+> drv c1090fc0, drv->name vexpress-reset
+
+Based on the logs you added, it's pretty clear we are getting to
+platform_match(). It's also strange that the drv->name is
+vexpress-reset
+
+> [    2.977928][   T41] 8<--- cut here ---
+> [    2.978162][   T41] Unhandled fault: page domain fault (0x01b) at
+> 0x00000000
+> [    2.978494][   T41] pgd = (ptrval)
+> [    2.978819][   T41] [00000000] *pgd=00000000
+> [    2.979881][   T41] Internal error: : 1b [#1] SMP ARM
+> [    2.980385][   T41] Modules linked in:
+> [    2.980810][   T41] CPU: 0 PID: 41 Comm: kworker/0:2 Not tainted
+> 5.14.0-rc7+ #213
+> [    2.981229][   T41] Hardware name: ARM-Versatile Express
+> [    2.981780][   T41] Workqueue: events_long serio_handle_event
+> [    2.982737][   T41] PC is at strcmp+0x18/0x44
+> [    2.983030][   T41] LR is at platform_match+0xdc/0xf0
+> [    2.983283][   T41] pc : [<c0560bcc>]    lr : [<c0646358>]    psr:
+> 600b0013
+> [    2.983572][   T41] sp : c1675d68  ip : c1675d78  fp : c1675d74
+> [    2.983832][   T41] r10: 00000000  r9 : 00000000  r8 : 00000001
+> [    2.984095][   T41] r7 : c1e05518  r6 : c1675df4  r5 : c1e05518  r4 :
+> c1090fc0
+> [    2.984395][   T41] r3 : c0a5e180  r2 : 6bede3db  r1 : c0b82a04  r0 :
+> 00000000
+> [    2.984906][   T41] Flags: nZCv  IRQs on  FIQs on  Mode SVC_32 ISA
+> ARM  Segment none
+
+---- 8< ---- cleaning up a bunch of register dumps
+
+> [    3.003113][   T41] Backtrace:
+> [    3.003451][   T41] [<c0560bb4>] (strcmp) from [<c0646358>] (platform_match+0xdc/0xf0)
+> [    3.003963][   T41] [<c064627c>] (platform_match) from [<c06437d4>] (__device_attach_driver+0x3c/0xf4)
+> [    3.004769][   T41] [<c0643798>] (__device_attach_driver) from [<c0641180>] (bus_for_each_drv+0x68/0xc8)
+> [    3.005481][   T41] [<c0641118>] (bus_for_each_drv) from [<c0642f40>] (__device_attach+0xf0/0x16c)
+> [    3.006152][   T41] [<c0642e50>] (__device_attach) from [<c06439d4>] (device_initial_probe+0x1c/0x20)
+> [    3.006853][   T41] [<c06439b8>] (device_initial_probe) from [<c0642030>] (bus_probe_device+0x94/0x9c)
+> [    3.007259][   T41] [<c0641f9c>] (bus_probe_device) from [<c063f9cc>] (device_add+0x408/0x8b8)
+> [    3.007900][   T41] [<c063f5c4>] (device_add) from [<c071c1cc>] (serio_handle_event+0x1b8/0x234)
+> [    3.008824][   T41] [<c071c014>] (serio_handle_event) from [<c01475a4>] (process_one_work+0x238/0x594)
+> [    3.009737][   T41] [<c014736c>] (process_one_work) from [<c014795c>] (worker_thread+0x5c/0x5f4)
+> [    3.010638][   T41] [<c0147900>] (worker_thread) from [<c014feb4>] (kthread+0x178/0x194)
+> [    3.011496][   T41] [<c014fd3c>] (kthread) from [<c0100150>] (ret_from_fork+0x14/0x24)
+> [    3.011860][   T41] Exception stack(0xc1675fb0 to 0xc1675ff8)
+
+But the platform_match() is happening for the device_add() from
+serio_event_handle() that's adding a device to the serio_bus and it
+should be using serio_bus_match().
+
+I haven't reached any conclusion yet, but my current thought process
+is that it's either:
+1. My patch is somehow causing list corruption. But I don't directly
+touch any list in my change (other than deleting a list entirely), so
+it's not clear how that would be happening.
+2. Without my patch, these AMBA device's probe would be delayed at
+least until 5 seconds or possibly later. I'm wondering if my patch is
+catching some bad timing assumptions in other code.
+
+You might be able to test out theory (2) by DEFERRED_DEVICE_TIMEOUT to
+a much smaller number. Say 500ms or 100ms. If it doesn't crash, it
+doesn't mean it's not (2), but if it does, then we know for sure it's
+(2).
+
+I'll continue debugging further.
+
+-Saravana
+
+>
+> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+> index 836d6d23bba3..883a58c658c2 100644
+> --- a/drivers/amba/bus.c
+> +++ b/drivers/amba/bus.c
+> @@ -237,6 +237,7 @@ static int amba_match(struct device *dev, struct
+> device_driver *drv)
+>
+>          if (!pcdev->periphid) {
+>                  int ret = amba_read_periphid(pcdev);
+> +               dev_info(dev, "%s, amba_read_periphid ret = %d\n",
+> __func__, ret);
+>
+>                  if (ret)
+>                          return ret;
+> @@ -522,6 +523,7 @@ int amba_device_add(struct amba_device *dev, struct
+> resource *parent)
+>          /* If primecell ID isn't hard-coded, figure it out */
+>          if (!dev->periphid) {
+>                  ret = amba_read_periphid(dev);
+> +               dev_info(&dev->dev, "%s, amba_read_periphid ret = %d\n",
+> __func__, ret);
+>                  if (ret && ret != -EPROBE_DEFER)
+>                          goto err_release;
+>                  /*
+> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> index 8640578f45e9..f7c1933c56b5 100644
+> --- a/drivers/base/platform.c
+> +++ b/drivers/base/platform.c
+> @@ -1360,6 +1360,7 @@ static int platform_match(struct device *dev,
+> struct device_driver *drv)
+>          struct platform_device *pdev = to_platform_device(dev);
+>          struct platform_driver *pdrv = to_platform_driver(drv);
+>
+> +       dev_info(dev, "pdev %px, pdev->name %s, drv %px, drv->name %s",
+> pdev, pdev->name, drv, drv->name);
+>          /* When driver_override is set, only bind to the matching driver */
+>          if (pdev->driver_override)
+>                  return !strcmp(pdev->driver_override, drv->name);
+>
+>
+> > [1] - https://lore.kernel.org/lkml/CAGETcx8b228nDUho3cX9AAQ-pXOfZTMv8cj2vhdx9yc_pk8q+A@mail.gmail.com/
+> > .
+> >
+> >>> .
+> >>>
+> > .
+> >
