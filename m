@@ -2,170 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45CFD3F9C6E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A4E73F9CB9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Aug 2021 18:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233956AbhH0Qai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 12:30:38 -0400
-Received: from mail-eopbgr80057.outbound.protection.outlook.com ([40.107.8.57]:16831
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231852AbhH0Qah (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Aug 2021 12:30:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RwhDRmiasd1WJfQYagA8U7qYUxFp6DlD+nImbp3JN9pEWFcCcxJz63MWwVDab68cht/6AQsxLQbaZ0VW24hDiGqHx5Cr+FfeGV4Vav5fSaWXcpi4ogCFfFIWMXNZwyueS0hCtAK6Z+vlxRVW4+yFmgVbybyxm/621jqGrxtK9XTwCulCIfbIm5EZ6B7pWIX2V7VCzFJUsXFVpYbD0GD6x3KmtEsb8VwnOfX4zgNRoUPYwmqmXerKDtDVCrdyQKMSZ1d2hKrQBF7tI01ZqXOlCnjUkFDN0kRXSZ8ie4EjtSKYR9TDahY6hNYRcvaHnVTJbhlmCqUuXJis9IfOBSeu1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pj4Fq7ObgvXjrsdkmEIz5ZJGmCzydmLNVog1Rb+MdMI=;
- b=Pd64V6YhnBB92ODDioV4o3kbr2ZDbhHuWScuS6/bPY3qR+hGJ7MLdZyF9hfRNjBSWPVQEoZuAPgBLcX3SBCBaowdLtoAZBjAC1funatnHfsG8k/wYNW+7sl0g54RzrMYuMB2Tlg99XiatLHaaRx+MC+Vn6oHV48Gm/sMLKrD24KMC+DOunoe48jrSn6U7v0kVcNKQmP2W7/MxAhopnVzFCCWkGrjPY+wpX2O6RMskpHTWu3VE4JVb7Wk7Vy8nYK3jDWelKqHkrazG2c6pu36W56FF7ywQ7ffxv9XVgKSR2ALeuqe9wg9cn+AH0zqzjUNHKmTcr0/cP0aeDBJnVdBWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pj4Fq7ObgvXjrsdkmEIz5ZJGmCzydmLNVog1Rb+MdMI=;
- b=wicasUeI1k8fumokg8jESwUBHixTXQyQb5oUsvCK1gf1pM0vzmwZLrF18SNK9bx7CU8sxzjM38EtB3ZS5BflEXOVt6+47nc4Kvfqlyid5CogrAGXjaq9cHrVuwOuy4hfqn/i9mYTnS6TBN3+71qiB+C7NWJTNVErArL/5yCDA/c=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB7PR03MB4522.eurprd03.prod.outlook.com (2603:10a6:10:1a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Fri, 27 Aug
- 2021 16:29:46 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::dc6c:815b:2062:d1f1]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::dc6c:815b:2062:d1f1%7]) with mapi id 15.20.4436.025; Fri, 27 Aug 2021
- 16:29:45 +0000
-Subject: Re: [PATCH v6 3/3] pwm: Add support for Xilinx AXI Timer
-To:     kernel test robot <lkp@intel.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>, michal.simek@xilinx.com,
+        id S230173AbhH0QrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 12:47:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37442 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229560AbhH0QrY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Aug 2021 12:47:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 67D0960FD8;
+        Fri, 27 Aug 2021 16:46:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630082795;
+        bh=hMhFii5SEnyesU+J3DnJAqd9NcCDRrvpJCnbR/n6FBY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=B/tcAg/jio1dncVSKclmFp0GAyYR0lBls+lVdKbgBAHYy6xLf3QSrst94KvbUbKbO
+         zgffjO0KvcZAqS1BibHrhskCc5wjfo2WbZvu7Y8k2NGzc6Yw+H2FuttJv7R23dLrZ4
+         EZfmEODkqHx/Xre09qo7Wf2QpY7rZLiQoV/S5hsmrIoRu4L+7xI1N3Sx/toGLRHEK9
+         btPWBH1NcHlU8uOiLkFLWxkGud9ccL/h0H4fAXwpBETCrcbcn921HenLA02jFjyYYa
+         IQgkiSunEAQGswpfPzZUD4RcN1oIMHls85ag4dybbvQmWQHWJXw4pqRPDAu1J1UrwZ
+         iEky6AUjHTZvw==
+Date:   Fri, 27 Aug 2021 11:46:34 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
+Cc:     robh+dt@kernel.org, bhelgaas@google.com, matthias.bgg@gmail.com,
+        lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com,
+        jianjun.wang@mediatek.com, yong.wu@mediatek.com,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20210826211830.3311140-3-sean.anderson@seco.com>
- <202108271550.btqnrtGU-lkp@intel.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <c57c4b16-dc8c-76c7-3ac4-63a5b62144d3@seco.com>
-Date:   Fri, 27 Aug 2021 12:29:40 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <202108271550.btqnrtGU-lkp@intel.com>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR15CA0004.namprd15.prod.outlook.com
- (2603:10b6:208:1b4::17) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
+ pcie-cfg base address
+Message-ID: <20210827164634.GA3779223@bjorn-Precision-5520>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR15CA0004.namprd15.prod.outlook.com (2603:10b6:208:1b4::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20 via Frontend Transport; Fri, 27 Aug 2021 16:29:44 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9bc87eb4-1d27-498d-1834-08d96977e163
-X-MS-TrafficTypeDiagnostic: DB7PR03MB4522:
-X-Microsoft-Antispam-PRVS: <DB7PR03MB45221ED7A7A61C19329ECEF196C89@DB7PR03MB4522.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LYc4Hm+aOxWLfg1eiz5PyE2NNx27OVHqJXx5F31wMoW4xTrk77wbZ3dk+ffZqxwT+mwsl/NWm4qMN3fMXFJy5I1WZH03o1rAWXFQLmLLdyLJ+q6gyHd3zn59Pgc41yXNqPQQxH1svH3TXrY6cdABbni8m8t4fw7ASVhOtwNdRwZRieykROlYEwC3GfUB5v0CJwJ1PwNNxU5Ma6rRVlrLfUWp8+z4Kfntp7BuKydd5jHqOEXLuZHFmgc90zFvjOAcrOdjozuilEJnGxeXlBy7zwP1XX7n2sjP7IdLLRYQwonpHRkxHFsGOR2wxD8ARnHkzxB47ZXvOTAGP/APb5n2FRhKhgQlDp0bbV3Oz1FSSK+hBP6ApPBjyYM1f3IMrzNdXTUrIAD3kHU2NN9Z1I7mIprpC+RDBcc6P3NRrVQHDL7hORvAePeR/tNcQYiTNag3O0rUeJCEQXzLJB/DWmsQDoEMO6OoNFF0PFqzduLRvlB6BzyatZNBdCQ9wREHm/k6yw7DmWccWIMWZoS/W/JcPEYiKiEOcGWn0V6HiyaMNAqQt/TWN87Zi98mhJKNqP6feRBsTAWuNl63DSq8ybQRQ9omwk6n7WdSuz8is/IuDA0vojqvwWeErltpwdmPVrKEKUv4X3Aq66z8JqqxHH8G5BFk4pS1ec5JwNaI++PrFnFd8c5iuFeVlZCFWgOS5R/rhnl3hNDcgo+pmr5RvgFc/GmUOKWTqxmjabTSjN4G+n6XME2x0ZoG+0+bLbvgzXwes4tzhecO/xqoM1dkafQxOuJLg9FKYpQil4ruRq370NKAYLtahN8CWaBve4cUXajKw+f4khnM8Uz74qbUSLPzqGzMyaVn+7KoCcou6/qN3so=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39840400004)(366004)(346002)(376002)(396003)(110136005)(2616005)(31696002)(31686004)(44832011)(4326008)(2906002)(26005)(16576012)(36756003)(6486002)(956004)(83380400001)(316002)(54906003)(6666004)(53546011)(38100700002)(52116002)(38350700002)(66556008)(478600001)(5660300002)(66476007)(8936002)(966005)(66946007)(186003)(86362001)(7416002)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?Windows-1252?Q?XsyWJKfZeNIEw5seMR2IfhPZl7i1FItEC+5lJv2Fvfvuq42f4sKumH9d?=
- =?Windows-1252?Q?9R4VXe4+E39M/AapL01CtMGMMTpqfNdLkelfMX2DaTMglhQrERTs0gMQ?=
- =?Windows-1252?Q?Nc8cHE3mg6bIPRTbZw+3EU2wyB2dByO9OhGw8TrFFenKfYIKBKcaInlo?=
- =?Windows-1252?Q?Dwri50eBiLmeQVMXoFZlkFdEgzhjFbM/epBOg/WdMNUjY9F8O+wJqgXV?=
- =?Windows-1252?Q?IXU6QqknpDHC74Oo1HnG0zh2bPYVETWiM8ZFnVG3xjvuyb8mpPTKHvff?=
- =?Windows-1252?Q?dWMb8+uuyGAYUMFoMlut8ZHYiNP3NCpKoHsz1pIcN8RQznPJniQRRBTa?=
- =?Windows-1252?Q?fn9aRwW87sL4RsJ/e9W8HB+px5qccbTVDA+owGybme73TsWJweniwhoo?=
- =?Windows-1252?Q?Y4lRaBGYLsPT7FYlflId7jmygXGW5O6qaDmnzQmoeu9DIG1Q1hj4xEK9?=
- =?Windows-1252?Q?E17HUXu/vWmeKGU8HXdobmNMwQJwIlGBNY7+bfob+ijloA8ydLijs5MX?=
- =?Windows-1252?Q?2SYT8pZ7WF6raCbedJ+h3xYUXMJA7FI3zi/3PX3vpjOnCi+6kG90P5wB?=
- =?Windows-1252?Q?P3HFi+0Beuo9zKL0O7MJqm94JLMQCuFWAU/SZXW1fDGgtlIc5jQhJcut?=
- =?Windows-1252?Q?l2EVP5lfjfhyhMM3fdpk9KorAQ6HPtJZh6zqsQP4QCsZbQVzM8HDDo4o?=
- =?Windows-1252?Q?87mHTBQne1OlZAP6ZFqwpjbMgyNNHTbWC3vT2ASFAiUO8334gcEmaeAB?=
- =?Windows-1252?Q?MXBFXW0b0yWc5tNUbN1QwAeaV9CS3c2fIwdJ5A/8NEWNe+yNSMN9dvZz?=
- =?Windows-1252?Q?EGdgRBHeYrYFqObbRdDjs8oJ64Wv4lGc4M4IxY3hpQUCF8qORRU/2mh1?=
- =?Windows-1252?Q?yfvrOcTI58QUFRiEtxuRBEwVLCPuvgiUEYnyyr9+Vfd0hrB8q+3OOur4?=
- =?Windows-1252?Q?/zB/dCJ2+VrN6U6IQbogI98uQ9TMLAk2LN1jye4EY53+OjhRT+U1492Z?=
- =?Windows-1252?Q?ZQTwIUY0WKXoTNsdEOLBfzyMQDznrz6w+gu9uD8F86CkHR59UNj5+7+s?=
- =?Windows-1252?Q?demZgRwtYXZSrwKUJ4h+VKHrE5YNfIB36ApMr7BVwnpH1Na4EHlhgfJV?=
- =?Windows-1252?Q?9Fe3MyYS7uNGGGvQXDZbVs6SjZIjnqCKkRqBRCNHnbG9e3Zf+G1WnlZW?=
- =?Windows-1252?Q?IapQTLrKKpw/OuTAnst0d35PiY5epS45M41KkNn32BsxZLocAyAeRPD+?=
- =?Windows-1252?Q?QLLKiJkz2Tvas9jAxSUgQ0L4PYn0QIZ/qZWu7wO8hJWy826E1eQXcyj7?=
- =?Windows-1252?Q?OytvMj8vN9gOEW87TBHrWrnA4GDp+mDDUF65HE3UaWWmrQtRTsrBRqDR?=
- =?Windows-1252?Q?nxBxt7d1jOyLZB4dOiQHoNR8setIQ3WZtdRbXNgWxJaNvq3F4SDhWS2I?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9bc87eb4-1d27-498d-1834-08d96977e163
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 16:29:45.6006
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: e03iNKWVQ21SsVH56TecNEDuIUHVugnxoL72D8uKq4mdCvMo64yWXKrc70dwTt9cSLlRCnsnYmFkasIHbYRzDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB4522
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210823032800.1660-3-chuanjia.liu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 23, 2021 at 11:27:56AM +0800, Chuanjia Liu wrote:
+> For the new dts format, add a new method to get
+> shared pcie-cfg base address and use it to configure
+> the PCIECFG controller
 
+Rewrap this to fill 75 columns.
 
-On 8/27/21 3:16 AM, kernel test robot wrote:
-> Hi Sean,
+> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> ---
+>  drivers/pci/controller/pcie-mediatek.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> I love your patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on tip/timers/core]
-> [also build test WARNING on pwm/for-next linus/master v5.14-rc7 next-20210826]
-> [cannot apply to xlnx/master]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> 
-> url:    https://github.com/0day-ci/linux/commits/Sean-Anderson/dt-bindings-pwm-Add-Xilinx-AXI-Timer/20210827-052011
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git 127c92feb74a6721f62587f1b89128808f049cf1
-> config: mips-randconfig-r025-20210827 (attached as .config)
-> compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 1076082a0d97bd5c16a25ee7cf3dbb6ee4b5a9fe)
-> reproduce (this is a W=1 build):
->          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->          chmod +x ~/bin/make.cross
->          # install mips cross compiling tool for clang build
->          # apt-get install binutils-mips-linux-gnu
->          # https://github.com/0day-ci/linux/commit/eab56f0b0c5a62e40c04916eb1b4f21f478cec3a
->          git remote add linux-review https://github.com/0day-ci/linux
->          git fetch --no-tags linux-review Sean-Anderson/dt-bindings-pwm-Add-Xilinx-AXI-Timer/20210827-052011
->          git checkout eab56f0b0c5a62e40c04916eb1b4f21f478cec3a
->          # save the attached .config to linux build tree
->          COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=mips
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All warnings (new ones prefixed by >>):
-> 
->>> drivers/pwm/pwm-xilinx.c:249:34: warning: unused variable 'xilinx_timer_of_match' [-Wunused-const-variable]
->     static const struct of_device_id xilinx_timer_of_match[] = {
->                                      ^
->     1 warning generated.
-> 
-> 
-> vim +/xilinx_timer_of_match +249 drivers/pwm/pwm-xilinx.c
-> 
->     248	
->   > 249	static const struct of_device_id xilinx_timer_of_match[] = {
->     250		{ .compatible = "xlnx,xps-timer-1.00.a", },
->     251		{},
->     252	};
->     253	MODULE_DEVICE_TABLE(of, xilinx_timer_of_match);
->     254	
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index 25bee693834f..4296d9e04240 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/irqdomain.h>
+>  #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/msi.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+> @@ -23,6 +24,7 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+>  #include <linux/reset.h>
+>  
+>  #include "../pci.h"
+> @@ -207,6 +209,7 @@ struct mtk_pcie_port {
+>   * struct mtk_pcie - PCIe host information
+>   * @dev: pointer to PCIe device
+>   * @base: IO mapped register base
+> + * @cfg: IO mapped register map for PCIe config
+>   * @free_ck: free-run reference clock
+>   * @mem: non-prefetchable memory resource
+>   * @ports: pointer to PCIe port information
+> @@ -215,6 +218,7 @@ struct mtk_pcie_port {
+>  struct mtk_pcie {
+>  	struct device *dev;
+>  	void __iomem *base;
+> +	struct regmap *cfg;
+>  	struct clk *free_ck;
+>  
+>  	struct list_head ports;
+> @@ -682,6 +686,10 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>  		val |= PCIE_CSR_LTSSM_EN(port->slot) |
+>  		       PCIE_CSR_ASPM_L1_EN(port->slot);
+>  		writel(val, pcie->base + PCIE_SYS_CFG_V2);
+> +	} else if (pcie->cfg) {
+> +		val = PCIE_CSR_LTSSM_EN(port->slot) |
+> +		      PCIE_CSR_ASPM_L1_EN(port->slot);
+> +		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
+>  	}
+>  
+>  	/* Assert all reset signals */
+> @@ -985,6 +993,7 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>  	struct device *dev = pcie->dev;
+>  	struct platform_device *pdev = to_platform_device(dev);
+>  	struct resource *regs;
+> +	struct device_node *cfg_node;
+>  	int err;
+>  
+>  	/* get shared registers, which are optional */
+> @@ -995,6 +1004,14 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>  			return PTR_ERR(pcie->base);
+>  	}
+>  
+> +	cfg_node = of_find_compatible_node(NULL, NULL,
+> +					   "mediatek,generic-pciecfg");
 
-For this and the error on the previous patch it looks like I am missing a dependency on OF_ADDR. Will add.
+This looks wrong to me.  IIUC, since we start at NULL, this searches
+the entire device tree for any node with
 
---Sean
+  compatible = "mediatek,generic-pciecfg"
+
+but we should only care about the specific device/node this driver
+claimed.
+
+Should this be part of the match data, i.e., struct mtk_pcie_soc?
+
+> +	if (cfg_node) {
+> +		pcie->cfg = syscon_node_to_regmap(cfg_node);
+
+Other drivers in drivers/pci/controller/ use
+syscon_regmap_lookup_by_phandle() (j721e, dra7xx, keystone,
+layerscape, artpec6) or syscon_regmap_lookup_by_compatible() (imx6,
+kirin, v3-semi).
+
+You should do it the same way unless there's a need to be different.
+It's also nice if you can use the same struct member name
+("mtk_pcie.cfg") as other drivers.  They're not all consistent, but I
+don't see any other "cfg".
+
+> +		if (IS_ERR(pcie->cfg))
+> +			return PTR_ERR(pcie->cfg);
+> +	}
+> +
+>  	pcie->free_ck = devm_clk_get(dev, "free_ck");
+>  	if (IS_ERR(pcie->free_ck)) {
+>  		if (PTR_ERR(pcie->free_ck) == -EPROBE_DEFER)
+> -- 
+> 2.18.0
+> 
