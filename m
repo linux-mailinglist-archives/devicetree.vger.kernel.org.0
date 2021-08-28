@@ -2,118 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 542633FA3FD
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 08:22:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8674C3FA4A5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 11:17:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232770AbhH1GW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 02:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
+        id S233633AbhH1JNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 05:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229555AbhH1GW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 02:22:56 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74471C0613D9;
-        Fri, 27 Aug 2021 23:22:06 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id bt14so18734042ejb.3;
-        Fri, 27 Aug 2021 23:22:06 -0700 (PDT)
+        with ESMTP id S233595AbhH1JNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 05:13:31 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F04C061756;
+        Sat, 28 Aug 2021 02:12:41 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id z10so13558733edb.6;
+        Sat, 28 Aug 2021 02:12:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HiF+7zA8HBAPFwe6q7tlh4E2+gZ/+XWahT0QBwrHEso=;
-        b=saQ0rnniVs/9gPzlpf0owvdwyXxzd4tkuHaCB32Ux2q/aBfoX7gviX0ODDOLrzjJzG
-         Mi3aMS6SlYnqsImc9W+/j9Lr7fC/rxIAf8uP8oK5Kg8hdW5im7P+pfpmgla2s//z793c
-         oE0J3WibmlszRD8Rgf/DLiXp7jNewaFIi4PECzFrONZoIRCOb5bRT6+FIpf3Md5pvAEw
-         vnohrCncr8jtrW61yYr2ieNGutcls6fGRJp/SmBeJoIqEXcuZR77eeeeATBMRGjMJujO
-         GCf9QmX4mNzHng+6eWpinmi2n8q2cdJzb8ti3AJfywDim3jc5h5bESwgKdnAsy0XMn++
-         CTcw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SvvbcesUWfj9LMRxBzI6Ev7Q0MX9bVpa2X1UHmZy5Ko=;
+        b=WbrKJIDpVBW4LuxY9IEFZWqoCPt11yVJXydz5n+xiEdUt/Iiy9dTT5DzDciw9LRn1E
+         y3KNoTpglKtkhTvAvbiMz2TZWWrvHO1XXLY04E0T/Mr1Ia3kFjwf0+WM6dY/RevB3M3n
+         28SHgfjhu7ijS1MBgadoJSGB4Uinrt21n9fuxt+YtxaKnILOT7cBqB1hiAM/50y72T22
+         5ZATPwdqltWGCXNOMFUWZ3y1Er5+O5+2BaEM1Wrd6wlJCTtCVC7MvjqaOBoWUYOikgUO
+         rbgvRKsMnyI+8Ymy8YoqxQk4cQpp5cTyO2c6RvVQO8lwchIBxgm7VwctT8P+l/nU0pDx
+         W7cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=HiF+7zA8HBAPFwe6q7tlh4E2+gZ/+XWahT0QBwrHEso=;
-        b=bJxPrZvnHGeUl2z8rrCsRPNG1LnK7FbI/0z6ui3oW/CukrKnCb2FTO4ZX53Xm6zSa+
-         qTL9BWBTsw1gfBprQ7TyHVr/Z+ug/Ng/NGGUS0wWhRRvIkXoQdgsKSgQ9ORVLKBq1yhN
-         +wvxqKMxsxOq0iJiAxZty/4o5WirfrY0fQJ+33ti87P5CLPM9xu8KA19Y6iFW8T84TWa
-         Z/YvoNHeL1UHVVNy+kAcfwlAD2nKXyAZvXSeNP7JZnhcpqPck4zSOTGwJUUIB9i/19xM
-         /qCwlaI0Pl+XzqkkDerPMTZmtWC+JUH9oYiuuQDmiWpF2tLenL27wrXN9LVILNIXOFt5
-         PAKQ==
-X-Gm-Message-State: AOAM530Xe1bC6m+P+whrNweoaDQn4+SeN4/+wNlbnx/zr8Czd/NvvKNT
-        1uuEb9d6pVAL7cfRYDmGQnQ=
-X-Google-Smtp-Source: ABdhPJwE2CJiAC0MCQMsna3VgnY61/nhEjaKHPlghxDgpyUquvddyvu/gmwkRXkpnqvEe++QloGskQ==
-X-Received: by 2002:a17:907:7252:: with SMTP id ds18mr14018484ejc.105.1630131725043;
-        Fri, 27 Aug 2021 23:22:05 -0700 (PDT)
-Received: from [192.168.69.153] ([77.78.38.236])
-        by smtp.gmail.com with ESMTPSA id m17sm3826924ejr.27.2021.08.27.23.22.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Aug 2021 23:22:04 -0700 (PDT)
-Subject: Re: [PATCH v1 2/2] mailbox: qcom: Add support for sm4125 sm6115 APCS
- IPC
-To:     Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20210622203759.566716-1-iskren.chernev@gmail.com>
- <20210622203759.566716-2-iskren.chernev@gmail.com>
- <CAP71WjxRpdoN9MMTH2Y2Xgc==tC2jWfm7X0_A1CrzZ40N_rg8Q@mail.gmail.com>
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-Message-ID: <1085ae56-f164-27e3-0c00-f6b187eed1b3@gmail.com>
-Date:   Sat, 28 Aug 2021 09:21:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        bh=SvvbcesUWfj9LMRxBzI6Ev7Q0MX9bVpa2X1UHmZy5Ko=;
+        b=Y6jH/mtd8EYy6/vC2jjWSapbtjDJnjAeJlyux9uCu74A+714EAfZ/aZmSaLeEGQAwY
+         mmi1xutcEf4dd7XeKCEOflCrCEtumgy0ERreuWlY/vb8q/sHPvtmim8TnF+lri1Dytl2
+         YU14uQVkizHsfUptCovvwC4HHiiUFlymPu2ZoYaQezr/sXelzwXUsZTeFOlNpYcgwwFv
+         +ELch3aUZ6fpDdn3jXJG+Jcd2mZXu2qBsflUHi+zgb3NcpYV5DJoVGUUIbFB5ge5e+lW
+         kbK54lbw2eb6OHDgv2G4ppxQlDH06sB6z0jw+jy5QnHNfeGN348pQp6krjS8xIQua61U
+         n+jg==
+X-Gm-Message-State: AOAM530p/dVlepkAOl9d30kNYkkoIPG1rSK5peUl9zp/LBlAV0uJM7wg
+        tTd2RporGV9CUC6yPCY7sWY=
+X-Google-Smtp-Source: ABdhPJwolTxMxxAfrpO8rnE0IdRrrykT1UKXuvGuqrPmonIccYMBpu5U39/TA+Ddd6hRpx80ronDeA==
+X-Received: by 2002:a05:6402:714:: with SMTP id w20mr10288906edx.62.1630141960105;
+        Sat, 28 Aug 2021 02:12:40 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id gl2sm3965102ejb.110.2021.08.28.02.12.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Aug 2021 02:12:39 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: rockchip: rk3066a: add more angle brackets to operating-points property
+Date:   Sat, 28 Aug 2021 11:12:33 +0200
+Message-Id: <20210828091233.19992-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CAP71WjxRpdoN9MMTH2Y2Xgc==tC2jWfm7X0_A1CrzZ40N_rg8Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+After the conversion to YAML of the Operating Performance Points(OPP)
+binding the operating-points property expects values in
+a uint32-matrix with 2 items, so fix the notifications by adding
+angle brackets.
 
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/opp/opp-v1.yaml
 
-On 8/27/21 6:42 PM, Nicolas Dechesne wrote:
-> On Tue, Jun 22, 2021 at 10:38 PM Iskren Chernev
-> <iskren.chernev@gmail.com> wrote:
->>
->> SM4125 and SM6115, codename bengal, have APCS mailbox setup similar to
->> msm8998 and msm8916.
-> 
-> subject and commit refer to SM4125/SM6115, but the diff below is about
-> 4250/6115. I suppose it's a typo here, since 6115 is similar to 4250,
-> not 4125, right?
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3066a.dtsi | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-Yes, you're correct. The issue was resolved in v2 submitted shorty after:
+diff --git a/arch/arm/boot/dts/rk3066a.dtsi b/arch/arm/boot/dts/rk3066a.dtsi
+index ae4055428..cc701a4e0 100644
+--- a/arch/arm/boot/dts/rk3066a.dtsi
++++ b/arch/arm/boot/dts/rk3066a.dtsi
+@@ -23,16 +23,15 @@
+ 			compatible = "arm,cortex-a9";
+ 			next-level-cache = <&L2>;
+ 			reg = <0x0>;
+-			operating-points = <
++			operating-points =
+ 				/* kHz    uV */
+-				1416000 1300000
+-				1200000 1175000
+-				1008000 1125000
+-				816000  1125000
+-				600000  1100000
+-				504000  1100000
+-				312000  1075000
+-			>;
++				<1416000 1300000>,
++				<1200000 1175000>,
++				<1008000 1125000>,
++				<816000  1125000>,
++				<600000  1100000>,
++				<504000  1100000>,
++				<312000  1075000>;
+ 			clock-latency = <40000>;
+ 			clocks = <&cru ARMCLK>;
+ 		};
+-- 
+2.20.1
 
-https://lkml.org/lkml/2021/6/27/167
-
->>
->> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
->> ---
->>  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
->> index f25324d03842..1a4d8cca5881 100644
->> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
->> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
->> @@ -166,6 +166,8 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
->>         { .compatible = "qcom,sc8180x-apss-shared", .data = &apps_shared_apcs_data },
->>         { .compatible = "qcom,sdm660-apcs-hmss-global", .data = &sdm660_apcs_data },
->>         { .compatible = "qcom,sdm845-apss-shared", .data = &apps_shared_apcs_data },
->> +       { .compatible = "qcom,sm4250-apcs-hmss-global", .data = &sdm660_apcs_data },
->> +       { .compatible = "qcom,sm6115-apcs-hmss-global", .data = &sdm660_apcs_data },
->>         { .compatible = "qcom,sm8150-apss-shared", .data = &apps_shared_apcs_data },
->>         { .compatible = "qcom,sdx55-apcs-gcc", .data = &sdx55_apcs_data },
->>         {}
->> --
->> 2.31.1
->>
