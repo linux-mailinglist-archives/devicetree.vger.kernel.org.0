@@ -2,98 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BE773FA7B4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 23:52:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C9FF3FA7DC
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 00:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbhH1VxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 17:53:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230253AbhH1VxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 17:53:24 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1C0C061756;
-        Sat, 28 Aug 2021 14:52:33 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id z4so16234161wrr.6;
-        Sat, 28 Aug 2021 14:52:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=JJCwgQFjCSJNhbTyoyaxjPlruVTGCzjmC4R3DiQ5BA0=;
-        b=RRYevVMMofQgeIqhjO427n9IVgzgU6jB5x0ymhNUBsjC3MqI9F25aT6v6f6wYPxMwn
-         UONG/GQ/LEX8xMkWmgUYQnnJNPz6RGll0l5BBqYFAy4rH8z706Sdr8RC2SvJ6RD+QIoY
-         R+g4lNxxVIGvDLA2akTAB7wHhJGA3JOj+eN1luc3xY9bEXbBwz4Rk1FMqtptx1K77wXK
-         9y7PE4WGAJhiAuWCHg32eAlsHhn9Vv5mt6IyGXwUFnv4li0odNHkIJTHXmezSfRzm8n9
-         JR59dlhXEg28e3pkdTTb+Mw3T6dcqpy+beDxkwhQi0eZBcSyM7cgO16qhuUr+KaT0q7K
-         MGjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=JJCwgQFjCSJNhbTyoyaxjPlruVTGCzjmC4R3DiQ5BA0=;
-        b=eW9Co5f+GzkyncJYk0oxDfK9/bWpBwW+TmG9J/P2nifBGRev9kGEnvopB9sRHNRhpE
-         /YgTfETG3XJgz+wO2ZTjTetOIzgbDSUXGps71S2A2wTj+Hs3AZEMrz4hDNqbJzPLPIVN
-         NUgb2wLrxMCMNPrdlvSrpf4cZlfJ2Rxfiim7OYtjeRngdGnbxvmcG+BU5WgbK13CNMyn
-         cXjalTn1RyGXQSbm3ZdOYByWdp3iOBN8ThsHnLyEmjHimbtr2MGzI72kJGk81GmDLaBv
-         B/2fi/rec1tcFXmKvfKGIjjFwwRDtS5obWK/qGyeM70inJpPlWSAnB+LGQBbRJYZjyvg
-         DS6g==
-X-Gm-Message-State: AOAM533ow6i+w03d1qI8EVn1gtDJfbUEVVjnscaNuJsxGxX0GWTTBHfk
-        p0AzSxoDt+SNv2ANNYzHntJIUUQB15oW2g==
-X-Google-Smtp-Source: ABdhPJxS2krldZzW91UNrktjT9dt9csrMj7vrwJj9ZG2j2ImbKBwRAi+pO0391xB7Gxb3Yzp7V76zQ==
-X-Received: by 2002:adf:9f47:: with SMTP id f7mr10292147wrg.401.1630187551980;
-        Sat, 28 Aug 2021 14:52:31 -0700 (PDT)
-Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
-        by smtp.gmail.com with ESMTPSA id n3sm10046215wmi.0.2021.08.28.14.52.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Aug 2021 14:52:31 -0700 (PDT)
-Subject: Re: [PATCH 3/5] ARM: dts: NSP: Fix MDIO mux node names
-To:     Andrew Lunn <andrew@lunn.ch>
+        id S232059AbhH1WPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 18:15:15 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:46436 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230253AbhH1WPM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Aug 2021 18:15:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=ykqrNZ5+xkEdOSCPLKtfepuHL8Oc2+H/B5h3rAqZXGc=; b=IrALU6x5Fkn8ESg+tD7b/KACL8
+        IKQuwWtI9Zc4Xd7Mn4NRJbqLsKjw8pAJUkmxnlwM0SwbtmQN6hwgMgIbn6HwfXPM924HA+cpE0D1I
+        2xlkD1h7tNNe5EM86mqUBaezjmlWn6qw6qvOFW80eKcVZPIrRaCCg3IYvEa4mT4RwPyQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mK6af-004KOJ-VM; Sun, 29 Aug 2021 00:14:17 +0200
+Date:   Sun, 29 Aug 2021 00:14:17 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Matthew Hagan <mnhagan88@gmail.com>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>,
         bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] ARM: dts: NSP: Fix MDIO mux node names
+Message-ID: <YSq1OS+z8KKcUdu5@lunn.ch>
 References: <20210828112704.2283805-1-mnhagan88@gmail.com>
- <20210828112704.2283805-3-mnhagan88@gmail.com> <YSptPF8MKNahkMbm@lunn.ch>
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Message-ID: <858a86de-c06e-0221-64ea-bb1790db398a@gmail.com>
-Date:   Sat, 28 Aug 2021 22:52:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ <20210828112704.2283805-3-mnhagan88@gmail.com>
+ <YSptPF8MKNahkMbm@lunn.ch>
+ <858a86de-c06e-0221-64ea-bb1790db398a@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YSptPF8MKNahkMbm@lunn.ch>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <858a86de-c06e-0221-64ea-bb1790db398a@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2021 18:07, Andrew Lunn wrote:
+On Sat, Aug 28, 2021 at 10:52:30PM +0100, Matthew Hagan wrote:
+> On 28/08/2021 18:07, Andrew Lunn wrote:
+> 
+> > On Sat, Aug 28, 2021 at 11:27:01AM +0000, Matthew Hagan wrote:
+> >> This patch fixes the following message by adding "mdio-mux" compatible:
+> >> compatible: ['mdio-mux-mmioreg'] is too short
+> >  
+> > Err, what? This sounds like a workaround for a tool problem, not a
+> > real fix. 
+> >
+> > What is actually wrong with:
+> >
+> > compatible = "mdio-mux-mmioreg";
+> 
+> Yes this does work fine either with or without "mdio-mux". The changes
+> have been made to correspond with those submitted by Rafal Milecki for
+> the BCM5301X platform[1] and to conform with
+> Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
+> which does state both as required items (and hence not a tool problem).
 
-> On Sat, Aug 28, 2021 at 11:27:01AM +0000, Matthew Hagan wrote:
->> This patch fixes the following message by adding "mdio-mux" compatible:
->> compatible: ['mdio-mux-mmioreg'] is too short
->  
-> Err, what? This sounds like a workaround for a tool problem, not a
-> real fix. 
->
-> What is actually wrong with:
->
-> compatible = "mdio-mux-mmioreg";
+Hi Matthew
 
-Yes this does work fine either with or without "mdio-mux". The changes
-have been made to correspond with those submitted by Rafal Milecki for
-the BCM5301X platform[1] and to conform with
-Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
-which does state both as required items (and hence not a tool problem).
+It would be good to expand the commit message a bit, since the error
+'is too short' is particularly uninformative, and leads to questions
+like this if not explained.
 
-[1] https://lore.kernel.org/linux-arm-kernel/20210822191256.3715003-1-f.fainelli@gmail.com/T/
+It would also good to get the tool improved, but that is out of scope
+for this patch.
 
->
-> 	   Andrew
->
-Matthew
-
+     Andrew
