@@ -2,252 +2,427 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 090AB3FA617
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 15:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B1C3FA621
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 16:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234359AbhH1NwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 09:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51398 "EHLO
+        id S229505AbhH1OCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 10:02:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbhH1NwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 09:52:11 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56ACDC061756
-        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 06:51:21 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id p2so13968491oif.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 06:51:21 -0700 (PDT)
+        with ESMTP id S229654AbhH1OCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 10:02:37 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7799C061756;
+        Sat, 28 Aug 2021 07:01:46 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id o10so20704178lfr.11;
+        Sat, 28 Aug 2021 07:01:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=hj5m2MS9iUdnim0otFif64Ww0WJHOBBQdC4HyEwdzpw=;
-        b=l7JG4C97NHchHfM+9CVM46fwrbwSbLbdoqG1v4tVgMJQ/ZARu66PbS+iRN11tVsHpB
-         bsf1JnTPGF3gn09W7U8xo8xljtMoU3xeu5efBdL3EsPaht6eovN9fBIBiQsCirSRfFcN
-         aHckFQYMx7AZZplLAUW40FIJsMPwVYlIZAAufeHFb79CaYtzP0XONhBMpMZK/4mV+0nC
-         MFA+82IZtU44gSBbMYBUlp0iXab1HBaIuh64ZOlv138TPvEPrFwC9jToGseyDBco6VF8
-         2RwUPe41R4FXe59DAB3yludkhva4urMyDJxHpj7DP/LPOEZQW0VLvCvL9hac6htFSvp5
-         Xx7w==
+        bh=dqrp/KH5tLqSap7ntZ/vvOicD5LnNwHSCIXjYo1/JVc=;
+        b=McQxQYfotZG11D5X8pPamm7dZOtwqIMvsRXsTYbwlucu8urBYU1163EZ93U8sO3H74
+         3A5uKUN2gaJFHqEfFpfDdnEhtK+pmn2BrO7qKV5JqAPKssvI1jDQQ3W7yA4N0UDqQ3er
+         IgQ0Iy3lv4WcH9pe6wF82eyluGih/56eYxKWDSr6uH8zz3S8uNltYpdqB9+iMQhrMKBK
+         eoufxm2kHY5LLUnU/d9C/4c+dkOetMSjblvfh6Igx+BoTWMlaosmWDx62EY6qd9WW2tg
+         w8eMzLCm8S73HWxCKbA/1f3fElsk28xtv63WLjlLrHi7kpjl/FkKH2bBYQY9+lZZ6/hA
+         FG3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hj5m2MS9iUdnim0otFif64Ww0WJHOBBQdC4HyEwdzpw=;
-        b=MiO+BE5g14Zg/STtoz2vC3Jnz+v8uMpMGPQXWwddaH1l5wLX/lOghoLV4w7oD+LKW4
-         Wy1X6/5YL9P5N7LFn1fFNggDLFRzETabEr78zKv3M6g+oZNTHIdNYcQDd1/kwsHKfknv
-         n9GC2BntKj5KFW1vT3ooWx/i6KOVhVkfXRG5nXEsDDHyArwsqTOBIHo8xZ+fa0i7XMSB
-         6oB4ktt0xoSje9qTl/EklhYAxfpKomu4oRPOs5yXzB9NDDz36Hnl2I7qwspG7/vidomJ
-         zxC34RC5OpIThtG/yHOsKXVsd0Xqu5NyKXz44Rym15RWdLxAshhKVU2BltYQ3F1Qme3K
-         b6Ng==
-X-Gm-Message-State: AOAM531NWahsj55Q3wL2SaYDtIc9XKwAwoFkR2vkGh3N9dcfoPCEcMSc
-        0hHRH8eSloYzYrPVIUq9RMPPLg==
-X-Google-Smtp-Source: ABdhPJxRgkhxfjdqAH47Jbbi/K876cmcR9OKEqRDUh17tL38FWbardiaFXibCWuLzjkyXN7R2OHeBQ==
-X-Received: by 2002:aca:3111:: with SMTP id x17mr10397759oix.20.1630158680552;
-        Sat, 28 Aug 2021 06:51:20 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l13sm1909786otp.29.2021.08.28.06.51.19
+        bh=dqrp/KH5tLqSap7ntZ/vvOicD5LnNwHSCIXjYo1/JVc=;
+        b=e1WJdVVYAGnz6xAtfEZyPIScHzSIpV0qPi8v5Fb0HyQx1GFwIVkHhlxqmGOjzwTCBb
+         WCjRUXjP6SN8ogEEemWKvHOhwx9iATM4OrrO0Qc7D/voPFMliMUh8o/+XYC0iRdPc0Ue
+         26nF1rbiBssTB1V4lg9ixDSb3kfNPzqJIpSDaA1eCYMlBUjhLwz71xX3Rr7CkVMQ8K+7
+         YPqijVutmsLx19NxB1aCorHjkkFPGWIaYB+Jk3WlEjumb1u95uyGsa7+8zJ9NIGdEcr+
+         DqKX2YW+3MGBejZg5LRSk9+BOLZa3z62kijQKYhVF0Z1NUCi57Yw9dLbpaVY26M30TIk
+         O15Q==
+X-Gm-Message-State: AOAM532VmsqxwfrSEbhXureP6jerW7YBqXP/1GzVvakCtICTxIxCJIjX
+        3FP8ATC+Kzx+bWmRamBfSdH/E6t2rBOmwQ==
+X-Google-Smtp-Source: ABdhPJyUv7DzkCxtZmWQC+hmZTOQQ1pBle7v2BgXAwmywunA35GMl50kRhfgP4vbRTlXlJGZKZFuNQ==
+X-Received: by 2002:ac2:4d17:: with SMTP id r23mr10509326lfi.234.1630159304888;
+        Sat, 28 Aug 2021 07:01:44 -0700 (PDT)
+Received: from kari-VirtualBox (87-95-21-3.bb.dnainternet.fi. [87.95.21.3])
+        by smtp.gmail.com with ESMTPSA id h15sm1066543ljc.96.2021.08.28.07.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Aug 2021 06:51:20 -0700 (PDT)
-Date:   Sat, 28 Aug 2021 08:51:18 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Sat, 28 Aug 2021 07:01:44 -0700 (PDT)
+Date:   Sat, 28 Aug 2021 17:01:39 +0300
+From:   Kari Argillander <kari.argillander@gmail.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Christophe Branchereau <cbranchereau@gmail.com>,
+        list@opendingux.net, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add SM6350 pinctrl
- bindings
-Message-ID: <YSo/VnCSly8iybcr@yoga>
-References: <20210828125112.14721-1-konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 2/2] drm/panel: Add driver for the AUO A030JTN01 TFT LCD
+Message-ID: <20210828140139.vwhgcjmgnas4fh7w@kari-VirtualBox>
+References: <20210828112640.7248-1-paul@crapouillou.net>
+ <20210828112640.7248-2-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210828125112.14721-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210828112640.7248-2-paul@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 28 Aug 07:51 CDT 2021, Konrad Dybcio wrote:
-
-> Add device tree binding Documentation details for Qualcomm SM6350
-> pinctrl driver.
+On Sat, Aug 28, 2021 at 12:26:40PM +0100, Paul Cercueil wrote:
+> From: Christophe Branchereau <cbranchereau@gmail.com>
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Add driver for the AUO A030JTN01 panel, which is a 320x480 3.0" 4:3
+> 24-bit TFT LCD with non-square pixels and a delta-RGB 8-bit interface.
+> 
+> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
-> Changes since v1:
-> - Fix gpio-ranges from 156 to 157
-> - Don't mess with the common binding, one interrupt is enough
+>  drivers/gpu/drm/panel/Kconfig               |   8 +
+>  drivers/gpu/drm/panel/Makefile              |   1 +
+>  drivers/gpu/drm/panel/panel-auo-a030jtn01.c | 297 ++++++++++++++++++++
+>  3 files changed, 306 insertions(+)
+>  create mode 100644 drivers/gpu/drm/panel/panel-auo-a030jtn01.c
 > 
->  .../bindings/pinctrl/qcom,sm6350-pinctrl.yaml | 148 ++++++++++++++++++
->  1 file changed, 148 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 0b3784941312..42d42f999266 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -8,6 +8,14 @@ config DRM_PANEL
+>  menu "Display Panels"
+>  	depends on DRM && DRM_PANEL
+>  
+> +config DRM_PANEL_AUO_A030JTN01
+> +	tristate "AUO A030JTN01"
+> +	depends on OF && SPI
+> +	select REGMAP_SPI
+> +	help
+> +	  Say Y here to enable support for the AUO A030JTN01 320x480 3.0" panel
+> +	  as found in the YLM RS-97 handheld gaming console.
+> +
+
+It seems that these should be alphabetical order.
+
+>  config DRM_PANEL_ABT_Y030XX067A
+>  	tristate "ABT Y030XX067A 320x480 LCD panel"
+>  	depends on OF && SPI
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index 60c0149fc54a..edf62866e4af 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_DRM_PANEL_AUO_A030JTN01) += panel-auo-a030jtn01.o
+>  obj-$(CONFIG_DRM_PANEL_ABT_Y030XX067A) += panel-abt-y030xx067a.o
+>  obj-$(CONFIG_DRM_PANEL_ARM_VERSATILE) += panel-arm-versatile.o
+>  obj-$(CONFIG_DRM_PANEL_ASUS_Z00T_TM5P5_NT35596) += panel-asus-z00t-tm5p5-n35596.o
+> diff --git a/drivers/gpu/drm/panel/panel-auo-a030jtn01.c b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
 > new file mode 100644
-> index 000000000000..02c660ebc78e
+> index 000000000000..804567a59d19
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
-> @@ -0,0 +1,148 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm6350-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SM6350 TLMM block
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
-> +  in the SM6350 platform.
-> +
-> +allOf:
-> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm6350-tlmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +  interrupt-controller: true
-> +  '#interrupt-cells': true
-> +  gpio-controller: true
-> +  gpio-reserved-ranges: true
-> +  '#gpio-cells': true
-> +  gpio-ranges: true
-> +  wakeup-parent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +patternProperties:
-> +  '-state$':
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-sm6350-tlmm-state"
-> +      - patternProperties:
-> +          ".*":
-> +            $ref: "#/$defs/qcom-sm6350-tlmm-state"
-> +
-> +$defs:
-> +  qcom-sm6350-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-3])$"
+> +++ b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
+> @@ -0,0 +1,297 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * AU Optronics A030JTN01.0 TFT LCD panel driver
+> + *
+> + * Copyright (C) 2020, Paul Cercueil <paul@crapouillou.net>
+> + * Copyright (C) 2020, Christophe Branchereau <cbranchereau@gmail.com>
 
-I'm afraid this still matches gpio0-gpio203, while it should stop at
-gpio157.
+Should these be 2021?
 
-Other than that I think this looks good.
+    Argillander
 
-Regards,
-Bjorn
-
-> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
+> + */
 > +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/media-bus-format.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
 > +
-> +        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, atest_char1, atest_char2,
-> +                atest_char3, atest_tsens, atest_tsens2, atest_usb1, atest_usb10, atest_usb11,
-> +                atest_usb12, atest_usb13, atest_usb2, atest_usb20, atest_usb21, atest_usb22,
-> +                atest_usb23, audio_ref, btfm_slimbus, cam_mclk0, cam_mclk1, cam_mclk2, cam_mclk3,
-> +                cam_mclk4, cci_async, cci_i2c, cci_timer0, cci_timer1, cci_timer2, cci_timer3,
-> +                cci_timer4, cri_trng, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1, ddr_pxi2, ddr_pxi3,
-> +                dp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3, gp_pdm0, gp_pdm1, gp_pdm2, gpio,
-> +                gps_tx, ibi_i3c, jitter_bist, ldo_en, ldo_update, lpass_ext, m_voc, mclk,
-> +                mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s_0, mi2s_1, mi2s_2,
-> +                mss_lte, nav_gpio, nav_pps, pa_indicator, pcie0_clk, phase_flag0, phase_flag1,
-> +                phase_flag10, phase_flag11, phase_flag12, phase_flag13, phase_flag14, phase_flag15,
-> +                phase_flag16, phase_flag17, phase_flag18, phase_flag19, phase_flag2, phase_flag20,
-> +                phase_flag21, phase_flag22, phase_flag23, phase_flag24, phase_flag25, phase_flag26,
-> +                phase_flag27, phase_flag28, phase_flag29, phase_flag3, phase_flag30, phase_flag31,
-> +                phase_flag4, phase_flag5, phase_flag6, phase_flag7, phase_flag8, phase_flag9,
-> +                pll_bist, pll_bypassnl, pll_reset, prng_rosc, qdss_cti, qdss_gpio, qdss_gpio0,
-> +                qdss_gpio1, qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
-> +                qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5, qdss_gpio6,
-> +                qdss_gpio7, qdss_gpio8, qdss_gpio9, qlink0_enable, qlink0_request, qlink0_wmss,
-> +                qlink1_enable, qlink1_request, qlink1_wmss, qup00, qup01, qup02, qup10, qup11,
-> +                qup12, qup13_f1, qup13_f2, qup14, rffe0_clk, rffe0_data, rffe1_clk, rffe1_data,
-> +                rffe2_clk, rffe2_data, rffe3_clk, rffe3_data, rffe4_clk, rffe4_data, sd_write,
-> +                sdc1_tb, sdc2_tb, sp_cmu, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm1,
-> +                tsense_pwm2, uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk, uim2_data,
-> +                uim2_present, uim2_reset, usb_phy, vfr_1, vsense_trigger, wlan1_adc0, wlan1_adc1,
-> +                wlan2_adc0, wlan2_adc1, ]
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
 > +
+> +struct a030jtn01_info {
+> +	const struct drm_display_mode *display_modes;
+> +	unsigned int num_modes;
+> +	u16 width_mm, height_mm;
+> +	u32 bus_format, bus_flags;
+> +};
 > +
-> +      bias-disable: true
-> +      bias-pull-down: true
-> +      bias-pull-up: true
-> +      drive-strength: true
-> +      input-enable: true
-> +      output-high: true
-> +      output-low: true
+> +struct a030jtn01 {
+> +	struct drm_panel panel;
+> +	struct spi_device *spi;
+> +	struct regmap *map;
 > +
-> +    required:
-> +      - pins
-> +      - function
+> +	const struct a030jtn01_info *panel_info;
 > +
-> +    additionalProperties: false
+> +	struct regulator *supply;
+> +	struct gpio_desc *reset_gpio;
+> +};
 > +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        pinctrl@f100000 {
-> +                compatible = "qcom,sm6350-tlmm";
-> +                reg = <0x0f100000 0x300000>;
-> +                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +                interrupt-controller;
-> +                #interrupt-cells = <2>;
-> +                gpio-ranges = <&tlmm 0 0 157>;
+> +static inline struct a030jtn01 *to_a030jtn01(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct a030jtn01, panel);
+> +}
 > +
-> +                gpio-wo-subnode-state {
-> +                        pins = "gpio1";
-> +                        function = "gpio";
-> +                };
+> +static int a030jtn01_prepare(struct drm_panel *panel)
+> +{
+> +	struct a030jtn01 *priv = to_a030jtn01(panel);
+> +	struct device *dev = &priv->spi->dev;
+> +	int err;
 > +
-> +                uart-w-subnodes-state {
-> +                        rx {
-> +                                pins = "gpio25";
-> +                                function = "qup13_f2";
-> +                                bias-disable;
-> +                        };
+> +	err = regulator_enable(priv->supply);
+> +	if (err) {
+> +		dev_err(dev, "Failed to enable power supply: %d\n", err);
+> +		return err;
+> +	}
 > +
-> +                        tx {
-> +                                pins = "gpio26";
-> +                                function = "qup13_f2";
-> +                                bias-disable;
-> +                        };
-> +                };
-> +        };
-> +...
+> +	usleep_range(1000, 8000);
+> +
+> +	/* Reset the chip */
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> +	usleep_range(100, 8000);
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 0);
+> +	usleep_range(2000, 8000);
+> +
+> +	/*
+> +	 * No idea why two writes are needed. If this write is commented,
+> +	 * the colors are wrong. Doesn't seem to be timing-related, since
+> +	 * a msleep(200) doesn't fix it.
+> +	 */
+> +	regmap_write(priv->map, 0x06, 0x00);
+> +
+> +	/* Use (24 + 6) == 0x1e as the vertical back porch */
+> +	err = regmap_write(priv->map, 0x06, 0x1e);
+> +	if (err)
+> +		goto err_disable_regulator;
+> +
+> +	/* Use (42 + 30) * 3 == 0xd8 as the horizontal back porch */
+> +	err = regmap_write(priv->map, 0x07, 0xd8);
+> +	if (err)
+> +		goto err_disable_regulator;
+> +
+> +	regmap_write(priv->map, 0x05, 0x74);
+> +
+> +	return 0;
+> +
+> +err_disable_regulator:
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> +	regulator_disable(priv->supply);
+> +	return err;
+> +}
+> +
+> +static int a030jtn01_unprepare(struct drm_panel *panel)
+> +{
+> +	struct a030jtn01 *priv = to_a030jtn01(panel);
+> +
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> +	regulator_disable(priv->supply);
+> +
+> +	return 0;
+> +}
+> +
+> +static int a030jtn01_enable(struct drm_panel *panel)
+> +{
+> +	struct a030jtn01 *priv = to_a030jtn01(panel);
+> +	int ret;
+> +
+> +	ret = regmap_write(priv->map, 0x05, 0x75);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait for the picture to be stable */
+> +	if (panel->backlight)
+> +		msleep(100);
+> +
+> +	return 0;
+> +}
+> +
+> +static int a030jtn01_disable(struct drm_panel *panel)
+> +{
+> +	struct a030jtn01 *priv = to_a030jtn01(panel);
+> +
+> +	return regmap_write(priv->map, 0x05, 0x74);
+> +}
+> +
+> +static int a030jtn01_get_modes(struct drm_panel *panel,
+> +				struct drm_connector *connector)
+> +{
+> +	struct a030jtn01 *priv = to_a030jtn01(panel);
+> +	const struct a030jtn01_info *panel_info = priv->panel_info;
+> +	struct drm_display_mode *mode;
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < panel_info->num_modes; i++) {
+> +		mode = drm_mode_duplicate(connector->dev,
+> +					  &panel_info->display_modes[i]);
+> +		if (!mode)
+> +			return -ENOMEM;
+> +
+> +		drm_mode_set_name(mode);
+> +
+> +		mode->type = DRM_MODE_TYPE_DRIVER;
+> +		if (panel_info->num_modes == 1)
+> +			mode->type |= DRM_MODE_TYPE_PREFERRED;
+> +
+> +		drm_mode_probed_add(connector, mode);
+> +	}
+> +
+> +	connector->display_info.bpc = 8;
+> +	connector->display_info.width_mm = panel_info->width_mm;
+> +	connector->display_info.height_mm = panel_info->height_mm;
+> +
+> +	drm_display_info_set_bus_formats(&connector->display_info,
+> +					 &panel_info->bus_format, 1);
+> +	connector->display_info.bus_flags = panel_info->bus_flags;
+> +
+> +	return panel_info->num_modes;
+> +}
+> +
+> +static const struct drm_panel_funcs a030jtn01_funcs = {
+> +	.prepare	= a030jtn01_prepare,
+> +	.unprepare	= a030jtn01_unprepare,
+> +	.enable		= a030jtn01_enable,
+> +	.disable	= a030jtn01_disable,
+> +	.get_modes	= a030jtn01_get_modes,
+> +};
+> +
+> +static bool a030jtn01_has_reg(struct device *dev, unsigned int reg)
+> +{
+> +	static const u32 a030jtn01_regs_mask = 0x001823f1fb;
+> +
+> +	return a030jtn01_regs_mask & BIT(reg);
+> +};
+> +
+> +static const struct regmap_config a030jtn01_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.read_flag_mask = 0x40,
+> +	.max_register = 0x1c,
+> +	.readable_reg = a030jtn01_has_reg,
+> +	.writeable_reg = a030jtn01_has_reg,
+> +};
+> +
+> +static int a030jtn01_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct a030jtn01 *priv;
+> +	int err;
+> +
+> +	spi->mode |= SPI_MODE_3 | SPI_3WIRE;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->spi = spi;
+> +	spi_set_drvdata(spi, priv);
+> +
+> +	priv->map = devm_regmap_init_spi(spi, &a030jtn01_regmap_config);
+> +	if (IS_ERR(priv->map)) {
+> +		dev_err(dev, "Unable to init regmap\n");
+> +		return PTR_ERR(priv->map);
+> +	}
+> +
+> +	priv->panel_info = of_device_get_match_data(dev);
+> +	if (!priv->panel_info)
+> +		return -EINVAL;
+> +
+> +	priv->supply = devm_regulator_get(dev, "power");
+> +	if (IS_ERR(priv->supply)) {
+> +		dev_err(dev, "Failed to get power supply\n");
+> +		return PTR_ERR(priv->supply);
+> +	}
+> +
+> +	priv->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(priv->reset_gpio)) {
+> +		dev_err(dev, "Failed to get reset GPIO\n");
+> +		return PTR_ERR(priv->reset_gpio);
+> +	}
+> +
+> +	drm_panel_init(&priv->panel, dev, &a030jtn01_funcs,
+> +		       DRM_MODE_CONNECTOR_DPI);
+> +
+> +	err = drm_panel_of_backlight(&priv->panel);
+> +	if (err)
+> +		return err;
+> +
+> +	drm_panel_add(&priv->panel);
+> +
+> +	return 0;
+> +}
+> +
+> +static int a030jtn01_remove(struct spi_device *spi)
+> +{
+> +	struct a030jtn01 *priv = spi_get_drvdata(spi);
+> +
+> +	drm_panel_remove(&priv->panel);
+> +	drm_panel_disable(&priv->panel);
+> +	drm_panel_unprepare(&priv->panel);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode a030jtn01_modes[] = {
+> +	{ /* 60 Hz */
+> +		.clock = 14400,
+> +		.hdisplay = 320,
+> +		.hsync_start = 320 + 8,
+> +		.hsync_end = 320 + 8 + 42,
+> +		.htotal = 320 + 8 + 42 + 30,
+> +		.vdisplay = 480,
+> +		.vsync_start = 480 + 90,
+> +		.vsync_end = 480 + 90 + 24,
+> +		.vtotal = 480 + 90 + 24 + 6,
+> +		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> +	},
+> +	{ /* 50 Hz */
+> +		.clock = 12000,
+> +		.hdisplay = 320,
+> +		.hsync_start = 320 + 8,
+> +		.hsync_end = 320 + 8 + 42,
+> +		.htotal = 320 + 8 + 42 + 30,
+> +		.vdisplay = 480,
+> +		.vsync_start = 480 + 90,
+> +		.vsync_end = 480 + 90 + 24,
+> +		.vtotal = 480 + 90 + 24 + 6,
+> +		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> +	},
+> +};
+> +
+> +static const struct a030jtn01_info a030jtn01_info = {
+> +	.display_modes = a030jtn01_modes,
+> +	.num_modes = ARRAY_SIZE(a030jtn01_modes),
+> +	.width_mm = 70,
+> +	.height_mm = 51,
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_3X8_DELTA,
+> +	.bus_flags = DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+> +};
+> +
+> +static const struct of_device_id a030jtn01_of_match[] = {
+> +	{ .compatible = "auo,a030jtn01", .data = &a030jtn01_info },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, a030jtn01_of_match);
+> +
+> +static struct spi_driver a030jtn01_driver = {
+> +	.driver = {
+> +		.name = "auo-a030jtn01",
+> +		.of_match_table = a030jtn01_of_match,
+> +	},
+> +	.probe = a030jtn01_probe,
+> +	.remove = a030jtn01_remove,
+> +};
+> +module_spi_driver(a030jtn01_driver);
+> +
+> +MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
+> +MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
+> +MODULE_LICENSE("GPL v2");
 > -- 
 > 2.33.0
 > 
