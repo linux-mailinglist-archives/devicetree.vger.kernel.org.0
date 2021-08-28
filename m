@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 865583FA764
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 21:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE773FA7B4
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 23:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231979AbhH1Toy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 15:44:54 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:31742 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231744AbhH1Tox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 15:44:53 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630179842; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=EzEkY2UNfFhXjc4UKN2F2zDkGNQ5JRlcjSo43WdLnzM=; b=v/B/YP1zeZJ10O2CGHrPiic9y8ac5RtF2TMUpCByqjuc00nurejiT2gWwpU90aZwgc3r7OZz
- ss5CmaHjCCoyUHUdbW3YBAiHq5Z3hmWKTTcZNYIkx+gsoz8pAo0xIMD+HLKmdHV8s0sPcbhG
- VuFgMn+YludxvFpCOM2B6ScmMzg=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 612a92014cd9015037ed25c9 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 28 Aug 2021 19:44:01
- GMT
-Sender: mkshah=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1619FC4338F; Sat, 28 Aug 2021 19:44:01 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.3 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.29.129] (unknown [49.36.87.126])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0A2D9C4338F;
-        Sat, 28 Aug 2021 19:43:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0A2D9C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v2 02/18] arm64: dts: qcom: Add SM6350 device tree
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Hector Martin <marcan@marcan.st>,
-        Vinod Koul <vkoul@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org
-References: <20210828131814.29589-1-konrad.dybcio@somainline.org>
- <20210828131814.29589-2-konrad.dybcio@somainline.org>
- <55db46ad-e255-7d8f-f284-96a7d807e5d9@codeaurora.org>
- <95c5001a-87dc-2548-97de-538da713b9b6@somainline.org>
-From:   Maulik Shah <mkshah@codeaurora.org>
-Message-ID: <e483238e-29ac-b1ef-ed80-d5ffdbca83bf@codeaurora.org>
-Date:   Sun, 29 Aug 2021 01:13:48 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231938AbhH1VxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 17:53:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43424 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230253AbhH1VxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 17:53:24 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1C0C061756;
+        Sat, 28 Aug 2021 14:52:33 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id z4so16234161wrr.6;
+        Sat, 28 Aug 2021 14:52:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=JJCwgQFjCSJNhbTyoyaxjPlruVTGCzjmC4R3DiQ5BA0=;
+        b=RRYevVMMofQgeIqhjO427n9IVgzgU6jB5x0ymhNUBsjC3MqI9F25aT6v6f6wYPxMwn
+         UONG/GQ/LEX8xMkWmgUYQnnJNPz6RGll0l5BBqYFAy4rH8z706Sdr8RC2SvJ6RD+QIoY
+         R+g4lNxxVIGvDLA2akTAB7wHhJGA3JOj+eN1luc3xY9bEXbBwz4Rk1FMqtptx1K77wXK
+         9y7PE4WGAJhiAuWCHg32eAlsHhn9Vv5mt6IyGXwUFnv4li0odNHkIJTHXmezSfRzm8n9
+         JR59dlhXEg28e3pkdTTb+Mw3T6dcqpy+beDxkwhQi0eZBcSyM7cgO16qhuUr+KaT0q7K
+         MGjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=JJCwgQFjCSJNhbTyoyaxjPlruVTGCzjmC4R3DiQ5BA0=;
+        b=eW9Co5f+GzkyncJYk0oxDfK9/bWpBwW+TmG9J/P2nifBGRev9kGEnvopB9sRHNRhpE
+         /YgTfETG3XJgz+wO2ZTjTetOIzgbDSUXGps71S2A2wTj+Hs3AZEMrz4hDNqbJzPLPIVN
+         NUgb2wLrxMCMNPrdlvSrpf4cZlfJ2Rxfiim7OYtjeRngdGnbxvmcG+BU5WgbK13CNMyn
+         cXjalTn1RyGXQSbm3ZdOYByWdp3iOBN8ThsHnLyEmjHimbtr2MGzI72kJGk81GmDLaBv
+         B/2fi/rec1tcFXmKvfKGIjjFwwRDtS5obWK/qGyeM70inJpPlWSAnB+LGQBbRJYZjyvg
+         DS6g==
+X-Gm-Message-State: AOAM533ow6i+w03d1qI8EVn1gtDJfbUEVVjnscaNuJsxGxX0GWTTBHfk
+        p0AzSxoDt+SNv2ANNYzHntJIUUQB15oW2g==
+X-Google-Smtp-Source: ABdhPJxS2krldZzW91UNrktjT9dt9csrMj7vrwJj9ZG2j2ImbKBwRAi+pO0391xB7Gxb3Yzp7V76zQ==
+X-Received: by 2002:adf:9f47:: with SMTP id f7mr10292147wrg.401.1630187551980;
+        Sat, 28 Aug 2021 14:52:31 -0700 (PDT)
+Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
+        by smtp.gmail.com with ESMTPSA id n3sm10046215wmi.0.2021.08.28.14.52.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 28 Aug 2021 14:52:31 -0700 (PDT)
+Subject: Re: [PATCH 3/5] ARM: dts: NSP: Fix MDIO mux node names
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210828112704.2283805-1-mnhagan88@gmail.com>
+ <20210828112704.2283805-3-mnhagan88@gmail.com> <YSptPF8MKNahkMbm@lunn.ch>
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Message-ID: <858a86de-c06e-0221-64ea-bb1790db398a@gmail.com>
+Date:   Sat, 28 Aug 2021 22:52:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <95c5001a-87dc-2548-97de-538da713b9b6@somainline.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-GB
+In-Reply-To: <YSptPF8MKNahkMbm@lunn.ch>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 28/08/2021 18:07, Andrew Lunn wrote:
 
-On 8/28/2021 9:52 PM, Konrad Dybcio wrote:
->>> +
->>> +        tcsr_mutex: hwlock@1f40000 {
->>> +            compatible = "qcom,tcsr-mutex";
->>> +            reg = <0x0 0x01f40000 0x0 0x40000>;
->>> +            #hwlock-cells = <1>;
->>> +        };
->>> +
->>> +        pdc: interrupt-controller@b220000 {
->>> +            compatible = "qcom,sm6350-pdc", "qcom,pdc";
->>> +            reg = <0 0x0b220000 0 0x30000>, <0 0x17c000f0 0 0x64>;
->> The second reg  0x17c000f0 is neither documented nor used in PDC irq chip driver. can you please remove it?
->>
->> Thanks,
->> Maulik
->>
-> Wouldn't it make more sense to keep it (like in other PDC-enabled SoCs' device trees) so that there's no
+> On Sat, Aug 28, 2021 at 11:27:01AM +0000, Matthew Hagan wrote:
+>> This patch fixes the following message by adding "mdio-mux" compatible:
+>> compatible: ['mdio-mux-mmioreg'] is too short
+>  
+> Err, what? This sounds like a workaround for a tool problem, not a
+> real fix. 
 >
-> need to add it back when the driver gains support for spi_configure_type (I believe that's what it's used for)?
-The second reg in some of the PDC enabled SoCs' went in since it may 
-have slipped throgh code reviews when using downstream
-patch as is on upstream.
-Also the bindings document for PDC is still in txt, so yaml check could 
-not catch the extra register which is not documented.
+> What is actually wrong with:
+>
+> compatible = "mdio-mux-mmioreg";
 
-An attempt to add support for spi_configure_type [1] & [2] had 
-suggestion either to access second reg via mailbox or
-add another level of irqchip hierarchy between PDC to GIC to configure 
-SPI type. Unless both [1] and [2] patch can go in as
-PDC irqchip driver won't gain support to use it. (using mailbox approch 
-will have mailbox driver to access this register and PDC node may 
-mention which mailbox to use).
+Yes this does work fine either with or without "mdio-mux". The changes
+have been made to correspond with those submitted by Rafal Milecki for
+the BCM5301X platform[1] and to conform with
+Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml
+which does state both as required items (and hence not a tool problem).
 
-[1] 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/1568411962-1022-7-git-send-email-ilina@codeaurora.org/
-
-[2] 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/1568411962-1022-8-git-send-email-ilina@codeaurora.org/
-
-Thanks,
-Maulik
+[1] https://lore.kernel.org/linux-arm-kernel/20210822191256.3715003-1-f.fainelli@gmail.com/T/
 
 >
+> 	   Andrew
 >
-> Konrad
->
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+Matthew
 
