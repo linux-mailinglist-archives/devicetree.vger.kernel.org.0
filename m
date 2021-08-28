@@ -2,225 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD7253FA713
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 19:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6154F3FA71E
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 20:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbhH1R72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 13:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49086 "EHLO
+        id S230147AbhH1SIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 14:08:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbhH1R71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 13:59:27 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E63C0613D9
-        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:58:36 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id w4so17545383ljh.13
-        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:58:36 -0700 (PDT)
+        with ESMTP id S229902AbhH1SIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 14:08:34 -0400
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA676C061756
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 11:07:43 -0700 (PDT)
+Received: by mail-oo1-xc30.google.com with SMTP id v20-20020a4a2554000000b0028f8cc17378so3125735ooe.0
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 11:07:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=VvRms+QV4WsSdHyZnok59N803UtPyAalq7HmC1Oo+SU=;
-        b=sGlVsxTbPag5nxi61lGKm2sVKmsjejJRZGP5RY35A8keK30dMqkrSwONvvobkAiGwz
-         8MywSy99aws34wzF+NOS8R5T7ujf+hEiCd1yJsxIByVTH6gD6JwPqk205olmCEZFZcA2
-         /hIcRW4H3hdQ9LT0OIrU74PInZ5L+wSFkklRbT2XZYNDDpT2WP/9o4e2Ju2env84YsCv
-         NykeaIECljXKmmLxuNnmLMwmP//+0vYBzroT9EI1RdOO9XwfCFKwOo/jQFR/hep8hFmv
-         LHfKnsrGhzW5mt60bia8tbTfq5kmiQT6rX4qKD++L966SSX4nWXU+I2qjIbADZE6x6Nm
-         ohtA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ves4rEFbuIlPzY9KtlYpO56vkgctRzHEkajdiDzSNZI=;
+        b=hdp6No9GL73pD05e+eYeNTDWcPTx1YCFqtVOhyTeTf2uROufLpRpcCpAd9UylKgj3d
+         WGuVdr2F0ccCoHWGW8rbmtLuLtjEv6iOTSIBj+JCzJqaEqE1SZBnBYrVLsl4mrcefQbu
+         WcoLTHbDrz8voCrX+Jlwp2OWKlZiOZJUp76HdBNHcDvaOv8h7IfUF0DRObXZBoP2WGu/
+         UDCmBNOEFIqax2CcxGecDYALKC9+wvygXJZ0eLoGp2b5vsM4G3ytxergTgB+rqxrLwtL
+         7vh33G+GrpgxO4RolCgDxopyVI98QLBjqFwqHaPKevU0tVXQOiPGwfz+d18B0FFN7fmR
+         IR3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=VvRms+QV4WsSdHyZnok59N803UtPyAalq7HmC1Oo+SU=;
-        b=WzrXiFv2NXweQYgcZyAfQTePdTLaTeg+/ijZAqAB3liN+6kt6dr1+TS7PGO2MT6k0g
-         67kecXEBfC4bR9Cof2araG2KMn9gZcrwkkFn3ZceDh72W7rA7cisewn35t5RTMQczr1K
-         zvEGP57bdyrY0/z9q9TN2Vsvn41w9O+cWn0uP1FMXEeq0wpBQiTGRQczLCCjWW4piIsC
-         u3p+omuEO9b+RktYF3wFeSIlylWZuQZfPdT52e3QgV5O+zH8eFjeRiGbTTLzsGsca9cU
-         yIkITu26memkVfSEHcW9d1+yOC8RSYcLJCMFfOzQZ/ZkM4poTNX6JB++AZZARixfoWhm
-         mYww==
-X-Gm-Message-State: AOAM533wf6ZbUruU5HHu3k9D/Dit0PhZElzTAkz1b3KBuL/RUHknQUek
-        5hE6DFSzgYoq3lXa8DBmunw=
-X-Google-Smtp-Source: ABdhPJwB4HvVTTcpg7jQ0mBlx1TcxrVYBymvZaJxVclR6ZZSr4ZOFqKa7xBb6EKWN8OAUlHE4NuA5Q==
-X-Received: by 2002:a2e:9150:: with SMTP id q16mr12836192ljg.418.1630173515115;
-        Sat, 28 Aug 2021 10:58:35 -0700 (PDT)
-Received: from [192.168.1.7] ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id bt42sm925054lfb.118.2021.08.28.10.58.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Aug 2021 10:58:34 -0700 (PDT)
-Subject: Re: Clarification regarding updating "Xen hypervisor device tree
- bindings on Arm"
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Julien Grall <julien@xen.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <CAPD2p-kPXFgaLtwy95ZswYUK3xCDaxC4L85vQw=EvTWgehJ7-A@mail.gmail.com>
- <alpine.DEB.2.21.2108061306140.18743@sstabellini-ThinkPad-T480s>
- <f45250de-fdca-18c4-044b-276d0ff66b05@xen.org>
- <alpine.DEB.2.21.2108061519500.18743@sstabellini-ThinkPad-T480s>
- <fa3ad927-14c8-59ac-6cdc-673c65850ac6@xen.org>
- <8b311e33-89e5-87f3-63d2-54bbc2f8f8e7@gmail.com>
- <alpine.DEB.2.21.2108271620160.17851@sstabellini-ThinkPad-T480s>
-From:   Oleksandr <olekstysh@gmail.com>
-Message-ID: <6ee7bd94-54fd-9975-978f-c1d3b1fc4cd1@gmail.com>
-Date:   Sat, 28 Aug 2021 20:58:33 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ves4rEFbuIlPzY9KtlYpO56vkgctRzHEkajdiDzSNZI=;
+        b=VZILsGYBA78RtGzf7scDIcfyjWcm9jFA/Mede3FTu+vcO1DVYDGqiu5oRfKHEzYIlw
+         hSqTInghCyvzRsBkeXxuqkCEnti6pOBjmc2pG6S2tNeWDJnSeiGYOGeI9jlj/PATfMAB
+         BzWpaoAfPJIUlNJpumIhUxrx+KcSFU/293hXbGS6IZp8OrIn86jWBLKsIbFy8Ez/Zsls
+         PZ0J74zNMbNDwDgp8JbTt2Cu93dZ0Vyzp5MGhWV4pAwhC1cmWLkGb4c//hmUrOHgM9tR
+         Ndjsv/PIoWQsfmrFj73BSh/NhwAW5TULs9rVi03tu6dFhaOn0PRX1TKxneKW6Gt7Hw0O
+         dJDw==
+X-Gm-Message-State: AOAM532mE84XdlZESE0XSP8aG0pg0z9jtKdtkqGFIcZTTDuxKqcJsPmR
+        kIGqO4CXsFpYw60UPAArnXeelg==
+X-Google-Smtp-Source: ABdhPJzGm7aYpkcvBh52pNx0ZDFrrdjtJC2mAVrJctkZ0jCtShiTb6GbKe3ylOcs27/Yo065nyQ4zg==
+X-Received: by 2002:a4a:c541:: with SMTP id j1mr4162359ooq.15.1630174062688;
+        Sat, 28 Aug 2021 11:07:42 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 186sm1942151ood.39.2021.08.28.11.07.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Aug 2021 11:07:42 -0700 (PDT)
+Date:   Sat, 28 Aug 2021 13:07:39 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SM6350 pinctrl
+ bindings
+Message-ID: <YSp7az2iBlPnGgxQ@yoga>
+References: <20210828172315.55742-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.2108271620160.17851@sstabellini-ThinkPad-T480s>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210828172315.55742-1-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat 28 Aug 12:23 CDT 2021, Konrad Dybcio wrote:
 
-On 28.08.21 03:05, Stefano Stabellini wrote:
+> Add device tree binding Documentation details for Qualcomm SM6350
+> pinctrl driver.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Hi Stefano
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> On Fri, 27 Aug 2021, Oleksandr wrote:
->> On 07.08.21 01:57, Julien Grall wrote:
->>> Hi Stefano,
->>>
->>> On 06/08/2021 23:26, Stefano Stabellini wrote:
->>>> On Fri, 6 Aug 2021, Julien Grall wrote:
->>>>> Hi Stefano,
->>>>>
->>>>> On 06/08/2021 21:15, Stefano Stabellini wrote:
->>>>>> On Fri, 6 Aug 2021, Oleksandr Tyshchenko wrote:
->>>>>>> Hello, all.
->>>>>>>
->>>>>>> I would like to clarify some bits regarding a possible update for
->>>>>>> "Xen
->>>>>>> device tree bindings for the guest" [1].
->>>>>>>
->>>>>>> A bit of context:
->>>>>>> We are considering extending "reg" property under the hypervisor
->>>>>>> node and
->>>>>>> we would like to avoid breaking backward compatibility.
->>>>>>> So far, the "reg" was used to carry a single region for the grant
->>>>>>> table
->>>>>>> mapping only and it's size is quite small for the new improvement
->>>>>>> we are currently working on.
->>>>>>>
->>>>>>> What we want to do is to extend the current region [reg: 0] and add
->>>>>>> an
->>>>>>> extra regions [reg: 1-N] to be used as a safe address space for any
->>>>>>> Xen specific mappings. But, we need to be careful about running
->>>>>>> "new"
->>>>>>> guests (with the improvement being built-in already) on "old" Xen
->>>>>>> which is not aware of the extended regions, so we need the binding
->>>>>>> to be
->>>>>>> extended in a backward compatible way. In order to detect whether
->>>>>>> we are running on top of the "new" Xen (and it provides us enough
->>>>>>> space to
->>>>>>> be used for improvement), we definitely need some sign to
->>>>>>> indicate that.
->>>>>>>
->>>>>>> Could you please clarify, how do you expect the binding to be
->>>>>>> changed in
->>>>>>> the backward compatible way?
->>>>>>> - by adding an extra compatible (as it is a change of the binding
->>>>>>> technically)
->>>>>>> - by just adding new property (xen,***) to indicate that "reg"
->>>>>>> contains
->>>>>>> enough space
->>>>>>> - other option
->>>>>>     The current description is:
->>>>>>
->>>>>> - reg: specifies the base physical address and size of a region in
->>>>>>      memory where the grant table should be mapped to, using an
->>>>>>      HYPERVISOR_memory_op hypercall [...]
->>>>>>
->>>>>>
->>>>>> Although it says "a region" I think that adding multiple ranges would
->>>>>> be
->>>>>> fine and shouldn't break backward compatibility.
->>>>>>
->>>>>> In addition, the purpose of the region was described as "where the
->>>>>> grant
->>>>>> table should be mapped". In other words, it is a safe address range
->>>>>> where the OS can map Xen special pages.
->>>>>>
->>>>>> Your proposal is to extend the region to be bigger to allow the OS to
->>>>>> map more Xen special pages. I think it is a natural extension to the
->>>>>> binding, which should be backward compatible.
->>>>> I agree that extending the reg (or even adding a second region) should
->>>>> be fine
->>>>> for older OS.
->>>>>
->>>>>> Rob, I am not sure what is commonly done in these cases. Maybe we just
->>>>>> need an update to the description of the binding? I am also fine with
->>>>>> adding a new compatible string if needed.
->>>>> So the trouble is how a newer Linux version knows that the region is big
->>>>> enough to deal with all the foreign/grant mapping?
->>>>>
->>>>> If you run on older Xen, then the region will only be 16MB. This means
->>>>> the
->>>>> Linux will have to fallback on stealing RAM as it is today.
->>>>>
->>>>> IOW, XSA-300 will still be a thing. On newer Xen (or toolstack), we
->>>>> ideally
->>>>> want the OS to not fallback on stealing RAM (and close XSA-300). This is
->>>>> where
->>>>> we need a way to advertise it.
->>>>>
->>>>> The question here is whether we want to use a property or a compatible
->>>>> for
->>>>> this.
->>>>>
->>>>> I am leaning towards the latter because this is an extension of the
->>>>> bindings.
->>>>> However, I wasn't entirely whether this was a normal way to do it.
->>
->> May I please ask for the clarification how to properly advertise that we have
->> extended region? By new compatible or property?
-> The current compatible string is defined as:
->
-> - compatible:
-> 	compatible = "xen,xen-<version>", "xen,xen";
->    where <version> is the version of the Xen ABI of the platform.
->
->
-> On the Xen side it is implemented as:
->
-> "xen,xen-"__stringify(XEN_VERSION)"."__stringify(XEN_SUBVERSION)"\0"
->
->
-> So in a way we already have the version in the compatible string but it
-> is just the Xen version, not the version of the Device Tree binding.
->
->
-> Looking at the way the compatible string is parsed in Linux, I think we
-> cannot easily change/add a different string format because it would
-> cause older Linux to stop initializing the Xen subsystem.
->
-> So one option is to rely on a check based on the Xen version. Example:
->
->    version >= xen,xen-4.16
->
->
-> Or we need to go with a property. This seems safer and more solid. The
-> property could be as simple as "extended-region":
->
-> hypervisor {
-> 	compatible = "xen,xen-4.16", "xen,xen";
->      extended-region;
-> 	reg = <0 0xb0000000 0 0x20000 0xc 0x0 0x1 0x0>;
-> 	interrupts = <1 15 0xf08>;
-> };
-
-Thank you for the detailed analysis, I think, it makes sense.
-
-
->
->
-> Julien, do you have a better suggestion for the property name?
-
--- 
 Regards,
+Bjorn
 
-Oleksandr Tyshchenko
-
+> ---
+> Changes since v2:
+> - Tweak the regex to match gpio0-gpio157
+> 
+>  .../bindings/pinctrl/qcom,sm6350-pinctrl.yaml | 148 ++++++++++++++++++
+>  1 file changed, 148 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..554992a681f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6350-pinctrl.yaml
+> @@ -0,0 +1,148 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm6350-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SM6350 TLMM block
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
+> +  in the SM6350 platform.
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm6350-tlmm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  '#interrupt-cells': true
+> +  gpio-controller: true
+> +  gpio-reserved-ranges: true
+> +  '#gpio-cells': true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  '-state$':
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-sm6350-tlmm-state"
+> +      - patternProperties:
+> +          ".*":
+> +            $ref: "#/$defs/qcom-sm6350-tlmm-state"
+> +
+> +$defs:
+> +  qcom-sm6350-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-4][0-9]|15[0-7])$"
+> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, atest_char1, atest_char2,
+> +                atest_char3, atest_tsens, atest_tsens2, atest_usb1, atest_usb10, atest_usb11,
+> +                atest_usb12, atest_usb13, atest_usb2, atest_usb20, atest_usb21, atest_usb22,
+> +                atest_usb23, audio_ref, btfm_slimbus, cam_mclk0, cam_mclk1, cam_mclk2, cam_mclk3,
+> +                cam_mclk4, cci_async, cci_i2c, cci_timer0, cci_timer1, cci_timer2, cci_timer3,
+> +                cci_timer4, cri_trng, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1, ddr_pxi2, ddr_pxi3,
+> +                dp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3, gp_pdm0, gp_pdm1, gp_pdm2, gpio,
+> +                gps_tx, ibi_i3c, jitter_bist, ldo_en, ldo_update, lpass_ext, m_voc, mclk,
+> +                mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s_0, mi2s_1, mi2s_2,
+> +                mss_lte, nav_gpio, nav_pps, pa_indicator, pcie0_clk, phase_flag0, phase_flag1,
+> +                phase_flag10, phase_flag11, phase_flag12, phase_flag13, phase_flag14, phase_flag15,
+> +                phase_flag16, phase_flag17, phase_flag18, phase_flag19, phase_flag2, phase_flag20,
+> +                phase_flag21, phase_flag22, phase_flag23, phase_flag24, phase_flag25, phase_flag26,
+> +                phase_flag27, phase_flag28, phase_flag29, phase_flag3, phase_flag30, phase_flag31,
+> +                phase_flag4, phase_flag5, phase_flag6, phase_flag7, phase_flag8, phase_flag9,
+> +                pll_bist, pll_bypassnl, pll_reset, prng_rosc, qdss_cti, qdss_gpio, qdss_gpio0,
+> +                qdss_gpio1, qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
+> +                qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5, qdss_gpio6,
+> +                qdss_gpio7, qdss_gpio8, qdss_gpio9, qlink0_enable, qlink0_request, qlink0_wmss,
+> +                qlink1_enable, qlink1_request, qlink1_wmss, qup00, qup01, qup02, qup10, qup11,
+> +                qup12, qup13_f1, qup13_f2, qup14, rffe0_clk, rffe0_data, rffe1_clk, rffe1_data,
+> +                rffe2_clk, rffe2_data, rffe3_clk, rffe3_data, rffe4_clk, rffe4_data, sd_write,
+> +                sdc1_tb, sdc2_tb, sp_cmu, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm1,
+> +                tsense_pwm2, uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk, uim2_data,
+> +                uim2_present, uim2_reset, usb_phy, vfr_1, vsense_trigger, wlan1_adc0, wlan1_adc1,
+> +                wlan2_adc0, wlan2_adc1, ]
+> +
+> +
+> +      bias-disable: true
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      drive-strength: true
+> +      input-enable: true
+> +      output-high: true
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +        pinctrl@f100000 {
+> +                compatible = "qcom,sm6350-tlmm";
+> +                reg = <0x0f100000 0x300000>;
+> +                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +                gpio-ranges = <&tlmm 0 0 157>;
+> +
+> +                gpio-wo-subnode-state {
+> +                        pins = "gpio1";
+> +                        function = "gpio";
+> +                };
+> +
+> +                uart-w-subnodes-state {
+> +                        rx {
+> +                                pins = "gpio25";
+> +                                function = "qup13_f2";
+> +                                bias-disable;
+> +                        };
+> +
+> +                        tx {
+> +                                pins = "gpio26";
+> +                                function = "qup13_f2";
+> +                                bias-disable;
+> +                        };
+> +                };
+> +        };
+> +...
+> -- 
+> 2.33.0
+> 
