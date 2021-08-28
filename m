@@ -2,194 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A7F3FA205
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 02:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B96B93FA2B7
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 03:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232583AbhH1AGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Aug 2021 20:06:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51884 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232558AbhH1AGe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Aug 2021 20:06:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E576F60FD9;
-        Sat, 28 Aug 2021 00:05:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630109145;
-        bh=pGGGJWYo0I13DYUPEUMfU5BcMK8k2UszlxyQNC4Y2QE=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=FEAFDA+VdqfP/m7vK5plakh33jU/YAT0vtzFxDdea3hYqeKzd8o4fLKlhKfts0pDi
-         fK5H/rWstAzozzx4PEfJarNKO7P3Ih7OiCgQ+p6uF6tIUN+Z+vtaieMt3c/npQAVxh
-         Af/bxEt7kcFscQuDLHudLpmn+C5+5Euaz23yQTSiC4hRSnk+S13Ne8p55d9/a0EKHG
-         Q9k5/TsGkqh71Ydo2mgA7m+KLLEueQcCWZ4c+Igl+GB0XWHKx19BV+dQFGWLvIXyk8
-         mVgqKawxW5XShTBoFVY48zWCelD5lP8+/IQFUFCduljr7+MgLZMFVPXlYViflhrCx3
-         DW5kBxGqYMkHA==
-Date:   Fri, 27 Aug 2021 17:05:44 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
-To:     Oleksandr <olekstysh@gmail.com>
-cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Julien Grall <julien@xen.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: Clarification regarding updating "Xen hypervisor device tree
- bindings on Arm"
-In-Reply-To: <8b311e33-89e5-87f3-63d2-54bbc2f8f8e7@gmail.com>
-Message-ID: <alpine.DEB.2.21.2108271620160.17851@sstabellini-ThinkPad-T480s>
-References: <CAPD2p-kPXFgaLtwy95ZswYUK3xCDaxC4L85vQw=EvTWgehJ7-A@mail.gmail.com> <alpine.DEB.2.21.2108061306140.18743@sstabellini-ThinkPad-T480s> <f45250de-fdca-18c4-044b-276d0ff66b05@xen.org> <alpine.DEB.2.21.2108061519500.18743@sstabellini-ThinkPad-T480s>
- <fa3ad927-14c8-59ac-6cdc-673c65850ac6@xen.org> <8b311e33-89e5-87f3-63d2-54bbc2f8f8e7@gmail.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        id S232682AbhH1BKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Aug 2021 21:10:09 -0400
+Received: from szxga01-in.huawei.com ([45.249.212.187]:8792 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230238AbhH1BKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Aug 2021 21:10:09 -0400
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.54])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GxJPN3RnvzYrD1;
+        Sat, 28 Aug 2021 09:08:40 +0800 (CST)
+Received: from dggpemm500001.china.huawei.com (7.185.36.107) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Sat, 28 Aug 2021 09:09:17 +0800
+Received: from [10.174.177.243] (10.174.177.243) by
+ dggpemm500001.china.huawei.com (7.185.36.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Sat, 28 Aug 2021 09:09:08 +0800
+Subject: Re: [BUG] amba: Remove deferred device addition
+To:     Saravana Kannan <saravanak@google.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Russell King <linux@armlinux.org.uk>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        <linux-input@vger.kernel.org>
+References: <20210816074619.177383-1-wangkefeng.wang@huawei.com>
+ <20210816074619.177383-4-wangkefeng.wang@huawei.com>
+ <CAL_JsqLBddXVeP-t++wqPNp=xYF7tvEcnCbjFnK9CUBLK2+9JA@mail.gmail.com>
+ <CAGETcx8SY14rcd7g=Gdwmw7sUMb=jdEV+ffuNpg6btDoL1jmWw@mail.gmail.com>
+ <ee649111-dc07-d6db-8872-dcb692802236@huawei.com>
+ <CAGETcx9drOdE_vfn-nhDZM9MbgxGxYJN6ydiAVxo_Ltqve9eTg@mail.gmail.com>
+ <b5eb935f-26e1-6475-63af-e7f6101eb017@huawei.com>
+ <CAGETcx9yaWZOzt=gcyNAshoHdPoYizhmrKS-kU9c2QM2+HqeEw@mail.gmail.com>
+ <df8e7756-8b0d-d7de-a9ff-3f6eb0ffa8a5@huawei.com>
+ <CAGETcx-47yRUcBjEdWFBtroSEkHXRNrJ4zaD8WpE0DPEPp9NxQ@mail.gmail.com>
+ <85b28900-5f42-b997-2ded-0b952bc2a03e@huawei.com>
+ <CAGETcx-N4+u0iw9n5ncx_9MNnTa3ViyesxsDD7xN3jtEPT-uBw@mail.gmail.com>
+From:   Kefeng Wang <wangkefeng.wang@huawei.com>
+Message-ID: <265bb783-10da-a7c1-2625-055dec5643a3@huawei.com>
+Date:   Sat, 28 Aug 2021 09:09:08 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-181750720-1630106562=:17851"
-Content-ID: <alpine.DEB.2.21.2108271655210.17851@sstabellini-ThinkPad-T480s>
+In-Reply-To: <CAGETcx-N4+u0iw9n5ncx_9MNnTa3ViyesxsDD7xN3jtEPT-uBw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [10.174.177.243]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500001.china.huawei.com (7.185.36.107)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-181750720-1630106562=:17851
-Content-Type: text/plain; CHARSET=UTF-8
-Content-Transfer-Encoding: 8BIT
-Content-ID: <alpine.DEB.2.21.2108271655211.17851@sstabellini-ThinkPad-T480s>
+On 2021/8/28 3:09, Saravana Kannan wrote:
+> On Fri, Aug 27, 2021 at 7:38 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>
+>> On 2021/8/27 8:04, Saravana Kannan wrote:
+>>> On Thu, Aug 26, 2021 at 1:22 AM Kefeng Wang <wangkefeng.wang@huawei.com> wrote:
+>>>>>>> Btw, I've been working on [1] cleaning up the one-off deferred probe
+>>>>>>> solution that we have for amba devices. That causes a bunch of other
+>>>>>>> headaches. Your patch 3/3 takes us further in the wrong direction by
+>>>>>>> adding more reasons for delaying the addition of the device.
+>>>> Hi Saravana, I try the link[1], but with it, there is a crash when boot
+>>>> (qemu-system-arm -M vexpress-a15),
+> I'm assuming it's this one?
+> arch/arm/boot/dts/vexpress-v2p-ca15_a7.dts
 
-On Fri, 27 Aug 2021, Oleksandr wrote:
-> On 07.08.21 01:57, Julien Grall wrote:
-> > Hi Stefano,
-> > 
-> > On 06/08/2021 23:26, Stefano Stabellini wrote:
-> > > On Fri, 6 Aug 2021, Julien Grall wrote:
-> > > > Hi Stefano,
-> > > > 
-> > > > On 06/08/2021 21:15, Stefano Stabellini wrote:
-> > > > > On Fri, 6 Aug 2021, Oleksandr Tyshchenko wrote:
-> > > > > > Hello, all.
-> > > > > > 
-> > > > > > I would like to clarify some bits regarding a possible update for
-> > > > > > "Xen
-> > > > > > device tree bindings for the guest" [1].
-> > > > > > 
-> > > > > > A bit of context:
-> > > > > > We are considering extending "reg" property under the hypervisor
-> > > > > > node and
-> > > > > > we would like to avoid breaking backward compatibility.
-> > > > > > So far, the "reg" was used to carry a single region for the grant
-> > > > > > table
-> > > > > > mapping only and it's size is quite small for the new improvement
-> > > > > > we are currently working on.
-> > > > > > 
-> > > > > > What we want to do is to extend the current region [reg: 0] and add
-> > > > > > an
-> > > > > > extra regions [reg: 1-N] to be used as a safe address space for any
-> > > > > > Xen specific mappings. But, we need to be careful about running
-> > > > > > "new"
-> > > > > > guests (with the improvement being built-in already) on "old" Xen
-> > > > > > which is not aware of the extended regions, so we need the binding
-> > > > > > to be
-> > > > > > extended in a backward compatible way. In order to detect whether
-> > > > > > we are running on top of the "new" Xen (and it provides us enough
-> > > > > > space to
-> > > > > > be used for improvement), we definitely need some sign to
-> > > > > > indicate that.
-> > > > > > 
-> > > > > > Could you please clarify, how do you expect the binding to be
-> > > > > > changed in
-> > > > > > the backward compatible way?
-> > > > > > - by adding an extra compatible (as it is a change of the binding
-> > > > > > technically)
-> > > > > > - by just adding new property (xen,***) to indicate that "reg"
-> > > > > > contains
-> > > > > > enough space
-> > > > > > - other option
-> > > > >    The current description is:
-> > > > > 
-> > > > > - reg: specifies the base physical address and size of a region in
-> > > > >     memory where the grant table should be mapped to, using an
-> > > > >     HYPERVISOR_memory_op hypercall [...]
-> > > > > 
-> > > > > 
-> > > > > Although it says "a region" I think that adding multiple ranges would
-> > > > > be
-> > > > > fine and shouldn't break backward compatibility.
-> > > > > 
-> > > > > In addition, the purpose of the region was described as "where the
-> > > > > grant
-> > > > > table should be mapped". In other words, it is a safe address range
-> > > > > where the OS can map Xen special pages.
-> > > > > 
-> > > > > Your proposal is to extend the region to be bigger to allow the OS to
-> > > > > map more Xen special pages. I think it is a natural extension to the
-> > > > > binding, which should be backward compatible.
-> > > > 
-> > > > I agree that extending the reg (or even adding a second region) should
-> > > > be fine
-> > > > for older OS.
-> > > > 
-> > > > > 
-> > > > > Rob, I am not sure what is commonly done in these cases. Maybe we just
-> > > > > need an update to the description of the binding? I am also fine with
-> > > > > adding a new compatible string if needed.
-> > > > 
-> > > > So the trouble is how a newer Linux version knows that the region is big
-> > > > enough to deal with all the foreign/grant mapping?
-> > > > 
-> > > > If you run on older Xen, then the region will only be 16MB. This means
-> > > > the
-> > > > Linux will have to fallback on stealing RAM as it is today.
-> > > > 
-> > > > IOW, XSA-300 will still be a thing. On newer Xen (or toolstack), we
-> > > > ideally
-> > > > want the OS to not fallback on stealing RAM (and close XSA-300). This is
-> > > > where
-> > > > we need a way to advertise it.
-> > > > 
-> > > > The question here is whether we want to use a property or a compatible
-> > > > for
-> > > > this.
-> > > > 
-> > > > I am leaning towards the latter because this is an extension of the
-> > > > bindings.
-> > > > However, I wasn't entirely whether this was a normal way to do it.
-> 
-> 
-> May I please ask for the clarification how to properly advertise that we have
-> extended region? By new compatible or property?
+I use arch/arm/boot/dts/vexpress-v2p-ca15-tc1.dts.
 
-The current compatible string is defined as:
+qemu-system-arm -M vexpress-a15 -dtb vexpress-v2p-ca15-tc1.dtb -cpu 
+cortex-a15 -smp 2 -m size=3G -kernel zImage -rtc base=localtime -initrd 
+initrd-arm32 -append 'console=ttyAMA0 cma=0 kfence.sample_interval=0 
+earlyprintk debug ' -device virtio-net-device,netdev=net8 -netdev 
+type=tap,id=net8,script=/etc/qemu-ifup,downscript=/etc/qemu-ifdown 
+-nographic
 
-- compatible:
-	compatible = "xen,xen-<version>", "xen,xen";
-  where <version> is the version of the Xen ABI of the platform.
+>
+>>> Hi,
+>>>
+>>> It's hard to make sense of the logs. Looks like two different threads
+>>> might be printing to the log at the same time? Can you please enable
+>>> the config that prints the thread ID (forgot what it's called) and
+>>> collect this again? With what I could tell the crash seems to be
+>>> happening somewhere in platform_match(), but that's not related to
+>>> this patch at all?
+>> Can you reproduce it? it is very likely related(without your patch, the
+>> boot is fine),
+> Sorry, I haven't ever setup qemu and booted vexpress. Thanks for your help.
+>
+>> the NULL ptr is about serio, it is registed from amba driver.
+>>
+>> ambakmi_driver_init
+>>
+>>    -- amba_kmi_probe
+>>
+>>      -- __serio_register_port
+> Thanks for the pointer. I took a look at the logs and the code. It's
+> very strange. As you can see from the backtrace, platform_match() is
+> being called for the device_add() from serio_handle_event(). But the
+> device that gets added there is on the serio_bus which obviously
+> should be using the serio_bus_match.
+Yes, I am confused too.
+>
+>> +Dmitry and input maillist, is there some known issue about serio ?
+>>
+>> I add some debug, the full log is attached.
+>>
+>> [    2.958355][   T41] input: AT Raw Set 2 keyboard as
+>> /devices/platform/bus@8000000/bus@8000000:motherboard-bus/bus@8000000:motherboard-bus:iofpga-bus@300000000/1c060000.kmi/serio0/input/input0
+>> [    2.977441][   T41] serio serio1: pdev c1e05508, pdev->name (null),
+>> drv c1090fc0, drv->name vexpress-reset
+> Based on the logs you added, it's pretty clear we are getting to
+> platform_match(). It's also strange that the drv->name is
+> vexpress-reset
+...
+>
+>> [    3.003113][   T41] Backtrace:
+>> [    3.003451][   T41] [<c0560bb4>] (strcmp) from [<c0646358>] (platform_match+0xdc/0xf0)
+>> [    3.003963][   T41] [<c064627c>] (platform_match) from [<c06437d4>] (__device_attach_driver+0x3c/0xf4)
+>> [    3.004769][   T41] [<c0643798>] (__device_attach_driver) from [<c0641180>] (bus_for_each_drv+0x68/0xc8)
+>> [    3.005481][   T41] [<c0641118>] (bus_for_each_drv) from [<c0642f40>] (__device_attach+0xf0/0x16c)
+>> [    3.006152][   T41] [<c0642e50>] (__device_attach) from [<c06439d4>] (device_initial_probe+0x1c/0x20)
+>> [    3.006853][   T41] [<c06439b8>] (device_initial_probe) from [<c0642030>] (bus_probe_device+0x94/0x9c)
+>> [    3.007259][   T41] [<c0641f9c>] (bus_probe_device) from [<c063f9cc>] (device_add+0x408/0x8b8)
+>> [    3.007900][   T41] [<c063f5c4>] (device_add) from [<c071c1cc>] (serio_handle_event+0x1b8/0x234)
+>> [    3.008824][   T41] [<c071c014>] (serio_handle_event) from [<c01475a4>] (process_one_work+0x238/0x594)
+>> [    3.009737][   T41] [<c014736c>] (process_one_work) from [<c014795c>] (worker_thread+0x5c/0x5f4)
+>> [    3.010638][   T41] [<c0147900>] (worker_thread) from [<c014feb4>] (kthread+0x178/0x194)
+>> [    3.011496][   T41] [<c014fd3c>] (kthread) from [<c0100150>] (ret_from_fork+0x14/0x24)
+>> [    3.011860][   T41] Exception stack(0xc1675fb0 to 0xc1675ff8)
+> But the platform_match() is happening for the device_add() from
+> serio_event_handle() that's adding a device to the serio_bus and it
+> should be using serio_bus_match().
+>
+> I haven't reached any conclusion yet, but my current thought process
+> is that it's either:
+> 1. My patch is somehow causing list corruption. But I don't directly
+> touch any list in my change (other than deleting a list entirely), so
+> it's not clear how that would be happening.
 
+Maybe some concurrent driver load？
 
-On the Xen side it is implemented as:
+> 2. Without my patch, these AMBA device's probe would be delayed at
+> least until 5 seconds or possibly later. I'm wondering if my patch is
+> catching some bad timing assumptions in other code.
 
-"xen,xen-"__stringify(XEN_VERSION)"."__stringify(XEN_SUBVERSION)"\0"
+After Rob's patch, It will retry soon.
+
+commit 039599c92d3b2e73689e8b6e519d653fd4770abb
+Author: Rob Herring <robh@kernel.org>
+Date:   Wed Apr 29 15:58:12 2020 -0500
+
+     amba: Retry adding deferred devices at late_initcall
+
+     If amba bus devices defer when adding, the amba bus code simply retries
+     adding the devices every 5 seconds. This doesn't work well as it
+     completely unsynchronized with starting the init process which can
+     happen in less than 5 secs. Add a retry during late_initcall. If the
+     amba devices are added, then deferred probe takes over. If the
+     dependencies have not probed at this point, then there's no improvement
+     over previous behavior. To completely solve this, we'd need to retry
+     after every successful probe as deferred probe does.
+
+     The list_empty() check now happens outside the mutex, but the mutex
+     wasn't necessary in the first place.
+
+     This needed to use deferred probe instead of fragile initcall ordering
+     on 32-bit VExpress systems where the apb_pclk has a number of probe
+     dependencies (vexpress-sysregs, vexpress-config).
 
 
-So in a way we already have the version in the compatible string but it
-is just the Xen version, not the version of the Device Tree binding.
+>
+> You might be able to test out theory (2) by DEFERRED_DEVICE_TIMEOUT to
+> a much smaller number. Say 500ms or 100ms. If it doesn't crash, it
+> doesn't mean it's not (2), but if it does, then we know for sure it's
+> (2).
+ok, I will try this one, but due to above patch, it may not work.
 
-
-Looking at the way the compatible string is parsed in Linux, I think we
-cannot easily change/add a different string format because it would
-cause older Linux to stop initializing the Xen subsystem.
-
-So one option is to rely on a check based on the Xen version. Example:
-
-  version >= xen,xen-4.16
-
-
-Or we need to go with a property. This seems safer and more solid. The
-property could be as simple as "extended-region":
-
-hypervisor {
-	compatible = "xen,xen-4.16", "xen,xen";
-    extended-region;
-	reg = <0 0xb0000000 0 0x20000 0xc 0x0 0x1 0x0>;
-	interrupts = <1 15 0xf08>;
-};
-
-
-Julien, do you have a better suggestion for the property name?
---8323329-181750720-1630106562=:17851--
+>
+> I'll continue debugging further.
+>
+> -Saravana
