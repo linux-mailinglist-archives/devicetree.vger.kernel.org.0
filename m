@@ -2,55 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B34A43FA6E5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 19:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14FF43FA6F7
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 19:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbhH1RIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 13:08:06 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46140 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229822AbhH1RIF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Aug 2021 13:08:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=W1ifW6XCA/QKG4jUSYf8RKjhvjEg5gxc0xP0Qx7wwJQ=; b=EDbPU2J93PPky+lj/7RSYG47O+
-        VfshmhikaWWu3hpw04d5W2B5udKF7/FVBqzY7i86fwXZYgBq3yWU5IUTLdt6WgLJexbR7YN5bi304
-        jzIuwqEWHqRwF/HIMcFJBm/z//rP2l7g/Em7rb8xfSIx8q/kofpAOSq3pfhurN2aUV1o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mK1nQ-004IzB-Vk; Sat, 28 Aug 2021 19:07:08 +0200
-Date:   Sat, 28 Aug 2021 19:07:08 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/5] ARM: dts: NSP: Fix MDIO mux node names
-Message-ID: <YSptPF8MKNahkMbm@lunn.ch>
-References: <20210828112704.2283805-1-mnhagan88@gmail.com>
- <20210828112704.2283805-3-mnhagan88@gmail.com>
+        id S234608AbhH1RTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 13:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40190 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234596AbhH1RTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 13:19:00 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F55C061756
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:18:09 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id b4so21395297lfo.13
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:18:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=zdoJvRdg/wiFMUqCvkYyo5RNQaUscCsPcncLCMhtPj8=;
+        b=JSEd6UfO+vckTGqHUqtIEvPBomvRc6nCbTo4zk2ouC7F/YKKp/qPS7VOn8O8sebeeO
+         GGN17QJXDeDnJvs3IjsJuXo26NXZT1Nk97gsRaVoRrZBRif9RdZ9LhDLQvm+cABCLJfE
+         oIUltUDBXLln3VICQCnc+hnAssGQWX/CLkgb1OZNThkeE+KqvhNNdbEei4f6bDxFUrRh
+         kldxERcHEqvAyNtx/koMXyuw8vVbcSlOQz72Dy9HQY4AR8iiTFRhJtH+Y0TaTKf2Xt0e
+         zgWk8qA1qnruNe3G3Jr1Jk3SUOe4CT9dkc0CmHN7ofK4YYNKnZ5/x1aEviRHpwE/tktM
+         ycKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=zdoJvRdg/wiFMUqCvkYyo5RNQaUscCsPcncLCMhtPj8=;
+        b=XcphL4f6nMgI3QD3qyjqO9xPbFeL1RRtCkSBw9x9uyQh25lOur7H4Hj5zREZkRhcZD
+         hkAiSvAuzjfcy36RBU/JwVbFWwy+0u71ffr37QdF8LfHr52quBw/sCFbdbbIHmzGwjjA
+         yusLDfVfDgEwejOc2q0S14sUAHsKrYSpF9lm3o6X9QBPuLco2wKR2miHQilRs8alPwT3
+         smQyysEuQy0elTcBala3IH5MZ/ddNdybKsSePR+6sbT7DrfoxL3ZVecY2geJDBszItqr
+         3K7j+Uo+/30RsKspBttCe6c07rkNANLbYGWD5W9Ljk9tXbAdDuZl7l9Un5Cl7T5rrxIG
+         /r/Q==
+X-Gm-Message-State: AOAM5308qDM9Aq5lR9T/TAmIvCnI0WIaL3z/CZzIl5rAm8Nsn6jIQHJg
+        bsXn3o1pfK4ENSyMszRZXym/Qw==
+X-Google-Smtp-Source: ABdhPJxU7ZeJD04vrPBWlbTprBhBkerweqY61V+AAWnPoF1k35K3D/1j/tBi2rZ/H5GJ0WMXccN3bg==
+X-Received: by 2002:a05:6512:230b:: with SMTP id o11mr3209151lfu.377.1630171087650;
+        Sat, 28 Aug 2021 10:18:07 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id p1sm202195lfo.255.2021.08.28.10.18.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Aug 2021 10:18:07 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Imre Kaloz <kaloz@openwrt.org>, Krzysztof Halasa <khalasa@piap.pl>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next 4/5 v3] ixp4xx_eth: Add devicetree bindings
+Date:   Sat, 28 Aug 2021 19:15:47 +0200
+Message-Id: <20210828171548.143057-5-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210828171548.143057-1-linus.walleij@linaro.org>
+References: <20210828171548.143057-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210828112704.2283805-3-mnhagan88@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 28, 2021 at 11:27:01AM +0000, Matthew Hagan wrote:
-> This patch fixes the following message by adding "mdio-mux" compatible:
-> compatible: ['mdio-mux-mmioreg'] is too short
- 
-Err, what? This sounds like a workaround for a tool problem, not a
-real fix. 
+This adds device tree bindings for the IXP46x PTP Timer, a companion
+to the IXP4xx ethernet in newer platforms.
 
-What is actually wrong with:
+Cc: devicetree@vger.kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/net/intel,ixp46x-ptp-timer.yaml  | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
 
-compatible = "mdio-mux-mmioreg";
+diff --git a/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
+new file mode 100644
+index 000000000000..8b9b3f915d92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2018 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/net/intel,ixp46x-ptp-timer.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel IXP46x PTP Timer (TSYNC)
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Intel IXP46x PTP timer is known in the manual as IEEE1588 Hardware
++  Assist and Time Synchronization Hardware Assist TSYNC provides a PTP
++  timer. It exists in the Intel IXP45x and IXP46x XScale SoCs.
++
++properties:
++  compatible:
++    const: intel,ixp46x-ptp-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: Interrupt to trigger master mode snapshot from the
++          PRP timer, usually a GPIO interrupt.
++      - description: Interrupt to trigger slave mode snapshot from the
++          PRP timer, usually a GPIO interrupt.
++
++  interrupt-names:
++    items:
++      - const: master
++      - const: slave
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    ptp-timer@c8010000 {
++        compatible = "intel,ixp46x-ptp-timer";
++        reg = <0xc8010000 0x1000>;
++        interrupt-parent = <&gpio0>;
++        interrupts = <8 IRQ_TYPE_EDGE_FALLING>, <7 IRQ_TYPE_EDGE_FALLING>;
++        interrupt-names = "master", "slave";
++    };
+-- 
+2.31.1
 
-	   Andrew
