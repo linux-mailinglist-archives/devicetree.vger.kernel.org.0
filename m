@@ -2,142 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FF43FA6F7
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 19:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6F33FA6F1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 19:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234608AbhH1RTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 13:19:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40190 "EHLO
+        id S229726AbhH1RRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 13:17:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234596AbhH1RTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 13:19:00 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F55C061756
-        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:18:09 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id b4so21395297lfo.13
-        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:18:09 -0700 (PDT)
+        with ESMTP id S229574AbhH1RRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 13:17:43 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D881C061756
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:16:52 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso12285764ots.5
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 10:16:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zdoJvRdg/wiFMUqCvkYyo5RNQaUscCsPcncLCMhtPj8=;
-        b=JSEd6UfO+vckTGqHUqtIEvPBomvRc6nCbTo4zk2ouC7F/YKKp/qPS7VOn8O8sebeeO
-         GGN17QJXDeDnJvs3IjsJuXo26NXZT1Nk97gsRaVoRrZBRif9RdZ9LhDLQvm+cABCLJfE
-         oIUltUDBXLln3VICQCnc+hnAssGQWX/CLkgb1OZNThkeE+KqvhNNdbEei4f6bDxFUrRh
-         kldxERcHEqvAyNtx/koMXyuw8vVbcSlOQz72Dy9HQY4AR8iiTFRhJtH+Y0TaTKf2Xt0e
-         zgWk8qA1qnruNe3G3Jr1Jk3SUOe4CT9dkc0CmHN7ofK4YYNKnZ5/x1aEviRHpwE/tktM
-         ycKQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Q3vx9KPM0ynEgRyDybcuLPMlUBUC/MjvyIKkhWo2C9Y=;
+        b=cQpEkhuIKs61Vf3WunJpRhCiumTRy1vtfM7OwvmTWYxvdHo8sNaJKXBY6RCExXjfw3
+         pxjsa6BUzmaBEEVpFSYhyCq3qnhIkUt4hUUsGlfrUxJmpoivWPCO1I8sWi3PY+XHY113
+         olLH8qayt1qTv7UC1RFPDkTRuUCjvW//liokyp6Ye2Gl55jvMVcDadwUFFObYkddEOs8
+         /el6uuR6zZpnRgLoLQIflveeZ/QXszVrMISEnUCPSxtrpF2cGy50KaGz+dZ2YH3ej20s
+         3IBb7jd0B2Z67KByfkh8ejMzTTlRM01dMWjq3XvbcpUnQd2xhOHpLsh1t2/BiO/hF+qb
+         ZV6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zdoJvRdg/wiFMUqCvkYyo5RNQaUscCsPcncLCMhtPj8=;
-        b=XcphL4f6nMgI3QD3qyjqO9xPbFeL1RRtCkSBw9x9uyQh25lOur7H4Hj5zREZkRhcZD
-         hkAiSvAuzjfcy36RBU/JwVbFWwy+0u71ffr37QdF8LfHr52quBw/sCFbdbbIHmzGwjjA
-         yusLDfVfDgEwejOc2q0S14sUAHsKrYSpF9lm3o6X9QBPuLco2wKR2miHQilRs8alPwT3
-         smQyysEuQy0elTcBala3IH5MZ/ddNdybKsSePR+6sbT7DrfoxL3ZVecY2geJDBszItqr
-         3K7j+Uo+/30RsKspBttCe6c07rkNANLbYGWD5W9Ljk9tXbAdDuZl7l9Un5Cl7T5rrxIG
-         /r/Q==
-X-Gm-Message-State: AOAM5308qDM9Aq5lR9T/TAmIvCnI0WIaL3z/CZzIl5rAm8Nsn6jIQHJg
-        bsXn3o1pfK4ENSyMszRZXym/Qw==
-X-Google-Smtp-Source: ABdhPJxU7ZeJD04vrPBWlbTprBhBkerweqY61V+AAWnPoF1k35K3D/1j/tBi2rZ/H5GJ0WMXccN3bg==
-X-Received: by 2002:a05:6512:230b:: with SMTP id o11mr3209151lfu.377.1630171087650;
-        Sat, 28 Aug 2021 10:18:07 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id p1sm202195lfo.255.2021.08.28.10.18.07
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Q3vx9KPM0ynEgRyDybcuLPMlUBUC/MjvyIKkhWo2C9Y=;
+        b=bwuA33ot5xcPOrJMF+QeMSoY0GWiDWlJA135RG2OMH2LtGMDNNhvQ6ywSHUAhml8hS
+         2ipjnUbKBIUzV4UFBgZ39iKp4UJKPitKChZaGjbPf6XPZaiVVYR9EL2GBw+9JZp6Ypww
+         QGwsGWwwP+KKMKOmkuevh7krCKFwBP69sOva7Q3vd8nwLpTdOhjK7Clu9YF9//mma9Ob
+         MczuAs2NDSIkHtEDxGRPN/MPnrLwINO06ou0GK43kSuZUlyihWkKSoX2FXFaqjjYeZRp
+         EMRFNEcz7MmR2rhJbSlulJSH/mJsN3CMqzcr4y+d0BFtD2uPmlG+QDWSMNqSk3JEA54S
+         uUzA==
+X-Gm-Message-State: AOAM531+/VbtoI3104n3QCH+flgm9SIFTWG2YFgHbGH71mPvYJUDudcW
+        ts3j00FXvE2Knvx91YM89oamUw==
+X-Google-Smtp-Source: ABdhPJwWVKLH+PWa5DIz6f1PzZytQfIjCnHKaoNQWVuvkkNMnvWrp6rSiaLr8zGGgVluzVXI1JOyxQ==
+X-Received: by 2002:a05:6830:1184:: with SMTP id u4mr13170641otq.55.1630171011667;
+        Sat, 28 Aug 2021 10:16:51 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 31sm1940409oti.63.2021.08.28.10.16.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Aug 2021 10:18:07 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Imre Kaloz <kaloz@openwrt.org>, Krzysztof Halasa <khalasa@piap.pl>,
+        Sat, 28 Aug 2021 10:16:51 -0700 (PDT)
+Date:   Sat, 28 Aug 2021 12:16:48 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Maulik Shah <mkshah@codeaurora.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH net-next 4/5 v3] ixp4xx_eth: Add devicetree bindings
-Date:   Sat, 28 Aug 2021 19:15:47 +0200
-Message-Id: <20210828171548.143057-5-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210828171548.143057-1-linus.walleij@linaro.org>
-References: <20210828171548.143057-1-linus.walleij@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Add SM6350 pinctrl driver
+Message-ID: <YSpvgNCxKk4zgsCP@yoga>
+References: <20210828125112.14721-1-konrad.dybcio@somainline.org>
+ <20210828125112.14721-2-konrad.dybcio@somainline.org>
+ <YSo+lTwmbVpZYvxS@yoga>
+ <501ee7b9-3db2-7a4a-e25a-fcfbce645bc7@codeaurora.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <501ee7b9-3db2-7a4a-e25a-fcfbce645bc7@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the IXP46x PTP Timer, a companion
-to the IXP4xx ethernet in newer platforms.
+On Sat 28 Aug 10:43 CDT 2021, Maulik Shah wrote:
+> On 8/28/2021 7:18 PM, Bjorn Andersson wrote:
+> > On Sat 28 Aug 07:51 CDT 2021, Konrad Dybcio wrote:
+[..]
+> > > diff --git a/drivers/pinctrl/qcom/pinctrl-sm6350.c b/drivers/pinctrl/qcom/pinctrl-sm6350.c
+[..]
+> > > +static const struct msm_gpio_wakeirq_map sm6350_pdc_map[] = {
+> > > +	{ 3, 126 }, { 4, 151 }, { 7, 58 }, { 8, 113 }, { 9, 66 }, { 11, 106 },//
+> > > +	{ 12, 59 }, { 13, 112 }, { 16, 73 }, { 17, 74 }, { 18, 75 }, { 19, 76 },//
+> > > +	{ 21, 130 }, { 22, 96 }, { 23, 146 }, { 24, 114 }, { 25, 83 },//
+> > > +	{ 27, 84 }, { 28, 85 }, { 34, 147 }, { 35, 92 }, { 36, 93 }, { 37, 94 },//
+> > > +	{ 38, 68 }, { 48, 100 }, { 50, 57 }, { 51, 81 }, { 52, 80 }, { 53, 69 },//
+> > > +	{ 54, 71 }, { 55, 70 }, { 57, 152 }, { 58, 115 }, { 59, 116 }, { 60, 117 },//
+> > > +	{ 61, 118 }, { 62, 119 }, { 64, 121 }, { 66, 127 }, { 67, 128 },//
+> > > +	{ 69, 60 }, { 73, 78 }, { 78, 135 }, { 82, 138 }, { 83, 140 },//
+> > > +	{ 84, 141 }, { 85, 98 }, { 87, 88 }, { 88, 107 }, { 89, 109 },//
+> > > +	{ 90, 110 }, { 91, 111 }, { 92, 149 }, { 93, 101 }, { 94, 61 },//
+> > > +	{ 95, 65 }, { 96, 95 }, { 97, 72 }, { 98, 145 }, { 99, 150 },//
+> > > +	{ 100, 108 }, { 104, 129 }, { 107, 131 }, { 110, 132 }, { 112, 133 },//
+> > > +	{ 114, 134 }, { 116, 136 }, { 118, 137 }, { 122, 97 }, { 123, 99 },//
+> minor:
+> 
+> above lines in sm6350_pdc_map[] has // at the end.  Probably Bjorn might fix
+> them when applying.
+> 
 
-Cc: devicetree@vger.kernel.org
-Cc: Arnd Bergmann <arnd@arndb.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/net/intel,ixp46x-ptp-timer.yaml  | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
+Thanks for noticing Maulik! Konrad, can you please trim those when
+you're respinning the binding?
 
-diff --git a/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
-new file mode 100644
-index 000000000000..8b9b3f915d92
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2018 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/intel,ixp46x-ptp-timer.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel IXP46x PTP Timer (TSYNC)
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Intel IXP46x PTP timer is known in the manual as IEEE1588 Hardware
-+  Assist and Time Synchronization Hardware Assist TSYNC provides a PTP
-+  timer. It exists in the Intel IXP45x and IXP46x XScale SoCs.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp46x-ptp-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Interrupt to trigger master mode snapshot from the
-+          PRP timer, usually a GPIO interrupt.
-+      - description: Interrupt to trigger slave mode snapshot from the
-+          PRP timer, usually a GPIO interrupt.
-+
-+  interrupt-names:
-+    items:
-+      - const: master
-+      - const: slave
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    ptp-timer@c8010000 {
-+        compatible = "intel,ixp46x-ptp-timer";
-+        reg = <0xc8010000 0x1000>;
-+        interrupt-parent = <&gpio0>;
-+        interrupts = <8 IRQ_TYPE_EDGE_FALLING>, <7 IRQ_TYPE_EDGE_FALLING>;
-+        interrupt-names = "master", "slave";
-+    };
--- 
-2.31.1
 
+Maulik, when replying to long patches, please trim out unrelated
+snippets so that it's easier to spot your comments in the large block of
+text.
+
+Thanks,
+Bjorn
