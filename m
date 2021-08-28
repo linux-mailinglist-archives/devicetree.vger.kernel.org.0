@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8674C3FA4A5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 11:17:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B61933FA4BF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Aug 2021 11:28:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233633AbhH1JNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 05:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
+        id S233446AbhH1J2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 05:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233595AbhH1JNb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 05:13:31 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F04C061756;
-        Sat, 28 Aug 2021 02:12:41 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z10so13558733edb.6;
-        Sat, 28 Aug 2021 02:12:41 -0700 (PDT)
+        with ESMTP id S230444AbhH1J2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 05:28:53 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4341C061756;
+        Sat, 28 Aug 2021 02:28:02 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id q3so13596416edt.5;
+        Sat, 28 Aug 2021 02:28:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SvvbcesUWfj9LMRxBzI6Ev7Q0MX9bVpa2X1UHmZy5Ko=;
-        b=WbrKJIDpVBW4LuxY9IEFZWqoCPt11yVJXydz5n+xiEdUt/Iiy9dTT5DzDciw9LRn1E
-         y3KNoTpglKtkhTvAvbiMz2TZWWrvHO1XXLY04E0T/Mr1Ia3kFjwf0+WM6dY/RevB3M3n
-         28SHgfjhu7ijS1MBgadoJSGB4Uinrt21n9fuxt+YtxaKnILOT7cBqB1hiAM/50y72T22
-         5ZATPwdqltWGCXNOMFUWZ3y1Er5+O5+2BaEM1Wrd6wlJCTtCVC7MvjqaOBoWUYOikgUO
-         rbgvRKsMnyI+8Ymy8YoqxQk4cQpp5cTyO2c6RvVQO8lwchIBxgm7VwctT8P+l/nU0pDx
-         W7cg==
+        bh=YO5P+c/MNcPVuw9OJF09SP3sm2xgsheSfNcKULrpmyY=;
+        b=lR7Sha9B7gOw10ZpqEIY7mcZivzuDuOyqwLr+v5Jjta8Fq7vVpKAH3sCBblX2bUkaF
+         QneLIKAT8zzVaON7Z36wJob+uxlDBRsbNZH53cnVAGFd1cnXu7uPfNgR9iWdP3A6ekpn
+         uAcDbMfNOkqpDqU07TDHR3qk97FB7PTCZbkCBVS3Nqm8OSPKN48XpnuKFHlCDIBYFHRg
+         f3N4mUVGZDfxxJcWYaTQ+eKCoF8TaM68SKZAmI6IB7E7IOEwzxL4N5KpQw4zlATVn+Aj
+         igcUzz0LUbMclsWVwlExv1KyRIvgX1cawxUx2ftUzGPiMXTAoynhPR+OYg7p75leI9ay
+         2WlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=SvvbcesUWfj9LMRxBzI6Ev7Q0MX9bVpa2X1UHmZy5Ko=;
-        b=Y6jH/mtd8EYy6/vC2jjWSapbtjDJnjAeJlyux9uCu74A+714EAfZ/aZmSaLeEGQAwY
-         mmi1xutcEf4dd7XeKCEOflCrCEtumgy0ERreuWlY/vb8q/sHPvtmim8TnF+lri1Dytl2
-         YU14uQVkizHsfUptCovvwC4HHiiUFlymPu2ZoYaQezr/sXelzwXUsZTeFOlNpYcgwwFv
-         +ELch3aUZ6fpDdn3jXJG+Jcd2mZXu2qBsflUHi+zgb3NcpYV5DJoVGUUIbFB5ge5e+lW
-         kbK54lbw2eb6OHDgv2G4ppxQlDH06sB6z0jw+jy5QnHNfeGN348pQp6krjS8xIQua61U
-         n+jg==
-X-Gm-Message-State: AOAM530p/dVlepkAOl9d30kNYkkoIPG1rSK5peUl9zp/LBlAV0uJM7wg
-        tTd2RporGV9CUC6yPCY7sWY=
-X-Google-Smtp-Source: ABdhPJwolTxMxxAfrpO8rnE0IdRrrykT1UKXuvGuqrPmonIccYMBpu5U39/TA+Ddd6hRpx80ronDeA==
-X-Received: by 2002:a05:6402:714:: with SMTP id w20mr10288906edx.62.1630141960105;
-        Sat, 28 Aug 2021 02:12:40 -0700 (PDT)
+        bh=YO5P+c/MNcPVuw9OJF09SP3sm2xgsheSfNcKULrpmyY=;
+        b=QDC97eqoz/XXcN/3YXO3LfU6VwR1YjpuVWmR2eRmvPk7sh5prg6SQJVgnnQuMuPRsL
+         6VZ6lVdOdZzgTpHqMu4ublaCTAbvfzWgdj29Mos7RxUgOZuzTxkEXP441UiL0LmFpnLH
+         L7Ly4KsTfdoK0t92EmzwAvNLMzTXN5Zho+2JoRP4UA0WMmpz3aw565B56QYgFMxDRlkX
+         a4vZ7Vpadgs3SHvhqYIvQO9BXQCXE3qh8yjNQsSlqO7KaFynpsXJKdCBB5h8XSpYwx33
+         eDb7SZni8sM2fsrD+X2jS7UpFPeSB8FkqDGE/W++aOSUEP3mPmdsKegoF18cu8qDbh6i
+         w0/Q==
+X-Gm-Message-State: AOAM530+eH/S3qlC0pVUsUdCZQZLY/qUwysYDT78UbGoqMT86tdEmAhM
+        DO57nMwfPbFKXhlBZtt83WE=
+X-Google-Smtp-Source: ABdhPJxrIXanuue1M1LVabN2JIXPUCJiqkPU/VSsbD1cuWK/98nBHFJkDvzo53cLYH2mm1oSLVbOoQ==
+X-Received: by 2002:a50:ab42:: with SMTP id t2mr12480670edc.113.1630142881442;
+        Sat, 28 Aug 2021 02:28:01 -0700 (PDT)
 Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id gl2sm3965102ejb.110.2021.08.28.02.12.39
+        by smtp.gmail.com with ESMTPSA id y23sm3866058ejp.115.2021.08.28.02.28.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Aug 2021 02:12:39 -0700 (PDT)
+        Sat, 28 Aug 2021 02:28:01 -0700 (PDT)
 From:   Johan Jonker <jbx6244@gmail.com>
 To:     heiko@sntech.de
 Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: rockchip: rk3066a: add more angle brackets to operating-points property
-Date:   Sat, 28 Aug 2021 11:12:33 +0200
-Message-Id: <20210828091233.19992-1-jbx6244@gmail.com>
+Subject: [PATCH] ARM: dts: rockchip: add adc-keys node to rk3066a-mk808.dts
+Date:   Sat, 28 Aug 2021 11:27:55 +0200
+Message-Id: <20210828092755.24560-1-jbx6244@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,48 +62,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After the conversion to YAML of the Operating Performance Points(OPP)
-binding the operating-points property expects values in
-a uint32-matrix with 2 items, so fix the notifications by adding
-angle brackets.
-
-make ARCH=arm dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/opp/opp-v1.yaml
+The MK808 has a button inside the cover for the boot loader to do
+some action. Add the adc-keys node to the rk3066a-mk808.dts file.
+The rk3066 has a higher maximum DC supply voltage for the analog part of
+SAR-ADC VDDA_SARADC of 2.75V then other Rockchip SoCs.
+For the "rockchip,saradc" node is a vref-supply property required,
+so add a regulator for it as well.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm/boot/dts/rk3066a.dtsi | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+ arch/arm/boot/dts/rk3066a-mk808.dts | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rk3066a.dtsi b/arch/arm/boot/dts/rk3066a.dtsi
-index ae4055428..cc701a4e0 100644
---- a/arch/arm/boot/dts/rk3066a.dtsi
-+++ b/arch/arm/boot/dts/rk3066a.dtsi
-@@ -23,16 +23,15 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x0>;
--			operating-points = <
-+			operating-points =
- 				/* kHz    uV */
--				1416000 1300000
--				1200000 1175000
--				1008000 1125000
--				816000  1125000
--				600000  1100000
--				504000  1100000
--				312000  1075000
--			>;
-+				<1416000 1300000>,
-+				<1200000 1175000>,
-+				<1008000 1125000>,
-+				<816000  1125000>,
-+				<600000  1100000>,
-+				<504000  1100000>,
-+				<312000  1075000>;
- 			clock-latency = <40000>;
- 			clocks = <&cru ARMCLK>;
+diff --git a/arch/arm/boot/dts/rk3066a-mk808.dts b/arch/arm/boot/dts/rk3066a-mk808.dts
+index 9790bc63b..667d57a4f 100644
+--- a/arch/arm/boot/dts/rk3066a-mk808.dts
++++ b/arch/arm/boot/dts/rk3066a-mk808.dts
+@@ -4,6 +4,7 @@
+  */
+ 
+ /dts-v1/;
++#include <dt-bindings/input/input.h>
+ #include "rk3066a.dtsi"
+ 
+ / {
+@@ -24,6 +25,20 @@
+ 		device_type = "memory";
+ 	};
+ 
++	adc-keys {
++		compatible = "adc-keys";
++		io-channels = <&saradc 1>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <2500000>;
++		poll-interval = <100>;
++
++		recovery {
++			label = "recovery";
++			linux,code = <KEY_VENDOR>;
++			press-threshold-microvolt = <0>;
++		};
++	};
++
+ 	gpio-leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -46,6 +61,13 @@
  		};
+ 	};
+ 
++	vcc_2v5: vcc-2v5 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_2v5";
++		regulator-min-microvolt = <2500000>;
++		regulator-max-microvolt = <2500000>;
++	};
++
+ 	vcc_io: vcc-io {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_io";
+@@ -164,6 +186,11 @@
+ 	};
+ };
+ 
++&saradc {
++	vref-supply = <&vcc_2v5>;
++	status = "okay";
++};
++
+ &uart2 {
+ 	status = "okay";
+ };
 -- 
 2.20.1
 
