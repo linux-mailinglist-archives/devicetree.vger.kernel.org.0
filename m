@@ -2,75 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDC0C3FAD65
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 19:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01E623FAD98
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 20:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235848AbhH2RI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 13:08:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42610 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235765AbhH2RI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 13:08:27 -0400
-Received: from dnyon.com (unknown [IPv6:2001:ba0:1800:12f::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620B5C061756;
-        Sun, 29 Aug 2021 10:07:35 -0700 (PDT)
-Received: from dnyon.com (45.74.222.87.dynamic.jazztel.es [87.222.74.45])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dnyon.com (Postfix) with ESMTPSA id CD4C940457;
-        Sun, 29 Aug 2021 17:07:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dnyon.com; s=mail;
-        t=1630256854; bh=d+2QNTvIoV14dRg4l4dGxY/K6mqRrojAgpr6qjkd1vY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RQZTpODurghBG3P44ykBj/me+k/9HHMcNsQrngtFfakKZH9kJW/EC8he6HXATnO3/
-         QdcTVp94I+/HcESNsN/2wT/VpPWZadHpqfLBh6KXCCiJcFNSik0v6tKh87Vrp5s3+s
-         OH0rcDgvvtvSS+9XaI+0SmsfeKHI2f/faKMRyO4TsiMbFJOHkrWO2A2z32Qphhgj5M
-         xHjyXQf/zEhF3hw94DpuauoryI0k2W06QbL+gegnjqjx4e6GoVAxwIzn+knFNka3yC
-         +NciyzLVJi57ChDvjvI7f8Wj9c1vDwRL2O1pu22a/u541ADeWH5E/OqUiPPx1AVCQ1
-         tdnEsbS9J+Wpg==
-From:   Alejandro Tafalla <atafalla@dnyon.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org
-Cc:     Alejandro Tafalla <atafalla@dnyon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH RESEND 2/2] dt-bindings: sound: max98927: Add reset-gpios optional property
-Date:   Sun, 29 Aug 2021 19:00:17 +0200
-Message-Id: <20210829170019.384632-3-atafalla@dnyon.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210829170019.384632-1-atafalla@dnyon.com>
-References: <20210829170019.384632-1-atafalla@dnyon.com>
+        id S230199AbhH2SAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 14:00:01 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:51626 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229904AbhH2SAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 14:00:01 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 06DA41C0B76; Sun, 29 Aug 2021 19:59:07 +0200 (CEST)
+Date:   Sun, 29 Aug 2021 19:59:07 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>, Dan Murphy <dmurphy@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Brian Masney <masneyb@onstation.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Russell King <linux@armlinux.org.uk>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, ~lkcamp/patches@lists.sr.ht,
+        =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@collabora.com>,
+        kernel@collabora.com
+Subject: Re: [PATCH v3 2/5] leds: Add driver for QCOM SPMI Flash LEDs
+Message-ID: <20210829175906.GA663@amd>
+References: <20210803162641.1525980-1-nfraprado@collabora.com>
+ <20210803162641.1525980-3-nfraprado@collabora.com>
+ <b1060e9a-f78e-fbe9-bde3-2b4d89cbc73e@gmail.com>
+ <20210824214515.ekjpvaymkgxltlzp@notapiano>
+ <278ea1e8-8b21-457d-78d7-fbb32544fe0a@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="/9DWx/yDrRhgMJTb"
+Content-Disposition: inline
+In-Reply-To: <278ea1e8-8b21-457d-78d7-fbb32544fe0a@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the reset-gpios as an optional property because some devices might 
-not need it to work properly.
 
-Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
----
- Documentation/devicetree/bindings/sound/max9892x.txt | 3 +++
- 1 file changed, 3 insertions(+)
+--/9DWx/yDrRhgMJTb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/sound/max9892x.txt b/Documentation/devicetree/bindings/sound/max9892x.txt
-index f6171591ddc6..73733fb60136 100644
---- a/Documentation/devicetree/bindings/sound/max9892x.txt
-+++ b/Documentation/devicetree/bindings/sound/max9892x.txt
-@@ -30,6 +30,9 @@ Required properties:
- 
-   - reg : the I2C address of the device for I2C
- 
-+Optional Properties:
-+  - reset-gpios : reference to the GPIO connected to the reset pin, if any.
-+
- Example:
- 
- codec: max98927@3a {
--- 
-2.32.0
+Hi both!
 
+Please trim your replies (removing code you are not commenting
+on). Scolling 600 lines to find where discussion is is not fun.
+
+Best regards,
+								Pavel
+
+> >>>+static int qcom_flash_torch_on(struct qcom_flash_led *led)
+> >>>+{
+> >>>+	int rc, error;
+> >>>+	struct qcom_flash_device *leds_dev =3D led_to_leds_dev(led);
+> >>>+	struct device *dev =3D leds_dev->dev;
+> >>>+
+> >>>+	if (leds_dev->peripheral_subtype =3D=3D QCOM_FLASH_SUBTYPE_DUAL) {
+> >>>+		rc =3D qcom_flash_torch_regulator_on(leds_dev);
+> >>>+		if (rc)
+> >>>+			goto error_reg_write;
+> >>>+	} else if (leds_dev->peripheral_subtype =3D=3D QCOM_FLASH_SUBTYPE_SI=
+NGLE) {
+> >>>+		rc =3D qcom_flash_fled_regulator_on(leds_dev);
+> >>
+> >>Why for torch mode you need to enable fled regulator?
+> >
+> >Based on [1], apparently the hardware present in the Single variant of t=
+he PMIC
+> >has some limitation that requires the use of the flash regulator and the=
+ value
+> >QCOM_FLASH_ENABLE_ALL to enable the LEDs for the torch mode. The Dual va=
+riant on
+> >the other hand can just use the torch regulator and enables the LEDs with
+> >QCOM_FLASH_ENABLE_MODULE.
+> >
+> >[1] https://github.com/AICP/kernel_lge_hammerhead/commit/0f47c747c074993=
+655d0bfebd045e8ddd228fe4c
+> >
+> >I'm honestly not sure what the impact is on using the different regulato=
+rs and
+> >enable values. I have tested enabling the Dual PMIC with different enabl=
+e values
+> >and all seemed to work the same, so must be some hardware detail.
+> >
+> >I left that Single codepath in the hope that it is useful for devices th=
+at have
+> >that variant of the hardware, but I have only actually tested the Dual P=
+MIC,
+> >which is the one present on the Nexus 5.
+>=20
+> Thanks for the explanation. Just wanted to confirm that it was not
+> a mistake.
+>=20
+> >>
+> >>>+		if (rc)
+> >>>+			goto error_flash_set;
+> >>>+
+> >>>+		/*
+> >>>+		 * Write 0x80 to MODULE_ENABLE before writing
+> >>>+		 * 0xE0 in order to avoid a hardware bug caused
+> >>>+		 * by register value going from 0x00 to 0xE0.
+> >>>+		 */
+> >>>+		rc =3D qcom_flash_masked_write(leds_dev,
+> >>>+					     QCOM_FLASH_ADDR_ENABLE_CONTROL,
+> >>>+					     QCOM_FLASH_ENABLE_MODULE_MASK,
+> >>>+					     QCOM_FLASH_ENABLE_MODULE);
+> >>>+		if (rc) {
+> >>>+			dev_err(dev, "Enable reg write failed(%d)\n", rc);
+> >>>+			goto error_flash_set;
+> >>>+		}
+> >>>+	}
+> >>>+
+> >>>+	rc =3D qcom_flash_torch_reg_enable(leds_dev, true);
+> >>>+	if (rc)
+> >>>+		goto error_reg_write;
+> >>>+
+> >>>+	rc =3D qcom_flash_masked_write(leds_dev, QCOM_FLASH_ADDR_ENABLE_CONT=
+ROL,
+> >>>+				     QCOM_FLASH_ENABLE_MASK,
+> >>>+				     leds_dev->torch_enable_cmd);
+> >>>+	if (rc) {
+> >>>+		dev_err(dev, "Enable reg write failed(%d)\n", rc);
+> >>>+		goto error_reg_write;
+> >>>+	}
+> >>>+
+> >>>+	rc =3D qcom_flash_masked_write(leds_dev, QCOM_FLASH_ADDR_LED_STROBE_=
+CTRL,
+> >>>+				     led->flash_strobe_cmd,
+> >>>+				     led->flash_strobe_cmd);
+> >>
+> >>Just to make sure - the hardware requires strobe cmd to enable torch?
+> >
+> >Yes. The strobe value is the one that actually turns each of the LEDs on,
+> >doesn't matter if it's on flash or torch mode. The difference in torch m=
+ode is
+> >actually just that the timeout on the LEDs is disabled (done by writing =
+0x00
+> >into the TORCH, 0xE4, register).
+> >So for both modes, the LEDs are turned on by writing to the STROBE_CTRL,=
+ 0x47,
+> >register. If torch is on they'll stay on indefinitely, while on flash mo=
+de
+> >they'll turn off after the timeout.
+> >
+> >Perhaps it's just a naming issue?
+>=20
+> I propose to add these comments next to the calls in question.
+
+
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--/9DWx/yDrRhgMJTb
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAmEryuoACgkQMOfwapXb+vITYACfTzmB/yQMp8pEyspMSXKVmTXc
+00kAoIV7dtVg8PxzAHH9lUhUZiImRPmJ
+=8kYL
+-----END PGP SIGNATURE-----
+
+--/9DWx/yDrRhgMJTb--
