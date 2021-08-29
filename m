@@ -2,77 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 879893FACF8
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 18:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 520833FAD03
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 18:06:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235656AbhH2P7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 11:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235576AbhH2P7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 11:59:50 -0400
-X-Greylist: delayed 539 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 Aug 2021 08:58:58 PDT
-Received: from dnyon.com (unknown [IPv6:2001:ba0:1800:12f::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5403EC061575;
-        Sun, 29 Aug 2021 08:58:58 -0700 (PDT)
-Received: from dnyon.com (45.74.222.87.dynamic.jazztel.es [87.222.74.45])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S235167AbhH2QFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 12:05:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43592 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235680AbhH2QF3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Aug 2021 12:05:29 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dnyon.com (Postfix) with ESMTPSA id 44C304047D;
-        Sun, 29 Aug 2021 15:50:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dnyon.com; s=mail;
-        t=1630252202; bh=d+2QNTvIoV14dRg4l4dGxY/K6mqRrojAgpr6qjkd1vY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Osy384ieHriXcIo+oFdAZN118xCPRIeNgdh3SG47Yuvxa8GT3a7PTQAHpNvqleZ71
-         A82drEb1RMbHvlB+SOE2fySWzXW/9s//juzRTYmD1wZJySnxSn06bhdMxnVK52z5eH
-         43jwf/rzq6mR9tyJ1IyHbanN5niGc7Krc1SmQXOlHLKMpQurB1k3OKDVRGjEzbwoVw
-         IYIe2YV3Fl2loGuCKL9F9Nze+qU+Wb6MRvNomHoGXx5Y9ahxk6hIfpFFwlDpo82Jjj
-         HX5yMxELFE/PCrbbQxYdY2Gh5q0cMldXwyyFpNF57YBjUvHGuUJOsH5lrhbhjKd6sq
-         GRPkDNrfzAPXA==
-From:   Alejandro Tafalla <atafalla@dnyon.com>
-Cc:     Alejandro Tafalla <atafalla@dnyon.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        by mail.kernel.org (Postfix) with ESMTPSA id 8284B60E73;
+        Sun, 29 Aug 2021 16:04:34 +0000 (UTC)
+Date:   Sun, 29 Aug 2021 17:07:49 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: sound: max98927: Add reset-gpios optional property
-Date:   Sun, 29 Aug 2021 17:45:44 +0200
-Message-Id: <20210829154545.383119-3-atafalla@dnyon.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210829154545.383119-1-atafalla@dnyon.com>
-References: <20210829154545.383119-1-atafalla@dnyon.com>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-iio@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: chemical: Document
+ senseair,sunrise CO2 sensor
+Message-ID: <20210829170749.199ff1af@jic23-huawei>
+In-Reply-To: <20210822160444.upjcnsbncyk63x3s@uno.localdomain>
+References: <20210820133821.159239-1-jacopo@jmondi.org>
+        <20210820133821.159239-2-jacopo@jmondi.org>
+        <1629488772.355778.3663899.nullmailer@robh.at.kernel.org>
+        <20210822160444.upjcnsbncyk63x3s@uno.localdomain>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the reset-gpios as an optional property because some devices might 
-not need it to work properly.
+On Sun, 22 Aug 2021 18:04:44 +0200
+Jacopo Mondi <jacopo@jmondi.org> wrote:
 
-Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
----
- Documentation/devicetree/bindings/sound/max9892x.txt | 3 +++
- 1 file changed, 3 insertions(+)
+> On Fri, Aug 20, 2021 at 02:46:12PM -0500, Rob Herring wrote:
+> > On Fri, 20 Aug 2021 15:38:19 +0200, Jacopo Mondi wrote:  
+> > > Add documentation for the Senseair Sunrise 006-0-0007 CO2 NDIR sensor.
+> > >
+> > > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> > > ---
+> > > v1->v2:
+> > > - Add maxItems to -gpios properties as suggested by Rob
+> > > - Add a label to the device node in the example as suggested by Rob
+> > >  
+> 
+> Labels cannot contain '-'.
+> 
+> I'll make this
+> 
+>         sunrise: co2-sensor@68
 
-diff --git a/Documentation/devicetree/bindings/sound/max9892x.txt b/Documentation/devicetree/bindings/sound/max9892x.txt
-index f6171591ddc6..73733fb60136 100644
---- a/Documentation/devicetree/bindings/sound/max9892x.txt
-+++ b/Documentation/devicetree/bindings/sound/max9892x.txt
-@@ -30,6 +30,9 @@ Required properties:
- 
-   - reg : the I2C address of the device for I2C
- 
-+Optional Properties:
-+  - reset-gpios : reference to the GPIO connected to the reset pin, if any.
-+
- Example:
- 
- codec: max98927@3a {
--- 
-2.32.0
+Why label at all?  Might be handy on a real board, but example doesn't need it.
+
+Jonathan
+
+> 
+> My bad and sorry for not running dt_binding_check, I thought the
+> changes were trivial enough.
+> 
+> Thanks
+>    j
+> 
+> > > ---
+> > >  .../iio/chemical/senseair,sunrise.yaml        | 53 +++++++++++++++++++
+> > >  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> > >  2 files changed, 55 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.yaml
+> > >  
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Error: Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.example.dts:23.21-22 syntax error
+> > FATAL ERROR: Unable to parse input tree
+> > make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/iio/chemical/senseair,sunrise.example.dt.yaml] Error 1
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1419: dt_binding_check] Error 2
+> >
+> > doc reference errors (make refcheckdocs):
+> >
+> > See https://patchwork.ozlabs.org/patch/1519042
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >
+> > pip3 install dtschema --upgrade
+> >
+> > Please check and re-submit.
+> >  
 
