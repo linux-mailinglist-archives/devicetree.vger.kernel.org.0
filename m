@@ -2,86 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 531AF3FAE70
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 22:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C96C3FAE92
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 22:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235882AbhH2Uba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 16:31:30 -0400
-Received: from relay03.th.seeweb.it ([5.144.164.164]:43547 "EHLO
-        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232328AbhH2Ub2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 16:31:28 -0400
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id B0B2B1F9E9;
-        Sun, 29 Aug 2021 22:30:32 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI PLL reference
-Date:   Sun, 29 Aug 2021 22:30:25 +0200
-Message-Id: <20210829203027.276143-2-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210829203027.276143-1-marijn.suijten@somainline.org>
-References: <20210829203027.276143-1-marijn.suijten@somainline.org>
+        id S234226AbhH2Uvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 16:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234243AbhH2Uvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 16:51:37 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13B33C06175F
+        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 13:50:45 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id u19so1862091edb.3
+        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 13:50:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bdNYVnY8wew5VKV8LOdUkcIS13QxalxT7B4uy/fmPwU=;
+        b=XZidhiGGeZHDe0k1/vjoba3xx0Zek1MPYwws0fBuZuQfZCHvE9gFzJahUipyyF9pEx
+         az0Y4VAokmxqq1+HBUWytSLzqZNgDtxlvMKMLAMgKFo4Ne3GFtslK7IsJcNXqK7WINyg
+         R01vqgdhHItsymuoUX4yGGgKLsuUI/ws9KV09shFCyhyRTLV9QXESf00woZGJWkkXw7l
+         5RnLxcP+yCJ9AI6r9QiHDhJuQcAKNgr1WgSS8e/0IsQeKnK48toJvUo3L/vsgET0xWFR
+         6D8XI+UBxApXehLnd+jtJGfmsJlr2NAzLwz8q0/0CyBvxqPPioDiSpzXd1u+NsslpR3O
+         qLeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bdNYVnY8wew5VKV8LOdUkcIS13QxalxT7B4uy/fmPwU=;
+        b=d3ypbbadIilIrfGnjlm5Oibr8XiKhbr/2xOc6JLbERFDQZ6iwwYw6hEPB/qq9D7vJS
+         f+UX99dVmZ27zrKg/IssAuPF+mWvZPZop8GWr1X7CvG1FXChLSwZ2aj2hEf4YQ5kjdwz
+         0sr4gO+ItnhJfjBme3oQ5C1G4hjDm9JYooj1q/JOdpzJF6DgoqBdAw4czIs5QAwKxUJc
+         TpqpuXfXyGAiDvVkycn6/Xtfn3cdSAEy6cDt8v9IraYfAODu8l2QHyRxrvb38ZbFmGe/
+         bNQy38yXTc2aMpQGmPe5ZJ5vaJx8c05SFvK5gSxetOJYckvNhDtLqhHDfWWl3AiJQimJ
+         DfIg==
+X-Gm-Message-State: AOAM532iAxM2io2fXQtRSMjWfPSkJh0M9M4MFUJm8j8nAD87hKwp2v7c
+        jysC+WrtHC+EaAhgY3QtlVDPFnSOYk8szTKHGb14Ag==
+X-Google-Smtp-Source: ABdhPJyTYIXkeNUZ78XZeBzzgBGieSJ37P8sW+ZQpTHTbP0ZiZXot4HF8VDGsgAhSnXVEMcHGQJEAR4F+Yz13AYvoZA=
+X-Received: by 2002:aa7:db8b:: with SMTP id u11mr20368778edt.362.1630270243611;
+ Sun, 29 Aug 2021 13:50:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
+ <20210811025801.21597-14-yunfei.dong@mediatek.com> <YRQQBL8AN0925zj9@pendragon.ideasonboard.com>
+In-Reply-To: <YRQQBL8AN0925zj9@pendragon.ideasonboard.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Sun, 29 Aug 2021 17:50:31 -0300
+Message-ID: <CAAEAJfAwUfwK=Cn7ocedhOaPyMqjL6phwSypkKDXGk6EV4D-vg@mail.gmail.com>
+Subject: Re: [PATCH v5, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for mt8192
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        George Sun <george.sun@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
-clock and should hence use PXO, not CXO which runs at 19.2MHz.
+On Wed, 11 Aug 2021 at 14:59, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Yunfei,
+>
+> Thank you for the patch.
+>
+> On Wed, Aug 11, 2021 at 10:57:59AM +0800, Yunfei Dong wrote:
+> > Adds decoder dt-bindings for mt8192.
+> >
+> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> > ---
+> > v5: no changes
+> >
+> > This patch depends on "Mediatek MT8192 clock support"[1].
+> >
+> > The definition of decoder clocks are in mt8192-clk.h, need to include them in case of build fail [1].
+> >
+> > [1]https://patchwork.kernel.org/project/linux-mediatek/list/?series=511175
+> > ---
+> >  .../media/mediatek,vcodec-comp-decoder.yaml   | 172 ++++++++++++++++++
+> >  1 file changed, 172 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> > new file mode 100644
+> > index 000000000000..083c89933917
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> > @@ -0,0 +1,172 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iommu/mediatek,vcodec-comp-decoder.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Mediatek Video Decode Accelerator With Component
+> > +
+> > +maintainers:
+> > +  - Yunfei Dong <yunfei.dong@mediatek.com>
+> > +
+> > +description: |+
+> > +  Mediatek Video Decode is the video decode hardware present in Mediatek
+> > +  SoCs which supports high resolution decoding functionalities. Required
+> > +  master and component node.
+>
+> This should explain how the three IP cores relate to each other.
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - mediatek,mt8192-vcodec-dec  # for lat hardware
+> > +          - mediatek,mtk-vcodec-lat     # for core hardware
+> > +          - mediatek,mtk-vcodec-core
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 5
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: vdec-sel
+> > +      - const: vdec-soc-vdec
+> > +      - const: vdec-soc-lat
+> > +      - const: vdec-vdec
+> > +      - const: vdec-top
+> > +
+> > +  assigned-clocks: true
+> > +
+> > +  assigned-clock-parents: true
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  iommus:
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +    description: |
+> > +      List of the hardware port in respective IOMMU block for current Socs.
+> > +      Refer to bindings/iommu/mediatek,iommu.yaml.
+> > +
+> > +  dma-ranges:
+> > +    maxItems: 1
+> > +    description: |
+> > +      Describes the physical address space of IOMMU maps to memory.
+> > +
+> > +  mediatek,scp:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Describes point to scp.
+> > +
+> > +required:
+> > +      - compatible
+> > +      - reg
+> > +      - iommus
+> > +      - dma-ranges
+> > +
+> > +allOf:
+> > +  - if: #master node
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8192-vcodec-dec  # for lat hardware
+> > +
+> > +    then:
+> > +      required:
+> > +        - mediatek,scp
+> > +
+> > +  - if: #component node
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mtk-vcodec-lat     # for core hardware
+> > +              - mediatek,mtk-vcodec-core
+> > +
+> > +    then:
+> > +      required:
+> > +        - interrupts
+> > +        - clocks
+> > +        - clock-names
+> > +        - assigned-clocks
+> > +        - assigned-clock-parents
+> > +        - power-domains
+> > +
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/memory/mt8192-larb-port.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/clock/mt8192-clk.h>
+> > +    #include <dt-bindings/power/mt8192-power.h>
+> > +
+> > +    vcodec_dec: vcodec_dec@16000000 {
+> > +        compatible = "mediatek,mt8192-vcodec-dec";
+> > +        reg = <0 0x16000000 0 0x1000>;               /* VDEC_SYS */
+> > +        mediatek,scp = <&scp>;
+> > +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> > +    };
+> > +
+> > +    vcodec_lat: vcodec_lat@0x16010000 {
+> > +        compatible = "mediatek,mtk-vcodec-lat";
+> > +        reg = <0 0x16010000 0 0x800>;                /* VDEC_MISC */
+> > +        interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> > +             <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> > +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > +             <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> > +             <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> > +             <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+> > +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> > +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> > +              "vdec-vdec", "vdec-top";
+> > +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> > +        assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> > +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+> > +    };
+> > +
+> > +    vcodec_core: vcodec_core@0x16025000 {
+> > +        compatible = "mediatek,mtk-vcodec-core";
+> > +        reg = <0 0x16025000 0 0x1000>;               /* VDEC_CORE_MISC */
+> > +        interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+> > +             <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+> > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+> > +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > +             <&vdecsys CLK_VDEC_VDEC>,
+> > +             <&vdecsys CLK_VDEC_LAT>,
+> > +             <&vdecsys CLK_VDEC_LARB1>,
+> > +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> > +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+> > +              "vdec-vdec", "vdec-top";
+> > +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> > +        assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+> > +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+> > +    };
+>
+> I'm a bit late in the game, reviewing v5 only, but I'm wondering if
+> those IP cores need to be modelled in separate nodes. It would be much
+> easier, from a software point of view, to have a single node, with
+> multiple register ranges.
+>
+> Are some of those IP cores used in different SoCs, combined in different
+> ways, that make a modular design better ?
+>
 
-Note that none of the DSI PHY/PLL drivers currently use this "ref"
-clock; they all rely on (sometimes inexistant) global clock names and
-usually function normally without a parent clock.  This discrepancy will
-be corrected in a future patch, for which this change needs to be in
-place first.
+Yeah, I agree with Laurent here. This way of modelling the different parts
+of the CODEC as different pieces is the reason why you need a framework
+to pull them together, such as the component API (I guess v4l2-async
+could have been used as well).
 
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- arch/arm/boot/dts/qcom-apq8064.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I normally don't bother with driver internals, as its up to each driver
+author to decide what is best. However, I believe this design is too
+convoluted, and it may lead other developers to follow the same pattern,
+so please avoid it.
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 2687c4e890ba..77659b783759 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -198,7 +198,7 @@ cxo_board: cxo_board {
- 			clock-frequency = <19200000>;
- 		};
- 
--		pxo_board {
-+		pxo_board: pxo_board {
- 			compatible = "fixed-clock";
- 			#clock-cells = <0>;
- 			clock-frequency = <27000000>;
-@@ -1306,7 +1306,7 @@ dsi0_phy: dsi-phy@4700200 {
- 			reg-names = "dsi_pll", "dsi_phy", "dsi_phy_regulator";
- 			clock-names = "iface_clk", "ref";
- 			clocks = <&mmcc DSI_M_AHB_CLK>,
--				 <&cxo_board>;
-+				 <&pxo_board>;
- 		};
- 
- 
--- 
-2.33.0
+There are several ways of modelling this and initializing or probing
+the sub-devices,
+without using any async framework.
 
+Thanks,
+Ezequiel
