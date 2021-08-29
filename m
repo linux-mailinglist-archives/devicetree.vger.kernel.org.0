@@ -2,98 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA83D3FAE37
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 21:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 531AF3FAE70
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 22:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232455AbhH2Tv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 15:51:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34466 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229451AbhH2Tv2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Aug 2021 15:51:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DEFA660C41;
-        Sun, 29 Aug 2021 19:50:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630266636;
-        bh=PYtw8mGYz1RPfE/Tx0vYhDXf3B8PdOYuQIRA2grz0N4=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=hHjy+V3WbLIHXbOMZt43SjNS4rKm+WP8gf37Nm97kBixjArIv9aQCXYnv+vLk1e1u
-         QE0eXwE04SbDqRB02DjVx4kNL7xUZ0hCtFbvFwm6wjjXN4ttGSX19nLwEmIa8Yxbid
-         w4CYOUqe6ZcFEqxsDw8j3VN1qzEjZn9WIB1HmaHF0qBD12lOhoYD5hBFEcx4FmesUH
-         8kYTl3+TaRUy6dVmAOntac+6ofK3wUr8Qa690rVX8l7KdZhGNkK71t57bcIVavZIc/
-         AYmzlHS0VuGz6+cqOvI3QmS4rbnI23R6EnzmS6qg4fIc7e5jzYgKVG8SWIJxizUog5
-         u50wI7reYIVow==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210829193617.4105-9-konrad.dybcio@somainline.org>
-References: <20210829193617.4105-1-konrad.dybcio@somainline.org> <20210829193617.4105-9-konrad.dybcio@somainline.org>
-Subject: Re: [PATCH RESEND v2 9/9] clk: qcom: gcc-msm8994: Add a quirk for a different SDCC configuration
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        id S235882AbhH2Uba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 16:31:30 -0400
+Received: from relay03.th.seeweb.it ([5.144.164.164]:43547 "EHLO
+        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232328AbhH2Ub2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 16:31:28 -0400
+Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id B0B2B1F9E9;
+        Sun, 29 Aug 2021 22:30:32 +0200 (CEST)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Date:   Sun, 29 Aug 2021 12:50:33 -0700
-Message-ID: <163026663369.2676726.3000078179170142966@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI PLL reference
+Date:   Sun, 29 Aug 2021 22:30:25 +0200
+Message-Id: <20210829203027.276143-2-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210829203027.276143-1-marijn.suijten@somainline.org>
+References: <20210829203027.276143-1-marijn.suijten@somainline.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Konrad Dybcio (2021-08-29 12:36:16)
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yam=
-l b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> index b44a844d894c..4ba2f72d3cad 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> @@ -49,6 +49,10 @@ properties:
->      description:
->        Protected clock specifier list as per common clock binding.
-> =20
-> +  qcom,sdcc2-clk-src-40mhz:
-> +    description: SDCC2_APPS clock source runs at 40MHz.
-> +    type: boolean
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/drivers/clk/qcom/gcc-msm8994.c b/drivers/clk/qcom/gcc-msm899=
-4.c
-> index 72038e4c04df..55c0fd069640 100644
-> --- a/drivers/clk/qcom/gcc-msm8994.c
-> +++ b/drivers/clk/qcom/gcc-msm8994.c
-> @@ -1012,6 +1012,19 @@ static struct clk_rcg2 sdcc1_apps_clk_src =3D {
->         },
->  };
-> =20
-> +static struct freq_tbl ftbl_sdcc2_40mhz_apps_clk_src[] =3D {
-> +       F(144000, P_XO, 16, 3, 25),
-> +       F(400000, P_XO, 12, 1, 4),
-> +       F(20000000, P_GPLL0, 15, 1, 2),
-> +       F(25000000, P_GPLL0, 12, 1, 2),
-> +       F(40000000, P_GPLL0, 15, 0, 0),
-> +       F(50000000, P_GPLL0, 12, 0, 0),
-> +       F(80000000, P_GPLL0, 7.5, 0, 0),
-> +       F(100000000, P_GPLL0, 6, 0, 0),
-> +       F(200000000, P_GPLL0, 3, 0, 0),
+The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
+clock and should hence use PXO, not CXO which runs at 19.2MHz.
 
-It should work to add more frequencies to the existing table. The
-consumer will need to pick the correct frequency. That can be achieved
-with an OPP table if necessary, in the consumer node.
+Note that none of the DSI PHY/PLL drivers currently use this "ref"
+clock; they all rely on (sometimes inexistant) global clock names and
+usually function normally without a parent clock.  This discrepancy will
+be corrected in a future patch, for which this change needs to be in
+place first.
 
-> +       { }
-> +};
-> +
->  static struct freq_tbl ftbl_sdcc2_4_apps_clk_src[] =3D {
->         F(144000, P_XO, 16, 3, 25),
->         F(400000, P_XO, 12, 1, 4),
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+---
+ arch/arm/boot/dts/qcom-apq8064.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index 2687c4e890ba..77659b783759 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -198,7 +198,7 @@ cxo_board: cxo_board {
+ 			clock-frequency = <19200000>;
+ 		};
+ 
+-		pxo_board {
++		pxo_board: pxo_board {
+ 			compatible = "fixed-clock";
+ 			#clock-cells = <0>;
+ 			clock-frequency = <27000000>;
+@@ -1306,7 +1306,7 @@ dsi0_phy: dsi-phy@4700200 {
+ 			reg-names = "dsi_pll", "dsi_phy", "dsi_phy_regulator";
+ 			clock-names = "iface_clk", "ref";
+ 			clocks = <&mmcc DSI_M_AHB_CLK>,
+-				 <&cxo_board>;
++				 <&pxo_board>;
+ 		};
+ 
+ 
+-- 
+2.33.0
+
