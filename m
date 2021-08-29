@@ -2,153 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 794043FA843
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 04:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABC823FA851
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 05:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232580AbhH2Cvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Aug 2021 22:51:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
+        id S233559AbhH2Dpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Aug 2021 23:45:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230334AbhH2Cvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 22:51:48 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2683CC061756;
-        Sat, 28 Aug 2021 19:50:57 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id 14so11799961qkc.4;
-        Sat, 28 Aug 2021 19:50:57 -0700 (PDT)
+        with ESMTP id S233430AbhH2Dpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Aug 2021 23:45:34 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C749C0613D9
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 20:44:43 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id t1so9948086pgv.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Aug 2021 20:44:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bSFSnBg/LwKqVLw8WSTQhnXu1cC1HTBzcNRsDCdhXyI=;
-        b=c3HwxsSoQzxR7C7XPdiJn7TnB3h6Rw+zH+o53xB6LeH+idmoMcQ5mjKM+7naWUdcz/
-         IwuqKtUp47+JXfhdSbpOCZiVCtl9wTgFJJXQ+YVb7IbF+6IGqan0OvqXmP+LphfvgFJI
-         Uvo3nZvSz6uvOSh2NflY+aIAZMl/QU1KVNHd4pt4uwO7uSfA6YbcIs1vGEx6IzSBP/Op
-         egsndoLfw+l15zJzmeHet8iqCf9cWlFnS6Uvo0VleAKXcMlqZsB/GnRORTwDHUkS7UbJ
-         8qGFsfNVQZXg2sRO9agEyWHr8SORcWGHPiVmlPOUExgqmGYDyGC/8CYhIPxhSv5L8gbU
-         FqTw==
+        h=mime-version:reply-to:in-reply-to:references:from:date:message-id
+         :subject:to;
+        bh=/bRpxTuoCDHThcBlktEP86KyBftlaEiT8Uv7OKWtgJE=;
+        b=hFNLOtBLX+Lk+beWCEFICuA6yckBzgsRBzXV9Hc7Vx9wB1YHwWlJNUXXHt9NI0JB1A
+         1kn11ao4/cjhZTPA0pzt9XqiuwVxrpxAp+Lo62GJTe1ZRGl3OdaDcUKEvbCPhb9rNvDG
+         Nt5EfMNvHXk+qIBRinq9yDhL3nV157zz65j49U56Gz5J2AM2RJmOfYOEfrg+OX9ha4WD
+         xj5N1Q/HU087zeUbVHEM6WeORen19IVqs+UkBXOXkj+6awFxd8eXGE+TUY7g09RLVCcW
+         kaphOhve3LPWIJBgvG2MDqB1ZtG6p6N38CnuOuPoC38WYuwacYUTvwUs/NG09teLemy5
+         P9gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bSFSnBg/LwKqVLw8WSTQhnXu1cC1HTBzcNRsDCdhXyI=;
-        b=hufaiQB0d+BWTbhGIlyXfyxIo+SBnSpTPKrz4F3vEp4b2D2//+5VgZ6sUIi+/BDAg8
-         FbrBWpHpJBLw9Dl1ZMiECeNTAqUjdPoZcBNgz6mk/0xVtr1HsehOdIz7L4bSEUGKsJ21
-         XvLoMIp0GhJjJcwwaQaKLfcC/b5hA+1Laim+eb3xLhELRHjLqtCkMXTb0usAhlOMnY9R
-         GaRSdHJN5t3BTlJlLdQHsN0+KNFYO2PfDQ7YiAgE46l2U/IZNYyqviUjMKPwFixMCu/n
-         9TprFFTIQAATpyLh8jjlYzO230spZLxAOIT8jctKrAuQdMhCLlgjhjSiygXlnu324BbU
-         LAoA==
-X-Gm-Message-State: AOAM531tgbifdhyj/WGRL7CqJ/3QiX8GfGE+8yOhSZ+HfEiizOGnWDYc
-        Wgp9CvpP2ie2P8kpP+TmI8A=
-X-Google-Smtp-Source: ABdhPJyiZN8wYO8oICNnUqI378WPKn09ZIn3CET5t1Fi6X+35hGpvFdAIGqJi3Kfye8bbYeDcvFBkg==
-X-Received: by 2002:a05:620a:675:: with SMTP id a21mr16184628qkh.421.1630205456157;
-        Sat, 28 Aug 2021 19:50:56 -0700 (PDT)
-Received: from shaak (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id d78sm8180916qkg.92.2021.08.28.19.50.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Aug 2021 19:50:55 -0700 (PDT)
-Date:   Sat, 28 Aug 2021 22:50:53 -0400
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     Peter Rosin <peda@axentia.se>
-Cc:     jic23@kernel.org, lars@metafoo.de, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v8 05/14] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-Message-ID: <YSr2DSnyB205FnTI@shaak>
-References: <20210820191714.69898-1-liambeguin@gmail.com>
- <20210820191714.69898-6-liambeguin@gmail.com>
- <9a7aa55f-0dd0-3fc7-13a4-5cb9c5d0a252@axentia.se>
+        h=x-gm-message-state:mime-version:reply-to:in-reply-to:references
+         :from:date:message-id:subject:to;
+        bh=/bRpxTuoCDHThcBlktEP86KyBftlaEiT8Uv7OKWtgJE=;
+        b=knFJfng9W21+xABMoHM45KyO0kk+SmqkXarziacJtxwFdcJiYqMEg/BSjWSJLLzU1D
+         1zH+BfOhAwVZnbAgSnLdZ1GRezeYHxtWqQ5hJEJWhvLjLd292aS9PDL4PdHZVub1gb8m
+         I+ZC6BSH8Yt0o8q5ry+D+sLLZ5wFMpm2N2sl1NTQegePxaBgpwuik0/ZQ8s5JO2fWhm1
+         +Zcz7oWn2YVfkr7LulHAJc1KqDBd2DcsfEr3f6M0KtFCiZmKv5pIObzhouhhwJcpbYtH
+         TeY7AD4kYV8cjdW8Dyq7+cwlryIfykbL6oZvyIIFtIjL6FmSA9jG/2KQs+qnVMg2esah
+         oFvQ==
+X-Gm-Message-State: AOAM532aORKgrZNaXomUAUz3gSEvCxlHYQuy4CoNGtpRFMWNkaOzlGWg
+        miEbj60ZakCUa34vJ0CsBLr0ZX+qNCqAWf3zlLc=
+X-Google-Smtp-Source: ABdhPJz5uz4GLRz2qq7We0+SFLqHWl3HWf19mZ5oZc5xqIni2Kt+EyUlBeUEqWYVMEXycIsnXAPGj3lqOBY2gK4McQU=
+X-Received: by 2002:a63:705:: with SMTP id 5mr14984605pgh.265.1630208682579;
+ Sat, 28 Aug 2021 20:44:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9a7aa55f-0dd0-3fc7-13a4-5cb9c5d0a252@axentia.se>
+Received: by 2002:a05:6a10:6c05:0:0:0:0 with HTTP; Sat, 28 Aug 2021 20:44:41
+ -0700 (PDT)
+Reply-To: sararrobrt@gmail.com
+In-Reply-To: <CAHiqPVcjWLNOr0C=n4WN14sPVGhB7QFNt9RNgumzR_Abdtipqg@mail.gmail.com>
+References: <CAHiqPVcqgvcC+2o+BY8ChZmh6e7jDdHGE3tz_d2hqhFTO1y5Xg@mail.gmail.com>
+ <CAHiqPVeL6TLjCDiOC4rovz1AVOvdJAn7j_B_a-RbBZpgiKrdsw@mail.gmail.com>
+ <CAHiqPVem-8KZoQy_=88ia251AexAgb1MZgiN0mM3rSTM=F2QGA@mail.gmail.com>
+ <CAHiqPVciEMHdof6B4sos5Yx3uoZ73R_zQFt2fE4ZH10FrjnxdA@mail.gmail.com>
+ <CAHiqPVexeJrW65oi_0V_ZnZr5Mfa3rqwhvn9Ab4gjhdVhffopA@mail.gmail.com>
+ <CAHiqPVdAHLBruUE6qeMNHTpxcLBO0qe9GRsdFVtLpd+m0edRpw@mail.gmail.com>
+ <CAHiqPVfKaEcMdB6njt0VmygLjbjNp2vobF=WgyZhXv4RS8ZOtA@mail.gmail.com>
+ <CAHiqPVfuuyycmLG8zK2bMS8a0y0VO18Y_0k1HkD0wi8en15Gdw@mail.gmail.com>
+ <CAHiqPVfVsQawzzr96PixRkH24f1CpPsg3jcv9O+d3TB5v3jxFA@mail.gmail.com>
+ <CAHiqPVcJ4JN+aZGZy6uwn92pUggRjvGs=KJjSLTfR1N0+fuHVA@mail.gmail.com>
+ <CAHiqPVdPajC=hxHWR5X2_uvWkiubZKye0Z0xtwaHR2drp9QVEQ@mail.gmail.com>
+ <CAHiqPVcfARmYujFVdpt_P-i8dE2+P2ncqY5rWVKmFrQkJenwtA@mail.gmail.com>
+ <CAHiqPVcULyR=DQN0moAbWcat7KDXNyetwEt+V+=W-d5bVnGfKQ@mail.gmail.com>
+ <CAHiqPVe1DXM=CNXn=k93Mk68Rkz381CC_aPRXhUdP8C-arnYpA@mail.gmail.com>
+ <CAHiqPVdZbKEDX4dN719tiBw1EHx7SUBAHAFQW70+3VpCUbFKew@mail.gmail.com>
+ <CAHiqPVdudjHKET-C34GJWx4UjaTbfq9CPosuonjhV0T7rMbJNA@mail.gmail.com>
+ <CAHiqPVfffCpmozVTHCM_Q+khT_aMo7E7sX5ogn6q5_-NQZaEkQ@mail.gmail.com>
+ <CAHiqPVcft5QBtN_Dfzh+yaFCz+RdHO9A_iesheqm=RYkeDXHrg@mail.gmail.com>
+ <CAHiqPVffSmK1w4OPe0-aSeuYmMQFfTnSQjmsB5sweTjbk8sCNw@mail.gmail.com>
+ <CAHiqPVfA13=ZqVxoPvQDJd_3mz0Ca9XoJFoB-DVd2Lj=cAeWXQ@mail.gmail.com>
+ <CAHiqPVdwHr86DjVjLzGQu9N+iqC7XoLuFBG3YisYpKeP--Jp-Q@mail.gmail.com>
+ <CAHiqPVfpcS7RUQZtf85d0RmWeW3Hr1Q_DpthL7TLzhKOt4zu3Q@mail.gmail.com>
+ <CAHiqPVdRgdu-0icbtnyB_L55e+HQ0DX2i7ihp7H4QEDNA5YAsQ@mail.gmail.com>
+ <CAHiqPVfdb2y5dh7BQFq+vTG8dzWwBMbjE0bzDAgj9xiJmhfHpg@mail.gmail.com>
+ <CAHiqPVdwqZmuZV7sjFJbd-BtOW7YNDJ5TF5P-LYYaKVoBHNHmg@mail.gmail.com>
+ <CAHiqPVcWxXPT-J0TmWjQGHGXmUNccri_ED0s1ka6kF0ZBd+6=A@mail.gmail.com>
+ <CAHiqPVcA3fCJQT694+7C0KKGkFTmrGrb07CHGPHGoNRHNuXFLA@mail.gmail.com>
+ <CAHiqPVcZkHhmtHNXTzzm78wOeOOuFkSYOjtCf3HU2d5HfvVvpQ@mail.gmail.com>
+ <CAHiqPVeYQUPvdwzRyVJ0LuRo-WU6=tAunD+1bv83rrpKCE55Gw@mail.gmail.com>
+ <CAHiqPVeFYAz+1pDfS1W1pz-8JTMRY+yM4BpB1fTFyQqSXCW7wg@mail.gmail.com>
+ <CAHiqPVennSErNWbnGZBL72TnAcn=a-HG4d8gNkXditWD8zXtvQ@mail.gmail.com>
+ <CAHiqPVetpHpCyfPSnZMqmZkqspviwjjB6X1XhD8r_papHh+eSA@mail.gmail.com>
+ <CAHiqPVdi1ABJ7cNQTHwCzBN9FtCTdo7U+zABsUWESp3zgAkmDA@mail.gmail.com>
+ <CAHiqPVcYJE9WWtO2H4=UydSNKa+J8m8RCmVSQF2S+nMu=z97FQ@mail.gmail.com>
+ <CAHiqPVfsSnUDTGVU4L-QT9bxDfXDM5FkQNG=kTszV=8Skw_jag@mail.gmail.com>
+ <CAHiqPVex0_3b9EJ7b08=nwOX2hAyuvrgudPSXOrAFUGBqijcdQ@mail.gmail.com>
+ <CAHiqPVdY3R7tbc1XO2KQ4zPvy3Q2kAs+gUA_TCJRv1ckx44=eQ@mail.gmail.com>
+ <CAHiqPVch8sXuxXbJOjiFn9LG1fBUbVxY1fsx5aUifrb-GO5NhA@mail.gmail.com>
+ <CAHiqPVeOfGY9VZdofq0uWF3=Oor1ky=b6s5W+RuYw4ESk6-Y6g@mail.gmail.com>
+ <CAHiqPVd0=TZDHSya_C-Z9FVPgMWng9qvWxLyL6SZwY8PGPHaGQ@mail.gmail.com>
+ <CAHiqPVceVLLDUiy8s_vURy-h6_zquya7Z08_a86QUtXyHVVbHQ@mail.gmail.com>
+ <CAHiqPVcuHuu8TqQC3u-jUE8X5kv9DceS4AOVaX4xOL2DrSo4kA@mail.gmail.com>
+ <CAHiqPVfKsUdYUg0a2rRbXZejXxvWXCfxCYojxq7qZAVoXnWn1Q@mail.gmail.com>
+ <CAHiqPVeCFuArs-t7Xk3qYcT=rM=z7CV5BtGCwavwgPpsdt1UyA@mail.gmail.com>
+ <CAHiqPVc9mRjo0cpu3LNuJCiQPuTEeiu+N+EFh_rCPkZ4jwFYtQ@mail.gmail.com>
+ <CAHiqPVdn7tY8eCxS-CRcA4Cuy3P9+OmQJV+Sq6gE=HFBEvgE7w@mail.gmail.com>
+ <CAHiqPVePLc3Ce-zfKO+rTepquitVmsn=+Hsvt7io5VW8gig2GA@mail.gmail.com>
+ <CAHiqPVcTqxSSTgo3O7re+N4-9aPFeqwFAyrGiAyibgTq6puuEA@mail.gmail.com>
+ <CAHiqPVfKhozPyj1ppxm2+Y04U4k9vg8s9HQ=oO=gQdeAxSw9KA@mail.gmail.com>
+ <CAHiqPVfj6NL=E-n3jn2DYm+16rkbLrUt4TT2sdwXuOTaEjpmBA@mail.gmail.com>
+ <CAHiqPVdJRi4HbjGj8c1Q5RaA9YGzRqyOzcQ9uJsDGYZ7M5aX-g@mail.gmail.com>
+ <CAHiqPVfqkHD0tSC6ggtkGtYn_xGM6S4i5Os=SkYWOEykX5b7xA@mail.gmail.com>
+ <CAHiqPVcLCd0ten6kG01w29o8JGPSSqdgOT9HED=eo=dL3Vn=VQ@mail.gmail.com>
+ <CAHiqPVepiUkz1u2WObe8Kco__eLbWWx-EOYjvXrof-7ALa4XXQ@mail.gmail.com>
+ <CAHiqPVfHDTn8JZ5hUYm7+dMGim2+x+ODWKdVPja+ZwUcqzvNDQ@mail.gmail.com>
+ <CAHiqPVfBbTZBqQGC5HnLeUw2qAqyAwAs6uRNxwmAqTRZfp=eTw@mail.gmail.com>
+ <CAHiqPVcXnY=Vki9=HFh5VDM3wh1pe44tVbbshyP2604b2v_5wg@mail.gmail.com>
+ <CAHiqPVfZcz27_19-5wQ8rgnX9yMTdpjsQUM66M+3GKNUAsNP8A@mail.gmail.com>
+ <CAHiqPVcrctHNsiDK3bWQKDWvx0-71pqVNmw5r-_tZhYhRLD-Tg@mail.gmail.com>
+ <CAHiqPVcnxCkPsWAmsEkrAfZ=sRx53vhHbhEyf9uLFpr2VgrRrw@mail.gmail.com>
+ <CAHiqPVdZdnu3QKBeL8xjyCFDHSP8vKuCXjoPFQt+kRSOR28v5A@mail.gmail.com>
+ <CAHiqPVdxWE4zUQ7G+FOw410pvNbDaHOs0SsiF_2_Xn+SBLOnZA@mail.gmail.com>
+ <CAHiqPVcde3+M=tQQQ7F40o5_zQc1tmDEt9wJSBMYOR+xx82ynQ@mail.gmail.com>
+ <CAHiqPVc0dt2uRErMBYWkNMHW6+abfBaxAmdSsoS+koMWB2DBRw@mail.gmail.com>
+ <CAHiqPVfcxoCc-_JZH0mJhzHEOOxymy3teD_20T6dKm=1P_qkkw@mail.gmail.com>
+ <CAHiqPVf+T-__ir6Kfr7V3DhbzpnKNxYej01H1qd_kBuJVjWT0w@mail.gmail.com>
+ <CAHiqPVe6T-ro3yci2GX6v6mVV0LT6Ags-M84EvjErGN91-HKdw@mail.gmail.com>
+ <CAHiqPVeVzowL_q=r1ORGKzfLAR4wO-55LgZud1RhkEK2cQsemA@mail.gmail.com>
+ <CAHiqPVczeXej2w=zFN6WVynosxcJG6X8XqgzyUkS0ZQGF5j5Vw@mail.gmail.com>
+ <CAHiqPVcWBeUrWcA+rBOojoz6B_mYOJ=bb9w1aK8x760GuZiBdA@mail.gmail.com>
+ <CAHiqPVeBaF6QxJsZWt5+8Y2p337zdesdCVa_g+6u5ToF+27QwQ@mail.gmail.com>
+ <CAHiqPVcrOEUkVso606iFjJY2FOZTxaUMnXC6uT98Jet5gxiVDw@mail.gmail.com>
+ <CAHiqPVc4UeiQPr7SoCtVCCrs+z=r3DS8m+JykpaiYrHaZ5=7Tg@mail.gmail.com>
+ <CAHiqPVfrWeP3nQrMA16Dvq-DoHLjKDSCE1qUrbpsM8mLzEFHXw@mail.gmail.com>
+ <CAHiqPVd2ZYWs4iCMrpDoAGaC+MFQ799Y4XjeZ0SQkNtGu-mR9w@mail.gmail.com>
+ <CAHiqPVdacYVUegUY014DxBoO9WVp4rcB0nWTxTpKiqU4FxaGPw@mail.gmail.com>
+ <CAHiqPVcyw824RZO7B67nBPvPdnouxg70FUCiWZbFy1t2-Bqv1w@mail.gmail.com>
+ <CAHiqPVfKH_H_5WEB43CegyikRMN95ODLMK_8uofxxEo0Vgt2rQ@mail.gmail.com>
+ <CAHiqPVfNfhB+a3ft+6Cw-3eqx9MmvXJM-MGXMQVNV=AwGL9Y5w@mail.gmail.com>
+ <CAHiqPVe0gs1HwZ1n025U5Mg7hMBPfW8e=u0jOMNv50H0UL_uNg@mail.gmail.com>
+ <CAHiqPVfoTRobuhK1sAPUje3UQDGAnD_=CFB-=2EO7rW1imL+_w@mail.gmail.com>
+ <CAHiqPVf5aqZtGi=9hCv1=AmfMO_c6Mfy5kANfHzq9U2fh4gpUA@mail.gmail.com>
+ <CAHiqPVdvdVbVW88ScyCWFKq6DJTGaNYOPvnCTM_yJU2pt4wHKg@mail.gmail.com>
+ <CAHiqPVf2sU1Aouubq+rGobkrbJW49UXoE==VvNfdKNRJTLuBNg@mail.gmail.com>
+ <CAHiqPVc1A8VjQ_gHrQc+HZcgPNinQcicsC5Ew5asUCOF2CtC5g@mail.gmail.com>
+ <CAHiqPVeo6Zua22Vew75asbS8xv=_4enDDX4hr6V8Wp80rm8gjg@mail.gmail.com>
+ <CAHiqPVc74Yk0xYef+WaSzELpphrJgEzQRwd8cFLLLB5fOWAtkQ@mail.gmail.com>
+ <CAHiqPVdQ6862szC8yU6bte8zs29hjgMSwDdVMT_sPJoOMLXyeQ@mail.gmail.com>
+ <CAHiqPVepMrsV4J0NWxK4eHBUdSFjm_c5sfFz2J6zW3H+Or2Oyg@mail.gmail.com>
+ <CAHiqPVf7iTMMnHe=jo0yvszStDX0mdek-COjtcqYtKvjyLT4+A@mail.gmail.com>
+ <CAHiqPVdyRSj1fus-0Cm299-frppuBj6TFYw9Ypbz+BuerQaLTQ@mail.gmail.com>
+ <CAHiqPVcFdYXshya2iOE-XzM8BHtVz8i6+AnRmsM9JQCNrt66_Q@mail.gmail.com>
+ <CAHiqPVeBUKHni-5RRwKV19opDFuTya1gcQ5Df6w-yvY2iV2wew@mail.gmail.com>
+ <CAHiqPVcfzcY0d9cxK66WD9S7x=sX4chnLmbtxELUW-ghsiiSrA@mail.gmail.com>
+ <CAHiqPVec4ECrGwxK22NQmAQGTqojiePEiH20L5dra2LDSajYWw@mail.gmail.com>
+ <CAHiqPVf1gMi4enA06gY4TRWnn8FcLPgKUzSRFuotuzJu9UYrwA@mail.gmail.com>
+ <CAHiqPVfz3h_qXVmitKXsO+JxGDHWJKwA8Zm9XeFmai_-LO9PMA@mail.gmail.com>
+ <CAHiqPVe9H7C28=OG91wxFjtPEFLyDAmHmVs7iG9iZ=Vnd0T6YA@mail.gmail.com>
+ <CAHiqPVe6V8GZiFnePXZ+vH+MtQAZ79fLMFFGa2tejB6Ssnfvrw@mail.gmail.com> <CAHiqPVcjWLNOr0C=n4WN14sPVGhB7QFNt9RNgumzR_Abdtipqg@mail.gmail.com>
+From:   "Mrs. Sarah Robert" <goodwllalex@gmail.com>
+Date:   Sun, 29 Aug 2021 04:44:41 +0100
+Message-ID: <CAHiqPVc2AnsP+b6GpUzZnNgvjAn2zjtL2xWZqwDF0sptUiCfRA@mail.gmail.com>
+Subject: Greetings?
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 26, 2021 at 10:11:18AM +0200, Peter Rosin wrote:
-> On 2021-08-20 21:17, Liam Beguin wrote:
-> > From: Liam Beguin <lvb@xiphos.com>
-> > 
-> > Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
-> > Add support for these to allow using the iio-rescaler with them.
-> > 
-> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> > ---
-> >  drivers/iio/afe/iio-rescale.c | 35 +++++++++++++++++++++++++++++++++++
-> >  1 file changed, 35 insertions(+)
-> > 
-> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
-> > index d0669fd8eac5..8488f1d83527 100644
-> > --- a/drivers/iio/afe/iio-rescale.c
-> > +++ b/drivers/iio/afe/iio-rescale.c
-> > @@ -22,6 +22,9 @@ int rescale_process_scale(struct rescale *rescale, int scale_type,
-> >  			  int *val, int *val2)
-> >  {
-> >  	unsigned long long tmp;
-> > +	s32 rem;
-> > +	u32 mult;
-> > +	u32 neg;
-> >  
-> >  	switch (scale_type) {
-> >  	case IIO_VAL_FRACTIONAL:
-> > @@ -40,6 +43,38 @@ int rescale_process_scale(struct rescale *rescale, int scale_type,
-> >  		tmp *= rescale->numerator;
-> >  		do_div(tmp, 1000000000LL);
-> >  		*val = tmp;
-> > +		return scale_type;
-> > +	case IIO_VAL_INT_PLUS_NANO:
-> > +	case IIO_VAL_INT_PLUS_MICRO:
-> > +		if (scale_type == IIO_VAL_INT_PLUS_NANO)
-> > +			mult = 1000000000LL;
-> > +		else
-> > +			mult = 1000000LL;
-> > +		/*
-> > +		 * For IIO_VAL_INT_PLUS_{MICRO,NANO} scale types if *val OR
-> > +		 * *val2 is negative the schan scale is negative
-> 
-> The last line doesn't parse for me. It doesn't end with a period either, so
-> it looks like you moved on before you finished it?
-
-I meant to warn that IIO_VAL_INT_PLUS_{MICRO,NANO} are a little odd, and
-that if either one *val or *val2 is negative, the result will be
-negative.
-
-i.e. *val = 1 and *val2 = -0.5 gives -1.5 and not 0.5.
-
-I'll give it another try and will add the period.
-
-Thanks,
-Liam
-
-> 
-> Cheers,
-> Peter
-> 
-> > +		 */
-> > +		neg = *val < 0 || *val2 < 0;
-> > +
-> > +		tmp = (s64)abs(*val) * abs(rescale->numerator);
-> > +		*val = div_s64_rem(tmp, abs(rescale->denominator), &rem);
-> > +
-> > +		tmp = (s64)rem * mult + (s64)abs(*val2) * abs(rescale->numerator);
-> > +		tmp = div_s64(tmp, abs(rescale->denominator));
-> > +
-> > +		*val += div_s64_rem(tmp, mult, val2);
-> > +
-> > +		/*
-> > +		 * If only one of the rescaler elements or the schan scale is
-> > +		 * negative, the combined scale is negative.
-> > +		 */
-> > +		if (neg ^ ((rescale->numerator < 0) ^ (rescale->denominator < 0))) {
-> > +			if (*val)
-> > +				*val = -*val;
-> > +			else
-> > +				*val2 = -*val2;
-> > +		}
-> > +
-> >  		return scale_type;
-> >  	default:
-> >  		return -EOPNOTSUPP;
-> > 
+My Dear,
+I'm Mrs. Sarah H. Robert, 77 years old dying widow from Australia;
+that was diagnosed of cancer about 4 years ago. I got your details
+after an extensive online search Via (Network Power Charitable Trust)
+for a reliable person,  I have decided to donate my late husband WILL
+valued of ($5,500,000.00) (Five Million Five Hundred Thousand United
+States Dollars) to you for charitable goals. Get back to me if you
+will be interesting in carrying out this humanitarian project, so that
+i can arrange for the release of the funds to you for the work of
+charity before entering the surgery theater. Contact me via
+E-mail at :  sararrobrt@gmail.com
+Sincerely,
+Mrs. Sarah H. Robert.
