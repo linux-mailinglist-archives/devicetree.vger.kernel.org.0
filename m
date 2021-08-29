@@ -2,197 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80CB83FACBA
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 17:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B44C3FACC2
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 17:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235610AbhH2PnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 11:43:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39688 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235576AbhH2PnN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Aug 2021 11:43:13 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B75B460E94;
-        Sun, 29 Aug 2021 15:42:16 +0000 (UTC)
-Date:   Sun, 29 Aug 2021 16:45:31 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     <lars@metafoo.de>, <pmeerw@pmeerw.net>, <robh+dt@kernel.org>,
-        <joel@jms.id.au>, <andrew@aj.id.au>, <p.zabel@pengutronix.de>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <BMC-SW@aspeedtech.com>
-Subject: Re: [RESEND v4 15/15] iio: adc: aspeed: Get and set trimming data.
-Message-ID: <20210829164531.44cbcc21@jic23-huawei>
-In-Reply-To: <202108250007.17P07NFj097422@twspam01.aspeedtech.com>
-References: <20210824091243.9393-1-billy_tsai@aspeedtech.com>
-        <202108250007.17P07NFj097422@twspam01.aspeedtech.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S235615AbhH2Psy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 11:48:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235576AbhH2Psx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 11:48:53 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36401C06175F
+        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 08:48:01 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id s3so21257718ljp.11
+        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 08:48:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ON8B7MXOOZz/UZUTIAo25KHPPQ8XcjU+Eygo8cllfIE=;
+        b=jo+zZDZW8upeygR2His05OCK/EGbR2Bdg8xeLiM7fTPXHTKZn5p+6y0u7y543tB2n+
+         TrDxDZOQAp3KXfeynllRKUA0jwkhO7E4vq85jgktjdSAX4cb10TatMvF0RxJ9jaEQuyr
+         ESIP7jzu8Om9bqwiVce2L/uu5CLwzASZsMLjCYDVFs6xL8OI9ll+GEET94/0R8gYtju9
+         tyeOJP584PNvyYCRHxfysoEmb70axLqgjVyzzE2D/WGuHiRaLlHXv4XpACVw9depaOEa
+         moHyE5uCzYlDOvFlAI8cI8c0IYmhj/qj6CYcP8KxNPyR7hFHKFjTb62b3+8F0Vp/oWKz
+         Jxyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ON8B7MXOOZz/UZUTIAo25KHPPQ8XcjU+Eygo8cllfIE=;
+        b=khe8S2UkcdQt3scVK2JdD82yBAP+ojWq9vi8eyprr2fp+swR5qqq/AlJyQnP9xwkSu
+         xLrWgRDHE8mB90QIOwV65dE56avxrlGv9oZ1Zfh8/c6FygERNOthU9snSlPT2T3ZopuX
+         MWHc90yAsLPhl2ehrplwAJIq6oBz3cYYZQm22BLab6tdotQ1Zv15Qex3mrbPy4uIRP/f
+         8zNY3WT/y9a29pXIEZForR3lYlpVjBlmagPECgzUFQMXGl0/dAgKgaIfvvdUoffjNLrD
+         OQoof9EiGsZOIjGRfyJBhSNk2vZRNdXJuVeJHIO4e0gHBhZ30DYbVh7Wras3qKAhCbJy
+         XGaA==
+X-Gm-Message-State: AOAM531L1+6psgc981uyKuS4LXJOIuNLaQW0gnzEuMyVW6R4QFpJ+OFw
+        UzqwN/eqXOmbgdUUSQoKHcnELQ==
+X-Google-Smtp-Source: ABdhPJzWaIS4QyNwTV2uVyKBxTkYNEoPA2E8WWR0u4z/eVli9n5t0eplZJBJu2lsX+TZTVBSFGltKA==
+X-Received: by 2002:a05:651c:1126:: with SMTP id e6mr16797376ljo.28.1630252079428;
+        Sun, 29 Aug 2021 08:47:59 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id y5sm1481243ljd.38.2021.08.29.08.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Aug 2021 08:47:58 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/6] clk: qcom: use power-domain for sm8250's clock controllers
+Date:   Sun, 29 Aug 2021 18:47:49 +0300
+Message-Id: <20210829154757.784699-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Aug 2021 17:12:43 +0800
-Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+On SM8250 both the display and video clock controllers are powered up by
+the MMCX power domain. Handle this by linking clock controllers to the
+proper power domain, and using runtime power management to enable and
+disable the MMCX power domain.
 
-> The adc controller have trimming register for fine-tune the reference
+Dependencies:
+https://lore.kernel.org/linux-pm/1628767642-4008-1-git-send-email-rnayak@codeaurora.org/
+(pending inclusion into 5.15)
 
-Nice to have ADC instead of adc (though not that important as meaning is clear).
+Changes since v6:
+ - Dropped dependency on Bjorn's patches
+ - Restored required-opps properties
+ - Held pm device state while gdsc is powered on, removing dependency on
+   genpd's power_on() powering the domain into required state.
 
-> voltage. The trimming value come from the otp register which will be
-> written before chip product. This patch will read this otp value and
+Changes since v5:
+ - Dropped devm_pm_runtime_enable callback to remove extra dependency
 
-written during chip production? (perhaps that's what is intended?)
+Changes since v4:
+ - Dropped pm_runtime handling from drivers/clk/qcom/common.c Moved the
+   code into dispcc-sm8250.c and videocc-sm8250.c
 
-> configure it to the adc register when adc controller probe and using dts
-> property "aspeed,trim-data-valid" to determine whether to execute this
-> flow.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  drivers/iio/adc/aspeed_adc.c | 68 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
-> index 0c5d84e82561..bd7fb23f3510 100644
-> --- a/drivers/iio/adc/aspeed_adc.c
-> +++ b/drivers/iio/adc/aspeed_adc.c
-> @@ -25,6 +25,8 @@
->  #include <linux/spinlock.h>
->  #include <linux/types.h>
->  #include <linux/bitfield.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
->  
->  #include <linux/iio/iio.h>
->  #include <linux/iio/driver.h>
-> @@ -72,6 +74,11 @@
->   */
->  #define ASPEED_ADC_DEF_SAMPLING_RATE	65000
->  
-> +struct aspeed_adc_trim_locate {
-> +	const unsigned int offset;
-> +	const unsigned int field;
-> +};
-> +
->  struct aspeed_adc_model_data {
->  	const char *model_name;
->  	unsigned int min_sampling_rate;	// Hz
-> @@ -82,6 +89,7 @@ struct aspeed_adc_model_data {
->  	bool bat_sense_sup;
->  	u8 scaler_bit_width;
->  	unsigned int num_channels;
-> +	const struct aspeed_adc_trim_locate *trim_locate;
->  };
->  
->  struct adc_gain {
-> @@ -136,6 +144,44 @@ static const struct iio_chan_spec aspeed_adc_iio_channels[] = {
->  	ASPEED_CHAN(15, 0x2E),
->  };
->  
-> +static int aspeed_adc_set_trim_data(struct iio_dev *indio_dev)
-> +{
-> +	struct device_node *syscon;
-> +	struct regmap *scu;
-> +	u32 scu_otp, trimming_val;
-> +	struct aspeed_adc_data *data = iio_priv(indio_dev);
-> +
-> +	syscon = of_find_node_by_name(NULL, "syscon");
-> +	if (syscon == NULL) {
-> +		dev_warn(data->dev, "Couldn't find syscon node\n");
-> +		return -EOPNOTSUPP;
-> +	}
-> +	scu = syscon_node_to_regmap(syscon);
-> +	if (IS_ERR(scu)) {
-> +		dev_warn(data->dev, "Failed to get syscon regmap\n");
-> +		return -EOPNOTSUPP;
-> +	}
-> +	if (data->model_data->trim_locate) {
-> +		if (regmap_read(scu, data->model_data->trim_locate->offset,
-> +				&scu_otp)) {
-> +			dev_warn(data->dev,
-> +				 "Failed to get adc trimming data\n");
-> +			trimming_val = 0x8;
-> +		} else {
-> +			trimming_val =
-> +				((scu_otp) &
-> +				 (data->model_data->trim_locate->field)) >>
-> +				__ffs(data->model_data->trim_locate->field);
-> +		}
-> +		dev_dbg(data->dev,
-> +			"trimming val = %d, offset = %08x, fields = %08x\n",
-> +			trimming_val, data->model_data->trim_locate->offset,
-> +			data->model_data->trim_locate->field);
-> +		writel(trimming_val, data->base + ASPEED_REG_COMPENSATION_TRIM);
-> +	}
-> +	return 0;
-> +}
-> +
->  static int aspeed_adc_compensation(struct iio_dev *indio_dev)
->  {
->  	struct aspeed_adc_data *data = iio_priv(indio_dev);
-> @@ -506,6 +552,10 @@ static int aspeed_adc_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	if (of_find_property(data->dev->of_node, "aspeed,trim-data-valid",
-> +			     NULL))
-> +		aspeed_adc_set_trim_data(indio_dev);
-> +
->  	if (of_find_property(data->dev->of_node, "aspeed,battery-sensing",
->  			     NULL)) {
->  		if (data->model_data->bat_sense_sup) {
-> @@ -579,6 +629,21 @@ static int aspeed_adc_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct aspeed_adc_trim_locate ast2500_adc_trim = {
-> +	.offset = 0x154,
-> +	.field = GENMASK(31, 28),
-> +};
-> +
-> +static const struct aspeed_adc_trim_locate ast2600_adc0_trim = {
-> +	.offset = 0x5d0,
-> +	.field = GENMASK(3, 0),
-> +};
-> +
-> +static const struct aspeed_adc_trim_locate ast2600_adc1_trim = {
-> +	.offset = 0x5d0,
-> +	.field = GENMASK(7, 4),
-> +};
-> +
->  static const struct aspeed_adc_model_data ast2400_model_data = {
->  	.model_name = "ast2400-adc",
->  	.vref_fixed = 2500, // mV
-> @@ -598,6 +663,7 @@ static const struct aspeed_adc_model_data ast2500_model_data = {
->  	.need_prescaler = true,
->  	.scaler_bit_width = 10,
->  	.num_channels = 16,
-> +	.trim_locate = &ast2500_adc_trim,
->  };
->  
->  static const struct aspeed_adc_model_data ast2600_adc0_model_data = {
-> @@ -608,6 +674,7 @@ static const struct aspeed_adc_model_data ast2600_adc0_model_data = {
->  	.bat_sense_sup = true,
->  	.scaler_bit_width = 16,
->  	.num_channels = 8,
-> +	.trim_locate = &ast2600_adc0_trim,
->  };
->  
->  static const struct aspeed_adc_model_data ast2600_adc1_model_data = {
-> @@ -618,6 +685,7 @@ static const struct aspeed_adc_model_data ast2600_adc1_model_data = {
->  	.bat_sense_sup = true,
->  	.scaler_bit_width = 16,
->  	.num_channels = 8,
-> +	.trim_locate = &ast2600_adc1_trim,
->  };
->  
->  static const struct of_device_id aspeed_adc_matches[] = {
+Changes since v3:
+ - Wrap gdsc_enable/gdsc_disable into pm_runtime_get/put calls rather
+   than calling pm_runtime_get in gdsc_enabled and _put in gdsc_disable
+ - Squash gdsc patches together to remove possible dependencies between
+   two patches.
+
+Changes since v2:
+ - Move pm_runtime calls from generic genpd code to the gdsc code for
+   now (as suggested by Ulf & Bjorn)
+
+Changes since v1:
+ - Rebase on top of Bjorn's patches, removing the need for setting
+   performance state directly.
+ - Move runtime PM calls from GDSC code to generic genpd code.
+ - Always call pm_runtime_enable in the Qualcomm generic clock
+   controller code.
+ - Register GDSC power domains as subdomains of the domain powering the
+   clock controller if there is one.
+
+----------------------------------------------------------------
+Dmitry Baryshkov (8):
+      dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx power domain
+      dt-bindings: clock: qcom,videocc: add mmcx power domain
+      clk: qcom: dispcc-sm8250: use runtime PM for the clock controller
+      clk: qcom: videocc-sm8250: use runtime PM for the clock controller
+      clk: qcom: gdsc: enable optional power domain support
+      arm64: dts: qcom: sm8250: remove mmcx regulator
+      clk: qcom: dispcc-sm8250: stop using mmcx regulator
+      clk: qcom: videocc-sm8250: stop using mmcx regulator
+
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml         | 13 ++++++
+ .../devicetree/bindings/clock/qcom,videocc.yaml    | 13 ++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 13 ++----
+ drivers/clk/qcom/dispcc-sm8250.c                   | 28 ++++++++++--
+ drivers/clk/qcom/gdsc.c                            | 51 ++++++++++++++++++++--
+ drivers/clk/qcom/gdsc.h                            |  2 +
+ drivers/clk/qcom/videocc-sm8250.c                  | 31 ++++++++++---
+ 7 files changed, 130 insertions(+), 21 deletions(-)
+
+
 
