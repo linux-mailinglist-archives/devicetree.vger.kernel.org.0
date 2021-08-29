@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 327763FAC04
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 15:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4715F3FAC22
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 16:11:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235417AbhH2No2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 09:44:28 -0400
-Received: from ixit.cz ([94.230.151.217]:44258 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229601AbhH2No0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Aug 2021 09:44:26 -0400
-Received: from newone.lan (ixit.cz [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+        id S235399AbhH2OKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 10:10:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235398AbhH2OKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 10:10:37 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ACB4C061575;
+        Sun, 29 Aug 2021 07:09:45 -0700 (PDT)
+Received: from [192.168.1.101] (83.6.166.149.neoplus.adsl.tpnet.pl [83.6.166.149])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 5169F24A25;
-        Sun, 29 Aug 2021 15:43:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1630244613;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=QygUsHOafc1MWNVTeVL5KjMkQwzPyY2m4ElQ1bj9bMw=;
-        b=iHFQcAxOcAcTOppQJ1CzRE7pyVR4GpwPdd0dbZwu7oR65NX146oKZx4lQa0JCDyYPAAhSS
-        m1UIh7SgTZ9QnOlVkZ6g81KmdwL8KQfxEtCBOp/YKytjlxzMH5veXo/bIYvGBZTZFq/QyB
-        CME+fNiM427zZL6FO1a6Io6bWigWQxg=
-From:   David Heidelberg <david@ixit.cz>
-To:     devicetree@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>
-Subject: [PATCH] dt-bindings: display/panel: ilitek,ili9341: fix indentation
-Date:   Sun, 29 Aug 2021 15:42:24 +0200
-Message-Id: <20210829134224.58987-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 510423E78A;
+        Sun, 29 Aug 2021 16:09:39 +0200 (CEST)
+Subject: Re: [PATCH v2 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994
+ GCC driver
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210609145523.467090-1-konrad.dybcio@somainline.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <786ebd3c-0596-1090-760d-b75751fcb505@somainline.org>
+Date:   Sun, 29 Aug 2021 16:09:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210609145523.467090-1-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes:
-./Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml:25:9:
-[warning] wrong indentation: expected 10 but found 8 (indentation)
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../devicetree/bindings/display/panel/ilitek,ili9341.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 09.06.2021 16:55, Konrad Dybcio wrote:
+> Add documentation for the MSM8994 GCC driver.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  .../bindings/clock/qcom,gcc-msm8994.yaml      | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-index 2ed010f91e2d..20ce88ab4b3a 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-@@ -22,7 +22,7 @@ properties:
-     items:
-       - enum:
-           # ili9341 240*320 Color on stm32f429-disco board
--        - st,sf-tc240t-9370-t
-+          - st,sf-tc240t-9370-t
-       - const: ilitek,ili9341
- 
-   reg: true
--- 
-2.33.0
+
+Since the MMCC got merged, could this series also be reviewed?
+
+
+Konrad
 
