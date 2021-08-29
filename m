@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21AE83FAC01
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 15:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 327763FAC04
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 15:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235329AbhH2Nln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 09:41:43 -0400
-Received: from ixit.cz ([94.230.151.217]:44254 "EHLO ixit.cz"
+        id S235417AbhH2No2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 09:44:28 -0400
+Received: from ixit.cz ([94.230.151.217]:44258 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229601AbhH2Nlm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Aug 2021 09:41:42 -0400
+        id S229601AbhH2No0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 29 Aug 2021 09:44:26 -0400
 Received: from newone.lan (ixit.cz [94.230.151.217])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 3012C24A25;
-        Sun, 29 Aug 2021 15:40:49 +0200 (CEST)
+        by ixit.cz (Postfix) with ESMTPSA id 5169F24A25;
+        Sun, 29 Aug 2021 15:43:33 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1630244449;
+        t=1630244613;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3F/jt1c6ucoq6YusXZ0whkjOXbkGivRlgMJrOePcLHQ=;
-        b=mcTFX+gSQHEKnz+d8ZX+afRIS8xs5k2iIy/Da7YR4lR5xVVNsMdNkvBB/PUlpcgmgdMNlh
-        zy2XUmX6YYWdq/q1BAJ32Wg0a18JphyXK1jy6IgrM/OzwddmRaj7vFVdNzwoVi6g7EVdpN
-        wt0SEmKelkIHRZvTlxm/Sds81CPTzxs=
+         content-transfer-encoding:content-transfer-encoding;
+        bh=QygUsHOafc1MWNVTeVL5KjMkQwzPyY2m4ElQ1bj9bMw=;
+        b=iHFQcAxOcAcTOppQJ1CzRE7pyVR4GpwPdd0dbZwu7oR65NX146oKZx4lQa0JCDyYPAAhSS
+        m1UIh7SgTZ9QnOlVkZ6g81KmdwL8KQfxEtCBOp/YKytjlxzMH5veXo/bIYvGBZTZFq/QyB
+        CME+fNiM427zZL6FO1a6Io6bWigWQxg=
 From:   David Heidelberg <david@ixit.cz>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>
-Subject: [PATCH 3/3] ARM: dts: qcom-apq8064: adreno: convert from legacy gpu-pwrlevels to opp-v2
-Date:   Sun, 29 Aug 2021 15:39:18 +0200
-Message-Id: <20210829133918.57780-3-david@ixit.cz>
+To:     devicetree@vger.kernel.org
+Cc:     David Heidelberg <david@ixit.cz>
+Subject: [PATCH] dt-bindings: display/panel: ilitek,ili9341: fix indentation
+Date:   Sun, 29 Aug 2021 15:42:24 +0200
+Message-Id: <20210829134224.58987-1-david@ixit.cz>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210829133918.57780-1-david@ixit.cz>
-References: <20210829133918.57780-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-APQ8064 was last user of gpu-pwrlevels inside mainline tree, so convert
-it now.
-
-Tested on Nexus 7 2013, no functional changes.
+Fixes:
+./Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml:25:9:
+[warning] wrong indentation: expected 10 but found 8 (indentation)
 
 Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ .../devicetree/bindings/display/panel/ilitek,ili9341.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 429dd96ade6f..1237ded42615 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1229,13 +1229,17 @@ &gfx3d1 29
- 				  &gfx3d1 30
- 				  &gfx3d1 31>;
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+index 2ed010f91e2d..20ce88ab4b3a 100644
+--- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+@@ -22,7 +22,7 @@ properties:
+     items:
+       - enum:
+           # ili9341 240*320 Color on stm32f429-disco board
+-        - st,sf-tc240t-9370-t
++          - st,sf-tc240t-9370-t
+       - const: ilitek,ili9341
  
--			qcom,gpu-pwrlevels {
--				compatible = "qcom,gpu-pwrlevels";
--				qcom,gpu-pwrlevel@0 {
--					qcom,gpu-freq = <450000000>;
-+			operating-points-v2 = <&gpu_opp_table>;
-+
-+			gpu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-320000000 {
-+					opp-hz = /bits/ 64 <450000000>;
- 				};
--				qcom,gpu-pwrlevel@1 {
--					qcom,gpu-freq = <27000000>;
-+
-+				opp-27000000 {
-+					opp-hz = /bits/ 64 <27000000>;
- 				};
- 			};
- 		};
+   reg: true
 -- 
 2.33.0
 
