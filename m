@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 725013FAE19
-	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 21:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53493FAE21
+	for <lists+devicetree@lfdr.de>; Sun, 29 Aug 2021 21:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236017AbhH2Thb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 15:37:31 -0400
-Received: from relay06.th.seeweb.it ([5.144.164.167]:55317 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235930AbhH2Th0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 15:37:26 -0400
+        id S235977AbhH2The (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 15:37:34 -0400
+Received: from relay05.th.seeweb.it ([5.144.164.166]:44937 "EHLO
+        relay05.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235976AbhH2Th3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 15:37:29 -0400
 Received: from localhost.localdomain (83.6.166.149.neoplus.adsl.tpnet.pl [83.6.166.149])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id EDD553E850;
-        Sun, 29 Aug 2021 21:36:31 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 8976C3E859;
+        Sun, 29 Aug 2021 21:36:34 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -25,11 +25,12 @@ Cc:     martin.botka@somainline.org,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH RESEND v2 7/9] clk: qcom: gcc-msm8994: Add modem reset
-Date:   Sun, 29 Aug 2021 21:36:14 +0200
-Message-Id: <20210829193617.4105-7-konrad.dybcio@somainline.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND v2 9/9] clk: qcom: gcc-msm8994: Add a quirk for a different SDCC configuration
+Date:   Sun, 29 Aug 2021 21:36:16 +0200
+Message-Id: <20210829193617.4105-9-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20210829193617.4105-1-konrad.dybcio@somainline.org>
 References: <20210829193617.4105-1-konrad.dybcio@somainline.org>
@@ -39,37 +40,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This will be required to support the modem.
+Some devices come with a different SDCC clock configuration,
+account for that.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- drivers/clk/qcom/gcc-msm8994.c               | 1 +
- include/dt-bindings/clock/qcom,gcc-msm8994.h | 1 +
- 2 files changed, 2 insertions(+)
+ .../bindings/clock/qcom,gcc-msm8994.yaml         |  4 ++++
+ drivers/clk/qcom/gcc-msm8994.c                   | 16 ++++++++++++++++
+ 2 files changed, 20 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+index b44a844d894c..4ba2f72d3cad 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+@@ -49,6 +49,10 @@ properties:
+     description:
+       Protected clock specifier list as per common clock binding.
+ 
++  qcom,sdcc2-clk-src-40mhz:
++    description: SDCC2_APPS clock source runs at 40MHz.
++    type: boolean
++
+ required:
+   - compatible
+   - reg
 diff --git a/drivers/clk/qcom/gcc-msm8994.c b/drivers/clk/qcom/gcc-msm8994.c
-index 2ed206ecb60d..7545e973fd0d 100644
+index 72038e4c04df..55c0fd069640 100644
 --- a/drivers/clk/qcom/gcc-msm8994.c
 +++ b/drivers/clk/qcom/gcc-msm8994.c
-@@ -2685,6 +2685,7 @@ static struct gdsc *gcc_msm8994_gdscs[] = {
- static const struct qcom_reset_map gcc_msm8994_resets[] = {
- 	[USB3_PHY_RESET] = { 0x1400 },
- 	[USB3PHY_PHY_RESET] = { 0x1404 },
-+	[MSS_RESET] = { 0x1680 },
- 	[PCIE_PHY_0_RESET] = { 0x1b18 },
- 	[PCIE_PHY_1_RESET] = { 0x1b98 },
- 	[QUSB2_PHY_RESET] = { 0x04b8 },
-diff --git a/include/dt-bindings/clock/qcom,gcc-msm8994.h b/include/dt-bindings/clock/qcom,gcc-msm8994.h
-index dcb49817dcec..f6836f430bb5 100644
---- a/include/dt-bindings/clock/qcom,gcc-msm8994.h
-+++ b/include/dt-bindings/clock/qcom,gcc-msm8994.h
-@@ -174,5 +174,6 @@
- #define PCIE_PHY_0_RESET		2
- #define PCIE_PHY_1_RESET		3
- #define QUSB2_PHY_RESET			4
-+#define MSS_RESET				5
+@@ -1012,6 +1012,19 @@ static struct clk_rcg2 sdcc1_apps_clk_src = {
+ 	},
+ };
  
- #endif
++static struct freq_tbl ftbl_sdcc2_40mhz_apps_clk_src[] = {
++	F(144000, P_XO, 16, 3, 25),
++	F(400000, P_XO, 12, 1, 4),
++	F(20000000, P_GPLL0, 15, 1, 2),
++	F(25000000, P_GPLL0, 12, 1, 2),
++	F(40000000, P_GPLL0, 15, 0, 0),
++	F(50000000, P_GPLL0, 12, 0, 0),
++	F(80000000, P_GPLL0, 7.5, 0, 0),
++	F(100000000, P_GPLL0, 6, 0, 0),
++	F(200000000, P_GPLL0, 3, 0, 0),
++	{ }
++};
++
+ static struct freq_tbl ftbl_sdcc2_4_apps_clk_src[] = {
+ 	F(144000, P_XO, 16, 3, 25),
+ 	F(400000, P_XO, 12, 1, 4),
+@@ -2788,6 +2801,9 @@ static int gcc_msm8994_probe(struct platform_device *pdev)
+ 		gcc_msm8994_desc.clks[GCC_SYS_NOC_UFS_AXI_CLK] = NULL;
+ 	}
+ 
++	if (of_find_property(dev->of_node, "qcom,sdcc2-clk-src-40mhz", NULL))
++		sdcc2_apps_clk_src.freq_tbl = ftbl_sdcc2_40mhz_apps_clk_src;
++
+ 	return qcom_cc_probe(pdev, &gcc_msm8994_desc);
+ }
+ 
 -- 
 2.33.0
 
