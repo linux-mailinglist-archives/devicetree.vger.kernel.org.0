@@ -2,113 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 304643FB725
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D1063FB729
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:44:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236844AbhH3NpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 09:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236837AbhH3NpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 09:45:10 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C46C061760
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:44:16 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id w4so25947763ljh.13
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:44:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kOYXhGaqQ6MRJEfF+E0ER+xBLRcBgZV7cWZXRVeFtj4=;
-        b=oSzgQNH2PwxCqBTmQ00Scj9XVNl4PjTfZ++xtN2IEitrBIFKHRNOL0Nw67BOqqLDXc
-         ActdqjZTwLU+LZHafZglw2/Ka0Otxu1mSTzy+f7Iy3+t336Rl1FhjMz2TVigE0AiEfMe
-         sJwAOqAQwp9MrtcdCua2tE/O2fbPeJIJfuZ5yIh6gTpYFU8ZYLHM96NUBCjy6ffwMpVb
-         uT2td0pEGA0MAXd9lc/rMbDlvrPemi+GAcO1VH4u67DOlWf4posmy4rjN9xZEewHg12T
-         9cfnXrYjqrFceBAQli3kRcG6SJrpB64dhbVykWoa0BUH1uuNw3Xod+WsHj2D6vQZ4dTs
-         W+jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kOYXhGaqQ6MRJEfF+E0ER+xBLRcBgZV7cWZXRVeFtj4=;
-        b=ueIj7TFZ11RSdKfpyGeAafIpWyq2yw3eARPI55XJfQUgeVTm7Xe+msD7oFtFxAzChh
-         0K00+sdVPfV8lwMUSMsFeg0GW03KBHOzDPxJsKJZDGpzE9kXR+h6EmdBzgWznsIGZzrg
-         pRSXzerizn2c6g1D3M3LTuz0WFHZV1Ct1VlT1UcI1XQeBER+WtdBBOKcUEuIllF3EuxR
-         OLh9gUupis7IKLUbolbaT/R5aQjFz69RxRRcfUyYhA0CWi8ZmTo5sl9tbFGKMNW7Zm5Z
-         O1aYUYVN+Mpe+/K3C39zH/GDbpv4RZfeNJnmCNsEPgoGqDjsTDndWOe+kNQscy6j2zL7
-         G4Yw==
-X-Gm-Message-State: AOAM532fPdsnDlO1CJiOd+napS6uBSk5+cWnheg7lHqoMw7htusVIhOo
-        5lX51iBAQeYcR7W6jq+eH9kunT1Y/egfgpKRuMrZsw==
-X-Google-Smtp-Source: ABdhPJzSbjrfR6nWoj1MvF5PjDjLKW0SfuR+5h1BG6O5DQ4hi8nvSRGwK/6dSx4oy0x4iF+t9nGT3L28hehyyLhGsjQ=
-X-Received: by 2002:a2e:bd09:: with SMTP id n9mr20595594ljq.76.1630331054549;
- Mon, 30 Aug 2021 06:44:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <ccb2dad1-c8c1-9f19-92c4-7faf2b787e6d@foss.st.com>
-In-Reply-To: <ccb2dad1-c8c1-9f19-92c4-7faf2b787e6d@foss.st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 30 Aug 2021 15:43:38 +0200
-Message-ID: <CAPDyKFqMJmJRLNYF=gWvAEH8wtJzrxrZ9KLz62t4XNsD84vr=Q@mail.gmail.com>
-Subject: Re: Question about MMC_PM_KEEP_POWER in MMCI driver
-To:     Yann Gautier <yann.gautier@foss.st.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
+        id S236771AbhH3Nph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 09:45:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231669AbhH3Npg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 09:45:36 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 45988604D7;
+        Mon, 30 Aug 2021 13:44:36 +0000 (UTC)
+Date:   Mon, 30 Aug 2021 14:47:47 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "Ryan J . Barnett" <ryan.barnett@collins.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 15/40] mfd: ti_am335x_tscadc: Simplify divisor
+ calculation
+Message-ID: <20210830144747.4ec5d23f@jic23-huawei>
+In-Reply-To: <20210825152518.379386-16-miquel.raynal@bootlin.com>
+References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
+        <20210825152518.379386-16-miquel.raynal@bootlin.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 at 16:34, Yann Gautier <yann.gautier@foss.st.com> wrote:
->
-> Hi,
->
-> In drivers/mmc/host/mmci.c, MMC_PM_KEEP_POWER is unconditionally enabled.
-> This prevents correct low-power sequence on STM32MP157C-DK2 board which
-> embeds a Wifi chip brcm,bcm4329-fmac (this wifi part has not yet been
-> sent upstream).
+On Wed, 25 Aug 2021 17:24:53 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Exactly why doesn't this work with the STM32MP157C-DK2 board?
+> Let's rewrite this on a single line, it does not hurt the readability
+> and saves a useless temporary variable.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
->
-> This MMC_PM_KEEP_POWER can be taken from DT with the property
-> keep-power-in-suspend. This is what is done for other MMC drivers.
+> ---
+>  drivers/mfd/ti_am335x_tscadc.c | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
+> index d27f8917272d..3231ccbbad02 100644
+> --- a/drivers/mfd/ti_am335x_tscadc.c
+> +++ b/drivers/mfd/ti_am335x_tscadc.c
+> @@ -122,7 +122,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  	struct clk *clk;
+>  	u32 val;
+>  	int tsc_wires = 0, adc_channels = 0, readouts = 0;
+> -	int total_channels, clock_rate, ctrl, err;
+> +	int total_channels, ctrl, err;
+>  
+>  	/* Allocate memory for device */
+>  	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
+> @@ -208,11 +208,8 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  		err = PTR_ERR(clk);
+>  		goto err_disable_clk;
+>  	}
+> -	clock_rate = clk_get_rate(clk);
+> -	tscadc->clk_div = clock_rate / ADC_CLK;
+>  
+> -	/* TSCADC_CLKDIV needs to be configured to the value minus 1 */
+> -	tscadc->clk_div--;
+> +	tscadc->clk_div = (clk_get_rate(clk) / ADC_CLK) - 1;
+>  	regmap_write(tscadc->regmap, REG_CLKDIV, tscadc->clk_div);
+>  
+>  	/* Set the control register bits */
 
-The DT property is what should have been used for mmci as well.
-
->
-> I wonder what should be the best solution for this.
->
-> 1) Remove MMC_PM_KEEP_POWER from the driver, and modify all SoC device
-> tree files embedding a arm,pl18x with adding keep-power-in-suspend;
-> property (except stm32mp151.dtsi file).
-> This can be easy to do (~10 files to modify). But that could be more
-> board dependent, if an SDIO chip is plugged on this MMC IP.
-> And the name keep-power-in-suspend can be misleading as it only applies
-> to SDIO.
->
-> 2) Remove MMC_PM_KEEP_POWER from the driver, and modify board DT files
-> with the property. This could be a difficult task to find all those
-> boards. And this should be applied only for SDIO configs.
->
-> 3) Just modify the driver to apply this capability for all MMCI chips
-> but STM32. This could be done in the dedicated file, in
-> sdmmc_variant_init() function. But some boards based on STM32MP15 chip
-> might want to keep this capability.
-
-I would suggest option 3).
-
-As a matter of fact, we also allow MMC_PM_KEEP_POWER to become set
-when parsing the DTB via calling mmc_of_parse(). So just changing the
-default value (don't set MMC_PM_KEEP_POWER) for the stm32 variant,
-would do the trick I think.
-
-Kind regards
-Uffe
