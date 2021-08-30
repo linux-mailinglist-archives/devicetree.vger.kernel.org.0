@@ -2,98 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF433FBA67
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 18:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 464223FBA87
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 19:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237925AbhH3QwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 12:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54278 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237788AbhH3QwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 12:52:17 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14E3C061575;
-        Mon, 30 Aug 2021 09:51:23 -0700 (PDT)
-Received: from apollo.. (unknown [IPv6:2a02:810c:c200:2e91:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S231234AbhH3RBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 13:01:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37880 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231290AbhH3RBd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 13:01:33 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 064AB2222E;
-        Mon, 30 Aug 2021 18:51:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1630342281;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=s7FBoujQg3kVA4BmPGpYvHkhVu18Qs2dpi7QKew8788=;
-        b=VSHipgrNulbGk3HtKKzZJYBk9xH45pCbIQDl7tsartInrHAylIzuj1YKoVam1yQf4d/Ipm
-        Q2u9vSO/pC8cvQ6quY5EQ8c0wCtt4HANRUVBHKpQAhqDi+k3h+xAb9dEWpN8erBYjn9srX
-        lhCegqe9ykqoTPG6onqBX+xPfqItMCE=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] arm64: dts: hisilicon: fix arm,sp805 compatible string
-Date:   Mon, 30 Aug 2021 18:51:13 +0200
-Message-Id: <20210830165113.222867-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        by mail.kernel.org (Postfix) with ESMTPSA id 1A72260F23;
+        Mon, 30 Aug 2021 17:00:36 +0000 (UTC)
+Date:   Mon, 30 Aug 2021 18:03:48 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Liam Beguin <liambeguin@gmail.com>, lars@metafoo.de,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v8 09/14] iio: afe: rescale: fix accuracy for small
+ fractional scales
+Message-ID: <20210830180348.032b217f@jic23-huawei>
+In-Reply-To: <e1542f14-f271-a0a3-eaa1-092e12c3ed6c@axentia.se>
+References: <20210820191714.69898-1-liambeguin@gmail.com>
+        <20210820191714.69898-10-liambeguin@gmail.com>
+        <2d028a60-d1fe-7fa1-da4a-0d80f8d468ea@axentia.se>
+        <20210830122224.3efc5a63@jic23-huawei>
+        <e1542f14-f271-a0a3-eaa1-092e12c3ed6c@axentia.se>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-the compatible is:
-  compatible = "arm,sp805", "arm,primecell";
+On Mon, 30 Aug 2021 16:30:54 +0200
+Peter Rosin <peda@axentia.se> wrote:
 
-The current compatible string doesn't exist at all. Fix it.
+> On 2021-08-30 13:22, Jonathan Cameron wrote:
+> > On Mon, 23 Aug 2021 00:18:55 +0200
+> > Peter Rosin <peda@axentia.se> wrote:
+> >   
+> >> [I started to write an answer to your plans in the v7 thread, but didn't
+> >> have time to finish before v8 appeared...]
+> >>
+> >> On 2021-08-20 21:17, Liam Beguin wrote:  
+> >>> From: Liam Beguin <lvb@xiphos.com>
+> >>>
+> >>> The approximation caused by integer divisions can be costly on smaller
+> >>> scale values since the decimal part is significant compared to the
+> >>> integer part. Switch to an IIO_VAL_INT_PLUS_NANO scale type in such
+> >>> cases to maintain accuracy.    
+> >>
+> >> The conversion to int-plus-nano may also carry a cost of accuracy.
+> >>
+> >> 90/1373754273 scaled by 261/509 is 3.359e-8, the old code returns 3.348e-8,
+> >> but the new one gets you 3.3e-8 (0.000000033, it simply cannot provide more
+> >> digits). So, in this case you lose precision with the new code.
+> >>
+> >> Similar problem with 100 / 2^30 scaled by 3782/7000. It is 5.032e-8, the old
+> >> code returns 5.029e-8, but the new one gets you the inferior 5.0e-8.
+> >>
+> >> I'm also wondering if it is wise to not always return the same scale type?
+> >> What happens if we want to extend this driver to scale a buffered channel?
+> >> Honest question! I don't know, but I fear that this patch may make that
+> >> step more difficult to take??
+> >>
+> >> Jonathan, do you have any input on that?  
+> > 
+> > I'm a bit lost.  As things currently stand IIO buffered data flows all use
+> > _RAW.  It's either up to userspace or the inkernel user to query scale
+> > and use that to compute the appropriate _processed values.  There have been
+> > various discussions over the years on how to add metadata but it's tricky
+> > without adding significant complexity and for vast majority of usecases not
+> > necessary.  Given the rescaler copes with _raw and _processed inputs, we
+> > would only support buffered flows if using the _raw ones.
+> > 
+> > If nothing changes in configuration of the rescaler, the scale should be
+> > static for a given device.  What format that 'scale' takes is something
+> > that userspace code or inkernel users should cope fine with given they
+> > need to do that anyway for different devices.  
+> 
+> Ok, if 'scale' (and 'offset') of the source channel is to be considered
+> static, then it is much safer to ignore the "island problem" and rescale
+> each value independently on a case-by-case basis. We should add an
+> explicit comment somewhere that we make this assumption.
+> 
+> Sorry for wasting time and effort by not realizing by myself (and earlier).
+> 
+> Maybe something like this?
+> 
+> /*
+>  * The rescaler assumes that the 'scale' and 'offset' properties of
+>  * the source channel are static. If they are not, there exist some
+>  * corner cases where rounding/truncating might cause confusing
+>  * mathematical properties (non-linearity).
+>  */
+Looks good to me.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-There are also the layerscape SoC which are using these compatible
-strings. I'm on it to change these, too.
+There are some really obscure corner cases in which it is theoretically possible
+to have scale change autonomously. Reality is they mostly don't happen in reality
+and are on strange sensors you couldn't stick an AFE on anyway ;)
+IIRC hid-sensors in theory allow this, but as far as I know, no device actually does
+it...  I'm not sure the driver takes any notice if they do!
 
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
- arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index 2d5c1a348716..6eabec2602e2 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -1087,7 +1087,7 @@ dwmmc2: dwmmc2@ff3ff000 {
- 		};
- 
- 		watchdog0: watchdog@e8a06000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xe8a06000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&crg_ctrl HI3660_OSC32K>,
-@@ -1096,7 +1096,7 @@ watchdog0: watchdog@e8a06000 {
- 		};
- 
- 		watchdog1: watchdog@e8a07000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xe8a07000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&crg_ctrl HI3660_OSC32K>,
-diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-index dde9371dc545..e4860b8a638e 100644
---- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-@@ -840,7 +840,7 @@ dwmmc_2: dwmmc2@f723f000 {
- 		};
- 
- 		watchdog0: watchdog@f8005000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xf8005000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ao_ctrl HI6220_WDT0_PCLK>,
--- 
-2.30.2
+> 
+> I then propose that we rescale IIO_VAL_FRACTIONAL as before if that works,
+> thus preserving any previous exact rescaling, but if there is an overflow
+> while doing that, then we fall back to new code that rescales to a
+> IIO_VAL_INT_PLUS_NANO value. Trying the gcd-thing as it ended up in v7 still
+> seems expensive to me, but maybe I overestimate the cost of gcd? Anyway, my
+> guts vote for completely skipping gcd and that we aim directly for
+> IIO_VAL_INT_PLUS_NANO in case of overflow while doing the old thing.
+> 
+> Having said that, if 'scale' and 'offset' indeed are static, then the gcd
+> cost can be mitigated by caching the result. Exact rescaling is always
+> nice...
+> 
+> If IIO_VAL_INT overflows while rescaling, we are SOL whichever way we turn,
+> so ignore doing anything about that.
+> 
+> Liam, was it IIO_VAL_FRACTIONAL or IIO_VAL_FRACTIONAL_LOG2 that was your
+> real use case? Anyway, your 100 ppm threshold is probably as good a
+> compromise as any for this case. However, that threshold does nothing for
+> the case where the conversion to IIO_VAL_INT_PLUS_NANO throws away way
+> more precision than the existing operations. It would probably be good
+> to somehow stay with the old method for the really tiny values, if there
+> is a viable test/threshold for when to do what.
+> 
+> Cheers,
+> Peter
 
