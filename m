@@ -2,116 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6C03FB889
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F90B3FB896
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237244AbhH3Ovg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 10:51:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47580 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234246AbhH3Ovg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 10:51:36 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0C2366056B;
-        Mon, 30 Aug 2021 14:50:36 +0000 (UTC)
-Date:   Mon, 30 Aug 2021 15:53:48 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH 23/40] mfd: ti_am335x_tscadc: Rename a variable
-Message-ID: <20210830155348.528555ea@jic23-huawei>
-In-Reply-To: <20210825152518.379386-24-miquel.raynal@bootlin.com>
-References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
-        <20210825152518.379386-24-miquel.raynal@bootlin.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S236263AbhH3O6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 10:58:00 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:56498 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233162AbhH3O57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 10:57:59 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id ef38839b;
+        Mon, 30 Aug 2021 16:57:02 +0200 (CEST)
+Date:   Mon, 30 Aug 2021 16:57:02 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
+        kettenis@openbsd.org, tglx@linutronix.de, robh+dt@kernel.org,
+        marcan@marcan.st, bhelgaas@google.com, nsaenz@kernel.org,
+        jim2101024@gmail.com, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        daire.mcnamara@microchip.com, nsaenzjulienne@suse.de,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+In-Reply-To: <87pmtvcgec.wl-maz@kernel.org> (message from Marc Zyngier on Mon,
+        30 Aug 2021 12:37:31 +0100)
+Subject: Re: [PATCH v4 4/4] arm64: apple: Add PCIe node
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
+ <20210827171534.62380-5-mark.kettenis@xs4all.nl> <87pmtvcgec.wl-maz@kernel.org>
+Message-ID: <56142808ad64dd79@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 17:25:01 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-
-> We need to retrieve the number of wires used by the "secondary" device
-> (the touchscreen or the magnetic reader). Let's rename tsc_wires to
-> become tscmag_wires to clarify the fact that this variable can be used
-> in both situations.
+> Date: Mon, 30 Aug 2021 12:37:31 +0100
+> From: Marc Zyngier <maz@kernel.org>
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Seems sensible.
+> Hi Mark,
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Hi Marc,
 
-> ---
->  drivers/mfd/ti_am335x_tscadc.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> On Fri, 27 Aug 2021 18:15:29 +0100,
+> Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> > 
+> > From: Mark Kettenis <kettenis@openbsd.org>
+> > 
+> > Add node corresponding to the apcie,t8103 node in the
+> > Apple device tree for the Mac mini (M1, 2020).
+> > 
+> > Clock references and DART (IOMMU) references are left out at the
+> > moment and will be added once the appropriate bindings have been
+> > settled upon.
+> > 
+> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > ---
+> >  arch/arm64/boot/dts/apple/t8103.dtsi | 63 ++++++++++++++++++++++++++++
+> >  1 file changed, 63 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+> > index 503a76fc30e6..6e4677bdef44 100644
+> > --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> > +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> > @@ -214,5 +214,68 @@ pinctrl_smc: pinctrl@23e820000 {
+> >  				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
+> >  				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
+> >  		};
+> > +
+> > +		pcie0: pcie@690000000 {
+> > +			compatible = "apple,t8103-pcie", "apple,pcie";
+> > +			device_type = "pci";
+> > +
+> > +			reg = <0x6 0x90000000 0x0 0x1000000>,
+> > +			      <0x6 0x80000000 0x0 0x4000>,
+> > +			      <0x6 0x81000000 0x0 0x8000>,
+> > +			      <0x6 0x82000000 0x0 0x8000>,
+> > +			      <0x6 0x83000000 0x0 0x8000>;
+> > +			reg-names = "config", "rc", "port0", "port1", "port2";
+> > +
+> > +			interrupt-parent = <&aic>;
+> > +			interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +			msi-controller;
+> > +			msi-parent = <&pcie0>;
+> > +			msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+> > +
+> > +			bus-range = <0 3>;
+> > +			#address-cells = <3>;
+> > +			#size-cells = <2>;
+> > +			ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
+> > +				 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
+> > +
+> > +			pinctrl-0 = <&pcie_pins>;
+> > +			pinctrl-names = "default";
+> > +
+> > +			pci@0,0 {
+> > +				device_type = "pci";
+> > +				reg = <0x0 0x0 0x0 0x0 0x0>;
+> > +				reset-gpios = <&pinctrl_ap 152 0>;
+> > +				max-link-speed = <2>;
+> > +
+> > +				#address-cells = <3>;
+> > +				#size-cells = <2>;
+> > +				ranges;
+> > +			};
+> > +
+> > +			pci@1,0 {
+> > +				device_type = "pci";
+> > +				reg = <0x800 0x0 0x0 0x0 0x0>;
+> > +				reset-gpios = <&pinctrl_ap 153 0>;
+> > +				max-link-speed = <2>;
+> > +
+> > +				#address-cells = <3>;
+> > +				#size-cells = <2>;
+> > +				ranges;
+> > +			};
+> > +
+> > +			pci@2,0 {
+> > +				device_type = "pci";
+> > +				reg = <0x1000 0x0 0x0 0x0 0x0>;
+> > +				reset-gpios = <&pinctrl_ap 33 0>;
+> > +				max-link-speed = <1>;
+> > +
+> > +				#address-cells = <3>;
+> > +				#size-cells = <2>;
+> > +				ranges;
+> > +			};
+> > +		};
+> >  	};
+> >  };
 > 
-> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
-> index 02477ce827d0..047426a74a2e 100644
-> --- a/drivers/mfd/ti_am335x_tscadc.c
-> +++ b/drivers/mfd/ti_am335x_tscadc.c
-> @@ -121,7 +121,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	const __be32 *cur;
->  	struct clk *clk;
->  	u32 val;
-> -	int tsc_wires = 0, adc_channels = 0, readouts = 0, cell_idx = 0;
-> +	int tscmag_wires = 0, adc_channels = 0, readouts = 0, cell_idx = 0;
->  	int total_channels, err;
->  
->  	/* Allocate memory for device */
-> @@ -139,7 +139,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	tscadc->data = of_device_get_match_data(&pdev->dev);
->  
->  	node = of_get_child_by_name(pdev->dev.of_node, "tsc");
-> -	of_property_read_u32(node, "ti,wires", &tsc_wires);
-> +	of_property_read_u32(node, "ti,wires", &tscmag_wires);
->  	of_property_read_u32(node, "ti,coordiante-readouts", &readouts);
->  
->  	node = of_get_child_by_name(pdev->dev.of_node, "adc");
-> @@ -152,7 +152,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> -	total_channels = tsc_wires + adc_channels;
-> +	total_channels = tscmag_wires + adc_channels;
->  	if (total_channels > 8) {
->  		dev_err(&pdev->dev, "Number of i/p channels more than 8\n");
->  		return -EINVAL;
-> @@ -218,9 +218,9 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	tscadc->ctrl = CNTRLREG_TSC_STEPCONFIGWRT | CNTRLREG_STEPID;
->  	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
->  
-> -	if (tsc_wires > 0) {
-> +	if (tscmag_wires > 0) {
->  		tscadc->ctrl |= CNTRLREG_TSC_ENB;
-> -		if (tsc_wires == 5)
-> +		if (tscmag_wires == 5)
->  			tscadc->ctrl |= CNTRLREG_TSC_5WIRE;
->  		else
->  			tscadc->ctrl |= CNTRLREG_TSC_4WIRE;
-> @@ -232,7 +232,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl | CNTRLREG_SSENB);
->  
->  	/* TSC Cell */
-> -	if (tsc_wires > 0) {
-> +	if (tscmag_wires > 0) {
->  		cell = &tscadc->cells[cell_idx++];
->  		cell->name = tscadc->data->name_tscmag;
->  		cell->of_compatible = tscadc->data->compat_tscmag;
+> I have now implemented the MSI change on the Linux driver side, and it
+> works nicely. So thumbs up from me on this front.
+> 
+> I am now looking at the interrupts provided by each port:
+> (1) a bunch of port-private interrupts (link up/down...)
+> (2) INTx interrupts
+> 
+> Given that the programming is per-port, I've implemented this as a
+> per-port interrupt controller.
+> 
+> (1) is dead easy to implement, and doesn't require any DT description.
+> (2) is unfortunately exposing the limits of my DT knowledge, and I'm
+> not clear how to model it. I came up with the following:
+> 
+> 	port00: pci@0,0 {
+> 		device_type = "pci";
+> 		reg = <0x0 0x0 0x0 0x0 0x0>;
+> 		reset-gpios = <&pinctrl_ap 152 0>;
+> 		max-link-speed = <2>;
+> 
+> 		#address-cells = <3>;
+> 		#size-cells = <2>;
+> 		ranges;
+> 
+> 		interrupt-controller;
+> 		#interrupt-cells = <1>;
+> 		interrupt-parent = <&port00>;
+> 		interrupt-map-mask = <0 0 0 7>;
+> 		interrupt-map = <0 0 0 1 &port00 0>,
+> 				<0 0 0 2 &port00 1>,
+> 				<0 0 0 3 &port00 2>,
+> 				<0 0 0 4 &port00 3>;
+> 	};
+> 
+> which vaguely seem to do the right thing for the devices behind root
+> ports, but doesn't seem to work for INTx generated by the root ports
+> themselves. Any clue? Alternatively, I could move it to something
+> global to the whole PCIe controller, but that doesn't seem completely
+> right.
+> 
+> It also begs the question whether the per-port interrupt to the AIC
+> should be moved into each root port, should my per-port approach hold
+> any water.
 
+Must admit that I didn't entirely thinkthrough this aspect fo the
+hardware.  MSIs work just fine for the built-in hardware of the
+current generation of M1 Macs so I ignored INTx for now.
+
+It isn't entirely clear to me what properties are "allowed" on the
+individual pci device child nodes that correspond to the ports.  But
+"interrupt-map" and "interrupt-map-mask" are certainly among the
+allowed properties, so this approach makes sense to me.  I must say I
+don't see what the issue with the INTx generated by the root ports
+themselves would be.  
+
+I don't think we can move the interrupt property for the AIC to the
+ports though, since that property would actually represent the
+interrupt of the PCI bridge device according to the standard PCI
+bindings and that isn't the case here.
+
+So this makes sense to me and might not even need changing to the
+binding for the Apple PCIe controller itself.
