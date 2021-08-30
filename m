@@ -2,162 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1863FB629
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:36:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F55C3FB650
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234553AbhH3Mgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 08:36:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55162 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232267AbhH3Mgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 08:36:54 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5C27460C40;
-        Mon, 30 Aug 2021 12:35:55 +0000 (UTC)
-Date:   Mon, 30 Aug 2021 13:39:06 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH 05/40] dt-bindings: touchscreen: ti,am3359-tsc: Remove
- deprecated text file
-Message-ID: <20210830133906.6638d794@jic23-huawei>
-In-Reply-To: <20210825152518.379386-6-miquel.raynal@bootlin.com>
-References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
-        <20210825152518.379386-6-miquel.raynal@bootlin.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S236666AbhH3MqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 08:46:22 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:55784 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236645AbhH3MqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 08:46:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1630327528;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=TAcAP/xH/JBVD6nQSnDkpommozbj10qHdY7UHUiU8Q4=;
+        b=Afd/lYWtZ3w0scwAV4ik2N22v4AZukt0cyArEOmaCZu4xuhpWhz1BLhxMFRCKI/1bznrWA
+        oqgGT+0Y4LFaUYiFZHVa5ABopOYeIX62eq6hb/6IXtDlVrzHhdhKF9gKE9RP4nprJq3Cka
+        FYRyqHDB3+OdH5rVkQFHwlT9AygCTAY=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-373-3cGi4QitNXenl_KgDu6_HA-1; Mon, 30 Aug 2021 08:45:26 -0400
+X-MC-Unique: 3cGi4QitNXenl_KgDu6_HA-1
+Received: by mail-wm1-f72.google.com with SMTP id 5-20020a1c00050000b02902e67111d9f0so4662775wma.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 05:45:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=TAcAP/xH/JBVD6nQSnDkpommozbj10qHdY7UHUiU8Q4=;
+        b=QdFqjyZThFrz9BcsTvQESnBWw336h6uiXVAcOX4SBR6Ga6bYHQ2TDhB00H1VjhAcGC
+         5fa5IZGcMje7yrUt7oRw/5Mj8KCWgHbdJT6M+hrAudLcCfx/nxHVnUmRmBP5fKNuQDaD
+         0/lJmmNVw4SoErgkQyg/0lJg87FEbXC0HaAiz+XvlPZlzlF5mjUOGXIkF0XOccoOl6sC
+         tZCxFNr6eN9IqCnLBF2C25zIx7mF1CmWDdS7eBg4457sNVsHGD+pL6/Plgr96/Dpzp7b
+         D4FSq9ZfZS/hNQQzB0dZqxcq9zzijrBwi4P1WT5XR3tRq8MKKmC9ezu0QjoRMxLbRuMB
+         eXCw==
+X-Gm-Message-State: AOAM533gclq9pO4VeD31JFizhCgLoAwpq0qyO8mehj8Cw/mgmvgDnkY4
+        it7rEENqWXEAZ1aGVX143O3gV/41fnZmUmuceZRMyonMH4AOBzMyvrQGsyluVUP4XSEd9UkhKIC
+        zkjc0bCLZ+vvMQVchvh/dng==
+X-Received: by 2002:adf:8169:: with SMTP id 96mr25984451wrm.207.1630327525627;
+        Mon, 30 Aug 2021 05:45:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwHQFdtgqFJB12YSVQLA45kLlBZRJ0vA+TcNMyVfjbG7srYAviQMmfRkzLyeuyHfbf6Wy9baA==
+X-Received: by 2002:adf:8169:: with SMTP id 96mr25984430wrm.207.1630327525444;
+        Mon, 30 Aug 2021 05:45:25 -0700 (PDT)
+Received: from ?IPv6:2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de? ([2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de])
+        by smtp.gmail.com with ESMTPSA id h6sm14368959wmq.5.2021.08.30.05.45.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 05:45:25 -0700 (PDT)
+Message-ID: <5124460b547a5f77a19e292bfb785aabde764189.camel@redhat.com>
+Subject: Re: [RFC PATCH v2 4/4] sensehat: Add device tree overlay (do not
+ merge)
+From:   nsaenzju@redhat.com
+To:     Charles Mirabile <cmirabil@redhat.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Serge Schneider <serge@raspberrypi.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        linux-rpi-kernel@lists.infradead.org, fedora-rpi@googlegroups.com,
+        Mwesigwa Guma <mguma@redhat.com>,
+        Joel Savitz <jsavitz@redhat.com>
+Date:   Mon, 30 Aug 2021 14:45:24 +0200
+In-Reply-To: <20210820180801.561119-5-cmirabil@redhat.com>
+References: <20210820180801.561119-1-cmirabil@redhat.com>
+         <20210820180801.561119-5-cmirabil@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 17:24:43 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+Hi Charles,
 
-> Now that the three hardware peaces described in this file have been
-> translated in yaml in 3 dedicated files (MFD, touchscreen controller and
-> ADC) it is time to remove this text file.
+On Fri, 2021-08-20 at 14:08 -0400, Charles Mirabile wrote:
+> This patch is an RFC. The overlay included here is suitable for the
+> Sense HAT but we are not sure where overlays like this should go, or if we
+> should even include it, because the Raspberry Pi kernel tree already
+> includes that device tree blob that this was based on and most
+> distributions for the Raspberry Pi include those blobs.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-Nice to have another one of these go away :)
+> The overlay is just in the root of the source tree since we did not know
+> where to put it so this patch should not be merged in this state.
+> 
+> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+> Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+> Signed-off-by: Joel Savitz <jsavitz@redhat.com>
 > ---
->  .../bindings/input/touchscreen/ti-tsc-adc.txt | 91 -------------------
->  1 file changed, 91 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-> deleted file mode 100644
-> index aad5e34965eb..000000000000
-> --- a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-> +++ /dev/null
-> @@ -1,91 +0,0 @@
-> -* TI - TSC ADC (Touschscreen and analog digital converter)
-> -~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> -
-> -Required properties:
-> -- mfd
-> -	compatible: Should be
-> -		"ti,am3359-tscadc" for AM335x/AM437x SoCs
-> -		"ti,am654-tscadc", "ti,am3359-tscadc" for AM654 SoCs
-> -- child "tsc"
-> -	compatible: Should be "ti,am3359-tsc".
-> -	ti,wires: Wires refer to application modes i.e. 4/5/8 wire touchscreen
-> -		  support on the platform.
-> -	ti,x-plate-resistance: X plate resistance
-> -	ti,coordinate-readouts: The sequencer supports a total of 16
-> -				programmable steps each step is used to
-> -				read a single coordinate. A single
-> -                                readout is enough but multiple reads can
-> -				increase the quality.
-> -				A value of 5 means, 5 reads for X, 5 for
-> -				Y and 2 for Z (always). This utilises 12
-> -				of the 16 software steps available. The
-> -				remaining 4 can be used by the ADC.
-> -	ti,wire-config: Different boards could have a different order for
-> -			connecting wires on touchscreen. We need to provide an
-> -			8 bit number where in the 1st four bits represent the
-> -			analog lines and the next 4 bits represent positive/
-> -			negative terminal on that input line. Notations to
-> -			represent the input lines and terminals resoectively
-> -			is as follows:
-> -			AIN0 = 0, AIN1 = 1 and so on till AIN7 = 7.
-> -			XP  = 0, XN = 1, YP = 2, YN = 3.
-> -- child "adc"
-> -	compatible: Should be
-> -		    "ti,am3359-adc" for AM335x/AM437x SoCs
-> -		    "ti,am654-adc", "ti,am3359-adc" for AM654 SoCs
-> -	ti,adc-channels: List of analog inputs available for ADC.
-> -			 AIN0 = 0, AIN1 = 1 and so on till AIN7 = 7.
-> -
-> -Optional properties:
-> -- child "tsc"
-> -	ti,charge-delay: Length of touch screen charge delay step in terms of
-> -			 ADC clock cycles. Charge delay value should be large
-> -			 in order to avoid false pen-up events. This value
-> -			 effects the overall sampling speed, hence need to be
-> -			 kept as low as possible, while avoiding false pen-up
-> -			 event. Start from a lower value, say 0x400, and
-> -			 increase value until false pen-up events are avoided.
-> -			 The pen-up detection happens immediately after the
-> -			 charge step, so this does in fact function as a
-> -			 hardware knob for adjusting the amount of "settling
-> -			 time".
-> -
-> -- child "adc"
-> -	ti,chan-step-opendelay: List of open delays for each channel of
-> -				ADC in the order of ti,adc-channels. The
-> -				value corresponds to the number of ADC
-> -				clock cycles to wait after applying the
-> -				step configuration registers and before
-> -				sending the start of ADC conversion.
-> -				Maximum value is 0x3FFFF.
-> -       ti,chan-step-sampledelay: List of sample delays for each channel
-> -				  of ADC in the order of ti,adc-channels.
-> -				  The value corresponds to the number of
-> -				  ADC clock cycles to sample (to hold
-> -				  start of conversion high).
-> -				  Maximum value is 0xFF.
-> -       ti,chan-step-avg: Number of averages to be performed for each
-> -			  channel of ADC. If average is 16 then input
-> -			  is sampled 16 times and averaged to get more
-> -			  accurate value. This increases the time taken
-> -			  by ADC to generate a sample. Valid range is 0
-> -			  average to 16 averages. Maximum value is 16.
-> -
-> -Example:
-> -	tscadc: tscadc@44e0d000 {
-> -		compatible = "ti,am3359-tscadc";
-> -		tsc {
-> -			ti,wires = <4>;
-> -			ti,x-plate-resistance = <200>;
-> -			ti,coordiante-readouts = <5>;
-> -			ti,wire-config = <0x00 0x11 0x22 0x33>;
-> -			ti,charge-delay = <0x400>;
-> -		};
-> -
-> -		adc {
-> -			ti,adc-channels = <4 5 6 7>;
-> -			ti,chan-step-opendelay = <0x098 0x3ffff 0x098 0x0>;
-> -			ti,chan-step-sampledelay = <0xff 0x0 0xf 0x0>;
-> -			ti,chan-step-avg = <16 2 4 8>;
-> -		};
-> -	}
+
+Once we get this merged, and since upstream doesn't yet mantain overlays, I
+suggest you merge this overlay in the downstream rpi kernel repo, who actively
+maintain them. AFAIK a number of distros use that repo as the base for their
+devicetrees.
+
+That said, I think providing a devicetree binding for this driver is a must for
+it to be merged (in yaml form).
+
+Regards,
+Nicolas
 
