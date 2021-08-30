@@ -2,139 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F33D63FBE85
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DCE53FBE9D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238423AbhH3VvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 17:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237167AbhH3VvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 17:51:18 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C92C061575;
-        Mon, 30 Aug 2021 14:50:24 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id s25so23854334edw.0;
-        Mon, 30 Aug 2021 14:50:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=S8anJ0NPPB4P0Ut+ZHX8utJDYvZhnlZjZsXzn1rS+3E=;
-        b=hPz+rupDI0UhCDh5P+uZg41eWTjlnSVCvPPsZKNU7dDveXrnz4EBdWdxZfhAYeJxB2
-         hYfHV1ER5wiH8POAOZd7yZ2vUGOrSQWtOeeZW6NhZNna1LD+CQOK4tEZ+QTaHynzlLZm
-         jSm9/+ZNhLUdMvsX+TD8pD1djLH6Qy7rRUSxuqBlwWjC1xu+bgEBaBnwuSr4K/m8Pouc
-         SZMi3NQaUjj2ZAgFvIzvTN9kVUnoOyvDjuWj8OugcKYttn64wS0GNHMWALYAdZG92ZSe
-         aJZ/vlT7auVKYFWH9Lp9D8zl7acl188pnhsnLSZGnZuuR70OiL5NsN+JVUHYhA5ET5un
-         McHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=S8anJ0NPPB4P0Ut+ZHX8utJDYvZhnlZjZsXzn1rS+3E=;
-        b=Loq9oHEV3lQyxxerjmwmjqFS5cuDG9GJ3VSC8QIHAIDscbOvlr9MYsdOi1drpYXAdG
-         uNIwsdx0Q4nX9hthV1viEvVV77wBk2Ur4ABhnTjS48yo32IkgPCQ37urUrErAq7ZHcOH
-         8vmmzQLiAxYosrLZJJQ4qrkqn73BsOH4Q446mwkiNVnoMRis8J4pFrVdTUht1zzRSt8m
-         pywC2R2dYrbD82PTwLaaURRTjYARR+AnEd17yPeBh/XUQN4WXYunyyWahwnY/5zOxK1s
-         s2fZg1fBTUq7o60Lu0ZzUYFWy4oHRzPgTpbraO7JuUmSTVoXBH5BsqQb/yH0RZHn4XZe
-         2SHw==
-X-Gm-Message-State: AOAM532Ykw0+ZMfKgV4x/0mQ9PZz2acvczazidOqY1D7XZxNVLJ4QOTB
-        3LQRFwxL8vy3CT7MsVhr5/s2N1Jolfo65q6g
-X-Google-Smtp-Source: ABdhPJz9YU4vyFs0t9RrfhZb9jXHLop4ynGMWZhZKNyeg1BHemIWXywK4XjaDQ00ea0hqArcVaHWBQ==
-X-Received: by 2002:a50:fd02:: with SMTP id i2mr22536429eds.22.1630360222786;
-        Mon, 30 Aug 2021 14:50:22 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id s3sm7340097ejm.49.2021.08.30.14.50.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Aug 2021 14:50:22 -0700 (PDT)
-Subject: Re: [PATCH v1 5/5] arm64: dts: rockchip: add mipi-dphy-tx1rx1 for
- rk3399
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     Mikhail Rudenko <mike.rudenko@gmail.com>,
-        linux-phy@lists.infradead.org
-Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210830180758.251390-1-mike.rudenko@gmail.com>
- <20210830180758.251390-6-mike.rudenko@gmail.com>
- <ac38a6ce-19f6-8d30-6070-55b78cc082e2@gmail.com>
-Message-ID: <909ebc5f-3a9b-c793-a4fa-07429effd8c3@gmail.com>
-Date:   Mon, 30 Aug 2021 23:50:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S238454AbhH3V5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 17:57:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60200 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233612AbhH3V5K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 17:57:10 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C994A60FA0;
+        Mon, 30 Aug 2021 21:56:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630360576;
+        bh=BL2a/+ILZCMV88SgrRizcRt8Z6238csTH1V+RUMXRbk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=srEDS6O56XDegSh04E5eoXkPUJb21dA8D8sj14WT5Z2EVxgFduXjl84bIHbk42/5E
+         LlLwoVbWLuRj3O4+5oXOh9s7ezfIUB4mLipRnbvFrvc4EYKEJEId41/yodvU2GMUcP
+         eWD7QGZupimrKVJvFVxtdH3ofJZdJu+qHFb8R56etLh2bUa0J8OU5Dcr0T6uTh0mTp
+         JYHIysXvDU5NNJ83suA6LAE8kooesztx2D8S+lipaBKiZMsdb/GNyAT2MDW6yWLA3v
+         dHEEseQobHtKSg2NIvvSmzjWwVYuhNLTFuqNx6XZ2RfAVzC6qJoBjL053wCntu5WoQ
+         2CZGJJwlaXTvA==
+Received: by mail-ej1-f42.google.com with SMTP id me10so34223759ejb.11;
+        Mon, 30 Aug 2021 14:56:16 -0700 (PDT)
+X-Gm-Message-State: AOAM530RK5+CA1KN0ZH+RjBmYCQZisrYRP1UrcsFsZvL301imi9yJokJ
+        X4VpOi7dIWfUf2k9w+/vY4CXTl04Pq7uSUDvUA==
+X-Google-Smtp-Source: ABdhPJwk8Z7m3j8Ym+P+boObT4LEZn4Mw7FR56a8AB/W7yV1bdAL9KIv8YaRGdWT3u7gL8xAKB17NHzq8lI9e9tMGvU=
+X-Received: by 2002:a17:906:d9dc:: with SMTP id qk28mr27314626ejb.359.1630360575439;
+ Mon, 30 Aug 2021 14:56:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ac38a6ce-19f6-8d30-6070-55b78cc082e2@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210830103909.323356-1-nsaenzju@redhat.com> <YSzfoyesEzAuLkSS@robh.at.kernel.org>
+ <22bbfdefb2b9a1a65a807d0aecee67e607b7ff60.camel@redhat.com>
+In-Reply-To: <22bbfdefb2b9a1a65a807d0aecee67e607b7ff60.camel@redhat.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Aug 2021 16:56:04 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJgf3SD51+_J=oNAOvMc9PmFNmuaVrisKkGV++JUzBwew@mail.gmail.com>
+Message-ID: <CAL_JsqJgf3SD51+_J=oNAOvMc9PmFNmuaVrisKkGV++JUzBwew@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Fix pcie0's unit address
+To:     nsaenzju@redhat.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 30, 2021 at 11:45 AM <nsaenzju@redhat.com> wrote:
+>
+> On Mon, 2021-08-30 at 08:39 -0500, Rob Herring wrote:
+> > On Mon, Aug 30, 2021 at 12:39:09PM +0200, Nicolas Saenz Julienne wrote:
+> > > dtbs_check currently complains that:
+> > >
+> > > arch/arm/boot/dts/bcm2711-rpi-4-b.dts:220.10-231.4: Warning
+> > > (pci_device_reg): /scb/pcie@7d500000/pci@1,0: PCI unit address format
+> > > error, expected "0,0"
+> > >
+> > > Unsurprisingly pci@0,0 is the right address, as illustrated by its reg
+> > > property:
+> > >
+> > >     &pcie0 {
+> > >             pci@0,0 {
+> > >                     /*
+> > >                      * As defined in the IEEE Std 1275-1994 document,
+> > >                      * reg is a five-cell address encoded as (phys.hi
+> > >                      * phys.mid phys.lo size.hi size.lo). phys.hi
+> > >                      * should contain the device's BDF as 0b00000000
+> > >                      * bbbbbbbb dddddfff 00000000. The other cells
+> > >                      * should be zero.
+> > >                      */
+> > >                     reg = <0 0 0 0 0>;
+> > >             };
+> > >     };
+> > >
+> > > The bus is clearly 0. So fix it.
+> >
+> > s/bus/device/
+> >
+> > The unit-address format is '<device>,<function>' (and function is
+> > optional). The bus number is not part of the unit-address because that
+> > is dynamic and then the path would not be fixed/known. The bus is part
+> > of 'reg' for true OpenFirmware, but for FDT I think it should always be
+> > 0 as the DT is static.
+> >
+> > Looks like the child node is wrong (both unit-address and reg) as well:
+> >
+> >                 usb@1,0 {
+> >                         reg = <0x10000 0 0 0 0>;
+> >                         resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
+> >                 };
+> >
+> > It doesn't warn because the bridge node is also missing 'device_type =
+> > "pci";'.
+> >
+> > This is all fairly hard to get right (see recent hikey970 patches for a
+> > complex example). I'm thinking about writing a tool that generates a DT
+> > with PCI nodes by reading the PCI hierachy from sysfs.
+>
+> Just to double-check I understood everything, with:
+>
+>         lspci -D -PP
+>         0000:00:00.0 PCI bridge: Broadcom Inc. and subsidiaries BCM2711 PCIe Bridge (rev 10)
+>         0000:00:00.0/01:00.0 USB controller: VIA Technologies, Inc. VL805/806 xHCI USB 3.0 Controller (rev 01)
+>
+> It should look like this:
+>
+>         &pcie0 {
+>                 pci@0,0 {
+>                         device_type = "pci";
+>                         #address-cells = <3>;
+>                         #size-cells = <2>;
+>                         ranges;
+>
+>                         reg = <0 0 0 0 0>;
+>
+>                         usb@0,0 {
+>                                 reg = <0 0 0 0 0>;
+>                                 resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
+>                         };
+>                 };
+>         };
 
+Yes, that looks correct.
 
-On 8/30/21 11:12 PM, Johan Jonker wrote:
-> Hi Mikhail,
-> 
-> On 8/30/21 8:07 PM, Mikhail Rudenko wrote:
->> Add DT node for RX mode of RK3399 TX1RX1 D-PHY.
->>
->> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->> index 3871c7fd83b0..2e4513275a87 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
->> @@ -1902,6 +1902,21 @@ mipi1_in_vopl: endpoint@1 {
->>  		};
->>  	};
->>  
-
-
->> +	mipi_dphy_tx1rx1: mipi-dphy-tx1rx1@ff968000 {
->> +		compatible = "rockchip,rk3399-mipi-dphy-tx1rx1";
-
-
-
-	mipi_dsi1: mipi@ff968000 {
-		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
-		reg = <0x0 0xff968000 0x0 0x8000>;
-
-Sorry, there's already a node in mainline. Excuse...
-See Heiko's comment.
-
-
->> +		reg = <0x0 0xff968000 0x0 0x8000>;
-> 
->> +		clocks = <&cru SCLK_MIPIDPHY_REF>,
->> +			<&cru SCLK_DPHY_TX1RX1_CFG>,
->> +			<&cru PCLK_VIO_GRF>,
->> +			<&cru PCLK_MIPI_DSI1>;
->> +		clock-names = "dphy-ref", "dphy-cfg",
->> +			"grf", "dsi";
-> 
-> Could you fix the alignment a bit with extra spaces?
-> 
->> +		rockchip,grf = <&grf>;
->> +		power-domains = <&power RK3399_PD_VIO>;
-> 
-> Sort in alphabetical order.
-> 
->> +		#phy-cells = <0>;
->> +		status = "disabled";
->> +	};
->> +
->>  	edp: edp@ff970000 {
->>  		compatible = "rockchip,rk3399-edp";
->>  		reg = <0x0 0xff970000 0x0 0x8000>;
->>
+Rob
