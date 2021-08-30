@@ -2,105 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4BEF3FB4C4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 13:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9A43FB4CE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 13:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236546AbhH3Lro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 07:47:44 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:51059 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236542AbhH3Lro (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 07:47:44 -0400
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id A9705440E8B;
-        Mon, 30 Aug 2021 14:46:32 +0300 (IDT)
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
-Cc:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v8 4/4] arm64: dts: ipq6018: add pwm node
-Date:   Mon, 30 Aug 2021 14:46:27 +0300
-Message-Id: <62647618ae756b233ab7365b731ed42c0650a90f.1630323987.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
-References: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S236434AbhH3LuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 07:50:08 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:35425 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236551AbhH3LuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 07:50:07 -0400
+Received: by mail-oi1-f180.google.com with SMTP id r26so19702509oij.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 04:49:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=JTWNeOzPya3nNu0WFhWPDsxrKp/zSguxB/tKydwWrag=;
+        b=cKtdNQ17HtaluZFKYzuT13HLkgzGYon8n7VhO9FqSAXSDs+XxYmu66emRq4jgeg5fQ
+         8IIxK7II2fS5lox7DOe8SGvCWhkxVMZcj84SDJyj8PS1WC137vxH1Cv+RVtoeSgWOOSm
+         wTq6o34vF9Oi33HZLyIYXRDKDTD1w8kp3rVKI5aADc9Bh9RlEa0H3EQ7EjqzAkoOktJf
+         YzRzxSrzPdZa5t6RIThHN+DdTDT3eX4d5eiPCzw1r2U/VIICstkL8+73191suTKoAs7Z
+         Iam719dfQ7GaYaaT2fqxiRd0DvIDa9nxpkReWsTt9sOf+1ilIQqibdAs8JWmuC/hmqai
+         9Yjg==
+X-Gm-Message-State: AOAM533fVtDjU/zk1QqVxWO1pHmrPex5M5CW9Ggnm2aMIJ4ThSzKznbQ
+        kE3WUFo940+t64gtsyk06Q==
+X-Google-Smtp-Source: ABdhPJwwEkgsS1GB6OQSTyCZgYSxrcjUoCWW5L8KMurAZMwyuCTgAYQQ+h3D86cTz7mDgrBVz2E8uQ==
+X-Received: by 2002:aca:6541:: with SMTP id j1mr14958919oiw.146.1630324153939;
+        Mon, 30 Aug 2021 04:49:13 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 97sm3214312otv.26.2021.08.30.04.49.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 04:49:13 -0700 (PDT)
+Received: (nullmailer pid 1731755 invoked by uid 1000);
+        Mon, 30 Aug 2021 11:49:10 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, heiko@sntech.de, broonie@kernel.org
+In-Reply-To: <1630285861-28147-2-git-send-email-sugar.zhang@rock-chips.com>
+References: <1630285788-28002-1-git-send-email-sugar.zhang@rock-chips.com> <1630285861-28147-2-git-send-email-sugar.zhang@rock-chips.com>
+Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: rockchip: Convert pdm bindings to yaml
+Date:   Mon, 30 Aug 2021 06:49:10 -0500
+Message-Id: <1630324150.931479.1731754.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the PWM block on IPQ6018.
+On Mon, 30 Aug 2021 09:11:01 +0800, Sugar Zhang wrote:
+> This patch converts pdm bindings to yaml.
+> 
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> ---
+> 
+> Changes in v2:
+> - Fix yamllint errors.
+> 
+>  .../devicetree/bindings/sound/rockchip,pdm.txt     |  64 ------------
+>  .../devicetree/bindings/sound/rockchip,pdm.yaml    | 115 +++++++++++++++++++++
+>  2 files changed, 115 insertions(+), 64 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
+> 
 
-The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
-&pwm as child of &tcsr.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Add also ipq6018 specific compatible string.
+yamllint warnings/errors:
 
-Signed-off-by: Baruch Siach <baruch@tkos.co.il>
----
-v8:
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/rockchip,pdm.example.dt.yaml: example-0: pdm@ff040000:reg:0: [0, 4278452224, 0, 4096] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
 
-  Add size cell to 'reg' (Rob)
+doc reference errors (make refcheckdocs):
 
-v7:
+See https://patchwork.ozlabs.org/patch/1522032
 
-  Use 'reg' instead of 'offset' (Rob)
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-  Add qcom,tcsr-ipq6018 (Rob)
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-  Drop clock-names (Bjorn)
+pip3 install dtschema --upgrade
 
-v6:
-
-  Make the PWM node child of TCSR (Rob Herring)
-
-  Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-
-v5: Use qcom,pwm-regs for TCSR phandle instead of direct regs
-
-v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index a31df7d154db..8e8f72d9c172 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -259,8 +259,20 @@ tcsr_mutex_regs: syscon@1905000 {
- 		};
- 
- 		tcsr: syscon@1937000 {
--			compatible = "syscon";
-+			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
- 			reg = <0x0 0x01937000 0x0 0x21000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			pwm: pwm@a010 {
-+				compatible = "qcom,ipq6018-pwm";
-+				reg = <0xa010 0x20>;
-+				clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clock-rates = <100000000>;
-+				#pwm-cells = <2>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		blsp_dma: dma-controller@7884000 {
--- 
-2.33.0
+Please check and re-submit.
 
