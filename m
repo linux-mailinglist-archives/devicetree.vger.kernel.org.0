@@ -2,121 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBD0B3FB6EE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFDE3FB703
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236729AbhH3N0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 09:26:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236562AbhH3N0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 09:26:03 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4443C06175F
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:25:09 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id 22so15582678qkg.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:25:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=exvJuGKtr25W/uSVhVmLJ9dDndSizQ5pyVnZeMKPf6U=;
-        b=mms14newKPS84RVgPulnIhvgz8tMtpuRypQwgTY51AnAijLWncUJabtEiBlVoTN2zW
-         3La+fBT4bRu5jdAP5UumDBl8kAE6qewY4pjP76Cpn3e5PKWq1Bg+lQK/1HscAXA5Cf9+
-         KjCXmdXlXxS3A6PFj6UYj7HcfZRe0h1vWv2wXwgQyWUT3iUFsqyERgT1uizU7kvg5RE0
-         DAwyxjvkDSaViDtIEI6oQX5qjwriesD2pGB0quveq31AmYLAJnpOu67pUioRufojTDnp
-         ta0OajqFszqYnhSHmAIDdU3vuAI7adD0jZihCKzKybnFoqQBTqNREQp+eiqSk0U1g9gW
-         Jb9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=exvJuGKtr25W/uSVhVmLJ9dDndSizQ5pyVnZeMKPf6U=;
-        b=Ea76iV5S4IAhRJ7tOP/fFi3D3XTZJPAaz3bE3zRSWZBtBuC/mG8vWAaR+kwoSs90Lp
-         w9TXr2ILGgubqlJiBsUCrFRFTkacrd85YGtLQzeOrKvk8GdQr6xTyaHMbLNMSA3i2ubc
-         35zreiHbleG+9wSrLgdbLxt2jrDjN0eM8aFifWYBYvnJHuSCYKFPCE7LvZJqUAKfUa8N
-         OuLI9FUUkCQQlpcu/yiqKjXbWN5isJdenJlsgC/vEvLNUcdLarS+a9G34Sqsxw3S70ej
-         wneIK2QRgaB22dy39UuIpP5bZ6J0M4GxABVDZhh9AJ2cqYzo4O1CzjzTJxBK5P6xaRjG
-         1gBQ==
-X-Gm-Message-State: AOAM531p4UOllL+dzta2CHZULklW5DjdhAx1sFsuTBsMjAsuh7qwHEQm
-        CAjqBXRe18YqYvQebtOEFKTukh8vXMu+/nC7UHcOSPPX/ms=
-X-Google-Smtp-Source: ABdhPJyQrSmYGVRpojLW5kEYAkle9dDkeFrhLBy8INWatlvC+AvXupu8xjM/hefniOjkmj7yvU8Hg3Uvuh7N4naBPko=
-X-Received: by 2002:a05:620a:941:: with SMTP id w1mr21668872qkw.434.1630329908857;
- Mon, 30 Aug 2021 06:25:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210829203027.276143-1-marijn.suijten@somainline.org>
- <20210829203027.276143-2-marijn.suijten@somainline.org> <CAA8EJprQ03ipZzO+1vgt9W7jFbLXgsYR0n-oJxVB-142x8dgRA@mail.gmail.com>
- <17d19b93-dbe5-cc85-f302-b52cd8eeed56@somainline.org>
-In-Reply-To: <17d19b93-dbe5-cc85-f302-b52cd8eeed56@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 30 Aug 2021 16:24:58 +0300
-Message-ID: <CAA8EJpqd7_5510TodALnX13Wo0MufYm2G=r6vw9sy=VURrewyw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI
- PLL reference
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        id S236804AbhH3Ndy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 09:33:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49884 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236803AbhH3Ndx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 09:33:53 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5FFA3603E7;
+        Mon, 30 Aug 2021 13:32:56 +0000 (UTC)
+Date:   Mon, 30 Aug 2021 14:36:10 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "Ryan J . Barnett" <ryan.barnett@collins.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 03/40] dt-bindings: touchscreen: ti,am3359-tsc: New yaml
+ description
+Message-ID: <20210830143610.5e11c3af@jic23-huawei>
+In-Reply-To: <20210825152518.379386-4-miquel.raynal@bootlin.com>
+References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
+        <20210825152518.379386-4-miquel.raynal@bootlin.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Aug 2021 at 11:28, Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> Hi Dmitry,
->
-> On 8/30/21 3:18 AM, Dmitry Baryshkov wrote:
-> > On Sun, 29 Aug 2021 at 23:30, Marijn Suijten
-> > <marijn.suijten@somainline.org> wrote:
-> >>
-> >> The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
-> >> clock and should hence use PXO, not CXO which runs at 19.2MHz.
-> >>
-> >> Note that none of the DSI PHY/PLL drivers currently use this "ref"
-> >> clock; they all rely on (sometimes inexistant) global clock names and
-> >> usually function normally without a parent clock.  This discrepancy will
-> >> be corrected in a future patch, for which this change needs to be in
-> >> place first.
-> >>
-> >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> >
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >
-> > Checked the downstream driver, it always uses 27 MHz clock in calculations.
->
->
-> Given our concerns for msm8974 not updating DT in parallel with the
-> kernel (hence the need for a global-name fallback because "ref" is
-> missing from the DT), should we worry about the same for apq8064?  That
-> is, is there a chance that the kernel but not the firmware is upgraded
-> leading to the wrong parent clock being used?  The msm8960 variant of
-> the 28nm PLL driver uses parent_rate in a few places and might read
-> cxo's 19.2MHz erroneously instead of using pxo's 27MHz.
+On Wed, 25 Aug 2021 17:24:41 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Checked the code. It uses .parent_names =  "pxo", so changing ref
-clock should not matter. We'd need to fix ref clocks and after that we
-can switch parent names to fw_name.
+> This touchscreen controller is already described in a text file:
+> Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
+> 
+> After introducing a proper description of the MFD, this is the second
+> step. The file cannot be removed yet as it also contains an ADC
+> description.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../input/touchscreen/ti,am3359-tsc.yaml      | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,am3359-tsc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,am3359-tsc.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,am3359-tsc.yaml
+> new file mode 100644
+> index 000000000000..2d4ce6d04f53
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/ti,am3359-tsc.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/ti,am3359-tsc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI AM3359 Touchscreen controller
+> +
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,am3359-tsc
+> +
+> +  ti,wires:
+> +    description: Wires refer to application modes i.e. 4/5/8 wire touchscreen
+> +      support on the platform.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [4, 5, 8]
+> +
+> +  ti,x-plate-resistance:
+> +    description: X plate resistance
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  ti,coordinate-readouts:
+> +    description: The sequencer supports a total of 16 programmable steps. Each
+> +      step is used to read a single coordinate. A single readout is enough but
+> +      multiple reads can increase the quality. A value of 5 means, 5 reads for
+> +      X, 5 for Y and 2 for Z (always). This utilises 12 of the 16 software steps
+> +      available. The remaining 4 can be used by the ADC.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 6
+> +
+> +  ti,wire-config:
+> +    description: Different boards could have a different order for connecting
+> +      wires on touchscreen. We need to provide an 8-bit number where the
+> +      first four bits represent the analog lines and the next 4 bits represent
+> +      positive/negative terminal on that input line. Notations to represent the
+> +      input lines and terminals respectively are as follows, AIN0 = 0, AIN1 = 1
+> +      and so on untill AIN7 = 7. XP = 0, XN = 1, YP = 2, YN = 3.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 4
+> +    maxItems: 8
+> +
+> +  ti,charge-delay:
+> +    description: Length of touch screen charge delay step in terms of ADC clock
+> +      cycles. Charge delay value should be large in order to avoid false pen-up
+> +      events. This value effects the overall sampling speed, hence need to be
+> +      kept as low as possible, while avoiding false pen-up event. Start from a
+> +      lower value, say 0x400, and increase value until false pen-up events are
+> +      avoided. The pen-up detection happens immediately after the charge step,
+> +      so this does in fact function as a hardware knob for adjusting the amount
+> +      of "settling time".
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - ti,wires
 
->
-> - Marijn
+Are these all required?  Seems like the driver will work fine without some
+of them and isn't doing appropriate error checking for their presence..
 
+> +  - ti,x-plate-resistance
+> +  - ti,coordinate-readouts
+> +  - ti,wire-config
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    tscadc: tscadc@0 {
+> +        compatible = "ti,am3359-tscadc";
+> +        reg = <0x0 0x1000>;
+> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&adc_tsc_fck>;
+> +        clock-names = "fck";
+> +        status = "disabled";
+> +        dmas = <&edma 53 0>, <&edma 57 0>;
+> +        dma-names = "fifo0", "fifo1";
+> +
+> +        tsc {
+> +            compatible = "ti,am3359-tsc";
+> +            ti,wires = <4>;
+> +            ti,x-plate-resistance = <200>;
+> +            ti,coordinate-readouts = <5>;
+> +            ti,wire-config = <0x00 0x11 0x22 0x33>;
+> +            ti,charge-delay = <0x400>;
+> +        };
+> +    };
 
-
--- 
-With best wishes
-Dmitry
