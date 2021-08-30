@@ -2,388 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA9CD3FBDBD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 22:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E57DC3FBDCB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236453AbhH3VAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 17:00:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55028 "EHLO
+        id S236056AbhH3VBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 17:01:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236222AbhH3VAK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 17:00:10 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D19AC061760
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 13:59:16 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id w19-20020a17090aaf9300b00191e6d10a19so856715pjq.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 13:59:16 -0700 (PDT)
+        with ESMTP id S234509AbhH3VBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 17:01:14 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAB3C061575;
+        Mon, 30 Aug 2021 14:00:20 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id u14so33859620ejf.13;
+        Mon, 30 Aug 2021 14:00:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JJoUozkPIM0tHgfyfc1fK8sPmq/Hal6Zt+HEvfIoLUg=;
-        b=jzvaif2xRQ2CuslZJky0053RJlv8i5jneBUOikqGQvjt7hZJayC2D40PiT0kZctnWm
-         togR+oKcgJYWHL77WZBVe0au/miX9lEhbf+dT/hii7rSuTAqiNnCAP+4pEJoR9oy89C8
-         EmoSYflHAuEzwHxuB1JJ5uYIXxTKudMHwJVg0=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=KWiHNXS+3DcOlsVpnDVjQ/m3C1IyjZ5owtbI17urlSs=;
+        b=bls3vPsE9/mpAehw9h8f0bfIKo/ur5D3gapsk6ABlwMpjeNlxnNftLg5NnlgKbrS4J
+         /sKHmCpb2siio/kdCeNycUZ/YaVbk+xwo5ZfnVTuL1OsnztQ4y3HVsto7kYb0mDWWMfq
+         8WvxYIJTIg9sE0Cfxp8919Ne5mZ0AxMthoZinPZFWWUC00ZrTYoNt8QeXuqlqGirttHG
+         k+ZwbnF6G40YvyJTJXblgBwpSjnNY3tWBrKGzhYGJRP8X2ebVIFiUH+zW4cD75T377Xz
+         la5A1p6W1yPx/RLEbxQqKeK2sbulJg1f+x+IjRuzhp187q928KQ6NyqQGyxu+URoxBD7
+         Su9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=JJoUozkPIM0tHgfyfc1fK8sPmq/Hal6Zt+HEvfIoLUg=;
-        b=kChutGBZfFc0RHRmxNhjDol7t9z8cNmq/7pNiaHE+I5asA1ytOHz2Nt3G+WHras5h6
-         amGBGrIW4vTag+bCgam9sPuGwbRdU3S2/tAvuDmqmyaFgmedXWkHrpC6pfuoqtydHJwh
-         tjBycF4tg9lOazXt80VlagHSe8I6rc0Qt+V83VOiCFyL3jMvdardH0INuyEMmgBAfWQu
-         CMHfBSXn+WYNHs3m1fXliXoRADpKxhiw2a/w7DBWmcOHvPJhrMZAOU58OrdjoEEYfV1H
-         GgkbAC44wR5NcVyWIcoaF2LVqEemptB0b5+MsUFt126SVW0IDZyGxm+puihL1xbNhVPq
-         Sb+w==
-X-Gm-Message-State: AOAM531NTIcShFACBDvalEjFJ8h63NYbQk0zpikaF+eqVHoyUsFoLW+/
-        cbur6XRcF2nVeD2p8/whEpZTzg==
-X-Google-Smtp-Source: ABdhPJxFLrpR8SqpNrVEqK8cEbVUhggyOrcwbh8zHqXG6wKCkQ3hLvNx1IJldMIfLVNq6TMKw8jjkA==
-X-Received: by 2002:a17:903:228a:b0:133:305f:2dd2 with SMTP id b10-20020a170903228a00b00133305f2dd2mr1355290plh.21.1630357155600;
-        Mon, 30 Aug 2021 13:59:15 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:b658:7113:70a2:ea])
-        by smtp.gmail.com with ESMTPSA id o10sm349241pjg.34.2021.08.30.13.59.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 13:59:15 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     mka@chromium.org, swboyd@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7180: Base dynamic CPU power coefficients in reality
-Date:   Mon, 30 Aug 2021 13:59:07 -0700
-Message-Id: <20210830135904.1.I049b30065f3c715234b6303f55d72c059c8625eb@changeid>
-X-Mailer: git-send-email 2.33.0.259.gc128427fd7-goog
+        bh=KWiHNXS+3DcOlsVpnDVjQ/m3C1IyjZ5owtbI17urlSs=;
+        b=QyWx7lxddHyrmJJ1pgY/la0FPXouMksveAZZSrU6c2/qoW7O5RdPEVz6vwGoZPc2vA
+         c5ckT7OXYEVUwpi9d1kLvaaB9CuMJIy8Zi6UJMqmA+e4enhwcJinZzKxjr0BD2GahG3K
+         nMEnQF4U+B/BXCcGlyCP+qdaB9u5q6WM4tYg++WPtGaLhq7qLXysGnjFlUlLiMoIwYAF
+         ctWcTuI/UPh8JR6I6pjVb++V/Oyhi6HPvPM17IDirjkiXwCTxegQZlA0CGX7X9mmuAPf
+         LlzpTyni/m1N3Ta+CciOu71QTz0NnMTDMRdQeq+5aKD5L9CF7hPYevrF8fp/eZB2YaEI
+         QDQw==
+X-Gm-Message-State: AOAM530cyMuS748lHKcthIyovnXqigJChCnO30v/8UQAFQF/lQzT9a2q
+        hqipw9Hf7SwmK2im6JRIFQG2ji7iHwmcmyYc
+X-Google-Smtp-Source: ABdhPJwhD4PkYb6968XTC6ESe+L5tvt2UaX2SD+FMpytvd38l0rgpOZLeQtVZrtL5iuFcKST3zh7Iw==
+X-Received: by 2002:a17:906:1451:: with SMTP id q17mr27376832ejc.214.1630357219217;
+        Mon, 30 Aug 2021 14:00:19 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id dk6sm8164992edb.14.2021.08.30.14.00.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Aug 2021 14:00:18 -0700 (PDT)
+Subject: Re: [PATCH v1 4/5] dt-bindings: phy: phy-rockchip-dphy-rx0: add
+ support for tx1rx1 phy
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        linux-phy@lists.infradead.org
+Cc:     linux-media@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Helen Koike <helen.koike@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210830180758.251390-1-mike.rudenko@gmail.com>
+ <20210830180758.251390-5-mike.rudenko@gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <60aa055c-d872-3e5c-3c85-09300215a60e@gmail.com>
+Date:   Mon, 30 Aug 2021 23:00:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210830180758.251390-5-mike.rudenko@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sc7180's dynamic-power-coefficient violates the device tree bindings.
-The bindings (arm/cpus.yaml) say that the units for the
-dynamic-power-coefficient are supposed to be "uW/MHz/V^2". The ones for
-sc7180 aren't this. Qualcomm arbitrarily picked 100 for the "little" CPUs
-and then picked a number for the big CPU based on this.
+Hi Mikhail,
 
-At the time, there was a giant dicussion about this. Apparently Qualcomm
-Engineers were instructed not to share the actual numbers here. As part
-of the discussion, I pointed out [1] that these numbers shouldn't really
-be secret since once a device is shipping anyone can just run a script
-and produce them. This patch is the result of running the script I posted
-in that discussion on sc7180-trogdor-coachz, which is currently available
-for purchase by consumers.
+Some comments below. Have a look if it is useful.
 
-[1] https://lore.kernel.org/r/CAD=FV=U1FP0e3_AVHpauUUZtD-5X3XCwh5aT9fH_8S_FFML2Uw@mail.gmail.com/
+On 8/30/21 8:07 PM, Mikhail Rudenko wrote:
+> RK3399 TX1RX1 D-PHY is not a child of GRF and uses reg, thus add
+> corresponding properties conditionally. It also requires DSI clock to
+> operate, so check for it. Since we now support both rx0 and tx1rx1,
+> rename the schema to rockchip-mipi-dphy-rx.yaml.
+> 
+> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+> ---
+>  ...hy-rx0.yaml => rockchip-mipi-dphy-rx.yaml} | 39 +++++++++++++++++--
+>  1 file changed, 35 insertions(+), 4 deletions(-)
+>  rename Documentation/devicetree/bindings/phy/{rockchip-mipi-dphy-rx0.yaml => rockchip-mipi-dphy-rx.yaml} (65%)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx0.yaml b/Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx.yaml
+> similarity index 65%
+> rename from Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx0.yaml
+> rename to Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx.yaml
+> index 7d888d358823..f42319448fc9 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx0.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-mipi-dphy-rx.yaml
+> @@ -1,10 +1,10 @@
+>  # SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/phy/rockchip-mipi-dphy-rx0.yaml#
+> +$id: http://devicetree.org/schemas/phy/rockchip-mipi-dphy-rx.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Rockchip SoC MIPI RX0 D-PHY Device Tree Bindings
+> +title: Rockchip SoC MIPI RX0/TX1RX1 D-PHY Device Tree Bindings
+>  
+>  maintainers:
+>    - Helen Koike <helen.koike@collabora.com>
+> @@ -16,19 +16,28 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    const: rockchip,rk3399-mipi-dphy-rx0
+> +    enum:
+> +      - rockchip,rk3399-mipi-dphy-rx0
+> +      - rockchip,rk3399-mipi-dphy-tx1rx1
+> +
 
-I ran the script four times, measuring little, big, little, big. I used
-the 64-bit version of dhrystone 2.2 in my test. I got these results:
+> +  reg:
+> +    maxItems: 1
 
-576 kHz, 596 mV, 20 mW, 88 Cx
-768 kHz, 596 mV, 32 mW, 122 Cx
-1017 kHz, 660 mV, 45 mW, 97 Cx
-1248 kHz, 720 mV, 87 mW, 139 Cx
-1324 kHz, 756 mV, 109 mW, 148 Cx
-1516 kHz, 828 mV, 150 mW, 148 Cx
-1612 kHz, 884 mV, 182 mW, 147 Cx
-1708 kHz, 884 mV, 192 mW, 146 Cx
-1804 kHz, 884 mV, 207 mW, 149 Cx
-Your dynamic-power-coefficient for cpu 0: 132
+This allows every node to have a reg property.
 
-825 kHz, 596 mV, 142 mW, 401 Cx
-979 kHz, 628 mV, 183 mW, 427 Cx
-1113 kHz, 656 mV, 224 mW, 433 Cx
-1267 kHz, 688 mV, 282 mW, 449 Cx
-1555 kHz, 812 mV, 475 mW, 450 Cx
-1708 kHz, 828 mV, 566 mW, 478 Cx
-1843 kHz, 884 mV, 692 mW, 476 Cx
-1900 kHz, 884 mV, 722 mW, 482 Cx
-1996 kHz, 916 mV, 814 mW, 482 Cx
-2112 kHz, 916 mV, 862 mW, 483 Cx
-2208 kHz, 916 mV, 962 mW, 521 Cx
-2323 kHz, 940 mV, 1060 mW, 517 Cx
-2400 kHz, 956 mV, 1133 mW, 518 Cx
-Your dynamic-power-coefficient for cpu 6: 471
+>  
+>    clocks:
+> +    minItems: 3
+>      items:
+>        - description: MIPI D-PHY ref clock
+> -      - description: MIPI D-PHY RX0 cfg clock
+> +      - description: MIPI D-PHY RX0/TX1RX1 cfg clock
+>        - description: Video in/out general register file clock
+> +      - description: MIPI D-PHY DSI clock
+>  
+>    clock-names:
+> +    minItems: 3
+>      items:
+>        - const: dphy-ref
+>        - const: dphy-cfg
+>        - const: grf
+> +      - const: dsi
+>  
+>    '#phy-cells':
+>      const: 0
+> @@ -37,6 +46,12 @@ properties:
+>      description: Video in/out power domain.
+>      maxItems: 1
+>  
 
-576 kHz, 596 mV, 26 mW, 103 Cx
-768 kHz, 596 mV, 40 mW, 147 Cx
-1017 kHz, 660 mV, 54 mW, 114 Cx
-1248 kHz, 720 mV, 97 mW, 151 Cx
-1324 kHz, 756 mV, 113 mW, 150 Cx
-1516 kHz, 828 mV, 154 mW, 148 Cx
-1612 kHz, 884 mV, 194 mW, 155 Cx
-1708 kHz, 884 mV, 203 mW, 152 Cx
-1804 kHz, 884 mV, 219 mW, 155 Cx
-Your dynamic-power-coefficient for cpu 0: 142
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the general register file
+> +      (GRF), required for TX1RX1 MIPI D-PHY on RK3399.
 
-825 kHz, 596 mV, 148 mW, 530 Cx
-979 kHz, 628 mV, 189 mW, 475 Cx
-1113 kHz, 656 mV, 230 mW, 461 Cx
-1267 kHz, 688 mV, 287 mW, 466 Cx
-1555 kHz, 812 mV, 469 mW, 445 Cx
-1708 kHz, 828 mV, 567 mW, 480 Cx
-1843 kHz, 884 mV, 699 mW, 482 Cx
-1900 kHz, 884 mV, 719 mW, 480 Cx
-1996 kHz, 916 mV, 814 mW, 484 Cx
-2112 kHz, 916 mV, 861 mW, 483 Cx
-2208 kHz, 916 mV, 963 mW, 522 Cx
-2323 kHz, 940 mV, 1063 mW, 520 Cx
-2400 kHz, 956 mV, 1135 mW, 519 Cx
-Your dynamic-power-coefficient for cpu 6: 489
+This allows every node to have a rockchip,grf property.
 
-As you can see, the calculations aren't perfectly consistent but
-roughly you could say about 480 for big and 137 for little.
+> +
+>  required:
+>    - compatible
+>    - clocks
+> @@ -44,6 +59,22 @@ required:
+>    - '#phy-cells'
+>    - power-domains
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +          const: rockchip,rk3399-mipi-dphy-tx1rx1
+> +then:
 
-The ratio between these numbers isn't quite the same as the
-ratio between the two numbers that Qualcomm used. Presumably
-this is because Qualcomm measured something slightly different
-than the 64-bit version of dhrystone 2.2, though it might also
-be that they fudged the numbers a little. In any case, these
-numbers don't need to be perfectly exact. In fact, they can't
-be since the CPU power depends a lot on what's being run on
-the CPU and the big/little CPUs are each more or less efficient
-in different operations. Historically running the 32-bit vs.
-64-bit versions of dhrystone produced notably different numbers,
-though I didn't test this time. In any case, let's keep the
-existing ratio but scale it based on the above so we're at
-least _somewhat_ based in the correct units. I'll pick:
-* little: 130
-* big:    527
-...which basically means we're scaling the old numbers by 30%.
+> +  required:
 
-We also need to scale all of the sustainable-power numbers by
-the same amount.
+Move/swap the properties section above the required section.
 
-Fixes: 71f873169a80 ("arm64: dts: qcom: sc7180: Add dynamic CPU power coefficients")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+> +    - reg
+> +    - rockchip,grf
+> +
+> +  properties:
 
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  2 +-
- .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  8 ++---
- arch/arm64/boot/dts/qcom/sc7180.dtsi          | 36 +++++++++----------
- 3 files changed, 23 insertions(+), 23 deletions(-)
+  reg:
+    maxItems: 1
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index a758e4d22612..4ba687dc850f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -33,7 +33,7 @@ skin_temp_thermal: skin-temp-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&pm6150_adc_tm 1>;
--			sustainable-power = <814>;
-+			sustainable-power = <1058>;
- 
- 			trips {
- 				skin_temp_alert0: trip-point0 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index a246dbd74cc1..e066bce768c7 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -44,7 +44,7 @@ &cpu6_alert1 {
- };
- 
- &cpu6_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1232>;
- };
- 
- &cpu7_alert0 {
-@@ -56,7 +56,7 @@ &cpu7_alert1 {
- };
- 
- &cpu7_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1232>;
- };
- 
- &cpu8_alert0 {
-@@ -68,7 +68,7 @@ &cpu8_alert1 {
- };
- 
- &cpu8_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1232>;
- };
- 
- &cpu9_alert0 {
-@@ -80,7 +80,7 @@ &cpu9_alert1 {
- };
- 
- &cpu9_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1232>;
- };
- 
- &gpio_keys {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 47b20ba69057..e2c92dae580a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -138,7 +138,7 @@ CPU0: cpu@0 {
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			dynamic-power-coefficient = <130>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
-@@ -163,7 +163,7 @@ CPU1: cpu@100 {
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			dynamic-power-coefficient = <130>;
- 			next-level-cache = <&L2_100>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -185,7 +185,7 @@ CPU2: cpu@200 {
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			dynamic-power-coefficient = <130>;
- 			next-level-cache = <&L2_200>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -207,7 +207,7 @@ CPU3: cpu@300 {
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			dynamic-power-coefficient = <130>;
- 			next-level-cache = <&L2_300>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -229,7 +229,7 @@ CPU4: cpu@400 {
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			dynamic-power-coefficient = <130>;
- 			next-level-cache = <&L2_400>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -251,7 +251,7 @@ CPU5: cpu@500 {
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			dynamic-power-coefficient = <130>;
- 			next-level-cache = <&L2_500>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -273,7 +273,7 @@ CPU6: cpu@600 {
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1740>;
--			dynamic-power-coefficient = <405>;
-+			dynamic-power-coefficient = <527>;
- 			next-level-cache = <&L2_600>;
- 			operating-points-v2 = <&cpu6_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -295,7 +295,7 @@ CPU7: cpu@700 {
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <1740>;
--			dynamic-power-coefficient = <405>;
-+			dynamic-power-coefficient = <527>;
- 			next-level-cache = <&L2_700>;
- 			operating-points-v2 = <&cpu6_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -3592,7 +3592,7 @@ cpu0_thermal: cpu0-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 1>;
--			sustainable-power = <768>;
-+			sustainable-power = <998>;
- 
- 			trips {
- 				cpu0_alert0: trip-point0 {
-@@ -3641,7 +3641,7 @@ cpu1_thermal: cpu1-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 2>;
--			sustainable-power = <768>;
-+			sustainable-power = <998>;
- 
- 			trips {
- 				cpu1_alert0: trip-point0 {
-@@ -3690,7 +3690,7 @@ cpu2_thermal: cpu2-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 3>;
--			sustainable-power = <768>;
-+			sustainable-power = <998>;
- 
- 			trips {
- 				cpu2_alert0: trip-point0 {
-@@ -3739,7 +3739,7 @@ cpu3_thermal: cpu3-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 4>;
--			sustainable-power = <768>;
-+			sustainable-power = <998>;
- 
- 			trips {
- 				cpu3_alert0: trip-point0 {
-@@ -3788,7 +3788,7 @@ cpu4_thermal: cpu4-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 5>;
--			sustainable-power = <768>;
-+			sustainable-power = <998>;
- 
- 			trips {
- 				cpu4_alert0: trip-point0 {
-@@ -3837,7 +3837,7 @@ cpu5_thermal: cpu5-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 6>;
--			sustainable-power = <768>;
-+			sustainable-power = <998>;
- 
- 			trips {
- 				cpu5_alert0: trip-point0 {
-@@ -3886,7 +3886,7 @@ cpu6_thermal: cpu6-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 9>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1563>;
- 
- 			trips {
- 				cpu6_alert0: trip-point0 {
-@@ -3927,7 +3927,7 @@ cpu7_thermal: cpu7-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 10>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1563>;
- 
- 			trips {
- 				cpu7_alert0: trip-point0 {
-@@ -3968,7 +3968,7 @@ cpu8_thermal: cpu8-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 11>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1563>;
- 
- 			trips {
- 				cpu8_alert0: trip-point0 {
-@@ -4009,7 +4009,7 @@ cpu9_thermal: cpu9-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 12>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1563>;
- 
- 			trips {
- 				cpu9_alert0: trip-point0 {
--- 
-2.33.0.259.gc128427fd7-goog
+> +    clocks:
+> +      minItems: 4
+> +    clock-names:
+> +      minItems: 4
 
+  rockchip,grf:
+    $ref: /schemas/types.yaml#/definitions/phandle
+    description:
+      The phandle of the syscon node for the general register file(GRF).
+
+
+", required for TX1RX1 MIPI D-PHY on RK3399."
+
+This phrase is already said/done with the "required:" section above
+
+>  additionalProperties: false
+>  
+>  examples:
+> 
