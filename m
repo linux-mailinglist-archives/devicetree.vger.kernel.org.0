@@ -2,112 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D813FBE46
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21BB3FBE74
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:43:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238893AbhH3V3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 17:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238813AbhH3V3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 17:29:13 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB525C0613D9
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 14:28:18 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id v2so21725654oie.6
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 14:28:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YWW/ngYDKJNHbc/3izYjMV42ez7lWh8GMqEHdYHK41k=;
-        b=LTOS3AIjU/fMG9OubGJWGN0w2i1ObmwkMRbtiQJEr3rSpJd7VZNj7uRuUApL5gdIsc
-         8QWS0ln8rHeWy0NvK8sADUzKDnRc84KChrv7FeTTVrSuYmDI42pFvlxRJIIIgGOJ6lhC
-         i+dLZ6E66zm6jPUHmvcUt+d0cfHKPk+j8sFNzXpMW4EHJgEkzctsSV1LxZqrOKm/Id6q
-         aRFf3Ith4g7rk+9lAMpCnzSforXls0NtPqR27yOsSdOmtCrGx2v+3UVJ6ZdyUbUjwzVv
-         NEp6kYby9nRNB+XdDOLJ82Y/bmccYtUz9zxAroKAxdPmIi+AwkJ0VY7bBLjFWfmjJeHd
-         q3EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YWW/ngYDKJNHbc/3izYjMV42ez7lWh8GMqEHdYHK41k=;
-        b=LA7G/StOLwC3pDa47HB8hBByokYLOfuNkEr1CbSthBOn8VQdnWYZ30Ix0LrqjI9JTp
-         s3Xg3KW2LKuIS65ALV9dqtsb9l1KNmCfYv23NuH9OhqxyA4/t5rCFMsr+n1nRkFqFikC
-         7SoMJSB7D8OFZHOw3e6jG51qfI1Oy2Dv0IpyO2+cteATQeRDzsJSnzbcUksYq2xrlOwb
-         NSGesNu5VdwoNwrQtbEq3DFK4Ks1RT0Xw9aMoxTeNcdVVoPQcvDUhEt2P329VMmVUVOI
-         hTvzCpmbSHk4riGePEnMv+5oxQrbtGarKvM7dDfM/P3Syms9BeS8injZdUNtc03N5I0x
-         UPpA==
-X-Gm-Message-State: AOAM5333BRdZPAoUeovzZ8mZYjOGDz3zi7LcWW0GmYPS35eQ4cmho9La
-        C7t/CjrdYGyFX5UfNzBiPYLe2Q==
-X-Google-Smtp-Source: ABdhPJxQaKR9VZXyTuQ+qlMYZCjuEXrqGCsPi9dzwkfWL0LU4LCvPlDmTwxK60pEtp5Smjo4uWirvQ==
-X-Received: by 2002:a05:6808:7:: with SMTP id u7mr897581oic.63.1630358898186;
-        Mon, 30 Aug 2021 14:28:18 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a15sm3467710otq.13.2021.08.30.14.28.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 14:28:17 -0700 (PDT)
-Date:   Mon, 30 Aug 2021 16:28:15 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        id S237612AbhH3VoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 17:44:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57330 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238718AbhH3VoN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 17:44:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B5DBD60E90;
+        Mon, 30 Aug 2021 21:43:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630359799;
+        bh=zbF3yv3WsPc6wc8t9qfmmgZ/lsdWyqbDW8FcCrDPuyU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=kBXWL/TQGLTNPzPT5D1t87Hd+gPPA12194U6gqUgTgOFjGN6ii3xJMWicLvkbRmgF
+         XVwshnvVeiN9iMrc4FFbRj59YUQk04lQi6bBCL+2GTo7D+lJfy4hNXsVD5TrAdsyFf
+         VxpmLP+Ct8VykrxQuK8Sheqhu0Ae+P/T6ewQr8vHeAxzwLHRExW+E7YZFwnUI48Ta/
+         WUlU3rCydCVeGmRmiDdW3Jx5N1ha0ke9S5ycXg3eVu2ramZcp9WMShG2qm1prMMBsF
+         kX1hbDVvP/WhP6SwQADep/x4y5OQWKTzrYG64YklfpHiGo9UOZT032NOZCDS6qibdw
+         Sj+Gr6a7gZQYQ==
+Date:   Mon, 30 Aug 2021 16:43:17 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
+Cc:     robh+dt@kernel.org, bhelgaas@google.com, matthias.bgg@gmail.com,
+        lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com,
+        jianjun.wang@mediatek.com, yong.wu@mediatek.com,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm: dts: qcom-msm8974: Add xo_board reference clock to
- DSI0 PHY
-Message-ID: <YS1NbxhPrAPIQwk3@yoga>
-References: <20210830175739.143401-1-marijn.suijten@somainline.org>
+Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
+ pcie-cfg base address
+Message-ID: <20210830214317.GA27606@bjorn-Precision-5520>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210830175739.143401-1-marijn.suijten@somainline.org>
+In-Reply-To: <968266ecd5889721aa234c414361bedbe66b9539.camel@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 30 Aug 12:57 CDT 2021, Marijn Suijten wrote:
+On Mon, Aug 30, 2021 at 03:09:44PM +0800, Chuanjia Liu wrote:
+> On Fri, 2021-08-27 at 11:46 -0500, Bjorn Helgaas wrote:
+> > On Mon, Aug 23, 2021 at 11:27:56AM +0800, Chuanjia Liu wrote:
 
-> According to YAML validation, and for a future patchset putting this
-> xo_board reference clock to use as VCO reference parent, add the missing
-> clock to dsi_phy0.
-> 
+> > > @@ -995,6 +1004,14 @@ static int mtk_pcie_subsys_powerup(struct
+> > > mtk_pcie *pcie)
+> > >  			return PTR_ERR(pcie->base);
+> > >  	}
+> > >  
+> > > +	cfg_node = of_find_compatible_node(NULL, NULL,
+> > > +					   "mediatek,generic-pciecfg");
+> > > +	if (cfg_node) {
+> > > +		pcie->cfg = syscon_node_to_regmap(cfg_node);
+> > 
+> > Other drivers in drivers/pci/controller/ use
+> > syscon_regmap_lookup_by_phandle() (j721e, dra7xx, keystone,
+> > layerscape, artpec6) or syscon_regmap_lookup_by_compatible() (imx6,
+> > kirin, v3-semi).
+> > 
+> > You should do it the same way unless there's a need to be different.
+>
+> I have used phandle, but Rob suggested to search for the node by 
+> compatible.
 
-And just to confirm on MSM8974 "ref" is supposed to be 19.2Mhz?
+> The reason why syscon_regmap_lookup_by_compatible() is not 
+> used here is that the pciecfg node is optional, and there is no need to
+> return error when the node is not searched.
 
-Regards,
-Bjorn
+How about this?
 
-> Fixes: 5a9fc531f6ec ("ARM: dts: msm8974: add display support")
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  arch/arm/boot/dts/qcom-msm8974.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index db4c06bf7888..96722172b064 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -1580,8 +1580,8 @@ dsi_phy0: dsi-phy@fd922a00 {
->  				#phy-cells = <0>;
->  				qcom,dsi-phy-index = <0>;
->  
-> -				clocks = <&mmcc MDSS_AHB_CLK>;
-> -				clock-names = "iface";
-> +				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
-> +				clock-names = "iface", "ref";
->  			};
->  		};
->  
-> -- 
-> 2.33.0
-> 
+  regmap = syscon_regmap_lookup_by_compatible("mediatek,generic-pciecfg");
+  if (!IS_ERR(regmap))
+    pcie->cfg = regmap;
