@@ -2,63 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48D9B3FAF3C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 02:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70C763FAF42
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 02:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236144AbhH3A2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 20:28:21 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:47686 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236130AbhH3A2V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 29 Aug 2021 20:28:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Dcm0/GLJrt9KzmHwU7RfbyOIhRWjtL4QvRLXwHjpwN0=; b=T1ZOIdCcZU8NhQ5sidu4+z2xdb
-        qSTd/91rd+RRwxdK95tIzy/7OxDmJZ2uERjAaCaKOfjtFxSS6PPwCse49/pCM/3L8FqXzOE/vosgy
-        yT7AwRZKdoiXCCXvphnZ+Py3mgUHqBavOCp2xunEyPeBLsJHR0YORApBvBUHCuYYhqu8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mKV90-004T2d-Om; Mon, 30 Aug 2021 02:27:22 +0200
-Date:   Mon, 30 Aug 2021 02:27:22 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] ARM: dts: NSP: Fix MDIO mux node names
-Message-ID: <YSwl6oh3PX8neSuV@lunn.ch>
-References: <20210829223752.2748091-1-mnhagan88@gmail.com>
- <20210829223752.2748091-3-mnhagan88@gmail.com>
+        id S236197AbhH3AhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 20:37:05 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52704 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236190AbhH3AhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 20:37:04 -0400
+X-UUID: 5994fbb0c5c34f2cb65ccdb8d8f40913-20210830
+X-UUID: 5994fbb0c5c34f2cb65ccdb8d8f40913-20210830
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 668291029; Mon, 30 Aug 2021 08:36:07 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 30 Aug 2021 08:36:06 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 30 Aug 2021 08:36:05 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
+        <light.hsieh@mediatek.com>, <biao.huang@mediatek.com>,
+        <hongzhou.yang@mediatek.com>, <sean.wang@mediatek.com>,
+        <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v11 0/4]  Mediatek pinctrl patch on mt8195 
+Date:   Mon, 30 Aug 2021 08:35:59 +0800
+Message-ID: <20210830003603.31864-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210829223752.2748091-3-mnhagan88@gmail.com>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 29, 2021 at 10:37:49PM +0000, Matthew Hagan wrote:
-> While functional, the mdio-mux-mmioreg binding does not conform to
-> Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml in that an
-> mdio-mux compatible is also required. Without this the following output
-> is observed when running dtbs_check:
-> 
-> mdio-mux@32000: compatible: ['mdio-mux-mmioreg'] is too short
-> 
-> This change brings conformance to this requirement and corresponds
-> likewise to Rafal Milecki's change to the BCM5301x platform[1].
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20210822191256.3715003-1-f.fainelli@gmail.com/T/
-> 
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+This series includes 4 patches:
+1.add rsel define.
+2.change pull up/down description
+3.add pm_ops.
+4.add rsel setting.
 
-Thanks for the expanded commit message.
+Changes in patch v11:
+1)add pm_ops fucntion support
+2)change pull up/down description
+3)add resistance value feature support.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Changes in patch v10:
+1)fix PARENTHESIS_ALIGNMENT of mtk_pinconf_bias_set_rsel
+2)fix LONG_LINE warning in 615 in pinctrl-paris.c.
 
-    Andrew
+Changes in patch v9:
+1)fix "mtk_pinconf_bias_set_rsel" build warning.
+
+Changes in patch v8:
+1)add rsel define patch
+2)avoid  CamelCase
+3)add pinctrl rsel setting patch which is another resistance selection
+  solution for I2C on MT8195.
+
+Changes in patch v7:
+1)add version in patch and fix spelling mistakes.
+
+Changes in patch v6:
+1)add "pintcrl: mediatek" as prefix.
+
+Changes in patch v5:
+1)document and driver patch are apploed.
+2)change '-EOPNOTSUPP' to '-ENOTSUPP'
+
+Changes in patch v4:
+1)fix pinctrl-mt8195.yaml warning error.
+2)remove pinctrl device node patch which is based on "mt8195.dtsi".
+
+Changes in patch v3:
+1)change '^pins' to '-pins$'.
+2)change 'state_0_node_a' to 'gpio_pin' which is defined in dts.
+3)change 'state_0_node_b' to 'i2c0_pin' which is defined in dts.
+4)reorder this series patches. change pinctrl file and binding document
+together in one patch.
+
+There are no changes in v1 & v2.
+
+Zhiyong Tao (4):
+dt-bindings: pinctrl: mt8195: add rsel define
+  dt-bindings: pinctrl: mt8195: change pull up/down description
+  pinctrl: mediatek: mt8195: Add pm_ops
+  pinctrl: mediatek: add rsel setting on MT8195
+
+ .../bindings/pinctrl/pinctrl-mt8195.yaml      |  32 +++-
+ drivers/pinctrl/mediatek/pinctrl-mt8195.c     | 134 +++++++++++++
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 181 ++++++++++++++++--
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  35 +++-
+ drivers/pinctrl/mediatek/pinctrl-paris.c      |  24 ++-
+ drivers/pinctrl/mediatek/pinctrl-paris.h      |   2 +-
+ include/dt-bindings/pinctrl/mt65xx.h          |   9 +
+ 7 files changed, 387 insertions(+), 30 deletions(-)
+
+--
+2.18.0
+
+
