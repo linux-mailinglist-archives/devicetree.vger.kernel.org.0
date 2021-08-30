@@ -2,85 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 324EB3FB74A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 286203FB74C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236906AbhH3Nwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 09:52:43 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:48492 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236858AbhH3Nwn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 09:52:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=9DGgUo2ugpU41hWzsW/N+Nu2joYqP2tCgM60Nh03GC4=; b=5s
-        k1rHmyE1QQyrq2xcPMU4SNSmqh6fo9dEbWF93Jp0v7TVuONsN3mymtZ5402qJJqOA6wYl+dU3rF4b
-        7fZNkMa8OnIljxahEh2iQgv86oEdlcNqO4qXrZf6bHsAgh6fGJKPX1/WIXUmLRm5W/hgRmCiGbHtw
-        66SIBCBvyOzFur8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mKhh7-004ZKf-EG; Mon, 30 Aug 2021 15:51:25 +0200
-Date:   Mon, 30 Aug 2021 15:51:25 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?B?Q2zDqW1lbnQgQsWTc2No?= <u@pkh.me>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Willy Liu <willy.liu@realtek.com>, netdev@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: sunxi H5 DTB fix for realtek regression
-Message-ID: <YSziXfll/p/5OrOv@lunn.ch>
-References: <YSwr6YZXjNrdKoBZ@ssq0.pkh.me>
+        id S231669AbhH3Nxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 09:53:54 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:26188 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236802AbhH3Nxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 09:53:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1630331579;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3QR26H90I5oa/Aq9g2W/STFicF2YahgcF3x4I6vga0I=;
+        b=S/k9zRw6K75t1gDFPMhswnsnyLWnJvu8nq+OeEpBfH3gcYA1awHfpxHJ7O8VewG15lEK8B
+        bTZfoLdq08HI/QdvdlHWDs1dbO+dT5QASwY0SChQqZFcnOhmnxzj/sTQVmWLA0eT6yu0Mn
+        kJc4QAOc6ZyRFfOxL2b3RyDUIALdU0I=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-449-_bgoKg7pOyOiOWq7rHUt-w-1; Mon, 30 Aug 2021 09:52:58 -0400
+X-MC-Unique: _bgoKg7pOyOiOWq7rHUt-w-1
+Received: by mail-wm1-f69.google.com with SMTP id p5-20020a7bcc85000000b002e7563efc4cso14205wma.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:52:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=3QR26H90I5oa/Aq9g2W/STFicF2YahgcF3x4I6vga0I=;
+        b=FcSxvLnoR5OKOgsJqgjGPVDXYqoxOneTfOziNMgUo0P5JhCcO14owE5S+SWlJUKTPC
+         hqoTMkksivl7Mpia/ZTGcbB0x1EgDrVXbUPI/NYlECxFpv3wXaIUEifUnGSX9R/3erCg
+         62shuUgC9KHQODMN4FdI9Mz1OuDHNkR2jvsQuAxzxw+vIxnnP5I4yM+4KT8Qy5rpWUfW
+         T3SeTe/fGwcCiGXXOJG8ruFd3FFfLsX8clby5ih//WsqBdcHTngTa9GUGWYEfEIhplBO
+         fq1ewiz8c8+DxyDxrBipVBn0BHcJUILhfBy+2GwVvL1m7K7/T8eUISSzJ7LMtK6p1k1C
+         Mo2A==
+X-Gm-Message-State: AOAM531tCyHxdbr/B4575gsLzMciIGIQMn5MjJjxnHOuqC3pc0mV2EhP
+        OXK2i6kCBQTWjzE0oRqrOsHO+iJMJ2c0FMh8gVUNIrPXhrnAH3gi71LTRmTIwWKpj2WSGrFsyWc
+        LncezUDbq523TQ/mCMud4tw==
+X-Received: by 2002:a5d:5452:: with SMTP id w18mr25817935wrv.221.1630331577193;
+        Mon, 30 Aug 2021 06:52:57 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxiV6tn32BvkOpeVK88NLS2VPjgTEoDc32JCI++maS/PsNPJcd4rRPkS2cfkSHGgjR69mI1Yg==
+X-Received: by 2002:a5d:5452:: with SMTP id w18mr25817911wrv.221.1630331577024;
+        Mon, 30 Aug 2021 06:52:57 -0700 (PDT)
+Received: from ?IPv6:2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de? ([2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de])
+        by smtp.gmail.com with ESMTPSA id w9sm13490938wmc.19.2021.08.30.06.52.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 06:52:56 -0700 (PDT)
+Message-ID: <e1ca1f086c180f04044996ccf59981d59fbdbc6b.camel@redhat.com>
+Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Fix pcie0's unit address
+From:   nsaenzju@redhat.com
+To:     Rob Herring <robh@kernel.org>
+Cc:     f.fainelli@gmail.com, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stefan.wahren@i2se.com
+Date:   Mon, 30 Aug 2021 15:52:54 +0200
+In-Reply-To: <YSzfoyesEzAuLkSS@robh.at.kernel.org>
+References: <20210830103909.323356-1-nsaenzju@redhat.com>
+         <YSzfoyesEzAuLkSS@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YSwr6YZXjNrdKoBZ@ssq0.pkh.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 30, 2021 at 02:52:57AM +0200, Clément Bœsch wrote:
-> Hi,
+On Mon, 2021-08-30 at 08:39 -0500, Rob Herring wrote:
+> On Mon, Aug 30, 2021 at 12:39:09PM +0200, Nicolas Saenz Julienne wrote:
+> > dtbs_check currently complains that:
+> > 
+> > arch/arm/boot/dts/bcm2711-rpi-4-b.dts:220.10-231.4: Warning
+> > (pci_device_reg): /scb/pcie@7d500000/pci@1,0: PCI unit address format
+> > error, expected "0,0"
+> > 
+> > Unsurprisingly pci@0,0 is the right address, as illustrated by its reg
+> > property:
+> > 
+> > 	&pcie0 {
+> > 		pci@0,0 {
+> > 			/*
+> > 			 * As defined in the IEEE Std 1275-1994 document,
+> > 			 * reg is a five-cell address encoded as (phys.hi
+> > 			 * phys.mid phys.lo size.hi size.lo). phys.hi
+> > 			 * should contain the device's BDF as 0b00000000
+> > 			 * bbbbbbbb dddddfff 00000000. The other cells
+> > 			 * should be zero.
+> > 			 */
+> > 			reg = <0 0 0 0 0>;
+> > 		};
+> > 	};
+> > 
+> > The bus is clearly 0. So fix it.
 > 
-> Commit bbc4d71d63549bcd003a430de18a72a742d8c91e ("net: phy: realtek: fix
-> rtl8211e rx/tx delay config") broke the network on the NanoPI NEO 2 board
-> (RTL8211E chip).
+> s/bus/device/
 > 
-> Following what was suggested by Andrew Lunn for another hardware¹, I tried
-> the following diff:
+> The unit-address format is '<device>,<function>' (and function is 
+> optional). The bus number is not part of the unit-address because that 
+> is dynamic and then the path would not be fixed/known. The bus is part 
+> of 'reg' for true OpenFirmware, but for FDT I think it should always be 
+> 0 as the DT is static. 
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-> index 02f8e72f0cad..05486cccee1c 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-> @@ -75,7 +75,7 @@ &emac {
->         pinctrl-0 = <&emac_rgmii_pins>;
->         phy-supply = <&reg_gmac_3v3>;
->         phy-handle = <&ext_rgmii_phy>;
-> -       phy-mode = "rgmii";
-> +       phy-mode = "rgmii-id";
->         status = "okay";
->  };
+> Looks like the child node is wrong (both unit-address and reg) as well:
 > 
+>                 usb@1,0 {
+>                         reg = <0x10000 0 0 0 0>;
+>                         resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
+>                 };
 > 
-> ...which fixed the issue. This was tested on v5.11.4 but the patch applies
-> cleanly on stable so far.
+> It doesn't warn because the bridge node is also missing 'device_type = 
+> "pci";'.
 > 
-> I'm sorry for not sending a proper patch: I unfortunately have very little
-> clue about what I'm doing here so it's very hard for me to elaborate a
-> proper commit description.
+> This is all fairly hard to get right (see recent hikey970 patches for a 
+> complex example). I'm thinking about writing a tool that generates a DT 
+> with PCI nodes by reading the PCI hierachy from sysfs.
 
-Hi Clément
+Thanks for the review, I'll fix all those. That tool would be very helpful.
 
-You are not too far away from a proper patch. I can either guide you,
-if you want to learn, or the allwinner maintainer can probably take
-your work and finish it off.
+-- 
+Nicolás Sáenz
 
-     Andrew
