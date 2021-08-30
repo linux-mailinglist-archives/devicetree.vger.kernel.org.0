@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14FD93FB619
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D5133FB62B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:36:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234259AbhH3Mc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 08:32:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49054 "EHLO mail.kernel.org"
+        id S232267AbhH3Mg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 08:36:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55426 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234217AbhH3Mcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 08:32:55 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 298B360724;
-        Mon, 30 Aug 2021 12:31:55 +0000 (UTC)
-Date:   Mon, 30 Aug 2021 13:35:07 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH 07/40] dt-bindings: iio: adc: ti,am3359-adc: Describe
- am4372 ADC compatible
-Message-ID: <20210830133507.407721e0@jic23-huawei>
-In-Reply-To: <20210825152518.379386-8-miquel.raynal@bootlin.com>
-References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
-        <20210825152518.379386-8-miquel.raynal@bootlin.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S234741AbhH3Mg6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 08:36:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9875B61059;
+        Mon, 30 Aug 2021 12:36:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630326964;
+        bh=VSnG7ci/z6It+oL6KcTBEhuTf8u1sv3TMd5qXRIvpQw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Z9VrAPSYu3o1kLTK5GooxotaEz5m+jtqVGPk8x4/xsNs4xSvwITYKkramNk5d/Ds0
+         Teze/fJvUS5JD3p4PamiFqb8HZjoQyXqOhTqZWPGvRcsAursOrRZnb9c31yWhB6kP1
+         z7J2AvmUKIV07RunGf8O9elvEyIotC5c1kW9YeGN8AstPmq2X97tMbSCFduB4B7put
+         Gjvg/TCjEPgvqzH+1XqWBuZcnDX3l3ZBslHmIwBQ4ginqBAmsCLQGEUmFYThNrvgKJ
+         M0cHM01VOqLFW+6ei0XINX0sckimNyiqcvkXgF7RoCI43TdCyB0U20iL6wW7xeU/LQ
+         mw9nffcTzgXBA==
+Received: by mail-ed1-f50.google.com with SMTP id g22so21351310edy.12;
+        Mon, 30 Aug 2021 05:36:04 -0700 (PDT)
+X-Gm-Message-State: AOAM530DSbMjmc5MjOkDXS1OYoeo7WZcVt3YpP5IaDshUFjKfHpWyoHF
+        VAYwbc2U+1DDN535iAhbOgPBmeHMYn7lQq5aFA==
+X-Google-Smtp-Source: ABdhPJzKe9hTkHckfNaR1ucxYim8h6wVK9o1P5JmQEu+WRbO6Yl0Gq0AZ2KqnNnrX8JgVC8B7aRTlLvuFbVruyQ61UA=
+X-Received: by 2002:a05:6402:70c:: with SMTP id w12mr24307350edx.289.1630326963208;
+ Mon, 30 Aug 2021 05:36:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210819084144.18483-1-trevor.wu@mediatek.com> <20210819084144.18483-8-trevor.wu@mediatek.com>
+In-Reply-To: <20210819084144.18483-8-trevor.wu@mediatek.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 30 Aug 2021 07:35:51 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+bLVLqqVKfYuXDVYexMojMgZ5p34Pcx7_7LwU40b-2dA@mail.gmail.com>
+Message-ID: <CAL_Jsq+bLVLqqVKfYuXDVYexMojMgZ5p34Pcx7_7LwU40b-2dA@mail.gmail.com>
+Subject: Re: [PATCH v5 07/11] dt-bindings: mediatek: mt8195: add audio afe document
+To:     Trevor Wu <trevor.wu@mediatek.com>,
+        Mark Brown <broonie@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, bicycle.tsai@mediatek.com,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Li-Yu Yu <aaronyu@google.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 17:24:45 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-
-> A more recent version of the am3359 ADC is available on certain SoCs of
-> the am437x family. This IP has evolved a little bit and deserves its own
-> compatible.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+On Thu, Aug 19, 2021 at 3:43 AM Trevor Wu <trevor.wu@mediatek.com> wrote:
+>
+> This patch adds mt8195 audio afe document.
+>
+> In order to support dynamic clock reparenting for ADDA and ETDM, PLL
+> and MUX clocks are requested even though they are not consumed by afe
+> directly.
+>
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
-> index 85d9d642dc67..34743371ee18 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: ti,am3359-adc
-> +    oneOf:
-> +      - const: ti,am3359-adc
-> +      - const: ti,am4372-adc
+> This patch depends on the following series that have not been accepted.
+>
+> [1] Mediatek MT8195 clock support
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=501923
+> (dt-bindings/clock/mt8195-clk.h is included)
 
-enum
+This dependency is still not applied, so the example fails. One of the
+following needs to happen: the dependency needs to be applied, this
+patch reverted, or drop the use of the defines in the example.
 
-With that change
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
->  
->    '#io-channel-cells':
->      const: 1
-
+Rob
