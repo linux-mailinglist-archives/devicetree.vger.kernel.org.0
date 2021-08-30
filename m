@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A38303FB15C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 08:47:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9A53FB169
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 08:52:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbhH3Gsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 02:48:30 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:59979 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232862AbhH3Gsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 02:48:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630306057; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=Ij1fbEpBts73q2JaEtuGhklwHwIsAQxjOqsm7O6ni4w=;
- b=qNyb7RKixWj8yXXXP5Oig+ijZ4ed88r+wwD7H9h6yzKLCTt/QEOg0/SnNN/W9dRjs13QOc6r
- pS0WXIu2RmAx9hFc3F7akwNrBKkPBB9K9zGq5Frcw1Uo15D2Mo1QOqM9fMMZbuw5WztQeHxk
- Y3LwreJj/QM/rZZW8REUmD33NFE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 612c7f084d644b7d1c50b870 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 30 Aug 2021 06:47:36
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 391ABC4360C; Mon, 30 Aug 2021 06:47:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S233110AbhH3GxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 02:53:01 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46010
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232358AbhH3GxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 02:53:00 -0400
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95346C4338F;
-        Mon, 30 Aug 2021 06:47:35 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 60DAB4078F
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:52:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1630306326;
+        bh=MgfWimLEdQUarvzIGTaBBVzfBQJf+vNUd1nNymnWejg=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=kdwNYmhIPcBAncaKJUgsxYu8e0ib7cLmwCCEHqHdfX9pVGUovJOv1nfD+cjU/l5kR
+         plEn4pAICma4Z2O2Xu+xumfjtNJBDZ4gmi7kcbmv8wz/c8NjZ+4yRcBgmoWgnSDqtK
+         uHvdP49Df+fRf3HQm+pAHH4uY8mVLzTjNK5wJ+7I/rxWHWr3HJZl2TZYPMkF4z5kMx
+         oEF+2EXItPUcOeCmc6cCCzspqxnCyQCvhAsOqBEdkzh1dvPhZlGxgaHWVx+I6F0+Qj
+         vY73cGFREAN1PD9JOdBem88x1zN4Hnif9t0S4m2OM7fNoRWN5JzbRHEed6Lk+92yJS
+         WsyJsrEmZkmPg==
+Received: by mail-wm1-f70.google.com with SMTP id p5-20020a7bcc85000000b002e7563efc4cso4173216wma.4
+        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 23:52:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MgfWimLEdQUarvzIGTaBBVzfBQJf+vNUd1nNymnWejg=;
+        b=SrkuB8fuVq3aWMGl0HfjrT4ldq/w773yWzSs3z/RW2KfYIPrhjHYNHT4sLWS718+ny
+         yUh2mksD44jdLrJSM6elXRHQ7tqtKhQruKcf4kuA8H9kqh3XS+XfHc3K9QOvFJNacstS
+         +d9SY4oaDNCETDKuBmICVHU5Av3k5HtFqIFKPecjtHlC274CrqTbRhu311NRn9oFtT/x
+         8G1N+Z9Z378JMJd1Wxq2g9jj0hdcAU8t7CoSJdNfySKgjGoOZvkyiVRWX+q+s6wN+Q7c
+         dVOf29PlhULcdoAi5ShuBJXeypVK5uO+3+5GoQ+1X2n9MENSneL8QScxzu1jQt95FaRv
+         /cjw==
+X-Gm-Message-State: AOAM5339hQWPmNBnoqgYXnIDtyBdqOYEG06OPWwoIh9BA+hZP9aUh5AT
+        clEKH/a+8Wg3Ac/MtmdnbZnjalgPp/PzBL2ItPHCZz+A5YS3b6RnNYSozlwz+Um6zuUkjgUFw37
+        TF/XVOFnpETvuUe4VlVhs25Gc4gX/UTrqjTAb6g8=
+X-Received: by 2002:a7b:c7c3:: with SMTP id z3mr20662354wmk.96.1630306326153;
+        Sun, 29 Aug 2021 23:52:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzKes6qCmO78Vl1Mx8rIagHedcVuejvecLvmaILX7azR2lg3wu5LqUpJOXs2fPSLJi+OusJCw==
+X-Received: by 2002:a7b:c7c3:: with SMTP id z3mr20662340wmk.96.1630306326013;
+        Sun, 29 Aug 2021 23:52:06 -0700 (PDT)
+Received: from [192.168.3.211] ([79.98.112.166])
+        by smtp.gmail.com with ESMTPSA id x11sm14679065wro.83.2021.08.29.23.52.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Aug 2021 23:52:05 -0700 (PDT)
+Subject: Re: [PATCH v3 0/8] dt-bindings: clock: samsung: convert to dtschema
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>
+References: <20210825134056.219884-1-krzysztof.kozlowski@canonical.com>
+ <163022098497.2676726.6455473597971395732@swboyd.mtv.corp.google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <7228126e-2ba8-bcba-af26-8d7ec4e33a62@canonical.com>
+Date:   Mon, 30 Aug 2021 08:52:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <163022098497.2676726.6455473597971395732@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 30 Aug 2021 12:17:35 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     sboyd@kernel.org, robh+dt@kernel.org, viresh.kumar@linaro.org,
-        agross@kernel.org, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        dianders@chromium.org, tdas@codeaurora.org
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8350: Fixup the cpufreq node
-In-Reply-To: <YQsprr4rLVPwVfqR@google.com>
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
- <1627581885-32165-5-git-send-email-sibis@codeaurora.org>
- <YQsbuN1xyAlCYRqK@builder.lan> <YQsprr4rLVPwVfqR@google.com>
-Message-ID: <cafed46a38a29072f9241de2154a502b@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-05 05:28, Matthias Kaehlcke wrote:
-> On Wed, Aug 04, 2021 at 05:59:04PM -0500, Bjorn Andersson wrote:
->> On Thu 29 Jul 13:04 CDT 2021, Sibi Sankar wrote:
->> 
->> > Fixup the register regions used by the cpufreq node on SM8350 SoC to
->> > support per core L3 DCVS.
->> >
->> 
->> That sounds good, but why are you dropping the platform-specific
->> compatible?
->> 
+On 29/08/2021 09:09, Stephen Boyd wrote:
+> Quoting Krzysztof Kozlowski (2021-08-25 06:40:48)
+>> Hi,
+>>
+>> Changes since v2:
+>> 1. Add reviews.
+>> 2. Split Exynos4 ISP into separate schema.
+>> 3. Add maxItems to clocks and power-domains (review feedback).
+>> 4. Do not allow samsung,exynos5420-clock and samsung,exynos5800-clock
+>>    without syscon. These clock controllers should always use syscon
+>>    to allow DMC bindings access the registers.
+>> 5. Drop assigned-clocks.
+>>
+>> Changes since v1:
+>> 1. Patch 7/8: include header to fix clock IDs error in example.
 > 
-> I also stared at this and the patch that changes the code for a while.
+> I think this header file isn't in clk tree?
 > 
-> My understanding is that removing the platform-specific compatible is 
-> part
-> of not breaking 'old' DTBs. Old DTBs for SM8350 contain the larger 
-> register
-> regions and must be paired with 'epss_sm8250_soc_data' (driver code) 
-> which
-> has the 'old' 'reg_perf_state' offset. New SM8350 DTs only have the
-> 'qcom,cpufreq-epss' compatible, which pairs their smaller register 
-> regions
-> with 'epss_soc_data' with the new 'reg_perf_state' offset.
-> 
-> It is super-confusing that the platform-specific compatible string is
-> missing. The binding should probably mention that the two
-> platform-specific compatible strings are for backwards compatibility
-> only and should not be added to new or existing DT files that don't
-> have them already. Maybe a 'qcom,sm8350-cpufreq-epss-v2' or similar
-> should be added to avoid/reduce possible confusion and have to option
-> to add SM8350 specific code later.
 
-Bjorn,
+It is in Linus' tree... full path is:
+include/dt-bindings/clock/s5pv210.h
 
-https://patchwork.kernel.org/project/linux-arm-msm/cover/1629458622-4915-1-git-send-email-okukatla@codeaurora.org/
+What's missing is entry in MAINTAINERS.
 
-This series affects the design of the l3
-provider support for sc7280 which will be
-in a position to land in ~1-2 respins. So,
-please share an early ACK or NACK regarding
-the register re-ordering series so that we
-can plan to get alternate acceptable versions
-out faster on the list.
-
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+Best regards,
+Krzysztof
