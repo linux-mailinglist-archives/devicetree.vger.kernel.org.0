@@ -2,155 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF1773FBC89
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 20:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D523FBCFC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 21:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233814AbhH3SgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 14:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50454 "EHLO
+        id S230471AbhH3TiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 15:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233651AbhH3SgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 14:36:10 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD86AC061575
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 11:35:16 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id j2so9070875pll.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 11:35:16 -0700 (PDT)
+        with ESMTP id S230160AbhH3TiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 15:38:18 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A96C061575;
+        Mon, 30 Aug 2021 12:37:24 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id u19so6595903edb.3;
+        Mon, 30 Aug 2021 12:37:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4lObGbOH7wYXLZts3Wjag1RVJ/fSvvfuumDMeXOvamY=;
-        b=Q7lSvLugEcsO6jz/dsvEvqZfD5CfuPaFmPsqDAtVPqSs20Jd/6dgCj3+ylqcIr1EnF
-         jwLepnTsPsP/+QPpe0p2M4mjvLGTJj0BWKxHTP9O7z1aO2tFiTY3aHcZlUOb+a6XlQXM
-         ATUXIgkDyHiUBCYrZWUoo8y35gJiW/5N5IyhGJ73fequBefUKl85zNfhuYdjRjOwkFFO
-         DMcbXDNdSqX8SPThW2njxQagVjwPbOA5wHbxiKMLnrCe3jWHierYYo0BcKop19CuPfp+
-         rkjM8Q2Fg/hZzBzo1IglI+E+uAlQI1OjhJFzgdnkDt7bDMl3n3HYnvg6BBlII8/6fxOb
-         eN4g==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uTABDWDNLKg61M+R3vjb71MHbfemSFy2AY4zPlg2nE8=;
+        b=bXr0Gort95NFKAp8VD/ml/V5CY8ZNac0oRXnVY1cowlNNobODHOf9Q0XPK7aaT0DjW
+         8W2RbQj1Wvp+hIQiJt8IseE4/rdqjErLk6nXxYtNWhV+BYcTUpskIFQfq88hd1/VCRhC
+         9Ztb0O9/Zm8SvSkxtjtZmGAYuuWa4VDPIzB8eIypxit4AmFVdH34RZaa2FeWqn5W6ERV
+         Ebdrl627h+zc2GVqSWVFeoCbyxKKPCtz/rkNZyFPENOBI3UdGrXGa8plkc1h8SocErpV
+         46tJnV6jsw0QLZ1jomda7K+zd3IZE+bfZ6fdvdSsA4YLJXFgl9IKJ2HwBeLzhRh2Z9Pp
+         mbgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4lObGbOH7wYXLZts3Wjag1RVJ/fSvvfuumDMeXOvamY=;
-        b=UUp8t00mNINUtBKRueK1hSy0uf1TDjZmrUQZ4Zz7uWbUrk2mrwmS92CdE1sBrYfKlD
-         sXq5KlJqo/wVGQQsKAB+YcT+RdTPP5MlfyKshuAnGmFIGoGFDcKgg4Uurzn0VP7YYARn
-         v/7P104xkvL4k27GAnIhidhGvgyDw8b+CMrmFHRMARUjhaUE7niheeKo14Y/m6UmuMBV
-         LBjGNdi+FsqLoYoJ03sTIhN0Pk8J9pnIuXG2wzRpQC24A5jYzWusrqJkbfwZk36HdEqQ
-         naEwLHgB8VRRXgfiVSACNpBtsm/lPAXVdDcrRhX8TyxOf7swCZKcvs/h1Re2QavSJ4Ru
-         4xaw==
-X-Gm-Message-State: AOAM532aMQWHYznpU3i1Il0p0wARKhVx1hH4OWfct0Bv3kd3/IESSE+s
-        Ejae/xwemeF6xUwRTR+Gx/2b
-X-Google-Smtp-Source: ABdhPJymp1hhLxI4Bg+PenRAv5ZqZvFwlomKc4Z90s9V466OSSk/8nDL72VECdaY3v0GglRuL8taGg==
-X-Received: by 2002:a17:90a:940e:: with SMTP id r14mr497274pjo.208.1630348516218;
-        Mon, 30 Aug 2021 11:35:16 -0700 (PDT)
-Received: from thinkpad ([2409:4072:6e8f:10da:9c90:a2f4:77aa:6f51])
-        by smtp.gmail.com with ESMTPSA id n14sm208169pjm.5.2021.08.30.11.35.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 11:35:15 -0700 (PDT)
-Date:   Tue, 31 Aug 2021 00:05:08 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        hemantk@codeaurora.org, smohanad@codeaurora.org,
-        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        vbadigan@codeaurora.org
-Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
-Message-ID: <20210830183508.GA50238@thinkpad>
-References: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uTABDWDNLKg61M+R3vjb71MHbfemSFy2AY4zPlg2nE8=;
+        b=cz5pnCg4Lza7mWcpk+8qs08Uz1Cnu5ZKk2nzhDXVDd4VWuCVh++2c2EatuCsEZORed
+         +sRGcHK8KdTQWoL9z6JK6EI+cQ/dCzLnLPWD3RIlhDOmEb+IQblLsyxzrbWzyQC+iQ6h
+         Y7liObDxy0HgNKaa9mWlK4dCVrSjvWSBr7HFkqmWUpUgMRVzSMNtMX7ElbgU1wLDQfzE
+         WJ3YH5O/npqnGNXAS9UMam/zAgllB1N49+gZyag0s9OSc7G8LyrjZ+kbyDna92tWan7r
+         EYc/54rWhI3Yg3AfLU3Fhn2eKr4Ur5MMbsrSHXbq6Z3JfV0jaGDOUm8/3k6X8v57EMzw
+         x67w==
+X-Gm-Message-State: AOAM533hG5zKM2MloZu0Sd8lZ3wDVURBaLZukQ5elFoiNzkeRu9hgKwy
+        0LP47XWPAW57FBB+hJ3XyGiY06x4alK09sK03rm1C0ItMfg=
+X-Google-Smtp-Source: ABdhPJy7qBuvqTVzY7sOAt7tXWrtZHlRPjJ+Pze/MoPqHbrn7gFn2XmnEqO3Omk3qalVhBFRXosf5B1OJ7USzraT1sY=
+X-Received: by 2002:a05:6402:313c:: with SMTP id dd28mr25477809edb.179.1630352243401;
+ Mon, 30 Aug 2021 12:37:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+References: <20210817041548.1276-1-linux.amoon@gmail.com> <20210817041548.1276-2-linux.amoon@gmail.com>
+ <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com>
+In-Reply-To: <c7f6213b-5ddc-881c-1aea-9cc7b03e6a4f@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 30 Aug 2021 21:37:12 +0200
+Message-ID: <CAFBinCBeNMET2tvH0h6HF3dR+xBb59hifQyaoXigUs3UGkS+KQ@mail.gmail.com>
+Subject: Re: [PATCHv3 1/6] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        Brian Kim <brian.kim@hardkernel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Neil,
 
-On Thu, Jul 22, 2021 at 05:42:39PM +0530, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series adds support for Qualcomm PCIe Endpoint controller found
-> in platforms like SDX55. The Endpoint controller is based on the designware
-> core with additional Qualcomm wrappers around the core.
-> 
-> The driver is added separately unlike other Designware based drivers that
-> combine RC and EP in a single driver. This is done to avoid complexity and
-> to maintain this driver autonomously.
-> 
-> The driver has been validated with an out of tree MHI function driver on
-> SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
-> 
+On Mon, Aug 30, 2021 at 9:45 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi,
+>
+> On 17/08/2021 06:15, Anand Moon wrote:
+> > Add missing usb phy power node for usb node fix below warning.
+> > P5V0 regulator supply input voltage range to USB host controller.
+> > As described in the C1+ schematics, GPIO GPIOAO_5 is used to
+> > enable input power to USB ports, set it to Active Low.
+> >
+> > [    1.260772] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
+> > [    1.260784] dwc2 c90c0000.usb: Looking up vbus-supply property in
+> >               mode /soc/usb@c90c0000 failed
+>
+> First of all, DT is not here to fix boot message.
+Anand mentioned elsewhere that this is a debug/info message
 
-Any chance this driver could make v5.15?
+> Finally, I looked at the Odroid-C1 schematics and the GPIOAO.BIT5 is an input
+> to the S805, and the PWREN signal is controlled by the USB Hub so this regulator
+> should not be added at all.
+I think there's a misunderstanding because there's two PWREN signals
+with different meanings.
+The PWREN signal for the USB host ports is hard-wired and not
+connected to the SoC at all.
+The PWREN signal for the Micro-USB port (which Anand is adding here)
+is controlled by GPIOAO_5. odroid-c1+_rev0.4_20150615.pdf [0] shows it
+as an input to "USB_OTG" on page 1. "USB_OTG" consists of a power
+switch and the connector itself as shown on page 28.
 
-Thanks,
-Mani
+Personally I think that the change from Anand itself is good.
+If you feel otherwise then please speak up.
+As I pointed out three smaller changes I am hoping that Anand will
+re-send the updated patch anyways. At that point he can also add the
+changes from your feedback.
 
-> Thanks,
-> Mani
-> 
-> Changes in v7:
-> 
-> * Used existing naming convention for callback functions
-> * Used active low state for PERST# gpio
-> 
-> Changes in v6:
-> 
-> * Removed status property in DT and added reviewed tag from Rob
-> * Switched to _relaxed variants as suggested by Rob
-> 
-> Changes in v5:
-> 
-> * Removed the DBI register settings that are not needed
-> * Used the standard definitions available in pci_regs.h
-> * Added defines for all the register fields
-> * Removed the left over code from previous iteration
-> 
-> Changes in v4:
-> 
-> * Removed the active_config settings needed for IPA integration
-> * Switched to writel for couple of relaxed versions that sneaked in
-> 
-> Changes in v3:
-> 
-> * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
-> * Noticeable changes are:
->   - Got rid of _relaxed calls and used readl/writel
->   - Got rid of separate TCSR memory region and used syscon for getting the
->     register offsets for Perst registers
->   - Changed the wake gpio handling logic
->   - Added remove() callback and removed "suppress_bind_attrs"
->   - stop_link() callback now just disables PERST IRQ
-> * Added MMIO region and doorbell interrupt to the binding
-> * Added logic to write MMIO physicall address to MHI base address as it is
->   for the function driver to work
-> 
-> Changes in v2:
-> 
-> * Addressed the comments from Rob on bindings patch
-> * Modified the driver as per binding change
-> * Fixed the warnings reported by Kbuild bot
-> * Removed the PERST# "enable_irq" call from probe()
-> 
-> Manivannan Sadhasivam (3):
->   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
->     controller
->   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
->   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-> 
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
->  MAINTAINERS                                   |  10 +-
->  drivers/pci/controller/dwc/Kconfig            |  10 +
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
->  5 files changed, 888 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
-> 
-> -- 
-> 2.25.1
-> 
+
+Best regards,
+Martin
+
+
+[0] https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20150615.pdf
