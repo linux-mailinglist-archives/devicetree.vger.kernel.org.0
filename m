@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1293FAF5B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 02:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77ADC3FAF64
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 03:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233464AbhH3BAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 Aug 2021 21:00:32 -0400
-Received: from laubervilliers-656-1-228-164.w92-154.abo.wanadoo.fr ([92.154.28.164]:40058
-        "EHLO ssq0.pkh.me" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbhH3BAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 21:00:31 -0400
-X-Greylist: delayed 398 seconds by postgrey-1.27 at vger.kernel.org; Sun, 29 Aug 2021 21:00:31 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pkh.me; s=selector1;
-        t=1630284778;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=npBp7WbmtiPU0EE4g71XUbLHJkGWHeertqZ8nJ2kRIE=;
-        b=Lrs7RFgCixbAMl3bNXhHrXkNCs53EwjDnTAsK7arnbLjXrvUQAVMWuWHASRwVBw91FwiPD
-        o6mlQmbv/bbXOpnIzf0LbM5u/amPkVNW0nP8T0NOGfnn3F/FJilvo+24XC9EVwlbXkG/z8
-        zT2ie4/WhlLblWtZ+Wsgg9nsQdmgh/g=
-Received: from localhost (ssq0.pkh.me [local])
-        by ssq0.pkh.me (OpenSMTPD) with ESMTPA id 9b1de0ac;
-        Mon, 30 Aug 2021 00:52:57 +0000 (UTC)
-Date:   Mon, 30 Aug 2021 02:52:57 +0200
-From:   =?utf-8?B?Q2zDqW1lbnQgQsWTc2No?= <u@pkh.me>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Willy Liu <willy.liu@realtek.com>
-Cc:     netdev@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org
-Subject: sunxi H5 DTB fix for realtek regression
-Message-ID: <YSwr6YZXjNrdKoBZ@ssq0.pkh.me>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+        id S234019AbhH3BLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 Aug 2021 21:11:08 -0400
+Received: from lucky1.263xmail.com ([211.157.147.135]:50368 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230047AbhH3BLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 Aug 2021 21:11:07 -0400
+Received: from localhost (unknown [192.168.167.105])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 5E349B2B7F;
+        Mon, 30 Aug 2021 09:10:03 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P21354T140059569596160S1630285801742244_;
+        Mon, 30 Aug 2021 09:10:02 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <fb0bbc06b9b6325a531ad37e82e002c3>
+X-RL-SENDER: sugar.zhang@rock-chips.com
+X-SENDER: zxg@rock-chips.com
+X-LOGIN-NAME: sugar.zhang@rock-chips.com
+X-FST-TO: broonie@kernel.org
+X-RCPT-COUNT: 6
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Sugar Zhang <sugar.zhang@rock-chips.com>
+To:     broonie@kernel.org, heiko@sntech.de
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
+Subject: [PATCH v2 0/7] Patches to update for rockchip pdm
+Date:   Mon, 30 Aug 2021 09:09:48 +0800
+Message-Id: <1630285788-28002-1-git-send-email-sugar.zhang@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+These patches fixup or update for rockchip pdm.
 
-Commit bbc4d71d63549bcd003a430de18a72a742d8c91e ("net: phy: realtek: fix
-rtl8211e rx/tx delay config") broke the network on the NanoPI NEO 2 board
-(RTL8211E chip).
+Changes in v2:
+- Fix yamllint errors.
 
-Following what was suggested by Andrew Lunn for another hardware¹, I tried
-the following diff:
+Sugar Zhang (7):
+  ASoC: rockchip: Add support for rv1126 pdm
+  ASoC: dt-bindings: rockchip: Add binding for rv1126 pdm
+  ASoC: rockchip: pdm: Add support for rk3568 pdm
+  ASoC: dt-bindings: rockchip: Add binding for rk3568 pdm
+  ASoC: rockchip: pdm: Add support for path map
+  ASoC: dt-bindings: rockchip: pdm: Document property
+    'rockchip,path-map'
+  ASoC: dt-bindings: rockchip: Convert pdm bindings to yaml
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-index 02f8e72f0cad..05486cccee1c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
-@@ -75,7 +75,7 @@ &emac {
-        pinctrl-0 = <&emac_rgmii_pins>;
-        phy-supply = <&reg_gmac_3v3>;
-        phy-handle = <&ext_rgmii_phy>;
--       phy-mode = "rgmii";
-+       phy-mode = "rgmii-id";
-        status = "okay";
- };
-
-
-...which fixed the issue. This was tested on v5.11.4 but the patch applies
-cleanly on stable so far.
-
-I'm sorry for not sending a proper patch: I unfortunately have very little
-clue about what I'm doing here so it's very hard for me to elaborate a
-proper commit description.
-
-Best regards,
-
-[1]: https://www.spinics.net/lists/netdev/msg692731.html
+ .../devicetree/bindings/sound/rockchip,pdm.txt     |  46 ---------
+ .../devicetree/bindings/sound/rockchip,pdm.yaml    | 115 +++++++++++++++++++++
+ sound/soc/rockchip/rockchip_pdm.c                  | 112 ++++++++++++++++++--
+ sound/soc/rockchip/rockchip_pdm.h                  |   6 ++
+ 4 files changed, 227 insertions(+), 52 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
 
 -- 
-Clément B.
+2.7.4
+
+
+
