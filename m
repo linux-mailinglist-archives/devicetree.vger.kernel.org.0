@@ -2,127 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 286203FB74C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D0FC3FB751
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 15:53:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbhH3Nxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 09:53:54 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:26188 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236802AbhH3Nxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 09:53:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1630331579;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3QR26H90I5oa/Aq9g2W/STFicF2YahgcF3x4I6vga0I=;
-        b=S/k9zRw6K75t1gDFPMhswnsnyLWnJvu8nq+OeEpBfH3gcYA1awHfpxHJ7O8VewG15lEK8B
-        bTZfoLdq08HI/QdvdlHWDs1dbO+dT5QASwY0SChQqZFcnOhmnxzj/sTQVmWLA0eT6yu0Mn
-        kJc4QAOc6ZyRFfOxL2b3RyDUIALdU0I=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-449-_bgoKg7pOyOiOWq7rHUt-w-1; Mon, 30 Aug 2021 09:52:58 -0400
-X-MC-Unique: _bgoKg7pOyOiOWq7rHUt-w-1
-Received: by mail-wm1-f69.google.com with SMTP id p5-20020a7bcc85000000b002e7563efc4cso14205wma.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 06:52:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=3QR26H90I5oa/Aq9g2W/STFicF2YahgcF3x4I6vga0I=;
-        b=FcSxvLnoR5OKOgsJqgjGPVDXYqoxOneTfOziNMgUo0P5JhCcO14owE5S+SWlJUKTPC
-         hqoTMkksivl7Mpia/ZTGcbB0x1EgDrVXbUPI/NYlECxFpv3wXaIUEifUnGSX9R/3erCg
-         62shuUgC9KHQODMN4FdI9Mz1OuDHNkR2jvsQuAxzxw+vIxnnP5I4yM+4KT8Qy5rpWUfW
-         T3SeTe/fGwcCiGXXOJG8ruFd3FFfLsX8clby5ih//WsqBdcHTngTa9GUGWYEfEIhplBO
-         fq1ewiz8c8+DxyDxrBipVBn0BHcJUILhfBy+2GwVvL1m7K7/T8eUISSzJ7LMtK6p1k1C
-         Mo2A==
-X-Gm-Message-State: AOAM531tCyHxdbr/B4575gsLzMciIGIQMn5MjJjxnHOuqC3pc0mV2EhP
-        OXK2i6kCBQTWjzE0oRqrOsHO+iJMJ2c0FMh8gVUNIrPXhrnAH3gi71LTRmTIwWKpj2WSGrFsyWc
-        LncezUDbq523TQ/mCMud4tw==
-X-Received: by 2002:a5d:5452:: with SMTP id w18mr25817935wrv.221.1630331577193;
-        Mon, 30 Aug 2021 06:52:57 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxiV6tn32BvkOpeVK88NLS2VPjgTEoDc32JCI++maS/PsNPJcd4rRPkS2cfkSHGgjR69mI1Yg==
-X-Received: by 2002:a5d:5452:: with SMTP id w18mr25817911wrv.221.1630331577024;
-        Mon, 30 Aug 2021 06:52:57 -0700 (PDT)
-Received: from ?IPv6:2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de? ([2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de])
-        by smtp.gmail.com with ESMTPSA id w9sm13490938wmc.19.2021.08.30.06.52.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 06:52:56 -0700 (PDT)
-Message-ID: <e1ca1f086c180f04044996ccf59981d59fbdbc6b.camel@redhat.com>
-Subject: Re: [PATCH] ARM: dts: bcm2711-rpi-4-b: Fix pcie0's unit address
-From:   nsaenzju@redhat.com
-To:     Rob Herring <robh@kernel.org>
-Cc:     f.fainelli@gmail.com, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stefan.wahren@i2se.com
-Date:   Mon, 30 Aug 2021 15:52:54 +0200
-In-Reply-To: <YSzfoyesEzAuLkSS@robh.at.kernel.org>
-References: <20210830103909.323356-1-nsaenzju@redhat.com>
-         <YSzfoyesEzAuLkSS@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S236948AbhH3Nx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 09:53:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48806 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233874AbhH3Nx4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 09:53:56 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 78E3760ED4;
+        Mon, 30 Aug 2021 13:52:57 +0000 (UTC)
+Date:   Mon, 30 Aug 2021 14:56:08 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "Ryan J . Barnett" <ryan.barnett@collins.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 20/40] mfd: ti_am335x_tscadc: Gather the ctrl register
+ logic at one place
+Message-ID: <20210830145608.09d7e685@jic23-huawei>
+In-Reply-To: <20210825152518.379386-21-miquel.raynal@bootlin.com>
+References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
+        <20210825152518.379386-21-miquel.raynal@bootlin.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-08-30 at 08:39 -0500, Rob Herring wrote:
-> On Mon, Aug 30, 2021 at 12:39:09PM +0200, Nicolas Saenz Julienne wrote:
-> > dtbs_check currently complains that:
-> > 
-> > arch/arm/boot/dts/bcm2711-rpi-4-b.dts:220.10-231.4: Warning
-> > (pci_device_reg): /scb/pcie@7d500000/pci@1,0: PCI unit address format
-> > error, expected "0,0"
-> > 
-> > Unsurprisingly pci@0,0 is the right address, as illustrated by its reg
-> > property:
-> > 
-> > 	&pcie0 {
-> > 		pci@0,0 {
-> > 			/*
-> > 			 * As defined in the IEEE Std 1275-1994 document,
-> > 			 * reg is a five-cell address encoded as (phys.hi
-> > 			 * phys.mid phys.lo size.hi size.lo). phys.hi
-> > 			 * should contain the device's BDF as 0b00000000
-> > 			 * bbbbbbbb dddddfff 00000000. The other cells
-> > 			 * should be zero.
-> > 			 */
-> > 			reg = <0 0 0 0 0>;
-> > 		};
-> > 	};
-> > 
-> > The bus is clearly 0. So fix it.
-> 
-> s/bus/device/
-> 
-> The unit-address format is '<device>,<function>' (and function is 
-> optional). The bus number is not part of the unit-address because that 
-> is dynamic and then the path would not be fixed/known. The bus is part 
-> of 'reg' for true OpenFirmware, but for FDT I think it should always be 
-> 0 as the DT is static. 
-> 
-> Looks like the child node is wrong (both unit-address and reg) as well:
-> 
->                 usb@1,0 {
->                         reg = <0x10000 0 0 0 0>;
->                         resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
->                 };
-> 
-> It doesn't warn because the bridge node is also missing 'device_type = 
-> "pci";'.
-> 
-> This is all fairly hard to get right (see recent hikey970 patches for a 
-> complex example). I'm thinking about writing a tool that generates a DT 
-> with PCI nodes by reading the PCI hierachy from sysfs.
+On Wed, 25 Aug 2021 17:24:58 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Thanks for the review, I'll fix all those. That tool would be very helpful.
+> Instead of deriving in the probe and in the resume path the value of the
+> ctrl register, let's do it only once in the probe, save the value of
+> this register in the driver's structure and use it from the resume
+> callback.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+A few minor things inline.
 
--- 
-Nicolás Sáenz
+J
+
+> ---
+>  drivers/mfd/ti_am335x_tscadc.c       | 31 ++++++++--------------------
+>  include/linux/mfd/ti_am335x_tscadc.h |  2 +-
+>  2 files changed, 10 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
+> index 7071344ad18e..d661e8ae66c9 100644
+> --- a/drivers/mfd/ti_am335x_tscadc.c
+> +++ b/drivers/mfd/ti_am335x_tscadc.c
+> @@ -122,7 +122,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  	struct clk *clk;
+>  	u32 val;
+>  	int tsc_wires = 0, adc_channels = 0, readouts = 0, cell_idx = 0;
+> -	int total_channels, ctrl, err;
+> +	int total_channels, err;
+>  
+>  	/* Allocate memory for device */
+>  	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
+> @@ -215,22 +215,21 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>  	regmap_write(tscadc->regmap, REG_CLKDIV, tscadc->clk_div);
+>  
+>  	/* Set the control register bits */
+> -	ctrl = CNTRLREG_STEPCONFIGWRT |	CNTRLREG_STEPID;
+> -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> +	tscadc->ctrl = CNTRLREG_STEPCONFIGWRT | CNTRLREG_STEPID;
+> +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
+>  
+>  	if (tsc_wires > 0) {
+> -		tscadc->tsc_wires = tsc_wires;
+> +		tscadc->ctrl |= CNTRLREG_TSCENB;
+>  		if (tsc_wires == 5)
+> -			ctrl |= CNTRLREG_5WIRE | CNTRLREG_TSCENB;
+> +			tscadc->ctrl |= CNTRLREG_5WIRE;
+>  		else
+> -			ctrl |= CNTRLREG_4WIRE | CNTRLREG_TSCENB;
+> +			tscadc->ctrl |= CNTRLREG_4WIRE;
+>  	}
+>  
+>  	tscadc_idle_config(tscadc);
+>  
+>  	/* Enable the TSC module enable bit */
+> -	ctrl |= CNTRLREG_TSCSSENB;
+> -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl | CNTRLREG_TSCSSENB);
+>  
+>  	/* TSC Cell */
+>  	if (tsc_wires > 0) {
+> @@ -305,25 +304,13 @@ static int __maybe_unused tscadc_suspend(struct device *dev)
+>  static int __maybe_unused tscadc_resume(struct device *dev)
+>  {
+>  	struct ti_tscadc_dev *tscadc = dev_get_drvdata(dev);
+> -	u32 ctrl;
+>  
+>  	pm_runtime_get_sync(dev);
+>  
+> -	/* context restore */
+> -	ctrl = CNTRLREG_STEPCONFIGWRT |	CNTRLREG_STEPID;
+> -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> -
+> -	if (tscadc->tsc_wires > 0) {
+> -		if (tscadc->tsc_wires == 5)
+> -			ctrl |= CNTRLREG_5WIRE | CNTRLREG_TSCENB;
+> -		else
+> -			ctrl |= CNTRLREG_4WIRE | CNTRLREG_TSCENB;
+> -	}
+> -	ctrl |= CNTRLREG_TSCSSENB;
+> -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> -
+>  	regmap_write(tscadc->regmap, REG_CLKDIV, tscadc->clk_div);
+> +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
+
+Patch description should mention why this ordering change is here.
+
+>  	tscadc_idle_config(tscadc);
+> +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl | CNTRLREG_TSCSSENB);
+
+As the value of tscadc->ctrl is not the same as REG_CTRL this is a bit non obvious.
+
+You might be better off keeping them in sync, but masking that bit out and then resetting
+it as appropriate.
+
+>  
+>  	return 0;
+>  }
+> diff --git a/include/linux/mfd/ti_am335x_tscadc.h b/include/linux/mfd/ti_am335x_tscadc.h
+> index e734fb97dff8..02963b6ebbac 100644
+> --- a/include/linux/mfd/ti_am335x_tscadc.h
+> +++ b/include/linux/mfd/ti_am335x_tscadc.h
+> @@ -177,8 +177,8 @@ struct ti_tscadc_dev {
+>  	phys_addr_t tscadc_phys_base;
+>  	const struct ti_tscadc_data *data;
+>  	int irq;
+> -	int tsc_wires;
+>  	struct mfd_cell cells[TSCADC_CELLS];
+> +	u32 ctrl;
+>  	u32 reg_se_cache;
+>  	bool adc_waiting;
+>  	bool adc_in_use;
 
