@@ -2,95 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 820083FBEE6
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 00:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09CAC3FBF27
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 00:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238821AbhH3WQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 18:16:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44678 "EHLO
+        id S238860AbhH3XAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 19:00:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238513AbhH3WQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 18:16:35 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B212C061575
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 15:15:40 -0700 (PDT)
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 41C541F89E;
-        Tue, 31 Aug 2021 00:15:36 +0200 (CEST)
-Date:   Tue, 31 Aug 2021 00:15:34 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm: dts: qcom-msm8974: Add xo_board reference clock to
- DSI0 PHY
-Message-ID: <YS1YhsT2iIj3Ydd9@Marijn-Arch-PC.localdomain>
-References: <20210830175739.143401-1-marijn.suijten@somainline.org>
- <YS1NbxhPrAPIQwk3@yoga>
+        with ESMTP id S231428AbhH3XAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 19:00:09 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 161E2C061575
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 15:59:15 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id c79so21946917oib.11
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 15:59:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=23R8fKMXH4DxuDRCrTSwyAeEWCGLs+lyC4XMuQ81hJ8=;
+        b=QEt5vB+J+ddmovN0j7CUy8wn8x5yFU4N0Y9ayi0DKxX8q+BVaY7929gtQp1ppB7KOv
+         20u76lWLosHkqxaFAvY55PaCDYp0LTFIKsPQ4PUcA9jF+QuBHI47KbnibvX5WkFuzkYl
+         pnho/WmKcYjwF1TMwom5aTzBNUFHZFb7LwTKg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=23R8fKMXH4DxuDRCrTSwyAeEWCGLs+lyC4XMuQ81hJ8=;
+        b=AYe/xpX/6wNAsrWfb1J3G4glmC741ETut8kkmzuuVOwwirc751aDodptcGSZT2Sr35
+         poGGk1P50gsA+HZvNCJe0auvt37z96DgYBVritLJAqk+hYh0fiO27sfO+1cj3dzcPHmr
+         MB578LxTdTekPm1HF71OaePOfTVGAiSw3ru2c4ztf+jAShqTe31mezTh0cLNp0phyaeu
+         lsYEajA40rS1dv+Zjp+iZUdsnBjQx2bLEIlN9mViTSF7c2hWtPTi0k2MovB4M7CX8+rq
+         ebfaVi6qJLJFSOWdo4EGmzu8CJNd1/xty+hOpZ5yavSGbht9HznkGhBScaCETE6+gFqw
+         Nhzw==
+X-Gm-Message-State: AOAM531zS7tmUrcnuCDI6hE82PmWuwxa4bzW/7eDPTFF7cKVtUlZxY2e
+        KoC7eMZjpQjkxOc6L7NLdnR9BZec/b9h6MJE5tgzuA==
+X-Google-Smtp-Source: ABdhPJxlC/joPvSoDsoEOTZeOfqE7RatXYPvmu42VW0LMMlNpAJfL347e0/pP2v9YPue3u5i3tJskWLI5vGa9ZnmWZg=
+X-Received: by 2002:aca:2310:: with SMTP id e16mr1139491oie.64.1630364354502;
+ Mon, 30 Aug 2021 15:59:14 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 30 Aug 2021 15:59:14 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YS1NbxhPrAPIQwk3@yoga>
+In-Reply-To: <20210830080621.1.Ia15d97bc4a81f2916290e23a8fde9cbc66186159@changeid>
+References: <20210830080621.1.Ia15d97bc4a81f2916290e23a8fde9cbc66186159@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 30 Aug 2021 15:59:14 -0700
+Message-ID: <CAE-0n52mwKmw5=_UmAAjFxCvMZYeqGrFfLy6RObf6LP-g=MB7w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Move the SD CD GPIO pin out of
+ the dtsi file
+To:     Douglas Anderson <dianders@chromium.org>,
+        bjorn.andersson@linaro.org
+Cc:     sbhanu@codeaurora.org, mka@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-30 16:28:15, Bjorn Andersson wrote:
-> On Mon 30 Aug 12:57 CDT 2021, Marijn Suijten wrote:
-> 
-> > According to YAML validation, and for a future patchset putting this
-> > xo_board reference clock to use as VCO reference parent, add the missing
-> > clock to dsi_phy0.
-> > 
-> 
-> And just to confirm on MSM8974 "ref" is supposed to be 19.2Mhz?
+Quoting Douglas Anderson (2021-08-30 08:06:37)
+> There's nothing magical about GPIO91 and boards could use different
+> GPIOs for card detect. Move the pin out of the dtsi file and to the
+> only existing board file.
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 
-Yes, the 28nm-hpm driver (unlike the 28nm-8960 driver for apq8064) uses
-19.2MHz for its hardcoded VCO_REF_CLK_RATE calculations.
-
-Perhaps we should reword the commit message to read "... add the missing
-19.2MHz xo clock ...".
-
-- Marijn
-
-> Regards,
-> Bjorn
-> 
-> > Fixes: 5a9fc531f6ec ("ARM: dts: msm8974: add display support")
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > ---
-> >  arch/arm/boot/dts/qcom-msm8974.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > index db4c06bf7888..96722172b064 100644
-> > --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > @@ -1580,8 +1580,8 @@ dsi_phy0: dsi-phy@fd922a00 {
-> >  				#phy-cells = <0>;
-> >  				qcom,dsi-phy-index = <0>;
-> >  
-> > -				clocks = <&mmcc MDSS_AHB_CLK>;
-> > -				clock-names = "iface";
-> > +				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
-> > +				clock-names = "iface", "ref";
-> >  			};
-> >  		};
-> >  
-> > -- 
-> > 2.33.0
-> > 
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
