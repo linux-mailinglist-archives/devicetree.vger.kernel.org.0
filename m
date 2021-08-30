@@ -2,97 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F27B23FB7FA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E958A3FB82D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:27:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237217AbhH3OW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 10:22:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33536 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237173AbhH3OWz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 10:22:55 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S237153AbhH3O0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 10:26:08 -0400
+Received: from relay03.th.seeweb.it ([5.144.164.164]:57579 "EHLO
+        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237182AbhH3O0I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 10:26:08 -0400
+Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8FC2260F25;
-        Mon, 30 Aug 2021 14:21:55 +0000 (UTC)
-Date:   Mon, 30 Aug 2021 15:25:06 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id DED3E20134;
+        Mon, 30 Aug 2021 16:25:12 +0200 (CEST)
+Date:   Mon, 30 Aug 2021 16:25:11 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH 12/40] mfd: ti_am335x_tscadc: Move the driver structure
- allocation earlier
-Message-ID: <20210830152506.6215c0e8@jic23-huawei>
-In-Reply-To: <20210825152518.379386-13-miquel.raynal@bootlin.com>
-References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
-        <20210825152518.379386-13-miquel.raynal@bootlin.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI
+ PLL reference
+Message-ID: <YSzqR2yq3MtdPnIG@Marijn-Arch-PC.localdomain>
+References: <20210829203027.276143-1-marijn.suijten@somainline.org>
+ <20210829203027.276143-2-marijn.suijten@somainline.org>
+ <CAA8EJprQ03ipZzO+1vgt9W7jFbLXgsYR0n-oJxVB-142x8dgRA@mail.gmail.com>
+ <17d19b93-dbe5-cc85-f302-b52cd8eeed56@somainline.org>
+ <CAA8EJpqd7_5510TodALnX13Wo0MufYm2G=r6vw9sy=VURrewyw@mail.gmail.com>
+ <YSznouVZ93sUd6xa@Marijn-Arch-PC.localdomain>
+ <CAA8EJpoRo6rPgpUeT9X0K4UPu5d8-YBP=BJ3AAejD+wujhmv+g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpoRo6rPgpUeT9X0K4UPu5d8-YBP=BJ3AAejD+wujhmv+g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 17:24:50 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-
-> Allocating the driver structure should be done earlier in the probe so
-> that we can used its members from the beginning.
+On Mon, Aug 30, 2021 at 05:18:37PM +0300, Dmitry Baryshkov wrote:
+> On Mon, 30 Aug 2021 at 17:14, Marijn Suijten
+> <marijn.suijten@somainline.org> wrote:
+> >
+> > On Mon, Aug 30, 2021 at 04:24:58PM +0300, Dmitry Baryshkov wrote:
+> > > On Mon, 30 Aug 2021 at 11:28, Marijn Suijten
+> > > <marijn.suijten@somainline.org> wrote:
+> > > >
+> > > > Hi Dmitry,
+> > > >
+> > > > On 8/30/21 3:18 AM, Dmitry Baryshkov wrote:
+> > > > > On Sun, 29 Aug 2021 at 23:30, Marijn Suijten
+> > > > > <marijn.suijten@somainline.org> wrote:
+> > > > >>
+> > > > >> The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
+> > > > >> clock and should hence use PXO, not CXO which runs at 19.2MHz.
+> > > > >>
+> > > > >> Note that none of the DSI PHY/PLL drivers currently use this "ref"
+> > > > >> clock; they all rely on (sometimes inexistant) global clock names and
+> > > > >> usually function normally without a parent clock.  This discrepancy will
+> > > > >> be corrected in a future patch, for which this change needs to be in
+> > > > >> place first.
+> > > > >>
+> > > > >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > >> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > > > >
+> > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > >
+> > > > > Checked the downstream driver, it always uses 27 MHz clock in calculations.
+> > > >
+> > > >
+> > > > Given our concerns for msm8974 not updating DT in parallel with the
+> > > > kernel (hence the need for a global-name fallback because "ref" is
+> > > > missing from the DT), should we worry about the same for apq8064?  That
+> > > > is, is there a chance that the kernel but not the firmware is upgraded
+> > > > leading to the wrong parent clock being used?  The msm8960 variant of
+> > > > the 28nm PLL driver uses parent_rate in a few places and might read
+> > > > cxo's 19.2MHz erroneously instead of using pxo's 27MHz.
+> > >
+> > > Checked the code. It uses .parent_names =  "pxo", so changing ref
+> > > clock should not matter. We'd need to fix ref clocks and after that we
+> > > can switch parent names to fw_name.
+> >
+> > Correct, hence why this patch is ordered before the switch to .fw_name.
+> > These patches can't go in the same series if apq8064 doesn't update its
+> > firmware in parallel with the kernel just like msm8974.  Do you know if
+> > this is the case?  If so, how much time do you think should be between
+> > the DT fix (this patch) and migrating the drivers?
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-No problem with this, but I would expect either this patch or the one
-immediately after it to actually take advantage of this being
-available earlier in probe().
-As things stand it's not clear to a reviewer that this is actually
-a useful bit of refactoring.
+> You can have parent_data with .fw_name and .name in it.  .name will be
+> used as a fallback if .fw_name doesn't match.
 
-> ---
->  drivers/mfd/ti_am335x_tscadc.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
-> index 8e86b766b619..0fef35e1e64b 100644
-> --- a/drivers/mfd/ti_am335x_tscadc.c
-> +++ b/drivers/mfd/ti_am335x_tscadc.c
-> @@ -124,6 +124,13 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  	int tsc_wires = 0, adc_channels = 0, readouts = 0;
->  	int total_channels, clock_rate, ctrl, err;
->  
-> +	/* Allocate memory for device */
-> +	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
-> +	if (!tscadc)
-> +		return -ENOMEM;
-> +
-> +	tscadc->dev = &pdev->dev;
-> +
->  	if (!pdev->dev.of_node) {
->  		dev_err(&pdev->dev, "Could not find valid DT data.\n");
->  		return -EINVAL;
-> @@ -159,13 +166,6 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> -	/* Allocate memory for device */
-> -	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
-> -	if (!tscadc)
-> -		return -ENOMEM;
-> -
-> -	tscadc->dev = &pdev->dev;
-> -
->  	err = platform_get_irq(pdev, 0);
->  	if (err < 0) {
->  		dev_err(&pdev->dev, "no irq ID is specified.\n");
+The problem is that it will always find the "ref" clock which references
+&cxo_board until the DT is updated with this patch to use &pxo_board
+instead.  Question is, will the kernel and DT usually/always be updated
+in parallel?
 
+- Marijn
