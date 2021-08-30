@@ -2,77 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F21BB3FBE74
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:43:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F33D63FBE85
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 23:50:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237612AbhH3VoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 17:44:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57330 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238718AbhH3VoN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 17:44:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B5DBD60E90;
-        Mon, 30 Aug 2021 21:43:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630359799;
-        bh=zbF3yv3WsPc6wc8t9qfmmgZ/lsdWyqbDW8FcCrDPuyU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=kBXWL/TQGLTNPzPT5D1t87Hd+gPPA12194U6gqUgTgOFjGN6ii3xJMWicLvkbRmgF
-         XVwshnvVeiN9iMrc4FFbRj59YUQk04lQi6bBCL+2GTo7D+lJfy4hNXsVD5TrAdsyFf
-         VxpmLP+Ct8VykrxQuK8Sheqhu0Ae+P/T6ewQr8vHeAxzwLHRExW+E7YZFwnUI48Ta/
-         WUlU3rCydCVeGmRmiDdW3Jx5N1ha0ke9S5ycXg3eVu2ramZcp9WMShG2qm1prMMBsF
-         kX1hbDVvP/WhP6SwQADep/x4y5OQWKTzrYG64YklfpHiGo9UOZT032NOZCDS6qibdw
-         Sj+Gr6a7gZQYQ==
-Date:   Mon, 30 Aug 2021 16:43:17 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
-Cc:     robh+dt@kernel.org, bhelgaas@google.com, matthias.bgg@gmail.com,
-        lorenzo.pieralisi@arm.com, ryder.lee@mediatek.com,
-        jianjun.wang@mediatek.com, yong.wu@mediatek.com,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        id S238423AbhH3VvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 17:51:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38864 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237167AbhH3VvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 17:51:18 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C92C061575;
+        Mon, 30 Aug 2021 14:50:24 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id s25so23854334edw.0;
+        Mon, 30 Aug 2021 14:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=S8anJ0NPPB4P0Ut+ZHX8utJDYvZhnlZjZsXzn1rS+3E=;
+        b=hPz+rupDI0UhCDh5P+uZg41eWTjlnSVCvPPsZKNU7dDveXrnz4EBdWdxZfhAYeJxB2
+         hYfHV1ER5wiH8POAOZd7yZ2vUGOrSQWtOeeZW6NhZNna1LD+CQOK4tEZ+QTaHynzlLZm
+         jSm9/+ZNhLUdMvsX+TD8pD1djLH6Qy7rRUSxuqBlwWjC1xu+bgEBaBnwuSr4K/m8Pouc
+         SZMi3NQaUjj2ZAgFvIzvTN9kVUnoOyvDjuWj8OugcKYttn64wS0GNHMWALYAdZG92ZSe
+         aJZ/vlT7auVKYFWH9Lp9D8zl7acl188pnhsnLSZGnZuuR70OiL5NsN+JVUHYhA5ET5un
+         McHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=S8anJ0NPPB4P0Ut+ZHX8utJDYvZhnlZjZsXzn1rS+3E=;
+        b=Loq9oHEV3lQyxxerjmwmjqFS5cuDG9GJ3VSC8QIHAIDscbOvlr9MYsdOi1drpYXAdG
+         uNIwsdx0Q4nX9hthV1viEvVV77wBk2Ur4ABhnTjS48yo32IkgPCQ37urUrErAq7ZHcOH
+         8vmmzQLiAxYosrLZJJQ4qrkqn73BsOH4Q446mwkiNVnoMRis8J4pFrVdTUht1zzRSt8m
+         pywC2R2dYrbD82PTwLaaURRTjYARR+AnEd17yPeBh/XUQN4WXYunyyWahwnY/5zOxK1s
+         s2fZg1fBTUq7o60Lu0ZzUYFWy4oHRzPgTpbraO7JuUmSTVoXBH5BsqQb/yH0RZHn4XZe
+         2SHw==
+X-Gm-Message-State: AOAM532Ykw0+ZMfKgV4x/0mQ9PZz2acvczazidOqY1D7XZxNVLJ4QOTB
+        3LQRFwxL8vy3CT7MsVhr5/s2N1Jolfo65q6g
+X-Google-Smtp-Source: ABdhPJz9YU4vyFs0t9RrfhZb9jXHLop4ynGMWZhZKNyeg1BHemIWXywK4XjaDQ00ea0hqArcVaHWBQ==
+X-Received: by 2002:a50:fd02:: with SMTP id i2mr22536429eds.22.1630360222786;
+        Mon, 30 Aug 2021 14:50:22 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id s3sm7340097ejm.49.2021.08.30.14.50.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Aug 2021 14:50:22 -0700 (PDT)
+Subject: Re: [PATCH v1 5/5] arm64: dts: rockchip: add mipi-dphy-tx1rx1 for
+ rk3399
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        linux-phy@lists.infradead.org
+Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
- pcie-cfg base address
-Message-ID: <20210830214317.GA27606@bjorn-Precision-5520>
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210830180758.251390-1-mike.rudenko@gmail.com>
+ <20210830180758.251390-6-mike.rudenko@gmail.com>
+ <ac38a6ce-19f6-8d30-6070-55b78cc082e2@gmail.com>
+Message-ID: <909ebc5f-3a9b-c793-a4fa-07429effd8c3@gmail.com>
+Date:   Mon, 30 Aug 2021 23:50:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <968266ecd5889721aa234c414361bedbe66b9539.camel@mediatek.com>
+In-Reply-To: <ac38a6ce-19f6-8d30-6070-55b78cc082e2@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 30, 2021 at 03:09:44PM +0800, Chuanjia Liu wrote:
-> On Fri, 2021-08-27 at 11:46 -0500, Bjorn Helgaas wrote:
-> > On Mon, Aug 23, 2021 at 11:27:56AM +0800, Chuanjia Liu wrote:
 
-> > > @@ -995,6 +1004,14 @@ static int mtk_pcie_subsys_powerup(struct
-> > > mtk_pcie *pcie)
-> > >  			return PTR_ERR(pcie->base);
-> > >  	}
-> > >  
-> > > +	cfg_node = of_find_compatible_node(NULL, NULL,
-> > > +					   "mediatek,generic-pciecfg");
-> > > +	if (cfg_node) {
-> > > +		pcie->cfg = syscon_node_to_regmap(cfg_node);
-> > 
-> > Other drivers in drivers/pci/controller/ use
-> > syscon_regmap_lookup_by_phandle() (j721e, dra7xx, keystone,
-> > layerscape, artpec6) or syscon_regmap_lookup_by_compatible() (imx6,
-> > kirin, v3-semi).
-> > 
-> > You should do it the same way unless there's a need to be different.
->
-> I have used phandle, but Rob suggested to search for the node by 
-> compatible.
 
-> The reason why syscon_regmap_lookup_by_compatible() is not 
-> used here is that the pciecfg node is optional, and there is no need to
-> return error when the node is not searched.
+On 8/30/21 11:12 PM, Johan Jonker wrote:
+> Hi Mikhail,
+> 
+> On 8/30/21 8:07 PM, Mikhail Rudenko wrote:
+>> Add DT node for RX mode of RK3399 TX1RX1 D-PHY.
+>>
+>> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>> index 3871c7fd83b0..2e4513275a87 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+>> @@ -1902,6 +1902,21 @@ mipi1_in_vopl: endpoint@1 {
+>>  		};
+>>  	};
+>>  
 
-How about this?
 
-  regmap = syscon_regmap_lookup_by_compatible("mediatek,generic-pciecfg");
-  if (!IS_ERR(regmap))
-    pcie->cfg = regmap;
+>> +	mipi_dphy_tx1rx1: mipi-dphy-tx1rx1@ff968000 {
+>> +		compatible = "rockchip,rk3399-mipi-dphy-tx1rx1";
+
+
+
+	mipi_dsi1: mipi@ff968000 {
+		compatible = "rockchip,rk3399-mipi-dsi", "snps,dw-mipi-dsi";
+		reg = <0x0 0xff968000 0x0 0x8000>;
+
+Sorry, there's already a node in mainline. Excuse...
+See Heiko's comment.
+
+
+>> +		reg = <0x0 0xff968000 0x0 0x8000>;
+> 
+>> +		clocks = <&cru SCLK_MIPIDPHY_REF>,
+>> +			<&cru SCLK_DPHY_TX1RX1_CFG>,
+>> +			<&cru PCLK_VIO_GRF>,
+>> +			<&cru PCLK_MIPI_DSI1>;
+>> +		clock-names = "dphy-ref", "dphy-cfg",
+>> +			"grf", "dsi";
+> 
+> Could you fix the alignment a bit with extra spaces?
+> 
+>> +		rockchip,grf = <&grf>;
+>> +		power-domains = <&power RK3399_PD_VIO>;
+> 
+> Sort in alphabetical order.
+> 
+>> +		#phy-cells = <0>;
+>> +		status = "disabled";
+>> +	};
+>> +
+>>  	edp: edp@ff970000 {
+>>  		compatible = "rockchip,rk3399-edp";
+>>  		reg = <0x0 0xff970000 0x0 0x8000>;
+>>
