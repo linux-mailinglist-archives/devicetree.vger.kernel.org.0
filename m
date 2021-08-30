@@ -2,87 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ABE13FB129
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 08:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A38303FB15C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 08:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232317AbhH3G1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 02:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50046 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbhH3G1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 02:27:39 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40888C061575
-        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 23:26:46 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id bf15so6408740vsb.0
-        for <devicetree@vger.kernel.org>; Sun, 29 Aug 2021 23:26:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=RzIkdEm5aJl66a3p0t6hmEQ+Qv+8MFJLxj5JlLxnEbs=;
-        b=GjqdtYkTqfNg2u15Sfa6rbfJx0RG9evwUjPZT/6LTowWPJ1z+hRo8IXCWXGkTzX7Yn
-         zW6bivCB055PL/oItFB9YyekWr2WrkbZwz8D5hvQl4XDhb2nWO7sC8fSDNRvI5hn3zel
-         PO3+ZvMlOrukfIDhQCZ7hPwTQLNw7lL/D1Gb9JY+D6awPNjwl4cYo2BaONhdRzupEhs1
-         pG+7OLhttn47dqEVcI2qjOrQog63pqbAhB4g8EzhtdQBhYxI7za4vkk4zboy+BI02Nj9
-         L4L9NsBUTvNFcmwMWNGPAd58Pj3ol8ub1YX3SkbuL1ShztRFYZWwqLWQxaBsplnoyDke
-         5tdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=RzIkdEm5aJl66a3p0t6hmEQ+Qv+8MFJLxj5JlLxnEbs=;
-        b=tSqf4Aiajg3OYiFU92K8HVm0oysd/AyfiZ+MIHmXHQjo++CRk7heNGS4LaOiilCXYp
-         Fdj579tReTEbKJD+47MMGRZ3SSGPilHqyLVF6VvHfmwq74kz4ituyyDlSMsh+iXRkqE5
-         Cs50IB/g0Q0NFMy4kQ8rwyZRT0JICHvxxcwzwRTisHgexStsjY/Mmqpkk6rFYS3n5Ti6
-         sdidy48RMK56nhcomMb1tAZVd1OKLyXecvSRvGF5ZKdPDQhFUQtXJPHHe3TjSDO8nyhT
-         FaTGcE37lWB/9Q8PJ+ncl8CPBr9bwA+kL3AJCJ0Th6L4UKOYhBl9eCi4nhuLz1ktjK55
-         UUIg==
-X-Gm-Message-State: AOAM533PXrkYoQshrrhZ9f3JSsjpr258t7EB0kTb62+Gq1y4jp4Ju7g4
-        MBIuPTYpJtu7Q2F1UiZNAEx/8HiTvpg4USJ5uk4=
-X-Google-Smtp-Source: ABdhPJyqpnhHaUp0M2Fw3J3288PIRGHcAlFUVEPWGpBig3morBN/Co69GBVQflyIsIkVHXk3HZ+Hl07PcTtjXnLK/wg=
-X-Received: by 2002:a67:8c5:: with SMTP id 188mr13856481vsi.4.1630304805229;
- Sun, 29 Aug 2021 23:26:45 -0700 (PDT)
+        id S233049AbhH3Gsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 02:48:30 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:59979 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232862AbhH3Gsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 02:48:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630306057; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=Ij1fbEpBts73q2JaEtuGhklwHwIsAQxjOqsm7O6ni4w=;
+ b=qNyb7RKixWj8yXXXP5Oig+ijZ4ed88r+wwD7H9h6yzKLCTt/QEOg0/SnNN/W9dRjs13QOc6r
+ pS0WXIu2RmAx9hFc3F7akwNrBKkPBB9K9zGq5Frcw1Uo15D2Mo1QOqM9fMMZbuw5WztQeHxk
+ Y3LwreJj/QM/rZZW8REUmD33NFE=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 612c7f084d644b7d1c50b870 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 30 Aug 2021 06:47:36
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 391ABC4360C; Mon, 30 Aug 2021 06:47:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95346C4338F;
+        Mon, 30 Aug 2021 06:47:35 +0000 (UTC)
 MIME-Version: 1.0
-Reply-To: godwinppter@gmail.com
-Sender: godwinpeter2404@gmail.com
-Received: by 2002:ab0:3483:0:0:0:0:0 with HTTP; Sun, 29 Aug 2021 23:26:44
- -0700 (PDT)
-From:   Godwin Pete <godwinnpeter@gmail.com>
-Date:   Mon, 30 Aug 2021 08:26:44 +0200
-X-Google-Sender-Auth: n8wRUgu_sX4cXAQ8s0J39mAal5A
-Message-ID: <CADrkNW6G=33-kCWb964uV0q-i4A7+VhP8bxEwRToALJspSw0Fw@mail.gmail.com>
-Subject: For your information
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 30 Aug 2021 12:17:35 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     sboyd@kernel.org, robh+dt@kernel.org, viresh.kumar@linaro.org,
+        agross@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        dianders@chromium.org, tdas@codeaurora.org
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8350: Fixup the cpufreq node
+In-Reply-To: <YQsprr4rLVPwVfqR@google.com>
+References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
+ <1627581885-32165-5-git-send-email-sibis@codeaurora.org>
+ <YQsbuN1xyAlCYRqK@builder.lan> <YQsprr4rLVPwVfqR@google.com>
+Message-ID: <cafed46a38a29072f9241de2154a502b@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2021-08-05 05:28, Matthias Kaehlcke wrote:
+> On Wed, Aug 04, 2021 at 05:59:04PM -0500, Bjorn Andersson wrote:
+>> On Thu 29 Jul 13:04 CDT 2021, Sibi Sankar wrote:
+>> 
+>> > Fixup the register regions used by the cpufreq node on SM8350 SoC to
+>> > support per core L3 DCVS.
+>> >
+>> 
+>> That sounds good, but why are you dropping the platform-specific
+>> compatible?
+>> 
+> 
+> I also stared at this and the patch that changes the code for a while.
+> 
+> My understanding is that removing the platform-specific compatible is 
+> part
+> of not breaking 'old' DTBs. Old DTBs for SM8350 contain the larger 
+> register
+> regions and must be paired with 'epss_sm8250_soc_data' (driver code) 
+> which
+> has the 'old' 'reg_perf_state' offset. New SM8350 DTs only have the
+> 'qcom,cpufreq-epss' compatible, which pairs their smaller register 
+> regions
+> with 'epss_soc_data' with the new 'reg_perf_state' offset.
+> 
+> It is super-confusing that the platform-specific compatible string is
+> missing. The binding should probably mention that the two
+> platform-specific compatible strings are for backwards compatibility
+> only and should not be added to new or existing DT files that don't
+> have them already. Maybe a 'qcom,sm8350-cpufreq-epss-v2' or similar
+> should be added to avoid/reduce possible confusion and have to option
+> to add SM8350 specific code later.
 
-I just want to use this little opportunity to inform you about my
-success towards the transfer. I'm currently out of the country for an
-investment with part of my share, after completing the transfer with
-an Indian business man. But i will visit your country, next year.
-After the completion of my project. Please, contact my secretary to
-send you the (ATM) card which I've already credited with the sum of
-($500,000.00). Just contact her to help you in receiving the (ATM)
-card. I've explained everything to her before my trip. This is what I
-can do for you because, you couldn't help in the transfer, but for the
-fact that you're the person whom I've contacted initially, for the
-transfer. I decided to give this ($500,000.00) as a compensation for
-being contacted initially for the transfer. I always try to make the
-difference, in dealing with people any time I come in contact with
-them. I'm also trying to show that I'm quite a different person from
-others whose may have a different purpose within them. I believe that
-you will render some help to me when I, will visit your country, for
-another investment there. So contact my secretary for the card, Her
-contact are as follows,
+Bjorn,
 
-Full name: Mrs, Jovita Dumuije,
-Country: Burkina Faso
-Email: jovitadumuije@gmail.com
+https://patchwork.kernel.org/project/linux-arm-msm/cover/1629458622-4915-1-git-send-email-okukatla@codeaurora.org/
 
-Thanks, and hope for a good corporation with you in future.
+This series affects the design of the l3
+provider support for sc7280 which will be
+in a position to land in ~1-2 respins. So,
+please share an early ACK or NACK regarding
+the register re-ordering series so that we
+can plan to get alternate acceptable versions
+out faster on the list.
 
-Godwin Peter,
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
