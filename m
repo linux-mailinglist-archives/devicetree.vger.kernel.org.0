@@ -2,95 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8D553FB4CC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 13:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9D313FB4F0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236475AbhH3LuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 07:50:07 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:46912 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236434AbhH3LuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 07:50:06 -0400
-Received: by mail-ot1-f49.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso17941354ott.13;
-        Mon, 30 Aug 2021 04:49:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=JabMds8rlTqzaFVY57dtROBNgjZw2GgQgB2Qb6t5/ns=;
-        b=kF9BVL9s/e9VDzZp289mr3JZoQ7aGF9o/1rdXYG0siGPoos64C0qg5+t8xeRlheWmI
-         +rFUhglQvlBm6T+Hf3uF8RyVYJiB7FYQ5N8iX1Auhr4+fU7OAou/mWRPBw+HXd7nfji/
-         6him0dquhJ7VvYMz0xaoD7tEFOWInihEn7qfv6J5EXjV11D0q/3DqLbhqiSU1iNmIyJa
-         qKo3tBC6Eb50UYhLpEs8YFg3t7msXCsHNjTrLsbRlJpMck1p2CN+mGUhGjWAjoXxSolI
-         qgEFm1VlFSzrag23InEqAb4f+a3Nw0M1ZeCHPuXyfdfq6MCwn7knfaTJoQdx13xEaCQn
-         GPyA==
-X-Gm-Message-State: AOAM530yn54qSX9j5VPre1VxlD2gvis02ndzMibm+mhFmnCdPEZWOSyu
-        89od/7YMCHpsmYX9mNl69w==
-X-Google-Smtp-Source: ABdhPJxCLJ/yib0AOP+DL1a/lRsjMNJ6RDrdZQNNBtWLnSUpCjSeNRI4mOsfXmR11mHZddEmz9UYUA==
-X-Received: by 2002:a9d:5a6:: with SMTP id 35mr18050354otd.256.1630324152528;
-        Mon, 30 Aug 2021 04:49:12 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q31sm3129438otv.57.2021.08.30.04.49.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 04:49:12 -0700 (PDT)
-Received: (nullmailer pid 1731752 invoked by uid 1000);
-        Mon, 30 Aug 2021 11:49:10 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        jamipkettunen@somainline.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>, linux-kernel@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>, martin.botka@somainline.org,
-        marijn.suijten@somainline.org
-In-Reply-To: <20210829193617.4105-1-konrad.dybcio@somainline.org>
-References: <20210829193617.4105-1-konrad.dybcio@somainline.org>
-Subject: Re: [PATCH RESEND v2 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC driver
-Date:   Mon, 30 Aug 2021 06:49:10 -0500
-Message-Id: <1630324150.916431.1731751.nullmailer@robh.at.kernel.org>
+        id S236620AbhH3MAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 08:00:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46564 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236612AbhH3MAn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 08:00:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E83D961152;
+        Mon, 30 Aug 2021 11:59:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630324789;
+        bh=oFtGd9wBKas3imSbUBcVzBp33A85ze2Juxm8A9r2lhw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=dIH5FOxM/WkgMuIe++n+u7MKz4o90V7fmh6OkL5dXf/mxGw2zxmALgcTNKPhqyc2d
+         TczUVXn+UXam6TijPzkjk+8EXDW9CjNJ/FTpRUgHyYpwdtewoJ0dTnCSQRnlHSHecP
+         QPu/s17c+MehMbt1/v05acETSsSAcyJW6w4D8JkEkVDXg55mSPJEYZrtPrxNWGHqAF
+         56OgEDOp55J/k1m8pkUAoL6GdRKFuUOTyr1SzNtfmxCFqoEyd/4Kjv9IaKYWXpANLR
+         /NMAR7Xm4Jn8/Eu2H8qbZMzIqAZaq/JdWrxC07pzOcUCSU/fS9LORWrZng2IMLnnXJ
+         X34lG1UY+J4Sw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Bin Meng <bin.meng@windriver.com>,
+        conor dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.13 05/14] riscv: dts: microchip: Use 'local-mac-address' for emac1
+Date:   Mon, 30 Aug 2021 07:59:33 -0400
+Message-Id: <20210830115942.1017300-5-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210830115942.1017300-1-sashal@kernel.org>
+References: <20210830115942.1017300-1-sashal@kernel.org>
+MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 Aug 2021 21:36:08 +0200, Konrad Dybcio wrote:
-> Add documentation for the MSM8994 GCC driver.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> No changes since the original v2, only added Rob's A-b
-> 
->  .../bindings/clock/qcom,gcc-msm8994.yaml      | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> 
+From: Bin Meng <bin.meng@windriver.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+[ Upstream commit 719588dee26bac0d5979c122bc530c43dc5d07c7 ]
 
-yamllint warnings/errors:
+Per the DT spec, 'local-mac-address' is used to specify MAC address
+that was assigned to the network device, while 'mac-address' is used
+to specify the MAC address that was last used by the boot program,
+and shall be used only if the value differs from 'local-mac-address'
+property value.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.example.dt.yaml: clock-controller@300000: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+Signed-off-by: Bin Meng <bin.meng@windriver.com>
+Reviewed-by: conor dooley <conor.dooley@microchip.com>
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1522007
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+index b9819570a7d1..9d2fbbc1f777 100644
+--- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+@@ -317,7 +317,7 @@ emac1: ethernet@20112000 {
+ 			reg = <0x0 0x20112000 0x0 0x2000>;
+ 			interrupt-parent = <&plic>;
+ 			interrupts = <70 71 72 73>;
+-			mac-address = [00 00 00 00 00 00];
++			local-mac-address = [00 00 00 00 00 00];
+ 			clocks = <&clkcfg 5>, <&clkcfg 2>;
+ 			status = "disabled";
+ 			clock-names = "pclk", "hclk";
+-- 
+2.30.2
 
