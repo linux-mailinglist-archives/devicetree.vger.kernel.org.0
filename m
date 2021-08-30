@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9A43FB4CE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 13:49:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D553FB4CC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 13:49:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236434AbhH3LuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 07:50:08 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:35425 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236551AbhH3LuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 07:50:07 -0400
-Received: by mail-oi1-f180.google.com with SMTP id r26so19702509oij.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 04:49:14 -0700 (PDT)
+        id S236475AbhH3LuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 07:50:07 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:46912 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236434AbhH3LuG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 07:50:06 -0400
+Received: by mail-ot1-f49.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso17941354ott.13;
+        Mon, 30 Aug 2021 04:49:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=JTWNeOzPya3nNu0WFhWPDsxrKp/zSguxB/tKydwWrag=;
-        b=cKtdNQ17HtaluZFKYzuT13HLkgzGYon8n7VhO9FqSAXSDs+XxYmu66emRq4jgeg5fQ
-         8IIxK7II2fS5lox7DOe8SGvCWhkxVMZcj84SDJyj8PS1WC137vxH1Cv+RVtoeSgWOOSm
-         wTq6o34vF9Oi33HZLyIYXRDKDTD1w8kp3rVKI5aADc9Bh9RlEa0H3EQ7EjqzAkoOktJf
-         YzRzxSrzPdZa5t6RIThHN+DdTDT3eX4d5eiPCzw1r2U/VIICstkL8+73191suTKoAs7Z
-         Iam719dfQ7GaYaaT2fqxiRd0DvIDa9nxpkReWsTt9sOf+1ilIQqibdAs8JWmuC/hmqai
-         9Yjg==
-X-Gm-Message-State: AOAM533fVtDjU/zk1QqVxWO1pHmrPex5M5CW9Ggnm2aMIJ4ThSzKznbQ
-        kE3WUFo940+t64gtsyk06Q==
-X-Google-Smtp-Source: ABdhPJwwEkgsS1GB6OQSTyCZgYSxrcjUoCWW5L8KMurAZMwyuCTgAYQQ+h3D86cTz7mDgrBVz2E8uQ==
-X-Received: by 2002:aca:6541:: with SMTP id j1mr14958919oiw.146.1630324153939;
-        Mon, 30 Aug 2021 04:49:13 -0700 (PDT)
+        bh=JabMds8rlTqzaFVY57dtROBNgjZw2GgQgB2Qb6t5/ns=;
+        b=kF9BVL9s/e9VDzZp289mr3JZoQ7aGF9o/1rdXYG0siGPoos64C0qg5+t8xeRlheWmI
+         +rFUhglQvlBm6T+Hf3uF8RyVYJiB7FYQ5N8iX1Auhr4+fU7OAou/mWRPBw+HXd7nfji/
+         6him0dquhJ7VvYMz0xaoD7tEFOWInihEn7qfv6J5EXjV11D0q/3DqLbhqiSU1iNmIyJa
+         qKo3tBC6Eb50UYhLpEs8YFg3t7msXCsHNjTrLsbRlJpMck1p2CN+mGUhGjWAjoXxSolI
+         qgEFm1VlFSzrag23InEqAb4f+a3Nw0M1ZeCHPuXyfdfq6MCwn7knfaTJoQdx13xEaCQn
+         GPyA==
+X-Gm-Message-State: AOAM530yn54qSX9j5VPre1VxlD2gvis02ndzMibm+mhFmnCdPEZWOSyu
+        89od/7YMCHpsmYX9mNl69w==
+X-Google-Smtp-Source: ABdhPJxCLJ/yib0AOP+DL1a/lRsjMNJ6RDrdZQNNBtWLnSUpCjSeNRI4mOsfXmR11mHZddEmz9UYUA==
+X-Received: by 2002:a9d:5a6:: with SMTP id 35mr18050354otd.256.1630324152528;
+        Mon, 30 Aug 2021 04:49:12 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 97sm3214312otv.26.2021.08.30.04.49.12
+        by smtp.gmail.com with ESMTPSA id q31sm3129438otv.57.2021.08.30.04.49.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 04:49:13 -0700 (PDT)
-Received: (nullmailer pid 1731755 invoked by uid 1000);
+        Mon, 30 Aug 2021 04:49:12 -0700 (PDT)
+Received: (nullmailer pid 1731752 invoked by uid 1000);
         Mon, 30 Aug 2021 11:49:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sugar Zhang <sugar.zhang@rock-chips.com>
-Cc:     alsa-devel@alsa-project.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, heiko@sntech.de, broonie@kernel.org
-In-Reply-To: <1630285861-28147-2-git-send-email-sugar.zhang@rock-chips.com>
-References: <1630285788-28002-1-git-send-email-sugar.zhang@rock-chips.com> <1630285861-28147-2-git-send-email-sugar.zhang@rock-chips.com>
-Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: rockchip: Convert pdm bindings to yaml
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        jamipkettunen@somainline.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Taniya Das <tdas@codeaurora.org>, linux-kernel@vger.kernel.org,
+        angelogioacchino.delregno@somainline.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>, martin.botka@somainline.org,
+        marijn.suijten@somainline.org
+In-Reply-To: <20210829193617.4105-1-konrad.dybcio@somainline.org>
+References: <20210829193617.4105-1-konrad.dybcio@somainline.org>
+Subject: Re: [PATCH RESEND v2 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC driver
 Date:   Mon, 30 Aug 2021 06:49:10 -0500
-Message-Id: <1630324150.931479.1731754.nullmailer@robh.at.kernel.org>
+Message-Id: <1630324150.916431.1731751.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Aug 2021 09:11:01 +0800, Sugar Zhang wrote:
-> This patch converts pdm bindings to yaml.
+On Sun, 29 Aug 2021 21:36:08 +0200, Konrad Dybcio wrote:
+> Add documentation for the MSM8994 GCC driver.
 > 
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
+> No changes since the original v2, only added Rob's A-b
 > 
-> Changes in v2:
-> - Fix yamllint errors.
-> 
->  .../devicetree/bindings/sound/rockchip,pdm.txt     |  64 ------------
->  .../devicetree/bindings/sound/rockchip,pdm.yaml    | 115 +++++++++++++++++++++
->  2 files changed, 115 insertions(+), 64 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
+>  .../bindings/clock/qcom,gcc-msm8994.yaml      | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -70,12 +76,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/rockchip,pdm.example.dt.yaml: example-0: pdm@ff040000:reg:0: [0, 4278452224, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.example.dt.yaml: clock-controller@300000: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1522032
+See https://patchwork.ozlabs.org/patch/1522007
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
