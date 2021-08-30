@@ -2,123 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B50C93FBD44
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 22:08:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08D113FBD65
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 22:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234612AbhH3UI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 16:08:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43146 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234590AbhH3UI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 16:08:59 -0400
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com [IPv6:2607:f8b0:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2281BC061575
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 13:08:05 -0700 (PDT)
-Received: by mail-il1-x134.google.com with SMTP id v16so17430920ilo.10
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 13:08:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0RtSe3tPXjpOd0ru72YE33BChLV62/Ie8i3PXYdqo+I=;
-        b=YN8ribrXpRm7FNv4ZI5E2n4zz36a4faIdX+Ua6lNeUTqzla9RlyJBG3EfB0uEdskEn
-         BNNB7hsiTrDVB5euYOicZNKvhwFmChfyxLtoz8W3VfmuQom3evvkZbMwP/+DW3+985lE
-         lPJGcJFB+PNRcH82klgyMod8NN8UM9GXgbJ+c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0RtSe3tPXjpOd0ru72YE33BChLV62/Ie8i3PXYdqo+I=;
-        b=dBMu8c2qkCt7lsoDFWQ64uJ1s2oZNLrI7j0NhJRFX8MsnAtEwIVhSfKDgiCIFstbpQ
-         KYJAFJzzC/tp1kvQyMq+L65gM25uZNgqKuV24bXlYIJ3wOz2tDzADMctgn6Ll5Hnz1Mo
-         6rS11Bgu/uzQAhKhonWDk7ieI7V11fITNiMc5mucJJqRm4Ox2Y0QpdVHHr9GRcnJ8SbQ
-         gKVtnU+8sqCMXcd5P+XBhmFOGOK09tiujeWwCRdfTgEshcgI9dd5VcXc31G1IEf9Pb1+
-         INK7/Dmn9XIjvlVrLBpmN/owiYLmGuQ2HmVRMPkGE516mLSMS3tobnkOZKY7Vi58X77v
-         jh7g==
-X-Gm-Message-State: AOAM533HMkKTsxL8jb5TYVfPJHasOFn0OaTklMLYkyj5xenoqijd6V5b
-        A6crqhUX3UI1M6P9FlJfduDwP0LP8sS/nQ==
-X-Google-Smtp-Source: ABdhPJwj33dG4ThwTPNH+mbzn3niVzqx1YwVigtWr2FxJyvQnGNGG/3XEB7rWQU+l28rMyJUtzu8fg==
-X-Received: by 2002:a92:d606:: with SMTP id w6mr17864724ilm.28.1630354084381;
-        Mon, 30 Aug 2021 13:08:04 -0700 (PDT)
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com. [209.85.166.52])
-        by smtp.gmail.com with ESMTPSA id u10sm9214067ilg.15.2021.08.30.13.08.03
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Aug 2021 13:08:03 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id b7so21554612iob.4
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 13:08:03 -0700 (PDT)
-X-Received: by 2002:a5d:8acf:: with SMTP id e15mr19403264iot.184.1630354083438;
- Mon, 30 Aug 2021 13:08:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <1630346073-7099-1-git-send-email-sanm@codeaurora.org> <1630346073-7099-2-git-send-email-sanm@codeaurora.org>
-In-Reply-To: <1630346073-7099-2-git-send-email-sanm@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 30 Aug 2021 13:07:50 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XjRMdB=iHDcMATWDq5CSRGdh1ZBCftjrZvTfMk_Nqgvg@mail.gmail.com>
-Message-ID: <CAD=FV=XjRMdB=iHDcMATWDq5CSRGdh1ZBCftjrZvTfMk_Nqgvg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
- for dwc3 qcom
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Pratham Pratap <prathampratap@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S235083AbhH3UVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 16:21:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52516 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232906AbhH3UVO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 16:21:14 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B895760F5C;
+        Mon, 30 Aug 2021 20:20:20 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mKnlS-00852D-9H; Mon, 30 Aug 2021 21:20:18 +0100
+Date:   Mon, 30 Aug 2021 21:20:17 +0100
+Message-ID: <87o89ed6ri.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        devicetree@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 4/4] arm64: apple: Add PCIe node
+In-Reply-To: <CAL_JsqJC+FxiynFkkcB0amp3s4agsio5ggCrYiPbqoXroAJV4Q@mail.gmail.com>
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
+        <20210827171534.62380-5-mark.kettenis@xs4all.nl>
+        <87pmtvcgec.wl-maz@kernel.org>
+        <CAL_JsqJC+FxiynFkkcB0amp3s4agsio5ggCrYiPbqoXroAJV4Q@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: robh+dt@kernel.org, mark.kettenis@xs4all.nl, devicetree@vger.kernel.org, alyssa@rosenzweig.io, kettenis@openbsd.org, tglx@linutronix.de, marcan@marcan.st, bhelgaas@google.com, nsaenz@kernel.org, jim2101024@gmail.com, f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com, daire.mcnamara@microchip.com, nsaenzjulienne@suse.de, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 30 Aug 2021 16:57:59 +0100,
+Rob Herring <robh+dt@kernel.org> wrote:
+> 
+> On Mon, Aug 30, 2021 at 6:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > I have now implemented the MSI change on the Linux driver side, and it
+> > works nicely. So thumbs up from me on this front.
+> >
+> > I am now looking at the interrupts provided by each port:
+> > (1) a bunch of port-private interrupts (link up/down...)
+> > (2) INTx interrupts
+> 
+> So each port has an independent INTx space?
 
-On Mon, Aug 30, 2021 at 10:55 AM Sandeep Maheswaram <sanm@codeaurora.org> wrote:
->
-> Add multi pd bindings to set performance state for cx domain
-> to maintain minimum corner voltage for USB clocks.
->
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index e70afc4..838d9c4 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -41,7 +41,18 @@ properties:
->
->    power-domains:
->      description: specifies a phandle to PM domain provider node
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: optional,cx power domain
-> +      - description: USB gdsc power domain
+Yes.
 
-You need to re-order the above. The optional one needs to be second, not first.
+> Is that even something PCI defines or comprehends?
 
+Can't see why not. That's no different from having several PCI busses.
+I don't think anything enforces that INTx interrupts have to be
+unique across the system. As long as they are unique across a PCI
+hierarchy, we should be OK.
 
-> +  power-domain-names:
-> +     items:
-> +      - const: cx
-> +      - const: usb_gdsc
+> 
+> > Given that the programming is per-port, I've implemented this as a
+> > per-port interrupt controller.
+> >
+> > (1) is dead easy to implement, and doesn't require any DT description.
+> > (2) is unfortunately exposing the limits of my DT knowledge, and I'm
+> > not clear how to model it. I came up with the following:
+> >
+> >         port00: pci@0,0 {
+> >                 device_type = "pci";
+> >                 reg = <0x0 0x0 0x0 0x0 0x0>;
+> >                 reset-gpios = <&pinctrl_ap 152 0>;
+> >                 max-link-speed = <2>;
+> >
+> >                 #address-cells = <3>;
+> >                 #size-cells = <2>;
+> >                 ranges;
+> >
+> >                 interrupt-controller;
+> >                 #interrupt-cells = <1>;
+> >                 interrupt-parent = <&port00>;
+> >                 interrupt-map-mask = <0 0 0 7>;
+> >                 interrupt-map = <0 0 0 1 &port00 0>,
+> >                                 <0 0 0 2 &port00 1>,
+> >                                 <0 0 0 3 &port00 2>,
+> >                                 <0 0 0 4 &port00 3>;
+> 
+> IIRC, I don't think the DT IRQ code handles a node having both
+> 'interrupt-controller' and 'interrupt-map' properties.
 
-Why do you need the names at all? The ordering of power-domains is
-well defined and there are no holes in it and there are no legacy
-reasons for having the names (like there are for clocks), so you
-should drop. This is much like reg-names and I always point people to
-this message from Rob Herring about reg-names:
+Indeed, and that actually explains why the damned INTx interrupts
+insist on being 1-based instead of 0-based as the above mapping
+attempts to describe it. Turns out I can rip the interrupt-map out and
+it isn't worse.
 
-https://lore.kernel.org/r/CAL_Jsq+MMunmVWqeW9v2RyzsMKP+=kMzeTHNMG4JDHM7Fy0HBg@mail.gmail.com/
+> I think that's why some PCI host bridge nodes have child
+> interrupt-controller nodes.  I don't really like that work-around,
+> so if the above can be made to work, I'd be happy to see it. But the
+> DT IRQ code is some ancient code for ancient platforms (PowerMacs
+> being one of them).
 
-You'll have to change your driver to use dev_pm_domain_attach_by_id()
-but that should be fine.
+That'd probably need some massaging. I'll have a look. I checked that
+if I add something like:
 
--Doug
+		interrupts-extended = <&port02 2>;
+
+to each port, I get the PME interrupt correctly assigned should I pass
+pcie_pme=nomsi. Given that this IP is pretty limited in terms of MSIs,
+every bit that can free a MSI is welcome.
+
+I guess that it would make sense to expand this support to also match
+for an interrupt-map.
+
+> 
+> >         };
+> >
+> > which vaguely seem to do the right thing for the devices behind root
+> > ports, but doesn't seem to work for INTx generated by the root ports
+> > themselves. Any clue? Alternatively, I could move it to something
+> > global to the whole PCIe controller, but that doesn't seem completely
+> > right.
+
+I've investigated this one further, and it looks like the DT IRQ code
+insists on trying to find the interrupt in the main pcie node instead
+of in the root port itself. But of course it doesn't want to parse an
+interrupt-map at that level either.
+
+I guess that's related to the above.
+
+> >
+> > It also begs the question whether the per-port interrupt to the AIC
+> > should be moved into each root port, should my per-port approach hold
+> > any water.
+> 
+> I tend to think per-port is the right thing to do. However, the child
+> nodes are PCI devices, so that creates some restrictions. Such as the
+> per port registers are in the host address space, not the PCI address
+> space, so we can't move the registers into the child nodes. The
+> interrupts may be okay. Certainly, being an 'interrupt-controller'
+> without having an 'interrupts' property for an non root interrupt
+> controller is odd.
+
+That was my own impression as well.
+
+I guess there is no real canonical way to handle this particular
+system and to fully support it, we'll have to amend the current
+infrastructure. The question is: what is the least ugly way to express
+this that will work reasonably across implementations (OpenBSD, Linux,
+u-boot)?
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
