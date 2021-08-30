@@ -2,173 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0243FB8E4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 17:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C56E3FB8E8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 17:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237339AbhH3PS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 11:18:29 -0400
-Received: from mout.gmx.net ([212.227.17.21]:46323 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237218AbhH3PS2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 11:18:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1630336630;
-        bh=I4E4Rendp4jhii6JjCdLdSOCsheSaYn1ijpWYeUaEGg=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=QOsw9NiUDAuitqrd56V08G2iexnppzgWJSujTvskYkAaEl2e68FC0B/pnWbyY4acp
-         JcuTC2dui9IWp87CS6+kDlcDSprshruxdbBcr9henp/fqbW3BM02a3pXtA/+APZsFQ
-         RJxpFd00q4taH0qoMS9C/nj50LFI+rvfqc8Rh9u8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [157.180.227.230] ([157.180.227.230]) by web-mail.gmx.net
- (3c-app-gmx-bap54.server.lan [172.19.172.124]) (via HTTP); Mon, 30 Aug 2021
- 17:17:10 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-41954850-b71d-433f-9bd2-d5bce8f7e8fd-1630336630739@3c-app-gmx-bap54>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sungbo Eo <mans0n@gorani.run>
-Cc:     linux-mediatek@lists.infradead.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S237537AbhH3PSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 11:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60278 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237528AbhH3PSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 11:18:34 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2115C061760
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 08:17:40 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id 6so20251809oiy.8
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 08:17:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=UodsSaybFS+B/HzELWo0xvW1DgkRVgPuzmD8NNmWe0g=;
+        b=p4KTvOb1gEM/lV2CwtI4iTGc5YVBABSnKjewNuL7KmIC4Q7I1u6/v1CtNgMkncaiak
+         AsnI+n9gL3bUkrolaCG9MvtXJtGxpghgQIkRM0ZXhkmKkTz+Ux49bFB5JAfUD8t+fnmm
+         jqnc1FisWV1GAxKoiuthJc08CJ3T72m8SX7M6/4Mzy9otlIwP9RGZwEy6Fz4GUiWNNrs
+         VgzuJXXYxwZA1AaXqHYEVo6Uyuu/aB19cc1Bi2YjK/6I1NN/n97CVqvVdrqZ3j/ZK64Y
+         QByeylBNs75MHvbbKS1oSy89y3mwupgUWAC8xaaJfq7HNe7VIm+LRHPYCyPxy+4pSPNy
+         8UCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UodsSaybFS+B/HzELWo0xvW1DgkRVgPuzmD8NNmWe0g=;
+        b=qfoY95KEdN5iTcvhj8SN30cIt+rfkeyrLAKrdPPKiNvyA2CkCr5W7YpR7hx8Y/n4al
+         kTm3LgzyH+RlnMbosxC+etsr2IddMOd/NpGrezz25gNjh8hWF95ik2E44dXNbYSitMVs
+         5hP7Ct0cCegVys1beaguzPPbQbCUzjZSX2y2xNClEL/h8+B4bE0uNVbqZxRDEsQUsYFM
+         CbPqiCs2sv4umRjD2QGxLjC7q+TAayFqGZ96sqBEl15/DwjE+PQ2O4wY1PuddiKTseBC
+         DKYd638eDUyqOVETxZS7SaiunwTyx8+TpjmaeWWZ8izkeWVxNoyTEhx25AJgff1Txk7M
+         Ixig==
+X-Gm-Message-State: AOAM533idw+SOGy1kX4xFa1j1y7cPN9x1hkCi4Wwfy9CXgJOyqFwsaxY
+        cRYpN5IW7tlIasJNxJVgGJ52nA==
+X-Google-Smtp-Source: ABdhPJx8IcG+eengfDoikLbEaWjNE5uCt6ZewPDPXr4Vy0UnZPy7waFs5hfr5egwUvXGzPrNdSnsIA==
+X-Received: by 2002:aca:3c09:: with SMTP id j9mr10427025oia.115.1630336659461;
+        Mon, 30 Aug 2021 08:17:39 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m24sm3021107oie.50.2021.08.30.08.17.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 08:17:39 -0700 (PDT)
+Date:   Mon, 30 Aug 2021 10:17:37 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Sungbo Eo <mans0n@gorani.run>
-Subject: Aw: [PATCH v3 1/1] arm: dts: mt7623: add musb device nodes
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 30 Aug 2021 17:17:10 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20210822041333.5264-2-mans0n@gorani.run>
-References: <20210808123840.176738-1-mans0n@gorani.run>
- <20210822041333.5264-1-mans0n@gorani.run>
- <20210822041333.5264-2-mans0n@gorani.run>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:PVW6ogB5IbVNYXNq4+VxktgDFJueM9d5jQy5Rc1v6z6lh4eyTqTHewYt/atURSDJ+CJFA
- rN7JrQhEJXZW92ieXxpkeQLMC6AYQp95fO9zjZkWUbXEYNb/T+rT+9yn1xI77qoiadf+vQV+t0m8
- sEPfs5gJXP9SPaNIPnXEhOORxp1HQxUkGeDhYqdsLYjZD9HoJhlTzX2I2954wG4bSB3P2v/Eld3R
- 415V93aGmBS9xlJC7ZNzMss/0b/QrRNGHGo4UBStiurfLO8FjVbkAbSK+AfDlALv7rtVDX2C+rBB
- Fk=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:FTnVLzCX/RQ=:3m5+bh5XwLWE4iT48hrfMw
- 8UfDFqeGQG+dhulVq1TFTUPelPBz4C9DbBso4DHlrLLmA3Ph55vBrPG6VGSj4uwn4ibHwBlLh
- GRQ/4uDUGIv0gbQV4tGiCoDO/Ymp0qzVCFqdMtTFvgbmgVkpbCSIAw0OIUPif7a06znjcejQp
- 82XLP4HqVE9ehbB6v42Pc0sdpV4KU2YQm/MqOHZecC567saXVFSpWJv6hNeIMTqWuaIhLWIqN
- cip5moBG4n7e1IsuqywKoMZ0ZxGsbNmNa2VFjBDociNneBnQ/nysCTOtuPr7TZtHyq4r1PuIi
- +SRAN2REc1GPeKnQhHVcOu2986sDjCtuIh9Gd0qmPVy3gfmomO7PxUIiZ7PSbIGwsgKZgwMxs
- OpRKc/qfVCCgAdvYLYFpMQJbK1ZGUZKgF0HrUOZ1/tTvPYUJRyMP/c0l5LV+cmUFG/KCfe4FH
- rXg+zbWH8M41rpSbWr3fLekiMob9LV4DPF1pMJVdNd4t8ZjaUjPNWEEpDkc79/i/J8uL4Qzd5
- j5czFvgcQyRxN1Q7H3yFRpVJVRFMLOrueMnUcokdfhnAvSs+OE7fU1n0SDuTegztqsT4J0c+G
- IYBnP6xghu4NCC/gcvz1EBIPWhjJ9xTOsO+4pD8N4LvSb8m5AurR4Fn6chPdZlmuqaAU2cVTl
- hYNal+q4dCTu9nGBQsA6Iq37q8WY+flvdy8Hs7A2oqrUj20iUBtLVLK1uUUgHUOtrX9jBb6gd
- GyNYsH/3it/6LNSsI3f22meVFTm6/566IXry/rmpROSZxtQGSu7EdaO1yLiHxhad3Zo276JhP
- +td334ANPRmWZDSLo4d/XymfYwPPmdLdIXs5rZWovA4Mh6iYss=
-Content-Transfer-Encoding: quoted-printable
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI
+ PLL reference
+Message-ID: <YSz2kVKv8jhz7/n8@yoga>
+References: <20210829203027.276143-1-marijn.suijten@somainline.org>
+ <20210829203027.276143-2-marijn.suijten@somainline.org>
+ <CAA8EJprQ03ipZzO+1vgt9W7jFbLXgsYR0n-oJxVB-142x8dgRA@mail.gmail.com>
+ <17d19b93-dbe5-cc85-f302-b52cd8eeed56@somainline.org>
+ <CAA8EJpqd7_5510TodALnX13Wo0MufYm2G=r6vw9sy=VURrewyw@mail.gmail.com>
+ <YSznouVZ93sUd6xa@Marijn-Arch-PC.localdomain>
+ <CAA8EJpoRo6rPgpUeT9X0K4UPu5d8-YBP=BJ3AAejD+wujhmv+g@mail.gmail.com>
+ <YSzqR2yq3MtdPnIG@Marijn-Arch-PC.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YSzqR2yq3MtdPnIG@Marijn-Arch-PC.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested-by: Frank Wunderlich <frank-w@public-files.de>
+On Mon 30 Aug 09:25 CDT 2021, Marijn Suijten wrote:
 
-after adding nodes for r2
-https://patchwork.kernel.org/project/linux-mediatek/patch/20210830145958.1=
-08605-1-linux@fw-web.de/
+> On Mon, Aug 30, 2021 at 05:18:37PM +0300, Dmitry Baryshkov wrote:
+> > On Mon, 30 Aug 2021 at 17:14, Marijn Suijten
+> > <marijn.suijten@somainline.org> wrote:
+> > >
+> > > On Mon, Aug 30, 2021 at 04:24:58PM +0300, Dmitry Baryshkov wrote:
+> > > > On Mon, 30 Aug 2021 at 11:28, Marijn Suijten
+> > > > <marijn.suijten@somainline.org> wrote:
+> > > > >
+> > > > > Hi Dmitry,
+> > > > >
+> > > > > On 8/30/21 3:18 AM, Dmitry Baryshkov wrote:
+> > > > > > On Sun, 29 Aug 2021 at 23:30, Marijn Suijten
+> > > > > > <marijn.suijten@somainline.org> wrote:
+> > > > > >>
+> > > > > >> The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
+> > > > > >> clock and should hence use PXO, not CXO which runs at 19.2MHz.
+> > > > > >>
+> > > > > >> Note that none of the DSI PHY/PLL drivers currently use this "ref"
+> > > > > >> clock; they all rely on (sometimes inexistant) global clock names and
+> > > > > >> usually function normally without a parent clock.  This discrepancy will
+> > > > > >> be corrected in a future patch, for which this change needs to be in
+> > > > > >> place first.
+> > > > > >>
+> > > > > >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > >> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > > > > >
+> > > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > >
+> > > > > > Checked the downstream driver, it always uses 27 MHz clock in calculations.
+> > > > >
+> > > > >
+> > > > > Given our concerns for msm8974 not updating DT in parallel with the
+> > > > > kernel (hence the need for a global-name fallback because "ref" is
+> > > > > missing from the DT), should we worry about the same for apq8064?  That
+> > > > > is, is there a chance that the kernel but not the firmware is upgraded
+> > > > > leading to the wrong parent clock being used?  The msm8960 variant of
+> > > > > the 28nm PLL driver uses parent_rate in a few places and might read
+> > > > > cxo's 19.2MHz erroneously instead of using pxo's 27MHz.
+> > > >
+> > > > Checked the code. It uses .parent_names =  "pxo", so changing ref
+> > > > clock should not matter. We'd need to fix ref clocks and after that we
+> > > > can switch parent names to fw_name.
+> > >
+> > > Correct, hence why this patch is ordered before the switch to .fw_name.
+> > > These patches can't go in the same series if apq8064 doesn't update its
+> > > firmware in parallel with the kernel just like msm8974.  Do you know if
+> > > this is the case?  If so, how much time do you think should be between
+> > > the DT fix (this patch) and migrating the drivers?
+> > 
+> > You can have parent_data with .fw_name and .name in it.  .name will be
+> > used as a fallback if .fw_name doesn't match.
+> 
+> The problem is that it will always find the "ref" clock which references
+> &cxo_board until the DT is updated with this patch to use &pxo_board
+> instead.  Question is, will the kernel and DT usually/always be updated
+> in parallel?
+> 
 
-regards Frank
+Afaik these devices all boots off a boot.img, which means that it's
+unlikely that a new kernel is installed on a device with an older DT.
+None of them would boot mainline off the DT that shipped with the
+original product.
+
+As such, if I pick this patch up as a fix for 5.15 you can respin the
+other two patches and they can land in 5.16 and I would be surprised if
+anyone will run into any issues with it.
 
 
-> Gesendet: Sonntag, 22. August 2021 um 06:13 Uhr
-> Von: "Sungbo Eo" <mans0n@gorani.run>
-> An: linux-mediatek@lists.infradead.org
-> Cc: "Chunfeng Yun" <chunfeng.yun@mediatek.com>, "Greg Kroah-Hartman" <gr=
-egkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>, "Matthias B=
-rugger" <matthias.bgg@gmail.com>, "Min Guo" <min.guo@mediatek.com>, "Frank=
- Wunderlich" <frank-w@public-files.de>, devicetree@vger.kernel.org, linux-=
-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vg=
-er.kernel.org, "Sungbo Eo" <mans0n@gorani.run>
-> Betreff: [PATCH v3 1/1] arm: dts: mt7623: add musb device nodes
->
-> MT7623 has an musb controller that is compatible with the one from MT270=
-1.
->
-> Signed-off-by: Sungbo Eo <mans0n@gorani.run>
-> ---
-> v3:
-> * remove unnecessary status=3Dokay from u2port2
->
-> v2:
-> * rename usb3 label to usb0
-> * move usb0 & u2phy1 nodes to the right sorted place
-> * disable u2phy1 by default
-> * correct u2port2 node name to match its reg address
-> ---
->  arch/arm/boot/dts/mt7623.dtsi  | 33 +++++++++++++++++++++++++++++++++
->  arch/arm/boot/dts/mt7623a.dtsi |  4 ++++
->  2 files changed, 37 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dt=
-si
-> index 3c11f7cfcc40..21c8a291b74e 100644
-> --- a/arch/arm/boot/dts/mt7623.dtsi
-> +++ b/arch/arm/boot/dts/mt7623.dtsi
-> @@ -585,6 +585,39 @@ spi2: spi@11017000 {
->  		status =3D "disabled";
->  	};
->
-> +	usb0: usb@11200000 {
-> +		compatible =3D "mediatek,mt7623-musb",
-> +			     "mediatek,mtk-musb";
-> +		reg =3D <0 0x11200000 0 0x1000>;
-> +		interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-names =3D "mc";
-> +		phys =3D <&u2port2 PHY_TYPE_USB2>;
-> +		dr_mode =3D "otg";
-> +		clocks =3D <&pericfg CLK_PERI_USB0>,
-> +			 <&pericfg CLK_PERI_USB0_MCU>,
-> +			 <&pericfg CLK_PERI_USB_SLV>;
-> +		clock-names =3D "main","mcu","univpll";
-> +		power-domains =3D <&scpsys MT2701_POWER_DOMAIN_IFR_MSC>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	u2phy1: t-phy@11210000 {
-> +		compatible =3D "mediatek,mt7623-tphy",
-> +			     "mediatek,generic-tphy-v1";
-> +		reg =3D <0 0x11210000 0 0x0800>;
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
-> +		status =3D "disabled";
-> +
-> +		u2port2: usb-phy@11210800 {
-> +			reg =3D <0 0x11210800 0 0x0100>;
-> +			clocks =3D <&topckgen CLK_TOP_USB_PHY48M>;
-> +			clock-names =3D "ref";
-> +			#phy-cells =3D <1>;
-> +		};
-> +	};
-> +
->  	audsys: clock-controller@11220000 {
->  		compatible =3D "mediatek,mt7623-audsys",
->  			     "mediatek,mt2701-audsys",
-> diff --git a/arch/arm/boot/dts/mt7623a.dtsi b/arch/arm/boot/dts/mt7623a.=
-dtsi
-> index 0735a1fb8ad9..d304b62d24b5 100644
-> --- a/arch/arm/boot/dts/mt7623a.dtsi
-> +++ b/arch/arm/boot/dts/mt7623a.dtsi
-> @@ -35,6 +35,10 @@ &scpsys {
->  	clock-names =3D "ethif";
->  };
->
-> +&usb0 {
-> +	power-domains =3D <&scpsys MT7623A_POWER_DOMAIN_IFR_MSC>;
-> +};
-> +
->  &usb1 {
->  	power-domains =3D <&scpsys MT7623A_POWER_DOMAIN_HIF>;
->  };
-> --
-> 2.33.0
->
->
+I.e. I've applied this patch.
+
+Regards,
+Bjorn
