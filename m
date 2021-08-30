@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF0783FB78A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:09:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F62C3FB7A5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236967AbhH3OKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 10:10:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229710AbhH3OKG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 10:10:06 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S237115AbhH3OPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 10:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237093AbhH3OO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 10:14:59 -0400
+X-Greylist: delayed 63812 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 30 Aug 2021 07:14:06 PDT
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F265C061575;
+        Mon, 30 Aug 2021 07:14:06 -0700 (PDT)
+Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9D0960ED8;
-        Mon, 30 Aug 2021 14:09:06 +0000 (UTC)
-Date:   Mon, 30 Aug 2021 15:12:21 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2A39B1F4FC;
+        Mon, 30 Aug 2021 16:14:01 +0200 (CEST)
+Date:   Mon, 30 Aug 2021 16:13:54 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH 30/40] iio: adc: ti_am335x_adc: Replace license text
- with SPDX tag
-Message-ID: <20210830151221.2027e0ec@jic23-huawei>
-In-Reply-To: <20210825152518.379386-31-miquel.raynal@bootlin.com>
-References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
-        <20210825152518.379386-31-miquel.raynal@bootlin.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI
+ PLL reference
+Message-ID: <YSznouVZ93sUd6xa@Marijn-Arch-PC.localdomain>
+References: <20210829203027.276143-1-marijn.suijten@somainline.org>
+ <20210829203027.276143-2-marijn.suijten@somainline.org>
+ <CAA8EJprQ03ipZzO+1vgt9W7jFbLXgsYR0n-oJxVB-142x8dgRA@mail.gmail.com>
+ <17d19b93-dbe5-cc85-f302-b52cd8eeed56@somainline.org>
+ <CAA8EJpqd7_5510TodALnX13Wo0MufYm2G=r6vw9sy=VURrewyw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpqd7_5510TodALnX13Wo0MufYm2G=r6vw9sy=VURrewyw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 17:25:08 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-
-> Drop the text license and replace it with an equivalent SPDX license tag
-> identifier.
+On Mon, Aug 30, 2021 at 04:24:58PM +0300, Dmitry Baryshkov wrote:
+> On Mon, 30 Aug 2021 at 11:28, Marijn Suijten
+> <marijn.suijten@somainline.org> wrote:
+> >
+> > Hi Dmitry,
+> >
+> > On 8/30/21 3:18 AM, Dmitry Baryshkov wrote:
+> > > On Sun, 29 Aug 2021 at 23:30, Marijn Suijten
+> > > <marijn.suijten@somainline.org> wrote:
+> > >>
+> > >> The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
+> > >> clock and should hence use PXO, not CXO which runs at 19.2MHz.
+> > >>
+> > >> Note that none of the DSI PHY/PLL drivers currently use this "ref"
+> > >> clock; they all rely on (sometimes inexistant) global clock names and
+> > >> usually function normally without a parent clock.  This discrepancy will
+> > >> be corrected in a future patch, for which this change needs to be in
+> > >> place first.
+> > >>
+> > >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > >
+> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >
+> > > Checked the downstream driver, it always uses 27 MHz clock in calculations.
+> >
+> >
+> > Given our concerns for msm8974 not updating DT in parallel with the
+> > kernel (hence the need for a global-name fallback because "ref" is
+> > missing from the DT), should we worry about the same for apq8064?  That
+> > is, is there a chance that the kernel but not the firmware is upgraded
+> > leading to the wrong parent clock being used?  The msm8960 variant of
+> > the 28nm PLL driver uses parent_rate in a few places and might read
+> > cxo's 19.2MHz erroneously instead of using pxo's 27MHz.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Checked the code. It uses .parent_names =  "pxo", so changing ref
+> clock should not matter. We'd need to fix ref clocks and after that we
+> can switch parent names to fw_name.
 
-> ---
->  drivers/iio/adc/ti_am335x_adc.c | 10 +---------
->  1 file changed, 1 insertion(+), 9 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ti_am335x_adc.c b/drivers/iio/adc/ti_am335x_adc.c
-> index f748d49f10f4..a5da1fedbc5c 100644
-> --- a/drivers/iio/adc/ti_am335x_adc.c
-> +++ b/drivers/iio/adc/ti_am335x_adc.c
-> @@ -1,16 +1,8 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
->  /*
->   * TI ADC MFD driver
->   *
->   * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
-> - *
-> - * This program is free software; you can redistribute it and/or
-> - * modify it under the terms of the GNU General Public License as
-> - * published by the Free Software Foundation version 2.
-> - *
-> - * This program is distributed "as is" WITHOUT ANY WARRANTY of any
-> - * kind, whether express or implied; without even the implied warranty
-> - * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - * GNU General Public License for more details.
->   */
->  
->  #include <linux/kernel.h>
+Correct, hence why this patch is ordered before the switch to .fw_name.
+These patches can't go in the same series if apq8064 doesn't update its
+firmware in parallel with the kernel just like msm8974.  Do you know if
+this is the case?  If so, how much time do you think should be between
+the DT fix (this patch) and migrating the drivers?
 
+- Marijn
