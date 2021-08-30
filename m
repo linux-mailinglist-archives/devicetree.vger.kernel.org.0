@@ -2,103 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E052E3FB8C4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 17:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0FD33FB8D3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 17:11:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237245AbhH3PIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 11:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237199AbhH3PIB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 11:08:01 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFC8C061575
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 08:07:08 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id c4so8690358plh.7
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 08:07:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=f7E36/4NEmmdeFXZk05Zb6lbS92pEe7/zhYEBPZmpVY=;
-        b=hfW9wMcdYKy98q+B6cb14b+j+zZn9ud9xmGIDnQMrGOeGxAjqGjnp8ef0QZcvZqKoI
-         PddPnU7VunrapWeSpplCxz9Gp6Bfd5jpbaQnvehjuQmIXsYuSlOVAp9uJHZ7QSw/5Er+
-         ZmbiHX0akipuIjeEsvjQ8GbuggKhZUKzkpmeE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=f7E36/4NEmmdeFXZk05Zb6lbS92pEe7/zhYEBPZmpVY=;
-        b=Q0KO1dnRPiSOJ1vzztgCpmb+zAdcoatXQMKBmk+xtRJNIHbBZpn+WGsm7Nd0KVRMS6
-         MFXmEcJthH/f5/NtvlM6SY4dE4LuwA5Cbv+ZzOxuDXTRbboYRnUtjAWoJZk4e3izyweJ
-         BS7luiTbTjutKcckzUEk7/1TPUHhPiNA2cFI+uDwH7WyR6r+6maNZ/u6gsBNmpzvXZ6b
-         HpniW905DDqex4N7nHZvsJfLUvozDciJryIUPNTddBq5WWxy821BiqzO3klE1wuMOoAu
-         D3RTFNOLs3gw+m2AaCg4lIzcyxKVBcEBuGMy6cJ9QADnNh7wdGfqETpaAkT+k8o5z2wD
-         lHvg==
-X-Gm-Message-State: AOAM530Wzp1PnB3FU0iST9vXG82jC011GxU/2aXIxWDonlQZextycn13
-        ZRsG+iVPwMd5pjmB675wIO3izX07rpQvWg==
-X-Google-Smtp-Source: ABdhPJwY2E1nxu0XIhzRBDbGZh3rxjkEkKjQFVgVhAaC8KfQJH+XJZSuOZFLHRtdD+Fi14LOe0mcaw==
-X-Received: by 2002:a17:902:e891:b029:12d:6824:9d28 with SMTP id w17-20020a170902e891b029012d68249d28mr123373plg.23.1630336027860;
-        Mon, 30 Aug 2021 08:07:07 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:b658:7113:70a2:ea])
-        by smtp.gmail.com with ESMTPSA id t10sm20285025pji.30.2021.08.30.08.07.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 08:07:07 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     bjorn.andersson@linaro.org
-Cc:     sbhanu@codeaurora.org, swboyd@chromium.org, mka@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7280: Move the SD CD GPIO pin out of the dtsi file
-Date:   Mon, 30 Aug 2021 08:06:37 -0700
-Message-Id: <20210830080621.1.Ia15d97bc4a81f2916290e23a8fde9cbc66186159@changeid>
-X-Mailer: git-send-email 2.33.0.259.gc128427fd7-goog
+        id S233162AbhH3PKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 11:10:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50900 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237323AbhH3PKg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 11:10:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CAFD960F6C;
+        Mon, 30 Aug 2021 15:09:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630336182;
+        bh=wsc9RNKxQkmls5vCsAO7AtLZpw0ffp68hvKWafxByBE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=e4zlaCA0cxDDd7LNEjQhW9oaIXMt1Rq1/MRUI6P3+IL4hHs48K2mV2/KpVaxIKDyl
+         L+d+x3N/ivB9QXcgKliqQzo0yM0RDi76df4LOaKUHU+QI8msERS5s8ydMVn3NaRwty
+         TxF3v1OQ8p5SrzbgAH9UsBiDwMcFhJtqBzPzJ/tgC040AYu7nujLA3ExeWtdshzpQF
+         wiV2AS5CkUjIydDK0uFsUsnE6mv91t+L7w7uW9rv3RmuM/UXnexT8QOb+hzjlVxVb8
+         TY6+U0dObG2m9NNYBT6IO1qhNicEjh8Yz8gTyw2e8fOwH3kMDFjmvv4m/I7og/LGXw
+         aYRFzvlGdKBLA==
+Received: by mail-ej1-f42.google.com with SMTP id mf2so31841641ejb.9;
+        Mon, 30 Aug 2021 08:09:42 -0700 (PDT)
+X-Gm-Message-State: AOAM532PV175H3cqSYwxtcbfsAosEJb3p3tXYgoOvT5cAdGBJ8vH5Yvz
+        i48/5CaGke4JjrhIQp7f/BxNm2/UWkCJNi52/g==
+X-Google-Smtp-Source: ABdhPJzl1EsqiJCWv1IXdEPt9qKg22NWFB0gUwARdXlndzryzwnHbKAOddbGyjkT62uyPXgbclcQa3gbHOE5Lt6TpME=
+X-Received: by 2002:a17:906:b4d:: with SMTP id v13mr26171264ejg.468.1630336181386;
+ Mon, 30 Aug 2021 08:09:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com>
+ <20210819154436.117798-2-krzysztof.kozlowski@canonical.com>
+ <YSUDTSuNlsOmu/G+@robh.at.kernel.org> <9423ddab-4635-ea15-7a9d-dbcf1bc215dc@canonical.com>
+In-Reply-To: <9423ddab-4635-ea15-7a9d-dbcf1bc215dc@canonical.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Aug 2021 10:09:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKU4opYerjxXTnAuouLc5-GQQKnPX+qZEMBuzYV-inmJw@mail.gmail.com>
+Message-ID: <CAL_JsqKU4opYerjxXTnAuouLc5-GQQKnPX+qZEMBuzYV-inmJw@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: mmc: cdns: match MPFS MMC/SDHCI controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Yash Shah <yash.shah@sifive.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There's nothing magical about GPIO91 and boards could use different
-GPIOs for card detect. Move the pin out of the dtsi file and to the
-only existing board file.
+On Tue, Aug 24, 2021 at 2:02 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 24/08/2021 16:33, Rob Herring wrote:
+> > On Thu, Aug 19, 2021 at 05:44:32PM +0200, Krzysztof Kozlowski wrote:
+> >> The Microchip MPFS Icicle Kit uses Cadence SD/SDIO/eMMC Host Controller
+> >> without any additional vendor compatible:
+> >
+> > I think the lack of vendor compatible is the error here. Experience has
+> > shown that vendor specific compatibles are needed for licensed IP.
+> >
+>
+> In such case this could be:
+> 1. a specific "microchip,mpfs250t-sd4hc", which
+> seems to be on MPFS Icicle Kit:
+> https://www.digikey.co.uk/en/product-highlight/m/microchip-technology/mpfs-icicle-kit-es--polarfire-soc-fpga-icicle-kit
+>
+> 2. or a generic "microchip,mpfs-sd4hc"
+>
+> Any hints here?
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+Best for a Microchip person to answer, but sure there's some existing
+compatible strings for other blocks on this chip to follow the same
+pattern.
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 4 ----
- 2 files changed, 1 insertion(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 371a2a9dcf7a..ed9f9283b71d 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -336,6 +336,7 @@ data {
- 	};
- 
- 	sd-cd {
-+		pins = "gpio91";
- 		bias-pull-up;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 53a21d086178..99e946a33fbb 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1573,10 +1573,6 @@ cmd {
- 				data {
- 					pins = "sdc2_data";
- 				};
--
--				sd-cd {
--					pins = "gpio91";
--				};
- 			};
- 
- 			sdc2_off: sdc2-off {
--- 
-2.33.0.259.gc128427fd7-goog
-
+Rob
