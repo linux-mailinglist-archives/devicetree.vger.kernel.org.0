@@ -2,79 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 377DF3FB8BF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 17:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E052E3FB8C4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 17:07:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237123AbhH3PGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 11:06:38 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:48672 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237471AbhH3PGh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 11:06:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=bL28JptUtAL4Jouyvz4ajT1BB84wg50lUMYs9+7LAQ8=; b=P5
-        LbcUcU0pSZph2xB8UOOyvAk+j1U+gMY+is0vQHHJG79odnEogPiUJCWiamoPuaOqQzSNzCnIYdmQo
-        J5XyPUKkepBoCS6OJVjyd75TcIQ/tLeUUWArIfi1EI99mTlupPENa9AoFO7M8qZStIX96B+MyXJL9
-        VW8SyMx8CLV8s3E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mKiqm-004aHV-6G; Mon, 30 Aug 2021 17:05:28 +0200
-Date:   Mon, 30 Aug 2021 17:05:28 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?B?Q2zDqW1lbnQgQsWTc2No?= <u@pkh.me>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Willy Liu <willy.liu@realtek.com>, netdev@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: sunxi H5 DTB fix for realtek regression
-Message-ID: <YSzzuDvd1fWXxcAb@lunn.ch>
-References: <YSwr6YZXjNrdKoBZ@ssq0.pkh.me>
- <YSziXfll/p/5OrOv@lunn.ch>
- <YSzsmy1f2//NNzXm@ssq0.pkh.me>
+        id S237245AbhH3PIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 11:08:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237199AbhH3PIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 11:08:01 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFC8C061575
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 08:07:08 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id c4so8690358plh.7
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 08:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f7E36/4NEmmdeFXZk05Zb6lbS92pEe7/zhYEBPZmpVY=;
+        b=hfW9wMcdYKy98q+B6cb14b+j+zZn9ud9xmGIDnQMrGOeGxAjqGjnp8ef0QZcvZqKoI
+         PddPnU7VunrapWeSpplCxz9Gp6Bfd5jpbaQnvehjuQmIXsYuSlOVAp9uJHZ7QSw/5Er+
+         ZmbiHX0akipuIjeEsvjQ8GbuggKhZUKzkpmeE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=f7E36/4NEmmdeFXZk05Zb6lbS92pEe7/zhYEBPZmpVY=;
+        b=Q0KO1dnRPiSOJ1vzztgCpmb+zAdcoatXQMKBmk+xtRJNIHbBZpn+WGsm7Nd0KVRMS6
+         MFXmEcJthH/f5/NtvlM6SY4dE4LuwA5Cbv+ZzOxuDXTRbboYRnUtjAWoJZk4e3izyweJ
+         BS7luiTbTjutKcckzUEk7/1TPUHhPiNA2cFI+uDwH7WyR6r+6maNZ/u6gsBNmpzvXZ6b
+         HpniW905DDqex4N7nHZvsJfLUvozDciJryIUPNTddBq5WWxy821BiqzO3klE1wuMOoAu
+         D3RTFNOLs3gw+m2AaCg4lIzcyxKVBcEBuGMy6cJ9QADnNh7wdGfqETpaAkT+k8o5z2wD
+         lHvg==
+X-Gm-Message-State: AOAM530Wzp1PnB3FU0iST9vXG82jC011GxU/2aXIxWDonlQZextycn13
+        ZRsG+iVPwMd5pjmB675wIO3izX07rpQvWg==
+X-Google-Smtp-Source: ABdhPJwY2E1nxu0XIhzRBDbGZh3rxjkEkKjQFVgVhAaC8KfQJH+XJZSuOZFLHRtdD+Fi14LOe0mcaw==
+X-Received: by 2002:a17:902:e891:b029:12d:6824:9d28 with SMTP id w17-20020a170902e891b029012d68249d28mr123373plg.23.1630336027860;
+        Mon, 30 Aug 2021 08:07:07 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:b658:7113:70a2:ea])
+        by smtp.gmail.com with ESMTPSA id t10sm20285025pji.30.2021.08.30.08.07.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 08:07:07 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     bjorn.andersson@linaro.org
+Cc:     sbhanu@codeaurora.org, swboyd@chromium.org, mka@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7280: Move the SD CD GPIO pin out of the dtsi file
+Date:   Mon, 30 Aug 2021 08:06:37 -0700
+Message-Id: <20210830080621.1.Ia15d97bc4a81f2916290e23a8fde9cbc66186159@changeid>
+X-Mailer: git-send-email 2.33.0.259.gc128427fd7-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YSzsmy1f2//NNzXm@ssq0.pkh.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> See attached patch, heavily based on other commits.
+There's nothing magical about GPIO91 and boards could use different
+GPIOs for card detect. Move the pin out of the dtsi file and to the
+only existing board file.
 
-Looks good.
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
 
-You need to add a Signed-off-by: See
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 4 ----
+ 2 files changed, 1 insertion(+), 4 deletions(-)
 
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index 371a2a9dcf7a..ed9f9283b71d 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -336,6 +336,7 @@ data {
+ 	};
+ 
+ 	sd-cd {
++		pins = "gpio91";
+ 		bias-pull-up;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 53a21d086178..99e946a33fbb 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -1573,10 +1573,6 @@ cmd {
+ 				data {
+ 					pins = "sdc2_data";
+ 				};
+-
+-				sd-cd {
+-					pins = "gpio91";
+-				};
+ 			};
+ 
+ 			sdc2_off: sdc2-off {
+-- 
+2.33.0.259.gc128427fd7-goog
 
-Patches need to be in the body of the email, not attachments.
-
-You can use scripts/get_maintainers.pl to get a list of people to send
-it to. I would use To: for
-Maxime Ripard <mripard@kernel.org> (maintainer:ARM/Allwinner sunXi SoC support)
-Chen-Yu Tsai <wens@csie.org> (maintainer:ARM/Allwinner sunXi SoC support)
-Jernej Skrabec <jernej.skrabec@gmail.com> (reviewer:ARM/Allwinner sunXi SoC support)
-
-and Cc: for the rest.
-
-> Note: running `git grep 'phy-mode\s*=\s*"rgmii"' arch` shows that it might
-> affect other hardware as well.
-
-"rgmii" can be correct. So you need to narrow your search.
-
-> I don't know how one is supposed to check
-> that, but I would guess at least sun50i-a64-nanopi-a64.dts is affected (a
-> quick internet search shows that it's using a RTL8211E¹)
-
-This seems reasonable. You could provide a second patch for this.
-
-     Andrew
