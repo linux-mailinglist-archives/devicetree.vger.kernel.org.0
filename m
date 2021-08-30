@@ -2,44 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 087A03FBB52
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 19:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC4D3FBB6E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 20:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238305AbhH3R6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 13:58:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41566 "EHLO
+        id S238340AbhH3SJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 14:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238343AbhH3R6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 13:58:48 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADFF6C06175F
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 10:57:54 -0700 (PDT)
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 26FBF3E83C;
-        Mon, 30 Aug 2021 19:57:50 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm: dts: qcom-msm8974: Add xo_board reference clock to DSI0 PHY
-Date:   Mon, 30 Aug 2021 19:57:39 +0200
-Message-Id: <20210830175739.143401-1-marijn.suijten@somainline.org>
+        with ESMTP id S238419AbhH3SJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 14:09:10 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C99C061575;
+        Mon, 30 Aug 2021 11:08:16 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id f2so27450930ljn.1;
+        Mon, 30 Aug 2021 11:08:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=69UzMreQL07rBLiM2S/iSQWED86mjhTpne3vzrBcG+U=;
+        b=tKq5Jh3L33D1rHakkGclZoHpOG2VDePsQtljLhaz6iWh4GEuOq/o/si8k5IROrfpKL
+         EZi6Zfry5EkIGlqXqqCV1H4VZyfocdPPSq9LsRwuDjeMGQYwXXXyMlc0Xy0afV/xSQSu
+         qafg4TLPgkPEgUw35AHZSQyaAD5D0ri3ocEabBmh1nJyfT8JFtIdESnE5RHuaNcPVEAV
+         QPLnUEHtAJt/ehFU10ZQGYp55Gazg1H6J0dlliMeTTD27yGqQsQw4dlOzOsOtRkHWUAZ
+         K/JQGkdVe+U+ccR+ChTfuK/q1ELXh3AuJLeAQ44j4BuMCrdRf6OmJECnlxo18ZkAULW+
+         As7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=69UzMreQL07rBLiM2S/iSQWED86mjhTpne3vzrBcG+U=;
+        b=XC4kuoVTLnP5Lkj1iMKOuHdA8HhbeDWQ/tJbOyrNzL7CS79fTMdNJNIAUMKyrq3Qtm
+         gbkXLKkPV3NKOZwaB9XjmX1lYPEBUzl2A7Jv8fNamMQB4NhgkWz6ZY94bq/VNjEf9y/J
+         /99/l9YcdhTC46CjHn+JdzH0Ws7yCwmHKpwgreaAZT+oWSj9E0f18BYHlVbq4VQfjnTV
+         rTTkWqe0WKPWal5qbELJd/yWBx7qX+HgigzQuwrCcmN9/SwmoyVJDI9d742PW764ZQA7
+         5zLVGY+hA0Pl5dsb2QQqWSDdIHo1v+mWVT3Dj/gioRS1BbiDEi/ZcujQ30Bg55U6LONF
+         puYQ==
+X-Gm-Message-State: AOAM533/SWAHgG36QfJkJ+pry3pYX74rAEg0vvP8GxilEaK0/+dxc05N
+        Cfr/fhGMosCSAuxUAIq1jdtiIF1HAeZYtA==
+X-Google-Smtp-Source: ABdhPJz3vPiGQV++PBLINol58xbSTwl/Jajk64CWeX90YppbVh99OzM+ApQ1RuZmX4p9jNUDM2yXPQ==
+X-Received: by 2002:a2e:bd0c:: with SMTP id n12mr21712030ljq.46.1630346894587;
+        Mon, 30 Aug 2021 11:08:14 -0700 (PDT)
+Received: from localhost (37-145-211-218.broadband.corbina.ru. [37.145.211.218])
+        by smtp.gmail.com with ESMTPSA id q18sm1909229ljp.19.2021.08.30.11.08.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 11:08:14 -0700 (PDT)
+From:   Mikhail Rudenko <mike.rudenko@gmail.com>
+To:     linux-phy@lists.infradead.org
+Cc:     linux-media@vger.kernel.org,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/5] phy: phy-rockchip-dphy-rx0: add support for tx1rx1 rx mode
+Date:   Mon, 30 Aug 2021 21:07:49 +0300
+Message-Id: <20210830180758.251390-1-mike.rudenko@gmail.com>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -47,31 +63,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to YAML validation, and for a future patchset putting this
-xo_board reference clock to use as VCO reference parent, add the missing
-clock to dsi_phy0.
+Implement support for RX mode of TX1RX1 D-PHY on RK3399. Code is based
+on Rockchip BSP kernel branch 4.4. These patches have been tested on
+FriendlyElec NanoPi M4 with OmniVision 4689-based sensor.
 
-Fixes: 5a9fc531f6ec ("ARM: dts: msm8974: add display support")
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- arch/arm/boot/dts/qcom-msm8974.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index db4c06bf7888..96722172b064 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1580,8 +1580,8 @@ dsi_phy0: dsi-phy@fd922a00 {
- 				#phy-cells = <0>;
- 				qcom,dsi-phy-index = <0>;
- 
--				clocks = <&mmcc MDSS_AHB_CLK>;
--				clock-names = "iface";
-+				clocks = <&mmcc MDSS_AHB_CLK>, <&xo_board>;
-+				clock-names = "iface", "ref";
- 			};
- 		};
- 
--- 
+Mikhail Rudenko (5):
+  phy: phy-rockchip-dphy-rx0: refactor for tx1rx1 addition
+  phy: phy-rockchip-dphy-rx0: add support for tx1rx1 in receive mode
+  phy: rename phy-rockchip-dphy-rx0 to phy-rockchip-dphy-rx
+  dt-bindings: phy: phy-rockchip-dphy-rx0: add support for tx1rx1 phy
+  arm64: dts: rockchip: add mipi-dphy-tx1rx1 for rk3399
+
+ ...hy-rx0.yaml => rockchip-mipi-dphy-rx.yaml} |  39 ++-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  15 ++
+ drivers/phy/rockchip/Kconfig                  |   8 +-
+ drivers/phy/rockchip/Makefile                 |   2 +-
+ ...chip-dphy-rx0.c => phy-rockchip-dphy-rx.c} | 231 +++++++++++++++---
+ 5 files changed, 252 insertions(+), 43 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{rockchip-mipi-dphy-rx0.yaml => rockchip-mipi-dphy-rx.yaml} (65%)
+ rename drivers/phy/rockchip/{phy-rockchip-dphy-rx0.c => phy-rockchip-dphy-rx.c} (63%)
+
+--
 2.33.0
-
