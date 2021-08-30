@@ -2,84 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D274C3FBB26
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 19:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A863FBB3F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 19:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238210AbhH3RmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 13:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37814 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238194AbhH3RmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 13:42:19 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9770AC061575;
-        Mon, 30 Aug 2021 10:41:25 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id p38so32960318lfa.0;
-        Mon, 30 Aug 2021 10:41:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lZOE6NdYi7YGPVoRW2vvmAPerIza6xFYslQzFR4ZBtE=;
-        b=AB1J0NmrLstVowEAiKWurJRlP2pbZhAKNC40qWhnjtDw4U6fogsrSQx7sxPXkxeL8h
-         KqJ6C2h3gCdVs0ZMr+kwQATPZaUtTEiWvwcm4U9+lpVKTJqv6/BdUlnaD86nl6S0LmB2
-         YKuZTGLZKCTq0UlhzS6QyieGeh6QufxKVjlw3lSot6Ngg4Oj3U45ZL9ktQdNPQRxjoSg
-         SXklBgCtTxh0L9gSmMFbKJjC23VOyDVJMBHNOPYVhdJTRxlqZ7d7ptwVKu5IwB+6TRi2
-         NhFHUnyyxdBbD4oY76M49syF2N0ZGf8Ry03BKJJoH9+62hgL1+CcPcunW44zEOcRcA3t
-         y5zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lZOE6NdYi7YGPVoRW2vvmAPerIza6xFYslQzFR4ZBtE=;
-        b=EACxsn3acJkquPPjE6WvbVKnF3ldH9P6qY0C3G+uZLBtejZ6JATpJQ1Jvhvufuc06K
-         z1P+q9344GTUkuPyCCh/yz5NJGnX5lghOTra43ihxneSEn6hwPCiB1ZRZkZ5OXUkTOjj
-         4fz/yrGhYK8X1WO8bpuC/KnmuMATnrbfavLnBbBxUe/2DV67XgvFqAHRygYc7AJ9UrJT
-         +WfuiYiuhhiGW+oh1L6N6m/5xObws7Np2DefZ54jFXR7Uy3ig69dz+0/yT1bsga+IDTF
-         MDaX+Mc/Clo3jP6GPy2F7yeB+GBPovsoFzJ1g8Me1PDU+cypFmu1BGBHFFMCICviIXMP
-         NECg==
-X-Gm-Message-State: AOAM531p0CtyesXbC4mxe2g3CqSzJD5SoZJ6jIu3pFvZKjJP9Atwr9fS
-        8KuRHs3YfuMiyF+y91s2pk/pjFJDHYsVPZ6lOwo=
-X-Google-Smtp-Source: ABdhPJxPCpk3CIRP6sbIr9jWcESA/cBvGxq9HPNlVRkhIW40nQT4VjSrn/CKh1mxsXM2ZRlXzyTBswE0UPmiBD7253o=
-X-Received: by 2002:a19:5f0d:: with SMTP id t13mr17970186lfb.229.1630345283860;
- Mon, 30 Aug 2021 10:41:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210830172140.414-1-caihuoqing@baidu.com> <20210830172140.414-2-caihuoqing@baidu.com>
-In-Reply-To: <20210830172140.414-2-caihuoqing@baidu.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 30 Aug 2021 14:41:12 -0300
-Message-ID: <CAOMZO5CG_NtGC3ZJv+qy2YOk-J6gLyZpUMty+jna3v4V6DfmnQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] iio: adc: Init the driver for NXP i.MX8QuadXPlus
-To:     Cai Huoqing <caihuoqing@baidu.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>, alex.dewar90@gmail.com,
-        linux-iio@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S238117AbhH3R4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 13:56:05 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:61663 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234054AbhH3R4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 13:56:04 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 30 Aug 2021 10:55:10 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 30 Aug 2021 10:55:07 -0700
+X-QCInternal: smtphost
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 30 Aug 2021 23:24:40 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 0A16F3D10; Mon, 30 Aug 2021 23:24:39 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pratham Pratap <prathampratap@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH 0/3] USB DWC3 QCOM Multi power domain support
+Date:   Mon, 30 Aug 2021 23:24:30 +0530
+Message-Id: <1630346073-7099-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cai,
+Add multi pd support to set performance state for cx domain
+to maintain minimum corner voltage for USB clocks.
 
-On Mon, Aug 30, 2021 at 2:22 PM Cai Huoqing <caihuoqing@baidu.com> wrote:
+Add corresponding dt bindings, driver changes and dt changes.
 
-> +static int imx8qxp_adc_probe(struct platform_device *pdev)
-> +{
-> +       return 0;
-> +}
+Sandeep Maheswaram (3):
+  dt-bindings: usb: qcom,dwc3: Add multi-pd bindings for dwc3 qcom
+  usb: dwc3: qcom: Add multi-pd support
+  arm64: dts: qcom: sc7280: Add cx power domain support
 
-This is not the correct way to split the series.
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         | 13 +++++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  5 ++-
+ drivers/usb/dwc3/dwc3-qcom.c                       | 49 ++++++++++++++++++++++
+ 3 files changed, 65 insertions(+), 2 deletions(-)
 
-Patches 1, 2, 3, and 5 could be squashed into a single patch.
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-Thanks
