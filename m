@@ -2,73 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 574713FB5FD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D40513FB602
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 14:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbhH3M1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 08:27:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40088 "EHLO mail.kernel.org"
+        id S231792AbhH3M2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 08:28:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42034 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229828AbhH3M1t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 30 Aug 2021 08:27:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 07773610FC;
-        Mon, 30 Aug 2021 12:26:56 +0000 (UTC)
+        id S230423AbhH3M2w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 08:28:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5BC6A60FA0
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 12:27:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630326416;
-        bh=8rxzpDDvLETpRjSW5EG7EPps6YmGomM3Beiqdp8hL8s=;
+        s=k20201202; t=1630326479;
+        bh=v7MwI/XeB72qqwU8rS34TthIHCEVN+PHg88o9IbMgJY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bFtCjuVnW9yirgFzqcJWAnYSkM1Lhlg9QSRerffQp7Rk4/9vUDaLoDmkVe7AD5/W2
-         bUICCo62D5Pr4nmPIOB12Kmdblx7xGuPR9EyAR719YykrxzWmMTVUtL3BARQxyxd68
-         pqfOOcBdthaH8nG6Qeq8fBIkIG9r9C6B5P0tksWUIiGBVPsfbYrqWMJvt/BbOl688Q
-         jGWUe4sLgO8TDeU//cLdVn/HaBI468J5mhJ/HzVNBUp/flXHaJMgJKSdqhSzrATgFs
-         PcTmfJXAePBo45Rrp5sLr3KVRv7A6gZ0H5CqJtwxeJVBI+z2uUnuKSiHSfWbrqPpCH
-         bACB2rQFuPRFw==
-Received: by mail-ed1-f46.google.com with SMTP id d6so21346372edt.7;
-        Mon, 30 Aug 2021 05:26:55 -0700 (PDT)
-X-Gm-Message-State: AOAM533eijbdjQJh8jMmbTIrNRit3in0OOdzZy80ywnJn91N0Q8ntG0O
-        ro+0k31ckFSeV5NEkZ/nJHGaKSPtxhuC+tWhWQ==
-X-Google-Smtp-Source: ABdhPJxmILhJYcc+mYeJ+zf9N2F64SRnxQUQWPiG90l8vhjyNKaMHpm3/aiXGIjG5vOQD6D9of/DicoxU1EewIR4qsE=
-X-Received: by 2002:a50:eb8a:: with SMTP id y10mr24087615edr.137.1630326414617;
- Mon, 30 Aug 2021 05:26:54 -0700 (PDT)
+        b=gYIbE9dTr/AdTNhQn0Q+ozhrCAYi5TgNuMKAnCtOcxXxaE4xf4o1F8+pgtVWC/Af2
+         m0s7aqaxc//oaDeseY6Gt5x5/KU6/PZw69Lfy0oZiaUEAGACxk1HYXHpayUG8jeogn
+         JvWTLBNHKXVKTC/MmjYA2HmfaYy5TS5GvL4mm366xAMjfMc7h0eqdlbVTzQDQ/SWzx
+         0QocVfRjV4RYd4l6GCkbKRjlnkOq/dD0vhY0495Lv5TpjBeeNAPdZkerxChIVHHphG
+         DMMz7aRs4wT6vrVEtSKro2G7qx1WnkeNUbpa8FRJpGYjrgwIgNWMEJ6w9GuC1IZH3J
+         Mox2q9oYZBNiA==
+Received: by mail-ej1-f46.google.com with SMTP id ia27so30722424ejc.10
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 05:27:59 -0700 (PDT)
+X-Gm-Message-State: AOAM532Scw0aEYhsrt3ZVmoWn3FIuBv2cgDmkkD4EE5l6qOy7vBHbr9u
+        rtoS0zTPL4m1ExkzoOsmD4hJL7Gatn2jb42GKg==
+X-Google-Smtp-Source: ABdhPJxHvlqKYhELbS+l9fLJPyT3nsoI0TfZXUn+97LPVC1cv4HMuhSNIBBkPANJQEQo4u6QzvsP+E1CXIJVQuYCNq0=
+X-Received: by 2002:a17:907:b06:: with SMTP id h6mr23180827ejl.130.1630326478034;
+ Mon, 30 Aug 2021 05:27:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210819101020.26368-1-krzysztof.kozlowski@canonical.com> <YSQA/iR6D/Ej1kWx@ravnborg.org>
-In-Reply-To: <YSQA/iR6D/Ej1kWx@ravnborg.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 30 Aug 2021 07:26:43 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKaUTXda_E0FLsHSt523=Tib6z5AgyOpoZA6iBNCht2-A@mail.gmail.com>
-Message-ID: <CAL_JsqKaUTXda_E0FLsHSt523=Tib6z5AgyOpoZA6iBNCht2-A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: panel: ili9341: correct indentation
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dillon Min <dillon.minfei@gmail.com>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>
+References: <20210829134224.58987-1-david@ixit.cz>
+In-Reply-To: <20210829134224.58987-1-david@ixit.cz>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 30 Aug 2021 07:27:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK5TY2-8ReFZ87Ecz48Bu9uCm3d9jmXsVmRFqY5tme3hw@mail.gmail.com>
+Message-ID: <CAL_JsqK5TY2-8ReFZ87Ecz48Bu9uCm3d9jmXsVmRFqY5tme3hw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display/panel: ilitek,ili9341: fix indentation
+To:     David Heidelberg <david@ixit.cz>
+Cc:     devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 23, 2021 at 3:11 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+On Sun, Aug 29, 2021 at 8:43 AM David Heidelberg <david@ixit.cz> wrote:
 >
-> On Thu, Aug 19, 2021 at 12:10:19PM +0200, Krzysztof Kozlowski wrote:
-> > Correct indentation warning:
-> >   ilitek,ili9341.yaml:25:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Fixes:
+> ./Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml:25:9:
+> [warning] wrong indentation: expected 10 but found 8 (indentation)
 >
-> Thanks, applied to drm-misc-next, and the patch will show up in -next in
-> one to two weeks.
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../devicetree/bindings/display/panel/ilitek,ili9341.yaml       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-This needs to go in fixes as it looks like commit 7dbdce806268
-("dt-bindings: display: panel: Add ilitek ili9341 panel bindings") is
-queued for 5.15.
+There's already a fix for this queued in the drm-misc tree.
 
 Rob
