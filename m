@@ -2,131 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC3D3FB7C3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:19:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744133FB7B5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Aug 2021 16:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236877AbhH3OTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 10:19:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237029AbhH3OTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 10:19:43 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F6AC061764
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 07:18:49 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id dt3so8349616qvb.6
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 07:18:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3bDYv7A/LtthHV1B7A47v6rcfLVgrIbXO4oXJa+YfPI=;
-        b=k0CgpMslNX1rWTUgpPhbj/OqdkaWqxYr0wGz3TaXWYankEGP0Q3UNqymfky1Xy/A+Q
-         h2qV2iynbjhNRBp4+5VMojFc8NLf6bLWmC5iCC4hU9iJmqfFt3vEIvEpmtO4bC9JENVS
-         BiUJYDzZwfJJyCxYy3ccI1VMtZTiaf2eTMcchnC33Ew6zEn292rQtR/oJd+VTNqdqJaM
-         +lXC7g5AzwG4qJFKN8/fmN2SuGpQ/XuyOnLFauVszjQOJ/QUPycaOo0ZNzkAcCQeWyvJ
-         b3nU64Ng0kboG6NPpBQljpimAc7gCI8udk+hQmMjKVema62pS4lJie44vfgdbfDw9Q8Q
-         EOdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3bDYv7A/LtthHV1B7A47v6rcfLVgrIbXO4oXJa+YfPI=;
-        b=R4OoyQsQhghworl0gCRdwY8x+FgMi7tTMvfgdTm+BK6bCHsaUZnPn6TisHq4+lGZBs
-         o5QtRejklAQhaypw0hK77EpDSLPWq+f/H6cKFi25XX82+JGLULQmcopfIif2g+hs7EWM
-         hGCC4vBk+GIoXXHCEUXgIMNVL0/qRUfGFvaEMIZmzow6kDg6Ie6torze2wZeSS0rhZQ0
-         z7gysj0UBgegb2NlX+3fa04Y/h88kNOPk1ZEQWWPMHGfO0BaKi/oxIZiKardxUKicvJ2
-         HBRe6LiEgHlQ/lycoSF47kzkjjkvLqnRQhrxpD0ICGN1Ye4NCpPBQWtqizAlD1qDt+Iv
-         zvkA==
-X-Gm-Message-State: AOAM532PveitX+vCnUpaSHUSx6Dl1umkKwZRtzExeH2SSuyLI2rAOxUP
-        EXtsjcR6gdToQuRlDE2jtSoyzBhxzQHLMmIQproINA==
-X-Google-Smtp-Source: ABdhPJzHjekGyU39UWiALsxjZxpzf/CttK5mtbE3Qic8fvdcaKyqq5Gpsqicgq48oCXssFXjY5mgE7OOpv1b2mFWx9Q=
-X-Received: by 2002:a05:6214:acd:: with SMTP id g13mr23816483qvi.23.1630333128241;
- Mon, 30 Aug 2021 07:18:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210829203027.276143-1-marijn.suijten@somainline.org>
- <20210829203027.276143-2-marijn.suijten@somainline.org> <CAA8EJprQ03ipZzO+1vgt9W7jFbLXgsYR0n-oJxVB-142x8dgRA@mail.gmail.com>
- <17d19b93-dbe5-cc85-f302-b52cd8eeed56@somainline.org> <CAA8EJpqd7_5510TodALnX13Wo0MufYm2G=r6vw9sy=VURrewyw@mail.gmail.com>
- <YSznouVZ93sUd6xa@Marijn-Arch-PC.localdomain>
-In-Reply-To: <YSznouVZ93sUd6xa@Marijn-Arch-PC.localdomain>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 30 Aug 2021 17:18:37 +0300
-Message-ID: <CAA8EJpoRo6rPgpUeT9X0K4UPu5d8-YBP=BJ3AAejD+wujhmv+g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm: dts: qcom: apq8064: Use 27MHz PXO clock as DSI
- PLL reference
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        id S237037AbhH3ORP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 10:17:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59782 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236916AbhH3ORO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 30 Aug 2021 10:17:14 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4719C60F23;
+        Mon, 30 Aug 2021 14:16:15 +0000 (UTC)
+Date:   Mon, 30 Aug 2021 15:19:26 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "Ryan J . Barnett" <ryan.barnett@collins.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 33/40] iio: adc: ti_am335x_adc: Gather the checks on the
+ delays
+Message-ID: <20210830151926.059db21a@jic23-huawei>
+In-Reply-To: <20210825152518.379386-34-miquel.raynal@bootlin.com>
+References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
+        <20210825152518.379386-34-miquel.raynal@bootlin.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 Aug 2021 at 17:14, Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> On Mon, Aug 30, 2021 at 04:24:58PM +0300, Dmitry Baryshkov wrote:
-> > On Mon, 30 Aug 2021 at 11:28, Marijn Suijten
-> > <marijn.suijten@somainline.org> wrote:
-> > >
-> > > Hi Dmitry,
-> > >
-> > > On 8/30/21 3:18 AM, Dmitry Baryshkov wrote:
-> > > > On Sun, 29 Aug 2021 at 23:30, Marijn Suijten
-> > > > <marijn.suijten@somainline.org> wrote:
-> > > >>
-> > > >> The 28NM DSI PLL driver for msm8960 calculates with a 27MHz reference
-> > > >> clock and should hence use PXO, not CXO which runs at 19.2MHz.
-> > > >>
-> > > >> Note that none of the DSI PHY/PLL drivers currently use this "ref"
-> > > >> clock; they all rely on (sometimes inexistant) global clock names and
-> > > >> usually function normally without a parent clock.  This discrepancy will
-> > > >> be corrected in a future patch, for which this change needs to be in
-> > > >> place first.
-> > > >>
-> > > >> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > >> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > > >
-> > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > >
-> > > > Checked the downstream driver, it always uses 27 MHz clock in calculations.
-> > >
-> > >
-> > > Given our concerns for msm8974 not updating DT in parallel with the
-> > > kernel (hence the need for a global-name fallback because "ref" is
-> > > missing from the DT), should we worry about the same for apq8064?  That
-> > > is, is there a chance that the kernel but not the firmware is upgraded
-> > > leading to the wrong parent clock being used?  The msm8960 variant of
-> > > the 28nm PLL driver uses parent_rate in a few places and might read
-> > > cxo's 19.2MHz erroneously instead of using pxo's 27MHz.
-> >
-> > Checked the code. It uses .parent_names =  "pxo", so changing ref
-> > clock should not matter. We'd need to fix ref clocks and after that we
-> > can switch parent names to fw_name.
->
-> Correct, hence why this patch is ordered before the switch to .fw_name.
-> These patches can't go in the same series if apq8064 doesn't update its
-> firmware in parallel with the kernel just like msm8974.  Do you know if
-> this is the case?  If so, how much time do you think should be between
-> the DT fix (this patch) and migrating the drivers?
+On Wed, 25 Aug 2021 17:25:11 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-You can have parent_data with .fw_name and .name in it.  .name will be
-used as a fallback if .fw_name doesn't match.
+> Move the checks over the delays provided in the device tree to the
+> location where these values are read to clarify where they come from.
+> 
+> There are no functional changes besides the device structure used to
+> display the warnings: let's use the ADC instead of the MFD device.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
+> ---
+>  drivers/iio/adc/ti_am335x_adc.c | 47 +++++++++++++++++++--------------
+>  1 file changed, 27 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti_am335x_adc.c b/drivers/iio/adc/ti_am335x_adc.c
+> index 00bbf557e86c..4eaf5b031707 100644
+> --- a/drivers/iio/adc/ti_am335x_adc.c
+> +++ b/drivers/iio/adc/ti_am335x_adc.c
+> @@ -97,7 +97,6 @@ static u32 get_adc_step_bit(struct tiadc_device *adc_dev, int chan)
+>  static void tiadc_step_config(struct iio_dev *indio_dev)
+>  {
+>  	struct tiadc_device *adc_dev = iio_priv(indio_dev);
+> -	struct device *dev = adc_dev->mfd_tscadc->dev;
+>  	unsigned int stepconfig;
+>  	int i, steps = 0;
+>  
+> @@ -115,12 +114,6 @@ static void tiadc_step_config(struct iio_dev *indio_dev)
+>  
+>  		chan = adc_dev->channel_line[i];
+>  
+> -		if (adc_dev->step_avg[i] > STEPCONFIG_AVG_16) {
+> -			dev_warn(dev, "chan %d step_avg truncating to %d\n",
+> -				 chan, STEPCONFIG_AVG_16);
+> -			adc_dev->step_avg[i] = STEPCONFIG_AVG_16;
+> -		}
+> -
+>  		if (adc_dev->step_avg[i])
+>  			stepconfig = STEPCONFIG_AVG(ffs(adc_dev->step_avg[i]) - 1) |
+>  				     STEPCONFIG_FIFO1;
+> @@ -135,18 +128,6 @@ static void tiadc_step_config(struct iio_dev *indio_dev)
+>  			     STEPCONFIG_INM_ADCREFM | STEPCONFIG_RFP_VREFP |
+>  			     STEPCONFIG_RFM_VREFN);
+>  
+> -		if (adc_dev->open_delay[i] > STEPDELAY_OPEN_MASK) {
+> -			dev_warn(dev, "chan %d open delay truncating to 0x3FFFF\n",
+> -				 chan);
+> -			adc_dev->open_delay[i] = STEPDELAY_OPEN_MASK;
+> -		}
+> -
+> -		if (adc_dev->sample_delay[i] > 0xFF) {
+> -			dev_warn(dev, "chan %d sample delay truncating to 0xFF\n",
+> -				 chan);
+> -			adc_dev->sample_delay[i] = 0xFF;
+> -		}
+> -
+>  		tiadc_writel(adc_dev, REG_STEPDELAY(steps),
+>  			     STEPDELAY_OPEN(adc_dev->open_delay[i]) |
+>  			     STEPDELAY_SAMPLE(adc_dev->sample_delay[i]));
+> @@ -552,6 +533,7 @@ static int tiadc_parse_dt(struct platform_device *pdev,
+>  	const __be32 *cur;
+>  	int channels = 0;
+>  	u32 val;
+> +	int i;
+>  
+>  	of_property_for_each_u32(node, "ti,adc-channels", prop, cur, val) {
+>  		adc_dev->channel_line[channels] = val;
+> @@ -564,6 +546,8 @@ static int tiadc_parse_dt(struct platform_device *pdev,
+>  		channels++;
+>  	}
+>  
+> +	adc_dev->channels = channels;
+> +
+>  	of_property_read_u32_array(node, "ti,chan-step-avg",
+>  				   adc_dev->step_avg, channels);
+>  	of_property_read_u32_array(node, "ti,chan-step-opendelay",
+> @@ -571,7 +555,30 @@ static int tiadc_parse_dt(struct platform_device *pdev,
+>  	of_property_read_u32_array(node, "ti,chan-step-sampledelay",
+>  				   adc_dev->sample_delay, channels);
+>  
+> -	adc_dev->channels = channels;
+> +	for (i = 0; i < adc_dev->channels; i++) {
+> +		int chan;
+> +
+> +		chan = adc_dev->channel_line[i];
+> +
+> +		if (adc_dev->step_avg[i] > STEPCONFIG_AVG_16) {
+> +			dev_warn(&pdev->dev, "chan %d step_avg truncating to %d\n",
+> +				 chan, STEPCONFIG_AVG_16);
+> +			adc_dev->step_avg[i] = STEPCONFIG_AVG_16;
+> +		}
+> +
+> +		if (adc_dev->open_delay[i] > STEPDELAY_OPEN_MASK) {
+> +			dev_warn(&pdev->dev, "chan %d open delay truncating to 0x3FFFF\n",
+> +				 chan);
+> +			adc_dev->open_delay[i] = STEPDELAY_OPEN_MASK;
+> +		}
+> +
+> +		if (adc_dev->sample_delay[i] > 0xFF) {
+> +			dev_warn(&pdev->dev, "chan %d sample delay truncating to 0xFF\n",
+> +				 chan);
+> +			adc_dev->sample_delay[i] = 0xFF;
+> +		}
+> +	}
+> +
+>  	return 0;
+>  }
+>  
 
--- 
-With best wishes
-Dmitry
