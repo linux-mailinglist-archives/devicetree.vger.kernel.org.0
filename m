@@ -2,72 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA7C63FCF5B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 23:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 536733FCF5F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 23:55:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238969AbhHaVz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 17:55:29 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:37863 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239498AbhHaVzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 17:55:23 -0400
-Received: by mail-ot1-f52.google.com with SMTP id i3-20020a056830210300b0051af5666070so1031377otc.4;
-        Tue, 31 Aug 2021 14:54:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jDa4J/9Iso8BAY19kTwzliXbM11r3W2hAim2XtLSYUM=;
-        b=DDQwDwK9Zx/IEp6UrrGyL/gSs7lSrbVGEx8PuJXbD06tpNwc/fsW99ePQ9hVVmsWpS
-         60oxQ2trHk9RvLWaRewoS7fxyhh9mOZOzjTjXfrjp7YoWe0D+QJpvI8ZIUhFHWY3uqoQ
-         pkrvRefS7+HurF0Ym/oEJvufPOhgC3JA8PMx85LhIOtSrAdksUzWjIGbZEmbbuSw5+lA
-         9vtp06Eoj3D438fE2T94i+9qvJdt7r7JFxBA/3wlEJYHHHit1vhzM8/DhjFXOm5gNGW2
-         RKvhH9d6Vhn5alKTwY+1U2mx8T7U5PN16Yc4yq1yUQoTB0b5DWtgvayRZhW+2JH9y6WD
-         mvTg==
-X-Gm-Message-State: AOAM530ENZb4HisrATB6nlH9UppRjEJomRnJmMqjXj9vircQHrUeGKWr
-        //fUABn4UVmRpDCkEfq8Wg==
-X-Google-Smtp-Source: ABdhPJyXpKQQuBRQ0F/izfjc97+0wEDpby5kR3nVWrb6JGg4oww0TI1CM9Mov4iS4vFLYJ0sT9nIUQ==
-X-Received: by 2002:a9d:6e91:: with SMTP id a17mr24946060otr.372.1630446867646;
-        Tue, 31 Aug 2021 14:54:27 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b11sm3817099ooi.0.2021.08.31.14.54.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 14:54:27 -0700 (PDT)
-Received: (nullmailer pid 710732 invoked by uid 1000);
-        Tue, 31 Aug 2021 21:54:26 -0000
-Date:   Tue, 31 Aug 2021 16:54:26 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     alistair23@gmail.com, linux-input@vger.kernel.org,
-        dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, pinglinux@gmail.com, linux-imx@nxp.com,
-        ping.cheng@wacom.com, linux-kernel@vger.kernel.org,
-        junkpainting@gmail.com, kernel@pengutronix.de,
-        tatsunosuke.tobita@wacom.com
-Subject: Re: [PATCH v10 10/12] Input: wacom_i2c - Allow flipping the values
- from the DT
-Message-ID: <YS6lEgg4hvnLLXQu@robh.at.kernel.org>
-References: <20210829091925.190-1-alistair@alistair23.me>
- <20210829091925.190-12-alistair@alistair23.me>
+        id S232101AbhHaV4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 17:56:17 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50806 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232930AbhHaV4Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Aug 2021 17:56:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=k1/rSYg6WsYp4LWCuQniMNUeD6v5qygPUI6I9l4QrGM=; b=JrbwPy+2/mT2R5088LS59W7Z+6
+        1YACKFtvXaWUnFYKnh+uFXt8BweVQ6+ZCmEJ7TeLpMR4FYUqQcGQ06NPiZybre76s2TfunuXEqaTI
+        dBmwL5yKE2vKkpibPRqRQNQ/CEYqC9QIfAdIshq73mqffLNc0y6JTGFdWl/Thb+6eZzw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mLBir-004lSX-AX; Tue, 31 Aug 2021 23:55:13 +0200
+Date:   Tue, 31 Aug 2021 23:55:13 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        michal.simek@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 3/3] tsnep: Add TSN endpoint Ethernet MAC
+ driver
+Message-ID: <YS6lQejOJJCATMCp@lunn.ch>
+References: <20210831193425.26193-1-gerhard@engleder-embedded.com>
+ <20210831193425.26193-4-gerhard@engleder-embedded.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210829091925.190-12-alistair@alistair23.me>
+In-Reply-To: <20210831193425.26193-4-gerhard@engleder-embedded.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 Aug 2021 19:19:23 +1000, Alistair Francis wrote:
-> Allow the device tree properties to flip the tilx, position or distance
-> values.
-> 
-> This is required for the stylus to work correctly on the reMarkable 2.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  .../input/touchscreen/wacom,generic.yaml      | 20 +++++++++++
->  drivers/input/touchscreen/wacom_i2c.c         | 34 +++++++++++++++++++
->  2 files changed, 54 insertions(+)
-> 
+> +static int tsnep_ethtool_set_priv_flags(struct net_device *netdev,
+> +					u32 priv_flags)
+> +{
+> +	struct tsnep_adapter *adapter = netdev_priv(netdev);
+> +	int retval;
+> +
+> +	if (priv_flags & ~TSNEP_PRIV_FLAGS)
+> +		return -EINVAL;
+> +
+> +	if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
+> +	    (priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_1000))
+> +		return -EINVAL;
+> +
+> +	if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
+> +	    adapter->loopback != SPEED_100) {
+> +		if (adapter->loopback != SPEED_UNKNOWN)
+> +			retval = phy_loopback(adapter->phydev, false);
+> +		else
+> +			retval = 0;
+> +
+> +		if (!retval) {
+> +			adapter->phydev->speed = SPEED_100;
+> +			adapter->phydev->duplex = DUPLEX_FULL;
+> +			retval = phy_loopback(adapter->phydev, true);
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This is a pretty unusual use of private flags, changing loopback at
+runtime. ethtool --test generally does that.
+
+What is your use case which requires loopback in normal operation, not
+during testing?
+
+> +static irqreturn_t tsnep_irq(int irq, void *arg)
+> +{
+> +	struct tsnep_adapter *adapter = arg;
+> +	u32 active = ioread32(adapter->addr + ECM_INT_ACTIVE);
+> +
+> +	/* acknowledge interrupt */
+> +	if (active != 0)
+> +		iowrite32(active, adapter->addr + ECM_INT_ACKNOWLEDGE);
+> +
+> +	/* handle management data interrupt */
+> +	if ((active & ECM_INT_MD) != 0) {
+> +		adapter->md_active = false;
+> +		wake_up_interruptible(&adapter->md_wait);
+> +	}
+> +
+> +	/* handle link interrupt */
+> +	if ((active & ECM_INT_LINK) != 0) {
+> +		if (adapter->netdev->phydev) {
+> +			struct phy_device *phydev = adapter->netdev->phydev;
+> +			u32 status = ioread32(adapter->addr + ECM_STATUS);
+> +			int link = (status & ECM_NO_LINK) ? 0 : 1;
+> +			u32 speed = status & ECM_SPEED_MASK;
+
+How does PHY link and speed get into this MAC register? Is the MAC
+polling the PHY over the MDIO bus? Is the PHY internal to the MAC and
+it has backdoor access to the PHY status?
+
+> +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
+> +{
+> +	struct tsnep_adapter *adapter = bus->priv;
+> +	u32 md;
+> +	int retval;
+> +
+> +	if (regnum & MII_ADDR_C45)
+> +		return -EOPNOTSUPP;
+> +
+> +	/* management data frame without preamble */
+> +	md = ECM_MD_READ;
+
+I know some PHYs are happy to work without a preamble. But as far as i
+know, 802.3 c22 does not say it is optional. So this needs to be an
+opt-in feature, for when you know all the devices on the bus support
+it. We have a standard DT property for this. See mdio.yaml,
+suppress-preamble. Please look for this in the DT blob, and only
+suppress the pre-amble if it is present.
+
+> +	md |= (regnum << ECM_MD_ADDR_SHIFT) & ECM_MD_ADDR_MASK;
+> +	md |= ECM_MD_PHY_ADDR_FLAG;
+> +	md |= (addr << ECM_MD_PHY_ADDR_SHIFT) & ECM_MD_PHY_ADDR_MASK;
+> +	adapter->md_active = true;
+> +	iowrite32(md, adapter->addr + ECM_MD_CONTROL);
+> +	retval = wait_event_interruptible(adapter->md_wait,
+> +					  !adapter->md_active);
+
+It is pretty normal to have some sort of timeout here. So maybe use
+wait_event_interruptible_timeout()?
+
+> +static void tsnep_phy_link_status_change(struct net_device *netdev)
+> +{
+> +	phy_print_status(netdev->phydev);
+> +}
+
+There is normally something here, like telling the MAC what speed it
+should run at.
+
+
+>  +static int tsnep_phy_open(struct tsnep_adapter *adapter)
+> +{
+> +	struct phy_device *phydev;
+> +	struct ethtool_eee ethtool_eee;
+> +	int retval;
+> +
+> +	retval = phy_connect_direct(adapter->netdev, adapter->phydev,
+> +				    tsnep_phy_link_status_change,
+> +				    adapter->phy_mode);
+> +	if (retval)
+> +		return retval;
+> +	phydev = adapter->netdev->phydev;
+> +
+> +	/* MAC supports only 100Mbps|1000Mbps full duplex
+> +	 * SPE (Single Pair Ethernet) is also an option but not implemented yet
+> +	 */
+> +	phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
+> +	phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
+> +	phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
+> +	phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT);
+> +
+> +	/* disable EEE autoneg, EEE not supported by TSNEP */
+> +	memset(&ethtool_eee, 0, sizeof(ethtool_eee));
+> +	phy_ethtool_set_eee(adapter->phydev, &ethtool_eee);
+> +
+> +	adapter->phydev->irq = PHY_MAC_INTERRUPT;
+> +	phy_start(adapter->phydev);
+> +	phy_start_aneg(adapter->phydev);
+
+No need to call phy_start_aneg(). 
+
+> +static int tsnep_phy_init(struct tsnep_adapter *adapter)
+> +{
+> +	struct device_node *dn;
+> +	int retval;
+> +
+> +	retval = of_get_phy_mode(adapter->pdev->dev.of_node,
+> +				 &adapter->phy_mode);
+> +	if (retval)
+> +		adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
+> +
+> +	dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
+> +	adapter->phydev = of_phy_find_device(dn);
+> +	of_node_put(dn);
+> +	if (!adapter->phydev && adapter->mdiobus)
+> +		adapter->phydev = phy_find_first(adapter->mdiobus);
+
+Do you actually need phy_find_first()? It is better to have it in DT.
+
+> +	if (!adapter->phydev)
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tsnep_probe(struct platform_device *pdev)
+> +{
+
+...
+
+> +	dev_info(&adapter->pdev->dev, "device version %d.%02d\n", version,
+> +		 revision);
+> +	if (adapter->gate_control)
+> +		dev_info(&adapter->pdev->dev, "gate control detected\n");
+> +
+> +	return 0;
+> +
+> +	unregister_netdev(adapter->netdev);
+
+How do you get here? Is gcc is warning about unreachable code?
+
+> +register_failed:
+> +	tsnep_tc_cleanup(adapter);
+> +tc_init_failed:
+> +	tsnep_ptp_cleanup(adapter);
+> +ptp_init_failed:
+> +phy_init_failed:
+> +	if (adapter->mdiobus)
+> +		mdiobus_unregister(adapter->mdiobus);
+> +mdio_init_failed:
+> +mac_init_failed:
+> +	return retval;
+> +}
+
+  Andrew
