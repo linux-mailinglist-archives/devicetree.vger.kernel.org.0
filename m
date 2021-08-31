@@ -2,67 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE133FC420
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 10:22:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77FD63FC469
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 11:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240171AbhHaIJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 04:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34898 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240107AbhHaIJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 04:09:31 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F19DC061575
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 01:08:36 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id t19so36708743ejr.8
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 01:08:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=1Br/N6WhyVMlujnGsxiPG2oa5QW+rtf7KlXAbdHBbwA=;
-        b=k51V5RL4Cvb0SsQrksDk/qK8+2BgCcGipiTg8o5zgZYyKmhzoOqgvW6D6zNAh/0I8N
-         vfGHRSdHa2fIXTWwUG0LGVI4BT5LyyNNEeN15U/cnvk4VC5cC1ABONtylEM7bCnBwtxT
-         Wl/vR4R6aTcNmKF4tse1PIHq2LCTWvPZVOsnUkaXdFkjTRdFDl9cXAdei/rpVO/w0wYI
-         AGE1wPgU58cftxsWT0h8nBD2d7eeDS/KkKNJN67+DFxv9PZZN69jnPklzZkR6d4R6inb
-         dBrlVDdgSHZuWYqzwmL+4CfZMGMi3Dsfd+YW8T2o3almgY/uewSYqDwpCSModH6gLwVu
-         A3MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=1Br/N6WhyVMlujnGsxiPG2oa5QW+rtf7KlXAbdHBbwA=;
-        b=qRrjbCJS5lHX7yB6swn7XcmYTykpcDOxVgjC1Mrru0dMynh0m9Z/F/4WieOQoaU9i7
-         c9AHI1kzVDYVV6IIU4P4qDqo6SbJ72MxH5jFr1xT9DaYxvX2DTzftaQb7WkdZe6kUTfD
-         +As5e9rHqJzU6MoWD6r3Q2BhuQrZwU/PWXDKPOS8ujL6xJP1GW2/HGcZZA9z7dVU7Uqe
-         Naa6TYQgqY8+yQH3Wr8CTay4D1PDkhH2f6tTx1J/3BRwiK+ULAxS86Y+oGwya2+1Pqqf
-         KIsr6gi7TzQE1ebzUPRNoXjdVNnc12qVpqQTe1Xu5wTV1emZVqCnH9btPGdXhQQCTG67
-         C+yQ==
-X-Gm-Message-State: AOAM5322El6ayfeOtDssHmWYHhW19YW2R1a9NouW0M1bUlBkmdcjBILz
-        WRfnH1lw3OEF4pr3Aah+PDLqIiD0byI4dA59gFc=
-X-Google-Smtp-Source: ABdhPJz+4O2gfK1QpxHiSz9VPL+cWln3EVhUIyr1seg2nKZCk7h1z/f4MFRCA/veeD4L00YSYFvIZgHVpf78OF4JuFY=
-X-Received: by 2002:a17:906:a012:: with SMTP id p18mr29263781ejy.331.1630397314674;
- Tue, 31 Aug 2021 01:08:34 -0700 (PDT)
+        id S240386AbhHaIk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 04:40:58 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:53364 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S240422AbhHaIk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 04:40:57 -0400
+X-UUID: c2bb3395cc704301b8105ff7d3b932e2-20210831
+X-UUID: c2bb3395cc704301b8105ff7d3b932e2-20210831
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1722613409; Tue, 31 Aug 2021 16:39:59 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 31 Aug 2021 16:39:58 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 31 Aug 2021 16:39:57 +0800
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH] ASoC: dt-bindings: mt8195: remove dependent headers in the example
+Date:   Tue, 31 Aug 2021 16:39:56 +0800
+Message-ID: <20210831083956.9804-1-trevor.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Received: by 2002:ab4:9c84:0:0:0:0:0 with HTTP; Tue, 31 Aug 2021 01:08:34
- -0700 (PDT)
-Reply-To: mrsbillchantallawrence58@gmail.com
-From:   mrsbillchantal <mr.konbarlesawa@gmail.com>
-Date:   Tue, 31 Aug 2021 09:08:34 +0100
-Message-ID: <CAJ1xOM88WmZD4-xpjTUFxLxgQ3joc85_wG586kv3=hFXf6LfeQ@mail.gmail.com>
-Subject: Dear Friend, My present internet connection is very slow in case you
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hello....
+Drop the use of the defines including clock and power id, so that
+we can remove the headers which are not applied in the example.
 
-You have been compensated with the sum of 5.5 million dollars in this
-united nation the payment will be issue into atm visa card and send to
-you from the santander bank we need your address and your  Whatsapp
-this my email.ID (  mrsbillchantallawrence58@gmail.com)  contact  me
+Fixes: b5bac34fcfb4 ("dt-bindings: mediatek: mt8195: add audio afe document")
+Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+---
+ .../bindings/sound/mt8195-afe-pcm.yaml        | 40 +++++++++----------
+ 1 file changed, 19 insertions(+), 21 deletions(-)
 
-Thanks my
+diff --git a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
+index 53e9434a6d9d..dcf790b053d2 100644
+--- a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
++++ b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
+@@ -130,36 +130,34 @@ additionalProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/clock/mt8195-clk.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
+-    #include <dt-bindings/power/mt8195-power.h>
+ 
+     afe: mt8195-afe-pcm@10890000 {
+         compatible = "mediatek,mt8195-audio";
+         reg = <0x10890000 0x10000>;
+         interrupts = <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH 0>;
+         mediatek,topckgen = <&topckgen>;
+-        power-domains = <&spm MT8195_POWER_DOMAIN_AUDIO>;
++        power-domains = <&spm 7>; //MT8195_POWER_DOMAIN_AUDIO
+         clocks = <&clk26m>,
+-                 <&topckgen CLK_TOP_APLL1>,
+-                 <&topckgen CLK_TOP_APLL2>,
+-                 <&topckgen CLK_TOP_APLL12_DIV0>,
+-                 <&topckgen CLK_TOP_APLL12_DIV1>,
+-                 <&topckgen CLK_TOP_APLL12_DIV2>,
+-                 <&topckgen CLK_TOP_APLL12_DIV3>,
+-                 <&topckgen CLK_TOP_APLL12_DIV9>,
+-                 <&topckgen CLK_TOP_A1SYS_HP_SEL>,
+-                 <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
+-                 <&topckgen CLK_TOP_AUDIO_H_SEL>,
+-                 <&topckgen CLK_TOP_AUDIO_LOCAL_BUS_SEL>,
+-                 <&topckgen CLK_TOP_DPTX_M_SEL>,
+-                 <&topckgen CLK_TOP_I2SO1_M_SEL>,
+-                 <&topckgen CLK_TOP_I2SO2_M_SEL>,
+-                 <&topckgen CLK_TOP_I2SI1_M_SEL>,
+-                 <&topckgen CLK_TOP_I2SI2_M_SEL>,
+-                 <&infracfg_ao CLK_INFRA_AO_AUDIO_26M_B>,
+-                 <&scp_adsp CLK_SCP_ADSP_AUDIODSP>;
++                 <&topckgen 163>, //CLK_TOP_APLL1
++                 <&topckgen 166>, //CLK_TOP_APLL2
++                 <&topckgen 233>, //CLK_TOP_APLL12_DIV0
++                 <&topckgen 234>, //CLK_TOP_APLL12_DIV1
++                 <&topckgen 235>, //CLK_TOP_APLL12_DIV2
++                 <&topckgen 236>, //CLK_TOP_APLL12_DIV3
++                 <&topckgen 238>, //CLK_TOP_APLL12_DIV9
++                 <&topckgen 100>, //CLK_TOP_A1SYS_HP_SEL
++                 <&topckgen 33>, //CLK_TOP_AUD_INTBUS_SEL
++                 <&topckgen 34>, //CLK_TOP_AUDIO_H_SEL
++                 <&topckgen 107>, //CLK_TOP_AUDIO_LOCAL_BUS_SEL
++                 <&topckgen 98>, //CLK_TOP_DPTX_M_SEL
++                 <&topckgen 94>, //CLK_TOP_I2SO1_M_SEL
++                 <&topckgen 95>, //CLK_TOP_I2SO2_M_SEL
++                 <&topckgen 96>, //CLK_TOP_I2SI1_M_SEL
++                 <&topckgen 97>, //CLK_TOP_I2SI2_M_SEL
++                 <&infracfg_ao 50>, //CLK_INFRA_AO_AUDIO_26M_B
++                 <&scp_adsp 0>; //CLK_SCP_ADSP_AUDIODSP
+         clock-names = "clk26m",
+                       "apll1_ck",
+                       "apll2_ck",
+-- 
+2.18.0
 
-mrs chantal
