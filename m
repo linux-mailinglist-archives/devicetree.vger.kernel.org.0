@@ -2,330 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A035C3FC622
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 13:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53CC93FC63B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 13:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241275AbhHaKkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 06:40:11 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:18143 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241242AbhHaKjD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Aug 2021 06:39:03 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630406288; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=D9RUBScroOfDbGPnf3xxnomcw5tBm5JhI9nBcSYMpmo=; b=gO5wB/sUNxLhBOFQjbuF8VPoImYdX1wBv9d47fZKHb8WU05lXRF07icTB0DQNDLqTvTXvU8V
- /J+lSa5z+t769j1oxNJKNFgJse9JpM8TUrOZJnVSU5DiMgyHiuJeA4+GS67yQgC9COEtb16l
- bDYysznSvKkjNuXxOymTQHt6PTk=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 612e067db52e91333c05f47c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 31 Aug 2021 10:37:49
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 59A1FC4360C; Tue, 31 Aug 2021 10:37:49 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4DDABC43619;
-        Tue, 31 Aug 2021 10:37:44 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 4DDABC43619
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v1 2/2] clk: qcom: Add lpass clock controller driver for SC7280
-Date:   Tue, 31 Aug 2021 16:06:42 +0530
-Message-Id: <1630406202-3919-2-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1630406202-3919-1-git-send-email-tdas@codeaurora.org>
-References: <1630406202-3919-1-git-send-email-tdas@codeaurora.org>
+        id S241191AbhHaKqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 06:46:17 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:45698 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S238567AbhHaKqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 06:46:17 -0400
+X-UUID: b6045a5a351a49c0a0b98c205a2f48de-20210831
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=phNHXum76mAZ4qYmxK28Mp4u++IBnPR+ThnSGtip/xI=;
+        b=bHJc8wjrQQX01lRkhQulo48BOhlYo5XR3yWHpBGr+kfHPvSuCGwCKWxqIjPjvLvb+SAzvF7lYeM7mtREPnTEGBbKuI2BM6J5L4wR0Jf9O6xNrAje4DzsM+6iJkpuDr2N3sVyK2LQTT0M2SDqp04UvVqWaE4/XU+2oJJqSbi/iOU=;
+X-UUID: b6045a5a351a49c0a0b98c205a2f48de-20210831
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 122042693; Tue, 31 Aug 2021 18:45:16 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 31 Aug 2021 18:45:15 +0800
+Received: from APC01-PU1-obe.outbound.protection.outlook.com (172.21.101.239)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Tue, 31 Aug 2021 18:45:15 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EMAXYF/BcmTfpToo49CxrBo96Txabtqqt8ttcUwy3PTjJnc5WbzrNaAJoEffnMKOKwxO30BeQi/UJ1mb9xfY3V4PEIQyG2eBtUKbLybc4IEwskgPRABCSWJ4BCe5WsDamRTrK6egqn3YYs2BucDzL76oeB7p1BH57dvXm9eY0NWGUNhK2Mwwu6xocqYnCQk/cdIOEUTc1Bdal+0INakYmy65RDqPq3dgRkMD+ArC0Hz8O9Xa+qSyOzg5OVg4YNtTxVV525mq1yZ03RT99jTEdBVChmNBR4lj4TQLGg2v7GDbBDxqw4pmFNQZjBYxJ3Ofv0X4vm5g9luwsji2OoEYCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=phNHXum76mAZ4qYmxK28Mp4u++IBnPR+ThnSGtip/xI=;
+ b=MD9SkBwLv/1MiaOq/HmZc8536g+BdmFwIuzH6TLicovUHVvJWPL5PISgKyBIWIqoTOtQm43H++qqauNFbRLpGTd01PYFxOS4HDhyDCnL9vBSwTOn3ESxVl5PSOj0c4fFZ4KQE6Y8BteFp7zfxeNfBLEMesm9KuXkbvbfVQo0Z/LXmqSkv3MrkNXkf/EpXT9F3yq1bPp14rTE7vqcHe4Cqu9UMNy476PGmo+NHv+JR4GrpNDCHa3dmINS8GLBvSconAzQoFPM4UoM1mWGJsf8a/f79Bu6BBO7QJhoeqib95cCHKEk6gpeuMnReoCfa4FQI2wvurZiJi9wdObWoJkyug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=phNHXum76mAZ4qYmxK28Mp4u++IBnPR+ThnSGtip/xI=;
+ b=icrP/PO7FK+gGiQmcKbZpWaFHOnOD4OTf5TurY5udFhoMpatC7dQwicfIlg8i/dKl9Ca0VCbs1fZg2bsYEh/n0cIcnthgdBHO/H5HTRaLOYATZn4h57FagGF9v0vF3CrU1f9PbN82x2rQybjuha6MmcxQuJ6NY5pEVWW2iBboDY=
+Received: from HK0PR03MB3139.apcprd03.prod.outlook.com (2603:1096:203:4b::11)
+ by HK2PR0302MB2499.apcprd03.prod.outlook.com (2603:1096:202:3::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.16; Tue, 31 Aug
+ 2021 10:45:03 +0000
+Received: from HK0PR03MB3139.apcprd03.prod.outlook.com
+ ([fe80::6595:af4e:bda9:801e]) by HK0PR03MB3139.apcprd03.prod.outlook.com
+ ([fe80::6595:af4e:bda9:801e%6]) with mapi id 15.20.4478.017; Tue, 31 Aug 2021
+ 10:45:02 +0000
+From:   =?utf-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>
+To:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+CC:     "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "krzysztof.kozlowski@canonical.com" 
+        <krzysztof.kozlowski@canonical.com>,
+        =?utf-8?B?WW91bGluIFBlaSAo6KO05Y+L5p6XKQ==?= 
+        <youlin.pei@mediatek.com>,
+        =?utf-8?B?QW5hbiBTdW4gKOWtmeWuieWuiSk=?= <Anan.Sun@mediatek.com>,
+        "tfiga@chromium.org" <tfiga@chromium.org>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        =?utf-8?B?WGlhIEppYW5nICjmsZ/pnJ4p?= <Xia.Jiang@mediatek.com>,
+        "eizan@chromium.org" <eizan@chromium.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        =?utf-8?B?WWkgS3VvICjpg63mh78p?= <Yi.Kuo@mediatek.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "evgreen@chromium.org" <evgreen@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?utf-8?B?QW50aG9ueSBIdWFuZyAo6buD5bu65ZiJKQ==?= 
+        <Anthony.Huang@mediatek.com>,
+        =?utf-8?B?VGlmZmFueSBMaW4gKOael+aFp+ePiik=?= 
+        <tiffany.lin@mediatek.com>,
+        "acourbot@chromium.org" <acourbot@chromium.org>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        "drinkcat@chromium.org" <drinkcat@chromium.org>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "joro@8bytes.org" <joro@8bytes.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "frank-w@public-files.de" <frank-w@public-files.de>,
+        =?utf-8?B?TWluZy1GYW4gQ2hlbiAo6Zmz5piO5rGOKQ==?= 
+        <Ming-Fan.Chen@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "robin.murphy@arm.com" <robin.murphy@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mka@chromium.org" <mka@chromium.org>
+Subject: Re: [PATCH v7 00/12] Clean up "mediatek,larb"
+Thread-Topic: [PATCH v7 00/12] Clean up "mediatek,larb"
+Thread-Index: AQHXhO4/B+asb7CmWUi2ITwnwJWoI6uNoJ8A
+Date:   Tue, 31 Aug 2021 10:45:02 +0000
+Message-ID: <271b63107031f6bfa1b746e70ccdcee6d86db8b7.camel@mediatek.com>
+References: <20210730025238.22456-1-yong.wu@mediatek.com>
+In-Reply-To: <20210730025238.22456-1-yong.wu@mediatek.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 74c22ace-4c7a-4b3f-8624-08d96c6c635b
+x-ms-traffictypediagnostic: HK2PR0302MB2499:
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK2PR0302MB249906CC89596137FA88C2C898CC9@HK2PR0302MB2499.apcprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ICJs5sYJxBYBYD8Oubv8I/7rjityPVUeoC/5N9Imn52AmsSMw76NqBv80QAqEaRLHfWpMo6z98AflyeNViBrDS18tOfkK4WA7/qKaul7n7++EJ4spdQBjXvyY0F6cWtQx3Uybv7yWI760NWTBDekUg07QoE8at20pgw0WzudeWDi/rYOZ6NgwM1eV+skoAaVxCGAKcQftUus43hjsN1MAqm7arPOjwpl/Cb351WCduYV0/UGufzk2YfYgTHAe9IHLcKqXj4UexJWwGp3x/q1dVCGyo7em4FDAaCMqCJBL6v4goGNQOwrn8viAnKU3+hJCehKe1qExYP39Xc1w+H0nBQbtxjuZ82ygIe3o2SlHHIFPMf/SoZAH2vPIKSUDenjX8xMAr154L6HEsEPvmp0ALsSRGh2mNaWJvXB7Sw/AvBw9LVezqoLe5i4E153Fn1Nk8udDIGK6ABixgBw9uYY1CKgA0BEiqvc+/KNbkAZ5A3ygNeLRxwLjPQVU/os+LO09/U+bakaiBLeIllgMxyHf2sQo4RaB+8asKN622wwkEeyJ5GYLMLiS1XJy4tB7PK8/uA4kJILKp4AckfRDuK9pE87zk/QkV/6p6PtbIaLOJbhAc5RzLwOPKHPfREVQFkRkUNtTKJZKE7YOXMRT61bF1BbJgvRwezln6RhL8wRtU0UP9vA/XyCdAH+gcgWbKgYLazyybP+k1MQQ0MPGsuwo+ikgDsYeNJEs4wg8VcwVjUxmAKhrQix3lTxuYvpma/Q9RgR8f2iKrzyO96tkiJPM5zc8GPUCAsvpBfJVZSK2ruGTjCylW/Pejt2Vn6FmnRc8WNZL54h1vwIY5R2isdptY8GULO8f5pVy66HZopXIeA=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR03MB3139.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(85182001)(66476007)(66556008)(64756008)(316002)(38100700002)(66946007)(66446008)(6506007)(122000001)(91956017)(76116006)(6486002)(2906002)(36756003)(6512007)(54906003)(5660300002)(83380400001)(2616005)(71200400001)(966005)(186003)(86362001)(26005)(7416002)(4326008)(6916009)(38070700005)(508600001)(8676002)(8936002)(99106002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dHpPTzRIRnJUWXJQODREV1NIVzd0N1JXeEZLVHNQdWV6eDlmeWR2VUxYaWpS?=
+ =?utf-8?B?eC92VjN5UDNaVXpZSWt0NVRLbHNKU1Z1RXZ1NFE2V0NOUWpVZ3R4RFRGUTlE?=
+ =?utf-8?B?bWFrUXZGQU1NTDJRRlVLdjNMcUEyYlZlRjhUTTU4NUhLM1BGRVM2SHZVK08y?=
+ =?utf-8?B?Q254RTlCbTR0SUpiemJWYmNrcGFKNDBubXVBZWtYaGpaVEpnUGV3SUdibkNw?=
+ =?utf-8?B?TVpndkZjZ1l1ZUNRNjVwODZQSDdNbkFoVnRxa1dYa0Nua2ZZYTNOZnl0QjZQ?=
+ =?utf-8?B?endQemxSSG91WUNrSWZaanpWNWNROGt5TUpSMkszdm5jb1BqbHA4NG56Rmp3?=
+ =?utf-8?B?UDY1OFNPWXhQbWZ5T01MOXJhRHhQbkl1TFhzSERWdXZTc3VWMnEvY2ZubU4r?=
+ =?utf-8?B?ZWJwTExPSkhweFh2VHYvVnVnbkxFcm1PRXFwdlhsYklQYjc0cGtPV1B0QlRT?=
+ =?utf-8?B?YUNuYmsrL0dOa0lhQU1FeVQ5cUNkYlN1R3l1dVVWTk1SVXJzVzdxb3NXS2Va?=
+ =?utf-8?B?TlRnSThDenhZZnZFSlN6ZzJ4SnhqaDdTTDgrNmVIWEIzQUcrNU5iMGRZaDZN?=
+ =?utf-8?B?amxIeFFUUGtGQUhSQ29LTm42cG42Q29YMVdDMS9Bc0RnSzIzQVkvZEkvK0hR?=
+ =?utf-8?B?Uk1OQUVSbXZFeCtObDBlYVlEWndFV0lPb3RJR3o4TjM1c2ltSGRVaVZKalRP?=
+ =?utf-8?B?WVQvd1pNQ1N2dTMyWGNQL2gyZG1uTWwyNDcrWmJCRExMZWRtTTdMQlRWaFBY?=
+ =?utf-8?B?VGdxU04wMUI2MWFjTTJPY3NUNWFUMUFYL05BWUgzTUZpQ3dlYWZRZ24ycXpX?=
+ =?utf-8?B?bVBKYm5hQkk0TGxkUXhmdTZLNkhYaWhzT1U2YjFTNEpteDJXcnErQjNNYUFC?=
+ =?utf-8?B?ZVVGOGVudk9OQmZ1RWVmelFLSFgyaFl4VXBBSnNOekg3YU9HYTF3YlpDelRl?=
+ =?utf-8?B?eVlTYUFHVzJVQzhWTEcrL0I3b3hXTGpITStwcUVqRWNWSThkeWc2bnM2Q1Vn?=
+ =?utf-8?B?TVZOcFgvTUxIOFVBZ3huM2FPVE5PZ0pybGtPZHc1Q1hQd0RieFFVNVRBakt5?=
+ =?utf-8?B?Njc1R3BLeFdZV3NUMEFvK0VuV29Kc0hQbzFlQTV3S2JjYVRBaTNTOWNpZU1l?=
+ =?utf-8?B?d0NyTHd4aXlyRXBMbWNSU0VhZlFUc2FwMjVnUUFtUFF0b0dkazR3WlI0UXlU?=
+ =?utf-8?B?ZzZMb0UydVYxOHFiMXJXbFBRYXU3RUZ5T1pkb09jaS9HVUp4YTNYOUxNT1pl?=
+ =?utf-8?B?T1NLWExTa2xzZFhkcDcreERESVhCQ3VseDZFSFpFdUxubVNFaGpPRzZFMExX?=
+ =?utf-8?B?Rm9HYVhTZW04bElGOTQ0RFFoVkRrdHoxQVRXNDVxMWtFaGlrc3doS2JUL2RY?=
+ =?utf-8?B?MC84TE1RRVdWNlFPdnNIYmNhRDA1bHlSSDVIditHQU92S251M0QySFRDWDFZ?=
+ =?utf-8?B?RlkyWXZtWVd1WG9USXpxNmRHS0tyU2RuWWhRLzBRaGVxeXd4NjcrOTY2Z0NP?=
+ =?utf-8?B?eHJWQTduS0FZVGFQbkdkSFphMkh2UWdlbkFlMlZLaExOcTIyODZUeUNCNzBV?=
+ =?utf-8?B?NFZGQWRjY1JQR0IrVmljYzNuVWhseXlvMit3cWhLWUdRUDN2RUhzTDBBZWo4?=
+ =?utf-8?B?QzlDNXVWVW1kc0lybmJmTHVsc0tlMGIzaC83cEppM0QxdEtJTCs2eEg4Wmhk?=
+ =?utf-8?B?Z0lVRWZ6OVh0VGNHTE02dG96NGxQRFh3MDlMbWt6Um9ZQmlKQ0NUNGoxSjZU?=
+ =?utf-8?Q?UFtR7qKBws/0BmZsw+cQnc3CZiweAiPaGSkWWtk?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <985F7259908913478FD1B549BAC23552@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR03MB3139.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74c22ace-4c7a-4b3f-8624-08d96c6c635b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Aug 2021 10:45:02.5578
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FTX8d5gunTqX53RnrogGC7P0520rFxArZo2rqvwf9WiHMiyrjV8MIR4MY933sB/d0+reTUhoDsKG+Bcra80bMw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0302MB2499
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the lpass clock controller found on SC7280 based devices.
-This would allow lpass peripheral loader drivers to control the clocks to
-bring the subsystem out of reset.
-
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
----
- drivers/clk/qcom/Kconfig          |   8 ++
- drivers/clk/qcom/Makefile         |   1 +
- drivers/clk/qcom/lpasscc-sc7280.c | 216 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 225 insertions(+)
- create mode 100644 drivers/clk/qcom/lpasscc-sc7280.c
-
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 0a55967..cd7a5a1 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -394,6 +394,14 @@ config SC_LPASS_CORECC_7180
- 	  Say Y if you want to use LPASS clocks and power domains of the LPASS
- 	  core clock controller.
- 
-+config SC_LPASSCC_7280
-+	tristate "SC7280 Low Power Audio Subsystem (LPAAS) Clock Controller"
-+	select SC_GCC_7280
-+	help
-+	  Support for the LPASS clock controller on SC7280 devices.
-+	  Say Y if you want to use the LPASS branch clocks of the LPASS clock
-+	  controller to reset the LPASS subsystem.
-+
- config SC_GPUCC_7180
- 	tristate "SC7180 Graphics Clock Controller"
- 	select SC_GCC_7180
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index 9825ef8..1b33f49 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -66,6 +66,7 @@ obj-$(CONFIG_SC_GCC_8180X) += gcc-sc8180x.o
- obj-$(CONFIG_SC_GPUCC_7180) += gpucc-sc7180.o
- obj-$(CONFIG_SC_GPUCC_7280) += gpucc-sc7280.o
- obj-$(CONFIG_SC_LPASS_CORECC_7180) += lpasscorecc-sc7180.o
-+obj-$(CONFIG_SC_LPASSCC_7280) += lpasscc-sc7280.o
- obj-$(CONFIG_SC_MSS_7180) += mss-sc7180.o
- obj-$(CONFIG_SC_VIDEOCC_7180) += videocc-sc7180.o
- obj-$(CONFIG_SC_VIDEOCC_7280) += videocc-sc7280.o
-diff --git a/drivers/clk/qcom/lpasscc-sc7280.c b/drivers/clk/qcom/lpasscc-sc7280.c
-new file mode 100644
-index 0000000..89f1ad6
---- /dev/null
-+++ b/drivers/clk/qcom/lpasscc-sc7280.c
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/platform_device.h>
-+#include <linux/pm_clock.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/regmap.h>
-+
-+#include <dt-bindings/clock/qcom,lpass-sc7280.h>
-+
-+#include "clk-regmap.h"
-+#include "clk-branch.h"
-+#include "common.h"
-+
-+static struct clk_branch lpass_q6ss_ahbm_clk = {
-+	.halt_reg = 0x1c,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x1c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "lpass_q6ss_ahbm_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch lpass_q6ss_ahbs_clk = {
-+	.halt_reg = 0x20,
-+	.halt_check = BRANCH_HALT_VOTED,
-+	.clkr = {
-+		.enable_reg = 0x20,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "lpass_q6ss_ahbs_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch lpass_top_cc_lpi_q6_axim_hs_clk = {
-+	.halt_reg = 0x0,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x0,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "lpass_top_cc_lpi_q6_axim_hs_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch lpass_qdsp6ss_core_clk = {
-+	.halt_reg = 0x20,
-+	/* CLK_OFF would not toggle until LPASS is out of reset */
-+	.halt_check = BRANCH_HALT_SKIP,
-+	.clkr = {
-+		.enable_reg = 0x20,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "lpass_qdsp6ss_core_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch lpass_qdsp6ss_xo_clk = {
-+	.halt_reg = 0x38,
-+	/* CLK_OFF would not toggle until LPASS is out of reset */
-+	.halt_check = BRANCH_HALT_SKIP,
-+	.clkr = {
-+		.enable_reg = 0x38,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "lpass_qdsp6ss_xo_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch lpass_qdsp6ss_sleep_clk = {
-+	.halt_reg = 0x3c,
-+	/* CLK_OFF would not toggle until LPASS is out of reset */
-+	.halt_check = BRANCH_HALT_SKIP,
-+	.clkr = {
-+		.enable_reg = 0x3c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "lpass_qdsp6ss_sleep_clk",
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct regmap_config lpass_regmap_config = {
-+	.reg_bits	= 32,
-+	.reg_stride	= 4,
-+	.val_bits	= 32,
-+	.fast_io	= true,
-+};
-+
-+static struct clk_regmap *lpass_cc_sc7280_clocks[] = {
-+	[LPASS_Q6SS_AHBM_CLK] = &lpass_q6ss_ahbm_clk.clkr,
-+	[LPASS_Q6SS_AHBS_CLK] = &lpass_q6ss_ahbs_clk.clkr,
-+};
-+
-+static const struct qcom_cc_desc lpass_cc_sc7280_desc = {
-+	.config = &lpass_regmap_config,
-+	.clks = lpass_cc_sc7280_clocks,
-+	.num_clks = ARRAY_SIZE(lpass_cc_sc7280_clocks),
-+};
-+
-+static struct clk_regmap *lpass_cc_top_sc7280_clocks[] = {
-+	[LPASS_TOP_CC_LPI_Q6_AXIM_HS_CLK] =
-+				&lpass_top_cc_lpi_q6_axim_hs_clk.clkr,
-+};
-+
-+static const struct qcom_cc_desc lpass_cc_top_sc7280_desc = {
-+	.config = &lpass_regmap_config,
-+	.clks = lpass_cc_top_sc7280_clocks,
-+	.num_clks = ARRAY_SIZE(lpass_cc_top_sc7280_clocks),
-+};
-+
-+static struct clk_regmap *lpass_qdsp6ss_sc7280_clocks[] = {
-+	[LPASS_QDSP6SS_XO_CLK] = &lpass_qdsp6ss_xo_clk.clkr,
-+	[LPASS_QDSP6SS_SLEEP_CLK] = &lpass_qdsp6ss_sleep_clk.clkr,
-+	[LPASS_QDSP6SS_CORE_CLK] = &lpass_qdsp6ss_core_clk.clkr,
-+};
-+
-+static const struct qcom_cc_desc lpass_qdsp6ss_sc7280_desc = {
-+	.config = &lpass_regmap_config,
-+	.clks = lpass_qdsp6ss_sc7280_clocks,
-+	.num_clks = ARRAY_SIZE(lpass_qdsp6ss_sc7280_clocks),
-+};
-+
-+static int lpass_cc_sc7280_probe(struct platform_device *pdev)
-+{
-+	const struct qcom_cc_desc *desc;
-+	int ret;
-+
-+	pm_runtime_enable(&pdev->dev);
-+	ret = pm_clk_create(&pdev->dev);
-+	if (ret)
-+		goto disable_pm_runtime;
-+
-+	ret = pm_clk_add(&pdev->dev, "iface");
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to acquire iface clock\n");
-+		goto destroy_pm_clk;
-+	}
-+
-+	lpass_regmap_config.name = "qdsp6ss";
-+	desc = &lpass_qdsp6ss_sc7280_desc;
-+
-+	ret = qcom_cc_probe_by_index(pdev, 0, desc);
-+	if (ret)
-+		goto destroy_pm_clk;
-+
-+	lpass_regmap_config.name = "top_cc";
-+	desc = &lpass_cc_top_sc7280_desc;
-+
-+	ret = qcom_cc_probe_by_index(pdev, 1, desc);
-+	if (ret)
-+		goto destroy_pm_clk;
-+
-+	lpass_regmap_config.name = "cc";
-+	desc = &lpass_cc_sc7280_desc;
-+
-+	ret = qcom_cc_probe_by_index(pdev, 2, desc);
-+	if (ret)
-+		goto destroy_pm_clk;
-+
-+	return 0;
-+
-+destroy_pm_clk:
-+	pm_clk_destroy(&pdev->dev);
-+
-+disable_pm_runtime:
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id lpass_cc_sc7280_match_table[] = {
-+	{ .compatible = "qcom,sc7280-lpasscc" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, lpass_cc_sc7280_match_table);
-+
-+static struct platform_driver lpass_cc_sc7280_driver = {
-+	.probe		= lpass_cc_sc7280_probe,
-+	.driver		= {
-+		.name	= "sc7280-lpasscc",
-+		.of_match_table = lpass_cc_sc7280_match_table,
-+	},
-+};
-+
-+static int __init lpass_cc_sc7280_init(void)
-+{
-+	return platform_driver_register(&lpass_cc_sc7280_driver);
-+}
-+subsys_initcall(lpass_cc_sc7280_init);
-+
-+static void __exit lpass_cc_sc7280_exit(void)
-+{
-+	platform_driver_unregister(&lpass_cc_sc7280_driver);
-+}
-+module_exit(lpass_cc_sc7280_exit);
-+
-+MODULE_DESCRIPTION("QTI LPASS_CC SC7280 Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
-
+SGkgTWF0dGhpYXMsDQoNCkp1c3QgcGluZyBmb3IgdGhpcyBwYXRjaHNldC4NCg0KVGhhbmtzLg0K
+DQpPbiBGcmksIDIwMjEtMDctMzAgYXQgMTA6NTIgKzA4MDAsIFlvbmcgV3Ugd3JvdGU6DQo+IE1l
+ZGlhVGVrIElPTU1VIGJsb2NrIGRpYWdyYW0gYWx3YXlzIGxpa2UgYmVsb3c6DQo+IA0KPiAgICAg
+ICAgIE00VQ0KPiAgICAgICAgICB8DQo+ICAgICBzbWktY29tbW9uDQo+ICAgICAgICAgIHwNCj4g
+ICAtLS0tLS0tLS0tLS0tDQo+ICAgfCAgICAgICAgIHwgIC4uLg0KPiAgIHwgICAgICAgICB8DQo+
+IGxhcmIxICAgICBsYXJiMg0KPiAgIHwgICAgICAgICB8DQo+IHZkZWMgICAgICAgdmVuYw0KPiAN
+Cj4gQWxsIHRoZSBjb25zdW1lciBjb25uZWN0IHdpdGggc21pLWxhcmIsIHRoZW4gY29ubmVjdCB3
+aXRoIHNtaS1jb21tb24uDQo+IA0KPiBXaGVuIHRoZSBjb25zdW1lciB3b3JrcywgaXQgc2hvdWxk
+IGVuYWJsZSB0aGUgc21pLWxhcmIncyBwb3dlciB3aGljaA0KPiBhbHNvDQo+IG5lZWQgZW5hYmxl
+IHRoZSBzbWktY29tbW9uJ3MgcG93ZXIgZmlyc3RseS4NCj4gDQo+IFRodXMsIEZpcnN0bHksIHVz
+ZSB0aGUgZGV2aWNlIGxpbmsgY29ubmVjdCB0aGUgY29uc3VtZXIgYW5kIHRoZQ0KPiBzbWktbGFy
+YnMuIHRoZW4gYWRkIGRldmljZSBsaW5rIGJldHdlZW4gdGhlIHNtaS1sYXJiIGFuZCBzbWktY29t
+bW9uLg0KPiANCj4gQWZ0ZXIgYWRkaW5nIHRoZSBkZXZpY2VfbGluaywgdGhlbiAibWVkaWF0ZWss
+bGFyYiIgcHJvcGVydHkgY2FuIGJlDQo+IHJlbW92ZWQuDQo+IHRoZSBpb21tdSBjb25zdW1lciBk
+b24ndCBuZWVkIGNhbGwgdGhlIG10a19zbWlfbGFyYl9nZXQvcHV0IHRvIGVuYWJsZQ0KPiB0aGUg
+cG93ZXIgYW5kIGNsb2NrIG9mIHNtaS1sYXJiIGFuZCBzbWktY29tbW9uLg0KPiANCj4gQmFzZSBv
+biB2NS4xNC1yYzEsIGFuZCBhIGpwZWdbMV0gYW5kIG1kcFsyXSBwYXRjaHNldC4NCj4gDQo+IFsx
+XSANCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtbWVkaWF0ZWsvMjAyMTA3MDIxMDIz
+MDQuMzM0NjQyOS0xLWhzaW55aUBjaHJvbWl1bS5vcmcvDQo+IFsyXSANCj4gaHR0cHM6Ly9sb3Jl
+Lmtlcm5lbC5vcmcvbGludXgtbWVkaWF0ZWsvMjAyMTA3MDkwMjIzMjQuMTYwNzg4NC0xLWVpemFu
+QGNocm9taXVtLm9yZy8NCj4gDQo+IENoYW5nZSBub3RlczoNCj4gdjc6IDEpIEZpeCBhIGFybTMy
+IGJvb3QgZmFpbCBpc3N1ZS4gcmVwb3J0ZWQgZnJvbSBGcmFuay4NCj4gICAgIDIpIEFkZCBhIHJl
+dHVybiBmYWlsIGluIHRoZSBtdGsgZHJtLiBzdWdnZXN0ZWQgYnkgRGFmbmEuDQoNCg==
