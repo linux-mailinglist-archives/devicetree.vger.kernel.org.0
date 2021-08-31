@@ -2,106 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C7253FC492
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 11:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A13743FC58D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 12:28:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240533AbhHaJBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 05:01:20 -0400
-Received: from mout.gmx.net ([212.227.15.15]:60013 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240405AbhHaJBU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Aug 2021 05:01:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1630400404;
-        bh=geC6jummpH913xck4Kqq+pCIvyvdgzsG+yQCENcEc+s=;
-        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
-         CC:From;
-        b=Xsy/hFufawuOyGmFd7sn0YqHyxwGH4xVnvk3ZGxPY+YJu/+kel2khtWFfKEqUsU8n
-         F45N3CUY2pTtTWA7Jd98NvwRZKiVEJjZXQklRqLLQ6dZRP6tid5ZMwxUP9fvm3PHmW
-         ObTr6DRjaX7DHxZLGYvQX/fj5VREzvkVHeEjeeRQ=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from frank-s9 ([80.245.77.109]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mqb1W-1mpdTv3F6O-00mYGr; Tue, 31
- Aug 2021 11:00:04 +0200
-Date:   Tue, 31 Aug 2021 10:59:56 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <16f980b95e1f32bb8eb32448f1615bafdc51b792.camel@mediatek.com>
-References: <20210822041333.5264-1-mans0n@gorani.run> <20210830155903.13907-1-mans0n@gorani.run> <20210830155903.13907-2-mans0n@gorani.run> <16f980b95e1f32bb8eb32448f1615bafdc51b792.camel@mediatek.com>
+        id S240932AbhHaKWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 06:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240895AbhHaKWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 06:22:34 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032E3C061575
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 03:21:39 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id p38so37547592lfa.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 03:21:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SaQiFvhNq7368+94ke7tCwmU8u/vT5hggbptJeHOcYo=;
+        b=OQ8Bc7H/j7dY8F+7/WWLC8l2pfhCHESOHANGP40xBtANdPJhhCoXsFJE8/mcMLl6lb
+         bKH2QIzdw8Z3bHXrkZiaqsbkx9pU/7qQ3ikcKw5DsQifxf7w4S6mRQvk1kjExY/XCrBL
+         x1f8EISuWCWhIkqllRSOpX0AE8ii8ONpNBj807/cw5HxrPKESUk9MTq7svvQQbGk8/DX
+         PT6GqOiEW+D9hmrjFv2Db0EVRCjLTLSb9b0DMV2Id/Pszpdi0+sYj409rQuECO1+Zsdc
+         D/bTITEW67QawE23Dz0u5spWInPsJ8lnUGdvyx/xOZCTiDWTFogofPOFgZWhd5KL98sg
+         ZfmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SaQiFvhNq7368+94ke7tCwmU8u/vT5hggbptJeHOcYo=;
+        b=hWn6s5vBy12fxrQsoN/SaQqs7JOqsRGrkxm2JJsB+J/b9S+0Pej0OIu/Tq4v9D2Zux
+         Mmuo0mM6DWbNCHUGHbmg3mMpndOB+eWJ+wAR34QeZUCoNgZnk4m+aMhEBiDQlSjzwdPX
+         k3T1FWQ/6cuijqrftPSa+7yrXFrKLiA5mUYDSYkdS0yGPsRqHIDiQysPJJwZ45Ae5IGS
+         Q55kJc+2X/hCoBjfEQny99Tz9PURX6fEK7AdaYaapYZavxmj2AIfLNoAFSn9XCEbdCbF
+         QggvWeHAZsdWk96JnlVeDD9K+omzGl1pTGpWUoO++eb49M8f00SsuWNQUGrITZg+cjfP
+         0law==
+X-Gm-Message-State: AOAM5338jO63lJtLYW4JorjqYwo5bZxc6VZq4vt8esQ5R49ow8Pry2a7
+        yWHGrf++ugMyHdCaW6o6yYkMuDOe6FDBL4lu
+X-Google-Smtp-Source: ABdhPJysTQHKjj6sHl08LoVd8gzCM5Oi5pHDfNeAo1fs+lBAhuD47ThIpXSDKSYwaxeOL6peufsGZQ==
+X-Received: by 2002:a05:6512:2210:: with SMTP id h16mr20684305lfu.621.1630405297014;
+        Tue, 31 Aug 2021 03:21:37 -0700 (PDT)
+Received: from localhost.localdomain (h-155-4-129-146.NA.cust.bahnhof.se. [155.4.129.146])
+        by smtp.gmail.com with ESMTPSA id b21sm753714lfi.104.2021.08.31.03.21.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Aug 2021 03:21:36 -0700 (PDT)
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
+Date:   Tue, 31 Aug 2021 12:21:25 +0200
+Message-Id: <20210831102125.624661-1-ulf.hansson@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 1/2] arm: dts: mt7623: add musb device nodes
-Reply-to: frank-w@public-files.de
-To:     linux-mediatek@lists.infradead.org,
-        =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= 
-        <Chunfeng.Yun@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "mans0n@gorani.run" <mans0n@gorani.run>
-CC:     "b-liu@ti.com" <b-liu@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-From:   Frank Wunderlich <frank-w@public-files.de>
-Message-ID: <14C40B35-3607-49C6-970B-441F9093125A@public-files.de>
-X-Provags-ID: V03:K1:BwjuzFFpOwqolvGter7ofmISuM0KzZzqIugWamQrsY4X2p7n8CT
- RxQJjEoq7gUemkMcDiTQdFGTh7hpvJ9aQks+j19YeRfHjoLxuR3b6XQ/31He+ZeVjTU7mRl
- 3MWVjzmO2fOo7Rw0gIQEuLxRAh6fuN9jdzfIujJLjqRAC5WPkDopaGLao0YQCZgh8Zj3Wg7
- Rqio26/e4xvFl3yk5BqmQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Ztp2H4ZVSy8=:z0bvrzrU2U8eBz8ElEB1NC
- EJqvvijFZl0MEaOGXjlQhIt8taxLXDaxxGFqBMEjHpe9/hR4acAbuvLAq2L78kZbKBHFxKsGj
- dE77eCzSuX2EpBGpmFJVVSpZXQTQuO0izMRIiD/NuEpHezU3XLwODph8B6JQ1UCB3iUtnvGtD
- JUBMAllF7kJkkWoDeweeLYfS8oEOE5blvAOK0oitvSWvWpn/VdHWsSGXP1P199nAJOwwXjtbh
- /LyYH9Ki+CNrwAeadYqjhfp0bJmpAUKMYtZ9A4g5FodVc2Lt4vF2yIo/UWfsOh/t/2u9Exl7j
- HN8unWP432SqGjjTFgcbTrhWEyyBrvgE7ry61X3/5PPtRrtW20Mm1xm9uumd6pmDU7dpCCs8i
- c8rxNT+vaScfXijznBJU6I1+0TbxM86HRjtUJWjpCosdO5VH1LRL1XNiMhbVOXGfgW/jqpCrz
- 2NoYbFV19IVaeG5weJlD7Q1J+ZRjryAaUj2uithLm/6nV0Ll7wL645ags20b5yvXaha99c/lE
- /Keh1oqfSQOq4zg3z0gQ0y4GEHHm5Ed7f/p3zI4jCOE5iXv+7jnbmAXF2JQ1MnUqc3tlhDJ5X
- ubjvIwThd8zT8hMMQgkZbaF25yyhvOYm62d0ZNCSo9kqkZWplpMl2OooWsMUljLoZ9eiEuxMd
- bTRL5pgfhxSsuac9bxy1D6sORV7nHto+S//P16U/qG27RiDvVk/zAoB/WfSDdTvg5FIn5DUBQ
- JbSPqnjRFzLPgY5fJOG8mMytYYTySzdOoKuA29GBkuF7DJZ/pDARVnjbEu2dPnkTZCg/9LGs0
- ogObwccsGfqw7a2t0T9MmClYixFtXXXnGjkmM2MfP3iRajcGvicNN2IS4ARWTdXvHWSr8jcjQ
- C88WHczCEInQyZgLItg1Re5kptMt4Vq0zqSTOKKI4ol/2f7rhYuK1/d0S+FQ7jZK3biVhUm51
- GHxi+8/EZC7yJ0CMJNU6Z7sAbG20OMbDln5nAL3MAPE94SQCW/mHD6UNqR1Fz0WPxFxzQzU7E
- auNvNSY0jO8c91S1Z6Df4u1/2Ty0yHOaSqwSj1L6Ohq/CGzYtc09fIEkLKFOvOe3SXg5+5AQI
- STrBcra9Z4eYKy3JUPwIX0nDIF1EjqJ3U5QQeoUuJ1l6qNiijqC/FOBqQ==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 31=2E August 2021 08:27:18 MESZ schrieb "Chunfeng Yun (=E4=BA=91=E6=98=
-=A5=E5=B3=B0)" <Chunfeng=2EYun@mediatek=2Ecom>:
+In the struct supplier_bindings the member 'node_not_dev' is described as
+"The consumer node containing the property is never a device.", but that
+doesn't match the behaviour of the code in of_link_property().
 
->Is the dt-binding patch applied?=20
->It's better to put it into this series due to the new
->compatible "mediatek,mt7623-musb" is used for the first time=2E
->
->Reviewed-by: Chunfeng Yun <chunfeng=2Eyun@mediatek=2Ecom>
+To make the behaviour consistent with the description, let's rename the
+member to "optional_con_dev" and clarify the corresponding comment.
 
-Hi,
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+ drivers/of/property.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-I don't see [1] (ack from rob) in [2]/[3]
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 6c028632f425..2babb1807228 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
+  * @parse_prop.index: For properties holding a list of phandles, this is the
+  *		      index into the list
+  * @optional: Describes whether a supplier is mandatory or not
+- * @node_not_dev: The consumer node containing the property is never a device.
++ * @optional_con_dev: The consumer node containing the property may not be a
++ *		      device, then try finding one from an ancestor node.
+  *
+  * Returns:
+  * parse_prop() return values are
+@@ -1261,7 +1262,7 @@ struct supplier_bindings {
+ 	struct device_node *(*parse_prop)(struct device_node *np,
+ 					  const char *prop_name, int index);
+ 	bool optional;
+-	bool node_not_dev;
++	bool optional_con_dev;
+ };
+ 
+ DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
+@@ -1370,7 +1371,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_pinctrl6, },
+ 	{ .parse_prop = parse_pinctrl7, },
+ 	{ .parse_prop = parse_pinctrl8, },
+-	{ .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
++	{ .parse_prop = parse_remote_endpoint, .optional_con_dev = true, },
+ 	{ .parse_prop = parse_gpio_compat, },
+ 	{ .parse_prop = parse_interrupts, },
+ 	{ .parse_prop = parse_regulators, },
+@@ -1415,7 +1416,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
+ 		while ((phandle = s->parse_prop(con_np, prop_name, i))) {
+ 			struct device_node *con_dev_np;
+ 
+-			con_dev_np = s->node_not_dev
++			con_dev_np = s->optional_con_dev
+ 					? of_get_compat_node(con_np)
+ 					: of_node_get(con_np);
+ 			matched = true;
+-- 
+2.25.1
 
-@sungbo: please leave dt-bindings patch in series=2E
-You need no new version only for adding tags (acked,tested or reviewed)=2E
-Only for code-changes,but then add tags from previous versions=2E
-
-Imho it is better to take my musb patch [4]
-into the series as well to make depency cleaner
-
-[1] https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/20210808=
-123840=2E176738-2-mans0n@gorani=2Erun/
-[2] https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/robh/linux=2Egit/l=
-og/?h=3Dfor-next
-[3] https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/matthias=2Ebgg/lin=
-ux=2Egit/log/?h=3Dfor-next
-[4] https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/20210830=
-145958=2E108605-1-linux@fw-web=2Ede/
-regards Frank
