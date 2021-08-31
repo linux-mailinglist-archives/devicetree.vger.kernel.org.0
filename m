@@ -2,130 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BDA73FC874
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 15:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 309263FC89A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 15:44:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238964AbhHaNl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 09:41:26 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:56521 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239249AbhHaNlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 09:41:24 -0400
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id ADD1622253;
-        Tue, 31 Aug 2021 15:40:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1630417227;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=vdn135cl0Aa6ie1nYkWTTrV8H1I8kgyGrXPstkLRVzM=;
-        b=u04y2bFacYO6lMT7BE3LIHIs5oI3gVPjOhvvU1G4mzcKQ81gu8UcDV+2qVozZYjxxnSjna
-        6da/JwPZYv7NeauU6Rs4DvQe1/MD4ZNM8rp5hPv+P1SGzxm/15vU0Ny8+1edRuDvCFkkx6
-        tldKAsxT9Jk1YnX3g/G37Fsv2jxO3X4=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH 7/7] arm64: dts: ls1028a: use phy-mode instead of phy-connection-type
-Date:   Tue, 31 Aug 2021 15:40:13 +0200
-Message-Id: <20210831134013.1625527-8-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210831134013.1625527-1-michael@walle.cc>
-References: <20210831134013.1625527-1-michael@walle.cc>
-MIME-Version: 1.0
+        id S238926AbhHaNpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 09:45:25 -0400
+Received: from comms.puri.sm ([159.203.221.185]:59180 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239631AbhHaNpU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Aug 2021 09:45:20 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id A2892DFE8B;
+        Tue, 31 Aug 2021 06:43:55 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id wn-BFqgtG8Zf; Tue, 31 Aug 2021 06:43:54 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     martin.kepplinger@puri.sm
+Cc:     devicetree@vger.kernel.org, kernel@puri.sm,
+        krzysztof.kozlowski@canonical.com,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, mchehab@kernel.org,
+        paul.kocialkowski@bootlin.com, pavel@ucw.cz,
+        phone-devel@vger.kernel.org, robh@kernel.org, sakari.ailus@iki.fi,
+        shawnx.tu@intel.com
+Subject: [PATCH v8 0/4] Add support for the Hynix Hi-846 camera
+Date:   Tue, 31 Aug 2021 15:43:40 +0200
+Message-Id: <20210831134344.1673318-1-martin.kepplinger@puri.sm>
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In linux both are identical, phy-mode is used more often, though. Also
-for the ls1028a both phy-connection-type and phy-mode was used, one for
-the enetc nodes and the other for the switch nodes. Unify them. But the
-main reason for this is that the device tree files can be shared with
-the u-boot ones; there the enetc driver only supports the "phy-mode"
-property.
+hi,
 
-Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts | 2 +-
- arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts | 2 +-
- arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts      | 2 +-
- arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts               | 2 +-
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts               | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+This series adds support for the SK Hynix Hi-846 CMOS images sensor.
+It includes the dt-bindings and the driver.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-index 836a9b7d8263..7cd29ab970d9 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dts
-@@ -54,6 +54,6 @@ &enetc_port0 {
- 
- &enetc_port1 {
- 	phy-handle = <&phy0>;
--	phy-connection-type = "rgmii-id";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts
-index 77ed0ebd2c75..9b5e92fb753e 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dts
-@@ -42,6 +42,6 @@ vddh: vddh-regulator {
- 
- &enetc_port1 {
- 	phy-handle = <&phy1>;
--	phy-connection-type = "rgmii-id";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-index b3e9c499e8b0..d74e738e4070 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-@@ -90,7 +90,7 @@ phy0: ethernet-phy@5 {
- 
- &enetc_port0 {
- 	phy-handle = <&phy0>;
--	phy-connection-type = "sgmii";
-+	phy-mode = "sgmii";
- 	managed = "in-band-status";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index f36f87858aef..6e2a1da662fb 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -320,7 +320,7 @@ mux: mux-controller {
- 
- &enetc_port1 {
- 	phy-handle = <&qds_phy1>;
--	phy-connection-type = "rgmii-id";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index ea11b1eb01f8..7719f44bcaed 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -221,7 +221,7 @@ qsgmii_phy3: ethernet-phy@13 {
- 
- &enetc_port0 {
- 	phy-handle = <&sgmii_phy0>;
--	phy-connection-type = "sgmii";
-+	phy-mode = "sgmii";
- 	managed = "in-band-status";
- 	status = "okay";
- };
+best wishes,
+
+                              martin
+
+revision history
+----------------
+v8: (thank you Laurent)
+* add fwnode properties support for orientation and rotation on the board
+* remove the arm64 defconfig addition patch. deal with that later.
+
+v7: (thank you Sakari)
+* move the check for supported nr_lanes for a mode to set_format()
+* change get_selection() according to the Sakaris' review
+* check for the mipi link frequencies from DT
+* check for the external clock rate and add assigned-clock-rates requirement
+* https://lore.kernel.org/linux-media/20210712084137.3779628-1-martin.kepplinger@puri.sm/
+
+v6:
+* better digital gain defaults
+* lane config fix found by smatch
+* fix regulator usage in power_on()
+* https://lore.kernel.org/linux-media/20210628101054.828579-1-martin.kepplinger@puri.sm/
+
+v5: (thank you Laurent and Rob)
+* minor dt-bindings fixes
+* driver: disable lens shading correcting (no seed values yet used from "otp" for that)
+* add reviewed-tags
+* https://lore.kernel.org/linux-media/20210611101404.2553818-1-martin.kepplinger@puri.sm/
+
+v4: (thank you Laurent, Sakari and Rob) many driver changes, see v3 review for
+details. they include:
+* add get_selection(), remove open() callback
+* use gpiod API
+* use regulator_bulk API
+* fix power supply timing sequence and bindings
+* https://lore.kernel.org/linux-media/20210607105213.1211722-1-martin.kepplinger@puri.sm/
+
+v3: (thank you, Laurent)
+* use do_div() for divisions
+* reset-gpios DT property name instead of rst-gpios
+* improve the dt-bindings
+* add the phone-devel list
+* https://lore.kernel.org/linux-media/20210531120737.168496-1-martin.kepplinger@puri.sm/
+
+v2:
+sent a bit early due to stupid mistakes
+* fix build issues
+* fix dtschema issues
+* add enable for arm64 defconfig
+* https://lore.kernel.org/linux-media/20210530212337.GA15366@duo.ucw.cz/T/#t
+
+v1:
+* https://lore.kernel.org/linux-media/20210527091221.3335998-1-martin.kepplinger@puri.sm/
+
+
+Martin Kepplinger (4):
+  dt-bindings: vendor-prefixes: Add SK Hynix Inc.
+  dt-bindings: media: document SK Hynix Hi-846 MIPI CSI-2 8M pixel
+    sensor
+  media: i2c: add driver for the SK Hynix Hi-846 8M pixel camera
+  Documentation: i2c-cardlist: add the Hynix hi846 sensor
+
+ .../admin-guide/media/i2c-cardlist.rst        |    1 +
+ .../bindings/media/i2c/hynix,hi846.yaml       |  120 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ drivers/media/i2c/Kconfig                     |   13 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/hi846.c                     | 2190 +++++++++++++++++
+ 7 files changed, 2333 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+ create mode 100644 drivers/media/i2c/hi846.c
+
 -- 
 2.30.2
 
