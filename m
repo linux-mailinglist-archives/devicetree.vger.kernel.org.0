@@ -2,219 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C413FCCD7
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 20:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0EE3FCCF1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 20:24:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234018AbhHaSS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 14:18:26 -0400
-Received: from mail.xenproject.org ([104.130.215.37]:51248 "EHLO
-        mail.xenproject.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232058AbhHaSS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 14:18:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=xen.org;
-        s=20200302mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject;
-        bh=16B09ZC2kVe5CFAiPAPi08oWbUjQCuVEEzb2AbLCQ/w=; b=iHxHgAj/PO/yJcf1VTblSavHnU
-        gh6Nw+obOYgtMWhQYNeh6PDD+hyr+TaZhJKj3hE2vXsk4cANUuWouflEeeVwfJJ63DhGMgowHnxdV
-        4+Z4wPzZT9mrG3f4WpkcA2UN8/pihW1Ms7+mCfqLB8/OySlhXg5x2/uNaL+oYMDxVEgI=;
-Received: from xenbits.xenproject.org ([104.239.192.120])
-        by mail.xenproject.org with esmtp (Exim 4.92)
-        (envelope-from <julien@xen.org>)
-        id 1mL8KA-0003wG-9G; Tue, 31 Aug 2021 18:17:30 +0000
-Received: from [54.239.6.185] (helo=a483e7b01a66.ant.amazon.com)
-        by xenbits.xenproject.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <julien@xen.org>)
-        id 1mL8KA-0000ou-2T; Tue, 31 Aug 2021 18:17:30 +0000
-Subject: Re: Clarification regarding updating "Xen hypervisor device tree
- bindings on Arm"
-To:     Stefano Stabellini <sstabellini@kernel.org>,
-        Oleksandr <olekstysh@gmail.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>
-References: <CAPD2p-kPXFgaLtwy95ZswYUK3xCDaxC4L85vQw=EvTWgehJ7-A@mail.gmail.com>
- <alpine.DEB.2.21.2108061306140.18743@sstabellini-ThinkPad-T480s>
- <f45250de-fdca-18c4-044b-276d0ff66b05@xen.org>
- <alpine.DEB.2.21.2108061519500.18743@sstabellini-ThinkPad-T480s>
- <fa3ad927-14c8-59ac-6cdc-673c65850ac6@xen.org>
- <8b311e33-89e5-87f3-63d2-54bbc2f8f8e7@gmail.com>
- <alpine.DEB.2.21.2108271620160.17851@sstabellini-ThinkPad-T480s>
-From:   Julien Grall <julien@xen.org>
-Message-ID: <d893021a-c20d-d4fd-e9c7-b1e8a9427b9e@xen.org>
-Date:   Tue, 31 Aug 2021 19:17:28 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.13.0
+        id S234673AbhHaSZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 14:25:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49932 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232870AbhHaSZS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Aug 2021 14:25:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7F42760FE8;
+        Tue, 31 Aug 2021 18:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630434262;
+        bh=JppPB/r91xiHliv4KMyg+e4WdWnb/md7Nq5OwRDXCJQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lM3iIqS0bv/TZAayziHSuifgl2v9HezM8iyfdyKEjuSdK2EPbRzrin7MzBre7U+ow
+         ZsMwfMS7DSxzWhm6UFMVDOp3/L+OqlsHDRhQhiMNj2C2XcTXfdzJpUs+Y1EnnoJDMv
+         OlV+MLef2DrOFUQG9m4kfBSLNlVIdIvV5wRomvHA2EPxUoq71cIYhDG+K+DxdxjZJA
+         GRibCKFSOpqzYumk7jGDlDQgyLRVM69YR/pyXFeZjbq5OHIJyEYv/M0kQ9BIBR+9su
+         hE+KLqybUKR1q9ywtSEyOiJ2bhperswXQxa4Wz/vqDv0TK+A0vnbNCP5mUmsayhoUC
+         9YLGnaPWMOhLA==
+Received: by mail-ej1-f43.google.com with SMTP id t19so734538ejr.8;
+        Tue, 31 Aug 2021 11:24:22 -0700 (PDT)
+X-Gm-Message-State: AOAM533NgxHWIZBG40iU9NTiYm4nx9BO70TUhfGryAVJ6/2oXyQf9IRb
+        B2s5Pub4MofiSKpbCrcmzT8NrR1jjUelysk5JA==
+X-Google-Smtp-Source: ABdhPJx0bWUTQpVcwF3zUZB8CpqetIM2G7wA1PzLMXQI4MWCrkFokKMqKxjrdpW/NUMoT4LNfTTn7o0aQrfDcpk04lI=
+X-Received: by 2002:a17:907:b06:: with SMTP id h6mr30094347ejl.130.1630434261057;
+ Tue, 31 Aug 2021 11:24:21 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.2108271620160.17851@sstabellini-ThinkPad-T480s>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+References: <CAL_JsqKEvAypWhiaWMhxM7zVkLAFL9=eMU7_vr=ht+uyxYe0qg@mail.gmail.com>
+ <20210831154711.GA107126@bjorn-Precision-5520>
+In-Reply-To: <20210831154711.GA107126@bjorn-Precision-5520>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 31 Aug 2021 13:24:09 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+y=-UTv6B5cGG5p-q-rzzyEuWZ_Q6YKPT=Jej1boZwjQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+y=-UTv6B5cGG5p-q-rzzyEuWZ_Q6YKPT=Jej1boZwjQ@mail.gmail.com>
+Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
+ pcie-cfg base address
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Chuanjia Liu <chuanjia.liu@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefano,
+On Tue, Aug 31, 2021 at 10:47 AM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> On Tue, Aug 31, 2021 at 10:04:40AM -0500, Rob Herring wrote:
+> > On Fri, Aug 27, 2021 at 11:46 AM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > >
+> > > On Mon, Aug 23, 2021 at 11:27:56AM +0800, Chuanjia Liu wrote:
+> > > > For the new dts format, add a new method to get
+> > > > shared pcie-cfg base address and use it to configure
+> > > > the PCIECFG controller
+> > >
+> > > Rewrap this to fill 75 columns.
+> > >
+> > > > Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
+> > > > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> > > > ---
+> > > >  drivers/pci/controller/pcie-mediatek.c | 17 +++++++++++++++++
+> > > >  1 file changed, 17 insertions(+)
+> > > >
+> > > > diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> > > > index 25bee693834f..4296d9e04240 100644
+> > > > --- a/drivers/pci/controller/pcie-mediatek.c
+> > > > +++ b/drivers/pci/controller/pcie-mediatek.c
+> > > > @@ -14,6 +14,7 @@
+> > > >  #include <linux/irqchip/chained_irq.h>
+> > > >  #include <linux/irqdomain.h>
+> > > >  #include <linux/kernel.h>
+> > > > +#include <linux/mfd/syscon.h>
+> > > >  #include <linux/msi.h>
+> > > >  #include <linux/module.h>
+> > > >  #include <linux/of_address.h>
+> > > > @@ -23,6 +24,7 @@
+> > > >  #include <linux/phy/phy.h>
+> > > >  #include <linux/platform_device.h>
+> > > >  #include <linux/pm_runtime.h>
+> > > > +#include <linux/regmap.h>
+> > > >  #include <linux/reset.h>
+> > > >
+> > > >  #include "../pci.h"
+> > > > @@ -207,6 +209,7 @@ struct mtk_pcie_port {
+> > > >   * struct mtk_pcie - PCIe host information
+> > > >   * @dev: pointer to PCIe device
+> > > >   * @base: IO mapped register base
+> > > > + * @cfg: IO mapped register map for PCIe config
+> > > >   * @free_ck: free-run reference clock
+> > > >   * @mem: non-prefetchable memory resource
+> > > >   * @ports: pointer to PCIe port information
+> > > > @@ -215,6 +218,7 @@ struct mtk_pcie_port {
+> > > >  struct mtk_pcie {
+> > > >       struct device *dev;
+> > > >       void __iomem *base;
+> > > > +     struct regmap *cfg;
+> > > >       struct clk *free_ck;
+> > > >
+> > > >       struct list_head ports;
+> > > > @@ -682,6 +686,10 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+> > > >               val |= PCIE_CSR_LTSSM_EN(port->slot) |
+> > > >                      PCIE_CSR_ASPM_L1_EN(port->slot);
+> > > >               writel(val, pcie->base + PCIE_SYS_CFG_V2);
+> > > > +     } else if (pcie->cfg) {
+> > > > +             val = PCIE_CSR_LTSSM_EN(port->slot) |
+> > > > +                   PCIE_CSR_ASPM_L1_EN(port->slot);
+> > > > +             regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
+> > > >       }
+> > > >
+> > > >       /* Assert all reset signals */
+> > > > @@ -985,6 +993,7 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+> > > >       struct device *dev = pcie->dev;
+> > > >       struct platform_device *pdev = to_platform_device(dev);
+> > > >       struct resource *regs;
+> > > > +     struct device_node *cfg_node;
+> > > >       int err;
+> > > >
+> > > >       /* get shared registers, which are optional */
+> > > > @@ -995,6 +1004,14 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+> > > >                       return PTR_ERR(pcie->base);
+> > > >       }
+> > > >
+> > > > +     cfg_node = of_find_compatible_node(NULL, NULL,
+> > > > +                                        "mediatek,generic-pciecfg");
+> > >
+> > > This looks wrong to me.  IIUC, since we start at NULL, this searches
+> > > the entire device tree for any node with
+> > >
+> > >   compatible = "mediatek,generic-pciecfg"
+> > >
+> > > but we should only care about the specific device/node this driver
+> > > claimed.
+> > >
+> > > Should this be part of the match data, i.e., struct mtk_pcie_soc?
+> >
+> > What would you put in match data exactly?
+> >
+> > The other way to do this is to have a DT property with the phandle
+> > which people like to do (have everything in the node 'for their
+> > driver'). If there's only 1 possible node (which is almost always the
+> > case), then there is little benefit to having another property. It's
+> > just redundant data. A phandle lookup might be a bit faster with the
+> > caching we do, but on a miss it would still walk all nodes.
+> >
+> > The other thing with these 'extra register bits to twiddle' is that
+> > they tend to be SoC specific and change from chip to chip, so either
+> > way is not very portable. The real question to ask is should there be
+> > a standard interface used or created.
+> >
+> > > > +     if (cfg_node) {
+> > > > +             pcie->cfg = syscon_node_to_regmap(cfg_node);
+> > >
+> > > Other drivers in drivers/pci/controller/ use
+> > > syscon_regmap_lookup_by_phandle() (j721e, dra7xx, keystone,
+> > > layerscape, artpec6) or syscon_regmap_lookup_by_compatible() (imx6,
+> > > kirin, v3-semi).
+> >
+> > There's no phandle to use in this case. As above, I'm trying to break
+> > people of this habit.
+>
+> Thanks!  I was mistaken in lots of ways here.  I first assumed
+> "mediatek,generic-pciecfg" was local to the pcie node, but that's not
+> true.  Then I thought there might be an ownership issue because the
+> regmap is not local to the device, and several drivers look up and use
+> the same regmap.  But it looks like regmap provides some internal
+> locking which mitigates most or all of that concern.
+>
+> Just to check -- you prefer syscon_regmap_lookup_by_compatible() over
+> syscon_regmap_lookup_by_phandle()?
 
-On 28/08/2021 01:05, Stefano Stabellini wrote:
-> On Fri, 27 Aug 2021, Oleksandr wrote:
->> On 07.08.21 01:57, Julien Grall wrote:
->>> Hi Stefano,
->>>
->>> On 06/08/2021 23:26, Stefano Stabellini wrote:
->>>> On Fri, 6 Aug 2021, Julien Grall wrote:
->>>>> Hi Stefano,
->>>>>
->>>>> On 06/08/2021 21:15, Stefano Stabellini wrote:
->>>>>> On Fri, 6 Aug 2021, Oleksandr Tyshchenko wrote:
->>>>>>> Hello, all.
->>>>>>>
->>>>>>> I would like to clarify some bits regarding a possible update for
->>>>>>> "Xen
->>>>>>> device tree bindings for the guest" [1].
->>>>>>>
->>>>>>> A bit of context:
->>>>>>> We are considering extending "reg" property under the hypervisor
->>>>>>> node and
->>>>>>> we would like to avoid breaking backward compatibility.
->>>>>>> So far, the "reg" was used to carry a single region for the grant
->>>>>>> table
->>>>>>> mapping only and it's size is quite small for the new improvement
->>>>>>> we are currently working on.
->>>>>>>
->>>>>>> What we want to do is to extend the current region [reg: 0] and add
->>>>>>> an
->>>>>>> extra regions [reg: 1-N] to be used as a safe address space for any
->>>>>>> Xen specific mappings. But, we need to be careful about running
->>>>>>> "new"
->>>>>>> guests (with the improvement being built-in already) on "old" Xen
->>>>>>> which is not aware of the extended regions, so we need the binding
->>>>>>> to be
->>>>>>> extended in a backward compatible way. In order to detect whether
->>>>>>> we are running on top of the "new" Xen (and it provides us enough
->>>>>>> space to
->>>>>>> be used for improvement), we definitely need some sign to
->>>>>>> indicate that.
->>>>>>>
->>>>>>> Could you please clarify, how do you expect the binding to be
->>>>>>> changed in
->>>>>>> the backward compatible way?
->>>>>>> - by adding an extra compatible (as it is a change of the binding
->>>>>>> technically)
->>>>>>> - by just adding new property (xen,***) to indicate that "reg"
->>>>>>> contains
->>>>>>> enough space
->>>>>>> - other option
->>>>>>     The current description is:
->>>>>>
->>>>>> - reg: specifies the base physical address and size of a region in
->>>>>>      memory where the grant table should be mapped to, using an
->>>>>>      HYPERVISOR_memory_op hypercall [...]
->>>>>>
->>>>>>
->>>>>> Although it says "a region" I think that adding multiple ranges would
->>>>>> be
->>>>>> fine and shouldn't break backward compatibility.
->>>>>>
->>>>>> In addition, the purpose of the region was described as "where the
->>>>>> grant
->>>>>> table should be mapped". In other words, it is a safe address range
->>>>>> where the OS can map Xen special pages.
->>>>>>
->>>>>> Your proposal is to extend the region to be bigger to allow the OS to
->>>>>> map more Xen special pages. I think it is a natural extension to the
->>>>>> binding, which should be backward compatible.
->>>>>
->>>>> I agree that extending the reg (or even adding a second region) should
->>>>> be fine
->>>>> for older OS.
->>>>>
->>>>>>
->>>>>> Rob, I am not sure what is commonly done in these cases. Maybe we just
->>>>>> need an update to the description of the binding? I am also fine with
->>>>>> adding a new compatible string if needed.
->>>>>
->>>>> So the trouble is how a newer Linux version knows that the region is big
->>>>> enough to deal with all the foreign/grant mapping?
->>>>>
->>>>> If you run on older Xen, then the region will only be 16MB. This means
->>>>> the
->>>>> Linux will have to fallback on stealing RAM as it is today.
->>>>>
->>>>> IOW, XSA-300 will still be a thing. On newer Xen (or toolstack), we
->>>>> ideally
->>>>> want the OS to not fallback on stealing RAM (and close XSA-300). This is
->>>>> where
->>>>> we need a way to advertise it.
->>>>>
->>>>> The question here is whether we want to use a property or a compatible
->>>>> for
->>>>> this.
->>>>>
->>>>> I am leaning towards the latter because this is an extension of the
->>>>> bindings.
->>>>> However, I wasn't entirely whether this was a normal way to do it.
->>
->>
->> May I please ask for the clarification how to properly advertise that we have
->> extended region? By new compatible or property?
-> 
-> The current compatible string is defined as:
-> 
-> - compatible:
-> 	compatible = "xen,xen-<version>", "xen,xen";
->    where <version> is the version of the Xen ABI of the platform.
-> 
-> 
-> On the Xen side it is implemented as:
-> 
-> "xen,xen-"__stringify(XEN_VERSION)"."__stringify(XEN_SUBVERSION)"\0"
-> 
-> 
-> So in a way we already have the version in the compatible string but it
-> is just the Xen version, not the version of the Device Tree binding.
-> 
-> 
-> Looking at the way the compatible string is parsed in Linux, I think we
-> cannot easily change/add a different string format because it would
-> cause older Linux to stop initializing the Xen subsystem.
+Yes, unless there is either more than 1 instance of the syscon or some
+additional data specific to the user (e.g. a register offset).
 
-AFAICT, Linux doesn't care about extra compatible after "xen,xen". So in 
-theory we could write:
-
-"xen,xen-<version>", "xen,xen", "xen,xen-v2".
-
-> 
-> So one option is to rely on a check based on the Xen version. Example:
-> 
->    version >= xen,xen-4.16
-
-This option would prevent a stakeholder to backport the work to older Xen.
-
-> 
-> Or we need to go with a property. This seems safer and more solid. The
-> property could be as simple as "extended-region":
-> 
-> hypervisor {
-> 	compatible = "xen,xen-4.16", "xen,xen";
->      extended-region;
-> 	reg = <0 0xb0000000 0 0x20000 0xc 0x0 0x1 0x0>;
-> 	interrupts = <1 15 0xf08>;
-> };
-> 
-> 
-> Julien, do you have a better suggestion for the property name?
-
-I am a bit confused with the name you suggest. To me it looks this would 
-be used to indicate whether "reg" has one or more regions.
-
-But I don't think we need a property for that. What we need to a 
-property for is to indicate whether the first region is safe to use (see 
-the discussion about the grant table).
-
-So can you clarify what you expect to convey with this property? 
-Although, at the moment, I don't have a good name to suggest.
-
-Cheers,
-
--- 
-Julien Grall
+Rob
