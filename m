@@ -2,108 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3499E3FC7BE
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 14:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B633FC7CD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 15:04:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233721AbhHaNAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 09:00:00 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:31556 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233530AbhHaM75 (ORCPT
+        id S229625AbhHaNEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 09:04:54 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:36122
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232667AbhHaNEx (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Aug 2021 08:59:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1630414742;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=VFi9mk+JrNYqm9om9cI3aYM4Tz+JK5QNKRVw7UvYJXE=;
-        b=IwsU7QwrwZoqqfg9gxTDolrNRIRtOe52u8LmNMVzPvrHIJzfyy4IXxpQKqM1/a+gVzqwf3
-        vR4HcfQkqG1h6fLP8I51z/HQd0DCS7rGr7pVtgki45qZk4ncbjPj4rnJ+EB378t8E1D53H
-        UpXxmu0Uzki4PJ+t9kZYI/JXB6mtiHY=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-444-RpSO8R-_PwmdTEy8FtCgoQ-1; Tue, 31 Aug 2021 08:59:00 -0400
-X-MC-Unique: RpSO8R-_PwmdTEy8FtCgoQ-1
-Received: by mail-wr1-f69.google.com with SMTP id l1-20020adff481000000b00156e670a09dso4033687wro.1
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 05:59:00 -0700 (PDT)
+        Tue, 31 Aug 2021 09:04:53 -0400
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7FC183F321
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 13:03:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1630415037;
+        bh=qDh+jaB0np2Ma4qQPLUONgv0hkCk0/2/t0zPMqiZXPk=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=UzTEnwFsdJONS1Cp9/apf1twDjul36NWZFWPANsFja/7BB3ieYJ4H2MRWMwAI6Kbd
+         kWdKk/eYLFKKBNlVdlTgFfx4VwkOwl3xDNHG1kdg2v57Ca9d6TIfglj1Y7vFTeRe/a
+         E9TqVckQVBkfSBnlpH4xBSD69GTxcSdJq65BkmTp7tZXJuT6/+fh9KmijL4a7oMdxD
+         hJupMgWd2rKK+VFr00jafqmgVNCZrXzcDF0ra1ACUuv6QXp1k7kYa1/rtuQ7Bk4UHu
+         aeq967iV8q+k200kpmKUYUbxAM34d6Xyh1lqhwdf1htutDUCdwgrn7ld5BCmC6ffQG
+         n4o8PMxzD5xkw==
+Received: by mail-wm1-f71.google.com with SMTP id y188-20020a1c7dc5000000b002e80e0b2f87so1236915wmc.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 06:03:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VFi9mk+JrNYqm9om9cI3aYM4Tz+JK5QNKRVw7UvYJXE=;
-        b=rFM18AKz/s/TFz1cXlWGCA525BAiEU6ChqjNnt+4PC9cauxyEUIXMm+lg++/pvFqPa
-         ykmgt1H6O3EpHWzfiRUaj8Zi3pOrfW0iBfWrwjj6Od1PEVw+B81jBztFxsb8dykBTXIe
-         TDcUHjZKVz/RWVkNB6tQEbAmFOQjG+exmGhf6JlX0J7VSWmT3ilRdKuF6ScQcno2ndtu
-         3VsiXTjfwhr1V5Bhhj0ML8ROxrD76eaPq7FCkuebtsFv0o8loGAiUnJQsHa/5NMBcylA
-         hMCyxfnCyfZMl2tjWMrtqAJXBOzcDNM19UUSo4U3a9G5twmbTMLhWNFDqFs2qlfAgL34
-         FcMw==
-X-Gm-Message-State: AOAM531ZaM5OE8lnojrgmpTilqwHxiUiK3StfBD8vmKeEz0Ffe67pnKq
-        eX/DUulfsgB+e8KREfS8KtXxE8KUWN7AKJMBltDwuS6ciiH131iH/VjdBCcdFgcyPJHdIqVvcEa
-        VtjuY3xJcCwTKvt6lQbH4sg==
-X-Received: by 2002:a5d:6e84:: with SMTP id k4mr30756121wrz.426.1630414739547;
-        Tue, 31 Aug 2021 05:58:59 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzflIax6tFxvMs9mjbd8B1Mb2iEt9SCQmR/++VhwuAoQyhS9HpVASDt6bCiXW4+7etv8yFh8w==
-X-Received: by 2002:a5d:6e84:: with SMTP id k4mr30756112wrz.426.1630414739351;
-        Tue, 31 Aug 2021 05:58:59 -0700 (PDT)
-Received: from vian.redhat.com ([2a0c:5a80:3c08:b500:afb2:5ebc:3fd2:26de])
-        by smtp.gmail.com with ESMTPSA id a133sm2553199wme.5.2021.08.31.05.58.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 05:58:59 -0700 (PDT)
-From:   Nicolas Saenz Julienne <nsaenzju@redhat.com>
-To:     robh+dt@kernel.org, nsaenz@kernel.org, f.fainelli@gmail.com
-Cc:     gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stefan.wahren@i2se.com,
-        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 2/2] ARM: dts: bcm2711-rpi-4-b: Fix usb's unit address
-Date:   Tue, 31 Aug 2021 14:58:43 +0200
-Message-Id: <20210831125843.1233488-2-nsaenzju@redhat.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210831125843.1233488-1-nsaenzju@redhat.com>
-References: <20210831125843.1233488-1-nsaenzju@redhat.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qDh+jaB0np2Ma4qQPLUONgv0hkCk0/2/t0zPMqiZXPk=;
+        b=QNH4GjWo6AJk1/XufYb3mE1n3+sPsdT9VAvKAPezUJdRXG8KUGlWw2/yjdHCW7vOjL
+         OFiyUP9oMUPg0t/8dZUsTVatXkK+Hywln4lvcMCHgrNHUnbnL5uMLuCSW0swigL7ELMc
+         UTU/gRPv/Hw0cXiOHsD0QqVBCHNHJB82BwMW0h4QgwsgRfdieStDEE5D7lbB1XArFtlQ
+         TAhFWALTgWU3UEXwU/j+gi1aQNyZBQttMwCI9K2CEUkP9ZKHKeG/dTINZdQGpxtewoOW
+         pAKInVzdZTO7lw6NhuoLvQ3uj9OHs3IewSxcgBd5p0vVguufgHjLHEZmTIw1SBqZSZnX
+         jE2A==
+X-Gm-Message-State: AOAM531x5wEWFsvaUwGfIczaVycIxY3Ow+3Up3IAG+LOAUWs9YkTq8g1
+        Cdtt1lbF92wYqixyw+h0xLZjvczeYKzNbYVSVfGxACA2BDaC79ltNgyShRC6S98ykdu7/ZH4b0F
+        Asv0pPdyHnZcnSpy+S6pnGcDsEn5An0RI3FjF0M0=
+X-Received: by 2002:a1c:98d2:: with SMTP id a201mr4148674wme.89.1630415037243;
+        Tue, 31 Aug 2021 06:03:57 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxeqlQimbRGjw6jejCDWBCWbWbg+R0a4qSrqXfxkK2pAyisDvv0rWZSb1NBFkB7+rE1teZl2A==
+X-Received: by 2002:a1c:98d2:: with SMTP id a201mr4148639wme.89.1630415037010;
+        Tue, 31 Aug 2021 06:03:57 -0700 (PDT)
+Received: from [192.168.3.211] ([79.98.113.63])
+        by smtp.gmail.com with ESMTPSA id l15sm18300749wrv.84.2021.08.31.06.03.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Aug 2021 06:03:56 -0700 (PDT)
+Subject: Re: [PATCH v3 5/8] dt-bindings: clock: samsung: convert Exynos4 to
+ dtschema
+To:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+References: <20210825134056.219884-1-krzysztof.kozlowski@canonical.com>
+ <20210825134056.219884-6-krzysztof.kozlowski@canonical.com>
+ <CAL_JsqJvEgqvnTokdNjOR=XdY89TdZxUXR4--P1FXVj75z3tgA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <d5e75754-4724-9cbf-d07e-47c40cfa130f@canonical.com>
+Date:   Tue, 31 Aug 2021 15:03:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJvEgqvnTokdNjOR=XdY89TdZxUXR4--P1FXVj75z3tgA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The unit address is supposed to represent '<device>,<function>'. Which
-are both 0 for RPi4b's XHCI controller. On top of that although
-OpenFirmware states bus number goes in the high part of the last reg
-parameter, FDT doesn't seem to care for it[1], so remove it.
+On 31/08/2021 14:36, Rob Herring wrote:
+> On Wed, Aug 25, 2021 at 8:41 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> Merge Exynos4210 and Exynos4412 clock controller bindings to existing DT
+>> schema.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../bindings/clock/exynos4-clock.txt          | 86 -------------------
+>>  .../bindings/clock/samsung,exynos-clock.yaml  |  3 +
+>>  .../clock/samsung,exynos4412-isp-clock.yaml   | 64 ++++++++++++++
+>>  3 files changed, 67 insertions(+), 86 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/clock/exynos4-clock.txt
+>>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos4412-isp-clock.yaml
+> 
+> [...]
+> 
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/exynos4412.h>
+> 
+> Where is this header? linux-next is now failing:
+> 
 
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210830103909.323356-1-nsaenzju@redhat.com/#24414633
-Fixes: 258f92d2f840 ("ARM: dts: bcm2711: Add reset controller to xHCI node")
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Nicolas Saenz Julienne <nsaenzju@redhat.com>
----
+Argh, it should be exynos4.h. Stephen mentioned it but I missed the
+difference in number. I wonder how it passed dt_binding_check on my
+machine...
 
-Chages since v1:
- - Add patch as per robh suggestion
+Sorry for the mess, I'll send the fix.
 
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index 8377dc14b7b5..50530cc91876 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -225,8 +225,8 @@ pci@0,0 {
- 
- 		reg = <0 0 0 0 0>;
- 
--		usb@1,0 {
--			reg = <0x10000 0 0 0 0>;
-+		usb@0,0 {
-+			reg = <0 0 0 0 0>;
- 			resets = <&reset RASPBERRYPI_FIRMWARE_RESET_ID_USB>;
- 		};
- 	};
--- 
-2.31.1
 
+Best regards,
+Krzysztof
