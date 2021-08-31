@@ -2,109 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2133FCEFF
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 23:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC273FCF0B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 23:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbhHaVRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 17:17:00 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:45581 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbhHaVRA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 17:17:00 -0400
-Received: by mail-ot1-f49.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso835076otv.12;
-        Tue, 31 Aug 2021 14:16:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rZmwEc8NSqQoWoUVVA+56Qi0kmHYwHehZyUiwcO+sqs=;
-        b=S+S+fT55alkGNj8IncFdTS6BxUSlz7Oi4zETbZiR9uF+9017cNbh1K135uwkxqEl1+
-         h9LUlcST+dw/et2Gxi/QsuJhkhT8jkAuLBOiVNt1J1zsa/pOZL4CYRYrRN14EpCijK7D
-         CEeQQr7QMJ/m4crHJ0x1+JqftJ+pTEX5a98ivwyPIk2eDjo8QSTgWUTOOtXwEl8vMYrq
-         JDPtyIfk8uO/ai+/oXDLBQQZ3Vpza/d3A15RHTlqBJtFATs6iNCN7w6nqW8Xu7IXYZEz
-         c5M9XY5AhXKnLWICjlZDb6K8ri3kIWx9bKuFl80SxPwPkRagCAxn03KbmdlKvRJyrj5A
-         Cbvg==
-X-Gm-Message-State: AOAM533QaFcPkiuSQQXSvR5w445I/GQnDTw5183Bf1+ZXyaPkysyqkMg
-        tOuxbNbGSws0Ww2aQBj1Mw==
-X-Google-Smtp-Source: ABdhPJw7RRtPYNtKDaTLRNDD+gWvBYmpgo6Y5q94eazPn7Kx9XK37LCbzcdLvdMzHqsNBXzR9UapMw==
-X-Received: by 2002:a9d:4b86:: with SMTP id k6mr21942828otf.198.1630444564237;
-        Tue, 31 Aug 2021 14:16:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b9sm4276424otp.46.2021.08.31.14.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 14:16:03 -0700 (PDT)
-Received: (nullmailer pid 659825 invoked by uid 1000);
-        Tue, 31 Aug 2021 21:16:02 -0000
-Date:   Tue, 31 Aug 2021 16:16:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: interrupt-controller: msi: Add
- msi-ranges property
-Message-ID: <YS6cEkDn5IAVW/xQ@robh.at.kernel.org>
-References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
- <20210827171534.62380-3-mark.kettenis@xs4all.nl>
+        id S238033AbhHaVUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 17:20:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46692 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232083AbhHaVUy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Aug 2021 17:20:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 06A6261051;
+        Tue, 31 Aug 2021 21:19:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630444799;
+        bh=58ZGKjmdNk1Y/iiAvIPggougkSxjgsPBHzSOSOEZ8EI=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=YuAj7jEeTf0e9+dKcq1KrLLWNw9aVlQX98ZaaYmMyNB5p1OQIQfukar0DE130SnHd
+         9UdyZMG1RZCEO0TmuOMe658ZpEYJxjby7S2tJUc/6fhqvDpj48GJ94tt1hVanqunNn
+         CYTcu0PTfBVwaaMCMIryplHb0zx0aKx37rJXM/788t7TAgjEC8F5p8dm7azcA+7Rrd
+         s6cTU2bhqeQicgVJRNVUyq5NK20vX/0jQ04F5T/MAuQN42eMygr5GEL+TzoyHb1XhV
+         Ce0N5NXz3z8r9zMRaf2nJdJ52GV70M5SxnrAu3mljBOiwOyYh1HBsrKuUYPrJp7Ynp
+         ZRsFc3IPf0KtA==
+Date:   Tue, 31 Aug 2021 14:19:52 -0700 (PDT)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To:     Julien Grall <julien@xen.org>
+cc:     Stefano Stabellini <sstabellini@kernel.org>,
+        Oleksandr <olekstysh@gmail.com>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
+Subject: Re: Clarification regarding updating "Xen hypervisor device tree
+ bindings on Arm"
+In-Reply-To: <d893021a-c20d-d4fd-e9c7-b1e8a9427b9e@xen.org>
+Message-ID: <alpine.DEB.2.21.2108311406460.18862@sstabellini-ThinkPad-T480s>
+References: <CAPD2p-kPXFgaLtwy95ZswYUK3xCDaxC4L85vQw=EvTWgehJ7-A@mail.gmail.com> <alpine.DEB.2.21.2108061306140.18743@sstabellini-ThinkPad-T480s> <f45250de-fdca-18c4-044b-276d0ff66b05@xen.org> <alpine.DEB.2.21.2108061519500.18743@sstabellini-ThinkPad-T480s>
+ <fa3ad927-14c8-59ac-6cdc-673c65850ac6@xen.org> <8b311e33-89e5-87f3-63d2-54bbc2f8f8e7@gmail.com> <alpine.DEB.2.21.2108271620160.17851@sstabellini-ThinkPad-T480s> <d893021a-c20d-d4fd-e9c7-b1e8a9427b9e@xen.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210827171534.62380-3-mark.kettenis@xs4all.nl>
+Content-Type: multipart/mixed; BOUNDARY="8323329-741974425-1630444744=:18862"
+Content-ID: <alpine.DEB.2.21.2108311419110.18862@sstabellini-ThinkPad-T480s>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 27, 2021 at 07:15:27PM +0200, Mark Kettenis wrote:
-> From: Mark Kettenis <kettenis@openbsd.org>
-> 
-> Update the MSI controller binding to add an msi-ranges property
-> that specifies how MSIs map onto regular interrupts on some other
-> interrupt controller.
-> 
-> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> ---
->  .../bindings/interrupt-controller/msi-controller.yaml     | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
-> index 5ed6cd46e2e0..bf8b8a7dba09 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
-> @@ -31,4 +31,12 @@ properties:
->        Identifies the node as an MSI controller.
->      $ref: /schemas/types.yaml#/definitions/flag
->  
-> +  msi-ranges:
-> +    description:
-> +      A list of pairs <intid span>, where "intid" is the specification
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-It's not really 'pairs' and 'interrupt specifier' is the terminology the 
-spec uses. How about:
+--8323329-741974425-1630444744=:18862
+Content-Type: text/plain; CHARSET=UTF-8
+Content-Transfer-Encoding: 8BIT
+Content-ID: <alpine.DEB.2.21.2108311419111.18862@sstabellini-ThinkPad-T480s>
 
-A list of <phandle intspec span>, where "phandle" is parent interrupt 
-controller, "intspec" is the starting/base interrupt specifier, and 
-"span" is the size of that range (typically multiples of 32).
-
-The 'multiples of 32' part is what Marc told me.
-
-> +      of the first interrupt (including the phandle for the interrupt
-> +      controller) that can be used as an MSI, and "span" the size of
-> +      that range. Multiple ranges can be provided.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
->  additionalProperties: true
-> -- 
-> 2.32.0
+On Tue, 31 Aug 2021, Julien Grall wrote:
+> On 28/08/2021 01:05, Stefano Stabellini wrote:
+> > On Fri, 27 Aug 2021, Oleksandr wrote:
+> > > On 07.08.21 01:57, Julien Grall wrote:
+> > > > Hi Stefano,
+> > > > 
+> > > > On 06/08/2021 23:26, Stefano Stabellini wrote:
+> > > > > On Fri, 6 Aug 2021, Julien Grall wrote:
+> > > > > > Hi Stefano,
+> > > > > > 
+> > > > > > On 06/08/2021 21:15, Stefano Stabellini wrote:
+> > > > > > > On Fri, 6 Aug 2021, Oleksandr Tyshchenko wrote:
+> > > > > > > > Hello, all.
+> > > > > > > > 
+> > > > > > > > I would like to clarify some bits regarding a possible update
+> > > > > > > > for
+> > > > > > > > "Xen
+> > > > > > > > device tree bindings for the guest" [1].
+> > > > > > > > 
+> > > > > > > > A bit of context:
+> > > > > > > > We are considering extending "reg" property under the hypervisor
+> > > > > > > > node and
+> > > > > > > > we would like to avoid breaking backward compatibility.
+> > > > > > > > So far, the "reg" was used to carry a single region for the
+> > > > > > > > grant
+> > > > > > > > table
+> > > > > > > > mapping only and it's size is quite small for the new
+> > > > > > > > improvement
+> > > > > > > > we are currently working on.
+> > > > > > > > 
+> > > > > > > > What we want to do is to extend the current region [reg: 0] and
+> > > > > > > > add
+> > > > > > > > an
+> > > > > > > > extra regions [reg: 1-N] to be used as a safe address space for
+> > > > > > > > any
+> > > > > > > > Xen specific mappings. But, we need to be careful about running
+> > > > > > > > "new"
+> > > > > > > > guests (with the improvement being built-in already) on "old"
+> > > > > > > > Xen
+> > > > > > > > which is not aware of the extended regions, so we need the
+> > > > > > > > binding
+> > > > > > > > to be
+> > > > > > > > extended in a backward compatible way. In order to detect
+> > > > > > > > whether
+> > > > > > > > we are running on top of the "new" Xen (and it provides us
+> > > > > > > > enough
+> > > > > > > > space to
+> > > > > > > > be used for improvement), we definitely need some sign to
+> > > > > > > > indicate that.
+> > > > > > > > 
+> > > > > > > > Could you please clarify, how do you expect the binding to be
+> > > > > > > > changed in
+> > > > > > > > the backward compatible way?
+> > > > > > > > - by adding an extra compatible (as it is a change of the
+> > > > > > > > binding
+> > > > > > > > technically)
+> > > > > > > > - by just adding new property (xen,***) to indicate that "reg"
+> > > > > > > > contains
+> > > > > > > > enough space
+> > > > > > > > - other option
+> > > > > > >     The current description is:
+> > > > > > > 
+> > > > > > > - reg: specifies the base physical address and size of a region in
+> > > > > > >      memory where the grant table should be mapped to, using an
+> > > > > > >      HYPERVISOR_memory_op hypercall [...]
+> > > > > > > 
+> > > > > > > 
+> > > > > > > Although it says "a region" I think that adding multiple ranges
+> > > > > > > would
+> > > > > > > be
+> > > > > > > fine and shouldn't break backward compatibility.
+> > > > > > > 
+> > > > > > > In addition, the purpose of the region was described as "where the
+> > > > > > > grant
+> > > > > > > table should be mapped". In other words, it is a safe address
+> > > > > > > range
+> > > > > > > where the OS can map Xen special pages.
+> > > > > > > 
+> > > > > > > Your proposal is to extend the region to be bigger to allow the OS
+> > > > > > > to
+> > > > > > > map more Xen special pages. I think it is a natural extension to
+> > > > > > > the
+> > > > > > > binding, which should be backward compatible.
+> > > > > > 
+> > > > > > I agree that extending the reg (or even adding a second region)
+> > > > > > should
+> > > > > > be fine
+> > > > > > for older OS.
+> > > > > > 
+> > > > > > > 
+> > > > > > > Rob, I am not sure what is commonly done in these cases. Maybe we
+> > > > > > > just
+> > > > > > > need an update to the description of the binding? I am also fine
+> > > > > > > with
+> > > > > > > adding a new compatible string if needed.
+> > > > > > 
+> > > > > > So the trouble is how a newer Linux version knows that the region is
+> > > > > > big
+> > > > > > enough to deal with all the foreign/grant mapping?
+> > > > > > 
+> > > > > > If you run on older Xen, then the region will only be 16MB. This
+> > > > > > means
+> > > > > > the
+> > > > > > Linux will have to fallback on stealing RAM as it is today.
+> > > > > > 
+> > > > > > IOW, XSA-300 will still be a thing. On newer Xen (or toolstack), we
+> > > > > > ideally
+> > > > > > want the OS to not fallback on stealing RAM (and close XSA-300).
+> > > > > > This is
+> > > > > > where
+> > > > > > we need a way to advertise it.
+> > > > > > 
+> > > > > > The question here is whether we want to use a property or a
+> > > > > > compatible
+> > > > > > for
+> > > > > > this.
+> > > > > > 
+> > > > > > I am leaning towards the latter because this is an extension of the
+> > > > > > bindings.
+> > > > > > However, I wasn't entirely whether this was a normal way to do it.
+> > > 
+> > > 
+> > > May I please ask for the clarification how to properly advertise that we
+> > > have
+> > > extended region? By new compatible or property?
+> > 
+> > The current compatible string is defined as:
+> > 
+> > - compatible:
+> > 	compatible = "xen,xen-<version>", "xen,xen";
+> >    where <version> is the version of the Xen ABI of the platform.
+> > 
+> > 
+> > On the Xen side it is implemented as:
+> > 
+> > "xen,xen-"__stringify(XEN_VERSION)"."__stringify(XEN_SUBVERSION)"\0"
+> > 
+> > 
+> > So in a way we already have the version in the compatible string but it
+> > is just the Xen version, not the version of the Device Tree binding.
+> > 
+> > 
+> > Looking at the way the compatible string is parsed in Linux, I think we
+> > cannot easily change/add a different string format because it would
+> > cause older Linux to stop initializing the Xen subsystem.
 > 
+> AFAICT, Linux doesn't care about extra compatible after "xen,xen". So in
+> theory we could write:
 > 
+> "xen,xen-<version>", "xen,xen", "xen,xen-v2".
+
+Keep in mind that the generic compatible string ("xen,xen") is typically
+last. Also we shouldn't rely on their ordering. Considering the definition
+of hyper_node:
+
+
+static __initdata struct {
+	const char *compat;
+	const char *prefix;
+	const char *version;
+	bool found;
+} hyper_node = {"xen,xen", "xen,xen-", NULL, false};
+
+
+And the following code:
+
+
+	s = of_get_flat_dt_prop(node, "compatible", &len);
+	if (strlen(hyper_node.prefix) + 3  < len &&
+	    !strncmp(hyper_node.prefix, s, strlen(hyper_node.prefix)))
+		hyper_node.version = s + strlen(hyper_node.prefix);
+
+
+It looks like there is potential for breakage. For instance, It looks
+like that hyper_node.version could end up being set to "xen,xen-v2"
+depending on the success or failure of the first < len check. If not
+"xen,xen-v2", I would guess that "xen,xen-version-2" would cause
+hyper_node.version to be set to "version-2".
+
+
+If we were to introduce a new compatible we would need to make it so the
+prefix "xen,xen-" does not match it. Something like "xen,api-v2" might
+be possible.
+
+
+
+> > So one option is to rely on a check based on the Xen version. Example:
+> > 
+> >    version >= xen,xen-4.16
+> 
+> This option would prevent a stakeholder to backport the work to older Xen.
+> 
+> > 
+> > Or we need to go with a property. This seems safer and more solid. The
+> > property could be as simple as "extended-region":
+> > 
+> > hypervisor {
+> > 	compatible = "xen,xen-4.16", "xen,xen";
+> >      extended-region;
+> > 	reg = <0 0xb0000000 0 0x20000 0xc 0x0 0x1 0x0>;
+> > 	interrupts = <1 15 0xf08>;
+> > };
+> > 
+> > 
+> > Julien, do you have a better suggestion for the property name?
+> 
+> I am a bit confused with the name you suggest. To me it looks this would be
+> used to indicate whether "reg" has one or more regions.
+> 
+> But I don't think we need a property for that. What we need to a property for
+> is to indicate whether the first region is safe to use (see the discussion
+> about the grant table).
+> 
+> So can you clarify what you expect to convey with this property? Although, at
+> the moment, I don't have a good name to suggest.
+
+Yeah extended-region is a bad name. It meant to convey that the reg
+property will cover a larger (extended) address range.
+--8323329-741974425-1630444744=:18862--
