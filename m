@@ -2,87 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 813043FC182
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 05:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F993FC1AE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 05:49:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbhHaDcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 23:32:24 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:57642 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229983AbhHaDcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 23:32:23 -0400
-X-UUID: 28d8e3b791bd4d13a91a10de81bdef3a-20210831
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=i4ol5vbanD813f/B2tnhhHkAIPJlnC/VEEVt1TAFHhI=;
-        b=Nf9ll2G683B/PC68VzwDAXf23DlS16J6bAEC4tvJLaUk8r27D3V3DJcudrdqv/Omhb1+m/E9jLUMnrFXfVXE2wmXO0Yg+0fjbYdre+0dByF8RDlM1IkriZPPN4nfN+V1lUZ/+HKJtsmVOHuB+TV15Ceb/gzQRWBrVYiZogbKbcE=;
-X-UUID: 28d8e3b791bd4d13a91a10de81bdef3a-20210831
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 215663490; Tue, 31 Aug 2021 11:31:25 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 31 Aug
- 2021 11:31:23 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 31 Aug 2021 11:31:22 +0800
-Message-ID: <ccf767340afe13a6d273ad8fbc29c6bc966d6314.camel@mediatek.com>
-Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
- pcie-cfg base address
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     <robh+dt@kernel.org>, <bhelgaas@google.com>,
-        <matthias.bgg@gmail.com>, <lorenzo.pieralisi@arm.com>,
-        <ryder.lee@mediatek.com>, <jianjun.wang@mediatek.com>,
-        <yong.wu@mediatek.com>, <linux-pci@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Tue, 31 Aug 2021 11:31:24 +0800
-In-Reply-To: <20210830214317.GA27606@bjorn-Precision-5520>
-References: <20210830214317.GA27606@bjorn-Precision-5520>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S239508AbhHaDub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 23:50:31 -0400
+Received: from szxga01-in.huawei.com ([45.249.212.187]:18992 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239509AbhHaDua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 23:50:30 -0400
+Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.56])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GzCl75jDVzbkSH;
+        Tue, 31 Aug 2021 11:45:39 +0800 (CST)
+Received: from dggema764-chm.china.huawei.com (10.1.198.206) by
+ dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2176.2; Tue, 31 Aug 2021 11:49:34 +0800
+Received: from DESKTOP-8RFUVS3.china.huawei.com (10.174.185.179) by
+ dggema764-chm.china.huawei.com (10.1.198.206) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.8; Tue, 31 Aug 2021 11:49:33 +0800
+From:   Zenghui Yu <yuzenghui@huawei.com>
+To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <wanghaibin.wang@huawei.com>, "Zenghui Yu" <yuzenghui@huawei.com>,
+        Arnd Bergmann <arnd@arndb.de>, Jun Nie <jun.nie@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH] dt-bindings: display: remove zte,vou.txt binding doc
+Date:   Tue, 31 Aug 2021 11:49:24 +0800
+Message-ID: <20210831034924.86-1-yuzenghui@huawei.com>
+X-Mailer: git-send-email 2.23.0.windows.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.185.179]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggema764-chm.china.huawei.com (10.1.198.206)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTA4LTMwIGF0IDE2OjQzIC0wNTAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
-PiBPbiBNb24sIEF1ZyAzMCwgMjAyMSBhdCAwMzowOTo0NFBNICswODAwLCBDaHVhbmppYSBMaXUg
-d3JvdGU6DQo+ID4gT24gRnJpLCAyMDIxLTA4LTI3IGF0IDExOjQ2IC0wNTAwLCBCam9ybiBIZWxn
-YWFzIHdyb3RlOg0KPiA+ID4gT24gTW9uLCBBdWcgMjMsIDIwMjEgYXQgMTE6Mjc6NTZBTSArMDgw
-MCwgQ2h1YW5qaWEgTGl1IHdyb3RlOg0KPiA+ID4gPiBAQCAtOTk1LDYgKzEwMDQsMTQgQEAgc3Rh
-dGljIGludCBtdGtfcGNpZV9zdWJzeXNfcG93ZXJ1cChzdHJ1Y3QNCj4gPiA+ID4gbXRrX3BjaWUg
-KnBjaWUpDQo+ID4gPiA+ICAJCQlyZXR1cm4gUFRSX0VSUihwY2llLT5iYXNlKTsNCj4gPiA+ID4g
-IAl9DQo+ID4gPiA+ICANCj4gPiA+ID4gKwljZmdfbm9kZSA9IG9mX2ZpbmRfY29tcGF0aWJsZV9u
-b2RlKE5VTEwsIE5VTEwsDQo+ID4gPiA+ICsJCQkJCSAgICJtZWRpYXRlayxnZW5lcmljLQ0KPiA+
-ID4gPiBwY2llY2ZnIik7DQo+ID4gPiA+ICsJaWYgKGNmZ19ub2RlKSB7DQo+ID4gPiA+ICsJCXBj
-aWUtPmNmZyA9IHN5c2Nvbl9ub2RlX3RvX3JlZ21hcChjZmdfbm9kZSk7DQo+ID4gPiANCj4gPiA+
-IE90aGVyIGRyaXZlcnMgaW4gZHJpdmVycy9wY2kvY29udHJvbGxlci8gdXNlDQo+ID4gPiBzeXNj
-b25fcmVnbWFwX2xvb2t1cF9ieV9waGFuZGxlKCkgKGo3MjFlLCBkcmE3eHgsIGtleXN0b25lLA0K
-PiA+ID4gbGF5ZXJzY2FwZSwgYXJ0cGVjNikgb3Igc3lzY29uX3JlZ21hcF9sb29rdXBfYnlfY29t
-cGF0aWJsZSgpDQo+ID4gPiAoaW14NiwNCj4gPiA+IGtpcmluLCB2My1zZW1pKS4NCj4gPiA+IA0K
-PiA+ID4gWW91IHNob3VsZCBkbyBpdCB0aGUgc2FtZSB3YXkgdW5sZXNzIHRoZXJlJ3MgYSBuZWVk
-IHRvIGJlDQo+ID4gPiBkaWZmZXJlbnQuDQo+ID4gDQo+ID4gSSBoYXZlIHVzZWQgcGhhbmRsZSwg
-YnV0IFJvYiBzdWdnZXN0ZWQgdG8gc2VhcmNoIGZvciB0aGUgbm9kZSBieSANCj4gPiBjb21wYXRp
-YmxlLg0KPiA+IFRoZSByZWFzb24gd2h5IHN5c2Nvbl9yZWdtYXBfbG9va3VwX2J5X2NvbXBhdGli
-bGUoKSBpcyBub3QgDQo+ID4gdXNlZCBoZXJlIGlzIHRoYXQgdGhlIHBjaWVjZmcgbm9kZSBpcyBv
-cHRpb25hbCwgYW5kIHRoZXJlIGlzIG5vDQo+ID4gbmVlZCB0bw0KPiA+IHJldHVybiBlcnJvciB3
-aGVuIHRoZSBub2RlIGlzIG5vdCBzZWFyY2hlZC4NCj4gDQo+IEhvdyBhYm91dCB0aGlzPw0KPiAN
-Cj4gICByZWdtYXAgPSBzeXNjb25fcmVnbWFwX2xvb2t1cF9ieV9jb21wYXRpYmxlKCJtZWRpYXRl
-ayxnZW5lcmljLQ0KPiBwY2llY2ZnIik7DQo+ICAgaWYgKCFJU19FUlIocmVnbWFwKSkNCj4gICAg
-IHBjaWUtPmNmZyA9IHJlZ21hcDsNCg0KSGkgQmpvcm4sDQoNCldlIG5lZWQgdG8gZGVhbCB3aXRo
-IHRocmVlIHNpdHVhdGlvbnMNCjEpIE5vIGVycm9yDQoyKSBUaGUgZXJyb3Igb2YgdGhlIG5vZGUg
-bm90IGZvdW5kLCBkb24ndCBkbyBhbnl0aGluZyANCjMpIE90aGVyIGVycm9ycywgcmV0dXJuIGVy
-cm9ycw0KDQpJIGd1ZXNzIHlvdSBtZWFuDQoNCnJlZ21hcCA9IHN5c2Nvbl9yZWdtYXBfbG9va3Vw
-X2J5X2NvbXBhdGlibGUoIm1lZGlhdGVrLGdlbmVyaWMtDQpwY2llY2ZnIik7DQogIGlmICghSVNf
-RVJSKHJlZ21hcCkpDQogICAgICBwY2llLT5jZmcgPSByZWdtYXA7DQogIGVsc2UgaWYgKElTX0VS
-UihyZWdtYXApICYmIFBUUl9FUlIocmVnbWFwKSAhPSAtRU5PREVWKQ0KICAgICAgcmV0dXJuIFBU
-Ul9FUlIocmVnbWFwKTsNCg0KSSdtIG5vdCBzdXJlIGlmIHdlIG5lZWQgdGhpcywgaXQgc2VlbXMg
-YSBsaXR0bGUgd2VpcmQgYW5kIHRoZXJlIGFyZQ0KbWFueSBkcml2ZXJzIGluIG90aGVyIHN1YnN5
-c3RlbXMgdGhhdCB1c2Ugc3lzY29uX25vZGVfdG9fcmVnbWFwKCkuDQoNClRoYW5rcw0KQ2h1YW5q
-aWENCg==
+The zte zx platform was removed in commit 89d4f98ae90d ("ARM: remove zte
+zx platform") and the zxdrm driver is going to be removed in v5.15 via
+drm tree. Let's remove the now obsolete binding doc.
+
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Jun Nie <jun.nie@linaro.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
+---
+ .../devicetree/bindings/display/zte,vou.txt   | 120 ------------------
+ 1 file changed, 120 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/zte,vou.txt
+
+diff --git a/Documentation/devicetree/bindings/display/zte,vou.txt b/Documentation/devicetree/bindings/display/zte,vou.txt
+deleted file mode 100644
+index 38476475fd60..000000000000
+--- a/Documentation/devicetree/bindings/display/zte,vou.txt
++++ /dev/null
+@@ -1,120 +0,0 @@
+-ZTE VOU Display Controller
+-
+-This is a display controller found on ZTE ZX296718 SoC.  It includes multiple
+-Graphic Layer (GL) and Video Layer (VL), two Mixers/Channels, and a few blocks
+-handling scaling, color space conversion etc.  VOU also integrates the support
+-for typical output devices, like HDMI, TV Encoder, VGA, and RGB LCD.
+-
+-* Master VOU node
+-
+-It must be the parent node of all the sub-device nodes.
+-
+-Required properties:
+- - compatible: should be "zte,zx296718-vou"
+- - #address-cells: should be <1>
+- - #size-cells: should be <1>
+- - ranges: list of address translations between VOU and sub-devices
+-
+-* VOU DPC device
+-
+-Required properties:
+- - compatible: should be "zte,zx296718-dpc"
+- - reg: Physical base address and length of DPC register regions, one for each
+-   entry in 'reg-names'
+- - reg-names: The names of register regions. The following regions are required:
+-	"osd"
+-	"timing_ctrl"
+-	"dtrc"
+-	"vou_ctrl"
+-	"otfppu"
+- - interrupts: VOU DPC interrupt number to CPU
+- - clocks: A list of phandle + clock-specifier pairs, one for each entry
+-   in 'clock-names'
+- - clock-names: A list of clock names.  The following clocks are required:
+-	"aclk"
+-	"ppu_wclk"
+-	"main_wclk"
+-	"aux_wclk"
+-
+-* HDMI output device
+-
+-Required properties:
+- - compatible: should be "zte,zx296718-hdmi"
+- - reg: Physical base address and length of the HDMI device IO region
+- - interrupts : HDMI interrupt number to CPU
+- - clocks: A list of phandle + clock-specifier pairs, one for each entry
+-   in 'clock-names'
+- - clock-names: A list of clock names.  The following clocks are required:
+-	"osc_cec"
+-	"osc_clk"
+-	"xclk"
+-
+-* TV Encoder output device
+-
+-Required properties:
+- - compatible: should be "zte,zx296718-tvenc"
+- - reg: Physical base address and length of the TVENC device IO region
+- - zte,tvenc-power-control: the phandle to SYSCTRL block followed by two
+-   integer cells.  The first cell is the offset of SYSCTRL register used
+-   to control TV Encoder DAC power, and the second cell is the bit mask.
+-
+-* VGA output device
+-
+-Required properties:
+- - compatible: should be "zte,zx296718-vga"
+- - reg: Physical base address and length of the VGA device IO region
+- - interrupts : VGA interrupt number to CPU
+- - clocks: Phandle with clock-specifier pointing to VGA I2C clock.
+- - clock-names: Must be "i2c_wclk".
+- - zte,vga-power-control: the phandle to SYSCTRL block followed by two
+-   integer cells.  The first cell is the offset of SYSCTRL register used
+-   to control VGA DAC power, and the second cell is the bit mask.
+-
+-Example:
+-
+-vou: vou@1440000 {
+-	compatible = "zte,zx296718-vou";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	ranges = <0 0x1440000 0x10000>;
+-
+-	dpc: dpc@0 {
+-		compatible = "zte,zx296718-dpc";
+-		reg = <0x0000 0x1000>, <0x1000 0x1000>,
+-		      <0x5000 0x1000>, <0x6000 0x1000>,
+-		      <0xa000 0x1000>;
+-		reg-names = "osd", "timing_ctrl",
+-			    "dtrc", "vou_ctrl",
+-			    "otfppu";
+-		interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&topcrm VOU_ACLK>, <&topcrm VOU_PPU_WCLK>,
+-			 <&topcrm VOU_MAIN_WCLK>, <&topcrm VOU_AUX_WCLK>;
+-		clock-names = "aclk", "ppu_wclk",
+-			      "main_wclk", "aux_wclk";
+-	};
+-
+-	vga: vga@8000 {
+-		compatible = "zte,zx296718-vga";
+-		reg = <0x8000 0x1000>;
+-		interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+-		clocks = <&topcrm VGA_I2C_WCLK>;
+-		clock-names = "i2c_wclk";
+-		zte,vga-power-control = <&sysctrl 0x170 0xe0>;
+-	};
+-
+-	hdmi: hdmi@c000 {
+-		compatible = "zte,zx296718-hdmi";
+-		reg = <0xc000 0x4000>;
+-		interrupts = <GIC_SPI 82 IRQ_TYPE_EDGE_RISING>;
+-		clocks = <&topcrm HDMI_OSC_CEC>,
+-			 <&topcrm HDMI_OSC_CLK>,
+-			 <&topcrm HDMI_XCLK>;
+-		clock-names = "osc_cec", "osc_clk", "xclk";
+-	};
+-
+-	tvenc: tvenc@2000 {
+-		compatible = "zte,zx296718-tvenc";
+-		reg = <0x2000 0x1000>;
+-		zte,tvenc-power-control = <&sysctrl 0x170 0x10>;
+-	};
+-};
+-- 
+2.19.1
 
