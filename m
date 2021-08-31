@@ -2,187 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F993FC1AE
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 05:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8675E3FC21A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 07:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239508AbhHaDub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 23:50:31 -0400
-Received: from szxga01-in.huawei.com ([45.249.212.187]:18992 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239509AbhHaDua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 23:50:30 -0400
-Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.56])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GzCl75jDVzbkSH;
-        Tue, 31 Aug 2021 11:45:39 +0800 (CST)
-Received: from dggema764-chm.china.huawei.com (10.1.198.206) by
- dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.1.2176.2; Tue, 31 Aug 2021 11:49:34 +0800
-Received: from DESKTOP-8RFUVS3.china.huawei.com (10.174.185.179) by
- dggema764-chm.china.huawei.com (10.1.198.206) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.8; Tue, 31 Aug 2021 11:49:33 +0800
-From:   Zenghui Yu <yuzenghui@huawei.com>
-To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <wanghaibin.wang@huawei.com>, "Zenghui Yu" <yuzenghui@huawei.com>,
-        Arnd Bergmann <arnd@arndb.de>, Jun Nie <jun.nie@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH] dt-bindings: display: remove zte,vou.txt binding doc
-Date:   Tue, 31 Aug 2021 11:49:24 +0800
-Message-ID: <20210831034924.86-1-yuzenghui@huawei.com>
-X-Mailer: git-send-email 2.23.0.windows.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.185.179]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggema764-chm.china.huawei.com (10.1.198.206)
-X-CFilter-Loop: Reflected
+        id S234013AbhHaFY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 01:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233873AbhHaFY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 01:24:29 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F939C06175F
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 22:23:34 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id x16so14045390pfh.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 22:23:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=29TOratnK2xJst8mXbq92wXeuQ1QgEl/NV9J//FjPgY=;
+        b=BfQ3rpDoYSzs79d9Fu3Wt+Vr9SRnp+yY4N3phwgs/YfDy9OHipi7ogcsvB8koD+Xt5
+         G3WSyeNcw6WlTOsIFUPbcPcoXWrKZWcpSjXiSSEu8+uVJedjfbo7Vv8Pvh+a2v8pghlk
+         Gi1Ub0o3Ia88h3i+MzdV2MeS3YQkYLIdkYFT8MzNaJSlJeMvfXIekNT75zBQ5egFbGch
+         Af3jVbYvum/RvZ7ZMIlG+I86ombN2B9RGT9YZAPrEj6brhg7a/3wVWjFZRUGZERW+EYg
+         sH2DKz8abj2BqXgNnGae569Rxwc3poCE10VEmiq+ZW84LGcGX25l/aA8fRerp94a8Zm3
+         glEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=29TOratnK2xJst8mXbq92wXeuQ1QgEl/NV9J//FjPgY=;
+        b=Fa/kjsjeXScsqqrNjzYoDSJz5uGoPNi6msVhLP08wSxkQWjfFFQ+Qj7khdPTvDftm3
+         T21osWylscOrjq66T318zgixXv/rO1tkFclR3zEMOxpViIH7MHEYCGWFRrVndPfHh9xU
+         bNElDowSfX4+xi6HN0zgLbCBWxPflh3HByc4Mk30sRMnU6T9/aFCsCZUz+x6C/5cs2Cn
+         rlMcDppomYuYrBQ9DDpvlCz9N6rCY1fL0O9yvLqWCNXmMw1ae6lgPYuqyZn0+g/J5K0h
+         8NJ9ZrENC+VahxQzAMZZpZYuxMzI2AmaTcDGCSKRxKSCMQMfn4ETz2EZlQ1Yb84IjQ32
+         c0yA==
+X-Gm-Message-State: AOAM5338uSde33msGZ6t/4XJip1TKqAEHIVI4vlr5NNb58gO6XJBxRf0
+        TByBzMQZMaxRFrvo9uA3tVIpow==
+X-Google-Smtp-Source: ABdhPJxZjh6QIbhyJFWmER4NiG9H6sSUfkt4migc4q89klJmPEqfuSx6CvmgdOYanvnSxGuZlxqBpQ==
+X-Received: by 2002:a05:6a00:139c:b0:3fd:e818:edc8 with SMTP id t28-20020a056a00139c00b003fde818edc8mr10767317pfg.39.1630387413970;
+        Mon, 30 Aug 2021 22:23:33 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id w18sm1293962pjg.50.2021.08.30.22.23.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 22:23:33 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: Update BAM DMA node name per DT schema
+Date:   Tue, 31 Aug 2021 13:23:25 +0800
+Message-Id: <20210831052325.21229-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The zte zx platform was removed in commit 89d4f98ae90d ("ARM: remove zte
-zx platform") and the zxdrm driver is going to be removed in v5.15 via
-drm tree. Let's remove the now obsolete binding doc.
+Follow dma-controller.yaml schema to use `dma-controller` as node name
+of BAM DMA devices.
 
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Jun Nie <jun.nie@linaro.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Zenghui Yu <yuzenghui@huawei.com>
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 ---
- .../devicetree/bindings/display/zte,vou.txt   | 120 ------------------
- 1 file changed, 120 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/zte,vou.txt
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/zte,vou.txt b/Documentation/devicetree/bindings/display/zte,vou.txt
-deleted file mode 100644
-index 38476475fd60..000000000000
---- a/Documentation/devicetree/bindings/display/zte,vou.txt
-+++ /dev/null
-@@ -1,120 +0,0 @@
--ZTE VOU Display Controller
--
--This is a display controller found on ZTE ZX296718 SoC.  It includes multiple
--Graphic Layer (GL) and Video Layer (VL), two Mixers/Channels, and a few blocks
--handling scaling, color space conversion etc.  VOU also integrates the support
--for typical output devices, like HDMI, TV Encoder, VGA, and RGB LCD.
--
--* Master VOU node
--
--It must be the parent node of all the sub-device nodes.
--
--Required properties:
-- - compatible: should be "zte,zx296718-vou"
-- - #address-cells: should be <1>
-- - #size-cells: should be <1>
-- - ranges: list of address translations between VOU and sub-devices
--
--* VOU DPC device
--
--Required properties:
-- - compatible: should be "zte,zx296718-dpc"
-- - reg: Physical base address and length of DPC register regions, one for each
--   entry in 'reg-names'
-- - reg-names: The names of register regions. The following regions are required:
--	"osd"
--	"timing_ctrl"
--	"dtrc"
--	"vou_ctrl"
--	"otfppu"
-- - interrupts: VOU DPC interrupt number to CPU
-- - clocks: A list of phandle + clock-specifier pairs, one for each entry
--   in 'clock-names'
-- - clock-names: A list of clock names.  The following clocks are required:
--	"aclk"
--	"ppu_wclk"
--	"main_wclk"
--	"aux_wclk"
--
--* HDMI output device
--
--Required properties:
-- - compatible: should be "zte,zx296718-hdmi"
-- - reg: Physical base address and length of the HDMI device IO region
-- - interrupts : HDMI interrupt number to CPU
-- - clocks: A list of phandle + clock-specifier pairs, one for each entry
--   in 'clock-names'
-- - clock-names: A list of clock names.  The following clocks are required:
--	"osc_cec"
--	"osc_clk"
--	"xclk"
--
--* TV Encoder output device
--
--Required properties:
-- - compatible: should be "zte,zx296718-tvenc"
-- - reg: Physical base address and length of the TVENC device IO region
-- - zte,tvenc-power-control: the phandle to SYSCTRL block followed by two
--   integer cells.  The first cell is the offset of SYSCTRL register used
--   to control TV Encoder DAC power, and the second cell is the bit mask.
--
--* VGA output device
--
--Required properties:
-- - compatible: should be "zte,zx296718-vga"
-- - reg: Physical base address and length of the VGA device IO region
-- - interrupts : VGA interrupt number to CPU
-- - clocks: Phandle with clock-specifier pointing to VGA I2C clock.
-- - clock-names: Must be "i2c_wclk".
-- - zte,vga-power-control: the phandle to SYSCTRL block followed by two
--   integer cells.  The first cell is the offset of SYSCTRL register used
--   to control VGA DAC power, and the second cell is the bit mask.
--
--Example:
--
--vou: vou@1440000 {
--	compatible = "zte,zx296718-vou";
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges = <0 0x1440000 0x10000>;
--
--	dpc: dpc@0 {
--		compatible = "zte,zx296718-dpc";
--		reg = <0x0000 0x1000>, <0x1000 0x1000>,
--		      <0x5000 0x1000>, <0x6000 0x1000>,
--		      <0xa000 0x1000>;
--		reg-names = "osd", "timing_ctrl",
--			    "dtrc", "vou_ctrl",
--			    "otfppu";
--		interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&topcrm VOU_ACLK>, <&topcrm VOU_PPU_WCLK>,
--			 <&topcrm VOU_MAIN_WCLK>, <&topcrm VOU_AUX_WCLK>;
--		clock-names = "aclk", "ppu_wclk",
--			      "main_wclk", "aux_wclk";
--	};
--
--	vga: vga@8000 {
--		compatible = "zte,zx296718-vga";
--		reg = <0x8000 0x1000>;
--		interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&topcrm VGA_I2C_WCLK>;
--		clock-names = "i2c_wclk";
--		zte,vga-power-control = <&sysctrl 0x170 0xe0>;
--	};
--
--	hdmi: hdmi@c000 {
--		compatible = "zte,zx296718-hdmi";
--		reg = <0xc000 0x4000>;
--		interrupts = <GIC_SPI 82 IRQ_TYPE_EDGE_RISING>;
--		clocks = <&topcrm HDMI_OSC_CEC>,
--			 <&topcrm HDMI_OSC_CLK>,
--			 <&topcrm HDMI_XCLK>;
--		clock-names = "osc_cec", "osc_clk", "xclk";
--	};
--
--	tvenc: tvenc@2000 {
--		compatible = "zte,zx296718-tvenc";
--		reg = <0x2000 0x1000>;
--		zte,tvenc-power-control = <&sysctrl 0x170 0x10>;
--	};
--};
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index 2843bcbce778..2d3860337098 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -212,7 +212,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		cryptobam: dma@704000 {
++		cryptobam: dma-controller@704000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x00704000 0x20000>;
+ 			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 52df22ab3f6a..390468e1b62e 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -2686,7 +2686,7 @@
+ 			status = "disabled";
+ 		 };
+ 
+-		blsp1_dma: dma@7544000 {
++		blsp1_dma: dma-controller@7544000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x07544000 0x2b000>;
+ 			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
+@@ -2743,7 +2743,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		blsp2_dma: dma@7584000 {
++		blsp2_dma: dma-controller@7584000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x07584000 0x2b000>;
+ 			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 34039b5c8017..a46838f1e310 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -2187,7 +2187,7 @@
+ 			#size-cells = <0>;
+ 		};
+ 
+-		blsp2_dma: dma@c184000 {
++		blsp2_dma: dma-controller@c184000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x0c184000 0x25000>;
+ 			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 99e023314ae4..0b7cf0c7c22c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -2307,7 +2307,7 @@
+ 			};
+ 		};
+ 
+-		cryptobam: dma@1dc4000 {
++		cryptobam: dma-controller@1dc4000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0 0x01dc4000 0 0x24000>;
+ 			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-2.19.1
+2.17.1
 
