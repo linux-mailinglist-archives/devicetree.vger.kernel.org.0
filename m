@@ -2,114 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77FD63FC469
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 11:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B8233FC47A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 11:00:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240386AbhHaIk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 04:40:58 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53364 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S240422AbhHaIk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 04:40:57 -0400
-X-UUID: c2bb3395cc704301b8105ff7d3b932e2-20210831
-X-UUID: c2bb3395cc704301b8105ff7d3b932e2-20210831
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        id S240460AbhHaItQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 04:49:16 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:56406 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S240417AbhHaItP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 04:49:15 -0400
+X-UUID: 6edc1c8317294ccb827b04c2f20e7ae5-20210831
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=sZFVav08zwMRGHECP5b0bRmeLPWcxHvBk2pMalHXz0k=;
+        b=RrNGUABsTqOF6ZgnPrXLHCz6igypBPTyoCG/9aQ4khqMEc+A+t2awTUZPvESjURS1zM59KQwGjxAdKrF8Zy9+Zi/EnWXK+5UCnVAa1xE3dvUS3Ul5I18sNL2fA9p1u3c3GkWJwMdnVd8X78/dsNqCAGBp4rIxUlo/61dBAcCc3g=;
+X-UUID: 6edc1c8317294ccb827b04c2f20e7ae5-20210831
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
         (envelope-from <trevor.wu@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1722613409; Tue, 31 Aug 2021 16:39:59 +0800
+        with ESMTP id 1984509139; Tue, 31 Aug 2021 16:48:12 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 31 Aug 2021 16:39:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 31 Aug 2021 16:48:10 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 31 Aug 2021 16:39:57 +0800
+ Transport; Tue, 31 Aug 2021 16:48:10 +0800
+Message-ID: <0d73ada63c3c2949a283ac6830ab9cc84a5e4a41.camel@mediatek.com>
+Subject: Re: [PATCH v5 07/11] dt-bindings: mediatek: mt8195: add audio afe
+ document
 From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH] ASoC: dt-bindings: mt8195: remove dependent headers in the example
-Date:   Tue, 31 Aug 2021 16:39:56 +0800
-Message-ID: <20210831083956.9804-1-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <bicycle.tsai@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        "Jimmy Cheng-Yi Chiang" <cychiang@google.com>,
+        Li-Yu Yu <aaronyu@google.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 31 Aug 2021 16:48:10 +0800
+In-Reply-To: <CAL_Jsq+bLVLqqVKfYuXDVYexMojMgZ5p34Pcx7_7LwU40b-2dA@mail.gmail.com>
+References: <20210819084144.18483-1-trevor.wu@mediatek.com>
+         <20210819084144.18483-8-trevor.wu@mediatek.com>
+         <CAL_Jsq+bLVLqqVKfYuXDVYexMojMgZ5p34Pcx7_7LwU40b-2dA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the use of the defines including clock and power id, so that
-we can remove the headers which are not applied in the example.
-
-Fixes: b5bac34fcfb4 ("dt-bindings: mediatek: mt8195: add audio afe document")
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
----
- .../bindings/sound/mt8195-afe-pcm.yaml        | 40 +++++++++----------
- 1 file changed, 19 insertions(+), 21 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
-index 53e9434a6d9d..dcf790b053d2 100644
---- a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
-@@ -130,36 +130,34 @@ additionalProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/clock/mt8195-clk.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
--    #include <dt-bindings/power/mt8195-power.h>
- 
-     afe: mt8195-afe-pcm@10890000 {
-         compatible = "mediatek,mt8195-audio";
-         reg = <0x10890000 0x10000>;
-         interrupts = <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH 0>;
-         mediatek,topckgen = <&topckgen>;
--        power-domains = <&spm MT8195_POWER_DOMAIN_AUDIO>;
-+        power-domains = <&spm 7>; //MT8195_POWER_DOMAIN_AUDIO
-         clocks = <&clk26m>,
--                 <&topckgen CLK_TOP_APLL1>,
--                 <&topckgen CLK_TOP_APLL2>,
--                 <&topckgen CLK_TOP_APLL12_DIV0>,
--                 <&topckgen CLK_TOP_APLL12_DIV1>,
--                 <&topckgen CLK_TOP_APLL12_DIV2>,
--                 <&topckgen CLK_TOP_APLL12_DIV3>,
--                 <&topckgen CLK_TOP_APLL12_DIV9>,
--                 <&topckgen CLK_TOP_A1SYS_HP_SEL>,
--                 <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
--                 <&topckgen CLK_TOP_AUDIO_H_SEL>,
--                 <&topckgen CLK_TOP_AUDIO_LOCAL_BUS_SEL>,
--                 <&topckgen CLK_TOP_DPTX_M_SEL>,
--                 <&topckgen CLK_TOP_I2SO1_M_SEL>,
--                 <&topckgen CLK_TOP_I2SO2_M_SEL>,
--                 <&topckgen CLK_TOP_I2SI1_M_SEL>,
--                 <&topckgen CLK_TOP_I2SI2_M_SEL>,
--                 <&infracfg_ao CLK_INFRA_AO_AUDIO_26M_B>,
--                 <&scp_adsp CLK_SCP_ADSP_AUDIODSP>;
-+                 <&topckgen 163>, //CLK_TOP_APLL1
-+                 <&topckgen 166>, //CLK_TOP_APLL2
-+                 <&topckgen 233>, //CLK_TOP_APLL12_DIV0
-+                 <&topckgen 234>, //CLK_TOP_APLL12_DIV1
-+                 <&topckgen 235>, //CLK_TOP_APLL12_DIV2
-+                 <&topckgen 236>, //CLK_TOP_APLL12_DIV3
-+                 <&topckgen 238>, //CLK_TOP_APLL12_DIV9
-+                 <&topckgen 100>, //CLK_TOP_A1SYS_HP_SEL
-+                 <&topckgen 33>, //CLK_TOP_AUD_INTBUS_SEL
-+                 <&topckgen 34>, //CLK_TOP_AUDIO_H_SEL
-+                 <&topckgen 107>, //CLK_TOP_AUDIO_LOCAL_BUS_SEL
-+                 <&topckgen 98>, //CLK_TOP_DPTX_M_SEL
-+                 <&topckgen 94>, //CLK_TOP_I2SO1_M_SEL
-+                 <&topckgen 95>, //CLK_TOP_I2SO2_M_SEL
-+                 <&topckgen 96>, //CLK_TOP_I2SI1_M_SEL
-+                 <&topckgen 97>, //CLK_TOP_I2SI2_M_SEL
-+                 <&infracfg_ao 50>, //CLK_INFRA_AO_AUDIO_26M_B
-+                 <&scp_adsp 0>; //CLK_SCP_ADSP_AUDIODSP
-         clock-names = "clk26m",
-                       "apll1_ck",
-                       "apll2_ck",
--- 
-2.18.0
+T24gTW9uLCAyMDIxLTA4LTMwIGF0IDA3OjM1IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVGh1LCBBdWcgMTksIDIwMjEgYXQgMzo0MyBBTSBUcmV2b3IgV3UgPHRyZXZvci53dUBtZWRp
+YXRlay5jb20+DQo+IHdyb3RlOg0KPiA+IA0KPiA+IFRoaXMgcGF0Y2ggYWRkcyBtdDgxOTUgYXVk
+aW8gYWZlIGRvY3VtZW50Lg0KPiA+IA0KPiA+IEluIG9yZGVyIHRvIHN1cHBvcnQgZHluYW1pYyBj
+bG9jayByZXBhcmVudGluZyBmb3IgQUREQSBhbmQgRVRETSwNCj4gPiBQTEwNCj4gPiBhbmQgTVVY
+IGNsb2NrcyBhcmUgcmVxdWVzdGVkIGV2ZW4gdGhvdWdoIHRoZXkgYXJlIG5vdCBjb25zdW1lZCBi
+eQ0KPiA+IGFmZQ0KPiA+IGRpcmVjdGx5Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFRyZXZv
+ciBXdSA8dHJldm9yLnd1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiBUaGlzIHBhdGNoIGRl
+cGVuZHMgb24gdGhlIGZvbGxvd2luZyBzZXJpZXMgdGhhdCBoYXZlIG5vdCBiZWVuDQo+ID4gYWNj
+ZXB0ZWQuDQo+ID4gDQo+ID4gWzFdIE1lZGlhdGVrIE1UODE5NSBjbG9jayBzdXBwb3J0DQo+ID4g
+DQpodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9y
+Zy9wcm9qZWN0L2xpbnV4LW1lZGlhdGVrL2xpc3QvP3Nlcmllcz01MDE5MjNfXzshIUNUUk5LQTl3
+TWcwQVJidyF5Ym03RTgwRExMWVhzOE91ak80NlNVS1lGT1V4OGdzTFpQVEU2VkRGckdUUTByQVls
+SkpIT1VLaExfWlVTSlNMa0EkDQo+ID4gIA0KPiA+IChkdC1iaW5kaW5ncy9jbG9jay9tdDgxOTUt
+Y2xrLmggaXMgaW5jbHVkZWQpDQo+IA0KPiBUaGlzIGRlcGVuZGVuY3kgaXMgc3RpbGwgbm90IGFw
+cGxpZWQsIHNvIHRoZSBleGFtcGxlIGZhaWxzLiBPbmUgb2YNCj4gdGhlDQo+IGZvbGxvd2luZyBu
+ZWVkcyB0byBoYXBwZW46IHRoZSBkZXBlbmRlbmN5IG5lZWRzIHRvIGJlIGFwcGxpZWQsIHRoaXMN
+Cj4gcGF0Y2ggcmV2ZXJ0ZWQsIG9yIGRyb3AgdGhlIHVzZSBvZiB0aGUgZGVmaW5lcyBpbiB0aGUg
+ZXhhbXBsZS4NCj4gDQo+IFJvYg0KDQpIaSBSb2IsDQoNCkkgc2VuZCBhIHBhdGNoIGFuZCBkcm9w
+IHRoZSB1c2Ugb2YgZGVmaW5lcy4NCg0KaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9q
+ZWN0L2Fsc2EtZGV2ZWwvcGF0Y2gvMjAyMTA4MzEwODM5NTYuOTgwNC0xLXRyZXZvci53dUBtZWRp
+YXRlay5jb20vDQoNClRoYW5rcywNClRyZXZvcg0KDQo=
 
