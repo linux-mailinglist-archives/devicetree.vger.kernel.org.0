@@ -2,138 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 628003FBF59
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 01:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B13A3FBFDA
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 02:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbhH3XTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 19:19:47 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:57257 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbhH3XTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 19:19:47 -0400
-Received: (Authenticated sender: contact@artur-rojek.eu)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPA id 4E2AE60003;
-        Mon, 30 Aug 2021 23:18:50 +0000 (UTC)
-MIME-Version: 1.0
-Date:   Tue, 31 Aug 2021 01:18:50 +0200
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Pavel Nadein <pavelnadein@gmail.com>
-Cc:     Pavel Nadein <pasha-net@narod.ru>, linux-spi@vger.kernel.org,
+        id S233817AbhHaAEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 20:04:52 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:42731 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233201AbhHaAEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 20:04:51 -0400
+Received: by mail-ot1-f54.google.com with SMTP id c19-20020a9d6153000000b0051829acbfc7so20579697otk.9;
+        Mon, 30 Aug 2021 17:03:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=X+JzFHvarIVnvQQqcBJPXmNCBKi89Vgxfb6Fxl+5bS0=;
+        b=NShZJbuOZ6AmLI4BJG474mCUb0GDW8aDGaiNiCAr0kZoa/BZyP8M55KQtmoPOoaSWn
+         poI0zfZZydR61Z1f+YVmSoUgOiYowL2iQl6APMMCtMwabV57QI+M6oJC89RNmkzhhpAV
+         tbc3DVaNFnwqz03ClBul3jB1+aSbjKg9rXuZau+HeCS+45hru65LyNQmOdOf/UmDsFNz
+         jhqbNG5CDGew8yoCqzGTjYiuNxHRipRKYhaxRjFoXYlnGrT20hA2u+ByM+X2CAHh+0nx
+         qFPgGeFKReexGd5KYnABpWTK/Vt535j+qW9yLO8hQe2CYUaYqCO/ngNFUIqdr2nh+Ifd
+         B9qg==
+X-Gm-Message-State: AOAM532gBEgnzRlY0PesfE8lFfUn2z0+UP1XSH8cMWglIelPadavBM6S
+        FBnO4Rv092IYRF10O/rQUw==
+X-Google-Smtp-Source: ABdhPJwF/IP0deTf//Ue3cOh3Y7qENVSDc0BoPLSkMEtkukSAs7/D/uJt7OhzFx2N7wm4NL5Jl+cfA==
+X-Received: by 2002:a05:6830:1d59:: with SMTP id p25mr21366508oth.191.1630368236877;
+        Mon, 30 Aug 2021 17:03:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l8sm3282905oom.19.2021.08.30.17.03.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 17:03:56 -0700 (PDT)
+Received: (nullmailer pid 2940840 invoked by uid 1000);
+        Tue, 31 Aug 2021 00:03:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Ezequiel Garcia <ezequiel@collabora.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org
-Subject: Re: [5.16][PATCH 1/3] dt-bindings: spi: Document Ingenic SPI
- controller bindings
-In-Reply-To: <20210830230139.21476-2-contact@artur-rojek.eu>
-References: <20210830230139.21476-1-contact@artur-rojek.eu>
- <20210830230139.21476-2-contact@artur-rojek.eu>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <8332277ee8ad4ffff16457f5282c3fc6@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+        Vinod Koul <vkoul@kernel.org>, linux-phy@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org
+In-Reply-To: <20210830180758.251390-5-mike.rudenko@gmail.com>
+References: <20210830180758.251390-1-mike.rudenko@gmail.com> <20210830180758.251390-5-mike.rudenko@gmail.com>
+Subject: Re: [PATCH v1 4/5] dt-bindings: phy: phy-rockchip-dphy-rx0: add support for tx1rx1 phy
+Date:   Mon, 30 Aug 2021 19:03:53 -0500
+Message-Id: <1630368233.493531.2940839.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-31 01:01, Artur Rojek wrote:
-> From: Paul Cercueil <paul@crapouillou.net>
+On Mon, 30 Aug 2021 21:07:53 +0300, Mikhail Rudenko wrote:
+> RK3399 TX1RX1 D-PHY is not a child of GRF and uses reg, thus add
+> corresponding properties conditionally. It also requires DSI clock to
+> operate, so check for it. Since we now support both rx0 and tx1rx1,
+> rename the schema to rockchip-mipi-dphy-rx.yaml.
 > 
-> Add a documentation file to describe the Device Tree bindings for the
-> SPI controller found in Ingenic SoCs.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Woops, forgot to add my --signoff for this patch:
-
-Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
-
-Cheers,
-Artur
+> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
 > ---
->  .../devicetree/bindings/spi/ingenic,spi.yaml  | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 
-> Documentation/devicetree/bindings/spi/ingenic,spi.yaml
+>  ...hy-rx0.yaml => rockchip-mipi-dphy-rx.yaml} | 39 +++++++++++++++++--
+>  1 file changed, 35 insertions(+), 4 deletions(-)
+>  rename Documentation/devicetree/bindings/phy/{rockchip-mipi-dphy-rx0.yaml => rockchip-mipi-dphy-rx.yaml} (65%)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/ingenic,spi.yaml
-> b/Documentation/devicetree/bindings/spi/ingenic,spi.yaml
-> new file mode 100644
-> index 000000000000..cf56cc484b19
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/ingenic,spi.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/ingenic,spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ingenic SoCs SPI controller devicetree bindings
-> +
-> +maintainers:
-> +  - Artur Rojek <contact@artur-rojek.eu>
-> +  - Paul Cercueil <paul@crapouillou.net>
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - ingenic,jz4750-spi
-> +          - ingenic,jz4780-spi
-> +      - items:
-> +          - enum:
-> +              - ingenic,jz4760-spi
-> +              - ingenic,jz4770-spi
-> +          - const: ingenic,jz4750-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  dmas:
-> +    maxItems: 2
-> +    minItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - dmas
-> +  - dma-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/jz4770-cgu.h>
-> +    spi@10043000 {
-> +      compatible = "ingenic,jz4770-spi", "ingenic,jz4750-spi";
-> +      reg = <0x10043000 0x1c>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      interrupt-parent = <&intc>;
-> +      interrupts = <8>;
-> +
-> +      clocks = <&cgu JZ4770_CLK_SSI0>;
-> +
-> +      dmas = <&dmac1 23 0xffffffff>, <&dmac1 22 0xffffffff>;
-> +      dma-names = "rx", "tx";
-> +    };
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/phy/rockchip-mipi-dphy-rx0.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml'
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/phy/rockchip-mipi-dphy-rx0.yaml'
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/soc/rockchip/grf.example.dt.yaml] Error 255
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1419: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1522296
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
