@@ -2,287 +2,537 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E525C3FCE37
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 22:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 553FF3FCE51
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 22:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232456AbhHaUOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 16:14:34 -0400
-Received: from mail-eopbgr60078.outbound.protection.outlook.com ([40.107.6.78]:48199
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230286AbhHaUOd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Aug 2021 16:14:33 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W5wseSzHa/thRK1tMKLUcebVWT+tIl0YXllpCBA9T8B0CZOuEx06wtwlK5iEoTAHZEizSgUsmGyVGSKXIHbH7plESm8G+/1CRiYRl4QUTuOVG/VrkcmLXGaugXJV66tqGAB4KZiA89Qg7jELUhiBLbSKkyedez4ifZ4YazN+h5CvoekLXmOtMCgmjykDEWKrOy/xwk49nQnc3vhBeuAP8N2QB0F4HQOWmLgPO6KyQLyaXRx6bPDBfWOFBkfFIvsJyC4NZ/eiI6I2nFPCR2aWfbliia+mLcpm8yEunyNpyLhn0Xb4VgD+rd+rU1F6bNMFTppbVHs812Cv6BzuDJLODw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ywxYz2rgttcAuAW8bBmXsGaLNBdXcTmTwC7bV5QuClE=;
- b=KJ6ijk+65uRQTkPyuTD3WW7QP/YXBFQ0BpkPgIWofR+RDrzb77/s4mFFI9p0pF2GHVu9rtvnQ7rBb2WZrtnPzj0gjtAjyFSdrIbWDyrHvmTvEzp7+qIMI5Ymn21hFUHoUp44ataJvIMIzx28/HyjEcCjMnW2FU2Mcrp2C30BQdMpnUtls/JU/qTsCBZ9uYx7wS1cJTFwd8R125CcP8nh7laXVdOa0qaKLLvf/EYqN6D/2v5KnBnZjzHQm9cZ/Kho7mQu/1tAV/WTVIlHwmTFzsb9XJOTjbtgjU+pbmOQC28c6zNLX2vueyKMj4c53CfWltsz1vNyK6Olfk61NNmb3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ywxYz2rgttcAuAW8bBmXsGaLNBdXcTmTwC7bV5QuClE=;
- b=LZh3UGew3r4/Vw0kY/7sIUIXW4VV35awNFTbvATJOnuYFkQklpcLg7gpyPqA7pMiW2WiBPPE8xfd0p9mgm4BgPS8GUdeLRzRa7w8EhCEk8iPIGUOt2TRMjDb9fZOti0ZOn1Ie/Kd3veHlqo2rMq9gaqoEFbICxyBx4jWvjKkdQs=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB8PR03MB5676.eurprd03.prod.outlook.com (2603:10a6:10:10b::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.24; Tue, 31 Aug
- 2021 20:13:35 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::dc6c:815b:2062:d1f1]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::dc6c:815b:2062:d1f1%7]) with mapi id 15.20.4457.024; Tue, 31 Aug 2021
- 20:13:35 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>, michal.simek@xilinx.com,
-        linux-kernel@vger.kernel.org
-References: <20210826211830.3311140-1-sean.anderson@seco.com>
- <YS6M9jmTmy4EvB4k@robh.at.kernel.org>
-Message-ID: <264f3ab9-fbf7-8f5d-af57-26b8602a6fbd@seco.com>
-Date:   Tue, 31 Aug 2021 16:13:29 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <YS6M9jmTmy4EvB4k@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR19CA0049.namprd19.prod.outlook.com
- (2603:10b6:208:19b::26) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        id S239995AbhHaUWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 16:22:34 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:46856 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230011AbhHaUWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 16:22:31 -0400
+Received: by mail-ot1-f47.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso634079ott.13;
+        Tue, 31 Aug 2021 13:21:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bU7TZOWBzRdHnk5u7KA0MFnjQQvgfnHsYudfpjDdkdg=;
+        b=d1adeLv5n8KlCimMOYypTBkFYf75iodMTNCKrJP5C7lfJ+O1vVqsS6fUVe1DnE45dv
+         3KSLWpr4bD7XWNaa5R18D18T24mzPmZiDeEE+0EsMEq5DG/WOy3wGuB7bVQd3a7fBDFZ
+         ke6D2L5u9EIgC/EkqR+B5bLgsgFvJevwPhe3FGlVFk5C+3PvpLddEwSUzegkkqwiaHhJ
+         rmB6Gkl6ZVlr6g5mHVSjIA8ZTckavdA3GpHlJgNgH40OwKrnCsvXIwW4/wTT+1FmHdiz
+         frRgugX9/PfZsYEnd+vxTPlhYY+dKewQl7bV6UX6+t4K3dApxN1JQiKmp08V4nd8e7+7
+         ouVw==
+X-Gm-Message-State: AOAM531dvbwDdGrBMh5t0uZMjxXx5bAkF3Nme7zb6RUuHYM+hPm5bhBz
+        bjuC6q63TkSlK2aYnno4IA==
+X-Google-Smtp-Source: ABdhPJwpoOM3fs+y4Ud1Zp79FJet9tP6f4HQm/EXSCPIYe1ZMQSRol2az2XulvfPxUOZMrz2Whg0pw==
+X-Received: by 2002:a9d:894:: with SMTP id 20mr25702438otf.262.1630441295709;
+        Tue, 31 Aug 2021 13:21:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c10sm4259279ots.48.2021.08.31.13.21.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Aug 2021 13:21:34 -0700 (PDT)
+Received: (nullmailer pid 588777 invoked by uid 1000);
+        Tue, 31 Aug 2021 20:21:33 -0000
+Date:   Tue, 31 Aug 2021 15:21:33 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
+        perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com,
+        sharadg@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 04/13] ASoC: dt-bindings: tegra: Few more Tegra210 AHUB
+ modules
+Message-ID: <YS6PTYwwu9tU8TWX@robh.at.kernel.org>
+References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
+ <1630056839-6562-5-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR19CA0049.namprd19.prod.outlook.com (2603:10b6:208:19b::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.21 via Frontend Transport; Tue, 31 Aug 2021 20:13:33 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 007d1717-ffc3-451f-8aca-08d96cbbcfde
-X-MS-TrafficTypeDiagnostic: DB8PR03MB5676:
-X-Microsoft-Antispam-PRVS: <DB8PR03MB56761C1208DCF8C3483515B996CC9@DB8PR03MB5676.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M29liULkdVP6gm9nWKGhic+evTy7VQ8Il05hWDm53kNbiCpR2e+nN5r2mGb0QtZ2DHhJ5RqUTLNK6LlZlMl59i0LSF+GydIpnGdZIhvqw8cM/yC4RloFXNJsXH6Z/Y3VYVIFvgqZ3+9rrXLN5qCoCxW0asom223Zl0/Jhaud0+S3v6TBSPshp3f1DQpW9cI75YnjLUksmBFPqp6AKG/59DJSZRuKcdo1GvtMYkEW47q9L5L7uvQLIkDZx1QCDoczKNo8xShf9Z5ARwLJLZEi1JNhtmpPMh0mU7BP0hwOndCIgoN4gSPttb/6+K3mOogQX4zIeCqFO73nLZzoa0o2Is2W9lM2eOB5/T3LKyEe5G6dfMD7ztcQa/ohsWSRYLr287jlsAHbIc61NvhB0EnPPovY2cNi+mPnJmop1h1f3LaQF7KE0PwaEalfoL/rigojK0b7JtweId9OtJXXo3YsYJtpbIQ01/sLGgRgzM/BjFTKMRf7eL0wbaQXu9oTft4HS+KtQBn/uo2OVLgfjBUaX6h6VhSuN9uZ6wW0LoW9kEu/Fh0OVm5fa7dQ+q0J1OrgKoVKVxrh/rUNX6i3UNw7m2bn6F67vJBY4ahzI0vErWUcpb0yUWmF+QakBrCMY6igVhxGuHI70ew9l8ZjAFFSERCdvS8+tKgiuJjm+3yIt3MiA2B6ZjGFPL3yddySJ5JkzBbeWelMD0raStXg0YXTcYL57PcKoozihRJH6xaAJMP/oyFDfGUtzuDI03JYpI0FNC2zz0AXWlyJayN3CbD3YD1xgB3LJFpiY0ZVfOGxFRW5ciHvIopTJhnMeqWUuHho704IXli2/7nj8eSYLw7TKS3jEUgOS9tsLOeFsfI6qiE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(346002)(136003)(376002)(39850400004)(2906002)(16576012)(956004)(31696002)(86362001)(8936002)(26005)(966005)(2616005)(316002)(478600001)(52116002)(6486002)(8676002)(54906003)(6916009)(53546011)(38100700002)(66946007)(44832011)(66556008)(186003)(36756003)(6666004)(31686004)(4326008)(83380400001)(38350700002)(5660300002)(7416002)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q2pEbG9qQzQ0S3hNK1FTSk92dVJPbVQ5TDA3UWtyYkU5NjZ2bEV6YTRrcTRW?=
- =?utf-8?B?b0RaQy95VVNJTkpYeXpuV3dRZmdOTXd0cnZrMytEaXRBTElXTFJlK09NMGQ3?=
- =?utf-8?B?ZC90SnVma0lTSlJxWGpPNDYwbHhYbDdubW4zcUhkWW5IQVVaM2ltd1BrZDM3?=
- =?utf-8?B?OGU3ZnVhSzJmMVA4bEhTRVhCbVcwbkJMYThZaVlPOWQwbVRBQU02cS9mNkxh?=
- =?utf-8?B?YnE0U1pxQ2hDN0QzUHl5YVVsOTg3MHA0ZVRXMGcySCs1RW02bDc0NlVNUVA4?=
- =?utf-8?B?aVFOS25EWUp3S01UaDh6NjVNZG42M3dyMjZ5aDdQekZlTzlnR1dqUnJiNExQ?=
- =?utf-8?B?dXVTN0U5ZVU4dXU5T1p0RmdubFV5bWV6eTMrRXVtbndjaG1vdU1KYWpFVTIv?=
- =?utf-8?B?N2gvN1lXNmdZS21tcEtvQUo5d1k1dlpZMDNsam5NTjVzWXlWd0NIVFEwb01a?=
- =?utf-8?B?ckhTMXlZemtSNTJ1alNBYytoME9jNFNsdWtCc2hleEJtMG40bkZ1STU0Lzkv?=
- =?utf-8?B?a2RWaEtQcWJNd21sZkJmekZOck5NNjNVeFdyS3BYQUdEZW5Jd1BhUXp0cFc5?=
- =?utf-8?B?QzVDQWp3dW5WUnVFb25TeWFiUFRRZUE5OUNiekJrMG5iSGVwOXNvYTEzbWVs?=
- =?utf-8?B?a1ZZNlJwWDN0VU9zQjNTaEJ4SmthNjBRekZuT050VjJ4SXUxQjNFUXNNbHFo?=
- =?utf-8?B?dldVYkpFSWY2ZFBlNHZCbHJPUU01NDJkVkUxOUlmOGZrWkkzRCtXbFFMZE9h?=
- =?utf-8?B?RDVjNHJKTm9sNTl2a3ZYeEIyUURkVkY1d3k2YVVPOEZNb21HNUNsVnpsdkpx?=
- =?utf-8?B?MXFCa0w5N21qVnptS3lwaStCMUtSaDU1dnRya2grTXdlOEdMTkIvdzlockdH?=
- =?utf-8?B?ckdlWkNFa29hQm5VVHBEcUE2bk8zTzcweDZnaEhqQ1RKR0lyR0JTb0tOQW4r?=
- =?utf-8?B?UG1XZWRZTDFoaUR2aUU1TzRkNDF0L3BnMmdyNzJOZEg1UGdBR0ppWVZVK2Rp?=
- =?utf-8?B?cEdLa1JaSWFRbXpCZk03SlR4eHh5d2o0a1dtQ1pYcStXSERldXhZanVoYXJR?=
- =?utf-8?B?S3g0d29WOTVmbGRZRnJUN0djY2NmdTl6UUwyVEdiOWczNkFBdVkrN2ZWYVNj?=
- =?utf-8?B?VGZmdGtxV09sVzNUbnUzbGp6Wm9ObHNaU0RRREt3YkdKSUhHZFBzV2xvZVFh?=
- =?utf-8?B?MzloQVE0UTVVSmgvYStCOEJHVDFET1ZabE8zS1dFS1ozcEw2Z3dpdW1sMjM2?=
- =?utf-8?B?REhVMjBuZENlb0ZvRkw0L3BKdXEwTGdjeVRhRWxYelVOb1BtMHgvN3ZVdWx4?=
- =?utf-8?B?VE5Pa053UDhma3BpTUo5TjdXNFhEczNSVTZEaUp6VU10VnVtQk5LdHU5eHpx?=
- =?utf-8?B?MnBRaUFubkhnTWxMRXYvL1dSYU84dFc4aHlkS000K1djWTB5dmFVQXpvVzlC?=
- =?utf-8?B?UUFBa2J2TGt3N0NWZitjNE53S3YzSDN1K2ZXZFNTZmw1RUhhMlJGMWlwQWpD?=
- =?utf-8?B?U21tWENmZ2Z0OWlHZU56UVYzZVRKTDQ5bTBscDhPZWF2MlFsa2pObThWWFJY?=
- =?utf-8?B?bFhyYVpwejBZbGJoRzlablhqU0lzb3NnOU9nZmpza1BYaHlUY1YzaWxxQkhY?=
- =?utf-8?B?RlB0V1dwdnppS0c5Z0tDZTRROFJhVzBpWGlDeDFFb1RyZW5Sc09qYUVabGNx?=
- =?utf-8?B?WERNK0xEUy9wVDZYT2VmeUZudXRCU1ZINWJzdmV2TXgxalNWQ3FDVEhyVFEz?=
- =?utf-8?Q?5YHV099nzSOEgmwh6CGehUFGXs1M+1S4/JW/DFl?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 007d1717-ffc3-451f-8aca-08d96cbbcfde
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2021 20:13:35.3107
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bhpeMIObOPT+XY9AT+Ea8OlHjLn1+kCRxPJfUnJy/nHlieHQks+j9fXYWBnaPj4lAh5POb7erSaNAkP45GqGmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB5676
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1630056839-6562-5-git-send-email-spujar@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Aug 27, 2021 at 03:03:50PM +0530, Sameer Pujar wrote:
+> This patch adds YAML schema for DT bindings of few AHUB modules.
+> These devices will be registered as ASoC components and bindings
+> will be used on Tegra210 and later chips. The bindings for below
+> mentioned modules are added:
+> 
+>  * SFC (Sampling Frequency Converter)
+>  * MVC (Master Volume Control)
+>  * AMX (Audio Multiplexer)
+>  * ADX (Audio Demultiplexer)
+>  * Mixer
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Rob Herring <robh+dt@kernel.org> 
+> ---
+>  .../bindings/sound/nvidia,tegra210-adx.yaml        | 74 ++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-ahub.yaml       | 20 ++++++
+>  .../bindings/sound/nvidia,tegra210-amx.yaml        | 72 ++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-mixer.yaml      | 67 ++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-mvc.yaml        | 79 ++++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-sfc.yaml        | 76 +++++++++++++++++++++
+>  6 files changed, 388 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
+> new file mode 100644
+> index 0000000..9950585
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra210-adx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra210 ADX Device Tree Bindings
+> +
+> +description: |
+> +  The Audio Demultiplexer (ADX) block takes an input stream with   up to
 
+extra spaces.
 
-On 8/31/21 4:11 PM, Rob Herring wrote:
-> On Thu, Aug 26, 2021 at 05:18:28PM -0400, Sean Anderson wrote:
->> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is a
->> "soft" block, so it has some parameters which would not be configurable in
->> most hardware. This binding is usually automatically generated by Xilinx's
->> tools, so the names and values of some properties should be kept as they
->> are, if possible. In addition, this binding is already in the kernel at
->> arch/microblaze/boot/dts/system.dts, and in user software such as QEMU.
->>
->> The existing driver uses the clock-frequency property, or alternatively the
->> /cpus/timebase-frequency property as its frequency input. Because these
->> properties are deprecated, they have not been included with this schema.
->> All new bindings should use the clocks/clock-names properties to specify
->> the parent clock.
->>
->> Because we need to init timer devices so early in boot, we determine if we
->> should use the PWM driver or the clocksource/clockevent driver by the
->> presence/absence, respectively, of #pwm-cells. Because both counters are
->> used by the PWM, there is no need for a separate property specifying which
->> counters are to be used for the PWM.
->>
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->>
->> Changes in v6:
->> - Fix incorrect schema id
->> - Enumerate possible counter widths
->>
->> Changes in v5:
->> - Update commit message to reflect revisions
->> - Fix indentation lint
->> - Add example for timer binding
->> - Remove xlnx,axi-timer-2.0 compatible string
->> - Move schema into the timer directory
->>
->> Changes in v4:
->> - Remove references to generate polarity so this can get merged
->> - Predicate PWM driver on the presence of #pwm-cells
->> - Make some properties optional for clocksource drivers
->>
->> Changes in v3:
->> - Mark all boolean-as-int properties as deprecated
->> - Add xlnx,pwm and xlnx,gen?-active-low properties.
->> - Make newer replacement properties mutually-exclusive with what they
->>   replace
->> - Add an example with non-deprecated properties only.
->>
->> Changes in v2:
->> - Use 32-bit addresses for example binding
->>
->>  .../bindings/timer/xlnx,xps-timer.yaml        | 90 +++++++++++++++++++
->>  1 file changed, 90 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml b/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
->> new file mode 100644
->> index 000000000000..5be353a642aa
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
->> @@ -0,0 +1,90 @@
->> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/timer/xlnx,xps-timer.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
->> +
->> +maintainers:
->> +  - Sean Anderson <sean.anderson@seco.com>
->> +
->> +properties:
->> +  compatible:
->> +    contains:
->> +      const: xlnx,xps-timer-1.00.a
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    const: s_axi_aclk
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  xlnx,count-width:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [8, 16, 32]
->> +    default: 32
->> +    description:
->> +      The width of the counter(s), in bits.
->> +
->> +  xlnx,one-timer-only:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [ 0, 1 ]
->> +    description:
->> +      Whether only one timer is present in this block.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - xlnx,one-timer-only
->> +
->> +allOf:
->> +  - if:
->> +      required:
->> +        - '#pwm-cells'
->> +    then:
->> +      allOf:
->> +        - required:
->> +            - clocks
->> +        - properties:
->> +            xlnx,one-timer-only:
->> +              const: 0
->> +    else:
->> +      required:
->> +        - interrupts
->> +  - if:
->> +      required:
->> +        - clocks
->> +    then:
->> +      required:
->> +        - clock-names
->> +
->> +additionalProperties: true
->
-> This needs to be false. What else do you expect to be present?
+> +  16 channels and demultiplexes it into four output streams of up to 16
+> +  channels each. A byte RAM helps to form output frames by any combination
+> +  of bytes from the input frame. Its design is identical to that of byte
+> +  RAM in the AMX except that the data flow direction is reversed.
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Mohan Kumar <mkumard@nvidia.com>
+> +  - Sameer Pujar <spujar@nvidia.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^adx@[0-9a-f]*$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nvidia,tegra210-adx
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra194-adx
+> +              - nvidia,tegra186-adx
+> +          - const: nvidia,tegra210-adx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sound-name-prefix:
 
-There are additional properties present in the existing in-tree bindings
-for this device. Should I instead set "unevaluatedProperties: false"?
+nvidia,sound-name-prefix
 
---Sean
+> +    pattern: "^ADX[1-9]$"
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      used as prefix for sink/source names of the component. Must be a
+> +      unique string among multiple instances of the same component.
+> +      The name can be "ADX1" or "ADX2" ... "ADXx", where x depends on
+> +      the maximum available instances on a Tegra SoC.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
+> +      ADX has one input and four output. Accordingly ACIF (Audio Client
 
->
->> +
->> +examples:
->> +  - |
->> +    timer@800e0000 {
->> +        clock-names = "s_axi_aclk";
->> +        clocks = <&zynqmp_clk 71>;
->> +        compatible = "xlnx,xps-timer-1.00.a";
->> +        reg = <0x800e0000 0x10000>;
->> +        interrupts = <0 39 2>;
->> +        xlnx,count-width = <16>;
->> +        xlnx,one-timer-only = <0x0>;
->> +    };
->> +
->> +    timer@800f0000 {
->> +        #pwm-cells = <0>;
->> +        clock-names = "s_axi_aclk";
->> +        clocks = <&zynqmp_clk 71>;
->> +        compatible = "xlnx,xps-timer-1.00.a";
->> +        reg = <0x800e0000 0x10000>;
->> +        xlnx,count-width = <32>;
->> +        xlnx,one-timer-only = <0x0>;
->> +    };
->> --
->> 2.25.1
->>
->>
->
+You need to define the port numbers for the input and each output.
+
+> +      Interface) RX and TX port nodes are defined to represent ADX inputs
+> +      and output respectively. These are connected to corresponding ports
+> +      on AHUB.
+> +
+> +    patternProperties:
+> +      '^port@[0-9]':
+
+Per above, this will need to be split at least into input and output 
+ports.
+
+Same issues in the other schemas.
+
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    adx@702d3800 {
+> +        compatible = "nvidia,tegra210-adx";
+> +        reg = <0x702d3800 0x100>;
+> +        sound-name-prefix = "ADX1";
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> index 1118a94..4087eeb 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> @@ -85,6 +85,26 @@ patternProperties:
+>      type: object
+>      $ref: nvidia,tegra186-dspk.yaml#
+>  
+> +  '^mvc@[0-9a-f]+$':
+> +    type: object
+> +    $ref: nvidia,tegra210-mvc.yaml#
+> +
+> +  '^sfc@[0-9a-f]+$':
+> +    type: object
+> +    $ref: nvidia,tegra210-sfc.yaml#
+> +
+> +  '^amx@[0-9a-f]+$':
+> +    type: object
+> +    $ref: nvidia,tegra210-amx.yaml#
+> +
+> +  '^adx@[0-9a-f]+$':
+> +    type: object
+> +    $ref: nvidia,tegra210-adx.yaml#
+> +
+> +  '^mixer@[0-9a-f]+$':
+> +    type: object
+> +    $ref: nvidia,tegra210-mixer.yaml#
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
+> new file mode 100644
+> index 0000000..e6b365b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra210-amx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra210 AMX Device Tree Bindings
+> +
+> +description: |
+> +  The Audio Multiplexer (AMX) block can multiplex up to four input streams
+> +  each of which can have maximum 16 channels and generate an output stream
+> +  with maximum 16 channels. A byte RAM helps to form an output frame by
+> +  any combination of bytes from the input frames.
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Mohan Kumar <mkumard@nvidia.com>
+> +  - Sameer Pujar <spujar@nvidia.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^amx@[0-9a-f]*$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nvidia,tegra210-amx
+> +      - items:
+> +          - const: nvidia,tegra186-amx
+> +          - const: nvidia,tegra210-amx
+> +      - const: nvidia,tegra194-amx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sound-name-prefix:
+> +    pattern: "^AMX[1-9]$"
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      used as prefix for sink/source names of the component. Must be a
+> +      unique string among multiple instances of the same component.
+> +      The name can be "AMX1" or "AMX2" ... "AMXx", where x depends on
+> +      the maximum available instances on a Tegra SoC.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
+> +      AMX has four inputs and one output. Accordingly ACIF (Audio Client
+> +      Interfaces) RX and TX port nodes are defined to represent AMX inputs
+> +      and output respectively. These are connected to corresponding ports
+> +      on AHUB.
+> +
+> +    patternProperties:
+> +      '^port@[0-9]':
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    amx@702d3000 {
+> +        compatible = "nvidia,tegra210-amx";
+> +        reg = <0x702d3000 0x100>;
+> +        sound-name-prefix = "AMX1";
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
+> new file mode 100644
+> index 0000000..0808355
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra210-mixer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra210 Mixer Device Tree Bindings
+> +
+> +description: |
+> +  The Mixer supports mixing of up to ten 7.1 audio input streams and
+> +  generate five outputs (each of which can be any combination of the
+> +  ten input streams).
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Mohan Kumar <mkumard@nvidia.com>
+> +  - Sameer Pujar <spujar@nvidia.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^mixer@[0-9a-f]*$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nvidia,tegra210-amixer
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra194-amixer
+> +              - nvidia,tegra186-amixer
+> +          - const: nvidia,tegra210-amixer
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sound-name-prefix:
+> +    const: "MIXER"
+
+Don't need quotes. A fixed string seems a bit pointless to put into DT.
+
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
+> +      Mixer has ten inputs and five outputs. Accordingly ACIF (Audio Client
+> +      Interfaces) RX and TX port nodes are defined to represent MIXER inputs
+> +      and outputs respectively. These are connected to corresponding ports
+> +      on AHUB.
+> +
+> +    patternProperties:
+> +      '^port@[0-9]':
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    mixer@702dbb00 {
+> +        compatible = "nvidia,tegra210-amixer";
+> +        reg = <0x702dbb00 0x800>;
+> +        sound-name-prefix = "MIXER";
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
+> new file mode 100644
+> index 0000000..7d81b11
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra210-mvc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra210 MVC Device Tree Bindings
+> +
+> +description: |
+> +  The Master Volume Control (MVC) provides gain or attenuation to a digital
+> +  signal path. It can be used in input or output signal path for per-stream
+> +  volume control or it can be used as master volume control. The MVC block
+> +  has one input and one output. The input digital stream can be mono or
+> +  multi-channel (up to 7.1 channels) stream. An independent mute control is
+> +  also included in the MVC block.
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Mohan Kumar <mkumard@nvidia.com>
+> +  - Sameer Pujar <spujar@nvidia.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^mvc@[0-9a-f]*$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nvidia,tegra210-mvc
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra194-mvc
+> +              - nvidia,tegra186-mvc
+> +          - const: nvidia,tegra210-mvc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sound-name-prefix:
+> +    pattern: "^MVC[1-9]$"
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      used as prefix for sink/source names of the component. Must be a
+> +      unique string among multiple instances of the same component.
+> +      The name can be "MVC1" or "MVC2" ... "MVCx", where x depends on
+> +      the maximum available instances on a Tegra SoC.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    properties:
+> +      port@0:
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +        description: |
+> +          ACIF (Audio Client Interface) acting as MVC input (RX) port.
+> +          This is connected to corresponding ACIF port on AHUB.
+> +
+> +      port@1:
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +        description: |
+> +          ACIF (Audio Client Interface) acting as MVC output (TX) port.
+> +          This is connected to corresponding ACIF port on AHUB.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    mvc@702da000 {
+> +        compatible = "nvidia,tegra210-mvc";
+> +        reg = <0x702da000 0x200>;
+> +        sound-name-prefix = "MVC1";
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
+> new file mode 100644
+> index 0000000..5f05e2a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/nvidia,tegra210-sfc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra210 SFC Device Tree Bindings
+> +
+> +description: |
+> +  The Sampling Frequency Converter (SFC) converts the sampling frequency
+> +  of the input signal from one frequency to another. It supports sampling
+> +  frequency conversions of streams of up to two channels (stereo).
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Mohan Kumar <mkumard@nvidia.com>
+> +  - Sameer Pujar <spujar@nvidia.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^sfc@[0-9a-f]*$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nvidia,tegra210-sfc
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra194-sfc
+> +              - nvidia,tegra186-sfc
+> +          - const: nvidia,tegra210-sfc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  sound-name-prefix:
+> +    pattern: "^SFC[1-9]$"
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      used as prefix for sink/source names of the component. Must be a
+> +      unique string among multiple instances of the same component.
+> +      The name can be "SFC1" or "SFC2" ... "SFCx", where x depends on
+> +      the maximum available instances on a Tegra SoC.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    properties:
+> +      port@0:
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +        description: |
+> +          ACIF (Audio Client Interface) acting as SFC input (RX) port.
+> +          This is connected to corresponding ACIF port on AHUB.
+> +
+> +      port@1:
+> +        $ref: audio-graph-port.yaml#
+> +        unevaluatedProperties: false
+> +        description: |
+> +          ACIF (Audio Client Interface) acting as SFC output (TX) port.
+> +          This is connected to corresponding ACIF port on AHUB.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    sfc@702d2000 {
+> +        compatible = "nvidia,tegra210-sfc";
+> +        reg = <0x702d2000 0x200>;
+> +        sound-name-prefix = "SFC1";
+> +    };
+> +
+> +...
+> -- 
+> 2.7.4
+> 
+> 
