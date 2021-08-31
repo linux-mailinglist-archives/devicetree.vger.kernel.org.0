@@ -2,72 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2351D3FC082
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 03:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66CEF3FC0C3
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 04:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231297AbhHaBhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 21:37:09 -0400
-Received: from szxga03-in.huawei.com ([45.249.212.189]:15274 "EHLO
-        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235217AbhHaBhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 21:37:08 -0400
-Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.53])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4Gz8sG4FB1z89mF;
-        Tue, 31 Aug 2021 09:35:46 +0800 (CST)
-Received: from dggema764-chm.china.huawei.com (10.1.198.206) by
- dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.1.2176.2; Tue, 31 Aug 2021 09:36:07 +0800
-Received: from [10.174.185.179] (10.174.185.179) by
- dggema764-chm.china.huawei.com (10.1.198.206) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.8; Tue, 31 Aug 2021 09:36:05 +0800
-Subject: Re: [PATCH] drm: remove zxdrm driver
-To:     Rob Herring <robh@kernel.org>, Daniel Vetter <daniel@ffwll.ch>
-CC:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Arnd Bergmann <arnd@arndb.de>, <wanghaibin.wang@huawei.com>,
-        Jun Nie <jun.nie@linaro.org>, David Airlie <airlied@linux.ie>,
-        Shawn Guo <shawnguo@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-References: <20210821031357.289-1-yuzenghui@huawei.com>
- <YSPuMqd1QgnRIVCB@robh.at.kernel.org> <YSddYSKvGneVKNjW@phenom.ffwll.local>
- <CAL_Jsq+gapHO79i1BY8AhCJX6H67FgLmZV7xXcjBn9yY4q=6iQ@mail.gmail.com>
-From:   Zenghui Yu <yuzenghui@huawei.com>
-Message-ID: <c1f2cf72-d0df-578b-ec33-925147c75059@huawei.com>
-Date:   Tue, 31 Aug 2021 09:36:03 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        id S239414AbhHaCP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 22:15:29 -0400
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:58600 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239376AbhHaCP2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 22:15:28 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 17V2EUa2022033; Tue, 31 Aug 2021 11:14:30 +0900
+X-Iguazu-Qid: 34trdvrI75kL3fQ1Yi
+X-Iguazu-QSIG: v=2; s=0; t=1630376070; q=34trdvrI75kL3fQ1Yi; m=enqtohIq2eRDuL61o6eYoKfPFuSw91zMK8OV2c3zi3A=
+Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
+        by relay.securemx.jp (mx-mr1510) id 17V2EUbk016230
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 31 Aug 2021 11:14:30 +0900
+Received: from enc01.toshiba.co.jp (enc01.toshiba.co.jp [106.186.93.100])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by imx2-a.toshiba.co.jp (Postfix) with ESMTPS id 1866310009F;
+        Tue, 31 Aug 2021 11:14:30 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 17V2ETgh024714;
+        Tue, 31 Aug 2021 11:14:29 +0900
+Date:   Tue, 31 Aug 2021 11:14:28 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: clock: Add DT bindings for PLL of
+ Toshiba Visconti TMPV770x SoC
+X-TSB-HOP: ON
+Message-ID: <20210831021428.rsjzi6vtv2q3wnkb@toshiba.co.jp>
+References: <20210804092244.390376-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210804092244.390376-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <163021379431.2676726.15668763072935534900@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+gapHO79i1BY8AhCJX6H67FgLmZV7xXcjBn9yY4q=6iQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.185.179]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggema764-chm.china.huawei.com (10.1.198.206)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <163021379431.2676726.15668763072935534900@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021/8/31 0:12, Rob Herring wrote:
-> On Thu, Aug 26, 2021 at 4:22 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->>
->> I just merged another patch to delete the zte driver.
+Hi,
+
+Thanks for your review.
+
+On Sat, Aug 28, 2021 at 10:09:54PM -0700, Stephen Boyd wrote:
+> Quoting Nobuhiro Iwamatsu (2021-08-04 02:22:41)
+> > Add device tree bindings for PLL of Toshiba Visconti TMPV770x SoC series.
+> > 
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > ---
+> >  .../clock/toshiba,tmpv770x-pipllct.yaml       | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml b/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
+> > new file mode 100644
+> > index 000000000000..7b7300ce96d6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/toshiba,tmpv770x-pipllct.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Toshiba Visconti5 TMPV770X PLL Controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > +
+> > +description:
+> > +  Toshia Visconti5 PLL controller which supports the PLLs on TMPV770X.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: toshiba,tmpv7708-pipllct
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  clocks:
+> > +    description: External reference clock (OSC2)
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - "#clock-cells"
+> > +  - clocks
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +
+> > +    osc2_clk: osc2-clk {
+> > +      compatible = "fixed-clock";
+> > +      clock-frequency = <20000000>;
+> > +      #clock-cells = <0>;
+> > +    };
+> > +
+> > +    soc {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        pipllct: clock-controller@24220000 {
+> > +            compatible = "toshiba,tmpv7708-pipllct";
 > 
-> Unfortunately, that one missed the binding doc, so please send me a
-> patch removing the binding doc.
+> The driver makes it look like this is actually part of a syscon node. Is
+> that right? It's not clear to me that this is a syscon. But then looking
+> at the binding it seems that one device has been split up into PLL and
+> "not PLL" parts sort of arbitrarily.
 
-Okay I'll send it out today.
+This is the driver that controls the PIPLLCT device that produces the
+PLL. This device only has the ability to generate his PLL, no other
+features.
 
-I've searched the patch [*] on dri-devel list to make sure we're
-talking about the same thing.
+I have received similar comments in the driver patch from you, so I will
+check that as well.
 
-[*] 
-https://lore.kernel.org/r/20210819112253.16484-5-lukas.bulwahn@gmail.com/
+> 
+> > +            reg = <0 0x24220000 0 0x820>;
+> > +            #clock-cells = <1>;
+> > +            clocks = <&osc2_clk>;
+> > +        };
+> > +    };
+> > +...
+> 
 
-Zenghui
+Best regards,
+  Nobuhiro
+
