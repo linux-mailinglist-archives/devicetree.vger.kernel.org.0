@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B399D3FC3BA
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 10:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172E63FC3FE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 10:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239825AbhHaHbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 03:31:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46410 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239824AbhHaHbg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 31 Aug 2021 03:31:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 20B0960F91;
-        Tue, 31 Aug 2021 07:30:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630395042;
-        bh=58gahRqJCVkZ6Ws/NXcX/rfwRVKeEn+0OjYE684NjAU=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=YORRbvpt6ZHHPi0bEl/Amlmr7mRdYiNda3iiPdliD0gkW/E4Dyu766dZpEjA9xaZv
-         4EX0RhqVVF0lx4IJ6vPWfoMcvQAMPW5+IEobZY4mKmNAAJSCmcgPagEtSEzzfE3xtV
-         AmSNclUmSP43p3haiMfspUk9uzA5lN8VSTaYOPWXPgn5FcgYB68H2pVscrX/jH+FwF
-         vmU6EgVmG1btuXl0kvW3Sv2rQWppfr/g7MVJ+BVnrsPCW1driRtRhQv+PlgPP1JTey
-         QR20KZbrA1cMPi6CRQiG/NjlyM5aJsgiHWxpdGe+sNNinTAasPzew7Hurr4/5t7n6z
-         XDuniX/irTzXg==
-References: <f5ea5bc3664a98a684ad4b699a1ac610e847176f.1630389452.git.baruch@tkos.co.il>
- <9f399bdf1ff752e31ab7497e3d5ce19bbb3ff247.1630389452.git.baruch@tkos.co.il>
-User-agent: mu4e 1.6.5; emacs 27.2
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh@kernel.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Jack Pham <jackp@codeaurora.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] usb: dwc3: reference clock period configuration
-Date:   Tue, 31 Aug 2021 10:27:45 +0300
-In-reply-to: <9f399bdf1ff752e31ab7497e3d5ce19bbb3ff247.1630389452.git.baruch@tkos.co.il>
-Message-ID: <87ilzmcbqa.fsf@kernel.org>
+        id S240018AbhHaHzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 03:55:55 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:46016 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240042AbhHaHzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 03:55:53 -0400
+X-Greylist: delayed 308 seconds by postgrey-1.27 at vger.kernel.org; Tue, 31 Aug 2021 03:55:52 EDT
+Received: from ert768.prtnl (ert768.prtnl [192.168.224.11])
+        by sparta.prtnl (Postfix) with ESMTP id B6CD644A024D;
+        Tue, 31 Aug 2021 09:49:47 +0200 (CEST)
+From:   Roan van Dijk <roan@protonic.nl>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Roan van Dijk <roan@protonic.nl>
+Subject: [PATCH 0/3] iio: chemical: Add support for Sensirion SCD4x CO2 sensor 
+Date:   Tue, 31 Aug 2021 09:48:25 +0200
+Message-Id: <20210831074832.16310-1-roan@protonic.nl>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for the Sensirion SCD4x sensor. 
 
-Baruch Siach <baruch@tkos.co.il> writes:
+The driver supports continuous reads of temperature, relative humdity and CO2 
+concentration. There is an interval of 5 seconds between readings. During
+this interval the drivers checks if the sensor has new data available.
 
-> From: Balaji Prakash J <bjagadee@codeaurora.org>
->
-> Set reference clock period when it differs from dwc3 default hardware
-> set.
->
-> We could calculate clock period based on reference clock frequency. But
-> this information is not always available. This is the case of PCI bus
-> attached USB host. For that reason we use a custom property.
->
-> Tested (USB2 only) on IPQ6010 SoC based board with 24 MHz reference
-> clock while hardware default is 19.2 MHz.
->
-> Nacked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Balaji Prakash J <bjagadee@codeaurora.org>
-> [ baruch: rewrite commit message; drop GFLADJ code; remove 'quirk-' from
->   property name; mention tested hardware ]
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+The driver is based on the scd30 driver. However, The scd4x has become too 
+different to just expand the scd30 driver. I made a new driver instead of
+expanding the scd30 driver. I hope I made the right choice by doing so?
 
-Acked-by: Felipe Balbi <balbi@kernel.org>
+Roan van Dijk (3):
+  dt-bindings: iio: chemical: sensirion,scd4x: Add yaml description
+  MAINTAINERS: Add myself as maintainer of the scd4x driver
+  drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
 
+ .../iio/chemical/sensirion,scd4x.yaml         |  45 ++
+ MAINTAINERS                                   |   6 +
+ drivers/iio/chemical/Kconfig                  |  13 +
+ drivers/iio/chemical/Makefile                 |   1 +
+ drivers/iio/chemical/scd4x.c                  | 707 ++++++++++++++++++
+ 5 files changed, 772 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
+ create mode 100644 drivers/iio/chemical/scd4x.c
 
 -- 
-balbi
+2.30.2
+
