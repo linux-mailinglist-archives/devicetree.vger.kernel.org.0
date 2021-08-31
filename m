@@ -2,133 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8675E3FC21A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 07:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5ADA3FC229
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 07:31:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234013AbhHaFY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 01:24:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55092 "EHLO
+        id S238048AbhHaFcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 01:32:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233873AbhHaFY3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 01:24:29 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F939C06175F
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 22:23:34 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id x16so14045390pfh.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 22:23:34 -0700 (PDT)
+        with ESMTP id S236695AbhHaFcD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 01:32:03 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF83C061575
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 22:31:08 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id fz10so11036029pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 22:31:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=29TOratnK2xJst8mXbq92wXeuQ1QgEl/NV9J//FjPgY=;
-        b=BfQ3rpDoYSzs79d9Fu3Wt+Vr9SRnp+yY4N3phwgs/YfDy9OHipi7ogcsvB8koD+Xt5
-         G3WSyeNcw6WlTOsIFUPbcPcoXWrKZWcpSjXiSSEu8+uVJedjfbo7Vv8Pvh+a2v8pghlk
-         Gi1Ub0o3Ia88h3i+MzdV2MeS3YQkYLIdkYFT8MzNaJSlJeMvfXIekNT75zBQ5egFbGch
-         Af3jVbYvum/RvZ7ZMIlG+I86ombN2B9RGT9YZAPrEj6brhg7a/3wVWjFZRUGZERW+EYg
-         sH2DKz8abj2BqXgNnGae569Rxwc3poCE10VEmiq+ZW84LGcGX25l/aA8fRerp94a8Zm3
-         glEA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=D1j+u39JQe0IvSvalduRURIv+C+pC/WleO58NuYMuEE=;
+        b=WJp8v1nOOjm9ZpppPwTfY2f8YP3w1j5YPwC41/npsmVhdgHXNj0yX1RRaA3p79kcbj
+         l+fju0SQ4RqwIaDZuHGHORD/zVYh8Y5RxlpoRL7ULgxPd0/zxZqCFYhYNd/AX8s8kUGp
+         HyBcmPBjk6uJFngm3p/6TLEj1a0F8TXfOoTq8swKLUNq6P2o2nNXO1At8oFReHwxistm
+         wJ4Jp20YtezatBgYnp/J9+jSbDIr4luqhA/Fcq5A9XhwR1yWB0qgpDKtsdi1uLEBMwsu
+         4QWzxRpnVbdUgBTYQo5kyA6ss8xG8FwPRE2RhNlYuyJvndcRKh7JvMcv1hdf6DKYkTlJ
+         jKAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=29TOratnK2xJst8mXbq92wXeuQ1QgEl/NV9J//FjPgY=;
-        b=Fa/kjsjeXScsqqrNjzYoDSJz5uGoPNi6msVhLP08wSxkQWjfFFQ+Qj7khdPTvDftm3
-         T21osWylscOrjq66T318zgixXv/rO1tkFclR3zEMOxpViIH7MHEYCGWFRrVndPfHh9xU
-         bNElDowSfX4+xi6HN0zgLbCBWxPflh3HByc4Mk30sRMnU6T9/aFCsCZUz+x6C/5cs2Cn
-         rlMcDppomYuYrBQ9DDpvlCz9N6rCY1fL0O9yvLqWCNXmMw1ae6lgPYuqyZn0+g/J5K0h
-         8NJ9ZrENC+VahxQzAMZZpZYuxMzI2AmaTcDGCSKRxKSCMQMfn4ETz2EZlQ1Yb84IjQ32
-         c0yA==
-X-Gm-Message-State: AOAM5338uSde33msGZ6t/4XJip1TKqAEHIVI4vlr5NNb58gO6XJBxRf0
-        TByBzMQZMaxRFrvo9uA3tVIpow==
-X-Google-Smtp-Source: ABdhPJxZjh6QIbhyJFWmER4NiG9H6sSUfkt4migc4q89klJmPEqfuSx6CvmgdOYanvnSxGuZlxqBpQ==
-X-Received: by 2002:a05:6a00:139c:b0:3fd:e818:edc8 with SMTP id t28-20020a056a00139c00b003fde818edc8mr10767317pfg.39.1630387413970;
-        Mon, 30 Aug 2021 22:23:33 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id w18sm1293962pjg.50.2021.08.30.22.23.32
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=D1j+u39JQe0IvSvalduRURIv+C+pC/WleO58NuYMuEE=;
+        b=hJxyGKGjSkH9Em+xvPlxInYGYPBk9zQV1iQD3pd7/hZXhovgCbHePS5PXwAmurnofG
+         Gve8Nk6FNL1lOpJv8Uvrggt3hky/mquwTGPbaT1rV1I1Y2uUnrkkkhL+pMlmE1X9DRhK
+         lRxbBX69OyZAgzom5O0FxLjqEV9Y1rUXBRgRFW+V/zDInG1FgiCXijdk869M3/5mQaUq
+         goj6x+6aTwAeUccONwdNrrc/r/0jxL0P/V0yt3N4l6Sn/y2af2uq6TXdOcMIIHoVe8+l
+         S0O1uWtSCgouILV70yKpYdDmH/vHRs1fuZvJdYXeKxoDqsPEJYbC2d+h1yJzu10L7xWM
+         wWyg==
+X-Gm-Message-State: AOAM5306ROwXBKT0fNmvWO8ECCAov9hjVs79uyeFCJxdShtTkD8JlI2t
+        qBFwSIcHJBhP2z1d5humDNebhw==
+X-Google-Smtp-Source: ABdhPJyjDELQe1mDHU5bNl0p0yBqpmQlcN+4VXQH9PQNBMQg+8YtgAejAl0fhVV67imVjkJe8fS97A==
+X-Received: by 2002:a17:90a:8b81:: with SMTP id z1mr3236338pjn.82.1630387868016;
+        Mon, 30 Aug 2021 22:31:08 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id c15sm1319656pjr.22.2021.08.30.22.31.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 22:23:33 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: Update BAM DMA node name per DT schema
-Date:   Tue, 31 Aug 2021 13:23:25 +0800
-Message-Id: <20210831052325.21229-1-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        Mon, 30 Aug 2021 22:31:07 -0700 (PDT)
+Date:   Tue, 31 Aug 2021 11:01:05 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        Arnd Bergmann <arnd@arndb.de>, linux-gpio@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Subject: Re: [PATCH V4 0/5] virtio: Add virtio-device bindings
+Message-ID: <20210831053105.ut73bmvxcop65nuv@vireshk-i7>
+References: <cover.1627362340.git.viresh.kumar@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1627362340.git.viresh.kumar@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow dma-controller.yaml schema to use `dma-controller` as node name
-of BAM DMA devices.
+On 27-07-21, 10:53, Viresh Kumar wrote:
+> Hi,
+> 
+> Currently the DT only provides support for following node types for virtio-mmio
+> nodes:
+> 
+>         virtio_mmio@a000000 {
+>                 dma-coherent;
+>                 interrupts = <0x00 0x10 0x01>;
+>                 reg = <0x00 0xa000000 0x00 0x200>;
+>                 compatible = "virtio,mmio";
+>         };
+> 
+> Here, each virtio-mmio corresponds to a virtio-device. But there is no way for
+> other users in the DT to show their dependency on virtio devices.
+> 
+> This patchset provides that support.
+> 
+> The first patch adds virtio-device bindings to allow for device sub-nodes to be
+> present and the second patch updates the virtio core to update the of_node.
+> 
+> Other patches add bindings for i2c and gpio devices.
+> 
+> Tested on x86 with qemu for arm64.
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+Michael, are you picking these up for 5.15 ?
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 2843bcbce778..2d3860337098 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -212,7 +212,7 @@
- 			status = "disabled";
- 		};
- 
--		cryptobam: dma@704000 {
-+		cryptobam: dma-controller@704000 {
- 			compatible = "qcom,bam-v1.7.0";
- 			reg = <0x00704000 0x20000>;
- 			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 52df22ab3f6a..390468e1b62e 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2686,7 +2686,7 @@
- 			status = "disabled";
- 		 };
- 
--		blsp1_dma: dma@7544000 {
-+		blsp1_dma: dma-controller@7544000 {
- 			compatible = "qcom,bam-v1.7.0";
- 			reg = <0x07544000 0x2b000>;
- 			interrupts = <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>;
-@@ -2743,7 +2743,7 @@
- 			status = "disabled";
- 		};
- 
--		blsp2_dma: dma@7584000 {
-+		blsp2_dma: dma-controller@7584000 {
- 			compatible = "qcom,bam-v1.7.0";
- 			reg = <0x07584000 0x2b000>;
- 			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 34039b5c8017..a46838f1e310 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -2187,7 +2187,7 @@
- 			#size-cells = <0>;
- 		};
- 
--		blsp2_dma: dma@c184000 {
-+		blsp2_dma: dma-controller@c184000 {
- 			compatible = "qcom,bam-v1.7.0";
- 			reg = <0x0c184000 0x25000>;
- 			interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 99e023314ae4..0b7cf0c7c22c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2307,7 +2307,7 @@
- 			};
- 		};
- 
--		cryptobam: dma@1dc4000 {
-+		cryptobam: dma-controller@1dc4000 {
- 			compatible = "qcom,bam-v1.7.0";
- 			reg = <0 0x01dc4000 0 0x24000>;
- 			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-2.17.1
-
+viresh
