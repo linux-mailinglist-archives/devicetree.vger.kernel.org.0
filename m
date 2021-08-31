@@ -2,164 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF9393FCEC7
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 22:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F06E03FCEDF
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 22:57:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241119AbhHaUtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 16:49:07 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:44649 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240484AbhHaUtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 16:49:07 -0400
-Received: by mail-ot1-f50.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so745727otg.11;
-        Tue, 31 Aug 2021 13:48:10 -0700 (PDT)
+        id S241254AbhHaU6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 16:58:09 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:38408 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234503AbhHaU6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 16:58:08 -0400
+Received: by mail-ot1-f47.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso828702ots.5;
+        Tue, 31 Aug 2021 13:57:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wNNp70ZeS1CkFL+U1J77pDYe0j7gaaFJgPTD6drutso=;
-        b=pDw6ijVRW4J8fOCCa8sxrQ20XQSQp9sWQBr3nsvoVqL55z7rsXk4Nqthzo2o3C6N+t
-         aF4vqeoBWuw9u5RLO81jw3nQjyU1k56ZwjW8LuttPRNjb0ZuXJ17LcGgM2tnPc6bYhOt
-         fkG7t9uWU4NAKjZX8MiZq0Ve+bjeKmi765ZJzC5q8K1nJ2vIxDsgKfa49R3ISrlliJQI
-         xZcZq7e6OBg6amlxNTcCM4W2rkIZHIwwajdoelzZgokJ4AEZ45okflDmSK6w5IFXyHgH
-         l1yKt/n8+t+P9Jq9SQiQ6xrVGX0/29sIVzepGeN5BtaePRIGP8hvITgq+L3mp2YLZMis
-         bamw==
-X-Gm-Message-State: AOAM532uhxFkJIRfKy9EqNuo7zqQn0Gq5iskSvxnlTcPerUBPxgMY/8i
-        KC15eA8VGReDNgPzMFIyUA==
-X-Google-Smtp-Source: ABdhPJzFy3Ujv5wUhcg6/TUy2Ei8DusEEY8iaFpVICUkEJ+8N0SrQvTJ0un7XWJKW550cQ27rF9Dng==
-X-Received: by 2002:a9d:4a8d:: with SMTP id i13mr2190320otf.180.1630442890470;
-        Tue, 31 Aug 2021 13:48:10 -0700 (PDT)
+        bh=V9SoZJoKiitq1u8ZN3GHpVYKyGQkP7ERaxx9gqUGTIc=;
+        b=c+t4E0Oyn6axGlennppbvBtgooayJ/hwTuTeRkOq5HLwHR72hNp8KFmip6+cUHcq29
+         94whYFXhHGSY871auLmL4MT2CrH8+96TFG5gf0v/JuH1np4pRaRlvQikgjXFaCkf1f2O
+         m1sCUfbw1pDheXCwRf/PyTlMO0SXkyvChzSOKWEuYT4Xl9xIYlqK42FA7eHthyfTNY/M
+         wrpqCic4J7ZAYXO2MGTpG0q4iBqKy1r03oEsaBSTt/PmdeNcLqVPGd2lqRD/vdKGnVV9
+         50Ophv9dDbZEzLFqrrOCkpIT5xpjIubxgHbKl++7U8hEGK/K/ewsK16CjFa+9uZ+JlvT
+         PwzQ==
+X-Gm-Message-State: AOAM531gW0E+S1Yt/GmbNrQcgUf12iA0d3FjKXS9NPXQ/7pn6b4eXJeF
+        AYt2RxVo66bGfJHCqak2oA==
+X-Google-Smtp-Source: ABdhPJw8tg9zBXdq43Opas4yOvgMpEeoLCoWvqxX0MLBbbRLQ0kd9i6hMb6doP19JQTUoXrSvMdcfw==
+X-Received: by 2002:a9d:6d02:: with SMTP id o2mr25604533otp.302.1630443432535;
+        Tue, 31 Aug 2021 13:57:12 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bg38sm2211456oib.26.2021.08.31.13.48.09
+        by smtp.gmail.com with ESMTPSA id x3sm3703482ooe.32.2021.08.31.13.57.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 13:48:09 -0700 (PDT)
-Received: (nullmailer pid 623003 invoked by uid 1000);
-        Tue, 31 Aug 2021 20:48:09 -0000
-Date:   Tue, 31 Aug 2021 15:48:09 -0500
+        Tue, 31 Aug 2021 13:57:11 -0700 (PDT)
+Received: (nullmailer pid 634764 invoked by uid 1000);
+        Tue, 31 Aug 2021 20:57:10 -0000
+Date:   Tue, 31 Aug 2021 15:57:10 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Kefeng Wang <wangkefeng.wang@huawei.com>
-Cc:     linux-kernel@vger.kernel.org, frowand.list@gmail.com,
-        linux@armlinux.org.uk, linux-arm-kernel@lists.infradead.org,
-        saravanak@google.com, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org, Ruizhe Lin <linruizhe@huawei.com>
-Subject: Re: [PATCH v2 4/4] amba: Properly handle device probe without IRQ
- domain
-Message-ID: <YS6ViZ98JGa/KJ+Z@robh.at.kernel.org>
-References: <20210827150600.78811-1-wangkefeng.wang@huawei.com>
- <20210827150600.78811-5-wangkefeng.wang@huawei.com>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: interrupt-controller: Convert MSI
+ controller to json-schema
+Message-ID: <YS6XpkluSVRIvR6J@robh.at.kernel.org>
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
+ <20210827171534.62380-2-mark.kettenis@xs4all.nl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210827150600.78811-5-wangkefeng.wang@huawei.com>
+In-Reply-To: <20210827171534.62380-2-mark.kettenis@xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 27, 2021 at 11:06:00PM +0800, Kefeng Wang wrote:
-> of_amba_device_create() uses irq_of_parse_and_map() to translate
-> a DT interrupt specification into a Linux virtual interrupt number.
+On Fri, Aug 27, 2021 at 07:15:26PM +0200, Mark Kettenis wrote:
+> From: Mark Kettenis <kettenis@openbsd.org>
 > 
-> But it doesn't properly handle the case where the interrupt controller
-> is not yet available, eg, when pl011 interrupt is connected to MBIGEN
-> interrupt controller, because the mbigen initialization is too late,
-> which will lead to no IRQ due to no IRQ domain found, log is shown below,
->   "irq: no irq domain found for uart0 !"
+> Split the MSI controller bindings from the MSI binding document
+> into DT schema format using json-schema.
 > 
-> use of_irq_get() to return -EPROBE_DEFER as above, and in the driver
-> deferred probe, it will properly handle in such case, also return 0
-> in other fail cases to be consistent as before.
-> 
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Reported-by: Ruizhe Lin <linruizhe@huawei.com>
-> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
 > ---
->  drivers/amba/bus.c    | 27 +++++++++++++++++++++++++++
->  drivers/of/platform.c |  6 +-----
->  2 files changed, 28 insertions(+), 5 deletions(-)
+>  .../interrupt-controller/msi-controller.yaml  | 34 +++++++++++++++++++
+>  .../bindings/pci/brcm,stb-pcie.yaml           |  1 +
+>  .../bindings/pci/microchip,pcie-host.yaml     |  1 +
+>  3 files changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
 > 
-> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-> index 4d3a565ca079..96e84ce66e9a 100644
-> --- a/drivers/amba/bus.c
-> +++ b/drivers/amba/bus.c
-> @@ -19,6 +19,7 @@
->  #include <linux/clk/clk-conf.h>
->  #include <linux/platform_device.h>
->  #include <linux/reset.h>
-> +#include <linux/of_irq.h>
->  
->  #define to_amba_driver(d)	container_of(d, struct amba_driver, drv)
->  
-> @@ -170,6 +171,28 @@ static int amba_uevent(struct device *dev, struct kobj_uevent_env *env)
->  	return retval;
->  }
->  
-> +static int of_amba_device_decode_irq(struct amba_device *dev)
-> +{
-> +	struct device_node *node = dev->dev.of_node;
-> +	int i, irq;
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> new file mode 100644
+> index 000000000000..5ed6cd46e2e0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/msi-controller.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/msi-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (IS_ENABLED(CONFIG_OF_IRQ) && node) {
+> +title: MSI controller
+> +
+> +maintainers:
+> +  - Marc Zyngier <marc.zyngier@arm.com>
+> +
+> +description: |
+> +  An MSI controller signals interrupts to a CPU when a write is made
+> +  to an MMIO address by some master. An MSI controller may feature a
+> +  number of doorbells.
+> +
+> +properties:
+> +  "#msi-cells":
+> +    description: |
+> +      The number of cells in an msi-specifier, required if not zero.
+> +
+> +      Typically this will encode information related to sideband data,
+> +      and will not encode doorbells or payloads as these can be
+> +      configured dynamically.
+> +
+> +      The meaning of the msi-specifier is defined by the device tree
+> +      binding of the specific MSI controller.
 
-I don't think this check is needed. If either is false, we should return 
-an errno from of_irq_get().
+I'd prefer we limit this to the maximum range. I'd like to know when 
+someone needs 2 cells (or 3000).
 
-> +		/* Decode the IRQs and address ranges */
-> +		for (i = 0; i < AMBA_NR_IRQS; i++) {
-> +			irq = of_irq_get(node, i);
-> +			if (irq < 0) {
-> +				if (irq == -EPROBE_DEFER)
-> +					return irq;
-> +				irq = 0;
-> +			}
+enum: [ 0, 1 ]
+
+Though no one seems to use 0 (making it optional was probably a 
+mistake...)
+
 > +
-> +			dev->irq[i] = irq;
-> +		}
-> +	}
+> +  msi-controller:
+> +    description:
+> +      Identifies the node as an MSI controller.
+> +    $ref: /schemas/types.yaml#/definitions/flag
+
+dependencies:
+  "#msi-cells": [ msi-controller ]
+
 > +
-> +	return 0;
-> +}
-> +
->  /*
->   * These are the device model conversion veneers; they convert the
->   * device model structures to our more specific structures.
-> @@ -182,6 +205,10 @@ static int amba_probe(struct device *dev)
->  	int ret;
+> +additionalProperties: true
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index b9589a0daa5c..5c67976a8dc2 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -88,6 +88,7 @@ required:
 >  
->  	do {
-> +		ret = of_amba_device_decode_irq(pcdev);
-> +		if (ret)
-> +			break;
-> +
->  		ret = of_clk_set_defaults(dev->of_node, false);
->  		if (ret < 0)
->  			break;
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 74afbb7a4f5e..32d5ff8df747 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -222,7 +222,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
->  {
->  	struct amba_device *dev;
->  	const void *prop;
-> -	int i, ret;
-> +	int ret;
+>  allOf:
+>    - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: ../interrupt-controller/msi-controller.yaml#
+
+/schemas/interrupt-controller/msi-controller.yaml#
+
+>    - if:
+>        properties:
+>          compatible:
+> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> index fb95c276a986..684d9d036f48 100644
+> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> @@ -11,6 +11,7 @@ maintainers:
 >  
->  	pr_debug("Creating amba device %pOF\n", node);
+>  allOf:
+>    - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: ../interrupt-controller/msi-controller.yaml#
 >  
-> @@ -253,10 +253,6 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
->  	if (prop)
->  		dev->periphid = of_read_ulong(prop, 1);
->  
-> -	/* Decode the IRQs and address ranges */
-> -	for (i = 0; i < AMBA_NR_IRQS; i++)
-> -		dev->irq[i] = irq_of_parse_and_map(node, i);
-> -
->  	ret = of_address_to_resource(node, 0, &dev->res);
->  	if (ret) {
->  		pr_err("amba: of_address_to_resource() failed (%d) for %pOF\n",
+>  properties:
+>    compatible:
 > -- 
-> 2.18.0.huawei.25
+> 2.32.0
 > 
 > 
