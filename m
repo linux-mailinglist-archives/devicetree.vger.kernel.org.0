@@ -2,130 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E85543FC591
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 12:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A283FC613
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 13:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240979AbhHaKWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 06:22:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35534 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240974AbhHaKWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 06:22:42 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3BFEC06175F
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 03:21:46 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id j12so30748799ljg.10
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 03:21:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wQ8kS/+bTV4avdS2tU6jC3f6zz+Ryry/9cKDRK1gufo=;
-        b=jiP1wMEEvsgc3n7vYx1ledvZpCZkUX5FcfCU/d4NmQ10imEb+nTwuV7AvPQyuAhzpe
-         YsP/UU3DHPPh2i10yLbc78f5nCMLrerGJ6O5w2qQxXo1os1R5iEn/nQbRPHBGoAOHkXS
-         1aGLp5y3Z3p+M9xTR3mVec6Ve/Wj+o+zBAE2jyiAeEhGtBnmOfK3J7BHgoO9AKlkFMG8
-         XHtHiuMg1cbBY5AtMl5rgl7rqbMvAu7ThdDV0Pq3/ED5GoRF4shP/c5KQGW9yKirDnmq
-         d2LCC2MTmPF6h0Symi6YMYf/1TDJKL/EaXJSAYRhHwpoTPEraIaRvdsHZ1cUt089Z39h
-         /jrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wQ8kS/+bTV4avdS2tU6jC3f6zz+Ryry/9cKDRK1gufo=;
-        b=q+IvEFnSKPdRzjwHUOYT16v2aGmVckNRTscB7VsM7HBVlVGKDDnumcdMsD3+OScLIM
-         W+ZxUSIZ+YmoYalQV6qxUujlwYGHbaqA35jaMOJGfsOS72ZXsqHrG+LeYsDGj+0Mmx8q
-         fNMq9U8Ys3n/tBghA8TCzQIZHYNIm8ZCWWkAcArgwPXtIOkp2wXfOvOE4ZZwqJwFg4Q3
-         LIxGv2pO2+FT4VF/pOqc3BZAP/RWwAGBtS7CeAnN1yqSSNUmRg311r2eTFjyFcP+4qmS
-         xoml9bH7YgJVZOu7DptBrpukynIs74rd98dbmAh+EyMXGCYQObvH1Y5HpIhFpybawQYQ
-         5eRA==
-X-Gm-Message-State: AOAM532n+plcda5p4eiVwolsxjemyX6WbIC1yXNI6R/1Di24aUmZGO/z
-        It5OFWKWvT3pldemExMyHE81Mw==
-X-Google-Smtp-Source: ABdhPJyfAO80CqzIGBt9m8D2PiuI5w5PJosyAgh/JmPeY8WX1k4mcSvpAtqPgpVYTTOGtXaXZQRtog==
-X-Received: by 2002:a05:651c:2ca:: with SMTP id f10mr24621298ljo.211.1630405305074;
-        Tue, 31 Aug 2021 03:21:45 -0700 (PDT)
-Received: from localhost.localdomain (h-155-4-129-146.NA.cust.bahnhof.se. [155.4.129.146])
-        by smtp.gmail.com with ESMTPSA id d13sm1687864lfk.232.2021.08.31.03.21.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 03:21:44 -0700 (PDT)
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] of: property: fw_devlink: Set 'optional_con_dev' for parse_power_domains
-Date:   Tue, 31 Aug 2021 12:21:41 +0200
-Message-Id: <20210831102141.624725-1-ulf.hansson@linaro.org>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S241239AbhHaKjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 06:39:46 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:45762 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241220AbhHaKi7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 31 Aug 2021 06:38:59 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630406284; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=pwOyVsDSJZr2OlFw6nHHCdGFvhhwxrSHAgpVHaaW3kE=; b=wsnEU5cvX8mUrrjN8IvPE48BP5W/DoC09UZorM8/BI550xd+MRviXZ0I746EytJFcZIJVm7m
+ yPm/TXdpD0Uq6043dZhpjYEG1xEsF9o82hJTtM72ejV7DhncFZ/nhyBBTACaeBZ9fZWBFue7
+ TAfNTMMldX/0kTpzqslbhbAeGZs=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 612e06784cd9015037e578b9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 31 Aug 2021 10:37:44
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 36194C4360C; Tue, 31 Aug 2021 10:37:44 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8BC96C4338F;
+        Tue, 31 Aug 2021 10:37:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 8BC96C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v1 1/2] dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280
+Date:   Tue, 31 Aug 2021 16:06:41 +0530
+Message-Id: <1630406202-3919-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The power-domain DT bindings [1] doesn't enforce a compatible string for a
-provider node, even if this is common to use. In particular, when
-describing a hierarchy with parent/child power-domains, as the psci DT
-bindings [2] for example, it's sometimes not applicable to use a compatible
-string.
+The LPASS(Low Power Audio Subsystem) clock provider have a bunch of generic
+properties that are needed in a device tree. Add the LPASS clock IDs for
+LPASS PIL client to request for the clocks.
 
-Therefore, let's set the 'optional_con_dev' to true to avoid creating
-incorrect fw_devlinks for power-domains.
-
-[1] Documentation/devicetree/bindings/power/power-domain.yaml
-[2] Documentation/devicetree/bindings/arm/psci.yaml
-
-Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Taniya Das <tdas@codeaurora.org>
 ---
+ .../bindings/clock/qcom,sc7280-lpasscc.yaml        | 69 ++++++++++++++++++++++
+ include/dt-bindings/clock/qcom,lpass-sc7280.h      | 16 +++++
+ 2 files changed, 85 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscc.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,lpass-sc7280.h
 
-Some more details of what goes on here. I have added a debug print in
-of_link_to_phandle() to see the fw_devlinks that gets created.
-
-This is what happens on Dragonboard 410c when 'optional_con_dev' isn't set:
-...
-[    0.041274] device: 'psci': device_add
-[    0.041366] OF: Linking power-domain-cpu0 (consumer) to psci (supplier)
-[    0.041395] OF: Linking power-domain-cpu1 (consumer) to psci (supplier)
-[    0.041423] OF: Linking power-domain-cpu2 (consumer) to psci (supplier)
-[    0.041451] OF: Linking power-domain-cpu3 (consumer) to psci (supplier)
-[    0.041494] device: 'platform:psci--platform:psci': device_add
-[    0.041556] platform psci: Linked as a sync state only consumer to psci
-...
-
-This is what happens on Dragonboard 410c when 'optional_con_dev' is set:
-...
-[    0.041179] device: 'psci': device_add
-[    0.041265] OF: Not linking psci to psci - is descendant
-[    0.041293] OF: Not linking psci to psci - is descendant
-[    0.041319] OF: Not linking psci to psci - is descendant
-[    0.041346] OF: Not linking psci to psci - is descendant
-...
-
-The relevant dtsi file:
-arch/arm64/boot/dts/qcom/msm8916.dtsi
-
-Kind regards
-Ulf Hansson
-
----
- drivers/of/property.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 2babb1807228..4d607fdbea24 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1356,7 +1356,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_io_channels, },
- 	{ .parse_prop = parse_interrupt_parent, },
- 	{ .parse_prop = parse_dmas, .optional = true, },
--	{ .parse_prop = parse_power_domains, },
-+	{ .parse_prop = parse_power_domains, .optional_con_dev = true, },
- 	{ .parse_prop = parse_hwlocks, },
- 	{ .parse_prop = parse_extcon, },
- 	{ .parse_prop = parse_nvmem_cells, },
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscc.yaml
+new file mode 100644
+index 0000000..7b62763
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscc.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,sc7280-lpasscc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm LPASS Core Clock Controller Binding for SC7280
++
++maintainers:
++  - Taniya Das <tdas@codeaurora.org>
++
++description: |
++  Qualcomm LPASS core clock control module which supports the clocks and
++  power domains on SC7280.
++
++  See also:
++  - dt-bindings/clock/qcom,lpass-sc7280.h
++
++properties:
++  compatible:
++    enum:
++      - qcom,sc7280-lpasscc
++
++  clocks:
++    items:
++      - description: gcc_cfg_noc_lpass_clk from GCC
++
++  clock-names:
++    items:
++      - const: iface
++
++  '#clock-cells':
++    const: 1
++
++  reg:
++    minItems: 3
++    items:
++      - description: LPASS qdsp6ss register
++      - description: LPASS top-cc register
++      - description: LPASS cc register
++
++  reg-names:
++    items:
++      - const: qdsp6ss
++      - const: top_cc
++      - const: cc
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
++    #include <dt-bindings/clock/qcom,lpass-sc7280.h>
++    clock-controller@3000000 {
++      compatible = "qcom,sc7280-lpasscc";
++      reg = <0x03000000 0x40>, <0x03c04000 0x4>, <0x03389000 0x24>;
++      reg-names = "qdsp6ss", "top_cc", "cc";
++      clocks = <&gcc GCC_CFG_NOC_LPASS_CLK>;
++      clock-names = "iface";
++      #clock-cells = <1>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,lpass-sc7280.h b/include/dt-bindings/clock/qcom,lpass-sc7280.h
+new file mode 100644
+index 0000000..a259463
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,lpass-sc7280.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_LPASS_SC7280_H
++#define _DT_BINDINGS_CLK_QCOM_LPASS_SC7280_H
++
++#define LPASS_Q6SS_AHBM_CLK				0
++#define LPASS_Q6SS_AHBS_CLK				1
++#define LPASS_TOP_CC_LPI_Q6_AXIM_HS_CLK			2
++#define LPASS_QDSP6SS_XO_CLK				3
++#define LPASS_QDSP6SS_SLEEP_CLK				4
++#define LPASS_QDSP6SS_CORE_CLK				5
++
++#endif
 -- 
-2.25.1
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
