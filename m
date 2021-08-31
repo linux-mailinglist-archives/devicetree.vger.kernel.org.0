@@ -2,197 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDB5E3FCF8F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 00:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB433FCF93
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 00:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233519AbhHaW3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 18:29:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbhHaW3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 18:29:49 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F9ADC061575;
-        Tue, 31 Aug 2021 15:28:53 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id c8so2196942lfi.3;
-        Tue, 31 Aug 2021 15:28:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=dS9a4YMFIkiyop0PAaPSvf253c+DJ+aqy8e3zyibudI=;
-        b=d1GVhDAbWLf39u8T58lsdyyzB3xuNKg4Snil8lED8FR6T5Da6Bbo1S0OeUfmF4RPoI
-         KLzZbsIFQEsImkpVg8eOrEMshDXO5VvJHeb7sWQOYXOnaOwT8U3NvBdpCC5SKaFGpLJF
-         xTevo3atCRYZxfYU+lMvIRBJTRLIsdmaGq3k6NdcK8kFQklBNRME+NfKWY/Unk1RQADn
-         7AIMyj5lQidQDjnU6U05R1iJfGtyMuPA1euC9rlM66zQzuhoI3M8Kt0vfItN6DNEjoCJ
-         4Vbv7HwrCsYDTnNONB6IvgidjP6WvZzsPIdm5bYf6a+qzLAFU60fsO4zgs4ZO+TrEWCk
-         c8Xg==
+        id S230286AbhHaWaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 18:30:00 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:40731 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240791AbhHaW37 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 18:29:59 -0400
+Received: by mail-oi1-f180.google.com with SMTP id h133so1224601oib.7
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 15:29:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dS9a4YMFIkiyop0PAaPSvf253c+DJ+aqy8e3zyibudI=;
-        b=pKPTQBqpZDIsfXH7RGgOPFaB+UrfiR0uNN7z8qJo2L2XqY8kNgEviy9Nll+yWhmkeh
-         RaJBC5XzPI+bJ8vCGpo1qRkP5daSChwVhVhzfferoaZ+VvK77SD71z0fd094p2RXeCx6
-         o+CxBKXGJ87gBzXoMJ4aAO68U/KxMa9UDN8Np+iN1XwU6ix81TN1rZStciwiBADwtaGf
-         W8NNlV4+8o1bkWu8J6exE5NmwQJ+sGGj6Q/9JCPcsImRBPHH9ccyjvsYeS/0EgFQ2HML
-         oPt9C1sPryh4S2/XHxW8hhumsWO9XFPLHUhijEuo51rAyCz42Y7ptmRDqfm60qlzYcZH
-         ZHOA==
-X-Gm-Message-State: AOAM532KehVG4mDjQtuGPyYxp+JuP7C5sMLXbKZ3K9NgEbU5cpx20qmQ
-        MoDfnDVA6mEkpmAkyNKY31A=
-X-Google-Smtp-Source: ABdhPJwPqlhz8T1tF33XrwgI72jslJEnQiOVzkoc3MWXhkcOJH2Y6flAB6Q8dAi7LuveQWwTIoXn+w==
-X-Received: by 2002:ac2:42d2:: with SMTP id n18mr23879636lfl.505.1630448930893;
-        Tue, 31 Aug 2021 15:28:50 -0700 (PDT)
-Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
-        by smtp.gmail.com with ESMTPSA id g24sm2341740ljm.6.2021.08.31.15.28.49
+        bh=DlIKGrJhzXDsC2KcNbGElcUOBBOTh/HViU6kDBixtqI=;
+        b=oNHH/LWvWzPtqSmluczNJViiM1vfA2s/pprB28oLT0sxKcXgIQStZXd+1X76NK4HAY
+         LZlTm9pzmoQ7TIcOaK3TjodhwsO9PdTC4iwoL1tDNTAUMgJCDLhoiHGITe8bYUTKFY64
+         rUhzPhI2Ff5r2IrJGaAPPMXfzRjZisxm/mOZlS7ycM4KYa3MxgtUhbfZBL15A7xrwHsb
+         MDJI7qozS7D/KNEw1/wwboP5MWq3Ibs7RMC5etdxuipEnWKKWH8JHuMaHnJcQFU+YMzz
+         RfRRX0mi73X81bop7ZPouYr5ah6HPuMzESxGUBK8Hl4iNpNxD5orzlAYs7YU+TCWoBWm
+         PPOg==
+X-Gm-Message-State: AOAM531H1r8ZLVaC7h1faneOxQNEr1k8CnWgcx6vc0XvlytoUDza4Gkg
+        RU9nosq3KYWC1u6sWnD3bw==
+X-Google-Smtp-Source: ABdhPJxJpEVmzxg/L1hN2ArJ25r6p596P18MN9gR3Yo8prFOuHrsPGKBIVNukJC2oiJeGwhh1XTWJg==
+X-Received: by 2002:a05:6808:46:: with SMTP id v6mr4833237oic.61.1630448943615;
+        Tue, 31 Aug 2021 15:29:03 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id n73sm3970960oig.9.2021.08.31.15.29.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 15:28:50 -0700 (PDT)
-Date:   Wed, 1 Sep 2021 01:28:48 +0300
-From:   Kari Argillander <kari.argillander@gmail.com>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, pinglinux@gmail.com,
-        tatsunosuke.tobita@wacom.com, junkpainting@gmail.com,
-        ping.cheng@wacom.com, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 07/12] Input: wacom_i2c - Clean up the query device
- fields
-Message-ID: <20210831222848.5dtyedllyn43tgoz@kari-VirtualBox>
-References: <20210829091925.190-1-alistair@alistair23.me>
- <20210829091925.190-9-alistair@alistair23.me>
+        Tue, 31 Aug 2021 15:29:03 -0700 (PDT)
+Received: (nullmailer pid 756533 invoked by uid 1000);
+        Tue, 31 Aug 2021 22:29:02 -0000
+Date:   Tue, 31 Aug 2021 17:29:02 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     broonie@kernel.org, heiko@sntech.de,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: rockchip: Convert pdm bindings
+ to yaml
+Message-ID: <YS6tLlVSjnYZtEil@robh.at.kernel.org>
+References: <1630285788-28002-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1630285861-28147-2-git-send-email-sugar.zhang@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210829091925.190-9-alistair@alistair23.me>
+In-Reply-To: <1630285861-28147-2-git-send-email-sugar.zhang@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just minor style issues checked.
-
-On Sun, Aug 29, 2021 at 07:19:20PM +1000, Alistair Francis wrote:
-> Improve the query device fields to be more verbose.
+On Mon, Aug 30, 2021 at 09:11:01AM +0800, Sugar Zhang wrote:
+> This patch converts pdm bindings to yaml.
 > 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
 > ---
->  drivers/input/touchscreen/wacom_i2c.c | 63 ++++++++++++++++++---------
->  1 file changed, 43 insertions(+), 20 deletions(-)
 > 
-> diff --git a/drivers/input/touchscreen/wacom_i2c.c b/drivers/input/touchscreen/wacom_i2c.c
-> index d6036406a9f3..a35d8fda7e7b 100644
-> --- a/drivers/input/touchscreen/wacom_i2c.c
-> +++ b/drivers/input/touchscreen/wacom_i2c.c
-> @@ -13,16 +13,33 @@
->  #include <linux/irq.h>
->  #include <linux/input/touchscreen.h>
->  #include <linux/interrupt.h>
-> +#include <linux/reset.h>
->  #include <linux/of.h>
->  #include <asm/unaligned.h>
->  
-> +// Registers
-
-Use /* */ comments.
-
->  #define WACOM_DESC_REG	0x01
-> -#define WACOM_CMD_QUERY0	0x04
-> -#define WACOM_CMD_QUERY1	0x00
-> -#define WACOM_CMD_QUERY2	0x33
-> -#define WACOM_CMD_QUERY3	0x02
-> -#define WACOM_CMD_THROW0	0x05
-> -#define WACOM_CMD_THROW1	0x00
-> +#define WACOM_COMMAND_LSB   0x04
-> +#define WACOM_COMMAND_MSB   0x00
+> Changes in v2:
+> - Fix yamllint errors.
+> 
+>  .../devicetree/bindings/sound/rockchip,pdm.txt     |  64 ------------
+>  .../devicetree/bindings/sound/rockchip,pdm.yaml    | 115 +++++++++++++++++++++
+>  2 files changed, 115 insertions(+), 64 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt b/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+> deleted file mode 100644
+> index b2d7e47..0000000
+> --- a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+> +++ /dev/null
+> @@ -1,64 +0,0 @@
+> -* Rockchip PDM controller
+> -
+> -Required properties:
+> -
+> -- compatible: "rockchip,pdm"
+> -  - "rockchip,px30-pdm"
+> -  - "rockchip,rk1808-pdm"
+> -  - "rockchip,rk3308-pdm"
+> -  - "rockchip,rk3568-pdm"
+> -  - "rockchip,rv1126-pdm"
+> -- reg: physical base address of the controller and length of memory mapped
+> -  region.
+> -- dmas: DMA specifiers for rx dma. See the DMA client binding,
+> -	Documentation/devicetree/bindings/dma/dma.txt
+> -- dma-names: should include "rx".
+> -- clocks: a list of phandle + clock-specifer pairs, one for each entry in clock-names.
+> -- clock-names: should contain following:
+> -   - "pdm_hclk": clock for PDM BUS
+> -   - "pdm_clk" : clock for PDM controller
+> -- resets: a list of phandle + reset-specifer paris, one for each entry in reset-names.
+> -- reset-names: reset names, should include "pdm-m".
+> -- pinctrl-names: Must contain a "default" entry.
+> -- pinctrl-N: One property must exist for each entry in
+> -	     pinctrl-names. See ../pinctrl/pinctrl-bindings.txt
+> -	     for details of the property values.
+> -
+> -Optional properties:
+> -- rockchip,path-map: This is a variable length array, that shows the mapping
+> -  of SDIx to PATHx. By default, they are one-to-one mapping as follows:
+> -
+> -   path0 <-- sdi0
+> -   path1 <-- sdi1
+> -   path2 <-- sdi2
+> -   path3 <-- sdi3
+> -
+> -  e.g. "rockchip,path-map = <3 2 1 0>" means the mapping as follows:
+> -
+> -   path0 <-- sdi3
+> -   path1 <-- sdi2
+> -   path2 <-- sdi1
+> -   path3 <-- sdi0
+> -
+> -Example for rk3328 PDM controller:
+> -
+> -pdm: pdm@ff040000 {
+> -	compatible = "rockchip,pdm";
+> -	reg = <0x0 0xff040000 0x0 0x1000>;
+> -	clocks = <&clk_pdm>, <&clk_gates28 0>;
+> -	clock-names = "pdm_clk", "pdm_hclk";
+> -	dmas = <&pdma 16>;
+> -	#dma-cells = <1>;
+> -	dma-names = "rx";
+> -	pinctrl-names = "default", "sleep";
+> -	pinctrl-0 = <&pdmm0_clk
+> -		     &pdmm0_sdi0
+> -		     &pdmm0_sdi1
+> -		     &pdmm0_sdi2
+> -		     &pdmm0_sdi3>;
+> -	pinctrl-1 = <&pdmm0_clk_sleep
+> -		     &pdmm0_sdi0_sleep
+> -		     &pdmm0_sdi1_sleep
+> -		     &pdmm0_sdi2_sleep
+> -		     &pdmm0_sdi3_sleep>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip,pdm.yaml b/Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
+> new file mode 100644
+> index 0000000..fa24ddf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/rockchip,pdm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#define WACOM_DATA_LSB      0x05
-> +#define WACOM_DATA_MSB      0x00
+> +title: Rockchip PDM controller
+> +
+> +description:
+> +  The Pulse Density Modulation Interface Controller (PDMC) is
+> +  a PDM interface controller and decoder that support PDM format.
+> +  It integrates a clock generator driving the PDM microphone
+> +  and embeds filters which decimate the incoming bit stream to
+> +  obtain most common audio rates.
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,pdm
+> +      - rockchip,px30-pdm
+> +      - rockchip,rk1808-pdm
+> +      - rockchip,rk3308-pdm
+> +      - rockchip,rk3568-pdm
+> +      - rockchip,rv1126-pdm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for PDM controller
+> +      - description: clock for PDM BUS
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pdm_clk
+> +      - const: pdm_hclk
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: reset for PDM controller
+> +
+> +  reset-names:
+> +    items:
+> +      - const: pdm-m
+> +
+> +  rockchip,path-map:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      Defines the mapping of PDM SDIx to PDM PATHx.
+> +      By default, they are mapped one-to-one.
+> +    items:
+> +      - description: which sdi to connect to path 0
+> +      - description: which sdi to connect to path 1
+> +      - description: which sdi to connect to path 2
+> +      - description: which sdi to connect to path 3
 
-You use spaces here. Should be tabs.
+This would be more specific in terms of allowed values:
+
+maxItems: 4
+uniqueItems: true
+items:
+  enum: [ 0, 1, 2, 3 ]
 
 > +
-> +// Report types
-> +#define REPORT_FEATURE      0x30
+> +  "#sound-dai-cells":
+> +    const: 0
 > +
-> +// Requests / operations
-> +#define OPCODE_GET_REPORT   0x02
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - dmas
+> +  - dma-names
+> +  - "#sound-dai-cells"
 > +
-> +// Power settings
-> +#define POWER_ON            0x00
-> +#define POWER_SLEEP         0x01
+> +additionalProperties: false
 > +
-> +// Input report ids
-> +#define WACOM_PEN_DATA_REPORT           2
-> +#define WACOM_SHINONOME_REPORT          26
-> +
-> +#define WACOM_QUERY_REPORT	3
->  #define WACOM_QUERY_SIZE	22
->  
->  #define WACOM_MAX_DATA_SIZE_BG9     10
-> @@ -85,27 +102,30 @@ static int wacom_query_device(struct i2c_client *client,
->  {
->  	int ret;
->  	u8 cmd_wac_desc[] = {WACOM_DESC_REG, 0x00};
-> -	u8 cmd1[] = { WACOM_CMD_QUERY0, WACOM_CMD_QUERY1,
-> -			WACOM_CMD_QUERY2, WACOM_CMD_QUERY3 };
-> -	u8 cmd2[] = { WACOM_CMD_THROW0, WACOM_CMD_THROW1 };
->  	u8 data[WACOM_QUERY_SIZE];
-> +
-> +	u8 get_query_data_cmd[] = {
-> +		WACOM_COMMAND_LSB,
-> +		WACOM_COMMAND_MSB,
-> +		REPORT_FEATURE | WACOM_QUERY_REPORT,
-> +		OPCODE_GET_REPORT,
-> +		WACOM_DATA_LSB,
-> +		WACOM_DATA_MSB,
-> +	};
-> +
->  	struct i2c_msg msgs[] = {
-> +		// Request reading of feature ReportID: 3 (Pen Query Data)
-
-//
-
->  		{
->  			.addr = client->addr,
->  			.flags = 0,
-> -			.len = sizeof(cmd1),
-> -			.buf = cmd1,
-> -		},
-> -		{
-> -			.addr = client->addr,
-> -			.flags = 0,
-> -			.len = sizeof(cmd2),
-> -			.buf = cmd2,
-> +			.len = sizeof(get_query_data_cmd),
-> +			.buf = get_query_data_cmd,
->  		},
-> +		// Read 21 bytes
-
-//
-
->  		{
->  			.addr = client->addr,
->  			.flags = I2C_M_RD,
-> -			.len = sizeof(data),
-> +			.len = WACOM_QUERY_SIZE - 1,
->  			.buf = data,
->  		},
->  	};
-> @@ -158,9 +178,12 @@ static int wacom_query_device(struct i2c_client *client,
->  	}
->  
->  	dev_dbg(&client->dev,
-> -		"x_max:%d, y_max:%d, pressure:%d, fw:%d\n",
-> +		"x_max:%d, y_max:%d, pressure:%d, fw:%d, "
-> +		"distance: %d, tilt_x_max: %d, tilt_y_max: %d\n",
->  		features->x_max, features->y_max,
-> -		features->pressure_max, features->fw_version);
-> +		features->pressure_max, features->fw_version,
-> +		features->distance_max,
-> +		features->tilt_x_max, features->tilt_y_max);
->  
->  	return 0;
->  }
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3328-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/pinctrl/rockchip.h>
+> +    pdm@ff040000 {
+> +      compatible = "rockchip,pdm";
+> +      reg = <0x0 0xff040000 0x0 0x1000>;
+> +      interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+> +      clocks = <&cru SCLK_PDM>, <&cru HCLK_PDM>;
+> +      clock-names = "pdm_clk", "pdm_hclk";
+> +      dmas = <&dmac 16>;
+> +      dma-names = "rx";
+> +      #sound-dai-cells = <0>;
+> +      pinctrl-names = "default", "sleep";
+> +      pinctrl-0 = <&pdmm0_clk
+> +                   &pdmm0_sdi0
+> +                   &pdmm0_sdi1
+> +                   &pdmm0_sdi2
+> +                   &pdmm0_sdi3>;
+> +      pinctrl-1 = <&pdmm0_clk_sleep
+> +                   &pdmm0_sdi0_sleep
+> +                   &pdmm0_sdi1_sleep
+> +                   &pdmm0_sdi2_sleep
+> +                   &pdmm0_sdi3_sleep>;
+> +    };
 > -- 
-> 2.31.1
+> 2.7.4
+> 
+> 
+> 
 > 
