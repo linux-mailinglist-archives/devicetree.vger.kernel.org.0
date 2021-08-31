@@ -2,425 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE013FC178
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 05:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 813043FC182
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 05:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239456AbhHaDUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 23:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239419AbhHaDUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 23:20:44 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06CB7C061760
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 20:19:49 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id r13so13428797pff.7
-        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 20:19:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zDydgTokqvJ4roSWTBBp2PotVgcvd3iwL5pDfvyIG6w=;
-        b=WoS7DHQte7tzWg+3vSC5m7nPx16ixnvg60Op6gY43JsJD5qk9EOHinTa6UNsaj7PUO
-         R8bMt5zLoGRaerHN3mj1yVU26Edo+m/j5az00ts5L/x+OyWP7fGT9q/zyp7DBpY8c8wi
-         cNIu4KWh/xfjGr4fimCzdcT0SeKvf6IIeTumftjjjH112fhTUuxjBwotAD+pF7KAY+5v
-         lhKK6yEk7ZJFYyS0/wCJ/IrsTCN1n500gcIV2UiXalLJRhxNQqghMMCPYuWPcRDdWBWX
-         2Q4FRRSA3+O6AYdfLv6GzDJu5vDXCxg/YDst6dRXX4JzK1Fwc+pIn2byhOL7ow2ESp1A
-         f4zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zDydgTokqvJ4roSWTBBp2PotVgcvd3iwL5pDfvyIG6w=;
-        b=NeFLF3c0URZ1IBqhxOkIySN7sSpp3t8XRuP1y6Ag1VWTfJih1BvbStK7+7k+T1wNnQ
-         JlwcwU4XAVC7OzFvfZt2s+aicadrNPaPkH6NENSzmXjXlTh+yccOFf5iy+WY4Z1V0Of1
-         6K0hZXW8Pe3wy2H6AIJQ0M+Tj0KVyHWul92GuM8i5O1W++hsAUbTstFqbkgXZJBREJv8
-         tJix1oej3hdyRM2jCVW8lRHxwPQYEKQC5d+n7YLFdQF07UTA6r46fj8/2Nv7pC7A/kV3
-         5HzOCg572IErn0wq8iq1ocm4VAqtgJRwEjONzPUbk25h9MN+nVljpL/2Flohst+JmS0j
-         eqkg==
-X-Gm-Message-State: AOAM532oYlyTy2uwp3Ny7LAwJ0Ox40CdqKOjikD7IPaxTokQ1vw7nGxZ
-        BaUSrGXI3pFPv+RWubxSdF5l/RV2fsxnOg==
-X-Google-Smtp-Source: ABdhPJwB8h/QFEYnOApFti5l2OyEVxW9lJyigx/ORnmv2g9RHQ+XHCn1QbH6Nb0eQpVUTwoGId/JHg==
-X-Received: by 2002:a62:17c3:0:b0:3f5:b942:119e with SMTP id 186-20020a6217c3000000b003f5b942119emr18694258pfx.53.1630379989139;
-        Mon, 30 Aug 2021 20:19:49 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id lw14sm786729pjb.48.2021.08.30.20.19.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Aug 2021 20:19:46 -0700 (PDT)
-Date:   Tue, 31 Aug 2021 08:49:44 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v14 3/3] cpufreq: mediatek-hw: Add support for CPUFREQ HW
-Message-ID: <20210831031944.emtd2hlpzjs3cxnl@vireshk-i7>
-References: <1630162872-25452-1-git-send-email-hector.yuan@mediatek.com>
- <1630162872-25452-4-git-send-email-hector.yuan@mediatek.com>
+        id S232013AbhHaDcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 23:32:24 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:57642 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229983AbhHaDcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 23:32:23 -0400
+X-UUID: 28d8e3b791bd4d13a91a10de81bdef3a-20210831
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=i4ol5vbanD813f/B2tnhhHkAIPJlnC/VEEVt1TAFHhI=;
+        b=Nf9ll2G683B/PC68VzwDAXf23DlS16J6bAEC4tvJLaUk8r27D3V3DJcudrdqv/Omhb1+m/E9jLUMnrFXfVXE2wmXO0Yg+0fjbYdre+0dByF8RDlM1IkriZPPN4nfN+V1lUZ/+HKJtsmVOHuB+TV15Ceb/gzQRWBrVYiZogbKbcE=;
+X-UUID: 28d8e3b791bd4d13a91a10de81bdef3a-20210831
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <chuanjia.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 215663490; Tue, 31 Aug 2021 11:31:25 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 31 Aug
+ 2021 11:31:23 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 31 Aug 2021 11:31:22 +0800
+Message-ID: <ccf767340afe13a6d273ad8fbc29c6bc966d6314.camel@mediatek.com>
+Subject: Re: [PATCH v12 2/6] PCI: mediatek: Add new method to get shared
+ pcie-cfg base address
+From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     <robh+dt@kernel.org>, <bhelgaas@google.com>,
+        <matthias.bgg@gmail.com>, <lorenzo.pieralisi@arm.com>,
+        <ryder.lee@mediatek.com>, <jianjun.wang@mediatek.com>,
+        <yong.wu@mediatek.com>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Tue, 31 Aug 2021 11:31:24 +0800
+In-Reply-To: <20210830214317.GA27606@bjorn-Precision-5520>
+References: <20210830214317.GA27606@bjorn-Precision-5520>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1630162872-25452-4-git-send-email-hector.yuan@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28-08-21, 23:01, Hector Yuan wrote:
-> diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> new file mode 100644
-> index 0000000..79862a5
-> --- /dev/null
-> +++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> @@ -0,0 +1,319 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2020 MediaTek Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/cpufreq.h>
-> +#include <linux/energy_model.h>
-> +#include <linux/init.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pm_qos.h>
+T24gTW9uLCAyMDIxLTA4LTMwIGF0IDE2OjQzIC0wNTAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
+PiBPbiBNb24sIEF1ZyAzMCwgMjAyMSBhdCAwMzowOTo0NFBNICswODAwLCBDaHVhbmppYSBMaXUg
+d3JvdGU6DQo+ID4gT24gRnJpLCAyMDIxLTA4LTI3IGF0IDExOjQ2IC0wNTAwLCBCam9ybiBIZWxn
+YWFzIHdyb3RlOg0KPiA+ID4gT24gTW9uLCBBdWcgMjMsIDIwMjEgYXQgMTE6Mjc6NTZBTSArMDgw
+MCwgQ2h1YW5qaWEgTGl1IHdyb3RlOg0KPiA+ID4gPiBAQCAtOTk1LDYgKzEwMDQsMTQgQEAgc3Rh
+dGljIGludCBtdGtfcGNpZV9zdWJzeXNfcG93ZXJ1cChzdHJ1Y3QNCj4gPiA+ID4gbXRrX3BjaWUg
+KnBjaWUpDQo+ID4gPiA+ICAJCQlyZXR1cm4gUFRSX0VSUihwY2llLT5iYXNlKTsNCj4gPiA+ID4g
+IAl9DQo+ID4gPiA+ICANCj4gPiA+ID4gKwljZmdfbm9kZSA9IG9mX2ZpbmRfY29tcGF0aWJsZV9u
+b2RlKE5VTEwsIE5VTEwsDQo+ID4gPiA+ICsJCQkJCSAgICJtZWRpYXRlayxnZW5lcmljLQ0KPiA+
+ID4gPiBwY2llY2ZnIik7DQo+ID4gPiA+ICsJaWYgKGNmZ19ub2RlKSB7DQo+ID4gPiA+ICsJCXBj
+aWUtPmNmZyA9IHN5c2Nvbl9ub2RlX3RvX3JlZ21hcChjZmdfbm9kZSk7DQo+ID4gPiANCj4gPiA+
+IE90aGVyIGRyaXZlcnMgaW4gZHJpdmVycy9wY2kvY29udHJvbGxlci8gdXNlDQo+ID4gPiBzeXNj
+b25fcmVnbWFwX2xvb2t1cF9ieV9waGFuZGxlKCkgKGo3MjFlLCBkcmE3eHgsIGtleXN0b25lLA0K
+PiA+ID4gbGF5ZXJzY2FwZSwgYXJ0cGVjNikgb3Igc3lzY29uX3JlZ21hcF9sb29rdXBfYnlfY29t
+cGF0aWJsZSgpDQo+ID4gPiAoaW14NiwNCj4gPiA+IGtpcmluLCB2My1zZW1pKS4NCj4gPiA+IA0K
+PiA+ID4gWW91IHNob3VsZCBkbyBpdCB0aGUgc2FtZSB3YXkgdW5sZXNzIHRoZXJlJ3MgYSBuZWVk
+IHRvIGJlDQo+ID4gPiBkaWZmZXJlbnQuDQo+ID4gDQo+ID4gSSBoYXZlIHVzZWQgcGhhbmRsZSwg
+YnV0IFJvYiBzdWdnZXN0ZWQgdG8gc2VhcmNoIGZvciB0aGUgbm9kZSBieSANCj4gPiBjb21wYXRp
+YmxlLg0KPiA+IFRoZSByZWFzb24gd2h5IHN5c2Nvbl9yZWdtYXBfbG9va3VwX2J5X2NvbXBhdGli
+bGUoKSBpcyBub3QgDQo+ID4gdXNlZCBoZXJlIGlzIHRoYXQgdGhlIHBjaWVjZmcgbm9kZSBpcyBv
+cHRpb25hbCwgYW5kIHRoZXJlIGlzIG5vDQo+ID4gbmVlZCB0bw0KPiA+IHJldHVybiBlcnJvciB3
+aGVuIHRoZSBub2RlIGlzIG5vdCBzZWFyY2hlZC4NCj4gDQo+IEhvdyBhYm91dCB0aGlzPw0KPiAN
+Cj4gICByZWdtYXAgPSBzeXNjb25fcmVnbWFwX2xvb2t1cF9ieV9jb21wYXRpYmxlKCJtZWRpYXRl
+ayxnZW5lcmljLQ0KPiBwY2llY2ZnIik7DQo+ICAgaWYgKCFJU19FUlIocmVnbWFwKSkNCj4gICAg
+IHBjaWUtPmNmZyA9IHJlZ21hcDsNCg0KSGkgQmpvcm4sDQoNCldlIG5lZWQgdG8gZGVhbCB3aXRo
+IHRocmVlIHNpdHVhdGlvbnMNCjEpIE5vIGVycm9yDQoyKSBUaGUgZXJyb3Igb2YgdGhlIG5vZGUg
+bm90IGZvdW5kLCBkb24ndCBkbyBhbnl0aGluZyANCjMpIE90aGVyIGVycm9ycywgcmV0dXJuIGVy
+cm9ycw0KDQpJIGd1ZXNzIHlvdSBtZWFuDQoNCnJlZ21hcCA9IHN5c2Nvbl9yZWdtYXBfbG9va3Vw
+X2J5X2NvbXBhdGlibGUoIm1lZGlhdGVrLGdlbmVyaWMtDQpwY2llY2ZnIik7DQogIGlmICghSVNf
+RVJSKHJlZ21hcCkpDQogICAgICBwY2llLT5jZmcgPSByZWdtYXA7DQogIGVsc2UgaWYgKElTX0VS
+UihyZWdtYXApICYmIFBUUl9FUlIocmVnbWFwKSAhPSAtRU5PREVWKQ0KICAgICAgcmV0dXJuIFBU
+Ul9FUlIocmVnbWFwKTsNCg0KSSdtIG5vdCBzdXJlIGlmIHdlIG5lZWQgdGhpcywgaXQgc2VlbXMg
+YSBsaXR0bGUgd2VpcmQgYW5kIHRoZXJlIGFyZQ0KbWFueSBkcml2ZXJzIGluIG90aGVyIHN1YnN5
+c3RlbXMgdGhhdCB1c2Ugc3lzY29uX25vZGVfdG9fcmVnbWFwKCkuDQoNClRoYW5rcw0KQ2h1YW5q
+aWENCg==
 
-You still need this ? Please check all the headers and keep only the ones that
-are required.
-
-> +#include <linux/slab.h>
-> +
-> +#define LUT_MAX_ENTRIES			32U
-> +#define LUT_FREQ			GENMASK(11, 0)
-> +#define LUT_ROW_SIZE			0x4
-> +#define CPUFREQ_HW_STATUS		BIT(0)
-> +#define SVS_HW_STATUS			BIT(1)
-> +#define POLL_USEC			1000
-> +#define TIMEOUT_USEC			300000
-> +
-> +enum {
-> +	REG_FREQ_LUT_TABLE,
-> +	REG_FREQ_ENABLE,
-> +	REG_FREQ_PERF_STATE,
-> +	REG_FREQ_HW_STATE,
-> +	REG_EM_POWER_TBL,
-> +	REG_FREQ_LATENCY,
-> +
-> +	REG_ARRAY_SIZE,
-> +};
-> +
-> +struct mtk_cpufreq_data {
-> +	struct cpufreq_frequency_table *table;
-> +	void __iomem *reg_bases[REG_ARRAY_SIZE];
-> +	int nr_opp;
-> +};
-> +
-> +static const u16 cpufreq_mtk_offsets[REG_ARRAY_SIZE] = {
-> +	[REG_FREQ_LUT_TABLE]	= 0x0,
-> +	[REG_FREQ_ENABLE]	= 0x84,
-> +	[REG_FREQ_PERF_STATE]	= 0x88,
-> +	[REG_FREQ_HW_STATE]	= 0x8c,
-> +	[REG_EM_POWER_TBL]	= 0x90,
-> +	[REG_FREQ_LATENCY]	= 0x110,
-> +};
-> +
-> +static int __maybe_unused
-> +mtk_cpufreq_get_cpu_power(unsigned long *mW,
-> +			  unsigned long *KHz, struct device *cpu_dev)
-> +{
-> +	struct mtk_cpufreq_data *data;
-> +	struct cpufreq_policy *policy;
-> +	int i;
-> +
-> +	policy = cpufreq_cpu_get_raw(cpu_dev->id);
-> +	if (!policy)
-> +		return 0;
-> +
-> +	data = policy->driver_data;
-> +
-> +	for (i = 0; i < data->nr_opp; i++) {
-> +		if (data->table[i].frequency < *KHz)
-> +			break;
-> +	}
-> +	i--;
-> +
-> +	*KHz = data->table[i].frequency;
-> +	*mW = readl_relaxed(data->reg_bases[REG_EM_POWER_TBL] +
-> +			    i * LUT_ROW_SIZE) / 1000;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_cpufreq_hw_target_index(struct cpufreq_policy *policy,
-> +				       unsigned int index)
-> +{
-> +	struct mtk_cpufreq_data *data = policy->driver_data;
-> +
-> +	writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-> +
-> +	return 0;
-> +}
-> +
-> +static unsigned int mtk_cpufreq_hw_get(unsigned int cpu)
-> +{
-> +	struct mtk_cpufreq_data *data;
-> +	struct cpufreq_policy *policy;
-> +	unsigned int index;
-> +
-> +	policy = cpufreq_cpu_get_raw(cpu);
-> +	if (!policy)
-> +		return 0;
-> +
-> +	data = policy->driver_data;
-> +
-> +	index = readl_relaxed(data->reg_bases[REG_FREQ_PERF_STATE]);
-> +	index = min(index, LUT_MAX_ENTRIES - 1);
-> +
-> +	return data->table[index].frequency;
-> +}
-> +
-> +static unsigned int mtk_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
-> +					       unsigned int target_freq)
-> +{
-> +	struct mtk_cpufreq_data *data = policy->driver_data;
-> +	unsigned int index;
-> +
-> +	index = cpufreq_table_find_index_dl(policy, target_freq);
-> +
-> +	writel_relaxed(index, data->reg_bases[REG_FREQ_PERF_STATE]);
-> +
-> +	return policy->freq_table[index].frequency;
-> +}
-> +
-> +static int mtk_cpu_create_freq_table(struct platform_device *pdev,
-> +				     struct mtk_cpufreq_data *data)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	void __iomem *base_table;
-> +	u32 temp, i, freq, prev_freq = 0;
-> +
-> +	data->table = devm_kcalloc(dev, LUT_MAX_ENTRIES + 1,
-> +				   sizeof(*data->table), GFP_KERNEL);
-> +	if (!data->table)
-> +		return -ENOMEM;
-> +
-> +	base_table = data->reg_bases[REG_FREQ_LUT_TABLE];
-> +
-> +	for (i = 0; i < LUT_MAX_ENTRIES; i++) {
-> +		temp = readl_relaxed(base_table + (i * LUT_ROW_SIZE));
-> +		freq = FIELD_GET(LUT_FREQ, temp) * 1000;
-> +
-> +		if (freq == prev_freq)
-> +			break;
-> +
-> +		data->table[i].frequency = freq;
-> +
-> +		dev_dbg(dev, "index=%d freq=%d\n", i, data->table[i].frequency);
-> +
-> +		prev_freq = freq;
-> +	}
-> +
-> +	data->table[i].frequency = CPUFREQ_TABLE_END;
-> +	data->nr_opp = i;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_cpu_resources_init(struct platform_device *pdev,
-> +				  struct cpufreq_policy *policy,
-> +				  const u16 *offsets)
-> +{
-> +	struct mtk_cpufreq_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	void __iomem *base;
-> +	int ret, i;
-> +	int index;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	index = of_perf_domain_get_sharing_cpumask(policy->cpu, "performance-domains",
-> +						   "#performance-domain-cells",
-> +						   policy->cpus);
-
-No need to check failure here ?
-
-> +
-> +	base = devm_platform_ioremap_resource(pdev, index);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	for (i = REG_FREQ_LUT_TABLE; i < REG_ARRAY_SIZE; i++)
-> +		data->reg_bases[i] = base + offsets[i];
-> +
-> +	ret = mtk_cpu_create_freq_table(pdev, data);
-> +	if (ret) {
-> +		dev_info(dev, "Domain-%d failed to create freq table\n", index);
-> +		return ret;
-> +	}
-> +
-> +	policy->freq_table = data->table;
-> +	policy->driver_data = data;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
-> +{
-> +	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
-> +	struct platform_device *pdev = cpufreq_get_driver_data();
-> +	int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
-> +	struct mtk_cpufreq_data *data;
-> +	struct device *cpu_dev;
-> +	unsigned int latency;
-> +	const u16 *offsets;
-> +	int ret;
-> +
-> +	offsets = of_device_get_match_data(&pdev->dev);
-> +	if (!offsets)
-> +		return -EINVAL;
-
-Do this in probe just once instead of for each policy ?
-
-> +
-> +	/* Get the bases of cpufreq for domains */
-> +	ret = mtk_cpu_resources_init(pdev, policy, offsets);
-> +	if (ret) {
-> +		dev_info(&pdev->dev, "CPUFreq resource init failed\n");
-> +		return ret;
-> +	}
-> +
-> +	data = policy->driver_data;
-> +
-> +	latency = readl_relaxed(data->reg_bases[REG_FREQ_LATENCY]) * 1000;
-> +	if (!latency)
-> +		latency = CPUFREQ_ETERNAL;
-> +
-> +	/* us convert to ns */
-> +	policy->cpuinfo.transition_latency = latency;
-> +
-> +	policy->fast_switch_possible = true;
-> +
-> +	/* HW should be in enabled state to proceed now */
-> +	writel_relaxed(0x1, data->reg_bases[REG_FREQ_ENABLE]);
-> +	if (readl_poll_timeout(data->reg_bases[REG_FREQ_HW_STATE], sig,
-> +			       (sig & pwr_hw) == pwr_hw, POLL_USEC,
-> +			       TIMEOUT_USEC)) {
-> +		if (!(sig & CPUFREQ_HW_STATUS)) {
-> +			pr_info("cpufreq hardware of CPU%d is not enabled\n",
-> +				policy->cpu);
-> +			return -ENODEV;
-> +		}
-> +
-> +		pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
-> +	}
-> +
-> +	cpu_dev = get_cpu_device(policy->cpu);
-> +	if (!cpu_dev) {
-> +		pr_info("failed to get cpu%d device\n", policy->cpu);
-> +		return -ENODEV;
-> +	}
-> +
-> +	em_dev_register_perf_domain(cpu_dev, data->nr_opp, &em_cb, policy->cpus,
-> +				    true);
-
-This needs to change based on the stuff present in my cpufreq/arm/linux-next [1]
-branch. Here is the modification for a similar driver.
-
-https://lore.kernel.org/linux-pm/8158488baa1ea1aebd09c8d256db7420051d05ac.1628742634.git.viresh.kumar@linaro.org/
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
-> +{
-> +	struct mtk_cpufreq_data *data = policy->driver_data;
-> +	void __iomem *base;
-> +	int i;
-> +
-> +	/* HW should be in paused state now */
-> +	writel_relaxed(0x0, data->reg_bases[REG_FREQ_ENABLE]);
-> +
-> +	for (i = 0; i < REG_ARRAY_SIZE; i++) {
-> +		base = data->reg_bases[i];
-> +		iounmap(base);
-> +	}
-> +
-> +	kfree(data->table);
-> +	kfree(data);
-
-base, data and table are all allocated using devm_* variants. AFAIK, it is
-wrong to free them this way as the devm core will try to do the same again
-later. Try building your driver as module and insert remove it to see warnings.
-
-Why do you need to free stuff here anyway if it is devm already ?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static struct cpufreq_driver cpufreq_mtk_hw_driver = {
-> +	.flags		= CPUFREQ_NEED_INITIAL_FREQ_CHECK |
-> +			  CPUFREQ_HAVE_GOVERNOR_PER_POLICY |
-> +			  CPUFREQ_IS_COOLING_DEV,
-> +	.verify		= cpufreq_generic_frequency_table_verify,
-> +	.target_index	= mtk_cpufreq_hw_target_index,
-> +	.get		= mtk_cpufreq_hw_get,
-> +	.init		= mtk_cpufreq_hw_cpu_init,
-> +	.exit		= mtk_cpufreq_hw_cpu_exit,
-> +	.fast_switch	= mtk_cpufreq_hw_fast_switch,
-> +	.name		= "mtk-cpufreq-hw",
-> +	.attr		= cpufreq_generic_attr,
-> +};
-> +
-> +static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +
-> +	cpufreq_mtk_hw_driver.driver_data = pdev;
-> +
-> +	ret = cpufreq_register_driver(&cpufreq_mtk_hw_driver);
-> +	if (ret)
-> +		dev_err(&pdev->dev, "CPUFreq HW driver failed to register\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int mtk_cpufreq_hw_driver_remove(struct platform_device *pdev)
-> +{
-> +	return cpufreq_unregister_driver(&cpufreq_mtk_hw_driver);
-> +}
-> +
-> +static const struct of_device_id mtk_cpufreq_hw_match[] = {
-> +	{ .compatible = "mediatek,cpufreq-hw", .data = &cpufreq_mtk_offsets },
-> +	{}
-> +};
-> +
-> +static struct platform_driver mtk_cpufreq_hw_driver = {
-> +	.probe = mtk_cpufreq_hw_driver_probe,
-> +	.remove = mtk_cpufreq_hw_driver_remove,
-> +	.driver = {
-> +		.name = "mtk-cpufreq-hw",
-> +		.of_match_table = mtk_cpufreq_hw_match,
-> +	},
-> +};
-> +module_platform_driver(mtk_cpufreq_hw_driver);
-> +
-> +MODULE_AUTHOR("Hector Yuan <hector.yuan@mediatek.com>");
-> +MODULE_DESCRIPTION("Mediatek cpufreq-hw driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 1.7.9.5
-
--- 
-viresh
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git
