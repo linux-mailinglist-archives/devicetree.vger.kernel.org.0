@@ -2,113 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 379E13FC3F9
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 10:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAE133FC420
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 10:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240047AbhHaHy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 03:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59978 "EHLO
+        id S240171AbhHaIJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 04:09:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240024AbhHaHyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 03:54:55 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38D1C06175F
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 00:54:00 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id k13so2289335lfv.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 00:54:00 -0700 (PDT)
+        with ESMTP id S240107AbhHaIJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 04:09:31 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F19DC061575
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 01:08:36 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id t19so36708743ejr.8
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 01:08:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i4z1Q7XZLrwMagEwf7DhKHY7l4vBFTh7bbew95Rfghc=;
-        b=LGhfjvXydY9NR23oENrvhn3uS3FsBDQF5xv94TOHFCy8S4Laq0hXFnjqygFk/9MYrq
-         xrXsA5/UygBoKt2NEyejI+2P0P8aB6rKV1kfJLekLODhlhGqjVT/ifPUPOVFzQvx2syd
-         ohR9cedskRFxWtgveTf0Wp1JXBzuSjD9PooTY=
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=1Br/N6WhyVMlujnGsxiPG2oa5QW+rtf7KlXAbdHBbwA=;
+        b=k51V5RL4Cvb0SsQrksDk/qK8+2BgCcGipiTg8o5zgZYyKmhzoOqgvW6D6zNAh/0I8N
+         vfGHRSdHa2fIXTWwUG0LGVI4BT5LyyNNEeN15U/cnvk4VC5cC1ABONtylEM7bCnBwtxT
+         Wl/vR4R6aTcNmKF4tse1PIHq2LCTWvPZVOsnUkaXdFkjTRdFDl9cXAdei/rpVO/w0wYI
+         AGE1wPgU58cftxsWT0h8nBD2d7eeDS/KkKNJN67+DFxv9PZZN69jnPklzZkR6d4R6inb
+         dBrlVDdgSHZuWYqzwmL+4CfZMGMi3Dsfd+YW8T2o3almgY/uewSYqDwpCSModH6gLwVu
+         A3MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i4z1Q7XZLrwMagEwf7DhKHY7l4vBFTh7bbew95Rfghc=;
-        b=n1SJWp/fAeGqBL9UkPuXpx2VGzg4Eo+2d8h364qli3R4nQBHLmL2fUEsYKoGxGUvp4
-         okJ53V0LuVCqzb+D6+dbJrXAK7ZhB+jilD6wbfK6CjQp4E0xRE3gdtsuJUaxzkSkFH8e
-         82CMatJ3gLt/cDC2efaFStDxkducI5YLD7asu/OVCAJy6SueS20gphD1VTtrHgko1lM8
-         B4WZHIZkSsAi1onhK3L808fKcxR1iTBoXz3kr2bmGelOWjXmDWswvKrao3yVThgILx/m
-         LhIDG56LFNcqZYFDLmwUonvn0+3a4IofmXwEogDeD/l+ovwarT1N7rKwXu2IobwHRzOz
-         jQ3g==
-X-Gm-Message-State: AOAM531kv+zcqztPc2/wVOXuZeSFjsvW2GFc9lp7cCjrcSFZZly7rZrY
-        UxWFk/Wa8brRWR4oEonQ6/1739cj+4c1X+8MTOl7Gg==
-X-Google-Smtp-Source: ABdhPJyI7Qitp2hXCfbD58wQEyaZGTWIKb2i10Sjy5PjIUW1idrtrJ719jxZJe2gtyY1vQEubKsItHY2MUnG2NvMnZg=
-X-Received: by 2002:a05:6512:22c8:: with SMTP id g8mr21387849lfu.342.1630396439123;
- Tue, 31 Aug 2021 00:53:59 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=1Br/N6WhyVMlujnGsxiPG2oa5QW+rtf7KlXAbdHBbwA=;
+        b=qRrjbCJS5lHX7yB6swn7XcmYTykpcDOxVgjC1Mrru0dMynh0m9Z/F/4WieOQoaU9i7
+         c9AHI1kzVDYVV6IIU4P4qDqo6SbJ72MxH5jFr1xT9DaYxvX2DTzftaQb7WkdZe6kUTfD
+         +As5e9rHqJzU6MoWD6r3Q2BhuQrZwU/PWXDKPOS8ujL6xJP1GW2/HGcZZA9z7dVU7Uqe
+         Naa6TYQgqY8+yQH3Wr8CTay4D1PDkhH2f6tTx1J/3BRwiK+ULAxS86Y+oGwya2+1Pqqf
+         KIsr6gi7TzQE1ebzUPRNoXjdVNnc12qVpqQTe1Xu5wTV1emZVqCnH9btPGdXhQQCTG67
+         C+yQ==
+X-Gm-Message-State: AOAM5322El6ayfeOtDssHmWYHhW19YW2R1a9NouW0M1bUlBkmdcjBILz
+        WRfnH1lw3OEF4pr3Aah+PDLqIiD0byI4dA59gFc=
+X-Google-Smtp-Source: ABdhPJz+4O2gfK1QpxHiSz9VPL+cWln3EVhUIyr1seg2nKZCk7h1z/f4MFRCA/veeD4L00YSYFvIZgHVpf78OF4JuFY=
+X-Received: by 2002:a17:906:a012:: with SMTP id p18mr29263781ejy.331.1630397314674;
+ Tue, 31 Aug 2021 01:08:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210830003603.31864-1-zhiyong.tao@mediatek.com> <20210830003603.31864-4-zhiyong.tao@mediatek.com>
-In-Reply-To: <20210830003603.31864-4-zhiyong.tao@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 31 Aug 2021 15:53:48 +0800
-Message-ID: <CAGXv+5Gx74SxdB_-V3SZB1sQ3=bpUkbkkaHxAyFg9m+7k+HVkw@mail.gmail.com>
-Subject: Re: [PATCH v11 3/4] pinctrl: mediatek: mt8195: Add pm_ops
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Received: by 2002:ab4:9c84:0:0:0:0:0 with HTTP; Tue, 31 Aug 2021 01:08:34
+ -0700 (PDT)
+Reply-To: mrsbillchantallawrence58@gmail.com
+From:   mrsbillchantal <mr.konbarlesawa@gmail.com>
+Date:   Tue, 31 Aug 2021 09:08:34 +0100
+Message-ID: <CAJ1xOM88WmZD4-xpjTUFxLxgQ3joc85_wG586kv3=hFXf6LfeQ@mail.gmail.com>
+Subject: Dear Friend, My present internet connection is very slow in case you
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 30, 2021 at 8:37 AM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
->
-> Setting this up will configure wake from suspend properly,
-> and wake only for the interrupts that are setup in wake_mask,
-> not all interrupts.
+hello....
 
-This sounds like a fix. Please add a Fixes tag for this patch. This makes
-tracking things easier.
+You have been compensated with the sum of 5.5 million dollars in this
+united nation the payment will be issue into atm visa card and send to
+you from the santander bank we need your address and your  Whatsapp
+this my email.ID (  mrsbillchantallawrence58@gmail.com)  contact  me
 
-So,
+Thanks my
 
-Fixes: 6cf5e9ef362a ("pinctrl: add pinctrl driver on mt8195")
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
-Also this patch is unrelated to the rest. You should send it separately.
-This would also help the maintainer merge it directly.
-
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> ---
->  drivers/pinctrl/mediatek/pinctrl-mt8195.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mt8195.c b/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> index a7500e18bb1d..892e79703f98 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mt8195.c
-> @@ -839,6 +839,7 @@ static struct platform_driver mt8195_pinctrl_driver = {
->         .driver = {
->                 .name = "mt8195-pinctrl",
->                 .of_match_table = mt8195_pinctrl_of_match,
-> +               .pm = &mtk_paris_pinctrl_pm_ops,
->         },
->         .probe = mt8195_pinctrl_probe,
->  };
-> --
-> 2.18.0
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+mrs chantal
