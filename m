@@ -2,146 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66CEF3FC0C3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 04:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0994C3FC0D5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 04:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239414AbhHaCP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Aug 2021 22:15:29 -0400
-Received: from mo-csw1516.securemx.jp ([210.130.202.155]:58600 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239376AbhHaCP2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 22:15:28 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 17V2EUa2022033; Tue, 31 Aug 2021 11:14:30 +0900
-X-Iguazu-Qid: 34trdvrI75kL3fQ1Yi
-X-Iguazu-QSIG: v=2; s=0; t=1630376070; q=34trdvrI75kL3fQ1Yi; m=enqtohIq2eRDuL61o6eYoKfPFuSw91zMK8OV2c3zi3A=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1510) id 17V2EUbk016230
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 31 Aug 2021 11:14:30 +0900
-Received: from enc01.toshiba.co.jp (enc01.toshiba.co.jp [106.186.93.100])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by imx2-a.toshiba.co.jp (Postfix) with ESMTPS id 1866310009F;
-        Tue, 31 Aug 2021 11:14:30 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 17V2ETgh024714;
-        Tue, 31 Aug 2021 11:14:29 +0900
-Date:   Tue, 31 Aug 2021 11:14:28 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        id S239339AbhHaC3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Aug 2021 22:29:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239346AbhHaC3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Aug 2021 22:29:50 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5CAC06175F
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 19:28:55 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id y128so22567722oie.4
+        for <devicetree@vger.kernel.org>; Mon, 30 Aug 2021 19:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=UIQLT8EPduQMUqMI4iVttelDDuEcYdyw9o3jt4FJ8Z4=;
+        b=jkKB3Whxj1ObFBcZOwXML52FUZsXQ51zcfUXS2/G13PcYd4RFkMQVtJJgSgr5iH9Iy
+         CHwLPDijjUcAbnQq+rwwbcPRoGw5a+wn4tbpgF9bKasEAbH+p4/WwSzdlsFE2uyrFV45
+         7URjVqzsq3YxJj6+4VhowJ3bvTB5tbhukDAL2OdSsEn3xQk54oUKssA/WNOs3VWagAmg
+         IKAKbEQX1DPpXeZqP6yvkq8KLv5xbXRUIueZWBOOivBEw37Jw+qhpXPi/Ep//2NZ1TG1
+         V09Q4JN2GXOiECodR/u/AomRt7McGvbyDXw/bmoAdJ853WnmCbwozJ/rNCV6otBe7w9p
+         FLnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UIQLT8EPduQMUqMI4iVttelDDuEcYdyw9o3jt4FJ8Z4=;
+        b=DPrXg8r9z0t9kSGUxuLkNsA0ri7TYfUGY68AN6/AOkFBYE55y6lGXj3IFyHUY07qiF
+         ZYVtO0IaFDHkU5B0vFgxH/RtG5ITi3/fL0mh+XxTESFSDr3NBiaBZp8j4HokvMh+rRus
+         n5PfN8BlNNrh5fsK93BUb0HqqXNf23k88AT3qS7fLp426kfCyrVUYnvbE3VozmZrc1Yh
+         UjOEawzL1UepNcRSXEtvBYD9ofDkxMxUjSGQFL41l9C6cQ0FnRvpMqeVMLXasM458nRW
+         BV3q4lH0TZ+x5a75j0R826BNgBF7s6U8iPz05Abcr1lIlfm/i7I40y9+fDD58nFCIIjM
+         ljWg==
+X-Gm-Message-State: AOAM533ebWzj2rkLRiFnFPi088J5yecPIRzBURyBox0f0YsoJY3mB6kQ
+        TQOKT9OA1Kdj3uNDljSFxa2k2A==
+X-Google-Smtp-Source: ABdhPJy1iru4/pf2lh8rlhBB57xc7Cxsy9R4pxXrsP+a9+ayWIoQnSs1HmZun2WV8JDylC7ar87Ynw==
+X-Received: by 2002:a05:6808:1449:: with SMTP id x9mr1533304oiv.14.1630376935083;
+        Mon, 30 Aug 2021 19:28:55 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id g8sm3631746otk.34.2021.08.30.19.28.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Aug 2021 19:28:54 -0700 (PDT)
+Date:   Mon, 30 Aug 2021 21:28:52 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kuogee Hsieh <khsieh@codeaurora.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, mkrishn@codeaurora.org,
+        kalyan_t@codeaurora.org, rajeevny@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: clock: Add DT bindings for PLL of
- Toshiba Visconti TMPV770x SoC
-X-TSB-HOP: ON
-Message-ID: <20210831021428.rsjzi6vtv2q3wnkb@toshiba.co.jp>
-References: <20210804092244.390376-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210804092244.390376-2-nobuhiro1.iwamatsu@toshiba.co.jp>
- <163021379431.2676726.15668763072935534900@swboyd.mtv.corp.google.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add Display Port node
+Message-ID: <YS2T5M9ozfz7tQu7@yoga>
+References: <1630339489-23172-1-git-send-email-khsieh@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <163021379431.2676726.15668763072935534900@swboyd.mtv.corp.google.com>
+In-Reply-To: <1630339489-23172-1-git-send-email-khsieh@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon 30 Aug 11:04 CDT 2021, Kuogee Hsieh wrote:
 
-Thanks for your review.
-
-On Sat, Aug 28, 2021 at 10:09:54PM -0700, Stephen Boyd wrote:
-> Quoting Nobuhiro Iwamatsu (2021-08-04 02:22:41)
-> > Add device tree bindings for PLL of Toshiba Visconti TMPV770x SoC series.
-> > 
-> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> > ---
-> >  .../clock/toshiba,tmpv770x-pipllct.yaml       | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml b/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
-> > new file mode 100644
-> > index 000000000000..7b7300ce96d6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/toshiba,tmpv770x-pipllct.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Toshiba Visconti5 TMPV770X PLL Controller Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> > +
-> > +description:
-> > +  Toshia Visconti5 PLL controller which supports the PLLs on TMPV770X.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: toshiba,tmpv7708-pipllct
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#clock-cells':
-> > +    const: 1
-> > +
-> > +  clocks:
-> > +    description: External reference clock (OSC2)
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#clock-cells"
-> > +  - clocks
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    osc2_clk: osc2-clk {
-> > +      compatible = "fixed-clock";
-> > +      clock-frequency = <20000000>;
-> > +      #clock-cells = <0>;
-> > +    };
-> > +
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        pipllct: clock-controller@24220000 {
-> > +            compatible = "toshiba,tmpv7708-pipllct";
-> 
-> The driver makes it look like this is actually part of a syscon node. Is
-> that right? It's not clear to me that this is a syscon. But then looking
-> at the binding it seems that one device has been split up into PLL and
-> "not PLL" parts sort of arbitrarily.
-
-This is the driver that controls the PIPLLCT device that produces the
-PLL. This device only has the ability to generate his PLL, no other
-features.
-
-I have received similar comments in the driver patch from you, so I will
-check that as well.
-
-> 
-> > +            reg = <0 0x24220000 0 0x820>;
-> > +            #clock-cells = <1>;
-> > +            clocks = <&osc2_clk>;
-> > +        };
-> > +    };
-> > +...
+> Changes in v2:
+> -- break this patch into 3 patches
 > 
 
-Best regards,
-  Nobuhiro
+It's only the DRM tree that want the changelog above '---', please move
+it down.
 
+Also, why isn't this "patch n/3" if there's three patches?
+
+> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 88 +++++++++++++++++++++++++++++++++++-
+>  1 file changed, 87 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index c29226b..f224029 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3202,6 +3202,13 @@
+>  							remote-endpoint = <&edp_in>;
+>  						};
+>  					};
+> +
+> +					port@2 {
+> +                                                reg = <2>;
+> +                                                dpu_intf0_out: endpoint {
+> +                                                        remote-endpoint = <&dp_in>;
+> +                                                };
+> +                                        };
+
+This block seems to be indented with spaces?
+
+>  				};
+>  
+>  				mdp_opp_table: mdp-opp-table {
+> @@ -3389,6 +3396,78 @@
+>  					};
+>  				};
+>  			};
+> +
+> +			msm_dp: displayport-controller@ae90000 {
+
+Prefixing the labels of all the mdss children mdss_ instead has the
+benefit that the nodes group naturally in the board dts.
+
+> +				status = "disabled";
+> +				compatible = "qcom,sc7180-dp", "qcom,sc7280-dp";
+
+This isn't a sc7180-dp block.
+
+> +
+> +				reg = <0 0x0ae90000 0 0x1400>;
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <12>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+> +				clock-names =	"core_iface",
+> +						"core_aux",
+> +						"ctrl_link",
+> +					     	"ctrl_link_iface",
+
+There seems to be some spaced among the tabs here.
+
+> +						"stream_pixel";
+> +				#clock-cells = <1>;
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+> +				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+> +				phys = <&dp_phy>;
+> +				phy-names = "dp";
+> +
+> +				operating-points-v2 = <&dp_opp_table>;
+> +				power-domains = <&rpmhpd SC7280_CX>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					port@0 {
+> +						reg = <0>;
+> +						dp_in: endpoint {
+> +							remote-endpoint = <&dpu_intf0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						dp_out: endpoint { };
+> +					};
+> +				};
+> +
+> +				dp_opp_table: opp-table {
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+>  		};
+>  
+>  		dispcc: clock-controller@af00000 {
+> @@ -3398,7 +3477,8 @@
+>  				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
+>  				 <&dsi_phy 0>,
+>  				 <&dsi_phy 1>,
+> -				 <0>, <0>,
+> +			  	 <&dp_phy 0>,
+> +			  	 <&dp_phy 1>,
+
+Same here, seems to be some spaces among the tabs on both of these
+lines.
+
+>  				 <&msm_edp 0>,
+>  				 <&msm_edp 1>;
+>  			clock-names = "bi_tcxo", "gcc_disp_gpll0_clk",
+> @@ -3525,6 +3605,12 @@
+>                                  };
+>                          };
+>  
+> +			dp_hot_plug_det: dp-hot-plug-det {
+> +				pins = "gpio47";
+> +				function = "dp_hot";
+> +				bias-disable;
+> +                        };
+
+This seems to be indented with spaces?
+
+Regards,
+Bjorn
+
+> +
+>  			qspi_clk: qspi-clk {
+>  				pins = "gpio14";
+>  				function = "qspi_clk";
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
