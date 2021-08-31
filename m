@@ -2,100 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E243FCC01
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 19:03:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D1BE3FCC5C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 19:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240269AbhHaRED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 13:04:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45306 "EHLO
+        id S240393AbhHaRcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 13:32:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232509AbhHaREC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 13:04:02 -0400
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62D1C0613D9
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 10:03:06 -0700 (PDT)
-Received: by mail-oo1-xc35.google.com with SMTP id k20-20020a4ad114000000b0029133123994so587228oor.4
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 10:03:06 -0700 (PDT)
+        with ESMTP id S240400AbhHaRcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 13:32:11 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FAB3C0617A8
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 10:31:16 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id a93so36711019ybi.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 10:31:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=aquqJwbc9m/hIVCd01TlOuCXbAUHlFJOz/03vmUb8IM=;
-        b=q5jjzmupuZysdq6pWM6sahYpgGRYgqndWyW/wAc+WhHHcvPtSPx1jDAU0woWnKbRbo
-         tn/icMFl7O5TPVcbFWiyHWfHBfvH5q4M81Eye4+TLIsH/xh7sS1GZCXpszVjli5RBp7t
-         qmxrNg7JaX8/jUCQ5qmckF4xKx4F33oh3CEKEfs8y9TcaZBc93oUfwmnVbwoNriqOyBO
-         R9cYqvxZZbqb45UeyIa/tIfRHVBkkfpDqNdXKGaCkcrWV4ntPwL+rWnRq9jw/awNpe5d
-         Kr7ft9qBkhKzqN+TUudBVrTf8xbZcd/tYx7zs2WSramLm+f3npGOdIeZzeF7mA5ujJjR
-         s8jA==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l4HrFHUEESj2r5pg822WYUbEDh1E29PcEg+NUHp2lfY=;
+        b=XQJTNcZ/Yns5Xw3Pexc1RyG8YNhEfpoB9JlfAMUFDwSIxjfonMb2yWiUc8J622xxwZ
+         cnp9epbY6cGUQUeM3LnfNK8HqyCMdIAj1S6fi5TsfuqCq+ChjavGOcV561FQ3bFHHjJe
+         CeVejYdqu5xT/crGfvd7oQw6VO3WrCa2rXYt3J6oGMaX17UbsndQqfJN70ZObGbKUK+K
+         oTdta97PWiYl4+a6u7TBpzmFArGyVTX/L2FvMkdPObStd2mZLjsnRsXZoXUxsgutmC5A
+         4RhYaejO2gx5+RHkSUD/N+tRJWPQqYyEaNW1h/HVpN3Dak2AeLvx4Kb7FgwDIiRqt9OO
+         Rnjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aquqJwbc9m/hIVCd01TlOuCXbAUHlFJOz/03vmUb8IM=;
-        b=UMu4P7De4tcbmFF5m8g0Hx+fk9uAMvqryoIgD4gH2j0huGEHcqdFNGesmJ7PayV9jt
-         ry5JzkBFX+VQZRJJTnYrtB/HBvssS4o36l/cym2t5Y2K2Ye9Szutf2sxOi7W/w+melsP
-         HNkl2htbw2Lbv+Ghp8U7FcCNIz3XXqFUCOq4A4uIOKdmZ/i+YHTgCp3K2fUcNnicn1Cr
-         2zcL66SUd3z48of/p7Y7xGMLvS19A0aYsMNENqbiXnYAs92lV/s0UdRLFR89dLutrxpH
-         KPeCDlpyod+9h2uFLC/0+uqk0RdnuhHy2KAtHLFMuhFg+IUGlq+fyMcPjItugagWBOUb
-         vHOQ==
-X-Gm-Message-State: AOAM5313MK6riMKAhelQGO4+tGaFuU5p/u9HGTT7NbIBmF2njVOap8Jy
-        PYfptsxy0mjsDCxTPR3u7QipMA==
-X-Google-Smtp-Source: ABdhPJxKKFdY8MvkADZc3EpXGvVWUIRpCwdjGVe7w41nCD/MZyO774PBzlWQ8ANv/3d0FU5rFERitw==
-X-Received: by 2002:a4a:df43:: with SMTP id j3mr15210793oou.37.1630429386025;
-        Tue, 31 Aug 2021 10:03:06 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y138sm3647410oie.22.2021.08.31.10.03.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 10:03:05 -0700 (PDT)
-Date:   Tue, 31 Aug 2021 10:04:14 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Sibi Sankar <sibis@codeaurora.org>, sboyd@kernel.org,
-        robh+dt@kernel.org, viresh.kumar@linaro.org, agross@kernel.org,
-        rjw@rjwysocki.net, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dianders@chromium.org,
-        tdas@codeaurora.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7280: Fixup the cpufreq node
-Message-ID: <YS5hDq+xblntYbh0@ripper>
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
- <1627581885-32165-4-git-send-email-sibis@codeaurora.org>
- <YS5LDb4KDFx/dRnM@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l4HrFHUEESj2r5pg822WYUbEDh1E29PcEg+NUHp2lfY=;
+        b=nDweRBHzPuJExGdr3+KvUnwqbmaWAfG/zTULoDcakC1Y7f40R8EBdWbniaIZewPEhJ
+         joipy8rniTTVgGW22el3YFEX6ZBBA8a+E37HP4K0tJolMGPXKPwG+8y7PJ5Spb5ssixO
+         EHPwNDzgnmPY5ltheJd6AlQe7ksvucM7jYV7HRt3K+Q5OmVbdXZ2eh6TaA9dbIWqLeDP
+         nG+Je3bbB/fW3MD3UOhmZniheCNOEYDNz2qcSnrXq1zZcR8wCAzcKM/AT8nrpyc5xqI6
+         6TOn3YYsWPEuj+c3lmOQk38+wWuIULUBW3qshbWxRJYBQRUGcl9btlRAdgVUAOUDhiss
+         HPDA==
+X-Gm-Message-State: AOAM532ltTvWvUxV4WtPw+V7cEc5akL+fPIneV4EBZDWIthXT38IT7yv
+        Ab3FGrC8JYpw5xmf7ZBPsLvyIvE33/9MpMMhl4Rkww==
+X-Google-Smtp-Source: ABdhPJzYDnP24wwOelVeEyCcBSvfNazhiS7QfNC77RO9c3sg9x5dox+fMIX33I/5b3Ecdv0X677NG4RGlEqudd7zz6c=
+X-Received: by 2002:a25:804:: with SMTP id 4mr30394840ybi.346.1630431075086;
+ Tue, 31 Aug 2021 10:31:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YS5LDb4KDFx/dRnM@google.com>
+References: <20210831102125.624661-1-ulf.hansson@linaro.org>
+In-Reply-To: <20210831102125.624661-1-ulf.hansson@linaro.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 31 Aug 2021 10:30:39 -0700
+Message-ID: <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 31 Aug 08:30 PDT 2021, Matthias Kaehlcke wrote:
+On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> In the struct supplier_bindings the member 'node_not_dev' is described as
+> "The consumer node containing the property is never a device.", but that
+> doesn't match the behaviour of the code in of_link_property().
+>
+> To make the behaviour consistent with the description, let's rename the
+> member to "optional_con_dev" and clarify the corresponding comment.
+>
+> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> ---
+>  drivers/of/property.c | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 6c028632f425..2babb1807228 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
+>   * @parse_prop.index: For properties holding a list of phandles, this is the
+>   *                   index into the list
+>   * @optional: Describes whether a supplier is mandatory or not
+> - * @node_not_dev: The consumer node containing the property is never a device.
+> + * @optional_con_dev: The consumer node containing the property may not be a
+> + *                   device, then try finding one from an ancestor node.
 
-> On Thu, Jul 29, 2021 at 11:34:44PM +0530, Sibi Sankar wrote:
-> > Fixup the register regions used by the cpufreq node on SC7280 SoC to
-> > support per core L3 DCVS.
-> > 
-> > Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
-> > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> 
-> This patch landed in the Bjorn's tree, however the corresponding driver
-> change ("cpufreq: qcom: Re-arrange register offsets to support per core
-> L3 DCVS" / https://patchwork.kernel.org/project/linux-arm-msm/patch/1627581885-32165-3-git-send-email-sibis@codeaurora.org/)
-> did not land in any maintainer tree yet AFAIK. IIUC the DT change alone
-> breaks cpufreq since the changed register regions require the changed
-> offset in the cpufreq driver.
-> 
+Nak. This flag is not about "may not be". This is explicitly for
+"never a device". It has to do with stuff like remote-endpoint which
+is never listed under the root node of the device node. Your
+documentation change is changing the meaning of the flag.
 
-Thanks for the note Matthias, it must have slipped by as I scraped the
-inbox for things that looked ready.
+-Saravana
 
-I'm actually not in favor of splitting these memory blocks in DT to
-facilitate the Linux implementation of splitting that in multiple
-drivers...
-
-But I've not been following up on that discussion.
-
-Regards,
-Bjorn
-
-> Sibi, please confirm or clarify that my concern is unwarranted.
+>   *
+>   * Returns:
+>   * parse_prop() return values are
+> @@ -1261,7 +1262,7 @@ struct supplier_bindings {
+>         struct device_node *(*parse_prop)(struct device_node *np,
+>                                           const char *prop_name, int index);
+>         bool optional;
+> -       bool node_not_dev;
+> +       bool optional_con_dev;
+>  };
+>
+>  DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
+> @@ -1370,7 +1371,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+>         { .parse_prop = parse_pinctrl6, },
+>         { .parse_prop = parse_pinctrl7, },
+>         { .parse_prop = parse_pinctrl8, },
+> -       { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
+> +       { .parse_prop = parse_remote_endpoint, .optional_con_dev = true, },
+>         { .parse_prop = parse_gpio_compat, },
+>         { .parse_prop = parse_interrupts, },
+>         { .parse_prop = parse_regulators, },
+> @@ -1415,7 +1416,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
+>                 while ((phandle = s->parse_prop(con_np, prop_name, i))) {
+>                         struct device_node *con_dev_np;
+>
+> -                       con_dev_np = s->node_not_dev
+> +                       con_dev_np = s->optional_con_dev
+>                                         ? of_get_compat_node(con_np)
+>                                         : of_node_get(con_np);
+>                         matched = true;
+> --
+> 2.25.1
+>
