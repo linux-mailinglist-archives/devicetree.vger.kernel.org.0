@@ -2,67 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 152613FCF10
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 23:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD98B3FCF23
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 23:30:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238745AbhHaVX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 17:23:58 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45863 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230125AbhHaVX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 17:23:58 -0400
-Received: by mail-ot1-f44.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso858929otv.12;
-        Tue, 31 Aug 2021 14:23:02 -0700 (PDT)
+        id S240571AbhHaVbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 17:31:15 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:38464 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239708AbhHaVbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 17:31:12 -0400
+Received: by mail-ot1-f49.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso950667ots.5;
+        Tue, 31 Aug 2021 14:30:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wUx9V4VMzp/B15LcV0R/B+k8WpG+YIR/wnvRb9JZesY=;
-        b=eM6Q3lUDaVWfsf+F7fCEO8gNjsEO9C+r8Hn5dLnrtI/ZT4au4nfowQA1zBlNC7CNrt
-         7Y0j/FLGE2XndfTSo8oFg7qZdm2sKR9vkICW/KfiquQu5EJKTnCWNLESWxvaGvQlo5zH
-         p1d+I1E4VBuazNu7iwP4kRp+jvvmuhAcCX+Mosc3ElAhCpudEyiceVn2qybhqI74q2Zf
-         QsDp3ep9AKcYKJhKx5VmssrUBSBvHvf+OKYk4gutDDXMlXmDaeH/aQE9I3wYk2uaMWYq
-         aPCrpuMf5/GaFhdiVDc5rEkrz2d2ZE39dmxq5DiHxECqPbS0CFffGaku5OA37Ty1Ly2B
-         Uwpg==
-X-Gm-Message-State: AOAM533V9H3VrVRGRORNneBdwPAJ8+vWr4AlppHc6eHTwXEsHmzSB4LJ
-        a4eCvN/0/kj8jg3yKuBOy6MS8ceJow==
-X-Google-Smtp-Source: ABdhPJx68CiltMvlQWW7XQDzxPXrlYNB0M+lz+RG3htfHDCPSgm6oi8Kyx/DfROlwDgq4po4zNOXKg==
-X-Received: by 2002:a9d:d35:: with SMTP id 50mr25379100oti.22.1630444982315;
-        Tue, 31 Aug 2021 14:23:02 -0700 (PDT)
+        bh=Lv/ljHshSZK3RFgD2a8g0MVknlEMt9i5zUtkABsa3c0=;
+        b=QbRpDfRY+/x1atbFO5/WMv28jcwGZEFYMzrZhCyFNV2hlVI/fZPuFu1RsdLG3giDBL
+         lMq7reipv1KB5cIjzYbgs5ytUCdabjJsiWL4ZujIkiJ2ZGVF4ElD7L4qLfjDIQGG8lpF
+         XfaMWKRsKm06bPGoUYSAA5OCly466G40egn0tYTHf3ojx9ED0v6zR1P3G9APsy+OwbZL
+         1XHdbSIcG9VpzfHugG5CprcQ3v1W9DGwa3a1Fg55orR0SkLzeqidGEm5LokEixw0j8b9
+         GIGTiUHko7x+0KNMV8m6G+YnNvI/jJ/9iTx5JHBcU6T4mjOsCGtCHKWwAmwNiC8fiXjn
+         O6mw==
+X-Gm-Message-State: AOAM5312vOXvkVdDOYLPAKJ/0fWq+F9+85ZD24KC7AP78aOMGK2S2Pw+
+        YXrRL+PsrMfyF3xbtj/WZA==
+X-Google-Smtp-Source: ABdhPJzCoKKVloeON0/InoVfsSGtFPejEa6c0Hy6uFnCKvcn2QG3UG5aK/HzG37HQA69/+Y37NLGSQ==
+X-Received: by 2002:a9d:74c5:: with SMTP id a5mr25815380otl.205.1630445416795;
+        Tue, 31 Aug 2021 14:30:16 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id z7sm4232632oti.65.2021.08.31.14.23.01
+        by smtp.gmail.com with ESMTPSA id n130sm3841778oif.32.2021.08.31.14.30.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 14:23:01 -0700 (PDT)
-Received: (nullmailer pid 669145 invoked by uid 1000);
-        Tue, 31 Aug 2021 21:23:00 -0000
-Date:   Tue, 31 Aug 2021 16:23:00 -0500
+        Tue, 31 Aug 2021 14:30:16 -0700 (PDT)
+Received: (nullmailer pid 678569 invoked by uid 1000);
+        Tue, 31 Aug 2021 21:30:15 -0000
+Date:   Tue, 31 Aug 2021 16:30:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH devicetree 1/2] dt-bindings: arm: fsl: document the
- LX2160A BlueBox 3 boards
-Message-ID: <YS6dtKYnwle++wA6@robh.at.kernel.org>
-References: <20210827202722.2567687-1-vladimir.oltean@nxp.com>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-fbdev@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Hans de Goede <hdegoede@redhat.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: add missing simple-framebuffer
+ formats
+Message-ID: <YS6fZ4nFgic1DYhR@robh.at.kernel.org>
+References: <20210828110206.142899-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210827202722.2567687-1-vladimir.oltean@nxp.com>
+In-Reply-To: <20210828110206.142899-1-luca@z3ntu.xyz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Aug 2021 23:27:21 +0300, Vladimir Oltean wrote:
-> Document the compatible string for the LX2160A system that is part of
-> the BlueBox 3. Also add a separate compatible string for Rev A, since
-> technically it uses a different device tree.
+On Sat, Aug 28, 2021 at 01:02:05PM +0200, Luca Weiss wrote:
+> Document all formats currently present in include/linux/platform_data/
+> simplefb.h
 > 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/display/simple-framebuffer.yaml         | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+> index c2499a7906f5..c1acd2859ae8 100644
+> --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+> +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+> @@ -83,13 +83,25 @@ properties:
+>    format:
+>      description: >
+>        Format of the framebuffer:
+> +        * `a1r5g5b5` - 16-bit pixels, d[15]=a, d[14:10]=r, d[9:5]=g, d[4:0]=b
+> +        * `a2r10g10b10` - 32-bit pixels, d[31:30]=a, d[29:20]=r, d[19:10]=g, d[9:0]=b
 
-Acked-by: Rob Herring <robh@kernel.org>
+Not a new problem, but are these 32-bit big or little endian words? That 
+should be figured out before we add more.
+
+>          * `a8b8g8r8` - 32-bit pixels, d[31:24]=a, d[23:16]=b, d[15:8]=g, d[7:0]=r
+> +        * `a8r8g8b8` - 32-bit pixels, d[31:24]=a, d[23:16]=r, d[15:8]=g, d[7:0]=b
+>          * `r5g6b5` - 16-bit pixels, d[15:11]=r, d[10:5]=g, d[4:0]=b
+> +        * `r5g5b5a1` - 16-bit pixels, d[15:11]=r, d[10:6]=g, d[5:1]=b, d[0]=a
+> +        * `r8g8b8` - 24-bit pixels, d[23:16]=r, d[15:8]=g, d[7:0]=b
+> +        * `x1r5g5b5` - 16-bit pixels, d[14:10]=r, d[9:5]=g, d[4:0]=b
+>          * `x2r10g10b10` - 32-bit pixels, d[29:20]=r, d[19:10]=g, d[9:0]=b
+>          * `x8r8g8b8` - 32-bit pixels, d[23:16]=r, d[15:8]=g, d[7:0]=b
+>      enum:
+> +      - a1r5g5b5
+> +      - a2r10g10b10
+>        - a8b8g8r8
+> +      - a8r8g8b8
+>        - r5g6b5
+> +      - r5g5b5a1
+> +      - r8g8b8
+> +      - x1r5g5b5
+>        - x2r10g10b10
+>        - x8r8g8b8
+>  
+> -- 
+> 2.33.0
+> 
+> 
