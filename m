@@ -2,132 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B84C03FCBCF
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 18:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6A13FCBF7
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 19:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240292AbhHaQwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 12:52:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
+        id S239112AbhHaRBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 13:01:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240169AbhHaQwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 12:52:16 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0827C061575
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 09:51:20 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id 6so25267362oiy.8
-        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 09:51:20 -0700 (PDT)
+        with ESMTP id S239857AbhHaRBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 13:01:33 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28999C061760
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 10:00:37 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id a93so36500558ybi.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Aug 2021 10:00:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ny3pPNhYxScY0O7v4HQkOGbeAQGBp/GJhu0ybiyIqbw=;
-        b=YGNMfl03eR+fgH36dgemFP2Z0AvbzX+q4FmisSQEqEDze57EQC5t3fVTfyyRw1fk0l
-         tDUI6mPXVXacU06MYyPKj9Y65d/4Ei72UvXeeeUd4rFOkwGee10KLmTRZ64QHDgQi5xx
-         IxhovYfmpqho83LzlwsES6GDaP7pmcGz/6f7LZscgzfPhbxjQsSMGaP6FwpfX7YLorEf
-         xPkyVdanqMCba/DxbFgboyij92Fj8RaEnzo15Thz7gSGyzxjtb5P2RMx9NMUK/symnOj
-         /6kc75e+H9VRNA8yCLPLEz2c5z5UtGTcA9OrAXJDPMqqbsrHD3Sjct5mano690Gr6a+k
-         rJgg==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i8PcX2+XWTTfkBhJlaSnXEKAq4tUSIhCVzkx3+YPIzQ=;
+        b=Nxy18LRSUwEYVA5DTKMZAvL4rAk1tRd5SCwCgy3kPwmFcVczamy4c0w8t80hPz1I/f
+         8oOKJSQS8NIvS/huWDDoCBky8SREsb/slcloX8HAqtlcTraI1PlIeKH/xoU347db2UgF
+         eabJg2g/87Heihsq4Usegv+QuGs2SMEnntgqucDklj+OFjAgF3q2pg5JzMYve6GONNS5
+         sFJdlF0RhkvU8VAqHItEVl1SjXA38WyW09y6fjdnVfjszkOKmafamigdLLJdnxZtoFth
+         4+nsV8f0/SqIHX9ShTWLwWECxxvaUdpANLuzGdduu2672mr3I34VfIZJjXwyDJM2nt7P
+         GyWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ny3pPNhYxScY0O7v4HQkOGbeAQGBp/GJhu0ybiyIqbw=;
-        b=LdynQ0jIHKeCFMTG6uyiWSnOf+knFhQSEV2SNKuUcwha5hhu/aCu1HcR2Pm+fTY1MY
-         ibwhn7j9MQzqz1vQ8/ZTM3Snzdd6wFzwmR0vceT+erRBYnel6Tk/LFHaWhnz9qgoiEb4
-         XjDbPMiTXBtN/Z0aRYAMm4golJGhjG52BPBmRh6Pe6fzamIIXzP4RYBkNvcc+kmRDtR0
-         LIveG0AwosUV8ASRHtRZxhQGOGUwD2ERk8xUZ7KfkSpgfEukg3C12kfuvnGW2tiTwXYD
-         3lW4f4r3MABHXZKRgBBtH4Rn4a5sqV6h97mzNKxhE6sC7ELnbRIXwEpnvf+k3jrdXaw4
-         HiqQ==
-X-Gm-Message-State: AOAM530aNA86xHmbJ7uZhpwP4wR2B5e0+1837rnyN1PxzN9W/7G4ZY7o
-        vAZaj9WRvffLofLq1cxSmjt1MQ==
-X-Google-Smtp-Source: ABdhPJxG+dwPTTaUteeRkyAarG9UrTrZCCyITW2JHmDVyhPBLs2Pa2Be69o8aXrRq76hyqr9uUuojA==
-X-Received: by 2002:aca:eb8c:: with SMTP id j134mr4015501oih.158.1630428680203;
-        Tue, 31 Aug 2021 09:51:20 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o126sm3081197oig.21.2021.08.31.09.51.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 09:51:19 -0700 (PDT)
-Date:   Tue, 31 Aug 2021 09:52:28 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] regulator: qcom-rpmh-regulator: fix pm8009-1 ldo7
- resource name
-Message-ID: <YS5eTOOlN5zYIGgq@ripper>
-References: <20210831161843.1044580-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i8PcX2+XWTTfkBhJlaSnXEKAq4tUSIhCVzkx3+YPIzQ=;
+        b=FIgRu4oZR/dF2uUDIlRJjrJH19UC8njGMrVUW3qpzxJoAjzrAAJWrlcccAzPrJp0LG
+         algJSMo5zvCGC+7Krc0hZc2mX+fOeOL05n4D59ZCGQBLPlCH0Sgjh99+JkyA5h+q/kfW
+         YIjDRukkaDeye/UwPGPGVeQ11lM6/J0gREAq/VH5attybLPwmib0Pi3WpRdbjhoooq1C
+         4sUpDyu3CXj9KIvXZ5TOhjeJ4iItgFNY1J0rzeZMu49S51L0jL7vcqZYbjblAIYeSfxw
+         zDArpy+OjAFLPxcN3zmfaUUNb5T58OWsAPeC72MTbBa7eNkyXnLbuIn2qxZGo9/rVRhD
+         hvtw==
+X-Gm-Message-State: AOAM530X4+s9yLIBdbC/SHh9uYhOINoU+glRTk8ufjMvBgFCWi9BcEmf
+        2x3ag3yXc6b9UVgG7Ut1+USe/TaJ16L9Rm6iP9d5sA==
+X-Google-Smtp-Source: ABdhPJyf9scnnsIgG/atu8659uQZbS+IseYKqkkKL5AGE9MW5L/11vKlLX+Muk/K6RFkSJiRqA7sQEPY8pv9w5+F+jw=
+X-Received: by 2002:a25:6746:: with SMTP id b67mr33221625ybc.96.1630429236196;
+ Tue, 31 Aug 2021 10:00:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210831161843.1044580-1-dmitry.baryshkov@linaro.org>
+References: <CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 31 Aug 2021 09:59:58 -0700
+Message-ID: <CAGETcx8JDR+5Aj2uwnQJ9sL+8-p=Cxix+P4sP8-ygMQ8_2AcXA@mail.gmail.com>
+Subject: Re: [RFD] drivers: base: A driver's ->sync_state() callback don't get called
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 31 Aug 09:18 PDT 2021, Dmitry Baryshkov wrote:
+On Tue, Aug 31, 2021 at 6:56 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> Hi Saravana, Rafael, Stephen,
+>
+> I have observed an issue with a driver's  ->sync_state() callback that
+> doesn't get called, even if consumers/supplier device links conditions
+> should have been satisfied. I have narrowed down the problem, but I am
+> not sure what is the best solution to fix it, hence I am turning to
+> you for some discussion/advice.
+>
+> I have two test platform drivers, one that matches on the
+> "test,pm-domains-test" compatible string (this driver also has the
+> ->sync_state() callback assigned) and another driver that matches on
+> "test,runtime-pm-test".
+>
+> This is the relevant part in my DTS file:
+>
+>        pm_domain_test {
+>                 compatible = "test,pm-domains-test";
+>
+>                 pdParent: power-domain-parent {
+>                         #power-domain-cells = <0>;
+>                 };
+>
+>                 pdChild: power-domain-child {
+>                         #power-domain-cells = <0>;
+>                         power-domains = <&pdParent>;
+>                 };
+>         };
+>
+>         soctest: soctest {
+>                 compatible = "simple-bus";
+>
+>                 rpmtest0 {
+>                         compatible = "test,runtime-pm-test";
+>                         power-domains = <&pdParent>;
+>                 };
+>         };
+>
+> During boot the fw_devlinks are being created and their corresponding
+> links. With some debug enabled this shows some of the interesting
+> parts that are being printed to the log:
+>
+> [    0.041539] device: 'pm_domain_test': device_add
+> [    0.041629] OF: Not linking pm_domain_test to pm_domain_test - is descendant
+> [    0.041718] device: 'soctest': device_add
+> [    0.041803] OF: Linking rpmtest0 (consumer) to pm_domain_test (supplier)
+> [    0.041829] device: 'platform:pm_domain_test--platform:soctest': device_add
+> [    0.041892] platform soctest: Linked as a sync state only consumer
+> to pm_domain_test
+> [    0.041957] OF:    create child: /soctest/rpmtest0
+> [    0.041995] device: 'soctest:rpmtest0': device_add
+> [    0.042072] device:
+> 'platform:pm_domain_test--platform:soctest:rpmtest0': device_add
+> [    0.042132] devices_kset: Moving soctest:rpmtest0 to end of list
+> [    0.042141] platform soctest:rpmtest0: Linked as a consumer to pm_domain_test
+>
+> The interesting thing here is the "sync state only" link that gets
+> created. I assume there are good reasons for creating this link, even
+> if I fail to understand exactly why.
 
-> Fix a typo in the pm8009 LDO7 declaration, it uses resource name ldo%s6
-> instead of ldo%s7.
-> 
-> Fixes: 951384cabc5d ("regulator: qcom-rpmh-regulator: add pm8009-1 chip revision")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/gpu/drm/msm/dp/dp_drm.c         | 6 ++++++
->  drivers/regulator/qcom-rpmh-regulator.c | 2 +-
->  2 files changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.c b/drivers/gpu/drm/msm/dp/dp_drm.c
-> index 764f4b81017e..486a653e2fea 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_drm.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_drm.c
-> @@ -114,6 +114,11 @@ static enum drm_mode_status dp_connector_mode_valid(
->  	return dp_display_validate_mode(dp_disp, mode->clock);
->  }
->  
-> +static struct drm_encoder *dp_connector_best_encoder(struct drm_connector *connector)
-> +{
-> +	return to_dp_connector(connector)->dp_display->encoder;
-> +}
-> +
->  static const struct drm_connector_funcs dp_connector_funcs = {
->  	.detect = dp_connector_detect,
->  	.fill_modes = drm_helper_probe_single_connector_modes,
-> @@ -126,6 +131,7 @@ static const struct drm_connector_funcs dp_connector_funcs = {
->  static const struct drm_connector_helper_funcs dp_connector_helper_funcs = {
->  	.get_modes = dp_connector_get_modes,
->  	.mode_valid = dp_connector_mode_valid,
-> +	.best_encoder = dp_connector_best_encoder,
->  };
+In general there's a good reason for creating these links from parent
+devices of the consumer to the supplier. It is documented in the code
+under __fw_devlink_link_to_consumers().
 
-This part doesn't belong here.
+/*
+ * If consumer device is not available yet, make a "proxy"
+ * SYNC_STATE_ONLY link from the consumer's parent device to
+ * the supplier device. This is necessary to make sure the
+ * supplier doesn't get a sync_state() callback before the real
+ * consumer can create a device link to the supplier.
+ *
+ * This proxy link step is needed to handle the case where the
+ * consumer's parent device is added before the supplier.
+ */
 
->  
->  /* connector initialization */
-> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-> index 6cca910a76de..7f458d510483 100644
-> --- a/drivers/regulator/qcom-rpmh-regulator.c
-> +++ b/drivers/regulator/qcom-rpmh-regulator.c
-> @@ -991,7 +991,7 @@ static const struct rpmh_vreg_init_data pm8009_1_vreg_data[] = {
->  	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_nldo,      "vdd-l4"),
->  	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_pldo,      "vdd-l5-l6"),
->  	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_pldo,      "vdd-l5-l6"),
-> -	RPMH_VREG("ldo7",   "ldo%s6",  &pmic5_pldo_lv,   "vdd-l7"),
-> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo_lv,   "vdd-l7"),
+and under __fw_devlink_link_to_suppliers().
 
-This looks good though!
+/*
+ * Make "proxy" SYNC_STATE_ONLY device links to represent the needs of
+ * all the descendants. This proxy link step is needed to handle the
+ * case where the supplier is added before the consumer's parent device
+ * (@dev).
+ */
 
-Please drop the lingering DRM part and add my R-b.
 
-Thanks,
-Bjorn
+>
+> In any case, the sync state only link never gets dropped, which I
+> assume is because there is no driver getting bound for the "soctest"
+> device (it has only the "simple-bus" compatible).
 
->  	{}
->  };
->  
-> -- 
-> 2.33.0
-> 
+Yeah, you've identified the problem correctly. I've been thinking
+about this possibility (and all the side effects a fix might have). I
+can send out a fix for this soon (within a week or so).
+
+> In other words, it doesn't matter that both the rpmtest0 and the
+> pm_domain_test devices are probed, thus satisfying the
+> supplier/consumer conditions, the ->sync_state() callback doesn't get
+> called anyway.
+>
+> Can you perhaps help to point me in a direction of how to best fix this problem?
+
+I hope you are okay with me sending a fix.
+
+
+-Saravana
