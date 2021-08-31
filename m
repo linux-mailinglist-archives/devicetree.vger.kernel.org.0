@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 554D43FCE1B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 22:03:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ACA43FCE2C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Aug 2021 22:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237981AbhHaUEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 16:04:34 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:34458 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234441AbhHaUEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 16:04:34 -0400
-Received: by mail-oi1-f173.google.com with SMTP id p2so749897oif.1;
-        Tue, 31 Aug 2021 13:03:38 -0700 (PDT)
+        id S240674AbhHaUHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 16:07:40 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:34639 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240791AbhHaUHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 16:07:39 -0400
+Received: by mail-ot1-f44.google.com with SMTP id k12-20020a056830150c00b0051abe7f680bso668954otp.1;
+        Tue, 31 Aug 2021 13:06:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=K/gOc3F91rtVhTYdor0Wlk0nHlisr/+Ju2+e3kwXKlE=;
-        b=a4BJ03WLkKRSSrxH06ZVIeW4jGgfnAs/iBvKvZ/N07N9fr4gh53ThIdR+tkbuLDSof
-         UM4uT7fi6Xt7CVLQwESqYL10yheNg7QyTz2zTmrJonQTfssdOqC489RwUpATGZTKUq5T
-         8ohM4qZC10k6lCabJqPxJXXYaFJSVkXJwY+noSJshW7gqUDsEeX3qkang+LIYvVf7wZG
-         1/COvugT0hlrKWpPoTYxYn0fLueKp34tWkHWG9faQ3Trr7kNfcxIIWckvfBw+7nlhsbN
-         gafhu6dye/8baXl8d8ypAv/aavj12t4xTpOxnwdhjGJhwXEmam63UF3I+d1GyQ2ICeuk
-         SYmw==
-X-Gm-Message-State: AOAM533r8b6t7D90yXhi623LUOcrBnLvrlo2Z4tkp5YbM4Vy4EIN+6u3
-        7uRV9vCUeuoNeiwj+39jTKiCX9/riA==
-X-Google-Smtp-Source: ABdhPJxyvw6A3WpkwYyp4mS6wewpbG9OYOakEjOkRTiDliPXaYPSP6vAkgtnCYV4KBQxM5ZFRhQ8nQ==
-X-Received: by 2002:a05:6808:208b:: with SMTP id s11mr4501275oiw.95.1630440218135;
-        Tue, 31 Aug 2021 13:03:38 -0700 (PDT)
+        bh=I7AE6JNcfye2uRjCkzeW1VdTKMTfLS0Wyak3wfr5kuo=;
+        b=AatWyIZ7vpjonfzFnE+8Dt+VzIWSjorrqrbVMpbOEy+V75ZQowmJx5lA+0wnxcQ8Xs
+         hp8HnBnaX2FyUoNi0WWMYLuIupHobMSUyg5DppcY+wvc4ehuaVnzJ+yBSLaat+V5qhH7
+         yBTN5SFdHm2NgU0UfBgwGigJJJlFHBqtnAwqiU86lmg+CBPCLS4VQ1afG/KK9r56wyL/
+         7g9vB+zqd/50GaQ3u3wsH7WuQUTxvcz9vzvFzZi1MPW9YuyrNNw/qLatSVbLa4N4SSbo
+         MomIhDRjUGqpTzcCV4poc1XJoxzG/Yyr04Q4mtIit7Mw6Pcc9CaJFoOfVmClF+deoT4e
+         ZLbg==
+X-Gm-Message-State: AOAM530M67wqmghf0W+RICyUXwCGVM8Z8TUZIJQ7uSkTevURk47xDcIp
+        K92ulHoWgkqWWzp37K6QYNiYkTk/sA==
+X-Google-Smtp-Source: ABdhPJx45qTlxFXvskqD8CsOdV5Lsk85htt4XAImBruvawSuYM2eiuu+YFIEi+x+X4ZA6xHLMV+wzQ==
+X-Received: by 2002:a9d:6192:: with SMTP id g18mr26182717otk.314.1630440403216;
+        Tue, 31 Aug 2021 13:06:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r13sm4110438oti.80.2021.08.31.13.03.37
+        by smtp.gmail.com with ESMTPSA id 65sm2815782otc.32.2021.08.31.13.06.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 13:03:37 -0700 (PDT)
-Received: (nullmailer pid 565288 invoked by uid 1000);
-        Tue, 31 Aug 2021 20:03:36 -0000
-Date:   Tue, 31 Aug 2021 15:03:36 -0500
+        Tue, 31 Aug 2021 13:06:42 -0700 (PDT)
+Received: (nullmailer pid 569553 invoked by uid 1000);
+        Tue, 31 Aug 2021 20:06:41 -0000
+Date:   Tue, 31 Aug 2021 15:06:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>
-Cc:     phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Adam Skladowski <a_skl39@protonmail.com>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: power: rpmpd: Add MSM8953 to rpmpd
- binding
-Message-ID: <YS6LGLcKbo/+95gZ@robh.at.kernel.org>
-References: <20210825165251.18358-1-sireeshkodali1@gmail.com>
- <20210825170233.19859-1-sireeshkodali1@gmail.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Korsgaard <peter.korsgaard@barco.com>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        Peter Korsgaard <peter@korsgaard.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: serial: uartlite: Add properties for
+ synthesis-time parameters
+Message-ID: <YS6L0eZ8VJVcrzCV@robh.at.kernel.org>
+References: <20210826192154.3202269-1-sean.anderson@seco.com>
+ <20210826192154.3202269-3-sean.anderson@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210825170233.19859-1-sireeshkodali1@gmail.com>
+In-Reply-To: <20210826192154.3202269-3-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Aug 2021 22:32:32 +0530, Sireesh Kodali wrote:
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+On Thu, 26 Aug 2021 15:21:52 -0400, Sean Anderson wrote:
+> The uartlite device is a "soft" device. Many parameters, such as baud
+> rate, data bits, and the presence of a parity bit are configured before
+> synthesis and may not be changed (or discovered) at runtime. However, we
+> must know what these settings are in order to properly calculate the
+> uart timeout (and to inform the user about the actual baud of the uart).
 > 
-> Add compatible and constants for the power domains exposed by the RPM
-> in the Qualcomm MSM8953 platform.
+> These properties are present for out-of-tree bindings generated by
+> Xilinx's tools. However, they are also (mostly) present in in-tree
+> bindings. I chose current-speed over xlnx,baudrate primarily because it
+> seemed to be used by more existing bindings. Although these properties
+> are marked as "required", note that only current-speed is required by
+> the driver itself. Hopefully, this will allow for an easier transition.
 > 
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> Signed-off-by: Adam Skladowski <a_skl39@protonmail.com>
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
->  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
->  include/dt-bindings/power/qcom-rpmpd.h                  | 9 +++++++++
->  2 files changed, 10 insertions(+)
+> 
+> Changes in v3:
+> - Removed defaults for required properties
+> 
+>  .../bindings/serial/xlnx,opb-uartlite.yaml    | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
