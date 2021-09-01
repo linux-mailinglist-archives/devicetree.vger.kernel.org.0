@@ -2,87 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29EEE3FE30C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 21:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 445B13FE315
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 21:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232298AbhIATco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 15:32:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344590AbhIATcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 15:32:42 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79FCC061760
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 12:31:44 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id l10so1311791lfg.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 12:31:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mhceOkZW/Lw79AULcxOwhUdsCICxdzvZ661/jsJbbQs=;
-        b=ADe55B0ktqUUkzvIT1RzXepW8sk7HHlHGxmQB292D+H+GdV7yQH6JpWbwKEgi6k04C
-         1I0RSEkL6IDfktI8iowp8q3DjUY7mybAGnROqzOMFvNxKg2dbBqgRlCfLQnroqnKIsr0
-         jnsWzK2YcI3B7IUhK7F7CwRABmnnYLoj2FD4G2W+fZ3YeD2UF79+hHWAp/viAx/WEw4K
-         ohlq58Og6aWaLSfkN2RaJsPVEq6KqWLg4aI2E9c2S1LqCABZnqs04K4w+pivlcQFYKQq
-         76ghks6yH4v3rmBdZkZCdoVJq3mq7Ub4Ur4fJglY+CddBJh4O4DeZBm5pOr9wW4/exdR
-         ijZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mhceOkZW/Lw79AULcxOwhUdsCICxdzvZ661/jsJbbQs=;
-        b=nBq6n7e/miFfYtAXlrZ48D2/hmPdKEVKu8a3l+8OwRzY3FhmXijEmUv7zzQatjGnux
-         5WxC+sbfr8N+zjPDHIUey2+uNRxaIg2qvVLl2H3J+v+yBs5qXPlm7xfznhAOIo9K85gb
-         JDkO+TQnpit6Q/FPsxTpGBEciJ2QOY4a+Kqa7yaC7Q0kjYiSy/SiOEWh9wAWv0Ln2me+
-         V4yd3VkMGnxKVa8EhxSMeNsKmcwX8WXxx939bGsuShimtvAFmH357uEjUjmKpoPikdUW
-         1gRkSQGOLWva4ibDb6bfR4zv0D+WOpN8wylO5eABWdnQOvb1ljXcD9Kpk/UuzJQ6A+aY
-         BAoA==
-X-Gm-Message-State: AOAM533ISAt7j58gxWbiQ1mgz4HaaGMLQDD7SQxT14w87CVjiNAM5VBx
-        mpZX/GWH3mO/w7GYLhMnpxF5uUD5EjgRdta/NX6omQ==
-X-Google-Smtp-Source: ABdhPJyCbbpcIqH9pWpTHrFhlzCzND3oDcxn/8oKC7RMCOisPoPm3ujZA6d59OL5bAfD11tOwx0Hd0z4fvXXvhGq8Cw=
-X-Received: by 2002:a19:c350:: with SMTP id t77mr725925lff.7.1630524703051;
- Wed, 01 Sep 2021 12:31:43 -0700 (PDT)
+        id S231229AbhIATe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 15:34:27 -0400
+Received: from mail-4325.protonmail.ch ([185.70.43.25]:50575 "EHLO
+        mail-4325.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245751AbhIATeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 15:34:22 -0400
+Date:   Wed, 01 Sep 2021 19:33:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1630524803;
+        bh=sSDzVTTrE408jUhidHBHISAmsEwqh1RTwW36cNCflTc=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=v0kUj6kz/dnIVIH4/aaBUJhO7RixPdl2c3PRIvjdYgtt2JSu/8J0sadQ5j/n7w/uj
+         iU3oQQIStTdzfvmdGpLcX4h0b2e3ked3W2fnMwYR0j+Kpu8NpV7h/vWbAiCuEa7Chh
+         nL2FVVawEu9+O8/Ya9PXKvm/2lYCCBQfGHhErKAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH 0/4] Add support for the Xiaomi MSM8996 platform
+Message-ID: <20210901193214.250375-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-References: <cover.1630498020.git.mchehab+huawei@kernel.org> <b1ea71426ecf21bbfd598a6bf7951d884fcc5e1a.1630498020.git.mchehab+huawei@kernel.org>
-In-Reply-To: <b1ea71426ecf21bbfd598a6bf7951d884fcc5e1a.1630498020.git.mchehab+huawei@kernel.org>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Wed, 1 Sep 2021 12:31:31 -0700
-Message-ID: <CALAqxLW6MeZFLT2eGyu+oipBfF=L-zLoGq-wS_N5SJbKkVUGPg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: hisilicon: Add usb mux hub for hikey960
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, linuxarm@huawei.com,
-        mauro.chehab@huawei.com, Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 5:23 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> From: John Stultz <john.stultz@linaro.org>
->
+This series adds support for the Xiaomi MSM8996 platform, which includes 5 =
+devices:
 
-My apologies for not writing a proper patch description & s-o-b on the
-commit you pulled this from!
-I had split it out from an earlier patch that was sent upstream and
-didn't get to cleaning it up.
+ - Mi 5 (gemini): MSM8996 + PMI8994
+ - Mi Note 2 (scorpio): MSM8996 Pro + PMI8996
+ - Mi 5s (capricorn): MSM8996 Pro + PMI8996
+ - Mi Mix (lithium): MSM8996 Pro + PMI8996
+ - Mi 5s Plus (natrium): MSM8996 Pro + PMI8996
 
-> Add dt bindings for Kirin 960 USB HUB. Such board comes with an
-> integrated USB HUB provided via a Microchip USB5734 4-port high-speed
-> hub controller.
->
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+These devices share a common board design with only a few differences.
+Out of these 5 devices, this series adds initial support for the Mi Note 2 =
+and the Mi 5.
+Adding support for the remaining 3 would only require adding a DTS for each=
+, while
+accounting for hardware differences such as different panels.
 
-Feel free to add:
-  Signed-off-by: John Stultz <john.stultz@linaro.org>
-to the patch.
+Raffaele Tranquillini (1):
+  arm64: dts: qcom: msm8996: xiaomi-gemini: Add support for Xiaomi Mi 5
 
-Thanks for continuing to push this upstream!
--john
+Yassine Oudjana (3):
+  arm64: dts: qcom: db820c: Move blsp1_uart2 pin states to msm8996.dtsi
+  arm64: dts: qcom: msm8996: Add blsp2_i2c3
+  arm64: dts: qcom: Add support for the Xiaomi MSM8996 platform
+
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi  |  29 -
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 673 ++++++++++++++++++
+ .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   | 431 +++++++++++
+ .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  | 431 +++++++++++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  49 ++
+ 6 files changed, 1586 insertions(+), 29 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
+
+--=20
+2.33.0
+
+
