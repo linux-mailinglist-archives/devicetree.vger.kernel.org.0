@@ -2,128 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F0773FE06F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 18:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54AF63FE083
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 18:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344275AbhIAQyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 12:54:41 -0400
-Received: from mail-4319.protonmail.ch ([185.70.43.19]:26789 "EHLO
-        mail-4319.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344171AbhIAQyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 12:54:10 -0400
-Date:   Wed, 01 Sep 2021 16:53:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1630515191;
-        bh=erTBhCQcWPYIoF10Mkjb8iJl9JUyLrz282d9n8j3Vyg=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=eAWXuQCNpOUq1NC0dIQgK1opuXb/XUKExJ67XEPeeA6VSmXFTMI8bVH7+x4mthar+
-         zMNjNplcK1D02sf9gtqgzPJaDDRYIMAq9bXarHSLB+WQhwkCaGnC/UqxuGdlQK/Hgv
-         CePqm4h6NjcxitXLnMrO27PcyJLhbF9ErLmr95u8=
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh@kernel.org>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH v3 2/2] dt-bindings: input: Add binding for cypress-sf
-Message-ID: <20210901165231.236728-3-y.oudjana@protonmail.com>
-In-Reply-To: <20210901165231.236728-1-y.oudjana@protonmail.com>
-References: <20210901165231.236728-1-y.oudjana@protonmail.com>
+        id S234108AbhIAQ7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 12:59:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48194 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345518AbhIAQ7w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Sep 2021 12:59:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B55186056B;
+        Wed,  1 Sep 2021 16:58:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630515535;
+        bh=hvxpfj8K8oct4hHwvU35wB0MGQTZZG6Lx6u8g6TYyo8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jQ8o2gg9DltU6/b8m+uOCVqeNkepc5gSMO2oDCxvuQ7TiAcvPI9t2viZ3+v9PDBZf
+         DVPYzT/NiO+Mo+Y/3abRZq0P0zO35/Jcn4AhRJFHeeXhuINWzK78foEkoljMwPMSyz
+         tAFCZ1kLtbbY6S0QK0W7R7vMENkDHD9zzgty81/80hRXM0YsZp9y15prHMUgPCn0MD
+         pQTcbxe8886mpU/nUz24YixQVBz5AQKT9bQDAvZKyEC5sKoFi7GyRBXhbpKCQD6iLy
+         ogIsf3htlkxk2d+fIsd3jFDDuPBWrYSGSemmtiC6ZATnyBYzwDkw8oeiGO5vi3TTdm
+         T3+/dHBrdReTg==
+Received: by mail-ed1-f45.google.com with SMTP id j13so4724887edv.13;
+        Wed, 01 Sep 2021 09:58:55 -0700 (PDT)
+X-Gm-Message-State: AOAM530GRKiR1JIsVhtqsHs1OxePoU26FD/aJsvc6THDpIhWrKhpyVrs
+        OYmhIjYSs8PNQix8vKzBkW4ofGQFuLVYNfzA7A==
+X-Google-Smtp-Source: ABdhPJw+f2KQ5R6JUA/hgi2itUMiAS3Pn+3IPU4x3548Cx5FAXWQRC4/KD7oKtjgu2MJ56cCQ3kADyiGbui9s2wZbEQ=
+X-Received: by 2002:aa7:cb19:: with SMTP id s25mr601401edt.194.1630515532404;
+ Wed, 01 Sep 2021 09:58:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+References: <1630513111-18776-1-git-send-email-spujar@nvidia.com> <1630513111-18776-3-git-send-email-spujar@nvidia.com>
+In-Reply-To: <1630513111-18776-3-git-send-email-spujar@nvidia.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 1 Sep 2021 11:58:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJgqyGGF=SwEox6LkR_P8AR+c30AWNejA6UiCCh+U55Pg@mail.gmail.com>
+Message-ID: <CAL_JsqJgqyGGF=SwEox6LkR_P8AR+c30AWNejA6UiCCh+U55Pg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] ASoC: Use schema reference for sound-name-prefix
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        aleandre.belloni@bootlin.com,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Bard Liao <bardliao@realtek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree binding for Cypress StreetFighter.
+On Wed, Sep 1, 2021 at 11:19 AM Sameer Pujar <spujar@nvidia.com> wrote:
+>
+> Use schema reference for 'sound-name-prefix' property wherever
+> necessary.
+>
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Stephan Gerhold <stephan@gerhold.net>
+> Cc: bardliao@realtek.com
+> Cc: Alexandre Belloni <aleandre.belloni@bootlin.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml | 7 +------
+>  Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml | 7 +------
+>  Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml  | 7 +------
+>  Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml          | 5 +----
+>  Documentation/devicetree/bindings/sound/rt5659.txt                | 2 +-
+>  Documentation/devicetree/bindings/sound/simple-audio-mux.yaml     | 5 +----
+>  6 files changed, 6 insertions(+), 27 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> index 5f6b37c..ae04a11 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> @@ -48,12 +48,7 @@ properties:
+>
+>    sound-name-prefix:
+>      pattern: "^DSPK[1-9]$"
+> -    $ref: /schemas/types.yaml#/definitions/string
+> -    description:
+> -      Used as prefix for sink/source names of the component. Must be a
+> -      unique string among multiple instances of the same component.
+> -      The name can be "DSPK1" or "DSPKx", where x depends on the maximum
+> -      available instances on a Tegra SoC.
+> +    $ref: "name-prefix.yaml#/properties/sound-name-prefix"
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Changes since v1:
- - Changed version variables in probe to int to allow storing error codes.
- .../devicetree/bindings/input/cypress-sf.yaml | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/cypress-sf.yaml
+This is generally not how we reference common properties.
 
-diff --git a/Documentation/devicetree/bindings/input/cypress-sf.yaml b/Docu=
-mentation/devicetree/bindings/input/cypress-sf.yaml
-new file mode 100644
-index 000000000000..14689daf6567
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/cypress-sf.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/cypress-sf.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cypress StreetFighter touchkey controller
-+
-+maintainers:
-+  - Yassine Oudjana <y.oudjana@protonmail.com>
-+
-+allOf:
-+  - $ref: input.yaml#
-+
-+properties:
-+  compatible:
-+    const: cypress,sf3155
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Regulator for AVDD analog voltage
-+
-+  vdd-supply:
-+    description: Regulator for VDD digital voltage
-+
-+  linux,keycodes:
-+    minItems: 1
-+    maxItems: 8
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - avdd-supply
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/input/input.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        touchkey@28 {
-+                compatible =3D "cypress,sf3155";
-+                reg =3D <0x28>;
-+                interrupt-parent =3D <&msmgpio>;
-+                interrupts =3D <77 IRQ_TYPE_EDGE_FALLING>;
-+                avdd-supply =3D <&vreg_l6a_1p8>;
-+                vdd-supply =3D <&vdd_3v2_tp>;
-+                linux,keycodes =3D <KEY_BACK KEY_MENU>;
-+        };
-+    };
---=20
-2.33.0
+Either you add a $ref to the whole schema document at the top level of
+this one or add a 'select: true' in name-prefix.yaml.
 
-
+Rob
