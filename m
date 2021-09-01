@@ -2,127 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D392E3FD976
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 14:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE0833FD97D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 14:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244043AbhIAMYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 08:24:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55112 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244023AbhIAMYk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 08:24:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1C49E60FE6;
-        Wed,  1 Sep 2021 12:23:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630499024;
-        bh=8Qh+KoZCV3O3HB/rjY3TV5ESE34wEFUhafhg5oTG4q4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=H3ocyg64ON75ITP404UTfJMmpJnIBt8pPqRbu263VWjaGF4RvzXrcgd4bE8EhyR6e
-         g1Y2J0UiSh71QV1JySvIxFNCplZMQgdOzpb/nsIQoLv1cVr2YXjvj22rmryL8i6E2Z
-         9k4LIzI4pNCHlNKHjPaBALHFTmrBH7Bpz/x3v/ULceFBURoHdLVE3zNoQPrF7faX5p
-         7kRuQp0MKlIzOjl2Ijq69Cx5M0ytE7w6DJcVBDD17CvIQuxIqTcTYJJZeQh9Tbeh53
-         DqPhPHQsQ8MKm31gwXEUnjx28TrZluzi5jRhp6gzqVKU+dOwJgM527Mgg+9YCcjhY9
-         Gqk4kl4Ls9kHQ==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mLPHJ-00H8Z9-68; Wed, 01 Sep 2021 14:23:41 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>, John Stultz <john.stultz@linaro.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: hisilicon: Add usb mux hub for hikey960
-Date:   Wed,  1 Sep 2021 14:23:39 +0200
-Message-Id: <b1ea71426ecf21bbfd598a6bf7951d884fcc5e1a.1630498020.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1630498020.git.mchehab+huawei@kernel.org>
-References: <cover.1630498020.git.mchehab+huawei@kernel.org>
+        id S243990AbhIAMZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 08:25:59 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:42607 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243972AbhIAMZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 08:25:59 -0400
+Received: by mail-oi1-f182.google.com with SMTP id bi4so3454585oib.9
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 05:25:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OGno47MbHUIv9+PhbtrT66UdJTYUHB0R8oj64LoIDJw=;
+        b=s8v8KW0i8eaMzz6MqtnuCRPzHwwfM08BOITS7K+6WR8Hy4QdN1fwHYTmKRdRQLqAbO
+         s94q2SjH29c8fzwZBP/Xd3os1HsSVaJyUVs8VW/fS+Ihuwnz1NZlVHKQlTpOrfaYCCjz
+         E1jMlopM2MjwbIf/hxiGeh8apThtwVXCQCp7Dkw1HCdQJsvYg/fw+HN0DRJL8NHdnSWs
+         245fS2i+Nf/Ro5TDJQelRdyOuuUKPCCNFhlY4iubMO+HiVxWJK0EkM+FbCP1ZhQhc5ti
+         i6BP3zH8Ph9ngzOurd2Fvny4yTRcdHgZ7S8scYNd85D3HYNiR8mr6pq2uMcVU4n3Yoph
+         QZew==
+X-Gm-Message-State: AOAM532b/S+daXSONAb9Fn3HsS8t4hckex+Fr8UhCaOXjDaOfJg1jNWb
+        M4T1VYD8w3Dh/5ktu8tqZQ==
+X-Google-Smtp-Source: ABdhPJzZQe8HXodDYefhYmHlXG1vGCmYhYO7vuQaDcvmPY6zALuTsohNF0ssWXcNhBgqmJhLviI2Iw==
+X-Received: by 2002:aca:3c09:: with SMTP id j9mr7056083oia.115.1630499101947;
+        Wed, 01 Sep 2021 05:25:01 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x1sm4387341otu.8.2021.09.01.05.25.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Sep 2021 05:25:01 -0700 (PDT)
+Received: (nullmailer pid 1939094 invoked by uid 1000);
+        Wed, 01 Sep 2021 12:25:00 -0000
+Date:   Wed, 1 Sep 2021 07:25:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sugar Zhang <sugar.zhang@rock-chips.com>
+Cc:     broonie@kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, heiko@sntech.de,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v3 2/7] ASoC: dt-bindings: rockchip: Add binding for
+ rv1126 pdm
+Message-ID: <YS9xHAGwymzn57tl@robh.at.kernel.org>
+References: <1630468039-7186-1-git-send-email-sugar.zhang@rock-chips.com>
+ <1630468083-7248-2-git-send-email-sugar.zhang@rock-chips.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1630468083-7248-2-git-send-email-sugar.zhang@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: John Stultz <john.stultz@linaro.org>
+On Wed, 01 Sep 2021 11:47:58 +0800, Sugar Zhang wrote:
+> This patch documents for rv1126 pdm.
+> 
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> ---
+> 
+> Changes in v3: None
+> Changes in v2: None
+> 
+>  Documentation/devicetree/bindings/sound/rockchip,pdm.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Add dt bindings for Kirin 960 USB HUB. Such board comes with an
-integrated USB HUB provided via a Microchip USB5734 4-port high-speed
-hub controller.
-
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3660-hikey960.dts    | 35 +++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-index f68580dc87d8..cc38d4f961ee 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-@@ -191,12 +191,43 @@ wlan_en: wlan-en-1-8v {
- 		enable-active-high;
- 	};
- 
-+	usb_hub: hub-vdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "hub-vdd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&gpio5 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	firmware {
- 		optee {
- 			compatible = "linaro,optee-tz";
- 			method = "smc";
- 		};
- 	};
-+
-+	hisi_hikey_usb: hisi_hikey_usb {
-+		compatible = "hisilicon,hikey960-usbhub";
-+		typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
-+		otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
-+		hub-vdd33-en-gpios = <&gpio5 6 GPIO_ACTIVE_HIGH>;
-+		hub-vdd-supply = <&usb_hub>;
-+		usb-role-switch;
-+
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hikey_usb_ep0: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&dwc3_role_switch>;
-+			};
-+			hikey_usb_ep1: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&rt1711h_ep>;
-+			};
-+		};
-+	};
- };
- 
- /*
-@@ -564,7 +595,7 @@ port {
- 
- 			rt1711h_ep: endpoint@0 {
- 				reg = <0>;
--				remote-endpoint = <&dwc3_role_switch>;
-+				remote-endpoint = <&hikey_usb_ep1>;
- 			};
- 		};
- 	};
-@@ -686,7 +717,7 @@ port {
- 		#size-cells = <0>;
- 		dwc3_role_switch: endpoint@0 {
- 			reg = <0>;
--			remote-endpoint = <&rt1711h_ep>;
-+			remote-endpoint = <&hikey_usb_ep0>;
- 		};
- 
- 		dwc3_ss: endpoint@1 {
--- 
-2.31.1
-
+Acked-by: Rob Herring <robh@kernel.org>
