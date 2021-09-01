@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E783FD68F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C87393FD693
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243558AbhIAJVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 05:21:01 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:37157 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243556AbhIAJU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:20:56 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id BD6875C023E;
-        Wed,  1 Sep 2021 05:19:58 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 01 Sep 2021 05:19:58 -0400
+        id S243553AbhIAJVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 05:21:03 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:51177 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243566AbhIAJU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:20:57 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 6F365580B24;
+        Wed,  1 Sep 2021 05:20:00 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 01 Sep 2021 05:20:00 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=PXAZ+OT3+840q
-        yLgIOZkmblg/hq4r5L5A2T9KeRY+Ho=; b=dAZBer1HW0Z96KPoQr0TTjHloDED1
-        bfAUtxeEFG9dK2fBimhBcvQ7LsJPszecPbS4/mVEGdW2z9kkHz7n0pdbT41a2oNM
-        Fq8E/yYiq0Ke/5MRo3WS3NbZYu9XAySxQtpOCyxKehAPb7zt6Uxb0P9mJQvS5Ppf
-        60KTun6FqD07POFBVpEL7PKO6JGbatqd7v13Moy8Ty0rbB6lTEjykxYURzWITMqj
-        Sh6qPWEpccUcqvOX2ty7U7jhaNxAt7kAGankU4Y2N/bJ8uM591U/6/QRcMbvg+9I
-        s5UJCgid4TsYPWAlSI4YtG2PVQlX8UL+Iy7qDDikijPmRCobdOl/oeofg==
+        :mime-version:content-transfer-encoding; s=fm3; bh=NE9AUAjhoU4hV
+        oBIJpvEmvndGMXYqbykLIA62gBCqIE=; b=pRlwnYEdf+7wSiJ6R1UnMt0jfhAAx
+        iVpi7GmR4SvybcUbEsdeGpv9xBU4b/xQBi1yNDig3B8xtzf4slb1Q5kSeNx8lQP2
+        F5/OsN8VhrZyGQwtgwMA+a7iYqqxXgQz34u0mvTXv+j5LwxdvvIbIWQI+tYSRK90
+        gJ04zdFmwVp0pUd+CWV+aoSD+ani4DNo4viXv0J4glRaJUTOyah+2SCmacxGVypE
+        BacgeN1iNGjX3fbceu9DCslRtiqnhtYOzYTexfzu41lJqB14yk0BA537IjDpjym/
+        FNij1mAQ7y1zlMup0Cjf7lGMGOqkt9XQ+paVqUi50QrepA/KCxDQlWzKw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=PXAZ+OT3+840qyLgIOZkmblg/hq4r5L5A2T9KeRY+Ho=; b=aA+1leIj
-        EhUk7BYRnJ9/PFNUE+O1u0gDJK1yyyD+V2j3Nkb5q7DlzJe/0Ov9G7UmDpzuFTOV
-        wvELOtqpWAlIPK2q7b4LJmbDqYeSWPo9j01R0Kw9x+2MirjlqNW/ehcOC7myucss
-        252utKHct54uOqmT8mu5uY/QZLij0CjzcEiMvz8DmoBscu+nLQsV4ocAxD4c6J2t
-        qf3PmRLXH1NlnnMzWap8A5rtYfNBH1UhrTIEb2v+7hzk7i0uNyZqaWDXXjYhKWq/
-        ehZMZQnNcpB8vUJUA3SD4aIJ+nOWLOh8LE+VJfEKCxNrUlrAebjslyH4Qh0zGfbz
-        E30ZakfcAs6fcQ==
-X-ME-Sender: <xms:vkUvYTXtApldRV1rJfUEJlLZLMSEv0tfI1mvQ_IDuMrMv7rL-LETGg>
-    <xme:vkUvYbm5LrIaVLVLVQJKUvqFc9ZNHa882JrJYR_-e9WryYD42kBgUTL42Wwzc9X9o
-    mwQ6D6YGgL3Td3X0d0>
-X-ME-Received: <xmr:vkUvYfahrXQSPokWfDa4YwbWHAJS0lbcXNLQo-um2pKibN_cvPiQRyKkMU8RPsPDMFC5R5cl6SG6IxBJhQrrgUt52Aps-TwBnDFg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggodetrfdotf
+        fm3; bh=NE9AUAjhoU4hVoBIJpvEmvndGMXYqbykLIA62gBCqIE=; b=qg7Gg/Vr
+        s0YSypUS/C4XP0ecBKzOm3aRX4lBRjvaA70XeWz3Us0e9flJpk1OOYRZjMR+zEQP
+        oP8fBOhpN1UoGIrE//drKD5gWm9LxgBBN61un1Lu588kY4bde5sqs82PGN0xGVL8
+        Fb6GFBQCbxMWPzXTsapuTIDWfwuVgDiPLhjhGQkO0YRbJ40uK0RigzrvQhU+3LEz
+        i8+TtBXZ6VP3wCQtyMMonb0P+C4Wg9s20UUuQdHC6CTiJ1I+Y1+I7Ebj8QPb2sLB
+        xqCm2MRgmuE0UQaTFQw4nDT4dA94fCToHzC+gG426/nTNn2mQbMGsNTObQHAmsws
+        aXd367SEnbbD9Q==
+X-ME-Sender: <xms:wEUvYTDd3GZg_7KknJLALkZ-9pyw8JXEURufBVeywbiNp6FVr-OJPw>
+    <xme:wEUvYZhp-QqWbQWhyB_mnDD_ZUH37jeW5yvUEuKw2CPSfnAbx7jjQ0TDO1IXzQlLF
+    yYBNEQ1SARZJeYqvMY>
+X-ME-Received: <xmr:wEUvYendkOCaLUId4QD_4toymxyrrOaJhezieNcIsc2IJaPhIRuylDNA0agkJNURFK2KcRu-2_TzHXeUT5gCtsoQFGUpODgA1txw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudegucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     govehorghsthgrlhdqhfeguddvqddtvdculdduhedtmdenucfjughrpefhvffufffkofgj
@@ -49,12 +49,12 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggod
     fffgjeeugffguedtleetkeegteeufedtuddttdfgfffhgfeuffenucffohhmrghinhepug
     gvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgepheenucfrrghrrghm
     pehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:vkUvYeVlHJWqEaDWd9PJRPlhW69m3d9oygFJ__B9pBOWDgmnU3k3HQ>
-    <xmx:vkUvYdnkAsJg_HKcAWkEZ9Py2X3k06P7TzCKJEl41r8iFA99Lv9gcA>
-    <xmx:vkUvYbcCydsbG0dnk-BkHWYtFMXSzCoSTHAaOovtMEkxsKi7x3WRqg>
-    <xmx:vkUvYTUkjhU9SalnxNEnP5zJYTJ-6iFk3CuzjMC9bKN4YhGipK2kJA>
+X-ME-Proxy: <xmx:wEUvYVw-vaoxzc2J43PipFp84V6RFxg_FubMjIdiAvozk1PwMEz19g>
+    <xmx:wEUvYYT5rTmsitBBGIDWLfkICosc_NgK0BLytWm4q1_ZSO0eJnAHXA>
+    <xmx:wEUvYYZx1ttXh1inMTCic22V10Uozs9mh9y4WjMEWIJt5bRrNarNAA>
+    <xmx:wEUvYR-uTrPZYiftxFOW67HwxR8Q4kvWVwKFup8qC4333HPfovf7nw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Sep 2021 05:19:58 -0400 (EDT)
+ 1 Sep 2021 05:19:59 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,10 +62,12 @@ To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <maxime@cerno.tech>,
         =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 35/52] dt-bindings: sunxi: Add Allwinner A80 PRCM Binding
-Date:   Wed,  1 Sep 2021 11:18:35 +0200
-Message-Id: <20210901091852.479202-36-maxime@cerno.tech>
+        Dongjin Kim <tobetter@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org
+Subject: [PATCH v2 36/52] dt-bindings: usb: Convert SMSC USB3503 binding to a schema
+Date:   Wed,  1 Sep 2021 11:18:36 +0200
+Message-Id: <20210901091852.479202-37-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210901091852.479202-1-maxime@cerno.tech>
 References: <20210901091852.479202-1-maxime@cerno.tech>
@@ -75,56 +77,188 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even though we've used the A80 PRCM driver for some time and a number of
-boards using it already, we never had a binding for it. Let's add it
-based on what the driver expects and the boards are providing.
+The SMSC USB3503 USB Hub Controller is supported by Linux thanks to
+its device tree binding.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Now that we have the DT validation in place, let's convert the device
+tree bindings for that driver over to a YAML schema.
+
+Cc: Dongjin Kim <tobetter@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-usb@vger.kernel.org
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- .../arm/sunxi/allwinner,sun9i-a80-prcm.yaml   | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
+---
+
+Changes from v1:
+  - Added maximum number of items for clocks and gpios
+  - Fixed the example node name
+---
+ .../devicetree/bindings/usb/smsc,usb3503.yaml | 108 ++++++++++++++++++
+ .../devicetree/bindings/usb/usb3503.txt       |  39 -------
+ 2 files changed, 108 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/usb3503.txt
+
+diff --git a/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml b/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
 new file mode 100644
-index 000000000000..668aadbfe4c0
+index 000000000000..39228a506b93
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+@@ -0,0 +1,108 @@
++# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/sunxi/allwinner,sun9i-a80-prcm.yaml#
++$id: http://devicetree.org/schemas/usb/smsc,usb3503.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Allwinner A80 PRCM Device Tree Bindings
++title: SMSC USB3503 High-Speed Hub Controller Device Tree Bindings
 +
 +maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
-+  - Maxime Ripard <mripard@kernel.org>
++  - Dongjin Kim <tobetter@gmail.com>
 +
 +properties:
 +  compatible:
-+    const: allwinner,sun9i-a80-prcm
++    enum:
++      - smsc,usb3503
++      - smsc,usb3503a
 +
 +  reg:
 +    maxItems: 1
 +
++  connect-gpios:
++    maxItems: 1
++    description: >
++      GPIO for connect
++
++  intn-gpios:
++    maxItems: 1
++    description: >
++      GPIO for interrupt
++
++  reset-gpios:
++    maxItems: 1
++    description: >
++      GPIO for reset
++
++  disabled-ports:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 3
++    items:
++      minimum: 1
++      maximum: 3
++    description: >
++      Specifies the ports unused using their port number. Do not describe this
++      property if all ports have to be enabled.
++
++  initial-mode:
++    enum: [1, 2]
++    description: >
++      Specifies initial mode. 1 for Hub mode, 2 for standby mode.
++
++  clocks:
++    maxItems: 1
++    description: >
++      Clock used for driving REFCLK signal. If not provided the driver assumes
++      that clock signal is always available, its rate is specified by REF_SEL
++      pins and a value from the primary reference clock frequencies table is
++      used.
++
++  clock-names:
++    const: refclk
++
++  refclk-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: >
++      Frequency of the REFCLK signal as defined by REF_SEL pins. If not
++      provided, driver will not set rate of the REFCLK signal and assume that a
++      value from the primary reference clock frequencies table is used.
++
 +required:
 +  - compatible
-+  - reg
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+      prcm@8001400 {
-+          compatible = "allwinner,sun9i-a80-prcm";
-+          reg = <0x08001400 0x200>;
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++        
++          usb-hub@8 {
++              compatible = "smsc,usb3503";
++              reg = <0x08>;
++              connect-gpios = <&gpx3 0 1>;
++              disabled-ports = <2 3>;
++              intn-gpios = <&gpx3 4 1>;
++              reset-gpios = <&gpx3 5 1>;
++              initial-mode = <1>;
++              clocks = <&clks 80>;
++              clock-names = "refclk";
++          };
++      };
++
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++
++      usb-hub {
++          /* I2C is not connected */
++          compatible = "smsc,usb3503";
++          initial-mode = <1>; /* initialize in HUB mode */
++          disabled-ports = <1>;
++          intn-gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>; /* PH5 */
++          reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
++          connect-gpios = <&pio 4 17 GPIO_ACTIVE_HIGH>; /* PE17 */
++          refclk-frequency = <19200000>;
 +      };
 +
 +...
+diff --git a/Documentation/devicetree/bindings/usb/usb3503.txt b/Documentation/devicetree/bindings/usb/usb3503.txt
+deleted file mode 100644
+index 057dd384d473..000000000000
+--- a/Documentation/devicetree/bindings/usb/usb3503.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-SMSC USB3503 High-Speed Hub Controller
+-
+-Required properties:
+-- compatible: Should be "smsc,usb3503" or "smsc,usb3503a".
+-
+-Optional properties:
+-- reg: Specifies the i2c slave address, it is required and should be 0x08
+-       if I2C is used.
+-- connect-gpios: Should specify GPIO for connect.
+-- disabled-ports: Should specify the ports unused.
+-	'1' or '2' or '3' are available for this property to describe the port
+-	number. 1~3 property values are possible to be described.
+-	Do not describe this property if all ports have to be enabled.
+-- intn-gpios: Should specify GPIO for interrupt.
+-- reset-gpios: Should specify GPIO for reset.
+-- initial-mode: Should specify initial mode.
+-                (1 for HUB mode, 2 for STANDBY mode)
+-- refclk: Clock used for driving REFCLK signal (optional, if not provided
+-	the driver assumes that clock signal is always available, its
+-	rate is specified by REF_SEL pins and a value from the primary
+-	reference clock frequencies table is used). Use clocks and
+-	clock-names in order to assign it
+-- refclk-frequency: Frequency of the REFCLK signal as defined by REF_SEL
+-	pins (optional, if not provided, driver will not set rate of the
+-	REFCLK signal and assume that a value from the primary reference
+-	clock frequencies table is used)
+-
+-Examples:
+-	usb3503@8 {
+-		compatible = "smsc,usb3503";
+-		reg = <0x08>;
+-		connect-gpios = <&gpx3 0 1>;
+-		disabled-ports = <2 3>;
+-		intn-gpios = <&gpx3 4 1>;
+-		reset-gpios = <&gpx3 5 1>;
+-		initial-mode = <1>;
+-		clocks = <&clks 80>;
+-		clock-names = "refclk";
+-	};
 -- 
 2.31.1
 
