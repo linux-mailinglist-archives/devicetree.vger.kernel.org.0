@@ -2,180 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EDBD3FD43F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 09:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F973FD45F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 09:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242528AbhIAHLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 03:11:07 -0400
-Received: from mail-dm6nam12on2082.outbound.protection.outlook.com ([40.107.243.82]:41920
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S242522AbhIAHK7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 03:10:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cG4RTIUgXTAxhmytBseEuajvWgESjQmu0XTCJJlNOqrDIPf6R3pry+756Oo+kZAnk7KXk2Ayouf2qpBT1xsjMhVnT78uKOM863n3QU0iCJvAgI2L3emjxvaShsBynPCfNkWrC6cP5SAIlgcRGgNg9TQDB0bukALOkhENrGwLof8MPIYwT4VycpoHfnWKEvpSXTIYpIitvt9LylmkFJBrPpRAhwLyBseDgsoQLTNAZk86b/M9lFp0lcO++sQoojBc//U0intp/9sLitRysxWJtn6mfPV6dWvwXme8XDUB0+ctmY1xuypirUhITZ/cob9Jx3z2hWWA/1W/Xgy/xwVw4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hSdNqYmcDkeAP21Rwh1JHsKOVIxb2RSndOvEOgwdpFg=;
- b=VjgBpMmWh628BAs861WHJdPmp1RQE+XdJJ9fXDgPlIRGTzAD19o7dayXnPo2n1enY5O23HKeL88x8KfRJlwJxpuDkBsJa25mcONLcDDa1tdiet32KUs5OmPvfZIPMVst6fKl51GZhpfOK9di+LcYX/QpY21K5jQo28oq2x6Y/tgMBB4rmyMJ8u/jYUP3Vc7bDqDQgZSMHhiquC5LmQDoLnkF19LV2SclupewxmrbHGc+O6cUXmkxrlobNEQQ8bRJ0WBKuDTLFEO+BbQJRwBurdki8pgqiU2RyXln50s3+G9Bt6oRuB3u+PYid+8JNIJVv1Scvi8jlFAiC0+TpBw/FA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.32) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hSdNqYmcDkeAP21Rwh1JHsKOVIxb2RSndOvEOgwdpFg=;
- b=oJR2E+mbJ31T5vL5A2zRkYTHcgcfvOqXz85QDFn0r2Dge+2f0WFS2PS0/cooGern7THyAHaIW089/bYmYyPXjyMxvv5ntcNLHxMX5M1cu628IGsSXGWY3q/htBoDmjP4uQfrnrfN3nfHzf9MN9ZTwz3DC+zPWxkGdpUzChUjiHr59e9bfXasWf+bRmDkrjVDFPw2SA/1oVdMmFCmUloMBcs6IjM6Sk1IgBDYVJTcd9aYxpxfEw6mQJXHS5n0gr4CgctcdMUTpImLuivU0MV8AdN1gbkt6xXrCBlNSdMViUsFSXO1bxFOAJdVGAvxXBXibFdwjKQNJElD5XafBTe2mQ==
-Received: from MW4PR04CA0178.namprd04.prod.outlook.com (2603:10b6:303:85::33)
- by BN6PR12MB1684.namprd12.prod.outlook.com (2603:10b6:405:6::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20; Wed, 1 Sep
- 2021 07:10:02 +0000
-Received: from CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:85:cafe::ac) by MW4PR04CA0178.outlook.office365.com
- (2603:10b6:303:85::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.23 via Frontend
- Transport; Wed, 1 Sep 2021 07:10:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
- smtp.mailfrom=nvidia.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=pass action=none
- header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.32; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.32) by
- CO1NAM11FT017.mail.protection.outlook.com (10.13.175.108) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4478.19 via Frontend Transport; Wed, 1 Sep 2021 07:10:01 +0000
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Sep
- 2021 00:10:01 -0700
-Received: from [10.25.98.106] (172.20.187.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Sep 2021
- 07:09:56 +0000
-Subject: Re: [PATCH 04/13] ASoC: dt-bindings: tegra: Few more Tegra210 AHUB
- modules
-To:     Rob Herring <robh@kernel.org>
-CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <catalin.marinas@arm.com>, <will@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <kuninori.morimoto.gx@renesas.com>,
-        <sharadg@nvidia.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
- <1630056839-6562-5-git-send-email-spujar@nvidia.com>
- <YS6PTYwwu9tU8TWX@robh.at.kernel.org>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <47f1d2ad-40a1-4c8f-8658-11328d41ee1e@nvidia.com>
-Date:   Wed, 1 Sep 2021 12:39:54 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S242575AbhIAHWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 03:22:30 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:40623 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242572AbhIAHW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 03:22:27 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 48546580727;
+        Wed,  1 Sep 2021 03:21:28 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 01 Sep 2021 03:21:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=zMYrNt50zg0sXSYvGdt7SlhrCQS
+        UOKJddsQ6H2t32ts=; b=HKf3lzcL8BB1ZnQtI4KTLccSAjmG/eQAY1XTz/7UNWn
+        3Z+FaYF2i+b4z27XNvOSmFRotl2X5AyFkLVDCFDkhUR5Uzg0ZLXP658dsBNSoAz8
+        xWon6W4Z7W7mYFFJxs9WH2fY9sTutEhpWlrJWX6NXIY2GyOfmu0d0q3C/J0RKseS
+        tVrto/uwOZ6KDID1Steb6b29glTIfzvJ3JnVYJGCvpPIUP6jaBC4XBcl24gN6LMR
+        YIc66vkB0IRpvwOMPSyGc3zo2CspROJZtQNFZJizSEtomF3Vf37nBhiHa72E99Qp
+        ym9zznrR/xDyLs7Hrz4vIx7fu7YQ5hfByFOX3QqLuFg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=zMYrNt
+        50zg0sXSYvGdt7SlhrCQSUOKJddsQ6H2t32ts=; b=XZg4vAau/WT2bEN6ypK9Af
+        gzL2VDRuImjgOTq1ERgD2I5E8DAESqlgYoNYH1dUPCOb/isTM5MVrMS95pkbl9qu
+        uadYEuYAl0tMREQmM4AjTR/xjhhkjMVg20li6AvANgMPPvD9rYKvOwvpc6qT5jAE
+        HiLQzqllRaOeZP2tLT1x+amjwVDVIoc8qsoUqFm5w3sWYIZhA3fouzFMGO//aGLG
+        DtYugwcveznEUqChZM4bNfrW+5EMxbI99BtWrtsere5H9reTVq7noaf8q+gPaH/T
+        3FYwA9rb5FKE6omoZYq6UUDrxVqAS/Q5t87j2/SAoySCwN9/twfFpbrNLdfgwMag
+        ==
+X-ME-Sender: <xms:9ikvYYfzxvLSQ30b8gD94QZ7MqdeTfESMfmbGdk2CQPUDUM_JlWZ6Q>
+    <xme:9ikvYaMW6_cdlWYxCy0IZUhRcaGASOiktzMbFmGCOYpUJciEy-LJA9XygMP73D0YX
+    RCNv_vRGRBidtQ01OY>
+X-ME-Received: <xmr:9ikvYZhtE_XAP2dRpf76wFVZzdIyGif9znVCIDKBc1QpUmuenvodd89M-cFc05Y2TxzaqRiR1Nl_5b_Jml4rNrW9VqcLrPikM2G2>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvvddguddukecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
+    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:9ikvYd-lv-o57J9pidUNBz-vpwE8uQOaevJX9h8utaOAK6mO3NsQXw>
+    <xmx:9ikvYUu-d6oq6GcXaIc9MzC_IcAZXZTYGzVaxaPC2rYNpeiLuEMchw>
+    <xmx:9ikvYUEE_iGXiilRPUj7OJrFwFiz7CJ2gHeesIciqiFYSML7tYqEWg>
+    <xmx:-CkvYRPWy_cTQp3I98g1djSMZO_OLXFkqSFlOdGNvaFk2Giv59By3w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 1 Sep 2021 03:21:26 -0400 (EDT)
+Date:   Wed, 1 Sep 2021 09:21:23 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v8 02/11] dt-bindings: rtc: sun6i: Add H616 compatible
+ string
+Message-ID: <20210901072123.gqfua52rupsrmtks@gilmour>
+References: <20210723153838.6785-1-andre.przywara@arm.com>
+ <20210723153838.6785-3-andre.przywara@arm.com>
+ <20210726144137.6dauuxdssu7yszox@gilmour>
+ <20210802013938.29fa18ed@slackpad.fritz.box>
+ <20210817073810.7stuzrppyjf4spab@gilmour>
+ <20210818100407.7cf7cfb7@slackpad.fritz.box>
 MIME-Version: 1.0
-In-Reply-To: <YS6PTYwwu9tU8TWX@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.187.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 09f0a398-3217-4ae7-1268-08d96d178433
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1684:
-X-Microsoft-Antispam-PRVS: <BN6PR12MB168410345C4D6333C105BC7BA7CD9@BN6PR12MB1684.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1186;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AnJuKOsdnuuFV12bjN/9i1NkCO4689q6Wx1Vr5yndDYSohRyPVDXOumabigQYkwg46NgYjohdiiBfQ4b5bKA0L6KIv7fP/FxJ3Lkzi+JfRke/kXqQEt01jTz0o7hXuHOYJ+D5Qkir4MpES+QR19F1DSdphz+/TW73TyHJFmd1xtXiAJ/fQMKmU8mJMxHaAhcVtswN3qtYFmMXXd6ddiiBWK6Y5bZb80hhQgTkhqU2XPsWHp+Clwt37oW0Nej062UoPSH6mlkzMNEC4EoZy51a9cbXPndFcZyzSEzDvIKcrzvIT1YHJy8C/HnjBbucGQCMcvgTBcJ/L/riMa7DzbaI2AgPehc+z1/JtPvaHFr7XvqwkEwO4bTHU/L2kRwokHidchqKQAfvjbrYlol+wO0R3WwFP12aDooAzkMa/VOQODjjIlmdCZ4LHsEdg7h3lY7ljcPdid9zmLN9dSTeEbcVTwpAocT2OYD1caJU0oW2a1KeTptI2d7Ux1xipOErmbWeEWwyqNpdTZTVu2TMTvgUL6DoX3WP3FviV0GG7YWsbwHKu6+M1JMA8fBkf9ORq7wYkUSLOiP0tHxMph2j78oBr+U0TTb73u0faDN/wsqTC09jNILQQA9Ln4FIlDBEgWq4kzcxj1kAVXkPSM9GQocSXO0JBVfbHW+0miPpFnA/T8u/BJNzRoVuaxjVJXRWfs3dJ62EJYbOdqMtKaWHLdDPAUOh3W6hLV0/wxFTDHiUL4=
-X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(136003)(346002)(396003)(376002)(39860400002)(36840700001)(46966006)(186003)(31696002)(26005)(82310400003)(16526019)(6916009)(47076005)(31686004)(2616005)(2906002)(7416002)(36860700001)(4326008)(478600001)(336012)(426003)(16576012)(82740400003)(7636003)(70206006)(5660300002)(70586007)(53546011)(8936002)(86362001)(8676002)(316002)(54906003)(36756003)(356005)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2021 07:10:01.8001
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09f0a398-3217-4ae7-1268-08d96d178433
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1684
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rjkq6bidgpvhb43g"
+Content-Disposition: inline
+In-Reply-To: <20210818100407.7cf7cfb7@slackpad.fritz.box>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Thanks for feedback.
+--rjkq6bidgpvhb43g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Aug 18, 2021 at 10:04:07AM +0100, Andre Przywara wrote:
+> On Tue, 17 Aug 2021 09:38:10 +0200
+> Maxime Ripard <maxime@cerno.tech> wrote:
+>=20
+> Hi Maxime,
+>=20
+> > On Mon, Aug 02, 2021 at 01:39:38AM +0100, Andre Przywara wrote:
+> > > On Mon, 26 Jul 2021 16:41:37 +0200
+> > > Maxime Ripard <maxime@cerno.tech> wrote:
+> > >  =20
+> > > > Hi,
+> > > >=20
+> > > > On Fri, Jul 23, 2021 at 04:38:29PM +0100, Andre Przywara wrote: =20
+> > > > > Add the obvious compatible name to the existing RTC binding.
+> > > > > The actual RTC part of the device uses a different day/month/year
+> > > > > storage scheme, so it's not compatible with the previous devices.
+> > > > > Also the clock part is quite different, as there is no external 3=
+2K LOSC
+> > > > > oscillator input.
+> > > > >=20
+> > > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > > > >
+> > > > > ---
+> > > > >  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml      | 14 ++++++++=
+++++++
+> > > > >  1 file changed, 14 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6=
+i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-=
+rtc.yaml
+> > > > > index beeb90e55727..d8a6500e5840 100644
+> > > > > --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-r=
+tc.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-r=
+tc.yaml
+> > > > > @@ -26,6 +26,7 @@ properties:
+> > > > >            - const: allwinner,sun50i-a64-rtc
+> > > > >            - const: allwinner,sun8i-h3-rtc
+> > > > >        - const: allwinner,sun50i-h6-rtc
+> > > > > +      - const: allwinner,sun50i-h616-rtc
+> > > > > =20
+> > > > >    reg:
+> > > > >      maxItems: 1
+> > > > > @@ -104,6 +105,19 @@ allOf:
+> > > > >            minItems: 3
+> > > > >            maxItems: 3
+> > > > > =20
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          contains:
+> > > > > +            const: allwinner,sun50i-h616-rtc
+> > > > > +
+> > > > > +    then:
+> > > > > +      properties:
+> > > > > +        clock-output-names:
+> > > > > +          minItems: 3
+> > > > > +          maxItems: 3   =20
+> > > >=20
+> > > > You don't need both of them when they are equal
+> > > >  =20
+> > > > > +        clocks: false
+> > > > > +   =20
+> > > >=20
+> > > > It's not entirely clear to me what those clocks are about though. I=
+f we
+> > > > look at the clock output in the user manual, it looks like there's =
+only
+> > > > two clocks that are actually being output: the 32k "fanout" clock a=
+nd
+> > > > the losc. What are the 3 you're talking about?] =20
+> > >=20
+> > > I see three: the raw SYSTEM "CLK32K_LOSC", the RTC input + debounce
+> > > clock (/32), and the multiplexed PAD. =20
+> >=20
+> > But the input and debounce clock is only for the RTC itself right? So it
+> > should be local to the driver and doesn't need to be made available to
+> > the other drivers
+>=20
+> I understood "debounce" as being the clock used for the pinctrl
+> debouncer. What would it debounce otherwise? Do you think that this
+> "debounce circuit" is something internal to the RTC and is totally
+> irrelevant for us?
 
-On 9/1/2021 1:51 AM, Rob Herring wrote:
-> On Fri, Aug 27, 2021 at 03:03:50PM +0530, Sameer Pujar wrote:
->> This patch adds YAML schema for DT bindings of few AHUB modules.
->> These devices will be registered as ASoC components and bindings
->> will be used on Tegra210 and later chips. The bindings for below
->> mentioned modules are added:
->>
->>   * SFC (Sampling Frequency Converter)
->>   * MVC (Master Volume Control)
->>   * AMX (Audio Multiplexer)
->>   * ADX (Audio Demultiplexer)
->>   * Mixer
->>
->> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> ---
->>   .../bindings/sound/nvidia,tegra210-adx.yaml        | 74 ++++++++++++++++++++
->>   .../bindings/sound/nvidia,tegra210-ahub.yaml       | 20 ++++++
->>   .../bindings/sound/nvidia,tegra210-amx.yaml        | 72 ++++++++++++++++++++
->>   .../bindings/sound/nvidia,tegra210-mixer.yaml      | 67 ++++++++++++++++++
->>   .../bindings/sound/nvidia,tegra210-mvc.yaml        | 79 ++++++++++++++++++++++
->>   .../bindings/sound/nvidia,tegra210-sfc.yaml        | 76 +++++++++++++++++++++
->>   6 files changed, 388 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
+I don't think that's it.
 
-[...]
+The Debounce circuit is after the 32 divider, so we have a clock rate of
+1kHz (Figure 3-35, page 275)
 
->> +  16 channels and demultiplexes it into four output streams of up to 16
->> +  channels each. A byte RAM helps to form output frames by any combination
->> +  of bytes from the input frame. Its design is identical to that of byte
->> +  RAM in the AMX except that the data flow direction is reversed.
->> +
->> +maintainers:
->> +  - Jon Hunter <jonathanh@nvidia.com>
->> +  - Mohan Kumar <mkumard@nvidia.com>
->> +  - Sameer Pujar <spujar@nvidia.com>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^adx@[0-9a-f]*$"
->> +
->> +  compatible:
->> +    oneOf:
->> +      - const: nvidia,tegra210-adx
->> +      - items:
->> +          - enum:
->> +              - nvidia,tegra194-adx
->> +              - nvidia,tegra186-adx
->> +          - const: nvidia,tegra210-adx
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  sound-name-prefix:
-> nvidia,sound-name-prefix
+The PIO Interrupt debouncing can use either a 32kHz or 24MHz clock, so
+the rates don't match, and given the naming would rather be clocked from
+CLK32K_LOSC.
 
-It is supposed to be 'sound-name-prefix' for core to parse and apply 
-prefix. May be this needs to be directly referenced from 
-'Documentation/devicetree/bindings/sound/name-prefix.txt' after 
-converting to YAML, which can be a separate commit?
+The DCXO_CTRL_REG (Section 3.13.6.13) hints at something different
+though, it says:
 
+"
+CLK16M_RC_EN
+1: Enable
+0: Disable
+The related register configuration is necessary to ensure the reset debounce
+circuit has a stable clock source.
+The first time SoC starts up, by default, the reset debounce circuit of SoC
+uses 32K divided by RC16M. In power-off, software reads the related bit to
+ensure whether EXT32K is working normally, if it is normal, first switch the
+clock source of debounce circuit to EXT32K, then close RC16M.
+Without EXT32K scenario or external RTC scenario, software confirms firstly
+whether EXT32K is working normally before switching, or software does not
+close RC16M.
+"
 
-Remaining comments will be taken care in next revision.
+I'm not sure why it would be useful for though
+
+> But in general I looked at how many *different* clocks this diagram
+> describes, and I count: one unaltered ("SYSTEM"), one "div by
+> 32" (RTC/debounce), and one multiplexed. My aim was to avoid
+> DT binding changes when we later discover we do need one of them for
+> something (as happened in the past). So three seemed to be the safe
+> choice here, to avoid surprises. In the worst case we just will never
+> reference one of them.
+
+My concern is the pretty much the opposite: if we ever need to remove it
+for whatever reason, if it's in the DT, we can't. While we can totally
+add it if we need it.
+
+> > Either way, what this list is must be documented.
+>=20
+> You mean to overwrite the "description" stanza for clock-output-names?
+
+Yes
+
+> And can this be done in the per-SoC parts in the later part of the
+> binding, keeping the existing description?
+
+Sure
+
+Maxime
+
+--rjkq6bidgpvhb43g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYS8p8wAKCRDj7w1vZxhR
+xRE2AQDYlqDEaHf5/1IED5BleAAc0RHp5WOyINtMRFzdAjEIzAEApmTJW3tJsci4
+DiJ796ury4C9KXYVjkGtfFmLnozADQ0=
+=3GAS
+-----END PGP SIGNATURE-----
+
+--rjkq6bidgpvhb43g--
