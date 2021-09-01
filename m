@@ -2,79 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB2F3FDDE3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 16:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CBA93FDE1A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 16:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244220AbhIAOlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 10:41:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47626 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245279AbhIAOlV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 10:41:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6FD236103A;
-        Wed,  1 Sep 2021 14:40:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630507225;
-        bh=gW7gQRqtu48//sdUXUb60qqTbaW4Xb1X9H2hO7nOZ2w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mO8SBRhBWVI0fL76IzyqQYUKgUOKn6KUgUUThnriQj5Nd97FL5zYL/YhqJCVha6s4
-         zv18x+pUY/CcF+e6WRd2TJMbLxQuenGKiH78xj3BuA5ZxcIUSd2Z1FBTofmHdiySDV
-         ZkmcrvtRsW3CB5Cg8HBIUg2oxi6HLLVhf0UaMjdxlQG58uQsK996ppMIr8aCsdxdGU
-         3ZIKJDYdAqmYtmuG4Im+lTBIb1RNbbXSoQfPUV574QQfVBM1lXrCr2XPEOQPCgAQi+
-         HAw2kbpAkW7VB+n6sw+fnUR44Vu6o1gp9pWyvaB+chmbt5p/QfNcG6oPdc87F1jgpc
-         4REP9xj23chAw==
-Date:   Wed, 1 Sep 2021 15:39:50 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
-        patches@opensource.cirrus.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 01/52] ASoC: dt-bindings: Add WM8978 Binding
-Message-ID: <20210901143950.GE5976@sirena.org.uk>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-2-maxime@cerno.tech>
+        id S231804AbhIAO4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 10:56:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231359AbhIAO4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 10:56:03 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8D72C061575
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 07:55:06 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 5693F1FAF9;
+        Wed,  1 Sep 2021 16:55:05 +0200 (CEST)
+Subject: Re: [PATCH] arm64: dts: qcom: pm660: Add reboot mode support
+To:     Shawn Guo <shawn.guo@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20210824021918.17271-1-shawn.guo@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <a6ab7332-feda-3c19-e64e-2ffbc06f7f42@somainline.org>
+Date:   Wed, 1 Sep 2021 16:55:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jho1yZJdad60DJr+"
-Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-2-maxime@cerno.tech>
-X-Cookie: Who was that masked man?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210824021918.17271-1-shawn.guo@linaro.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 24/08/21 04:19, Shawn Guo ha scritto:
+> It turns out that the pm660 PON is a GEN2 device.  Update the compatible
+> to "qcom,pm8998-pon" and add reboot mode support, so that devices can be
+> rebooted into bootloader and recovery mode.  Tested on Xiaomi Redmi Note
+> 7 phone.
+> 
+> While at it, drop the unnecessary newline between 'compatible' and 'reg'
+> property.
+> 
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 
---jho1yZJdad60DJr+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Sep 01, 2021 at 11:18:01AM +0200, Maxime Ripard wrote:
-> Even though we had the wm8978 driver for some time and a number of
-> boards using it already, we never had a binding for it. Let's add it
-> based on what the driver expects and the boards are providing.
-
-What's the story with dependencies here?  I don't have a cover letter or
-anything and there seem to be a bunch of tangentially related patches in
-a series here.
-
---jho1yZJdad60DJr+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEvkLYACgkQJNaLcl1U
-h9COjgf/fijxSc6om+F3lPh/ILpcm5YNkeHiwuGd2TmlFOi6zDZeXDwiybEHRkbH
-ZmU32/tzm9PAR4yOJi4KNUojOtJTFF3leZ8aEsxzdHzcfIeYUabUIDQOaK/MhxvA
-3je7g87V/sSKnH42SWdWlXQRedNYqIsgldGiaG8yBqqK9RKoKv+GXUONjeMolCiq
-i7faNvg1DcfxdLGT7SOL42eQNNPUr7/Dn9hP+mDapYMQ644tY2/ShqzCOr1tMmvi
-ylN1/xe8BdIZCLKT8O8Swu5s6lYDCw+BFPA4ZBix0fds4G+ANU63U8XMDfE9qHKh
-aETbtlWwCRiqEAYQtlX2hvdmz6Sr+g==
-=Z6PP
------END PGP SIGNATURE-----
-
---jho1yZJdad60DJr+--
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
