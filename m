@@ -2,129 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A83743FE53A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 00:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CEE43FE558
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 00:13:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243774AbhIAWHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 18:07:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
+        id S239808AbhIAWOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 18:14:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232093AbhIAWHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 18:07:40 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CACC061760
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 15:06:43 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id c206so1516456ybb.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 15:06:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MhHElbfFehHKR3iF8SjK6BzG55GVC5uj/uW8uuku34I=;
-        b=Jt+zbafJukyb0oTQNCARSLXW94BfRLmfGcAx4WqUP7jFs3Ed+ktuvcRGjHFfqahrps
-         Q3/tqdEZPD5pKAwd7/zdcNmMTmE+TtBVKs++JMEHpTaZfv/KH+m8niK7EhUkCEHxwKp1
-         dKpzGBXCWgnOGyWnobIQPXdaN/y0bLTP0fkDGx4+RIotuG5fBcFPyTfweYDWfCT/NexZ
-         aZESZPehJBU0NXoijSWtwvqa4JxkXpCoKkw32Gu9RuQjADJbDcRc7BVQuNAp0CCaCBSq
-         nW3EVMPVi3aCDDxo2CjKMugrcjmIFlT8OGtiTacdwuRU7Ud0G2FKkrGmG+HV4jDtELWf
-         ZmxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MhHElbfFehHKR3iF8SjK6BzG55GVC5uj/uW8uuku34I=;
-        b=guJCrgLtfuPt0CtqNL0FP/miC29KavgMepDV8jIn3u2PDElOKwuDzRDyvKfyIbYVMo
-         QLFQQcYJpiHB2hLicUjxK5EAylAiE/wlz7ayheuVWNiWmmTTsDwReThI5fjrREKnLqRt
-         KF/dwUqaYklaU596nmY0BJZUC9hjTVhG/pNylS5GxT3GE60y7OCtuIC3TKOWMV5rxuHT
-         9X06u/bwhGj3XPNjh3Xmfd6BRfRpYaDkNhWySlRK2TJx4QQrUyZohduhVhawpO8HIwLq
-         oGZ5sBGtB0fIRdOqv5uEsxbL6ORWHe9vL3RMMMB3Jutr//ZHqlIraegDdXu+n2Vmeo0+
-         kFaA==
-X-Gm-Message-State: AOAM531k5IBWw9AyPDbEwBJ/T/hZUH/nu3+2ZmXVkfKB9IinAoBqfabt
-        bRW7ahg2R3JYK0hg4oSGQmNuCyTd6OQ2jEGZxDablA==
-X-Google-Smtp-Source: ABdhPJzdE/jOrGHc6mdiB3i581lBRbbEklCVTghV//HVNGyeQM77WKx6k/+7KCiSjTrt4i6KjAsgFj122PiroUtQ1BY=
-X-Received: by 2002:a25:6746:: with SMTP id b67mr201599ybc.96.1630534002224;
- Wed, 01 Sep 2021 15:06:42 -0700 (PDT)
+        with ESMTP id S236202AbhIAWOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 18:14:41 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA23EC061575;
+        Wed,  1 Sep 2021 15:13:43 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 04F6E340;
+        Thu,  2 Sep 2021 00:13:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1630534422;
+        bh=09bxQvWBNLZUb9b+id81hZsBnKjmRqZOhUOZz7Th8Dg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hJHOHTQLzK17Jef6QZoYnLPMw+SnzNTsso5L0cV5OBrrhVFnPjFotDyuxRe8h905Y
+         1TECrmKMxxwth9d3Zsca+cSfLIaXSH9+cDz/s4cQCdl1ZCmAI9tGELHGPCR59SwbOs
+         tP7dmJSeMZV90JsRRUJGnng1Sf7Ao/DCAoZ8CAL8=
+Date:   Thu, 2 Sep 2021 01:13:26 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
+        "open list:DRM DRIVERS FOR RENESAS" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: display: renesas,du: Provide bindings for
+ r8a779a0
+Message-ID: <YS/7BlBvEsU+rkXP@pendragon.ideasonboard.com>
+References: <20210622231146.3208404-1-kieran.bingham@ideasonboard.com>
+ <CAMuHMdW8vYC3+gVCv5eG_vkX79vU8RQL-6fSJd9McetDzikzSA@mail.gmail.com>
+ <22bf664e-4a28-3ae2-0106-5913a8643625@ideasonboard.com>
 MIME-Version: 1.0
-References: <20210831102125.624661-1-ulf.hansson@linaro.org>
- <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com>
- <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
- <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com> <CAPDyKFranX4Yz8546C1E3Gq_ZkQi34Xb=Rxi5mPtw-s_J1QPoQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFranX4Yz8546C1E3Gq_ZkQi34Xb=Rxi5mPtw-s_J1QPoQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 1 Sep 2021 15:06:06 -0700
-Message-ID: <CAGETcx_DXQyaH2te1cxV+yCS+kdfjWOFbxQkhEKCbXtU0FWS1g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <22bf664e-4a28-3ae2-0106-5913a8643625@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 2:27 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Wed, 1 Sept 2021 at 22:56, Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >
-> > > On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > >
-> > > > > In the struct supplier_bindings the member 'node_not_dev' is described as
-> > > > > "The consumer node containing the property is never a device.", but that
-> > > > > doesn't match the behaviour of the code in of_link_property().
-> > > > >
-> > > > > To make the behaviour consistent with the description, let's rename the
-> > > > > member to "optional_con_dev" and clarify the corresponding comment.
-> > > > >
-> > > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > > > > ---
-> > > > >  drivers/of/property.c | 9 +++++----
-> > > > >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > index 6c028632f425..2babb1807228 100644
-> > > > > --- a/drivers/of/property.c
-> > > > > +++ b/drivers/of/property.c
-> > > > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
-> > > > >   * @parse_prop.index: For properties holding a list of phandles, this is the
-> > > > >   *                   index into the list
-> > > > >   * @optional: Describes whether a supplier is mandatory or not
-> > > > > - * @node_not_dev: The consumer node containing the property is never a device.
-> > > > > + * @optional_con_dev: The consumer node containing the property may not be a
-> > > > > + *                   device, then try finding one from an ancestor node.
-> > > >
-> > > > Nak. This flag is not about "may not be". This is explicitly for
-> > > > "never a device". It has to do with stuff like remote-endpoint which
-> > > > is never listed under the root node of the device node. Your
-> > > > documentation change is changing the meaning of the flag.
-> > >
-> > > Okay, fair enough.
-> > >
-> > > Although, as stated in the commit message this isn't the way code
-> > > behaves. Shouldn't we at least make the behaviour consistent with the
-> > > description of the 'node_not_dev' flag?
-> >
-> > I know what you mean, but if you use the flag correctly (where the
-> > phandle pointed to will never be a device with compatible property),
-> > the existing code would work correctly. And since the flag is relevant
-> > only in this file, it's easy to keep it correct. I'd just leave it as
-> > is.
->
-> Sorry, but that just sounds lazy to me, I am sure we can do better.
-> The current code and the name of the flag is confusing, at least to me
-> (and I bet to others as well).
->
-> Moreover, I don't quite understand your objections to changing this.
-> Why leave this to be inconsistent when it can be easily fixed?
+Hi Kieran,
 
-If you feel so strong about it, go for it. No strong objections. Just
-double check the refcounts are done correctly.
+On Wed, Sep 01, 2021 at 11:01:11PM +0100, Kieran Bingham wrote:
+> On 23/06/2021 13:53, Geert Uytterhoeven wrote:
+> > On Wed, Jun 23, 2021 at 1:11 AM Kieran Bingham wrote:
+> >> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> >>
+> >> Extend the Renesas DU display bindings to support the r8a779a0 V3U.
+> >>
+> >> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > 
+> > Thanks for your patch!
+> > 
+> >> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> >> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> >> @@ -39,6 +39,7 @@ properties:
+> >>        - renesas,du-r8a77980 # for R-Car V3H compatible DU
+> >>        - renesas,du-r8a77990 # for R-Car E3 compatible DU
+> >>        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+> >> +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+> >>
+> >>    reg:
+> >>      maxItems: 1
+> >> @@ -774,6 +775,57 @@ allOf:
+> >>          - reset-names
+> >>          - renesas,vsps
+> >>
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            enum:
+> >> +              - renesas,du-r8a779a0
+> >> +    then:
+> >> +      properties:
+> >> +        clocks:
+> >> +          items:
+> >> +            - description: Functional clock for DU0
+> >> +            - description: Functional clock for DU1
+> >> +
+> >> +        clock-names:
+> >> +          items:
+> >> +            - const: du.0
+> >> +            - const: du.1
+> > 
+> > The hardware block has only a single function clock for both channels,
+> > like on R-Car H1.
+> 
+> Indeed, but I believe both channels still need to set them, if they can
+> be operated independently, the driver looks up the clock based on the
+> du.%d, and so for DU1, it is simply expressed as the same clock in DT.
+> 
+> Is this acceptable? or is there further issues there?
 
--Saravana
+Could we handle that on the driver side, like we do for H1 by not
+setting RCAR_DU_FEATURE_CRTC_IRQ_CLOCK ? We would probably need to split
+that flag in two, as there are two interrupts.
+
+It's a bit annoying not knowing what the MSTP bits do exactly, we've
+modelled them as gates for the functional clock, but maybe in cases like
+this one the mapping isn't fully correct, I'm not sure.
+
+> > And what about DU_DOTCLKIN?
+> 
+> This thread has already discussed this with Laurent, and I concur -
+> There doesn't appear to be any relevant reference to DU_DOTCLKIN on the
+> DU side.
+
+-- 
+Regards,
+
+Laurent Pinchart
