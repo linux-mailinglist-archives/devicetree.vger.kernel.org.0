@@ -2,121 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C9B3FE523
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 00:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C74E33FE52C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 00:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232628AbhIAWCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 18:02:18 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:52914 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbhIAWCR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 18:02:17 -0400
-Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 98A33340;
-        Thu,  2 Sep 2021 00:01:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1630533675;
-        bh=oBIuv/gN5NyegE3mK/LDP8EEP5EAxS3NGI0JIKQpmEE=;
-        h=From:Subject:To:Cc:References:Date:In-Reply-To:From;
-        b=dtVrH0E6SkIwLsiU8IcybDaJs94nn4MAXDUf9jRMZEG/veXfBlLVFUw+H3DpYQzy2
-         R4984RKnHKvDnh+PbCMmupf/SBjYW6g7kYLZVrl9VWl1je5N9jsS1KJ1kP0PpT6HLs
-         H0oGE3CmUghBiSYLHyBRiEfWdZT+Y2nrrX7pb8Ys=
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-Subject: Re: [PATCH] dt-bindings: display: renesas,du: Provide bindings for
- r8a779a0
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVERS FOR RENESAS" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210622231146.3208404-1-kieran.bingham@ideasonboard.com>
- <CAMuHMdW8vYC3+gVCv5eG_vkX79vU8RQL-6fSJd9McetDzikzSA@mail.gmail.com>
-Message-ID: <22bf664e-4a28-3ae2-0106-5913a8643625@ideasonboard.com>
-Date:   Wed, 1 Sep 2021 23:01:11 +0100
+        id S243121AbhIAWDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 18:03:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50830 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242843AbhIAWC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 18:02:59 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A87C061757
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 15:02:02 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id l18so1531728lji.12
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 15:02:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CnPQdzZMs4DyH5oLKknlerujheq7E0iK+rdK9Bg2xfk=;
+        b=cgNmqIkTHsf1QnCRrUS/zZO11duHElqzfFhG7zlCMqbLJcms0JEvWTGlb8V+zHvoM5
+         iSdwddpYr4dEHkNrUztXq6Dj9wALUczIRB/F8xGLXrAeUTqmp77yHunL5wAl0/vsTvcL
+         9KQqxHpwKMBX6Ajnq8beVbkNEEXx2BpMsYkIvXajUQKuwWvyVQVZ8Qtv1m1nu1OhHOYr
+         xFpqUP+NGlyySmqf6ZdzdoxOX+xotBKEbcwrbQ71GPWfbmlocxnFAuU48DYmI3MiURv7
+         oLCPxNDhV8PXYUPx1ZxrDDio8KIJyiZOhvHG4ptXvjVdUjyQbip0dp2v/zHwb21ekKH4
+         KxTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CnPQdzZMs4DyH5oLKknlerujheq7E0iK+rdK9Bg2xfk=;
+        b=gMKWxFsLTNvJzsIT+NtdtQi1hO4UsVLkp9dxtSu3Bsfv3j7uGQtZRFSMXr6AzLfFRv
+         XD42y3AfocdGR1U9KzmwPh+rCX+V0TLNi5FmWjHc0LqZ/i7ota+y49OVGpacf9CajX1n
+         g4WxTeHV0Bou6b98YRZ5i6GTA+Jg9KFn1whJD7IFlbe69/FK4xkx7U/DtnhGEcAzo9sW
+         uLDmNwVRIuVY86dJA87EcN3RygwvTGCJ1YmbCKE1sly8OfdtQSskBFApO2yAcq3jnqJg
+         uQiyoa0C0xyJKNZq13UekMmUFURRu/h5MaTXbYL5VL6f+7+VVaMSj4wyWb0YKEHrJSio
+         4OyA==
+X-Gm-Message-State: AOAM5324Zlw1CBqjJIC8gxO5JqoKKQhYBc2KwmdRE2L0CssIj6QrS5hs
+        8n0odj+boLbXwVFc4q132bFW8g==
+X-Google-Smtp-Source: ABdhPJyaXhC41uRSeOf+R0AotjM8nRToFIF6cqB5moPon/c3QALTANIK4zHrWwQ9vYCcen9WP3JHdA==
+X-Received: by 2002:a2e:8511:: with SMTP id j17mr1410329lji.407.1630533720327;
+        Wed, 01 Sep 2021 15:02:00 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id d21sm4432ljo.70.2021.09.01.15.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Sep 2021 15:01:59 -0700 (PDT)
+Subject: Re: [PATCH v4 1/5] interconnect: qcom: sdm660: Commonize RPM-QoS
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20210901121518.152481-1-y.oudjana@protonmail.com>
+ <20210901121518.152481-2-y.oudjana@protonmail.com>
+ <9af0f031-101e-53b4-514e-9ead44320f4e@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <efafd058-ad68-eb0a-af42-40d879ef63d9@linaro.org>
+Date:   Thu, 2 Sep 2021 01:01:59 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdW8vYC3+gVCv5eG_vkX79vU8RQL-6fSJd9McetDzikzSA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <9af0f031-101e-53b4-514e-9ead44320f4e@somainline.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On 23/06/2021 13:53, Geert Uytterhoeven wrote:
-> Hi Kieran,
-> 
-> On Wed, Jun 23, 2021 at 1:11 AM Kieran Bingham
-> <kieran.bingham@ideasonboard.com> wrote:
->> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+On 01/09/2021 21:48, AngeloGioacchino Del Regno wrote:
+> Il 01/09/21 14:15, Yassine Oudjana ha scritto:
+>> SoCs such as MSM8996 also control bus QoS in a similar fashion to SDM660,
+>> with some paths being controlled by RPM and others directly by the AP.
+>> Move relevant functions and defines to a new object so that they can 
+>> be used
+>> in multiple drivers.
 >>
->> Extend the Renesas DU display bindings to support the r8a779a0 V3U.
->>
->> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> Thanks for your patch!
+> Hey guys!
 > 
->> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
->> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
->> @@ -39,6 +39,7 @@ properties:
->>        - renesas,du-r8a77980 # for R-Car V3H compatible DU
->>        - renesas,du-r8a77990 # for R-Car E3 compatible DU
->>        - renesas,du-r8a77995 # for R-Car D3 compatible DU
->> +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
->>
->>    reg:
->>      maxItems: 1
->> @@ -774,6 +775,57 @@ allOf:
->>          - reset-names
->>          - renesas,vsps
->>
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - renesas,du-r8a779a0
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: Functional clock for DU0
->> +            - description: Functional clock for DU1
->> +
->> +        clock-names:
->> +          items:
->> +            - const: du.0
->> +            - const: du.1
-> 
-> The hardware block has only a single function clock for both channels,
-> like on R-Car H1.
+> I'm waiting for the interconnect RPM-QoS commonization to be merged as I 
+> have fresh
+> interconnect drivers for MSM8998 and MSM8976, ready to send, that are 
+> also using
+> the very same QoS mechanism as SDM660.
 
-Indeed, but I believe both channels still need to set them, if they can
-be operated independently, the driver looks up the clock based on the
-du.%d, and so for DU1, it is simply expressed as the same clock in DT.
-
-Is this acceptable? or is there further issues there?
+We were also looking onto this. I'd propose to merge sdm660 code into 
+main icc-rpm.c instead of splitting it into separate file. We have 
+enabled QoS for apq8096 (msm8916) and msm8939. See 
+https://lore.kernel.org/linux-arm-msm/20210818015732.1717810-1-dmitry.baryshkov@linaro.org/ 
+for the reference. I'm waiting for Shawn to publish v2 of his fix, then 
+I can post v2 of my patchset.
 
 > 
-> And what about DU_DOTCLKIN?
-
-This thread has already discussed this with Laurent, and I concur -
-There doesn't appear to be any relevant reference to DU_DOTCLKIN on the
-DU side.
-
-
+> Yassine, please check Shawn's recent patches for SDM660 interconnect, 
+> which are
+> fixing some bits for the QoS implementation and adding some required 
+> clocks to the
+> SDM660 interconnect driver.
 > 
-> Gr{oetje,eeting}s,
+> Adding Shawn to the Ccs as to make him aware of this patch;
+> also adding Marijn and Konrad from SoMainline as probably interested 
+> parties.
 > 
->                         Geert
-> 
+> Cheers!
+> - Angelo
+
+
+-- 
+With best wishes
+Dmitry
