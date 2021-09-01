@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E04D3FE3CD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9573FE3C7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343890AbhIAUVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 16:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
+        id S1344021AbhIAUVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 16:21:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343727AbhIAUVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:21:39 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706A2C0617A8
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:20:41 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id y17so712161pfl.13
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:20:41 -0700 (PDT)
+        with ESMTP id S1343820AbhIAUVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:21:40 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40759C0617AF
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:20:43 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id c17so705076pgc.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:20:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=mWpQuuJjmOltxcGlhp80Go7kcj2rBByEKq5WUEPaCUU=;
-        b=XK94ViAcm0nxkHX43OqtJrmDk10oapIw+sE89kl6IesikSt+5Jv6hCy+/YIjBhe8NU
-         ldI/mEX6luWPDd3MUKfPNt2tHvoCnvN4ej7yZuvIxr6MxL+AloelI0Fl+k8Td78wfGiz
-         AWlJWNJobDgFv+/YDryZq12xHWLaxOG1XqeCY=
+        bh=WM1bi4Camo4x38t+lOpl/85fschHMfokf9rT4eUa3DY=;
+        b=f+ybnhpuTQ57f3nJIk1Jq6u2MAVamT1UtJdAKIxnQ768VSVBgqG6Rgpu/cw1Utc6sS
+         /bMn6sOsWMrckKWPdEB26mmvkyIodgTuwS/D48gj83/BMDRgnzcEwm2ggv/v4v6DHE2j
+         0GxUuSg95a57DDbsxzg/NLj/O5zWdfa38OmFs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=mWpQuuJjmOltxcGlhp80Go7kcj2rBByEKq5WUEPaCUU=;
-        b=iQwhXvGWaJXV+jLfl7kv012orplxewn/U1uL1qWwXTXuEZyIhYRxgqbD5/m+uvI5BL
-         c7NMdtIa8cqjMP0/lEnPAVUeuAQxfGa4UJKk8apifccdISkp3rMqc/xGHh9tRcIOZe3T
-         WEFXQNQhlDZ7caP8P2ArE6jBigQr8OFe62ZOjp8qTdaZRBeybfI3rG32oVLbNpp0mElj
-         MR72+wbCO7AWqK3RHZA0bnjeVouM/koztMXsLcydQYivtCL9SqCgd0mi98XDJeyxUvS/
-         TeZKhE1JNLjVev4CZN47i9dyKckiSBEDq1bINgbracfjwXwb3prARwDJ8Kti/zO01Yn/
-         CYww==
-X-Gm-Message-State: AOAM531tgO04GETnSi804R87PKj0lAPJriNmUIKqiHPYOQDOaqfELbJJ
-        8VPyssNjScBmoTjSxkiFSf/U5Q==
-X-Google-Smtp-Source: ABdhPJzp2cmXbEsSbVWCOkZZKfiv31TzBP31B0LfIbPldpdBtF6YxlUM1F7d6HlVMOhOFD452XmjKw==
-X-Received: by 2002:a63:ed03:: with SMTP id d3mr802704pgi.24.1630527641056;
-        Wed, 01 Sep 2021 13:20:41 -0700 (PDT)
+        bh=WM1bi4Camo4x38t+lOpl/85fschHMfokf9rT4eUa3DY=;
+        b=okjjps+WgaLZWNp01C2kQWR5FhwwJY8cQOMpJhn2yEURMb4alAdjUlvLJDVaatsImU
+         H/rQ+JKQ5AO2/B4XBSBaroNEJyuHr+bYpXJ4BXi/dmaizwEwybZKeUqfy3W1wp5Cs6bQ
+         9nUBq7Ied6Fi2dAY1p63XLQ+G1JO0fODQtXgmNRKSV//ckwU+sQojQ2fqIISWDE6zOOr
+         W1K9Ebyy/IrfUQxHz279DwmakYv2st0SBX3y3vjDAOjLLpquxd3g4JnxnqNwA2ddTocd
+         izIyZP7RvOcTWuHI1ZvAgajWh5Jbiu0R5fLm4X6SZEHw6E4GDM6l8HrZn4QdocCXVUtL
+         qKZQ==
+X-Gm-Message-State: AOAM533hnovEQAABssb3ozz+zmp5/qlClLeltplzIU+wzlbXO/G4huWD
+        +29A8HlbvFHCWZRLv+6WOAGP9PrRBeTJKQ==
+X-Google-Smtp-Source: ABdhPJydT+Tqv+gWUMHLSx9OUkDrer4gbLtZdgIdTopu2ejfGNW+Ki6l+q5vwHDM20EqiwpPRfWvug==
+X-Received: by 2002:a05:6a00:796:b0:3ed:989b:f0c3 with SMTP id g22-20020a056a00079600b003ed989bf0c3mr1117119pfu.9.1630527642834;
+        Wed, 01 Sep 2021 13:20:42 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:958b:b561:a735:e774])
-        by smtp.gmail.com with ESMTPSA id x15sm321178pfq.31.2021.09.01.13.20.39
+        by smtp.gmail.com with ESMTPSA id x15sm321178pfq.31.2021.09.01.13.20.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Sep 2021 13:20:40 -0700 (PDT)
+        Wed, 01 Sep 2021 13:20:42 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,20 +60,15 @@ Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
         dri-devel@lists.freedesktop.org,
         Douglas Anderson <dianders@chromium.org>,
         Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>, Nishanth Menon <nm@ti.com>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 07/16] arm64: defconfig: Everyone who had PANEL_SIMPLE now gets PANEL_SIMPLE_EDP
-Date:   Wed,  1 Sep 2021 13:19:25 -0700
-Message-Id: <20210901131531.v3.7.Ied5c4da3ea36f8c49343176eda342027b6f19586@changeid>
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: [PATCH v3 08/16] MIPS: configs: Everyone who had PANEL_SIMPLE now gets PANEL_SIMPLE_EDP
+Date:   Wed,  1 Sep 2021 13:19:26 -0700
+Message-Id: <20210901131531.v3.8.Ic7a6e3f8dd4760a302c91320843be5a00206bd63@changeid>
 X-Mailer: git-send-email 2.33.0.259.gc128427fd7-goog
 In-Reply-To: <20210901201934.1084250-1-dianders@chromium.org>
 References: <20210901201934.1084250-1-dianders@chromium.org>
@@ -84,29 +79,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 In the patch ("drm/panel-simple-edp: Split eDP panels out of
-panel-simple") we split the PANEL_SIMPLE driver in 2. Let's enable the
-new config.
+panel-simple") we split the PANEL_SIMPLE driver in 2. By default let's
+give everyone who had the old driver enabled the new driver too. If
+folks want to opt-out of one or the other they always can later.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
 (no changes since v1)
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/mips/configs/qi_lb60_defconfig | 1 +
+ arch/mips/configs/rs90_defconfig    | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index f423d08b9a71..914057efa160 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -697,6 +697,7 @@ CONFIG_DRM_MSM=m
- CONFIG_DRM_TEGRA=m
- CONFIG_DRM_PANEL_LVDS=m
- CONFIG_DRM_PANEL_SIMPLE=m
-+CONFIG_DRM_PANEL_SIMPLE_EDP=m
- CONFIG_DRM_PANEL_BOE_TV101WUM_NL6=m
- CONFIG_DRM_PANEL_MANTIX_MLAF057WE51=m
- CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
+diff --git a/arch/mips/configs/qi_lb60_defconfig b/arch/mips/configs/qi_lb60_defconfig
+index b4448d0876d5..3e99e223ea02 100644
+--- a/arch/mips/configs/qi_lb60_defconfig
++++ b/arch/mips/configs/qi_lb60_defconfig
+@@ -72,6 +72,7 @@ CONFIG_REGULATOR_FIXED_VOLTAGE=y
+ CONFIG_DRM=y
+ CONFIG_DRM_FBDEV_OVERALLOC=200
+ CONFIG_DRM_PANEL_SIMPLE=y
++CONFIG_DRM_PANEL_SIMPLE_EDP=y
+ CONFIG_DRM_INGENIC=y
+ CONFIG_BACKLIGHT_CLASS_DEVICE=y
+ # CONFIG_VGA_CONSOLE is not set
+diff --git a/arch/mips/configs/rs90_defconfig b/arch/mips/configs/rs90_defconfig
+index 7ce3b814fdc8..42b4f621cbfa 100644
+--- a/arch/mips/configs/rs90_defconfig
++++ b/arch/mips/configs/rs90_defconfig
+@@ -94,6 +94,7 @@ CONFIG_REGULATOR_FIXED_VOLTAGE=y
+ CONFIG_DRM=y
+ CONFIG_DRM_FBDEV_OVERALLOC=300
+ CONFIG_DRM_PANEL_SIMPLE=y
++CONFIG_DRM_PANEL_SIMPLE_EDP=y
+ CONFIG_DRM_INGENIC=y
+ CONFIG_BACKLIGHT_CLASS_DEVICE=y
+ CONFIG_BACKLIGHT_PWM=y
 -- 
 2.33.0.259.gc128427fd7-goog
 
