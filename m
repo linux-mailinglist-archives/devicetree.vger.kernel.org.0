@@ -2,143 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05D3B3FE56E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 00:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F0A3FE5FD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 02:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242045AbhIAWZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 18:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56046 "EHLO
+        id S242921AbhIAXL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 19:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240533AbhIAWZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 18:25:39 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680DFC061760
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 15:24:42 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id f18so2169673lfk.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 15:24:42 -0700 (PDT)
+        with ESMTP id S230296AbhIAXL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 19:11:28 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C076BC061575
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 16:10:30 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id j18so107505ioj.8
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 16:10:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=GSrqC262T8NUB0z+G7cuqZyTjDbbZ5eGxKOQFITyM2E=;
-        b=qDwLQhGYrB22soJfUXno1pdMrJzN5jRG3UZDfmRzLVIwRWnWqqHVi0xA7kLs8nQ334
-         d1oSpSTNnBfIIdS4HqOva/pJLn0cN3u1tc18c51cdLnIRrLDO7TbQ1mCAxs2VFaJQ45V
-         +6l4DEYv/X11vTi+Xj/kd57zxlsM2p7KL7oFz8RIwlWH+kPC9thWnPINiq2JS2Cq8rtl
-         N0sWY8K3EYwpzAAr+H4ongTLXJ6+J/kbwOHmDqGmfKEnydSo318QNn5YaPFLFYJz3G3c
-         9f+w2z5McF0PqOPiD5spGZD5b4/AIIc8MKCn7hSmKV35EZy4kwjzWC+UIm9ewMx1e5ts
-         4EXw==
+        bh=1Y+GVokmV9xV7i0Kbyl+zT81HcVIXennIBiGTGbWIfQ=;
+        b=Ss78CZppoDiVB5zdMTBxQWBVResulcnOWqd8Qi3UkjhRlNgSbjSTQDveLQ4owdMFOd
+         mgwlrVIyuyDeGaBwBWxBoZvXlIJfVMzhnF2/tIAtLNZqNqrIQMexqtyQHl+M/z23jDJt
+         /l6kSthz2Kvx8zBGuz1IIWMUwzkcbS3DLX0UM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=GSrqC262T8NUB0z+G7cuqZyTjDbbZ5eGxKOQFITyM2E=;
-        b=UIP3Az80IYZstBBUIcbxr+83HDfyTNgeO3vA/fBD7OH4EgAiXoooPNcG9j+0efEBXV
-         pew/3kFV/adU0d9L8qoy76cOFITYlkv5QP9B1RZXrq1dnXfhgliuMDiDCnibsofwGVIh
-         rY+uHzk6QerIiJgPgz+7Rn4Q3OEuyb8FHRq9zixpxeyNwTPsBFQ6afYQ6kXe4u/pTJrt
-         1cyRMjKKPvbcNU4Wf+HxVQjFkdUQ5I6vfgX3YnGLV3XtHXyclfWxG2HcUq6JRvHkIdGW
-         KIlUHxwPGHcNPzwCXuTuevodNAnlTea4w0CMkEertS24EeQsiw0iHaSGwP2gTs3y2O0U
-         oDcg==
-X-Gm-Message-State: AOAM530ZHPgrAR0JKof2ojXeD52dATVjFzjlMo8hhbRp2H5ACGzXgVOi
-        aHR9TstU6d8cfxNmuaSaRLnxC37J8odOBVRz80gGvg==
-X-Google-Smtp-Source: ABdhPJwaH2UrQbVfXnJ0/QOMt3tqghHniLDTR5CwcH12OP3qXxrOU7CX/i5jcRi/yQWAP41gIFamBwg5xYS3nqwI4Vo=
-X-Received: by 2002:a19:655e:: with SMTP id c30mr81611lfj.142.1630535080753;
- Wed, 01 Sep 2021 15:24:40 -0700 (PDT)
+        bh=1Y+GVokmV9xV7i0Kbyl+zT81HcVIXennIBiGTGbWIfQ=;
+        b=KOAH41pQSOcyo9+yjcMZ+pY+TcibzRqDlcQ+0u4YOBsSw36WmJ4APPyXDI+T9OafqY
+         ZLTW8bXaUF7yUSpmFPLQLeo+k5fLCVIdVSZnemb+n4WQIECJleRaxn6290NZmH9pzRXq
+         S+gUKEzq93Zlmx637IGTl8b+0A5G5Mu/bKWYulVPzCCZKy3jjAI2EsA6/nl58Qw5XrHo
+         VuvlBYsFqTOaLrvf1ufep1B+dgqhEfHPsDcAYqgslXLCsfB0igdWFwpdvOaJJPq0LP7q
+         BKUWzMd0td4mR+TGug0kQZKHcZgK6oeNYrnJGfz0Hng+d6oAMBU6SvX/+lqjAcVzoqNf
+         ysHQ==
+X-Gm-Message-State: AOAM531cpJIUV67qOFlI3s20Mdk5TP9fSk8FAfMCZuaxkF4g2RD9OOOV
+        LB1/y4CQmtbbvfyf5uaORl9hT1/eQUcsqg==
+X-Google-Smtp-Source: ABdhPJzuIbHDnw1Fn72TnyijRPKwxJSrIMpLJqp7LUU1Tho78Zmqa6A8UWy9DQi5MaeFyvuBw13E/A==
+X-Received: by 2002:a05:6638:419e:: with SMTP id az30mr264886jab.90.1630537830008;
+        Wed, 01 Sep 2021 16:10:30 -0700 (PDT)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
+        by smtp.gmail.com with ESMTPSA id t15sm588195ioi.7.2021.09.01.16.10.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Sep 2021 16:10:28 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id g9so95210ioq.11
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 16:10:28 -0700 (PDT)
+X-Received: by 2002:a02:ca0b:: with SMTP id i11mr277172jak.84.1630537827704;
+ Wed, 01 Sep 2021 16:10:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210831102125.624661-1-ulf.hansson@linaro.org>
- <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com>
- <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
- <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
- <CAPDyKFranX4Yz8546C1E3Gq_ZkQi34Xb=Rxi5mPtw-s_J1QPoQ@mail.gmail.com> <CAGETcx_DXQyaH2te1cxV+yCS+kdfjWOFbxQkhEKCbXtU0FWS1g@mail.gmail.com>
-In-Reply-To: <CAGETcx_DXQyaH2te1cxV+yCS+kdfjWOFbxQkhEKCbXtU0FWS1g@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 2 Sep 2021 00:24:04 +0200
-Message-ID: <CAPDyKFpd1OCiSX-g4sJNjHhLs41AVzyE=O7gw7+YQ7RUOOk6rQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20210901201934.1084250-1-dianders@chromium.org>
+ <20210901131531.v3.6.I02250cd7d4799661b068bcc65849a456ed411734@changeid> <CAOesGMjp4pscuxciHZo7br-acgbkZSdRA_mUWNpcz0OfF7zOSA@mail.gmail.com>
+In-Reply-To: <CAOesGMjp4pscuxciHZo7br-acgbkZSdRA_mUWNpcz0OfF7zOSA@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 1 Sep 2021 16:10:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WPXAUyuAHb1jKx9F_aw+JGX4MWB3or=Eq5rXoKY=OQMw@mail.gmail.com>
+Message-ID: <CAD=FV=WPXAUyuAHb1jKx9F_aw+JGX4MWB3or=Eq5rXoKY=OQMw@mail.gmail.com>
+Subject: Re: [PATCH v3 06/16] ARM: configs: Everyone who had PANEL_SIMPLE now
+ gets PANEL_SIMPLE_EDP
+To:     Olof Johansson <olof@lixom.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus W <linus.walleij@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        DTML <devicetree@vger.kernel.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>, Chen-Yu Tsai <wens@csie.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
         Dmitry Osipenko <digetx@gmail.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lionel Debieve <lionel.debieve@st.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?Q?Martin_J=C3=BCcker?= <martin.juecker@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Razvan Stefanescu <razvan.stefanescu@microchip.com>,
+        Robert Richter <rric@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        linux-omap <linux-omap@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>, linux-sunxi@lists.linux.dev,
+        "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
+        =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Sept 2021 at 00:06, Saravana Kannan <saravanak@google.com> wrote:
+Hi,
+
+On Wed, Sep 1, 2021 at 2:12 PM Olof Johansson <olof@lixom.net> wrote:
 >
-> On Wed, Sep 1, 2021 at 2:27 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> On Wed, Sep 1, 2021 at 1:20 PM Douglas Anderson <dianders@chromium.org> wrote:
 > >
-> > On Wed, 1 Sept 2021 at 22:56, Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > >
-> > > > On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
-> > > > >
-> > > > > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > > >
-> > > > > > In the struct supplier_bindings the member 'node_not_dev' is described as
-> > > > > > "The consumer node containing the property is never a device.", but that
-> > > > > > doesn't match the behaviour of the code in of_link_property().
-> > > > > >
-> > > > > > To make the behaviour consistent with the description, let's rename the
-> > > > > > member to "optional_con_dev" and clarify the corresponding comment.
-> > > > > >
-> > > > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > > > > > ---
-> > > > > >  drivers/of/property.c | 9 +++++----
-> > > > > >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > > index 6c028632f425..2babb1807228 100644
-> > > > > > --- a/drivers/of/property.c
-> > > > > > +++ b/drivers/of/property.c
-> > > > > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
-> > > > > >   * @parse_prop.index: For properties holding a list of phandles, this is the
-> > > > > >   *                   index into the list
-> > > > > >   * @optional: Describes whether a supplier is mandatory or not
-> > > > > > - * @node_not_dev: The consumer node containing the property is never a device.
-> > > > > > + * @optional_con_dev: The consumer node containing the property may not be a
-> > > > > > + *                   device, then try finding one from an ancestor node.
-> > > > >
-> > > > > Nak. This flag is not about "may not be". This is explicitly for
-> > > > > "never a device". It has to do with stuff like remote-endpoint which
-> > > > > is never listed under the root node of the device node. Your
-> > > > > documentation change is changing the meaning of the flag.
-> > > >
-> > > > Okay, fair enough.
-> > > >
-> > > > Although, as stated in the commit message this isn't the way code
-> > > > behaves. Shouldn't we at least make the behaviour consistent with the
-> > > > description of the 'node_not_dev' flag?
-> > >
-> > > I know what you mean, but if you use the flag correctly (where the
-> > > phandle pointed to will never be a device with compatible property),
-> > > the existing code would work correctly. And since the flag is relevant
-> > > only in this file, it's easy to keep it correct. I'd just leave it as
-> > > is.
+> > In the patch ("drm/panel-simple-edp: Split eDP panels out of
+> > panel-simple") we split the PANEL_SIMPLE driver in 2. By default let's
+> > give everyone who had the old driver enabled the new driver too. If
+> > folks want to opt-out of one or the other they always can later.
 > >
-> > Sorry, but that just sounds lazy to me, I am sure we can do better.
-> > The current code and the name of the flag is confusing, at least to me
-> > (and I bet to others as well).
-> >
-> > Moreover, I don't quite understand your objections to changing this.
-> > Why leave this to be inconsistent when it can be easily fixed?
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 >
-> If you feel so strong about it, go for it. No strong objections. Just
-> double check the refcounts are done correctly.
+> Isn't this a case where the new option should just have had the old
+> option as the default value to avoid this kind of churn and possibly
+> broken platforms?
 
-The refcounts should be okay, I think.
+I'm happy to go either way. I guess I didn't do that originally
+because logically there's not any reason to link the two drivers going
+forward. Said another way, someone enabling the "simple panel" driver
+for non-eDP panels wouldn't expect that the "simple panel" driver for
+DP panels would also get enabled by default. They really have nothing
+to do with one another. Enabling by default for something like this
+also seems like it would lead to bloat. I could have sworn that
+periodically people get yelled at for marking drivers on by default
+when it doesn't make sense.
 
-I am fine with either of the two suggestions I have made. But another
-option could be to come up with an alternative name (and a
-description) for the flag, instead of "optional_con_dev", if you
-perhaps have a better suggestion?
+...that being said, I'm happy to change the default as you suggest.
+Just let me know.
 
->
-> -Saravana
-
-Kind regards
-Uffe
+-Doug
