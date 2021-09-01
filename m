@@ -2,143 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EF493FE498
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 23:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7CF3FE4E9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 23:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245070AbhIAVNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 17:13:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39220 "EHLO
+        id S1343664AbhIAV2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 17:28:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243869AbhIAVNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 17:13:09 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAB2C0613D9
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 14:12:12 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id 2so824467pfo.8
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 14:12:12 -0700 (PDT)
+        with ESMTP id S244015AbhIAV2O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 17:28:14 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE521C061757
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 14:27:16 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id c8so1985088lfi.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 14:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20150623.gappssmtp.com; s=20150623;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=NmD6NfZ4ntJSAzZVeHzGwx+9LMKE03Sdt9CwYbMKD7Y=;
-        b=rrRU0L93Wl3dd/9llX/ZnoKYuGFSdDWKG1uN8Gv1fFTegETF12B23Ag/5WGRKWIWau
-         O8EFhntrOcOx6d3AuhaU2V/BjDQCb3DDLPHbovVi9M84wf1HCPIfdTV3Ba9ZKbS4IcCZ
-         6YwnCs8Zp7jc6H4EJrtjsZ2KLjXqnLzng7NRbloC/ZV8ZeG9KOkOWoMxlnk4mkCW/ld7
-         KBqQbYocAZvotTNrQotqhaBCSrQ83H2JX/t6VU/1//LmZ3sJZKp0o6j2aD3IYvNDDn9D
-         MVfd+v7Ryf93lGSGYO8a9PhqJoN1GODF+EVDV18LG2HXaHV9nfFd6fumgo4HVnFq9yqu
-         0N1g==
+        bh=kp1zZ8oUcZ6p8ZISnr0CfDT7SbmamrRkIp/MXGOiwqw=;
+        b=uPkzSwtV0JCTtIeTfxOsy6gZjHoRBQvkjnf01PQsw4jqyCf5LwtG+3iHWbW6KEH2Yv
+         WYFmanWj8ia18DAfha3fhlfSt7hvhLwNjW0re/0++RVDYgKp+UCJnFiwnYWpdm0vIz9o
+         JGd14R96vucstjy663XgvEB7+goauNT++cuAmUlMQKnqsVVQdhpd7ZG+zo75FCEEozDg
+         n+fvHpWHGvncvrrMAdawqgVr+z7PojFv5Wa7gllRnO/r7mMqX5Lav/GvmhnyqIZxd+e0
+         4bpneRcGtzw/k8Imht0YP5gcB6JpjVXl3UzzbtF8IAgZhIfpW8Rr9bsqfOdKYPy/w8hP
+         tGNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NmD6NfZ4ntJSAzZVeHzGwx+9LMKE03Sdt9CwYbMKD7Y=;
-        b=MMaEFJ2jBG0fTxGCqG88BYKL0MIteo1V5dUVGyc3NoYL/q+c6uuLg2rQKXL0JTFpWs
-         TZZx8AAjxIKeVG6jN0+d6wXD/MSldBe42Dcv/UwgbXfzaaHk4GhnveYKDZG5pMabBFQc
-         vk4A5I+lsl+vH+hqMPrp2UTLHdvr20iNbKlZSkSrPIfpiAepAlDBbtt/nq/KzMrA7XeH
-         Le5xQwTjSST5rNgAzFtsNQPZ4WeOkpUp3Sq/eIjhmljVaTzdI1/PLYjU8oCyT6szMoqx
-         U7FqbFepUg/TPH/JXMijL8Z8B5v31ru5aSyzTlWTwo3kfD/kIX6Tw4TEa8zbKFtpDFas
-         2xkw==
-X-Gm-Message-State: AOAM532dDuIwdn/lXv/21gLOSyVRV2p5gxG4fM2cva79PPEIbZS4OuC3
-        /heg1qDJ2+9XTCB/lmWRY5JEUoKmrlyTJqE5O8epcg==
-X-Google-Smtp-Source: ABdhPJylbGieillP4v3Sou9GfiOafHmfSdD7JjHyJBYaAf+EOtB7ue7nViFrVdrgxVrSReapdfqxB6ae0ZGRSPj/Qs0=
-X-Received: by 2002:a65:44c4:: with SMTP id g4mr981021pgs.254.1630530731360;
- Wed, 01 Sep 2021 14:12:11 -0700 (PDT)
+        bh=kp1zZ8oUcZ6p8ZISnr0CfDT7SbmamrRkIp/MXGOiwqw=;
+        b=GrKbAl2g/dy2BC5M+xEKBIJVn1z4vzTSdDqqAh6iECaJMcKJ9SkpyfaYgwF/Ep5uRX
+         DhLzhfASM4y9dOiIboYfUy+7vYnAqgMnm0hU1/Ni9try+V4j+g7JgPwK1hIVKZDUf/gg
+         VQP6GoQLRBFlzDXKT9VLEubfJ+FdgpUP9Tf2cYvxtMguuv0Iv31Eh2PxOjU5CRlhQ5NM
+         jbyTwJndr7oIak6hHW2HH5z9g9FyCE63V8gmfBsks04ZuNueygk57EiQxRfblbD4PE9f
+         A25quBu7WMXD+yFQTKizxflbhtdEfHfreTLJXnslKKojcU/wQ5aOVYgoTiNyGMMr7v+J
+         9Wdw==
+X-Gm-Message-State: AOAM532Xsxv4bxKKYehs+G3EIjXrl+pbccPeMnwVFnms8hTZeOv1XNO3
+        PoyeRGBknMlnBzOjYeqLSwOpiHCItzW9PdwHzdOjcg==
+X-Google-Smtp-Source: ABdhPJw6FqjnM+BwCpR6avDzqjqcq19MYWghw6oY0nCvx9HKhKNeaYI5uAgum8g7fztPINA/pBN5yZWa2g8lPJugFHI=
+X-Received: by 2002:a19:c107:: with SMTP id r7mr1096127lff.29.1630531635257;
+ Wed, 01 Sep 2021 14:27:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210901201934.1084250-1-dianders@chromium.org> <20210901131531.v3.6.I02250cd7d4799661b068bcc65849a456ed411734@changeid>
-In-Reply-To: <20210901131531.v3.6.I02250cd7d4799661b068bcc65849a456ed411734@changeid>
-From:   Olof Johansson <olof@lixom.net>
-Date:   Wed, 1 Sep 2021 14:12:00 -0700
-Message-ID: <CAOesGMjp4pscuxciHZo7br-acgbkZSdRA_mUWNpcz0OfF7zOSA@mail.gmail.com>
-Subject: Re: [PATCH v3 06/16] ARM: configs: Everyone who had PANEL_SIMPLE now
- gets PANEL_SIMPLE_EDP
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        DTML <devicetree@vger.kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Al Viro <viro@zeniv.linux.org.uk>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Arnd Bergmann <arnd@arndb.de>, Chen-Yu Tsai <wens@csie.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
+References: <20210831102125.624661-1-ulf.hansson@linaro.org>
+ <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com>
+ <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com> <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
+In-Reply-To: <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 1 Sep 2021 23:26:38 +0200
+Message-ID: <CAPDyKFranX4Yz8546C1E3Gq_ZkQi34Xb=Rxi5mPtw-s_J1QPoQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
         Dmitry Osipenko <digetx@gmail.com>,
-        Emil Velikov <emil.velikov@collabora.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kees Cook <keescook@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lionel Debieve <lionel.debieve@st.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        =?UTF-8?Q?Martin_J=C3=BCcker?= <martin.juecker@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Otavio Salvador <otavio@ossystems.com.br>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Razvan Stefanescu <razvan.stefanescu@microchip.com>,
-        Robert Richter <rric@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>, linux-sunxi@lists.linux.dev,
-        "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
-        =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 1:20 PM Douglas Anderson <dianders@chromium.org> wrote:
+On Wed, 1 Sept 2021 at 22:56, Saravana Kannan <saravanak@google.com> wrote:
 >
-> In the patch ("drm/panel-simple-edp: Split eDP panels out of
-> panel-simple") we split the PANEL_SIMPLE driver in 2. By default let's
-> give everyone who had the old driver enabled the new driver too. If
-> folks want to opt-out of one or the other they always can later.
+> On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >
+> > On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > >
+> > > > In the struct supplier_bindings the member 'node_not_dev' is described as
+> > > > "The consumer node containing the property is never a device.", but that
+> > > > doesn't match the behaviour of the code in of_link_property().
+> > > >
+> > > > To make the behaviour consistent with the description, let's rename the
+> > > > member to "optional_con_dev" and clarify the corresponding comment.
+> > > >
+> > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > > ---
+> > > >  drivers/of/property.c | 9 +++++----
+> > > >  1 file changed, 5 insertions(+), 4 deletions(-)
+> > > >
+> > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > index 6c028632f425..2babb1807228 100644
+> > > > --- a/drivers/of/property.c
+> > > > +++ b/drivers/of/property.c
+> > > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
+> > > >   * @parse_prop.index: For properties holding a list of phandles, this is the
+> > > >   *                   index into the list
+> > > >   * @optional: Describes whether a supplier is mandatory or not
+> > > > - * @node_not_dev: The consumer node containing the property is never a device.
+> > > > + * @optional_con_dev: The consumer node containing the property may not be a
+> > > > + *                   device, then try finding one from an ancestor node.
+> > >
+> > > Nak. This flag is not about "may not be". This is explicitly for
+> > > "never a device". It has to do with stuff like remote-endpoint which
+> > > is never listed under the root node of the device node. Your
+> > > documentation change is changing the meaning of the flag.
+> >
+> > Okay, fair enough.
+> >
+> > Although, as stated in the commit message this isn't the way code
+> > behaves. Shouldn't we at least make the behaviour consistent with the
+> > description of the 'node_not_dev' flag?
 >
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> I know what you mean, but if you use the flag correctly (where the
+> phandle pointed to will never be a device with compatible property),
+> the existing code would work correctly. And since the flag is relevant
+> only in this file, it's easy to keep it correct. I'd just leave it as
+> is.
 
-Isn't this a case where the new option should just have had the old
-option as the default value to avoid this kind of churn and possibly
-broken platforms?
+Sorry, but that just sounds lazy to me, I am sure we can do better.
+The current code and the name of the flag is confusing, at least to me
+(and I bet to others as well).
 
+Moreover, I don't quite understand your objections to changing this.
+Why leave this to be inconsistent when it can be easily fixed?
 
--Olof
+>
+> -Saravana
+
+Kind regards
+Uffe
+
+>
+>
+> >
+> > Along the lines of the below patch then?
+> >
+> > From: Ulf Hansson <ulf.hansson@linaro.org>
+> > Date: Wed, 1 Sep 2021 09:28:03 +0200
+> > Subject: [PATCH] of: property: fw_devlink: Fixup behaviour when 'node_not_dev'
+> >  is set
+> >
+> > In the struct supplier_bindings the member 'node_not_dev' is described as
+> > "The consumer node containing the property is never a device.", but that is
+> > inconsistent with the behaviour of the code in of_link_property(), as it
+> > calls of_get_compat_node() that starts parsing for a compatible property,
+> > starting from the node it gets passed to it.
+> >
+> > Make the behaviour consistent with the description of the 'node_not_dev'
+> > flag, by passing the parent node to of_get_compat_node() instead.
+> >
+> > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > ---
+> >  drivers/of/property.c | 13 ++++++++++++-
+> >  1 file changed, 12 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index 6c028632f425..16ee017884b8 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1075,6 +1075,17 @@ static struct device_node
+> > *of_get_compat_node(struct device_node *np)
+> >         return np;
+> >  }
+> >
+> > +static struct device_node *of_get_compat_node_parent(struct device_node *np)
+> > +{
+> > +       struct device_node *parent, *node;
+> > +
+> > +       parent = of_get_parent(np);
+> > +       node = of_get_compat_node(parent);
+> > +       of_node_put(parent);
+> > +
+> > +       return node;
+> > +}
+> > +
+> >  /**
+> >   * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
+> >   * @con_np: consumer device tree node
+> > @@ -1416,7 +1427,7 @@ static int of_link_property(struct device_node
+> > *con_np, const char *prop_name)
+> >                         struct device_node *con_dev_np;
+> >
+> >                         con_dev_np = s->node_not_dev
+> > -                                       ? of_get_compat_node(con_np)
+> > +                                       ? of_get_compat_node_parent(con_np)
+> >                                         : of_node_get(con_np);
+> >                         matched = true;
+> >                         i++;
+> > --
+> > 2.25.1
+> >
+> > [...]
+> >
+> > Kind regards
+> > Uffe
