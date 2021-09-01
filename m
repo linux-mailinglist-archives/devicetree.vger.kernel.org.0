@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 866363FD935
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 14:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 939133FD945
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 14:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243907AbhIAMHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 08:07:19 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:34574 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243892AbhIAMHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 08:07:19 -0400
-Received: by mail-oi1-f176.google.com with SMTP id p2so3472584oif.1;
-        Wed, 01 Sep 2021 05:06:22 -0700 (PDT)
+        id S243961AbhIAMLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 08:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53290 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243892AbhIAMLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 08:11:36 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E766AC061760
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 05:10:39 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id 4so1283484qvp.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 05:10:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=E6mpPb7f1F5lRhxBylDSrTxeNwkSOwBfhFK+8t8tMzw=;
+        b=BHE1z2l1fRN7EaJh7wRMCoKvitxbmB5ICi1ZNqQc7um4oCx7DlDTvNyfopK5hpzqaO
+         kr4m9UCAC7EBe0KV5fxUY4t64yS6gZeqqiUtYbMe2aP8WcOMVCN/eHfKOaKjsWvduy21
+         pqnnlGzao3sUSPumfpjlX4FC/ERhiUvjYaeYo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=M3T4yrG7zQ/orfLEy+dtJ3O+/bOtwc3PAJxag5037YY=;
-        b=Y94kWbvkLYdY2bRatqcp5WgSdza4ADOnN2HbXfw9djkizzbZhtafVNZ0KLLO1thxPk
-         y0ZVEAxKhNEg77WfM06MzkbeFEe005i28NyFYjoNs3fKkZpcVXPDWJc+DEpVwckP36HW
-         txgPYvqa1pMPQlMC7pfnqQWeAfEIDEGudrU5CBuECjfuwtv/cEKMqSRZiCQole/FQwoX
-         kmQDjgqRZvARQDv9A5vgqXb/LoBVm5UUtf8I6aKY4UdDkofWqbSe4BBwFVxRUr9kDorM
-         DTDu4pcNZmoIbcvuc0cKi5v/98CFOHL2Fmt0ENirMJOtxKebU9saYSEnOriq1nHTVUXk
-         bfiA==
-X-Gm-Message-State: AOAM5304JisrW6rXQ7UAfHtS6W/m4J90iNMtba3okjZcN+Oji1O2HFQt
-        /Q6B0VErHazK+iWbBwgUWQ==
-X-Google-Smtp-Source: ABdhPJwunR5Oi9U858lSr+FGBBEaPHCwSaIHZ8qexSKC4A6YcEqQPvtO7EN46LQRqXcwBNS1fp/c0Q==
-X-Received: by 2002:aca:b80b:: with SMTP id i11mr6967474oif.26.1630497982327;
-        Wed, 01 Sep 2021 05:06:22 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v29sm4314843ooe.31.2021.09.01.05.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Sep 2021 05:06:21 -0700 (PDT)
-Received: (nullmailer pid 1876487 invoked by uid 1000);
-        Wed, 01 Sep 2021 12:06:19 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, Maxime Ripard <mripard@kernel.org>
-In-Reply-To: <20210901053951.60952-2-samuel@sholland.org>
-References: <20210901053951.60952-1-samuel@sholland.org> <20210901053951.60952-2-samuel@sholland.org>
-Subject: Re: [RFC PATCH 1/7] dt-bindings: rtc: sun6i: Add H616 and R329 compatibles
-Date:   Wed, 01 Sep 2021 07:06:19 -0500
-Message-Id: <1630497979.405519.1876486.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=E6mpPb7f1F5lRhxBylDSrTxeNwkSOwBfhFK+8t8tMzw=;
+        b=bIw12IMLh6AqUZkBlho48XJy/5LTSbzyQBzR0yC5Du8lcyCnE2J63LUXE2cigznxjI
+         GsNx3U5vci8Ez8mLLBLA8dp0asHn7U+bPib6T5p8eMhnp2pnU7tl6mBS5qk+9UXc7yXA
+         5RC0uM6T8pCjtXnLQxYIzXTytmIsM5E4aR30/MqNz0YZjgkwpGHywme2jvGYnbgnDF9u
+         5QuR5viPEylXfBcRY+sI02/V8kKsX/nJ9a3CQAsnL3+ZOsAoqHhfBLqMhQ2dDiXzUncS
+         e99CSB+N2of44+PCzuRzykEg5YmcMOH5qmhmI+PONO55aUniXVil6CV5jQJd1MR9wfG3
+         voFg==
+X-Gm-Message-State: AOAM533p07igvg3l/nWMszpSfwuJo6v3LWcCKCK/039Ub86mPJ/v8ur+
+        TjL9Oypeq4aHGIaeqTgeRkfItw==
+X-Google-Smtp-Source: ABdhPJxZzPG7g1NG+QtKrYFzSmQZsRjmjAd2zx8sxBisMRLQ3u5vqpMgQtbaJ3qi9PG3ud+ZNyREvw==
+X-Received: by 2002:a05:6214:23c6:: with SMTP id hr6mr33866970qvb.22.1630498239096;
+        Wed, 01 Sep 2021 05:10:39 -0700 (PDT)
+Received: from bill-the-cat (2603-6081-7b01-cbda-c0de-1187-e67f-31d5.res6.spectrum.com. [2603:6081:7b01:cbda:c0de:1187:e67f:31d5])
+        by smtp.gmail.com with ESMTPSA id b7sm10466668qtt.12.2021.09.01.05.10.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 01 Sep 2021 05:10:38 -0700 (PDT)
+Date:   Wed, 1 Sep 2021 08:10:36 -0400
+From:   Tom Rini <trini@konsulko.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Mailing List <devicetree-spec@vger.kernel.org>
+Subject: Re: [PATCH v2 05/52] dt-bindings: Convert Reserved Memory binding to
+ a schema
+Message-ID: <20210901121036.GY858@bill-the-cat>
+References: <20210901091852.479202-1-maxime@cerno.tech>
+ <20210901091852.479202-6-maxime@cerno.tech>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210901091852.479202-6-maxime@cerno.tech>
+X-Clacks-Overhead: GNU Terry Pratchett
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 00:39:45 -0500, Samuel Holland wrote:
-> For these new SoCs, start requiring a complete list of input clocks.
+On Wed, Sep 01, 2021 at 11:18:05AM +0200, Maxime Ripard wrote:
+
+> The Reserved Memory mechanism is supported by Linux thanks to its device
+> tree binding.
 > 
-> For H616, this means bus, hosc, and pll-32k. For R329, this means ahb,
-> bus, and hosc; and optionally ext-osc32k.
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
 > 
-> I'm not sure how to best represent this in the binding...
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml | 55 +++++++++++++++++--
->  include/dt-bindings/clock/sun50i-rtc.h        | 12 ++++
->  2 files changed, 61 insertions(+), 6 deletions(-)
->  create mode 100644 include/dt-bindings/clock/sun50i-rtc.h
-> 
+> Cc: Mailing List <devicetree-spec@vger.kernel.org>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Minor request.  As device tree bindings are used and valid and
+applicable outside of Linux, it shouldn't be mentioned in the commit
+message either.  This binding is just as valid for U-Boot, FreeBSD, etc
+as it is for Linux :)  Thanks!
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 33, in check_doc
-    for error in sorted(dtschema.DTValidator.iter_schema_errors(testtree), key=lambda e: e.linecol):
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 723, in iter_schema_errors
-    cls(meta_schema).annotate_error(error, meta_schema, error.schema_path)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 706, in annotate_error
-    schema = schema[p]
-KeyError: 'properties'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml: ignoring, error in schema: allOf: 5: if: properties
-warning: no schema found in file: ./Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.example.dt.yaml:0:0: /example-0/rtc@1f00000: failed to match any schema with compatible: ['allwinner,sun6i-a31-rtc']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1522863
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Tom
