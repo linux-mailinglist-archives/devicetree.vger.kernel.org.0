@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0583FD0CE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 03:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61CE33FD0D2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 03:38:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241334AbhIABio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 Aug 2021 21:38:44 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:46702 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241332AbhIABin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 21:38:43 -0400
-Received: by mail-ot1-f45.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso1558455ott.13;
-        Tue, 31 Aug 2021 18:37:47 -0700 (PDT)
+        id S241671AbhIABji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 Aug 2021 21:39:38 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:46045 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241662AbhIABje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 Aug 2021 21:39:34 -0400
+Received: by mail-oi1-f177.google.com with SMTP id q39so1696732oiw.12;
+        Tue, 31 Aug 2021 18:38:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jGxTqbfDK0eZLNHxAFg+vD5OYnXqeBA60ZAkZk7bA7M=;
-        b=ovQnVfWKtx4dFswuuqQDZu2mdX4R3rw6p3Q/uvFwnPrXC0oMTWL23fXDTLdrFaaIbO
-         DmT69wK77sJ9DtrDTkSTmLanDVCc9B51ipd96J7t1pgTfIeKr4XHhZvA+eiW8J92dZEl
-         837+8gtwZoKb9Sc7DbEJIAgdjTAlkKWzYs4CUeg4RRMqI+iSsxz+fMHn6Av8QUXnLH12
-         3+fzm6DSru4CCXlitTJth6wXad7cY59yaWQ1u+UkzlDP9gi6YO3wi6pqKDNhgXcSdRtT
-         OdDc/fhbxKjrqcR2TPAl4nZT7mRqmHXL7zClPHGJ9zjg68BrEBbNRuunNiU3pIsxgSxK
-         VjHw==
-X-Gm-Message-State: AOAM530JMoqoXH8IG97qdKCexOn0VQu2128aygAkiZDizo8iEdhCWIrU
-        OF5eeRan1VpcAXc7Z37NGg==
-X-Google-Smtp-Source: ABdhPJz+wfrj36iFqzGxGHUFsresakzzQ89/8vgwK+O+YhNqn0CXgf/jFzwWThp3Ttthd6TyTJGXrw==
-X-Received: by 2002:a9d:6e81:: with SMTP id a1mr27074700otr.248.1630460267449;
-        Tue, 31 Aug 2021 18:37:47 -0700 (PDT)
+        bh=KkTvXd/OXCPZFirPQZmYlHm/KbbHKoDGKpXR0196NUM=;
+        b=s8XSOCPX0X2EQXy9vYrzX+1lPvuBbX5sgHI7+9BPiJxvRDaCroDQPxc8WqXRPsaed/
+         53/z3N8mzzwMCZbImvxyASOiUhYLm+Cgfs9/lzrdqIVR/0e/7iOeKLOsciOR/ikUGV/x
+         5orzJJklKnhoYNO+GUGYkJZqAR/G06kR+oKDU8ynLYhE1EtvNVZ1gXlHgwKk/alDuRIs
+         TNASERxrVVvftYRpJwOBBYZUt54cm0QQ+AHmozAVh17eVmDscHBRKcSW2NqPEqmW+7sy
+         2dFZL30ZJ/KS6nK4d6HED7+L0eZj6ZCgPy9TMyQs1c3c9dkuvORMdff7yH++x7dOTdIY
+         QZ4Q==
+X-Gm-Message-State: AOAM5327ViM2XVaU2rgVZmG0TXGCSVJ7C0JnZv1I7Ojx0sPgu3Ezb08s
+        tGHOCCypIUy5BB9DpB72Rg==
+X-Google-Smtp-Source: ABdhPJw8XN6RFsEE8lVBAG5RX6KeqUwC9q/4Uz5cvep/tRytpYwCGBe1ZDT+bYShKYR2qxjwSiSDEA==
+X-Received: by 2002:a05:6808:aa8:: with SMTP id r8mr5536583oij.171.1630460317663;
+        Tue, 31 Aug 2021 18:38:37 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b28sm4109859oob.4.2021.08.31.18.37.46
+        by smtp.gmail.com with ESMTPSA id s206sm3953218oif.44.2021.08.31.18.38.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Aug 2021 18:37:46 -0700 (PDT)
-Received: (nullmailer pid 1008126 invoked by uid 1000);
-        Wed, 01 Sep 2021 01:37:45 -0000
-Date:   Tue, 31 Aug 2021 20:37:45 -0500
+        Tue, 31 Aug 2021 18:38:37 -0700 (PDT)
+Received: (nullmailer pid 1009336 invoked by uid 1000);
+        Wed, 01 Sep 2021 01:38:36 -0000
+Date:   Tue, 31 Aug 2021 20:38:36 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Jack Pham <jackp@codeaurora.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: usb: dwc3: add reference clock period
-Message-ID: <YS7ZafoBpPC/+j2k@robh.at.kernel.org>
-References: <f5ea5bc3664a98a684ad4b699a1ac610e847176f.1630389452.git.baruch@tkos.co.il>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     robh+dt@kernel.org, linux-aspeed@lists.ozlabs.org,
+        p.zabel@pengutronix.de, pmeerw@pmeerw.net, lars@metafoo.de,
+        linux-iio@vger.kernel.org, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jic23@kernel.org, andrew@aj.id.au, joel@jms.id.au,
+        devicetree@vger.kernel.org, BMC-SW@aspeedtech.com,
+        lgirdwood@gmail.com
+Subject: Re: [v5 02/15] dt-bindings: iio: adc: Add ast2600-adc bindings
+Message-ID: <YS7ZnG05pZvfA/7m@robh.at.kernel.org>
+References: <20210831071458.2334-1-billy_tsai@aspeedtech.com>
+ <20210831071458.2334-3-billy_tsai@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f5ea5bc3664a98a684ad4b699a1ac610e847176f.1630389452.git.baruch@tkos.co.il>
+In-Reply-To: <20210831071458.2334-3-billy_tsai@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Aug 2021 08:57:29 +0300, Baruch Siach wrote:
-> Document the snps,ref-clock-period-ns property that describes reference
-> clock period when it deviates from the default set value.
+On Tue, 31 Aug 2021 15:14:45 +0800, Billy Tsai wrote:
+> Add device tree bindings document for the aspeed ast2600 adc device
+> driver.
 > 
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 > ---
-> v2:
-> 
-> Address comments from Rob Herring:
-> 
->   Use standard unit suffix
-> 
->   Reword description
-> ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../bindings/iio/adc/aspeed,ast2600-adc.yaml  | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed,ast2600-adc.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
