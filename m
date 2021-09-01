@@ -2,64 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A783FDF45
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 18:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E383FDF54
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 18:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbhIAQDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 12:03:06 -0400
-Received: from mail.bugwerft.de ([46.23.86.59]:37100 "EHLO mail.bugwerft.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230404AbhIAQDG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 12:03:06 -0400
-Received: from [172.18.79.212] (unknown [46.183.103.17])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id C653132D3FA;
-        Wed,  1 Sep 2021 16:02:03 +0000 (UTC)
-Subject: Re: [PATCH v9 0/2] gpu: drm: add driver for ili9361 panel
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20210901103040.1419706-1-daniel@zonque.org>
- <YS+MOZkE82ar827n@ravnborg.org>
+        id S245425AbhIAQHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 12:07:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245211AbhIAQGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 12:06:38 -0400
+Received: from mail.bugwerft.de (mail.bugwerft.de [IPv6:2a03:6000:1011::59])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E5BEDC061575
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 09:05:41 -0700 (PDT)
+Received: from hq-00021.. (unknown [46.183.103.17])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id 5D00532D3FA;
+        Wed,  1 Sep 2021 16:03:58 +0000 (UTC)
 From:   Daniel Mack <daniel@zonque.org>
-Message-ID: <bf7df40f-0748-bad4-df51-75b2c39faccc@zonque.org>
-Date:   Wed, 1 Sep 2021 18:01:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+To:     airlied@linux.ie, daniel@ffwll.ch
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Daniel Mack <daniel@zonque.org>
+Subject: [PATCH v10 0/2] gpu: drm: add driver for ili9361 panel
+Date:   Wed,  1 Sep 2021 18:03:27 +0200
+Message-Id: <20210901160329.1519656-1-daniel@zonque.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <YS+MOZkE82ar827n@ravnborg.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+This is v10 of the series.
 
-On 9/1/21 4:20 PM, Sam Ravnborg wrote:
-> Hi Daniel,
-> 
-> On Wed, Sep 01, 2021 at 12:30:38PM +0200, Daniel Mack wrote:
->> This is v9 of the series.
->>
->> Changelog:
->>
->> v2 -> v3:
->> 	* Turn Documentation into yaml format
-> 
-> ...
-> 
->> Daniel Mack (2):
->>   dt-bindings: display: add bindings for newhaven,1.8-128160EF
->>   drm/tiny: add driver for newhaven,1.8-128160EF
->>
->>  .../bindings/display/ilitek,ili9163.txt       |  27 +++
-> 
-> Despite the changelog the patch contains a .txt file.
-> Did you push the right patchset?
+Changelog:
 
-Meh, you're right. Something went wrong in the rebase.
-Thanks for spotting this! Will send a v10 in a minute!
+v2 -> v3:
+	* Turn Documentation into yaml format
 
+v3 -> v4:
+	* Fix reference error in yaml file
 
-Daniel
+v4 -> v5:
+	* More yaml file documentation fixes
+
+v5 -> v6:
+	* More yaml file documentation fixes
+
+v6 -> v7:
+	* Fix ordering of patches
+
+v7 -> v8:
+	* More yaml file documentation fixes
+
+v8 -> v9:
+	* Addressed some minor issues pointed out by Thomas Zimmermann
+	* Rebased
+
+v9 -> v10:
+	* Re-apply the yaml file in favour of the txt file
+
+Daniel Mack (2):
+  dt-bindings: display: add bindings for newhaven,1.8-128160EF
+  drm/tiny: add driver for newhaven,1.8-128160EF
+
+ .../display/panel/ilitek,ili9163.yaml         |  69 ++++++
+ drivers/gpu/drm/tiny/Kconfig                  |  13 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/ili9163.c                | 224 ++++++++++++++++++
+ 4 files changed, 307 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9163.yaml
+ create mode 100644 drivers/gpu/drm/tiny/ili9163.c
+
+-- 
+2.31.1
+
