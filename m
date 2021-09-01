@@ -2,128 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EEFC3FD430
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 09:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B85C3FD43B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 09:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242414AbhIAHIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 03:08:07 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:40143 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242416AbhIAHIG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 03:08:06 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630480030; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=L22obe0p898qJXX0hILjMKUiF4qgcHKEEeB63dfBMRY=;
- b=VQV7wCh7GHSH8tkOACP4+Rv65GBOEGm+65c3e9U7I6j3Qqe08tafA8XueXa2kNZq59NXr+qu
- jp2oVvSKpSO/Q8Zmd+5fh03/lFN1jGrWnpWVJREF8rMVqlO6Yf5ncf6fjcDmYBPIh332ts5F
- YaOYpDJx9h25foILCVQ3bTqNz2o=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 612f26924d644b7d1c412265 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 01 Sep 2021 07:06:58
- GMT
-Sender: rajpat=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 912D8C4360C; Wed,  1 Sep 2021 07:06:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rajpat)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C4F5CC4338F;
-        Wed,  1 Sep 2021 07:06:57 +0000 (UTC)
+        id S242481AbhIAHKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 03:10:48 -0400
+Received: from mail-eopbgr1320108.outbound.protection.outlook.com ([40.107.132.108]:26688
+        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S242452AbhIAHKs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Sep 2021 03:10:48 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bu/fhyeHMV6TvNQ6vSu7Lr2b3EktOJlA2JpX+gSwRtasbyFqcrDxp9y1K9543SutxegZbMj6bSFB/YqBslmW11bWnDfFA7qPQqIscUju/t4kBUHLl2QmbGaQornTa8ggsD7+DNOuoc2oRJLjZ5zWvyNFcqPBMbDTR6Wj50b1j98ZpNXICTlMNMu/1hd97MSYqjFE3pNACcVEYb6FiP3LKW9BeCZAmJR91k4WPZIg/ZtvrTW+eTRdBLE683/pv8kKL3/ZhsKaNW+HrjFWOS0MYOzDcMqzitwhwd7+VBOsipfVW1y4qyWv73fTfOLJ8TVLazS7l+zsEExCUEP5rbuEsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V9VL9lbmNet5ZlExhRyj/BifmT3ykC1NZsPHb6bhrUI=;
+ b=KDh2Pqc9AdBv+bmTfMY5nHxpQCsNkfUx5xMq6aDwiVs/072CYH0WU7Vve07HbVgKyFmSW6ZLSNHvA6BjqDVCdvwCkdSh3t+Sgyn/VggNuhWpMUnajTrIZBwKuIX56VSoWfSgDlbexZkAOn4pTmpw3Uad0BIImJ7wMNKXKSum0PTiM5DcMJtwDKluc4D2niB5wuHn4OccnAZ04OFvdDzFWYcro1qqopKjJhZ7v9ZynyiCKi8DVFRXrS4x80ft7MhWvGDkZHmxOErqjt2MVaD93NmFkA5wVPQIiH5IC1C1w3aCgQu1hUPq6YOgearGWyC6VTtQ/V0WyyoQpJZg69cZoQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V9VL9lbmNet5ZlExhRyj/BifmT3ykC1NZsPHb6bhrUI=;
+ b=A/a0c68kxTVThb8NoKtsXM5OwUy5IHMQjbXn6yUcVipUkvMrjdg8731UuRD+ewb7Q+ERl3VZLuAxn2rc10lIpOlv5BcYiCMgppe5dJ7Hp/4vOBQLnuL4r9yxz5T2Jp2GkIGZg5oGM8bJVLnrB1p+b3+Rpn5E9bbCkS14RTTIqzCyY5nzZdri7ppmJbROz9ZS7zgMnbzJBpex52SjIT14Wz8gdzwNWY2oLJ7SXuXZPNYgccPlzVazeVNxkwMGgawXQDUsGZYtcKIA5EF81nxAVNqFMuvfRNC8NF1rs0aspsCXkUy+HtSdsqKk+xT187RWzPQaPMZIckTnTfzQZyjIrA==
+Received: from KL1PR0601MB3781.apcprd06.prod.outlook.com
+ (2603:1096:820:11::14) by KL1PR0601MB3829.apcprd06.prod.outlook.com
+ (2603:1096:820:19::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.24; Wed, 1 Sep
+ 2021 07:09:46 +0000
+Received: from KL1PR0601MB3781.apcprd06.prod.outlook.com
+ ([fe80::7c94:f1d7:7cc:5da2]) by KL1PR0601MB3781.apcprd06.prod.outlook.com
+ ([fe80::7c94:f1d7:7cc:5da2%3]) with mapi id 15.20.4478.019; Wed, 1 Sep 2021
+ 07:09:46 +0000
+From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
+To:     Joel Stanley <joel@jms.id.au>,
+        John Wang <wangzhiqiang.bj@bytedance.com>,
+        Lei YU <yulei.sh@bytedance.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        Oskar Senft <osk@google.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Subject: RE: [PATCH 0/2] arm: aspeed: Add LPC uart routing support
+Thread-Topic: [PATCH 0/2] arm: aspeed: Add LPC uart routing support
+Thread-Index: AQHXnvnvJt1quWOa206kT6fZPr2rrquOwRYAgAAAkgA=
+Date:   Wed, 1 Sep 2021 07:09:46 +0000
+Message-ID: <KL1PR0601MB37810C5AB662895C0C716C8391CD9@KL1PR0601MB3781.apcprd06.prod.outlook.com>
+References: <20210901062216.32675-1-chiawei_wang@aspeedtech.com>
+ <CACPK8XfeU0+w03fgYxXVMVYOW-2woXQtUZ4FEDri3MSe+80_Wg@mail.gmail.com>
+In-Reply-To: <CACPK8XfeU0+w03fgYxXVMVYOW-2woXQtUZ4FEDri3MSe+80_Wg@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: jms.id.au; dkim=none (message not signed)
+ header.d=none;jms.id.au; dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6921d5b2-d7a5-41db-21a1-08d96d177b28
+x-ms-traffictypediagnostic: KL1PR0601MB3829:
+x-microsoft-antispam-prvs: <KL1PR0601MB3829FC0C8469D75B4EDA185A91CD9@KL1PR0601MB3829.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zVGucEPA001thiCtApNkirJKNpb6aK2j4d7FHo2WwayS9Un/FNXb0w+oeOFBCDz1eQPxQ+lVseycIxlu6X7fY+Qt8gTUlxEO8elmzJ4vVvX93otxieReE+vjfwb3nYOibaF7KuP9xmqSY3x2YTj/x3qns2oNU0nnzT/eZokK36Gx14hOykLknNayCOSEqS1PjJT83L5l2rnfY/3rN3ZMgRKoE49HRjFyaPSHdC547r9TqdMInNBSUdd626t2Ps8zDeyK2RSeVLPStMKxoNoOAWXgGokeNrK/gCF7InbaaudjQL4fUMGvKfgoI6tG5ipzcqHPrqrke7vuzTvGJTIzL/43VNLIcYcAQs6qOVVPD4UjshY87w9EX+oICuR5GW/OEqdWMnJLS4/uiQvBstze1FR+0SFhNXdt14fZN2cb2Pv+47XHswPhyJalvu2qS4341x+7dhPlJfQ2Ev+RtFGKdaYbZYIieeBxMtEIZZbG1zuDyK+lvQUeB17kSYYKEDOiRDHiWlBZrawsKT3LYbJf80g+TTCya86lG80edZoEj77nTSciJIBJc3xIvDlYXOqE9HwKP9Bl2penmqtMgj8AFfJSF1wPusx7JSdFud47Yi7pVapHOENXZAuCKyoFy2XHMn0KJthNG7+b1lCAvxXg2rR5Kjzg3uSynfvBlDFx3l9sWVzL2peoSf8TCOjd9K0grQ95wHHCJOfjHRNai1I2fA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR0601MB3781.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39840400004)(366004)(396003)(346002)(376002)(64756008)(38100700002)(83380400001)(55016002)(38070700005)(66476007)(66446008)(71200400001)(186003)(7416002)(4744005)(76116006)(66556008)(66946007)(5660300002)(52536014)(4326008)(122000001)(316002)(6506007)(8936002)(508600001)(86362001)(26005)(33656002)(8676002)(7696005)(9686003)(110136005)(54906003)(2906002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WTZ4bkJuaHQxSE5RTmZGOTFPTFBrekl2a0xZU2FNMWp2QzhKOWV6U1o2OUwv?=
+ =?utf-8?B?OHVQa0FCZTlOUytuaDhYYWNSYldZT2p5eUxRZldwY092ZERNU1N3NWRrMEZ3?=
+ =?utf-8?B?VWk0TmNrbVdyZHZZb2ViYmpUN0dnN0NNdUtaUFEwL2gwWWZQaHZmazVwYmJH?=
+ =?utf-8?B?VFJXaE94WldJK1hJQVRDY1dLR3NVbytNTGEyR1Q1T0Eyb055dW5PRGxCNnZl?=
+ =?utf-8?B?VzJBYUIzRmQ0NDI2MG4wVlhrODNCNWRQU3RXNU1xK3RNT2dCc3BwVTV4QXkz?=
+ =?utf-8?B?TEpMM21XTGZzWWc0b3A4cEV6aWNFcmFZbU4yKzBaRWVMTjYrNUU0R0h3WXJB?=
+ =?utf-8?B?SWdHRVFrNkVkVGErOHRhU3ArSE9KY3N4bUFrdnJPbzRKNldNWU9ac1M2WGla?=
+ =?utf-8?B?WWpkYnMzUGVzR1QyMUhGUmdKQ1FtL093bUExdFJSdkZ2NEdWcC9jOUhtMjlV?=
+ =?utf-8?B?aGhUcTZYS3lWVWdJN1hFb25nRk1zdWM3WWRlRHp3MGxvQkNUTUtZNUtLNkli?=
+ =?utf-8?B?MmE1UXI4ZWhrb051N0dWUGlINkdvelJHdzBkei9PV3pzcExma1d3ckdkbzJN?=
+ =?utf-8?B?L0Q4Y2R6Q0tPNjRGZnZhenlwOTRma1EwUXUzYndzUEtWWVpLT2hWVEJyVm5C?=
+ =?utf-8?B?L1RMRmpQalozVjZ5bmVhdWwwMVpYcU9wNEJ2VHlzYkFqaDBtRUhmSnJ0ZEJp?=
+ =?utf-8?B?eEN1T1luVTJDK09PVStGUXhVV0Y2S0RkQmNhdXdqRFUxS1FUb2tmWFlaSEdv?=
+ =?utf-8?B?ZXhCb3pxV2x1QXY3T2Q0Q2JUYnZUWjFTeDB3S1VYNlVYd3VUeWQxZG1hbUsz?=
+ =?utf-8?B?cWZnV3BFUy95RXZFbThhNFBlSHZ4VU5jSHJpUEZLbCs3VkF5bzNJeWJBa1VW?=
+ =?utf-8?B?S1RoVUZCYk50c1BBQVVlNnpkd0hNUEtMY0JZNEpFWDFtalkyeWJFaTBPakNz?=
+ =?utf-8?B?UUh5cnUxSnpSRUdlV2tXNm41VXoxT3VwdnRxTjlDaWRWWmVCRi9XRS9ROUZM?=
+ =?utf-8?B?cS9ObWhJcGQxTGppQ1g4UUZKbGhtQURjUGFFTnkycjhzREFnSTJqTmVKeHQz?=
+ =?utf-8?B?RGlabTh5SHhJcTlXcEJyMHo0alJ0V1VhMTdJcE9ObXQwaHVrQ01GNmNDU2V0?=
+ =?utf-8?B?NXlET1BZOEhhVldMT0E5dnBCWkRkdnZVeFNPSUUyUEt3RjIySStuQkFlMVFm?=
+ =?utf-8?B?NVJSWDhRUUdhMUx4dmZSVWJDekE4T0ovTVhydzVkb2xJSzM2VnN4S25NL1Bm?=
+ =?utf-8?B?V1huenBEUEhPSEtCR2daMDVUN1M3S0FUL3NPWllqV1ZxRVQ5Um1QVTBHc0Vl?=
+ =?utf-8?B?dmxMZC9SaTlROGZGNkluZGZlRWxhOGcwYTRTRVYxVWlOVEc5bC81SDZ0Wmdn?=
+ =?utf-8?B?Z3hydnJxQ01reFpSTWM2ZEx6SVhmUXEza3J6WjFZTEJKMVlRTm5Sb0c5YnFo?=
+ =?utf-8?B?V1ZnRTIwT0VCSlA2d3JxSW1CWHpFckZ0ZTRTLzBRcDFXWU9XT0dOV1hJU1lT?=
+ =?utf-8?B?NkZIQnVPMGJSMkR4SGtuclVyMy9XNkpSbGNJcXk3L1JZTURkTTVnMkRXS2pC?=
+ =?utf-8?B?Qi9JT1QvVVF2WG1ZNDUvNlhNWHYwODVicTErekFIYm1rUnJDaWNBaTVENTdv?=
+ =?utf-8?B?aU5WUkthN21WR0gwdVJvc2h1Tld5aGNJMWRBditHWndDWUE3d1ZCQ0d1c1JB?=
+ =?utf-8?B?RXU5MDdsN3VUWDBwQzJkYkZVV3d0bEc2MUoxWnZOcDF0QUErdEZRSlRkbU1u?=
+ =?utf-8?Q?gKrYDGFb+7iMkjm6W53NZCPLUT3b2/HA1rVHKnk?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 01 Sep 2021 12:36:57 +0530
-From:   rajpat@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, swboyd@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, dianders@chromium.org
-Subject: Re: [PATCH V5 3/7] arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
-In-Reply-To: <YSfwxuX22Ix4fqX2@google.com>
-References: <1628754078-29779-1-git-send-email-rajpat@codeaurora.org>
- <1628754078-29779-4-git-send-email-rajpat@codeaurora.org>
- <YRUsr6x9vqvaBB9i@google.com>
- <114d7419b0a85fcacf775cc34f279f0e@codeaurora.org>
- <YSfwxuX22Ix4fqX2@google.com>
-Message-ID: <c34a664d9f88d29013ed31e398729640@codeaurora.org>
-X-Sender: rajpat@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR0601MB3781.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6921d5b2-d7a5-41db-21a1-08d96d177b28
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2021 07:09:46.5639
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SaD3ZekqiyiO3jYM/TGlDwdmdEhSt86fHMEMuHvJSSkEvR6dUYJ9XsObEkM1zBiItCNsxgnD+DtzZXw6otHrrYsBXYEmWnUulrkDkh8YLXw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB3829
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-27 01:21, Matthias Kaehlcke wrote:
-> On Thu, Aug 26, 2021 at 06:37:02PM +0530, rajpat@codeaurora.org wrote:
->> On 2021-08-12 19:44, Matthias Kaehlcke wrote:
->> > On Thu, Aug 12, 2021 at 01:11:14PM +0530, Rajesh Patil wrote:
->> > > From: Roja Rani Yarubandi <rojay@codeaurora.org>
->> > >
->> > > Add QUPv3 wrapper_0 DT nodes for SC7280 SoC.
->> > >
->> > > Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
->> > > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
->> > > ---
->> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 720
->> > > +++++++++++++++++++++++++++++++++++
->> > >  1 file changed, 720 insertions(+)
->> > >
->> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > > b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > > index f8dd5ff..e461395 100644
->> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> > >
->> > > ...
->> > >
->> > > +			spi0: spi@980000 {
->> > > +				compatible = "qcom,geni-spi";
->> > > +				reg = <0 0x00980000 0 0x4000>;
->> > > +				clock-names = "se";
->> > > +				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
->> > > +				pinctrl-names = "default";
->> > > +				pinctrl-0 = <&qup_spi0_data_clk>, <&qup_spi0_cs>,
->> > > <&qup_spi0_cs_gpio>;
->> >
->> > What is the story behind 'qup_spiN_cs' and 'qup_spiN_cs_gpio'? Both
->> > configure
->> > the CS pin with a different function:
->> >
->> 
->> As per discussion here [1], we have split like this.
->> 
->> [1] https://lore.kernel.org/patchwork/patch/1393353/#1591826
-> 
-> IIUC that's only about having separate configs for each pin, instead of
-> groups like 'qup-spi0-default'. What you are doing above with 
-> 'qup_spi0_cs'
-> and 'qup_spi0_cs_gpio' is to configure the same pin (GPIO 3) both as 
-> SPI
-> chip select and as GPIO. Which one is it?
-> 
-> I imagine we want to have both pinctrl definitions to allow a board to
-> configure the pin either as SPI CS or GPIO. However it should be only 
-> one
-> of the two at a time, and the SoC .dtsi should provide a reasonable
-> default, which probably is SPI CS.
-> 
-
-I agree. Will remove it in next version.
-
-> Maybe I'm missing something, if so please provide details on why it is
-> necessary to have this config.
+SGkgSm9lbCwNCg0KPiBGcm9tOiBKb2VsIFN0YW5sZXkgPGpvZWxAam1zLmlkLmF1Pg0KPiBTZW50
+OiBXZWRuZXNkYXksIFNlcHRlbWJlciAxLCAyMDIxIDM6MDQgUE0NCj4gDQo+IE9uIFdlZCwgMSBT
+ZXB0IDIwMjEgYXQgMDY6MjIsIENoaWEtV2VpIFdhbmcNCj4gPGNoaWF3ZWlfd2FuZ0Bhc3BlZWR0
+ZWNoLmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBBZGQgTFBDIHVhcnQgcm91dGluZyBkcml2ZXIgYW5k
+IHRoZSBkZXZpY2UgdHJlZSBub2Rlcy4NCj4gDQo+IFRoYW5rcyBmb3Igc3VibWl0dGluZyB0aGlz
+IGRyaXZlci4gVGhlcmUgYXJlIG1hbnkgcGFydGllcyB3aG8gYXJlIGludGVyZXN0ZWQgaW4NCj4g
+dGhpcywgc28gaG9wZWZ1bGx5IHRoZXkgY2FuIHN0ZXAgZm9yd2FyZCBhbmQgcmV2aWV3Lg0KPiAN
+Cj4gSXMgdGhpcyBMUEMgVUFSVCByb3V0aW5nLCBvciBVQVJUIHJvdXRpbmcgaW4gZ2VuZXJhbD8g
+SSBrbm93IHRoZSByZWdpc3RlciB0bw0KPiBjb250cm9sIHRoZSByb3V0aW5nIGlzIGhpZGRlbiBp
+biB0aGUgTFBDIHNwYWNlLCBidXQgSSB0aG91Z2h0IGl0IHdhcyBqdXN0IGdlbmVyYWwNCj4gcm91
+dGluZy4gSSB3b3VsZCBkcm9wIHRoZSBMUEMgcGFydCBvZiB0aGUgbmFtZS4NCj4gDQo+IFlvdSBh
+bHNvIG5lZWQgdG8gdXBkYXRlIHRoZSBiaW5kaW5ncyBkb2N1bWVudCB3aXRoIHRoZSBuZXcgY29t
+cGF0aWJsZSBzdHJpbmcuDQo+IFNlbmQgYSBwYXRjaCBmb3IgRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL21mZC9hc3BlZWQtbHBjLnR4dC4NCg0KVGhhbmtzIGZvciB0aGUgZmVlZGJh
+Y2suDQoNClRoZSBVQVJUIHJvdXRpbmcgaXMgZ2VuZXJhbC4NCkkgd2lsbCBzZW5kIGEgdjIgcGF0
+Y2ggd2hpY2ggZHJvcHMgdGhlIExQQyBwYXJ0IG9mIG5hbWUuDQpBbmQgdGhlIGNvbXBhdGlibGUg
+c3RyaW5nIHdpbGwgYWxzbyBiZSB1cGRhdGVkIHRvIHRoZSBkdC1iaW5kaW5ncy4NCg0KQ2hpYXdl
+aQ0K
