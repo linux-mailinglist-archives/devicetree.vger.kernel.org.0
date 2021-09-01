@@ -2,515 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44F3D3FE325
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 21:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF38F3FE398
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbhIATgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 15:36:47 -0400
-Received: from mail-4319.protonmail.ch ([185.70.43.19]:17311 "EHLO
-        mail-4319.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230458AbhIATgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 15:36:46 -0400
-Date:   Wed, 01 Sep 2021 19:35:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1630524946;
-        bh=je+z5AZAvkj3sTUrgO8gXn1l3mlUmRGdg8rSAYnYRbY=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=GqJVwhtSjUNTAQ3aF+jd0jeopc88pFiE5DgTDmBGdvPYFFWn+zifBULIy7TpGPXLv
-         33fZjhHhDgZcDXbWB4XsvXGcTiCSBRyWi+9jZivjF4GqRWc98I/M7DT8afPRbwmf/B
-         /nI11CeFSGK2tPd54/tT7LwSqYbepOkMoCcZcvzE=
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: msm8996: xiaomi-gemini: Add support for Xiaomi Mi 5
-Message-ID: <20210901193214.250375-5-y.oudjana@protonmail.com>
-In-Reply-To: <20210901193214.250375-1-y.oudjana@protonmail.com>
-References: <20210901193214.250375-1-y.oudjana@protonmail.com>
+        id S231381AbhIAUTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 16:19:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230508AbhIAUTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:19:54 -0400
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA39C061760
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:18:57 -0700 (PDT)
+Received: by mail-il1-x136.google.com with SMTP id j15so571145ila.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:18:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AZ1XjMAUDdhdaOjhllHS/s/34iqg8yDzy0nBBqfYsfQ=;
+        b=A6XpsURIzpKrsJP6WiPru6rT+p4/MZswjBc6dccTQ5mwXJElgRdNXYVmlxh6A0xL2/
+         PuUI6E4e8Kyg8Sos0IzlyED2b7ZNR7M0HvjnWNCqZUrW5nui2BODRpDycXZxM/EmVD/U
+         dZWBDvHBeVpxcsROM/3KBJX2+b9vFseGD3PUwWo6mqBA+1lUdcKShxA99Nx750Nh3+Da
+         g28WlSdj0u4csvRlkRadotzJ8HTuW6mYD7sSLUo690dAd0j84SwZdY95LsVqfZ4ONkiT
+         dSrsxSy5/LxFv6PBB0FWxjNOXBwBifvaatAutBl9ZEQZOKk0vFZjSqpKOqKoGyDedU3D
+         /+DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AZ1XjMAUDdhdaOjhllHS/s/34iqg8yDzy0nBBqfYsfQ=;
+        b=fKpGwnwxzCdQVP3m4HtJRlbobctb40w/dZt4HC14PsPgNQxxR1+l6uneeM/std0JT+
+         bJXn+2D7xiIVeO1u+4ZWtF6U5kHGPqsOVcjUix5UU+nJs1rT9rLsowBkFpnG5WkKChwY
+         wT6q9FiIupoaU1vz3+E21+3u65n4PHyVj+Cah/AMi9I+X5mgvTEpWnXT2advu7z53uYa
+         7NPn7ZZDkQpyDZXO5xj/3Ra2VS0eQ9QaG7lYzZnXqv2/ND1xs57zwdl1QWvBR3JlM8GC
+         w+P/dMaeHyliNPq4NpnySuKPHgYXmCvtBCbHHmvoVW0CS9u7N0FOOGAaw614KyiuVrSJ
+         R78A==
+X-Gm-Message-State: AOAM532EKpVLFC95alSBPSodkBXAxFtGfIh7qcuNs8o7pfIslPriEaYR
+        V8STOoYVpErZWiKJcFUHe41jaOc2+9IgLj59BRv84sp/wphFdX39U1w=
+X-Google-Smtp-Source: ABdhPJxB1sTucsUXjS40V/3aBfU70CKJLgJEhcDEE6Aac4WSLc+jQvIQbA5RCWYtUqimds0/H7l8RcXvoTY4vbr3X9I=
+X-Received: by 2002:a92:d0cc:: with SMTP id y12mr889489ila.38.1630527536614;
+ Wed, 01 Sep 2021 13:18:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+References: <20210831193425.26193-1-gerhard@engleder-embedded.com>
+ <20210831193425.26193-4-gerhard@engleder-embedded.com> <YS6lQejOJJCATMCp@lunn.ch>
+In-Reply-To: <YS6lQejOJJCATMCp@lunn.ch>
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+Date:   Wed, 1 Sep 2021 22:18:45 +0200
+Message-ID: <CANr-f5zXWrqPxWV81CT6=4O6PoPRB0Qs0T=egJ3q8FMG16f6xw@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 3/3] tsnep: Add TSN endpoint Ethernet MAC driver
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Raffaele Tranquillini <raffaele.tranquillini@gmail.com>
+> > +static int tsnep_ethtool_set_priv_flags(struct net_device *netdev,
+> > +                                     u32 priv_flags)
+> > +{
+> > +     struct tsnep_adapter *adapter = netdev_priv(netdev);
+> > +     int retval;
+> > +
+> > +     if (priv_flags & ~TSNEP_PRIV_FLAGS)
+> > +             return -EINVAL;
+> > +
+> > +     if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
+> > +         (priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_1000))
+> > +             return -EINVAL;
+> > +
+> > +     if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
+> > +         adapter->loopback != SPEED_100) {
+> > +             if (adapter->loopback != SPEED_UNKNOWN)
+> > +                     retval = phy_loopback(adapter->phydev, false);
+> > +             else
+> > +                     retval = 0;
+> > +
+> > +             if (!retval) {
+> > +                     adapter->phydev->speed = SPEED_100;
+> > +                     adapter->phydev->duplex = DUPLEX_FULL;
+> > +                     retval = phy_loopback(adapter->phydev, true);
+>
+> This is a pretty unusual use of private flags, changing loopback at
+> runtime. ethtool --test generally does that.
+>
+> What is your use case which requires loopback in normal operation, not
+> during testing?
 
-Add a device tree for Xiaomi Mi 5 (gemini).
+Yes it is unusual. I was searching for some user space interface for loopback
+and found drivers/net/ethernet/aquantia/atlantic/aq_ethtool.c which uses
+private flags.
 
-Signed-off-by: Raffaele Tranquillini <raffaele.tranquillini@gmail.com>
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   | 431 ++++++++++++++++++
- 2 files changed, 432 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
+Use case is still testing and not normal operation. Testing is done mostly with
+a user space application, because I don't want to overload the driver with test
+code and test frameworks can be used in user space. With loopback it is
+possible to execute a lot of tests like stressing the MAC with various frame
+lengths and checking TX/RX time stamps. These tests are useful for every
+integration of this IP core into an FPGA and not only for IP core development.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/M=
-akefile
-index 7e33d492bf26..2c252844356c 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-pmi8996-sony-xperi=
-a-tone-keyaki.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-sony-xperia-tone-dora.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-sony-xperia-tone-kagura.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-sony-xperia-tone-keyaki.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-xiaomi-gemini.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-xiaomi-scorpio.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-asus-novago-tp370ql.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8998-hp-envy-x2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm6=
-4/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-new file mode 100644
-index 000000000000..fe950be0a722
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-@@ -0,0 +1,431 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, Raffaele Tranquillini <raffaele.tranquillini@gmail.=
-com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8996-xiaomi-common.dtsi"
-+#include <dt-bindings/sound/qcom,q6afe.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/input/ti-drv260x.h>
-+
-+/ {
-+=09model =3D "Xiaomi Mi 5";
-+=09compatible =3D "xiaomi,gemini", "qcom,msm8996";
-+=09qcom,msm-id =3D <246 0x30001>;
-+=09qcom,pmic-id =3D <0x20009 0x2000a 0x00 0x00>;
-+=09qcom,board-id =3D <31 0>;
-+
-+=09clocks {
-+=09=09divclk2_haptics: divclk2 {
-+=09=09=09compatible =3D "fixed-clock";
-+=09=09=09#clock-cells =3D <0>;
-+=09=09=09clock-frequency =3D <32768>;
-+=09=09=09clock-output-names =3D "divclk2";
-+
-+=09=09=09pinctrl-names =3D "default";
-+=09=09=09pinctrl-0 =3D <&divclk2_pin_a>;
-+=09=09};
-+=09};
-+};
-+
-+&adsp_pil {
-+=09firmware-name =3D "qcom/msm8996/gemini/adsp.mbn";
-+};
-+
-+&blsp2_i2c3 {
-+=09haptics: drv2604@5a {
-+=09=09compatible =3D "ti,drv2604";
-+=09=09reg =3D <0x5a>;
-+=09=09enable-gpio =3D <&tlmm 93 0x00>;
-+=09=09mode =3D <DRV260X_LRA_MODE>;
-+=09=09library-sel =3D <DRV260X_LIB_LRA>;
-+=09=09pinctrl-names =3D "default","sleep";
-+=09=09pinctrl-0 =3D <&vibrator_default>;
-+=09=09pinctrl-1 =3D <&vibrator_sleep>;
-+=09};
-+
-+=09lp5562@30 {
-+=09=09compatible =3D "ti,lp5562";
-+=09=09reg =3D <0x30>;
-+=09=09#address-cells =3D <1>;
-+=09=09#size-cells =3D <0>;
-+=09=09enable-gpio =3D <&pm8994_gpios 7 1>;
-+=09=09clock-mode =3D /bits/8 <2>;
-+=09=09label =3D "button-backlight";
-+
-+=09=09led@0 {
-+=09=09=09reg =3D <0>;
-+=09=09=09chan-name =3D "button-backlight";
-+=09=09=09led-cur =3D /bits/ 8 <0x32>;
-+=09=09=09max-cur =3D /bits/ 8 <0xC8>;
-+=09=09};
-+
-+=09=09led@1 {
-+=09=09=09reg =3D <0>;
-+=09=09=09chan-name =3D "button-backlight1";
-+=09=09=09led-cur =3D /bits/ 8 <0x32>;
-+=09=09=09max-cur =3D /bits/ 8 <0xC8>;
-+=09=09};
-+=09};
-+};
-+
-+&blsp2_i2c6 {
-+=09synaptics@20 {
-+=09=09compatible =3D "syna,rmi4-i2c";
-+=09=09reg =3D <0x20>;
-+=09=09#address-cells =3D <1>;
-+=09=09#size-cells =3D <0>;
-+=09=09interrupt-parent =3D <&tlmm>;
-+=09=09interrupts =3D <125 IRQ_TYPE_LEVEL_LOW>;
-+=09=09vdda-supply =3D <&vreg_l6a_1p8>;
-+=09=09vdd-supply =3D <&vdd_3v2_tp>;
-+=09=09reset-gpios =3D <&tlmm 89 GPIO_ACTIVE_LOW>;
-+
-+=09=09pinctrl-names =3D "default", "sleep";
-+=09=09pinctrl-0 =3D <&touchscreen_default>;
-+=09=09pinctrl-1 =3D <&touchscreen_sleep>;
-+=09};
-+
-+};
-+
-+&gpu {
-+=09zap-shader {
-+=09=09firmware-name =3D "qcom/msm8996/gemini/a530_zap.mbn";
-+=09};
-+};
-+
-+&q6asmdai {
-+=09dai@0 {
-+=09=09reg =3D <0>;
-+=09};
-+
-+=09dai@1 {
-+=09=09reg =3D <1>;
-+=09};
-+
-+=09dai@2 {
-+=09=09reg =3D <2>;
-+=09};
-+};
-+
-+&sound {
-+=09compatible =3D "qcom,apq8096-sndcard";
-+=09model =3D "gemini";
-+=09audio-routing =3D=09"RX_BIAS", "MCLK",
-+=09=09"MM_DL1",  "MultiMedia1 Playback",
-+=09=09"MM_DL2",  "MultiMedia2 Playback",
-+=09=09"MultiMedia3 Capture", "MM_UL3";
-+
-+=09mm1-dai-link {
-+=09=09link-name =3D "MultiMedia1";
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+=09=09};
-+=09};
-+
-+=09mm2-dai-link {
-+=09=09link-name =3D "MultiMedia2";
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
-+=09=09};
-+=09};
-+
-+=09mm3-dai-link {
-+=09=09link-name =3D "MultiMedia3";
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+=09=09};
-+=09};
-+
-+=09slim-dai-link {
-+=09=09link-name =3D "SLIM Playback";
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6afedai SLIMBUS_6_RX>;
-+=09=09};
-+
-+=09=09platform {
-+=09=09=09sound-dai =3D <&q6routing>;
-+=09=09};
-+
-+=09=09codec {
-+=09=09=09sound-dai =3D <&wcd9335 6>;
-+=09=09};
-+=09};
-+
-+=09slimcap-dai-link {
-+=09=09link-name =3D "SLIM Capture";
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6afedai SLIMBUS_0_TX>;
-+=09=09};
-+
-+=09=09platform {
-+=09=09=09sound-dai =3D <&q6routing>;
-+=09=09};
-+
-+=09=09codec {
-+=09=09=09sound-dai =3D <&wcd9335 1>;
-+=09=09};
-+=09};
-+};
-+
-+&venus {
-+=09firmware-name =3D "qcom/msm8996/gemini/venus.mbn";
-+};
-+
-+&rpm_requests {
-+=09pm8994-regulators {
-+=09=09vreg_l17a_2p8: l17 {
-+=09=09=09regulator-name =3D "vreg_l17a_2p8";
-+=09=09=09regulator-min-microvolt =3D <2500000>;
-+=09=09=09regulator-max-microvolt =3D <2500000>;
-+=09=09};
-+=09=09vreg_l29a_2p7: l29 {
-+=09=09=09regulator-name =3D "vreg_l29a_2p7";
-+=09=09=09regulator-min-microvolt =3D <2800000>;
-+=09=09=09regulator-max-microvolt =3D <2800000>;
-+=09=09};
-+=09};
-+};
-+
-+&pm8994_gpios {
-+=09gpio-line-names =3D
-+=09=09"NC",=09=09=09/* GPIO_1  */
-+=09=09"VOL_UP_N",=09=09/* GPIO_2  */
-+=09=09"SPKR_ID",=09=09/* GPIO_3  */
-+=09=09"PWM_HAPTICS",=09=09/* GPIO_4  */
-+=09=09"INFARED_DRV",=09=09/* GPIO_5  */
-+=09=09"NC",=09=09=09/* GPIO_6  */
-+=09=09"KEYPAD_LED_EN",=09/* GPIO_7  */
-+=09=09"WL_EN",=09=09/* GPIO_8  */
-+=09=09"3P3_ENABLE",=09=09/* GPIO_9  */
-+=09=09"FP_ID",=09=09/* GPIO_10 */
-+=09=09"NC", =09=09=09/* GPIO_11 */
-+=09=09"NC",=09=09=09/* GPIO_12 */
-+=09=09"NC",=09=09=09/* GPIO_13 */
-+=09=09"NC",=09=09=09/* GPIO_14 */
-+=09=09"DIVCLK1_CDC",=09=09/* GPIO_15 */
-+=09=09"DIVCLK2_HAPTICS",=09/* GPIO_16 */
-+=09=09"NC",=09=09=09/* GPIO_17 */
-+=09=09"32KHz_CLK_IN",=09=09/* GPIO_18 */
-+=09=09"BT_EN",=09=09/* GPIO_19 */
-+=09=09"PMIC_SLB",=09=09/* GPIO_20 */
-+=09=09"UIM_BATT_ALARM",=09/* GPIO_21 */
-+=09=09"NC";=09=09=09/* GPIO_22 */
-+
-+=09divclk2_pin_a: divclk2 {
-+=09=09pins =3D "gpio16";
-+=09=09function =3D PMIC_GPIO_FUNC_FUNC2;
-+=09=09bias-disable;
-+=09=09power-source =3D <PM8994_GPIO_S4>;
-+=09};
-+};
-+
-+&pm8994_mpps {
-+=09gpio-line-names =3D
-+=09=09"NC",=09=09=09/* MPP_1 */
-+=09=09"CCI_TIMER1",=09=09/* MPP_2 */
-+=09=09"PMIC_SLB",=09=09/* MPP_3 */
-+=09=09"EXT_FET_WLED_PWR_EN_N",/* MPP_4 */
-+=09=09"NC",=09=09=09/* MPP_5 */
-+=09=09"NC",=09=09=09/* MPP_6 */
-+=09=09"NC",=09=09=09/* MPP_7 */
-+=09=09"NC";=09=09=09/* MPP_8 */
-+};
-+
-+&pmi8994_gpios {
-+=09gpio-line-names =3D
-+=09=09"NC",=09=09=09/* GPIO_1  */
-+=09=09"SPKR_PA_RST",=09=09/* GPIO_2  */
-+=09=09"NC",=09=09=09/* GPIO_3  */
-+=09=09"NC",=09=09=09/* GPIO_4  */
-+=09=09"NC",=09=09=09/* GPIO_5  */
-+=09=09"NC",=09=09=09/* GPIO_6  */
-+=09=09"NC",=09=09=09/* GPIO_7  */
-+=09=09"NC",=09=09=09/* GPIO_8  */
-+=09=09"NC",=09=09=09/* GPIO_9  */
-+=09=09"NC";=09=09=09/* GPIO_10 */
-+};
-+
-+&tlmm {
-+=09gpio-line-names =3D
-+=09=09"ESE_SPI_MOSI",=09=09/* GPIO_0   */
-+=09=09"ESE_SPI_MISO",=09=09/* GPIO_1   */
-+=09=09"ERR_INT_N",=09=09/* GPIO_2   */
-+=09=09"ESE_SPI_CLK",=09=09/* GPIO_3   */
-+=09=09"MSM_UART_TX",=09=09/* GPIO_4   */
-+=09=09"MSM_UART_RX",=09=09/* GPIO_5   */
-+=09=09"NFC_I2C_SDA",=09=09/* GPIO_6   */
-+=09=09"NFC_I2C_SCL",=09=09/* GPIO_7   */
-+=09=09"LCD0_RESET_N",=09=09/* GPIO_8   */
-+=09=09"NFC_IRQ",=09=09/* GPIO_9   */
-+=09=09"LCD_TE",=09=09/* GPIO_10  */
-+=09=09"LCD_ID_DET1", =09=09/* GPIO_11  */
-+=09=09"NFC_DISABLE",=09=09/* GPIO_12  */
-+=09=09"CAM_MCLK0",=09=09/* GPIO_13  */
-+=09=09"NC",=09=09=09/* GPIO_14  */
-+=09=09"CAM_MCLK2",=09=09/* GPIO_15  */
-+=09=09"ESE_PWR_REQ",=09=09/* GPIO_16  */
-+=09=09"CCI_I2C_SDA0",=09=09/* GPIO_17  */
-+=09=09"CCI_I2C_SCL0",=09=09/* GPIO_18  */
-+=09=09"CCI_I2C_SDA1",=09=09/* GPIO_19  */
-+=09=09"CCI_I2C_SCL1",=09=09/* GPIO_20  */
-+=09=09"NFC_DWL_REQ",=09=09/* GPIO_21  */
-+=09=09"CCI_TIMER1",=09=09/* GPIO_22  */
-+=09=09"WEBCAM1_RESET_N",=09/* GPIO_23  */
-+=09=09"ESE_IRQ",=09=09/* GPIO_24  */
-+=09=09"NC",=09=09=09/* GPIO_25  */
-+=09=09"WEBCAM1_STANDBY",=09/* GPIO_26  */
-+=09=09"NC",=09=09=09/* GPIO_27  */
-+=09=09"NC",=09=09=09/* GPIO_28  */
-+=09=09"NC",=09=09=09/* GPIO_29  */
-+=09=09"CAM1_RST_N",=09=09/* GPIO_30  */
-+=09=09"NC",=09=09=09/* GPIO_31  */
-+=09=09"NC",=09=09=09/* GPIO_32  */
-+=09=09"NC",=09=09=09/* GPIO_33  */
-+=09=09"FP_DOME_SW",=09=09/* GPIO_34  */
-+=09=09"PCI_E0_RST_N",=09=09/* GPIO_35  */
-+=09=09"PCI_E0_CLKREQ_N",=09/* GPIO_36  */
-+=09=09"PCI_E0_WAKE",=09=09/* GPIO_37  */
-+=09=09"FM_INT_N",=09=09/* GPIO_38  */
-+=09=09"FM_RESET_N",=09=09/* GPIO_39  */
-+=09=09"NC",=09=09=09/* GPIO_40  */
-+=09=09"QCA_UART_TXD",=09=09/* GPIO_41  */
-+=09=09"QCA_UART_RXD",=09=09/* GPIO_42  */
-+=09=09"QCA_UART_CTS",=09=09/* GPIO_43  */
-+=09=09"QCA_UART_RTS",=09=09/* GPIO_44  */
-+=09=09"MAWC_UART_TX",=09=09/* GPIO_45  */
-+=09=09"MAWC_UART_RX",=09=09/* GPIO_46  */
-+=09=09"NC",=09=09=09/* GPIO_47  */
-+=09=09"NC",=09=09=09/* GPIO_48  */
-+=09=09"AUDIO_SWITCH_EN",=09/* GPIO_49  */
-+=09=09"FP_SPI_RST",=09=09/* GPIO_50  */
-+=09=09"TYPEC_I2C_SDA",=09/* GPIO_51  */
-+=09=09"TYPEC_I2C_SCL",=09/* GPIO_52  */
-+=09=09"CODEC_INT2_N",=09=09/* GPIO_53  */
-+=09=09"CODEC_INT1_N",=09=09/* GPIO_54  */
-+=09=09"APPS_I2C7_SDA",=09/* GPIO_55  */
-+=09=09"APPS_I2C7_SCL",=09/* GPIO_56  */
-+=09=09"FORCE_USB_BOOT",=09/* GPIO_57  */
-+=09=09"SPKR_I2S_BCK",=09=09/* GPIO_58  */
-+=09=09"SPKR_I2S_WS",=09=09/* GPIO_59  */
-+=09=09"SPKR_I2S_DOUT",=09/* GPIO_60  */
-+=09=09"SPKR_I2S_DIN",=09=09/* GPIO_61  */
-+=09=09"ESE_RSTN",=09=09/* GPIO_62  */
-+=09=09"TYPEC_INT",=09=09/* GPIO_63  */
-+=09=09"CODEC_RESET_N",=09/* GPIO_64  */
-+=09=09"PCM_CLK",=09=09/* GPIO_65  */
-+=09=09"PCM_SYNC",=09=09/* GPIO_66  */
-+=09=09"PCM_DIN",=09=09/* GPIO_67  */
-+=09=09"PCM_DOUT",=09=09/* GPIO_68  */
-+=09=09"HIFI_CLK",=09=09/* GPIO_69  */
-+=09=09"SLIMBUS_CLK",=09=09/* GPIO_70  */
-+=09=09"SLIMBUS_DATA0",=09/* GPIO_71  */
-+=09=09"SLIMBUS_DATA1",=09/* GPIO_72  */
-+=09=09"LDO_5V_IN_EN",=09=09/* GPIO_73  */
-+=09=09"NC",=09=09=09/* GPIO_74  */
-+=09=09"FM_I2S_CLK",=09=09/* GPIO_75  */
-+=09=09"FM_I2S_SYNC",=09=09/* GPIO_76  */
-+=09=09"FM_I2S_DATA",=09=09/* GPIO_77  */
-+=09=09"FM_STATUS",=09=09/* GPIO_78  */
-+=09=09"NC",=09=09=09/* GPIO_79  */
-+=09=09"SENSOR_RESET_N",=09/* GPIO_80  */
-+=09=09"FP_SPI_MOSI",=09=09/* GPIO_81  */
-+=09=09"FP_SPI_MISO",=09=09/* GPIO_82  */
-+=09=09"FP_SPI_CS_N",=09=09/* GPIO_83  */
-+=09=09"FP_SPI_CLK",=09=09/* GPIO_84  */
-+=09=09"NC",=09=09=09/* GPIO_85  */
-+=09=09"CAM_VDD_1P05_EN",=09/* GPIO_86  */
-+=09=09"MSM_TS_I2C_SDA",=09/* GPIO_87  */
-+=09=09"MSM_TS_I2C_SCL",=09/* GPIO_88  */
-+=09=09"TS_RESOUT_N",=09=09/* GPIO_89  */
-+=09=09"ESE_SPI_CS_N",=09=09/* GPIO_90  */
-+=09=09"NC",=09=09=09/* GPIO_91  */
-+=09=09"NC",=09=09=09/* GPIO_92  */
-+=09=09"HAPTICS_EN",=09=09/* GPIO_93  */
-+=09=09"NC",=09=09=09/* GPIO_94  */
-+=09=09"NC",=09=09=09/* GPIO_95  */
-+=09=09"NC",=09=09=09/* GPIO_96  */
-+=09=09"NC",=09=09=09/* GPIO_97  */
-+=09=09"GRFC_1",=09=09/* GPIO_98  */
-+=09=09"NC",=09=09=09/* GPIO_99  */
-+=09=09"GRFC_3",=09=09/* GPIO_100 */
-+=09=09"GRFC_4",=09=09/* GPIO_101 */
-+=09=09"NC",=09=09=09/* GPIO_102 */
-+=09=09"NC",=09=09=09/* GPIO_103 */
-+=09=09"GRFC_7",=09=09/* GPIO_104 */
-+=09=09"UIM2_DATA",=09=09/* GPIO_105 */
-+=09=09"UIM2_CLK",=09=09/* GPIO_106 */
-+=09=09"UIM2_RESET",=09=09/* GPIO_107 */
-+=09=09"UIM2_PRESENT",=09=09/* GPIO_108 */
-+=09=09"UIM1_DATA",=09=09/* GPIO_109 */
-+=09=09"UIM1_CLK",=09=09/* GPIO_110 */
-+=09=09"UIM1_RESET",=09=09/* GPIO_111 */
-+=09=09"UIM1_PRESENT",=09=09/* GPIO_112 */
-+=09=09"UIM_BATT_ALARM",=09/* GPIO_113 */
-+=09=09"GRFC_8",=09=09/* GPIO_114 */
-+=09=09"GRFC_9",=09=09/* GPIO_115 */
-+=09=09"TX_GTR_THRES",=09=09/* GPIO_116 */
-+=09=09"ACCEL_INT",=09=09/* GPIO_117 */
-+=09=09"GYRO_INT",=09=09/* GPIO_118 */
-+=09=09"COMPASS_INT",=09=09/* GPIO_119 */
-+=09=09"PROXIMITY_INT_N",=09/* GPIO_120 */
-+=09=09"FP_IRQ",=09=09/* GPIO_121 */
-+=09=09"NC",=09=09=09/* GPIO_122 */
-+=09=09"HALL_INTR2",=09=09/* GPIO_123 */
-+=09=09"HALL_INTR1",=09=09/* GPIO_124 */
-+=09=09"TS_INT_N",=09=09/* GPIO_125 */
-+=09=09"NC",=09=09=09/* GPIO_126 */
-+=09=09"GRFC_11",=09=09/* GPIO_127 */
-+=09=09"NC",=09=09=09/* GPIO_128 */
-+=09=09"EXT_GPS_LNA_EN",=09/* GPIO_129 */
-+=09=09"NC",=09=09=09/* GPIO_130 */
-+=09=09"NC",=09=09=09/* GPIO_131 */
-+=09=09"NC",=09=09=09/* GPIO_132 */
-+=09=09"GRFC_14",=09=09/* GPIO_133 */
-+=09=09"GSM_TX2_PHASE_D",=09/* GPIO_134 */
-+=09=09"NC",=09=09=09/* GPIO_135 */
-+=09=09"NC",=09=09=09/* GPIO_136 */
-+=09=09"RFFE3_DATA",=09=09/* GPIO_137 */
-+=09=09"RFFE3_CLK",=09=09/* GPIO_138 */
-+=09=09"NC",=09=09=09/* GPIO_139 */
-+=09=09"NC",=09=09=09/* GPIO_140 */
-+=09=09"RFFE5_DATA",=09=09/* GPIO_141 */
-+=09=09"RFFE5_CLK",=09=09/* GPIO_142 */
-+=09=09"NC",=09=09=09/* GPIO_143 */
-+=09=09"COEX_UART_TX",=09=09/* GPIO_144 */
-+=09=09"COEX_UART_RX",=09=09/* GPIO_145 */
-+=09=09"RFFE2_DATA",=09=09/* GPIO_146 */
-+=09=09"RFFE2_CLK",=09=09/* GPIO_147 */
-+=09=09"RFFE1_DATA",=09=09/* GPIO_148 */
-+=09=09"RFFE1_CLK";=09=09/* GPIO_149 */
-+
-+=09touchscreen_default: touchscreen_default {
-+=09=09pins =3D "gpio89", "gpio125";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <10>;
-+=09=09bias-pull-up;
-+=09};
-+
-+=09touchscreen_sleep: touchscreen_sleep {
-+=09=09pins =3D "gpio89", "gpio125";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09vibrator_default: vibrator_default {
-+=09=09pins =3D "gpio93";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <8>;
-+=09=09bias-pull-up;
-+=09};
-+
-+=09vibrator_sleep: vibrator_sleep {
-+=09=09pins =3D "gpio93";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+};
---=20
-2.33.0
+> > +static irqreturn_t tsnep_irq(int irq, void *arg)
+> > +{
+> > +     struct tsnep_adapter *adapter = arg;
+> > +     u32 active = ioread32(adapter->addr + ECM_INT_ACTIVE);
+> > +
+> > +     /* acknowledge interrupt */
+> > +     if (active != 0)
+> > +             iowrite32(active, adapter->addr + ECM_INT_ACKNOWLEDGE);
+> > +
+> > +     /* handle management data interrupt */
+> > +     if ((active & ECM_INT_MD) != 0) {
+> > +             adapter->md_active = false;
+> > +             wake_up_interruptible(&adapter->md_wait);
+> > +     }
+> > +
+> > +     /* handle link interrupt */
+> > +     if ((active & ECM_INT_LINK) != 0) {
+> > +             if (adapter->netdev->phydev) {
+> > +                     struct phy_device *phydev = adapter->netdev->phydev;
+> > +                     u32 status = ioread32(adapter->addr + ECM_STATUS);
+> > +                     int link = (status & ECM_NO_LINK) ? 0 : 1;
+> > +                     u32 speed = status & ECM_SPEED_MASK;
+>
+> How does PHY link and speed get into this MAC register? Is the MAC
+> polling the PHY over the MDIO bus? Is the PHY internal to the MAC and
+> it has backdoor access to the PHY status?
 
+PHY is external. The MAC expects additional signals for link status. These
+signals can be derived from RGMII in band signaling of the link status or by
+using PHY link and speed LED outputs. The MAC is using the link status for
+a quick no link reaction to minimize the impact to real time applications.
+EtherCAT for example also uses the link LED output for a no link reaction
+within a few microseconds.
 
+> > +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
+> > +{
+> > +     struct tsnep_adapter *adapter = bus->priv;
+> > +     u32 md;
+> > +     int retval;
+> > +
+> > +     if (regnum & MII_ADDR_C45)
+> > +             return -EOPNOTSUPP;
+> > +
+> > +     /* management data frame without preamble */
+> > +     md = ECM_MD_READ;
+>
+> I know some PHYs are happy to work without a preamble. But as far as i
+> know, 802.3 c22 does not say it is optional. So this needs to be an
+> opt-in feature, for when you know all the devices on the bus support
+> it. We have a standard DT property for this. See mdio.yaml,
+> suppress-preamble. Please look for this in the DT blob, and only
+> suppress the pre-amble if it is present.
+
+You are right, I will improve that.
+
+> > +     md |= (regnum << ECM_MD_ADDR_SHIFT) & ECM_MD_ADDR_MASK;
+> > +     md |= ECM_MD_PHY_ADDR_FLAG;
+> > +     md |= (addr << ECM_MD_PHY_ADDR_SHIFT) & ECM_MD_PHY_ADDR_MASK;
+> > +     adapter->md_active = true;
+> > +     iowrite32(md, adapter->addr + ECM_MD_CONTROL);
+> > +     retval = wait_event_interruptible(adapter->md_wait,
+> > +                                       !adapter->md_active);
+>
+> It is pretty normal to have some sort of timeout here. So maybe use
+> wait_event_interruptible_timeout()?
+
+So far I could trust my hardware to generate the interrupt. But it makes
+sense to not trust the hardware absolutely. I will add a timeout.
+
+> > +static void tsnep_phy_link_status_change(struct net_device *netdev)
+> > +{
+> > +     phy_print_status(netdev->phydev);
+> > +}
+>
+> There is normally something here, like telling the MAC what speed it
+> should run at.
+
+As explained above, the MAC knows the link speed due to additional signals
+from the PHY. So there is no need to tell the MAC the link speed.
+
+> > +     adapter->phydev->irq = PHY_MAC_INTERRUPT;
+> > +     phy_start(adapter->phydev);
+> > +     phy_start_aneg(adapter->phydev);
+>
+> No need to call phy_start_aneg().
+
+Copied blindly from some other driver. I will fix that.
+(drivers/net/ethernet/microchip/lan743x_main.c)
+
+> > +static int tsnep_phy_init(struct tsnep_adapter *adapter)
+> > +{
+> > +     struct device_node *dn;
+> > +     int retval;
+> > +
+> > +     retval = of_get_phy_mode(adapter->pdev->dev.of_node,
+> > +                              &adapter->phy_mode);
+> > +     if (retval)
+> > +             adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
+> > +
+> > +     dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
+> > +     adapter->phydev = of_phy_find_device(dn);
+> > +     of_node_put(dn);
+> > +     if (!adapter->phydev && adapter->mdiobus)
+> > +             adapter->phydev = phy_find_first(adapter->mdiobus);
+>
+> Do you actually need phy_find_first()? It is better to have it in DT.
+
+I thought it is a reasonable fallback, because then PHY can be ommited in
+DT (lazy developer, unknown PHY address during development, ...). Driver
+and IP core will be used also on x86 over PCIe without DT. In this case this
+fallback also makes sense. But I must confess, the driver is not ready for
+x86 use case yet.
+
+> > +     return 0;
+> > +
+> > +     unregister_netdev(adapter->netdev);
+>
+> How do you get here? Is gcc is warning about unreachable code?
+
+Left over for easy addition of goto labels. I will remove that.
+
+Gerhard
