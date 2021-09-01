@@ -2,244 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D433FD5B4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 10:36:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C153FD611
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 10:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243408AbhIAIgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 04:36:12 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:43528 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S243398AbhIAIdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 04:33:41 -0400
-X-UUID: 996d24e720264c239cf27fc30e2695cc-20210901
-X-UUID: 996d24e720264c239cf27fc30e2695cc-20210901
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2109408028; Wed, 01 Sep 2021 16:32:42 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Sep
- 2021 16:32:40 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by mtkcas07.mediatek.inc
- (172.21.101.84) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Sep
- 2021 16:32:39 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 1 Sep 2021 16:32:38 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S241615AbhIAI61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 04:58:27 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:39127 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243365AbhIAI60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 04:58:26 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.nyi.internal (Postfix) with ESMTP id 896435C0233;
+        Wed,  1 Sep 2021 04:57:29 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 01 Sep 2021 04:57:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:content-type:mime-version
+        :content-transfer-encoding; s=fm3; bh=0hdLo3Ar9M7gNupOnWes8wYnJU
+        KoJVONAagXG+xMhVM=; b=jGKb3IKvEAOF8dieSRr71UAON+Yw/uWbbRTHF/Skdh
+        GTqPAI2ga12f0vckoInm/pjcshqyYhbq9vqG5nzEvqq6KrLz5RldVppGOdpWqggq
+        Bl3l38Oj4+9o7oQ6sEHfoxyiiEYhddkSLvSUXZnf0QYP603naZYB7VPMHG3DzozM
+        riqaz/rpksFk3GrAszHmMlGUyDzK5AUY6H+gJDyqLV8JbLoHtOT1mV80H7irUb/U
+        p207G/uduzfOGFM/YbpAYboqMsppCppD3OTu4JqzMFX0ndrnSryeoRIraaHTBdfv
+        MsH+g/tlmnQ32kmezbXyZnE3wpGdrFmXoC2Xe9VXztqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=0hdLo3
+        Ar9M7gNupOnWes8wYnJUKoJVONAagXG+xMhVM=; b=iC/hYlOjYDSSWpiPSd6yPE
+        C/S5wA0vMOARzwZsSrGOyos0X+O4iEeWua0lmlLovsdXN+N7ymuVPVBXnzEVZ93Y
+        I88Cq5DIi+5lA7XWf8KIaScUJXt2L+6PBcSKunP/5Cusw7YLAwXZRcFZTHd3lV1R
+        g3vUaVZnXrU46/FWYpmrCZBeRaiLniTZYCweykb8jcvFL9ooBwGrGzDhIg/3j6QL
+        KDhJ1CSQk9tkLtxsaCkdIFYzoKjwAyrYS/a33BkSznQfLIscF6CBuseNFDEwAKsE
+        3nrLWsi/I1KlNv/SIzyIhzg//a6rE5RFdWWvXVzKr/D/z/6wdeIgCNlhi9Fv7WFA
+        ==
+X-ME-Sender: <xms:d0AvYWzbYZa52hh3VQ37dbYJWW8VplkW1uwiDvtYMbp9bnh-ANIrGQ>
+    <xme:d0AvYSSRUyrbpcWw20d-TERmy3b5mBQGvto_TpFNQwTtiHzaiNajyYZEnVcT3LdLV
+    wOY7yHmgATkzQ_EbhE>
+X-ME-Received: <xmr:d0AvYYV8ixbPidnedSlb81loIWpv-44Wto8auiVzqKPEEYE5mbScuonZO-24BSdQmdgrfUc7wOh3dDVezDz9L4p1F8L0q2csEG1c>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedguddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
+    feenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:d0AvYcjuwlDupe_xCIWymS680tyL2E5JpYHjaI530LxEhWB1Kq6pHg>
+    <xmx:d0AvYYAfK1KBFuHRpuiZapQZSsL_QlJTOhzxKhYodwlDC40YQUMwew>
+    <xmx:d0AvYdIFkEVNLiMzuks9LhtKs5X_IxkS4NoZKPvL1qTZ49khwmWBTw>
+    <xmx:eUAvYa3z7IrXsH643ohuecRbc2B3wf7BVRJOv5ubxe_u0Ulc8fCW2A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 1 Sep 2021 04:57:27 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v6, 15/15] media: mtk-vcodec: Use codec type to separate different hardware
-Date:   Wed, 1 Sep 2021 16:32:15 +0800
-Message-ID: <20210901083215.25984-16-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210901083215.25984-1-yunfei.dong@mediatek.com>
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 00/52] ARM: dts: Last round of DT schema fixes
+Date:   Wed,  1 Sep 2021 10:56:32 +0200
+Message-Id: <20210901085724.475690-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.31.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are just one core thread, in order to separeate different
-hardware, using codec type to separeate it in scp driver.
-
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../media/platform/mtk-vcodec/vdec_ipi_msg.h  | 12 ++++---
- .../media/platform/mtk-vcodec/vdec_vpu_if.c   | 34 ++++++++++++++++---
- .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  4 +++
- 3 files changed, 41 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-index 9d8079c4f976..c488f0c40190 100644
---- a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-+++ b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-@@ -35,6 +35,8 @@ enum vdec_ipi_msgid {
-  * @msg_id	: vdec_ipi_msgid
-  * @vpu_inst_addr : VPU decoder instance address. Used if ABI version < 2.
-  * @inst_id     : instance ID. Used if the ABI version >= 2.
-+ * @codec_type	: Codec fourcc
-+ * @reserved	: reserved param
-  */
- struct vdec_ap_ipi_cmd {
- 	uint32_t msg_id;
-@@ -42,6 +44,8 @@ struct vdec_ap_ipi_cmd {
- 		uint32_t vpu_inst_addr;
- 		uint32_t inst_id;
- 	};
-+	uint32_t codec_type;
-+	uint32_t reserved;
- };
- 
- /**
-@@ -59,12 +63,12 @@ struct vdec_vpu_ipi_ack {
- /**
-  * struct vdec_ap_ipi_init - for AP_IPIMSG_DEC_INIT
-  * @msg_id	: AP_IPIMSG_DEC_INIT
-- * @reserved	: Reserved field
-+ * @codec_type	: Codec fourcc
-  * @ap_inst_addr	: AP video decoder instance address
-  */
- struct vdec_ap_ipi_init {
- 	uint32_t msg_id;
--	uint32_t reserved;
-+	uint32_t codec_type;
- 	uint64_t ap_inst_addr;
- };
- 
-@@ -77,7 +81,7 @@ struct vdec_ap_ipi_init {
-  *	H264 decoder [0]:buf_sz [1]:nal_start
-  *	VP8 decoder  [0]:width/height
-  *	VP9 decoder  [0]:profile, [1][2] width/height
-- * @reserved	: Reserved field
-+ * @codec_type	: Codec fourcc
-  */
- struct vdec_ap_ipi_dec_start {
- 	uint32_t msg_id;
-@@ -86,7 +90,7 @@ struct vdec_ap_ipi_dec_start {
- 		uint32_t inst_id;
- 	};
- 	uint32_t data[3];
--	uint32_t reserved;
-+	uint32_t codec_type;
- };
- 
- /**
-diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-index bfd8e87dceff..c84fac52fe26 100644
---- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-+++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-@@ -100,18 +100,29 @@ static void vpu_dec_ipi_handler(void *data, unsigned int len, void *priv)
- 
- static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void *msg, int len)
- {
--	int err;
-+	int err, id, msgid;
- 
--	mtk_vcodec_debug(vpu, "id=%X", *(uint32_t *)msg);
-+	msgid = *(uint32_t *)msg;
-+	mtk_vcodec_debug(vpu, "id=%X", msgid);
- 
- 	vpu->failure = 0;
- 	vpu->signaled = 0;
- 
--	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, vpu->id, msg,
-+	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
-+		if (msgid == AP_IPIMSG_DEC_CORE ||
-+			msgid == AP_IPIMSG_DEC_CORE_END)
-+			id = vpu->core_id;
-+		else
-+			id = vpu->id;
-+	} else {
-+		id = vpu->id;
-+	}
-+
-+	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, id, msg,
- 				     len, 2000);
- 	if (err) {
- 		mtk_vcodec_err(vpu, "send fail vpu_id=%d msg_id=%X status=%d",
--			       vpu->id, *(uint32_t *)msg, err);
-+			       id, msgid, err);
- 		return err;
- 	}
- 
-@@ -131,6 +142,7 @@ static int vcodec_send_ap_ipi(struct vdec_vpu_inst *vpu, unsigned int msg_id)
- 		msg.vpu_inst_addr = vpu->inst_addr;
- 	else
- 		msg.inst_id = vpu->inst_id;
-+	msg.codec_type = vpu->codec_type;
- 
- 	err = vcodec_vpu_send_msg(vpu, &msg, sizeof(msg));
- 	mtk_vcodec_debug(vpu, "- id=%X ret=%d", msg_id, err);
-@@ -149,14 +161,25 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
- 
- 	err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler, vpu->id,
- 					 vpu->handler, "vdec", NULL);
--	if (err != 0) {
-+	if (err) {
- 		mtk_vcodec_err(vpu, "vpu_ipi_register fail status=%d", err);
- 		return err;
- 	}
- 
-+	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
-+		err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
-+					 vpu->core_id, vpu->handler,
-+					 "vdec", NULL);
-+		if (err) {
-+			mtk_vcodec_err(vpu, "vpu_ipi_register core fail status=%d", err);
-+			return err;
-+		}
-+	}
-+
- 	memset(&msg, 0, sizeof(msg));
- 	msg.msg_id = AP_IPIMSG_DEC_INIT;
- 	msg.ap_inst_addr = (unsigned long)vpu;
-+	msg.codec_type = vpu->codec_type;
- 
- 	mtk_vcodec_debug(vpu, "vdec_inst=%p", vpu);
- 
-@@ -187,6 +210,7 @@ int vpu_dec_start(struct vdec_vpu_inst *vpu, uint32_t *data, unsigned int len)
- 
- 	for (i = 0; i < len; i++)
- 		msg.data[i] = data[i];
-+	msg.codec_type = vpu->codec_type;
- 
- 	err = vcodec_vpu_send_msg(vpu, (void *)&msg, sizeof(msg));
- 	mtk_vcodec_debug(vpu, "- ret=%d", err);
-diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-index ae24b75d1649..802660770a87 100644
---- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-+++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-@@ -14,6 +14,7 @@ struct mtk_vcodec_ctx;
- /**
-  * struct vdec_vpu_inst - VPU instance for video codec
-  * @id          : ipi msg id for each decoder
-+ * @core_id     : core id used to separate different hardware
-  * @vsi         : driver structure allocated by VPU side and shared to AP side
-  *                for control and info share
-  * @failure     : VPU execution result status, 0: success, others: fail
-@@ -26,9 +27,11 @@ struct mtk_vcodec_ctx;
-  * @dev		: platform device of VPU
-  * @wq          : wait queue to wait VPU message ack
-  * @handler     : ipi handler for each decoder
-+ * @codec_type     : used codec type to separate different codecs
-  */
- struct vdec_vpu_inst {
- 	int id;
-+	int core_id;
- 	void *vsi;
- 	int32_t failure;
- 	uint32_t inst_addr;
-@@ -38,6 +41,7 @@ struct vdec_vpu_inst {
- 	struct mtk_vcodec_ctx *ctx;
- 	wait_queue_head_t wq;
- 	mtk_vcodec_ipi_handler handler;
-+	unsigned int codec_type;
- };
- 
- /**
--- 
-2.25.1
-
+Hi,=0D
+=0D
+Here's another round of schema warnings fixes for the Allwinner platform.=0D
+=0D
+There's a fair share of new schemas in there since the schema tools now war=
+n=0D
+when a compatible is not documented in a schema.=0D
+=0D
+We don't have any warning anymore if we use the OPP binding Rob submitted, =
+and=0D
+since that means we have all our devices properly validated I don't expect =
+more=0D
+fixes now, aside from the usual bunch of regressions.=0D
+=0D
+Let me know what you think,=0D
+Maxime=0D
+=0D
+Maxime Ripard (52):=0D
+  ASoC: dt-bindings: Add WM8978 Binding=0D
+  ASoC: dt-bindings: Convert Bluetooth SCO Link binding to a schema=0D
+  ASoC: dt-bindings: Convert SPDIF Transmitter binding to a schema=0D
+  ASoC: dt-bindings: Convert Simple Amplifier binding to a schema=0D
+  dt-bindings: Convert Reserved Memory binding to a schema=0D
+  dt-bindings: arm: Convert ARM CCI-400 binding to a schema=0D
+  dt-bindings: bluetooth: broadcom: Fix clocks check=0D
+  dt-bindings: bluetooth: realtek: Add missing max-speed=0D
+  dt-bindings: clocks: Fix typo in the H6 compatible=0D
+  dt-bindings: display: Move idk-1110wr to panel-lvds=0D
+  dt-bindings: display: Move idk-2121wr to panel-lvds=0D
+  dt-bindings: display: Move ee101ia-01d to panel-lvds=0D
+  dt-bindings: display: aa104xd12: Remove unused vcc-supply=0D
+  dt-bindings: display: aa104xd12: Fix data-mapping=0D
+  dt-bindings: display: Move aa104xd12 to panel-lvds=0D
+  dt-bindings: display: aa121td01: Remove unused vcc-supply=0D
+  dt-bindings: display: aa121td01: Fix data-mapping=0D
+  dt-bindings: display: Move aa121td01 to panel-lvds=0D
+  dt-bindings: display: Move gktw70sdae4se to panel-lvds=0D
+  dt-bindings: display: panel-lvds: Document missing panel compatibles=0D
+  dt-bindings: gnss: Convert UBlox Neo-6M binding to a schema=0D
+  dt-bindings: gpio: Convert X-Powers AXP209 GPIO binding to a schema=0D
+  dt-bindings: hwmon: Add IIO HWMON binding=0D
+  dt-bindings: input: Convert Silead GSL1680 binding to a schema=0D
+  dt-bindings: interconnect: sunxi: Add R40 MBUS compatible=0D
+  dt-bindings: media: ti,cal: Fix example=0D
+  dt-bindings: media: Convert OV5640 binding to a schema=0D
+  dt-bindings: mfd: Convert X-Powers AC100 binding to a schema=0D
+  dt-bindings: mfd: Convert X-Powers AXP binding to a schema=0D
+  dt-bindings: mmc: Convert MMC Card binding to a schema=0D
+  dt-bindings: net: dwmac: Fix typo in the R40 compatible=0D
+  dt-bindings: net: wireless: Convert ESP ESP8089 binding to a schema=0D
+  dt-bindings: regulator: Convert SY8106A binding to a schema=0D
+  dt-bindings: sunxi: Add CPU Configuration Controller Binding=0D
+  dt-bindings: sunxi: Add Allwinner A80 PRCM Binding=0D
+  dt-bindings: usb: Convert SMSC USB3503 binding to a schema=0D
+  dt-bindings: usb: dwc3: Fix usb-phy check=0D
+  dt-bindings: w1: Convert 1-Wire GPIO binding to a schema=0D
+  ARM: dts: sunxi: Rename power-supply names=0D
+  ARM: dts: sunxi: Rename gpio pinctrl names=0D
+  ARM: dts: sunxi: Fix OPP arrays=0D
+  ARM: dts: sunxi: Fix OPPs node name=0D
+  ARM: dts: sunxi: Fix the SPI NOR node names=0D
+  ARM: dts: v3s: Remove useless DMA properties=0D
+  ARM: dts: tbs711: Fix touchscreen compatible=0D
+  ARM: dts: cubieboard4: Remove the dumb-vga-dac compatible=0D
+  arm64: dts: allwinner: h5: Fix GPU thermal zone node name=0D
+  arm64: dts: allwinner: h6: Fix de3 parent clocks ordering=0D
+  arm64: dts: allwinner: a100: Fix thermal zone node name=0D
+  arm64: dts: allwinner: pinetab: Change regulator node name to avoid=0D
+    warning=0D
+  arm64: dts: allwinner: teres-i: Add missing reg=0D
+  arm64: dts: allwinner: teres-i: Remove wakekup-source from the PMIC=0D
+=0D
+ .../devicetree/bindings/arm/arm,cci-400.yaml  | 216 ++++++++++=0D
+ .../bindings/arm/cci-control-port.yaml        |  38 ++=0D
+ Documentation/devicetree/bindings/arm/cci.txt | 224 ----------=0D
+ .../devicetree/bindings/arm/cpus.yaml         |   2 +=0D
+ .../arm/sunxi/allwinner,sun4i-a10-mbus.yaml   |   1 +=0D
+ .../sunxi/allwinner,sun6i-a31-cpuconfig.yaml  |  38 ++=0D
+ .../arm/sunxi/allwinner,sun9i-a80-prcm.yaml   |  33 ++=0D
+ .../clock/allwinner,sun8i-a83t-de2-clk.yaml   |   2 +-=0D
+ .../display/panel/advantech,idk-1110wr.yaml   |  69 ---=0D
+ .../display/panel/advantech,idk-2121wr.yaml   | 121 ------=0D
+ .../display/panel/innolux,ee101ia-01d.yaml    |  31 --=0D
+ .../bindings/display/panel/lvds.yaml          | 130 +++++-=0D
+ .../display/panel/mitsubishi,aa104xd12.yaml   |  75 ----=0D
+ .../display/panel/mitsubishi,aa121td01.yaml   |  74 ----=0D
+ .../display/panel/sgd,gktw70sdae4se.yaml      |  68 ---=0D
+ .../bindings/gnss/u-blox,neo-6m.yaml          |  62 +++=0D
+ .../devicetree/bindings/gnss/u-blox.txt       |  45 --=0D
+ .../devicetree/bindings/gpio/gpio-axp209.txt  |  75 ----=0D
+ .../bindings/gpio/x-powers,axp209-gpio.yaml   |  55 +++=0D
+ .../devicetree/bindings/hwmon/iio-hwmon.yaml  |  37 ++=0D
+ .../i2c/allwinner,sun6i-a31-p2wi.yaml         |   2 +-=0D
+ .../input/touchscreen/silead,gsl1680.yaml     |  91 ++++=0D
+ .../input/touchscreen/silead_gsl1680.txt      |  44 --=0D
+ .../devicetree/bindings/media/i2c/ov5640.txt  |  92 ----=0D
+ .../bindings/media/i2c/ovti,ov5640.yaml       | 154 +++++++=0D
+ .../devicetree/bindings/media/ti,cal.yaml     |   4 +-=0D
+ .../devicetree/bindings/mfd/ac100.txt         |  50 ---=0D
+ .../devicetree/bindings/mfd/axp20x.txt        | 273 ------------=0D
+ .../bindings/mfd/x-powers,ac100.yaml          | 116 +++++=0D
+ .../bindings/mfd/x-powers,axp152.yaml         | 400 ++++++++++++++++++=0D
+ .../devicetree/bindings/mmc/mmc-card.txt      |  30 --=0D
+ .../devicetree/bindings/mmc/mmc-card.yaml     |  48 +++=0D
+ .../bindings/mmc/mmc-controller.yaml          |   6 -=0D
+ .../net/allwinner,sun8i-a83t-emac.yaml        |   4 +-=0D
+ .../bindings/net/broadcom-bluetooth.yaml      |  17 +-=0D
+ .../bindings/net/realtek-bluetooth.yaml       |   2 +=0D
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   6 +-=0D
+ .../bindings/net/wireless/esp,esp8089.txt     |  30 --=0D
+ .../bindings/net/wireless/esp,esp8089.yaml    |  43 ++=0D
+ .../bindings/regulator/silergy,sy8106a.yaml   |  52 +++=0D
+ .../bindings/regulator/sy8106a-regulator.txt  |  23 -=0D
+ .../reserved-memory/memory-region.yaml        |  40 ++=0D
+ .../reserved-memory/reserved-memory.txt       | 172 +-------=0D
+ .../reserved-memory/reserved-memory.yaml      |  96 +++++=0D
+ .../reserved-memory/shared-dma-pool.yaml      |  87 ++++=0D
+ .../devicetree/bindings/sound/bt-sco.txt      |  13 -=0D
+ .../bindings/sound/linux,bt-sco.yaml          |  38 ++=0D
+ .../bindings/sound/linux,spdif-dit.yaml       |  32 ++=0D
+ .../bindings/sound/simple-amplifier.txt       |  17 -=0D
+ .../sound/simple-audio-amplifier.yaml         |  45 ++=0D
+ .../bindings/sound/spdif-transmitter.txt      |  10 -=0D
+ .../devicetree/bindings/sound/wlf,wm8978.yaml |  58 +++=0D
+ .../devicetree/bindings/usb/smsc,usb3503.yaml | 108 +++++=0D
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |  10 +-=0D
+ .../devicetree/bindings/usb/usb3503.txt       |  39 --=0D
+ .../devicetree/bindings/w1/w1-gpio.txt        |  27 --=0D
+ .../devicetree/bindings/w1/w1-gpio.yaml       |  44 ++=0D
+ arch/arm/boot/dts/axp209.dtsi                 |   6 +-=0D
+ arch/arm/boot/dts/axp22x.dtsi                 |   6 +-=0D
+ arch/arm/boot/dts/axp81x.dtsi                 |  10 +-=0D
+ .../arm/boot/dts/sun4i-a10-olinuxino-lime.dts |  11 +-=0D
+ arch/arm/boot/dts/sun4i-a10.dtsi              |  11 +-=0D
+ arch/arm/boot/dts/sun5i-a13.dtsi              |  15 +-=0D
+ arch/arm/boot/dts/sun6i-a31.dtsi              |  44 +-=0D
+ arch/arm/boot/dts/sun7i-a20-bananapi.dts      |  17 +-=0D
+ arch/arm/boot/dts/sun7i-a20.dtsi              |  34 +-=0D
+ arch/arm/boot/dts/sun8i-a33.dtsi              |   4 +-=0D
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts     |   2 +-=0D
+ arch/arm/boot/dts/sun8i-a83t.dtsi             |   4 +-=0D
+ arch/arm/boot/dts/sun8i-h3.dtsi               |   4 +-=0D
+ arch/arm/boot/dts/sun8i-v3-sl631.dtsi         |   2 +-=0D
+ arch/arm/boot/dts/sun8i-v3s.dtsi              |   2 -=0D
+ arch/arm/boot/dts/sun9i-a80-cubieboard4.dts   |   2 +-=0D
+ .../boot/dts/sunxi-libretech-all-h3-it.dtsi   |   2 +-=0D
+ arch/arm64/boot/dts/allwinner/axp803.dtsi     |  10 +-=0D
+ .../arm64/boot/dts/allwinner/sun50i-a100.dtsi |   6 +-=0D
+ .../dts/allwinner/sun50i-a64-cpu-opp.dtsi     |   2 +-=0D
+ .../dts/allwinner/sun50i-a64-orangepi-win.dts |   2 +-=0D
+ .../boot/dts/allwinner/sun50i-a64-pinetab.dts |   2 +-=0D
+ .../boot/dts/allwinner/sun50i-a64-teres-i.dts |   3 +-=0D
+ .../boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi |   2 +-=0D
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |   2 +-=0D
+ .../boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi |   2 +-=0D
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   8 +-=0D
+ 84 files changed, 2191 insertions(+), 1743 deletions(-)=0D
+ create mode 100644 Documentation/devicetree/bindings/arm/arm,cci-400.yaml=
+=0D
+ create mode 100644 Documentation/devicetree/bindings/arm/cci-control-port.=
+yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/arm/cci.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/arm/sunxi/allwinner,s=
+un6i-a31-cpuconfig.yaml=0D
+ create mode 100644 Documentation/devicetree/bindings/arm/sunxi/allwinner,s=
+un9i-a80-prcm.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/advante=
+ch,idk-1110wr.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/advante=
+ch,idk-2121wr.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/innolux=
+,ee101ia-01d.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/mitsubi=
+shi,aa104xd12.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/mitsubi=
+shi,aa121td01.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/sgd,gkt=
+w70sdae4se.yaml=0D
+ create mode 100644 Documentation/devicetree/bindings/gnss/u-blox,neo-6m.ya=
+ml=0D
+ delete mode 100644 Documentation/devicetree/bindings/gnss/u-blox.txt=0D
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt=
+=0D
+ create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-=
+gpio.yaml=0D
+ create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml=
+=0D
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/sil=
+ead,gsl1680.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/sil=
+ead_gsl1680.txt=0D
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt=
+=0D
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640=
+.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/mfd/ac100.txt=0D
+ delete mode 100644 Documentation/devicetree/bindings/mfd/axp20x.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/mfd/x-powers,ac100.ya=
+ml=0D
+ create mode 100644 Documentation/devicetree/bindings/mfd/x-powers,axp152.y=
+aml=0D
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/net/wireless/esp,esp8=
+089.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/esp,esp8=
+089.yaml=0D
+ create mode 100644 Documentation/devicetree/bindings/regulator/silergy,sy8=
+106a.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/regulator/sy8106a-reg=
+ulator.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/memor=
+y-region.yaml=0D
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/reser=
+ved-memory.yaml=0D
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/share=
+d-dma-pool.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/sound/bt-sco.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/sound/linux,bt-sco.ya=
+ml=0D
+ create mode 100644 Documentation/devicetree/bindings/sound/linux,spdif-dit=
+.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/sound/simple-amplifie=
+r.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/sound/simple-audio-am=
+plifier.yaml=0D
+ delete mode 100644 Documentation/devicetree/bindings/sound/spdif-transmitt=
+er.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8978.yaml=
+=0D
+ create mode 100644 Documentation/devicetree/bindings/usb/smsc,usb3503.yaml=
+=0D
+ delete mode 100644 Documentation/devicetree/bindings/usb/usb3503.txt=0D
+ delete mode 100644 Documentation/devicetree/bindings/w1/w1-gpio.txt=0D
+ create mode 100644 Documentation/devicetree/bindings/w1/w1-gpio.yaml=0D
+=0D
+-- =0D
+2.31.1=0D
+=0D
