@@ -2,77 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 828B53FE237
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 20:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E47D3FE25B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 20:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344664AbhIASQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 14:16:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52596 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344680AbhIASQT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 14:16:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AEC3610CA;
-        Wed,  1 Sep 2021 18:15:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630520122;
-        bh=hgwrdsFNp/PKcYjLFvMeJthQwTPWN5OLQPah0IlGyxI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=J3oL5crXZty1r1iaWKhAvKkJ3zl/M6on1P4giuyK1suRYmEJGkTNVRzvYiemZxvut
-         SkN43mXNKPWahB4y+pzIm15lY9bBm0qVwtBS9jQ7JGkSNrHYdA/5lS8hZpbm/6naO0
-         qhgH7b6GPIWp3Q7c/LvhWeu8aXgVT6jz1lEZ5B9mdg5z1uxSr6Y/PgDVuC3OOz69Xh
-         zX8rFvqZAit12h+vRQHiZIUMhb5AfhretwGzl0tnJDD8LqXNQFRquAEki4W2w/H6+l
-         elp9IYrlEOVBAIrsWXbVYi2hTp85vURuTDws9b9fL3dGhTFathAngwZ0Em76hk3ahR
-         OUBX5D6GclxIw==
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, matthias.bgg@gmail.com,
-        Trevor Wu <trevor.wu@mediatek.com>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: mt8195: remove dependent headers in the example
-Date:   Wed,  1 Sep 2021 19:14:42 +0100
-Message-Id: <163051912509.21630.10720008205041847225.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210831083956.9804-1-trevor.wu@mediatek.com>
-References: <20210831083956.9804-1-trevor.wu@mediatek.com>
+        id S236327AbhIAScY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 14:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234164AbhIAScX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 14:32:23 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84BC2C061575;
+        Wed,  1 Sep 2021 11:31:26 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C6DB0200E1;
+        Wed,  1 Sep 2021 20:31:24 +0200 (CEST)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        paul.bouchara@somainline.org, jeffrey.l.hugo@gmail.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH 1/5] arm64: dts: msm8998: Configure the MultiMedia Clock Controller (MMCC)
+Date:   Wed,  1 Sep 2021 20:31:19 +0200
+Message-Id: <20210901183123.1087392-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Aug 2021 16:39:56 +0800, Trevor Wu wrote:
-> Drop the use of the defines including clock and power id, so that
-> we can remove the headers which are not applied in the example.
-> 
-> 
+The MSM8998 MMCC is supported and has a driver: configure it as a
+preparation for a later enablement of multimedia nodes (mdp, venus
+and others).
 
-Applied to
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 31 +++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 34039b5c8017..1a53f15f1266 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -4,6 +4,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/clock/qcom,gcc-msm8998.h>
+ #include <dt-bindings/clock/qcom,gpucc-msm8998.h>
++#include <dt-bindings/clock/qcom,mmcc-msm8998.h>
+ #include <dt-bindings/clock/qcom,rpmcc.h>
+ #include <dt-bindings/power/qcom-rpmpd.h>
+ #include <dt-bindings/gpio/gpio.h>
+@@ -2330,6 +2331,36 @@ blsp2_i2c6: i2c@c1ba000 {
+ 			#size-cells = <0>;
+ 		};
+ 
++		mmcc: clock-controller@c8c0000 {
++			compatible = "qcom,mmcc-msm8998";
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++			reg = <0xc8c0000 0x40000>;
++			status = "disabled";
++
++			clock-names = "xo",
++				      "gpll0",
++				      "dsi0dsi",
++				      "dsi0byte",
++				      "dsi1dsi",
++				      "dsi1byte",
++				      "hdmipll",
++				      "dplink",
++				      "dpvco",
++				      "core_bi_pll_test_se";
++			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
++				 <&gcc GCC_MMSS_GPLL0_CLK>,
++				 <0>,
++				 <0>,
++				 <0>,
++				 <0>,
++				 <0>,
++				 <0>,
++				 <0>,
++				 <0>;
++		};
++
+ 		remoteproc_adsp: remoteproc@17300000 {
+ 			compatible = "qcom,msm8998-adsp-pas";
+ 			reg = <0x17300000 0x4040>;
+-- 
+2.32.0
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: mt8195: remove dependent headers in the example
-      commit: 222039a2503e0839f859e18e6f09acb9997480d1
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
