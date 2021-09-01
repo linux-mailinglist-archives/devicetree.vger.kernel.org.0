@@ -2,116 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 975013FE300
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 21:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7F63FE307
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 21:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234977AbhIAT1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 15:27:54 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57636 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbhIAT1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 15:27:54 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 181JQV31026608;
-        Wed, 1 Sep 2021 14:26:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1630524391;
-        bh=TRuE6KH2UxmRjPL0Ha46ANT3bo9HPWgsSgDp/PvBKzc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=OXBmmCLjO6oE6W9zHxyjm/9XLP3rXatuwT6QPX2OSmM0On9ZbRhpKv5gqz54yQZZS
-         acnmgW4VsAWLhBQlDE5CTLNk4ydNWDdNpvdSPp1AjBPOLGFGwdktOmT3K1v9QOIRIw
-         zzfikghV581kQmywpLzluztlRdPRw76+wwN3J4Ns=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 181JQVOn060436
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 1 Sep 2021 14:26:31 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 1
- Sep 2021 14:26:30 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 1 Sep 2021 14:26:30 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 181JQQCx020864;
-        Wed, 1 Sep 2021 14:26:26 -0500
-Subject: Re: [PATCH 28/40] mfd: ti_am335x_tscadc: Add ADC1/magnetic reader
- support
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, Jason Reeder <jreeder@ti.com>
-References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
- <20210825152518.379386-29-miquel.raynal@bootlin.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <732e002d-d732-5411-1be4-1ecafc993da5@ti.com>
-Date:   Wed, 1 Sep 2021 22:26:25 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S244010AbhIATaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 15:30:20 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:35858 "EHLO mail.z3ntu.xyz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233472AbhIATaU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Sep 2021 15:30:20 -0400
+Received: from g550jk.localnet (ip-213-127-63-121.ip.prioritytelecom.net [213.127.63.121])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 4280ACA11B;
+        Wed,  1 Sep 2021 19:29:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1630524559; bh=0H/X2fUD2T06MoUgfBCJPfMjregzSG/7Yg0C8emnr9M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=eKxmw25/GlXk8ZgdZq1qnrFluDvsDRg+0AGxqUiqp9JyElSo/UnkDtjzPRM/1N//w
+         pjkMeEpP/jPg9VJpMMEVa9zkZQyBOSbEBfiFWsOosYObhELen29s7ek5vN2xaCRU6H
+         PPOhDZCJtPg4xC0KuZ/5t6wAV8T/wI9fTYboOJT4=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-fbdev@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Hans de Goede <hdegoede@redhat.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: add missing simple-framebuffer formats
+Date:   Wed, 01 Sep 2021 21:29:18 +0200
+Message-ID: <1648705.hQpMTjSAMY@g550jk>
+In-Reply-To: <YS6fZ4nFgic1DYhR@robh.at.kernel.org>
+References: <20210828110206.142899-1-luca@z3ntu.xyz> <YS6fZ4nFgic1DYhR@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210825152518.379386-29-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
+
+On Dienstag, 31. August 2021 23:30:15 CEST Rob Herring wrote:
+> On Sat, Aug 28, 2021 at 01:02:05PM +0200, Luca Weiss wrote:
+> > Document all formats currently present in include/linux/platform_data/
+> > simplefb.h
+> > 
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> > 
+> >  .../bindings/display/simple-framebuffer.yaml         | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+> > b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml index
+> > c2499a7906f5..c1acd2859ae8 100644
+> > --- a/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+> > +++ b/Documentation/devicetree/bindings/display/simple-framebuffer.yaml
+> > 
+> > @@ -83,13 +83,25 @@ properties:
+> >    format:
+> >      description: >
+> >      
+> >        Format of the framebuffer:
+> > +        * `a1r5g5b5` - 16-bit pixels, d[15]=a, d[14:10]=r, d[9:5]=g,
+> > d[4:0]=b +        * `a2r10g10b10` - 32-bit pixels, d[31:30]=a,
+> > d[29:20]=r, d[19:10]=g, d[9:0]=b
+> Not a new problem, but are these 32-bit big or little endian words? That
+> should be figured out before we add more.
+
+As I'm neither involved in the driver nor really have any knowledge on pixel 
+formats, maybe the maintainers of the binding can help out here?
+(Bartlomiej Zolnierkiewicz & Hans de Goede, both are CC'ed)
+
+I can probably dig through the sources and guess but documentation should be 
+written without guessing :)
+
+Regards
+Luca
 
 
-On 25/08/2021 18:25, Miquel Raynal wrote:
-> Introduce a new compatible that has another set of driver data,
-> targeting am437x SoCs with a magnetic reader instead of the
-> touchscreen and a more featureful set of registers.
-> 
-> Co-developed-by: Jason Reeder <jreeder@ti.com>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Signed-off-by: Jason Reeder <jreeder@ti.com>
-> ---
->   drivers/mfd/ti_am335x_tscadc.c       | 43 ++++++++++++++++++++++------
->   include/linux/mfd/ti_am335x_tscadc.h |  9 +++++-
->   2 files changed, 43 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
-> index 1a30610dc65f..f4f6b9db4d2a 100644
-> --- a/drivers/mfd/ti_am335x_tscadc.c
-> +++ b/drivers/mfd/ti_am335x_tscadc.c
-> @@ -122,9 +122,9 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->   	const __be32 *cur;
->   	struct clk *clk;
->   	u32 val;
-> -	bool use_tsc = false;
-> +	bool use_tsc = false, use_mag = false;
->   	int tscmag_wires = 0, adc_channels = 0, readouts = 0, cell_idx = 0;
-> -	int total_channels, err;
-> +	int mag_tracks = 0, total_channels, err;
->   
->   	/* Allocate memory for device */
->   	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
-> @@ -146,6 +146,12 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
->   		of_property_read_u32(node, "ti,coordiante-readouts", &readouts);
->   		if (tscmag_wires)
->   			use_tsc = true;
-> +	} else {
-> +		node = of_get_child_by_name(pdev->dev.of_node, "mag");
-> +		of_property_read_u32(node, "ti,tracks", &mag_tracks);
 
-"ti,tracks" seems undocumented?
 
-[....]
-
--- 
-Best regards,
-grygorii
