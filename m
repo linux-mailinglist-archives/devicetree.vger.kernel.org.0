@@ -2,264 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0819C3FD8BA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 13:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D2D3FD8F1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 13:43:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242472AbhIALaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 07:30:21 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:63913 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238424AbhIALaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 07:30:21 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id ddf5f73a;
-        Wed, 1 Sep 2021 13:29:22 +0200 (CEST)
-Date:   Wed, 1 Sep 2021 13:29:22 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
-        kettenis@openbsd.org, tglx@linutronix.de, maz@kernel.org,
-        marcan@marcan.st, bhelgaas@google.com, jim2101024@gmail.com,
-        nsaenz@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        daire.mcnamara@microchip.com, nsaenzjulienne@suse.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-In-Reply-To: <YS6dWI4wwg7XkuNA@robh.at.kernel.org> (message from Rob Herring
-        on Tue, 31 Aug 2021 16:21:28 -0500)
-Subject: Re: [PATCH v4 3/4] dt-bindings: pci: Add DT bindings for apple,pcie
-References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
- <20210827171534.62380-4-mark.kettenis@xs4all.nl> <YS6dWI4wwg7XkuNA@robh.at.kernel.org>
-Message-ID: <561431b178447575@bloch.sibelius.xs4all.nl>
+        id S243858AbhIALov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 07:44:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243714AbhIALou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 07:44:50 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B48F4C061764
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 04:43:53 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id l10so5763117lfg.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 04:43:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dv7SSHrzc+JrKmtfmOHwtcJ0mmdkld+UU+xFR+0sd1s=;
+        b=SPVgpEGg8weWIgr6ghEmwFMRW755IzX1VvDxe1QzAqsMJcTqN8WGm/DN/EeLe1D9hI
+         JCpiJ7DraFf/1cJHWba19usvWWJIqYPfpgbgwSHEfMAzfhghjOyvQn8wdSAbWQLUnAqK
+         aPjP7vHuNX1YX1AIphLQP5Nbyn7Pqsp6Z0HHQiT60jRSfL+HvHWLIyj/txLcRVCElCyD
+         utbcU2MZMZBgIt5UvxzoaXWXCjJQKN8NqtT60dPQgRSpzExtM0uWbBmHaB6pECdQkHFL
+         0Zr0Yb/ZkzfbWIKdI3JUKW7ID0Lqisb3mGnhfZSBfCVigrkMZF2dqD5kxcNQ9FsQa3FA
+         YThg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dv7SSHrzc+JrKmtfmOHwtcJ0mmdkld+UU+xFR+0sd1s=;
+        b=UY5gg1TEzntT/6q0SPFdFcL4/QNmmBJ4Jw9GfCPgzJ6B91k9Xt12j3xRsSTC4pq1jg
+         +YD7T5VrzMvlrlI6DmEOTt2xDXTscc4xyPCzi4Xv7dX55LnETtB7bT/geeUNQXtQKAX+
+         z11IQ6G/uE6VvT8+yT9AoGz0sTo1sfc3RA2nBxjFEGH7z3kdxSDnWQchVZM/a8ngUWTo
+         qh/6f5PSrjAxsST34EFAZDP7pzcrVXlhMrv4ZZDNdi4gc05vIUZNinqSMq514evXwBOI
+         Qi0Gt3HDqvkCr/bKWOF63mBBQjuq0YEqo8IRX784MGAgjhh60tPxg7X8+ZdwGsVoT2vO
+         ObFQ==
+X-Gm-Message-State: AOAM530Ovugyz9NUeRas8pBrVFqxAASdklLpUR/L4rQNE+nYvzoBzZpI
+        73zgm2T6M1AOdLLPphKkq0EGsA==
+X-Google-Smtp-Source: ABdhPJw9BEAZJkcsfe4dO67KihLaBhSi75YCfERe0uWPom1D/IOsHrPIguzc6NavdrcnD6hNXnfVNw==
+X-Received: by 2002:a05:6512:686:: with SMTP id t6mr21603337lfe.49.1630496631983;
+        Wed, 01 Sep 2021 04:43:51 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id k12sm2443762ljm.65.2021.09.01.04.43.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Sep 2021 04:43:51 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] regulator: qcom-rpmh-regulator: fix pm8009-1 ldo7 resource name
+Date:   Wed,  1 Sep 2021 14:43:50 +0300
+Message-Id: <20210901114350.1106073-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Tue, 31 Aug 2021 16:21:28 -0500
-> From: Rob Herring <robh@kernel.org>
-> 
-> On Fri, Aug 27, 2021 at 07:15:28PM +0200, Mark Kettenis wrote:
-> > From: Mark Kettenis <kettenis@openbsd.org>
-> > 
-> > The Apple PCIe host controller is a PCIe host controller with
-> > multiple root ports present in Apple ARM SoC platforms, including
-> > various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > 
-> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > ---
-> >  .../devicetree/bindings/pci/apple,pcie.yaml   | 165 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 166 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > new file mode 100644
-> > index 000000000000..97a126db935a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > @@ -0,0 +1,165 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Apple PCIe host controller
-> > +
-> > +maintainers:
-> > +  - Mark Kettenis <kettenis@openbsd.org>
-> > +
-> > +description: |
-> > +  The Apple PCIe host controller is a PCIe host controller with
-> > +  multiple root ports present in Apple ARM SoC platforms, including
-> > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
-> > +  The controller incorporates Synopsys DesigWare PCIe logic to
-> > +  implements its root ports.  But the ATU found on most DesignWare
-> > +  PCIe host bridges is absent.
-> > +
-> > +  All root ports share a single ECAM space, but separate GPIOs are
-> > +  used to take the PCI devices on those ports out of reset.  Therefore
-> > +  the standard "reset-gpios" and "max-link-speed" properties appear on
-> > +  the child nodes that represent the PCI bridges that correspond to
-> > +  the individual root ports.
-> > +
-> > +  MSIs are handled by the PCIe controller and translated into regular
-> > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
-> > +  distributed over the root ports as the OS sees fit by programming
-> > +  the PCIe controller's port registers.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +  - $ref: ../interrupt-controller/msi-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: apple,t8103-pcie
-> > +      - const: apple,pcie
-> > +
-> > +  reg:
-> > +    minItems: 3
-> > +    maxItems: 5
-> > +
-> > +  reg-names:
-> > +    minItems: 3
-> > +    maxItems: 5
-> > +    items:
-> > +      - const: config
-> > +      - const: rc
-> > +      - const: port0
-> > +      - const: port1
-> > +      - const: port2
-> > +
-> > +  ranges:
-> > +    minItems: 2
-> > +    maxItems: 2
-> > +
-> > +  interrupts:
-> > +    description:
-> > +      Interrupt specifiers, one for each root port.
-> > +    minItems: 1
-> > +    maxItems: 3
-> > +
-> > +  msi-parent: true
-> 
-> I still think this should be dropped as it is meaningless with 
-> 'msi-controller' present.
+Fix a typo in the pm8009 LDO7 declaration, it uses resource name ldo%s6
+instead of ldo%s7.
 
-Hmm.  As far as I can tell all current arm64 device trees that
-describe hardware with an MSI controller integrated on the PCI host
-bridge have both the 'msi-controller' and 'msi-parent' properties.
-See arch/arm64/boot/dts/marvell/aramada-37xx.dtsi and
-arch/arm64/boot/dts/xilinx/zynqmp.dtsi.
+Fixes: 951384cabc5d ("regulator: qcom-rpmh-regulator: add pm8009-1 chip revision")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
-The current OpenBSD code will fail to map the MSIs if 'msi-parent'
-isn't there, although Linux seems to fall back on an MSI domain that's
-directly attached to the host bridge if the 'msi-parent' property is
-missing.  I think it makes sense to be explicit here, but if both you
-and Marc think it shouldn't be there, I probably can change the
-OpenBSD to do a similar fallback.
+Changes since v1:
+ - Dropped extra drm part which somehow got through to the patch.
 
-> > +
-> > +#  msi-ranges:
-> > +#    description:
-> > +#      A list of pairs <intid span>, where "intid" is the first
-> > +#      interrupt number that can be used as an MSI, and "span" the size
-> > +#      of that range.
-> > +#    $ref: /schemas/types.yaml#/definitions/phandle-array
-> 
-> Here, you'll want just 'maxItems: 1' as there's only 1 entry.
+---
+ drivers/regulator/qcom-rpmh-regulator.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Right.  As far as I can tell the Apple hardware only supports a single
-range.
+diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
+index 6cca910a76de..7f458d510483 100644
+--- a/drivers/regulator/qcom-rpmh-regulator.c
++++ b/drivers/regulator/qcom-rpmh-regulator.c
+@@ -991,7 +991,7 @@ static const struct rpmh_vreg_init_data pm8009_1_vreg_data[] = {
+ 	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_nldo,      "vdd-l4"),
+ 	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_pldo,      "vdd-l5-l6"),
+ 	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_pldo,      "vdd-l5-l6"),
+-	RPMH_VREG("ldo7",   "ldo%s6",  &pmic5_pldo_lv,   "vdd-l7"),
++	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo_lv,   "vdd-l7"),
+ 	{}
+ };
+ 
+-- 
+2.33.0
 
-> > +
-> > +  iommu-map: true
-> > +  iommu-map-mask: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - bus-range
-> > +  - interrupts
-> > +  - msi-controller
-> > +  - msi-parent
-> > +  - msi-ranges
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/apple-aic.h>
-> > +
-> > +    soc {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      pcie0: pcie@690000000 {
-> > +        compatible = "apple,t8103-pcie", "apple,pcie";
-> > +        device_type = "pci";
-> > +
-> > +        reg = <0x6 0x90000000 0x0 0x1000000>,
-> > +              <0x6 0x80000000 0x0 0x4000>,
-> > +              <0x6 0x81000000 0x0 0x8000>,
-> > +              <0x6 0x82000000 0x0 0x8000>,
-> > +              <0x6 0x83000000 0x0 0x8000>;
-> > +        reg-names = "config", "rc", "port0", "port1", "port2";
-> > +
-> > +        interrupt-parent = <&aic>;
-> > +        interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +        msi-controller;
-> > +        msi-parent = <&pcie0>;
-> > +        msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
-> > +
-> > +        iommu-map = <0x100 &dart0 1 1>,
-> > +                    <0x200 &dart1 1 1>,
-> > +                    <0x300 &dart2 1 1>;
-> > +        iommu-map-mask = <0xff00>;
-> > +
-> > +        bus-range = <0 3>;
-> > +        #address-cells = <3>;
-> > +        #size-cells = <2>;
-> > +        ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
-> > +                 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
-> > +
-> > +        clocks = <&pcie_core_clk>, <&pcie_aux_clk>, <&pcie_ref_clk>;
-> > +        pinctrl-0 = <&pcie_pins>;
-> > +        pinctrl-names = "default";
-> > +
-> > +        pci@0,0 {
-> > +          device_type = "pci";
-> > +          reg = <0x0 0x0 0x0 0x0 0x0>;
-> > +          reset-gpios = <&pinctrl_ap 152 0>;
-> > +          max-link-speed = <2>;
-> > +
-> > +          #address-cells = <3>;
-> > +          #size-cells = <2>;
-> > +          ranges;
-> > +        };
-> > +
-> > +        pci@1,0 {
-> > +          device_type = "pci";
-> > +          reg = <0x800 0x0 0x0 0x0 0x0>;
-> > +          reset-gpios = <&pinctrl_ap 153 0>;
-> > +          max-link-speed = <2>;
-> > +
-> > +          #address-cells = <3>;
-> > +          #size-cells = <2>;
-> > +          ranges;
-> > +        };
-> > +
-> > +        pci@2,0 {
-> > +          device_type = "pci";
-> > +          reg = <0x1000 0x0 0x0 0x0 0x0>;
-> > +          reset-gpios = <&pinctrl_ap 33 0>;
-> > +          max-link-speed = <1>;
-> > +
-> > +          #address-cells = <3>;
-> > +          #size-cells = <2>;
-> > +          ranges;
-> > +        };
-> > +      };
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c6b8a720c0bc..30bea4042e7e 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -1694,6 +1694,7 @@ C:	irc://chat.freenode.net/asahi-dev
-> >  T:	git https://github.com/AsahiLinux/linux.git
-> >  F:	Documentation/devicetree/bindings/arm/apple.yaml
-> >  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
-> > +F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> >  F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
-> >  F:	arch/arm64/boot/dts/apple/
-> >  F:	drivers/irqchip/irq-apple-aic.c
-> > -- 
-> > 2.32.0
-> > 
-> > 
-> 
