@@ -2,177 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 842C63FE456
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:57:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA8833FE46D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 23:02:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241239AbhIAU5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 16:57:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237279AbhIAU5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:57:54 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10443C061760
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:56:57 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id z18so1231294ybg.8
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:56:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L0G6R62N1gO7DOjfEZAPNKqynBW5XZ5XNt6xZIMqank=;
-        b=u4SEUsyX5hLbDNCYJrkK/Dq3ED5N6gzAoGqvPapHzprtM++i9ndf4lKuBAebuB3Xif
-         VZH3nWhY/dR+Zs4fJg4ZZ6PoJ+tnml+weetYIwbOsyjJNbfwVCwsxvQaeXOrN7paZlo/
-         vo5HRCSvtQ+mZgOd7pOwxXVXqGjVEbZNfbSow13HA2/Eq+58R82NmEKWnd4uArDPHtWw
-         z0H1hH0zf19jG8Cs5DHbQR06BHcK+vrSD6lfIL8T7TmlXILI9qVAmsOP2nIQIlSXVDfG
-         lTwOR4y7cyiLt4m8gld7ZI9Kj+iZS1kSOOKp4b6cyN567suVGHJLacrMqiRuxIevaT4o
-         O3oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L0G6R62N1gO7DOjfEZAPNKqynBW5XZ5XNt6xZIMqank=;
-        b=E170vTVstzeZexYjU7UPW9A0HlEsmVBNGaGzGDFT4W7QaErtg95rthTHbu7giG8g79
-         jGmodXA0O5wBjN0xnVxQMZS+cT2uQkSG5iAajPTnZa0TQGtU1N8OnXpdRGO+TGWplze0
-         zZrNl17p7ZoUlTQl1hpQRVeA4/srE20ChZc/9aQ4YVbi/YCY6+Ou6GZmQ5E/eUVpZj35
-         zWAqJkNgUUUeJIY7XR3i46Galq+xKzy3QU7kxBXaZiw/bH86CJOkURRdt/vXcT4cCjJO
-         SxawQLVpZvCWBuREBHXU5JjBFgDPLSznxeSBY/vTiR41G1DyaJxiE4hoOOE7uJjwpita
-         /G9w==
-X-Gm-Message-State: AOAM530kRnvd3XgAujztdlkZUV4PHZnfmG8FuLgkFD4Sbju9KRbithq8
-        pXz93XnMlwuEE48ABqmbRlbQ358VjGuYhzNfbv7eAg==
-X-Google-Smtp-Source: ABdhPJzF7Zt72N0YmUtW1wz8l2WyJWxKJcMNBmyngHxWM/3Tu2UpcRUGekYR0bcdcfaQBUAjDifDWgmEvC0bo9QmANc=
-X-Received: by 2002:a25:6746:: with SMTP id b67mr2325216ybc.96.1630529816125;
- Wed, 01 Sep 2021 13:56:56 -0700 (PDT)
+        id S245462AbhIAVDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 17:03:00 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:52746 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231742AbhIAVCz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Sep 2021 17:02:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=YQOjoNe6FO7XqE8+nHNe6fKunB7mITXvGiju7UUdEhk=; b=C7ETk0ZtnnVZcelv/9ZcNf6vac
+        Pzw7mTAHK73VdfgIkiu3tHaQxjoq7FVhN/b3LXzeJDRaKwuGi4i+OCxT3SJ88hWIhqOLhS6ShLzpc
+        FKcS37lYErgXoz89zigpaKajBZTZ0ReOA7F65W1k2VIlZIXzUyYbp7l75l51KtCR46y4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mLXMn-004uRW-1L; Wed, 01 Sep 2021 23:01:53 +0200
+Date:   Wed, 1 Sep 2021 23:01:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 3/3] tsnep: Add TSN endpoint Ethernet MAC
+ driver
+Message-ID: <YS/qQdmjT/X0tiEt@lunn.ch>
+References: <20210831193425.26193-1-gerhard@engleder-embedded.com>
+ <20210831193425.26193-4-gerhard@engleder-embedded.com>
+ <YS6lQejOJJCATMCp@lunn.ch>
+ <CANr-f5zXWrqPxWV81CT6=4O6PoPRB0Qs0T=egJ3q8FMG16f6xw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210831102125.624661-1-ulf.hansson@linaro.org>
- <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com> <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 1 Sep 2021 13:56:20 -0700
-Message-ID: <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANr-f5zXWrqPxWV81CT6=4O6PoPRB0Qs0T=egJ3q8FMG16f6xw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
+On Wed, Sep 01, 2021 at 10:18:45PM +0200, Gerhard Engleder wrote:
+> > > +static int tsnep_ethtool_set_priv_flags(struct net_device *netdev,
+> > > +                                     u32 priv_flags)
+> > > +{
+> > > +     struct tsnep_adapter *adapter = netdev_priv(netdev);
+> > > +     int retval;
+> > > +
+> > > +     if (priv_flags & ~TSNEP_PRIV_FLAGS)
+> > > +             return -EINVAL;
+> > > +
+> > > +     if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
+> > > +         (priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_1000))
+> > > +             return -EINVAL;
+> > > +
+> > > +     if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
+> > > +         adapter->loopback != SPEED_100) {
+> > > +             if (adapter->loopback != SPEED_UNKNOWN)
+> > > +                     retval = phy_loopback(adapter->phydev, false);
+> > > +             else
+> > > +                     retval = 0;
+> > > +
+> > > +             if (!retval) {
+> > > +                     adapter->phydev->speed = SPEED_100;
+> > > +                     adapter->phydev->duplex = DUPLEX_FULL;
+> > > +                     retval = phy_loopback(adapter->phydev, true);
 > >
-> > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >
-> > > In the struct supplier_bindings the member 'node_not_dev' is described as
-> > > "The consumer node containing the property is never a device.", but that
-> > > doesn't match the behaviour of the code in of_link_property().
-> > >
-> > > To make the behaviour consistent with the description, let's rename the
-> > > member to "optional_con_dev" and clarify the corresponding comment.
-> > >
-> > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > > ---
-> > >  drivers/of/property.c | 9 +++++----
-> > >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > index 6c028632f425..2babb1807228 100644
-> > > --- a/drivers/of/property.c
-> > > +++ b/drivers/of/property.c
-> > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
-> > >   * @parse_prop.index: For properties holding a list of phandles, this is the
-> > >   *                   index into the list
-> > >   * @optional: Describes whether a supplier is mandatory or not
-> > > - * @node_not_dev: The consumer node containing the property is never a device.
-> > > + * @optional_con_dev: The consumer node containing the property may not be a
-> > > + *                   device, then try finding one from an ancestor node.
+> > This is a pretty unusual use of private flags, changing loopback at
+> > runtime. ethtool --test generally does that.
 > >
-> > Nak. This flag is not about "may not be". This is explicitly for
-> > "never a device". It has to do with stuff like remote-endpoint which
-> > is never listed under the root node of the device node. Your
-> > documentation change is changing the meaning of the flag.
->
-> Okay, fair enough.
->
-> Although, as stated in the commit message this isn't the way code
-> behaves. Shouldn't we at least make the behaviour consistent with the
-> description of the 'node_not_dev' flag?
+> > What is your use case which requires loopback in normal operation, not
+> > during testing?
+> 
+> Yes it is unusual. I was searching for some user space interface for loopback
+> and found drivers/net/ethernet/aquantia/atlantic/aq_ethtool.c which uses
+> private flags.
 
-I know what you mean, but if you use the flag correctly (where the
-phandle pointed to will never be a device with compatible property),
-the existing code would work correctly. And since the flag is relevant
-only in this file, it's easy to keep it correct. I'd just leave it as
-is.
+Ah, that passed my by. I would of probably said something about it.
 
--Saravana
+> Use case is still testing and not normal operation. Testing is done mostly with
+> a user space application, because I don't want to overload the driver with test
+> code and test frameworks can be used in user space. With loopback it is
+> possible to execute a lot of tests like stressing the MAC with various frame
+> lengths and checking TX/RX time stamps. These tests are useful for every
+> integration of this IP core into an FPGA and not only for IP core development.
 
+I did a quick search. CAN has something interesting:
 
->
-> Along the lines of the below patch then?
->
-> From: Ulf Hansson <ulf.hansson@linaro.org>
-> Date: Wed, 1 Sep 2021 09:28:03 +0200
-> Subject: [PATCH] of: property: fw_devlink: Fixup behaviour when 'node_not_dev'
->  is set
->
-> In the struct supplier_bindings the member 'node_not_dev' is described as
-> "The consumer node containing the property is never a device.", but that is
-> inconsistent with the behaviour of the code in of_link_property(), as it
-> calls of_get_compat_node() that starts parsing for a compatible property,
-> starting from the node it gets passed to it.
->
-> Make the behaviour consistent with the description of the 'node_not_dev'
-> flag, by passing the parent node to of_get_compat_node() instead.
->
-> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> ---
->  drivers/of/property.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 6c028632f425..16ee017884b8 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1075,6 +1075,17 @@ static struct device_node
-> *of_get_compat_node(struct device_node *np)
->         return np;
->  }
->
-> +static struct device_node *of_get_compat_node_parent(struct device_node *np)
-> +{
-> +       struct device_node *parent, *node;
-> +
-> +       parent = of_get_parent(np);
-> +       node = of_get_compat_node(parent);
-> +       of_node_put(parent);
-> +
-> +       return node;
-> +}
-> +
->  /**
->   * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
->   * @con_np: consumer device tree node
-> @@ -1416,7 +1427,7 @@ static int of_link_property(struct device_node
-> *con_np, const char *prop_name)
->                         struct device_node *con_dev_np;
->
->                         con_dev_np = s->node_not_dev
-> -                                       ? of_get_compat_node(con_np)
-> +                                       ? of_get_compat_node_parent(con_np)
->                                         : of_node_get(con_np);
->                         matched = true;
->                         i++;
-> --
-> 2.25.1
->
-> [...]
->
-> Kind regards
-> Uffe
+https://wiki.rdu.im/_pages/Application-Notes/Software/can-bus-in-linux.html
+$ sudo ip link set can0 down
+$ sudo ip link set can0 type can loopback on
+$ sudo ip link set can0 up type can bitrate 1000000
+
+Also
+
+https://www.kernel.org/doc/Documentation/networking/can.txt
+
+The semantics are maybe slightly different. It appears to loopback can
+messages, but also send out the wire. I think many can transcievers
+can do this in hardware, but this seems to be a software feature for
+when the hardware cannot do it? I have seen Ethernet PHYs which do
+send out the wire when in loopback, so it does seem like a reasonable
+model. Also i like that you need to down the interface before you can
+put it into loopback. Saves a lot of surprises.
+
+Maybe you can look at this, see if it can be made generic, and could
+be used here?
+
+> > > +static irqreturn_t tsnep_irq(int irq, void *arg)
+> > > +{
+> > > +     struct tsnep_adapter *adapter = arg;
+> > > +     u32 active = ioread32(adapter->addr + ECM_INT_ACTIVE);
+> > > +
+> > > +     /* acknowledge interrupt */
+> > > +     if (active != 0)
+> > > +             iowrite32(active, adapter->addr + ECM_INT_ACKNOWLEDGE);
+> > > +
+> > > +     /* handle management data interrupt */
+> > > +     if ((active & ECM_INT_MD) != 0) {
+> > > +             adapter->md_active = false;
+> > > +             wake_up_interruptible(&adapter->md_wait);
+> > > +     }
+> > > +
+> > > +     /* handle link interrupt */
+> > > +     if ((active & ECM_INT_LINK) != 0) {
+> > > +             if (adapter->netdev->phydev) {
+> > > +                     struct phy_device *phydev = adapter->netdev->phydev;
+> > > +                     u32 status = ioread32(adapter->addr + ECM_STATUS);
+> > > +                     int link = (status & ECM_NO_LINK) ? 0 : 1;
+> > > +                     u32 speed = status & ECM_SPEED_MASK;
+> >
+> > How does PHY link and speed get into this MAC register? Is the MAC
+> > polling the PHY over the MDIO bus? Is the PHY internal to the MAC and
+> > it has backdoor access to the PHY status?
+> 
+> PHY is external. The MAC expects additional signals for link status. These
+> signals can be derived from RGMII in band signaling of the link status or by
+> using PHY link and speed LED outputs. The MAC is using the link status for
+> a quick no link reaction to minimize the impact to real time applications.
+> EtherCAT for example also uses the link LED output for a no link reaction
+> within a few microseconds.
+
+O.K. This is not the normal Linux way. You normally have the PHY
+driver tell the PHY core, which then tells the MAC driver. That always
+works. RGMII in band signaling is not supported by all PHY devices,
+and the board design would require the LED output are correctly
+connected, and i guess you need a hacked PHY driver to use the correct
+LED meanings? Plus i guess you have additional changes in the PHY
+driver to do fast link down detection?
+
+I think this needs another DT property to enable using such short
+cuts, and you should use the Linux way by default.
+
+Also, don't you need a property which tells you to either use RGMII
+inband, or LED signals?
+
+> > > +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
+> > > +{
+> > > +     struct tsnep_adapter *adapter = bus->priv;
+> > > +     u32 md;
+> > > +     int retval;
+> > > +
+> > > +     if (regnum & MII_ADDR_C45)
+> > > +             return -EOPNOTSUPP;
+> > > +
+> > > +     /* management data frame without preamble */
+> > > +     md = ECM_MD_READ;
+> >
+> > I know some PHYs are happy to work without a preamble. But as far as i
+> > know, 802.3 c22 does not say it is optional. So this needs to be an
+> > opt-in feature, for when you know all the devices on the bus support
+> > it. We have a standard DT property for this. See mdio.yaml,
+> > suppress-preamble. Please look for this in the DT blob, and only
+> > suppress the pre-amble if it is present.
+> 
+> You are right, I will improve that.
+
+You might also be interested in clock-frequency, if you can control
+the bus frequency. I've run Marvell PHYs at i think 8Mhz, rather than
+the usual 2.5MHz.
+
+> > > +static int tsnep_phy_init(struct tsnep_adapter *adapter)
+> > > +{
+> > > +     struct device_node *dn;
+> > > +     int retval;
+> > > +
+> > > +     retval = of_get_phy_mode(adapter->pdev->dev.of_node,
+> > > +                              &adapter->phy_mode);
+> > > +     if (retval)
+> > > +             adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
+> > > +
+> > > +     dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
+> > > +     adapter->phydev = of_phy_find_device(dn);
+> > > +     of_node_put(dn);
+> > > +     if (!adapter->phydev && adapter->mdiobus)
+> > > +             adapter->phydev = phy_find_first(adapter->mdiobus);
+> >
+> > Do you actually need phy_find_first()? It is better to have it in DT.
+> 
+> I thought it is a reasonable fallback, because then PHY can be ommited in
+> DT (lazy developer, unknown PHY address during development, ...).
+
+It is a reasonable fallback, until it goes wrong, because you have two
+PHYs on the bus etc.
+
+> Driver
+> and IP core will be used also on x86 over PCIe without DT. In this case this
+> fallback also makes sense. But I must confess, the driver is not ready for
+> x86 use case yet.
+
+We recently added ACPI properties. See
+Documentation/firmware-guide/acpi/dsd/phy.rst.
+
+Also, watch out. It might not be ready, but it will get compiled for
+x86, mips, powerpc etc, by the build bots, if you don't prevent it. So
+it needs to at least be warning free.
+
+	Andrew
