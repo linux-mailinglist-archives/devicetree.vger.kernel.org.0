@@ -2,121 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D783FE1C6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 20:08:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A54F3FE21D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 20:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346711AbhIASIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 14:08:38 -0400
-Received: from mail-4324.protonmail.ch ([185.70.43.24]:31395 "EHLO
-        mail-4324.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346752AbhIASIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 14:08:36 -0400
-Date:   Wed, 01 Sep 2021 18:07:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1630519656;
-        bh=hpiMhb7xaOG5AAFkGBjxr0I36weG/Yx7rV+awK0m7/Y=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=hknCXgjmK2oau81RE8Rr2N5Tq9ls7bQi8KUOFK733CyX/8jF2dehPtMq1Yp7WM+Wb
-         ge4Wewyu4PCdF73vIltxlkSw2K3XFXSLIxmiEAPqWcl7ChbXf7NIkt2LhNMDdgYP9K
-         dBeYNZDCuiJkxtA/+PPqeAXiash3wNlxQqJ7TzdA=
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH 2/2] dt-bindings: display: Add binding for LG.Philips SW43101
-Message-ID: <20210901180644.248177-3-y.oudjana@protonmail.com>
-In-Reply-To: <20210901180644.248177-1-y.oudjana@protonmail.com>
-References: <20210901180644.248177-1-y.oudjana@protonmail.com>
+        id S1346812AbhIASMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 14:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53818 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346804AbhIASMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 14:12:40 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2347C061764;
+        Wed,  1 Sep 2021 11:11:41 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 0DDD23F357;
+        Wed,  1 Sep 2021 20:11:40 +0200 (CEST)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     robdclark@gmail.com
+Cc:     sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        dmitry.baryshkov@linaro.org, abhinavk@codeaurora.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        paul.bouchara@somainline.org, devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH 1/3] drm/msm/dpu1: Add DMA2, DMA3 clock control to enum
+Date:   Wed,  1 Sep 2021 20:11:36 +0200
+Message-Id: <20210901181138.1052653-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree binding for LG.Philips SW43101.
+The enum dpu_clk_ctrl_type misses DPU_CLK_CTRL_DMA{2,3} even though
+this driver does actually handle both, if present: add the two in
+preparation for adding support for SoCs having them.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 ---
- .../display/panel/lgphilips,sw43101.yaml      | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/lgphili=
-ps,sw43101.yaml
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,sw43=
-101.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,sw4310=
-1.yaml
-new file mode 100644
-index 000000000000..da049e9f244e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/lgphilips,sw43101.yam=
-l
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: BSD-3-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/lgphilips,sw43101.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LG.Philips SW43101 1080x1920 OLED panel
-+
-+maintainers:
-+  - Yassine Oudjana <y.oudjana@protonmail.com>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: lgphilips,sw43101
-+
-+  port: true
-+  reg: true
-+  reset-gpios: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    dsi {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        panel@0 {
-+            compatible =3D "lgphilips,sw43101";
-+            reg =3D <0>;
-+
-+            reset-gpios =3D <&msmgpio 8 GPIO_ACTIVE_LOW>;
-+
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint =3D <&dsi_out>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
---=20
-2.33.0
-
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+index d2a945a27cfa..059e1402b7d0 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+@@ -432,6 +432,8 @@ enum dpu_clk_ctrl_type {
+ 	DPU_CLK_CTRL_RGB3,
+ 	DPU_CLK_CTRL_DMA0,
+ 	DPU_CLK_CTRL_DMA1,
++	DPU_CLK_CTRL_DMA2,
++	DPU_CLK_CTRL_DMA3,
+ 	DPU_CLK_CTRL_CURSOR0,
+ 	DPU_CLK_CTRL_CURSOR1,
+ 	DPU_CLK_CTRL_INLINE_ROT0_SSPP,
+-- 
+2.32.0
 
