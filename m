@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FE503FD912
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 13:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46FFF3FD921
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 14:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243905AbhIAL50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 07:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50018 "EHLO
+        id S233116AbhIAMBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 08:01:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243865AbhIAL5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 07:57:25 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C550EC061575
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 04:56:28 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id d26so4197784wrc.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 04:56:28 -0700 (PDT)
+        with ESMTP id S243941AbhIAMBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 08:01:49 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FA8C061760
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 05:00:52 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id t15so4103067wrg.7
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 05:00:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=brainfault-org.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0azurFEdIj3ZC2ZbeqfiGR0BlWdPTBZ0eY7HkyWHa2Y=;
-        b=ycqYpYprwv+8Vnwh7DpeornOkThIjfcXQU00tbtCKFpCHePBxPbNfxsWxS9+X/heuV
-         0+M9LzyIXjixhFh+xNYeHX4rJ2kn6sngjiL1rWYJPrqlFyAFMcCtMRsp/8UrBiSs/eys
-         x037ok1Hsh5ZoGocgpzEaOYXRCha8jvevbd7j+rToaPxjHC0axNKU8QGBvYlJeHROyLq
-         8uMJTirpZ7uo8zhWmAroylNa6158dtdBkcyWFfo3QyPnuitMd+2mFw1B67ItQC5Ksncv
-         vGpEOcCQ3o3ssY6fhd1bvaYu0c2D0EssflfbhkakAFm8UxPAWbRa+hOpBJSD8RCbVpZz
-         /w0A==
+        bh=JK6kRJSrXbJA7J85nnMO2GVwwyHjBoelMGPJ1c1OWrk=;
+        b=ZCn9pLdXZLA751P/mQGlLXsZjVe4HZrnDMooJMGXQhVpxiD8UJcNUeedtaooMEqpM5
+         KyuMjLonZTG9wnLFv4lNz2x+Ftrf71FWsgp0o09hjxwD/CnOB4AyVQnQkxcuXQWd8NNP
+         +TEr5FWy33aQtyc0obV6TmvlWGzvA7R2hDMABmsLT7UTnfxvQTVxMb7uFsy+6P9MAIf5
+         /0U+Tq4tl5y4+vy6SbfkSkEydgV1tAxVvM95cBf0IWaJmcot3eX/vqq0dxDz8fLe5VWo
+         mCOU+BEqmE8VNfp6xxaJQMa0QawFgzrlbX7xStMDEwJlJ6l8aqNyjmYsFBzYkUTy6uWe
+         xS3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0azurFEdIj3ZC2ZbeqfiGR0BlWdPTBZ0eY7HkyWHa2Y=;
-        b=N4OmZwC+Z32IgWXEp8UUKwbqQB3o+8iEWg2FIQWoJ3IAK+Ljr/kIDridQqqPVkYqur
-         4uXmA273260khLddr24LfXCPXRWQIYKW1RyLht49WcZxQNFv9JANQeqV5VQGW/ChXiry
-         231eQybK8w8xpddLYTpQVKgnCgdePhffG4etorHLAnw+Vm0e63rAV/YTSFlaPSTMgpce
-         YaWQiIsgiWtwgOuHiHoD95NChOALtsmXKHYR79DwYyHoi0/nIsFfBxEwh/YsefNeuSxh
-         GoqkMXXfTOXYPqZoC8XZEVGbcKM71JdmMQCUJiMo3Uqk7D/3ixdGeC6JL+n/mK54kOUv
-         XSUA==
-X-Gm-Message-State: AOAM533rtCt4ryVEETW8sbnLnitqE0KGhkWulbC0oVw7P3j5T/0PXMaz
-        4MNuNPoqYdpvtYM9suavHmpWoxHiKPGNcaf4EgETYgu4ybQ=
-X-Google-Smtp-Source: ABdhPJzRxVML9moiMgg+a03C/rFPY4kkvpXCjDbBd+shBLGf/JF/Hax8hkKGtVV6C2PckIB2I5y4IK/5UM0VeTmLVho=
-X-Received: by 2002:a5d:6ac7:: with SMTP id u7mr38038230wrw.390.1630497387244;
- Wed, 01 Sep 2021 04:56:27 -0700 (PDT)
+        bh=JK6kRJSrXbJA7J85nnMO2GVwwyHjBoelMGPJ1c1OWrk=;
+        b=mcx2h31Gt3GzQDnF61j8a7hVs3SoU1FIVrd+jSLNnoo+HLe1mFVXmO3xDWEq7hUOks
+         hDwa+qZl3y+m5mmD72ZTga9U16u7UgM9zCqoSm0Vb4VK+N9lCxzJ2R+e0bSqlEZDUgSQ
+         GwbNZyFLrdSCohe4blqW2HLBrfVSXNWHgvzwsmX5vcvAtYFunaXf8N+MjseGFTv9ViHl
+         FYqXckIOdd0eBQP0BdxUhsN61jR5LFLTdvMzXerI3+j9FsNh5IpXJKrN+VugJGhbwI3y
+         QfT8O4U147R9buiA048tjnxUiqxnhK/GadyVLx3zwWmyWgLBhX0AamdnE9/nls7zYMfL
+         5LVA==
+X-Gm-Message-State: AOAM532VCNcuK1qAY1+CErO1WKXBgvqCFs4QJr2wL8F+tQON6eSr5u8n
+        AjX7CCuWWV+XaY5azmNNfsfTqf1uxF8d15HfONhGCdMi66Q=
+X-Google-Smtp-Source: ABdhPJzmsR8+8INzT7ymkKlmM911UHAjY59ObO0CD+XE3R1hrukQBpEZvSaHQ1OOD8lRWX/r1F5ousC00VLyv+Z4jEQ=
+X-Received: by 2002:a5d:464f:: with SMTP id j15mr37728462wrs.325.1630497650858;
+ Wed, 01 Sep 2021 05:00:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210830041729.237252-1-anup.patel@wdc.com> <20210830041729.237252-6-anup.patel@wdc.com>
- <YS7WTPRYJWnPu2ii@robh.at.kernel.org>
-In-Reply-To: <YS7WTPRYJWnPu2ii@robh.at.kernel.org>
+References: <20210830041729.237252-1-anup.patel@wdc.com> <20210830041729.237252-7-anup.patel@wdc.com>
+ <YS7Xk/Np2yc1/wrb@robh.at.kernel.org>
+In-Reply-To: <YS7Xk/Np2yc1/wrb@robh.at.kernel.org>
 From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 1 Sep 2021 17:26:16 +0530
-Message-ID: <CAAhSdy1mttzt3_CnKc=xhpp5CKOEAasQVobTR-2L6Z26rstn+A@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 05/11] dt-bindings: interrupt-controller: Add
- ACLINT MSWI and SSWI bindings
+Date:   Wed, 1 Sep 2021 17:30:39 +0530
+Message-ID: <CAAhSdy2e8bPXkTodpbtNeEVX-iCxVeyNLYBkL0aCQBZ7wbSCzw@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 06/11] dt-bindings: timer: Update SiFive CLINT
+ bindings for IPI support
 To:     Rob Herring <robh@kernel.org>
 Cc:     Anup Patel <anup.patel@wdc.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
@@ -64,156 +64,113 @@ Cc:     Anup Patel <anup.patel@wdc.com>,
         Alistair Francis <Alistair.Francis@wdc.com>,
         linux-riscv <linux-riscv@lists.infradead.org>,
         "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Bin Meng <bmeng.cn@gmail.com>
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 6:54 AM Rob Herring <robh@kernel.org> wrote:
+On Wed, Sep 1, 2021 at 6:59 AM Rob Herring <robh@kernel.org> wrote:
 >
-> On Mon, Aug 30, 2021 at 09:47:23AM +0530, Anup Patel wrote:
-> > We add DT bindings documentation for the ACLINT MSWI and SSWI
-> > devices found on RISC-V SOCs.
+> On Mon, Aug 30, 2021 at 09:47:24AM +0530, Anup Patel wrote:
+> > The Linux RISC-V now treats IPIs as regular per-CPU IRQs. This means
+> > we have to create a IPI interrupt domain to use CLINT IPI functionality
+> > hence requiring a "interrupt-controller" and "#interrupt-cells" DT
+> > property in CLINT DT nodes.
 > >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
-> > ---
-> >  .../riscv,aclint-swi.yaml                     | 95 +++++++++++++++++++
-> >  1 file changed, 95 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
-> > new file mode 100644
-> > index 000000000000..68563259ae24
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
-> > @@ -0,0 +1,95 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aclint-swi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V ACLINT Software Interrupt Devices
-> > +
-> > +maintainers:
-> > +  - Anup Patel <anup.patel@wdc.com>
-> > +
-> > +description:
-> > +  RISC-V SOCs include an implementation of the M-level software interrupt
-> > +  (MSWI) device and the S-level software interrupt (SSWI) device defined
-> > +  in the RISC-V Advanced Core Local Interruptor (ACLINT) specification.
-> > +
-> > +  The ACLINT MSWI and SSWI devices are documented in the RISC-V ACLINT
-> > +  specification located at
-> > +  https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc.
-> > +
-> > +  The ACLINT MSWI and SSWI devices directly connect to the M-level and
-> > +  S-level software interrupt lines of various HARTs (or CPUs) respectively
-> > +  so the RISC-V per-HART (or per-CPU) local interrupt controller is the
-> > +  parent interrupt controller for the ACLINT MSWI and SSWI devices.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/interrupt-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +        - enum:
-> > +          - riscv,aclint-mswi
-> > +
-> > +      - items:
-> > +        - enum:
-> > +          - riscv,aclint-sswi
+> > Impact of this CLINT DT bindings change only affects Linux RISC-V
+> > NoMMU kernel and has no effect of existing M-mode runtime firmwares
+> > (i.e. OpenSBI).
 >
-> All this can be just:
->
-> enum:
->   - riscv,aclint-mswi
->   - riscv,aclint-sswi
->
-> However...
->
-> > +
-> > +    description:
-> > +      For ACLINT MSWI devices, it should be "riscv,aclint-mswi" OR
-> > +      "<vendor>,<chip>-aclint-mswi".
-> > +      For ACLINT SSWI devices, it should be "riscv,aclint-sswi" OR
-> > +      "<vendor>,<chip>-aclint-sswi".
->
-> s/OR/AND/
->
-> There must be a compatible for the implementation. Unless RiscV
-> implementations of specs are complete describing all clocks, power
-> domains, resets, etc. and are quirk free.
->
-> But don't write free form constraints...
+> It appears to me you should fix Linux to not need these 2 useless
+> properties. I say useless because #interrupt-cells being 0 is pretty
+> useless.
 
-It is possible that quite a few implementations (QEMU, FPGAs, and
-other simulators) will not require implementation specific compatible
-strings. Should we still mandate implementation specific compatible
-strings in DTS for such cases?
-
-I was not sure so I used "OR".
+Linux IRQCHIP framework only probes IRQCHIP DT nodes which
+have "interrupt-controller" DT property. The "interrupt-cells" DT property
+can be removed because as an interrupt controller SiFive CLINT
+will only provide IPIs to arch code.
 
 Regards,
 Anup
 
 >
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
+> >
+> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > ---
+> >  .../bindings/timer/sifive,clint.yaml          | 20 ++++++++++++++-----
+> >  arch/riscv/boot/dts/canaan/k210.dtsi          |  2 ++
+> >  .../boot/dts/microchip/microchip-mpfs.dtsi    |  2 ++
+> >  3 files changed, 19 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > index a35952f48742..9c8ef9f4094f 100644
+> > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > @@ -43,6 +43,12 @@ properties:
+> >
+> >    interrupts-extended:
+> >      minItems: 1
+> > +    maxItems: 4095
 > > +
 > > +  "#interrupt-cells":
 > > +    const: 0
 > > +
-> > +  interrupts-extended:
-> > +    minItems: 1
-> > +    maxItems: 4095
-> > +
 > > +  interrupt-controller: true
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts-extended
+> >
+> >  additionalProperties: false
+> >
+> > @@ -50,15 +56,19 @@ required:
+> >    - compatible
+> >    - reg
+> >    - interrupts-extended
 > > +  - interrupt-controller
 > > +  - "#interrupt-cells"
-> > +
-> > +examples:
-> > +  - |
-> > +    // Example 1 (RISC-V MSWI device used by Linux RISC-V NoMMU kernel):
-> > +
-> > +    interrupt-controller@2000000 {
-> > +      compatible = "riscv,aclint-mswi";
-> > +      interrupts-extended = <&cpu1intc 3>,
-> > +                            <&cpu2intc 3>,
-> > +                            <&cpu3intc 3>,
-> > +                            <&cpu4intc 3>;
-> > +      reg = <0x2000000 0x4000>;
+> >
+> >  examples:
+> >    - |
+> >      timer@2000000 {
+> >        compatible = "sifive,fu540-c000-clint", "sifive,clint0";
+> > -      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
+> > -                             &cpu2intc 3 &cpu2intc 7
+> > -                             &cpu3intc 3 &cpu3intc 7
+> > -                             &cpu4intc 3 &cpu4intc 7>;
+> > -       reg = <0x2000000 0x10000>;
+> > +      interrupts-extended = <&cpu1intc 3>, <&cpu1intc 7>,
+> > +                            <&cpu2intc 3>, <&cpu2intc 7>,
+> > +                            <&cpu3intc 3>, <&cpu3intc 7>,
+> > +                            <&cpu4intc 3>, <&cpu4intc 7>;
+> > +      reg = <0x2000000 0x10000>;
 > > +      interrupt-controller;
 > > +      #interrupt-cells = <0>;
-> > +    };
-> > +
-> > +  - |
-> > +    // Example 2 (RISC-V SSWI device used by Linux RISC-V MMU kernel):
-> > +
-> > +    interrupt-controller@2100000 {
-> > +      compatible = "riscv,aclint-sswi";
-> > +      interrupts-extended = <&cpu1intc 1>,
-> > +                            <&cpu2intc 1>,
-> > +                            <&cpu3intc 1>,
-> > +                            <&cpu4intc 1>;
-> > +      reg = <0x2100000 0x4000>;
-> > +      interrupt-controller;
-> > +      #interrupt-cells = <0>;
-> > +    };
-> > +...
+> >      };
+> >  ...
+> > diff --git a/arch/riscv/boot/dts/canaan/k210.dtsi b/arch/riscv/boot/dts/canaan/k210.dtsi
+> > index 5e8ca8142482..67dcda1efadb 100644
+> > --- a/arch/riscv/boot/dts/canaan/k210.dtsi
+> > +++ b/arch/riscv/boot/dts/canaan/k210.dtsi
+> > @@ -105,6 +105,8 @@ clint0: timer@2000000 {
+> >                       reg = <0x2000000 0xC000>;
+> >                       interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7
+> >                                             &cpu1_intc 3 &cpu1_intc 7>;
+> > +                     #interrupt-cells = <0>;
+> > +                     interrupt-controller;
+> >               };
+> >
+> >               plic0: interrupt-controller@c000000 {
+> > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+> > index b9819570a7d1..67fb41439f20 100644
+> > --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+> > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+> > @@ -168,6 +168,8 @@ &cpu1_intc 3 &cpu1_intc 7
+> >                                               &cpu2_intc 3 &cpu2_intc 7
+> >                                               &cpu3_intc 3 &cpu3_intc 7
+> >                                               &cpu4_intc 3 &cpu4_intc 7>;
+> > +                     #interrupt-cells = <0>;
+> > +                     interrupt-controller;
+> >               };
+> >
+> >               plic: interrupt-controller@c000000 {
 > > --
 > > 2.25.1
 > >
