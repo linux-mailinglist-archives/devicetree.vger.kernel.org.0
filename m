@@ -2,225 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF38F3FE398
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 934EA3FE3A7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231381AbhIAUTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 16:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54890 "EHLO
+        id S231435AbhIAUVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 16:21:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbhIAUTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:19:54 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA39C061760
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:18:57 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id j15so571145ila.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:18:57 -0700 (PDT)
+        with ESMTP id S231580AbhIAUVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:21:25 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94D7C0613CF
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:20:26 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id u6so777059pfi.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:20:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AZ1XjMAUDdhdaOjhllHS/s/34iqg8yDzy0nBBqfYsfQ=;
-        b=A6XpsURIzpKrsJP6WiPru6rT+p4/MZswjBc6dccTQ5mwXJElgRdNXYVmlxh6A0xL2/
-         PuUI6E4e8Kyg8Sos0IzlyED2b7ZNR7M0HvjnWNCqZUrW5nui2BODRpDycXZxM/EmVD/U
-         dZWBDvHBeVpxcsROM/3KBJX2+b9vFseGD3PUwWo6mqBA+1lUdcKShxA99Nx750Nh3+Da
-         g28WlSdj0u4csvRlkRadotzJ8HTuW6mYD7sSLUo690dAd0j84SwZdY95LsVqfZ4ONkiT
-         dSrsxSy5/LxFv6PBB0FWxjNOXBwBifvaatAutBl9ZEQZOKk0vFZjSqpKOqKoGyDedU3D
-         /+DA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+u2QuOkRRMX/DqMZWfX/UVRQi9noRYZC06sr4Cz0Hp8=;
+        b=ZMMPana7L7vTDCgu/jp5FKD2Lrbrz0jK26GBO0aS5kFqX8ZWAwDd8LGVRgMmKIW4cy
+         pM4/1N42XKs3Esi1gnR1zGqKA++SzJlDvfQrVg5j28Z5B5k6XohhNOknkTV7aRkmINrK
+         CmPERtsKo0Rsb/rb2L17uz6Xg8W52l6oAnoOY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AZ1XjMAUDdhdaOjhllHS/s/34iqg8yDzy0nBBqfYsfQ=;
-        b=fKpGwnwxzCdQVP3m4HtJRlbobctb40w/dZt4HC14PsPgNQxxR1+l6uneeM/std0JT+
-         bJXn+2D7xiIVeO1u+4ZWtF6U5kHGPqsOVcjUix5UU+nJs1rT9rLsowBkFpnG5WkKChwY
-         wT6q9FiIupoaU1vz3+E21+3u65n4PHyVj+Cah/AMi9I+X5mgvTEpWnXT2advu7z53uYa
-         7NPn7ZZDkQpyDZXO5xj/3Ra2VS0eQ9QaG7lYzZnXqv2/ND1xs57zwdl1QWvBR3JlM8GC
-         w+P/dMaeHyliNPq4NpnySuKPHgYXmCvtBCbHHmvoVW0CS9u7N0FOOGAaw614KyiuVrSJ
-         R78A==
-X-Gm-Message-State: AOAM532EKpVLFC95alSBPSodkBXAxFtGfIh7qcuNs8o7pfIslPriEaYR
-        V8STOoYVpErZWiKJcFUHe41jaOc2+9IgLj59BRv84sp/wphFdX39U1w=
-X-Google-Smtp-Source: ABdhPJxB1sTucsUXjS40V/3aBfU70CKJLgJEhcDEE6Aac4WSLc+jQvIQbA5RCWYtUqimds0/H7l8RcXvoTY4vbr3X9I=
-X-Received: by 2002:a92:d0cc:: with SMTP id y12mr889489ila.38.1630527536614;
- Wed, 01 Sep 2021 13:18:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+u2QuOkRRMX/DqMZWfX/UVRQi9noRYZC06sr4Cz0Hp8=;
+        b=uDUq+4PJvVtqaipQuvc1z9uV3vgzaTX4+u4oht+UX7DREDBxuqdGXsSRogbvirFugw
+         sEaOOIH0sZfb5PdjC7Q72duZTvMp+w1PgbhTiS6mnE1NLxtT6t9ryQBEd32yfV6ZpTJO
+         Q0VLl3TkUpzzzjlxYGtOS5Mu1aPobxaxpdiX1rbOoqW/hFgq/VZs0u/14iz/VoJ0SkgN
+         9LNyJ3VYqGf3if2SoSLAxUgpHexPNzibp/PO52Pm4G3WECaloYbcvIoVPSX7szI0uOfe
+         HuaajTXWyk09o9hYnem/9ivWyxSQSffHu1ouph6gfvnPUkEpY9NdmNDkUR/t5jt1VSVo
+         qJaQ==
+X-Gm-Message-State: AOAM532+lcBsMa/vCvZZw4FLrqk/o80RpU7u9MRl/Kpa2YwejGcNzSUj
+        ehLbXPIKbVddWSIDejBBe2OfPw==
+X-Google-Smtp-Source: ABdhPJzep5JI+YTg6jYwfIvOqV7EJbMgqrs4tymTqpHRzn2sts2yu7nyKA3inirB5PAxwEJh4dOyVA==
+X-Received: by 2002:a65:6642:: with SMTP id z2mr790331pgv.240.1630527626154;
+        Wed, 01 Sep 2021 13:20:26 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:958b:b561:a735:e774])
+        by smtp.gmail.com with ESMTPSA id x15sm321178pfq.31.2021.09.01.13.20.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Sep 2021 13:20:25 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus W <linus.walleij@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        Steev Klimaszewski <steev@kali.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lionel Debieve <lionel.debieve@st.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Nishanth Menon <nm@ti.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        Olof Johansson <olof@lixom.net>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Razvan Stefanescu <razvan.stefanescu@microchip.com>,
+        Robert Richter <rric@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Tony Lindgren <tony@atomide.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        linux-tegra@vger.kernel.org,
+        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+Subject: [PATCH v3 00/16] eDP: Support probing eDP panels dynamically instead of hardcoding
+Date:   Wed,  1 Sep 2021 13:19:18 -0700
+Message-Id: <20210901201934.1084250-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.33.0.259.gc128427fd7-goog
 MIME-Version: 1.0
-References: <20210831193425.26193-1-gerhard@engleder-embedded.com>
- <20210831193425.26193-4-gerhard@engleder-embedded.com> <YS6lQejOJJCATMCp@lunn.ch>
-In-Reply-To: <YS6lQejOJJCATMCp@lunn.ch>
-From:   Gerhard Engleder <gerhard@engleder-embedded.com>
-Date:   Wed, 1 Sep 2021 22:18:45 +0200
-Message-ID: <CANr-f5zXWrqPxWV81CT6=4O6PoPRB0Qs0T=egJ3q8FMG16f6xw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 3/3] tsnep: Add TSN endpoint Ethernet MAC driver
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +static int tsnep_ethtool_set_priv_flags(struct net_device *netdev,
-> > +                                     u32 priv_flags)
-> > +{
-> > +     struct tsnep_adapter *adapter = netdev_priv(netdev);
-> > +     int retval;
-> > +
-> > +     if (priv_flags & ~TSNEP_PRIV_FLAGS)
-> > +             return -EINVAL;
-> > +
-> > +     if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
-> > +         (priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_1000))
-> > +             return -EINVAL;
-> > +
-> > +     if ((priv_flags & TSNEP_PRIV_FLAGS_LOOPBACK_100) &&
-> > +         adapter->loopback != SPEED_100) {
-> > +             if (adapter->loopback != SPEED_UNKNOWN)
-> > +                     retval = phy_loopback(adapter->phydev, false);
-> > +             else
-> > +                     retval = 0;
-> > +
-> > +             if (!retval) {
-> > +                     adapter->phydev->speed = SPEED_100;
-> > +                     adapter->phydev->duplex = DUPLEX_FULL;
-> > +                     retval = phy_loopback(adapter->phydev, true);
->
-> This is a pretty unusual use of private flags, changing loopback at
-> runtime. ethtool --test generally does that.
->
-> What is your use case which requires loopback in normal operation, not
-> during testing?
+The goal of this patch series is to move away from hardcoding exact
+eDP panels in device tree files. As discussed in the various patches
+in this series (I'm not repeating everything here), most eDP panels
+are 99% probable and we can get that last 1% by allowing two "power
+up" delays to be specified in the device tree file and then using the
+panel ID (found in the EDID) to look up additional power sequencing
+delays for the panel.
 
-Yes it is unusual. I was searching for some user space interface for loopback
-and found drivers/net/ethernet/aquantia/atlantic/aq_ethtool.c which uses
-private flags.
+This patch series is the logical contiunation of a previous patch
+series where I proposed solving this problem by adding a
+board-specific compatible string [1]. In the discussion that followed
+it sounded like people were open to something like the solution
+proposed in this new series.
 
-Use case is still testing and not normal operation. Testing is done mostly with
-a user space application, because I don't want to overload the driver with test
-code and test frameworks can be used in user space. With loopback it is
-possible to execute a lot of tests like stressing the MAC with various frame
-lengths and checking TX/RX time stamps. These tests are useful for every
-integration of this IP core into an FPGA and not only for IP core development.
+In version 2 I got rid of the idea that we could have a "fallback"
+compatible string that we'd use if we didn't recognize the ID in the
+EDID. This simplifies the bindings a lot and the implementation
+somewhat. As a result of not having a "fallback", though, I'm not
+confident in transitioning any existing boards over to this since
+we'll have to fallback to very conservative timings if we don't
+recognize the ID from the EDID and I can't guarantee that I've seen
+every panel that might have shipped on an existing product. The plan
+is to use "edp-panel" only on new boards or new revisions of old
+boards where we can guarantee that every EDID that ships out of the
+factory has an ID in the table.
 
-> > +static irqreturn_t tsnep_irq(int irq, void *arg)
-> > +{
-> > +     struct tsnep_adapter *adapter = arg;
-> > +     u32 active = ioread32(adapter->addr + ECM_INT_ACTIVE);
-> > +
-> > +     /* acknowledge interrupt */
-> > +     if (active != 0)
-> > +             iowrite32(active, adapter->addr + ECM_INT_ACKNOWLEDGE);
-> > +
-> > +     /* handle management data interrupt */
-> > +     if ((active & ECM_INT_MD) != 0) {
-> > +             adapter->md_active = false;
-> > +             wake_up_interruptible(&adapter->md_wait);
-> > +     }
-> > +
-> > +     /* handle link interrupt */
-> > +     if ((active & ECM_INT_LINK) != 0) {
-> > +             if (adapter->netdev->phydev) {
-> > +                     struct phy_device *phydev = adapter->netdev->phydev;
-> > +                     u32 status = ioread32(adapter->addr + ECM_STATUS);
-> > +                     int link = (status & ECM_NO_LINK) ? 0 : 1;
-> > +                     u32 speed = status & ECM_SPEED_MASK;
->
-> How does PHY link and speed get into this MAC register? Is the MAC
-> polling the PHY over the MDIO bus? Is the PHY internal to the MAC and
-> it has backdoor access to the PHY status?
+Version 3 of this series now splits out all eDP panels to their own
+driver and adds the generic eDP panel support to this new driver. I
+believe this is what Sam was looking for [2].
 
-PHY is external. The MAC expects additional signals for link status. These
-signals can be derived from RGMII in band signaling of the link status or by
-using PHY link and speed LED outputs. The MAC is using the link status for
-a quick no link reaction to minimize the impact to real time applications.
-EtherCAT for example also uses the link LED output for a no link reaction
-within a few microseconds.
+[1] https://lore.kernel.org/r/YFKQaXOmOwYyeqvM@google.com/
+[2] https://lore.kernel.org/r/YRTsFNTn%2FT8fLxyB@ravnborg.org/
 
-> > +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
-> > +{
-> > +     struct tsnep_adapter *adapter = bus->priv;
-> > +     u32 md;
-> > +     int retval;
-> > +
-> > +     if (regnum & MII_ADDR_C45)
-> > +             return -EOPNOTSUPP;
-> > +
-> > +     /* management data frame without preamble */
-> > +     md = ECM_MD_READ;
->
-> I know some PHYs are happy to work without a preamble. But as far as i
-> know, 802.3 c22 does not say it is optional. So this needs to be an
-> opt-in feature, for when you know all the devices on the bus support
-> it. We have a standard DT property for this. See mdio.yaml,
-> suppress-preamble. Please look for this in the DT blob, and only
-> suppress the pre-amble if it is present.
+Changes in v3:
+- Decode hex product ID w/ same endianness as everyone else.
+- ("Reorder logicpd_type_28...") patch new for v3.
+- Split eDP panels patch new for v3.
+- Move wayward panels patch new for v3.
+- ("Non-eDP panels don't need "HPD" handling") new for v3.
+- Split the delay structure out patch just on eDP now.
+- ("Better describe eDP panel delays") new for v3.
+- Fix "prepare_to_enable" patch new for v3.
+- ("Don't re-read the EDID every time") moved to eDP only patch.
+- Generic "edp-panel" handled by the eDP panel driver now.
+- Change init order to we power at the end.
+- Adjust endianness of product ID.
+- Fallback to conservative delays if panel not recognized.
+- Add Sharp LQ116M1JW10 to table.
+- Add AUO B116XAN06.1 to table.
+- Rename delays more generically so they can be reused.
 
-You are right, I will improve that.
+Changes in v2:
+- No longer allow fallback to panel-simple.
+- Add "-ms" suffix to delays.
+- Don't support a "fallback" panel. Probed panels must be probed.
+- Not based on patch to copy "desc"--just allocate for probed panels.
+- Add "-ms" suffix to delays.
 
-> > +     md |= (regnum << ECM_MD_ADDR_SHIFT) & ECM_MD_ADDR_MASK;
-> > +     md |= ECM_MD_PHY_ADDR_FLAG;
-> > +     md |= (addr << ECM_MD_PHY_ADDR_SHIFT) & ECM_MD_PHY_ADDR_MASK;
-> > +     adapter->md_active = true;
-> > +     iowrite32(md, adapter->addr + ECM_MD_CONTROL);
-> > +     retval = wait_event_interruptible(adapter->md_wait,
-> > +                                       !adapter->md_active);
->
-> It is pretty normal to have some sort of timeout here. So maybe use
-> wait_event_interruptible_timeout()?
+Douglas Anderson (16):
+  dt-bindings: drm/panel-simple-edp: Introduce generic eDP panels
+  drm/edid: Break out reading block 0 of the EDID
+  drm/edid: Allow the querying/working with the panel ID from the EDID
+  drm/panel-simple: Reorder logicpd_type_28 / mitsubishi_aa070mc01
+  drm/panel-simple-edp: Split eDP panels out of panel-simple
+  ARM: configs: Everyone who had PANEL_SIMPLE now gets PANEL_SIMPLE_EDP
+  arm64: defconfig: Everyone who had PANEL_SIMPLE now gets
+    PANEL_SIMPLE_EDP
+  MIPS: configs: Everyone who had PANEL_SIMPLE now gets PANEL_SIMPLE_EDP
+  drm/panel-simple-edp: Move some wayward panels to the eDP driver
+  drm/panel-simple: Non-eDP panels don't need "HPD" handling
+  drm/panel-simple-edp: Split the delay structure out
+  drm/panel-simple-edp: Better describe eDP panel delays
+  drm/panel-simple-edp: hpd_reliable shouldn't be subtraced from
+    hpd_absent
+  drm/panel-simple-edp: Fix "prepare_to_enable" if panel doesn't handle
+    HPD
+  drm/panel-simple-edp: Don't re-read the EDID every time we power off
+    the panel
+  drm/panel-simple-edp: Implement generic "edp-panel"s probed by EDID
 
-So far I could trust my hardware to generate the interrupt. But it makes
-sense to not trust the hardware absolutely. I will add a timeout.
+ .../bindings/display/panel/panel-edp.yaml     |  188 ++
+ arch/arm/configs/at91_dt_defconfig            |    1 +
+ arch/arm/configs/exynos_defconfig             |    1 +
+ arch/arm/configs/imx_v6_v7_defconfig          |    1 +
+ arch/arm/configs/lpc32xx_defconfig            |    1 +
+ arch/arm/configs/multi_v5_defconfig           |    1 +
+ arch/arm/configs/multi_v7_defconfig           |    1 +
+ arch/arm/configs/omap2plus_defconfig          |    1 +
+ arch/arm/configs/qcom_defconfig               |    1 +
+ arch/arm/configs/realview_defconfig           |    1 +
+ arch/arm/configs/sama5_defconfig              |    1 +
+ arch/arm/configs/shmobile_defconfig           |    1 +
+ arch/arm/configs/sunxi_defconfig              |    1 +
+ arch/arm/configs/tegra_defconfig              |    1 +
+ arch/arm/configs/versatile_defconfig          |    1 +
+ arch/arm/configs/vexpress_defconfig           |    1 +
+ arch/arm64/configs/defconfig                  |    1 +
+ arch/mips/configs/qi_lb60_defconfig           |    1 +
+ arch/mips/configs/rs90_defconfig              |    1 +
+ drivers/gpu/drm/drm_edid.c                    |  121 +-
+ drivers/gpu/drm/panel/Kconfig                 |   16 +-
+ drivers/gpu/drm/panel/Makefile                |    1 +
+ drivers/gpu/drm/panel/panel-simple-edp.c      | 1895 +++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          | 1100 +---------
+ include/drm/drm_edid.h                        |   47 +
+ 25 files changed, 2293 insertions(+), 1093 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-edp.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-simple-edp.c
 
-> > +static void tsnep_phy_link_status_change(struct net_device *netdev)
-> > +{
-> > +     phy_print_status(netdev->phydev);
-> > +}
->
-> There is normally something here, like telling the MAC what speed it
-> should run at.
+-- 
+2.33.0.259.gc128427fd7-goog
 
-As explained above, the MAC knows the link speed due to additional signals
-from the PHY. So there is no need to tell the MAC the link speed.
-
-> > +     adapter->phydev->irq = PHY_MAC_INTERRUPT;
-> > +     phy_start(adapter->phydev);
-> > +     phy_start_aneg(adapter->phydev);
->
-> No need to call phy_start_aneg().
-
-Copied blindly from some other driver. I will fix that.
-(drivers/net/ethernet/microchip/lan743x_main.c)
-
-> > +static int tsnep_phy_init(struct tsnep_adapter *adapter)
-> > +{
-> > +     struct device_node *dn;
-> > +     int retval;
-> > +
-> > +     retval = of_get_phy_mode(adapter->pdev->dev.of_node,
-> > +                              &adapter->phy_mode);
-> > +     if (retval)
-> > +             adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
-> > +
-> > +     dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
-> > +     adapter->phydev = of_phy_find_device(dn);
-> > +     of_node_put(dn);
-> > +     if (!adapter->phydev && adapter->mdiobus)
-> > +             adapter->phydev = phy_find_first(adapter->mdiobus);
->
-> Do you actually need phy_find_first()? It is better to have it in DT.
-
-I thought it is a reasonable fallback, because then PHY can be ommited in
-DT (lazy developer, unknown PHY address during development, ...). Driver
-and IP core will be used also on x86 over PCIe without DT. In this case this
-fallback also makes sense. But I must confess, the driver is not ready for
-x86 use case yet.
-
-> > +     return 0;
-> > +
-> > +     unregister_netdev(adapter->netdev);
->
-> How do you get here? Is gcc is warning about unreachable code?
-
-Left over for easy addition of goto labels. I will remove that.
-
-Gerhard
