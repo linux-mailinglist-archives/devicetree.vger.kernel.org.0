@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B27BD3FD69A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 071753FD69B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243556AbhIAJVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 05:21:09 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:38443 "EHLO
+        id S243564AbhIAJVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 05:21:10 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:53813 "EHLO
         out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243579AbhIAJVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:21:08 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id CD42B5C023E;
-        Wed,  1 Sep 2021 05:20:11 -0400 (EDT)
+        by vger.kernel.org with ESMTP id S243578AbhIAJVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:21:10 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 663335C023C;
+        Wed,  1 Sep 2021 05:20:13 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 01 Sep 2021 05:20:11 -0400
+  by compute6.internal (MEProxy); Wed, 01 Sep 2021 05:20:13 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=NBo7N2VNZZ0WD
-        AqU6HUEAWRGAaaX8ieAM+2OeiktVZc=; b=JPPlleF6RVwvuE8HIZeJ2DqOlHyuf
-        yhMosCssTP3CuYPHQUOVMN41GtR+glUBA9/bHf7IJOxEFMRsj7nrjt12QlQVeZ0a
-        eyQX+/2VrEAMtCHtKbfU3Fb56BNKUEt/+sGDYDog6EBMKZLqfexZYSxbUjXj0efE
-        BKi95SfGyeM7aVR9F2Pip5PpZ8SiPeheBWGmIAdMe//wqWLixu43if/N50RHGqwh
-        cv/mt9kK+nJGhgEHROsvAm+vAWV9l5EyEzFACGpW6+j90l9l7eZq5ebQX0nhiAwH
-        8v/ejQ2/l056dzXxFw7Z8Q8Ai0X4bFeJLxfdm472FsWVD/Exfb9BP3KLA==
+        :mime-version:content-transfer-encoding; s=fm3; bh=mM2cPEOynY67g
+        f+68NmpZKfnHaPn+PjsYcgzUFY3KnU=; b=p6h7tZ3wwlm2qJnlVrxwURLdWJj9g
+        RNeIHtEM/7UwRaZQCqX6bDBu5sw/ZOg4ZoLyLYy5AAbWihjVbyR5WGSqKH4c3k4d
+        N0An+MZswbQsCK5yJV+X5tMDhx35sKrWa1WMV6/t9W70/m1CsXi+D5Zfp6yGKWVK
+        qSTjJce9e1fwKZBFtL+15vNBZWBtxUTL2iZ3Egi+957Ts1eTPYmU+F6ziCjT0xZE
+        xahfrVG9Hreq3OLODMCNBxhLjVfv3tDK+3oW5cPBrxu72IlbVmOnS/tc0Z3seeB9
+        o5ymYj5uYLnrvDW/cCeTlF0xAeS/zAXZ7O6DmQGFHhNzKSaDIDG9MtQsw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=NBo7N2VNZZ0WDAqU6HUEAWRGAaaX8ieAM+2OeiktVZc=; b=QD9yYF9/
-        wr2FVHpbzwIUlv9+5EfKt3R1eUbqFiY82nLIuGAbCnGhhGd8XRuU11z0o5uxSUAV
-        uRcGCa9DVzHuWVjd2PQWEFURoPizqJ8ir6yj/uOCGSut8w6TFkClif+x/5OReMZp
-        uOXvSa+XznBq7L4eZdaMIif7dsOSVjYkks6IWchDrtudoK9QfMt9AWnPcULzaeY3
-        QS9BOMfIedZkrSwXPVG31yGejXSZ9iEy687VYwmn4TLeN+lOnWcptmQlmXwUEq+I
-        cjcK7cYr7uxc7FtKEVpq9EktWXyZFE/hz39tp2fE1XXGPube/QlUGOzY4Ht4+XSi
-        w+m2dXjP4WWM+A==
-X-ME-Sender: <xms:y0UvYUT_fHTcHjFo_7HsYBHekgNdKF9Fo6XRONHWCV-ELGL20bdrog>
-    <xme:y0UvYRzkNXmU4wmu77_elJjSh8K8KCWxx_l0NT5vMwodPsht7cw0nflb2s-6znR1D
-    F33g8HYUNNd53O5xzo>
-X-ME-Received: <xmr:y0UvYR2gE5BSj6o-RZEXShWlW3BLy3BuyAY2MBGSNxR-8RuDNz82dNaD9-d829Q8rtVQ9CRJ2dbcYnHrTnAb_wssZ-irnFyOO8Xb>
+        fm3; bh=mM2cPEOynY67gf+68NmpZKfnHaPn+PjsYcgzUFY3KnU=; b=AdQXNaM3
+        wNF6eKPf8622p84s0b1d+N5AR06p5VHmXcGJBoSbFPqT6SIa9mtf//DeCw1tAzxz
+        OuqHU2lZLgiyFF9oHyu2rpvYqQj4/79zpGb+0YfqfsD60yLxSebJCtFc8wFvsURp
+        6/dLlLkNqlGJZRGVgJEILEiqL3V3LqOgBKupn0M/Ed+xKu7IPk5qqsTSaEYTqfbJ
+        n/GrRHubzt6kGiJXKBN5mFob2OZXx44O9uac7tfx/0gDdSXU240z71kN6IqBZEeh
+        smkpXneNgty3zRKDW7zMpG54sgKZcfHBlNxFGfVafZGYVhmSSRZMYC7HWed6B+Us
+        tFqvMoLme4w0Uw==
+X-ME-Sender: <xms:zUUvYVRZcG03gRXIhO9LELIvSLkteTNjXXGLOMqtxvwHwmt7TbQRTQ>
+    <xme:zUUvYeycfQKN6tXOcxow_RIhrtnhY9RayzpvmN54g7t2KErdXRAfghgLckcspntkN
+    MPN-68lwr077ygUuH8>
+X-ME-Received: <xmr:zUUvYa0waDNxZxiNxpMsZpgh9EQGg5eJHPuGk505Or250SjowiL-11uJ9g-k3h217crEVBqdMk9BLqDR4WSbL0tvD5FW_hhHeozd>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -48,12 +48,12 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggod
     htvghrnhepvdekleevfeffkeejhfffueelteelfeduieefheduudfggffhhfffheevveeh
     hedvnecuvehluhhsthgvrhfuihiivgepfeenucfrrghrrghmpehmrghilhhfrhhomhepmh
     grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:y0UvYYCm1P_me3DOj6dibypVv7X3bBF-EY_ls6VTnGnlP6ImuLXrHQ>
-    <xmx:y0UvYdioZbXvtX1iAHgSUFA9oQ82D076p5b6NIOvOy1y2aDl_rONvQ>
-    <xmx:y0UvYUqQAQq2_KkyXsG9_Y_tQCljg3MWLtXeeytuTLLyKya_xumsHg>
-    <xmx:y0UvYYW9-GM9uC2lSOuC2B8p2slKytMzMWPCtXJQjL2rATjjWM7f9w>
+X-ME-Proxy: <xmx:zUUvYdCTd6n2rbWDQBZvcWa9jQxx0ucLSUO_xxn_Rz4Gei307H4B3Q>
+    <xmx:zUUvYeiTuna7Eufj93C6NLQVYcEmSSBG4EUBrIGbV6Q1Aa4KeeSEzQ>
+    <xmx:zUUvYRoGGjmtrFMti0m2utPITToIS7Uow44ktQf2rNHfbCoTSJbVcA>
+    <xmx:zUUvYZW7tk_B7r-htJJCiWYK3c1RL8kIZxxZfT6WPpsqGRKueIJFJA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Sep 2021 05:20:11 -0400 (EDT)
+ 1 Sep 2021 05:20:12 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -61,9 +61,9 @@ To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <maxime@cerno.tech>,
         =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: [PATCH v2 43/52] ARM: dts: sunxi: Fix the SPI NOR node names
-Date:   Wed,  1 Sep 2021 11:18:43 +0200
-Message-Id: <20210901091852.479202-44-maxime@cerno.tech>
+Subject: [PATCH v2 44/52] ARM: dts: v3s: Remove useless DMA properties
+Date:   Wed,  1 Sep 2021 11:18:44 +0200
+Message-Id: <20210901091852.479202-45-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210901091852.479202-1-maxime@cerno.tech>
 References: <20210901091852.479202-1-maxime@cerno.tech>
@@ -73,55 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the SPI NOR bindings, the flash node names are supposed to
-be flash@<address>. Let's fix our users to use that new scheme.
+The crypto engine binding doesn't allow for any DMA property, yet the
+v3s define some. Remove them.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- arch/arm/boot/dts/sun8i-v3-sl631.dtsi                     | 2 +-
- arch/arm/boot/dts/sunxi-libretech-all-h3-it.dtsi          | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/sun8i-v3s.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun8i-v3-sl631.dtsi b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-index e0d2a31efc7f..6f93f8c49f84 100644
---- a/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-@@ -115,7 +115,7 @@ &reg_ldo2 {
- &spi0 {
- 	status = "okay";
- 
--	spi-flash@0 {
-+	flash@0 {
- 		reg = <0>;
- 		compatible = "jedec,spi-nor";
- 		spi-max-frequency = <50000000>;
-diff --git a/arch/arm/boot/dts/sunxi-libretech-all-h3-it.dtsi b/arch/arm/boot/dts/sunxi-libretech-all-h3-it.dtsi
-index 204fba3614f9..50d328c2a84d 100644
---- a/arch/arm/boot/dts/sunxi-libretech-all-h3-it.dtsi
-+++ b/arch/arm/boot/dts/sunxi-libretech-all-h3-it.dtsi
-@@ -156,7 +156,7 @@ &r_pio {
- &spi0 {
- 	status = "okay";
- 
--	spiflash@0 {
-+	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <50000000>;
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-index 097a5511523a..c519d9fa6967 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-@@ -343,7 +343,7 @@ &sound {
- &spi0 {
- 	status = "okay";
- 
--	spi-flash@0 {
-+	flash@0 {
- 		compatible = "mxicy,mx25l1606e", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <80000000>;
+diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
+index b30bc1a25ebb..44382e36e825 100644
+--- a/arch/arm/boot/dts/sun8i-v3s.dtsi
++++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
+@@ -285,8 +285,6 @@ crypto@1c15000 {
+ 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
+ 			clock-names = "ahb", "mod";
+-			dmas = <&dma 16>, <&dma 16>;
+-			dma-names = "rx", "tx";
+ 			resets = <&ccu RST_BUS_CE>;
+ 			reset-names = "ahb";
+ 		};
 -- 
 2.31.1
 
