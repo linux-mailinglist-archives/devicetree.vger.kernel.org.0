@@ -2,802 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96DD13FD85C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 13:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0819C3FD8BA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 13:29:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240349AbhIALEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 07:04:05 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:60488 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240071AbhIALEB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 07:04:01 -0400
-Received: from ert768.prtnl (ert768.prtnl [192.168.224.11])
-        by sparta.prtnl (Postfix) with ESMTP id 0662844A0250;
-        Wed,  1 Sep 2021 13:03:02 +0200 (CEST)
-From:   Roan van Dijk <roan@protonic.nl>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, david@protonic.nl,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Roan van Dijk <roan@protonic.nl>
-Subject: [PATCH v1 3/3] drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
-Date:   Wed,  1 Sep 2021 12:59:11 +0200
-Message-Id: <20210901105911.178646-4-roan@protonic.nl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210901105911.178646-1-roan@protonic.nl>
-References: <20210901105911.178646-1-roan@protonic.nl>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S242472AbhIALaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 07:30:21 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:63913 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238424AbhIALaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 07:30:21 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id ddf5f73a;
+        Wed, 1 Sep 2021 13:29:22 +0200 (CEST)
+Date:   Wed, 1 Sep 2021 13:29:22 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
+        kettenis@openbsd.org, tglx@linutronix.de, maz@kernel.org,
+        marcan@marcan.st, bhelgaas@google.com, jim2101024@gmail.com,
+        nsaenz@kernel.org, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        daire.mcnamara@microchip.com, nsaenzjulienne@suse.de,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+In-Reply-To: <YS6dWI4wwg7XkuNA@robh.at.kernel.org> (message from Rob Herring
+        on Tue, 31 Aug 2021 16:21:28 -0500)
+Subject: Re: [PATCH v4 3/4] dt-bindings: pci: Add DT bindings for apple,pcie
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
+ <20210827171534.62380-4-mark.kettenis@xs4all.nl> <YS6dWI4wwg7XkuNA@robh.at.kernel.org>
+Message-ID: <561431b178447575@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a driver for the SCD4x CO2 sensor from Sensirion. The sensor is
-able to measure CO2 concentration, temperature and relative humdity.
-The sensor uses a photoacoustic principle for measuring CO2 concentration.
-An I2C interface is supported by this driver in order to communicate with
-the sensor.
+> Date: Tue, 31 Aug 2021 16:21:28 -0500
+> From: Rob Herring <robh@kernel.org>
+> 
+> On Fri, Aug 27, 2021 at 07:15:28PM +0200, Mark Kettenis wrote:
+> > From: Mark Kettenis <kettenis@openbsd.org>
+> > 
+> > The Apple PCIe host controller is a PCIe host controller with
+> > multiple root ports present in Apple ARM SoC platforms, including
+> > various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > 
+> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > ---
+> >  .../devicetree/bindings/pci/apple,pcie.yaml   | 165 ++++++++++++++++++
+> >  MAINTAINERS                                   |   1 +
+> >  2 files changed, 166 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > new file mode 100644
+> > index 000000000000..97a126db935a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> > @@ -0,0 +1,165 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/apple,pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Apple PCIe host controller
+> > +
+> > +maintainers:
+> > +  - Mark Kettenis <kettenis@openbsd.org>
+> > +
+> > +description: |
+> > +  The Apple PCIe host controller is a PCIe host controller with
+> > +  multiple root ports present in Apple ARM SoC platforms, including
+> > +  various iPhone and iPad devices and the "Apple Silicon" Macs.
+> > +  The controller incorporates Synopsys DesigWare PCIe logic to
+> > +  implements its root ports.  But the ATU found on most DesignWare
+> > +  PCIe host bridges is absent.
+> > +
+> > +  All root ports share a single ECAM space, but separate GPIOs are
+> > +  used to take the PCI devices on those ports out of reset.  Therefore
+> > +  the standard "reset-gpios" and "max-link-speed" properties appear on
+> > +  the child nodes that represent the PCI bridges that correspond to
+> > +  the individual root ports.
+> > +
+> > +  MSIs are handled by the PCIe controller and translated into regular
+> > +  interrupts.  A range of 32 MSIs is provided.  These 32 MSIs can be
+> > +  distributed over the root ports as the OS sees fit by programming
+> > +  the PCIe controller's port registers.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +  - $ref: ../interrupt-controller/msi-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: apple,t8103-pcie
+> > +      - const: apple,pcie
+> > +
+> > +  reg:
+> > +    minItems: 3
+> > +    maxItems: 5
+> > +
+> > +  reg-names:
+> > +    minItems: 3
+> > +    maxItems: 5
+> > +    items:
+> > +      - const: config
+> > +      - const: rc
+> > +      - const: port0
+> > +      - const: port1
+> > +      - const: port2
+> > +
+> > +  ranges:
+> > +    minItems: 2
+> > +    maxItems: 2
+> > +
+> > +  interrupts:
+> > +    description:
+> > +      Interrupt specifiers, one for each root port.
+> > +    minItems: 1
+> > +    maxItems: 3
+> > +
+> > +  msi-parent: true
+> 
+> I still think this should be dropped as it is meaningless with 
+> 'msi-controller' present.
 
-Signed-off-by: Roan van Dijk <roan@protonic.nl>
----
- drivers/iio/chemical/Kconfig  |  13 +
- drivers/iio/chemical/Makefile |   1 +
- drivers/iio/chemical/scd4x.c  | 708 ++++++++++++++++++++++++++++++++++
- 3 files changed, 722 insertions(+)
- create mode 100644 drivers/iio/chemical/scd4x.c
+Hmm.  As far as I can tell all current arm64 device trees that
+describe hardware with an MSI controller integrated on the PCI host
+bridge have both the 'msi-controller' and 'msi-parent' properties.
+See arch/arm64/boot/dts/marvell/aramada-37xx.dtsi and
+arch/arm64/boot/dts/xilinx/zynqmp.dtsi.
 
-diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
-index a4920646e9be..ce9ec81d4993 100644
---- a/drivers/iio/chemical/Kconfig
-+++ b/drivers/iio/chemical/Kconfig
-@@ -118,6 +118,19 @@ config SCD30_SERIAL
- 	  To compile this driver as a module, choose M here: the module will
- 	  be called scd30_serial.
- 
-+config SCD4X
-+	tristate "SCD4X carbon dioxide sensor driver"
-+	select IIO_BUFFER
-+	select IIO_TRIGGERED_BUFFER
-+	depends on I2C
-+	select CRC8
-+	help
-+	  Say Y here to build support for the Sensirion SCD4X sensor with cabon
-+	  dioxide, relative humidity and temperature sensing capabilities
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called scd4x.
-+
- config SENSIRION_SGP30
- 	tristate "Sensirion SGPxx gas sensors"
- 	depends on I2C
-diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
-index 4898690cc155..3a766dd23020 100644
---- a/drivers/iio/chemical/Makefile
-+++ b/drivers/iio/chemical/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_PMS7003) += pms7003.o
- obj-$(CONFIG_SCD30_CORE) += scd30_core.o
- obj-$(CONFIG_SCD30_I2C) += scd30_i2c.o
- obj-$(CONFIG_SCD30_SERIAL) += scd30_serial.o
-+obj-$(CONFIG_SCD4X) += scd4x.o
- obj-$(CONFIG_SENSIRION_SGP30)	+= sgp30.o
- obj-$(CONFIG_SPS30) += sps30.o
- obj-$(CONFIG_SPS30_I2C) += sps30_i2c.o
-diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
-new file mode 100644
-index 000000000000..6ec8a5b5d901
---- /dev/null
-+++ b/drivers/iio/chemical/scd4x.c
-@@ -0,0 +1,708 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Sensirion SCD4X carbon dioxide sensor i2c driver
-+ *
-+ * Copyright (C) 2021 Protonic Holland
-+ * Author: Roan van Dijk <roan@protonic.nl>
-+ *
-+ * I2C slave address: 0x62
-+ *
-+ * Datasheets:
-+ * https://www.sensirion.com/file/datasheet_scd4x
-+ */
-+
-+#include <asm/unaligned.h>
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/trigger.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+#include <linux/iio/types.h>
-+#include <linux/kernel.h>
-+#include <linux/mutex.h>
-+#include <linux/string.h>
-+#include <linux/sysfs.h>
-+#include <linux/types.h>
-+
-+#define SCD4X_CRC8_POLYNOMIAL 0x31
-+#define SCD4X_TIMEOUT_ERR 1000
-+#define SCD4X_READ_BUF_SIZE 9
-+#define SCD4X_COMMAND_BUF_SIZE 2
-+#define SCD4X_WRITE_BUF_SIZE 5
-+#define SCD4X_FRC_MIN_PPM 400
-+#define SCD4X_FRC_MAX_PPM 2000
-+
-+/*Commands SCD4X*/
-+enum scd4x_cmd {
-+	CMD_START_MEAS          = 0x21b1,
-+	CMD_READ_MEAS           = 0xec05,
-+	CMD_STOP_MEAS           = 0x3f86,
-+	CMD_SET_TEMP_OFFSET     = 0x241d,
-+	CMD_GET_TEMP_OFFSET     = 0x2318,
-+	CMD_FRC                 = 0x362f,
-+	CMD_SET_ASC             = 0x2416,
-+	CMD_GET_ASC             = 0x2313,
-+	CMD_GET_DATA_READY      = 0xe4b8,
-+};
-+
-+enum scd4x_channel_idx {
-+	SCD4X_CO2,
-+	SCD4X_TEMP,
-+	SCD4X_HR,
-+};
-+
-+struct scd4x_state {
-+	struct i2c_client *client;
-+	struct mutex lock;
-+	struct device *dev;
-+	struct regulator *vdd;
-+
-+	int irq;
-+	uint16_t meas[3];
-+};
-+
-+DECLARE_CRC8_TABLE(scd4x_crc8_table);
-+
-+static int scd4x_i2c_xfer(struct scd4x_state *state, char *txbuf, int txsize,
-+				char *rxbuf, int rxsize)
-+{
-+	struct i2c_client *client = to_i2c_client(state->dev);
-+	int ret;
-+
-+	ret = i2c_master_send(client, txbuf, txsize);
-+
-+	if (ret < 0)
-+		return ret;
-+	if (ret != txsize)
-+		return -EIO;
-+
-+	if (rxsize == 0)
-+		return 0;
-+
-+	ret = i2c_master_recv(client, rxbuf, rxsize);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != rxsize)
-+		return -EIO;
-+
-+	return 0;
-+}
-+
-+static int scd4x_send_command(struct scd4x_state *state, enum scd4x_cmd cmd)
-+{
-+	char buf[SCD4X_COMMAND_BUF_SIZE];
-+	int ret;
-+
-+	/*
-+	 * Measurement needs to be stopped before sending commands.
-+	 * Except stop and start command.
-+	 */
-+	if ((cmd != CMD_STOP_MEAS) & (cmd != CMD_START_MEAS)) {
-+
-+		ret = scd4x_send_command(state, CMD_STOP_MEAS);
-+		if (ret)
-+			return ret;
-+
-+		/* execution time for stopping measurement */
-+		msleep_interruptible(500);
-+	}
-+
-+	put_unaligned_be16(cmd, buf);
-+	ret = scd4x_i2c_xfer(state, buf, 2, buf, 0);
-+	if (ret)
-+		return ret;
-+
-+	if ((cmd != CMD_STOP_MEAS) & (cmd != CMD_START_MEAS)) {
-+		ret = scd4x_send_command(state, CMD_START_MEAS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int scd4x_read(struct scd4x_state *state, enum scd4x_cmd cmd,
-+			void *response, int byte_cnt)
-+{
-+	char buf[SCD4X_READ_BUF_SIZE];
-+	char *rsp = response;
-+	int i, ret;
-+	char crc;
-+
-+	/*
-+	 * Measurement needs to be stopped before sending commands.
-+	 * Except for reading measurement and data ready command.
-+	 */
-+	if ((cmd != CMD_GET_DATA_READY) & (cmd != CMD_READ_MEAS)) {
-+		ret = scd4x_send_command(state, CMD_STOP_MEAS);
-+		if (ret)
-+			return ret;
-+
-+		/* execution time for stopping measurement */
-+		msleep_interruptible(500);
-+	}
-+
-+	put_unaligned_be16(cmd, buf);
-+	ret = scd4x_i2c_xfer(state, buf, 2, buf, byte_cnt);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < byte_cnt; i += 3) {
-+		crc = crc8(scd4x_crc8_table, buf + i, 2, CRC8_INIT_VALUE);
-+		if (crc != buf[i + 2]) {
-+			dev_err(state->dev, "CRC error\n");
-+			return -EIO;
-+		}
-+
-+		*rsp++ = buf[i];
-+		*rsp++ = buf[i + 1];
-+	}
-+
-+	/* start measurement */
-+	if ((cmd != CMD_GET_DATA_READY) & (cmd != CMD_READ_MEAS)) {
-+		ret = scd4x_send_command(state, CMD_START_MEAS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int scd4x_write(struct scd4x_state *state, enum scd4x_cmd cmd, uint16_t arg)
-+{
-+	char buf[SCD4X_WRITE_BUF_SIZE];
-+	int ret;
-+	char crc;
-+
-+	put_unaligned_be16(cmd, buf);
-+	put_unaligned_be16(arg, buf + 2);
-+
-+	crc = crc8(scd4x_crc8_table, buf + 2, 2, CRC8_INIT_VALUE);
-+	buf[4] = crc;
-+
-+	/* measurement needs to be stopped before sending commands */
-+	ret = scd4x_send_command(state, CMD_STOP_MEAS);
-+	if (ret)
-+		return ret;
-+
-+	/* execution time */
-+	msleep_interruptible(500);
-+
-+	ret = scd4x_i2c_xfer(state, buf, SCD4X_WRITE_BUF_SIZE, buf, 0);
-+	if (ret)
-+		return ret;
-+
-+	/* start measurement, except for forced calibration command */
-+	if (cmd != CMD_FRC) {
-+		ret = scd4x_send_command(state, CMD_START_MEAS);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int scd4x_write_and_fetch(struct scd4x_state *state, enum scd4x_cmd cmd,
-+				uint16_t arg, void *response, int byte_cnt)
-+{
-+	struct i2c_client *client = to_i2c_client(state->dev);
-+	char buf[SCD4X_READ_BUF_SIZE];
-+	char *rsp = response;
-+	int i, ret;
-+	char crc;
-+
-+	ret = scd4x_write(state, CMD_FRC, arg);
-+	if (ret) {
-+		scd4x_send_command(state, CMD_START_MEAS);
-+		return ret;
-+	}
-+
-+	/* Execution time */
-+	msleep_interruptible(400);
-+
-+	ret = i2c_master_recv(client, buf, byte_cnt);
-+	if (ret < 0)
-+		return ret;
-+	if (ret != byte_cnt)
-+		return -EIO;
-+
-+	for (i = 0; i < byte_cnt; i += 3) {
-+		crc = crc8(scd4x_crc8_table, buf + i, 2, CRC8_INIT_VALUE);
-+		if (crc != buf[i + 2]) {
-+			dev_err(state->dev, "CRC error\n");
-+			scd4x_send_command(state, CMD_START_MEAS);
-+			return -EIO;
-+		}
-+
-+		*rsp++ = buf[i];
-+		*rsp++ = buf[i + 1];
-+	}
-+
-+	ret = scd4x_send_command(state, CMD_START_MEAS);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int scd4x_read_meas(struct scd4x_state *state)
-+{
-+	int i, ret;
-+
-+	ret = scd4x_read(state, CMD_READ_MEAS, state->meas, 9);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < ARRAY_SIZE(state->meas); i++)
-+		state->meas[i] = be16_to_cpu(state->meas[i]);
-+	/*
-+	 * Temperature and humidity values are convertered and scaled to
-+	 * milli deg C and milli percent.
-+	 */
-+	state->meas[SCD4X_TEMP] = ((175 * state->meas[SCD4X_TEMP]/65536) - 45)*1000;
-+	state->meas[SCD4X_HR] = ((100 * state->meas[SCD4X_HR]/65536))*1000;
-+
-+	return 0;
-+}
-+
-+static int scd4x_wait_meas_poll(struct scd4x_state *state)
-+{
-+	int tries = 6;
-+	int ret;
-+
-+	do {
-+		uint16_t val;
-+
-+		ret = scd4x_read(state, CMD_GET_DATA_READY, &val, 3);
-+		if (ret)
-+			return -EIO;
-+		val = be16_to_cpu(val);
-+
-+		/* new measurement available */
-+		if (val & 0x7FF)
-+			break;
-+
-+		msleep_interruptible(1000);
-+	} while (--tries);
-+
-+	if (tries == 0) {
-+		/* try to start sensor on timeout */
-+		ret = scd4x_send_command(state, CMD_START_MEAS);
-+		if (ret)
-+			dev_err(state->dev, "failed to start measurement: %d\n", ret);
-+	}
-+
-+	return tries ? 0 : -ETIMEDOUT;
-+}
-+
-+static int scd4x_read_poll(struct scd4x_state *state)
-+{
-+	int ret;
-+
-+	ret = scd4x_wait_meas_poll(state);
-+	if (ret)
-+		return ret;
-+
-+	return scd4x_read_meas(state);
-+}
-+
-+static int scd4x_read_raw(struct iio_dev *indio_dev,
-+			struct iio_chan_spec const *chan, int *val,
-+			int *val2, long mask)
-+{
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	int ret;
-+	uint16_t tmp;
-+
-+	mutex_lock(&state->lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+	case IIO_CHAN_INFO_PROCESSED:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			break;
-+
-+		ret = scd4x_read_poll(state);
-+		if (ret) {
-+			iio_device_release_direct_mode(indio_dev);
-+			break;
-+		}
-+		*val = state->meas[chan->address];
-+		iio_device_release_direct_mode(indio_dev);
-+		ret = IIO_VAL_INT;
-+		break;
-+	case IIO_CHAN_INFO_CALIBBIAS:
-+		ret = scd4x_read(state, CMD_GET_TEMP_OFFSET, &tmp, 3);
-+		if (ret)
-+			break;
-+		*val = 175000 * be16_to_cpu(tmp) / 65536;
-+		ret = IIO_VAL_INT;
-+		break;
-+	}
-+	mutex_unlock(&state->lock);
-+
-+	return ret;
-+}
-+
-+static int scd4x_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+				int val, int val2, long mask)
-+{
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	int ret = 0;
-+
-+	mutex_lock(&state->lock);
-+	switch (mask) {
-+	case IIO_CHAN_INFO_CALIBBIAS:
-+		val = val * 65536 / 175000;
-+		ret = scd4x_write(state, CMD_SET_TEMP_OFFSET, val);
-+		if (ret)
-+			break;
-+	}
-+	mutex_unlock(&state->lock);
-+
-+	return ret;
-+}
-+
-+static ssize_t calibration_auto_enable_show(struct device *dev,
-+			struct device_attribute *attr, char *buf)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	int ret;
-+	uint16_t val;
-+
-+	mutex_lock(&state->lock);
-+	ret = scd4x_read(state, CMD_GET_ASC, &val, 3);
-+	mutex_unlock(&state->lock);
-+	if (ret)
-+		dev_err(dev, "failed to read automatic calibration");
-+
-+	val = be16_to_cpu(val);
-+
-+	return ret ?: sprintf(buf, "%d\n", val);
-+}
-+
-+static ssize_t calibration_auto_enable_store(struct device *dev,
-+					struct device_attribute *attr,
-+					const char *buf, size_t len)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	bool val;
-+	int ret;
-+	uint16_t value;
-+
-+	ret = kstrtobool(buf, &val);
-+	if (ret)
-+		return ret;
-+
-+	value = val;
-+
-+	mutex_lock(&state->lock);
-+	ret = scd4x_write(state, CMD_SET_ASC, value);
-+	mutex_unlock(&state->lock);
-+	if (ret)
-+		dev_err(dev, "failed to set automatic calibration");
-+
-+	return ret ?: len;
-+}
-+
-+static ssize_t calibration_forced_value_store(struct device *dev,
-+					struct device_attribute *attr,
-+					const char *buf, size_t len)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	uint16_t val, arg;
-+	int ret;
-+
-+	ret = kstrtou16(buf, 0, &arg);
-+	if (ret)
-+		return ret;
-+
-+	if (arg < SCD4X_FRC_MIN_PPM || arg > SCD4X_FRC_MAX_PPM)
-+		return -EINVAL;
-+
-+	mutex_lock(&state->lock);
-+	ret = scd4x_write_and_fetch(state, CMD_FRC, arg, &val, 3);
-+	mutex_unlock(&state->lock);
-+
-+	if (val == 0xff) {
-+		dev_err(state->dev, "forced calibration has failed");
-+		return -EINVAL;
-+	}
-+
-+	return ret ?: len;
-+}
-+
-+static IIO_DEVICE_ATTR_RW(calibration_auto_enable, 0);
-+static IIO_DEVICE_ATTR_WO(calibration_forced_value, 0);
-+
-+static struct attribute *scd4x_attrs[] = {
-+	&iio_dev_attr_calibration_auto_enable.dev_attr.attr,
-+	&iio_dev_attr_calibration_forced_value.dev_attr.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group scd4x_attr_group = {
-+	.attrs = scd4x_attrs,
-+};
-+static const struct iio_info scd4x_info = {
-+	.attrs = &scd4x_attr_group,
-+	.read_raw = scd4x_read_raw,
-+	.write_raw = scd4x_write_raw,
-+};
-+
-+static const struct iio_chan_spec scd4x_channels[] = {
-+	{
-+		.type = IIO_CONCENTRATION,
-+		.channel2 = IIO_MOD_CO2,
-+		.modified = 1,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.address = SCD4X_CO2,
-+		.scan_index = SCD4X_CO2,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_BE,
-+		},
-+	},
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED)|
-+				      BIT(IIO_CHAN_INFO_CALIBBIAS),
-+		.address = SCD4X_TEMP,
-+		.scan_index = SCD4X_TEMP,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_BE,
-+		},
-+	},
-+	{
-+		.type = IIO_HUMIDITYRELATIVE,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-+		.address = SCD4X_HR,
-+		.scan_index = SCD4X_HR,
-+		.scan_type = {
-+			.sign = 'u',
-+			.realbits = 16,
-+			.storagebits = 16,
-+			.endianness = IIO_BE,
-+		},
-+	},
-+};
-+
-+static int __maybe_unused scd4x_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct scd4x_state *state  = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = scd4x_send_command(state, CMD_STOP_MEAS);
-+	if (ret)
-+		return ret;
-+
-+	return regulator_disable(state->vdd);
-+}
-+
-+static int __maybe_unused scd4x_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = regulator_enable(state->vdd);
-+	if (ret)
-+		return ret;
-+
-+	return scd4x_send_command(state, CMD_START_MEAS);
-+}
-+
-+static __maybe_unused SIMPLE_DEV_PM_OPS(scd4x_pm_ops, scd4x_suspend, scd4x_resume);
-+
-+static void scd4x_stop_meas(void *data)
-+{
-+	struct scd4x_state *state = data;
-+
-+	scd4x_send_command(state, CMD_STOP_MEAS);
-+}
-+
-+static void scd4x_disable_regulator(void *data)
-+{
-+	struct scd4x_state *state = data;
-+
-+	regulator_disable(state->vdd);
-+}
-+
-+static irqreturn_t scd4x_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct scd4x_state *state = iio_priv(indio_dev);
-+	struct {
-+		int data[3];
-+		int64_t ts __aligned(8);
-+	} scan;
-+	int ret;
-+
-+	mutex_lock(&state->lock);
-+	ret = scd4x_read_poll(state);
-+	memset(&scan, 0, sizeof(scan));
-+	memcpy(scan.data, state->meas, sizeof(state->meas));
-+	mutex_unlock(&state->lock);
-+	if (ret)
-+		goto out;
-+
-+	iio_push_to_buffers_with_timestamp(indio_dev, &scan, iio_get_time_ns(indio_dev));
-+out:
-+	iio_trigger_notify_done(indio_dev->trig);
-+	return IRQ_HANDLED;
-+}
-+
-+static int scd4x_set_trigger_state(struct iio_trigger *trig, bool state)
-+{
-+	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
-+	struct scd4x_state *st = iio_priv(indio_dev);
-+
-+	if (state)
-+		enable_irq(st->irq);
-+	else
-+		disable_irq(st->irq);
-+
-+	return 0;
-+}
-+
-+static const struct iio_trigger_ops scd4x_trigger_ops = {
-+	.set_trigger_state = scd4x_set_trigger_state,
-+	.validate_device = iio_trigger_validate_own_device,
-+};
-+
-+static int scd4x_setup_trigger(struct iio_dev *indio_dev)
-+{
-+	struct device *dev = indio_dev->dev.parent;
-+	struct iio_trigger *trig;
-+	int ret;
-+
-+	trig = devm_iio_trigger_alloc(dev, "%s-dev%d", indio_dev->name,
-+				      iio_device_id(indio_dev));
-+	if (!trig) {
-+		dev_err(dev, "failed to allocate trigger\n");
-+		return -ENOMEM;
-+	}
-+
-+	trig->ops = &scd4x_trigger_ops;
-+	iio_trigger_set_drvdata(trig, indio_dev);
-+
-+	ret = devm_iio_trigger_register(dev, trig);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->trig = iio_trigger_get(trig);
-+
-+	return ret;
-+}
-+
-+static int scd4x_probe(struct i2c_client *client, const struct i2c_device_id *id)
-+{
-+	static const unsigned long scd4x_scan_masks[] = { 0x07, 0x00 };
-+	struct device *dev = &client->dev;
-+	struct iio_dev *indio_dev;
-+	struct scd4x_state *state;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*state));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	state = iio_priv(indio_dev);
-+	mutex_init(&state->lock);
-+	state->dev = dev;
-+	crc8_populate_msb(scd4x_crc8_table, SCD4X_CRC8_POLYNOMIAL);
-+
-+	indio_dev->info = &scd4x_info;
-+	indio_dev->name = client->name;
-+	indio_dev->channels = scd4x_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(scd4x_channels);
-+	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_TRIGGERED;
-+	indio_dev->available_scan_masks = scd4x_scan_masks;
-+
-+	state->vdd = devm_regulator_get(dev, "vdd");
-+	if (IS_ERR(state->vdd))
-+		return dev_err_probe(dev, PTR_ERR(state->vdd), "failed to get regulator\n");
-+
-+	ret = regulator_enable(state->vdd);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, scd4x_disable_regulator, state);
-+	if (ret)
-+		return ret;
-+
-+	ret = scd4x_send_command(state, CMD_STOP_MEAS);
-+	if (ret) {
-+		dev_err(dev, "failed to stop measurement: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* execution time */
-+	msleep_interruptible(500);
-+
-+	if (state->irq > 0) {
-+		ret = scd4x_setup_trigger(indio_dev);
-+		if (ret) {
-+			dev_err(dev, "failed to setup trigger: %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+	ret = devm_iio_triggered_buffer_setup(dev, indio_dev, NULL, scd4x_trigger_handler, NULL);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret) {
-+		dev_err(dev, "failed to register iio device\n");
-+		return ret;
-+	}
-+
-+	ret = scd4x_send_command(state, CMD_START_MEAS);
-+	if (ret) {
-+		dev_err(dev, "failed to start measurement: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = devm_add_action_or_reset(dev, scd4x_stop_meas, state);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id scd4x_dt_ids[] = {
-+	{ .compatible = "sensirion,scd40" },
-+	{ .compatible = "sensirion,scd41" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, scd4x_dt_ids);
-+
-+static struct i2c_driver scd4x_i2c_driver = {
-+	.driver = {
-+		.name = KBUILD_MODNAME,
-+		.of_match_table = scd4x_dt_ids,
-+		.pm = &scd4x_pm_ops
-+	},
-+	.probe = scd4x_probe,
-+};
-+module_i2c_driver(scd4x_i2c_driver);
-+
-+MODULE_AUTHOR("Roan van Dijk <roan@protonic.nl>");
-+MODULE_DESCRIPTION("Sensirion SCD4X carbon dioxide sensor core driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.30.2
+The current OpenBSD code will fail to map the MSIs if 'msi-parent'
+isn't there, although Linux seems to fall back on an MSI domain that's
+directly attached to the host bridge if the 'msi-parent' property is
+missing.  I think it makes sense to be explicit here, but if both you
+and Marc think it shouldn't be there, I probably can change the
+OpenBSD to do a similar fallback.
 
+> > +
+> > +#  msi-ranges:
+> > +#    description:
+> > +#      A list of pairs <intid span>, where "intid" is the first
+> > +#      interrupt number that can be used as an MSI, and "span" the size
+> > +#      of that range.
+> > +#    $ref: /schemas/types.yaml#/definitions/phandle-array
+> 
+> Here, you'll want just 'maxItems: 1' as there's only 1 entry.
+
+Right.  As far as I can tell the Apple hardware only supports a single
+range.
+
+> > +
+> > +  iommu-map: true
+> > +  iommu-map-mask: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - bus-range
+> > +  - interrupts
+> > +  - msi-controller
+> > +  - msi-parent
+> > +  - msi-ranges
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/apple-aic.h>
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      pcie0: pcie@690000000 {
+> > +        compatible = "apple,t8103-pcie", "apple,pcie";
+> > +        device_type = "pci";
+> > +
+> > +        reg = <0x6 0x90000000 0x0 0x1000000>,
+> > +              <0x6 0x80000000 0x0 0x4000>,
+> > +              <0x6 0x81000000 0x0 0x8000>,
+> > +              <0x6 0x82000000 0x0 0x8000>,
+> > +              <0x6 0x83000000 0x0 0x8000>;
+> > +        reg-names = "config", "rc", "port0", "port1", "port2";
+> > +
+> > +        interrupt-parent = <&aic>;
+> > +        interrupts = <AIC_IRQ 695 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <AIC_IRQ 698 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <AIC_IRQ 701 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +        msi-controller;
+> > +        msi-parent = <&pcie0>;
+> > +        msi-ranges = <&aic AIC_IRQ 704 IRQ_TYPE_EDGE_RISING 32>;
+> > +
+> > +        iommu-map = <0x100 &dart0 1 1>,
+> > +                    <0x200 &dart1 1 1>,
+> > +                    <0x300 &dart2 1 1>;
+> > +        iommu-map-mask = <0xff00>;
+> > +
+> > +        bus-range = <0 3>;
+> > +        #address-cells = <3>;
+> > +        #size-cells = <2>;
+> > +        ranges = <0x43000000 0x6 0xa0000000 0x6 0xa0000000 0x0 0x20000000>,
+> > +                 <0x02000000 0x0 0xc0000000 0x6 0xc0000000 0x0 0x40000000>;
+> > +
+> > +        clocks = <&pcie_core_clk>, <&pcie_aux_clk>, <&pcie_ref_clk>;
+> > +        pinctrl-0 = <&pcie_pins>;
+> > +        pinctrl-names = "default";
+> > +
+> > +        pci@0,0 {
+> > +          device_type = "pci";
+> > +          reg = <0x0 0x0 0x0 0x0 0x0>;
+> > +          reset-gpios = <&pinctrl_ap 152 0>;
+> > +          max-link-speed = <2>;
+> > +
+> > +          #address-cells = <3>;
+> > +          #size-cells = <2>;
+> > +          ranges;
+> > +        };
+> > +
+> > +        pci@1,0 {
+> > +          device_type = "pci";
+> > +          reg = <0x800 0x0 0x0 0x0 0x0>;
+> > +          reset-gpios = <&pinctrl_ap 153 0>;
+> > +          max-link-speed = <2>;
+> > +
+> > +          #address-cells = <3>;
+> > +          #size-cells = <2>;
+> > +          ranges;
+> > +        };
+> > +
+> > +        pci@2,0 {
+> > +          device_type = "pci";
+> > +          reg = <0x1000 0x0 0x0 0x0 0x0>;
+> > +          reset-gpios = <&pinctrl_ap 33 0>;
+> > +          max-link-speed = <1>;
+> > +
+> > +          #address-cells = <3>;
+> > +          #size-cells = <2>;
+> > +          ranges;
+> > +        };
+> > +      };
+> > +    };
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index c6b8a720c0bc..30bea4042e7e 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -1694,6 +1694,7 @@ C:	irc://chat.freenode.net/asahi-dev
+> >  T:	git https://github.com/AsahiLinux/linux.git
+> >  F:	Documentation/devicetree/bindings/arm/apple.yaml
+> >  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+> > +F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
+> >  F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> >  F:	arch/arm64/boot/dts/apple/
+> >  F:	drivers/irqchip/irq-apple-aic.c
+> > -- 
+> > 2.32.0
+> > 
+> > 
+> 
