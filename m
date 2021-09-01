@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7084A3FD692
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E783FD68F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243581AbhIAJVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 05:21:02 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:54527 "EHLO
+        id S243558AbhIAJVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 05:21:01 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:37157 "EHLO
         out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243560AbhIAJU4 (ORCPT
+        by vger.kernel.org with ESMTP id S243556AbhIAJU4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:20:56 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 2CF445C0220;
-        Wed,  1 Sep 2021 05:19:57 -0400 (EDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id BD6875C023E;
+        Wed,  1 Sep 2021 05:19:58 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 01 Sep 2021 05:19:57 -0400
+  by compute3.internal (MEProxy); Wed, 01 Sep 2021 05:19:58 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=Ez0h4feUG7jj0
-        QTMDNnuRp0Rg0fbgdk/KOZ0ow0o2AY=; b=OPzIjlK/gUUJP7muvu17wB6GXuufl
-        6e/xHDO5tuxgefQ2t9UAe3idnJWarnVfsLDdEZ2OKtuEgYNAxycGnPGZA4q6UOMq
-        ixuHs05Fx+YdZ9fSCcNr7rml3adfcvPNjNfNhUmoqA16gxXoB6kjtq2rjw7t+Dyc
-        +vrUgg/jrUkZQYE5XXOWU3G3acENvz5Obr6c5MXstWGhj+ZeHa+0LDKMnYwfa0kD
-        q+6Pxc3nq6nOapDS4y4crB7S5VRz8YPOO/Wpcuy9mHGcgeETfQt1DjQC0EmLq/CL
-        hnJlx8mGip0I98pKww1EBsAwkBaH9DaByobIqg22QQFwoaQX5gMtqizcg==
+        :mime-version:content-transfer-encoding; s=fm3; bh=PXAZ+OT3+840q
+        yLgIOZkmblg/hq4r5L5A2T9KeRY+Ho=; b=dAZBer1HW0Z96KPoQr0TTjHloDED1
+        bfAUtxeEFG9dK2fBimhBcvQ7LsJPszecPbS4/mVEGdW2z9kkHz7n0pdbT41a2oNM
+        Fq8E/yYiq0Ke/5MRo3WS3NbZYu9XAySxQtpOCyxKehAPb7zt6Uxb0P9mJQvS5Ppf
+        60KTun6FqD07POFBVpEL7PKO6JGbatqd7v13Moy8Ty0rbB6lTEjykxYURzWITMqj
+        Sh6qPWEpccUcqvOX2ty7U7jhaNxAt7kAGankU4Y2N/bJ8uM591U/6/QRcMbvg+9I
+        s5UJCgid4TsYPWAlSI4YtG2PVQlX8UL+Iy7qDDikijPmRCobdOl/oeofg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=Ez0h4feUG7jj0QTMDNnuRp0Rg0fbgdk/KOZ0ow0o2AY=; b=MoCtsjpP
-        e+rP0LnG16kcaj/sAf0M4lNbyFP+9N79GCv+EpAi04gVMKI576lKDStw2K04MUJm
-        FZA7UDkAJSDFdbaXMOJqEg4VrOAM6RF65d6YWDSsQTVh9Kc+U1CVW2wNXLPqV5c9
-        qmFSnv6TWwrOrptuBvAaxk1qRKlekUCE8eQMaJd1Psf1IvUuVdtQnRcVtfwDJjfu
-        Vd6K8ZVoWb6gDZBCvaKZxbGr0j4PimZFCDlacBwOfKMrzo111bUhFBxYu+BQ7uI0
-        GL4UiZzKmEVRPI2Aw/dQiYkOVUiHSWvT2juc0pY8BP8/SiKrTQ3WGIpc8BvkeoZi
-        +AC/AJ8Vhs0kpA==
-X-ME-Sender: <xms:vUUvYfkaoBYUAqXTPCvQYw8Rtrd99Es7l-WtP0o4GdzXfcGQU9qXvA>
-    <xme:vUUvYS1O6Y34Fpg7Px-zm5VCO--ykUxD375RwuSNisk7i9ahdju_dOZtspypHiAfN
-    _JIj3WJ8w1hiq6eRpY>
-X-ME-Received: <xmr:vUUvYVoPbxeT5HXqksmxDCEvTzSqNOWO7qEm6mWufVOREikK1OXVk0EaVx12DIvW9HKmx810npBX04y2l_4hj4NJR6Syg0D1Ef0I>
+        fm3; bh=PXAZ+OT3+840qyLgIOZkmblg/hq4r5L5A2T9KeRY+Ho=; b=aA+1leIj
+        EhUk7BYRnJ9/PFNUE+O1u0gDJK1yyyD+V2j3Nkb5q7DlzJe/0Ov9G7UmDpzuFTOV
+        wvELOtqpWAlIPK2q7b4LJmbDqYeSWPo9j01R0Kw9x+2MirjlqNW/ehcOC7myucss
+        252utKHct54uOqmT8mu5uY/QZLij0CjzcEiMvz8DmoBscu+nLQsV4ocAxD4c6J2t
+        qf3PmRLXH1NlnnMzWap8A5rtYfNBH1UhrTIEb2v+7hzk7i0uNyZqaWDXXjYhKWq/
+        ehZMZQnNcpB8vUJUA3SD4aIJ+nOWLOh8LE+VJfEKCxNrUlrAebjslyH4Qh0zGfbz
+        E30ZakfcAs6fcQ==
+X-ME-Sender: <xms:vkUvYTXtApldRV1rJfUEJlLZLMSEv0tfI1mvQ_IDuMrMv7rL-LETGg>
+    <xme:vkUvYbm5LrIaVLVLVQJKUvqFc9ZNHa882JrJYR_-e9WryYD42kBgUTL42Wwzc9X9o
+    mwQ6D6YGgL3Td3X0d0>
+X-ME-Received: <xmr:vkUvYfahrXQSPokWfDa4YwbWHAJS0lbcXNLQo-um2pKibN_cvPiQRyKkMU8RPsPDMFC5R5cl6SG6IxBJhQrrgUt52Aps-TwBnDFg>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -47,14 +47,14 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggod
     fhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrg
     igihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeevjeeijedtvefg
     fffgjeeugffguedtleetkeegteeufedtuddttdfgfffhgfeuffenucffohhmrghinhepug
-    gvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghm
+    gvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgepheenucfrrghrrghm
     pehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:vUUvYXnR7znpEnGs0xnH2npGAzOoKsUBQwnmsXkcvXlrLrgw5sCvNQ>
-    <xmx:vUUvYd2qHmeOKOtdKfFm5pYGjWfuddMReWybFE8ESES59uedpMzg7w>
-    <xmx:vUUvYWvqMyDP3RB-hzLhy-r1c9geaBeWyRjL3nwUvkyZ0rnLZhv7gQ>
-    <xmx:vUUvYam9phnj0NlxXTOKV-5-zB8TjJJoYh-DkxFbdXSg0xIOkLIrvw>
+X-ME-Proxy: <xmx:vkUvYeVlHJWqEaDWd9PJRPlhW69m3d9oygFJ__B9pBOWDgmnU3k3HQ>
+    <xmx:vkUvYdnkAsJg_HKcAWkEZ9Py2X3k06P7TzCKJEl41r8iFA99Lv9gcA>
+    <xmx:vkUvYbcCydsbG0dnk-BkHWYtFMXSzCoSTHAaOovtMEkxsKi7x3WRqg>
+    <xmx:vkUvYTUkjhU9SalnxNEnP5zJYTJ-6iFk3CuzjMC9bKN4YhGipK2kJA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Sep 2021 05:19:56 -0400 (EDT)
+ 1 Sep 2021 05:19:58 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -63,9 +63,9 @@ To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 34/52] dt-bindings: sunxi: Add CPU Configuration Controller Binding
-Date:   Wed,  1 Sep 2021 11:18:34 +0200
-Message-Id: <20210901091852.479202-35-maxime@cerno.tech>
+Subject: [PATCH v2 35/52] dt-bindings: sunxi: Add Allwinner A80 PRCM Binding
+Date:   Wed,  1 Sep 2021 11:18:35 +0200
+Message-Id: <20210901091852.479202-36-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210901091852.479202-1-maxime@cerno.tech>
 References: <20210901091852.479202-1-maxime@cerno.tech>
@@ -75,30 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even though we've used the CPU configuration driver for some time and a
-number of boards using it already, we never had a binding for it. Let's
-add it based on what the driver expects and the boards are providing.
+Even though we've used the A80 PRCM driver for some time and a number of
+boards using it already, we never had a binding for it. Let's add it
+based on what the driver expects and the boards are providing.
 
 Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../sunxi/allwinner,sun6i-a31-cpuconfig.yaml  | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/sunxi/allwinner,sun6i-a31-cpuconfig.yaml
+ .../arm/sunxi/allwinner,sun9i-a80-prcm.yaml   | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun6i-a31-cpuconfig.yaml b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun6i-a31-cpuconfig.yaml
+diff --git a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
 new file mode 100644
-index 000000000000..f3878e0b3cc4
+index 000000000000..668aadbfe4c0
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun6i-a31-cpuconfig.yaml
-@@ -0,0 +1,38 @@
++++ b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
+@@ -0,0 +1,33 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/arm/sunxi/allwinner,sun6i-a31-cpuconfig.yaml#
++$id: http://devicetree.org/schemas/arm/sunxi/allwinner,sun9i-a80-prcm.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Allwinner CPU Configuration Controller Device Tree Bindings
++title: Allwinner A80 PRCM Device Tree Bindings
 +
 +maintainers:
 +  - Chen-Yu Tsai <wens@csie.org>
@@ -106,12 +106,7 @@ index 000000000000..f3878e0b3cc4
 +
 +properties:
 +  compatible:
-+    enum:
-+      - allwinner,sun6i-a31-cpuconfig
-+      - allwinner,sun8i-a23-cpuconfig
-+      - allwinner,sun8i-a83t-cpucfg
-+      - allwinner,sun8i-a83t-r-cpucfg
-+      - allwinner,sun9i-a80-cpucfg
++    const: allwinner,sun9i-a80-prcm
 +
 +  reg:
 +    maxItems: 1
@@ -124,9 +119,9 @@ index 000000000000..f3878e0b3cc4
 +
 +examples:
 +  - |
-+      cpucfg@1f01c00 {
-+          compatible = "allwinner,sun6i-a31-cpuconfig";
-+          reg = <0x01f01c00 0x300>;
++      prcm@8001400 {
++          compatible = "allwinner,sun9i-a80-prcm";
++          reg = <0x08001400 0x200>;
 +      };
 +
 +...
