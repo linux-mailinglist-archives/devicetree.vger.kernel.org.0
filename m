@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2D853FD67B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 403C93FD67D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243285AbhIAJUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 05:20:33 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:41651 "EHLO
+        id S243516AbhIAJUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 05:20:35 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:34549 "EHLO
         new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243528AbhIAJUc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:20:32 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E521B580B26;
-        Wed,  1 Sep 2021 05:19:35 -0400 (EDT)
+        by vger.kernel.org with ESMTP id S243508AbhIAJUe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:20:34 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D68B6580B15;
+        Wed,  1 Sep 2021 05:19:37 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 01 Sep 2021 05:19:35 -0400
+  by compute3.internal (MEProxy); Wed, 01 Sep 2021 05:19:37 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=3qrnArky4cbLJ
-        wXpsp16UfGsjyWCwx/Rms7egRuHx2g=; b=j0Q+PPt/YC1fPVAVshV0N5eU01XNZ
-        4DsExDJJJTjTiZe7QTMSJ0TTdBHMc6bW0MQ8eDbJdM+DAAIie7eVQk5ydSjbp7HZ
-        wyTUmslxRv8WtN8l6Om2uHVsxdrGCp01Mkcor3/U7RI4fMc+zVwMM0ya6x1d7gt0
-        C21qIsRij/J8vHnrDo6HYh9dOVS+rddC1hEe204TBkmhcMzDti0sg544Qy0cnnFZ
-        lNdcWnD1XyVWWSLFNax20MvLbhPZkeTmwr5Ho9a0Z3UoaMpcygoGMcSx0OHKEAAe
-        er8EnVGAtU+/SmloahHEmUsJuwjxngMBTtscOBX3iN6ZsFpogpL3g7q9w==
+        :mime-version:content-transfer-encoding; s=fm3; bh=mn7+yExtUVJrX
+        meM8dP9smwIjAECnzjlQP6Jmb9X14A=; b=VPf0HL08brC46V0GhjbQrINnRqHoy
+        T7zBulWGgiFhR3M64UQCuTdA0Mk/R/j64HwPV8eZqmbwtknDl67oiChVQx9bEGo2
+        XF5nLdWqEMGHiJxo5avPdbRx4ElqvF689QdCccUQJJfxLUzzRkGSAgcS6GsstxKx
+        D49pnYkLqBDH5MRyppT7sMbI59FwMCshaZsVeHiqPjTWN33Y6zAl4yHm01Yp/HQ/
+        FzOGjqHHizq0GnDNzP6GIzlnXRmacgx7hYyuuyWtT5X1xzJpHDsg5X35URSGXYtm
+        J7Rf4lkY7Osmc+R53yZF/LkSbNNaZAMUAf8FGxS4I6VR2rvgNRuHbpggw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=3qrnArky4cbLJwXpsp16UfGsjyWCwx/Rms7egRuHx2g=; b=Dc7RLiQ2
-        /Ov6Ay+8ErxbFGexY0GGs7/Kl6B7gbJL2RO7lON0ErrNGpxKO1HjyknM5v9OuPfX
-        0m81WCs76S5NDc9adAUGFDluTh1yEGOVqWroplLIyZ9f4KLXbCAxsd/egq3a6SwX
-        oUxW/f/muqEiRqe84283YKvZSMUm9sAibGDsmDNVxnvo7QdZKEA2uyU8dGXKCJgT
-        /MOajBq6Km+hW5IkOgs2O/93JqQnRVwCl3C4EjT2nep0w3fXYky8XjIQq6L4fp9I
-        uyX/NgvsN0FOLbQxAhC77Ibc5JavJmelgDghGTAba5Z2l/UO9ZH0FLuZlLKHlL4u
-        g9A9oETpZcyarA==
-X-ME-Sender: <xms:p0UvYYygLAhhKJZq2vwPdCk0dVyKQ2jmMn9A4FtFN1IIn__w2WSmUw>
-    <xme:p0UvYcQ_RETGCeE52tnbYia4MYjHpfsauDqMymyyIjx3QoZ80JPqrVtIlwZipUGTQ
-    qbJUgvP_SCjB5UsPlA>
-X-ME-Received: <xmr:p0UvYaWWaRookycfRQxXs9Ut4AGQ-T28wNewdsxq6JFwOK8V0c5QW8UfOG6hwfaAnbcVjPIqnT0O8GkE32HGlA7Fwqw5xCxTuByb>
+        fm3; bh=mn7+yExtUVJrXmeM8dP9smwIjAECnzjlQP6Jmb9X14A=; b=RfA8xOZ6
+        i4DdAskKOyRWvLjNn0k6cYwajxPK7Kug4hQ7X60Swy27fCS9WGaQnFtDPqHoxuNG
+        66ND6lwdp05lMSKm8/LCuxz5WM5+TqZ9FqvY1xK/fo+BY9jSxMJsvTcGPsD7DV3Y
+        F1mnkp9/dndf17QtODHhIwFY9jNPHbXKBUW7les8arh3shmhfsrguguBdrPFXmu5
+        GcCTZp2zij18ms/PYPy5AZ0YOFL/iCHiQyEDt9biSAMJTQ8qcooH6r/Em4dEEHGK
+        ru28mlAc/l7r9fZN60NrMh6yoIUI2nalDrkdp/Td/ARV24z+0lnF40Uy3C9v1e6b
+        1obx+urRreNpiQ==
+X-ME-Sender: <xms:qUUvYQQXXUJd8AwP2aGPOASvD_maDDNlZrnkxaWa6IJHTruwDJOdqg>
+    <xme:qUUvYdyA9tszBIgIeRgaNUp-ny7IXQ69A5f4EoYZh2DeOSv7LeZNqWRbTFX9ewgYl
+    MOdnMwi8S8-SfXgvpY>
+X-ME-Received: <xmr:qUUvYd3d6qkiGNtB_k-dWJegBUVG9CIzFeOxkBMIt6vB9FFYJ6eSfysi9OmQ3nh-jLkUO_y7G0XSgXxELRL9DggzxJdZJjWP6eWr>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -47,14 +47,14 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedgudehucetufdoteggod
     fhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrg
     igihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeevjeeijedtvefg
     fffgjeeugffguedtleetkeegteeufedtuddttdfgfffhgfeuffenucffohhmrghinhepug
-    gvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghm
+    gvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgepvdenucfrrghrrghm
     pehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:p0UvYWjOTFfcOsdn6apDMnzVjSpnyAIc9GvZQyK_2X1H3LDDwbpfpw>
-    <xmx:p0UvYaAWSeGMUhalEMKKi-_23yAvGlVPniY_czSKu5naxX8vfldH-Q>
-    <xmx:p0UvYXL-2LJmGCSYc1Fqg2YRIwqwsA6KCwwVL17Nr2xyNJKjK-O6VA>
-    <xmx:p0UvYStZUmj8GPhKMoA0Gsvh-7YOwT-PQN8Aj65PMZE0a0dncqPJmA>
+X-ME-Proxy: <xmx:qUUvYUBx9M4-P85ioWp67lpHAgH-DlB11HMRJyaeuUkf_G_MKFae9w>
+    <xmx:qUUvYZh8F9_k_fpugzziTOGc-X5ESsgIyGXz-4vKBmIAXmamERJjHQ>
+    <xmx:qUUvYQo590NYhsme3ITH0GpUv1EE_bIYNpS6elNyhgPs7TMhbO5_Pw>
+    <xmx:qUUvYeZkNtmOIEfPS5dG-oRum6rSzv7hVuF2zkRHn98az8NzbxqO6w>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Sep 2021 05:19:35 -0400 (EDT)
+ 1 Sep 2021 05:19:37 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -62,12 +62,13 @@ To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <maxime@cerno.tech>,
         =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH v2 22/52] dt-bindings: gpio: Convert X-Powers AXP209 GPIO binding to a schema
-Date:   Wed,  1 Sep 2021 11:18:22 +0200
-Message-Id: <20210901091852.479202-23-maxime@cerno.tech>
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-hwmon@vger.kernel.org
+Subject: [PATCH v2 23/52] dt-bindings: hwmon: Add IIO HWMON binding
+Date:   Wed,  1 Sep 2021 11:18:23 +0200
+Message-Id: <20210901091852.479202-24-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210901091852.479202-1-maxime@cerno.tech>
 References: <20210901091852.479202-1-maxime@cerno.tech>
@@ -77,171 +78,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
-thanks to its device tree binding.
+Even though we had the iio-hwmon driver for some time and a number of
+boards using it already, we never had a binding for it. Let's add it
+based on what the driver expects and the boards are providing.
 
-Now that we have the DT validation in place, let's convert the device
-tree bindings for that driver over to a YAML schema.
-
-Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-gpio@vger.kernel.org
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jean Delvare <jdelvare@suse.com>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-hwmon@vger.kernel.org
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 ---
 
 Changes from v1:
-  - Removed the example and moved it in the mfd schema
+  - Reduced the maximum number of io-channels, and added a comment for
+    the limitation
 ---
- .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
- .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
- 2 files changed, 55 insertions(+), 75 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+ .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-axp209.txt b/Documentation/devicetree/bindings/gpio/gpio-axp209.txt
-deleted file mode 100644
-index fc42b2caa06d..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-axp209.txt
-+++ /dev/null
-@@ -1,75 +0,0 @@
--AXP209 GPIO & pinctrl controller
--
--This driver follows the usual GPIO bindings found in
--Documentation/devicetree/bindings/gpio/gpio.txt
--
--This driver follows the usual pinctrl bindings found in
--Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
--This driver employs the per-pin muxing pattern.
--
--Required properties:
--- compatible: Should be one of:
--	- "x-powers,axp209-gpio"
--	- "x-powers,axp813-gpio"
--- #gpio-cells: Should be two. The first cell is the pin number and the
--  second is the GPIO flags.
--- gpio-controller: Marks the device node as a GPIO controller.
--
--This node must be a subnode of the axp20x PMIC, documented in
--Documentation/devicetree/bindings/mfd/axp20x.txt
--
--Example:
--
--axp209: pmic@34 {
--	compatible = "x-powers,axp209";
--	reg = <0x34>;
--	interrupt-parent = <&nmi_intc>;
--	interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
--	interrupt-controller;
--	#interrupt-cells = <1>;
--
--	axp_gpio: gpio {
--		compatible = "x-powers,axp209-gpio";
--		gpio-controller;
--		#gpio-cells = <2>;
--	};
--};
--
--The GPIOs can be muxed to other functions and therefore, must be a subnode of
--axp_gpio.
--
--Example:
--
--&axp_gpio {
--	gpio0_adc: gpio0-adc {
--		pins = "GPIO0";
--		function = "adc";
--	};
--};
--
--&example_node {
--	pinctrl-names = "default";
--	pinctrl-0 = <&gpio0_adc>;
--};
--
--GPIOs and their functions
---------------------------
--
--Each GPIO is independent from the other (i.e. GPIO0 in gpio_in function does
--not force GPIO1 and GPIO2 to be in gpio_in function as well).
--
--axp209
--------
--GPIO	|	Functions
--------------------------
--GPIO0	|	gpio_in, gpio_out, ldo, adc
--GPIO1	|	gpio_in, gpio_out, ldo, adc
--GPIO2	|	gpio_in, gpio_out
--
--axp813
--------
--GPIO	|	Functions
--------------------------
--GPIO0	|	gpio_in, gpio_out, ldo, adc
--GPIO1	|	gpio_in, gpio_out, ldo
-diff --git a/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+diff --git a/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
 new file mode 100644
-index 000000000000..0f628b088cec
+index 000000000000..f5a6cc3efd33
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0
++++ b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/gpio/x-powers,axp209-gpio.yaml#"
++$id: "http://devicetree.org/schemas/hwmon/iio-hwmon.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: X-Powers AXP209 GPIO Device Tree Bindings
++title: ADC-attached Hardware Sensor Device Tree Bindings
 +
 +maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
++  - Jonathan Cameron <jic23@kernel.org>
++
++description: >
++  Bindings for hardware monitoring devices connected to ADC controllers
++  supporting the Industrial I/O bindings.
 +
 +properties:
-+  "#gpio-cells":
-+    const: 2
-+    description: >
-+      The first cell is the pin number and the second is the GPIO flags.
-+
 +  compatible:
-+    oneOf:
-+      - enum:
-+          - x-powers,axp209-gpio
-+          - x-powers,axp813-gpio
-+      - items:
-+          - const: x-powers,axp803-gpio
-+          - const: x-powers,axp813-gpio
++    const: iio-hwmon
 +
-+  gpio-controller: true
-+
-+patternProperties:
-+  "^.*-pins?$":
-+    $ref: /schemas/pinctrl/pinmux-node.yaml#
-+
-+    properties:
-+      pins:
-+        items:
-+          enum:
-+            - GPIO0
-+            - GPIO1
-+            - GPIO2
-+
-+      function:
-+        enum:
-+          - adc
-+          - ldo
-+          - gpio_in
-+          - gpio_out
++  io-channels:
++    minItems: 1
++    maxItems: 8 # Should be enough
++    description: >
++      List of phandles to ADC channels to read the monitoring values
 +
 +required:
 +  - compatible
-+  - "#gpio-cells"
-+  - gpio-controller
++  - io-channels
 +
 +additionalProperties: false
 +
-+...
++examples:
++  - |
++      iio-hwmon {
++          compatible = "iio-hwmon";
++          io-channels = <&adc 1>, <&adc 2>;
++      };
 -- 
 2.31.1
 
