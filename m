@@ -2,85 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5D013FD764
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 12:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D9F3FD777
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 12:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232818AbhIAKMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 06:12:38 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:44380 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S232258AbhIAKMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 06:12:38 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1816KQCe025016;
-        Wed, 1 Sep 2021 05:11:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=1+Whm96Iiw8KuVT7H7CUIcuudZGCHLXA7USDAOOxlFI=;
- b=loh9ZljTOc5bnRh8E4E9o9GaFJAjlHCFso8wlbhbGm5yQZlP5etn2TPaAcGAjx6M71qh
- JJ1LQM6yRlqlBrh7EnmJHo5ajuczARcY+YHcUFRAg9nBByoHAbmoX9Yx05OtvR+mjmy2
- QNn1xLYscgq9cX7mzueMdgqnQUb3AOJ1IGF0v3qg0QmlGhq/n5CoT9LPu8q2NR7v21nW
- ZJeDS2FysbC/gX7jqg/IXzAbaWZNh8tkjysQp+IUUuI4i8bekZS/6jd+UTIs+P1Qw5UD
- dcHMfYRAqm2tQrnR/1Im+WHozonaQCrvY/FO7Dx8pSwdUlpG2p5LjwknCsCeQpEWfH4t jg== 
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 3at0y8rebt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 01 Sep 2021 05:11:15 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 1 Sep
- 2021 11:11:12 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
- Transport; Wed, 1 Sep 2021 11:11:12 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E0555B10;
-        Wed,  1 Sep 2021 10:11:12 +0000 (UTC)
-Date:   Wed, 1 Sep 2021 10:11:12 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@googlegroups.com>, <alsa-devel@alsa-project.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        <patches@opensource.cirrus.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 01/52] ASoC: dt-bindings: Add WM8978 Binding
-Message-ID: <20210901101112.GM9223@ediswmail.ad.cirrus.com>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-2-maxime@cerno.tech>
+        id S233471AbhIAKR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 06:17:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231511AbhIAKR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 06:17:26 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D98C061575
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 03:16:29 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z2so5371314lft.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 03:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=729GdT2MAhx/jAkVDNeGvCJtX9tbrZQ8mIDJwfE61ws=;
+        b=TsbNK53CZn8ef5BEtVqTZyY/QDW8Rq4bPoXqq311KEaLylPbm35GPM9rS4+xye8UcH
+         lIILdVPttftswk9PX0ZAsCjLZtKtqLoNdXChK9JCKAJm8Y/XoCjVdQHOqPO75UOli1ey
+         8KKDxOap/6WYDNgiMTqySf7cXWC/ufsRxAWdo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=729GdT2MAhx/jAkVDNeGvCJtX9tbrZQ8mIDJwfE61ws=;
+        b=L+nxfZKjLShi3/oombTwgwUOLudMWCXYR+mKD5ZaxPolHfeFZZ4AzSmduq1xmf6aAL
+         rPd5JgMu6gtjESrCFL9NoP2QXuX49ocrF98RzjNwgwKg9n6lt/56UATH9FI3wYsORLOD
+         3z6oR5Sk9KnXptpkQwp7Fwh1fFh9dtuNiPy5G2vtMiT3TfZJ9IlUepHzH2fheQ9Ep+0r
+         Ty7rsHsgSk0sRT27TgFl486aAJ+v1/SneYrCxkclUe539ugnr92+xz4nhFSs5Fkxs3dU
+         Qo6eYDAaaWasD1b2M9sbnU+UHLuEjeTTxhadE/TErxLdDhcaVxXcalYgSmprgPymfUUY
+         3WMQ==
+X-Gm-Message-State: AOAM531svJpVhpY//xJH+dlCv68TjWgmKJxlHS2jUdVSx7Lq4NaYV+KM
+        Md9YNbFbkpju6LZd9PBO5ubrk6lzCNQtrv6qgd4idQ==
+X-Google-Smtp-Source: ABdhPJzaTQkdiTWOurV0MnyL5l8QjDiVDjzLfxezvLdsHxF6QsQIIMyf5M3YfDpHJWqLL0lbsbOs8FiJmtRBVKXRcv0=
+X-Received: by 2002:a05:6512:318a:: with SMTP id i10mr3805568lfe.444.1630491388108;
+ Wed, 01 Sep 2021 03:16:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-2-maxime@cerno.tech>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: iZu5PNOFQurste-yltl-SY90sUPXLrZD
-X-Proofpoint-GUID: iZu5PNOFQurste-yltl-SY90sUPXLrZD
-X-Proofpoint-Spam-Reason: safe
+References: <20210824100027.25989-1-moudy.ho@mediatek.com> <20210824100027.25989-4-moudy.ho@mediatek.com>
+ <YSU0TrfFCsaI1TqV@robh.at.kernel.org> <0092244acd520acac81208b8863b15fba58f4193.camel@mediatek.com>
+ <CAL_JsqJ_cProt35pdd2MjoHsSKtd+0n1Dwq6ooV+CJH5sfOFWg@mail.gmail.com> <39cec599a65eeb142cb7e729f954098a25652b2b.camel@mediatek.com>
+In-Reply-To: <39cec599a65eeb142cb7e729f954098a25652b2b.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 1 Sep 2021 18:16:16 +0800
+Message-ID: <CAGXv+5GtDNwKpXEnont+UshVrSugQnTPyNF7VF3dVzTX9ruNdw@mail.gmail.com>
+Subject: Re: [PATCH v7 3/5] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+To:     moudy ho <moudy.ho@mediatek.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Pi-Hsun Shih <pihsun@chromium.org>, menghui.lin@mediatek.com,
+        Sj Huang <sj.huang@mediatek.com>, ben.lok@mediatek.com,
+        Randy Wu <randy.wu@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 01, 2021 at 11:18:01AM +0200, Maxime Ripard wrote:
-> Even though we had the wm8978 driver for some time and a number of
-> boards using it already, we never had a binding for it. Let's add it
-> based on what the driver expects and the boards are providing.
-> 
-> Cc: alsa-devel@alsa-project.org
-> Cc: devicetree@vger.kernel.org
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: patches@opensource.cirrus.com
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
+On Wed, Sep 1, 2021 at 5:04 PM moudy ho <moudy.ho@mediatek.com> wrote:
+>
+> On Mon, 2021-08-30 at 10:05 -0500, Rob Herring wrote:
+> > On Mon, Aug 30, 2021 at 2:58 AM moudy ho <moudy.ho@mediatek.com>
+> > wrote:
+> > >
+> > > On Tue, 2021-08-24 at 13:02 -0500, Rob Herring wrote:
+> > > > On Tue, Aug 24, 2021 at 06:00:25PM +0800, Moudy Ho wrote:
+> > > > > This patch adds DT binding document for Media Data Path 3
+> > > > > (MDP3)
+> > > > > a unit in multimedia system used for scaling and color format
+> > > > > convert.
+> > > > >
+> > > > > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> > > > > ---
+> > > > >  .../bindings/media/mediatek,mdp3-ccorr.yaml   |  57 +++++
+> > > > >  .../bindings/media/mediatek,mdp3-rdma.yaml    | 207
+> > > > > ++++++++++++++++++
+> > > > >  .../bindings/media/mediatek,mdp3-rsz.yaml     |  65 ++++++
+> > > > >  .../bindings/media/mediatek,mdp3-wdma.yaml    |  71 ++++++
+> > > > >  .../bindings/media/mediatek,mdp3-wrot.yaml    |  71 ++++++
+> > > > >  5 files changed, 471 insertions(+)
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > > > > ccorr.yaml
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/media/mediatek,mdp3-wdma.yaml
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > > > > ccorr.yaml
+> > > > > b/Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > > > > ccorr.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..59fd68b46022
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-
+> > > > > ccorr.yaml
+> > > > > @@ -0,0 +1,57 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id:
+> > > > >
+> https://urldefense.com/v3/__http://devicetree.org/schemas/media/mediatek,mdp3-ccorr.yaml*__;Iw!!CTRNKA9wMg0ARbw!1C0ChLqzi7Zq8D2d4_S4IqCEei4GXdgy3_VCQg8MdsJP7n8TlxbGyajipusfH8hi$
+> > > > >
+> > > > > +$schema:
+> > > > >
+> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!1C0ChLqzi7Zq8D2d4_S4IqCEei4GXdgy3_VCQg8MdsJP7n8TlxbGyajipi-OInix$
+> > > > >
+> > > > > +
+> > > > > +title: Mediatek Media Data Path 3 CCORR Device Tree Bindings
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Daoyuan Huang <daoyuan.huang@mediatek.com>
+> > > > > +  - Moudy Ho <moudy.ho@mediatek.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  One of Media Data Path 3 (MDP3) components used to do color
+> > > > > correction with 3X3 matrix.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    items:
+> > > > > +      - enum:
+> > > > > +        - mediatek,mt8183-mdp3-ccorr
+> > > > > +
+> > > > > +  mediatek,mdp3-id:
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > +    maxItems: 1
+> > > > > +    description: |
+> > > > > +      HW index to distinguish same functionality modules.
+> > > >
+> > > > If we wanted h/w indexes in DT, we'd have a standard property.
+> > > > Why
+> > > > do
+> > > > you need this?
+> > > >
+> > >
+> > > I'm sorry not quite sure what HW indexes means (something like
+> > > aliases?)
+> >
+> > It means whatever you said in your description.
+> >
+> > And no, I'm not suggesting you use aliases.
+>
+> Sorry for the inaccuracy described here, the comment i mentioned before
+> should be "standard property" instead of "HW index".
+>
+> > > It was originally used to mark multiple identical modules in the
+> > > MDP
+> > > data path algorithm, so that appropriate paths can be dynamically
+> > > dispatched.
+> >
+> > If they are identical, then why do you need to distinguish them in
+> > DT?
+> > If there's some difference you need to know about such as connections
+> > to other blocks, then describe that. Another common example is
+> > needing
+> > to know what bits/registers to access in a syscon phandle. For that,
+> > make the register offset or bits be args to the phandle property.
+> >
+> > Rob
+>
+> Integrating the previous discussion, maybe I can revise the description
+> to the following:
+>     description: |
+>       There may be multiple blocks with the same function but different
+>       addresses in MDP3. In order to distinguish the connection with
+>       other blocks, a unique ID is needed to dynamically use one or
+>       more identical blocks to implement multiple pipelines.
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+With display pipelines it is common to describe the pipeline with an OF
+graph. With the pipeline drawn out, you also get ways to derive identifiers
+for otherwise identical blocks, such as from port IDs.
 
-Thanks,
-Charles
+See Documentation/devicetree/bindings/display/allwinner,sun4i-a10-display-engine.yaml
+and arch/arm/boot/dts/sun9i-a80.dtsi for such an example.
+
+
+ChenYu
