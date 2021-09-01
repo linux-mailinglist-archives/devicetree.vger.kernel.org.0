@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C153FD611
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 10:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24AA3FD62E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 11:08:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241615AbhIAI61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 04:58:27 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:39127 "EHLO
+        id S239862AbhIAJIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 05:08:44 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:54517 "EHLO
         out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243365AbhIAI60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 04:58:26 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id 896435C0233;
-        Wed,  1 Sep 2021 04:57:29 -0400 (EDT)
+        by vger.kernel.org with ESMTP id S243394AbhIAJIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 05:08:43 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 0DB0D5C019C;
+        Wed,  1 Sep 2021 05:07:47 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 01 Sep 2021 04:57:29 -0400
+  by compute5.internal (MEProxy); Wed, 01 Sep 2021 05:07:47 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:content-type:mime-version
         :content-transfer-encoding; s=fm3; bh=0hdLo3Ar9M7gNupOnWes8wYnJU
-        KoJVONAagXG+xMhVM=; b=jGKb3IKvEAOF8dieSRr71UAON+Yw/uWbbRTHF/Skdh
-        GTqPAI2ga12f0vckoInm/pjcshqyYhbq9vqG5nzEvqq6KrLz5RldVppGOdpWqggq
-        Bl3l38Oj4+9o7oQ6sEHfoxyiiEYhddkSLvSUXZnf0QYP603naZYB7VPMHG3DzozM
-        riqaz/rpksFk3GrAszHmMlGUyDzK5AUY6H+gJDyqLV8JbLoHtOT1mV80H7irUb/U
-        p207G/uduzfOGFM/YbpAYboqMsppCppD3OTu4JqzMFX0ndrnSryeoRIraaHTBdfv
-        MsH+g/tlmnQ32kmezbXyZnE3wpGdrFmXoC2Xe9VXztqg==
+        KoJVONAagXG+xMhVM=; b=B+5GvHfXjzaunPLG2w0Ln4DSqtrqXU1RwuU4Kgrrms
+        AeUkqyzIf4av5L8DvM8TFEgpkqgphdYRfRIGG/UFca3sfD6ZI2dyeOLHBOgo72Zv
+        rSwoDUdf2nEbBHZiN7eEO2uDvXbW4WC1qSCuDOzh34K96Pa6CpGsCcpbM+vX37li
+        nFa6W9+807A9q9jDDGjJQ/7BGij+Ot+Rsf+XnWvv2rsviAmRKVRbee4maJDlKSv9
+        mNWJX+tR7uvardUKOdHRMrgHSmv2NO2/9TAjDu7RPDBvJPlhDd4DSR3VGKxSTmjD
+        0Y+ep070IM6j0hKKdNaDEgNPttTkGv434hgMFNahww3A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:message-id:mime-version:subject:to:x-me-proxy
         :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=0hdLo3
-        Ar9M7gNupOnWes8wYnJUKoJVONAagXG+xMhVM=; b=iC/hYlOjYDSSWpiPSd6yPE
-        C/S5wA0vMOARzwZsSrGOyos0X+O4iEeWua0lmlLovsdXN+N7ymuVPVBXnzEVZ93Y
-        I88Cq5DIi+5lA7XWf8KIaScUJXt2L+6PBcSKunP/5Cusw7YLAwXZRcFZTHd3lV1R
-        g3vUaVZnXrU46/FWYpmrCZBeRaiLniTZYCweykb8jcvFL9ooBwGrGzDhIg/3j6QL
-        KDhJ1CSQk9tkLtxsaCkdIFYzoKjwAyrYS/a33BkSznQfLIscF6CBuseNFDEwAKsE
-        3nrLWsi/I1KlNv/SIzyIhzg//a6rE5RFdWWvXVzKr/D/z/6wdeIgCNlhi9Fv7WFA
+        Ar9M7gNupOnWes8wYnJUKoJVONAagXG+xMhVM=; b=Lh48FP+Ob/c+cvdIyoppTt
+        pCQcqpqUYeq9CrGobvsgt7TO5e6s2sexKG+iIZK8u4f+2ZHpUC2vfxt1CqFf5Dnd
+        uZ6jWB7ucqF0DJw68zPIQR8NQAocZ59FEd0tERn8F1XwMg6r5zYlyePBV9BXi/mS
+        fVv/vH+pBEPRKS9UP00fV0V9CZoFQDi6EUHttoayjPtbgNpZN8BijeIrN3tIGpt2
+        hMy0ujGMrHHDWZPtVWEY2+Wluasoy/elhTxLBsJbcOFVxnrGCXA4otV1t2ECnzIs
+        tbmG5CMut7oi7z/h+tHdf964wPpFDPFQTImK1ovcrBCdOWJqOrvIJ7Aw7xwExRKQ
         ==
-X-ME-Sender: <xms:d0AvYWzbYZa52hh3VQ37dbYJWW8VplkW1uwiDvtYMbp9bnh-ANIrGQ>
-    <xme:d0AvYSSRUyrbpcWw20d-TERmy3b5mBQGvto_TpFNQwTtiHzaiNajyYZEnVcT3LdLV
-    wOY7yHmgATkzQ_EbhE>
-X-ME-Received: <xmr:d0AvYYV8ixbPidnedSlb81loIWpv-44Wto8auiVzqKPEEYE5mbScuonZO-24BSdQmdgrfUc7wOh3dDVezDz9L4p1F8L0q2csEG1c>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedguddtucetufdoteggodetrfdotf
+X-ME-Sender: <xms:4kIvYacgX14tJ9BbAnaEZEMfwMluw1oed_vBy3bE_E0M8e43WHyvSg>
+    <xme:4kIvYUMNwdm6dR0F4dSOXD-VSR2crArwiB_QNYU6RF3uECtHwQyKmC6IM4LgWEzfU
+    FSjAX2uQckkNcjOxHw>
+X-ME-Received: <xmr:4kIvYbgvQXT8r7HrkSwHNCSbjQ4CgANJbA6c6XGk6tz0C_YRh0fRFIQAwdJCtc2cP3ZKUy4sWk-aLFBPX28Sdsb4ZHQtr3q8uKAl>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedguddvucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
@@ -48,22 +48,22 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvfedguddtucetufdoteggod
     gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
     feenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
     igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:d0AvYcjuwlDupe_xCIWymS680tyL2E5JpYHjaI530LxEhWB1Kq6pHg>
-    <xmx:d0AvYYAfK1KBFuHRpuiZapQZSsL_QlJTOhzxKhYodwlDC40YQUMwew>
-    <xmx:d0AvYdIFkEVNLiMzuks9LhtKs5X_IxkS4NoZKPvL1qTZ49khwmWBTw>
-    <xmx:eUAvYa3z7IrXsH643ohuecRbc2B3wf7BVRJOv5ubxe_u0Ulc8fCW2A>
+X-ME-Proxy: <xmx:4kIvYX8NJOMUzj2c_wg2MoeLxHL6mHTHM-1G4wT3LorvPx57vEPXLQ>
+    <xmx:4kIvYWud0enlfOOr1B2Fe5zTBgLVaOIpgQjOH46m8xpl7g1t0OHb9A>
+    <xmx:4kIvYeHEOEu79jGfk1as48xEQKrGNzFfv-qicTYhakHOAU6BfKDVuA>
+    <xmx:40IvYaj9gcvH_p69eUtEe75sHJ-mKNV_AI54tjoYe1BTirWWCuWsew>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Sep 2021 04:57:27 -0400 (EDT)
+ 1 Sep 2021 05:07:45 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
         Maxime Ripard <maxime@cerno.tech>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
+        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
 Subject: [PATCH v2 00/52] ARM: dts: Last round of DT schema fixes
-Date:   Wed,  1 Sep 2021 10:56:32 +0200
-Message-Id: <20210901085724.475690-1-maxime@cerno.tech>
+Date:   Wed,  1 Sep 2021 11:06:52 +0200
+Message-Id: <20210901090744.476900-1-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
