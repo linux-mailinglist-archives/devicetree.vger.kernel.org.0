@@ -2,102 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E7903FE428
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 842C63FE456
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 22:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229987AbhIAUkS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Sep 2021 16:40:18 -0400
-Received: from aposti.net ([89.234.176.197]:60424 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229653AbhIAUkS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 16:40:18 -0400
-Date:   Wed, 01 Sep 2021 21:39:02 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v3 08/16] MIPS: configs: Everyone who had PANEL_SIMPLE now
- gets PANEL_SIMPLE_EDP
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Steev Klimaszewski <steev@kali.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <21WRYQ.3FG7R58QMYBX2@crapouillou.net>
-In-Reply-To: <20210901131531.v3.8.Ic7a6e3f8dd4760a302c91320843be5a00206bd63@changeid>
-References: <20210901201934.1084250-1-dianders@chromium.org>
-        <20210901131531.v3.8.Ic7a6e3f8dd4760a302c91320843be5a00206bd63@changeid>
+        id S241239AbhIAU5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 16:57:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35538 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237279AbhIAU5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 16:57:54 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10443C061760
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 13:56:57 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id z18so1231294ybg.8
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 13:56:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=L0G6R62N1gO7DOjfEZAPNKqynBW5XZ5XNt6xZIMqank=;
+        b=u4SEUsyX5hLbDNCYJrkK/Dq3ED5N6gzAoGqvPapHzprtM++i9ndf4lKuBAebuB3Xif
+         VZH3nWhY/dR+Zs4fJg4ZZ6PoJ+tnml+weetYIwbOsyjJNbfwVCwsxvQaeXOrN7paZlo/
+         vo5HRCSvtQ+mZgOd7pOwxXVXqGjVEbZNfbSow13HA2/Eq+58R82NmEKWnd4uArDPHtWw
+         z0H1hH0zf19jG8Cs5DHbQR06BHcK+vrSD6lfIL8T7TmlXILI9qVAmsOP2nIQIlSXVDfG
+         lTwOR4y7cyiLt4m8gld7ZI9Kj+iZS1kSOOKp4b6cyN567suVGHJLacrMqiRuxIevaT4o
+         O3oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=L0G6R62N1gO7DOjfEZAPNKqynBW5XZ5XNt6xZIMqank=;
+        b=E170vTVstzeZexYjU7UPW9A0HlEsmVBNGaGzGDFT4W7QaErtg95rthTHbu7giG8g79
+         jGmodXA0O5wBjN0xnVxQMZS+cT2uQkSG5iAajPTnZa0TQGtU1N8OnXpdRGO+TGWplze0
+         zZrNl17p7ZoUlTQl1hpQRVeA4/srE20ChZc/9aQ4YVbi/YCY6+Ou6GZmQ5E/eUVpZj35
+         zWAqJkNgUUUeJIY7XR3i46Galq+xKzy3QU7kxBXaZiw/bH86CJOkURRdt/vXcT4cCjJO
+         SxawQLVpZvCWBuREBHXU5JjBFgDPLSznxeSBY/vTiR41G1DyaJxiE4hoOOE7uJjwpita
+         /G9w==
+X-Gm-Message-State: AOAM530kRnvd3XgAujztdlkZUV4PHZnfmG8FuLgkFD4Sbju9KRbithq8
+        pXz93XnMlwuEE48ABqmbRlbQ358VjGuYhzNfbv7eAg==
+X-Google-Smtp-Source: ABdhPJzF7Zt72N0YmUtW1wz8l2WyJWxKJcMNBmyngHxWM/3Tu2UpcRUGekYR0bcdcfaQBUAjDifDWgmEvC0bo9QmANc=
+X-Received: by 2002:a25:6746:: with SMTP id b67mr2325216ybc.96.1630529816125;
+ Wed, 01 Sep 2021 13:56:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <20210831102125.624661-1-ulf.hansson@linaro.org>
+ <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com> <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 1 Sep 2021 13:56:20 -0700
+Message-ID: <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Douglas,
+On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > >
+> > > In the struct supplier_bindings the member 'node_not_dev' is described as
+> > > "The consumer node containing the property is never a device.", but that
+> > > doesn't match the behaviour of the code in of_link_property().
+> > >
+> > > To make the behaviour consistent with the description, let's rename the
+> > > member to "optional_con_dev" and clarify the corresponding comment.
+> > >
+> > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > ---
+> > >  drivers/of/property.c | 9 +++++----
+> > >  1 file changed, 5 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > index 6c028632f425..2babb1807228 100644
+> > > --- a/drivers/of/property.c
+> > > +++ b/drivers/of/property.c
+> > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
+> > >   * @parse_prop.index: For properties holding a list of phandles, this is the
+> > >   *                   index into the list
+> > >   * @optional: Describes whether a supplier is mandatory or not
+> > > - * @node_not_dev: The consumer node containing the property is never a device.
+> > > + * @optional_con_dev: The consumer node containing the property may not be a
+> > > + *                   device, then try finding one from an ancestor node.
+> >
+> > Nak. This flag is not about "may not be". This is explicitly for
+> > "never a device". It has to do with stuff like remote-endpoint which
+> > is never listed under the root node of the device node. Your
+> > documentation change is changing the meaning of the flag.
+>
+> Okay, fair enough.
+>
+> Although, as stated in the commit message this isn't the way code
+> behaves. Shouldn't we at least make the behaviour consistent with the
+> description of the 'node_not_dev' flag?
 
-Le mer., sept. 1 2021 at 13:19:26 -0700, Douglas Anderson 
-<dianders@chromium.org> a écrit :
-> In the patch ("drm/panel-simple-edp: Split eDP panels out of
-> panel-simple") we split the PANEL_SIMPLE driver in 2. By default let's
-> give everyone who had the old driver enabled the new driver too. If
-> folks want to opt-out of one or the other they always can later.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+I know what you mean, but if you use the flag correctly (where the
+phandle pointed to will never be a device with compatible property),
+the existing code would work correctly. And since the flag is relevant
+only in this file, it's easy to keep it correct. I'd just leave it as
+is.
+
+-Saravana
+
+
+>
+> Along the lines of the below patch then?
+>
+> From: Ulf Hansson <ulf.hansson@linaro.org>
+> Date: Wed, 1 Sep 2021 09:28:03 +0200
+> Subject: [PATCH] of: property: fw_devlink: Fixup behaviour when 'node_not_dev'
+>  is set
+>
+> In the struct supplier_bindings the member 'node_not_dev' is described as
+> "The consumer node containing the property is never a device.", but that is
+> inconsistent with the behaviour of the code in of_link_property(), as it
+> calls of_get_compat_node() that starts parsing for a compatible property,
+> starting from the node it gets passed to it.
+>
+> Make the behaviour consistent with the description of the 'node_not_dev'
+> flag, by passing the parent node to of_get_compat_node() instead.
+>
+> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
 > ---
-> 
-> (no changes since v1)
-> 
->  arch/mips/configs/qi_lb60_defconfig | 1 +
->  arch/mips/configs/rs90_defconfig    | 1 +
-
-The SoCs on these two boards don't support eDP, you can drop this patch.
-
-Cheers,
--Paul
-
->  2 files changed, 2 insertions(+)
-> 
-> diff --git a/arch/mips/configs/qi_lb60_defconfig 
-> b/arch/mips/configs/qi_lb60_defconfig
-> index b4448d0876d5..3e99e223ea02 100644
-> --- a/arch/mips/configs/qi_lb60_defconfig
-> +++ b/arch/mips/configs/qi_lb60_defconfig
-> @@ -72,6 +72,7 @@ CONFIG_REGULATOR_FIXED_VOLTAGE=y
->  CONFIG_DRM=y
->  CONFIG_DRM_FBDEV_OVERALLOC=200
->  CONFIG_DRM_PANEL_SIMPLE=y
-> +CONFIG_DRM_PANEL_SIMPLE_EDP=y
->  CONFIG_DRM_INGENIC=y
->  CONFIG_BACKLIGHT_CLASS_DEVICE=y
->  # CONFIG_VGA_CONSOLE is not set
-> diff --git a/arch/mips/configs/rs90_defconfig 
-> b/arch/mips/configs/rs90_defconfig
-> index 7ce3b814fdc8..42b4f621cbfa 100644
-> --- a/arch/mips/configs/rs90_defconfig
-> +++ b/arch/mips/configs/rs90_defconfig
-> @@ -94,6 +94,7 @@ CONFIG_REGULATOR_FIXED_VOLTAGE=y
->  CONFIG_DRM=y
->  CONFIG_DRM_FBDEV_OVERALLOC=300
->  CONFIG_DRM_PANEL_SIMPLE=y
-> +CONFIG_DRM_PANEL_SIMPLE_EDP=y
->  CONFIG_DRM_INGENIC=y
->  CONFIG_BACKLIGHT_CLASS_DEVICE=y
->  CONFIG_BACKLIGHT_PWM=y
+>  drivers/of/property.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 6c028632f425..16ee017884b8 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1075,6 +1075,17 @@ static struct device_node
+> *of_get_compat_node(struct device_node *np)
+>         return np;
+>  }
+>
+> +static struct device_node *of_get_compat_node_parent(struct device_node *np)
+> +{
+> +       struct device_node *parent, *node;
+> +
+> +       parent = of_get_parent(np);
+> +       node = of_get_compat_node(parent);
+> +       of_node_put(parent);
+> +
+> +       return node;
+> +}
+> +
+>  /**
+>   * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
+>   * @con_np: consumer device tree node
+> @@ -1416,7 +1427,7 @@ static int of_link_property(struct device_node
+> *con_np, const char *prop_name)
+>                         struct device_node *con_dev_np;
+>
+>                         con_dev_np = s->node_not_dev
+> -                                       ? of_get_compat_node(con_np)
+> +                                       ? of_get_compat_node_parent(con_np)
+>                                         : of_node_get(con_np);
+>                         matched = true;
+>                         i++;
 > --
-> 2.33.0.259.gc128427fd7-goog
-> 
-
-
+> 2.25.1
+>
+> [...]
+>
+> Kind regards
+> Uffe
