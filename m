@@ -2,195 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F2E3FD501
-	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 10:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF9CE3FD50B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Sep 2021 10:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243015AbhIAIOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 04:14:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54156 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242922AbhIAIOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 04:14:01 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59A55C061764
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 01:13:04 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id m28so4692861lfj.6
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 01:13:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=x2tKAP/1aZjb1THg3HM096zaMHW+UEhDKNrwvOztN+o=;
-        b=NtdFfLlMBvvwmCb3CWPpIKNwfwDjzXrs9rRY0SFXdfUlT+qdz9Su5Ptd4lNpsXckXV
-         wymW4+zGn+9GDI4Qh/wk/gLLDJVfQBuqAEhHLk565ytuia6g8Y2vYC7z0DzwmwRkhU22
-         stPv6sldloGbiFxEcEprQr93tsb9hhR8/efVxzERsFIqg8RK1O7CSUT2kTmjI0vUyevv
-         2ihP59qDk8Xly7x43n4Z7pObGikldxv2cCbzbBOlnoDEUtZNk8cf3etRHcqneLLmV6TQ
-         ESaP5kSJzmkCnp0Tr0xyayje1gOJmPDeaO5kJEVx9p6vSQjUVRz5oUUDCulxt/jHKkZL
-         JQiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=x2tKAP/1aZjb1THg3HM096zaMHW+UEhDKNrwvOztN+o=;
-        b=kcokfplb37PQ8SaJ70kIHRGYCtxYAT2gFApL2MoeNhJCv+gczPASSYKiDXoqSVGmV5
-         vPQBXhWFhQuOlCzdRji6pG2Jo7i+TOsxXRkJ0S1jHShwwM61RRkmf3FR/NZdcWyVi15d
-         x6SZ/eHMzBLDHfG5/uMcjWo7R/JeAUmkChq3QGQ6jXP5inG7mLbl2mqr/jUUDwhYzK0B
-         rgcFcjl7cKXBYLh3VYwAktvLfJshQavT0yzG4QwMiUAJm3upZLchESoLCcAhhwaN6dW5
-         ac01LaQSYHEIcIlHDN8khoa1bg+muVgyLYZVrHV908xdbV6xnTOmSwcdGQXnDpK9EPK1
-         2ISg==
-X-Gm-Message-State: AOAM533OV7KK0QWP47ersmez17YrNM1813fforkF8PTO0GkkD+gEzhBW
-        3sw7r5bie0MK5tftP5aQnZQYtm0U5S0cEwvRvQVlbA==
-X-Google-Smtp-Source: ABdhPJzq8baOlGTK2GwvtcD99p4jRPFD/7gsxAm2hrNPt8zCt6zdxwd4ae6WRjr3X66BQKEonrqMI3gmqCxmWhAvYIc=
-X-Received: by 2002:a19:c107:: with SMTP id r7mr24899153lff.29.1630483982545;
- Wed, 01 Sep 2021 01:13:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210831102141.624725-1-ulf.hansson@linaro.org> <CAGETcx8FKnmeCh3dD1b2TYXf3gwHnW-iWwfz0q-9UzeP2VZSDw@mail.gmail.com>
-In-Reply-To: <CAGETcx8FKnmeCh3dD1b2TYXf3gwHnW-iWwfz0q-9UzeP2VZSDw@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 1 Sep 2021 10:12:26 +0200
-Message-ID: <CAPDyKFq7aD_VXyY6=Kvp3t2Ph1_+CheZWDA6j2AoPK6ExX4h0g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of: property: fw_devlink: Set 'optional_con_dev' for parse_power_domains
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        id S243023AbhIAIPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 04:15:32 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:43940 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S242870AbhIAIPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 04:15:32 -0400
+X-UUID: c9345401f09e4879a2d8af68d2165922-20210901
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=aQczDb7Ur1z09Hhq0WSHuu1d90/3MPLqR+HcJ6VmReA=;
+        b=OpJzlFEBDHvco0jaGOLjkEZV1r2rjRwS/HtlWNHdHfcTKrB9vld4Lyruz/s8QC6Rcj2sGtgJ+yAcjw7s+8tWDNF15VYHI/Kvr0s8JLzKZnMaO2QVT92dgcI77+P1pTNxiZA6Ei91YUY08rkT3BDGC+jaUVCWsFNtov/eAFDpRjs=;
+X-UUID: c9345401f09e4879a2d8af68d2165922-20210901
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1051800409; Wed, 01 Sep 2021 16:14:32 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 1 Sep 2021 16:14:30 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 1 Sep 2021 16:14:30 +0800
+Message-ID: <39cec599a65eeb142cb7e729f954098a25652b2b.camel@mediatek.com>
+Subject: Re: [PATCH v7 3/5] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+From:   moudy ho <moudy.ho@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Jernej Skrabec" <jernej.skrabec@siol.net>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "Alexandre Courbot" <acourbot@chromium.org>,
+        Pi-Hsun Shih <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
+        Sj Huang <sj.huang@mediatek.com>, <ben.lok@mediatek.com>,
+        <randy.wu@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@google.com>
+Date:   Wed, 1 Sep 2021 16:14:30 +0800
+In-Reply-To: <CAL_JsqJ_cProt35pdd2MjoHsSKtd+0n1Dwq6ooV+CJH5sfOFWg@mail.gmail.com>
+References: <20210824100027.25989-1-moudy.ho@mediatek.com>
+         <20210824100027.25989-4-moudy.ho@mediatek.com>
+         <YSU0TrfFCsaI1TqV@robh.at.kernel.org>
+         <0092244acd520acac81208b8863b15fba58f4193.camel@mediatek.com>
+         <CAL_JsqJ_cProt35pdd2MjoHsSKtd+0n1Dwq6ooV+CJH5sfOFWg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 Aug 2021 at 19:51, Saravana Kannan <saravanak@google.com> wrote:
->
-> On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> >
-> > The power-domain DT bindings [1] doesn't enforce a compatible string for a
-> > provider node, even if this is common to use. In particular, when
-> > describing a hierarchy with parent/child power-domains, as the psci DT
-> > bindings [2] for example, it's sometimes not applicable to use a compatible
-> > string.
->
-> Ok, and fw_devlink handles that -- provider not having a compatible
-> string is pretty common. In these cases, the parent node is the actual
-> device that gets probed and registers the provider. So fw_devlink will
-> create a link from the consumer to the parent device node.
+T24gTW9uLCAyMDIxLTA4LTMwIGF0IDEwOjA1IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gTW9uLCBBdWcgMzAsIDIwMjEgYXQgMjo1OCBBTSBtb3VkeSBobyA8bW91ZHkuaG9AbWVkaWF0
+ZWsuY29tPg0KPiB3cm90ZToNCj4gPiANCj4gPiBPbiBUdWUsIDIwMjEtMDgtMjQgYXQgMTM6MDIg
+LTA1MDAsIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiA+ID4gT24gVHVlLCBBdWcgMjQsIDIwMjEgYXQg
+MDY6MDA6MjVQTSArMDgwMCwgTW91ZHkgSG8gd3JvdGU6DQo+ID4gPiA+IFRoaXMgcGF0Y2ggYWRk
+cyBEVCBiaW5kaW5nIGRvY3VtZW50IGZvciBNZWRpYSBEYXRhIFBhdGggMw0KPiA+ID4gPiAoTURQ
+MykNCj4gPiA+ID4gYSB1bml0IGluIG11bHRpbWVkaWEgc3lzdGVtIHVzZWQgZm9yIHNjYWxpbmcg
+YW5kIGNvbG9yIGZvcm1hdA0KPiA+ID4gPiBjb252ZXJ0Lg0KPiA+ID4gPiANCj4gPiA+ID4gU2ln
+bmVkLW9mZi1ieTogTW91ZHkgSG8gPG1vdWR5LmhvQG1lZGlhdGVrLmNvbT4NCj4gPiA+ID4gLS0t
+DQo+ID4gPiA+ICAuLi4vYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWssbWRwMy1jY29yci55YW1sICAg
+fCAgNTcgKysrKysNCj4gPiA+ID4gIC4uLi9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLXJk
+bWEueWFtbCAgICB8IDIwNw0KPiA+ID4gPiArKysrKysrKysrKysrKysrKysNCj4gPiA+ID4gIC4u
+Li9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLXJzei55YW1sICAgICB8ICA2NSArKysrKysN
+Cj4gPiA+ID4gIC4uLi9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLXdkbWEueWFtbCAgICB8
+ICA3MSArKysrKysNCj4gPiA+ID4gIC4uLi9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLXdy
+b3QueWFtbCAgICB8ICA3MSArKysrKysNCj4gPiA+ID4gIDUgZmlsZXMgY2hhbmdlZCwgNDcxIGlu
+c2VydGlvbnMoKykNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+ID4gPiBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWssbWRwMy0NCj4gPiA+ID4g
+Y2NvcnIueWFtbA0KPiA+ID4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gPiA+IERvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLXJkbWEueWFtbA0K
+PiA+ID4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gPiA+IERvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLXJzei55YW1sDQo+ID4gPiA+ICBjcmVh
+dGUgbW9kZSAxMDA2NDQNCj4gPiA+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L21lZGlhL21lZGlhdGVrLG1kcDMtd2RtYS55YW1sDQo+ID4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2
+NDQNCj4gPiA+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lZGlh
+dGVrLG1kcDMtd3JvdC55YW1sDQo+ID4gPiA+IA0KPiA+ID4gPiBkaWZmIC0tZ2l0DQo+ID4gPiA+
+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lZGlhdGVrLG1kcDMt
+DQo+ID4gPiA+IGNjb3JyLnlhbWwNCj4gPiA+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbWVkaWEvbWVkaWF0ZWssbWRwMy0NCj4gPiA+ID4gY2NvcnIueWFtbA0KPiA+ID4g
+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+ID4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjU5ZmQ2
+OGI0NjAyMg0KPiA+ID4gPiAtLS0gL2Rldi9udWxsDQo+ID4gPiA+ICsrKyBiL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayxtZHAzLQ0KPiA+ID4gPiBjY29y
+ci55YW1sDQo+ID4gPiA+IEBAIC0wLDAgKzEsNTcgQEANCj4gPiA+ID4gKyMgU1BEWC1MaWNlbnNl
+LUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ID4gPiArJVlB
+TUwgMS4yDQo+ID4gPiA+ICstLS0NCj4gPiA+ID4gKyRpZDoNCj4gPiA+ID4gDQpodHRwczovL3Vy
+bGRlZmVuc2UuY29tL3YzL19faHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvbWVkaWEvbWVk
+aWF0ZWssbWRwMy1jY29yci55YW1sKl9fO0l3ISFDVFJOS0E5d01nMEFSYnchMUMwQ2hMcXppN1px
+OEQyZDRfUzRJcUNFZWk0R1hkZ3kzX1ZDUWc4TWRzSlA3bjhUbHhiR3lhamlwdXNmSDhoaSQNCj4g
+PiA+ID4gDQo+ID4gPiA+ICskc2NoZW1hOg0KPiA+ID4gPiANCmh0dHBzOi8vdXJsZGVmZW5zZS5j
+b20vdjMvX19odHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCpfXztJ
+dyEhQ1RSTktBOXdNZzBBUmJ3ITFDMENoTHF6aTdacThEMmQ0X1M0SXFDRWVpNEdYZGd5M19WQ1Fn
+OE1kc0pQN244VGx4Ykd5YWppcGktT0luaXgkDQo+ID4gPiA+IA0KPiA+ID4gPiArDQo+ID4gPiA+
+ICt0aXRsZTogTWVkaWF0ZWsgTWVkaWEgRGF0YSBQYXRoIDMgQ0NPUlIgRGV2aWNlIFRyZWUgQmlu
+ZGluZ3MNCj4gPiA+ID4gKw0KPiA+ID4gPiArbWFpbnRhaW5lcnM6DQo+ID4gPiA+ICsgIC0gRGFv
+eXVhbiBIdWFuZyA8ZGFveXVhbi5odWFuZ0BtZWRpYXRlay5jb20+DQo+ID4gPiA+ICsgIC0gTW91
+ZHkgSG8gPG1vdWR5LmhvQG1lZGlhdGVrLmNvbT4NCj4gPiA+ID4gKw0KPiA+ID4gPiArZGVzY3Jp
+cHRpb246IHwNCj4gPiA+ID4gKyAgT25lIG9mIE1lZGlhIERhdGEgUGF0aCAzIChNRFAzKSBjb21w
+b25lbnRzIHVzZWQgdG8gZG8gY29sb3INCj4gPiA+ID4gY29ycmVjdGlvbiB3aXRoIDNYMyBtYXRy
+aXguDQo+ID4gPiA+ICsNCj4gPiA+ID4gK3Byb3BlcnRpZXM6DQo+ID4gPiA+ICsgIGNvbXBhdGli
+bGU6DQo+ID4gPiA+ICsgICAgaXRlbXM6DQo+ID4gPiA+ICsgICAgICAtIGVudW06DQo+ID4gPiA+
+ICsgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTgzLW1kcDMtY2NvcnINCj4gPiA+ID4gKw0KPiA+ID4g
+PiArICBtZWRpYXRlayxtZHAzLWlkOg0KPiA+ID4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVz
+LnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ID4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4g
+PiA+ICsgICAgZGVzY3JpcHRpb246IHwNCj4gPiA+ID4gKyAgICAgIEhXIGluZGV4IHRvIGRpc3Rp
+bmd1aXNoIHNhbWUgZnVuY3Rpb25hbGl0eSBtb2R1bGVzLg0KPiA+ID4gDQo+ID4gPiBJZiB3ZSB3
+YW50ZWQgaC93IGluZGV4ZXMgaW4gRFQsIHdlJ2QgaGF2ZSBhIHN0YW5kYXJkIHByb3BlcnR5Lg0K
+PiA+ID4gV2h5DQo+ID4gPiBkbw0KPiA+ID4geW91IG5lZWQgdGhpcz8NCj4gPiA+IA0KPiA+IA0K
+PiA+IEknbSBzb3JyeSBub3QgcXVpdGUgc3VyZSB3aGF0IEhXIGluZGV4ZXMgbWVhbnMgKHNvbWV0
+aGluZyBsaWtlDQo+ID4gYWxpYXNlcz8pDQo+IA0KPiBJdCBtZWFucyB3aGF0ZXZlciB5b3Ugc2Fp
+ZCBpbiB5b3VyIGRlc2NyaXB0aW9uLg0KPiANCj4gQW5kIG5vLCBJJ20gbm90IHN1Z2dlc3Rpbmcg
+eW91IHVzZSBhbGlhc2VzLg0KDQpTb3JyeSBmb3IgdGhlIGluYWNjdXJhY3kgZGVzY3JpYmVkIGhl
+cmUsIHRoZSBjb21tZW50IGkgbWVudGlvbmVkIGJlZm9yZQ0Kc2hvdWxkIGJlICJzdGFuZGFyZCBw
+cm9wZXJ0eSIgaW5zdGVhZCBvZiAiSFcgaW5kZXgiLg0KDQo+ID4gSXQgd2FzIG9yaWdpbmFsbHkg
+dXNlZCB0byBtYXJrIG11bHRpcGxlIGlkZW50aWNhbCBtb2R1bGVzIGluIHRoZQ0KPiA+IE1EUA0K
+PiA+IGRhdGEgcGF0aCBhbGdvcml0aG0sIHNvIHRoYXQgYXBwcm9wcmlhdGUgcGF0aHMgY2FuIGJl
+IGR5bmFtaWNhbGx5DQo+ID4gZGlzcGF0Y2hlZC4NCj4gDQo+IElmIHRoZXkgYXJlIGlkZW50aWNh
+bCwgdGhlbiB3aHkgZG8geW91IG5lZWQgdG8gZGlzdGluZ3Vpc2ggdGhlbSBpbg0KPiBEVD8NCj4g
+SWYgdGhlcmUncyBzb21lIGRpZmZlcmVuY2UgeW91IG5lZWQgdG8ga25vdyBhYm91dCBzdWNoIGFz
+IGNvbm5lY3Rpb25zDQo+IHRvIG90aGVyIGJsb2NrcywgdGhlbiBkZXNjcmliZSB0aGF0LiBBbm90
+aGVyIGNvbW1vbiBleGFtcGxlIGlzDQo+IG5lZWRpbmcNCj4gdG8ga25vdyB3aGF0IGJpdHMvcmVn
+aXN0ZXJzIHRvIGFjY2VzcyBpbiBhIHN5c2NvbiBwaGFuZGxlLiBGb3IgdGhhdCwNCj4gbWFrZSB0
+aGUgcmVnaXN0ZXIgb2Zmc2V0IG9yIGJpdHMgYmUgYXJncyB0byB0aGUgcGhhbmRsZSBwcm9wZXJ0
+eS4gIA0KPiAgDQo+IFJvYg0KDQpJbnRlZ3JhdGluZyB0aGUgcHJldmlvdXMgZGlzY3Vzc2lvbiwg
+bWF5YmUgSSBjYW4gcmV2aXNlIHRoZSBkZXNjcmlwdGlvbg0KdG8gdGhlIGZvbGxvd2luZzoNCiAg
+ICBkZXNjcmlwdGlvbjogfA0KICAgICAgVGhlcmUgbWF5IGJlIG11bHRpcGxlIGJsb2NrcyB3aXRo
+IHRoZSBzYW1lIGZ1bmN0aW9uIGJ1dCBkaWZmZXJlbnQNCiAgICAgIGFkZHJlc3NlcyBpbiBNRFAz
+LiBJbiBvcmRlciB0byBkaXN0aW5ndWlzaCB0aGUgY29ubmVjdGlvbiB3aXRoDQogICAgICBvdGhl
+ciBibG9ja3MsIGEgdW5pcXVlIElEIGlzIG5lZWRlZCB0byBkeW5hbWljYWxseSB1c2Ugb25lIG9y
+DQogICAgICBtb3JlIGlkZW50aWNhbCBibG9ja3MgdG8gaW1wbGVtZW50IG11bHRpcGxlIHBpcGVs
+aW5lcy4NCg0KTW91ZHkNCg==
 
-Yes, correct. That is working fine and isn't a problem.
-
-The first problem (I think) is that fw_devlink creates a fw_devlink
-from a child provider node (consumer without compatible string) to a
-parent node (supplier with a compatible string). I don't understand
-the reason why this is needed, perhaps you can elaborate on why?
-
-I come to the second and follow up problem from this behaviour, see below.
-
->
-> > Therefore, let's set the 'optional_con_dev' to true to avoid creating
-> > incorrect fw_devlinks for power-domains.
->
-> This part doesn't make sense or is incomplete. What is being done incorrectly?
-
-See below.
-
->
-> >
-> > [1] Documentation/devicetree/bindings/power/power-domain.yaml
-> > [2] Documentation/devicetree/bindings/arm/psci.yaml
-> >
-> > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > ---
-> >
-> > Some more details of what goes on here. I have added a debug print in
-> > of_link_to_phandle() to see the fw_devlinks that gets created.
-> >
-> > This is what happens on Dragonboard 410c when 'optional_con_dev' isn't set:
-> > ...
-> > [    0.041274] device: 'psci': device_add
-> > [    0.041366] OF: Linking power-domain-cpu0 (consumer) to psci (supplier)
-> > [    0.041395] OF: Linking power-domain-cpu1 (consumer) to psci (supplier)
-> > [    0.041423] OF: Linking power-domain-cpu2 (consumer) to psci (supplier)
-> > [    0.041451] OF: Linking power-domain-cpu3 (consumer) to psci (supplier)
-> > [    0.041494] device: 'platform:psci--platform:psci': device_add
-> > [    0.041556] platform psci: Linked as a sync state only consumer to psci
-
-Because we created a fw_devlink for the child provider nodes
-(consumer) that lacks compatible properties, we end up creating a sync
-state only devlink. I don't think it serves a purpose, but I may be
-wrong!?
-
-Additionally, the actual devlink that is created, has the same
-supplier and consumer device, which indicates that this isn't the
-right thing to do.
-
-> > ...
-> >
-> > This is what happens on Dragonboard 410c when 'optional_con_dev' is set:
-> > ...
-> > [    0.041179] device: 'psci': device_add
-> > [    0.041265] OF: Not linking psci to psci - is descendant
-> > [    0.041293] OF: Not linking psci to psci - is descendant
-> > [    0.041319] OF: Not linking psci to psci - is descendant
-> > [    0.041346] OF: Not linking psci to psci - is descendant
-> > ...
->
-> Can you please explain what exactly is going on that's wrong here? I
-> notice that psci is not probed as a device at all. And when you aren't
-> setting this flag the only difference I see is the creating of a sync
-> state only link -- which shouldn't matter here because you don't even
-> have a driver implemented.
-
-See above.
-
->
-> > The relevant dtsi file:
-> > arch/arm64/boot/dts/qcom/msm8916.dtsi
-> >
-> > Kind regards
-> > Ulf Hansson
-> >
-> > ---
-> >  drivers/of/property.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 2babb1807228..4d607fdbea24 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1356,7 +1356,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
-> >         { .parse_prop = parse_io_channels, },
-> >         { .parse_prop = parse_interrupt_parent, },
-> >         { .parse_prop = parse_dmas, .optional = true, },
-> > -       { .parse_prop = parse_power_domains, },
-> > +       { .parse_prop = parse_power_domains, .optional_con_dev = true, },
->
-> This change is just shooting in dark/completely unrelated to the
-> commit text. This is just saying the actual consumer is a level up
-> from where the property is listed (eg: remote-endpoint). It just
-> happens to fix your case for unrelated reasons.
-
-Again, see above.
-
->
-> Definite Nak as this *will* break other cases.
-
-In what way will this break other cases?
-
-Would you mind elaborating for my understanding and perhaps point me
-to an example where it will break?
-
->
-> -Saravana
->
->
-> >         { .parse_prop = parse_hwlocks, },
-> >         { .parse_prop = parse_extcon, },
-> >         { .parse_prop = parse_nvmem_cells, },
-> > --
-> > 2.25.1
-> >
-
-Kind regards
-Uffe
