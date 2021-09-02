@@ -2,221 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 141AD3FF55F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA8C13FF58F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345000AbhIBVKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 17:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57306 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239449AbhIBVKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 17:10:39 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 693C6C061575
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 14:09:40 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id y18so4340741ioc.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 14:09:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=isVCJ0v0N6GlMHHCuW/CxpgqqWw2Wb074FuKnn5+768=;
-        b=ILmAiJ6ZStsAqGI49ZT5Oe+mQahwEU3D1mgGAqGhJRYr96ocX678iH1Jksyw4YZE8m
-         Bjw5vTnVtAJPyyQs4tGS70j4g1nSv8PJtn8B7gvAABTmeW8O40TaXjkbskAnRgxbzRBP
-         ssVIhQC+Zwhg4zEuZvH17fy5uhJyY2/ywv9wo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=isVCJ0v0N6GlMHHCuW/CxpgqqWw2Wb074FuKnn5+768=;
-        b=iHTdocHAs3VKKFSj9CQdElJohyZHNnbH8/O1jd9NJVoNytQqlGgg/PB4GIlBgVuiCx
-         4q1HOSfYdFn/VBudj82HT0AMIcYTUFVZV9uijfoOuCRqGT9vLe9ZHQm/IbP8jCOu1Fip
-         1qtxthOEIDO7QcGXVv/nWFANI311melyi3duNkLBv7WEF2TexawmjTVlNKvodlJoyBFI
-         yhWW51KHInhDhiz2+3aomt+cnIfizXS34vbXeQTeDdgqIBjAxJofGQ1emFMQBKlTgSls
-         /SjbPyYLzSAQ+rygaGKLWfbrxMH10Jkd5AfXuzP+c4CctzC0DQZEM6zobjxdrqz2MfId
-         g6Iw==
-X-Gm-Message-State: AOAM530eRldVCbRxK6hq0yaS8P4iUgbYEItLuoGt46SbKLkfPmxK+h0K
-        q2AOsVFbzVdld+REWjKFi2ntuDp6+q72YQ==
-X-Google-Smtp-Source: ABdhPJznuMhWS/XOot6DNgsjyZ9kttC966mzEk5Ot+dkQvcF4BS5vHx6mK+1O8KJ1Dft6x77XAef9w==
-X-Received: by 2002:a02:ad19:: with SMTP id s25mr225665jan.17.1630616979572;
-        Thu, 02 Sep 2021 14:09:39 -0700 (PDT)
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com. [209.85.166.48])
-        by smtp.gmail.com with ESMTPSA id d17sm1508563ilf.49.2021.09.02.14.09.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Sep 2021 14:09:38 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id q3so4299298iot.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 14:09:38 -0700 (PDT)
-X-Received: by 2002:a02:ca0b:: with SMTP id i11mr237677jak.84.1630616978187;
- Thu, 02 Sep 2021 14:09:38 -0700 (PDT)
+        id S1346230AbhIBVW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 17:22:59 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:54176 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245379AbhIBVW7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 17:22:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=4W8zxurm5kXw4PloLvamlDJtFD1BuntSj9LBJWLPd1Y=; b=lK7dEoSX/EWfBQhLUweQ63P05F
+        k6ZhJDJgkOYuItsQD653g5Bpc6NpiMC7HyyXsRuN7zzgPqCGtPVghPUiArhcW4/WS8mfLPDrDajx9
+        Y5cFVSqQx9oTzk9QgVjiDCUzHxvM5tyNrq7HqlDfBQ9PXJqmSxyvAF0E+J/RnU8i6Lgw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mLu9j-0053PR-Pk; Thu, 02 Sep 2021 23:21:55 +0200
+Date:   Thu, 2 Sep 2021 23:21:55 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 3/3] tsnep: Add TSN endpoint Ethernet MAC
+ driver
+Message-ID: <YTFAc/vMXTKdFSHL@lunn.ch>
+References: <20210831193425.26193-1-gerhard@engleder-embedded.com>
+ <20210831193425.26193-4-gerhard@engleder-embedded.com>
+ <YS6lQejOJJCATMCp@lunn.ch>
+ <CANr-f5zXWrqPxWV81CT6=4O6PoPRB0Qs0T=egJ3q8FMG16f6xw@mail.gmail.com>
+ <YS/qQdmjT/X0tiEt@lunn.ch>
+ <CANr-f5wU0JTqwoHoFEwdFCVSYtcohx-DPc4mz8-GrVFpyNuajA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210830135904.1.I049b30065f3c715234b6303f55d72c059c8625eb@changeid>
- <0a865b6e-be34-6371-f9f2-9913ee1c5608@codeaurora.org>
-In-Reply-To: <0a865b6e-be34-6371-f9f2-9913ee1c5608@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 2 Sep 2021 14:09:26 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X9x57XsOidc3rFGCUZXJOkQgK6=mihZtOA6KfQ=0SnHQ@mail.gmail.com>
-Message-ID: <CAD=FV=X9x57XsOidc3rFGCUZXJOkQgK6=mihZtOA6KfQ=0SnHQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Base dynamic CPU power
- coefficients in reality
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANr-f5wU0JTqwoHoFEwdFCVSYtcohx-DPc4mz8-GrVFpyNuajA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, Sep 1, 2021 at 9:25 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> Hey Doug,
->
-> On 8/31/2021 2:29 AM, Douglas Anderson wrote:
-> > The sc7180's dynamic-power-coefficient violates the device tree bindings.
-> > The bindings (arm/cpus.yaml) say that the units for the
-> > dynamic-power-coefficient are supposed to be "uW/MHz/V^2". The ones for
-> > sc7180 aren't this. Qualcomm arbitrarily picked 100 for the "little" CPUs
-> > and then picked a number for the big CPU based on this.
+On Thu, Sep 02, 2021 at 10:32:10PM +0200, Gerhard Engleder wrote:
+> > > > > +static irqreturn_t tsnep_irq(int irq, void *arg)
+> > > > > +{
+> > > > > +     struct tsnep_adapter *adapter = arg;
+> > > > > +     u32 active = ioread32(adapter->addr + ECM_INT_ACTIVE);
+> > > > > +
+> > > > > +     /* acknowledge interrupt */
+> > > > > +     if (active != 0)
+> > > > > +             iowrite32(active, adapter->addr + ECM_INT_ACKNOWLEDGE);
+> > > > > +
+> > > > > +     /* handle management data interrupt */
+> > > > > +     if ((active & ECM_INT_MD) != 0) {
+> > > > > +             adapter->md_active = false;
+> > > > > +             wake_up_interruptible(&adapter->md_wait);
+> > > > > +     }
+> > > > > +
+> > > > > +     /* handle link interrupt */
+> > > > > +     if ((active & ECM_INT_LINK) != 0) {
+> > > > > +             if (adapter->netdev->phydev) {
+> > > > > +                     struct phy_device *phydev = adapter->netdev->phydev;
+> > > > > +                     u32 status = ioread32(adapter->addr + ECM_STATUS);
+> > > > > +                     int link = (status & ECM_NO_LINK) ? 0 : 1;
+> > > > > +                     u32 speed = status & ECM_SPEED_MASK;
+> > > >
+> > > > How does PHY link and speed get into this MAC register? Is the MAC
+> > > > polling the PHY over the MDIO bus? Is the PHY internal to the MAC and
+> > > > it has backdoor access to the PHY status?
+> > >
+> > > PHY is external. The MAC expects additional signals for link status. These
+> > > signals can be derived from RGMII in band signaling of the link status or by
+> > > using PHY link and speed LED outputs. The MAC is using the link status for
+> > > a quick no link reaction to minimize the impact to real time applications.
+> > > EtherCAT for example also uses the link LED output for a no link reaction
+> > > within a few microseconds.
 > >
-> > At the time, there was a giant dicussion about this. Apparently Qualcomm
-> > Engineers were instructed not to share the actual numbers here. As part
-> > of the discussion, I pointed out [1] that these numbers shouldn't really
-> > be secret since once a device is shipping anyone can just run a script
-> > and produce them. This patch is the result of running the script I posted
-> > in that discussion on sc7180-trogdor-coachz, which is currently available
-> > for purchase by consumers.
-> >
-> > [1] https://lore.kernel.org/r/CAD=FV=U1FP0e3_AVHpauUUZtD-5X3XCwh5aT9fH_8S_FFML2Uw@mail.gmail.com/
-> >
-> > I ran the script four times, measuring little, big, little, big. I used
-> > the 64-bit version of dhrystone 2.2 in my test. I got these results:
-> >
-> > 576 kHz, 596 mV, 20 mW, 88 Cx
-> > 768 kHz, 596 mV, 32 mW, 122 Cx
-> > 1017 kHz, 660 mV, 45 mW, 97 Cx
-> > 1248 kHz, 720 mV, 87 mW, 139 Cx
-> > 1324 kHz, 756 mV, 109 mW, 148 Cx
-> > 1516 kHz, 828 mV, 150 mW, 148 Cx
-> > 1612 kHz, 884 mV, 182 mW, 147 Cx
-> > 1708 kHz, 884 mV, 192 mW, 146 Cx
-> > 1804 kHz, 884 mV, 207 mW, 149 Cx
-> > Your dynamic-power-coefficient for cpu 0: 132
-> >
-> > 825 kHz, 596 mV, 142 mW, 401 Cx
-> > 979 kHz, 628 mV, 183 mW, 427 Cx
-> > 1113 kHz, 656 mV, 224 mW, 433 Cx
-> > 1267 kHz, 688 mV, 282 mW, 449 Cx
-> > 1555 kHz, 812 mV, 475 mW, 450 Cx
-> > 1708 kHz, 828 mV, 566 mW, 478 Cx
-> > 1843 kHz, 884 mV, 692 mW, 476 Cx
-> > 1900 kHz, 884 mV, 722 mW, 482 Cx
-> > 1996 kHz, 916 mV, 814 mW, 482 Cx
-> > 2112 kHz, 916 mV, 862 mW, 483 Cx
-> > 2208 kHz, 916 mV, 962 mW, 521 Cx
-> > 2323 kHz, 940 mV, 1060 mW, 517 Cx
-> > 2400 kHz, 956 mV, 1133 mW, 518 Cx
-> > Your dynamic-power-coefficient for cpu 6: 471
-> >
-> > 576 kHz, 596 mV, 26 mW, 103 Cx
-> > 768 kHz, 596 mV, 40 mW, 147 Cx
-> > 1017 kHz, 660 mV, 54 mW, 114 Cx
-> > 1248 kHz, 720 mV, 97 mW, 151 Cx
-> > 1324 kHz, 756 mV, 113 mW, 150 Cx
-> > 1516 kHz, 828 mV, 154 mW, 148 Cx
-> > 1612 kHz, 884 mV, 194 mW, 155 Cx
-> > 1708 kHz, 884 mV, 203 mW, 152 Cx
-> > 1804 kHz, 884 mV, 219 mW, 155 Cx
-> > Your dynamic-power-coefficient for cpu 0: 142
-> >
-> > 825 kHz, 596 mV, 148 mW, 530 Cx
-> > 979 kHz, 628 mV, 189 mW, 475 Cx
-> > 1113 kHz, 656 mV, 230 mW, 461 Cx
-> > 1267 kHz, 688 mV, 287 mW, 466 Cx
-> > 1555 kHz, 812 mV, 469 mW, 445 Cx
-> > 1708 kHz, 828 mV, 567 mW, 480 Cx
-> > 1843 kHz, 884 mV, 699 mW, 482 Cx
-> > 1900 kHz, 884 mV, 719 mW, 480 Cx
-> > 1996 kHz, 916 mV, 814 mW, 484 Cx
-> > 2112 kHz, 916 mV, 861 mW, 483 Cx
-> > 2208 kHz, 916 mV, 963 mW, 522 Cx
-> > 2323 kHz, 940 mV, 1063 mW, 520 Cx
-> > 2400 kHz, 956 mV, 1135 mW, 519 Cx
-> > Your dynamic-power-coefficient for cpu 6: 489
-> >
-> > As you can see, the calculations aren't perfectly consistent but
-> > roughly you could say about 480 for big and 137 for little.
-> >
-> > The ratio between these numbers isn't quite the same as the
-> > ratio between the two numbers that Qualcomm used. Presumably
-> > this is because Qualcomm measured something slightly different
-> > than the 64-bit version of dhrystone 2.2, though it might also
-> > be that they fudged the numbers a little. In any case, these
-> > numbers don't need to be perfectly exact. In fact, they can't
-> > be since the CPU power depends a lot on what's being run on
-> > the CPU and the big/little CPUs are each more or less efficient
-> > in different operations. Historically running the 32-bit vs.
-> > 64-bit versions of dhrystone produced notably different numbers,
-> > though I didn't test this time. In any case, let's keep the
-> > existing ratio but scale it based on the above so we're at
->
-> I am not sure that's really needed, we could perhaps go with the
-> new ratios that you got, since the existing ratios are perhaps
-> tuned (more usecases run than just dhrystone) for the downstream
-> Android scheduler.
-> One other thing that's perhaps tuned is the capacity-dmips-mhz,
-> and if the same argument applies to that (that they can't be
-> scaled and need to be measured with just dhrystone)
-> then those might need an update along with this as well, else it
-> just throws the power/perf balance out.
+> > O.K. This is not the normal Linux way. You normally have the PHY
+> > driver tell the PHY core, which then tells the MAC driver. That always
+> > works. RGMII in band signaling is not supported by all PHY devices,
+> > and the board design would require the LED output are correctly
+> > connected, and i guess you need a hacked PHY driver to use the correct
+> > LED meanings? Plus i guess you have additional changes in the PHY
+> > driver to do fast link down detection?
+> 
+> Yes, LED outputs must be correctly connected in the board design. LED
+> outputs are usually configured with strapping pins, which again require a
+> correct board design.
 
-OK. So if I run a script to try to measure `capacity-dmips-mhz` and
-scale little to 1024 then I get this (I had to throw out strangely low
-numbers from 1017 MHz on the little CPU--that needs to be a separate
-investigation):
+Linux sometime, maybe soon, will be able the control the PHY LEDs, and
+probably export them to user space so root can change their meaning.
 
-little = 1024
-big = 2527
+> Fast link down detection is a hardware property of the selected
+> PHY. So far no PHY driver changes were necessary.
 
-...as opposed to the big CPU being 1740 in the current dts. Actually,
-though, it seems like the big is supposed to be 1024 and the little
-scaled to it, so I guess that would mean:
+Marvell PHYs for example follow 802.3 C40 and default to waiting 750ms
+before reporting the link down. You can configure them to only wait
+10ms, 20ms or 40ms. So it sounds like you are using a PHY which does
+not conform to C40? In general, we probably need to be able to
+configure this, for those that do follow C40.
 
-little = 415
-big = 1024
+> > I think this needs another DT property to enable using such short
+> > cuts, and you should use the Linux way by default.
+> 
+> Isn't choosing PHY_MAC_INTERRUPT also the Linux way? I preferred it
+> over PHY_POLL, because I need the link information directly in the MAC
+> anyway. But maybe the speed information is too much and should be provided
+> to the MAC.
 
-...so sure, I'll post up that. I guess we'll have to get some folks to
-confirm that this doesn't mess too badly with any other tuning we've
-done.
+PHY_MAC_INTERRUPT is just the first step. It means something happened
+in the PHY. You need to ask the PHY what? It could be link up or down,
+it could be cable diagnostics have finished, the temperature is
+getting too hot, whatever can cause the PHY to change state. The PHY
+driver will then determine what has actually happened. Some cases, the
+MAC does not needed to know. Others the MAC will be told, via the
+callback it registered. It gets to know the link speed, up down etc.
+That is the Linux way, the complete chain.
 
-===
+> > Also, don't you need a property which tells you to either use RGMII
+> > inband, or LED signals?
+> 
+> No, this decision is done in VHDL/FPGA. No need to consume precious FPGA
+> resources for runtime configuration.
 
-For reference, this script was all just in bash (seemed easier):
+You mean you have two ways to synthesis the MAC. You have two
+bitstreams. One for LEDs and one of inband RGMII?
 
-cd /sys/devices/system/cpu/cpufreq/
-for policy in policy*; do
-  total=0
-  count=0
-  echo ${policy}
-  cd /sys/devices/system/cpu/cpufreq/${policy}
-  cpu=$(cat affected_cpus | cut -d ' ' -f1)
-  echo userspace > scaling_governor
-  for freq in $(cat scaling_available_frequencies); do
-    echo ${freq} > scaling_setspeed
-    result=$(taskset -c ${cpu} dry2 2>/dev/null | grep 'Dhrystones per
-Second:' | cut -d ':' -f2)
-    result_per_mhz=$((result * 1000 / freq))
-    echo "${policy} at ${freq}: capacity-dmips-mhz = ${result_per_mhz}"
-    total=$((total + result_per_mhz))
-    count=$((count + 1))
-  done
-  echo "Averge for ${policy} is $((total / count))"
-done
+> I'm afraid that relying on ACPI is not always an option. x86 CPU modules are
+> very often used in industrial automation and the BIOS of the CPU module is
+> usually not adapted to the carrier board.
+
+Yes, i've been there. I have managed to get the BIOS customised, but
+it is not easy. DT is much easier to use.
+
+> Also other drivers implement a fallback like this. Shall I still
+> remove it?
+
+You can keep it. I just don't recommend it, if you can avoid it. But x86...
+
+    Andrew
