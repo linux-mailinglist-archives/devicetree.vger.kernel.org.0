@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8C43FF21C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 19:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AE1A3FF239
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 19:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346540AbhIBRLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 13:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57878 "EHLO
+        id S234132AbhIBRWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 13:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346507AbhIBRLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 13:11:07 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45F3C061760
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 10:10:08 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id z18so5187501ybg.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 10:10:08 -0700 (PDT)
+        with ESMTP id S1346546AbhIBRW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 13:22:29 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B293FC061760
+        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 10:21:30 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id r4so5297019ybp.4
+        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 10:21:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ZNnGL/XFkRACc5/CvoRAa+dSZMwb3AAvxOKNDcBdSNM=;
-        b=hEwlT3tYR2Y31bwXVcknM/ypCL0SfikclQ4C9fMYjRR1+rQmog4PK6nRvTQKh97yoQ
-         s7Tg5N94Vr/J02byNanGEtllbrHrSb6RualdV5dxuVcNods1HVS2TVSNMZn+8a/W14PU
-         g2y/1Wm73RdC8yZNDuv8cTRi9RQEL1St3o6XG4uzaruoIzKA9jBGbKbGSMsfVjypo6Y1
-         vMPgZORq6yI29cWlIEtFRuHUXmkRh7ZfYD0UIpUvhoSFI6v6rE4mURxeN6qr6IA3ZVEY
-         yHVLboNcPXLpTZqClnttBGFdLWekds8ZR0GDLgbvZoSZ3a9fGNTvcz2SLTjxP+gLIzTQ
-         QCAA==
+        bh=On4+bwBZY2VHtzcK0y+sz7PPXSEz1i4XFGr/NoM2bik=;
+        b=HRZoj2agLhRgT4gUkJKlLLg3Yve5/2+MX7OlCLbccLakwWEQnzQqBLvoKNQgiioT0/
+         BzghiksK49NlmDTEsOY3px4DSk6yoX4ZzMD+EdW7rbfLnZqdFsE/9xGgJTo/0rGJhEEH
+         SDTVpt9SlPMr3ZwFAJuVUxKI9N7jT1JiHSxTWRlSsVCAU0220Ofu72V0yVcRBFVtu7uh
+         xymy9muR8zP4q+QaNxrS4cBITENokcBleYy4q2ioLIDGdkaxBM0UK/3xoiIX3pi+lfOL
+         KvxK66VTZpkQbPdym4HzpNS+VlCwQk6a7RGDULWVATkyZP2t0LORoZpnqWD8vQYqIboD
+         +bjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZNnGL/XFkRACc5/CvoRAa+dSZMwb3AAvxOKNDcBdSNM=;
-        b=Xw4+zMsC+BqYmm1h/oDOepqHvVQ0o/I9MyqXmU517vrDZfizT/P6juzl9t8fIO7H/W
-         RYEQqxrEm7VzoWltxhZi/mXy58+bOBvda4EYOq6/5U9fkI8LwqZQN1a+rd3xI3HbXAn5
-         AzwiKR8dsB9E3nG/04urEq1mXj5xjcPxXK04itahPdTzxY/r9lWjK4mEXSDnVhrnSqsi
-         ox20Yon3C5WLejRbTvheyrKmXbXom6gSou5Gl816aKwdHBVfeaVFmf7hbgUFL1PukTYB
-         OT2i7c3fC0B/tcW4Ma6iDPtqao3KH19Hm2QYV6oM+91SS439DhHtBzJPDxGgY+oGnBZ8
-         Un0A==
-X-Gm-Message-State: AOAM533415paLNGuh0QH79tgR5ptDUa0tZNSTaHVdZJlozz+njNXeMb6
-        HCGglBdIElPYbcvp7QDup5r+Xi/JpYXHvP68deHLAqAhEO0=
-X-Google-Smtp-Source: ABdhPJz2YTSqz5EeiE5FHkhjNK+OPxgcJfPp1zoX7Cf/S0pbqfT5CJ+wPJareJf4D00vVRM27wfYnbzZFVmWZbdh5p0=
-X-Received: by 2002:a5b:50b:: with SMTP id o11mr5830667ybp.466.1630602607975;
- Thu, 02 Sep 2021 10:10:07 -0700 (PDT)
+        bh=On4+bwBZY2VHtzcK0y+sz7PPXSEz1i4XFGr/NoM2bik=;
+        b=sa91IfELH7tLVS+GsQJwtgc/qZWhY7/Io6flvTvplLPCOTUOO9J3CYv70dNVOnPXz0
+         5GkY/mRRz+WKq7KLQysOXXRP3U21Xb09MLDZfaRDHRGoV6IlAwmvcHQKm9cjS6E6XhPR
+         /FxnTlKcpNkZVrGobBc0p51ipw0Byv4k1DvlcwzU2ZQQwZ++XdSFwpuAG5kFQnKgj9TF
+         MnQ9hHLkB8on9mYXNwyC0SdKEKmMKAVI4d49zLvI4Dtbn4cwuOnNFdNqgCTw70iZJ5GJ
+         govNHvHZnAKSR5agmgHUXSRZmXQ8rul+lDDvXQtQsM5gc3wQI02UaypKmAHeWeE6UKW1
+         6Z8A==
+X-Gm-Message-State: AOAM533GNuqZ5NA0AbhNq4QaL7xkVk1qPlCqs2tjsFIIX0yViFsjT0eo
+        DV7r1JhzZzjbFCzjcfuaQbDZZXvsxy/KBrxme93Dww==
+X-Google-Smtp-Source: ABdhPJyS+LxlE16Qm2mQyeB+Z3S3rI0rNtTM2yxEPw2WPNsSBoae9bcHgGafDM0op87STsqfvVtAAi/j1ASriI8aGuk=
+X-Received: by 2002:a25:804:: with SMTP id 4mr5357925ybi.346.1630603289732;
+ Thu, 02 Sep 2021 10:21:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210902090221.820254-1-ulf.hansson@linaro.org>
-In-Reply-To: <20210902090221.820254-1-ulf.hansson@linaro.org>
+References: <20210902025528.1017391-1-saravanak@google.com> <20210902025528.1017391-3-saravanak@google.com>
+In-Reply-To: <20210902025528.1017391-3-saravanak@google.com>
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 2 Sep 2021 10:09:32 -0700
-Message-ID: <CAGETcx_TLhOf3tVZbWkM0-p8fs1kFUHWTULU3Hp_TBdtZWeZqg@mail.gmail.com>
-Subject: Re: [PATCH] of: property: fw_devlink: Fixup behaviour when
- 'node_not_dev' is set
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Thu, 2 Sep 2021 10:20:53 -0700
+Message-ID: <CAGETcx_6-2HSJuTqKtcLVUD89u6LntSJ-GDXM706ng7PLAba0A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 2, 2021 at 2:02 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+On Wed, Sep 1, 2021 at 7:55 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> In the struct supplier_bindings the member 'node_not_dev' is described as
-> "The consumer node containing the property is never a device.", but that is
-> inconsistent with the behaviour of the code in of_link_property(), as it
-> calls of_get_compat_node() that starts parsing for a compatible property
-> from the node it gets passed to it. The proper behaviour is to start at the
-> node's parent, so let's do that.
+> We don't want fw_devlink creating device links for bus devices as
+> they'll never probe. So mark those device node with this flag.
 >
-> While at it, let's take the opportunity to update the description of the
-> 'node_not_dev' flag, as to clarify its purpose.
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/of/platform.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 >
-> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 74afbb7a4f5e..42b3936d204a 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -392,6 +392,22 @@ static int of_platform_bus_create(struct device_node *bus,
+>         if (!dev || !of_match_node(matches, bus))
+>                 return 0;
+>
+> +       /*
+> +        * If the bus node has only one compatible string value and it has
+> +        * matched as a bus node, it's never going to get probed by a device
+> +        * driver. So flag it as such so that fw_devlink knows not to create
+> +        * device links with this device.
+> +        *
+> +        * This doesn't catch all devices that'll never probe, but this is good
+> +        * enough for now.
+> +        *
+> +        * This doesn't really work for PPC because of how it uses
+> +        * of_platform_bus_probe() to add normal devices. So ignore PPC cases.
+> +        */
+> +       if (!IS_ENABLED(CONFIG_PPC) &&
+> +           of_property_count_strings(bus, "compatible") == 1)
+> +               bus->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
 
-Reviewed-by: Saravana Kannan <saravanak@google.com>
+This patch is wrong. This flag should have been FWNODE_FLAG_NEVER_PROBES.
 
 -Saravana
 
-> ---
->  drivers/of/property.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 6c028632f425..a94d007be416 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1075,6 +1075,17 @@ static struct device_node *of_get_compat_node(struct device_node *np)
->         return np;
->  }
->
-> +static struct device_node *of_get_compat_node_parent(struct device_node *np)
-> +{
-> +       struct device_node *parent, *node;
 > +
-> +       parent = of_get_parent(np);
-> +       node = of_get_compat_node(parent);
-> +       of_node_put(parent);
-> +
-> +       return node;
-> +}
-> +
->  /**
->   * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
->   * @con_np: consumer device tree node
-> @@ -1249,7 +1260,9 @@ static struct device_node *parse_##fname(struct device_node *np,       \
->   * @parse_prop.index: For properties holding a list of phandles, this is the
->   *                   index into the list
->   * @optional: Describes whether a supplier is mandatory or not
-> - * @node_not_dev: The consumer node containing the property is never a device.
-> + * @node_not_dev: The consumer node containing the property is never converted
-> + *               to a struct device. Instead, parse ancestor nodes for the
-> + *               compatible property to find a node corresponding to a device.
->   *
->   * Returns:
->   * parse_prop() return values are
-> @@ -1416,7 +1429,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
->                         struct device_node *con_dev_np;
->
->                         con_dev_np = s->node_not_dev
-> -                                       ? of_get_compat_node(con_np)
-> +                                       ? of_get_compat_node_parent(con_np)
->                                         : of_node_get(con_np);
->                         matched = true;
->                         i++;
+>         for_each_child_of_node(bus, child) {
+>                 pr_debug("   create child: %pOF\n", child);
+>                 rc = of_platform_bus_create(child, matches, lookup, &dev->dev, strict);
 > --
-> 2.25.1
+> 2.33.0.259.gc128427fd7-goog
 >
