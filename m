@@ -2,412 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CE7A3FF5F7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E8233FF688
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347642AbhIBVxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 17:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39090 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347650AbhIBVw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 17:52:59 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25350C061760
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 14:52:01 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id q21so2065964plq.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 14:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9AqTKY0JGH3Jbb0gSF8IAPFfJNs3HpHt5YPKABagQcg=;
-        b=TroGmfhH3lliDy7nlIOGWdb8FcrKoEI+zBXUBB6LhwgRqJT8rJC21cyTvnHW4qoRxl
-         QGkBtZphdfZX0pDta6HxNcOrxaZp/XzXyu4UEegOggZ1HeO+8uf3eiMXj6S1cO519f49
-         77LrIwknzOVBGaEo63dyCEibuIS8rsFgQikOo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9AqTKY0JGH3Jbb0gSF8IAPFfJNs3HpHt5YPKABagQcg=;
-        b=iCSZ0mtw/BoA4HIFJzcA2eYITJPy+v6ce2V3ipdvrSpgC3VM7+JBGGqQQedcdBDUm3
-         OcKDajLfqx0VXEhxdEFNxzyvN+JI2Hqld3SC3DUnqCY2sPiVrV9G+8syRVGTBPCm7acW
-         KwRZBR+NIztdEKaQ3Ga7nLFbp6TL2f8EIXnEYZOQYTafXmo+b2mHXDwU14gXxPu1fh6/
-         /kzB5A7XbubcDnC8IHdgraxRrC1aeXhYeS7X1XWqXtaebNWgG/qecUaASoMjAXXCMPE9
-         BjJY4gONLz+gxJWO02BOgaqdmDZ+1JqFWgBS7bipG735/kFUdHUpH6SvYfzrKw3TYmWu
-         noqQ==
-X-Gm-Message-State: AOAM531nzzeON+AJZIbdYaACELEg+VQRcl6i2qQzL+s9XeFEOWpeNOB1
-        bqEFW+jCC1ACxJKm1nOBq0hrEQ==
-X-Google-Smtp-Source: ABdhPJylvBl1JmAbtW9/3wfeRjqeJYYgIcG7Zd4dlOWFSsdtiIDQh3QV3DSI41U8Pz3Avexd4dUG8w==
-X-Received: by 2002:a17:902:7607:b0:138:9422:5122 with SMTP id k7-20020a170902760700b0013894225122mr356997pll.75.1630619520601;
-        Thu, 02 Sep 2021 14:52:00 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:1a2a:6b44:fbf0:cbcc])
-        by smtp.gmail.com with ESMTPSA id l22sm3015569pjz.54.2021.09.02.14.51.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 14:52:00 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     mka@chromium.org, swboyd@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: sc7180: Base dynamic CPU power coefficients in reality
-Date:   Thu,  2 Sep 2021 14:51:37 -0700
-Message-Id: <20210902145127.v2.1.I049b30065f3c715234b6303f55d72c059c8625eb@changeid>
-X-Mailer: git-send-email 2.33.0.153.gba50c8fa24-goog
+        id S1347762AbhIBVyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 17:54:12 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:44843 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347604AbhIBVyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 17:54:05 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 4934A24000F;
+        Thu,  2 Sep 2021 21:53:04 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Jason Reeder <jreeder@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH v2 40/46] iio: adc: ti_am335x_adc: Gather the checks on the delays
+Date:   Thu,  2 Sep 2021 23:51:38 +0200
+Message-Id: <20210902215144.507243-41-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210902215144.507243-1-miquel.raynal@bootlin.com>
+References: <20210902215144.507243-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sc7180's dynamic-power-coefficient violates the device tree bindings.
-The bindings (arm/cpus.yaml) say that the units for the
-dynamic-power-coefficient are supposed to be "uW/MHz/V^2". The ones for
-sc7180 aren't this. Qualcomm arbitrarily picked 100 for the "little" CPUs
-and then picked a number for the big CPU based on this.
+Move the checks over the delays provided in the device tree to the
+location where these values are read to clarify where they come from.
 
-At the time, there was a giant dicussion about this. Apparently Qualcomm
-Engineers were instructed not to share the actual numbers here. As part
-of the discussion, I pointed out [1] that these numbers shouldn't really
-be secret since once a device is shipping anyone can just run a script
-and produce them. This patch is the result of running the script I posted
-in that discussion on sc7180-trogdor-coachz, which is currently available
-for purchase by consumers.
+There are no functional changes besides the device structure used to
+display the warnings: let's use the ADC instead of the MFD device.
 
-[1] https://lore.kernel.org/r/CAD=FV=U1FP0e3_AVHpauUUZtD-5X3XCwh5aT9fH_8S_FFML2Uw@mail.gmail.com/
-
-I ran the script four times, measuring little, big, little, big. I used
-the 64-bit version of dhrystone 2.2 in my test. I got these results:
-
-576 kHz, 596 mV, 20 mW, 88 Cx
-768 kHz, 596 mV, 32 mW, 122 Cx
-1017 kHz, 660 mV, 45 mW, 97 Cx
-1248 kHz, 720 mV, 87 mW, 139 Cx
-1324 kHz, 756 mV, 109 mW, 148 Cx
-1516 kHz, 828 mV, 150 mW, 148 Cx
-1612 kHz, 884 mV, 182 mW, 147 Cx
-1708 kHz, 884 mV, 192 mW, 146 Cx
-1804 kHz, 884 mV, 207 mW, 149 Cx
-Your dynamic-power-coefficient for cpu 0: 132
-
-825 kHz, 596 mV, 142 mW, 401 Cx
-979 kHz, 628 mV, 183 mW, 427 Cx
-1113 kHz, 656 mV, 224 mW, 433 Cx
-1267 kHz, 688 mV, 282 mW, 449 Cx
-1555 kHz, 812 mV, 475 mW, 450 Cx
-1708 kHz, 828 mV, 566 mW, 478 Cx
-1843 kHz, 884 mV, 692 mW, 476 Cx
-1900 kHz, 884 mV, 722 mW, 482 Cx
-1996 kHz, 916 mV, 814 mW, 482 Cx
-2112 kHz, 916 mV, 862 mW, 483 Cx
-2208 kHz, 916 mV, 962 mW, 521 Cx
-2323 kHz, 940 mV, 1060 mW, 517 Cx
-2400 kHz, 956 mV, 1133 mW, 518 Cx
-Your dynamic-power-coefficient for cpu 6: 471
-
-576 kHz, 596 mV, 26 mW, 103 Cx
-768 kHz, 596 mV, 40 mW, 147 Cx
-1017 kHz, 660 mV, 54 mW, 114 Cx
-1248 kHz, 720 mV, 97 mW, 151 Cx
-1324 kHz, 756 mV, 113 mW, 150 Cx
-1516 kHz, 828 mV, 154 mW, 148 Cx
-1612 kHz, 884 mV, 194 mW, 155 Cx
-1708 kHz, 884 mV, 203 mW, 152 Cx
-1804 kHz, 884 mV, 219 mW, 155 Cx
-Your dynamic-power-coefficient for cpu 0: 142
-
-825 kHz, 596 mV, 148 mW, 530 Cx
-979 kHz, 628 mV, 189 mW, 475 Cx
-1113 kHz, 656 mV, 230 mW, 461 Cx
-1267 kHz, 688 mV, 287 mW, 466 Cx
-1555 kHz, 812 mV, 469 mW, 445 Cx
-1708 kHz, 828 mV, 567 mW, 480 Cx
-1843 kHz, 884 mV, 699 mW, 482 Cx
-1900 kHz, 884 mV, 719 mW, 480 Cx
-1996 kHz, 916 mV, 814 mW, 484 Cx
-2112 kHz, 916 mV, 861 mW, 483 Cx
-2208 kHz, 916 mV, 963 mW, 522 Cx
-2323 kHz, 940 mV, 1063 mW, 520 Cx
-2400 kHz, 956 mV, 1135 mW, 519 Cx
-Your dynamic-power-coefficient for cpu 6: 489
-
-As you can see, the calculations aren't perfectly consistent but
-roughly you could say about 480 for big and 137 for little.
-
-The ratio between these numbers isn't quite the same as the ratio
-between the two numbers that Qualcomm used. Perhaps this is because
-Qualcomm measured something slightly different than the 64-bit version
-of dhrystone 2.2 or perhaps it's because they fudged these numbers a
-bit (and fudged the capacity-dmips-mhz). As per discussion [2], let's
-use the numbers I came up with and also un-fudge
-capacity-dmips-mhz. While unfudging capacity-dmips-mhz, let's scale it
-so that bigs are 1024 which seems to be the common practice.
-
-In general these numbers don't need to be perfectly exact. In fact,
-they can't be since the CPU power depends a lot on what's being run on
-the CPU and the big/little CPUs are each more or less efficient in
-different operations. Historically running the 32-bit vs. 64-bit
-versions of dhrystone produced notably different numbers, though I
-didn't test this time.
-
-We also need to scale all of the sustainable-power numbers by the same
-amount. I scale ones related to the big CPUs by the adjustment I made
-to the big dynamic-power-coefficient and the ones related to the
-little CPUs by the adjustment I made to the little
-dynamic-power-coefficient.
-
-[2] https://lore.kernel.org/r/0a865b6e-be34-6371-f9f2-9913ee1c5608@codeaurora.org/
-
-Fixes: 71f873169a80 ("arm64: dts: qcom: sc7180: Add dynamic CPU power coefficients")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 ---
+ drivers/iio/adc/ti_am335x_adc.c | 47 +++++++++++++++++++--------------
+ 1 file changed, 27 insertions(+), 20 deletions(-)
 
-Changes in v2:
-- Unfudge capacity-dmips-mhz too.
-- Don't keep the ratios the same.
-
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  2 +-
- .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  8 +--
- arch/arm64/boot/dts/qcom/sc7180.dtsi          | 52 +++++++++----------
- 3 files changed, 31 insertions(+), 31 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index a758e4d22612..81098aa9687b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -33,7 +33,7 @@ skin_temp_thermal: skin-temp-thermal {
- 			polling-delay = <0>;
+diff --git a/drivers/iio/adc/ti_am335x_adc.c b/drivers/iio/adc/ti_am335x_adc.c
+index fcd5283bda2e..0c72845e2b4f 100644
+--- a/drivers/iio/adc/ti_am335x_adc.c
++++ b/drivers/iio/adc/ti_am335x_adc.c
+@@ -107,7 +107,6 @@ static int tiadc_wait_idle(struct tiadc_device *adc_dev)
+ static void tiadc_step_config(struct iio_dev *indio_dev)
+ {
+ 	struct tiadc_device *adc_dev = iio_priv(indio_dev);
+-	struct device *dev = adc_dev->mfd_tscadc->dev;
+ 	unsigned int stepconfig;
+ 	int i, steps = 0;
  
- 			thermal-sensors = <&pm6150_adc_tm 1>;
--			sustainable-power = <814>;
-+			sustainable-power = <965>;
+@@ -125,12 +124,6 @@ static void tiadc_step_config(struct iio_dev *indio_dev)
  
- 			trips {
- 				skin_temp_alert0: trip-point0 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index a246dbd74cc1..b7b5264888b7 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -44,7 +44,7 @@ &cpu6_alert1 {
- };
+ 		chan = adc_dev->channel_line[i];
  
- &cpu6_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1124>;
- };
+-		if (adc_dev->step_avg[i] > STEPCONFIG_AVG_16) {
+-			dev_warn(dev, "chan %d step_avg truncating to %ld\n",
+-				 chan, STEPCONFIG_AVG_16);
+-			adc_dev->step_avg[i] = STEPCONFIG_AVG_16;
+-		}
+-
+ 		if (adc_dev->step_avg[i])
+ 			stepconfig = STEPCONFIG_AVG(ffs(adc_dev->step_avg[i]) - 1) |
+ 				     STEPCONFIG_FIFO1;
+@@ -145,18 +138,6 @@ static void tiadc_step_config(struct iio_dev *indio_dev)
+ 			     STEPCONFIG_INM_ADCREFM | STEPCONFIG_RFP_VREFP |
+ 			     STEPCONFIG_RFM_VREFN);
  
- &cpu7_alert0 {
-@@ -56,7 +56,7 @@ &cpu7_alert1 {
- };
+-		if (adc_dev->open_delay[i] > STEPDELAY_OPEN_MASK) {
+-			dev_warn(dev, "chan %d open delay truncating to 0x3FFFF\n",
+-				 chan);
+-			adc_dev->open_delay[i] = STEPDELAY_OPEN_MASK;
+-		}
+-
+-		if (adc_dev->sample_delay[i] > 0xFF) {
+-			dev_warn(dev, "chan %d sample delay truncating to 0xFF\n",
+-				 chan);
+-			adc_dev->sample_delay[i] = 0xFF;
+-		}
+-
+ 		tiadc_writel(adc_dev, REG_STEPDELAY(steps),
+ 			     STEPDELAY_OPEN(adc_dev->open_delay[i]) |
+ 			     STEPDELAY_SAMPLE(adc_dev->sample_delay[i]));
+@@ -580,6 +561,7 @@ static int tiadc_parse_dt(struct platform_device *pdev,
+ 	const __be32 *cur;
+ 	int channels = 0;
+ 	u32 val;
++	int i;
  
- &cpu7_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1124>;
- };
+ 	of_property_for_each_u32(node, "ti,adc-channels", prop, cur, val) {
+ 		adc_dev->channel_line[channels] = val;
+@@ -592,6 +574,8 @@ static int tiadc_parse_dt(struct platform_device *pdev,
+ 		channels++;
+ 	}
  
- &cpu8_alert0 {
-@@ -68,7 +68,7 @@ &cpu8_alert1 {
- };
++	adc_dev->channels = channels;
++
+ 	of_property_read_u32_array(node, "ti,chan-step-avg",
+ 				   adc_dev->step_avg, channels);
+ 	of_property_read_u32_array(node, "ti,chan-step-opendelay",
+@@ -599,7 +583,30 @@ static int tiadc_parse_dt(struct platform_device *pdev,
+ 	of_property_read_u32_array(node, "ti,chan-step-sampledelay",
+ 				   adc_dev->sample_delay, channels);
  
- &cpu8_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1124>;
- };
+-	adc_dev->channels = channels;
++	for (i = 0; i < adc_dev->channels; i++) {
++		int chan;
++
++		chan = adc_dev->channel_line[i];
++
++		if (adc_dev->step_avg[i] > STEPCONFIG_AVG_16) {
++			dev_warn(&pdev->dev, "chan %d step_avg truncating to %ld\n",
++				 chan, STEPCONFIG_AVG_16);
++			adc_dev->step_avg[i] = STEPCONFIG_AVG_16;
++		}
++
++		if (adc_dev->open_delay[i] > STEPDELAY_OPEN_MASK) {
++			dev_warn(&pdev->dev, "chan %d open delay truncating to 0x3FFFF\n",
++				 chan);
++			adc_dev->open_delay[i] = STEPDELAY_OPEN_MASK;
++		}
++
++		if (adc_dev->sample_delay[i] > 0xFF) {
++			dev_warn(&pdev->dev, "chan %d sample delay truncating to 0xFF\n",
++				 chan);
++			adc_dev->sample_delay[i] = 0xFF;
++		}
++	}
++
+ 	return 0;
+ }
  
- &cpu9_alert0 {
-@@ -80,7 +80,7 @@ &cpu9_alert1 {
- };
- 
- &cpu9_thermal {
--	sustainable-power = <948>;
-+	sustainable-power = <1124>;
- };
- 
- &gpio_keys {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 47b20ba69057..2808a87b6861 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -137,8 +137,8 @@ CPU0: cpu@0 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <415>;
-+			dynamic-power-coefficient = <137>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
- 					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
-@@ -162,8 +162,8 @@ CPU1: cpu@100 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <415>;
-+			dynamic-power-coefficient = <137>;
- 			next-level-cache = <&L2_100>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -184,8 +184,8 @@ CPU2: cpu@200 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <415>;
-+			dynamic-power-coefficient = <137>;
- 			next-level-cache = <&L2_200>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -206,8 +206,8 @@ CPU3: cpu@300 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <415>;
-+			dynamic-power-coefficient = <137>;
- 			next-level-cache = <&L2_300>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -228,8 +228,8 @@ CPU4: cpu@400 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <415>;
-+			dynamic-power-coefficient = <137>;
- 			next-level-cache = <&L2_400>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -250,8 +250,8 @@ CPU5: cpu@500 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1024>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <415>;
-+			dynamic-power-coefficient = <137>;
- 			next-level-cache = <&L2_500>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -272,8 +272,8 @@ CPU6: cpu@600 {
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1740>;
--			dynamic-power-coefficient = <405>;
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <480>;
- 			next-level-cache = <&L2_600>;
- 			operating-points-v2 = <&cpu6_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -294,8 +294,8 @@ CPU7: cpu@700 {
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <1740>;
--			dynamic-power-coefficient = <405>;
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <480>;
- 			next-level-cache = <&L2_700>;
- 			operating-points-v2 = <&cpu6_opp_table>;
- 			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-@@ -3592,7 +3592,7 @@ cpu0_thermal: cpu0-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 1>;
--			sustainable-power = <768>;
-+			sustainable-power = <1052>;
- 
- 			trips {
- 				cpu0_alert0: trip-point0 {
-@@ -3641,7 +3641,7 @@ cpu1_thermal: cpu1-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 2>;
--			sustainable-power = <768>;
-+			sustainable-power = <1052>;
- 
- 			trips {
- 				cpu1_alert0: trip-point0 {
-@@ -3690,7 +3690,7 @@ cpu2_thermal: cpu2-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 3>;
--			sustainable-power = <768>;
-+			sustainable-power = <1052>;
- 
- 			trips {
- 				cpu2_alert0: trip-point0 {
-@@ -3739,7 +3739,7 @@ cpu3_thermal: cpu3-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 4>;
--			sustainable-power = <768>;
-+			sustainable-power = <1052>;
- 
- 			trips {
- 				cpu3_alert0: trip-point0 {
-@@ -3788,7 +3788,7 @@ cpu4_thermal: cpu4-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 5>;
--			sustainable-power = <768>;
-+			sustainable-power = <1052>;
- 
- 			trips {
- 				cpu4_alert0: trip-point0 {
-@@ -3837,7 +3837,7 @@ cpu5_thermal: cpu5-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 6>;
--			sustainable-power = <768>;
-+			sustainable-power = <1052>;
- 
- 			trips {
- 				cpu5_alert0: trip-point0 {
-@@ -3886,7 +3886,7 @@ cpu6_thermal: cpu6-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 9>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1425>;
- 
- 			trips {
- 				cpu6_alert0: trip-point0 {
-@@ -3927,7 +3927,7 @@ cpu7_thermal: cpu7-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 10>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1425>;
- 
- 			trips {
- 				cpu7_alert0: trip-point0 {
-@@ -3968,7 +3968,7 @@ cpu8_thermal: cpu8-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 11>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1425>;
- 
- 			trips {
- 				cpu8_alert0: trip-point0 {
-@@ -4009,7 +4009,7 @@ cpu9_thermal: cpu9-thermal {
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 12>;
--			sustainable-power = <1202>;
-+			sustainable-power = <1425>;
- 
- 			trips {
- 				cpu9_alert0: trip-point0 {
 -- 
-2.33.0.153.gba50c8fa24-goog
+2.27.0
 
