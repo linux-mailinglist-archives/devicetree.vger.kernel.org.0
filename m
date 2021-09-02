@@ -2,76 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6073FF07C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 17:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 010DE3FF094
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 17:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345839AbhIBPwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 11:52:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35382 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231942AbhIBPv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Sep 2021 11:51:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C6C6D603E9;
-        Thu,  2 Sep 2021 15:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630597861;
-        bh=n+fcc/Ub9f6mKkgV3xaS1g7ny+8ESxl5WnwJsctvzG8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=uX6Tyh5B7FV+nIUoIKjPXxp97L37MM+R+QE3KSsOWCf+d6Poz17k91CJ4s1akYrr+
-         AX8m4b4SwPERs1b+1zvGxtHEWx4QU1g7nh80JyhE/Y1AKFE3TY9K4UIBwnJD6E1a0f
-         ppy76lt9kUw/8GcccfhymlrdgqLKlCyRrC/Ahp/oy7vCnib2eaQ4cSo6AM91UG9kww
-         YjMABzgIvPI+cGALPlMbfO4XUF1IaBr2bgGYxYxn/eWwQd5SBk7KDsXa+t0mNO4kZn
-         iKuBQv6Az5yMfsYvFfYiE01OZT/+QqJziOQceBjzD7n7pAeV/cDlv27GVbbMg9gv/a
-         1t04SjAV9K93A==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        robh+dt@kernel.org, lgirdwood@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX8ULP
-Date:   Thu,  2 Sep 2021 16:50:29 +0100
-Message-Id: <163059750027.34506.2833380124820785822.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1630553525-25655-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1630553525-25655-1-git-send-email-shengjiu.wang@nxp.com>
+        id S1346006AbhIBP5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 11:57:14 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:39556 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346004AbhIBP5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 11:57:11 -0400
+Received: by mail-oi1-f182.google.com with SMTP id v2so3133536oie.6;
+        Thu, 02 Sep 2021 08:56:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aFUx7gWJXzWAVMJZhKIZuBAi3Q5/fwFRAMT3ERwoDNU=;
+        b=faj1tccVwLeud2X9xML3b55iK/VUwfReFGA129Invx+MVkiO3hVQR9ILonBqzVC0o/
+         QSoivudHSO8pJK59KcG13I4JM2QZegtBnWQrRh9qumKio4S1lxI5fJR5kJE+wTORBenp
+         OjmsSWA/oTKnO+yeX+Rs0/1MtaY0tpZXIk9wTnQ4L7FTMhC1WlULn7BgZqP57ONCqR/m
+         U5CcfGBu+k37+x3U1hjUgJ2DApjaaas+CGN+44MEU+5ifqWYbyqwRLQYECAsJPMhfg+5
+         ARWMj5wqWaVJjW1H2POUTDKd/BdE3o2LphPLkoiXhcL2R8Z4qAY+OUaP9Gu1cRjrMOzZ
+         BdPQ==
+X-Gm-Message-State: AOAM531n2tEJzkF92RyiWX1aSAkcnurl3Y3Xr6qKrj/0csfye9sHejGt
+        kkKcsqJ40/gXrk7SWW0SWFTl0MQ9tLcgZBHNJ6YvmA/MWJM=
+X-Google-Smtp-Source: ABdhPJxIJZ2hpZoIlUXIs+4Zj9pU9AHWGv27CaebZYzijqb5oqSbI+DFF0kg+FU3gYPDzNUAB0pbUi3JBb/JGzDWwl8=
+X-Received: by 2002:a05:6808:10c1:: with SMTP id s1mr2618384ois.69.1630598172439;
+ Thu, 02 Sep 2021 08:56:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210902025528.1017391-1-saravanak@google.com> <CAGETcx9N34RyrdKDR8dQ7ECyz7ZXBx-Ft16t033NjTiU8p=Y0g@mail.gmail.com>
+In-Reply-To: <CAGETcx9N34RyrdKDR8dQ7ECyz7ZXBx-Ft16t033NjTiU8p=Y0g@mail.gmail.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Thu, 2 Sep 2021 17:56:01 +0200
+Message-ID: <CAJZ5v0gt_1vKQXxSY6HoHRPR9O_e1f7VwcBnSjeMgCdCibrwgQ@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Ulf reported an issue[1] with fw_devlink. This
+ series tries to fix that issue.
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Cc: Android Kernel" <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Sep 2021 11:32:05 +0800, Shengjiu Wang wrote:
-> Add compatible string for i.MX8ULP platform which support audio
-> function through rpmsg audio channel on M core.
-> 
-> 
+On Thu, Sep 2, 2021 at 4:57 AM Saravana Kannan <saravanak@google.com> wrote:
+>
+> Oops, forgot to use a proper subject. Sorry.
 
-Applied to
+Is this a replacement for the "Fix rtl8366rb issues with fw_devlink=on " series?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX8ULP
-      commit: 4f89ff026ddbaab49dba993ad2dc757920d0ad49
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> On Wed, Sep 1, 2021 at 7:55 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > Ulf, mind testing this?
+> >
+> > Thanks,
+> > Saravana
+> > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> >
+> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> >
+> > Saravana Kannan (2):
+> >   driver core: Add support for FWNODE_FLAG_NEVER_PROBES
+> >   of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
+> >
+> >  drivers/base/core.c    |  8 ++++++++
+> >  drivers/of/platform.c  | 16 ++++++++++++++++
+> >  include/linux/fwnode.h |  8 +++++---
+> >  3 files changed, 29 insertions(+), 3 deletions(-)
+> >
+> > --
+> > 2.33.0.259.gc128427fd7-goog
+> >
