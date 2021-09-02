@@ -2,102 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6293FED67
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D0053FED98
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344016AbhIBMFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 08:05:02 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:42548 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344009AbhIBMFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:01 -0400
-Received: by mail-oi1-f181.google.com with SMTP id bi4so2175573oib.9;
-        Thu, 02 Sep 2021 05:04:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=BUqaoDHq1kYFFgkimw5x11z+/dNmgaH0b/piYmufZsc=;
-        b=ONnHFr23J9Mb0NCyELQ9ukDFrIP+M4mf6BqmI41R1D+UgovQt2rcYIQbdOD5QXStbF
-         Xe8AGLPQSmIRyRaATqzDoy1dpTADHL2AvAWWKMYgmkxWKWnGWNDaiyBacySlJEnGunEB
-         koDORoxWSduWfViKDq49NHm4rZvhEfqND7QzPrG6BLlR9q602JH6cI7O+wkTKOks2irZ
-         /JNPQyXjddcyCnRvBa8FhlCnn/kvwSgS/79tvJ1IXiuD18UBo5cZsGYiZQWf50pFONhK
-         c5hXT5pL6eQpun7HjTtV16jG4g7O9awbuhiOZ8s3SdT94czvDx3eIN+56hR/ql/+MOPq
-         VJKw==
-X-Gm-Message-State: AOAM530RHZBXlgfeoPiFH5eKCCwhC/Ge7dq7g6WVKhYATTSuWBF1CSc5
-        3Ikpjj5EBQsz2pjk0BeFlw==
-X-Google-Smtp-Source: ABdhPJzZjPOnSEHSOOdDAwed/sSzwFVLOD22JH0MBNpNoffHUul1Kchpby31Nq0NZJa/G9emURVtpw==
-X-Received: by 2002:aca:220a:: with SMTP id b10mr1859658oic.101.1630584242534;
-        Thu, 02 Sep 2021 05:04:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b25sm338667ooq.6.2021.09.02.05.04.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 05:04:01 -0700 (PDT)
-Received: (nullmailer pid 685601 invoked by uid 1000);
-        Thu, 02 Sep 2021 12:03:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Parshuram Thombare <pthombar@cadence.com>
-Cc:     p.yadav@ti.com, devicetree@vger.kernel.org,
-        Konrad Kociolek <konrad@cadence.com>,
-        linux-spi@vger.kernel.org, broonie@kernel.org, jpawar@cadence.com,
-        lukas@wunner.de, robh+dt@kernel.org, mparab@cadence.com,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1630499829-20059-1-git-send-email-pthombar@cadence.com>
-References: <1630499755-18751-1-git-send-email-pthombar@cadence.com> <1630499829-20059-1-git-send-email-pthombar@cadence.com>
-Subject: Re: [PATCH v3 1/2] spi: cadence: add dt-bindings documentation for Cadence XSPI controller
-Date:   Thu, 02 Sep 2021 07:03:59 -0500
-Message-Id: <1630584239.096691.685600.nullmailer@robh.at.kernel.org>
+        id S1344053AbhIBMPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 08:15:10 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:63952 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344299AbhIBMPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:15:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1630584850; x=1662120850;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=MG3sKygk/maATxNJEqPcS3fl+Si0b2i4QKAdEI9EZ8M=;
+  b=b4PUZM0GgO4S9tYU7PtWEZtOMnPA+0dsfFS56qt3fDYjjpi7zGLPQGpL
+   uuTuYA2jW1Muugnz/L/nsK/p/XAKGkOUFrNoZuizZB7OSm9sCEq2f3gef
+   PcDuDS3UYM2LqGS+2ecr1Ujh87j4PNjV4qqYNPtKhDzJbZl+KlQ0jXks3
+   nWJrac9m2qNxrPT33c1TutYZiseXVG508SP5hDfxi4uerVzc/lYxCU9P4
+   q3iKj4QfHdxP7+y1zWwlFFHVF+C8+ro4CmJMrBYvQPmWH6F+f09Sy9rgV
+   xUsUico5AaT7HHBj9sF09vPTNKrPZkF1gKisM2A8mFqwQGBmgtRbBHuU1
+   g==;
+IronPort-SDR: xeysCxn2FRD7bughla++Hb2lLUvxz89uZXoDFm9deDFlQqxozbxUaX28ommepqiGW4iL3VvS7X
+ ON7ozwvmTqqwRrW5aIP1di4h9ogNtldrLzuluROcUAlY5d5+fs4Xu9dqrFo1ahkMHylr7O4hpr
+ 6ZhVqFl0ZSIqrwYQOWRCO9OYpzYZO4f7z0WNgDVzc7pzQBrDkm7msRD2l039rK1s7/06AMdCcg
+ VGqFP1b38/mTgSGLyrdIQuUsbU7DNb0dFhirBNxzmJ/EZv3w9jfA+PH5NIH6fCvlyRb9o72NEk
+ RpoIKspcmGydk7u8Z5h93N/C
+X-IronPort-AV: E=Sophos;i="5.84,372,1620716400"; 
+   d="scan'208";a="68014599"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Sep 2021 05:14:08 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 2 Sep 2021 05:14:08 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 2 Sep 2021 05:14:06 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <nicolas.ferre@microchip.com>
+CC:     <robh+dt@kernel.org>, <ludovic.desroches@microchip.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sama5d2_som1_ek: disable ISC node by default
+Date:   Thu, 2 Sep 2021 15:13:58 +0300
+Message-ID: <20210902121358.503589-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 14:37:09 +0200, Parshuram Thombare wrote:
-> Add DT binding for Cadence's XSPI controller driver.
-> 
-> Signed-off-by: Konrad Kociolek <konrad@cadence.com>
-> Signed-off-by: Jayshri Pawar <jpawar@cadence.com>
-> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
-> ---
->  .../devicetree/bindings/spi/cdns,xspi.yaml         | 66 ++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-> 
+Without a sensor node, the ISC will simply fail to probe, as the
+corresponding port node is missing.
+It is then logical to disable the node in the devicetree.
+If we add a port with a connection to a sensor endpoint, ISC can be enabled.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+---
+ arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/cdns,xspi.yaml: 'additionalProperties' is a required property
-	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/cdns,xspi.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/spi/cdns,xspi.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml: example-0: spi@a0010000:reg:0: [0, 2684420096, 0, 65536] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml: example-0: spi@a0010000:reg:1: [0, 2952790016, 0, 65536] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml: example-0: spi@a0010000:reg:2: [0, 2684485632, 0, 65536] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml:0:0: /example-0/spi@a0010000: failed to match any schema with compatible: ['cdns,xspi-nor']
-Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml:0:0: /example-0/spi@a0010000/mt35xu512@0: failed to match any schema with compatible: ['spi-nor', 'micron,mt35xu512']
-Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml:0:0: /example-0/spi@a0010000/mt35xu512@0: failed to match any schema with compatible: ['spi-nor', 'micron,mt35xu512']
-Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml:0:0: /example-0/spi@a0010000/mt35xu512@1: failed to match any schema with compatible: ['spi-nor', 'micron,mt35xu512']
-Documentation/devicetree/bindings/spi/cdns,xspi.example.dt.yaml:0:0: /example-0/spi@a0010000/mt35xu512@1: failed to match any schema with compatible: ['spi-nor', 'micron,mt35xu512']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1523137
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+index 614999dcb990..cd4672501add 100644
+--- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
++++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+@@ -71,7 +71,6 @@ apb {
+ 			isc: isc@f0008000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_isc_base &pinctrl_isc_data_8bit &pinctrl_isc_data_9_10 &pinctrl_isc_data_11_12>;
+-				status = "okay";
+ 			};
+ 
+ 			qspi1: spi@f0024000 {
+-- 
+2.25.1
 
