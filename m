@@ -2,109 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C43923FF159
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 18:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87BCF3FF157
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 18:27:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346233AbhIBQ2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 12:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47770 "EHLO
+        id S235934AbhIBQ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 12:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345946AbhIBQ2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 12:28:45 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBD7C061575
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 09:27:47 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id f4so4971804ybr.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 09:27:47 -0700 (PDT)
+        with ESMTP id S234786AbhIBQ2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 12:28:41 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300F7C061575
+        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 09:27:43 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id u9so3881394wrg.8
+        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 09:27:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=eJLIiedISCJRyHw16WvJSkD85mHHNgMIgGyWz+lopEc=;
-        b=fM+/JeCwdbssBXpOkjmEZ3eIo9++9cKPpbcRN1wKaKgQ4I9DDDeOALD7CaTBisOPz9
-         C1FFKVwWxUb5uKAKlOHcOXhksa4rhh6l8dQ/UWlwEAmfJ9c2ym4Zzfcbxzq4/fo3wVOL
-         W01nxuHRtWPZKJqHXIk6mfSpWKoXky/+m2foBQ7x8FSyVwc4LUUd9pIPc2m+DEdTVuad
-         DfOTGBR6yJH8YE5iEj4/khKub/UXSmvkh7BHCEdbKIVRNgDJmG8qOHcG6Nr9UWyS6soz
-         Q9yS8Hys4HcWWTNi3lfeJVSUy6Cb1Yivd0UayQSJLw42Ru3IVlwOAmkn7PehtICiEM91
-         /KEg==
+        bh=cw+aX6NyiiKZvuCxCxL1xwJWCn64zlbFG4e+28oP6ac=;
+        b=yWGCIrZYQZEezX9g3+I7leIZ9F5xwvZBESGZlfdIpj2uPbl+hGCgX6SwNOpa1GiGlT
+         VTXlk5c4GRUbjAWvYXL6+GfBiZRx7Rg64/ePLW9AUZqN/4u6g13CXPwdLC0TvtQIhy/n
+         iJy81AZvmjxPzyx2ep2I/IRLeRlPi4P1VLHuE+Zp1Ap1hqVZUNtG7MizVnVU0NPDaMGh
+         Rvem5eDCFyKBHpPwst2dxEciWHNvY5tfisd2QNaNPao7smlcOiqRdaXqIWiss00SM8HY
+         PI0jgcHcnO6/hC/R92dArUoRvuBQfKaQbft0l9eNqhNwummsuA5TMyf/vPxldA483fdD
+         ssnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eJLIiedISCJRyHw16WvJSkD85mHHNgMIgGyWz+lopEc=;
-        b=Ihi8o2pvaejJzNSH3BSe9xjygItniemkBvmN2TnPARRfK3CeSaZEZNg9+fT/9jTt/m
-         C+BW/84qNZvYW5HcZ5dmq2oAYQLbnJFv+BqUpPI2vo8m+/V9M0ObKqJYcTBAECOYBc57
-         9FcwYn8eMIEvYRMyNYwSMKSyYd0MdFVT6WC3NTHoVUSK4y8Z1SgGnCihNt2ptNypOmOo
-         PjLhKPEog9n7AlbQy1SCS8vJxy5fOpgZhRqPtygvVoKip+rb+kfiZzth0aQ469iedZPI
-         iJXS0O5cXxtO1jB1Q1rosvFzeVxvnBTFMWz1SaPFNLaopH+4EQC27GENDWuKiVyuvOBn
-         vpAw==
-X-Gm-Message-State: AOAM5330d81FrRf9kwHdV3ygkQixaXSNuXGaMr5dRgCAPLWolPYUpRjZ
-        NXzxW2y/nD+PYXnP35zPIYqAKNC7i94G7Qo3FXEoOA==
-X-Google-Smtp-Source: ABdhPJxLXRFWyfyWl9ok1Aa6XveqWoo81KUXhljpBzB+4qFjXNrtY5Q8+BjSRLkRtw+s/CVzpVUYjS1INpOzcfunDRA=
-X-Received: by 2002:a25:d2c8:: with SMTP id j191mr5657920ybg.412.1630600065503;
- Thu, 02 Sep 2021 09:27:45 -0700 (PDT)
+        bh=cw+aX6NyiiKZvuCxCxL1xwJWCn64zlbFG4e+28oP6ac=;
+        b=pIJpqfKAjVV5Pxjvygpcfq3BYviC3E4kf13ZI35YvmoeaiD1qo2qpqKxCHZYuH73XN
+         iYCU9lCDblSHipQhseWko4v0Zs6qTirsSM+enXwBbv6NV/1/jQzvMqromt7FYAHl+CkU
+         kRtqL4h2Ch0fvJGINaTw77oBsARBJpKgFGPjHU9W8LVW3vOQpdPULDOgx9vyLorVaSNG
+         0emOlFdtS7jWdKyMmkWmUSNHmKSnCkWUgQ/baQ/Pui2qusAxJUDPn2efqhFYVFL2/c0i
+         gN6qb0PcodO8K44jD1TRpHVDF51PV6TGqvGw8P5sadLSJWKkdkZtBnh0TbwUShW5skrJ
+         +TRw==
+X-Gm-Message-State: AOAM531aKqMiMwmAYmKavGe2ecqXYwr8sYxoDSH4wOZDD9vXEB16COuf
+        w/lkqQf2ntjKTAWx8DQ/so/uKI/VXHCNgMYb/kwd3A==
+X-Google-Smtp-Source: ABdhPJwBRbj0wryOX8mcPIXWdxTuSytpxjVRZuShfT7rsNWhPhE8HTEOX+C5RGVPtCeDZtVeUKIeyH7Lt8wgipd9wjA=
+X-Received: by 2002:adf:9e49:: with SMTP id v9mr4703958wre.39.1630600061786;
+ Thu, 02 Sep 2021 09:27:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210902025528.1017391-1-saravanak@google.com>
- <CAGETcx9N34RyrdKDR8dQ7ECyz7ZXBx-Ft16t033NjTiU8p=Y0g@mail.gmail.com> <CAJZ5v0gt_1vKQXxSY6HoHRPR9O_e1f7VwcBnSjeMgCdCibrwgQ@mail.gmail.com>
-In-Reply-To: <CAJZ5v0gt_1vKQXxSY6HoHRPR9O_e1f7VwcBnSjeMgCdCibrwgQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 2 Sep 2021 09:27:09 -0700
-Message-ID: <CAGETcx_dvpFKZnz2w43h=ybp-8YF=OdpW0f2mK+jvDPURDFQJQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] Ulf reported an issue[1] with fw_devlink. This
- series tries to fix that issue.
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Cc: Android Kernel" <kernel-team@android.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+References: <20210901131049.1365367-1-tanmay@marvell.com> <20210901131049.1365367-2-tanmay@marvell.com>
+In-Reply-To: <20210901131049.1365367-2-tanmay@marvell.com>
+From:   Mike Leach <mike.leach@linaro.org>
+Date:   Thu, 2 Sep 2021 17:27:31 +0100
+Message-ID: <CAJ9a7Vhh_0_D9_59At38D-okpLkARWmTpq=U6K=eRTEzoOEhMw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: coresight: Add burst size for TMC
+To:     Tanmay Jagdale <tanmay@marvell.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Suzuki K. Poulose" <suzuki.poulose@arm.com>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Coresight ML <coresight@lists.linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org, Al Grant <al.grant@arm.com>,
+        Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+        Linu Cherian <lcherian@marvell.com>,
+        Bharat Bhushan <bbhushan2@marvell.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 2, 2021 at 8:56 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+On Wed, 1 Sept 2021 at 14:12, Tanmay Jagdale <tanmay@marvell.com> wrote:
 >
-> On Thu, Sep 2, 2021 at 4:57 AM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > Oops, forgot to use a proper subject. Sorry.
+> Add "arm,max-burst-size" optional property for TMC ETR.
+> If specified, this value indicates the maximum burst size
+> that can be initiated by TMC on the AXI bus.
 >
-> Is this a replacement for the "Fix rtl8366rb issues with fw_devlink=on " series?
+> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
+> ---
+>  Documentation/devicetree/bindings/arm/coresight.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
+> index 7f9c1ca87487..7971f8dba2ee 100644
+> --- a/Documentation/devicetree/bindings/arm/coresight.txt
+> +++ b/Documentation/devicetree/bindings/arm/coresight.txt
+> @@ -127,6 +127,11 @@ its hardware characteristcs.
+>         * arm,scatter-gather: boolean. Indicates that the TMC-ETR can safely
+>           use the SG mode on this system.
+>
+> +       * arm,max-burst-size: The maximum burst size initiated by TMC on the
+> +         AXI master interface. The burst size can be in the range [0..15],
+> +         the setting supports one data transfer per burst upto a maximum of
+> +         16 data transfers per burst.
+> +
+>  * Optional property for CATU :
+>         * interrupts : Exactly one SPI may be listed for reporting the address
+>           error
+> --
+> 2.25.1
+>
 
-No. This is unrelated to that. This is the issue I'm trying to fix:
-https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
 
-This is kind of a replacement to, but the patch below might be needed
-in general (needs more thought):
-https://lore.kernel.org/lkml/CAGETcx9U2M5i1CAx605fG3Qwm1xwjH2uy4kY4vrAF7YSRSSg+w@mail.gmail.com/
-
--Saravana
->
->
-> > On Wed, Sep 1, 2021 at 7:55 PM Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > Ulf, mind testing this?
-> > >
-> > > Thanks,
-> > > Saravana
-> > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
-> > >
-> > > Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> > >
-> > > Saravana Kannan (2):
-> > >   driver core: Add support for FWNODE_FLAG_NEVER_PROBES
-> > >   of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
-> > >
-> > >  drivers/base/core.c    |  8 ++++++++
-> > >  drivers/of/platform.c  | 16 ++++++++++++++++
-> > >  include/linux/fwnode.h |  8 +++++---
-> > >  3 files changed, 29 insertions(+), 3 deletions(-)
-> > >
-> > > --
-> > > 2.33.0.259.gc128427fd7-goog
-> > >
+-- 
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
