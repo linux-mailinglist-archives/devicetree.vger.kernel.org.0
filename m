@@ -2,85 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD00E3FECD4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 13:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 895DE3FECE9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 13:28:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244236AbhIBLWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 07:22:22 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53140 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245183AbhIBLWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 07:22:20 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 182BLD8R057259;
-        Thu, 2 Sep 2021 06:21:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1630581673;
-        bh=QOjj7K5ad4EhepmrgReVpz9RMl04u23uH7kgziZE80g=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=sDy4fNz9AWwDDztCOC0aL6bJWpQGx7u3exNTsyOTRXm7syYya0KFfunwXWIap2Ftl
-         uXfeQBLmdbn9pNErpFptVIv4Y0wquuL586Jg3CDCa6xqHrXHoSVXNpi3pqsORY0Wwp
-         m3lj8hISli5NCMTd5Mz8+Mz8TYQgOnpFnuLXHVKs=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 182BLDOv122771
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Sep 2021 06:21:13 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
- Sep 2021 06:21:12 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 2 Sep 2021 06:21:12 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 182BLAhc034344;
-        Thu, 2 Sep 2021 06:21:11 -0500
-Subject: Re: [PATCH v2 1/2] ARM: dts: keystone-k2*-evm: Fix mdio node status
- to "okay"
-To:     Roger Quadros <rogerq@kernel.org>, <ssantosh@kernel.org>
-CC:     <nm@ti.com>, <lokeshvutla@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210824105858.19496-1-rogerq@kernel.org>
- <20210824105858.19496-2-rogerq@kernel.org>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <0f54033a-cbb3-6e00-edf7-946c4a5be3f8@ti.com>
-Date:   Thu, 2 Sep 2021 14:21:10 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S245747AbhIBL3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 07:29:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37246 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245652AbhIBL3n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 07:29:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E5B4610A0;
+        Thu,  2 Sep 2021 11:28:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630582125;
+        bh=rCfLAh2B0f7199IX3qnnYQSRiMtH1/jQIkrV5hJSRdE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MKs3oawntu6/+piP+pXzuI3ki+5+nTwR/xyK5PacnDS9529K+tvmezmwLDPI0V73v
+         ul0Xm49aorohSfW/YP/W0mZ8+SQ0LXMBJdDy0plQavhtCO/pt+iG01IXe8N5UAbawh
+         UfkMPQtkcBfh4j2qY9LIo1FOwNDIfN92CVMmCpk+11vvrXRAp0kUe1KS79NKN2CW+a
+         YBLbClkO/eDg6eUaw2NyzbD8EAA5I3DvgQP4Ge1Uyy5gSNa1Liobv/REXYWs5dgonN
+         SpwI+mxazLjT46W4CylkSoCrxwIBClObt5EWVrHImz83IjDaVfTloqlGCk/xz8T/yF
+         k8R+SJKBsDDrg==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1mLktf-0004ZL-4W; Thu, 02 Sep 2021 13:28:43 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] Make USB ports to work on HiKey960/970
+Date:   Thu,  2 Sep 2021 13:28:33 +0200
+Message-Id: <cover.1630581434.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210824105858.19496-2-rogerq@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+It follows the patchset adding a DT schema needed to power on and to
+use the integrated USB HUB found on HiKey 960 and Hikey 970 boards.
 
-On 24/08/2021 13:58, Roger Quadros wrote:
-> As per Device Tree Specification [1], the status parameter of nodes can
-> be "okay", "disabled", etc. "ok" is not a valid parameter.
-> 
-> U-boot Driver Model does not recognize status="ok" either and treats
-> the node as disabled.
-> 
-> [1] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
-> 
-> Cc: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->   arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
->   arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
->   arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
+The entire series  which contains the remaining patches to support
+PCI and USB on HiKey970, and USB on HiKey960 was updated at:
 
-Thank you.
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+    https://github.com/mchehab/linux/commits/linux-next
+
+Those patches are based on linux-next tree (next-20210831), as they
+depend on some patches that will likely be merged up to v5.15-rc1.
+
+Tested on HiKey 960:
+
+	$ lsusb
+	Bus 002 Device 002: ID 0424:5734 Standard Microsystems Corp. 
+	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 001 Device 004: ID 0424:2740 Standard Microsystems Corp. 
+	Bus 001 Device 003: ID 046d:c52b Logitech, Inc. Unifying Receiver
+	Bus 001 Device 002: ID 0424:2734 Standard Microsystems Corp. 
+	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+Tested on HiKey 970:
+	
+	$ lsusb
+	Bus 002 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 001 Device 003: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)
+	Bus 001 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+v3:
+  - The examples at the dt-bindings were updated to reflect
+    the actual DTS content and won't produce any warnings;
+  - Added John Stultz SoB to Hikey960 DTS patch;
+  - Added a patch for the mux hub driver for it to work with
+    the newer schema;
+
+John Stultz (1):
+  arm64: dts: hisilicon: Add usb mux hub for hikey960
+
+Mauro Carvalho Chehab (2):
+  misc: hisi_hikey_usb: change the DT schema
+  arm64: dts: hisilicon: Add usb mux hub for hikey970
+
+Yu Chen (1):
+  dt-bindings: misc: add schema for USB hub on Kirin devices
+
+ .../bindings/misc/hisilicon,hikey-usb.yaml    | 108 ++++++++++++++++++
+ .../boot/dts/hisilicon/hi3660-hikey960.dts    |  35 +++++-
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    |  23 ++++
+ drivers/misc/hisi_hikey_usb.c                 |  81 ++++++-------
+ 4 files changed, 199 insertions(+), 48 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
 
 -- 
-Best regards,
-grygorii
+2.31.1
+
+
