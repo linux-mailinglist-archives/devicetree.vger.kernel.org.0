@@ -2,158 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE0F3FE6A8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 02:34:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 736373FE6AC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 02:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243239AbhIBA1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 20:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242135AbhIBA1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 20:27:10 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D47EC061760
-        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 17:26:13 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id f15so419909ybg.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 17:26:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CptstpGZORRU3IsYIloJqbWhHikn1ckNwph+iIdtJfc=;
-        b=KJjMgyWgDPZNVmsiSfXPstCqx7Cv6leimA38DXhaRdLHgyAnsFQrjHt5ji8iOVTbaA
-         K/+uGl//sF7mIvLXtsuE92k6eG5U+dy3GZ+oVW5XzrjScobDwvvsiSrtBO9GXNkewxjN
-         Wb4kAJ1sQkkdxizNHuKxTPyi0oh7Ccc+XWqK44z7O7FrhKmQrhHa6y/+XZxEWgi71gLK
-         LFPjnoZfSqrcj5rPjIszQqV6/+V975nET3m3NtDKJeGpVm2ZfhjlPazmkz5SxlSwwBBy
-         pLV1HyflZQcD1QY6xA9bQAplBzgYykH1koRMFXZHxiYlYOREMG2We6WDhMRhloCJDn4Y
-         6EzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CptstpGZORRU3IsYIloJqbWhHikn1ckNwph+iIdtJfc=;
-        b=sf5i3X5ZByCP1WYd60qUayWyLIuD3QPTXtKdkneOWOwLfLycC5FKroVW3zhSG73x6b
-         hc7BhHL675q2YU/KHKtLUG80AfJQVKNTUK7B9wbd1FGMgMCn0VxHs9I04rPbInHd2xBI
-         9QjIyN+f/tD/sukNPSRchZfQQlN9AoHKmczVT0HN4OxMLbf2ZkPnWk6/LZI7MT1kXLlw
-         hbYIjng1GW/az7SCKe/nLeJVk1zlmHQOLnwcgf+rzwCjPcYpl4VveKM/dxMmTmVZhJan
-         yFahDwlSnTnHofBD5JEh8uAA8h8TcYHXwx1Y5RlweELpwwfdx6IYtVRF0F905ZizZyLt
-         zx6w==
-X-Gm-Message-State: AOAM532pMVEUP+kwqYnPclP0FaFuH69aQioh9zkqQJKY3E5DQVQkGjb5
-        5CKXUpU5ILwSRKVLRrfK9Bhqqs3414rWEPfmNop9ww==
-X-Google-Smtp-Source: ABdhPJw0MkZntzwLYBweF0Y7lXR0WTz8ODY0CF4jq3sidmXEVfKh7AZHfVBv/CowSJpHE/7wcb+BsIsyLaB/P+vFGA8=
-X-Received: by 2002:a25:804:: with SMTP id 4mr733936ybi.346.1630542372170;
- Wed, 01 Sep 2021 17:26:12 -0700 (PDT)
+        id S244093AbhIBA3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 20:29:12 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:58061 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243541AbhIBA3M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Sep 2021 20:29:12 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630542495; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: Cc: To: From: Date: Sender;
+ bh=BpMsY1jdJn9vV9BVN++XtWtWBzsDBD0Qi5rln/LVvzA=; b=QmBaMsvtklFod84APo8YQJqvsqYT/Z98ayHIjzxMMYmiipglexQR3bWlg6fRz+dRHRtAQnNI
+ QI92VMO3sM7u8rCJ55atM79tltcOrmJsKw4IN1OThjjVczF5OnJYX2+mnBlCe+TffLbr/gCx
+ 56Udt7vIP+EpE+kL0XYN7OS7RaU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 61301a9e6fc2cf7ad93bf462 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Sep 2021 00:28:14
+ GMT
+Sender: jackp=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 203B4C4361B; Thu,  2 Sep 2021 00:28:13 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: jackp)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7FF4AC43460;
+        Thu,  2 Sep 2021 00:28:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7FF4AC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Date:   Wed, 1 Sep 2021 17:28:04 -0700
+From:   Jack Pham <jackp@codeaurora.org>
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Pavel Hofman <pavel.hofman@ivitera.com>,
+        Ferry Toth <fntoth@gmail.com>, Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        Ruslan Bilovol <ruslan.bilovol@gmail.com>
+Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP
+ bursting
+Message-ID: <20210902002804.GA3500@jackp-linux.qualcomm.com>
+References: <cca69e90-b0ef-00b8-75d3-3bf959a93b45@gmail.com>
+ <874kchvcq0.fsf@kernel.org>
+ <e59f1201-2aa2-9075-1f94-a6ae7a046dc1@gmail.com>
+ <8735raj766.fsf@kernel.org>
+ <b3417c2c-613b-8ef6-2e2d-6e2cf9a5d5fd@gmail.com>
+ <b3e820f0-9c94-7cba-a248-3b2ec5378ab0@gmail.com>
+ <d298df65-417b-f318-9374-b463a15d8308@ivitera.com>
+ <a7d7f0dd-dfbb-5eef-d1da-8cbdab5fc4a7@gmail.com>
+ <c4e29ac0-1df1-3c64-1218-3687f07e7f77@ivitera.com>
+ <60e57455-3768-ab1c-efad-b6a64e592b36@synopsys.com>
 MIME-Version: 1.0
-References: <20210831102125.624661-1-ulf.hansson@linaro.org>
- <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com>
- <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
- <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
- <CAPDyKFranX4Yz8546C1E3Gq_ZkQi34Xb=Rxi5mPtw-s_J1QPoQ@mail.gmail.com>
- <CAGETcx_DXQyaH2te1cxV+yCS+kdfjWOFbxQkhEKCbXtU0FWS1g@mail.gmail.com> <CAPDyKFpd1OCiSX-g4sJNjHhLs41AVzyE=O7gw7+YQ7RUOOk6rQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFpd1OCiSX-g4sJNjHhLs41AVzyE=O7gw7+YQ7RUOOk6rQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 1 Sep 2021 17:25:36 -0700
-Message-ID: <CAGETcx8MPy-4v2KFtZ6vrrtnkd07gsL3iEKjQjyLL8i2fYycqA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <60e57455-3768-ab1c-efad-b6a64e592b36@synopsys.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 3:24 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Thu, 2 Sept 2021 at 00:06, Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Wed, Sep 1, 2021 at 2:27 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >
-> > > On Wed, 1 Sept 2021 at 22:56, Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > >
-> > > > > On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
-> > > > > >
-> > > > > > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > > > >
-> > > > > > > In the struct supplier_bindings the member 'node_not_dev' is described as
-> > > > > > > "The consumer node containing the property is never a device.", but that
-> > > > > > > doesn't match the behaviour of the code in of_link_property().
-> > > > > > >
-> > > > > > > To make the behaviour consistent with the description, let's rename the
-> > > > > > > member to "optional_con_dev" and clarify the corresponding comment.
-> > > > > > >
-> > > > > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > > > > > > ---
-> > > > > > >  drivers/of/property.c | 9 +++++----
-> > > > > > >  1 file changed, 5 insertions(+), 4 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > > > > index 6c028632f425..2babb1807228 100644
-> > > > > > > --- a/drivers/of/property.c
-> > > > > > > +++ b/drivers/of/property.c
-> > > > > > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
-> > > > > > >   * @parse_prop.index: For properties holding a list of phandles, this is the
-> > > > > > >   *                   index into the list
-> > > > > > >   * @optional: Describes whether a supplier is mandatory or not
-> > > > > > > - * @node_not_dev: The consumer node containing the property is never a device.
-> > > > > > > + * @optional_con_dev: The consumer node containing the property may not be a
-> > > > > > > + *                   device, then try finding one from an ancestor node.
-> > > > > >
-> > > > > > Nak. This flag is not about "may not be". This is explicitly for
-> > > > > > "never a device". It has to do with stuff like remote-endpoint which
-> > > > > > is never listed under the root node of the device node. Your
-> > > > > > documentation change is changing the meaning of the flag.
-> > > > >
-> > > > > Okay, fair enough.
-> > > > >
-> > > > > Although, as stated in the commit message this isn't the way code
-> > > > > behaves. Shouldn't we at least make the behaviour consistent with the
-> > > > > description of the 'node_not_dev' flag?
-> > > >
-> > > > I know what you mean, but if you use the flag correctly (where the
-> > > > phandle pointed to will never be a device with compatible property),
-> > > > the existing code would work correctly. And since the flag is relevant
-> > > > only in this file, it's easy to keep it correct. I'd just leave it as
-> > > > is.
-> > >
-> > > Sorry, but that just sounds lazy to me, I am sure we can do better.
-> > > The current code and the name of the flag is confusing, at least to me
-> > > (and I bet to others as well).
-> > >
-> > > Moreover, I don't quite understand your objections to changing this.
-> > > Why leave this to be inconsistent when it can be easily fixed?
-> >
-> > If you feel so strong about it, go for it. No strong objections. Just
-> > double check the refcounts are done correctly.
->
-> The refcounts should be okay, I think.
->
-> I am fine with either of the two suggestions I have made.
+Hi Thinh,
 
-The one I Nak-ed earlier is not okay. So I think we have only one other option.
+On Sat, Aug 21, 2021 at 02:57:07AM +0000, Thinh Nguyen wrote:
+> I took a look at 24f779dac8f3 ("usb: gadget: f_uac2/u_audio: add
+> feedback endpoint support") that Ferry reported the issue from
+> bisection. I see at least a couple problems in the new UAC2 changes.
+> 
+> 1) usb_ep_dequeue() is asynchronous. Don't free requests before the
+> controller driver give them back.
+> 
+> 2) Did you test with SuperSpeed? I don't see companion descriptor.
 
-> But another
-> option could be to come up with an alternative name (and a
-> description) for the flag, instead of "optional_con_dev", if you
-> perhaps have a better suggestion?
-
-It's not fully clear to me what part of node_not_dev is confusing, but
-I'll take a stab at it. How about:
-- * @node_not_dev: The consumer node containing the property is never a device.
-+ * @con_node_never_dev: The consumer node containing the property is never
-+ *                     converted to a struct device. The struct device will be
-+ *                     created for one of the ancestor nodes, which fw_devlink
-+ *                     assumes would an ancestor with the compatible property.
-
-If you are happy with this, then go ahead and use this name/comment
-with the last code suggestion you made and send out a patch?
+We caught this too when testing f_uac2 in SuperSpeed mode.  I can
+prepare a patch.
 
 Thanks,
-Saravana
+Jack
+-- 
+The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
