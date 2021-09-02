@@ -2,165 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 663833FF168
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 18:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D488B3FF16D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 18:31:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346163AbhIBQb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 12:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235316AbhIBQb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 12:31:57 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438BCC061757
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 09:30:59 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id s25so3836680edw.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 09:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=USYcfZjcg7/rxlJ01qDkInwsA0jQO3CoE6DaEmLtMHw=;
-        b=SDXUXUjmEVYZVRMiOjlF6C4d8OElSn6OzwvpYK2P3+X6vbGGhNs3jl1Ah1E0/7xecX
-         WWKAnRPN44pWc3rcAL4fQhmzfslDo5omfiE/1QZB2cYPVDj2K3bHJezEtHeyfh4cZlHb
-         d8c+n71v8TI/B/n08wsJhylVzu1ptUpffH6Tj9cHySfMqmneUXvCAGax3A+ws/lnAOzo
-         o7vHeWehks3XPV9NwG3j6PWL5/2PsZisukEAt1fEfETB+2q4LMGvOHld5BCtF9YHg0LS
-         +TDuif9usO4s7ySKeqHgR01drPlO+/7cMmNeK7GuHBQiBM6gtzzq7oAPTXu1Grr4gx3+
-         C2QA==
+        id S1346324AbhIBQc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 12:32:27 -0400
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:40638 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346333AbhIBQc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 12:32:26 -0400
+Received: by mail-oo1-f50.google.com with SMTP id j11-20020a4a92cb000000b002902ae8cb10so708439ooh.7;
+        Thu, 02 Sep 2021 09:31:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=USYcfZjcg7/rxlJ01qDkInwsA0jQO3CoE6DaEmLtMHw=;
-        b=ItxSwXoWUKumcgoL7Xwi6me6VMK+hnGYr/oD3jo2Aaxb4Iul06OapkNSz6z+e0Vrg5
-         /brHNXAJDNbP/+/CVsXaCjPjFLMGIvo/msiPSpRMOLF4im4QklvI5XJBCzHHPF1ttTUZ
-         vVXDTdCBm4bUJpURfOAU2jQrhxpUQtLhjJG2+QJWfdeBnyONkxXhR8k1A4/RSeLCSc+e
-         fGmA85EwExbJAUtOAI90WK/Q0yigqMcrsKWx1ZkDfeQV/gu9gAbfuzX8MUtvO1hW+BGO
-         3hbobna++d8wq7/MkSTXHXO6CMj4dG3w2ARP31uI+fNfPL+fwkdIXHqwWOtbA66A+0ic
-         jjGA==
-X-Gm-Message-State: AOAM532zZpWmCVzMmuuT2KUiaeE/yZWpcHx0xbC4bT5BlnAAow5kJrgD
-        V14th32oB7EGGYPtiZisI+YC+pBSncBWmbbJeEQVVg==
-X-Google-Smtp-Source: ABdhPJy5d8mB0+bh+1dUQc9dMKYmM1vESBNDZccve874Sy179Xy0j7+SM+XKQHqNCiicfZiEUKLtVAnozq+y+AYfH1E=
-X-Received: by 2002:aa7:d157:: with SMTP id r23mr4287441edo.322.1630600257783;
- Thu, 02 Sep 2021 09:30:57 -0700 (PDT)
+        bh=bVfG6I1rLgPXzfK5MWdtxixJnWlk2BTbcuZB+XVnrts=;
+        b=K7jhT/FLS0nnDVk03KZ0wGokhwll25Vzxxa0GboFSUvwEcHlNFlgErtIBRrhaXbunV
+         bUmzQClUrnsxd3rhr/G8PUVpue6ATNznI2iagdKzUyy4fLy2T6C7hMtiFS6ShQ/BB3/F
+         KPRmYoiUSI78hOuWX3XfP0YYTtfBt3cHuZhk3GjvmN4rX7w17omQfWnmpxpOMv/KI+I9
+         GI04IO3WuXWMKLedWDMNTtWbQmL1Sze6o5+O0AX6kFMdMhli9CXBljV9dj/HSW4ebo92
+         ic4VU3ZQ4c26kqTu0sH42bDOl5J1K+TECGaK/4r6k0zpXdztP9rmRyUGxh/ayiIxciNZ
+         mLJQ==
+X-Gm-Message-State: AOAM532Cf87Z9OVDXKSSqoK2XuqB93gJQ+XCRhp7MI2EBjeYLlyGoekM
+        5qgLsZKn3tA5CAtebsmk2wN5UUM5PcaIjZT0T/A=
+X-Google-Smtp-Source: ABdhPJwMvJFIZ8AQs1kfhMrLw7Lo27Oc2Tw/XnzWPWaYPVc5aTbVjO0gHUee0XIh1SWP1pVWvZzx+L9DNwjPEVBge1U=
+X-Received: by 2002:a4a:ca83:: with SMTP id x3mr3336445ooq.2.1630600285972;
+ Thu, 02 Sep 2021 09:31:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
-In-Reply-To: <20210901083215.25984-1-yunfei.dong@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Thu, 2 Sep 2021 13:30:46 -0300
-Message-ID: <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
-Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
- hardware decode
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+References: <20210902025528.1017391-1-saravanak@google.com>
+ <CAGETcx9N34RyrdKDR8dQ7ECyz7ZXBx-Ft16t033NjTiU8p=Y0g@mail.gmail.com>
+ <CAJZ5v0gt_1vKQXxSY6HoHRPR9O_e1f7VwcBnSjeMgCdCibrwgQ@mail.gmail.com> <CAGETcx_dvpFKZnz2w43h=ybp-8YF=OdpW0f2mK+jvDPURDFQJQ@mail.gmail.com>
+In-Reply-To: <CAGETcx_dvpFKZnz2w43h=ybp-8YF=OdpW0f2mK+jvDPURDFQJQ@mail.gmail.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Thu, 2 Sep 2021 18:31:14 +0200
+Message-ID: <CAJZ5v0iDU9aCGaF2FfCXmHjQ2qPH7KmF46rmaPAsPaxOT1yPDg@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Ulf reported an issue[1] with fw_devlink. This
+ series tries to fix that issue.
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Cc: Android Kernel" <kernel-team@android.com>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Sept 2021 at 05:32, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+On Thu, Sep 2, 2021 at 6:27 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> This series adds support for multi hardware decode into mtk-vcodec, by first
-> adding component framework to manage each hardware information: interrupt,
-> clock, register bases and power. Secondly add core thread to deal with core
-> hardware message, at the same time, add msg queue for different hardware
-> share messages. Lastly, the architecture of different specs are not the same,
-> using specs type to separate them.
+> On Thu, Sep 2, 2021 at 8:56 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
+> >
+> > On Thu, Sep 2, 2021 at 4:57 AM Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > Oops, forgot to use a proper subject. Sorry.
+> >
+> > Is this a replacement for the "Fix rtl8366rb issues with fw_devlink=on " series?
 >
-> This series has been tested with both MT8183 and MT8173. Decoding was working
-> for both chips.
->
-> Patches 1~3 rewrite get register bases and power on/off interface.
->
-> Patch 4 add component framework to support multi hardware.
->
-> Patch 5 separate video encoder and decoder document
->
-> Patches 6-15 add interfaces to support core hardware.
-> ----
-> This patch dependents on : "media: mtk-vcodec: support for MT8183 decoder"[1] and
-> "Mediatek MT8192 clock support"[2].
->
-> 1: Multi hardware decode is based on stateless decoder, MT8183 is the first time
-> to add stateless decoder. Otherwise it will cause conflict. This patch will be
-> accepted in 5.15[1].
->
-> 2: The definition of decoder clocks are in mt8192-clk.h, this patch already in clk tree[2].
->
-> [1]https://patchwork.linuxtv.org/project/linux-media/list/?series=5826
-> [2]https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-next&id=f35f1a23e0e12e3173e9e9dedbc150d139027189
-> ----
-> Changes compared with v5:
-> -Add decoder hardware block diagram for patch 13/15
->
+> No. This is unrelated to that. This is the issue I'm trying to fix:
+> https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+
+Allright, thanks!
+
+> This is kind of a replacement to, but the patch below might be needed
+> in general (needs more thought):
+> https://lore.kernel.org/lkml/CAGETcx9U2M5i1CAx605fG3Qwm1xwjH2uy4kY4vrAF7YSRSSg+w@mail.gmail.com/
+
+I see.
 
 
-The discussion on v5 was still on-going, so sending this v6
-is not helpful. The context for v5's discussion is now harder to find.
-
-Please avoid sending a new version without properly
-discussing all the feedback, and without reaching consensus.
-This is very important, please keep it in mind.
-
-Specifically, the feedback on v5 was NAK, with the request to avoid
-using any async framework, and instead try to find a simpler solution.
-
-For instance, you can model things with a bus-like pattern,
-which ties all the devices together, under a parent node.
-This pattern is common in the kernel, the parent
-node can use of_platform_populate or similar
-(git grep of_platform_populate, you will see plenty of examples).
-
-You will still have to do some work to have the proper
-regs resources, but this is doable. Each child is a device,
-so it can have its own resources (clocks, interrupts, iommus).
-
-You don't need any async framework.
-
-    vcodec_dec: vcodec_dec@16000000 {
-        compatible = "mediatek,mt8192-vcodec-dec";
-        reg = <something>;
-        mediatek,scp = <&scp>;
-        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-
-        vcodec_lat@0x10000 {
-            compatible = "mediatek,mtk-vcodec-lat";
-            reg = <0x10000 0x800>;      /* VDEC_MISC */
-            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
-            // etc
-        };
-
-        vcodec_core@0x25000 {
-           compatible = "mediatek,mtk-vcodec-core";
-           reg = <0x25000 0x1000>;      /* VDEC_CORE_MISC */
-           interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
-           // etc
-        };
-    };
-
-Thanks,
-Ezequiel
+> > > On Wed, Sep 1, 2021 at 7:55 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+> > > > Ulf, mind testing this?
+> > > >
+> > > > Thanks,
+> > > > Saravana
+> > > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> > > >
+> > > > Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> > > >
+> > > > Saravana Kannan (2):
+> > > >   driver core: Add support for FWNODE_FLAG_NEVER_PROBES
+> > > >   of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
+> > > >
+> > > >  drivers/base/core.c    |  8 ++++++++
+> > > >  drivers/of/platform.c  | 16 ++++++++++++++++
+> > > >  include/linux/fwnode.h |  8 +++++---
+> > > >  3 files changed, 29 insertions(+), 3 deletions(-)
+> > > >
+> > > > --
+> > > > 2.33.0.259.gc128427fd7-goog
+> > > >
