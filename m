@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0EA03FE774
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 04:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D753FE784
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 04:18:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232910AbhIBCPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 22:15:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37046 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232613AbhIBCPI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 22:15:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 989FD610CA;
-        Thu,  2 Sep 2021 02:14:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630548850;
-        bh=lSRYXw2GNUHa22Q3qtRxtXAjlQWO1nynz5KZy8emrAM=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=JsDmOLxLwtQPVmkNKAucfQNCFTvEQ6M9H1FRo7YtI/JfUcBHA2aItnBKIQ+M5YFtI
-         of+jN+kRhgKHBhSbal8GCHCqjHT6W/ehlqtsHshRmtt77wBVdCJj6kSjqwJb8yCzw1
-         zB4gsGIy5LtKjhhH6rcIj+E1YnITuAPkzPYvblQO3Cwg+z2Zkq/vmB/48NEFFPPQYJ
-         L1v8X55QWG3PcH+EnFMfjO6xBgqQbZCiebJqzI0Mjq10S/MIbmtlh8ZG9IQTehrQeq
-         ToFwmM7N7ArvIW0bCJ+CSCp1YLCuSJoer53NDMXnWugsMbyRN0UXKN6E62Y6eYarMA
-         VrmJEJy09C6mw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 92D226098E;
-        Thu,  2 Sep 2021 02:14:10 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v5.15
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <YS54t3gfZYdE3WPj@robh.at.kernel.org>
-References: <YS54t3gfZYdE3WPj@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <YS54t3gfZYdE3WPj@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.15
-X-PR-Tracked-Commit-Id: b1e202503508d5b66bf1532bea36b5776b00d869
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 9e5f3ffcf1cb34e7c7beb3f79a96f58536730924
-Message-Id: <163054885059.9778.10056044587388023871.pr-tracker-bot@kernel.org>
-Date:   Thu, 02 Sep 2021 02:14:10 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>
+        id S242175AbhIBCTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 22:19:18 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:2875 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233087AbhIBCTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 22:19:17 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1821xAgu068909;
+        Thu, 2 Sep 2021 09:59:10 +0800 (GMT-8)
+        (envelope-from chiawei_wang@aspeedtech.com)
+Received: from ChiaWeiWang-PC.aspeed.com (192.168.2.66) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 2 Sep
+ 2021 10:18:15 +0800
+From:   Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <lee.jones@linaro.org>, <osk@google.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <openbmc@lists.ozlabs.org>
+Subject: [PATCH v2 0/3] arm: aspeed: Add UART routing support
+Date:   Thu, 2 Sep 2021 10:18:13 +0800
+Message-ID: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [192.168.2.66]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1821xAgu068909
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Tue, 31 Aug 2021 13:45:11 -0500:
+Add UART routing driver and the device tree nodes.
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.15
+v2:
+ - Add dt-bindings
+ - Add ABI documents for the exported sysfs interface
+ - Revise driver implementation suggested by Joel
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/9e5f3ffcf1cb34e7c7beb3f79a96f58536730924
+Chia-Wei Wang (3):
+  dt-bindings: aspeed-lpc: Add UART routing compatible string
+  soc: aspeed: Add UART routing support
+  ARM: dts: aspeed: Add uart routing to device tree
 
-Thank you!
+ .../testing/sysfs-driver-aspeed-uart-routing  |  15 +
+ .../devicetree/bindings/mfd/aspeed-lpc.txt    |  22 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   6 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |   6 +
+ drivers/soc/aspeed/Kconfig                    |  10 +
+ drivers/soc/aspeed/Makefile                   |   9 +-
+ drivers/soc/aspeed/aspeed-uart-routing.c      | 601 ++++++++++++++++++
+ 7 files changed, 665 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-aspeed-uart-routing
+ create mode 100644 drivers/soc/aspeed/aspeed-uart-routing.c
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.17.1
+
