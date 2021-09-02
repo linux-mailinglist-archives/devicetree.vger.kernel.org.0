@@ -2,136 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC8443FEFD7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 17:07:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 491A63FF02C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 17:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345594AbhIBPH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 11:07:59 -0400
-Received: from mta-02.yadro.com ([89.207.88.252]:41306 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234984AbhIBPH6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Sep 2021 11:07:58 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 73FA84D048;
-        Thu,  2 Sep 2021 15:06:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-transfer-encoding:mime-version:user-agent:content-type
-        :content-type:organization:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received:received; s=
-        mta-01; t=1630595213; x=1632409614; bh=ohzBaHIQJi6XFUgN9Za1egaft
-        OTNkTgtCcHs5jiUnuQ=; b=gQtz9/zJnfSt09MuRU5JcwnKjSFT6mVvhBq7fgvNz
-        UbDk8kUZe14HQjDrWd4O89wzdHWNB1YFYeDKJKngHTkTcAD7ACwINPMvJABlAlNG
-        SkqPEX1lrL6yzUMYItAaFWjW25SLPsNR/Y6OdQxhXZyIckIJbceXS81lmp6VZIfg
-        FY=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id he5YG7Tih9hI; Thu,  2 Sep 2021 18:06:53 +0300 (MSK)
-Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 5E25A4D01B;
-        Thu,  2 Sep 2021 18:06:51 +0300 (MSK)
-Received: from [10.199.0.231] (10.199.0.231) by T-EXCH-04.corp.yadro.com
- (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Thu, 2 Sep
- 2021 18:06:50 +0300
-Message-ID: <cb9dedaf242264f76eca18e94934703300be5a7e.camel@yadro.com>
-Subject: Re:  [PATCH 1/1] net/ncsi: add get MAC address command to get Intel
- i210 MAC address
-From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
-To:     Milton Miller II <miltonm@us.ibm.com>
-CC:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        Brad Ho <Brad_Ho@phoenix.com>,
-        Paul Fertser <fercerpav@gmail.com>, <openbmc@lists.ozlabs.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Date:   Thu, 2 Sep 2021 18:17:30 +0300
-In-Reply-To: <OF2487FB9E.ECED277D-ON00258741.006BEF89-00258744.001FE4C0@ibm.com>
-References: <20210830171806.119857-2-i.mikhaylov@yadro.com>
-         <OF2487FB9E.ECED277D-ON00258741.006BEF89-00258744.001FE4C0@ibm.com>
-Organization: YADRO
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        id S234414AbhIBP2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 11:28:55 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:43790 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345689AbhIBP2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 11:28:54 -0400
+Received: by mail-ot1-f43.google.com with SMTP id x10-20020a056830408a00b004f26cead745so2971080ott.10;
+        Thu, 02 Sep 2021 08:27:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bqpAdctft+FNwBQ21zVwpW5d55hAXSJQXRl03yYe76s=;
+        b=PPM8nUHGx55S44pYjOPuq5xvku1U8ZlTa/6DikG1YVizBx/gBHj2ja8Y0J+9kSVNOt
+         CSvTxBj/v3tpCsLgYpwSuTQD7IJQ+/VJ6tLiZAkR/dy6IOzIUw2ssscwkcnLIBiil2pT
+         jHPR0/30U33DNTmYZe2GuLeSrfSOGYohCZphdg19Ve/6NmwZCe7jVvgAciXRERB5Mxi3
+         /+qJ36dqfxIYJWwbeGcT8m/e+48ZMx3Ok0x+JHkSzaPvqDz+6oAgljS+y45Feu1J/hjr
+         cbgifQHzae6/p0/HvSz+LPmgsp7NbV8ScSl3AJi1/UaE636dIm19J3xYgsxZ0Wj4m2ax
+         0wvA==
+X-Gm-Message-State: AOAM532mJxQQNwQFHICx+qXD4g/PcaPJzU0816lWRzSOAR9VgS8nqSxN
+        u7XKxTfSeyAUtcdKnYmyJA==
+X-Google-Smtp-Source: ABdhPJzEwGyey7HM+GJpRspaIwtYhFX2S77YtjWMNY2eHNOIzFXRViC3QKyJRTICTcJ3y3YNpyYroQ==
+X-Received: by 2002:a9d:798c:: with SMTP id h12mr3067596otm.215.1630596476006;
+        Thu, 02 Sep 2021 08:27:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c7sm391314otl.30.2021.09.02.08.27.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Sep 2021 08:27:55 -0700 (PDT)
+Received: (nullmailer pid 950168 invoked by uid 1000);
+        Thu, 02 Sep 2021 15:27:54 -0000
+Date:   Thu, 2 Sep 2021 10:27:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/7] dt-bindings: rtc: sun6i: Add H616 and R329
+ compatibles
+Message-ID: <YTDtelCx5If3J5cM@robh.at.kernel.org>
+References: <20210901053951.60952-1-samuel@sholland.org>
+ <20210901053951.60952-2-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.199.0.231]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-04.corp.yadro.com (172.17.100.104)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210901053951.60952-2-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-09-02 at 05:48 +0000, Milton Miller II wrote:
-> On August 30, 2021, Ivan Mikhaylov" <i.mikhaylov@yadro.com> wrote:
-> > This patch adds OEM Intel GMA command and response handler for it.
-> > 
-> > /* Get Link Status */
-> > struct ncsi_rsp_gls_pkt {
-> >         struct ncsi_rsp_pkt_hdr rsp;        /* Response header   */
-> > diff --git a/net/ncsi/ncsi-rsp.c b/net/ncsi/ncsi-rsp.c
-> > index d48374894817..6447a09932f5 100644
-> > --- a/net/ncsi/ncsi-rsp.c
-> > +++ b/net/ncsi/ncsi-rsp.c
-> > @@ -699,9 +699,51 @@ static int ncsi_rsp_handler_oem_bcm(struct
-> > ncsi_request *nr)
-> >         return 0;
-> > }
-> > 
-> > +/* Response handler for Intel command Get Mac Address */
-> > +static int ncsi_rsp_handler_oem_intel_gma(struct ncsi_request *nr)
-> > +{
-> > +       struct ncsi_dev_priv *ndp = nr->ndp;
-> > +       struct net_device *ndev = ndp->ndev.dev;
-> > +       const struct net_device_ops *ops = ndev->netdev_ops;
-> > +       struct ncsi_rsp_oem_pkt *rsp;
-> > +       struct sockaddr saddr;
-> > +       int ret = 0;
-> > +
-> > +       /* Get the response header */
-> > +       rsp = (struct ncsi_rsp_oem_pkt *)skb_network_header(nr->rsp);
-> > +
-> > +       saddr.sa_family = ndev->type;
-> > +       ndev->priv_flags |= IFF_LIVE_ADDR_CHANGE;
-> > +       memcpy(saddr.sa_data, &rsp->data[INTEL_MAC_ADDR_OFFSET], ETH_ALEN);
-> > +       /* Increase mac address by 1 for BMC's address */
-> > +       eth_addr_inc((u8 *)saddr.sa_data);
-> > +       if (!is_valid_ether_addr((const u8 *)saddr.sa_data))
-> > +               return -ENXIO;
+On Wed, Sep 01, 2021 at 12:39:45AM -0500, Samuel Holland wrote:
+> For these new SoCs, start requiring a complete list of input clocks.
 > 
-> The Intel GMA retireves the MAC address of the host, and the datasheet
-> anticipates the BMC will "share" the MAC by stealing specific TCP and 
-> UDP port traffic destined to the host.
+> For H616, this means bus, hosc, and pll-32k. For R329, this means ahb,
+> bus, and hosc; and optionally ext-osc32k.
 > 
-> This "add one" allocation of the MAC is therefore a policy, and one that 
-> is beyond the data sheet.
+> I'm not sure how to best represent this in the binding...
 > 
-> While this +1 policy may work for some OEM boards, there are other boards 
-> where the MAC address assigned to the BMC does not follow this pattern, 
-> but instead the MAC is stored in some platform dependent location obtained 
-> in a platform specific manner.
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml | 55 +++++++++++++++++--
+>  include/dt-bindings/clock/sun50i-rtc.h        | 12 ++++
+>  2 files changed, 61 insertions(+), 6 deletions(-)
+>  create mode 100644 include/dt-bindings/clock/sun50i-rtc.h
 > 
-> I suggest this BMC = ether_addr_inc(GMA) be opt in via a device tree
-> property.  
-> 
-> as it appears it would be generic to more than one vendor.
-> 
-> Unfortunately, we missed this when we added the broadcom and mellanox
-> handlers.
-> 
-> 
-> 
+> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> index beeb90e55727..3e085db1294f 100644
+> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> @@ -26,6 +26,8 @@ properties:
+>            - const: allwinner,sun50i-a64-rtc
+>            - const: allwinner,sun8i-h3-rtc
+>        - const: allwinner,sun50i-h6-rtc
+> +      - const: allwinner,sun50i-h616-rtc
+> +      - const: allwinner,sun50i-r329-rtc
 
-Milton,
+Can you please make all the single entry cases a single 'enum'.
 
-maybe something like "mac_addr_inc" or "ncsi,mac_addr_inc"? Also those 3(intel,
-mellanox, broadcom) functions even with handlers similar to each other, they
-could be unified on idea, difference in addresses, payload lengths, ids only as
-I see. Joel proposed in the past about dts option for Intel OEM keep_phy option,
-maybe that's the right time to reorganize all OEM related parts to fit in one
-direction with dts options for ethernet interface without Kconfig options?
+>  
+>    reg:
+>      maxItems: 1
+> @@ -37,7 +39,24 @@ properties:
+>        - description: RTC Alarm 1
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      - anyOf:
 
-Thanks.
+This says the first entry is any of these. What about the rest of them?
 
+> +          - const: ahb
+> +            description: AHB parent for SPI bus clock
+
+The description should go in 'clocks'. The order should be defined as 
+well with the first clock being the one that existed previously.
+
+> +          - const: bus
+> +            description: AHB/APB bus clock for register access
+> +          - const: ext-osc32k
+> +            description: External 32768 Hz oscillator input
+> +          - const: hosc
+> +            description: 24 MHz oscillator input
+> +          - const: pll-32k
+> +            description: 32 kHz clock divided from a PLL
+>  
+>    clock-output-names:
+>      minItems: 1
+> @@ -85,6 +104,9 @@ allOf:
+>              enum:
+>                - allwinner,sun8i-h3-rtc
+>                - allwinner,sun50i-h5-rtc
+> +              - allwinner,sun50i-h6-rtc
+> +              - allwinner,sun50i-h616-rtc
+> +              - allwinner,sun50i-r329-rtc
+>  
+>      then:
+>        properties:
+> @@ -96,13 +118,35 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: allwinner,sun50i-h6-rtc
+> +            enum:
+> +              - allwinner,sun50i-h616-rtc
+> +              - allwinner,sun50i-r329-rtc
+>  
+>      then:
+> +      clocks:
+> +        minItems: 3 # bus, hosc, and (pll-32k [H616] or ahb [R329])
+> +
+> +      clock-names:
+> +        minItems: 3
+> +
+> +      required:
+> +        - clock-names
+> +
+> +    else:
+> +      required:
+> +        - clock-output-names
+> +
+> +  - if:
+> +      properties: clock-names
+> +
+> +    then:
+> +      required:
+> +        - clocks # hosc is required
+> +
+> +    else:
+>        properties:
+> -        clock-output-names:
+> -          minItems: 3
+> -          maxItems: 3
+> +        clocks:
+> +          maxItems: 1 # only ext-osc32k is allowed
+>  
+>    - if:
+>        properties:
+> @@ -127,7 +171,6 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - clock-output-names
+>  
+>  additionalProperties: false
+>  
+> diff --git a/include/dt-bindings/clock/sun50i-rtc.h b/include/dt-bindings/clock/sun50i-rtc.h
+> new file mode 100644
+> index 000000000000..d45e3ff4e105
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sun50i-rtc.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+
+Dual license please.
+
+> +
+> +#ifndef _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_
+> +#define _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_
+> +
+> +#define CLK_OSC32K		0
+> +#define CLK_OSC32K_FANOUT	1
+> +#define CLK_IOSC		2
+> +
+> +#define CLK_RTC_SPI		8
+> +
+> +#endif /* _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_ */
+> -- 
+> 2.31.1
+> 
+> 
