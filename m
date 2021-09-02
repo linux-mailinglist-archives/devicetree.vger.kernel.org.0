@@ -2,221 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B21403FED3F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 13:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5991C3FED6F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343916AbhIBL43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 07:56:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54872 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343868AbhIBL41 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Sep 2021 07:56:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 42ED8610E7;
-        Thu,  2 Sep 2021 11:55:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630583729;
-        bh=0tBQqXecfd7/vukS15leLkyRLSbpsV+tf5Aq9TRMPiI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TWp+lXJ+x8aJ17wnTnW6B8ak41yBmxxdXieWgwlesi1B0tZx6qDRgjpH7bGWhJ6ij
-         wcE9X4KfkiyOmsp1ltNt7+YK5ebK2FMXFge9mbrQ/vEFheUk++h8Ch2mzip5LylPoh
-         piLFsgfAfTZhpsckUAkvMzm/LymRdbRhv0A2gqQl9ca3KpCzkDjS4M0+WhEr7CQoVj
-         n1b9ZbhIoibc70CQfmBoOtP09Fdq/cpMMLzcXbsSUrmjxA8mv3iRVhl3+F8iTMqLcq
-         ZAJe8C0zUTMfjWhbHE4OfjCa7O5QTZHIBns/u4nXm+PdEeGI10T5ks0lYm7kyldeKZ
-         Yi57IN2ft2vUQ==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mLlJX-0006rR-AK; Thu, 02 Sep 2021 13:55:27 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Wei Xu <xuwei5@hisilicon.com>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: hisilicon: Add support for Hikey 970 USB3 PHY
-Date:   Thu,  2 Sep 2021 13:55:24 +0200
-Message-Id: <569dc85d8058e2884d76ab36c6c46d36e7ad8555.1630583382.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1630583382.git.mchehab+huawei@kernel.org>
-References: <cover.1630583382.git.mchehab+huawei@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+        id S1344114AbhIBMFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 08:05:06 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:41582 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344084AbhIBMFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:05 -0400
+Received: by mail-oi1-f181.google.com with SMTP id 6so2179330oiy.8;
+        Thu, 02 Sep 2021 05:04:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=1BhybqLO/xSxTonTmG4+ysFiC+EsbInsMivl7h+IPwc=;
+        b=nho1VdkKJjEQmd/v+S/i7QPNFMaXptKMhpwWQsP8DWcQ0kaepjOhWYkswpvA0V0lbe
+         +HHmhgz+j/Q29Hc82XMthnqJq2upQ8n8Yq5Cr4l/UEvL0JPJyAWu3/Iwt1UPs5LotFrv
+         xfjx+RD5fPcqrE8ZKA8k19go6bdeviymhftnllHK2MUCE4fHh0EJ4798NJiTDwfQF5qE
+         grbcPHXI5ZXwSDszV2PBSVY+lXq2fYCdM9As3VsSV6NUjlkXXTn3XF5xmbL08l8U5E5W
+         J3jJHputQDNEMTo09ugIy0Pq2HLcBgPEqyh75xEAUADO0J6us7bn/jSk5CxXTkx6gO9X
+         eooQ==
+X-Gm-Message-State: AOAM533hDF3lW7/vIW/4XFRW1nzYYVLU8dNEJJVBQFTCcOGJUXpTG4hY
+        pE+NIcV2C2CpOtu2CLXFZQ==
+X-Google-Smtp-Source: ABdhPJyfKcFgOUXSmVvN4L+H7e8NArWiAR7hFp+ggaReieLCcYCZmbU/u2j43rfIJCSQEG7HchJk1Q==
+X-Received: by 2002:a54:4105:: with SMTP id l5mr1856524oic.76.1630584246444;
+        Thu, 02 Sep 2021 05:04:06 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w1sm301368ott.21.2021.09.02.05.04.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Sep 2021 05:04:05 -0700 (PDT)
+Received: (nullmailer pid 685603 invoked by uid 1000);
+        Thu, 02 Sep 2021 12:03:59 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     alsa-devel@alsa-project.org, stephan@gerhold.net,
+        jbrunet@baylibre.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, lgirdwood@gmail.com,
+        jonathanh@nvidia.com, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+        robh+dt@kernel.org
+In-Reply-To: <1630562033-13231-2-git-send-email-spujar@nvidia.com>
+References: <1630562033-13231-1-git-send-email-spujar@nvidia.com> <1630562033-13231-2-git-send-email-spujar@nvidia.com>
+Subject: Re: [PATCH v2 1/3] ASoC: Add json-schema documentation for sound-name-prefix
+Date:   Thu, 02 Sep 2021 07:03:59 -0500
+Message-Id: <1630584239.106707.685602.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB3 bindings for Kirin 970 phy and Hikey 970 board.
+On Thu, 02 Sep 2021 11:23:51 +0530, Sameer Pujar wrote:
+> The 'sound-name-prefix' is used to prepend suitable strings to a
+> component widgets or controls. This is helpful when there are
+> multiple instances of the same component. Add relevant json-schema
+> and is inspired from sound-name-prefix.txt documentation.
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> ---
+>  .../devicetree/bindings/sound/name-prefix.yaml     | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/name-prefix.yaml
+> 
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3670-hikey970.dts    | 83 +++++++++++++++++++
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 56 +++++++++++++
- 2 files changed, 139 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index 7c32f5fd5cc5..60594db07041 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -430,3 +430,86 @@ &uart6 {
- 	label = "LS-UART1";
- 	status = "okay";
- };
-+
-+&usb_phy {
-+	phy-supply = <&ldo17>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	rt1711h: rt1711h@4e {
-+		compatible = "richtek,rt1711h";
-+		reg = <0x4e>;
-+		status = "okay";
-+		interrupt-parent = <&gpio27>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_cfg_func>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-+				PDO_VAR(5000, 5000, 1000)>;
-+			op-sink-microwatt = <10000000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@1 {
-+					reg = <1>;
-+					usb_con_ss: endpoint {
-+						remote-endpoint = <&dwc3_ss>;
-+					};
-+				};
-+			};
-+		};
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rt1711h_ep: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&hikey_usb_ep1>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	/* USB HUB is on this bus at address 0x44 */
-+	status = "okay";
-+};
-+
-+&dwc3 { /* USB */
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phy_type = "utmi";
-+	snps,dis-del-phy-power-chg-quirk;
-+	snps,dis_u2_susphy_quirk;
-+	snps,dis_u3_susphy_quirk;
-+	snps,tx_de_emphasis_quirk;
-+	snps,tx_de_emphasis = <1>;
-+	snps,dis-split-quirk;
-+	snps,gctl-reset-quirk;
-+	usb-role-switch;
-+	role-switch-default-mode = "host";
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		dwc3_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&hikey_usb_ep0>;
-+		};
-+
-+		dwc3_ss: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&usb_con_ss>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 636c8817df7e..782e1487666d 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/hi3670-clock.h>
-+#include <dt-bindings/usb/pd.h>
- 
- / {
- 	compatible = "hisilicon,hi3670";
-@@ -785,5 +786,60 @@ i2c4: i2c@fdf0d000 {
- 			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
- 			status = "disabled";
- 		};
-+
-+		usb3_otg_bc: usb3_otg_bc@ff200000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+			usb_phy: usbphy {
-+				compatible = "hisilicon,hi3670-usb-phy";
-+				#phy-cells = <0>;
-+				hisilicon,pericrg-syscon = <&crg_ctrl>;
-+				hisilicon,pctrl-syscon = <&pctrl>;
-+				hisilicon,sctrl-syscon = <&sctrl>;
-+				hisilicon,eye-diagram-param = <0xFDFEE4>;
-+				hisilicon,tx-vboost-lvl = <0x5>;
-+			};
-+		};
-+
-+		usb31_misc_rst: usb31_misc_rst_controller {
-+			compatible = "hisilicon,hi3660-reset";
-+			#reset-cells = <2>;
-+			hisi,rst-syscon = <&usb3_otg_bc>;
-+		};
-+
-+		usb3: hisi_dwc3 {
-+			compatible = "hisilicon,hi3670-dwc3";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
-+				  <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
-+				  <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
-+				  <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			clock-names = "clk_gate_abb_usb",
-+				      "hclk_gate_usb3otg",
-+				      "clk_gate_usb3otg_ref",
-+				      "aclk_gate_usb3dvfs";
-+
-+			assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			assigned-clock-rates = <238000000>;
-+			resets = <&crg_rst 0x90 6>,
-+				 <&crg_rst 0x90 7>,
-+				 <&usb31_misc_rst 0xA0 8>,
-+				 <&usb31_misc_rst 0xA0 9>;
-+
-+			dwc3: usb@ff100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff100000 0x0 0x100000>;
-+
-+				interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
-+					    <0 161 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				phys = <&usb_phy>;
-+				phy-names = "usb3-phy";
-+			};
-+		};
- 	};
- };
--- 
-2.31.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/sound/name-prefix.example.dts:19.28-22.11: Warning (unit_address_vs_reg): /example-0/analog-amplifier@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/sound/name-prefix.example.dts:24.28-27.11: Warning (unit_address_vs_reg): /example-0/analog-amplifier@1: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/sound/name-prefix.example.dt.yaml:0:0: /example-0/analog-amplifier@0: failed to match any schema with compatible: ['simple-audio-amplifier']
+Documentation/devicetree/bindings/sound/name-prefix.example.dt.yaml:0:0: /example-0/analog-amplifier@1: failed to match any schema with compatible: ['simple-audio-amplifier']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1523479
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
