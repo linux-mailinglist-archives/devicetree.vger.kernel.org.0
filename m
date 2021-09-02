@@ -2,173 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 225F63FF434
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 21:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 911FC3FF450
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 21:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347374AbhIBTaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 15:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243515AbhIBTaX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 15:30:23 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE324C061760
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 12:29:24 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id z5so5961890ybj.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 12:29:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6hx1TLChVu3Xib6wqsnsKYGm7+kh5wmG/kTdmIBWwZA=;
-        b=pCy+LvikQOzafTsIDf1jhSBUsaa4z1gSDIb5NPlrmQ0dAU2iDuI+m+meN9VKC30Q5s
-         4n6Usl3d8sfl2KUQwI02L5x3qfh6XFGTNsBg4yQ5vDZnhFRIAEnAMAmbHIqPZqC5c5Lo
-         ok6T67ZxpsaYearZS8C4j7alQ2DeE+FtwjQ+TPDcfiOXdQEfabHbCTFk6brgPY3Ib2g4
-         vumaK+GK5aGj1axDkPs/sNQwNbpXnl8Q/FmiQ3kB7JGT/H/3qmRuAn1Dob7jLdJuJfq3
-         HBDVbF10zguNCTJ9GqY7ys3WgeCYOUtHh7NigmaE5tUvqwdeWDCR/CjsoedT7daQTF3j
-         Aw9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6hx1TLChVu3Xib6wqsnsKYGm7+kh5wmG/kTdmIBWwZA=;
-        b=ZgWlAbkCgtI7rGneinNYcCkvxVvCWTt60aJt3KfslEtsV8tgsnTg3qduQVyzfEC1zK
-         YlYUk/bzuFNbyUlxoSH/A3azM6daggcR8XkPvPFYEnn+P2AUq3VJ2LN7ZRIvgwDwHOdW
-         YwsWdwXTbjxdGmA921fnQ4ej1a5j17hyIcxJBXTx3IyiK0LA1fk1zwf+ZqgGdXwYMddt
-         Qk0NzNvqPO6B+Xq0mFp1fBwdwGpzFFwd0cKxLzdTQ98HbGKeVKonVxqeXizOn6NoEFHS
-         shBW/GviWJyXxPQO0nvEhpj6Y4DVyrYEpsqnNx2MRCnzh9AWkz+nC7id5jPl7IhilzwI
-         Y8cw==
-X-Gm-Message-State: AOAM531vb/0OFh4XTYidNAuLWNJgeuJGtWuZiikG45a3ycJqYOZV4G8v
-        bnYkjNkh9qI4JY3x9yqG40voDfx8In6rBgwVNm8nWA==
-X-Google-Smtp-Source: ABdhPJy2CjO1I67T+PQpg8YLPijsHlOxA6EHAyqe5+JzRgKtib9fvCVULpHBG6yc/KMPxLIkBNOW/ULSCVkrAFwXN8Q=
-X-Received: by 2002:a5b:50b:: with SMTP id o11mr6645741ybp.466.1630610963746;
- Thu, 02 Sep 2021 12:29:23 -0700 (PDT)
+        id S243515AbhIBTny convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 2 Sep 2021 15:43:54 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:48037 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230462AbhIBTnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 15:43:51 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E8C0E240002;
+        Thu,  2 Sep 2021 19:42:48 +0000 (UTC)
+Date:   Thu, 2 Sep 2021 21:42:47 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "Ryan J . Barnett" <ryan.barnett@collins.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 20/40] mfd: ti_am335x_tscadc: Gather the ctrl register
+ logic at one place
+Message-ID: <20210902214247.13243c71@xps13>
+In-Reply-To: <20210830145608.09d7e685@jic23-huawei>
+References: <20210825152518.379386-1-miquel.raynal@bootlin.com>
+        <20210825152518.379386-21-miquel.raynal@bootlin.com>
+        <20210830145608.09d7e685@jic23-huawei>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210902025528.1017391-1-saravanak@google.com>
- <20210902025528.1017391-3-saravanak@google.com> <CAL_JsqJOv7D5nHteGPDKC2+ns1caVNs-NFFJppLuK0OEB8dztQ@mail.gmail.com>
- <CAGETcx-rOakAX_apu2ecu6jWCwzO0RgMkwdfzyF+UaxQfVj4CA@mail.gmail.com> <CAL_Jsq+A1T5+KK5xsVVtrMVeuMre3B6sAAroX+a3gQy6wY+r8A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+A1T5+KK5xsVVtrMVeuMre3B6sAAroX+a3gQy6wY+r8A@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 2 Sep 2021 12:28:47 -0700
-Message-ID: <CAGETcx9wY66TsFX_1rFUO+toE-OpkAvWSdcNVK7M=LYwa6xbAw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 2, 2021 at 12:03 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Sep 2, 2021 at 11:57 AM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Thu, Sep 2, 2021 at 7:24 AM Rob Herring <robh+dt@kernel.org> wrote:
-> > >
-> > > On Wed, Sep 1, 2021 at 9:55 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > We don't want fw_devlink creating device links for bus devices as
-> > > > they'll never probe. So mark those device node with this flag.
-> > > >
-> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > ---
-> > > >  drivers/of/platform.c | 16 ++++++++++++++++
-> > > >  1 file changed, 16 insertions(+)
-> > > >
-> > > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > > > index 74afbb7a4f5e..42b3936d204a 100644
-> > > > --- a/drivers/of/platform.c
-> > > > +++ b/drivers/of/platform.c
-> > > > @@ -392,6 +392,22 @@ static int of_platform_bus_create(struct device_node *bus,
-> > > >         if (!dev || !of_match_node(matches, bus))
-> > > >                 return 0;
-> > > >
-> > > > +       /*
-> > > > +        * If the bus node has only one compatible string value and it has
-> > > > +        * matched as a bus node, it's never going to get probed by a device
-> > > > +        * driver. So flag it as such so that fw_devlink knows not to create
-> > > > +        * device links with this device.
-> > > > +        *
-> > > > +        * This doesn't catch all devices that'll never probe, but this is good
-> > > > +        * enough for now.
-> > > > +        *
-> > > > +        * This doesn't really work for PPC because of how it uses
-> > > > +        * of_platform_bus_probe() to add normal devices. So ignore PPC cases.
-> > > > +        */
-> > > > +       if (!IS_ENABLED(CONFIG_PPC) &&
-> > > > +           of_property_count_strings(bus, "compatible") == 1)
-> > > > +               bus->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
-> > >
-> > > This looks fragile relying on 1 compatible string, and the DT flags in
-> > > this code have been fragile too. I'm pretty sure we have cases of
-> > > simple-bus or simple-mfd that also have another compatible.
-> > >
-> > > Couldn't we solve this with a simple driver?
-> >
-> > Oh, I didn't think you'd like that. I'd lean towards that option too
-> > if we can address some of the other concerns below.
-> >
-> > > Make 'simple-pm-bus'
-> > > driver work for other cases?
-> >
-> > > BTW, this patch doesn't even work for
-> > > simple-pm-bus.
-> >
-> > How do you mean? Because simple-pm-bus already has a driver and
-> > doesn't set "matches" param when it calls of_platform_populate() and
-> > this flag won't be set. So at least for simple-pm-bus I don't see any
-> > issue.
->
-> You're right.
->
-> > I was trying to reuse of_default_bus_match_table without explicitly
-> > referring to it, but if it's confusing I can add a separate list of
-> > compatible strings and use those here instead of using "matches".
->
-> What happens with a non-default table? I'm not sure we can assume the
-> same behavior.
->
-> > > A driver for simple-bus may cause issues if there's a
-> > > more specific driver to bind to as we don't handle that. It's simply
-> > > whichever matches first.
-> >
-> > Right, this is my worry. Especially for devices like this (there are
-> > plenty of cases like this) which have a driver that probes them but
-> > also lists simple-bus
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/arm-realview-pb11mp.dts?id=73f3af7b4611d77bdaea303fb639333eb28e37d7#n299
->
-> Uhh, that one is certainly a leakage of wanting an soc_device in the
-> hierarchy, not any real bus structure reflecting the h/w. I'm not a
-> fan of the soc_device stuff and its optional nature. Everything is an
-> SoC, so it should always be there? Or your device hierarchy should
-> change when you decide to add a soc_device?
->
-> > So as long as there's a compatible string that's not one of the
-> > "transparent" busses, this driver shouldn't match. So, I don't think I
-> > can get away from checking the compatible strings.
-> >
-> > How about I check here to make sure all the "compatible" strings are
-> > from an approved transparent bus list, and if it's true, I use
-> > driver_override to force match it to a transparent bus driver? Would
-> > you be okay with that?
->
-> Can't we do that within a driver? We check this and fail probe if
-> there's a more specific compatible.  Then another driver can match and
-> probe.
+Hi Jonathan,
 
-I was thinking that initially, but if we fail a probe, the driver core
-will permanently give up (won't search further) or might end up
-retrying with the same driver and never get to the other driver. I'll
-send out a v2 with what I described above. It's not too bad and it
-will also allow us to handle the PPC cases (we'll just need to keep
-adding the simple-bus equivalent entries to a table).
+Jonathan Cameron <jic23@kernel.org> wrote on Mon, 30 Aug 2021 14:56:08
++0100:
 
--Saravana
+> On Wed, 25 Aug 2021 17:24:58 +0200
+> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> 
+> > Instead of deriving in the probe and in the resume path the value of the
+> > ctrl register, let's do it only once in the probe, save the value of
+> > this register in the driver's structure and use it from the resume
+> > callback.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>  
+> A few minor things inline.
+> 
+> J
+> 
+> > ---
+> >  drivers/mfd/ti_am335x_tscadc.c       | 31 ++++++++--------------------
+> >  include/linux/mfd/ti_am335x_tscadc.h |  2 +-
+> >  2 files changed, 10 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
+> > index 7071344ad18e..d661e8ae66c9 100644
+> > --- a/drivers/mfd/ti_am335x_tscadc.c
+> > +++ b/drivers/mfd/ti_am335x_tscadc.c
+> > @@ -122,7 +122,7 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+> >  	struct clk *clk;
+> >  	u32 val;
+> >  	int tsc_wires = 0, adc_channels = 0, readouts = 0, cell_idx = 0;
+> > -	int total_channels, ctrl, err;
+> > +	int total_channels, err;
+> >  
+> >  	/* Allocate memory for device */
+> >  	tscadc = devm_kzalloc(&pdev->dev, sizeof(*tscadc), GFP_KERNEL);
+> > @@ -215,22 +215,21 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+> >  	regmap_write(tscadc->regmap, REG_CLKDIV, tscadc->clk_div);
+> >  
+> >  	/* Set the control register bits */
+> > -	ctrl = CNTRLREG_STEPCONFIGWRT |	CNTRLREG_STEPID;
+> > -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> > +	tscadc->ctrl = CNTRLREG_STEPCONFIGWRT | CNTRLREG_STEPID;
+> > +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
+> >  
+> >  	if (tsc_wires > 0) {
+> > -		tscadc->tsc_wires = tsc_wires;
+> > +		tscadc->ctrl |= CNTRLREG_TSCENB;
+> >  		if (tsc_wires == 5)
+> > -			ctrl |= CNTRLREG_5WIRE | CNTRLREG_TSCENB;
+> > +			tscadc->ctrl |= CNTRLREG_5WIRE;
+> >  		else
+> > -			ctrl |= CNTRLREG_4WIRE | CNTRLREG_TSCENB;
+> > +			tscadc->ctrl |= CNTRLREG_4WIRE;
+> >  	}
+> >  
+> >  	tscadc_idle_config(tscadc);
+> >  
+> >  	/* Enable the TSC module enable bit */
+> > -	ctrl |= CNTRLREG_TSCSSENB;
+> > -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> > +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl | CNTRLREG_TSCSSENB);
+> >  
+> >  	/* TSC Cell */
+> >  	if (tsc_wires > 0) {
+> > @@ -305,25 +304,13 @@ static int __maybe_unused tscadc_suspend(struct device *dev)
+> >  static int __maybe_unused tscadc_resume(struct device *dev)
+> >  {
+> >  	struct ti_tscadc_dev *tscadc = dev_get_drvdata(dev);
+> > -	u32 ctrl;
+> >  
+> >  	pm_runtime_get_sync(dev);
+> >  
+> > -	/* context restore */
+> > -	ctrl = CNTRLREG_STEPCONFIGWRT |	CNTRLREG_STEPID;
+> > -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> > -
+> > -	if (tscadc->tsc_wires > 0) {
+> > -		if (tscadc->tsc_wires == 5)
+> > -			ctrl |= CNTRLREG_5WIRE | CNTRLREG_TSCENB;
+> > -		else
+> > -			ctrl |= CNTRLREG_4WIRE | CNTRLREG_TSCENB;
+> > -	}
+> > -	ctrl |= CNTRLREG_TSCSSENB;
+> > -	regmap_write(tscadc->regmap, REG_CTRL, ctrl);
+> > -
+> >  	regmap_write(tscadc->regmap, REG_CLKDIV, tscadc->clk_div);
+> > +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);  
+> 
+> Patch description should mention why this ordering change is here.
+
+I actually moved the patch that reorders things earlier so that the
+reviewer is not bothered by the order changes later on.
+
+> 
+> >  	tscadc_idle_config(tscadc);
+> > +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl | CNTRLREG_TSCSSENB);  
+> 
+> As the value of tscadc->ctrl is not the same as REG_CTRL this is a bit non obvious.
+> 
+> You might be better off keeping them in sync, but masking that bit out and then resetting
+> it as appropriate.
+
+I honestly find more readable doing:
+
+ctrl = flags;
+writel(ctrl);
+writel(ctrl | en_bit);
+
+than
+
+ctrl = flags;
+writel(ctrl & ~en_bit);
+writel(ctrl);
+
+because the second version emphasis the fact that we reset the en_bit
+(which is wrong, the point of this first write is to actually write all
+the configuration but not the en_bit yet) while the first version
+clearly shows that the second write includes an additional "enable bit".
+
+Thanks,
+Miquèl
