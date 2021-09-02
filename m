@@ -2,117 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E693FEB7F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 11:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 702513FEB9D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 11:56:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245720AbhIBJnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 05:43:53 -0400
-Received: from mail-4325.protonmail.ch ([185.70.43.25]:61473 "EHLO
-        mail-4325.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245185AbhIBJnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 05:43:52 -0400
-Date:   Thu, 02 Sep 2021 09:42:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1630575772;
-        bh=xRF9eqv4PKo+kZdEnxZf3slEfaXPEv4ICmGtDtFFhr0=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=wf/2sLr+/ZxXhfe0qyapMX8pS587V7p1N27/s2WJgjM3SOUs+CYlEFEHut78r4LcB
-         JEjb4vIvf6QDTkk4B9UWDfaTgdJm5LqSJOomxhnu12RoDcyHDoBtmIkjZm6x1RzLQo
-         WyIJAWORp36Wf43sqL3Qe6yr/w7XzZnKDuzJK2wQ=
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH v4 1/5] interconnect: qcom: sdm660: Commonize RPM-QoS
-Message-ID: <UQVSYQ.02005O7OLITH3@protonmail.com>
-In-Reply-To: <efafd058-ad68-eb0a-af42-40d879ef63d9@linaro.org>
-References: <20210901121518.152481-1-y.oudjana@protonmail.com> <20210901121518.152481-2-y.oudjana@protonmail.com> <9af0f031-101e-53b4-514e-9ead44320f4e@somainline.org> <efafd058-ad68-eb0a-af42-40d879ef63d9@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+        id S241297AbhIBJ5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 05:57:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233157AbhIBJ5N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 05:57:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5860560525;
+        Thu,  2 Sep 2021 09:56:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630576575;
+        bh=Z8WT93iMfPtGcY/7MRMgThZsMD/TOvlbUhTRN5F/47Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=D6nx9d14dorAF1Ocl3z8akTPeHaEQj9JyJyHjd9S/r+qHN9FTXH1BN/vtD36JZeI0
+         RZW205UVgX/RcfOP61931s611dmJvy7ZnMW2myA1huTvzn8OpBgccKzmYSJmFTz8Bz
+         m9nsuiO37oxEwPtJQDgkjT/a2vH0kn10YESL0mpb8ZU71hYh2nMSfquedxVoeRfABN
+         KzJZhU97h/NVsQETN9PCnXXeYmVC0m5GdXar40mD48jHUTcSncHj76TnohKmcYHQMy
+         v/EKrAeYqgDczAIHcHJ6OOE5XcSVgSGk21Ovsd/v5v+icPrHW9zyeh3lxQ9R831SUs
+         XTM355k1NuIYQ==
+From:   Roger Quadros <rogerq@kernel.org>
+To:     tony@atomide.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        miquel.raynal@bootlin.com, nm@ti.com, lokeshvutla@ti.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v2 0/6] dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
+Date:   Thu,  2 Sep 2021 12:56:03 +0300
+Message-Id: <20210902095609.16583-1-rogerq@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This series converts ti,gpmc memory controller and ti,gpmc-nand and
+ti,gpmc-onenand MTD controller bindings to yaml.
 
-On Thu, Sep 2 2021 at 02:01:59 +0400, Dmitry Baryshkov=20
-<dmitry.baryshkov@linaro.org> wrote:
-> On 01/09/2021 21:48, AngeloGioacchino Del Regno wrote:
->>  Il 01/09/21 14:15, Yassine Oudjana ha scritto:
->>>  SoCs such as MSM8996 also control bus QoS in a similar fashion to=20
->>> SDM660,
->>>  with some paths being controlled by RPM and others directly by the=20
->>> AP.
->>>  Move relevant functions and defines to a new object so that they=20
->>> can
->>>  be used
->>>  in multiple drivers.
->>>=20
->>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>=20
->>  Hey guys!
->>=20
->>  I'm waiting for the interconnect RPM-QoS commonization to be merged=20
->> as I
->>  have fresh
->>  interconnect drivers for MSM8998 and MSM8976, ready to send, that=20
->> are
->>  also using
->>  the very same QoS mechanism as SDM660.
->=20
-> We were also looking onto this. I'd propose to merge sdm660 code into
-> main icc-rpm.c instead of splitting it into separate file. We have
-> enabled QoS for apq8096 (msm8916) and msm8939. See
-> https://lore.kernel.org/linux-arm-msm/20210818015732.1717810-1-dmitry.bar=
-yshkov@linaro.org/
-> for the reference. I'm waiting for Shawn to publish v2 of his fix,=20
-> then
-> I can post v2 of my patchset.
+cheers,
+-roger
 
-I'll wait for your v2 to post v5 of this series then.
-Please add me to Cc when you send it.
+Changelog:
+v2:
+- Fix all errors in dtbs_check and dt_bindings_check
+- remove references to gpmc-omap.txt
+- Convert ti,gpmc-nand and ti,gpmc-onenand bindings to yaml as well
 
->=20
->>=20
->>  Yassine, please check Shawn's recent patches for SDM660=20
->> interconnect,
->>  which are
->>  fixing some bits for the QoS implementation and adding some required
->>  clocks to the
->>  SDM660 interconnect driver.
->>=20
->>  Adding Shawn to the Ccs as to make him aware of this patch;
->>  also adding Marijn and Konrad from SoMainline as probably interested
->>  parties.
->>=20
->>  Cheers!
->>  - Angelo
->=20
->=20
-> --
-> With best wishes
-> Dmitry
+Roger Quadros (6):
+  ARM: dts: omap: Fixup GPMC child nodes
+  dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
+  dt-bindings: mtd: ti,gpmc-nand: Convert to yaml
+  dt-bindings: mtd: ti,gpmc-onenand: Convert to yaml
+  dt-bindings: mtd: Remove gpmc-nor.txt
+  dt-bindings: net: Remove gpmc-eth.txt
 
-Thanks,
-Yassine
+ .../bindings/memory-controllers/omap-gpmc.txt | 157 --------
+ .../bindings/memory-controllers/ti,gpmc.yaml  | 364 ++++++++++++++++++
+ .../devicetree/bindings/mtd/gpmc-nand.txt     | 147 -------
+ .../devicetree/bindings/mtd/gpmc-nor.txt      |  98 -----
+ .../devicetree/bindings/mtd/gpmc-onenand.txt  |  48 ---
+ .../devicetree/bindings/mtd/ti,gpmc-nand.yaml | 109 ++++++
+ .../bindings/mtd/ti,gpmc-onenand.yaml         |  71 ++++
+ .../devicetree/bindings/net/gpmc-eth.txt      |  97 -----
+ .../boot/dts/logicpd-som-lv-baseboard.dtsi    |   2 +-
+ .../boot/dts/logicpd-torpedo-37xx-devkit.dts  |   2 +-
+ .../boot/dts/logicpd-torpedo-baseboard.dtsi   |   2 +-
+ arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi     |  62 ++-
+ arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi     |  59 ++-
+ arch/arm/boot/dts/omap-zoom-common.dtsi       |  16 +-
+ arch/arm/boot/dts/omap2430-sdp.dts            |   6 +-
+ arch/arm/boot/dts/omap3-cm-t3x30.dtsi         |   6 +-
+ .../arm/boot/dts/omap3-devkit8000-common.dtsi |   4 +-
+ arch/arm/boot/dts/omap3-evm-37xx.dts          |   1 +
+ arch/arm/boot/dts/omap3-evm-common.dtsi       |   9 -
+ .../boot/dts/omap3-evm-processor-common.dtsi  |   5 +-
+ arch/arm/boot/dts/omap3-evm.dts               |   1 +
+ arch/arm/boot/dts/omap3-igep0020-common.dtsi  |   5 +-
+ arch/arm/boot/dts/omap3-ldp.dts               |   5 +-
+ arch/arm/boot/dts/omap3-n900.dts              |   2 +-
+ .../dts/omap3-overo-chestnut43-common.dtsi    |   6 +-
+ .../arm/boot/dts/omap3-overo-tobi-common.dtsi |   6 +-
+ .../boot/dts/omap3-overo-tobiduo-common.dtsi  |   8 +-
+ arch/arm/boot/dts/omap3-sb-t35.dtsi           |   4 +-
+ arch/arm/boot/dts/omap4-duovero-parlor.dts    |   6 +-
+ 29 files changed, 649 insertions(+), 659 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-nand.txt
+ delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-nor.txt
+ delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-onenand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/gpmc-eth.txt
 
-
-
+-- 
+2.17.1
 
