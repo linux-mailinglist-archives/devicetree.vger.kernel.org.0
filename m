@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C4D3FED6C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD853FED71
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344088AbhIBMFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 08:05:04 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:46000 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344053AbhIBMFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:03 -0400
-Received: by mail-ot1-f50.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso2112048otv.12;
-        Thu, 02 Sep 2021 05:04:04 -0700 (PDT)
+        id S1344084AbhIBMFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 08:05:12 -0400
+Received: from mail-oo1-f54.google.com ([209.85.161.54]:46736 "EHLO
+        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344053AbhIBMFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:06 -0400
+Received: by mail-oo1-f54.google.com with SMTP id z1-20020a4a2241000000b0028e8dfb83b4so438347ooe.13;
+        Thu, 02 Sep 2021 05:04:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=4lQGZdi5tntA6BsPwhp64eLbrT+gtAQmgNJFN6OA1qc=;
-        b=jLjVa5lHEqSFPKqvfddyIUFFcS373ilLUwdNb/1Z70O/JuenEpzyjTLxXXv5pYj8Bs
-         IwFOIFoUx/zCHfb2azFzc/yH9tcUEhRAMDcq4+vek0SZJczKw+nRWL2+mj6N0ICyVNBw
-         ggtWD8otoLMzY0kyWBV30J2OD07yg+yvwCk/v18e+VlYeRDbqXlaeUyVVMugriFUluN3
-         WZk5G4s+aQyEKjNnBk0Fj6JxsDtAb/pyXyrPJz7aOMC4q+wQg4zR5g2kwPqNt28x/gE3
-         Q5hkVYU86kml4wZnBFel1FCJwQ4XT3iwmaGfItozdx+UgG86506NhLEpa8BPAdvhKKnG
-         c5+g==
-X-Gm-Message-State: AOAM532JG30PStiE8HYi17l6CoaWeipQrVWTr5CVbnY18ibyLVu2ZKEp
-        c6fI4NEm2SoSiiC+FdEkcjns9V8JnQ==
-X-Google-Smtp-Source: ABdhPJxDO5/iYXs1QRVb8yiWOSLcaulTYDEz99hFFV2MOsIg7wgK3bSY+VRAQ8IvzoJN4vdOP41y5g==
-X-Received: by 2002:a9d:3a6:: with SMTP id f35mr2216699otf.144.1630584244536;
-        Thu, 02 Sep 2021 05:04:04 -0700 (PDT)
+        bh=qD/JwvmqRBtS1XdZshoHnEAUu284adMYEp3tjodfyAg=;
+        b=el7nXiuSnVs4aLA3aC3ZkBTOmYt+7k5ZSK8chO6g1XujwL2yRPUNZzXO3xjqnqAYQL
+         fTaHpA/zI2nyLGXTtTj4LK/gCpWuRpeuydoBRUt50Xo4alnYyftv9HfFWfhzNoWo0k8P
+         RQjzMyKCEHUptOd3eqUJyuNxYiuohvZHNi7vOP9JqDmTU4Q6QhkTBjRuUm2/Fht5c3Ss
+         qp+iMqZ0rGTVI1Bvnm/j5HYf4gji+IQRztc/a6p/6MKO/spC+KzlxPiAxQRg2PfThoYF
+         e0/S/sdJJkA18AlTo33yi2xhUK7IbZ9lGuf1CEcXYGUlIukqFjQIO+PC67m9JhQi8jOz
+         z+Hw==
+X-Gm-Message-State: AOAM533gW2VOcZFwf7IrS0tESHfCQgQIpzkI2gWHKIKfT4VOUSq4ialN
+        +koULtXBYCDOAKO5xhjIwA==
+X-Google-Smtp-Source: ABdhPJx7f7/UQ6LovDjZ3k53D0TtryTlyUn40DyyPDvW82pU9Syq5rwgwEEGeA8B9B9Vweocahgwlg==
+X-Received: by 2002:a4a:e3cf:: with SMTP id m15mr2270879oov.21.1630584248058;
+        Thu, 02 Sep 2021 05:04:08 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 97sm302317otv.26.2021.09.02.05.04.03
+        by smtp.gmail.com with ESMTPSA id y7sm329001oov.36.2021.09.02.05.04.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 05:04:04 -0700 (PDT)
-Received: (nullmailer pid 685605 invoked by uid 1000);
+        Thu, 02 Sep 2021 05:04:07 -0700 (PDT)
+Received: (nullmailer pid 685599 invoked by uid 1000);
         Thu, 02 Sep 2021 12:03:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     devicetree@vger.kernel.org, nm@ti.com,
-        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
-        lokeshvutla@ti.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, miquel.raynal@bootlin.com,
-        tony@atomide.com, linux-kernel@vger.kernel.org
-In-Reply-To: <20210902095609.16583-3-rogerq@kernel.org>
-References: <20210902095609.16583-1-rogerq@kernel.org> <20210902095609.16583-3-rogerq@kernel.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Yu Chen <chenyu56@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mauro.chehab@huawei.com,
+        John Stultz <john.stultz@linaro.org>, linuxarm@huawei.com,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <f81388b12162702b925bf1a7d97836982b5cd785.1630498020.git.mchehab+huawei@kernel.org>
+References: <cover.1630498020.git.mchehab+huawei@kernel.org> <f81388b12162702b925bf1a7d97836982b5cd785.1630498020.git.mchehab+huawei@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: misc: add schema for USB hub on Kirin devices
 Date:   Thu, 02 Sep 2021 07:03:59 -0500
-Message-Id: <1630584239.117607.685604.nullmailer@robh.at.kernel.org>
+Message-Id: <1630584239.088885.685598.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Sep 2021 12:56:05 +0300, Roger Quadros wrote:
-> Convert omap-gpmc.txt to ti,gpmc.yaml.
+On Wed, 01 Sep 2021 14:23:37 +0200, Mauro Carvalho Chehab wrote:
+> From: Yu Chen <chenyu56@huawei.com>
 > 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> This patch adds binding documentation to support USB HUB and
+> USB data role switch of HiSilicon HiKey960 and HiKey970 boards.
+> 
+> [mchehab: updated OF schema and added HiKey970 example]
+> Signed-off-by: Yu Chen <chenyu56@huawei.com>
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  .../bindings/memory-controllers/omap-gpmc.txt | 157 --------
->  .../bindings/memory-controllers/ti,gpmc.yaml  | 364 ++++++++++++++++++
->  .../devicetree/bindings/mtd/gpmc-nand.txt     |   2 +-
->  .../devicetree/bindings/mtd/gpmc-nor.txt      |   4 +-
->  .../devicetree/bindings/mtd/gpmc-onenand.txt  |   2 +-
->  .../devicetree/bindings/net/gpmc-eth.txt      |   4 +-
->  6 files changed, 370 insertions(+), 163 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+>  .../bindings/misc/hisilicon,hikey-usb.yaml    | 108 ++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -73,11 +72,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/memory-controllers/ti,gpmc.example.dt.yaml:0:0: /example-0/memory-controller@50000000/nand@0,0: failed to match any schema with compatible: ['ti,omap2-nand']
+Error: Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.example.dts:41.23-24 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1419: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1523568
+See https://patchwork.ozlabs.org/patch/1523123
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
