@@ -2,163 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3443FF761
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 00:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A283FF777
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 00:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348323AbhIBWsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 18:48:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347886AbhIBWsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 18:48:46 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F989C061757
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 15:47:47 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id 2so2796127pfo.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 15:47:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jy5ANyWb/YcsFMt8C4Et+c6YxLRytJdAR1KKLj19Z3s=;
-        b=UfgKb8qxp9a5x/tN93DBp6cPxbGhMDB+zOi3444jB2OxZCm+weqtFmT0Qp0vVvuy1g
-         C/486g65I0H95AVs90kY1+s0oYH7d5nvzC9v8xkgA5vGdyLO2GtYDDfLTWjDDBpbtX3o
-         DJw0sYlPuSR3DS4dfW7kLZSAwhJaHWZyvPusI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Jy5ANyWb/YcsFMt8C4Et+c6YxLRytJdAR1KKLj19Z3s=;
-        b=qJoHGTm4wlqW4gv0V0wOXqG1oPPa6zZwSvbno3gDVvUOUtOgwEsHv86abvaPZ8hxDN
-         14dLyrC8T7QX527+oIZjWfbmOEK6q6IRCGsCsa8v+pJ0UHQojblo3UuRNSPAYBWArqL/
-         bua7p/4W99sgkTTl73sdKMvItfoYUx/pWiw3VZJUEKlZqdDsJXsGd9jO5CiSWfzD45pE
-         drzEK9F8fuLkfjndviBFNuTP7BG4kEdZnWyot2lkPhQ4+Kzjb1awjFdqYqEhak2IbK4w
-         esb+jBZF4UfzMohMN4ncsycvCwyc10fQS9kKTin0mNuHV5LYR1SqEF6rzcmxfgfHQ7Js
-         QMeQ==
-X-Gm-Message-State: AOAM533shuGN69CZiRCsIM9KknxaE5GW9O3wrGCJWlqHA0ZoeATG5VAt
-        flNh7xQ+vgSE5N8/ck9pjhFhgQ==
-X-Google-Smtp-Source: ABdhPJy+Wb0gJfRDBhYb9HK63RyiYASdFVz6IgbPQFrlQt+oowLxrFCdOCAzIiP1Flu30w7gT+IoOQ==
-X-Received: by 2002:a05:6a00:23cf:b0:3e2:4622:da6d with SMTP id g15-20020a056a0023cf00b003e24622da6dmr491338pfc.18.1630622867065;
-        Thu, 02 Sep 2021 15:47:47 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:76ac:d178:a633:4fb5])
-        by smtp.gmail.com with UTF8SMTPSA id lw14sm2895715pjb.48.2021.09.02.15.47.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Sep 2021 15:47:46 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] arm64: dts: qcom: sc7180-trogdor: Delete ADC config for unused thermistors
-Date:   Thu,  2 Sep 2021 15:47:44 -0700
-Message-Id: <20210902154711.1.I9777d0036ecbb749a4fb9ebb892f94c6e3a51772@changeid>
-X-Mailer: git-send-email 2.33.0.153.gba50c8fa24-goog
+        id S232464AbhIBW6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 18:58:54 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:38897 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232013AbhIBW6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 18:58:53 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id B432F2B00053;
+        Thu,  2 Sep 2021 18:57:53 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Thu, 02 Sep 2021 18:57:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=qq4KILFhNX+2NAhG1FBp30Jzcd
+        dxrR8B8njvflWfJ6A=; b=KhShorhRUwKNfiawh29mCc5Sv+rnnfMFOqqAzye8/r
+        tv2aNK9UoS/Q48AtWMqbmyxt2GQJsqm0qKOdMrT3o0eh6n7DoBVPDg+gNj6V+BGk
+        tx9+MgUJbO3efNX+PCuABuuR6D/uQNaNim/14EN28dqpz4AQ4pZiMBa5BNV1vMlB
+        4rfn1/cXzlrY+4fQnaA6V/0NxgA/hACqFGv6WuZ0511bTldm2OIZgNeGXp+eAoQq
+        IQ9IMnfy97bVsGyDcdJ1agsLcX8dl+Bm9L92b7JmHeN1cy3r1ugc2UiIjxjQRZGj
+        UyydlLz24SlPVST3oO/76/t2XNRtDnIamyvKziXt+JAQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=qq4KILFhNX+2NAhG1
+        FBp30JzcddxrR8B8njvflWfJ6A=; b=YfpSJUlsU3ac/rsKwHUdmgZnaBmcSumEf
+        dtP1E/xsAz3iapA8mYEE0HNqxAsEH2PlRmtDjNN51OGpr1ggrBHBTKeDXk8JwEd7
+        vDEmDzyPRqfQMe78ZZpg3R/n+GD1M8CYN8ZdWVwOR3OZlWWCMC5mZZl+9dkCZFzJ
+        rsTrde6b4LhJjCV4QF2Angai8gmdtf0Uut8XiMgftKunNvRv1QGiWh9L/lXJm570
+        OLort5l+sUXwXu12T8e0RxpmOaD1b7+o4M50AwcDBRsU8FUmnsqCL/V1DIk1VG6y
+        5oe3An2PJ1kJd/jPH/uF7bc+uNLTf+PVEwCs4ESXxjshevpDFVgEw==
+X-ME-Sender: <xms:71YxYR-73ia2Hwla52-EYzCtHeJQdoMC5g33vOSmL3f0E66EfPtsNw>
+    <xme:71YxYVuifVNyfZz1Ak6VjLSevtEwGqS7kM0k0GhMdkPZbjz1kf61ssw9Mm-tBSvo1
+    y71TtCv6Lzkkvdghw>
+X-ME-Received: <xmr:71YxYfA6oPnnIm1A9ZMHB-rF7Zt-RBnM61OWzILP6OYsQDNIEfqRYMK1OuBWPKfxc--GoaeurmLkomb4fJt-BXEDvCIkMhMWJCdNcb2kuYKGIzMSVdD47ZA-oW4oo2hazUe85g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddviedgudejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:71YxYVckUPhwQ5xAJwnCdzEzPnRFh2XCcKI1a5nEhKSBIPZRHXxc6A>
+    <xmx:71YxYWNnPengs6f9ne6TIukFYz3Qm2rdyPbDoPVWfUy_KXHJHCjxxw>
+    <xmx:71YxYXmTMiRMiUFPSinOmgjV0xZmnPVlD_UMKf1vq7AiCgRYd_kKMg>
+    <xmx:8VYxYXl2aAcVg8ONqX91NFi5mcFZBXRgcI0oMNbpGdCDH1B9jdJz7yjBkFA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 2 Sep 2021 18:57:51 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v3 0/3] Allwinner R329 and D1 watchdog support
+Date:   Thu,  2 Sep 2021 17:57:47 -0500
+Message-Id: <20210902225750.29313-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The charger thermistor on Lazor, CoachZ rev1 and Pompom rev1+2 is
-either the wrong part or not stuffed at all, the same is true for
-the skin temperature thermistor on CoachZ rev1. The corresponding
-thermal zones are already disabled for these devices, in addition
-delete the ADC nodes of the thermistors.
+This series adds bindings and driver support for the R329 and D1
+watchdogs. The R329 is fully backward-compatible, so no driver changes
+are needed for it.
 
-For Lazor and CoachZ rev1 also disable the PM6150 ADC thermal
-monitor since there are no other temperatures to monitor.
+v3 of this series adds two new compatibles, as I discovered that the
+immediate "soft reset" functionality was specific to the watchdog that
+is part of the same block as the sun4i timer, and is not available in
+the RISC-V or DSP watchdog instances.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+My intention is to use the soft reset function as OpenSBI's system reset
+backend, so it needs to know which watchdog instance has that feature.
 
- .../arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts | 12 ++++++++++++
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi   | 10 ++++++++++
- .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts |  8 ++++++++
- .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts |  8 ++++++++
- 4 files changed, 38 insertions(+)
+Samuel Holland (3):
+  dt-bindings: watchdog: sunxi: Add compatibles for R329
+  dt-bindings: watchdog: sunxi: Add compatibles for D1
+  watchdog: sunxi_wdt: Add support for D1
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-index 21b516e0694a..edfcd47e1a00 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-@@ -23,6 +23,18 @@ &charger_thermal {
- 	status = "disabled";
- };
- 
-+&pm6150_adc {
-+	/delete-node/ skin-temp-thermistor@4e;
-+	/delete-node/ charger-thermistor@4f;
-+};
-+
-+&pm6150_adc_tm {
-+	status = "disabled";
-+
-+	/delete-node/ charger-thermistor@0;
-+	/delete-node/ skin-temp-thermistor@1;
-+};
-+
- /*
-  * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
-  * which currently is not supported by the PM6150 ADC driver. Disable the
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index 00535aaa43c9..57f7b19f83b0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -54,6 +54,16 @@ &panel {
- 	compatible = "boe,nv133fhm-n62";
- };
- 
-+&pm6150_adc {
-+	/delete-node/ charger-thermistor@4f;
-+};
-+
-+&pm6150_adc_tm {
-+	status = "disabled";
-+
-+	/delete-node/ charger-thermistor@0;
-+};
-+
- &trackpad {
- 	interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-index e122a6b481ff..76a130bad60a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-@@ -26,6 +26,14 @@ &charger_thermal {
- 	status = "disabled";
- };
- 
-+&pm6150_adc {
-+	/delete-node/ charger-thermistor@4f;
-+};
-+
-+&pm6150_adc_tm {
-+	/delete-node/ charger-thermistor@0;
-+};
-+
- &pp3300_hub {
- 	/* pp3300_l7c is used to power the USB hub */
- 	/delete-property/regulator-always-on;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
-index 4f32e6733f4c..88cf2246c18a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
-@@ -22,3 +22,11 @@ / {
- &charger_thermal {
- 	status = "disabled";
- };
-+
-+&pm6150_adc {
-+	/delete-node/ charger-thermistor@4f;
-+};
-+
-+&pm6150_adc_tm {
-+	/delete-node/ charger-thermistor@0;
-+};
+ .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 48 ++++++++++++++++++-
+ drivers/watchdog/sunxi_wdt.c                  | 20 +++++++-
+ 2 files changed, 66 insertions(+), 2 deletions(-)
+
 -- 
-2.33.0.153.gba50c8fa24-goog
+2.31.1
 
