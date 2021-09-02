@@ -2,149 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B59B13FE9AC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 09:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1BC3FEAEB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 11:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242148AbhIBHFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 03:05:50 -0400
-Received: from pi.codeconstruct.com.au ([203.29.241.158]:53068 "EHLO
-        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242126AbhIBHFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 03:05:49 -0400
-Received: from [172.16.66.18] (unknown [49.255.141.98])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E01AA20164;
-        Thu,  2 Sep 2021 15:04:48 +0800 (AWST)
-Message-ID: <513cb05f8d83d08a5c1e491dc0a9b6784195e7dd.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v4 3/4] soc: aspeed: Add eSPI driver
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc:     Morris Mao <morris_mao@aspeedtech.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-Date:   Thu, 02 Sep 2021 15:04:47 +0800
-In-Reply-To: <HK0PR06MB37792273A075533C2570002391CE9@HK0PR06MB3779.apcprd06.prod.outlook.com>
-References: <20210901033015.910-1-chiawei_wang@aspeedtech.com>
-         <20210901033015.910-4-chiawei_wang@aspeedtech.com>
-         <20c13b9bb023091758cac3a07fb4037b7d796578.camel@codeconstruct.com.au>
-         <HK0PR06MB37792273A075533C2570002391CE9@HK0PR06MB3779.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S244902AbhIBJDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 05:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244806AbhIBJDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 05:03:32 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C62C061760
+        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 02:02:34 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id i28so2227659ljm.7
+        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 02:02:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qZWfMSX8wMAWulFpFk0yumlnd8aLSAYEODrPThO+hW0=;
+        b=ctOuK49ceAh0izIbXBGFKtYK3umKm395+zOvmxODultMDVBXDumAtSV4us9u/GtX8f
+         zANgiH/F6HpXzEI54iHJz4+6o81Tqbowx0vFtPdwIbsbxurzrmN98UtGkPvwzBJ5FZ6c
+         D4bf4vWVBQ0627tlmzlA58vLbGHFkFaive6GSlEgpviV1Z7EV5KUA0E34ApzxZ2rFbVN
+         caeS38SXdDtGfXwxIjgy3R05Puo8i+PM065QlF082mTQuOCrfs5HhJFBaaY3jX6WR8lP
+         +qKhF7Xonfed3APeeUfUusSkR3Wq/1kpbkEshbAlBfoqg9ZfG0wUSp06dXM/RyrlO1wt
+         jQuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qZWfMSX8wMAWulFpFk0yumlnd8aLSAYEODrPThO+hW0=;
+        b=O7+mVM8cFArEubcoO7UEJx1QkdjmYtN+jWIluuLx6hCOEf3xsZpuzJZ72ZsA3fB7kk
+         wpeMn0+5H1JFFIy5SLwRiAAh1+kv8qbwSrjO1IqMm1/Y5dpsLmElp0cmBQlmvTLhELdW
+         ADGfEKRV3aSBxrybCAQcCY07j16e/996AmAyKXuMahfkVU9hpn1SGaAgQjomgqi7X02f
+         0hz57cZzK7ARbQTLABm3lWak8WjQmtkjWGbLkPq/eDT7GrGFUeVbozWe6wB4yQC4w8Bf
+         9NOVfJrUO3HoSFULFdHxcqLH/NV38fm+1U78NZFZZoYasyclm1MM0i9ME1TvSeMzQPBg
+         myDw==
+X-Gm-Message-State: AOAM532sKCiqh9X+RoI6l/xPhhx/7zaYAPzd8fIvV/+oFfAC1hZAh8U9
+        /zjna3pckjJFRhMgrZyHsGZ1wQ==
+X-Google-Smtp-Source: ABdhPJxC9FL/CE2Uc0dvquHeUzF6/9Ta3W9YEHISvKYopat1t+96pMvVAuHGdEZ6lz4F1h2PDEdjFw==
+X-Received: by 2002:a2e:86ce:: with SMTP id n14mr1588757ljj.421.1630573352628;
+        Thu, 02 Sep 2021 02:02:32 -0700 (PDT)
+Received: from localhost.localdomain (h-155-4-129-146.NA.cust.bahnhof.se. [155.4.129.146])
+        by smtp.gmail.com with ESMTPSA id t12sm137590lfg.151.2021.09.02.02.02.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Sep 2021 02:02:31 -0700 (PDT)
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] of: property: fw_devlink: Fixup behaviour when 'node_not_dev' is set
+Date:   Thu,  2 Sep 2021 11:02:21 +0200
+Message-Id: <20210902090221.820254-1-ulf.hansson@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chiawei,
+In the struct supplier_bindings the member 'node_not_dev' is described as
+"The consumer node containing the property is never a device.", but that is
+inconsistent with the behaviour of the code in of_link_property(), as it
+calls of_get_compat_node() that starts parsing for a compatible property
+from the node it gets passed to it. The proper behaviour is to start at the
+node's parent, so let's do that.
 
-> The eSPI on BMC side is a slave device. Most of time it listen to the
-> Host requests and then react.
-> This makes it not quite fit to interfaces that act as a master role.
+While at it, let's take the opportunity to update the description of the
+'node_not_dev' flag, as to clarify its purpose.
 
-That's a good point, but I don't think it precludes using existing
-interfaces.
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+ drivers/of/property.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-> > 1) The VW channel is essentially a GPIO interface, and we have a
-> > kernel    subsystem to expose GPIOs. We might want to add additional
-> > support    for in-kernel system event handlers, but that's a minor
-> > addition that    can be done separately if we don't want that
-> > handled by a gpio    consumer in userspace.
-> 
-> eSPI VW channel can be used to forward a byte value to/from GPIO.
-
-I'm not referring to the hardware GPIOs that can be connected here,
-rather the logic values represented over the VW channel. The eSPI master
-is transferring IO states over the channel, and we could represnt those
-on the BMC side as "virtual" GPIOs.
-
-If that model doesn't fit though, that's OK, but I think we need some
-rationale there.
-
-> > 
-> > 2) The out-of-band (OOB) channel provides a way to issue SMBus
-> >    transactions, so could well provide an i2c controller interface.
-> >    Additionally, the eSPI specs imply that this is intended to
-> > support
-> >    MCTP - in which case, you'll *need* a kernel i2c controller
-> > device to
-> >    be able to use the new kernel MCTP stack.
-> 
-> Could you share us more information about the i2c need of kernel MCTP
-> kernel stack?
-
-The currently proposed mctp-i2c interface driver binds to a kernel i2c
-device. If you expose a kernel i2c device here, we can connect that as
-an MCTP interface.
-
-With the packet interface proposed here, we can't do that, and would
-need a whole new driver for this, implemented in userspace. The same
-would apply to any other usage of the i2c bus (EEPROM access, etc).
-
-> > 3) The flash channel exposes read/write/erase operations, which
-> > would be
-> >    much more useful as an actual flash-type device, perhaps using
-> > the
-> >    existing mtd interface? Or is there additional functionality
-> >    expected for this?
-> 
-> The flash channel works in either the Master Attached Flash Sharing
-> (MAFS) or Slave Attached Flash Sharing (SAFS) mode.
-> 
-> For MAFS, BMC issues eSPI flash R/W/E packets to the Host.
-> In this case, it may fit into the MTD interface.
-> 
-> For SAFS (mostly used), BMC needs to listen, parse and filter eSPI
-> flash R/W/E packets from the Host.
-> And then send replies in the eSPI success/unsuccess completion packet
-> format.
-> This behaves differently from MTD.
-> 
-> To support both the two scenario, the MTD interface might not be
-> suitable.
-
-OK, that makes sense. In this case the BMC is acting as the virtual
-flash device, right?
-
-> > 4) The peripheral channel is the only one that would seem to require
-> > arbitrary cycle access, but we'll still need a proper uapi
-> > definition to support that. At the minimum, your ioctl definitions
-> > should go under include/uapi/ - you shouldn't need to duplicate the
-> > header into each userspace repo, as you've done for the test
-> > examples.
-> 
-> In the first submission, I was told that the include/uapi patch is
-> not going to be accepted.
-
-This is what you were told in the v1 submission:
-
-> >  create mode 100644 include/uapi/linux/aspeed-espi.h
->
-> This userspace interface is not going to be accepted upstream.
-
-It sees like that was a comment about the API itself, not the location
-of the header (Rob, correct me if I'm wrong). Simply moving the header
-out of the uapi directory, while retaining the same API, is not a
-solution to this.
-
-> In summary, considering the various applications that might be
-> constructed upon eSPI transaction,
-> we thought that the raw packet paradigm might be the first step to
-> start with.
-
-Keep in mind that you're creating a kernel ABI here, which has to stay
-in place forever - even if it's the first step to something else, we
-cannot break future compatibility.
-
-Regards,
-
-
-Jeremy
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 6c028632f425..a94d007be416 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1075,6 +1075,17 @@ static struct device_node *of_get_compat_node(struct device_node *np)
+ 	return np;
+ }
+ 
++static struct device_node *of_get_compat_node_parent(struct device_node *np)
++{
++	struct device_node *parent, *node;
++
++	parent = of_get_parent(np);
++	node = of_get_compat_node(parent);
++	of_node_put(parent);
++
++	return node;
++}
++
+ /**
+  * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
+  * @con_np: consumer device tree node
+@@ -1249,7 +1260,9 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
+  * @parse_prop.index: For properties holding a list of phandles, this is the
+  *		      index into the list
+  * @optional: Describes whether a supplier is mandatory or not
+- * @node_not_dev: The consumer node containing the property is never a device.
++ * @node_not_dev: The consumer node containing the property is never converted
++ *		  to a struct device. Instead, parse ancestor nodes for the
++ *		  compatible property to find a node corresponding to a device.
+  *
+  * Returns:
+  * parse_prop() return values are
+@@ -1416,7 +1429,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
+ 			struct device_node *con_dev_np;
+ 
+ 			con_dev_np = s->node_not_dev
+-					? of_get_compat_node(con_np)
++					? of_get_compat_node_parent(con_np)
+ 					: of_node_get(con_np);
+ 			matched = true;
+ 			i++;
+-- 
+2.25.1
 
