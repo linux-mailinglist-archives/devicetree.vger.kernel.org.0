@@ -2,99 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29E9D3FEF68
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 16:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E6A3FEF95
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 16:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234283AbhIBOZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 10:25:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41338 "EHLO mail.kernel.org"
+        id S1345452AbhIBOlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 10:41:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43702 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345318AbhIBOZl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Sep 2021 10:25:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 35B16610A4;
-        Thu,  2 Sep 2021 14:24:42 +0000 (UTC)
+        id S1345405AbhIBOlR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 10:41:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3D6860BD3;
+        Thu,  2 Sep 2021 14:40:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630592682;
-        bh=8Q26juGy7jduIrtBN/cCky6QYZFj3PapNW4w/N2c58A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MfSV52wFAuVERyUEr7ffSXU2OWRVhIHVwUF/DBjm6//ZPMP2omLe9EgMjfeybJoY9
-         JxMBMKfrVfCJLRcXeO7r1Xq2jL/xRrCiEJZQQrBxLyIos/09gukp93iPF6GTtfpohX
-         ymSe81lXKn/90vujjv2rzeszJP5oWVuGgAlSHPn3oHRRVtKsvJgkm3LFjbyGQ8so19
-         ZtK6Mf9r4RPhM9GEV/QASooW1f5H+9z0Tzt4e7xptfrQuhRJL+GSqLkF6K5bvTjMwL
-         m9ZEgP84FfrMGNTA/pqJSPne8/oWRkNK4x7+BVGOjy/GBXUi8JxYQn95XlgOqA7iJ+
-         HwAGKsh2NwqQg==
-Received: by mail-ej1-f49.google.com with SMTP id bt14so4819282ejb.3;
-        Thu, 02 Sep 2021 07:24:42 -0700 (PDT)
-X-Gm-Message-State: AOAM530FRted8ehtHP8Yjx7V6L+OCpD29ZC2K7E/9CYmx/VHmW8chsqo
-        z6oVoDhs6YBADyvW2lE1h/Bflt6A6HXPeXIpkg==
-X-Google-Smtp-Source: ABdhPJz9Tk3bwAY6hO392hOhhtrO5ROiJlUdHl3FFlHcLzA/kgLn0bakgc+4FtEgu5wnu4BPjOGkeSqX0QjO50Xt+0A=
-X-Received: by 2002:a17:906:8cd:: with SMTP id o13mr4136037eje.341.1630592680828;
- Thu, 02 Sep 2021 07:24:40 -0700 (PDT)
+        s=k20201202; t=1630593619;
+        bh=ecmU1nlRZYPspOA+dcNklCLT1a4QmdQBNB1z1TKgWEY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DkqYaudVpge5kJGtjRZNK2il+wSV0t9N1blFY0XtjhMXlb6c5CQPhbvPcjvR3dxXp
+         zVnys4zJPCJtKV/MKyNNcMw9NWedpzV9nHvQ0vdJ5bSF1qJC7sqWvV8lUTIo+dh4Td
+         EqvrNoJjRfuWrqSEBFXZ1kMDTMd6iAE2i164pil59RqerwGWGfWnvJAaDWSZodSKj5
+         XHKgQrCVedRG0Bz0v890uiw23IB507Z2pSEd0I1S4TdPlhplzVZot2CwnW1tfbjwXl
+         jPujoEKIVLgbXONgUwuzBudM8cRxpE8zLKAokTOBOLVufmRqt1/df7rp4fh1aepzFG
+         vxafYeG2CyV+g==
+Date:   Thu, 2 Sep 2021 15:39:47 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Parshuram Thombare <pthombar@cadence.com>
+Cc:     lukas@wunner.de, p.yadav@ti.com, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jpawar@cadence.com,
+        mparab@cadence.com, Konrad Kociolek <konrad@cadence.com>
+Subject: Re: [PATCH v3 2/2] spi: cadence: add support for Cadence XSPI
+ controller
+Message-ID: <20210902143947.GC11164@sirena.org.uk>
+References: <1630499755-18751-1-git-send-email-pthombar@cadence.com>
+ <1630499858-20456-1-git-send-email-pthombar@cadence.com>
 MIME-Version: 1.0
-References: <20210902025528.1017391-1-saravanak@google.com> <20210902025528.1017391-3-saravanak@google.com>
-In-Reply-To: <20210902025528.1017391-3-saravanak@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 2 Sep 2021 09:24:29 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJOv7D5nHteGPDKC2+ns1caVNs-NFFJppLuK0OEB8dztQ@mail.gmail.com>
-Message-ID: <CAL_JsqJOv7D5nHteGPDKC2+ns1caVNs-NFFJppLuK0OEB8dztQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tqI+Z3u+9OQ7kwn0"
+Content-Disposition: inline
+In-Reply-To: <1630499858-20456-1-git-send-email-pthombar@cadence.com>
+X-Cookie: Famous last words:
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 9:55 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> We don't want fw_devlink creating device links for bus devices as
-> they'll never probe. So mark those device node with this flag.
->
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/of/platform.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 74afbb7a4f5e..42b3936d204a 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -392,6 +392,22 @@ static int of_platform_bus_create(struct device_node *bus,
->         if (!dev || !of_match_node(matches, bus))
->                 return 0;
->
-> +       /*
-> +        * If the bus node has only one compatible string value and it has
-> +        * matched as a bus node, it's never going to get probed by a device
-> +        * driver. So flag it as such so that fw_devlink knows not to create
-> +        * device links with this device.
-> +        *
-> +        * This doesn't catch all devices that'll never probe, but this is good
-> +        * enough for now.
-> +        *
-> +        * This doesn't really work for PPC because of how it uses
-> +        * of_platform_bus_probe() to add normal devices. So ignore PPC cases.
-> +        */
-> +       if (!IS_ENABLED(CONFIG_PPC) &&
-> +           of_property_count_strings(bus, "compatible") == 1)
-> +               bus->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
 
-This looks fragile relying on 1 compatible string, and the DT flags in
-this code have been fragile too. I'm pretty sure we have cases of
-simple-bus or simple-mfd that also have another compatible.
+--tqI+Z3u+9OQ7kwn0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Couldn't we solve this with a simple driver? Make 'simple-pm-bus'
-driver work for other cases? BTW, this patch doesn't even work for
-simple-pm-bus. A driver for simple-bus may cause issues if there's a
-more specific driver to bind to as we don't handle that. It's simply
-whichever matches first.
+On Wed, Sep 01, 2021 at 02:37:38PM +0200, Parshuram Thombare wrote:
 
-Rob
+> +++ b/drivers/spi/spi-cadence-xspi.c
+> @@ -0,0 +1,837 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Cadence XSPI flash controller driver
+
+Please make the entire comment a C++ so things look more intentional.
+
+> +static int cdns_xspi_setup(struct spi_device *spi_dev)
+> +{
+> +	if (spi_dev->chip_select > spi_dev->master->num_chipselect) {
+> +		dev_err(&spi_dev->dev,
+> +			"%d chip-select is out of range\n",
+> +			spi_dev->chip_select);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+
+The core already validates this, are you seeing it happen?  If so we
+should fix the core and either way just remove setup() entirely.
+
+> +	if (irq_status) {
+> +		writel(irq_status,
+> +		       cdns_xspi->iobase + CDNS_XSPI_INTR_STATUS_REG);
+> +
+> +		if (irq_status & CDNS_XSPI_SDMA_ERROR) {
+> +			dev_err(cdns_xspi->dev,
+> +				"Slave DMA transaction error\n");
+> +			cdns_xspi->sdma_error = true;
+> +			complete(&cdns_xspi->sdma_complete);
+> +		}
+> +
+> +		if (irq_status & CDNS_XSPI_SDMA_TRIGGER)
+> +			complete(&cdns_xspi->sdma_complete);
+> +
+> +		if (irq_status & CDNS_XSPI_STIG_DONE)
+> +			complete(&cdns_xspi->cmd_complete);
+> +
+> +		result = IRQ_HANDLED;
+> +	}
+
+We will just silently ignore any unknown interrupts here.  It would be
+better to either only ack known interrupts (so genirq can notice if
+there's a problem with other interrupts) or at least log that we're
+seeing unexpected interrupts.  The current code will cause trouble if
+this is deployed in a system with the interrupt line shared (which the
+driver claims to support), or if something goes wrong and the IP starts
+asserting some interrupt that isn't expected.
+
+> +	master->mode_bits = SPI_3WIRE | SPI_TX_DUAL  | SPI_TX_QUAD  |
+> +		SPI_RX_DUAL | SPI_RX_QUAD | SPI_TX_OCTAL | SPI_RX_OCTAL |
+> +		SPI_MODE_0  | SPI_MODE_3;
+
+I don't see any handling of these in the code?
+
+--tqI+Z3u+9OQ7kwn0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEw4jIACgkQJNaLcl1U
+h9AeUQf6AvUcJyMqWKj/l9liaSVcRZB8sz8grFHG9p3vohD8YWJt4amXrdROzZnh
+teF3YX3NNdwkwiETqbzGyrC3qtcRr+AfC9xMIT2FmBVqlJ+o+g12tR1PFbGh8EBC
+NqlakHDEordBCGefUf+aZ9PQcXviyH2fU1xxzlrUNKh9OTMY1GeOB5sFebTg+hRi
+De59eLn6ArWy9NmQvPvl4R99/AlwvoWiQ92AM2ymCt6PFCTxc8ujNKUU/xfx9XmK
+ov6Fmt8FAUN/baGLqn27rpByXUZDC6I5knFc433K+aiilr0jFka6g05iEvcs2/H3
+2AfVv0MV7appwxAgIRJCQ+tN+BiugQ==
+=ypa/
+-----END PGP SIGNATURE-----
+
+--tqI+Z3u+9OQ7kwn0--
