@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5991C3FED6F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C4D3FED6C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344114AbhIBMFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 08:05:06 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:41582 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344084AbhIBMFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:05 -0400
-Received: by mail-oi1-f181.google.com with SMTP id 6so2179330oiy.8;
-        Thu, 02 Sep 2021 05:04:06 -0700 (PDT)
+        id S1344088AbhIBMFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 08:05:04 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:46000 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344053AbhIBMFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:03 -0400
+Received: by mail-ot1-f50.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso2112048otv.12;
+        Thu, 02 Sep 2021 05:04:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1BhybqLO/xSxTonTmG4+ysFiC+EsbInsMivl7h+IPwc=;
-        b=nho1VdkKJjEQmd/v+S/i7QPNFMaXptKMhpwWQsP8DWcQ0kaepjOhWYkswpvA0V0lbe
-         +HHmhgz+j/Q29Hc82XMthnqJq2upQ8n8Yq5Cr4l/UEvL0JPJyAWu3/Iwt1UPs5LotFrv
-         xfjx+RD5fPcqrE8ZKA8k19go6bdeviymhftnllHK2MUCE4fHh0EJ4798NJiTDwfQF5qE
-         grbcPHXI5ZXwSDszV2PBSVY+lXq2fYCdM9As3VsSV6NUjlkXXTn3XF5xmbL08l8U5E5W
-         J3jJHputQDNEMTo09ugIy0Pq2HLcBgPEqyh75xEAUADO0J6us7bn/jSk5CxXTkx6gO9X
-         eooQ==
-X-Gm-Message-State: AOAM533hDF3lW7/vIW/4XFRW1nzYYVLU8dNEJJVBQFTCcOGJUXpTG4hY
-        pE+NIcV2C2CpOtu2CLXFZQ==
-X-Google-Smtp-Source: ABdhPJyfKcFgOUXSmVvN4L+H7e8NArWiAR7hFp+ggaReieLCcYCZmbU/u2j43rfIJCSQEG7HchJk1Q==
-X-Received: by 2002:a54:4105:: with SMTP id l5mr1856524oic.76.1630584246444;
-        Thu, 02 Sep 2021 05:04:06 -0700 (PDT)
+        bh=4lQGZdi5tntA6BsPwhp64eLbrT+gtAQmgNJFN6OA1qc=;
+        b=jLjVa5lHEqSFPKqvfddyIUFFcS373ilLUwdNb/1Z70O/JuenEpzyjTLxXXv5pYj8Bs
+         IwFOIFoUx/zCHfb2azFzc/yH9tcUEhRAMDcq4+vek0SZJczKw+nRWL2+mj6N0ICyVNBw
+         ggtWD8otoLMzY0kyWBV30J2OD07yg+yvwCk/v18e+VlYeRDbqXlaeUyVVMugriFUluN3
+         WZk5G4s+aQyEKjNnBk0Fj6JxsDtAb/pyXyrPJz7aOMC4q+wQg4zR5g2kwPqNt28x/gE3
+         Q5hkVYU86kml4wZnBFel1FCJwQ4XT3iwmaGfItozdx+UgG86506NhLEpa8BPAdvhKKnG
+         c5+g==
+X-Gm-Message-State: AOAM532JG30PStiE8HYi17l6CoaWeipQrVWTr5CVbnY18ibyLVu2ZKEp
+        c6fI4NEm2SoSiiC+FdEkcjns9V8JnQ==
+X-Google-Smtp-Source: ABdhPJxDO5/iYXs1QRVb8yiWOSLcaulTYDEz99hFFV2MOsIg7wgK3bSY+VRAQ8IvzoJN4vdOP41y5g==
+X-Received: by 2002:a9d:3a6:: with SMTP id f35mr2216699otf.144.1630584244536;
+        Thu, 02 Sep 2021 05:04:04 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w1sm301368ott.21.2021.09.02.05.04.05
+        by smtp.gmail.com with ESMTPSA id 97sm302317otv.26.2021.09.02.05.04.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 05:04:05 -0700 (PDT)
-Received: (nullmailer pid 685603 invoked by uid 1000);
+        Thu, 02 Sep 2021 05:04:04 -0700 (PDT)
+Received: (nullmailer pid 685605 invoked by uid 1000);
         Thu, 02 Sep 2021 12:03:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     alsa-devel@alsa-project.org, stephan@gerhold.net,
-        jbrunet@baylibre.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, lgirdwood@gmail.com,
-        jonathanh@nvidia.com, broonie@kernel.org,
-        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org
-In-Reply-To: <1630562033-13231-2-git-send-email-spujar@nvidia.com>
-References: <1630562033-13231-1-git-send-email-spujar@nvidia.com> <1630562033-13231-2-git-send-email-spujar@nvidia.com>
-Subject: Re: [PATCH v2 1/3] ASoC: Add json-schema documentation for sound-name-prefix
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     devicetree@vger.kernel.org, nm@ti.com,
+        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
+        lokeshvutla@ti.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com, miquel.raynal@bootlin.com,
+        tony@atomide.com, linux-kernel@vger.kernel.org
+In-Reply-To: <20210902095609.16583-3-rogerq@kernel.org>
+References: <20210902095609.16583-1-rogerq@kernel.org> <20210902095609.16583-3-rogerq@kernel.org>
+Subject: Re: [PATCH v2 2/6] dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
 Date:   Thu, 02 Sep 2021 07:03:59 -0500
-Message-Id: <1630584239.106707.685602.nullmailer@robh.at.kernel.org>
+Message-Id: <1630584239.117607.685604.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Sep 2021 11:23:51 +0530, Sameer Pujar wrote:
-> The 'sound-name-prefix' is used to prepend suitable strings to a
-> component widgets or controls. This is helpful when there are
-> multiple instances of the same component. Add relevant json-schema
-> and is inspired from sound-name-prefix.txt documentation.
+On Thu, 02 Sep 2021 12:56:05 +0300, Roger Quadros wrote:
+> Convert omap-gpmc.txt to ti,gpmc.yaml.
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 > ---
->  .../devicetree/bindings/sound/name-prefix.yaml     | 35 ++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/name-prefix.yaml
+>  .../bindings/memory-controllers/omap-gpmc.txt | 157 --------
+>  .../bindings/memory-controllers/ti,gpmc.yaml  | 364 ++++++++++++++++++
+>  .../devicetree/bindings/mtd/gpmc-nand.txt     |   2 +-
+>  .../devicetree/bindings/mtd/gpmc-nor.txt      |   4 +-
+>  .../devicetree/bindings/mtd/gpmc-onenand.txt  |   2 +-
+>  .../devicetree/bindings/net/gpmc-eth.txt      |   4 +-
+>  6 files changed, 370 insertions(+), 163 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -73,14 +73,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/sound/name-prefix.example.dts:19.28-22.11: Warning (unit_address_vs_reg): /example-0/analog-amplifier@0: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/sound/name-prefix.example.dts:24.28-27.11: Warning (unit_address_vs_reg): /example-0/analog-amplifier@1: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/sound/name-prefix.example.dt.yaml:0:0: /example-0/analog-amplifier@0: failed to match any schema with compatible: ['simple-audio-amplifier']
-Documentation/devicetree/bindings/sound/name-prefix.example.dt.yaml:0:0: /example-0/analog-amplifier@1: failed to match any schema with compatible: ['simple-audio-amplifier']
+Documentation/devicetree/bindings/memory-controllers/ti,gpmc.example.dt.yaml:0:0: /example-0/memory-controller@50000000/nand@0,0: failed to match any schema with compatible: ['ti,omap2-nand']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1523479
+See https://patchwork.ozlabs.org/patch/1523568
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
