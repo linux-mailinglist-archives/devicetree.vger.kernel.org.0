@@ -2,291 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA353FE8DE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 07:48:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD7B3FE8EE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 07:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232033AbhIBFte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 01:49:34 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:64908 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231831AbhIBFte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 01:49:34 -0400
-Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1825Wlw0007950;
-        Thu, 2 Sep 2021 01:48:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=in-reply-to : from : to
- : cc : date : message-id : content-transfer-encoding : content-type :
- mime-version : references : subject; s=pp1;
- bh=D0afL8fy8z1jVXSj35R3Rg1PMz7KCo5mx6u2C+dRblc=;
- b=sV+Y0RBcDc6PjvHuH1s/pui8NLpfk0/VC2fJqqt6s21rGtDbdYrbTb6I70wAzVvaLEOX
- L0Vb7SNV34iss7NU05mw2bmK/GcKxIy2KW2dVeX5Sl3LvdtJEVvuHQD4n7CbLVRXHw75
- NK1LDxni5lvIhSBDptnUsJuBXeOxMkgVXD4LZjyxqWfci+9Qw+9hAJawgLYtCwqb8VUh
- ML2BxdR/NcmKBm90BV+KN80MLPZgnt3TvncqE684uuRCGJNZx9u1B6QU7G/l4sRoLCdc
- a7CMzV450C8QgFWZOkCITJuZGUZ5/q+HjqQBlndnVXJAAguWCg2EboDr69TRohasJpm+ MA== 
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 3atq779usk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 02 Sep 2021 01:48:25 -0400
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-        by ppma05wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1825gs8c020575;
-        Thu, 2 Sep 2021 05:48:24 GMT
-Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
-        by ppma05wdc.us.ibm.com with ESMTP id 3atdxdb9xr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 02 Sep 2021 05:48:24 +0000
-Received: from b01ledav004.gho.pok.ibm.com (b01ledav004.gho.pok.ibm.com [9.57.199.109])
-        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1825mN9o52494832
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 2 Sep 2021 05:48:23 GMT
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id AB375112064;
-        Thu,  2 Sep 2021 05:48:23 +0000 (GMT)
-Received: from b01ledav004.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8405E112062;
-        Thu,  2 Sep 2021 05:48:23 +0000 (GMT)
-Received: from mww0331.wdc07m.mail.ibm.com (unknown [9.208.69.64])
-        by b01ledav004.gho.pok.ibm.com (Postfix) with ESMTPS;
-        Thu,  2 Sep 2021 05:48:23 +0000 (GMT)
-In-Reply-To: <20210830171806.119857-2-i.mikhaylov@yadro.com>
-From:   "Milton Miller II" <miltonm@us.ibm.com>
-To:     "Ivan Mikhaylov" <i.mikhaylov@yadro.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Samuel Mendoza-Jonas" <sam@mendozajonas.com>,
-        "Brad Ho" <Brad_Ho@phoenix.com>,
-        "Paul Fertser" <fercerpav@gmail.com>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Thu, 2 Sep 2021 05:48:21 +0000
-Message-ID: <OF2487FB9E.ECED277D-ON00258741.006BEF89-00258744.001FE4C0@ibm.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+        id S236946AbhIBFzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 01:55:05 -0400
+Received: from mail-bn8nam11on2081.outbound.protection.outlook.com ([40.107.236.81]:7169
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231831AbhIBFzF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 01:55:05 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l5Z6j+YmiRxHWefOg3kJMDlqvmtH4NysdLwlZo2s7omMfMEolTe4GT7dUmahPMCP/5PTjtio+AUi3N3RDW9+acRr+6ObozBBKfk4cOLfHKC9sZXNpV27m5yFDHmkAIoCqLkCAedAA6I0lQvMeXiHV8hWGceZqsKeDDj/an4qkDVkkvpeJzIL7TVn8Pbkuke4OHTe8M+zz9I6y1YXDWBICRzrRslpT7GlX9+bPhKMgIlHwzV2WaWZ4N4zocvvjoyT3qHk4pc8JixU8Vx8uLOZMOYBVvHEQ1Qg37ia2EuX2LGd3a3IiMP7ikIQL9kz8yKvvzzJl0V4vWsxgF+4x0fiUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=96pHYFwItkzuDMnI8r+0F4avl46UgcWQ2Z1A/sNrLbE=;
+ b=DPUeIdZnQuLRCWmnoXdV77JP+SJ2sGWFkJu33j3MU3aEGRW3dLAeIjszR/NUjQJf+9MZbchkSoXhYJ0s/Tmxpfz4dIrix4qCJ5Ifyv0LNbsVxVNV5S3r1n2sxOFkds2L5X4BVHN0AcMXHZCkqXynS2CJShmjUs1AokJfiD9rWJrkDrGWRcZW2NmRjDd5Rw8sSKTy/ukz8XYC8y+lSQh2UEOlYOVfwWKB9Qp0ACGG4fODb9Jnsjmz8Py7bCMbbATe4DIIKHE2ZZM1UXrTKCbRH/ed+J9mlKx2y9fKyQzzLd6+DfDxWxYY3o/lgmc0eu5lC021swl2Ah+DBCOa9ytPmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.32) smtp.rcpttodomain=alsa-project.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=96pHYFwItkzuDMnI8r+0F4avl46UgcWQ2Z1A/sNrLbE=;
+ b=YGMr5eocyre/YGTBBhOZ2KDUlfiC63xsndPiSe/9svvG3NacnWd/UhnLVIenjP+rzd94Ul344NRnaKXpO/lHpKTmcSdwihwOMisg+eo778ir4koSAiuJCaS3iYxCedXW4mUcnRyo7NsDIh5d1ha/E2s6ELbnOHyfT8z443PZMET6HHEZh/J70ZMNCfUQaMpvwv+ooR7/zpVjOCWEQ5iyXBW4KIVIhojXr9GWYvP6ouCDg+3oH6O0NWriK4ZbEWXwr697P0IOmFtLok6L2AUKFx/hWXG1u0pf1NmUC4MkdoBJ3X6LI1l4Dn1lDqmBtSNkUPLDjyAKYDC9olx9UPffNA==
+Received: from MW4PR03CA0069.namprd03.prod.outlook.com (2603:10b6:303:b6::14)
+ by BL1PR12MB5317.namprd12.prod.outlook.com (2603:10b6:208:31f::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20; Thu, 2 Sep
+ 2021 05:54:06 +0000
+Received: from CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b6:cafe::d6) by MW4PR03CA0069.outlook.office365.com
+ (2603:10b6:303:b6::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.21 via Frontend
+ Transport; Thu, 2 Sep 2021 05:54:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
+ smtp.mailfrom=nvidia.com; alsa-project.org; dkim=none (message not signed)
+ header.d=none;alsa-project.org; dmarc=pass action=none
+ header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.32; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.32) by
+ CO1NAM11FT059.mail.protection.outlook.com (10.13.174.160) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4478.19 via Frontend Transport; Thu, 2 Sep 2021 05:54:03 +0000
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Sep
+ 2021 22:54:03 -0700
+Received: from audio.nvidia.com (172.20.187.5) by mail.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 2 Sep 2021 05:54:00 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <thierry.reding@gmail.com>
+CC:     <jonathanh@nvidia.com>, <stephan@gerhold.net>,
+        <jbrunet@baylibre.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v2 0/3] Convert name-prefix doc to json-schema
+Date:   Thu, 2 Sep 2021 11:23:50 +0530
+Message-ID: <1630562033-13231-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Sensitivity: 
-Importance: Normal
-X-Priority: 3 (Normal)
-References: <20210830171806.119857-2-i.mikhaylov@yadro.com>
-X-Mailer: Lotus Domino Web Server Release 11.0.1FP2HF97   July 2, 2021
-X-MIMETrack: Serialize by http on MWW0331/01/M/IBM at 09/02/2021 05:48:21,Serialize
- complete at 09/02/2021 05:48:21
-X-Disclaimed: 12091
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: YQ7HdwXe7wVdBGXokUQAOWVZBlwpZf0U
-X-Proofpoint-ORIG-GUID: YQ7HdwXe7wVdBGXokUQAOWVZBlwpZf0U
-Subject: Re:  [PATCH 1/1] net/ncsi: add get MAC address command to get Intel i210
- MAC address
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-09-02_01:2021-09-01,2021-09-02 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 phishscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2108310000 definitions=main-2109020035
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 53d77e1b-a011-45f2-84b1-08d96dd611e3
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5317:
+X-Microsoft-Antispam-PRVS: <BL1PR12MB53176A5BCE873A7780EB9C37A7CE9@BL1PR12MB5317.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:514;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uFY1G+QtsLYBnx5nNmMLO19tMRNav4bhQ7yqUvH0esn+FrP5AIaVFyXI7WmM76JXuiBQrpW042a95fSBpVemv1UAGWTUvwPwXmi+/l9GT662KIHXYuBCVa6PzPcpgKe/XmS5tZu7xPIc6VaRT2eiT9RTzIzT2AFv3LB45/CN4zpiNKVb9rPqP5xAkVJ4/78cy/fXtkjA+70MteALwu/4tP1dHdvmkeImA7X2WkzMlCLHzZScuzNkFL2To/ZEfL6LE8Tp/e9yPviMmrnjiPb+KPihtHon4YOrzb55IbIe05WM7dsPYA+Gw0t4pirPdL0pualnaMgZUnMrmnW0iReP2uaFlUWlIDEvwlfqHLFO3WedYJxjdgimLYNe3gj4sjfgkXedZi/m3OJWPG1tKVjvteTDHI2jQmdF2psDI7qoOg0K8tUYypOjj735vplTLCiv/Tl3G/ZZNd5Jn79vAyH5CvX0YdFB3+YtzGMjXL90Te5A+zskyUfq+8hD1jJyZ3xPeRFWpU127uX/UZrlRC3Wui6RQGOoFQJa9++a2P6lWNeh1eTVJth6HFHbyuL+SUWv5ZhDGhsy8PUIOD7BySJsQB6Txg2EcP7zgEafN/UJLCqMmARkzRNnLMMmw0lA47WRgZI/ixxe61QFnBK1Ix1w2zQoeVBcoabg11xg4YU/WTMh9kqWMjUN4JO645YtOSq0vDwU6ICjGTuECkgZIQJqxQ==
+X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(396003)(39860400002)(136003)(346002)(376002)(36840700001)(46966006)(107886003)(5660300002)(7696005)(316002)(86362001)(70586007)(70206006)(2616005)(54906003)(2906002)(7416002)(110136005)(36756003)(7636003)(82740400003)(8936002)(426003)(336012)(6666004)(36860700001)(47076005)(82310400003)(26005)(478600001)(4326008)(356005)(83380400001)(8676002)(186003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2021 05:54:03.9148
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53d77e1b-a011-45f2-84b1-08d96dd611e3
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5317
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On August 30, 2021, Ivan Mikhaylov" <i.mikhaylov@yadro.com> wrote:
->This patch adds OEM Intel GMA command and response handler for it.
+Following are the changes:
+  - Add json-schema for 'sound-name-prefix' documentation under
+    'name-perfix.yaml'
+  - Use schema references wherever needed.
+  - Remove txt based doc
 
 
+Changelog
+=========
 
->>>Signed-off-by: Brad Ho <Brad=5FHo@phoenix.com
->>Signed-off-by: Paul Fertser <fercerpav@gmail.com>
->Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
->---
-> net/ncsi/internal.h    |  3 +++
-> net/ncsi/ncsi-manage.c | 25 ++++++++++++++++++++++++-
-> net/ncsi/ncsi-pkt.h    |  6 ++++++
-> net/ncsi/ncsi-rsp.c    | 42
->++++++++++++++++++++++++++++++++++++++++++
-> 4 files changed, 75 insertions(+), 1 deletion(-)
->
->diff --git a/net/ncsi/internal.h b/net/ncsi/internal.h
->index 0b6cfd3b31e0..03757e76bb6b 100644
->--- a/net/ncsi/internal.h
->+++ b/net/ncsi/internal.h
->@@ -80,6 +80,7 @@ enum {
-> #define NCSI=5FOEM=5FMFR=5FBCM=5FID             0x113d
-> #define NCSI=5FOEM=5FMFR=5FINTEL=5FID           0x157
-> /* Intel specific OEM command */
->+#define NCSI=5FOEM=5FINTEL=5FCMD=5FGMA          0x06   /* CMD ID for Get =
-MAC
->*/
-> #define NCSI=5FOEM=5FINTEL=5FCMD=5FKEEP=5FPHY     0x20   /* CMD ID for Ke=
-ep
->PHY up */
-> /* Broadcom specific OEM Command */
-> #define NCSI=5FOEM=5FBCM=5FCMD=5FGMA            0x01   /* CMD ID for Get =
-MAC
->*/
->@@ -89,6 +90,7 @@ enum {
-> #define NCSI=5FOEM=5FMLX=5FCMD=5FSMAF           0x01   /* CMD ID for Set =
-MC
->Affinity */
-> #define NCSI=5FOEM=5FMLX=5FCMD=5FSMAF=5FPARAM     0x07   /* Parameter for=
- SMAF
->        */
-> /* OEM Command payload lengths*/
->+#define NCSI=5FOEM=5FINTEL=5FCMD=5FGMA=5FLEN      5
-> #define NCSI=5FOEM=5FINTEL=5FCMD=5FKEEP=5FPHY=5FLEN 7
-> #define NCSI=5FOEM=5FBCM=5FCMD=5FGMA=5FLEN        12
-> #define NCSI=5FOEM=5FMLX=5FCMD=5FGMA=5FLEN        8
->@@ -99,6 +101,7 @@ enum {
-> /* Mac address offset in OEM response */
-> #define BCM=5FMAC=5FADDR=5FOFFSET             28
-> #define MLX=5FMAC=5FADDR=5FOFFSET             8
->+#define INTEL=5FMAC=5FADDR=5FOFFSET           1
->=20
->=20
-> struct ncsi=5Fchannel=5Fversion {
->diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
->index 89c7742cd72e..7121ce2a47c0 100644
->--- a/net/ncsi/ncsi-manage.c
->+++ b/net/ncsi/ncsi-manage.c
->@@ -795,13 +795,36 @@ static int ncsi=5Foem=5Fsmaf=5Fmlx(struct
->ncsi=5Fcmd=5Farg *nca)
-> 	return ret;
-> }
->=20
->+static int ncsi=5Foem=5Fgma=5Fhandler=5Fintel(struct ncsi=5Fcmd=5Farg *nc=
-a)
->+{
->+	unsigned char data[NCSI=5FOEM=5FINTEL=5FCMD=5FGMA=5FLEN];
->+	int ret =3D 0;
->+
->+	nca->payload =3D NCSI=5FOEM=5FINTEL=5FCMD=5FGMA=5FLEN;
->+
->+	memset(data, 0, NCSI=5FOEM=5FINTEL=5FCMD=5FGMA=5FLEN);
->+	*(unsigned int *)data =3D ntohl((=5F=5Fforce
->=5F=5Fbe32)NCSI=5FOEM=5FMFR=5FINTEL=5FID);
->+	data[4] =3D NCSI=5FOEM=5FINTEL=5FCMD=5FGMA;
->+
->+	nca->data =3D data;
->+
->+	ret =3D ncsi=5Fxmit=5Fcmd(nca);
->+	if (ret)
->+		netdev=5Ferr(nca->ndp->ndev.dev,
->+			   "NCSI: Failed to transmit cmd 0x%x during configure\n",
->+			   nca->type);
->+
->+	return ret;
->+}
->+
-> /* OEM Command handlers initialization */
-> static struct ncsi=5Foem=5Fgma=5Fhandler {
-> 	unsigned int	mfr=5Fid;
-> 	int		(*handler)(struct ncsi=5Fcmd=5Farg *nca);
-> } ncsi=5Foem=5Fgma=5Fhandlers[] =3D {
-> 	{ NCSI=5FOEM=5FMFR=5FBCM=5FID, ncsi=5Foem=5Fgma=5Fhandler=5Fbcm },
->-	{ NCSI=5FOEM=5FMFR=5FMLX=5FID, ncsi=5Foem=5Fgma=5Fhandler=5Fmlx }
->+	{ NCSI=5FOEM=5FMFR=5FMLX=5FID, ncsi=5Foem=5Fgma=5Fhandler=5Fmlx },
->+	{ NCSI=5FOEM=5FMFR=5FINTEL=5FID, ncsi=5Foem=5Fgma=5Fhandler=5Fintel }
-> };
->=20
-> static int ncsi=5Fgma=5Fhandler(struct ncsi=5Fcmd=5Farg *nca, unsigned int
->mf=5Fid)
->diff --git a/net/ncsi/ncsi-pkt.h b/net/ncsi/ncsi-pkt.h
->index 80938b338fee..ba66c7dc3a21 100644
->--- a/net/ncsi/ncsi-pkt.h
->+++ b/net/ncsi/ncsi-pkt.h
->@@ -178,6 +178,12 @@ struct ncsi=5Frsp=5Foem=5Fbcm=5Fpkt {
-> 	unsigned char           data[];      /* Cmd specific Data */
-> };
->=20
->+/* Intel Response Data */
->+struct ncsi=5Frsp=5Foem=5Fintel=5Fpkt {
->+	unsigned char           cmd;         /* OEM Command ID    */
->+	unsigned char           data[];      /* Cmd specific Data */
->+};
->+
-> /* Get Link Status */
-> struct ncsi=5Frsp=5Fgls=5Fpkt {
-> 	struct ncsi=5Frsp=5Fpkt=5Fhdr rsp;        /* Response header   */
->diff --git a/net/ncsi/ncsi-rsp.c b/net/ncsi/ncsi-rsp.c
->index d48374894817..6447a09932f5 100644
->--- a/net/ncsi/ncsi-rsp.c
->+++ b/net/ncsi/ncsi-rsp.c
->@@ -699,9 +699,51 @@ static int ncsi=5Frsp=5Fhandler=5Foem=5Fbcm(struct
->ncsi=5Frequest *nr)
-> 	return 0;
-> }
->=20
->+/* Response handler for Intel command Get Mac Address */
->+static int ncsi=5Frsp=5Fhandler=5Foem=5Fintel=5Fgma(struct ncsi=5Frequest=
- *nr)
->+{
->+	struct ncsi=5Fdev=5Fpriv *ndp =3D nr->ndp;
->+	struct net=5Fdevice *ndev =3D ndp->ndev.dev;
->+	const struct net=5Fdevice=5Fops *ops =3D ndev->netdev=5Fops;
->+	struct ncsi=5Frsp=5Foem=5Fpkt *rsp;
->+	struct sockaddr saddr;
->+	int ret =3D 0;
->+
->+	/* Get the response header */
->+	rsp =3D (struct ncsi=5Frsp=5Foem=5Fpkt *)skb=5Fnetwork=5Fheader(nr->rsp);
->+
->+	saddr.sa=5Ffamily =3D ndev->type;
->+	ndev->priv=5Fflags |=3D IFF=5FLIVE=5FADDR=5FCHANGE;
->+	memcpy(saddr.sa=5Fdata, &rsp->data[INTEL=5FMAC=5FADDR=5FOFFSET], ETH=5FA=
-LEN);
->+	/* Increase mac address by 1 for BMC's address */
->+	eth=5Faddr=5Finc((u8 *)saddr.sa=5Fdata);
->+	if (!is=5Fvalid=5Fether=5Faddr((const u8 *)saddr.sa=5Fdata))
->+		return -ENXIO;
+v1 -> v2
+--------
+ * Provide top reference to name-prefix.yaml as suggested by Rob
+   for patch 2/3
+ * Dropped couple of unreachable email ids from Cc list in commit
+   message of patch 2/3
+ * No changes in remaining patches
+  
 
-The Intel GMA retireves the MAC address of the host, and the datasheet
-anticipates the BMC will "share" the MAC by stealing specific TCP and=20
-UDP port traffic destined to the host.
+Sameer Pujar (3):
+  ASoC: Add json-schema documentation for sound-name-prefix
+  ASoC: Use schema reference for sound-name-prefix
+  ASoC: Remove name-prefix.txt
 
-This "add one" allocation of the MAC is therefore a policy, and one that=20
-is beyond the data sheet.
+ .../devicetree/bindings/sound/name-prefix.txt      | 24 ---------------
+ .../devicetree/bindings/sound/name-prefix.yaml     | 35 ++++++++++++++++++++++
+ .../bindings/sound/nvidia,tegra186-dspk.yaml       |  9 ++----
+ .../bindings/sound/nvidia,tegra210-dmic.yaml       |  9 ++----
+ .../bindings/sound/nvidia,tegra210-i2s.yaml        |  9 ++----
+ .../devicetree/bindings/sound/nxp,tfa989x.yaml     |  9 ++----
+ Documentation/devicetree/bindings/sound/rt5659.txt |  2 +-
+ .../bindings/sound/simple-audio-mux.yaml           |  9 ++----
+ 8 files changed, 51 insertions(+), 55 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/name-prefix.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/name-prefix.yaml
 
-While this +1 policy may work for some OEM boards, there are other boards=20
-where the MAC address assigned to the BMC does not follow this pattern,=20
-but instead the MAC is stored in some platform dependent location obtained =
+-- 
+2.7.4
 
-in a platform specific manner.
-
-I suggest this BMC =3D ether=5Faddr=5Finc(GMA) be opt in via a device tree =
-property. =20
-
-The name of the property should be negotiated in the device tree mailing li=
-st,=20
-as it appears it would be generic to more than one vendor.
-
-Unfortunately, we missed this when we added the broadcom and mellanox handl=
-ers.
-
-
->+>+	/* Set the flag for GMA command which should only be called once */
->+	ndp->gma=5Fflag =3D 1;
->+
->+	ret =3D ops->ndo=5Fset=5Fmac=5Faddress(ndev, &saddr);
->+	if (ret < 0)
->+		netdev=5Fwarn(ndev,
->+			    "NCSI: 'Writing mac address to device failed\n");
->+
->+	return ret;
->+}
->+
-> /* Response handler for Intel card */
-> static int ncsi=5Frsp=5Fhandler=5Foem=5Fintel(struct ncsi=5Frequest *nr)
-> {
->+	struct ncsi=5Frsp=5Foem=5Fintel=5Fpkt *intel;
->+	struct ncsi=5Frsp=5Foem=5Fpkt *rsp;
->+
->+	/* Get the response header */
->+	rsp =3D (struct ncsi=5Frsp=5Foem=5Fpkt *)skb=5Fnetwork=5Fheader(nr->rsp);
->+	intel =3D (struct ncsi=5Frsp=5Foem=5Fintel=5Fpkt *)(rsp->data);
->+
->+	if (intel->cmd =3D=3D NCSI=5FOEM=5FINTEL=5FCMD=5FGMA)
->+		return ncsi=5Frsp=5Fhandler=5Foem=5Fintel=5Fgma(nr);
->+
-> 	return 0;
-> }
->=20
->--=20
->2.31.1
->
->
