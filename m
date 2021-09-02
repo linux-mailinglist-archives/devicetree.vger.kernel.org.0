@@ -2,94 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BBD13FE684
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 02:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CE0F3FE6A8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 02:34:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232589AbhIBATm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 20:19:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49640 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229898AbhIBATm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Sep 2021 20:19:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0A56B610A4;
-        Thu,  2 Sep 2021 00:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630541925;
-        bh=wTvLeD55f/+cT30LFk/ZUgKiLqiOwst0EprdgeqjHco=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W5rwDc+WtZTjMsZXQP/vmM2B3QxWtYh7u9gR9LKrnv82l4ifBZGyKEdYZflIPoB9y
-         AcJyT5lvGIvbGECjfQlSYMDiUU9a5sB9T/2jIGwQGqzO4xziNiOht9eit/OXdkguxL
-         ZDDLv13iCfD4wNvXdYVmnAWnBfqNbCRZHHLHiAxf47tKeDFtY11ANr6ITf78eI4cfT
-         hmPflu3jjKeL8PvSMKw8auBs+yWRCXAUN2ziNB55jpVTNQ1mAnO/ObS1glGL6CvWo3
-         yP7BJU1zq/eidcYqFI31XR/gwo6UUKHs4KGMPfuIDnPIDRA4H/jcffFhWCXdiE59pn
-         OjC6jZuiyR8xw==
-Received: by mail-ed1-f54.google.com with SMTP id g22so115702edy.12;
-        Wed, 01 Sep 2021 17:18:44 -0700 (PDT)
-X-Gm-Message-State: AOAM530MIS7GEOs6WsOx+vEsjQNPCRuUvq4diG4HdzZfyd6NRL9IqBEt
-        3ooMgPuhveY70H5VyTWsxUN2OnJqKtKeb3g88Q==
-X-Google-Smtp-Source: ABdhPJw/7oq9uNIa4Chpq9FqQ2f/nRpfYy4Edcpxq276fzkXwPouM5aTdUgqjj1eGflUgkM8vSZ7aYo8+GzJ6W4bfGM=
-X-Received: by 2002:a50:9b52:: with SMTP id a18mr586841edj.165.1630541923672;
- Wed, 01 Sep 2021 17:18:43 -0700 (PDT)
+        id S243239AbhIBA1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 20:27:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242135AbhIBA1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 20:27:10 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D47EC061760
+        for <devicetree@vger.kernel.org>; Wed,  1 Sep 2021 17:26:13 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id f15so419909ybg.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Sep 2021 17:26:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CptstpGZORRU3IsYIloJqbWhHikn1ckNwph+iIdtJfc=;
+        b=KJjMgyWgDPZNVmsiSfXPstCqx7Cv6leimA38DXhaRdLHgyAnsFQrjHt5ji8iOVTbaA
+         K/+uGl//sF7mIvLXtsuE92k6eG5U+dy3GZ+oVW5XzrjScobDwvvsiSrtBO9GXNkewxjN
+         Wb4kAJ1sQkkdxizNHuKxTPyi0oh7Ccc+XWqK44z7O7FrhKmQrhHa6y/+XZxEWgi71gLK
+         LFPjnoZfSqrcj5rPjIszQqV6/+V975nET3m3NtDKJeGpVm2ZfhjlPazmkz5SxlSwwBBy
+         pLV1HyflZQcD1QY6xA9bQAplBzgYykH1koRMFXZHxiYlYOREMG2We6WDhMRhloCJDn4Y
+         6EzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CptstpGZORRU3IsYIloJqbWhHikn1ckNwph+iIdtJfc=;
+        b=sf5i3X5ZByCP1WYd60qUayWyLIuD3QPTXtKdkneOWOwLfLycC5FKroVW3zhSG73x6b
+         hc7BhHL675q2YU/KHKtLUG80AfJQVKNTUK7B9wbd1FGMgMCn0VxHs9I04rPbInHd2xBI
+         9QjIyN+f/tD/sukNPSRchZfQQlN9AoHKmczVT0HN4OxMLbf2ZkPnWk6/LZI7MT1kXLlw
+         hbYIjng1GW/az7SCKe/nLeJVk1zlmHQOLnwcgf+rzwCjPcYpl4VveKM/dxMmTmVZhJan
+         yFahDwlSnTnHofBD5JEh8uAA8h8TcYHXwx1Y5RlweELpwwfdx6IYtVRF0F905ZizZyLt
+         zx6w==
+X-Gm-Message-State: AOAM532pMVEUP+kwqYnPclP0FaFuH69aQioh9zkqQJKY3E5DQVQkGjb5
+        5CKXUpU5ILwSRKVLRrfK9Bhqqs3414rWEPfmNop9ww==
+X-Google-Smtp-Source: ABdhPJw0MkZntzwLYBweF0Y7lXR0WTz8ODY0CF4jq3sidmXEVfKh7AZHfVBv/CowSJpHE/7wcb+BsIsyLaB/P+vFGA8=
+X-Received: by 2002:a25:804:: with SMTP id 4mr733936ybi.346.1630542372170;
+ Wed, 01 Sep 2021 17:26:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210830041729.237252-1-anup.patel@wdc.com> <20210830041729.237252-7-anup.patel@wdc.com>
- <YS7Xk/Np2yc1/wrb@robh.at.kernel.org> <CAAhSdy2e8bPXkTodpbtNeEVX-iCxVeyNLYBkL0aCQBZ7wbSCzw@mail.gmail.com>
-In-Reply-To: <CAAhSdy2e8bPXkTodpbtNeEVX-iCxVeyNLYBkL0aCQBZ7wbSCzw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 1 Sep 2021 19:18:32 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ_Uc5UqCFojUYioXYJycbcBCF-nGryJiTMkhkN5MJhpw@mail.gmail.com>
-Message-ID: <CAL_JsqJ_Uc5UqCFojUYioXYJycbcBCF-nGryJiTMkhkN5MJhpw@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 06/11] dt-bindings: timer: Update SiFive CLINT
- bindings for IPI support
-To:     Anup Patel <anup@brainfault.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
+References: <20210831102125.624661-1-ulf.hansson@linaro.org>
+ <CAGETcx868QWj0jMJ+U-eL62jT-LO_LTOw5EcwEKptfFOVa=A5A@mail.gmail.com>
+ <CAPDyKFopTW=ZoB9FYJ-ozRZTnJDTT_gFtz0XDiU-weYb1Q9bkQ@mail.gmail.com>
+ <CAGETcx_e7kCQ_0yC9=k1jzjJJEqdOMuA=JkD81=2-Nb4fcS0+w@mail.gmail.com>
+ <CAPDyKFranX4Yz8546C1E3Gq_ZkQi34Xb=Rxi5mPtw-s_J1QPoQ@mail.gmail.com>
+ <CAGETcx_DXQyaH2te1cxV+yCS+kdfjWOFbxQkhEKCbXtU0FWS1g@mail.gmail.com> <CAPDyKFpd1OCiSX-g4sJNjHhLs41AVzyE=O7gw7+YQ7RUOOk6rQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFpd1OCiSX-g4sJNjHhLs41AVzyE=O7gw7+YQ7RUOOk6rQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 1 Sep 2021 17:25:36 -0700
+Message-ID: <CAGETcx8MPy-4v2KFtZ6vrrtnkd07gsL3iEKjQjyLL8i2fYycqA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: property: fw_devlink: Rename 'node_not_dev' to 'optional_con_dev'
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 1, 2021 at 7:00 AM Anup Patel <anup@brainfault.org> wrote:
+On Wed, Sep 1, 2021 at 3:24 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
-> On Wed, Sep 1, 2021 at 6:59 AM Rob Herring <robh@kernel.org> wrote:
+> On Thu, 2 Sept 2021 at 00:06, Saravana Kannan <saravanak@google.com> wrote:
 > >
-> > On Mon, Aug 30, 2021 at 09:47:24AM +0530, Anup Patel wrote:
-> > > The Linux RISC-V now treats IPIs as regular per-CPU IRQs. This means
-> > > we have to create a IPI interrupt domain to use CLINT IPI functionality
-> > > hence requiring a "interrupt-controller" and "#interrupt-cells" DT
-> > > property in CLINT DT nodes.
+> > On Wed, Sep 1, 2021 at 2:27 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
 > > >
-> > > Impact of this CLINT DT bindings change only affects Linux RISC-V
-> > > NoMMU kernel and has no effect of existing M-mode runtime firmwares
-> > > (i.e. OpenSBI).
+> > > On Wed, 1 Sept 2021 at 22:56, Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+> > > > On Wed, Sep 1, 2021 at 12:45 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > >
+> > > > > On Tue, 31 Aug 2021 at 19:31, Saravana Kannan <saravanak@google.com> wrote:
+> > > > > >
+> > > > > > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > > > >
+> > > > > > > In the struct supplier_bindings the member 'node_not_dev' is described as
+> > > > > > > "The consumer node containing the property is never a device.", but that
+> > > > > > > doesn't match the behaviour of the code in of_link_property().
+> > > > > > >
+> > > > > > > To make the behaviour consistent with the description, let's rename the
+> > > > > > > member to "optional_con_dev" and clarify the corresponding comment.
+> > > > > > >
+> > > > > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > > > > > ---
+> > > > > > >  drivers/of/property.c | 9 +++++----
+> > > > > > >  1 file changed, 5 insertions(+), 4 deletions(-)
+> > > > > > >
+> > > > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > > > index 6c028632f425..2babb1807228 100644
+> > > > > > > --- a/drivers/of/property.c
+> > > > > > > +++ b/drivers/of/property.c
+> > > > > > > @@ -1249,7 +1249,8 @@ static struct device_node *parse_##fname(struct device_node *np,       \
+> > > > > > >   * @parse_prop.index: For properties holding a list of phandles, this is the
+> > > > > > >   *                   index into the list
+> > > > > > >   * @optional: Describes whether a supplier is mandatory or not
+> > > > > > > - * @node_not_dev: The consumer node containing the property is never a device.
+> > > > > > > + * @optional_con_dev: The consumer node containing the property may not be a
+> > > > > > > + *                   device, then try finding one from an ancestor node.
+> > > > > >
+> > > > > > Nak. This flag is not about "may not be". This is explicitly for
+> > > > > > "never a device". It has to do with stuff like remote-endpoint which
+> > > > > > is never listed under the root node of the device node. Your
+> > > > > > documentation change is changing the meaning of the flag.
+> > > > >
+> > > > > Okay, fair enough.
+> > > > >
+> > > > > Although, as stated in the commit message this isn't the way code
+> > > > > behaves. Shouldn't we at least make the behaviour consistent with the
+> > > > > description of the 'node_not_dev' flag?
+> > > >
+> > > > I know what you mean, but if you use the flag correctly (where the
+> > > > phandle pointed to will never be a device with compatible property),
+> > > > the existing code would work correctly. And since the flag is relevant
+> > > > only in this file, it's easy to keep it correct. I'd just leave it as
+> > > > is.
+> > >
+> > > Sorry, but that just sounds lazy to me, I am sure we can do better.
+> > > The current code and the name of the flag is confusing, at least to me
+> > > (and I bet to others as well).
+> > >
+> > > Moreover, I don't quite understand your objections to changing this.
+> > > Why leave this to be inconsistent when it can be easily fixed?
 > >
-> > It appears to me you should fix Linux to not need these 2 useless
-> > properties. I say useless because #interrupt-cells being 0 is pretty
-> > useless.
+> > If you feel so strong about it, go for it. No strong objections. Just
+> > double check the refcounts are done correctly.
 >
-> Linux IRQCHIP framework only probes IRQCHIP DT nodes which
-> have "interrupt-controller" DT property.
+> The refcounts should be okay, I think.
+>
+> I am fine with either of the two suggestions I have made.
 
-Right, I believe I wrote that... So what would it look like to fix
-that? The simplest thing is just drop the check for
-'interrupt-controller'. That's just a sanity check and we have other
-ways to do that now (schemas). Do you need this early? You can always
-implement your own initcall.
+The one I Nak-ed earlier is not okay. So I think we have only one other option.
 
+> But another
+> option could be to come up with an alternative name (and a
+> description) for the flag, instead of "optional_con_dev", if you
+> perhaps have a better suggestion?
 
-> The "interrupt-cells" DT property
-> can be removed because as an interrupt controller SiFive CLINT
-> will only provide IPIs to arch code.
+It's not fully clear to me what part of node_not_dev is confusing, but
+I'll take a stab at it. How about:
+- * @node_not_dev: The consumer node containing the property is never a device.
++ * @con_node_never_dev: The consumer node containing the property is never
++ *                     converted to a struct device. The struct device will be
++ *                     created for one of the ancestor nodes, which fw_devlink
++ *                     assumes would an ancestor with the compatible property.
 
-The schema will disagree.
+If you are happy with this, then go ahead and use this name/comment
+with the last code suggestion you made and send out a patch?
 
-Rob
+Thanks,
+Saravana
