@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 160033FECE8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 13:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74B6E3FECEA
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 13:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245744AbhIBL3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 07:29:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37248 "EHLO mail.kernel.org"
+        id S1343577AbhIBL3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 07:29:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37254 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245647AbhIBL3n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S245695AbhIBL3n (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Thu, 2 Sep 2021 07:29:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3559A61057;
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 382E3610CD;
         Thu,  2 Sep 2021 11:28:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
         s=k20201202; t=1630582125;
-        bh=iwKTETCoMU3En+5uE5SOOsreZ29nNC4aV2mE/kPiRkA=;
+        bh=t5jqLXWSCvkoEWBIixIhEk25N1p5VRoDG3iLJpBa4KQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hKi9JgcJgYx5kYLIU1nZchHhXm17mxjRSk0r/F3ouFiKZNd2HlQNVyrX6Xy3QwmAw
-         z+2TyblYym2CwtkW6lOVoVOgezqhZ/jEZM5I9OvsF0m15mZlbO40JiCIpCrrBTcEDX
-         Rb/MZ2NL7T49O4Bbz/ljTvNmOOUar4J/PCdnW4UBE1GNmmor6VO7/zxphqPzKMAp9t
-         5l93q/6VwI23FEpf/p8QxmpZMOGWTQHHnbEw62Up6jTPiD1Dm1/3QWCpE44Knr+Dg1
-         KBpNKCXsC2wrAzcvo0XKiv/FHs9YQqMVUmSCIuJlsKYW3DlOCGD8CxRaZLfCxi0wmz
-         CTARycQPw6cmA==
+        b=VbMBY59GdRtIBJzGqkWGa0MULEUj8bu5kgXOZogUNioWucm9C5mVX0c7wAAVERUzt
+         Q6P6nGOy3oHhAnONxBpHVXt0uq4ZANPY7oFIK35grJiTelkBDNVXMKSl0DnIwfnGZY
+         pKdtFtKN6cZhQCztV7GPgAzLkYZYNCQFVBUY5z1X62+s7f5A3Zl9fU0a84Bd1N9R9H
+         mhyXjJpkZJ6pR83m/kEPOHdpbXqpWeXUsYIrJAqbYNUkdB5wMLD18IDSos+uSbeWwt
+         N3vG9SCpZoSMj2oKTT84HKPccwtYCx6e8p3U+Y2ayHVP2lmMQxDXB19M0Khlk7JAAO
+         LcHWG9BJ73O0w==
 Received: by mail.kernel.org with local (Exim 4.94.2)
         (envelope-from <mchehab@kernel.org>)
-        id 1mLktf-0004ZO-5u; Thu, 02 Sep 2021 13:28:43 +0200
+        id 1mLktf-0004ZW-A1; Thu, 02 Sep 2021 13:28:43 +0200
 From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Rob Herring <robh@kernel.org>
 Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Yu Chen <chenyu56@huawei.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         "John Stultz" <john.stultz@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH v3 1/4] dt-bindings: misc: add schema for USB hub on Kirin devices
-Date:   Thu,  2 Sep 2021 13:28:34 +0200
-Message-Id: <9b49f98da440865212f040dad841ac689e7f73e7.1630581434.git.mchehab+huawei@kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 3/4] arm64: dts: hisilicon: Add usb mux hub for hikey970
+Date:   Thu,  2 Sep 2021 13:28:36 +0200
+Message-Id: <1df0b8f59fb75d6c1f3b5248f74f66b93a072a02.1630581434.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <cover.1630581434.git.mchehab+huawei@kernel.org>
 References: <cover.1630581434.git.mchehab+huawei@kernel.org>
@@ -47,134 +47,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yu Chen <chenyu56@huawei.com>
+Add dt bindings for Kirin 970 USB HUB. Such board comes with an
+integrated USB HUB provided via a TI TUSB8041 4-port USB 3.0 hub.
 
-This patch adds binding documentation to support USB HUB and
-USB data role switch of HiSilicon HiKey960 and HiKey970 boards.
-
-[mchehab: updated OF schema and added HiKey970 example]
-Signed-off-by: Yu Chen <chenyu56@huawei.com>
-Signed-off-by: John Stultz <john.stultz@linaro.org>
 Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- .../bindings/misc/hisilicon,hikey-usb.yaml    | 108 ++++++++++++++++++
- 1 file changed, 108 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-new file mode 100644
-index 000000000000..12754a98786f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/hisilicon,hikey-usb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+index 60594db07041..0cec08083c4f 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+@@ -53,6 +53,29 @@ wlan_en: wlan-en-1-8v {
+ 		startup-delay-us = <70000>;
+ 		enable-active-high;
+ 	};
 +
-+title: HiKey960/970 onboard USB GPIO Hub
++	usb-hub {
++		compatible = "hisilicon,hikey970-usbhub";
++		typec-vbus-gpios = <&gpio26 1 0>;
++		otg-switch-gpios = <&gpio4 2 0>;
++		hub-reset-en-gpios = <&gpio0 3 0>;
++		hub-vdd-supply = <&ldo17>;
++		usb-role-switch;
 +
-+maintainers:
-+  - John Stultz <john.stultz@linaro.org>
++		port {
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+description: |
-+  Supports the onboard USB GPIO hub found on HiKey960/970.
-+  The HUB, which acts as a role-switch intermediary to detect the state of
-+  the USB-C port, to switch the hub into dual-role USB-C or host mode,
-+  which enables the onboard USB-A host ports.
-+
-+  Schematics about the hub can be found here:
-+    https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
-+    https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,hikey960-usbhub
-+      - hisilicon,hikey970-usbhub
-+
-+  typec-vbus-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: phandle to the typec-vbus gpio
-+
-+  otg-switch-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: phandle to the otg-switch gpio
-+
-+  hub-reset-en-gpios:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: phandle to the hub reset gpio
-+
-+  usb-role-switch:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Support role switch.
-+
-+  hub-vdd-supply:
-+    description: regulator for hub power
-+
-+  port:
-+    description: |
-+      describe hadware connections between USB endpoints.
-+      Two ports are supported: the first being the endpoint that will
-+      be notified by this driver, and the second being the endpoint
-+      that notifies this driver of a role switch.
-+
-+required:
-+  - compatible
-+  - typec-vbus-gpios
-+  - otg-switch-gpios
-+  - hub-vdd-supply
-+  - usb-role-switch
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    usb-hub960 {
-+        compatible = "hisilicon,hikey960-usbhub";
-+        typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
-+        otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
-+        hub-vdd-supply = <&usb_hub_vdd>;
-+        usb-role-switch;
-+        port {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            hikey960_usb_ep0: endpoint@0 {
-+                reg = <0>;
-+                remote-endpoint = <&dwc3_role_switch_960>;
-+            };
-+            hikey960_usb_ep1: endpoint@1 {
-+                reg = <1>;
-+                remote-endpoint = <&rt1711h_ep_960>;
-+            };
-+        };
-+    };
-+
-+    usb-hub970 {
-+        compatible = "hisilicon,hikey970-usbhub";
-+        typec-vbus-gpios = <&gpio26 1 0>;
-+        otg-switch-gpios = <&gpio4 2 0>;
-+        hub-reset-en-gpios = <&gpio0 3 0>;
-+        hub-vdd-supply = <&ldo17>;
-+        usb-role-switch;
-+        port {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            hikey970_usb_ep0: endpoint@0 {
-+                reg = <0>;
-+                remote-endpoint = <&dwc3_role_switch_970>;
-+            };
-+            hikey970_usb_ep1: endpoint@1 {
-+                reg = <1>;
-+                remote-endpoint = <&rt1711h_ep_970>;
-+            };
-+        };
-+    };
++			hikey_usb_ep0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&dwc3_role_switch>;
++			};
++			hikey_usb_ep1: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&rt1711h_ep>;
++			};
++		};
++	};
+ };
+ 
+ /*
 -- 
 2.31.1
 
