@@ -2,144 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8C13FF58F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE623FF5CC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346230AbhIBVW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 17:22:59 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:54176 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245379AbhIBVW7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Sep 2021 17:22:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=4W8zxurm5kXw4PloLvamlDJtFD1BuntSj9LBJWLPd1Y=; b=lK7dEoSX/EWfBQhLUweQ63P05F
-        k6ZhJDJgkOYuItsQD653g5Bpc6NpiMC7HyyXsRuN7zzgPqCGtPVghPUiArhcW4/WS8mfLPDrDajx9
-        Y5cFVSqQx9oTzk9QgVjiDCUzHxvM5tyNrq7HqlDfBQ9PXJqmSxyvAF0E+J/RnU8i6Lgw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mLu9j-0053PR-Pk; Thu, 02 Sep 2021 23:21:55 +0200
-Date:   Thu, 2 Sep 2021 23:21:55 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Gerhard Engleder <gerhard@engleder-embedded.com>
-Cc:     David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 3/3] tsnep: Add TSN endpoint Ethernet MAC
- driver
-Message-ID: <YTFAc/vMXTKdFSHL@lunn.ch>
-References: <20210831193425.26193-1-gerhard@engleder-embedded.com>
- <20210831193425.26193-4-gerhard@engleder-embedded.com>
- <YS6lQejOJJCATMCp@lunn.ch>
- <CANr-f5zXWrqPxWV81CT6=4O6PoPRB0Qs0T=egJ3q8FMG16f6xw@mail.gmail.com>
- <YS/qQdmjT/X0tiEt@lunn.ch>
- <CANr-f5wU0JTqwoHoFEwdFCVSYtcohx-DPc4mz8-GrVFpyNuajA@mail.gmail.com>
+        id S1347529AbhIBVsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 17:48:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347526AbhIBVsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 17:48:12 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB98C061575;
+        Thu,  2 Sep 2021 14:47:13 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id r7so5061751edd.6;
+        Thu, 02 Sep 2021 14:47:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qcG+HyKA1Y8i+Z2Jw3IqzPhdrYZ9oVs7LkF6xRpI/6w=;
+        b=Jx21egLuzS9P61dWMI1/PuMwpnMGqcgecpJ5XF1P4gj/NXBWr/OKEzAPe7ksXFBUUw
+         5BTKMAT9ohV3RMh0iNkpclriES5lI/arIzig+aqNib1gMg5LhDTiBgSbCoGS9xsEUUxM
+         EglEqcSl2wt0VPhNLoB8WM9cnZpM3yO+DEEAxIoV7jQzypH1td+pllkbQcGI+stM/0WR
+         hx2zzrfKKXZlGke/fSmQQpYzEhXuukvGraUVpUDlVEV9FbEkGjYG1JlJyovppisuBr4Q
+         Dpmbw3ECbPDxQD0x2W5B2hjD3PC4RZThrd/dd4cFKGXxWiYWLxyQuKL2sWAZt+rF0V0z
+         Hl2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qcG+HyKA1Y8i+Z2Jw3IqzPhdrYZ9oVs7LkF6xRpI/6w=;
+        b=sCQ0JM1NMIWO26LPcCl3anqHDRfcfFa9rOdesG0MAM1x/mmFXosSPTcNGvaLPwH2py
+         ux1UcX7vIcVbTKSV/Yxfk76Yc4DAEv79l3BluWXvrmJZUypzwlPtPBN6e2pTL5huxiGs
+         w0M1FYNpuo9kYh4rFHDFfY7eQOs1bJO1A9GFxOacHml+BfQcLmLbBVx8F6eoLqNre81a
+         wkbJ59hp+qLsRlTx+GMZm3o3UjXP4YuCD5lni0ixWBdlffNxlzlHgvIV0OFXj/u7IPs4
+         YODDqwKMN4iaruDeTphofNlE2nRppNqnlzFO/rc62GDKuFrb/qxnxKbQZj9WFlViPUiM
+         lkfg==
+X-Gm-Message-State: AOAM5323XxOdgYEX/EaDEvAdLwt7BEHKun4ga0PY1qkvXuxEuXgeHuvW
+        RKCVUiZDuUb6eU9vV4wufZE=
+X-Google-Smtp-Source: ABdhPJxuwlAiNA8w5FFSvXCjj3DJwEcBxEIliMZILWUv3xB6CSvXbe7IdxpdKcF7TXQFcRvgrjOWTw==
+X-Received: by 2002:a05:6402:1d05:: with SMTP id dg5mr415159edb.375.1630619232325;
+        Thu, 02 Sep 2021 14:47:12 -0700 (PDT)
+Received: from localhost.localdomain ([188.252.220.158])
+        by smtp.googlemail.com with ESMTPSA id h7sm1888331edr.4.2021.09.02.14.47.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Sep 2021 14:47:11 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH] arm64: dts: qcom: ipq8074: add SMEM support
+Date:   Thu,  2 Sep 2021 23:47:08 +0200
+Message-Id: <20210902214708.1776690-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANr-f5wU0JTqwoHoFEwdFCVSYtcohx-DPc4mz8-GrVFpyNuajA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 02, 2021 at 10:32:10PM +0200, Gerhard Engleder wrote:
-> > > > > +static irqreturn_t tsnep_irq(int irq, void *arg)
-> > > > > +{
-> > > > > +     struct tsnep_adapter *adapter = arg;
-> > > > > +     u32 active = ioread32(adapter->addr + ECM_INT_ACTIVE);
-> > > > > +
-> > > > > +     /* acknowledge interrupt */
-> > > > > +     if (active != 0)
-> > > > > +             iowrite32(active, adapter->addr + ECM_INT_ACKNOWLEDGE);
-> > > > > +
-> > > > > +     /* handle management data interrupt */
-> > > > > +     if ((active & ECM_INT_MD) != 0) {
-> > > > > +             adapter->md_active = false;
-> > > > > +             wake_up_interruptible(&adapter->md_wait);
-> > > > > +     }
-> > > > > +
-> > > > > +     /* handle link interrupt */
-> > > > > +     if ((active & ECM_INT_LINK) != 0) {
-> > > > > +             if (adapter->netdev->phydev) {
-> > > > > +                     struct phy_device *phydev = adapter->netdev->phydev;
-> > > > > +                     u32 status = ioread32(adapter->addr + ECM_STATUS);
-> > > > > +                     int link = (status & ECM_NO_LINK) ? 0 : 1;
-> > > > > +                     u32 speed = status & ECM_SPEED_MASK;
-> > > >
-> > > > How does PHY link and speed get into this MAC register? Is the MAC
-> > > > polling the PHY over the MDIO bus? Is the PHY internal to the MAC and
-> > > > it has backdoor access to the PHY status?
-> > >
-> > > PHY is external. The MAC expects additional signals for link status. These
-> > > signals can be derived from RGMII in band signaling of the link status or by
-> > > using PHY link and speed LED outputs. The MAC is using the link status for
-> > > a quick no link reaction to minimize the impact to real time applications.
-> > > EtherCAT for example also uses the link LED output for a no link reaction
-> > > within a few microseconds.
-> >
-> > O.K. This is not the normal Linux way. You normally have the PHY
-> > driver tell the PHY core, which then tells the MAC driver. That always
-> > works. RGMII in band signaling is not supported by all PHY devices,
-> > and the board design would require the LED output are correctly
-> > connected, and i guess you need a hacked PHY driver to use the correct
-> > LED meanings? Plus i guess you have additional changes in the PHY
-> > driver to do fast link down detection?
-> 
-> Yes, LED outputs must be correctly connected in the board design. LED
-> outputs are usually configured with strapping pins, which again require a
-> correct board design.
+IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
+supported by the kernel add the required DT nodes.
 
-Linux sometime, maybe soon, will be able the control the PHY LEDs, and
-probably export them to user space so root can change their meaning.
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 28 +++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-> Fast link down detection is a hardware property of the selected
-> PHY. So far no PHY driver changes were necessary.
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index a620ac0d0b19..83e9243046aa 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -82,6 +82,29 @@ scm {
+ 		};
+ 	};
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		smem_region: memory@4ab00000 {
++			no-map;
++			reg = <0x0 0x4ab00000 0x0 0x00100000>;
++		};
++	};
++
++	tcsr_mutex: hwlock {
++		compatible = "qcom,tcsr-mutex";
++		syscon = <&tcsr_mutex_regs 0 0x80>;
++		#hwlock-cells = <1>;
++	};
++
++	smem {
++		compatible = "qcom,smem";
++		memory-region = <&smem_region>;
++		hwlocks = <&tcsr_mutex 0>;
++	};
++
+ 	soc: soc {
+ 		#address-cells = <0x1>;
+ 		#size-cells = <0x1>;
+@@ -293,6 +316,11 @@ gcc: gcc@1800000 {
+ 			#reset-cells = <0x1>;
+ 		};
+ 
++		tcsr_mutex_regs: syscon@1905000 {
++			compatible = "syscon";
++			reg = <0x01905000 0x8000>;
++		};
++
+ 		sdhc_1: sdhci@7824900 {
+ 			compatible = "qcom,sdhci-msm-v4";
+ 			reg = <0x7824900 0x500>, <0x7824000 0x800>;
+-- 
+2.31.1
 
-Marvell PHYs for example follow 802.3 C40 and default to waiting 750ms
-before reporting the link down. You can configure them to only wait
-10ms, 20ms or 40ms. So it sounds like you are using a PHY which does
-not conform to C40? In general, we probably need to be able to
-configure this, for those that do follow C40.
-
-> > I think this needs another DT property to enable using such short
-> > cuts, and you should use the Linux way by default.
-> 
-> Isn't choosing PHY_MAC_INTERRUPT also the Linux way? I preferred it
-> over PHY_POLL, because I need the link information directly in the MAC
-> anyway. But maybe the speed information is too much and should be provided
-> to the MAC.
-
-PHY_MAC_INTERRUPT is just the first step. It means something happened
-in the PHY. You need to ask the PHY what? It could be link up or down,
-it could be cable diagnostics have finished, the temperature is
-getting too hot, whatever can cause the PHY to change state. The PHY
-driver will then determine what has actually happened. Some cases, the
-MAC does not needed to know. Others the MAC will be told, via the
-callback it registered. It gets to know the link speed, up down etc.
-That is the Linux way, the complete chain.
-
-> > Also, don't you need a property which tells you to either use RGMII
-> > inband, or LED signals?
-> 
-> No, this decision is done in VHDL/FPGA. No need to consume precious FPGA
-> resources for runtime configuration.
-
-You mean you have two ways to synthesis the MAC. You have two
-bitstreams. One for LEDs and one of inband RGMII?
-
-> I'm afraid that relying on ACPI is not always an option. x86 CPU modules are
-> very often used in industrial automation and the BIOS of the CPU module is
-> usually not adapted to the carrier board.
-
-Yes, i've been there. I have managed to get the BIOS customised, but
-it is not easy. DT is much easier to use.
-
-> Also other drivers implement a fallback like this. Shall I still
-> remove it?
-
-You can keep it. I just don't recommend it, if you can avoid it. But x86...
-
-    Andrew
