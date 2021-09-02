@@ -2,181 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A57AA3FF72E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 00:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F3443FF761
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 00:47:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242407AbhIBWeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 18:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
+        id S1348323AbhIBWsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 18:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236148AbhIBWeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 18:34:20 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FE1C061757
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 15:33:21 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id m11so4547433ioo.6
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 15:33:21 -0700 (PDT)
+        with ESMTP id S1347886AbhIBWsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 18:48:46 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F989C061757
+        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 15:47:47 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id 2so2796127pfo.8
+        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 15:47:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vEOAhsHQM9G+tVvC78A/rhgecetN4byQdhrLLpo0P0g=;
-        b=LDmJnOglDM6SRfrqk879nlvltfZEhwju/ts9Exu/2rE0XB+Lj74aGi7ZCLry1NSj0f
-         btPQfuDa+Q2ntfjL+zK+k6leKrLg6ahv0/pjTn7Y3JJbbdq5v55q2XUGEdXr0VDSURWz
-         zo/R1rY1OagPqlvLvu4Emr9cTHgcwBCjlU/VE=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jy5ANyWb/YcsFMt8C4Et+c6YxLRytJdAR1KKLj19Z3s=;
+        b=UfgKb8qxp9a5x/tN93DBp6cPxbGhMDB+zOi3444jB2OxZCm+weqtFmT0Qp0vVvuy1g
+         C/486g65I0H95AVs90kY1+s0oYH7d5nvzC9v8xkgA5vGdyLO2GtYDDfLTWjDDBpbtX3o
+         DJw0sYlPuSR3DS4dfW7kLZSAwhJaHWZyvPusI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vEOAhsHQM9G+tVvC78A/rhgecetN4byQdhrLLpo0P0g=;
-        b=bVSSXcqKjlAr+hh5MRGQIn4tgTj83cNVvBhJdNkfOHF0EkRDifGMtal1eFvvDU1iR7
-         n4K6vU3b+NaF8Xc2Axxe2ziY+99AMA2tQl/qQiITLblx6PSOjJt7IyrkhEQOT+v+72I5
-         Srh0RRjVbQuQDg2j//9IsC6zkdwTIYeAP3nskp56cX7hKuaMF/bsJ80bb54VKSgNUDYI
-         o4bXhxQDQu67jXZrr9nlL+HgdDxSZ/2D0zEdihnHEZ7dr+ufC5cXJRu/2ZZypByAo+gC
-         +6lBkBNFxUfRAJQkCDjHUXMAkZsR19LZCqMB7pvIzmCeNTrIEwL4mrLDRrMdk1ONYFkj
-         tPCw==
-X-Gm-Message-State: AOAM531TpUOf9cr5Tv3tbRogKPwfcSYUiZy2ubofVUJ5wKDon2WErD4H
-        zbGSt/Mzl6VfnL6pG6WLmjkt/T04/MHMUg==
-X-Google-Smtp-Source: ABdhPJxMGK2CpqKPNeZvrttopT5Xs3zRO65JzwOpOqG1wRfiHnxYMUISgpA6ToPJX+q2C6nYNQ7Ivg==
-X-Received: by 2002:a02:a391:: with SMTP id y17mr50133jak.47.1630622000607;
-        Thu, 02 Sep 2021 15:33:20 -0700 (PDT)
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com. [209.85.166.177])
-        by smtp.gmail.com with ESMTPSA id z7sm1616629ilz.25.2021.09.02.15.33.19
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jy5ANyWb/YcsFMt8C4Et+c6YxLRytJdAR1KKLj19Z3s=;
+        b=qJoHGTm4wlqW4gv0V0wOXqG1oPPa6zZwSvbno3gDVvUOUtOgwEsHv86abvaPZ8hxDN
+         14dLyrC8T7QX527+oIZjWfbmOEK6q6IRCGsCsa8v+pJ0UHQojblo3UuRNSPAYBWArqL/
+         bua7p/4W99sgkTTl73sdKMvItfoYUx/pWiw3VZJUEKlZqdDsJXsGd9jO5CiSWfzD45pE
+         drzEK9F8fuLkfjndviBFNuTP7BG4kEdZnWyot2lkPhQ4+Kzjb1awjFdqYqEhak2IbK4w
+         esb+jBZF4UfzMohMN4ncsycvCwyc10fQS9kKTin0mNuHV5LYR1SqEF6rzcmxfgfHQ7Js
+         QMeQ==
+X-Gm-Message-State: AOAM533shuGN69CZiRCsIM9KknxaE5GW9O3wrGCJWlqHA0ZoeATG5VAt
+        flNh7xQ+vgSE5N8/ck9pjhFhgQ==
+X-Google-Smtp-Source: ABdhPJy+Wb0gJfRDBhYb9HK63RyiYASdFVz6IgbPQFrlQt+oowLxrFCdOCAzIiP1Flu30w7gT+IoOQ==
+X-Received: by 2002:a05:6a00:23cf:b0:3e2:4622:da6d with SMTP id g15-20020a056a0023cf00b003e24622da6dmr491338pfc.18.1630622867065;
+        Thu, 02 Sep 2021 15:47:47 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:76ac:d178:a633:4fb5])
+        by smtp.gmail.com with UTF8SMTPSA id lw14sm2895715pjb.48.2021.09.02.15.47.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Sep 2021 15:33:20 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id l10so3411376ilh.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 15:33:19 -0700 (PDT)
-X-Received: by 2002:a92:cf4a:: with SMTP id c10mr329106ilr.269.1630621999435;
- Thu, 02 Sep 2021 15:33:19 -0700 (PDT)
+        Thu, 02 Sep 2021 15:47:46 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH] arm64: dts: qcom: sc7180-trogdor: Delete ADC config for unused thermistors
+Date:   Thu,  2 Sep 2021 15:47:44 -0700
+Message-Id: <20210902154711.1.I9777d0036ecbb749a4fb9ebb892f94c6e3a51772@changeid>
+X-Mailer: git-send-email 2.33.0.153.gba50c8fa24-goog
 MIME-Version: 1.0
-References: <CGME20210902221015eucas1p26fae8f6ba4c70087dc7b007a271dce4b@eucas1p2.samsung.com>
- <20210901201934.1084250-1-dianders@chromium.org> <b1b67791-69b7-a5c0-9e98-73bb82afaeaa@samsung.com>
-In-Reply-To: <b1b67791-69b7-a5c0-9e98-73bb82afaeaa@samsung.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 2 Sep 2021 15:33:07 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W+7gReePki1kgxwxMTXEeeCoaFm1C63EcV+YOP7kayGA@mail.gmail.com>
-Message-ID: <CAD=FV=W+7gReePki1kgxwxMTXEeeCoaFm1C63EcV+YOP7kayGA@mail.gmail.com>
-Subject: Re: [PATCH v3 00/16] eDP: Support probing eDP panels dynamically
- instead of hardcoding
-To:     Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        linux-sunxi@lists.linux.dev,
-        "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
-        =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The charger thermistor on Lazor, CoachZ rev1 and Pompom rev1+2 is
+either the wrong part or not stuffed at all, the same is true for
+the skin temperature thermistor on CoachZ rev1. The corresponding
+thermal zones are already disabled for these devices, in addition
+delete the ADC nodes of the thermistors.
 
-On Thu, Sep 2, 2021 at 3:10 PM Andrzej Hajda <a.hajda@samsung.com> wrote:
->
-> Removed most CC: SMTP server protested.
+For Lazor and CoachZ rev1 also disable the PM6150 ADC thermal
+monitor since there are no other temperatures to monitor.
 
-Yeah, it was because of the dang defconfig patches. My general policy
-is to send the cover letter to everyone even if not everyone gets CCed
-on all patches, but it ended up as a lot... Speaking of which, I'd
-definitely be interested in your take on the defconfig topic:
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
-https://lore.kernel.org/r/CAD=FV=WPXAUyuAHb1jKx9F_aw+JGX4MWB3or=Eq5rXoKY=OQMw@mail.gmail.com
+ .../arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts | 12 ++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi   | 10 ++++++++++
+ .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts |  8 ++++++++
+ .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts |  8 ++++++++
+ 4 files changed, 38 insertions(+)
 
-Do you agree with Olof that I should set the "default" for the new
-config to be the same as the old config? It doesn't make sense going
-forward but it helps for anyone with old configs...
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+index 21b516e0694a..edfcd47e1a00 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+@@ -23,6 +23,18 @@ &charger_thermal {
+ 	status = "disabled";
+ };
+ 
++&pm6150_adc {
++	/delete-node/ skin-temp-thermistor@4e;
++	/delete-node/ charger-thermistor@4f;
++};
++
++&pm6150_adc_tm {
++	status = "disabled";
++
++	/delete-node/ charger-thermistor@0;
++	/delete-node/ skin-temp-thermistor@1;
++};
++
+ /*
+  * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
+  * which currently is not supported by the PM6150 ADC driver. Disable the
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+index 00535aaa43c9..57f7b19f83b0 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+@@ -54,6 +54,16 @@ &panel {
+ 	compatible = "boe,nv133fhm-n62";
+ };
+ 
++&pm6150_adc {
++	/delete-node/ charger-thermistor@4f;
++};
++
++&pm6150_adc_tm {
++	status = "disabled";
++
++	/delete-node/ charger-thermistor@0;
++};
++
+ &trackpad {
+ 	interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
+index e122a6b481ff..76a130bad60a 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
+@@ -26,6 +26,14 @@ &charger_thermal {
+ 	status = "disabled";
+ };
+ 
++&pm6150_adc {
++	/delete-node/ charger-thermistor@4f;
++};
++
++&pm6150_adc_tm {
++	/delete-node/ charger-thermistor@0;
++};
++
+ &pp3300_hub {
+ 	/* pp3300_l7c is used to power the USB hub */
+ 	/delete-property/regulator-always-on;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
+index 4f32e6733f4c..88cf2246c18a 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts
+@@ -22,3 +22,11 @@ / {
+ &charger_thermal {
+ 	status = "disabled";
+ };
++
++&pm6150_adc {
++	/delete-node/ charger-thermistor@4f;
++};
++
++&pm6150_adc_tm {
++	/delete-node/ charger-thermistor@0;
++};
+-- 
+2.33.0.153.gba50c8fa24-goog
 
-
-> On 01.09.2021 22:19, Douglas Anderson wrote:
-> > The goal of this patch series is to move away from hardcoding exact
-> > eDP panels in device tree files. As discussed in the various patches
-> > in this series (I'm not repeating everything here), most eDP panels
-> > are 99% probable and we can get that last 1% by allowing two "power
-> > up" delays to be specified in the device tree file and then using the
-> > panel ID (found in the EDID) to look up additional power sequencing
-> > delays for the panel.
-> >
-> > This patch series is the logical contiunation of a previous patch
-> > series where I proposed solving this problem by adding a
-> > board-specific compatible string [1]. In the discussion that followed
-> > it sounded like people were open to something like the solution
-> > proposed in this new series.
-> >
-> > In version 2 I got rid of the idea that we could have a "fallback"
-> > compatible string that we'd use if we didn't recognize the ID in the
-> > EDID. This simplifies the bindings a lot and the implementation
-> > somewhat. As a result of not having a "fallback", though, I'm not
-> > confident in transitioning any existing boards over to this since
-> > we'll have to fallback to very conservative timings if we don't
-> > recognize the ID from the EDID and I can't guarantee that I've seen
-> > every panel that might have shipped on an existing product. The plan
-> > is to use "edp-panel" only on new boards or new revisions of old
-> > boards where we can guarantee that every EDID that ships out of the
-> > factory has an ID in the table.
-> >
-> > Version 3 of this series now splits out all eDP panels to their own
-> > driver and adds the generic eDP panel support to this new driver. I
-> > believe this is what Sam was looking for [2].
-> >
-> > [1] https://lore.kernel.org/r/YFKQaXOmOwYyeqvM@google.com/
-> > [2] https://lore.kernel.org/r/YRTsFNTn%2FT8fLxyB@ravnborg.org/
-> >
-> I like the idea - if something can be configured dynamically lets do it.
-> But I have few questions:
-> 1. Have you read different real panels id's? In many cases (MIPI DSI,
-> LVDS with EDID) manufacturers often forgot to set proper id fields. I do
-> not know how EDID's ids are reliable in case of edp panels.
-
-I have read several and (so far) they have been quite reliable but I
-will admit that I haven't done an exhaustive sample. I guess my answer
-to whether we can trust it is:
-
-a) Presumably you'd only use this new "edp-panel" compatible on
-systems whose panel IDs are known to be reliable. Old systems can keep
-determining the panel by compatible string. The two schemes can
-co-exist.
-
-b) As we start using this new scheme then there will be more
-validation of panel ID strings and, presumably, they will become more
-reliable.
-
-It is still true that ID conflicts could exist. A vendor could ship
-two different panels with the same ID and maybe nobody would notice
-because they weren't ever hooked up to the same board. In that case
-we'd have a question of what to do upstream. If this really happens
-then I suppose (worst case) we could use the device tree to help
-differentiate and each board could say that "panel ID <x> hooked up to
-this board is actually panel <y>". I hope we don't have to do that
-because it feels dirty, but at least it gives us _something_ if we get
-backed into a corner.
-
-
-> 2. You are working with edp panels - beside EDID they have DPCD which
-> contains things like IEEE_OUI and "Device Identification String", I
-> guess they could be also used for detecting panels, have you considered
-> it? I think DPCD Id should be assigned to EDP-Sink interface, and EDID
-> Id to the actual panel behind it. With this assumption one could
-> consider which timings should be property of which entity.
-
-This could be another way to help us if we're backed into a corner in
-the future. Right now the driver requires that you give access to a
-full eDP AUX bus to use the "generic eDP" panel support even though it
-currently only relies on the EDID, so it would be pretty easy to
-utilize this info in the future. So far the ID has been reliable for
-me though.
-
-
--Doug
