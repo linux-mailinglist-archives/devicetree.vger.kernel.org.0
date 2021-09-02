@@ -2,98 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 761E53FEB08
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 11:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F15073FEB31
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 11:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245050AbhIBJQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 05:16:36 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:52448 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245013AbhIBJQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 05:16:29 -0400
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 02 Sep 2021 02:15:30 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 Sep 2021 02:15:29 -0700
-X-QCInternal: smtphost
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 02 Sep 2021 14:45:09 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id A8B684FD2; Thu,  2 Sep 2021 14:45:08 +0530 (IST)
-From:   satya priya <skakit@codeaurora.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        satya priya <skakit@codeaurora.org>
-Subject: [PATCH V2 2/2] arm64: dts: sc7280: Add volume up support for sc7280-idp
-Date:   Thu,  2 Sep 2021 14:45:06 +0530
-Message-Id: <1630574106-3394-3-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1630574106-3394-1-git-send-email-skakit@codeaurora.org>
-References: <1630574106-3394-1-git-send-email-skakit@codeaurora.org>
+        id S245553AbhIBJ2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 05:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35244 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245139AbhIBJ2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 05:28:24 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFF1C061575;
+        Thu,  2 Sep 2021 02:27:26 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id t42so1152474pfg.12;
+        Thu, 02 Sep 2021 02:27:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5eh/glHsJ8jkOW+kWHIi3NmtKaQUQdLU+4tO181UN7Y=;
+        b=oaH/d0E0Ho4VV9lo48x1+E38Z6h0g+HzFEPpck5bucZvK65hrec7GlSgUCetVurSdr
+         fm2FzpZqZieSl6QnyRQFGgoqaLV9FiY4XqGVZ2T7+5/pDRji8kZp6VSUk0Q+Y0B2o6nf
+         ZdmVH5coxVtusISG05cFPBjkEu7/lbKpQGU8uZIVVN+YdKDV2fYsbHQac4nWtNhcvCXH
+         CL6+XWWDFxJmdcmE+bWbMjpashCwW78+5PuMeA9fAT8msm4suEkNTA8Wb6Tx2YwTV+xR
+         /LmIUmTW69dtR6wFThyxGvrMTr7/rLq0k/vF3nlCHuBYYxJfcVvOdXXM/XQ5SahPfZlG
+         vUqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5eh/glHsJ8jkOW+kWHIi3NmtKaQUQdLU+4tO181UN7Y=;
+        b=cSkfeZgaYQxOSm5gWNVBZEUBBVN3xDPi+/nbA20GedWHeehSDT3UZ/lN0/MfXXWHaX
+         1GmlpVqIYnDXcLMkO3ilDoHIm/O+u6HalpJ5hS3Tw4RQmcu19CtCbPQpiNcbHaHZSLd6
+         79ROT1qLLDQa7AeanmBgFxogjTEiZiJNHxIo3AoIWvCmoBq/kEb7Umfdhuo0+HE4V2Ry
+         R4G46idC7hzOTHwBh1HirbBHTXNEnFlwJ5/JcJA5ab5mjWOwcWAx1fOQZdibk7WKTX3c
+         rHDrCw2ZcCiHx/v1KCiADcxb5n1UhbPo6mCV64vvsP2eirD1cCNcZJBdseM7IS8WxtkS
+         bkSA==
+X-Gm-Message-State: AOAM5312whyok4kw5qOKwzBEH1RoBFHm5yNleErhdRRNB3CpPHZM5iV1
+        J+fPiMfFk+U4RdnlhQ1ojIE=
+X-Google-Smtp-Source: ABdhPJzJ6Pz5nO5o8PukyJhRE0xNeP8YLs3eEf0JrqcClvTsVTAqXKz4JUwBy3rTsfBe5vbTJNIMFQ==
+X-Received: by 2002:a65:400c:: with SMTP id f12mr2338150pgp.296.1630574846270;
+        Thu, 02 Sep 2021 02:27:26 -0700 (PDT)
+Received: from ubt.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id 23sm2071467pgk.89.2021.09.02.02.27.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Sep 2021 02:27:25 -0700 (PDT)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH] of: fix of_address_to_resource and of_iomap undefined
+Date:   Thu,  2 Sep 2021 17:27:03 +0800
+Message-Id: <20210902092704.2678277-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm7325 PMIC gpio support for vol+ on sc7280-idp.
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-Signed-off-by: satya priya <skakit@codeaurora.org>
+If CONFIG_OF is selected, but CONFIG_OF_ADDRESS is not, when compiling
+files (sunch as timer_of.c) in which the function of_iomap() is invoked,
+compiler would report 'undefined reference to of_iomap', the same case
+is for of_address_to_resource().
+
+This patch also makes sure that of_iomap() and of_address_to_resource()
+are declared for sparc so that sparc can have its specific
+implementations in arch/sparc/kernel/of_device_common.c, even if
+including include/linux/of_address.h in it.
+
+Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 ---
-Changes in V2:
- - No changes.
+ include/linux/of_address.h | 33 +++++++++++++++++----------------
+ 1 file changed, 17 insertions(+), 16 deletions(-)
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 371a2a9..52bcbbc 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -199,6 +199,37 @@
- 	modem-init;
- };
+diff --git a/include/linux/of_address.h b/include/linux/of_address.h
+index 45598dbec269..02a719d58466 100644
+--- a/include/linux/of_address.h
++++ b/include/linux/of_address.h
+@@ -80,6 +80,23 @@ static inline u64 of_translate_address(struct device_node *np,
+ 	return OF_BAD_ADDR;
+ }
  
-+&soc {
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
++#ifdef CONFIG_SPARC
++extern int of_address_to_resource(struct device_node *dev, int index,
++				  struct resource *r);
++void __iomem *of_iomap(struct device_node *device, int index);
++#else
++static inline int of_address_to_resource(struct device_node *dev, int index,
++					 struct resource *r)
++{
++	return -EINVAL;
++}
 +
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key_vol_up_default>;
++static inline void __iomem *of_iomap(struct device_node *device, int index)
++{
++	return NULL;
++}
++#endif
 +
-+		vol_up {
-+			label = "volume_up";
-+			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpio-key,wakeup;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+		};
-+	};
-+};
-+
-+&pm7325_gpios {
-+	key_vol_up_default: key_vol_up_default {
-+		pins = "gpio6";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		power-source = <0>;
-+		qcom,drive-strength = <3>;
-+	};
-+};
-+
- &pmk8350_vadc {
- 	pmk8350_die_temp {
- 		reg = <PMK8350_ADC7_DIE_TEMP>;
+ static inline const __be32 *__of_get_address(struct device_node *dev, int index, int bar_no,
+ 					     u64 *size, unsigned int *flags)
+ {
+@@ -124,22 +141,6 @@ static inline bool of_dma_is_coherent(struct device_node *np)
+ }
+ #endif /* CONFIG_OF_ADDRESS */
+ 
+-#ifdef CONFIG_OF
+-extern int of_address_to_resource(struct device_node *dev, int index,
+-				  struct resource *r);
+-void __iomem *of_iomap(struct device_node *node, int index);
+-#else
+-static inline int of_address_to_resource(struct device_node *dev, int index,
+-					 struct resource *r)
+-{
+-	return -EINVAL;
+-}
+-
+-static inline void __iomem *of_iomap(struct device_node *device, int index)
+-{
+-	return NULL;
+-}
+-#endif
+ #define of_range_parser_init of_pci_range_parser_init
+ 
+ static inline const __be32 *of_get_address(struct device_node *dev, int index,
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+2.25.1
 
