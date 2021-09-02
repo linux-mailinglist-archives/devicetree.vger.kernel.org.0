@@ -2,205 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 491A63FF02C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 17:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6073FF07C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 17:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234414AbhIBP2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 11:28:55 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:43790 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345689AbhIBP2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 11:28:54 -0400
-Received: by mail-ot1-f43.google.com with SMTP id x10-20020a056830408a00b004f26cead745so2971080ott.10;
-        Thu, 02 Sep 2021 08:27:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bqpAdctft+FNwBQ21zVwpW5d55hAXSJQXRl03yYe76s=;
-        b=PPM8nUHGx55S44pYjOPuq5xvku1U8ZlTa/6DikG1YVizBx/gBHj2ja8Y0J+9kSVNOt
-         CSvTxBj/v3tpCsLgYpwSuTQD7IJQ+/VJ6tLiZAkR/dy6IOzIUw2ssscwkcnLIBiil2pT
-         jHPR0/30U33DNTmYZe2GuLeSrfSOGYohCZphdg19Ve/6NmwZCe7jVvgAciXRERB5Mxi3
-         /+qJ36dqfxIYJWwbeGcT8m/e+48ZMx3Ok0x+JHkSzaPvqDz+6oAgljS+y45Feu1J/hjr
-         cbgifQHzae6/p0/HvSz+LPmgsp7NbV8ScSl3AJi1/UaE636dIm19J3xYgsxZ0Wj4m2ax
-         0wvA==
-X-Gm-Message-State: AOAM532mJxQQNwQFHICx+qXD4g/PcaPJzU0816lWRzSOAR9VgS8nqSxN
-        u7XKxTfSeyAUtcdKnYmyJA==
-X-Google-Smtp-Source: ABdhPJzEwGyey7HM+GJpRspaIwtYhFX2S77YtjWMNY2eHNOIzFXRViC3QKyJRTICTcJ3y3YNpyYroQ==
-X-Received: by 2002:a9d:798c:: with SMTP id h12mr3067596otm.215.1630596476006;
-        Thu, 02 Sep 2021 08:27:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c7sm391314otl.30.2021.09.02.08.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 08:27:55 -0700 (PDT)
-Received: (nullmailer pid 950168 invoked by uid 1000);
-        Thu, 02 Sep 2021 15:27:54 -0000
-Date:   Thu, 2 Sep 2021 10:27:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/7] dt-bindings: rtc: sun6i: Add H616 and R329
- compatibles
-Message-ID: <YTDtelCx5If3J5cM@robh.at.kernel.org>
-References: <20210901053951.60952-1-samuel@sholland.org>
- <20210901053951.60952-2-samuel@sholland.org>
+        id S1345839AbhIBPwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 11:52:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35382 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231942AbhIBPv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 11:51:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C6C6D603E9;
+        Thu,  2 Sep 2021 15:51:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630597861;
+        bh=n+fcc/Ub9f6mKkgV3xaS1g7ny+8ESxl5WnwJsctvzG8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=uX6Tyh5B7FV+nIUoIKjPXxp97L37MM+R+QE3KSsOWCf+d6Poz17k91CJ4s1akYrr+
+         AX8m4b4SwPERs1b+1zvGxtHEWx4QU1g7nh80JyhE/Y1AKFE3TY9K4UIBwnJD6E1a0f
+         ppy76lt9kUw/8GcccfhymlrdgqLKlCyRrC/Ahp/oy7vCnib2eaQ4cSo6AM91UG9kww
+         YjMABzgIvPI+cGALPlMbfO4XUF1IaBr2bgGYxYxn/eWwQd5SBk7KDsXa+t0mNO4kZn
+         iKuBQv6Az5yMfsYvFfYiE01OZT/+QqJziOQceBjzD7n7pAeV/cDlv27GVbbMg9gv/a
+         1t04SjAV9K93A==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-kernel@vger.kernel.org,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com
+Cc:     Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX8ULP
+Date:   Thu,  2 Sep 2021 16:50:29 +0100
+Message-Id: <163059750027.34506.2833380124820785822.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <1630553525-25655-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1630553525-25655-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210901053951.60952-2-samuel@sholland.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 01, 2021 at 12:39:45AM -0500, Samuel Holland wrote:
-> For these new SoCs, start requiring a complete list of input clocks.
-> 
-> For H616, this means bus, hosc, and pll-32k. For R329, this means ahb,
-> bus, and hosc; and optionally ext-osc32k.
-> 
-> I'm not sure how to best represent this in the binding...
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml | 55 +++++++++++++++++--
->  include/dt-bindings/clock/sun50i-rtc.h        | 12 ++++
->  2 files changed, 61 insertions(+), 6 deletions(-)
->  create mode 100644 include/dt-bindings/clock/sun50i-rtc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> index beeb90e55727..3e085db1294f 100644
-> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> @@ -26,6 +26,8 @@ properties:
->            - const: allwinner,sun50i-a64-rtc
->            - const: allwinner,sun8i-h3-rtc
->        - const: allwinner,sun50i-h6-rtc
-> +      - const: allwinner,sun50i-h616-rtc
-> +      - const: allwinner,sun50i-r329-rtc
-
-Can you please make all the single entry cases a single 'enum'.
-
->  
->    reg:
->      maxItems: 1
-> @@ -37,7 +39,24 @@ properties:
->        - description: RTC Alarm 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      - anyOf:
-
-This says the first entry is any of these. What about the rest of them?
-
-> +          - const: ahb
-> +            description: AHB parent for SPI bus clock
-
-The description should go in 'clocks'. The order should be defined as 
-well with the first clock being the one that existed previously.
-
-> +          - const: bus
-> +            description: AHB/APB bus clock for register access
-> +          - const: ext-osc32k
-> +            description: External 32768 Hz oscillator input
-> +          - const: hosc
-> +            description: 24 MHz oscillator input
-> +          - const: pll-32k
-> +            description: 32 kHz clock divided from a PLL
->  
->    clock-output-names:
->      minItems: 1
-> @@ -85,6 +104,9 @@ allOf:
->              enum:
->                - allwinner,sun8i-h3-rtc
->                - allwinner,sun50i-h5-rtc
-> +              - allwinner,sun50i-h6-rtc
-> +              - allwinner,sun50i-h616-rtc
-> +              - allwinner,sun50i-r329-rtc
->  
->      then:
->        properties:
-> @@ -96,13 +118,35 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: allwinner,sun50i-h6-rtc
-> +            enum:
-> +              - allwinner,sun50i-h616-rtc
-> +              - allwinner,sun50i-r329-rtc
->  
->      then:
-> +      clocks:
-> +        minItems: 3 # bus, hosc, and (pll-32k [H616] or ahb [R329])
-> +
-> +      clock-names:
-> +        minItems: 3
-> +
-> +      required:
-> +        - clock-names
-> +
-> +    else:
-> +      required:
-> +        - clock-output-names
-> +
-> +  - if:
-> +      properties: clock-names
-> +
-> +    then:
-> +      required:
-> +        - clocks # hosc is required
-> +
-> +    else:
->        properties:
-> -        clock-output-names:
-> -          minItems: 3
-> -          maxItems: 3
-> +        clocks:
-> +          maxItems: 1 # only ext-osc32k is allowed
->  
->    - if:
->        properties:
-> @@ -127,7 +171,6 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> -  - clock-output-names
->  
->  additionalProperties: false
->  
-> diff --git a/include/dt-bindings/clock/sun50i-rtc.h b/include/dt-bindings/clock/sun50i-rtc.h
-> new file mode 100644
-> index 000000000000..d45e3ff4e105
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/sun50i-rtc.h
-> @@ -0,0 +1,12 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license please.
-
-> +
-> +#ifndef _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_
-> +#define _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_
-> +
-> +#define CLK_OSC32K		0
-> +#define CLK_OSC32K_FANOUT	1
-> +#define CLK_IOSC		2
-> +
-> +#define CLK_RTC_SPI		8
-> +
-> +#endif /* _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_ */
-> -- 
-> 2.31.1
+On Thu, 2 Sep 2021 11:32:05 +0800, Shengjiu Wang wrote:
+> Add compatible string for i.MX8ULP platform which support audio
+> function through rpmsg audio channel on M core.
 > 
 > 
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX8ULP
+      commit: 4f89ff026ddbaab49dba993ad2dc757920d0ad49
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
