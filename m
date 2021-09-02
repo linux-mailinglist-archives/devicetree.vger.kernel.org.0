@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73BA13FF54B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C867B3FF54E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 23:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346414AbhIBVGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 17:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56274 "EHLO
+        id S1346339AbhIBVGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 17:06:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346398AbhIBVGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 17:06:30 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213ABC061760;
-        Thu,  2 Sep 2021 14:05:32 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id n18so3311786pgm.12;
-        Thu, 02 Sep 2021 14:05:32 -0700 (PDT)
+        with ESMTP id S1346194AbhIBVGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 17:06:48 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D39C061575;
+        Thu,  2 Sep 2021 14:05:49 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id u11-20020a17090adb4b00b00181668a56d6so2429598pjx.5;
+        Thu, 02 Sep 2021 14:05:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Qqhric94Wre6A6FJdzMydZYd/qesIk7MY52nT4Lgiw4=;
-        b=a1cNKQXHnSBMrKHK+vihDJTG2VGMMAy6syXHF1hPPo0DnS/rIpRHjqWkDgVPy6fNQD
-         PW2sfACO+eH4VhOz2b6IxdNV4bSR+0tzWVnWW+H3Mm8ddyGZ7xNA6uNzqPfdO88Bghmv
-         u3yufE4Oi4AtEq2b1/9sUid8Rud192XSBjVXScL/kk0xcvG0pDtTfQ99ayX8SpbM9cVX
-         FQCLmc1w9tkWrSyj1w/75VvqwsC3S20ljaIqWEBw6+TKBoz4Bdt+nm8ToStxtJEjo7O+
-         IdvfIC2mbo+z4jNB78r9l7K1y/7nisMaaudzMBjzBMjGtiZCKNnGlJWQrGR/cq3rmUjw
-         vsIQ==
+        bh=767k+M+A1x1kdLgaTK6PFpHMV5G+KT+3ZYp7Me4sE7k=;
+        b=YeiveY6OMoQOw5bqx+p0dWtjCKYLw7LQtKWci6h23HoSteAtCl7pazRwHZqk7ME11e
+         TZSLfkY/xrjTCbp2Z9F5zXZz4eAO+WgzPNTfhlzadeGZnB2c+CdQrj9Oq1/Q0cxkeEpg
+         cSEApySmy1cMX4QywLCne8OU5tZ7X6CuMxpA2Q2RM9QwIM9dz80X41xuE2wSaVgStZ5+
+         W5gQgYHzyB330+E/sl8T31m0/UfRVRMnuy6f6Pcd+c1mf76/RRv001seefr2JzViEe6Y
+         E622ERkg91unMGPYs9vlJstQgyKzYIy75y0wk9dMP40Re+SzqBSoCcGQGZLZvtTDBlx5
+         jqzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Qqhric94Wre6A6FJdzMydZYd/qesIk7MY52nT4Lgiw4=;
-        b=oA+waeIR7WqkOKOONfc3yZoLQi3E0jqq6oZVb7LKyfPzMuczpqW0MMe4S86ilbq7zI
-         tTyjSuQQ3qa4daaxDywP/tVcyOQKv7bir7WnGO/rr8oaxuaocL8FCjTPbi2BAJpCwfdw
-         DqMENaJ8W5CpZT3VqbNJtTC18O9TOB6s/a+u0ibEq34yFPcUuBw/WjlhtSVpkLCmNnWT
-         hg40FkCtH7tBTJHhXs7ERyr+X1zNpvxrOoR9LmvEXWy7WqN05Lcz76UgCxKaJiCrhloq
-         hk8CMJoG3xRNIQ5/Lnolr1gWZyJj8oi7uO+Y8iSMSkdyJj07j3MHD8Jb1QMErSuuYMcn
-         VSHw==
-X-Gm-Message-State: AOAM531MGetVKp37YdJLCcClagnmjzDXFQK8tNDwpeV+sTxvB067mJSg
-        wbhVjHPtMuZEDDU9LALf8lI=
-X-Google-Smtp-Source: ABdhPJwYwDYEtQUDthMhjWdJYxyDGhjsoQczg903NJGN5nLaScwky8l/UNYH17Nf1dtXzXUqQThIKw==
-X-Received: by 2002:a63:1902:: with SMTP id z2mr302428pgl.312.1630616731669;
-        Thu, 02 Sep 2021 14:05:31 -0700 (PDT)
+        bh=767k+M+A1x1kdLgaTK6PFpHMV5G+KT+3ZYp7Me4sE7k=;
+        b=k15y2xYbpSrj/PA9qLNIGhK3NccL9gyZ/OqL27FhvJzDG+xODrZsSZjQAQcCUlB34l
+         6gNtE1/v5MSKUrobJtL7FdlVrtOrqvuRj9yHeZa32732oVs+ydXxu00Yghjq2Cdrxpxg
+         Tl1hSi4+HKZ+Gdy9w0XQNQeeXBtIHL9TkodqWblAFp3J8np6Bw2bqE2gMtzRfngpic0M
+         Y303p19K40UC0HL1W55g6/I7aMKR9/+pWaJOiRPryXehjXg3F4yozkIQ7JB+iDhkR15y
+         qGztC2lns3kJDq+udCP6IWW/WaDpGTXYIMHBE1DkjQAnl5rV80nN3X7l9WOzTcxZYLMW
+         +Ceg==
+X-Gm-Message-State: AOAM532+PKT/IH/tMA7Gat4/atMxnAQ0xw7WBF66D0c35/nSi6gcXCj4
+        yWLXFbUK27E3jMFvbWBlvYw=
+X-Google-Smtp-Source: ABdhPJx0Rkelt6jZUhu5xShedfI10iXFBVHznlXL5sRuIB8ieluqJS2B7UgKLdAT92iF+/6bW/GX1w==
+X-Received: by 2002:a17:90a:31b:: with SMTP id 27mr6187850pje.6.1630616749452;
+        Thu, 02 Sep 2021 14:05:49 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id i24sm3207917pfo.13.2021.09.02.14.05.30
+        by smtp.gmail.com with ESMTPSA id f24sm3131284pjh.15.2021.09.02.14.05.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 14:05:31 -0700 (PDT)
+        Thu, 02 Sep 2021 14:05:48 -0700 (PDT)
 From:   Florian Fainelli <f.fainelli@gmail.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         Matthew Hagan <mnhagan88@gmail.com>
@@ -55,30 +55,24 @@ Cc:     Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
         Scott Branden <sbranden@broadcom.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] ARM: dts: NSP: Fix MDIO mux node names
-Date:   Thu,  2 Sep 2021 14:05:29 -0700
-Message-Id: <20210902210529.3102969-1-f.fainelli@gmail.com>
+Subject: Re: [PATCH v2 4/5] ARM: dts: NSP: Fix MX64/MX65 eeprom node name
+Date:   Thu,  2 Sep 2021 14:05:47 -0700
+Message-Id: <20210902210547.3103078-1-f.fainelli@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210829223752.2748091-3-mnhagan88@gmail.com>
-References: <20210829223752.2748091-1-mnhagan88@gmail.com> <20210829223752.2748091-3-mnhagan88@gmail.com>
+In-Reply-To: <20210829223752.2748091-4-mnhagan88@gmail.com>
+References: <20210829223752.2748091-1-mnhagan88@gmail.com> <20210829223752.2748091-4-mnhagan88@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 Aug 2021 22:37:49 +0000, Matthew Hagan <mnhagan88@gmail.com> wrote:
-> While functional, the mdio-mux-mmioreg binding does not conform to
-> Documentation/devicetree/bindings/net/mdio-mux-mmioreg.yaml in that an
-> mdio-mux compatible is also required. Without this the following output
-> is observed when running dtbs_check:
+On Sun, 29 Aug 2021 22:37:50 +0000, Matthew Hagan <mnhagan88@gmail.com> wrote:
+> Running dtbs_check yields the following message when checking the
+> MX64/MX65 devicetree:
+> at24@50: $nodename:0: 'at24@50' does not match '^eeprom@[0-9a-f]{1,2}$'
 > 
-> mdio-mux@32000: compatible: ['mdio-mux-mmioreg'] is too short
-> 
-> This change brings conformance to this requirement and corresponds
-> likewise to Rafal Milecki's change to the BCM5301x platform[1].
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20210822191256.3715003-1-f.fainelli@gmail.com/T/
+> This patch fixes the issue by renaming the at24 node appropriately.
 > 
 > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 > ---
