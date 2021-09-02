@@ -2,68 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD853FED71
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2197D3FED63
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 14:04:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344084AbhIBMFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 08:05:12 -0400
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:46736 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344053AbhIBMFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:05:06 -0400
-Received: by mail-oo1-f54.google.com with SMTP id z1-20020a4a2241000000b0028e8dfb83b4so438347ooe.13;
-        Thu, 02 Sep 2021 05:04:08 -0700 (PDT)
+        id S1343941AbhIBMFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 08:05:00 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:44547 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343933AbhIBME7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 08:04:59 -0400
+Received: by mail-oi1-f182.google.com with SMTP id c79so2164667oib.11;
+        Thu, 02 Sep 2021 05:04:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=qD/JwvmqRBtS1XdZshoHnEAUu284adMYEp3tjodfyAg=;
-        b=el7nXiuSnVs4aLA3aC3ZkBTOmYt+7k5ZSK8chO6g1XujwL2yRPUNZzXO3xjqnqAYQL
-         fTaHpA/zI2nyLGXTtTj4LK/gCpWuRpeuydoBRUt50Xo4alnYyftv9HfFWfhzNoWo0k8P
-         RQjzMyKCEHUptOd3eqUJyuNxYiuohvZHNi7vOP9JqDmTU4Q6QhkTBjRuUm2/Fht5c3Ss
-         qp+iMqZ0rGTVI1Bvnm/j5HYf4gji+IQRztc/a6p/6MKO/spC+KzlxPiAxQRg2PfThoYF
-         e0/S/sdJJkA18AlTo33yi2xhUK7IbZ9lGuf1CEcXYGUlIukqFjQIO+PC67m9JhQi8jOz
-         z+Hw==
-X-Gm-Message-State: AOAM533gW2VOcZFwf7IrS0tESHfCQgQIpzkI2gWHKIKfT4VOUSq4ialN
-        +koULtXBYCDOAKO5xhjIwA==
-X-Google-Smtp-Source: ABdhPJx7f7/UQ6LovDjZ3k53D0TtryTlyUn40DyyPDvW82pU9Syq5rwgwEEGeA8B9B9Vweocahgwlg==
-X-Received: by 2002:a4a:e3cf:: with SMTP id m15mr2270879oov.21.1630584248058;
-        Thu, 02 Sep 2021 05:04:08 -0700 (PDT)
+        bh=DqbDBOn9LbPv6mE+TZV/se5KZ66whWGBwMTUDdN1R0w=;
+        b=jpAm6ZHWXVTiWU1Vtd3s6fVVxr3+K6cVEXrYsEFjFtWMBYSHuPvizBn7PCN6veZSvi
+         qewj+GgMkBSr5eE1qgOZpfywLP/NM/Uj0TMpIi/ei0wUz6qRpzUzDTWOOiD6zDn+SgXC
+         e1Kc26Li76t8kZMZhxUG0EO4yOrfMCcmj/LciVSeOkOr85TVRZOjM3YQbsLHtbGWb+i2
+         9RGPCt67pvCKOd8O4Z5QAR7cTse/yzKmUcOxOKg36StuDUDLoRcnsp/VqoXBcxAxrx3v
+         UbWi/4Ggpx7vSdhSxSf81r8jBNYRKCpCi9wUU11ze2AxiNsGzYsGQiA4iRyqj0meMkbx
+         t6tQ==
+X-Gm-Message-State: AOAM531MTgaW04iejORq8hEM2GXjjaczbWZYdRl2JJbkN7r+aqanAnYf
+        Vf+KiLvxLN6OVvmz7Gf9bA==
+X-Google-Smtp-Source: ABdhPJy5zHgT3CYbVHjqBlaKAIqyikhF9TQAXsaSbQ2sq9Ke9YuXUA+5Iro8Kv4/IbpBmwXXV+8GSg==
+X-Received: by 2002:a05:6808:d53:: with SMTP id w19mr1890899oik.135.1630584240956;
+        Thu, 02 Sep 2021 05:04:00 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y7sm329001oov.36.2021.09.02.05.04.06
+        by smtp.gmail.com with ESMTPSA id c10sm305218ots.48.2021.09.02.05.03.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Sep 2021 05:04:07 -0700 (PDT)
-Received: (nullmailer pid 685599 invoked by uid 1000);
+        Thu, 02 Sep 2021 05:04:00 -0700 (PDT)
+Received: (nullmailer pid 685596 invoked by uid 1000);
         Thu, 02 Sep 2021 12:03:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Yu Chen <chenyu56@huawei.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mauro.chehab@huawei.com,
-        John Stultz <john.stultz@linaro.org>, linuxarm@huawei.com,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <f81388b12162702b925bf1a7d97836982b5cd785.1630498020.git.mchehab+huawei@kernel.org>
-References: <cover.1630498020.git.mchehab+huawei@kernel.org> <f81388b12162702b925bf1a7d97836982b5cd785.1630498020.git.mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: misc: add schema for USB hub on Kirin devices
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Tzung-Bi Shih <tzungbi@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-media@vger.kernel.org,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        linux-kernel@vger.kernel.org, srv_heupstream@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-mediatek@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Tomasz Figa <tfiga@google.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20210901083215.25984-14-yunfei.dong@mediatek.com>
+References: <20210901083215.25984-1-yunfei.dong@mediatek.com> <20210901083215.25984-14-yunfei.dong@mediatek.com>
+Subject: Re: [PATCH v6, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
 Date:   Thu, 02 Sep 2021 07:03:59 -0500
-Message-Id: <1630584239.088885.685598.nullmailer@robh.at.kernel.org>
+Message-Id: <1630584239.076177.685595.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 14:23:37 +0200, Mauro Carvalho Chehab wrote:
-> From: Yu Chen <chenyu56@huawei.com>
+On Wed, 01 Sep 2021 16:32:13 +0800, Yunfei Dong wrote:
+> Adds decoder dt-bindings for mt8192.
 > 
-> This patch adds binding documentation to support USB HUB and
-> USB data role switch of HiSilicon HiKey960 and HiKey970 boards.
-> 
-> [mchehab: updated OF schema and added HiKey970 example]
-> Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> Signed-off-by: John Stultz <john.stultz@linaro.org>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > ---
->  .../bindings/misc/hisilicon,hikey-usb.yaml    | 108 ++++++++++++++++++
->  1 file changed, 108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
+> v6: add decoder block diagram for Laurent's comments.
+> 
+> This patch depends on "Mediatek MT8192 clock support"[1].
+> 
+> The definition of decoder clocks are in mt8192-clk.h, and this patch already in clk tree[1].
+> 
+> [1]https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-next&id=f35f1a23e0e12e3173e9e9dedbc150d139027189
+> ---
+>  .../media/mediatek,vcodec-comp-decoder.yaml   | 192 ++++++++++++++++++
+>  1 file changed, 192 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -72,15 +91,23 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.example.dts:41.23-24 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.example.dt.yaml] Error 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml: properties:compatible: [{'enum': ['mediatek,mt8192-vcodec-dec', 'mediatek,mtk-vcodec-lat', 'mediatek,mtk-vcodec-core']}] is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+./Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/media/mediatek,vcodec-comp-decoder.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml: ignoring, error in schema: properties: compatible
+warning: no schema found in file: ./Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dts:22:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   22 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dt.yaml] Error 1
 make[1]: *** Waiting for unfinished jobs....
 make: *** [Makefile:1419: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1523123
+See https://patchwork.ozlabs.org/patch/1522931
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
