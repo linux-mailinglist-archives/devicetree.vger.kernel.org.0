@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72CB23FE7FC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 05:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2C53FE830
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 05:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233001AbhIBDao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Sep 2021 23:30:44 -0400
-Received: from pi.codeconstruct.com.au ([203.29.241.158]:52978 "EHLO
-        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231430AbhIBDao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Sep 2021 23:30:44 -0400
-Received: from [172.16.66.18] (unknown [49.255.141.98])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AF9A620164;
-        Thu,  2 Sep 2021 11:29:37 +0800 (AWST)
-Message-ID: <20c13b9bb023091758cac3a07fb4037b7d796578.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v4 3/4] soc: aspeed: Add eSPI driver
-From:   Jeremy Kerr <jk@codeconstruct.com.au>
-To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     ryan_chen@aspeedtech.com
-Date:   Thu, 02 Sep 2021 11:29:35 +0800
-In-Reply-To: <20210901033015.910-4-chiawei_wang@aspeedtech.com>
-References: <20210901033015.910-1-chiawei_wang@aspeedtech.com>
-         <20210901033015.910-4-chiawei_wang@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S233239AbhIBD4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Sep 2021 23:56:05 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:34604 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233122AbhIBD4F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Sep 2021 23:56:05 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 562C3201E2D;
+        Thu,  2 Sep 2021 05:55:02 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 263BE2015C0;
+        Thu,  2 Sep 2021 05:55:00 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8AE26183AD07;
+        Thu,  2 Sep 2021 11:54:56 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: fsl_rpmsg: Add compatible string for i.MX8ULP
+Date:   Thu,  2 Sep 2021 11:32:05 +0800
+Message-Id: <1630553525-25655-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chiawei,
+Add compatible string for i.MX8ULP platform which support audio
+function through rpmsg audio channel on M core.
 
-> The Aspeed eSPI controller is slave device to communicate with
-> the master through the Enhanced Serial Peripheral Interface (eSPI).
-> All of the four eSPI channels, namely peripheral, virtual wire,
-> out-of-band, and flash are supported.
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+---
+ Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-I'm still not confinced this raw packet user-ABI is the right approach
-for this. The four channels that you're exposing would be much more
-useful to use existing kernel subsystems.
-
-Specifically:
-
-1) The VW channel is essentially a GPIO interface, and we have a kernel
-   subsystem to expose GPIOs. We might want to add additional support
-   for in-kernel system event handlers, but that's a minor addition that
-   can be done separately if we don't want that handled by a gpio
-   consumer in userspace.
-
-2) The out-of-band (OOB) channel provides a way to issue SMBus
-   transactions, so could well provide an i2c controller interface.
-   Additionally, the eSPI specs imply that this is intended to support
-   MCTP - in which case, you'll *need* a kernel i2c controller device to
-   be able to use the new kernel MCTP stack.
-
-3) The flash channel exposes read/write/erase operations, which would be
-   much more useful as an actual flash-type device, perhaps using the
-   existing mtd interface? Or is there additional functionality
-   expected for this?
-
-4) The peripheral channel is the only one that would seem to require
-   arbitrary cycle access, but we'll still need a proper uapi definition
-   to support that. At the minimum, your ioctl definitions should go
-   under include/uapi/ - you shouldn't need to duplicate the header into
-   each userspace repo, as you've done for the test examples.
-
-Cheers,
-
-
-Jeremy
+diff --git a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+index 61802a11baf4..d370c98a62c7 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
++++ b/Documentation/devicetree/bindings/sound/fsl,rpmsg.yaml
+@@ -21,6 +21,7 @@ properties:
+       - fsl,imx8mn-rpmsg-audio
+       - fsl,imx8mm-rpmsg-audio
+       - fsl,imx8mp-rpmsg-audio
++      - fsl,imx8ulp-rpmsg-audio
+ 
+   model:
+     $ref: /schemas/types.yaml#/definitions/string
+-- 
+2.17.1
 
