@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D488B3FF16D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 18:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 378F53FF17A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Sep 2021 18:32:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346324AbhIBQc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 12:32:27 -0400
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:40638 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346333AbhIBQc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 12:32:26 -0400
-Received: by mail-oo1-f50.google.com with SMTP id j11-20020a4a92cb000000b002902ae8cb10so708439ooh.7;
-        Thu, 02 Sep 2021 09:31:28 -0700 (PDT)
+        id S1346371AbhIBQdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 12:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346372AbhIBQdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 12:33:35 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11339C0613CF
+        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 09:32:36 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id x6so3886657wrv.13
+        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 09:32:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+rko8rH0vKgZWDO5CKa9vNIDxF09jxtMTFxE6tbHF/Y=;
+        b=rtVbOnowKNO4IEPIigTOl2H7xa6sTvsUOw4AK+gMWT6UolyGCoBc/86hw6PV5wUZkt
+         ZRxQ7mp2gPjojjaAkhdt34XbO+wEoQxA8xv+9qJmWeOHmwz06LyQ32WT0Q9kgbnM3Zqy
+         fWBfR6wnUsu6vYInU/Kkv+FKFtFHIUKOB38zGxAtL2eq20kjKB9ZoMPHl2IuvcgPbqfL
+         6niqWLp3wCFAAeFYSobQYKRi+1OBJPBfYweMuv0uwbBLs4FRcZcffswfaZuvy+qWLrCE
+         vt2doQwHJdxCIfarqnqdZLMt2eJ09bAtzrK0E/MYYXZRrt/vxXnMmtC8bxSPuxveDilZ
+         vFMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bVfG6I1rLgPXzfK5MWdtxixJnWlk2BTbcuZB+XVnrts=;
-        b=K7jhT/FLS0nnDVk03KZ0wGokhwll25Vzxxa0GboFSUvwEcHlNFlgErtIBRrhaXbunV
-         bUmzQClUrnsxd3rhr/G8PUVpue6ATNznI2iagdKzUyy4fLy2T6C7hMtiFS6ShQ/BB3/F
-         KPRmYoiUSI78hOuWX3XfP0YYTtfBt3cHuZhk3GjvmN4rX7w17omQfWnmpxpOMv/KI+I9
-         GI04IO3WuXWMKLedWDMNTtWbQmL1Sze6o5+O0AX6kFMdMhli9CXBljV9dj/HSW4ebo92
-         ic4VU3ZQ4c26kqTu0sH42bDOl5J1K+TECGaK/4r6k0zpXdztP9rmRyUGxh/ayiIxciNZ
-         mLJQ==
-X-Gm-Message-State: AOAM532Cf87Z9OVDXKSSqoK2XuqB93gJQ+XCRhp7MI2EBjeYLlyGoekM
-        5qgLsZKn3tA5CAtebsmk2wN5UUM5PcaIjZT0T/A=
-X-Google-Smtp-Source: ABdhPJwMvJFIZ8AQs1kfhMrLw7Lo27Oc2Tw/XnzWPWaYPVc5aTbVjO0gHUee0XIh1SWP1pVWvZzx+L9DNwjPEVBge1U=
-X-Received: by 2002:a4a:ca83:: with SMTP id x3mr3336445ooq.2.1630600285972;
- Thu, 02 Sep 2021 09:31:25 -0700 (PDT)
+        bh=+rko8rH0vKgZWDO5CKa9vNIDxF09jxtMTFxE6tbHF/Y=;
+        b=qwYXvq0kW6ajl2evP0ufMWjJb8IjuhQfx0fJmtqwJ9LQLPv6XTSXzVlcsTOjuh6++9
+         qrQNe63NJdiLhOEO/ncTnf2bQ6COgDeDeROLOuOHLHv466CZiV6UIvicxwrqlDqtvJoX
+         dxyV6T9a5dMi08Ov3C9q2BaEmXrZuXUuhwBFD7pGGYZe5cIo5SQkze3TOVsT0q4JLJLj
+         BPWQ/QVH3c02zKfO/SZR+QlUq3pCxzSLwtnWk+4gVz8Sa++wGsmsFnccaKvmKK5L62Qg
+         pnjjcBpx4zdB0LRiicNh+2c3+5s2bHkdN5fuqkIlg+Q4ENJ0vCI2p7MkpAhN3pgwMXwY
+         X7LQ==
+X-Gm-Message-State: AOAM532tN2t6vwBiTUzwjcQQjFzFX3ZwTevZN8q8PlznR9AMfvzRqrSz
+        O9x62MQI9SVVYFmRcCJceamNXH4VutNgGu9OsnP3Sw==
+X-Google-Smtp-Source: ABdhPJxod47UB0j/BsLqS6EDdfTjS6lz+pTfnQW2dxEn0QgUg93fFNOBy3/fLQ1GJPAkac5czz8vQ+WoOxRIsSXLfCQ=
+X-Received: by 2002:adf:fd51:: with SMTP id h17mr4630912wrs.178.1630600354656;
+ Thu, 02 Sep 2021 09:32:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210902025528.1017391-1-saravanak@google.com>
- <CAGETcx9N34RyrdKDR8dQ7ECyz7ZXBx-Ft16t033NjTiU8p=Y0g@mail.gmail.com>
- <CAJZ5v0gt_1vKQXxSY6HoHRPR9O_e1f7VwcBnSjeMgCdCibrwgQ@mail.gmail.com> <CAGETcx_dvpFKZnz2w43h=ybp-8YF=OdpW0f2mK+jvDPURDFQJQ@mail.gmail.com>
-In-Reply-To: <CAGETcx_dvpFKZnz2w43h=ybp-8YF=OdpW0f2mK+jvDPURDFQJQ@mail.gmail.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Thu, 2 Sep 2021 18:31:14 +0200
-Message-ID: <CAJZ5v0iDU9aCGaF2FfCXmHjQ2qPH7KmF46rmaPAsPaxOT1yPDg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] Ulf reported an issue[1] with fw_devlink. This
- series tries to fix that issue.
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Cc: Android Kernel" <kernel-team@android.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+References: <20210901131049.1365367-1-tanmay@marvell.com>
+In-Reply-To: <20210901131049.1365367-1-tanmay@marvell.com>
+From:   Mike Leach <mike.leach@linaro.org>
+Date:   Thu, 2 Sep 2021 17:32:24 +0100
+Message-ID: <CAJ9a7VhJ-KC3VPCbgw8nqsZNMypsEACxyZstF9hinWYL+xa-tQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] coresight: tmc: Add support to configure AXI burst size
+To:     Tanmay Jagdale <tanmay@marvell.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Suzuki K. Poulose" <suzuki.poulose@arm.com>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Coresight ML <coresight@lists.linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org, Al Grant <al.grant@arm.com>,
+        Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+        Linu Cherian <lcherian@marvell.com>,
+        Bharat Bhushan <bbhushan2@marvell.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 2, 2021 at 6:27 PM Saravana Kannan <saravanak@google.com> wrote:
+Hi
+
+Looks good from a driver  / hw perspective.
+As long as the device tree people are happy with the binding then this
+set seems OK to me.
+
+Regards
+
+Mike
+
+On Wed, 1 Sept 2021 at 14:11, Tanmay Jagdale <tanmay@marvell.com> wrote:
 >
-> On Thu, Sep 2, 2021 at 8:56 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
-> >
-> > On Thu, Sep 2, 2021 at 4:57 AM Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > Oops, forgot to use a proper subject. Sorry.
-> >
-> > Is this a replacement for the "Fix rtl8366rb issues with fw_devlink=on " series?
+> Add a new device tree parameter, "arm,max-burst-size" to configure
+> the max burst size that can be initiated by TMC-ETR on the AXI bus.
 >
-> No. This is unrelated to that. This is the issue I'm trying to fix:
-> https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> Also add description of this property in coresight documentation.
+>
+> This patch series applies on top of the coresight next branch [1].
+> https://git.kernel.org/pub/scm/linux/kernel/git/coresight/linux.git/log/?h=next
+>
+> Tanmay Jagdale (2):
+>   dt-bindings: coresight: Add burst size for TMC
+>   coresight: tmc: Configure AXI write burst size
+>
+>  .../devicetree/bindings/arm/coresight.txt     |  5 +++++
+>  .../hwtracing/coresight/coresight-tmc-core.c  | 21 +++++++++++++++++--
+>  .../hwtracing/coresight/coresight-tmc-etr.c   |  3 ++-
+>  drivers/hwtracing/coresight/coresight-tmc.h   |  6 +++++-
+>  4 files changed, 31 insertions(+), 4 deletions(-)
+>
+> --
+> 2.25.1
+>
 
-Allright, thanks!
 
-> This is kind of a replacement to, but the patch below might be needed
-> in general (needs more thought):
-> https://lore.kernel.org/lkml/CAGETcx9U2M5i1CAx605fG3Qwm1xwjH2uy4kY4vrAF7YSRSSg+w@mail.gmail.com/
-
-I see.
-
-
-> > > On Wed, Sep 1, 2021 at 7:55 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > Ulf, mind testing this?
-> > > >
-> > > > Thanks,
-> > > > Saravana
-> > > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
-> > > >
-> > > > Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> > > >
-> > > > Saravana Kannan (2):
-> > > >   driver core: Add support for FWNODE_FLAG_NEVER_PROBES
-> > > >   of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
-> > > >
-> > > >  drivers/base/core.c    |  8 ++++++++
-> > > >  drivers/of/platform.c  | 16 ++++++++++++++++
-> > > >  include/linux/fwnode.h |  8 +++++---
-> > > >  3 files changed, 29 insertions(+), 3 deletions(-)
-> > > >
-> > > > --
-> > > > 2.33.0.259.gc128427fd7-goog
-> > > >
+-- 
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
