@@ -2,107 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B854004D1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4594004D8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:29:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231931AbhICSZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 14:25:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346245AbhICSZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:25:06 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C88DC061760
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 11:24:06 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id g14so197687ljk.5
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 11:24:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9rEOZFgWRRBzTrjc1sgzKvt3j7Y9HuVgaQyFS26IehY=;
-        b=qkHognoxURfD5dM1rhFf+ejqDj4AodnjjnIF1fbS7miJaIFBv2d/cjNFUxR8VJyJwW
-         lnzREYn5RxDERjhpg7YuKd9sehvjNbCoUvLo4jQhVDbY7p6ErcqHr8ECQ7M3xzi+D76A
-         LVuweIsCoAAdrnOsmRcRcWUWvZT6p2QZBVfUqKqKzEhZ6mnet9eMgu3x/BXf8LMk4fu0
-         wtJiRevjC5awf8fEkww+Jn96XQ1ssiYUYr8GSieEJMC4ejhv4XVPi05LNfX1/Lq1hjjI
-         aaRMmxpebkxUEWopvuZKq5LY/W/UtOYlhpg19nkeuAcTNTH9RQiLsvaJ4oPY3PDWvLNb
-         W+Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9rEOZFgWRRBzTrjc1sgzKvt3j7Y9HuVgaQyFS26IehY=;
-        b=P7pM2oeOz0IGQ1MXITeRc4ThP4PEwWxJlDy+EnjVYrDqcottKRFYojCNZgICEb4FXQ
-         k/ZbWoUHlY10oH4ci3n5uX4nAh6jWzMPatPTZk3naWHt53SQMqPEk69V+QZqsA0zugZw
-         UoZGgXFCQFQWj5h+RHgBak/gtmQx6JdDUMFlHJ1Q5crNxtMjt/aJ+z4qZYvT+NQzz4nq
-         A66t4+qA1HBWnRxUNsGkn+B+oIuk1Hl1e+Q05p35RLzt9BQqxdmusEJjM2E83xVoMyQV
-         qGV04S6P5nlm+kJd/UA1bG9weye5r4NvSq+B6xn3zMvl1p2BSMWt/iM4QRSu4bzOLRvp
-         iEIQ==
-X-Gm-Message-State: AOAM532llgRux/Nr042/bgFvzXv/I5uznIPPta9cCsOSbl81xLozSwWh
-        X5/K4xG30t822OJVc5xwr/xjmcApQ32V3A==
-X-Google-Smtp-Source: ABdhPJz6vIY3BKpngT9hBro3h/w+4cLaEvhEKm7lFcDxED6un/1W/8r+MNrcUUM3Mi0WXbnil6rxGw==
-X-Received: by 2002:a2e:94d0:: with SMTP id r16mr235236ljh.403.1630693444412;
-        Fri, 03 Sep 2021 11:24:04 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id w18sm17659lfa.50.2021.09.03.11.24.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Sep 2021 11:24:04 -0700 (PDT)
-Subject: Re: [PATCH 1/3] drm/msm/dpu1: Add DMA2, DMA3 clock control to enum
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>, robdclark@gmail.com
-Cc:     sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        abhinavk@codeaurora.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        devicetree@vger.kernel.org
-References: <20210901181138.1052653-1-angelogioacchino.delregno@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <2efd8a35-10af-473c-b6d4-81a757949c40@linaro.org>
-Date:   Fri, 3 Sep 2021 21:24:03 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S236827AbhICSak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 14:30:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57822 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236537AbhICSak (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 14:30:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1DA7860FC0;
+        Fri,  3 Sep 2021 18:29:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630693780;
+        bh=RZs1LCsVX7eUH8y+LjseU+tbxhETWIXNAdn/DZXgVKA=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=IFCRTTfnanz4SKqA+gxr97DdD0ByGi5QTf2bXT1v79UDL/wtW8Y7iUlmoBtyi/EnF
+         plrZy3BCv/MojgxiIHAu9arWJmmHP50Sq1LMFBl5rpaNJif3Yr8KkD5TK8c2ZpOthV
+         YWiOJPTqephjxW2DXUArNPV1C/E05PzZpliD2yqdjNiFfdyvUkmERyEkao4XzeSYdb
+         HSyROAs43Kvx+yggj5+HNOx5DdxKoMl1vq4c6KUiKtGzZZ3PAf/Tw6W+Mt1YlpsNWZ
+         pa2SOmq0VdbC4NwDYGE11DeguY+m1nx0hEMz4KNO6t6YRdlDTF3v/JQpPvt+pcrBvq
+         bQPeYPmCcZxCQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20210901181138.1052653-1-angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210903173107.950-1-kabel@kernel.org>
+References: <20210903173107.950-1-kabel@kernel.org>
+Subject: Re: [PATCH RFC] dt-bindings: clk: fixed-mmio-clock: Document mapping MMIO values to clock rates
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Jan Kotas <jank@cadence.com>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, pali@kernel.org,
+        Marek Behun <kabel@kernel.org>
+To:     Marek Behun <kabel@kernel.org>, linux-clk@vger.kernel.org
+Date:   Fri, 03 Sep 2021 11:29:38 -0700
+Message-ID: <163069377886.405991.177735942780420525@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2021 21:11, AngeloGioacchino Del Regno wrote:
-> The enum dpu_clk_ctrl_type misses DPU_CLK_CTRL_DMA{2,3} even though
-> this driver does actually handle both, if present: add the two in
-> preparation for adding support for SoCs having them.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Quoting Marek Behun (2021-09-03 10:31:07)
+> The 'fixed-mmio-clock' binding currently only allows for the fixed-rate
+> clock frequency to be read directly from the MMIO register.
+>=20
+> There are, however, systems for which the value of a register uniquely
+> determines the frequency, but it is not encoded as a number in the
+> register. Rather the register may contain the latched values of the
+> strapping pins during system reset, and the clock rate can be determined
+> from the value of one strapping pin.
+>=20
+> For example on Armada 37xx, the GPIO1[9] pin must be brough low or high
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+s/brough/brought/
 
+> during system reset depending on whether the reference clock rate is
+> 25 MHz or 40 MHz.
+>=20
+> Extend this binding by adding two more properties:
+> - clock-rate-table-mask - if present, the register value will be masked
+>                           with the value of this property before mapping
+> - clock-rate-table - table mapping possible clock rates to register
+>                      values
+>=20
+[..]
+> This patch applies only after fixed-mmio-clock is converted to YAML by
+>   dt-bindings: clk: fixed-mmio-clock: Convert to YAML
+>=20
+> This is a RFC and does not contain actual driver change. I would like
+> to hear your opinions.
+
+When it comes to masks and shifts in DT it's a NAK from me. I believe we
+don't have a good way to understand what endianess the mask is. Is it
+device order, or CPU order, or always big endian?
+
+It's also trending toward the one node per clk style of binding that we
+don't accept. I think this came up when the fixed-mmio binding was
+proposed. I hoped that nobody would use it outside of FPGAs.
+
+>=20
+> The reason why I wrote this is that there are several clk drivers
+> reading one bit of a register and then registering fixed-rate clock
+> with frequency depending on that one bit. Most of them are drivers
+> also registering other clocks, but there is at least one,
+> armada-37xx-xtal, which only does this.
+>=20
+> I think that systems where the reference clock can have different rates
+> and the rate is encoded into value of a strapping pin during reset
+> should describe these reference clocks in device tree with a table
+> mapping these possible rates to values of strapping pins.
 > ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index d2a945a27cfa..059e1402b7d0 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -432,6 +432,8 @@ enum dpu_clk_ctrl_type {
->   	DPU_CLK_CTRL_RGB3,
->   	DPU_CLK_CTRL_DMA0,
->   	DPU_CLK_CTRL_DMA1,
-> +	DPU_CLK_CTRL_DMA2,
-> +	DPU_CLK_CTRL_DMA3,
->   	DPU_CLK_CTRL_CURSOR0,
->   	DPU_CLK_CTRL_CURSOR1,
->   	DPU_CLK_CTRL_INLINE_ROT0_SSPP,
-> 
+>  .../bindings/clock/fixed-mmio-clock.yaml      | 60 +++++++++++++++++--
+>  1 file changed, 55 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yam=
+l b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> index 1453ac849a65..67fef63cdd8c 100644
+> --- a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> @@ -4,16 +4,15 @@
+>  $id: http://devicetree.org/schemas/clock/fixed-mmio-clock.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: Binding for simple memory mapped IO fixed-rate clock sources
+> +title: Binding for memory mapped IO fixed-rate clock sources
+> =20
+>  description:
+>    This binding describes a fixed-rate clock for which the frequency can
+> -  be read from a single 32-bit memory mapped I/O register.
+> -
+> -  It was designed for test systems, like FPGA, not for complete,
+> -  finished SoCs.
+> +  be determined from value read from a single 32-bit memory mapped I/O
+> +  register.
+> =20
+>  maintainers:
+> +  - Marek Behun <kabel@kernel.org>
+>    - Jan Kotas <jank@cadence.com>
+> =20
+>  properties:
+> @@ -29,11 +28,50 @@ properties:
+>    clock-output-names:
+>      maxItems: 1
+> =20
+> +  clock-rate-table:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description: |
+> +      If this property is present, it means that the MMIO register does
+> +      not contain the clock rate itself, but rather that different
+> +      values of this register (possibly masked, see the
+> +      'clock-rate-table-mask' property) correspond to different clock
+> +      rates, and this property maps each possible clock rate to
+> +      corresponding register value.
+> +
+> +      Some SOCs, for example, allow for multiple possible frequencies of
+> +      reference clocks, and the system can determine clock rate by the
+> +      values of strapping pins during reset, which are latched into some
+> +      MMIO registers.
+> +
+> +  clock-rate-table-mask:
+> +    description:
+> +      Mask to be applied to the MMIO value before mapping the value to
+> +      corresponding clock rate via 'clock-rate-table'.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +    items:
+> +      minItems: 2
+> +      maxItems: 2
+> +      items:
+> +        - description:
+> +            Clock rate in Hertz.
+> +        - description:
+> +            MMIO value (masked with value of the 'clock-rate-table-mask'
+> +            property, if that property is present) corresponding to this
+> +            clock rate.
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - "#clock-cells"
+> =20
+> +if:
+> +  required:
+> +    - clock-rate-table-mask
+> +then:
+> +  required:
+> +    - clock-rate-table
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> @@ -44,4 +82,16 @@ examples:
+>        reg =3D <0xfd020004 0x4>;
+>        clock-output-names =3D "sysclk";
+>      };
+> +
+> +  - |
+> +    xtalclk: xtal-clk {
 
+This needs a unit address.
 
--- 
-With best wishes
-Dmitry
+> +      compatible =3D "marvell,armada-3700-xtal-clock", "fixed-mmio-clock=
+";
+> +      #clock-cells =3D <0>;
+> +      reg =3D <0x8 0x4>;
+
+Because it has a reg property. Of course, a reg property that isn't
+aligned to a 4k page or so would imply that the clk is actually part of
+a larger hardware block that should have a binding for the whole device
+instead of picking the clk part out of the hardware and setting a node
+to be exactly the one register in there that is of interest.
+
+> +      clock-rate-table-mask =3D <0x200>;
+> +      clock-rate-table =3D <25000000 0x000>,
+> +                         <40000000 0x200>;
+> +      clock-output-names =3D "xtal";
+> +    };
