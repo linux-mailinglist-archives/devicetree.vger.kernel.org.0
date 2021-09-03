@@ -2,183 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6D93FF93E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 06:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8DC93FF97F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 06:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbhICEKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 00:10:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38628 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbhICEKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 00:10:47 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB363C061760
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 21:09:47 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id j12so7514169ljg.10
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 21:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=joW/G6DY+txuyPmVNEIlO2p6pd362DkeC8kCVshvDTc=;
-        b=ZIbvv2MoZCfOXe6LWEUxhC8fScArp+zt/1ot3m7EM6GACqj9dlCM7f5i4DhEqn8uYH
-         d74b3ix3sflk7mxX6JPQVLBF7rgk4eCJy+wgpyUBhPBMnDB49i8UHC6Gxp//bkLuZ6OW
-         8hfk1vHOiK1XmbwACEuRIqpduzex9euGg7Wkg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=joW/G6DY+txuyPmVNEIlO2p6pd362DkeC8kCVshvDTc=;
-        b=J+qXzQhBgVMt8VlTUzwZ4flSNR4A63z9n4um2BcSjBsxEvLGbRNo86T5wV/ld1CSVv
-         naqFUCMy47eRmhin9VRFdrt8x8FDHIRO1KTmHByIJ81/auGuNOwah+KzUhU5uFC9W92b
-         WxM/wQL5t9ppISaXp0xyAnpPMkXZvnQgn6eyAx3Man8eETk777v4NJ1Sp3knaKkyWutR
-         Jy2c7ByE3FlTokf3Kpo81GVPe1HC3FH2pjCs0OfpjkMi0n4Cv5keteNc0kxrmBFzTXY9
-         uFu5cWeKRW0kuhCWNmus+sZst6mqI65stFYraeVA2RJlqt9emVETPoBGJO7BO6rgbfrQ
-         8Mzg==
-X-Gm-Message-State: AOAM533IrpoWprg6SNyEhNxR93JGAyeDapGQEmNhEa0jjyjWRZ4lsMmr
-        pIbR90OMLC22EsstN8CZ7xL5oraBgO6cBcsGUAc4Uw==
-X-Google-Smtp-Source: ABdhPJx4XKG0lvFDetGV90273eSD7bOwt7ysolxtpaJkRUK9uLWj4p8fL3g2ooVhI35FhJ7mJLx4mBVrJkVVhWz8scM=
-X-Received: by 2002:a2e:b16a:: with SMTP id a10mr1352765ljm.18.1630642185751;
- Thu, 02 Sep 2021 21:09:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com> <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
-In-Reply-To: <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 3 Sep 2021 12:09:34 +0800
-Message-ID: <CAGXv+5Fr1gdeGFQnjjZ0JHf4sVanPb9QFqdYnrnmZ-ff8TrrdA@mail.gmail.com>
-Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
- hardware decode
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S232178AbhICEam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 00:30:42 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:4072 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231721AbhICEaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 00:30:35 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 02 Sep 2021 21:29:33 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 Sep 2021 21:29:30 -0700
+X-QCInternal: smtphost
+Received: from rajpat-linux.qualcomm.com ([10.206.21.0])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 03 Sep 2021 09:59:09 +0530
+Received: by rajpat-linux.qualcomm.com (Postfix, from userid 2344945)
+        id 97B7521242; Fri,  3 Sep 2021 09:59:08 +0530 (IST)
+From:   Rajesh Patil <rajpat@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, sboyd@kernel.org, mka@chromium.org,
+        dianders@chromium.org, Rajesh Patil <rajpat@codeaurora.org>
+Subject: [PATCH V7 0/7] Add QSPI and QUPv3 DT nodes for SC7280 SoC
+Date:   Fri,  3 Sep 2021 09:58:53 +0530
+Message-Id: <1630643340-10373-1-git-send-email-rajpat@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 3, 2021 at 12:31 AM Ezequiel Garcia
-<ezequiel@vanguardiasur.com.ar> wrote:
->
-> On Wed, 1 Sept 2021 at 05:32, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
-> >
-> > This series adds support for multi hardware decode into mtk-vcodec, by first
-> > adding component framework to manage each hardware information: interrupt,
-> > clock, register bases and power. Secondly add core thread to deal with core
-> > hardware message, at the same time, add msg queue for different hardware
-> > share messages. Lastly, the architecture of different specs are not the same,
-> > using specs type to separate them.
-> >
-> > This series has been tested with both MT8183 and MT8173. Decoding was working
-> > for both chips.
-> >
-> > Patches 1~3 rewrite get register bases and power on/off interface.
-> >
-> > Patch 4 add component framework to support multi hardware.
-> >
-> > Patch 5 separate video encoder and decoder document
-> >
-> > Patches 6-15 add interfaces to support core hardware.
-> > ----
-> > This patch dependents on : "media: mtk-vcodec: support for MT8183 decoder"[1] and
-> > "Mediatek MT8192 clock support"[2].
-> >
-> > 1: Multi hardware decode is based on stateless decoder, MT8183 is the first time
-> > to add stateless decoder. Otherwise it will cause conflict. This patch will be
-> > accepted in 5.15[1].
-> >
-> > 2: The definition of decoder clocks are in mt8192-clk.h, this patch already in clk tree[2].
-> >
-> > [1]https://patchwork.linuxtv.org/project/linux-media/list/?series=5826
-> > [2]https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/commit/?h=clk-next&id=f35f1a23e0e12e3173e9e9dedbc150d139027189
-> > ----
-> > Changes compared with v5:
-> > -Add decoder hardware block diagram for patch 13/15
-> >
->
->
-> The discussion on v5 was still on-going, so sending this v6
-> is not helpful. The context for v5's discussion is now harder to find.
->
-> Please avoid sending a new version without properly
-> discussing all the feedback, and without reaching consensus.
-> This is very important, please keep it in mind.
->
-> Specifically, the feedback on v5 was NAK, with the request to avoid
-> using any async framework, and instead try to find a simpler solution.
->
-> For instance, you can model things with a bus-like pattern,
-> which ties all the devices together, under a parent node.
-> This pattern is common in the kernel, the parent
-> node can use of_platform_populate or similar
-> (git grep of_platform_populate, you will see plenty of examples).
->
-> You will still have to do some work to have the proper
-> regs resources, but this is doable. Each child is a device,
-> so it can have its own resources (clocks, interrupts, iommus).
+Changes in V7:
+ - As per Stephen's comments
+   1. Moved qup_opp_table under /soc@0/geniqup@9c0000
+   2. Removed qupv3_id_1 in sc7280-idp board file
+   3. Sorted alias names for i2c and spi as per alphabet order
 
-AFAIK of_platform_populate doesn't guarantee the drivers actually
-probed (modules loaded late, missing modules, deferred probe, etc.),
-only that the devices are created, so you still need some sort of
-(async) mechanism to wait for the subdevices to be in operational
-state. Most of the examples using of_platform_populate are there
-to ensure that the parent device is operational before creating
-the sub-devices, not the other way around.
+ - As per Matthias comment
+   Configuring cs pin with gpio (qup_spiN_cs_gpio) definitions are removed
 
+Changes in V6:
+ - As per Matthias' comments,
+   1. Squashed "Update QUPv3 UART5 DT node" and "Configure debug uart for sc7280-idp"
+   2. Moved qup_opp_table from /soc to /
+   3. Changed convention "clocks" followed by "clock-names"
 
-ChenYu
+ - As per Doug comments, added aliases for i2c and spi
 
+Changes in V5:
+ - As per Matthias' comments, I've split the patches as below:
+   1. Add QSPI node
+   2. Configure SPI-NOR FLASH for sc7280-idp
+   3. Add QUPv3 wrapper_0 nodes
+   4. Update QUPv3 UART5 DT node
+   5. Configure debug uart for sc7280-idp
+   6. Configure uart7 to support bluetooth on sc7280-idp
+   7. Add QUPv3 wrapper_1 nodes
 
-> You don't need any async framework.
->
->     vcodec_dec: vcodec_dec@16000000 {
->         compatible = "mediatek,mt8192-vcodec-dec";
->         reg = <something>;
->         mediatek,scp = <&scp>;
->         iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
->         dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
->
->         vcodec_lat@0x10000 {
->             compatible = "mediatek,mtk-vcodec-lat";
->             reg = <0x10000 0x800>;      /* VDEC_MISC */
->             interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
->             // etc
->         };
->
->         vcodec_core@0x25000 {
->            compatible = "mediatek,mtk-vcodec-core";
->            reg = <0x25000 0x1000>;      /* VDEC_CORE_MISC */
->            interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
->            // etc
->         };
->     };
->
-> Thanks,
-> Ezequiel
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Changes in V4:
+ - As per Stephen's comment updated spi-max-frequency to 37.5MHz, moved
+   qspi_opp_table from /soc to / (root).
+ - As per Bjorn's comment, added QUP Wrapper_0 nodes
+   as separate patch and debug-uart node as separate patch.
+ - Dropped interconnect votes for wrapper_0 and wrapper_1 node
+ - Corrected QUP Wrapper_1 SE node's pin control functions like below
+        QUP Wrapper_0: SE0-SE7 uses qup00 - qup07 pin-cntrl functions.
+        QUP Wrapper_1: SE0-SE7 uses qup10 - qup17 pin-cntrl functions.
+
+Changes in V3:
+ - Broken the huge V2 patch into 3 smaller patches.
+   1. QSPI DT nodes
+   2. QUP wrapper_0 DT nodes
+   3. QUP wrapper_1 DT nodes
+
+Changes in V2:
+ - As per Doug's comments removed pinmux/pinconf subnodes.
+ - As per Doug's comments split of SPI, UART nodes has been done.
+ - Moved QSPI node before aps_smmu as per the order.
+
+Rajesh Patil (3):
+  arm64: dts: sc7280: Configure SPI-NOR FLASH for sc7280-idp
+  arm64: dts: sc7280: Configure uart7 to support bluetooth on sc7280-idp
+  arm64: dts: sc7280: Add aliases for I2C and SPI
+
+Roja Rani Yarubandi (4):
+  arm64: dts: sc7280: Add QSPI node
+  arm64: dts: sc7280: Add QUPv3 wrapper_0 nodes
+  arm64: dts: sc7280: Update QUPv3 UART5 DT node
+  arm64: dts: sc7280: Add QUPv3 wrapper_1 nodes
+
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  125 ++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 1520 +++++++++++++++++++++++++++++-
+ 2 files changed, 1628 insertions(+), 17 deletions(-)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
+
