@@ -2,86 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EA364004B1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 859724004B5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350340AbhICSOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 14:14:00 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:41538 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349959AbhICSOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:14:00 -0400
-Received: by mail-ot1-f41.google.com with SMTP id o16-20020a9d2210000000b0051b1e56c98fso63990ota.8
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 11:13:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uwy1cIXLnNNO9I8X8sPbbrCEF+5qddSDU9l6sUaMBAI=;
-        b=W8DcjNaynCR8rQA3X4FN0j9M4BGQ+qqlw/YYLZTPp3XmGDno35/6iwlm1fkXDm4Da5
-         h+3Bzv8ZnrlwiY15o2277HamRxF5bA17QZgODjTPk7O7j6KIODSA7ExZddYBgrgw+AJL
-         Zb7uUxRDG1/lyk4OZEbXPuWhpRSSL2hltEACj3G3Y4TW5cu/VKi4BdQIyGlk8oHnkhLg
-         yF4OH8xeKF92Ek8b/3WZHR2EiTAGMYrEXWfDHHeHQcmjpaUap9DjKIkc4TUKtk0PNLIl
-         NXr5ehlw1ZZcVbQi0lJCuaWYjs3OkWwGFxAlI6uIPDhCLY/LWWD1FmseI1CWy2TdIRMS
-         Dg7w==
-X-Gm-Message-State: AOAM533/8YywuyHvWX1nKb5rjwXNmDj/hAc66fiRtsXIn3gPpNQkaYuT
-        HzQBwqnDv2g9H0JIa8NRfA==
-X-Google-Smtp-Source: ABdhPJygSXtqelB34nK8m0fSfXY8917yNB1nm9hyhNF8K7VD7qhKu5oAyDlM6+NTesA+haT8aqnt4g==
-X-Received: by 2002:a05:6830:110a:: with SMTP id w10mr266346otq.291.1630692780126;
-        Fri, 03 Sep 2021 11:13:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w6sm18208otp.3.2021.09.03.11.12.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 11:12:59 -0700 (PDT)
-Received: (nullmailer pid 3216901 invoked by uid 1000);
-        Fri, 03 Sep 2021 18:12:58 -0000
-Date:   Fri, 3 Sep 2021 13:12:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH v2 06/52] dt-bindings: arm: Convert ARM CCI-400 binding
- to a schema
-Message-ID: <YTJlqt/XUA1C2AlX@robh.at.kernel.org>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-7-maxime@cerno.tech>
+        id S1350345AbhICSPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 14:15:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50856 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349959AbhICSO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 14:14:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2B4C160FDC;
+        Fri,  3 Sep 2021 18:13:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630692839;
+        bh=HV5QwvXd+G5X5BE1dhVVGio0bsaKoGZQ54JzrFuQYv0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Lciq/IIhEguLoSiuOCa3XnH+5hiXq2Wu1ONakJhGocr7FJdzgxKE4kURLzk4xQ4VB
+         Y8/2+KZQSSO3t43Lp8CWIXOzwuPAEnzEp2vJVnsbgEi2aPjZVuwCd+3SZs2hPscwZa
+         XoXam/PdM0Bws8VmCfY0b8smn4vrsTBx72sfmECTcSE63UYe+gyPJmlF86RSY27gNs
+         JUvcpfmIrjM1PBLHsUOdJLZZUhdNMntp/mgpfmeIbB/OjxuPFfJox82Rk4p6LgLOsN
+         WSaPfB8bmkyKOiRk9tMp51gEu3vEPqTurOqCy2h4yWuvBCIdTJxEBp4HWECVcKIKQ4
+         MCQw79usdNxrg==
+Date:   Fri, 3 Sep 2021 19:13:26 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
+        perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com,
+        sharadg@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 06/13] ASoC: tegra: Add Tegra210 based MVC driver
+Message-ID: <20210903181326.GP4932@sirena.org.uk>
+References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
+ <1630056839-6562-7-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="NDuspjMMC1Ui5ypn"
 Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-7-maxime@cerno.tech>
+In-Reply-To: <1630056839-6562-7-git-send-email-spujar@nvidia.com>
+X-Cookie: Darth Vader sleeps with a Teddywookie.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 11:18:06 +0200, Maxime Ripard wrote:
-> The ARM CCI-400 Interconnect is supported by Linux thanks to its device
-> tree binding.
-> 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
-> 
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> 
-> Changes from v1:
->   - Reduced the max number of interrupts
->   - Comented the pl330 compatible to avoid a warning
->   - Added cci-control-port to the cpus schemas
-> ---
->  .../devicetree/bindings/arm/arm,cci-400.yaml  | 216 +++++++++++++++++
->  .../bindings/arm/cci-control-port.yaml        |  38 +++
->  Documentation/devicetree/bindings/arm/cci.txt | 224 ------------------
->  .../devicetree/bindings/arm/cpus.yaml         |   2 +
->  4 files changed, 256 insertions(+), 224 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,cci-400.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/cci-control-port.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/cci.txt
-> 
 
-Applied, thanks!
+--NDuspjMMC1Ui5ypn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Fri, Aug 27, 2021 at 03:03:52PM +0530, Sameer Pujar wrote:
+> The Master Volume Control (MVC) provides gain or attenuation to a digital
+> signal path. It can be used in input or output signal path for per-stream
+> volume control or it can be used as master volume control. The MVC block
+> has one input and one output. The input digital stream can be mono or
+> multi-channel (up to 7.1 channels) stream. An independent mute control is
+> also included in the MVC block.
+
+Looks like it's also got a little bit of other DSP in there (a simple
+EQ?).  Not that it really matters.
+
+> +	if (reg == TEGRA210_MVC_CTRL) {
+> +		u32 val;
+> +		u8 mute_mask;
+
+> +	} else {
+> +		u8 chan = (reg - TEGRA210_MVC_TARGET_VOL) / REG_SIZE;
+> +		s32 val = mvc->volume[chan];
+
+It's not clear to me why we're using the same callbacks for the volume
+and mute settings - there's no shared code on the read path and only a
+tiny bit on the write path.
+
+> +	err |= regmap_update_bits(mvc->regmap, TEGRA210_MVC_SWITCH,
+> +			TEGRA210_MVC_VOLUME_SWITCH_MASK,
+> +			TEGRA210_MVC_VOLUME_SWITCH_TRIGGER);
+> +
+> +end:
+> +	pm_runtime_put(cmpnt->dev);
+> +	return err;
+> +}
+
+_put() should return 0 if there's no change or 1 for a change.
+
+> +	/* SW reset */
+> +	regmap_write(mvc->regmap, TEGRA210_MVC_SOFT_RESET, 1);
+
+What about all the cached values in the regmap, won't they get out of
+sync?  Especially things like volume and mute, it looks like the mute
+just gets written directly to the regmap and not otherwise saved.
+
+--NDuspjMMC1Ui5ypn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEyZcUACgkQJNaLcl1U
+h9AgMggAha/hIL9322l4CAz3Clg/xsZLabDdWCuHA9GA1Ze39XOrtPyBmwNyBOyj
+Re3PVvnBfeCzpGooqKXpTcdKaxiqBnF2ewOPcTLNrG3gnuAYR8X2NDbzFHd6rr3e
+frclpdZMOypNILokwrytDJG1ssscBTapV5KC3xjwQjqSAp2ckVRGgg+5SE++B1BV
+yrZuTVHJtmK3Sk78YYcYizgOndIGAOFHX48tLa81LaiSWUlePraGXtEXa8pzmSN0
+uJkPyzGdiTK4bLBJgC75bOMuy/oI2Q+nsG/K6+grY7VjcuZaS94qsjngFJCdgz4U
+U3mbKcLaeF8Ov8lIpr4tKJn0THvJdw==
+=uPdC
+-----END PGP SIGNATURE-----
+
+--NDuspjMMC1Ui5ypn--
