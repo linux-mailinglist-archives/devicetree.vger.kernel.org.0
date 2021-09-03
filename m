@@ -2,246 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72C65400564
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70E0640056D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349429AbhICS6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 14:58:01 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51594 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349372AbhICS6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:58:01 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 183IuuMK009100;
-        Fri, 3 Sep 2021 13:56:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1630695416;
-        bh=nf5AqUkVW9t9JU95IDdR1mQyrisWt+ppFpgZCF/soRU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=HkQGLicOlhIuoS7Js9LH09I5Kx9GMGT4blh5kJS5Aty0z4enr5Szz4VwaUt9QlB1Z
-         id9nyRoN8rUW3I0HwJ8fw2beE1OWFIu1kEgI1E3RCUGmjUyGxtwWgxqmXKizIcirgt
-         GayHl42u+uWJTvu+RgfkFBwCN0ARaRx7kcSh+Uvw=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 183IuuPH106923
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 3 Sep 2021 13:56:56 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 3
- Sep 2021 13:56:56 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 3 Sep 2021 13:56:56 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 183IutvB017581;
-        Fri, 3 Sep 2021 13:56:56 -0500
-Date:   Sat, 4 Sep 2021 00:26:55 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Parshuram Thombare <pthombar@cadence.com>
-CC:     <broonie@kernel.org>, <lukas@wunner.de>, <robh+dt@kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <jpawar@cadence.com>,
-        <mparab@cadence.com>, Konrad Kociolek <konrad@cadence.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v3 2/2] spi: cadence: add support for Cadence XSPI
- controller
-Message-ID: <20210903185653.7vrfn4qfzvuiaiq2@ti.com>
-References: <1630499755-18751-1-git-send-email-pthombar@cadence.com>
- <1630499858-20456-1-git-send-email-pthombar@cadence.com>
+        id S1350568AbhICTB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 15:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45352 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350478AbhICTB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:01:56 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DD9C061757
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 12:00:55 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 8so6385964pga.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 12:00:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/RAyYN7XSWdMXJkR/E7oV/FAskQ62li2eXUaN70sJiQ=;
+        b=LlSfdxokQTHak+lCCI/rYOtrG3FYCueY+bffw3RtBxX8x1AOgO1F0SSTERzIsZ3kmE
+         Fay2nHsEaXJpEDLLuBsP/1QftwcjzJZCWn3sfaX01bEOSD4c6n1x3wbwIl6w+IuIXu/F
+         SHHh2aE2gKbO966yYee7W5oKwJc2l4rMheo0M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/RAyYN7XSWdMXJkR/E7oV/FAskQ62li2eXUaN70sJiQ=;
+        b=qxAIk+IS2xrdsnZkMDH93LkKGfUVyfrzx4PSXFTGGbE6DFsGuZJ4wHjIG02fpHvaoR
+         SUQnjZffLaD48/ENgqsqT77megXRQiwANY7x1pDFuvgSTztcCQ5TaBv85eqFsqKHT8iF
+         gQkEjF5Cnlbkx2Or43GOACnpcwem4NvMZsuxrXeD+B1El2x2So4fD5XqioGMgkJ/Wwgx
+         +KYDwIC3wQwOmV/n+dTIm30tAThwTxdpj6Z1vIdIJzniQcvtTZ++Iac6RY5u1Cia7Lj6
+         qZXFOqvo2O298xYbM+vasvfalCZD3qk/ZnpS4xL6pq2w/1f7w47UNjHawp6fH120MARi
+         LEng==
+X-Gm-Message-State: AOAM5310kXUwaBi7KeViXMOFRLTcLyKd0sKmegOHLXn0avkt4mWLOiRW
+        J7nmnQ9VSmWaeweQtvcN/8vu+rC9KLwC9Q==
+X-Google-Smtp-Source: ABdhPJxTKBNFM52lTpurPfhlKUeZfeipurGeOuwOfFDVCXHJ8EDkoOeCLegHdP7fE/3OLWlLR7rPaw==
+X-Received: by 2002:a65:6287:: with SMTP id f7mr443437pgv.444.1630695655326;
+        Fri, 03 Sep 2021 12:00:55 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:80b3:9f00:3170:fd8b])
+        by smtp.gmail.com with UTF8SMTPSA id i5sm124517pgp.53.2021.09.03.12.00.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Sep 2021 12:00:54 -0700 (PDT)
+Date:   Fri, 3 Sep 2021 12:00:53 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Delete ADC config for
+ unused thermistors
+Message-ID: <YTJw5VwHFoCX4WJe@google.com>
+References: <20210902154711.1.I9777d0036ecbb749a4fb9ebb892f94c6e3a51772@changeid>
+ <CAE-0n51s1s6L7G1vxbC8PEZ=FBr9mSch81KUBO6fK_jfO8S_CQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1630499858-20456-1-git-send-email-pthombar@cadence.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAE-0n51s1s6L7G1vxbC8PEZ=FBr9mSch81KUBO6fK_jfO8S_CQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Tudor, Vignesh,
+On Thu, Sep 02, 2021 at 05:20:43PM -0700, Stephen Boyd wrote:
+> Quoting Matthias Kaehlcke (2021-09-02 15:47:44)
+> > The charger thermistor on Lazor, CoachZ rev1 and Pompom rev1+2 is
+> > either the wrong part or not stuffed at all, the same is true for
+> > the skin temperature thermistor on CoachZ rev1. The corresponding
+> > thermal zones are already disabled for these devices, in addition
+> > delete the ADC nodes of the thermistors.
+> >
+> > For Lazor and CoachZ rev1 also disable the PM6150 ADC thermal
+> > monitor since there are no other temperatures to monitor.
+> >
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> >
+> >  .../arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts | 12 ++++++++++++
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi   | 10 ++++++++++
+> >  .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts |  8 ++++++++
+> >  .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts |  8 ++++++++
+> >  4 files changed, 38 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+> > index 21b516e0694a..edfcd47e1a00 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
+> > @@ -23,6 +23,18 @@ &charger_thermal {
+> >         status = "disabled";
+> >  };
+> >
+> > +&pm6150_adc {
+> > +       /delete-node/ skin-temp-thermistor@4e;
+> > +       /delete-node/ charger-thermistor@4f;
+> 
+> Is there any other child node? I only see two, unless I missed
+> something. In which case the whole node can be disabled?
 
-On 01/09/21 02:37PM, Parshuram Thombare wrote:
-> This patch adds driver for Cadence's XSPI controller.
-> It supports 3 work modes.
-> 1. ACMD (auto command) work mode
->     ACMD name is because it uses auto command engine in the controller.
->     It further has 2 modes PIO and CDMA (command DMA).
->     The CDMA work mode is dedicated for high-performance application
->     where very low software overhead is required. In this mode the
->     Command Engine is programmed by the series of linked descriptors
->     stored in system memory. These descriptors provide commands to execute
->     and store status information for finished commands.
->     The PIO mode work mode is dedicated for single operation where
->     constructing a linked list of descriptors would require too
->     much effort.
-> 2. STIG (Software Triggered Instruction Generator) work mode
->     In STIG mode, controller sends low-level instructions to memory.
->     Each instruction is 128-bit width. There is special instruction
->     DataSequence which carries information about data phase.
->     Driver uses Slave DMA interface to transfer data as only this
->     interface can be used in STIG work mode.
-> 3. Direct work mode
->     This work mode allows sending data without invoking any command through
->     the slave interface.
-> Currently ACMD PIO mode is used for NOR flash read, program, erase
-> operations, all other operations are handled in STIG work mode.
-
-Thanks. The commit message is much nicer now!
+Right, the ADC itself can also be disabled in this case.
 
 > 
-> Signed-off-by: Konrad Kociolek <konrad@cadence.com>
-> Signed-off-by: Jayshri Pawar <jpawar@cadence.com>
-> Signed-off-by: Parshuram Thombare <pthombar@cadence.com>
-> ---
->  drivers/spi/Kconfig            |  11 +
->  drivers/spi/Makefile           |   1 +
->  drivers/spi/spi-cadence-xspi.c | 837 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 849 insertions(+)
->  create mode 100644 drivers/spi/spi-cadence-xspi.c
+> > +};
+> > +
+> > +&pm6150_adc_tm {
+> > +       status = "disabled";
+> > +
+> > +       /delete-node/ charger-thermistor@0;
+> > +       /delete-node/ skin-temp-thermistor@1;
+> > +};
+> > +
+> >  /*
+> >   * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
+> >   * which currently is not supported by the PM6150 ADC driver. Disable the
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > index 00535aaa43c9..57f7b19f83b0 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > @@ -54,6 +54,16 @@ &panel {
+> >         compatible = "boe,nv133fhm-n62";
+> >  };
+> >
+> > +&pm6150_adc {
+> > +       /delete-node/ charger-thermistor@4f;
 > 
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-> index e71a4c5..874f7aa 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -228,6 +228,17 @@ config SPI_CADENCE_QUADSPI
->  	  device with a Cadence QSPI controller and want to access the
->  	  Flash as an MTD device.
->  
-> +config SPI_CADENCE_XSPI
-> +	tristate "Cadence XSPI controller"
-> +	depends on (OF || COMPILE_TEST) && HAS_IOMEM
+> Same question here.
 
-Depends on SPI_MEM as well.
-
-> +	help
-> +	  Enable support for the Cadence XSPI Flash controller.
-> +
-> +	  Cadence XSPI is a specialized controller for connecting an SPI
-> +	  Flash over upto 8bit wide bus. Enable this option if you have a
-> +	  device with a Cadence XSPI controller and want to access the
-> +	  Flash as an MTD device.
-> +
->  config SPI_CLPS711X
->  	tristate "CLPS711X host SPI controller"
->  	depends on ARCH_CLPS711X || COMPILE_TEST
-> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-> index 13e54c4..93229a8 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -21,6 +21,7 @@ obj-$(CONFIG_SPI_AR934X)		+= spi-ar934x.o
->  obj-$(CONFIG_SPI_ARMADA_3700)		+= spi-armada-3700.o
->  obj-$(CONFIG_SPI_ATMEL)			+= spi-atmel.o
->  obj-$(CONFIG_SPI_ATMEL_QUADSPI)		+= atmel-quadspi.o
-> +obj-$(CONFIG_SPI_CADENCE_XSPI)		+= spi-cadence-xspi.o
->  obj-$(CONFIG_SPI_AT91_USART)		+= spi-at91-usart.o
->  obj-$(CONFIG_SPI_ATH79)			+= spi-ath79.o
->  obj-$(CONFIG_SPI_AU1550)		+= spi-au1550.o
-> diff --git a/drivers/spi/spi-cadence-xspi.c b/drivers/spi/spi-cadence-xspi.c
-> new file mode 100644
-> index 0000000..c2b33e2
-> --- /dev/null
-> +++ b/drivers/spi/spi-cadence-xspi.c
-> @@ -0,0 +1,837 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Cadence XSPI flash controller driver
-> + *
-> + * Copyright (C) 2020-21 Cadence
-> + *
-> + */
-> +#include <linux/completion.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/errno.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/mtd/spi-nor.h>
-
-Umm, this seems wrong to me. SPI MEM based drivers should generally not 
-need to know anything about the subsystem driving them. Why do you need 
-to include this?
-
-More on this below.
-
-> +#include <linux/bitfield.h>
-> +#include <linux/limits.h>
-> +#include <linux/log2.h>
-> +
-[...]
-> +static int cdns_xspi_mem_op(struct cdns_xspi_dev *cdns_xspi,
-> +			    struct spi_mem *mem,
-> +			    const struct spi_mem_op *op)
-> +{
-> +	struct spi_driver *spidrv = to_spi_driver(mem->spi->dev.driver);
-> +	enum spi_mem_data_dir dir = op->data.dir;
-> +
-> +	if (cdns_xspi->cur_cs != mem->spi->chip_select)
-> +		cdns_xspi->cur_cs = mem->spi->chip_select;
-> +
-> +	if (!strstr(spidrv->driver.name, "nor") ||
-
-I commented on this last time around as well. This does not look right 
-at all. A SPI MEM based driver should *not* need to know anything about 
-the subsystem driving it. That is the entire point of the API.
-
-The controller seems to be able to extract the read and write opcodes 
-from the SFDP on its own since you don't pass in that information to 
-cdns_xspi_nor_read(). It looks like it is tied very heavily to a NOR 
-flash, and I am not sure if it can really be used with a NAND flash, or 
-something else entirely.
-
-Which makes me wonder how we should handle controllers like these. I 
-don't think they fit in very well with the SPI MEM model, since they 
-can't execute arbitrary SPI MEM commands very well. At the same time we 
-are trying to get rid of mtd/spi-nor/controllers. Dunno...
-
-Mark, Tudor, Vignesh, any ideas?
-
-> +	    (!op->addr.buswidth && !op->addr.nbytes && !op->addr.val)) {
-> +		return cdns_xspi_send_stig_command(cdns_xspi, op,
-> +						   (dir != SPI_MEM_NO_DATA));
-> +	} else {
-> +		if (dir == SPI_MEM_DATA_IN)
-> +			return cdns_xspi_nor_read(cdns_xspi, op->addr.val,
-> +						  op->data.nbytes,
-> +						  op->data.buf.in);
-> +		else if (dir == SPI_MEM_DATA_OUT)
-> +			return cdns_xspi_nor_write(cdns_xspi, op->addr.val,
-> +						   op->data.nbytes,
-> +						   op->data.buf.out);
-> +		else
-> +			return cdns_xspi_nor_erase(cdns_xspi, op->addr.val);
-> +	}
-> +}
-> +
-> +static int cdns_xspi_mem_op_execute(struct spi_mem *mem,
-> +				    const struct spi_mem_op *op)
-> +{
-> +	struct cdns_xspi_dev *cdns_xspi =
-> +		spi_master_get_devdata(mem->spi->master);
-> +	int ret = 0;
-> +
-> +	ret = cdns_xspi_mem_op(cdns_xspi, mem, op);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct spi_controller_mem_ops cadence_xspi_mem_ops = {
-> +	.exec_op = cdns_xspi_mem_op_execute,
-> +};
-> +
-
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Yes, the ADC can be disabled here too.
