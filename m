@@ -2,103 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3452B400580
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23489400588
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:09:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350934AbhICTHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 15:07:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46562 "EHLO
+        id S1350626AbhICTKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 15:10:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350945AbhICTHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:07:03 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89522C061757
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 12:06:03 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so208965otg.11
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 12:06:03 -0700 (PDT)
+        with ESMTP id S1350594AbhICTKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:10:01 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A6FC061575
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 12:09:00 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id z5so375692ybj.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 12:09:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=ImrvsDaK3tlcktPfQxLSHY82KCie1ukA9uocnY0cHlc=;
-        b=of0H4bbz0UPM+J7Yty2+Obx8cd87BiF6AWRa9A9BOCdq3nxLM1q1o53EDzbBiSQMeI
-         /lUqqEwoif/lzNkxkwbwz29pjuUBhFUnQvx88lWSSsShyU2XZ0w9fvwW16AAfeghZr3I
-         /uJOae0njheUZj6PwJTxOLDAE1okxvgK1ewh0=
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=m6kpIcQI2kaeiGN8nOW6gd72C2N5gwlYdeH/BXEk3Ws=;
+        b=PvIxT7UYlvbGZmDSRi18bm+CxUU48AfcXm9EVQwqw8l0pfPFhqZV2NwLMWThnRNQif
+         MO2cXjZ0xcgzs1LBL3ow0iJ5DfJt6Hmo+YYUCJRIK+z7X6DyaQq+UMQEF3EiLDBqlLh1
+         /rSntEhSdbFPMal5QBM4JBppsm4QaeDZtZ317wUdQYPmfC9c4ua58gXSCCV2mS2znkIi
+         +AW8NFIST00oSt6Ur25EKWop+672adF/gMnqM8+35S0g7ffpbz90FrGSuVX20Qh/Yefy
+         tDNwMV+r2BhlrUlwjXxUjuRYyEDaTxZK63MzR12bnURbIaR1CC3SPPhushnXtM/4npvj
+         kkAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=ImrvsDaK3tlcktPfQxLSHY82KCie1ukA9uocnY0cHlc=;
-        b=bC7XNsCPD7m4z0ebndGRtDL5kZVBE+52dpTRbK55FvvO58IdDUWcLIA86FqyPzcv9n
-         Pd0ZgzBy9BURd3Pi3LW63DZhfQqaK1KUPVI22iFUyTwxRhsXK4A2KiJv0xowwJ0S3OI3
-         wCR9VXeJaqytGVKKTFOdx1fxIip+H9Fzm3ydI8PQyJX+JQbtsZ1nCqZjCMsieO70h+/a
-         WelHgeOskSIojj9BL5zETeQCHAjkmD1cr0KqSbpNv3qkorXeVMn8tJI4hI2j6BC2Gflc
-         DilTMvEtYVfUK5IEzX9774WdF3d6/NkvdQGOFJHqIxOgx8Gm+Z9DH/ENuUEHF/I5sY4L
-         sYiA==
-X-Gm-Message-State: AOAM530RPTgcz7JEbx9dNH+drDafImEiVvA0zNcjs7DfbCVkk2uIB1TG
-        Umh7lHfS72/liVSnoqKbP1ZXdeXpqYzV7xGVpjqTcA==
-X-Google-Smtp-Source: ABdhPJxGGdckNSoDvsqvRS79uRgd5Xd5zQ9rKJI3ZEvRGCbaPI5zIQ62VVKexrWKxXQXCxEjUnmt/kvu99b/TTVVl4o=
-X-Received: by 2002:a05:6830:719:: with SMTP id y25mr465943ots.77.1630695962836;
- Fri, 03 Sep 2021 12:06:02 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 3 Sep 2021 15:06:02 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=m6kpIcQI2kaeiGN8nOW6gd72C2N5gwlYdeH/BXEk3Ws=;
+        b=B3n/8KRBscP+4KNO0CNnoWeAKVE8yn6UsnrTxXYaUVCOtoVhBzp0nO1eVRDExzVw47
+         /jJ6dHst+Am55+WC7x5OeLPpPrXqTeesMwfmots5c3jT7p0YQO5o/gQqbQ8Bm+jduwQu
+         yPnLj2jmiFccn0BVYBLwiFoxjckdXkcQcrOOBspVYYRkCVI3nqJUbfopKn6MKCuDAXIU
+         GwBFwfWdNQcn0xybfCfc3rrqgbnoBD8k7Ec9yN5O44NqyOTLZnmjSm98EyXfiQ+oIlHW
+         cO9uJ/8aBaAvlx1hdmaCESvVMzi/WuGGkN5zFDk/dXF5aeU4eKB9d4gDJucYRQ7RkDnd
+         gyMw==
+X-Gm-Message-State: AOAM530t57+g1BlxGQqtjPg/+TW6L5BaJD9UBxy4U7MvskxehGNah5vd
+        MtGv15NIME5YhcRwk1EDzbmOyc5rbNraklenolkMkg==
+X-Google-Smtp-Source: ABdhPJxVZXFvEDaU45VGsxRolnCRjbgaMa/2/abHvvKaPNlUXiJlihfRMjwfrHOKIXu70pEcFfzd668Yq6qeLZnvku0=
+X-Received: by 2002:a25:21c5:: with SMTP id h188mr697656ybh.23.1630696139325;
+ Fri, 03 Sep 2021 12:08:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1629458622-4915-4-git-send-email-okukatla@codeaurora.org>
-References: <1629458622-4915-1-git-send-email-okukatla@codeaurora.org> <1629458622-4915-4-git-send-email-okukatla@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 3 Sep 2021 15:06:02 -0400
-Message-ID: <CAE-0n51WBdLoJRPs9tWZgdAukJMnkD3V00o7xNYVX77-eToKvw@mail.gmail.com>
-Subject: Re: [v7 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect provider
-To:     Andy Gross <agross@kernel.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, evgreen@google.com,
-        georgi.djakov@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mdtipton@codeaurora.org, sibis@codeaurora.org,
-        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+References: <20210902230442.1515531-1-saravanak@google.com>
+ <20210902230442.1515531-2-saravanak@google.com> <CAPDyKFpP6pSRSw8_OAW8+ZJNH+CwXtfWBNDcD182gQmzqW=O5g@mail.gmail.com>
+ <CAMuHMdVgjxJwd=PbUSR+9mgxexr3O_O6j-3T24GzE08CqzDjjA@mail.gmail.com>
+ <CAGETcx9W6FYCD62+QytwK5FThpz0EyKn0G6Ay2B5jKgiqkZT1g@mail.gmail.com> <CAMuHMdWNP1yn0ouJzgYpvQkdAHAA4_gf8z+iZWpbftvGN5a+qQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWNP1yn0ouJzgYpvQkdAHAA4_gf8z+iZWpbftvGN5a+qQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 3 Sep 2021 12:08:23 -0700
+Message-ID: <CAGETcx8dZe4+E04soQw1XT2C82VmaYW48=cBmYOes07qkeqiww@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: platform: Make sure bus only devices get probed
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Odelu Kukatla (2021-08-20 04:23:41)
-> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
-> SoCs.
+On Fri, Sep 3, 2021 at 12:06 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> Hi Saravana,
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 53a21d0..cf59b47 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1848,6 +1848,17 @@
->                         };
->                 };
+> On Fri, Sep 3, 2021 at 7:09 PM Saravana Kannan <saravanak@google.com> wrote:
+> > On Fri, Sep 3, 2021 at 7:29 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Fri, Sep 3, 2021 at 11:19 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > > On Fri, 3 Sept 2021 at 01:04, Saravana Kannan <saravanak@google.com> wrote:
+> > > > > fw_devlink could end up creating device links for bus only devices.
+> > > > > However, bus only devices don't get probed and can block probe() or
+> > > > > sync_state() [1] call backs of other devices. To avoid this, set up
+> > > > > these devices to get probed by the simple-pm-bus.
+> > > > >
+> > > > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > Tested-by: Saravana Kannan <saravanak@google.com>
+> > > >
+> > > > Again, this looks like a nice solution to the problem.
+> > > >
+> > > > One question though. The Kconfig SIMPLE_PM_BUS, should probably be
+> > > > "default y" - or something along those lines to make sure fw_devlink
+> > > > works as expected.
+> > >
+> > > I would love for SIMPLE_PM_BUS to go away, and all of its functionality
+> > > to be usurped by the standard simple-bus handling.
+> >
+> > What if SIMPLE_PM_BUS *is* the standard simple-bus handling?
+> > Insert "I'm the captain now" meme.
 >
-> +               epss_l3: interconnect@18590000 {
-> +                       compatible = "qcom,sc7280-epss-l3";
-> +                       reg = <0 0x18590000 0 1000>,
+> No objections from my side.  In fact that's how I wanted it to be
+> from the beginning, but the DT people wanted a separate compatible
+> value (and a separate driver).  The only difference is the presence
+> of pm_runtime_*() calls.
+>
+> > I think SIMPLE_PM_BUS config should just go away and we should compile
+> > the driver in if CONFIG_OF is selected.
+>
+> I think there would be no need for a separate driver, if the standard
+> simple-bus handling would take care of it.
 
-Is this supposed to be 0x1000?
+I'm not sure about the history there. For now, I'm just extending this
+driver to take care of simple-bus too.
 
-> +                             <0 0x18591000 0 0x100>,
-> +                             <0 0x18592000 0 0x100>,
-> +                             <0 0x18593000 0 0x100>;
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-> +                       clock-names = "xo", "alternate";
-> +                       #interconnect-cells = <1>;
-> +               };
-> +
->                 cpufreq_hw: cpufreq@18591000 {
->                         compatible = "qcom,cpufreq-epss";
->                         reg = <0 0x18591100 0 0x900>,
-> --
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
->
+-Saravana
