@@ -2,131 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5916E3FFCF2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 11:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67E583FFD13
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 11:28:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbhICJVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 05:21:23 -0400
-Received: from mga07.intel.com ([134.134.136.100]:3320 "EHLO mga07.intel.com"
+        id S1348792AbhICJ3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 05:29:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32814 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234912AbhICJVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Sep 2021 05:21:22 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="283079580"
-X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; 
-   d="scan'208";a="283079580"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2021 02:20:23 -0700
-X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; 
-   d="scan'208";a="467868530"
-Received: from pstarove-mobl4.ger.corp.intel.com (HELO [10.251.212.94]) ([10.251.212.94])
-  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2021 02:20:20 -0700
-Subject: Re: [PATCH v3 1/2] ASoC: max98927: Handle reset gpio when probing i2c
-To:     Alejandro <atafalla@dnyon.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <cover.1630632805.git.atafalla@dnyon.com>
- <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
-From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>
-Message-ID: <80973391-4579-e14b-6def-ed81f367a4a5@linux.intel.com>
-Date:   Fri, 3 Sep 2021 12:20:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1348790AbhICJ3i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 05:29:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 018E961057;
+        Fri,  3 Sep 2021 09:28:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630661319;
+        bh=6+JvWjTVgOTDBwrVSObaMWQo2XAQfFNK0dOeMLvKaug=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Uy3m96MzrGtGwsY89cmOBo2OXjlVL2+xbDQSh0VqEPEyZ9d2ou3zHU4R86iJvOi5m
+         Z7BZIctebFT9xzLGcHD0CSjxarAB2veWyspZ3QiHGjpDRTFHfAyy3zaxIZA5eS3cZe
+         L3jfESag/MmlrLCZEjwdIcSygpjkS5zqd8BYNdWdELzLRlLw3xi3p8T8+cTWyK0BtE
+         EZuXa8ZkHkaLMS1R/L6BHloELPLs7VrkMFn77U2yrS8Tv5INobp/eJOc0MmiQkk41n
+         XEDH0caFzJqqbBxKlzsM2VK4WurLc/mNGR0Pl/s2lQ5ZOYKtKnUayELctF708CTOEu
+         d2BMLd6Ria0pQ==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1mM5Uy-000zwP-T7; Fri, 03 Sep 2021 11:28:36 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>, John Stultz <john.stultz@linaro.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] Make USB ports to work on HiKey960/970
+Date:   Fri,  3 Sep 2021 11:28:31 +0200
+Message-Id: <cover.1630659949.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+It follows the patchset adding a DT schema needed to power on and to
+use the integrated USB hub found on HiKey 960 and Hikey 970 boards.
 
-On 03/09/2021 04:49, Alejandro wrote:
-> From: Alejandro Tafalla <atafalla@dnyon.com>
-> 
-> Drive the reset gpio if defined in the DTS node.
-> 
-> Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
-> ---
->  sound/soc/codecs/max98927.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/sound/soc/codecs/max98927.c b/sound/soc/codecs/max98927.c
-> index 8b206ee77709..daf06b503433 100644
-> --- a/sound/soc/codecs/max98927.c
-> +++ b/sound/soc/codecs/max98927.c
-> @@ -868,6 +868,7 @@ static int max98927_i2c_probe(struct i2c_client *i2c,
->  	int ret = 0, value;
->  	int reg = 0;
->  	struct max98927_priv *max98927 = NULL;
-> +	struct gpio_desc *reset_gpio;
->  
->  	max98927 = devm_kzalloc(&i2c->dev,
->  		sizeof(*max98927), GFP_KERNEL);
-> @@ -898,6 +899,19 @@ static int max98927_i2c_probe(struct i2c_client *i2c,
->  		return ret;
->  	}
->  
-> +	reset_gpio
-> +		= devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
+Besides each board use a different chip for the hub,  on both they're
+controlled the same way. Such boards come with an integrated 4-port
+USB hub on it, set on what it seems to be a non-standard way: on both 
+implementations, the USB type-C port is used to detect the USB role.
 
-If this is a 'reset' pin then it's ACTIVE state is when it places the
-device to _reset_.
-GPIOD_OUT_LOW == Deasserted state of the GPIO line.
+When in host mode, the 3.3V power supply (VDD33 pins) for the hub
+are disabled. That disables the USB I/O on type-A ports.
 
-If the reset pin should be pulled low for reset (GPIO_ACTIVE_LOW) and
-you want the device initially  in reset then you need GPIOD_OUT_HIGH,
-because:
-GPIOD_OUT_HIGH == Asserted state of the GPIO line.
+When USB type-C is on device mode, the OTG is switched via a GPIO pin
+to device mode, and the hub is powered on.
 
-Same goes for the gpiod_set_value_cansleep():
-0 - deasserted
-1 = asserted
+A Type-C power supply line is also controlled depending on the role.
 
-and this all depends on how the gpio is defined in DT
-(GPIO_ACTIVE_LOW/HIGH), which depends on how the documentation refers to
-the pin...
+-
 
-reset pin:
-low to keep the device in reset, high to release it from reset:
-GPIO_ACTIVE_LOW
-gpiod_set_value_cansleep(0) to enable
-gpiod_set_value_cansleep(1) to disable
+The entire series  which contains the remaining patches to support
+PCI and USB on HiKey970, and USB on HiKey960 is at:
 
+    https://github.com/mchehab/linux/commits/linux-master
 
-enable pin:
-high to enable the part, low to disable
-GPIO_ACTIVE_HIGH
-gpiod_set_value_cansleep(1) to enable
-gpiod_set_value_cansleep(0) to disable
+The patches needed by the USB on HiKey970 were already merged
+upstream. So, the above branch applies on the top of Linux master
+branch.
 
-In both cases
-electrical 0: reset/disable
-electrical 1: enable
+Tested on HiKey 960:
 
-> +	if (IS_ERR(reset_gpio)) {
-> +		ret = PTR_ERR(reset_gpio);
-> +		return dev_err_probe(&i2c->dev, ret, "failed to request GPIO reset pin");
-> +	}
-> +
-> +	if (reset_gpio) {
-> +		usleep_range(8000, 10000);
-> +		gpiod_set_value_cansleep(reset_gpio, 1);
-> +		usleep_range(1000, 5000);
-> +	}
-> +
+	$ lsusb
+	Bus 002 Device 002: ID 0424:5734 Standard Microsystems Corp. 
+	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 001 Device 004: ID 0424:2740 Standard Microsystems Corp. 
+	Bus 001 Device 003: ID 046d:c52b Logitech, Inc. Unifying Receiver
+	Bus 001 Device 002: ID 0424:2734 Standard Microsystems Corp. 
+	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
-You might want to put the device to reset on remove at minimum.
+Tested on HiKey 970:
+	
+	$ lsusb
+	Bus 002 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 001 Device 003: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)
+	Bus 001 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
->  	/* Check Revision ID */
->  	ret = regmap_read(max98927->regmap,
->  		MAX98927_R01FF_REV_ID, &reg);
-> 
+v4:
+  - Improved description at the DT schema;
+  - Use just one compatible, as there's no difference between
+    HiKey 960 and 970 with regards to how the hub should be
+    controlled;
+  - parse usb-role-switch property at the driver;
+  - make the properties that depends on usb-role-switch optional.
+
+v3:
+  - The examples at the dt-bindings were updated to reflect
+    the actual DTS content and won't produce any warnings;
+  - Added John Stultz SoB to Hikey960 DTS patch;
+  - Added a patch for the mux hub driver for it to work with
+    the newer schema;
+
+John Stultz (1):
+  arm64: dts: hisilicon: Add usb mux hub for hikey960
+
+Mauro Carvalho Chehab (2):
+  misc: hisi_hikey_usb: change the DT schema
+  arm64: dts: hisilicon: Add usb mux hub for hikey970
+
+Yu Chen (1):
+  dt-bindings: misc: add schema for USB hub on Kirin devices
+
+ .../bindings/misc/hisilicon,hikey-usb.yaml    |  87 +++++++++++++
+ .../boot/dts/hisilicon/hi3660-hikey960.dts    |  35 +++++-
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    |  23 ++++
+ drivers/misc/hisi_hikey_usb.c                 | 119 +++++++++---------
+ 4 files changed, 206 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
 
 -- 
-Péter
+2.31.1
+
+
