@@ -2,113 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 809F63FFE46
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 12:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E08313FFE4D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 12:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235162AbhICKiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 06:38:14 -0400
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:33099 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235190AbhICKiN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 06:38:13 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 8E39E2B011F0;
-        Fri,  3 Sep 2021 06:37:10 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 03 Sep 2021 06:37:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=92f0ToILxLd4qqC7uwuiv16lIYd
-        cRF20nOyTcl2xBHY=; b=uqd2z0PK/3fEi+nR/cs8fCE/vKF6g+2s6A3ovsdxLeu
-        lnHj2q551kmhSh4txQ0uqND9WI0AlQSynb+G8PNXJO2k5wRg06BwzoZWMWGxooQ8
-        OAhJDtr48ZOZOpPRceKE53w7n1DwgMCsAGtteAy9vPVHbxuzwcnECU6REEN0lEy1
-        6+wL4SicCG3pZVPbHVB8BTfcHl2qduhDrQb/T/fPIs1YlYOBucrSB33iTQRHF2Yt
-        fSPUuWR9dvavC4Rr8Y+uasAHtOKV7xiXWq3/XfaXBkZ2qgrOAOZbkajPyKBeX/nn
-        HuI6GX2QPBkKECePr26BoQJZrPjlz1/Xy4f0ashb9kA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=92f0To
-        ILxLd4qqC7uwuiv16lIYdcRF20nOyTcl2xBHY=; b=vbkAuAeX3kSJLKJZ9Aebrv
-        jFjdJzFujZanHKgba1OXh+4kCaio5VCQZUM1xB4T8tc6WLllUlRkJSrjnCzh9WKt
-        SG+AuXL/VAanT+uxmAp+1oRmSHq9DlMzpfdvNxfyoMx9hfkOe80nfOzI8bE7LWLc
-        iQ5QFz7U2BP00ttaE77k/ZyjSlKdXLMKXEnGIvDqW/i4L/A6UAZdazxXk0wqCP5z
-        NXZMzl7zTEgFANAg+MNyFCjGfaHV4mBTOlWXSt1SaAj+VZREF3dSsLkaszK789VD
-        +oUBpnNmLqSf08u9eAAVbShzNrY5wRmvNwxWMxZrFtPdraeuQ5paoO2QvW072sxw
-        ==
-X-ME-Sender: <xms:1foxYbsRGdURdXauFO1mA0UlRilNERl2oBfdlU0UvSUeOHyYwNNeaQ>
-    <xme:1foxYceq9AsUd3pkUsDTLnlJj0HcHH6Sh23VEtX7hlFyy8QCtwGFzBuwnV3kIj9ZF
-    dMNJw5-sqXGnTfUwSI>
-X-ME-Received: <xmr:1foxYezYb-HzCojHZSe9AE8E_lkJ9to5TJvLzqMNnQ9LRqA5h4hmViadLVD32Xf9qC_wJgoRuFZXHv0f2cWy3TNbzz8tuxT_4Tsv>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvjedgvdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:1foxYaPQ9l9EC7rMyP1oI9beED63jwIqw8A4b1uKm4Y4G3NooF_hcw>
-    <xmx:1foxYb8LEYhrABQIEOsLktUO4Xhjy4PBI8wvkbheim4F8a9hCh4DGw>
-    <xmx:1foxYaU2yjYeG-ZG2HCYuOy7EQhLhorDLirNoJk0-_sCnC5-bI2w6Q>
-    <xmx:1voxYc0LXjH3j21YzJCXtoz4QQ7cInCChNpg1ZMO5s7FJHHWZeydzGRD6Pc>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 3 Sep 2021 06:37:08 -0400 (EDT)
-Date:   Fri, 3 Sep 2021 12:37:06 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
-        patches@opensource.cirrus.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 01/52] ASoC: dt-bindings: Add WM8978 Binding
-Message-ID: <20210903103706.jhyn4ancyfr6bjcy@gilmour>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-2-maxime@cerno.tech>
- <20210901143950.GE5976@sirena.org.uk>
+        id S1347487AbhICKlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 06:41:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42744 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236060AbhICKlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 06:41:22 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F5AFC061575
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 03:40:22 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id v20-20020a1cf714000000b002e71f4d2026so2724568wmh.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 03:40:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gQwd8S30SMMSUoUfiujLV3m0uDIvIxN2gb+ceJ/Cjqc=;
+        b=hoIfoySMft4uXS5Emu+pqPpJ4ycBAvbSH05oi2TGL/pME7DAJrclBEuM41TOlIlDp3
+         kC0BlpbbkUAU4vOU4N797gU7Qq1joD17ZGLZZeVQjO/7NoXeHaE2tJDyzQqNrC7ZhC5W
+         gK5IJAzTWF4x1ajN7aPgpbAQD5sJdNf/ZefuAXWqPIHJu77Iu1npF+7UaxjGt26KtKr+
+         Tr/qGz04mpwlbFm8KZjB/fvu+ADWARhxSGOiHC3MwcI0bfyMYFOB4AKnWHi/b/Ystd3C
+         Ei7uG0Em8AWrYeAOupxp1IDXLcBIlcqMLmB2rpNqaZrP1ghZgUket6NCIgVEMN9mdrzd
+         DmfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gQwd8S30SMMSUoUfiujLV3m0uDIvIxN2gb+ceJ/Cjqc=;
+        b=cqPoFDakOfYlhuvo8Ch81jJ3K7iVREbcm2AihyNuJIHriGAreJDHMoKa3SPUy8AkHB
+         UMuyMJpal3MCG2Vg8OAqZytPJqbvsmQUJWoVm52XgkHbvZuFhrSuGcLh6DApfFoCRsrz
+         nSVZLALlSpcnLAtzoNhJULWB/YB3spGh4SycgNpwyn109KnroiFnYqJYeSstGvWX+ucb
+         b+/CzRTk6p0HoB4tqyjGYie07vn8cQA9W1HsbcrNcWVyVTVDgraSu1Rhtr0D6W0KSlp2
+         z/OPuvPjxnHhI1VkO6YXw56EutDRxDLj9jKgwkYvW1WCp/C7OTvU42BjL7Ah7P1bueVi
+         ABFA==
+X-Gm-Message-State: AOAM533ENhco1AEzOVVy6q0TOp3UV10IZDzEOqlPRMwzM/GBh6CC5jy8
+        f9yAGMZ0f3YEKAiOQ1+GZ1ZUC8YQrODB/AlMZWlo8w==
+X-Google-Smtp-Source: ABdhPJyyTSOea4UvObuNECW9zeYgA6pqjw7cAM6LYRDFNTT1e35OUfvPkO3D9m+EbH2nXHT7Jh7UdULa9shSAeYWdMI=
+X-Received: by 2002:a1c:1d87:: with SMTP id d129mr7753647wmd.185.1630665621006;
+ Fri, 03 Sep 2021 03:40:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="nn7t3ny4bscqmydq"
-Content-Disposition: inline
-In-Reply-To: <20210901143950.GE5976@sirena.org.uk>
+References: <20210830041729.237252-1-anup.patel@wdc.com> <20210830041729.237252-6-anup.patel@wdc.com>
+ <YS7WTPRYJWnPu2ii@robh.at.kernel.org> <CAAhSdy1mttzt3_CnKc=xhpp5CKOEAasQVobTR-2L6Z26rstn+A@mail.gmail.com>
+ <CAL_JsqLT3RgG0MHMWEs8BZPPtOUUcjRw27W+O4z=DNP9M=EKAw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLT3RgG0MHMWEs8BZPPtOUUcjRw27W+O4z=DNP9M=EKAw@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 3 Sep 2021 16:10:09 +0530
+Message-ID: <CAAhSdy1NBNTQ5F=4MjjwLb4k_kGgB9j5iFxJ6qoGSCuGkn=66g@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 05/11] dt-bindings: interrupt-controller: Add
+ ACLINT MSWI and SSWI bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Bin Meng <bmeng.cn@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 2, 2021 at 6:04 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Sep 1, 2021 at 6:56 AM Anup Patel <anup@brainfault.org> wrote:
+> >
+> > On Wed, Sep 1, 2021 at 6:54 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Mon, Aug 30, 2021 at 09:47:23AM +0530, Anup Patel wrote:
+> > > > We add DT bindings documentation for the ACLINT MSWI and SSWI
+> > > > devices found on RISC-V SOCs.
+> > > >
+> > > > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > > > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+> > > > ---
+> > > >  .../riscv,aclint-swi.yaml                     | 95 +++++++++++++++++++
+> > > >  1 file changed, 95 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml b/Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..68563259ae24
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
+> > > > @@ -0,0 +1,95 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/interrupt-controller/riscv,aclint-swi.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: RISC-V ACLINT Software Interrupt Devices
+> > > > +
+> > > > +maintainers:
+> > > > +  - Anup Patel <anup.patel@wdc.com>
+> > > > +
+> > > > +description:
+> > > > +  RISC-V SOCs include an implementation of the M-level software interrupt
+> > > > +  (MSWI) device and the S-level software interrupt (SSWI) device defined
+> > > > +  in the RISC-V Advanced Core Local Interruptor (ACLINT) specification.
+> > > > +
+> > > > +  The ACLINT MSWI and SSWI devices are documented in the RISC-V ACLINT
+> > > > +  specification located at
+> > > > +  https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc.
+> > > > +
+> > > > +  The ACLINT MSWI and SSWI devices directly connect to the M-level and
+> > > > +  S-level software interrupt lines of various HARTs (or CPUs) respectively
+> > > > +  so the RISC-V per-HART (or per-CPU) local interrupt controller is the
+> > > > +  parent interrupt controller for the ACLINT MSWI and SSWI devices.
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/interrupt-controller.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    oneOf:
+> > > > +      - items:
+> > > > +        - enum:
+> > > > +          - riscv,aclint-mswi
+> > > > +
+> > > > +      - items:
+> > > > +        - enum:
+> > > > +          - riscv,aclint-sswi
+> > >
+> > > All this can be just:
+> > >
+> > > enum:
+> > >   - riscv,aclint-mswi
+> > >   - riscv,aclint-sswi
+> > >
+> > > However...
+> > >
+> > > > +
+> > > > +    description:
+> > > > +      For ACLINT MSWI devices, it should be "riscv,aclint-mswi" OR
+> > > > +      "<vendor>,<chip>-aclint-mswi".
+> > > > +      For ACLINT SSWI devices, it should be "riscv,aclint-sswi" OR
+> > > > +      "<vendor>,<chip>-aclint-sswi".
+> > >
+> > > s/OR/AND/
+> > >
+> > > There must be a compatible for the implementation. Unless RiscV
+> > > implementations of specs are complete describing all clocks, power
+> > > domains, resets, etc. and are quirk free.
+> > >
+> > > But don't write free form constraints...
+> >
+> > It is possible that quite a few implementations (QEMU, FPGAs, and
+> > other simulators) will not require implementation specific compatible
+> > strings. Should we still mandate implementation specific compatible
+> > strings in DTS for such cases?
+>
+> No, but the schema says you only have those cases. Are there not any
+> actual implementations?
 
---nn7t3ny4bscqmydq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+All existing RISC-V boards have SiFive CLINT and ACLINT is backward
+compatible with SiFive CLINT so we do have actual implementations.
 
-Hi Mark,
+None of the existing RISC-V boards have special clocks, power domain,
+resets etc for these devices.
 
-On Wed, Sep 01, 2021 at 03:39:50PM +0100, Mark Brown wrote:
-> On Wed, Sep 01, 2021 at 11:18:01AM +0200, Maxime Ripard wrote:
-> > Even though we had the wm8978 driver for some time and a number of
-> > boards using it already, we never had a binding for it. Let's add it
-> > based on what the driver expects and the boards are providing.
->=20
-> What's the story with dependencies here?  I don't have a cover letter or
-> anything and there seem to be a bunch of tangentially related patches in
-> a series here.
+>
+> Minimally make "<vendor>,<chip>-aclint-mswi" into a schema pattern for
+> the first entry and perhaps a note to replace with actual strings when
+> there are some. It's ultimately up to the RiscV maintainers to require
+> SoC specific compatibles here. Allowing a generic one alone makes that
+> harder because the schema can't enforce it.
 
-There's no dependency, you can pick the ASoC patches safely
+Can we have a common compatible string for QEMU, FPGAs, etc ?
 
-Maxime
+For example,
+compatible = "riscv,generic-aclint-mswi", "riscv,aclint-mswi";
 
---nn7t3ny4bscqmydq
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Anup
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYTH60gAKCRDj7w1vZxhR
-xUMgAP4qpnWTe63yyrkomVlN9dloDX9xwfM9GEQUIexQad/NFgEAsqbdW/DtCEBr
-+apb+G1prVt3kAcIYdWWOnzqrMrKww4=
-=a+YU
------END PGP SIGNATURE-----
-
---nn7t3ny4bscqmydq--
+>
+> Rob
