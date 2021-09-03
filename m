@@ -2,69 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8AD24002D5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54E454002E4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349873AbhICQD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 12:03:59 -0400
-Received: from dnyon.com ([82.223.165.189]:56386 "EHLO dnyon.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1349871AbhICQD7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Sep 2021 12:03:59 -0400
-Received: from dnyon.com (55.red-81-39-194.dynamicip.rima-tde.net [81.39.194.55])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dnyon.com (Postfix) with ESMTPSA id A26DF3FEB7;
-        Fri,  3 Sep 2021 16:02:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dnyon.com; s=mail;
-        t=1630684977; bh=VuoVMOLwXT0Lrus8Yp/9d+LE+TbVeNBkpQ5C8cJGLps=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tHJSW7ZU6Fcphf5XNe2FSJmR6LOj0T/zjndyINcu+XJyJtUBy+tk/f3K4bx8jVDoB
-         LS6j6fXu4AX3jDsTZ1tEyoKbR7NBKXDfeLyDzbF9xpMXEyvsfkpMuE7fJHxINvChAd
-         3dVDJwl2DDSRjjCs9sgk/KYq7ZtyZyv9HBpldJwjbMhqiu0E/IjU0ZFxCTke+Ve2Pc
-         g7Y4yeFgN9crDm+ftU5GR45/CUsH9BN8oY/5LTM3GBKJ9YErqYE+lC0hA5r0Wt9m4G
-         UKWAY6tvTScd87I7ubAfN8wvnLAbONCGnleZi1Chn4a97oBJe4Ixsp5YMmECwtNaeS
-         gyJ7UYI7erG+A==
-From:   Alejandro Tafalla <atafalla@dnyon.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/2] Add reset-gpios handling for max98927
-Date:   Fri, 03 Sep 2021 18:02:36 +0200
-Message-ID: <2103571.irdbgypaU6@alexpc>
-In-Reply-To: <CAHp75VdOw7fS055q9eccm9dP9nuAK8rcLXf4vuzA=-UnbqoUfQ@mail.gmail.com>
-References: <cover.1630632805.git.atafalla@dnyon.com> <CAHp75VdOw7fS055q9eccm9dP9nuAK8rcLXf4vuzA=-UnbqoUfQ@mail.gmail.com>
+        id S1349905AbhICQGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 12:06:49 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:45661 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349877AbhICQGt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 12:06:49 -0400
+Received: by mail-ot1-f50.google.com with SMTP id l7-20020a0568302b0700b0051c0181deebso7077026otv.12;
+        Fri, 03 Sep 2021 09:05:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=l0iP5JJE35ZYuQbK+af2NVnrw5T8/CIq2PpEDrl/wgI=;
+        b=cZrP0svCROTmCQMnJx39JRfOrLzA01FQGSwHbdYiWnOv2oCMIGiUMBVQHxWanAuYqm
+         ulSsCIE4umFojxa4RSJeTG2jYMWKhJ3CWrFfdRwa/bH/KE0l5/W9/qFv3vK30TVJeSSH
+         aQuKaloDChPSKe9kExkDYZXk8eQBulsyQf+xVlhvn44Bmq5XDvRJnmqkR3Zh97NIYbVe
+         Na73Bbb44uj1BSEKgoWtmGpu1rNgGMfypwrWYyi8b5oxFDM3i7CRrG+x7EtOKSow9Smn
+         PlyN0eA+s5TXEsWVm1sihpy1FgJD3LnqvLABMToLjn3Wl/owny82o1G/Q+ACX84Q9FeR
+         bGeQ==
+X-Gm-Message-State: AOAM531yadocuaVcrq552nIDN3DY3555gY5gu0QaKlZ1pVk2bJ90I2b/
+        FDfApUsMJdQV3wRO3jXs+w==
+X-Google-Smtp-Source: ABdhPJxPXAwNcuTVCNipDZcHpn9gMAFUSAPv4e7EAwdcq2R3yUvO8vkzMFVQeGXC8h3qbDef3E34gw==
+X-Received: by 2002:a05:6830:238a:: with SMTP id l10mr3771066ots.333.1630685148671;
+        Fri, 03 Sep 2021 09:05:48 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x1sm1024309otu.8.2021.09.03.09.05.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Sep 2021 09:05:47 -0700 (PDT)
+Received: (nullmailer pid 3023292 invoked by uid 1000);
+        Fri, 03 Sep 2021 16:05:46 -0000
+Date:   Fri, 3 Sep 2021 11:05:46 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     bcousson@baylibre.com, Lee Jones <lee.jones@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        devicetree@vger.kernel.org,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        linux-omap@vger.kernel.org, Jason Reeder <jreeder@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 02/46] dt-bindings: mfd: ti,am3359-tscadc: Add a yaml
+ description for this MFD
+Message-ID: <YTJH2lMu3QPMn8T8@robh.at.kernel.org>
+References: <20210902215144.507243-1-miquel.raynal@bootlin.com>
+ <20210902215144.507243-3-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210902215144.507243-3-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/9/21 10:16 Andy Shevchenko wrote:
-> On Fri, Sep 3, 2021 at 4:51 AM Alejandro <atafalla@dnyon.com> wrote:
-> > The max98927 codec on some devices (i.e. Xiaomi Mi A2 Lite phone) require
+On Thu, 02 Sep 2021 23:51:00 +0200, Miquel Raynal wrote:
+> There is a very light description of this MFD in a text file dedicated
+> to a touchscreen controller (which is one of the two children of the
+> MFD). Here is now a complete yaml description.
 > 
-> requires
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../bindings/mfd/ti,am3359-tscadc.yaml        | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
 > 
-> > hardware-resetting the codec by driving a reset-gpio. This series add
-> 
-> adds
-> 
-> > support for it through an optional reset-gpios property.
-> 
-> Where is the  changelog?
-I'll fix the typos and add previous changelogs in the next version.
-Thank you.
 
--- 
-Alejandro Tafalla
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
