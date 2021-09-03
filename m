@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 001CA400072
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 15:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE34400075
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 15:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235538AbhICNYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 09:24:45 -0400
-Received: from lucky1.263xmail.com ([211.157.147.132]:33758 "EHLO
+        id S235537AbhICNZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 09:25:05 -0400
+Received: from lucky1.263xmail.com ([211.157.147.133]:55076 "EHLO
         lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235537AbhICNYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 09:24:45 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 3F422FB81F;
-        Fri,  3 Sep 2021 21:23:42 +0800 (CST)
+        with ESMTP id S235554AbhICNZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 09:25:05 -0400
+Received: from localhost (unknown [192.168.167.130])
+        by lucky1.263xmail.com (Postfix) with ESMTP id E42FCD63C7;
+        Fri,  3 Sep 2021 21:24:00 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
 X-SKE-CHECKED: 1
 X-ANTISPAM-LEVEL: 2
 Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P32763T139760603449088S1630675411965630_;
-        Fri, 03 Sep 2021 21:23:37 +0800 (CST)
+        by smtp.263.net (postfix) whith ESMTP id P2016T140106318997248S1630675439696276_;
+        Fri, 03 Sep 2021 21:24:00 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <7eab5e813e0b0dc291a4c443e02925cc>
+X-UNIQUE-TAG: <379dfc6c9793aa01a0158e37172fb962>
 X-RL-SENDER: sugar.zhang@rock-chips.com
 X-SENDER: zxg@rock-chips.com
 X-LOGIN-NAME: sugar.zhang@rock-chips.com
@@ -37,9 +37,9 @@ To:     broonie@kernel.org, heiko@sntech.de
 Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         alsa-devel@alsa-project.org,
         Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: [PATCH v4 5/7] ASoC: rockchip: pdm: Add support for path map
-Date:   Fri,  3 Sep 2021 21:23:28 +0800
-Message-Id: <1630675410-3354-5-git-send-email-sugar.zhang@rock-chips.com>
+Subject: [PATCH v4 6/7] ASoC: dt-bindings: rockchip: pdm: Document property 'rockchip,path-map'
+Date:   Fri,  3 Sep 2021 21:23:57 +0800
+Message-Id: <1630675438-3418-1-git-send-email-sugar.zhang@rock-chips.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1630675357-3286-1-git-send-email-sugar.zhang@rock-chips.com>
 References: <1630675357-3286-1-git-send-email-sugar.zhang@rock-chips.com>
@@ -47,103 +47,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds property 'rockchip,path-map' for path mapping.
-
-e.g.
-
-"rockchip,path-map = <3 2 1 0>" means the mapping as follows:
-
-  path0 <-- sdi3
-  path1 <-- sdi2
-  path2 <-- sdi1
-  path3 <-- sdi0
+This is an optional property to describe data path mapping.
 
 Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 Changes in v4: None
 Changes in v3: None
 Changes in v2: None
 
- sound/soc/rockchip/rockchip_pdm.c | 34 ++++++++++++++++++++++++++++++++++
- sound/soc/rockchip/rockchip_pdm.h |  3 +++
- 2 files changed, 37 insertions(+)
+ Documentation/devicetree/bindings/sound/rockchip,pdm.txt | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/sound/soc/rockchip/rockchip_pdm.c b/sound/soc/rockchip/rockchip_pdm.c
-index f2bf023..64d9891 100644
---- a/sound/soc/rockchip/rockchip_pdm.c
-+++ b/sound/soc/rockchip/rockchip_pdm.c
-@@ -20,6 +20,7 @@
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt b/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+index 54d94438..b2d7e47 100644
+--- a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
++++ b/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
+@@ -24,6 +24,22 @@ Required properties:
+ 	     pinctrl-names. See ../pinctrl/pinctrl-bindings.txt
+ 	     for details of the property values.
  
- #define PDM_DMA_BURST_SIZE	(8) /* size * width: 8*4 = 32 bytes */
- #define PDM_SIGNOFF_CLK_RATE	(100000000)
-+#define PDM_PATH_MAX		(4)
++Optional properties:
++- rockchip,path-map: This is a variable length array, that shows the mapping
++  of SDIx to PATHx. By default, they are one-to-one mapping as follows:
++
++   path0 <-- sdi0
++   path1 <-- sdi1
++   path2 <-- sdi2
++   path3 <-- sdi3
++
++  e.g. "rockchip,path-map = <3 2 1 0>" means the mapping as follows:
++
++   path0 <-- sdi3
++   path1 <-- sdi2
++   path2 <-- sdi1
++   path3 <-- sdi0
++
+ Example for rk3328 PDM controller:
  
- enum rk_pdm_version {
- 	RK_PDM_RK3229,
-@@ -539,8 +540,36 @@ static const struct of_device_id rockchip_pdm_match[] __maybe_unused = {
- };
- MODULE_DEVICE_TABLE(of, rockchip_pdm_match);
- 
-+static int rockchip_pdm_path_parse(struct rk_pdm_dev *pdm, struct device_node *node)
-+{
-+	unsigned int path[PDM_PATH_MAX];
-+	int cnt = 0, ret = 0, i = 0, val = 0, msk = 0;
-+
-+	cnt = of_count_phandle_with_args(node, "rockchip,path-map",
-+					 NULL);
-+	if (cnt != PDM_PATH_MAX)
-+		return cnt;
-+
-+	ret = of_property_read_u32_array(node, "rockchip,path-map",
-+					 path, cnt);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < cnt; i++) {
-+		if (path[i] >= PDM_PATH_MAX)
-+			return -EINVAL;
-+		msk |= PDM_PATH_MASK(i);
-+		val |= PDM_PATH(i, path[i]);
-+	}
-+
-+	regmap_update_bits(pdm->regmap, PDM_CLK_CTRL, msk, val);
-+
-+	return 0;
-+}
-+
- static int rockchip_pdm_probe(struct platform_device *pdev)
- {
-+	struct device_node *node = pdev->dev.of_node;
- 	const struct of_device_id *match;
- 	struct rk_pdm_dev *pdm;
- 	struct resource *res;
-@@ -606,6 +635,11 @@ static int rockchip_pdm_probe(struct platform_device *pdev)
- 	}
- 
- 	rockchip_pdm_rxctrl(pdm, 0);
-+
-+	ret = rockchip_pdm_path_parse(pdm, node);
-+	if (ret != 0 && ret != -ENOENT)
-+		goto err_suspend;
-+
- 	ret = devm_snd_dmaengine_pcm_register(&pdev->dev, NULL, 0);
- 	if (ret) {
- 		dev_err(&pdev->dev, "could not register pcm: %d\n", ret);
-diff --git a/sound/soc/rockchip/rockchip_pdm.h b/sound/soc/rockchip/rockchip_pdm.h
-index 13bfbc2..cab9772 100644
---- a/sound/soc/rockchip/rockchip_pdm.h
-+++ b/sound/soc/rockchip/rockchip_pdm.h
-@@ -53,6 +53,9 @@
- #define PDM_FD_DENOMINATOR_MSK	GENMASK(15, 0)
- 
- /* PDM CLK CTRL */
-+#define PDM_PATH_SHIFT(x)	(8 + (x) * 2)
-+#define PDM_PATH_MASK(x)	(0x3 << PDM_PATH_SHIFT(x))
-+#define PDM_PATH(x, v)		((v) << PDM_PATH_SHIFT(x))
- #define PDM_CLK_FD_RATIO_MSK	BIT(6)
- #define PDM_CLK_FD_RATIO_40	(0X0 << 6)
- #define PDM_CLK_FD_RATIO_35	BIT(6)
+ pdm: pdm@ff040000 {
 -- 
 2.7.4
 
