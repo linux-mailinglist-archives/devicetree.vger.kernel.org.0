@@ -2,270 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 988BA400074
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 15:24:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B0F40007C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 15:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235555AbhICNZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 09:25:04 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:55180 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235537AbhICNZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 09:25:03 -0400
-Received: from localhost (unknown [192.168.167.130])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 62444D5FF2;
-        Fri,  3 Sep 2021 21:24:01 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P2016T140106318997248S1630675439696276_;
-        Fri, 03 Sep 2021 21:24:01 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <90c2a9e1d431cddf68b41721831c37ed>
-X-RL-SENDER: sugar.zhang@rock-chips.com
-X-SENDER: zxg@rock-chips.com
-X-LOGIN-NAME: sugar.zhang@rock-chips.com
-X-FST-TO: broonie@kernel.org
-X-RCPT-COUNT: 6
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Sugar Zhang <sugar.zhang@rock-chips.com>
-To:     broonie@kernel.org, heiko@sntech.de
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: [PATCH v4 7/7] ASoC: dt-bindings: rockchip: Convert pdm bindings to yaml
-Date:   Fri,  3 Sep 2021 21:23:58 +0800
-Message-Id: <1630675438-3418-2-git-send-email-sugar.zhang@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1630675357-3286-1-git-send-email-sugar.zhang@rock-chips.com>
-References: <1630675357-3286-1-git-send-email-sugar.zhang@rock-chips.com>
+        id S235563AbhICNZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 09:25:53 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:46854 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235169AbhICNZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 09:25:52 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 183DOQcg115630;
+        Fri, 3 Sep 2021 08:24:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1630675467;
+        bh=PEqomZ4Oiml/sEhlVDsmQO11W5RCqsiO5+Ta60ysjuw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=LdI0WxniaW0bFR6H2Nv0SVSO5ZOf0hHKXAyWZrkhv6/um49n/DzxQ1GBLmWINZEPK
+         QlU5W4N5MhrNIn8lfO7PB1wGX8U+92cwBDozHnYzWxQiL5jxGUW/frVfgIqIncq2je
+         VApoAc/1btX+4+BJNy08qBkT9Nmyz82ifMTxcF1I=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 183DOQq1056319
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 3 Sep 2021 08:24:26 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 3
+ Sep 2021 08:24:26 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 3 Sep 2021 08:24:26 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 183DONNN072354;
+        Fri, 3 Sep 2021 08:24:23 -0500
+Subject: Re: [PATCH v2 33/46] mfd: ti_am335x_tscadc: Move control register
+ configuration
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Ryan Barnett <ryan.barnett@collins.com>,
+        Jason Reeder <jreeder@ti.com>
+References: <20210902215144.507243-1-miquel.raynal@bootlin.com>
+ <20210902215144.507243-34-miquel.raynal@bootlin.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <3bc1f515-0b3c-ad0c-9624-4d4804899007@ti.com>
+Date:   Fri, 3 Sep 2021 16:24:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210902215144.507243-34-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch converts pdm bindings to yaml.
 
-Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
 
-Changes in v4:
-- Acked by Rob Herring
+On 03/09/2021 00:51, Miquel Raynal wrote:
+> The datasheet states that most of the configuration should be set in the
+> control register in the first place, before actually enabling the
+> hardware. So far only half of the configuration was made in the first
+> step, which does not make really sense and would complicating the code
+> when introducing support for the am437x hardware.
+> 
+> Let's move that register write a bit below to enclose more configuration.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>   drivers/mfd/ti_am335x_tscadc.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/mfd/ti_am335x_tscadc.c b/drivers/mfd/ti_am335x_tscadc.c
+> index 29ada9da8826..a0db3e4ff265 100644
+> --- a/drivers/mfd/ti_am335x_tscadc.c
+> +++ b/drivers/mfd/ti_am335x_tscadc.c
+> @@ -239,6 +239,8 @@ static	int ti_tscadc_probe(struct platform_device *pdev)
+>   	}
+>   	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
+>   
+> +	regmap_write(tscadc->regmap, REG_CTRL, tscadc->ctrl);
+> +
 
-Changes in v3:
-- Fix property 'path-map' suggested by Rob Herring.
+Strange change - above 2 lines a the same !?
 
-Changes in v2:
-- Fix yamllint errors.
+>   	tscadc_idle_config(tscadc);
+>   
+>   	/* Enable the TSC module enable bit */
+> 
 
- .../devicetree/bindings/sound/rockchip,pdm.txt     |  64 -----------
- .../devicetree/bindings/sound/rockchip,pdm.yaml    | 120 +++++++++++++++++++++
- 2 files changed, 120 insertions(+), 64 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.txt
- create mode 100644 Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt b/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
-deleted file mode 100644
-index b2d7e47..0000000
---- a/Documentation/devicetree/bindings/sound/rockchip,pdm.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--* Rockchip PDM controller
--
--Required properties:
--
--- compatible: "rockchip,pdm"
--  - "rockchip,px30-pdm"
--  - "rockchip,rk1808-pdm"
--  - "rockchip,rk3308-pdm"
--  - "rockchip,rk3568-pdm"
--  - "rockchip,rv1126-pdm"
--- reg: physical base address of the controller and length of memory mapped
--  region.
--- dmas: DMA specifiers for rx dma. See the DMA client binding,
--	Documentation/devicetree/bindings/dma/dma.txt
--- dma-names: should include "rx".
--- clocks: a list of phandle + clock-specifer pairs, one for each entry in clock-names.
--- clock-names: should contain following:
--   - "pdm_hclk": clock for PDM BUS
--   - "pdm_clk" : clock for PDM controller
--- resets: a list of phandle + reset-specifer paris, one for each entry in reset-names.
--- reset-names: reset names, should include "pdm-m".
--- pinctrl-names: Must contain a "default" entry.
--- pinctrl-N: One property must exist for each entry in
--	     pinctrl-names. See ../pinctrl/pinctrl-bindings.txt
--	     for details of the property values.
--
--Optional properties:
--- rockchip,path-map: This is a variable length array, that shows the mapping
--  of SDIx to PATHx. By default, they are one-to-one mapping as follows:
--
--   path0 <-- sdi0
--   path1 <-- sdi1
--   path2 <-- sdi2
--   path3 <-- sdi3
--
--  e.g. "rockchip,path-map = <3 2 1 0>" means the mapping as follows:
--
--   path0 <-- sdi3
--   path1 <-- sdi2
--   path2 <-- sdi1
--   path3 <-- sdi0
--
--Example for rk3328 PDM controller:
--
--pdm: pdm@ff040000 {
--	compatible = "rockchip,pdm";
--	reg = <0x0 0xff040000 0x0 0x1000>;
--	clocks = <&clk_pdm>, <&clk_gates28 0>;
--	clock-names = "pdm_clk", "pdm_hclk";
--	dmas = <&pdma 16>;
--	#dma-cells = <1>;
--	dma-names = "rx";
--	pinctrl-names = "default", "sleep";
--	pinctrl-0 = <&pdmm0_clk
--		     &pdmm0_sdi0
--		     &pdmm0_sdi1
--		     &pdmm0_sdi2
--		     &pdmm0_sdi3>;
--	pinctrl-1 = <&pdmm0_clk_sleep
--		     &pdmm0_sdi0_sleep
--		     &pdmm0_sdi1_sleep
--		     &pdmm0_sdi2_sleep
--		     &pdmm0_sdi3_sleep>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/rockchip,pdm.yaml b/Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
-new file mode 100644
-index 0000000..22e1cf6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/rockchip,pdm.yaml
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/rockchip,pdm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip PDM controller
-+
-+description:
-+  The Pulse Density Modulation Interface Controller (PDMC) is
-+  a PDM interface controller and decoder that support PDM format.
-+  It integrates a clock generator driving the PDM microphone
-+  and embeds filters which decimate the incoming bit stream to
-+  obtain most common audio rates.
-+
-+maintainers:
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,pdm
-+      - rockchip,px30-pdm
-+      - rockchip,rk1808-pdm
-+      - rockchip,rk3308-pdm
-+      - rockchip,rk3568-pdm
-+      - rockchip,rv1126-pdm
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: clock for PDM controller
-+      - description: clock for PDM BUS
-+
-+  clock-names:
-+    items:
-+      - const: pdm_clk
-+      - const: pdm_hclk
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    items:
-+      - description: reset for PDM controller
-+
-+  reset-names:
-+    items:
-+      - const: pdm-m
-+
-+  rockchip,path-map:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      Defines the mapping of PDM SDIx to PDM PATHx.
-+      By default, they are mapped one-to-one.
-+    maxItems: 4
-+    uniqueItems: true
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+  - "#sound-dai-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rk3328-cru.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/pinctrl/rockchip.h>
-+
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pdm@ff040000 {
-+            compatible = "rockchip,pdm";
-+            reg = <0x0 0xff040000 0x0 0x1000>;
-+            interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&cru SCLK_PDM>, <&cru HCLK_PDM>;
-+            clock-names = "pdm_clk", "pdm_hclk";
-+            dmas = <&dmac 16>;
-+            dma-names = "rx";
-+            #sound-dai-cells = <0>;
-+            pinctrl-names = "default", "sleep";
-+            pinctrl-0 = <&pdmm0_clk
-+                         &pdmm0_sdi0
-+                         &pdmm0_sdi1
-+                         &pdmm0_sdi2
-+                         &pdmm0_sdi3>;
-+            pinctrl-1 = <&pdmm0_clk_sleep
-+                         &pdmm0_sdi0_sleep
-+                         &pdmm0_sdi1_sleep
-+                         &pdmm0_sdi2_sleep
-+                         &pdmm0_sdi3_sleep>;
-+        };
-+    };
 -- 
-2.7.4
-
-
-
+Best regards,
+grygorii
