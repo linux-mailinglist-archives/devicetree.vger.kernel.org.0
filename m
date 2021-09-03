@@ -2,301 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C247C3FFFE9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 14:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41688400029
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 15:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348176AbhICMnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 08:43:18 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37774 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234950AbhICMnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 08:43:17 -0400
-Received: from [IPv6:2a02:810a:880:f54:14f0:9e83:10c6:d1a4] (unknown [IPv6:2a02:810a:880:f54:14f0:9e83:10c6:d1a4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 860A91F44E0E;
-        Fri,  3 Sep 2021 13:42:15 +0100 (BST)
-Subject: Re: [PATCH v6, 15/15] media: mtk-vcodec: Use codec type to separate
- different hardware
-To:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
- <20210901083215.25984-16-yunfei.dong@mediatek.com>
- <cf57148f-430b-2023-5f62-b57b12a960b7@collabora.com>
- <5d53649c1fe2d6d6942e1dd31cdf7a0def46acab.camel@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <0100e846-7ab0-347e-c737-aa6d86fde4af@collabora.com>
-Date:   Fri, 3 Sep 2021 14:42:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S235183AbhICNJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 09:09:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229645AbhICNI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 09:08:59 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 798C7C061575
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 06:07:59 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id l6so7908706edb.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 06:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=WYzSrI9zSNaecML1pdaUth8apEamlGgUMFyc+HnKzhk=;
+        b=RwWwSQ1/k674F5XUGsuC9cgeLCls9obE8vx05N6tui1WHyKCAT8GkGFbkyuiwASIdp
+         5+ROJ6HaWtQepPXlhimH84+zU2ZqHV7Uk/Q8qi+KK+o83Dik6fpiQP3G/4R0R2fvgUjD
+         7PvT8Y7DnI1mlDJYtH2sJpGdD/V6emdRC0QSO6mlWArdX1t3BpgmVKiuOdBF1TbWVRzM
+         ShV5N/pUGAkSjScUspl9Y056SMtL7gO/n+uh+HEQZFvuS2sBwHU35VpOUCLdBqMifU1N
+         Dy3dcx60vEGdXvVwMYbnYmeL/B8/l/XP1G/VVsi6zQVQZ23odbUQtLhCbu5BVOA3UBiB
+         SwBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=WYzSrI9zSNaecML1pdaUth8apEamlGgUMFyc+HnKzhk=;
+        b=Wrs/jmJ6Lnv8knDb8hT/xQb9TAWrzrv7+2Ute4NutaAG5fyJmsJzruSN9u+UBjPZbi
+         VH7KVrT2MEFOd4QmcWGkVMgkvribXiVf+rNZ8J64XGAsVdwZdH6QasQ57LzuOGSGd4oC
+         jB7WbaLC9TOHfW96e/+iEqRunSvg3aka9xCqrXZBoHj3X8cRLNX+9ojsf2ES6Wt6WZMi
+         bKlc7WaudS7sj7Z8xSObvuoZ16HH3TqYWJ6crlhHF/+g+kJFF3a6p8z9Pu7CyT9U2lqI
+         5WwAvDnyQ72QPVpmdgzfhDYo9BBH4GkzhKK8L8G+tEidsttpvuvr+mfGQdnmLUFMfXyY
+         diLA==
+X-Gm-Message-State: AOAM533sfSGdHP1ept1z9Ovl9S260fMN1I9Z8HTlpRE41+O1dZnuNq2a
+        +mM3lkhZWpFiDxF5XoghRqREi/FryvTkl8DA+6k=
+X-Google-Smtp-Source: ABdhPJy3Q/KvYplN25lJ18enpF2DrrWIga3iNtxnI8gKIt88wEJZnPXM20a7Im9ot+XwpIlhIigBYerJLYZdK+0Y6BQ=
+X-Received: by 2002:a05:6402:26c6:: with SMTP id x6mr3995084edd.10.1630674469642;
+ Fri, 03 Sep 2021 06:07:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <5d53649c1fe2d6d6942e1dd31cdf7a0def46acab.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a17:906:c288:0:0:0:0 with HTTP; Fri, 3 Sep 2021 06:07:48
+ -0700 (PDT)
+Reply-To: michaelrachid7@gmail.com
+From:   Michael Rachid <sammyhamidou93@gmail.com>
+Date:   Fri, 3 Sep 2021 14:07:48 +0100
+Message-ID: <CAOO_Zf9b511msEr7-xXvdByE031RUD+OJEMpJJx2XUEEPRKxBg@mail.gmail.com>
+Subject: =?UTF-8?B?UHJvcG9zYWwv4Kaq4KeN4Kaw4Ka44KeN4Kak4Ka+4KasIFByYXN0xIFiYQ==?=
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 02.09.21 08:05, yunfei.dong@mediatek.com wrote:
-> On Wed, 2021-09-01 at 14:17 +0200, Dafna Hirschfeld wrote:
-> Hi Dafna,
-> 
-> Thanks for your suggestion.
->> Hi
->>
->> On 01.09.21 10:32, Yunfei Dong wrote:
->>> There are just one core thread, in order to separeate different
->>> hardware, using codec type to separeate it in scp driver.
->>
->> this code seems to relate to the vpu driver not the scp driver.
->> Is there a corresponding code added to the vpu driver that test the
->> codec_type?
->>
-> Vpu is video processor unit, used to connect with micro processor.
-> In mt8173: vdec_vpu_if.c -> mtk_vpu.c -> micro processor
-> In mt8192/mt8183: vdec_vpu_if.c -> mtk_scp.c ->micro processor
-> 
-> This init/dec start/dec_end interfaces are the same for vpu and scp.
->>>
->>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->>> ---
->>>    .../media/platform/mtk-vcodec/vdec_ipi_msg.h  | 12 ++++---
->>>    .../media/platform/mtk-vcodec/vdec_vpu_if.c   | 34
->>> ++++++++++++++++---
->>>    .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  4 +++
->>>    3 files changed, 41 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
->>> b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
->>> index 9d8079c4f976..c488f0c40190 100644
->>> --- a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
->>> +++ b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
->>> @@ -35,6 +35,8 @@ enum vdec_ipi_msgid {
->>>     * @msg_id	: vdec_ipi_msgid
->>>     * @vpu_inst_addr : VPU decoder instance address. Used if ABI
->>> version < 2.
->>>     * @inst_id     : instance ID. Used if the ABI version >= 2.
->>> + * @codec_type	: Codec fourcc
->>> + * @reserved	: reserved param
->>>     */
->>>    struct vdec_ap_ipi_cmd {
->>>    	uint32_t msg_id;
->>> @@ -42,6 +44,8 @@ struct vdec_ap_ipi_cmd {
->>>    		uint32_t vpu_inst_addr;
->>>    		uint32_t inst_id;
->>>    	};
->>> +	uint32_t codec_type;
->>> +	uint32_t reserved;
->>>    };
->>>    
->>>    /**
->>> @@ -59,12 +63,12 @@ struct vdec_vpu_ipi_ack {
->>>    /**
->>>     * struct vdec_ap_ipi_init - for AP_IPIMSG_DEC_INIT
->>>     * @msg_id	: AP_IPIMSG_DEC_INIT
->>> - * @reserved	: Reserved field
->>> + * @codec_type	: Codec fourcc
->>>     * @ap_inst_addr	: AP video decoder instance address
->>>     */
->>>    struct vdec_ap_ipi_init {
->>>    	uint32_t msg_id;
->>> -	uint32_t reserved;
->>> +	uint32_t codec_type;
->>>    	uint64_t ap_inst_addr;
->>>    };
->>>    
->>> @@ -77,7 +81,7 @@ struct vdec_ap_ipi_init {
->>>     *	H264 decoder [0]:buf_sz [1]:nal_start
->>>     *	VP8 decoder  [0]:width/height
->>>     *	VP9 decoder  [0]:profile, [1][2] width/height
->>> - * @reserved	: Reserved field
->>> + * @codec_type	: Codec fourcc
->>>     */
->>>    struct vdec_ap_ipi_dec_start {
->>>    	uint32_t msg_id;
->>> @@ -86,7 +90,7 @@ struct vdec_ap_ipi_dec_start {
->>>    		uint32_t inst_id;
->>>    	};
->>>    	uint32_t data[3];
->>> -	uint32_t reserved;
->>> +	uint32_t codec_type;
->>>    };
->>>    
->>>    /**
->>> diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
->>> b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
->>> index bfd8e87dceff..c84fac52fe26 100644
->>> --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
->>> +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
->>> @@ -100,18 +100,29 @@ static void vpu_dec_ipi_handler(void *data,
->>> unsigned int len, void *priv)
->>>    
->>>    static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void
->>> *msg, int len)
->>>    {
->>> -	int err;
->>> +	int err, id, msgid;
->>>    
->>> -	mtk_vcodec_debug(vpu, "id=%X", *(uint32_t *)msg);
->>> +	msgid = *(uint32_t *)msg;
->>> +	mtk_vcodec_debug(vpu, "id=%X", msgid);
->>>    
->>>    	vpu->failure = 0;
->>>    	vpu->signaled = 0;
->>>    
->>> -	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, vpu-
->>>> id, msg,
->>> +	if (vpu->ctx->dev->vdec_pdata->hw_arch ==
->>> MTK_VDEC_LAT_SINGLE_CORE) {
->>> +		if (msgid == AP_IPIMSG_DEC_CORE ||
->>> +			msgid == AP_IPIMSG_DEC_CORE_END)
->>> +			id = vpu->core_id;
->>> +		else
->>> +			id = vpu->id;
->>> +	} else {
->>> +		id = vpu->id;
->>> +	}
->>> +
->>> +	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, id,
->>> msg,
->>>    				     len, 2000);
->>
->> so
->>>    	if (err) {
->>>    		mtk_vcodec_err(vpu, "send fail vpu_id=%d msg_id=%X
->>> status=%d",
->>> -			       vpu->id, *(uint32_t *)msg, err);
->>> +			       id, msgid, err);
->>>    		return err;
->>>    	}
->>>    
->>> @@ -131,6 +142,7 @@ static int vcodec_send_ap_ipi(struct
->>> vdec_vpu_inst *vpu, unsigned int msg_id)
->>>    		msg.vpu_inst_addr = vpu->inst_addr;
->>>    	else
->>>    		msg.inst_id = vpu->inst_id;
->>> +	msg.codec_type = vpu->codec_type;
->>>    
->>>    	err = vcodec_vpu_send_msg(vpu, &msg, sizeof(msg));
->>>    	mtk_vcodec_debug(vpu, "- id=%X ret=%d", msg_id, err);
->>> @@ -149,14 +161,25 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
->>>    
->>>    	err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
->>> vpu->id,
->>>    					 vpu->handler, "vdec", NULL);
->>> -	if (err != 0) {
->>> +	if (err) {
->>
->> could be nice to send a patch with other such fixes,
->> anyway it is better to send unrelated fixes in a separate patch
->>
-> will fix in next patch.
->>>    		mtk_vcodec_err(vpu, "vpu_ipi_register fail status=%d",
->>> err);
->>>    		return err;
->>>    	}
->>>    
->>> +	if (vpu->ctx->dev->vdec_pdata->hw_arch ==
->>> MTK_VDEC_LAT_SINGLE_CORE) {
->>> +		err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev-
->>>> fw_handler,
->>> +					 vpu->core_id, vpu->handler,
->>> +					 "vdec", NULL);
->>> +		if (err) {
->>> +			mtk_vcodec_err(vpu, "vpu_ipi_register core fail
->>> status=%d", err);
->>> +			return err;
->>> +		}
->>> +	}
->>> +
->>>    	memset(&msg, 0, sizeof(msg));
->>>    	msg.msg_id = AP_IPIMSG_DEC_INIT;
->>>    	msg.ap_inst_addr = (unsigned long)vpu;
->>> +	msg.codec_type = vpu->codec_type;
->>>    
->>>    	mtk_vcodec_debug(vpu, "vdec_inst=%p", vpu);
->>>    
->>> @@ -187,6 +210,7 @@ int vpu_dec_start(struct vdec_vpu_inst *vpu,
->>> uint32_t *data, unsigned int len)
->>>    
->>>    	for (i = 0; i < len; i++)
->>>    		msg.data[i] = data[i];
->>> +	msg.codec_type = vpu->codec_type;
->>
->> I don't see where is the vpu->codec_type initialzied
->>
-> This patch just add interface to support core hardware decode, in next
-> serial patches based on these will used codec type to separate after
-> these base patches are stable.
-
-Then why not send it on the same series?
-
-Thanks,
-Dafna
-
->> Thanks,
->> Dafna
->>
-> Thanks
-> Yunfei Dong
->>>    
->>>    	err = vcodec_vpu_send_msg(vpu, (void *)&msg, sizeof(msg));
->>>    	mtk_vcodec_debug(vpu, "- ret=%d", err);
->>> diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
->>> b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
->>> index ae24b75d1649..802660770a87 100644
->>> --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
->>> +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
->>> @@ -14,6 +14,7 @@ struct mtk_vcodec_ctx;
->>>    /**
->>>     * struct vdec_vpu_inst - VPU instance for video codec
->>>     * @id          : ipi msg id for each decoder
->>> + * @core_id     : core id used to separate different hardware
->>>     * @vsi         : driver structure allocated by VPU side and
->>> shared to AP side
->>>     *                for control and info share
->>>     * @failure     : VPU execution result status, 0: success,
->>> others: fail
->>> @@ -26,9 +27,11 @@ struct mtk_vcodec_ctx;
->>>     * @dev		: platform device of VPU
->>>     * @wq          : wait queue to wait VPU message ack
->>>     * @handler     : ipi handler for each decoder
->>> + * @codec_type     : used codec type to separate different codecs
->>>     */
->>>    struct vdec_vpu_inst {
->>>    	int id;
->>> +	int core_id;
->>>    	void *vsi;
->>>    	int32_t failure;
->>>    	uint32_t inst_addr;
->>> @@ -38,6 +41,7 @@ struct vdec_vpu_inst {
->>>    	struct mtk_vcodec_ctx *ctx;
->>>    	wait_queue_head_t wq;
->>>    	mtk_vcodec_ipi_handler handler;
->>> +	unsigned int codec_type;
->>>    };
->>>    
->>>    /**
->>>
+4Kaq4KeN4Kaw4Ka/4Kav4Ka8IOCmrOCmqOCnjeCmp+CngSwNCg0K4KaG4Kau4Ka/IOCmj+CmleCm
+n+CmvyDgpqzgp43gpq/gpqzgprjgpr7gpq/gprzgpr/gppUg4Kaq4KeN4Kaw4Ka44KeN4Kak4Ka+
+4KasIOCmuOCmruCnjeCmquCmsOCnjeCmleCnhyDgpobgpqrgpqjgpr7gppXgp4cg4KaF4Kas4Ka5
+4Ka/4KakIOCmleCmsOCmvuCmsCDgppzgpqjgp43gpq8g4Kay4Ka/4KaW4Kab4Ka/IOCmr+Cmvg0K
+4KaG4Kau4Ka/IOCmhuCmquCmqOCmvuCmsCDgprjgpr7gpqXgp4cg4Kaq4Kaw4Ka/4Kaa4Ka+4Kay
+4Kao4Ka+IOCmleCmsOCmpOCnhyDgpprgpr7gpofgpaQNCuCmquCmnuCnjeCmmuCmvuCmtiDgpq7g
+pr/gprLgpr/gpq/gprzgpqgg4Kah4Kay4Ka+4KawIOCmnOCmoeCmvOCmv+CmpOClpCDgpqjgpr/g
+prbgp43gpprgpr/gpqjgp43gpqQg4Kal4Ka+4KaV4KeB4KaoIOCmr+CnhyDgprjgpqzgppXgpr/g
+ppvgp4Eg4KaG4KaH4Kao4Ka/IOCmj+CmrOCmgiDgpp3gp4HgpoHgppXgpr/gpq7gp4HgppXgp43g
+pqTgpaQNCuCmpuCmr+CmvOCmviDgppXgprDgp4cg4KaG4Kaq4Kao4Ka+4KawIOCmhuCml+CnjeCm
+sOCmuSDgpqjgpr/gprDgp43gpqbgp4fgprYg4KaV4Kaw4KeB4Kao4KWkDQoNCuCmruCmvuCmh+Cm
+leCnh+CmsiDgprDgpr7gpprgpr/gpqHgpaQNClByaeG6j2EgYmFuZGh1LA0KDQrEgW1pIMSTa2Hh
+ua1pIGJ5YWJhc8SB4bqPaWthIHByYXN0xIFiYSBzYW1wYXJrxJMgxIFwYW7EgWvEkyBhYmFoaXRh
+IGthcsSBcmEgamFuJ3lhDQpsaWtoYWNoaSB5xIEgxIFtaSDEgXBhbsSBcmEgc8SBdGjEkyBwYXJp
+Y8SBbGFuxIEga2FyYXTEkyBjxIEnaS4NClBhw7FjxIHFm2EgbWlsaeG6j2FuYSDhuI1hbMSBcmEg
+amHhuZtpdGEuIE5pxZtjaW50YSB0aMSBa3VuYSB5xJMgc2FiYWtpY2h1IMSBJ2luaQ0KxJNiYeG5
+gSBqaHVtzJBraW11a3RhLg0KRGHhuo/EgSBrYXLEkyDEgXBhbsSBcmEgxIFncmFoYSBuaXJkxJPF
+m2Ega2FydW5hLg0KDQpNxIEnaWvEk2xhIHLEgWNp4biNYS4NCg0KDQpEZWFyIGZyaWVuZCwNCg0K
+SSB3cml0ZSB0byBpbmZvcm0geW91IGFib3V0IGEgYnVzaW5lc3MgcHJvcG9zYWwgSSBoYXZlIHdo
+aWNoIEkgd291bGQNCmxpa2UgdG8gaGFuZGxlIHdpdGggeW91Lg0KRmlmdHkgbWlsbGlvbiBkb2xs
+YXJzIGlzIGludm9sdmVkLiBCZSByZXN0IGFzc3VyZWQgdGhhdCBldmVyeXRoaW5nIGlzDQpsZWdh
+bCBhbmQgcmlzayBmcmVlLg0KS2luZGx5IGluZGljYXRlIHlvdXIgaW50ZXJlc3QuDQoNCk1pY2hh
+ZWwgUmFjaGlkLg0K
