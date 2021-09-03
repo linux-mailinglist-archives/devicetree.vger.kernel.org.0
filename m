@@ -2,81 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5EA74005CF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A87514005DB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235422AbhICT2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 15:28:31 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:46848 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234472AbhICT2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:28:30 -0400
-Received: by mail-ot1-f53.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso267686ott.13
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 12:27:30 -0700 (PDT)
+        id S235211AbhICTd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 15:33:56 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:38644 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232516AbhICTd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:33:56 -0400
+Received: by mail-oi1-f175.google.com with SMTP id u25so464974oiv.5;
+        Fri, 03 Sep 2021 12:32:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=I0g3Z8iC/Xs0zd2dpbEsv6VLGxFdXuUlBLKnqV5zS6g=;
-        b=TgY50vv1s7yf083ueYTlcV3NsKHcykR1JWxOxAO4kjqFxS2GoooiVGPMM2EEnlPthq
-         ISdPXsFBc7fED8aIy0xvNLZUrsWsxvSOzM/3noWW0urYNlTT5kf90az6ZvQcxa5aOlse
-         2dlQbtLc9lEOh+DbqxFEoPTbo979wCZAAujwldNZ+GmSM5Zn6Ii0WQOno4OB80Kh9LTz
-         AksAygvwNPFG2VNGNhW9Y6YtiBy49gl2z2ERIXeWEyhPntZ9XsjZGjMlCOBGq09HAUpT
-         B5/BU1WJE7u8DYddo6g5MMTW5y3U/AyMBzRDTl+6Orn+/whMVDZpe3+Dx49W1hFPqCpm
-         Vsrg==
-X-Gm-Message-State: AOAM530mQ48IICvwDFb7AEoI8Ipa9YB3+rO2PISFKdG6jWI18uGZLf4D
-        aGKQ4kH7TrTFXiD8nz6eJA==
-X-Google-Smtp-Source: ABdhPJwGBgDHid8bwTNPuEvUKJ2bDvYno/StMk3r6Tyy0k4H7qRdbkcMDR6WXReGXUFDW2Yt9/TpRw==
-X-Received: by 2002:a05:6830:911:: with SMTP id v17mr554531ott.133.1630697250272;
-        Fri, 03 Sep 2021 12:27:30 -0700 (PDT)
+        bh=KheS+b13SKBDM5Cw+jQcKqwiqg25iR1Yy5WSWs+WcCE=;
+        b=pixGb6ZMzriVBWL+FF3w1HuszjjVdYRz2T769j7APbmjaTeXvYOaVj28NfC3ZvxsFs
+         tZ04Glh6QQ9MfKTRJdCETCmzBBC9I16kc8Qt3uFuCeNnEtKi9rmLzVmRHe674gSD76xJ
+         IKSNUCshGJ72Pu+NG41d2wzZJalHo1zY4pwsv3S4lzTUGr4VR1d9BKqIJyXNheU6wU/k
+         l1YUkFid0Z04s21b19I5zUTHHn3a7i4dFSjtgSTND6jMk4VZSn+mpuI40iHftEtFVehD
+         Rn6Nfpnys+1LTSY5JXDTJSs7/GvWQthwTGCQe0/gB2iTOdYhihrWQYE6HyPBQuZZeusx
+         n4uw==
+X-Gm-Message-State: AOAM532eB9UDrQtoi3K0xA1cdpkFZ4tjt+5l2do0m09gMukkrgERc+Cb
+        /MpZaHbu8HorJCDHQTJngw==
+X-Google-Smtp-Source: ABdhPJzLt3LVPMzouNMsLAkLdBJidudfteM4PetC18oSXhQoyXr7xTBPWBX8jxV0fVylGSipHxUsrg==
+X-Received: by 2002:aca:42c2:: with SMTP id p185mr269289oia.159.1630697575482;
+        Fri, 03 Sep 2021 12:32:55 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 4sm22295ooa.11.2021.09.03.12.27.29
+        by smtp.gmail.com with ESMTPSA id a6sm59968oto.36.2021.09.03.12.32.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 12:27:29 -0700 (PDT)
-Received: (nullmailer pid 3315484 invoked by uid 1000);
-        Fri, 03 Sep 2021 19:27:28 -0000
-Date:   Fri, 3 Sep 2021 14:27:28 -0500
+        Fri, 03 Sep 2021 12:32:54 -0700 (PDT)
+Received: (nullmailer pid 3322715 invoked by uid 1000);
+        Fri, 03 Sep 2021 19:32:53 -0000
+Date:   Fri, 3 Sep 2021 14:32:53 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@lists.infradead.org,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+Cc:     linux-gpio@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, linux-sunxi@googlegroups.com,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 21/52] dt-bindings: gnss: Convert UBlox Neo-6M binding
- to a schema
-Message-ID: <YTJ3IEIz0OCH8chS@robh.at.kernel.org>
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 22/52] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
+ binding to a schema
+Message-ID: <YTJ4ZV1v2ssnwR5O@robh.at.kernel.org>
 References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-22-maxime@cerno.tech>
+ <20210901091852.479202-23-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-22-maxime@cerno.tech>
+In-Reply-To: <20210901091852.479202-23-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 11:18:21 +0200, Maxime Ripard wrote:
-> The UBlox Neo 6M is supported by Linux thanks to its device tree
-> binding.
+On Wed, 01 Sep 2021 11:18:22 +0200, Maxime Ripard wrote:
+> The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
+> thanks to its device tree binding.
 > 
 > Now that we have the DT validation in place, let's convert the device
 > tree bindings for that driver over to a YAML schema.
 > 
-> Cc: Johan Hovold <johan@kernel.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: linux-gpio@vger.kernel.org
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > 
 > ---
 > 
 > Changes from v1:
->   - Fixed a typo
->   - Fixed the example node name
+>   - Removed the example and moved it in the mfd schema
 > ---
->  .../bindings/gnss/u-blox,neo-6m.yaml          | 62 +++++++++++++++++++
->  .../devicetree/bindings/gnss/u-blox.txt       | 45 --------------
->  2 files changed, 62 insertions(+), 45 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
->  delete mode 100644 Documentation/devicetree/bindings/gnss/u-blox.txt
+>  .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
+>  .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
+>  2 files changed, 55 insertions(+), 75 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+This needs to be applied with the MFD schema.
