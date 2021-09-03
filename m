@@ -2,665 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CD03FFC11
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 10:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F39AA3FFC27
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 10:39:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348361AbhICIdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 04:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348380AbhICIdh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 04:33:37 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9DBC061575;
-        Fri,  3 Sep 2021 01:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=NE5mAHcrj1IJAYZ95LRX0hMV617qeoGKRFly82wATCI=; b=LXh9ZDsql5UIFvOMJLJNLcTsyg
-        ARHkl0+yGmzRWoLTmOUvcRb1WCPDrOoA2uGrSj0w7Yn/ctbg6RiAqEn5ZL9YSiGBgaV9rofO44Ali
-        wghwhnkLStz1rGEd5ZdrSWZCWjfRO3kMqqS4sd7G33ZFGm7DD4ifYiMpcAaVfNGZCW1vuEIoW19s3
-        Snz1soh472W8rvZiIQHoEg5frRArogtwSpoM/p0R8ZBOl7auoj05dqxuuIR+ZxSVkfjzqLPmPoSyi
-        4RIp7gSamEqas0xmTBCViOLhXsAZoG3PHSFPkjDL+6/1kNE3POMoGqTrHaOpXNBH6dwfPYvjK4mZA
-        ydANJYGw==;
-Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=toshino.localdomain)
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <mperttunen@nvidia.com>)
-        id 1mM4cI-0004xK-VI; Fri, 03 Sep 2021 11:32:07 +0300
-From:   Mikko Perttunen <mperttunen@nvidia.com>
-To:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org
-Cc:     dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, Mikko Perttunen <mperttunen@nvidia.com>
-Subject: [PATCH v4 3/3] drm/tegra: Add NVDEC driver
-Date:   Fri,  3 Sep 2021 11:31:55 +0300
-Message-Id: <20210903083155.690022-4-mperttunen@nvidia.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210903083155.690022-1-mperttunen@nvidia.com>
-References: <20210903083155.690022-1-mperttunen@nvidia.com>
+        id S234852AbhICIkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 04:40:32 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59462 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1348353AbhICIkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 04:40:32 -0400
+X-UUID: 3e4adce4a3f649e98e9988d8b51cbb5f-20210903
+X-UUID: 3e4adce4a3f649e98e9988d8b51cbb5f-20210903
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2138747747; Fri, 03 Sep 2021 16:39:29 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 3 Sep 2021 16:39:27 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 3 Sep 2021 16:39:27 +0800
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <hector.yuan@mediatek.com>
+Subject: [PATCH v15] cpufreq: mediatek-hw: Add support for Mediatek cpufreq HW driver
+Date:   Fri, 3 Sep 2021 16:39:21 +0800
+Message-ID: <1630658364-6192-1-git-send-email-hector.yuan@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 84.249.134.236
-X-SA-Exim-Mail-From: mperttunen@nvidia.com
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for booting and using NVDEC on Tegra210, Tegra186
-and Tegra194 to the Host1x and TegraDRM drivers. Booting in
-secure mode is not currently supported.
+The CPUfreq HW present in some Mediatek chipsets offloads the steps necessary for changing the frequency of CPUs. 
+The driver implements the cpufreq driver interface for this hardware engine. 
 
-Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
----
-v3:
-* Change num_instances to unsigned int
-* Remove unnecessary '= 0' initializer
-* Populate num_instances data
-* Fix instance number check
-v2:
-* Use devm_platform_get_and_ioremap_resource
-* Remove reset handling, done by power domain code
-* Assume runtime PM is enabled
----
- drivers/gpu/drm/tegra/Makefile |   3 +-
- drivers/gpu/drm/tegra/drm.c    |   4 +
- drivers/gpu/drm/tegra/drm.h    |   1 +
- drivers/gpu/drm/tegra/nvdec.c  | 474 +++++++++++++++++++++++++++++++++
- drivers/gpu/host1x/dev.c       |  18 ++
- include/linux/host1x.h         |   2 +
- 6 files changed, 501 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/tegra/nvdec.c
+From v14 to v15, there are three modifications.
+1. Move platform data from per-policy to probe
+2. Update energy model register to callback function
 
-diff --git a/drivers/gpu/drm/tegra/Makefile b/drivers/gpu/drm/tegra/Makefile
-index 5d2039f0c734..b248c631f790 100644
---- a/drivers/gpu/drm/tegra/Makefile
-+++ b/drivers/gpu/drm/tegra/Makefile
-@@ -24,7 +24,8 @@ tegra-drm-y := \
- 	gr2d.o \
- 	gr3d.o \
- 	falcon.o \
--	vic.o
-+	vic.o \
-+	nvdec.o
- 
- tegra-drm-y += trace.o
- 
-diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
-index b20fd0833661..5f5afd7ba37e 100644
---- a/drivers/gpu/drm/tegra/drm.c
-+++ b/drivers/gpu/drm/tegra/drm.c
-@@ -1337,15 +1337,18 @@ static const struct of_device_id host1x_drm_subdevs[] = {
- 	{ .compatible = "nvidia,tegra210-sor", },
- 	{ .compatible = "nvidia,tegra210-sor1", },
- 	{ .compatible = "nvidia,tegra210-vic", },
-+	{ .compatible = "nvidia,tegra210-nvdec", },
- 	{ .compatible = "nvidia,tegra186-display", },
- 	{ .compatible = "nvidia,tegra186-dc", },
- 	{ .compatible = "nvidia,tegra186-sor", },
- 	{ .compatible = "nvidia,tegra186-sor1", },
- 	{ .compatible = "nvidia,tegra186-vic", },
-+	{ .compatible = "nvidia,tegra186-nvdec", },
- 	{ .compatible = "nvidia,tegra194-display", },
- 	{ .compatible = "nvidia,tegra194-dc", },
- 	{ .compatible = "nvidia,tegra194-sor", },
- 	{ .compatible = "nvidia,tegra194-vic", },
-+	{ .compatible = "nvidia,tegra194-nvdec", },
- 	{ /* sentinel */ }
- };
- 
-@@ -1369,6 +1372,7 @@ static struct platform_driver * const drivers[] = {
- 	&tegra_gr2d_driver,
- 	&tegra_gr3d_driver,
- 	&tegra_vic_driver,
-+	&tegra_nvdec_driver,
- };
- 
- static int __init host1x_drm_init(void)
-diff --git a/drivers/gpu/drm/tegra/drm.h b/drivers/gpu/drm/tegra/drm.h
-index 8b28327c931c..fc0a19554eac 100644
---- a/drivers/gpu/drm/tegra/drm.h
-+++ b/drivers/gpu/drm/tegra/drm.h
-@@ -202,5 +202,6 @@ extern struct platform_driver tegra_sor_driver;
- extern struct platform_driver tegra_gr2d_driver;
- extern struct platform_driver tegra_gr3d_driver;
- extern struct platform_driver tegra_vic_driver;
-+extern struct platform_driver tegra_nvdec_driver;
- 
- #endif /* HOST1X_DRM_H */
-diff --git a/drivers/gpu/drm/tegra/nvdec.c b/drivers/gpu/drm/tegra/nvdec.c
-new file mode 100644
-index 000000000000..e8e7ebbea53e
---- /dev/null
-+++ b/drivers/gpu/drm/tegra/nvdec.c
-@@ -0,0 +1,474 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2015-2021, NVIDIA Corporation.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/host1x.h>
-+#include <linux/iommu.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/reset.h>
-+
-+#include <soc/tegra/pmc.h>
-+
-+#include "drm.h"
-+#include "falcon.h"
-+#include "vic.h"
-+
-+struct nvdec_config {
-+	const char *firmware;
-+	unsigned int version;
-+	bool supports_sid;
-+	unsigned int num_instances;
-+};
-+
-+struct nvdec {
-+	struct falcon falcon;
-+
-+	void __iomem *regs;
-+	struct tegra_drm_client client;
-+	struct host1x_channel *channel;
-+	struct device *dev;
-+	struct clk *clk;
-+
-+	/* Platform configuration */
-+	const struct nvdec_config *config;
-+};
-+
-+static inline struct nvdec *to_nvdec(struct tegra_drm_client *client)
-+{
-+	return container_of(client, struct nvdec, client);
-+}
-+
-+static void nvdec_writel(struct nvdec *nvdec, u32 value, unsigned int offset)
-+{
-+	writel(value, nvdec->regs + offset);
-+}
-+
-+static int nvdec_boot(struct nvdec *nvdec)
-+{
-+#ifdef CONFIG_IOMMU_API
-+	struct iommu_fwspec *spec = dev_iommu_fwspec_get(nvdec->dev);
-+#endif
-+	int err;
-+
-+#ifdef CONFIG_IOMMU_API
-+	if (nvdec->config->supports_sid && spec) {
-+		u32 value;
-+
-+		value = TRANSCFG_ATT(1, TRANSCFG_SID_FALCON) | TRANSCFG_ATT(0, TRANSCFG_SID_HW);
-+		nvdec_writel(nvdec, value, VIC_TFBIF_TRANSCFG);
-+
-+		if (spec->num_ids > 0) {
-+			value = spec->ids[0] & 0xffff;
-+
-+			nvdec_writel(nvdec, value, VIC_THI_STREAMID0);
-+			nvdec_writel(nvdec, value, VIC_THI_STREAMID1);
-+		}
-+	}
-+#endif
-+
-+	err = falcon_boot(&nvdec->falcon);
-+	if (err < 0)
-+		return err;
-+
-+	err = falcon_wait_idle(&nvdec->falcon);
-+	if (err < 0) {
-+		dev_err(nvdec->dev, "falcon boot timed out\n");
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int nvdec_init(struct host1x_client *client)
-+{
-+	struct tegra_drm_client *drm = host1x_to_drm_client(client);
-+	struct drm_device *dev = dev_get_drvdata(client->host);
-+	struct tegra_drm *tegra = dev->dev_private;
-+	struct nvdec *nvdec = to_nvdec(drm);
-+	int err;
-+
-+	err = host1x_client_iommu_attach(client);
-+	if (err < 0 && err != -ENODEV) {
-+		dev_err(nvdec->dev, "failed to attach to domain: %d\n", err);
-+		return err;
-+	}
-+
-+	nvdec->channel = host1x_channel_request(client);
-+	if (!nvdec->channel) {
-+		err = -ENOMEM;
-+		goto detach;
-+	}
-+
-+	client->syncpts[0] = host1x_syncpt_request(client, 0);
-+	if (!client->syncpts[0]) {
-+		err = -ENOMEM;
-+		goto free_channel;
-+	}
-+
-+	err = tegra_drm_register_client(tegra, drm);
-+	if (err < 0)
-+		goto free_syncpt;
-+
-+	/*
-+	 * Inherit the DMA parameters (such as maximum segment size) from the
-+	 * parent host1x device.
-+	 */
-+	client->dev->dma_parms = client->host->dma_parms;
-+
-+	return 0;
-+
-+free_syncpt:
-+	host1x_syncpt_put(client->syncpts[0]);
-+free_channel:
-+	host1x_channel_put(nvdec->channel);
-+detach:
-+	host1x_client_iommu_detach(client);
-+
-+	return err;
-+}
-+
-+static int nvdec_exit(struct host1x_client *client)
-+{
-+	struct tegra_drm_client *drm = host1x_to_drm_client(client);
-+	struct drm_device *dev = dev_get_drvdata(client->host);
-+	struct tegra_drm *tegra = dev->dev_private;
-+	struct nvdec *nvdec = to_nvdec(drm);
-+	int err;
-+
-+	/* avoid a dangling pointer just in case this disappears */
-+	client->dev->dma_parms = NULL;
-+
-+	err = tegra_drm_unregister_client(tegra, drm);
-+	if (err < 0)
-+		return err;
-+
-+	host1x_syncpt_put(client->syncpts[0]);
-+	host1x_channel_put(nvdec->channel);
-+	host1x_client_iommu_detach(client);
-+
-+	if (client->group) {
-+		dma_unmap_single(nvdec->dev, nvdec->falcon.firmware.phys,
-+				 nvdec->falcon.firmware.size, DMA_TO_DEVICE);
-+		tegra_drm_free(tegra, nvdec->falcon.firmware.size,
-+			       nvdec->falcon.firmware.virt,
-+			       nvdec->falcon.firmware.iova);
-+	} else {
-+		dma_free_coherent(nvdec->dev, nvdec->falcon.firmware.size,
-+				  nvdec->falcon.firmware.virt,
-+				  nvdec->falcon.firmware.iova);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct host1x_client_ops nvdec_client_ops = {
-+	.init = nvdec_init,
-+	.exit = nvdec_exit,
-+};
-+
-+static int nvdec_load_firmware(struct nvdec *nvdec)
-+{
-+	struct host1x_client *client = &nvdec->client.base;
-+	struct tegra_drm *tegra = nvdec->client.drm;
-+	dma_addr_t iova;
-+	size_t size;
-+	void *virt;
-+	int err;
-+
-+	if (nvdec->falcon.firmware.virt)
-+		return 0;
-+
-+	err = falcon_read_firmware(&nvdec->falcon, nvdec->config->firmware);
-+	if (err < 0)
-+		return err;
-+
-+	size = nvdec->falcon.firmware.size;
-+
-+	if (!client->group) {
-+		virt = dma_alloc_coherent(nvdec->dev, size, &iova, GFP_KERNEL);
-+
-+		err = dma_mapping_error(nvdec->dev, iova);
-+		if (err < 0)
-+			return err;
-+	} else {
-+		virt = tegra_drm_alloc(tegra, size, &iova);
-+	}
-+
-+	nvdec->falcon.firmware.virt = virt;
-+	nvdec->falcon.firmware.iova = iova;
-+
-+	err = falcon_load_firmware(&nvdec->falcon);
-+	if (err < 0)
-+		goto cleanup;
-+
-+	/*
-+	 * In this case we have received an IOVA from the shared domain, so we
-+	 * need to make sure to get the physical address so that the DMA API
-+	 * knows what memory pages to flush the cache for.
-+	 */
-+	if (client->group) {
-+		dma_addr_t phys;
-+
-+		phys = dma_map_single(nvdec->dev, virt, size, DMA_TO_DEVICE);
-+
-+		err = dma_mapping_error(nvdec->dev, phys);
-+		if (err < 0)
-+			goto cleanup;
-+
-+		nvdec->falcon.firmware.phys = phys;
-+	}
-+
-+	return 0;
-+
-+cleanup:
-+	if (!client->group)
-+		dma_free_coherent(nvdec->dev, size, virt, iova);
-+	else
-+		tegra_drm_free(tegra, size, virt, iova);
-+
-+	return err;
-+}
-+
-+
-+static int nvdec_runtime_resume(struct device *dev)
-+{
-+	struct nvdec *nvdec = dev_get_drvdata(dev);
-+	int err;
-+
-+	err = clk_prepare_enable(nvdec->clk);
-+	if (err < 0)
-+		return err;
-+
-+	usleep_range(10, 20);
-+
-+	err = nvdec_load_firmware(nvdec);
-+	if (err < 0)
-+		goto disable;
-+
-+	err = nvdec_boot(nvdec);
-+	if (err < 0)
-+		goto disable;
-+
-+	return 0;
-+
-+disable:
-+	clk_disable_unprepare(nvdec->clk);
-+	return err;
-+}
-+
-+static int nvdec_runtime_suspend(struct device *dev)
-+{
-+	struct nvdec *nvdec = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(nvdec->clk);
-+
-+	return 0;
-+}
-+
-+static int nvdec_open_channel(struct tegra_drm_client *client,
-+			    struct tegra_drm_context *context)
-+{
-+	struct nvdec *nvdec = to_nvdec(client);
-+	int err;
-+
-+	err = pm_runtime_get_sync(nvdec->dev);
-+	if (err < 0) {
-+		pm_runtime_put(nvdec->dev);
-+		return err;
-+	}
-+
-+	context->channel = host1x_channel_get(nvdec->channel);
-+	if (!context->channel) {
-+		pm_runtime_put(nvdec->dev);
-+		return -ENOMEM;
-+	}
-+
-+	return 0;
-+}
-+
-+static void nvdec_close_channel(struct tegra_drm_context *context)
-+{
-+	struct nvdec *nvdec = to_nvdec(context->client);
-+
-+	host1x_channel_put(context->channel);
-+	pm_runtime_put(nvdec->dev);
-+}
-+
-+static const struct tegra_drm_client_ops nvdec_ops = {
-+	.open_channel = nvdec_open_channel,
-+	.close_channel = nvdec_close_channel,
-+	.submit = tegra_drm_submit,
-+};
-+
-+#define NVIDIA_TEGRA_210_NVDEC_FIRMWARE "nvidia/tegra210/nvdec.bin"
-+
-+static const struct nvdec_config nvdec_t210_config = {
-+	.firmware = NVIDIA_TEGRA_210_NVDEC_FIRMWARE,
-+	.version = 0x21,
-+	.supports_sid = false,
-+	.num_instances = 1,
-+};
-+
-+#define NVIDIA_TEGRA_186_NVDEC_FIRMWARE "nvidia/tegra186/nvdec.bin"
-+
-+static const struct nvdec_config nvdec_t186_config = {
-+	.firmware = NVIDIA_TEGRA_186_NVDEC_FIRMWARE,
-+	.version = 0x18,
-+	.supports_sid = true,
-+	.num_instances = 1,
-+};
-+
-+#define NVIDIA_TEGRA_194_NVDEC_FIRMWARE "nvidia/tegra194/nvdec.bin"
-+
-+static const struct nvdec_config nvdec_t194_config = {
-+	.firmware = NVIDIA_TEGRA_194_NVDEC_FIRMWARE,
-+	.version = 0x19,
-+	.supports_sid = true,
-+	.num_instances = 2,
-+};
-+
-+static const struct of_device_id tegra_nvdec_of_match[] = {
-+	{ .compatible = "nvidia,tegra210-nvdec", .data = &nvdec_t210_config },
-+	{ .compatible = "nvidia,tegra186-nvdec", .data = &nvdec_t186_config },
-+	{ .compatible = "nvidia,tegra194-nvdec", .data = &nvdec_t194_config },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, tegra_nvdec_of_match);
-+
-+static int nvdec_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct host1x_syncpt **syncpts;
-+	struct nvdec *nvdec;
-+	u32 instance;
-+	int err;
-+
-+	/* inherit DMA mask from host1x parent */
-+	err = dma_coerce_mask_and_coherent(dev, *dev->parent->dma_mask);
-+	if (err < 0) {
-+		dev_err(&pdev->dev, "failed to set DMA mask: %d\n", err);
-+		return err;
-+	}
-+
-+	nvdec = devm_kzalloc(dev, sizeof(*nvdec), GFP_KERNEL);
-+	if (!nvdec)
-+		return -ENOMEM;
-+
-+	nvdec->config = of_device_get_match_data(dev);
-+
-+	syncpts = devm_kzalloc(dev, sizeof(*syncpts), GFP_KERNEL);
-+	if (!syncpts)
-+		return -ENOMEM;
-+
-+	nvdec->regs = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
-+	if (IS_ERR(nvdec->regs))
-+		return PTR_ERR(nvdec->regs);
-+
-+	nvdec->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(nvdec->clk)) {
-+		dev_err(&pdev->dev, "failed to get clock\n");
-+		return PTR_ERR(nvdec->clk);
-+	}
-+
-+	err = of_property_read_u32(dev->of_node, "nvidia,instance", &instance);
-+	if (err < 0)
-+		instance = 0;
-+
-+	if (instance >= nvdec->config->num_instances)
-+		return -EINVAL;
-+
-+	nvdec->falcon.dev = dev;
-+	nvdec->falcon.regs = nvdec->regs;
-+
-+	err = falcon_init(&nvdec->falcon);
-+	if (err < 0)
-+		return err;
-+
-+	platform_set_drvdata(pdev, nvdec);
-+
-+	INIT_LIST_HEAD(&nvdec->client.base.list);
-+	nvdec->client.base.ops = &nvdec_client_ops;
-+	nvdec->client.base.dev = dev;
-+	if (instance == 0)
-+		nvdec->client.base.class = HOST1X_CLASS_NVDEC;
-+	else
-+		nvdec->client.base.class = HOST1X_CLASS_NVDEC1;
-+	nvdec->client.base.syncpts = syncpts;
-+	nvdec->client.base.num_syncpts = 1;
-+	nvdec->dev = dev;
-+
-+	INIT_LIST_HEAD(&nvdec->client.list);
-+	nvdec->client.version = nvdec->config->version;
-+	nvdec->client.ops = &nvdec_ops;
-+
-+	err = host1x_client_register(&nvdec->client.base);
-+	if (err < 0) {
-+		dev_err(dev, "failed to register host1x client: %d\n", err);
-+		goto exit_falcon;
-+	}
-+
-+	pm_runtime_enable(&pdev->dev);
-+	pm_runtime_set_autosuspend_delay(&pdev->dev, 500);
-+	pm_runtime_use_autosuspend(&pdev->dev);
-+
-+	return 0;
-+
-+exit_falcon:
-+	falcon_exit(&nvdec->falcon);
-+
-+	return err;
-+}
-+
-+static int nvdec_remove(struct platform_device *pdev)
-+{
-+	struct nvdec *nvdec = platform_get_drvdata(pdev);
-+	int err;
-+
-+	err = host1x_client_unregister(&nvdec->client.base);
-+	if (err < 0) {
-+		dev_err(&pdev->dev, "failed to unregister host1x client: %d\n",
-+			err);
-+		return err;
-+	}
-+
-+	if (pm_runtime_enabled(&pdev->dev))
-+		pm_runtime_disable(&pdev->dev);
-+	else
-+		nvdec_runtime_suspend(&pdev->dev);
-+
-+	falcon_exit(&nvdec->falcon);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops nvdec_pm_ops = {
-+	SET_RUNTIME_PM_OPS(nvdec_runtime_suspend, nvdec_runtime_resume, NULL)
-+};
-+
-+struct platform_driver tegra_nvdec_driver = {
-+	.driver = {
-+		.name = "tegra-nvdec",
-+		.of_match_table = tegra_nvdec_of_match,
-+		.pm = &nvdec_pm_ops
-+	},
-+	.probe = nvdec_probe,
-+	.remove = nvdec_remove,
-+};
-+
-+#if IS_ENABLED(CONFIG_ARCH_TEGRA_210_SOC)
-+MODULE_FIRMWARE(NVIDIA_TEGRA_210_NVDEC_FIRMWARE);
-+#endif
-+#if IS_ENABLED(CONFIG_ARCH_TEGRA_186_SOC)
-+MODULE_FIRMWARE(NVIDIA_TEGRA_186_NVDEC_FIRMWARE);
-+#endif
-+#if IS_ENABLED(CONFIG_ARCH_TEGRA_194_SOC)
-+MODULE_FIRMWARE(NVIDIA_TEGRA_194_NVDEC_FIRMWARE);
-+#endif
-diff --git a/drivers/gpu/host1x/dev.c b/drivers/gpu/host1x/dev.c
-index fbb6447b8659..e2ddf3fcaa9a 100644
---- a/drivers/gpu/host1x/dev.c
-+++ b/drivers/gpu/host1x/dev.c
-@@ -132,6 +132,12 @@ static const struct host1x_sid_entry tegra186_sid_table[] = {
- 		.offset = 0x30,
- 		.limit = 0x34
- 	},
-+	{
-+		/* NVDEC */
-+		.base = 0x1b00,
-+		.offset = 0x30,
-+		.limit = 0x34
-+	},
- };
- 
- static const struct host1x_info host1x06_info = {
-@@ -156,6 +162,18 @@ static const struct host1x_sid_entry tegra194_sid_table[] = {
- 		.offset = 0x30,
- 		.limit = 0x34
- 	},
-+	{
-+		/* NVDEC */
-+		.base = 0x1b00,
-+		.offset = 0x30,
-+		.limit = 0x34
-+	},
-+	{
-+		/* NVDEC1 */
-+		.base = 0x1bc0,
-+		.offset = 0x30,
-+		.limit = 0x34
-+	},
- };
- 
- static const struct host1x_info host1x07_info = {
-diff --git a/include/linux/host1x.h b/include/linux/host1x.h
-index 9b6784708f2e..d7d415bcf78b 100644
---- a/include/linux/host1x.h
-+++ b/include/linux/host1x.h
-@@ -15,6 +15,8 @@ enum host1x_class {
- 	HOST1X_CLASS_GR2D_SB = 0x52,
- 	HOST1X_CLASS_VIC = 0x5D,
- 	HOST1X_CLASS_GR3D = 0x60,
-+	HOST1X_CLASS_NVDEC = 0xF0,
-+	HOST1X_CLASS_NVDEC1 = 0xF5,
- };
- 
- struct host1x;
--- 
-2.32.0
+From v13 to v14, there are three modifications.
+1. Replace cpu domain map to policy driver data 
+2. Remove dummy performance-domain parsing
+3. Separate modification in cpufreq.h to another patch
 
+From v12 to v13, there are two modifications.
+1. Move related_cpus function to common place, so all performance-domain cpufreq driver can refer.
+2. Make cpu resource init to each policy rather than per-cpu
+
+From v11 to v12, there are two modifications.
+1. Based on patchset[1], align binding with scmi for performance domain(latest version).
+2. Shrink binding example wording. 
+
+From v8 to v9, there are three more modifications.
+1. Based on patchset[2], align binding with scmi for performance domain.
+2. Add the CPUFREQ fast switch function support and define DVFS latency.
+3. Based on patchser[3], add energy model API parameter for mW.
+
+From v7 to v8, there are three more patches based on patchset v8[4].
+This patchset is about to register power table to Energy model for EAS and thermal usage.
+1. EM CPU power table
+- Register energy model table for EAS and thermal cooling device usage.
+- Read the coresponding LUT for power table.
+2. SVS initialization
+- The SVS(Smart Voltage Scaling) engine is a hardware which is
+  used to calculate optimized voltage values for CPU power domain.
+  DVFS driver could apply those optimized voltage values to reduce power consumption.
+- Driver will polling if HW engine is done for SVS initialization.
+  After that, driver will read power table and register it to EAS.
+- CPUs must be in power on state when doing SVS. Use pm_qos to block cpu-idle state for SVS initializing.
+3. Cooling device flag
+- Add cooling device flag for thermal
+[1]  https://lore.kernel.org/linux-devicetree/20210517155458.1016707-1-sudeep.holla@arm.com/
+[2]  https://lore.kernel.org/lkml/20201116181356.804590-1-sudeep.holla@arm.com/
+[3]  https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=c250d50fe2ce627ca9805d9c8ac11cbbf922a4a6
+[4]  https://lkml.org/lkml/2020/9/23/384
+
+
+Hector.Yuan (3):
+  dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
+  cpufreq: Add of_perf_domain_get_sharing_cpumask
+  cpufreq: mediatek-hw: Add support for CPUFREQ HW
+
+ .../bindings/cpufreq/cpufreq-mediatek-hw.yaml |  70 ++++
+ drivers/cpufreq/Kconfig.arm                   |  12 +
+ drivers/cpufreq/Makefile                      |   1 +
+ drivers/cpufreq/mediatek-cpufreq-hw.c         | 340 ++++++++++++++++++
+ include/linux/cpufreq.h                       |  46 ++-
+ 5 files changed, 468 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+ create mode 100644 drivers/cpufreq/mediatek-cpufreq-hw.c
