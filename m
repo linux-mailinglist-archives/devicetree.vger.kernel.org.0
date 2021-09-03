@@ -2,92 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045823FFDD7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 12:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509BF3FFDE3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 12:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349046AbhICKGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 06:06:25 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:19231 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349041AbhICKF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 06:05:57 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630663492; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=bcI92IfWvkqEpmqf6n3xiJ0u7hLOLwmK0IWLJzP+5Ms=; b=lk3JlhnqI0w+85uuSQ9cDYL27crqfjrYRUgGynKWaVdZZiDH0NN6AHqX5jsGpxQLfOdv1vFJ
- U2/OcIeiEPPg8OnoMpkLScPAmtsAWi+oldcb25N7t2qi3qQrE+TUCVNALnSbeEMU7WE4pqgG
- d8KhL27sV7OjIx/w+yLIm4sr6sA=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6131f2b3cd680e8969532510 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Sep 2021 10:02:27
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3FAD8C4361A; Fri,  3 Sep 2021 10:02:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1BFFAC4360D;
-        Fri,  3 Sep 2021 10:02:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 1BFFAC4360D
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH] ASoC: qcom: lpass-platform: Reset irq clear reg post handling interrupts
-Date:   Fri,  3 Sep 2021 15:31:53 +0530
-Message-Id: <20210903100153.9137-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S1348943AbhICKHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 06:07:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232273AbhICKHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 06:07:16 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53B6C061575;
+        Fri,  3 Sep 2021 03:06:16 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id t15so7439221wrg.7;
+        Fri, 03 Sep 2021 03:06:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=iNmWH11IfHfGgA+hr1tDCMgJNkp9fxHtUXct3dWs0WM=;
+        b=ghnwOsqiqgmNVkfIqwYH+BiPPQa3gWVNLTPl6O3BMJ4jV054Ys+am8yP0fWf1sUuqf
+         hD+XOJ5cJrJeifs8GFp1wprFn3k6erFwWINEs8X7y3BmwmIYLjG5qdMyU3SmHVyf8uwk
+         GxIH1h1X6oOHU377BbwgpSWOomBiD98heFDH6Tnws8/7Tlmg2jjVqJAB9nyomBvMMvBL
+         7gFQYwwfC5fJkNkSvk8ZtkJzeHfJo9LTzaRCQqIBUPJAEOL84N3i+BYtg1rceqM/KwMB
+         4Y82A3UJnIE+BR5QZcCnzoDpl9HBcJUaIKq2nkScqnVudyvoz3ugr+MbG1TgjyeMynR6
+         qcIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iNmWH11IfHfGgA+hr1tDCMgJNkp9fxHtUXct3dWs0WM=;
+        b=EwBWYuT4QtGfLiVddexPIObJDKroDj6XD4NAc7qVHxnHH0oWBWGFv74iJ+laeKvF1m
+         LLVBiGwevwhuGV/0S3UXOSAuBm5qrAOQh+1ohE3u5BjpNXEkRpjcRUTveM9sEQH0MA26
+         azZQeCsOIOv+MfRsWQ3eYhYsuBpNIqvd/S/Hi8RIrKwAWNaoENkpk+oySQFuf9/UzRMi
+         1HP/HFJK5y/wVpOLI+E3CfgrSLWRXRMXY8ygkOxA2ZMr2+WWaD/rXHJY18H6xUfyNdwf
+         8WmAAWpIB7MlvxksYr9IHV85l+Tf719uEp+buq0wOb6Swzzzc580bHtxJ7lNmguv/44H
+         FiLw==
+X-Gm-Message-State: AOAM533fNtTDX+zUqjhDJz59w3+ZGLt48WoI59xLbZM1Ix9XH+Jb1By0
+        F7rWIw7yku2JSQuIuediiZelqxaFFM0=
+X-Google-Smtp-Source: ABdhPJwlJP8tBN1TuNmAVwZFdWKz9KdIFxPvHfw+0UDerVYp2oCZxX73DeyPcYhLhTflLW+0x4R1wQ==
+X-Received: by 2002:adf:b748:: with SMTP id n8mr3069436wre.133.1630663575285;
+        Fri, 03 Sep 2021 03:06:15 -0700 (PDT)
+Received: from ziggy.stardust ([37.223.140.66])
+        by smtp.gmail.com with ESMTPSA id d9sm4176444wrm.21.2021.09.03.03.06.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Sep 2021 03:06:14 -0700 (PDT)
+Subject: Re: [PATCH v5 2/2] arm64: dts: mt8192: add eFuse support for MT8192
+ SoC
+To:     Yz.Wu@mediatek.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Seiya Wang <seiya.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>
+References: <1618384669-30070-1-git-send-email-Yz.Wu@mediatek.com>
+ <1618384669-30070-3-git-send-email-Yz.Wu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <048c7ac6-e91b-14ce-17e7-a291df2763b4@gmail.com>
+Date:   Fri, 3 Sep 2021 12:06:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1618384669-30070-3-git-send-email-Yz.Wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update interrupt clear register with reset value after addressing
-all interrupts. This is to fix playback or capture hanging issue in
-simultaneous playback and capture usecase.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-platform.c | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-index f9df76d37858..1a0a4b0b1a03 100644
---- a/sound/soc/qcom/lpass-platform.c
-+++ b/sound/soc/qcom/lpass-platform.c
-@@ -749,6 +749,12 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq, void *data)
- 		}
- 	}
- 
-+	rv = regmap_write(drvdata->lpaif_map, LPAIF_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST), 0x0);
-+	if (rv) {
-+		pr_err("error writing to irqstat reg: %d\n", rv);
-+		return IRQ_NONE;
-+	}
-+
- 	return IRQ_HANDLED;
- }
- 
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+On 14/04/2021 09:17, Yz.Wu@mediatek.com wrote:
+> From: Ryan Wu <Yz.Wu@mediatek.com>
+> 
+> Add eFuse node to read Mediatek eFuse
+> 
+> Signed-off-by: Ryan Wu <Yz.Wu@mediatek.com>
+> ---
+> This patch dependents on "arm64: dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile"[1]
+> 
+> mt8192.dtsi file is needed for this patch.
+> Please also accept this patch together with [1].
+> 
+> [1]http://lists.infradead.org/pipermail/linux-mediatek/2020-November/019378.html
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 9757138..4d4e4de 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -436,6 +436,11 @@
+>  			status = "disable";
+>  		};
+>  
+> +		efuse: efuse@11c10000 {
+> +				compatible = "mediatek,mt8192-efuse",
+> +							 "mediatek,efuse";
 
+Please fix identation.
+Binding description mandates a reg property, please help to make the patch
+better by adding that property.
+
+Thanks a lot,
+Matthias
+
+> +		};
+> +
+>  		i2c3: i2c3@11cb0000 {
+>  			compatible = "mediatek,mt8192-i2c";
+>  			reg = <0 0x11cb0000 0 0x1000>,
+> 
