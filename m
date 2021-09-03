@@ -2,161 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A020400384
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8AD24002D5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350054AbhICQjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 12:39:17 -0400
-Received: from mga09.intel.com ([134.134.136.24]:17730 "EHLO mga09.intel.com"
+        id S1349873AbhICQD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 12:03:59 -0400
+Received: from dnyon.com ([82.223.165.189]:56386 "EHLO dnyon.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350108AbhICQjO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Sep 2021 12:39:14 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10096"; a="219477874"
-X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; 
-   d="scan'208";a="219477874"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2021 09:37:59 -0700
-X-IronPort-AV: E=Sophos;i="5.85,265,1624345200"; 
-   d="scan'208";a="462453508"
-Received: from seangorm-mobl.amr.corp.intel.com (HELO [10.251.136.111]) ([10.251.136.111])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2021 09:37:57 -0700
-Subject: Re: [PATCH v5 20/21] ASoC: qdsp6: audioreach: add q6prm support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
-        lgirdwood@gmail.com
-References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
- <20210903112032.25834-21-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <8a38f2f2-d74d-53c6-a4f5-669fef1f7c05@linux.intel.com>
-Date:   Fri, 3 Sep 2021 10:57:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+        id S1349871AbhICQD7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 12:03:59 -0400
+Received: from dnyon.com (55.red-81-39-194.dynamicip.rima-tde.net [81.39.194.55])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dnyon.com (Postfix) with ESMTPSA id A26DF3FEB7;
+        Fri,  3 Sep 2021 16:02:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=dnyon.com; s=mail;
+        t=1630684977; bh=VuoVMOLwXT0Lrus8Yp/9d+LE+TbVeNBkpQ5C8cJGLps=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=tHJSW7ZU6Fcphf5XNe2FSJmR6LOj0T/zjndyINcu+XJyJtUBy+tk/f3K4bx8jVDoB
+         LS6j6fXu4AX3jDsTZ1tEyoKbR7NBKXDfeLyDzbF9xpMXEyvsfkpMuE7fJHxINvChAd
+         3dVDJwl2DDSRjjCs9sgk/KYq7ZtyZyv9HBpldJwjbMhqiu0E/IjU0ZFxCTke+Ve2Pc
+         g7Y4yeFgN9crDm+ftU5GR45/CUsH9BN8oY/5LTM3GBKJ9YErqYE+lC0hA5r0Wt9m4G
+         UKWAY6tvTScd87I7ubAfN8wvnLAbONCGnleZi1Chn4a97oBJe4Ixsp5YMmECwtNaeS
+         gyJ7UYI7erG+A==
+From:   Alejandro Tafalla <atafalla@dnyon.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/2] Add reset-gpios handling for max98927
+Date:   Fri, 03 Sep 2021 18:02:36 +0200
+Message-ID: <2103571.irdbgypaU6@alexpc>
+In-Reply-To: <CAHp75VdOw7fS055q9eccm9dP9nuAK8rcLXf4vuzA=-UnbqoUfQ@mail.gmail.com>
+References: <cover.1630632805.git.atafalla@dnyon.com> <CAHp75VdOw7fS055q9eccm9dP9nuAK8rcLXf4vuzA=-UnbqoUfQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210903112032.25834-21-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 3/9/21 10:16 Andy Shevchenko wrote:
+> On Fri, Sep 3, 2021 at 4:51 AM Alejandro <atafalla@dnyon.com> wrote:
+> > The max98927 codec on some devices (i.e. Xiaomi Mi A2 Lite phone) require
+> 
+> requires
+> 
+> > hardware-resetting the codec by driving a reset-gpio. This series add
+> 
+> adds
+> 
+> > support for it through an optional reset-gpios property.
+> 
+> Where is the  changelog?
+I'll fix the typos and add previous changelogs in the next version.
+Thank you.
 
-> +struct prm_cmd_request_rsc {
-> +	struct apm_module_param_data param_data;
-> +	uint32_t num_clk_id;
-> +	struct audio_hw_clk_cfg clock_ids[1];
-> +} __packed;
-> +
-> +struct prm_cmd_release_rsc {
-> +	struct apm_module_param_data param_data;
-> +	uint32_t num_clk_id;
-> +	struct audio_hw_clk_cfg clock_ids[1];
+-- 
+Alejandro Tafalla
 
-why do you need arrays of one element? I thought this was also frowned
-upon if not already deprecated?
-
-
-> +} __packed;
-> +
-> +static int q6prm_send_cmd_sync(struct q6prm *prm, struct gpr_pkt *pkt,
-> +			uint32_t rsp_opcode)
-> +{
-> +	gpr_device_t *gdev = prm->gdev;
-> +	struct gpr_hdr *hdr = &pkt->hdr;
-> +	int rc;
-> +
-> +	mutex_lock(&prm->lock);
-> +	prm->result.opcode = 0;
-> +	prm->result.status = 0;
-> +
-> +	rc = gpr_send_pkt(prm->gdev, pkt);
-> +	if (rc < 0)
-> +		goto err;
-> +
-> +	if (rsp_opcode)
-> +		rc = wait_event_timeout(prm->wait,
-> +					(prm->result.opcode == hdr->opcode) ||
-> +					(prm->result.opcode == rsp_opcode),
-> +					5 * HZ);
-> +	else
-> +		rc = wait_event_timeout(prm->wait,
-> +					(prm->result.opcode == hdr->opcode),
-> +					5 * HZ);
-> +
-> +	if (!rc) {
-> +		dev_err(&gdev->dev, "CMD timeout for [%x] opcode\n",
-> +			hdr->opcode);
-> +		rc = -ETIMEDOUT;
-> +	} else if (prm->result.status > 0) {
-> +		dev_err(&gdev->dev, "DSP returned error[%x] %x\n", hdr->opcode,
-> +			prm->result.status);
-> +		rc = -EINVAL;
-> +	} else {
-> +		dev_err(&gdev->dev, "DSP returned [%x]\n",
-> +			prm->result.status);
-> +		rc = 0;
-> +	}
-> +
-> +err:
-> +	mutex_unlock(&prm->lock);
-> +	return rc;
-> +}
-
-this looks again like the same code we've seen twice already?
-
-> +
-> +static int q6prm_set_hw_core_req(struct device *dev, uint32_t hw_block_id, bool enable)
-> +{
-> +	struct prm_cmd_request_hw_core *req;
-> +	struct apm_module_param_data *param_data;
-> +	struct gpr_pkt *pkt;
-> +	struct q6prm *prm = dev_get_drvdata(dev->parent);
-> +	gpr_device_t *gdev  = prm->gdev;
-> +	void *p;
-> +	int rc = 0;
-> +	uint32_t opcode, rsp_opcode;
-> +
-> +	if (enable) {
-> +		opcode = PRM_CMD_REQUEST_HW_RSC;
-> +		rsp_opcode = PRM_CMD_RSP_REQUEST_HW_RSC;
-> +	} else {
-> +		opcode = PRM_CMD_RELEASE_HW_RSC;
-> +		rsp_opcode = PRM_CMD_RSP_RELEASE_HW_RSC;
-> +	}
-> +
-> +	p = audioreach_alloc_cmd_pkt(sizeof(*req), opcode, 0, gdev->svc.id,
-> +				     GPR_PRM_MODULE_IID);
-> +	if (IS_ERR(p))
-> +		return -ENOMEM;
-> +
-> +	pkt = p;
-
-same comment as before for the rest of this file:
-
-pkt = audioreach_alloc_cmd_pkt(sizeof(*req), opcode, 0, gdev->svc.id,
-				     GPR_PRM_MODULE_IID);
-kfree(pkt);
-
-
-
-> +	req = p + GPR_HDR_SIZE + APM_CMD_HDR_SIZE;
-> +
-> +	param_data = &req->param_data;
-> +
-> +	param_data->module_instance_id = GPR_PRM_MODULE_IID;
-> +	param_data->error_code = 0;
-> +	param_data->param_id = PARAM_ID_RSC_HW_CORE;
-> +	param_data->param_size = sizeof(*req) - APM_MODULE_PARAM_DATA_SIZE;
-> +
-> +	req->hw_clk_id = hw_block_id;
-> +
-> +	q6prm_send_cmd_sync(prm, pkt, rsp_opcode);
-> +
-> +	kfree(pkt);
-> +
-> +	return rc;
-> +}
-> +
 
