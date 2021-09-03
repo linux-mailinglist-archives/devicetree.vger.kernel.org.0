@@ -2,278 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33CF640026F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 17:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61DD4400285
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 17:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237872AbhICPhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 11:37:51 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:44357 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235573AbhICPhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 11:37:50 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 509545809F9;
-        Fri,  3 Sep 2021 11:36:50 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Fri, 03 Sep 2021 11:36:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=a
-        QLvRR/fiUJqgX0rYqFHgMRYPMwNMN67OshWLPC1Frw=; b=URMwXHuiDwHgByI9G
-        6iG+TNyWUzFoHK9jB+eUV65RC70CYhesVT6+vPEqcODCB/rVqDuVo2jYv7GxFmLZ
-        vvsDECVMHI4lJ05Krm+aURy9T3pQNzzYhS3Isu9juovvmrnYRH0gq0luEFnXyCVB
-        SW68roAzQbCP1EXR7HPfVKdVLZ5wsilWITj/TKA/gmsIOS/aSLNItutyOF+FmtDT
-        A64DV8aLYurnplcYYpE2YxkKOMdlFiYTsWME96yFGsQs8R+bMTn3WmSmuf902G+q
-        j1lgs2kyW0n4+Q/g8SAmbv0T9eoRBMLh2sZSCZcQXSOG0guz8D9EylJAqKzKIssO
-        fETPA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=aQLvRR/fiUJqgX0rYqFHgMRYPMwNMN67OshWLPC1F
-        rw=; b=bj+oMLzHp9lSNLSC+g3Uq7yr0Ni1rNyb27Vxu7IXkdmjGJBrrDbvnlytX
-        AvSw9lgbMF7+I4vROvNdPGnQuLGoy+3qEhFaZtpW7L/Wp2mA1IihXukPutfWjc35
-        5qWPIGsdkgExFHtSgQBsRRBwB7KzHPdb8kNFqmHoIXTeSQh6bR51892hO/zJKPt3
-        CzKsux0V3HnQ2Esu4FixwwEedvUfY9PArecyw7FmoFa62WWRqfiUh9IHfPjiFCZb
-        qb4omAeAuG4d5cTWsqFPo5HmxvNRoAEIpvWld5kcvqQx44b2+bIS4e+bHmPCOdI8
-        SB2EuCCMW3dPB5YN2hC+XvmH80Zqg==
-X-ME-Sender: <xms:EUEyYVEJkcXQh9dFVQ_sjnO0Pk9_laUqRBYqh7D9b1YIopMAtEuouQ>
-    <xme:EUEyYaXZwYm5lcZFGxRosluQ881FkwDBjYxFLw1DIhyL4asp8uSzEvUe8itabc2M8
-    A963OJdjdW7fXAoUw>
-X-ME-Received: <xmr:EUEyYXJBkII6BERpfQE7mSnbgwCKcw-PVwIM_vFD08xxLZiykDSWdPZ1SOCXbJvUsmT1dJOqB1-uSP5QhgQ4TG-YUsSGwoeU6c5GgWt2t8UX1q3YDE0cbYcCTg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvjedgkeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
-    hedtfeevuedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:EUEyYbG1M6hNibyTnSHryU-ZDUq_qUHZ8tNrXW1v9RbujjV4K5hVNQ>
-    <xmx:EUEyYbUmsUwTnzwpaF8-Dipad3D23IhCpL-HZFrIbxzTFy8VfJKwvg>
-    <xmx:EUEyYWO19vU5i6Zv9mwT29oB8gya2VkOmM-aNrRslX3qTrcOHvfsZw>
-    <xmx:EkEyYbSk1e22sntW7La6DZvvGgt4P7y-su6BoCsq5GT1b78buBmyDQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 3 Sep 2021 11:36:48 -0400 (EDT)
-To:     Rob Herring <robh@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20210901053951.60952-1-samuel@sholland.org>
- <20210901053951.60952-2-samuel@sholland.org>
- <YTDtelCx5If3J5cM@robh.at.kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [RFC PATCH 1/7] dt-bindings: rtc: sun6i: Add H616 and R329
- compatibles
-Message-ID: <53d6d018-93bf-9bfc-e296-a232105306de@sholland.org>
-Date:   Fri, 3 Sep 2021 10:36:48 -0500
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S1349618AbhICPrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 11:47:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349617AbhICPrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 11:47:48 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE6CC061760
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 08:46:48 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id d5so3907426pjx.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 08:46:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Sqqe0m+lG2gnGk/qc8Vy/PEugdCzsPQEHtnGYob2kwI=;
+        b=jYQUzs5eoeHViiY6eSMLM1li3JAQtUU6Xmmw+m08JVIAA7TL9OzMz8lvQ3dTh20YRP
+         L8FTyBupdXpXkOPVReMJ3O1NZleiGPOQRCppqNMScGzem3X4AiCukawmV8fbpWfBYWRp
+         zx5USfjXXlZvPqTFnYbNjyKhgM6GMiEMStuv8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Sqqe0m+lG2gnGk/qc8Vy/PEugdCzsPQEHtnGYob2kwI=;
+        b=Mwtc5aM5eV6KC6KJuKSgqe+djk7BAWLmHKg9N8gjjiZVDgkC9JKWk52JQ//rju0Ku+
+         qYK4TaF3nICxfaAbVBglNKeRMswBHDcduYe8K2EJRXHWXSQs/WjCNPn6Cyof0ua8KSWx
+         WhDHYewfZzBu9r/YO7AZgU4yKOzWLNxql7AG3kjABuq5WVDPV75wU45FT7McEGtc5/25
+         VyDs3lH9xWjZkL9m8e3KgRE2YOXUmQbZGWAk2oeFb24NIWhFqHZ+hBlIaTBRKdUuTrtv
+         4LKs3IEZwZIMd0lpWJbelN/l8JQfna9TgVKixU/4Fy+2dueiddmEFnFjrcgmcfn8wM9z
+         BN8A==
+X-Gm-Message-State: AOAM533xfLt1P9zSOs7DFZUwt6ao9BiyA3GvOP+S4wUFQjOLuK7MIiWl
+        JCYW7d8uvNZfdEgmCqdHnqVcPw==
+X-Google-Smtp-Source: ABdhPJxvbyEuZMwtiZCbKL6+/BSvy2w0L8i7C/gN4t5Bif7KwFFgeSD5LQo+OhnWncNrBDJM4gQxEw==
+X-Received: by 2002:a17:90a:dc03:: with SMTP id i3mr10283922pjv.163.1630684008001;
+        Fri, 03 Sep 2021 08:46:48 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:80b3:9f00:3170:fd8b])
+        by smtp.gmail.com with UTF8SMTPSA id d4sm5537757pfv.21.2021.09.03.08.46.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Sep 2021 08:46:47 -0700 (PDT)
+Date:   Fri, 3 Sep 2021 08:46:45 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     rajpat@codeaurora.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, swboyd@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org
+Subject: Re: [PATCH V5 1/7] arm64: dts: sc7280: Add QSPI node
+Message-ID: <YTJDZRw1D444JCNt@google.com>
+References: <1628754078-29779-1-git-send-email-rajpat@codeaurora.org>
+ <1628754078-29779-2-git-send-email-rajpat@codeaurora.org>
+ <YRUdccjvf+ivbqor@google.com>
+ <d271d1dafe56cbb58d35a63ec6944b14@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <YTDtelCx5If3J5cM@robh.at.kernel.org>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Disposition: inline
+In-Reply-To: <d271d1dafe56cbb58d35a63ec6944b14@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/2/21 10:27 AM, Rob Herring wrote:
-> On Wed, Sep 01, 2021 at 12:39:45AM -0500, Samuel Holland wrote:
->> For these new SoCs, start requiring a complete list of input clocks.
->>
->> For H616, this means bus, hosc, and pll-32k. For R329, this means ahb,
->> bus, and hosc; and optionally ext-osc32k.
->>
->> I'm not sure how to best represent this in the binding...
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
->> ---
->>  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml | 55 +++++++++++++++++--
->>  include/dt-bindings/clock/sun50i-rtc.h        | 12 ++++
->>  2 files changed, 61 insertions(+), 6 deletions(-)
->>  create mode 100644 include/dt-bindings/clock/sun50i-rtc.h
->>
->> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
->> index beeb90e55727..3e085db1294f 100644
->> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
->> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
->> @@ -26,6 +26,8 @@ properties:
->>            - const: allwinner,sun50i-a64-rtc
->>            - const: allwinner,sun8i-h3-rtc
->>        - const: allwinner,sun50i-h6-rtc
->> +      - const: allwinner,sun50i-h616-rtc
->> +      - const: allwinner,sun50i-r329-rtc
+On Thu, Aug 26, 2021 at 06:29:41PM +0530, rajpat@codeaurora.org wrote:
+> On 2021-08-12 18:39, Matthias Kaehlcke wrote:
+> > On Thu, Aug 12, 2021 at 01:11:12PM +0530, Rajesh Patil wrote:
+> > > From: Roja Rani Yarubandi <rojay@codeaurora.org>
+> > > 
+> > > Add QSPI DT node and qspi_opp_table for SC7280 SoC.
+> > > 
+> > > Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> > > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 62
+> > > ++++++++++++++++++++++++++++++++++++
+> > >  1 file changed, 62 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > index 53a21d0..f8dd5ff 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > > @@ -415,6 +415,25 @@
+> > >  		method = "smc";
+> > >  	};
+> > > 
+> > > +	qspi_opp_table: qspi-opp-table {
+> > > +		compatible = "operating-points-v2";
+> > > +
+> > > +		opp-75000000 {
+> > > +			opp-hz = /bits/ 64 <75000000>;
+> > > +			required-opps = <&rpmhpd_opp_low_svs>;
+> > > +		};
+> > > +
+> > > +		opp-150000000 {
+> > > +			opp-hz = /bits/ 64 <150000000>;
+> > > +			required-opps = <&rpmhpd_opp_svs>;
+> > > +		};
+> > > +
+> > > +		opp-300000000 {
+> > > +			opp-hz = /bits/ 64 <300000000>;
+> > > +			required-opps = <&rpmhpd_opp_nom>;
+> > > +		};
+> > > +	};
+> > > +
+> > 
+> > From v3:
+> > 
+> > roja> Can we move this "qspi_opp_table" to / from /soc?
+> > 
+> > bjorn> If you have made a proper attempt to convince Rob and Mark that
+> > bjorn> a child "opp-table" in a SPI master is not a SPI device - and the
+> > bjorn> conclusion is that this is not a good idea...then yes it should
+> > live
+> > bjorn> outside /soc.
+> > 
+> > I didn't see a follow up on this, was such an attempt made? Is there a
+> > link to the discussion?
 > 
-> Can you please make all the single entry cases a single 'enum'.
-> 
->>  
->>    reg:
->>      maxItems: 1
->> @@ -37,7 +39,24 @@ properties:
->>        - description: RTC Alarm 1
->>  
->>    clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 4
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 4
->> +    items:
->> +      - anyOf:
-> 
-> This says the first entry is any of these. What about the rest of them?
+> For now I am keeping qspi_opp_table  and qup_opp_table outside the SoC and
+> posting V6.
+> I will continue the discussion with DT folks and once concluded I will
+> update as required.
 
-Oh, right. The list below is the list of all possible clocks.
-
->> +          - const: ahb
->> +            description: AHB parent for SPI bus clock
-> 
-> The description should go in 'clocks'.
-
-Will do for v2.
-
-> The order should be defined as well with the first clock being the
-> one that existed previously.
-
-The only way I know how to further refine the list is with
-minItems/maxItems. My problem is that 1) some clocks are only valid for
-certain SoCs, and 2) some clocks are optional, depending on how the
-board is wired. So there is no single order where the "valid"
-combinations are prefixes of the "possible" combinations of clocks.
-
-Or in other words, how can I say "clocks #1 and #2 from this list are
-required, and #4 is optional, but #3 is not allowed"?
-
-Some concrete examples, with the always-required clocks moved to the
-beginning:
-
-H6:
- - bus: required
- - hosc: required
- - ahb: not allowed
- - ext-osc32k: optional
- - pll-32k: not allowed
-
-H616:
- - bus: required
- - hosc: required
- - ahb: not allowed
- - ext-osc32k: not allowed
- - pll-32k: required
-
-R329:
- - bus: required
- - hosc: required
- - ahb: required
- - ext-osc32k: optional
- - pll-32k: not allowed
-
-Should I just move the entire clocks/clock-items properties to if/then
-blocks based on the compatible?
-
->> +          - const: bus
->> +            description: AHB/APB bus clock for register access
->> +          - const: ext-osc32k
->> +            description: External 32768 Hz oscillator input
->> +          - const: hosc
->> +            description: 24 MHz oscillator input
->> +          - const: pll-32k
->> +            description: 32 kHz clock divided from a PLL
->>  
->>    clock-output-names:
->>      minItems: 1
->> @@ -85,6 +104,9 @@ allOf:
->>              enum:
->>                - allwinner,sun8i-h3-rtc
->>                - allwinner,sun50i-h5-rtc
->> +              - allwinner,sun50i-h6-rtc
->> +              - allwinner,sun50i-h616-rtc
->> +              - allwinner,sun50i-r329-rtc
->>  
->>      then:
->>        properties:
->> @@ -96,13 +118,35 @@ allOf:
->>        properties:
->>          compatible:
->>            contains:
->> -            const: allwinner,sun50i-h6-rtc
->> +            enum:
->> +              - allwinner,sun50i-h616-rtc
->> +              - allwinner,sun50i-r329-rtc
->>  
->>      then:
->> +      clocks:
->> +        minItems: 3 # bus, hosc, and (pll-32k [H616] or ahb [R329])
->> +
->> +      clock-names:
->> +        minItems: 3
->> +
->> +      required:
->> +        - clock-names
->> +
->> +    else:
->> +      required:
->> +        - clock-output-names
->> +
->> +  - if:
->> +      properties: clock-names
->> +
->> +    then:
->> +      required:
->> +        - clocks # hosc is required
->> +
->> +    else:
->>        properties:
->> -        clock-output-names:
->> -          minItems: 3
->> -          maxItems: 3
->> +        clocks:
->> +          maxItems: 1 # only ext-osc32k is allowed
->>  
->>    - if:
->>        properties:
->> @@ -127,7 +171,6 @@ required:
->>    - compatible
->>    - reg
->>    - interrupts
->> -  - clock-output-names
->>  
->>  additionalProperties: false
->>  
->> diff --git a/include/dt-bindings/clock/sun50i-rtc.h b/include/dt-bindings/clock/sun50i-rtc.h
->> new file mode 100644
->> index 000000000000..d45e3ff4e105
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/sun50i-rtc.h
->> @@ -0,0 +1,12 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
-> 
-> Dual license please.
-
-Will do for v2.
-
-Regards,
-Samuel
-
->> +
->> +#ifndef _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_
->> +#define _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_
->> +
->> +#define CLK_OSC32K		0
->> +#define CLK_OSC32K_FANOUT	1
->> +#define CLK_IOSC		2
->> +
->> +#define CLK_RTC_SPI		8
->> +
->> +#endif /* _DT_BINDINGS_CLK_SUN50I_RTC_CCU_H_ */
->> -- 
->> 2.31.1
->>
->>
-
+Do you have a link to that discussion so that people can follow along or
+chime in?
