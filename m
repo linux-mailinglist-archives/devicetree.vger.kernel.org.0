@@ -2,86 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A203FFBC3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 10:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78EC23FFBF9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 10:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348192AbhICIUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 04:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
+        id S1348316AbhICIbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 04:31:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348283AbhICIT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 04:19:59 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52325C061575;
-        Fri,  3 Sep 2021 01:18:51 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id j2so2871908pll.1;
-        Fri, 03 Sep 2021 01:18:51 -0700 (PDT)
+        with ESMTP id S1348277AbhICIbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 04:31:45 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FACBC061757
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 01:30:45 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id z9-20020a7bc149000000b002e8861aff59so3235456wmi.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 01:30:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Phy4y+hK8VUG7m5ozeRhmhn2qn7hHWlVNnFuLnJTpjc=;
-        b=gn1LEqFm5OmaNC3OgzH7jznj34Dikd547FTlAL9TVFOAYlYNHJPfhekk0eQk2Znxs5
-         uocl0YFazDRkIFKdYErCaJjcR9vmP/H0TUon3uc+OsyKZCbuJBZHYRcIlwIkoXl2+THw
-         R8hfIrWbdRc5th9rjyA1lHcLWd/Sl6XlKt7ET3Z7ujJDROG6UA1RvQwAZWNITFmAxand
-         SIayzdGpAtmLJM+6KSnHENivuL7g1CPNhLugr+GoPRzmI03HNG4Y2KWT2o24vKq8UVgb
-         Hxdbtb7A4TAFGSLGWXEZKGPHPZTD/yfwV9ob+lru6nrVqra51xGzyRTfSQ7WeuWmu6ow
-         uSMw==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=tSBoI24rmmAo/WWLDhLND6YxNYncWnjj1r5sALynAJ4=;
+        b=K4wGE5iP441yxWa+TAQZ1VZZMZnv6OfvJKWEzE+MCQj7K2oMTS8aHeDQgL7IlCV5+r
+         II5rICDjfU5wlQZmioHZXxoVszg5g1wTZIPmZf+V7KOVQKYfmuoowJ602eTn6HBmdjhR
+         40Z5W0mxAnYB/D/m3H3U18iiaEtRB1XAs6OsSrvD75MTsAFVEgpJuvIWB45lquL4eZPg
+         WHGJylo9CiP3ELxpw7rat1Y5lK4ARxd2H5aZyiP/QOH5s9LmA5oPmoO04VDfHoMMtTxu
+         mwZcDDhHJY/GZrwjRiCTfmJmArcJ97MVfnRwjnpryjB2B5p2fewYpM6VuJPJjmAlvb6U
+         L/FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Phy4y+hK8VUG7m5ozeRhmhn2qn7hHWlVNnFuLnJTpjc=;
-        b=pvp9obvfTcpciCH1U9KjiUB+dUhpY4PzpteIc7sYjUna9Yd+GJL/QMcG1oOdbea9WC
-         4LsJMtCWBRKR7IQA63txU8NRMCOlpErFAuuw4jPSrDGhl+8vul8ffhxEjmljWKMXCly4
-         bKbjn+a/BpqAe+MowJ8jBkqjQllCfwugIhTP5pOUP2IA6eQaifOfwWjcx+dpaXy/8vXG
-         nlriLaBqqTgwDrEhuics7thjZd6QjT6xAV/WwCP3euCgHGYOyPy5W2Uk68DN1IXtAuFf
-         1a6uyLYLKD+Mcici0Dkv7lO/EdGp4+/NlOHBvbPFFwVIsmx+MJTCsIlu4nGaVLwQrC9d
-         LUpA==
-X-Gm-Message-State: AOAM5324MMtbLWv0da7PAHQChaBV9EUtH7OidoRMmy4aHfim3WkGO5Qs
-        d4VnowTJNaxdwsjlUp2EyREGYN2rxajGV07jp1c=
-X-Google-Smtp-Source: ABdhPJzjcz+T/rpM2xV4DX89iiUWYDC/IW9iTMT4R5z5HfU9u+eFFYZ/UnNTm5DTP0q6HUPwup3yQ4pjf3XiPYLlZwk=
-X-Received: by 2002:a17:90a:6502:: with SMTP id i2mr8685279pjj.129.1630657130779;
- Fri, 03 Sep 2021 01:18:50 -0700 (PDT)
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=tSBoI24rmmAo/WWLDhLND6YxNYncWnjj1r5sALynAJ4=;
+        b=bxJXzdYqbtle79YMX2v/xu8+bEAn5ukgttOt9+SFqs9J6bB1sRLXSW2jkRNwvyw4bQ
+         DbtRewJ3lmgyxLf1oUgXuSaA5t0YiViQIkllRdPe0blXJZR4AVjWIi9CwFK7OaVBtanb
+         tpVO60WKFZ1Z7FjHCBLSJEfPGaI/X4UBKdBNsGULc8RnQnp7AonM0q+gCrdc53kGGzQO
+         wbvgZLfLFseLz+tHlxMazIL/qp32M4IOCHlb7BgrkpQJc6gz2ONcPWgBdcwqk1tLCv53
+         k6fl2D9gTbNaS/iqAl9QNocSCVZhnNVY1QQnKh81HtuwunvgJLdUy5WEIcJInLRiMq15
+         OXXw==
+X-Gm-Message-State: AOAM530dBXEwpEo6qhFJo3XswrL2mIF5C2Ig7/6ty8RPqY6cgOU2mA9h
+        D+y9Sf874vi5/R6BVF/gdqu4eQ==
+X-Google-Smtp-Source: ABdhPJzIVzeO9objMjNkGGwltqZ/D3PN/vMifRhZaWUZqUx5iRpM6g1pt+vfuZhIf9TYGOJSBH5HPA==
+X-Received: by 2002:a05:600c:4ece:: with SMTP id g14mr2177689wmq.6.1630657843920;
+        Fri, 03 Sep 2021 01:30:43 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id r12sm4323542wrv.96.2021.09.03.01.30.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Sep 2021 01:30:43 -0700 (PDT)
+References: <1630562033-13231-1-git-send-email-spujar@nvidia.com>
+ <1630562033-13231-2-git-send-email-spujar@nvidia.com>
+ <1jpmtr5egi.fsf@starbuckisacylon.baylibre.com>
+ <YTElQBgwF6xBFH9l@robh.at.kernel.org>
+User-agent: mu4e 1.6.5; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, stephan@gerhold.net,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] ASoC: Add json-schema documentation for
+ sound-name-prefix
+Date:   Fri, 03 Sep 2021 10:29:37 +0200
+In-reply-to: <YTElQBgwF6xBFH9l@robh.at.kernel.org>
+Message-ID: <1jk0jyt617.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <cover.1630632805.git.atafalla@dnyon.com> <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
-In-Reply-To: <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 3 Sep 2021 11:18:14 +0300
-Message-ID: <CAHp75VeD8sbxcu==BF97yY4ZGtLbNAQSiTxq2cDvBSdCpXxsyw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] ASoC: max98927: Handle reset gpio when probing i2c
-To:     Alejandro <atafalla@dnyon.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 3, 2021 at 4:51 AM Alejandro <atafalla@dnyon.com> wrote:
+
+On Thu 02 Sep 2021 at 14:25, Rob Herring <robh@kernel.org> wrote:
+
+> On Thu, Sep 02, 2021 at 02:47:27PM +0200, Jerome Brunet wrote:
+>> 
+>> On Thu 02 Sep 2021 at 11:23, Sameer Pujar <spujar@nvidia.com> wrote:
+>> 
+>> > The 'sound-name-prefix' is used to prepend suitable strings to a
+>> > component widgets or controls. This is helpful when there are
+>> > multiple instances of the same component. Add relevant json-schema
+>> > and is inspired from sound-name-prefix.txt documentation.
+>> >
+>> > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+>> > Cc: Rob Herring <robh+dt@kernel.org>
+>> > ---
+>> >  .../devicetree/bindings/sound/name-prefix.yaml     | 35 ++++++++++++++++++++++
+>> >  1 file changed, 35 insertions(+)
+>> >  create mode 100644 Documentation/devicetree/bindings/sound/name-prefix.yaml
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/sound/name-prefix.yaml b/Documentation/devicetree/bindings/sound/name-prefix.yaml
+>> > new file mode 100644
+>> > index 00000000..b58cc9e
+>> > --- /dev/null
+>> > +++ b/Documentation/devicetree/bindings/sound/name-prefix.yaml
+>> > @@ -0,0 +1,35 @@
+>> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> > +%YAML 1.2
+>> > +---
+>> > +$id: http://devicetree.org/schemas/sound/name-prefix.yaml#
+>> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> > +
+>> > +title: Component sound name prefix
+>> > +
+>> > +maintainers:
+>> > +  - Jerome Brunet <jbrunet@baylibre.com>
+>> 
+>> Since this file is referenced using "AllOf", am I going to be listed as
+>> maintainer of all the drivers using the property below ? I'm not sure I
+>> want that ... :P
 >
-> From: Alejandro Tafalla <atafalla@dnyon.com>
+> No. That's not how it works. You're maintainer of files that list you as 
+> maintainer.
+
+Thanks for clarifying.
+You can ignore my comment then Sameer. 
+
 >
-> Drive the reset gpio if defined in the DTS node.
+>> Maybe it would be better to drop the above ?
+>> 
+>> > +
+>> > +properties:
+>> > +  sound-name-prefix:
+>> > +    $ref: /schemas/types.yaml#/definitions/string
+>> > +    description: |
+>> > +      Card implementing the routing property define the connection between
+>> > +      audio components as list of string pair. Component using the same
+>> > +      sink/source names may use this property to prepend the name of their
+>> > +      sinks/sources with the provided string.
+>> > +
+>> > +additionalProperties: true
+>> > +
+>> > +examples:
+>> > +  - |
+>> > +    analog-amplifier@0 {
+>> > +        compatible = "simple-audio-amplifier";
+>> > +        sound-name-prefix = "FRONT";
+>> > +    };
+>> > +
+>> > +    analog-amplifier@1 {
+>> > +        compatible = "simple-audio-amplifier";
+>> > +        sound-name-prefix = "BACK";
+>> > +    };
+>> > +
+>> > +...
+>> 
+>> 
 
-...
-
-> +       reset_gpio
-> +               = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
-> +       if (IS_ERR(reset_gpio)) {
-> +               ret = PTR_ERR(reset_gpio);
-> +               return dev_err_probe(&i2c->dev, ret, "failed to request GPIO reset pin");
-
-Not sure why my comments have been ignored here.
-
-> +       }
-
---
-With Best Regards,
-Andy Shevchenko
