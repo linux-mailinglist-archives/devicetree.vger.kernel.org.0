@@ -2,71 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F1940056F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6691400584
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350504AbhICTCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 15:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45582 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235938AbhICTCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:02:54 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D17C061757
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 12:01:53 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id s20so379630oiw.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 12:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=SAzTnDcToUqmXsOS2Uqx6HjGpLJFdTeJaBGrr8ePieg=;
-        b=fSkxncCTXR86TbzQCb1xW3s3xdTOMGyzfpctNNQvoRpmZfwq31/TpHnE/hSrh4lTKc
-         u/GXxXKV+drF9Ekhf3KgE/0m/nVdmc3bhnB4f+1uGv/0b1bm6BzpYJQX4KVSDguVznhC
-         pJsvND2WcJlJQ6YF6Dh/K2w26+jRkJwihxwys=
+        id S1350612AbhICTHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 15:07:14 -0400
+Received: from mail-vs1-f41.google.com ([209.85.217.41]:34660 "EHLO
+        mail-vs1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350972AbhICTHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:07:13 -0400
+Received: by mail-vs1-f41.google.com with SMTP id x137so176120vsx.1;
+        Fri, 03 Sep 2021 12:06:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=SAzTnDcToUqmXsOS2Uqx6HjGpLJFdTeJaBGrr8ePieg=;
-        b=QIETg+kKvI9npC91nXHilCwaITHQOjzr2Xc9s/54JsoNUC6tqyCeRbiLaSPSv9X1j8
-         kjD5nacKX0WnM+MmMOUZujVUFYX8j5vH9ru/KW2oFwPb2r3asV4CaRn35rwZoOHDUg0i
-         /tip1Vakwj919o73RT6a4bcpfWMKFzuvOCpw0ox6Z6SwK2+RrX9hfwTDrv1H32tz9uEb
-         baqGnSgVWqfIXnh0o/MsYsaCfPg3iM7GUmmIMj5/dQhZmvT8igwEG0cUNKkzQGWFpcak
-         iO+e/QST/YTRDq3ltEODHYxb5bI9x/1aW8ePJg9bBlhZg4oZYxJX/IvSYUd/Wn2l16DN
-         4h3A==
-X-Gm-Message-State: AOAM532hmuL9d8l4OAD+coMCikQc8qHXQYh7Ohe/HMTn1UMFwJFjWW15
-        fU6jm/2u2/ZZzur+GMO+cze3XSOrho1km0W7kuOsOWKCpvU=
-X-Google-Smtp-Source: ABdhPJxnKzQ5AS2ZUhj+PB1HcygTeTEtePAdA7QZT6VkdQnPumBdxHtQCjSp+nbjz+D1bTV6KWEe4wqRrA61V8sjjoM=
-X-Received: by 2002:a05:6808:909:: with SMTP id w9mr244302oih.164.1630695713356;
- Fri, 03 Sep 2021 12:01:53 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 3 Sep 2021 15:01:52 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ABDbT8IoH3N9gd+Y63uECbNi/NCZYOelz//HTakCyVY=;
+        b=bNlQyFaUaQInXlcPJ4aqvTJe8T8VgW3tdsQ6vlN7MCdjTJA46S+YNs31VAIn3h5QrM
+         Z3qLGS0Srmi6TLilJ7aYdcEOudZQWxHarvyRgBL8UX2K4Z33vPdrMlC0kOy9oX4m+CT+
+         ewSke3deajZ1rijvDWjbflcV7XDV6u89gh5pxDc+etixgWOeL5WqNmh7egfwUAcyFV7r
+         BG2xZjr1b2gnU/4PGGRHlK9h9irAFimLyIm3NSiagV4SjPYSKijGl6RO+GPVXmxnkZQO
+         ekhFBsD8fE3X00gRGl0MFXj+/IceTCyiFgqrr7tgkUJfQYBsbezKCn17xuvsZ78GTqs7
+         7c/A==
+X-Gm-Message-State: AOAM530TYKj0ZuQwJcgbatHKt5WgEirnuilcY8JNNOHzo8M2k0EDNtZ2
+        U2gokKc6znNwK1gwjAh5F80f+diUEe2ugAh2p+I=
+X-Google-Smtp-Source: ABdhPJyA+vwFT4aqEWmB7h8rGNZZVao3SlVmke21AZgP6ubwvXlx1jIEuiR+RCyUbYnqgM3JgJP0IP/yE+LtKbMtyrc=
+X-Received: by 2002:a67:3289:: with SMTP id y131mr502481vsy.37.1630695972911;
+ Fri, 03 Sep 2021 12:06:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1630643340-10373-8-git-send-email-rajpat@codeaurora.org>
-References: <1630643340-10373-1-git-send-email-rajpat@codeaurora.org> <1630643340-10373-8-git-send-email-rajpat@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 3 Sep 2021 15:01:52 -0400
-Message-ID: <CAE-0n51c1TdO3tw6dDd9Ai=j_0rvc_H6uTm5nQ1RoibF8+PcPw@mail.gmail.com>
-Subject: Re: [PATCH V7 7/7] arm64: dts: sc7280: Add aliases for I2C and SPI
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajesh Patil <rajpat@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, mka@chromium.org, dianders@chromium.org
+References: <20210902230442.1515531-1-saravanak@google.com>
+ <20210902230442.1515531-2-saravanak@google.com> <CAPDyKFpP6pSRSw8_OAW8+ZJNH+CwXtfWBNDcD182gQmzqW=O5g@mail.gmail.com>
+ <CAMuHMdVgjxJwd=PbUSR+9mgxexr3O_O6j-3T24GzE08CqzDjjA@mail.gmail.com> <CAGETcx9W6FYCD62+QytwK5FThpz0EyKn0G6Ay2B5jKgiqkZT1g@mail.gmail.com>
+In-Reply-To: <CAGETcx9W6FYCD62+QytwK5FThpz0EyKn0G6Ay2B5jKgiqkZT1g@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 3 Sep 2021 21:06:00 +0200
+Message-ID: <CAMuHMdWNP1yn0ouJzgYpvQkdAHAA4_gf8z+iZWpbftvGN5a+qQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: platform: Make sure bus only devices get probed
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajesh Patil (2021-09-02 21:29:00)
-> Add aliases for i2c and spi for sc7280 soc.
->
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> ---
+Hi Saravana,
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+On Fri, Sep 3, 2021 at 7:09 PM Saravana Kannan <saravanak@google.com> wrote:
+> On Fri, Sep 3, 2021 at 7:29 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Fri, Sep 3, 2021 at 11:19 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > On Fri, 3 Sept 2021 at 01:04, Saravana Kannan <saravanak@google.com> wrote:
+> > > > fw_devlink could end up creating device links for bus only devices.
+> > > > However, bus only devices don't get probed and can block probe() or
+> > > > sync_state() [1] call backs of other devices. To avoid this, set up
+> > > > these devices to get probed by the simple-pm-bus.
+> > > >
+> > > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > Tested-by: Saravana Kannan <saravanak@google.com>
+> > >
+> > > Again, this looks like a nice solution to the problem.
+> > >
+> > > One question though. The Kconfig SIMPLE_PM_BUS, should probably be
+> > > "default y" - or something along those lines to make sure fw_devlink
+> > > works as expected.
+> >
+> > I would love for SIMPLE_PM_BUS to go away, and all of its functionality
+> > to be usurped by the standard simple-bus handling.
+>
+> What if SIMPLE_PM_BUS *is* the standard simple-bus handling?
+> Insert "I'm the captain now" meme.
+
+No objections from my side.  In fact that's how I wanted it to be
+from the beginning, but the DT people wanted a separate compatible
+value (and a separate driver).  The only difference is the presence
+of pm_runtime_*() calls.
+
+> I think SIMPLE_PM_BUS config should just go away and we should compile
+> the driver in if CONFIG_OF is selected.
+
+I think there would be no need for a separate driver, if the standard
+simple-bus handling would take care of it.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
