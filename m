@@ -2,63 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A6A7400758
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 23:15:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40144400783
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 23:42:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234568AbhICVQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 17:16:07 -0400
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:43000 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232927AbhICVQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 17:16:07 -0400
-Received: by mail-oo1-f50.google.com with SMTP id e206-20020a4a55d7000000b00291379cb2baso75685oob.9
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 14:15:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=y7560HvHmbKiKMHohtmya1Kp5KqBPXLa2/KXrD6Z0gc=;
-        b=Tup+gLfTUVH/ugZEl7a/AaXfY/JRfSpOw+iktd7LpaM5siejkLBTAaEych6wUWBAMV
-         +WDmQpy7kRvvSxT6kjMjdhPFWm+CUy1X8nfKmZwxFMzoVnNypPjRDfCydpadEl3EOSYO
-         XwJP0xmToojHNwIP0qK6GAozVSz9OvWtlzGGG7UoKw7ffKktdauIFOBmLVeM3acR8gwM
-         KZtnrEpDnQbFT0bgmS1s9DkNDnnmMDnk9PmwXBO7k7/jZluQkZnIm/c9F7pnIORe/+DR
-         MbqUFhMovJY+2xyN9ayu0cigJKyFuc70GbrxYUGuSxLYuMC1t9T7pHJLpgY2n70lwNsS
-         Hb0A==
-X-Gm-Message-State: AOAM531ivLfvDcalCkaVQfNpc5keHKjqFaBaLREES1GyQpv45KjpyxxO
-        Y7WJUZWqmn7AUMkm277nWg==
-X-Google-Smtp-Source: ABdhPJz2CMyjZBMzdqIJqtl3K91FDKCdi/0f+1kZLvxJcFetH06pO9Dhv9JJa2U6k67ccqbwyqqwSg==
-X-Received: by 2002:a4a:ba86:: with SMTP id d6mr4596305oop.61.1630703706464;
-        Fri, 03 Sep 2021 14:15:06 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g23sm106844otl.23.2021.09.03.14.15.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 14:15:05 -0700 (PDT)
-Received: (nullmailer pid 3473434 invoked by uid 1000);
-        Fri, 03 Sep 2021 21:15:05 -0000
-Date:   Fri, 3 Sep 2021 16:15:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH dt-schema 1/2] schemas: chosen: Generalize
- linux,elfcorehdr and linux,usable-memory-range
-Message-ID: <YTKQWRgV2vx8KkIh@robh.at.kernel.org>
-References: <20210901151310.2484003-1-geert+renesas@glider.be>
+        id S232227AbhICVnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 17:43:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39996 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230425AbhICVnq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 17:43:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3FE460FD7;
+        Fri,  3 Sep 2021 21:42:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630705366;
+        bh=Dcm016rrrRfbSotF02Hxb+DhiruaAuM61q/d9qK71xU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=gvbDRsRlkgBePYnNQ4xUucjIktM82+zQ3QjOvCFQr5uUZJafr3XjVWfHPejoDq9Cv
+         MXPOLM6ziGa1GdmxVnc0pDuo23rxQJec8+X3PCuAn4I7PL36lLn4jiEKmwf3kcH9J9
+         Ni6lhnr7kkO5eXT6kMQ/2WeB0iM8LG2qm07Bcf3HoYqQsT7ZyuAoBDXzEe4b+2W8Dh
+         66HoZbBFh3xXXIB/TJY9nft551o2RonV141uIYkXi6AV8wZQl+9nxMT3IC+np10pmp
+         dqw+oMCCEPYJFvV779UkkKh4x+DKAGtiwa77KRDTitb48WFCprUTvjiJ04A1Q6yScf
+         qh6N0IScRhpuw==
+Date:   Fri, 3 Sep 2021 23:42:35 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, Jan Kotas <jank@cadence.com>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, pali@kernel.org
+Subject: Re: [PATCH RFC] dt-bindings: clk: fixed-mmio-clock: Document
+ mapping MMIO values to clock rates
+Message-ID: <20210903234235.1c51e1a1@thinkpad>
+In-Reply-To: <163069377886.405991.177735942780420525@swboyd.mtv.corp.google.com>
+References: <20210903173107.950-1-kabel@kernel.org>
+        <163069377886.405991.177735942780420525@swboyd.mtv.corp.google.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210901151310.2484003-1-geert+renesas@glider.be>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 17:13:09 +0200, Geert Uytterhoeven wrote:
-> The properties "linux,elfcorehdr" and "linux,usable-memory-range" are no
-> longer limited to arm64.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  schemas/chosen.yaml | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
+On Fri, 03 Sep 2021 11:29:38 -0700
+Stephen Boyd <sboyd@kernel.org> wrote:
 
-Applied both, thanks!
+> > This patch applies only after fixed-mmio-clock is converted to YAML by
+> >   dt-bindings: clk: fixed-mmio-clock: Convert to YAML
+> > 
+> > This is a RFC and does not contain actual driver change. I would like
+> > to hear your opinions.  
+> 
+> When it comes to masks and shifts in DT it's a NAK from me. I believe we
+> don't have a good way to understand what endianess the mask is. Is it
+> device order, or CPU order, or always big endian?
+
+Several DT bindings already have little-endian/big-endian properties,
+so this is solvable. Of course it is possible that such things are
+frowned upon and I am not aware.
+
+In this particular case though the register is part of the NB pinctrl
+registers and that node is also a syscon node. In fact for the driver
+I was considering to look at parent device whether it is a syscon node,
+and if so, access the register via regmap. Regmaps have endianity
+defined properly.
+
+> It's also trending toward the one node per clk style of binding that we
+> don't accept. I think this came up when the fixed-mmio binding was
+> proposed. I hoped that nobody would use it outside of FPGAs.
+
+I agree that one node per clk is not a good solution in most cases.
+
+Yes, it would be possible to abuse this binding by for example using it
+to define all peripheral clocks on 1 GHz variant of Armada 3720.
+
+This is not the intended usage. The intended usage is system reference
+clocks.
+
+For reference clocks there _really is_ one crystal chip soldered on the
+board. In this case I think one device node (per chip soldered on board)
+is not something insane...
+
+The reason why I did write this is that the current solution for A3720
+seems weird to me: we have armada-37xx-xtal driver, which just looks at
+one bit of one specific register registers fixed-rate clock with rate
+depending on the value of that bit. This just looked like something
+that should be generalized.
+
+Also it makes more sense to me to have the possible frequencies of
+reference clocks listed in the device tree instead of the driver, for
+devices which allow several possible values. But others may of course
+disagree...
+
+> > +      compatible = "marvell,armada-3700-xtal-clock", "fixed-mmio-clock";
+> > +      #clock-cells = <0>;
+> > +      reg = <0x8 0x4>;  
+> 
+> Because it has a reg property. Of course, a reg property that isn't
+> aligned to a 4k page or so would imply that the clk is actually part of
+> a larger hardware block that should have a binding for the whole device
+> instead of picking the clk part out of the hardware and setting a node
+> to be exactly the one register in there that is of interest.
+
+I actually was thinking about whether I should also add parent node in
+this example, because yes, in this case the register resides in
+north-bridge pinctrl device register space. I decided against it in the
+end, but I can do it in future version, if we decide that we want to do
+what I am proposing.
+
+Marek
