@@ -2,84 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF25E400622
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE1F400624
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348708AbhICTvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 15:51:40 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:33546 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239585AbhICTvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:51:39 -0400
-Received: by mail-ot1-f45.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso425302otu.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 12:50:39 -0700 (PDT)
+        id S233940AbhICTvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 15:51:55 -0400
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:39470 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230421AbhICTvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:51:54 -0400
+Received: by mail-oo1-f50.google.com with SMTP id t2-20020a4ae9a2000000b0028c7144f106so21858ood.6;
+        Fri, 03 Sep 2021 12:50:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CzoqrDzi77+fpWaE52x4dRN7j04FIxzbKfAchZse36o=;
-        b=JpGSeZEFQC9Lms3+LtQrP1ZubMj6vpm49SMRBIdPK++ppE/jl4v6OX5qF8Yf8Jzs02
-         exR5JYjgw98FBWIzEB4KvWhngWraBTDSUssd1eJEI1z8C1bZsunjoX9FT1NKgENVfpCO
-         jmDihF+tR9W94DJauC8QqmlCi0o4f3S5UGd2d0SKNsgLiDoLJkWhl62W9kiBLaLyTrhY
-         6KWWLVUeFuvB7sI4Cp4hrxpYGkxNnunwv0TDtDw2WLE2oFDQhsE7fo7aFBuh6eLAMiOP
-         kOLyP+XL8F72nhu4MCpHe0RsklZe6jnb4GOzDirYBuah0R/cacznGbp5sqaDhK+h9vdk
-         sDpg==
-X-Gm-Message-State: AOAM530ncADzKq/Kkf0PTEdT36nJi8nG689UuxEFmezUqIV/D0CzC2Vy
-        y6esAE8DcShZsd3mkhqodg==
-X-Google-Smtp-Source: ABdhPJzF9ALNY/8kKyIa3efKmiSZbqp3+bzqK3NLN66558plLD3mqQqQBBoIDc4Edcg8oZMhbkBlqg==
-X-Received: by 2002:a9d:1d0:: with SMTP id e74mr639665ote.41.1630698639057;
-        Fri, 03 Sep 2021 12:50:39 -0700 (PDT)
+        bh=EBFLmekutrmRxU3ByHJT7leszJzUX4EBGLPcs8sBao8=;
+        b=qev9j/cG8TnkADmAHitnlXkIlNGY/vBI4wvwpTDDksJyu0JYckCZb1WIw6bMH0FjCn
+         A48hVqfVGeZPO9+hqzauKux8dhaiMGTsQRk2ioeRYi05kexiiUybh21TuYHQuTv1kD2m
+         7LhdrnC8/q8rWG1rkaY4B2dmd3OUDRCr8gKvsl5FP6hmvXgNpCPJBMU+VAnvfpQSSyRw
+         Jpdblbd6QYBrNSiKgOfOPE9Q6i6Bo7TKgy+sO7Us+R1Q6Wyvd7NiFVpLEA5HJWdICROe
+         NQVDWxn8m0wSnPS5YvxaNqgVj/fVZbIwy1o4fjIDOrUWPB3oXBVN+mS8Tw77mVm/HIDw
+         dN4w==
+X-Gm-Message-State: AOAM531Rc4/BlKAZnWVNJ4bv2Xn0dFD3VKTy5aEePxfsKiTKvgDhN6BT
+        uF7CP4BAkRy3ByanRt3Uqw==
+X-Google-Smtp-Source: ABdhPJzQwSlUjPmt9nmt4wfcz2TqN3ODYwvOntLljzI2RULMGR+QOqgoSya/tElc/6kDUno7UeFpAg==
+X-Received: by 2002:a4a:a78a:: with SMTP id l10mr4374964oom.30.1630698654248;
+        Fri, 03 Sep 2021 12:50:54 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d10sm32856ooj.24.2021.09.03.12.50.38
+        by smtp.gmail.com with ESMTPSA id i1sm71822oiy.25.2021.09.03.12.50.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 12:50:38 -0700 (PDT)
-Received: (nullmailer pid 3346761 invoked by uid 1000);
-        Fri, 03 Sep 2021 19:50:37 -0000
-Date:   Fri, 3 Sep 2021 14:50:37 -0500
+        Fri, 03 Sep 2021 12:50:53 -0700 (PDT)
+Received: (nullmailer pid 3347203 invoked by uid 1000);
+        Fri, 03 Sep 2021 19:50:52 -0000
+Date:   Fri, 3 Sep 2021 14:50:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
-        Daniel Mack <zonque@gmail.com>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Evgeniy Polyakov <zbr@ioremap.net>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 38/52] dt-bindings: w1: Convert 1-Wire GPIO binding to
- a schema
-Message-ID: <YTJ8jdmmBM/q82QT@robh.at.kernel.org>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-39-maxime@cerno.tech>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     iommu@lists.linux-foundation.org, robh+dt@kernel.org,
+        joro@8bytes.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, will@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779a0
+ support
+Message-ID: <YTJ8nCgrnZ6bcz01@robh.at.kernel.org>
+References: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com>
+ <20210901102705.556093-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-39-maxime@cerno.tech>
+In-Reply-To: <20210901102705.556093-2-yoshihiro.shimoda.uh@renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 11:18:38 +0200, Maxime Ripard wrote:
-> Bitbanged 1-Wire buses are supported by Linux thanks to their device
-> tree binding.
+On Wed, 01 Sep 2021 19:27:04 +0900, Yoshihiro Shimoda wrote:
+> Add support for r8a779a0 (R-Car V3U).
 > 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
-> 
-> Cc: Daniel Mack <zonque@gmail.com>
-> Cc: Evgeniy Polyakov <zbr@ioremap.net>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
-> 
-> Changes from v1:
->   - Changed additionalproperties to make sure all the other items in the
->     schema are nodes
-> ---
->  .../devicetree/bindings/w1/w1-gpio.txt        | 27 ------------
->  .../devicetree/bindings/w1/w1-gpio.yaml       | 44 +++++++++++++++++++
->  2 files changed, 44 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/w1/w1-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/w1/w1-gpio.yaml
+>  Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
