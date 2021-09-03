@@ -2,143 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8FC3FFFB6
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 14:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B53AB3FFFE4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 14:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235314AbhICM1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 08:27:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38712 "EHLO
+        id S232392AbhICMjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 08:39:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbhICM1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 08:27:47 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E64CC061575;
-        Fri,  3 Sep 2021 05:26:47 -0700 (PDT)
-Received: from [IPv6:2a01:e0a:4cb:a870:921c:7ea9:49a9:5125] (unknown [IPv6:2a01:e0a:4cb:a870:921c:7ea9:49a9:5125])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 348751F449D7;
-        Fri,  3 Sep 2021 13:26:44 +0100 (BST)
-Subject: Re: [PATCH V2 00/13] soc: imx: gpcv2: support i.MX8MM
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, krzk@kernel.org,
-        agx@sigxcpu.org, Marek Vasut <marex@denx.de>,
-        andrew.smirnov@gmail.com, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ping.bai@nxp.com, frieder.schrempf@kontron.de, aford173@gmail.com,
-        abel.vesa@nxp.com, Peng Fan <peng.fan@nxp.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-References: <20210506010440.7016-1-peng.fan@oss.nxp.com>
- <CAAEAJfDfjkHF164x2qRnZg3e5JRN0pHjxyAq+d5+-3JFYwEEOQ@mail.gmail.com>
- <d19d35e8a90ece7124d06855b9f2b226b73c8f6e.camel@pengutronix.de>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <3558be1f-7c27-cad8-2802-cc2d27ee62eb@collabora.com>
-Date:   Fri, 3 Sep 2021 14:26:40 +0200
+        with ESMTP id S235291AbhICMjC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 08:39:02 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CFAC061575
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 05:38:02 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id u16so8035224wrn.5
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 05:38:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:subject:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OuZDvpS+EQVaSGwn969u13tka0CIVphMryeurQ0nmRQ=;
+        b=ONLnij8FQAAfgmL2Le+UlTO7y8rX6Xubj6BPdejsFlZhhMJe7qd52njrp6pv0ZUSxs
+         IbKd1eehLLCUC53Igvf3XXD4wIzPym2FhYF7US7eu2LYAchUsRKWvMpTtkrConX8oupa
+         g4eP5FUNqefshQbMy6v9zMz2qBoXA7D9MlouWu8M84YTUhrooNjU1U8/VSQ6ClWp+GXA
+         kButNldr72ZgR9I+6V6bDOEl6qCCJbA1Quabwuv61FUSRBP1uRZDTyBcGpKGOPA8SV7w
+         BBz1wd8QgFkTHlI39bCK2PR2sUw3W6kiQUN7i20PN52f2D3HZ4tv9ScIHtxfAZuKKxh5
+         r1dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OuZDvpS+EQVaSGwn969u13tka0CIVphMryeurQ0nmRQ=;
+        b=nTM8YP6Dg/Os7+pZgQbzbasfthVFJtONLs1cVcdoXMYIwlfhpzzNvjNTK4l60HSm62
+         HR/k6SZKIs5EijvECeD4eKHnbv+9Ohz8OBzMqcltuzRo9xTcmKL1VOImRgNvHBPnraXD
+         nZ8t9dT2ZwDpzApAl99VWBF4FsE0G9mZMxDycKuMCB68ogeGrqrAINuxuw7LJ3w3IDiO
+         LoImIhyarqMLkGvn5d54uo/g/DEnV1C4ZAWf6YsRnoMgFYAg5eG4YrN2cQFLVSy+5WKy
+         Io+14772P+jDM0J6O8kJAnUEH6zfvuSx0YKmLP3p6MNSx2I27yaJ9txHV32pXXMdoE8S
+         Te4Q==
+X-Gm-Message-State: AOAM533PSUSuW+RlEKw0e/m3Rza0Zx5/ERV/JyODEVx6arQ1p4DGSC+V
+        F3t3/WeqHYLgCSSRxfZdlNvnEA==
+X-Google-Smtp-Source: ABdhPJwWPPIedDTTn/4nWD8alSIBvjZcjCC8Smui9MD+vIC1h91M1C7f44OuHrdayKxuTH6YNFPofQ==
+X-Received: by 2002:a05:6000:1150:: with SMTP id d16mr3847211wrx.357.1630672681439;
+        Fri, 03 Sep 2021 05:38:01 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id k18sm4305879wmi.25.2021.09.03.05.38.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Sep 2021 05:38:00 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH V1 1/4] bindings: nvmem: introduce "reverse-data" property
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210810073510.18218-1-qiangqing.zhang@nxp.com>
+ <20210810073510.18218-2-qiangqing.zhang@nxp.com>
+ <6e3f6881-929d-1663-58f1-39bf35069175@linaro.org>
+ <YRwUyLsvoSpFI9X8@robh.at.kernel.org>
+ <DB8PR04MB67951E2312CFD69808B4502BE6FF9@DB8PR04MB6795.eurprd04.prod.outlook.com>
+Message-ID: <f572aca2-167a-be26-d89a-810c7023092f@linaro.org>
+Date:   Fri, 3 Sep 2021 13:37:59 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <d19d35e8a90ece7124d06855b9f2b226b73c8f6e.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <DB8PR04MB67951E2312CFD69808B4502BE6FF9@DB8PR04MB6795.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=gbk; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Joakim,
 
-Le 09/08/2021 Ã  10:15, Lucas Stach a Ã©critÂ :
-> Hi Ezequiel,
->
-> Am Mittwoch, dem 04.08.2021 um 11:30 -0300 schrieb Ezequiel Garcia:
->> Hi Peng, Lucas,
+On 18/08/2021 08:54, Joakim Zhang wrote:
+> 
+>> -----Original Message-----
+>> From: Rob Herring <robh@kernel.org>
+>> Sent: 2021Äê8ÔÂ18ÈÕ 3:58
+>> To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Cc: Joakim Zhang <qiangqing.zhang@nxp.com>; shawnguo@kernel.org;
+>> kernel@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH V1 1/4] bindings: nvmem: introduce "reverse-data"
+>> property
 >>
->> On Wed, 5 May 2021 at 21:32, Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->>> From: Peng Fan <peng.fan@nxp.com>
+>> On Wed, Aug 11, 2021 at 11:16:49AM +0100, Srinivas Kandagatla wrote:
 >>>
 >>>
->>> V2:
->>>   - Add R-b/A-b tag
->>>   - Merge V1 patch 13 to V2 patch 6
->>>   - Drop V1 patch 15
->>>   - Merge V1 patch 16 to V2 patch 5 and add comments in patch 5 to explain
->>>   details
->>>   - Add explaination in patch 8 for "why the resets are not defined"
+>>> On 10/08/2021 08:35, Joakim Zhang wrote:
+>>>> Introduce "reverse-data" property for nvmem provider to reverse buffer.
+>>>>
+>>>> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/nvmem/nvmem.yaml | 5 +++++
+>>>>    1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>>>> b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>>>> index b8dc3d2b6e92..bc745083fc64 100644
+>>>> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>>>> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>>>> @@ -61,6 +61,11 @@ patternProperties:
+>>>>                  description:
+>>>>                    Size in bit within the address range specified by reg.
+>>>> +      reverse-data:
+>>>> +        $ref: /schemas/types.yaml#/definitions/flag
+>>>> +        description:
+>>>> +          Reverse the data that read from the storage device.
+>>>> +
 >>>
->>> This patchset is a pick up Lucas's gpcv2 work for i.MX8MM and several
->>> minor changes from me to make it could work with i.MX BLK-CTL driver.
+>>> This new property is only going to solve one of the reverse order
+>>> issue here.
+>>> If I remember correctly we have mac-address stored in various formats ex:
+>>> from old thread I can see
 >>>
->>> Thanks for Lucas's work and suggestion, Frieder Schrempf for collecting
->>> all the patches, Jacky Bai on help debug issues.
+>>> Type 1: Octets in ASCII without delimiters. (Swapped/non-Swapped) Type
+>>> 2: Octets in ASCII with delimiters like (":", ",", ".", "-"... so on)
+>>> (Swapped/non-Swapped)
+>>> Type 3: Is the one which stores mac address in Type1/2 but this has to
+>>> be incremented to be used on other instances of eth.
+>>> Type 4: Octets as bytes/u8, swapped/non-swapped
 >>>
->>> Lucas Stach (12):
->>>    soc: imx: gpcv2: move to more ideomatic error handling in probe
->>>    soc: imx: gpcv2: move domain mapping to domain driver probe
->>>    soc: imx: gpcv2: switch to clk_bulk_* API
->>>    soc: imx: gpcv2: split power up and power down sequence control
->>>    soc: imx: gpcv2: wait for ADB400 handshake
->>>    soc: imx: gpcv2: add runtime PM support for power-domains
->>>    soc: imx: gpcv2: allow domains without power-sequence control
->>>    dt-bindings: imx: gpcv2: add support for optional resets
->>>    soc: imx: gpcv2: add support for optional resets
->>>    dt-bindings: power: add defines for i.MX8MM power domains
->>>    soc: imx: gpcv2: add support for i.MX8MM power domains
->>>    soc: imx: gpcv2: Add support for missing i.MX8MM VPU/DISPMIX power
->>>      domains
->>>
->> It's nice to see this finally moving forward!
+>>> I think its right time to consider adding compatibles to nvmem-cells
+>>> to be able to specify encoding information and handle post processing.
 >>
->> As you know, Hantro G2 support for i.MX8MQ (and i.MX8MP, i.MX8MM) is currently
->> blocked, as you have requested:
->>
->> https://lore.kernel.org/driverdev-devel/5aa5700b862234895a7a6eb251ca3c80fdc1a6d3.camel@collabora.com/
->>
->> So, I think we really need to include i.MX8MP and i.MX8MQ on this series.
->> It's been quite a while and we really need to have that. To be honest,
->> I fear that
->> if we merge this series as-is, MX8MP and MX8MP support will fall in
->> the oblivion,
->> and Hantro G2 VPU will remain unusable.
->>
->> We are planning to submit Hantro G2 VP9 support soon, and we've been testing
->> on various platforms, but it will also be blocked by lack of power-domains.
->>
->> In the future, please Cc the linux-media mailing list, as well as
->> Benjamin, Andrzej and myself, so we can follow this.
-> Please take a look at [1], which is the current state of this work. I
-> intend to add both i.MX8MQ and i.MX8MP support to the series now, as it
-> seems that there have been no big objections to my approach over the
-> last 2 weeks, where I was on vacation. ;)
+>> Yes. Trying to handle this with never ending new properties will end up with a
+>> mess. At some point, you just need code to parse the data.
+> 
+> Thanks, Rob.
+> 
+> Hi Srinivas,
+> 
+Firstly Sorry for taking so long to reply as I was on vacation.
 
-Hi Lucas,
+> Do you plan to implement it?
 
-I have tried to implement the block control driver for imx8mq.
-I didn't manage to get it working.
-My implementation is here:
-https://gitlab.collabora.com/benjamin.gaignard/for-upstream/-/tree/IMX8MQ_BLK_CTRL
+No, Am not planning to do this. But am happy to walk-thru the ideas that 
+I have.
 
-While you have the same in IMX8MM do you have also made changes in Hantro driver ?
-If it is that can you share these changes ? I have include mine in the above branch.
+> 
+> Or need me follow up? If yes, please input your insights to point me how to work for it.
 
-Regards,
-Benjamin
+Do we have some kind of meta data/information in nvmem memory to 
+indicate the storage encoding?
 
->
-> Regards,
-> Lucas
->
-> [1]
-> https://lore.kernel.org/linux-arm-kernel/20210716232916.3572966-14-l.stach@pengutronix.de/T/#m43cbf6b8615b2a37ff2abb0346e7e7f6594976d1
->
->
+Am I correct to say that this is only issue with mac-address nvmem cell?
+
+Irrespective of where this encoding info comes from we have 2 options.
+
+Option 1: Add callback to handle mac-address post-processing with in the 
+provider driver.
+
+Pros:
+- It can deal with vendor specific non-standard encodings, and code is 
+mostly with-in vendor specific nvmem provider driver and bindings.
+- will keep nvmem core simple w.r.t handling data.
+
+Cons:
+- provider driver implement callback and new bindings.
+- might need to add a nvmem-cell-type binding to be able differentiate 
+the cell types and handle post-processing.
+
+Option 2: nvmem core handles the post processing.
+
+Pros:
+- provider driver does not need to implement callbacks
+
+Cons:
+- We have to find a way to define vendor specific non-standard encoding 
+information in generic bindings which is going to be a challenge and 
+high chance of ending up in to much of clutter in generic bindings.
+
+Finally, The way I look at this is that once we start adding 
+post-processing in nvmem core then we might endup with code that will 
+not be really used for most of the usecases and might endup with cases 
+that might not be possible to handle in the core.
+
+
+Does Option 1 work for you?
+
+--srini
+
+> 
+> Thanks.
+> 
+> Best Regards,
+> Joakim Zhang
+>> Rob
