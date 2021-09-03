@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DD4F3FFBBA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 10:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A203FFBC3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 10:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348152AbhICISa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 04:18:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37818 "EHLO
+        id S1348192AbhICIUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 04:20:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348231AbhICIS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 04:18:28 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57398C061575;
-        Fri,  3 Sep 2021 01:17:29 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id k24so4830737pgh.8;
-        Fri, 03 Sep 2021 01:17:29 -0700 (PDT)
+        with ESMTP id S1348283AbhICIT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 04:19:59 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52325C061575;
+        Fri,  3 Sep 2021 01:18:51 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id j2so2871908pll.1;
+        Fri, 03 Sep 2021 01:18:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=zAeC81KUlAnRYRLFkJk3KLXL9sj5AZ7x5m11QJb5mho=;
-        b=n9PpkIC0IKaP59gxBQpmGUOJHg8z3DFqkYNEvh9rkNki2UuDdyKlYBjdrN7QlNYGjG
-         X+yifB0u26HelBa5jnANffOS4IXQmI5yrd0AEYgYTFOnVah+k/ekKsHPdtswzqFyu7od
-         4imWsIA36JvhNj+PB0hOTMZXJeZz3r5aHdoVWqWY3ct/lVPolYmaZRQa6lzQI0fXmB81
-         RWan4tguzbbnv1uQ4Wcv/sCIKRMC7kvsR0T7/vV8LGivLHXrCmYjlbAxTu5tBGJKDsCp
-         M2eHfXbdWlMVCEhQF3La5hNJ8uPvLrASOCofl8wdEnX48s+Wqos7q8kUAE2lw4vUazmK
-         6bCg==
+        bh=Phy4y+hK8VUG7m5ozeRhmhn2qn7hHWlVNnFuLnJTpjc=;
+        b=gn1LEqFm5OmaNC3OgzH7jznj34Dikd547FTlAL9TVFOAYlYNHJPfhekk0eQk2Znxs5
+         uocl0YFazDRkIFKdYErCaJjcR9vmP/H0TUon3uc+OsyKZCbuJBZHYRcIlwIkoXl2+THw
+         R8hfIrWbdRc5th9rjyA1lHcLWd/Sl6XlKt7ET3Z7ujJDROG6UA1RvQwAZWNITFmAxand
+         SIayzdGpAtmLJM+6KSnHENivuL7g1CPNhLugr+GoPRzmI03HNG4Y2KWT2o24vKq8UVgb
+         Hxdbtb7A4TAFGSLGWXEZKGPHPZTD/yfwV9ob+lru6nrVqra51xGzyRTfSQ7WeuWmu6ow
+         uSMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=zAeC81KUlAnRYRLFkJk3KLXL9sj5AZ7x5m11QJb5mho=;
-        b=n3aktb99bFExvSih2HCIHZgAk9x50ylqjGazruRQs+84ZA3qkVsMsm3JANNIjhU3f2
-         OprNZGBmYhWp2bjo1cmn9wK7XBGExHluubR+83vFp420c9bFAIFfHuOyaRsdRT8/qKph
-         BPbqajPxmLpAIX81bydmNoKI4whRptqun4hG3eCTfaWq/5VU4Nj6VmzWjfp9V/wrKhDz
-         o4D9uaii7wL44QSBvxfkQKq0alIgWiCMyZ3VggosRQT/Ka1UBDtTBG5x1XpDybztd+6P
-         8gkfV9Q1gIZDBSnuOjuxCWh81WUm8lriE56cxQIXKG8rFuy9jRBBm4Xo/AQ1or1Od2JT
-         32Kw==
-X-Gm-Message-State: AOAM53187piRzMFJWezvPugAsEQknWgPFIsLskFeQUqOpo0MHsBTaEKl
-        au3QmjXmRUmcj6TwN+Ajq1fPxDs1isntmV5gIxfvjjRHbe4XuA==
-X-Google-Smtp-Source: ABdhPJzvwTggkNf9YhTyZ3ARwr277fUCscEsy54Q9WJxOIhW0MYZUQq9mzsnRCZIiHeVo8SGR5ZdC9hzT1FtVwpHyiA=
-X-Received: by 2002:a65:5a81:: with SMTP id c1mr2578227pgt.74.1630657048948;
- Fri, 03 Sep 2021 01:17:28 -0700 (PDT)
+        bh=Phy4y+hK8VUG7m5ozeRhmhn2qn7hHWlVNnFuLnJTpjc=;
+        b=pvp9obvfTcpciCH1U9KjiUB+dUhpY4PzpteIc7sYjUna9Yd+GJL/QMcG1oOdbea9WC
+         4LsJMtCWBRKR7IQA63txU8NRMCOlpErFAuuw4jPSrDGhl+8vul8ffhxEjmljWKMXCly4
+         bKbjn+a/BpqAe+MowJ8jBkqjQllCfwugIhTP5pOUP2IA6eQaifOfwWjcx+dpaXy/8vXG
+         nlriLaBqqTgwDrEhuics7thjZd6QjT6xAV/WwCP3euCgHGYOyPy5W2Uk68DN1IXtAuFf
+         1a6uyLYLKD+Mcici0Dkv7lO/EdGp4+/NlOHBvbPFFwVIsmx+MJTCsIlu4nGaVLwQrC9d
+         LUpA==
+X-Gm-Message-State: AOAM5324MMtbLWv0da7PAHQChaBV9EUtH7OidoRMmy4aHfim3WkGO5Qs
+        d4VnowTJNaxdwsjlUp2EyREGYN2rxajGV07jp1c=
+X-Google-Smtp-Source: ABdhPJzjcz+T/rpM2xV4DX89iiUWYDC/IW9iTMT4R5z5HfU9u+eFFYZ/UnNTm5DTP0q6HUPwup3yQ4pjf3XiPYLlZwk=
+X-Received: by 2002:a17:90a:6502:: with SMTP id i2mr8685279pjj.129.1630657130779;
+ Fri, 03 Sep 2021 01:18:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1630632805.git.atafalla@dnyon.com>
-In-Reply-To: <cover.1630632805.git.atafalla@dnyon.com>
+References: <cover.1630632805.git.atafalla@dnyon.com> <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
+In-Reply-To: <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 3 Sep 2021 11:16:52 +0300
-Message-ID: <CAHp75VdOw7fS055q9eccm9dP9nuAK8rcLXf4vuzA=-UnbqoUfQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] Add reset-gpios handling for max98927
+Date:   Fri, 3 Sep 2021 11:18:14 +0300
+Message-ID: <CAHp75VeD8sbxcu==BF97yY4ZGtLbNAQSiTxq2cDvBSdCpXxsyw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] ASoC: max98927: Handle reset gpio when probing i2c
 To:     Alejandro <atafalla@dnyon.com>
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -66,32 +66,22 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, Sep 3, 2021 at 4:51 AM Alejandro <atafalla@dnyon.com> wrote:
 >
-> The max98927 codec on some devices (i.e. Xiaomi Mi A2 Lite phone) require
-
-requires
-
-> hardware-resetting the codec by driving a reset-gpio. This series add
-
-adds
-
-> support for it through an optional reset-gpios property.
-
-Where is the  changelog?
-
+> From: Alejandro Tafalla <atafalla@dnyon.com>
 >
-> Alejandro Tafalla (2):
->   ASoC: max98927: Handle reset gpio when probing i2c
->   dt-bindings: sound: max98927: Add reset-gpios optional property
->
->  .../devicetree/bindings/sound/max9892x.txt         |  3 +++
->  sound/soc/codecs/max98927.c                        | 14 ++++++++++++++
->  2 files changed, 17 insertions(+)
->
-> --
-> 2.33.0
->
+> Drive the reset gpio if defined in the DTS node.
 
+...
 
--- 
+> +       reset_gpio
+> +               = devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
+> +       if (IS_ERR(reset_gpio)) {
+> +               ret = PTR_ERR(reset_gpio);
+> +               return dev_err_probe(&i2c->dev, ret, "failed to request GPIO reset pin");
+
+Not sure why my comments have been ignored here.
+
+> +       }
+
+--
 With Best Regards,
 Andy Shevchenko
