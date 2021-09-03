@@ -2,210 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13307400428
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507B640042A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:30:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350297AbhICRaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 13:30:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350394AbhICRaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 13:30:10 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3EEC0613C1;
-        Fri,  3 Sep 2021 10:29:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Pv/OTFLCcCgh6NL0IiQ8EwNC5MSYN96U9rUEB9jsZqY=; b=lwWcwqiANiS6SjADGzKtg6U3IY
-        paU30S6vpMYqkoidBfkMw4YTmgP9rm+FKwywQt9CNDkK3uqnioE5m3hjiFLLOzZ7ceQ70e/3JcK4S
-        fTqFHGRC8jsMLDmo93wntLUmgl6DJ/dLSrheKm3k5wLfd93GVQ1xN37v5KP/DidUX7F0ZhK/+jS8U
-        ADtIfgFNpOeCLAdZAqYo9aGRNgkw9WfqJGwZchdmAIF7gfZisIDztd/xBDkZ6kd3G+k5BHtbXV47u
-        wAlW1xDp8mQsM7UPyG8lCGVfshnFyDQ2Ipi3NhC/UwU74yXaJxWVrLJo86eAv2GMzjy1UOTdX8dSk
-        dwIGjO6Q==;
-Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1mMCzs-00071A-J6; Fri, 03 Sep 2021 20:29:00 +0300
-Subject: Re: [PATCH v4 1/3] dt-bindings: Add YAML bindings for NVDEC
-To:     Rob Herring <robh@kernel.org>,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
-        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210903083155.690022-1-mperttunen@nvidia.com>
- <20210903083155.690022-2-mperttunen@nvidia.com>
- <YTJOg1oHJq848ZlE@robh.at.kernel.org>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-Message-ID: <36d5b388-0d7f-c500-89b1-c4526849fb56@kapsi.fi>
-Date:   Fri, 3 Sep 2021 20:28:59 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S1350026AbhICRbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 13:31:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42058 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1350214AbhICRbC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 13:31:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ADB6061100;
+        Fri,  3 Sep 2021 17:30:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630690202;
+        bh=ILOKCVEg/GU2ma2vAM0rasggdXVr/bBb2evSi/xMUA8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=q60iLjlbUQx1P80P2nECV2eZ/FBcP00+l9l/RSIdpiM7bmGY7OjOJc1KcK7buv3nw
+         aC5EimUOv5fE5hx2VAyD5uxSVjYDSvzrAdi5nx4nfhGM4xiCKdhaJrPIsff8hPDnHG
+         ytM+cdgciop3d/X3FZeCnUqb1VMKh97uxcl3+jXuzBsdv6L6UUGpTqx6AULl6dkGpD
+         blavFlD7tF3PS3mIsuVIx6oFRmcggexhTwn6sborXFPtVFt5CWUN2JhW4mNEDYRVj+
+         ENOrOi3ROzxpdrNGIh0DlOAVXTeoo44kOc1qTShAvoPQrxk04ZDt0RFSMAi9xeTCb2
+         488BpNwirqeRg==
+Date:   Fri, 3 Sep 2021 18:29:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, robh@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        lgirdwood@gmail.com
+Subject: Re: [PATCH v5 14/21] ASoC: qdsp6: audioreach: add basic pkt alloc
+ support
+Message-ID: <20210903172927.GN4932@sirena.org.uk>
+References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
+ <20210903112032.25834-15-srinivas.kandagatla@linaro.org>
+ <ddb4f36b-8a43-d1e9-0429-78d8eefc9474@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YTJOg1oHJq848ZlE@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 84.249.134.236
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="GEn4szYucjS2InE7"
+Content-Disposition: inline
+In-Reply-To: <ddb4f36b-8a43-d1e9-0429-78d8eefc9474@linux.intel.com>
+X-Cookie: Darth Vader sleeps with a Teddywookie.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/3/21 7:34 PM, Rob Herring wrote:
-> On Fri, Sep 03, 2021 at 11:31:53AM +0300, Mikko Perttunen wrote:
->> Add YAML device tree bindings for NVDEC, now in a more appropriate
->> place compared to the old textual Host1x bindings.
->>
->> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->> ---
->> v4:
->> * Fix incorrect compatibility string in 'if' condition
->> v3:
->> * Drop host1x bindings
->> * Change read2 to read-1 in interconnect names
->> v2:
->> * Fix issues pointed out in v1
->> * Add T194 nvidia,instance property
->> ---
->>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++++++++++++++++
->>   MAINTAINERS                                   |   1 +
->>   2 files changed, 110 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->> new file mode 100644
->> index 000000000000..33d01c7dc759
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
->> @@ -0,0 +1,109 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Device tree binding for NVIDIA Tegra NVDEC
->> +
->> +description: |
->> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
->> +  and newer chips. It is located on the Host1x bus and typically
->> +  programmed through Host1x channels.
->> +
->> +maintainers:
->> +  - Thierry Reding <treding@gmail.com>
->> +  - Mikko Perttunen <mperttunen@nvidia.com>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^nvdec@[0-9a-f]*$"
->> +
->> +  compatible:
->> +    enum:
->> +      - nvidia,tegra210-nvdec
->> +      - nvidia,tegra186-nvdec
->> +      - nvidia,tegra194-nvdec
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: nvdec
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    items:
->> +      - const: nvdec
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  interconnects:
->> +    items:
->> +      - description: DMA read memory client
->> +      - description: DMA read 2 memory client
->> +      - description: DMA write memory client
->> +
->> +  interconnect-names:
->> +    items:
->> +      - const: dma-mem
->> +      - const: read-1
->> +      - const: write
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - power-domains
->> +
->> +if:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        const: nvidia,tegra194-nvdec
->> +then:
->> +  properties:
->> +    nvidia,instance:
->> +      items:
->> +        - description: 0 for NVDEC0, or 1 for NVDEC1
-> 
-> I still don't understand what this is needed for. What is the difference
-> between the instances? There must be some reason you care. We should
-> describe that difference, not some made up index.
-> 
-> I'm not suggesting using the base address either. That's fragile too.
 
-This device is on the Host1x bus. On that bus, each device has an 
-identifier baked into hardware called 'class' that is used when 
-accessing devices through some mechanisms (host1x channels). As such, 
-when probing the device we need to specify the class of the device to 
-the host1x driver so it knows how to talk to it. Those class numbers are 
-fixed so we have hardcoded them in the driver, but now that we have two 
-NVDECs, we need to distinguish between them so that we can specify the 
-correct class for each instance to the host1x driver.
+--GEn4szYucjS2InE7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
->> +
->> +additionalProperties: true
-> 
-> 'true' here is not allowed unless the schema is not complete and
-> intended to be included in a complete schema or unconditionally applied
-> (i.e. 'select: true'). This case is neither. As pointed out previously,
-> 'unevaluatedProperties' is what you'd want here.
-> 
-> However, I looked into supporting defining properties in if/then/else
-> schemas as you have done and I don't think we will support that soon.
-> It's problematic because we can't validate the schema under the if/then
-> completely. The reason is properties under if/then schemas don't have to
-> be complete as we expect a top level definition that is complete (e.g.
-> vendor properties must have 'description'). To solve this, we'd have to
-> only apply meta-schema checks if the property doesn't appear at the top
-> level. That's more complicated than I care to implement ATM.
+On Fri, Sep 03, 2021 at 09:23:32AM -0500, Pierre-Louis Bossart wrote:
 
-I see two paths here: either keep 'additionalProperties: true' or remove 
-it and have this binding trigger validation failures. Which one do you 
-suggest or is there some third option?
+> > +struct apm_sub_graph_params  {
+> > +	struct apm_module_param_data param_data;
+> > +	uint32_t num_sub_graphs;
+> > +	struct apm_sub_graph_data sg_cfg[0];
 
-Thanks,
-Mikko
+> I thought the use of zero-length arrays [0] was deprecated in favor of
+> flexible arrays []?
 
-> 
-> Rob
-> 
+Yes.
+
+--GEn4szYucjS2InE7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEyW3YACgkQJNaLcl1U
+h9Adogf8CCIbwxTLYgzK5uMCVZ7zopHEWKyCmaLinXyxUYs4/ulpK5Hzzq4UlzN2
+pBfynj4lv4+V7x5XzxmL+ZOCdR0YTcODcfOo/dwz1mUn3CFNA9lIAO+PRMQnpFDE
+5OX0OCi5u5ADj+cAetKrQymg8X50EW6SvUGLPvsXE8t+IgiTEUZZKUAyAO/q1ogs
+lB+w1+hhY8ecX8s9rSC3SEWf6DZvVNymqqJhA/H8U/jgeHNekQk1g3dnkaTeK3Ar
+MS80AqbS1roc+3+2Z/XNL0rgo6Wvr85Gk/96LEC8FEiJmjHy5ty9yHytZBBNQusj
+vX39jAJAgEZN71YY1UxDVpYJRfFSmQ==
+=IfNE
+-----END PGP SIGNATURE-----
+
+--GEn4szYucjS2InE7--
