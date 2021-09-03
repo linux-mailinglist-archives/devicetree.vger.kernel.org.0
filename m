@@ -2,132 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DD4400285
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 17:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE294002A2
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 17:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349618AbhICPrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 11:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56410 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349617AbhICPrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 11:47:48 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE6CC061760
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 08:46:48 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id d5so3907426pjx.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 08:46:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Sqqe0m+lG2gnGk/qc8Vy/PEugdCzsPQEHtnGYob2kwI=;
-        b=jYQUzs5eoeHViiY6eSMLM1li3JAQtUU6Xmmw+m08JVIAA7TL9OzMz8lvQ3dTh20YRP
-         L8FTyBupdXpXkOPVReMJ3O1NZleiGPOQRCppqNMScGzem3X4AiCukawmV8fbpWfBYWRp
-         zx5USfjXXlZvPqTFnYbNjyKhgM6GMiEMStuv8=
+        id S1349658AbhICPxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 11:53:03 -0400
+Received: from mail-oo1-f53.google.com ([209.85.161.53]:46990 "EHLO
+        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235632AbhICPxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 11:53:03 -0400
+Received: by mail-oo1-f53.google.com with SMTP id z1-20020a4a2241000000b0028e8dfb83b4so1630275ooe.13;
+        Fri, 03 Sep 2021 08:52:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Sqqe0m+lG2gnGk/qc8Vy/PEugdCzsPQEHtnGYob2kwI=;
-        b=Mwtc5aM5eV6KC6KJuKSgqe+djk7BAWLmHKg9N8gjjiZVDgkC9JKWk52JQ//rju0Ku+
-         qYK4TaF3nICxfaAbVBglNKeRMswBHDcduYe8K2EJRXHWXSQs/WjCNPn6Cyof0ua8KSWx
-         WhDHYewfZzBu9r/YO7AZgU4yKOzWLNxql7AG3kjABuq5WVDPV75wU45FT7McEGtc5/25
-         VyDs3lH9xWjZkL9m8e3KgRE2YOXUmQbZGWAk2oeFb24NIWhFqHZ+hBlIaTBRKdUuTrtv
-         4LKs3IEZwZIMd0lpWJbelN/l8JQfna9TgVKixU/4Fy+2dueiddmEFnFjrcgmcfn8wM9z
-         BN8A==
-X-Gm-Message-State: AOAM533xfLt1P9zSOs7DFZUwt6ao9BiyA3GvOP+S4wUFQjOLuK7MIiWl
-        JCYW7d8uvNZfdEgmCqdHnqVcPw==
-X-Google-Smtp-Source: ABdhPJxvbyEuZMwtiZCbKL6+/BSvy2w0L8i7C/gN4t5Bif7KwFFgeSD5LQo+OhnWncNrBDJM4gQxEw==
-X-Received: by 2002:a17:90a:dc03:: with SMTP id i3mr10283922pjv.163.1630684008001;
-        Fri, 03 Sep 2021 08:46:48 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:80b3:9f00:3170:fd8b])
-        by smtp.gmail.com with UTF8SMTPSA id d4sm5537757pfv.21.2021.09.03.08.46.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Sep 2021 08:46:47 -0700 (PDT)
-Date:   Fri, 3 Sep 2021 08:46:45 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     rajpat@codeaurora.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, swboyd@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org
-Subject: Re: [PATCH V5 1/7] arm64: dts: sc7280: Add QSPI node
-Message-ID: <YTJDZRw1D444JCNt@google.com>
-References: <1628754078-29779-1-git-send-email-rajpat@codeaurora.org>
- <1628754078-29779-2-git-send-email-rajpat@codeaurora.org>
- <YRUdccjvf+ivbqor@google.com>
- <d271d1dafe56cbb58d35a63ec6944b14@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVNFfi09M86JT10bziJ/Y2VXfaqfqBBOkyrez5O9qP0=;
+        b=UQjzBDOxQzB8cHcdtIDH7m/zjyCfeiJ8fkBV/yWRyNizq3sH0eOyHwPo7rwii5q67S
+         8PvhAC7gvwk2p8c22O02DHCwgsfdrRnC/xG07m/ILnXOw34OgfnRVLny5hySJCx8BG13
+         thw4tcyIKlTHYjpLtHpROjTLp15igbkhBvP8OK292JRlJWlNPWFWRu/Mr4wkYyIRpP+S
+         DuOgkIl1EmC8WJRw/Ak4Oo7axNXpXIoNod21t9FMcQTvlmgNrwi99j8ExUx1UXdi6CNF
+         zUL/2CRWqr+9i/7Es+FkP8GqEDHz0t3psuIy76s+DWXKa6zO7FNatyg1JqhA/6pkac+I
+         TEDQ==
+X-Gm-Message-State: AOAM532seHlaSxzOS6ghaeQOVDgiivMR6S4+dKwJB72sDZyBIG0OR+Yl
+        M9ejmCVmu/yzHJEW5uOtF6hB7ClnVg==
+X-Google-Smtp-Source: ABdhPJxcvlH+serFrOMN+1im9jrwrFaOlEPVYa9rWqoDua+9mdAm1Le4cY9xy6dYpTU8oTbI2QEzBA==
+X-Received: by 2002:a4a:1506:: with SMTP id 6mr3518815oon.93.1630684322565;
+        Fri, 03 Sep 2021 08:52:02 -0700 (PDT)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id b25sm1078381ooq.6.2021.09.03.08.52.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Sep 2021 08:52:01 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Tom Rini <trini@konsulko.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        linux-kbuild@vger.kernel.org
+Subject: [PATCH] kbuild: Enable DT schema checks for %.dtb targets
+Date:   Fri,  3 Sep 2021 10:52:01 -0500
+Message-Id: <20210903155201.3004567-1-robh@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <d271d1dafe56cbb58d35a63ec6944b14@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 26, 2021 at 06:29:41PM +0530, rajpat@codeaurora.org wrote:
-> On 2021-08-12 18:39, Matthias Kaehlcke wrote:
-> > On Thu, Aug 12, 2021 at 01:11:12PM +0530, Rajesh Patil wrote:
-> > > From: Roja Rani Yarubandi <rojay@codeaurora.org>
-> > > 
-> > > Add QSPI DT node and qspi_opp_table for SC7280 SoC.
-> > > 
-> > > Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> > > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 62
-> > > ++++++++++++++++++++++++++++++++++++
-> > >  1 file changed, 62 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index 53a21d0..f8dd5ff 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -415,6 +415,25 @@
-> > >  		method = "smc";
-> > >  	};
-> > > 
-> > > +	qspi_opp_table: qspi-opp-table {
-> > > +		compatible = "operating-points-v2";
-> > > +
-> > > +		opp-75000000 {
-> > > +			opp-hz = /bits/ 64 <75000000>;
-> > > +			required-opps = <&rpmhpd_opp_low_svs>;
-> > > +		};
-> > > +
-> > > +		opp-150000000 {
-> > > +			opp-hz = /bits/ 64 <150000000>;
-> > > +			required-opps = <&rpmhpd_opp_svs>;
-> > > +		};
-> > > +
-> > > +		opp-300000000 {
-> > > +			opp-hz = /bits/ 64 <300000000>;
-> > > +			required-opps = <&rpmhpd_opp_nom>;
-> > > +		};
-> > > +	};
-> > > +
-> > 
-> > From v3:
-> > 
-> > roja> Can we move this "qspi_opp_table" to / from /soc?
-> > 
-> > bjorn> If you have made a proper attempt to convince Rob and Mark that
-> > bjorn> a child "opp-table" in a SPI master is not a SPI device - and the
-> > bjorn> conclusion is that this is not a good idea...then yes it should
-> > live
-> > bjorn> outside /soc.
-> > 
-> > I didn't see a follow up on this, was such an attempt made? Is there a
-> > link to the discussion?
-> 
-> For now I am keeping qspi_opp_table  and qup_opp_table outside the SoC and
-> posting V6.
-> I will continue the discussion with DT folks and once concluded I will
-> update as required.
+It is possible to build a single dtb, but not with DT schema validation
+enabled. Enable the schema validation to run for %.dtb targets. Anyone
+building a dtb for a specific platform *should* pay attention to schema
+warnings.
 
-Do you have a link to that discussion so that people can follow along or
-chime in?
+This could be supported with a separate %.dt.yaml target instead.
+However, the .dt.yaml format is considered an intermediate format and
+could possibly go away at some point if schema checking is integrated
+into dtc. Also, the plan is to enable the schema checks by default once
+platforms are free of warnings, and this is a move in that direction.
+
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Tom Rini <trini@konsulko.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Cc: linux-kbuild@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Makefile | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index ec9e8a0fe298..01b888cfe1dc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1399,8 +1399,8 @@ endif
+ 
+ ifneq ($(dtstree),)
+ 
+-%.dtb: include/config/kernel.release scripts_dtc
+-	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
++%.dtb: dt_binding_check include/config/kernel.release scripts_dtc
++	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@ $(dtstree)/$*.dt.yaml
+ 
+ %.dtbo: include/config/kernel.release scripts_dtc
+ 	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+@@ -1409,7 +1409,7 @@ PHONY += dtbs dtbs_install dtbs_check
+ dtbs: include/config/kernel.release scripts_dtc
+ 	$(Q)$(MAKE) $(build)=$(dtstree)
+ 
+-ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
++ifneq ($(filter dtbs_check %.dtb, $(MAKECMDGOALS)),)
+ export CHECK_DTBS=y
+ dtbs: dt_binding_check
+ endif
+-- 
+2.30.2
+
