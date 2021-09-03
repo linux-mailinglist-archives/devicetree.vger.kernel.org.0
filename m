@@ -2,51 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 818D23FF902
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 05:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DCF3FF936
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 06:02:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234205AbhICDJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 23:09:23 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:46274 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230499AbhICDJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 23:09:22 -0400
-X-UUID: bd5b64a7326e450b843e6845123182e6-20210903
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=I7eErvKCjKSoZMUT8uEkUsYqIR3doV0E2tnrfW34Oyc=;
-        b=t1/A0CMwFK6DR/affEE0ye5ClSnjIKHGU3OBDCvCPOyO6Od+E/xqbUNw/ziy6jRhv6U3JgQdb6P3rlYIqukW4kA2N3h101qXVVMfKpmIbk+LHu9cZJdrA4nBgIjLrZ5XPD4s0ZJzd5KdzZMwvE0+EcR13iNfDv0IZ8eCkAtNAB4=;
-X-UUID: bd5b64a7326e450b843e6845123182e6-20210903
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1779183396; Fri, 03 Sep 2021 11:08:18 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 3 Sep 2021 11:08:17 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 3 Sep 2021 11:08:15 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 3 Sep 2021 11:08:14 +0800
-Message-ID: <3b9463e88d88ce85205da08f8263252da7726ade.camel@mediatek.com>
-Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
- hardware decode
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-CC:     Alexandre Courbot <acourbot@chromium.org>,
+        id S229481AbhICEDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 00:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231758AbhICEDo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 00:03:44 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D2CEC061760
+        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 21:02:44 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id i28so7502741ljm.7
+        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 21:02:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hsqolKVO4nOJoFFGBqwd8L+i7kJ81PMtNw0t/34Bbxc=;
+        b=a+IMKpSwOaBkBCR2jhE3eDJFkMxdZGfrTPA91s5BiAXKK1vbq/JCB59IkKv6KCUtql
+         f9BVn1U4h9ANDqU8CgHzLZporyLsDXCdf9/2C09SchnyqGNjRUj1gU+lBRQT2AnAqztU
+         9rW80S9PDgEp8TtrnhFEFze2kWMWQAwV71cl4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hsqolKVO4nOJoFFGBqwd8L+i7kJ81PMtNw0t/34Bbxc=;
+        b=dcvMT/9Pb46Yn4u5A2a08mxAt5ief/PqWy+GqDRbNKbVGcPPVJtpAlEkLO0QahZNhP
+         sART5zAO7yDvfbJPtuObs7R2OzPHI4n+/9WC/3qFk5MphkGLc3vhwHvG6GlWRiBIHKvJ
+         4kOGuJa3Cw/E1f6cRNk7WYOgHBIqCp8IhVp/OTo88Kg9qFFOwknUW2jP4CH8GE4aFi4E
+         vH4JF0Kpp1rei52IcCCBkda3Jg0YrC2SQAuBWEuIxxkQ0OZYaEBozK4v7r3dxnujwuzc
+         jphQQDkJdZDtoVay9Sza+zNJiq9IL4HIfJX3eLv9S8bkzYLSOEd8T5wGKbgslxBMFGS+
+         a4hg==
+X-Gm-Message-State: AOAM531Cd+L4YYAnlqa4mpAvuU7vJCSwcsCgR1kXGBqp4MGCUfknD+b/
+        Zu69YBuPCTfXZkL9QuDr7ilsYdnR9Y2ni8UvkwumKQ==
+X-Google-Smtp-Source: ABdhPJxar47W9Hxbv7flNSitG5YspCZFWGxl4kNdEZYVIQGwUadVu8hYMZ5WnWzdLG9zy7rzurwuo3xhXN7yB8eeMJg=
+X-Received: by 2002:a2e:7d0e:: with SMTP id y14mr1247904ljc.251.1630641762596;
+ Thu, 02 Sep 2021 21:02:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210811025801.21597-1-yunfei.dong@mediatek.com>
+ <20210811025801.21597-14-yunfei.dong@mediatek.com> <YRQQBL8AN0925zj9@pendragon.ideasonboard.com>
+ <952c219de7595f7f814d3006fbe25b8089a35212.camel@mediatek.com>
+ <CAAEAJfB_qZtVpxk8P=26GkZ1j66v+RzzJTqf3UrfMkWNJ1fmFg@mail.gmail.com>
+ <fb85e6287a0d269593fa72d745dc2c573bcfe7bc.camel@mediatek.com>
+ <CAAEAJfBAnvc4cL98aaQgAg1xKSZ3ciCVjbg34raGMOOskDSogg@mail.gmail.com> <9c3f871b3b58b8456e40c43fe402a7a4acb66660.camel@mediatek.com>
+In-Reply-To: <9c3f871b3b58b8456e40c43fe402a7a4acb66660.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 3 Sep 2021 12:02:31 +0800
+Message-ID: <CAGXv+5G=qJoXqt1vSurV9CTjwfbZOHvjE9fy2FVjPjkw_uWE+Q@mail.gmail.com>
+Subject: Re: [PATCH v5, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for mt8192
+To:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
         Hans Verkuil <hverkuil-cisco@xs4all.nl>,
         Tzung-Bi Shih <tzungbi@chromium.org>,
-        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
         Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
         Hsin-Yi Wang <hsinyi@chromium.org>,
         Fritz Koenig <frkoenig@chromium.org>,
         Irui Wang <irui.wang@mediatek.com>,
@@ -58,92 +76,386 @@ CC:     Alexandre Courbot <acourbot@chromium.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
         Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 3 Sep 2021 11:08:13 +0800
-In-Reply-To: <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
-         <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        George Sun <george.sun@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRXplcXVpZWwsDQoNClRoYW5rcyBmb3IgeW91ciBzdWdnZXN0aW9uLg0KT24gVGh1LCAyMDIx
-LTA5LTAyIGF0IDEzOjMwIC0wMzAwLCBFemVxdWllbCBHYXJjaWEgd3JvdGU6DQo+IE9uIFdlZCwg
-MSBTZXB0IDIwMjEgYXQgMDU6MzIsIFl1bmZlaSBEb25nIDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5j
-b20+DQo+IHdyb3RlOg0KPiA+IA0KPiA+IFRoaXMgc2VyaWVzIGFkZHMgc3VwcG9ydCBmb3IgbXVs
-dGkgaGFyZHdhcmUgZGVjb2RlIGludG8gbXRrLXZjb2RlYywgDQo+ID4gYnkgZmlyc3QNCj4gPiBh
-ZGRpbmcgY29tcG9uZW50IGZyYW1ld29yayB0byBtYW5hZ2UgZWFjaCBoYXJkd2FyZSBpbmZvcm1h
-dGlvbjoNCj4gPiBpbnRlcnJ1cHQsDQo+ID4gY2xvY2ssIHJlZ2lzdGVyIGJhc2VzIGFuZCBwb3dl
-ci4gU2Vjb25kbHkgYWRkIGNvcmUgdGhyZWFkIHRvIGRlYWwNCj4gPiB3aXRoIGNvcmUNCj4gPiBo
-YXJkd2FyZSBtZXNzYWdlLCBhdCB0aGUgc2FtZSB0aW1lLCBhZGQgbXNnIHF1ZXVlIGZvciBkaWZm
-ZXJlbnQNCj4gPiBoYXJkd2FyZQ0KPiA+IHNoYXJlIG1lc3NhZ2VzLiBMYXN0bHksIHRoZSBhcmNo
-aXRlY3R1cmUgb2YgZGlmZmVyZW50IHNwZWNzIGFyZSBub3QNCj4gPiB0aGUgc2FtZSwNCj4gPiB1
-c2luZyBzcGVjcyB0eXBlIHRvIHNlcGFyYXRlIHRoZW0uDQo+ID4gDQo+ID4gVGhpcyBzZXJpZXMg
-aGFzIGJlZW4gdGVzdGVkIHdpdGggYm90aCBNVDgxODMgYW5kIE1UODE3My4gRGVjb2RpbmcNCj4g
-PiB3YXMgd29ya2luZw0KPiA+IGZvciBib3RoIGNoaXBzLg0KPiA+IA0KPiA+IFBhdGNoZXMgMX4z
-IHJld3JpdGUgZ2V0IHJlZ2lzdGVyIGJhc2VzIGFuZCBwb3dlciBvbi9vZmYgaW50ZXJmYWNlLg0K
-PiA+IA0KPiA+IFBhdGNoIDQgYWRkIGNvbXBvbmVudCBmcmFtZXdvcmsgdG8gc3VwcG9ydCBtdWx0
-aSBoYXJkd2FyZS4NCj4gPiANCj4gPiBQYXRjaCA1IHNlcGFyYXRlIHZpZGVvIGVuY29kZXIgYW5k
-IGRlY29kZXIgZG9jdW1lbnQNCj4gPiANCj4gPiBQYXRjaGVzIDYtMTUgYWRkIGludGVyZmFjZXMg
-dG8gc3VwcG9ydCBjb3JlIGhhcmR3YXJlLg0KPiA+IC0tLS0NCj4gPiBUaGlzIHBhdGNoIGRlcGVu
-ZGVudHMgb24gOiAibWVkaWE6IG10ay12Y29kZWM6IHN1cHBvcnQgZm9yIE1UODE4Mw0KPiA+IGRl
-Y29kZXIiWzFdIGFuZA0KPiA+ICJNZWRpYXRlayBNVDgxOTIgY2xvY2sgc3VwcG9ydCJbMl0uDQo+
-ID4gDQo+ID4gMTogTXVsdGkgaGFyZHdhcmUgZGVjb2RlIGlzIGJhc2VkIG9uIHN0YXRlbGVzcyBk
-ZWNvZGVyLCBNVDgxODMgaXMNCj4gPiB0aGUgZmlyc3QgdGltZQ0KPiA+IHRvIGFkZCBzdGF0ZWxl
-c3MgZGVjb2Rlci4gT3RoZXJ3aXNlIGl0IHdpbGwgY2F1c2UgY29uZmxpY3QuIFRoaXMNCj4gPiBw
-YXRjaCB3aWxsIGJlDQo+ID4gYWNjZXB0ZWQgaW4gNS4xNVsxXS4NCj4gPiANCj4gPiAyOiBUaGUg
-ZGVmaW5pdGlvbiBvZiBkZWNvZGVyIGNsb2NrcyBhcmUgaW4gbXQ4MTkyLWNsay5oLCB0aGlzIHBh
-dGNoDQo+ID4gYWxyZWFkeSBpbiBjbGsgdHJlZVsyXS4NCj4gPiANCj4gPiBbMV0NCj4gPiBodHRw
-czovL3BhdGNod29yay5saW51eHR2Lm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhL2xpc3QvP3Nlcmll
-cz01ODI2DQo+ID4gWzJdDQo+ID4gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4
-L2tlcm5lbC9naXQvY2xrL2xpbnV4LmdpdC9jb21taXQvP2g9Y2xrLW5leHQmaWQ9ZjM1ZjFhMjNl
-MGUxMmUzMTczZTllOWRlZGJjMTUwZDEzOTAyNzE4OQ0KPiA+IC0tLS0NCj4gPiBDaGFuZ2VzIGNv
-bXBhcmVkIHdpdGggdjU6DQo+ID4gLUFkZCBkZWNvZGVyIGhhcmR3YXJlIGJsb2NrIGRpYWdyYW0g
-Zm9yIHBhdGNoIDEzLzE1DQo+ID4gDQo+IA0KPiANCj4gVGhlIGRpc2N1c3Npb24gb24gdjUgd2Fz
-IHN0aWxsIG9uLWdvaW5nLCBzbyBzZW5kaW5nIHRoaXMgdjYNCj4gaXMgbm90IGhlbHBmdWwuIFRo
-ZSBjb250ZXh0IGZvciB2NSdzIGRpc2N1c3Npb24gaXMgbm93IGhhcmRlciB0bw0KPiBmaW5kLg0K
-PiANCg0KPiBQbGVhc2UgYXZvaWQgc2VuZGluZyBhIG5ldyB2ZXJzaW9uIHdpdGhvdXQgcHJvcGVy
-bHkNCj4gZGlzY3Vzc2luZyBhbGwgdGhlIGZlZWRiYWNrLCBhbmQgd2l0aG91dCByZWFjaGluZyBj
-b25zZW5zdXMuDQo+IFRoaXMgaXMgdmVyeSBpbXBvcnRhbnQsIHBsZWFzZSBrZWVwIGl0IGluIG1p
-bmQuDQo+IA0KVGhhbmtzIGZvciB5b3VyIHJlbWluZCwgSSB3aWxsIGtlZXAgdGhpcyBwYXRjaCB1
-bnRpbCBnZXQgdGhlIHNvbHV0aW9uLg0KDQo+IFNwZWNpZmljYWxseSwgdGhlIGZlZWRiYWNrIG9u
-IHY1IHdhcyBOQUssIHdpdGggdGhlIHJlcXVlc3QgdG8gYXZvaWQNCj4gdXNpbmcgYW55IGFzeW5j
-IGZyYW1ld29yaywgYW5kIGluc3RlYWQgdHJ5IHRvIGZpbmQgYSBzaW1wbGVyDQo+IHNvbHV0aW9u
-Lg0KPiANCj4gRm9yIGluc3RhbmNlLCB5b3UgY2FuIG1vZGVsIHRoaW5ncyB3aXRoIGEgYnVzLWxp
-a2UgcGF0dGVybiwNCj4gd2hpY2ggdGllcyBhbGwgdGhlIGRldmljZXMgdG9nZXRoZXIsIHVuZGVy
-IGEgcGFyZW50IG5vZGUuDQo+IFRoaXMgcGF0dGVybiBpcyBjb21tb24gaW4gdGhlIGtlcm5lbCwg
-dGhlIHBhcmVudA0KPiBub2RlIGNhbiB1c2Ugb2ZfcGxhdGZvcm1fcG9wdWxhdGUgb3Igc2ltaWxh
-cg0KPiAoZ2l0IGdyZXAgb2ZfcGxhdGZvcm1fcG9wdWxhdGUsIHlvdSB3aWxsIHNlZSBwbGVudHkg
-b2YgZXhhbXBsZXMpLg0KPiANCj4gWW91IHdpbGwgc3RpbGwgaGF2ZSB0byBkbyBzb21lIHdvcmsg
-dG8gaGF2ZSB0aGUgcHJvcGVyDQo+IHJlZ3MgcmVzb3VyY2VzLCBidXQgdGhpcyBpcyBkb2FibGUu
-IEVhY2ggY2hpbGQgaXMgYSBkZXZpY2UsDQo+IHNvIGl0IGNhbiBoYXZlIGl0cyBvd24gcmVzb3Vy
-Y2VzIChjbG9ja3MsIGludGVycnVwdHMsIGlvbW11cykuDQo+IA0KPiBZb3UgZG9uJ3QgbmVlZCBh
-bnkgYXN5bmMgZnJhbWV3b3JrLg0KPiANCklmIHB1dCB0aGUgbGF0IGFuZCBjb3JlIG5vZGUgaW4g
-dGhlIHBhcmVudCBub2RlLCBuZWVkIHRvIGNoZWNrIHRoZQ0KYmVsb3cgdGhpbmdzIGFmdGVyIGRp
-c2N1c3NlZCB3aXRoIGlvbW11IG93bmVyLg0KDQpJZiBwdXR0aW5nIHRoZSBpb21tdXMgcHJvcGVy
-dHkgaW4gdGhlIGNoaWxkIG5vZGUsIHRoZW4gaXMgdGhlIGNoaWxkDQpkZXZpY2UgYSBzdGFuZGFy
-ZCBwbGF0Zm9ybSBkZXZpY2U/DQoNClRoZSBpb21tdSByZWdpc3RlIGxpa2UgdGhpczogIA0KcmV0
-ID0gYnVzX3NldF9pb21tdSgmcGxhdGZvcm1fYnVzX3R5cGUsICZtdGtfaW9tbXVfb3BzKTsgDQpJ
-dCBleHBlY3QgdGhlIGNvbnN1bWVyIGlzIGEgc3RhbmRhcmQgcGxhdGZvcm0gZGV2aWNlLiBvdGhl
-cndpc2UgaXQNCmNvdWxkIG5vdCBlbnRlciB0byB0aGUgaW9tbXUgb2ZfeGxhdGUuKQ0KDQpUaGFu
-a3MNCll1bmZlaSBEb25nDQo+ICAgICB2Y29kZWNfZGVjOiB2Y29kZWNfZGVjQDE2MDAwMDAwIHsN
-Cj4gICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Mi12Y29kZWMtZGVjIjsNCj4g
-ICAgICAgICByZWcgPSA8c29tZXRoaW5nPjsNCj4gICAgICAgICBtZWRpYXRlayxzY3AgPSA8JnNj
-cD47DQo+ICAgICAgICAgaW9tbXVzID0gPCZpb21tdTAgTTRVX1BPUlRfTDRfVkRFQ19NQ19FWFQ+
-Ow0KPiAgICAgICAgIGRtYS1yYW5nZXMgPSA8MHgxIDB4MCAweDAgMHg0MDAwMDAwMCAweDAgMHhm
-ZmYwMDAwMD47DQo+IA0KPiAgICAgICAgIHZjb2RlY19sYXRAMHgxMDAwMCB7DQo+ICAgICAgICAg
-ICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXRrLXZjb2RlYy1sYXQiOw0KPiAgICAgICAgICAg
-ICByZWcgPSA8MHgxMDAwMCAweDgwMD47ICAgICAgLyogVkRFQ19NSVNDICovDQo+ICAgICAgICAg
-ICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSA0MjYgSVJRX1RZUEVfTEVWRUxfSElHSCAwPjsNCj4g
-ICAgICAgICAgICAgLy8gZXRjDQo+ICAgICAgICAgfTsNCj4gDQo+ICAgICAgICAgdmNvZGVjX2Nv
-cmVAMHgyNTAwMCB7DQo+ICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdGstdmNv
-ZGVjLWNvcmUiOw0KPiAgICAgICAgICAgIHJlZyA9IDwweDI1MDAwIDB4MTAwMD47ICAgICAgLyog
-VkRFQ19DT1JFX01JU0MgKi8NCj4gICAgICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNDI1
-IElSUV9UWVBFX0xFVkVMX0hJR0ggMD47DQo+ICAgICAgICAgICAgLy8gZXRjDQo+ICAgICAgICAg
-fTsNCj4gICAgIH07DQo+IA0KPiBUaGFua3MsDQo+IEV6ZXF1aWVsDQo=
+On Thu, Sep 2, 2021 at 2:09 PM yunfei.dong@mediatek.com
+<yunfei.dong@mediatek.com> wrote:
+>
+> Hi Ezequiel,
+>
+> Thanks for your suggestion.
+> On Wed, 2021-09-01 at 08:50 -0300, Ezequiel Garcia wrote:
+> > On Wed, 1 Sept 2021 at 00:49, yunfei.dong@mediatek.com
+> > <yunfei.dong@mediatek.com> wrote:
+> > >
+> > > Hi Ezequiel,
+> > >
+> > > Thanks for your feedback.
+> > > On Sun, 2021-08-29 at 17:54 -0300, Ezequiel Garcia wrote:
+> > > > On Tue, 17 Aug 2021 at 00:52, yunfei.dong@mediatek.com
+> > > > <yunfei.dong@mediatek.com> wrote:
+> > > > >
+> > > > > Hi Laurent,
+> > > > >
+> > > > > Thanks for your detail suggestion.
+> > > > >
+> > > > > On Wed, 2021-08-11 at 20:59 +0300, Laurent Pinchart wrote:
+> > > > > > Hi Yunfei,
+> > > > > >
+> > > > > > Thank you for the patch.
+> > > > > >
+> > > > > > On Wed, Aug 11, 2021 at 10:57:59AM +0800, Yunfei Dong wrote:
+> > > > > > > Adds decoder dt-bindings for mt8192.
+> > > > > > >
+> > > > > > > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> > > > > > > ---
+> > > > > > > v5: no changes
+> > > > > > >
+> > > > > > > This patch depends on "Mediatek MT8192 clock support"[1].
+> > > > > > >
+> > > > > > > The definition of decoder clocks are in mt8192-clk.h, need
+> > > > > > > to
+> > > > > > > include them in case of build fail [1].
+> > > > > > >
+> > > > > > > [1]
+> > > > > > >
+> > >
+> > >
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=511175
+> > > > > > > ---
+> > > > > > >  .../media/mediatek,vcodec-comp-decoder.yaml   | 172
+> > > > > > > ++++++++++++++++++
+> > > > > > >  1 file changed, 172 insertions(+)
+> > > > > > >  create mode 100644
+> > > > > > > Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > > > > > > comp-
+> > > > > > > decoder.yaml
+> > > > > > >
+> > > > > > > diff --git
+> > > > > > > a/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > > > > > > comp-
+> > > > > > > decoder.yaml
+> > > > > > > b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > > > > > > comp-
+> > > > > > > decoder.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..083c89933917
+> > > > > > > --- /dev/null
+> > > > > > > +++
+> > > > > > > b/Documentation/devicetree/bindings/media/mediatek,vcodec-
+> > > > > > > comp-
+> > > > > > > decoder.yaml
+> > > > > > > @@ -0,0 +1,172 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id:
+> > > > > > >
+> > >
+> > >
+> http://devicetree.org/schemas/iommu/mediatek,vcodec-comp-decoder.yaml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: Mediatek Video Decode Accelerator With Component
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Yunfei Dong <yunfei.dong@mediatek.com>
+> > > > > > > +
+> > > > > > > +description: |+
+> > > > > > > +  Mediatek Video Decode is the video decode hardware
+> > > > > > > present
+> > > > > > > in
+> > > > > > > Mediatek
+> > > > > > > +  SoCs which supports high resolution decoding
+> > > > > > > functionalities.
+> > > > > > > Required
+> > > > > > > +  master and component node.
+> > > > > >
+> > > > > > This should explain how the three IP cores relate to each
+> > > > > > other.
+> > > > > >
+> > > > >
+> > > > > I will explain it in next patch.
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    oneOf:
+> > > > > > > +      - enum:
+> > > > > > > +          - mediatek,mt8192-vcodec-dec  # for lat hardware
+> > > > > > > +          - mediatek,mtk-vcodec-lat     # for core
+> > > > > > > hardware
+> > > > > > > +          - mediatek,mtk-vcodec-core
+> > > > > > > +
+> > > > > > > +  reg:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  interrupts:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  clocks:
+> > > > > > > +    maxItems: 5
+> > > > > > > +
+> > > > > > > +  clock-names:
+> > > > > > > +    items:
+> > > > > > > +      - const: vdec-sel
+> > > > > > > +      - const: vdec-soc-vdec
+> > > > > > > +      - const: vdec-soc-lat
+> > > > > > > +      - const: vdec-vdec
+> > > > > > > +      - const: vdec-top
+> > > > > > > +
+> > > > > > > +  assigned-clocks: true
+> > > > > > > +
+> > > > > > > +  assigned-clock-parents: true
+> > > > > > > +
+> > > > > > > +  power-domains:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  iommus:
+> > > > > > > +    minItems: 1
+> > > > > > > +    maxItems: 32
+> > > > > > > +    description: |
+> > > > > > > +      List of the hardware port in respective IOMMU block
+> > > > > > > for
+> > > > > > > current Socs.
+> > > > > > > +      Refer to bindings/iommu/mediatek,iommu.yaml.
+> > > > > > > +
+> > > > > > > +  dma-ranges:
+> > > > > > > +    maxItems: 1
+> > > > > > > +    description: |
+> > > > > > > +      Describes the physical address space of IOMMU maps
+> > > > > > > to
+> > > > > > > memory.
+> > > > > > > +
+> > > > > > > +  mediatek,scp:
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > > > > +    maxItems: 1
+> > > > > > > +    description:
+> > > > > > > +      Describes point to scp.
+> > > > > > > +
+> > > > > > > +required:
+> > > > > > > +      - compatible
+> > > > > > > +      - reg
+> > > > > > > +      - iommus
+> > > > > > > +      - dma-ranges
+> > > > > > > +
+> > > > > > > +allOf:
+> > > > > > > +  - if: #master node
+> > > > > > > +      properties:
+> > > > > > > +        compatible:
+> > > > > > > +          contains:
+> > > > > > > +            enum:
+> > > > > > > +              - mediatek,mt8192-vcodec-dec  # for lat
+> > > > > > > hardware
+> > > > > > > +
+> > > > > > > +    then:
+> > > > > > > +      required:
+> > > > > > > +        - mediatek,scp
+> > > > > > > +
+> > > > > > > +  - if: #component node
+> > > > > > > +      properties:
+> > > > > > > +        compatible:
+> > > > > > > +          contains:
+> > > > > > > +            enum:
+> > > > > > > +              - mediatek,mtk-vcodec-lat     # for core
+> > > > > > > hardware
+> > > > > > > +              - mediatek,mtk-vcodec-core
+> > > > > > > +
+> > > > > > > +    then:
+> > > > > > > +      required:
+> > > > > > > +        - interrupts
+> > > > > > > +        - clocks
+> > > > > > > +        - clock-names
+> > > > > > > +        - assigned-clocks
+> > > > > > > +        - assigned-clock-parents
+> > > > > > > +        - power-domains
+> > > > > > > +
+> > > > > > > +
+> > > > > > > +additionalProperties: false
+> > > > > > > +
+> > > > > > > +examples:
+> > > > > > > +  - |
+> > > > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > > > > +    #include <dt-bindings/memory/mt8192-larb-port.h>
+> > > > > > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > > > > > +    #include <dt-bindings/clock/mt8192-clk.h>
+> > > > > > > +    #include <dt-bindings/power/mt8192-power.h>
+> > > > > > > +
+> > > > > > > +    vcodec_dec: vcodec_dec@16000000 {
+> > > > > > > +        compatible = "mediatek,mt8192-vcodec-dec";
+> > > > > > > +        reg = <0 0x16000000 0 0x1000>;             /*
+> > > > > > > VDEC_SYS
+> > > > > > > */
+> > > > > > > +        mediatek,scp = <&scp>;
+> > > > > > > +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+> > > > > > > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0
+> > > > > > > 0xfff00000>;
+> > > > > > > +    };
+> > > > > > > +
+> > > > > > > +    vcodec_lat: vcodec_lat@0x16010000 {
+> > > > > > > +        compatible = "mediatek,mtk-vcodec-lat";
+> > > > > > > +        reg = <0 0x16010000 0 0x800>;              /*
+> > > > > > > VDEC_MISC */
+> > > > > > > +        interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+> > > > > > > +        iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+> > > > > > > +             <&iommu0
+> > > > > > > M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+> > > > > > > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0
+> > > > > > > 0xfff00000>;
+> > > > > > > +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > > > > > > +             <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> > > > > > > +             <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> > > > > > > +             <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+> > > > > > > +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> > > > > > > +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-
+> > > > > > > soc-
+> > > > > > > lat",
+> > > > > > > +              "vdec-vdec", "vdec-top";
+> > > > > > > +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> > > > > > > +        assigned-clock-parents = <&topckgen
+> > > > > > > CLK_TOP_MAINPLL_D4>;
+> > > > > > > +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+> > > > > > > +    };
+> > > > > > > +
+> > > > > > > +    vcodec_core: vcodec_core@0x16025000 {
+> > > > > > > +        compatible = "mediatek,mtk-vcodec-core";
+> > > > > > > +        reg = <0 0x16025000 0 0x1000>;             /*
+> > > > > > > VDEC_CORE_MISC */
+> > > > > > > +        interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+> > > > > > > +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+> > > > > > > +             <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+> > > > > > > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0
+> > > > > > > 0xfff00000>;
+> > > > > > > +        clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > > > > > > +             <&vdecsys CLK_VDEC_VDEC>,
+> > > > > > > +             <&vdecsys CLK_VDEC_LAT>,
+> > > > > > > +             <&vdecsys CLK_VDEC_LARB1>,
+> > > > > > > +             <&topckgen CLK_TOP_MAINPLL_D4>;
+> > > > > > > +        clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-
+> > > > > > > soc-
+> > > > > > > lat",
+> > > > > > > +              "vdec-vdec", "vdec-top";
+> > > > > > > +        assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+> > > > > > > +        assigned-clock-parents = <&topckgen
+> > > > > > > CLK_TOP_MAINPLL_D4>;
+> > > > > > > +        power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+> > > > > > > +    };
+> > > > > >
+> > > > > > I'm a bit late in the game, reviewing v5 only, but I'm
+> > > > > > wondering
+> > > > > > if
+> > > > > > those IP cores need to be modelled in separate nodes. It
+> > > > > > would be
+> > > > > > much
+> > > > > > easier, from a software point of view, to have a single node,
+> > > > > > with
+> > > > > > multiple register ranges.
+> > > > > >
+> > > > > > Are some of those IP cores used in different SoCs, combined
+> > > > > > in
+> > > > > > different
+> > > > > > ways, that make a modular design better ?
+> > > > > >
+> > > > >
+> > > > > Different platform has different hardware, for mt8192 only has
+> > > > > three
+> > > > > nodes. but mt8195 will has five nodes. and the
+> > > > > clk/power/irq/iommu
+> > > > > are
+> > > > > different. It is not easy to manage all hardware at the same
+> > > > > time
+> > > > > in
+> > > > > one node, need to enable different hardware at the same time,
+> > > > > the
+> > > > > logic
+> > > > > will be very complex.
+> > > > > It is much easier to handle different hardware using component,
+> > > > > enable
+> > > > > different hardware when we need it.
+> > > > >
+> > > > >
+> > > >
+> > > > You can still have one device-tree node for each device, which
+> > > > means
+> > > > you can still manage your resources (clk/power/irq/iommu) easily,
+> > > > but
+> > > > doing
+> > > > this so that it avoids an async framework to pull the parts
+> > > > together.
+> > > >
+> > >
+> > > It mean that v4l2 async also can't be used?
+> >
+> > No, I don't think it's needed. I will take a look at the device tree
+> > and see if I can show you an alternative approach that doesn't
+> > require an async framework.
+> >
+> Thanks.
+> > > > I gave you this feedback several times, and you have been
+> > > > objecting
+> > > > it
+> > > > every time  without even trying to consider a different approach.
+> > > >
+> > >
+> > > I'm not objecting your suggestion every time, for our driver is
+> > > designed for component api, need to spend a lot of time to change
+> > > it in
+> > > many platforms. We need to get a final solution for this
+> > > architecture,
+> > > or it's not easy to change all patches in the feature.
+> > > > Thanks,
+> > > > Ezequiel
+> > >
+> > > 1. Each a node should respect a HW node. Defining a complex node
+> > > that
+> > > contain multiple register is not better, for they belong to
+> > > different
+> > > hardware. Different platforms has different hardware count, mt8195
+> > > has
+> > > five hardwares.
+> > > 2. Another reason is from the IOMMU point, the vcodec HW include
+> > > core
+> > > and lat hardwares, each of them connect to the independent IOMMU
+> > > hardware for mt8195, can't write all iommu ports together, or
+> > > hardware
+> > > can't access dram data, so we must separate them.
+> > >
+> > > For these limitation, can't combine all hardware together. I will
+> > > write
+> > > the hardware diagram in next patch.
+> > >
+> >
+> > No need for another patch, you can write that hardware diagram
+> > now, so we can help with some design ideas.
+> >
+> You can see the block diagram in patch:
+>
+> https://patchwork.linuxtv.org/project/linux-media/patch/20210901083215.25984-14-yunfei.dong@mediatek.com/
 
+This isn't what was really requested though. This is a diagram of how you
+designed the software to operate the hardware. Ezequiel is asking for a
+diagram of how the hardware is actually designed, how the different blocks
+fit together, and how the hardware itself operates. Something like the
+block diagrams commonly seen in the datasheets.
+
+
+ChenYu
