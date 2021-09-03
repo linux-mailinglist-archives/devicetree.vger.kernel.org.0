@@ -2,120 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA504003B3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 380F14003D8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235536AbhICQyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 12:54:46 -0400
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:35445 "EHLO
-        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbhICQyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 12:54:45 -0400
-Received: by mail-oo1-f47.google.com with SMTP id y3-20020a4ab403000000b00290e2a52c71so1697071oon.2;
-        Fri, 03 Sep 2021 09:53:45 -0700 (PDT)
+        id S1350209AbhICRIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 13:08:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350026AbhICRIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 13:08:30 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67036C061760
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 10:07:30 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id c11so6006635ybn.5
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 10:07:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OV40EXpTRGlRVM1HoPC5Gu3Cw4EBrvOw2+MtPkVXoMk=;
+        b=kzB7fYGbg7lHk+8igESN9SzbBkbtc9t4KWWVzqK8v1bE6TTVDWG0KGTBwRCYRJKsnk
+         qAQ7THYtMYifo7ZOtcsf3uLKKdFLDPT5+OO++Cdy6XTb4K8XlfPtoo+lMU/25pRAIH6l
+         gQ2FF2iYW9An55R7NxSyWAkViTp86Ab9dEpkDtDIQpE13zaFHp6wBxxmA+2AiX5Aa44P
+         w0qySPUoSpArySH3AfafHGmdNB/nAPyuh1OT/xTivtgq0hrbF1XchauwVCIz96m8W2SE
+         +iR6BpfDTQHhNeC5B6J+HjwkYZAk9HINaiTFR4FH72e5CnZsXwnb+ED8++Y9OmKB4iLB
+         vfGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=enSj79vcN/Dm/uZSTTzwATzvAMHwNRMrauYA74ENvEY=;
-        b=P9E2USX8axZ6QB0k9Ee942kbDTQDd887nPsXwoieqrFQmfFFCbTbQkFYLmjoeQayCM
-         cBa2oXHN2M4yjtDf63MISggyAPpk1P1SUc30nix+mlVH39m+B4+duMGCBSazCeaKuU6M
-         yIFNaETLoFNGc6Lod/zilkFkBY62o6gWe7I7VzszAH0CQQFhCDJHUJp74tbZLXuEuvhi
-         R5aPBiec0s+J9upZHPixOiJ6TCN2MLPfQC/+ROO/SWLjZIOC9oltgQaRcWlpYWLovqFp
-         NSunCYHddsYouaAlGLSIBEQdiObMER4XY20wjzAVBCjJyf1MduyPetbKPdX+Ta2hKln5
-         fwWQ==
-X-Gm-Message-State: AOAM532E0Y3LswzT8uDMpVO1ES10WRu7cpTlD4+VJNLFj94ctU5RHa4H
-        0JmLTs8KLharZOlINoQ3Qw==
-X-Google-Smtp-Source: ABdhPJyRTE/hdWaUnfQdRbuMAMJswUwR6XT/DIJppmGP66ppiqdiMz1FHfSfkortQtFWdbOgrBbIUw==
-X-Received: by 2002:a05:6820:235:: with SMTP id j21mr3734079oob.75.1630688025383;
-        Fri, 03 Sep 2021 09:53:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v186sm1148174oig.52.2021.09.03.09.53.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 09:53:44 -0700 (PDT)
-Received: (nullmailer pid 3085928 invoked by uid 1000);
-        Fri, 03 Sep 2021 16:53:43 -0000
-Date:   Fri, 3 Sep 2021 11:53:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc:     broonie@kernel.org, pierre-louis.bossart@linux.intel.com,
-        lgirdwood@gmail.com, ranjani.sridharan@linux.intel.com,
-        kai.vehmanen@linux.intel.com, devicetree@vger.kernel.org,
-        shawnguo@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, peter.ujfalusi@linux.intel.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        s-anna@ti.com, Daniel Baluta <daniel.baluta@nxp.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: dsp: fsl: Add DSP optional clocks
- documentation
-Message-ID: <YTJTF5VMOyG2iZb0@robh.at.kernel.org>
-References: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
- <20210903145340.225511-3-daniel.baluta@oss.nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OV40EXpTRGlRVM1HoPC5Gu3Cw4EBrvOw2+MtPkVXoMk=;
+        b=FHjs6jOl0YP4G8fN2Jt16mvHnXvefP5rua34W3GI9/wcGAV3Ni9MB8bqz1fUnVi1Ox
+         SjbRXfJ7dYk87Xxx/B/dUXTH3JqqaPgD5abSOcH8MDePbQ2bXKAc7Kdt26NblLqUH5DE
+         g3duH5Lh1yKumwh+VMPTiKq04AqFH7lJoGss+zK9bWsH3hDFv2fltHdMyFd9klrlNkhA
+         BFhi6HMU6dAv+kUthPHCndt3Ffawb4t+fPmKwsb772a0oKq1qiBxM5uHckToEdIAKzOE
+         /Q7+a4mCIHr1CzGPNytErAQQ1lDwAmqF5OjzpzzfRfLFpTrpDtT74DdErI3Czr8l1J9v
+         IwEQ==
+X-Gm-Message-State: AOAM531M+nW3BHMKlsH9o39XPJ7Vnn19JHHDgTSjRSS8szTzNRgk+aXm
+        YJpSzvd42pLSPrrUq5i1RrMTphRWo5EDzd/k0lfvFw==
+X-Google-Smtp-Source: ABdhPJw7D2SeKKJo7n4PeaYN1YXIepjqdR+w6aTnzKZaocQBhgW+SY0tCRPVRXXQ54cpML9/8SqzosEF3KUNZqtd1CM=
+X-Received: by 2002:a5b:783:: with SMTP id b3mr103810ybq.328.1630688849334;
+ Fri, 03 Sep 2021 10:07:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210903145340.225511-3-daniel.baluta@oss.nxp.com>
+References: <20210902025528.1017391-1-saravanak@google.com>
+ <20210902025528.1017391-3-saravanak@google.com> <CAL_JsqJOv7D5nHteGPDKC2+ns1caVNs-NFFJppLuK0OEB8dztQ@mail.gmail.com>
+ <CAGETcx-rOakAX_apu2ecu6jWCwzO0RgMkwdfzyF+UaxQfVj4CA@mail.gmail.com>
+ <CAL_Jsq+A1T5+KK5xsVVtrMVeuMre3B6sAAroX+a3gQy6wY+r8A@mail.gmail.com>
+ <CAGETcx9wY66TsFX_1rFUO+toE-OpkAvWSdcNVK7M=LYwa6xbAw@mail.gmail.com>
+ <CAL_JsqJzt_duSkMm43dwpiGCmqW8PAQ1n6SeyiNkECP8CTcY=g@mail.gmail.com>
+ <CAGETcx-VkJXTXCwh_ctMg_-VDUb4WFxLLYt0ht8tv8yn+kCH6Q@mail.gmail.com> <CAL_JsqJ4auRZonAnR5CKGyKNs1pVfHK24+av0Ox9L_805v=n6w@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ4auRZonAnR5CKGyKNs1pVfHK24+av0Ox9L_805v=n6w@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 3 Sep 2021 10:06:53 -0700
+Message-ID: <CAGETcx_UaXLOTwThWocN5ZeszXOj9YRXUFHveCEfY50m6L3f6A@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 03, 2021 at 05:53:40PM +0300, Daniel Baluta wrote:
-> From: Daniel Baluta <daniel.baluta@nxp.com>
-> 
-> DSP node on the Linux kernel side must also take care of enabling
-> DAI/DMA related clocks.
-> 
-> By design we choose to manage DAI/DMA clocks from the kernel side because of
-> the architecture of some i.MX8 boards.
-> 
-> Clocks are handled by a special M4 core which runs a special firmware
-> called SCFW (System Controler firmware).
-> 
-> This communicates with A cores running Linux via a special Messaging
-> Unit and implements a custom API which is already implemented by the
-> Linux kernel i.MX clocks implementation.
-> 
-> Note that these clocks are optional. We can use the DSP without them.
-> 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> ---
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> index 7afc9f2be13a..1453668c0194 100644
-> --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> @@ -24,16 +24,49 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> +    minItems: 3
->      items:
->        - description: ipg clock
->        - description: ocram clock
->        - description: core clock
-> +      - description: esai0 core clock for accessing registers
-> +      - description: esai0 baud clock
-> +      - description: esai0 system clock
-> +      - description: esai0 spba clock required when ESAI is placed in slave mode
-> +      - description: SAI1 bus clock
-> +      - description: SAI1 master clock 0
-> +      - description: SAI1 master clock 1
-> +      - description: SAI1 master clock 2
-> +      - description: SAI1 master clock 3
-> +      - description: SAI3 bus clock
-> +      - description: SAI3 master clock 0
-> +      - description: SAI3 master clock 1
-> +      - description: SAI3 master clock 2
-> +      - description: SAI3 master clock 3
-> +      - description: SDMA3 root clock used for accessing registers
+On Fri, Sep 3, 2021 at 7:58 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Sep 2, 2021 at 8:16 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Thu, Sep 2, 2021 at 5:53 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > On Thu, Sep 2, 2021 at 2:29 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > >
+> > > > On Thu, Sep 2, 2021 at 12:03 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > >
+> > > > > On Thu, Sep 2, 2021 at 11:57 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > >
+> > > > > > On Thu, Sep 2, 2021 at 7:24 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > > > >
+> > > > > > > On Wed, Sep 1, 2021 at 9:55 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > > > >
+> > > > > > > > We don't want fw_devlink creating device links for bus devices as
+> > > > > > > > they'll never probe. So mark those device node with this flag.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > > > > ---
+> > > > > > > >  drivers/of/platform.c | 16 ++++++++++++++++
+> > > > > > > >  1 file changed, 16 insertions(+)
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > > > > > > index 74afbb7a4f5e..42b3936d204a 100644
+> > > > > > > > --- a/drivers/of/platform.c
+> > > > > > > > +++ b/drivers/of/platform.c
+> > > > > > > > @@ -392,6 +392,22 @@ static int of_platform_bus_create(struct device_node *bus,
+> > > > > > > >         if (!dev || !of_match_node(matches, bus))
+> > > > > > > >                 return 0;
+> > > > > > > >
+> > > > > > > > +       /*
+> > > > > > > > +        * If the bus node has only one compatible string value and it has
+> > > > > > > > +        * matched as a bus node, it's never going to get probed by a device
+> > > > > > > > +        * driver. So flag it as such so that fw_devlink knows not to create
+> > > > > > > > +        * device links with this device.
+> > > > > > > > +        *
+> > > > > > > > +        * This doesn't catch all devices that'll never probe, but this is good
+> > > > > > > > +        * enough for now.
+> > > > > > > > +        *
+> > > > > > > > +        * This doesn't really work for PPC because of how it uses
+> > > > > > > > +        * of_platform_bus_probe() to add normal devices. So ignore PPC cases.
+> > > > > > > > +        */
+> > > > > > > > +       if (!IS_ENABLED(CONFIG_PPC) &&
+> > > > > > > > +           of_property_count_strings(bus, "compatible") == 1)
+> > > > > > > > +               bus->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
+> > > > > > >
+> > > > > > > This looks fragile relying on 1 compatible string, and the DT flags in
+> > > > > > > this code have been fragile too. I'm pretty sure we have cases of
+> > > > > > > simple-bus or simple-mfd that also have another compatible.
+> > > > > > >
+> > > > > > > Couldn't we solve this with a simple driver?
+> > > > > >
+> > > > > > Oh, I didn't think you'd like that. I'd lean towards that option too
+> > > > > > if we can address some of the other concerns below.
+> > > > > >
+> > > > > > > Make 'simple-pm-bus'
+> > > > > > > driver work for other cases?
+> > > > > >
+> > > > > > > BTW, this patch doesn't even work for
+> > > > > > > simple-pm-bus.
+> > > > > >
+> > > > > > How do you mean? Because simple-pm-bus already has a driver and
+> > > > > > doesn't set "matches" param when it calls of_platform_populate() and
+> > > > > > this flag won't be set. So at least for simple-pm-bus I don't see any
+> > > > > > issue.
+> > > > >
+> > > > > You're right.
+> > > > >
+> > > > > > I was trying to reuse of_default_bus_match_table without explicitly
+> > > > > > referring to it, but if it's confusing I can add a separate list of
+> > > > > > compatible strings and use those here instead of using "matches".
+> > > > >
+> > > > > What happens with a non-default table? I'm not sure we can assume the
+> > > > > same behavior.
+> > > > >
+> > > > > > > A driver for simple-bus may cause issues if there's a
+> > > > > > > more specific driver to bind to as we don't handle that. It's simply
+> > > > > > > whichever matches first.
+> > > > > >
+> > > > > > Right, this is my worry. Especially for devices like this (there are
+> > > > > > plenty of cases like this) which have a driver that probes them but
+> > > > > > also lists simple-bus
+> > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/arm-realview-pb11mp.dts?id=73f3af7b4611d77bdaea303fb639333eb28e37d7#n299
+> > > > >
+> > > > > Uhh, that one is certainly a leakage of wanting an soc_device in the
+> > > > > hierarchy, not any real bus structure reflecting the h/w. I'm not a
+> > > > > fan of the soc_device stuff and its optional nature. Everything is an
+> > > > > SoC, so it should always be there? Or your device hierarchy should
+> > > > > change when you decide to add a soc_device?
+> > > > >
+> > > > > > So as long as there's a compatible string that's not one of the
+> > > > > > "transparent" busses, this driver shouldn't match. So, I don't think I
+> > > > > > can get away from checking the compatible strings.
+> > > > > >
+> > > > > > How about I check here to make sure all the "compatible" strings are
+> > > > > > from an approved transparent bus list, and if it's true, I use
+> > > > > > driver_override to force match it to a transparent bus driver? Would
+> > > > > > you be okay with that?
+> > > > >
+> > > > > Can't we do that within a driver? We check this and fail probe if
+> > > > > there's a more specific compatible.  Then another driver can match and
+> > > > > probe.
+> > > >
+> > > > I was thinking that initially, but if we fail a probe, the driver core
+> > > > will permanently give up (won't search further) or might end up
+> > > > retrying with the same driver and never get to the other driver. I'll
+> > > > send out a v2 with what I described above. It's not too bad and it
+> > > > will also allow us to handle the PPC cases (we'll just need to keep
+> > > > adding the simple-bus equivalent entries to a table).
+> > >
+> > > I wasn't sure, but I traced the calls and it looks like based on
+> > > __driver_attach() that if a driver fails probe another one matching
+> > > should get to probe:
+> >
+> > __driver_attach() is called over every device already in a bus. It's
+> > called only when a new driver is registered. So it makes sense that
+> > one ignores the error returned from probe(). You don't want to fail
+> > driver registration because one specific device needs to defer probe.
+>
+> The behavior should be the same no matter whether the device or driver
+> is registered first.
+>
+> Deferred probe errors are handled differently AFAICT.
+>
+> >
+> > The comment is actually from __device_attach_driver()
+> >
+> > >
+> > >         /*
+> > >          * Ignore errors returned by ->probe so that the next driver can try
+> > >          * its luck.
+> > >          */
+> >
+> > I saw that comment too, but isn't the comment wrong/stale?
+>
+> I don't know...
+>
+> >
+> > bus_probe_device() -> device_initial_probe() -> __device_attach().
+> >
+> > In __device_attach() we have:
+> > ret = bus_for_each_drv(dev->bus, NULL, &data, __device_attach_driver);
+> >
+> > If you look at bus_for_each_drv()'s comment:
+> >  * ...... If @fn returns anything but 0, we break out
+> >  * and return it. If @start is not NULL, we use it as the head
+> >  * of the list.
+> >
+> > Inside __device_attach_driver() we see:
+> >         /*
+> >          * Ignore errors returned by ->probe so that the next driver can try
+> >          * its luck.
+> >          */
+> >         ret = driver_probe_device(drv, dev);
+> >         if (ret < 0)
+> >                 return ret;
+> >
+> > So if probe() returned an error, we'd return it right back out. And
+> > then bus_for_each_drv() will stop searching for more drivers that
+> > match.
+>
+> With the exception of deferred probe, probe errors are made positive
+> and then ignored.
 
-Sigh, I just rejected this kind of thing for the other i.MX8 DSP 
-binding[1].
+Oh I totally missed this!
 
-Add a reference to the h/w block and then get the clocks (and other 
-resources) from there.
+>
+> > So I don't think one driver can give up after a match and have another
+> > driver give a device a shot.
+>
+> I think it just needs to be tried out...
 
-Rob
+Oh yeah, it would definitely work and would be a lot nicer. I'll rework this.
 
-[1] https://lore.kernel.org/linux-devicetree/YTDq%2FkWFPLHUnHMN@robh.at.kernel.org/
+-Saravana
