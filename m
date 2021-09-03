@@ -2,154 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65DC93FFCEF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 11:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5916E3FFCF2
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 11:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348683AbhICJU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 05:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348667AbhICJUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 05:20:25 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E05C7C061575
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 02:19:25 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id l18so8565784lji.12
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 02:19:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rp0EGO/pcBNE5nFyNDRlzZhW/qiQU8M3avwR43x/s+8=;
-        b=WfXXOZhzjkqlLQVzbuBuTrKUZsJt/MUEjwGKzF4HDJk2MlKZEp/BmnHqvF1cD+3Atb
-         kFx+HnIafDVssOl+em2KEtP4hzI0UbaAJN4HiugVLWgEo7aYzaxu6B6dTl4Pq+2GHCGd
-         b2mKdzlLyGA6Dj0xBlKkZ4hTJ6jXWFZQVRTwF5cTWaegrEYqdGlxuaeDC3TY4Zxb6DSI
-         tY/cEKxYrJsbvZpD449kTut0MzC6l2/MUvdo8SD6UcU29XSS4dobSPk3N6rhHiW2C+fR
-         EdxpOs2upiuiz4/AKAvsI02LFG/sQ6uwJmEDwI6DIOlSTC7CWOFTa8VGP3SxQyUAh+Zu
-         H3mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rp0EGO/pcBNE5nFyNDRlzZhW/qiQU8M3avwR43x/s+8=;
-        b=AQWPcUgnCECYRSLRHpY9nScn784gO/hx6reqRMhav3AGlRzjL/ipYMGCf/QYZMEvYN
-         oqEmKaVoDY7KM7PWLm30Iluxwk1rxNGAFnh9goArqDrPZqa2tubBmDfWvU0ufsfKwrYM
-         SAsQxN+yMQTs1pLqcMJeViZ3woHDV6VvS4BJshsSEuoN8sH7FIfvp6rrozs5VMTPhVBz
-         DKifKxDDdD/9HPxVLJN2xPK+paGIdIgETNoXS5zcfF7aw6vdmx6rkANi4M9Ax9ilaLDw
-         4jchQKKCoFEGgAN144m/pFjXrOzL+xz3n1oStyqywOqC1VHnDOnr3OUiLdH96Njxj7pa
-         +YUg==
-X-Gm-Message-State: AOAM530jEihMrXbdzEfz026dvhL5liJqv/kQudwRPviIYnG5zLC9qUm4
-        yNwrFGFtmCJaVoR5Dtof+Q37+W+sJsS0fCpuWPtqbA==
-X-Google-Smtp-Source: ABdhPJxm+ipPBBxNeFC7UXaLGhwAeg4rDigpRO21Sv8HIeu/8jQAE+UczWJ1wlGPHrGCgupwZwslDqryNFoDLjwsLbs=
-X-Received: by 2002:a05:651c:158f:: with SMTP id h15mr2128591ljq.249.1630660764228;
- Fri, 03 Sep 2021 02:19:24 -0700 (PDT)
+        id S231316AbhICJVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 05:21:23 -0400
+Received: from mga07.intel.com ([134.134.136.100]:3320 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234912AbhICJVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 05:21:22 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10095"; a="283079580"
+X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; 
+   d="scan'208";a="283079580"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2021 02:20:23 -0700
+X-IronPort-AV: E=Sophos;i="5.85,264,1624345200"; 
+   d="scan'208";a="467868530"
+Received: from pstarove-mobl4.ger.corp.intel.com (HELO [10.251.212.94]) ([10.251.212.94])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2021 02:20:20 -0700
+Subject: Re: [PATCH v3 1/2] ASoC: max98927: Handle reset gpio when probing i2c
+To:     Alejandro <atafalla@dnyon.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <cover.1630632805.git.atafalla@dnyon.com>
+ <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
+From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>
+Message-ID: <80973391-4579-e14b-6def-ed81f367a4a5@linux.intel.com>
+Date:   Fri, 3 Sep 2021 12:20:37 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210902230442.1515531-1-saravanak@google.com> <20210902230442.1515531-2-saravanak@google.com>
-In-Reply-To: <20210902230442.1515531-2-saravanak@google.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 3 Sep 2021 11:18:48 +0200
-Message-ID: <CAPDyKFpP6pSRSw8_OAW8+ZJNH+CwXtfWBNDcD182gQmzqW=O5g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] of: platform: Make sure bus only devices get probed
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <04a18f4115539752429da55fb857834cea0944e5.1630632805.git.atafalla@dnyon.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Sept 2021 at 01:04, Saravana Kannan <saravanak@google.com> wrote:
->
-> fw_devlink could end up creating device links for bus only devices.
-> However, bus only devices don't get probed and can block probe() or
-> sync_state() [1] call backs of other devices. To avoid this, set up
-> these devices to get probed by the simple-pm-bus.
->
-> [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Tested-by: Saravana Kannan <saravanak@google.com>
-
-Again, this looks like a nice solution to the problem.
-
-One question though. The Kconfig SIMPLE_PM_BUS, should probably be
-"default y" - or something along those lines to make sure fw_devlink
-works as expected.
-
-Kind regards
-Uffe
 
 
+On 03/09/2021 04:49, Alejandro wrote:
+> From: Alejandro Tafalla <atafalla@dnyon.com>
+> 
+> Drive the reset gpio if defined in the DTS node.
+> 
+> Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
 > ---
->  drivers/of/platform.c | 45 +++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 74afbb7a4f5e..b010e2310131 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -97,6 +97,48 @@ static void of_device_make_bus_id(struct device *dev)
->         }
->  }
->
-> +/**
-> + * of_match_only_simple_bus - Check if a device node is only a simple bus
-> + * @np: device node to check
-> + *
-> + * A simple bus in this context is defined as a transparent bus whose child
-> + * devices are automatically populated but has no hardware specific
-> + * functionality.
-> + *
-> + * Returns true if the device node is only a simple bus and can never match
-> + * with any other specific driver.  Otherwise, returns false.
-> + */
-> +static bool of_match_only_simple_bus(struct device_node *np)
-> +{
-> +       /* List of buses that don't have an explicit driver. */
-> +       static const char * const of_simple_bus_table[] = {
-> +               "simple-bus",
-> +               "simple-mfd",
-> +               "isa",
-> +               "arm,amba-bus",
-> +       };
-> +       const char *cp;
-> +       struct property *prop;
-> +       int i;
+>  sound/soc/codecs/max98927.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/sound/soc/codecs/max98927.c b/sound/soc/codecs/max98927.c
+> index 8b206ee77709..daf06b503433 100644
+> --- a/sound/soc/codecs/max98927.c
+> +++ b/sound/soc/codecs/max98927.c
+> @@ -868,6 +868,7 @@ static int max98927_i2c_probe(struct i2c_client *i2c,
+>  	int ret = 0, value;
+>  	int reg = 0;
+>  	struct max98927_priv *max98927 = NULL;
+> +	struct gpio_desc *reset_gpio;
+>  
+>  	max98927 = devm_kzalloc(&i2c->dev,
+>  		sizeof(*max98927), GFP_KERNEL);
+> @@ -898,6 +899,19 @@ static int max98927_i2c_probe(struct i2c_client *i2c,
+>  		return ret;
+>  	}
+>  
+> +	reset_gpio
+> +		= devm_gpiod_get_optional(&i2c->dev, "reset", GPIOD_OUT_LOW);
+
+If this is a 'reset' pin then it's ACTIVE state is when it places the
+device to _reset_.
+GPIOD_OUT_LOW == Deasserted state of the GPIO line.
+
+If the reset pin should be pulled low for reset (GPIO_ACTIVE_LOW) and
+you want the device initially  in reset then you need GPIOD_OUT_HIGH,
+because:
+GPIOD_OUT_HIGH == Asserted state of the GPIO line.
+
+Same goes for the gpiod_set_value_cansleep():
+0 - deasserted
+1 = asserted
+
+and this all depends on how the gpio is defined in DT
+(GPIO_ACTIVE_LOW/HIGH), which depends on how the documentation refers to
+the pin...
+
+reset pin:
+low to keep the device in reset, high to release it from reset:
+GPIO_ACTIVE_LOW
+gpiod_set_value_cansleep(0) to enable
+gpiod_set_value_cansleep(1) to disable
+
+
+enable pin:
+high to enable the part, low to disable
+GPIO_ACTIVE_HIGH
+gpiod_set_value_cansleep(1) to enable
+gpiod_set_value_cansleep(0) to disable
+
+In both cases
+electrical 0: reset/disable
+electrical 1: enable
+
+> +	if (IS_ERR(reset_gpio)) {
+> +		ret = PTR_ERR(reset_gpio);
+> +		return dev_err_probe(&i2c->dev, ret, "failed to request GPIO reset pin");
+> +	}
 > +
-> +       prop = of_find_property(np, "compatible", NULL);
-> +       for (cp = of_prop_next_string(prop, NULL); cp;
-> +            cp = of_prop_next_string(prop, cp)) {
-> +               bool match = false;
-> +               const char *bus = of_simple_bus_table[i];
+> +	if (reset_gpio) {
+> +		usleep_range(8000, 10000);
+> +		gpiod_set_value_cansleep(reset_gpio, 1);
+> +		usleep_range(1000, 5000);
+> +	}
 > +
-> +               for (i = 0; i < ARRAY_SIZE(of_simple_bus_table); i++)
-> +                       if (!of_compat_cmp(cp, bus, strlen(bus))) {
-> +                               match = true;
-> +                               break;
-> +                       }
-> +               if (!match)
-> +                       return false;
-> +       }
-> +
-> +       return true;
-> +}
-> +
->  /**
->   * of_device_alloc - Allocate and initialize an of_device
->   * @np: device node to assign to device
-> @@ -143,6 +185,9 @@ struct platform_device *of_device_alloc(struct device_node *np,
->         dev->dev.fwnode = &np->fwnode;
->         dev->dev.parent = parent ? : &platform_bus;
->
-> +       if (of_match_only_simple_bus(np))
-> +               dev->driver_override = "simple-pm-bus";
-> +
->         if (bus_id)
->                 dev_set_name(&dev->dev, "%s", bus_id);
->         else
-> --
-> 2.33.0.153.gba50c8fa24-goog
->
+
+You might want to put the device to reset on remove at minimum.
+
+>  	/* Check Revision ID */
+>  	ret = regmap_read(max98927->regmap,
+>  		MAX98927_R01FF_REV_ID, &reg);
+> 
+
+-- 
+Péter
