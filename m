@@ -2,93 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79397400496
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0975F4004AD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350401AbhICSKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 14:10:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33298 "EHLO
+        id S1350439AbhICSNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 14:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350386AbhICSKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:10:31 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53741C06179A
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 11:09:30 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 905421F8E5;
-        Fri,  3 Sep 2021 20:09:27 +0200 (CEST)
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-To:     bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH 7/7] arm64: dts: qcom: msm8998-xperia: Add audio clock and its pin
-Date:   Fri,  3 Sep 2021 20:09:24 +0200
-Message-Id: <20210903180924.1006044-7-angelogioacchino.delregno@somainline.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210903180924.1006044-1-angelogioacchino.delregno@somainline.org>
-References: <20210903180924.1006044-1-angelogioacchino.delregno@somainline.org>
+        with ESMTP id S1350410AbhICSNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:13:32 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D524CC061757
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 11:12:31 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id c79so190792oib.11
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 11:12:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=EmxGvSFHzwGSo5pc2/hQyVW83mXoB+h7zPtCUkGNIwE=;
+        b=K9bKKR5p2Hj2dhQigCQ/Rvb66nsPCiDyB65R1H+Uc84IFdA9pH+Fj4/myNe5PdhG2x
+         WtYjgGbOGYPlmE3ASrCrurIbw5w9QLknsSyS3BcSfN4BvuLQm0LWnjbq0cQS/hf38Tqe
+         ZK/KbCE1Mq0CMe4+goX2oFt1VZ5xN4pIg580A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=EmxGvSFHzwGSo5pc2/hQyVW83mXoB+h7zPtCUkGNIwE=;
+        b=JqsQxtF25ziGe7GQkaeYvqicEo2aZ2jhRe2V8qicY7ExEcz4Zor7xjsM7+8SuOgteN
+         lVu7Qtx0Fe0RQVptdApfqB3t/3awYLaFpM9/GYX+CBRJWzydeEHH3vXU+/fjM46gP2h0
+         fJfMvWX9VllU7Yaew1ManT2yC7yb7LhnaMoRq3Fhn1g/XgCKzKx8FKmq+C4jC34NpNzj
+         sL5QMVfjnhseWyeoD5712OdsCioaGjnjXsyL/bOkIoMb4aHxVVILoAaU1J0d0nzNF9ZY
+         sdsqiGHrcpJXsylfndsZrozp/nxZstKbG/hcZ+3W730nDLF/zI/ZQWveVTW/tWaCwN+J
+         dXPg==
+X-Gm-Message-State: AOAM531brSdBZi0PxvtfM75lAY7t7BKkjVeQte8sbkJqD+U0xbB0ENli
+        cwu+JvDfVDTCDtr5ecBNMX+BMgYq5U6uos9J6imyVA==
+X-Google-Smtp-Source: ABdhPJwF6W9Z4C+HCFQkMAT6oKcjVmRCjzrzU0QSEWMUFiOx8lt5Tj7tw21m1kfNNgGcgcNqMTNn1WdwOzXEDm98oh8=
+X-Received: by 2002:a54:4419:: with SMTP id k25mr125286oiw.32.1630692751276;
+ Fri, 03 Sep 2021 11:12:31 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 3 Sep 2021 14:12:30 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1630574106-3394-3-git-send-email-skakit@codeaurora.org>
+References: <1630574106-3394-1-git-send-email-skakit@codeaurora.org> <1630574106-3394-3-git-send-email-skakit@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Fri, 3 Sep 2021 14:12:30 -0400
+Message-ID: <CAE-0n52VOzjexezuEe449vT_crB_zVkn5Bnrkh6-RcJfWGTQ9w@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] arm64: dts: sc7280: Add volume up support for sc7280-idp
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        satya priya <skakit@codeaurora.org>
+Cc:     David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All smartphones of this platform are equipped with a WCD9335 audio
-codec, getting its MCLK from PM8998 gpio13: add this clock to DT.
+Quoting satya priya (2021-09-02 02:15:06)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 371a2a9..52bcbbc 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -199,6 +199,37 @@
+>         modem-init;
+>  };
+>
+> +&soc {
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+'s' comes after 'p' so this is in the wrong place.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 5fbe5abf4133..7aeebd3b2e9e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -20,6 +20,19 @@ / {
- 	qcom,msm-id = <0x124 0x20000>, <0x124 0x20001>; /* 8998v2, v2.1 */
- 	qcom,board-id = <8 0>;
- 
-+	clocks {
-+		compatible = "simple-bus";
-+
-+		div1_mclk: divclk1 {
-+			compatible = "gpio-gate-clock";
-+			pinctrl-0 = <&audio_mclk_pin>;
-+			pinctrl-names = "default";
-+			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
-+			#clock-cells = <0>;
-+			enable-gpios = <&pm8998_gpio 13 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
- 	board_vbat: vbat-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VBAT";
-@@ -313,6 +326,12 @@ cam_snapshot_pin_a: cam-snapshot-btn-active {
- 		input-enable;
- 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
- 	};
-+
-+	audio_mclk_pin: audio-mclk-pin-active {
-+		pins = "gpio13";
-+		function = "func2";
-+		power-source = <0>;
-+	};
- };
- 
- &pmi8998_gpio {
--- 
-2.32.0
+> +       gpio_keys {
+> +               compatible = "gpio-keys";
+> +               label = "gpio-keys";
+> +
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&key_vol_up_default>;
+> +
+> +               vol_up {
+> +                       label = "volume_up";
+> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
+> +                       linux,input-type = <1>;
+> +                       linux,code = <KEY_VOLUMEUP>;
+> +                       gpio-key,wakeup;
+> +                       debounce-interval = <15>;
+> +                       linux,can-disable;
+> +               };
+> +       };
+> +};
+> +
+> +&pm7325_gpios {
+> +       key_vol_up_default: key_vol_up_default {
 
+Please move this to the "PINCTRL - additions to nodes defined in
+sc7280.dtsi" section and then sort alphabetically on node naem.
+
+> +               pins = "gpio6";
+> +               function = "normal";
+> +               input-enable;
+> +               bias-pull-up;
+> +               power-source = <0>;
+> +               qcom,drive-strength = <3>;
+> +       };
+> +};
+> +
+>  &pmk8350_vadc {
+>         pmk8350_die_temp {
+>                 reg = <PMK8350_ADC7_DIE_TEMP>;
