@@ -2,82 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB284005DD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073354005E0
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 21:35:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233379AbhICTed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 15:34:33 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:44579 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232516AbhICTed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:34:33 -0400
-Received: by mail-ot1-f41.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so294890otg.11;
-        Fri, 03 Sep 2021 12:33:33 -0700 (PDT)
+        id S236353AbhICTgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 15:36:17 -0400
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:33377 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231357AbhICTgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 15:36:17 -0400
+Received: by mail-oo1-f47.google.com with SMTP id v20-20020a4a2554000000b0028f8cc17378so22818ooe.0;
+        Fri, 03 Sep 2021 12:35:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=h93QnZOmlKU71R0mu5aX/T+cRYD/25MM5v7t+BpOEzM=;
-        b=PHf2nbD9rkrhJ4sSTfjSFm3eB0mR+DSV1wYzJlQ1lBO9GjlnZw4bluwhvom4HF6gnh
-         6VWHwGrPBnctBfUR+pUH3PV1juO5ci29YRGUsSprDj5DZs/8B1x5PIKNyehi1fH/889K
-         HRkMn7iy/VhEadFJ17mLwI8LKhTrFv5PTu/co7IPSzQs+DQohtXj1mKOrbhvTdAvchwU
-         W57jcb4lAk3dUFNlEcnX6dW6WKXoPOIkMMKgf6JvrFQOHVlPPukkoCmPdQ6sWDi51hoy
-         G3xf5GdstdJrAjuFbz3HMAP9hC8vhIVL0MsiJJNLVFk6Dy9a2ZtrLY0tUiKOPbJqXlyI
-         UnVw==
-X-Gm-Message-State: AOAM533jQJtX2HZc5yvG47S8b2EfT8zrRrHRGRtPbk7jCDPt8iNRTYF/
-        sE/UpyRQNATJPeXFXImrhQ==
-X-Google-Smtp-Source: ABdhPJwdBBJtFlqocmoFYyVftAutdVo1ktVmpc64diZ/uohzI6VIU6Tv4BEXO9XGS39OaD6tecXd8g==
-X-Received: by 2002:a9d:4689:: with SMTP id z9mr561722ote.101.1630697612913;
-        Fri, 03 Sep 2021 12:33:32 -0700 (PDT)
+        bh=jShdW3J/CocuEFlG6b5mpkubYiSnDXqp1bvV3K3m1SU=;
+        b=DXc4qjNKfthKAbsUcGI4yUQ+DWfN1D2cyxD1XQyaayEa4+d1abd8lkkK5JOYh2XYb/
+         bIc/LQgEKnTHhoup1dS5DF5Qd1JBk8fnRS7SQqCzp5Kxm95aKd0lRbCRPRQvVAAx1dF3
+         FlpNmULEr0NC1rDlD+cJsz6m3zMfWvkws9c4R7bBLfsMTnv3g8l6lmiM3o7JHWilQW+q
+         B5z3KSAWn5HDGenQTRnHmYuDOTBQLiLyMenYTGzJ1OUNNTUX2epQlZPb4vf+UGJWW0Sx
+         06gj2oFw76ftofjbBbf3knuwcdk2t3KSGnxM4s/ags6ElWrEPGvPkbALq2ldBAPJGtVi
+         28JQ==
+X-Gm-Message-State: AOAM531vW1cmT/WHa185CFhybhcoZcuD1Egu9G1VPQkgpdyosj0SoKaY
+        qksKCurTz5RiTql6YFghDA==
+X-Google-Smtp-Source: ABdhPJwhrHZGJFrtpiO44ePNa4VNTi6ZAj3ACYhYjxXzzGiLk57Z9ztrNK9tBDjWt4STirQE/VXgSw==
+X-Received: by 2002:a4a:e923:: with SMTP id a3mr4261300ooe.45.1630697716811;
+        Fri, 03 Sep 2021 12:35:16 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t21sm52316otl.67.2021.09.03.12.33.31
+        by smtp.gmail.com with ESMTPSA id q17sm60276otc.28.2021.09.03.12.35.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 12:33:31 -0700 (PDT)
-Received: (nullmailer pid 3323574 invoked by uid 1000);
-        Fri, 03 Sep 2021 19:33:30 -0000
-Date:   Fri, 3 Sep 2021 14:33:30 -0500
+        Fri, 03 Sep 2021 12:35:16 -0700 (PDT)
+Received: (nullmailer pid 3325876 invoked by uid 1000);
+        Fri, 03 Sep 2021 19:35:15 -0000
+Date:   Fri, 3 Sep 2021 14:35:15 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-sunxi@googlegroups.com,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        linux-arm-kernel@lists.infradead.org,
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
         Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 23/52] dt-bindings: hwmon: Add IIO HWMON binding
-Message-ID: <YTJ4inrxz9qE83fi@robh.at.kernel.org>
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 24/52] dt-bindings: input: Convert Silead GSL1680
+ binding to a schema
+Message-ID: <YTJ480gSJDiaJq0d@robh.at.kernel.org>
 References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-24-maxime@cerno.tech>
+ <20210901091852.479202-25-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-24-maxime@cerno.tech>
+In-Reply-To: <20210901091852.479202-25-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 01 Sep 2021 11:18:23 +0200, Maxime Ripard wrote:
-> Even though we had the iio-hwmon driver for some time and a number of
-> boards using it already, we never had a binding for it. Let's add it
-> based on what the driver expects and the boards are providing.
+On Wed, Sep 01, 2021 at 11:18:24AM +0200, Maxime Ripard wrote:
+> The Silead GSL1680 Touchscreen Controller is supported by Linux thanks
+> to its device tree binding.
 > 
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: linux-hwmon@vger.kernel.org
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
+> 
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: linux-input@vger.kernel.org
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > 
 > ---
 > 
 > Changes from v1:
->   - Reduced the maximum number of io-channels, and added a comment for
->     the limitation
+>   - Added maximum to the number of fingers
 > ---
->  .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+>  .../input/touchscreen/silead,gsl1680.yaml     | 91 +++++++++++++++++++
+>  .../input/touchscreen/silead_gsl1680.txt      | 44 ---------
+>  2 files changed, 91 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml b/Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+> new file mode 100644
+> index 000000000000..cc064696ac28
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/silead,gsl1680.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Silead GSL1680 Touchscreen Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - silead,gsl1680
+> +      - silead,gsl1688
+> +      - silead,gsl3670
+> +      - silead,gsl3675
+> +      - silead,gsl3692
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-gpios:
+> +    maxItems: 1
+> +
+> +  firmware:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Should be 'firmware-name'
+
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: >
+> +      File basename for board specific firmware
+> +
+> +  silead,max-fingers:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 5
+> +    description: >
+> +      Maximum number of fingers the touchscreen can detect
+> +
+> +  silead,home-button:
+> +    type: boolean
+> +    description: >
+> +      Does the device have a capacitive home-button build into the
+> +      touchscreen?
+> +
+> +  avdd-supply:
+> +    description: >
+> +      Regulator phandle for controller AVDD
+> +
+> +  vddio-supply:
+> +    description: >
+> +      Regulator phandle for controller VDDIO
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - power-gpios
+> +  - touchscreen-size-x
+> +  - touchscreen-size-y
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        touchscreen@40 {
+> +            compatible = "silead,gsl1680";
+> +            reg = <0x40>;
+> +            interrupt-parent = <&pio>;
+> +            interrupts = <6 11 IRQ_TYPE_EDGE_FALLING>;
+> +            power-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>;
+> +            touchscreen-size-x = <480>;
+> +            touchscreen-size-y = <800>;
+> +            touchscreen-inverted-x;
+> +            touchscreen-swapped-x-y;
+> +            silead,max-fingers = <5>;
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt b/Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
+> deleted file mode 100644
+> index d67e558e5ab5..000000000000
+> --- a/Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
+> +++ /dev/null
+> @@ -1,44 +0,0 @@
+> -* GSL 1680 touchscreen controller
+> -
+> -Required properties:
+> -- compatible		  : Must be one of the following, depending on the model:
+> -			    "silead,gsl1680"
+> -			    "silead,gsl1688"
+> -			    "silead,gsl3670"
+> -			    "silead,gsl3675"
+> -			    "silead,gsl3692"
+> -- reg			  : I2C slave address of the chip (0x40)
+> -- interrupts		  : interrupt specification for the gsl1680 interrupt
+> -- power-gpios		  : Specification for the pin connected to the gsl1680's
+> -			    shutdown input. This needs to be driven high to take the
+> -			    gsl1680 out of its low power state
+> -- touchscreen-size-x	  : See touchscreen.txt
+> -- touchscreen-size-y	  : See touchscreen.txt
+> -
+> -Optional properties:
+> -- firmware-name		  : File basename (string) for board specific firmware
+> -- touchscreen-inverted-x  : See touchscreen.txt
+> -- touchscreen-inverted-y  : See touchscreen.txt
+> -- touchscreen-swapped-x-y : See touchscreen.txt
+> -- silead,max-fingers	  : maximum number of fingers the touchscreen can detect
+> -- silead,home-button	  : Boolean, set to true on devices which have a
+> -			    capacitive home-button build into the touchscreen
+> -- vddio-supply		  : regulator phandle for controller VDDIO
+> -- avdd-supply		  : regulator phandle for controller AVDD
+> -
+> -Example:
+> -
+> -i2c@00000000 {
+> -	gsl1680: touchscreen@40 {
+> -		compatible = "silead,gsl1680";
+> -		reg = <0x40>;
+> -		interrupt-parent = <&pio>;
+> -		interrupts = <6 11 IRQ_TYPE_EDGE_FALLING>;
+> -		power-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>;
+> -		touchscreen-size-x = <480>;
+> -		touchscreen-size-y = <800>;
+> -		touchscreen-inverted-x;
+> -		touchscreen-swapped-x-y;
+> -		silead,max-fingers = <5>;
+> -	};
+> -};
+> -- 
+> 2.31.1
+> 
+> 
