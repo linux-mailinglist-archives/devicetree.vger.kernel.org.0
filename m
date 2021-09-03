@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE5D3FFCD7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 11:15:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65DC93FFCEF
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 11:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348709AbhICJQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 05:16:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51350 "EHLO
+        id S1348683AbhICJU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 05:20:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233277AbhICJQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 05:16:08 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACF1C061575
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 02:15:09 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id p38so10608058lfa.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 02:15:08 -0700 (PDT)
+        with ESMTP id S1348667AbhICJUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 05:20:25 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E05C7C061575
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 02:19:25 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id l18so8565784lji.12
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 02:19:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=1WeDlp6zQ4PB7oT+RM0GT0Se5QIhGLH/vGupxdxPm3s=;
-        b=Xe0UuCzlWTrc6fezIMbTSNemVPzOv1Nn3DSDDhAjt2QUIDM9g02waQwg70Fsx2X/lc
-         wktlWQRT6ZouBUEutY2oh3mtZpFbqDA9tHw5Vjst1EycHWFIedZ2iQxYL/g+zkirKj/r
-         6PU9x6SnYhdv27IzboXqRjfDaMQYaIIlQQCwuV/SwBR0o46pb5rZKf3F1cCgFTzlJ8Jq
-         /oq5zfQX9CdeIP3tZqcbCB1D2cKGo8O1dZxeHmF+eWXTq2yTqYu7nATmqwVVXSWlWopf
-         pgTy0DflNyK7VzCGJZfiZJbOf1rIP5NBiMgaU7I6nFMTMQ1ovHwyq/K6W0EGdX/6QBIf
-         kHkg==
+        bh=rp0EGO/pcBNE5nFyNDRlzZhW/qiQU8M3avwR43x/s+8=;
+        b=WfXXOZhzjkqlLQVzbuBuTrKUZsJt/MUEjwGKzF4HDJk2MlKZEp/BmnHqvF1cD+3Atb
+         kFx+HnIafDVssOl+em2KEtP4hzI0UbaAJN4HiugVLWgEo7aYzaxu6B6dTl4Pq+2GHCGd
+         b2mKdzlLyGA6Dj0xBlKkZ4hTJ6jXWFZQVRTwF5cTWaegrEYqdGlxuaeDC3TY4Zxb6DSI
+         tY/cEKxYrJsbvZpD449kTut0MzC6l2/MUvdo8SD6UcU29XSS4dobSPk3N6rhHiW2C+fR
+         EdxpOs2upiuiz4/AKAvsI02LFG/sQ6uwJmEDwI6DIOlSTC7CWOFTa8VGP3SxQyUAh+Zu
+         H3mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1WeDlp6zQ4PB7oT+RM0GT0Se5QIhGLH/vGupxdxPm3s=;
-        b=RyGNOKjuoXD3kzmh7wBwUVuA1a5Bur0hHf5b+TO3OkSgW1SLuR9njGCpbUufgNyEhS
-         zz9/aPPinBoTxxaeJy8vDDQHTd0h2Ku+IU0cMkf5sSS5OKnw5UfzSX9UWzyuQEKjZQ1b
-         O8uR5RY6AIVe6htyYuH8cWimfI2aMqOz08sZ2q0ccOqoVc8VTnQWvrShYCl/cRUofdKk
-         bOdr1L3IV3UbXzTIPZPUgkQSBl4KpXPQpnm6I/HctzdvQb9Cjz0JLRF07vKsE/k0YmIK
-         GYbBQgIO8hEB8iysDH22JWoKqzchQ7N5aQqCMqPo63XSDNytaCaIayt/AwW5idy00rzb
-         uxIA==
-X-Gm-Message-State: AOAM533KqChVRO25MKGpzyyO7fnv5mnE7OKW73lOUZWXAKpZUDvfS0cd
-        ImEb1S0YWrC8KS8Ljx04uOPOSmUGmounR7cF15SnLg==
-X-Google-Smtp-Source: ABdhPJzgGU7kz6Hdyn1Y7Zz6J4fJV76pN9mQU3e9Iv+tDEjK/87/x2JidiVlOuUXRt0KORSLexVehP5De0Qd/OSyzh8=
-X-Received: by 2002:a05:6512:e99:: with SMTP id bi25mr2027489lfb.486.1630660507399;
- Fri, 03 Sep 2021 02:15:07 -0700 (PDT)
+        bh=rp0EGO/pcBNE5nFyNDRlzZhW/qiQU8M3avwR43x/s+8=;
+        b=AQWPcUgnCECYRSLRHpY9nScn784gO/hx6reqRMhav3AGlRzjL/ipYMGCf/QYZMEvYN
+         oqEmKaVoDY7KM7PWLm30Iluxwk1rxNGAFnh9goArqDrPZqa2tubBmDfWvU0ufsfKwrYM
+         SAsQxN+yMQTs1pLqcMJeViZ3woHDV6VvS4BJshsSEuoN8sH7FIfvp6rrozs5VMTPhVBz
+         DKifKxDDdD/9HPxVLJN2xPK+paGIdIgETNoXS5zcfF7aw6vdmx6rkANi4M9Ax9ilaLDw
+         4jchQKKCoFEGgAN144m/pFjXrOzL+xz3n1oStyqywOqC1VHnDOnr3OUiLdH96Njxj7pa
+         +YUg==
+X-Gm-Message-State: AOAM530jEihMrXbdzEfz026dvhL5liJqv/kQudwRPviIYnG5zLC9qUm4
+        yNwrFGFtmCJaVoR5Dtof+Q37+W+sJsS0fCpuWPtqbA==
+X-Google-Smtp-Source: ABdhPJxm+ipPBBxNeFC7UXaLGhwAeg4rDigpRO21Sv8HIeu/8jQAE+UczWJ1wlGPHrGCgupwZwslDqryNFoDLjwsLbs=
+X-Received: by 2002:a05:651c:158f:: with SMTP id h15mr2128591ljq.249.1630660764228;
+ Fri, 03 Sep 2021 02:19:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210902230442.1515531-1-saravanak@google.com> <20210902230442.1515531-3-saravanak@google.com>
-In-Reply-To: <20210902230442.1515531-3-saravanak@google.com>
+References: <20210902230442.1515531-1-saravanak@google.com> <20210902230442.1515531-2-saravanak@google.com>
+In-Reply-To: <20210902230442.1515531-2-saravanak@google.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 3 Sep 2021 11:14:31 +0200
-Message-ID: <CAPDyKFr7z6W3ghoAmTVKHaM8saycbhYyBcDXaTuT_Daz+djx2A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drivers: bus: simple-pm-bus: Add support for
- probing simple bus only devices
+Date:   Fri, 3 Sep 2021 11:18:48 +0200
+Message-ID: <CAPDyKFpP6pSRSw8_OAW8+ZJNH+CwXtfWBNDcD182gQmzqW=O5g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: platform: Make sure bus only devices get probed
 To:     Saravana Kannan <saravanak@google.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -65,51 +64,92 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Fri, 3 Sept 2021 at 01:04, Saravana Kannan <saravanak@google.com> wrote:
 >
-> The OF platform code sets up simple bus only devices (i.e. devices that
-> won't match with any other driver) to get probed by the simple-pm-bus to
-> keep fw_devlink from blocking probe() or sync_state() [1] callbacks of
-> other devices. There's no need to populate the child devices since the
-> OF platform code would do that anyway, so return early for these simple
-> bus only devices.
-
-This looks like a neat solution to our problem. Although, a few comments below.
-
+> fw_devlink could end up creating device links for bus only devices.
+> However, bus only devices don't get probed and can block probe() or
+> sync_state() [1] call backs of other devices. To avoid this, set up
+> these devices to get probed by the simple-pm-bus.
 >
 > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
 > Signed-off-by: Saravana Kannan <saravanak@google.com>
 > Tested-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/bus/simple-pm-bus.c | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-> index 01a3d0cd08ed..91d52021b7f9 100644
-> --- a/drivers/bus/simple-pm-bus.c
-> +++ b/drivers/bus/simple-pm-bus.c
-> @@ -19,6 +19,13 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
->         const struct of_dev_auxdata *lookup = dev_get_platdata(&pdev->dev);
->         struct device_node *np = pdev->dev.of_node;
->
-> +       /*
-> +        * These are transparent bus devices (not simple-pm-bus matches) that
-> +        * get populated automatically.  So, don't need to do anything more.
-> +        */
-> +       if (pdev->driver_override)
-> +               return 0;
 
-You need the same kind of check in simple_pm_bus_remove(), to avoid
-pm_runtime_disable(). At least for consistency.
+Again, this looks like a nice solution to the problem.
 
-> +
->         dev_dbg(&pdev->dev, "%s\n", __func__);
->
->         pm_runtime_enable(&pdev->dev);
-> --
-> 2.33.0.153.gba50c8fa24-goog
->
-
-It also looks like we should flip the order of the patches in the
-series, to keep things bisectable.
+One question though. The Kconfig SIMPLE_PM_BUS, should probably be
+"default y" - or something along those lines to make sure fw_devlink
+works as expected.
 
 Kind regards
 Uffe
+
+
+> ---
+>  drivers/of/platform.c | 45 +++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 74afbb7a4f5e..b010e2310131 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -97,6 +97,48 @@ static void of_device_make_bus_id(struct device *dev)
+>         }
+>  }
+>
+> +/**
+> + * of_match_only_simple_bus - Check if a device node is only a simple bus
+> + * @np: device node to check
+> + *
+> + * A simple bus in this context is defined as a transparent bus whose child
+> + * devices are automatically populated but has no hardware specific
+> + * functionality.
+> + *
+> + * Returns true if the device node is only a simple bus and can never match
+> + * with any other specific driver.  Otherwise, returns false.
+> + */
+> +static bool of_match_only_simple_bus(struct device_node *np)
+> +{
+> +       /* List of buses that don't have an explicit driver. */
+> +       static const char * const of_simple_bus_table[] = {
+> +               "simple-bus",
+> +               "simple-mfd",
+> +               "isa",
+> +               "arm,amba-bus",
+> +       };
+> +       const char *cp;
+> +       struct property *prop;
+> +       int i;
+> +
+> +       prop = of_find_property(np, "compatible", NULL);
+> +       for (cp = of_prop_next_string(prop, NULL); cp;
+> +            cp = of_prop_next_string(prop, cp)) {
+> +               bool match = false;
+> +               const char *bus = of_simple_bus_table[i];
+> +
+> +               for (i = 0; i < ARRAY_SIZE(of_simple_bus_table); i++)
+> +                       if (!of_compat_cmp(cp, bus, strlen(bus))) {
+> +                               match = true;
+> +                               break;
+> +                       }
+> +               if (!match)
+> +                       return false;
+> +       }
+> +
+> +       return true;
+> +}
+> +
+>  /**
+>   * of_device_alloc - Allocate and initialize an of_device
+>   * @np: device node to assign to device
+> @@ -143,6 +185,9 @@ struct platform_device *of_device_alloc(struct device_node *np,
+>         dev->dev.fwnode = &np->fwnode;
+>         dev->dev.parent = parent ? : &platform_bus;
+>
+> +       if (of_match_only_simple_bus(np))
+> +               dev->driver_override = "simple-pm-bus";
+> +
+>         if (bus_id)
+>                 dev_set_name(&dev->dev, "%s", bus_id);
+>         else
+> --
+> 2.33.0.153.gba50c8fa24-goog
+>
