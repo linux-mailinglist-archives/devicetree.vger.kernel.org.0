@@ -2,79 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6220C4003AA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA504003B3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:53:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231959AbhICQvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 12:51:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54128 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230187AbhICQvQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Sep 2021 12:51:16 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 22AC1610CC;
-        Fri,  3 Sep 2021 16:50:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1630687816;
-        bh=VUwk1/BRkK07J1ioCKDSItUtjzEDllPwvxeXiWvODuM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dwJwKmdCvhF/Q8vmmeGX4DXmAkl8UkrO2VtS41NAjl/78MnERee5kVma1Y8wG9sBI
-         VlVHMxalSH5V11BQOIybdlrjo5GdY49reXqPw/H7C+CSnO41Z0czvWWoqRRjWiQT1d
-         1eyc+6s/J8wrt5LvKcIDLFMyXckj2ujI7iHqM5OLCqITM5qYzVik9jeHbtEDruZZNS
-         r+V5I/bYvbMiRr56ybH5RBGMMVPjHJ+dVlEFOvsERVfImhy0vPvx8pretVS76Ys28V
-         E5k2zLI3ww5c7wYIjfckealVyQll+3JTdfPgqzJ2x6OWOYpPdMATjnEk8sV7ZYlbZt
-         uym379c0hYkgw==
-Received: by mail-ed1-f41.google.com with SMTP id l6so8774269edb.7;
-        Fri, 03 Sep 2021 09:50:16 -0700 (PDT)
-X-Gm-Message-State: AOAM533E5FiqMEVjTvzY/yWR6tW1mYuxWXWqR+pGJ37L9nZMFnmAqiY6
-        G0wXbDF4Q4kFuBPPtfU96tKpJG9/p+kAKYJ8sA==
-X-Google-Smtp-Source: ABdhPJywrfSsYbNB1uIR1Vw+ndK0QYexlxbEpDmF9RZVBhpllKYaMxxoicP3x8DZ7zdO1yMAihqIRSheQDViNxczMvc=
-X-Received: by 2002:a05:6402:40cf:: with SMTP id z15mr4926602edb.70.1630687814769;
- Fri, 03 Sep 2021 09:50:14 -0700 (PDT)
+        id S235536AbhICQyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 12:54:46 -0400
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:35445 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230187AbhICQyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 12:54:45 -0400
+Received: by mail-oo1-f47.google.com with SMTP id y3-20020a4ab403000000b00290e2a52c71so1697071oon.2;
+        Fri, 03 Sep 2021 09:53:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=enSj79vcN/Dm/uZSTTzwATzvAMHwNRMrauYA74ENvEY=;
+        b=P9E2USX8axZ6QB0k9Ee942kbDTQDd887nPsXwoieqrFQmfFFCbTbQkFYLmjoeQayCM
+         cBa2oXHN2M4yjtDf63MISggyAPpk1P1SUc30nix+mlVH39m+B4+duMGCBSazCeaKuU6M
+         yIFNaETLoFNGc6Lod/zilkFkBY62o6gWe7I7VzszAH0CQQFhCDJHUJp74tbZLXuEuvhi
+         R5aPBiec0s+J9upZHPixOiJ6TCN2MLPfQC/+ROO/SWLjZIOC9oltgQaRcWlpYWLovqFp
+         NSunCYHddsYouaAlGLSIBEQdiObMER4XY20wjzAVBCjJyf1MduyPetbKPdX+Ta2hKln5
+         fwWQ==
+X-Gm-Message-State: AOAM532E0Y3LswzT8uDMpVO1ES10WRu7cpTlD4+VJNLFj94ctU5RHa4H
+        0JmLTs8KLharZOlINoQ3Qw==
+X-Google-Smtp-Source: ABdhPJyRTE/hdWaUnfQdRbuMAMJswUwR6XT/DIJppmGP66ppiqdiMz1FHfSfkortQtFWdbOgrBbIUw==
+X-Received: by 2002:a05:6820:235:: with SMTP id j21mr3734079oob.75.1630688025383;
+        Fri, 03 Sep 2021 09:53:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v186sm1148174oig.52.2021.09.03.09.53.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Sep 2021 09:53:44 -0700 (PDT)
+Received: (nullmailer pid 3085928 invoked by uid 1000);
+        Fri, 03 Sep 2021 16:53:43 -0000
+Date:   Fri, 3 Sep 2021 11:53:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Baluta <daniel.baluta@oss.nxp.com>
+Cc:     broonie@kernel.org, pierre-louis.bossart@linux.intel.com,
+        lgirdwood@gmail.com, ranjani.sridharan@linux.intel.com,
+        kai.vehmanen@linux.intel.com, devicetree@vger.kernel.org,
+        shawnguo@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, peter.ujfalusi@linux.intel.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        s-anna@ti.com, Daniel Baluta <daniel.baluta@nxp.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: dsp: fsl: Add DSP optional clocks
+ documentation
+Message-ID: <YTJTF5VMOyG2iZb0@robh.at.kernel.org>
+References: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
+ <20210903145340.225511-3-daniel.baluta@oss.nxp.com>
 MIME-Version: 1.0
-References: <1630661377-31244-1-git-send-email-shengjiu.wang@nxp.com>
- <1630661377-31244-4-git-send-email-shengjiu.wang@nxp.com> <YTJQcIOU1mMxoIpF@robh.at.kernel.org>
-In-Reply-To: <YTJQcIOU1mMxoIpF@robh.at.kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 3 Sep 2021 11:50:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL_5U0QB5d5VmgX3PMa9LNkyFa+RHWSAzeeTzq6xR=_nA@mail.gmail.com>
-Message-ID: <CAL_JsqL_5U0QB5d5VmgX3PMa9LNkyFa+RHWSAzeeTzq6xR=_nA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: remoteproc: Add fsl,imx-dsp-rproc
- binding document
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210903145340.225511-3-daniel.baluta@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 3, 2021 at 11:42 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, 03 Sep 2021 17:29:36 +0800, Shengjiu Wang wrote:
-> > Define the compatible string and properties needed by imx_dsp_rproc
-> > driver.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../remoteproc/fsl,imx-dsp-rproc.yaml         | 131 ++++++++++++++++++
-> >  1 file changed, 131 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Sep 03, 2021 at 05:53:40PM +0300, Daniel Baluta wrote:
+> From: Daniel Baluta <daniel.baluta@nxp.com>
+> 
+> DSP node on the Linux kernel side must also take care of enabling
+> DAI/DMA related clocks.
+> 
+> By design we choose to manage DAI/DMA clocks from the kernel side because of
+> the architecture of some i.MX8 boards.
+> 
+> Clocks are handled by a special M4 core which runs a special firmware
+> called SCFW (System Controler firmware).
+> 
+> This communicates with A cores running Linux via a special Messaging
+> Unit and implements a custom API which is already implemented by the
+> Linux kernel i.MX clocks implementation.
+> 
+> Note that these clocks are optional. We can use the DSP without them.
+> 
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+>  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> index 7afc9f2be13a..1453668c0194 100644
+> --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> @@ -24,16 +24,49 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> +    minItems: 3
+>      items:
+>        - description: ipg clock
+>        - description: ocram clock
+>        - description: core clock
+> +      - description: esai0 core clock for accessing registers
+> +      - description: esai0 baud clock
+> +      - description: esai0 system clock
+> +      - description: esai0 spba clock required when ESAI is placed in slave mode
+> +      - description: SAI1 bus clock
+> +      - description: SAI1 master clock 0
+> +      - description: SAI1 master clock 1
+> +      - description: SAI1 master clock 2
+> +      - description: SAI1 master clock 3
+> +      - description: SAI3 bus clock
+> +      - description: SAI3 master clock 0
+> +      - description: SAI3 master clock 1
+> +      - description: SAI3 master clock 2
+> +      - description: SAI3 master clock 3
+> +      - description: SDMA3 root clock used for accessing registers
 
-I take that back. What's the difference with this binding and
-Documentation/devicetree/bindings/dsp/fsl,dsp.yaml?
+Sigh, I just rejected this kind of thing for the other i.MX8 DSP 
+binding[1].
+
+Add a reference to the h/w block and then get the clocks (and other 
+resources) from there.
+
+Rob
+
+[1] https://lore.kernel.org/linux-devicetree/YTDq%2FkWFPLHUnHMN@robh.at.kernel.org/
