@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0975F4004AD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA364004B1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 20:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350439AbhICSNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 14:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34084 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350410AbhICSNc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:13:32 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D524CC061757
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 11:12:31 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id c79so190792oib.11
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 11:12:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=EmxGvSFHzwGSo5pc2/hQyVW83mXoB+h7zPtCUkGNIwE=;
-        b=K9bKKR5p2Hj2dhQigCQ/Rvb66nsPCiDyB65R1H+Uc84IFdA9pH+Fj4/myNe5PdhG2x
-         WtYjgGbOGYPlmE3ASrCrurIbw5w9QLknsSyS3BcSfN4BvuLQm0LWnjbq0cQS/hf38Tqe
-         ZK/KbCE1Mq0CMe4+goX2oFt1VZ5xN4pIg580A=
+        id S1350340AbhICSOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 14:14:00 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:41538 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349959AbhICSOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 14:14:00 -0400
+Received: by mail-ot1-f41.google.com with SMTP id o16-20020a9d2210000000b0051b1e56c98fso63990ota.8
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 11:13:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=EmxGvSFHzwGSo5pc2/hQyVW83mXoB+h7zPtCUkGNIwE=;
-        b=JqsQxtF25ziGe7GQkaeYvqicEo2aZ2jhRe2V8qicY7ExEcz4Zor7xjsM7+8SuOgteN
-         lVu7Qtx0Fe0RQVptdApfqB3t/3awYLaFpM9/GYX+CBRJWzydeEHH3vXU+/fjM46gP2h0
-         fJfMvWX9VllU7Yaew1ManT2yC7yb7LhnaMoRq3Fhn1g/XgCKzKx8FKmq+C4jC34NpNzj
-         sL5QMVfjnhseWyeoD5712OdsCioaGjnjXsyL/bOkIoMb4aHxVVILoAaU1J0d0nzNF9ZY
-         sdsqiGHrcpJXsylfndsZrozp/nxZstKbG/hcZ+3W730nDLF/zI/ZQWveVTW/tWaCwN+J
-         dXPg==
-X-Gm-Message-State: AOAM531brSdBZi0PxvtfM75lAY7t7BKkjVeQte8sbkJqD+U0xbB0ENli
-        cwu+JvDfVDTCDtr5ecBNMX+BMgYq5U6uos9J6imyVA==
-X-Google-Smtp-Source: ABdhPJwF6W9Z4C+HCFQkMAT6oKcjVmRCjzrzU0QSEWMUFiOx8lt5Tj7tw21m1kfNNgGcgcNqMTNn1WdwOzXEDm98oh8=
-X-Received: by 2002:a54:4419:: with SMTP id k25mr125286oiw.32.1630692751276;
- Fri, 03 Sep 2021 11:12:31 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 3 Sep 2021 14:12:30 -0400
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uwy1cIXLnNNO9I8X8sPbbrCEF+5qddSDU9l6sUaMBAI=;
+        b=W8DcjNaynCR8rQA3X4FN0j9M4BGQ+qqlw/YYLZTPp3XmGDno35/6iwlm1fkXDm4Da5
+         h+3Bzv8ZnrlwiY15o2277HamRxF5bA17QZgODjTPk7O7j6KIODSA7ExZddYBgrgw+AJL
+         Zb7uUxRDG1/lyk4OZEbXPuWhpRSSL2hltEACj3G3Y4TW5cu/VKi4BdQIyGlk8oHnkhLg
+         yF4OH8xeKF92Ek8b/3WZHR2EiTAGMYrEXWfDHHeHQcmjpaUap9DjKIkc4TUKtk0PNLIl
+         NXr5ehlw1ZZcVbQi0lJCuaWYjs3OkWwGFxAlI6uIPDhCLY/LWWD1FmseI1CWy2TdIRMS
+         Dg7w==
+X-Gm-Message-State: AOAM533/8YywuyHvWX1nKb5rjwXNmDj/hAc66fiRtsXIn3gPpNQkaYuT
+        HzQBwqnDv2g9H0JIa8NRfA==
+X-Google-Smtp-Source: ABdhPJygSXtqelB34nK8m0fSfXY8917yNB1nm9hyhNF8K7VD7qhKu5oAyDlM6+NTesA+haT8aqnt4g==
+X-Received: by 2002:a05:6830:110a:: with SMTP id w10mr266346otq.291.1630692780126;
+        Fri, 03 Sep 2021 11:13:00 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w6sm18208otp.3.2021.09.03.11.12.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Sep 2021 11:12:59 -0700 (PDT)
+Received: (nullmailer pid 3216901 invoked by uid 1000);
+        Fri, 03 Sep 2021 18:12:58 -0000
+Date:   Fri, 3 Sep 2021 13:12:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Subject: Re: [PATCH v2 06/52] dt-bindings: arm: Convert ARM CCI-400 binding
+ to a schema
+Message-ID: <YTJlqt/XUA1C2AlX@robh.at.kernel.org>
+References: <20210901091852.479202-1-maxime@cerno.tech>
+ <20210901091852.479202-7-maxime@cerno.tech>
 MIME-Version: 1.0
-In-Reply-To: <1630574106-3394-3-git-send-email-skakit@codeaurora.org>
-References: <1630574106-3394-1-git-send-email-skakit@codeaurora.org> <1630574106-3394-3-git-send-email-skakit@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 3 Sep 2021 14:12:30 -0400
-Message-ID: <CAE-0n52VOzjexezuEe449vT_crB_zVkn5Bnrkh6-RcJfWGTQ9w@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] arm64: dts: sc7280: Add volume up support for sc7280-idp
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        satya priya <skakit@codeaurora.org>
-Cc:     David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210901091852.479202-7-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting satya priya (2021-09-02 02:15:06)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 371a2a9..52bcbbc 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -199,6 +199,37 @@
->         modem-init;
->  };
->
-> +&soc {
+On Wed, 01 Sep 2021 11:18:06 +0200, Maxime Ripard wrote:
+> The ARM CCI-400 Interconnect is supported by Linux thanks to its device
+> tree binding.
+> 
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
+> 
+> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
+> ---
+> 
+> Changes from v1:
+>   - Reduced the max number of interrupts
+>   - Comented the pl330 compatible to avoid a warning
+>   - Added cci-control-port to the cpus schemas
+> ---
+>  .../devicetree/bindings/arm/arm,cci-400.yaml  | 216 +++++++++++++++++
+>  .../bindings/arm/cci-control-port.yaml        |  38 +++
+>  Documentation/devicetree/bindings/arm/cci.txt | 224 ------------------
+>  .../devicetree/bindings/arm/cpus.yaml         |   2 +
+>  4 files changed, 256 insertions(+), 224 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,cci-400.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/cci-control-port.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/cci.txt
+> 
 
-'s' comes after 'p' so this is in the wrong place.
-
-> +       gpio_keys {
-> +               compatible = "gpio-keys";
-> +               label = "gpio-keys";
-> +
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&key_vol_up_default>;
-> +
-> +               vol_up {
-> +                       label = "volume_up";
-> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-> +                       linux,input-type = <1>;
-> +                       linux,code = <KEY_VOLUMEUP>;
-> +                       gpio-key,wakeup;
-> +                       debounce-interval = <15>;
-> +                       linux,can-disable;
-> +               };
-> +       };
-> +};
-> +
-> +&pm7325_gpios {
-> +       key_vol_up_default: key_vol_up_default {
-
-Please move this to the "PINCTRL - additions to nodes defined in
-sc7280.dtsi" section and then sort alphabetically on node naem.
-
-> +               pins = "gpio6";
-> +               function = "normal";
-> +               input-enable;
-> +               bias-pull-up;
-> +               power-source = <0>;
-> +               qcom,drive-strength = <3>;
-> +       };
-> +};
-> +
->  &pmk8350_vadc {
->         pmk8350_die_temp {
->                 reg = <PMK8350_ADC7_DIE_TEMP>;
+Applied, thanks!
