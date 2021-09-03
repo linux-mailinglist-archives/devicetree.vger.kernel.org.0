@@ -2,109 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF486400323
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F31B7400327
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 18:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349545AbhICQVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 12:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349473AbhICQVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 12:21:47 -0400
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA00C061575;
-        Fri,  3 Sep 2021 09:20:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:Subject:From:References:Cc:To:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=yVI1rjL5vV/OruuyOIPK5N7j58pINxHw/fSO+qqgp3c=; b=dpe2n5XAUNjnjSryQQTPYGPiTv
-        FDwzV89/Tld9LUaC4j5GmI9f+LLZEjxUJHRJ/W/pEMa8xNqQGLM3mQz2AL+dFEQC9xGAJSCubN179
-        NXyDyv9fmc3L/MdsLMb1PjeaAVp2RjHlznn3RToT6dD40J04qr9jKzdqGXci/HQ7AjNw=;
-Received: from p4ff13206.dip0.t-ipconnect.de ([79.241.50.6] helo=nf.local)
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <nbd@nbd.name>)
-        id 1mMBvU-0005Rj-Ol; Fri, 03 Sep 2021 18:20:24 +0200
-To:     Ard Biesheuvel <ardb@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     Bert Vermeulen <bert@biot.com>, DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        John Crispin <john@phrozen.org>,
-        YiFei Zhu <yifeifz2@illinois.edu>,
-        Mike Rapoport <rppt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Kees Cook <keescook@chromium.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-References: <20210730134552.853350-1-bert@biot.com>
- <20210730134552.853350-5-bert@biot.com>
- <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
- <CAMj1kXFK+HoouMMBbHxEgm-zQqKa6QMS6keeZmhpXTc4FCy8fQ@mail.gmail.com>
-From:   Felix Fietkau <nbd@nbd.name>
-Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
-Message-ID: <7d3e2c5b-931c-1f82-77a3-fc51268f1986@nbd.name>
-Date:   Fri, 3 Sep 2021 18:20:23 +0200
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.13.0
+        id S1349634AbhICQWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 12:22:33 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:44005 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1349624AbhICQWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 12:22:33 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4DF875C0045;
+        Fri,  3 Sep 2021 12:21:31 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 03 Sep 2021 12:21:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=BhFvsBDYgdIUZQDlF11XLS4+MMn
+        v4O04RCaT0WttSd4=; b=HsIX9f5NkEbmCKEPbfhN+LdlMO6z9n2Pa0V40f9A32n
+        BBW4lRiuKQQTHjyNvap51KUe3l16b4tINHArQFiZT3DlcAmkgc11TwJfyGQTmdMl
+        ihPO4/ykEBW2ZwWQau7bqPPYgpJrv0VwivmOsY6QUzxv7dTYZ5n9cW2yHyV0xfv2
+        YP1Nc2DNm78gjuyqUOkFhPvAIAT80SaeTDojhXYXOje1v9BK5Z66PyVpbXuPPXhS
+        jLPO26oJInedczad+rP++9beOMdYXVplKQETSAjeeMG8AVqUJaI/qWcfYqbHP7l3
+        +3/W60SRw72PphcaiJneUYakAn7V24LE5pD0X6/VB4Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=BhFvsB
+        DYgdIUZQDlF11XLS4+MMnv4O04RCaT0WttSd4=; b=ujWnbVJ6NHWzrx1TsMOUWU
+        729x2AyfCtyhJhF245qk63ODbU/W/X8yxDxfWcdePRjlWDQH+ZG/sYT3RM0A/xvT
+        vq4z/yabbVEjfMxIN2iGXu73vNCAmkVPbPv1pNtqf7AYN3oKXQJDR4f00CmTuiTR
+        ZyZ8POmGdGg0xTwfvEeAFaj5cl3L18oYcoQXVZkFcvMxlgiQqlXDTC0bK9LLMAzU
+        /KZLEJQYCj/J0ntkntVYwGPqY0kSiGxm/G6qLWyGvv8w5sM3ki1qWFYvZ6cQLy6P
+        +xhva4Q/aIzkrEz00CYeYRcO8ZOLdxuvTuYzG/k7eVbo2sgjEjp8rtMlcn4m5S1Q
+        ==
+X-ME-Sender: <xms:iksyYefmkB7u4rzd_gkmxA7U1M_rakzkfIfX4GkSUJCqN5n4phQcag>
+    <xme:iksyYYP2D6qiKy30iwnKpmnYG_C-Q8VAsS9BHz3Y1Q6BJ517KVsjW1u85gESOZ7kU
+    86vI80OLAXg8cPnYxw>
+X-ME-Received: <xmr:iksyYfj_aZKcy5KL5ZnM8PIir5MGfkD_Jc3ZQJJezdlhRiacJy6cyoUcO4_yZsnDo2sxPpNGZFzug93k-vQSE1MnDzyAwOlYzRwH>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvjedgleekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepveevfeffudeviedtgeethffhteeuffetfeffvdehvedvheetteehvdelfffg
+    jedvnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpe
+    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:iksyYb84nuB71ckXuxD9MTjSLIerzysz8gwRVTxb4VP9HUTk_3gL6Q>
+    <xmx:iksyYauHsfjGmyi2rUHf2h9bJ2JbJpjUBtW6yNmuCyMJdYeti6zuIg>
+    <xmx:iksyYSECBUCsWOzjWU0oMCbeOmCavpboycLM_nxFuLSE4BydfiWydg>
+    <xmx:i0syYejTsdAYVQIzcEQUDpVdlgt945NYbRQ7N1vZNgounDSAQR-d7g>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 3 Sep 2021 12:21:30 -0400 (EDT)
+Date:   Fri, 3 Sep 2021 18:21:27 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: allwinner: h5: align operating-points
+ table name with dtschema
+Message-ID: <20210903162127.zql7fbrhwyblujhw@gilmour>
+References: <20210820081645.83796-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMj1kXFK+HoouMMBbHxEgm-zQqKa6QMS6keeZmhpXTc4FCy8fQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kfy4x7ot25dote7l"
+Content-Disposition: inline
+In-Reply-To: <20210820081645.83796-1-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2021-08-01 18:44, Ard Biesheuvel wrote:
-> On Fri, 30 Jul 2021 at 16:48, Arnd Bergmann <arnd@arndb.de> wrote:
->>
->> Why is this needed?
->>
->> Note also the comment directly above it exlaining
->> # Text offset. This list is sorted numerically by address in order to
->> # provide a means to avoid/resolve conflicts in multi-arch kernels.
->>
-> 
-> Yes, please drop this - it is a horrible hack and it's already quite
-> disappointing that we are stuck with it for the foreseeable future.
-> 
-> So I assume the purpose of this is to protect the first 128k of DRAM
-> to be protected from being overwritten by the decompressor?
-> 
-> It would be best to move this reserved region elsewhere, but I can
-> understand that this is no longer an option. So the alternatives are
-> - omit this window from the /memory node, and rely on Geert's recent
-> decompressor changes which make it discover the usable memory from the
-> DT, or
-> - better would be to use a /memreserve/ here (which you may already
-> have?), and teach the newly added decompressor code to take those into
-> account when choosing the target window for decompressing the kernel.
-I looked into this issue myself and found that this approach has a
-significant drawback: 2 MiB of RAM is permanently wasted for something
-that only needs to be preserved during boot time.
+--kfy4x7ot25dote7l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If the first 256 or 512 KiB of RAM are reserved in the decompressor, it
-means that the first 2 MiB need to be reserved, because that's the
-granularity for the kernel page mapping when the MMU is turned on.
+On Fri, Aug 20, 2021 at 10:16:44AM +0200, Krzysztof Kozlowski wrote:
+> Align the name of operating-points node to dtschema to fix warnings like:
+>=20
+>   arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-r1s-h5.dt.yaml:
+>     cpu-opp-table: $nodename:0: 'cpu-opp-table' does not match '^opp-tabl=
+e(-[a-z0-9]+)?$'
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-If we reserve it, we also need to need to take it out of the physical
-RAM address range, so there's no way to reclaim it later.
+I already sent those patches a few weeks ago:
+https://lore.kernel.org/linux-arm-kernel/20210721140424.725744-43-maxime@ce=
+rno.tech/
+https://lore.kernel.org/linux-arm-kernel/20210721140424.725744-48-maxime@ce=
+rno.tech/
+https://lore.kernel.org/linux-arm-kernel/20210721140424.725744-50-maxime@ce=
+rno.tech/
 
-On the other hand, with the simple textofs solution, I believe it gets
-freed in a late initcall, making it usable.
+I sent a v2 last week, and will merge them soon
 
-So what's the right approach to deal with this?
+Thanks!
+Maxime
 
-- Felix
+--kfy4x7ot25dote7l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYTJLhwAKCRDj7w1vZxhR
+xe3aAP4sPVBAWRhV7R3IOPEjEn5XORabXHjGBK03SzIzEJv47gD+O4r/P8gHB7Qt
+K9RVKxf1fu61axMjWkFhgJ0Xr3QuVA0=
+=qXpc
+-----END PGP SIGNATURE-----
+
+--kfy4x7ot25dote7l--
