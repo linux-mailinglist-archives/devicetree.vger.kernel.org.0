@@ -2,146 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 252B64003E9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24A04003EB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350233AbhICRKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 13:10:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47652 "EHLO
+        id S1350238AbhICRKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 13:10:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350238AbhICRK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 13:10:29 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8188C061760;
-        Fri,  3 Sep 2021 10:09:28 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id v123so4746144pfb.11;
-        Fri, 03 Sep 2021 10:09:28 -0700 (PDT)
+        with ESMTP id S1350227AbhICRKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 13:10:41 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FDCC061757
+        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 10:09:41 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id q70so11246928ybg.11
+        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 10:09:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oML9T4hNm8T0JbKhVIBMBwI7KEbiqjIJg/n4n2ZhuRU=;
-        b=hprSMkscOds52ztZ0BN1ncqwRrMGErH4qUBwiBSGlOxjVqx/rLSVp+NTIbG9FxMkyA
-         uEUKcOlUE2bBlIKnUckrrIDt861OR+pc3cJKAtAobVUIQDYaLRo8L/0SMaNcUPIlxrVo
-         jpTDplN8FwdiUYy3eeOfR+s8TS//2Arsea/rY8Zx0XecOEz9xvYvfKHKYIs9UerkARnx
-         rFbgDTKO/DoqsUvPokQmx8T1U9oaRWAM2mW2y1ctXFYzUd3+tyxZ7pYcZGq7u1agNY+J
-         xYd3+Tn0QgcQs8jdC9MCogCZ10hT0iPX8ECgx6oqBUPc33HQXQGQCaYFCOtQXA1mWP4i
-         RIVQ==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HaDVUCfDbUysF1N7KhfteSFXd3S1ciSndfL6zXNrW9s=;
+        b=WIeC25UguFm445Yh65nz7RAmj09BG6SDqBlPdnwz/RQjRBEwX24gqVsQVr08TDpbfm
+         NtSF2hCL7rJMYGF6oE7ghB9CEW53EGM+ITRILSCeZautrvg3vPiox2/iQE+ZKHIrQ26N
+         W9/iz6u4V8pbk+6LcvUgb76JcUABc0Gmo43fpPx+IGWdKwkUrjA9AXD2aFef04PVl0F6
+         Wr4PM+4qoZ/u65a1QwY0yO3q1EBdm3elwjYEbQxsERBxoHJHaQ9QVUGshyr6VzV/PNrl
+         h7TViiUu9cxdAD9lzN9m76U42skGhY8172AVo+DM4AOWXgwJfBimW+acolwxM/IOYOlB
+         3t5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oML9T4hNm8T0JbKhVIBMBwI7KEbiqjIJg/n4n2ZhuRU=;
-        b=ZS/MX9Pl/DWNsy0J17cqBvhdEWB8N6C4JwDscdu3bZwtzLIlTPhEnxDjKr+/V+AToY
-         vF0lXudiXHW4YjVoJMWkmBoKO18azmpsLyPqeW5QKdYvUr7FVewa70ycKo7mc3/kMVd4
-         nejrLFm6iZOMJG38yqjjpE6IeGNQ7h98RIhi/wLrqDHjwIIiUL4nYIvh3HTyemwBZPPq
-         H4yDHWMm7T6i9OztONwlIv7a2D9AFMv0swZQEHdI4yQMC6lgPjDi0tzeMi5Hfw89eLg3
-         dttcCqMPF2LO+kpW9Gd7PFABlLHnQtNWtpy1/9Iik16cMd9O1/ezBII8jG6ztuV9ahu2
-         0WoA==
-X-Gm-Message-State: AOAM530sga9+HwdGva1MYh+Rnp05uvyLtIDqvIX+zmZ6CzafQKzWeaLm
-        XLf3mfDiYesYdJxEfo2Zp2Nz3xaj+oW+yhXw
-X-Google-Smtp-Source: ABdhPJzffmEzGJBQOIV01Wm1saidXbtMvwXfO7+MxwVKmd6kYopuUGSM5lHgrgqvCPH66IrCl7Sa0w==
-X-Received: by 2002:a63:b707:: with SMTP id t7mr57341pgf.460.1630688967994;
-        Fri, 03 Sep 2021 10:09:27 -0700 (PDT)
-Received: from skynet-linux.local ([122.171.5.147])
-        by smtp.googlemail.com with ESMTPSA id 130sm5905361pfy.175.2021.09.03.10.09.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 10:09:27 -0700 (PDT)
-From:   Sireesh Kodali <sireeshkodali1@gmail.com>
-To:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sireesh Kodali <sireeshkodali1@gmail.com>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Rajeev Nandan <rajeevny@codeaurora.org>,
-        freedreno@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
-        GPU), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 2/3] drm/msm/dsi: Add phy configuration for MSM8953
-Date:   Fri,  3 Sep 2021 22:38:43 +0530
-Message-Id: <20210903170844.35694-3-sireeshkodali1@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210903170844.35694-1-sireeshkodali1@gmail.com>
-References: <20210903170844.35694-1-sireeshkodali1@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HaDVUCfDbUysF1N7KhfteSFXd3S1ciSndfL6zXNrW9s=;
+        b=C4Z3Ah36gHAwTtvAcz1rAhCBxceIU9TaZSR2iWyJWk5ys95ekiWANrYH5sOwVXQfBB
+         ZegwiIzILlBKY3591XHPjAWPwIZ/QNoTeu9iy4MQ9eXz4hbaHAzDlI06FPRO1Ea70Lqk
+         /j28CvRne4Mj2LKpQ6+KyCTFPZk/64Opb7Fiho8leieanHgFgXYVIo5IGKmuW7l7HaN+
+         hEYK43PhdP9tX35E/ZlHThCrdEKEe1Y5uA1N+tAYCgOG21ygCWIJYLSVisgsfPh6ffoV
+         QWa4M2skohR/ZUO07LGgE5nPQ2BA4bn+yF43T7a+dJMzNXQpKqfUvfBha27lg27Sbh55
+         ZpIg==
+X-Gm-Message-State: AOAM5325Ho3dhebArsvV+ABjcqI7DEG4flj8n6irTq2o/73SNtGxm7vd
+        iNrVwElxn3saFfKCcaASpvXFF6i2oWW4RTz8rrxeVw==
+X-Google-Smtp-Source: ABdhPJyJcXLghVfBEHfzy+3NU5FgOHAasQItJxw3SoimpnzwIgR0i+b8wcsczwTcwKrAd8L5fbzlKH8xAOJDzQTcU2o=
+X-Received: by 2002:a25:e0d4:: with SMTP id x203mr55309ybg.391.1630688980893;
+ Fri, 03 Sep 2021 10:09:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210902230442.1515531-1-saravanak@google.com>
+ <20210902230442.1515531-2-saravanak@google.com> <CAPDyKFpP6pSRSw8_OAW8+ZJNH+CwXtfWBNDcD182gQmzqW=O5g@mail.gmail.com>
+ <CAMuHMdVgjxJwd=PbUSR+9mgxexr3O_O6j-3T24GzE08CqzDjjA@mail.gmail.com>
+In-Reply-To: <CAMuHMdVgjxJwd=PbUSR+9mgxexr3O_O6j-3T24GzE08CqzDjjA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 3 Sep 2021 10:09:05 -0700
+Message-ID: <CAGETcx9W6FYCD62+QytwK5FThpz0EyKn0G6Ay2B5jKgiqkZT1g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: platform: Make sure bus only devices get probed
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Lypak <vladimir.lypak@gmail.com>
+On Fri, Sep 3, 2021 at 7:29 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Ulf,
+>
+> On Fri, Sep 3, 2021 at 11:19 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > On Fri, 3 Sept 2021 at 01:04, Saravana Kannan <saravanak@google.com> wrote:
+> > > fw_devlink could end up creating device links for bus only devices.
+> > > However, bus only devices don't get probed and can block probe() or
+> > > sync_state() [1] call backs of other devices. To avoid this, set up
+> > > these devices to get probed by the simple-pm-bus.
+> > >
+> > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > Tested-by: Saravana Kannan <saravanak@google.com>
+> >
+> > Again, this looks like a nice solution to the problem.
+> >
+> > One question though. The Kconfig SIMPLE_PM_BUS, should probably be
+> > "default y" - or something along those lines to make sure fw_devlink
+> > works as expected.
+>
+> I would love for SIMPLE_PM_BUS to go away, and all of its functionality
+> to be usurped by the standard simple-bus handling.
 
-Add phy configuration for 14nm dsi phy found on MSM8953 SoC. Only
-difference from existing configurations are io_start addresses.
+What if SIMPLE_PM_BUS *is* the standard simple-bus handling?
+Insert "I'm the captain now" meme.
 
-Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
----
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 ++
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 21 +++++++++++++++++++++
- 3 files changed, 24 insertions(+)
+I think SIMPLE_PM_BUS config should just go away and we should compile
+the driver in if CONFIG_OF is selected.
 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-index 8c65ef6968ca..9842e04b5858 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
-@@ -627,6 +627,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
- 	  .data = &dsi_phy_14nm_cfgs },
- 	{ .compatible = "qcom,dsi-phy-14nm-660",
- 	  .data = &dsi_phy_14nm_660_cfgs },
-+	{ .compatible = "qcom,dsi-phy-14nm-8953",
-+	  .data = &dsi_phy_14nm_8953_cfgs },
- #endif
- #ifdef CONFIG_DRM_MSM_DSI_10NM_PHY
- 	{ .compatible = "qcom,dsi-phy-10nm",
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-index b91303ada74f..4c8257581bfc 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-@@ -48,6 +48,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
-+extern const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
- extern const struct msm_dsi_phy_cfg dsi_phy_7nm_cfgs;
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-index d13552b2213b..9a6b1f0cbbaf 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-@@ -1065,3 +1065,24 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs = {
- 	.io_start = { 0xc994400, 0xc996000 },
- 	.num_dsi_phy = 2,
- };
-+
-+const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
-+	.has_phy_lane = true,
-+	.reg_cfg = {
-+		.num = 1,
-+		.regs = {
-+			{"vcca", 17000, 32},
-+		},
-+	},
-+	.ops = {
-+		.enable = dsi_14nm_phy_enable,
-+		.disable = dsi_14nm_phy_disable,
-+		.pll_init = dsi_pll_14nm_init,
-+		.save_pll_state = dsi_14nm_pll_save_state,
-+		.restore_pll_state = dsi_14nm_pll_restore_state,
-+	},
-+	.min_pll_rate = VCO_MIN_RATE,
-+	.max_pll_rate = VCO_MAX_RATE,
-+	.io_start = { 0x1a94400, 0x1a96400 },
-+	.num_dsi_phy = 2,
-+};
--- 
-2.33.0
-
+-Saravana
