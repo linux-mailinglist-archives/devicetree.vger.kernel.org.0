@@ -2,86 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E064002B4
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 17:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63DDD4002B7
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 17:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349785AbhICP5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1349797AbhICP5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 3 Sep 2021 11:57:16 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:44840 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349790AbhICP5P (ORCPT
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:44809 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349788AbhICP5P (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 11:57:15 -0400
-Received: by mail-oi1-f171.google.com with SMTP id c79so7385686oib.11;
+Received: by mail-ot1-f48.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so7034100otg.11;
         Fri, 03 Sep 2021 08:56:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=OO8luS8vgFhGkY6YSH40ZaexdCs2RwuF6KUiXO6O8tY=;
-        b=uSSWKmtMCe8Mlh/35lQBTUYEYpKIypt1Z9XGWwCJMU5aCpZJ28fyDw0t7zV0pAm9cl
-         t0HKM33M973IL7K6/LknLC6JUlppkVUNMj1/ns6WybxC+0olshDzuyxdOI6bWQZ+U0bT
-         YqQV/oDHeCaCZ/PTu44LOWXNmxxcbAO6uBy9Tix9iW7jG1Ax2/YbndiarFsESnHAXBAf
-         QFzih9D+JFy0pHPkJmuQs0gZM09fnxUd6n66K8aqryljssRBjVG/HFJg8b2qO90xdafA
-         H3nnoJ6l/KbCqHhsCuSOJG9vLsczFeEaZhRkNOyDVApKdThZudrYNTb79ljxM4bD9Hc/
-         KJkQ==
-X-Gm-Message-State: AOAM533/Z0hTBty53yeyDwCMH0kqjv80wQctGNmbn7nq2yBMdhwUkJZM
-        8E2UNrXDRXRclcjPlLpadg==
-X-Google-Smtp-Source: ABdhPJyLABGfu7vavSWKCNaNztOHcPGmiaVkLlo6BKMej6uKXD1qbWjFW2ILxDIMF0F0iGps99lXCw==
-X-Received: by 2002:aca:ba44:: with SMTP id k65mr3229328oif.131.1630684575013;
-        Fri, 03 Sep 2021 08:56:15 -0700 (PDT)
+        bh=Qw1bAMElDkYxGWDBqnwHtgJcwFZ+rm2etjwEK2p/4FE=;
+        b=lPaXPnnEOYzIdc/IfxBYDqiKsxMMMEZjLF3gsYkgX5gWJg4FIk6tbSDDd+wZQdaDml
+         4GEbMkjjP8wbnX3eZk1r+gVMno86Toyt2RHnQY9iTAh9M8xsuVB1Bqo30u9lamDuL8FI
+         m1SQvxB2PYCvD/iNjr9+Rsj9k8WOouD3S+cHDB1NPNwCxc3dS2XFnsyLPXzn9sJfsq7H
+         Rt0u+tsYV4ELQcG9UTR7lPiuGoQ6TYsWcW8vJtG9JGGamsihlWt83N7absCu9dFGUTGd
+         vlMQ6bfaG1znOPCoD24wo9kEQmT93g0m2rZ7oNsIOnoUVKkWRGGqRvd1hdGNtNZwz0gN
+         WAyg==
+X-Gm-Message-State: AOAM533u3Xom6OkrW3kiAggMX6TvcITxdRzsCn6/D7YSiWvggosrSyjj
+        R144bUHNIHVM9bbyKwQSTJC2BVMc5g==
+X-Google-Smtp-Source: ABdhPJyAMzmsbFER7typFkPmoLeoFJ2qnfJ2IG5LxBRRPRujgg0zeim5BgpDaIjgj5gWlPBji7nqUw==
+X-Received: by 2002:a9d:1c97:: with SMTP id l23mr3638349ota.230.1630684573465;
+        Fri, 03 Sep 2021 08:56:13 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 8sm1069046oix.7.2021.09.03.08.56.13
+        by smtp.gmail.com with ESMTPSA id r31sm1043893otv.45.2021.09.03.08.56.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Sep 2021 08:56:14 -0700 (PDT)
-Received: (nullmailer pid 3010410 invoked by uid 1000);
+        Fri, 03 Sep 2021 08:56:12 -0700 (PDT)
+Received: (nullmailer pid 3010407 invoked by uid 1000);
         Fri, 03 Sep 2021 15:56:11 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     devicetree@vger.kernel.org, jonathanh@nvidia.com,
-        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-        thierry.reding@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org
-In-Reply-To: <20210903083155.690022-2-mperttunen@nvidia.com>
-References: <20210903083155.690022-1-mperttunen@nvidia.com> <20210903083155.690022-2-mperttunen@nvidia.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: Add YAML bindings for NVDEC
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi@lists.linux.dev
+In-Reply-To: <20210902234228.32223-1-samuel@sholland.org>
+References: <20210902234228.32223-1-samuel@sholland.org>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Add Allwinner R329/D1 LED controller
 Date:   Fri, 03 Sep 2021 10:56:11 -0500
-Message-Id: <1630684571.605300.3010409.nullmailer@robh.at.kernel.org>
+Message-Id: <1630684571.592582.3010406.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Sep 2021 11:31:53 +0300, Mikko Perttunen wrote:
-> Add YAML device tree bindings for NVDEC, now in a more appropriate
-> place compared to the old textual Host1x bindings.
+On Thu, 02 Sep 2021 18:42:27 -0500, Samuel Holland wrote:
+> The Allwinner R329 and D1 SoCs contain an LED controller designed to
+> drive a series of RGB LED pixels. It supports PIO and DMA transfers, and
+> has configurable timing and pixel format.
 > 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
-> v4:
-> * Fix incorrect compatibility string in 'if' condition
-> v3:
-> * Drop host1x bindings
-> * Change read2 to read-1 in interconnect names
-> v2:
-> * Fix issues pointed out in v1
-> * Add T194 nvidia,instance property
-> ---
->  .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>  .../leds/allwinner,sun50i-r329-ledc.yaml      | 141 ++++++++++++++++++
+>  1 file changed, 141 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml:109:1: [warning] too many blank lines (2 > 1) (empty-lines)
+./Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml:83:3: [error] duplication of key "t1h-ns" in mapping (key-duplicates)
 
 dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 17, column 3
+found duplicate key "t1h-ns" with value "{}" (original value: "{}")
+  in "<unicode string>", line 83, column 3
+
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.example.dts] Error 1
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
+    testtree = dtschema.load(filename, line_number=line_number)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 623, in load
+    return yaml.load(f.read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 17, column 3
+found duplicate key "t1h-ns" with value "{}" (original value: "{}")
+  in "<unicode string>", line 83, column 3
+
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
+    ret = check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
+    print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
+AttributeError: 'DuplicateKeyError' object has no attribute 'path'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/leds/allwinner,sun50i-r329-ledc.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1524104
+See https://patchwork.ozlabs.org/patch/1523964
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
