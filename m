@@ -2,156 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C0E3FF855
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 02:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 812D33FF87D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 02:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234643AbhICAVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Sep 2021 20:21:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44824 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232339AbhICAVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Sep 2021 20:21:43 -0400
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC800C061757
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 17:20:44 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id b5-20020a4ac285000000b0029038344c3dso1076685ooq.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Sep 2021 17:20:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=KZY9HfqHiSoNHjeSLVuBihtvknh5wu9WNFSouW+rATM=;
-        b=D0qjoQiNwAYpcfOgVhGLLMbD7hbXN3XvkTH9FnUwI0Q428HD4YkA8c3/Zla5grl9fu
-         m/HDwft+OJzHFsdYOmCCIflhEYF9DGUQKAWkAhX6Md83y94zqL6lLdhu2sqv+fLOuepA
-         q2KyEhBDfmYqZSRaJwY+uEzIECx14ek5INU1o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=KZY9HfqHiSoNHjeSLVuBihtvknh5wu9WNFSouW+rATM=;
-        b=m6jpggotT8T01ID1lF4AE095BPB8tccietBxlbYPZBvztoKWhwGPeCHwE1rz790njN
-         LRAJEDjbUa0xTdBsKFK85ARBXhqD/fN6dzw19pFNvAmJKaE13UY+mtrUd/9EoLS/1fFz
-         XG/sxWP7TyDimLEVRAKaex+oMr8/TJ36WitODKXiQT6mFdyj0WsR5zlLaLIV7QuaMFcP
-         oUN7VwsuX8B4Ye5UcPaI58Di8tBjOIm68D1yMyOi55NnKFgPrD5fAaElygIhgBWQMbOZ
-         qVrFG7JtbqpGJUC/wGxm1ziIOV14SPsy1vQJ9Gb3p1Cp2iOkpaEhlMPgsxOiR2E4Ezi1
-         WLZA==
-X-Gm-Message-State: AOAM531HewMb7CF3pw2W9ZPi2XjNqB0I8rHdHrOR3OAuBwzB4e7Hhrdn
-        LBWIQete7qlGYMsgCJQUi/GNVm/ksjktWxc/VlIZsg==
-X-Google-Smtp-Source: ABdhPJyoPheulxLZu0NElkoIkQ1VrzjxZsb0OAYE6ld1C+M37o2esEitl4dHPHp9WE5Yj6vxPUnnDaUDYMpe0PbZnIA=
-X-Received: by 2002:a4a:a98c:: with SMTP id w12mr658431oom.29.1630628444025;
- Thu, 02 Sep 2021 17:20:44 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 2 Sep 2021 17:20:43 -0700
+        id S231207AbhICAyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Sep 2021 20:54:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55164 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231161AbhICAyy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Sep 2021 20:54:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5A7FB610A1;
+        Fri,  3 Sep 2021 00:53:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630630435;
+        bh=ESjKUQjilvoa8yjcHYk5EoAu/HqzJrgOoao4t51tuiw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nsSWW2fkARm1CWQfjsfE++kELQD2ttwaVF9egcUeuuj9jVYLq36tV0rz6t8wFYtRP
+         2juWr+f/e1Ssr1R2giu7AnqFFxuQjkLVhSKy+2CcrNpSRx9iHohbtsILxhfWGYmBWx
+         GcIvIJ4ww3t1ViFiHKBoRuJtyvt3v6UhiwYkWLByCDo/Rk5kmge/zDa7fOPn6fYso7
+         JoHLMD9B21ruCSO3aXpFVPWY2FNJS8EFTVtsxob8nAnMV9lUzH4N7UcO4Nl8dfdRqI
+         AyST0OPRZhX4XtC/jazwJi/QciXL4oWdNdxyvRmi7x8Qi+RIPIj23xPXbfyoYOT+wL
+         NriLUtk351bVw==
+Received: by mail-ej1-f53.google.com with SMTP id x11so8592405ejv.0;
+        Thu, 02 Sep 2021 17:53:55 -0700 (PDT)
+X-Gm-Message-State: AOAM531nvtHlTY+4UNopt7eUytx3Z10UnhkNpj0nirBY4LjZIlRuJOD4
+        EZ8LGNrFC2Dr13vCQ3YAuwgMsa2Ke9L/imruMw==
+X-Google-Smtp-Source: ABdhPJzgXCEgW8AMIrdDuiVErt8Lcc+lHdjEl4dO9chPIYkQnJOqKI0bLvrmBj8SJrt1vZKVVzTI79Sk1om36yhSsd4=
+X-Received: by 2002:a17:906:8cd:: with SMTP id o13mr1086206eje.341.1630630433827;
+ Thu, 02 Sep 2021 17:53:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210902154711.1.I9777d0036ecbb749a4fb9ebb892f94c6e3a51772@changeid>
-References: <20210902154711.1.I9777d0036ecbb749a4fb9ebb892f94c6e3a51772@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 2 Sep 2021 17:20:43 -0700
-Message-ID: <CAE-0n51s1s6L7G1vxbC8PEZ=FBr9mSch81KUBO6fK_jfO8S_CQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Delete ADC config for
- unused thermistors
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+References: <20210902025528.1017391-1-saravanak@google.com>
+ <20210902025528.1017391-3-saravanak@google.com> <CAL_JsqJOv7D5nHteGPDKC2+ns1caVNs-NFFJppLuK0OEB8dztQ@mail.gmail.com>
+ <CAGETcx-rOakAX_apu2ecu6jWCwzO0RgMkwdfzyF+UaxQfVj4CA@mail.gmail.com>
+ <CAL_Jsq+A1T5+KK5xsVVtrMVeuMre3B6sAAroX+a3gQy6wY+r8A@mail.gmail.com> <CAGETcx9wY66TsFX_1rFUO+toE-OpkAvWSdcNVK7M=LYwa6xbAw@mail.gmail.com>
+In-Reply-To: <CAGETcx9wY66TsFX_1rFUO+toE-OpkAvWSdcNVK7M=LYwa6xbAw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 2 Sep 2021 19:53:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJzt_duSkMm43dwpiGCmqW8PAQ1n6SeyiNkECP8CTcY=g@mail.gmail.com>
+Message-ID: <CAL_JsqJzt_duSkMm43dwpiGCmqW8PAQ1n6SeyiNkECP8CTcY=g@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Kaehlcke (2021-09-02 15:47:44)
-> The charger thermistor on Lazor, CoachZ rev1 and Pompom rev1+2 is
-> either the wrong part or not stuffed at all, the same is true for
-> the skin temperature thermistor on CoachZ rev1. The corresponding
-> thermal zones are already disabled for these devices, in addition
-> delete the ADC nodes of the thermistors.
+On Thu, Sep 2, 2021 at 2:29 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> For Lazor and CoachZ rev1 also disable the PM6150 ADC thermal
-> monitor since there are no other temperatures to monitor.
+> On Thu, Sep 2, 2021 at 12:03 PM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Thu, Sep 2, 2021 at 11:57 AM Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Thu, Sep 2, 2021 at 7:24 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > > >
+> > > > On Wed, Sep 1, 2021 at 9:55 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > >
+> > > > > We don't want fw_devlink creating device links for bus devices as
+> > > > > they'll never probe. So mark those device node with this flag.
+> > > > >
+> > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > ---
+> > > > >  drivers/of/platform.c | 16 ++++++++++++++++
+> > > > >  1 file changed, 16 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > > > index 74afbb7a4f5e..42b3936d204a 100644
+> > > > > --- a/drivers/of/platform.c
+> > > > > +++ b/drivers/of/platform.c
+> > > > > @@ -392,6 +392,22 @@ static int of_platform_bus_create(struct device_node *bus,
+> > > > >         if (!dev || !of_match_node(matches, bus))
+> > > > >                 return 0;
+> > > > >
+> > > > > +       /*
+> > > > > +        * If the bus node has only one compatible string value and it has
+> > > > > +        * matched as a bus node, it's never going to get probed by a device
+> > > > > +        * driver. So flag it as such so that fw_devlink knows not to create
+> > > > > +        * device links with this device.
+> > > > > +        *
+> > > > > +        * This doesn't catch all devices that'll never probe, but this is good
+> > > > > +        * enough for now.
+> > > > > +        *
+> > > > > +        * This doesn't really work for PPC because of how it uses
+> > > > > +        * of_platform_bus_probe() to add normal devices. So ignore PPC cases.
+> > > > > +        */
+> > > > > +       if (!IS_ENABLED(CONFIG_PPC) &&
+> > > > > +           of_property_count_strings(bus, "compatible") == 1)
+> > > > > +               bus->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
+> > > >
+> > > > This looks fragile relying on 1 compatible string, and the DT flags in
+> > > > this code have been fragile too. I'm pretty sure we have cases of
+> > > > simple-bus or simple-mfd that also have another compatible.
+> > > >
+> > > > Couldn't we solve this with a simple driver?
+> > >
+> > > Oh, I didn't think you'd like that. I'd lean towards that option too
+> > > if we can address some of the other concerns below.
+> > >
+> > > > Make 'simple-pm-bus'
+> > > > driver work for other cases?
+> > >
+> > > > BTW, this patch doesn't even work for
+> > > > simple-pm-bus.
+> > >
+> > > How do you mean? Because simple-pm-bus already has a driver and
+> > > doesn't set "matches" param when it calls of_platform_populate() and
+> > > this flag won't be set. So at least for simple-pm-bus I don't see any
+> > > issue.
+> >
+> > You're right.
+> >
+> > > I was trying to reuse of_default_bus_match_table without explicitly
+> > > referring to it, but if it's confusing I can add a separate list of
+> > > compatible strings and use those here instead of using "matches".
+> >
+> > What happens with a non-default table? I'm not sure we can assume the
+> > same behavior.
+> >
+> > > > A driver for simple-bus may cause issues if there's a
+> > > > more specific driver to bind to as we don't handle that. It's simply
+> > > > whichever matches first.
+> > >
+> > > Right, this is my worry. Especially for devices like this (there are
+> > > plenty of cases like this) which have a driver that probes them but
+> > > also lists simple-bus
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/arm-realview-pb11mp.dts?id=73f3af7b4611d77bdaea303fb639333eb28e37d7#n299
+> >
+> > Uhh, that one is certainly a leakage of wanting an soc_device in the
+> > hierarchy, not any real bus structure reflecting the h/w. I'm not a
+> > fan of the soc_device stuff and its optional nature. Everything is an
+> > SoC, so it should always be there? Or your device hierarchy should
+> > change when you decide to add a soc_device?
+> >
+> > > So as long as there's a compatible string that's not one of the
+> > > "transparent" busses, this driver shouldn't match. So, I don't think I
+> > > can get away from checking the compatible strings.
+> > >
+> > > How about I check here to make sure all the "compatible" strings are
+> > > from an approved transparent bus list, and if it's true, I use
+> > > driver_override to force match it to a transparent bus driver? Would
+> > > you be okay with that?
+> >
+> > Can't we do that within a driver? We check this and fail probe if
+> > there's a more specific compatible.  Then another driver can match and
+> > probe.
 >
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->
->  .../arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts | 12 ++++++++++++
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi   | 10 ++++++++++
->  .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts |  8 ++++++++
->  .../arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dts |  8 ++++++++
->  4 files changed, 38 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-> index 21b516e0694a..edfcd47e1a00 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dts
-> @@ -23,6 +23,18 @@ &charger_thermal {
->         status = "disabled";
->  };
->
-> +&pm6150_adc {
-> +       /delete-node/ skin-temp-thermistor@4e;
-> +       /delete-node/ charger-thermistor@4f;
+> I was thinking that initially, but if we fail a probe, the driver core
+> will permanently give up (won't search further) or might end up
+> retrying with the same driver and never get to the other driver. I'll
+> send out a v2 with what I described above. It's not too bad and it
+> will also allow us to handle the PPC cases (we'll just need to keep
+> adding the simple-bus equivalent entries to a table).
 
-Is there any other child node? I only see two, unless I missed
-something. In which case the whole node can be disabled?
+I wasn't sure, but I traced the calls and it looks like based on
+__driver_attach() that if a driver fails probe another one matching
+should get to probe:
 
-> +};
-> +
-> +&pm6150_adc_tm {
-> +       status = "disabled";
-> +
-> +       /delete-node/ charger-thermistor@0;
-> +       /delete-node/ skin-temp-thermistor@1;
-> +};
-> +
->  /*
->   * CoachZ rev1 is stuffed with a 47k NTC as thermistor for skin temperature,
->   * which currently is not supported by the PM6150 ADC driver. Disable the
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> index 00535aaa43c9..57f7b19f83b0 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> @@ -54,6 +54,16 @@ &panel {
->         compatible = "boe,nv133fhm-n62";
->  };
->
-> +&pm6150_adc {
-> +       /delete-node/ charger-thermistor@4f;
+        /*
+         * Ignore errors returned by ->probe so that the next driver can try
+         * its luck.
+         */
 
-Same question here.
+The PPC case is about descending nodes without a compatible string.
 
-> +};
-> +
-> +&pm6150_adc_tm {
-> +       status = "disabled";
-> +
-> +       /delete-node/ charger-thermistor@0;
-> +};
-> +
->  &trackpad {
->         interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-> index e122a6b481ff..76a130bad60a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-> @@ -26,6 +26,14 @@ &charger_thermal {
->         status = "disabled";
->  };
->
-> +&pm6150_adc {
-> +       /delete-node/ charger-thermistor@4f;
-
-I see there's a 5v choke so this looks good as still enabled.
-
-> +};
-> +
-> +&pm6150_adc_tm {
-> +       /delete-node/ charger-thermistor@0;
-> +};
-> +
->  &pp3300_hub {
->         /* pp3300_l7c is used to power the USB hub */
->         /delete-property/regulator-always-on;
+Rob
