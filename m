@@ -2,100 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69DD940040D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13307400428
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 19:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349930AbhICRYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 13:24:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50726 "EHLO
+        id S1350297AbhICRaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 13:30:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349686AbhICRX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 13:23:59 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A931EC061757
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 10:22:59 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id g13-20020a17090a3c8d00b00196286963b9so29276pjc.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Sep 2021 10:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=V8XLfChI67FESwmGmsFsqJrUTudQEofQRGSRaywZdbM=;
-        b=EsfJ77ID2EdkHcKDWm+iAi4npWxw2yXczIj1qxaX7ibyOCLM4TtuumhIgVtyTe8jak
-         Sh9gAJ1LE1aP44u0ApdbeEAPjVxQzQggtGUGLm4dmVEp+ZlPAjrl0A5je+pOhsOTrMDZ
-         UGJND80bLkGejzFm6EAeLKuj9EvPqoCTlc+DE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=V8XLfChI67FESwmGmsFsqJrUTudQEofQRGSRaywZdbM=;
-        b=clM9tR44WqjxCmPelVzv5vRzgX9wQvOQL8mfsly3dsZxg7xfbMMZ4XKMUINLk6yT40
-         XPaCT30iNhbHxM7kZZ1emRi3qvLyeqy//HZU9Zu5phDdHou1X/8Sjg8OZq7Ellt49+c3
-         3TeyiysxvvPPH926e5crs5py7yMepcJbbGv3dt0Xg7WeM4BHZ6tC/5uO48OxTDapP4NQ
-         S/sgKtXha3TuMUhvIGsslBnqRdgY3/NvfE4/1blMzbUMTrbP3jmjA5ACCCyThaRWMt2+
-         +ptlDhqC4aIx2+iF1fvjZ7mOUD+K+u3oqjijjK308toVwNXqrH6KWUxBp7Q2u2J6sLLz
-         rHTA==
-X-Gm-Message-State: AOAM5335XXvthAni40E77g/QwzTTgrwyweHE9D+jojX0re9wTwAIRHUQ
-        IIHVxXxGA4vN9CROo8Ym3J5rZg==
-X-Google-Smtp-Source: ABdhPJwo9KZ/kOYSg7o2f2x4DvFDJnbuPtPxnSCdGNNyKR4PBHqLBIFgvWnZ61uo9pdnINSWB9A+4g==
-X-Received: by 2002:a17:90a:4481:: with SMTP id t1mr19889pjg.109.1630689779175;
-        Fri, 03 Sep 2021 10:22:59 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:80b3:9f00:3170:fd8b])
-        by smtp.gmail.com with UTF8SMTPSA id p11sm370053pjv.41.2021.09.03.10.22.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Sep 2021 10:22:58 -0700 (PDT)
-Date:   Fri, 3 Sep 2021 10:22:57 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, sboyd@kernel.org, dianders@chromium.org,
-        Roja Rani Yarubandi <rojay@codeaurora.org>
-Subject: Re: [PATCH V7 6/7] arm64: dts: sc7280: Add QUPv3 wrapper_1 nodes
-Message-ID: <YTJZ8YkjrCmyzNjG@google.com>
-References: <1630643340-10373-1-git-send-email-rajpat@codeaurora.org>
- <1630643340-10373-7-git-send-email-rajpat@codeaurora.org>
+        with ESMTP id S1350394AbhICRaK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 13:30:10 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3EEC0613C1;
+        Fri,  3 Sep 2021 10:29:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Pv/OTFLCcCgh6NL0IiQ8EwNC5MSYN96U9rUEB9jsZqY=; b=lwWcwqiANiS6SjADGzKtg6U3IY
+        paU30S6vpMYqkoidBfkMw4YTmgP9rm+FKwywQt9CNDkK3uqnioE5m3hjiFLLOzZ7ceQ70e/3JcK4S
+        fTqFHGRC8jsMLDmo93wntLUmgl6DJ/dLSrheKm3k5wLfd93GVQ1xN37v5KP/DidUX7F0ZhK/+jS8U
+        ADtIfgFNpOeCLAdZAqYo9aGRNgkw9WfqJGwZchdmAIF7gfZisIDztd/xBDkZ6kd3G+k5BHtbXV47u
+        wAlW1xDp8mQsM7UPyG8lCGVfshnFyDQ2Ipi3NhC/UwU74yXaJxWVrLJo86eAv2GMzjy1UOTdX8dSk
+        dwIGjO6Q==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1mMCzs-00071A-J6; Fri, 03 Sep 2021 20:29:00 +0300
+Subject: Re: [PATCH v4 1/3] dt-bindings: Add YAML bindings for NVDEC
+To:     Rob Herring <robh@kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210903083155.690022-1-mperttunen@nvidia.com>
+ <20210903083155.690022-2-mperttunen@nvidia.com>
+ <YTJOg1oHJq848ZlE@robh.at.kernel.org>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+Message-ID: <36d5b388-0d7f-c500-89b1-c4526849fb56@kapsi.fi>
+Date:   Fri, 3 Sep 2021 20:28:59 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1630643340-10373-7-git-send-email-rajpat@codeaurora.org>
+In-Reply-To: <YTJOg1oHJq848ZlE@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 03, 2021 at 09:58:59AM +0530, Rajesh Patil wrote:
-> From: Roja Rani Yarubandi <rojay@codeaurora.org>
+On 9/3/21 7:34 PM, Rob Herring wrote:
+> On Fri, Sep 03, 2021 at 11:31:53AM +0300, Mikko Perttunen wrote:
+>> Add YAML device tree bindings for NVDEC, now in a more appropriate
+>> place compared to the old textual Host1x bindings.
+>>
+>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>> ---
+>> v4:
+>> * Fix incorrect compatibility string in 'if' condition
+>> v3:
+>> * Drop host1x bindings
+>> * Change read2 to read-1 in interconnect names
+>> v2:
+>> * Fix issues pointed out in v1
+>> * Add T194 nvidia,instance property
+>> ---
+>>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++++++++++++++++
+>>   MAINTAINERS                                   |   1 +
+>>   2 files changed, 110 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>> new file mode 100644
+>> index 000000000000..33d01c7dc759
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+>> @@ -0,0 +1,109 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Device tree binding for NVIDIA Tegra NVDEC
+>> +
+>> +description: |
+>> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
+>> +  and newer chips. It is located on the Host1x bus and typically
+>> +  programmed through Host1x channels.
+>> +
+>> +maintainers:
+>> +  - Thierry Reding <treding@gmail.com>
+>> +  - Mikko Perttunen <mperttunen@nvidia.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^nvdec@[0-9a-f]*$"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - nvidia,tegra210-nvdec
+>> +      - nvidia,tegra186-nvdec
+>> +      - nvidia,tegra194-nvdec
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: nvdec
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: nvdec
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    items:
+>> +      - description: DMA read memory client
+>> +      - description: DMA read 2 memory client
+>> +      - description: DMA write memory client
+>> +
+>> +  interconnect-names:
+>> +    items:
+>> +      - const: dma-mem
+>> +      - const: read-1
+>> +      - const: write
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +  - power-domains
+>> +
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: nvidia,tegra194-nvdec
+>> +then:
+>> +  properties:
+>> +    nvidia,instance:
+>> +      items:
+>> +        - description: 0 for NVDEC0, or 1 for NVDEC1
 > 
-> Add QUPv3 wrapper_1 DT nodes for SC7280 SoC.
+> I still don't understand what this is needed for. What is the difference
+> between the instances? There must be some reason you care. We should
+> describe that difference, not some made up index.
 > 
-> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 709 +++++++++++++++++++++++++++++++++++
->  1 file changed, 709 insertions(+)
+> I'm not suggesting using the base address either. That's fragile too.
+
+This device is on the Host1x bus. On that bus, each device has an 
+identifier baked into hardware called 'class' that is used when 
+accessing devices through some mechanisms (host1x channels). As such, 
+when probing the device we need to specify the class of the device to 
+the host1x driver so it knows how to talk to it. Those class numbers are 
+fixed so we have hardcoded them in the driver, but now that we have two 
+NVDECs, we need to distinguish between them so that we can specify the 
+correct class for each instance to the host1x driver.
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 32d1354..8fe54bf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +
+>> +additionalProperties: true
+> 
+> 'true' here is not allowed unless the schema is not complete and
+> intended to be included in a complete schema or unconditionally applied
+> (i.e. 'select: true'). This case is neither. As pointed out previously,
+> 'unevaluatedProperties' is what you'd want here.
+> 
+> However, I looked into supporting defining properties in if/then/else
+> schemas as you have done and I don't think we will support that soon.
+> It's problematic because we can't validate the schema under the if/then
+> completely. The reason is properties under if/then schemas don't have to
+> be complete as we expect a top level definition that is complete (e.g.
+> vendor properties must have 'description'). To solve this, we'd have to
+> only apply meta-schema checks if the property doesn't appear at the top
+> level. That's more complicated than I care to implement ATM.
 
-> +			qup_spi8_data_clk: qup-spi8-data-clk {
-> +				pins = "gpio32", "gpio33", "gpio34";
-> +				function = "qup10";
-> +			};
-> +
-> +			qup_spi8_cs: qup-spi8-cs {
-> +				pins = "gpio35";
-> +				function = "qup10";
-> +			};
+I see two paths here: either keep 'additionalProperties: true' or remove 
+it and have this binding trigger validation failures. Which one do you 
+suggest or is there some third option?
 
-As for wrapper_0, I think we still want the nodes to configure the CS as GPIO.
+Thanks,
+Mikko
 
-If there are no other reasons to re-spin these could be added with a follow-up
-patch, so:
-
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> 
+> Rob
+> 
