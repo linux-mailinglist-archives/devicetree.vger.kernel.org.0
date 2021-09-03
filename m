@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E516A3FFA1F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 08:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E54063FFA41
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 08:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237351AbhICGIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 02:08:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36280 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236553AbhICGIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 02:08:16 -0400
-X-Greylist: delayed 374 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 02 Sep 2021 23:07:16 PDT
-Received: from mx.msync.work (mx.msync.work [IPv6:2a01:4f9:2b:2dc2::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A334DC061575
-        for <devicetree@vger.kernel.org>; Thu,  2 Sep 2021 23:07:16 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 94355D50BB;
-        Fri,  3 Sep 2021 06:01:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-        t=1630648860; h=from:subject:date:message-id:to:cc:mime-version:
-         content-transfer-encoding:in-reply-to:references;
-        bh=5AST0dnrP28CYScPQA4dGXy3BMvm9dDouxDZK1j+8X0=;
-        b=mN35dW+WJK6S5KKcJlfha2zR0C5XGlC+DBtq8skAFT2hpCibROZK1+MjBR0XyPIlStIznI
-        bq8CDzGZ89FL3uyT1KSwPXKMtWDYVyCW3gTEKgeBejXLyJ81upEFjsacsqb44HOy5Id+x1
-        rowaE6yoU6fl/Ad0+sft8c4qlHW4ubtONphEwh3Cs4mwOVdji8JPJxLnSwzVaglKNO+2/2
-        dzVM9IGdqa1VCCpyYNS8vU9+jnCH99I3Hp2Zu+YggLueZUWTM66IbyAVXWAAvsksH9TDOr
-        pe0IXr8fL4sqVHXAM9lddmSdviSQg4NNCGCMpiLf1cDFhvWyndluUjykMiGnyQ==
-From:   Vyacheslav Bocharov <adeep@lexina.in>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: arm: amlogic: add bindings for Jethub D1/H1
-Date:   Fri,  3 Sep 2021 09:00:33 +0300
-Message-Id: <20210903060035.844758-2-adeep@lexina.in>
-In-Reply-To: <20210903060035.844758-1-adeep@lexina.in>
-References: <20210903060035.844758-1-adeep@lexina.in>
+        id S1346908AbhICGRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 02:17:42 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52692 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1346155AbhICGRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 02:17:42 -0400
+X-UUID: 1fd4a2b860234363a3fd782005d3b018-20210903
+X-UUID: 1fd4a2b860234363a3fd782005d3b018-20210903
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <fengquan.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 111379343; Fri, 03 Sep 2021 14:16:38 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 3 Sep 2021 14:16:37 +0800
+Received: from localhost.localdomain (10.17.3.154) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 3 Sep 2021 14:16:37 +0800
+From:   Fengquan Chen <Fengquan.Chen@mediatek.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <fengquan.chen@mediatek.com>, <tinghan.shen@mediatek.com>,
+        <randy.wu@mediatek.com>, <rex-bc.chen@mediatek.com>,
+        <christine.zhu@mediatek.com>, <joe.yang@mediatek.com>,
+        <zhishuang.zhang@mediatek.com>
+Subject: [v2,0/2] update mediatek wdt driver and dt-binding
+Date:   Fri, 3 Sep 2021 14:16:21 +0800
+Message-ID: <20210903061623.10715-1-Fengquan.Chen@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for JetHome JetHub D1/H1
+1. add disable_wdt_extrst to support disable reset signal output
+2. update watchdog dt-binding
 
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+fengquan.chen (2):
+  watchdog: mtk: add disable_wdt_extrst support
+  dt-bindings: watchdog: mtk-wdt: add disable_wdt_extrst support
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 6423377710ee..b223d7829c3d 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -86,6 +86,7 @@ properties:
-           - enum:
-               - amlogic,p281
-               - oranth,tx3-mini
-+              - jethome,jethub-j80
-           - const: amlogic,s905w
-           - const: amlogic,meson-gxl
- 
-@@ -133,6 +134,7 @@ properties:
-         items:
-           - enum:
-               - amlogic,s400
-+              - jethome,jethub-j100
-           - const: amlogic,a113d
-           - const: amlogic,meson-axg
- 
+ Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 2 ++
+ drivers/watchdog/mtk_wdt.c                             | 7 +++++++
+ 2 files changed, 9 insertions(+)
+
 -- 
-2.30.2
+2.25.1
 
