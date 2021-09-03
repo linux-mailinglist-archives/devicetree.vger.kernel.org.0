@@ -2,188 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CC153FFAF3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 09:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7DD3FFB62
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 09:55:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347797AbhICHTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 03:19:36 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:40517 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347750AbhICHTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 03:19:35 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20210903071834euoutp0156f3dbb8fe103b361b8c2b3e64428ac1~hPrtEODgK1579515795euoutp01r
-        for <devicetree@vger.kernel.org>; Fri,  3 Sep 2021 07:18:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20210903071834euoutp0156f3dbb8fe103b361b8c2b3e64428ac1~hPrtEODgK1579515795euoutp01r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1630653514;
-        bh=jzfva8tySkoBOZr2tYVsxf46AbNPcgeN/pneM9rWZ7M=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=YHQT2KhGoOEH+ry4ouVkAW9b7mjzp7NHHnYMhKJyvj5aS8/1nWhoqnQhSZfstHmUh
-         eFn7KIm7X0znMMoIRkfT31nu3YD1oE5sHcrcxcfpe8Srv9F0M9+W7mw9s46lEEq6mS
-         UUU/r3hPJQoabiDe6YIfg1D7HgekIwgSNFR84GFo=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20210903071833eucas1p176cb4b6def20e6660e2b3ce075ab5b68~hPrsTJmFf2482524825eucas1p1M;
-        Fri,  3 Sep 2021 07:18:33 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id BA.3B.42068.94CC1316; Fri,  3
-        Sep 2021 08:18:33 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20210903071832eucas1p10a7b8a295e68df4d2735110c9ec09cf1~hPrr0SjpP2476624766eucas1p1c;
-        Fri,  3 Sep 2021 07:18:32 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210903071832eusmtrp1ee4a743996cc9c282753936e3c679c16~hPrryLsZp3052030520eusmtrp1y;
-        Fri,  3 Sep 2021 07:18:32 +0000 (GMT)
-X-AuditID: cbfec7f4-c89ff7000002a454-1c-6131cc49558e
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 23.36.20981.84CC1316; Fri,  3
-        Sep 2021 08:18:32 +0100 (BST)
-Received: from [192.168.0.14] (unknown [106.210.131.79]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20210903071831eusmtip1b3a77e8d246906c962e97defe4b33642~hPrqixxyX3135731357eusmtip1I;
-        Fri,  3 Sep 2021 07:18:31 +0000 (GMT)
-Subject: Re: [PATCH v3 06/16] ARM: configs: Everyone who had PANEL_SIMPLE
- now gets PANEL_SIMPLE_EDP
-To:     Doug Anderson <dianders@chromium.org>,
-        Olof Johansson <olof@lixom.net>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        DTML <devicetree@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Emil Velikov <emil.velikov@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>, linux-sunxi@lists.linux.dev,
-        "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>
-From:   Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <5c3b3c1c-6fc2-123b-b1bc-c6e085996e01@samsung.com>
-Date:   Fri, 3 Sep 2021 09:18:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
-        Thunderbird/78.13.0
+        id S1348148AbhICHzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 03:55:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348135AbhICHzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Sep 2021 03:55:50 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20046C061575;
+        Fri,  3 Sep 2021 00:54:51 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id a66so4976851qkc.1;
+        Fri, 03 Sep 2021 00:54:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b5fuqcIdn5J86qWLEUURCKMJp4w9lu6BbCFdQDOMDsI=;
+        b=RmjQtbWU5lPM3BeSZtYcerCT37CdwZTY0xgGphLc+tTVNbE6blDKMqxdVuQrj45CwL
+         ZTDuQ3VBy9V2i5wS6mir8KQ6W4R2Sbl4AwVpaDaKbvwlASfq04XFnn7oJw3GXEhfUL8y
+         FnFYfhzEtdqJt17JObZArLQc38R5n+4g5UNSPI8WP4yldQt9+V5rMBkZBHDoSYyG7fxk
+         pUK97+FFF+HMObPJn+EDjixzMDkGmSQybmzwfSOQlOPFgHkEObJSWotw/JEw/WfeQoCE
+         dlhwIS0wIiWhGjmFqhM2jsRJOd7I+aAGW2/4yBJMm37ZOmuxsUaUTo0uibFNRA0HzYtM
+         r+qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b5fuqcIdn5J86qWLEUURCKMJp4w9lu6BbCFdQDOMDsI=;
+        b=s4Aeb5KPQPki9BoaAzze2RkoYci2YEu58OVxHZQaZ33S/X07+dg4ZgqSZPbGGLHhXg
+         loSGZMtQ3tbXp56kiwr/cAh1Uo/3qGyAr/wtlgal/hQxBpGfySQ5TzMkTAq2G1ds2M7m
+         e5Xn9hNxvSTj/hYf2jxKgh3873A88v3/f20mTnZg/0ZuAHyK0rQgJ7guyBBqDNwG3KrS
+         wPdFQ50B5KUZT6hQGM3BXwiKahd70bC+EHfSDs74Bw8gpih2imkhUkT2SI6nQ2+nWB8G
+         yjMrgtKaOakoY+7Mpc/x2YARHgQdj0sKfavO8N+w+SxRqR9x67+fTc93Nnb+noRnBPpV
+         VKrg==
+X-Gm-Message-State: AOAM531HM8HbNlX6P9ol1Jcpm0qpN2f2A2qoMUtGrHdCdeRNrEgXltPT
+        vhaSh3vZx1eEuZacNfArHUTfx5WnKPRgxJM+DE8=
+X-Google-Smtp-Source: ABdhPJxcIUKvKHIhhX1gJAUzH8+mLGFCf1ojqji/a5xyTvbjMfQmQjw71WPSfBZsbgqDF8EPawH0kw25DCzu8zy1LFM=
+X-Received: by 2002:a05:620a:1195:: with SMTP id b21mr2215857qkk.450.1630655690274;
+ Fri, 03 Sep 2021 00:54:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=WPXAUyuAHb1jKx9F_aw+JGX4MWB3or=Eq5rXoKY=OQMw@mail.gmail.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUxTZxTG8957e9uiLdfixis2KmRuw20gSrKXbHHTkHG34ZQtYdNtYsVr
-        NVAkvaDsI4MxYcCsCk6FlggkfElMtNRC21mIXaUiX0qhTCapDsYYrjDKZ2Gdo1zM+O85z/md
-        9zkneQW4xEgGCY6lpDHKFFlyCOlHNLR4ul57tz1CtrVwXIBUna0Y8ha18FFb8xiBnjYU4qjM
-        2slDHdW3SNQzPU6i3wtcJKq7YCSQ1jWHoR//qcFQ/aCDhwqbO/ioYP4KjuymUhJpKs8SSP/n
-        GIaKu5oWuSYTifKn1CSyXDADVDGhJ1BufjUP3e2bJFGO2cpHtR49QB7TZeLt9bTdcR+nF+aL
-        AK3OUpG0Jus+QRsGKgFtniknaKN6gE/X1+WT9EPHTZJunHnEoy+3xtHOH2wYravMpEd0JYDu
-        uZPNo7VjBmxvwH6/Nw8zycdOMMrwHQf9jj445yRTTVRG71/D/CxQKioAQgGkIqHdkccvAH4C
-        CVUL4NCQe7mYAtBebCK4YhLAEvNV3rMRzeQwyTVqAKzy3MG4wgXgRPZpzEcFUAy0tdzj+/Ra
-        6j140fBkCcKpYiGsGO1fgkgqFHp1D0ifFlE7oK6oB/dpgnoBdo5MEz79HLUPeltNPI5ZA1tL
-        hpZ8IRUHf/5teInHqUDYP1SGcXojbHSV4r4wSJn94GyXAeP2joZ9zRcJTgfAUdsNPqelsO38
-        6WU/EzprTy0P5wGov27EucYb8GHn/OKmgsWEUHjNFM7ZO6H9tpvw2ZASw19ca7gdxLCo4RLO
-        2SKYlyvh6GDo7NAvPxgIq+5Nk+dAiHrFZeoV16hXXKP+P7ccEHUgkElnFXKG3ZbCnAxjZQo2
-        PUUelnhcUQ8Wf3fbv7YpA6gZnQizAEwALAAK8JC1IuM7W2US0WHZF18yyuMJyvRkhrWA9QIi
-        JFB06MbVBAkll6UxSQyTyiifdTGBMCgLi9M6viqWHtLMJp5flzDAard39wY/37Rqu/elt8Y3
-        bXZkfDjnhU+yK+sjRMFqdfxn9rqamLnvbkX5r3p/XfnH0RVNu1xXeg8oE6pybuvgtfaMlzNY
-        99n4Ld//dOJkmKq4YdO+usbuAKnpk7I0/QfA3R7lMfj3RkfyreW5sUWWkehLqqCbObtfmd4v
-        j9QiL5X07YvUpxv+Xv2He9AMPwprCu3TyPsrDD1RXbO7fz0QEzMzSxl5muHXqTPW6l1HrKvF
-        jw5u6371a1w1mFzmVsjlexThVRuv7zFlJjnZnZrUb/ptT7sTY3n10gWz/112w2axOPbxkdSc
-        z/cKpQvxZWcenyJEIQR7VBaxBVeysv8AlYUuhUwEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDKsWRmVeSWpSXmKPExsVy+t/xu7oeZwwTDb49VLboPXeSyeLvpGPs
-        Fqf3v2Ox+L9tIrPF/CPnWC3OLjvIZnHl63s2i6ddb9ksVk3dyWKx8e0PJospf5YzWWx6fI3V
-        YuL+s+wWXb9WMltc3jWHzWL2kn4Wi60v3zFZzDi/D6hu3y42i84vs9gsDk3dy2ix8ONWFou2
-        zmWsFqeuf2azaN17hN1ixc+tjBY/d81jcZD2uHztIrPH71+TGD1mNfSyecxuuMjisePuEkaP
-        vd8WsHjsnHWX3WPTqk42jzvX9rB5bP/2gNVj3slAj/vdx5k8Ni+p93ixeSajx5UTTaweG9/t
-        YAoQjtKzKcovLUlVyMgvLrFVija0MNIztLTQMzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DL
-        uDnhPlvBLoGKq2+esTcwzuHtYuTkkBAwkZj9+RlbFyMXh5DAUkaJ+X9/s0EkxCV2z3/LDGEL
-        S/y51gVV9JpR4u/CF0wgCWGBVIlrB5cygtgiAl4S03a8ZgIpYhaYxynxefojFoiOqUwSy1//
-        YQGpYhPQlPi7+SbYCl4BO4nNk66ArWARUJE49+IrWI2oQKRE04mtUDWCEidnPgGLcwoEShx+
-        9AysnlnATGLe5odQtrjErSfzmSBseYntb+cwT2AUmoWkfRaSlllIWmYhaVnAyLKKUSS1tDg3
-        PbfYSK84Mbe4NC9dLzk/dxMjMFltO/Zzyw7Gla8+6h1iZOJgPMQowcGsJMK7080gUYg3JbGy
-        KrUoP76oNCe1+BCjKdA/E5mlRJPzgekyryTe0MzA1NDEzNLA1NLMWEmc1+TImnghgfTEktTs
-        1NSC1CKYPiYOTqkGph1rbWbMmzXjSG2amHRz3sLLVyasclgV8HE2w44Hp/lOCMYKZ7lZmGou
-        XykuZy4oHnLxhAdT+aTOb/rZr5Y8vZTRktTQycCxIuxqQ4zCxIU6scq6GmoztimZNUn3/Xt6
-        w9tMtFLiQ/Ct3eXPQhw6T8Qa7IsOf6dl8e6envRB9ikn97ld7+ncv7XgsNebmoTKOm45SY7d
-        P4tKShnf7p+uv8T+FsOW+pUtZ4vuF8VI/c6/dSvElVk6+fB8EbEE9+bflwvk3rFFbL3mtMv/
-        VphE6IH7RQ93mNk6Tog3irVb2Rt/vu7uRY5Ja9sOhK5akbHm7Dqt04tccuZah7L4HNJSZ503
-        Y7vf+wNzkl/uvRXxX4mlOCPRUIu5qDgRAD32K4LfAwAA
-X-CMS-MailID: 20210903071832eucas1p10a7b8a295e68df4d2735110c9ec09cf1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210903071832eucas1p10a7b8a295e68df4d2735110c9ec09cf1
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210903071832eucas1p10a7b8a295e68df4d2735110c9ec09cf1
-References: <20210901201934.1084250-1-dianders@chromium.org>
-        <20210901131531.v3.6.I02250cd7d4799661b068bcc65849a456ed411734@changeid>
-        <CAOesGMjp4pscuxciHZo7br-acgbkZSdRA_mUWNpcz0OfF7zOSA@mail.gmail.com>
-        <CAD=FV=WPXAUyuAHb1jKx9F_aw+JGX4MWB3or=Eq5rXoKY=OQMw@mail.gmail.com>
-        <CGME20210903071832eucas1p10a7b8a295e68df4d2735110c9ec09cf1@eucas1p1.samsung.com>
+References: <1629876516-16513-1-git-send-email-shengjiu.wang@nxp.com> <YTDq/kWFPLHUnHMN@robh.at.kernel.org>
+In-Reply-To: <YTDq/kWFPLHUnHMN@robh.at.kernel.org>
+From:   Shengjiu Wang <shengjiu.wang@gmail.com>
+Date:   Fri, 3 Sep 2021 15:54:39 +0800
+Message-ID: <CAA+D8AOPRQRPtafZ2yryP8pn7=Foaj6ctehpZ9S_c1YQ3kUL9Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add fsl,imx-dsp-rproc
+ binding document
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Ohad Ben Cohen <ohad@wizery.com>, bjorn.andersson@linaro.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-remoteproc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02.09.2021 01:10, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Sep 1, 2021 at 2:12 PM Olof Johansson <olof@lixom.net> wrote:
->>
->> On Wed, Sep 1, 2021 at 1:20 PM Douglas Anderson <dianders@chromium.org> wrote:
->>>
->>> In the patch ("drm/panel-simple-edp: Split eDP panels out of
->>> panel-simple") we split the PANEL_SIMPLE driver in 2. By default let's
->>> give everyone who had the old driver enabled the new driver too. If
->>> folks want to opt-out of one or the other they always can later.
->>>
->>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
->>
->> Isn't this a case where the new option should just have had the old
->> option as the default value to avoid this kind of churn and possibly
->> broken platforms?
-> 
-> I'm happy to go either way. I guess I didn't do that originally
-> because logically there's not any reason to link the two drivers going
-> forward. Said another way, someone enabling the "simple panel" driver
-> for non-eDP panels wouldn't expect that the "simple panel" driver for
-> DP panels would also get enabled by default. They really have nothing
-> to do with one another. Enabling by default for something like this
-> also seems like it would lead to bloat. I could have sworn that
-> periodically people get yelled at for marking drivers on by default
-> when it doesn't make sense.
-> 
-> ...that being said, I'm happy to change the default as you suggest.
-> Just let me know.
+Hi Rob
 
-I guess this is just misunderstanding. Symbol names:
-	CONFIG_DRM_PANEL_SIMPLE=y
-	CONFIG_DRM_PANEL_SIMPLE_EDP=y
-suggests that CONFIG_DRM_PANEL_SIMPLE_EDP is an 'suboption' of 
-CONFIG_DRM_PANEL_SIMPLE, but these symbols are independent - old symbol 
-has been split into two independent new symbols.
-So Doug's approach seems correct to me. Maybe one could change names of 
-symbols to avoid confusion(?).
+On Thu, Sep 2, 2021 at 11:17 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Aug 25, 2021 at 03:28:35PM +0800, Shengjiu Wang wrote:
+> > Define the compatible string and properties needed by imx_dsp_rproc
+> > driver.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> > changes in v2:
+> > - add items for clock-names
+> > - change syscon to fsl,dsp-ctrl
+> >
+> >  .../remoteproc/fsl,imx-dsp-rproc.yaml         | 150 ++++++++++++++++++
+> >  1 file changed, 150 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
+> > new file mode 100644
+> > index 000000000000..edf6e4b8d7bb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-dsp-rproc.yaml
+> > @@ -0,0 +1,150 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/remoteproc/fsl,imx-dsp-rproc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: i.MX DSP Remoteproc Devices
+> > +
+> > +maintainers:
+> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> > +
+> > +description:
+> > +  This binding provides support for DSP processors found on i.mX family of SoCs
+>
+> i.MX
 
-One more thing, I suspect previous patch can break platforms with EDP 
-panels. Even if this patch fixes it, maybe it would be better to squash 
-these patches? Or add temporal solution to save bisecatability.
+I will update it.
 
-Regards
-Andrzej
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,imx8qxp-hifi4
+> > +      - fsl,imx8qm-hifi4
+> > +      - fsl,imx8mp-hifi4
+> > +      - fsl,imx8ulp-hifi4
+> > +
+> > +  clocks:
+> > +    description:
+> > +      Main functional clock for the remote processor
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +
+> > +  clock-names:
+> > +    description: |
+> > +      List of clock names for the remote processor.
+> > +      dsp_clkx for clocks of dsp itself.
+> > +      per_clkx for clocks of peripherals used by dsp.
+>
+> I still don't like your random collection of clocks. What if you have
+> other resources besides clocks to manage? Pin mux, resets, power
+> domains, etc. It would be better if you describe the peripherals in DT
+> and then link to them here. But maybe the devices themselves aren't
+> visible?
 
-> 
-> -Doug
-> 
+Ok,  I will remove these per_clks in next version.
+Maybe it is better to handle them in firmware side.
 
+>
+> > +    minItems: 1
+> > +    maxItems: 26
+> > +    items:
+> > +      - const: dsp_clk1
+> > +      - const: dsp_clk2
+> > +      - const: dsp_clk3
+> > +      - const: dsp_clk4
+> > +      - const: dsp_clk5
+> > +      - const: dsp_clk6
+> > +      - const: dsp_clk7
+> > +      - const: dsp_clk8
+>
+> Surely you can name these by function? e.g. core, bus, axi, etc.
+
+Ok, I will update them in next version.
+
+Thanks for reviewing.
+
+Best regards
+Wang shengjiu
+
+>
+> > +      - const: per_clk1
+> > +      - const: per_clk2
+> > +      - const: per_clk3
+> > +      - const: per_clk4
+> > +      - const: per_clk5
+> > +      - const: per_clk6
+> > +      - const: per_clk7
+> > +      - const: per_clk8
+> > +      - const: per_clk9
+> > +      - const: per_clk10
+> > +      - const: per_clk11
+> > +      - const: per_clk12
+> > +      - const: per_clk13
+> > +      - const: per_clk14
+> > +      - const: per_clk15
+> > +      - const: per_clk16
+> > +      - const: per_clk17
+> > +      - const: per_clk18
+> > +
+> > +  fsl,dsp-ctrl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Phandle to syscon block which provide access for processor enablement
+> > +
+> > +  mbox-names:
+> > +    items:
+> > +      - const: tx
+> > +      - const: rx
+> > +      - const: rxdb
+> > +
+> > +  mboxes:
+> > +    description:
+> > +      This property is required only if the rpmsg/virtio functionality is used.
+> > +      List of <&phandle type channel> - 1 channel for TX, 1 channel for RX, 1 channel for RXDB.
+> > +      (see mailbox/fsl,mu.yaml)
+> > +    minItems: 1
+> > +    maxItems: 3
+> > +
+> > +  firmware-name:
+> > +    description: |
+> > +      Default name of the firmware to load to the remote processor.
+> > +
+> > +  memory-region:
+> > +    description:
+> > +      If present, a phandle for a reserved memory area that used for vdev buffer,
+> > +      resource table, vring region and others used by remote processor.
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +
+> > +  reg:
+> > +    description: |
+> > +      Address space for any remoteproc memories present on the SoC.
+> > +
+> > +  power-domains:
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - mboxes
+> > +  - mbox-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - firmware-name
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx8mp-clock.h>
+> > +    dsp_reserved: dsp@92400000 {
+> > +      reg = <0x92400000 0x1000000>;
+> > +      no-map;
+> > +    };
+> > +    dsp_vdev0vring0: vdev0vring0@942f0000 {
+> > +      reg = <0x942f0000 0x8000>;
+> > +      no-map;
+> > +    };
+> > +    dsp_vdev0vring1: vdev0vring1@942f8000 {
+> > +      reg = <0x942f8000 0x8000>;
+> > +      no-map;
+> > +    };
+> > +    dsp_vdev0buffer: vdev0buffer@94300000 {
+> > +      compatible = "shared-dma-pool";
+> > +      reg = <0x94300000 0x100000>;
+> > +      no-map;
+> > +    };
+> > +
+> > +    dsp: dsp@3b6e8000 {
+> > +      compatible = "fsl,imx8mp-hifi4";
+> > +      reg = <0x3B6E8000 0x88000>;
+> > +      clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_OCRAMA_IPG>,
+> > +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
+> > +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSPDBG_ROOT>;
+> > +      clock-names = "dsp_clk1", "dsp_clk2", "dsp_clk3";
+> > +      firmware-name = "imx/dsp/hifi4.bin";
+> > +      power-domains = <&audiomix_pd>;
+> > +      mbox-names = "tx", "rx", "rxdb";
+> > +      mboxes = <&mu2 0 0>,
+> > +               <&mu2 1 0>,
+> > +               <&mu2 3 0>;
+> > +      memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
+> > +                      <&dsp_vdev0vring1>, <&dsp_reserved>;
+> > +      fsl,dsp-ctrl = <&audio_blk_ctrl>;
+> > +    };
+> > --
+> > 2.17.1
+> >
+> >
