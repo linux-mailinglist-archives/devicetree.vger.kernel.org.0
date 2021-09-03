@@ -2,192 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C726400190
-	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 16:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB96640019D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Sep 2021 16:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349554AbhICOzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Sep 2021 10:55:01 -0400
-Received: from mail-eopbgr150081.outbound.protection.outlook.com ([40.107.15.81]:11191
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1349539AbhICOzA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Sep 2021 10:55:00 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G6/pJMkHzmGb/mAa1Ve0zCBRmIcUmmToJ/PaatYvc02XmXsNfhN3tSDpXozUnPAH5E/Sie2eC8GdtsOvU/vG3a5ElKWVPLA1KQzDvZHiwb7EY0omd0Tg90OwF9XdEUSArWFMbQJh+j1wvo+L5+bojuhfRYqJs6jMVdpibVhM3iOinkJcSzzsCCZRH605kSqg4Zi2/t4VTK5kshztCHE6SoEMucd+VpjCD5/YsMMI2B5Q7258hDm/VOjEORXr2woIHBctUqKj8d7XxLdAGZQAoXvkd5dxhE0mBjmJkCj4D3foeAsaj4AQ3GMsmZhH0kdKVFD9Mwi+RHRBXeWku6EEhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=KmqZnWedP1AJSXsFtOa8M95+jajfkJOrqyR2j0dN1Gg=;
- b=aQUXdUdz4mwQ1MT0g1aoXsEMUNbCT5nFXRptfafpKWprDXr2arn+yYwB5XJxDdkZwZdhJ1CN5X0NP3pGkggrtqc64XEHxQCnRGEhRxVPPtg1kVDxyi9abibkorHgRrZL6k7UMNTg+XkUs9nIZzVH1U2ryVkfSOO6YgEBinpO9Nr261PRvbkghWhTdURdtmVvI+o2NfMhIIyxlwbdsXFkIB2VPJNqOJeZ2EgsuBPqAj0qaIRvjqmscElt4BtH0StF/dVFTZCxBwImBw6YL7/1aCfyA02QvsE/Py1+PZ4lZE/itefWonHXighM3TQ4yBjYph1PpF7X7sFUugfszMyA8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KmqZnWedP1AJSXsFtOa8M95+jajfkJOrqyR2j0dN1Gg=;
- b=TU2IkxindeWmaBueZEe/s+l4uwc9NOKkSnZmU5e+D/Z9Al5FlXCcQGYY+iF401bgso+wrD5lwKbQRCVIn0hOMlyhgN+PspDyDDxy0wtKP96S1SRb31+tXpU6dlxkCjfFtbiT7beHW2lvZ1NN9JVGWMZXjEqE23HyhXdyC7BevHg=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com (2603:10a6:803:61::28)
- by VI1PR0401MB2654.eurprd04.prod.outlook.com (2603:10a6:800:58::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.21; Fri, 3 Sep
- 2021 14:53:57 +0000
-Received: from VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::499b:ba92:db2e:3f28]) by VI1PR04MB5151.eurprd04.prod.outlook.com
- ([fe80::499b:ba92:db2e:3f28%7]) with mapi id 15.20.4457.026; Fri, 3 Sep 2021
- 14:53:57 +0000
-From:   Daniel Baluta <daniel.baluta@oss.nxp.com>
-To:     broonie@kernel.org, pierre-louis.bossart@linux.intel.com,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        ranjani.sridharan@linux.intel.com, kai.vehmanen@linux.intel.com
-Cc:     devicetree@vger.kernel.org, shawnguo@kernel.org,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        peter.ujfalusi@linux.intel.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, s-anna@ti.com,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v2 2/2] dt-bindings: dsp: fsl: Add DSP optional clocks documentation
-Date:   Fri,  3 Sep 2021 17:53:40 +0300
-Message-Id: <20210903145340.225511-3-daniel.baluta@oss.nxp.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
-References: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR07CA0200.eurprd07.prod.outlook.com
- (2603:10a6:802:3f::24) To VI1PR04MB5151.eurprd04.prod.outlook.com
- (2603:10a6:803:61::28)
+        id S1349520AbhICO7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Sep 2021 10:59:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38448 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349488AbhICO7y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Sep 2021 10:59:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E1A2F61056;
+        Fri,  3 Sep 2021 14:58:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630681134;
+        bh=z2uRNQz69xBL8uUWPBxwwZ7QJqE9ZEA/iXaX6H4y+UY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Ey8NLLAgfpVpIfyi4xTG+Djq62tDNLOGexgzdXvhhiRcK5YT0ztW/q+/siwO2XqJL
+         6TCrnYRQkI+UKO4Tiye+nVbvZqxEK+w/1PLgOjGnrIXGIVStncXwXbwJQByBsgslfl
+         KUySJYdWC3sZn326zwGRoxsiYtbXjw7LTzKec2FuqAgFuEwPLzoq2DhBCyX4p6r0Be
+         jvGKpQztMJ05XxiRL3Et5dHpkFfE+asdkTpbbR4r6ihJilV5UJxxjhm7MYem77x8hM
+         atpj0JhJtk3GKnEgOafWJGRQaH3UmnWp3CjukZotywGGjb+TEi1knQbbAAV0ORswD3
+         ahrTrgT7VW+1w==
+Received: by mail-ej1-f47.google.com with SMTP id me10so12613175ejb.11;
+        Fri, 03 Sep 2021 07:58:54 -0700 (PDT)
+X-Gm-Message-State: AOAM530Ev9qG9AxZLTpSM4t3uuF4y5JkPjarmaRRHo4les/UB66NGYuo
+        shS+dp1LQ1sQHabMjm60QDIymsgMJMCPTZnanw==
+X-Google-Smtp-Source: ABdhPJx4h8QEqzMfrCpb+bUvqzs0SZjObk/x77kp9sCY4GHhjan0I+SMpiSdOCmkP64ZjbH0cwkiECN282QlkbAA2Vw=
+X-Received: by 2002:a17:906:7250:: with SMTP id n16mr4642476ejk.147.1630681133366;
+ Fri, 03 Sep 2021 07:58:53 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (2a02:2f08:5708:8600:fd8d:b9e7:97b5:dd4a) by VI1PR07CA0200.eurprd07.prod.outlook.com (2603:10a6:802:3f::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.4 via Frontend Transport; Fri, 3 Sep 2021 14:53:55 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8abee408-5033-4f3d-aa15-08d96eeaa7e3
-X-MS-TrafficTypeDiagnostic: VI1PR0401MB2654:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0401MB2654FA98D33B2A8BBB4880BDB8CF9@VI1PR0401MB2654.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1EwvMrtVhHdmZNdLZ4B5I6XfCApnMAfBFcp84iMPH0gMfGv9pe18u4j2l1uEOrC4t3qvQhvx0aUmlG80ebC7ygdOX0Kb0t8gkFhvhC1tXTRNjE5qNXTtQBG9LNOzy/Hni7AjPeucTH4zrwIU4exjR6AEhaazZyQSgfAZMcr++vjge6HZmJ9ES98wqbDufuCZFVUYs+tzfX8za7+ns1ZbrrZ88pM/rnRI+uER1TSpND9Kfx4kQSq8vCo9tJ0ac9Zm2aljL/Q16wXCtrOO0qt2kYogeYsq6CeuMQJ6Gi56/O4xZaBVi6xviSRBqrYr9yR5oD6rL5xpCQgivTbCZlAi3uxaWbyfa9SZoJnUoi4+eZaWny6xP2D0XN9U1yQvjvWEAGEb2L9hx7lQ5FweFbieSE0Uy8eKn/LcShqlnCgIP/AFTEthRXnGHQ4YGO4K5TCYV8Jbks6jJX/b8mUmKrwl60fAnMr4cn4mboq8pekodeczX0wD8rGWcZr/3u+ZecHSFob54tut3tEjEooA0Y6tx7BgKadw7n6NBZIXWCp+XvllFJrx8M2LVzT54tPdyXV+znSFd38MaYmudWE8/BFdI2gK+Chot4pk8RrQIsFz67IvlxUc83v9zY8EZcTINRuMSoqkoTHeHkLF0JuN04I3zQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5151.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(186003)(38100700002)(66946007)(44832011)(52116002)(6506007)(86362001)(8676002)(6666004)(5660300002)(316002)(2906002)(66556008)(4326008)(6512007)(6486002)(66476007)(508600001)(2616005)(1076003)(83380400001)(8936002)(7416002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8oFI3p623F6E+R0PaY+ugG0iPJwNUpJwHu39fJcgW/rMMfxfHPP2MyIpbhLM?=
- =?us-ascii?Q?3a9ua/HFLpq0b/6A+2bgTBj0/mRwry3YN2rEuHfjZJk5IJGGQvk99586VGQz?=
- =?us-ascii?Q?rotKw51xIugNPx709kI4VACtFY+liVw6piLEkoSozxDCcvvi8O4qQBvqXl2W?=
- =?us-ascii?Q?UXH4G33tRQh/FYlGvkxr0AMc+PApG79n1H/V3cU0mhmflk6jYaOBPDKkrt9N?=
- =?us-ascii?Q?HH6bCqOKl6zkdboZZq3yV46ARfefe3J0wGQ3LUMRGXkIyckFVhMD2+tr1vZp?=
- =?us-ascii?Q?05g+JljHnuXaAZqDGtvNJ0YgP7L8GrNGaVZv0KgwW8A+yGPr21ejyghk9/PK?=
- =?us-ascii?Q?wYzo1YzQ8kJQ1P88ZCPSpWeNf2Mwqm3JUJhMKRc2lyce+p437Gt9zlLMq0/w?=
- =?us-ascii?Q?6VgEgqsI0bkAYCHOQlOFr26UZb0LAYYjDLDJ53r1MfcmJg2c6cSdQuxmjosR?=
- =?us-ascii?Q?OhCA7SMZ33lsNKpr0Q6Sprpo62KUHgIuHUk++OEvLHH8dj4Gc2bT+LmKT6jk?=
- =?us-ascii?Q?vK07mtsG5RLJEnBxsRSaXN7b4/YyQ0fypXWq1NcbPxZcw6nNa7ni7g/ksbu7?=
- =?us-ascii?Q?FUWRjEcqnJ4qKZj9VOjaJs2YBIyRA8eUeiNenxnT89VvFYcpc1CnI9GmmYiy?=
- =?us-ascii?Q?V9T3vcMZz8NG4FfzyZme6oCgAxGHAHvBOAnIzzo9XtJp6fh/io2dlSgwxKWz?=
- =?us-ascii?Q?XOSlFCWAjIw3mBb3MRM6bHeHY/JlnX+8vEZPRLI4Bzq9if0kBGFOGj0HuqnL?=
- =?us-ascii?Q?hLPsYVbhkbf+ltsN6Iv131ZvvaDLtAk2s5a2QUjRskwp1ImfsXbM0oXqxuIm?=
- =?us-ascii?Q?KY2jRSOLd38pDU/hvWJRBY6OPAGO1DrPsybv0hnp0DN+qfufjoUDZ3h8v2Et?=
- =?us-ascii?Q?neKnQQaobtr8ahcr4x/bVgZCOttW0eAWcWiDyv0zo3ncDWPAsgrVcs/BYZj/?=
- =?us-ascii?Q?Gq7vGNbnbB7hIa3uIUWVyIZL292WAphfHb7N6agEUDND3pNtvC/PPcAZhOGd?=
- =?us-ascii?Q?wVksR0j/GeaRPMGRDnKfjXgTSiXoxF/iMbMlIodxcDxDgaWgO4f165z0JxZ1?=
- =?us-ascii?Q?/56G8/QT1QsdG06f8AbyFmJLECNjd4xgKeySqjQfFCLgv0QUb6nG38tiOrrx?=
- =?us-ascii?Q?SZMsKGANkYu90gqVINCez9CDWaaOu3ET9qllPbN/NzIM7ofF7dlX9YtdZJuH?=
- =?us-ascii?Q?/QEIYqh7EIXlT0gaXu6fDt0ugj7W9agm4px12yDTRBTzH+Mg38InoqDao5o2?=
- =?us-ascii?Q?9YYOKZz15xOg/eZnSYAFBmRTAOQnIz8YliDF4ZrSXaTsiGKzi/vRK3aZ/Bih?=
- =?us-ascii?Q?IJiKBqqua9pwgKuNy1XIa1yfhCuv7PCraAy1JqaC4zLmZy2ft4MtO5NnIFHx?=
- =?us-ascii?Q?Msdf81v3VYU42rplbUluEJf6R1bD?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8abee408-5033-4f3d-aa15-08d96eeaa7e3
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5151.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2021 14:53:56.9532
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YbDeJ9aPbWwd/frx9RPMbFQYa2GxfGhHi3OEVtbU4sFnxXBMfk9Iqz56iB1QdsRTMuAhRndGNYlDmHuGaeIh0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2654
+References: <20210902025528.1017391-1-saravanak@google.com>
+ <20210902025528.1017391-3-saravanak@google.com> <CAL_JsqJOv7D5nHteGPDKC2+ns1caVNs-NFFJppLuK0OEB8dztQ@mail.gmail.com>
+ <CAGETcx-rOakAX_apu2ecu6jWCwzO0RgMkwdfzyF+UaxQfVj4CA@mail.gmail.com>
+ <CAL_Jsq+A1T5+KK5xsVVtrMVeuMre3B6sAAroX+a3gQy6wY+r8A@mail.gmail.com>
+ <CAGETcx9wY66TsFX_1rFUO+toE-OpkAvWSdcNVK7M=LYwa6xbAw@mail.gmail.com>
+ <CAL_JsqJzt_duSkMm43dwpiGCmqW8PAQ1n6SeyiNkECP8CTcY=g@mail.gmail.com> <CAGETcx-VkJXTXCwh_ctMg_-VDUb4WFxLLYt0ht8tv8yn+kCH6Q@mail.gmail.com>
+In-Reply-To: <CAGETcx-VkJXTXCwh_ctMg_-VDUb4WFxLLYt0ht8tv8yn+kCH6Q@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 3 Sep 2021 09:58:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ4auRZonAnR5CKGyKNs1pVfHK24+av0Ox9L_805v=n6w@mail.gmail.com>
+Message-ID: <CAL_JsqJ4auRZonAnR5CKGyKNs1pVfHK24+av0Ox9L_805v=n6w@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] of: platform: Mark bus devices nodes with FWNODE_FLAG_NEVER_PROBES
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniel Baluta <daniel.baluta@nxp.com>
+On Thu, Sep 2, 2021 at 8:16 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Thu, Sep 2, 2021 at 5:53 PM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Thu, Sep 2, 2021 at 2:29 PM Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Thu, Sep 2, 2021 at 12:03 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > >
+> > > > On Thu, Sep 2, 2021 at 11:57 AM Saravana Kannan <saravanak@google.com> wrote:
+> > > > >
+> > > > > On Thu, Sep 2, 2021 at 7:24 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > > >
+> > > > > > On Wed, Sep 1, 2021 at 9:55 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > > > >
+> > > > > > > We don't want fw_devlink creating device links for bus devices as
+> > > > > > > they'll never probe. So mark those device node with this flag.
+> > > > > > >
+> > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > > > > > ---
+> > > > > > >  drivers/of/platform.c | 16 ++++++++++++++++
+> > > > > > >  1 file changed, 16 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > > > > > index 74afbb7a4f5e..42b3936d204a 100644
+> > > > > > > --- a/drivers/of/platform.c
+> > > > > > > +++ b/drivers/of/platform.c
+> > > > > > > @@ -392,6 +392,22 @@ static int of_platform_bus_create(struct device_node *bus,
+> > > > > > >         if (!dev || !of_match_node(matches, bus))
+> > > > > > >                 return 0;
+> > > > > > >
+> > > > > > > +       /*
+> > > > > > > +        * If the bus node has only one compatible string value and it has
+> > > > > > > +        * matched as a bus node, it's never going to get probed by a device
+> > > > > > > +        * driver. So flag it as such so that fw_devlink knows not to create
+> > > > > > > +        * device links with this device.
+> > > > > > > +        *
+> > > > > > > +        * This doesn't catch all devices that'll never probe, but this is good
+> > > > > > > +        * enough for now.
+> > > > > > > +        *
+> > > > > > > +        * This doesn't really work for PPC because of how it uses
+> > > > > > > +        * of_platform_bus_probe() to add normal devices. So ignore PPC cases.
+> > > > > > > +        */
+> > > > > > > +       if (!IS_ENABLED(CONFIG_PPC) &&
+> > > > > > > +           of_property_count_strings(bus, "compatible") == 1)
+> > > > > > > +               bus->fwnode.flags |= FWNODE_FLAG_NOT_DEVICE;
+> > > > > >
+> > > > > > This looks fragile relying on 1 compatible string, and the DT flags in
+> > > > > > this code have been fragile too. I'm pretty sure we have cases of
+> > > > > > simple-bus or simple-mfd that also have another compatible.
+> > > > > >
+> > > > > > Couldn't we solve this with a simple driver?
+> > > > >
+> > > > > Oh, I didn't think you'd like that. I'd lean towards that option too
+> > > > > if we can address some of the other concerns below.
+> > > > >
+> > > > > > Make 'simple-pm-bus'
+> > > > > > driver work for other cases?
+> > > > >
+> > > > > > BTW, this patch doesn't even work for
+> > > > > > simple-pm-bus.
+> > > > >
+> > > > > How do you mean? Because simple-pm-bus already has a driver and
+> > > > > doesn't set "matches" param when it calls of_platform_populate() and
+> > > > > this flag won't be set. So at least for simple-pm-bus I don't see any
+> > > > > issue.
+> > > >
+> > > > You're right.
+> > > >
+> > > > > I was trying to reuse of_default_bus_match_table without explicitly
+> > > > > referring to it, but if it's confusing I can add a separate list of
+> > > > > compatible strings and use those here instead of using "matches".
+> > > >
+> > > > What happens with a non-default table? I'm not sure we can assume the
+> > > > same behavior.
+> > > >
+> > > > > > A driver for simple-bus may cause issues if there's a
+> > > > > > more specific driver to bind to as we don't handle that. It's simply
+> > > > > > whichever matches first.
+> > > > >
+> > > > > Right, this is my worry. Especially for devices like this (there are
+> > > > > plenty of cases like this) which have a driver that probes them but
+> > > > > also lists simple-bus
+> > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/arm-realview-pb11mp.dts?id=73f3af7b4611d77bdaea303fb639333eb28e37d7#n299
+> > > >
+> > > > Uhh, that one is certainly a leakage of wanting an soc_device in the
+> > > > hierarchy, not any real bus structure reflecting the h/w. I'm not a
+> > > > fan of the soc_device stuff and its optional nature. Everything is an
+> > > > SoC, so it should always be there? Or your device hierarchy should
+> > > > change when you decide to add a soc_device?
+> > > >
+> > > > > So as long as there's a compatible string that's not one of the
+> > > > > "transparent" busses, this driver shouldn't match. So, I don't think I
+> > > > > can get away from checking the compatible strings.
+> > > > >
+> > > > > How about I check here to make sure all the "compatible" strings are
+> > > > > from an approved transparent bus list, and if it's true, I use
+> > > > > driver_override to force match it to a transparent bus driver? Would
+> > > > > you be okay with that?
+> > > >
+> > > > Can't we do that within a driver? We check this and fail probe if
+> > > > there's a more specific compatible.  Then another driver can match and
+> > > > probe.
+> > >
+> > > I was thinking that initially, but if we fail a probe, the driver core
+> > > will permanently give up (won't search further) or might end up
+> > > retrying with the same driver and never get to the other driver. I'll
+> > > send out a v2 with what I described above. It's not too bad and it
+> > > will also allow us to handle the PPC cases (we'll just need to keep
+> > > adding the simple-bus equivalent entries to a table).
+> >
+> > I wasn't sure, but I traced the calls and it looks like based on
+> > __driver_attach() that if a driver fails probe another one matching
+> > should get to probe:
+>
+> __driver_attach() is called over every device already in a bus. It's
+> called only when a new driver is registered. So it makes sense that
+> one ignores the error returned from probe(). You don't want to fail
+> driver registration because one specific device needs to defer probe.
 
-DSP node on the Linux kernel side must also take care of enabling
-DAI/DMA related clocks.
+The behavior should be the same no matter whether the device or driver
+is registered first.
 
-By design we choose to manage DAI/DMA clocks from the kernel side because of
-the architecture of some i.MX8 boards.
+Deferred probe errors are handled differently AFAICT.
 
-Clocks are handled by a special M4 core which runs a special firmware
-called SCFW (System Controler firmware).
+>
+> The comment is actually from __device_attach_driver()
+>
+> >
+> >         /*
+> >          * Ignore errors returned by ->probe so that the next driver can try
+> >          * its luck.
+> >          */
+>
+> I saw that comment too, but isn't the comment wrong/stale?
 
-This communicates with A cores running Linux via a special Messaging
-Unit and implements a custom API which is already implemented by the
-Linux kernel i.MX clocks implementation.
+I don't know...
 
-Note that these clocks are optional. We can use the DSP without them.
+>
+> bus_probe_device() -> device_initial_probe() -> __device_attach().
+>
+> In __device_attach() we have:
+> ret = bus_for_each_drv(dev->bus, NULL, &data, __device_attach_driver);
+>
+> If you look at bus_for_each_drv()'s comment:
+>  * ...... If @fn returns anything but 0, we break out
+>  * and return it. If @start is not NULL, we use it as the head
+>  * of the list.
+>
+> Inside __device_attach_driver() we see:
+>         /*
+>          * Ignore errors returned by ->probe so that the next driver can try
+>          * its luck.
+>          */
+>         ret = driver_probe_device(drv, dev);
+>         if (ret < 0)
+>                 return ret;
+>
+> So if probe() returned an error, we'd return it right back out. And
+> then bus_for_each_drv() will stop searching for more drivers that
+> match.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
----
- .../devicetree/bindings/dsp/fsl,dsp.yaml      | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+With the exception of deferred probe, probe errors are made positive
+and then ignored.
 
-diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-index 7afc9f2be13a..1453668c0194 100644
---- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-+++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-@@ -24,16 +24,49 @@ properties:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 3
-     items:
-       - description: ipg clock
-       - description: ocram clock
-       - description: core clock
-+      - description: esai0 core clock for accessing registers
-+      - description: esai0 baud clock
-+      - description: esai0 system clock
-+      - description: esai0 spba clock required when ESAI is placed in slave mode
-+      - description: SAI1 bus clock
-+      - description: SAI1 master clock 0
-+      - description: SAI1 master clock 1
-+      - description: SAI1 master clock 2
-+      - description: SAI1 master clock 3
-+      - description: SAI3 bus clock
-+      - description: SAI3 master clock 0
-+      - description: SAI3 master clock 1
-+      - description: SAI3 master clock 2
-+      - description: SAI3 master clock 3
-+      - description: SDMA3 root clock used for accessing registers
-+
- 
-   clock-names:
-+    minItems: 3
-     items:
-       - const: ipg
-       - const: ocram
-       - const: core
-+      - const: esai0_core
-+      - const: esai0_extal
-+      - const: esai0_fsys
-+      - const: esai0_spba
-+      - const: sai1_bus
-+      - const: sai1_mclk0
-+      - const: sai1_mclk1
-+      - const: sai1_mclk2
-+      - const: sai1_mclk3
-+      - const: sai3_bus
-+      - const: sai3_mclk0
-+      - const: sai3_mclk1
-+      - const: sai3_mclk2
-+      - const: sai3_mclk3
-+      - const: smda3_root
- 
-   power-domains:
-     description:
--- 
-2.27.0
+> So I don't think one driver can give up after a match and have another
+> driver give a device a shot.
 
+I think it just needs to be tried out...
+
+I would like the above to work because it at least partially solves
+the problem of multiple drivers matching. It only works if the
+fallback driver knows there's a better match though which is this
+case. If we don't know then a better match would have to unbind the
+first driver and bind to the better match. I'm not sure that could
+ever work generically.
+
+Rob
