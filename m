@@ -2,88 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56431400BC5
-	for <lists+devicetree@lfdr.de>; Sat,  4 Sep 2021 17:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3383400BD2
+	for <lists+devicetree@lfdr.de>; Sat,  4 Sep 2021 17:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237233AbhIDPEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Sep 2021 11:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56310 "EHLO
+        id S232531AbhIDPLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Sep 2021 11:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236890AbhIDPE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Sep 2021 11:04:27 -0400
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95448C061575;
-        Sat,  4 Sep 2021 08:03:25 -0700 (PDT)
-Received: by mail-oo1-xc34.google.com with SMTP id y3-20020a4ab403000000b00290e2a52c71so585877oon.2;
-        Sat, 04 Sep 2021 08:03:25 -0700 (PDT)
+        with ESMTP id S230514AbhIDPLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Sep 2021 11:11:51 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AA9CC061575;
+        Sat,  4 Sep 2021 08:10:49 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id bi4so2979328oib.9;
+        Sat, 04 Sep 2021 08:10:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=sender:date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=uRzdPnHd9fIR0hd81Spx1ITtPzPFg6GSruXgMkYHH7k=;
-        b=mCgLcl6DuYNDLEKlAJg+ahqbq5k0Ze3iiGChZjukfr+X2oAVMWuE7VXw8JCXODEKDQ
-         o03CrKbjErl83dmOEQKdIK5Q/7HDMPVbG9WSlDY6nzT+NKpdeR8msdUZVRg7KBd8H46t
-         xxeRsYv1G+mQtE0B1pWM7nqfbwrLEhY4du7LxOFI2i78MgHu6eOGT8Eo1XQNo2tRuG32
-         FMUJzKNmxReFnh5mzkgTUV4LUAImOx21I/GyFdnRJnOjwRNAOvvJqm+dMBCKHOypVJ6q
-         T7jRaj5ET79mHFFS0PuArOJYWX5sQTHZ/MbwUr6yNx9HiHiv+zHV88iyl8kHEJmj785f
-         kZew==
+        bh=doZgp/4GdYI5KrgtOO8Mhfj8uXjudg+UojLzeQONPag=;
+        b=hs8KbKS09fmOjnS0IvZRdFSSOggZgf2u8XqBqIDlXCrIzopt+NG9m3qItApsi+YpQu
+         uAeuIAow5/3NS1joSNZqrBCNAaZJnjdNSsMwXYWGlMMJin8bNTi4eGFsTZkNM8K7c3W8
+         GD7sZEE7o6CK78JAyP/9dfizknnalAsfWsLuHL5gpxB0kf9MgHjeeO3dD7jJ7siq/IAz
+         UIosaXcSF7XffVJ8IdPdioF4GqkEwgpTOK13u9oVJAVmpeP3QWWV3GV1Hyzim05wyv4b
+         M1RftE0TuztehTVLi5vC69Y4NEZ3b9+OVNoA1z9NbmOu2xNEXIcZ497peUwt/kfDt6Z0
+         14Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
          :references:mime-version:content-disposition:in-reply-to;
-        bh=uRzdPnHd9fIR0hd81Spx1ITtPzPFg6GSruXgMkYHH7k=;
-        b=WIbo51Pptr5OopEDSrfp/tW3r5nvaD92dlzvxBHCFrWA3ZymsJMKzoars8TS9yHtHl
-         asYOBYL8fS2MSFrVHvfJ5hUhQeW3VONzvQWnIKpB/B4ehnjlf9wBYloRjKVtXtj5B7fg
-         sjJdk3m6vhmMBHtxGTGQFddhsJMVmkFLTIyG71OXYtISL8vo78b+pojWpQE2/krsstew
-         MAFNW/baoQ6AXV2mqEpdnyGnnVG1ZkQhxLxCRos6g1UFYv6sW9eDb3wQiWiQeAFtsonF
-         dDmUnF1V2uRugBQEn45cZV75IoZjQ37jscjz1v2Q4tFOJuA7HsIHV6pDZ6RSHiy36klP
-         Xe7g==
-X-Gm-Message-State: AOAM530YoJ59EjkomHz3+pXb38Wxslu6jju2j1GSyqJ4ZLPAUV0GCNIR
-        Q7gA5obvHyR4VaW8FSVH7i4=
-X-Google-Smtp-Source: ABdhPJz3DCw13LHRf3UsdXfnu7JuiwceqDL1lgU9ZEldZcx05VKYXsM1jI6zMeEf9y+IFIN6vYKPFw==
-X-Received: by 2002:a4a:2a09:: with SMTP id k9mr7284811oof.79.1630767805007;
-        Sat, 04 Sep 2021 08:03:25 -0700 (PDT)
+        bh=doZgp/4GdYI5KrgtOO8Mhfj8uXjudg+UojLzeQONPag=;
+        b=TgD5t5ZyR5lzPKkoVMueRnoFIt8HhCjFE97tLxEC9VVd+pRVXBbch08vX4ec6xr2/0
+         6shuPhf4xF98iNZpG0z9ChJRSwrsS9HmqPsSBrOuEkrrlAr0zJhM9pey16boZwsyp1kN
+         JLuu0blCHLec1XAHsY0zba6aatAL2xwUmzNEh7RfGJHrlcgV2hn9KmQcWPnUH7m1KskM
+         zgpKhy9nBA3LrxJ9RvwtKGXckUXLozdJiwBckfIV8wOO9N68nsdf2FQzpLiAs4k5u8VK
+         MvwL/rYmtZDlsTfSI2V3JHDik1832M5uliy9ZiIUIAqWCzfxCiHKU6BYIrpCKKyvlvHc
+         VHCQ==
+X-Gm-Message-State: AOAM530dZbnOPDLQuCIgRzsifcj963zeaAMIAQpyk4Mm1IQfH5pLWn7r
+        vK5IIEsHWDbYQ8M24OQz19c=
+X-Google-Smtp-Source: ABdhPJy/LIrmgjHhH8kelR8GQJnGsChhzF5JNVEnnEFY3K8/fdnDRL9lgeYCpzljr12oFblZ+6CJAQ==
+X-Received: by 2002:aca:31c1:: with SMTP id x184mr2901352oix.8.1630768248760;
+        Sat, 04 Sep 2021 08:10:48 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id h3sm538147otu.7.2021.09.04.08.03.23
+        by smtp.gmail.com with ESMTPSA id a11sm535692oiw.36.2021.09.04.08.10.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Sep 2021 08:03:24 -0700 (PDT)
+        Sat, 04 Sep 2021 08:10:48 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 4 Sep 2021 08:03:21 -0700
+Date:   Sat, 4 Sep 2021 08:10:47 -0700
 From:   Guenter Roeck <linux@roeck-us.net>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 23/52] dt-bindings: hwmon: Add IIO HWMON binding
-Message-ID: <20210904150321.GA3637658@roeck-us.net>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-24-maxime@cerno.tech>
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: watchdog: sunxi: Add compatibles for
+ R329
+Message-ID: <20210904151047.GA3638393@roeck-us.net>
+References: <20210902225750.29313-1-samuel@sholland.org>
+ <20210902225750.29313-2-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210901091852.479202-24-maxime@cerno.tech>
+In-Reply-To: <20210902225750.29313-2-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 01, 2021 at 11:18:23AM +0200, Maxime Ripard wrote:
-> Even though we had the iio-hwmon driver for some time and a number of
-> boards using it already, we never had a binding for it. Let's add it
-> based on what the driver expects and the boards are providing.
+On Thu, Sep 02, 2021 at 05:57:48PM -0500, Samuel Holland wrote:
+> On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
+> divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
+> an alternative clock source, with a bit to switch between them.
 > 
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jean Delvare <jdelvare@suse.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: linux-hwmon@vger.kernel.org
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> Since 24 MHz / 750 == 32 kHz, not 32.768 kHz, the hardware adjusts the
+> cycle counts to keep the timeouts independent of the clock source. This
+> keeps the programming interface backward-compatible.
+> 
+> Furthermore, the R329 has two watchdogs: one for use by the ARM CPUs
+> at 0x20000a0, and a second one for use by the DSPs at 0x7020400. The
+> first of these adds two more new registers, to allow software to
+> immediately assert the SoC reset signal. Add an additional "-reset"
+> suffix to signify the presence of this feature.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> Acked-by: Maxime Ripard <maxime@cerno.tech>
 > Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied (assuming this is supposed to be pushed through hwmon).
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-Thanks,
-Guenter
+> ---
+> Changes v2 to v3:
+>  - Add else case
+>  - Add additional allwinner,sun50i-r329-wdt-reset compatible
+> Changes v1 to v2:
+>  - Switch clock-names from enum to const
+>  - Add descriptions to "clocks" items
+> 
+>  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 42 ++++++++++++++++++-
+>  1 file changed, 41 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index 9aa3c313c49f..877f47759814 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -24,6 +24,8 @@ properties:
+>                - allwinner,sun50i-a100-wdt
+>                - allwinner,sun50i-h6-wdt
+>                - allwinner,sun50i-h616-wdt
+> +              - allwinner,sun50i-r329-wdt
+> +              - allwinner,sun50i-r329-wdt-reset
+>            - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,suniv-f1c100s-wdt
+> @@ -33,7 +35,18 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - description: High-frequency oscillator input, divided internally
+> +      - description: Low-frequency oscillator input, only found on some variants
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - const: hosc
+> +      - const: losc
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -44,6 +57,33 @@ required:
+>    - clocks
+>    - interrupts
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - allwinner,sun50i-r329-wdt
+> +          - allwinner,sun50i-r329-wdt-reset
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      minItems: 2
+> +
+> +    clock-names:
+> +      minItems: 2
+> +
+> +  required:
+> +    - clock-names
+> +
+> +else:
+> +  properties:
+> +    clocks:
+> +      maxItems: 1
+> +
+> +    clock-names:
+> +      maxItems: 1
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
