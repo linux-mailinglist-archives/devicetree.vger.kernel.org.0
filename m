@@ -2,120 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14223400BD6
-	for <lists+devicetree@lfdr.de>; Sat,  4 Sep 2021 17:13:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD4E400C89
+	for <lists+devicetree@lfdr.de>; Sat,  4 Sep 2021 20:30:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236748AbhIDPMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Sep 2021 11:12:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58158 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230514AbhIDPMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Sep 2021 11:12:52 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF052C061575;
-        Sat,  4 Sep 2021 08:11:50 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id c19-20020a9d6153000000b0051829acbfc7so2691156otk.9;
-        Sat, 04 Sep 2021 08:11:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LsO7ChoiOUbdf0evlicIaWpHPtdos4bfdl0lagLpQi8=;
-        b=jFFKC+7ydZD0CmfMIj9jryBDPrD8OC331sUesCkXUkA1hiHFuoUDPSZCWrdSgH/rZU
-         8aoUKIifcstigpw1jhVmmxSFYcmoCPfj4jZZYLU7XucmnjLrqbEkoP2Ccck4ZIj4fClT
-         ijK8rCYC19MRu8SIkQz6DWzcWxCFBBnwks0Lw/Ay8bJobzmkcTctKt5+LuqPhIe2ifH6
-         /DDiFOud/V64LuiUxMbpVKRZUNl25/Wmd3HkOuS1Yj39XdpOchbKI84cvkwArXGXgmdJ
-         l+LbKuVYyDAs5jt8dWUUjsAsaZh2Y+QsKhU1oXww4KaNRMVp/LTLB2o94uMVkumDZu2n
-         GKiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=LsO7ChoiOUbdf0evlicIaWpHPtdos4bfdl0lagLpQi8=;
-        b=VIV8arscADU/1gDeino65Aw2Y6YgqwTUOeR9ZLPWDfMMlEXe0LxbpMuHqNOiV4aiWd
-         TQ4mgPOfQtd8/sodfp7L0KqPjJhAEy3EMLJ3jfHA6dQYPIsvjHJPDSftMVNbN1LLFDV3
-         OrIoDjifb+Gf+exh33KyXQ4qWBoywQdO2lh6tI594LodGRtXrB/IGZvBzmTpnK97DC+n
-         iQeE21MufROvgcA2TXTsSSKYdrHeJueFkgZ0C0mjot1vkUx1XG03GVimUOE1Cl0eFZTC
-         oR+7o8/VZRdeylWVKVwehlP+nfzBp0cqjGHD/Rqrrek9lo1bhU145u/qF0UxQ6YtZwR5
-         5D8A==
-X-Gm-Message-State: AOAM532mJ8SfZX8FHxRvnqhg62938fsHZNH/XhQz6/iVxkylvvAtT6ky
-        rraPLsKRxYMBMb+hcUeSw34eVGEZoNw=
-X-Google-Smtp-Source: ABdhPJxq2ImOOCGgziVvhGxFIqJeuPTlcWvwwDubYXJAg+nxscgQK8iGkKUPLvx+DnC+FlKQC4Qw8Q==
-X-Received: by 2002:a9d:4b86:: with SMTP id k6mr3725632otf.338.1630768310180;
-        Sat, 04 Sep 2021 08:11:50 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c75sm531751oob.47.2021.09.04.08.11.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Sep 2021 08:11:49 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 4 Sep 2021 08:11:48 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        id S237393AbhIDSbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Sep 2021 14:31:43 -0400
+Received: from m-r2.th.seeweb.it ([5.144.164.171]:49879 "EHLO
+        m-r2.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237282AbhIDSbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Sep 2021 14:31:43 -0400
+Received: from localhost.localdomain (83.6.166.194.neoplus.adsl.tpnet.pl [83.6.166.194])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id A47FC3EBA1;
+        Sat,  4 Sep 2021 20:30:38 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: watchdog: sunxi: Add compatibles for
- D1
-Message-ID: <20210904151148.GA3638506@roeck-us.net>
-References: <20210902225750.29313-1-samuel@sholland.org>
- <20210902225750.29313-3-samuel@sholland.org>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC driver
+Date:   Sat,  4 Sep 2021 20:30:05 +0200
+Message-Id: <20210904183014.43528-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210902225750.29313-3-samuel@sholland.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 02, 2021 at 05:57:49PM -0500, Samuel Holland wrote:
-> D1 keeps the same register layout and clock sources as the R329, but it
-> adds a key field which must be set to update the watchdog's "CFG" and
-> "MODE" registers. Therefore it is not backward-compatible.
-> 
-> Similarly to the R329, the D1 has three watchdog instances, and only one
-> of them has the "soft reset" registers. So that instance needs an extra
-> compatible string.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> Acked-by: Maxime Ripard <maxime@cerno.tech>
+Add documentation for the MSM8994 GCC driver.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+Changes since v2:
 
-> ---
-> Changes v2 to v3:
->  - Add additional allwinner,sun20i-d1-wdt-reset compatible
-> Changes v1 to v2:
->  - None
-> 
->  .../bindings/watchdog/allwinner,sun4i-a10-wdt.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> index 877f47759814..44cad9427ae6 100644
-> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> @@ -30,6 +30,10 @@ properties:
->        - items:
->            - const: allwinner,suniv-f1c100s-wdt
->            - const: allwinner,sun4i-a10-wdt
-> +      - const: allwinner,sun20i-d1-wdt
-> +      - items:
-> +          - const: allwinner,sun20i-d1-wdt-reset
-> +          - const: allwinner,sun20i-d1-wdt
->  
->    reg:
->      maxItems: 1
-> @@ -62,6 +66,8 @@ if:
->      compatible:
->        contains:
->          enum:
-> +          - allwinner,sun20i-d1-wdt
-> +          - allwinner,sun20i-d1-wdt-reset
->            - allwinner,sun50i-r329-wdt
->            - allwinner,sun50i-r329-wdt-reset
->  
+- Dropped second dt-binding part for the weird SD card clock configuration
+- Fix up many mistakes, including maintainers, license and order
+- I still have no idea why I get a pinctrl regex error.. need help here!
+
+ .../bindings/clock/qcom,gcc-msm8994.yaml      | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+new file mode 100644
+index 000000000000..22e67b238bb6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-msm8994.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller Binding for MSM8994
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on MSM8994 and MSM8992.
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-msm8994.h
++
++properties:
++  compatible:
++    enum:
++      - qcom,gcc-msm8992
++      - qcom,gcc-msm8994
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: xo
++      - const: sleep
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@300000 {
++      compatible = "qcom,gcc-msm8994";
++      reg = <0x00300000 0x90000>;
++      clocks = <&xo_board>, <&sleep_clk>;
++      clock-names = "xo", "sleep";
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++...
+-- 
+2.33.0
+
