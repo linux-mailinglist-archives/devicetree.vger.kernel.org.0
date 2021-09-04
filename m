@@ -2,68 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6F6400BA2
-	for <lists+devicetree@lfdr.de>; Sat,  4 Sep 2021 16:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 212F7400BB1
+	for <lists+devicetree@lfdr.de>; Sat,  4 Sep 2021 16:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236621AbhIDO3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Sep 2021 10:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236645AbhIDO3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Sep 2021 10:29:22 -0400
-Received: from mx.msync.work (mx.msync.work [IPv6:2a01:4f9:2b:2dc2::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9049C061757;
-        Sat,  4 Sep 2021 07:28:20 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 928B8D848B;
-        Sat,  4 Sep 2021 14:28:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-        t=1630765697; h=from:subject:date:message-id:to:cc:mime-version:
-         content-transfer-encoding:in-reply-to:references;
-        bh=riBzg7yfs/WKceqbRh7CnMdVZOOQ2QoEgRJlHcvkjSY=;
-        b=STjNJ980Zt0BD9BMPVq/jIdiDqrhlOwfyqEWpmy5fnsY2Y5GQBX8ND/uGuDZJ50ImGVY6/
-        wPE5270bngJRE2IoJ+TlINB24zIuPwH9T5eLyOiCrbkUoMd6hIFIhJ9nt+4B868BQFAvJ6
-        hTO8IL4S7adLAcCcZ+u7wWuwliKmN3/F64YBT5Qfd26iAkkna1B2mVC90W6ZUkoc59/wjm
-        lWMfQasopzrX5bHRAmBamgN8wivxliD38HiQgagQOy2ft4qOURxUxsmwp9OPwB80nH1pbu
-        o49bT/0B/+H2vBV9kRZgnlqpNQqJV46lUN+juzWEMwXmaEzrjrLxBufIcHyyqw==
-From:   Vyacheslav Bocharov <adeep@lexina.in>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v3 2/4] dt-bindings: vendor-prefixes: add jethome prefix
-Date:   Sat,  4 Sep 2021 17:27:43 +0300
-Message-Id: <20210904142745.183875-3-adeep@lexina.in>
-In-Reply-To: <20210904142745.183875-1-adeep@lexina.in>
-References: <20210904142745.183875-1-adeep@lexina.in>
+        id S236568AbhIDOrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Sep 2021 10:47:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56922 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230039AbhIDOrA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 Sep 2021 10:47:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E10F460F4C;
+        Sat,  4 Sep 2021 14:45:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630766758;
+        bh=02xpBFyuzgwp7S6L0Iqal/dDd/DT6q3WHYxs8cFwA6w=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=NIxuckaQIAiDthSzpKV/N2kDEkuJs5//k/eivUHgjZJROAZ8noZe70hJtAhoFRf02
+         pmAzMcKBuJbsnMFz7s34vO6qQdxnIK63d1WU95TTCKHe0X0+by2FaGwuGjqIGs8QAM
+         u1OIdlHORpkSQmTkjKu71rbi1Pro8cBUp/bQpPwA80tb4OtMGxJBUnUfdSUqGjI0R9
+         ENjeYLWWFAes7RVJkYvSHnOp7DUvtoZN5Yzl4qX9kqVI2+U7fr6Z4TL/LrjVbn2XKK
+         mGyHdSzZvTY+zjJ98dWDV1/qMzBCBpxkvm4f9uxHPYT+Bz8Lz31oXbrGtlY6aWMZ+t
+         uaMmGxgTyoWzA==
+Message-ID: <5e204d7a3c915f9e1308928e908f058c2a522c14.camel@kernel.org>
+Subject: Re: [PATCH V2 00/10] ARM: dts: Add Raspberry Pi CM4 & CM4 IO Board
+ support
+From:   nicolas saenz julienne <nsaenz@kernel.org>
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, iivanov@suse.de,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Sat, 04 Sep 2021 16:45:53 +0200
+In-Reply-To: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com>
+References: <1628334401-6577-1-git-send-email-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JetHome is trademark of IP Sokolov P.A., manufacturer of home automation
-devices.
+Hi Stefan,
 
-Signed-off-by: Vyacheslav Bocharov <adeep@lexina.in>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Sat, 2021-08-07 at 13:06 +0200, Stefan Wahren wrote:
+> This series add support for the Raspberry Pi Compute Module 4 and its
+> IO board.
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index a867f7102c35..c52f0d3261bb 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -577,6 +577,8 @@ patternProperties:
-     description: JEDEC Solid State Technology Association
-   "^jesurun,.*":
-     description: Shenzhen Jesurun Electronics Business Dept.
-+  "^jethome,.*":
-+    description: JetHome (IP Sokolov P.A.)
-   "^jianda,.*":
-     description: Jiandangjing Technology Co., Ltd.
-   "^kam,.*":
--- 
-2.30.2
+Sorry for the late review. I finally got some time to review/test this
+properly. The devicetree patches look really good, dtbs_check's shows no new
+errors, and all peripherals work. The only thing I can't verify is PCIe as I
+have nothing to plug into it, but it should work.
+
+I'll apply the series (modulo the mmc patches) for-next soon.
+
+Thanks!
+
+> Changes in V2:
+> - drop emmc2bus patch as it affects userspace (thanks to Marc Zyngier)
+> - tested with CM4 and integrate sdhci patches from Nicolas (just include kHz fixups)
+> - add Rob's Acked-by
+> - add HS200 property to emmc2 node for a slight performance gain
+> - move antenna comment to the proper position
+> 
+> Nicolas Saenz Julienne (2):
+>   mmc: sdhci-iproc: Cap min clock frequency on BCM2711
+>   mmc: sdhci-iproc: Set SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN on BCM2711
+> 
+> Stefan Wahren (8):
+>   ARM: dts: bcm2711: fix MDIO #address- and #size-cells
+>   ARM: dts: bcm2711-rpi-4-b: fix sd_io_1v8_reg regulator states
+>   dt-bindings: display: bcm2835: add optional property power-domains
+>   ARM: dts: bcm283x-rpi: Move Wifi/BT into separate dtsi
+>   dt-bindings: arm: bcm2835: Add Raspberry Pi Compute Module 4
+>   ARM: dts: Add Raspberry Pi Compute Module 4
+>   ARM: dts: Add Raspberry Pi Compute Module 4 IO Board
+>   arm64: dts: broadcom: Add reference to RPi CM4 IO Board
+> 
+>  .../devicetree/bindings/arm/bcm/bcm2835.yaml       |   1 +
+>  .../bindings/display/brcm,bcm2835-dsi0.yaml        |   3 +
+>  .../bindings/display/brcm,bcm2835-hdmi.yaml        |   3 +
+>  .../bindings/display/brcm,bcm2835-v3d.yaml         |   3 +
+>  .../bindings/display/brcm,bcm2835-vec.yaml         |   3 +
+>  arch/arm/boot/dts/Makefile                         |   1 +
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts              |  42 ++-----
+>  arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts           | 138 +++++++++++++++++++++
+>  arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi             | 113 +++++++++++++++++
+>  arch/arm/boot/dts/bcm2711.dtsi                     |   4 +-
+>  arch/arm/boot/dts/bcm2835-rpi-zero-w.dts           |  31 ++---
+>  arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts         |  36 ++----
+>  arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts         |  36 ++----
+>  arch/arm/boot/dts/bcm2837-rpi-3-b.dts              |  36 ++----
+>  arch/arm/boot/dts/bcm283x-rpi-wifi-bt.dtsi         |  34 +++++
+>  arch/arm64/boot/dts/broadcom/Makefile              |   1 +
+>  .../arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts |   2 +
+>  drivers/mmc/host/sdhci-iproc.c                     |  21 +++-
+>  18 files changed, 366 insertions(+), 142 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
+>  create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
+>  create mode 100644 arch/arm/boot/dts/bcm283x-rpi-wifi-bt.dtsi
+>  create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
+> 
+
 
