@@ -2,104 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9540400FB4
-	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 14:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7869400FBC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 15:01:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237967AbhIEMxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Sep 2021 08:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231370AbhIEMxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 08:53:12 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA691C061575;
-        Sun,  5 Sep 2021 05:52:08 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id y34so7857740lfa.8;
-        Sun, 05 Sep 2021 05:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=K/x6K2UeMsD17ixUPAmN0fw2uDHH066qaNdivULg6dk=;
-        b=KZpaZxcCSLQ6pU8vgl6kDWFMtdGHaIU2m1vNy7neseUhjPql73SNgfe+z83tYYycd8
-         jTVl/acsftUBLIYn4Y1mXjaO9Gj7odgrnq0V7B2PZsRIm1msEYbtTkb1DTMJL6C9aNUf
-         yCllo1QeFBy3yxM82pc2Ak+w9gpsr+JNcMDd06zxjJ6gcs5wC/CHs4Ih57HYvnEpMCzq
-         cmOQ7ykX2+Cs7XabS+iTBnwsl9cbNWLkp5CRBxP4BA27UmCVPkB6OHr/hKB4M7m95xAx
-         yR0/e2G46WmzlZWBhTILwcoU5t9kEgSLlUJNaaw/tbq7aroC9lszMBUhklDaUSm/EvnQ
-         qfEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=K/x6K2UeMsD17ixUPAmN0fw2uDHH066qaNdivULg6dk=;
-        b=hyG5m1ccMu2nEgWX+EwtOiTFpFo+YHoGDOctfkc4+3DoCHKZIfsVDLb9m89dLqB7ED
-         Wl/iv1jIMiiqq8sR5jVUJB4FBLb9RqoSCOopaDqMkFeJIeuojk1aZOXMYp1kdPQXN9zI
-         DmdTl8MiIjaqtBN/NwJ+qhsC6IngMqMDkf+v1wmcV1uHKBP3fFssGrLQZ36nUkL+om2k
-         O6+RfcPoaal8kUCTBufASnNqq73dDHVEESlNeUGtcYkGyGQK3iq5LQ6Tkr2hVCx6pQJM
-         QyDBWpNKlchsgK/XSAAsc9QE1mcO36CzfNE9EaW2mRmm2FnA0TVnoVa4VpYM6UD9PT59
-         /HpQ==
-X-Gm-Message-State: AOAM532NGIIW+ULCMHGbX3s+pns4AJMFsqNtuc2x4CVaMgP96xcyEbZS
-        73SeklMxcsf+DrXbcn7ypSs=
-X-Google-Smtp-Source: ABdhPJxcqBUVkB6J0f+xiYxAXavSXCu6Twpx1JTV92FXJzoEWO5aKWZPI118B7oIzA0umaA62wmq2w==
-X-Received: by 2002:ac2:5c41:: with SMTP id s1mr6100369lfp.187.1630846327253;
-        Sun, 05 Sep 2021 05:52:07 -0700 (PDT)
-Received: from mobilestation ([95.79.127.110])
-        by smtp.gmail.com with ESMTPSA id bu25sm479431lfb.103.2021.09.05.05.52.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Sep 2021 05:52:06 -0700 (PDT)
-Date:   Sun, 5 Sep 2021 15:52:04 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     nandhini.srikandan@intel.com
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, kris.pan@intel.com,
-        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
-        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
-        rashmi.a@intel.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Add bindings for Intel Thunder
- Bay SoC
-Message-ID: <20210905125204.cyhz3vfa5brymlez@mobilestation>
-References: <20210824085856.12714-1-nandhini.srikandan@intel.com>
- <20210824085856.12714-2-nandhini.srikandan@intel.com>
+        id S238011AbhIENAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Sep 2021 09:00:42 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:43717 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231782AbhIENAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 09:00:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630846778; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=hIUtYY59EHfEe8/8qqNtSNUFLZ2sr/yusMAk9RqM6lI=; b=Iu4+cTKCFU8EuekBNu3pGbRH2DMN2rGzc4PPj89KrUP8Bq/mE+lHERwmpd4jIMQ8tLE4SFCW
+ 8ze47Fu3GYPfqfUF2E9Z9/hp4KfVjygFBFGO+EiyMdRTf4LzTMlntlhq7yOxPEzQRmrMybOM
+ neMxSilu4vVNxz5nyHZyov5jHfw=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6134bf3a1567234b8c646800 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 05 Sep 2021 12:59:38
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 538FDC43460; Sun,  5 Sep 2021 12:59:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-6.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.29.130] (unknown [49.36.87.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C7FE0C4360C;
+        Sun,  5 Sep 2021 12:59:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C7FE0C4360C
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v8 3/5] arm64: dts: qcom: sc7180: Enable SoC sleep stats
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     evgreen@chromium.org, mka@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        devicetree@vger.kernel.org
+References: <1621596371-26482-1-git-send-email-mkshah@codeaurora.org>
+ <1621596371-26482-4-git-send-email-mkshah@codeaurora.org>
+ <CAE-0n53ySKwDwzRYFYjnQnqVAujVrkik2U-PeCuS61xQU-hbWA@mail.gmail.com>
+ <YLUjbwFSJOSWS0IV@builder.lan>
+ <CAE-0n53hdd1tEmYwTL0CNi=S6CUxRhWnkJz-KoTj2UnedNKXmg@mail.gmail.com>
+ <YLhCGC/qgP6ESNl7@yoga>
+ <CAE-0n511_GHcyPDSeDaf5QSqVQqyHOqxJCGaSWNr=x9uotegLg@mail.gmail.com>
+ <YLxEPkQdKKYNDHqv@builder.lan>
+From:   Maulik Shah <mkshah@codeaurora.org>
+Message-ID: <f80b2317-c234-0439-b6ae-dffb040f22be@codeaurora.org>
+Date:   Sun, 5 Sep 2021 18:29:29 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210824085856.12714-2-nandhini.srikandan@intel.com>
+In-Reply-To: <YLxEPkQdKKYNDHqv@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Nandhini
+Hi,
 
-On Tue, Aug 24, 2021 at 04:58:55PM +0800, nandhini.srikandan@intel.com wrote:
-> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
-> 
-> Add documentation for SPI controller in Intel Thunder Bay SoC.
-> 
-> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
-> ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+On 6/6/2021 9:12 AM, Bjorn Andersson wrote:
+> Yes, "ram" sounds like a better node name for both the qmp and
+> sleep-stats region - in the RPMH case.
 
-Acked-by: Serge Semin <fancer.lancer@gmail.com>
+Updated to use "aop_msgram" in v9.  I think saying only "ram" may 
+further confuse with DDR.
 
--Sergey
+Thanks,
+Maulik
 
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index ca91201a9926..88532bf8ba85 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -61,6 +61,8 @@ properties:
->            - const: snps,dw-apb-ssi
->        - description: Intel Keem Bay SPI Controller
->          const: intel,keembay-ssi
-> +      - description: Intel Thunder Bay SPI Controller
-> +        const: intel,thunderbay-ssi
->        - description: Baikal-T1 SPI Controller
->          const: baikal,bt1-ssi
->        - description: Baikal-T1 System Boot SPI Controller
-> -- 
-> 2.17.1
-> 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+
