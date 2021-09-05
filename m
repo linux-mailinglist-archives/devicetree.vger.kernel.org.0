@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7554010F5
-	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 18:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AEFB40115B
+	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 21:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238087AbhIEQ72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Sep 2021 12:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54776 "EHLO
+        id S235230AbhIET1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Sep 2021 15:27:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbhIEQ72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 12:59:28 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5540C061575;
-        Sun,  5 Sep 2021 09:58:24 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id t19so8370862ejr.8;
-        Sun, 05 Sep 2021 09:58:24 -0700 (PDT)
+        with ESMTP id S233945AbhIET1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 15:27:39 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD90C061575;
+        Sun,  5 Sep 2021 12:26:36 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id i6so6370886edu.1;
+        Sun, 05 Sep 2021 12:26:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=kZ3/8isN7aB5wQkkG7Kcq2wcJN33Wyg4fWu0p0VvB7I=;
-        b=JlSC2leaYdOQpkN3ZHceJCTOYRVYSZ6mWBNriXHhfp7ykXw/LD8+p7cQLU44xXJ2Z7
-         RK0Tk+ndRhkqU3VRcd6k5F+igc885IPnEmo8DXRZk2VDd2VsS682oroDS84bx8WKqdPb
-         cUwPjU3ghyzpxCONyCPG0YstXozDv5HFAbvjCwqdRQZ8ZuxYCV1p4LTL3+QLfgIvNDBP
-         koAYRzgvoHI9dULpyilXqCBtCvX/yuYf0xS8Or+ifK69/mXC+hEH0ds9961t42rZUFKx
-         qHBl1OCzYAwR8azYOb8xwqs5qxf4/Rctx5P1G99fS+uahwurmdj1zisZ5vReXExOnGcU
-         HDcg==
+        bh=qlez6w9+Xry8jtHHgqQjUNA5ndA2CrnxtsKlEHI62vo=;
+        b=Kk/FIIAPqgwUFLerUyXZRmwCq/E48RR3rZJJbFMatB2+kiS55ufkQAFCmMyqCpJkN+
+         pWbW/nF/nEG+jiOT71kb9y2VmCtYYrWYumDW2+MBaQtdXCX5wypLEWAp/tJHv+AFAYT/
+         p4g2uJefZAs+3xUNfrNNByfmbZKDhLsS+Ugduj4XkEzM74NY+WIyNqLvgaJ9t26TlYsH
+         nGtJO3ZuXY3c9AA7KNb+FFRJlFFSIiOXQbHqm4KHSablhtphox4wIMzvBoA1TcLHNazP
+         1strZGPRX9ng9BBqe3Y7k15QMJBy2FMG9CTgc0YvU1KVWCMfJaRbhZlnZrzcW2qlxBnM
+         ZiSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=kZ3/8isN7aB5wQkkG7Kcq2wcJN33Wyg4fWu0p0VvB7I=;
-        b=W+Jophq+IKpVQKNveyh9LPyXXMvGmM8DV9SFSpZjS8K8j3AinHgOCu9NWdmNVSXmBK
-         UkfrzvUW2xu8DBPp0ysAtx1pU/r/hB+O5zF3Z9wG801q17XeaUapvs0YnR8MaR54nZve
-         kMZbDfT4lh+qnCuYKlaEHuxIOgCYODutsjFmWNgY6ZwnyF2DCkSZw1Ujpf8z4PZ8aBVd
-         T8Vfs3Wsf7gYSLXCVr01eJieY8fFsZjVPf1jGTdg7H8LzATJo5LJFONdpOy9t/qwm00e
-         1y20mL8ra6+iU1NP1tKNp7L4vGoOUBMZmaNRn1SbBJO2dQmdQkSvxlKmDwhp/QU4iqMF
-         0gfQ==
-X-Gm-Message-State: AOAM530wJWh+dHkZ5dIouFpbvDFmZUKHilV+mUNzYxbpUWKo5zoORwUw
-        I0WfNnB76kIpgy/j2f8TgMOjMd9NC0E5sw==
-X-Google-Smtp-Source: ABdhPJywPHMKWuiiH9GLjB/zOTnT72qVIApNdSCjEmloLJ+NHnP8/Sq5QdSbJ2sf5S/EuR0i/87Hgw==
-X-Received: by 2002:a17:906:3148:: with SMTP id e8mr9421310eje.240.1630861103212;
-        Sun, 05 Sep 2021 09:58:23 -0700 (PDT)
-Received: from fedora.. (dh207-97-6.xnet.hr. [88.207.97.6])
-        by smtp.googlemail.com with ESMTPSA id t1sm3122920edq.31.2021.09.05.09.58.22
+        bh=qlez6w9+Xry8jtHHgqQjUNA5ndA2CrnxtsKlEHI62vo=;
+        b=VbNjZnQpNk/6ky4RZ1z/ii1vk2TzFzBErPSpiOkjsG6TuvRLTYQqyabn7Mz1PkZw4i
+         1HEdJJE8HSIrrEt2w8phiVa9jpmlxf+Qxn0KxnJU2L7AGkC/Q77EN5Ob1xqORF2xMwdI
+         rJ6JEUzziz59sOIKn9V9iiRBVuakfU1Daa0WxnlNEJ9SvbQriEmF+ugO6JiDLIIgckvP
+         KhXvceuFA8daby6KyONeKA1v4o9OV8xca8izIb0pbTNsAxobPofBFLmrDlom/RzKy7he
+         nhvdWQPb89DLdsRjgviFL/vCrywCfumyI0k8uEazT4Xk61yblYTUgzk33MXHFtBuUQgS
+         ULBA==
+X-Gm-Message-State: AOAM533XQY88YKh5vYVHMzdqaj+wD8V9E8Tg60iRbH2OXZWVwfBck8uY
+        c4K6xAysYXe1quhJd+kA9ik=
+X-Google-Smtp-Source: ABdhPJwKkZh7U2OnpEzLD2FkeUDsXAtatl/gJKYiiF2lhr2i3q4HMdaUGKVSitTapNvRGbtX/oZvRA==
+X-Received: by 2002:aa7:d99a:: with SMTP id u26mr10016178eds.297.1630869993740;
+        Sun, 05 Sep 2021 12:26:33 -0700 (PDT)
+Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id n13sm3238992edq.91.2021.09.05.12.26.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Sep 2021 09:58:22 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: ipq8074: add SPMI bus
-Date:   Sun,  5 Sep 2021 18:58:16 +0200
-Message-Id: <20210905165816.655275-1-robimarko@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        Sun, 05 Sep 2021 12:26:33 -0700 (PDT)
+From:   Jernej Skrabec <jernej.skrabec@gmail.com>
+To:     mripard@kernel.org, wens@csie.org
+Cc:     robh+dt@kernel.org, codekipper@gmail.com, peron.clem@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH] arm: dts: sunxi: h3/h5: Fix I2S2 node
+Date:   Sun,  5 Sep 2021 21:26:28 +0200
+Message-Id: <20210905192628.206061-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ8074 uses SPMI for communication with the PMIC, so
-since its already supported add the DT node for it.
+I2S2 controller has RX DMA channel according to documentation.
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
+Add it.
+
+Fixes: cd7c897821a0 ("arm: dts: sunxi: h3/h5: Add I2S2 node")
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index ab124dc7538c..dafbde4ba5d5 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -321,6 +321,25 @@ tcsr_mutex_regs: syscon@1905000 {
- 			reg = <0x01905000 0x8000>;
+diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+index c7428df9469e..bd26f2059220 100644
+--- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
++++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+@@ -670,9 +670,9 @@ i2s2: i2s@1c22800 {
+ 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&ccu CLK_BUS_I2S2>, <&ccu CLK_I2S2>;
+ 			clock-names = "apb", "mod";
+-			dmas = <&dma 27>;
++			dmas = <&dma 27>, <&dma 27>;
+ 			resets = <&ccu RST_BUS_I2S2>;
+-			dma-names = "tx";
++			dma-names = "tx", "rx";
+ 			status = "disabled";
  		};
  
-+		spmi_bus: spmi@200f000 {
-+			compatible = "qcom,spmi-pmic-arb";
-+			reg = <0x0200f000 0x001000>,
-+			      <0x02400000 0x800000>,
-+			      <0x02c00000 0x800000>,
-+			      <0x03800000 0x200000>,
-+			      <0x0200a000 0x000700>;
-+			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
-+			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "periph_irq";
-+			qcom,ee = <0>;
-+			qcom,channel = <0>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+			interrupt-controller;
-+			#interrupt-cells = <4>;
-+			cell-index = <0>;
-+		};
-+
- 		sdhc_1: sdhci@7824900 {
- 			compatible = "qcom,sdhci-msm-v4";
- 			reg = <0x7824900 0x500>, <0x7824000 0x800>;
 -- 
-2.31.1
+2.33.0
 
