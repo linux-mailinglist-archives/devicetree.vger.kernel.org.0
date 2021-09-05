@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93587400F9B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 14:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9540400FB4
+	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 14:54:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237954AbhIEMUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Sep 2021 08:20:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46786 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232137AbhIEMUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 5 Sep 2021 08:20:10 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EBF2C60EE6;
-        Sun,  5 Sep 2021 12:19:01 +0000 (UTC)
-Date:   Sun, 5 Sep 2021 13:22:28 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        Tony Lindgren <tony@atomide.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Ryan Barnett <ryan.barnett@collins.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Jason Reeder <jreeder@ti.com>
-Subject: Re: [PATCH v2 24/46] mfd: ti_am335x_tscadc: Fix header spacing
-Message-ID: <20210905132228.1ef9f662@jic23-huawei>
-In-Reply-To: <20210902215144.507243-25-miquel.raynal@bootlin.com>
-References: <20210902215144.507243-1-miquel.raynal@bootlin.com>
-        <20210902215144.507243-25-miquel.raynal@bootlin.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S237967AbhIEMxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Sep 2021 08:53:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57340 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231370AbhIEMxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 08:53:12 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA691C061575;
+        Sun,  5 Sep 2021 05:52:08 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id y34so7857740lfa.8;
+        Sun, 05 Sep 2021 05:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=K/x6K2UeMsD17ixUPAmN0fw2uDHH066qaNdivULg6dk=;
+        b=KZpaZxcCSLQ6pU8vgl6kDWFMtdGHaIU2m1vNy7neseUhjPql73SNgfe+z83tYYycd8
+         jTVl/acsftUBLIYn4Y1mXjaO9Gj7odgrnq0V7B2PZsRIm1msEYbtTkb1DTMJL6C9aNUf
+         yCllo1QeFBy3yxM82pc2Ak+w9gpsr+JNcMDd06zxjJ6gcs5wC/CHs4Ih57HYvnEpMCzq
+         cmOQ7ykX2+Cs7XabS+iTBnwsl9cbNWLkp5CRBxP4BA27UmCVPkB6OHr/hKB4M7m95xAx
+         yR0/e2G46WmzlZWBhTILwcoU5t9kEgSLlUJNaaw/tbq7aroC9lszMBUhklDaUSm/EvnQ
+         qfEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=K/x6K2UeMsD17ixUPAmN0fw2uDHH066qaNdivULg6dk=;
+        b=hyG5m1ccMu2nEgWX+EwtOiTFpFo+YHoGDOctfkc4+3DoCHKZIfsVDLb9m89dLqB7ED
+         Wl/iv1jIMiiqq8sR5jVUJB4FBLb9RqoSCOopaDqMkFeJIeuojk1aZOXMYp1kdPQXN9zI
+         DmdTl8MiIjaqtBN/NwJ+qhsC6IngMqMDkf+v1wmcV1uHKBP3fFssGrLQZ36nUkL+om2k
+         O6+RfcPoaal8kUCTBufASnNqq73dDHVEESlNeUGtcYkGyGQK3iq5LQ6Tkr2hVCx6pQJM
+         QyDBWpNKlchsgK/XSAAsc9QE1mcO36CzfNE9EaW2mRmm2FnA0TVnoVa4VpYM6UD9PT59
+         /HpQ==
+X-Gm-Message-State: AOAM532NGIIW+ULCMHGbX3s+pns4AJMFsqNtuc2x4CVaMgP96xcyEbZS
+        73SeklMxcsf+DrXbcn7ypSs=
+X-Google-Smtp-Source: ABdhPJxcqBUVkB6J0f+xiYxAXavSXCu6Twpx1JTV92FXJzoEWO5aKWZPI118B7oIzA0umaA62wmq2w==
+X-Received: by 2002:ac2:5c41:: with SMTP id s1mr6100369lfp.187.1630846327253;
+        Sun, 05 Sep 2021 05:52:07 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id bu25sm479431lfb.103.2021.09.05.05.52.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Sep 2021 05:52:06 -0700 (PDT)
+Date:   Sun, 5 Sep 2021 15:52:04 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     nandhini.srikandan@intel.com
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, kris.pan@intel.com,
+        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
+        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
+        rashmi.a@intel.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Add bindings for Intel Thunder
+ Bay SoC
+Message-ID: <20210905125204.cyhz3vfa5brymlez@mobilestation>
+References: <20210824085856.12714-1-nandhini.srikandan@intel.com>
+ <20210824085856.12714-2-nandhini.srikandan@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210824085856.12714-2-nandhini.srikandan@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  2 Sep 2021 23:51:22 +0200
-Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+Hello Nandhini
 
-> Harmonize the spacing within macro definitions.
+On Tue, Aug 24, 2021 at 04:58:55PM +0800, nandhini.srikandan@intel.com wrote:
+> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-LGTM
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
+> Add documentation for SPI controller in Intel Thunder Bay SoC.
+> 
+> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
 > ---
->  include/linux/mfd/ti_am335x_tscadc.h | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/include/linux/mfd/ti_am335x_tscadc.h b/include/linux/mfd/ti_am335x_tscadc.h
-> index 334ce1a879df..efafecfc87a7 100644
-> --- a/include/linux/mfd/ti_am335x_tscadc.h
-> +++ b/include/linux/mfd/ti_am335x_tscadc.h
-> @@ -41,7 +41,7 @@
->  /* Step Enable */
->  #define STEPENB_MASK		(0x1FFFF << 0)
->  #define STEPENB(val)		((val) << 0)
-> -#define ENB(val)			(1 << (val))
-> +#define ENB(val)		(1 << (val))
->  #define STPENB_STEPENB		STEPENB(0x1FFFF)
->  #define STPENB_STEPENB_TC	STEPENB(0x1FFF)
->  
-> @@ -122,15 +122,15 @@
->  #define CNTRLREG_TSCENB		BIT(7)
->  
->  /* FIFO READ Register */
-> -#define FIFOREAD_DATA_MASK (0xfff << 0)
-> -#define FIFOREAD_CHNLID_MASK (0xf << 16)
-> +#define FIFOREAD_DATA_MASK	(0xfff << 0)
-> +#define FIFOREAD_CHNLID_MASK	(0xf << 16)
->  
->  /* DMA ENABLE/CLEAR Register */
->  #define DMA_FIFO0		BIT(0)
->  #define DMA_FIFO1		BIT(1)
->  
->  /* Sequencer Status */
-> -#define SEQ_STATUS BIT(5)
-> +#define SEQ_STATUS		BIT(5)
->  #define CHARGE_STEP		0x11
->  
->  #define ADC_CLK			3000000
-> @@ -150,7 +150,7 @@
->   *
->   * max processing time: 266431 * 308ns = 83ms(approx)
->   */
-> -#define IDLE_TIMEOUT 83 /* milliseconds */
-> +#define IDLE_TIMEOUT		83 /* milliseconds */
->  
->  #define TSCADC_CELLS		2
->  
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
+Acked-by: Serge Semin <fancer.lancer@gmail.com>
+
+-Sergey
+
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index ca91201a9926..88532bf8ba85 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -61,6 +61,8 @@ properties:
+>            - const: snps,dw-apb-ssi
+>        - description: Intel Keem Bay SPI Controller
+>          const: intel,keembay-ssi
+> +      - description: Intel Thunder Bay SPI Controller
+> +        const: intel,thunderbay-ssi
+>        - description: Baikal-T1 SPI Controller
+>          const: baikal,bt1-ssi
+>        - description: Baikal-T1 System Boot SPI Controller
+> -- 
+> 2.17.1
+> 
