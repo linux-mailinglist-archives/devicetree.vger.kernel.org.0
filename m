@@ -2,93 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AEFB40115B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 21:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4AB7401164
+	for <lists+devicetree@lfdr.de>; Sun,  5 Sep 2021 21:43:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235230AbhIET1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Sep 2021 15:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59098 "EHLO
+        id S230422AbhIETl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Sep 2021 15:41:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233945AbhIET1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 15:27:39 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD90C061575;
-        Sun,  5 Sep 2021 12:26:36 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id i6so6370886edu.1;
-        Sun, 05 Sep 2021 12:26:36 -0700 (PDT)
+        with ESMTP id S230024AbhIETl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Sep 2021 15:41:57 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79ED0C061575;
+        Sun,  5 Sep 2021 12:40:53 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id bt14so8972959ejb.3;
+        Sun, 05 Sep 2021 12:40:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qlez6w9+Xry8jtHHgqQjUNA5ndA2CrnxtsKlEHI62vo=;
-        b=Kk/FIIAPqgwUFLerUyXZRmwCq/E48RR3rZJJbFMatB2+kiS55ufkQAFCmMyqCpJkN+
-         pWbW/nF/nEG+jiOT71kb9y2VmCtYYrWYumDW2+MBaQtdXCX5wypLEWAp/tJHv+AFAYT/
-         p4g2uJefZAs+3xUNfrNNByfmbZKDhLsS+Ugduj4XkEzM74NY+WIyNqLvgaJ9t26TlYsH
-         nGtJO3ZuXY3c9AA7KNb+FFRJlFFSIiOXQbHqm4KHSablhtphox4wIMzvBoA1TcLHNazP
-         1strZGPRX9ng9BBqe3Y7k15QMJBy2FMG9CTgc0YvU1KVWCMfJaRbhZlnZrzcW2qlxBnM
-         ZiSA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ktfu/1dI5EriLXE5SDDhbia+REVwP853qU4CVNxHqiI=;
+        b=Rxqu+vGpTbt09JrFUNrJ30s3AmbCiII568kBUn+HM9TNaW3Nup6GeXNLCRvBVD85AV
+         uHOfgUPXJL/wvBjFiuGcTIrmKZyJ+R6pw5IKhP9gSOEDs+glsWckJ6NsGbH9w5mEu5Ir
+         w8bdZ8EU2f4eHWxa/nLSHjIWYyKKr25er9bV38pGOY9QdIGNESJQyHdpIsdoFM9kRVBM
+         RFVYf43E8HRO0i8oHWVEr9KxpUCkvN+6xqbQWqNZgE2JCj5gVYrwCOh3ThJnabAHcY+B
+         Z2QZAyFg+V8WIqV8TtBhcLiTiTdUipy+THlZ3so7j8lP+hlaDCAGFeclPeBGDLLe98jp
+         km7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qlez6w9+Xry8jtHHgqQjUNA5ndA2CrnxtsKlEHI62vo=;
-        b=VbNjZnQpNk/6ky4RZ1z/ii1vk2TzFzBErPSpiOkjsG6TuvRLTYQqyabn7Mz1PkZw4i
-         1HEdJJE8HSIrrEt2w8phiVa9jpmlxf+Qxn0KxnJU2L7AGkC/Q77EN5Ob1xqORF2xMwdI
-         rJ6JEUzziz59sOIKn9V9iiRBVuakfU1Daa0WxnlNEJ9SvbQriEmF+ugO6JiDLIIgckvP
-         KhXvceuFA8daby6KyONeKA1v4o9OV8xca8izIb0pbTNsAxobPofBFLmrDlom/RzKy7he
-         nhvdWQPb89DLdsRjgviFL/vCrywCfumyI0k8uEazT4Xk61yblYTUgzk33MXHFtBuUQgS
-         ULBA==
-X-Gm-Message-State: AOAM533XQY88YKh5vYVHMzdqaj+wD8V9E8Tg60iRbH2OXZWVwfBck8uY
-        c4K6xAysYXe1quhJd+kA9ik=
-X-Google-Smtp-Source: ABdhPJwKkZh7U2OnpEzLD2FkeUDsXAtatl/gJKYiiF2lhr2i3q4HMdaUGKVSitTapNvRGbtX/oZvRA==
-X-Received: by 2002:aa7:d99a:: with SMTP id u26mr10016178eds.297.1630869993740;
-        Sun, 05 Sep 2021 12:26:33 -0700 (PDT)
-Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id n13sm3238992edq.91.2021.09.05.12.26.32
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ktfu/1dI5EriLXE5SDDhbia+REVwP853qU4CVNxHqiI=;
+        b=CmC2Fige5fM0YoKz6b3t3Y9NYLItgc0y3WDkgAtmjy0pNIIkR/aShWc1EZNnPLE9Gd
+         jyu9GiK7CTr/MFq3n4S5vfGrP+HM7oIoPFsB5qGOSIbC75cVJVHB9KOfsUW6mzOEgydZ
+         HWmx3DY4KDPso0HBiu1/EHmjuoh+gUJvJ9Aa3xfIJ8UoUivWoPSupHE7h7/Yfcg1el/P
+         P0XEJ6oLM8Z6ZnCr8rLSIW5Jl+59tVySO2yqP1TDw0Cgv7ZCXBhHNIaao0eegqa4bYr7
+         hLRdlva6xpyyJrqWNM6sbfaP5DQadx3eZQPLjWzdiooOoxq6leeIo7S7ovly36FRfKLM
+         EhWg==
+X-Gm-Message-State: AOAM530KBueygfPN31XigyoXp6h/HGW4m6he8vwo+0gxdx9sKzV0owrB
+        D8NfuHvXbEPMHp7ly+k1U5I=
+X-Google-Smtp-Source: ABdhPJx9zcPWC1IOubNX+p+CD/pSo0c5XPiVDRow8ByiiVq9DoQW/HLDz1WVsBR2IX2OinBEA9EdJQ==
+X-Received: by 2002:a17:906:1615:: with SMTP id m21mr10662315ejd.279.1630870852109;
+        Sun, 05 Sep 2021 12:40:52 -0700 (PDT)
+Received: from kista.localnet (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id o19sm3263530edr.18.2021.09.05.12.40.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Sep 2021 12:26:33 -0700 (PDT)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
+        Sun, 05 Sep 2021 12:40:51 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To:     mripard@kernel.org, wens@csie.org
 Cc:     robh+dt@kernel.org, codekipper@gmail.com, peron.clem@gmail.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH] arm: dts: sunxi: h3/h5: Fix I2S2 node
-Date:   Sun,  5 Sep 2021 21:26:28 +0200
-Message-Id: <20210905192628.206061-1-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.33.0
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: dts: sunxi: h3/h5: Fix I2S2 node
+Date:   Sun, 05 Sep 2021 21:40:50 +0200
+Message-ID: <4281589.rpS0U0bY3j@kista>
+In-Reply-To: <20210905192628.206061-1-jernej.skrabec@gmail.com>
+References: <20210905192628.206061-1-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I2S2 controller has RX DMA channel according to documentation.
+Hi all,
 
-Add it.
+Dne nedelja, 05. september 2021 ob 21:26:28 CEST je Jernej Skrabec napisal(a):
+> I2S2 controller has RX DMA channel according to documentation.
+> 
 
-Fixes: cd7c897821a0 ("arm: dts: sunxi: h3/h5: Add I2S2 node")
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm/boot/dts/sunxi-h3-h5.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Sorry for mistake. This is not true. Documentation doesn't have RX DMA 
+documented (I2S2 is connected to HDMI).
 
-diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-index c7428df9469e..bd26f2059220 100644
---- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-+++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-@@ -670,9 +670,9 @@ i2s2: i2s@1c22800 {
- 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_I2S2>, <&ccu CLK_I2S2>;
- 			clock-names = "apb", "mod";
--			dmas = <&dma 27>;
-+			dmas = <&dma 27>, <&dma 27>;
- 			resets = <&ccu RST_BUS_I2S2>;
--			dma-names = "tx";
-+			dma-names = "tx", "rx";
- 			status = "disabled";
- 		};
- 
--- 
-2.33.0
+Marcus, do you remember if loopback mode actually works on H3, with DMA 
+enabled? Maybe DMA is there, just undocumented. Some SoCs (H6, R40) have RX 
+DMA channel documented, even though it's used for HDMI TX only, and others 
+don't (A64, H3, H5).
+
+Anyway, I got report that I2S driver from 5.14 onwards can't register 
+controller anymore due to missing RX DMA channel. So either driver or DT has 
+to be fixed.
+
+Please disregard this patch for now.
+
+Best regards,
+Jernej
+
+> Add it.
+> 
+> Fixes: cd7c897821a0 ("arm: dts: sunxi: h3/h5: Add I2S2 node")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  arch/arm/boot/dts/sunxi-h3-h5.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-
+h5.dtsi
+> index c7428df9469e..bd26f2059220 100644
+> --- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+> +++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+> @@ -670,9 +670,9 @@ i2s2: i2s@1c22800 {
+>  			interrupts = <GIC_SPI 15 
+IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&ccu CLK_BUS_I2S2>, <&ccu 
+CLK_I2S2>;
+>  			clock-names = "apb", "mod";
+> -			dmas = <&dma 27>;
+> +			dmas = <&dma 27>, <&dma 27>;
+>  			resets = <&ccu RST_BUS_I2S2>;
+> -			dma-names = "tx";
+> +			dma-names = "tx", "rx";
+>  			status = "disabled";
+>  		};
+>  
+> -- 
+> 2.33.0
+> 
+> 
+
 
