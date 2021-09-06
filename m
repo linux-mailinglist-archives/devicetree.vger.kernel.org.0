@@ -2,108 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A9C401E3B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 18:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7F2401E43
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 18:28:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244031AbhIFQ2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 12:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59402 "EHLO
+        id S243963AbhIFQ36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 12:29:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243963AbhIFQ2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 12:28:34 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99FBEC061757
-        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 09:27:29 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id j19so6012252vsi.6
-        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 09:27:29 -0700 (PDT)
+        with ESMTP id S243784AbhIFQ36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 12:29:58 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B74C061575
+        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 09:28:53 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id o39-20020a05600c512700b002e74638b567so310205wms.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 09:28:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1v7i8HiyO/1Ym8mqrztY8OP2nXDvUjYMU9SPvvdR5iI=;
-        b=KeHclL15otyM8f+dOzQIGQr7RAW+HW31nUm+fsJMd5ukKGOzcIIoebv4l1rxxXdtow
-         2fLv4nH55dwxD6gWWBmA140rbu234m3x5wf0LDpPh4sAK0NohP5zfd6vUKchNaYgOGiA
-         HL7C76TFHjncsA/UknFYGkUCsGfGwNvcBjRl5b9pqn7T8e3GeSmQeE2JviKh+hTXPiH8
-         W3BLdUlb6j6hZMp6lyDcAHGq2rNF5/ZzxpvNboC+KUURUxc2GOwJ+tpmmR73RePzER5F
-         xgX63er1eENm88yda0CY34Qf6EDq5VLW6gBxZ6qPPjiD1bt3kIioC5S7Sq5kOXmX7nKi
-         JUrg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=S5ouu0sCwAAb7QGWEvTGp15oiRUoB6xbxVGPJ+dRjKo=;
+        b=Uqu3Z2vilSG56DjF9a/lgrx6Scc/x0nG9WaT3A8qWMGaikGhfd8LpeAcMwZy7KcK8H
+         GUMw5LSLyDqz70Yt1oz6ICXqjjPOHgEhchmoOKLZ9JnOSE+Bs5v2icfTb5qvhMmZ8dCu
+         ELnJUfk6onODISF05iMm3Swd6F9OZZUjh2W5f73QiOCblCwFHsKviZNJfhxq5QIzsxm1
+         znH5eqCMiqjJaVWHmMSkpK8vDTe682U+PRu26/EB4ph74sA9DDZSxrQTkeE6cKt6xofc
+         b50GTn5NCBsg0REurmr6wKRssrn0kBz3mZXStZTpogGFyZQwnnJRMzzjWkMETrftYej+
+         xmEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1v7i8HiyO/1Ym8mqrztY8OP2nXDvUjYMU9SPvvdR5iI=;
-        b=VZ4CDOg6uRhbj0i0aJnBBY5S9sAj7vdoO988/5VW0Kld/KSy37YV/AKxIuKkTAM7We
-         /7Zx9/UJa/W6Y22c8RY7ptSrgVBdg0dqiCvBXCzLWiPCj9gmIxqgGyOXx/g7et6NSQsJ
-         b6epCnyUW7nZK5xtH9HhGoIbMeTg8/yiM0ldIxoKwBx54P9BgnC6alvES+LUMdzJJsGb
-         A/f56E8g8jKS8EQQdpSnfoNZeVhVtN14ES7QkoxCi7FAjv1+lNzXw6RfT3acllpa7SBC
-         KJbxtx6M+FWcjEnB/xsTgJ+xf/MEljsOqPbrzgVypkekUjAH9AeXLu8tElplS1C+Hrc6
-         zyvA==
-X-Gm-Message-State: AOAM532EnM5Fgy/Rtmc5jNtie9EwVBzzbioQmBns/p0hGh5L206dO+yu
-        6bS4DS8UH8SdPLT7Ua+BZXMWd1emgx66oK9IvzIpxw==
-X-Google-Smtp-Source: ABdhPJx42jYyWvN/Qn4VgmviI0/F3R5RsPLT5EvzkWi6iwNer+i/tY/TKP2zG7TW4SPXjMUt+ScleFoLjPAzV0zGCcs=
-X-Received: by 2002:a67:d387:: with SMTP id b7mr6860162vsj.55.1630945648771;
- Mon, 06 Sep 2021 09:27:28 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=S5ouu0sCwAAb7QGWEvTGp15oiRUoB6xbxVGPJ+dRjKo=;
+        b=TrQDnxrHZkndPpBsr2ctX8MQlBbhJdCxKM4NQj+J2LUMiQEPNjEDxwnBhcwSU5kJn6
+         UcHejKQWSOjqeWvfqLBkDolJVM8z+zkPi4A9cThbeejGwqeRGpPbPptlHiXV1NYUV+MB
+         ch8lThZqCon9eIAcrWI5foa2g6Orwe23RBkUmsjbiovhV8C51np73MzSaTXavE+MpRVC
+         hEfM/DGpIey9ANxseqrz+QvIwBksgurUeTDjPd3RWE0z9Y5BRMSCotAGwWbLnGpvGKXm
+         J/Ce8iSWDjb9fQOPDtq+ESPusX4RI/vMQbR2HP1ifTfxg06MrKSzbEasRg/ENF3T5PhM
+         pKIg==
+X-Gm-Message-State: AOAM533YOFnPCmbEPwDea4x9RAm0rCjGBCQkqhIit8N+EEUL+CR1ja5s
+        hRQltz8eO/pDFR1UrJsFQnLA5Q==
+X-Google-Smtp-Source: ABdhPJxZSxxGxoOQyouG73qLYaGMeiQxaddUTktzM1YhoSHnKghMaez+80wb+6lKzEGZ5ytcSMXHnw==
+X-Received: by 2002:a05:600c:1d05:: with SMTP id l5mr12173070wms.139.1630945731569;
+        Mon, 06 Sep 2021 09:28:51 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id l17sm8636503wrz.35.2021.09.06.09.28.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Sep 2021 09:28:51 -0700 (PDT)
+Subject: Re: [PATCH v5 14/21] ASoC: qdsp6: audioreach: add basic pkt alloc
+ support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        lgirdwood@gmail.com
+References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
+ <20210903112032.25834-15-srinivas.kandagatla@linaro.org>
+ <ddb4f36b-8a43-d1e9-0429-78d8eefc9474@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <8de8d53d-87f7-f35d-d7d2-76b3aa4d396a@linaro.org>
+Date:   Mon, 6 Sep 2021 17:28:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210811114827.27322-1-semen.protsenko@linaro.org>
- <20210811114827.27322-4-semen.protsenko@linaro.org> <YRwodjUxlZmvrvSC@robh.at.kernel.org>
-In-Reply-To: <YRwodjUxlZmvrvSC@robh.at.kernel.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 6 Sep 2021 19:27:17 +0300
-Message-ID: <CAPLW+4kvty3PQmSki8eM+WSgcA+zFfyD+--e6KBpird0-gOhMw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] dt-bindings: serial: samsung: Add Exynos850 doc
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tom Gall <tom.gall@linaro.org>, Marc Zyngier <maz@kernel.org>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <ddb4f36b-8a43-d1e9-0429-78d8eefc9474@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Aug 2021 at 00:22, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 11 Aug 2021 14:48:23 +0300, Sam Protsenko wrote:
-> > Add compatible string for Exynos850 SoC.
-> >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> > Changes in v3:
-> >   - None
-> >
-> > Changes in v2:
-> >   - None
-> >
-> >  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
+Thanks Pierre for taking time to review the patches.
 
-Hi guys,
+On 03/09/2021 15:23, Pierre-Louis Bossart wrote:
+> 
+> 
+> 
+>> +struct apm_sub_graph_params  {
+>> +	struct apm_module_param_data param_data;
+>> +	uint32_t num_sub_graphs;
+>> +	struct apm_sub_graph_data sg_cfg[0];
+> 
+> I thought the use of zero-length arrays [0] was deprecated in favor of
+> flexible arrays []?
+Thanks for the hints, I will fix such instances, typos and along with 
+missing new lines before sending out next version.
 
-Can we please merge this one? I can see that corresponding driver
-changes were pulled in already into malinline, but this one seems to
-be missed.
+> 
+>> +} __packed;
+>> +
+...
+>> +struct audioreach_module {
+>> +	uint32_t module_id;
+>> +	uint32_t instance_id;
+>> +
+>> +	uint32_t max_ip_port;
+>> +	uint32_t max_op_port;
+>> +
+>> +	uint32_t in_port;
+>> +	uint32_t out_port;
+>> +
+>> +	/* Connections */
+>> +	uint32_t src_mod_inst_id;
+>> +	uint32_t src_mod_op_port_id;
+>> +	uint32_t dst_mod_inst_id;
+>> +	uint32_t dst_mod_ip_port_id;
+>> +
+>> +	/* Format specifics */
+>> +	uint32_t ch_fmt;
+>> +	uint32_t rate;
+>> +	uint32_t bit_depth;
+>> +
+>> +	/* I2S module */
+>> +	uint32_t hw_interface_idx;
+>> +	uint32_t sd_line_idx;
+>> +	uint32_t ws_src;
+>> +	uint32_t frame_size_factor;
+>> +	uint32_t data_format;
+>> +	uint32_t hw_interface_type;
+>> +
+>> +	/* PCM module specific */
+>> +	uint32_t interleave_type;
+>> +
+>> +	/* GAIN/Vol Control Module */
+>> +	uint16_t gain;
+> 
+> newline for consistency?
+>> +	/* Logging */
+>> +	uint32_t log_code;
+>> +	uint32_t log_tap_point_id;
+>> +	uint32_t mode;
+> 
+> probably not related to logging, comment missing?
 
-Thanks!
+
+This is actually a log mode to to indicate whether to log immediately 
+(1) or wait until log buffer is completely filled (0)
+
+I will rename this to log_mode in next version and also add an extra new 
+line to split some member used for book keeping.
+
+> 
+>> +	struct list_head node;
+>> +	struct audioreach_container *container;
+>> +	struct snd_soc_dapm_widget *widget;
+>> +};
+>> +
+
+--srini
