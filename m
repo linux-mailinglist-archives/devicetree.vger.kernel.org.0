@@ -2,111 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95FA0401C62
+	by mail.lfdr.de (Postfix) with ESMTP id E0276401C63
 	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 15:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242598AbhIFNhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 09:37:22 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:51821 "EHLO
+        id S242610AbhIFNh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 09:37:56 -0400
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:45537 "EHLO
         wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S242564AbhIFNhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 09:37:22 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 0F96A32000F9;
-        Mon,  6 Sep 2021 09:36:16 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 06 Sep 2021 09:36:17 -0400
+        by vger.kernel.org with ESMTP id S242564AbhIFNhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 09:37:55 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 905DB32000F9;
+        Mon,  6 Sep 2021 09:36:50 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 06 Sep 2021 09:36:51 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=hQ5PFK5bIFLNrGqB3/frDmr1eJL
-        dCdn+8hvD1nV9qvQ=; b=wSShQbwiB8qXGhllohUkuXQhrM620+Hzy/Xo88VTfNx
-        djzYCcM1JRh56Gv/aQH7UjH9MSF37KCEZLzuzA3+7AD9wy3WOJ6ufHdbPjX9T4It
-        FnCS7Xhry0ilYLU+QyJPrncNCdZloqsgQv7kITP6bSFPGlE3F9TVZF7VnLl+ZYQi
-        9bK+ZJl9Ei9SgGdcGkwYFWM6dIq51N3EXRPc8O7p++6ITE6+GGQOTAr0LqSPXK9g
-        mBFrOT/JZ3TGYCcxm8ba8jX5fZEBO5rYQ58DAuvbcotE4Nzgtscaq+b/HsiaxZju
-        fi8KxL/dUzFfDGJw6I/GZ/lj8WvRJ6ykrPWx6cuwSew==
+        :content-type:in-reply-to; s=fm3; bh=FNpAayLKyvtC/I4ukQ6FMv4dMMI
+        amkLS3NUHUK2gHN0=; b=LR771LRrIaaLGpgMLLr2r89O9vr7GjF5oDmZlQntvfu
+        tFuXhgiTstTvmReGo4UzPS1er97RWzdZxuO5/QDVeKsmdYL/u7lWo3BYZcNG5SSJ
+        WQq7bDLabLgP0muTj0937aLzwCX4sATx9HNxa4KDJ9/kF0IqhSwYeCZIx/wCWhuG
+        RGL80EuGhD2D3SSy5Pv/YnxM/tWjOblz+T/352cxUv9s96HYCeBFKWyMmEsGIQ0l
+        VKr1+rXU/fSGDJXeOH2Tl09VVhZ6CV4W924TO1vDsFG0xNZBHAVP5yrN/gIgsWtb
+        xS7UX/S7n0IzU90+eXu7OuYWH5dWy1/mYaCp7vH4FFQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=hQ5PFK
-        5bIFLNrGqB3/frDmr1eJLdCdn+8hvD1nV9qvQ=; b=j/ZJ4tD3d+0MzmJovEIGo4
-        GygMPfu71xTr8hjlM9zw41Cp6JdqjMudKc5yQ8WFnUX+7uqO8jDtzGYxSzAZbxnx
-        NoGLEXjyWwbzS5Uvr6dlfZtPdgc2xb0j7MdapyLj6V7HXT8VJB6LTUkuKHCp4o7e
-        0hnB+AirGsmc7WLcY/o2kqi+fFTqC3Z+HRqylzmeLZ9WOb5lv/tU7A01nhQ0Wso7
-        /EY2l3NcxcXEgXWrvOsvbx2I9b3VtIdbOkP5T5jBdzq3Pq1OfhkC8HxJH/el0Yg8
-        w4xqXhFmsjgibkeFYKikjXFr4PMUsEK3NpiwJTz8E62skHcWDex6au5uOrR7erOw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=FNpAay
+        LKyvtC/I4ukQ6FMv4dMMIamkLS3NUHUK2gHN0=; b=nP+Z/DvJJxdoJQ1fWf5L51
+        sEEd3PVpmHChta7g3JvZJbbXDFQ/FLfRkLGQAKi59bkclODt5Sdy5IWHi4JNs+iZ
+        903cu7JskibhkTY9xMS90eeBidu1M3mjH0C/XDVmFIfabk02dKZIUdn+IWlEFC2Y
+        ZLnZ4J48853M/3QJlVsYZx39Av0Fsowc6nkFALyBrpsMKPSJCAH6PU3+ZT1vQ7oP
+        OAgsruBmDnFhxRtN5CfUFx2/F+NF+E23GKlVa06q5VIhemBvVbiQvGugIZqaGsm8
+        1C9VgUNk5teT6MPXU35eNagD9rQ52HeK5wZ248GWCLOMU8JIWdGE13jLwS2UEC1Q
         ==
-X-ME-Sender: <xms:UBk2YTycMPDjL2wI3Jsw68M8SLkW2nPSFrfrbrPe9GiSk4-24SaQaA>
-    <xme:UBk2YbSJVkjTY28aNU21gFiTylEM2WXDO0a0LqcVhSW7pkd48okwRNGA12L2nEBaa
-    b39oTm3d0qWA3csJac>
-X-ME-Received: <xmr:UBk2YdWx4I08pttjjmkh9NgeIDrPu5DXL_bCG5A_JE2RnOXl3_zVtNdKOznTDcLnExjGIWT0xo7EyXqOH-e0-kqD3GvvKcYnxXOA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeffedgieeiucetufdoteggodetrfdotf
+X-ME-Sender: <xms:cRk2YaME8IVNizEqM7uisHYyLeOXC2eRV2qIa9K3Md6FQULpIU-dCQ>
+    <xme:cRk2YY-HlpP8gD-VE-JPJ1gm5aKaHd5kww85VXBHEKwZqWlqrFFX49J7QyFviG3iR
+    USkQQou7-Rsu4gBiEk>
+X-ME-Received: <xmr:cRk2YRSKFgavS588U67aelMX_8b1G0ecWfXxcHhnRAOhsQxjLibT3IW3do1QT5p37Ed4qAe7OnzVf6lgq2IDgucUm23Z8Lqbjyta>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeffedgieejucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
     vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
     htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
     grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:UBk2YdiBsDPU24m4J6fxuKAlogsaLXWV9VaKp78nCF6IGAV0v9W0gw>
-    <xmx:UBk2YVAdM9Z-lxqvDKBAsdLILeM8mskIFIa6E8PDyoHF-tK-BLGD9g>
-    <xmx:UBk2YWL3vwZC9JBS-SM8I0KeHnaWcNBYMca2z9omWeWyFGln-ISr_Q>
-    <xmx:UBk2YX2ILVSxlgCPIedXl5y1OzIRwG30dBuqffw2fRPjyu6IrS-SZA>
+X-ME-Proxy: <xmx:cRk2Yasu-r609KBfJn79H-vZAqw0K9FBndcy6vgOvwx3kcKB-LTH6g>
+    <xmx:cRk2YSdFW6KmN2qMYuxJf5GRjbIOIrKno1kmvBCpQ6enUZFIUos_lw>
+    <xmx:cRk2Ye0X2DO2PBAr8eZROAtg0m0NZVj8k2hl7Q_QzkXBZg8Yi3SSvg>
+    <xmx:chk2YfFPzWq1PO5F8MMmVT_EUVEtu_pEt_HBzZUVsGHHgUo5Z1mYbw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 6 Sep 2021 09:36:16 -0400 (EDT)
-Date:   Mon, 6 Sep 2021 15:36:13 +0200
+ 6 Sep 2021 09:36:49 -0400 (EDT)
+Date:   Mon, 6 Sep 2021 15:36:48 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
 Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 35/52] dt-bindings: sunxi: Add Allwinner A80 PRCM
- Binding
-Message-ID: <20210906133613.3ougu5t5b5norqe2@gilmour>
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v2 39/52] ARM: dts: sunxi: Rename power-supply names
+Message-ID: <20210906133648.n2uz6tp34n74xexu@gilmour>
 References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-36-maxime@cerno.tech>
- <2285228.JHccdbRnrP@kista>
+ <20210901091852.479202-40-maxime@cerno.tech>
+ <3269377.QTWDqilR05@kista>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3eap2buodc6jrd2w"
+        protocol="application/pgp-signature"; boundary="rbjgcvn5zj3atkq4"
 Content-Disposition: inline
-In-Reply-To: <2285228.JHccdbRnrP@kista>
+In-Reply-To: <3269377.QTWDqilR05@kista>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3eap2buodc6jrd2w
+--rbjgcvn5zj3atkq4
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 05, 2021 at 11:01:17PM +0200, Jernej =C5=A0krabec wrote:
-> Dne sreda, 01. september 2021 ob 11:18:35 CEST je Maxime Ripard napisal(a=
+On Sun, Sep 05, 2021 at 11:02:44PM +0200, Jernej =C5=A0krabec wrote:
+> Dne sreda, 01. september 2021 ob 11:18:39 CEST je Maxime Ripard napisal(a=
 ):
-> > Even though we've used the A80 PRCM driver for some time and a number of
-> > boards using it already, we never had a binding for it. Let's add it
-> > based on what the driver expects and the boards are providing.
+> > The name of our PMIC power supply names conflict with the generic
+> > regulator supply check that matches anything called *-supply, including
+> > the nodes, and then makes sure it's a phandle.
 > >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > A node is obviously not a phandle, so let's change our power supplies
+> > names to avoid any conflict.
+> >=20
 > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 >=20
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
 Applied, thanks
 Maxime
 
---3eap2buodc6jrd2w
+--rbjgcvn5zj3atkq4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYTYZTQAKCRDj7w1vZxhR
-xQEJAPsEErQEKN5pGom9a2MobBvXaIAuN42nV7ZOurZhyOPhZgEAyy/uswrucFj+
-Dy1iFoyPjSt5GNR4I2Mcx9yuvURDMgc=
-=TTGT
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYTYZcAAKCRDj7w1vZxhR
+xWQBAQDdmDYFoRAXhxxbrBWHKHl5+hWM6QKWNV0hlH1Oj96LEAD/RujdoayblZv0
+tHmRvw5cx5c3/GbND+kEFlcnCu5cgw0=
+=q0Ut
 -----END PGP SIGNATURE-----
 
---3eap2buodc6jrd2w--
+--rbjgcvn5zj3atkq4--
