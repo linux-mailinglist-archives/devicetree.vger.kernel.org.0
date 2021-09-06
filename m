@@ -2,111 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEAF401C58
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 15:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE10B401C5F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 15:37:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242482AbhIFNfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 09:35:50 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:52501 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241526AbhIFNfu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 09:35:50 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.west.internal (Postfix) with ESMTP id C04B3320093B;
-        Mon,  6 Sep 2021 09:34:44 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Mon, 06 Sep 2021 09:34:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=Jea8bhxyUgx/S1dvWFM3KbINsP8
-        /5IsEhLfx1C2X84A=; b=V/nAMe56h2J7AnC6fATi7xCatmUPjDWsakto/iJy45h
-        IhdV+yGo4UfgCE3wEp6cI5zB68IVEnKVoceNKE4TTsIyncXpuDqfILZMNVucgQxO
-        un51hHLy7XJQ9JCfxDiHDYWaKLntcrssewcl9F4qgqvKt90EvJwQN24C36ew4LRj
-        bocUwhva+O5qTpxiZFDOXOc1lBx7eEvl1ErkLGCHtbcDlGyCQ9v57Mkizq6QCziU
-        1viKHFqgcjfJgA7enmOUxN+Sw3YwWjGB1e3wlX39CwjR9eJ8QTZAOjyh/sWi371q
-        NDuXOJ1mFcuaCRCwnM/Acw/fny9JqWaS8GsWYNxOzcQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Jea8bh
-        xyUgx/S1dvWFM3KbINsP8/5IsEhLfx1C2X84A=; b=fudb7J1FJzKvMhxw4VhGB1
-        nZQcs1exOhfu+2t8DDuDrsD5RWTkJ+inQSZWfSVFjDLbufKZt1fwjgYLuw0T2LFr
-        hWrUnFkQzw+XM72EoYQnAAaAleBPKnxHFpQ7nwo4nulr/MqxXXXVSh6baHPGH+6m
-        bkD/luG9yYFl2YJkrXH6rFTLApYgLpe+xWhdMPypZYJ2DKHmlOYXbsmeS4n1lXew
-        A2/w+wMMgkderF9Dr8QPpVa++O1sRasOeMTNddS6LWtGopiRz9oLyvvFZm2qA6qs
-        rjB6nmkwU7bY+7r3JCoyRYuRw53hXbscYpLaEHEpvYB8nQPtBgh3OQTkwcgZWAPQ
-        ==
-X-ME-Sender: <xms:8xg2YXyNNVzTuYhI5xzmgeX71R5m7f2iFE61rYaCiJCMY4g5wRTOGg>
-    <xme:8xg2YfTBMJ4ciLNepcTRbhhCfUyuJQ8A5hFZl9gmUxlwl6ELB_3BO5iKNhxuVUsqR
-    MgXGilgJiodhVjpEgM>
-X-ME-Received: <xmr:8xg2YRUlVIVthcEAnV7lSFJL50JUanjGnDKpK_CObOy6o-5H-6cr2XOwORVmALAs5ALwes0GHMIddVYwbFByT59WAS-CIqkVRkpK>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeffedgieeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:8xg2YRgUZAgo0bvkOo5P6WRswYJfS1swr3qahb6qgwkBrKJBcE-bDw>
-    <xmx:8xg2YZDiDQ_43yKbEkrDS7aqkHJ4ZkOeGZ1Yg48FXmJobsJy9ybAFg>
-    <xmx:8xg2YaJzHSBlVtSsPiGVwPlMUcl4ueRMs09MGm9ueW7IUVvCyAsP6A>
-    <xmx:9Bg2Yb1JURwQU2NTDSW73vXXgvXhI9dVZ_PIy2fALeM0WZxNdbE7TA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 6 Sep 2021 09:34:43 -0400 (EDT)
-Date:   Mon, 6 Sep 2021 15:34:40 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 09/52] dt-bindings: clocks: Fix typo in the H6
- compatible
-Message-ID: <20210906133440.q3x25ally4rfnbjv@gilmour>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-10-maxime@cerno.tech>
- <1783466.nJmK62rKpU@kista>
+        id S234414AbhIFNhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 09:37:08 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:16541 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242561AbhIFNhI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Sep 2021 09:37:08 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630935363; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=VJqyOAQM63NCKoLXJVRl7+vm46IbeShVloXZfhv2BBg=; b=kJGFmdj6uWUMuOf6soTWvKm7lkF4wl1CniJj/1MRCJIAf3cwpxemgh9V3cMLtBjv1oQ94zLJ
+ A8FT/QRqnn+ZLobxjb+Y65MOldXsFtmw8WKiS6YNy/iYoNLCh/sFsiNSqMvHoEV93zIG9J8l
+ NYYAVwsr4ZfR3W8wys4FIa4EL+U=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 6136193b40d2129ac1dde34d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Sep 2021 13:35:55
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 07E72C43618; Mon,  6 Sep 2021 13:35:55 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.242.137.170] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3FC82C4338F;
+        Mon,  6 Sep 2021 13:35:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 3FC82C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH] ASoC: qcom: lpass-platform: Reset irq clear reg post
+ handling interrupts
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+References: <20210903100153.9137-1-srivasam@codeaurora.org>
+ <CAE-0n50=vL0MHHHkc22ahrqqD3DskFXZzFU8qjU8=EY1kZ+__Q@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <587ed6fd-0203-cb7d-338f-185185d88f76@codeaurora.org>
+Date:   Mon, 6 Sep 2021 19:05:46 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="sory2cakfi7ldehr"
-Content-Disposition: inline
-In-Reply-To: <1783466.nJmK62rKpU@kista>
+In-Reply-To: <CAE-0n50=vL0MHHHkc22ahrqqD3DskFXZzFU8qjU8=EY1kZ+__Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks for Your time Stephen!!
 
---sory2cakfi7ldehr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 9/4/2021 12:10 AM, Stephen Boyd wrote:
+> Quoting Srinivasa Rao Mandadapu (2021-09-03 03:01:53)
+>> Update interrupt clear register with reset value after addressing
+>> all interrupts. This is to fix playback or capture hanging issue in
+>> simultaneous playback and capture usecase.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+> Any Fixes tag?
+Actually it's incremental change. I will add base commit of this function.
+>
+>>   sound/soc/qcom/lpass-platform.c | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+>> index f9df76d37858..1a0a4b0b1a03 100644
+>> --- a/sound/soc/qcom/lpass-platform.c
+>> +++ b/sound/soc/qcom/lpass-platform.c
+>> @@ -749,6 +749,12 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq, void *data)
+>>                  }
+>>          }
+>>
+>> +       rv = regmap_write(drvdata->lpaif_map, LPAIF_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST), 0x0);
+>> +       if (rv) {
+>> +               pr_err("error writing to irqstat reg: %d\n", rv);
+>> +               return IRQ_NONE;
+> I was thinking we should return IRQ_HANDLED still, but then I guess
+> failing to clear the irq be treated as a spurious irq so that if we fail
+> enough times we'll shut off the irq at the irqchip. Things are going bad
+> if the write fails.
+Here bit confusing. Could You please suggest How to go ahead on this?
+>
+>> +       }
+>> +
+>>          return IRQ_HANDLED;
+>>   }
+>>
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-On Sun, Sep 05, 2021 at 10:50:32PM +0200, Jernej =C5=A0krabec wrote:
-> Dne sreda, 01. september 2021 ob 11:18:09 CEST je Maxime Ripard napisal(a=
-):
-> > Even though both the driver and the device trees all use the
-> > allwinner,sun50i-h6-de3-clk, we documented the compatible as
-> > allwinner,sun50i-h6-de2-clk in the binding. Let's fix this.
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->=20
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Applied, thanks
-Maxime
-
---sory2cakfi7ldehr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYTYY8AAKCRDj7w1vZxhR
-xShXAP9eMy4cxVFTl066aJJfK10HmIBFpJqaFa/PnLFScC2q1QD8DW4+u/BKAMxI
-ehJoTsTtN/GHt7BIvBEpBB5hmT89Bwg=
-=hza/
------END PGP SIGNATURE-----
-
---sory2cakfi7ldehr--
