@@ -2,98 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E64E401D8C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 17:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C03401D99
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 17:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242615AbhIFPWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 11:22:20 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:38789 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhIFPWT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 11:22:19 -0400
-Received: by mail-oi1-f182.google.com with SMTP id bd1so7228419oib.5;
-        Mon, 06 Sep 2021 08:21:14 -0700 (PDT)
+        id S242258AbhIFPc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 11:32:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233929AbhIFPc0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 11:32:26 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85595C0617A8
+        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 08:31:21 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id g138so4871510wmg.4
+        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 08:31:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PQ0Sz3nSdC4M1Li6PaTkmdjXBaQB3/I9C/9VyXKR078=;
+        b=UXRljDfh9pslkpfpiZW87xjIeGBWGwIaAMRlhWJCKG7426frC0Kf3IPd4Y1I1la0VX
+         yR+sttTvRZyIIqXtqEvMNgsD46eYnTi/cTMP9nhkOXv4qZJ2YwpO6rzL+Ad9sxuj2FUM
+         6W6/m+rhws4O7vtCY4Xiva5VZ95hBKwVmVRc5gCM+RrOnt67C1wg/drGrneMfWvU+jG5
+         l7O1qd0bsLRgpjxFf8Bd6t5jthk5fKIaMSBNPrDlWhhP0XLPqT4MFYj+oA0vYzozk3X2
+         bZpg5O3sTif4O/ZWaOrDw3jH9S/DBp5s9fEn++665aVy0K0x/CMSqlpEfnUx6laQG736
+         0S6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=NhVMAnFWkEDHp3N7s9/kE4AIdpYmEdoiHRWavP3wKGw=;
-        b=Xu8XVf/xh7NvAlTN9QDsWYKS32IQMzO8PrELaP/6/Mtc14q6rxT6HuzujsFyr1FIj7
-         0N0PBpdGRb36TzBKPpTzsiMEzu4gZnPf0qqmb+BZjTN96UGrErZAk9ImXSWT9nG2tXMD
-         DFXYKnoAZMnIQFHTqlH0E4wY9FINZFWAPRAYM6wKjgWJVa/xrbpwMLFZUGFrn8KNug0b
-         Patoqq0FcE7M2467Aftf43T9vYsD9R/9TV/PxHD3ue+dFck+IggwZda0zur+5plbG1+h
-         Am5ypzoGpefKXcD1hEushSv6fzb3Ktx+QOrAzy0+LoxDRw6rZlrxqEGdt/r5vtxkCeIs
-         dyWA==
-X-Gm-Message-State: AOAM532oS020ySBC1BlNh0USzb1pSScoLUlZvYeJxQ+oX43vCckJWm8E
-        q8yzIPKGO9fS68iTtEUJKA==
-X-Google-Smtp-Source: ABdhPJy+l0D7FCPnNx9xIWA4YBi4231EcFQBebEZd1SUGrrTsRR5+JmSQg0LpQh8wlddCVj7KpH+0g==
-X-Received: by 2002:aca:5f03:: with SMTP id t3mr9075263oib.54.1630941674391;
-        Mon, 06 Sep 2021 08:21:14 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v10sm1824088otp.25.2021.09.06.08.21.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Sep 2021 08:21:13 -0700 (PDT)
-Received: (nullmailer pid 1057762 invoked by uid 1000);
-        Mon, 06 Sep 2021 15:21:12 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-clk@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        martin.botka@somainline.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        marijn.suijten@somainline.org, devicetree@vger.kernel.org,
-        jamipkettunen@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20210904183014.43528-1-konrad.dybcio@somainline.org>
-References: <20210904183014.43528-1-konrad.dybcio@somainline.org>
-Subject: Re: [PATCH v3 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC driver
-Date:   Mon, 06 Sep 2021 10:21:12 -0500
-Message-Id: <1630941672.493430.1057761.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PQ0Sz3nSdC4M1Li6PaTkmdjXBaQB3/I9C/9VyXKR078=;
+        b=MWJGnmDDybnVdEoHJi8lEI92twjo1lX5vRmOudnGi398pGHXQILQtnw5XFv0YYcotF
+         Qh44HvQBDBqR+PAkNS/c29hQP0Wvt0V5eM3CmEyy6UKE3xnjUc/CBGOHUAh0NfUqHtu3
+         YgKi44nVOWqMQ3zhLH1gKwvAT/ZU/UGj1xrdqTBRh/zFOfSKF/gTMXifUqrturXmeTRb
+         aYq1dhK34lorPWFoQkfAKMD/rxfcxeCqf0G5+jLTb4uO3EmH8WD6hbo5I/yMV1bWmAnV
+         UkxKXdW14f2e8LiNiyh5bP3KXnJsHwNnQaYZ8zlmmOP1JNsxXlHqtDoJDM8Gi3FlqQyp
+         I6uA==
+X-Gm-Message-State: AOAM530hts1uqBVLWHaF1ST9J2k8iz6bIPdtbvi7aOCrt/itdpJmtWq8
+        Uog4+QJxH9sCxXFl6nvcvv5WMA==
+X-Google-Smtp-Source: ABdhPJw1GKspi6vCehDcEOXPQ+NCWmQvHbO1FyzGfSYpe1CVz0Iflaaie8Hoz/ZDPTqau9R2oirf6Q==
+X-Received: by 2002:a1c:1f49:: with SMTP id f70mr12167723wmf.13.1630942279756;
+        Mon, 06 Sep 2021 08:31:19 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id f20sm7471638wmb.32.2021.09.06.08.31.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Sep 2021 08:31:19 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: Use 'enum' instead of 'oneOf' plus 'const'
+ entries
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     alsa-devel@alsa-project.org, Vignesh R <vigneshr@ti.com>,
+        linux-pci@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-phy@lists.infradead.org, Lee Jones <lee.jones@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-serial@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        linux-media@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>
+References: <20210824202014.978922-1-robh@kernel.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <b2e70818-521d-eff8-d7d5-be5a8d95df19@linaro.org>
+Date:   Mon, 6 Sep 2021 16:31:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210824202014.978922-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 04 Sep 2021 20:30:05 +0200, Konrad Dybcio wrote:
-> Add documentation for the MSM8994 GCC driver.
+
+
+On 24/08/2021 21:20, Rob Herring wrote:
+> 'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 'enum'
+> is more concise and yields better error messages.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Vignesh R <vigneshr@ti.com>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: dmaengine@vger.kernel.org
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-phy@lists.infradead.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-spi@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> Changes since v2:
+>   .../bindings/display/msm/dsi-phy-10nm.yaml           |  6 +++---
+>   .../bindings/display/msm/dsi-phy-14nm.yaml           |  6 +++---
+>   .../bindings/display/msm/dsi-phy-28nm.yaml           |  8 ++++----
+>   .../bindings/dma/allwinner,sun6i-a31-dma.yaml        | 12 ++++++------
+>   .../devicetree/bindings/firmware/arm,scpi.yaml       |  6 +++---
+>   .../devicetree/bindings/i2c/ti,omap4-i2c.yaml        | 10 +++++-----
+>   .../interrupt-controller/loongson,liointc.yaml       |  8 ++++----
+>   .../devicetree/bindings/media/i2c/mipi-ccs.yaml      |  8 ++++----
+>   .../devicetree/bindings/mfd/ti,lp87565-q1.yaml       |  6 +++---
+>   .../devicetree/bindings/net/realtek-bluetooth.yaml   |  8 ++++----
+>   .../bindings/net/ti,k3-am654-cpsw-nuss.yaml          |  8 ++++----
+>   .../devicetree/bindings/net/ti,k3-am654-cpts.yaml    |  6 +++---
+>   Documentation/devicetree/bindings/pci/loongson.yaml  |  8 ++++----
+>   .../devicetree/bindings/phy/intel,lgm-emmc-phy.yaml  |  6 +++---
+>   .../devicetree/bindings/serial/8250_omap.yaml        |  9 +++++----
+
+>   .../devicetree/bindings/sound/qcom,sm8250.yaml       |  6 +++---
+
+for sm8250 sound card,
+
+Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+>   .../devicetree/bindings/sound/tlv320adcx140.yaml     |  8 ++++----
+>   .../devicetree/bindings/spi/realtek,rtl-spi.yaml     | 12 ++++++------
+>   .../devicetree/bindings/timer/arm,sp804.yaml         |  6 +++---
+>   19 files changed, 74 insertions(+), 73 deletions(-)
 > 
-> - Dropped second dt-binding part for the weird SD card clock configuration
-> - Fix up many mistakes, including maintainers, license and order
-> - I still have no idea why I get a pinctrl regex error.. need help here!
-> 
->  .../bindings/clock/qcom,gcc-msm8994.yaml      | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.example.dt.yaml: clock-controller@300000: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1524636
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
