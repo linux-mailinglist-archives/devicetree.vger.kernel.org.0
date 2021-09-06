@@ -2,110 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4067F40188E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 11:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E724018AE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 11:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240243AbhIFJDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 05:03:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236233AbhIFJDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 05:03:34 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B31C061575
-        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 02:02:30 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id n39so2317798wms.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 02:02:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=KyhxG0YvRHQ4AVkcqHPgCmX5z0vgZBX3z8J3Dk6wERo=;
-        b=On0w7j+YMXDPTCcp0L++dIcmM+DDFA78YVQOn15ue9K/mXKh1aDBK+aQ5oAY2E2k2s
-         aoHvs3vWVUEdnuLb40gtL1l1Mv5RZG/FstLC42hLnmYcsXqfi4Vlo6FRd+kKnYjgog8/
-         LZbOTaXBbzNF8Z4akvkBc1VRqGtneANaXo8W5lm/al56u1voQn8GBSFJVVC+tvF705ZB
-         g+OzkNkxDK0EtMJQLin6th2NIxKP8DClQ45NzVVzy3I2EB+R/8lEJ8oZAbdjJhC0CAz3
-         7a7PkSVO4GJmJfh71sDoYdE+zjMKTv3HYAUKsc5QhzUV2PD7XwVvFoKG9N8Yjs2yn0Mv
-         Yq/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=KyhxG0YvRHQ4AVkcqHPgCmX5z0vgZBX3z8J3Dk6wERo=;
-        b=JGJ7TNklNcI7YPjG71eFlkqLeEMNOmUtmJwdnchkgdGGxU4x8+OpOnz8Q/iWBF8lXV
-         UST3ttgp4XPCME0SBiubbako8lAFG2sS9S278e3wsmfPNCOVxhZymdKzWLv7sLRhMhlR
-         ACqr/FSY+GoE7T4fdPbayjSNgB88N7uS4z6uTzRVvoIE9SA6YnX9TcdoaiVorNEy+szu
-         eCD9+aFAqFb13LN6XF8QCIT/a7bEc/HA2rkCpYws+qsH5jARKoOt/4kVE1/BLOfo5Xrj
-         iKncCRGQ6MXa+C10yPaZ/ZED91WiShAFblUlKKaeKBghaAZh/HstBCJIeYULRDqyRcOx
-         oitw==
-X-Gm-Message-State: AOAM530+kp6kQsgB6u8Zku9OUvTqDa1acGNoOWGyKhmL7mNAjgMO7C88
-        oNGL9dFFO6DQpFkNE2xdSQY2ig==
-X-Google-Smtp-Source: ABdhPJwfweXeWj75Zd9acMvzkPWgxXHSXQWa6WpSn4335xCK+fDLhnvh2GURyrcEFxS6d9MFQ1SMEA==
-X-Received: by 2002:a05:600c:acd:: with SMTP id c13mr10046106wmr.28.1630918948645;
-        Mon, 06 Sep 2021 02:02:28 -0700 (PDT)
-Received: from google.com ([31.124.24.187])
-        by smtp.gmail.com with ESMTPSA id t11sm7710052wmi.23.2021.09.06.02.02.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Sep 2021 02:02:28 -0700 (PDT)
-Date:   Mon, 6 Sep 2021 10:02:26 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 29/52] dt-bindings: mfd: Convert X-Powers AXP binding
- to a schema
-Message-ID: <YTXZIn7d5yrRcO0o@google.com>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-30-maxime@cerno.tech>
- <YTJ7Nf9s1fr3kJny@robh.at.kernel.org>
+        id S241184AbhIFJRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 05:17:00 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:13851 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230284AbhIFJQ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Sep 2021 05:16:57 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1630919753; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=Dl9Me7VnLoTQO7YH0kYUePI2o6EfNVuN9BpuqWH1wUc=; b=RtdHrj5eMmgPgjKSat6Ob0PkDHDOa/ipuFkQNkRL9pSwiwADAYKCZXEK9z6M9WOyyKzqR8sk
+ BhwJVDgBwSl4N6A/njoMzpLIaiaUHd3xteQo8xIp9uIvW+j9SdGOn/5BQq9JAQadx+LSKc6z
+ 4QlSgsBoe/VNjFEEXR5gFAmIFZw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 6135dc4889cdb62061fa3525 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Sep 2021 09:15:52
+ GMT
+Sender: sanm=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 67FA3C43460; Mon,  6 Sep 2021 09:15:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [192.168.0.104] (unknown [49.206.35.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sanm)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6EF68C4338F;
+        Mon,  6 Sep 2021 09:15:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6EF68C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
+ for dwc3 qcom
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Pratham Pratap <prathampratap@codeaurora.org>
+References: <1630346073-7099-1-git-send-email-sanm@codeaurora.org>
+ <1630346073-7099-2-git-send-email-sanm@codeaurora.org>
+ <CAD=FV=XjRMdB=iHDcMATWDq5CSRGdh1ZBCftjrZvTfMk_Nqgvg@mail.gmail.com>
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+Message-ID: <1dc7aaaa-a8da-565b-664e-64f529a861b1@codeaurora.org>
+Date:   Mon, 6 Sep 2021 14:45:43 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <CAD=FV=XjRMdB=iHDcMATWDq5CSRGdh1ZBCftjrZvTfMk_Nqgvg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YTJ7Nf9s1fr3kJny@robh.at.kernel.org>
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Sep 2021, Rob Herring wrote:
 
-> On Wed, 01 Sep 2021 11:18:29 +0200, Maxime Ripard wrote:
-> > The X-Powers AXP PMICs are supported by Linux thanks to its device tree
-> > binding.
-> > 
-> > Now that we have the DT validation in place, let's convert the device
-> > tree bindings for that driver over to a YAML schema.
-> > 
-> > Cc: Chen-Yu Tsai <wens@csie.org>
-> > Cc: Lee Jones <lee.jones@linaro.org>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > 
-> > ---
-> > 
-> > Changes from v1:
-> >   - Add GPIO example
-> >   - Remove the limitation on regulator-ramp-delay
-> > ---
-> >  .../i2c/allwinner,sun6i-a31-p2wi.yaml         |   2 +-
-> >  .../devicetree/bindings/mfd/axp20x.txt        | 273 ------------
-> >  .../bindings/mfd/x-powers,axp152.yaml         | 400 ++++++++++++++++++
-> >  3 files changed, 401 insertions(+), 274 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/axp20x.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
-> > 
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Note that the gpio child schema needs to be applied with this one.
+On 8/31/2021 1:37 AM, Doug Anderson wrote:
+> Hi,
+>
+> On Mon, Aug 30, 2021 at 10:55 AM Sandeep Maheswaram <sanm@codeaurora.org> wrote:
+>> Add multi pd bindings to set performance state for cx domain
+>> to maintain minimum corner voltage for USB clocks.
+>>
+>> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+>> ---
+>>   Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 13 ++++++++++++-
+>>   1 file changed, 12 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> index e70afc4..838d9c4 100644
+>> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> @@ -41,7 +41,18 @@ properties:
+>>
+>>     power-domains:
+>>       description: specifies a phandle to PM domain provider node
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    items:
+>> +      - description: optional,cx power domain
+>> +      - description: USB gdsc power domain
+> You need to re-order the above. The optional one needs to be second, not first.
+>
+I wanted to use required-opps for cx domain only. so I have put it first 
+in order.
+>> +  power-domain-names:
+>> +     items:
+>> +      - const: cx
+>> +      - const: usb_gdsc
+> Why do you need the names at all? The ordering of power-domains is
+> well defined and there are no holes in it and there are no legacy
+> reasons for having the names (like there are for clocks), so you
+> should drop. This is much like reg-names and I always point people to
+> this message from Rob Herring about reg-names:
+>
+> https://lore.kernel.org/r/CAL_Jsq+MMunmVWqeW9v2RyzsMKP+=kMzeTHNMG4JDHM7Fy0HBg@mail.gmail.com/
+>
+> You'll have to change your driver to use dev_pm_domain_attach_by_id()
+> but that should be fine.
+>
+> -Doug
 
-Not sure I'm in possession of that.
+Ok..I will try using  dev_pm_domain_attach_by_id()
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+
