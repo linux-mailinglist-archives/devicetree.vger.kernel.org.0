@@ -2,103 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF28D401756
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 09:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201C640179E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 10:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240197AbhIFHyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 03:54:50 -0400
-Received: from meesny.iki.fi ([195.140.195.201]:43772 "EHLO meesny.iki.fi"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240166AbhIFHyt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Sep 2021 03:54:49 -0400
-Received: from hillosipuli.retiisi.eu (89-27-100-251.bb.dnainternet.fi [89.27.100.251])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id F16B1201A8;
-        Mon,  6 Sep 2021 10:53:42 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1630914823;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=dl04EcBEovB0z67bJJd0IcCsfjvcm4H5nKTPh9ieLzw=;
-        b=YVLA4GBqSRyTSpUY7ume0bLAofYSq0800w/Lt0pEjYeNfSmbMcbGk6TdZGJGRSUI3d1v38
-        isEKy+BWyjSm6p5DhTyWdBD9MSt96n5PGl1NWELeHYlDIlHiCwaVxgcH9XKNszIAW3irX8
-        etqy8qtMTKBrG0NexfciOOoi17gNN4A=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 4134D634C8D;
-        Mon,  6 Sep 2021 10:53:42 +0300 (EEST)
-Date:   Mon, 6 Sep 2021 10:53:41 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>,
-        devicetree@vger.kernel.org, kernel@puri.sm,
-        krzysztof.kozlowski@canonical.com,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, mchehab@kernel.org,
-        paul.kocialkowski@bootlin.com, phone-devel@vger.kernel.org,
-        robh@kernel.org, shawnx.tu@intel.com
-Subject: Re: [PATCH v8 3/4] media: i2c: add driver for the SK Hynix Hi-846 8M
- pixel camera
-Message-ID: <YTXJBYb2EzR9iIzx@valkosipuli.retiisi.eu>
-References: <20210831134344.1673318-1-martin.kepplinger@puri.sm>
- <20210831134344.1673318-4-martin.kepplinger@puri.sm>
- <20210903161742.GD2209@bug>
+        id S240206AbhIFIOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 04:14:23 -0400
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:35572 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239780AbhIFIOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 04:14:23 -0400
+Received: by mail-ua1-f41.google.com with SMTP id r20so3387595uat.2;
+        Mon, 06 Sep 2021 01:13:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=El6II9rB5uKfaEROETT00Ms0bZLQwJYXTBT5qb9haVU=;
+        b=TGFFEvB/x299FZo4TGJtQf4R5BOB6qlxRR0zTDGhd7X9NFrfFsgqM6fwdhuCuXgyFq
+         JmIBIYfo9/mvqyZzK4HLabflgPHnzhMN34/O+maVDOBf4GBlXbTB1xgAuC0fJX83vBh5
+         LwGiJCVBUUeqaACEF61P6m80LUszSCb/hOSjUiyakA83ZVuyA/lmSfTYv0eefHB8ZCyG
+         Syb4tV6CkOtoBvNpPo4sn3NRt9taksx2Cd7/ggCF1CO48JeGgetJUuA71XnXrClI+SXH
+         Bb+eVbFsOEU0x0/7gL8JKf2Qs+480amld+52mHjywqUkTVHhacS4ILTPHLSOZIMCLqaH
+         KKbQ==
+X-Gm-Message-State: AOAM532x//l7ZgwklPwdaL6kGeZ4N9CUZu9jS3AwpmICmSzLkhvLPRrY
+        dZwOEsV69n4T1SOXdqQp/p2E4Rl4bimTuG5GIsxI6eg4
+X-Google-Smtp-Source: ABdhPJzUfUN15fPzya4j7EGBZro+j88bO5jSNOlVlnA4bbS5/lIkX5ZUZqZnJB3cZOGBvwDoAjATKNco4f4YLMu+fbg=
+X-Received: by 2002:ab0:2989:: with SMTP id u9mr4677806uap.122.1630915998555;
+ Mon, 06 Sep 2021 01:13:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210903161742.GD2209@bug>
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1630914823; a=rsa-sha256; cv=none;
-        b=ognmFP0waEVCmTO3zE3mhMVI1xR6yBzs6GkZToIu68SkGCCqI4EblTDAeKo2Ga4HJMSO36
-        h9MX/Q2zbLq6tL8GTNkA71+9fVg+Wxi+6ZKDonYwx1Er+DsCG9pMvXdTAS+Ul0FyYcqz/0
-        dpPGDXLiU+PpdHQPeflU0AR+IA7C6Ac=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1630914823;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=dl04EcBEovB0z67bJJd0IcCsfjvcm4H5nKTPh9ieLzw=;
-        b=k3UT4FMT+0+VuZr74rUWguYh8Csfl8zq+ll+Hs4vOoBMhatglEeti+kpc9Nx5d14J+tCea
-        JglDzfh8fFmBlf0w2ZgLt1v02wcqU2ACeQNfywDBXolfiOdqlJee5nocPyRSKznh06nWfD
-        OOeBg6+nwJ406Nfsc3ud09Ort9i7UWQ=
+References: <20210901233655.1602308-1-kieran.bingham@ideasonboard.com>
+In-Reply-To: <20210901233655.1602308-1-kieran.bingham@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Sep 2021 10:13:07 +0200
+Message-ID: <CAMuHMdXHAfg3_VoeXUBT2-QceLR9KQ3pWjz+5=-wK1QRxK14bw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel, Martin,
+Hi Kieran,
 
-On Fri, Sep 03, 2021 at 06:17:43PM +0200, Pavel Machek wrote:
-> > +static void hi846_write_reg_16(struct hi846 *hi846, u16 reg, u16 val, int *err)
-> > +{
-> > +	struct i2c_client *client = v4l2_get_subdevdata(&hi846->sd);
-> > +	u8 buf[6];
-> > +	int ret;
-> > +
-> > +	if (*err < 0)
-> > +		return;
-> > +
-> > +	put_unaligned_be16(reg, buf);
-> > +	put_unaligned_be32(val << 8 * 2, buf + 2);
-> 
-> Is that obfuscated way of saying put_unaligned_be16(val, buf+2); buf[3] = 0; buf[4] = 0; ?
+On Thu, Sep 2, 2021 at 1:39 AM Kieran Bingham
+<kieran.bingham@ideasonboard.com> wrote:
+> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>
+> Extend the Renesas DU display bindings to support the r8a779a0 V3U.
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> ---
+> v2:
+>  - Collected Laurent's tag
+>  - Remove clock-names requirement
+>  - Specify only a single clock
 
-Good catch.
+Thanks for the update!
 
-The buf should be only four u8's long, and you should use 16-bit variant
-here, too.
+> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> @@ -39,6 +39,7 @@ properties:
+>        - renesas,du-r8a77980 # for R-Car V3H compatible DU
+>        - renesas,du-r8a77990 # for R-Car E3 compatible DU
+>        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+> +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+>
+>    reg:
+>      maxItems: 1
+> @@ -773,6 +774,55 @@ allOf:
+>          - reset-names
+>          - renesas,vsps
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,du-r8a779a0
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Functional clock
+> +
+> +        clock-names:
+> +          maxItems: 1
+> +          items:
+> +            - const: du
+> +
+> +        interrupts:
+> +          maxItems: 2
+> +
+> +        resets:
+> +          maxItems: 1
+> +
+> +        reset-names:
+> +          items:
+> +            - const: du.0
 
-Also the transfer should be done on sizeof(buf), not 4 (which indeed is the
-same, but cleaner).
+This is now inconsistent with clock-names, which doesn't use a suffix.
+
+> +
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI 0
+> +            port@1:
+> +              description: DSI 1
+> +            port@2: false
+> +            port@3: false
+> +
+> +          required:
+> +            - port@0
+> +            - port@1
+> +
+> +        renesas,vsps:
+> +          minItems: 2
+> +
+> +      required:
+> +        - interrupts
+> +        - resets
+> +        - reset-names
+
+Same here, as clock-names is not required anymore.
+
+> +        - renesas,vsps
+> +
+>  additionalProperties: false
+>
+>  examples:
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Regards,
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Sakari Ailus
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
