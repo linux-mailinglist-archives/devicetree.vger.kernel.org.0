@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C8CE401B63
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 14:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9B9401C1D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 15:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242220AbhIFMqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 08:46:14 -0400
-Received: from mail-vs1-f50.google.com ([209.85.217.50]:36452 "EHLO
-        mail-vs1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242233AbhIFMqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 08:46:13 -0400
-Received: by mail-vs1-f50.google.com with SMTP id f6so5478356vsr.3;
-        Mon, 06 Sep 2021 05:45:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cnCBbebPXaA36jrJPCmfTTq9HH9kcpc6X1fHNaC7g4A=;
-        b=GZL1arkJ2Zo+LW22N3uP5iAnEkoSm7gwo/0J35oyL2tWUsX3tqX1XJuzyUFJKfMxpx
-         g8ERVTC5694+sB+N4IyNiPR7Gt9EGqg1sTScEH0TW/yVpWNQ9SN1A47N/vXRl444zYSW
-         cUVbjDHmJONRS7qbiX2LmRAB7B9poh+HD8cXizaVsvQFcTzdECGXtwLecW7hUnQ2K0Ka
-         l4hlVFR/lD/pOIvWPvlvasQ05ePHSwbjYqtBEv6XsUCXgbY7VWPASAf2GIfSEmr616q9
-         L/GC7DldqkaxzuUKkafSDEXYem1ei06dLhoA1WHqAd/9Zch+mIn2sJN1DPKnBcEcQiTs
-         A5Aw==
-X-Gm-Message-State: AOAM532XOm9cIKZK1l4z7HVYvs7t+vhRUtQ7g9u/Oz9gKl/0pwQ9Y+TN
-        U7ouqpDwY2tt6rih1zKtsjuA0Bj9KVKqP1txYjg=
-X-Google-Smtp-Source: ABdhPJzH05/6Sbxi5H5FKKv61J6+aqXpqPMze76DoCM4ZB3sfxnVaZPHGBTHR/qQrLnVqvb0klW4meWZV7A8wtgFOps=
-X-Received: by 2002:a67:3289:: with SMTP id y131mr5812025vsy.37.1630932308528;
- Mon, 06 Sep 2021 05:45:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210814135526.15561-1-biju.das.jz@bp.renesas.com> <20210814135526.15561-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210814135526.15561-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Sep 2021 14:44:57 +0200
-Message-ID: <CAMuHMdVQwOmu4vCJgSD8MBzAvQY8-FUQJv0OzX=NGqX5RppOGw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a07g044: Add SSI support
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S242291AbhIFNNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 09:13:07 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:57814 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S242248AbhIFNNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 09:13:06 -0400
+X-UUID: 914c3f745aa7413a9e4f4783199892d9-20210906
+X-UUID: 914c3f745aa7413a9e4f4783199892d9-20210906
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1333497375; Mon, 06 Sep 2021 21:11:58 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 6 Sep 2021 21:11:56 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 6 Sep 2021 21:11:56 +0800
+Message-ID: <6d178fd86ea5874ddcac7515d461d00c441cfadc.camel@mediatek.com>
+Subject: Re: [PATCH v15 2/3] cpufreq: Add of_perf_domain_get_sharing_cpumask
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Date:   Mon, 6 Sep 2021 21:11:56 +0800
+In-Reply-To: <20210906094309.rcacbme27zpvdd4a@vireshk-i7>
+References: <1630658364-6192-1-git-send-email-hector.yuan@mediatek.com>
+         <1630658364-6192-3-git-send-email-hector.yuan@mediatek.com>
+         <20210906094309.rcacbme27zpvdd4a@vireshk-i7>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 14, 2021 at 3:55 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add SSI{0,1,2,3} nodes to RZ/G2L SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, 2021-09-06 at 15:13 +0530, Viresh Kumar wrote:
+> On 03-09-21, 16:39, Hector Yuan wrote:
+> > From: "Hector.Yuan" <hector.yuan@mediatek.com>
+> > 
+> > Add of_perf_domain_get_sharing_cpumask function to group cpu
+> > to specific performance domain.
+> > 
+> > Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> > ---
+> >  include/linux/cpufreq.h |   46
+> > +++++++++++++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 45 insertions(+), 1 deletion(-)
+> 
+> To speed things up, I have applied this with following changes.
+> Please
+> test my branch and see if something breaks:
+> 
+> 
+https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/log/?h=cpufreq*arm*linux-next__;Ly8!!CTRNKA9wMg0ARbw!1FkaXVRm8cyf4CDTMMNDmFZ3X8eLd3gf1jK92brq9m-OryGK_peVZW963ettt0DF588$
+>  
+> 
+Hi, Viresh:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.16.
+I've tested the code in your branch and its okay. Thanks for the review
+and your guideness. Thanks.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
