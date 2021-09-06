@@ -2,68 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC5E3401F23
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 19:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C31401FC3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 20:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240965AbhIFR1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 13:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231274AbhIFR1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 13:27:46 -0400
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AD2C061575
-        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 10:26:41 -0700 (PDT)
-Received: by mail-vs1-xe42.google.com with SMTP id x137so6144858vsx.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 10:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=gPWXiaNTPVTv8v8NJ16SYW6dYjSrDpzV61pQz3V3yPU=;
-        b=Wqy69PmbuRfulOkoBaUDe3xJO4NvwdP7ndv0DL0eGNquMjxJ8CsBxicOrT/uwXOzRA
-         Ejxp6/yNmQqFd6XQFtAt3yBZoWFk2fN1oXTLvW0yx+Q9KQgBT1xoMiWlQ33wGbTTi544
-         oGsm+VldvWR4f/Hoo/Vrvjgjaw1bL1EZaeNn5xipH2JMIF3YcdDy9gj3x4LoRMz2w5ul
-         jRIVeRpG0L9nqKaix2++O8bfIPte7sc2CaxeAO5ZxIn96wrRFbHL9jBJgXR7NYOkqR0q
-         Tg4obFlJ7cNVFgZWz418XFq2preGxxxfJkz904a8/2a5UhSWy83DxdhiSUTy4zhaoqk3
-         vELg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=gPWXiaNTPVTv8v8NJ16SYW6dYjSrDpzV61pQz3V3yPU=;
-        b=b2xvyVx0FpP1yOSnFzmjXRggwv49BSytiFHYCvFIqLHTQ+UV2CVPRG+y0pdWWyI5s+
-         W5PhTLVXUI/ToqSuoq59iqRlNy9ZIhh75JYhriCyvygZ9TCfOkz9ax8fmxJtN47u0zQc
-         rMxI8PvywB2l4kH1VrMJRjER/geNPBBkV8ktKUheT300yYM7I7QRGkGZPIxoTwHeh8kf
-         iqvNhskbofu356sFigHhW/uwQmHyPyST2TC+eyEnJCegIXw+S5P4rVfNqbq10fEf2klx
-         dZGC7JctpOWP+RhdxPxlpBEAreosRHEFlW28aKOq4VjK6zdgpcIVmP+4nGmbiUrbrVWF
-         iJrQ==
-X-Gm-Message-State: AOAM532AisG1pAdWYdRnC2yT2Ohki4htgalFXcfEHIhJQVf1gDx/ExtG
-        P+doq9uzkc3fnwqRif6uY/e9DtPIr19vzD2i70Y=
-X-Google-Smtp-Source: ABdhPJysR49jhf66l1wC2ogRAuXNIRp25TbFgBImnP/qI2n0H5jBxUqw3h2JLIoei51hjihd87S0pS5cUZF06QPpjhI=
-X-Received: by 2002:a05:6102:7a4:: with SMTP id x4mr6671140vsg.10.1630949200581;
- Mon, 06 Sep 2021 10:26:40 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ab0:2a08:0:0:0:0:0 with HTTP; Mon, 6 Sep 2021 10:26:39 -0700 (PDT)
-Reply-To: geomic123@yahoo.com
-From:   George <georgefox277@gmail.com>
-Date:   Mon, 6 Sep 2021 18:26:39 +0100
-Message-ID: <CADSebuTovnYi+ZFWWh4qH8F+CROda2gsNr8O+X4TsFf9Uy45rw@mail.gmail.com>
-Subject: Read My Mail
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        id S244313AbhIFShc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 14:37:32 -0400
+Received: from mga14.intel.com ([192.55.52.115]:47238 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244290AbhIFShb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Sep 2021 14:37:31 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="219714174"
+X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; 
+   d="scan'208";a="219714174"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2021 11:36:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,273,1624345200"; 
+   d="scan'208";a="579716452"
+Received: from bspteam04.iind.intel.com ([10.106.46.142])
+  by orsmga004.jf.intel.com with ESMTP; 06 Sep 2021 11:36:22 -0700
+From:   shruthi.sanil@intel.com
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, kris.pan@linux.intel.com,
+        mgross@linux.intel.com, srikanth.thokala@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com, shruthi.sanil@intel.com
+Subject: [PATCH v6 0/2] Add the driver for Intel Keem Bay SoC timer block
+Date:   Tue,  7 Sep 2021 00:06:19 +0530
+Message-Id: <20210906183621.21075-1-shruthi.sanil@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Shruthi Sanil <shruthi.sanil@intel.com>
+
+The timer block supports 1 64-bit free running counter
+and 8 32-bit general purpose timers.
+
+Patch 1 holds the device tree binding documentation.
+Patch 2 holds the device driver.
+
+This driver is tested on the Keem Bay evaluation module board.
+
+Changes since v5:
+- Created a MFD device for the common configuration register
+  in the device tree bindings.
+- Updated the timer driver with the MFD framework to access the
+  common configuration register.
+
+Changes since v4:
+- Updated the description in the device tree bindings.
+- Updated the unit address of all the timers and counter
+  in the device tree binding.
+
+Changes since v3:
+- Update in KConfig file to support COMPILE_TEST for Keem Bay timer.
+- Update in device tree bindings to remove status field.
+- Update in device tree bindings to remove 64-bit address space for
+  the child nodes by using non-empty ranges.
+
+Changes since v2:
+- Add multi timer support.
+- Update in the device tree binding to support multi timers.
+- Code optimization.
+
+Changes since v1:
+- Add support for KEEMBAY_TIMER to get selected through Kconfig.platforms.
+- Add CLOCK_EVT_FEAT_DYNIRQ as part of clockevent feature.
+- Avoid overlapping reg regions across 2 device nodes.
+- Simplify 2 device nodes as 1 because both are from same IP block.
+- Adapt the driver code according to the new simplified devicetree.
+
+Shruthi Sanil (2):
+  dt-bindings: timer: Add bindings for Intel Keem Bay SoC Timer
+  clocksource: Add Intel Keem Bay timer support
+
+ .../bindings/timer/intel,keembay-timer.yaml   | 173 ++++++++++++
+ MAINTAINERS                                   |   5 +
+ drivers/clocksource/Kconfig                   |  11 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-keembay.c           | 252 ++++++++++++++++++
+ 5 files changed, 442 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
+ create mode 100644 drivers/clocksource/timer-keembay.c
+
+
+base-commit: 27151f177827d478508e756c7657273261aaf8a9
 -- 
-Dear Sir/Madam
+2.17.1
 
-My name is Mr George Michael,i am the Personal Aid to former
-President Baba Yahya Abdul-Aziz Jemus Jammeh the Republic of Gambia in
-west Africa, who is currently in exile with his farmily. I have been
-trying on how to get in touch with you over an important issue
-concerning a project that will be profitable . I anticipate hearing
-from you for more details.
-
-Yours faithfully
-Mr George Michael
