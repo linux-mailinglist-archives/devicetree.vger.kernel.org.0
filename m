@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 354604015EA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 07:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D438C4015EF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 07:30:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238498AbhIFF3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 01:29:32 -0400
+        id S238371AbhIFF3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 01:29:41 -0400
 Received: from m43-7.mailgun.net ([69.72.43.7]:39937 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238796AbhIFF3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Sep 2021 01:29:31 -0400
+        id S239113AbhIFF3i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Sep 2021 01:29:38 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630906107; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1630906114; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=e1aR9KSANVSBE94xj6A1hkXgPzH/CZpI8sR5vusbdQ0=; b=J2Dy4CigdXInDGFFZQAFylza0nXfsvgpmn9G1eKMXAVPBJ46WGcnSLsH+flHcExCkNbkJ35L
- ogeurcylP7X4ogZQ6eod0WWCv7Diy6/xurt6XvzFpmetTYTB1rhmnSZylb2i8AFwbeJxbViH
- 3pFuVtv/8EiB4yyz8wcgf9SWHvQ=
+ bh=YnzfwSwM3CsRRPsuAVMyWeJ3nny/o2jstD+PXjxg1/g=; b=AZwduT88/ahwpk1jUX6Y10MpR9wlHkQTWyRu8li43wiMFkBVz9QjvzNXfkZuGBi0Tyrfmflq
+ JBK8su9HJ+InPne2ct6j+/Vi4FaP+rSymk5RmzdoDmbaHpIExcUmnBiNdVPUwcD1xxRvthLI
+ g8GDgC5edFauy7cx8hIbSO8PdkQ=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 6135a6f8c603a0154f91aa71 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Sep 2021 05:28:24
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6135a7011567234b8c023267 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Sep 2021 05:28:33
  GMT
 Sender: mkshah=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 58567C43617; Mon,  6 Sep 2021 05:28:23 +0000 (UTC)
+        id 246F6C4361B; Mon,  6 Sep 2021 05:28:33 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -37,9 +37,9 @@ Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: mkshah)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0542EC43616;
-        Mon,  6 Sep 2021 05:28:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0542EC43616
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4D0C5C4360C;
+        Mon,  6 Sep 2021 05:28:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 4D0C5C4360C
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
 From:   Maulik Shah <mkshah@codeaurora.org>
@@ -48,12 +48,10 @@ To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
         rnayak@codeaurora.org, lsrao@codeaurora.org,
-        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
-        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
-        Maulik Shah <mkshah@codeaurora.org>
-Subject: [PATCH v9 1/5] dt-bindings: Introduce SoC sleep stats bindings
-Date:   Mon,  6 Sep 2021 10:57:59 +0530
-Message-Id: <1630906083-32194-2-git-send-email-mkshah@codeaurora.org>
+        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
+Subject: [PATCH v9 3/5] arm64: dts: qcom: sc7180: Enable SoC sleep stats
+Date:   Mon,  6 Sep 2021 10:58:01 +0530
+Message-Id: <1630906083-32194-4-git-send-email-mkshah@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1630906083-32194-1-git-send-email-mkshah@codeaurora.org>
 References: <1630906083-32194-1-git-send-email-mkshah@codeaurora.org>
@@ -61,78 +59,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Add device node for SoC sleep stats driver which provides various
+low power mode stats.
 
-Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
-SoC sleep stats driver. The driver is used for displaying SoC sleep
-statistic maintained by Always On Processor or Resource Power Manager.
+Also update the reg size of aoss_qmp device to 0x400.
 
 Cc: devicetree@vger.kernel.org
-Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
-Signed-off-by: Lina Iyer <ilina@codeaurora.org>
 Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 ---
- .../bindings/soc/qcom/soc-sleep-stats.yaml         | 48 ++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
-new file mode 100644
-index 0000000..4161156
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index c8921e2..c339605b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3219,7 +3219,7 @@
+ 
+ 		aoss_qmp: power-controller@c300000 {
+ 			compatible = "qcom,sc7180-aoss-qmp";
+-			reg = <0 0x0c300000 0 0x100000>;
++			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+ 			mboxes = <&apss_shared 0>;
+ 
+@@ -3227,6 +3227,11 @@
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		aop_msgram@c3f0048 {
++			compatible = "qcom,rpmh-sleep-stats";
++			reg = <0 0x0c3f0048 0 0x400>;
++		};
 +
-+title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
-+
-+maintainers:
-+  - Maulik Shah <mkshah@codeaurora.org>
-+  - Lina Iyer <ilina@codeaurora.org>
-+
-+description:
-+  Always On Processor/Resource Power Manager maintains statistics of the SoC
-+  sleep modes involving powering down of the rails and oscillator clock.
-+
-+  Statistics includes SoC sleep mode type, number of times low power mode were
-+  entered, time of last entry, time of last exit and accumulated sleep duration.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,rpmh-sleep-stats
-+      - qcom,rpm-sleep-stats
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  # Example of rpmh sleep stats
-+  - |
-+    aop_msgram@c3f0048 {
-+      compatible = "qcom,rpmh-sleep-stats";
-+      reg = <0x0c3f0048 0x400>;
-+    };
-+  # Example of rpm sleep stats
-+  - |
-+    rpm_msgram@4690000 {
-+      compatible = "qcom,rpm-sleep-stats";
-+      reg = <0x04690000 0x400>;
-+    };
-+...
+ 		spmi_bus: spmi@c440000 {
+ 			compatible = "qcom,spmi-pmic-arb";
+ 			reg = <0 0x0c440000 0 0x1100>,
 -- 
 QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
 of Code Aurora Forum, hosted by The Linux Foundation
