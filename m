@@ -2,89 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21475401DAC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 17:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20A9C401E3B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 18:27:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241953AbhIFPey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 11:34:54 -0400
-Received: from mail-vk1-f177.google.com ([209.85.221.177]:45932 "EHLO
-        mail-vk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233979AbhIFPex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 11:34:53 -0400
-Received: by mail-vk1-f177.google.com with SMTP id h13so2324178vkc.12;
-        Mon, 06 Sep 2021 08:33:48 -0700 (PDT)
+        id S244031AbhIFQ2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 12:28:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243963AbhIFQ2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 12:28:34 -0400
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99FBEC061757
+        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 09:27:29 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id j19so6012252vsi.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 09:27:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1v7i8HiyO/1Ym8mqrztY8OP2nXDvUjYMU9SPvvdR5iI=;
+        b=KeHclL15otyM8f+dOzQIGQr7RAW+HW31nUm+fsJMd5ukKGOzcIIoebv4l1rxxXdtow
+         2fLv4nH55dwxD6gWWBmA140rbu234m3x5wf0LDpPh4sAK0NohP5zfd6vUKchNaYgOGiA
+         HL7C76TFHjncsA/UknFYGkUCsGfGwNvcBjRl5b9pqn7T8e3GeSmQeE2JviKh+hTXPiH8
+         W3BLdUlb6j6hZMp6lyDcAHGq2rNF5/ZzxpvNboC+KUURUxc2GOwJ+tpmmR73RePzER5F
+         xgX63er1eENm88yda0CY34Qf6EDq5VLW6gBxZ6qPPjiD1bt3kIioC5S7Sq5kOXmX7nKi
+         JUrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vurnog586LelhGKIAETgFB3SlUTlYV5Ye/u5xa1mces=;
-        b=iPqBfO0RuUM+RRHA3TUlrOMvtdWUKHyxniFYnNYUylwI3osZJgFxLIxoQqDnHVbaDc
-         0Yr2Yap9XBKStREbPqZpJI8tBYTXNQZF86Ol5eclf2OOj70OII3PzhtmudetI83pDYdu
-         BaavdHDcQRDScSAuFq/HYa9bfTbW9OI0KCqrqneVsdI38puokNZkfRKjt2VvdvI98oDO
-         NS7E0ZOO0CYyfLEE7bXyAGFi1GpkoFinqt7iRd1okEaR/65E2pHQajnuKR/fekw58w9u
-         3izw2wNXGU6CeLWFXDOmcOSuvDxw3zPrkFKqmKn5Wou6g11JkfgJ2IwIGS+F5TKQGNsG
-         PE9Q==
-X-Gm-Message-State: AOAM532M+RdQsq8YR+pEqc071ki80cb0BR05pi18d+XzimFLujJTStvG
-        Y9kca0PLpL6HAf63qkrJx0bVmLj+dt/ID9jdWBw=
-X-Google-Smtp-Source: ABdhPJwbpu6+6jutpiO40IYUpYC/LGtFpT4vQkjLQimOl6eXfUeX70f6OavLgBYdFvcp4zyAc46Ik3ygTt/BGFgGcbs=
-X-Received: by 2002:a1f:fc8f:: with SMTP id a137mr5454283vki.19.1630942428209;
- Mon, 06 Sep 2021 08:33:48 -0700 (PDT)
+        bh=1v7i8HiyO/1Ym8mqrztY8OP2nXDvUjYMU9SPvvdR5iI=;
+        b=VZ4CDOg6uRhbj0i0aJnBBY5S9sAj7vdoO988/5VW0Kld/KSy37YV/AKxIuKkTAM7We
+         /7Zx9/UJa/W6Y22c8RY7ptSrgVBdg0dqiCvBXCzLWiPCj9gmIxqgGyOXx/g7et6NSQsJ
+         b6epCnyUW7nZK5xtH9HhGoIbMeTg8/yiM0ldIxoKwBx54P9BgnC6alvES+LUMdzJJsGb
+         A/f56E8g8jKS8EQQdpSnfoNZeVhVtN14ES7QkoxCi7FAjv1+lNzXw6RfT3acllpa7SBC
+         KJbxtx6M+FWcjEnB/xsTgJ+xf/MEljsOqPbrzgVypkekUjAH9AeXLu8tElplS1C+Hrc6
+         zyvA==
+X-Gm-Message-State: AOAM532EnM5Fgy/Rtmc5jNtie9EwVBzzbioQmBns/p0hGh5L206dO+yu
+        6bS4DS8UH8SdPLT7Ua+BZXMWd1emgx66oK9IvzIpxw==
+X-Google-Smtp-Source: ABdhPJx42jYyWvN/Qn4VgmviI0/F3R5RsPLT5EvzkWi6iwNer+i/tY/TKP2zG7TW4SPXjMUt+ScleFoLjPAzV0zGCcs=
+X-Received: by 2002:a67:d387:: with SMTP id b7mr6860162vsj.55.1630945648771;
+ Mon, 06 Sep 2021 09:27:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com> <20210901102705.556093-3-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20210901102705.556093-3-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Sep 2021 17:33:37 +0200
-Message-ID: <CAMuHMdXwf0_+VKfuiFQf6roZErz-JAm06P5RBzD-Jwm1uk=p9A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for r8a779a0
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+References: <20210811114827.27322-1-semen.protsenko@linaro.org>
+ <20210811114827.27322-4-semen.protsenko@linaro.org> <YRwodjUxlZmvrvSC@robh.at.kernel.org>
+In-Reply-To: <YRwodjUxlZmvrvSC@robh.at.kernel.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 6 Sep 2021 19:27:17 +0300
+Message-ID: <CAPLW+4kvty3PQmSki8eM+WSgcA+zFfyD+--e6KBpird0-gOhMw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] dt-bindings: serial: samsung: Add Exynos850 doc
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Tom Gall <tom.gall@linaro.org>, Marc Zyngier <maz@kernel.org>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        Chanwoo Choi <cw00.choi@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
-
-On Wed, Sep 1, 2021 at 12:27 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add support for r8a779a0 (R-Car V3U). The IPMMU hardware design
-> of this SoC differs than others. So, add a new ipmmu_features for it.
+On Wed, 18 Aug 2021 at 00:22, Rob Herring <robh@kernel.org> wrote:
 >
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-
-> --- a/drivers/iommu/ipmmu-vmsa.c
-> +++ b/drivers/iommu/ipmmu-vmsa.c
-
-> @@ -922,6 +922,20 @@ static const struct ipmmu_features ipmmu_features_rcar_gen3 = {
->         .utlb_offset_base = 0,
->  };
+> On Wed, 11 Aug 2021 14:48:23 +0300, Sam Protsenko wrote:
+> > Add compatible string for Exynos850 SoC.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v3:
+> >   - None
+> >
+> > Changes in v2:
+> >   - None
+> >
+> >  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
 >
-> +static const struct ipmmu_features ipmmu_features_r8a779a0 = {
-> +       .use_ns_alias_offset = false,
-> +       .has_cache_leaf_nodes = true,
-> +       .number_of_contexts = 8,
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Shouldn't this be 16?
-Or do you plan to add support for more than 8 contexts later, as that
-would require increasing IPMMU_CTX_MAX, and updating ipmmu_ctx_reg()
-to handle the second bank of 8 contexts?
+Hi guys,
 
-Regardless, I assume this will still work when when limiting to 8
-contexts, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Can we please merge this one? I can see that corresponding driver
+changes were pulled in already into malinline, but this one seems to
+be missed.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks!
