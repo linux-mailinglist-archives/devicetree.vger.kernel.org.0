@@ -2,108 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83648401C85
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 15:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65760401C8F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 15:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242691AbhIFNmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 09:42:51 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:59743 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S242225AbhIFNmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 09:42:51 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 356C932008FC;
-        Mon,  6 Sep 2021 09:41:46 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Mon, 06 Sep 2021 09:41:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=YSKDFYRJ1PWlp4WgYiXx5n3L/K7
-        MktO365klnIj3tXg=; b=gI3XTW7MrtVhV4yyhVIR8Zj4s158eR5qZ56nJSack9D
-        Z6tM1X4cHnK4sbZnik+CxZuUUNs/jZcIRQIlTSuR/qk6vuMgQmN7yzi9CqKFWOQf
-        wU2deDIbOT0oc3IhvFJr5zcmEmvZ4E6REi7jfONPyNMozvEpuWJpwgqiio76lr3i
-        UGIAr1VCWl9VjLljTszlWAOk5SZu8ZdH757y++mmu0hlGL4HgFPAoZ6tB1lF4geY
-        LZmHLOZyWwCjG7+90uns/EHMixm9nvbHKy6RzfuDBrCfyD9Tn/+STwJTDKN1kOWs
-        zI579h6l69L+7ukQZIMZ1mtrc2JVeCFhKU+aJuWcz3A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=YSKDFY
-        RJ1PWlp4WgYiXx5n3L/K7MktO365klnIj3tXg=; b=c+55M6/3JGfPBQUm6s9iDH
-        RSRxankIgurrtVPu73mKIaiM5tTmLMVDZAwZzumdiusgKmJ3oOtUAx6v2p3xU3j0
-        u5++LbvM9lrKME3gvhzEiHzMOG0T7459MeaBDjavIM46f9w/KnIX+1Y+z0cwK5zR
-        iRG35MeFGR0SM9UiAN8/7Jo+wsRWHHJMmTX0aG7wUPL+aMXjPVJh3iw5auWWfCG2
-        Y6QJ6akolMOlHFD6bXZfWNMEO+XU6HwIdNJncDc8ximGprAtvj+dFFwqcFPdC1Jr
-        ZhGdhJEm5CgKGfM8isMXk8PCef7KgN6xQukt83GzqPpxeLkxPAP8DFZ9aJNnCHQw
-        ==
-X-ME-Sender: <xms:mBo2YQTZdF58JBLnxDiQEYRgLUimwiZPMjvEtFF545E9lDK0McyURQ>
-    <xme:mBo2YdwaYAIxxAGrmyloOwLKpvOkEQgWMzesdIeghVPmy1d-vhmnm5_7h5jFnB4dn
-    0wr5scMuqTWzPTgf7Q>
-X-ME-Received: <xmr:mBo2Yd1vPd3isxmdedllDuFT8fEXE3e95ZgKO65NUAPeyfBQRLOwJsBMpJB6Yg9hpYVia5mbs17l5N2pYCG7GX8Lu3RKocTpP-6C>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeffedgieekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuedtgfejueduheevgfevvdettdduleffgfffkeeltdffkeegudekjeeuveei
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:mRo2YUCbSHDirdBjQ7rdZe7oPpAb3KzWKV9xg-Kg55FjD78R6aG79Q>
-    <xmx:mRo2YZheqeVl2Bj-oS35JLpqKu4XKm1Pbxk9q9s7Dg6X0qdoI3qkkw>
-    <xmx:mRo2YQpzIHnHrzjZKIEF3KEScMeYFdZSP6BSswwzQuWmBXR-1P39jg>
-    <xmx:mRo2YXYooWuK8rLimj2Dx7KnoIoaYIy6Y1Rshlu84LOqDzHGPvbhiw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 6 Sep 2021 09:41:44 -0400 (EDT)
-Date:   Mon, 6 Sep 2021 15:41:43 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 52/52] arm64: dts: allwinner: teres-i: Remove
- wakekup-source from the PMIC
-Message-ID: <20210906134143.4cp3pwg7g5exjiun@gilmour>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-53-maxime@cerno.tech>
- <3434514.rl2y26N2pE@kista>
+        id S242756AbhIFNno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 09:43:44 -0400
+Received: from mail-vs1-f43.google.com ([209.85.217.43]:38607 "EHLO
+        mail-vs1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242225AbhIFNnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 09:43:43 -0400
+Received: by mail-vs1-f43.google.com with SMTP id a25so5621309vso.5;
+        Mon, 06 Sep 2021 06:42:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bauJqabPIlLKQVFUM9Ai2t0yCRiyIuJc2MyRVsaNaVQ=;
+        b=eLjIbayuSAmiJf144kMXeXev1TvRzyX55aKQpZeYMODDkH4+2qBMyCDKIn15kUhHX1
+         2KkP5aSSuFFBAqLnfzANX7P2UPzi2hAyFh4wkiSiXCL45LZeRy1CN0JYRA1aTU4/wz7J
+         SA6OHynwsKTn3vbPczsH/21tNHMcD16pYlqaJ3BAGTJ0M8cIFoCfEeMfl0WLisrsOfEi
+         PmG7P7DJY6VzD07L8V1YIhtHNgdKjPGThhn1jorTyMzLZOt6iXMqKwe5eRczpjeVKSne
+         vivEqA+8E7HC17F0/mC7ZM287+4KW4HJVSIO1NgnXrJRtdVycnMvGiXfqq7ti3c2XUxF
+         vLXw==
+X-Gm-Message-State: AOAM5311pkL/MEFzf2sl07BdCb6XDFzbAAnvpCBZX7XT2qUM0lJDoOni
+        uLtyubVDEot6Q1SBD4KWS2lHKgMPRc1V7IrpRoM=
+X-Google-Smtp-Source: ABdhPJxMnvao0WWgG6+Fr7h3yiGGEqxpP+REsXQBvo6rIQsE4nORDkmP2BQNeZqEPmJJLjkIScfYMG7mcdExA8p+93g=
+X-Received: by 2002:a67:efd6:: with SMTP id s22mr6033253vsp.50.1630935758742;
+ Mon, 06 Sep 2021 06:42:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gl45kziyk33h7nnr"
-Content-Disposition: inline
-In-Reply-To: <3434514.rl2y26N2pE@kista>
+References: <20210719092535.4474-1-biju.das.jz@bp.renesas.com> <20210719092535.4474-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210719092535.4474-4-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Sep 2021 15:42:27 +0200
+Message-ID: <CAMuHMdW+kzkb5udC33LsBWLVcQVOGX5w4xzhp+zYu2-sw+UO_Q@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] arm64: dts: renesas: r9a07g044: Add DMAC support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 19, 2021 at 11:25 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add DMAC support to RZ/G2L SoC DT.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
---gl45kziyk33h7nnr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.16.
 
-On Sun, Sep 05, 2021 at 11:24:48PM +0200, Jernej =C5=A0krabec wrote:
-> Dne sreda, 01. september 2021 ob 11:18:52 CEST je Maxime Ripard napisal(a=
-):
-> > Neither the binding nor the driver make any use of the wakeup-source
-> > property for the AXP803. Remove it.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->=20
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Gr{oetje,eeting}s,
 
-Applied, thanks
-Maxime
+                        Geert
 
---gl45kziyk33h7nnr
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYTYalwAKCRDj7w1vZxhR
-xZ1fAQD8/NVEv4DNunSFH488D33Dyt5GgBx5kP7Ml30JeYAkuAEAnp5i9FTt8TlJ
-Z6vx9X7aAd7O6DWnFjDhaEeNR3FOfQ0=
-=H5sK
------END PGP SIGNATURE-----
-
---gl45kziyk33h7nnr--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
