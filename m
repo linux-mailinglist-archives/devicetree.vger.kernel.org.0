@@ -2,142 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86C03401D99
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 17:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0724B401DA1
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 17:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242258AbhIFPc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 11:32:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233929AbhIFPc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 11:32:26 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85595C0617A8
-        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 08:31:21 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id g138so4871510wmg.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 08:31:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PQ0Sz3nSdC4M1Li6PaTkmdjXBaQB3/I9C/9VyXKR078=;
-        b=UXRljDfh9pslkpfpiZW87xjIeGBWGwIaAMRlhWJCKG7426frC0Kf3IPd4Y1I1la0VX
-         yR+sttTvRZyIIqXtqEvMNgsD46eYnTi/cTMP9nhkOXv4qZJ2YwpO6rzL+Ad9sxuj2FUM
-         6W6/m+rhws4O7vtCY4Xiva5VZ95hBKwVmVRc5gCM+RrOnt67C1wg/drGrneMfWvU+jG5
-         l7O1qd0bsLRgpjxFf8Bd6t5jthk5fKIaMSBNPrDlWhhP0XLPqT4MFYj+oA0vYzozk3X2
-         bZpg5O3sTif4O/ZWaOrDw3jH9S/DBp5s9fEn++665aVy0K0x/CMSqlpEfnUx6laQG736
-         0S6w==
+        id S232593AbhIFPcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 11:32:53 -0400
+Received: from mail-vs1-f51.google.com ([209.85.217.51]:36673 "EHLO
+        mail-vs1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231751AbhIFPcx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 11:32:53 -0400
+Received: by mail-vs1-f51.google.com with SMTP id f6so5891818vsr.3;
+        Mon, 06 Sep 2021 08:31:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PQ0Sz3nSdC4M1Li6PaTkmdjXBaQB3/I9C/9VyXKR078=;
-        b=MWJGnmDDybnVdEoHJi8lEI92twjo1lX5vRmOudnGi398pGHXQILQtnw5XFv0YYcotF
-         Qh44HvQBDBqR+PAkNS/c29hQP0Wvt0V5eM3CmEyy6UKE3xnjUc/CBGOHUAh0NfUqHtu3
-         YgKi44nVOWqMQ3zhLH1gKwvAT/ZU/UGj1xrdqTBRh/zFOfSKF/gTMXifUqrturXmeTRb
-         aYq1dhK34lorPWFoQkfAKMD/rxfcxeCqf0G5+jLTb4uO3EmH8WD6hbo5I/yMV1bWmAnV
-         UkxKXdW14f2e8LiNiyh5bP3KXnJsHwNnQaYZ8zlmmOP1JNsxXlHqtDoJDM8Gi3FlqQyp
-         I6uA==
-X-Gm-Message-State: AOAM530hts1uqBVLWHaF1ST9J2k8iz6bIPdtbvi7aOCrt/itdpJmtWq8
-        Uog4+QJxH9sCxXFl6nvcvv5WMA==
-X-Google-Smtp-Source: ABdhPJw1GKspi6vCehDcEOXPQ+NCWmQvHbO1FyzGfSYpe1CVz0Iflaaie8Hoz/ZDPTqau9R2oirf6Q==
-X-Received: by 2002:a1c:1f49:: with SMTP id f70mr12167723wmf.13.1630942279756;
-        Mon, 06 Sep 2021 08:31:19 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id f20sm7471638wmb.32.2021.09.06.08.31.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Sep 2021 08:31:19 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: Use 'enum' instead of 'oneOf' plus 'const'
- entries
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     alsa-devel@alsa-project.org, Vignesh R <vigneshr@ti.com>,
-        linux-pci@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-phy@lists.infradead.org, Lee Jones <lee.jones@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-serial@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        linux-media@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>
-References: <20210824202014.978922-1-robh@kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <b2e70818-521d-eff8-d7d5-be5a8d95df19@linaro.org>
-Date:   Mon, 6 Sep 2021 16:31:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JjpgCCKn8pZaZ4VTjt0b7oN/N//2baxfz4BZA8973Js=;
+        b=OGXRUWj2gAvFT+ZdZBdfjgmPkONj8KCpGycICQ4wYQCa6t1c9Kzxe1Qlq0fQctvx+B
+         iLhTg8C7hFanE0A8szQcykWuHpIv+hcRJBHvVwMZbNSuEqQAvB+HegyJtS2mlpUTs87T
+         4qziMXi81hYODqpOGfv8V1fJy1A+9X87NKEh6QoSSqFyE2+i7wqpGZMCn8PtZPvXVJum
+         UZeQL7qgTs4jKNlZhoP1mR3vOF1I7ATTucCl1F7nmJx8L75TAOqQ2ZJ4fJjcdp81nLHp
+         GJ90mSgUzmZp+Ux+qG9GD3NadFGQCPO6xMnjNOtxx7neGZIOd0DZ/9ddT9b5jgAsLdi3
+         Nq2Q==
+X-Gm-Message-State: AOAM531MYusPET0KX0oGHmD8+co49z6q6abRyKFx4xAJoG1EX6Wyhqpd
+        fIpAxpJjUaY27dOBHFA68BhajVi+HJWZLtR7NFfhrEPL
+X-Google-Smtp-Source: ABdhPJxP0x+z+6DEKedIcEuAJAEjlfVgR/QCxZvmYioIDSdNu1ioPb0GPdZGzzgvuef6ZdSb0wKOzbQEVVW56N9cHQA=
+X-Received: by 2002:a05:6102:b10:: with SMTP id b16mr2720341vst.41.1630942308124;
+ Mon, 06 Sep 2021 08:31:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210824202014.978922-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com> <20210901102705.556093-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20210901102705.556093-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Sep 2021 17:31:36 +0200
+Message-ID: <CAMuHMdUOQQbrxcvFDPQYokAj9pewrML30jq1g_OGs12OY_36Tw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779a0 support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 1, 2021 at 12:27 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add support for r8a779a0 (R-Car V3U).
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-On 24/08/2021 21:20, Rob Herring wrote:
-> 'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 'enum'
-> is more concise and yields better error messages.
-> 
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Vignesh R <vigneshr@ti.com>
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: dmaengine@vger.kernel.org
-> Cc: linux-i2c@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-phy@lists.infradead.org
-> Cc: linux-serial@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-spi@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   .../bindings/display/msm/dsi-phy-10nm.yaml           |  6 +++---
->   .../bindings/display/msm/dsi-phy-14nm.yaml           |  6 +++---
->   .../bindings/display/msm/dsi-phy-28nm.yaml           |  8 ++++----
->   .../bindings/dma/allwinner,sun6i-a31-dma.yaml        | 12 ++++++------
->   .../devicetree/bindings/firmware/arm,scpi.yaml       |  6 +++---
->   .../devicetree/bindings/i2c/ti,omap4-i2c.yaml        | 10 +++++-----
->   .../interrupt-controller/loongson,liointc.yaml       |  8 ++++----
->   .../devicetree/bindings/media/i2c/mipi-ccs.yaml      |  8 ++++----
->   .../devicetree/bindings/mfd/ti,lp87565-q1.yaml       |  6 +++---
->   .../devicetree/bindings/net/realtek-bluetooth.yaml   |  8 ++++----
->   .../bindings/net/ti,k3-am654-cpsw-nuss.yaml          |  8 ++++----
->   .../devicetree/bindings/net/ti,k3-am654-cpts.yaml    |  6 +++---
->   Documentation/devicetree/bindings/pci/loongson.yaml  |  8 ++++----
->   .../devicetree/bindings/phy/intel,lgm-emmc-phy.yaml  |  6 +++---
->   .../devicetree/bindings/serial/8250_omap.yaml        |  9 +++++----
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->   .../devicetree/bindings/sound/qcom,sm8250.yaml       |  6 +++---
-
-for sm8250 sound card,
-
-Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
->   .../devicetree/bindings/sound/tlv320adcx140.yaml     |  8 ++++----
->   .../devicetree/bindings/spi/realtek,rtl-spi.yaml     | 12 ++++++------
->   .../devicetree/bindings/timer/arm,sp804.yaml         |  6 +++---
->   19 files changed, 74 insertions(+), 73 deletions(-)
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
