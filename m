@@ -2,126 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F9E9401A3F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 12:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E848401AE4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 14:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240491AbhIFK7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 06:59:20 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:41094 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240396AbhIFK7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 06:59:20 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1630925895; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=vsOcnMr2wpiwvzUcC8f61q76ivDkmYdEEI0Rs1N9cVE=;
- b=tWnLLBcer4ahKFBZKflFNR1FqbbxDfTkPOu3jwEGsbpXj6EPBoJ2OoXLHkndjsDjIJePa/QC
- IgOowgkQufjThdat/sPNA1d4bYRWlRslfjYLQYce7B82WoWDo2+IaXTjqvkzyEeMi0a5n6U8
- E9i4+Qoy8A/68WvrBGgyago0s6U=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 6135f44740d2129ac15e150c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 06 Sep 2021 10:58:15
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D75D9C4360D; Mon,  6 Sep 2021 10:58:14 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5FF9AC4338F;
-        Mon,  6 Sep 2021 10:58:14 +0000 (UTC)
+        id S238850AbhIFMGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 08:06:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238537AbhIFMGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 08:06:40 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB7BC061575;
+        Mon,  6 Sep 2021 05:05:34 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id dm15so9223500edb.10;
+        Mon, 06 Sep 2021 05:05:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=In9AqwxG6kQ9Z2Bk5c/A+CJjxcpZ+YKTzhcivosE+ZI=;
+        b=iqO00bcQFNZF13Jj6amSx44PsCVInDTUO87KiRNOIINyFBpjPUn8qfHLCYihpbCjUL
+         +vbGecOmdqECGj6DApBtUue8VWyBuR86X8HOW6CNaKgXVlnNtPRD3QVmE80rkukG2Z+A
+         XESmlXdDSjXmbupmWU0X3gle/LLd+DhXOLNJ7/wpubYi2yI4zVQEdDOIt59TsSuQJkxW
+         hUBysiQ30hWdwxCAQ4XNq5oEnQ2onL6EY6dbsUte14D8HD3eG9oQmult2ymNmu4jS89A
+         ECGHW48jNYAdX5yRURa/K96AwqrMRz2EVJiHQhSu6Ag/anSOJhmcE6Mggm6wvDh/7orx
+         KgJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=In9AqwxG6kQ9Z2Bk5c/A+CJjxcpZ+YKTzhcivosE+ZI=;
+        b=IsemVauVqvsCAU25JeSRrQmRV7XobkY+pU4ijDM1uFpJDk+sqRNbYVO68QFn1OREWA
+         LwK1x721UUhvKWS0zoaxXnBXGkQaZYfnhjC9Q8Rvp3tlzTokAniCb+zUY9AOqSyD7O1Y
+         xvKW4D6jfFIpwHXA/nvHOeQlvNTdF4nKUqJtG82vY9ah8uhBGHd1R5zm1Ate1KZJFcOc
+         8eQaIiHGKzcBc80XWSofLp82rj7bebxJ/zEIXcO/j1E+UyZWzKlkkeT9iKpGeRplroS0
+         NdMbLOafnBCr0JNOQA2xNtjWXAr8AFZufPtHbrMYu3aRZm/2HkGBg5s0OELeaNfJYpky
+         JtaA==
+X-Gm-Message-State: AOAM533P3tpS3CKkbcWjhUA2BYD6EmrMsz9ginn9m6VOHZdzcBLGyNGn
+        2jjhLbyboVebwdmnrb5yYzM=
+X-Google-Smtp-Source: ABdhPJxOOCo2ca3Si5A7uvngo7vEXqfO8X5NR5B7TPIdx8OOX7kX/c866e8Lfd4yYReXDI6gp0LmCQ==
+X-Received: by 2002:a05:6402:1057:: with SMTP id e23mr13285183edu.352.1630929933230;
+        Mon, 06 Sep 2021 05:05:33 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id b8sm4536954edv.96.2021.09.06.05.05.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Sep 2021 05:05:32 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 1/4] dt-bindings: thermal: allow more resets for tsadc node in rockchip-thermal.yaml
+Date:   Mon,  6 Sep 2021 14:04:01 +0200
+Message-Id: <20210906120404.10005-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 06 Sep 2021 16:28:14 +0530
-From:   skakit@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 2/2] arm64: dts: sc7280: Add volume up support for
- sc7280-idp
-In-Reply-To: <CAE-0n52VOzjexezuEe449vT_crB_zVkn5Bnrkh6-RcJfWGTQ9w@mail.gmail.com>
-References: <1630574106-3394-1-git-send-email-skakit@codeaurora.org>
- <1630574106-3394-3-git-send-email-skakit@codeaurora.org>
- <CAE-0n52VOzjexezuEe449vT_crB_zVkn5Bnrkh6-RcJfWGTQ9w@mail.gmail.com>
-Message-ID: <9137f113e0cdd718edaa3d32b30bf043@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-03 23:42, Stephen Boyd wrote:
-> Quoting satya priya (2021-09-02 02:15:06)
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index 371a2a9..52bcbbc 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -199,6 +199,37 @@
->>         modem-init;
->>  };
->> 
->> +&soc {
-> 
-> 's' comes after 'p' so this is in the wrong place.
-> 
+The tsadc node in rk356x.dtsi has more resets defined then currently
+allowed by rockchip-thermal.yaml, so fix that in the documentation.
+The driver now uses the devm_reset_control_array_get() function,
+so reset-names is no longer required, but keep it for legacy reasons.
 
-Okay will move it accordingly.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../devicetree/bindings/thermal/rockchip-thermal.yaml     | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
->> +       gpio_keys {
->> +               compatible = "gpio-keys";
->> +               label = "gpio-keys";
->> +
->> +               pinctrl-names = "default";
->> +               pinctrl-0 = <&key_vol_up_default>;
->> +
->> +               vol_up {
->> +                       label = "volume_up";
->> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
->> +                       linux,input-type = <1>;
->> +                       linux,code = <KEY_VOLUMEUP>;
->> +                       gpio-key,wakeup;
->> +                       debounce-interval = <15>;
->> +                       linux,can-disable;
->> +               };
->> +       };
->> +};
->> +
->> +&pm7325_gpios {
->> +       key_vol_up_default: key_vol_up_default {
-> 
-> Please move this to the "PINCTRL - additions to nodes defined in
-> sc7280.dtsi" section and then sort alphabetically on node naem.
-> 
+diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+index b96ea277b..ee104e451 100644
+--- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
+@@ -37,11 +37,16 @@ properties:
+       - const: apb_pclk
+ 
+   resets:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 3
+ 
+   reset-names:
++    deprecated: true
++    minItems: 1
+     items:
+       - const: tsadc-apb
++      - const: tsadc
++      - const: tsadc-phy
+ 
+   "#thermal-sensor-cells":
+     const: 1
+@@ -71,7 +76,6 @@ required:
+   - clocks
+   - clock-names
+   - resets
+-  - reset-names
+   - "#thermal-sensor-cells"
+ 
+ additionalProperties: false
+-- 
+2.20.1
 
-Okay.
-
->> +               pins = "gpio6";
->> +               function = "normal";
->> +               input-enable;
->> +               bias-pull-up;
->> +               power-source = <0>;
->> +               qcom,drive-strength = <3>;
->> +       };
->> +};
->> +
->>  &pmk8350_vadc {
->>         pmk8350_die_temp {
->>                 reg = <PMK8350_ADC7_DIE_TEMP>;
