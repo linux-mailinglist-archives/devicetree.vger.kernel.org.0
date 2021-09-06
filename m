@@ -2,202 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1730401918
-	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 11:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8A86401926
+	for <lists+devicetree@lfdr.de>; Mon,  6 Sep 2021 11:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241562AbhIFJpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 05:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52804 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241560AbhIFJpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Sep 2021 05:45:18 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17922C06175F
-        for <devicetree@vger.kernel.org>; Mon,  6 Sep 2021 02:44:14 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id v123so5207870pfb.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Sep 2021 02:44:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3fdCtbBYQ/PbhDaRGww8WvWvNG3K6421Ly2OyMudY+g=;
-        b=nu6zVxvMTCUcU1kFqIrZtxEIa8LOtsEiLY8/fh67CoszQ/i5N3ehZ4nusDbBcELVoU
-         G6d3N/kOC1p0CbFjXTppZQQVk/R7QxYekOi7ydCeLF5JBooZdtaIrC22+nVKZjTSS4EX
-         c6fHHwZ8ziA2Cp5M/hzMGqyz1Zzc20DiP8WRn1+r0QNFiimWBQtQQ3Ibk7kx4I0h+ZFm
-         Wrurc3mdZsBvUo4/svijHyrPuayLn6jJWoeFtZDXQZy/R8sjJTc7Pn22zILuhU/uZOiK
-         WR0QB8xrAVzDJba5IRpF07K3Tkxp9Zui0Zf6EfX5d6d6qW0tWAwnHO7Ida93K+cuL/ab
-         IxMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3fdCtbBYQ/PbhDaRGww8WvWvNG3K6421Ly2OyMudY+g=;
-        b=m4IeLWv71H35zMkLv3BmjPBfTKsaYtATt7Mjp6jPAjVpblH+0SoVeHhXQolbzdKAcx
-         TBu+E6gzOzMddovtsIrEkAMpQCl//I++r7mVbGhvSCiEnX9W/exshEyN8fqfq9OkTHQP
-         kLEPUmT5VI8iiWQTbc84JHkFvKgqpnuUfACAmEqZU0NQumwe2/82CpTUA/4DSFp4hQpF
-         tkE5Djq2BKSjoNtwPLnI6LoF84wBU9AL7N51Z8u3zDuHOrQlmirt0W3mPJX9fE6MrF5X
-         /g9R6BhumiZUoW4qI24UC7vD4hCm7eOLO8zo8WUttDliVD5yx/ssHxZkIlSdSOMR7A4V
-         /1bg==
-X-Gm-Message-State: AOAM533RvIk3TgEamBC1P7aaBoJthM5pH5rz93plaseKKQKnCKiuSt8K
-        nBfMC7gPbSwmXHehAPKxT3zgtg==
-X-Google-Smtp-Source: ABdhPJwfXM4+jjhjXvhIy4LyWObIRTANV0ysLDQeZwmr3hjSYRCZBrmjzwR4mFPjdgmhAUPpJHAGLA==
-X-Received: by 2002:a63:c045:: with SMTP id z5mr11460233pgi.374.1630921453591;
-        Mon, 06 Sep 2021 02:44:13 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id g11sm7527702pgn.41.2021.09.06.02.44.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Sep 2021 02:44:13 -0700 (PDT)
-Date:   Mon, 6 Sep 2021 15:14:11 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v15 3/3] cpufreq: mediatek-hw: Add support for CPUFREQ HW
-Message-ID: <20210906094411.q55crm4cfcjpffau@vireshk-i7>
-References: <1630658364-6192-1-git-send-email-hector.yuan@mediatek.com>
- <1630658364-6192-4-git-send-email-hector.yuan@mediatek.com>
+        id S241604AbhIFJq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 05:46:58 -0400
+Received: from www.zeus03.de ([194.117.254.33]:33658 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241611AbhIFJq4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Sep 2021 05:46:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=NLfJgY6uwZTU51uLNvFJ/KrD/C+
+        2m5rzmP5fszb4Cn0=; b=ORiSJsEXFcHmvdlZF2NRJy4B0t5cN0pM/VPOA2CEoIS
+        acBYw484YFygcKRm6BWiKnoNYqfn/fCUVWlPJzSFAl4zHt4lYruXtzw6yKlFwzxQ
+        PAOHhb83HJ4Ok2vhQdEEb550DSXh+hMf2N3i3Zr2M2rJBLTiPOV62SQaOPb4h6gQ
+        =
+Received: (qmail 420914 invoked from network); 6 Sep 2021 11:45:50 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 6 Sep 2021 11:45:50 +0200
+X-UD-Smtp-Session: l3s3148p1@KSuqg1DLCKMgARa4Ra5MAc3ZBYWvSFq1
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pwm: tpu: Add R-Car M3-W+ device tree bindings
+Date:   Mon,  6 Sep 2021 11:45:35 +0200
+Message-Id: <20210906094536.45223-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1630658364-6192-4-git-send-email-hector.yuan@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03-09-21, 16:39, Hector Yuan wrote:
-> From: "Hector.Yuan" <hector.yuan@mediatek.com>
-> 
-> Introduce cpufreq HW driver which can support
-> CPU frequency adjust in MT6779 platform.
-> 
-> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
-> ---
->  drivers/cpufreq/Kconfig.arm           |   12 ++
->  drivers/cpufreq/Makefile              |    1 +
->  drivers/cpufreq/mediatek-cpufreq-hw.c |  340 +++++++++++++++++++++++++++++++++
->  3 files changed, 353 insertions(+)
->  create mode 100644 drivers/cpufreq/mediatek-cpufreq-hw.c
+Add device tree bindings for TPU found on R-Car M3-W+ SoCs.
 
-Here as well, I have added below diff to the original patch. Lemme
-know if you don't like something.
+Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-index 9c6df1b00f3e..0cf18dd46b92 100644
---- a/drivers/cpufreq/mediatek-cpufreq-hw.c
-+++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-@@ -33,12 +33,6 @@ enum {
-        REG_ARRAY_SIZE,
- };
-
--struct mtk_cpufreq_drv;
--
--struct mtk_cpufreq_drv {
--       const u16 *offsets;
--};
--
- struct mtk_cpufreq_data {
-        struct cpufreq_frequency_table *table;
-        void __iomem *reg_bases[REG_ARRAY_SIZE];
-@@ -126,8 +120,8 @@ static int mtk_cpu_create_freq_table(struct platform_device *pdev,
-                                     struct mtk_cpufreq_data *data)
- {
-        struct device *dev = &pdev->dev;
--       void __iomem *base_table;
-        u32 temp, i, freq, prev_freq = 0;
-+       void __iomem *base_table;
-
-        data->table = devm_kcalloc(dev, LUT_MAX_ENTRIES + 1,
-                                   sizeof(*data->table), GFP_KERNEL);
-@@ -198,15 +192,13 @@ static int mtk_cpu_resources_init(struct platform_device *pdev,
- static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
- {
-        struct platform_device *pdev = cpufreq_get_driver_data();
--       struct mtk_cpufreq_drv *drv = platform_get_drvdata(pdev);
-        int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
-        struct mtk_cpufreq_data *data;
--       struct device *cpu_dev;
-        unsigned int latency;
-        int ret;
-
-        /* Get the bases of cpufreq for domains */
--       ret = mtk_cpu_resources_init(pdev, policy, drv->offsets);
-+       ret = mtk_cpu_resources_init(pdev, policy, platform_get_drvdata(pdev));
-        if (ret) {
-                dev_info(&pdev->dev, "CPUFreq resource init failed\n");
-                return ret;
-@@ -218,9 +210,7 @@ static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
-        if (!latency)
-                latency = CPUFREQ_ETERNAL;
-
--       /* us convert to ns */
-        policy->cpuinfo.transition_latency = latency;
--
-        policy->fast_switch_possible = true;
-
-        /* HW should be in enabled state to proceed now */
-@@ -237,12 +227,6 @@ static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
-                pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
-        }
-
--       cpu_dev = get_cpu_device(policy->cpu);
--       if (!cpu_dev) {
--               pr_info("failed to get cpu%d device\n", policy->cpu);
--               return -ENODEV;
--       }
--
-        return 0;
- }
-
-@@ -261,9 +245,6 @@ static void mtk_cpufreq_register_em(struct cpufreq_policy *policy)
-        struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
-        struct mtk_cpufreq_data *data = policy->driver_data;
-
--       if (!data->nr_opp)
--               return;
--
-        em_dev_register_perf_domain(get_cpu_device(policy->cpu), data->nr_opp,
-                                    &em_cb, policy->cpus, true);
- }
-@@ -285,22 +266,14 @@ static struct cpufreq_driver cpufreq_mtk_hw_driver = {
-
- static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
- {
--       struct mtk_cpufreq_drv *drv;
--       const u16 *offsets;
-+       const void *data;
-        int ret;
-
--       offsets = of_device_get_match_data(&pdev->dev);
--       if (!offsets)
-+       data = of_device_get_match_data(&pdev->dev);
-+       if (!data)
-                return -EINVAL;
-
--       drv = kzalloc(sizeof(*drv), GFP_KERNEL);
--       if (!drv)
--               return -ENOMEM;
--
--       drv->offsets = offsets;
--
--       platform_set_drvdata(pdev, drv);
--
-+       platform_set_drvdata(pdev, (void *) data);
-        cpufreq_mtk_hw_driver.driver_data = pdev;
-
-        ret = cpufreq_register_driver(&cpufreq_mtk_hw_driver);
-@@ -312,11 +285,6 @@ static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
-
- static int mtk_cpufreq_hw_driver_remove(struct platform_device *pdev)
- {
--       struct mtk_cpufreq_drv *drv = platform_get_drvdata(pdev);
--
--       kfree(drv->offsets);
--       kfree(drv);
--
-        return cpufreq_unregister_driver(&cpufreq_mtk_hw_driver);
- }
+diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+index 0171a04257b8..1f5c6384182e 100644
+--- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
+@@ -35,6 +35,7 @@ properties:
+           - renesas,tpu-r8a7794   # R-Car E2
+           - renesas,tpu-r8a7795   # R-Car H3
+           - renesas,tpu-r8a7796   # R-Car M3-W
++          - renesas,tpu-r8a77961  # R-Car M3-W+
+           - renesas,tpu-r8a77965  # R-Car M3-N
+           - renesas,tpu-r8a77970  # R-Car V3M
+           - renesas,tpu-r8a77980  # R-Car V3H
+-- 
+2.30.2
 
