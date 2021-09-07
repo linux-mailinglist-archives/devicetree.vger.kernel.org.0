@@ -2,162 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 854C8402FBC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CD7B403015
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 23:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346603AbhIGU36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 16:29:58 -0400
-Received: from gecko.sbs.de ([194.138.37.40]:33379 "EHLO gecko.sbs.de"
+        id S1346751AbhIGVIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 17:08:02 -0400
+Received: from rosenzweig.io ([138.197.143.207]:46226 "EHLO rosenzweig.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346600AbhIGU36 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Sep 2021 16:29:58 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 187KSXW1005590
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 7 Sep 2021 22:28:33 +0200
-Received: from [167.87.245.242] ([167.87.245.242])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 187KSWxs030398;
-        Tue, 7 Sep 2021 22:28:32 +0200
-Subject: Re: [PATCH 1/3] arm64: dts: ti: iot2050: Flip mmc device ordering on
- Advanced devices
-To:     Aswath Govindraju <a-govindraju@ti.com>, Nishanth Menon <nm@ti.com>
-Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-References: <cover.1631024536.git.jan.kiszka@siemens.com>
- <8e2e435ef67868cb98382b44c51ddb5c8d045d66.1631024536.git.jan.kiszka@siemens.com>
- <20210907151301.7fqwmc7hmcyhhybv@carve>
- <35e0cadf-526c-6402-fb8e-8cdb8b7a0bfe@siemens.com>
- <20210907152746.fbddtkktvx6hb5ti@cattishly>
- <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
- <20210907153547.53cc2zx23rx72kqf@thyself>
- <482dddc1-b1f8-15db-a0c5-0d6def5d859f@ti.com>
- <20210907165316.4s3jrouctcpc3kvo@pessimism>
- <d69acf3d-e0c4-ef7b-be23-0d98dd6b05aa@ti.com>
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-Message-ID: <4cb6e76e-479f-5e06-778a-4788be53afb9@siemens.com>
-Date:   Tue, 7 Sep 2021 22:28:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232045AbhIGVIB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 17:08:01 -0400
+Date:   Tue, 7 Sep 2021 16:48:26 -0400
+From:   Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Hector Martin <marcan@marcan.st>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: mailbox: Add Apple mailbox bindings
+Message-ID: <YTfQGqLv6FLnUfv+@sunset>
+References: <20210907145501.69161-1-sven@svenpeter.dev>
+ <20210907145501.69161-3-sven@svenpeter.dev>
+ <YTe17jGBobarePaK@sunset>
+ <ff66c30d-1b43-43d3-a4b0-02fe7d346118@www.fastmail.com>
 MIME-Version: 1.0
-In-Reply-To: <d69acf3d-e0c4-ef7b-be23-0d98dd6b05aa@ti.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ff66c30d-1b43-43d3-a4b0-02fe7d346118@www.fastmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07.09.21 19:01, Aswath Govindraju wrote:
-> Hi Nishanth,
+> > > +      - description:
+> > > +          M3 mailboxes are an older variant with a slightly different MMIO
+> > > +          interface still found on the M1.
+> > > +        items:
+> > > +          - const: apple,t8103-m3-mailbox
+> > 
+> > Would be nice to document an example of where an M3 mailbox is found.
 > 
-> On 07/09/21 10:23 pm, Nishanth Menon wrote:
->> On 22:17-20210907, Aswath Govindraju wrote:
->>> Hi Nishanth,
->>>
->>> On 07/09/21 9:05 pm, Nishanth Menon wrote:
->>>> On 17:30-20210907, Jan Kiszka wrote:
->>>>> On 07.09.21 17:27, Nishanth Menon wrote:
->>>>>> On 17:20-20210907, Jan Kiszka wrote:
->>>>>>> On 07.09.21 17:13, Nishanth Menon wrote:
->>>>>>>> On 16:22-20210907, Jan Kiszka wrote:
->>>>>>>>> From: Jan Kiszka <jan.kiszka@siemens.com>
->>>>>>>>>
->>>>>>>>> This ensures that the SD card will remain mmc0 across Basic and Advanced
->>>>>>>>> devices, also avoiding surprises for users coming from the downstream
->>>>>>>>> kernels.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
->>>>>>>>> ---
->>>>>>>>>  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts | 5 +++++
->>>>>>>>>  1 file changed, 5 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
->>>>>>>>> index ec9617c13cdb..d1d5278e0b94 100644
->>>>>>>>> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
->>>>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
->>>>>>>>> @@ -18,6 +18,11 @@ / {
->>>>>>>>>  	compatible = "siemens,iot2050-advanced", "ti,am654";
->>>>>>>>>  	model = "SIMATIC IOT2050 Advanced";
->>>>>>>>>  
->>>>>>>>> +	aliases {
->>>>>>>>> +		mmc0 = &sdhci1;
->>>>>>>>> +		mmc1 = &sdhci0;
->>>>>>>>> +	};
->>>>>>>>
->>>>>>>>
->>>>>>>> Should we do this at SoC level?
->>>>>>>>
->>>>>>>
->>>>>>> Well, I wouldn't mind - but that would also impact your EVMs. For us,
->>>>>>> this is fine as we are coming from that ordering above with our
->>>>>>> downstream kernel/dts.
->>>>>>>
->>>>>>
->>>>>> I think it'd probably be a welcome change. overall we've standardized on
->>>>>> partuuid.
->>>>>>
->>>>>
->>>>> Yeah, it's more about "dd if=emmc.img of=/dev/mmcblk1 - damn, the wrong
->>>>> one again."
->>>>>
->>>>> Let me know what you prefer, and I'll update my patch.
->>>>
->>>>
->>>> Lets do it at SoC level. I will follow it up with a patch for other K3
->>>> SoCs as well.
->>>>
->>>>
->>>> Unless someone has a strong opinion on this approach - if so, speak up
->>>> with reasons.
->>>>
->>>
->>> Making this change in SoC level for all K3 devices would force changes
->>> to be made in U-Boot too, for consistency. In U-Boot, a major change
->>> would be required in the environment variables to support this. As I
->>> don't see any functional advantage by making this change, I feel that
->>> this change would make things more confusing for users already using the
->>> K3 devices. At present, the ordering is consistent across all the K3
->>> devices, I feel that keeping it the same way would be better.
->>>
->>> As for making changes only on IoT boards, if it is okay to have the
->>> ordering changed between U-Boot and kernel, I don't see any problem
->>> making this change in kernel alone.
->>
->>
->> arch/arm64/boot/dts/ti/k3-am65.dtsi has no ordering. u-boot is supposed
->> to copy from kernel the dtsi files as is. I think having mmc aliases in
->> kernel is a good thing as we do regard kernel as the canonical dts
->> source.
->>
+> Sure, I can add a comment that this is used for the coprocessor controlling Thunderbolt.
+
+That raises another issue ... how do we know the M3 code works at all
+without TB support yet? It "looks" correct but some of the IRQ handling
+stuff is nontrivial.
+
+> > > +  interrupts:
+> > > +    minItems: 4
+> > > +    items:
+> > > +      - description: send fifo is empty interrupt
+> > > +      - description: send fifo is not empty interrupt
+> > > +      - description: receive fifo is empty interrupt
+> > > +      - description: receive fifo is not empty interrupt
+> > > +
+> > > +  interrupt-names:
+> > > +    minItems: 4
+> > > +    items:
+> > > +      - const: send-empty
+> > > +      - const: send-not-empty
+> > > +      - const: recv-empty
+> > > +      - const: recv-not-empty
+> > 
+> > If the names became not-constant the asprintf thing goes away, not sure
+> > that's better or worse.
 > 
-> Yes, you are correct. Aliases are not added for mmc in U-Boot too, but
-> due to the ordering in the device tree, mmc0 is always sdhci0 and mmc1
-> is always sdhci1 in U-Boot. I agree that, in kernel as the probe order
-> is not guaranteed, fixing the order would be better by adding aliases
-> explicitly.
+> I'm not sure I understand your comment here. This property just gives a name
+> to the interrupts so that they can be referenced by that instead of a magic
+> number between 0 and 4 in the driver.
+
+D'oh, right, retracted. (Both this comment and the corresponding comment
+on the driver itself). Sorry about that.
+
+> > > +  clocks:
+> > > +    description:
+> > > +      Reference to the clock gate phandle(s) if required for this mailbox.
+> > > +      Optional since not all mailboxes are attached to a clock gate.
+> > 
+> > Do we do anything with the clocks at this point?
+> > 
 > 
+> The device tree bindings describe the hardware (as best as we can without proper
+> documentation) and some of these mailboxes have clock gates which need to be turned
+> on before accessing their MMIO. This driver already tries to do that and works fine
+> with the downstream clock driver(s) we have.
 
-We had mmc reordered for our devices in U-Boot already. That separate
-snippet would obviously be obsolete when sync'ing common reordering over.
+Good enough for me, thanks for clarifying 👍
 
->> If you are suggesting we flip things so that mmc0 is sdhci0 and mmc1 is
->> sdhci1 -  that might be a valid suggestion - Jan, do you see a problem
->> in having consistency here (flip the aliases)?
->>
->>
-> 
-> Yes, I am suggesting a flip in the order and this order can be applied
-> across all the K3 SoC's
-> 
-
-I'm not sure what you are suggesting. I've sent v2 already which moves
-aliasing to SoC level, and I would push that to U-Boot as well if
-acceptable. If not, we will keep this in our board DTs.
-
-Jan
-
--- 
-Siemens AG, T RDA IOT
-Corporate Competence Center Embedded Linux
+Commit r-b, though Rob will surely point out problems and I'll need to
+rereview 😉
