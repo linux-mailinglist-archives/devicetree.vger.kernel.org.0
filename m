@@ -2,147 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 610D3402BDF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A653B402BE8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345322AbhIGPeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 11:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345299AbhIGPer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:34:47 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6106BC061757;
-        Tue,  7 Sep 2021 08:33:40 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id bi4so13231419oib.9;
-        Tue, 07 Sep 2021 08:33:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/IeDn/kM3dgUlXSBv238eSNQpcLMZSPxIbeVZGVUOQU=;
-        b=Kv2lMLmaj7oTybmLpkB16tQxDRhc81VfBEREvb9KPu8iPdYr6JA4Fadb8u1Gcin/r8
-         yqnX+gmZ5+Rx36PXRXRM2qQqQIaOFIf/D6ZG+tDR6MV08cjGhQ+eUQGMbb6yFXslYyQs
-         1zpSM7R5p6L/jqrK6K+C5Zi7E3uCpyWgz5i2DY9Pvau2H0goziXO5pxaSJGrYcmxlz+W
-         NHm1/7VRYlF8QRlkZmGcMNjIa9bPpPf2IhaG56A4qxfeDkzcPISh6rYBdLzB4qYnARo/
-         l/RQoHDNojRE+HRGnulrruNBZIacp4nYPPVLyQeYJGsIX0E6TpYev6vUk4paZRHeOWc1
-         BJWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/IeDn/kM3dgUlXSBv238eSNQpcLMZSPxIbeVZGVUOQU=;
-        b=tNn0okTjh/V+dI5RR678LifE1y6rb2NVpIhOBDAfzcH5bmGWQgNLtS2UvD9bwV8Z8o
-         N7cSKLtBNh7djQziDuJt064FqWTF2xnqSoPcM7Qm2stVQRNT5rPQItYWu04gzmZjYZIA
-         Rg8H5Oj/a4NjUS+t8JO9kgol6ihCctUbaCzJF4n9rxN228W84l1L4yIEXuINjWF1a+Gk
-         ZaWv+d2ZerP2mESmWJeni/n7tW+sDNyGcwwJMUGIAlFGKFh7d6AdGnlyao2Wltglupaq
-         p0p2JXvm3Gca5HNaR8g8JuxUnnW2LfiH548/GmhTVbOMya2GGZ66BP3KrmOnc3zA8Ir8
-         na9A==
-X-Gm-Message-State: AOAM53036RJk6wt9P2DCahRaXfnKYU0cliWn7X7mRf6Amu6z0j2WgGNa
-        RYFW9i2Qw8WaNto/hzK4itUUOJAgYFs=
-X-Google-Smtp-Source: ABdhPJwU25PJPl7qfK6A3xd0sP1Pe2MBOiDghElTJSqB5Dtbf/K+km8rcxIyAwYCQ0aWZEZlaERISQ==
-X-Received: by 2002:aca:5c07:: with SMTP id q7mr3264634oib.68.1631028819525;
-        Tue, 07 Sep 2021 08:33:39 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k8sm2286636oom.20.2021.09.07.08.33.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 08:33:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <1a2aa678c5a6261a1c096702f2e314e701533660.1631021349.git.krzysztof.adamski@nokia.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 5/8] hwmon: (tmp421) support disabling channels from DT
-Message-ID: <68308226-0b64-e246-41b7-0a9583072d77@roeck-us.net>
-Date:   Tue, 7 Sep 2021 08:33:37 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S1345284AbhIGPhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 11:37:00 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33904 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345270AbhIGPhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:37:00 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 187FZl26094843;
+        Tue, 7 Sep 2021 10:35:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631028947;
+        bh=dIkAlr8MdwBVgAEkJnLIXNbbsnHvLWkb+7zsTqPfSGY=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=HTEdrMwMBpJ+5bMIUVCg20nOmrmh1Arm7XUhds3ThCpOs14en8tA/DPDa+ycQhPqD
+         vvPxe0ZFuvmzjxF5HvnsjzhbidZsbv5pPPaIuE0JK7Mja3Gq5u66r8I1zFFd3fTjLU
+         cQp4b7EJf6klxXukUzStRwe0nNBzYycoj7oH8hdQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 187FZllb021672
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 Sep 2021 10:35:47 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
+ Sep 2021 10:35:47 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 7 Sep 2021 10:35:47 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 187FZlkO099332;
+        Tue, 7 Sep 2021 10:35:47 -0500
+Date:   Tue, 7 Sep 2021 10:35:47 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jan Kiszka <jan.kiszka@siemens.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: iot2050: Flip mmc device ordering on
+ Advanced devices
+Message-ID: <20210907153547.53cc2zx23rx72kqf@thyself>
+References: <cover.1631024536.git.jan.kiszka@siemens.com>
+ <8e2e435ef67868cb98382b44c51ddb5c8d045d66.1631024536.git.jan.kiszka@siemens.com>
+ <20210907151301.7fqwmc7hmcyhhybv@carve>
+ <35e0cadf-526c-6402-fb8e-8cdb8b7a0bfe@siemens.com>
+ <20210907152746.fbddtkktvx6hb5ti@cattishly>
+ <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
 MIME-Version: 1.0
-In-Reply-To: <1a2aa678c5a6261a1c096702f2e314e701533660.1631021349.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/7/21 6:43 AM, Krzysztof Adamski wrote:
-> The previous patch introduced per channel subnodes in DT that let us
-> specify some channel specific properties. This built a ground for easily
-> disabling individual channels of the sensor that may not be connected to
-> any external diode and thus are not returning any meaningful data.
+On 17:30-20210907, Jan Kiszka wrote:
+> On 07.09.21 17:27, Nishanth Menon wrote:
+> > On 17:20-20210907, Jan Kiszka wrote:
+> >> On 07.09.21 17:13, Nishanth Menon wrote:
+> >>> On 16:22-20210907, Jan Kiszka wrote:
+> >>>> From: Jan Kiszka <jan.kiszka@siemens.com>
+> >>>>
+> >>>> This ensures that the SD card will remain mmc0 across Basic and Advanced
+> >>>> devices, also avoiding surprises for users coming from the downstream
+> >>>> kernels.
+> >>>>
+> >>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts | 5 +++++
+> >>>>  1 file changed, 5 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+> >>>> index ec9617c13cdb..d1d5278e0b94 100644
+> >>>> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+> >>>> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+> >>>> @@ -18,6 +18,11 @@ / {
+> >>>>  	compatible = "siemens,iot2050-advanced", "ti,am654";
+> >>>>  	model = "SIMATIC IOT2050 Advanced";
+> >>>>  
+> >>>> +	aliases {
+> >>>> +		mmc0 = &sdhci1;
+> >>>> +		mmc1 = &sdhci0;
+> >>>> +	};
+> >>>
+> >>>
+> >>> Should we do this at SoC level?
+> >>>
+> >>
+> >> Well, I wouldn't mind - but that would also impact your EVMs. For us,
+> >> this is fine as we are coming from that ordering above with our
+> >> downstream kernel/dts.
+> >>
+> > 
+> > I think it'd probably be a welcome change. overall we've standardized on
+> > partuuid.
+> > 
 > 
-> This patch adds support for parsing the "status" property of channels DT
-> subnodes and makes sure the -ENODATA is returned when disabled channels
-> value is read.
+> Yeah, it's more about "dd if=emmc.img of=/dev/mmcblk1 - damn, the wrong
+> one again."
 > 
+> Let me know what you prefer, and I'll update my patch.
 
-If channels can be disabled via DT, the respective sysfs attribute (tempX_enable)
-should also be supported.
 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> ---
->   drivers/hwmon/tmp421.c | 17 ++++++++++++-----
->   1 file changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-> index a1dba1d405ee..a41d7935acb9 100644
-> --- a/drivers/hwmon/tmp421.c
-> +++ b/drivers/hwmon/tmp421.c
-> @@ -89,6 +89,7 @@ MODULE_DEVICE_TABLE(of, tmp421_of_match);
->   
->   struct tmp421_channel {
->   	const char *label;
-> +	bool disabled;
->   	s16 temp;
->   };
->   
-> @@ -125,9 +126,8 @@ static int temp_from_u16(u16 reg)
->   	return (temp * 1000 + 128) / 256;
->   }
->   
-> -static struct tmp421_data *tmp421_update_device(struct device *dev)
-> +static void tmp421_update_device(struct tmp421_data *data)
->   {
-> -	struct tmp421_data *data = dev_get_drvdata(dev);
->   	struct i2c_client *client = data->client;
->   	int i;
->   
-> @@ -149,14 +149,17 @@ static struct tmp421_data *tmp421_update_device(struct device *dev)
->   	}
->   
->   	mutex_unlock(&data->update_lock);
-> -
-> -	return data;
->   }
->   
->   static int tmp421_read(struct device *dev, enum hwmon_sensor_types type,
->   		       u32 attr, int channel, long *val)
->   {
-> -	struct tmp421_data *tmp421 = tmp421_update_device(dev);
-> +	struct tmp421_data *tmp421 = dev_get_drvdata(dev);
-> +
-> +	if (tmp421->channel[channel].disabled)
-> +		return -ENODATA;
-> +
-> +	tmp421_update_device(tmp421);
->   
->   	switch (attr) {
->   	case hwmon_temp_input:
-> @@ -314,6 +317,10 @@ void tmp421_probe_child_from_dt(struct i2c_client *client,
->   	if (data->channel[i].label)
->   		data->temp_config[i] |= HWMON_T_LABEL;
->   
-> +	if (!of_device_is_available(child)) {
-> +		data->channel[i].disabled = true;
-> +		return;
-> +	}
->   }
->   
->   void tmp421_probe_from_dt(struct i2c_client *client, struct tmp421_data *data)
-> 
+Lets do it at SoC level. I will follow it up with a patch for other K3
+SoCs as well.
 
+
+Unless someone has a strong opinion on this approach - if so, speak up
+with reasons.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
