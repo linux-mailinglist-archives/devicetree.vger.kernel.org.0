@@ -2,94 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2DF402734
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 12:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 940B2402746
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 12:36:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343526AbhIGK3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 06:29:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
+        id S245429AbhIGKhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 06:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245751AbhIGK3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 06:29:35 -0400
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C72C061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 03:28:29 -0700 (PDT)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1mNYL5-00CH6d-Ce
-        for devicetree@vger.kernel.org; Tue, 07 Sep 2021 12:28:27 +0200
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1mNYKM-00CH0W-EL; Tue, 07 Sep 2021 12:27:42 +0200
-Received: from bert by sumner.biot.com with local (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1mNYKL-000CQN-TO; Tue, 07 Sep 2021 12:27:41 +0200
-From:   Bert Vermeulen <bert@biot.com>
-To:     Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Lionel Debieve <lionel.debieve@st.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
-        Bert Vermeulen <bert@biot.com>
-Subject: [PATCH v2 5/5] ARM: multi_v7_defconfig: Add support for Airoha EN7523 SoC
-Date:   Tue,  7 Sep 2021 12:27:22 +0200
-Message-Id: <20210907102722.47543-6-bert@biot.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210907102722.47543-1-bert@biot.com>
-References: <20210907102722.47543-1-bert@biot.com>
+        with ESMTP id S245368AbhIGKhe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 06:37:34 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90D09C061575
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 03:36:28 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id y34so18584678lfa.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 03:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=39dcuRpzaRC5BdwM3JqFxL9Y6Q3cQwXZto24BgL4zlw=;
+        b=WRPwsUgs3jtAT985APtpAk7gOLDCyjfqConNDw11zz00sChZxuthXUGYMXMobYeT6M
+         VpMPeE4+aAP/7PFEWpW8s+uoC+BF2cF4tOVrebQAFyWaqHmG/IjgTepK4IvgA1kWTTsK
+         hLK98/P7/EVpFMY5VCM+9gimM1MGCgUGuxyXCA+3xG+tMKIiCN55tbN3z2gSRJRJ8XJC
+         D618HhXkEfoa+AtVON0zbllCFLG0x6/yVkz9U9zEDrPn+ccRk7scvDsHcMvp3/DG3UYc
+         iHUdVdX9poEASUwIJqZpv672VVlyEyVGetdOZiLhAnFOYkDaApJKquA3w6M4FtPs8yxE
+         tcQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=39dcuRpzaRC5BdwM3JqFxL9Y6Q3cQwXZto24BgL4zlw=;
+        b=ox0wrxSfiuhSp67XYHERGE959GlyjtQhmVBz10Cnbl8Q41a3SwC3XQN9SsG+VT3LeP
+         3phcDIPYMVhpkLRE7ODvjhxy7BsWeMHr8tMVW0bkDjV0aQwxZV+prjdErUhWyvGSYdyE
+         XM1zl57Yc587Tm1oAAUu8c3CmQbp8DfYCbwjyZxv16Van5Jc2dCb3YjEsk5Lqv+PXCzo
+         E51FXN9DtM02jQlfVhenUiVLcFdEL7ndro5kJY1xIN9VxrlSDjKoZmCKKOTM1kee8Yww
+         g4chhfxFaqmO6yeswBA19eBe18CZ3F4WnKPyj34IM6yA6C/AnOxIWl2TRXCGiVgdt7d2
+         4X8A==
+X-Gm-Message-State: AOAM532hkWDU9mQ8BJu2gqIWZcyYbNWzN3Oo2clF5TBljO6ggNJrKu2V
+        CVrO93X0uuS0CMuneF3LBXsPRbkrdgfXpKCjquHdQMzBvNw=
+X-Google-Smtp-Source: ABdhPJwwA0NSPTO/J8/Y+LSVPXUrJzOZ6ZFh4DSu0zI1UQW0yIXFDmNMkzM2NaFOX+3m36whk5wogBMs2rmww/YsDKo=
+X-Received: by 2002:a05:6512:1528:: with SMTP id bq40mr1777835lfb.71.1631010986959;
+ Tue, 07 Sep 2021 03:36:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210902230442.1515531-1-saravanak@google.com>
+ <20210902230442.1515531-2-saravanak@google.com> <CAPDyKFpP6pSRSw8_OAW8+ZJNH+CwXtfWBNDcD182gQmzqW=O5g@mail.gmail.com>
+ <CAMuHMdVgjxJwd=PbUSR+9mgxexr3O_O6j-3T24GzE08CqzDjjA@mail.gmail.com>
+In-Reply-To: <CAMuHMdVgjxJwd=PbUSR+9mgxexr3O_O6j-3T24GzE08CqzDjjA@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 7 Sep 2021 12:35:50 +0200
+Message-ID: <CAPDyKFrGyOWSxe=0DGWNQ75YQgXVa62WF8=pOHNCWUh5PLcdqQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] of: platform: Make sure bus only devices get probed
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: John Crispin <john@phrozen.org>
+On Fri, 3 Sept 2021 at 16:29, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Ulf,
+>
+> On Fri, Sep 3, 2021 at 11:19 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > On Fri, 3 Sept 2021 at 01:04, Saravana Kannan <saravanak@google.com> wrote:
+> > > fw_devlink could end up creating device links for bus only devices.
+> > > However, bus only devices don't get probed and can block probe() or
+> > > sync_state() [1] call backs of other devices. To avoid this, set up
+> > > these devices to get probed by the simple-pm-bus.
+> > >
+> > > [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > Tested-by: Saravana Kannan <saravanak@google.com>
+> >
+> > Again, this looks like a nice solution to the problem.
+> >
+> > One question though. The Kconfig SIMPLE_PM_BUS, should probably be
+> > "default y" - or something along those lines to make sure fw_devlink
+> > works as expected.
+>
+> I would love for SIMPLE_PM_BUS to go away, and all of its functionality
+> to be usurped by the standard simple-bus handling.
+>
+> In the modern world, everything uses power management and Runtime
+> PM, and the distinction between "simple-bus" and "simple-pm-bus"
+> is purely artificial.
 
-This enables basic bootup support for the Airoha EN7523 SoC.
+I think it's not that easy, but maybe I am wrong.
 
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Bert Vermeulen <bert@biot.com>
----
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Today we have an opt-in way of supporting runtime PM (and power
+management). In most cases it's up to drivers or subsystem level code
+to decide if runtime PM should be enabled for the device.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index d9abaae118dd..a9370a95dc38 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -31,6 +31,7 @@ CONFIG_MACH_BERLIN_BG2=y
- CONFIG_MACH_BERLIN_BG2CD=y
- CONFIG_MACH_BERLIN_BG2Q=y
- CONFIG_ARCH_DIGICOLOR=y
-+CONFIG_ARCH_AIROHA=y
- CONFIG_ARCH_EXYNOS=y
- CONFIG_ARCH_HIGHBANK=y
- CONFIG_ARCH_HISI=y
-@@ -983,6 +984,7 @@ CONFIG_STAGING_BOARD=y
- CONFIG_MFD_CROS_EC_DEV=m
- CONFIG_CROS_EC_I2C=m
- CONFIG_CROS_EC_SPI=m
-+CONFIG_COMMON_CLK_EN7523=y
- CONFIG_COMMON_CLK_MAX77686=y
- CONFIG_COMMON_CLK_RK808=m
- CONFIG_COMMON_CLK_SCMI=y
--- 
-2.25.1
+Would it really be okay to enable runtime PM for all of them?
 
+Kind regards
+Uffe
