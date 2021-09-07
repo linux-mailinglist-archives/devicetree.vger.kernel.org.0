@@ -2,150 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A75E4029DF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7CFC4029F0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:41:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344532AbhIGNlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 09:41:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59682 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344513AbhIGNlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 09:41:14 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C1FC061575;
-        Tue,  7 Sep 2021 06:40:08 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id k12-20020a056830150c00b0051abe7f680bso12814946otp.1;
-        Tue, 07 Sep 2021 06:40:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8rny3XFWF7pa2pDSX8KlfgiSTf4jqiy1msfwyRKNEMM=;
-        b=joh0VySyNJjTMMEvpPuW2/4SKp85ZFLjn3UdYj1LXDN2u4E4/OSR2j0IsPngnGDcPB
-         KQRx4pfeTZxXD/26Jm+pM3myPqWGfXSNxeinqnwYqBbW8qiwmV5XD5zzpI4cT96hTUPq
-         /r29AB2NGz+0P82YP3Cj/ReooNbqcgs0+6yF1KlnYPa8ZgowQ9TCWcJ+1Z9vCMCJdPUJ
-         NjnXoOacDkKPwHLZBGEeSYkv/vGasYDR/Hp5pf2LI23QuJAxSebBXB8cgjGuwWrc8wL3
-         0UwEhLyG/z0gOYel6s/q14kdBFKheKHcGhcoQQH5dHWQLhZdtcosY9HlHHclQ01znwzT
-         nCIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8rny3XFWF7pa2pDSX8KlfgiSTf4jqiy1msfwyRKNEMM=;
-        b=e4Pw+jONekJ7oTpMbbZW28OVYbrEErBpeziteUPQIkDfjDC6opihQ30CrZSOpTrmog
-         oam7o1htWxtlnaKYheqF+x8Q6wuQhtDLX0DxcZ9tnN+uYBHLtIBbG9XU2luSCpqk/njR
-         9rI1P9UKCrVvmxmfIqqpGreD4DGApf+HCnaUlT80uk8UB8NesYBl8pRzGoVvcfz+C1mQ
-         J6X/23CyZJ2RU44ztYzTKMFB4VKJjsxatQ5Nu+YqA8ua4vriMRgSadEF/+DXzIeviwqm
-         vp71Fw66ZGrKn5KfST2Q5NHlCdJy5mstmhi+xEFrIk8gsEw8SyPsJNA1IXe0DdL1Afqv
-         QQGA==
-X-Gm-Message-State: AOAM530fB13c01hCd4Ai+3/LrfORLY4I9UcX8kXWcJl+VEP0Cg456SYO
-        mEiTO6bdggYDYcWcrFyrY84=
-X-Google-Smtp-Source: ABdhPJwXKdBRiNy5D6vxkacdqM/AZTpB7wFh5IkbkrOKUTkniJTNBs2hnoaCEAhPHhWua+2EVA9mFw==
-X-Received: by 2002:a9d:6c04:: with SMTP id f4mr14788360otq.185.1631022007366;
-        Tue, 07 Sep 2021 06:40:07 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id y14sm564180oti.69.2021.09.07.06.40.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 06:40:06 -0700 (PDT)
-Date:   Tue, 7 Sep 2021 08:40:06 -0500
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: rockchip: add analog audio on Quartz64
-Message-ID: <20210907134006.GA11287@wintermute.localdomain>
-References: <20210903231536.225540-1-frattaroli.nicolas@gmail.com>
- <20210903231536.225540-5-frattaroli.nicolas@gmail.com>
-MIME-Version: 1.0
+        id S1344778AbhIGNm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 09:42:28 -0400
+Received: from mail-vi1eur05on2125.outbound.protection.outlook.com ([40.107.21.125]:15073
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1344754AbhIGNm0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 09:42:26 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X6dFnzCG9+QKKxBFzeny7JtIYYZqlRPckewBXkgGq+QXYD8jrs2t3SKQUu2Nce0b9bGUFnBA2+ASmWphWwWoIGHJB0hESZZbVyojLDYxcX1otOjCx01e58Pc6IujgUQ4YGNWgwgocJnJpXRuHTjN+43sDMwCzZU/1EIkpdjNGrU8vnyaVdI4GCCkHlVlWu01Tfl/ZC471MrCOir1oO3ndLPk0RianNauhSMLEmF0InFmkJuhPjII60kebaJaLirGhFRSMx83BjhDTWPLkiyTI0WgZCEqplA2LNqjdqZGbj50k9lNqsXEFFQY6J4dxXKVhcnJUCCbOrjOuOGB/ZsqLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LPkZTu+T/fvzVwSYYc7lvWjeOh+5Hg1jIJJztcLIlso=;
+ b=jFwhUd9nObqpV/1ZLbnH7a91EPH2DHmIzKjV074EmDLohpp9f5l2bH2N4hCrBP/+S7gpg5lzoKa7cLMtKmJYm661OSSYsenCIbpA0Z9s3JPW2eTa+MmZiM7ftaIfEdKSWgyiEYDKvLRvbpUm8AySzpXIAeOaeGDy6RrE7rayBDM4DFSPP4h49+1hut1MRXUJz1HVIldowRG/SVQfAz54MxlgNM2iAbfmN4G0uJKvwVr5cCY83VdIOaFDXqm6kCL5H36am2ndKh9DW7dMbyVxENITYGrmIXp0fQdd+CT61XRux6RF7BRsFl4ChA8ZSQrTSH2zVzBkBBJz9/TTgRtpyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LPkZTu+T/fvzVwSYYc7lvWjeOh+5Hg1jIJJztcLIlso=;
+ b=cilcfMBTm2wDqc6GAeRuud54vaAnoy+RvmKGiUC8TzEIpn/IgOOKD7jX2B9amVloCV9EnY9TQ9H/WXifUl8eiFD/vfmTMsI5K/ITXy5wbXIIRlEtOv6eA0GaKsKGrl0XBKNVFRxq8ttl50fBky/X/wl3y6oDci7C+LesBIrKvi4=
+Authentication-Results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com (2603:10a6:10:239::15)
+ by DU2PR07MB8221.eurprd07.prod.outlook.com (2603:10a6:10:272::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.13; Tue, 7 Sep
+ 2021 13:41:18 +0000
+Received: from DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb]) by DU2PR07MB8110.eurprd07.prod.outlook.com
+ ([fe80::c47f:b569:ac76:9feb%6]) with mapi id 15.20.4478.014; Tue, 7 Sep 2021
+ 13:41:18 +0000
+Date:   Tue, 7 Sep 2021 15:41:10 +0200
+From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/8] Add per channel properies support in tmp421
+Message-ID: <cover.1631021349.git.krzysztof.adamski@nokia.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210903231536.225540-5-frattaroli.nicolas@gmail.com>
+X-ClientProxiedBy: HE1P18901CA0013.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:3:8b::23) To DU2PR07MB8110.eurprd07.prod.outlook.com
+ (2603:10a6:10:239::15)
+MIME-Version: 1.0
+Received: from localhost.localdomain (131.228.2.20) by HE1P18901CA0013.EURP189.PROD.OUTLOOK.COM (2603:10a6:3:8b::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend Transport; Tue, 7 Sep 2021 13:41:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b3ee22bd-96ad-4eb4-2412-08d972052b81
+X-MS-TrafficTypeDiagnostic: DU2PR07MB8221:
+X-Microsoft-Antispam-PRVS: <DU2PR07MB8221F2C3D5E39767D4827C53EFD39@DU2PR07MB8221.eurprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8Rwd/0SdwLXgS8vtXH7nLab/rEtyJxWn/W0PBnGXunm+NXR+G4CU9C7MQx87BxZJP6BiubcvdHLI3zhbSsXDbavV31lGYyBCFYSCVMQWtZ0IvL3x9af+upFrA8yGsCZOYxemmNy24/UdEl0kIoNjiuMmcwHuhd9tN4IMlGOYHzwwwfQclDqPHJsvABOCr6TjZzbGES7NKSuJCrJnrQCf5ri88TaOzTLU3B9Fnr+HSgMtXPcmNV+3iDiK+LPJtmTuX+6Su63o4rdXs+2/dCfXc1l7/Jt0PMxbzJhqwNa4HGVZik5H9FK+HnkeCeX0mTNMIAT0SxNxIOiPyS9L8UkDhNhsIEgQLThNJyWrmj+fnEXgWCo7XvtOsv1MWK0/TsbtQHobmsPGWG76OMnmjyhUkYTfsEpo8nkkCdNuVnKcLwD/Z0COihgOu8UpdmL15PtzN/RC381sgchxfCFxjQHn7FpYFWqp/p7R4eQV6wvlOFlzw1eNY1ZTuiEEPrsYpOIdOHwoogScGMQ1JUf47WF+WZcf/egyj+ylUnhmfxLOc/5Vf+QhZW3x0SyiqIALfdQXzM8aKh+17tqZjcldH4GiUDnyPJJIRh6fj39/ZaqRbi2tnBCtxbrzxbX7Py0CnblK6INoboSCi/kHrIt7k79wuKjUZxx8gbbb3Ye8NT9Zr4iEBZBtGniuqSViP4SW/3PvGjOAunDIov943pCqUlmxAkwFrikKx9ZExmybcrIDlXMUoku/JcJM7mI1ekAP2NuoZvkML3QJVOep9L1vcDBMxkK1oeCqoZJNCERDEV1b6pw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR07MB8110.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(83380400001)(186003)(38350700002)(6486002)(8676002)(66476007)(8936002)(86362001)(110136005)(956004)(966005)(66946007)(508600001)(36756003)(2906002)(316002)(6666004)(44832011)(38100700002)(4326008)(52116002)(6512007)(6506007)(5660300002)(26005)(66556008)(2616005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e4OU95k7EjRQ8o8bK4KMpkIRKZF2E/W9PJNz6qD/jw6sJ/od4zK6G9uGNDqL?=
+ =?us-ascii?Q?2k6fK0stz1BS4Gak+49ariz4iiUauw2CTjYLo9GAugdIF4XNpUEH0gVEmLU/?=
+ =?us-ascii?Q?nvY+j5YMRFybz0CLkKWM3GldHcZHAaTtDMzUq3e6TxNk1uqQ3BNVIGghlcd/?=
+ =?us-ascii?Q?3Rx20lGACsG10Qe6oncj0CS6wR8fwo/x5M1DqB1e5i4uC8PE074KgY2UrT/c?=
+ =?us-ascii?Q?kUsX5XzhKvfo5fwztuokzEZpUBprWLaUh0pw2HOnsgwxAcsXMs9/XFBMjafX?=
+ =?us-ascii?Q?GJPrlZY0C7tmGD9C8msbk1AMkASF1Pin38I2xtkkBLQWzZj8uke6pBzsfrX6?=
+ =?us-ascii?Q?PTr2MStwrTMBx2BbwsJeo40G4X/NfMJno2ho+LhJJGYZc7br6AgspepXHI0p?=
+ =?us-ascii?Q?cXC4ltUPo7MJlMdgsBCorP1QJ3bsq9cHxJ+eW4rK+ExEh2lRs2K/bFBo/qhT?=
+ =?us-ascii?Q?onVZ5exAlCh1y/c8Z/9NPUsrJlgXvtXG5ssvMWpxbtX90uEBEu9e3TBnxQhx?=
+ =?us-ascii?Q?dhHyJ0iEkanLf6hFoFL/2LwaqbWnq/FCWFkRIrEEwgq9BUj6rCQqvpuP9g80?=
+ =?us-ascii?Q?AW57MBrlkUvq//uLhWLV4pRx4t2jJFP3aUY/wDNfvYHc7CRT6Jk+XWMjG+fi?=
+ =?us-ascii?Q?KSQc/yMuP9B11uTWzWh0vC0m2NiHLQlz3UnOz321Txk50mdZQ1FtsWqJV736?=
+ =?us-ascii?Q?GG6YgIHiPNnN77xF+SgxwwTYqjrgGeIA7SoMeEziSMK1JFhd9PU/ytwUW+4f?=
+ =?us-ascii?Q?fjO+AVlQ5/iN3STHt1ERhIAjpeZe84oUGy2Qd2n8l68vI8KUncveihyRAyTc?=
+ =?us-ascii?Q?pGS9B+U+LUDkp1wLYrRdGkMI++V9yYv5fLf87PDCn/4175PCUX6iHBAQwsgk?=
+ =?us-ascii?Q?Gco+Du2l0ongpC947qSxcwUh3lyhv56vF394W4DLPxKB5iflqpUTVnYBVFKP?=
+ =?us-ascii?Q?QE6rGAplc82zR6v65oqOPEbdxkJpM1P0qFQvSJ3aGE/hjvqXpeQ6kQjxwL22?=
+ =?us-ascii?Q?ouA3deK/bPe0W5ah4UcEh/4eAdugReXmLM4wduBIjCEzmeEbZGkbWJEjuGtd?=
+ =?us-ascii?Q?WQTXhycyKAyUvMOpkYneEV14Vfxzjvy1EeCjHcxErHX+NnH5dP6/1C/2E3+c?=
+ =?us-ascii?Q?RASJBlwn93aBOjOrOH7QYOobLKCbKL40xM1yYPTBxKw7Z+hnBaFHnf36St4I?=
+ =?us-ascii?Q?WyZr3qcVWmwoqm1X4marCMdv8jc1RUe3L2Pl5xxIDRErcDZSD0BlC+V76rOt?=
+ =?us-ascii?Q?OERmCsc3UonNxmUhEzHg4CLE8HkLPxkz4WM4fGjcItH4Qb3IQ1mzYOMMwTIF?=
+ =?us-ascii?Q?FWTDWPlUL0DwReqk9Gp5xOsE?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3ee22bd-96ad-4eb4-2412-08d972052b81
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR07MB8110.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2021 13:41:18.1286
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HXYtM6HgLznSoLagEQMEKFmIFHn5lAmTAZa0CeYNaDmssDorb7HOFzhz7GIwIo6WTWCKMXUeD84VPbXe7FqfbtdZINlr4OT8KKkBSvOdR/0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR07MB8221
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 04, 2021 at 01:15:36AM +0200, Nicolas Frattaroli wrote:
-> On the Quartz64 Model A, the I2S1 TDM controller is connected
-> to the rk817 codec in I2S mode. Enabling it and adding the
-> necessary simple-sound-card and codec nodes allows for analog
-> audio output on the PINE64 Quartz64 Model A SBC.
-> 
-> Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 35 ++++++++++++++++++-
->  1 file changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> index a244f7b87e38..3a87c0240b30 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> @@ -58,6 +58,20 @@ led-diy {
->  		};
->  	};
->  
-> +	rk817-sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,name = "Analog RK817";
-> +		simple-audio-card,mclk-fs = <256>;
-> +
-> +		simple-audio-card,cpu {
-> +			sound-dai = <&i2s1_8ch>;
-> +		};
-> +		simple-audio-card,codec {
-> +			sound-dai = <&rk817>;
-> +		};
-> +	};
-> +
->  	vcc12v_dcin: vcc12v_dcin {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vcc12v_dcin";
-> @@ -199,8 +213,13 @@ rk817: pmic@20 {
->  		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
->  		clock-output-names = "rk808-clkout1", "rk808-clkout2";
->  
-> +		#sound-dai-cells = <0>;
-> +		clock-names = "mclk";
-> +		clocks = <&cru I2S1_MCLKOUT_TX>;
-> +		assigned-clocks = <&cru I2S1_MCLKOUT_TX>;
-> +		assigned-clock-parents = <&cru CLK_I2S1_8CH_TX>;
->  		pinctrl-names = "default";
-> -		pinctrl-0 = <&pmic_int_l>;
-> +		pinctrl-0 = <&pmic_int_l>, <&i2s1m0_mclk>;
->  		rockchip,system-power-controller;
->  		wakeup-source;
->  		#clock-cells = <1>;
-> @@ -389,9 +408,23 @@ regulator-state-mem {
->  				};
->  			};
->  		};
-> +
-> +		rk817_codec: codec {
+This series adds support for defining per-channel properies (like
+n-factor and label) to the TMP421 driver. It starts by adding the
+missing DT binding for tmp421, in the form that was there before any of
+my changes. Then I do the changes to the driver and finally adjust the
+bindings to my changes.
 
-This node should be optional and can probably be removed. It's only
-used when there are extra parameters to pass to the codec (such as 
-rockchip,mic-in-differential). Leaving it in shouldn't hurt anything
-though.
+The precedence for this case is:
+[PATCH v9 2/2] hwmon: (ina3221) Read channel input source info from DT
+Which can be found here:
+https://lkml.org/lkml/2018/10/2/136
 
-> +		};
-> +
->  	};
->  };
->  
-> +&i2s1_8ch {
-> +	status = "okay";
-> +	rockchip,trcm-sync-tx-only;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2s1m0_sclktx
-> +		     &i2s1m0_lrcktx
-> +		     &i2s1m0_sdi0
-> +		     &i2s1m0_sdo0>;
-> +};
-> +
->  &mdio1 {
->  	rgmii_phy1: ethernet-phy@0 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
-> -- 
-> 2.33.0
-> 
+My patches does similar thing but to tmp422 - we need a way to define
+the labels for specific channels as well as to define the n-factor (that
+is board specific as it depends on the diodes used for remote sensing).
+A possibility to disable unused channels seems like a good idea too.
+
+Krzysztof Adamski (8):
+  dt-bindings: hwmon: add missing tmp421 binding
+  hwmon: (tmp421) introduce MAX_CHANNELS define
+  hwmon: (tmp421) introduce a channel struct
+  hwmon: (tmp421) add support for defining labels from DT
+  hwmon: (tmp421) support disabling channels from DT
+  hwmon: (tmp421) support specifying n-factor via DT
+  hwmon: (tmp421) really disable channels
+  dt-bindings: hwmon: allow specifying channels for tmp421
+
+ .../devicetree/bindings/hwmon/tmp421.yaml     | 109 ++++++++++++++
+ drivers/hwmon/tmp421.c                        | 141 ++++++++++++++++--
+ 2 files changed, 234 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/tmp421.yaml
+
+-- 
+2.31.1
+
