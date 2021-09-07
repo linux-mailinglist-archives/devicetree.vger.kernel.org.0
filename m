@@ -2,104 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 275D34028BD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 14:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1ED4028F4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 14:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343995AbhIGM3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 08:29:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343992AbhIGM3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 08:29:03 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5408C061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 05:27:57 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id x5so7705709qtq.13
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 05:27:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WazygCXGIt0oTRoPxuhpgEJkZwMCzOdNrpXcapD6IMQ=;
-        b=L/y9MxYCco9ZCQyc7JqOQbveaeL7yhvAnHpMIYeiTpx4hjqmrG9hQodGGT0d8VXqOu
-         Gm9iF1/C4HrM5ieUokxjwdIYYjmZjyPchGaP1OcYUcTysdb5DbH5xwBN767Ma7PsGcH+
-         DRCXRFH4B6TKGbm5fbOezD0Ki16vHifMMKQpU=
+        id S1344322AbhIGMiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 08:38:18 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34274
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1344335AbhIGMhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 08:37:55 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D3E854077A
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 12:36:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631018208;
+        bh=kUQBNqvLjn5SJ3y1jqXZ48A4UtyVFge6gK8Eh6dxOP4=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=LhFyW1orG9sUBsUlQqQLgCXncSVeCFKbW+wEOo8VX5C2JmflRsPqA0KzPgruoU17M
+         8C+mWgLS2kbBCeIDCSSR5hw7p7s2c31XVG5gQsNhXxar3UMHi61IAyHxwz1AkQ90h+
+         HGF+VRVOSGv2beVFwTdGJdnp/VqhCyQ7fWUZsqlhzXME80ykKKQy05GkDOU7fJGOv/
+         e+2N8pJMXNZjxa9JkfvDH7cYtvwaRECwU0hJiW2vKvx6r6Wz3tVzOaI6VJq8DtMAEA
+         eSNE7Ekh/9qbzms/cunJt8j/+r4RjacBGxnM5jrqXfAfpd1UsXftTWHtT5dW8ZwH11
+         6JgMHOGFNaz6g==
+Received: by mail-wr1-f71.google.com with SMTP id u2-20020adfdd42000000b001579f5d6779so2057388wrm.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 05:36:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WazygCXGIt0oTRoPxuhpgEJkZwMCzOdNrpXcapD6IMQ=;
-        b=Vlpc7eEishXQy9O6YF1IOI5BIMofV4ZRmgmNIQ3DQCtOXQS34WgMfQDyhG8SeiLS2h
-         7yku3kfThp6zDLvXHTfttvc6urLeMMo5pwUW64Vhymanc1VoAawGLqIKzCSBbodpVrXd
-         cKbJKiXRRb1lm9WRyy9e2OBebwfs+OWumrCl3RYnVDUa2s09XDx0J5MLTBMPB/qs3oCD
-         Ee14HRWVgH20SCOVYyl9VL0MgemMk72sad7WM4id0TnQSTwei2VA4FXAtjQsmxmJaBpg
-         LuLYi4gQ71Y2qxUbvbGmAS1elaOUioXGu8bRRplWwUHvdDib38ao8ud3a6E8MmEX3dnr
-         N/QA==
-X-Gm-Message-State: AOAM533atVFJgqwiSbbojXo7FT50vtaU4o5UyedzatzzrtNFjN0ucMYP
-        +LrV5HBMNVkCYxah6e7NDM4GlEBEqYCDqMkD6uXV9Q==
-X-Google-Smtp-Source: ABdhPJyi+j+8R4WVWLZ33fUYunDQD0QKbKyw0r+Z98UCxjGkJzFsMjOjzhdmUuElK2X1vli9DvbtMH6AQV9U8Cf1ugY=
-X-Received: by 2002:ac8:5a13:: with SMTP id n19mr14999884qta.380.1631017676983;
- Tue, 07 Sep 2021 05:27:56 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kUQBNqvLjn5SJ3y1jqXZ48A4UtyVFge6gK8Eh6dxOP4=;
+        b=hCshjAsw+nUn4yzHjMgT5qoaf2aSXZ2b+q5gixRmT1Fj3/TPrcyL1AoF2KA9BlSHZ+
+         cZWaWDVuuepOpc9/tp0xSzKzAwMd0lvLx16NdNrU9JxXH7Vi1GMUKxGAu/0qI783qfN8
+         m1Xrlz8vChKr/HlZ+pnK+dYQY5tcW+NDTlQFvaBXzHwsWg8sBdh0OGrouDJ8vkMXScFz
+         FvRzDIjrHBdmAVmXUKY+omlgWL3R42yAfjCq+/H6R734JJEj4FvRlnnfHTmwi/zmwYWO
+         cayENoC1ICW29rRvRfqrLGVnkrrzlhYymPKpIYrNEU+Gto/jKobDo0s0CMvouzIbxt/m
+         JUMg==
+X-Gm-Message-State: AOAM53119krlPAdCmrqJnZ1KdttFVNarbzaXuFwdifPgZtlPKbdixP01
+        fhiQ/ARZFM3afxH0UA1txPHx0pSqcbY6WyQ7Sekg1em5FsyPQ9hjDKhbpp04nbKjchf1AOkEvMm
+        SV9DTupYcbGaO2jsUi+trYN/16doZMjbfFTcvrw4=
+X-Received: by 2002:a05:6000:18a:: with SMTP id p10mr17958049wrx.40.1631018208533;
+        Tue, 07 Sep 2021 05:36:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyinpXYU71XtwrZ3JCIxVV95srjFG3YvDI9n19gDYcDpDB5gs1mVCHI2a/OvPBFynEGh2zVEg==
+X-Received: by 2002:a05:6000:18a:: with SMTP id p10mr17958032wrx.40.1631018208383;
+        Tue, 07 Sep 2021 05:36:48 -0700 (PDT)
+Received: from [192.168.3.211] ([79.98.113.233])
+        by smtp.gmail.com with ESMTPSA id i9sm753657wmi.44.2021.09.07.05.36.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Sep 2021 05:36:47 -0700 (PDT)
+Subject: Re: [PATCH v3 8/8] memory: gpmc-omap: "gpmc,device-width" DT property
+ is optional
+To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210907113226.31876-1-rogerq@kernel.org>
+ <20210907113226.31876-9-rogerq@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <aa465bd9-b3d5-8d75-3e59-e86c2cd093cd@canonical.com>
+Date:   Tue, 7 Sep 2021 14:36:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20210907102722.47543-1-bert@biot.com> <20210907102722.47543-5-bert@biot.com>
- <CAFr9PXmCKPfdHnHU7=ALh=j2SDf71ibd8kEnLTK6aPN1vmQVdg@mail.gmail.com> <CAK8P3a21N8khjyV-f=p28ZogoakhLTrkoPBd6PeXrigba=7-TQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a21N8khjyV-f=p28ZogoakhLTrkoPBd6PeXrigba=7-TQ@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Tue, 7 Sep 2021 21:27:46 +0900
-Message-ID: <CAFr9PXn4JXGKSCDNeKMJDPgfezktyfBsTcq8GErt+ROuumDgrg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] ARM: Add basic support for Airoha EN7523 SoC
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Bert Vermeulen <bert@biot.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        John Crispin <john@phrozen.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        YiFei Zhu <yifeifz2@illinois.edu>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Mike Rapoport <rppt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210907113226.31876-9-rogerq@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+On 07/09/2021 13:32, Roger Quadros wrote:
+> Check for valid gpmc,device-width, nand-bus-width and bank-width
+> at one place. Default to 8-bit width if none present.
 
-On Tue, 7 Sept 2021 at 20:52, Arnd Bergmann <arnd@arndb.de> wrote:
-> > Off-topic but related:  Another MediaTek spin off, SigmaStar, seems to
-> > have done exactly the same thing. Cortex A53 chip running as a 32bit
-> > system to avoid having to fix their software. I'm interested to see if
-> > this makes it into arm or arm64. :)
->
-> Maybe it's best to just add them to both at the same time? The boot
-> loader situation might take a bit to work out, but in theory this should
-> be fixable.
+I don't understand the message in the context of the patch. The title
+says one property is optional - that's it. The message says you
+consolidate checks. How is this related to the title?
 
-I wonder how fixable it would be..
+The patch itself moves around checking of properties and reads
+nand-bus-width *always*. It does not "check at one place" but rather
+"check always". In the same time, the patch does not remove
+gpmc,device-width check in other place.
 
-I haven't gotten a board with the chip in question (SSD268G) yet but
-from looking at some firmware binaries I can see that even u-boot is a
-6 year old 32bit version.
-As far as I can tell there's no PSCI, ATF etc that I think would be
-expected for an arm64 machine.
-I think the broken memory controller is still there so somehow I'd
-need to get the heavy barrier to work in arm64. I haven't yet worked
-out if that's even possible.
-I think they are advertising that it supports up to 2GB of DDR. So
-it's a hobbled 64bit capable system with highmem.
+All three elements - the title, message and patch - do different things.
+What did you want to achieve here? Can you help in clarifying it?
 
-Putting most of the DT bits under arm64 even though it's so broken
-it'll only ever boot a 32bit kernel makes sense to me.
-Better than having lots of arm64 typical stuff like a newer GIC in a
-file under arm and confusing everyone that comes across it.
 
-Cheers,
+Best regards,
+Krzysztof
 
-Daniel
+
+> 
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  drivers/memory/omap-gpmc.c | 41 ++++++++++++++++++++++++--------------
+>  1 file changed, 26 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+> index f80c2ea39ca4..32d7c665f33c 100644
+> --- a/drivers/memory/omap-gpmc.c
+> +++ b/drivers/memory/omap-gpmc.c
+> @@ -2171,10 +2171,8 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>  		}
+>  	}
+>  
+> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+> -		/* NAND specific setup */
+> -		val = 8;
+> -		of_property_read_u32(child, "nand-bus-width", &val);
+> +	/* DT node can have "nand-bus-width" or "bank-width" or "gpmc,device-width" */
+> +	if (!of_property_read_u32(child, "nand-bus-width", &val)) {
+>  		switch (val) {
+>  		case 8:
+>  			gpmc_s.device_width = GPMC_DEVWIDTH_8BIT;
+> @@ -2183,24 +2181,37 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>  			gpmc_s.device_width = GPMC_DEVWIDTH_16BIT;
+>  			break;
+>  		default:
+> -			dev_err(&pdev->dev, "%pOFn: invalid 'nand-bus-width'\n",
+> -				child);
+> +			dev_err(&pdev->dev,
+> +				"%pOFn: invalid 'nand-bus-width':%d\n", child, val);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +	} else if (!of_property_read_u32(child, "bank-width", &val)) {
+> +		if (val != 1 && val != 2) {
+> +			dev_err(&pdev->dev,
+> +				"%pOFn: invalid 'bank-width':%d\n", child, val);
+>  			ret = -EINVAL;
+>  			goto err;
+>  		}
+> +		gpmc_s.device_width = val;
+> +	} else if (!of_property_read_u32(child, "gpmc,device-width", &val)) {
+> +		if (val != 1 && val != 2) {
+> +			dev_err(&pdev->dev,
+> +				"%pOFn: invalid 'gpmc,device-width':%d\n", child, val);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +		gpmc_s.device_width = val;
+> +	} else {
+> +		/* default to 8-bit */
+> +		gpmc_s.device_width = GPMC_DEVWIDTH_8BIT;
+> +	}
+>  
+> +	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+> +		/* NAND specific setup */
+>  		/* disable write protect */
+>  		gpmc_configure(GPMC_CONFIG_WP, 0);
+>  		gpmc_s.device_nand = true;
+> -	} else {
+> -		ret = of_property_read_u32(child, "bank-width",
+> -					   &gpmc_s.device_width);
+> -		if (ret < 0 && !gpmc_s.device_width) {
+> -			dev_err(&pdev->dev,
+> -				"%pOF has no 'gpmc,device-width' property\n",
+> -				child);
+> -			goto err;
+> -		}
+>  	}
+>  
+>  	/* Reserve wait pin if it is required and valid */
+> 
+
+
