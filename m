@@ -2,118 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2699402A1F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:49:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8B3B402A5A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 16:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344855AbhIGNuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 09:50:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344898AbhIGNuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 09:50:20 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93449C0613D9
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 06:49:08 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso12863164otu.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 06:49:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZKPnvNF1nG8+W6yNbYSXeoKYI5gY0M+REzFTki3a8W8=;
-        b=s8uJ8k5WsHJwSQTqbjT/Ro69aYHbfAaZ6P58wCSurU8gnUPUjgTUQY5OP4mnI3Da4e
-         LKHAmvWMvd7SD0sj/+IqLTummhME09VpZ8C8KKCWPE0XQfR8kEObgH8Y0rFquwmdzPxR
-         beKdLJWZM9+MLIJttl2PbBFqpweasmSjwwNdc91VJwQR4WbmrzI/Iv/hRiMLTE0umjdd
-         T/DOUJ+r+d7pAA5JP6wrTSbEhHhcb4xS4YSys7igSUlsNUD8kolzRMvKDxUNGhB+5gI4
-         IbCZOsfGGvJFFNsXe3vWC9Ou2hKoaj/aR2lawL2iZrqCUpmYvkU0ZR7Wu54ZQM7Ix4aW
-         enFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZKPnvNF1nG8+W6yNbYSXeoKYI5gY0M+REzFTki3a8W8=;
-        b=W6AtCmslWzvkM4HCc12g8H8GIPXKf9uc2siPvSodFs0qkYn7BD2nZRnvrhL2AE7Izn
-         AOwzPNRn34h2zm8eCg4qZolzMZeEr3Vl4flvdHyybR6XfHiv6rQ0xu60fTlu7NPY5oAV
-         7vugRZp5msELCAVg6O2e07sVAMEZ2Pec9MVA4kvWEvDSPoIBWO3UxQQbGxWyO9D6PHyk
-         HQpmAxZdqUd98ivyR4jmh4qvL/03hRhdcJ29oaIti8PWGdB2YfE3ebZHJ06ajJ+QSE89
-         DluiLLYGyzcsh75X65hQzVHERufwlktkrmkV1N+YVAsjRcmThlqZmBnGV8a84QjvT3HJ
-         UxAg==
-X-Gm-Message-State: AOAM5317jMV01ziwjKfoTw6o+1Jpg5ke8uWCQGrtt625KLCxItAqYAHJ
-        whbY5vCm97RKDpv3TgB0IuL7XQ==
-X-Google-Smtp-Source: ABdhPJxOgJqbbRECRpG09kc5DklBurZ0ptKiSfkG5hC+0QVqKiI8CcS0w1sVyQmO6ltcTZO41kC8rg==
-X-Received: by 2002:a05:6830:353:: with SMTP id h19mr15545460ote.119.1631022547966;
-        Tue, 07 Sep 2021 06:49:07 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w23sm2134477oih.4.2021.09.07.06.49.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 06:49:07 -0700 (PDT)
-Date:   Tue, 7 Sep 2021 06:50:06 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pratham Pratap <prathampratap@codeaurora.org>
-Subject: Re: [PATCH 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
- for dwc3 qcom
-Message-ID: <YTduDqCO9aUyAsw1@ripper>
-References: <1630346073-7099-1-git-send-email-sanm@codeaurora.org>
- <1630346073-7099-2-git-send-email-sanm@codeaurora.org>
+        id S232037AbhIGOEf convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Sep 2021 10:04:35 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:52655 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229650AbhIGOEb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 10:04:31 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id CD03F40004;
+        Tue,  7 Sep 2021 14:03:18 +0000 (UTC)
+Date:   Tue, 7 Sep 2021 16:03:17 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     tony@atomide.com, robh+dt@kernel.org, grygorii.strashko@ti.com,
+        nm@ti.com, lokeshvutla@ti.com, nsekhar@ti.com,
+        krzysztof.kozlowski@canonical.com, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/8] dt-bindings: mtd: ti,gpmc-nand: Convert to yaml
+Message-ID: <20210907160317.2ec5304a@xps13>
+In-Reply-To: <20210907113226.31876-6-rogerq@kernel.org>
+References: <20210907113226.31876-1-rogerq@kernel.org>
+        <20210907113226.31876-6-rogerq@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1630346073-7099-2-git-send-email-sanm@codeaurora.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 30 Aug 10:54 PDT 2021, Sandeep Maheswaram wrote:
+Hi Roger,
 
-> Add multi pd bindings to set performance state for cx domain
-> to maintain minimum corner voltage for USB clocks.
+rogerq@kernel.org wrote on Tue,  7 Sep 2021 14:32:23 +0300:
+
+> Convert gpmc-nand.txt to ti,gpmc-nand.yaml.
 > 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 > ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/mtd/gpmc-nand.txt     | 147 ------------------
+>  .../devicetree/bindings/mtd/ti,gpmc-nand.yaml | 110 +++++++++++++
+>  2 files changed, 110 insertions(+), 147 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-nand.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index e70afc4..838d9c4 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -41,7 +41,18 @@ properties:
->  
->    power-domains:
->      description: specifies a phandle to PM domain provider node
-> -    maxItems: 1
-> +    minItems: 1
+> diff --git a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
+> deleted file mode 100644
+> index 44919d48d241..000000000000
+> --- a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
+> +++ /dev/null
+> @@ -1,147 +0,0 @@
+> -Device tree bindings for GPMC connected NANDs
+> -
+> -GPMC connected NAND (found on OMAP boards) are represented as child nodes of
+> -the GPMC controller with a name of "nand".
+> -
+> -All timing relevant properties as well as generic gpmc child properties are
+> -explained in a separate documents - please refer to
+> -Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+> -
+> -For NAND specific properties such as ECC modes or bus width, please refer to
+> -Documentation/devicetree/bindings/mtd/nand-controller.yaml
+> -
+> -
+> -Required properties:
+> -
+> - - compatible:	"ti,omap2-nand"
+> - - reg:		range id (CS number), base offset and length of the
+> -		NAND I/O space
+> - - interrupts:	Two interrupt specifiers, one for fifoevent, one for termcount.
+> -
+> -Optional properties:
+> -
+> - - nand-bus-width: 		Set this numeric value to 16 if the hardware
+> -				is wired that way. If not specified, a bus
+> -				width of 8 is assumed.
+> -
+> - - ti,nand-ecc-opt:		A string setting the ECC layout to use. One of:
+> -		"sw"		1-bit Hamming ecc code via software
+> -		"hw"		<deprecated> use "ham1" instead
+> -		"hw-romcode"	<deprecated> use "ham1" instead
+> -		"ham1"		1-bit Hamming ecc code
+> -		"bch4"		4-bit BCH ecc code
+> -		"bch8"		8-bit BCH ecc code
+> -		"bch16"		16-bit BCH ECC code
+> -		Refer below "How to select correct ECC scheme for your device ?"
+> -
+> - - ti,nand-xfer-type:		A string setting the data transfer type. One of:
+> -
+> -		"prefetch-polled"	Prefetch polled mode (default)
+> -		"polled"		Polled mode, without prefetch
+> -		"prefetch-dma"		Prefetch enabled DMA mode
+> -		"prefetch-irq"		Prefetch enabled irq mode
+> -
+> - - elm_id:	<deprecated> use "ti,elm-id" instead
+> - - ti,elm-id:	Specifies phandle of the ELM devicetree node.
+> -		ELM is an on-chip hardware engine on TI SoC which is used for
+> -		locating ECC errors for BCHx algorithms. SoC devices which have
+> -		ELM hardware engines should specify this device node in .dtsi
+> -		Using ELM for ECC error correction frees some CPU cycles.
+> - - rb-gpios:	GPIO specifier for the ready/busy# pin.
+> -
+> -For inline partition table parsing (optional):
+> -
+> - - #address-cells: should be set to 1
+> - - #size-cells: should be set to 1
+> -
+> -Example for an AM33xx board:
+> -
+> -	gpmc: gpmc@50000000 {
+> -		compatible = "ti,am3352-gpmc";
+> -		ti,hwmods = "gpmc";
+> -		reg = <0x50000000 0x36c>;
+> -		interrupts = <100>;
+> -		gpmc,num-cs = <8>;
+> -		gpmc,num-waitpins = <2>;
+> -		#address-cells = <2>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0x08000000 0x1000000>;	/* CS0 space, 16MB */
+> -		elm_id = <&elm>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -
+> -		nand@0,0 {
+> -			compatible = "ti,omap2-nand";
+> -			reg = <0 0 4>;		/* CS0, offset 0, NAND I/O window 4 */
+> -			interrupt-parent = <&gpmc>;
+> -			interrupts = <0 IRQ_TYPE_NONE>, <1 IRQ_TYPE NONE>;
+> -			nand-bus-width = <16>;
+> -			ti,nand-ecc-opt = "bch8";
+> -			ti,nand-xfer-type = "polled";
+> -			rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>; /* gpmc_wait0 */
+> -
+> -			gpmc,sync-clk-ps = <0>;
+> -			gpmc,cs-on-ns = <0>;
+> -			gpmc,cs-rd-off-ns = <44>;
+> -			gpmc,cs-wr-off-ns = <44>;
+> -			gpmc,adv-on-ns = <6>;
+> -			gpmc,adv-rd-off-ns = <34>;
+> -			gpmc,adv-wr-off-ns = <44>;
+> -			gpmc,we-off-ns = <40>;
+> -			gpmc,oe-off-ns = <54>;
+> -			gpmc,access-ns = <64>;
+> -			gpmc,rd-cycle-ns = <82>;
+> -			gpmc,wr-cycle-ns = <82>;
+> -			gpmc,wr-access-ns = <40>;
+> -			gpmc,wr-data-mux-bus-ns = <0>;
+> -
+> -			#address-cells = <1>;
+> -			#size-cells = <1>;
+> -
+> -			/* partitions go here */
+> -		};
+> -	};
+> -
+> -How to select correct ECC scheme for your device ?
+> ---------------------------------------------------
+> -Higher ECC scheme usually means better protection against bit-flips and
+> -increased system lifetime. However, selection of ECC scheme is dependent
+> -on various other factors also like;
+> -
+> -(1) support of built in hardware engines.
+> -	Some legacy OMAP SoC do not have ELM harware engine, so those SoC cannot
+> -	support ecc-schemes with hardware error-correction (BCHx_HW). However
+> -	such SoC can use ecc-schemes with software library for error-correction
+> -	(BCHx_HW_DETECTION_SW). The error correction capability with software
+> -	library remains equivalent to their hardware counter-part, but there is
+> -	slight CPU penalty when too many bit-flips are detected during reads.
+> -
+> -(2) Device parameters like OOBSIZE.
+> -	Other factor which governs the selection of ecc-scheme is oob-size.
+> -	Higher ECC schemes require more OOB/Spare area to store ECC syndrome,
+> -	so the device should have enough free bytes available its OOB/Spare
+> -	area to accommodate ECC for entire page. In general following expression
+> -	helps in determining if given device can accommodate ECC syndrome:
+> -	"2 + (PAGESIZE / 512) * ECC_BYTES" >= OOBSIZE"
+> -	where
+> -		OOBSIZE		number of bytes in OOB/spare area
+> -		PAGESIZE	number of bytes in main-area of device page
+> -		ECC_BYTES	number of ECC bytes generated to protect
+> -		                512 bytes of data, which is:
+> -				'3' for HAM1_xx ecc schemes
+> -				'7' for BCH4_xx ecc schemes
+> -				'14' for BCH8_xx ecc schemes
+> -				'26' for BCH16_xx ecc schemes
+> -
+> -	Example(a): For a device with PAGESIZE = 2048 and OOBSIZE = 64 and
+> -		trying to use BCH16 (ECC_BYTES=26) ecc-scheme.
+> -		Number of ECC bytes per page = (2 + (2048 / 512) * 26) = 106 B
+> -		which is greater than capacity of NAND device (OOBSIZE=64)
+> -		Hence, BCH16 cannot be supported on given device. But it can
+> -		probably use lower ecc-schemes like BCH8.
+> -
+> -	Example(b): For a device with PAGESIZE = 2048 and OOBSIZE = 128 and
+> -		trying to use BCH16 (ECC_BYTES=26) ecc-scheme.
+> -		Number of ECC bytes per page = (2 + (2048 / 512) * 26) = 106 B
+> -		which can be accommodated in the OOB/Spare area of this device
+> -		(OOBSIZE=128). So this device can use BCH16 ecc-scheme.
+> diff --git a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+> new file mode 100644
+> index 000000000000..db36f2e944ef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/ti,gpmc-nand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments GPMC NAND Flash controller.
+> +
+> +maintainers:
+> +  - Tony Lindgren <tony@atomide.com>
+> +  - Roger Quadros <rogerq@kernel.org>
+> +
+> +description:
+> +  GPMC NAND controller/Flash is represented as a child of the
+> +  GPMC controller node.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,omap2-nand
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
 > +    items:
-> +      - description: optional,cx power domain
-> +      - description: USB gdsc power domain
+> +      - description: Interrupt for fifoevent
+> +      - description: Interrupt for termcount
 > +
-> +  power-domain-names:
-> +     items:
-> +      - const: cx
-> +      - const: usb_gdsc
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ti,nand-ecc-opt:
+> +    description: Desired ECC algorithm
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [sw, ham1, bch4, bch8, bch16]
+> +
+> +  ti,nand-xfer-type:
+> +    description: Data transfer method between controller and chip.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [prefetch-polled, polled, prefetch-dma, prefetch-irq]
+> +    default: prefetch-polled
+> +
+> +  ti,elm-id:
+> +    description:
+> +      phandle to the ELM (Error Location Module).
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-But "usb_gdsc" is a subdomain of "cx", why can't we describe this fact
-in gcc?
-
-Regards,
-Bjorn
+Should perhaps keep the elm-id property documented but set to
+'deprecated'.
 
 > +
-> +  required-opps:
-> +    description: specifies the performance state to cx power domain
->  
->    clocks:
->      description:
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+> +  nand-bus-width:
+> +    description:
+> +      Bus width to the NAND chip
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [8, 16]
+> +    default: 8
+
+This is part of nand-controller.yaml binding and should not be there.
+
+> +
+> +allOf:
+> +  - $ref: "../memory-controllers/ti,gpmc-child.yaml"
+
+Maybe you need to reference the nand controller bindings as well
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ti,nand-ecc-opt
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    gpmc: memory-controller@50000000 {
+> +      compatible = "ti,am3352-gpmc";
+> +      dmas = <&edma 52 0>;
+> +      dma-names = "rxtx";
+> +      clocks = <&l3s_gclk>;
+> +      clock-names = "fck";
+> +      reg = <0x50000000 0x2000>;
+> +      interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> +      gpmc,num-cs = <7>;
+> +      gpmc,num-waitpins = <2>;
+> +      #address-cells = <2>;
+> +      #size-cells = <1>;
+> +      interrupt-controller;
+> +      #interrupt-cells = <2>;
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +
+> +      ranges = <0 0 0x08000000 0x01000000>;   /* CS0 space. Min partition = 16MB */
+> +      nand@0,0 {
+> +        compatible = "ti,omap2-nand";
+> +        reg = <0 0 4>;          /* device IO registers */
+> +        interrupt-parent = <&gpmc>;
+> +        interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
+> +                     <1 IRQ_TYPE_NONE>; /* termcount */
+> +        ti,nand-xfer-type = "prefetch-dma";
+> +        ti,nand-ecc-opt = "bch16";
+> +        ti,elm-id = <&elm>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        /* NAND generic properties */
+> +        nand-bus-width = <8>;
+> +        rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>;  /* gpmc_wait0 */
+> +
+> +        /* GPMC properties*/
+> +        gpmc,device-width = <1>;
+> +      };
+> +    };
+
+
+Thanks,
+Miquèl
