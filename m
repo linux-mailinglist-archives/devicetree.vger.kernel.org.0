@@ -2,127 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 253A1402ED8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64A7A402EE4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345992AbhIGTPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 15:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345986AbhIGTP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:15:29 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAADC061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 12:14:23 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id i13so176518ilm.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 12:14:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wptDSYLyDM12oE9PwIaapQVmJMO09viAmQFPtSVPYek=;
-        b=g6tHrIqYCpyi3uj+Y8V0ZzItGWMeRuxbj7UZPUdqo9Ry/Sn6Ke28/Dg30vmx4JzCqo
-         P666Khn7t7fmoEngyabMLFpP8CPK0f0OV9XBYX8VYiMK7gPoOcmKMoEVfQg4SzTjJ3l8
-         Br8oh0YDph1cvQZS95VDMXVGHdGTntHbICFKQ=
+        id S1345371AbhIGTSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 15:18:50 -0400
+Received: from mail-vk1-f182.google.com ([209.85.221.182]:34334 "EHLO
+        mail-vk1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230203AbhIGTSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:18:50 -0400
+Received: by mail-vk1-f182.google.com with SMTP id 13so125412vkl.1;
+        Tue, 07 Sep 2021 12:17:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
+        d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=wptDSYLyDM12oE9PwIaapQVmJMO09viAmQFPtSVPYek=;
-        b=ZLzR05a8p7xwQ/MHILDxZPFdFU6hM++LUpEX/k+147eh5CjkemfLCYwE2wWrOCPiHx
-         YdzEqdG5AXAnrG/15wVSzYwB6RLwYoswVmwn2GDoMUOTLA4I+LN6Px8iXx0lwcVlzuiX
-         HbPcLdGmUPzc7uXnkarCrpUBctBTtAMp4JtEdo0RveoITvVOW/UyncddE2kgYKyVMak9
-         D9fgKoe3XzZqLYIdRaypvRaqVxUpLIzPSR3fiBWqRId5fGwdfbHcSm/rhFjgCKYqECVI
-         C0qi50cenzBMnPQHJ9tBQLj+RmJ4P/26ZBUMFmeJXF026XHXjQTzn/2EKRl32Ds1lSvR
-         ewXw==
-X-Gm-Message-State: AOAM5308+1/gGPjiFsqt/zhia4dTfugoDRZ7dcpKR/b2sNNylkvlOWlt
-        lDaxdHoCwk88ujECO8ma0WnDktbh4SCiDg==
-X-Google-Smtp-Source: ABdhPJw3tYeq/MKSbqFAiF88vUg3AauqPblVWaIv+WY5bmNe2nTB6iMHsmqEk5RiJK4XgTT5tZyGZQ==
-X-Received: by 2002:a92:4a0b:: with SMTP id m11mr13206597ilf.118.1631042062288;
-        Tue, 07 Sep 2021 12:14:22 -0700 (PDT)
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com. [209.85.166.169])
-        by smtp.gmail.com with ESMTPSA id o11sm6585171ilf.86.2021.09.07.12.14.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 12:14:21 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id b4so136499ilr.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 12:14:21 -0700 (PDT)
-X-Received: by 2002:a92:6b0a:: with SMTP id g10mr3631557ilc.27.1631042060676;
- Tue, 07 Sep 2021 12:14:20 -0700 (PDT)
+        bh=HybJMlAw2y2ijeDg8NtpVEMi7UblwoRmrxRA4Rveu7I=;
+        b=UHQlzCoWdaEna9A0ew1ImNuxeEQXt7cnuN+uUAfq1k/1N8EENveH1MpbrH04GYO819
+         yRTUv8E8jnUdrIEd4oiGs7Jxk2Kd96Km+7fC02GaIWUx2bp5wbRfRHRHHD2jQ6pIUTjj
+         PNd209fkEOu3zTdsqBfwkAT8BwMmzzEar5Hdk21Yy1UcAcsCTAHpjBNc2j1VE9ETtQht
+         n7AGtxXUQE9me8wGXUxcY/Ox3kqLN3/mckcy59//7xzYns+AKEokjej81OFt1LXhs02l
+         jqU1R5f+ftyaUAIr2qzVQPDrioo6U4Em4bqYlp0gGb7T2ElzH1KJ9tvkckcgTU/Ll8Pz
+         8VVg==
+X-Gm-Message-State: AOAM5334MXtLEVt+22rH5mgk2N/mTN0hXjo3OZFtFopz7g0enQhbFC+O
+        ziCfcGdSxnpuYsAetdeJzWgQaywsRjbLWWuJeF7wHn8z
+X-Google-Smtp-Source: ABdhPJyIH0Mriu2yKBIMyY3xYIxiPRQzP7kDyByVOL/e44hGiXY917Ry3aMp6jg6SHq1PM2/3dQZEiN5LGPiKBwRQ6U=
+X-Received: by 2002:a1f:d247:: with SMTP id j68mr9449607vkg.7.1631042263032;
+ Tue, 07 Sep 2021 12:17:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
- <1627581885-32165-4-git-send-email-sibis@codeaurora.org> <YS5LDb4KDFx/dRnM@google.com>
- <YS5hDq+xblntYbh0@ripper> <fde7bac239f796b039b9be58b391fb77@codeaurora.org>
-In-Reply-To: <fde7bac239f796b039b9be58b391fb77@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 7 Sep 2021 12:14:08 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XHzwvudc4jABHVUC0OkKat-xdvo5yY2xRJ0VP5gds91w@mail.gmail.com>
-Message-ID: <CAD=FV=XHzwvudc4jABHVUC0OkKat-xdvo5yY2xRJ0VP5gds91w@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7280: Fixup the cpufreq node
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+References: <20210901233655.1602308-1-kieran.bingham@ideasonboard.com>
+ <CAMuHMdXHAfg3_VoeXUBT2-QceLR9KQ3pWjz+5=-wK1QRxK14bw@mail.gmail.com> <YTezLHrRt/YpOlJZ@robh.at.kernel.org>
+In-Reply-To: <YTezLHrRt/YpOlJZ@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 7 Sep 2021 21:17:31 +0200
+Message-ID: <CAMuHMdXGK=+W=C3c9GV8br9ZvQpAhj4ePiq7m1N8YBo1vzZjvQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob,
 
-On Sun, Sep 5, 2021 at 8:20 PM Sibi Sankar <sibis@codeaurora.org> wrote:
+On Tue, Sep 7, 2021 at 8:45 PM Rob Herring <robh@kernel.org> wrote:
+> On Mon, Sep 06, 2021 at 10:13:07AM +0200, Geert Uytterhoeven wrote:
+> > On Thu, Sep 2, 2021 at 1:39 AM Kieran Bingham
+> > <kieran.bingham@ideasonboard.com> wrote:
+> > > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > >
+> > > Extend the Renesas DU display bindings to support the r8a779a0 V3U.
+> > >
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > > ---
+> > > v2:
+> > >  - Collected Laurent's tag
+> > >  - Remove clock-names requirement
+> > >  - Specify only a single clock
+> >
+> > Thanks for the update!
+> >
+> > > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > @@ -39,6 +39,7 @@ properties:
+> > >        - renesas,du-r8a77980 # for R-Car V3H compatible DU
+> > >        - renesas,du-r8a77990 # for R-Car E3 compatible DU
+> > >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+> > > +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -773,6 +774,55 @@ allOf:
+> > >          - reset-names
+> > >          - renesas,vsps
+> > >
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - renesas,du-r8a779a0
+> > > +    then:
+> > > +      properties:
+> > > +        clocks:
+> > > +          items:
+> > > +            - description: Functional clock
+> > > +
+> > > +        clock-names:
+> > > +          maxItems: 1
+> > > +          items:
+> > > +            - const: du
+> > > +
+> > > +        interrupts:
+> > > +          maxItems: 2
+> > > +
+> > > +        resets:
+> > > +          maxItems: 1
+> > > +
+> > > +        reset-names:
+> > > +          items:
+> > > +            - const: du.0
+> >
+> > This is now inconsistent with clock-names, which doesn't use a suffix.
 >
-> On 2021-08-31 22:34, Bjorn Andersson wrote:
-> > On Tue 31 Aug 08:30 PDT 2021, Matthias Kaehlcke wrote:
-> >
-> >> On Thu, Jul 29, 2021 at 11:34:44PM +0530, Sibi Sankar wrote:
-> >> > Fixup the register regions used by the cpufreq node on SC7280 SoC to
-> >> > support per core L3 DCVS.
-> >> >
-> >> > Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
-> >> > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> >>
-> >> This patch landed in the Bjorn's tree, however the corresponding
-> >> driver
-> >> change ("cpufreq: qcom: Re-arrange register offsets to support per
-> >> core
-> >> L3 DCVS" /
-> >> https://patchwork.kernel.org/project/linux-arm-msm/patch/1627581885-32165-3-git-send-email-sibis@codeaurora.org/)
-> >> did not land in any maintainer tree yet AFAIK. IIUC the DT change
-> >> alone
-> >> breaks cpufreq since the changed register regions require the changed
-> >> offset in the cpufreq driver.
-> >>
-> >
-> > Thanks for the note Matthias, it must have slipped by as I scraped the
-> > inbox for things that looked ready.
-> >
-> > I'm actually not in favor of splitting these memory blocks in DT to
-> > facilitate the Linux implementation of splitting that in multiple
-> > drivers...
-> >
-> > But I've not been following up on that discussion.
-> >
-> > Regards,
-> > Bjorn
-> >
-> >> Sibi, please confirm or clarify that my concern is unwarranted.
->
-> Let's drop the patch asap as it breaks
-> SC7280 cpufreq on lnext without the driver
-> changes.
+> But it is consistent with all the other cases of 'reset-names'. The
+> problem is 'clock-names' is not consistent and should be 'du.0'.
 
-It's already landed so we need a revert:
+True.
 
-https://lore.kernel.org/r/20210907121220.1.I08460f490473b70de0d768db45f030a4d5c17828@changeid/
+> Ideally, the if/them schemas should not be defining the names. That
+> should be at the top level and the if/them schema just limits the number
+> of entries. That's not always possible, but I think is for clocks and
+> resets in this case.
 
--Doug
+It's a bit tricky.
+For clocks, there's usually one clock per channel, but not always.
+Plus clocks for external inputs, if present.
+For resets, there's one reset for a group of channels, with the number
+of channels in a group depending on the SoC family.
+And then there's the special casing for SoCs where there's a gap in
+the channel numbering...
+
+Still wondering if it would be better to have one device node per
+channel, and companion links...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
