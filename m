@@ -2,246 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58EC9402547
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 10:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4A9F4025C8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 10:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242957AbhIGIkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 04:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243008AbhIGIkq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 04:40:46 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C0BC0613C1
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 01:39:40 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id i28so1963357wrb.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 01:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tmdXYabHBlH0lzTR2aGEg4jjkPTidI1mG07cS/MQyTc=;
-        b=b3dS4AUF3x8YJP0MHj9VQNJzu+5FaEBv2n1zRCv3YXmTXTkGkm+SQIVEeNELn0Ckbi
-         S6aAexEhIXCCSetvenP4sRLVOQiZZPluj+9Tojdmc/XdQPToUkLX+WhtHtZqAsVToK9R
-         PKS1wKnI7TIigejl8kDKT2AWgebp9s5WaMQTkWEHQRfGdtdh4UcGYFD4jHuJ1p71coHa
-         El4whTjb3Qj8bHoRpMKmQp7CWpUgqYCHlI+wSwN/zANsgburryHCFv55vYf0q0eEqDjp
-         rl/pSLdm4qvpRm9QMmkWJvbHVa00DnEaeRUnLyeeARI7qWzXs+uKnJIZxrxC9dxXW99j
-         qnTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tmdXYabHBlH0lzTR2aGEg4jjkPTidI1mG07cS/MQyTc=;
-        b=DleK/Fd0M7fhIUr9uNPrT8996eQXa3tzSdLJjE2TT2leyOWx9F05r7J4Vb3QPucEwZ
-         0op7JZUJNt18J/ODzaarhlkGQL6rGyHG+s0KkTW8kmsh66XN1Fy0i9RpwKtiT8Xd44mz
-         lQYypc6rgplYUGl/kXo5BPuW71Fd1wUqeEjfEcwG3PfRYRShozxdexTvgNzRJNypM94d
-         apRTr2eC9M9xDV7EG0/xaQ/0+hCCuE92psejM0G5Ni2nab5l2MozfKYKE6+rLtdBpARD
-         KRvZHog7J5HebC8yip9t5vdtONvMOZzCcmNtC69411f8P2NdnGgOsQ5QEj6M7D9je3nW
-         SuyA==
-X-Gm-Message-State: AOAM531rzbl2WmWCNf5VJwQ2d0WEW2gCwVE9l5HE/F30UN6c4yfxswFN
-        AyfrJT9yszPymY6dR8muDh+HCA==
-X-Google-Smtp-Source: ABdhPJyDgiMvPKHxYxRk/TRfiki81RSVnZoaBVGMlrlfdZYclA0TZPFkDpfqZUikhceozNhYswoUCA==
-X-Received: by 2002:adf:9e4d:: with SMTP id v13mr17418975wre.26.1631003979019;
-        Tue, 07 Sep 2021 01:39:39 -0700 (PDT)
-Received: from localhost.localdomain (2a02-8440-6141-3317-3074-96af-9642-0002.rev.sfr.net. [2a02:8440:6141:3317:3074:96af:9642:2])
-        by smtp.gmail.com with ESMTPSA id m186sm1737027wme.48.2021.09.07.01.39.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 01:39:38 -0700 (PDT)
-From:   Guillaume Ranquet <granquet@baylibre.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: [PATCH 4/4] dt-bindings: display: mediatek: add MT8195 hdmi bindings
-Date:   Tue,  7 Sep 2021 10:37:21 +0200
-Message-Id: <20210907083723.7725-5-granquet@baylibre.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210907083723.7725-1-granquet@baylibre.com>
-References: <20210907083723.7725-1-granquet@baylibre.com>
+        id S244600AbhIGJAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 05:00:20 -0400
+Received: from smtp-out2.suse.de ([195.135.220.29]:57262 "EHLO
+        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244879AbhIGJAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 05:00:18 -0400
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id A95481FE19;
+        Tue,  7 Sep 2021 08:59:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1631005151; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=67kAHH5xohVl5jt4+A4YLbZP3+bIJFVJRf3g+DvSKqI=;
+        b=K933s0Hnyg728XU0LhiQ05M5kWTAbdU+QwfXXgLawP80b2RRouVt48GZafKuvI3OLzAEBw
+        AgRBbQKl48zD3xR+x9jmjovdBaIIzsiw/qjOjBTDexked5n8tB/WBlxNOH5KK7jUAIacVO
+        KYEVGseDoFxBGNOxr+zi3T97fPQiio0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1631005151;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=67kAHH5xohVl5jt4+A4YLbZP3+bIJFVJRf3g+DvSKqI=;
+        b=f+1QheCIte4VpHAXGu0jWwBfn+j7rKhkYaNS78u1bH8ZBUDsqfmrfevjNg1N1VgK3BRbNj
+        UaNFOrAB/cQrZwCA==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 00DF512FF9;
+        Tue,  7 Sep 2021 08:59:10 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap1.suse-dmz.suse.de with ESMTPSA
+        id j0JqOt4pN2ESKQAAGKfGzw
+        (envelope-from <afaerber@suse.de>); Tue, 07 Sep 2021 08:59:10 +0000
+Message-ID: <9a64b668-8c8a-4ed9-89b7-c5bc1a74ae45@suse.de>
+Date:   Tue, 7 Sep 2021 10:59:10 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.0.1
+Subject: Re: [PATCH 1/8] dt-bindings: arm: fsl: add NXP S32G2 boards
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Chester Lin <clin@suse.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Jagan Teki <jagan@amarulasolutions.com>, s32@nxp.com,
+        catalin-dan.udma@nxp.com, bogdan.hamciuc@nxp.com,
+        bogdan.folea@nxp.com, ciprianmarian.costea@nxp.com,
+        radu-nicolae.pirea@nxp.com, ghennadi.procopciuc@nxp.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Ivan T . Ivanov" <iivanov@suse.de>,
+        "Lee, Chun-Yi" <jlee@suse.com>, Rob Herring <robh@kernel.org>
+References: <20210805065429.27485-1-clin@suse.com>
+ <20210805065429.27485-2-clin@suse.com> <YRaxt1LCF+hWaMJU@robh.at.kernel.org>
+ <YR0akXYPYthDuvCh@linux-8mug> <11f8b913-1057-7d30-e936-f27483f9a6e2@suse.de>
+ <CAJKOXPdZ2iP3-BUk+p5A=UnbGia7s2GAOh84htcEjwB1wNAJrQ@mail.gmail.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+In-Reply-To: <CAJKOXPdZ2iP3-BUk+p5A=UnbGia7s2GAOh84htcEjwB1wNAJrQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Mediatek HDMI and HDMI-DDC bindings for MT8195 SoC.
+Hi Krzysztof,
 
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
----
- .../mediatek/mediatek,mt8195-hdmi-ddc.yaml    | 46 +++++++++
- .../mediatek/mediatek,mt8195-hdmi.yaml        | 99 +++++++++++++++++++
- 2 files changed, 145 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
+On 07.09.21 08:59, Krzysztof Kozlowski wrote:
+> On Mon, 6 Sept 2021 at 22:38, Andreas Färber <afaerber@suse.de> wrote:
+>> On 18.08.21 16:34, Chester Lin wrote:
+>>> On Fri, Aug 13, 2021 at 12:53:59PM -0500, Rob Herring wrote:
+>>>> On Thu, Aug 05, 2021 at 02:54:22PM +0800, Chester Lin wrote:
+>>>>> Add bindings for S32G2's evaluation board (S32G-VNP-EVB) and reference
+>>>>> design 2 board ( S32G-VNP-RDB2).
+>>>>>
+>>>>> Signed-off-by: Chester Lin <clin@suse.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
+>>>>>  1 file changed, 7 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> index e2097011c4b0..3914aa09e503 100644
+>>>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>>>> @@ -983,6 +983,13 @@ properties:
+>>>>>            - const: solidrun,lx2160a-cex7
+>>>>>            - const: fsl,lx2160a
+>>>>>
+>>>>> +      - description: S32G2 based Boards
+>>>>> +        items:
+>>>>> +          - enum:
+>>>>> +              - fsl,s32g274a-evb
+>>>>> +              - fsl,s32g274a-rdb2
+>>>>> +          - const: fsl,s32g2
+>>>>
+>>>> Given this is an entirely different family from i.MX and new?, shouldn't
+>>>> it use 'nxp' instead of 'fsl'? Either way,
+>>>
+>>> It sounds good and Radu from NXP has mentioned a similar idea for the
+>>> compatible string of linflexuart. To keep the naming consistency, should we
+>>> change all 'fsl' to 'nxp' as well?
+>>
+>> I assume that question was just unclearly phrased, so for the record:
+>>
+>> ABI stability rules forbid us from changing "all 'fsl'" in compatible
+>> strings or property names.
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/ABI.rst
+>>
+>> Deployed firmware providing mainline-merged platforms with DTBs using
+>> fsl prefix (e.g., the quoted LX2160A) needs to continue working with
+>> newer drivers, and deployed mainline Linux should continue working after
+>> firmware updates that modify the DTB provided to Linux.
+> 
+> This is a new platform/SoC therefore there is no ABI. There is no
+> requirement in the kernel that a new ABI (which you define in this
+> patchset in the bindings) should be compatible with something
+> somewhere. It's some misunderstanding of stable ABI. Therefore all new
+> compatibles are allowed to be nxp, not fsl.
+> 
+> No one here proposed renaming existing compatibles from fsl tro nxp.
+> We talk about new ones.
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-new file mode 100644
-index 000000000000..ae3cc0ae457f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek HDMI DDC Device Tree Bindings for mt8195
-+
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-hdmi-ddc
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: ddc-i2c
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt8195-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    hdmiddc0: ddc_i2c {
-+      compatible = "mediatek,mt8195-hdmi-ddc";
-+      clocks = <&clk26m>;
-+      clock-names = "ddc-i2c";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
-new file mode 100644
-index 000000000000..b5d5f7f79c71
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek HDMI Encoder Device Tree Bindings for mt8195
-+
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  The Mediatek HDMI encoder can generate HDMI 1.4a or MHL 2.0 signals from
-+  its parallel input.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-hdmi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: PLL divider
-+      - description: PLL divider
-+      - description: HDCP engine clock
-+      - description: PLL divider
-+      - description: HDCP engine clock
-+      - description: Bus clock
-+      - description: HDMI clock for vpp_split module
-+
-+  clock-names:
-+    items:
-+      - const: univpll_d6_d4
-+      - const: msdcpll_d2
-+      - const: hdmi_apb_sel
-+      - const: univpll_d4_d8
-+      - const: hdcp_sel
-+      - const: hdcp24_sel
-+      - const: split_hdmi
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: hdmi
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - phys
-+  - phy-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt8195-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    hdmi0: hdmi@1c300000 {
-+      compatible = "mediatek,mt8195-hdmi";
-+      reg = <0 0x1c300000 0 0x1000>;
-+      power-domains = <&spm MT8195_POWER_DOMAIN_HDMI_TX>;
-+      clocks = <&topckgen CLK_TOP_UNIVPLL_D6_D4>,
-+             <&topckgen CLK_TOP_MSDCPLL_D2>,
-+             <&topckgen CLK_TOP_HDMI_APB>,
-+             <&topckgen CLK_TOP_UNIVPLL_D4_D8>,
-+             <&topckgen CLK_TOP_HDCP>,
-+             <&topckgen CLK_TOP_HDCP_24M>,
-+             <&vppsys1 CLK_VPP1_VPP_SPLIT_HDMI>;
-+      clock-names = "univpll_d6_d4",
-+        "msdcpll_d2",
-+        "hdmi_apb_sel",
-+        "univpll_d4_d8",
-+        "hdcp_sel",
-+        "hdcp24_sel",
-+        "split_hdmi";
-+      interrupts = <GIC_SPI 677 IRQ_TYPE_LEVEL_HIGH 0>;
-+      pinctrl-names = "default";
-+      pinctrl-0 = <&hdmi_pin>;
-+      phys = <&hdmi_phy>;
-+      phy-names = "hdmi";
-+      cec = <&cec>;
-+      ddc-i2c-bus = <&hdmiddc0>;
-+      status = "disabled";
-+    };
-+
-+...
+Chester seemingly did: "all 'fsl' ... as well", not "all new 'fsl'"
+ones, in the patch context of existing fsl.yaml. Like I said, it may
+just have been unluckily worded.
+
+Therefore my saying that it does contain tons of non-new SoC/platform
+bindings that he's not allowed to break by changing them.
+
+> Different question of course whether you want to be nice to some
+> existing out-of-tree users... but then have in mind that we don't care
+> about out of tree. :) Anyway being nice to out-of-tree is not part of
+> ABI. It's just being nice and useful.
+
+Nobody is suggesting new S32G ABI be compatible with downstream BSPs.
+These patches and changes we're discussing already differ from the BSP.
+
+My point was that as soon as we merge S32G into mainline, it will become
+ABI and shouldn't be changed incompatibly anymore once in a release.
+
+These automotive platforms don't run off-the-shelf distros yet and will
+need to get their bootloaders upstreamed, too. In particular we'll need
+mainline TF-A to merge the SCMI implementation before we can rely on it
+here in the kernel for a clk driver; that's holding up MMC and Ethernet.
+
+Best regards,
+Andreas
+
 -- 
-2.31.1
-
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
