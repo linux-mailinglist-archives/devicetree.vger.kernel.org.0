@@ -2,145 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D2040218E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 02:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A998F402196
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 02:13:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231465AbhIGADZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Sep 2021 20:03:25 -0400
-Received: from mail-eopbgr1400115.outbound.protection.outlook.com ([40.107.140.115]:38924
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230169AbhIGADZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Sep 2021 20:03:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CLMRmPpmDMj9GOtPL0Kt2vgEjcMf17sCFyrsBK0ZG6MQ16LRfHBq3zSukpPI9HxsMbgdXq2qut6TlML9sM6k5IuPswguJb5r/2kio5MQxGqFQCd6zGqwNF6VGcK6j43T+ZD57SQGeckk4yLYOJtZwqR7x/4rKxytr045gE63Tic0CRghGvhnkNF9efY6Cos2Aos0wrDbZqDORBUKyMX3gOuZYYJ2gCc7rMthVQsYw//t8eHf5NyXj4Nf1maNU9YHv28pd+VPwbETzvpKcK5FmtW7INN8+ddE24SGNtsi8ZGONQrDQEVZqF3gaMqsrrPcqEdZR8E2avGD/y0cxAFYzg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=9IkjNcpv4+JyqwbD1me1kJcyatV+chIy+Pxyy3QzrF0=;
- b=BYpvHe9Mrf/j+EsybK5KOe2cRgIX0/x2BeE3Ka45V3gYNvMVIPxCs6PpolkRp1fyM5iy29H9xQ4pbo+Ym9OtYr8C6hksRrpBOi8462vbJhf6BFiSz3ab0iarg50j9owFwBzMh9SQGoiMllDKb6XQ/G9eh8eWnNb94e8UCDvzVk25WkWMhMyHA89ybTntykIQ52HBpW8OWEJZJ5/kf7YDPaFpiLunehL5h6zplr31NqGnGQEovMZcYR91i1a18OePBRwFHFhOF2HUpFNzyEFjRz+1JFLlmE3994P+WbQgyrfmQIYxFi7S99u5hIBZCLeORe30VrgPY8hxglUnd4NdKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9IkjNcpv4+JyqwbD1me1kJcyatV+chIy+Pxyy3QzrF0=;
- b=CrtNplopwLqlWecJYsJwC/NG9DD8irMlPrBTN5lLGLVJpzROYdH8pu/jRhnjMF66//5Ygi7nijzkYMMnYERvamE4UD807fHksYJ7/j+H44Jw1suHnxfbWKjpfedzlyvU51SrPLTjEd0DqhRhABr7HbW6F056vIktyY6TMmMJC18=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TYAPR01MB5611.jpnprd01.prod.outlook.com (2603:1096:404:8052::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.20; Tue, 7 Sep
- 2021 00:02:17 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::b10a:f267:d52c:1e5b]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::b10a:f267:d52c:1e5b%3]) with mapi id 15.20.4478.026; Tue, 7 Sep 2021
- 00:02:17 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for r8a779a0
-Thread-Topic: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for r8a779a0
-Thread-Index: AQHXnxvyoah/Riy0106C9EDQXIK2f6uXKuaAgACM7RA=
-Date:   Tue, 7 Sep 2021 00:02:17 +0000
-Message-ID: <TY2PR01MB36928CB43B188D4082829A1FD8D39@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com>
- <20210901102705.556093-3-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdXwf0_+VKfuiFQf6roZErz-JAm06P5RBzD-Jwm1uk=p9A@mail.gmail.com>
-In-Reply-To: <CAMuHMdXwf0_+VKfuiFQf6roZErz-JAm06P5RBzD-Jwm1uk=p9A@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux-m68k.org; dkim=none (message not signed)
- header.d=none;linux-m68k.org; dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0929c60b-196c-4882-7a10-08d97192c15f
-x-ms-traffictypediagnostic: TYAPR01MB5611:
-x-microsoft-antispam-prvs: <TYAPR01MB561198D1C0ABE1CE410DCAFCD8D39@TYAPR01MB5611.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: X0VMjWOQ8RfsfT+9MjQQypOZg2nvhmwkg+oTWPylZPqFS65JCL+S2RMt4mDI+5bbfPuNnZWWwLZpY2ZiwZCtwJfOOtvIKlAk5o1tHoA1Dr++tgwLr9GltrksYAFGoYPTmcPTgIi+DdXkkkqADXEgM/WH5evBU+z8NZfh62si0cvtIH4dSrkd+U8zY1657kHXa/LLe/HCtJcQzNyd/RXn8i0V+UZmtrWfBdrwMZ928Uzs9hlg03T5GyTE4ogMx9QAT9wAhn64QUiYDHKxTGGbr5vVqcn9VAHJeRSdtcPcx4MohbrRn7UsruauUalkodjFYAQqRGoCNqlagSYjypdFzxueOtFqUVP/pobup02aRRW25IOduOITuCME9/aS69RVaJRkOYAYKCr8WJehmR+1tERaEIVOqoBW/unpHTjIOfyRNw0fS/l+9fZ9xohWsUhu4mIocsyK6phcILNthS8IKke0avY2xJk4DgzBwW/f/GoWxq6WSDZ2OjwZE1vTpayIzuxkNChzUTQ11KCz6OEsjjFOhOaF6aEzOJazowAsx9M9HhEMtAgK1FjV8ENOdAynSAzNNVGAQZFaVTDxOGDj5k81zgYP3dpkPy2xtBSWPrpwIgQf5vlRYSid7wsHq8lr6wfhfycgrPHsVMtfccbFLQw6nJHUnYusMwTS6oltHLYBbegVQxZQmfZdnwGNx2dat/4io03dqPGrcsIKkQ/wQXcUQVWwf098LxMIjipLy+5cdD8V++RxFCq8zu1Padv/LM8kawwvrphCcKYpZvkcqg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(39860400002)(136003)(366004)(346002)(478600001)(4326008)(71200400001)(64756008)(33656002)(86362001)(5660300002)(83380400001)(26005)(76116006)(54906003)(55016002)(186003)(9686003)(66946007)(66556008)(66446008)(7696005)(53546011)(66476007)(6506007)(8676002)(52536014)(2906002)(8936002)(6916009)(316002)(55236004)(38100700002)(122000001)(38070700005)(138113003)(98903001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VFBTZGgrZkNueU9PRTE3NitxcFNkSVdBMnE0dWpZaXdxOFZxWnA4UTdBQm1m?=
- =?utf-8?B?UzdMUEdVdnBTRHFJU3pyRWlNUnZNbkJZTzh6L2J1VDlzNE91azZkUWdxQytE?=
- =?utf-8?B?SmE2bGM1bzFDcWJtcUhoZC8rN1Yzdms5QVlocEZTWnNDVjhuRGtvTFlEckNE?=
- =?utf-8?B?TXFoVE9OVFl4SFdiR2F4ckVmQnRNeVBLL2xwazh6OURUNVBaTDMvUkwraWc2?=
- =?utf-8?B?Mkh2aW4rWWdzUTQ5czNKTi9JY3VQMEJuZ2w2MnFSSnFkcVVtMkIzSVo0MXZX?=
- =?utf-8?B?SElvQlRvQjNZT2phaXNhUGVVU0I5UjJ6R0dGY3JPOTZ3QW9MWGxCTkRWZlZn?=
- =?utf-8?B?SFJoRGpTbmhQTUsrdjkxd1NjYkFJL09iK2s5RGIxNjFZNXB1Z05keUJwVFIw?=
- =?utf-8?B?ajlFVXB4UTE4NG1EWmpDMGNKRkRmUExvSTM4bnpRQm5rSm1Kb3ZZbm80U0VR?=
- =?utf-8?B?cnZKaDRFdllYbDk2VnJMcWtlS2svdDJ4TnREWEcyRnZqL2hYcUJlOVQza1Ix?=
- =?utf-8?B?ZVBvR2wxOU4vVDFlWHphc2dDMmdQaUM2aGt5ZEFzZWxUQTdDYVNFUHp5VGEx?=
- =?utf-8?B?WnNIUVJpNUx0YWc0OGRKK1ZPdXdmdzJQVHpjS3NBZjQ2VWsrVFBtK2xKQmR4?=
- =?utf-8?B?bHU1TXk5WmpQMTNsc3pEcm5Xa3JLN3Yxa21yQU13bmhYM0hoY05ySUlNZkgw?=
- =?utf-8?B?enhTWEVtdVo2dVAvcHVXRjRLcldoejlNM1BFWFVuN3kwUGlXeEFUMTBTWmQ3?=
- =?utf-8?B?ckxENVI4UitrZzZSNlJYRnlMcGtSRUNPaDBZUGIraWtad3dwMHI2TS9oNlVx?=
- =?utf-8?B?aVJJMzFrT2U5NmdRWHI5R0NRK2ZpWStER1VXNkU0Y1hJUkp5cHZIenpxVE4r?=
- =?utf-8?B?ODFEYVpaVm9UeDhEZFZVc256Z3Z2YVZOWDB6K21wZTFBVGNUR0ZoNDk4eEVC?=
- =?utf-8?B?QkRVaW5QK2dYWG9aNWd2S1pEdm9RSkNJYmN3OWdoQkNTNlk1aUdOSFhlem5G?=
- =?utf-8?B?bVVKVXFhKzlGN1llU1RyVm1ldHBLd3VCcjZSUWJ5RE9XNU1oWm8vQ09sMnAx?=
- =?utf-8?B?N2t5T1dHS28vTFRoMHBraVplUmhoZTFjN2szbmx5NlkzNVdHZkFuUnlIMGlK?=
- =?utf-8?B?NFdkZjFVOGhMZFBZUzRZenduS1hoV0c0MHB3Y1lFYUYxeGFIYURuYmFHY2lK?=
- =?utf-8?B?MmV2TndkSDk2a01sd1ZwR29GVk4zOE9BTlpyZXlCZGRURjdzMHpNejRrRjhZ?=
- =?utf-8?B?aXlUeEZWSjFhNUR0S0FNL2JCaUdtc3lmWUkwTHk4OWpBRzlqOVFYUU02L3pC?=
- =?utf-8?B?Rmc2WDl2NjBVaFVoNElBV2ZHcUZlUWYyc1lKeEZHcTBaOHZwZ3ZGRE5aZkVU?=
- =?utf-8?B?Nk56SXFyTW5zTVJDWmJyWUZQcWpyYmFLNVBYbzQ5cVB4V1ExM2lvekRKWi94?=
- =?utf-8?B?ZHJHSG90Zzh3UDZJZEdTZm1XZVBla2tyU251SEJpWEE0M2VFSWpWalEzc3Vn?=
- =?utf-8?B?QXBaeVFGcjJRR1VQOHVnYi9aNXhNWG96Ui90bEZCd3pVRzBxYmdkRmVzWHFn?=
- =?utf-8?B?S2QxMUNCT2N0UHgrTGs1Y1FidlZNQ25BbUg4MG50QnZFYnhWdzg2cFRWOE5u?=
- =?utf-8?B?Y1psbXAvcTFLMUlNcmZ3bms3NG9FZlEwQ3hqelh3SW9pWCs1QTdEQ0JQOFRB?=
- =?utf-8?B?WUpXN3VrWmJiRkV4WHg0bVNIQWR2eTh4YVRDZVJZZ2JHYU84OHF3MmJWN0t1?=
- =?utf-8?Q?Y7/49rYjmb1f1WxlUbrftP1zQo3EPF7yG3Opo/P?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S232066AbhIGAMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Sep 2021 20:12:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50620 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230038AbhIGAMa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Sep 2021 20:12:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D70A3610A3;
+        Tue,  7 Sep 2021 00:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1630973484;
+        bh=ifuFv3gkwVp/7X92auvTBV/kMkrnWgnIGVHcpN8lm0I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AM3AUOWWKR28dFKWdTcf/89GeoJVjrNAtBqiyFOtqiB409ug0JnZmbUcPvJ7xhYUd
+         QZDE4EudShOca7/OYAMpDzIt9lGCn21USSPAPsP6DSvZxIl3C2d4x0AJMDe3+1AZKk
+         Zl7ywAr3Yi89qXKFezX/+6uoKa7btOLQfU0UPeFqmkYo0mXvL3jXb8Csu3lPiHtRjp
+         AcJWCTCqASGDC1KiBIScIbP4jtggGOZaCLPc8t3bHsE5GwttxhYAFzIxT1htE77Ezv
+         lwIUIy7uAjcc2kei2CKz5n2k6zNh0J+ib+kn2U/FTfyVfqYWrLkWZPh9MxAkB2CCBT
+         y3lKhC9ZXZTXQ==
+Received: by mail-ej1-f43.google.com with SMTP id t19so16199307ejr.8;
+        Mon, 06 Sep 2021 17:11:24 -0700 (PDT)
+X-Gm-Message-State: AOAM531hcNKKQpD4as62q2eqIcMk8k7HsAW2lS59PPhrjt4ULphkpBiZ
+        1r9B8IUoHaQK7v9FzF3oDVaNnc1v5vgwOMeSig==
+X-Google-Smtp-Source: ABdhPJxU1SiAb4YPZCljleFW/HiLB8RDcADm34x/la6BDgQKmR7J0vZffdCpPHyLfu1ItECgjPKdWvfhwUZmzYWI37M=
+X-Received: by 2002:a17:906:26c4:: with SMTP id u4mr15571504ejc.511.1630973483408;
+ Mon, 06 Sep 2021 17:11:23 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0929c60b-196c-4882-7a10-08d97192c15f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2021 00:02:17.1630
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wVECDQ91xMp/k6e0Jw51KbBHSkIsFYpjl9bmn9/Y/2e/q6CCh8lG962UhVOHt8gYN0VerWtOABk0W2J2eDNEF4ieOCWVVPiyJDTKgjzh16HgOlYKbmA/ObM9yu4e5M6M
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5611
+References: <20210824100027.25989-1-moudy.ho@mediatek.com> <20210824100027.25989-4-moudy.ho@mediatek.com>
+In-Reply-To: <20210824100027.25989-4-moudy.ho@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 7 Sep 2021 08:11:12 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8GFP0utAVSw1JY6=y9hsJTbf8mtiKCnUmTcG2e9Zwdxg@mail.gmail.com>
+Message-ID: <CAAOTY_8GFP0utAVSw1JY6=y9hsJTbf8mtiKCnUmTcG2e9Zwdxg@mail.gmail.com>
+Subject: Re: [PATCH v7 3/5] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Pi-Hsun Shih <pihsun@chromium.org>, menghui.lin@mediatek.com,
+        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
+        ben.lok@mediatek.com, randy.wu@mediatek.com,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogVHVlc2Rh
-eSwgU2VwdGVtYmVyIDcsIDIwMjEgMTI6MzQgQU0NCj4gDQo+IEhpIFNoaW1vZGEtc2FuLA0KPiAN
-Cj4gT24gV2VkLCBTZXAgMSwgMjAyMSBhdCAxMjoyNyBQTSBZb3NoaWhpcm8gU2hpbW9kYQ0KPiA8
-eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+IEFkZCBzdXBwb3J0
-IGZvciByOGE3NzlhMCAoUi1DYXIgVjNVKS4gVGhlIElQTU1VIGhhcmR3YXJlIGRlc2lnbg0KPiA+
-IG9mIHRoaXMgU29DIGRpZmZlcnMgdGhhbiBvdGhlcnMuIFNvLCBhZGQgYSBuZXcgaXBtbXVfZmVh
-dHVyZXMgZm9yIGl0Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWW9zaGloaXJvIFNoaW1vZGEg
-PHlvc2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPg0KPiANCj4gPiAtLS0gYS9kcml2ZXJz
-L2lvbW11L2lwbW11LXZtc2EuYw0KPiA+ICsrKyBiL2RyaXZlcnMvaW9tbXUvaXBtbXUtdm1zYS5j
-DQo+IA0KPiA+IEBAIC05MjIsNiArOTIyLDIwIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaXBtbXVf
-ZmVhdHVyZXMgaXBtbXVfZmVhdHVyZXNfcmNhcl9nZW4zID0gew0KPiA+ICAgICAgICAgLnV0bGJf
-b2Zmc2V0X2Jhc2UgPSAwLA0KPiA+ICB9Ow0KPiA+DQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qg
-aXBtbXVfZmVhdHVyZXMgaXBtbXVfZmVhdHVyZXNfcjhhNzc5YTAgPSB7DQo+ID4gKyAgICAgICAu
-dXNlX25zX2FsaWFzX29mZnNldCA9IGZhbHNlLA0KPiA+ICsgICAgICAgLmhhc19jYWNoZV9sZWFm
-X25vZGVzID0gdHJ1ZSwNCj4gPiArICAgICAgIC5udW1iZXJfb2ZfY29udGV4dHMgPSA4LA0KPiAN
-Cj4gU2hvdWxkbid0IHRoaXMgYmUgMTY/DQo+IE9yIGRvIHlvdSBwbGFuIHRvIGFkZCBzdXBwb3J0
-IGZvciBtb3JlIHRoYW4gOCBjb250ZXh0cyBsYXRlciwgYXMgdGhhdA0KPiB3b3VsZCByZXF1aXJl
-IGluY3JlYXNpbmcgSVBNTVVfQ1RYX01BWCwgYW5kIHVwZGF0aW5nIGlwbW11X2N0eF9yZWcoKQ0K
-PiB0byBoYW5kbGUgdGhlIHNlY29uZCBiYW5rIG9mIDggY29udGV4dHM/DQoNCkkgd291bGQgbGlr
-ZSB0byBhZGQgc3VwcG9ydCBmb3IgbW9yZSB0aGFuIDggY29udGV4dHMgbGF0ZXIgYmVjYXVzZQ0K
-SSByZWFsaXplZCB0aGF0IGN0eF9vZmZzZXRfe2Jhc2Usc3RyaWRlfSBhcmUgbm90IHN1aXRhYmxl
-IGZvciB0aGUgc2Vjb25kIGJhbmsNCm9mIDggY29udGV4dHMuLi4NCg0KPiBSZWdhcmRsZXNzLCBJ
-IGFzc3VtZSB0aGlzIHdpbGwgc3RpbGwgd29yayB3aGVuIHdoZW4gbGltaXRpbmcgdG8gOA0KPiBj
-b250ZXh0cywgc28NCj4gUmV2aWV3ZWQtYnk6IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnQrcmVu
-ZXNhc0BnbGlkZXIuYmU+DQoNClRoYW5rIHlvdSBmb3IgeW91ciByZXZpZXchDQoNCkJlc3QgcmVn
-YXJkcywNCllvc2hpaGlybyBTaGltb2RhDQoNCg==
+Hi, Moudy:
+
+Moudy Ho <moudy.ho@mediatek.com> =E6=96=BC 2021=E5=B9=B48=E6=9C=8824=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:02=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> This patch adds DT binding document for Media Data Path 3 (MDP3)
+> a unit in multimedia system used for scaling and color format convert.
+>
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,mdp3-ccorr.yaml   |  57 +++++
+>  .../bindings/media/mediatek,mdp3-rdma.yaml    | 207 ++++++++++++++++++
+>  .../bindings/media/mediatek,mdp3-rsz.yaml     |  65 ++++++
+>  .../bindings/media/mediatek,mdp3-wdma.yaml    |  71 ++++++
+>  .../bindings/media/mediatek,mdp3-wrot.yaml    |  71 ++++++
+>  5 files changed, 471 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3=
+-ccorr.yaml
+
+I've compared ccorr driver in display [1] and ccorr in mdp [2], both
+are similar. So I would like both binding document are placed
+together. In display folder? In mdp folder? In SoC folder? I've no
+idea which one is better. At lease put together.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c?h=3Dv5.14
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/2021082410002=
+7.25989-6-moudy.ho@mediatek.com/
+
+Regards,
+Chun-Kuang.
+
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3=
+-rdma.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3=
+-rsz.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3=
+-wdma.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3=
+-wrot.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.=
+yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
+> new file mode 100644
+> index 000000000000..59fd68b46022
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-ccorr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Media Data Path 3 CCORR Device Tree Bindings
+> +
+> +maintainers:
+> +  - Daoyuan Huang <daoyuan.huang@mediatek.com>
+> +  - Moudy Ho <moudy.ho@mediatek.com>
+> +
+> +description: |
+> +  One of Media Data Path 3 (MDP3) components used to do color correction=
+ with 3X3 matrix.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +        - mediatek,mt8183-mdp3-ccorr
+> +
+> +  mediatek,mdp3-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +    description: |
+> +      HW index to distinguish same functionality modules.
+> +
+> +  reg:
+> +    description: |
+> +      Physical base address and length of the function block
+> +      register space, the number aligns with the component
+> +      and its own subcomponent.
+> +
+> +  mediatek,gce-client-reg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      sub-system id corresponding to the global command engine (GCE)
+> +      register address.
+> +      $ref: /schemas/mailbox/mtk-gce.txt
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8183-clk.h>
+> +    #include <dt-bindings/gce/mt8183-gce.h>
+> +
+> +    mdp3_ccorr: mdp3_ccorr@1401c000 {
+> +      compatible =3D "mediatek,mt8183-mdp3-ccorr";
+> +      mediatek,mdp3-id =3D <0>;
+> +      reg =3D <0x1401c000 0x1000>;
+> +      mediatek,gce-client-reg =3D <&gce SUBSYS_1401XXXX 0xc000 0x1000>;
+> +      clocks =3D <&mmsys CLK_MM_MDP_CCORR>;
+> +    };
