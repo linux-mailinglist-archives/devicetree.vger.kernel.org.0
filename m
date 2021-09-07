@@ -2,177 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 598E940300D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 23:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5454403016
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 23:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245624AbhIGVDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 17:03:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244274AbhIGVD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 17:03:28 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F4CC061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 14:02:21 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id z1so292189ioh.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 14:02:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L/rKcATmeaNcVjKXqpdxqEp5aNsfDE5SuF1Ce5K5Gx8=;
-        b=mxNNVn+9KgZZoIHCC6VzlavgyutyjZLLVbhFpg2s55PnctD9B1o6C/zYwQASPWXKqU
-         mQAYbyFkKZVkpeBtaIvR6Wy2b6tngmGQkkqnI9+4/s6MmZKqSRXDaHudZ2C6cir2xsvC
-         BBjdtmU0oV9uZfRIYetYhp32KbIifOOO++bTZlG56KqA2dhJux5krzk2FZlIJURMQwuI
-         khMaJRFIgfoJU4/hKoUzFLuuvu0qS8m6hlElLDz0s2khpSuPqBmgK4AbrjgHm+NMKePO
-         Op8iJNpfhoYzdd861cy5OzDtVQrOKxq/Gv36kOkf8i9b6t7HrGuFwOaKaCEyujumtUQs
-         IyAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L/rKcATmeaNcVjKXqpdxqEp5aNsfDE5SuF1Ce5K5Gx8=;
-        b=lfXx7BGyDxJRkZ6XXv+93ZW5lo+i3xXjL258+MQsBBmQmSlmkQxb7uUIAfYHPMZYKr
-         IMTIy7WtxxYCFNZ4agVTQOhcdCei8UZygVTHhduM19qSsj+kjisWUxzJL+JsTlAXvH4S
-         hdjfzauDaHPRIg7N7UkfDvBOv1FNyQ/zyl4GOgubYA+lYbfriWh4JC9Z1QDUSwfvdS2/
-         +DU+bAmUgc5e0Jr0YZ4+MRgyOv3pXcmaW8D6gM0VxZ7KPVzSLX5iF1q0j1Z8pbnFjD6V
-         0d8acgbosl4yCQDhYtCJBw9aZYdaRb+c2QhLG2mGQHt9iBIRrWMmuZij1/QQ/cXK+6Wm
-         q+jA==
-X-Gm-Message-State: AOAM5323w7Dy7pjAGvuKXtxHR1i0q8pFkXfYmOAxyxV7kR8UnrqvDZxt
-        GJMRsbtSJjiiYuPRJvhSDWiQtlZHYPAuM9oJaDEk3w==
-X-Google-Smtp-Source: ABdhPJx4Bs0nFKfl5CTgJd/xkkt44Qk/bcR6QdLGXuvFbumHbGkb9Vll29PZl3UYk8Jpd3ENi2eDa1vgYa6cvn2mSNA=
-X-Received: by 2002:a6b:3e89:: with SMTP id l131mr142240ioa.74.1631048541182;
- Tue, 07 Sep 2021 14:02:21 -0700 (PDT)
+        id S1346873AbhIGVID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 17:08:03 -0400
+Received: from rosenzweig.io ([138.197.143.207]:46240 "EHLO rosenzweig.io"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346428AbhIGVIC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 17:08:02 -0400
+Date:   Tue, 7 Sep 2021 17:06:48 -0400
+From:   Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Hector Martin <marcan@marcan.st>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] mailbox: apple: Add driver for Apple mailboxes
+Message-ID: <YTfUaER6aq+YjBFs@sunset>
+References: <20210907145501.69161-1-sven@svenpeter.dev>
+ <20210907145501.69161-4-sven@svenpeter.dev>
+ <YTe1cFs5ERe9LDu8@sunset>
+ <39b92560-b236-4abb-9de0-ac3a3fa3a506@www.fastmail.com>
 MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr>
- <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
- <20210713222528.GA952399@robh.at.kernel.org> <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
- <20210719225906.GA2769608@robh.at.kernel.org> <CACRpkdbq6Jow6AT9OpsR7Q0JVCWVMcmamh9KHPXMtUnkoe7ZFw@mail.gmail.com>
- <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com>
- <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com> <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com>
-In-Reply-To: <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Tue, 7 Sep 2021 23:02:10 +0200
-Message-ID: <CA+HBbNE_U3dbnWh-8QasaxfQrQHS4YK8TEr0YebH9mCJsc0JTQ@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <39b92560-b236-4abb-9de0-ac3a3fa3a506@www.fastmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 24, 2021 at 10:03 AM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> On Wed, Aug 11, 2021 at 2:17 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > On Tue, Aug 3, 2021 at 9:23 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> >
-> > > The pins that this driver wants to expose are used for SFP-s only,
-> > > they are provided by the Lattice CPLD which also does other things.
-> > >
-> > > Linux has a generic SFP driver which is used to manage these SFP
-> > > ports, but it only supports GPIO-s, it has no concept of anything else.
-> > > Since the driver is fully generic, I have no idea how could one extend it
-> > > to effectively handle these pins internally, especially since I have more
-> > > switches that use the CPLD for SFP-s as well, even for 48 ports and 192
-> > > pins for them.
-> >
-> > Which file is this driver in so I can look?
->
-> Hi Linus,
-> Sorry for the late reply.
->
-> Sure, here is the generic Linux driver that is used for SFP handling:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/sfp.c?h=v5.14-rc7
->
-> >
-> > Maybe it is not a good idea to look for generic code just because
-> > it is convenient? I have had this problem before with GPIO, along
-> > the lines "lemme just do this dirty thing this one time because it
-> > is so convenient for me" (more or less) and the answer is still
-> > "no".
-> >
-> > Can you either augment the driver to handle a regmap with bit indices
-> > instead or write a new similar driver for that or refactor it some other
-> > way?
-> >
-> > It is not a simple solution to your problem, but it might be the right
-> > solution even if it means some more work.
->
-> I understand your position, believe me, I spend some time looking at
-> what would be the logical way for these switches.
-> But I see no way how could the SFP driver be extended in a generic way
-> that would allow supporting different register layouts when it comes to pins.
->
-> >
-> > > GPIO regmap works perfectly for this as its generic enough to cover all of
-> > > these cases.
-> >
-> > Yeah but it might be the wrong thing to do even if it is simple
-> > to use and works.
-> >
-> > > CPLD also provides pins to test the port LED-s per color as well,
-> > > but I have chosen not to expose them so far.
-> >
-> > Have you considered
-> > Documentation/devicetree/bindings/leds/register-bit-led.txt
->
-> Yeah, but unfortunately in this case it wont work as the LED-s
-> are for debugging/test purposes only and you first need to switch
-> the CPLD out of it interpreting the LED state with a BIT flip.
->
-> Regards,
-> Robert
-> >
-> > > > If it is a regmap in Linux then that is fine, just pass the regmap
-> > > > around inside the kernel, OK finished. But really that is an OS
-> > > > detail.
-> > >
-> > > Yes, its regmap but I cant really pass it to the SFP driver as I don't have
-> > > special driver handling the SFP but rather the generic kernel one.
-> > > It only knows how to handle GPIO-s.
-> >
-> > Of course you have to program it. If I know which driver it
-> > is it is easier to provide architecture ideas.
-> >
-> > Yours,
-> > Linus Walleij
+> > > + * Both the main CPU and the co-processor see the same set of registers but
+> > > + * the first FIFO (A2I) is always used to transfer messages from the application
+> > > + * processor (us) to the I/O processor and the second one (I2A) for the
+> > > + * other direction.
+> > 
+> > Do we actually know what the copro sees? It seems obvious, but *know*?
+> 
+> Yes, I know. They see the exact same set of registers. I wouldn't have written
+> it like that otherwise.
 
-Linus,
+Ack.
 
-can I offer some further explanation?
+> > > +struct apple_mbox {
+> > > +	void __iomem *regs;
+> > > +	const struct apple_mbox_hw *hw;
+> > > +     ...
+> > > +};
+> > 
+> > This requires a lot of pointer chasing to send/receive messages. Will
+> > this become a perf issue in any case? It'd be good to get ballparks on
+> > how often these mboxes are used. (For DCP, it doesn't matter, only a few
+> > hundred messages per second. Other copros may have different behaviour)
+> 
+> If this actually becomes a problem I'm happy to fix it but right now
+> this feels like premature optimization to me. DCP is going to be the
+> worst offender followed by SMC (at most a few per second when it's really
+> busy during boot time) and SEP (I've also never seen more than a few per
+> second here). The rest of them are mostly quiet after they have booted.
 
-Regards,
-Robert
+Good enough for me -- it won't matter for DCP, so if it doesn't get any
+worse than DCP there's no point in optimizing this.
+
+> > > +static bool apple_mbox_hw_can_send(struct apple_mbox *apple_mbox)
+> > > +{
+> > > +	u32 mbox_ctrl =
+> > > +		readl_relaxed(apple_mbox->regs + apple_mbox->hw->a2i_control);
+> > > +
+> > > +	return !(mbox_ctrl & apple_mbox->hw->control_full);
+> > > +}
+> > 
+> > If you do the pointer chasing, I suspect you want accessor
+> > functions/macros at least to make it less intrusive...
+> 
+> There's regmap but that can't easily be used here because I need 32bit
+> and 64bit writes. I also don't really see the advantage of replacing
+> this with some custom functions like e.g.
+> 
+> 	mbox_ctrl = apple_mbox_hw_readl(apple_mbox, apple_mbox->hw->a2i_control);
+> 
+> which is almost as long. And if I introduce a separate function just to read the
+> control reg this just becomes a lot of boilerplate and harder to follow.
+> 
+> Or did you have anything else in mind?
+
+I was envisioning a macro:
+
+>	#define apple_mbox_readl(mbox, name) \
+>		readl_relaxed(mbox->regs + mbox->hw-> ## name)
 >
->
->
-> --
-> Robert Marko
-> Staff Embedded Linux Engineer
-> Sartura Ltd.
-> Lendavska ulica 16a
-> 10000 Zagreb, Croatia
-> Email: robert.marko@sartura.hr
-> Web: www.sartura.hr
+> 	mbox_ctrl = apple_mbox_readl(apple_mbox, a2i_control);
 
+Now that I've typed it out, however, it seems a bit too magical to
+justify the minor space savings. And given you need both 32b and 64b
+there would be ~4 such macros which is also a lot of boilerplate.
 
+It's not a huge deal either way but I thought I'd raise it.
 
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+> > > +	dev_dbg(apple_mbox->dev, "> TX %016llx %08x\n", msg->msg0, msg->msg1);
+> > 
+> > Isn't "TX" redundant here?
+> 
+> Sure, but it also doesn't hurt in a debug message. I can spot the TX easier
+> but I'm sure there are people who prefer >.
+
+Fair enough.
+
+> > > +	dev_dbg(apple_mbox->dev, "got FIFO empty IRQ\n");
+> > 
+> > I realize it's a dev_dbg but this still seems unnecessarily noisy.
+> 
+> This code path is almost never reached. I've only been able to trigger
+> it by forcing send_message to return EBUSY even when it could still
+> move messages to the FIFO to test this path.
+> This also can't be triggered more often than the TX debug message.
+> If this triggers more often there's a bug somewhere that kept the interrupt
+> enabled and then the whole machine will hang due an interrupt storm anyway. In
+> that case I'd prefer to have this as noisy as possible.
+
+Ah! Sure, makes sense. Is it worth adding a few words to the functions
+comments indicating this rarely occurs in good conditions?
+
+> > > +static irqreturn_t apple_mbox_recv_irq(int irq, void *data)
+> > > +{
+> > > +	struct apple_mbox *apple_mbox = data;
+> > > +	struct apple_mbox_msg msg;
+> > > +
+> > > +	while (apple_mbox_hw_can_recv(apple_mbox)) {
+> > > +		apple_mbox_hw_recv(apple_mbox, &msg);
+> > > +		mbox_chan_received_data(&apple_mbox->chan, (void *)&msg);
+> > > +	}
+> > ```
+> > 
+> > A comment is warranted why this loop is safe and will always terminate,
+> > especially given this is an IRQ context. (Ah... can a malicious
+> > coprocessor DoS the AP by sending messages faster than the AP can
+> > process them? freezing the system since preemption might be disabled
+> > here? I suppose thee's no good way to protect against that level of
+> > goofy.)
+> 
+> The only way this can't terminate is if the co-processor tries to stall
+> us with messages, but what's your threat model here? If the co-processor wants
+> to be evil it usually has many other ways to annoy us (e.g. ANS could just disable
+> NVMe, SMC could just trigger a shutdown, etc.)
+> 
+> I could move this to threaded interrupt context though which would make that a bit
+> harder to pull off at the cost of a bit more latency from incoming messages.
+> Not sure that's worth it though.
+
+Probably not worth it, no.
+
+> > 
+> > > +	 * There's no race if a message comes in between the check in the while
+> > > +	 * loop above and the ack below: If a new messages arrives inbetween
+> > > +	 * those two the interrupt will just fire again immediately after the
+> > > +	 * ack since it's level sensitive.
+> > 
+> > I don't quite understand the reasoning. Why have IRQ controls at all
+> > then on the M3?
+> 
+> Re-read the two lines just above this one. If the interrupt is not acked here
+> it will keep firing even when there are no new messages.
+> But it's fine to ack it even when there are message available since it will
+> just trigger again immediately.
+
+Got it, thanks.
+
+> > > +	/*
+> > > +	 * Only some variants of this mailbox HW provide interrupt control
+> > > +	 * at the mailbox level. We therefore need to handle enabling/disabling
+> > > +	 * interrupts at the main interrupt controller anyway for hardware that
+> > > +	 * doesn't. Just always keep the interrupts we care about enabled at
+> > > +	 * the mailbox level so that both hardware revisions behave almost
+> > > +	 * the same.
+> > > +	 */
+> > 
+> > Cute. Does macOS do this? Are there any tradeoffs?
+> 
+> Not sure if macOS does is and I also don't see a reason to care what it
+> does exactly. I've verified that this works with the M3 mailboxes.
+> I also don't see why there would there be any tradeoffs.
+> Do you have anything specific in mind?
+> 
+> I suspect this HW was used in previous SoCs where all four interrupts
+> shared a single line and required this chained interrupt controller
+> at the mailbox level. But since they are all separate on the M1 it's
+> just a nuisance we have to deal with - especially since the ASC
+> variant got rid of the interrupt controls.
+
+Makes sense for a legacy block 👍
