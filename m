@@ -2,224 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30929402952
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E708402963
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344553AbhIGNEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 09:04:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232913AbhIGNEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 09:04:41 -0400
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05D89C061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 06:03:34 -0700 (PDT)
-Received: by mail-oo1-xc36.google.com with SMTP id m14-20020a4ad50e000000b002912a944a47so2879523oos.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 06:03:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=uhC7nzqpqA4nMheQgFCEgMJ6vQ3bkE9hy3QtYBGq9aI=;
-        b=iy5Pab0mOazD/amTTWfY4e/vbO7jZSzp8XFUAEVZF5cdt5JEs2ep1HTTxrt/Zk14pa
-         o/s3v+TTVyd0ak3Z1LZW11YRp+NebeaPuibrA+9DtLlWi5gUzz4QEd2QWsqaztwapLq2
-         cJITIf3sZo6m4sv2NV0Q3NVHtn3YZ1LOEy46HtKKX/Nts9/SM7sDVwWuTQbGLe0HfADv
-         M8+1AoYk0+oC4BQHkPkfNro6sO0zGvON3xuamnPjeQLKwuBBB25pENgv/UOGw2TUu6pa
-         ii99KCMjSkmG+curuRxyRROdxftAzasoukEQQal97EyGDk6U9tQFgWWFGR0zN++DWKY/
-         Krpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uhC7nzqpqA4nMheQgFCEgMJ6vQ3bkE9hy3QtYBGq9aI=;
-        b=KM/7eOCbzXR+71OMJqTWylO9g557Lyat7tDiIIRbY2yB4QzsujuqcSaZwhTNRgsit6
-         UDxDEL3ufBore88JBrFV+qfrfIDHLkZyedPuSoxVioHmWJGL30tzvuPoPWyuebtpqxBt
-         br5G6Wyl7GDF6L7Z+8at5tVgAGJxTfoUq1HMcrbcMWebfsjiVUcPchEZltyUZyQfQRi8
-         REXgxTR0f7+yQJL60BcxjAIZdghWGb0VxNtpnlSVM1J17ybTUQTiy5Ct+P3jexO8Qu6b
-         ZCrNJdexV/eutwB2oQVCBOK6bYuLKeCEIkq8c1BK5R/ba6qXKbc3BW9OOnBVL6WyLv5c
-         l0yA==
-X-Gm-Message-State: AOAM532x6zmcjKcCwFeFa7FWEFSzImPQ2lEkgF3NbYa6tpLB44wb9luT
-        S947Gf2ctRPF9JRCaElPlKDGjg==
-X-Google-Smtp-Source: ABdhPJxXMAZmloUHdgSE5zF9AilK2k10mV+Z9C0H9OxJkTzKVhWtamTncqC0p02F+PqlkciLdix31Q==
-X-Received: by 2002:a4a:dfac:: with SMTP id k12mr17537075ook.41.1631019812044;
-        Tue, 07 Sep 2021 06:03:32 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id v10sm2425326otp.25.2021.09.07.06.03.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 06:03:31 -0700 (PDT)
-Date:   Tue, 7 Sep 2021 06:04:31 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org
-Subject: Re: [PATCH 1/7] arm64: dts: qcom: Introduce support for MSM8998 Sony
- Yoshino platform
-Message-ID: <YTdjX2/XGZYQQRDW@ripper>
-References: <20210903180924.1006044-1-angelogioacchino.delregno@somainline.org>
+        id S1344611AbhIGNK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 09:10:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36844 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344507AbhIGNK1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 09:10:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A08F161057;
+        Tue,  7 Sep 2021 13:09:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631020161;
+        bh=EwAZ6xsh+B077xdiAiUPyl2HqmdVrDjC+5YWJzZ/NfU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Q/zlmlKmY5yaK8vdBrwafAOfK+k7tAOK2PrHwh8Y7zubnXxcJNdNEK3MGJd7YYk8t
+         sVl5Iu+QmwjsouHH6tILI1wa00lk2DaRqTAA5QfccE5pIVUom4M8sghvYRxsBkj2FH
+         fu8HjQChFTdeBL09bWX+HBa4oYvDUhf0iKabh82sdWM1dtDS/4qAMSkAqSng5JuHj2
+         4h3AnJHki2aETz+rcuvDs0HiTdNEL5+UsvCFeXrlbc2lTl1lOSbnMGZu9fJxtrcO7j
+         3rSOF6EWvhoobW0F7JVSY7MaQGZzVM2UUtoW+vwTyvjnOA/L0fJzuYdmV7faaUqPM/
+         jsXz/nziD5lXg==
+Received: by mail-ej1-f44.google.com with SMTP id a25so19578065ejv.6;
+        Tue, 07 Sep 2021 06:09:21 -0700 (PDT)
+X-Gm-Message-State: AOAM530VhfuOXCNWvMa6BOfNEjYNHIOAPkJA8LvYbg3gWFmHn7GHSzLO
+        A4vReSfg3p0kvQGR439jHSEp2bm+a2YKEvmKKw==
+X-Google-Smtp-Source: ABdhPJxBSSSWDWXZKUa0KTwW8npz3Wes4pinOo+DiOg4l/HZ6ENDCXtawjSrYUBvQFdNIbIB14Rbld0CnFGz+MWKkhk=
+X-Received: by 2002:a17:906:2dcf:: with SMTP id h15mr18410957eji.320.1631020160188;
+ Tue, 07 Sep 2021 06:09:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210903180924.1006044-1-angelogioacchino.delregno@somainline.org>
+References: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
+ <20210903145340.225511-3-daniel.baluta@oss.nxp.com> <YTJTF5VMOyG2iZb0@robh.at.kernel.org>
+ <CAEnQRZC-GN9iEPk6-A_oKPHcCYj8_WeQC0TT_NpK_QntkmAqiQ@mail.gmail.com>
+In-Reply-To: <CAEnQRZC-GN9iEPk6-A_oKPHcCYj8_WeQC0TT_NpK_QntkmAqiQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 Sep 2021 08:09:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK_DGqYQxKBHDS7PyviF35V-OP7__KRmmTePn9ZHhiz_w@mail.gmail.com>
+Message-ID: <CAL_JsqK_DGqYQxKBHDS7PyviF35V-OP7__KRmmTePn9ZHhiz_w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: dsp: fsl: Add DSP optional clocks documentation
+To:     Daniel Baluta <daniel.baluta@gmail.com>
+Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Suman Anna <s-anna@ti.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 03 Sep 11:09 PDT 2021, AngeloGioacchino Del Regno wrote:
+On Sat, Sep 4, 2021 at 9:51 AM Daniel Baluta <daniel.baluta@gmail.com> wrote:
+>
+> On Fri, Sep 3, 2021 at 8:11 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Sep 03, 2021 at 05:53:40PM +0300, Daniel Baluta wrote:
+> > > From: Daniel Baluta <daniel.baluta@nxp.com>
+> > >
+> > > DSP node on the Linux kernel side must also take care of enabling
+> > > DAI/DMA related clocks.
+> > >
+> > > By design we choose to manage DAI/DMA clocks from the kernel side because of
+> > > the architecture of some i.MX8 boards.
+> > >
+> > > Clocks are handled by a special M4 core which runs a special firmware
+> > > called SCFW (System Controler firmware).
+> > >
+> > > This communicates with A cores running Linux via a special Messaging
+> > > Unit and implements a custom API which is already implemented by the
+> > > Linux kernel i.MX clocks implementation.
+> > >
+> > > Note that these clocks are optional. We can use the DSP without them.
+> > >
+> > > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 33 +++++++++++++++++++
+> > >  1 file changed, 33 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > index 7afc9f2be13a..1453668c0194 100644
+> > > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > > @@ -24,16 +24,49 @@ properties:
+> > >      maxItems: 1
+> > >
+> > >    clocks:
+> > > +    minItems: 3
+> > >      items:
+> > >        - description: ipg clock
+> > >        - description: ocram clock
+> > >        - description: core clock
+> > > +      - description: esai0 core clock for accessing registers
+> > > +      - description: esai0 baud clock
+> > > +      - description: esai0 system clock
+> > > +      - description: esai0 spba clock required when ESAI is placed in slave mode
+> > > +      - description: SAI1 bus clock
+> > > +      - description: SAI1 master clock 0
+> > > +      - description: SAI1 master clock 1
+> > > +      - description: SAI1 master clock 2
+> > > +      - description: SAI1 master clock 3
+> > > +      - description: SAI3 bus clock
+> > > +      - description: SAI3 master clock 0
+> > > +      - description: SAI3 master clock 1
+> > > +      - description: SAI3 master clock 2
+> > > +      - description: SAI3 master clock 3
+> > > +      - description: SDMA3 root clock used for accessing registers
+> >
+> > Sigh, I just rejected this kind of thing for the other i.MX8 DSP
+> > binding[1].
+> >
+> > Add a reference to the h/w block and then get the clocks (and other
+> > resources) from there.
+>
+> The H/W block is controlled by the DSP firmware. So, we don't want
+> to use the Linux kernel driver (thus the H/W block device tree node).
 
-> This commit introduces support for the Sony Yoshino platform, using
-> the MSM8998 SoC, including:
-> - Sony Xperia XZ1 (codename Poplar),
-> - Sony Xperia XZ1 Compact (codename Lilac),
-> - Sony Xperia XZ Premium (codename Maple).
-> 
+'status' is how you disable a device to not be used by the OS.
 
-Nice!
+The information about that device's resources are already in DT, we
+don't need to duplicate that here. If you want a list of devices
+assigned to the DSP here, that would be okay.
 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-[..]
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	gpio_keys {
+> The only thing that we cannot control from the DSP firmware are the clocks
+> hence we handle them in the DSP node.
+>
+> We moved the DAI clocks under the DSP node as I think you suggested here:
+>
+> https://www.lkml.org/lkml/2020/3/12/969
 
-Please don't use '_' in node names.
+No, that's certainly not what I was suggesting. The resources in the
+DSP node should be the h/w resources of the DSP itself.
 
-> +		compatible = "gpio-keys";
-> +		input-name = "gpio-keys";
-> +		label = "Side buttons";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vol_down_pin_a>, <&cam_focus_pin_a>,
-> +			    <&cam_snapshot_pin_a>;
-> +		vol-down {
-> +			label = "Volume Down";
-> +			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <1>;
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			gpio-key,wakeup;
-> +			debounce-interval = <15>;
-> +		};
-> +
-> +		camera-snapshot {
-> +			label = "Camera Snapshot";
-> +			gpios = <&pm8998_gpio 7 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <1>;
-> +			linux,code = <KEY_CAMERA>;
-> +			debounce-interval = <15>;
-> +		};
-> +
-> +		camera-focus {
-> +			label = "Camera Focus";
-> +			gpios = <&pm8998_gpio 8 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <1>;
-> +			linux,code = <KEY_CAMERA_FOCUS>;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> +
-> +	gpio_hall_sensor {
-
-Ditto.
-
-> +		compatible = "gpio-keys";
-> +		input-name = "hall-sensors";
-> +		label = "Hall sensors";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hall_sensor0_default>;
-> +
-> +		hall_sensor0 {
-
-And here...
-
-> +			label = "Cover Hall Sensor";
-> +			gpios = <&tlmm 124 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			gpio-key,wakeup;
-> +			debounce-interval = <30>;
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		hyp_mem: memory@85800000 {
-> +			reg = <0x0 0x85800000 0x0 0x3700000>;
-> +			no-map;
-> +		};
-> +
-> +		cont_splash_mem: cont-splash-region@9d400000 {
-
-Is there any reason for not just naming this "memory"?
-
-> +			reg = <0x0 0x9d400000 0x0 0x2400000>;
-> +			no-map;
-> +		};
-> +
-> +		zap_shader_region: gpu@f6400000 {
-
-This is also just "memory" here.
-
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0xf6400000 0x0 0x2000>;
-> +			no-map;
-> +		};
-> +
-[..]
-> +&rpm_requests {
-> +	pm8998-regulators {
-> +		compatible = "qcom,rpm-pm8998-regulators";
-> +
-[..]
-> +		vreg_lvs1a_1p8: lvs1 { };
-> +		vreg_lvs2a_1p8: lvs2 { };
-> +
-
-Blank line.
-
-> +	};
-> +
-> +	pmi8998-regulators {
-> +		compatible = "qcom,rpm-pmi8998-regulators";
-> +
-> +		vdd_bob-supply = <&vph_pwr>;
-> +
-> +		vreg_bob: bob {
-> +			regulator-min-microvolt = <3312000>;
-> +			regulator-max-microvolt = <3600000>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc2 {
-> +	status = "okay";
-> +	cd-gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
-> +
-> +	vmmc-supply = <&vreg_l21a_2p95>;
-> +	vqmmc-supply = <&vreg_l13a_2p95>;
-> +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_clk_on  &sdc2_cmd_on  &sdc2_data_on  &sdc2_cd_on>;
-> +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-
-How about grouping these various pins as "sdc2_default_state" and
-"sdc2_sleep_state"?
-
-> +};
-> +
-Regards,
-Bjorn
+Rob
