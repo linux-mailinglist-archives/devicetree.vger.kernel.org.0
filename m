@@ -2,123 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A653B402BE8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:35:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F6B402C01
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345284AbhIGPhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 11:37:00 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:33904 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345270AbhIGPhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:37:00 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 187FZl26094843;
-        Tue, 7 Sep 2021 10:35:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631028947;
-        bh=dIkAlr8MdwBVgAEkJnLIXNbbsnHvLWkb+7zsTqPfSGY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=HTEdrMwMBpJ+5bMIUVCg20nOmrmh1Arm7XUhds3ThCpOs14en8tA/DPDa+ycQhPqD
-         vvPxe0ZFuvmzjxF5HvnsjzhbidZsbv5pPPaIuE0JK7Mja3Gq5u66r8I1zFFd3fTjLU
-         cQp4b7EJf6klxXukUzStRwe0nNBzYycoj7oH8hdQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 187FZllb021672
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 Sep 2021 10:35:47 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
- Sep 2021 10:35:47 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 7 Sep 2021 10:35:47 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 187FZlkO099332;
-        Tue, 7 Sep 2021 10:35:47 -0500
-Date:   Tue, 7 Sep 2021 10:35:47 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: iot2050: Flip mmc device ordering on
- Advanced devices
-Message-ID: <20210907153547.53cc2zx23rx72kqf@thyself>
-References: <cover.1631024536.git.jan.kiszka@siemens.com>
- <8e2e435ef67868cb98382b44c51ddb5c8d045d66.1631024536.git.jan.kiszka@siemens.com>
- <20210907151301.7fqwmc7hmcyhhybv@carve>
- <35e0cadf-526c-6402-fb8e-8cdb8b7a0bfe@siemens.com>
- <20210907152746.fbddtkktvx6hb5ti@cattishly>
- <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
+        id S1345571AbhIGPiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 11:38:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345539AbhIGPiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:38:12 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B050C061757;
+        Tue,  7 Sep 2021 08:37:06 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id v33-20020a0568300921b0290517cd06302dso13240083ott.13;
+        Tue, 07 Sep 2021 08:37:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qzCAbQreV5TwH9yFWvlUXyDFt9CTh5w89/ws6dlPyBw=;
+        b=hSLPWR4VnM2jFIIdOs4giUmW0OkYDRAnrYH2ryAokITl0Y+3nmLYRHFCQPTcqwYzqZ
+         JMfaaN+LF0CxJdaoFtfjWOMzxQreQKFuIMt9binkJdXIN7yLyxwq7u0h20Fl2eL0Jrwg
+         4StXm0is02oODkUMZ2dcn7l/8oay4qQXtznHjHwXaUgcWSpiWgVwBhNEo81xrV0Uhwle
+         QjbiQk1YtgywxqHMhrFWyJXppdZNvH+mytDqOPxpOMEjNYCJc0WzqzpB9AhuE5gwtXwJ
+         a4F99INXeBZy6Ooh+Bb5f81+kh5D1ya6wvpUGnB+Sxa4HNskhig73dqzQ0mKREVP63ru
+         fHYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qzCAbQreV5TwH9yFWvlUXyDFt9CTh5w89/ws6dlPyBw=;
+        b=iBmCmoWkyKezX20/b+T8OCm8EjQGqo+vvPJwO/qJb51hR2R2mUbx78C/eu0xPVoqca
+         J+HZJvEClubBblceAr/FHeQ4XB8dRGm1DZzAWExPD7HTqRqIY1+4ofCxgwNK2ZLf4dYP
+         rKTl2gLJilIZoyjQuoq2Wq59oQX/1LEay09ZPD/VWcIcAHNPA8H3wSRIcPmM6GbK6oTy
+         l492GPxfws2au/BjJAjWk98lJnVbNuM5tK+b9goHQk9oQa4fDwlWSQqt1Kq+Y7u80ioW
+         UgEjtcej6OV3Gb9e1nlKd4JKMnRkBBJlKlwVOhHH8olf9B9mcK6g3ZKGYM8qVTZJrRBD
+         ih/Q==
+X-Gm-Message-State: AOAM530JtiAnZyEw41pRCslPwoJ2ayKY5boMaHhTDACkf3DffWkfFcqy
+        RlNSd6+j18zI7UWZJhBEo5fJ7yMKMEE=
+X-Google-Smtp-Source: ABdhPJzjWz8eFX2KR6nRurdk4R95LdYZknvbSP8QCRNg6MCxKUNdt2QmjnvcWAFKRwjB3iiTmOOyuQ==
+X-Received: by 2002:a05:6830:1d8c:: with SMTP id y12mr16201621oti.362.1631029025625;
+        Tue, 07 Sep 2021 08:37:05 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 186sm2266590ood.39.2021.09.07.08.37.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Sep 2021 08:37:05 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH 7/8] hwmon: (tmp421) really disable channels
+To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
+ <d0a1be24701dcf19a2f7501a9bc7fddf2b739792.1631021349.git.krzysztof.adamski@nokia.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <4392497d-22fe-b9df-cde1-73ff7b6a8d4e@roeck-us.net>
+Date:   Tue, 7 Sep 2021 08:37:03 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <d0a1be24701dcf19a2f7501a9bc7fddf2b739792.1631021349.git.krzysztof.adamski@nokia.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:30-20210907, Jan Kiszka wrote:
-> On 07.09.21 17:27, Nishanth Menon wrote:
-> > On 17:20-20210907, Jan Kiszka wrote:
-> >> On 07.09.21 17:13, Nishanth Menon wrote:
-> >>> On 16:22-20210907, Jan Kiszka wrote:
-> >>>> From: Jan Kiszka <jan.kiszka@siemens.com>
-> >>>>
-> >>>> This ensures that the SD card will remain mmc0 across Basic and Advanced
-> >>>> devices, also avoiding surprises for users coming from the downstream
-> >>>> kernels.
-> >>>>
-> >>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts | 5 +++++
-> >>>>  1 file changed, 5 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> >>>> index ec9617c13cdb..d1d5278e0b94 100644
-> >>>> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> >>>> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
-> >>>> @@ -18,6 +18,11 @@ / {
-> >>>>  	compatible = "siemens,iot2050-advanced", "ti,am654";
-> >>>>  	model = "SIMATIC IOT2050 Advanced";
-> >>>>  
-> >>>> +	aliases {
-> >>>> +		mmc0 = &sdhci1;
-> >>>> +		mmc1 = &sdhci0;
-> >>>> +	};
-> >>>
-> >>>
-> >>> Should we do this at SoC level?
-> >>>
-> >>
-> >> Well, I wouldn't mind - but that would also impact your EVMs. For us,
-> >> this is fine as we are coming from that ordering above with our
-> >> downstream kernel/dts.
-> >>
-> > 
-> > I think it'd probably be a welcome change. overall we've standardized on
-> > partuuid.
-> > 
+On 9/7/21 6:46 AM, Krzysztof Adamski wrote:
+> Recent patch added possibility to disable selected channels. That would
+> only make sure that the ENODATA is returned for those channels but would
+> not configure the actual hardware.
 > 
-> Yeah, it's more about "dd if=emmc.img of=/dev/mmcblk1 - damn, the wrong
-> one again."
+> With this patch, the config register is written to make sure the
+> channels are disabled also at hardware level.
 > 
-> Let me know what you prefer, and I'll update my patch.
+> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> ---
+>   drivers/hwmon/tmp421.c | 35 ++++++++++++++++++++++++++++++++---
+>   1 file changed, 32 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
+> index 90c6b094785e..cec25fb1c771 100644
+> --- a/drivers/hwmon/tmp421.c
+> +++ b/drivers/hwmon/tmp421.c
+> @@ -33,6 +33,8 @@ enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
+>   /* The TMP421 registers */
+>   #define TMP421_STATUS_REG			0x08
+>   #define TMP421_CONFIG_REG_1			0x09
+> +#define TMP421_CONFIG_REG_2			0x0A
+> +#define TMP421_CONFIG_REG_REN(x)		(BIT(3 + (x)))
+>   #define TMP421_CONVERSION_RATE_REG		0x0B
+>   #define TMP421_N_FACTOR_REG_1			0x21
+>   #define TMP421_MANUFACTURER_ID_REG		0xFE
+> @@ -351,6 +353,25 @@ void tmp421_probe_from_dt(struct i2c_client *client, struct tmp421_data *data)
+>   	}
+>   }
+>   
+> +void tmp421_disable_channels(struct i2c_client *client, uint8_t mask)
+> +{
+> +	int err;
+> +	int cfg = i2c_smbus_read_byte_data(client, TMP421_CONFIG_REG_2);
+> +
+> +	if (cfg < 0) {
+> +		dev_err(&client->dev,
+> +			"error reading register, can't disable channels\n");
+> +		return;
+> +	}
+> +
+> +	cfg &= ~mask;
+> +
+> +	err = i2c_smbus_write_byte_data(client, TMP421_CONFIG_REG_2, cfg);
+> +	if (err < 0)
+> +		dev_err(&client->dev,
+> +			"error writing register, can't disable channels\n");
+> +}
+> +
+>   static const struct hwmon_ops tmp421_ops = {
+>   	.is_visible = tmp421_is_visible,
+>   	.read = tmp421_read,
+> @@ -363,6 +384,7 @@ static int tmp421_probe(struct i2c_client *client)
+>   	struct device *hwmon_dev;
+>   	struct tmp421_data *data;
+>   	int i, err;
+> +	u8 disable = 0;
+>   
+>   	data = devm_kzalloc(dev, sizeof(struct tmp421_data), GFP_KERNEL);
+>   	if (!data)
+> @@ -380,11 +402,18 @@ static int tmp421_probe(struct i2c_client *client)
+>   	if (err)
+>   		return err;
+>   
+> -	for (i = 0; i < data->channels; i++)
+> -		data->temp_config[i] = HWMON_T_INPUT | HWMON_T_FAULT;
+> -
+>   	tmp421_probe_from_dt(client, data);
+>   
+> +	for (i = 0; i < data->channels; i++) {
+> +		data->temp_config[i] |= HWMON_T_INPUT | HWMON_T_FAULT;
+> +		if (data->channel[i].disabled)
+> +			disable |= TMP421_CONFIG_REG_REN(i);
+> +
+> +	}
+> +
+> +	if (disable)
+> +		tmp421_disable_channels(client, disable);
+> +
 
+This doesn't take into account that channels may already be disabled
+by the BIOS/ROMMON. The code will have to set the channel status explicitly
+for all channels if configured through dt, or read it from the chip
+otherwise. Also, as mentioned, the sysfs attribute should be supported
+as well (meaning it should also be possible to enable a channel).
 
-Lets do it at SoC level. I will follow it up with a patch for other K3
-SoCs as well.
+Guenter
 
+>   	data->chip.ops = &tmp421_ops;
+>   	data->chip.info = data->info;
+>   
+> 
 
-Unless someone has a strong opinion on this approach - if so, speak up
-with reasons.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
