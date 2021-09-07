@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2962E402CEC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366FC402CF3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:38:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343994AbhIGQi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 12:38:59 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:43766 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245595AbhIGQi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 12:38:59 -0400
-Received: by mail-ot1-f41.google.com with SMTP id x10-20020a056830408a00b004f26cead745so13485980ott.10;
-        Tue, 07 Sep 2021 09:37:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Gclh/xQmNnX7m+aM9vAxlEmZbwqo4NlYu42YuYNtugU=;
-        b=K5PHNfYj8iMFgt72VM8Hvix4aSar/WmJTDcq/niySfCaTlukwrVxKLPurVHVsEzb6S
-         ZwEVHzsvdp+sNLBkSI4mdFbYA2rLxHQqoFp8jZ8PArvPNmmzwxQPZtzFAFtnKiZX/9KQ
-         f5L4ZGy8na10NaBxbTyGyjKr/5QgyhE/pRVKaTo50zjAuT9ruvz8VN7EraGrKkwGGmji
-         Jkg+tM1E6XDVVTyOT4kVw+R0ChGK0yRzKiK1OK4iHjNGNaU/l9k7HVGV7eB+iIQcAUWe
-         64/XX4nmOXl4ONYPsYVl3TeNFGNsIAE85nj55RWoXI1sh2EPAMArv6kxsphSgsRwPu68
-         o3vQ==
-X-Gm-Message-State: AOAM531kl+Nlome8KwEvWwEZiMHWxO56UqQWrGw5YeWl61m5JcG43Iy2
-        Mpy9yHlstd4NwnGdp8QvcLQcUIDZbQ==
-X-Google-Smtp-Source: ABdhPJxhJLGGAPjwCwRlo1AFguj4YidhSgOO+HrTStyirpQo9WvGMraJrgBk5TrIwUWL1PY5NL7SRQ==
-X-Received: by 2002:a9d:5e05:: with SMTP id d5mr15412900oti.61.1631032672282;
-        Tue, 07 Sep 2021 09:37:52 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b11sm2313449ooi.0.2021.09.07.09.37.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 09:37:51 -0700 (PDT)
-Received: (nullmailer pid 4121281 invoked by uid 1000);
-        Tue, 07 Sep 2021 16:37:50 -0000
-Date:   Tue, 7 Sep 2021 11:37:50 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, Jan Kotas <jank@cadence.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clk: fixed-mmio-clock: Convert to YAML
-Message-ID: <YTeVXuZhwmuQ1YfE@robh.at.kernel.org>
-References: <20210903152615.31453-1-kabel@kernel.org>
+        id S1344155AbhIGQj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 12:39:27 -0400
+Received: from goliath.siemens.de ([192.35.17.28]:48753 "EHLO
+        goliath.siemens.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238089AbhIGQj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 12:39:26 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by goliath.siemens.de (8.15.2/8.15.2) with ESMTPS id 187Gc3rP017690
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 7 Sep 2021 18:38:04 +0200
+Received: from md1f2u6c.ad001.siemens.net ([167.87.245.242])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 187Gc3Gf021975;
+        Tue, 7 Sep 2021 18:38:03 +0200
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+Subject: [PATCH v2 0/4] arm64: dts: Update IOT2050 boards
+Date:   Tue,  7 Sep 2021 18:37:58 +0200
+Message-Id: <cover.1631032682.git.jan.kiszka@siemens.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210903152615.31453-1-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Sep 2021 17:26:15 +0200, Marek Behún wrote:
-> Convert the binding documentatoin for fixed-mmio-clock to YAML.
-> 
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->  .../bindings/clock/fixed-mmio-clock.txt       | 24 ----------
->  .../bindings/clock/fixed-mmio-clock.yaml      | 47 +++++++++++++++++++
->  2 files changed, 47 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/fixed-mmio-clock.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
-> 
+This enhances the DTs for the IOT2050, primarily by added support for
+upcoming Production Generation 2 (PG2) and by ordering the MMC devices
+consistently across variants.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changes in v2:
+ - move mmc alias to SoC level
+ - split up into PG2 preparation and addition patch
+ - add link to product homepage
+
+Jan
+
+Jan Kiszka (4):
+  arm64: dts: ti: k3-am65: Flip mmc device ordering
+  arm64: dts: ti: iot2050: Disable SR2.0-only PRUs
+  arm64: dts: ti: iot2050: Prepare for adding 2nd-generation boards
+  arm64: dts: ti: iot2050: Add support for product generation 2 boards
+
+ arch/arm64/boot/dts/ti/Makefile               |  2 +
+ .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 46 +++++++++++++++
+ .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 11 +---
+ arch/arm64/boot/dts/ti/k3-am65.dtsi           |  2 +
+ ...ts => k3-am6528-iot2050-basic-common.dtsi} | 12 +---
+ .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 ++++++++
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   | 56 +++----------------
+ ...=> k3-am6548-iot2050-advanced-common.dtsi} |  8 +--
+ .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 ++++++++++
+ .../dts/ti/k3-am6548-iot2050-advanced.dts     | 50 +++--------------
+ 11 files changed, 175 insertions(+), 116 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+ copy arch/arm64/boot/dts/ti/{k3-am6528-iot2050-basic.dts => k3-am6528-iot2050-basic-common.dtsi} (80%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
+ copy arch/arm64/boot/dts/ti/{k3-am6548-iot2050-advanced.dts => k3-am6548-iot2050-advanced-common.dtsi} (85%)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+
+-- 
+2.31.1
+
