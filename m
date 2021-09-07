@@ -2,108 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C7A0402802
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 13:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FAAD40280D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 13:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237399AbhIGLuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 07:50:17 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:43924 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235413AbhIGLuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 07:50:15 -0400
-Received: by mail-oi1-f170.google.com with SMTP id w19so12378725oik.10;
-        Tue, 07 Sep 2021 04:49:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=YXDFfDqAdMrMh9/PRAPi/Ueq/DRk2vA8+5/R9I9UfFI=;
-        b=iBPnoi/NoCbRzgfFp4QbBkW5gtgcUlR6AyINnNVOV8lCOGKwfsGJEwrLdQDNXYIG7F
-         ltSGjyNgM4L0IAp3/d5up1/mJfZ1nVY2MQzIxwa096adRVSU8j1jgY+KR4ytaRKW+RoN
-         nsoYiMIIJdHxbg/acPJwIJj9FuRs++U04xP1vLfO/FglxPhE7WA0aE+TJQAF70o+mPyV
-         KkSe9Y37aFjyygC2Bm5PyTzyQp+ckEv6L1QgOS93jxxxvF4Ths2L3V//eKuxtkIvRuBu
-         vTXnOZB+AxBvvDijgzhugD8JPhAyqbQmptd6xu9dVXryULhEHlFVhSTMFIRi5z6/tE7K
-         G8EA==
-X-Gm-Message-State: AOAM530Ghwb5OYyvRiNRL3LTXid5rUpg3Qvv3wdmSC9IO8Fuql+KnCdm
-        dXSiM0CCUqdnRef3dYwjQw==
-X-Google-Smtp-Source: ABdhPJxmI/NxJg96KtKH8oQkT0Y05vgErbp7q7fkN8CHIrfJK9I/w/eUsJcWwOLgxpfWiS7SSJhIVw==
-X-Received: by 2002:aca:c48d:: with SMTP id u135mr2665147oif.106.1631015349336;
-        Tue, 07 Sep 2021 04:49:09 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id z7sm2370656oti.65.2021.09.07.04.49.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 04:49:08 -0700 (PDT)
-Received: (nullmailer pid 3599963 invoked by uid 1000);
-        Tue, 07 Sep 2021 11:49:05 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Cai Huoqing <caihuoqing@baidu.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210907015724.1377-3-caihuoqing@baidu.com>
-References: <20210907015724.1377-1-caihuoqing@baidu.com> <20210907015724.1377-3-caihuoqing@baidu.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add the binding documentation for NXP IMX8QXP ADC
-Date:   Tue, 07 Sep 2021 06:49:05 -0500
-Message-Id: <1631015345.821868.3599962.nullmailer@robh.at.kernel.org>
+        id S241698AbhIGLxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 07:53:23 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:39229 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244986AbhIGLxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 07:53:23 -0400
+Received: from mail-wr1-f46.google.com ([209.85.221.46]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M2NqA-1mO8PJ1t9C-003rmF; Tue, 07 Sep 2021 13:52:15 +0200
+Received: by mail-wr1-f46.google.com with SMTP id g16so1983281wrb.3;
+        Tue, 07 Sep 2021 04:52:15 -0700 (PDT)
+X-Gm-Message-State: AOAM532LUkYv7lBmQjzNQW+8zj+T5ExLo8DD0H7EM7GyWuDeCftxkuls
+        5hT8crcV09cgqMgaY1LPmO0ZUhfgk1PID0u8aio=
+X-Google-Smtp-Source: ABdhPJw/CYZi2S4HK/KvHhz3qkFmdKwYpEfDmVzUvGY+xJcU8hH8BcH/rcHW5a8nZJHRmYJfVGa0Hgs7p6ap52yheJg=
+X-Received: by 2002:a5d:4ed0:: with SMTP id s16mr18160699wrv.71.1631015535089;
+ Tue, 07 Sep 2021 04:52:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210907102722.47543-1-bert@biot.com> <20210907102722.47543-5-bert@biot.com>
+ <CAFr9PXmCKPfdHnHU7=ALh=j2SDf71ibd8kEnLTK6aPN1vmQVdg@mail.gmail.com>
+In-Reply-To: <CAFr9PXmCKPfdHnHU7=ALh=j2SDf71ibd8kEnLTK6aPN1vmQVdg@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 7 Sep 2021 13:51:59 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a21N8khjyV-f=p28ZogoakhLTrkoPBd6PeXrigba=7-TQ@mail.gmail.com>
+Message-ID: <CAK8P3a21N8khjyV-f=p28ZogoakhLTrkoPBd6PeXrigba=7-TQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] ARM: Add basic support for Airoha EN7523 SoC
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Bert Vermeulen <bert@biot.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        John Crispin <john@phrozen.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        YiFei Zhu <yifeifz2@illinois.edu>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Mike Rapoport <rppt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:e/9cqD10FOuA8njfmLytMKlOmgTRaXvcL7pZn7FgjLEe1TiH20t
+ HQgo29dmlSC3ddreWXcYG+suwQ2gaGJPx6fI0wLtzKLnNfRyvEQFGvhpefPEFMYbgz3XB7D
+ OvC596bzPcfAInHVPL5JnKIdx4+syBJwutAKaWSk/FZgEEk+pGMSVcEf5/z/0d6G6y0F0c6
+ boo/Dcd128EYRxsNBnwuQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:d20yJRJ9TNw=:OVBrHhY5gtukVVg3Xtd/m0
+ 8u4R++63dqxiRfrhGmw9e4KOw+Da1VJcXhE81xXL2nK8CA7imI83yLc1r2C/EpoRfx01QIcHe
+ ahbwnKSD7t5kZzYXcME/9EH3EooRP/sfglVBUYl49zeMQ6sD0z6QzI4IrdfRnQvBgasUOzpvZ
+ ZUG7NXZgorGfoSsx9iQsNcO2TEKa+P1jlc7O/cFD/Yl9syPt3cCyv/4jzs2ahKVfMgjeOcwEZ
+ v0OFoKooGf05KSP0QPlU9ZE1AP4WwwTpHrY6hkT52+oBfRdCRa9p0scUm8tS5Y/nSSm+Dqs/W
+ H9NHDcPZbYnxkLg2DJNwD2dWg064P+IrnOP2OE1NfsbnXR9Ur86UEZLzZYDkGANcrnaFKE8DS
+ ICBDnjX2n1taoxxKFu71KCgnLSyrigfDthuZj2L24f0ZdtG1s+Cy/sq1Pc35pMuQMMNXtlMcZ
+ YvXtlep/GTD+7nBHpVohTp3GeZs4AQSsI2/inFexWGouY1Ulb4fvKC5mFtG/6PsTcYOgO+4+n
+ ZZmiABN1dyAM1aCeOyNAU5ZvtiJCEKG8FB8Og38nKb6DL4zvT8Po/w3gReD2wVmZp9pZPnJNl
+ JvDEUXcq3S8inLp3/3qCGfKn2Q0eTh0+ZLu/CBAhLyr0GWaRIBpYJ8YGviD/aymoyWQXmvcr8
+ LsfwV2498J5GOF6i+qOxIUQme59j8wLDEY6/jaCXnzw4Ew8sFIXgrAXzUXG7nK53w6cspAOJZ
+ 84KezZYvOTbJj1hw80eXp1yqR3OjcVtW8N1e+Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Sep 2021 09:57:22 +0800, Cai Huoqing wrote:
-> The NXP i.MX 8QuadXPlus SOC has a new ADC IP, so add the binding
-> documentation for NXP IMX8QXP ADC.
-> 
-> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-> ---
-> v1->v2: *Fix some indentation issues.
->         *Mark status as okay.
->         *Change clock2 source.
-> v1 link:
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210830172140.414-5-caihuoqing@baidu.com/
-> 
->  .../bindings/iio/adc/nxp,imx8qxp-adc.yaml     | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> 
+On Tue, Sep 7, 2021 at 12:48 PM Daniel Palmer <daniel@0x0f.com> wrote:
+> On Tue, 7 Sept 2021 at 19:30, Bert Vermeulen <bert@biot.com> wrote:
+> >
+> > From: John Crispin <john@phrozen.org>
+> >
+> > EN7523 is an armv7 based silicon used inside broadband access type devices
+> > such as xPON and xDSL. It shares various silicon blocks with MediaTek
+> > silicon such as the MT7622.
+>
+> This is a Cortex A53 isn't it? So it's ARMv8. I thought the issue is
+> that it's actually a 64bit system but you only have a 32bit
+> bootloader, firmware etc?
+>
+> Off-topic but related:  Another MediaTek spin off, SigmaStar, seems to
+> have done exactly the same thing. Cortex A53 chip running as a 32bit
+> system to avoid having to fix their software. I'm interested to see if
+> this makes it into arm or arm64. :)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Maybe it's best to just add them to both at the same time? The boot
+loader situation might take a bit to work out, but in theory this should
+be fixable.
 
-yamllint warnings/errors:
+You can generally include .dtsi files from one in the other, as you can
+see from e.g. arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b.dts.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.example.dt.yaml: soc: adc@5a880000:reg:0: [0, 1518862336, 0, 65536] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.example.dt.yaml: adc@5a880000: 'interrupts-parent' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.example.dt.yaml: adc@5a880000: 'state' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.example.dt.yaml: adc@5a880000: '#address-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.example.dt.yaml: adc@5a880000: '#size-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.example.dt.yaml: adc@5a880000: 'assigned-clock-rates' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+For new files, I think I would prefer having the .dts files in arm64 and
+including them from arch/arm/ rather than the other way round, but
+others may come up with a good reason to keep doing the reverse.
+This would help encourage the thought that running a 64-bit
+kernel is the better setup, rather than propagate the 32-bit kernel
+nonsense on 64-bit machines.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1525098
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+       Arnd
