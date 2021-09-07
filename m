@@ -2,127 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2738402C06
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E83F6402C0D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345270AbhIGPjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 11:39:10 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34220 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235162AbhIGPjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:39:07 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 187FbtGd095460;
-        Tue, 7 Sep 2021 10:37:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631029075;
-        bh=gR3EEJyHpt8vx/sIEV8aAFRiaC5OiVjcTaFTZ3IoEGE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=mJ7PRh6cNViiQLcgv6IeZ4spjy727HD9kOaO4A/Nzfiwt9zjgiSCpGshl8MTwjTlW
-         OUGVxepER5suPIDess4qR1zZTYXIfGiNqj+ugIE4WgkWw/Jgc2Rk8S6rOJMu2EnYaf
-         vEAnA4R72s920jlIntwP5Fb89EWct+wJA5L4kegY=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 187FbsPt012311
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 Sep 2021 10:37:55 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
- Sep 2021 10:37:54 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 7 Sep 2021 10:37:54 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 187FbsFm103979;
-        Tue, 7 Sep 2021 10:37:54 -0500
-Date:   Tue, 7 Sep 2021 10:37:54 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: Re: [PATCH 3/3] arm64: dts: ti: iot2050: Add support for product
- generation 2 boards
-Message-ID: <20210907153754.2pm3mmovjjtkj5ig@overeager>
-References: <cover.1631024536.git.jan.kiszka@siemens.com>
- <d678e0a2d77fbd71c95d554dcac4646c7e8e6cf0.1631024536.git.jan.kiszka@siemens.com>
- <20210907151648.5z4hnlgppurheloz@stroller>
- <37f18b9e-f640-2642-2849-ed5b61493bfa@siemens.com>
+        id S1345334AbhIGPnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 11:43:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60054 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345333AbhIGPnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:43:18 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB38C061575;
+        Tue,  7 Sep 2021 08:42:12 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id i3-20020a056830210300b0051af5666070so13292471otc.4;
+        Tue, 07 Sep 2021 08:42:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=lA7u5y3v3BIyhp6tmFbsbfv2xNBCFBIUIMasuqRXFqk=;
+        b=aUDliC9dmek4osY9gtWeScBIyY7AQ3sZiHGUpwa6RDDyUG6zlz/y0UEvNh65tEOxGA
+         l/4xlnP16AyyEHSLLnnTxAvyraP4BDfd6EBfy/UmT2LKxOdai3h9ZzIBKS9SIx8lhFXL
+         QZ2+3Kh/f1aX6pmTt/s7Rnr5IAuwBKBlnUjg7Qhpryob/hxwhi5MbRyJ4Myw2o0XsuDE
+         TMK+85KBNXNi2mlyuu4vVoreKARCSGY24m9mYuT/1K2dFVb3jvYA9wYar9Uc3yO1y8O1
+         NeWSSmLfurvFJ68yz3NJrZzLrkHalYvGQGt+oMYwcQN2DjNthQs2oV1/GiovLg31T9NU
+         PweQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=lA7u5y3v3BIyhp6tmFbsbfv2xNBCFBIUIMasuqRXFqk=;
+        b=iTTH7ckk5KjZdyION12qwHkEd8TRd6fYRCFzS0Ct8pYM2WDGBo+9MghyxoAZBazrzu
+         A69ZSKRFOkU8gg+L0QUxDvivBjr9+ZXsxTJjOJ06tDt+dBOjAsZAZRhOLbR+eVO9hyqj
+         ECkQczWyhhUJIPHLQ3QviP1FRDjnps8hKISucy/6QT51z4vTVFhzkes0/3nphpnyAmwb
+         dLApJuPJRms8q+s11vYfPQ52IjKH+FdbEL95oZpa2WvfN8P2BeCOs+ZWysdOU8JV6g2W
+         f/lmdG813KRd0OQBmFFdhYjvM6anB/rfYj/G1e/6T8gbT9WNaIBbp5nLc/RkGDg85SGf
+         kQdw==
+X-Gm-Message-State: AOAM532q7OHzIJlBSu6vRdUneBif4484xmThftcv0hmU7tRfwc2FroNm
+        EI9Oc3gguIavyyLNFfqf7ifN9+yg9H0=
+X-Google-Smtp-Source: ABdhPJwn/kMi6pMrAJB++B7kbJ7/Y/YYIn+sQmMZDDhvUPffmqcNeAyswav7l0eEz23pd7fCWfhdpQ==
+X-Received: by 2002:a9d:6c48:: with SMTP id g8mr15159331otq.199.1631029331640;
+        Tue, 07 Sep 2021 08:42:11 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c14sm2456374otd.62.2021.09.07.08.42.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Sep 2021 08:42:11 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH 6/8] hwmon: (tmp421) support specifying n-factor via DT
+To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
+ <546898c479414a00e9caf8902d8d8db082a02668.1631021349.git.krzysztof.adamski@nokia.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <ad309fd1-1cf0-034a-d110-ad8433448dc8@roeck-us.net>
+Date:   Tue, 7 Sep 2021 08:42:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <37f18b9e-f640-2642-2849-ed5b61493bfa@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <546898c479414a00e9caf8902d8d8db082a02668.1631021349.git.krzysztof.adamski@nokia.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:27-20210907, Jan Kiszka wrote:
-> On 07.09.21 17:16, Nishanth Menon wrote:
-> > On 16:22-20210907, Jan Kiszka wrote:
-> >> From: Jan Kiszka <jan.kiszka@siemens.com>
-> >>
-> >> Product Generations 1 and 2 differ in the SOC revision which requires
-> >> separate device trees.
-> >>
-> >> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> >> ---
-> >>  arch/arm64/boot/dts/ti/Makefile               |  2 +
-> >>  .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 46 ++++++++++++++++
-> >>  .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 ++++++++++++++++++
-> >>  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 35 +-----------
-> >>  ...ts => k3-am6528-iot2050-basic-common.dtsi} | 12 ++---
-> >>  .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 21 ++++++++
-> >>  .../boot/dts/ti/k3-am6528-iot2050-basic.dts   | 53 ++-----------------
-> >>  ...=> k3-am6548-iot2050-advanced-common.dtsi} |  8 +--
-> >>  .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 26 +++++++++
-> >>  .../dts/ti/k3-am6548-iot2050-advanced.dts     | 52 ++----------------
-> >>  10 files changed, 161 insertions(+), 145 deletions(-)
-> >>  create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-> >>  create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-> >>  copy arch/arm64/boot/dts/ti/{k3-am6528-iot2050-basic.dts => k3-am6528-iot2050-basic-common.dtsi} (80%)
-> >>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-> >>  copy arch/arm64/boot/dts/ti/{k3-am6548-iot2050-advanced.dts => k3-am6548-iot2050-advanced-common.dtsi} (86%)
-> >>  create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-> > 
-> > 
-> > Few things:
-> > 
-> > a) Could you split this patch so that the refactoring for SR1 is the
-> >    first patch and then introduce the SR2?
+On 9/7/21 6:45 AM, Krzysztof Adamski wrote:
+> Previous patches added a way to specify some channel specific parameters
+> in DT and n-factor is definitely one of them. This calibration mechanism
+> is board specific as its value depends on the diodes/transistors being
+> connected to the sensor and thus the DT seems like a right fit for that
+> information. It is very similar to the value of shunt resistor that some
+> drivers allows specifying in DT.
 > 
-> Can do, sure
+> This patch adds a possibility to set n-factor for each channel via
+> "n-factor" DT property in each channel subnode.
 > 
-> > b) Please call these as sr (silicon revision) rather than pg.
+> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> ---
+>   drivers/hwmon/tmp421.c | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
 > 
-> Nope, this is only motivated by the SR1->SR2 switch. The new products
-> are called "PG2", and that is what the DT name must reflect. Took me a
-> while to grasp that as well.
+> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
+> index a41d7935acb9..90c6b094785e 100644
+> --- a/drivers/hwmon/tmp421.c
+> +++ b/drivers/hwmon/tmp421.c
+> @@ -34,6 +34,7 @@ enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
+>   #define TMP421_STATUS_REG			0x08
+>   #define TMP421_CONFIG_REG_1			0x09
+>   #define TMP421_CONVERSION_RATE_REG		0x0B
+> +#define TMP421_N_FACTOR_REG_1			0x21
+>   #define TMP421_MANUFACTURER_ID_REG		0xFE
+>   #define TMP421_DEVICE_ID_REG			0xFF
+>   
+> @@ -302,6 +303,7 @@ void tmp421_probe_child_from_dt(struct i2c_client *client,
+>   {
+>   	struct device *dev = &client->dev;
+>   	u32 i;
+> +	s32 val;
+>   	int err;
+>   
+>   	err = of_property_read_u32(child, "reg", &i);
+> @@ -321,6 +323,21 @@ void tmp421_probe_child_from_dt(struct i2c_client *client,
+>   		data->channel[i].disabled = true;
+>   		return;
+>   	}
+> +
+> +	if (i == 0)
+> +		return; /* input 0 is internal channel */
+> +
+> +	err = of_property_read_s32(child, "n-factor", &val);
+> +	if (!err) {
+> +		if (val > 127 || val < -128)
+> +			dev_err(dev, "n-factor for channel %d invalid (%d)\n",
+> +				i, val);
 
+This should report an error to the caller.
 
-Aaah.. thanks.. will be good to document the same. I think you did mean
-Product Generation as PG.. please call it out explicitly in the commit
-message.
+Guenter
 
+> +		else
+> +			i2c_smbus_write_byte_data(client,
+> +						  TMP421_N_FACTOR_REG_1 + i - 1,
+> +						  val);
+> +	}
+> +
+>   }
+>   
+>   void tmp421_probe_from_dt(struct i2c_client *client, struct tmp421_data *data)
 > 
-> > c) usual request: Please add urls for the board
-> 
-> Where should they go? I think there is only one reasonable to share:
-> 
-> https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-> 
-> If that is a stable link, I can't tell.
 
-
-Please confirm and add that to the commit message of the patch that introduces pg2 board.
-
-I'd also suggest adding the link to the dts file.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
