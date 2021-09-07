@@ -2,107 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6727402C92
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77523402CE7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244014AbhIGQIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 12:08:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39542 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238483AbhIGQIR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Sep 2021 12:08:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A082561130;
-        Tue,  7 Sep 2021 16:07:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631030830;
-        bh=+lJkGZeGmmojxoICOoYZ2t3AkosVDnXKocMMyh1szbs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QNp9p1TUa3ei4z9ns0GgLtkR1OizOQ1pIKoqKY9MUoxNy8GDuZPe4KneNrFTgnfgT
-         E5kOgdQcr4hRziJAzNysLzkRrlDhNh15STVAo5CHzaCvancScfsROamjR1oK+tA2Bc
-         VttM+LqvNou2xrah3U5hbymBHgQCcn7wSOV1TrHBYiYB93nN0ihhLs0bzLBRyq7HkS
-         wQbGox70OLqF1/49ssoeu1lXRI9v6lv58EBotXOr3odPC4xUwuM9eCPaWPxZJEGSJw
-         PF2ikN6g2TRR30hkCYKlox6Qhfh1OGRVI/AyA47mAOeTg1hZgJNoiphaF5Cm41JVmh
-         XYLmMUswh8UOg==
-Received: by mail-ej1-f51.google.com with SMTP id h9so20719281ejs.4;
-        Tue, 07 Sep 2021 09:07:10 -0700 (PDT)
-X-Gm-Message-State: AOAM533VPeo9Ezno4RL9reWqBnHumhKbEaJx/o+mGibZpGze6yLVwNsU
-        uzuya6GdNYTa2PLkNXQUCsgWSasOOahwFC3uHg==
-X-Google-Smtp-Source: ABdhPJyY5G5Fp3aIZKKQwfIH3FO1wAURJJPIvo91MbXQo53v/T6+cQCTl2RcTXSYs4lmdwE+fxWw+K47Vu/yjAvvJpc=
-X-Received: by 2002:a17:906:26c4:: with SMTP id u4mr18904991ejc.511.1631030829293;
- Tue, 07 Sep 2021 09:07:09 -0700 (PDT)
+        id S1343793AbhIGQg4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Sep 2021 12:36:56 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:44485 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231378AbhIGQg4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 12:36:56 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 93BC560009;
+        Tue,  7 Sep 2021 16:35:46 +0000 (UTC)
+Date:   Tue, 7 Sep 2021 18:35:45 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     Roger Quadros <rogerq@kernel.org>, <tony@atomide.com>,
+        <robh+dt@kernel.org>, <nm@ti.com>, <lokeshvutla@ti.com>,
+        <nsekhar@ti.com>, <krzysztof.kozlowski@canonical.com>,
+        <devicetree@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 5/8] dt-bindings: mtd: ti,gpmc-nand: Convert to yaml
+Message-ID: <20210907183545.3e281b7d@xps13>
+In-Reply-To: <dc3d465f-50d5-31e5-07e6-f83223b90800@ti.com>
+References: <20210907113226.31876-1-rogerq@kernel.org>
+        <20210907113226.31876-6-rogerq@kernel.org>
+        <20210907160317.2ec5304a@xps13>
+        <dc3d465f-50d5-31e5-07e6-f83223b90800@ti.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210906071539.12953-1-nancy.lin@mediatek.com> <20210906071539.12953-5-nancy.lin@mediatek.com>
-In-Reply-To: <20210906071539.12953-5-nancy.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 8 Sep 2021 00:06:58 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9pvtP-Ri4UHjRGDvA3j0F7J+HsRqOiNzPbEeE=NmAsqA@mail.gmail.com>
-Message-ID: <CAAOTY_9pvtP-Ri4UHjRGDvA3j0F7J+HsRqOiNzPbEeE=NmAsqA@mail.gmail.com>
-Subject: Re: [PATCH v5 04/16] dt-bindings: reset: mt8195: add vdosys1 reset
- control bit
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        singo.chang@mediatek.com,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Nancy:
+Hi Grygorii,
 
-Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=886=E6=97=
-=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:15=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Add vdosys1 reset control bit for MT8195 platform.
->
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> ---
->  include/dt-bindings/reset/mt8195-resets.h | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/include/dt-bindings/reset/mt8195-resets.h b/include/dt-bindi=
-ngs/reset/mt8195-resets.h
-> index a26bccc8b957..eaaa882c09bd 100644
-> --- a/include/dt-bindings/reset/mt8195-resets.h
-> +++ b/include/dt-bindings/reset/mt8195-resets.h
-> @@ -26,4 +26,16 @@
->
->  #define MT8195_TOPRGU_SW_RST_NUM               16
->
-> +/* VDOSYS1 */
-> +#define MT8195_VDOSYS1_SW0_RST_B_MERGE0_DL_ASYNC 25
-> +#define MT8195_VDOSYS1_SW0_RST_B_MERGE1_DL_ASYNC 26
-> +#define MT8195_VDOSYS1_SW0_RST_B_MERGE2_DL_ASYNC 27
-> +#define MT8195_VDOSYS1_SW0_RST_B_MERGE3_DL_ASYNC 28
-> +#define MT8195_VDOSYS1_SW0_RST_B_MERGE4_DL_ASYNC 29
-> +#define MT8195_VDOSYS1_SW1_RST_B_HDR_VDO_FE0_DL_ASYNC 51
-> +#define MT8195_VDOSYS1_SW1_RST_B_HDR_VDO_FE1_DL_ASYNC 52
-> +#define MT8195_VDOSYS1_SW1_RST_B_HDR_GFX_FE0_DL_ASYNC 53
-> +#define MT8195_VDOSYS1_SW1_RST_B_HDR_GFX_FE1_DL_ASYNC 54
-> +#define MT8195_VDOSYS1_SW1_RST_B_HDR_VDO_BE_DL_ASYNC 55
+> >   
+> >> +
+> >> +  nand-bus-width:
+> >> +    description:
+> >> +      Bus width to the NAND chip
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    enum: [8, 16]
+> >> +    default: 8  
+> > 
+> > This is part of nand-controller.yaml binding and should not be there.
+> >   
+> >> +
+> >> +allOf:
+> >> +  - $ref: "../memory-controllers/ti,gpmc-child.yaml"  
+> > 
+> > Maybe you need to reference the nand controller bindings as well
+> >   
+> 
+> This will not work out of the box :( as nand-controller.yaml defines both
+>   nand controller and nand memory. It potentially might work if it will be possible to split
+> nand memory definition (or nand memory properties) out of and-controller.yaml, similarly to
+> ti,gpmc-child.yaml from this series.
 
-Maybe you should align the indent style with TOPRGU.
+What you think would be the issue?
 
-Regards,
-Chun-Kuang.
+I am not opposed to split nand-controller.yaml into
+nand-controller.yaml and nand-chip.yaml if it simplifies the
+description of controllers but I don't get why it would be needed. In
+particular since we expect all drivers to support the
 
-> +
->  #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8195 */
-> --
-> 2.18.0
->
+nand-controller {
+	controller-props;
+	nand-chip {
+		chip-props;
+	}
+}
+
+organization which has been enforced since at least 2018. Having a
+controller vs. chip representation is fundamentally right. But here I
+see how "legacy" are these bindings with so much unneeded specific "ti,"
+properties... On one side it would be good to verify that the driver
+supports this representation (which I believe is true) and on the other
+side maybe it's time to advertise "better" bindings as well.
+
+
+Thanks,
+Miquèl
