@@ -2,132 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D605402FB3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854C8402FBC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:28:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345433AbhIGU1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 16:27:47 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:39027 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1346457AbhIGU1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 16:27:47 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 664BF5C0152;
-        Tue,  7 Sep 2021 16:26:40 -0400 (EDT)
-Received: from imap21 ([10.202.2.71])
-  by compute1.internal (MEProxy); Tue, 07 Sep 2021 16:26:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm2; bh=lcpU2CxkGVxmNJlEgg40FlED8MuY
-        46mhZqXqU1CnrRQ=; b=VjcHXlXAALRMftUEOdXM6giehfWYvRiyBMyyYGIXffPZ
-        YMTOvDYAItd4hZB40+/NQjN+W1qaVkX5CUFODvGX/RiVBJYhSOzOz13X6t166qM2
-        EvcU8MY8g9st6pVtZJZ/lnWdutcYf0mZDWWojV4QBBsDvqQNjCSn5n4jienM77Jx
-        dw8MPrEyLYXHwRX1rsm41zQck14brFoKkHL3+7wikiNnSMErysNZVaR8PQg2A89b
-        qZdx6m1vC+gS7r89faBcb4lhVjYtxYEOqPJW8MjiwVmkSS6fl5vxJs67SDBsfmaM
-        KvayNwVDjBCQx2TuCwvadHkWCDItS97ynUJ3JR/Zqw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=lcpU2C
-        xkGVxmNJlEgg40FlED8MuY46mhZqXqU1CnrRQ=; b=KIRudOLKGrSUVYTPzOw7BJ
-        te7I+q51c9DsYZ0Yz1D6oM9MyUQnRfga6EdCYLXNSfF/Ai6P35rwacb+2rWX6N3S
-        Tncij3mLh1lE1a0QbZjc+q05oDgdy1F5EnJN7oXOxqbM8htzHKFkGfVFRRVlUfSH
-        Fzw9jBvydmBrd1Hm/4Rj10sktRbQp+I6bIrpuyH+P+XvioBgRjkOBZpFPopGxioy
-        TWpna7O8efxiE1n0vRcUv4E0Mtxzfp066hMmu7OIET2kxdAZJNtqHNWqHIg931pU
-        1FYmUMJ/FwnznYoaDXnR6G5kNEm0Mg5gADYgIXMWjd9goYvORHqQSG2pDjCPWFOw
-        ==
-X-ME-Sender: <xms:_so3YXDDPjIBTx_RdwC497gX2ANCbQJoppWbdA6mUCwAMp9WPoW0TA>
-    <xme:_so3YdjyhVse3DRyoxKyE_drG6yFaYgm3WNOUIowqVHKDJxt09Y7vzntH5_ikhpS8
-    -ysmSUyrIEkdp_pOsM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudefhedgudehtdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
-    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
-    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
-    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:_so3YSnOtnZhYCbTHc0NChq0Dfest5tSxwJUQ8GpOzHNEczOWRuFWA>
-    <xmx:_so3YZwJvqmQrOKZhb6G-5dUyUudiTN1FhUErBXbAeLv2MR1Tnm5zw>
-    <xmx:_so3YcQDoGKK0GfB0PtaS38QbuEbrm2BwMOwYkEz8dHnJbi2RTRTkg>
-    <xmx:AMs3YRTjMUWlKqiUoNjyd5LiSh4EGNmrv4eKWnkKiYgb91zF8ry2TA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id C7D0C51C0060; Tue,  7 Sep 2021 16:26:38 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1126-g6962059b07-fm-20210901.001-g6962059b
-Mime-Version: 1.0
-Message-Id: <ff66c30d-1b43-43d3-a4b0-02fe7d346118@www.fastmail.com>
-In-Reply-To: <YTe17jGBobarePaK@sunset>
-References: <20210907145501.69161-1-sven@svenpeter.dev>
- <20210907145501.69161-3-sven@svenpeter.dev> <YTe17jGBobarePaK@sunset>
-Date:   Tue, 07 Sep 2021 22:26:17 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>
-Cc:     "Jassi Brar" <jassisinghbrar@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
-        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: mailbox: Add Apple mailbox bindings
-Content-Type: text/plain
+        id S1346603AbhIGU36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 16:29:58 -0400
+Received: from gecko.sbs.de ([194.138.37.40]:33379 "EHLO gecko.sbs.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346600AbhIGU36 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 16:29:58 -0400
+Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
+        by gecko.sbs.de (8.15.2/8.15.2) with ESMTPS id 187KSXW1005590
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 7 Sep 2021 22:28:33 +0200
+Received: from [167.87.245.242] ([167.87.245.242])
+        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 187KSWxs030398;
+        Tue, 7 Sep 2021 22:28:32 +0200
+Subject: Re: [PATCH 1/3] arm64: dts: ti: iot2050: Flip mmc device ordering on
+ Advanced devices
+To:     Aswath Govindraju <a-govindraju@ti.com>, Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+References: <cover.1631024536.git.jan.kiszka@siemens.com>
+ <8e2e435ef67868cb98382b44c51ddb5c8d045d66.1631024536.git.jan.kiszka@siemens.com>
+ <20210907151301.7fqwmc7hmcyhhybv@carve>
+ <35e0cadf-526c-6402-fb8e-8cdb8b7a0bfe@siemens.com>
+ <20210907152746.fbddtkktvx6hb5ti@cattishly>
+ <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
+ <20210907153547.53cc2zx23rx72kqf@thyself>
+ <482dddc1-b1f8-15db-a0c5-0d6def5d859f@ti.com>
+ <20210907165316.4s3jrouctcpc3kvo@pessimism>
+ <d69acf3d-e0c4-ef7b-be23-0d98dd6b05aa@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <4cb6e76e-479f-5e06-778a-4788be53afb9@siemens.com>
+Date:   Tue, 7 Sep 2021 22:28:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <d69acf3d-e0c4-ef7b-be23-0d98dd6b05aa@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-
-On Tue, Sep 7, 2021, at 20:56, Alyssa Rosenzweig wrote:
-> > +      - description:
-> > +          M3 mailboxes are an older variant with a slightly different MMIO
-> > +          interface still found on the M1.
-> > +        items:
-> > +          - const: apple,t8103-m3-mailbox
+On 07.09.21 19:01, Aswath Govindraju wrote:
+> Hi Nishanth,
 > 
-> Would be nice to document an example of where an M3 mailbox is found.
-
-Sure, I can add a comment that this is used for the coprocessor controlling Thunderbolt.
-
+> On 07/09/21 10:23 pm, Nishanth Menon wrote:
+>> On 22:17-20210907, Aswath Govindraju wrote:
+>>> Hi Nishanth,
+>>>
+>>> On 07/09/21 9:05 pm, Nishanth Menon wrote:
+>>>> On 17:30-20210907, Jan Kiszka wrote:
+>>>>> On 07.09.21 17:27, Nishanth Menon wrote:
+>>>>>> On 17:20-20210907, Jan Kiszka wrote:
+>>>>>>> On 07.09.21 17:13, Nishanth Menon wrote:
+>>>>>>>> On 16:22-20210907, Jan Kiszka wrote:
+>>>>>>>>> From: Jan Kiszka <jan.kiszka@siemens.com>
+>>>>>>>>>
+>>>>>>>>> This ensures that the SD card will remain mmc0 across Basic and Advanced
+>>>>>>>>> devices, also avoiding surprises for users coming from the downstream
+>>>>>>>>> kernels.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+>>>>>>>>> ---
+>>>>>>>>>  arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts | 5 +++++
+>>>>>>>>>  1 file changed, 5 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+>>>>>>>>> index ec9617c13cdb..d1d5278e0b94 100644
+>>>>>>>>> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+>>>>>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts
+>>>>>>>>> @@ -18,6 +18,11 @@ / {
+>>>>>>>>>  	compatible = "siemens,iot2050-advanced", "ti,am654";
+>>>>>>>>>  	model = "SIMATIC IOT2050 Advanced";
+>>>>>>>>>  
+>>>>>>>>> +	aliases {
+>>>>>>>>> +		mmc0 = &sdhci1;
+>>>>>>>>> +		mmc1 = &sdhci0;
+>>>>>>>>> +	};
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> Should we do this at SoC level?
+>>>>>>>>
+>>>>>>>
+>>>>>>> Well, I wouldn't mind - but that would also impact your EVMs. For us,
+>>>>>>> this is fine as we are coming from that ordering above with our
+>>>>>>> downstream kernel/dts.
+>>>>>>>
+>>>>>>
+>>>>>> I think it'd probably be a welcome change. overall we've standardized on
+>>>>>> partuuid.
+>>>>>>
+>>>>>
+>>>>> Yeah, it's more about "dd if=emmc.img of=/dev/mmcblk1 - damn, the wrong
+>>>>> one again."
+>>>>>
+>>>>> Let me know what you prefer, and I'll update my patch.
+>>>>
+>>>>
+>>>> Lets do it at SoC level. I will follow it up with a patch for other K3
+>>>> SoCs as well.
+>>>>
+>>>>
+>>>> Unless someone has a strong opinion on this approach - if so, speak up
+>>>> with reasons.
+>>>>
+>>>
+>>> Making this change in SoC level for all K3 devices would force changes
+>>> to be made in U-Boot too, for consistency. In U-Boot, a major change
+>>> would be required in the environment variables to support this. As I
+>>> don't see any functional advantage by making this change, I feel that
+>>> this change would make things more confusing for users already using the
+>>> K3 devices. At present, the ordering is consistent across all the K3
+>>> devices, I feel that keeping it the same way would be better.
+>>>
+>>> As for making changes only on IoT boards, if it is okay to have the
+>>> ordering changed between U-Boot and kernel, I don't see any problem
+>>> making this change in kernel alone.
+>>
+>>
+>> arch/arm64/boot/dts/ti/k3-am65.dtsi has no ordering. u-boot is supposed
+>> to copy from kernel the dtsi files as is. I think having mmc aliases in
+>> kernel is a good thing as we do regard kernel as the canonical dts
+>> source.
+>>
 > 
-> > +  interrupts:
-> > +    minItems: 4
-> > +    items:
-> > +      - description: send fifo is empty interrupt
-> > +      - description: send fifo is not empty interrupt
-> > +      - description: receive fifo is empty interrupt
-> > +      - description: receive fifo is not empty interrupt
-> > +
-> > +  interrupt-names:
-> > +    minItems: 4
-> > +    items:
-> > +      - const: send-empty
-> > +      - const: send-not-empty
-> > +      - const: recv-empty
-> > +      - const: recv-not-empty
-> 
-> If the names became not-constant the asprintf thing goes away, not sure
-> that's better or worse.
-
-I'm not sure I understand your comment here. This property just gives a name
-to the interrupts so that they can be referenced by that instead of a magic
-number between 0 and 4 in the driver.
-
-> 
-> > +  clocks:
-> > +    description:
-> > +      Reference to the clock gate phandle(s) if required for this mailbox.
-> > +      Optional since not all mailboxes are attached to a clock gate.
-> 
-> Do we do anything with the clocks at this point?
+> Yes, you are correct. Aliases are not added for mmc in U-Boot too, but
+> due to the ordering in the device tree, mmc0 is always sdhci0 and mmc1
+> is always sdhci1 in U-Boot. I agree that, in kernel as the probe order
+> is not guaranteed, fixing the order would be better by adding aliases
+> explicitly.
 > 
 
-The device tree bindings describe the hardware (as best as we can without proper
-documentation) and some of these mailboxes have clock gates which need to be turned
-on before accessing their MMIO. This driver already tries to do that and works fine
-with the downstream clock driver(s) we have.
+We had mmc reordered for our devices in U-Boot already. That separate
+snippet would obviously be obsolete when sync'ing common reordering over.
 
+>> If you are suggesting we flip things so that mmc0 is sdhci0 and mmc1 is
+>> sdhci1 -  that might be a valid suggestion - Jan, do you see a problem
+>> in having consistency here (flip the aliases)?
+>>
+>>
+> 
+> Yes, I am suggesting a flip in the order and this order can be applied
+> across all the K3 SoC's
+> 
 
+I'm not sure what you are suggesting. I've sent v2 already which moves
+aliasing to SoC level, and I would push that to U-Boot as well if
+acceptable. If not, we will keep this in our board DTs.
 
-Sven
+Jan
+
+-- 
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
