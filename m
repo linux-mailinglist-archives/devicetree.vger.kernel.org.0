@@ -2,93 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FDDC402FFC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 598E940300D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 23:02:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242169AbhIGUy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 16:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47384 "EHLO
+        id S245624AbhIGVDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 17:03:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235160AbhIGUy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 16:54:28 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A807C061757
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 13:53:21 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id n2so443733lfk.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 13:53:21 -0700 (PDT)
+        with ESMTP id S244274AbhIGVD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 17:03:28 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F4CC061575
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 14:02:21 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id z1so292189ioh.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 14:02:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=C2nsQAg7kmIjIclpBrhtqlSTKrFIqUX3LxjUhDb/REE=;
-        b=YCsQ08Usmp+NSFE2q8Vqqu+1k2Jxc19NJXOmL6Zp4reeKHQuFtk9hbHHDQ1Xmgd0m6
-         bshPY/6nYk77pyO6ANj4wcbRwCSQa3QJ+vwudNf14BMBAQkxF89NI98nGh+WXthFEtpF
-         5LV1zH69hfTjOdeQXh4bCWiJk6dplQNZp4kzI8t6aC8egWr7xwOHRDBBQEJqzp0P1BDl
-         oHW89Ks9NHvUdtb9B3/rPkLOrYYDG3mpEf6+0nLOinqyHGlamXgbr/mEN/xCcKNiLapd
-         6X+s0483+WA7SUQ5DE6qWrfJjZG3v8EsCt7AyCAnzxOW4A32rKdP6sCZxRm7mCBrh9oj
-         G/ew==
+        bh=L/rKcATmeaNcVjKXqpdxqEp5aNsfDE5SuF1Ce5K5Gx8=;
+        b=mxNNVn+9KgZZoIHCC6VzlavgyutyjZLLVbhFpg2s55PnctD9B1o6C/zYwQASPWXKqU
+         mQAYbyFkKZVkpeBtaIvR6Wy2b6tngmGQkkqnI9+4/s6MmZKqSRXDaHudZ2C6cir2xsvC
+         BBjdtmU0oV9uZfRIYetYhp32KbIifOOO++bTZlG56KqA2dhJux5krzk2FZlIJURMQwuI
+         khMaJRFIgfoJU4/hKoUzFLuuvu0qS8m6hlElLDz0s2khpSuPqBmgK4AbrjgHm+NMKePO
+         Op8iJNpfhoYzdd861cy5OzDtVQrOKxq/Gv36kOkf8i9b6t7HrGuFwOaKaCEyujumtUQs
+         IyAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=C2nsQAg7kmIjIclpBrhtqlSTKrFIqUX3LxjUhDb/REE=;
-        b=ScJp8HRtWlszsOP4v6o0bkj+8/epb086WunOCAZZLBniewNGb5ZaIHxk3zSwceUw0q
-         UsryT6+ejWkL1/SOL0VUEQibO2wJ4GOJTBJIGGc/8x6DXXP/LmDlT10INua5QzstONUn
-         Z9pgT4GDiSeG0Zxhq+LHNTlv8aQzQvcFcb7KEB7yVvb0NTxj/0TKC/TEjZfxdobfM+NQ
-         ndJ3/ksK2PyucUJGMJ5vMAB07lmCBZxpxt2MntXYLZ7L92HCF572vynkEIu/K5aCEfkd
-         m4tWtU2qHV0QOXD1bchUayy2vGzmyn3K1ep6pjKhkD48RoilkCHYxPj4PFd7jA27u2hQ
-         wyeg==
-X-Gm-Message-State: AOAM532Cudr5O4bcU0/SxFvsZDE+j35LSIgo+V2/mTb4P5LRx38ok/eb
-        Umvj7kguxMM8MdlYNOy1zu8ROmBhAk/QQDQ97ZvVLQ==
-X-Google-Smtp-Source: ABdhPJzhBFK+nc5T6nsZ3d/UNCMCN4OBLlDwQPAjHtpwLPGtbms1OHE1axqApJ9PGJSVbkInMFi0jFJ5cFAgNd5Hu4M=
-X-Received: by 2002:a05:6512:e89:: with SMTP id bi9mr207568lfb.95.1631047999878;
- Tue, 07 Sep 2021 13:53:19 -0700 (PDT)
+        bh=L/rKcATmeaNcVjKXqpdxqEp5aNsfDE5SuF1Ce5K5Gx8=;
+        b=lfXx7BGyDxJRkZ6XXv+93ZW5lo+i3xXjL258+MQsBBmQmSlmkQxb7uUIAfYHPMZYKr
+         IMTIy7WtxxYCFNZ4agVTQOhcdCei8UZygVTHhduM19qSsj+kjisWUxzJL+JsTlAXvH4S
+         hdjfzauDaHPRIg7N7UkfDvBOv1FNyQ/zyl4GOgubYA+lYbfriWh4JC9Z1QDUSwfvdS2/
+         +DU+bAmUgc5e0Jr0YZ4+MRgyOv3pXcmaW8D6gM0VxZ7KPVzSLX5iF1q0j1Z8pbnFjD6V
+         0d8acgbosl4yCQDhYtCJBw9aZYdaRb+c2QhLG2mGQHt9iBIRrWMmuZij1/QQ/cXK+6Wm
+         q+jA==
+X-Gm-Message-State: AOAM5323w7Dy7pjAGvuKXtxHR1i0q8pFkXfYmOAxyxV7kR8UnrqvDZxt
+        GJMRsbtSJjiiYuPRJvhSDWiQtlZHYPAuM9oJaDEk3w==
+X-Google-Smtp-Source: ABdhPJx4Bs0nFKfl5CTgJd/xkkt44Qk/bcR6QdLGXuvFbumHbGkb9Vll29PZl3UYk8Jpd3ENi2eDa1vgYa6cvn2mSNA=
+X-Received: by 2002:a6b:3e89:: with SMTP id l131mr142240ioa.74.1631048541182;
+ Tue, 07 Sep 2021 14:02:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <1630065205-7618-1-git-send-email-wenbin.mei@mediatek.com> <1630065205-7618-2-git-send-email-wenbin.mei@mediatek.com>
-In-Reply-To: <1630065205-7618-2-git-send-email-wenbin.mei@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 7 Sep 2021 22:53:08 +0200
-Message-ID: <CACRpkdYeE9piO=sfdBdq-Wd9uQpxyAb6xWYJ+9-JMTjrWX9pXw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: add hs400 dly3 setting
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Yue Hu <huyue2@yulong.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bean Huo <beanhuo@micron.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210607123317.3242031-1-robert.marko@sartura.hr>
+ <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
+ <20210713222528.GA952399@robh.at.kernel.org> <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
+ <20210719225906.GA2769608@robh.at.kernel.org> <CACRpkdbq6Jow6AT9OpsR7Q0JVCWVMcmamh9KHPXMtUnkoe7ZFw@mail.gmail.com>
+ <CA+HBbNFEs-=5XTK7PUL+LsgBCcPfwHsCPe4v6byK0x=O_7TRPA@mail.gmail.com>
+ <CACRpkdZfZLQMgpMAF2FwSVt1YAzhQJ9ZWkVUjVc2xpmWL7yEvQ@mail.gmail.com> <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com>
+In-Reply-To: <CA+HBbNHZyYnnyz9=4Hgav96ZH8-R-nYoi300j2x3fgei8aa4zQ@mail.gmail.com>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Tue, 7 Sep 2021 23:02:10 +0200
+Message-ID: <CA+HBbNE_U3dbnWh-8QasaxfQrQHS4YK8TEr0YebH9mCJsc0JTQ@mail.gmail.com>
+Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        Donald Buczek <buczek@molgen.mpg.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 27, 2021 at 1:53 PM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
-
-> Add hs400 dly3 setting for mtk-sd yaml
+On Tue, Aug 24, 2021 at 10:03 AM Robert Marko <robert.marko@sartura.hr> wrote:
 >
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-(...)
+> On Wed, Aug 11, 2021 at 2:17 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> >
+> > On Tue, Aug 3, 2021 at 9:23 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> >
+> > > The pins that this driver wants to expose are used for SFP-s only,
+> > > they are provided by the Lattice CPLD which also does other things.
+> > >
+> > > Linux has a generic SFP driver which is used to manage these SFP
+> > > ports, but it only supports GPIO-s, it has no concept of anything else.
+> > > Since the driver is fully generic, I have no idea how could one extend it
+> > > to effectively handle these pins internally, especially since I have more
+> > > switches that use the CPLD for SFP-s as well, even for 48 ports and 192
+> > > pins for them.
+> >
+> > Which file is this driver in so I can look?
+>
+> Hi Linus,
+> Sorry for the late reply.
+>
+> Sure, here is the generic Linux driver that is used for SFP handling:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/phy/sfp.c?h=v5.14-rc7
+>
+> >
+> > Maybe it is not a good idea to look for generic code just because
+> > it is convenient? I have had this problem before with GPIO, along
+> > the lines "lemme just do this dirty thing this one time because it
+> > is so convenient for me" (more or less) and the answer is still
+> > "no".
+> >
+> > Can you either augment the driver to handle a regmap with bit indices
+> > instead or write a new similar driver for that or refactor it some other
+> > way?
+> >
+> > It is not a simple solution to your problem, but it might be the right
+> > solution even if it means some more work.
+>
+> I understand your position, believe me, I spend some time looking at
+> what would be the logical way for these switches.
+> But I see no way how could the SFP driver be extended in a generic way
+> that would allow supporting different register layouts when it comes to pins.
+>
+> >
+> > > GPIO regmap works perfectly for this as its generic enough to cover all of
+> > > these cases.
+> >
+> > Yeah but it might be the wrong thing to do even if it is simple
+> > to use and works.
+> >
+> > > CPLD also provides pins to test the port LED-s per color as well,
+> > > but I have chosen not to expose them so far.
+> >
+> > Have you considered
+> > Documentation/devicetree/bindings/leds/register-bit-led.txt
+>
+> Yeah, but unfortunately in this case it wont work as the LED-s
+> are for debugging/test purposes only and you first need to switch
+> the CPLD out of it interpreting the LED state with a BIT flip.
+>
+> Regards,
+> Robert
+> >
+> > > > If it is a regmap in Linux then that is fine, just pass the regmap
+> > > > around inside the kernel, OK finished. But really that is an OS
+> > > > detail.
+> > >
+> > > Yes, its regmap but I cant really pass it to the SFP driver as I don't have
+> > > special driver handling the SFP but rather the generic kernel one.
+> > > It only knows how to handle GPIO-s.
+> >
+> > Of course you have to program it. If I know which driver it
+> > is it is easier to provide architecture ideas.
+> >
+> > Yours,
+> > Linus Walleij
 
-> +  mediatek,hs400-ds-dly3:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      HS400 DS dly3 delay setting.
-> +    minimum: 0
-> +    maximum: 31
+Linus,
 
-Which unit is this? Clock cycles? Then please write that in the
-binding description.
+can I offer some further explanation?
 
-Yours,
-Linus Walleij
+Regards,
+Robert
+>
+>
+>
+> --
+> Robert Marko
+> Staff Embedded Linux Engineer
+> Sartura Ltd.
+> Lendavska ulica 16a
+> 10000 Zagreb, Croatia
+> Email: robert.marko@sartura.hr
+> Web: www.sartura.hr
+
+
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
