@@ -2,88 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1163402F9A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D605402FB3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346473AbhIGUZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 16:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346456AbhIGUZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 16:25:50 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A69C06175F
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 13:24:44 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id y128so50249oie.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 13:24:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to;
-        bh=4Ct+8J2ifge5ggp2gE0gOkYDrnGF9mo4g/Q9D3/pN+8=;
-        b=ac1bVM1O6RwhWng54fAfxrFOy+JL/L/5Pvk4SsP5V2lqWqO0tdzymIuJBPYMPLJpVP
-         cHg8xhnPO66nLr3qFOBGBwZDK6PcqQOaNdigexv9vf2bORhtfhCk0LPpu8I/WTHaQv5Q
-         XEAPWK4jXsRni4pmWsqlLVOcsztF4yHZAjHLM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to;
-        bh=4Ct+8J2ifge5ggp2gE0gOkYDrnGF9mo4g/Q9D3/pN+8=;
-        b=T+8AAL6aVXHDhl0vRVuqoHil7zg7WmKcT2fkG2Mugfv8G56u1vXMjg0seqLquLr8F+
-         a+XNmMK+8xwoGviOzmv+vs2gRQZt+9RtwWjOCD9BUfiI0ZD3jvl8nAPAoXmqg/cVWFta
-         I78vl1lZ8nkcgtY83SnkhoMWvWdCwpLTiP9Z1dCa0VZaBjrVkqNmWlMBYI4lqFhu0qDU
-         i3/Vz4HufT0VrwkL+gjSSPxrdAOdPRXsjO8u2I/QRK9IZmP0MKzdS/ywCZnYzDqX8lbB
-         2R7wOQH83mZNeYvYgvecWHJji1pGkn7pmQc+9EEZ3CfgpA2xvtNmnFPZ2Nlxrlh/qqRX
-         fguA==
-X-Gm-Message-State: AOAM530kBgqz69EmKDQ5Rf3I+ZXXfgbbNMgeL7w8bm6JcZjUfiC2M1Gf
-        v3SY9XkmP1TuE+aAps1f7cbstPrgPDoyqq7e1O3L/GVLXzA=
-X-Google-Smtp-Source: ABdhPJw8IBECs6E6HzSClI35bkZHFkQNXFiZIvmvDm6b0kdi+6q7O5NhDowqashx3RMvTC0TSLKHssXO4zHP9hLy0C4=
-X-Received: by 2002:aca:2310:: with SMTP id e16mr13313oie.64.1631046283694;
- Tue, 07 Sep 2021 13:24:43 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 7 Sep 2021 20:24:43 +0000
-MIME-Version: 1.0
-In-Reply-To: <1630934854-14086-1-git-send-email-srivasam@codeaurora.org>
-References: <1630934854-14086-1-git-send-email-srivasam@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 7 Sep 2021 20:24:43 +0000
-Message-ID: <CAE-0n53Zj3pp4EJ_f_kXhRm3EW=od83UO44qt91P37waEq-z4Q@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: lpass: add binding headers for digital codecs
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1345433AbhIGU1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 16:27:47 -0400
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:39027 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1346457AbhIGU1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 16:27:47 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 664BF5C0152;
+        Tue,  7 Sep 2021 16:26:40 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute1.internal (MEProxy); Tue, 07 Sep 2021 16:26:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm2; bh=lcpU2CxkGVxmNJlEgg40FlED8MuY
+        46mhZqXqU1CnrRQ=; b=VjcHXlXAALRMftUEOdXM6giehfWYvRiyBMyyYGIXffPZ
+        YMTOvDYAItd4hZB40+/NQjN+W1qaVkX5CUFODvGX/RiVBJYhSOzOz13X6t166qM2
+        EvcU8MY8g9st6pVtZJZ/lnWdutcYf0mZDWWojV4QBBsDvqQNjCSn5n4jienM77Jx
+        dw8MPrEyLYXHwRX1rsm41zQck14brFoKkHL3+7wikiNnSMErysNZVaR8PQg2A89b
+        qZdx6m1vC+gS7r89faBcb4lhVjYtxYEOqPJW8MjiwVmkSS6fl5vxJs67SDBsfmaM
+        KvayNwVDjBCQx2TuCwvadHkWCDItS97ynUJ3JR/Zqw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=lcpU2C
+        xkGVxmNJlEgg40FlED8MuY46mhZqXqU1CnrRQ=; b=KIRudOLKGrSUVYTPzOw7BJ
+        te7I+q51c9DsYZ0Yz1D6oM9MyUQnRfga6EdCYLXNSfF/Ai6P35rwacb+2rWX6N3S
+        Tncij3mLh1lE1a0QbZjc+q05oDgdy1F5EnJN7oXOxqbM8htzHKFkGfVFRRVlUfSH
+        Fzw9jBvydmBrd1Hm/4Rj10sktRbQp+I6bIrpuyH+P+XvioBgRjkOBZpFPopGxioy
+        TWpna7O8efxiE1n0vRcUv4E0Mtxzfp066hMmu7OIET2kxdAZJNtqHNWqHIg931pU
+        1FYmUMJ/FwnznYoaDXnR6G5kNEm0Mg5gADYgIXMWjd9goYvORHqQSG2pDjCPWFOw
+        ==
+X-ME-Sender: <xms:_so3YXDDPjIBTx_RdwC497gX2ANCbQJoppWbdA6mUCwAMp9WPoW0TA>
+    <xme:_so3YdjyhVse3DRyoxKyE_drG6yFaYgm3WNOUIowqVHKDJxt09Y7vzntH5_ikhpS8
+    -ysmSUyrIEkdp_pOsM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudefhedgudehtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
+    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:_so3YSnOtnZhYCbTHc0NChq0Dfest5tSxwJUQ8GpOzHNEczOWRuFWA>
+    <xmx:_so3YZwJvqmQrOKZhb6G-5dUyUudiTN1FhUErBXbAeLv2MR1Tnm5zw>
+    <xmx:_so3YcQDoGKK0GfB0PtaS38QbuEbrm2BwMOwYkEz8dHnJbi2RTRTkg>
+    <xmx:AMs3YRTjMUWlKqiUoNjyd5LiSh4EGNmrv4eKWnkKiYgb91zF8ry2TA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id C7D0C51C0060; Tue,  7 Sep 2021 16:26:38 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1126-g6962059b07-fm-20210901.001-g6962059b
+Mime-Version: 1.0
+Message-Id: <ff66c30d-1b43-43d3-a4b0-02fe7d346118@www.fastmail.com>
+In-Reply-To: <YTe17jGBobarePaK@sunset>
+References: <20210907145501.69161-1-sven@svenpeter.dev>
+ <20210907145501.69161-3-sven@svenpeter.dev> <YTe17jGBobarePaK@sunset>
+Date:   Tue, 07 Sep 2021 22:26:17 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>
+Cc:     "Jassi Brar" <jassisinghbrar@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: mailbox: Add Apple mailbox bindings
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-09-06 06:27:34)
-> Add header defining for lpass internal digital codecs rx,tx and va
-> dai node id's.
->
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
->  include/dt-bindings/sound/qcom,lpass.h | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/include/dt-bindings/sound/qcom,lpass.h b/include/dt-bindings/sound/qcom,lpass.h
-> index 7b0b80b..187af45 100644
-> --- a/include/dt-bindings/sound/qcom,lpass.h
-> +++ b/include/dt-bindings/sound/qcom,lpass.h
-> @@ -10,6 +10,11 @@
->
->  #define LPASS_DP_RX    5
->
-> +#define LPASS_CDC_DMA_RX0 6
-> +#define LPASS_CDC_DMA_TX3 7
-> +#define LPASS_CDC_DMA_VA0 8
-> +#define LPASS_MAX_PORTS 9
+Hi,
 
-Do we need LPASS_MAX_PORTS in the binding?
+
+On Tue, Sep 7, 2021, at 20:56, Alyssa Rosenzweig wrote:
+> > +      - description:
+> > +          M3 mailboxes are an older variant with a slightly different MMIO
+> > +          interface still found on the M1.
+> > +        items:
+> > +          - const: apple,t8103-m3-mailbox
+> 
+> Would be nice to document an example of where an M3 mailbox is found.
+
+Sure, I can add a comment that this is used for the coprocessor controlling Thunderbolt.
+
+> 
+> > +  interrupts:
+> > +    minItems: 4
+> > +    items:
+> > +      - description: send fifo is empty interrupt
+> > +      - description: send fifo is not empty interrupt
+> > +      - description: receive fifo is empty interrupt
+> > +      - description: receive fifo is not empty interrupt
+> > +
+> > +  interrupt-names:
+> > +    minItems: 4
+> > +    items:
+> > +      - const: send-empty
+> > +      - const: send-not-empty
+> > +      - const: recv-empty
+> > +      - const: recv-not-empty
+> 
+> If the names became not-constant the asprintf thing goes away, not sure
+> that's better or worse.
+
+I'm not sure I understand your comment here. This property just gives a name
+to the interrupts so that they can be referenced by that instead of a magic
+number between 0 and 4 in the driver.
+
+> 
+> > +  clocks:
+> > +    description:
+> > +      Reference to the clock gate phandle(s) if required for this mailbox.
+> > +      Optional since not all mailboxes are attached to a clock gate.
+> 
+> Do we do anything with the clocks at this point?
+> 
+
+The device tree bindings describe the hardware (as best as we can without proper
+documentation) and some of these mailboxes have clock gates which need to be turned
+on before accessing their MMIO. This driver already tries to do that and works fine
+with the downstream clock driver(s) we have.
+
+
+
+Sven
