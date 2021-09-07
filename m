@@ -2,81 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A6E402EB7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 392AD402EC1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:09:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242334AbhIGTG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 15:06:29 -0400
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:45696 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbhIGTG3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:06:29 -0400
-Received: by mail-oo1-f45.google.com with SMTP id m14-20020a4ad50e000000b002912a944a47so83313oos.12;
-        Tue, 07 Sep 2021 12:05:22 -0700 (PDT)
+        id S243535AbhIGTKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 15:10:17 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:36854 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230203AbhIGTKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:10:17 -0400
+Received: by mail-ot1-f51.google.com with SMTP id a20-20020a0568300b9400b0051b8ca82dfcso402519otv.3;
+        Tue, 07 Sep 2021 12:09:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xG8XtyNOMTr7L9vWlv1RtoU+mRp0MG0nj8OT2PfaaKc=;
-        b=C34wVMJ5tMM0b2DGnZBo+YVSKG/fDsJcj7n8OvhDYwdg85BEWFwEcU//vpk0SlMDjY
-         V0ASZ46lHbYDQwPpc3inqqCRBodrG9/lxuyaDunYD37ca2RMvsJ//46Bam7cyOKTL/xz
-         Mm2QUhkn85ZACFGCHW9OnJMJ7LhC0rt+gd0vKI6NvvIXvBDjgI/4QNw46g4praRfqLvd
-         4fn6xju8agGv9mLZKKYkJEaLJe9iqyvhzcKaz418yM8tWHtSOY56DWmlm0iqk3U88Mj6
-         qS/9ZhqbTXC7qCy9POqnYVdqpaR0x3Bd2bMcjOI+NBcZ6LS/0p56Y5Rz/bvNAAakjQIl
-         YTWw==
-X-Gm-Message-State: AOAM531jg/H4KgIUtxeh+xBupBpIbt1yn0AdYve2/95pDCrn+6iIWxlC
-        4aYl5Ggpj8yv4p7u2O4QNw==
-X-Google-Smtp-Source: ABdhPJwvKHJB56QW0OLh0B8b9pk8wolbsjN+Be2o3jJnyFZbM/oWiz/ufQhm/BNt1/K79q4MgwqJXQ==
-X-Received: by 2002:a4a:5742:: with SMTP id u63mr1145298ooa.87.1631041522404;
-        Tue, 07 Sep 2021 12:05:22 -0700 (PDT)
+        bh=y6f0OvD6qMOZIJO8Ax2BSoOx4xel1z8MSZtwDVuqZG4=;
+        b=qOomiu05TQG11lvFX3qWsOEdyZRzXTGmJ9XVcq2spmBOJPnzHME+aEafkr7VW6Yk31
+         oyiPiTMoJBmqQZ7NaVuG0KhFkg5Rj9mGVMTX7e3jwjbFCVu142jrcwzxciK+GyRZFTSP
+         kftDENvCu7Gt0hGJIgQJ2lKm1o3cbkU6+ATKO4a7s/nuvMGNgVxmUbQrGifRab0LGsks
+         XiJwYD5kiw24NfKEr6pVr6ncizP000ED2KtmO+ssVldEmIPZnNYnHznidWmqs0rLSP26
+         CtwHQK9AV25q/nRWYiwGXlYFhmFNG4OooNigSa74zG6ZIYaxUX6eNNtyLU6/3em/E3gc
+         spYA==
+X-Gm-Message-State: AOAM531kQuSvvJLiOeSTVrtiE+ZoZMjAXw2ACSY09sc8dAjfq52v5RFf
+        xW269euPZJTXAxv00ks81A==
+X-Google-Smtp-Source: ABdhPJwyWZEq2w/4Mwc8OOnY+ZM6/dWiGZ2obaXegjgzTgjLf0vQ0Va+W9t3AfsRWmBdCHbeme6CZQ==
+X-Received: by 2002:a9d:5a81:: with SMTP id w1mr13219426oth.307.1631041750386;
+        Tue, 07 Sep 2021 12:09:10 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x22sm2391802oox.26.2021.09.07.12.05.21
+        by smtp.gmail.com with ESMTPSA id u15sm2455443oon.35.2021.09.07.12.09.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 12:05:21 -0700 (PDT)
-Received: (nullmailer pid 168046 invoked by uid 1000);
-        Tue, 07 Sep 2021 19:05:20 -0000
-Date:   Tue, 7 Sep 2021 14:05:20 -0500
+        Tue, 07 Sep 2021 12:09:09 -0700 (PDT)
+Received: (nullmailer pid 174203 invoked by uid 1000);
+        Tue, 07 Sep 2021 19:09:08 -0000
+Date:   Tue, 7 Sep 2021 14:09:08 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Tony Lindgren <tony@atomide.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Lee Jones <lee.jones@linaro.org>, bcousson@baylibre.com,
-        linux-input@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Ryan Barnett <ryan.barnett@collins.com>,
-        linux-iio@vger.kernel.org, Jason Reeder <jreeder@ti.com>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-omap@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v2 07/46] dt-bindings: iio: adc: ti,am3359-adc: Describe
- am4372 ADC compatible
-Message-ID: <YTe38HWmbICuwGjf@robh.at.kernel.org>
-References: <20210902215144.507243-1-miquel.raynal@bootlin.com>
- <20210902215144.507243-8-miquel.raynal@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     linux-sunxi@lists.linux.dev, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: watchdog: sunxi: Add compatibles for
+ D1
+Message-ID: <YTe41ClZvYS/llHF@robh.at.kernel.org>
+References: <20210902225750.29313-1-samuel@sholland.org>
+ <20210902225750.29313-3-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210902215144.507243-8-miquel.raynal@bootlin.com>
+In-Reply-To: <20210902225750.29313-3-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Sep 2021 23:51:05 +0200, Miquel Raynal wrote:
-> A more recent version of the am3359 ADC is available on certain SoCs of
-> the am437x family. This IP has evolved a little bit and deserves its own
-> compatible.
+On Thu, 02 Sep 2021 17:57:49 -0500, Samuel Holland wrote:
+> D1 keeps the same register layout and clock sources as the R329, but it
+> adds a key field which must be set to update the watchdog's "CFG" and
+> "MODE" registers. Therefore it is not backward-compatible.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Similarly to the R329, the D1 has three watchdog instances, and only one
+> of them has the "soft reset" registers. So that instance needs an extra
+> compatible string.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Changes v2 to v3:
+>  - Add additional allwinner,sun20i-d1-wdt-reset compatible
+> Changes v1 to v2:
+>  - None
+> 
+>  .../bindings/watchdog/allwinner,sun4i-a10-wdt.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
