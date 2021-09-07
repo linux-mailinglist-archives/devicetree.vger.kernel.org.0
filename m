@@ -2,80 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94040402F37
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B7C2402F4B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346167AbhIGT5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 15:57:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
+        id S1346419AbhIGT72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 15:59:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346174AbhIGT53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:57:29 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8546AC061757
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 12:56:22 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id n34so20243pfv.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 12:56:22 -0700 (PDT)
+        with ESMTP id S1346365AbhIGT7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:59:18 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D646BC061575
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 12:58:11 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id w19so363687oik.10
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 12:58:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=cxihqoLbqnx4VeK1GPNb8VICY6vWRDKx/3eO1G8HhuQ=;
-        b=OfBuMoX3fXj5aac6Ia5dRKuG6R3hoaaovU7ZMMs6K6c7hphDl9h/o4sAdqZkeqa3cV
-         e2BQSZC423CLHHDmgIr8j72F+MJ0fYWWyeu1Y2V2ZGJq4JgY51ulvLRxTdR23ODUaILk
-         xpqIX9WyG+3NixLI7eUZlW8iJkFRr93RTK1mg=
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=cpuPNID504m7krAb/gnZk/TMIGInSz6Tx5yLWjazrsg=;
+        b=E3fIS0Qjf1RWD0+HmTt7aH/vOzhv+9aYVBplyK4lppbLc/cgG9GpeWN+xHa0GwTdeW
+         ZrsHcigd7JHlpqyoC/U9gMa8NHq1LETG4KDFNeQnKORZdIcpozavIHLG4C5QDPUGk+lj
+         oUoqFF2hsGO3INM+rygUirSqR43YhBIRBVi8g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cxihqoLbqnx4VeK1GPNb8VICY6vWRDKx/3eO1G8HhuQ=;
-        b=icwJBt8SHgZq9r15u20Fef7XR1wWZdU7EHIfA5pkdQ1NYHz5j5Xj/1s48HYjWCImPS
-         5wZ1VJWjXNGnpoxOYuFTl43FD0647QNLoM/kImTsSBXd+d7LrV+07cDDUjYj9RGpztnw
-         KH7Imsiis56mqtV2Y3FosWwwH/p8pvmLHfYAIHPVkV7I3hOtXuXUFwWv7FXFG3CwP9EM
-         DumV5W916cmD4WE4Ev3NHCsbFqLnyCx1+MUWCuzkIUNAf0V+2G7nbFQHPf2bcHUquAfl
-         Jc0ijBtII2vU9Fq9pdBzqUh49r18i3WZziJ2bFx/A/oLzZmQMLjsLcnLjyLnLkrqGPn8
-         hNaA==
-X-Gm-Message-State: AOAM531wd4hBXaLP+9oD417fMyXGFDBtkfDm+UVnmPjTKCc4O4yK15Ud
-        a89ZVJ2gSdDpF0DRwOVbAsrG9A==
-X-Google-Smtp-Source: ABdhPJzZy0hCiX2y29DAINhCmDB1pMZdEBCwaoJGXoZ0fdUULgu5tbH3003U953JqOk6W4/iDe+yCA==
-X-Received: by 2002:a65:5686:: with SMTP id v6mr52750pgs.174.1631044582077;
-        Tue, 07 Sep 2021 12:56:22 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:c6b2:7ae:474d:36f6])
-        by smtp.gmail.com with UTF8SMTPSA id o10sm13570393pgp.68.2021.09.07.12.56.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 12:56:21 -0700 (PDT)
-Date:   Tue, 7 Sep 2021 12:56:20 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "arm64: dts: qcom: sc7280: Fixup the cpufreq node"
-Message-ID: <YTfD5BXkv+AZHISE@google.com>
-References: <20210907121220.1.I08460f490473b70de0d768db45f030a4d5c17828@changeid>
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=cpuPNID504m7krAb/gnZk/TMIGInSz6Tx5yLWjazrsg=;
+        b=w1naAyKZrUSftCTC8Fn2puLZYt+xyheIn4iLMSZ0hrWbN8JCmVYbCWy9kBZmlvG8+8
+         gDO+ISHzEDKjMo5cLcSvgxU+lDN7dFjmQ1J+eMmnMjpohnKa1oAU4syYYdRIMWV5pjN2
+         IzJsyqxRiZHtpsXYWAnXRCoI+QqyITFO6ayMasuugUDWIrMmcMzKiCPrkDNgzSialIJx
+         C//Jgzd3djvE2IGCov7f/2KUu2h9JHAvhYAEwuT8FAbymmehKugEx7KAw0dvNFN4bzZe
+         k0Vl1ZWR5neBajaVUbGvphj84N3oNU6f4B9pAE7HpjoNFrMkZDMMlzMolKMm0Yku0S2T
+         JnEA==
+X-Gm-Message-State: AOAM5303MMN+olY3dN2Z5S5Ut97uK58dZDzXEuxb6NkAgoTw2IEv3Jy+
+        6InQrJlszBEe4E6HYIXaeYzvKzfDlsKReKWHEuqyvQ==
+X-Google-Smtp-Source: ABdhPJxJ3y8dRx8VJy9eL6kTfOJvnlG4ri+vzOT3EaB/ySeWkTsOJshIw66dlrmZ2Ye2utVyje6ymr02VG4RTaWH7Rg=
+X-Received: by 2002:a54:4419:: with SMTP id k25mr4502942oiw.32.1631044691251;
+ Tue, 07 Sep 2021 12:58:11 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 7 Sep 2021 19:58:10 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210907121220.1.I08460f490473b70de0d768db45f030a4d5c17828@changeid>
+In-Reply-To: <1630906083-32194-2-git-send-email-mkshah@codeaurora.org>
+References: <1630906083-32194-1-git-send-email-mkshah@codeaurora.org> <1630906083-32194-2-git-send-email-mkshah@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 7 Sep 2021 19:58:10 +0000
+Message-ID: <CAE-0n50L-KgdbyQ-X0J6J8Za-j3P9o5iLyn4uNg8eKYBZG_16Q@mail.gmail.com>
+Subject: Re: [PATCH v9 1/5] dt-bindings: Introduce SoC sleep stats bindings
+To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, mka@chromium.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 07, 2021 at 12:12:25PM -0700, Douglas Anderson wrote:
-> This reverts commit 11e03d692101e484df9322f892a8b6e111a82bfd.
-> 
-> As per discussion [1] the patch shouldn't have landed. Let's revert.
-> 
-> [1] https://lore.kernel.org/r/fde7bac239f796b039b9be58b391fb77@codeaurora.org/
-> 
-> Fixes: 11e03d692101 ("arm64: dts: qcom: sc7280: Fixup the cpufreq node")
-> Reported-by: Matthias Kaehlcke <mka@chromium.org>
-> Cc: Sibi Sankar <sibis@codeaurora.org>
-> Cc: Matthias Kaehlcke <mka@chromium.org>
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Quoting Maulik Shah (2021-09-05 22:27:59)
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> new file mode 100644
+> index 0000000..4161156
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
+> +
+> +maintainers:
+> +  - Maulik Shah <mkshah@codeaurora.org>
+> +  - Lina Iyer <ilina@codeaurora.org>
+> +
+> +description:
+> +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+> +  sleep modes involving powering down of the rails and oscillator clock.
+> +
+> +  Statistics includes SoC sleep mode type, number of times low power mode were
+> +  entered, time of last entry, time of last exit and accumulated sleep duration.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,rpmh-sleep-stats
+> +      - qcom,rpm-sleep-stats
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Example of rpmh sleep stats
+> +  - |
+> +    aop_msgram@c3f0048 {
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Node names should be generic and not have any underscores in them. I
+still think 'memory' is more appropriate here. I doubt anyone will
+confuse it for DDR.
+
+> +      compatible = "qcom,rpmh-sleep-stats";
+> +      reg = <0x0c3f0048 0x400>;
+> +    };
