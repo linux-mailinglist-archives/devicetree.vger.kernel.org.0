@@ -2,222 +2,344 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C177340299C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4570B4029A5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 15:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344770AbhIGNWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 09:22:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40066 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344699AbhIGNWB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Sep 2021 09:22:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5229461101;
-        Tue,  7 Sep 2021 13:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631020855;
-        bh=+kfMAoxVAZyRPrHKv2yHhbJmusVWLTHq4De3jDzPJGk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZcF+obAQErGfrroCIm6+Xckd8Xl5YJZwxTQN6L+gVsqQtid/RKHQ97XSuUU4gDYEk
-         ang1+/3tmk2uCm7Gte016M/C4e4qTT8djn8igpVPDIHqdtXy2FUd6wJ2zhIgHH3xMS
-         oRYrt9L98ujxF+4Q6MhVGLqRNPnchI077e1TbUd43ZJKWonME/NKzUDh54brFbWghF
-         f0nHoBWKo5UpG5xUY5LigLbrXtysm7Bd15HCB/ck388ZREOPs0RG0cnMGPWo+yY8e/
-         jRa7YerK+Mt+JCiKOfERBW60dxCm9dSCYEOMzL5Ipq4Pyis0qxyyncFAO5LzUEpqrE
-         a9rbr6hhoNQzw==
-Received: by mail-ed1-f54.google.com with SMTP id u19so13924300edb.3;
-        Tue, 07 Sep 2021 06:20:55 -0700 (PDT)
-X-Gm-Message-State: AOAM530O48NNcE8Qp7j+hPCkoCSSG2x1erMNFMCBX3uvoB5PjnnlCTOU
-        agIs0efrhtzUgRyLWV9/F8RKNXthfRYv1vrIsQ==
-X-Google-Smtp-Source: ABdhPJzXj11k+OPkRYSEaYLytlTGM0nIP0+GQxBiLlmsKYNMuL4l0/Tse6O6PdsaTThAFTUF6dAzjIOCN6JLotTMfqk=
-X-Received: by 2002:a50:ed09:: with SMTP id j9mr18694795eds.164.1631020853893;
- Tue, 07 Sep 2021 06:20:53 -0700 (PDT)
+        id S1343935AbhIGNXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 09:23:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55732 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245693AbhIGNXw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 09:23:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8E9C06175F
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 06:22:46 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id m28so19514318lfj.6
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 06:22:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NVid4RLR9mBPsCablaJpVLMYFBT8U0UGbFLsVaPZfvI=;
+        b=z0te2twI8fZdknRdL5csRNLkiRSYDfCbWSzrhEhHJABCp/ms3nWtN1dslAP/rgu7C4
+         MTAACz1D3OPxe4OBt1Y8Xlt+Ct6qtUjr6EjUsLRwHEZSD3Ga0BRBHe/c8tNwXDkTrKfQ
+         AKhWv/IkwuWmz+FOVOYjrpkG7OMvipfvT6gsPh5J6ssI0o5vKa3ijZ37ZnJpJd+D+Xvv
+         /xkKpQjV5jqSEcFaEgNscS/OPvPrVNd8UnhwuQRupHttXgXCLcsJPKSaytMYeKtj16xf
+         FpUbpOMNcYaoA66QyQWjVedeNkUgbqDEH3ECsY79Hcggp86MYyyerYQXoKXzEasSmwbU
+         8srQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NVid4RLR9mBPsCablaJpVLMYFBT8U0UGbFLsVaPZfvI=;
+        b=EP6vSss8GPa6QFiST9CbPbShDrwomOSiq8x9CyWBgl/jvlhJM8P7nXFVBMWPbGpN/Q
+         e7L6jeRDMmggDy+bPJeR89hWHiPSuucnCXOGPVKi1kToHxnSBQz4uG79rDOWqox3SPoq
+         6k0sof63ZPRDT/ZHtKq1rZienx4l7sStAnCQkT5r3B9wxCnxeszcQseGXRtxDZWouG83
+         nJxv2A+cXPNdE8G6sZKNzpPU3x/56Ue0z1gGNAoMPN3v/0b0mEWZt2A7ZD8upeyDT8kB
+         qjgMs7UfCXE6wqlicmPB1E3iGgN4Wr2/CM8d4h0sIe09EOzz3wsMPhYMSWXXO/rqNLTE
+         r+xg==
+X-Gm-Message-State: AOAM530Njtu82eRKyGWbbLEes1E9GIRZlgHGBId2RYLb2Do5AsvVvhj+
+        EHz75e/by8FovbPy5jvtwTcbggiZWRy7y8I40dLG4Q==
+X-Google-Smtp-Source: ABdhPJx756B9prvPWqBSrE0GqvVV8DEOTYNB3Ir/+6PzSUGOkRl5z5DuwSdlPPG+pSkg4g+tCiXtPSmf5XbrvJSstbY=
+X-Received: by 2002:a05:6512:6cd:: with SMTP id u13mr12675046lff.184.1631020964203;
+ Tue, 07 Sep 2021 06:22:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210903083155.690022-1-mperttunen@nvidia.com>
- <20210903083155.690022-2-mperttunen@nvidia.com> <YTJOg1oHJq848ZlE@robh.at.kernel.org>
- <36d5b388-0d7f-c500-89b1-c4526849fb56@kapsi.fi>
-In-Reply-To: <36d5b388-0d7f-c500-89b1-c4526849fb56@kapsi.fi>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 7 Sep 2021 08:20:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJwUupfAUL_DTr=_TPfRJ88MvBex-B2ynpkDAZJFZ4+AA@mail.gmail.com>
-Message-ID: <CAL_JsqJwUupfAUL_DTr=_TPfRJ88MvBex-B2ynpkDAZJFZ4+AA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: Add YAML bindings for NVDEC
-To:     Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     Mikko Perttunen <mperttunen@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        devicetree@vger.kernel.org
+References: <20210831102141.624725-1-ulf.hansson@linaro.org>
+ <CAGETcx8FKnmeCh3dD1b2TYXf3gwHnW-iWwfz0q-9UzeP2VZSDw@mail.gmail.com>
+ <CAPDyKFq7aD_VXyY6=Kvp3t2Ph1_+CheZWDA6j2AoPK6ExX4h0g@mail.gmail.com> <CAGETcx_NRWYYWxp77d+0LmpVT1F7X1sh3qoS1DuissfRyDWp=w@mail.gmail.com>
+In-Reply-To: <CAGETcx_NRWYYWxp77d+0LmpVT1F7X1sh3qoS1DuissfRyDWp=w@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 7 Sep 2021 15:22:07 +0200
+Message-ID: <CAPDyKFotC5FBPkaTXHEqV_S=9RSsqBuM9U2YgUaSUk4vB0Kc2w@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of: property: fw_devlink: Set 'optional_con_dev' for parse_power_domains
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 3, 2021 at 12:29 PM Mikko Perttunen <cyndis@kapsi.fi> wrote:
+On Wed, 1 Sept 2021 at 23:49, Saravana Kannan <saravanak@google.com> wrote:
 >
-> On 9/3/21 7:34 PM, Rob Herring wrote:
-> > On Fri, Sep 03, 2021 at 11:31:53AM +0300, Mikko Perttunen wrote:
-> >> Add YAML device tree bindings for NVDEC, now in a more appropriate
-> >> place compared to the old textual Host1x bindings.
-> >>
-> >> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> >> ---
-> >> v4:
-> >> * Fix incorrect compatibility string in 'if' condition
-> >> v3:
-> >> * Drop host1x bindings
-> >> * Change read2 to read-1 in interconnect names
-> >> v2:
-> >> * Fix issues pointed out in v1
-> >> * Add T194 nvidia,instance property
-> >> ---
-> >>   .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 109 ++++++++++++++++++
-> >>   MAINTAINERS                                   |   1 +
-> >>   2 files changed, 110 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> >> new file mode 100644
-> >> index 000000000000..33d01c7dc759
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
-> >> @@ -0,0 +1,109 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvdec.yaml#"
-> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> >> +
-> >> +title: Device tree binding for NVIDIA Tegra NVDEC
-> >> +
-> >> +description: |
-> >> +  NVDEC is the hardware video decoder present on NVIDIA Tegra210
-> >> +  and newer chips. It is located on the Host1x bus and typically
-> >> +  programmed through Host1x channels.
-> >> +
-> >> +maintainers:
-> >> +  - Thierry Reding <treding@gmail.com>
-> >> +  - Mikko Perttunen <mperttunen@nvidia.com>
-> >> +
-> >> +properties:
-> >> +  $nodename:
-> >> +    pattern: "^nvdec@[0-9a-f]*$"
-> >> +
-> >> +  compatible:
-> >> +    enum:
-> >> +      - nvidia,tegra210-nvdec
-> >> +      - nvidia,tegra186-nvdec
-> >> +      - nvidia,tegra194-nvdec
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  clocks:
-> >> +    maxItems: 1
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: nvdec
-> >> +
-> >> +  resets:
-> >> +    maxItems: 1
-> >> +
-> >> +  reset-names:
-> >> +    items:
-> >> +      - const: nvdec
-> >> +
-> >> +  power-domains:
-> >> +    maxItems: 1
-> >> +
-> >> +  iommus:
-> >> +    maxItems: 1
-> >> +
-> >> +  interconnects:
-> >> +    items:
-> >> +      - description: DMA read memory client
-> >> +      - description: DMA read 2 memory client
-> >> +      - description: DMA write memory client
-> >> +
-> >> +  interconnect-names:
-> >> +    items:
-> >> +      - const: dma-mem
-> >> +      - const: read-1
-> >> +      - const: write
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +  - clocks
-> >> +  - clock-names
-> >> +  - resets
-> >> +  - reset-names
-> >> +  - power-domains
-> >> +
-> >> +if:
-> >> +  properties:
-> >> +    compatible:
-> >> +      contains:
-> >> +        const: nvidia,tegra194-nvdec
-> >> +then:
-> >> +  properties:
-> >> +    nvidia,instance:
-> >> +      items:
-> >> +        - description: 0 for NVDEC0, or 1 for NVDEC1
+> On Wed, Sep 1, 2021 at 1:13 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
 > >
-> > I still don't understand what this is needed for. What is the difference
-> > between the instances? There must be some reason you care. We should
-> > describe that difference, not some made up index.
+> > On Tue, 31 Aug 2021 at 19:51, Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Tue, Aug 31, 2021 at 3:21 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > > >
+> > > > The power-domain DT bindings [1] doesn't enforce a compatible string for a
+> > > > provider node, even if this is common to use. In particular, when
+> > > > describing a hierarchy with parent/child power-domains, as the psci DT
+> > > > bindings [2] for example, it's sometimes not applicable to use a compatible
+> > > > string.
+> > >
+> > > Ok, and fw_devlink handles that -- provider not having a compatible
+> > > string is pretty common. In these cases, the parent node is the actual
+> > > device that gets probed and registers the provider. So fw_devlink will
+> > > create a link from the consumer to the parent device node.
 > >
-> > I'm not suggesting using the base address either. That's fragile too.
+> > Yes, correct. That is working fine and isn't a problem.
+> >
+> > The first problem (I think) is that fw_devlink creates a fw_devlink
+> > from a child provider node (consumer without compatible string) to a
+> > parent node (supplier with a compatible string). I don't understand
+> > the reason why this is needed, perhaps you can elaborate on why?
 >
-> This device is on the Host1x bus. On that bus, each device has an
-> identifier baked into hardware called 'class' that is used when
-> accessing devices through some mechanisms (host1x channels). As such,
-> when probing the device we need to specify the class of the device to
-> the host1x driver so it knows how to talk to it. Those class numbers are
-> fixed so we have hardcoded them in the driver, but now that we have two
-> NVDECs, we need to distinguish between them so that we can specify the
-> correct class for each instance to the host1x driver.
-
-Then why don't you have a property like 'nvidia,host1x-class'
-containing the class number?
-
-
-> >> +additionalProperties: true
-> >
-> > 'true' here is not allowed unless the schema is not complete and
-> > intended to be included in a complete schema or unconditionally applied
-> > (i.e. 'select: true'). This case is neither. As pointed out previously,
-> > 'unevaluatedProperties' is what you'd want here.
-> >
-> > However, I looked into supporting defining properties in if/then/else
-> > schemas as you have done and I don't think we will support that soon.
-> > It's problematic because we can't validate the schema under the if/then
-> > completely. The reason is properties under if/then schemas don't have to
-> > be complete as we expect a top level definition that is complete (e.g.
-> > vendor properties must have 'description'). To solve this, we'd have to
-> > only apply meta-schema checks if the property doesn't appear at the top
-> > level. That's more complicated than I care to implement ATM.
+> I really should get around to doing a LWN article on this and also
+> putting some of it into Documentation. Btw most of this info would be
+> in one of my earlier commit texts or in the code comments. But it's
+> still handy to have them all in one place I suppose.
 >
-> I see two paths here: either keep 'additionalProperties: true' or remove
-> it and have this binding trigger validation failures. Which one do you
-> suggest or is there some third option?
+> I'll try to answer all your questions with this example. Don't take
+> the actual properties too literally, they are just used to point out
+> dependencies.
+>
+> Device-A {
+>         compatible="foo";
+>
+>         Device-B {
+>                 compatible="flam";
+>                 power-domains = <&Device-C>;
+>         }
+> }
+>
+> Device-C {
+>         compatible="bar";
+>
+>         Device-D {
+>                 compatible="baz";
+>                 power-domains = <&Device-A>;
+>         }
+> }
+>
+> Legend:
+> I'll use X -> Y to indicate links where X is the consumer and Y is the supplier.
+> I'll call out the link types as fwnode or device links.
+> If I don't explicitly state otherwise, when I say device links, I mean
+> stateful/managed device link that is NOT sync-state-only device links.
+>
+> I think your first question is asking about fwnode link. So I'll answer that.
+>
+> fwnode links are created from the actual nodes that list the
+> dependencies. So in this case from device-B -> device-C and device-D
+> -> device-A. It needs to be done this way for a couple of reasons. But
+> to answer your question on "why do this when Device-B doesn't have a
+> compatible string?":
+>
+> 1. Not all devices have compatible strings (in an ideal world this
+> won't be the case). So Device-A would create a struct device for
+> Device-B, set the of_node/fwnode to point to Device-B DT node. Then
+> device-B gets probed, etc. In those cases, we want the device links to
+> be created between device-B -> device-C and NOT from device-A ->
+> device-C. Because if we did follow that logic, we'll get device-A ->
+> device-C and device-C -> device-A. This obviously can't work because
+> it's a cyclic dependency and fw_devlink will have to give up on these.
+>
+> 2. When device-C is added (assuming device-A is added already), we
+> need to create a sync-state-only device link from device-A to device-C
+> as a proxy for the future device-B -> device-C device link that'll
+> come up. This is to make sure device-C's sync_state() doesn't fire too
+> early. So the way fw_devlink can tell apart device-A's real dependency
+> (none in this case) vs device-B's dependency it's proxying for is by
+> the fact the fwnode link is from device-B DT -> device-C DT.
+>
+> Hope that makes sense.
 
-Define the property at the top level, then restrict it in the if/then schema:
+Yes, it does and I understand that it may become complicated in some
+cases. If you get the time to put together an LWN article about
+fw_devlinks, I would certainly read it. :-)
 
-if:
-  properties:
-    compatible:
-      not:
-        contains:
-          const: nvidia,tegra194-nvdec
-then:
-  properties:
-    nvidia,instance: false
+However, at least for power-domains, the DT example you describe above
+is an invalid description of a HW. It doesn't make sense to try to
+support if for fw_devlink, at least in my opinion. Let me elaborate.
 
-(Or 'not: {required: [ nvidia,instance ]}' would work here, too)
+So, I assume you have left out the #power-domain-cells property (for
+simplicity) for Device-A and Device-C, as those seem to be the
+power-domain providers.
 
-With that, 'additionalProperties: false' will work.
+*) If Device-B is a consumer of Device-C, it also means that Device-A
+must be assigned as the child-power-domain to Device-C's power-domain.
+**) If Device-D is the consumer of Device-A, it also means that
+Device-C must be assigned as the child-power-domain to Device-A's
+power-domain.
 
-Rob
+This simply can't be right from the HW point of view - and we don't
+support this in the Linux kernel anyway. A power-domain can not be
+both parent and child to another power-domain. In other words, cyclic
+dependencies can't exist for power-domains, as it would be a wrong
+description of the HW.
+
+I wonder if the similar reasoning is applicable for other types of
+resources, like clocks and regulators, for example.
+
+>
+> >
+> > I come to the second and follow up problem from this behaviour, see below.
+> >
+> > >
+> > > > Therefore, let's set the 'optional_con_dev' to true to avoid creating
+> > > > incorrect fw_devlinks for power-domains.
+> > >
+> > > This part doesn't make sense or is incomplete. What is being done incorrectly?
+> >
+> > See below.
+> >
+> > >
+> > > >
+> > > > [1] Documentation/devicetree/bindings/power/power-domain.yaml
+> > > > [2] Documentation/devicetree/bindings/arm/psci.yaml
+> > > >
+> > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > > ---
+> > > >
+> > > > Some more details of what goes on here. I have added a debug print in
+> > > > of_link_to_phandle() to see the fw_devlinks that gets created.
+> > > >
+> > > > This is what happens on Dragonboard 410c when 'optional_con_dev' isn't set:
+> > > > ...
+> > > > [    0.041274] device: 'psci': device_add
+> > > > [    0.041366] OF: Linking power-domain-cpu0 (consumer) to psci (supplier)
+> > > > [    0.041395] OF: Linking power-domain-cpu1 (consumer) to psci (supplier)
+> > > > [    0.041423] OF: Linking power-domain-cpu2 (consumer) to psci (supplier)
+> > > > [    0.041451] OF: Linking power-domain-cpu3 (consumer) to psci (supplier)
+> > > > [    0.041494] device: 'platform:psci--platform:psci': device_add
+> > > > [    0.041556] platform psci: Linked as a sync state only consumer to psci
+> >
+> > Because we created a fw_devlink for the child provider nodes
+> > (consumer) that lacks compatible properties, we end up creating a sync
+> > state only devlink. I don't think it serves a purpose, but I may be
+> > wrong!?
+>
+> sync-state-only device links serve the purpose I explained in point 2 above.
+>
+> >
+> > Additionally, the actual devlink that is created, has the same
+> > supplier and consumer device, which indicates that this isn't the
+> > right thing to do.
+>
+> THIS is the part that's kinda wrong. But it doesn't really break
+> anything. It would also be very short lived as it would get deleted as
+> soon as the consumer (in this case the same as supplier) ends up
+> probing. But in your case the psci DT node doesn't use driver core for
+> probing because it could be an early boot dependency. In which case
+> you should really set the OF_POPULATED flag so a pointless struct
+> device isn't created for the DT node or at least set
+> FWNODE_FLAG_NOT_DEVICE so that fw_devlink knows not to wait on this
+> supplier. This is good practice for fw_devlink (not just to work
+> around the psci -> psci device link). Can you put up this patch
+> please?
+>
+> Also sync-state-only links are explicitly present to allow cyclic
+> dependencies (in the example above sync-state-only links will exist as
+> device-A -> device-C and device-C -> device-A), but it kinda pointless
+> to have a link where the supplier and the consumer are the same.
+>
+> With that said, if you want to avoid this short-lived pointless device
+> link, I'd say the fix should be in device_link_add() in the following
+> check:
+>
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -705,6 +705,7 @@ struct device_link *device_link_add(struct device *consumer,
+>          * because it only affects sync_state() callbacks.
+>          */
+>         if (!device_pm_initialized(supplier)
+> +           || consumer == supplier
+>             || (!(flags & DL_FLAG_SYNC_STATE_ONLY) &&
+>                   device_is_dependent(consumer, supplier))) {
+>                 link = NULL;
+
+This change seems like the right thing to do, no matter what. I will
+send a formal patch for it, thanks!
+
+>
+> >
+> > > > ...
+> > > >
+> > > > This is what happens on Dragonboard 410c when 'optional_con_dev' is set:
+> > > > ...
+> > > > [    0.041179] device: 'psci': device_add
+> > > > [    0.041265] OF: Not linking psci to psci - is descendant
+> > > > [    0.041293] OF: Not linking psci to psci - is descendant
+> > > > [    0.041319] OF: Not linking psci to psci - is descendant
+> > > > [    0.041346] OF: Not linking psci to psci - is descendant
+> > > > ...
+> > >
+> > > Can you please explain what exactly is going on that's wrong here? I
+> > > notice that psci is not probed as a device at all. And when you aren't
+> > > setting this flag the only difference I see is the creating of a sync
+> > > state only link -- which shouldn't matter here because you don't even
+> > > have a driver implemented.
+> >
+> > See above.
+> >
+> > >
+> > > > The relevant dtsi file:
+> > > > arch/arm64/boot/dts/qcom/msm8916.dtsi
+> > > >
+> > > > Kind regards
+> > > > Ulf Hansson
+> > > >
+> > > > ---
+> > > >  drivers/of/property.c | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > index 2babb1807228..4d607fdbea24 100644
+> > > > --- a/drivers/of/property.c
+> > > > +++ b/drivers/of/property.c
+> > > > @@ -1356,7 +1356,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+> > > >         { .parse_prop = parse_io_channels, },
+> > > >         { .parse_prop = parse_interrupt_parent, },
+> > > >         { .parse_prop = parse_dmas, .optional = true, },
+> > > > -       { .parse_prop = parse_power_domains, },
+> > > > +       { .parse_prop = parse_power_domains, .optional_con_dev = true, },
+> > >
+> > > This change is just shooting in dark/completely unrelated to the
+> > > commit text. This is just saying the actual consumer is a level up
+> > > from where the property is listed (eg: remote-endpoint). It just
+> > > happens to fix your case for unrelated reasons.
+> >
+> > Again, see above.
+> >
+> > >
+> > > Definite Nak as this *will* break other cases.
+> >
+> > In what way will this break other cases?
+> >
+> > Would you mind elaborating for my understanding and perhaps point me
+> > to an example where it will break?
+>
+> So if you did this, it'll break:
+> (1) the probe of device-A/device-C due to cyclic dependencies. Really
+> no, because fw_devlink will just stop enforcing ordering between
+> device-A and device-C if it detects a cycle. But if there was a real
+> dependency (can me multiple links deep) between device-A -> device-C,
+> that would no longer get enforced.
+
+As I said above, cyclic dependencies don't exist for power-domains.
+
+> (2) It'd break sync_state() correctness for device-B -> device-C dependency.
+
+I don't see that. Again, because power-domain providers can't be
+described in a cyclic way in DT.
+
+>
+> Hope that helps.
+>
+
+Perhaps, renaming the flag to "non-cyclic" would be an option? As it
+seems like that is what this boils done to, right?
+
+> -Saravana
+
+Thanks a lot for your reply and for taking the time to explain things!
+
+Kind regards
+Uffe
