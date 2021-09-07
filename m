@@ -2,147 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60F66403104
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 00:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C5E403122
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 00:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346370AbhIGW0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 18:26:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346453AbhIGW0N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Sep 2021 18:26:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7D7FC6112F;
-        Tue,  7 Sep 2021 22:25:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631053505;
-        bh=9GW7+zpSMN2qeM3WSsXAJVBAxrbmV3JTq1EUtyre6II=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qlgk3BkFkMRvHlDBIrGkpAU4Rg4w4byLFAU40SxZtN+9DU0nwlNgFEm1k9JhW8U+6
-         u1M1fgAhNFJkSC81FjeDlBaZgeZk719I9np9dxcbECf24EU5jZxlhDUW1iv6jjGk4c
-         +7u+G1PEcENXsLL8UMU/+Qi1r+hp4xRezHKudO6Pkt97kYTs78s2DgMJEeeNQ1kyMP
-         37GAWxeKGetukRCxQhyvq5C53pfkYkufCHo3i1R8/1ohrAQ5BBEX2xXnFah7GjJfz0
-         nMdVqORwtt428iPhuYaJyDrc2ktm8jfzGLjjodmPA5TC53Etd6DjnOnwey3ZG0srqk
-         vUTPmoBc989UA==
-Received: by mail-ed1-f41.google.com with SMTP id n11so42082edv.11;
-        Tue, 07 Sep 2021 15:25:05 -0700 (PDT)
-X-Gm-Message-State: AOAM533oF5FViLIAnc37WRCLVjGy+o7qO6hZgZ+8NzxUBc3NdbpgSxqs
-        GuCNoBiAtiNOU0tya9mWNTYFJ87nJMIb7NTbGQ==
-X-Google-Smtp-Source: ABdhPJwD8K1BbaWDkRuhr6KubeiVI2FL8MSc+ON3KnYoTOlEbhQvP0JcSZqOBr6yOx8pCN2SBedZSWprVrhG4QF1+A4=
-X-Received: by 2002:aa7:c514:: with SMTP id o20mr527840edq.318.1631053504047;
- Tue, 07 Sep 2021 15:25:04 -0700 (PDT)
+        id S1346774AbhIGWiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 18:38:05 -0400
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:38581 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346337AbhIGWiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 18:38:03 -0400
+Received: by mail-oi1-f175.google.com with SMTP id bd1so489012oib.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 15:36:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7GXuMDvTOLDEpKcOYfCCxlmtd6+MEipLqNFBOa/xCCY=;
+        b=J6UbK9NCJh3WQehvRpiEmEZG65KUudvOH3iTpjYVXmblcwbih/XEIkb8TmnE31hlFI
+         aejHiFEebDbgkuBjuMG9CxKv1uvdfzW1+UZIKpUv58sKrPFmdlTZpa8i1t04r819EIi1
+         i3WY10Lw34Rs1n7ORslbp9jOQTVjT8KiRwzjlCA7fTeDp0HuXHcjUjWE9p2N6rNanEpw
+         /wuiiEBrMn/f5ZGhIB8CgoNgt/KP6hXX9mDQ/W2o/47fsUegcUdn0AwUrF1jE3cFFU8+
+         CeIkYE7XRQ+mg4jM+RFOj4kFcwj427iF0g9gueC4BhIp60GJsAgWb0p6PJJtghBYIVuR
+         XA3w==
+X-Gm-Message-State: AOAM530actZNoK39hXboN3boMVIvFsmmwQDErQDnpb3d8XvQfj9rhqGe
+        si1wct/n2g8vh9kEwxJ/B75ksZh+MQ==
+X-Google-Smtp-Source: ABdhPJymQspdRuiPkUjcw6rhHbziEhJkiTazcFEcZ396bUYDBY6AS2AKXiS/2jpXyQkojgTAXlT4WA==
+X-Received: by 2002:a05:6808:618:: with SMTP id y24mr265737oih.179.1631054216401;
+        Tue, 07 Sep 2021 15:36:56 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y11sm59992otg.58.2021.09.07.15.36.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Sep 2021 15:36:55 -0700 (PDT)
+Received: (nullmailer pid 488839 invoked by uid 1000);
+        Tue, 07 Sep 2021 22:36:54 -0000
+Date:   Tue, 7 Sep 2021 17:36:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        broonie@kernel.org
+Subject: Re: [PATCH v5 01/21] soc: dt-bindings: qcom: apr: convert to yaml
+Message-ID: <YTfphkPM0nBuLf3P@robh.at.kernel.org>
+References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
+ <20210903112032.25834-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-References: <20210907113226.31876-1-rogerq@kernel.org> <20210907113226.31876-6-rogerq@kernel.org>
- <20210907160317.2ec5304a@xps13> <dc3d465f-50d5-31e5-07e6-f83223b90800@ti.com>
- <20210907183545.3e281b7d@xps13> <2c6491c2-dae8-c8b3-9f8c-14a7583720f1@kernel.org>
-In-Reply-To: <2c6491c2-dae8-c8b3-9f8c-14a7583720f1@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 7 Sep 2021 17:24:52 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJPnUawYafrk4XmeVBETf-Lr+MZn+j_0nGfJTpvfzbkRA@mail.gmail.com>
-Message-ID: <CAL_JsqJPnUawYafrk4XmeVBETf-Lr+MZn+j_0nGfJTpvfzbkRA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/8] dt-bindings: mtd: ti,gpmc-nand: Convert to yaml
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>, tony@atomide.com,
-        nm@ti.com, lokeshvutla@ti.com, nsekhar@ti.com,
-        krzysztof.kozlowski@canonical.com, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210903112032.25834-2-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 7, 2021 at 11:57 AM Roger Quadros <rogerq@kernel.org> wrote:
->
-> Hi Miquel,
->
-> On 07/09/2021 19:35, Miquel Raynal wrote:
-> > Hi Grygorii,
-> >
-> >>>
-> >>>> +
-> >>>> +  nand-bus-width:
-> >>>> +    description:
-> >>>> +      Bus width to the NAND chip
-> >>>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>>> +    enum: [8, 16]
-> >>>> +    default: 8
-> >>>
-> >>> This is part of nand-controller.yaml binding and should not be there.
-> >>>
-> >>>> +
-> >>>> +allOf:
-> >>>> +  - $ref: "../memory-controllers/ti,gpmc-child.yaml"
-> >>>
-> >>> Maybe you need to reference the nand controller bindings as well
-> >>>
-> >>
-> >> This will not work out of the box :( as nand-controller.yaml defines both
-> >>   nand controller and nand memory. It potentially might work if it will be possible to split
-> >> nand memory definition (or nand memory properties) out of and-controller.yaml, similarly to
-> >> ti,gpmc-child.yaml from this series.
-> >
-> > What you think would be the issue?
->
-> The issue is that dt_binding checks will fail if I reference nand-controller.yaml
-> as we currently represent the controller as follows
->
-> memory-controller { /* GPMC controller */
->         memory-controller-props;
->         nand-chip {
->                 /* @chip select 0 */
->                 nand-controller-props;
->                 memory-controller-timing-props;
->                 chip-props;
->         }
->         nand-chip {
->                 /* @chip select 1 */
->                 nand-controller-props;
->                 memory-controller-timing-props;
->                 chip-props;
->         }
->         nor-chip {
->                 /* @chip select 2 */
->                 memory-controller-timing-props;
->                 chip-props;
->         }
-> }
->
-> The NAND controller IO registers are at different addresses for different
-> chip select regions. Also, this is one way we can specify GPMC settings/timings
-> for different chip selects.
->
-> >
-> > I am not opposed to split nand-controller.yaml into
-> > nand-controller.yaml and nand-chip.yaml if it simplifies the
-> > description of controllers but I don't get why it would be needed. In
-> > particular since we expect all drivers to support the
-> >
-> > nand-controller {
-> >       controller-props;
-> >       nand-chip {
-> >               chip-props;
-> >       }
-> > }
->
-> Changing to this format will cause a lot of churn in DT files, which I'm not sure
-> if it gives enough benefit.
-> TI platforms will never have 2 NAND chips in the same chip select region.
+On Fri, 03 Sep 2021 12:20:12 +0100, Srinivas Kandagatla wrote:
+> Convert APR bindings to yaml format so that we could add new bindings support.
+> 
+> All the dsp services bindings are now part of apr bindings instead
+> of adding them to audio bindings.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../devicetree/bindings/soc/qcom/qcom,apr.txt | 134 ------------------
+>  .../bindings/soc/qcom/qcom,apr.yaml           | 128 +++++++++++++++++
+>  2 files changed, 128 insertions(+), 134 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,apr.yaml
+> 
 
-Probably best to just leave this alone. Unless this is getting used in
-new chips? If so, I'd say it's a separate change.
-
-> > organization which has been enforced since at least 2018. Having a
-> > controller vs. chip representation is fundamentally right. But here I
-> > see how "legacy" are these bindings with so much unneeded specific "ti,"
-> > properties... On one side it would be good to verify that the driver
-> > supports this representation (which I believe is true) and on the other
-> > side maybe it's time to advertise "better" bindings as well.
->
-> Yes, I'm OK to mark ti specific properties deprecated and use standard NAND chip
-> bindings.
-
-I don't think it's really worth it to go half way using common
-properties but not the common structure.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
