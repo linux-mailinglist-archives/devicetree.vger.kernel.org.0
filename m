@@ -2,95 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD7B403015
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 23:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FDDC402FFC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 22:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346751AbhIGVIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 17:08:02 -0400
-Received: from rosenzweig.io ([138.197.143.207]:46226 "EHLO rosenzweig.io"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232045AbhIGVIB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Sep 2021 17:08:01 -0400
-Date:   Tue, 7 Sep 2021 16:48:26 -0400
-From:   Alyssa Rosenzweig <alyssa@rosenzweig.io>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Hector Martin <marcan@marcan.st>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: mailbox: Add Apple mailbox bindings
-Message-ID: <YTfQGqLv6FLnUfv+@sunset>
-References: <20210907145501.69161-1-sven@svenpeter.dev>
- <20210907145501.69161-3-sven@svenpeter.dev>
- <YTe17jGBobarePaK@sunset>
- <ff66c30d-1b43-43d3-a4b0-02fe7d346118@www.fastmail.com>
+        id S242169AbhIGUy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 16:54:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235160AbhIGUy2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 16:54:28 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A807C061757
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 13:53:21 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id n2so443733lfk.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 13:53:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=C2nsQAg7kmIjIclpBrhtqlSTKrFIqUX3LxjUhDb/REE=;
+        b=YCsQ08Usmp+NSFE2q8Vqqu+1k2Jxc19NJXOmL6Zp4reeKHQuFtk9hbHHDQ1Xmgd0m6
+         bshPY/6nYk77pyO6ANj4wcbRwCSQa3QJ+vwudNf14BMBAQkxF89NI98nGh+WXthFEtpF
+         5LV1zH69hfTjOdeQXh4bCWiJk6dplQNZp4kzI8t6aC8egWr7xwOHRDBBQEJqzp0P1BDl
+         oHW89Ks9NHvUdtb9B3/rPkLOrYYDG3mpEf6+0nLOinqyHGlamXgbr/mEN/xCcKNiLapd
+         6X+s0483+WA7SUQ5DE6qWrfJjZG3v8EsCt7AyCAnzxOW4A32rKdP6sCZxRm7mCBrh9oj
+         G/ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C2nsQAg7kmIjIclpBrhtqlSTKrFIqUX3LxjUhDb/REE=;
+        b=ScJp8HRtWlszsOP4v6o0bkj+8/epb086WunOCAZZLBniewNGb5ZaIHxk3zSwceUw0q
+         UsryT6+ejWkL1/SOL0VUEQibO2wJ4GOJTBJIGGc/8x6DXXP/LmDlT10INua5QzstONUn
+         Z9pgT4GDiSeG0Zxhq+LHNTlv8aQzQvcFcb7KEB7yVvb0NTxj/0TKC/TEjZfxdobfM+NQ
+         ndJ3/ksK2PyucUJGMJ5vMAB07lmCBZxpxt2MntXYLZ7L92HCF572vynkEIu/K5aCEfkd
+         m4tWtU2qHV0QOXD1bchUayy2vGzmyn3K1ep6pjKhkD48RoilkCHYxPj4PFd7jA27u2hQ
+         wyeg==
+X-Gm-Message-State: AOAM532Cudr5O4bcU0/SxFvsZDE+j35LSIgo+V2/mTb4P5LRx38ok/eb
+        Umvj7kguxMM8MdlYNOy1zu8ROmBhAk/QQDQ97ZvVLQ==
+X-Google-Smtp-Source: ABdhPJzhBFK+nc5T6nsZ3d/UNCMCN4OBLlDwQPAjHtpwLPGtbms1OHE1axqApJ9PGJSVbkInMFi0jFJ5cFAgNd5Hu4M=
+X-Received: by 2002:a05:6512:e89:: with SMTP id bi9mr207568lfb.95.1631047999878;
+ Tue, 07 Sep 2021 13:53:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ff66c30d-1b43-43d3-a4b0-02fe7d346118@www.fastmail.com>
+References: <1630065205-7618-1-git-send-email-wenbin.mei@mediatek.com> <1630065205-7618-2-git-send-email-wenbin.mei@mediatek.com>
+In-Reply-To: <1630065205-7618-2-git-send-email-wenbin.mei@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 7 Sep 2021 22:53:08 +0200
+Message-ID: <CACRpkdYeE9piO=sfdBdq-Wd9uQpxyAb6xWYJ+9-JMTjrWX9pXw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: add hs400 dly3 setting
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Yue Hu <huyue2@yulong.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Bean Huo <beanhuo@micron.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +      - description:
-> > > +          M3 mailboxes are an older variant with a slightly different MMIO
-> > > +          interface still found on the M1.
-> > > +        items:
-> > > +          - const: apple,t8103-m3-mailbox
-> > 
-> > Would be nice to document an example of where an M3 mailbox is found.
-> 
-> Sure, I can add a comment that this is used for the coprocessor controlling Thunderbolt.
+On Fri, Aug 27, 2021 at 1:53 PM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
 
-That raises another issue ... how do we know the M3 code works at all
-without TB support yet? It "looks" correct but some of the IRQ handling
-stuff is nontrivial.
+> Add hs400 dly3 setting for mtk-sd yaml
+>
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+(...)
 
-> > > +  interrupts:
-> > > +    minItems: 4
-> > > +    items:
-> > > +      - description: send fifo is empty interrupt
-> > > +      - description: send fifo is not empty interrupt
-> > > +      - description: receive fifo is empty interrupt
-> > > +      - description: receive fifo is not empty interrupt
-> > > +
-> > > +  interrupt-names:
-> > > +    minItems: 4
-> > > +    items:
-> > > +      - const: send-empty
-> > > +      - const: send-not-empty
-> > > +      - const: recv-empty
-> > > +      - const: recv-not-empty
-> > 
-> > If the names became not-constant the asprintf thing goes away, not sure
-> > that's better or worse.
-> 
-> I'm not sure I understand your comment here. This property just gives a name
-> to the interrupts so that they can be referenced by that instead of a magic
-> number between 0 and 4 in the driver.
+> +  mediatek,hs400-ds-dly3:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      HS400 DS dly3 delay setting.
+> +    minimum: 0
+> +    maximum: 31
 
-D'oh, right, retracted. (Both this comment and the corresponding comment
-on the driver itself). Sorry about that.
+Which unit is this? Clock cycles? Then please write that in the
+binding description.
 
-> > > +  clocks:
-> > > +    description:
-> > > +      Reference to the clock gate phandle(s) if required for this mailbox.
-> > > +      Optional since not all mailboxes are attached to a clock gate.
-> > 
-> > Do we do anything with the clocks at this point?
-> > 
-> 
-> The device tree bindings describe the hardware (as best as we can without proper
-> documentation) and some of these mailboxes have clock gates which need to be turned
-> on before accessing their MMIO. This driver already tries to do that and works fine
-> with the downstream clock driver(s) we have.
-
-Good enough for me, thanks for clarifying 👍
-
-Commit r-b, though Rob will surely point out problems and I'll need to
-rereview 😉
+Yours,
+Linus Walleij
