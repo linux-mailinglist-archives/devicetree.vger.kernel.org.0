@@ -2,107 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5083340279E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 13:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC2B4027C9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 13:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241914AbhIGLOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 07:14:47 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:35266
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233669AbhIGLOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 07:14:46 -0400
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8E6D93F323
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 11:13:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1631013219;
-        bh=RJvc8ScJoXUAmgUH0tbWv8RtCVfeoLSflGCfFqP0tbs=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Q4sxVZW/UXotMC4eBAy9vbuYhVCXrgSteLtCg1b++mkFRzcMNWNxV4lkvS/EgzjDD
-         WoXqjmGeNbZrHhW7NjeKMoO7DuKTBMpRPoDKECVTTWdVkY1UTIdpmQisRqw3ZXv5Ht
-         ZYibe5UKDZgWkRWBgTxpDv+wBB58NatAwafWosYRPbR+VNWCDTYSX1bhz545PyVyRU
-         PAmjeSnKmOhyd0bJFSEYJxtfy0L4aLaOIUm0oBN49WbTSEpXtUd6zrFvrEoMASed+W
-         wvl94I9f6bKv2pLzdgjFOwinjOKweW0mlfXXa/hI23ZB4UE4znpldVD5BFyI26fS7y
-         9rvn3KJ1gCVqg==
-Received: by mail-wm1-f72.google.com with SMTP id h1-20020a05600c350100b002e751bf6733so971850wmq.8
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 04:13:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=RJvc8ScJoXUAmgUH0tbWv8RtCVfeoLSflGCfFqP0tbs=;
-        b=rvTHGdOJw3FVS7akAp2Qkg0AaQZrpTqYIF+VeXV//SuQ7uciNxJbry1qrf5sOsKJke
-         gVuHismGZ+APzuuiH7gm9kmLco0SZ/jgLsiWaBjkZi/Gg9Ee3VJWHUGUCDjsgifXNZs3
-         by1UGyCgBOevZO9wBVmEd0N3fKgLkDgalHvtWA9eNT6B7nkHP8ccfpomz7QoPCLfDbFo
-         6v0fK85QzTpfnOlCD8VVW26duJoBEWYbyXhLVWY8cn0kjiKfjuU9HntMYtHzoA72z4A4
-         VF3FD8pSlNDz+LFjwP4qh/u783R7yPaPYS6luoxe6qP8AaMNMaiG+GVZOr8l/M2MU12F
-         9uEw==
-X-Gm-Message-State: AOAM531i2+GEdq6/lmr8JU+3JroAC5J5MdOlsP/FC1NA1bUSoMB5pkXO
-        QHs5rfco5T5x0Wsk6OhbdkxksQxMIe9vBJWzfmhDqBNe6JoXP1wh5n8tyx/Y9zDbo+6sMxGKpTs
-        K4e+lIsLrcGfCnMEjqli3a++ZLyA60AZNnuKzJI4=
-X-Received: by 2002:a5d:4ccc:: with SMTP id c12mr18002441wrt.59.1631013219310;
-        Tue, 07 Sep 2021 04:13:39 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxftBSLmRUfX3ZDzPuMqhFuOKzIZppEB07Pr87IaRh51UhP9+7lgmF0BQ8jxmwYCEciJOND6g==
-X-Received: by 2002:a5d:4ccc:: with SMTP id c12mr18002426wrt.59.1631013219162;
-        Tue, 07 Sep 2021 04:13:39 -0700 (PDT)
-Received: from [192.168.3.211] ([79.98.113.172])
-        by smtp.gmail.com with ESMTPSA id b1sm11069471wrh.85.2021.09.07.04.13.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 04:13:38 -0700 (PDT)
-Subject: Re: [PATCH v2 1/5] dt-bindings: Add vendor prefix for Airoha
-To:     Bert Vermeulen <bert@biot.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Joel Stanley <joel@jms.id.au>, Daniel Palmer <daniel@0x0f.com>,
-        Max Merchel <Max.Merchel@tq-group.com>,
-        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        John Crispin <john@phrozen.org>
-References: <20210907102722.47543-1-bert@biot.com>
- <20210907102722.47543-2-bert@biot.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <393fa904-41a9-0ed3-90c3-c03da1c0dd18@canonical.com>
-Date:   Tue, 7 Sep 2021 13:13:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20210907102722.47543-2-bert@biot.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S242911AbhIGLdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 07:33:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53230 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242785AbhIGLdi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 07:33:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C09AD6109F;
+        Tue,  7 Sep 2021 11:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631014352;
+        bh=8UMQ97vyI3ophSye3dLSGxheasRTdFGrQH/XhCLQ7Ew=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Fv6sKsziXoufVFVqeUEuQ/cPd5N953M7hvg2B8vo+AcIqdBXfen6okuSz3UjfVEfw
+         +DEi76nJ7QIEOsCEkYgwYhKbB9wuKG5EsVxBSlTS8+A8J8bHd9oV9oo4lyQlmVOjXB
+         KS8dKlLJlfkhHJRyujvmyfAcOriwa5sn9bdGlYUE0fPgYg8DblkAQI4J/3Xw3Rr2rE
+         /dZp1KmtYPGG+klDKq3+uUL0x1Gtm9V2L8RZFON59XBZuGlBNXQ33ZxYGVThpe+a6Z
+         UCsAwiuc1mbIWHVqhko1/3ee04A9H5bvf1jejGkjpFQFntOCqB1wp8KUQpdCaJSUZ+
+         kSEIRmBDH5HEQ==
+From:   Roger Quadros <rogerq@kernel.org>
+To:     tony@atomide.com
+Cc:     robh+dt@kernel.org, grygorii.strashko@ti.com, nm@ti.com,
+        lokeshvutla@ti.com, nsekhar@ti.com,
+        krzysztof.kozlowski@canonical.com, miquel.raynal@bootlin.com,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v3 0/8] dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
+Date:   Tue,  7 Sep 2021 14:32:18 +0300
+Message-Id: <20210907113226.31876-1-rogerq@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2021 12:27, Bert Vermeulen wrote:
-> From: John Crispin <john@phrozen.org>
-> 
-> Add vendor prefix "airoha" for Airoha.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 07fb0d25fc15..e9c956535f97 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -333,6 +333,8 @@ patternProperties:
->      description: EBV Elektronik
->    "^eckelmann,.*":
->      description: Eckelmann AG
-> +  "^airoha,.*":
-> +    description: Airoha
+Hi,
 
-Wrong ordering.
+This series converts ti,gpmc memory controller and ti,gpmc-nand and
+ti,gpmc-onenand MTD controller bindings to yaml.
 
-Best regards,
-Krzysztof
+cheers,
+-roger
+
+Changelog:
+v3:
+- fix indentation
+- split GPMC child timings/settings into ti,gpmc-child.yaml
+This allows us to refer to it at 3 places and avoid use of
+'additionalProperties: true' at 2 places.
+- specify defaults where applicable
+- reordered patches
+- added patch for making "gpmc,device-width" optional with defaults.
+- address all review comments.
+
+v2:
+- Fix all errors in dtbs_check and dt_bindings_check
+- remove references to gpmc-omap.txt
+- Convert ti,gpmc-nand and ti,gpmc-onenand bindings to yaml as well
+
+Roger Quadros (8):
+  ARM: dts: omap: Fixup GPMC child nodes
+  dt-bindings: mtd: Remove gpmc-nor.txt
+  dt-bindings: net: Remove gpmc-eth.txt
+  dt-bindings: memory-controllers: Introduce ti,gpmc-child
+  dt-bindings: mtd: ti,gpmc-nand: Convert to yaml
+  dt-bindings: mtd: ti,gpmc-onenand: Convert to yaml
+  dt-bindings: memory-controllers: ti,gpmc: Convert to yaml
+  memory: gpmc-omap: "gpmc,device-width" DT property is optional
+
+ .../bindings/memory-controllers/omap-gpmc.txt | 157 -----------
+ .../memory-controllers/ti,gpmc-child.yaml     | 245 ++++++++++++++++++
+ .../bindings/memory-controllers/ti,gpmc.yaml  | 174 +++++++++++++
+ .../devicetree/bindings/mtd/gpmc-nand.txt     | 147 -----------
+ .../devicetree/bindings/mtd/gpmc-nor.txt      |  98 -------
+ .../devicetree/bindings/mtd/gpmc-onenand.txt  |  48 ----
+ .../devicetree/bindings/mtd/ti,gpmc-nand.yaml | 110 ++++++++
+ .../bindings/mtd/ti,gpmc-onenand.yaml         |  69 +++++
+ .../devicetree/bindings/net/gpmc-eth.txt      |  97 -------
+ .../boot/dts/logicpd-som-lv-baseboard.dtsi    |   2 +-
+ .../boot/dts/logicpd-torpedo-37xx-devkit.dts  |   2 +-
+ .../boot/dts/logicpd-torpedo-baseboard.dtsi   |   2 +-
+ arch/arm/boot/dts/omap-gpmc-smsc911x.dtsi     |  62 +++--
+ arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi     |  59 ++---
+ arch/arm/boot/dts/omap-zoom-common.dtsi       |  16 +-
+ arch/arm/boot/dts/omap2430-sdp.dts            |   6 +-
+ arch/arm/boot/dts/omap3-cm-t3x30.dtsi         |   6 +-
+ .../arm/boot/dts/omap3-devkit8000-common.dtsi |   4 +-
+ arch/arm/boot/dts/omap3-evm-37xx.dts          |   1 +
+ arch/arm/boot/dts/omap3-evm-common.dtsi       |   9 -
+ .../boot/dts/omap3-evm-processor-common.dtsi  |   5 +-
+ arch/arm/boot/dts/omap3-evm.dts               |   1 +
+ arch/arm/boot/dts/omap3-igep0020-common.dtsi  |   5 +-
+ arch/arm/boot/dts/omap3-ldp.dts               |   5 +-
+ arch/arm/boot/dts/omap3-n900.dts              |   2 +-
+ .../dts/omap3-overo-chestnut43-common.dtsi    |   6 +-
+ .../arm/boot/dts/omap3-overo-tobi-common.dtsi |   6 +-
+ .../boot/dts/omap3-overo-tobiduo-common.dtsi  |   8 +-
+ arch/arm/boot/dts/omap3-sb-t35.dtsi           |   4 +-
+ arch/arm/boot/dts/omap4-duovero-parlor.dts    |   6 +-
+ drivers/memory/omap-gpmc.c                    |  41 +--
+ 31 files changed, 729 insertions(+), 674 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc-child.yaml
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-nand.txt
+ delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-nor.txt
+ delete mode 100644 Documentation/devicetree/bindings/mtd/gpmc-onenand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/gpmc-eth.txt
+
+-- 
+2.17.1
+
