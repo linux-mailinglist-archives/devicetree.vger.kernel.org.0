@@ -2,148 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A7A402EE4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE0CC402EF1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 21:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345371AbhIGTSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 15:18:50 -0400
-Received: from mail-vk1-f182.google.com ([209.85.221.182]:34334 "EHLO
-        mail-vk1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbhIGTSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:18:50 -0400
-Received: by mail-vk1-f182.google.com with SMTP id 13so125412vkl.1;
-        Tue, 07 Sep 2021 12:17:43 -0700 (PDT)
+        id S233891AbhIGT3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 15:29:25 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:35539 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229574AbhIGT3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 15:29:24 -0400
+Received: by mail-oo1-f46.google.com with SMTP id y3-20020a4ab403000000b00290e2a52c71so124325oon.2;
+        Tue, 07 Sep 2021 12:28:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HybJMlAw2y2ijeDg8NtpVEMi7UblwoRmrxRA4Rveu7I=;
-        b=UHQlzCoWdaEna9A0ew1ImNuxeEQXt7cnuN+uUAfq1k/1N8EENveH1MpbrH04GYO819
-         yRTUv8E8jnUdrIEd4oiGs7Jxk2Kd96Km+7fC02GaIWUx2bp5wbRfRHRHHD2jQ6pIUTjj
-         PNd209fkEOu3zTdsqBfwkAT8BwMmzzEar5Hdk21Yy1UcAcsCTAHpjBNc2j1VE9ETtQht
-         n7AGtxXUQE9me8wGXUxcY/Ox3kqLN3/mckcy59//7xzYns+AKEokjej81OFt1LXhs02l
-         jqU1R5f+ftyaUAIr2qzVQPDrioo6U4Em4bqYlp0gGb7T2ElzH1KJ9tvkckcgTU/Ll8Pz
-         8VVg==
-X-Gm-Message-State: AOAM5334MXtLEVt+22rH5mgk2N/mTN0hXjo3OZFtFopz7g0enQhbFC+O
-        ziCfcGdSxnpuYsAetdeJzWgQaywsRjbLWWuJeF7wHn8z
-X-Google-Smtp-Source: ABdhPJyIH0Mriu2yKBIMyY3xYIxiPRQzP7kDyByVOL/e44hGiXY917Ry3aMp6jg6SHq1PM2/3dQZEiN5LGPiKBwRQ6U=
-X-Received: by 2002:a1f:d247:: with SMTP id j68mr9449607vkg.7.1631042263032;
- Tue, 07 Sep 2021 12:17:43 -0700 (PDT)
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TFNxI/th+I6c8v2S1JhOFknsclAVoGZJrQS33g8IB4s=;
+        b=eVIS3EcZbE2zeKIIhu8+LxuBw4cJ8CfHRMnNHR52UDNWfo2GlfolKlntX8agJ6+QcY
+         ujnweaz3RM9n2jF3AHEHRGitEhR4wNrdpF6g5ytqR2aoMeQ2XhP0hO2O900ku66EPcgV
+         84454TIGv+lAJ8MDMUc3NDGLK1dtNaY6O+G6AdzagOfd6lii5MP8kbs1Tn9gNQ/tKs6i
+         fKDJHtZhVFZtq4yR1nfRc+WuCom0yJzMeErVemrkcrTE42VD9nUJLLkFql+Qpfq8JlNO
+         wPZLUjtPb6Qdn/UD3a+a+ObkRK2W3wANiAtg+oMoiUWSWIAW7s+tiLS+C5er537s9/od
+         mRQg==
+X-Gm-Message-State: AOAM5315VfGlsylr8o9HGqV7p6gNQR5/WYjjXWXE1Yl5ubRMnPShCNDW
+        DQxd73GlMGyr12ci91t02w==
+X-Google-Smtp-Source: ABdhPJyw2cjiz04Vl4DlvrU3cwBlg7+DslpHmlBuvmJuxSQy2fZDpW50Db/BYzeqQzzFQUqSJMu3hw==
+X-Received: by 2002:a4a:ab0c:: with SMTP id i12mr1342573oon.24.1631042897722;
+        Tue, 07 Sep 2021 12:28:17 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c14sm2582754otd.62.2021.09.07.12.28.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Sep 2021 12:28:16 -0700 (PDT)
+Received: (nullmailer pid 205682 invoked by uid 1000);
+        Tue, 07 Sep 2021 19:28:15 -0000
+Date:   Tue, 7 Sep 2021 14:28:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Fengquan Chen <Fengquan.Chen@mediatek.com>
+Cc:     randy.wu@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        linux-watchdog@vger.kernel.org, rex-bc.chen@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>, christine.zhu@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, zhishuang.zhang@mediatek.com,
+        fengquan.chen@mediatek.com, tinghan.shen@mediatek.com,
+        joe.yang@mediatek.com
+Subject: Re: [v2,2/2] dt-bindings: watchdog: mtk-wdt: add disable_wdt_extrst
+ support
+Message-ID: <YTe9T/oqpwN5CHKR@robh.at.kernel.org>
+References: <20210903061623.10715-1-Fengquan.Chen@mediatek.com>
+ <20210903061623.10715-3-Fengquan.Chen@mediatek.com>
 MIME-Version: 1.0
-References: <20210901233655.1602308-1-kieran.bingham@ideasonboard.com>
- <CAMuHMdXHAfg3_VoeXUBT2-QceLR9KQ3pWjz+5=-wK1QRxK14bw@mail.gmail.com> <YTezLHrRt/YpOlJZ@robh.at.kernel.org>
-In-Reply-To: <YTezLHrRt/YpOlJZ@robh.at.kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 7 Sep 2021 21:17:31 +0200
-Message-ID: <CAMuHMdXGK=+W=C3c9GV8br9ZvQpAhj4ePiq7m1N8YBo1vzZjvQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210903061623.10715-3-Fengquan.Chen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, 03 Sep 2021 14:16:23 +0800, Fengquan Chen wrote:
+> This patch add a description and example of disable_wdt_extrst
+> element for watchdog on MTK Socs
+> 
+> Signed-off-by: fengquan.chen <fengquan.chen@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-On Tue, Sep 7, 2021 at 8:45 PM Rob Herring <robh@kernel.org> wrote:
-> On Mon, Sep 06, 2021 at 10:13:07AM +0200, Geert Uytterhoeven wrote:
-> > On Thu, Sep 2, 2021 at 1:39 AM Kieran Bingham
-> > <kieran.bingham@ideasonboard.com> wrote:
-> > > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > >
-> > > Extend the Renesas DU display bindings to support the r8a779a0 V3U.
-> > >
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > > ---
-> > > v2:
-> > >  - Collected Laurent's tag
-> > >  - Remove clock-names requirement
-> > >  - Specify only a single clock
-> >
-> > Thanks for the update!
-> >
-> > > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > > @@ -39,6 +39,7 @@ properties:
-> > >        - renesas,du-r8a77980 # for R-Car V3H compatible DU
-> > >        - renesas,du-r8a77990 # for R-Car E3 compatible DU
-> > >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
-> > > +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -773,6 +774,55 @@ allOf:
-> > >          - reset-names
-> > >          - renesas,vsps
-> > >
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - renesas,du-r8a779a0
-> > > +    then:
-> > > +      properties:
-> > > +        clocks:
-> > > +          items:
-> > > +            - description: Functional clock
-> > > +
-> > > +        clock-names:
-> > > +          maxItems: 1
-> > > +          items:
-> > > +            - const: du
-> > > +
-> > > +        interrupts:
-> > > +          maxItems: 2
-> > > +
-> > > +        resets:
-> > > +          maxItems: 1
-> > > +
-> > > +        reset-names:
-> > > +          items:
-> > > +            - const: du.0
-> >
-> > This is now inconsistent with clock-names, which doesn't use a suffix.
->
-> But it is consistent with all the other cases of 'reset-names'. The
-> problem is 'clock-names' is not consistent and should be 'du.0'.
-
-True.
-
-> Ideally, the if/them schemas should not be defining the names. That
-> should be at the top level and the if/them schema just limits the number
-> of entries. That's not always possible, but I think is for clocks and
-> resets in this case.
-
-It's a bit tricky.
-For clocks, there's usually one clock per channel, but not always.
-Plus clocks for external inputs, if present.
-For resets, there's one reset for a group of channels, with the number
-of channels in a group depending on the SoC family.
-And then there's the special casing for SoCs where there's a gap in
-the channel numbering...
-
-Still wondering if it would be better to have one device node per
-channel, and companion links...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Acked-by: Rob Herring <robh@kernel.org>
