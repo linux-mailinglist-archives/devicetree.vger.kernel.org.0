@@ -2,88 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77523402CE7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2962E402CEC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:37:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343793AbhIGQg4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Sep 2021 12:36:56 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:44485 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231378AbhIGQg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 12:36:56 -0400
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 93BC560009;
-        Tue,  7 Sep 2021 16:35:46 +0000 (UTC)
-Date:   Tue, 7 Sep 2021 18:35:45 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Roger Quadros <rogerq@kernel.org>, <tony@atomide.com>,
-        <robh+dt@kernel.org>, <nm@ti.com>, <lokeshvutla@ti.com>,
-        <nsekhar@ti.com>, <krzysztof.kozlowski@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 5/8] dt-bindings: mtd: ti,gpmc-nand: Convert to yaml
-Message-ID: <20210907183545.3e281b7d@xps13>
-In-Reply-To: <dc3d465f-50d5-31e5-07e6-f83223b90800@ti.com>
-References: <20210907113226.31876-1-rogerq@kernel.org>
-        <20210907113226.31876-6-rogerq@kernel.org>
-        <20210907160317.2ec5304a@xps13>
-        <dc3d465f-50d5-31e5-07e6-f83223b90800@ti.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1343994AbhIGQi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 12:38:59 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:43766 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245595AbhIGQi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 12:38:59 -0400
+Received: by mail-ot1-f41.google.com with SMTP id x10-20020a056830408a00b004f26cead745so13485980ott.10;
+        Tue, 07 Sep 2021 09:37:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Gclh/xQmNnX7m+aM9vAxlEmZbwqo4NlYu42YuYNtugU=;
+        b=K5PHNfYj8iMFgt72VM8Hvix4aSar/WmJTDcq/niySfCaTlukwrVxKLPurVHVsEzb6S
+         ZwEVHzsvdp+sNLBkSI4mdFbYA2rLxHQqoFp8jZ8PArvPNmmzwxQPZtzFAFtnKiZX/9KQ
+         f5L4ZGy8na10NaBxbTyGyjKr/5QgyhE/pRVKaTo50zjAuT9ruvz8VN7EraGrKkwGGmji
+         Jkg+tM1E6XDVVTyOT4kVw+R0ChGK0yRzKiK1OK4iHjNGNaU/l9k7HVGV7eB+iIQcAUWe
+         64/XX4nmOXl4ONYPsYVl3TeNFGNsIAE85nj55RWoXI1sh2EPAMArv6kxsphSgsRwPu68
+         o3vQ==
+X-Gm-Message-State: AOAM531kl+Nlome8KwEvWwEZiMHWxO56UqQWrGw5YeWl61m5JcG43Iy2
+        Mpy9yHlstd4NwnGdp8QvcLQcUIDZbQ==
+X-Google-Smtp-Source: ABdhPJxhJLGGAPjwCwRlo1AFguj4YidhSgOO+HrTStyirpQo9WvGMraJrgBk5TrIwUWL1PY5NL7SRQ==
+X-Received: by 2002:a9d:5e05:: with SMTP id d5mr15412900oti.61.1631032672282;
+        Tue, 07 Sep 2021 09:37:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id b11sm2313449ooi.0.2021.09.07.09.37.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Sep 2021 09:37:51 -0700 (PDT)
+Received: (nullmailer pid 4121281 invoked by uid 1000);
+        Tue, 07 Sep 2021 16:37:50 -0000
+Date:   Tue, 7 Sep 2021 11:37:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, Jan Kotas <jank@cadence.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH] dt-bindings: clk: fixed-mmio-clock: Convert to YAML
+Message-ID: <YTeVXuZhwmuQ1YfE@robh.at.kernel.org>
+References: <20210903152615.31453-1-kabel@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210903152615.31453-1-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Grygorii,
-
-> >   
-> >> +
-> >> +  nand-bus-width:
-> >> +    description:
-> >> +      Bus width to the NAND chip
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    enum: [8, 16]
-> >> +    default: 8  
-> > 
-> > This is part of nand-controller.yaml binding and should not be there.
-> >   
-> >> +
-> >> +allOf:
-> >> +  - $ref: "../memory-controllers/ti,gpmc-child.yaml"  
-> > 
-> > Maybe you need to reference the nand controller bindings as well
-> >   
+On Fri, 03 Sep 2021 17:26:15 +0200, Marek Behún wrote:
+> Convert the binding documentatoin for fixed-mmio-clock to YAML.
 > 
-> This will not work out of the box :( as nand-controller.yaml defines both
->   nand controller and nand memory. It potentially might work if it will be possible to split
-> nand memory definition (or nand memory properties) out of and-controller.yaml, similarly to
-> ti,gpmc-child.yaml from this series.
+> Signed-off-by: Marek Behún <kabel@kernel.org>
+> ---
+>  .../bindings/clock/fixed-mmio-clock.txt       | 24 ----------
+>  .../bindings/clock/fixed-mmio-clock.yaml      | 47 +++++++++++++++++++
+>  2 files changed, 47 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/fixed-mmio-clock.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> 
 
-What you think would be the issue?
-
-I am not opposed to split nand-controller.yaml into
-nand-controller.yaml and nand-chip.yaml if it simplifies the
-description of controllers but I don't get why it would be needed. In
-particular since we expect all drivers to support the
-
-nand-controller {
-	controller-props;
-	nand-chip {
-		chip-props;
-	}
-}
-
-organization which has been enforced since at least 2018. Having a
-controller vs. chip representation is fundamentally right. But here I
-see how "legacy" are these bindings with so much unneeded specific "ti,"
-properties... On one side it would be good to verify that the driver
-supports this representation (which I believe is true) and on the other
-side maybe it's time to advertise "better" bindings as well.
-
-
-Thanks,
-MiquÃ¨l
+Reviewed-by: Rob Herring <robh@kernel.org>
