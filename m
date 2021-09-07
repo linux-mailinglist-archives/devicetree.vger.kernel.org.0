@@ -2,176 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C48A2402C23
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 17:46:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2ACD402C9F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 18:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345539AbhIGPsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 11:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345526AbhIGPsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 11:48:02 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C4EC061757;
-        Tue,  7 Sep 2021 08:46:56 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id h133so13308582oib.7;
-        Tue, 07 Sep 2021 08:46:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=za921Vu97h0qChNKiBR4nf/vhgRy0vpn+TROCeKGBrk=;
-        b=LDoQr8WAioF/ltfREZSAkaJvjmZNM8+rF1dlJ5TqsRUv4doo7ogGKJ90LfoeKc1QwA
-         N0VLwV3fVXBhsizaw7uhwpi/coA0NKzQ9ya7Zxo4foqP4HsHy2oFZI3NfMhP34bj9lc+
-         iaoRcpuYjgG3HA1/PPgZQ0nLsVoFNUw344ZmjjenwhZY4Vie8RLGL9SLkbQv5qBuwtgA
-         OV3z+uXE/9Sfmq38JazJ7lACm/VWpSG5ZzQ5PnQpRtNkeSJStHRgAkUUlyWUM5EvmKlj
-         GWTaKj0V83o10Vpy4f8xkRnubr1uyYXWF2SsTcliTTDrhH3lZaK7f8Z3YZYRhf8XJN52
-         mxOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=za921Vu97h0qChNKiBR4nf/vhgRy0vpn+TROCeKGBrk=;
-        b=k4nvrQFw56PE9nP8aTWF1s1A5hZjYcgbHIFqZkHQnwAGQhyLSbjLmiAu8zKTe94PvJ
-         /aTgumT7njJSbR2uFzG37vPyR5/ZIAvct5sSTUvaNZbVHdH5v+vPUkVAXRoPomOmdmsf
-         ttHXZOOVchdzWXsPhlpEptVTjRGInPnF8RzzJQJAd62ZVxfSfjl4NRoI0KkGOPk4LMQG
-         S0HK2gNgsGxWZ8tlK8DFiYQiSpboSqeGF8DGiCDMIhB8aZTiDYcSFmP+1PwqdUHFcOo0
-         deK3Wy3GYQdwrF48i0dXsTQczu3liFZRpidUTZhyCAU+I1WafdXgBYP+ZxWlBP7TNx15
-         K6CA==
-X-Gm-Message-State: AOAM533V751JomihVizySML5+VLwyxiIKeTru02ZbTL4Q3fcL105xxDE
-        5HjujW9pGgyNuWu7T6qM1zJ57EMQDLo=
-X-Google-Smtp-Source: ABdhPJwCAP5bp/2ZuQQqaqWNllXbGu6/D1i4ihdvTbFd9ujHF2fVkM5MnXk62rGdvFB1uURqhIyPfw==
-X-Received: by 2002:a05:6808:291:: with SMTP id z17mr3529979oic.177.1631029615129;
-        Tue, 07 Sep 2021 08:46:55 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id j8sm2271183ooc.21.2021.09.07.08.46.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 08:46:54 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1631021349.git.krzysztof.adamski@nokia.com>
- <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 8/8] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <3743f9f4-f8c5-acd5-2422-2bbdb2dd7d72@roeck-us.net>
-Date:   Tue, 7 Sep 2021 08:46:53 -0700
+        id S234524AbhIGQKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 12:10:09 -0400
+Received: from mga09.intel.com ([134.134.136.24]:41027 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242395AbhIGQKJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 12:10:09 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10099"; a="220264710"
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; 
+   d="scan'208";a="220264710"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2021 09:06:12 -0700
+X-IronPort-AV: E=Sophos;i="5.85,274,1624345200"; 
+   d="scan'208";a="512893409"
+Received: from mrburno-mobl.amr.corp.intel.com (HELO [10.212.10.81]) ([10.212.10.81])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2021 09:06:07 -0700
+Subject: Re: [PATCH v5 15/21] ASoC: qdsp6: audioreach: add q6apm support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        lgirdwood@gmail.com
+References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
+ <20210903112032.25834-16-srinivas.kandagatla@linaro.org>
+ <081e6734-a258-6d21-cf66-f00bfeb38b04@linux.intel.com>
+ <b1cfacb4-70b9-7146-00d5-9d680297d900@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <f8bd8b94-528d-bf6f-9e84-0e41e4c56382@linux.intel.com>
+Date:   Tue, 7 Sep 2021 10:04:32 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <12984255aac11a3edfc0e6278e1a1cac70ce97ec.1631021349.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <b1cfacb4-70b9-7146-00d5-9d680297d900@linaro.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/7/21 6:46 AM, Krzysztof Adamski wrote:
-> Add binding description for the per temperature channel configuration
-> like labels and n-factor.
+
+>>> +    graph->graph = audioreach_alloc_graph_pkt(apm, &info->sg_list,
+>>> graph_id);
+>>> +    if (IS_ERR(graph->graph)) {
+>>> +        kfree(graph);
+>>> +        return ERR_PTR(-ENOMEM);
+>>> +    }
+>>> +
+>>> +    spin_lock(&apm->lock);
+>>> +    idr_alloc(&apm->graph_idr, graph, graph_id,
+>>> +          graph_id + 1, GFP_ATOMIC);
+>>
+>> does this need to be ATOMIC?
 > 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+> We are inside spinlock.
 
-Up to Rob to decide, but it seems to me that can be squashed with the other
-dt patch in the series (which on its own doesn't really add much value).
-
-Guenter
-
-> ---
->   .../devicetree/bindings/hwmon/tmp421.yaml     | 66 +++++++++++++++++++
->   1 file changed, 66 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/tmp421.yaml b/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> index 53940e146ee6..56085fdf1b57 100644
-> --- a/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/tmp421.yaml
-> @@ -24,12 +24,49 @@ properties:
->     reg:
->       maxItems: 1
->   
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
->   required:
->     - compatible
->     - reg
->   
->   additionalProperties: false
->   
-> +patternProperties:
-> +  "^input@([0-4])$":
-> +    type: object
-> +    description: |
-> +      Represents channels of the device and their specific configuration.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. 0 is local channel, 1-4 are remote channels
-> +        items:
-> +          minimum: 0
-> +          maximum: 4
-> +
-> +      label:
-> +        description: |
-> +          A descriptive name for this channel, like "ambient" or "psu".
-> +
-> +      n-factor:
-> +        description: |
-> +          The value (two's complement) to be programmed in the channel specific N correction register.
-> +          For remote channels only.
-> +        items:
-> +          minimum: 0
-> +          maximum: 1
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
->   examples:
->     - |
->       i2c {
-> @@ -41,3 +78,32 @@ examples:
->           reg = <0x4c>;
->         };
->       };
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      sensor@4c {
-> +        compatible = "ti,tmp422";
-> +        reg = <0x4c>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        input@0 {
-> +          reg = <0x0>;
-> +          n-factor = <0x1>;
-> +          label = "local";
-> +        };
-> +
-> +        input@1 {
-> +          reg = <0x1>;
-> +          n-factor = <0x0>;
-> +          label = "somelabel";
-> +        };
-> +
-> +        input@2 {
-> +          reg = <0x2>;
-> +          status = "disabled";
-> +        };
-> +      };
-> +    };
-> 
-
+but this is not used in an interrupt handler or anything that isn't in a
+process context, is it?
