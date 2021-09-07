@@ -2,95 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CC96402E43
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 20:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB65A402E4F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 20:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345788AbhIGSR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 14:17:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345777AbhIGSR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 14:17:59 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62331C0613C1
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 11:16:52 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id 8so4275pga.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 11:16:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MTKC20tO9zMCWTI8piOtIK2h9ol7uIIjMhJrYZXtkYg=;
-        b=JP54FaieVXwvNpDq0XuDG07BQCdr2Dtael/Sn0U3W4F72gblOSgWKOsVQPfglUQAaR
-         StOI2FGY99ADuiwTdcirDT+f0z6RhL7DTRVC6isDQEcfoj3yj9RU/kovpZIum8a+La0t
-         Pz7XbBeLrdLb73e0g/FBjw0cAHp/L5prC+VWE=
+        id S245718AbhIGSZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 14:25:11 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:33515 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345718AbhIGSZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 14:25:11 -0400
+Received: by mail-oi1-f176.google.com with SMTP id n27so130335oij.0;
+        Tue, 07 Sep 2021 11:24:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MTKC20tO9zMCWTI8piOtIK2h9ol7uIIjMhJrYZXtkYg=;
-        b=Lipswg/eDoRD2/ixszYZlyPnkUtoLv4hvIKg3MagoY4zgJoCshQ/OstzqG4U4+TQyU
-         cwdjUbbuw2Qnxqz4TRT76CLvP24gYEJueE2NYVvpq8xbrulQySojh331C+jMbYmfVoXE
-         sa25qT5bYh0opsO5t73Fab0m62ymc/MPutLUNjtWB71vfiMXehx3R88L4xZppqWKSynl
-         Zj8rvU/YKTcKA9qaDvxA1lF1aMqzLDyYb43jp5IluiUvPO+VnLhKoOHQybCVXrYi3sMA
-         QhxCarv2/Jq6cGUcJg34GKM/U6xbufF/5sJMzy8cH1KANP0WOGvjfxbgk9K1MjX0JKkC
-         TEdA==
-X-Gm-Message-State: AOAM530qmySCfxz+YEVw/hU6KDUXcfxSfUJ3xdraZuBqVXDKyd76E8Si
-        AYBaWj8jwr7SYKwflauJYt2idw==
-X-Google-Smtp-Source: ABdhPJx9jtF/JxyCIZPs2rLwflSaCsmFbpbllqX2GRRW80zYBwd0FSUQ8BPYOPQvDaCV2DUIfScgUA==
-X-Received: by 2002:a65:6a4b:: with SMTP id o11mr17543541pgu.278.1631038611904;
-        Tue, 07 Sep 2021 11:16:51 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:c6b2:7ae:474d:36f6])
-        by smtp.gmail.com with UTF8SMTPSA id h4sm3704143pjc.28.2021.09.07.11.16.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 11:16:51 -0700 (PDT)
-Date:   Tue, 7 Sep 2021 11:16:49 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        swboyd@chromium.org, kgunda@codeaurora.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: pm8350c: Add pwm support
-Message-ID: <YTeskY7kXsdmvGPp@google.com>
-References: <1630924867-4663-1-git-send-email-skakit@codeaurora.org>
- <1630924867-4663-4-git-send-email-skakit@codeaurora.org>
+        bh=xOZK9HeA+f0nYZagIgOWI8O/YEDsHND1iSu6Vm2M6zo=;
+        b=OgvJU11awLrdjnveE6Gb7X656kRwpeNZgKrS9kyb7yd7gnmwlbyWpbfUBiTadplzYo
+         cQM7ywDfyKfHzSxrSc9iWmkEe4Q2rtFsaOImtmOremrh+adzOWZ89m5/BQOUryQS0Ok4
+         KoPRj9kPNA95H5WYk4Kj4E5SUsCIvxB/fjhPYkjVrn0s8CQNrF/VPlDsWMnL7VXjRXXo
+         aCobFuT+I9RpSBkG3paxMV2O1lWGBKcHM8UkRI1W700ICdi0kFMaL6D8ltH6CSwinv/U
+         3qqKuKfTjgAffVgaWtcxcx2I9uQLr3Xhvswjlv/1sssj4hyzR5JRV5YsOWizx5R/jImX
+         9n6Q==
+X-Gm-Message-State: AOAM531wekn1ptULlpUzKxhNTSVInEEjGMxo4+ZFuWH/dU6QqIpksmL9
+        2OFTxq7EUyuUjBQSAs4ong==
+X-Google-Smtp-Source: ABdhPJw1Y3//Zx0P1mMOmsULYvzFYUu7GalyTb4h9oIPkCO2x1L/4EQOA9uVJOLSIthZWYgwmeJVpw==
+X-Received: by 2002:aca:f143:: with SMTP id p64mr4047412oih.161.1631039044112;
+        Tue, 07 Sep 2021 11:24:04 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l4sm2513988oth.4.2021.09.07.11.24.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Sep 2021 11:24:03 -0700 (PDT)
+Received: (nullmailer pid 99324 invoked by uid 1000);
+        Tue, 07 Sep 2021 18:24:02 -0000
+Date:   Tue, 7 Sep 2021 13:24:02 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bhaskara Budiredla <bbudiredla@marvell.com>
+Cc:     will@kernel.org, mark.rutland@arm.com, sgoutham@marvell.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: perf: Add YAML schemas for Marvell
+ CN10K LLC-TAD pmu bindings
+Message-ID: <YTeuQvMoFOeY0FeJ@robh.at.kernel.org>
+References: <20210901150105.18863-1-bbudiredla@marvell.com>
+ <20210901150105.18863-3-bbudiredla@marvell.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1630924867-4663-4-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <20210901150105.18863-3-bbudiredla@marvell.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 06, 2021 at 04:11:07PM +0530, satya priya wrote:
-> Add pwm support for PM8350C pmic.
+On Wed, Sep 01, 2021 at 08:31:05PM +0530, Bhaskara Budiredla wrote:
+> Add device tree bindings for Last-level-cache Tag-and-data
+> (LLC-TAD) unit PMU for Marvell CN10K SoCs.
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Signed-off-by: Bhaskara Budiredla <bbudiredla@marvell.com>
 > ---
->  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/perf/marvell-cn10k-tad.yaml      | 60 +++++++++++++++++++
+
+marvell,cn10k-tad-pmu.yaml
+
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> index e1b75ae..ecdae55 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> @@ -29,6 +29,12 @@
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
->  		};
+> diff --git a/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+> new file mode 100644
+> index 000000000000..18e9499f2df8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/marvell-cn10k-tad.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		pm8350c_pwm4: pwm {
+> +title: Marvell CN10K LLC-TAD performance monitor
+> +
+> +maintainers:
+> +  - Bhaskara Budiredla <bbudiredla@marvell.com>
+> +
+> +description: |
+> +  The Tag-and-Data units (TADs) maintain coherence and contain CN10K
+> +  shared on-chip last level cache (LLC). The tad pmu measures the
+> +  performance of last-level cache. Each tad pmu supports up to eight
+> +  counters.
+> +
+> +  The DT setup comprises of number of tad blocks, the sizes of pmu
+> +  regions, tad blocks and overall base address of the HW.
+> +
+> +properties:
+> +  compatible:
+> +    const: marvell,cn10k-tad-pmu
+> +
 
-What does the '4' represent, an internal channel number? It should
-probably be omitted if the PM8350 only has a single output PWM
-port.
+> +  tad-cnt:
+> +    maxItems: 1
+> +
+> +  tad-page-size:
+> +    maxItems: 1
+> +
+> +  tad-pmu-page-size:
+> +    maxItems: 1
 
-> +			compatible = "qcom,pm8350c-pwm";
-> +			#pwm-cells = <2>;
-> +			status = "okay";
+These all need vendor prefix, a type, description, and any constraints.
 
-I don't think it should be enabled by default, there may be boards with
-the PM8350C that don't use the PWM.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - tad-cnt
+> +  - tad-page-size
+> +  - tad-pmu-page-size
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
+> +    tad {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        tad_pmu@80000000 {
+
+pmu@...
+
+> +            compatible = "marvell,cn10k-tad-pmu";
+> +            tad-cnt = <1>;
+> +            tad-page-size = <0x1000>;
+> +            tad-pmu-page-size = <0x1000>;
+> +            reg = <0x87e2 0x80000000 0x0 0x1000>;
+> +        };
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
