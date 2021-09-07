@@ -2,630 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA2D40244E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 09:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCDD4402451
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 09:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbhIGH3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 03:29:53 -0400
-Received: from mail-vi1eur05on2127.outbound.protection.outlook.com ([40.107.21.127]:40064
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        id S231161AbhIGHaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 03:30:14 -0400
+Received: from mail-eopbgr1300131.outbound.protection.outlook.com ([40.107.130.131]:51441
+        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235868AbhIGH3w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Sep 2021 03:29:52 -0400
+        id S236858AbhIGHaC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 03:30:02 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U6hFf54rNwHU6/00rXSC/T36ilk4P8TyzPFx9ACUNUX48nekph81UGC6px+cGMnsPX4ZKnUs4QQvwGxDxkXGkHaXNbpKBphidAlto/piNgHf7LlbnN2HUYtcfG6P+y+UDi9fTSi6mZfnHtVvo9acYpip7OYbXvTzAYffWztLdiztcdI+mFLXo6fuXPy1ioxWcYk+1AOCg/ipYryLAbPiKPhghIDsOpadzEXeOXB/71JwKWjKe+flhUpWyKYPrCEhBURTueYYtWSyaAu5G6XQPLF5QM9coxWWkwQejRxnwZw+q6UUjD3TrjRfYeImSbbOrAK5pILTQ6IluvKikHNxeg==
+ b=Ed7Xev0Jizri5M5DUuKbPyNCFAiSOO+SOs3hZfPyd/rXUsHSkq0z8nvi32kR5e2gjzLpp6fNbMgQUIxXkYGvvqUt9z+YbZVJ2uQRPE/4kdEss3qoI0IjpplOt9Qs0r4uOIGKqbRJGzWN1xiecrsHmUlnmprPNDW4Jno6wCR0bPL3ltVaJ3ByaSJaR5ie4G6T1T9/ZkzWeZ9EhlS3FA1D0eL+UdrT19dJomoQxNLjhGa3BTl+FNP9QVwJSBYb40S/sNYnyNDzmgwGw6z1aVqXUCsxryZyaPrEpYw3AKiU2JKKtH/zpsSxl6ooBt3NBrYQVI9jSUQ/w6YAZqi/TUOinA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=EIYVJ0S0pPTtaeB0DoHPC1A2JEY/Gr6uAX2ZCWodqA0=;
- b=DGpq2q3W6O6M6HaE39sBNtBvizxfe97sqUntqrLn61OQMrCHhXGKURjUneK6v3rJNazNY0/eRi/gN9MZKlZFfQ886vjbFikGhhqvs1wtFq6/J3+6/QAy+2KDe11BliUXC5W+25enpu+eBvJUtr1pEYAL8wutjdg1mfZrJg0rnbhwajAuV5n+EIcengKeStNxGBzzx5AM+Owf6hZC/ob6NBPOcGWPRUXlasDgGCfp5Vyw8CvUZdpnsHR936jxFdgyqrrAhrJDfm2odarcMFQc6F7pMQIGtFL8tllw0Q3IxUuBwiB40mIpjf2Dikw49Jb8v2ohRNnI9ZeSLpRCFN4QZg==
+ bh=6+Cy2MB0039rXf3Q/K+tjH/P/o5Ht7H+bIoDd7azmQs=;
+ b=SOmFThBatbTeFW0scqan8CvCLWU8zWzW1lJfV0P6Tj6toXHeO+RnEtJmPnTWTP3MzsboWTIDbwvbwvcvVGJFSJcZq+Qc7O0u9W0Ec1MQho3SdAcOEGNkfRU435H432mLt9Ec6Juv0Kt0Ch+5ffFgxWqbpQuCzRAX36Ow1wC9df0Ra8A77WdionswI2lyavXLR8U3Ok5Hlzh35HyBMmTtH19SHWwJCEhJBdlH9LzPuOW55/cCIWXCn51leBh3Izzwe3gP00EUgqaCoI7ycDWwc5MpJVEPozEtuc4G5p6MlzIX9CmEHbnSXnzksGOhbm6C80TDL5v8O6dP2cfOeV3kwg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EIYVJ0S0pPTtaeB0DoHPC1A2JEY/Gr6uAX2ZCWodqA0=;
- b=gOEZLK8UJk9cqNqVGT57SF0MmkUY8Mu+lKB+fOcT8Lifu75Xb9tlQs0l8xqe5NktlgOG9bA1R1hEU+GrrjxOMdFscCSYNilSuoM95Jro+WzGdDyRfNcP10UCDnhH4sBzMn9JWNrkJ9P3VdmfIycCt+YJLaT76iSFRyJ5puij2A4=
-Authentication-Results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=kontron.de;
-Received: from AM6PR10MB2968.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:d6::31)
- by AS8PR10MB4646.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:337::7) with
+ bh=6+Cy2MB0039rXf3Q/K+tjH/P/o5Ht7H+bIoDd7azmQs=;
+ b=W+LaepwNBv1yAGuLe93AMwvRn+AKfWOcSO0ZQwad7+GGr3cnEPDxabajXYRGNd3+sPtvUrWJETr4ewDtauNiVO45Bp5kZajs4fVCkUxnUXanFeNF35NbhPWQbKJLrLsOw1fByXmiFGkDOSQn6PuNdO2cOpCYNpGInB0w7YzuBO4=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TY2PR01MB2572.jpnprd01.prod.outlook.com (2603:1096:404:7a::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19; Tue, 7 Sep
- 2021 07:28:43 +0000
-Received: from AM6PR10MB2968.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::d124:4253:83f9:d8e1]) by AM6PR10MB2968.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::d124:4253:83f9:d8e1%5]) with mapi id 15.20.4478.019; Tue, 7 Sep 2021
- 07:28:43 +0000
-Subject: Re: [PATCH v3 10/18] soc: imx: add i.MX8M blk-ctrl driver
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford <aford173@gmail.com>, Marek Vasut <marex@denx.de>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        patchwork-lst@pengutronix.de
-References: <20210906184333.1855426-1-l.stach@pengutronix.de>
- <20210906184333.1855426-11-l.stach@pengutronix.de>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-Message-ID: <49a42cba-cd61-0c4e-5e56-37fe6cced57a@kontron.de>
-Date:   Tue, 7 Sep 2021 09:28:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20210906184333.1855426-11-l.stach@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0PR02CA0121.eurprd02.prod.outlook.com
- (2603:10a6:20b:28c::18) To AM6PR10MB2968.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:d6::31)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.25; Tue, 7 Sep
+ 2021 07:28:52 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::b10a:f267:d52c:1e5b]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::b10a:f267:d52c:1e5b%3]) with mapi id 15.20.4478.026; Tue, 7 Sep 2021
+ 07:28:52 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for r8a779a0
+Thread-Topic: [PATCH 2/2] iommu/ipmmu-vmsa: Add support for r8a779a0
+Thread-Index: AQHXnxvyoah/Riy0106C9EDQXIK2f6uXKuaAgACM7RCAAG6YAIAADYEw
+Date:   Tue, 7 Sep 2021 07:28:51 +0000
+Message-ID: <TY2PR01MB36929B7C850349E2FA9E547BD8D39@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <20210901102705.556093-1-yoshihiro.shimoda.uh@renesas.com>
+ <20210901102705.556093-3-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdXwf0_+VKfuiFQf6roZErz-JAm06P5RBzD-Jwm1uk=p9A@mail.gmail.com>
+ <TY2PR01MB36928CB43B188D4082829A1FD8D39@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+ <CAMuHMdVmkJqiK3XB3s_ibnqy9SUSUFW6mny+kefOYaWi9Ce-4g@mail.gmail.com>
+In-Reply-To: <CAMuHMdVmkJqiK3XB3s_ibnqy9SUSUFW6mny+kefOYaWi9Ce-4g@mail.gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linux-m68k.org; dkim=none (message not signed)
+ header.d=none;linux-m68k.org; dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: aefbcf26-3ed1-47a7-9c62-08d971d1244f
+x-ms-traffictypediagnostic: TY2PR01MB2572:
+x-microsoft-antispam-prvs: <TY2PR01MB25726D32B2FBA45BD29AC945D8D39@TY2PR01MB2572.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 75ypaK8Bsv2j1YkEQozPLaY9dxGDpD30Wz93/08Ezs3OwZRxL8fSvd4P5kbFsrNFfOAoCiBfGpB6919tiupWxgdbXJVIzo2vpHixsyANaSqF/dSIaaPIhToVRzMYBMEE9j9CMNImvRja9zvfHpVI1GymR/u0NpYLhT6qgy8ML4jutk37azjlNINDp1QTy7c8g0Bd1sk2+L4TGIe4xBR48iWuQn4JGj8RXcldCvuldfpqY1FWUs094O/J3onX+3GOnileS420BRT2N/XInNh6G2EqzjC4Ge5kOFnJuodjCZ/0WFVVCYOoA80GniQHeeY1WWaCz8Q+XvVyeMUiBDlBsKEm212NjC7rY8DWW/jTFXzg1lS/aKFaW3GAJs5HvO3WUDaHBqibd6La5M32m3g4oXn4Xtf6T6B20trUCF0XfPpHJUZzjDae0UZk1v55vcTHtlYqVRaUdI+15C4jwtJiFr9QWVK+jgeuLKWVi6kBrwT+q7yVQSYm+QDCfaLWE5w8wRV5k2nPOFbHJl9cw7/64yLwXl4AyuLCOS1boetOOHt7w1+tvwHyMiluHsU/bzTRtuxqjjWEEeFqQFzqr0lwDSswAQP6oE7uN1cCu2dQMCVZ4oMtcI7QrEUrmCzLny+AxDstgzw/IVVSGLpOF8sy87isElfyEl0KUO6rhtrX1AgSXeKfhhDVng1dNjJ+LekD/J4P0ixfZUvzlJatktcWfoya8CTrZzjR3aNa7ez5bH8qcP3380KRjiueMf71T/msMxUXuBB1Dpq3rbki+2hqGw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(39860400002)(346002)(376002)(136003)(38100700002)(38070700005)(86362001)(53546011)(4326008)(55016002)(122000001)(6506007)(8936002)(478600001)(2906002)(66476007)(66446008)(26005)(5660300002)(52536014)(66556008)(64756008)(76116006)(71200400001)(54906003)(316002)(7696005)(186003)(9686003)(55236004)(33656002)(83380400001)(8676002)(66946007)(6916009)(138113003)(98903001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aFY2R1R6QkRWYVVjYUQ5TVd5WlM0SWFwajliZDlpR1U5MmJTNWFuMFZiRWt1?=
+ =?utf-8?B?VHJPQ2dvM0pIdGVyVXZSRUdkM3dCZnhqUnNyUkxBcU1zYXdJd0U4ZG1SQlhv?=
+ =?utf-8?B?cll1Ti9peHhtVThZL1BwZ2k3eHRQRkE2OGlUdStyd3p1VTBOWXcwUDFXaXFU?=
+ =?utf-8?B?L1p6dUJvQm5nSGp4WmRoMVpIdWVsLzk2djFoZ0xacjZ0V3RsSzU0bEZveXhl?=
+ =?utf-8?B?MnVoTHVnNnNpazZPOVNPV1VHRWc1czFLSnE3aHRMb1pjVER1N3VxQnM1SVNJ?=
+ =?utf-8?B?b0hEVWl0TC9xc0loUEZqQmlZVVY5Zis5aUducldqaWxySDBMazVPVzVqbHlh?=
+ =?utf-8?B?RzJTSWhyT1ZPdGt4aE5hNnVjQmFMQTBqU2xtWGJybTZxQjNJSUlCbG4wTjRI?=
+ =?utf-8?B?RnIvdzk5bHZabWJ5bnRLbExrQlBqYzkwMHNUcHNFSUFUcjZtdjVXd3VNOWxV?=
+ =?utf-8?B?Y1U4VXdpZGpuMFFDbUl6eXg1aDdRZ25aSEsvWFk5dW9oUmIvUjhTVmQyUUpF?=
+ =?utf-8?B?VWg2UTZjbjJWQkJxS2tLeUlZZHhqei9aaFo1TFZoRlEyL3l3M0oxMmlLbnZn?=
+ =?utf-8?B?aHN3eFZYL20rL1pmTG1QZ05tN09RcmEyMnViR1BaaWdIK3BtK3pFZGJpWnpa?=
+ =?utf-8?B?dEd2R0tHNlFtRGZuTGltdUFQR24wZXdRck1XUURneG1PUmxZUnFKQkRTRzFM?=
+ =?utf-8?B?a0Z6R3ljSmxmM0RSbVU1bDd3TmtsTDlidjJYQlhWQjVMTWQ3QzVhR2ptcnJY?=
+ =?utf-8?B?bDl1K1ZIK20vdE1naTFkbTZvVFhpODZTVFg1cW5PckN0TVhzdXloYmZ2Mlo0?=
+ =?utf-8?B?WVVScGlQMGFRQlZQcDZwbzFMdDlSTUtLSm9ITFFjMzIzdisyalpFVll6RnpG?=
+ =?utf-8?B?UGMvRHh4RExZa0JpUThldjRNMlRvTTh6ZTlaZFMxRFE2RVIxd0Y1aUQ3aklr?=
+ =?utf-8?B?cGpiZW1Scytzb2ZmM3RDdDJkMG5qTnVxR3BjMkpnRElpT0tISjNUR0VGNlh5?=
+ =?utf-8?B?SUJHTzVxSm1USWI4T01NcDFrdXozbGR5cHNYdTZIUDhnblM1Y3VWV2QvdXpL?=
+ =?utf-8?B?QURZZ0JETWFxVkdHVXFZT21qbHJUejd5QzdteHpDMUZ1emtiajJ5SW4vWVJ0?=
+ =?utf-8?B?WFBsRUh3YVRvdnFsNy9ZTHhFZVVYNjIyZFI0dVduTXQ1a05Ya2V4dU0zODAz?=
+ =?utf-8?B?Y2VrOGFjZHBRUVRNZmFZek5qazFjREQxRkU3YUJ1V1Q2L2pHMkpzK0FwSElV?=
+ =?utf-8?B?VTdhbWFDMEZCVmhSRnl5eEE3bWZLUUlmc0ZWOG80aXR6MlgvdkRmNy9Ld1g1?=
+ =?utf-8?B?bldzUmJ1d0FoY0lleHBuK3dNYzkvaWlOazYybUtia0E2alNPSWpTVldlTGFL?=
+ =?utf-8?B?MVhUSXRnZndaUE16MVBZeHdKOUtjOUdaK2FYdlN2TkdoS2p3ZVcremk2ZGFT?=
+ =?utf-8?B?Q25FZStkbzlaYmVLSmtqWCt4SnpPVEJTY09KNW8rT1QyT0hReXluMm1Uc1Fo?=
+ =?utf-8?B?Vmx1cVhEVXd1R2FNYm1xeTBBdFJxNkVUZk9JSkxwaGpUaEdYK09xcFNLU2d2?=
+ =?utf-8?B?cjRQKzZac0FRZHdDMWw5QldLSXBDdk8xTC90Q0h4QWRRQ1JORlJJeHNpZDhH?=
+ =?utf-8?B?Y3c5NEFrc3dubHBiemdHdDJITzU1QjlwaGlaL01Nc2FjWGJjN0tlblNUMzRy?=
+ =?utf-8?B?b2dPNTNTYWF1UlZqdTFaVG9tWVVzTlFvNEd2bk9QV01adTNmQnc1dmxmTjI4?=
+ =?utf-8?Q?JMcwtYxaslfHc6LYAMuE8DElE8RCK0beBZH3zCA?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.10.40] (88.130.75.72) by AM0PR02CA0121.eurprd02.prod.outlook.com (2603:10a6:20b:28c::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend Transport; Tue, 7 Sep 2021 07:28:42 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 45e3e93e-c0c8-48cb-da1b-08d971d11ef3
-X-MS-TrafficTypeDiagnostic: AS8PR10MB4646:
-X-Microsoft-Antispam-PRVS: <AS8PR10MB464611CF28F26F16DC73F8D2E9D39@AS8PR10MB4646.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z6gWvlZZefzhhi5HGDzrQQMNahJ/n4k4prC5FgmSSZGEzEPlVL47OZK/bV9+QWdzDBUhtbBsjZJ+r5UigLHXo6DeghsZ7WNlUJoyy7flqfH+DAREvn0sjfCtrpo49/KxdTaaAQ17//FMuN+IAYHbcvYJ8Op8D6rW5ZplxjPDr3Md4bd28jX78TaBD6Qhp1bgSz6X4+D8D8Sd0SSK1/svZLRv4qsCDT3cN5SdPFHElb5IdKmc82WG9ZS57Icp9RTS1Jiw933fGuAJwovhlSToLk9P9bPwayHtphpiOQm9HoaNCDInkeWieeRFTnEVX7N5j0JFi8KHtKjj2x31gDSwhHH2KFOLgzmIT8wUoY/QNPeEBCGhRwyT077dAPzK9BSir1aPfaV/GEiHNMmPszDB8OnOTxMn2mhuCgJ3CmCn3ae4S1EGKlVgV6Z/18v4qNIpohcTMP0Dif4YC+zmLV/mEt706N/7p/K6go4bsHf7KJK3Hhgsp5TZpX4E531G5FcnSg718BVqFqtIP0hFJyk7lmfRhXLNj8z+ykdALPpVIRfP1xMy/gXw32X4gXlCnps3HEJUXShZR6/3HVEh+tgfzZa6a4oa43XQxeLnTnIk1x8CnK+req/kKCnv71wbeguSg4oB+5YFwKnq8Okk2tPoQi4uMcXVsjCSP/OH7fz7Toum76uqNAbfpadxoZd91RD1TbfwpWy6VNapmfT6JACsaOHQKyCmpa8MnRAzb1xcIdI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR10MB2968.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(396003)(366004)(376002)(316002)(16576012)(2616005)(36756003)(44832011)(31686004)(54906003)(110136005)(7416002)(4326008)(30864003)(53546011)(31696002)(8936002)(26005)(2906002)(6486002)(186003)(8676002)(38100700002)(83380400001)(86362001)(478600001)(66556008)(956004)(66946007)(5660300002)(66476007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1JEUVR5WlltajNEYmdWVkJZQVBOakNBL2F5alE2K0dUN3RCNFRXMTFNY3J6?=
- =?utf-8?B?bDNHVEpWZWlvUm10blZ0eXhJQmR5ekdjMkFkd0ROakRWbThybS80NnBBVzdP?=
- =?utf-8?B?RDcyS3hpL1pkWUlVTnlrUXdmMlVEdThVZ2RUOVVjYVlvVlVFdXRqcHlKVTgy?=
- =?utf-8?B?UDlCQ21VOVhicU0wU3ZENk0vaS9WSmFBYXVuMSt1RWNjR2toaENOcVdONDJW?=
- =?utf-8?B?ODN4eW04TWx4bjBsY3hENlVna0NQQzZhT3N1eXZDdmpsM2tZZEpheE9iNnpN?=
- =?utf-8?B?UWErVVJXZDZMY1RFYVRSazJWRUpYMkIvZHhMSld3MU9zdkJ3UTV5ZGhwc3Mr?=
- =?utf-8?B?SlVhUjB1bEZHMFNZZThiWkN3S2NyVTQzakdYZXhnRW9yK25PNllqN0FKSElG?=
- =?utf-8?B?Ti9aRkxVQlV2QXMxS0FQSWhUK2xXaGx4eGZJeWhCT0VaZ2pvKzY4aExJc3dH?=
- =?utf-8?B?alhqRkRYREZzQ0JZN2tqMmgrWjl6TmVaSEJOTFE1SndFUkpuajVDWEtwb29L?=
- =?utf-8?B?SHF3eWhRckxwbk1iS2hza0h4QUROWXd1c2JKVmNROTgwUmJOQkFYSHJwTWVt?=
- =?utf-8?B?Y2E0WURVUElkVWpDcFA4TlF5S01HOUM1Z002SlIyemNTNy90NmVsSXUycWZD?=
- =?utf-8?B?V1Q5MTFkeFI3VS9UM25JbHNLd1Bibm9kM0R4NW11K0RoclBIRFJKZzlzaUps?=
- =?utf-8?B?bHNscTl4eUZZdXBnMGdWYTM1RHprTHJjcWR4bDVuZVNIVTBQbXZuQWE3ZVFt?=
- =?utf-8?B?bHhneHZIdU5DTjh1VW1iSzYxd1FBVGN4aDJOS2FLOTZHT1ZlN0ZuelFzNW1S?=
- =?utf-8?B?RXNrL09RR3R3eFJxUVlsUkd4WW1qWWFabjhKZjFlbk5VQnZFdzVBYU1sUmNH?=
- =?utf-8?B?MGRtbFRtSlBYeitxRlFFSUhNZ2tXUCtwMnIxNEZnenNBbUlMVTNzdFgvOStv?=
- =?utf-8?B?bTh1Z3QzcWhSN290elVCQTVxKzJUVmVSVGxSWFRvNEdmc1FGdE9FWElYTCs4?=
- =?utf-8?B?OGhaTFhOZ3JhUjBiV3ZTVXdzdDloT0pmTnBQcytDNXpwd0VSZERkUmNYdUp3?=
- =?utf-8?B?ZzJCTWFReVl4WEl3ZWc1alVteG8vYi9IcnhXaGRoTU1Ibk13cDJLWlFjdkFx?=
- =?utf-8?B?UzV6MkU3UVVJbkRzbjhjSk1jSi9zbFNnS2hETWhHLy9uUEtJNGt2aWNwNmVT?=
- =?utf-8?B?RHdmNlNzR0d6OGFoV3RMOGhaWGZJRFRna3BYaTZJT1VYTE1lRDEzRFZ6Yktx?=
- =?utf-8?B?L3dDQWlBWFpoV2lPeVBmSGpGcE1LR2xINWJKa25KajJwMTliQWoydnpuS0RZ?=
- =?utf-8?B?SitLLzcvZ3FCNFl4NUc2RlY5eHpTYVorSmZmWGR0TVpOZGJHNkt6eSs0SXk4?=
- =?utf-8?B?OC9VZlMralRrZ1lVenhNWTJlREQxeGJEYWNXNDB0TGRsYWx2YWJZeW1wb3c4?=
- =?utf-8?B?WWJUell5MS9lSFdHRnk4U2d0SDJLaHRkdk0xYWhVeTlkejBOMGdVcXI2MFh5?=
- =?utf-8?B?eCs5T3ZUa01kclE1VnNiOEoxVXNyMGROSzYvbGc5cXpVenpuRHpsai84TTI4?=
- =?utf-8?B?Z0hYbjhUWkVQbmprZ00wbGx3aVQ0RHozYXh5RGZCeEF6TVZSUG15RkJyV1ZV?=
- =?utf-8?B?NnFvZDkwdnJ1SGxWbHlRRWVSbEpjbUFWdWJoZHVBQ0k3TkI1QUErZko1byts?=
- =?utf-8?B?d3l0SGRCTlE2M0l6N3BoMnJHcWJobEdkaXNRRE1EL09FZEkwbkMxTEY2L3hB?=
- =?utf-8?Q?Cq49LeFs05MU4dm3ug5uApHpzaK4jUeKiYjBRBY?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45e3e93e-c0c8-48cb-da1b-08d971d11ef3
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR10MB2968.EURPRD10.PROD.OUTLOOK.COM
+X-OriginatorOrg: renesas.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2021 07:28:43.8932
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aefbcf26-3ed1-47a7-9c62-08d971d1244f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2021 07:28:51.9677
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AImE3RwJGDko2DwF+sA42/dd7XQe0SJl/YMYBahTcDN63pbKxTcoohbHAYKmQO/k2TQqKL+iM8VA1SPK9F1KPH0rW+SuL5SPv4tlxzr1zZ8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB4646
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FzVnB3Zr39STKVdwei+czx7w7vn35Ir8MIUSRCmn3XBtOASCUzJNVzwAEfmwKUm4vZxSjbQC90JrF9LFhSuNrLDDqkUd6uBbETpPnHFxXbC8TAUWFdl6AfrDCH0Eoh5b
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB2572
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06.09.21 20:43, Lucas Stach wrote:
-> This adds a driver for the blk-ctrl blocks found in the i.MX8M* line of
-> SoCs. The blk-ctrl is a top-level peripheral located in the various *MIX
-> power domains and interacts with the GPC power controller to provide the
-> peripherals in the power domain access to the NoC and ensures that those
-> peripherals are properly reset when their respective power domain is
-> brought back to life.
-> 
-> Software needs to do different things to make the bus handshake happen
-> after the the GPC *MIX domain is power up and before it is powered down.
-
-        ^ double "the"             ^ powered
-
-> As the requirements are quite different between the various blk-ctrls
-> there is a callback function provided to hook in the proper sequence.
-> 
-> The peripheral domains are quite uniform, they handle the soft clock
-> enables and resets in the blk-ctrl address space and sequencing with the
-> upstream GPC power domains.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-
-I don't understand all of the logic behind this implementation, but
-looking at the code I don't see any obvious problems. So FWIW:
-
-Acked-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-
-> ---
-> This commit includes the full code to drive the VPUMIX domain on the
-> i.MX8MM, as the skeleton driver would probably be harder to review
-> without the context provided by one blk-ctrl implementation. Other
-> blk-ctrl implementations will follow, based on this overall structure.
-> ---
->  drivers/soc/imx/Makefile         |   1 +
->  drivers/soc/imx/imx8m-blk-ctrl.c | 455 +++++++++++++++++++++++++++++++
->  2 files changed, 456 insertions(+)
->  create mode 100644 drivers/soc/imx/imx8m-blk-ctrl.c
-> 
-> diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-> index 078dc918f4f3..8a707077914c 100644
-> --- a/drivers/soc/imx/Makefile
-> +++ b/drivers/soc/imx/Makefile
-> @@ -5,3 +5,4 @@ endif
->  obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
->  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
->  obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
-> +obj-$(CONFIG_SOC_IMX8M) += imx8m-blk-ctrl.o
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> new file mode 100644
-> index 000000000000..3dd17b903636
-> --- /dev/null
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -0,0 +1,455 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +/*
-> + * Copyright 2021 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/clk.h>
-> +
-> +#include <dt-bindings/power/imx8mm-power.h>
-> +
-> +#define BLK_SFT_RSTN	0x0
-> +#define BLK_CLK_EN	0x4
-> +
-> +struct imx8m_blk_ctrl_domain;
-> +
-> +struct imx8m_blk_ctrl {
-> +	struct device *dev;
-> +	struct notifier_block power_nb;
-> +	struct device *bus_power_dev;
-> +	struct regmap *regmap;
-> +	struct imx8m_blk_ctrl_domain *domains;
-> +	struct genpd_onecell_data onecell_data;
-> +};
-> +
-> +struct imx8m_blk_ctrl_domain_data {
-> +	const char *name;
-> +	const char **clk_names;
-> +	int num_clks;
-> +	const char *gpc_name;
-> +	u32 rst_mask;
-> +	u32 clk_mask;
-> +};
-> +
-> +#define DOMAIN_MAX_CLKS 3
-> +
-> +struct imx8m_blk_ctrl_domain {
-> +	struct generic_pm_domain genpd;
-> +	const struct imx8m_blk_ctrl_domain_data *data;
-> +	struct clk_bulk_data clks[DOMAIN_MAX_CLKS];
-> +	struct device *power_dev;
-> +	struct imx8m_blk_ctrl *bc;
-> +};
-> +
-> +struct imx8m_blk_ctrl_data {
-> +	int max_reg;
-> +	notifier_fn_t power_notifier_fn;
-> +	const struct imx8m_blk_ctrl_domain_data *domains;
-> +	int num_domains;
-> +};
-> +
-> +static inline struct imx8m_blk_ctrl_domain *
-> +to_imx8m_blk_ctrl_domain(struct generic_pm_domain *genpd)
-> +{
-> +	return container_of(genpd, struct imx8m_blk_ctrl_domain, genpd);
-> +}
-> +
-> +static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
-> +{
-> +	struct imx8m_blk_ctrl_domain *domain = to_imx8m_blk_ctrl_domain(genpd);
-> +	const struct imx8m_blk_ctrl_domain_data *data = domain->data;
-> +	struct imx8m_blk_ctrl *bc = domain->bc;
-> +	int ret;
-> +
-> +	/* make sure bus domain is awake */
-> +	ret = pm_runtime_get_sync(bc->bus_power_dev);
-> +	if (ret < 0) {
-> +		pm_runtime_put_noidle(bc->bus_power_dev);
-> +		dev_err(bc->dev, "failed to power up bus domain\n");
-> +		return ret;
-> +	}
-> +
-> +	/* put devices into reset */
-> +	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> +
-> +	/* enable upstream and blk-ctrl clocks to allow reset to propagate */
-> +	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
-> +	if (ret) {
-> +		dev_err(bc->dev, "failed to enable clocks\n");
-> +		goto bus_put;
-> +	}
-> +	regmap_set_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
-> +
-> +	/* power up upstream GPC domain */
-> +	ret = pm_runtime_get_sync(domain->power_dev);
-> +	if (ret < 0) {
-> +		dev_err(bc->dev, "failed to power up peripheral domain\n");
-> +		goto clk_disable;
-> +	}
-> +
-> +	/* wait for reset to propagate */
-> +	udelay(5);
-> +
-> +	/* release reset */
-> +	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> +
-> +	/* disable upstream clocks */
-> +	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
-> +
-> +	return 0;
-> +
-> +clk_disable:
-> +	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
-> +bus_put:
-> +	pm_runtime_put(bc->bus_power_dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
-> +{
-> +	struct imx8m_blk_ctrl_domain *domain = to_imx8m_blk_ctrl_domain(genpd);
-> +	const struct imx8m_blk_ctrl_domain_data *data = domain->data;
-> +	struct imx8m_blk_ctrl *bc = domain->bc;
-> +
-> +	/* put devices into reset and disable clocks */
-> +	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> +	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
-> +
-> +	/* power down upstream GPC domain */
-> +	pm_runtime_put(domain->power_dev);
-> +
-> +	/* allow bus domain to suspend */
-> +	pm_runtime_put(bc->bus_power_dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct generic_pm_domain *
-> +imx8m_blk_ctrl_xlate(struct of_phandle_args *args, void *data)
-> +{
-> +	struct genpd_onecell_data *onecell_data = data;
-> +	unsigned int index = args->args[0];
-> +
-> +	if (args->args_count != 1 ||
-> +	    index > onecell_data->num_domains)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	return onecell_data->domains[index];
-> +}
-> +
-> +static struct lock_class_key blk_ctrl_genpd_lock_class;
-> +
-> +static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
-> +{
-> +	const struct imx8m_blk_ctrl_data *bc_data;
-> +	struct device *dev = &pdev->dev;
-> +	struct imx8m_blk_ctrl *bc;
-> +	void __iomem *base;
-> +	int i, ret;
-> +
-> +	struct regmap_config regmap_config = {
-> +		.reg_bits	= 32,
-> +		.val_bits	= 32,
-> +		.reg_stride	= 4,
-> +	};
-> +
-> +	bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
-> +	if (!bc)
-> +		return -ENOMEM;
-> +
-> +	bc->dev = dev;
-> +
-> +	bc_data = of_device_get_match_data(dev);
-> +
-> +	base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	regmap_config.max_register = bc_data->max_reg;
-> +	bc->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
-> +	if (IS_ERR(bc->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(bc->regmap),
-> +				     "failed to init regmap \n");
-> +
-> +	bc->domains = devm_kcalloc(dev, bc_data->num_domains,
-> +				    sizeof(struct imx8m_blk_ctrl_domain),
-> +				    GFP_KERNEL);
-> +	if (!bc->domains)
-> +		return -ENOMEM;
-> +
-> +	bc->onecell_data.num_domains = bc_data->num_domains;
-> +	bc->onecell_data.xlate = imx8m_blk_ctrl_xlate;
-> +	bc->onecell_data.domains =
-> +		devm_kcalloc(dev, bc_data->num_domains,
-> +			     sizeof(struct generic_pm_domain *), GFP_KERNEL);
-> +	if (!bc->onecell_data.domains)
-> +		return -ENOMEM;
-> +
-> +	bc->bus_power_dev = genpd_dev_pm_attach_by_name(dev, "bus");
-> +	if (IS_ERR(bc->bus_power_dev))
-> +		return dev_err_probe(dev, PTR_ERR(bc->bus_power_dev),
-> +				     "failed to attach power domain\n");
-> +
-> +	for (i = 0; i < bc_data->num_domains; i++) {
-> +		const struct imx8m_blk_ctrl_domain_data *data = &bc_data->domains[i];
-> +		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
-> +		int j;
-> +
-> +		domain->data = data;
-> +
-> +		for (j = 0; j < data->num_clks; j++)
-> +			domain->clks[j].id = data->clk_names[j];
-> +
-> +		ret = devm_clk_bulk_get(dev, data->num_clks, domain->clks);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "failed to get clock\n");
-> +			goto cleanup_pds;
-> +		}
-> +
-> +		domain->power_dev =
-> +			dev_pm_domain_attach_by_name(dev, data->gpc_name);
-> +		if (IS_ERR(domain->power_dev)) {
-> +			dev_err_probe(dev, PTR_ERR(domain->power_dev),
-> +				      "failed to attach power domain\n");
-> +			ret = PTR_ERR(domain->power_dev);
-> +			goto cleanup_pds;
-> +		}
-> +
-> +		domain->genpd.name = data->name;
-> +		domain->genpd.power_on = imx8m_blk_ctrl_power_on;
-> +		domain->genpd.power_off = imx8m_blk_ctrl_power_off;
-> +		domain->bc = bc;
-> +
-> +		ret = pm_genpd_init(&domain->genpd, NULL, true);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "failed to init power domain\n");
-> +			dev_pm_domain_detach(domain->power_dev, true);
-> +			goto cleanup_pds;
-> +		}
-> +
-> +		/*
-> +		 * We use runtime PM to trigger power on/off of the upstream GPC
-> +		 * domain, as a strict hierarchical parent/child power domain
-> +		 * setup doesn't allow us to meet the sequencing requirements.
-> +		 * This means we have nested locking of genpd locks, without the
-> +		 * nesting being visible at the genpd level, so we need a
-> +		 * separate lock class to make lockdep aware of the fact that
-> +		 * this are separate domain locks that can be nested without a
-> +		 * self-deadlock.
-> +		 */
-> +		lockdep_set_class(&domain->genpd.mlock,
-> +				  &blk_ctrl_genpd_lock_class);
-> +
-> +		bc->onecell_data.domains[i] = &domain->genpd;
-> +	}
-> +
-> +	ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "failed to add power domain provider\n");
-> +		goto cleanup_pds;
-> +	}
-> +
-> +	bc->power_nb.notifier_call = bc_data->power_notifier_fn;
-> +	ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret, "failed to add power notifier\n");
-> +		goto cleanup_provider;
-> +	}
-> +
-> +	dev_set_drvdata(dev, bc);
-> +
-> +	return 0;
-> +
-> +cleanup_provider:
-> +	of_genpd_del_provider(dev->of_node);
-> +cleanup_pds:
-> +	for (i--; i >= 0; i--) {
-> +		pm_genpd_remove(&bc->domains[i].genpd);
-> +		dev_pm_domain_detach(bc->domains[i].power_dev, true);
-> +	}
-> +
-> +	dev_pm_domain_detach(bc->bus_power_dev, true);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx8m_blk_ctrl_remove(struct platform_device *pdev)
-> +{
-> +	struct imx8m_blk_ctrl *bc = dev_get_drvdata(&pdev->dev);
-> +	int i;
-> +
-> +	of_genpd_del_provider(pdev->dev.of_node);
-> +
-> +	for (i = 0; bc->onecell_data.num_domains; i++) {
-> +		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
-> +
-> +		pm_genpd_remove(&domain->genpd);
-> +		dev_pm_domain_detach(domain->power_dev, true);
-> +	}
-> +
-> +	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
-> +
-> +	dev_pm_domain_detach(bc->bus_power_dev, true);
-> +
-> +	return 0;
-> +}
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int imx8m_blk_ctrl_suspend(struct device *dev)
-> +{
-> +	struct imx8m_blk_ctrl *bc = dev_get_drvdata(dev);
-> +	int ret, i;
-> +
-> +	/*
-> +	 * This may look strange, but is done so the generic PM_SLEEP code
-> +	 * can power down our domains and more importantly power them up again
-> +	 * after resume, without tripping over our usage of runtime PM to
-> +	 * control the upstream GPC domains. Things happen in the right order
-> +	 * in the system suspend/resume paths due to the device parent/child
-> +	 * hierarchy.
-> +	 */
-> +	ret = pm_runtime_get_sync(bc->bus_power_dev);
-> +	if (ret < 0) {
-> +		pm_runtime_put_noidle(bc->bus_power_dev);
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < bc->onecell_data.num_domains; i++) {
-> +		struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
-> +
-> +		ret = pm_runtime_get_sync(domain->power_dev);
-> +		if (ret < 0) {
-> +			pm_runtime_put_noidle(domain->power_dev);
-> +			goto out_fail;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +out_fail:
-> +	for (i--; i >= 0; i--)
-> +		pm_runtime_put(bc->domains[i].power_dev);
-> +
-> +	pm_runtime_put(bc->bus_power_dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int imx8m_blk_ctrl_resume(struct device *dev)
-> +{
-> +	struct imx8m_blk_ctrl *bc = dev_get_drvdata(dev);
-> +	int i;
-> +
-> +	for (i = 0; i < bc->onecell_data.num_domains; i++)
-> +		pm_runtime_put(bc->domains[i].power_dev);
-> +
-> +	pm_runtime_put(bc->bus_power_dev);
-> +
-> +	return 0;
-> +}
-> +#endif
-> +
-> +static const struct dev_pm_ops imx8m_blk_ctrl_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(imx8m_blk_ctrl_suspend, imx8m_blk_ctrl_resume)
-> +};
-> +
-> +static int imx8mm_vpu_power_notifier(struct notifier_block *nb,
-> +				     unsigned long action, void *data)
-> +{
-> +	struct imx8m_blk_ctrl *bc = container_of(nb, struct imx8m_blk_ctrl,
-> +						 power_nb);
-> +
-> +	if (action != GENPD_NOTIFY_ON && action != GENPD_NOTIFY_PRE_OFF)
-> +		return NOTIFY_OK;
-> +
-> +	/*
-> +	 * The ADB in the VPUMIX domain has no separate reset and clock
-> +	 * enable bits, but is ungated together with the VPU clocks. To
-> +	 * allow the handshake with the GPC to progress we put the VPUs
-> +	 * in reset and ungate the clocks.
-> +	 */
-> +	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN,
-> +			  BIT(0) | BIT(1) | BIT(2));
-> +	regmap_set_bits(bc->regmap, BLK_CLK_EN,
-> +			BIT(0) | BIT(1) | BIT(2));
-> +
-> +	if (action == GENPD_NOTIFY_ON) {
-> +		/*
-> +		 * On power up we have no software backchannel to the GPC to
-> +		 * wait for the ADB handshake to happen, so we just delay for a
-> +		 * bit. On power down the GPC driver waits for the handshake.
-> +		 */
-> +		udelay(5);
-> +
-> +		/* set "fuse" bits to enable the VPUs */
-> +		regmap_set_bits(bc->regmap, 0x8, 0xffffffff);
-> +		regmap_set_bits(bc->regmap, 0xc, 0xffffffff);
-> +		regmap_set_bits(bc->regmap, 0x10, 0xffffffff);
-> +		regmap_set_bits(bc->regmap, 0x14, 0xffffffff);
-> +	}
-> +
-> +	return NOTIFY_OK;
-> +}
-> +
-> +static const struct imx8m_blk_ctrl_domain_data imx8m_vpu_blk_ctl_domain_data[] = {
-> +	[IMX8MM_VPUBLK_PD_G1] = {
-> +		.name = "vpublk-g1",
-> +		.clk_names = (const char *[]){ "g1", },
-> +		.num_clks = 1,
-> +		.gpc_name = "g1",
-> +		.rst_mask = BIT(1),
-> +		.clk_mask = BIT(1),
-> +	},
-> +	[IMX8MM_VPUBLK_PD_G2] = {
-> +		.name = "vpublk-g2",
-> +		.clk_names = (const char *[]){ "g2", },
-> +		.num_clks = 1,
-> +		.gpc_name = "g2",
-> +		.rst_mask = BIT(0),
-> +		.clk_mask = BIT(0),
-> +	},
-> +	[IMX8MM_VPUBLK_PD_H1] = {
-> +		.name = "vpublk-h1",
-> +		.clk_names = (const char *[]){ "h1", },
-> +		.num_clks = 1,
-> +		.gpc_name = "h1",
-> +		.rst_mask = BIT(2),
-> +		.clk_mask = BIT(2),
-> +	},
-> +};
-> +
-> +static const struct imx8m_blk_ctrl_data imx8m_vpu_blk_ctl_dev_data = {
-> +	.max_reg = 0x18,
-> +	.power_notifier_fn = imx8mm_vpu_power_notifier,
-> +	.domains = imx8m_vpu_blk_ctl_domain_data,
-> +	.num_domains = ARRAY_SIZE(imx8m_vpu_blk_ctl_domain_data),
-> +};
-> +
-> +static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
-> +	{
-> +		.compatible = "fsl,imx8mm-vpu-blk-ctrl",
-> +		.data = &imx8m_vpu_blk_ctl_dev_data
-> +	}, {
-> +		/* Sentinel */
-> +	}
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8m_blk_ctrl_of_match);
-> +
-> +static struct platform_driver imx8m_blk_ctrl_driver = {
-> +	.probe = imx8m_blk_ctrl_probe,
-> +	.remove = imx8m_blk_ctrl_remove,
-> +	.driver = {
-> +		.name = "imx8m-blk-ctrl",
-> +		.pm = &imx8m_blk_ctrl_pm_ops,
-> +		.of_match_table = imx8m_blk_ctrl_of_match,
-> +	},
-> +};
-> +module_platform_driver(imx8m_blk_ctrl_driver);
-> 
+SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogVHVlc2Rh
+eSwgU2VwdGVtYmVyIDcsIDIwMjEgMzozNCBQTQ0KPiANCj4gSGkgU2hpbW9kYS1zYW4sDQo+IA0K
+PiBPbiBUdWUsIFNlcCA3LCAyMDIxIGF0IDI6MDIgQU0gWW9zaGloaXJvIFNoaW1vZGENCj4gPHlv
+c2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPiB3cm90ZToNCj4gPiA+IEZyb206IEdlZXJ0
+IFV5dHRlcmhvZXZlbiwgU2VudDogVHVlc2RheSwgU2VwdGVtYmVyIDcsIDIwMjEgMTI6MzQgQU0N
+Cj4gPiA+IE9uIFdlZCwgU2VwIDEsIDIwMjEgYXQgMTI6MjcgUE0gWW9zaGloaXJvIFNoaW1vZGEN
+Cj4gPiA+IDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2FzLmNvbT4gd3JvdGU6DQo+ID4gPiA+
+IEFkZCBzdXBwb3J0IGZvciByOGE3NzlhMCAoUi1DYXIgVjNVKS4gVGhlIElQTU1VIGhhcmR3YXJl
+IGRlc2lnbg0KPiA+ID4gPiBvZiB0aGlzIFNvQyBkaWZmZXJzIHRoYW4gb3RoZXJzLiBTbywgYWRk
+IGEgbmV3IGlwbW11X2ZlYXR1cmVzIGZvciBpdC4NCj4gPiA+ID4NCj4gPiA+ID4gU2lnbmVkLW9m
+Zi1ieTogWW9zaGloaXJvIFNoaW1vZGEgPHlvc2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29t
+Pg0KPiA+ID4NCj4gPiA+ID4gLS0tIGEvZHJpdmVycy9pb21tdS9pcG1tdS12bXNhLmMNCj4gPiA+
+ID4gKysrIGIvZHJpdmVycy9pb21tdS9pcG1tdS12bXNhLmMNCj4gPiA+DQo+ID4gPiA+IEBAIC05
+MjIsNiArOTIyLDIwIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaXBtbXVfZmVhdHVyZXMgaXBtbXVf
+ZmVhdHVyZXNfcmNhcl9nZW4zID0gew0KPiA+ID4gPiAgICAgICAgIC51dGxiX29mZnNldF9iYXNl
+ID0gMCwNCj4gPiA+ID4gIH07DQo+ID4gPiA+DQo+ID4gPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0
+IGlwbW11X2ZlYXR1cmVzIGlwbW11X2ZlYXR1cmVzX3I4YTc3OWEwID0gew0KPiA+ID4gPiArICAg
+ICAgIC51c2VfbnNfYWxpYXNfb2Zmc2V0ID0gZmFsc2UsDQo+ID4gPiA+ICsgICAgICAgLmhhc19j
+YWNoZV9sZWFmX25vZGVzID0gdHJ1ZSwNCj4gPiA+ID4gKyAgICAgICAubnVtYmVyX29mX2NvbnRl
+eHRzID0gOCwNCj4gPiA+DQo+ID4gPiBTaG91bGRuJ3QgdGhpcyBiZSAxNj8NCj4gPiA+IE9yIGRv
+IHlvdSBwbGFuIHRvIGFkZCBzdXBwb3J0IGZvciBtb3JlIHRoYW4gOCBjb250ZXh0cyBsYXRlciwg
+YXMgdGhhdA0KPiA+ID4gd291bGQgcmVxdWlyZSBpbmNyZWFzaW5nIElQTU1VX0NUWF9NQVgsIGFu
+ZCB1cGRhdGluZyBpcG1tdV9jdHhfcmVnKCkNCj4gPiA+IHRvIGhhbmRsZSB0aGUgc2Vjb25kIGJh
+bmsgb2YgOCBjb250ZXh0cz8NCj4gPg0KPiA+IEkgd291bGQgbGlrZSB0byBhZGQgc3VwcG9ydCBm
+b3IgbW9yZSB0aGFuIDggY29udGV4dHMgbGF0ZXIgYmVjYXVzZQ0KPiA+IEkgcmVhbGl6ZWQgdGhh
+dCBjdHhfb2Zmc2V0X3tiYXNlLHN0cmlkZX0gYXJlIG5vdCBzdWl0YWJsZSBmb3IgdGhlIHNlY29u
+ZCBiYW5rDQo+ID4gb2YgOCBjb250ZXh0cy4uLg0KPiANCj4gV291bGRuJ3Qgc29tZXRoaW5nIGxp
+a2UgYmVsb3cgYmUgc3VmZmljaWVudD8NCg0KVGhhbmsgeW91IGZvciB5b3VyIHN1Z2dlc3Rpb24h
+DQoNCj4gIHN0YXRpYyB1bnNpZ25lZCBpbnQgaXBtbXVfY3R4X3JlZyhzdHJ1Y3QgaXBtbXVfdm1z
+YV9kZXZpY2UgKm1tdSwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2ln
+bmVkIGludCBjb250ZXh0X2lkLCB1bnNpZ25lZCBpbnQgcmVnKQ0KPiAgew0KPiAtICAgICAgIHJl
+dHVybiBtbXUtPmZlYXR1cmVzLT5jdHhfb2Zmc2V0X2Jhc2UgKw0KPiAtICAgICAgICAgICAgICBj
+b250ZXh0X2lkICogbW11LT5mZWF0dXJlcy0+Y3R4X29mZnNldF9zdHJpZGUgKyByZWc7DQo+ICsg
+ICAgICAgdW5zaWduZWQgaW50IGJhc2UgPSBtbXUtPmZlYXR1cmVzLT5jdHhfb2Zmc2V0X2Jhc2U7
+DQo+ICsNCj4gKyAgICAgICBpZiAoY29udGV4dF9pZCA+IDcpDQo+ICsgICAgICAgICAgICAgICBi
+YXNlICs9IDB4ODAwIC0gOCAqIDB4MTA0MDsNCg0KVGhpcyBzaG91bGQgYmUgImJhc2UgKz0gMHg4
+MDAgLSA4ICogMHg0MDsiIGJlY2F1c2UgdGhlIDh0aCBjb250ZXh0IGFkZHJlc3MgaXMNCjB4MTg4
+MDAsIG5vdCAweDEwODAwLg0KDQpJJ2xsIHNlbmQgdjIgcGF0Y2ggdG8gc3VwcG9ydCAxNiBjb250
+ZXh0cy4NCihJJ2xsIGNoYW5nZSBJUE1NVV9DVFhfTUFYIHRvIDE2IHRvby4pDQoNCkJlc3QgcmVn
+YXJkcywNCllvc2hpaGlybyBTaGltb2RhDQoNCj4gKw0KPiArICAgICAgIHJldHVybiBiYXNlICsg
+Y29udGV4dF9pZCAqIG1tdS0+ZmVhdHVyZXMtPmN0eF9vZmZzZXRfc3RyaWRlICsgcmVnOw0KPiAg
+fQ0KPiANCj4gR3J7b2V0amUsZWV0aW5nfXMsDQo+IA0KPiAgICAgICAgICAgICAgICAgICAgICAg
+ICBHZWVydA0KPiANCj4gLS0NCj4gR2VlcnQgVXl0dGVyaG9ldmVuIC0tIFRoZXJlJ3MgbG90cyBv
+ZiBMaW51eCBiZXlvbmQgaWEzMiAtLSBnZWVydEBsaW51eC1tNjhrLm9yZw0KPiANCj4gSW4gcGVy
+c29uYWwgY29udmVyc2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9wbGUsIEkgY2FsbCBteXNlbGYg
+YSBoYWNrZXIuIEJ1dA0KPiB3aGVuIEknbSB0YWxraW5nIHRvIGpvdXJuYWxpc3RzIEkganVzdCBz
+YXkgInByb2dyYW1tZXIiIG9yIHNvbWV0aGluZyBsaWtlIHRoYXQuDQo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFsZHMNCg==
