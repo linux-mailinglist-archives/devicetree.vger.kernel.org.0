@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C69340273C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 12:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2DF402734
+	for <lists+devicetree@lfdr.de>; Tue,  7 Sep 2021 12:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233477AbhIGKba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 06:31:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44618 "EHLO
+        id S1343526AbhIGK3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 06:29:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245730AbhIGKba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 06:31:30 -0400
+        with ESMTP id S245751AbhIGK3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 06:29:35 -0400
 Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0120AC061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 03:30:23 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C72C061575
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 03:28:29 -0700 (PDT)
 Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
         (envelope-from <bert@biot.com>)
-        id 1mNYMw-00CHAC-2K
-        for devicetree@vger.kernel.org; Tue, 07 Sep 2021 12:30:22 +0200
+        id 1mNYL5-00CH6d-Ce
+        for devicetree@vger.kernel.org; Tue, 07 Sep 2021 12:28:27 +0200
 X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
@@ -26,29 +26,31 @@ Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
         by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <bert@biot.com>)
-        id 1mNYKK-00CGzV-9S; Tue, 07 Sep 2021 12:27:40 +0200
+        id 1mNYKM-00CH0W-EL; Tue, 07 Sep 2021 12:27:42 +0200
 Received: from bert by sumner.biot.com with local (Exim 4.93)
         (envelope-from <bert@biot.com>)
-        id 1mNYKJ-000CPu-Qm; Tue, 07 Sep 2021 12:27:39 +0200
+        id 1mNYKL-000CQN-TO; Tue, 07 Sep 2021 12:27:41 +0200
 From:   Bert Vermeulen <bert@biot.com>
 To:     Russell King <linux@armlinux.org.uk>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        John Crispin <john@phrozen.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        YiFei Zhu <yifeifz2@illinois.edu>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Mike Rapoport <rppt@kernel.org>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Lionel Debieve <lionel.debieve@st.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, Bert Vermeulen <bert@biot.com>
-Subject: [PATCH v2 4/5] ARM: Add basic support for Airoha EN7523 SoC
-Date:   Tue,  7 Sep 2021 12:27:21 +0200
-Message-Id: <20210907102722.47543-5-bert@biot.com>
+Cc:     devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+        Bert Vermeulen <bert@biot.com>
+Subject: [PATCH v2 5/5] ARM: multi_v7_defconfig: Add support for Airoha EN7523 SoC
+Date:   Tue,  7 Sep 2021 12:27:22 +0200
+Message-Id: <20210907102722.47543-6-bert@biot.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210907102722.47543-1-bert@biot.com>
 References: <20210907102722.47543-1-bert@biot.com>
@@ -60,41 +62,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: John Crispin <john@phrozen.org>
 
-EN7523 is an armv7 based silicon used inside broadband access type devices
-such as xPON and xDSL. It shares various silicon blocks with MediaTek
-silicon such as the MT7622.
+This enables basic bootup support for the Airoha EN7523 SoC.
 
 Signed-off-by: John Crispin <john@phrozen.org>
 Signed-off-by: Bert Vermeulen <bert@biot.com>
 ---
- arch/arm/Kconfig | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm/configs/multi_v7_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 82f908fa5676..4c210df05c77 100644
---- a/arch/arm/Kconfig
-+++ b/arch/arm/Kconfig
-@@ -580,6 +580,20 @@ config ARCH_VIRT
- 	select HAVE_ARM_ARCH_TIMER
- 	select ARCH_SUPPORTS_BIG_ENDIAN
- 
-+config ARCH_AIROHA
-+	bool "Airoha SoC Support"
-+	depends on ARCH_MULTI_V7
-+	select ARM_AMBA
-+	select ARM_GIC
-+	select ARM_GIC_V3
-+	select ARM_DMA_USE_IOMMU
-+	select ARM_PSCI
-+	select HAVE_ARM_ARCH_TIMER
-+	select IOMMU_DMA
-+	select COMMON_CLK
-+	help
-+	  Support for Airoha EN7523 SoCs
-+
- #
- # This is sorted alphabetically by mach-* pathname.  However, plat-*
- # Kconfigs may be included either alphabetically (according to the
+diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+index d9abaae118dd..a9370a95dc38 100644
+--- a/arch/arm/configs/multi_v7_defconfig
++++ b/arch/arm/configs/multi_v7_defconfig
+@@ -31,6 +31,7 @@ CONFIG_MACH_BERLIN_BG2=y
+ CONFIG_MACH_BERLIN_BG2CD=y
+ CONFIG_MACH_BERLIN_BG2Q=y
+ CONFIG_ARCH_DIGICOLOR=y
++CONFIG_ARCH_AIROHA=y
+ CONFIG_ARCH_EXYNOS=y
+ CONFIG_ARCH_HIGHBANK=y
+ CONFIG_ARCH_HISI=y
+@@ -983,6 +984,7 @@ CONFIG_STAGING_BOARD=y
+ CONFIG_MFD_CROS_EC_DEV=m
+ CONFIG_CROS_EC_I2C=m
+ CONFIG_CROS_EC_SPI=m
++CONFIG_COMMON_CLK_EN7523=y
+ CONFIG_COMMON_CLK_MAX77686=y
+ CONFIG_COMMON_CLK_RK808=m
+ CONFIG_COMMON_CLK_SCMI=y
 -- 
 2.25.1
 
