@@ -2,125 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6914B403623
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 10:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B35403653
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 10:50:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348241AbhIHIe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 04:34:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34712 "EHLO
+        id S1351156AbhIHIuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 04:50:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348328AbhIHIeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 04:34:21 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C39C061575;
-        Wed,  8 Sep 2021 01:33:13 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 34E781F43198
-Subject: Re: [PATCH v10 01/17] dt-bindings: arm: mediatek: mmsys: add power
- and gce properties
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        hsinyi@chromium.org, fshao@chromium.org,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        nancy.lin@mediatek.com, singo.chang@mediatek.com,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20210908060312.24007-1-jason-jh.lin@mediatek.com>
- <20210908060312.24007-2-jason-jh.lin@mediatek.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <8de99666-f9be-320d-96c0-b9e140d3d4b4@collabora.com>
-Date:   Wed, 8 Sep 2021 10:32:37 +0200
+        with ESMTP id S1350651AbhIHIuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 04:50:05 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FCB5C061575
+        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 01:48:56 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id l7-20020a1c2507000000b002e6be5d86b3so903118wml.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 01:48:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EBaw+0MEZmNz/V4WGI1nWGa5bDvasKJPyvcySVos4iY=;
+        b=f8pEDk1KCMoBI8uo44LOs9m+S700RyuWBsUfhA5ao0xZjgt9FdyHuuwxoabYm6ZFlA
+         fbLadZeTYJl4cgcxjT+n2SN2u8WPhyz9ZpcVNiadAVUkJSgkwL7NIcujdcFyhAaSWIUr
+         JjiEFf+0d0dOZboFIhoete1wz8i6ARjCSasKQZsrTt4AQAcnOyGxn1NsVMJmjcDwo/3l
+         OIOJLFoxwF7MqnpQspJRwYiK8d9TA0RqF2lz3DxQVGxCRMsmWo04A27FeJMuTzV/7aex
+         pTfQjLlKSt+PifB+1CwjVt8WBvYGvho0BjHnyhtUVSqX4Fwn3p/GZ/NGZEpVTdn0KeK6
+         N/sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EBaw+0MEZmNz/V4WGI1nWGa5bDvasKJPyvcySVos4iY=;
+        b=TbptjpDy8NCIKCrmN2YEH01DMOeGFcd4aoR1YT/32zDAGSso5mXxTleq/N9xANVw+o
+         BHqsT7vehgQ4uX5zPoy4dMrecTJOfVpjGBjY/wkO5PiE/jXibg+zD+RfKdGpIIW5tCTv
+         DZeLAfPjqYnZV1WOtZwa88qp45Gc9VjLtazlN/Ql7KP0A3DpZs9Bqpht1I5ygzi0UoXR
+         IDfs8rdFK4whDSt40KtpVOwUoDaOseczgbHs6ywaGT1tYsKmJYWas4MHZl1g/maah/ac
+         SOPfquFBxOEl+ltpfAkrGZmuPeg8zVKcXQTrmZR6ACq+q0fxsrsEUUNmImGDnVilVh9e
+         8IPg==
+X-Gm-Message-State: AOAM531gz49Yehv4ps+SySvWWivqJIzdGNUxEKdCRBnXypHH+r28lpZR
+        LBW7ayu8/WsLhTDu4dnWsxrJKZdze/EGHg==
+X-Google-Smtp-Source: ABdhPJwvWo1Vu0ZqcZOVxw2kzcCOELSArjlRsp6vSZV3kmdap68l4Gv7YrJEIXdkNGjugy1lo18+FQ==
+X-Received: by 2002:a05:600c:2101:: with SMTP id u1mr2373787wml.45.1631090935107;
+        Wed, 08 Sep 2021 01:48:55 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id d8sm1544895wrv.20.2021.09.08.01.48.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Sep 2021 01:48:54 -0700 (PDT)
+Subject: Re: [PATCH V1 1/4] bindings: nvmem: introduce "reverse-data" property
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210810073510.18218-1-qiangqing.zhang@nxp.com>
+ <20210810073510.18218-2-qiangqing.zhang@nxp.com>
+ <6e3f6881-929d-1663-58f1-39bf35069175@linaro.org>
+ <YRwUyLsvoSpFI9X8@robh.at.kernel.org>
+ <DB8PR04MB67951E2312CFD69808B4502BE6FF9@DB8PR04MB6795.eurprd04.prod.outlook.com>
+ <f572aca2-167a-be26-d89a-810c7023092f@linaro.org>
+ <DB8PR04MB67953613ED725D00027E972BE6D29@DB8PR04MB6795.eurprd04.prod.outlook.com>
+ <2ab0b16d-5a22-2abe-e228-c058b5a853ff@linaro.org>
+ <DB8PR04MB6795046DC70B8238963C343AE6D49@DB8PR04MB6795.eurprd04.prod.outlook.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <a25379a9-621c-3fda-d933-9cc2d2fc706a@linaro.org>
+Date:   Wed, 8 Sep 2021 09:48:53 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210908060312.24007-2-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <DB8PR04MB6795046DC70B8238963C343AE6D49@DB8PR04MB6795.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jason,
 
-Thank you for your patch. One small comment below.
 
-On 8/9/21 8:02, jason-jh.lin wrote:
-> Power:
-> 1. Add description for power-domains property.
+On 08/09/2021 08:14, Joakim Zhang wrote:
 > 
-> GCE:
-> 1. Add description for mboxes property.
-> 2. Add description for mediatek,gce-client-reg property.
+> Hi Srinivas,
 > 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
->  .../bindings/arm/mediatek/mediatek,mmsys.yaml | 30 ++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
+> [...]
+>> I have pushed some nvmem core patches which are just compile tested to
+>> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kern
+>> el.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Fsrini%2Fnvmem.git%2Flog%
+>> 2F%3Fh%3Dtopic%2Fpost-processing&amp;data=04%7C01%7Cqiangqing.zhan
+>> g%40nxp.com%7Cadfa3ba63c634937876308d971e7e71f%7C686ea1d3bc2b4c6
+>> fa92cd99c5c301635%7C0%7C0%7C637666063097239185%7CUnknown%7CT
+>> WFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJ
+>> XVCI6Mn0%3D%7C1000&amp;sdata=W9yAnGm9rYzlSZuAAGiN4VHUtKYUTt9S
+>> oyGQ9QsY7fI%3D&amp;reserved=0
+>>
+>> This should provide the callback hook I was talking about.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> index 2d4ff0ce387b..a2e7bddfed03 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> @@ -39,6 +39,30 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  power-domains:
-> +    description:
-> +      A phandle and PM domain specifier as defined by bindings
-> +      of the power controller specified by phandle. See
-> +      Documentation/devicetree/bindings/power/power-domain.yaml for details.
-> +
-> +  mboxes:
-> +    description:
-> +      Using mailbox to communicate with GCE, it should have this
-> +      property and list of phandle, mailbox specifiers. See
-> +      Documentation/devicetree/bindings/mailbox/mtk-gce.txt for details.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
-> +  mediatek,gce-client-reg:
-> +    description:
-> +      The register of client driver can be configured by gce with 4 arguments
-> +      defined in this property, such as phandle of gce, subsys id,
-> +      register offset and size.
-> +      Each subsys id is mapping to a base address of display function blocks
-> +      register which is defined in the gce header
-> +      include/dt-bindings/gce/<chip>-gce.h.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    maxItems: 1
-> +
->    "#clock-cells":
->      const: 1
->  
-> @@ -53,6 +77,10 @@ examples:
->    - |
->      mmsys: syscon@14000000 {
->          compatible = "mediatek,mt8173-mmsys", "syscon";
-> -        reg = <0x14000000 0x1000>;
-> +        reg = <0 0x14000000 0 0x1000>;
+> Thanks a lot! Yes, this could be more common, vendors can parse their mac
+> address for different encoding style, also can extend for other cases.
 
-Why this change?
+Yes, that is the idea,
+> 
+>> Can you take a look at them and let me know if it works for you.
+> 
+> There are some small issues need to be update:
+> 1) https://git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git/commit/?h=topic/post-processing&id=624f2cc99b48bbfe05c11e58fb73f84abb1a646e
+> 	of_get_property() can't get the cell value, so I change to of_property_read_s32()
+> 2) https://git.kernel.org/pub/scm/linux/kernel/git/srini/nvmem.git/commit/?h=topic/post-processing&id=a424302c7b15da41e1e8de56b0c78021b9a96c1e
+> 	if (!nvmem->cell_post_process) {} should be if (nvmem->cell_post_process) {}, if we have this callback, we need do the post-processing.
+> 
+I have pushed these changes now to the branch.
 
-Thanks,
-  Enric
+>> I have also added some test changes to imx provider driver as well, which you
+>> might have to take a closer look to get it working.
+>>
+>> You need to look at adding/changing two things:
+>>
+>> 1. setting reverse_mac_address flag in imx driver.
+>> 	Does IMX always has mac-address reversed? if yes then we do not need
+>> any new bindings for imx nvmem provider, if no we might need to add some
+>> kind of flag to indicate this.
+> 
+> No, it's depend on how to program the effuse.
+> To avoid introducing consumer property in devicetree, I prefer to move reverse_mac_address
+> flag into ocotp_params struct, since each platforms has their own, it's easy to indicate this. I tried
+> it, and works. >
+
+As long as provider can figure out how the efuse is programmed then it 
+is fine with me.
 
 
-> +        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
->          #clock-cells = <1>;
-> +        mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-> +                 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-> +        mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->      };
+>> 2. In imx devicetree for mac-address nvmem cell make sure you add
+>>
+>> cell-type = <NVMEM_CELL_TYPE_MAC_ADDRESS>;
+>>
+>>
+>>
+>>
+>>>
+>>>> Option 2: nvmem core handles the post processing.
+>>>>
+>>>> Pros:
+>>>> - provider driver does not need to implement callbacks
+>>>>
+>>>> Cons:
+>>>> - We have to find a way to define vendor specific non-standard
+>>>> encoding information in generic bindings which is going to be a
+>>>> challenge and high chance of ending up in to much of clutter in generic
+>> bindings.
+>>>>
+>>>> Finally, The way I look at this is that once we start adding
+>>>> post-processing in nvmem core then we might endup with code that will
+>>>> not be really used for most of the usecases and might endup with
+>>>> cases that might not be possible to handle in the core.
+>>>>
+>>>>
+>>>> Does Option 1 work for you?
+>>>
+>>> Yes, I also prefer to implement it in specific driver, as you mention
+>>> above, these code are for very rarely use cases.
+>>>
+>>> If we chose Option 1, I want to implement it totally in specific
+>>> driver(imx-ocotp.c), and I have a draft, could it be acdeptable?
+>> Yes, this is the direction, however we need a proper callback to do this. And
+>> offset information is still comes from Device tree.
+>>
+>>
+>> Have a look at the patches pushed into topic/post-processing branch.
+> 
+> I have improved this patch set according above comments and tested it. Also rebase to
+> the nvmem/for-next branch.
+> 
+> I plan to keep you as the nvmem part author and send out this patch set with dts changes. If it's fine for you?
+
+Yes please, can you pick the new patches from the branch before you send 
+the series out.
+
+--srini
+>    
+> Best Regards,
+> Joakim Zhang
 > 
