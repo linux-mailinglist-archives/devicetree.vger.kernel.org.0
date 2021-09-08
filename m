@@ -2,190 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8A54036FC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 11:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEFE94036B0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 11:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349451AbhIHJfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 05:35:20 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:40702 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1348706AbhIHJfK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 05:35:10 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 63D01202FEB;
-        Wed,  8 Sep 2021 11:34:01 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0104F202FB3;
-        Wed,  8 Sep 2021 11:34:01 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 28154183AD15;
-        Wed,  8 Sep 2021 17:33:59 +0800 (+08)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, daniel.baluta@nxp.com
-Cc:     linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
-Subject: [PATCH v4 4/4] dt-bindings: dsp: fsl: update binding document for remote proc driver
-Date:   Wed,  8 Sep 2021 17:10:55 +0800
-Message-Id: <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S233824AbhIHJQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 05:16:25 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:56618 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348678AbhIHJQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 05:16:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631092517; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=RDiwY+AZ3ACBodU30o7rTrzXnw0PgLmsZq3HxNZIBBE=;
+ b=wT3+envUic3mKCNCSa3d2dXUKPQfE4xzxlf0YvysdtE1f6wzDDP5+kS9cDv7EVkJdgkVj6eb
+ qMGCeRdNmL1NtGIyO3p1fb7l59KoGTaEpm4SZDMqFz2C5CUIa5J2Gb9V810wtRLPwKqqvFbx
+ CJmGcKBYs/FD7/+sxG7OpF0pFAM=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 61387f11fc1f4cb6926f86b8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 08 Sep 2021 09:14:57
+ GMT
+Sender: skakit=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 1DB8EC43617; Wed,  8 Sep 2021 09:14:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: skakit)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6E258C4338F;
+        Wed,  8 Sep 2021 09:14:56 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 08 Sep 2021 14:44:56 +0530
+From:   skakit@codeaurora.org
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        mka@chromium.org, kgunda@codeaurora.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: pm8350c: Add pwm support
+In-Reply-To: <CAE-0n51CCqrbKr9NCkzaK3JxCtJgRKdXTeR4kxnnOK_wNKpP6A@mail.gmail.com>
+References: <1630924867-4663-1-git-send-email-skakit@codeaurora.org>
+ <1630924867-4663-4-git-send-email-skakit@codeaurora.org>
+ <CAE-0n51CCqrbKr9NCkzaK3JxCtJgRKdXTeR4kxnnOK_wNKpP6A@mail.gmail.com>
+Message-ID: <b15b7da50186d8ec86857dce0a31f1e3@codeaurora.org>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As there are two drivers for DSP on i.MX, one is for sound open
-firmware, another is for remote processor framework. In order to
-distinguish two kinds of driver, defining different compatible strings.
+On 2021-09-08 09:04, Stephen Boyd wrote:
+> Quoting satya priya (2021-09-06 03:41:07)
+>> Add pwm support for PM8350C pmic.
+>> 
+>> Signed-off-by: satya priya <skakit@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi 
+>> b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>> index e1b75ae..ecdae55 100644
+>> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+>> @@ -29,6 +29,12 @@
+>>                         interrupt-controller;
+>>                         #interrupt-cells = <2>;
+>>                 };
+>> +
+>> +               pm8350c_pwm4: pwm {
+>> +                       compatible = "qcom,pm8350c-pwm";
+> 
+> Shouldn't there be a reg property?
+> 
 
-For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-are needed and the mailbox channel is different with SOF.
+The bindings do not specify reg property. I think it is because we are 
+adding the base address in struct "pm8350c_pwm_data".
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
- 1 file changed, 75 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-index 7afc9f2be13a..51ea657f6d42 100644
---- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-+++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-@@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
- 
- maintainers:
-   - Daniel Baluta <daniel.baluta@nxp.com>
-+  - Shengjiu Wang <shengjiu.wang@nxp.com>
- 
- description: |
-   Some boards from i.MX8 family contain a DSP core used for
-@@ -19,6 +20,10 @@ properties:
-       - fsl,imx8qxp-dsp
-       - fsl,imx8qm-dsp
-       - fsl,imx8mp-dsp
-+      - fsl,imx8qxp-hifi4
-+      - fsl,imx8qm-hifi4
-+      - fsl,imx8mp-hifi4
-+      - fsl,imx8ulp-hifi4
- 
-   reg:
-     maxItems: 1
-@@ -28,37 +33,63 @@ properties:
-       - description: ipg clock
-       - description: ocram clock
-       - description: core clock
-+      - description: debug interface clock
-+      - description: message unit clock
-+    minItems: 3
-+    maxItems: 5
- 
-   clock-names:
-     items:
-       - const: ipg
-       - const: ocram
-       - const: core
-+      - const: debug
-+      - const: mu
-+    minItems: 3
-+    maxItems: 5
- 
-   power-domains:
-     description:
-       List of phandle and PM domain specifier as documented in
-       Documentation/devicetree/bindings/power/power_domain.txt
-+    minItems: 1
-     maxItems: 4
- 
-   mboxes:
-     description:
-       List of <&phandle type channel> - 2 channels for TXDB, 2 channels for RXDB
-+      or - 1 channel for TX, 1 channel for RX, 1 channel for RXDB
-       (see mailbox/fsl,mu.txt)
-+    minItems: 3
-     maxItems: 4
- 
-   mbox-names:
--    items:
--      - const: txdb0
--      - const: txdb1
--      - const: rxdb0
--      - const: rxdb1
-+    oneOf:
-+      - items:
-+          - const: txdb0
-+          - const: txdb1
-+          - const: rxdb0
-+          - const: rxdb1
-+      - items:
-+          - const: tx
-+          - const: rx
-+          - const: rxdb
- 
-   memory-region:
-     description:
-       phandle to a node describing reserved memory (System RAM memory)
-       used by DSP (see bindings/reserved-memory/reserved-memory.txt)
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
-+
-+  firmware-name:
-+    description: |
-+      Default name of the firmware to load to the remote processor.
-+
-+  fsl,dsp-ctrl:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to syscon block which provide access for processor enablement
- 
- required:
-   - compatible
-@@ -91,3 +122,41 @@ examples:
-         mboxes = <&lsio_mu13 2 0>, <&lsio_mu13 2 1>, <&lsio_mu13 3 0>, <&lsio_mu13 3 1>;
-         memory-region = <&dsp_reserved>;
-     };
-+  - |
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+    dsp_reserved: dsp@92400000 {
-+      reg = <0x92400000 0x1000000>;
-+      no-map;
-+    };
-+    dsp_vdev0vring0: vdev0vring0@942f0000 {
-+      reg = <0x942f0000 0x8000>;
-+      no-map;
-+    };
-+    dsp_vdev0vring1: vdev0vring1@942f8000 {
-+      reg = <0x942f8000 0x8000>;
-+      no-map;
-+    };
-+    dsp_vdev0buffer: vdev0buffer@94300000 {
-+      compatible = "shared-dma-pool";
-+      reg = <0x94300000 0x100000>;
-+      no-map;
-+    };
-+
-+    dsp: dsp@3b6e8000 {
-+      compatible = "fsl,imx8mp-hifi4";
-+      reg = <0x3B6E8000 0x88000>;
-+      clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
-+               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_OCRAMA_IPG>,
-+               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
-+               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSPDBG_ROOT>;
-+      clock-names = "ipg", "ocram", "core", "debug";
-+      firmware-name = "imx/dsp/hifi4.bin";
-+      power-domains = <&audiomix_pd>;
-+      mbox-names = "tx", "rx", "rxdb";
-+      mboxes = <&mu2 0 0>,
-+               <&mu2 1 0>,
-+               <&mu2 3 0>;
-+      memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-+                      <&dsp_vdev0vring1>, <&dsp_reserved>;
-+      fsl,dsp-ctrl = <&audio_blk_ctrl>;
-+    };
--- 
-2.17.1
-
+>> +                       #pwm-cells = <2>;
+>> +                       status = "okay";
+>> +               };
+>>         };
+>>  };
+>> 
+>> --
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+>> member
+>> of Code Aurora Forum, hosted by The Linux Foundation
+>> 
