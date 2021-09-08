@@ -2,285 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA093403234
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 03:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 611FD403298
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 04:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346581AbhIHBdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 21:33:35 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:44880 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1346231AbhIHBde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 21:33:34 -0400
-X-UUID: 0679e2b7485b400793db4ac26c94d313-20210908
-X-UUID: 0679e2b7485b400793db4ac26c94d313-20210908
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 128792181; Wed, 08 Sep 2021 09:32:23 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 8 Sep
- 2021 09:32:21 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 8 Sep 2021 09:32:20 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yue Hu <huyue2@yulong.com>, Bean Huo <beanhuo@micron.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] mmc: mediatek: Add HS400 online tuning support
-Date:   Wed, 8 Sep 2021 09:32:18 +0800
-Message-ID: <20210908013218.29702-3-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210908013218.29702-1-wenbin.mei@mediatek.com>
-References: <20210908013218.29702-1-wenbin.mei@mediatek.com>
+        id S1347223AbhIHC0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 22:26:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36858 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235450AbhIHC0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 22:26:18 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8F0C061575
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 19:25:11 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id i6so754128edu.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 19:25:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=Aauu7gYvMaBruI9Zt1CgTlkxSZ8evQwPBhKOMH6jf8s=;
+        b=cGQBLJd9BFCyGeZtKgcnWP1xbWqOMOxEZCB3hH5o+fLb/j5Zew8nRBn8D/L5bwMdey
+         29IHDwCuJCp9F/ZBNmWcQ7Sf8cx8hIZT/CX/WLRxJoiGyk4TDtTvHAdwkj9F2DXK2Bny
+         fydYK8auSST/R0xp6nbO5dm3q5mJ7ZZAfUgb54Jznxp4htXkPCEaC9BF+jkfvwGvK8lo
+         /dkX4khGDOVpUqjayxCuEUm73PiGMe8g6WawAJVCT6J9xVU1a1qquMrqeBMaduLZvyaL
+         0O2dxAPvTAkcnFtQj/8USnbNqLT25ntFjdPy2mcWLhxl+uDvQHfD7bgOzsQ4nX46zQXo
+         B67Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=Aauu7gYvMaBruI9Zt1CgTlkxSZ8evQwPBhKOMH6jf8s=;
+        b=Nqx+S0G15puH+SL7y6uPHv+9XKGU29QtKGjaOWUoLzLxW6KL3gAHbx8adhSmVITJIB
+         YOc/g84rCOt2gj7NYFfbzEuLbtiX4x3v2k5mZMHV4AHuQaC5gMBmEfIIhMBT6mfXvlsR
+         0Q2ro4AKoKs0FHkwcY8mD+lqlsFkWCwH+EhK2yV6D68ZnujkJAEpABOFVvQ6XkBiAtKn
+         A8Mj86NmevSAFyVdEic4MTUg9TrjqaTW+CjZUgHKk9J7T+5cUtWjgYZSspfV7QzwFPI/
+         oZ5o4MA49NG3Xb43pXRyQy8fX9bOmhlhewzv9LIyUwDvOfRIwZIWpbwpl+OG09Qa4gKk
+         hrVA==
+X-Gm-Message-State: AOAM533W5Rbw1Cnd10wZXCqRvbeMp5w3OkdiBVWqcKh1qfQ56T1pOrq7
+        HgUXJjSSAbhebYQVILnGSHVaMh7X5QhKktThags=
+X-Google-Smtp-Source: ABdhPJzNK74YppU+GDjVzOq+zTuy9lNmlQNV5DJwRMnn+c0y1ChTqHnj4BJ1Wgz150h9P5vsk6efxTbjjwo/IZzOb0o=
+X-Received: by 2002:aa7:c945:: with SMTP id h5mr1447472edt.350.1631067909760;
+ Tue, 07 Sep 2021 19:25:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Reply-To: godwinppter@gmail.com
+Sender: mrkamohlatif@gmail.com
+Received: by 2002:a54:2a50:0:0:0:0:0 with HTTP; Tue, 7 Sep 2021 19:25:09 -0700 (PDT)
+From:   Godwin Pete <godwinnpeter@gmail.com>
+Date:   Wed, 8 Sep 2021 04:25:09 +0200
+X-Google-Sender-Auth: x4IQ0RcHKnnCTnlIX9CL6odXWys
+Message-ID: <CAEb5uCeXQd6SmzV-AxQA2WRntsnWMjz5QCrSm65W2SsZauSECw@mail.gmail.com>
+Subject: I need your response
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to the influence of the corner IC and vcore voltage, for the stability
-of HS400 mode, we Add HS400 mode online tuning support for mediatek mmc
-host.
+My good friend,
 
-Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-Reviewed-by: Chaotian Jing <chaotian.jing@mediatek.com>
----
- drivers/mmc/core/mmc.c    |   8 +++
- drivers/mmc/host/mtk-sd.c | 118 +++++++++++++++++++++++++++++++++++++-
- include/linux/mmc/host.h  |   3 +
- 3 files changed, 127 insertions(+), 2 deletions(-)
+I just want to know if you, can help me to transfer the amount of
+($6Million). After the transfer we have to share it, 50% for me, and
+50% for you. Please let me know if you can help me for more
+information in regards with the transfer. I hope you can work with me
+honestly?
 
-diff --git a/drivers/mmc/core/mmc.c b/drivers/mmc/core/mmc.c
-index 838726b68ff3..0aa72acd8612 100644
---- a/drivers/mmc/core/mmc.c
-+++ b/drivers/mmc/core/mmc.c
-@@ -1222,6 +1222,14 @@ static int mmc_select_hs400(struct mmc_card *card)
- 	mmc_set_timing(host, MMC_TIMING_MMC_HS400);
- 	mmc_set_bus_speed(card);
- 
-+	if (host->ops->execute_hs400_tuning) {
-+		mmc_retune_disable(host);
-+		err = host->ops->execute_hs400_tuning(host, card);
-+		mmc_retune_enable(host);
-+		if (err)
-+			goto out_err;
-+	}
-+
- 	if (host->ops->hs400_complete)
- 		host->ops->hs400_complete(host);
- 
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index 4dfc246c5f95..484f5c38bfaf 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -258,6 +258,7 @@
- #define MSDC_PAD_TUNE_RD_SEL	  (0x1 << 13)   /* RW */
- #define MSDC_PAD_TUNE_CMD_SEL	  (0x1 << 21)   /* RW */
- 
-+#define PAD_DS_TUNE_DLY_SEL       (0x1 << 0)	/* RW */
- #define PAD_DS_TUNE_DLY1	  (0x1f << 2)   /* RW */
- #define PAD_DS_TUNE_DLY2	  (0x1f << 7)   /* RW */
- #define PAD_DS_TUNE_DLY3	  (0x1f << 12)  /* RW */
-@@ -301,6 +302,11 @@
- #define PAD_CMD_RD_RXDLY_SEL    (0x1 << 11)     /* RW */
- #define PAD_CMD_TX_DLY          (0x1f << 12)    /* RW */
- 
-+/* EMMC50_PAD_DS_TUNE mask */
-+#define PAD_DS_DLY_SEL		(0x1 << 16)	/* RW */
-+#define PAD_DS_DLY1		(0x1f << 10)	/* RW */
-+#define PAD_DS_DLY3		(0x1f << 0)	/* RW */
-+
- #define REQ_CMD_EIO  (0x1 << 0)
- #define REQ_CMD_TMO  (0x1 << 1)
- #define REQ_DAT_ERR  (0x1 << 2)
-@@ -448,11 +454,13 @@ struct msdc_host {
- 	bool vqmmc_enabled;
- 	u32 latch_ck;
- 	u32 hs400_ds_delay;
-+	u32 hs400_ds_dly3;
- 	u32 hs200_cmd_int_delay; /* cmd internal delay for HS200/SDR104 */
- 	u32 hs400_cmd_int_delay; /* cmd internal delay for HS400 */
- 	bool hs400_cmd_resp_sel_rising;
- 				 /* cmd response sample selection for HS400 */
- 	bool hs400_mode;	/* current eMMC will run at hs400 mode */
-+	bool hs400_tuning;	/* hs400 mode online tuning */
- 	bool internal_cd;	/* Use internal card-detect logic */
- 	bool cqhci;		/* support eMMC hw cmdq */
- 	struct msdc_save_para save_para; /* used when gate HCLK */
-@@ -1190,7 +1198,8 @@ static bool msdc_cmd_done(struct msdc_host *host, int events,
- 	if (!sbc_error && !(events & MSDC_INT_CMDRDY)) {
- 		if (events & MSDC_INT_CMDTMO ||
- 		    (cmd->opcode != MMC_SEND_TUNING_BLOCK &&
--		     cmd->opcode != MMC_SEND_TUNING_BLOCK_HS200))
-+		     cmd->opcode != MMC_SEND_TUNING_BLOCK_HS200 &&
-+		     !host->hs400_tuning))
- 			/*
- 			 * should not clear fifo/interrupt as the tune data
- 			 * may have alreay come when cmd19/cmd21 gets response
-@@ -1287,7 +1296,8 @@ static void msdc_cmd_next(struct msdc_host *host,
- 	if ((cmd->error &&
- 	    !(cmd->error == -EILSEQ &&
- 	      (cmd->opcode == MMC_SEND_TUNING_BLOCK ||
--	       cmd->opcode == MMC_SEND_TUNING_BLOCK_HS200))) ||
-+	       cmd->opcode == MMC_SEND_TUNING_BLOCK_HS200 ||
-+	       host->hs400_tuning))) ||
- 	    (mrq->sbc && mrq->sbc->error))
- 		msdc_request_done(host, mrq);
- 	else if (cmd == mrq->sbc)
-@@ -2251,6 +2261,106 @@ static int msdc_prepare_hs400_tuning(struct mmc_host *mmc, struct mmc_ios *ios)
- 	return 0;
- }
- 
-+static int msdc_send_cxd_data(struct mmc_card *card, struct mmc_host *host)
-+{
-+	struct mmc_request mrq = {};
-+	struct mmc_command cmd = {};
-+	struct mmc_data data = {};
-+	unsigned int len = 512;
-+	struct scatterlist sg;
-+	u8 *ext_csd;
-+
-+	ext_csd = kzalloc(len, GFP_KERNEL);
-+	if (!ext_csd)
-+		return -ENOMEM;
-+
-+	mrq.cmd = &cmd;
-+	mrq.data = &data;
-+
-+	cmd.opcode = MMC_SEND_EXT_CSD;
-+	cmd.arg = 0;
-+	cmd.flags = MMC_RSP_SPI_R1 | MMC_RSP_R1 | MMC_CMD_ADTC;
-+
-+	data.blksz = len;
-+	data.blocks = 1;
-+	data.flags = MMC_DATA_READ;
-+	data.sg = &sg;
-+	data.sg_len = 1;
-+
-+	sg_init_one(&sg, ext_csd, len);
-+	mmc_set_data_timeout(&data, card);
-+	mmc_wait_for_req(host, &mrq);
-+
-+	kfree(ext_csd);
-+
-+	if (cmd.error)
-+		return cmd.error;
-+	if (data.error)
-+		return data.error;
-+
-+	return 0;
-+}
-+
-+static int msdc_execute_hs400_tuning(struct mmc_host *mmc, struct mmc_card *card)
-+{
-+	struct msdc_host *host = mmc_priv(mmc);
-+	struct msdc_delay_phase dly1_delay;
-+	u32 val, result_dly1 = 0;
-+	int i, ret;
-+
-+	if (host->top_base) {
-+		sdr_set_bits(host->top_base + EMMC50_PAD_DS_TUNE,
-+			     PAD_DS_DLY_SEL);
-+		if (host->hs400_ds_dly3)
-+			sdr_set_field(host->top_base + EMMC50_PAD_DS_TUNE,
-+				      PAD_DS_DLY3, host->hs400_ds_dly3);
-+	} else {
-+		sdr_set_bits(host->base + PAD_DS_TUNE, PAD_DS_TUNE_DLY_SEL);
-+		if (host->hs400_ds_dly3)
-+			sdr_set_field(host->base + PAD_DS_TUNE,
-+				      PAD_DS_TUNE_DLY3, host->hs400_ds_dly3);
-+	}
-+
-+	host->hs400_tuning = true;
-+	for (i = 0; i < PAD_DELAY_MAX; i++) {
-+		if (host->top_base)
-+			sdr_set_field(host->top_base + EMMC50_PAD_DS_TUNE,
-+				      PAD_DS_DLY1, i);
-+		else
-+			sdr_set_field(host->base + PAD_DS_TUNE,
-+				      PAD_DS_TUNE_DLY1, i);
-+		ret = msdc_send_cxd_data(card, mmc);
-+		if (!ret)
-+			result_dly1 |= (1 << i);
-+	}
-+	host->hs400_tuning = false;
-+
-+	dly1_delay = get_best_delay(host, result_dly1);
-+	if (dly1_delay.maxlen == 0) {
-+		dev_err(host->dev, "Failed to get DLY1 delay!\n");
-+		goto fail;
-+	}
-+	if (host->top_base)
-+		sdr_set_field(host->top_base + EMMC50_PAD_DS_TUNE,
-+			      PAD_DS_DLY1, dly1_delay.final_phase);
-+	else
-+		sdr_set_field(host->base + PAD_DS_TUNE,
-+			      PAD_DS_TUNE_DLY1, dly1_delay.final_phase);
-+
-+	if (host->top_base)
-+		val = readl(host->top_base + EMMC50_PAD_DS_TUNE);
-+	else
-+		val = readl(host->base + PAD_DS_TUNE);
-+
-+	dev_info(host->dev, "Fianl PAD_DS_TUNE: 0x%x\n", val);
-+
-+	return 0;
-+
-+fail:
-+	dev_err(host->dev, "Failed to tuning DS pin delay!\n");
-+	return -EIO;
-+}
-+
- static void msdc_hw_reset(struct mmc_host *mmc)
- {
- 	struct msdc_host *host = mmc_priv(mmc);
-@@ -2377,6 +2487,7 @@ static const struct mmc_host_ops mt_msdc_ops = {
- 	.card_busy = msdc_card_busy,
- 	.execute_tuning = msdc_execute_tuning,
- 	.prepare_hs400_tuning = msdc_prepare_hs400_tuning,
-+	.execute_hs400_tuning = msdc_execute_hs400_tuning,
- 	.hw_reset = msdc_hw_reset,
- };
- 
-@@ -2396,6 +2507,9 @@ static void msdc_of_property_parse(struct platform_device *pdev,
- 	of_property_read_u32(pdev->dev.of_node, "hs400-ds-delay",
- 			     &host->hs400_ds_delay);
- 
-+	of_property_read_u32(pdev->dev.of_node, "mediatek,hs400-ds-dly3",
-+			     &host->hs400_ds_dly3);
-+
- 	of_property_read_u32(pdev->dev.of_node, "mediatek,hs200-cmd-int-delay",
- 			     &host->hs200_cmd_int_delay);
- 
-diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-index ff1a251bb0bc..7552d5eb0074 100644
---- a/include/linux/mmc/host.h
-+++ b/include/linux/mmc/host.h
-@@ -162,6 +162,9 @@ struct mmc_host_ops {
- 	/* Prepare HS400 target operating frequency depending host driver */
- 	int	(*prepare_hs400_tuning)(struct mmc_host *host, struct mmc_ios *ios);
- 
-+	/* Execute HS400 tuning depending host driver */
-+	int	(*execute_hs400_tuning)(struct mmc_host *host, struct mmc_card *card);
-+
- 	/* Prepare switch to DDR during the HS400 init sequence */
- 	int	(*hs400_prepare_ddr)(struct mmc_host *host);
- 
--- 
-2.25.1
 
+Thanks.
+
+Godwin Peter,
