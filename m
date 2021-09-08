@@ -2,144 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D30403A67
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 15:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CF18403A78
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 15:19:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244339AbhIHNPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 09:15:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42780 "EHLO
+        id S1346419AbhIHNVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 09:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236133AbhIHNPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 09:15:51 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C768EC06175F
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 06:14:43 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id j18so3125660ioj.8
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 06:14:43 -0700 (PDT)
+        with ESMTP id S235294AbhIHNVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 09:21:04 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A53FC061575
+        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 06:19:56 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id j12so3457815ljg.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 06:19:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=9AWLsCDYF19VBZt29/1wFXKnU5Wu0IewL+gdugok5k4=;
-        b=sr1iRSJRv2RMjzZkx+NVWb9UiITjqaz7jLHcCeY8vqsxOOk8rlka234eX7+4IvSQvV
-         tZeBObuYx6RP4D2apnPfSl5VtUu0qGTv9m3/0BU4/a2lAhA/ch4rSPA2+hZXVr8Klmb3
-         4EY+yENKx0qUZKfCit0UC75SGfWDlCjSTJJVOhkCfo3WdWQEHZ6eNG7KYKxfba48fCKm
-         RR8m4xi/ZOczFKBxSnT1TkK0XcRWzJCnNDfbkAJce/r9SrYRGuJShoJIYgKYWYjr1DAu
-         xmuUA4VDZFgRD0kyiqWAfPNcAOhLn3fgfu7TkUlKJ8mmxJz313LwYQG2nZL5ARr9zich
-         VuSQ==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZJdZCk3goovG5C8eSe2Bq8C9UIur86/nQp9LkqQjXYU=;
+        b=Tu+Htqp3o8/8HQy5vcZvrCYOjxNjUghZ/LWL6AUWBmjZl6noo2SBB42RcizHk16FlE
+         7Mha8zLBzxaJW0oRETKJI1j2taDDWW7zD1CF3hWt5eWOBYgXzHOtIaq50e+EQ0aXw05Z
+         VZhDlPPYROV7Vwd+G+CHaDkXjhnLy6lDEtIuQNnjpjzfgwYH5LF9RiWET0ZkjmqVFi1r
+         5LG6cs1rXiPHEI9q9Y+q+VBvqbAD/qaHms8Y/MYxtw0SaNu7BX5nHEkHfIL9vmkXuiHc
+         yvIDk7Nin2FbmXhPBKF/jWY++yWC6rIGRaXfdPSSRvqiXHVRWWOJn312OJC1rSNpwBke
+         TtSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=9AWLsCDYF19VBZt29/1wFXKnU5Wu0IewL+gdugok5k4=;
-        b=Y8gtbtGrm8wNn1P1yXJ8KiCPaD3+8LLO4AxNYpXfCZ/rZP+aG7Z/5ST8mF5oICLbgB
-         jxGRIzVji4BDMXnM6BRAW5pq1igv3og+ed2SQero3kGFcUJ0u5dsYiTIWPjEn0yHgXGl
-         1LbjTkEAf2aOPq5TK1OwuGzVb+Q3g9X7KamU9JAHa8Coho8aIxJkNDKdXQ7I7wv3+6xX
-         j5+PM+qrFqR16bZB+dIEvRcbwAF6IXVP0SryTyydWgsGe5xiqCii6Ilmsvuxe+rODtkY
-         1+2URTorWHH8NYPCHgRinQx+MUvcZ+F04/P+HimCZoOqlDOPb6aVVWvRxDTlX80geb46
-         CMuA==
-X-Gm-Message-State: AOAM531oZp7QS9HDFTYxhnf2z5ViswPZ5eDNph2ibn52Yd+CcECFy4n1
-        REVNQai0hSbJ8NZhFOJ8gH28og==
-X-Google-Smtp-Source: ABdhPJyWFl6KMFrtk5M9MJcMSw4+SUThhgT1lPNNKFYX405JAiBqjMMEMUn2p1h9anfKUlY/gPEatQ==
-X-Received: by 2002:a5d:9681:: with SMTP id m1mr3244017ion.113.1631106883049;
-        Wed, 08 Sep 2021 06:14:43 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id t10sm1130127iol.34.2021.09.08.06.14.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Sep 2021 06:14:42 -0700 (PDT)
-Message-ID: <79cdfe0af999f574642314289e1734df5e2032eb.camel@ndufresne.ca>
-Subject: Re: [PATCH v8 03/15] media:Add v4l2 buf flag codec data.
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Wed, 08 Sep 2021 09:14:40 -0400
-In-Reply-To: <7ef1840137417c33f5ef7ca611c90fc274926851.1631002447.git.ming.qian@nxp.com>
-References: <cover.1631002447.git.ming.qian@nxp.com>
-         <7ef1840137417c33f5ef7ca611c90fc274926851.1631002447.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZJdZCk3goovG5C8eSe2Bq8C9UIur86/nQp9LkqQjXYU=;
+        b=wZp8zhjUL0QYwENiv9as1L098FcqQM+Uq4f5G385zys/QBw6vgT6AbogKGVpYaVV6f
+         lloOSqSqa1A345CZKPkWXb4F4lNrtGAzK5yh0VZtRIFBzaP5K9B1Afp+7LkOAea9BBvU
+         Hbb5UPdgZvL0lG9WqvyrQ9NiG8YnVilZJD6rrwX3B93GAzJPUcYW3zmWrm7ejvGpDycB
+         yYzHp/EpKYlM9ytvxv9TcoLfRPFq8b7n8StvdtDvb9d8Jqicwa3hS6sEOuw4OwD6ejGG
+         Bba5v/USwb6cEGV9bqFvkev/hmwG+brTko4RXyE7gn/V1T+LckGG+HbnyjqD0j8DrqWX
+         4WmQ==
+X-Gm-Message-State: AOAM5316trAjPE736+XxumtyqLB40kN39hPiDHjedCQiJ1R8P99Im4fK
+        tDuHNiIO5IMXSd97qXQ6HTg8ty8/+5hNgBz7SJt73Q==
+X-Google-Smtp-Source: ABdhPJyP3Fvzjo+yCiZXscEPInswiZdq+xZxXKaG/5+w1weGK3YAZ6q3duHELKynKYHXjEzYScZCO3b2nIQgwuT/dsc=
+X-Received: by 2002:a2e:1556:: with SMTP id 22mr2695278ljv.253.1631107194225;
+ Wed, 08 Sep 2021 06:19:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+ <20210908094248.GZ23326@home.paul.comp> <HK0PR06MB3779180F75DB8BD872F8A78391D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
+ <20210908105245.GB23326@home.paul.comp>
+In-Reply-To: <20210908105245.GB23326@home.paul.comp>
+From:   Oskar Senft <osk@google.com>
+Date:   Wed, 8 Sep 2021 09:19:38 -0400
+Message-ID: <CABoTLcT2kSNtTRL1sETR1oNsT5R1hyX6WpfkeG9=rOcwhH05LQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] arm: aspeed: Add UART routing support
+To:     Paul Fertser <fercerpav@gmail.com>
+Cc:     ChiaWei Wang <chiawei_wang@aspeedtech.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Konstantin Klubnichkin <kitsok@yandex-team.ru>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ming,
+Hey Paul
 
-thanks for the patch. I'm doing a first pass review of the new APIs you are
-introducing.
+> Or do you mean the BMC software shouldn't be enabling SUART1 by making
+> sure its clock is disabled in SCU0C? Is there anything else needed?
+> I've tried reading the ast2500 datasheet many times but this detail
+> seem to be missing. Is there some appnote on the topic probably?
 
-Le mardi 07 septembre 2021 à 17:49 +0800, Ming Qian a écrit :
-> In some decoing scenarios, application may queue a buffer
-> that only contains codec config data, and the driver needs to
-> know whether is it a frame or not.
-> So we add a buf flag to tell this case.
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
-> ---
->  Documentation/userspace-api/media/v4l/buffer.rst | 7 +++++++
->  include/uapi/linux/videodev2.h                   | 1 +
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/userspace-api/media/v4l/buffer.rst b/Documentation/userspace-api/media/v4l/buffer.rst
-> index e991ba73d873..11013bcf8a41 100644
-> --- a/Documentation/userspace-api/media/v4l/buffer.rst
-> +++ b/Documentation/userspace-api/media/v4l/buffer.rst
-> @@ -607,6 +607,13 @@ Buffer Flags
->  	the format. Any subsequent call to the
->  	:ref:`VIDIOC_DQBUF <VIDIOC_QBUF>` ioctl will not block anymore,
->  	but return an ``EPIPE`` error code.
-> +    * .. _`V4L2-BUF-FLAG-CODECCONFIG`:
-> +
-> +      - ``V4L2_BUF_FLAG_CODECCONFIG``
-> +      - 0x00200000
-> +      - The buffer only contains codec config data, eg. sps and pps.
-> +    Applications can set this bit when ``type`` refers to an output
-> +    stream, this flag is usually used by v4l2 decoder.
+I ran into this issue a while ago.
 
-Currently, the bottom line is that all decoders needs a frame or field
-accompanied with the headers (only Annex B. being defined and supported for
-now). Decoders can be more flexible (and some are). The documentation here is
-not clear enough, remember that we must not break compatibility.
+As ChiaWei explained, the issue is that there are TWO implementations
+of a host-facing UART in the Aspeed:
 
-I think you have to clarify the intention. This flag exist in OMX and have been
-source of confusion and inter-operability since the start.
+1) SuperIO (aka "SIO"), which includes two UARTS (and some other stuff).
+The SIO is fully controlled by the host. The BMC has no ability to
+configure the SIO. Of course, it can disable it by stopping its clocks
+or by blocking access from the host to it. But it cannot observe or
+modify the settings that the host made. The SIO is functionally very
+similar to the SIOs that were around 20+ years ago.
 
-- If this flag is entirely optional, and is just an optimization, then adding it
-this way is fine, but the documentation should be updated.
+With that, it's the host's (i.e. BIOS's) responsibility to detect the
+presence of the SIO and to configure its UART with port (e.g. 0x3f8)
+and interrupt (e.g. 0x4). The SIO in the BMC will just take this
+configuration "no questions asked" and make the UART accessible on LPC
+for the host to communicate with. The BIOS also registers the UART in
+the SMBIOS and ACPI tables where the OS learns about its existence to
+load the correct driver.
 
-- If this flag is required only when the header is split, then this flag need to
-be accompanied with a V4L2_BUF_CAP_SUPPORTS_SPLIT_CODECCONFIG (or similar name,
-shorter could be nice). This is so that userspace can detect if that feature is
-supported or not.
+The SuperIO's UART actually generates/receives serial UART signals on
+a 3-wire interface (TX, RX, GND) at the configured speed. This signal
+can then be routed (there are a bunch of muxes in the Aspeed) either
+to another UART (which the BMC can control) or to a physical serial
+port (i.e. a D-Sub 9 or a header on the mainboard). The default
+configuration is for UART1 and UART2 (both of which are controlled by
+the SIO) to be routed to physical serial ports.
 
-- If having split codecconfig is strictly needed for your driver, then this flag
-is not the proper solution. The only solution I'd see for that, would be to use
-something else then V4L2_PIX_FMT_H264 so that existing userspace are not tricked
-into trying to use your driver the wrong way. I think such header could make
-sense with H264_NO_SC (though not super clear what this is exactly, it's not
-really used), or a clearer new format H264_AVCC/AVCC3
-
->      * .. _`V4L2-BUF-FLAG-REQUEST-FD`:
->  
->        - ``V4L2_BUF_FLAG_REQUEST_FD``
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> index 167c0e40ec06..5bb0682b4a23 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -1119,6 +1119,7 @@ static inline __u64 v4l2_timeval_to_ns(const struct timeval *tv)
->  #define V4L2_BUF_FLAG_TSTAMP_SRC_SOE		0x00010000
->  /* mem2mem encoder/decoder */
->  #define V4L2_BUF_FLAG_LAST			0x00100000
-> +#define V4L2_BUF_FLAG_CODECCONFIG		0x00200000
->  /* request_fd is valid */
->  #define V4L2_BUF_FLAG_REQUEST_FD		0x00800000
->  
+The big problem with SIO in AST2400 / AST2500 is CVE-2019-6260. As I
+understand it, in order to expose the SIO to the host, a number of
+interfaces need to be enabled that ultimately allow the host to
+perform other operations that are undesirable wrt. BMC security.
+Please correct me if I'm wrong.
 
 
+2) VUART ("Virtual UART")
+The VUART is "virtual", since it does not actually generate serial
+UART signals. Instead the VUART really is two "half UARTs" connected
+with each other. One half is connected to LPC to be used by the host,
+the other is accessible from the BMC. They both expose the UART
+programming interface which allows both the host and the BMC  to use
+standard serial port drivers. There's no configurable routing for the
+VUART. Whatever the "port speed" that's configured by host or BMC, the
+VUART always runs at "maximum speed", i.e. bytes written to the UART
+on one end are accessible "immediately" on the other end (of course
+there's a maximum "baud rate" there, but that's not due to an actual
+serial UART signal.
+
+The big difference with VUART is that the "host settings" (i.e. port
+and interrupt) are fully controlled by the BMC. This requires a change
+in the host's BIOS, as it should no longer attempt to detect and
+configure the SIO and instead just expect a UART to be present at a
+predetermined address. For the BIOS that I worked with, this required
+to build and include a different module that performs the necessary
+initialization on the host side (e.g. configure the LPC bridge to
+forward requests to the specified port and accept an incoming
+interrupt) and to store the serial port in the SMBIOS and ACPI tables
+for the OS to "detect" it from.
+
+Now, if SIO is enabled on the BMC side and the host side AND if also
+VUART is enabled and configured on the BMC side, this may result in
+TWO devices listening on the port and possibly attempting to issue
+interrupts. I'm not sure what mechanism the Aspeed uses to prevent
+both the SIO's UART and the VUART to respond at the same time on the
+same address.
+
+
+Also note that there's host-side setting for LPC interrupts ("LPC
+IRQSER"), which can either be "quiet" or "continuous" mode, with a HW
+default on the host of "quiet" mode; see Intel C620 datasheet, p.
+1544, when setting the Enable (EN, bit 7) bit in the Serial IRQ
+Control register (SCNT, offset 0x64), the Mode (MD, bit 6) bit should
+be set to enable "continuous mode". However, the Aspeed's default is
+"continuous" (not sure if it supports "quiet" mode). This results in
+the Aspeed not being able to send interrupts to the host.
+
+
+> In this case do we have some way to make it an obvious error to enable
+> both SUART1 and VUART in DTS? If they're conflicting surely there
+> should be a way to express that?
+No, I don't think we should try to employ any "smarts" here, as
+ultimately the behavior is caused by a combination of enabled BMC
+features (SIO) and host (BIOS) behavior.
+
+
+I hope that clears it up a little? I'm happy to explain more if needed.
+
+Thanks
+Oskar.
