@@ -2,473 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9448403ECE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 20:02:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11635403F10
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 20:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240884AbhIHSDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 14:03:33 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:34702 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349076AbhIHSDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 14:03:33 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631124145; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=N+6r2hK8mTzNM1q9Yeqe/17mfjph0gZR2//tfdNAcHc=; b=SnVH+yVX2W7EMYQ2kdz8L78se7JjcSRTIuAAxY67XZzUrtD/9mL5zGfpnrr4EfN7/mkrWyB+
- o3qWHsON/TGhj5feVDkYs07R8lEfe3CxWxmvfeL4ZywbJECm/m4DmOla01qwn6GkgCsByhdf
- N8IKxS035w/igP53XrxZqX/SxCc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6138fa801567234b8cfb60cb (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 08 Sep 2021 18:01:36
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8BC0EC4360D; Wed,  8 Sep 2021 18:01:35 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A5DDAC4360C;
-        Wed,  8 Sep 2021 18:01:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org A5DDAC4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH 2/2] ASoC: qcom: SC7280: Add machine driver
-Date:   Wed,  8 Sep 2021 23:30:57 +0530
-Message-Id: <1631124057-17155-3-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1631124057-17155-1-git-send-email-srivasam@codeaurora.org>
-References: <1631124057-17155-1-git-send-email-srivasam@codeaurora.org>
+        id S1349884AbhIHS1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 14:27:54 -0400
+Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:27374 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235227AbhIHS1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 14:27:51 -0400
+Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
+        by mx0a-0014ca01.pphosted.com (8.16.1.2/8.16.0.43) with SMTP id 188ILvw9030286;
+        Wed, 8 Sep 2021 11:26:40 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=proofpoint;
+ bh=FQuzQx64q4H3khbdMZn2yGkKH8ce2fX8A5IXneOih5Y=;
+ b=fEsV8gdCNde+FkSZRIt9ej7t883o/VeabfZyk99QnhQWmH2wNHE9YCggK3c3S/uf846O
+ Wxoqjm/yVDegMNJ/gTUmX1Lzr1AL0ow4pd3yg5kqdW7RLNPnxakMWUUF3dMX+07qgC9W
+ En/wF8sCmneFlK5szRNgI/GlaUlGSkvAg5MZAKJ4haFI5OtQ88OkBGFr93Z2qNYoNHez
+ +Kb2wloX4LAbC9pZDeKX7Imh4y4eBNcjLrDUZtnbLQq8x5SzLgz4WYJsl/3Lm3xgjOKe
+ jUYOK8T9D3RTuW94RMk5R0Pw8/fA4cFoA3tSTwmNXNfMJQH6FZ3tJv78P4RIdjzLvIxh nQ== 
+Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2175.outbound.protection.outlook.com [104.47.59.175])
+        by mx0a-0014ca01.pphosted.com with ESMTP id 3axcn5c470-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Sep 2021 11:26:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IJoTjHRuWxj9OHDh6W2TD/062xJZoVwcdh5V+U4Sw7CVkTj6TMzTCLBYmWI50tDZQuC6v3BkKjHSaSb3VDRx/ccZlT9zuD8vVtglxkWAm0X32GAUj6II0NUibjfBHh/PpgS7C6NQmtCQbY5djuUJ7qIcn9n5T5LbxEHavasj+PNsgWF6rAgoGH4KryyaiOCTl33m1SJRjTMQm8K80ISk46SrvzkqXz1A7rOSOfWBWP1pzGGArhJEPQ22DhIvGhRtobq3h9rV4tDNyMgsLf9UuI7qYhIQMx3adsIxh1pYuoB0IRcGXcl4AivoW1BnLK/PyICcCGVPwojN6L/cFkJ9RA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=FQuzQx64q4H3khbdMZn2yGkKH8ce2fX8A5IXneOih5Y=;
+ b=hDEVnqiBSX50zMouKMO3ZW8qraXR/cRmgET1gyVKm+EEdB0z6vMtLf92JU06pml52ZHLQBC2SODM+loEBfM/Fo0hQNpdAif9qvECbv/wURF4d1IXLzjKjIVwBBJFNZv9gdAeqQhqlZNQiXcK/bfEy0jUXtqaQtcMraEl0xig4m2EDIjHOUIhECA41Uv6NHR4jWW2BC4/Xt/8O8d6FcucDpgtrA5yWSl4KaC1t+6DKC6GoHWmzK3UjU/vp6ZbNTuEQ/gu5nQUArui9XoRjmWlSRhyHRejT77P4eXYBOEHci3nHzteSPgVwE/9tJPKDt4OXLqPLEy1e2XRuVHJ6cJVrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 199.43.4.23) smtp.rcpttodomain=kernel.org smtp.mailfrom=cadence.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FQuzQx64q4H3khbdMZn2yGkKH8ce2fX8A5IXneOih5Y=;
+ b=T1TDn31iIT8JPlqcTHQQ0Hj6ngQBI+J+cQP/j9qclpNJlqFW2oVO795ikwsEgu6kzfNFyOifeB9zp3eikE7SfchcbF792XuiBDYKyRfxLxgJf0nT+IPD7A2eK5D22nq8jXp8+rA2Ev2PQ7JIchLf39v1DgiP4r0Rr7A9sy0i1KU=
+Received: from BN6PR13CA0015.namprd13.prod.outlook.com (2603:10b6:404:10a::25)
+ by BL0PR07MB3986.namprd07.prod.outlook.com (2603:10b6:207:42::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.21; Wed, 8 Sep
+ 2021 18:26:32 +0000
+Received: from BN8NAM12FT065.eop-nam12.prod.protection.outlook.com
+ (2603:10b6:404:10a:cafe::82) by BN6PR13CA0015.outlook.office365.com
+ (2603:10b6:404:10a::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.8 via Frontend
+ Transport; Wed, 8 Sep 2021 18:26:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 199.43.4.23)
+ smtp.mailfrom=cadence.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=cadence.com;
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 199.43.4.23 as permitted sender) receiver=protection.outlook.com;
+ client-ip=199.43.4.23; helo=rmmaillnx1.cadence.com;
+Received: from rmmaillnx1.cadence.com (199.43.4.23) by
+ BN8NAM12FT065.mail.protection.outlook.com (10.13.182.134) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4523.8 via Frontend Transport; Wed, 8 Sep 2021 18:26:32 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by rmmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 188IQUwJ017985
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 8 Sep 2021 14:26:31 -0400
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu4.global.cadence.com (10.160.110.201) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 8 Sep 2021 20:26:30 +0200
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu4.global.cadence.com (10.160.110.201) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2176.2; Wed, 8 Sep 2021 20:26:29 +0200
+Received: from vleu-orange.cadence.com (10.160.88.83) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2 via Frontend Transport; Wed, 8 Sep 2021 20:26:29 +0200
+Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
+        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 188IQTCS028405;
+        Wed, 8 Sep 2021 20:26:29 +0200
+Received: (from sjakhade@localhost)
+        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 188IQSKm028404;
+        Wed, 8 Sep 2021 20:26:28 +0200
+From:   Swapnil Jakhade <sjakhade@cadence.com>
+To:     <vkoul@kernel.org>, <kishon@ti.com>, <robh+dt@kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <mparab@cadence.com>, <sjakhade@cadence.com>, <lokeshvutla@ti.com>,
+        <a-govindraju@ti.com>
+Subject: [PATCH 0/5] PHY: Add support to output derived and received reference clock from Torrent
+Date:   Wed, 8 Sep 2021 20:26:23 +0200
+Message-ID: <20210908182628.28364-1-sjakhade@cadence.com>
+X-Mailer: git-send-email 2.15.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e666329a-d4a5-495a-dbc1-08d972f62ef6
+X-MS-TrafficTypeDiagnostic: BL0PR07MB3986:
+X-Microsoft-Antispam-PRVS: <BL0PR07MB398646FA94590BEB70730AE4C5D49@BL0PR07MB3986.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mGQfjTY3HG5EPf4Tcb04R6VOyS0SFmD7KsRAQpsHaxV8w3RE3nyIkRywsnzDJzBsHzFuBZ6oH5nd1AWxwq5a8m7oEr3gq/uoOiigeLb7N29dKcQTpVgVBgBPtBLk+VWm/G72NgU/xGFgi+vOsVp0kw6FEJDlpOZj++eXismTtGeCLr7SnnVG7EI5fCSOsPFnXnUf7YFS3OiCzBmXy57vnTguIa5fGxnjModU3ac0E6HPtQvIIukXiRT4wuEOIvHnFOsuAiF3sNBpJWySq1eykETMiKTtwWisTPYVhupc6YlkeaDwwm3886Iv03pvfKjrns4HqWdqm9d3pIjFrCv9sL+SY6hxu2BlLQm4gOcLowYNm4kSGEGh/UE9BTFvFhK6R+XbiriueKG+Mpqun+w2J5D+v2Il/axzpObF0WVkOlGarjDlWws75mPqbU6FdMLGA+WPTXeKPU/dfpoQZiAwbb271FCmPb5p/t2MtexpJIkiX/4ogKNhHOoQTGIUvjwOY9D4PHNExgLHXYyB1QxWl9gQvMbuqpTXaZhMAIqzyIK98N8KD8Hcp+5u/tYulEz1ZA+3+uJ0Ga+yWqCOPKinPUBhx+vOAd+jKZDGP2UQVkcEryQdWjpG5IK0GMskuPGeWp+tQ+9K113UONIClDZHZlko8i4Uhyuqr+FuKyZDpqOI0pHb6unDFSKMwmlNMLIiclorueGgZJ6ylIBVZdzpwixcsxhwQEOZH+fk0a2kmOXmbE7yRu8+zAgZ/uON6TvMT908E04v5i3K95CyJGhe1Coud2jYtPngANY81Pqco5c=
+X-Forefront-Antispam-Report: CIP:199.43.4.23;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:rmmaillnx1.cadence.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(39860400002)(376002)(36092001)(46966006)(36840700001)(81166007)(70206006)(356005)(47076005)(70586007)(54906003)(2906002)(4326008)(36756003)(2616005)(82740400003)(36906005)(82310400003)(316002)(110136005)(1076003)(186003)(83380400001)(5660300002)(42186006)(8676002)(8936002)(36860700001)(26005)(478600001)(336012)(426003)(6666004)(86362001)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 18:26:32.4777
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e666329a-d4a5-495a-dbc1-08d972f62ef6
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[199.43.4.23];Helo=[rmmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM12FT065.eop-nam12.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR07MB3986
+X-Proofpoint-ORIG-GUID: U_PdgBw3B0TQTydpCMVfrKEXfiM81sM7
+X-Proofpoint-GUID: U_PdgBw3B0TQTydpCMVfrKEXfiM81sM7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
+ definitions=2021-09-08_06,2021-09-07_02,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 suspectscore=0
+ malwarescore=0 phishscore=0 mlxlogscore=596 spamscore=0 impostorscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxscore=0 clxscore=1015
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109030001 definitions=main-2109080115
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new machine driver to register sound card on sc7280 based targets and
-do the required configuration for lpass cpu dai and external codecs
-connected over MI2S and soundwire interfaces.
-Add support for audio jack detection, soundwire init and MBHC.
+This patch series updates reference clock driver implementation for Torrent
+by adding support to output derived as well as received reference clock.
+When reference clock driver is enabled, either derived or received refclk
+is output on cmn_refclk_p/m.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/Kconfig  |  12 ++
- sound/soc/qcom/Makefile |   2 +
- sound/soc/qcom/sc7280.c | 347 ++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 361 insertions(+)
- create mode 100644 sound/soc/qcom/sc7280.c
+In derived reference clock mode, cmn_refclk_p/m outputs the refclk derived
+from internal PLLs while when received refclk is selected to output on
+cmn_refclk_p/m, this is the internal reference clock driven on the
+pma_cmn_refclk_int.
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index cc7c1de..d9ffcb7 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -152,4 +152,16 @@ config SND_SOC_SC7180
- 	  SC7180 SoC-based systems.
- 	  Say Y if you want to use audio device on this SoCs.
- 
-+config SND_SOC_SC7280
-+	tristate "SoC Machine driver for SC7280 boards"
-+	depends on I2C && SOUNDWIRE
-+	select SND_SOC_QCOM_COMMON
-+	select SND_SOC_MAX98357A
-+	select SND_SOC_LPASS_RX_MACRO
-+	select SND_SOC_LPASS_TX_MACRO
-+	help
-+	  To add support for audio on Qualcomm Technologies Inc.
-+	  SC7280 SoC-based systems.
-+	  Say Y if you want to use audio device on this SoCs.
-+
- endif #SND_SOC_QCOM
-diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-index 1600ae5..625aec6 100644
---- a/sound/soc/qcom/Makefile
-+++ b/sound/soc/qcom/Makefile
-@@ -19,6 +19,7 @@ snd-soc-storm-objs := storm.o
- snd-soc-apq8016-sbc-objs := apq8016_sbc.o
- snd-soc-apq8096-objs := apq8096.o
- snd-soc-sc7180-objs := sc7180.o
-+snd-soc-sc7280-objs := sc7280.o
- snd-soc-sdm845-objs := sdm845.o
- snd-soc-sm8250-objs := sm8250.o
- snd-soc-qcom-common-objs := common.o
-@@ -27,6 +28,7 @@ obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
- obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
- obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
- obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
-+obj-$(CONFIG_SND_SOC_SC7280) += snd-soc-sc7280.o
- obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
- obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
- obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
-diff --git a/sound/soc/qcom/sc7280.c b/sound/soc/qcom/sc7280.c
-new file mode 100644
-index 0000000..1ab29f6
---- /dev/null
-+++ b/sound/soc/qcom/sc7280.c
-@@ -0,0 +1,347 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-+//
-+// sc7280.c -- ALSA SoC Machine driver for sc7280
-+
-+#include <dt-bindings/sound/sc7180-lpass.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <sound/core.h>
-+#include <sound/jack.h>
-+#include <sound/pcm.h>
-+#include <sound/soc.h>
-+#include <uapi/linux/input-event-codes.h>
-+
-+#include "../codecs/wcd938x.h"
-+#include "common.h"
-+#include "lpass.h"
-+
-+#define DRIVER_NAME "SC7280"
-+#define LPASS_MAX_PORTS  (LPASS_CDC_DMA_VA_TX8 + 1)
-+
-+
-+struct sc7280_snd_data {
-+	bool stream_prepared[LPASS_MAX_PORTS];
-+	struct snd_soc_card card;
-+	struct sdw_stream_runtime *sruntime[LPASS_MAX_PORTS];
-+	struct snd_soc_jack hs_jack;
-+	struct snd_soc_jack hdmi_jack;
-+	bool jack_setup;
-+};
-+
-+static void sc7280_jack_free(struct snd_jack *jack)
-+{
-+	struct snd_soc_component *component = jack->private_data;
-+
-+	snd_soc_component_set_jack(component, NULL, NULL);
-+}
-+
-+static int sc7280_headset_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_card *card = rtd->card;
-+	struct sc7280_snd_data *pdata = snd_soc_card_get_drvdata(card);
-+	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct snd_soc_component *component = codec_dai->component;
-+	struct snd_jack *jack;
-+	int rval, i;
-+
-+	if (!pdata->jack_setup) {
-+		rval = snd_soc_card_jack_new(card, "Headset Jack",
-+							SND_JACK_HEADSET | SND_JACK_LINEOUT |
-+							SND_JACK_MECHANICAL |
-+							SND_JACK_BTN_0 | SND_JACK_BTN_1 |
-+							SND_JACK_BTN_2 | SND_JACK_BTN_3 |
-+							SND_JACK_BTN_4 | SND_JACK_BTN_5,
-+							&pdata->hs_jack, NULL, 0);
-+
-+		if (rval < 0) {
-+			dev_err(card->dev, "Unable to add Headset Jack\n");
-+			return rval;
-+		}
-+
-+		jack = pdata->hs_jack.jack;
-+
-+		snd_jack_set_key(jack, SND_JACK_BTN_0, KEY_MEDIA);
-+		snd_jack_set_key(jack, SND_JACK_BTN_1, KEY_VOICECOMMAND);
-+		snd_jack_set_key(jack, SND_JACK_BTN_2, KEY_VOLUMEUP);
-+		snd_jack_set_key(jack, SND_JACK_BTN_3, KEY_VOLUMEDOWN);
-+
-+		jack->private_data = component;
-+		jack->private_free = sc7280_jack_free;
-+		pdata->jack_setup = true;
-+	}
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_RX0:
-+	case LPASS_CDC_DMA_TX3:
-+		for_each_rtd_codec_dais(rtd, i, codec_dai) {
-+			rval = snd_soc_component_set_jack(component, &pdata->hs_jack, NULL);
-+			if (rval != 0 && rval != -EOPNOTSUPP) {
-+				dev_warn(card->dev, "Failed to set jack: %d\n", rval);
-+				return rval;
-+			}
-+		}
-+
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sc7280_hdmi_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_card *card = rtd->card;
-+	struct sc7280_snd_data *pdata = snd_soc_card_get_drvdata(card);
-+	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-+	struct snd_soc_component *component = codec_dai->component;
-+	struct snd_jack *jack;
-+	int rval;
-+
-+	rval = snd_soc_card_jack_new(
-+			card, "HDMI Jack",
-+			SND_JACK_LINEOUT,
-+			&pdata->hdmi_jack, NULL, 0);
-+
-+	if (rval < 0) {
-+		dev_err(card->dev, "Unable to add HDMI Jack\n");
-+		return rval;
-+	}
-+
-+	jack = pdata->hdmi_jack.jack;
-+	jack->private_data = component;
-+	jack->private_free = sc7280_jack_free;
-+
-+	return snd_soc_component_set_jack(component, &pdata->hdmi_jack, NULL);
-+}
-+
-+static int sc7280_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_TX3:
-+		return sc7280_headset_init(rtd);
-+	case LPASS_CDC_DMA_RX0:
-+	case LPASS_CDC_DMA_VA_TX0:
-+	case MI2S_SECONDARY:
-+		return 0;
-+	case LPASS_DP_RX:
-+		return sc7280_hdmi_init(rtd);
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static int sc7280_snd_startup(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_RX0:
-+	case LPASS_CDC_DMA_TX3:
-+	case LPASS_CDC_DMA_VA_TX0:
-+		break;
-+	case MI2S_SECONDARY:
-+		break;
-+	case LPASS_DP_RX:
-+		break;
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static int sc7280_snd_hw_params(struct snd_pcm_substream *substream,
-+				struct snd_pcm_hw_params *params)
-+{
-+	struct snd_pcm_runtime *runtime = substream->runtime;
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *codec_dai;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct sc7280_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
-+	struct sdw_stream_runtime *sruntime;
-+	int i;
-+
-+	snd_pcm_hw_constraint_minmax(runtime, SNDRV_PCM_HW_PARAM_CHANNELS, 2, 2);
-+	snd_pcm_hw_constraint_minmax(runtime, SNDRV_PCM_HW_PARAM_RATE, 48000, 48000);
-+
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_TX3:
-+	case LPASS_CDC_DMA_RX0:
-+		for_each_rtd_codec_dais(rtd, i, codec_dai) {
-+			sruntime = snd_soc_dai_get_sdw_stream(codec_dai, substream->stream);
-+			if (sruntime != ERR_PTR(-EOPNOTSUPP))
-+				pdata->sruntime[cpu_dai->id] = sruntime;
-+		}
-+		break;
-+	}
-+
-+	return 0;
-+
-+}
-+
-+static int sc7280_snd_swr_prepare(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct sc7280_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-+	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
-+	int ret;
-+
-+	if (!sruntime)
-+		return 0;
-+
-+	if (data->stream_prepared[cpu_dai->id]) {
-+		sdw_disable_stream(sruntime);
-+		sdw_deprepare_stream(sruntime);
-+		data->stream_prepared[cpu_dai->id] = false;
-+	}
-+
-+	ret = sdw_prepare_stream(sruntime);
-+	if (ret)
-+		return ret;
-+
-+	ret = sdw_enable_stream(sruntime);
-+	if (ret) {
-+		sdw_deprepare_stream(sruntime);
-+		return ret;
-+	}
-+	data->stream_prepared[cpu_dai->id]  = true;
-+
-+	return ret;
-+}
-+
-+
-+static int sc7280_snd_prepare(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_RX0:
-+	case LPASS_CDC_DMA_TX3:
-+		return sc7280_snd_swr_prepare(substream);
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sc7280_snd_hw_free(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct sc7280_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
-+
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_RX0:
-+	case LPASS_CDC_DMA_TX3:
-+		if (sruntime && data->stream_prepared[cpu_dai->id]) {
-+			sdw_disable_stream(sruntime);
-+			sdw_deprepare_stream(sruntime);
-+			data->stream_prepared[cpu_dai->id] = false;
-+		}
-+		break;
-+	default:
-+		break;
-+	}
-+	return 0;
-+}
-+
-+static void sc7280_snd_shutdown(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case LPASS_CDC_DMA_RX0:
-+	case LPASS_CDC_DMA_TX3:
-+	case LPASS_CDC_DMA_VA_TX0:
-+		break;
-+	case MI2S_SECONDARY:
-+		break;
-+	case LPASS_DP_RX:
-+		break;
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
-+		break;
-+	}
-+}
-+
-+static const struct snd_soc_ops sc7280_ops = {
-+	.startup = sc7280_snd_startup,
-+	.shutdown = sc7280_snd_shutdown,
-+	.hw_params = sc7280_snd_hw_params,
-+	.hw_free = sc7280_snd_hw_free,
-+	.prepare = sc7280_snd_prepare,
-+};
-+
-+static const struct snd_soc_dapm_widget sc7280_snd_widgets[] = {
-+	SND_SOC_DAPM_HP("Headphone Jack", NULL),
-+	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-+};
-+
-+static int sc7280_snd_platform_probe(struct platform_device *pdev)
-+{
-+	struct snd_soc_card *card;
-+	struct sc7280_snd_data *data;
-+	struct device *dev = &pdev->dev;
-+	struct snd_soc_dai_link *link;
-+	int ret, i;
-+
-+	/* Allocate the private data */
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	card = &data->card;
-+	data->jack_setup = false;
-+	snd_soc_card_set_drvdata(card, data);
-+
-+	card->owner = THIS_MODULE;
-+	card->driver_name = DRIVER_NAME;
-+	card->dev = dev;
-+
-+	ret = qcom_snd_parse_of(card);
-+	if (ret)
-+		return ret;
-+
-+	for_each_card_prelinks(card, i, link) {
-+		link->init = sc7280_init;
-+		link->ops = &sc7280_ops;
-+	}
-+	ret = devm_snd_soc_register_card(dev, card);
-+	return ret;
-+}
-+
-+static const struct of_device_id sc7280_snd_device_id[]  = {
-+	{.compatible = "google,sc7280-herobrine"},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, sc7280_snd_device_id);
-+
-+static struct platform_driver sc7280_snd_driver = {
-+	.probe = sc7280_snd_platform_probe,
-+	.driver = {
-+		.name = "msm-snd-sc7280",
-+		.of_match_table = sc7280_snd_device_id,
-+		.pm = &snd_soc_pm_ops,
-+	},
-+};
-+module_platform_driver(sc7280_snd_driver);
-+
-+MODULE_DESCRIPTION("sc7280 ASoC Machine Driver");
-+MODULE_LICENSE("GPL v2");
+Swapnil Jakhade (5):
+  phy: cadence-torrent: Migrate to clk_hw based registration and OF APIs
+  dt-bindings: phy: cadence-torrent: Add clock IDs for derived and
+    received refclk
+  phy: cadence-torrent: Add support for derived reference clock output
+  phy: cadence-torrent: Add support for received reference clock output
+  phy: cadence-torrent: Model reference clock driver as a gate and mux
+    clock
+
+ drivers/phy/cadence/phy-cadence-torrent.c | 316 +++++++++++++++++++---
+ include/dt-bindings/phy/phy-cadence.h     |   2 +
+ 2 files changed, 286 insertions(+), 32 deletions(-)
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.26.1
 
