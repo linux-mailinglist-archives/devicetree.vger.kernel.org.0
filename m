@@ -2,158 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D63403387
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 06:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB97040339C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 07:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbhIHE6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 00:58:22 -0400
-Received: from mail-dm6nam11on2060.outbound.protection.outlook.com ([40.107.223.60]:9205
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        id S229945AbhIHFHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 01:07:48 -0400
+Received: from mail-eopbgr1310128.outbound.protection.outlook.com ([40.107.131.128]:30784
+        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229523AbhIHE6V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 00:58:21 -0400
+        id S229657AbhIHFHs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Sep 2021 01:07:48 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DWMYgKRyOqOvPNxYcXio3QAbOoC0+3VwCSqmjPIoCq+86wI9Kf8YTpqGHYDHQpd9jP9hELj7bcVNTtSGfgsEmgeGIyM7ws0fb2Gam2gn9f2j0oSsMMVtexKmRm/5sHGsr1ox4CAH+Sw+uFNHw1aSqrXcrnYXRXB3KSfkaStn0Qo9E9LjUyzIcsR/fSbdGMHHxWZgXqDMa/u41hETs7lE2/fJgF779NBkzuas52tZUliL4mOncqjwsxm895rcCz3b543p87AgonIrwQzGcu7DUxmjTeQekoCXt8gjEjZQmgElFMgk0TKvXU7OTAbTAgTMWL0dM399wQgU1j37cUJ2EQ==
+ b=M7jk/PaeLfkBfCtCUCCoK9o2IMkyWqYpCDHaJWPErzC7sWIxcVkQEtUHxAqSFKsbe4C2Hej3IvCQ8/nBVPb9YYnHX652IHnXHJJJt679TyghS5sZq2ZzKLwenM7WdFzjrsKYwjOzfWySgtGhu6UzzIJkSDApQn39bAlsvEOTxNy9A2xykzgieFqdChvjzFKWXauvN6LnGfW5o9tFaJJHca82253Z7X3dS7Q/u3B+WGEATB75KlXQAkav3iYY4cB1N3aFroAFK54M5+rr9Dt4X8EeMeP5dtYeLt95yoan+K8HIFs1VqsGgmbkMP6y+Sok9HRlxcJCf0LUgGUz34GlZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=N5sKspYojUfYxn8J11a+CcODWnO0gbynrZz7p9Dag7s=;
- b=QMsjIIrbId2pw3+9qA52DcW7hQZmbmVW1gBJ2n5jwdBsv1URveQyBdInWWQXUShoJo6mPd7zsykKLboUa++T+d7Wn0xJjAJ85w/VCvDlV04q/dNLm5Sa93r/sMN8F/AYnwm09Z8Gpgd/D39cZNCaajFqsEFniKKLTXcxyp4DGuf+XnA0LQjni2cAqhGOfsH7Sm5I3pRAU42VS/R+gWaPYsEMVUpQneoCO+wEmx7eQZkYCv3+liUbllwbwTVkA70+IFQvXVVt+g8rmFkRV75UsQzzVgMZZYV47HC1CZwDV7kj9NZeEB87Z4JAdtxPvg/7Y1Wiq9lwVFQ5idWmqhSYfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.36) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=EeEuEZtRuz7bO5bMyrKjau3kDPrTaPnz3jkc1ni+g8M=;
+ b=hgUqqumuFXZkv+IJgok87RXroHWzfr+Dfee+pkgb6l1BCDJnYpJbZzEUY6rMIHE2hDYhfIk/r443yu1tlvBx5jCxvFqHBwPoXzugDqXy4tFD17A6UXDwbpJYqbXivgqGuzCu8tb+ZNxAXDqxj6nkIGR68nYoS83zfleEOsrp3Q2Js9XN2J08xUMgnkg2nWXRGDEKh1lJfuLiyx5HqOLUycMSSfmo+phaCfC0gSw0gAPD2i7wnlFy/ENrWybFI0u0SrF/rgMwHA2e595vSCbrm13KaWts0lhKiV+aK2fVfJUb7lTX5PKKtTfMDi/HMQhIougg5pbAJWeyOF/Vxwkh/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N5sKspYojUfYxn8J11a+CcODWnO0gbynrZz7p9Dag7s=;
- b=B9E2vzfeCNFdz1y06iajO4RDfwQWxosKk5kz892oEMw3J6Ar/qTlzKvymz93DHSu24uWmhMfkaARqTGEDFQSU+JdFyjuHqVm0hIDT+iWRr+Gw70nEmc3J2YrfEf/fYSiFzmbXWAKNfa+OpSdWPCg9dx5X5dSdtVx4eAk3xYY5mN8Z00JOC+rPg1B8NbCLGvpUuS55gmOTBlgv2rZVyq/FqgbbXB3dMtUxCccXcEVqHASfZCiQiIE6aeS/vgKzOeZT8SggVeXslfoChiXUau7ysEKawYw87E7vs0kAcbPh8aH/7Iw9wgLLDop0WI95NZBRgLVGzns2Cn176hexK6e4g==
-Received: from MW4P220CA0024.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::29)
- by CH0PR12MB5139.namprd12.prod.outlook.com (2603:10b6:610:be::9) with
+ bh=EeEuEZtRuz7bO5bMyrKjau3kDPrTaPnz3jkc1ni+g8M=;
+ b=rDwS2dxDBKHthge1P28YHKVvohsZYzYr2kWcKMG2R3jHt7KBfbaPI1bBpD66efDa+/juc6TdeBR8gYEkm4JyBQ5ONMuaNH6QxraO0fReIx6UOr97nnU3nlIuWbQ2OGxZQ91/pJRppd75ODFPK3JLOkGYwsiVCuyjAv6Bc4gJbTIIUzNHjcd5RLGz/plI2y92PhR+pchyHRRQ9A5vK0rM3wrgrXQ0Kwl8kRNAxF48yoV0X9B96ajMfO7G3fwknWM5TMwmy/rkWb0HhIpchEFQyn+ujpisXr2dXQlGZWtezLwcmS7ru0WmaUvpNvHNPz3wvkrZfdwR8FgBo1A9B5mGVw==
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
+ by HK2PR06MB3252.apcprd06.prod.outlook.com (2603:1096:202:40::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19; Wed, 8 Sep
- 2021 04:57:12 +0000
-Received: from CO1NAM11FT051.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:115:cafe::b2) by MW4P220CA0024.outlook.office365.com
- (2603:10b6:303:115::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.20 via Frontend
- Transport; Wed, 8 Sep 2021 04:57:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.36)
- smtp.mailfrom=nvidia.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=pass action=none
- header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.36 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.36; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.36) by
- CO1NAM11FT051.mail.protection.outlook.com (10.13.174.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4500.14 via Frontend Transport; Wed, 8 Sep 2021 04:57:12 +0000
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 8 Sep
- 2021 04:57:11 +0000
-Received: from [10.25.97.165] (172.20.187.6) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 8 Sep
- 2021 04:57:02 +0000
-From:   Sameer Pujar <spujar@nvidia.com>
-Subject: Re: [PATCH 00/13] Extend AHUB audio support for Tegra210 and later
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <catalin.marinas@arm.com>, <will@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <kuninori.morimoto.gx@renesas.com>
-CC:     <sharadg@nvidia.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
-Message-ID: <1f2e9f17-2c88-c72d-008c-07cba947db5e@nvidia.com>
-Date:   Wed, 8 Sep 2021 10:26:57 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.20; Wed, 8 Sep
+ 2021 05:06:36 +0000
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::4c26:6668:f551:3a62]) by HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::4c26:6668:f551:3a62%3]) with mapi id 15.20.4457.026; Wed, 8 Sep 2021
+ 05:06:36 +0000
+From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "osk@google.com" <osk@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>
+Subject: RE: [PATCH v2 1/3] dt-bindings: aspeed-lpc: Add UART routing
+ compatible string
+Thread-Topic: [PATCH v2 1/3] dt-bindings: aspeed-lpc: Add UART routing
+ compatible string
+Thread-Index: AQHXn6EXTrG9luH4/kKvLz7wmMPMC6uY8jOAgACs7OA=
+Date:   Wed, 8 Sep 2021 05:06:35 +0000
+Message-ID: <HK0PR06MB3779D0B44F9F927A48F017EA91D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
+References: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+ <20210902021817.17506-2-chiawei_wang@aspeedtech.com>
+ <YTezn1TDatYs2FMd@robh.at.kernel.org>
+In-Reply-To: <YTezn1TDatYs2FMd@robh.at.kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9d1e49ef-7ae3-4636-2251-08d972866f40
+x-ms-traffictypediagnostic: HK2PR06MB3252:
+x-microsoft-antispam-prvs: <HK2PR06MB3252C4345EFE7CC165A6A03491D49@HK2PR06MB3252.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3631;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: eFHqghmgwCPOoVzRKOXs+QZYh4QTJZ7f+8OFoKsFoLYvd8dv13tC1u/Ih+2wVKh+x93PejhQ3dkvDKdiRUlYYmKChYI+2z7YYTtD3ah3w/kKSwquq2QjdcpMBMuM9iu9URMp9uu1oWCcRGQu+AdH+jKvoiKGgCygiTGJMawOyC6+RfDoO71r8OX8SbyAiiAE8xMp7yzdwuYnc1hiceifUi4aMKLrbQE202QzDtJgNybDCAV6LebWvDymevM73qw+ldqzlgNj9Ns00/4DkVaIYFMl0bpzPGBDa9T+9Doq+f4K9gFwHSqp1KNYl+iH/YkQ2lJ75tnPwPojiFEZqEuvqbreOl9QEQEQriMQfYehN/oMGtjfrEkBwa9Wd4jX7CC2U+/LJyiZgPmeAkMse3Pv1MGdyuqltE3mAqIODGQqlZUJsxVt+SPeb95rt49xub5+tim/J0mn5Npae18SDm5SR/9C5wJP7wr+/fBrfdl8F9dgPIH4fDr/xI2uuozLrpH3QPIhhiFo1bXX9XKUeOW4/EdVR26igfSpeKXZRiKeXgbnR/hF1859wIURXkQquWTHJ2NT1ssnd9kdfp7Am1Q3NdOl2R1ROJnTyMRtpXDYE1xelX0gl46PLBIccmiZhUTU3aZ2QKguHbMbSGhG/KBydIH/L0kVYvb5IQYRvt4lSBCoa2LHiFm89SdpiqCGEelvve6DDsqkr+4HW9XaoOsVmg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(136003)(396003)(346002)(376002)(39840400004)(5660300002)(6916009)(52536014)(66476007)(66946007)(66556008)(64756008)(6506007)(8676002)(38070700005)(55016002)(26005)(316002)(8936002)(186003)(66446008)(71200400001)(7416002)(2906002)(76116006)(4326008)(478600001)(33656002)(86362001)(54906003)(38100700002)(7696005)(9686003)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wbxngiiFHNi0493tS5LOCSIWF0OQvSHMyEffa8Vg555StJGxsT9LVgq3O/gT?=
+ =?us-ascii?Q?Vf6YSF44YSF6yGpe6HsR9UyUdK6/LdBEjbId972kN5aR22UcaSYpqmIh0ai/?=
+ =?us-ascii?Q?oI2NZapiiz+j5dBTAM/2zL1AW6paE1ccpglZqKM8pjp94l8GyJ4qJh1Jh1av?=
+ =?us-ascii?Q?IsoKE5Q4nYFdmiwa/TB7FH8h99NG4aYlwhi3/7suzV5x07t7Lti63EjQok4b?=
+ =?us-ascii?Q?i1AEu3/bIFKEtEg5ZOjM6RRmvfvIWYEld0zaJ+pBa3IxPgmjNvmRekfFnEXr?=
+ =?us-ascii?Q?VsaXlcD/xk2sSAbx9JwImx9EHlMuQiwF7RYlPa8NM2DKi0pUhi9EFuBwnqzY?=
+ =?us-ascii?Q?L1sAWc7oIvu7F/rH8E9fqaIOW3bVRVSTSZdDDFxgcW9NfGxDhoH5ujQWwRMa?=
+ =?us-ascii?Q?Jz2Eoe2j/Bc9s4Q1kxaB9RI6wQTvgz70mIARUpmkuIQci+HT/FSl19rFK+w5?=
+ =?us-ascii?Q?WMBS7zm/7LCQqTMGdO7bZwT4Ds4L5qg9hqwne/B8v3Pu0gORc/4WcJrFiCz3?=
+ =?us-ascii?Q?YGSSyxvIIFBd2TtECbx6Z4TwrzWhIHrroQNuru5IiTdlLNnHSQRyvqVlMDYz?=
+ =?us-ascii?Q?u5zZDYwknMG8T1SWleFquYebAnAwoPx8d29lUCyu4S4N9iUJ14ZuwBLljbaP?=
+ =?us-ascii?Q?NmDFOEYbvg7MekRlPaKqNy9US85a7BFezduC7OYGkMDTPDEhGesGuI0/txEY?=
+ =?us-ascii?Q?3NS6peICUe5cAOExozrZ7h6DCqMH3ipOHyl6aTB6DLJYISyZI0kAilmS5FV3?=
+ =?us-ascii?Q?qPQGnmpiaKfxyJRpx6urq92MT6Sq4yofBvHzc/A1+VSeCYQybroxvZFWNE+c?=
+ =?us-ascii?Q?S4Q2uZpjHlSMfCHoXwYK7X41okLtzBjpe24NvN7fVVezLSnvIuR7qkKREX2s?=
+ =?us-ascii?Q?M+NjedbFybhEG4brPI9IEZ7+S68wCHhdh88+35df7BTwskX+9umONSoTs4rY?=
+ =?us-ascii?Q?/HIftw/ztGb3sKUNjevv9y6RmYZKygG2Had3JD10LfV5+9DFnJbUjFvOH9Fd?=
+ =?us-ascii?Q?a+9idaigkYo5W38vT3G/QhR6WaaLT/FcE5lyLm8tn+XtabE4dXAr7eeCw2+i?=
+ =?us-ascii?Q?Lr3vjZaOKVqh8uHPKMIi+lZNejz//gDHEs8N585X40QyU1xJdsA0P528fFw4?=
+ =?us-ascii?Q?cEBlb2p63rmSefBeRWh8ESAQh8ZBs3iZyyv//B8xeHrrUE1oYJBtYGJQ1mnV?=
+ =?us-ascii?Q?/JjQOAbD97j2wbdaJAYQI1VZdR8nUFVAPPN8QMVCxKDbyjIShCPeAGdwAL1n?=
+ =?us-ascii?Q?v0x/YsrQjfho/8dCeNVBfIq3Mnj7nMRXqZPf7SuMGa7zFT3jt8RoC7bbWMqy?=
+ =?us-ascii?Q?L4Ak3c2knKHNK+saY/lL8cCr?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
-X-Originating-IP: [172.20.187.6]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fcb1d8bb-f278-4eb1-99b3-08d972851ef4
-X-MS-TrafficTypeDiagnostic: CH0PR12MB5139:
-X-Microsoft-Antispam-PRVS: <CH0PR12MB5139F49B7F9BB6892CEA8697A7D49@CH0PR12MB5139.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hqev6ut4pp0HU9Yy99FV7s7WlUFhpX/3ItGm8XVsnY2uHAW/crCRLjX4JTNZUulIucpCHJdxtpa4ephYXVGILFxd0LRLIAOX+lX88HFmJBQ9yv8gYeSWES/cYqzzaB6uY4ptEtSaveZddhCi5QJr9aKnfnEBtzGUKt7X0pFm5izbbaV5GfWJJ0nt+FrKUx/XOMU4jM6ft5/ZE+XjvUxp5ezisSBWSZJywnPY6UQxY80eIGIHpIrHTzaWpLeLUviGMKwO5UWBWbvRkLBF4v11KsV/ztNlk2Mx0LoLiJ+xl/pk+aBsMwMSYmjc3otPqCLNU4pdKcsCu15TSMn3eMLFhbD4lKxpBNprSkVa9Auq4F7jd6ZlTHKMgwNhSNeMyn35TTKBgjFCzh2VkWcksEbBZjBwCLZaqDA33/dOPo2PIQyhf4bB3jXjxGnNcFK5WhsbCJsibK6gxQvOXyLKFS7CEp2jl4e4AvZeZtDS4Ri51R2rBbx/OO9cpbBlLJEFF2QpZs1fA4/9xxgHWWBaqXizGp/ln2s7kPSLFKsD3j5W54+y7kVUtMUinG6SwEZXW0F0LlgSQawYBId2h04edqZMHmYD5kfWVE1TepjdnJMcySF8cfhx79c0LN1WnYb/k7/wHYZDKKt7/CcaWYhAT9oKlB8VcyxyZoxaz03/t/th3PR2QQ+6JS6X2BSPCpvGS4zAB9A9hFt1mgWk191w8QCjUFhG7398zbHOhViMv6AMCCO7XpmvFjwa48o7N64TsRiCaOLjWfyRma7l7xaSC9KOh4g9CIyzRggWFen4HfKkAKElpuxVTtigF0dqRh6XEIP5NKvNnLgJgfz788aU0oEv/5O1elNW4120J3d6S8D75Uw=
-X-Forefront-Antispam-Report: CIP:216.228.112.36;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid05.nvidia.com;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(39860400002)(376002)(46966006)(36840700001)(31696002)(47076005)(966005)(86362001)(82740400003)(356005)(7636003)(36860700001)(16576012)(54906003)(110136005)(36906005)(4326008)(8676002)(31686004)(316002)(36756003)(16526019)(8936002)(5660300002)(186003)(70586007)(426003)(2906002)(70206006)(6666004)(53546011)(82310400003)(478600001)(7416002)(2616005)(336012)(921005)(26005)(21314003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 04:57:12.4149
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d1e49ef-7ae3-4636-2251-08d972866f40
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2021 05:06:36.4355
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcb1d8bb-f278-4eb1-99b3-08d972851ef4
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.36];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT051.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5139
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: n/8xUaMoBZVk0q4kifuz58bd+MkzAXxvOm1Xdd/4agWezfFuAOdUJ9+Z/xcekspmyTJrIqS0YKD+/vL3JWF65QHPUdvCK5INFTZmqs4K0bo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR06MB3252
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All,
+> From: Rob Herring <robh@kernel.org>
+> Sent: Wednesday, September 8, 2021 2:47 AM
+>=20
+> On Thu, Sep 02, 2021 at 10:18:14AM +0800, Chia-Wei Wang wrote:
+> > Add the compatible string and the device tree description for the
+> > Aspeed AST25xx/AST26xx UART routing control.
+> >
+> > Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+> > ---
+> >  .../devicetree/bindings/mfd/aspeed-lpc.txt    | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+>=20
+> Either convert aspeed-lpc.txt to DT schema or make this a separate schema
+> doc.
 
-On 8/27/2021 3:03 PM, Sameer Pujar wrote:
-> Earlier as part of series [0], support for ADMAIF and I/O modules (such
-> as I2S, DMIC and DSPK) was added. This series aims at exposing some of
-> the AHUB internal modules (listed below), which can be used for audio
-> pre or post processing.
->
->    * SFC (Sampling Frequency Converter)
->    * MVC (Master Volume Control)
->    * AMX (Audio Multiplexer)
->    * ADX (Audio Demultiplexer)
->    * Mixer
->
-> These modules can be plugged into audio paths and relevant processing
-> can be done. The MUX routes are extended to allow add or remove above
-> modules in the path via mixer controls. This is similar to how specific
-> ADMAIF channels are connected to relevant I/O module instances at the
-> moment.
+I will send a v3 patch with a separate schema included. Thanks.
 
-> Some of these modules can alter PCM parameters. Consider example of
-> resampler (44.1 -> 48 kHz) in the path.
->
->    aplay(44.1 kHz) -> ADMAIF -> SFC -> (48 kHz) I2S -> (48kHz) Codec
->
-> The modules following SFC should be using converted sample rate and DAIs
-> need to be configured accordingly. The audio-graph driver provides a
-> mechanism to fixup the new parameters which can be specified in DT for a
-> given DAI. Then core uses these new values via fixup callback and then
-> pass it to respective DAIs hw_param() callback. The "convert-rate",
-> described in [1], property can be used when there is rate conversion in
-> the audio path. Similarly "convert-channels" can be used when there is
-> channel conversion in the path. There is no "convert-xxx" property for
-> sample size conversions. It can be added if necessary.
+Chiawei
 
-In above example, as we see the modules following SFC should be using 
-converted PCM parameters (sample rate in above case). For this I am 
-currently relying on DT properties ('convert-xxx') which is supported by 
-audio-graph-card. This works fine for a static PCM configuration and may 
-be fine to start with. But going ahead a more flexible configuration is 
-preferred (without the need of a reboot). This came up during [0], but 
-now with the introduction of processing modules in the path it becomes 
-more important and would be nice to get this addressed.
-
-Are there any mechanisms in place which can be leveraged to apply PCM 
-configurations at runtime?
-Or any directions/ideas we want to explore?
-Any feedback or pointers will be of great help.
-
-
-[0] https://lkml.org/lkml/2020/2/24/599
-
-
-Thanks,
-Sameer.
+>=20
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> > b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> > index 936aa108eab4..45d44f812e5e 100644
+> > --- a/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> > +++ b/Documentation/devicetree/bindings/mfd/aspeed-lpc.txt
+> > @@ -155,3 +155,25 @@ lpc_reset: reset-controller@98 {
+> >          reg =3D <0x98 0x4>;
+> >          #reset-cells =3D <1>;
+> >  };
+> > +
+> > +UART routing control
+> > +--------------------
+> > +
+> > +The UART routing control manages the RX muxes among the UART
+> > +controllers and the I/O pins. This is typicall used for the
+> > +Serial-Over-Lan (SOL) service.
+> > +
+> > +Required properties:
+> > +
+> > + - compatible:		One of:
+> > +			"aspeed,ast2500-uart-routing";
+> > +			"aspeed,ast2600-uart-routing";
+> > +
+> > + - reg:			offset and length of the IP in the LPC memory region
+> > +
+> > +Example:
+> > +
+> > +uart_routing: uart-routing@98 {
+> > +	compatible =3D "aspeed,ast2600-uart-routing";
+> > +	reg =3D <0x98 0x8>;
+> > +};
+> > --
+> > 2.17.1
+> >
+> >
