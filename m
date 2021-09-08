@@ -2,100 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BB34032CE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 05:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B33A04032DC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 05:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347322AbhIHDDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 23:03:53 -0400
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:35281 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1347404AbhIHDDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 23:03:52 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id AE8802B0028E;
-        Tue,  7 Sep 2021 23:02:43 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 07 Sep 2021 23:02:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm3; bh=yugISvk6ahKA18WyB5Dtl/32FJ
-        Cm7tuQeJ17QqmQL+w=; b=hAUo83B+FMlXPMEVpLpjYZ5LAihaKxQikF0NdWeR7e
-        qel8VhdrrQKPG9S1MRCKP2sR6bQmtYcepYOp3fEv99AtQ6b5JabKZYuKP94KU/4b
-        cTnHbTB0I8s6gYFbaXD3Arrr9nmWsG/UbJAIC4/iQoHBRMdAYIlen5+wmWSLZ7bJ
-        H+4O/xyaK3cSp0d3DkeIWBoGKrgZtwALLdgRO2E2koRI/I9dr1pvaebZlieJ70uG
-        Fqa8Xd5Fpz1EyO+2nvLb2sNbufoM4KJ31c7iJAgToF8igvSAexQXaBMZ65j8H1sN
-        mz9QIkF4Y5NIjRnQlSjyL0Gmojt7pGSBLybqedQzenPg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=yugISvk6ahKA18WyB
-        5Dtl/32FJCm7tuQeJ17QqmQL+w=; b=X/Dl81qj11QfzZ/yV8DcvSiRgQbZKdkSW
-        JhMKvHQWeNZLiDFaiXoKlfyZqJKy7jnDcrezyB6wbzbtR0sZUfw6rX4KLceZo4n3
-        kpZn0RDd+MyPqr/NZSwk8tKvm76IZCFbjd+JwCaw8myN/5w2AmvykThu0rBuOOI5
-        4jgPjuGZxs+YsplpB+gzj30BcgIBgFpcllKjz+86bJiPBrb8TW5eS+vKoMxThiZP
-        oa1BdhvUprgfxUj4VgFtYY2Mum4i0MoyzpavGIVI+ovMgVRfxIl+UV0uBm6TINmq
-        gfBsXtzWnXab92cLVgzp1pd9YJM3SGGhvMiixv9b9Y2N5q5bRtobA==
-X-ME-Sender: <xms:0ic4Yf4fpAnkqMXlG3Jt7tP90KXlkcqBerJY6T727wXefLyKlfcMqw>
-    <xme:0ic4YU7vvZngDWuDEkoDIZ02v0AoeoZOiJ--8pIVk1LNFTYdyjk-bvIauHqzEmz_l
-    qfspz9_lBj9e38QrA>
-X-ME-Received: <xmr:0ic4YWdQJ1KkhGJI7aPSVRjxKIKzj5NnSvj1qR-Qxj98sVdawxK-TuXFq5CQuGCKaueZxwlYTEVFhUV5GN-yzajwflWM021fzaoku3LdBEgsKwbbZwFP5IRZMe73ngeMpTmU9A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudefiedgieefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
-    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
-    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
-    vedtveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:0ic4YQIy0QL8QuNoa5oz7hrMxPYLM6gVeTcCj_Up7gYpXfZC-bMDMw>
-    <xmx:0ic4YTLbGzgPudMc2iQQXUbKxD9EfSOCbaeVzQ9MS9dQt8M6UMorQg>
-    <xmx:0ic4YZzcydncsRtC-Q3QgnhPN7FdDjnz4voyVvHr3lMZOZQBQ7rtHA>
-    <xmx:0yc4YQCe1xku8365-WRlDPGqmzFJbemBpLrLjicGFhkd5U5kxBbyW-rtLKs>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 7 Sep 2021 23:02:41 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH] dt-bindings: net: sun8i-emac: Add compatible for D1
-Date:   Tue,  7 Sep 2021 22:02:40 -0500
-Message-Id: <20210908030240.9007-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.31.1
+        id S1347460AbhIHDQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 23:16:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347371AbhIHDQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 23:16:33 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC912C061757
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 20:15:26 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id c6so1262533ybm.10
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 20:15:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XGL7umbcke/doOMh5kpYlO1h2Ked2/KDpAEFqS8ijq8=;
+        b=MhCwnGi35eOJzZgtvc1wH7ht7ZAk2Lw5vPhmPHjgo5N5+Hs8CIlgULuK3OjynZsUPq
+         B2ueqooWfvITraHfZGVwYfV1dc668k5/uD+XGxQVU1ZwWXw6R93E47/ihDHc0z25RmLS
+         hXHDeq0K+vDTAMjKTMfA5XG4WV9afSTMPMCC8uMvUXowduTTB/2qtROWh3BilTd63g+h
+         mWGhkEPsRu7gPgE4X4suc6WEucSphSd7Gr3pA/he5+2bRolmW1TTiDo/E//lqawHCzmG
+         yb1M0fCLdocto3qlCvS3VOjUxMJLx6khkUhOZTLyAuZZqnGdG8HiTLY20UT5jylTctU1
+         AwNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XGL7umbcke/doOMh5kpYlO1h2Ked2/KDpAEFqS8ijq8=;
+        b=ReWABY0bhe4wfErGACFhSLawBNTczPoNRyFZ/vO1myiF0if5BQZIli2c7Rs5cqHLHb
+         4xz/z2AicVR6ZUWDFc99NC9rCo3uCQYeo89SHk5r6ygUHU0m4ZgIFH27C/pt/ykA+H5X
+         yKOV2CQFa+rfp1KJf/fBqylorW+zWG8Rr/vIKR/Pr20Qvm5kP2PpiJvjCTH/QaNHyO6B
+         TQpQT+QnGoMJ2oyK02j7WvB5Buh6N33fTWjGXgmE0m3o+h0q7JjZj5zgQGQ4zaDtzBgG
+         HQVXkKiVBTomx5CzwSgr/WPwYgI9MVO03T8/9Mm5Z8YhUYbVKC71fbfnqzET8xw2y/+A
+         LQig==
+X-Gm-Message-State: AOAM530sl6u0Dzm9exXbKC/KD8eH4/744obUQEjLc91kbM0A8x0xTWwf
+        rzQ+5IAF+mS175uTismxJvDPRvwMgHOshwbxK1sbSQ==
+X-Google-Smtp-Source: ABdhPJxK4AxEbuTO1XBLzAPo3criMMzyA3JzcSjsFTm3I78gbA1NROP4ai3jxJ1PNbNC+FONtDi777GbHYbSg3K3hPw=
+X-Received: by 2002:a25:b94:: with SMTP id 142mr2054194ybl.508.1631070925782;
+ Tue, 07 Sep 2021 20:15:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de> <CAGETcx9eFg7jR=ibBLhU3q+VnpqJXQCVmQcEyMpozddRiCXFLQ@mail.gmail.com>
+ <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de>
+In-Reply-To: <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 7 Sep 2021 20:14:49 -0700
+Message-ID: <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
+Subject: Re: [Bisected Regression] OLPC XO-1.5: Internal drive and SD card
+ (mmcblk*) gone since commit ea718c699055
+To:     Andre Muller <andre.muller@web.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The D1 SoC contains EMAC hardware which is compatible with the A64 EMAC.
-Add the new compatible string, with the A64 as a fallback.
+On Tue, Sep 7, 2021 at 7:12 PM Andre Muller <andre.muller@web.de> wrote:
+>
+> On 08/09/2021 00.05, Saravana Kannan wrote:
+> > On Sun, Sep 5, 2021 at 1:15 AM Andre Muller <andre.muller@web.de> wrote:
+> >>
+> >> With linux-5.13 and linux-5.14, the internal drive and SD card reader are gone from the XO-1.5. I bisected the issue to come up with ea718c699055:
+> >>
+> >> # first bad commit: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
+> >>
+> >> The /dev/mmcblk* nodes are not generated since this patch.
+> >>
+> >> Please find the output of lspsi -vv and lshw below.
+> >>
+> >> I will be happy to provide more info and/or test patches.
+> >
+> > Hi Andre,
+> >
+> > Can you point me to the dts file in upstream that corresponds to this system?
+> >
+> > Also, if you can give the output of:
+> > cat /sys/kernel/debug/devices_deferred
+>
+> Hi Saravana,
+>
+>
+> /sys/kernel/debug/devices_deferred is empty.
+> I used the last good commit b6f617.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Sorry, I wanted that with the bad commit.
 
-diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-index 7f2578d48e3f..9eb4bb529ad5 100644
---- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-+++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-@@ -19,7 +19,9 @@ properties:
-       - const: allwinner,sun8i-v3s-emac
-       - const: allwinner,sun50i-a64-emac
-       - items:
--          - const: allwinner,sun50i-h6-emac
-+          - enum:
-+              - allwinner,sun20i-d1-emac
-+              - allwinner,sun50i-h6-emac
-           - const: allwinner,sun50i-a64-emac
- 
-   reg:
--- 
-2.31.1
+>
+> The XO-1.5 has an x86 compatible VIA C7 processor.
+> It uses the VX855 chip for about all I/O tasks, including SDIO.
+> I am not aware of a device tree file for it.
+>
+> It is a bit of a strange beast, it uses OFW to initialize the hardware and provide a FORTH shell.
+> Which also is the boot manager, configured via FORTH scripts.
+>
+>  From the linux side of the fence, dmesg's line 2 is:
+>
+> "OFW detected in memory, cif @ 0xff83ae68 (reserving top 8MB)"
+>
+> AIUI, this mechanism is used in lieu of a device tree file, like UEFI on most x86 hardware.
+> But my understanding of device trees is severely limited, I might be allwrong.
 
+Uhh... I'm so confused. If Linux doesn't use OF, then none of the code
+enabled by fw_devlink=on should be executed.
+
+The only thing that might remotely even execute is:
+efifb_add_links() in drivers/firmware/efi/efi-init.c
+
+If you want you can just do an early return 0; in that to see if it
+makes a difference (unlikely).
+
+Rob, Do you know what's going on with OLPC and DT?
+
+>
+>
+> Anyway, the firmware source is here:
+> http://dev.laptop.org/git/users/quozl/openfirmware/
+>
+> This file is the closest dt-analogous thing for the XO-1.5 I can find therein:
+> cpu/x86/pc/olpc/via/devices.fth
+
+That file is all gibberish to me.
+
+>
+> My machine runs the latest version:
+> http://wiki.laptop.org/go/OLPC_Firmware_q3c17
+>
+> The XO-1.5 hardware specs are here:
+> http://wiki.laptop.org/images/f/f0/CL1B_Hdwe_Design_Spec.pdf
+> http://wiki.laptop.org/go/Hardware_specification_1.5
+>
+> Would the .config or dmesg help?
+
+At this point, why not? When you do send them, please send them as
+attachments and not inline.
+
+Also, when you collect the dmesg logs, the following could help:
+Enable the existing dev_dbg logs in these functions:
+device_link_add()
+device_links_check_suppliers()
+
+And add the following log to fwnode_link_add():
++++ b/drivers/base/core.c
+@@ -87,6 +87,8 @@ int fwnode_link_add(struct fwnode_handle *con,
+struct fwnode_handle *sup)
+                goto out;
+        }
+
++       pr_info("Link fwnode %pfwP as a consumer of fwnode %pfwP\n", con, sup);
++
+        link->supplier = sup;
+        INIT_LIST_HEAD(&link->s_hook);
+        link->consumer = con;
+
+Thanks,
+Saravana
