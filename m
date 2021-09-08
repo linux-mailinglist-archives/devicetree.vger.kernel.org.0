@@ -2,105 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0784033D9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 07:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9C3A4033EC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 07:48:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237726AbhIHFgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 01:36:41 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:36739 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234655AbhIHFgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 01:36:40 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 53E722B00211;
-        Wed,  8 Sep 2021 01:35:31 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 08 Sep 2021 01:35:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=GMMTgRFqoDWXrlsxTrcsveKldCO
-        7Mc0t0dXFf3Rc3U4=; b=O/Db1L6fnLndSCQj7k2aLqShkJ/VlsBKvKJxE6D9aCE
-        cezsm1nPQMCBTUGQDREIXtMAhuZ0ufn6z1zqIVnqwLiJrhXTjvz0QYgbb2Oo4SSa
-        PH4izzLG2Xq0H8OrG+EtTqWuBpEkqCmKFxpEcxwBaZdQ/FaYbwHp4D2TSnu3GRZl
-        VOQ3s2XmQ799fKMwEheIrPFLQyJucR8PCAZ92oje0buBJHVf8PrRnWNuqmyx8Xmn
-        BkT1r3/HFKt/I38kPbupVF4vBNJUsYWr+lU27f0/SkHH/sgCiAiMlYS3UrmCCTtq
-        F8hHYmaaIArEy19IDAsD0Ys+D3GwTiwdaIWEyax1VCw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=GMMTgR
-        FqoDWXrlsxTrcsveKldCO7Mc0t0dXFf3Rc3U4=; b=Zw0okaIuvQg6L27q0/g0O9
-        4usEwjINfX35xsw6/1YEsLLwkh7DDXmJAiix01Mht849vxaQFyyQW5Tl/q4PR0SD
-        5K7JimbyHzxRYyWK6iffNMZjvVY90ogwIdFQeto3pz1Ou0PnIcxMBSKXgD2zUtKs
-        zLyt/pYr8p7GyetchZwJSCgtzHs/z0M//2JEquHBjtqAwevnU8KacxF2GkVFaRjp
-        jLztHMU5w2Ed+KPnCqVwMeQCXb41w7pkbCuAhZ2QO1tUm5m9MbgHsEmAml83B5EK
-        WK1buTm1KoG5Sgr/pwnEdzJMpOJqThaXoD20UNwVtZK08O2nqFzF4BLj+odgorqw
-        ==
-X-ME-Sender: <xms:oks4YSvI5jmbp7jiaSR06ZOdjWhsytNr6U2hpxqChQfYs61uDTUniA>
-    <xme:oks4YXf4sxiwkmNvjVdSd5zr3oe0InsigaWB-U5-dpBsvwzNDWOAhKdJlnkk9uzuf
-    _7w-BmfBe6Oqop7FV4>
-X-ME-Received: <xmr:oks4YdwM8GyvndKnn0TT7xOIZjR_eMT5NRkhynIdzjV8mZEe2cy9qa5XwaZXXXaURAVoCR1l78FPZ5qtgnWi992OSisZttjutuk8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudefiedgleegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:oks4YdONdvU54Byu9PvijwK2-p7IT6kiY1sSaEJCbNQNdMScTWflrw>
-    <xmx:oks4YS-5rfsO0TvWOZVxeTMX6uHV1wa0ou4KrgvnnNej5zEYPIqNXw>
-    <xmx:oks4YVWvkjey5J8TF-dBXjaUH3SQ_tv2fns8fyyf2LqLVihPvlsVkQ>
-    <xmx:oks4YVbJ5sC-PhJd23yCHOIWr1whksTz9nSP9-OyB4EqwFLHXbfJXloRDNU>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 8 Sep 2021 01:35:29 -0400 (EDT)
-Date:   Wed, 8 Sep 2021 07:35:27 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: sun8i-emac: Add compatible for D1
-Message-ID: <20210908053527.fzoa3b4bfr4uo6tb@gilmour>
-References: <20210908030240.9007-1-samuel@sholland.org>
+        id S233992AbhIHFuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 01:50:00 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60606 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232277AbhIHFuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 01:50:00 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1885mie3037092;
+        Wed, 8 Sep 2021 00:48:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631080124;
+        bh=2vI1xY8COoy2aNYEy9pE5ZOXaHw78xyMeW2MhP1KkE4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=fSiD9Clff46sXzsRGhNHCV9aHgXJTZpkkLGaXW97UaG9lSv7FeYWT5W2qQ+F8pqYJ
+         zhgF0YzCm0xbN3IhZavsQU/CblGMfETx8aIDFj3LLZVNSv76YcsIXYzAkGphpUWDRS
+         3Loi8oITBk0t2SneWrAp/LAlUbHyQdYh7w8CuGKE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1885mieE049562
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Sep 2021 00:48:44 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
+ Sep 2021 00:48:44 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 8 Sep 2021 00:48:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1885misE016294;
+        Wed, 8 Sep 2021 00:48:44 -0500
+Date:   Wed, 8 Sep 2021 00:48:44 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Jan Kiszka <jan.kiszka@siemens.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bao Cheng Su <baocheng.su@siemens.com>,
+        Chao Zeng <chao.zeng@siemens.com>
+Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-am65: Flip mmc device ordering
+Message-ID: <20210908054844.7ym3flo6f2pryd2x@unplug>
+References: <cover.1631032682.git.jan.kiszka@siemens.com>
+ <0dce149347353556e38a0bdf9a9489ffc9cf66d2.1631032682.git.jan.kiszka@siemens.com>
+ <20210908024442.jskmqqye432p4nmt@gatherer>
+ <674ccec8-c972-a32b-6722-922bf3c55abd@siemens.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ik7vtjftu7yl4fsr"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210908030240.9007-1-samuel@sholland.org>
+In-Reply-To: <674ccec8-c972-a32b-6722-922bf3c55abd@siemens.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07:25-20210908, Jan Kiszka wrote:
+> On 08.09.21 04:44, Nishanth Menon wrote:
+> > On 18:37-20210907, Jan Kiszka wrote:
+> >> From: Jan Kiszka <jan.kiszka@siemens.com>
+> >>
+> >> This ensures that the SD card will remain mmc0 across devices with and
+> >> without eMMC.
+> >>
+> >> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> >> ---
+> >>  arch/arm64/boot/dts/ti/k3-am65.dtsi | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> >> index a9fc1af03f27..785d931a2dd9 100644
+> >> --- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> >> +++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
+> >> @@ -31,6 +31,8 @@ aliases {
+> >>  		i2c4 = &main_i2c2;
+> >>  		i2c5 = &main_i2c3;
+> >>  		ethernet0 = &cpsw_port1;
+> >> +		mmc0 = &sdhci1;
+> >> +		mmc1 = &sdhci0;
+> > 
+> > Jan,
+> > 
+> > Responding in context of [1]. Suggestion from Aswath is to do the
+> > following instead at SoC level:
+> > +		mmc0 = &sdhci0;
+> > +		mmc1 = &sdhci1;
+> > 
+> 
+> Then I will leave this up to you and will go back to v1 of this patch
+> (as we require it the other way around).
 
---ik7vtjftu7yl4fsr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Could you elaborate on the rationale as to why the other way around?
+That would probably provide the reasoning to override the SoC generic
+definitions in the board dts/dtsi as the exception case.
 
-On Tue, Sep 07, 2021 at 10:02:40PM -0500, Samuel Holland wrote:
-> The D1 SoC contains EMAC hardware which is compatible with the A64 EMAC.
-> Add the new compatible string, with the A64 as a fallback.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-
-Acked-by: Maxime Ripard <maxime@cerno.tech>
-
-Maxime
-
---ik7vtjftu7yl4fsr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYThLmgAKCRDj7w1vZxhR
-xTgxAPoCxJsim0qsvjpeCUFgsfq8yKZtsvaz5Y3r3YaCL/RBBAD/RDXUQbq/mjBe
-KZGg3exMO76p7nDt3qWta29TvBYiPwA=
-=gFwk
------END PGP SIGNATURE-----
-
---ik7vtjftu7yl4fsr--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
