@@ -2,76 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08476403984
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 14:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36624039B4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 14:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346763AbhIHMKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 08:10:54 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:35376 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351675AbhIHMKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 08:10:54 -0400
-Received: by mail-ot1-f53.google.com with SMTP id q11-20020a9d4b0b000000b0051acbdb2869so2643869otf.2;
-        Wed, 08 Sep 2021 05:09:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j7ojHJ1eCmWRZa3pwYfDHA3k+qFmPKIKJn/96r4lWZQ=;
-        b=HKQYV3/aBH2b77KXbYvfooJkUJAD3OCRlWR2BgbyXQ1M0JYsSOSu60pHv7PMVMMUce
-         v+VJgV9xH+74A4Cew96yDQhufXK1XU1Hp4PpaWdxjusbwItkHz/JpsKAsevl4rOeBWY3
-         otWFBY+WzcPRGpbiYrI3bdUXyJvbms1j+qNHnYWjqnuJPJnNgXzko3mSsJ3nsm+hMFiY
-         Prnb2CqEZGf2sr3uOsF5+zMpu8N2GapZgxv0YmZUtGbY4GliidgrTLSbpY9Zz22JhRkW
-         h4Qr5HfJODGDhYb927bmCuFK0ItrStYMZ8oeFt72gP/oG4H9lvv/TB5xmoeHR8hpSyBP
-         4iSw==
-X-Gm-Message-State: AOAM530ndT3qhs2XkbyAD+ZuJ1H/vkyLWRNmUC9TpYagDnRGk0zN1CIB
-        eFucp2aUV1M+vAmdaOGdIg==
-X-Google-Smtp-Source: ABdhPJxWseZDeKVP+HWmuLFENdu1NKMmCTa/qCI19k9RLF4GoYFUHyFtsDm8udD9WFFDAtNTmMM4BA==
-X-Received: by 2002:a05:6830:10c8:: with SMTP id z8mr2643550oto.175.1631102986008;
-        Wed, 08 Sep 2021 05:09:46 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s14sm407750oiw.8.2021.09.08.05.09.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Sep 2021 05:09:44 -0700 (PDT)
-Received: (nullmailer pid 1869396 invoked by uid 1000);
-        Wed, 08 Sep 2021 12:09:43 -0000
-Date:   Wed, 8 Sep 2021 07:09:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     angelogioacchino.delregno@somainline.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        martin.botka@somainline.org, jamipkettunen@somainline.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-arm-msm@vger.kernel.org,
-        marijn.suijten@somainline.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-pm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: tsens: Add msm8992/4
- compatibles
-Message-ID: <YTioBwEEQHWy9Cjf@robh.at.kernel.org>
-References: <20210904211508.317560-1-konrad.dybcio@somainline.org>
+        id S1346246AbhIHM0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 08:26:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346096AbhIHM0d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Sep 2021 08:26:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 772306113D;
+        Wed,  8 Sep 2021 12:25:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631103926;
+        bh=Op1osRVlypqUXTNk2HB6kEqPziP17mPtU9hc97lcRR4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Sv4EvN2ILSEpoFKcksm9T2ctQc3iG1XtvCc36EauLX8meibXnkvhkwE+vBjRbHBy2
+         zO0WGKC+L39GKaKX1yaKCLctXEkzF4XuTVzdrI4Cgpi9qgnaHS/+4eEiDxyz4kUwLA
+         fl4VqoFJHlCDDyz/doRwLbwebFL5iyUnt3Qy/FlQ95qteW9xE1cBjEksNmJ5bZ22fQ
+         6kR1S7Xp9w+vPlG8HxNU63VDtKE14+5R4jubcnH2ozuuBzSmaAi2nzhi7PTKR5fnk/
+         g2vQcKOKMZeC6INgWK1hzC4+B+5DmACawdLqLqSk6Zl3eNbf+Rhe/xiUBxrgUC3uqs
+         qHSnlFQfcYCSQ==
+Date:   Wed, 8 Sep 2021 13:24:49 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Parshuram Raju Thombare <pthombar@cadence.com>,
+        "lukas@wunner.de" <lukas@wunner.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jayshri Dajiram Pawar <jpawar@cadence.com>,
+        Milind Parab <mparab@cadence.com>,
+        Konrad Kociolek <konrad@cadence.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v3 2/2] spi: cadence: add support for Cadence XSPI
+ controller
+Message-ID: <20210908122449.GC4112@sirena.org.uk>
+References: <1630499755-18751-1-git-send-email-pthombar@cadence.com>
+ <1630499858-20456-1-git-send-email-pthombar@cadence.com>
+ <20210903185653.7vrfn4qfzvuiaiq2@ti.com>
+ <CY4PR07MB275737A008CBB58C4B108D2FC1D49@CY4PR07MB2757.namprd07.prod.outlook.com>
+ <20210908112113.smnwmayjb3jit3eg@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZfOjI3PrQbgiZnxM"
 Content-Disposition: inline
-In-Reply-To: <20210904211508.317560-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210908112113.smnwmayjb3jit3eg@ti.com>
+X-Cookie: Should I do my BOBBIE VINTON medley?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 04 Sep 2021 23:15:07 +0200, Konrad Dybcio wrote:
-> Add the compatibles for msm8992/4 TSENS hardware.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-> Changes since v1:
-> - Separate this into a standalone patch
-> 
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--ZfOjI3PrQbgiZnxM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Sep 08, 2021 at 04:51:15PM +0530, Pratyush Yadav wrote:
+
+> But it would reduce performance by a lot, no? I think we should try to=20
+> figure out how we can accomodate controllers like this before resorting=
+=20
+> to using the slower modes.
+
+OTOH if it's going to be hard to figure out perhaps merging something
+slower that works while we do so would be good - lets people use their
+systems while things are figured out.
+
+--ZfOjI3PrQbgiZnxM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmE4q5AACgkQJNaLcl1U
+h9B6rgf/ZXheC5wT2g7JhNRwsbHSAEd9l4klCXXrduglacPawsSmO1rR+UJ0QBf8
+6h4ilOO9l15mBopd46W6IjqMaiXV+hk8vIhe//DwLPQljJGIBq9U431RKINCrita
+RIusPSjOXYLevo4HrBagjXXGXVr8h2tNsjtkHRnzfOnxeD5zB7dh8/gPSLbA+9gb
+xwxNL+rINyJAdUzJ+MBzIWip4wz2JbL2hBay4s/mCijZhqlCaC2YRKWYORMqB3pu
+9BPk2Mgyo9DmI/wE8ezSQMpMgIK/QNOEhv5w8EgCl4OocYN9dM83OFqBomsmyO7J
+s/IaixQZq+npLtWBSy+6/Oqpf7coPQ==
+=kewD
+-----END PGP SIGNATURE-----
+
+--ZfOjI3PrQbgiZnxM--
