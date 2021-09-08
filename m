@@ -2,125 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 580B3403D49
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 18:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E23D1403D8A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 18:22:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244643AbhIHQI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 12:08:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231143AbhIHQIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 12:08:25 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E7FC06175F
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 09:07:17 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id e26so2164212wmk.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 09:07:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=GYpi6gE4nzN8o+CwjqakTN6E/NlmqkQ97rUaOk/UWX4=;
-        b=dB7G61cBrEEZi4ZBM15sM0lRlQhSceRMs2j8VpUdowxIq7I+EV/O6tHzIlRKCQYMhb
-         sqKtTBuda7JR29GXYY6wtlEPEmOdXuyI7/eQcNvuWD7Cd6m0WoBprusLR/6QX1edwqZP
-         AEgnDtPlQkFvRAK8tJMfKHKW/BuNDC7p19BUYyqoOnFk34twoyiM63BUtq5fRNLxyUQu
-         FhAQzzeo+b1ZVFvMKe/gu1jnlA1YwVlBXGS9QfgyV+mFfgc7UHcQHhb7OM4+wcj/jdTy
-         QwVDcjJcgrc4vPhQrTFrGQYRbWhLz6d4x5VBLtaw1qcQwCtxkRx90tYfvdAdCEyJBoh5
-         VguQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GYpi6gE4nzN8o+CwjqakTN6E/NlmqkQ97rUaOk/UWX4=;
-        b=nr2Y3HSzd5FlNUXK+Txp6lNfi3/R/wckejG+eLGUydyMNe6A1K7sqqLVWw6CQ/in0i
-         0YyJWKHCogRpBfCW5rSWJpa3NeqpTbL+4bAFFiwon7/MwygPTdx6lGKS+E0Mgyap7Ee+
-         VhWQzprQd7jAsV7OEDiyZ7F1pci4Zapa8XZmdblTndkBUkvSM5WvmB1yelsYjcJH5TDN
-         LET1m+TgvymWdEDX2LVmudm9mhuegxZiObShXf1+GGLM1hr07kwmfO4+q88AAyT2AtrC
-         Qt9VUcea7pRJ+OjRMwnb4H/Dpss5KukNsF2WuTNG01cfJ4HqQ4h96Dwaq7K1xNj+xbUI
-         mb7g==
-X-Gm-Message-State: AOAM530e7NNjanLL4k8WmHJ2o72jAgF/zEyT1C3C+IxAyUFeBrHkiBV8
-        T58p/bzH8DakKDen4z+zKt0anQ==
-X-Google-Smtp-Source: ABdhPJxayYYiB4BOAaE9G9T0xgs/ruopGjv/M4dqlYrqylq981dWEmgdngr8ZqrrDDkmypDvw7WByA==
-X-Received: by 2002:a7b:c4cb:: with SMTP id g11mr4377562wmk.80.1631117235971;
-        Wed, 08 Sep 2021 09:07:15 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id o7sm2359684wmq.36.2021.09.08.09.07.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Sep 2021 09:07:15 -0700 (PDT)
-Subject: Re: [PATCH v2] ASoC: qcom: lpass-platform: Reset irq clear reg post
- handling interrupts
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <20210908142535.31106-1-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <c29802c9-4577-87bd-b843-8540588c6d06@linaro.org>
-Date:   Wed, 8 Sep 2021 17:07:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S1347220AbhIHQXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 12:23:46 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42458 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245273AbhIHQXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 12:23:46 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 188GMYk0121340;
+        Wed, 8 Sep 2021 11:22:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631118154;
+        bh=hLdbEdAIpee+Pfvmua3CrBHECg5KZ3Z9V1I2kAje+DU=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=NIi7ROZfcmOTYoRkgWhoQAuxJvX1VYmzUr6Zv2mT4OAo8Gs1NjrtqcPLfoyW3i9yC
+         5f2GCfyZFJXGwvCpVExuNCjydosC3UfcGjERxq5Jnve4D6Hb626FlhEw3V9iuArepw
+         Uiq6yH9PVTiCuUs5Cg3gGmP/mm2ob/qiCrX6psic=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 188GMYi0115971
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Sep 2021 11:22:34 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
+ Sep 2021 11:22:34 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 8 Sep 2021 11:22:34 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 188GMX8r126683;
+        Wed, 8 Sep 2021 11:22:33 -0500
+Date:   Wed, 8 Sep 2021 21:52:32 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Parshuram Raju Thombare <pthombar@cadence.com>,
+        "lukas@wunner.de" <lukas@wunner.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jayshri Dajiram Pawar <jpawar@cadence.com>,
+        Milind Parab <mparab@cadence.com>,
+        Konrad Kociolek <konrad@cadence.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v3 2/2] spi: cadence: add support for Cadence XSPI
+ controller
+Message-ID: <20210908162230.grweu2zhp4valamk@ti.com>
+References: <1630499755-18751-1-git-send-email-pthombar@cadence.com>
+ <1630499858-20456-1-git-send-email-pthombar@cadence.com>
+ <20210903185653.7vrfn4qfzvuiaiq2@ti.com>
+ <CY4PR07MB275737A008CBB58C4B108D2FC1D49@CY4PR07MB2757.namprd07.prod.outlook.com>
+ <20210908112113.smnwmayjb3jit3eg@ti.com>
+ <20210908122449.GC4112@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <20210908142535.31106-1-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20210908122449.GC4112@sirena.org.uk>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 08/09/2021 15:25, Srinivasa Rao Mandadapu wrote:
-> Update interrupt clear register with reset value after addressing
-> all interrupts. This is to fix playback or capture hanging issue in
-> simultaneous playback and capture usecase.
-
-Could explain bit more about the issue.
-Specifically which interrupt and which ports is this issue seen.
-
+On 08/09/21 01:24PM, Mark Brown wrote:
+> On Wed, Sep 08, 2021 at 04:51:15PM +0530, Pratyush Yadav wrote:
 > 
-> Fixes: 4f629e4b8705f ("ASoC: qcom: Add ability to handle interrupts per dma channel")
+> > But it would reduce performance by a lot, no? I think we should try to 
+> > figure out how we can accomodate controllers like this before resorting 
+> > to using the slower modes.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
-> Changes since v1:
->      -- Update comments Header information with fixes tag
-> 
->   sound/soc/qcom/lpass-platform.c | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-> index f9df76d37858..1a0a4b0b1a03 100644
-> --- a/sound/soc/qcom/lpass-platform.c
-> +++ b/sound/soc/qcom/lpass-platform.c
-> @@ -749,6 +749,12 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq, void *data)
->   		}
->   	}
->   
-> +	rv = regmap_write(drvdata->lpaif_map, LPAIF_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST), 0x0);
+> OTOH if it's going to be hard to figure out perhaps merging something
+> slower that works while we do so would be good - lets people use their
+> systems while things are figured out.
 
-Writing 1 to a bit of this register will clear the corresponding latched 
-interrupt. So I don't really understand how writing 0 is really helping 
-here?
+I would prefer to solve this problem rather than leaving it for later, 
+but either way is fine.
 
-Do you have this patch in your tree?
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/sound/soc/qcom/lpass-cpu.c?h=v5.14&id=6a7f5bd6185e1c86256d5e52c3bb7a4d390d6e19
-
-
---srini
-
-> +	if (rv) {
-> +		pr_err("error writing to irqstat reg: %d\n", rv);
-> +		return IRQ_NONE;
-> +	}
-> +
->   	return IRQ_HANDLED;
->   }
->   
-> 
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
