@@ -2,103 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 650CF404107
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 00:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B214040E4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 00:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239546AbhIHWdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 18:33:43 -0400
-Received: from ixit.cz ([94.230.151.217]:33150 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229997AbhIHWdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 18:33:42 -0400
-Received: from newone.lan (ixit.cz [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 7F21324BAF;
-        Wed,  8 Sep 2021 21:34:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1631129685;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SxiVdUlQ7fYzowAHt3rgwVXftn+wj1pzvOHK68gmgPY=;
-        b=wO7Wnqgjg6LHEVCOcSFU7TfunNi3wC6eu9Yxq4K/cUMaN6w+370N5Islyn6OVh/KXcO968
-        We/iE5hmciQjowr3x++aYKIp6wbcPe9/W3oFwIPdqHXJAS9N4IMbhM21e3BLFjk5MAC1n3
-        reB52BlboHn0lGO7q2Z1EKqAV1ypUwg=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>
-Cc:     linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>
-Subject: [PATCH 2/2] ARM: dts: qcom: ipq4019: add dwc3 arch spec compatible
-Date:   Wed,  8 Sep 2021 21:33:29 +0200
-Message-Id: <20210908193329.87992-2-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210908193329.87992-1-david@ixit.cz>
-References: <20210908193329.87992-1-david@ixit.cz>
+        id S230044AbhIHWOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 18:14:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235333AbhIHWOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 18:14:32 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DCDC061757
+        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 15:13:24 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id l10so7836175lfg.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 15:13:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5zW8ymdnwoRxgJDfYAsbf37kQ0O4knM0WphAGB0owGQ=;
+        b=pHDpEIhoTWdgz6pvptS3InaotYM1RiTcjS2x/gOXrbMcEoGiXbzcQVurRoDughiFNF
+         krhDD2ioa9d1dyrcF+wjSPsugEDGxYWYiObQb2ZQ0UWFIG1muouJuS3nH1SAg0JSezhz
+         d+VV6kJMS4Zko+lSGq5Jg/Hj0BPCzVURURmtt8M/AiUKuza3QBr3Nu17kBADxmjfY/3L
+         OUp7foJixk9hWxp3HG3sUCNcmeLs5u7Kn1NyyNSEQd+aGTONyKRRoa8q7PJueOnJPMRk
+         KoDDfuhKktzflwtn72/o+LdVD0gAftSw9q966IdrNiG4u7KkJyiYm5zLvTFnknSg+n0j
+         bnmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5zW8ymdnwoRxgJDfYAsbf37kQ0O4knM0WphAGB0owGQ=;
+        b=CxeYtrJOKNlBVylAet7JnhyN7peUIYfAq23jmxmhd9DgmcQ5nAckLZX7pHyPaLaq72
+         nT5jzhuBik/hwHoIyJUbpdlyJKvx/tP8pPKT0irHziIg3fW/pOZqni4BmhzfTMRNAfbD
+         yFvk/IYcj2ANHnVrAzv8/+F168WtlHcOBLs2AATiBfsPa8Vk8cZ9VtPj7xlVohqfKXTp
+         07JP3R9Afbl1XwgpfyM3Ex19MhpGQ04pBD3O5wm6droEQgMSOxLDDbdDY2l+AAtGYeTp
+         D4jaRrLpE4HR6xP07sWUvEaDVR0jdCVPb1VxddyKjPpdnPzz8UCt0IdoVwTeq+C+6keq
+         CJKQ==
+X-Gm-Message-State: AOAM530RtWjqhnL+m7Wv7Z1NI7d/zJzzMBgoJcLdZix3Zymn7dEJI61r
+        HfHJpXwylJJdG8KFndn/loRrKQ==
+X-Google-Smtp-Source: ABdhPJxBE+H7w77sPUvXCO9oRuAd/EjFBNsdxGVZJabxCQNiyCp5nPZfxikB6p0mq15O3v6Sv9f8yg==
+X-Received: by 2002:a05:6512:6f:: with SMTP id i15mr238185lfo.20.1631139201858;
+        Wed, 08 Sep 2021 15:13:21 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id r5sm33267lfm.2.2021.09.08.15.13.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Sep 2021 15:13:21 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: Add bindings for IXP4xx V.35 WAN HSS
+Date:   Thu,  9 Sep 2021 00:11:18 +0200
+Message-Id: <20210908221118.138045-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To be compilant with qcom,dwc3 definition
- - add compatible
- - rename dwc3@ to usb@
+This adds device tree bindings for the IXP4xx V.35 WAN high
+speed serial (HSS) link.
 
-No functional changes intended.
+An example is added to the NPE example where the HSS appears
+as a child.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Currently only adding these bindings so we can describe the
+hardware in device trees.
+---
+ ...ntel,ixp4xx-network-processing-engine.yaml |  26 ++++
+ .../bindings/net/intel,ixp4xx-hss.yaml        | 129 ++++++++++++++++++
+ 2 files changed, 155 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index a3ae5458ac68..25b7e10537df 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -637,7 +637,7 @@ usb3_hs_phy: hsphy@a6000 {
- 		};
+diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+index c435c9f369a4..179e5dea32b0 100644
+--- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
++++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+@@ -45,9 +45,35 @@ additionalProperties: false
  
- 		usb3: usb3@8af8800 {
--			compatible = "qcom,dwc3";
-+			compatible = "qcom,ipq4019-dwc3", "qcom,dwc3";
- 			reg = <0x8af8800 0x100>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -648,7 +648,7 @@ usb3: usb3@8af8800 {
- 			ranges;
- 			status = "disabled";
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
++
+     npe: npe@c8006000 {
+          compatible = "intel,ixp4xx-network-processing-engine";
+          reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
++         #address-cells = <1>;
++         #size-cells = <0>;
++
++         hss@0 {
++             compatible = "intel,ixp4xx-hss";
++             reg = <0>;
++             intel,npe-handle = <&npe 0>;
++             queue-chl-rxtrig = <&qmgr 12>;
++             queue-pkt-rx = <&qmgr 13>;
++             queue-pkt-tx0 = <&qmgr 14>;
++             queue-pkt-tx1 = <&qmgr 15>;
++             queue-pkt-tx2 = <&qmgr 16>;
++             queue-pkt-tx3 = <&qmgr 17>;
++             queue-pkt-rxfree0 = <&qmgr 18>;
++             queue-pkt-rxfree1 = <&qmgr 19>;
++             queue-pkt-rxfree2 = <&qmgr 20>;
++             queue-pkt-rxfree3 = <&qmgr 21>;
++             queue-pkt-txdone = <&qmgr 22>;
++             cts-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
++             rts-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
++             dcd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
++             dtr-gpios = <&gpio_74 2 GPIO_ACTIVE_LOW>;
++             clk-internal-gpios = <&gpio_74 0 GPIO_ACTIVE_HIGH>;
++         };
  
--			dwc3@8a00000 {
-+			usb@8a00000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x8a00000 0xf8000>;
- 				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-@@ -669,7 +669,7 @@ usb2_hs_phy: hsphy@a8000 {
- 		};
- 
- 		usb2: usb2@60f8800 {
--			compatible = "qcom,dwc3";
-+			compatible = "qcom,ipq4019-dwc3", "qcom,dwc3";
- 			reg = <0x60f8800 0x100>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -680,7 +680,7 @@ usb2: usb2@60f8800 {
- 			ranges;
- 			status = "disabled";
- 
--			dwc3@6000000 {
-+			usb@6000000 {
- 				compatible = "snps,dwc3";
- 				reg = <0x6000000 0xf8000>;
- 				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
+          crypto {
+              compatible = "intel,ixp4xx-crypto";
+diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+new file mode 100644
+index 000000000000..a5a9a14a1242
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+@@ -0,0 +1,129 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2021 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/net/intel,ixp4xx-hss.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel IXP4xx V.35 WAN High Speed Serial Link (HSS)
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Intel IXP4xx HSS makes use of the IXP4xx NPE (Network
++  Processing Engine) and the IXP4xx Queue Manager to process
++  V.35 Wideband Modem (WAN) links.
++
++properties:
++  compatible:
++    const: intel,ixp4xx-hss
++
++  reg:
++    maxItems: 1
++    description: The HSS instance
++
++  intel,npe-handle:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the NPE this HSS instance is using
++      and the instance to use in the second cell
++
++  queue-chl-rxtrig:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the RX trigger queue on the NPE
++
++  queue-pkt-rx:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet RX queue on the NPE
++
++  queue-pkt-tx0:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet TX0 queue on the NPE
++
++  queue-pkt-tx1:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet TX1 queue on the NPE
++
++  queue-pkt-tx2:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet TX2 queue on the NPE
++
++  queue-pkt-tx3:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet TX3 queue on the NPE
++
++  queue-pkt-rxfree0:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet RXFREE0 queue on the NPE
++
++  queue-pkt-rxfree1:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet RXFREE1 queue on the NPE
++
++  queue-pkt-rxfree2:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet RXFREE2 queue on the NPE
++
++  queue-pkt-rxfree3:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet RXFREE3 queue on the NPE
++
++  queue-pkt-txdone:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet TXDONE queue on the NPE
++
++  cts-gpios:
++    maxItems: 1
++    description: Clear To Send (CTS) GPIO line
++
++  rts-gpios:
++    maxItems: 1
++    description: Ready To Send (RTS) GPIO line
++
++  dcd-gpios:
++    maxItems: 1
++    description: Data Carrier Detect (DCD) GPIO line
++
++  dtr-gpios:
++    maxItems: 1
++    description: Data Terminal Ready (DTR) GPIO line
++
++  clk-internal-gpios:
++    maxItems: 1
++    description: Clock internal GPIO line, driving this high will make the HSS
++      use internal clocking as opposed to external clocking
++
++required:
++  - compatible
++  - reg
++  - intel,npe-handle
++  - queue-chl-rxtrig
++  - queue-pkt-rx
++  - queue-pkt-tx0
++  - queue-pkt-tx1
++  - queue-pkt-tx2
++  - queue-pkt-tx3
++  - queue-pkt-rxfree0
++  - queue-pkt-rxfree1
++  - queue-pkt-rxfree2
++  - queue-pkt-rxfree3
++  - queue-pkt-txdone
++  - cts-gpios
++  - rts-gpios
++  - dcd-gpios
++  - dtr-gpios
++  - clk-internal-gpios
++
++additionalProperties: false
 -- 
-2.33.0
+2.31.1
 
