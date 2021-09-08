@@ -2,254 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC44403808
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 12:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C9840383D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 12:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346039AbhIHKmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 06:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35734 "EHLO
+        id S1345745AbhIHKyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 06:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242347AbhIHKmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 06:42:36 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1EDEC061575
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 03:41:28 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id h1so2687984ljl.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 03:41:28 -0700 (PDT)
+        with ESMTP id S235209AbhIHKyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 06:54:01 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B35C061575;
+        Wed,  8 Sep 2021 03:52:53 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id p15so2765533ljn.3;
+        Wed, 08 Sep 2021 03:52:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bWOaXa5VhJBxFtZSpMo9+BEgvHHzq+TzkYPYrSPoYiU=;
-        b=Dj5UuFzBz9AV5EgJFcwlmz7F6PGeWkQ7K3EW1W93EB5U0Lt00OMbIEpmmV6fSXg2kr
-         Z9s8swQosFKZYuldi/iEnrzCWCrGgRtqCme6mdM4uAS1JFTVuoSJIcImM4rtMfu6wUyZ
-         ZBj9rWEHuQPzGmFVzkWzBtOt0SaMmAMFZDqob863uzaLKOARVocexAzv/pu1RT88L8va
-         /Re+++pxg5HQh1h/UTyGgGPXHfjaf4q8Tmorx+focFTs2jDYi5decCsUBIf4789CPiMw
-         2cVZTaThllBuBeF72KUUHiVVh8srJPYfQyGOFLFu/XXM4h4CQ86vKOx9yOMIvq4d71uK
-         P1HA==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=SCa5sUcg3hd31K9Jh0v/b9ezKnAfrViWPcQLkGDjQ+4=;
+        b=oCkzDEUShK5lI6n91PzLUskjiJzDmMHgbLjz+KXzkc3Rfw26w3sRoW8v962TNFfa4M
+         LsrrvsBQeSkrcbTeOeRR4l8qvU6E/8I2wBFPYE6JUUQcYNr+aebrSAXpirXTJmM1x1nX
+         ZEl9Pi2vuebkV5Tt0mat0PwmMWj2KFR1AMJT8WCEXuE1wxBUfgcSbkDXEJ2cLXlKkwjJ
+         AVMKcRonmm3JkuZjdZybhr3eYQSlH5CC3n66VmGnipizSPmq33qJFWDib6RxUYg3IVg1
+         0yVgTa1YzQxeU4xMujoXFRDUsET4S612uh/mofJ43hKBtxo7TM9wOGzq6SK+it8jLiz1
+         CFDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bWOaXa5VhJBxFtZSpMo9+BEgvHHzq+TzkYPYrSPoYiU=;
-        b=Ux/01b8IOuxwNWeKGSnIc4zoqwHiaFA2AVu2aHlU9uxUO20Prho3SsHLkrPLt0EE24
-         itKIwzzQPtO/wwA06uFP2IwqyD8+56R8kXrdR5ZAq7O8lpsDq6qjy5MvvzL4QHqX76C0
-         R04pZItkZxYBk5c5IrqDjs/jfQ3FyYFPaqILO46AMpduaP0VQujgPUIZ0P4lJ670X92Z
-         1h96ozYjYcRh1nWYQv/eOu/Fb6zmOY2YxWLaWWbkc92JBWWcJOBNTwmXROasW5nEmjsv
-         mBxRETI0iMaVXtmvhVloUlFVpfeogKjCT3HgRUiCFV9i4J1h5qXgNgB1Aka6o5a5cLgK
-         fEHw==
-X-Gm-Message-State: AOAM530BBiGZ6ZcTDEj2N52UsCSC5VL3QailE/ZIaKAXlg6Fm5vvd7WA
-        XmBvmknVBTDZw6BG5WuhMjJmtSx0G3PnCkITS2QJ9Tqh60fyYw==
-X-Google-Smtp-Source: ABdhPJxPYbIYf6dACCVmjxa6qwFLQoPNNC/oQpPWSBJVgU/ywrhWi4sq+Zxvm4mQfPP4xv8qdEReczTl44w9X1ABPBI=
-X-Received: by 2002:a2e:960c:: with SMTP id v12mr2420457ljh.300.1631097686869;
- Wed, 08 Sep 2021 03:41:26 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SCa5sUcg3hd31K9Jh0v/b9ezKnAfrViWPcQLkGDjQ+4=;
+        b=XQ6hUVrkcejWwwy9Gz1I38jplEREvJPxq9zD5u0cDgie/Ui39PMITPnxetpESE17Q/
+         +Lqb1Wg4JtdQspsdEA+UTYVCTvLSqZFmLlH4kMuddbLjbvl74RXhVty+O89dT6JTzng+
+         sIx0rfJkLb9DwxFkAEKLYy/uCXo6pw8shjHWuZeTk58mWDIYZX8xU/xXTzfaE1Rnsuuf
+         6jjV4J1LOWhWCgkE57zcBK0BLtytXBojTZAHXTttnb3e7gwsUTIWZesmmAXXnqasMOHC
+         kZDNpSaG52I+nmvHvBBHc/qDC161OY+UzMJMcJvR8npJLjkHzjAQcvZl2ccxyw8SpOmB
+         hOsA==
+X-Gm-Message-State: AOAM532cfjo0ZgWP0TyYzI+4qMup+ea0zlDNiBwomik5kIQELPf4IDmz
+        dCuVWiOrR+rSXf5Opa7ObHQ=
+X-Google-Smtp-Source: ABdhPJzwOrSuphL+vd9b2Iy/O3YtR+9hdvovE6aK5/918675iAVWeZPr9K75U2+6lQiLHq5djr8icA==
+X-Received: by 2002:a2e:99d9:: with SMTP id l25mr2262345ljj.217.1631098371710;
+        Wed, 08 Sep 2021 03:52:51 -0700 (PDT)
+Received: from home.paul.comp (paulfertser.info. [2001:470:26:54b:226:9eff:fe70:80c2])
+        by smtp.gmail.com with ESMTPSA id o7sm201332lji.17.2021.09.08.03.52.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Sep 2021 03:52:51 -0700 (PDT)
+Received: from home.paul.comp (home.paul.comp [IPv6:0:0:0:0:0:0:0:1])
+        by home.paul.comp (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 188Aqmlt015750;
+        Wed, 8 Sep 2021 13:52:49 +0300
+Received: (from paul@localhost)
+        by home.paul.comp (8.15.2/8.15.2/Submit) id 188Aqkv8015749;
+        Wed, 8 Sep 2021 13:52:46 +0300
+Date:   Wed, 8 Sep 2021 13:52:45 +0300
+From:   Paul Fertser <fercerpav@gmail.com>
+To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "osk@google.com" <osk@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Konstantin Klubnichkin <kitsok@yandex-team.ru>
+Subject: Re: [PATCH v2 0/3] arm: aspeed: Add UART routing support
+Message-ID: <20210908105245.GB23326@home.paul.comp>
+References: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+ <20210908094248.GZ23326@home.paul.comp>
+ <HK0PR06MB3779180F75DB8BD872F8A78391D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210831102141.624725-1-ulf.hansson@linaro.org>
- <CAGETcx8FKnmeCh3dD1b2TYXf3gwHnW-iWwfz0q-9UzeP2VZSDw@mail.gmail.com>
- <CAPDyKFq7aD_VXyY6=Kvp3t2Ph1_+CheZWDA6j2AoPK6ExX4h0g@mail.gmail.com>
- <CAGETcx_NRWYYWxp77d+0LmpVT1F7X1sh3qoS1DuissfRyDWp=w@mail.gmail.com>
- <CAPDyKFotC5FBPkaTXHEqV_S=9RSsqBuM9U2YgUaSUk4vB0Kc2w@mail.gmail.com> <CAGETcx86_f-exfLC+jF8SaRgV92wkOCjc-eBygOF5g39uN9G8Q@mail.gmail.com>
-In-Reply-To: <CAGETcx86_f-exfLC+jF8SaRgV92wkOCjc-eBygOF5g39uN9G8Q@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 8 Sep 2021 12:40:50 +0200
-Message-ID: <CAPDyKFq8tOCj6PVB_92wTs_6XN7FZPKSxQqkXYqpU0LWHSFJQw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of: property: fw_devlink: Set 'optional_con_dev' for parse_power_domains
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <HK0PR06MB3779180F75DB8BD872F8A78391D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
+On Wed, Sep 08, 2021 at 10:18:35AM +0000, ChiaWei Wang wrote:
+> > Does UART1 need some explicit disabling for VUART IRQs to work? It looks like
+> > setting LPC address and IRQ number in VUART is enough to override the
+> > register part but probably not for the interrupt?
+> 
+> You may need to confirm that the Host does not enable the SIO SUART1
+> device. This will conflict with VUART as both SUART and VAURT are
+> competing for the port address 0x3f8 and SIRQ 4.
 
-> > >
-> > > Device-A {
-> > >         compatible="foo";
-> > >
-> > >         Device-B {
-> > >                 compatible="flam";
-> > >                 power-domains = <&Device-C>;
-> > >         }
-> > > }
-> > >
-> > > Device-C {
-> > >         compatible="bar";
-> > >
-> > >         Device-D {
-> > >                 compatible="baz";
-> > >                 power-domains = <&Device-A>;
-> > >         }
-> > > }
-> > >
-> > > Legend:
-> > > I'll use X -> Y to indicate links where X is the consumer and Y is the supplier.
-> > > I'll call out the link types as fwnode or device links.
-> > > If I don't explicitly state otherwise, when I say device links, I mean
-> > > stateful/managed device link that is NOT sync-state-only device links.
-> > >
-> > > I think your first question is asking about fwnode link. So I'll answer that.
-> > >
-> > > fwnode links are created from the actual nodes that list the
-> > > dependencies. So in this case from device-B -> device-C and device-D
-> > > -> device-A. It needs to be done this way for a couple of reasons. But
-> > > to answer your question on "why do this when Device-B doesn't have a
-> > > compatible string?":
-> > >
-> > > 1. Not all devices have compatible strings (in an ideal world this
-> > > won't be the case). So Device-A would create a struct device for
-> > > Device-B, set the of_node/fwnode to point to Device-B DT node. Then
-> > > device-B gets probed, etc. In those cases, we want the device links to
-> > > be created between device-B -> device-C and NOT from device-A ->
-> > > device-C. Because if we did follow that logic, we'll get device-A ->
-> > > device-C and device-C -> device-A. This obviously can't work because
-> > > it's a cyclic dependency and fw_devlink will have to give up on these.
-> > >
-> > > 2. When device-C is added (assuming device-A is added already), we
-> > > need to create a sync-state-only device link from device-A to device-C
-> > > as a proxy for the future device-B -> device-C device link that'll
-> > > come up. This is to make sure device-C's sync_state() doesn't fire too
-> > > early. So the way fw_devlink can tell apart device-A's real dependency
-> > > (none in this case) vs device-B's dependency it's proxying for is by
-> > > the fact the fwnode link is from device-B DT -> device-C DT.
-> > >
-> > > Hope that makes sense.
-> >
-> > Yes, it does and I understand that it may become complicated in some
-> > cases. If you get the time to put together an LWN article about
-> > fw_devlinks, I would certainly read it. :-)
-> >
-> > However, at least for power-domains, the DT example you describe above
-> > is an invalid description of a HW. It doesn't make sense to try to
-> > support if for fw_devlink, at least in my opinion. Let me elaborate.
-> >
-> > So, I assume you have left out the #power-domain-cells property (for
-> > simplicity) for Device-A and Device-C, as those seem to be the
-> > power-domain providers.
->
-> Yes, but also because I don't want you to take these dependencies too
-> literally. I should have just used "depends-on =" as a standing in
-> fake property to make my point. And what "depends-on" maps to in each
-> DT node could be any one of the properties that point to a supplier.
->
-> The TLDR for this entire email is: You can't transfer the dependency
-> requirement of a child to its parent just because the child doesn't
-> have a "compatible" property (that's exactly what your patch was
-> doing). The incorrect creation of a cyclic dependency is one example
-> of why it's wrong.
->
-> > *) If Device-B is a consumer of Device-C, it also means that Device-A
-> > must be assigned as the child-power-domain to Device-C's power-domain.
->
-> This statement doesn't make any sense. If Device-B is the actual
-> consumer of device-C, why the heck should Device-A be assigned as the
-> child-power domain of device-C. Device-B should be assigned as the
-> child-power domain of device-C. Device-A could be on a completely
-> different power domain and not depend on Device-C for anything.
->
-> > **) If Device-D is the consumer of Device-A, it also means that
-> > Device-C must be assigned as the child-power-domain to Device-A's
-> > power-domain.
->
-> Similar comment here about device-D being the child power domain to
-> Device-A. Read further below about cycles.
+Do you really mean the Host here, that is, software that controls LPC
+master when ASpeed is used as an LPC slave? Linux driver is not doing
+anything special with the UART1, it's just trying to use it as if it
+was a hardware 16550A physical IC on I/O bus.
 
-Well, I assumed the usual way of how we treat child nodes for power-domains.
+Or do you mean the BMC software shouldn't be enabling SUART1 by making
+sure its clock is disabled in SCU0C? Is there anything else needed?
+I've tried reading the ast2500 datasheet many times but this detail
+seem to be missing. Is there some appnote on the topic probably?
 
-In any case, the description is wrong from the HW point of view -
-power-domains can't be described like that.
+In this case do we have some way to make it an obvious error to enable
+both SUART1 and VUART in DTS? If they're conflicting surely there
+should be a way to express that?
 
->
-> > This simply can't be right from the HW point of view - and we don't
-> > support this in the Linux kernel anyway.
->
-> That's my point. By doing what you wanted to do, you are making
-> Device-A dependent on Device-C and Device-C dependent on Device-A.
-> Which makes no sense.
+Thank you for looking into this!
 
-Exactly.
-
-If that configuration exists in DT, why should we bother to support it
-with fw_devlinks, it's broken anyway.
-
->
-> > A power-domain can not be
-> > both parent and child to another power-domain. In other words, cyclic
-> > dependencies can't exist for power-domains, as it would be a wrong
-> > description of the HW.
->
-> Real cyclic dependencies can't exist between any HW -- doesn't matter
-> if it's a power domain or not. That'd just be wrong.
->
-> > I wonder if the similar reasoning is applicable for other types of
-> > resources, like clocks and regulators, for example.
->
-> So the example I gave definitely happens between two PMIC in one of
-> the MSM chips. Forgot which one. If you follow what you suggested,
-> we'll end up with both the devices not probing because they are
-> waiting on each other to probe.
->
-> Also, to go back to my main point, don't focus too much on one
-> framework/property. In my example above, Device-D could be dependent
-> on Device-A for a clock and you'll hit the same problem.
-
-Well, again, that would not be a correct description of the HW, but I
-get your point.
-
-[...]
-
-> > > >
-> > > > Would you mind elaborating for my understanding and perhaps point me
-> > > > to an example where it will break?
-> > >
-> > > So if you did this, it'll break:
-> > > (1) the probe of device-A/device-C due to cyclic dependencies. Really
-> > > no, because fw_devlink will just stop enforcing ordering between
-> > > device-A and device-C if it detects a cycle. But if there was a real
-> > > dependency (can me multiple links deep) between device-A -> device-C,
-> > > that would no longer get enforced.
-> >
-> > As I said above, cyclic dependencies don't exist for power-domains.
->
-> As I said above, *real* cyclic dependencies don't exist for anything.
->
-> > > (2) It'd break sync_state() correctness for device-B -> device-C dependency.
-> >
-> > I don't see that. Again, because power-domain providers can't be
-> > described in a cyclic way in DT.
->
-> I think I answered this above. Change one of the "power-domains"
-> property to clocks (or one of the many properties fw_devlink supports)
-> and you'll have the same issue I described.
->
-> > >
-> > > Hope that helps.
-> > >
-> >
-> > Perhaps, renaming the flag to "non-cyclic" would be an option? As it
-> > seems like that is what this boils done to, right?
->
-> No property is truly wanting to create a cycle. So if you were to
-> create such a flag, every property should set it. See my TLDR above.
-
-Well, I assume there are some valid cases where cyclic dependencies
-are okay, like the "remote-endpoint" DT property, for example? No?
-
-My point is, we are assuming there may be cyclic dependencies for all
-the DT properties we parse for fw_devlink, while in fact those should
-exist only for a few cases, right?
-
-Doesn't the additional parsing and creation of links, to deal with
-cyclic dependencies come with an overhead? If so - an option could be
-to let it hurt only those properties that really need it.
-
-[...]
-
-Kind regards
-Uffe
+-- 
+Be free, use free (http://www.gnu.org/philosophy/free-sw.html) software!
+mailto:fercerpav@gmail.com
