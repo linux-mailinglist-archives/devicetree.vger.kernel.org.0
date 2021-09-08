@@ -2,258 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69B214040E4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 00:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A107F404105
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 00:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbhIHWOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 18:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235333AbhIHWOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 18:14:32 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DCDC061757
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 15:13:24 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id l10so7836175lfg.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 15:13:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5zW8ymdnwoRxgJDfYAsbf37kQ0O4knM0WphAGB0owGQ=;
-        b=pHDpEIhoTWdgz6pvptS3InaotYM1RiTcjS2x/gOXrbMcEoGiXbzcQVurRoDughiFNF
-         krhDD2ioa9d1dyrcF+wjSPsugEDGxYWYiObQb2ZQ0UWFIG1muouJuS3nH1SAg0JSezhz
-         d+VV6kJMS4Zko+lSGq5Jg/Hj0BPCzVURURmtt8M/AiUKuza3QBr3Nu17kBADxmjfY/3L
-         OUp7foJixk9hWxp3HG3sUCNcmeLs5u7Kn1NyyNSEQd+aGTONyKRRoa8q7PJueOnJPMRk
-         KoDDfuhKktzflwtn72/o+LdVD0gAftSw9q966IdrNiG4u7KkJyiYm5zLvTFnknSg+n0j
-         bnmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5zW8ymdnwoRxgJDfYAsbf37kQ0O4knM0WphAGB0owGQ=;
-        b=CxeYtrJOKNlBVylAet7JnhyN7peUIYfAq23jmxmhd9DgmcQ5nAckLZX7pHyPaLaq72
-         nT5jzhuBik/hwHoIyJUbpdlyJKvx/tP8pPKT0irHziIg3fW/pOZqni4BmhzfTMRNAfbD
-         yFvk/IYcj2ANHnVrAzv8/+F168WtlHcOBLs2AATiBfsPa8Vk8cZ9VtPj7xlVohqfKXTp
-         07JP3R9Afbl1XwgpfyM3Ex19MhpGQ04pBD3O5wm6droEQgMSOxLDDbdDY2l+AAtGYeTp
-         D4jaRrLpE4HR6xP07sWUvEaDVR0jdCVPb1VxddyKjPpdnPzz8UCt0IdoVwTeq+C+6keq
-         CJKQ==
-X-Gm-Message-State: AOAM530RtWjqhnL+m7Wv7Z1NI7d/zJzzMBgoJcLdZix3Zymn7dEJI61r
-        HfHJpXwylJJdG8KFndn/loRrKQ==
-X-Google-Smtp-Source: ABdhPJxBE+H7w77sPUvXCO9oRuAd/EjFBNsdxGVZJabxCQNiyCp5nPZfxikB6p0mq15O3v6Sv9f8yg==
-X-Received: by 2002:a05:6512:6f:: with SMTP id i15mr238185lfo.20.1631139201858;
-        Wed, 08 Sep 2021 15:13:21 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id r5sm33267lfm.2.2021.09.08.15.13.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Sep 2021 15:13:21 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: Add bindings for IXP4xx V.35 WAN HSS
-Date:   Thu,  9 Sep 2021 00:11:18 +0200
-Message-Id: <20210908221118.138045-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        id S235899AbhIHWcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 18:32:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44340 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229997AbhIHWcW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Sep 2021 18:32:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CABE460F23;
+        Wed,  8 Sep 2021 22:31:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631140273;
+        bh=CEZnMdCaJnqR1gLr3Yht5YBKu/wGwx/F6NVjNDH3qqw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ABfCMef81Sh+tKw7PbfptrK/4w9DzKITy06nLfdUmKdpTr7psAsykceCwUbPYQm70
+         b64AuBLaPkg6y0JZad1R2xUIGIkgdCkN2dxIqmW6XsbbSS4l06GGFd/1OVMtOZMiTS
+         Q5IaU7PqWOlTf6SnEY7IeHt7MoAkwcTeB8EXdaTeRhdQmEJXewOVa4W1Wz+uBGbk1+
+         tvjUpDNsAcXfpSRs+HekwnQ2RaUsX0VAA0xG6KKeRjklLSAO+zaJjSEeDhbbegROPX
+         rliN2YKc3UBRttKem1Sc+U9pOE17AyFK/F8hRzS0MVzNKUuA0XPXuhYtcE6V3LS8j1
+         Y+yvh37GMWQIg==
+Received: by mail-ed1-f49.google.com with SMTP id s25so5093104edw.0;
+        Wed, 08 Sep 2021 15:31:13 -0700 (PDT)
+X-Gm-Message-State: AOAM533Y0IFEFj6Jxn67OKFCqcOJAKoqfh+5Gfsbmd1avhGGYFArbY6u
+        bExyHMqTHDwby/o2w/U1NmZXMMHitYTJzMVdag==
+X-Google-Smtp-Source: ABdhPJx0UCjjskaqV1A5cfxvMrUdRuzgUcj94Xm4J1nuDTk7RXMpw22lOl8EgUrxXZKtaFANPXHgdtHPKaF0Vg77wkk=
+X-Received: by 2002:aa7:d645:: with SMTP id v5mr552075edr.145.1631140272407;
+ Wed, 08 Sep 2021 15:31:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de> <CAGETcx9eFg7jR=ibBLhU3q+VnpqJXQCVmQcEyMpozddRiCXFLQ@mail.gmail.com>
+ <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de> <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
+In-Reply-To: <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 8 Sep 2021 17:31:01 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL8sGc7sA7q+SFcMKF02NWpqOUUEWew1qOY+vdpKVFJ6w@mail.gmail.com>
+Message-ID: <CAL_JsqL8sGc7sA7q+SFcMKF02NWpqOUUEWew1qOY+vdpKVFJ6w@mail.gmail.com>
+Subject: Re: [Bisected Regression] OLPC XO-1.5: Internal drive and SD card
+ (mmcblk*) gone since commit ea718c699055
+To:     Saravana Kannan <saravanak@google.com>,
+        Andre Muller <andre.muller@web.de>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the IXP4xx V.35 WAN high
-speed serial (HSS) link.
+On Tue, Sep 7, 2021 at 10:15 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Tue, Sep 7, 2021 at 7:12 PM Andre Muller <andre.muller@web.de> wrote:
+> >
+> > On 08/09/2021 00.05, Saravana Kannan wrote:
+> > > On Sun, Sep 5, 2021 at 1:15 AM Andre Muller <andre.muller@web.de> wrote:
+> > >>
+> > >> With linux-5.13 and linux-5.14, the internal drive and SD card reader are gone from the XO-1.5. I bisected the issue to come up with ea718c699055:
+> > >>
+> > >> # first bad commit: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
+> > >>
+> > >> The /dev/mmcblk* nodes are not generated since this patch.
+> > >>
+> > >> Please find the output of lspsi -vv and lshw below.
+> > >>
+> > >> I will be happy to provide more info and/or test patches.
+> > >
+> > > Hi Andre,
+> > >
+> > > Can you point me to the dts file in upstream that corresponds to this system?
+> > >
+> > > Also, if you can give the output of:
+> > > cat /sys/kernel/debug/devices_deferred
+> >
+> > Hi Saravana,
+> >
+> >
+> > /sys/kernel/debug/devices_deferred is empty.
+> > I used the last good commit b6f617.
+>
+> Sorry, I wanted that with the bad commit.
+>
+> >
+> > The XO-1.5 has an x86 compatible VIA C7 processor.
+> > It uses the VX855 chip for about all I/O tasks, including SDIO.
+> > I am not aware of a device tree file for it.
+> >
+> > It is a bit of a strange beast, it uses OFW to initialize the hardware and provide a FORTH shell.
+> > Which also is the boot manager, configured via FORTH scripts.
+> >
+> >  From the linux side of the fence, dmesg's line 2 is:
+> >
+> > "OFW detected in memory, cif @ 0xff83ae68 (reserving top 8MB)"
+> >
+> > AIUI, this mechanism is used in lieu of a device tree file, like UEFI on most x86 hardware.
+> > But my understanding of device trees is severely limited, I might be allwrong.
+>
+> Uhh... I'm so confused. If Linux doesn't use OF, then none of the code
+> enabled by fw_devlink=on should be executed.
 
-An example is added to the NPE example where the HSS appears
-as a child.
+Linux does, but maybe not for memory (like UEFI on arm64).
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-Currently only adding these bindings so we can describe the
-hardware in device trees.
----
- ...ntel,ixp4xx-network-processing-engine.yaml |  26 ++++
- .../bindings/net/intel,ixp4xx-hss.yaml        | 129 ++++++++++++++++++
- 2 files changed, 155 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+> The only thing that might remotely even execute is:
+> efifb_add_links() in drivers/firmware/efi/efi-init.c
+>
+> If you want you can just do an early return 0; in that to see if it
+> makes a difference (unlikely).
+>
+> Rob, Do you know what's going on with OLPC and DT?
 
-diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-index c435c9f369a4..179e5dea32b0 100644
---- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-+++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-@@ -45,9 +45,35 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-     npe: npe@c8006000 {
-          compatible = "intel,ixp4xx-network-processing-engine";
-          reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
-+         #address-cells = <1>;
-+         #size-cells = <0>;
-+
-+         hss@0 {
-+             compatible = "intel,ixp4xx-hss";
-+             reg = <0>;
-+             intel,npe-handle = <&npe 0>;
-+             queue-chl-rxtrig = <&qmgr 12>;
-+             queue-pkt-rx = <&qmgr 13>;
-+             queue-pkt-tx0 = <&qmgr 14>;
-+             queue-pkt-tx1 = <&qmgr 15>;
-+             queue-pkt-tx2 = <&qmgr 16>;
-+             queue-pkt-tx3 = <&qmgr 17>;
-+             queue-pkt-rxfree0 = <&qmgr 18>;
-+             queue-pkt-rxfree1 = <&qmgr 19>;
-+             queue-pkt-rxfree2 = <&qmgr 20>;
-+             queue-pkt-rxfree3 = <&qmgr 21>;
-+             queue-pkt-txdone = <&qmgr 22>;
-+             cts-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
-+             rts-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
-+             dcd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
-+             dtr-gpios = <&gpio_74 2 GPIO_ACTIVE_LOW>;
-+             clk-internal-gpios = <&gpio_74 0 GPIO_ACTIVE_HIGH>;
-+         };
- 
-          crypto {
-              compatible = "intel,ixp4xx-crypto";
-diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
-new file mode 100644
-index 000000000000..a5a9a14a1242
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2021 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/intel,ixp4xx-hss.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel IXP4xx V.35 WAN High Speed Serial Link (HSS)
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Intel IXP4xx HSS makes use of the IXP4xx NPE (Network
-+  Processing Engine) and the IXP4xx Queue Manager to process
-+  V.35 Wideband Modem (WAN) links.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-hss
-+
-+  reg:
-+    maxItems: 1
-+    description: The HSS instance
-+
-+  intel,npe-handle:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the NPE this HSS instance is using
-+      and the instance to use in the second cell
-+
-+  queue-chl-rxtrig:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the RX trigger queue on the NPE
-+
-+  queue-pkt-rx:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet RX queue on the NPE
-+
-+  queue-pkt-tx0:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet TX0 queue on the NPE
-+
-+  queue-pkt-tx1:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet TX1 queue on the NPE
-+
-+  queue-pkt-tx2:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet TX2 queue on the NPE
-+
-+  queue-pkt-tx3:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet TX3 queue on the NPE
-+
-+  queue-pkt-rxfree0:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet RXFREE0 queue on the NPE
-+
-+  queue-pkt-rxfree1:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet RXFREE1 queue on the NPE
-+
-+  queue-pkt-rxfree2:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet RXFREE2 queue on the NPE
-+
-+  queue-pkt-rxfree3:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet RXFREE3 queue on the NPE
-+
-+  queue-pkt-txdone:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    maxItems: 1
-+    description: phandle to the packet TXDONE queue on the NPE
-+
-+  cts-gpios:
-+    maxItems: 1
-+    description: Clear To Send (CTS) GPIO line
-+
-+  rts-gpios:
-+    maxItems: 1
-+    description: Ready To Send (RTS) GPIO line
-+
-+  dcd-gpios:
-+    maxItems: 1
-+    description: Data Carrier Detect (DCD) GPIO line
-+
-+  dtr-gpios:
-+    maxItems: 1
-+    description: Data Terminal Ready (DTR) GPIO line
-+
-+  clk-internal-gpios:
-+    maxItems: 1
-+    description: Clock internal GPIO line, driving this high will make the HSS
-+      use internal clocking as opposed to external clocking
-+
-+required:
-+  - compatible
-+  - reg
-+  - intel,npe-handle
-+  - queue-chl-rxtrig
-+  - queue-pkt-rx
-+  - queue-pkt-tx0
-+  - queue-pkt-tx1
-+  - queue-pkt-tx2
-+  - queue-pkt-tx3
-+  - queue-pkt-rxfree0
-+  - queue-pkt-rxfree1
-+  - queue-pkt-rxfree2
-+  - queue-pkt-rxfree3
-+  - queue-pkt-txdone
-+  - cts-gpios
-+  - rts-gpios
-+  - dcd-gpios
-+  - dtr-gpios
-+  - clk-internal-gpios
-+
-+additionalProperties: false
--- 
-2.31.1
+Not really. I have an XO-1 DT dump[1]. It's probably a similar looking
+DT though. It's pretty ancient lacking anything we've invented for DT
+in the last 10 years. There's not really much to it as about the only
+phandle I see is for interrupts.
 
+> > Anyway, the firmware source is here:
+> > http://dev.laptop.org/git/users/quozl/openfirmware/
+> >
+> > This file is the closest dt-analogous thing for the XO-1.5 I can find therein:
+> > cpu/x86/pc/olpc/via/devices.fth
+>
+> That file is all gibberish to me.
+
+Running this on a booted system would help:
+
+dtc -f -I fs -O dts /proc/device-tree > dump.dts
+
+If you don't have dtc on the system, then you'll have to zip up
+/proc/device-tree contents and run dtc elsewhere (or just post that).
+
+> > My machine runs the latest version:
+> > http://wiki.laptop.org/go/OLPC_Firmware_q3c17
+> >
+> > The XO-1.5 hardware specs are here:
+> > http://wiki.laptop.org/images/f/f0/CL1B_Hdwe_Design_Spec.pdf
+> > http://wiki.laptop.org/go/Hardware_specification_1.5
+> >
+> > Would the .config or dmesg help?
+>
+> At this point, why not? When you do send them, please send them as
+> attachments and not inline.
+>
+> Also, when you collect the dmesg logs, the following could help:
+> Enable the existing dev_dbg logs in these functions:
+> device_link_add()
+> device_links_check_suppliers()
+>
+> And add the following log to fwnode_link_add():
+> +++ b/drivers/base/core.c
+> @@ -87,6 +87,8 @@ int fwnode_link_add(struct fwnode_handle *con,
+> struct fwnode_handle *sup)
+>                 goto out;
+>         }
+>
+> +       pr_info("Link fwnode %pfwP as a consumer of fwnode %pfwP\n", con, sup);
+> +
+
+Please add something like this that can be enabled easily with dynamic debug.
+
+Rob
+
+[1] https://pastebin.com/um0kAZym
