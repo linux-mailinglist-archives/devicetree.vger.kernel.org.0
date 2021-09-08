@@ -2,109 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F2C403718
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 11:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0E9403722
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 11:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347524AbhIHJmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 05:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50252 "EHLO
+        id S1348191AbhIHJoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 05:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237688AbhIHJmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 05:42:20 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E60C061575
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 02:41:13 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id e26so1232883wmk.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 02:41:13 -0700 (PDT)
+        with ESMTP id S1347717AbhIHJoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 05:44:04 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9F0BC061575;
+        Wed,  8 Sep 2021 02:42:56 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id x27so3715918lfu.5;
+        Wed, 08 Sep 2021 02:42:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=SyPGzxAlIqgp8BIndR9Y9ROAIR781ZTstJe/EicRs6I=;
-        b=xgl5YoSwmZ/JDpR5AsGbii8s58EHYdi//SdRbQOLJKixRBhIZy0BQCLNlzGexZ6qdw
-         h8lBMzGQpdASpjBUSLMFnzYXbj7bGFl9dAEN34sAhTIrpG2yw3qgoMgIvIhIIKQ+7Ffr
-         51oW5U/swPa/1r7WbQtZJscez/dsoO/nrBuX38uPFluHu1fDXpqwrhPgdiEadyZ5mKA+
-         QtH/mCi1iJMM/WPTqIncsBYD9Y3wPKy0ROgwmR+rB6v7BozQkJdgsrUrN0X73ONL+5oV
-         NInwqT4dLj2wCH4HQGxRs0i8jIYd7Yjg9HcVCPu+4aygjZAyawRC541SxhU1rUsOvZh0
-         iitQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=tcxDxLsWHGr7j1cvxMG2JLruNGk37pPqhVGSTiHNRTI=;
+        b=geGIKAXuwrxvpukyugOKBZCm3v64zHneGc4gUrxldK2pKi2rdjMNXnfj8dgx8K58uf
+         ogvILTSHxVVBAyqLgjYHreu0k52T++uJp9lOvpiKnpIQ8Bjyz2BIX7YxHlOjn1gortwr
+         QOkCGYy9DhxEIO6grVDNeIYuzaEpDIKRHkrvbnADXd+UfND9vaLyUaIZYjH3EbSwN7zu
+         hs5MGlB4oIUF1M2DKo6NAAxX4oQmhFNJxeIdmT7c6S72Ui3a+eZ0yvPXJLtQ+owtPjvi
+         S8dDAis6RFUobhVc7tVIRcEpEso4uMkcIqQrszZhhuu47/TXi4vZaBTUqGSAjOO/A+Pr
+         mauA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=SyPGzxAlIqgp8BIndR9Y9ROAIR781ZTstJe/EicRs6I=;
-        b=dWvqqIHYKUt1G7APrhtDz1gycxZ2M3xFswEog1K7kwnXDEdHvmx3g4/Pfs9evK6a74
-         sTLZ/lgTGHfvYgRmVfc1GujqqnLfbrGPabTDBHqgKQgKF/zgwIAjTQI09/E/qc0ziNTg
-         vdjWDjAQX+sXlymO1gXH6KapXjoVvMIYxy02KaaxMTYfVAEkv5pfwuGrG+fP4h2S4whQ
-         /db2eZiBS3KF6rliMl/HZsx8xteTQZaKaMLrmD7gufZSBodS/yTAMcMr40hQN96KTycT
-         23C/Afbl6FzJgB3uwWDCQrZ4UZrq6McKsr28sKodGtDFx0tUOoTm6K+nRb81PZ1OlpYx
-         zXew==
-X-Gm-Message-State: AOAM530qyleN7duV1WsJ8EB3F3bHPnjD3t2ztAG6tBNCJFDQTTImX7/F
-        a1b5aECKmDKrlraazeKQXxpCpQ==
-X-Google-Smtp-Source: ABdhPJx+MGhYGRDQv1Wckw4j7kWKIVjSN3mAwvDiPMKb4OmbCpAMkXCnTxgyYueaL00h2huX4/Crow==
-X-Received: by 2002:a05:600c:4ece:: with SMTP id g14mr2531749wmq.6.1631094071666;
-        Wed, 08 Sep 2021 02:41:11 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id j4sm1599363wrt.23.2021.09.08.02.41.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Sep 2021 02:41:10 -0700 (PDT)
-Subject: Re: [PATCH] ASoC: dt-bindings: lpass: add binding headers for digital
- codecs
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <1630934854-14086-1-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <4a513810-ab33-006d-4bce-5e35702a51e0@linaro.org>
-Date:   Wed, 8 Sep 2021 10:41:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=tcxDxLsWHGr7j1cvxMG2JLruNGk37pPqhVGSTiHNRTI=;
+        b=sejXb2knxRiBfHkL5IFAG5/MeeSFZWuJgc5FY3VajtYf5Yo9n4iSJ8CgtRYsPEhB0n
+         gKXVDWQjBCBSda4bhTvoMA884m0tK89UcbuXS0fOIzqMm4wUACjMenu8UgykUFWBbnwT
+         7gnrJ0x2ymlyTZIxQhwsEHUruz1fS88Cah6sQIvtizbvl6mm72AR+DD95O/Sfuq9ycyQ
+         DugQ+45mnDds2mXnob6ZxnhVWfkTxYXzdZecejbqREc1YxLpIXrsul2cwjGJLjaEIEbS
+         YTnAhboqOk8D3zWNOWmKPwJOwryMoYB1SucCYC8PGiJBAQuDe6aegFWshwqgxJc75iGT
+         TKZg==
+X-Gm-Message-State: AOAM531wMXNHE3DkG/EpEO0xPPBkOR8Ttsh960QIWFx2gwkT2SZHWGTr
+        lm6QwX+RHu0dW82awYCyKL0=
+X-Google-Smtp-Source: ABdhPJxrOHq4d4XwI1TCtF/j7UjWh+chOlUNydbJM4p4e9w/eyyWqy8UuaUlIgCkRr7/6Fru0VeUQg==
+X-Received: by 2002:ac2:4185:: with SMTP id z5mr2080264lfh.391.1631094175380;
+        Wed, 08 Sep 2021 02:42:55 -0700 (PDT)
+Received: from home.paul.comp (paulfertser.info. [2001:470:26:54b:226:9eff:fe70:80c2])
+        by smtp.gmail.com with ESMTPSA id o8sm142625lfr.265.2021.09.08.02.42.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Sep 2021 02:42:54 -0700 (PDT)
+Received: from home.paul.comp (home.paul.comp [IPv6:0:0:0:0:0:0:0:1])
+        by home.paul.comp (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 1889gpxA015666;
+        Wed, 8 Sep 2021 12:42:52 +0300
+Received: (from paul@localhost)
+        by home.paul.comp (8.15.2/8.15.2/Submit) id 1889gnns015665;
+        Wed, 8 Sep 2021 12:42:49 +0300
+Date:   Wed, 8 Sep 2021 12:42:49 +0300
+From:   Paul Fertser <fercerpav@gmail.com>
+To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Cc:     robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        lee.jones@linaro.org, osk@google.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org,
+        Konstantin Klubnichkin <kitsok@yandex-team.ru>
+Subject: Re: [PATCH v2 0/3] arm: aspeed: Add UART routing support
+Message-ID: <20210908094248.GZ23326@home.paul.comp>
+References: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
 MIME-Version: 1.0
-In-Reply-To: <1630934854-14086-1-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
+
+On Thu, Sep 02, 2021 at 10:18:13AM +0800, Chia-Wei Wang wrote:
+> Add UART routing driver and the device tree nodes.
+
+Thank you for working on exposing this functionality in upstreamable
+way, that's so much better than all the register-level hacks in U-Boot
+and similar approaches!
 
 
-On 06/09/2021 14:27, Srinivasa Rao Mandadapu wrote:
-> +#define LPASS_CDC_DMA_RX0 6
+One (somewhat) related question that I hope you do not mind answering:
+is there anything special regarding the routing or other configuration
+that needs to be done for VUART to work with IRQs?
 
-You are only adding RX0, what happens to RX1.. RX7
+The reason I ask is that I have tried hard (and I know several other
+developers who have too) to use VUART functionality but somehow as
+soon as Linux was booting on host and starting to use the IRQ-based
+16550 driver the communication was halted both ways. Basically, the
+BMC firmware was enabling VUART in DTS, then setting LPC address to
+0x3F8 and LPC IRQ to 4 and reading/writing using the corresponding
+/dev/ttyS* node. The datasheet is not clearly telling what other
+actions need to be performed for this to work. Not using VUART and
+instead routing UART1 lines with exactly the same pinctrl/pinmux
+worked just fine. One detail is that with VUART the host wasn't seeing
+new interrupts but when they were simulated by exporting the LPC
+interrupt pin via /sys/class/gpio and toggling it manually the data
+was getting through.
 
-TBH, skipping other entries for ex CDC_DMA_RX will end up with sparse 
-numbering.
+Does UART1 need some explicit disabling for VUART IRQs to work? It
+looks like setting LPC address and IRQ number in VUART is enough to
+override the register part but probably not for the interrupt?
 
-Please add all the entries for CDC_DMA_RX and other ports as well.
-
-Like:
-
-#define LPASS_CDC_DMA_RX0	6
-#define LPASS_CDC_DMA_RX1	7
-#define LPASS_CDC_DMA_RX2	8
-#define LPASS_CDC_DMA_RX3	9
-#define LPASS_CDC_DMA_RX4	10
-#define LPASS_CDC_DMA_RX5	11
-#define LPASS_CDC_DMA_RX6	12
-#define LPASS_CDC_DMA_RX7	13
-
-
-> +#define LPASS_CDC_DMA_TX3 7
-> +#define LPASS_CDC_DMA_VA0 8
-You mean VA_TX0?
-
-
-> +#define LPASS_MAX_PORTS 9
-We really do not need this in bindings.
-You could add this is some of the driver header files instead.
-
---srini
-> +
+-- 
+Be free, use free (http://www.gnu.org/philosophy/free-sw.html) software!
+mailto:fercerpav@gmail.com
