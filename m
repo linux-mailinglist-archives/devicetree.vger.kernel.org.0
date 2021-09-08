@@ -2,97 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3911F403B73
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 16:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D745E403B76
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 16:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351892AbhIHO1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 10:27:17 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:12991 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351901AbhIHO1K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 10:27:10 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631111162; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=C6lHs67nTzd74F8ZbiUGwTy6nz9NFd346v1mgtK8fzM=; b=c9l44+hqhXbqx7nAOqLhIH13RN5xQRXuOHqMgQtSI9N95KnxBmPK65oYTrtdrPd9IlWWdwxB
- aVFuEwZehFQ52QhLu0Tl4y0ww5b5M9s6sPqOXEgKiNxL33vx/jAutOMwsoXlMs01eKx1Vj6J
- VenIhXWYlo1IKlkKVrNc//o+fWI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 6138c7f2506910c01bec3bd8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 08 Sep 2021 14:25:54
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 71C4CC43618; Wed,  8 Sep 2021 14:25:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 51650C4338F;
-        Wed,  8 Sep 2021 14:25:47 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 51650C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v2] ASoC: qcom: lpass-platform: Reset irq clear reg post handling interrupts
-Date:   Wed,  8 Sep 2021 19:55:35 +0530
-Message-Id: <20210908142535.31106-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S1351847AbhIHO2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 10:28:19 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44422 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229600AbhIHO2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 10:28:19 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 188ER9Z3075603;
+        Wed, 8 Sep 2021 09:27:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631111229;
+        bh=UrsCmpckMKXrSZHknp+ZYButYz6Xg/aXScF9HIgwYSo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ftImQ6QkcsyGv1RnFRTRqqkiBg3DUDgp3M433NNJJvmCcd6NRP0HliE7Y/Qow4Ats
+         98sQwM7ehArDSPmoWuMjKow8dXlVgxm3VW20EKRj43/3eNjx9NJWZKWyg2LMJ6gnam
+         iGJGA90gXf+RrDOsDe+roeRSLWDhSL7ZzvVhFTAI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 188ER9YH009404
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Sep 2021 09:27:09 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
+ Sep 2021 09:27:09 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 8 Sep 2021 09:27:09 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 188ER68u045101;
+        Wed, 8 Sep 2021 09:27:07 -0500
+Subject: Re: [PATCH RESEND] dt-bindings: gpio: Convert TI TPIC2810 GPIO
+ Controller bindings to yaml
+To:     Aparna M <a-m1@ti.com>, <linus.walleij@linaro.org>,
+        <robh+dt@kernel.org>, <bgolaszewski@baylibre.com>,
+        <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+References: <20210906083020.6038-1-a-m1@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <422f7ccd-348b-8023-37db-803339684054@ti.com>
+Date:   Wed, 8 Sep 2021 17:27:05 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210906083020.6038-1-a-m1@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update interrupt clear register with reset value after addressing
-all interrupts. This is to fix playback or capture hanging issue in
-simultaneous playback and capture usecase.
 
-Fixes: 4f629e4b8705f ("ASoC: qcom: Add ability to handle interrupts per dma channel")
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
-Changes since v1:
-    -- Update comments Header information with fixes tag
+On 06/09/2021 11:30, Aparna M wrote:
+> * Convert gpio-tpic2810 bindings to yaml format
+> * Remove outdated gpio-tpic2810 bindings in .txt format
+> 
+> Signed-off-by: Aparna M <a-m1@ti.com>
+> ---
+>   .../bindings/gpio/gpio-tpic2810.txt           | 16 --------
+>   .../bindings/gpio/gpio-tpic2810.yaml          | 41 +++++++++++++++++++
+>   2 files changed, 41 insertions(+), 16 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+>   create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
 
- sound/soc/qcom/lpass-platform.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
-diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-index f9df76d37858..1a0a4b0b1a03 100644
---- a/sound/soc/qcom/lpass-platform.c
-+++ b/sound/soc/qcom/lpass-platform.c
-@@ -749,6 +749,12 @@ static irqreturn_t lpass_platform_lpaif_irq(int irq, void *data)
- 		}
- 	}
- 
-+	rv = regmap_write(drvdata->lpaif_map, LPAIF_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST), 0x0);
-+	if (rv) {
-+		pr_err("error writing to irqstat reg: %d\n", rv);
-+		return IRQ_NONE;
-+	}
-+
- 	return IRQ_HANDLED;
- }
- 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Best regards,
+grygorii
