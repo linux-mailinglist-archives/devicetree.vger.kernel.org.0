@@ -2,110 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06A89403140
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 00:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9D640322E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 03:32:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbhIGW7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 18:59:05 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:44558 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbhIGW7E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 18:59:04 -0400
-Received: by mail-oi1-f179.google.com with SMTP id c79so524037oib.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 15:57:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5/vfs21gG9mxPJ0jjyAgg1EpmoqQhpgC8XfjBg41YRI=;
-        b=UFow569AIzX3WNXY9uPeSk/Mx3her+BGSHqD/ZaETJrQ891yEQP8WlgDhQqFFEtbnr
-         JsPsFoZje3Vy8FDS4T5Aqfm+dCig8Bo+2B5wrLbXfA24D6g37Xuu3HCp7N+Lf/xLDctf
-         yDxRAwbe5Pq1suGEvOuxjl8wjF3l8Douys5zbMj2nLEU3SJAY4z4D4O6xNkCmiZ276AT
-         n6eAb7ClUB1L1tCq9e8vLGmR+cf79SeBPuDIN9lv8OX3Yn1isV09nYxv+N8gPiiNkALK
-         qnOZ34qFP9VAZfjf8mcoesyPC+8ZoLHqhJSTO0DOYSZfOVipdOvZRnkEKItHpjz68N+y
-         44Og==
-X-Gm-Message-State: AOAM533ujSZzAjoUA0dJPuGtpxFcu5NAhZn0fzENNOw8PsO0o898YUCY
-        f4a28JZzrRpbHDtXtteMBg==
-X-Google-Smtp-Source: ABdhPJzov9SlSluO21QrxH6boZeS6hQvPs8+nHK8ZUG3Lxqkqj6DqhTYXVWJ3uPURu1Essj01zaFlQ==
-X-Received: by 2002:aca:c48d:: with SMTP id u135mr399288oif.106.1631055477626;
-        Tue, 07 Sep 2021 15:57:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q10sm74743otn.47.2021.09.07.15.57.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Sep 2021 15:57:57 -0700 (PDT)
-Received: (nullmailer pid 516744 invoked by uid 1000);
-        Tue, 07 Sep 2021 22:57:56 -0000
-Date:   Tue, 7 Sep 2021 17:57:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     bjorn.andersson@linaro.org, broonie@kernel.org,
-        plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-Subject: Re: [PATCH v5 12/21] ASoC: dt-bindings: lpass-clocks: add q6prm
- clocks compatible
-Message-ID: <YTfudKWILc6kTvz4@robh.at.kernel.org>
-References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
- <20210903112032.25834-13-srinivas.kandagatla@linaro.org>
+        id S1344232AbhIHBdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 21:33:31 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44824 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229946AbhIHBdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 21:33:31 -0400
+X-UUID: 7be96b5b8aa34593acb250edd54c3ab2-20210908
+X-UUID: 7be96b5b8aa34593acb250edd54c3ab2-20210908
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <wenbin.mei@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 662536991; Wed, 08 Sep 2021 09:32:20 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 8 Sep 2021 09:32:19 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 8 Sep 2021 09:32:18 +0800
+From:   Wenbin Mei <wenbin.mei@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Yue Hu <huyue2@yulong.com>, Bean Huo <beanhuo@micron.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] mmc: mediatek: Add HS400 online tuning support
+Date:   Wed, 8 Sep 2021 09:32:16 +0800
+Message-ID: <20210908013218.29702-1-wenbin.mei@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210903112032.25834-13-srinivas.kandagatla@linaro.org>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 03, 2021 at 12:20:23PM +0100, Srinivas Kandagatla wrote:
-> On AudioReach audio Framework access to LPASS ports is via Q6PRM
-> (Proxy Resource Manager) service, so add a dedicated lpass-clock compatible
-> string for this.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  .../sound/qcom,q6dsp-lpass-clocks.yaml         | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-> index 589c3f1e2008..9f3de2307d1c 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,q6afe-clocks
-> +      - qcom,q6prm-lpass-clocks
->  
->    reg:
->      maxItems: 1
-> @@ -54,3 +55,20 @@ examples:
->              };
->          };
->        };
-> +
-> +  - |
-> +    #include <dt-bindings/soc/qcom,gpr.h>
-> +    gpr {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        gpr-service@2 {
-> +            reg = <GPR_PRM_MODULE_IID>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            q6prmcc@2 {
+Change in v3:
+- add detail descripthion for hs400 dly3
 
-clock-controller@2
+Change in v2:
+- remove the check "mmc_can_ext_csd"
+- change the hs400 tuning condition for "msdc_cmd_done" function and
+"msdc_cmd_next" function
+- use "-EIO" instead of "-ERANGE"
 
-With that,
+Wenbin Mei (2):
+  dt-bindings: mmc: mtk-sd: add hs400 dly3 setting
+  mmc: mediatek: Add HS400 online tuning support
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+ .../devicetree/bindings/mmc/mtk-sd.yaml       |  12 ++
+ drivers/mmc/core/mmc.c                        |   8 ++
+ drivers/mmc/host/mtk-sd.c                     | 118 +++++++++++++++++-
+ include/linux/mmc/host.h                      |   3 +
+ 4 files changed, 139 insertions(+), 2 deletions(-)
 
-> +              compatible = "qcom,q6prm-lpass-clocks";
-> +              reg = <2>;
-> +              #clock-cells = <2>;
-> +            };
-> +        };
-> +      };
-> -- 
-> 2.21.0
-> 
-> 
+--
+2.25.1
+
