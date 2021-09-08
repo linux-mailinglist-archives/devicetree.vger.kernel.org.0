@@ -2,44 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E72B403449
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 08:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98F39403455
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 08:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234109AbhIHGe5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Sep 2021 02:34:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
+        id S1347055AbhIHGk6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Sep 2021 02:40:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbhIHGe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 02:34:56 -0400
+        with ESMTP id S229634AbhIHGk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 02:40:57 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23016C061575
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 23:33:48 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED21C061575
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 23:39:49 -0700 (PDT)
 Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1mNr9I-0007Wr-61; Wed, 08 Sep 2021 08:33:32 +0200
+        id 1mNrF7-000821-T7; Wed, 08 Sep 2021 08:39:33 +0200
 Received: from pza by lupine with local (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1mNr9G-0002oS-8y; Wed, 08 Sep 2021 08:33:30 +0200
-Message-ID: <688d0dc9fd83e98e0a7ed9d8d166e232e75031c6.camel@pengutronix.de>
-Subject: Re: [PATCH 2/3] Input: sun4i-lradc-keys: Add optional clock/reset
- support
+        id 1mNrF3-00031K-86; Wed, 08 Sep 2021 08:39:29 +0200
+Message-ID: <5ffef736524f3d7fb69f97332576ee9913032bcd.camel@pengutronix.de>
+Subject: Re: [PATCH v10 07/17] dt-bindings: display: mediatek: merge: add
+ additional prop for mt8195
 From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Samuel Holland <samuel@sholland.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 08 Sep 2021 08:33:30 +0200
-In-Reply-To: <20210908034016.24119-3-samuel@sholland.org>
-References: <20210908034016.24119-1-samuel@sholland.org>
-         <20210908034016.24119-3-samuel@sholland.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        hsinyi@chromium.org, fshao@chromium.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        nancy.lin@mediatek.com, singo.chang@mediatek.com,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Date:   Wed, 08 Sep 2021 08:39:29 +0200
+In-Reply-To: <20210908060312.24007-8-jason-jh.lin@mediatek.com>
+References: <20210908060312.24007-1-jason-jh.lin@mediatek.com>
+         <20210908060312.24007-8-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.30.5-1.1 
@@ -52,15 +59,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-09-07 at 22:40 -0500, Samuel Holland wrote:
-> Until the R329, the LRADC hardware was always active. Now it requires
-> enabling a clock gate and deasserting a reset line. Do this if the clock
-> and reset are provided in the device tree, but keep them optional to
-> maintain support for the existing binding.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+Hi Jason,
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+On Wed, 2021-09-08 at 14:03 +0800, jason-jh.lin wrote:
+> add MERGE additional properties description for mt8195:
+> 1. async clock
+> 2. fifo setting enable
+> 3. reset controller
+> 
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+>  .../display/mediatek/mediatek,merge.yaml      | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+> index 75beeb207ceb..0fe204d9ad2c 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
+> @@ -38,6 +38,19 @@ properties:
+>    clocks:
+>      items:
+>        - description: MERGE Clock
+> +      - description: MERGE Async Clock
+> +          Controlling the synchronous process between MERGE and other display
+> +          function blocks cross clock domain.
+> +
+> +  mediatek,merge-fifo-en:
+> +    description:
+> +      The setting of merge fifo is mainly provided for the display latency
+> +      buffer to ensure that the back-end panel display data will not be
+> +      underrun, a little more data is needed in the fifo.
+> +      According to the merge fifo settings, when the water level is detected
+> +      to be insufficient, it will trigger RDMA sending ultra and preulra
+> +      command to SMI to speed up the data rate.
+> +    type: boolean
+>  
+>    mediatek,gce-client-reg:
+>      description:
+> @@ -50,6 +63,10 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      maxItems: 1
+>  
+> +  resets:
+> +    description: reset controller
+> +      See Documentation/devicetree/bindings/reset/reset.txt for details.
+
+From the example this looks like it could have a maxItems: 1.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+
+Should the resets property be required for "mediatek,mt8195-disp-merge"?
+
+> @@ -67,3 +84,16 @@ examples:
+>          power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
+>          clocks = <&mmsys CLK_MM_DISP_MERGE>;
+>      };
+> +
+> +    merge5: disp_vpp_merge5@1c110000 {
+> +        compatible = "mediatek,mt8195-disp-merge";
+> +        reg = <0 0x1c110000 0 0x1000>;
+> +        interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks = <&vdosys1 CLK_VDO1_VPP_MERGE4>,
+> +                 <&vdosys1 CLK_VDO1_MERGE4_DL_ASYNC>;
+> +        clock-names = "merge","merge_async";
+> +        power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+> +        mediatek,gce-client-reg = <&gce1 SUBSYS_1c11XXXX 0x0000 0x1000>;
+> +        mediatek,merge-fifo-en = <1>;
+> +        resets = <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE4_DL_ASYNC>;
+> +    };
 
 regards
 Philipp
