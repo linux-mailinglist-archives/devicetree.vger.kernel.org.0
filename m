@@ -2,102 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB2844038AC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 13:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCCB4038B4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 13:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348477AbhIHLWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 07:22:44 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:32914 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351390AbhIHLWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 07:22:41 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 188BLHtY004258;
-        Wed, 8 Sep 2021 06:21:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631100077;
-        bh=tQ/oRH0/DOAVAVT9DA6HnrABsHYorEoEFqH+SpdThGA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=VgIP4l5OdFTSp9xHKJ8kx0uOHSIhye0fvYqNqyPkwKfADE8bceIJ6f2YnXyzqTlyM
-         7DvRhCha9ukSaAfD4gNffG8JbFWZw0DQjbL7sV3UjAnC/oBoeec7+kXjxWaGeK5KTV
-         zWLcRR6F02bUlhoiFz7Lm0gqZggb5lEZnEJjMXEI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 188BLHwU121750
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 8 Sep 2021 06:21:17 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
- Sep 2021 06:21:17 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 8 Sep 2021 06:21:17 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 188BLGcW086516;
-        Wed, 8 Sep 2021 06:21:17 -0500
-Date:   Wed, 8 Sep 2021 16:51:15 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Parshuram Raju Thombare <pthombar@cadence.com>
-CC:     "broonie@kernel.org" <broonie@kernel.org>,
-        "lukas@wunner.de" <lukas@wunner.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        id S1348470AbhIHL2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 07:28:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46266 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348342AbhIHL2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 07:28:20 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3720AC061575;
+        Wed,  8 Sep 2021 04:27:12 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id m4so2886575ljq.8;
+        Wed, 08 Sep 2021 04:27:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=zArPnbgBGxH5qbqpeK2J30GwRdILfZEvn45KQmNxalo=;
+        b=UMfQnx4bcQZd5SvTOkMpm6L/1WKlh7Eork9Id05e5fk/8402XhpLqn/zQMTVXqAB6I
+         HkFbGZwgYdA6BQ/mbAhqEe/4NOEe7e++lsWUE2NQpo3+zwvSSHmXvScg865STNrCrp+G
+         zvpXoSMGxXiB9sjQXVL//9Xvunon1w700gEDOaO9YUOsYeP2t7+simHTn2emLSnfDlJu
+         W8yPjGOIVO4hAIUbTfaDgjPgzJaVIlPVGp94GGVLeMoxPL+JgcpZwL52x8r9lBfixozQ
+         FiZVcPHKK2D9tynhO3/izirk4gJ+wOQXeKSkw9KD2kRE5asdq4VFLI4eETuAAGxEzmFU
+         cwDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zArPnbgBGxH5qbqpeK2J30GwRdILfZEvn45KQmNxalo=;
+        b=W1Z8OAuI73yWAdEeIEZJ6MOMDtozhLpgxxMFhsSPEFTyih8swed5qNN/gN4eQQwoSr
+         fWyDqAeOmwCGI+9/fj2k8xRRS3pnt8PXEjtk+HhEk3V+kKkRKzIWGO/NhgBwSpgd91Xc
+         Ngy17sAPShtQzRzN68Aaztg/JcA/q47bsx0/RchHUe9KhBdQ8KEmZV+Q57k9dtfgbp/A
+         N9yd392JjkKVTRhH3tzBLYfspp1WH5yJ8KFOOpyRfeJPfInqpc4/ohQ7Xj8VtU8mdhCg
+         eiQAsIAPMpUYZ9sUb1eUh3Ix/ePAzWiad9Uq4MNrkD52QhuJwZVjloCY7T9lhibFg3ul
+         s7xg==
+X-Gm-Message-State: AOAM532aqS5cC81AuPI9mAkDBBBB4IRGrPAEQa26n///o/0yvmADPRQk
+        rk40acZX1xW5rHZi5JM4wPo=
+X-Google-Smtp-Source: ABdhPJy8Hv43+g0NY1Pmxc4LeynlznWNToK9X9xFqmpQtYjskjVO7X1CS7pVbBBfoRlxdo+/v3iHfA==
+X-Received: by 2002:a05:651c:154b:: with SMTP id y11mr2243226ljp.480.1631100430110;
+        Wed, 08 Sep 2021 04:27:10 -0700 (PDT)
+Received: from home.paul.comp (paulfertser.info. [2001:470:26:54b:226:9eff:fe70:80c2])
+        by smtp.gmail.com with ESMTPSA id a23sm204070ljb.95.2021.09.08.04.27.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Sep 2021 04:27:09 -0700 (PDT)
+Received: from home.paul.comp (home.paul.comp [IPv6:0:0:0:0:0:0:0:1])
+        by home.paul.comp (8.15.2/8.15.2/Debian-14~deb10u1) with ESMTP id 188BR67i015807;
+        Wed, 8 Sep 2021 14:27:07 +0300
+Received: (from paul@localhost)
+        by home.paul.comp (8.15.2/8.15.2/Submit) id 188BR4Rh015806;
+        Wed, 8 Sep 2021 14:27:04 +0300
+Date:   Wed, 8 Sep 2021 14:27:04 +0300
+From:   Paul Fertser <fercerpav@gmail.com>
+To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "osk@google.com" <osk@google.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jayshri Dajiram Pawar <jpawar@cadence.com>,
-        Milind Parab <mparab@cadence.com>,
-        Konrad Kociolek <konrad@cadence.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v3 2/2] spi: cadence: add support for Cadence XSPI
- controller
-Message-ID: <20210908112113.smnwmayjb3jit3eg@ti.com>
-References: <1630499755-18751-1-git-send-email-pthombar@cadence.com>
- <1630499858-20456-1-git-send-email-pthombar@cadence.com>
- <20210903185653.7vrfn4qfzvuiaiq2@ti.com>
- <CY4PR07MB275737A008CBB58C4B108D2FC1D49@CY4PR07MB2757.namprd07.prod.outlook.com>
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Konstantin Klubnichkin <kitsok@yandex-team.ru>
+Subject: Re: VUART compatibility (was: Re: [PATCH v2 0/3] arm: aspeed: Add
+ UART routing support)
+Message-ID: <20210908112703.GC23326@home.paul.comp>
+References: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+ <20210908094248.GZ23326@home.paul.comp>
+ <HK0PR06MB3779180F75DB8BD872F8A78391D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
+ <20210908105245.GB23326@home.paul.comp>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CY4PR07MB275737A008CBB58C4B108D2FC1D49@CY4PR07MB2757.namprd07.prod.outlook.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210908105245.GB23326@home.paul.comp>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/21 07:27AM, Parshuram Raju Thombare wrote:
-> >Depends on SPI_MEM as well.
-> 
-> Ok
-> 
-> >I commented on this last time around as well. This does not look right
-> >at all. A SPI MEM based driver should *not* need to know anything about
-> >the subsystem driving it. That is the entire point of the API.
-> >
-> >The controller seems to be able to extract the read and write opcodes
-> >from the SFDP on its own since you don't pass in that information to
-> >cdns_xspi_nor_read(). It looks like it is tied very heavily to a NOR
-> >flash, and I am not sure if it can really be used with a NAND flash, or
-> >something else entirely.
-> >
-> >Which makes me wonder how we should handle controllers like these. I
-> >don't think they fit in very well with the SPI MEM model, since they
-> >can't execute arbitrary SPI MEM commands very well. At the same time we
-> >are trying to get rid of mtd/spi-nor/controllers. Dunno...
-> >
-> >Mark, Tudor, Vignesh, any ideas?
-> 
-> Ok, then for now I will drop ACMD PIO mode and use only STIG mode.
-> In STIG mode driver configures bus width and clock edge mode for
-> command, address and data for each operation. 
+On Wed, Sep 08, 2021 at 01:52:45PM +0300, Paul Fertser wrote:
+> In this case do we have some way to make it an obvious error to enable
+> both SUART1 and VUART in DTS? If they're conflicting surely there
+> should be a way to express that?
 
-But it would reduce performance by a lot, no? I think we should try to 
-figure out how we can accomodate controllers like this before resorting 
-to using the slower modes.
+I have to add this idea is obviously silly as we have sysfs nodes to
+specify both LPC I/O address and interrupt number for VUART and
+arbitrary numbers are allowed (so it can conflict with any of the
+SUART port) so there should be probably some runtime checking in VUART
+driver to prevent that?
 
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Be free, use free (http://www.gnu.org/philosophy/free-sw.html) software!
+mailto:fercerpav@gmail.com
