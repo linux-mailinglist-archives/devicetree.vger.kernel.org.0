@@ -2,54 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A36624039B4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 14:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6434039B8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 14:26:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346246AbhIHM0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 08:26:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55616 "EHLO mail.kernel.org"
+        id S1346418AbhIHM1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 08:27:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55816 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346096AbhIHM0d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 08:26:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 772306113D;
-        Wed,  8 Sep 2021 12:25:25 +0000 (UTC)
+        id S1346096AbhIHM1p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Sep 2021 08:27:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C70EC60E77;
+        Wed,  8 Sep 2021 12:26:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631103926;
-        bh=Op1osRVlypqUXTNk2HB6kEqPziP17mPtU9hc97lcRR4=;
+        s=k20201202; t=1631103997;
+        bh=hBJEdND0+TdIgnAIhoNTUiVWIoTiCjwpdhj1K/Ss5Rg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Sv4EvN2ILSEpoFKcksm9T2ctQc3iG1XtvCc36EauLX8meibXnkvhkwE+vBjRbHBy2
-         zO0WGKC+L39GKaKX1yaKCLctXEkzF4XuTVzdrI4Cgpi9qgnaHS/+4eEiDxyz4kUwLA
-         fl4VqoFJHlCDDyz/doRwLbwebFL5iyUnt3Qy/FlQ95qteW9xE1cBjEksNmJ5bZ22fQ
-         6kR1S7Xp9w+vPlG8HxNU63VDtKE14+5R4jubcnH2ozuuBzSmaAi2nzhi7PTKR5fnk/
-         g2vQcKOKMZeC6INgWK1hzC4+B+5DmACawdLqLqSk6Zl3eNbf+Rhe/xiUBxrgUC3uqs
-         qHSnlFQfcYCSQ==
-Date:   Wed, 8 Sep 2021 13:24:49 +0100
+        b=a3YfGlkFHoKcIInjVEEa1ZX2ALubp0X2byiwewn45Ixd9t7O6+9uKnwCn0ie+Kd0M
+         bJO0KeaJslGyN6wMFQNfXBku5G3ENmh2h42f15u51nBAFOdtyWH1bTXWFK6NHtCJ63
+         J5KiVXBvwnXLe8kAdQjmJkXyDey3sh6KHZAo3Sqn+LaGiv1oU06wbtMmFXp1Se51sT
+         UQ/YmKHUu0RxAHornODQ4BidYkeRQgImM5pXYFF6VRXFld71QNroOLF64kXj2pUlPB
+         bbxXcs4mcDbulja0APt+2pWYxXUKdYz2sYoVUZzmEv5ir6BWx4L7qPB8pcmwkLFbq1
+         HmGvWYEC53gLA==
+Date:   Wed, 8 Sep 2021 13:26:00 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Parshuram Raju Thombare <pthombar@cadence.com>,
-        "lukas@wunner.de" <lukas@wunner.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jayshri Dajiram Pawar <jpawar@cadence.com>,
-        Milind Parab <mparab@cadence.com>,
-        Konrad Kociolek <konrad@cadence.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v3 2/2] spi: cadence: add support for Cadence XSPI
- controller
-Message-ID: <20210908122449.GC4112@sirena.org.uk>
-References: <1630499755-18751-1-git-send-email-pthombar@cadence.com>
- <1630499858-20456-1-git-send-email-pthombar@cadence.com>
- <20210903185653.7vrfn4qfzvuiaiq2@ti.com>
- <CY4PR07MB275737A008CBB58C4B108D2FC1D49@CY4PR07MB2757.namprd07.prod.outlook.com>
- <20210908112113.smnwmayjb3jit3eg@ti.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        bjorn.andersson@linaro.org, robh@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        lgirdwood@gmail.com
+Subject: Re: [PATCH v5 15/21] ASoC: qdsp6: audioreach: add q6apm support
+Message-ID: <20210908122600.GD4112@sirena.org.uk>
+References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
+ <20210903112032.25834-16-srinivas.kandagatla@linaro.org>
+ <081e6734-a258-6d21-cf66-f00bfeb38b04@linux.intel.com>
+ <b1cfacb4-70b9-7146-00d5-9d680297d900@linaro.org>
+ <f8bd8b94-528d-bf6f-9e84-0e41e4c56382@linux.intel.com>
+ <0840d2e3-c261-8d85-35ff-8388448ab7fc@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZfOjI3PrQbgiZnxM"
+        protocol="application/pgp-signature"; boundary="R+My9LyyhiUvIEro"
 Content-Disposition: inline
-In-Reply-To: <20210908112113.smnwmayjb3jit3eg@ti.com>
+In-Reply-To: <0840d2e3-c261-8d85-35ff-8388448ab7fc@linaro.org>
 X-Cookie: Should I do my BOBBIE VINTON medley?
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -57,35 +51,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ZfOjI3PrQbgiZnxM
-Content-Type: text/plain; charset=us-ascii
+--R+My9LyyhiUvIEro
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 08, 2021 at 04:51:15PM +0530, Pratyush Yadav wrote:
+On Wed, Sep 08, 2021 at 12:28:05PM +0100, Srinivas Kandagatla wrote:
+> On 07/09/2021 16:04, Pierre-Louis Bossart wrote:
 
-> But it would reduce performance by a lot, no? I think we should try to=20
-> figure out how we can accomodate controllers like this before resorting=
-=20
-> to using the slower modes.
+> > > > > +=A0=A0=A0 spin_lock(&apm->lock);
+> > > > > +=A0=A0=A0 idr_alloc(&apm->graph_idr, graph, graph_id,
+> > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 graph_id + 1, GFP_ATOMIC);
+> > > >=20
+> > > > does this need to be ATOMIC?
+> > >=20
+> > > We are inside spinlock.
+> >=20
+> > but this is not used in an interrupt handler or anything that isn't in a
+> > process context, is it?
+> >=20
+> No, it is in process context only.
 
-OTOH if it's going to be hard to figure out perhaps merging something
-slower that works while we do so would be good - lets people use their
-systems while things are figured out.
+So why is it a spinlock then?
 
---ZfOjI3PrQbgiZnxM
+--R+My9LyyhiUvIEro
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmE4q5AACgkQJNaLcl1U
-h9B6rgf/ZXheC5wT2g7JhNRwsbHSAEd9l4klCXXrduglacPawsSmO1rR+UJ0QBf8
-6h4ilOO9l15mBopd46W6IjqMaiXV+hk8vIhe//DwLPQljJGIBq9U431RKINCrita
-RIusPSjOXYLevo4HrBagjXXGXVr8h2tNsjtkHRnzfOnxeD5zB7dh8/gPSLbA+9gb
-xwxNL+rINyJAdUzJ+MBzIWip4wz2JbL2hBay4s/mCijZhqlCaC2YRKWYORMqB3pu
-9BPk2Mgyo9DmI/wE8ezSQMpMgIK/QNOEhv5w8EgCl4OocYN9dM83OFqBomsmyO7J
-s/IaixQZq+npLtWBSy+6/Oqpf7coPQ==
-=kewD
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmE4q9cACgkQJNaLcl1U
+h9D7IQf/RacC3eiSHKhTPqv8w0z92hzvNN6Z/EUlhhAuKJ81s8ZQzpdhFh4EDHuE
+lzXJIVyivBsqNfH0sl4Pj6IkQxqwGTi+QRxU6walLlDKPb+NEqLikHYON+r6ouKY
+Ndywr9KCQsvdFYso82JNIllnOMYvHI9BYEXZyfLhQ2bnHmLTpS/ftnFlV5KkL+pe
+BH8ynq3fGYJfUtTnZm78gVWeh7ee7IZw31SglryPxBAUJ30rImN9w7lfPYxay2AB
+kOll5w6Dd8rHG4rA02SqJdj24q+5OViCe4wGvuUmu8FRZteREdJZyKv9azqRIEHU
+4PZdrAdyY3UrtQ0hPzHAx3AkH4SaFg==
+=t9Jq
 -----END PGP SIGNATURE-----
 
---ZfOjI3PrQbgiZnxM--
+--R+My9LyyhiUvIEro--
