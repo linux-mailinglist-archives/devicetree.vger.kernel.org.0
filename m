@@ -2,203 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6004040C7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 23:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 650CF404107
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 00:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235571AbhIHV7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 17:59:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235363AbhIHV7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 17:59:19 -0400
-Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D17BC061757
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 14:58:11 -0700 (PDT)
-Received: by mail-qv1-xf4a.google.com with SMTP id e8-20020a0cf348000000b0037a350958f2so1386729qvm.7
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 14:58:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:subject:from:to:cc;
-        bh=x+U5iWmPoc1LfbS98FFnjN/NqYTsrrmBn1Md/SAIYso=;
-        b=Tb2pIUbrz/LJACHHduVCMRoPRDcBFoGHjznQXviGDyrNSpLai7hvOZ6dpLnVy5eNcv
-         WXnuQGKUwQySu76yuzPsNaaK9tZXW8W9gBfc4vE0gnfDuU4xcxEZlbaQQ76vA/elMYpN
-         EEoQDvOLEOMSGwQWXYzzh3vRBW3gfLm1Z1t+JBcOQ7I/b1zE04OXmc4qMiCmIB9cfPvs
-         v5d7Q6A+5/iYS1O27OFKVNJVEaGh8VyayIob16RTd8gD6Y9a57H33xvGDnttaGSrEtXr
-         nZEGAFQ7SKCLFViPYFXu3mP8YfvzFbF2/ojkF5oM1hdgr8F4TGi948uSkJwcfKIH2csH
-         HL7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version:subject
-         :from:to:cc;
-        bh=x+U5iWmPoc1LfbS98FFnjN/NqYTsrrmBn1Md/SAIYso=;
-        b=Yy7UTSmZO4nsGFLYuekFrNL56JMymb3TDsZRlgHBtDsU4zzEYoUUuIY4uh+Ugtqrq7
-         Ygy2zSOgDFptiYL0ZYd6QRibILUBY44/RGVybccz2ffYbGuYKiTAQwB4U+WIcn8WP2h5
-         DjV+NlSkyjCiP2jxH8aJFvBc6Ql1G9eJAwbRYTPyslZ0rwzuq8zb9+vim6dnPgz6d4Y0
-         lkImxIvrQkHrIOMyXkpyfBn+ynBJJNxFJckeiHzTjfL5SGHlvonfc9fivVeCb7zRWxuA
-         +3fUIqgdbhXnmLen0odGyCg1f3yhPqVRSRirIBKIdxxdocu1cSUKQlosr+yCXA4u6e3T
-         kMcA==
-X-Gm-Message-State: AOAM5309e41M0XrntWv0wIra8r3+zCyCPONcqX1CiuX2iq2W7vzj/VG7
-        OhxDEanKoc7D+0UhlbBIhfxXpdzqCtjThU0=
-X-Google-Smtp-Source: ABdhPJxe3ydz2tSxy7UkERAnDMDXfIJdVm9ByjH+6b1kkjTXPwmcS0WxbSSXtEAf2PYqOxWMPlnuCpLTG48LELI=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:de29:dab5:94d3:3388])
- (user=saravanak job=sendgmr) by 2002:a05:6214:20eb:: with SMTP id
- 11mr497044qvk.52.1631138290824; Wed, 08 Sep 2021 14:58:10 -0700 (PDT)
-Date:   Wed,  8 Sep 2021 14:58:06 -0700
-In-Reply-To: <2023d07e-18bb-e129-760a-18b17ff772cd@samsung.com>
-Message-Id: <20210908215806.2748361-1-saravanak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.33.0.153.gba50c8fa24-goog
-Subject: [PATCH v1] RFC: of: property: fix phy-hanlde issue
-From:   Saravana Kannan <saravanak@google.com>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        id S239546AbhIHWdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 18:33:43 -0400
+Received: from ixit.cz ([94.230.151.217]:33150 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229997AbhIHWdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Sep 2021 18:33:42 -0400
+Received: from newone.lan (ixit.cz [94.230.151.217])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 7F21324BAF;
+        Wed,  8 Sep 2021 21:34:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1631129685;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=SxiVdUlQ7fYzowAHt3rgwVXftn+wj1pzvOHK68gmgPY=;
+        b=wO7Wnqgjg6LHEVCOcSFU7TfunNi3wC6eu9Yxq4K/cUMaN6w+370N5Islyn6OVh/KXcO968
+        We/iE5hmciQjowr3x++aYKIp6wbcPe9/W3oFwIPdqHXJAS9N4IMbhM21e3BLFjk5MAC1n3
+        reB52BlboHn0lGO7q2Z1EKqAV1ypUwg=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Manu Gautam <mgautam@codeaurora.org>
+Cc:     linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        David Heidelberg <david@ixit.cz>
+Subject: [PATCH 2/2] ARM: dts: qcom: ipq4019: add dwc3 arch spec compatible
+Date:   Wed,  8 Sep 2021 21:33:29 +0200
+Message-Id: <20210908193329.87992-2-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210908193329.87992-1-david@ixit.cz>
+References: <20210908193329.87992-1-david@ixit.cz>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a test patch. I'll split it up into multiple commits and clean
-it up once it's shown to help.
+To be compilant with qcom,dwc3 definition
+ - add compatible
+ - rename dwc3@ to usb@
 
-Marek, can you please test this and let me know if it helps?
+No functional changes intended.
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- drivers/of/property.c | 76 ++++++++++++++++++++++++-------------------
- 1 file changed, 43 insertions(+), 33 deletions(-)
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 0c0dc2e369c0..039e1cb07348 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -30,6 +30,35 @@
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index a3ae5458ac68..25b7e10537df 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -637,7 +637,7 @@ usb3_hs_phy: hsphy@a6000 {
+ 		};
  
- #include "of_private.h"
+ 		usb3: usb3@8af8800 {
+-			compatible = "qcom,dwc3";
++			compatible = "qcom,ipq4019-dwc3", "qcom,dwc3";
+ 			reg = <0x8af8800 0x100>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+@@ -648,7 +648,7 @@ usb3: usb3@8af8800 {
+ 			ranges;
+ 			status = "disabled";
  
-+/**
-+ * struct supplier_bindings - Property parsing functions for suppliers
-+ *
-+ * @parse_prop: function name
-+ *	parse_prop() finds the node corresponding to a supplier phandle
-+ * @parse_prop.np: Pointer to device node holding supplier phandle property
-+ * @parse_prop.prop_name: Name of property holding a phandle value
-+ * @parse_prop.index: For properties holding a list of phandles, this is the
-+ *		      index into the list
-+ * @optional: Describes whether a supplier is mandatory or not
-+ * @node_not_dev: The consumer node containing the property is never a device.
-+ * @sup_node_always_dev: The supplier node pointed to by the property will
-+ *			 always have a struct device created for it even if it
-+ *			 doesn't have a "compatible" property.
-+ *
-+ * Returns:
-+ * parse_prop() return values are
-+ * - phandle node pointer with refcount incremented. Caller must of_node_put()
-+ *   on it when done.
-+ * - NULL if no phandle found at index
-+ */
-+struct supplier_bindings {
-+	struct device_node *(*parse_prop)(struct device_node *np,
-+					  const char *prop_name, int index);
-+	bool optional;
-+	bool node_not_dev;
-+	bool sup_node_always_dev;
-+};
-+
- /**
-  * of_graph_is_present() - check graph's presence
-  * @node: pointer to device_node containing graph port
-@@ -1079,6 +1108,7 @@ static struct device_node *of_get_compat_node(struct device_node *np)
-  * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
-  * @con_np: consumer device tree node
-  * @sup_np: supplier device tree node
-+ * @s: The supplier binding used to get the supplier phandle
-  *
-  * Given a phandle to a supplier device tree node (@sup_np), this function
-  * finds the device that owns the supplier device tree node and creates a
-@@ -1093,7 +1123,8 @@ static struct device_node *of_get_compat_node(struct device_node *np)
-  * - -ENODEV if struct device will never be create for supplier
-  */
- static int of_link_to_phandle(struct device_node *con_np,
--			      struct device_node *sup_np)
-+			      struct device_node *sup_np,
-+			      const struct supplier_bindings *s)
- {
- 	struct device *sup_dev;
- 	struct device_node *tmp_np = sup_np;
-@@ -1102,11 +1133,15 @@ static int of_link_to_phandle(struct device_node *con_np,
- 	 * Find the device node that contains the supplier phandle.  It may be
- 	 * @sup_np or it may be an ancestor of @sup_np.
- 	 */
--	sup_np = of_get_compat_node(sup_np);
--	if (!sup_np) {
--		pr_debug("Not linking %pOFP to %pOFP - No device\n",
--			 con_np, tmp_np);
--		return -ENODEV;
-+	if (s->sup_node_always_dev) {
-+		of_node_get(sup_np);
-+	} else {
-+		sup_np = of_get_compat_node(sup_np);
-+		if (!sup_np) {
-+			pr_debug("Not linking %pOFP to %pOFP - No device\n",
-+				 con_np, tmp_np);
-+			return -ENODEV;
-+		}
- 	}
+-			dwc3@8a00000 {
++			usb@8a00000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x8a00000 0xf8000>;
+ 				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
+@@ -669,7 +669,7 @@ usb2_hs_phy: hsphy@a8000 {
+ 		};
  
- 	/*
-@@ -1239,31 +1274,6 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
- 	return parse_suffix_prop_cells(np, prop_name, index, suffix, cells); \
- }
+ 		usb2: usb2@60f8800 {
+-			compatible = "qcom,dwc3";
++			compatible = "qcom,ipq4019-dwc3", "qcom,dwc3";
+ 			reg = <0x60f8800 0x100>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+@@ -680,7 +680,7 @@ usb2: usb2@60f8800 {
+ 			ranges;
+ 			status = "disabled";
  
--/**
-- * struct supplier_bindings - Property parsing functions for suppliers
-- *
-- * @parse_prop: function name
-- *	parse_prop() finds the node corresponding to a supplier phandle
-- * @parse_prop.np: Pointer to device node holding supplier phandle property
-- * @parse_prop.prop_name: Name of property holding a phandle value
-- * @parse_prop.index: For properties holding a list of phandles, this is the
-- *		      index into the list
-- * @optional: Describes whether a supplier is mandatory or not
-- * @node_not_dev: The consumer node containing the property is never a device.
-- *
-- * Returns:
-- * parse_prop() return values are
-- * - phandle node pointer with refcount incremented. Caller must of_node_put()
-- *   on it when done.
-- * - NULL if no phandle found at index
-- */
--struct supplier_bindings {
--	struct device_node *(*parse_prop)(struct device_node *np,
--					  const char *prop_name, int index);
--	bool optional;
--	bool node_not_dev;
--};
--
- DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
- DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
- DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
-@@ -1380,7 +1390,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_resets, },
- 	{ .parse_prop = parse_leds, },
- 	{ .parse_prop = parse_backlight, },
--	{ .parse_prop = parse_phy_handle, },
-+	{ .parse_prop = parse_phy_handle, .sup_node_always_dev = true, },
- 	{ .parse_prop = parse_gpio_compat, },
- 	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_regulators, },
-@@ -1430,7 +1440,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 					: of_node_get(con_np);
- 			matched = true;
- 			i++;
--			of_link_to_phandle(con_dev_np, phandle);
-+			of_link_to_phandle(con_dev_np, phandle, s);
- 			of_node_put(phandle);
- 			of_node_put(con_dev_np);
- 		}
+-			dwc3@6000000 {
++			usb@6000000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0x6000000 0xf8000>;
+ 				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
 -- 
-2.33.0.153.gba50c8fa24-goog
+2.33.0
 
