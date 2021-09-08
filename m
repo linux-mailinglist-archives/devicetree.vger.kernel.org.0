@@ -2,144 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3C89403923
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 13:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D96F9403941
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 13:59:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351544AbhIHLuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 07:50:18 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:57626 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351496AbhIHLuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 07:50:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1631101748; x=1662637748;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=IJzUTubxDUwl5su3QPbEKI+MlLxshdcIy7LIdDNq1Y8=;
-  b=M7SgDO3Sm79uhfzLtuQHfFfQbURJhAZYH2R+7h5tUE1j4zGjVQ65wxdS
-   dzJkN1uGArlN1mF5zhxInc3osGIlsSCG84x+xDzv5IwkyeQCaj6k17Srz
-   ia/8djySpNyXmtqdbKYTWlZYWh7fIqYsSxFGbO30PK4nkYhdQI0TUfIBY
-   ZXoSGieseOggiMcL5WhLMcnJKcvUjofdWoxiWcxRVUpoHPV7Vou6hQ0o1
-   q5KGkzhrc6bmIJBRGaEbxdvhZdshWWC2raxi8JUE9ZSGFFBFUMPVPCVqt
-   cwvYF4VG0J6xcov86LzRrIOMUpni/UAahEPq4Nu0LLOmCBVvMTTcGyaso
-   g==;
-IronPort-SDR: mIUbWEL961g0oskuyNoyRW5gpNk5Us3/EyDrhoP5QoRbQFGZWSZJ1yFfb+NTyE7SaaYPBaRTuH
- dGSqd5+3+LVd9ZtB5jdV1vKAe5HsGbF9IKH4Lg9GUkpMc50vpU27Z80nto8XsASWMjJGr4cZNV
- 3OFOrM6Lxx36ul0n70OCgKpUffRJoc+Sgox5fav535/A01UfpFV1G4bPkLCFyJ8Ogsxk0As77g
- JdS/8rnaFszdPwcYNFYPxgi6FSVoivtWMSG1z7c1LAPK6YUgI94VlRE/BV9qjpAfzv0oTviWAf
- 3vTRHjddRps3Q77yg/Jz/J01
-X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; 
-   d="scan'208";a="135795780"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Sep 2021 04:49:08 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 8 Sep 2021 04:49:08 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 8 Sep 2021 04:49:05 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <robh+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <Eugen.Hristev@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: [PATCH v2 3/3] dt-bindings: clock: lan966x: Add LAN966X Clock Controller
-Date:   Wed, 8 Sep 2021 17:18:44 +0530
-Message-ID: <20210908114844.22131-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210908114844.22131-1-kavyasree.kotagiri@microchip.com>
-References: <20210908114844.22131-1-kavyasree.kotagiri@microchip.com>
+        id S1349142AbhIHL7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 07:59:40 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:43707 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348691AbhIHL7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 07:59:39 -0400
+Received: by mail-ot1-f45.google.com with SMTP id x10-20020a056830408a00b004f26cead745so2552373ott.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 04:58:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ekrKhUAapVQLGpaPmyUUbCRHL9+ABWjyycmWN96rdJs=;
+        b=3Pqobv8R60T1zGM/RW49df7AKNkVzIi7WTyMW+IzBaLKQwgk0Mkw/w8UUDcj4MSAnU
+         FrIUMK3/xtKneW3KGtdN1TLj47/VU9kP17JHndaKo6JB+6wAIWv48KzcgPTUAQxykte1
+         KV27pH+G/MAP/DlanEntdLi8CaxAXA+hqtl4kSv5SftUDL0bXlmehgVqHDJhtw8hGRUr
+         QEtKrNcvWF+/namt57FHhVvB8lUH+SXJjkcsGhY2LVwTtv8g/pNueKQJ/tkfDvLLO5I/
+         bzXEQ0gcyoRJ+Gj7NJi73mOU3K45vVRMYT4iUsXSAgBOec5JJnZeYUEIHca1Ck0hgmlo
+         RBmg==
+X-Gm-Message-State: AOAM533RGl5Pl1kVtDRc+MRnHQQ3snDTcl1+QNw0kvggtBN2BMSVP0Nb
+        Cr5ByIj9vl5cwpjLOhUJyA==
+X-Google-Smtp-Source: ABdhPJycXJ0u9QA4j0lrlZKBHFJrB1V1ZSxBH0NWyBQdl7YyQIjicbTn5la2rQPRTllWck6Ojg3Rtg==
+X-Received: by 2002:a05:6830:82c:: with SMTP id t12mr2696272ots.33.1631102311602;
+        Wed, 08 Sep 2021 04:58:31 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e2sm378876ooh.40.2021.09.08.04.58.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Sep 2021 04:58:30 -0700 (PDT)
+Received: (nullmailer pid 1849807 invoked by uid 1000);
+        Wed, 08 Sep 2021 11:58:29 -0000
+Date:   Wed, 8 Sep 2021 06:58:29 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     bjorn.andersson@linaro.org, broonie@kernel.org,
+        plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+Subject: Re: [PATCH v5 13/21] ASoC: dt-bindings: add q6apm digital audio
+ stream bindings
+Message-ID: <YTilZXhtzVojg5bM@robh.at.kernel.org>
+References: <20210903112032.25834-1-srinivas.kandagatla@linaro.org>
+ <20210903112032.25834-14-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210903112032.25834-14-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the DT bindings documentation for lan966x SoC
-generic clock controller.
+On Fri, Sep 03, 2021 at 12:20:24PM +0100, Srinivas Kandagatla wrote:
+> On AudioReach audio Framework, Audio Streams (PCM/Compressed) are managed by
+> Q6APM(Audio Process Manager) service. This patch adds bindings for this DAIs
+> exposed by the DSP.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../bindings/sound/qcom,q6apm-dai.yaml        | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> new file mode 100644
+> index 000000000000..75431d1c0b2a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/sound/qcom,q6apm-dai.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Qualcomm Audio Process Manager Digital Audio Interfaces binding
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  This binding describes the Qualcomm APM DAIs in DSP
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,q6apm-dais
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - iommus
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpr {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        gprservice@1 {
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
-v1 -> v2:
-- Updated example provided for clk controller DT node.
+service@1
 
- .../bindings/clock/microchip,lan966x-gck.yaml | 64 +++++++++++++++++++
- 1 file changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+Might want to put a compatible in the gpr node so this is checked.
 
-diff --git a/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
-new file mode 100644
-index 000000000000..cb8c1f5002f8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/microchip,lan966x-gck.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip LAN966X Generic Clock Controller
-+
-+maintainers:
-+  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-+
-+description: |
-+  The LAN966X Generic clock controller contains 3 PLLs - cpu_clk,
-+  ddr_clk and sys_clk. This clock controller generates and supplies
-+  clock to various peripherals within the SoC.
-+
-+properties:
-+  compatible:
-+    const: microchip,lan966x-gck
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    cpu_clk: cpu_clk {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <600000000>;
-+    };
-+
-+    ddr_clk: ddr_clk {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <300000000>;
-+    };
-+
-+    sys_clk: sys_clk {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <162500000>;
-+    };
-+
-+    clks: clock-controller@e00c00a8 {
-+        compatible = "microchip,lan966x-gck";
-+        #clock-cells = <1>;
-+        clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
-+        reg = <0xe00c00a8 0x38>;
-+    };
-+...
--- 
-2.17.1
-
+> +          compatible = "qcom,q6apm";
+> +          reg = <1>;
+> +
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          apm@1 {
+> +            compatible = "qcom,q6apm-dais";
+> +            iommus = <&apps_smmu 0x1801 0x0>;
+> +            reg = <1>;
+> +          };
+> +        };
+> +    };
+> -- 
+> 2.21.0
+> 
+> 
