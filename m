@@ -2,163 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B33A04032DC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 05:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A234032EF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 05:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347460AbhIHDQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 23:16:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48016 "EHLO
+        id S230454AbhIHDf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 23:35:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347371AbhIHDQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 23:16:33 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC912C061757
-        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 20:15:26 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id c6so1262533ybm.10
-        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 20:15:26 -0700 (PDT)
+        with ESMTP id S234168AbhIHDf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 23:35:58 -0400
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD145C0613C1
+        for <devicetree@vger.kernel.org>; Tue,  7 Sep 2021 20:34:50 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so1116754otq.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Sep 2021 20:34:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XGL7umbcke/doOMh5kpYlO1h2Ked2/KDpAEFqS8ijq8=;
-        b=MhCwnGi35eOJzZgtvc1wH7ht7ZAk2Lw5vPhmPHjgo5N5+Hs8CIlgULuK3OjynZsUPq
-         B2ueqooWfvITraHfZGVwYfV1dc668k5/uD+XGxQVU1ZwWXw6R93E47/ihDHc0z25RmLS
-         hXHDeq0K+vDTAMjKTMfA5XG4WV9afSTMPMCC8uMvUXowduTTB/2qtROWh3BilTd63g+h
-         mWGhkEPsRu7gPgE4X4suc6WEucSphSd7Gr3pA/he5+2bRolmW1TTiDo/E//lqawHCzmG
-         yb1M0fCLdocto3qlCvS3VOjUxMJLx6khkUhOZTLyAuZZqnGdG8HiTLY20UT5jylTctU1
-         AwNw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=L3P6E94KgYTggNi34VPrDx8IIAdEhyLCWWiN3zBY9Js=;
+        b=JlNtynvnkpQ9cbDenz1tsa/nlyMA0maw6rFk81Gw0aVDGffXlQTTa+6b7htWTRdSK+
+         NEVM+wK8g5PbVzZzPOq81FZZ98qHdAbLYXSFQBwE3yxL0ns2D4V+OZwja1z77ctRXV/u
+         gpPA05WutWMCzrtTk6LL0g8uHqZ9KAJG7Ghv8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XGL7umbcke/doOMh5kpYlO1h2Ked2/KDpAEFqS8ijq8=;
-        b=ReWABY0bhe4wfErGACFhSLawBNTczPoNRyFZ/vO1myiF0if5BQZIli2c7Rs5cqHLHb
-         4xz/z2AicVR6ZUWDFc99NC9rCo3uCQYeo89SHk5r6ygUHU0m4ZgIFH27C/pt/ykA+H5X
-         yKOV2CQFa+rfp1KJf/fBqylorW+zWG8Rr/vIKR/Pr20Qvm5kP2PpiJvjCTH/QaNHyO6B
-         TQpQT+QnGoMJ2oyK02j7WvB5Buh6N33fTWjGXgmE0m3o+h0q7JjZj5zgQGQ4zaDtzBgG
-         HQVXkKiVBTomx5CzwSgr/WPwYgI9MVO03T8/9Mm5Z8YhUYbVKC71fbfnqzET8xw2y/+A
-         LQig==
-X-Gm-Message-State: AOAM530sl6u0Dzm9exXbKC/KD8eH4/744obUQEjLc91kbM0A8x0xTWwf
-        rzQ+5IAF+mS175uTismxJvDPRvwMgHOshwbxK1sbSQ==
-X-Google-Smtp-Source: ABdhPJxK4AxEbuTO1XBLzAPo3criMMzyA3JzcSjsFTm3I78gbA1NROP4ai3jxJ1PNbNC+FONtDi777GbHYbSg3K3hPw=
-X-Received: by 2002:a25:b94:: with SMTP id 142mr2054194ybl.508.1631070925782;
- Tue, 07 Sep 2021 20:15:25 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=L3P6E94KgYTggNi34VPrDx8IIAdEhyLCWWiN3zBY9Js=;
+        b=sBndI5Uwmyx/poMEeh1LdZn1aQk0r+/Mr6+RI1gxPUGsPtC77AV/Zkv9i7xdiQueXu
+         79K9Jt4wG1va4tW4hF2554V/LkZ2mp/JtBry9Ywr0it/hlnMYu3M9yJF9aDaBWqeykGQ
+         Amvxnmon0x1o3bUCux+kdadRPdewLHIhUvemjp8GYOtzeiKhJw0BGXducj1ujDr0wuX9
+         zJqfk3U9ydry6O+IA5kEZXxm5cFIbnchDfol7v0xelU+7DNv/EP6ESO/VN3+/gpjcI8k
+         3HKcYBS2183VvmmfzBfD/GgYtbx5WBBupTnYoTiWKufzS/GJYV0muFJDWrQxANXY0B4q
+         1Wjg==
+X-Gm-Message-State: AOAM532f5M+ZwiWJofE0rxk4ODlD+m3Wk7ZojGzYBIi6GKOHQhp+IVut
+        gd9mm4VuPzMetOmrQxX3QUwMtdXSvfWGb6H+TrabUQ==
+X-Google-Smtp-Source: ABdhPJyg6igS7IIqsGysq/0S3geeIlQjSOmbIIyrAPs2dYADUam233q3f/f5Bbz2/xP4NNavIoeMzXqtJhdu5C4/8ws=
+X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr1328000otp.159.1631072089755;
+ Tue, 07 Sep 2021 20:34:49 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 8 Sep 2021 03:34:49 +0000
 MIME-Version: 1.0
-References: <3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de> <CAGETcx9eFg7jR=ibBLhU3q+VnpqJXQCVmQcEyMpozddRiCXFLQ@mail.gmail.com>
- <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de>
-In-Reply-To: <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 7 Sep 2021 20:14:49 -0700
-Message-ID: <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
-Subject: Re: [Bisected Regression] OLPC XO-1.5: Internal drive and SD card
- (mmcblk*) gone since commit ea718c699055
-To:     Andre Muller <andre.muller@web.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+In-Reply-To: <1630924867-4663-4-git-send-email-skakit@codeaurora.org>
+References: <1630924867-4663-1-git-send-email-skakit@codeaurora.org> <1630924867-4663-4-git-send-email-skakit@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 8 Sep 2021 03:34:49 +0000
+Message-ID: <CAE-0n51CCqrbKr9NCkzaK3JxCtJgRKdXTeR4kxnnOK_wNKpP6A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: pm8350c: Add pwm support
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        satya priya <skakit@codeaurora.org>
+Cc:     mka@chromium.org, kgunda@codeaurora.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 7, 2021 at 7:12 PM Andre Muller <andre.muller@web.de> wrote:
+Quoting satya priya (2021-09-06 03:41:07)
+> Add pwm support for PM8350C pmic.
 >
-> On 08/09/2021 00.05, Saravana Kannan wrote:
-> > On Sun, Sep 5, 2021 at 1:15 AM Andre Muller <andre.muller@web.de> wrote:
-> >>
-> >> With linux-5.13 and linux-5.14, the internal drive and SD card reader are gone from the XO-1.5. I bisected the issue to come up with ea718c699055:
-> >>
-> >> # first bad commit: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
-> >>
-> >> The /dev/mmcblk* nodes are not generated since this patch.
-> >>
-> >> Please find the output of lspsi -vv and lshw below.
-> >>
-> >> I will be happy to provide more info and/or test patches.
-> >
-> > Hi Andre,
-> >
-> > Can you point me to the dts file in upstream that corresponds to this system?
-> >
-> > Also, if you can give the output of:
-> > cat /sys/kernel/debug/devices_deferred
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> Hi Saravana,
->
->
-> /sys/kernel/debug/devices_deferred is empty.
-> I used the last good commit b6f617.
+> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> index e1b75ae..ecdae55 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> @@ -29,6 +29,12 @@
+>                         interrupt-controller;
+>                         #interrupt-cells = <2>;
+>                 };
+> +
+> +               pm8350c_pwm4: pwm {
+> +                       compatible = "qcom,pm8350c-pwm";
 
-Sorry, I wanted that with the bad commit.
+Shouldn't there be a reg property?
 
+> +                       #pwm-cells = <2>;
+> +                       status = "okay";
+> +               };
+>         };
+>  };
 >
-> The XO-1.5 has an x86 compatible VIA C7 processor.
-> It uses the VX855 chip for about all I/O tasks, including SDIO.
-> I am not aware of a device tree file for it.
+> --
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
 >
-> It is a bit of a strange beast, it uses OFW to initialize the hardware and provide a FORTH shell.
-> Which also is the boot manager, configured via FORTH scripts.
->
->  From the linux side of the fence, dmesg's line 2 is:
->
-> "OFW detected in memory, cif @ 0xff83ae68 (reserving top 8MB)"
->
-> AIUI, this mechanism is used in lieu of a device tree file, like UEFI on most x86 hardware.
-> But my understanding of device trees is severely limited, I might be allwrong.
-
-Uhh... I'm so confused. If Linux doesn't use OF, then none of the code
-enabled by fw_devlink=on should be executed.
-
-The only thing that might remotely even execute is:
-efifb_add_links() in drivers/firmware/efi/efi-init.c
-
-If you want you can just do an early return 0; in that to see if it
-makes a difference (unlikely).
-
-Rob, Do you know what's going on with OLPC and DT?
-
->
->
-> Anyway, the firmware source is here:
-> http://dev.laptop.org/git/users/quozl/openfirmware/
->
-> This file is the closest dt-analogous thing for the XO-1.5 I can find therein:
-> cpu/x86/pc/olpc/via/devices.fth
-
-That file is all gibberish to me.
-
->
-> My machine runs the latest version:
-> http://wiki.laptop.org/go/OLPC_Firmware_q3c17
->
-> The XO-1.5 hardware specs are here:
-> http://wiki.laptop.org/images/f/f0/CL1B_Hdwe_Design_Spec.pdf
-> http://wiki.laptop.org/go/Hardware_specification_1.5
->
-> Would the .config or dmesg help?
-
-At this point, why not? When you do send them, please send them as
-attachments and not inline.
-
-Also, when you collect the dmesg logs, the following could help:
-Enable the existing dev_dbg logs in these functions:
-device_link_add()
-device_links_check_suppliers()
-
-And add the following log to fwnode_link_add():
-+++ b/drivers/base/core.c
-@@ -87,6 +87,8 @@ int fwnode_link_add(struct fwnode_handle *con,
-struct fwnode_handle *sup)
-                goto out;
-        }
-
-+       pr_info("Link fwnode %pfwP as a consumer of fwnode %pfwP\n", con, sup);
-+
-        link->supplier = sup;
-        INIT_LIST_HEAD(&link->s_hook);
-        link->consumer = con;
-
-Thanks,
-Saravana
