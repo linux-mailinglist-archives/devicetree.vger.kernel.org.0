@@ -2,167 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1DE3403778
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 12:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B234037B2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 12:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348727AbhIHKEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 06:04:51 -0400
-Received: from mail-eopbgr80047.outbound.protection.outlook.com ([40.107.8.47]:14657
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        id S235038AbhIHKTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 06:19:50 -0400
+Received: from mail-eopbgr1320124.outbound.protection.outlook.com ([40.107.132.124]:56576
+        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1348771AbhIHKEc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 06:04:32 -0400
+        id S234958AbhIHKTr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Sep 2021 06:19:47 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f93go9PkowKK1iIKx/UzTFJi7sQA4cMsH56z2/yppyVAuqOrG6rSYysI0aOW0r/vTUL8W15CrvfmZFnZhMLoJnhhaHUZTGIj4gft5SRScRD6VmCJS5nlFZw9kLDpwDIVw316V28dgvWJawUakm8VKGxjoo+88CwWnv5kMq8Y5zxCkO7BDqTMPegvYid523ffogg35sbDKHz0f7sIuVCFvrVcULfH8JKB31RA4zPQgmgTgBm0E0ZSCxbeNjt8qCULtXrAHIkso3LOJmi9PWLx0EKDv+DQADDGfa/FBssgOkW9pX8vox9x/z8iL3i6uMETsGnnN8FHauDRR4EXWDCKGg==
+ b=lmrdtQJ/BIg9O8NVKzrCbcMirwUsXTxccXx1wBYeS/4Bx40DMR8GzanASs1Qgujq2a7YSVcXdM0yA9lNpvL7Bqrzvt3mKZKmT0vyIRFB7hHCCrB3ELIzDaqSz29M/zSjhzOzgRTDCqC5b5Owrf5hnLApEkG+bHXFtUIb/uSaZBI+WdG+Zmo2iIs36t4JvbT4BB/QfJ34EoB21VZPq7410JlNCEY6FFOO2G3Jxc8iLa5CzkRdqm15oR/J/puJSpEdoSgvfimxQ6p5+mY7/P26AIx9M2tK+BHDi26dhPi3CJ0Gt+0pFI2AzVh1cehgiat7maH36EU/i+ojGE0e4RYLSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=TDgemKq6P1MdA7Kl2m3yyrwqgQfYCGz2XfTrDEpCyG0=;
- b=b+S1+9aUgQ/DbQz8xlnIB7ER6DnDc3EDIetWzZgqtq1o8I3dOCyaJiQVHtFo00Gie6pNT31PFLB7FTRjT3b4WkoZNF0JjQ086LI4M8Wn8TtuT8Vqim107uEMYhmkXPmxYmbg+PcjvzAiWPuxqo1VsMqWr3wf3SsBnv8vkfgdfm4ICpBP7kwIeo+nMzOX2RxFOfdELD3XTa5a03A5fZPMomNS3yVheJOxv8mkNKuuBT2CsDHxhdg+4KqPuu+ebSv8CHhMf4TbVBjqWKVq1EtPGyJQCQ+G6BLuf15foxb527t5pUc3hG1CtaMJ61M2FXmZ6i/6ee9GrmnI5/ltEXnH/A==
+ bh=0et2rsBPQ5fadDyIxjaBDGpq04m2rCzHq9Y1m07xCjg=;
+ b=EVhCQ1vVrlFbo++3UmJJh6sc8WJXO35oHT9Qech0u/mMzRlup6krJEDaKSPRYwwT5e5HQiVK/aQUXIEO/lezDSe0DZ44GHxBAi9dN4UTQl18TzD2+QBhDPYL5jjHXXz7DKupr8cQCiEOatLCGpZ0hz4cK4Jr96aijZgnFvlGeU1p4MXXumvUh9dpgO9KVfZ5mKffbu6mpMnjXWbvXj4COWkswUIH2VluVG6tsera6TjCiIfnILHaw2HZZp1y4qqwOcf1otOhs/LVX8VcLXE/9tPPmY2gWbe1zVU7il4zQjQU+H0VVFaj3Vo1r1G/kuOcO3zgnfYSp6Aedy48m8e12w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TDgemKq6P1MdA7Kl2m3yyrwqgQfYCGz2XfTrDEpCyG0=;
- b=XJHWQ2EnOfzyHeAndsDzylpklpiU8+LqEwtMFCctcn914x+2EcE2sH//oQTZoqX24JBRZg5IzBu3dmUuMNuVdRSW17fedMTyVW4Vuu9B9Bm9IlDPWt5EiOrpbrXYb1lR6vebM6M+cdvS1tXmOubIe8pgnG6lgPtt556nUXp8v9Y=
-Authentication-Results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB8PR04MB5786.eurprd04.prod.outlook.com (2603:10a6:10:a8::31) with
+ bh=0et2rsBPQ5fadDyIxjaBDGpq04m2rCzHq9Y1m07xCjg=;
+ b=N/vD8HkUFyDr3DggxtKSLtT0doZW5xcgBr9M7Hq+Ds4y84n0nFetC7gP3/G/6PQWxikywHIMFlx4M4bKwCYCXr5WOEahvbzfe8v+wg7i1vUdrfkswBFQnnvMjth+6soQu8z2dHlI2DjwZhzjXhNefBr32hzE5eDGzTAGycgIl0xPEuA2cM9Bif8cGkoTKJ13tAYrm+HaM6WE809amqA+n7y2Hp/3puK8W6iGFk58vZx3LEiHcKTyQ2mqcpVBwwZo2IMkzBfqSM1D+JUpPs17szkw1bGnwUPeptzwKfCd5PAoHZq79I3j8zDe/872UBwLnOiNY7BMNG2Z/khEiSAY2Q==
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com (2603:1096:203:b8::10)
+ by HK2PR06MB3556.apcprd06.prod.outlook.com (2603:1096:202:39::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14; Wed, 8 Sep
- 2021 10:03:23 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::5d5a:30b0:2bc2:312f]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::5d5a:30b0:2bc2:312f%9]) with mapi id 15.20.4500.014; Wed, 8 Sep 2021
- 10:03:23 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        shawnguo@kernel.org
-Cc:     linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: imx8m: remove unused "nvmem_macaddr_swap" property for FEC
-Date:   Wed,  8 Sep 2021 18:02:57 +0800
-Message-Id: <20210908100257.17833-7-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210908100257.17833-1-qiangqing.zhang@nxp.com>
-References: <20210908100257.17833-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0105.apcprd01.prod.exchangelabs.com
- (2603:1096:3:15::31) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
+ 2021 10:18:35 +0000
+Received: from HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::4c26:6668:f551:3a62]) by HK0PR06MB3779.apcprd06.prod.outlook.com
+ ([fe80::4c26:6668:f551:3a62%3]) with mapi id 15.20.4457.026; Wed, 8 Sep 2021
+ 10:18:35 +0000
+From:   ChiaWei Wang <chiawei_wang@aspeedtech.com>
+To:     Paul Fertser <fercerpav@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "osk@google.com" <osk@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Konstantin Klubnichkin <kitsok@yandex-team.ru>
+Subject: RE: [PATCH v2 0/3] arm: aspeed: Add UART routing support
+Thread-Topic: [PATCH v2 0/3] arm: aspeed: Add UART routing support
+Thread-Index: AQHXn6Ep4pfNy4cUzEmFUBdsNZd0kquZ7IKAgAAENXA=
+Date:   Wed, 8 Sep 2021 10:18:35 +0000
+Message-ID: <HK0PR06MB3779180F75DB8BD872F8A78391D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
+References: <20210902021817.17506-1-chiawei_wang@aspeedtech.com>
+ <20210908094248.GZ23326@home.paul.comp>
+In-Reply-To: <20210908094248.GZ23326@home.paul.comp>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 41af0b3a-687c-41ab-b21b-08d972b2049f
+x-ms-traffictypediagnostic: HK2PR06MB3556:
+x-microsoft-antispam-prvs: <HK2PR06MB35567BE0EAB4811868889B3591D49@HK2PR06MB3556.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CCFmx3QxDwQdILuLwGdH2RHz2PqTWh3yROKKTXvuQPvKan7//hLHapqZpvqmyGgfDkArWQT/PvSMe0VvveHIkjKme/YMP5Z7GfUVld1TVpbxIF3XZFm/P+tfjHLFSVxpbLfaZFQVqgXFxLDmKO5BcQhxDAPJx01TupsJ2I75X3/7Nj4RrnqJurv5uN5nPSjRVTXgcsCcse+vbi3uge53/XIqirGUlgpbgJZulb4YbZ9KglAPKaZkeyZ8bQimyl0y1Wxy62dyb9nZop5iP5Wl1Df4t6GaXYOSjh5c+5waznNmwAV3q3yTqaJsouyqX/wAj/hlN0t1KdhSb7lCu6al0biUjsJkSrQXoo9n110Asphweu8bnH6V79kNEw0zcxxBzq7dEbYFPt4neoLFLLESHiGpjVK7unGA0n3FLJMXsc/KiV+DaCA19d9WxfqDatTTOkqIOfVAdiz4icHWAuSJVX5sexeyrn3pW6mrorU789VKYhzC5NmKvz9prx5Z4KeesWFisLHy9iYHljadsiYi34aNqhedyxprtKiGYLQbU3MP4Y8Qci+ojLNiGne2Hkpq5ICTlucNf9I4a7VfsT9Nh4LNJSRPNv771AqbHDmPxFuNx87yU+PsHTHLOsHhgAhj5CUbl+7MlUQKUS15AwFsNTwbPsb2zOVpeHaFu4wveAvsgEWhtya4rILmZ+5WkVMsIRvAArOvC2oJa+dYdWfNv61H/RNKlsydM42lhBrXMPKj5PbQC0I26LkZAmCCMZnDeqmD9xbgCLa8YqfjOxCNszj0foXgAInE3eGmZvbT6kQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3779.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(346002)(376002)(396003)(366004)(39840400004)(478600001)(26005)(66556008)(66946007)(33656002)(71200400001)(66476007)(7696005)(52536014)(54906003)(5660300002)(8936002)(6506007)(186003)(64756008)(8676002)(66446008)(76116006)(38070700005)(83380400001)(2906002)(7416002)(6916009)(55016002)(38100700002)(9686003)(4326008)(316002)(86362001)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?u5H/dxYBBWQJpxI/8rxXPMiMY2ntb5CxjSQvm0mubsOsnU1n9wKH/hJThXmn?=
+ =?us-ascii?Q?jTqMXIWp+xAQ1g5kOclcflhEJ5+5eWMjCD6VCePpMhaL5MtfyXwCaOcp8caD?=
+ =?us-ascii?Q?/WsGbJ+/5jmqoHa6WsuNE/YebIgviqJhnvzdS9/djnawfp5jLrCqDZFaygd5?=
+ =?us-ascii?Q?k9AHoRZhsM3+dUOeNh08bkccsJ3IANEzZXY03OZbF3jlS3QKDvZ6Wjn6zU7G?=
+ =?us-ascii?Q?tYwIVi4ypq4u1hku7Rx79hL5R9kOMT/DSegLPNKb9cpeJh/hjcQON3Vkoboa?=
+ =?us-ascii?Q?Mu4utqaAC3NnKYYQyN5YBs4W2KiS10hxz/UVpUmYjTw7LPUiyW/jiEPevzSv?=
+ =?us-ascii?Q?kp5/4PlCMXoX4NUhmBCQi5ziQhRV/vtuH0QDe/9J8nIowjSBwQnKNNwYmHu+?=
+ =?us-ascii?Q?aEZui8hFiloW5mcEMsfMArS1gAyeaIQuDHRlSLXORu7IdCVGqv6Uvb5f9xGx?=
+ =?us-ascii?Q?jCos+Q7GCKIZdZsIXZra3CAsX8AYkAB/dhU47Q6J99sW8bioheShYLAlnsPy?=
+ =?us-ascii?Q?BqbOWSYvxz20Vxkbu9hsc6saq3X3MRIKShVh+6/zdb5JjPpRiWEMB25iA35l?=
+ =?us-ascii?Q?yIT5sQmNjN3nHhW420m7NOH4PC0z7lKa/f57gThs7YbfjqUPmUA5nX0Pzqxy?=
+ =?us-ascii?Q?oAFw4PjeMvHnRmTMnzh1jafmwSe54tdq140Sfk0tjE/HYc+f/PvyFUOFlsy5?=
+ =?us-ascii?Q?jEdfA5dcvD0xAJnPeNeB2KysLZoEmvTqjuumqq0vql+QYg+30xsl0Trv6E0M?=
+ =?us-ascii?Q?rNpxGfHxaEh45zDd/DbvMhSq5LVICVMit1xCdolooVXJT9MAhptL+CYtZsF4?=
+ =?us-ascii?Q?AVkd+htkwQGTC3p8WR6rB/5ozHW6i1cHameUy6FePhrjJp+mF7WsgT+RAGd9?=
+ =?us-ascii?Q?o+ZGXU2T5Om1IbwF2nm3ltNHIGy2kOtOBlxPq4dRLBPUqPpYIDQsO5IrVeqp?=
+ =?us-ascii?Q?rgNAL3MI2v6MoAc7FvQm7IQInoEhJgBHJJ5OrCVnSju6cAdTbXC/IbsWO6f0?=
+ =?us-ascii?Q?tNdxC2hzzNFQabQG7W9RMgUKItE8dPg4lNPi0lu7XjTPE6hHhX5QBEwOxJgh?=
+ =?us-ascii?Q?wnElMx3gyFf9vE/fCHlr0L4KTzMWob6vIbHLk1wZVy/iCUEaOv8b+3ZvvBN+?=
+ =?us-ascii?Q?oHhzK7iGo5S/jYmvh6GgzI83bstLenAa3BoEkIbtBrzqegVFvBAwFcoNQmC5?=
+ =?us-ascii?Q?7doZ8SuzqUW5zOi7WpB80ZDf3A5LgJ/pkDTC5wNY5Jrg0S0qc207F2lgqgUJ?=
+ =?us-ascii?Q?/Lqr+hKkM9yk1Fu2aUamU1ReZUErYe7d5vVcmQbyvk9NIBo5vuEHNsRijiAx?=
+ =?us-ascii?Q?J+YETXzUb7jFymkl2p3yoj4F?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR01CA0105.apcprd01.prod.exchangelabs.com (2603:1096:3:15::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend Transport; Wed, 8 Sep 2021 10:03:20 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 290994af-bf16-405a-069d-08d972afe4a6
-X-MS-TrafficTypeDiagnostic: DB8PR04MB5786:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB578698471808A005AD85C7D9E6D49@DB8PR04MB5786.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G5pN+qk+rnuQ2Sk7nA01IOzNwzMzAFuBVMUbYA+2i8ukXR/qxV2e4vPcPCQGNTrDy/kANjQwf0HEfk56sQENMZgluhQiv4r1v2VxgEzNAOt1OqmnHbI8mmI2VAyC02FRlKdhM74Trq8hnFCfZK0sjYGzWuN2jE222mD5q/ygVCYPH1wiC6gEDiXVVxrixs3vfTsoxgfSf5LDNJW55S4nqFWYyswlXKb7VaSmwHS5f1A58BqDCf7ia0IUAv3Jc0+gGVG1qsUDAJR4B2fJEAroftShWxqbyhYiz/9ZU0MtUHBFutsUzx+7+z0hFPiF+g8SCSX5eGZuqijMNYuu5+wHDPm5+ZetQC9LrPyTpKutgKjkhhnK76ijAPQ7MBxHEm0lKH+cQhWHhLXKkqKsY7lvIR/5u1irlkSiY4ozKjwp5U3oSu7Jvry7pJyjwkrlZw8MIEHrGqIbM/FDlIRAp2rROFseQFTQvcZ7oLmNy0seWbLR/996d+ug7I5SQ6kkEDdxtrUNk1SgEWak2V6NKlxFzvyurNFoWsNn1Ff43595EBHBjRkS+tTtp5fBGTeJO4ffDOoc3H4Yfn2kO3JT4JDR+4IQNF+vwYigW4qJQ0pq7SogjNbdJt5RwK6rbPo3kqstBj5k9Gwh8ONOJ/eX/S2l0I8b9yTnGEQXr0SDydkYFwCzT1gshsHwgHJOG06N/1YuNEaqSz3Q1YCmOfqmF2aKRXv3hSEOJyXoSmW7TbwshnA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(136003)(366004)(396003)(346002)(86362001)(8936002)(66556008)(6486002)(8676002)(38100700002)(2616005)(66476007)(956004)(478600001)(38350700002)(66946007)(6506007)(316002)(36756003)(52116002)(26005)(5660300002)(83380400001)(1076003)(6512007)(4326008)(6666004)(2906002)(186003)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FJs+f6X7831aP0MlKbbIsWhDr0TSmWCFbA0RNpkZccJCGf0X3k3fZDTAW2e6?=
- =?us-ascii?Q?uQlHBeU2uCk0sXqB3lbhdfJT7cdtZnRenQuA1HmOUQgMvvSSNNwTt2kmtD/B?=
- =?us-ascii?Q?1H8tUaGUxTQuhdBQHExWwAP7eTe1NUsyMe8V8wf8nrzigHOXGusR3iOyE1Mm?=
- =?us-ascii?Q?+0V+SKpGkPs9+l9oXkaN0NsbYGkf+FieyBHUbLhzJ3pUGfAPrMyuCxCMXgW8?=
- =?us-ascii?Q?CgJhZJFA4NElHzPd+fw259QoedXTPMT6VYoPgUY0FvXxaJpvU9xvfSP/zi2l?=
- =?us-ascii?Q?tH/dj6gefxYjwUmIJjwm545c42k3dgLXth6AFu/x6YnZhUxXBIA4AtJnUzpa?=
- =?us-ascii?Q?H/wxHJKX4LOYFjBXD6LsftRKv4dpwFFiGfIxc/sRMYzG6j9hlZ2LTqgvKkHM?=
- =?us-ascii?Q?7UnCAchhy8bveiHXBrIfwYOtpuVk0HePQG/gA6eOcPpkgh287ZcEZJYXr2r0?=
- =?us-ascii?Q?WJBABfBUtalWee/D6W21Bo884eE9mLlgXJcduh8z4AYAHdqQU9iFKsHfNryk?=
- =?us-ascii?Q?XLrZiJdn6qXDjWY/MvsqPZc3Ah6bvppBDBDIbeXnTGTab6+OCrsoiTAizAJq?=
- =?us-ascii?Q?fYdZkCVEUGSOi4hQxdcnINaSe9vSmUvKAUftSnqNlbHXM0Y3OYGu+FI/LMtK?=
- =?us-ascii?Q?HuHIPnwAwjtsUA9+9wzXDIKnbj/K5d6DQtq+1l+Esh11fWio75oTLnJmXt4w?=
- =?us-ascii?Q?N7xiDQPNup15k70vEp8ITvTw5PzulaZfcQsjtpggAjEHkdWkpNIayT6rXQR5?=
- =?us-ascii?Q?YWMrFTFz86dNk1W4S/7Xl1EfI8k1ViGV7E/so+F74BY06vvCKd7WNIQ/TmKS?=
- =?us-ascii?Q?tqcieCF1iijhpbPTs4+V7N9pOip+FctRr7dvDmrF44CSTi9UkUDOUQaOmqyY?=
- =?us-ascii?Q?14RZ54v8KhVyr28JrrLUU/SBoz/3aumA/LwuBFAl5suj0IocISnZaqPDjg0J?=
- =?us-ascii?Q?Y8fyjuj2Pc0hDHpYeQuaFDXAeWe+islPVN27lXBSPKgMNnfzJpVI32VxeAJv?=
- =?us-ascii?Q?3M3JwUSRKaY0rShZ9Yb5FIpWCEtERUxQPo6/hSaXnld+bBOZcjMYA4MRfy/3?=
- =?us-ascii?Q?p67COBiwrfiXdbp7uT+25NwQn4dmRM8O6dh6u0bONIFJxQez3UxNARSLCnI3?=
- =?us-ascii?Q?KJ4Y3mfz7ouemf69lL8qjo22bLY0dc9b1MHHbaCAAB9yLXsJ8XF+E2klIvVf?=
- =?us-ascii?Q?V/rdK0w+UDptxenqsNjlOWAXkgknKo2gBFZBuSyut3G+P8q1qtuZLtWcuaXT?=
- =?us-ascii?Q?W4PtFn0hQ2qeR9fo/xjqpVaLcPIYUWxK7QtVNxW3BSkZqvYQ4ZzvKQAfHWX5?=
- =?us-ascii?Q?5U7PjuE58fGUbcjw4090gfl+?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 290994af-bf16-405a-069d-08d972afe4a6
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-OriginatorOrg: aspeedtech.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 10:03:23.2098
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3779.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41af0b3a-687c-41ab-b21b-08d972b2049f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2021 10:18:35.5366
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DVsQwHAmp/kw0tMW7LMnl5wNHPKAHvFJtyxkTaWkjrEq6JOq8D3Fkp2dfS1GDmtL3vKvHyYapDx/YEa02C6hww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5786
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VtS8BfG7ayM6KNsukgyfo8Dct0qYQT1b9nQR1naJLYpnPcRokZ4Agp2YEkdctf/GbLEn+kziEpp+WxIana1+G3TkpoA+Pc5no3Mx0Fo/9ow=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR06MB3556
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove unused "nvmem_macaddr_swap" property for FEC, there is no info in both
-dt-binding and driver, so it's safe to remove it.
+Hi Paul,
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 -
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 1 -
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 1 -
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 -
- 4 files changed, 4 deletions(-)
+> From: Paul Fertser <fercerpav@gmail.com>
+> Sent: Wednesday, September 8, 2021 5:43 PM
+>=20
+> Hello,
+>=20
+> On Thu, Sep 02, 2021 at 10:18:13AM +0800, Chia-Wei Wang wrote:
+> > Add UART routing driver and the device tree nodes.
+>=20
+> Thank you for working on exposing this functionality in upstreamable way,
+> that's so much better than all the register-level hacks in U-Boot and sim=
+ilar
+> approaches!
+>=20
+>=20
+> One (somewhat) related question that I hope you do not mind answering:
+> is there anything special regarding the routing or other configuration th=
+at
+> needs to be done for VUART to work with IRQs?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index fb14be932386..2210cfda4e60 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -948,7 +948,6 @@
- 				fsl,num-rx-queues = <3>;
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
--				nvmem_macaddr_swap;
- 				fsl,stop-mode = <&gpr 0x10 3>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 0a994e6edc0b..408024426315 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -951,7 +951,6 @@
- 				fsl,num-rx-queues = <3>;
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
--				nvmem_macaddr_swap;
- 				fsl,stop-mode = <&gpr 0x10 3>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 37188ff07f21..cb7867791d05 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -821,7 +821,6 @@
- 				nvmem-cells = <&eth_mac1>;
- 				nvmem-cell-names = "mac-address";
- 				fsl,stop-mode = <&gpr 0x10 3>;
--				nvmem_macaddr_swap;
- 				status = "disabled";
- 			};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 1cb211e470ae..dc4e39ef9d39 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1191,7 +1191,6 @@
- 				fsl,num-rx-queues = <3>;
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
--				nvmem_macaddr_swap;
- 				fsl,stop-mode = <&iomuxc_gpr 0x10 3>;
- 				status = "disabled";
- 			};
--- 
-2.17.1
+No. The routing control has no relation to VUART.
 
+>=20
+> The reason I ask is that I have tried hard (and I know several other deve=
+lopers
+> who have too) to use VUART functionality but somehow as soon as Linux was
+> booting on host and starting to use the IRQ-based
+> 16550 driver the communication was halted both ways. Basically, the BMC
+> firmware was enabling VUART in DTS, then setting LPC address to
+> 0x3F8 and LPC IRQ to 4 and reading/writing using the corresponding
+> /dev/ttyS* node. The datasheet is not clearly telling what other actions =
+need to
+> be performed for this to work. Not using VUART and instead routing UART1
+> lines with exactly the same pinctrl/pinmux worked just fine. One detail i=
+s that
+> with VUART the host wasn't seeing new interrupts but when they were
+> simulated by exporting the LPC interrupt pin via /sys/class/gpio and togg=
+ling it
+> manually the data was getting through.
+>=20
+> Does UART1 need some explicit disabling for VUART IRQs to work? It looks =
+like
+> setting LPC address and IRQ number in VUART is enough to override the
+> register part but probably not for the interrupt?
+
+You may need to confirm that the Host does not enable the SIO SUART1 device=
+.
+This will conflict with VUART as both SUART and VAURT are competing for the=
+ port address 0x3f8 and SIRQ 4.
+
+>=20
+> --
+> Be free, use free (http://www.gnu.org/philosophy/free-sw.html) software!
+> mailto:fercerpav@gmail.com
