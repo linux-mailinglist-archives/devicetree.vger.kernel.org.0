@@ -2,158 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9084403552
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 09:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D666403590
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 09:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350076AbhIHH3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 03:29:17 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:57000 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350034AbhIHH3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 03:29:16 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1631086089; h=Message-ID: Subject: Cc: To: From: Date:
- Content-Transfer-Encoding: Content-Type: MIME-Version: Sender;
- bh=bhkyZfrhhg4vHCTOSXNchpd3Qd+b1T880BOzslLod7U=; b=LOQqIh3qL1gSytREgHIj3fF4bWu8UHWZ/RvGlz2xbsjf7L2T752Wrc37T7xGH2BdK7wHSWqM
- vjt0oLcvXzqWfNYClWjojnbeXdYT0j2L7Ks/EakQnW1qU4qH1cWsbuCN6dGz6HPawkerpH1u
- fCSBfqZtGgHZK4BsEkjHw5PKbTE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 6138660897222b4b5baf04ed (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 08 Sep 2021 07:28:08
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5C0DCC4360C; Wed,  8 Sep 2021 07:28:08 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S1350220AbhIHHid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 03:38:33 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:36914
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1350209AbhIHHia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 03:38:30 -0400
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id ABC1DC4338F;
-        Wed,  8 Sep 2021 07:28:07 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7B11A3F327
+        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 07:37:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631086639;
+        bh=Xl/DB/qd7Mt2jtRMD1Jrfz+4cyEFuk2xdMOwq0sPa0o=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=bZTHswkeXNyTDPc3Gu20ebh+AcnBAZsYMsQiK9ETuhXhcqYN2aVxVUPVmgGqcRe0u
+         pamQzRskNyv7oR0zjEEhBxhTJbHem91KkZg63GSVpVWcPFR+/bSUXUAtFNDBgJ3woJ
+         o5FwDJw9VTYkVSdj+t9x1ZBEVK+LyxFBxCyrM+IIwPLemxmV/3GINweabCUAH1FMOZ
+         mhb7VRgQ1ScGTD6N9jNKUrkcFWtdew5uToOaGRnahVZNZWmbD55yImiMgUjv0LGapH
+         dC1Yyu38J3DBcCcZUZHdaddYSmlSpZtlaf9RBFLS0E+OhNadygf4IOfNuILHjroG/7
+         6IRxjH0lSUhlg==
+Received: by mail-wm1-f72.google.com with SMTP id o20-20020a05600c379400b002e755735eedso542993wmr.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 00:37:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Xl/DB/qd7Mt2jtRMD1Jrfz+4cyEFuk2xdMOwq0sPa0o=;
+        b=pnY2PbxX8LJRSVnYyKlg26ZBRyoDuKfkcaRvQL8ZwDr13LnA4gEWwdJEj8t5aWfpKB
+         trIMNe9REPJBQ8WGjDo2KKyPSuHoXxGJLPidiz1gLBrnoztOxs7cX5sXxuv2ku6/pTlr
+         Loxgb8pQcIiHbPb2U/Gqjb18cFgPwivuAoeV8PfMnmmdX67DGX/cRKbt+KuD+SgtVKZd
+         CfmO06aDdRaseV3yK3o+M9YcbPC49/ZUv2SieyynwQ4MKkpQlH9boizJT2/PZGjTyeku
+         ECTBwLKPN74bztBfRX6WpPJz/vQ7MmsVofyA3uCTjZicjwtSfMqqqnOyZWdf9hPP1L+x
+         Jlag==
+X-Gm-Message-State: AOAM530ujFrUrvYjMGECJ1GrextBpxe6dkART3q+408JY8huncU/lCd6
+        TynvH2RCsQ+0zKhKkGWJXhRw6oc46s3n0lhW2Dt3b5QOYcM9xpLitLv5MRP8Aoi8Gv3UXknpasq
+        0dfU3xYLPKOaTafreh1nj9beSnKI6D9mNeui7Awk=
+X-Received: by 2002:a7b:c850:: with SMTP id c16mr2134058wml.22.1631086639204;
+        Wed, 08 Sep 2021 00:37:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwxT/gY/L6a1d5mGa18rZxRFI+AF2+c6swdpOKQ0gxBamkjIAd+eDg9BV8WN4geyHZLXCOsag==
+X-Received: by 2002:a7b:c850:: with SMTP id c16mr2134042wml.22.1631086639049;
+        Wed, 08 Sep 2021 00:37:19 -0700 (PDT)
+Received: from [192.168.3.211] ([79.98.113.217])
+        by smtp.gmail.com with ESMTPSA id s12sm1285746wru.41.2021.09.08.00.37.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Sep 2021 00:37:18 -0700 (PDT)
+Subject: Re: [PATCH 2/6] dt-bindings: mmc: cdns: match MPFS MMC/SDHCI
+ controller
+To:     Conor.Dooley@microchip.com, robh@kernel.org
+Cc:     atish.patra@wdc.com, ulf.hansson@linaro.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, geert+renesas@glider.be,
+        yash.shah@sifive.com, yamada.masahiro@socionext.com,
+        piotrs@cadence.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20210819154436.117798-1-krzysztof.kozlowski@canonical.com>
+ <20210819154436.117798-2-krzysztof.kozlowski@canonical.com>
+ <YSUDTSuNlsOmu/G+@robh.at.kernel.org>
+ <9423ddab-4635-ea15-7a9d-dbcf1bc215dc@canonical.com>
+ <CAL_JsqKU4opYerjxXTnAuouLc5-GQQKnPX+qZEMBuzYV-inmJw@mail.gmail.com>
+ <b607f187-5eee-6afa-f50a-c6532acf19e5@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <c9855c99-1240-b0a3-4a5c-9f16cee7fe6e@canonical.com>
+Date:   Wed, 8 Sep 2021 09:37:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <b607f187-5eee-6afa-f50a-c6532acf19e5@microchip.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 08 Sep 2021 12:58:07 +0530
-From:   skakit@codeaurora.org
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 1/2] pinctrl: qcom: spmi-gpio: correct parent irqspec
- translation
-Message-ID: <6ccb0c57d25aebb141e9aa8bab103c93@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-09-03 23:39, Stephen Boyd wrote:
-> Quoting satya priya (2021-09-02 02:15:05)
->> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c 
->> b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
->> index 98bf0e2..dbae168 100644
->> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
->> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
->> @@ -1,6 +1,6 @@
->>  // SPDX-License-Identifier: GPL-2.0-only
->>  /*
->> - * Copyright (c) 2012-2014, The Linux Foundation. All rights 
->> reserved.
->> + * Copyright (c) 2012-2014, 2016-2021 The Linux Foundation. All 
->> rights reserved.
->>   */
->> 
->>  #include <linux/gpio/driver.h>
->> @@ -14,6 +14,7 @@
->>  #include <linux/platform_device.h>
->>  #include <linux/regmap.h>
->>  #include <linux/slab.h>
->> +#include <linux/spmi.h>
->>  #include <linux/types.h>
->> 
->>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->> @@ -171,6 +172,8 @@ struct pmic_gpio_state {
->>         struct pinctrl_dev *ctrl;
->>         struct gpio_chip chip;
->>         struct irq_chip irq;
->> +       u8 usid;
->> +       u8 pid_base;
->>  };
->> 
->>  static const struct pinconf_generic_params pmic_gpio_bindings[] = {
->> @@ -949,12 +952,36 @@ static int 
->> pmic_gpio_child_to_parent_hwirq(struct gpio_chip *chip,
->>                                            unsigned int *parent_hwirq,
->>                                            unsigned int *parent_type)
->>  {
->> -       *parent_hwirq = child_hwirq + 0xc0;
->> +       struct pmic_gpio_state *state = gpiochip_get_data(chip);
->> +
->> +       *parent_hwirq = child_hwirq + state->pid_base;
->>         *parent_type = child_type;
->> 
->>         return 0;
->>  }
->> 
->> +static void *pmic_gpio_populate_parent_fwspec(struct gpio_chip *chip,
->> +                                            unsigned int 
->> parent_hwirq,
->> +                                            unsigned int parent_type)
->> +{
->> +       struct pmic_gpio_state *state = gpiochip_get_data(chip);
->> +       struct irq_fwspec *fwspec;
->> +
->> +       fwspec = kzalloc(sizeof(*fwspec), GFP_KERNEL);
+On 06/09/2021 10:38, Conor.Dooley@microchip.com wrote:
+> On 30/08/2021 16:09, Rob Herring wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On Tue, Aug 24, 2021 at 2:02 PM Krzysztof Kozlowski
+>> <krzysztof.kozlowski@canonical.com> wrote:
+>>> On 24/08/2021 16:33, Rob Herring wrote:
+>>>> On Thu, Aug 19, 2021 at 05:44:32PM +0200, Krzysztof Kozlowski wrote:
+>>>>> The Microchip MPFS Icicle Kit uses Cadence SD/SDIO/eMMC Host Controller
+>>>>> without any additional vendor compatible:
+>>>> I think the lack of vendor compatible is the error here. Experience has
+>>>> shown that vendor specific compatibles are needed for licensed IP.
+>>>>
+>>> In such case this could be:
+>>> 1. a specific "microchip,mpfs250t-sd4hc", which
+>>> seems to be on MPFS Icicle Kit:
+>>> https://www.digikey.co.uk/en/product-highlight/m/microchip-technology/mpfs-icicle-kit-es--polarfire-soc-fpga-icicle-kit
+>>>
+>>> 2. or a generic "microchip,mpfs-sd4hc"
+>>>
+>>> Any hints here?
+>> Best for a Microchip person to answer, but sure there's some existing
+>> compatible strings for other blocks on this chip to follow the same
+>> pattern.
+>>
+>> Rob
 > 
-> The implementation of gpiochip_populate_parent_fwspec_fourcell() uses
-> kmalloc() here. Should we also do that? Presumably the fwspec will be
-> set with the important parts so this will save a memset call.
-> 
+> #2 would be ideal since the controller doesn't change across the part 
+> range, the 250t bit in the part name just covers the size/configuration 
+> of the FPGA.
 
-Using kmalloc also should be fine but I'd like to keep the kzalloc, the 
-memset() operation takes some very small amount of time (once at boot 
-per consumer irqspec).  kzalloc() is more deterministic and results in 
-code that doesn't care if elements are added to the definition of struct 
-irq_fwspec. It also ensures that all param[] elements are initialized to 
-0.
 
->> +       if (!fwspec)
->> +               return NULL;
->> +
->> +       fwspec->fwnode = chip->irq.parent_domain->fwnode;
->> +
->> +       fwspec->param_count = 4;
->> +       fwspec->param[0] = state->usid;
->> +       fwspec->param[1] = parent_hwirq;
->> +       fwspec->param[2] = 0;
-> 
-> If the kzalloc stays, this can be dropped.
-> 
+Thanks! I'll go with the microchip,mpfs-sd4hc.
 
-I'll drop this and add a comment like this /* param[2] must be left as 0 
-*/, so that future reviewers don't think that there is a typo in the 
-indices going 0, 1, 3
 
->> +       fwspec->param[3] = parent_type;
->> +
->> +       return fwspec;
->> +}
->> +
->>  static int pmic_gpio_probe(struct platform_device *pdev)
->>  {
->>         struct irq_domain *parent_domain;
+Best regards,
+Krzysztof
