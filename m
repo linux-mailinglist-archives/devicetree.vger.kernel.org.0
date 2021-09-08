@@ -2,84 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37C1F403904
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 13:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB6340391E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 13:48:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351533AbhIHLmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 07:42:21 -0400
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:35607 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235453AbhIHLmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 07:42:21 -0400
-Received: by mail-oo1-f45.google.com with SMTP id y3-20020a4ab403000000b00290e2a52c71so671168oon.2;
-        Wed, 08 Sep 2021 04:41:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=erJIH1VnYLWtGRKdJRpE5M1/fXJwDp9ceva/bebj1Fk=;
-        b=BCJwqAEVmARfay/VCcFCxqo5xXkwnsyYBhAvH+4yXkHtUkkL6qphzZt+INFn9W8rp6
-         wiK5FzBvgUExH1Rgn3F+5p497QfNtuGaW1QyQ4as74pNQmO7oJBZd7veoaDHuxvoURaj
-         +8hQsQ0TZ98mpUNVIMwF9YoW2yC6wmvRwcsbqmfYpqQiHXdm2n9Y3Ti3S3/IozujUiG3
-         95fvW+IVu0LLr+hX+120AtI4sL4AXnuNc6flTGi1vEXx0k5V0p+bfswBrahas6qbCD9u
-         X8hS2iUNLSU0Ux0Xs6SGhPH+WhnKwe8skhTgB5OIrTek+c2IV8+DMYGjvgrpOnfQMmZB
-         k5lw==
-X-Gm-Message-State: AOAM530v3fsGZznWO0TBsJEolpSmztMLhZM3YhNLqtCsAdIInTSswJdn
-        Yhu6Hvw0myYSDWN+iUNkOg==
-X-Google-Smtp-Source: ABdhPJw5bqv0LPB2yVc0Z6BhoWJRI+LpAkn9SRXecjKrBUTGRFpyYhtgTssW7F1kA4Wzn9mrvApYZA==
-X-Received: by 2002:a4a:ca83:: with SMTP id x3mr2432630ooq.2.1631101273136;
-        Wed, 08 Sep 2021 04:41:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m20sm397019oiw.46.2021.09.08.04.41.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Sep 2021 04:41:12 -0700 (PDT)
-Received: (nullmailer pid 1816057 invoked by uid 1000);
-        Wed, 08 Sep 2021 11:41:11 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, maz@kernel.org, tglx@linutronix.de,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20210908082350.106948-2-claudiu.beznea@microchip.com>
-References: <20210908082350.106948-1-claudiu.beznea@microchip.com> <20210908082350.106948-2-claudiu.beznea@microchip.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: microchip,eic: add bindings
-Date:   Wed, 08 Sep 2021 06:41:11 -0500
-Message-Id: <1631101271.425453.1816056.nullmailer@robh.at.kernel.org>
+        id S1348483AbhIHLt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 07:49:59 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:6832 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235453AbhIHLt7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 07:49:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1631101731; x=1662637731;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=AFf5gXO5hPidNz1BwQAFkSOB7zV5qHba7OdAt6PW39A=;
+  b=w2C2ubHM3G1lF3yUILuG5DiTvgTpS2/+MCjPLrLtXrAsybnAnitBfZxB
+   WOhLDuABPEqx2MAPEI4gkVF4MxVowx8urNJfLSo6g2gJyatYBAEPU0X4R
+   qakO2l8awPyk8K7rbnTwlOw+2us3cOdKuu3IaGmmaUbQskdvPw2di+WCP
+   O4dMttXGoEJrwHUO5k+StoY2SSgkimdVM+su5LwXxBjnm3QI42eEAn745
+   FmEsRhWrI6osPQtW0VYm/NlbFXircy43EKI3hkvD0pGVYGUnY2sfHBzZG
+   HtStgA0swg6ieJ0S9VhsKyV3x4tkQtFV9guVZYoz95MSPublGZLS2DypT
+   Q==;
+IronPort-SDR: //JpOrraKTS+6uxMjCqOZr2n+O7/Uotbuu9pXcpiI/f+JhB0yGF1hjfFAM5Q6Vu429a6kdDZwA
+ s0GoOk1Xr9OVFA/RrzLEkl3nOHEJBLtOZjKx4ENr5FXwxhr38bG3ITw38SAsh1E6mf7sjaH+LT
+ sqltiGlpLTPyEYpEq5yOJB0dWRbnqusKFYvWnrBkpDfUpPDFbWJXjwLT/p8IZ11hC7lRgfN08V
+ Po2mjbVQjSOiMswNL/0kwodSKNGUJ5gj0w7uO5dpKXRv4R4ZTY7h0c3OtNEf+jHPaddZml950p
+ 3CXj3k+mtCLzE167U1F8sW4V
+X-IronPort-AV: E=Sophos;i="5.85,277,1624345200"; 
+   d="scan'208";a="68603220"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Sep 2021 04:48:50 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 8 Sep 2021 04:48:50 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 8 Sep 2021 04:48:46 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <robh+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Eugen.Hristev@microchip.com>, <Kavyasree.Kotagiri@microchip.com>,
+        <Manohar.Puri@microchip.com>
+Subject: [PATCH v2 0/3] Add driver for lan966x Generic Clock Controlle
+Date:   Wed, 8 Sep 2021 17:18:41 +0530
+Message-ID: <20210908114844.22131-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Sep 2021 11:23:49 +0300, Claudiu Beznea wrote:
-> Add DT bindings for Microchip External Interrupt Controller.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../interrupt-controller/microchip,eic.yaml   | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/microchip,eic.yaml
-> 
+This patch series adds a device driver for Generic Clock Controller
+of lan966x SoC.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+v1 -> v2:
+- Updated license in dt-bindings.
+- Updated example provided for clock controller node.
 
-yamllint warnings/errors:
+Kavyasree Kotagiri (3):
+  dt-bindings: clock: lan966x: Add binding includes for lan966x SoC
+    clock IDs
+  clk: lan966x: Add lan966x SoC clock driver
+  dt-bindings: clock: lan966x: Add LAN966X Clock Controller
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/microchip,eic.example.dt.yaml: interrupt-controller@e1628000: #interrupt-cells:0:0: 2 was expected
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/microchip,eic.yaml
+ .../bindings/clock/microchip,lan966x-gck.yaml |  64 +++++
+ drivers/clk/clk-lan966x.c                     | 235 ++++++++++++++++++
+ include/dt-bindings/clock/microchip,lan966x.h |  28 +++
+ 3 files changed, 327 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+ create mode 100644 drivers/clk/clk-lan966x.c
+ create mode 100644 include/dt-bindings/clock/microchip,lan966x.h
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1525680
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.17.1
 
