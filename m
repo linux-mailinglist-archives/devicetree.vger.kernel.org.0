@@ -2,88 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ACB44032BC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 04:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CF574032CC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Sep 2021 05:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346375AbhIHCsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Sep 2021 22:48:38 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51498 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345390AbhIHCsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Sep 2021 22:48:37 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1882lPdn101267;
-        Tue, 7 Sep 2021 21:47:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1631069245;
-        bh=7EcX9InYVySA5sqeGbQN5WvTqoO1xNHAkEBhg6Y4sPo=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=d22YljuuiTS6zq9m+voo1+geE45mybBysnsHAH4kV8fZkhQx7i5zc0maOrPVUmD4T
-         A814xiSGsnzgeF+rXy9YROBn6dzI0Y7nVg4GJHr/ucibcVsnNiaDbd2q3oYmGBz9Wn
-         VNLbkyqJazGRgv9eq4350dmRwle8QzUxYRVwzw6o=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1882lOfO090825
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 Sep 2021 21:47:24 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
- Sep 2021 21:47:24 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 7 Sep 2021 21:47:24 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1882lOoE069693;
-        Tue, 7 Sep 2021 21:47:24 -0500
-Date:   Tue, 7 Sep 2021 21:47:24 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Aswath Govindraju <a-govindraju@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        id S234389AbhIHDDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Sep 2021 23:03:35 -0400
+Received: from mx20.baidu.com ([111.202.115.85]:47198 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231769AbhIHDDf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Sep 2021 23:03:35 -0400
+Received: from BJHW-Mail-Ex14.internal.baidu.com (unknown [10.127.64.37])
+        by Forcepoint Email with ESMTPS id DD5C4E5E0688A4A1EF70;
+        Wed,  8 Sep 2021 11:02:21 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BJHW-Mail-Ex14.internal.baidu.com (10.127.64.37) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Wed, 8 Sep 2021 11:02:21 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Wed, 8 Sep 2021 11:02:21 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     <caihuoqing@baidu.com>
+CC:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: iot2050: Flip mmc device ordering on
- Advanced devices
-Message-ID: <20210908024724.v76ff5xjlqaddww6@attendant>
-References: <8e2e435ef67868cb98382b44c51ddb5c8d045d66.1631024536.git.jan.kiszka@siemens.com>
- <20210907151301.7fqwmc7hmcyhhybv@carve>
- <35e0cadf-526c-6402-fb8e-8cdb8b7a0bfe@siemens.com>
- <20210907152746.fbddtkktvx6hb5ti@cattishly>
- <c63a5ac2-77ca-e54c-183c-b3274a9698db@siemens.com>
- <20210907153547.53cc2zx23rx72kqf@thyself>
- <482dddc1-b1f8-15db-a0c5-0d6def5d859f@ti.com>
- <20210907165316.4s3jrouctcpc3kvo@pessimism>
- <d69acf3d-e0c4-ef7b-be23-0d98dd6b05aa@ti.com>
- <4cb6e76e-479f-5e06-778a-4788be53afb9@siemens.com>
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: panel: ilitek,ili9341: Fix the warning-wrong indentation: expected 10 but found 8 (indentation)
+Date:   Wed, 8 Sep 2021 11:02:14 +0800
+Message-ID: <20210908030215.112-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4cb6e76e-479f-5e06-778a-4788be53afb9@siemens.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BJHW-Mail-Ex15.internal.baidu.com (10.127.64.38) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+X-Baidu-BdMsfe-DateCheck: 1_BJHW-Mail-Ex14_2021-09-08 11:02:21:802
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22:28-20210907, Jan Kiszka wrote:
-[...]
+Fix indentation for the warning-
+wrong indentation: expected 10 but found 8 (indentation)
 
-> > Yes, I am suggesting a flip in the order and this order can be applied
-> > across all the K3 SoC's
-> > 
-> 
-> I'm not sure what you are suggesting. I've sent v2 already which moves
-> aliasing to SoC level, and I would push that to U-Boot as well if
-> acceptable. If not, we will keep this in our board DTs.
-> 
+Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+---
+ .../devicetree/bindings/display/panel/ilitek,ili9341.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-responded in context of v2:
-https://lore.kernel.org/all/20210908024442.jskmqqye432p4nmt@gatherer/
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+index 2ed010f91e2d..20ce88ab4b3a 100644
+--- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+@@ -22,7 +22,7 @@ properties:
+     items:
+       - enum:
+           # ili9341 240*320 Color on stm32f429-disco board
+-        - st,sf-tc240t-9370-t
++          - st,sf-tc240t-9370-t
+       - const: ilitek,ili9341
+ 
+   reg: true
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.25.1
+
