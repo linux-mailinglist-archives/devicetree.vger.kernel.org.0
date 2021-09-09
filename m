@@ -2,228 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED4CF405D47
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 21:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5993E405D61
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 21:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244134AbhIITZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 15:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56394 "EHLO
+        id S237487AbhIITee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 15:34:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231422AbhIITZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 15:25:11 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E920BC061574
-        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 12:24:01 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id v10so6091642ybm.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 12:24:01 -0700 (PDT)
+        with ESMTP id S245645AbhIITed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 15:34:33 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6159C061575
+        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 12:33:23 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id y18so3834655ioc.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 12:33:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jHsB0QuSwW/tBt1tWT5k7nGMz9/Y1FKio+BumhYM6Sg=;
-        b=c4rUI9zAYq4qdr624k+PKBK2NnC3xH79eSZppp86frS9+Kw8Bu0cFkhrNYrDm3hdey
-         oyGcmTaSiHScqEnKSqEaE85Ku/fvuEU/k659Htl+gbiipuCk6w20R0nQzBJwOuqgQfFp
-         agKbrwShwmiyGFAcU0yCgPycKkWR2Z+UoPkXODVSGUKl5AaOFRmTdiOkqt0coHmS42oI
-         51U+whd/Q+cwiDHZafqcq3CFKMQA1j+nwzGfzS/nsz7Ak5q67eVh+R0sOAgC9S/FK5yJ
-         GYELkUxIecpM3shRdlYTOSPYcWJhDeaijcMubmwRYIpGNFPv+mtHUn3eiIkTcwlRSaFt
-         Wjqw==
+        bh=d2IYAT4zf02RWUNDruz7+0lDEcO/Nb9ZtTNr33lXbog=;
+        b=PB5fXArkN11kuDGlOpAY2Uq87Zlrf8VbZJFzYvAFZT5RhsN545UOJp9+uNPzoeyM4e
+         xib37Uo5ToG8XyCVLrJOQ4PDCnYiw5xizwwq+G6OOivyUUmST8sQwFsRyMOYc+l6DO7M
+         8h86v98MDD+4tMscf29L5z/MJV5FVN/5OoQlI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jHsB0QuSwW/tBt1tWT5k7nGMz9/Y1FKio+BumhYM6Sg=;
-        b=5nyuIGmXBaxhvCOH9wF7gC0TX32ETeEkHIvQ1IZAehsXwNzLqD4yuUDW51+RH2oROI
-         ys4nA5dM1V/vLRuTiLXwtMHRKJaOra17SBBtIFHilATepYhpa3cvaAYCtJz+m6calNKi
-         ldQuaYJRaW8aGhDSuGZbjFUI/q1By0OBGkrXHjRV4gJzI20OmqQCU0CbnX/zCDQZHJ4o
-         T7ZeP2PEZjglyd2JF5HKPaCYXkUIx6AnwPsMWxI4r/06IN9SR4fyMlR5PVAhTuqxAYAR
-         F1xoidZP9eToetKWl7eBu6N2mAV9Rdjwmdt+LpK6iuT1tG/hvNL9u9NK6aQHExAD+iaB
-         ghtg==
-X-Gm-Message-State: AOAM53267xzCPpjVibTEtLYk9MBY3zODxiS8vjkYyq0QzfLRvYHbqBHp
-        qWOteTRih0YQJyj/k1RLh4KKfZmJk3Nd5PXzDNzcndqx2vk=
-X-Google-Smtp-Source: ABdhPJwZ9VgWeAapPCv0qFzS6yU3F7OEW2lAeX8jd2dZ4UeP/Ez6qDdO3Mk7JCTNRWFqMBKj+CdGaQEFV2ICeDu+sDs=
-X-Received: by 2002:a25:5606:: with SMTP id k6mr6025942ybb.476.1631215440959;
- Thu, 09 Sep 2021 12:24:00 -0700 (PDT)
+        bh=d2IYAT4zf02RWUNDruz7+0lDEcO/Nb9ZtTNr33lXbog=;
+        b=m00T3gYeOegq6XjaTBMfU+vd41IQ2eKUPSRHaN4mrnt7HBaY0Ev/BwgqrCNK8JYVCJ
+         gO5UgAwpMVihmKqDEAyxBwFJE7wdZRgEr/i37ux7Xmx73A0QYk6aUpgqegULOTNpaf3k
+         ayR8U3gEcfSMAzfxXsAqcNZdTTfmeGJ/A5xfIfo+qLrrj2T2IgRC6yW6XpA2Gn9jNfOv
+         anWBJ23s8FdyXPGoGofhoCe8SHpjueciftxKTpZnAN+dCXu5NOQ6/d6gL5UcMEKLvvSo
+         SFMdsRVtWbgYc6u+bVj/vDq0aOIRn/n7x/vEXFsvxUV00ob0/YNy9N99HnB5hglqURWu
+         AcvA==
+X-Gm-Message-State: AOAM531rsDK6g9Sz7xjZm0asof8PppCz/4g6aLP3xhtZHf/1hyYcRiGx
+        IK+LA93AZ508V++FqvydoHrb3QZUML/pGQ==
+X-Google-Smtp-Source: ABdhPJyyG8n6KwldXytCF7R36z1Uu387sTI/aB/kP6P1rStsbho1wLhlYFAITXPgLocJBWI7M05H8g==
+X-Received: by 2002:a02:c80b:: with SMTP id p11mr1356560jao.122.1631216003049;
+        Thu, 09 Sep 2021 12:33:23 -0700 (PDT)
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com. [209.85.166.171])
+        by smtp.gmail.com with ESMTPSA id e1sm1290577ils.76.2021.09.09.12.33.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Sep 2021 12:33:20 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id a1so3110710ilj.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 12:33:20 -0700 (PDT)
+X-Received: by 2002:a05:6e02:e02:: with SMTP id a2mr3620736ilk.180.1631215999852;
+ Thu, 09 Sep 2021 12:33:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de> <CAGETcx9eFg7jR=ibBLhU3q+VnpqJXQCVmQcEyMpozddRiCXFLQ@mail.gmail.com>
- <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de> <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
- <CAL_JsqL8sGc7sA7q+SFcMKF02NWpqOUUEWew1qOY+vdpKVFJ6w@mail.gmail.com>
- <ac715ac4-eb2d-7dd0-9752-4cbe95b0e88d@web.de> <CAL_Jsq+mqpHF5hn0iD8+nz3iOH4-doqqB0hgiV-MLKS2_s9oBg@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+mqpHF5hn0iD8+nz3iOH4-doqqB0hgiV-MLKS2_s9oBg@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 9 Sep 2021 12:23:24 -0700
-Message-ID: <CAGETcx-qbmmPOH4+pyHGSnukTA3PgXTxYyZg5fSEuD=Uy3YVMQ@mail.gmail.com>
-Subject: Re: [Bisected Regression] OLPC XO-1.5: Internal drive and SD card
- (mmcblk*) gone since commit ea718c699055
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andre Muller <andre.muller@web.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+References: <20210901201934.1084250-1-dianders@chromium.org>
+ <20210901131531.v3.5.I0a2f75bb822d17ce06f5b147734764eeb0c3e3df@changeid> <YTUPiyOjsUJXN11h@ravnborg.org>
+In-Reply-To: <YTUPiyOjsUJXN11h@ravnborg.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 9 Sep 2021 12:33:07 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VbYcdSqxLHdSaDPh=X0hbW6VWV0mM-iFy3k0J1q+6MWg@mail.gmail.com>
+Message-ID: <CAD=FV=VbYcdSqxLHdSaDPh=X0hbW6VWV0mM-iFy3k0J1q+6MWg@mail.gmail.com>
+Subject: Re: [PATCH v3 05/16] drm/panel-simple-edp: Split eDP panels out of panel-simple
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus W <linus.walleij@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>, Steev Klimaszewski <steev@kali.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 9, 2021 at 8:15 AM Rob Herring <robh+dt@kernel.org> wrote:
+Hi,
+
+On Sun, Sep 5, 2021 at 11:42 AM Sam Ravnborg <sam@ravnborg.org> wrote:
 >
-> On Thu, Sep 9, 2021 at 9:09 AM Andre Muller <andre.muller@web.de> wrote:
-> >
-> > On 09/09/2021 00.31, Rob Herring wrote:
-> > > On Tue, Sep 7, 2021 at 10:15 PM Saravana Kannan <saravanak@google.com> wrote:
-> > >>
-> > >> On Tue, Sep 7, 2021 at 7:12 PM Andre Muller <andre.muller@web.de> wrote:
-> > >>>
-> > >>> On 08/09/2021 00.05, Saravana Kannan wrote:
-> > >>>> On Sun, Sep 5, 2021 at 1:15 AM Andre Muller <andre.muller@web.de> wrote:
-> > >>>>>
-> > >>>>> With linux-5.13 and linux-5.14, the internal drive and SD card reader are gone from the XO-1.5. I bisected the issue to come up with ea718c699055:
-> > >>>>>
-> > >>>>> # first bad commit: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
-> > >>>>>
-> > >>>>> The /dev/mmcblk* nodes are not generated since this patch.
-> > >>>>>
-> > >>>>> Please find the output of lspsi -vv and lshw below.
-> > >>>>>
-> > >>>>> I will be happy to provide more info and/or test patches.
-> > >>>>
-> > >>>> Hi Andre,
-> > >>>>
-> > >>>> Can you point me to the dts file in upstream that corresponds to this system?
-> > >>>>
-> > >>>> Also, if you can give the output of:
-> > >>>> cat /sys/kernel/debug/devices_deferred
-> > >>>
-> > >>> Hi Saravana,
-> > >>>
-> > >>>
-> > >>> /sys/kernel/debug/devices_deferred is empty.
-> > >>> I used the last good commit b6f617.
-> > >>
-> > >> Sorry, I wanted that with the bad commit.
-> >
-> > Uh-oh, my bad...
-> >
-> > The bad case says
-> > # cat devices_deferred
-> > 0000:00:0c.0
-> >
-> > That's the SD Host controller.
-> >
-> > >>
-> > >>>
-> > >>> The XO-1.5 has an x86 compatible VIA C7 processor.
-> > >>> It uses the VX855 chip for about all I/O tasks, including SDIO.
-> > >>> I am not aware of a device tree file for it.
-> > >>>
-> > >>> It is a bit of a strange beast, it uses OFW to initialize the hardware and provide a FORTH shell.
-> > >>> Which also is the boot manager, configured via FORTH scripts.
-> > >>>
-> > >>>   From the linux side of the fence, dmesg's line 2 is:
-> > >>>
-> > >>> "OFW detected in memory, cif @ 0xff83ae68 (reserving top 8MB)"
-> > >>>
-> > >>> AIUI, this mechanism is used in lieu of a device tree file, like UEFI on most x86 hardware.
-> > >>> But my understanding of device trees is severely limited, I might be allwrong.
-> > >>
-> > >> Uhh... I'm so confused. If Linux doesn't use OF, then none of the code
-> > >> enabled by fw_devlink=on should be executed.
-> > >
-> > > Linux does, but maybe not for memory (like UEFI on arm64).
-> > >
-> > >> The only thing that might remotely even execute is:
-> > >> efifb_add_links() in drivers/firmware/efi/efi-init.c
-> > >>
-> > >> If you want you can just do an early return 0; in that to see if it
-> > >> makes a difference (unlikely).
-> > >>
-> > >> Rob, Do you know what's going on with OLPC and DT?
-> > >
-> > > Not really. I have an XO-1 DT dump[1]. It's probably a similar looking
-> > > DT though. It's pretty ancient lacking anything we've invented for DT
-> > > in the last 10 years. There's not really much to it as about the only
-> > > phandle I see is for interrupts.
-> > >
-> > >>> Anyway, the firmware source is here:
-> > >>> http://dev.laptop.org/git/users/quozl/openfirmware/
-> > >>>
-> > >>> This file is the closest dt-analogous thing for the XO-1.5 I can find therein:
-> > >>> cpu/x86/pc/olpc/via/devices.fth
-> > >>
-> > >> That file is all gibberish to me.
-> > >
-> > > Running this on a booted system would help:
-> > >
-> > > dtc -f -I fs -O dts /proc/device-tree > dump.dts
-> >
-> > Ah, thanks. I never knew about the DT in there...
-> > XO-1.5_dump.dts is attached.
-> >
-> > >
-> > > If you don't have dtc on the system, then you'll have to zip up
-> > > /proc/device-tree contents and run dtc elsewhere (or just post that).
-> > >
-> > >>> My machine runs the latest version:
-> > >>> http://wiki.laptop.org/go/OLPC_Firmware_q3c17
-> > >>>
-> > >>> The XO-1.5 hardware specs are here:
-> > >>> http://wiki.laptop.org/images/f/f0/CL1B_Hdwe_Design_Spec.pdf
-> > >>> http://wiki.laptop.org/go/Hardware_specification_1.5
-> > >>>
-> > >>> Would the .config or dmesg help?
-> > >>
-> > >> At this point, why not? When you do send them, please send them as
-> > >> attachments and not inline.
-> > >>
-> > >> Also, when you collect the dmesg logs, the following could help:
-> > >> Enable the existing dev_dbg logs in these functions:
-> > >> device_link_add()
-> > >> device_links_check_suppliers()
-> > >>
-> > >> And add the following log to fwnode_link_add():
-> > >> +++ b/drivers/base/core.c
-> > >> @@ -87,6 +87,8 @@ int fwnode_link_add(struct fwnode_handle *con,
-> > >> struct fwnode_handle *sup)
-> > >>                  goto out;
-> > >>          }
-> > >>
-> > >> +       pr_info("Link fwnode %pfwP as a consumer of fwnode %pfwP\n", con, sup);
-> > >> +
-> > >
-> >
-> > OK. The dmesg with debug info is attached as well (for the broken case).
->
-> Humm, ACPI and DT together...
->
-> Looks to me like it's waiting for the wrong interrupt-parent. The log
-> says it is waiting for 'interrupt-controller@i20' which is the only
-> interrupt-controller found in the DT, but the parent is the PCI bridge
-> with whatever interrupt-map is pointing to. That's not clear as the
-> phandle (0x767a4) doesn't exist in the DT. I suppose the parent is
-> defined in ACPI?
+> > +++ b/drivers/gpu/drm/panel/panel-simple-edp.c
+> > @@ -0,0 +1,1298 @@
+> > +/*
+> > + * Copyright (C) 2013, NVIDIA Corporation.  All rights reserved.
+> > + *
+> > + * Permission is hereby granted, free of charge, to any person obtaining a
+> > + * copy of this software and associated documentation files (the "Software"),
+> > + * to deal in the Software without restriction, including without limitation
+> > + * the rights to use, copy, modify, merge, publish, distribute, sub license,
+> > + * and/or sell copies of the Software, and to permit persons to whom the
+> > + * Software is furnished to do so, subject to the following conditions:
+> > + *
+> > + * The above copyright notice and this permission notice (including the
+> > + * next paragraph) shall be included in all copies or substantial portions
+> > + * of the Software.
+> > + *
+> > + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> > + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> > + * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
+> > + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> > + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> > + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+> > + * DEALINGS IN THE SOFTWARE.
+> > + */
+> Would be nice if you could use the SPDX thingy for the license.
 
-After staring at it for a while, I realized that
-interrupt-controller@i20 is indeed the right node. Looks like we need
-to do endian conversion of the ".node" property in the interrupt
-controller and it would match with 0x767a4.
+I'm going to leave this alone. I definitely started this driver by
+copy-pasting the panel-simple.c file and it still shares a lot of
+lines of code with that driver. It feels like that qualifies for the
+"substantial portions of the Software" portion which tells me to
+retain the license. I also kept Thierry as the author since, again,
+it's really a splitting of the existing driver and not the creation of
+a new driver. In fact, if I were to assign a new author/license to
+panel-edp, one could also make the argument that I should assign a new
+author/license to panel-simple. panel-simple got ~50% of the old
+panels and panel-edp got the other ~50% of the old panels plus a
+search-and-replace of "simple" for "edp" and some code deletion. I
+don't think search-and-replace name change nor code deletion is
+justification for claiming authorship. ;-)
 
-> pci 0000:00:0c.0: probe deferral - wait for supplier interrupt-controller@i20
-The SD controller is waiting forever on interrupt-controller@i20 to be
-added as a device.
+If Thierry wants to chime in and say that I should put down a
+different license for either of the two files, though, I'd be glad to
+change it.
 
-Rob,
-
-My guess is that the fwnode value is not getting set for ISA devices
-populated when isa@11 is added. Any idea how/where those child devices
-are populated? I thought they'd be platform devices, but it doesn't
-look like that's the case?
-
-> If there's not an easy fix, just disable devlinks for x86. There's
-> only one other DT platform, ce4100, and I really doubt it is even used
-> at all.
-
-I think the easy fix is to set the ISA device's fwnode when it's
-added, but I can't tell how they are getting added. But yeah, if that
-turns out to be hard, then I'd vote for disabling it for x86 too.
-
--Saravana
+-Doug
