@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 960E0405BD4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 19:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B820D405BFA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 19:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240650AbhIIRRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 13:17:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237002AbhIIRRH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 13:17:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4636061179;
-        Thu,  9 Sep 2021 17:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631207758;
-        bh=6MPSHzZT+wdjZOpnQ7K70UGKNWNw78Qt+uaALoiNHzs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ur2rhy1GxLjo187czO/UhbKA71WUYOuDssPXJbRQzb9xWT3LfpTZ3XwCFqaKDqm21
-         4vwEfcqbHjO+0SEwiwon8XkmM12vYOYvFu/WVOwLz40QfscvgnJCyIjEyCEs7Q/g9K
-         gnLnvGikDuTbyDA8V+H5Dvk9oMHLyeRTPifrwfd4xyx9Y3LRDvx9rPpCWbLyu7xPaE
-         nQKp9uyAJy4hZL4ovU+mbbwvd6SYbqeJOMrwhfx5Qm7WVk9rFYhZ7xOJliTXAgYAwX
-         0GCZjXlnfeRsVxcgvNJrMULFHMCtH/UqvYqSYGaiOfYlbq2HaVZdPOKaeEwZ7yISo1
-         FsT0I6dGJtk2A==
-Received: by mail-ed1-f42.google.com with SMTP id i6so3654863edu.1;
-        Thu, 09 Sep 2021 10:15:58 -0700 (PDT)
-X-Gm-Message-State: AOAM533aCY2h7c1aXJMQY3yuM1X2xoL10YJRE7PHQWh2C+n2v0MrYV6p
-        kJ0mciOYemNwMdv7+uoi/IIVLX2F1hUlvDeIMQ==
-X-Google-Smtp-Source: ABdhPJyM7KZ4cekZmGbkuYORGG988NU14THUy9AbIjOQ+isB8C7xXq78QJxJ1PLPFyvKtKN/u+ZYoeTozdmbIK+obJQ=
-X-Received: by 2002:a05:6402:1703:: with SMTP id y3mr4266246edu.355.1631207756787;
- Thu, 09 Sep 2021 10:15:56 -0700 (PDT)
+        id S240530AbhIIR0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 13:26:53 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:46064 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232978AbhIIR0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 13:26:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1631208342; x=1633800342;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=jbbetMc7CUD8n/rThyOnLoq5J7Z1RxGeMpNl5X/TCdg=;
+        b=bP103GSntSORqfBR1JGFLA7wWyQcp3dNlF1nuvPBxSKWa+4iNE/g272sTVoRrwkQ
+        5+55B7dDRmoXZwqOsXw4hACa/ReZEYNVCI0RKUhankfN9Z7U4worzdBrfsWUiGV8
+        5WEyTUx96B1yq5ToU2obJk7I0lXKZEjb3KtI/iK4sl8=;
+X-AuditID: c39127d2-c63ec70000001d24-c6-613a4396dfa0
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id E1.31.07460.6934A316; Thu,  9 Sep 2021 19:25:42 +0200 (CEST)
+Received: from lws-ybas.phytec.de ([172.16.21.122])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021090919254195-1638982 ;
+          Thu, 9 Sep 2021 19:25:41 +0200 
+From:   Yunus Bas <y.bas@phytec.de>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     festevam@gmail.com, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: imx6: phycore-som: Disable micro-SD write protection
+Date:   Thu, 9 Sep 2021 19:25:55 +0200
+Message-Id: <20210909172555.435430-1-y.bas@phytec.de>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
- <20210903145340.225511-3-daniel.baluta@oss.nxp.com> <YTJTF5VMOyG2iZb0@robh.at.kernel.org>
- <CAEnQRZC-GN9iEPk6-A_oKPHcCYj8_WeQC0TT_NpK_QntkmAqiQ@mail.gmail.com>
- <CAL_JsqK_DGqYQxKBHDS7PyviF35V-OP7__KRmmTePn9ZHhiz_w@mail.gmail.com> <CAEnQRZBmruc8GNfJTm99=0K7PyGrEiB1CxY3c2RSZhLFLR-nhQ@mail.gmail.com>
-In-Reply-To: <CAEnQRZBmruc8GNfJTm99=0K7PyGrEiB1CxY3c2RSZhLFLR-nhQ@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 9 Sep 2021 12:15:45 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJd2AvBxRjHj=VZV2DH26tSNSX=5eEpc-HoFrc=dLxEFQ@mail.gmail.com>
-Message-ID: <CAL_JsqJd2AvBxRjHj=VZV2DH26tSNSX=5eEpc-HoFrc=dLxEFQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: dsp: fsl: Add DSP optional clocks documentation
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Suman Anna <s-anna@ti.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 09.09.2021 19:25:42,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 09.09.2021 19:25:42
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrILMWRmVeSWpSXmKPExsWyRoCBS3eas1WiwY/VAhbzj5xjtXh41d9i
+        0+NrrBaXd81hs2jde4Td4u/2TSwWL7aIO7B77Jx1l91j06pONo/NS+o9+v8aeHzeJBfAGsVl
+        k5Kak1mWWqRvl8CVsfLmcaaC5ZwV93ZuZ29g/MfexcjBISFgInHgaWEXIxeHkMA2RonNWyex
+        dTFyAjnnGSU+3bcDsdkEFCXO337LCmKLCNRK7N3+nB3EZhawkVj4t5ERZI6wgL/E0dM8IGEW
+        ARWJjfd2sYDYvAKmEndOnACzJQTkJY786mSGiAtKnJz5hAVkr4TAFUaJn9+a2CGKhCROLz7L
+        DDFfW2LZwtfMExj5ZiHpmYUktYCRaRWjUG5mcnZqUWa2XkFGZUlqsl5K6iZGYDAenqh+aQdj
+        3xyPQ4xMHIyHGCU4mJVEeE9ssEwU4k1JrKxKLcqPLyrNSS0+xCjNwaIkznu/hylRSCA9sSQ1
+        OzW1ILUIJsvEwSnVwMh2XV9K7QrLfbmSFLnFV/7du7j+nqRV4K+jrWc4J97IVOBzc3+/xkhB
+        xqwjpXVC796Pf2U9aj0FFyx98GZtq7+AxnQTQYPXua5r17+aeVbzREGwT1qw9+9LU3c3lyxZ
+        EpJaeJthybOX23vfCE2Ti/gRUbdIJJ4161u77JzfobwFZv9+b8ySN1diKc5INNRiLipOBAD2
+        Pqa3NAIAAA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 9, 2021 at 6:21 AM Daniel Baluta <daniel.baluta@gmail.com> wrote:
->
-> > > The H/W block is controlled by the DSP firmware. So, we don't want
-> > > to use the Linux kernel driver (thus the H/W block device tree node).
-> >
-> > 'status' is how you disable a device to not be used by the OS.
-> >
-> > The information about that device's resources are already in DT, we
-> > don't need to duplicate that here. If you want a list of devices
-> > assigned to the DSP here, that would be okay.
->
-> Thanks! This is a very good idea. I was thinking at a totally different thing.
->
-> So having something like this:
->
-> dsp {
->
->
-> hw-block-list = <&sai1>, <&sai2>;
->
-> }
+The micro-SD card doesn't feature a write-protect pin. Set the
+corresponding property in the devicetree to handle this behavior
+correctly and suppress driver warnings.
 
-Yes.
+Signed-off-by: Yunus Bas <y.bas@phytec.de>
+---
+ arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi | 1 +
+ arch/arm/boot/dts/imx6ul-phytec-segin.dtsi | 1 +
+ 2 files changed, 2 insertions(+)
 
-> And then inside the DSP driver we can get access to sai1 clocks. Do
-> you know of any standard property name?
+diff --git a/arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi b/arch/arm/boot/dts=
+/imx6qdl-phytec-mira.dtsi
+index 019938562aa9..0873f53ea275 100644
+--- a/arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-phytec-mira.dtsi
+@@ -256,6 +256,7 @@ &usdhc1 {
+ 	pinctrl-0 =3D <&pinctrl=5Fusdhc1>;
+ 	cd-gpios =3D <&gpio6 31 GPIO=5FACTIVE=5FLOW>;
+ 	no-1-8-v;
++	disable-wp;
+ 	status =3D "disabled";
+ };
+=20
+diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi b/arch/arm/boot/dts=
+/imx6ul-phytec-segin.dtsi
+index 95e4080dd0a6..0d4ba9494cf2 100644
+--- a/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
++++ b/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
+@@ -191,6 +191,7 @@ &usdhc1 {
+ 	no-1-8-v;
+ 	keep-power-in-suspend;
+ 	wakeup-source;
++	disable-wp;
+ 	status =3D "disabled";
+ };
+=20
+--=20
+2.33.0
 
-There isn't. So it needs a vendor prefix.
-
-There's been some discussions around 'system devicetree' where all
-processors (like the DSP) view of the system get represented. Device
-assignment is one of the issues to solve with that, but it's not
-anywhere close to having something to help here.
-
-Rob
