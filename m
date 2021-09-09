@@ -2,36 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90BBB404F6E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7DDC405011
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241784AbhIIMSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:18:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52680 "EHLO mail.kernel.org"
+        id S1347409AbhIIMZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:25:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57716 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1347409AbhIIMP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:15:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9CB5561263;
-        Thu,  9 Sep 2021 11:49:33 +0000 (UTC)
+        id S1353054AbhIIMUL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:20:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E302C61ABC;
+        Thu,  9 Sep 2021 11:50:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188174;
-        bh=aqB/eixK9h34x4z7TYFN5+h1bz4ed0d3NHrCqDZ7MxE=;
+        s=k20201202; t=1631188227;
+        bh=C56UGu/jYrwM6Jfi/51pH9IQNP0Jn9eLUHEN3yNrW1s=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=krUatQmaPhyx34uQ2PMUs+i7h9zo6jqplAxOzZWKmNIzKEnRr1I3bjBBMtVuLXfzC
-         n78bLtW38KdPzyUf/sYKxDO9S0NIh9+AjCHN+oeNx/caq7GCLP4pWvuXB21mP17Yy8
-         Z7ZiRo6vcQ7OJBBEMRNj/NbSyTmwroJPTFwQkBbD4OGzZAgsYo/gLhjWWF+BlQPdjB
-         AYImgX+wMG07keivSGki1UVz64e4W5AiJR4P8XJLHJvUV+XXXaQ9VTq5JiAfokWl6m
-         hHX8j5sioM7KW4Z+5Jq0IdEa4nUPq7ccn2V5zyiVIz3Icpbfk+YIuZwMi/nOL9BKVN
-         LxvGS84uugtfA==
+        b=E8hHM0F0xFKFdQ6S3seSHZFM9VlrSvFZ+gHD68GAhipl0xSxEHDh8f78i3fzyeuCH
+         P0pnxRYb4fp3uHhYwp2Q+QF8m6X5Ih6UNIQsqrNpjYl7oQ8+i/GpbemkS0V6+4Duvf
+         HEb8SWkOtUbk52HhcRB0nPNHHXDRpl9+OSObd67vLbm8K2tBF2h2AH+C0Y4GhxZjTj
+         I39ZaVhPQRq4JiwA73KoleQIw7MaB1ecFKiCQ88jmtpDs2TUk5ubx76w4TlGEncuxk
+         gm6SKHin2A+1zcaHS4LeoIX2jzTXolAmjrM0NWITcrxWaprjmi/M5W/mC4T2oHR0MU
+         n0qHB++P2vBHw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Raag Jadav <raagjadav@gmail.com>, Li Yang <leoyang.li@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 138/219] arm64: dts: ls1046a: fix eeprom entries
-Date:   Thu,  9 Sep 2021 07:45:14 -0400
-Message-Id: <20210909114635.143983-138-sashal@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.13 180/219] of: Don't allow __of_attached_node_sysfs() without CONFIG_SYSFS
+Date:   Thu,  9 Sep 2021 07:45:56 -0400
+Message-Id: <20210909114635.143983-180-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909114635.143983-1-sashal@kernel.org>
 References: <20210909114635.143983-1-sashal@kernel.org>
@@ -43,69 +41,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Raag Jadav <raagjadav@gmail.com>
+From: Marc Zyngier <maz@kernel.org>
 
-[ Upstream commit c1a6018d1839c9cb8f807dc863a50102a1a5c412 ]
+[ Upstream commit 6211e9cb2f8faf7faae0b6caf844bfe9527cc607 ]
 
-ls1046afrwy and ls1046ardb boards have CAT24C04[1] and CAT24C05[2]
-eeproms respectively. Both are 4Kb (512 bytes) in size,
-and compatible with AT24C04[3].
-Remove multi-address entries, as both the boards have a single chip each.
+Trying to boot without SYSFS, but with OF_DYNAMIC quickly
+results in a crash:
 
-[1] https://www.onsemi.com/pdf/datasheet/cat24c01-d.pdf
-[2] https://www.onsemi.com/pdf/datasheet/cat24c03-d.pdf
-[3] https://ww1.microchip.com/downloads/en/DeviceDoc/doc0180.pdf
+[    0.088460] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000070
+[...]
+[    0.103927] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.14.0-rc3 #4179
+[    0.105810] Hardware name: linux,dummy-virt (DT)
+[    0.107147] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+[    0.108876] pc : kernfs_find_and_get_ns+0x3c/0x7c
+[    0.110244] lr : kernfs_find_and_get_ns+0x3c/0x7c
+[...]
+[    0.134087] Call trace:
+[    0.134800]  kernfs_find_and_get_ns+0x3c/0x7c
+[    0.136054]  safe_name+0x4c/0xd0
+[    0.136994]  __of_attach_node_sysfs+0xf8/0x124
+[    0.138287]  of_core_init+0x90/0xfc
+[    0.139296]  driver_init+0x30/0x4c
+[    0.140283]  kernel_init_freeable+0x160/0x1b8
+[    0.141543]  kernel_init+0x30/0x140
+[    0.142561]  ret_from_fork+0x10/0x18
 
-Signed-off-by: Raag Jadav <raagjadav@gmail.com>
-Acked-by: Li Yang <leoyang.li@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+While not having sysfs isn't a very common option these days,
+it is still expected that such configuration would work.
+
+Paper over it by bailing out from __of_attach_node_sysfs() if
+CONFIG_SYSFS isn't enabled.
+
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+Link: https://lore.kernel.org/r/20210820144722.169226-1-maz@kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts | 8 +-------
- arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts  | 7 +------
- 2 files changed, 2 insertions(+), 13 deletions(-)
+ drivers/of/kobj.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-index db3d303093f6..6d22efbd645c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-@@ -83,15 +83,9 @@ rtc@51 {
- 			};
+diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+index a32e60b024b8..6675b5e56960 100644
+--- a/drivers/of/kobj.c
++++ b/drivers/of/kobj.c
+@@ -119,7 +119,7 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 	struct property *pp;
+ 	int rc;
  
- 			eeprom@52 {
--				compatible = "atmel,24c512";
-+				compatible = "onnn,cat24c04", "atmel,24c04";
- 				reg = <0x52>;
- 			};
--
--			eeprom@53 {
--				compatible = "atmel,24c512";
--				reg = <0x53>;
--			};
--
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-index 60acdf0b689e..7025aad8ae89 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-@@ -59,14 +59,9 @@ temp-sensor@4c {
- 	};
+-	if (!of_kset)
++	if (!IS_ENABLED(CONFIG_SYSFS) || !of_kset)
+ 		return 0;
  
- 	eeprom@52 {
--		compatible = "atmel,24c512";
-+		compatible = "onnn,cat24c05", "atmel,24c04";
- 		reg = <0x52>;
- 	};
--
--	eeprom@53 {
--		compatible = "atmel,24c512";
--		reg = <0x53>;
--	};
- };
- 
- &i2c3 {
+ 	np->kobj.kset = of_kset;
 -- 
 2.30.2
 
