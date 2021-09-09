@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFB70405350
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79951405354
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349275AbhIIMv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:51:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57496 "EHLO mail.kernel.org"
+        id S1348615AbhIIMv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:51:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57494 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1355151AbhIIMlo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:41:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6048261C16;
-        Thu,  9 Sep 2021 11:55:19 +0000 (UTC)
+        id S1355435AbhIIMpo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:45:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 90D94630EB;
+        Thu,  9 Sep 2021 11:56:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188520;
-        bh=OSdMAULjlmnN/jT+nXnh2Xtyn15yJLPU363d9rLYq7I=;
+        s=k20201202; t=1631188565;
+        bh=6THc55M9H+piYc7a5/b5tKa38hBPIcjtanzULpo3bgM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pH99Q505CIej6YdF0vnfmNO0DaLiwQC9MU3pCuBNBKSzoo1SeEvvcUiGgbw4rvleA
-         DYwhHaw+4K63CFxcgosicbvN/6YT8bofrNAU1UnaX5wdv144JYtnwoKqTWXfj/cueF
-         Jf5q1RYOMymYl/fgdZOryib5qIp5WHMB3xoEC1qGF05fyC8PvrWr2ERsaYHJdr/6Qp
-         YEEwHhsBVvbQYE/aLnEk6YICI7v8C+V47oicefokEeh9EG1fuf65hSJi+17FyWSExL
-         p38cQ0MfgfUiKMWjG4rzYs3TwayxznK6YzZErt+2VwWE0edI6+2+7++Wgr56RAzcQN
-         +yBZOvUm6HeTw==
+        b=MK1TN08my4z7izPDSVOnYcL9qloOK1wmDI4f+2/BTfMlLJrbtGZlBSqXfOSXUMSa3
+         pruMBIK2vzxEceLR0l0JsOVqtgu6ntmkvdiOMxr6TgNOCis7G1PHegYMJZjHyod5dl
+         32Z3QlRtEnz1npVHm1cvy/zDFNPb3u18u9NUk92Mq1b94noRt+CnQaKS6xv5AsH26j
+         /J3X9PB0IuqPQvYNvGLQZNvJDBQiIy814ClOrpnlwNE0+/d10H+6/q0+tENNqj6lYQ
+         b/gO65VzFgDaLCWWxBRz3KAgtRzzvc0rX4YuI+rRB+wvH1UWUHqLuoas9/y4vaKBie
+         ZexOah+gkVxUw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>,
-        Brian Masney <masneyb@onstation.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 010/109] ARM: dts: qcom: apq8064: correct clock names
-Date:   Thu,  9 Sep 2021 07:53:27 -0400
-Message-Id: <20210909115507.147917-10-sashal@kernel.org>
+Cc:     Vidya Sagar <vidyas@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 046/109] arm64: tegra: Fix Tegra194 PCIe EP compatible string
+Date:   Thu,  9 Sep 2021 07:54:03 -0400
+Message-Id: <20210909115507.147917-46-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909115507.147917-1-sashal@kernel.org>
 References: <20210909115507.147917-1-sashal@kernel.org>
@@ -44,48 +43,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Heidelberg <david@ixit.cz>
+From: Vidya Sagar <vidyas@nvidia.com>
 
-[ Upstream commit 0dc6c59892ead17a9febd11202c9f6794aac1895 ]
+[ Upstream commit bf2942a8b7c38e8cc2d5157b4f0323d7f4e5ec71 ]
 
-Since new code doesn't take old clk names in account, it does fixes
-error:
+The initialization sequence performed by the generic platform driver
+pcie-designware-plat.c for a DWC based implementation doesn't work for
+Tegra194. Tegra194 has a different initialization sequence requirement
+which can only be satisfied by the Tegra194 specific platform driver
+pcie-tegra194.c. So, remove the generic compatible string "snps,dw-pcie-ep"
+from Tegra194's endpoint controller nodes.
 
-msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
-
-and following kernel oops introduced by
-b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
-
-Also removes warning about deprecated clock names.
-
-Tested against linux-5.10.y LTS on Nexus 7 2013.
-
-Reviewed-by: Brian Masney <masneyb@onstation.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
-Link: https://lore.kernel.org/r/20210707131453.24041-1-david@ixit.cz
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 8b79b4112ee1..2b075e287610 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1261,9 +1261,9 @@ dsi0: mdss_dsi@4700000 {
- 				<&mmcc DSI1_BYTE_CLK>,
- 				<&mmcc DSI_PIXEL_CLK>,
- 				<&mmcc DSI1_ESC_CLK>;
--			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
--					"src_clk", "byte_clk", "pixel_clk",
--					"core_clk";
-+			clock-names = "iface", "bus", "core_mmss",
-+					"src", "byte", "pixel",
-+					"core";
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index 0821754f0fd6..90adff8aa9ba 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -1434,7 +1434,7 @@ pcie@141a0000 {
+ 	};
  
- 			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
- 					<&mmcc DSI1_ESC_SRC>,
+ 	pcie_ep@14160000 {
+-		compatible = "nvidia,tegra194-pcie-ep", "snps,dw-pcie-ep";
++		compatible = "nvidia,tegra194-pcie-ep";
+ 		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX4A>;
+ 		reg = <0x00 0x14160000 0x0 0x00020000   /* appl registers (128K)      */
+ 		       0x00 0x36040000 0x0 0x00040000   /* iATU_DMA reg space (256K)  */
+@@ -1466,7 +1466,7 @@ pcie_ep@14160000 {
+ 	};
+ 
+ 	pcie_ep@14180000 {
+-		compatible = "nvidia,tegra194-pcie-ep", "snps,dw-pcie-ep";
++		compatible = "nvidia,tegra194-pcie-ep";
+ 		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX8B>;
+ 		reg = <0x00 0x14180000 0x0 0x00020000   /* appl registers (128K)      */
+ 		       0x00 0x38040000 0x0 0x00040000   /* iATU_DMA reg space (256K)  */
+@@ -1498,7 +1498,7 @@ pcie_ep@14180000 {
+ 	};
+ 
+ 	pcie_ep@141a0000 {
+-		compatible = "nvidia,tegra194-pcie-ep", "snps,dw-pcie-ep";
++		compatible = "nvidia,tegra194-pcie-ep";
+ 		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX8A>;
+ 		reg = <0x00 0x141a0000 0x0 0x00020000   /* appl registers (128K)      */
+ 		       0x00 0x3a040000 0x0 0x00040000   /* iATU_DMA reg space (256K)  */
 -- 
 2.30.2
 
