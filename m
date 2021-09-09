@@ -2,101 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FFA240516B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4580A405176
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351145AbhIIMgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:36:20 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:34342 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1352756AbhIIMdI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:33:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=48ceJVAoRguaw2L3yNwORR8qHrMqT0LzCZJp/ceEfGc=; b=Lo
-        Etph24tiJGxwO6/rHMNteoN14An5qk/BOoUwSDIPazZHRXBMIviBdUq9pc8XJvAPRXGRE7iB5D7AY
-        THmdH2PHUzKCTcslm1b+rpmRJN7Dw1H73GQnB297nJ5ff4TuV+krRsS370YmBYIVMV1lZ9xjBRhxH
-        43CTbE4MbncpSFQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mOJDa-005u8e-3V; Thu, 09 Sep 2021 14:31:50 +0200
-Date:   Thu, 9 Sep 2021 14:31:50 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH] ARM: dts: armada-{370,xp}: drop "marvell,orion-spi" from
- SPI controllers
-Message-ID: <YTn+tiKfzl4odxE6@lunn.ch>
-References: <20161207152109.17545-1-uwe@kleine-koenig.org>
- <87eg1jhi4l.fsf@free-electrons.com>
- <20161207154145.yr2iua73xnoyjsse@pengutronix.de>
- <20210909075005.fxy4vfarrvnmr6ez@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210909075005.fxy4vfarrvnmr6ez@pengutronix.de>
+        id S1351162AbhIIMg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:36:26 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:33695 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344408AbhIIMeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 08:34:07 -0400
+Received: by mail-ot1-f44.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso2300737otu.0;
+        Thu, 09 Sep 2021 05:32:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=abEhaeOy2YSPN/FnaISQGKPeJ66igV5iFQgXJZSBBLU=;
+        b=HCJbKFL9sFqX1ppmzishD7Y1n2MbRz6JpTq+F5VDF+JH/W0bhRoZYnsfCT5+Bj1L7I
+         anSpeN/ZtFQy9NL2Wb/P6c0bTuIJnop/vA63BXtHQf+VcRs+utDnGTLvzY6tDryUJ1cP
+         aDcrcbQXeobuxM7TD00+blFQ2eIQCLcmgnEEZI+SKVVih1cGRnlEa3GMKfmET2id7gh1
+         GvJMGn04jrdLUr3xGKP8+36pj/B2kOEjIFcUdBDHZO1K8X+/cEbECXsLQg4Gm2Bfo162
+         8vYFJuj/nsd9Alro4hi4fl8VfMQgSrd2kJlyzpf6sY1XIKyGHQR20xq/eIjoLtPqauVx
+         k3fQ==
+X-Gm-Message-State: AOAM531ipYs2/zktF7UNcTba+9E5fs+utgMKom5YQcdaQOrOhQ108PGL
+        x9yHby83kbHsUKugdIlXnA==
+X-Google-Smtp-Source: ABdhPJxcpJ9iZIIumS08m5EWjFkP5+Lg9n++RGx/6qUcAsMjiuJwc9M/jZdbHzbGyu4mT27btG7wgg==
+X-Received: by 2002:a9d:2053:: with SMTP id n77mr2273577ota.9.1631190777626;
+        Thu, 09 Sep 2021 05:32:57 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g23sm405642otl.23.2021.09.09.05.32.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Sep 2021 05:32:56 -0700 (PDT)
+Received: (nullmailer pid 200340 invoked by uid 1000);
+        Thu, 09 Sep 2021 12:32:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
+        broonie@kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, bgoswami@codeaurora.org,
+        devicetree@vger.kernel.org, tiwai@suse.com, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, perex@perex.cz, swboyd@chromium.org,
+        plai@codeaurora.org
+In-Reply-To: <1631124057-17155-2-git-send-email-srivasam@codeaurora.org>
+References: <1631124057-17155-1-git-send-email-srivasam@codeaurora.org> <1631124057-17155-2-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine machine bindings
+Date:   Thu, 09 Sep 2021 07:32:53 -0500
+Message-Id: <1631190773.288819.200339.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 09, 2021 at 09:50:05AM +0200, Uwe Kleine-König wrote:
-> Hello,
+On Wed, 08 Sep 2021 23:30:56 +0530, Srinivasa Rao Mandadapu wrote:
+> Add devicetree bindings documentation file for sc7280 sound card
+> registration.
 > 
-> On Wed, Dec 07, 2016 at 04:41:45PM +0100, Uwe Kleine-König wrote:
-> > Hello Gregory,
-> > 
-> > On Wed, Dec 07, 2016 at 04:30:02PM +0100, Gregory CLEMENT wrote:
-> > >  On mer., déc. 07 2016, Uwe Kleine-König <uwe@kleine-koenig.org> wrote:
-> > > 
-> > > > From: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > > >
-> > > > The SPI controllers on Armada 370 and XP differ from the original Orion
-> > > > SPI controllers (at least) in the configuration of the baud rate. So
-> > > > it's wrong to claim compatibility which results in bogus baud rates.
-> > > 
-> > > Until two years ago with the commits
-> > > df59fa7f4bca9658b75f0f5fee225b3a057475c5 and
-> > > 4dacccfac69494ba70248b134352f299171c41b7
-> > > we used "marvell,orion-spi" compatible on Armada XP and Armada 370
-> > > without any problem.
-> > > 
-> > > The new compatible "marvell,armada-xp-spi" and "marvell,armada-xp-spi"
-> > > allows to have more choice for the baudrate for a given clock but it is
-> > > not true that Armada 370 and Armada XP are not compatible with
-> > > "marvell,orion-spi".
-> > 
-> > The issue I was faced with that made me create this patch is that in
-> > barebox no special case for 370/XP was active. The result was that a
-> > device that could be operated at 60 MHz only got a clock of 11 MHz and
-> > the driver assumed it configured 41.666 MHz. I didn't check if the same
-> > can happen in the opposite direction (or if there are other important
-> > incompatibilities) but still I'd say this is a bug with my patch being
-> > the obvious fix.
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  .../bindings/sound/google,sc7280-herobrine.yaml    | 169 +++++++++++++++++++++
+>  1 file changed, 169 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
 > 
-> I just found this patch in an old branch and wonder what do to with it.
-> It still applies fine at least.
-> 
-> (If the original patch already disappeared from your inbox, it can be
-> found at https://lore.kernel.org/r/20161207152109.17545-1-uwe@kleine-koenig.org/ )
 
-If you remove "marvell,orion-spi" you are going to break running a new
-DT blob on an old kernel.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-The compatible list is supposed to be most specific to most generic in
-order. So "marvell,orion-spi" is the fall back option for Armada, you
-don't get all the features, but it should work at a basic level. And
-in this case, barebox did its best, it gave you a working but
-unexpectedly slow bus. If you take away "marvell,orion-spi", and there
-is no support for "marvell,armada-xp-spi" and "marvell,armada-xp-spi"
-in barebox, does that not then mean there is no SPI support at all?
+yamllint warnings/errors:
 
-   Andrew
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dts:46.24-25 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:379: Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1438: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1525980
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
