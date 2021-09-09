@@ -2,76 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 533FB405C19
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 19:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE6CE405C36
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 19:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241279AbhIIRbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 13:31:13 -0400
-Received: from mga04.intel.com ([192.55.52.120]:64361 "EHLO mga04.intel.com"
+        id S237190AbhIIRmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 13:42:13 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:22678 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232940AbhIIRbI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 13:31:08 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10102"; a="218998188"
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; 
-   d="scan'208";a="218998188"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2021 10:29:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,280,1624345200"; 
-   d="scan'208";a="694269375"
-Received: from lkp-server01.sh.intel.com (HELO 730d49888f40) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 09 Sep 2021 10:29:56 -0700
-Received: from kbuild by 730d49888f40 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mONrt-0003Nn-Le; Thu, 09 Sep 2021 17:29:45 +0000
-Date:   Fri, 10 Sep 2021 01:29:09 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH] hwmon: tmp421_probe_child_from_dt() can be static
-Message-ID: <20210909172909.GA2471@f5e5cebfff48>
-References: <22639314543a98b4c24e55b7e5a803325ad9e568.1631021349.git.krzysztof.adamski@nokia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <22639314543a98b4c24e55b7e5a803325ad9e568.1631021349.git.krzysztof.adamski@nokia.com>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S237243AbhIIRmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 13:42:13 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631209263; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=prNdcE1SYxw4b+K28K8kg3uoPgG24TCJQIzzLAc82Yg=; b=modn0OP9VJfBaiYZ1odb9HxCNldOoGDTfFFTcwyq5gEOH4257lgPLMGTC1QNJTKENdBGDci8
+ GX8e1k8pIM2vapIHWU2SOi6+BUY8cTKg+U9Gy9TPQ6+qWFexIrIWVNGGDQgyXzJwAE/wFD7h
+ swkpm3We7UWrs6lP7NklMcU7w24=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 613a472c843a8a1032202489 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 09 Sep 2021 17:41:00
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3BC57C4361A; Thu,  9 Sep 2021 17:41:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4BD51C4338F;
+        Thu,  9 Sep 2021 17:40:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 4BD51C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
+        Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v6 0/4] Add DT bindings and DT nodes for PCIe and PHY in SC7280
+Date:   Thu,  9 Sep 2021 23:10:41 +0530
+Message-Id: <1631209245-31256-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-drivers/hwmon/tmp421.c:295:6: warning: symbol 'tmp421_probe_child_from_dt' was not declared. Should it be static?
-drivers/hwmon/tmp421.c:319:6: warning: symbol 'tmp421_probe_from_dt' was not declared. Should it be static?
+Changes in v6:
+		* Removed platform check while setting gcc_pcie_1_pipe_clk_src
+		  as clk_set_parent will return 0 with nop if platform doesn't 
+		  need to switch pipe clk source.
+		* Moved wake-n gpio to board specific file sc7280-idp.dtsi
+		* Sorted gpio.h header entry in sc7280.dtsi file 
+		
+Changes in v5:
+    
+            * Re ordered PCIe, PHY nodes in Soc and board specific dtsi files.
+            * Removed ref_clk entry in current patch [PATCH v4 P4/4].
+            * I will add ref clk entry in suspend/ resume commits.
+            * Added boolean flag in Soc specific dtsi file to differentiate
+              SM8250 and SC7280 platforms. based on boolean flag, platforms will handle
+              the pipe clk handling.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: kernel test robot <lkp@intel.com>
----
- tmp421.c |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Changes in v4 as suggested by Bjorn:
 
-diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-index a1dba1d405ee8..5f1f3ec9f51c1 100644
---- a/drivers/hwmon/tmp421.c
-+++ b/drivers/hwmon/tmp421.c
-@@ -292,7 +292,7 @@ static int tmp421_detect(struct i2c_client *client,
- 	return 0;
- }
- 
--void tmp421_probe_child_from_dt(struct i2c_client *client,
-+static void tmp421_probe_child_from_dt(struct i2c_client *client,
- 				struct device_node *child,
- 				struct tmp421_data *data)
- 
-@@ -316,7 +316,7 @@ void tmp421_probe_child_from_dt(struct i2c_client *client,
- 
- }
- 
--void tmp421_probe_from_dt(struct i2c_client *client, struct tmp421_data *data)
-+static void tmp421_probe_from_dt(struct i2c_client *client, struct tmp421_data *data)
- {
- 	struct device *dev = &client->dev;
- 	const struct device_node *np = dev->of_node;
+	* Changed pipe clk mux name as gcc_pcie_1_pipe_clk_src.
+	* Changed pipe_ext_src as phy_pipe_clk.
+	* Updated commit message for [PATCH v4 4/4]. 
+
+Changes in v3:
+	* Changed pipe clock names in dt bindings as pipe_mux and phy_pipe.
+	* Moved reset and NVMe GPIO pin configs into board specific file.
+	* Updated pipe clk mux commit message.
+	
+Changes in v2:
+	* Moved pcie pin control settings into IDP file.
+	* Replaced pipe_clk_src with pipe_clk_mux in pcie driver 
+	* Included pipe clk mux setting change set in this series
+
+Prasad Malisetty (4):
+  dt-bindings: pci: qcom: Document PCIe bindings for SC7280
+  arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+  arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+  PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
+
+ .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  39 +++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 121 +++++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             |  18 +++
+ 4 files changed, 195 insertions(+)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
