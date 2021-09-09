@@ -2,38 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A0F405169
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:43:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1396A405213
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352923AbhIIMgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:36:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38594 "EHLO mail.kernel.org"
+        id S1351294AbhIIMkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:40:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45810 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242833AbhIIMc6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:32:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EF25061288;
-        Thu,  9 Sep 2021 11:53:11 +0000 (UTC)
+        id S1353756AbhIIMe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:34:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 82FD961B5E;
+        Thu,  9 Sep 2021 11:53:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188392;
-        bh=cj1E/3jxxxjm2EaPG/Ardk8d0+9n+bk7iseNTTE6mq4=;
+        s=k20201202; t=1631188418;
+        bh=SwozLfpYiQLE0tIiO65mXXvojnIJlmmHkdaJkfgdxgg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JLNoJnickGB8e3wZEbUbSbrRph58bUnN81l24/6Ylm1CPSMzG+ICPUyJ4dPumCYrU
-         L1rg5osY53i1raEXJFL5xM0EGkPH6t8HngnkiC48+Iwpi7ea51DhiwLlOxnsfliU1/
-         hu7Z4FQrdt9ja/l8iyHHAq1ccP1eNt6zyjnU++n3IgdZLYztK/Zs+sunO1PCmOen+H
-         e42OLxCm6HUAtpUxz2gHwO6FZCJMpsMeePGYrVmWEY+1oAjsbKn74efc6ymSVc4lCJ
-         K1scysQ0+d1J+JJn2UKg/2zj+tySzRsZekBjLzM+tqVttRWNVvAiSsRj+5pRrOoSo+
-         ZxkGKP3GP7NoQ==
+        b=rg3EsMbHeM9R/AWfgkNWjHCdreuWh8C3Lo8oyBIO+wkf1WKphSrvtDcuS18Kt1wFC
+         4Y983qKU/jLSYtRBVGnCct8iP2HWoS1KQ3GR2QNdHMJYOcxBleiVU1kbiGfuvW0xyJ
+         smOWHGWza+jOhL6aDDnjGa8oBaNRWKjxYjvdb87D+XmrXz1CT8tjDl76sQ3a9zQnSx
+         PDQLXCFHJKoQNo+4ICmYW6VudP/9QeT2frF9NtFG8lE5ytNysnittIoFPn+DDqT0ln
+         XmwoJJvuhoSzqhUBqkkiN+aua6p7zJAvrZQX9OCNVfeJutYF6GC8VbB45DGB3Z7vsu
+         lQrDy0aOZUIuQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 089/176] arm64: dts: qcom: sm8250: Fix epss_l3 unit address
-Date:   Thu,  9 Sep 2021 07:49:51 -0400
-Message-Id: <20210909115118.146181-89-sashal@kernel.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 108/176] ARM: tegra: acer-a500: Remove bogus USB VBUS regulators
+Date:   Thu,  9 Sep 2021 07:50:10 -0400
+Message-Id: <20210909115118.146181-108-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909115118.146181-1-sashal@kernel.org>
 References: <20210909115118.146181-1-sashal@kernel.org>
@@ -45,36 +43,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Georgi Djakov <georgi.djakov@linaro.org>
+From: Dmitry Osipenko <digetx@gmail.com>
 
-[ Upstream commit 77b53d65dc1e54321ec841912f06bcb558a079c0 ]
+[ Upstream commit 70e740ad55e5f93a19493720f4105555fade4a73 ]
 
-The unit address of the epss_l3 node is incorrect and does not match
-the address of its "reg" property. Let's fix it.
+The configuration of USB VBUS regulators was borrowed from downstream
+kernel, which is incorrect because the corresponding GPIOs are connected
+to PROX_EN (A501 3G model) and LED_EN pins in accordance to the board
+schematics. USB works fine with both GPIOs being disabled, so remove the
+bogus USB VBUS regulators. The USB VBUS of USB3 is supplied from the fixed
+5v system regulator and device-mode USB1 doesn't have VBUS switches.
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
-Link: https://lore.kernel.org/r/20210211193637.9737-1-georgi.djakov@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../boot/dts/tegra20-acer-a500-picasso.dts    | 25 +------------------
+ 1 file changed, 1 insertion(+), 24 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index d4547a192748..ec356fe07ac8 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2346,7 +2346,7 @@ apps_bcm_voter: bcm_voter {
- 			};
- 		};
+diff --git a/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts b/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
+index 5d0f0fbba1d2..5dbfb83c1b06 100644
+--- a/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
++++ b/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
+@@ -704,7 +704,6 @@ usb-phy@c5000000 {
+ 		nvidia,xcvr-setup-use-fuses;
+ 		nvidia,xcvr-lsfslew = <2>;
+ 		nvidia,xcvr-lsrslew = <2>;
+-		vbus-supply = <&vdd_vbus1>;
+ 	};
  
--		epss_l3: interconnect@18591000 {
-+		epss_l3: interconnect@18590000 {
- 			compatible = "qcom,sm8250-epss-l3";
- 			reg = <0 0x18590000 0 0x1000>;
+ 	usb@c5008000 {
+@@ -716,7 +715,7 @@ usb-phy@c5008000 {
+ 		nvidia,xcvr-setup-use-fuses;
+ 		nvidia,xcvr-lsfslew = <2>;
+ 		nvidia,xcvr-lsrslew = <2>;
+-		vbus-supply = <&vdd_vbus3>;
++		vbus-supply = <&vdd_5v0_sys>;
+ 	};
  
+ 	brcm_wifi_pwrseq: wifi-pwrseq {
+@@ -967,28 +966,6 @@ vdd_pnl: regulator@3 {
+ 		vin-supply = <&vdd_5v0_sys>;
+ 	};
+ 
+-	vdd_vbus1: regulator@4 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vdd_usb1_vbus";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		regulator-always-on;
+-		gpio = <&gpio TEGRA_GPIO(D, 0) GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-		vin-supply = <&vdd_5v0_sys>;
+-	};
+-
+-	vdd_vbus3: regulator@5 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vdd_usb3_vbus";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		regulator-always-on;
+-		gpio = <&gpio TEGRA_GPIO(D, 3) GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-		vin-supply = <&vdd_5v0_sys>;
+-	};
+-
+ 	sound {
+ 		compatible = "nvidia,tegra-audio-wm8903-picasso",
+ 			     "nvidia,tegra-audio-wm8903";
 -- 
 2.30.2
 
