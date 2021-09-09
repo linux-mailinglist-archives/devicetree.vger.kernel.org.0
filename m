@@ -2,83 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F443405E8D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 23:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F438405EA7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 23:16:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347888AbhIIVGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 17:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347730AbhIIVGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 17:06:13 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CE30C0613B6
-        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 14:03:20 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id q11-20020a9d4b0b000000b0051acbdb2869so4311308otf.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 14:03:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=Inuz8zjQpJ8vk0GRKUjv4itxCxxuAm5ggH2rL74CYCo=;
-        b=d9PkoVnYvdQBvNX4WHkbuiSrkkvxhgvnV2vCdhmeeozkYSR6EGbZZ6ZUfJOxv/gfcS
-         y34dbvibMZcLJIylua/yfIqUF6zWfkxgUayXj+mXiVUyjAu/D55CAsJv/J0DNU4bQpJ5
-         tvOr8XKYcak6AFVcY31g0W5ngrW3+11dSwTkg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=Inuz8zjQpJ8vk0GRKUjv4itxCxxuAm5ggH2rL74CYCo=;
-        b=RQAVlhpTWIBCsnwvi3xMxFIGEg55teA6Q805E4WyG9sjIDJQzjIX7KD/W1wOncYf5D
-         ZjEvubUaT1FQOf7nnDE3fMxK9mvsUgXMJFmRtMMp4bhmb1WCiyfSPKlQMjwyf/0Bz4/y
-         QTcESj7cDcnmQIhb8wnKPyuUB+5tqohbnoosY7vtcNj2NydcvNld0qXwDzS5CdzxIPxp
-         RMmRj2usXjXFfh/o7MHy+r5x+/CJit+8PB1kkllsum/7t7nwTRmucHIjNv5fpNy33gaj
-         /FyIMiOyO5rRQ0okXGOlaeyKCAEjx6PWurXSZgIz23Pzb0rxQHSJpZ+FX2Bqe9awES0G
-         uwXw==
-X-Gm-Message-State: AOAM533+HMh/JmgKyQGLnLZhVsEXqbJfT2YORY+UocQ0g3U91QhbbGzq
-        24+tiyWnOHspYFquyhc5I8znZDrLERT1i7zn31cuGw==
-X-Google-Smtp-Source: ABdhPJxzzYHJmjZxncLWDDGzJ6ALyyZzP3+wJ9In+ibvaJy4YpGmbTqacIrA8T+1HS5SfE/5dxVBYmb1wu2mA1UftOc=
-X-Received: by 2002:a05:6830:18c7:: with SMTP id v7mr1700256ote.126.1631221399723;
- Thu, 09 Sep 2021 14:03:19 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 9 Sep 2021 17:03:19 -0400
+        id S1344654AbhIIVRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 17:17:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60018 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235679AbhIIVRg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 17:17:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C6827610C8;
+        Thu,  9 Sep 2021 21:16:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631222186;
+        bh=1zKplqZ0G0KHOO4HMxQj4yyWZEL9m7uzSjCtGE2W4GI=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=syES9dK7Kyxtwj3sj6zx5BLb04NzBj1028mwPMRuBxKwhr4bFAxI+4WOHAvzkhg3Z
+         cH4EjoKf1cEi4OZp7rgaSx6xlhHkHQdYl6rA31nEUJ9w75exHejYZ/zCGFHaXXc3fq
+         3AHPu5JSEVs9qNHuOv0ZW1lpiEAnG1BOpBfKjmMynYTolc5LZAxndiETySauliQE8j
+         YLXzYBNSsHc7WZyMo24guEBHgXxMVCjgkl6oG75Sq+XxPOajGD/MgL50SpfyLUbwDi
+         Og8kYXOMSaldAbrY6rSF1VReHw8sH3G3WZtiGgNi6R03QgsyqMcdCfibP7aH90JoNv
+         bymUDXJhZdFgA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <1631216998-10049-1-git-send-email-khsieh@codeaurora.org>
-References: <1631216998-10049-1-git-send-email-khsieh@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210909073947.17438-4-kavyasree.kotagiri@microchip.com>
+References: <20210909073947.17438-1-kavyasree.kotagiri@microchip.com> <20210909073947.17438-4-kavyasree.kotagiri@microchip.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: clock: lan966x: Add LAN966X Clock Controller
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        Eugen.Hristev@microchip.com, Kavyasree.Kotagiri@microchip.com,
+        Manohar.Puri@microchip.com
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        mturquette@baylibre.com, robh+dt@kernel.org
+Date:   Thu, 09 Sep 2021 14:16:25 -0700
+Message-ID: <163122218554.1821005.1994463033743814126@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
-Date:   Thu, 9 Sep 2021 17:03:18 -0400
-Message-ID: <CAE-0n505ihV0eYsk2oyeeL8=DSCW-Uq=hVt_8BhVxusRq7R9NA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: fix display port phy reg property
-To:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
-        vkoul@kernel.org
-Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
-        mkrishn@codeaurora.org, kalyan_t@codeaurora.org,
-        rajeevny@codeaurora.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Kuogee Hsieh (2021-09-09 12:49:58)
-> Existing display port phy reg property is derived from usb phy which
-> map display port phy pcs to wrong address which cause aux init
-> with wrong address and prevent both dpcd read and write from working.
-> Fix this problem by assigning correct pcs address to display port
-> phy reg property.
->
-> Changes in V2:
-> -- rewording the commit text
-
-This Changes part can be put under the triple dash. This isn't drm tree
-material.
-
->
-> Fixes: 9886e8fd8438 ("arm64: dts: qcom: sc7280: Add USB related nodes")
-> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+Quoting Kavyasree Kotagiri (2021-09-09 00:39:47)
+> This adds the DT bindings documentation for lan966x SoC
+> generic clock controller.
+>=20
+> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
 > ---
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+This should come before the driver patch.
+
+> v2 -> v3:
+> - Fixed dt_binding_check errors.
+>=20
+> v1 -> v2:
+> - Updated example provided for clk controller DT node.
+>=20
+>  .../bindings/clock/microchip,lan966x-gck.yaml | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/microchip,lan=
+966x-gck.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/microchip,lan966x-gc=
+k.yaml b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+> new file mode 100644
+> index 000000000000..d353d42c3dc8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/microchip,lan966x-gck.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip LAN966X Generic Clock Controller
+> +
+> +maintainers:
+> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+> +
+> +description: |
+> +  The LAN966X Generic clock controller contains 3 PLLs - cpu_clk,
+> +  ddr_clk and sys_clk. This clock controller generates and supplies
+> +  clock to various peripherals within the SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,lan966x-gck
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 3
+
+The order matters to the binding too so please indicate which clock goes
+into which index, or use clock-names, or both.
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    cpu_clk: cpu_clk {
+
+node names should have dash in them, whereas labels should have
+underscores.
+
+> +        compatible =3D "fixed-clock";
+> +        #clock-cells =3D <0>;
+> +        clock-frequency =3D <600000000>;
+> +    };
+> +
+> +    ddr_clk: ddr_clk {
+> +        compatible =3D "fixed-clock";
+> +        #clock-cells =3D <0>;
+> +        clock-frequency =3D <300000000>;
+> +    };
+> +
+> +    sys_clk: sys_clk {
+> +        compatible =3D "fixed-clock";
+> +        #clock-cells =3D <0>;
+> +        clock-frequency =3D <162500000>;
+> +    };
+
+The fixed clks aren't necessary to put in the binding as they're just
+used as phandles below. Please remove them from the example and leave
+the node below intact with the phandles referencing "nothing".
+
+> +
+> +    clks: clock-controller@e00c00a8 {
+> +        compatible =3D "microchip,lan966x-gck";
+> +        #clock-cells =3D <1>;
+> +        clocks =3D <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
+> +        reg =3D <0xe00c00a8 0x38>;
+> +    };
+> +...
