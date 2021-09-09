@@ -2,36 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35500404A63
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B37C404B10
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240965AbhIILqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 07:46:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46486 "EHLO mail.kernel.org"
+        id S239857AbhIILuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 07:50:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46708 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240100AbhIILo3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 07:44:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 377FA611C6;
-        Thu,  9 Sep 2021 11:42:32 +0000 (UTC)
+        id S236346AbhIILqw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 07:46:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F31E161250;
+        Thu,  9 Sep 2021 11:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631187753;
-        bh=p+sAzM/XDE2JhZloIqQUgcKpO2Gb1o+zgmF5bat62yk=;
+        s=k20201202; t=1631187784;
+        bh=CMqxuankr/nLAtF68BcOJcYLaZl/uFUfJwFMddfQBVE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GwOVGlEH1GkwFb2TmGts3qQa7oRtp7jaWUln+kH2upbx29WzR/Ndm8Ldq9r46CYRV
-         nJkE6H/+uIagUu0pKltCDE/SVoIACSzpfh7rkk//gcaYo16ATKtgSxQ0J5GRB6lwZk
-         ig96NdnG5jvkQVdBgXLmkKxFoz+F7XlMnfePath6K9T+VAhb7kbuEURuu3mWhqgFiW
-         CK7iZ2/KF5um1xyxz/hTE1XrDzDOiFfslnX/+Z0HETIfh85K+DRNlgkCUaL7xb5LD8
-         UNnE4rCD5s/IZXKtxqTHVTWNiKLtnnG9mUZ0uSdoNfcI6cuIsqzOPG6pL0d/wcquw5
-         e7N97DKoAozqg==
+        b=AM1rBGX/StFLwPIQHA3g8DMGdcylpvUkIwvx6JtLsOg9Q968vcrCi4LblHscdZwMD
+         PtD7O8An6+Ss/DtlZhbB9JxibEXlIiWLv/1MYNgurqnnlicSPfYow9N4qQb9ubGzeA
+         EcFauKkoyLlaVyMMcU7JxTtQUF944MFWYp/lDcXLUbuk8ZaUBEm/Yy4wG8SmilIoUZ
+         KypSNND8ZCSZeV8Uym32X7NzjG5n+V4npPq86ApemlhXS/iKFg5NDOSwYEfGhlOIvL
+         aS+1lbS1bFYZAqATuIUG2NRKHhi6HpsMzoSt5x3lQyZ4Vdfnla1T+VWgAJjED3edNr
+         /7ldUaMnBFrXQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>,
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        kernel@dh-electronics.com,
+        linux-stm32@st-md-mailman.stormreply.com,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH AUTOSEL 5.14 067/252] arm64: dts: allwinner: h6: tanix-tx6: Fix regulator node names
-Date:   Thu,  9 Sep 2021 07:38:01 -0400
-Message-Id: <20210909114106.141462-67-sashal@kernel.org>
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.14 092/252] ARM: dts: stm32: Set {bitclock,frame}-master phandles on DHCOM SoM
+Date:   Thu,  9 Sep 2021 07:38:26 -0400
+Message-Id: <20210909114106.141462-92-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909114106.141462-1-sashal@kernel.org>
 References: <20210909114106.141462-1-sashal@kernel.org>
@@ -43,42 +47,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+From: Marek Vasut <marex@denx.de>
 
-[ Upstream commit 7ab1f6539762946de06ca14d7401ae123821bc40 ]
+[ Upstream commit a79e78c391dc074742c855dc0108a88f781d56a3 ]
 
-Regulator node names don't reflect class of the device. Fix that by
-prefixing names with "regulator-".
+Fix the following dtbs_check warning:
+arch/arm/boot/dts/stm32mp157c-dhcom-pdk2.dt.yaml: codec@a: port:endpoint@0:frame-master: True is not of type 'array'
+arch/arm/boot/dts/stm32mp157c-dhcom-pdk2.dt.yaml: codec@a: port:endpoint@0:bitclock-master: True is not of type 'array'
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-Link: https://lore.kernel.org/r/20210722161220.51181-2-jernej.skrabec@gmail.com
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: Patrick Delaunay <patrick.delaunay@foss.st.com>
+Cc: kernel@dh-electronics.com
+Cc: linux-stm32@st-md-mailman.stormreply.com
+To: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-index be81330db14f..02641191682e 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-@@ -32,14 +32,14 @@ hdmi_con_in: endpoint {
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
+index 6cf1c8b4c6e2..c9577ba2973d 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-pdk2.dtsi
+@@ -172,15 +172,15 @@ sgtl5000_port: port {
+ 			sgtl5000_tx_endpoint: endpoint@0 {
+ 				reg = <0>;
+ 				remote-endpoint = <&sai2a_endpoint>;
+-				frame-master;
+-				bitclock-master;
++				frame-master = <&sgtl5000_tx_endpoint>;
++				bitclock-master = <&sgtl5000_tx_endpoint>;
+ 			};
+ 
+ 			sgtl5000_rx_endpoint: endpoint@1 {
+ 				reg = <1>;
+ 				remote-endpoint = <&sai2b_endpoint>;
+-				frame-master;
+-				bitclock-master;
++				frame-master = <&sgtl5000_rx_endpoint>;
++				bitclock-master = <&sgtl5000_rx_endpoint>;
+ 			};
  		};
- 	};
  
--	reg_vcc3v3: vcc3v3 {
-+	reg_vcc3v3: regulator-vcc3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
--	reg_vdd_cpu_gpu: vdd-cpu-gpu {
-+	reg_vdd_cpu_gpu: regulator-vdd-cpu-gpu {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vdd-cpu-gpu";
- 		regulator-min-microvolt = <1135000>;
 -- 
 2.30.2
 
