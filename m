@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE1734042B6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 03:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAEF8404353
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 03:54:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349149AbhIIBUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 21:20:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34440 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1348988AbhIIBUa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Sep 2021 21:20:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8030861166;
-        Thu,  9 Sep 2021 01:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631150361;
-        bh=tdVbevl+aDxkyATd4nlXrr1019b4HiAb+ZLlEGHbwho=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Q1cyOUprqpdZbEvLayrMh+mgppIefqI49VWGrjQaxSkIo3p8edNilgRFSQ/PBay3g
-         RIZqxA7/faqLLgi6WzltBQq6k/FYcp1dZc/Dj6kLN1F5fS2s/CXhM/MfoK2i+0qLto
-         B8kaguNhOqUjr+uaARmTfKhUqFtWTNHHUPbHVUC8mfFC8Ix0y+zpmdB+pmzy8x9t6u
-         EDXVzVHCsojsJ/W9au+/pBYBIkosPdkcbY/GGGgAjS7wrVBF2g4sx9IvsbRUY7wrSz
-         PYku3jC5umtQkaYT79SNtPrPnzPPi+uN/MmmgOthkKCJCcenviiYho21+/buRiX0Us
-         B+krK1cbzsdLw==
-Received: by mail-lf1-f48.google.com with SMTP id n2so346146lfk.0;
-        Wed, 08 Sep 2021 18:19:21 -0700 (PDT)
-X-Gm-Message-State: AOAM532xaZa8JrhU/3jS8+8ElQTFLX0Aq19vL+kTizqaZu8VK8daSAO2
-        mPBQpcu0gg+f2PIOdC2RLmX6+8SV29l5HsC+kOc=
-X-Google-Smtp-Source: ABdhPJzbQK5G5b2Cj872WktC8knYxqKRlLbs7wzoVrTt/pg7AKP6TRI9EoAf5LGLuAMBSVQjoANdrbJscEpZXpMnElY=
-X-Received: by 2002:a05:6512:3f9f:: with SMTP id x31mr401134lfa.233.1631150359914;
- Wed, 08 Sep 2021 18:19:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210908030240.9007-1-samuel@sholland.org>
-In-Reply-To: <20210908030240.9007-1-samuel@sholland.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Thu, 9 Sep 2021 09:19:08 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQ=RoXouwL75JfmxOFzj+x5bfTW=Ae_3Ufyg3ZDA_Qj+Q@mail.gmail.com>
-Message-ID: <CAJF2gTQ=RoXouwL75JfmxOFzj+x5bfTW=Ae_3Ufyg3ZDA_Qj+Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: sun8i-emac: Add compatible for D1
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>, netdev@vger.kernel.org,
-        linux-sunxi@lists.linux.dev,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S1348438AbhIIByD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 21:54:03 -0400
+Received: from pi.codeconstruct.com.au ([203.29.241.158]:55456 "EHLO
+        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242103AbhIIByD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 21:54:03 -0400
+Received: from [172.16.66.38] (unknown [49.255.141.98])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 03D262012C;
+        Thu,  9 Sep 2021 09:52:44 +0800 (AWST)
+Message-ID: <9fa4ae962c185e0e4f07f0299356969c17ae5ea5.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v4 3/4] soc: aspeed: Add eSPI driver
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     Morris Mao <morris_mao@aspeedtech.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>
+Date:   Thu, 09 Sep 2021 09:52:43 +0800
+In-Reply-To: <HK0PR06MB377924CFCBFE9BD40E1C4A5D91D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
+References: <20210901033015.910-1-chiawei_wang@aspeedtech.com>
+         <20210901033015.910-4-chiawei_wang@aspeedtech.com>
+         <20c13b9bb023091758cac3a07fb4037b7d796578.camel@codeconstruct.com.au>
+         <HK0PR06MB37792273A075533C2570002391CE9@HK0PR06MB3779.apcprd06.prod.outlook.com>
+         <513cb05f8d83d08a5c1e491dc0a9b6784195e7dd.camel@codeconstruct.com.au>
+         <HK0PR06MB37799C48533B084CF864E49D91D29@HK0PR06MB3779.apcprd06.prod.outlook.com>
+         <6593206c0bc90186f255c6ea86339576576f70dc.camel@codeconstruct.com.au>
+         <HK0PR06MB377924CFCBFE9BD40E1C4A5D91D49@HK0PR06MB3779.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thx Samuel,
+Hi Chiawei,
 
-Acked-by: Guo Ren <guoren@kernel.org>
+> Yes, there is security concern using HW mode.
+> Our designer is considering to remove the HW mode support in the next
+> generation of Aspeed SoCs.
+> So far we haven't encountered a scenario demanding HW mode.
 
-On Wed, Sep 8, 2021 at 11:02 AM Samuel Holland <samuel@sholland.org> wrote:
->
-> The D1 SoC contains EMAC hardware which is compatible with the A64 EMAC.
-> Add the new compatible string, with the A64 as a fallback.
->
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> index 7f2578d48e3f..9eb4bb529ad5 100644
-> --- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> +++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-> @@ -19,7 +19,9 @@ properties:
->        - const: allwinner,sun8i-v3s-emac
->        - const: allwinner,sun50i-a64-emac
->        - items:
-> -          - const: allwinner,sun50i-h6-emac
-> +          - enum:
-> +              - allwinner,sun20i-d1-emac
-> +              - allwinner,sun50i-h6-emac
->            - const: allwinner,sun50i-a64-emac
->
->    reg:
-> --
-> 2.31.1
->
+Great to hear :) can we unconditionally set ESPI000[9] in the driver
+then?
+
+> > With than in mind, if we're disabling hardware mode - what does the
+> > direction control setting effect when we're in software mode
+> > (ESPICTRL[9] == 1)? Does it even matter?
+> 
+> Yes, the direction matters even in SW mode.
+> When the direction is 'master-to-slave' and the GPIO value is updated
+> by the Host through PUT_VW, a VW interrupt is trigger to notify BMC.
+> For the 'slave-to-master' GPIO, a alert is generated to notify the
+> Host to issue GET_VW for the GPIO value updated by the BMC by
+> ESPI09C.
+
+OK, but the datasheet mentions that ESPICFG804 is only applicable when
+ESPI000[9] = 0, or is that not the case?
+
+But based on what you've said: yes, it sounds like the generic gpiodev
+parts won't be useful for this.
+
+> > Separate from this: I'm also proposing that we represent the system
+> > event VWs
+> > as gpiodevs as well.
+> > 
+> > > A raw packet, primitive interface should have better flexibility
+> > > to
+> > > manage MCTP packets over the OOB channel.
+> > 
+> > OK, let me phrase this differently: can the OOB channel be used for
+> > anything other than SMBus messaging? Is it useful to provide an
+> > interface that isn't a standard SMBus/i2c device?
+> 
+> Yes, the PCH spec. also defines two additional packet format for an
+> eSPI slave to retrieve PCH Temperature Data and RTC time.
+> It should be trivial to prepare a byte buffer in that format and send
+> it through the raw packet interface.
+
+OK, understood.
+
+> > If you need custom uapi definitions for this driver, that might be
+> > okay, but it's going to be more work for you (to define an interface
+> > that can be supported long-term), rather than using standard
+> > infrastructure that already exists.
+> 
+> Thus I suggested that we can refer to the IPMI KCS BMC driver, which
+> supports the selection of different user interfaces, RAW or IPMI.
+
+Yep, but the KCS "raw" register set is standardised as part of the IPMI
+spec too, which helps to define a stable user API. We don't have that in
+this case.
+
+Overall though, if you want to start with the "low-level" API, then
+introduce "enhanced" functionality - like an actual SMBus driver -
+alongside that, then that sounds like an OK approach.
+
+> If IOCTL is considered to be not user friendly or magic code
+> polluting, file-based read/write on the miscdevice node is also an
+> option.
+
+It's not really my decision to make, but a read/write event interface
+would seem to be more consistent to me. Is there an obvious event format
+that would be common across all channels, perhaps? We'd probably also
+need a poll too - to make use of incoming events, like master-to-slave
+VW changes, perhaps?
+
+Cheers,
 
 
--- 
-Best Regards
- Guo Ren
+Jeremy
 
-ML: https://lore.kernel.org/linux-csky/
