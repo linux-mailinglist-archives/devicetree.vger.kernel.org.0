@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 130224058C6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 16:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A9604058CC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 16:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237756AbhIIOSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 10:18:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
+        id S1345511AbhIIOSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 10:18:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344452AbhIIOSD (ORCPT
+        with ESMTP id S1344551AbhIIOSD (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 10:18:03 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8953C03327A;
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A76C101BED;
         Thu,  9 Sep 2021 05:37:37 -0700 (PDT)
 Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 55CCB1F9D3;
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id B81131FA03;
         Thu,  9 Sep 2021 14:37:35 +0200 (CEST)
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
@@ -31,9 +31,9 @@ Cc:     agross@kernel.org, robh+dt@kernel.org,
         paul.bouchara@somainline.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v2 3/7] arm64: dts: qcom: msm8998-xperia: Add support for wcn3990 Bluetooth
-Date:   Thu,  9 Sep 2021 14:37:29 +0200
-Message-Id: <20210909123733.367248-3-angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v2 4/7] arm64: dts: qcom: msm8998-xperia: Add support for gpio vibrator
+Date:   Thu,  9 Sep 2021 14:37:30 +0200
+Message-Id: <20210909123733.367248-4-angelogioacchino.delregno@somainline.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210909123733.367248-1-angelogioacchino.delregno@somainline.org>
 References: <20210909123733.367248-1-angelogioacchino.delregno@somainline.org>
@@ -43,41 +43,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This platform uses the WCN3990 Bluetooth chip, reachable on UART-3.
+All smartphones in the Sony Yoshino platforms have got a simple
+vibrator hooked to a GPIO: add support for that and add its own
+pin configuration.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi    | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 8bbff6e80b7f..cfd61c399b02 100644
+index cfd61c399b02..798f2d8a8237 100644
 --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -175,6 +175,22 @@ &blsp1_i2c5_sleep {
- 	bias-disable;
+@@ -137,6 +137,13 @@ ramoops@ffc00000 {
+ 			ecc-size = <16>;
+ 		};
+ 	};
++
++	vibrator {
++		compatible = "gpio-vibrator";
++		enable-gpios = <&pmi8998_gpio 5 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vib_default>;
++	};
  };
  
-+&blsp1_uart3 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+
-+		clocks = <&rpmcc RPM_SMD_RF_CLK2_PIN>;
+ &blsp1_i2c5 {
+@@ -245,6 +252,18 @@ cam_snapshot_pin_a: cam-snapshot-btn-active {
+ 	};
+ };
+ 
++&pmi8998_gpio {
++	vib_default: vib-en {
++		pins = "gpio5";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		bias-disable;
++		drive-push-pull;
++		output-low;
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
++		power-source = <0>;
 +	};
 +};
 +
- &blsp2_uart1 {
- 	status = "okay";
- };
+ &pm8998_pon {
+ 	resin {
+ 		compatible = "qcom,pm8941-resin";
 -- 
 2.32.0
 
