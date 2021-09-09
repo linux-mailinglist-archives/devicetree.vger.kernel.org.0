@@ -2,36 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0A0405784
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C5A4054D0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356620AbhIINgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 09:36:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57774 "EHLO mail.kernel.org"
+        id S1355474AbhIINDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 09:03:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58672 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1354412AbhIIM47 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:56:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E768F63258;
-        Thu,  9 Sep 2021 11:58:24 +0000 (UTC)
+        id S1355594AbhIIM5h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:57:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1438D63265;
+        Thu,  9 Sep 2021 11:58:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188705;
-        bh=QkUSZWF79udlGYXr1PSAkxMxyJa+bYoV6bXDGcox3SE=;
+        s=k20201202; t=1631188718;
+        bh=C56UGu/jYrwM6Jfi/51pH9IQNP0Jn9eLUHEN3yNrW1s=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nWvDEuCLVjlbMN+BKsAtrDAWLHe584WaGS8miKUuOe9180FxeGjh0wPCR3nmUg1nz
-         QpKFWuTH/T7TiXAaTTR3Npn276EXOlPle/aFw3gEyo+w8qTPDg7QNhELLBRRI3x2nv
-         YXGWagUPAjFPgG1HPxrTFsFc9TvsFBOn+jaRQitC0JoxOjizUuvTXt9ebxWe12WnSd
-         IDxdATg2WKrUfNGhtjGHQLkzC8NGzRt37PTPQKbdrriWYj8EojvGmsjpLGeNPddsdj
-         gIhyS4okpiWJ3Y4vwXj21EgpGQMl5LhLEL4gc838Zi3c6dQzgKF8NQ7HG15KH1ro4Q
-         l/LGbIplbfwNw==
+        b=Mb4ik2fA3CWp4+GkDwzoxXZnpd3fgoOgfAfsZopUrvCLVe55vHw67akU/Lns2OxUK
+         1pUGRp9zyTuq/YqpjdY3ActDm1RytwjjRof2CgLpjEKcfX792Gml7oTGs1IeOKNMCV
+         eEkDDcBc0+i0UW3BaU34XQwOPvNZtGv5xOZnyuVe+wzs++YYDJ+jLkkxcqF+gQtlII
+         uhzBXdtI6zDgOn5fSago6Iq2rVSGqLINWtA4qydupTXpNIVh9JNwnCpt208xo1bJdh
+         EBw1oceXCaK3Ud6c1I39kC60PQkyjKbQSIOwGd7zVy1IK5bQahD9rfvnIsk5cVnHBw
+         oFsygRJR6S9Qg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 47/74] ARM: tegra: tamonten: Fix UART pad setting
-Date:   Thu,  9 Sep 2021 07:56:59 -0400
-Message-Id: <20210909115726.149004-47-sashal@kernel.org>
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 58/74] of: Don't allow __of_attached_node_sysfs() without CONFIG_SYSFS
+Date:   Thu,  9 Sep 2021 07:57:10 -0400
+Message-Id: <20210909115726.149004-58-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909115726.149004-1-sashal@kernel.org>
 References: <20210909115726.149004-1-sashal@kernel.org>
@@ -43,59 +41,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>
+From: Marc Zyngier <maz@kernel.org>
 
-[ Upstream commit 2270ad2f4e123336af685ecedd1618701cb4ca1e ]
+[ Upstream commit 6211e9cb2f8faf7faae0b6caf844bfe9527cc607 ]
 
-This patch fixes the tristate and pullup configuration for UART 1 to 3
-on the Tamonten SOM.
+Trying to boot without SYSFS, but with OF_DYNAMIC quickly
+results in a crash:
 
-Signed-off-by: Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+[    0.088460] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000070
+[...]
+[    0.103927] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.14.0-rc3 #4179
+[    0.105810] Hardware name: linux,dummy-virt (DT)
+[    0.107147] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+[    0.108876] pc : kernfs_find_and_get_ns+0x3c/0x7c
+[    0.110244] lr : kernfs_find_and_get_ns+0x3c/0x7c
+[...]
+[    0.134087] Call trace:
+[    0.134800]  kernfs_find_and_get_ns+0x3c/0x7c
+[    0.136054]  safe_name+0x4c/0xd0
+[    0.136994]  __of_attach_node_sysfs+0xf8/0x124
+[    0.138287]  of_core_init+0x90/0xfc
+[    0.139296]  driver_init+0x30/0x4c
+[    0.140283]  kernel_init_freeable+0x160/0x1b8
+[    0.141543]  kernel_init+0x30/0x140
+[    0.142561]  ret_from_fork+0x10/0x18
+
+While not having sysfs isn't a very common option these days,
+it is still expected that such configuration would work.
+
+Paper over it by bailing out from __of_attach_node_sysfs() if
+CONFIG_SYSFS isn't enabled.
+
+Signed-off-by: Marc Zyngier <maz@kernel.org>
+Link: https://lore.kernel.org/r/20210820144722.169226-1-maz@kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/tegra20-tamonten.dtsi | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/of/kobj.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
-index 20137fc578b1..394a6b4dc69d 100644
---- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
-+++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
-@@ -185,8 +185,9 @@ conf_ata {
- 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
- 					"cdev1", "cdev2", "dap1", "dtb", "gma",
- 					"gmb", "gmc", "gmd", "gme", "gpu7",
--					"gpv", "i2cp", "pta", "rm", "slxa",
--					"slxk", "spia", "spib", "uac";
-+					"gpv", "i2cp", "irrx", "irtx", "pta",
-+					"rm", "slxa", "slxk", "spia", "spib",
-+					"uac";
- 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
- 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
- 			};
-@@ -211,7 +212,7 @@ conf_crtp {
- 			conf_ddc {
- 				nvidia,pins = "ddc", "dta", "dtd", "kbca",
- 					"kbcb", "kbcc", "kbcd", "kbce", "kbcf",
--					"sdc";
-+					"sdc", "uad", "uca";
- 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
- 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
- 			};
-@@ -221,10 +222,9 @@ conf_hdint {
- 					"lvp0", "owc", "sdb";
- 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
- 			};
--			conf_irrx {
--				nvidia,pins = "irrx", "irtx", "sdd", "spic",
--					"spie", "spih", "uaa", "uab", "uad",
--					"uca", "ucb";
-+			conf_sdd {
-+				nvidia,pins = "sdd", "spic", "spie", "spih",
-+					"uaa", "uab", "ucb";
- 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
- 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
- 			};
+diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+index a32e60b024b8..6675b5e56960 100644
+--- a/drivers/of/kobj.c
++++ b/drivers/of/kobj.c
+@@ -119,7 +119,7 @@ int __of_attach_node_sysfs(struct device_node *np)
+ 	struct property *pp;
+ 	int rc;
+ 
+-	if (!of_kset)
++	if (!IS_ENABLED(CONFIG_SYSFS) || !of_kset)
+ 		return 0;
+ 
+ 	np->kobj.kset = of_kset;
 -- 
 2.30.2
 
