@@ -2,117 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C43C405908
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 16:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7248C405904
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 16:28:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344821AbhIIOaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 10:30:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44124 "EHLO
+        id S1345056AbhIIO3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 10:29:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232395AbhIIOaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 10:30:02 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52BDC00F63B
-        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 06:19:11 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id h16so3651776lfk.10
-        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 06:19:11 -0700 (PDT)
+        with ESMTP id S1344325AbhIIO3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 10:29:35 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A63DEC014D56;
+        Thu,  9 Sep 2021 06:16:27 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id y6so2959004lje.2;
+        Thu, 09 Sep 2021 06:16:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zjCm2kqLmEkD1fYMpLfynjls4LWjCF1R/HM+9Gqf848=;
-        b=OE15DtuTMThkONQn2QaW9vAJKJ4c5pWnECM8dh6t2F5lxkzOQeepKE0K4HmtgqZgjV
-         MRkwgGmGmxUriL00OMiESoz55OF7Kg50LWHvTG1px0UFyDmtKcbVmx4Uoah1/qoJWO2i
-         5p3ySfY5SwOR9I8JDePdifMsBy7MlP3+CHy2wNlJBPmtx9ai9DWrRxh430t8NpR+qkbV
-         yJOIbzETKc40EIGF15R4XdOy/OgEfFhXtuJ/0bmufBPBzcG62lorQlBtuzSLqOVhO/bC
-         loAS8P5S/d02dnIN04YJ10gffnzt8rv9c7Ey+vvL5DYUHVSyEqPETkva74sSJ0Pjk1j1
-         /7Aw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0CDO+tNDKR7sAS9E0dGNVhCsigTKCV2xMySlatffqaM=;
+        b=KFmFzX85xkkXJWCuj3RMXSrO8cwW6IYyEktcfF672pWiA5Zc4VCmmYr0vvafjoJBFe
+         syvkIikNKLmFTmHWzY5PZXQurs7kV9NfFuLLkwr89nk3csP6PkZILkopZVK8RfRsXQ32
+         OA0S63l2F/Dp7gVPQpRkUhWrMEPPC1/CHtOCmOfnLEZSVevJr3iDoslq14CJGO/oSCPn
+         LToPo6wDP59IpcUPjUx29c/RDTVa6V6gXCAetyycXOFYuOVCrank1K+xlFRStbdBDtn+
+         HyAAvVdfWJ/v3qXLiGqna5WrcHP1OHprVGiOJk4dOKQC+vT/Y+2NjFo1CTJ+gcRZf/oX
+         lQHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=zjCm2kqLmEkD1fYMpLfynjls4LWjCF1R/HM+9Gqf848=;
-        b=vXH99spAm9BOw5JPpuCMjKsaa/JkKdlC+mVC90L37r2R2bm/PvDF1nqyr1qS4URoog
-         NQDqaMHPOLNLbohK7PNnN8L/KoYBUMytPfGRJDWNsLSeYgrezKhB69nMqFac7MPKsq0G
-         2c13f+JtoslK14SPIaIwSSaNlm6XUrDSHA09GvHPmP+i5sYkRoxSCVNbgWgbHl2Cpg8E
-         ysCRhXz4gm/+Zki2RTR1fEYE0xW5IVpJPi5jA7z2VJ9kZrGn491Gu7okoS4WFiTcYY9P
-         QodvWTtSqQNADHR4hJ0tvgtKjV+gIQQ/rHCX7YD73cMDz4Gjxm5rpduJNXb1OMWGgl/i
-         UjKA==
-X-Gm-Message-State: AOAM5337//Pw+jICHy6cNYR6/rs7UeKC95tiWQYjI0Nzsuy4Lr7Nt17A
-        ygV8D9GLolbJbByljh2QElRMYg==
-X-Google-Smtp-Source: ABdhPJw92+bv1tpDoZqXpouY2qicTHxeTcDi4tXjJ1yAhPRIT8shcSy3idYOKvLB9LMdigSvIPI8Hw==
-X-Received: by 2002:a05:6512:b27:: with SMTP id w39mr2412730lfu.129.1631193549547;
-        Thu, 09 Sep 2021 06:19:09 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id d1sm200065lfl.5.2021.09.09.06.19.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Sep 2021 06:19:09 -0700 (PDT)
-Subject: Re: [PATCH 3/7] arm64: dts: qcom: msm8998-xperia: Add support for
- wcn3990 Bluetooth
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org
-References: <20210903180924.1006044-1-angelogioacchino.delregno@somainline.org>
- <20210903180924.1006044-3-angelogioacchino.delregno@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <7032cf3a-2469-3d66-bfde-9754dbac58b9@linaro.org>
-Date:   Thu, 9 Sep 2021 16:19:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        bh=0CDO+tNDKR7sAS9E0dGNVhCsigTKCV2xMySlatffqaM=;
+        b=XGCoySQsWLMdpsUDfC/boH+7H6pCvrXsDbslw3+POifz6D0Kmo9TRbjuQVkzNjYqfX
+         +KrCeyRjVDPBZJ47eOCd/PStogMZP1Nux6S6OpsrX2Mv1CQemYFeHSZpCVn4ZmvppVP0
+         Q8v6C/r4PKHHa1A5NhrghnwJ9Dm2yFWhZy7wRfbROMf+xAVgdAbOfUZnWYv6Kwr9QhmO
+         IEbbCX/YXZLl0ulW5+4iUKtox23R4fXxwfnzUZTBz6hI2EOdwceh47eSrrINTk12Y7sD
+         FueruuLCsNfcOYC/FuXjj0r6GBj0xKlnwlrpf04qga+WS/0+B+p5EI5FTSkOvuq2yMT8
+         9yuQ==
+X-Gm-Message-State: AOAM531ie/yKzHNNMpp+nSXwNQTl6fNGu7yLKftbeik+OYgWVR5X6rc/
+        IU1bvI/oQ9UvNEbTWaBmm6s=
+X-Google-Smtp-Source: ABdhPJyoKYKHyicTn1KjyPbjopD1FldRscDaiSzCwaDkeHsqC7bzAvGyGYwQbNQkf9/a6Oac55Cl0Q==
+X-Received: by 2002:a2e:91d0:: with SMTP id u16mr2238411ljg.324.1631193386103;
+        Thu, 09 Sep 2021 06:16:26 -0700 (PDT)
+Received: from PC10319.67 ([82.97.198.254])
+        by smtp.googlemail.com with ESMTPSA id p5sm197745lfu.272.2021.09.09.06.16.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Sep 2021 06:16:25 -0700 (PDT)
+From:   Konstantin Aladyshev <aladyshev22@gmail.com>
+Cc:     supreeth.venkatesh@amd.com, aladyshev22@gmail.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: amd-ethanolx: Add FRU EEPROM
+Date:   Thu,  9 Sep 2021 16:20:48 +0300
+Message-Id: <20210909132053.3919-1-aladyshev22@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210903180924.1006044-3-angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/09/2021 21:09, AngeloGioacchino Del Regno wrote:
-> This platform uses the WCN3990 Bluetooth chip, reachable on UART-3.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->   .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi   | 17 +++++++++++++++++
->   1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> index 2fe53e4675d5..66b009ba72fe 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> @@ -179,6 +179,23 @@ &blsp1_i2c5_sleep {
->   	bias-disable;
->   };
->   
-> +&blsp1_uart3 {
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn3990-bt";
-> +
-> +		vddio-supply = <&vreg_s4a_1p8>;
-> +		vddxo-supply = <&vreg_l7a_1p8>;
-> +		vddrf-supply = <&vreg_l17a_1p3>;
-> +		vddch0-supply = <&vreg_l25a_3p3>;
-> +		max-speed = <3200000>;
-> +
-> +		clocks = <&rpmcc RPM_SMD_RF_CLK2_PIN>;
-> +	};
-> +};
+AMD EthanolX CRB uses 24LC128 EEPROM chip to store its FRU information.
 
-There is an ongoing proposal to rework wcn3990 (bt and wifi) bindings, 
-so we might want to delay this a bit. Not a strict requirement, since 
-the changes would be backwards-compatible.
+Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-
+diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+index 79d17841b3d7..6406a0f080ee 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+@@ -159,6 +159,11 @@ &i2c2 {
+ //24LC128 EEPROM
+ &i2c3 {
+ 	status = "okay";
++	eeprom@50 {
++		compatible = "atmel,24c256";
++		reg = <0x50>;
++		pagesize = <64>;
++	};
+ };
+ 
+ //P0 Power regulators
 -- 
-With best wishes
-Dmitry
+2.25.1
+
