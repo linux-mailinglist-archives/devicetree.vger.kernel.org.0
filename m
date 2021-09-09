@@ -2,193 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C4E405A0C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 17:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E1F405A15
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 17:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235092AbhIIPQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 11:16:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41568 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232656AbhIIPQX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 11:16:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 26203610C8;
-        Thu,  9 Sep 2021 15:15:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631200514;
-        bh=ItFiXSdstJ1x8iGrhc8nGYVtFR6Yk2Xg8NxA0kGu3IM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=r4qkAFNhFuoWmkbc7aGP80Qga4s2XhLgsFRLY5v03rc7cs+FjLDxIzAVRCD+gIIHd
-         hGlUp4xMRBVHxc6h4Tll0qzA6vwAesunB1/11420Fh0JPezj6V36ivfHFg51kkeQu3
-         pSKa2trBZRACBNsi3c228Yo+FnUkS6ZRcBuC7yT1GxQuwxnl6WgvScmss2+QRn5Dlo
-         EH9soIZJb38vdPrdHa260ygz+MOBrtEHBsapOTneduVBSr43ea4Bj/t4lEpL+rtFFd
-         oildF9cOPUJpWEw6dcESj59XXAWnuq1G/8NHG4pCMtZDezUHp87ea7VNRbHmLxsHQk
-         rEsNMp+7EmOXg==
-Received: by mail-ed1-f54.google.com with SMTP id j13so3110665edv.13;
-        Thu, 09 Sep 2021 08:15:14 -0700 (PDT)
-X-Gm-Message-State: AOAM53208mZBoOEAWimCzjhgS0peKneYjiurRFYWehyX93EcCmzPZDFP
-        s6Vo1HucnBl0UHVgJshZKvVej4beLYsyeXs2eA==
-X-Google-Smtp-Source: ABdhPJxVArR9puj+tqC7mgPs9Ej8J4trbsMHg6FXmyjT5vLBiVpHqRhSqYbIMvUaziwDLEd20GdxxeDt9ugmIemP1Sg=
-X-Received: by 2002:aa7:d645:: with SMTP id v5mr3717483edr.145.1631200512691;
- Thu, 09 Sep 2021 08:15:12 -0700 (PDT)
+        id S233797AbhIIPT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 11:19:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56020 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236769AbhIIPT2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 11:19:28 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F978C06175F
+        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 08:18:19 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id u11-20020a17090adb4b00b00181668a56d6so1675333pjx.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 08:18:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VWNh9d2tUZKG8idZXByBeqTa3/M4oXQ5jM0T9ftLR/I=;
+        b=DnigeVP4cZBoGJUJUi88ziXn1T3CRIWIFPRKrJ3LPoiqoQGG3OigRZ/Nw3AdIecPYQ
+         JnFT/1lTu2E9E04ZwY9ZgZbYhJuhV7JPIB++wzcygMO8hvR2L+50c1wMFfxlYt0hVrYb
+         C/YN8jBK0j7lymZLZEXbML9qB5S5JUq017qmg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VWNh9d2tUZKG8idZXByBeqTa3/M4oXQ5jM0T9ftLR/I=;
+        b=LMIuoACkMuC05ktdFlBtS+1OwGBvRkGfCrL4wA8TEOkL10J4AdcJTdx4ejkpt107Y9
+         oc7fhWWyrFK7xA1WRcGzJKSIeZDlU5SKMeejc5pHmFGtxgNE1TY5kIXEYOrnWtznhDcN
+         HqmJFXRkU8DuQDSg7M3i/01vT9p9X6X1Mibkrhh4KycoPA0BBlbPKBtHoIRkYOWyD11X
+         TNy3ohS1tYNpZYz6vmcWRmrsoN1qpmdSz2CwS9L1BQI9O0ZDtj+HuIycUwZFLk1brvze
+         COUAz4YE27K6hOaHiTgbOT4UhitGKgJRp5fx4d1k48hPwhTxTJbgNOVULF2ii83KuxCz
+         Wjqg==
+X-Gm-Message-State: AOAM530JllT1iF9MOeRYuNUD5Bd0xxS2xDoDY1NDE338e+GNiU0Yrh3V
+        9+bNmKI82Jese0U7Wfx1fWIbDECRDL57Ow==
+X-Google-Smtp-Source: ABdhPJwOc/+AcPWbSFMHLSdY7Q78w3vlSzQ1LUqYnbXZ/HaAWI8X35xZ6GWLqwIRUxSL36sRhM136Q==
+X-Received: by 2002:a17:90a:2ecb:: with SMTP id h11mr4165144pjs.196.1631200698756;
+        Thu, 09 Sep 2021 08:18:18 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:27cc:a1d4:ed44:e1de])
+        by smtp.gmail.com with UTF8SMTPSA id q3sm3032653pgf.18.2021.09.09.08.18.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Sep 2021 08:18:18 -0700 (PDT)
+Date:   Thu, 9 Sep 2021 08:18:16 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Subject: Re: [PATCH v9 1/2] dt-bindings: leds: Add Qualcomm Light Pulse
+ Generator binding
+Message-ID: <YToluIBXlNJEFhcb@google.com>
+References: <20210623035039.772660-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-References: <3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de> <CAGETcx9eFg7jR=ibBLhU3q+VnpqJXQCVmQcEyMpozddRiCXFLQ@mail.gmail.com>
- <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de> <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
- <CAL_JsqL8sGc7sA7q+SFcMKF02NWpqOUUEWew1qOY+vdpKVFJ6w@mail.gmail.com> <ac715ac4-eb2d-7dd0-9752-4cbe95b0e88d@web.de>
-In-Reply-To: <ac715ac4-eb2d-7dd0-9752-4cbe95b0e88d@web.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 9 Sep 2021 10:14:59 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+mqpHF5hn0iD8+nz3iOH4-doqqB0hgiV-MLKS2_s9oBg@mail.gmail.com>
-Message-ID: <CAL_Jsq+mqpHF5hn0iD8+nz3iOH4-doqqB0hgiV-MLKS2_s9oBg@mail.gmail.com>
-Subject: Re: [Bisected Regression] OLPC XO-1.5: Internal drive and SD card
- (mmcblk*) gone since commit ea718c699055
-To:     Andre Muller <andre.muller@web.de>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210623035039.772660-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 9, 2021 at 9:09 AM Andre Muller <andre.muller@web.de> wrote:
->
-> On 09/09/2021 00.31, Rob Herring wrote:
-> > On Tue, Sep 7, 2021 at 10:15 PM Saravana Kannan <saravanak@google.com> wrote:
-> >>
-> >> On Tue, Sep 7, 2021 at 7:12 PM Andre Muller <andre.muller@web.de> wrote:
-> >>>
-> >>> On 08/09/2021 00.05, Saravana Kannan wrote:
-> >>>> On Sun, Sep 5, 2021 at 1:15 AM Andre Muller <andre.muller@web.de> wrote:
-> >>>>>
-> >>>>> With linux-5.13 and linux-5.14, the internal drive and SD card reader are gone from the XO-1.5. I bisected the issue to come up with ea718c699055:
-> >>>>>
-> >>>>> # first bad commit: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
-> >>>>>
-> >>>>> The /dev/mmcblk* nodes are not generated since this patch.
-> >>>>>
-> >>>>> Please find the output of lspsi -vv and lshw below.
-> >>>>>
-> >>>>> I will be happy to provide more info and/or test patches.
-> >>>>
-> >>>> Hi Andre,
-> >>>>
-> >>>> Can you point me to the dts file in upstream that corresponds to this system?
-> >>>>
-> >>>> Also, if you can give the output of:
-> >>>> cat /sys/kernel/debug/devices_deferred
-> >>>
-> >>> Hi Saravana,
-> >>>
-> >>>
-> >>> /sys/kernel/debug/devices_deferred is empty.
-> >>> I used the last good commit b6f617.
-> >>
-> >> Sorry, I wanted that with the bad commit.
->
-> Uh-oh, my bad...
->
-> The bad case says
-> # cat devices_deferred
-> 0000:00:0c.0
->
-> That's the SD Host controller.
->
-> >>
-> >>>
-> >>> The XO-1.5 has an x86 compatible VIA C7 processor.
-> >>> It uses the VX855 chip for about all I/O tasks, including SDIO.
-> >>> I am not aware of a device tree file for it.
-> >>>
-> >>> It is a bit of a strange beast, it uses OFW to initialize the hardware and provide a FORTH shell.
-> >>> Which also is the boot manager, configured via FORTH scripts.
-> >>>
-> >>>   From the linux side of the fence, dmesg's line 2 is:
-> >>>
-> >>> "OFW detected in memory, cif @ 0xff83ae68 (reserving top 8MB)"
-> >>>
-> >>> AIUI, this mechanism is used in lieu of a device tree file, like UEFI on most x86 hardware.
-> >>> But my understanding of device trees is severely limited, I might be allwrong.
-> >>
-> >> Uhh... I'm so confused. If Linux doesn't use OF, then none of the code
-> >> enabled by fw_devlink=on should be executed.
-> >
-> > Linux does, but maybe not for memory (like UEFI on arm64).
-> >
-> >> The only thing that might remotely even execute is:
-> >> efifb_add_links() in drivers/firmware/efi/efi-init.c
-> >>
-> >> If you want you can just do an early return 0; in that to see if it
-> >> makes a difference (unlikely).
-> >>
-> >> Rob, Do you know what's going on with OLPC and DT?
-> >
-> > Not really. I have an XO-1 DT dump[1]. It's probably a similar looking
-> > DT though. It's pretty ancient lacking anything we've invented for DT
-> > in the last 10 years. There's not really much to it as about the only
-> > phandle I see is for interrupts.
-> >
-> >>> Anyway, the firmware source is here:
-> >>> http://dev.laptop.org/git/users/quozl/openfirmware/
-> >>>
-> >>> This file is the closest dt-analogous thing for the XO-1.5 I can find therein:
-> >>> cpu/x86/pc/olpc/via/devices.fth
-> >>
-> >> That file is all gibberish to me.
-> >
-> > Running this on a booted system would help:
-> >
-> > dtc -f -I fs -O dts /proc/device-tree > dump.dts
->
-> Ah, thanks. I never knew about the DT in there...
-> XO-1.5_dump.dts is attached.
->
-> >
-> > If you don't have dtc on the system, then you'll have to zip up
-> > /proc/device-tree contents and run dtc elsewhere (or just post that).
-> >
-> >>> My machine runs the latest version:
-> >>> http://wiki.laptop.org/go/OLPC_Firmware_q3c17
-> >>>
-> >>> The XO-1.5 hardware specs are here:
-> >>> http://wiki.laptop.org/images/f/f0/CL1B_Hdwe_Design_Spec.pdf
-> >>> http://wiki.laptop.org/go/Hardware_specification_1.5
-> >>>
-> >>> Would the .config or dmesg help?
-> >>
-> >> At this point, why not? When you do send them, please send them as
-> >> attachments and not inline.
-> >>
-> >> Also, when you collect the dmesg logs, the following could help:
-> >> Enable the existing dev_dbg logs in these functions:
-> >> device_link_add()
-> >> device_links_check_suppliers()
-> >>
-> >> And add the following log to fwnode_link_add():
-> >> +++ b/drivers/base/core.c
-> >> @@ -87,6 +87,8 @@ int fwnode_link_add(struct fwnode_handle *con,
-> >> struct fwnode_handle *sup)
-> >>                  goto out;
-> >>          }
-> >>
-> >> +       pr_info("Link fwnode %pfwP as a consumer of fwnode %pfwP\n", con, sup);
-> >> +
-> >
->
-> OK. The dmesg with debug info is attached as well (for the broken case).
+On Tue, Jun 22, 2021 at 08:50:38PM -0700, Bjorn Andersson wrote:
+> This adds the binding document describing the three hardware blocks
+> related to the Light Pulse Generator found in a wide range of Qualcomm
+> PMICs.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v8:
+> - None
+> 
+> Changes since v7:
+> - Added qcom,pmc8180c-lpg
+> - Defined constraints for qcom,power-source
+> - Changes qcom,dtest to matrix and added constraints
+> - Changed example from LED_COLOR_ID_MULTI to LED_COLOR_ID_RGB
+> 
+>  .../bindings/leds/leds-qcom-lpg.yaml          | 164 ++++++++++++++++++
+>  1 file changed, 164 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+> new file mode 100644
+> index 000000000000..10aee61a7ffc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+> @@ -0,0 +1,164 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Light Pulse Generator
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> +
+> +description: >
+> +  The Qualcomm Light Pulse Generator consists of three different hardware blocks;
+> +  a ramp generator with lookup table, the light pulse generator and a three
+> +  channel current sink. These blocks are found in a wide range of Qualcomm PMICs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,pm8150b-lpg
+> +      - qcom,pm8150l-lpg
+> +      - qcom,pm8916-pwm
+> +      - qcom,pm8941-lpg
+> +      - qcom,pm8994-lpg
+> +      - qcom,pmc8180c-lpg
+> +      - qcom,pmi8994-lpg
+> +      - qcom,pmi8998-lpg
+> +
+> +  "#pwm-cells":
+> +    const: 2
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  qcom,power-source:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      power-source used to drive the output, as defined in the datasheet.
+> +      Should be specified if the TRILED block is present
+> +    enum: [0, 1, 3]
+> +
+> +  qcom,dtest:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description: >
+> +      A list of integer pairs, where each pair represent the dtest line the
+> +      particular channel should be connected to and the flags denoting how the
+> +      value should be outputed, as defined in the datasheet. The number of
+> +      pairs should be the same as the number of channels.
+> +    items:
+> +      items:
+> +        - description: dtest line to attach
+> +        - description: flags for the attachment
+> +
+> +  multi-led:
+> +    type: object
+> +    $ref: leds-class-multicolor.yaml#
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      "^led@[0-9a-f]$":
+> +        type: object
+> +        $ref: common.yaml#
+> +
+> +patternProperties:
+> +  "^led@[0-9a-f]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +
+> +    properties:
+> +      reg: true
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    lpg {
+> +      compatible = "qcom,pmi8994-lpg";
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      qcom,power-source = <1>;
+> +
+> +      qcom,dtest = <0 0>,
+> +                   <0 0>,
+> +                   <0 0>,
+> +                   <4 1>;
+> +
+> +      led@1 {
+> +        reg = <1>;
+> +        label = "green:user1";
+> +      };
+> +
+> +      led@2 {
+> +        reg = <2>;
+> +        label = "green:user0";
+> +        default-state = "on";
+> +      };
+> +
+> +      led@3 {
+> +        reg = <3>;
+> +        label = "green:user2";
+> +      };
+> +
+> +      led@4 {
+> +        reg = <4>;
+> +        label = "green:user3";
+> +      };
+> +    };
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    lpg {
+> +      compatible = "qcom,pmi8994-lpg";
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      qcom,power-source = <1>;
+> +
+> +      multi-led {
+> +        color = <LED_COLOR_ID_RGB>;
+> +        function = LED_FUNCTION_STATUS;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led@1 {
+> +          reg = <1>;
+> +          color = <LED_COLOR_ID_RED>;
+> +        };
+> +
+> +        led@2 {
+> +          reg = <2>;
+> +          color = <LED_COLOR_ID_GREEN>;
+> +        };
+> +
+> +        led@3 {
+> +          reg = <3>;
+> +          color = <LED_COLOR_ID_BLUE>;
+> +        };
+> +      };
+> +    };
+> +  - |
+> +    lpg {
 
-Humm, ACPI and DT together...
+nit: should the node be named 'lpg-pwm'?
 
-Looks to me like it's waiting for the wrong interrupt-parent. The log
-says it is waiting for 'interrupt-controller@i20' which is the only
-interrupt-controller found in the DT, but the parent is the PCI bridge
-with whatever interrupt-map is pointing to. That's not clear as the
-phandle (0x767a4) doesn't exist in the DT. I suppose the parent is
-defined in ACPI?
+IIUC a PMIC .dtsi could have both a 'lpg' and a 'lpg-pwm' node, even though
+only one of them can be enabled at any time.
 
-If there's not an easy fix, just disable devlinks for x86. There's
-only one other DT platform, ce4100, and I really doubt it is even used
-at all.
-
-Rob
+> +      compatible = "qcom,pm8916-pwm";
+> +      #pwm-cells = <2>;
+> +    };
