@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E58EA404196
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 01:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09431404242
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 02:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235238AbhIHXJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Sep 2021 19:09:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36524 "EHLO
+        id S1348391AbhIIAZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Sep 2021 20:25:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235007AbhIHXJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 19:09:44 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC907C0613CF
-        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 16:08:35 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id q3so2241060plx.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 16:08:35 -0700 (PDT)
+        with ESMTP id S1348278AbhIIAZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Sep 2021 20:25:27 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72791C061575
+        for <devicetree@vger.kernel.org>; Wed,  8 Sep 2021 17:24:19 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id j18so74188ioj.8
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 17:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20150623.gappssmtp.com; s=20150623;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=zZtlzVhWBbwXoavimL5Cu2zNuLqJKyQrs9PtnLoTbBw=;
-        b=kSjq7V7UVdcmFJyduvILA7A+e4J9ObyfE9f9UlOv1wvamgAl4MgHpJqYP1XrUEZhuD
-         qsMZW0Fk31XflGWEup34tqLssSis/K7KZ1VFRY9uiUuUWwWoHQYync4TQhBzfDNxh2Tv
-         UOgVsuOzWCLKEPDsv1L+nBsBQk5yO9jklbAtJDFD1Th25XdzQZGa3b+fMzs2kswPgwWN
-         8sKr8mQWjMCY75HA6h2gk7J0vCnx9c19EL7g70oFrnAsU54eBRbWhdip29c8oSPgqgpf
-         L5YVWqhWliH0iHZRhi1JBIHkJQ5qPATPl+ulZnecXkpVLPg+9gvZI4nTQS742Q+by/1E
-         VlHA==
+        bh=SBJZ+xd67CiFIsbUo5ZILupshCxiGwC5Wpwkm3BLH6k=;
+        b=QFvS6izIE+d1GGVRGHR1QEMy4lxOUpUzI8cdpEPvcnmHg6ncVokDncdiZFJpdPUMfv
+         a8I1A8s8Vi1L61d1h9JgrEGyy6LFUztBBvesIm5nHaDH6EXFqKtgt5okUQHR7jxF5sC6
+         3L1eCO4Ec7roeo/DZl0f2C7fNach3w+CA9UlE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=zZtlzVhWBbwXoavimL5Cu2zNuLqJKyQrs9PtnLoTbBw=;
-        b=TrELqfYKRggWiZvqg2YsGiM8Jw4eu534HOppweJAC53t3TM3BnRS/my4fdfFGkToMn
-         amCgBwW0CEU1aBPme10PGLfDhc5feB0o9irysTrWUg9SBRtVbBgjrXXxX58atYQ0TTxB
-         aMIa2yYOpSbjcRAPA0KwqBPcbIlZ3Fl8xGWoA7DaL5H/93stSvtqz7LNbIx7J3Lndp3R
-         ZVHrJwm3nv5T4csqpAqwi1thh33vBtwPZKubjCg5jb+pPR/UzZSMOO5EoqfjmsT9+PMd
-         F3IBRNqjcmSACgRdDv/4Hdh2OLhsvkib/QqZkRbKA2tjo/ee7h7ukNem/bhY3PCjwhKr
-         ktjg==
-X-Gm-Message-State: AOAM533/1eZFb5r+7FSXjEdgBNDzRC8hCqsDurWwgaOBDyGRMCBjQSJA
-        TDWVWGZu3z6l/flNAbe6S9qjzIH63HqVA/bEFNr/2w==
-X-Google-Smtp-Source: ABdhPJyFn28fS/y5ulgH/27LqxDmH6NBfIEoA9Td+810/fo43QUOaiDpFlx7utmV8lw1jHrEN/4yqFOCMF/8I1/Q04A=
-X-Received: by 2002:a17:90a:7301:: with SMTP id m1mr45943pjk.34.1631142514970;
- Wed, 08 Sep 2021 16:08:34 -0700 (PDT)
+        bh=SBJZ+xd67CiFIsbUo5ZILupshCxiGwC5Wpwkm3BLH6k=;
+        b=jWERDJOj5F4aSz0yn1Cb0V/beq8giFP6jwLVVUeofFBNljCOqhwgGA0TdpNUd44s1V
+         UnMPcPNiZV9y4Yn8Xk8gFmtGJ/cwBBuVwPHGqeqIaVm1mcsAaZxF1TY6FN8avVkckR2S
+         QbKevtWAaAFMlsqvufTOZA8XnOrjHds3y+e271jlILz6Sj0+kXniEVOVecPN/gl4Y+lu
+         tyxH7rgym7wyDNC1bct/udwTJ2Yx8dMgNqzIcXSAZ+R/K1kb9exGZyT8i4Gvwiw4Cmqa
+         yRW2uiLnYXKMNdTuwXDRsU4Xpdplwkcall7B8p0VQX9SIgAKCncjy2PejaxW3tND7itD
+         Za1w==
+X-Gm-Message-State: AOAM530ZZqaT+by0gffmYctn4OxYYw6XeXjSgvHEJ+PM07oRvVphWhFW
+        ZlRbR5+3PaaF4hFrwR9fmiS1zmygFGtYgA==
+X-Google-Smtp-Source: ABdhPJyjfB1ClQb96v8C5nnlxC3EFJJm11eIq8sVFC+S8vUj9LrDM3Cnl4zB9zDNSzpsBn7kAl5CaQ==
+X-Received: by 2002:a5e:8a4a:: with SMTP id o10mr219666iom.11.1631147058567;
+        Wed, 08 Sep 2021 17:24:18 -0700 (PDT)
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com. [209.85.166.171])
+        by smtp.gmail.com with ESMTPSA id d14sm125043iod.18.2021.09.08.17.24.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Sep 2021 17:24:17 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id s16so114575ilo.9
+        for <devicetree@vger.kernel.org>; Wed, 08 Sep 2021 17:24:17 -0700 (PDT)
+X-Received: by 2002:a92:6b0a:: with SMTP id g10mr141704ilc.27.1631147057200;
+ Wed, 08 Sep 2021 17:24:17 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210901201934.1084250-1-dianders@chromium.org>
- <20210901131531.v3.6.I02250cd7d4799661b068bcc65849a456ed411734@changeid>
- <CAOesGMjp4pscuxciHZo7br-acgbkZSdRA_mUWNpcz0OfF7zOSA@mail.gmail.com>
- <CAD=FV=WPXAUyuAHb1jKx9F_aw+JGX4MWB3or=Eq5rXoKY=OQMw@mail.gmail.com>
- <163070152582.405991.9480635890491684680@swboyd.mtv.corp.google.com> <CAD=FV=XzPVda==+hkJ8ZJNXz3sT=V+8y4gbsbUik4k3Om_cGvQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=XzPVda==+hkJ8ZJNXz3sT=V+8y4gbsbUik4k3Om_cGvQ@mail.gmail.com>
-From:   Olof Johansson <olof@lixom.net>
-Date:   Wed, 8 Sep 2021 16:08:23 -0700
-Message-ID: <CAOesGMhd+m=hU6Fj3QXxqZb6TFf414UwvQLsLWgxe9Zb=3-tPQ@mail.gmail.com>
-Subject: Re: [PATCH v3 06/16] ARM: configs: Everyone who had PANEL_SIMPLE now
- gets PANEL_SIMPLE_EDP
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
+ <20210901131531.v3.3.I4a672175ba1894294d91d3dbd51da11a8239cf4a@changeid> <87h7ey81e9.fsf@intel.com>
+In-Reply-To: <87h7ey81e9.fsf@intel.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 8 Sep 2021 17:24:05 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X-d8XH5bmcAhDGnbs-DHgQ7D6G9g3gRsjo7RN1xQ1kNA@mail.gmail.com>
+Message-ID: <CAD=FV=X-d8XH5bmcAhDGnbs-DHgQ7D6G9g3gRsjo7RN1xQ1kNA@mail.gmail.com>
+Subject: Re: [PATCH v3 03/16] drm/edid: Allow the querying/working with the
+ panel ID from the EDID
+To:     Jani Nikula <jani.nikula@linux.intel.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Sam Ravnborg <sam@ravnborg.org>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -65,261 +68,81 @@ Cc:     Stephen Boyd <sboyd@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Linus W <linus.walleij@linaro.org>,
         Daniel Vetter <daniel@ffwll.ch>,
-        DTML <devicetree@vger.kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Steev Klimaszewski <steev@kali.org>,
         Thomas Zimmermann <tzimmermann@suse.de>,
         Maxime Ripard <mripard@kernel.org>,
         David Airlie <airlied@linux.ie>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Al Viro <viro@zeniv.linux.org.uk>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Arnd Bergmann <arnd@arndb.de>, Chen-Yu Tsai <wens@csie.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Core ntin Labbe <clabbe@baylibre.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Emil Velikov <emil.velikov@collabora.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Kees Cook <keescook@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lionel Debieve <lionel.debieve@st.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        =?UTF-8?Q?Martin_J=C3=BCcker?= <martin.juecker@gmail.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Otavio Salvador <otavio@ossystems.com.br>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Razvan Stefanescu <razvan.stefanescu@microchip.com>,
-        Robert Richter <rric@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>, linux-sunxi@lists.linux.dev,
-        =?UTF-8?Q?open_list=3ATEGRA_ARCHITECTURE_SUPPORT_=3Clinux=2D_tegra=40vger=2Ekern?=
-         =?UTF-8?Q?el=2Eorg=3E=2C_=C5=81ukasz_Stelmach?= 
-        <l.stelmach@samsung.com>
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 8, 2021 at 3:36 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Fri, Sep 3, 2021 at 1:38 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > Quoting Doug Anderson (2021-09-01 16:10:15)
-> > > Hi,
-> > >
-> > > On Wed, Sep 1, 2021 at 2:12 PM Olof Johansson <olof@lixom.net> wrote:
-> > > >
-> > > > On Wed, Sep 1, 2021 at 1:20 PM Douglas Anderson <dianders@chromium.org> wrote:
-> > > > >
-> > > > > In the patch ("drm/panel-simple-edp: Split eDP panels out of
-> > > > > panel-simple") we split the PANEL_SIMPLE driver in 2. By default let's
-> > > > > give everyone who had the old driver enabled the new driver too. If
-> > > > > folks want to opt-out of one or the other they always can later.
-> > > > >
-> > > > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > >
-> > > > Isn't this a case where the new option should just have had the old
-> > > > option as the default value to avoid this kind of churn and possibly
-> > > > broken platforms?
-> > >
-> > > I'm happy to go either way. I guess I didn't do that originally
-> > > because logically there's not any reason to link the two drivers going
-> > > forward. Said another way, someone enabling the "simple panel" driver
-> > > for non-eDP panels wouldn't expect that the "simple panel" driver for
-> > > DP panels would also get enabled by default. They really have nothing
-> > > to do with one another. Enabling by default for something like this
-> > > also seems like it would lead to bloat. I could have sworn that
-> > > periodically people get yelled at for marking drivers on by default
-> > > when it doesn't make sense.
-> > >
-> > > ...that being said, I'm happy to change the default as you suggest.
-> > > Just let me know.
-> >
-> > Having the default will help olddefconfig users seamlessly migrate to
-> > the new Kconfig. Sadly they don't notice that they should probably
-> > disable the previous Kconfig symbol, but oh well. At least with the
-> > default they don't go on a hunt/bisect to figure out that some Kconfig
-> > needed to be enabled now that they're using a new kernel version.
-> >
-> > Maybe the default should have a TODO comment next to it indicating we
-> > should remove the default in a year or two.
->
-> OK, so I'm trying to figure out how to do this without just "kicking
-> the can" down the road. I guess your idea is that for the next year
-> this will be the default and that anyone who really wants
-> "CONFIG_DRM_PANEL_EDP" will "opt-in" to keep it by adding
-> "CONFIG_DRM_PANEL_EDP=y" to their config? ...and then after a year
-> passes we remove the default? ...but that won't work, will it? Since
-> "CONFIG_DRM_PANEL_EDP" will be the default for the next year then you
-> really can't add it to the "defconfig", at least if you ever
-> "normalize" it. The "defconfig" by definition has everything stripped
-> from it that's already the "default", so for the next year anyone who
-> tries to opt-in will get their preference stripped.
->
-> Hrm, so let me explain options as I see them. Maybe someone can point
-> out something that I missed. I'll assume that we'll change the config
-> option from CONFIG_DRM_PANEL_SIMPLE_EDP to CONFIG_DRM_PANEL_EDP
-> (remove the "SIMPLE" part).
->
-> ==
->
-> Where we were before my series:
->
-> * One config "CONFIG_DRM_PANEL_SIMPLE" and it enables simple non-eDP
-> and eDP drivers.
->
-> ==
->
-> Option 1: update everyone's configs (this patch)
->
-> * Keep old config "CONFIG_DRM_PANEL_SIMPLE" but it now only means
-> enable the panel-simple (non-eDP) driver.
-> * Anyone who wants eDP panels must opt-in to "CONFIG_DRM_PANEL_EDP"
-> * Update all configs in mainline; any out-of mainline configs must
-> figure this out themselves.
->
-> Pros:
-> * no long term baggage
->
-> Cons:
-> * patch upstream is a bit of "churn"
-> * anyone with downstream config will have to figure out what happened.
->
-> ==
->
-> Option 2: kick the can down the road + accept cruft
->
-> * Keep old config "CONFIG_DRM_PANEL_SIMPLE" and it means enable the
-> panel-simple (non-eDP) driver.
-> * Anyone with "CONFIG_DRM_PANEL_SIMPLE" is opted in by default to
-> "CONFIG_DRM_PANEL_EDP"
->
-> AKA:
-> config DRM_PANEL_EDP
->   default DRM_PANEL_SIMPLE
->
-> Pros:
-> * no config patches needed upstream at all and everything just works!
->
-> Cons:
-> * people are opted in to extra cruft by default and need to know to turn it off.
-> * unclear if we can change the default without the same problems.
->
-> ==
->
-> Option 3: try to be clever
->
-> * Add _two_ new configs. CONFIG_DRM_PANEL_SIMPLE_V2 and CONFIG_DRM_PANEL_EDP.
-> * Old config "CONFIG_DRM_PANEL_SIMPLE" gets marked as "deprecated".
-> * Both new configs have "default CONFIG_DRM_PANEL_SIMPLE"
->
-> Now anyone old will magically get both the new config options by
-> default. Anyone looking at this in the future _won't_ set the
-> deprecated CONFIG_DRM_PANEL_SIMPLE but will instead choose if they
-> want either the eDP or "simple" driver.
->
-> Pros:
-> * No long term baggage.
-> * Everyone is transitioned automatically by default with no cruft patches.
->
-> Cons:
-> * I can't think of a better name than "CONFIG_DRM_PANEL_SIMPLE_V2" and
-> that name is ugly.
->
-> ==
->
-> Option 4: shave a yak
->
-> When thinking about this I came up with a clever idea of stashing the
-> kernel version in a defconfig when it's generated. Then you could do
-> something like:
->
-> config DRM_PANEL_EDP
->   default DRM_PANEL_SIMPLE if DEFCONFIG_GENERATED_AT <= 0x00050f00
->
-> That feels like a good idea to me but who knows what others would
-> think. In general I think this series already shaves enough yaks. This
-> isn't a new problem we're trying to solve so it seems like we should
-> pick one of the options above.
->
-> ==
->
-> Unless I get an explicit NAK from someone like Olof or Arnd or I hear
-> that everyone loves Option #3 I'll probably just stick with the
-> existing approach since:
->
-> * Olof's wording didn't make it sound like a strong objection.
+Hi,
 
-Yeah, not a strong objection but an enquiry if there's a better way to
-handle it. TL;DR: I don't think there really is.
+On Mon, Sep 6, 2021 at 3:05 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> > +{
+> > +     struct edid *edid;
+> > +     u32 val;
+> > +
+> > +     edid = drm_do_get_edid_blk0(drm_do_probe_ddc_edid, adapter, NULL, NULL);
+> > +
+> > +     /*
+> > +      * There are no manufacturer IDs of 0, so if there is a problem reading
+> > +      * the EDID then we'll just return 0.
+> > +      */
+> > +     if (IS_ERR_OR_NULL(edid))
+> > +             return 0;
+> > +
+> > +     /*
+> > +      * In theory we could try to de-obfuscate this like edid_get_quirks()
+> > +      * does, but it's easier to just deal with a 32-bit number.
+>
+> Hmm, but is it, really? AFAICT this is just an internal representation
+> for a table, where it could just as well be stored in a struct that
+> could be just as compact now, but extensible later. You populate the
+> table via an encoding macro, then decode the id using a function - while
+> it could be in a format that's directly usable without the decode. If
+> suitably chosen, the struct could perhaps be reused between the quirks
+> code and your code.
 
-My comment mostly came from the fact that when olddefconfig gets
-broken like this, we tend to have a bunch of patches trickle in over
-time as downstream users discover the need to turn on the new option.
-You covered (most) of that  by doing the appropriate defconfigs to
-this patch series, so it won't be as bad (besides any newly added
-defconfigs during the same release, and we're quite careful about
-doing that these days).
+I'm not 100% sure, but I think you're suggesting having this function
+return a `struct edid_panel_id` or something like that. Is that right?
+Maybe that would look something like this?
 
-I think most of the other options, besides 2, are just more overhead
-than needed here. So I'd be fine with just picking up option 1.
+struct edid_panel_id {
+  char vendor[4];
+  u16 product_id;
+}
 
-What's clear is that this is not a very convenient activity that
-scales, but we don't do it all that often. This is where something
-like a "HAVE_EDP" type config that the platform can provide helps, but
-adding it just for this rework seems to be more work than it's worth.
+...or perhaps this (untested, but I think it works):
 
-> * From git history it looks as if config patches don't necessarily
-> land through the SoC tree and thus I'd by default follow the
-> suggestions of the DRM folks. Andrzej suggested going with the
-> existing approach as long as I changed the symbol names and re-ordered
-> the patches.
+struct edid_panel_id {
+  u16 vend_c1:5;
+  u16 vend_c2:5;
+  u16 vend_c3:5;
+  u16 product_id;
+}
 
-Right, Kconfig changes usually go with the driver. dts and defconfig
-changes go to the SoC tree though since otherwise we end up with a
-bunch of churn and conflicts.
+...and then change `struct edid_quirk` to something like this:
 
-> Please yell if anything above sounds wrong! I'll probably try to send
-> out a new version tomorrow or the next day, but I won't land it right
-> away to give people time to yell.
+static const struct edid_quirk {
+  struct edid_panel_id panel_id;
+  u32 quirks;
+} ...
 
-I'd leave it up to you if you want to do option 1 or 2, since there's
-no really convenient way to do it better. 3 seems to be a bigger
-hammer than what this situation calls for IMHO.
+Is that correct? There are a few downsides that I can see:
 
+a) I think the biggest downside is the inability compare with "==". I
+don't believe it's legal to compare structs with "==" in C. Yeah, we
+can use memcmp() but that feels more awkward to me.
 
--Olof
+b) Unless you use the bitfield approach, it takes up more space. I
+know it's not a huge deal, but the format in the EDID is pretty much
+_forced_ to fit in 32-bits. The bitfield approach seems like it'd be
+more awkward than my encoding macros.
+
+-Doug
