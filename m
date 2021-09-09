@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12FA7405278
+	by mail.lfdr.de (Postfix) with ESMTP id 5C3E5405279
 	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352305AbhIIMnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:43:43 -0400
-Received: from m-r1.th.seeweb.it ([5.144.164.170]:39895 "EHLO
-        m-r1.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244373AbhIIMi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 08:38:58 -0400
+        id S1347308AbhIIMnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:43:45 -0400
+Received: from relay02.th.seeweb.it ([5.144.164.163]:36873 "EHLO
+        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353779AbhIIMi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 08:38:59 -0400
 Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id E83461F9CC;
-        Thu,  9 Sep 2021 14:37:34 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id EBA241FA70;
+        Thu,  9 Sep 2021 14:37:36 +0200 (CEST)
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
 To:     bjorn.andersson@linaro.org
@@ -28,9 +28,9 @@ Cc:     agross@kernel.org, robh+dt@kernel.org,
         paul.bouchara@somainline.org,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH v2 2/7] arm64: dts: qcom: msm8998-xperia: Add RMI4 touchscreen support
-Date:   Thu,  9 Sep 2021 14:37:28 +0200
-Message-Id: <20210909123733.367248-2-angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v2 7/7] arm64: dts: qcom: msm8998-xperia: Add audio clock and its pin
+Date:   Thu,  9 Sep 2021 14:37:33 +0200
+Message-Id: <20210909123733.367248-7-angelogioacchino.delregno@somainline.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210909123733.367248-1-angelogioacchino.delregno@somainline.org>
 References: <20210909123733.367248-1-angelogioacchino.delregno@somainline.org>
@@ -40,102 +40,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All of the devices in the Sony Yoshino platform are using a Synaptics
-RMI4-compatible touch IC with identical pins and supplies: enable the
-I2C-5 bus and add the rmi4-i2c node along with the required pin
-configurations.
+All smartphones of this platform are equipped with a WCD9335 audio
+codec, getting its MCLK from PM8998 gpio13: add this clock to DT.
 
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 98d23f8b93ac..8bbff6e80b7f 100644
+index 2c609e2cfc4a..91e391282181 100644
 --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
 +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -30,6 +30,15 @@ board_vbat: vbat-regulator {
- 		regulator-boot-on;
- 	};
+@@ -20,6 +20,19 @@ / {
+ 	qcom,msm-id = <0x124 0x20000>, <0x124 0x20001>; /* 8998v2, v2.1 */
+ 	qcom,board-id = <8 0>;
  
-+	touch_vddio_vreg: touch-vddio-vreg {
-+		compatible = "regulator-fixed";
-+		regulator-name = "touch_vddio_vreg";
-+		startup-delay-us = <10000>;
-+		gpio = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_vddio_en>;
++	clocks {
++		compatible = "simple-bus";
++
++		div1_mclk: divclk1 {
++			compatible = "gpio-gate-clock";
++			pinctrl-0 = <&audio_mclk_pin>;
++			pinctrl-names = "default";
++			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
++			#clock-cells = <0>;
++			enable-gpios = <&pm8998_gpio 13 GPIO_ACTIVE_HIGH>;
++		};
 +	};
 +
- 	vph_pwr: vph-pwr-regulator {
+ 	board_vbat: vbat-regulator {
  		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -130,6 +139,42 @@ ramoops@ffc00000 {
- 	};
- };
- 
-+&blsp1_i2c5 {
-+	status = "okay";
-+	clock-frequency = <355000>;
-+
-+	touchscreen@2c {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x2c>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		interrupts-extended = <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_n>;
-+
-+		vdd-supply = <&vreg_l28_3p0>;
-+		vio-supply = <&touch_vddio_vreg>;
-+
-+		syna,reset-delay-ms = <220>;
-+		syna,startup-delay-ms = <1000>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x01>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f11@11 {
-+			reg = <0x11>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
-+
-+&blsp1_i2c5_sleep {
-+	bias-disable;
-+};
-+
- &blsp2_uart1 {
- 	status = "okay";
- };
-@@ -442,6 +487,21 @@ hall_sensor0_default: acc-cover-open {
- 		drive-strength = <2>;
+ 		regulator-name = "VBAT";
+@@ -307,6 +320,12 @@ cam_snapshot_pin_a: cam-snapshot-btn-active {
  		input-enable;
+ 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
  	};
 +
-+	ts_int_n: ts-int-n {
-+		pins = "gpio125";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	ts_vddio_en: ts-vddio-en-default {
-+		pins = "gpio133";
-+		function = "gpio";
-+		bias-disable;
-+		drive-strength = <2>;
-+		output-low;
++	audio_mclk_pin: audio-mclk-pin-active {
++		pins = "gpio13";
++		function = "func2";
++		power-source = <0>;
 +	};
  };
  
- /*
+ &pmi8998_gpio {
 -- 
 2.32.0
 
