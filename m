@@ -2,195 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C33CA405DA3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 21:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78C89405DBE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 21:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343857AbhIITmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 15:42:44 -0400
-Received: from lizzard.sbs.de ([194.138.37.39]:37209 "EHLO lizzard.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245758AbhIITmn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 15:42:43 -0400
-Received: from mail2.sbs.de (mail2.sbs.de [192.129.41.66])
-        by lizzard.sbs.de (8.15.2/8.15.2) with ESMTPS id 189JfMs9013900
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 9 Sep 2021 21:41:22 +0200
-Received: from md1f2u6c.ad001.siemens.net ([167.87.244.119])
-        by mail2.sbs.de (8.15.2/8.15.2) with ESMTP id 189JfIcX001594;
-        Thu, 9 Sep 2021 21:41:21 +0200
-From:   Jan Kiszka <jan.kiszka@siemens.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
-        Chao Zeng <chao.zeng@siemens.com>
-Subject: [PATCH v3 5/5] arm64: dts: ti: iot2050: Add support for product generation 2 boards
-Date:   Thu,  9 Sep 2021 21:41:18 +0200
-Message-Id: <206d28002626bb9e2e0ac3f82d3c6f9fdbbfc984.1631216478.git.jan.kiszka@siemens.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1631216478.git.jan.kiszka@siemens.com>
-References: <cover.1631216478.git.jan.kiszka@siemens.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1344619AbhIITvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 15:51:20 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:26640 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344571AbhIITvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 15:51:20 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631217010; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=8k0CvjX0/8JIXqcWEeh28GQhLgUnSZY1azZrJAw1D+s=; b=b2XIkcQjTUQ/Bx9tF6evjbXLhzetXU07DMmIhqtP+vUHLNeTaiefrmqNgYAYjKJiEe5cGmPs
+ R82r0TqYwrndrZoC3ubhtJVRWqQrPY7UjL2bXK9wpfIuRfjCnz7kEzWjeUZlvvNZRu0DVE98
+ wLBrrTxGoNYzUdrb+TH32H2ilTA=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 613a6571de7dfad22f89c4a9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 09 Sep 2021 19:50:09
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id F2C58C4361C; Thu,  9 Sep 2021 19:50:07 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 478CAC43616;
+        Thu,  9 Sep 2021 19:50:06 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 478CAC43616
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kuogee Hsieh <khsieh@codeaurora.org>
+To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        khsieh@codeaurora.org, mkrishn@codeaurora.org,
+        kalyan_t@codeaurora.org, rajeevny@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: sc7280: fix display port phy reg property
+Date:   Thu,  9 Sep 2021 12:49:58 -0700
+Message-Id: <1631216998-10049-1-git-send-email-khsieh@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+Existing display port phy reg property is derived from usb phy which
+map display port phy pcs to wrong address which cause aux init
+with wrong address and prevent both dpcd read and write from working.
+Fix this problem by assigning correct pcs address to display port
+phy reg property.
 
-This adds the devices trees for IOT2050 Product Generation 2 (PG2)
-boards. We have Basic and an Advanced variants again, differing in
-number of cores, RAM size, availability of eMMC and further details.
-The major difference to PG1 is the used silicon revision (SR2.x on
-PG2).
+Changes in V2:
+-- rewording the commit text
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Fixes: 9886e8fd8438 ("arm64: dts: qcom: sc7280: Add USB related nodes")
+Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
 ---
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 51 +++++++++++++++++++
- .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 24 +++++++++
- .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 29 +++++++++++
- 4 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index d56c742f5a10..41a4bc96e6bd 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -8,7 +8,9 @@
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index fa1353f..cdaff5f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2881,15 +2881,11 @@
+ 			dp_phy: dp-phy@88ea200 {
+ 				reg = <0 0x088ea200 0 0x200>,
+ 				      <0 0x088ea400 0 0x200>,
+-				      <0 0x088eac00 0 0x400>,
++				      <0 0x088eaa00 0 0x200>,
+ 				      <0 0x088ea600 0 0x200>,
+-				      <0 0x088ea800 0 0x200>,
+-				      <0 0x088eaa00 0 0x100>;
++				      <0 0x088ea800 0 0x200>;
+ 				#phy-cells = <0>;
+ 				#clock-cells = <1>;
+-				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+-				clock-names = "pipe0";
+-				clock-output-names = "usb3_phy_pipe_clk_src";
+ 			};
+ 		};
  
- dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-new file mode 100644
-index 000000000000..2323628b0444
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2021
-+ *
-+ * Authors:
-+ *   Chao Zeng <chao.zeng@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * Common bits of the IOT2050 Basic and Advanced variants, PG2
-+ */
-+
-+&main_pmx0 {
-+	cp2102n_reset_pin_default: cp2102n_reset_pin_default {
-+		pinctrl-single,pins = <
-+			/* (AF12) GPIO1_24, used as cp2102 reset */
-+			AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
-+		>;
-+	};
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp2102n_reset_pin_default>;
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "", "", "",
-+		"", "", "", "", "CP2102N-RESET";
-+};
-+
-+&dss {
-+	/* Workaround needed to get DP clock of 154Mhz */
-+	assigned-clocks = <&k3_clks 67 0>;
-+};
-+
-+&serdes0 {
-+	assigned-clocks = <&k3_clks 153 4>, <&serdes0 AM654_SERDES_CMU_REFCLK>;
-+	assigned-clock-parents = <&k3_clks 153 7>, <&k3_clks 153 4>;
-+};
-+
-+&dwc3_0 {
-+	assigned-clock-parents = <&k3_clks 151 4>,  /* set REF_CLK to 20MHz i.e. PER0_PLL/48 */
-+				 <&k3_clks 151 8>;  /* set PIPE3_TXB_CLK to WIZ8B2M4VSB */
-+	phys = <&serdes0 PHY_TYPE_USB3 0>;
-+	phy-names = "usb3-phy";
-+};
-+
-+&usb0_phy {
-+	maximum-speed = "super-speed";
-+	snps,dis-u1-entry-quirk;
-+	snps,dis-u2-entry-quirk;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-new file mode 100644
-index 000000000000..c62549a4b436
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2021
-+ *
-+ * Authors:
-+ *   Le Jin <le.jin@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6528-based (dual-core) IOT2050 Basic variant, Product Generation 2
-+ * 1 GB RAM, no eMMC, main_uart0 on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6528-iot2050-basic-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible = "siemens,iot2050-basic-pg2", "ti,am654";
-+	model = "SIMATIC IOT2050 Basic PG2";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-new file mode 100644
-index 000000000000..f00dc86d01b9
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) Siemens AG, 2018-2021
-+ *
-+ * Authors:
-+ *   Le Jin <le.jin@siemens.com>
-+ *   Jan Kiszka <jan.kiszka@siemens.com>
-+ *
-+ * AM6548-based (quad-core) IOT2050 Advanced variant, Product Generation 2
-+ * 2 GB RAM, 16 GB eMMC, USB-serial converter on connector X30
-+ *
-+ * Product homepage:
-+ * https://new.siemens.com/global/en/products/automation/pc-based/iot-gateways/simatic-iot2050.html
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am6548-iot2050-advanced-common.dtsi"
-+#include "k3-am65-iot2050-common-pg2.dtsi"
-+
-+/ {
-+	compatible = "siemens,iot2050-advanced-pg2", "ti,am654";
-+	model = "SIMATIC IOT2050 Advanced PG2";
-+};
-+
-+&mcu_r5fss0 {
-+	/* lock-step mode not supported on this board */
-+	ti,cluster-mode = <0>;
-+};
 -- 
-2.31.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
