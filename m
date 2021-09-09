@@ -2,95 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E9A405AB8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 18:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 960E0405BD4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 19:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236062AbhIIQYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 12:24:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58306 "EHLO mail.kernel.org"
+        id S240650AbhIIRRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 13:17:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41948 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233698AbhIIQYB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 12:24:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 71811611CA;
-        Thu,  9 Sep 2021 16:22:51 +0000 (UTC)
+        id S237002AbhIIRRH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 13:17:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4636061179;
+        Thu,  9 Sep 2021 17:15:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631204571;
-        bh=4I5qNtFV3fFaY9KGvcMMXKDeg8djcA9vyBIRdTx5RfU=;
+        s=k20201202; t=1631207758;
+        bh=6MPSHzZT+wdjZOpnQ7K70UGKNWNw78Qt+uaALoiNHzs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L2jiRGNyqbNgYSS5tFb/URcYneH9PHH0S1ckdfHbLiSBMTdeAD5pgcNEGglUC6lgp
-         UTTJJ65kmU3UQexh3ABoK5iXAc1XlGdVtLWSm5Vc7OGvvCtAAmmuo7psgor/A1rPqx
-         y/464eot2n32AC9O16F6vP6Qfwpl8setqOUQ7CFrAJRbAwcceA2ozyvRJoCJfgUDOw
-         dXd3sz21NsLIksusCcaESwiEZSG/bplO3jeG1lT8oZDGBG6N9WkPECntlFn8g1kAAL
-         j3LQ8ND5RuNbJzburOr8YLUP0MEe1IlZpZ568ZxHpBvvRbBMm1e1sqkGzADI77MEZq
-         Yj7TDmtB35YAA==
-Received: by mail-ej1-f46.google.com with SMTP id me10so4717877ejb.11;
-        Thu, 09 Sep 2021 09:22:51 -0700 (PDT)
-X-Gm-Message-State: AOAM5300sQqlSSHa/+VNhBei9gGCYPC+rrIzXWuNABwTcUFT7YdRYB3E
-        SXfze0gPN3JVklHLuIL3u1d5K6UYwN9/+OYD4A==
-X-Google-Smtp-Source: ABdhPJyYmirRxOMx/nkH5R0TN8ujUXKi8h/ubE2E96R+jKgo81BsMpD1j5g4ryjgyCeJ1PiNDEhi53QjrYrJil3MHLs=
-X-Received: by 2002:a17:906:7250:: with SMTP id n16mr4205561ejk.147.1631204570030;
- Thu, 09 Sep 2021 09:22:50 -0700 (PDT)
+        b=ur2rhy1GxLjo187czO/UhbKA71WUYOuDssPXJbRQzb9xWT3LfpTZ3XwCFqaKDqm21
+         4vwEfcqbHjO+0SEwiwon8XkmM12vYOYvFu/WVOwLz40QfscvgnJCyIjEyCEs7Q/g9K
+         gnLnvGikDuTbyDA8V+H5Dvk9oMHLyeRTPifrwfd4xyx9Y3LRDvx9rPpCWbLyu7xPaE
+         nQKp9uyAJy4hZL4ovU+mbbwvd6SYbqeJOMrwhfx5Qm7WVk9rFYhZ7xOJliTXAgYAwX
+         0GCZjXlnfeRsVxcgvNJrMULFHMCtH/UqvYqSYGaiOfYlbq2HaVZdPOKaeEwZ7yISo1
+         FsT0I6dGJtk2A==
+Received: by mail-ed1-f42.google.com with SMTP id i6so3654863edu.1;
+        Thu, 09 Sep 2021 10:15:58 -0700 (PDT)
+X-Gm-Message-State: AOAM533aCY2h7c1aXJMQY3yuM1X2xoL10YJRE7PHQWh2C+n2v0MrYV6p
+        kJ0mciOYemNwMdv7+uoi/IIVLX2F1hUlvDeIMQ==
+X-Google-Smtp-Source: ABdhPJyM7KZ4cekZmGbkuYORGG988NU14THUy9AbIjOQ+isB8C7xXq78QJxJ1PLPFyvKtKN/u+ZYoeTozdmbIK+obJQ=
+X-Received: by 2002:a05:6402:1703:: with SMTP id y3mr4266246edu.355.1631207756787;
+ Thu, 09 Sep 2021 10:15:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210903155201.3004567-1-robh@kernel.org> <CAK7LNATxdf0o90C--qwumTbLyiSjt4m3m7-QSKYB31ZJ0ARA6w@mail.gmail.com>
-In-Reply-To: <CAK7LNATxdf0o90C--qwumTbLyiSjt4m3m7-QSKYB31ZJ0ARA6w@mail.gmail.com>
+References: <20210903145340.225511-1-daniel.baluta@oss.nxp.com>
+ <20210903145340.225511-3-daniel.baluta@oss.nxp.com> <YTJTF5VMOyG2iZb0@robh.at.kernel.org>
+ <CAEnQRZC-GN9iEPk6-A_oKPHcCYj8_WeQC0TT_NpK_QntkmAqiQ@mail.gmail.com>
+ <CAL_JsqK_DGqYQxKBHDS7PyviF35V-OP7__KRmmTePn9ZHhiz_w@mail.gmail.com> <CAEnQRZBmruc8GNfJTm99=0K7PyGrEiB1CxY3c2RSZhLFLR-nhQ@mail.gmail.com>
+In-Reply-To: <CAEnQRZBmruc8GNfJTm99=0K7PyGrEiB1CxY3c2RSZhLFLR-nhQ@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 9 Sep 2021 11:22:38 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJYsbe=Gk1bsMM+OxVMDxepsT2Fiz=sNsi_svgF1XjU6g@mail.gmail.com>
-Message-ID: <CAL_JsqJYsbe=Gk1bsMM+OxVMDxepsT2Fiz=sNsi_svgF1XjU6g@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: Enable DT schema checks for %.dtb targets
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Tom Rini <trini@konsulko.com>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Date:   Thu, 9 Sep 2021 12:15:45 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJd2AvBxRjHj=VZV2DH26tSNSX=5eEpc-HoFrc=dLxEFQ@mail.gmail.com>
+Message-ID: <CAL_JsqJd2AvBxRjHj=VZV2DH26tSNSX=5eEpc-HoFrc=dLxEFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: dsp: fsl: Add DSP optional clocks documentation
+To:     Daniel Baluta <daniel.baluta@gmail.com>
+Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@linux.intel.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Suman Anna <s-anna@ti.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 9, 2021 at 8:05 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+On Thu, Sep 9, 2021 at 6:21 AM Daniel Baluta <daniel.baluta@gmail.com> wrote:
 >
-> On Sat, Sep 4, 2021 at 12:52 AM Rob Herring <robh@kernel.org> wrote:
+> > > The H/W block is controlled by the DSP firmware. So, we don't want
+> > > to use the Linux kernel driver (thus the H/W block device tree node).
 > >
-> > It is possible to build a single dtb, but not with DT schema validation
-> > enabled. Enable the schema validation to run for %.dtb targets. Anyone
-> > building a dtb for a specific platform *should* pay attention to schema
-> > warnings.
+> > 'status' is how you disable a device to not be used by the OS.
 > >
-> > This could be supported with a separate %.dt.yaml target instead.
-> > However, the .dt.yaml format is considered an intermediate format and
-> > could possibly go away at some point if schema checking is integrated
-> > into dtc. Also, the plan is to enable the schema checks by default once
-> > platforms are free of warnings, and this is a move in that direction.
-> >
-> > Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Cc: Tom Rini <trini@konsulko.com>
-> > Cc: Masahiro Yamada <masahiroy@kernel.org>
-> > Cc: linux-kbuild@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  Makefile | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Makefile b/Makefile
-> > index ec9e8a0fe298..01b888cfe1dc 100644
-> > --- a/Makefile
-> > +++ b/Makefile
-> > @@ -1399,8 +1399,8 @@ endif
-> >
-> >  ifneq ($(dtstree),)
-> >
-> > -%.dtb: include/config/kernel.release scripts_dtc
-> > -       $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
-> > +%.dtb: dt_binding_check include/config/kernel.release scripts_dtc
-> > +       $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@ $(dtstree)/$*.dt.yaml
-> >
-> >  %.dtbo: include/config/kernel.release scripts_dtc
-> >         $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+> > The information about that device's resources are already in DT, we
+> > don't need to duplicate that here. If you want a list of devices
+> > assigned to the DSP here, that would be okay.
+>
+> Thanks! This is a very good idea. I was thinking at a totally different thing.
+>
+> So having something like this:
+>
+> dsp {
 >
 >
-> Why didn't you change the %.dtbo part?
+> hw-block-list = <&sai1>, <&sai2>;
+>
+> }
 
-Right, it should.
+Yes.
+
+> And then inside the DSP driver we can get access to sai1 clocks. Do
+> you know of any standard property name?
+
+There isn't. So it needs a vendor prefix.
+
+There's been some discussions around 'system devicetree' where all
+processors (like the DSP) view of the system get represented. Device
+assignment is one of the issues to solve with that, but it's not
+anywhere close to having something to help here.
 
 Rob
