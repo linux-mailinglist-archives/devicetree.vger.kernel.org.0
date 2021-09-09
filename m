@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6A934057A4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD0A0405784
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353440AbhIINiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 09:38:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57780 "EHLO mail.kernel.org"
+        id S1356620AbhIINgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 09:36:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57774 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1354314AbhIIM47 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1354412AbhIIM47 (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Thu, 9 Sep 2021 08:56:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5F02063252;
-        Thu,  9 Sep 2021 11:58:18 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E768F63258;
+        Thu,  9 Sep 2021 11:58:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188699;
-        bh=h08e8F4P8w/l1YEy/TuFnEdjIweC5EMttMZkLs3tubM=;
+        s=k20201202; t=1631188705;
+        bh=QkUSZWF79udlGYXr1PSAkxMxyJa+bYoV6bXDGcox3SE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gcfUCwFgKslS4MWqbjxGWE0BqAQWDsou1xgumW/xddfSf/MUH1zQccBt3QmE1Zc4e
-         6J0LsLH5gZs+XTmSRkCKGcWFW99xhuNl9a08Yselv5BBBA8WhVjPinBbKj0AtwPpkz
-         TPgvUtBEKVBUIg0T7ZAMa9fGqF+2F7FXFyRaq6fLvGQzAqmLg7CPU3K4rzaSOqlGMg
-         9tTlmUg4v00ih/aFA4To1CDp6MFeExUwcGTNOPZY39o9JpNSVw1yBnG+K4zFS7mtT2
-         rthZGOP9WeZuGwJlqMmYk7JOhHdEC4MtrtgKutRwfEIYE9RJtIoUv1o9/W5WQE04yc
-         GvsOiSqg45ljQ==
+        b=nWvDEuCLVjlbMN+BKsAtrDAWLHe584WaGS8miKUuOe9180FxeGjh0wPCR3nmUg1nz
+         QpKFWuTH/T7TiXAaTTR3Npn276EXOlPle/aFw3gEyo+w8qTPDg7QNhELLBRRI3x2nv
+         YXGWagUPAjFPgG1HPxrTFsFc9TvsFBOn+jaRQitC0JoxOjizUuvTXt9ebxWe12WnSd
+         IDxdATg2WKrUfNGhtjGHQLkzC8NGzRt37PTPQKbdrriWYj8EojvGmsjpLGeNPddsdj
+         gIhyS4okpiWJ3Y4vwXj21EgpGQMl5LhLEL4gc838Zi3c6dQzgKF8NQ7HG15KH1ro4Q
+         l/LGbIplbfwNw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 42/74] arm64: dts: qcom: sdm660: use reg value for memory node
-Date:   Thu,  9 Sep 2021 07:56:54 -0400
-Message-Id: <20210909115726.149004-42-sashal@kernel.org>
+Cc:     Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 47/74] ARM: tegra: tamonten: Fix UART pad setting
+Date:   Thu,  9 Sep 2021 07:56:59 -0400
+Message-Id: <20210909115726.149004-47-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909115726.149004-1-sashal@kernel.org>
 References: <20210909115726.149004-1-sashal@kernel.org>
@@ -43,36 +43,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vinod Koul <vkoul@kernel.org>
+From: Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>
 
-[ Upstream commit c81210e38966cfa1c784364e4035081c3227cf5b ]
+[ Upstream commit 2270ad2f4e123336af685ecedd1618701cb4ca1e ]
 
-memory node like other node should be node@reg, which is missing in this
-case, so fix it up
+This patch fixes the tristate and pullup configuration for UART 1 to 3
+on the Tamonten SOM.
 
-arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml: /: memory: False schema does not allow {'device_type': ['memory'], 'reg': [[0, 1073741824, 0, 536870912]]}
-
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Link: https://lore.kernel.org/r/20210308060826.3074234-18-vkoul@kernel.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/ipq8074-hk01.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/tegra20-tamonten.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-index c13ddee8262b..58acf21d8d33 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-@@ -28,7 +28,7 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
--	memory {
-+	memory@40000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x40000000 0x0 0x20000000>;
- 	};
+diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+index 20137fc578b1..394a6b4dc69d 100644
+--- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
++++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+@@ -185,8 +185,9 @@ conf_ata {
+ 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
+ 					"cdev1", "cdev2", "dap1", "dtb", "gma",
+ 					"gmb", "gmc", "gmd", "gme", "gpu7",
+-					"gpv", "i2cp", "pta", "rm", "slxa",
+-					"slxk", "spia", "spib", "uac";
++					"gpv", "i2cp", "irrx", "irtx", "pta",
++					"rm", "slxa", "slxk", "spia", "spib",
++					"uac";
+ 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 			};
+@@ -211,7 +212,7 @@ conf_crtp {
+ 			conf_ddc {
+ 				nvidia,pins = "ddc", "dta", "dtd", "kbca",
+ 					"kbcb", "kbcc", "kbcd", "kbce", "kbcf",
+-					"sdc";
++					"sdc", "uad", "uca";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 			};
+@@ -221,10 +222,9 @@ conf_hdint {
+ 					"lvp0", "owc", "sdb";
+ 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
+ 			};
+-			conf_irrx {
+-				nvidia,pins = "irrx", "irtx", "sdd", "spic",
+-					"spie", "spih", "uaa", "uab", "uad",
+-					"uca", "ucb";
++			conf_sdd {
++				nvidia,pins = "sdd", "spic", "spie", "spih",
++					"uaa", "uab", "ucb";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
+ 			};
 -- 
 2.30.2
 
