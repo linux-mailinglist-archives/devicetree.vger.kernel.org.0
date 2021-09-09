@@ -2,76 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92CF8405EC8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 23:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2141405ECE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 23:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237978AbhIIVbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 17:31:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237731AbhIIVbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 17:31:23 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB77C061575
-        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 14:30:13 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id bd1so4454822oib.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 14:30:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=r79cmgNDDidxXvaxTI5T8bA/u2eCAhe6oAZULslvRNg=;
-        b=Sr7U0TQjASjopEl37t4IJYyJD+TW5mSxY+2fu0BItg/tsM3alK382ZCbCLYEO2YANd
-         CstrafRvDeNUHSbOBQAZFa8Qg76MfYcQVa9kkQC64JsOJCoSV/jUF1AzH6v6mjjNLJbQ
-         8JgNs0iVDeJSrzXP3AKOAsGIRYnsXsJEw6mVI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=r79cmgNDDidxXvaxTI5T8bA/u2eCAhe6oAZULslvRNg=;
-        b=6k/So3xGbqAUdjSKsZ2d14xqj28UMpVEWEjFZGZDI3qTfH95MEE3+6KU8qFDK/NWVr
-         jCUEVfC9PwcEoxRwtvMNpSnc7/l6TpwbvfpSxJwGAI+4S5TEeW2MIgaO6u2HA3r37LdV
-         eggDjqhNPDu++2CcD5dzVI+B1cPRSoRphljPMlf7PAQuMxGuc/RySsP1W/qdbOx2bQTt
-         +uI1HkkWIs7gkQH2Id/qQjJnPMxPwvMbCyhGyj0Ys1unzsoroi+QP0P+E4EIImhuWYzA
-         5C2+yYtBHyGYed/yMi3pl7/EL5khRNrfiNwhMYFhBgO2HGaxgjXmWKmgUwcD0svmc+TG
-         ZiFw==
-X-Gm-Message-State: AOAM532KK++nNFvT/vT88EIjccSntxEGDu3yKpxDsofM6VX8hhyefYgc
-        tRIK39ki2TIBOmMvGmxAdh66rZJ8PVuVYSaWNjs9Uw==
-X-Google-Smtp-Source: ABdhPJwCMD1N9F/MFmV5OSnlhCcqSqYaz+by8eltnOy/usqsU4stZm11gxAv2Oo8qN6yrYQ84iAMPseV0RSShDJWq0Y=
-X-Received: by 2002:aca:2310:: with SMTP id e16mr1581007oie.64.1631223013219;
- Thu, 09 Sep 2021 14:30:13 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 9 Sep 2021 17:30:12 -0400
-MIME-Version: 1.0
-In-Reply-To: <20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid>
-References: <20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 9 Sep 2021 17:30:12 -0400
-Message-ID: <CAE-0n52kUS9cWh1oWOoAivYQ5TUu-mE2RPqjHZ=-QPN7Y=Y92g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Add sc7180-trogdor-homestar
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1347183AbhIIVcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 17:32:35 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:58030 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229877AbhIIVcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 17:32:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631223082; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=nClHlZglHDxNoKH8ii6ekEJ1aJcw9SAJw7GXszGM+gs=; b=lT+1ynP3QZVXn80DaInXuv1qnSj6iCAlRCkn2vFGniU110o6QMr3P6ZwhSkPgzGG9rs89mAR
+ ndWtlaXl86jQOosl9WbokJPcuyUDCv5N/fGHcoG87U5Fbf9qzSd70C8jb+503FcwdMWk4GF9
+ 2XAwC3OyxYC6jRRigEo8vKUXyWk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 613a7d22e34848cb6ac9765b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 09 Sep 2021 21:31:14
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 8D83FC4361B; Thu,  9 Sep 2021 21:31:14 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from khsieh-linux1.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 07939C4338F;
+        Thu,  9 Sep 2021 21:31:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 07939C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kuogee Hsieh <khsieh@codeaurora.org>
+To:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        khsieh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kishon@ti.com, p.zabel@pengutronix.de
+Subject: [PATCH v3] phy: qcom-qmp: add support for display port voltage and pre-emphasis swing
+Date:   Thu,  9 Sep 2021 14:31:05 -0700
+Message-Id: <1631223065-12607-1-git-send-email-khsieh@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Kaehlcke (2021-09-09 12:21:01)
-> Homestar is a trogdor variant. The DT bits are essentially the same as
-> in the downstream tree, except for:
->
-> - skip -rev0 and rev1 which were early builds and have their issues,
->   it's not very useful to support them upstream
-> - don't include the .dtsi for the MIPI cameras, which doesn't exist
->   upstream
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
+Both voltage and pre-emphasis swing level are set during link training
+negotiation between host and sink. There are totally four tables added.
+A voltage swing table for both hbr and hbr1, a voltage table for both
+hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
+table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
+added to complete the sequence of configure dp phy base on HPG.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Chnages in v2:
+-- revise commit test
+-- add Fixes tag
+-- replaced voltage_swing_cfg with voltage
+-- replaced pre_emphasis_cfg with emphasis
+-- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
+-- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
+
+Changes in V3:
+-- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
+
+Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
+Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+---
+ drivers/phy/qualcomm/phy-qcom-qmp.c | 102 +++++++++++++++++++++++++-----------
+ 1 file changed, 70 insertions(+), 32 deletions(-)
+
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
+index 31036aa..a8097ee 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
+@@ -3546,40 +3546,46 @@ static const u8 qmp_dp_v3_voltage_swing_hbr_rbr[4][4] = {
+ 	{ 0x1f, 0xff, 0xff, 0xff }
+ };
+ 
+-static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
+-		unsigned int drv_lvl_reg, unsigned int emp_post_reg)
++static int __qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
++				unsigned int drv_lvl_reg,
++				unsigned int emp_post_reg,
++				const u8 *voltage_swing_hbr_rbr,
++				const u8 *pre_emphasis_hbr_rbr,
++				const u8 *voltage_swing_hbr3_hbr2,
++				const u8 *pre_emphasis_hbr3_hbr2)
+ {
+ 	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
+ 	unsigned int v_level = 0, p_level = 0;
+-	u8 voltage_swing_cfg, pre_emphasis_cfg;
+-	int i;
++	u8 voltage, emphasis;
++	int i, offset;
+ 
+ 	for (i = 0; i < dp_opts->lanes; i++) {
+ 		v_level = max(v_level, dp_opts->voltage[i]);
+ 		p_level = max(p_level, dp_opts->pre[i]);
+ 	}
+ 
++	offset = v_level * 4 + p_level;
++
+ 	if (dp_opts->link_rate <= 2700) {
+-		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr_rbr[v_level][p_level];
+-		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr_rbr[v_level][p_level];
++		voltage = *(voltage_swing_hbr_rbr + offset);
++		emphasis = *(pre_emphasis_hbr_rbr + offset);
+ 	} else {
+-		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr3_hbr2[v_level][p_level];
+-		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr3_hbr2[v_level][p_level];
++		voltage = *(voltage_swing_hbr3_hbr2 + offset);
++		emphasis = *(pre_emphasis_hbr3_hbr2 + offset);
+ 	}
+ 
+ 	/* TODO: Move check to config check */
+-	if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
++	if (voltage == 0xFF && emphasis == 0xFF)
+ 		return -EINVAL;
+ 
+ 	/* Enable MUX to use Cursor values from these registers */
+-	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
+-	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
+-
+-	writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
+-	writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
+-	writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
+-	writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
++	voltage |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
++	emphasis |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
+ 
++	writel(voltage, qphy->tx + drv_lvl_reg);
++	writel(emphasis, qphy->tx + emp_post_reg);
++	writel(voltage, qphy->tx2 + drv_lvl_reg);
++	writel(emphasis, qphy->tx2 + emp_post_reg);
+ 	return 0;
+ }
+ 
+@@ -3588,9 +3594,13 @@ static void qcom_qmp_v3_phy_configure_dp_tx(struct qmp_phy *qphy)
+ 	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
+ 	u32 bias_en, drvr_en;
+ 
+-	if (qcom_qmp_phy_configure_dp_swing(qphy,
+-				QSERDES_V3_TX_TX_DRV_LVL,
+-				QSERDES_V3_TX_TX_EMP_POST1_LVL) < 0)
++	if (__qcom_qmp_phy_configure_dp_swing(qphy,
++			QSERDES_V3_TX_TX_DRV_LVL,
++			QSERDES_V3_TX_TX_EMP_POST1_LVL,
++			(const u8 *)qmp_dp_v3_voltage_swing_hbr_rbr,
++			(const u8 *)qmp_dp_v3_pre_emphasis_hbr_rbr,
++			(const u8 *)qmp_dp_v3_voltage_swing_hbr3_hbr2,
++			(const u8 *)qmp_dp_v3_pre_emphasis_hbr3_hbr2) < 0)
+ 		return;
+ 
+ 	if (dp_opts->lanes == 1) {
+@@ -3728,6 +3738,35 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
+ 	return 0;
+ }
+ 
++/* The values in these tables are given without MUX_EN (0x20) bit set */
++static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[4][4] = {
++	{ 0x00, 0x0c, 0x15, 0x1b },
++	{ 0x02, 0x0e, 0x16, 0xff },
++	{ 0x02, 0x11, 0xff, 0xff },
++	{ 0x04, 0xff, 0xff, 0xff }
++};
++
++static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[4][4] = {
++	{ 0x02, 0x12, 0x16, 0x1a },
++	{ 0x09, 0x19, 0x1f, 0xff },
++	{ 0x10, 0x1f, 0xff, 0xff },
++	{ 0x1f, 0xff, 0xff, 0xff }
++};
++
++static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[4][4] = {
++	{ 0x00, 0x0e, 0x15, 0x1b },
++	{ 0x00, 0x0e, 0x15, 0xff },
++	{ 0x00, 0x0e, 0xff, 0xff },
++	{ 0x04, 0xff, 0xff, 0xff }
++};
++
++static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[4][4] = {
++	{ 0x08, 0x0f, 0x16, 0x1f },
++	{ 0x11, 0x1e, 0x1f, 0xff },
++	{ 0x16, 0x1f, 0xff, 0xff },
++	{ 0x1f, 0xff, 0xff, 0xff }
++};
++
+ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
+ {
+ 	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_PSR_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
+@@ -3757,16 +3796,14 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
+ 
+ static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
+ {
+-	/* Program default values before writing proper values */
+-	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
+-	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
+-
+-	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+-	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+-
+-	qcom_qmp_phy_configure_dp_swing(qphy,
++	if (__qcom_qmp_phy_configure_dp_swing(qphy,
+ 			QSERDES_V4_TX_TX_DRV_LVL,
+-			QSERDES_V4_TX_TX_EMP_POST1_LVL);
++			QSERDES_V4_TX_TX_EMP_POST1_LVL,
++			(const u8 *)qmp_dp_v4_voltage_swing_hbr_rbr,
++			(const u8 *)qmp_dp_v4_pre_emphasis_hbr_rbr,
++			(const u8 *)qmp_dp_v4_voltage_swing_hbr3_hbr2,
++			(const u8 *)qmp_dp_v4_pre_emphasis_hbr3_hbr2) < 0)
++		return;
+ }
+ 
+ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
+@@ -3885,6 +3922,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
+ 	writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
+ 	writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
+ 
++	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
++	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
++
+ 	writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
+ 	udelay(2000);
+ 	writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
+@@ -3896,11 +3936,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
+ 			10000))
+ 		return -ETIMEDOUT;
+ 
+-	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
+-	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
+ 
+-	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
+-	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
++	writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
++	writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
+ 
+ 	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+ 	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
