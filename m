@@ -2,120 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584F1405EB6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 23:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92CF8405EC8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 23:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346712AbhIIVWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 17:22:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346721AbhIIVWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 17:22:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DE7561131;
-        Thu,  9 Sep 2021 21:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631222489;
-        bh=XlELzx+Xv+i7SKcZjmeK0dXvvEjoI3jCo0u0b1yHTk8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=YK4RgPSScdldRZ8gjAigcUg72GPOoVnJ2r6Mqegrw7YsTOhCzd6lplak2J1Q8ha1z
-         SXZIc3kd7yXjQA5TqE4usb3v/GvfoyixO3qojt/+68YWVUmQKp84edNEUZLaz1hmhx
-         4NRMQ/byvYIBOCS1l4RELLd2vEakpYood8hQrVRp5FfHHtp9UZtZytheLoerAYmLi1
-         NGXGlS9kWRAmTJp50FSPMDOYDOmMprnEjwqGzD3cWGivp+r8EVb8xpeGIuPobSGS0p
-         dZrW1urbysjLNLI/lKJzbPcDAuucs2TAoraBQb3WzBF5lwF+CrrK/eq6WYr12GggBw
-         9CR1cL4nFyi8w==
-Content-Type: text/plain; charset="utf-8"
+        id S237978AbhIIVbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 17:31:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237731AbhIIVbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 17:31:23 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB77C061575
+        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 14:30:13 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id bd1so4454822oib.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 14:30:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=r79cmgNDDidxXvaxTI5T8bA/u2eCAhe6oAZULslvRNg=;
+        b=Sr7U0TQjASjopEl37t4IJYyJD+TW5mSxY+2fu0BItg/tsM3alK382ZCbCLYEO2YANd
+         CstrafRvDeNUHSbOBQAZFa8Qg76MfYcQVa9kkQC64JsOJCoSV/jUF1AzH6v6mjjNLJbQ
+         8JgNs0iVDeJSrzXP3AKOAsGIRYnsXsJEw6mVI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=r79cmgNDDidxXvaxTI5T8bA/u2eCAhe6oAZULslvRNg=;
+        b=6k/So3xGbqAUdjSKsZ2d14xqj28UMpVEWEjFZGZDI3qTfH95MEE3+6KU8qFDK/NWVr
+         jCUEVfC9PwcEoxRwtvMNpSnc7/l6TpwbvfpSxJwGAI+4S5TEeW2MIgaO6u2HA3r37LdV
+         eggDjqhNPDu++2CcD5dzVI+B1cPRSoRphljPMlf7PAQuMxGuc/RySsP1W/qdbOx2bQTt
+         +uI1HkkWIs7gkQH2Id/qQjJnPMxPwvMbCyhGyj0Ys1unzsoroi+QP0P+E4EIImhuWYzA
+         5C2+yYtBHyGYed/yMi3pl7/EL5khRNrfiNwhMYFhBgO2HGaxgjXmWKmgUwcD0svmc+TG
+         ZiFw==
+X-Gm-Message-State: AOAM532KK++nNFvT/vT88EIjccSntxEGDu3yKpxDsofM6VX8hhyefYgc
+        tRIK39ki2TIBOmMvGmxAdh66rZJ8PVuVYSaWNjs9Uw==
+X-Google-Smtp-Source: ABdhPJwCMD1N9F/MFmV5OSnlhCcqSqYaz+by8eltnOy/usqsU4stZm11gxAv2Oo8qN6yrYQ84iAMPseV0RSShDJWq0Y=
+X-Received: by 2002:aca:2310:: with SMTP id e16mr1581007oie.64.1631223013219;
+ Thu, 09 Sep 2021 14:30:13 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 9 Sep 2021 17:30:12 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210909073947.17438-3-kavyasree.kotagiri@microchip.com>
-References: <20210909073947.17438-1-kavyasree.kotagiri@microchip.com> <20210909073947.17438-3-kavyasree.kotagiri@microchip.com>
-Subject: Re: [PATCH v3 2/3] clk: lan966x: Add lan966x SoC clock driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Eugen.Hristev@microchip.com, Kavyasree.Kotagiri@microchip.com,
-        Manohar.Puri@microchip.com
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        mturquette@baylibre.com, robh+dt@kernel.org
-Date:   Thu, 09 Sep 2021 14:21:27 -0700
-Message-ID: <163122248779.1821005.1043993148772937495@swboyd.mtv.corp.google.com>
+In-Reply-To: <20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid>
+References: <20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
+Date:   Thu, 9 Sep 2021 17:30:12 -0400
+Message-ID: <CAE-0n52kUS9cWh1oWOoAivYQ5TUu-mE2RPqjHZ=-QPN7Y=Y92g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Add sc7180-trogdor-homestar
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Kavyasree Kotagiri (2021-09-09 00:39:46)
-> diff --git a/drivers/clk/clk-lan966x.c b/drivers/clk/clk-lan966x.c
-> new file mode 100644
-> index 000000000000..4492be90cecf
-> --- /dev/null
-> +++ b/drivers/clk/clk-lan966x.c
-> @@ -0,0 +1,235 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Microchip LAN966x SoC Clock driver.
-> + *
-> + * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-> + *
-> + * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-[...]
-> +
-> +static int lan966x_clk_probe(struct platform_device *pdev)
-> +{
-> +       struct clk_hw_onecell_data *hw_data;
-> +       struct device *dev =3D &pdev->dev;
-> +       const char *parent_names[3];
-> +       int i, ret;
-> +
-> +       hw_data =3D devm_kzalloc(dev, sizeof(*hw_data), GFP_KERNEL);
-> +       if (!hw_data)
-> +               return -ENOMEM;
-> +
-> +       base =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(base))
-> +               return PTR_ERR(base);
-> +
-> +       init.ops =3D &lan966x_gck_ops;
-> +       init.num_parents =3D 3;
-> +
-> +       for (i =3D 0; i < init.num_parents; ++i) {
-> +               parent_names[i] =3D of_clk_get_parent_name(pdev->dev.of_n=
-ode, i);
+Quoting Matthias Kaehlcke (2021-09-09 12:21:01)
+> Homestar is a trogdor variant. The DT bits are essentially the same as
+> in the downstream tree, except for:
+>
+> - skip -rev0 and rev1 which were early builds and have their issues,
+>   it's not very useful to support them upstream
+> - don't include the .dtsi for the MIPI cameras, which doesn't exist
+>   upstream
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-Please use clk_parent_data instead of of_clk_get_parent_name().
-
-> +               if (!parent_names[i])
-> +                       return -EINVAL;
-> +       }
-> +
-> +       init.parent_names =3D parent_names;
-> +       hw_data->num =3D N_CLOCKS;
-> +
-> +       for (i =3D 0; i < N_CLOCKS; i++) {
-> +               init.name =3D clk_names[i];
-> +               hw_data->hws[i] =3D lan966x_gck_clk_register(dev, i);
-> +               if (IS_ERR(hw_data->hws[i])) {
-> +                       dev_err(dev, "failed to register %s clock\n",
-> +                               init.name);
-> +                       return ret;
-
-return PTR_ERR(hw_data->hws[i]);
-
-> +               }
-> +       }
-> +
-> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, hw=
-_data);
-> +}
-> +
-> +static const struct of_device_id lan966x_clk_dt_ids[] =3D {
-> +       { .compatible =3D "microchip,lan966x-gck", },
-> +       { }
-> +};
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
