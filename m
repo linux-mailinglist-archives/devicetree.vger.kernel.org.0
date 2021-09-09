@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83139405156
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22620405158
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:43:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351435AbhIIMfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:35:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33294 "EHLO mail.kernel.org"
+        id S1351520AbhIIMfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:35:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34528 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1353794AbhIIMYv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:24:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E7683611CB;
-        Thu,  9 Sep 2021 11:51:35 +0000 (UTC)
+        id S1351116AbhIIM2Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:28:16 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CED3A61B32;
+        Thu,  9 Sep 2021 11:52:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188296;
-        bh=ul6PfnBjkugntozSWDHDKLQiBHMJHl1pcpXfnDvZA/Q=;
+        s=k20201202; t=1631188336;
+        bh=p+sAzM/XDE2JhZloIqQUgcKpO2Gb1o+zgmF5bat62yk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=enDSE/+Dfxfh5AEEke9PHE6RBJ7mmiNW3dZbT7plfsnJHBTlll3LHVuxjIC1hanGv
-         gxs4+G2iHTBra1ZIcz9b1EF+a+VSnsMN4VI/1w777cfNZgJguBg15ehNqytJOvee1r
-         kCkVQZ4cJlI0c5f16w/ftTI3dBeds4XC5fhdqjJqzPMqfPrLc1QcZG17yJrwj54VCH
-         xmF/7X24xMsgUNpMDSgIKZ5eCEt+i3OdD7RUirW1rGFKug38rD0ZJohUrzNGRlG6Tq
-         Wf3rjSLc4gIhSDK4IMwwTI9O0qdgTsdiW4/iXARFTSfP8Hl/TjZ7IwBN8sqRH5vz//
-         6aGC0aTNWvKLg==
+        b=rw+S++0rwbkQI99ZrlijyiWQDRmu76sz4r4o9+wN+BOVUeNhjd9o0i3lTxr+raIV/
+         potKDPK63xGKIC1LQ46Qy2VWmaCB5NvC6HH/4JhpRPfaR9NAaV6q/QtsEpVze5gvYI
+         HRS9ceAKyhugR2hOTA5+za553q76gEuf7rp7GPnih+OD7XFe/4kX7b5rvvJPqTCfhM
+         H5LXUKJNHbdEDrOuhGz0Gz6lCUtBCXYrpyx8YV/NwLA3y8ro3wBd6e06aw76rE8yCj
+         wWgXFDnyg7Qzl7f0jX5RDVvrlU27Qlrjy9m/f9JYhy2vhi7ypL67MFZ3C3Uc90XL7y
+         bM7l4zik6qTvg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>,
-        Brian Masney <masneyb@onstation.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 014/176] ARM: dts: qcom: apq8064: correct clock names
-Date:   Thu,  9 Sep 2021 07:48:36 -0400
-Message-Id: <20210909115118.146181-14-sashal@kernel.org>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH AUTOSEL 5.10 045/176] arm64: dts: allwinner: h6: tanix-tx6: Fix regulator node names
+Date:   Thu,  9 Sep 2021 07:49:07 -0400
+Message-Id: <20210909115118.146181-45-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909115118.146181-1-sashal@kernel.org>
 References: <20210909115118.146181-1-sashal@kernel.org>
@@ -44,48 +43,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Heidelberg <david@ixit.cz>
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-[ Upstream commit 0dc6c59892ead17a9febd11202c9f6794aac1895 ]
+[ Upstream commit 7ab1f6539762946de06ca14d7401ae123821bc40 ]
 
-Since new code doesn't take old clk names in account, it does fixes
-error:
+Regulator node names don't reflect class of the device. Fix that by
+prefixing names with "regulator-".
 
-msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
-
-and following kernel oops introduced by
-b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
-
-Also removes warning about deprecated clock names.
-
-Tested against linux-5.10.y LTS on Nexus 7 2013.
-
-Reviewed-by: Brian Masney <masneyb@onstation.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
-Link: https://lore.kernel.org/r/20210707131453.24041-1-david@ixit.cz
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Link: https://lore.kernel.org/r/20210722161220.51181-2-jernej.skrabec@gmail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 2687c4e890ba..e36d590e8373 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1262,9 +1262,9 @@ dsi0: mdss_dsi@4700000 {
- 				<&mmcc DSI1_BYTE_CLK>,
- 				<&mmcc DSI_PIXEL_CLK>,
- 				<&mmcc DSI1_ESC_CLK>;
--			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
--					"src_clk", "byte_clk", "pixel_clk",
--					"core_clk";
-+			clock-names = "iface", "bus", "core_mmss",
-+					"src", "byte", "pixel",
-+					"core";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+index be81330db14f..02641191682e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+@@ -32,14 +32,14 @@ hdmi_con_in: endpoint {
+ 		};
+ 	};
  
- 			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
- 					<&mmcc DSI1_ESC_SRC>,
+-	reg_vcc3v3: vcc3v3 {
++	reg_vcc3v3: regulator-vcc3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+ 
+-	reg_vdd_cpu_gpu: vdd-cpu-gpu {
++	reg_vdd_cpu_gpu: regulator-vdd-cpu-gpu {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vdd-cpu-gpu";
+ 		regulator-min-microvolt = <1135000>;
 -- 
 2.30.2
 
