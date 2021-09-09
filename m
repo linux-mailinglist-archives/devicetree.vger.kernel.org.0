@@ -2,37 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C5A4054D0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 922344054D3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355474AbhIINDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 09:03:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58672 "EHLO mail.kernel.org"
+        id S1353150AbhIINDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 09:03:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43560 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1355594AbhIIM5h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:57:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1438D63265;
-        Thu,  9 Sep 2021 11:58:37 +0000 (UTC)
+        id S1357132AbhIIM7i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:59:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4407063272;
+        Thu,  9 Sep 2021 11:59:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188718;
-        bh=C56UGu/jYrwM6Jfi/51pH9IQNP0Jn9eLUHEN3yNrW1s=;
+        s=k20201202; t=1631188747;
+        bh=vB0KYNHGxCN1lO8Jxd+fn371xRiVqBtRljeuyckGFEk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Mb4ik2fA3CWp4+GkDwzoxXZnpd3fgoOgfAfsZopUrvCLVe55vHw67akU/Lns2OxUK
-         1pUGRp9zyTuq/YqpjdY3ActDm1RytwjjRof2CgLpjEKcfX792Gml7oTGs1IeOKNMCV
-         eEkDDcBc0+i0UW3BaU34XQwOPvNZtGv5xOZnyuVe+wzs++YYDJ+jLkkxcqF+gQtlII
-         uhzBXdtI6zDgOn5fSago6Iq2rVSGqLINWtA4qydupTXpNIVh9JNwnCpt208xo1bJdh
-         EBw1oceXCaK3Ud6c1I39kC60PQkyjKbQSIOwGd7zVy1IK5bQahD9rfvnIsk5cVnHBw
-         oFsygRJR6S9Qg==
+        b=LD+sF0p03wiohqTE/OnjqV4gbKrAVHRDCzA803WnoCF/AQw2OabnHN9kac/wX8XZX
+         hqUSHQaydxI8eir/LE1FroZkudC9vD3GQtRUdZqYMVECI0kYPcgRFM6fF1Sq4BOR/M
+         T+g2ck8j4y1BvkUEPBeOcffd+49isSTag4V+53DSg5n4z2KVoGlvl2iDiiUbf7sfR7
+         tyjEp1Cs898pLENy3zOuFHZ72w0H4/F2rb93Aj4u1qzZPjMwBo0e2dugcZr5ROvjHp
+         l28ypD03QFwG/eTv52su7JJTw7MB7gyHJeyy1GF2nCSROun5HVvl4HDPRNTV8zN9oV
+         b0RHIUvPce9Ag==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 58/74] of: Don't allow __of_attached_node_sysfs() without CONFIG_SYSFS
-Date:   Thu,  9 Sep 2021 07:57:10 -0400
-Message-Id: <20210909115726.149004-58-sashal@kernel.org>
+Cc:     David Heidelberg <david@ixit.cz>,
+        Brian Masney <masneyb@onstation.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 05/59] ARM: dts: qcom: apq8064: correct clock names
+Date:   Thu,  9 Sep 2021 07:58:06 -0400
+Message-Id: <20210909115900.149795-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210909115726.149004-1-sashal@kernel.org>
-References: <20210909115726.149004-1-sashal@kernel.org>
+In-Reply-To: <20210909115900.149795-1-sashal@kernel.org>
+References: <20210909115900.149795-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -41,58 +44,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marc Zyngier <maz@kernel.org>
+From: David Heidelberg <david@ixit.cz>
 
-[ Upstream commit 6211e9cb2f8faf7faae0b6caf844bfe9527cc607 ]
+[ Upstream commit 0dc6c59892ead17a9febd11202c9f6794aac1895 ]
 
-Trying to boot without SYSFS, but with OF_DYNAMIC quickly
-results in a crash:
+Since new code doesn't take old clk names in account, it does fixes
+error:
 
-[    0.088460] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000070
-[...]
-[    0.103927] CPU: 1 PID: 1 Comm: swapper/0 Not tainted 5.14.0-rc3 #4179
-[    0.105810] Hardware name: linux,dummy-virt (DT)
-[    0.107147] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
-[    0.108876] pc : kernfs_find_and_get_ns+0x3c/0x7c
-[    0.110244] lr : kernfs_find_and_get_ns+0x3c/0x7c
-[...]
-[    0.134087] Call trace:
-[    0.134800]  kernfs_find_and_get_ns+0x3c/0x7c
-[    0.136054]  safe_name+0x4c/0xd0
-[    0.136994]  __of_attach_node_sysfs+0xf8/0x124
-[    0.138287]  of_core_init+0x90/0xfc
-[    0.139296]  driver_init+0x30/0x4c
-[    0.140283]  kernel_init_freeable+0x160/0x1b8
-[    0.141543]  kernel_init+0x30/0x140
-[    0.142561]  ret_from_fork+0x10/0x18
+msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
 
-While not having sysfs isn't a very common option these days,
-it is still expected that such configuration would work.
+and following kernel oops introduced by
+b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
 
-Paper over it by bailing out from __of_attach_node_sysfs() if
-CONFIG_SYSFS isn't enabled.
+Also removes warning about deprecated clock names.
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
-Link: https://lore.kernel.org/r/20210820144722.169226-1-maz@kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
+Tested against linux-5.10.y LTS on Nexus 7 2013.
+
+Reviewed-by: Brian Masney <masneyb@onstation.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+Link: https://lore.kernel.org/r/20210707131453.24041-1-david@ixit.cz
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/of/kobj.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
-index a32e60b024b8..6675b5e56960 100644
---- a/drivers/of/kobj.c
-+++ b/drivers/of/kobj.c
-@@ -119,7 +119,7 @@ int __of_attach_node_sysfs(struct device_node *np)
- 	struct property *pp;
- 	int rc;
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index 6089c8d56cd5..eef243998392 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -1228,9 +1228,9 @@ dsi0: mdss_dsi@4700000 {
+ 				<&mmcc DSI1_BYTE_CLK>,
+ 				<&mmcc DSI_PIXEL_CLK>,
+ 				<&mmcc DSI1_ESC_CLK>;
+-			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
+-					"src_clk", "byte_clk", "pixel_clk",
+-					"core_clk";
++			clock-names = "iface", "bus", "core_mmss",
++					"src", "byte", "pixel",
++					"core";
  
--	if (!of_kset)
-+	if (!IS_ENABLED(CONFIG_SYSFS) || !of_kset)
- 		return 0;
- 
- 	np->kobj.kset = of_kset;
+ 			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
+ 					<&mmcc DSI1_ESC_SRC>,
 -- 
 2.30.2
 
