@@ -2,38 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2B87404B62
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C25BA404B8A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238806AbhIILvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 07:51:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55692 "EHLO mail.kernel.org"
+        id S240234AbhIILws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 07:52:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240567AbhIILte (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 07:49:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 08FD76128B;
-        Thu,  9 Sep 2021 11:43:45 +0000 (UTC)
+        id S238776AbhIILus (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 07:50:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B30F861211;
+        Thu,  9 Sep 2021 11:43:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631187827;
-        bh=cSi5volxMwlirJGa4qGJDFrwL/mhKc0/pLBNmIikRdk=;
+        s=k20201202; t=1631187836;
+        bh=CbVVI3u3x5LLD1m+rlXi6ZEpQUh2OoookAuquMzZ6qk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lwrj9UsksrRmUQ5Zmzkrt+u+9a65j/uIl4AF9ACWKpq1Mwn64jyKaHNTO9eu4tB2U
-         5bpIpQzbvZssK3o3zHx1PXLIT33p9tT82nUP99k9vQNDWJTjKQvMC8Ari92FrMHqjv
-         7X3HCCDl7DbGfx/rcv0E7AgqA7j9ieBagfiNkPgTcYDGaM0afUU2sfEQk0jfCeZxvq
-         ammgPqmVGuV9+t7j50i+ByuD2AS1WTmkJSD2R0GVHJ4eUSQYuFOUGPOjLOD72dXW8e
-         oItUcs3vhWHkGdTF4pRq7tmg/BejwUkVRCrSTzCyuSvrNDClNx/TFKsdBS+tMFKNiE
-         WdVnkMmGlzu8A==
+        b=QclNTWN4aRJeyaHJxsoM3lDDc03+FesSSM2gBVD79oveBupRouitljz/mS3lI6KtP
+         FsWklszgPvuHymGQATQjPB9A22K1E7jSGF3w/8NflHL/A3UyTJMj4wZyvnfChOhytW
+         m4D0pb+/xmXceUTeR5fyTYIZadePKhipErfwtm7eg/0Rsp4htMCmZKKaSll5tuM7Ev
+         +99V7QMmyQb0KUZXMQ2uAEGfB4E4G8PGz4gz03mLrLLqlHJGFD9O/kzATb/iMAKAGr
+         7K8uM26wkZ+tgK+JOxxQS3wkf2UtbmzrY7NY/+75j5gBphf3j3u6FTpbVHBs/8Q6sd
+         BYYf9OC+AZD0w==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, Sasha Levin <sashal@kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.14 124/252] arm64: dts: qcom: sm8250: Fix epss_l3 unit address
-Date:   Thu,  9 Sep 2021 07:38:58 -0400
-Message-Id: <20210909114106.141462-124-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.14 131/252] ARM: dts: ixp4xx: Fix up bad interrupt flags
+Date:   Thu,  9 Sep 2021 07:39:05 -0400
+Message-Id: <20210909114106.141462-131-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909114106.141462-1-sashal@kernel.org>
 References: <20210909114106.141462-1-sashal@kernel.org>
@@ -45,36 +42,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Georgi Djakov <georgi.djakov@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
 
-[ Upstream commit 77b53d65dc1e54321ec841912f06bcb558a079c0 ]
+[ Upstream commit f775d2150cb48bece63270fdefc2a0c69cf17f0f ]
 
-The unit address of the epss_l3 node is incorrect and does not match
-the address of its "reg" property. Let's fix it.
+The PCI hosts had bad IRQ semantics, these are all active low.
+Use the proper define and fix all in-tree users.
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
-Link: https://lore.kernel.org/r/20210211193637.9737-1-georgi.djakov@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Suggested-by: Marc Zyngier <maz@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../boot/dts/intel-ixp42x-linksys-nslu2.dts   | 24 +++++-----
+ .../dts/intel-ixp43x-gateworks-gw2358.dts     | 48 +++++++++----------
+ 2 files changed, 36 insertions(+), 36 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 4798368b02ef..ecfe4b538a12 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3955,7 +3955,7 @@ apps_bcm_voter: bcm_voter {
- 			};
+diff --git a/arch/arm/boot/dts/intel-ixp42x-linksys-nslu2.dts b/arch/arm/boot/dts/intel-ixp42x-linksys-nslu2.dts
+index 5b8dcc19deee..b9a5268fe7ad 100644
+--- a/arch/arm/boot/dts/intel-ixp42x-linksys-nslu2.dts
++++ b/arch/arm/boot/dts/intel-ixp42x-linksys-nslu2.dts
+@@ -124,20 +124,20 @@ pci@c0000000 {
+ 			 */
+ 			interrupt-map =
+ 			/* IDSEL 1 */
+-			<0x0800 0 0 1 &gpio0 11 3>, /* INT A on slot 1 is irq 11 */
+-			<0x0800 0 0 2 &gpio0 10 3>, /* INT B on slot 1 is irq 10 */
+-			<0x0800 0 0 3 &gpio0 9  3>, /* INT C on slot 1 is irq 9 */
+-			<0x0800 0 0 4 &gpio0 8  3>, /* INT D on slot 1 is irq 8 */
++			<0x0800 0 0 1 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 1 is irq 11 */
++			<0x0800 0 0 2 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 1 is irq 10 */
++			<0x0800 0 0 3 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 1 is irq 9 */
++			<0x0800 0 0 4 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 1 is irq 8 */
+ 			/* IDSEL 2 */
+-			<0x1000 0 0 1 &gpio0 10 3>, /* INT A on slot 2 is irq 10 */
+-			<0x1000 0 0 2 &gpio0 9  3>, /* INT B on slot 2 is irq 9 */
+-			<0x1000 0 0 3 &gpio0 11 3>, /* INT C on slot 2 is irq 11 */
+-			<0x1000 0 0 4 &gpio0 8  3>, /* INT D on slot 2 is irq 8 */
++			<0x1000 0 0 1 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 2 is irq 10 */
++			<0x1000 0 0 2 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 2 is irq 9 */
++			<0x1000 0 0 3 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 2 is irq 11 */
++			<0x1000 0 0 4 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 2 is irq 8 */
+ 			/* IDSEL 3 */
+-			<0x1800 0 0 1 &gpio0 9  3>, /* INT A on slot 3 is irq 9 */
+-			<0x1800 0 0 2 &gpio0 11 3>, /* INT B on slot 3 is irq 11 */
+-			<0x1800 0 0 3 &gpio0 10 3>, /* INT C on slot 3 is irq 10 */
+-			<0x1800 0 0 4 &gpio0 8  3>; /* INT D on slot 3 is irq 8 */
++			<0x1800 0 0 1 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 3 is irq 9 */
++			<0x1800 0 0 2 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 3 is irq 11 */
++			<0x1800 0 0 3 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 3 is irq 10 */
++			<0x1800 0 0 4 &gpio0 8  IRQ_TYPE_LEVEL_LOW>; /* INT D on slot 3 is irq 8 */
  		};
  
--		epss_l3: interconnect@18591000 {
-+		epss_l3: interconnect@18590000 {
- 			compatible = "qcom,sm8250-epss-l3";
- 			reg = <0 0x18590000 0 0x1000>;
+ 		ethernet@c8009000 {
+diff --git a/arch/arm/boot/dts/intel-ixp43x-gateworks-gw2358.dts b/arch/arm/boot/dts/intel-ixp43x-gateworks-gw2358.dts
+index 60a1228a970f..f5fe309f7762 100644
+--- a/arch/arm/boot/dts/intel-ixp43x-gateworks-gw2358.dts
++++ b/arch/arm/boot/dts/intel-ixp43x-gateworks-gw2358.dts
+@@ -108,35 +108,35 @@ pci@c0000000 {
+ 			 */
+ 			interrupt-map =
+ 			/* IDSEL 1 */
+-			<0x0800 0 0 1 &gpio0 11 3>, /* INT A on slot 1 is irq 11 */
+-			<0x0800 0 0 2 &gpio0 10 3>, /* INT B on slot 1 is irq 10 */
+-			<0x0800 0 0 3 &gpio0 9  3>, /* INT C on slot 1 is irq 9 */
+-			<0x0800 0 0 4 &gpio0 8  3>, /* INT D on slot 1 is irq 8 */
++			<0x0800 0 0 1 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 1 is irq 11 */
++			<0x0800 0 0 2 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 1 is irq 10 */
++			<0x0800 0 0 3 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 1 is irq 9 */
++			<0x0800 0 0 4 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 1 is irq 8 */
+ 			/* IDSEL 2 */
+-			<0x1000 0 0 1 &gpio0 10 3>, /* INT A on slot 2 is irq 10 */
+-			<0x1000 0 0 2 &gpio0 9  3>, /* INT B on slot 2 is irq 9 */
+-			<0x1000 0 0 3 &gpio0 8  3>, /* INT C on slot 2 is irq 8 */
+-			<0x1000 0 0 4 &gpio0 11 3>, /* INT D on slot 2 is irq 11 */
++			<0x1000 0 0 1 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 2 is irq 10 */
++			<0x1000 0 0 2 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 2 is irq 9 */
++			<0x1000 0 0 3 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 2 is irq 8 */
++			<0x1000 0 0 4 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 2 is irq 11 */
+ 			/* IDSEL 3 */
+-			<0x1800 0 0 1 &gpio0 9  3>, /* INT A on slot 3 is irq 9 */
+-			<0x1800 0 0 2 &gpio0 8  3>, /* INT B on slot 3 is irq 8 */
+-			<0x1800 0 0 3 &gpio0 11 3>, /* INT C on slot 3 is irq 11 */
+-			<0x1800 0 0 4 &gpio0 10 3>, /* INT D on slot 3 is irq 10 */
++			<0x1800 0 0 1 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 3 is irq 9 */
++			<0x1800 0 0 2 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 3 is irq 8 */
++			<0x1800 0 0 3 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 3 is irq 11 */
++			<0x1800 0 0 4 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 3 is irq 10 */
+ 			/* IDSEL 4 */
+-			<0x2000 0 0 1 &gpio0 8  3>, /* INT A on slot 3 is irq 8 */
+-			<0x2000 0 0 2 &gpio0 11 3>, /* INT B on slot 3 is irq 11 */
+-			<0x2000 0 0 3 &gpio0 10 3>, /* INT C on slot 3 is irq 10 */
+-			<0x2000 0 0 4 &gpio0 9  3>, /* INT D on slot 3 is irq 9 */
++			<0x2000 0 0 1 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 3 is irq 8 */
++			<0x2000 0 0 2 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 3 is irq 11 */
++			<0x2000 0 0 3 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 3 is irq 10 */
++			<0x2000 0 0 4 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 3 is irq 9 */
+ 			/* IDSEL 6 */
+-			<0x3000 0 0 1 &gpio0 10 3>, /* INT A on slot 3 is irq 10 */
+-			<0x3000 0 0 2 &gpio0 9  3>, /* INT B on slot 3 is irq 9 */
+-			<0x3000 0 0 3 &gpio0 8  3>, /* INT C on slot 3 is irq 8 */
+-			<0x3000 0 0 4 &gpio0 11 3>, /* INT D on slot 3 is irq 11 */
++			<0x3000 0 0 1 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 3 is irq 10 */
++			<0x3000 0 0 2 &gpio0 9  IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 3 is irq 9 */
++			<0x3000 0 0 3 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 3 is irq 8 */
++			<0x3000 0 0 4 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT D on slot 3 is irq 11 */
+ 			/* IDSEL 15 */
+-			<0x7800 0 0 1 &gpio0 8  3>, /* INT A on slot 3 is irq 8 */
+-			<0x7800 0 0 2 &gpio0 11 3>, /* INT B on slot 3 is irq 11 */
+-			<0x7800 0 0 3 &gpio0 10 3>, /* INT C on slot 3 is irq 10 */
+-			<0x7800 0 0 4 &gpio0 9  3>; /* INT D on slot 3 is irq 9 */
++			<0x7800 0 0 1 &gpio0 8  IRQ_TYPE_LEVEL_LOW>, /* INT A on slot 3 is irq 8 */
++			<0x7800 0 0 2 &gpio0 11 IRQ_TYPE_LEVEL_LOW>, /* INT B on slot 3 is irq 11 */
++			<0x7800 0 0 3 &gpio0 10 IRQ_TYPE_LEVEL_LOW>, /* INT C on slot 3 is irq 10 */
++			<0x7800 0 0 4 &gpio0 9  IRQ_TYPE_LEVEL_LOW>; /* INT D on slot 3 is irq 9 */
+ 		};
  
+ 		ethernet@c800a000 {
 -- 
 2.30.2
 
