@@ -2,128 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5993E405D61
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 21:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6AFE405DA0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 21:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237487AbhIITee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 15:34:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
+        id S245716AbhIITmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 15:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245645AbhIITed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 15:34:33 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6159C061575
-        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 12:33:23 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id y18so3834655ioc.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 12:33:23 -0700 (PDT)
+        with ESMTP id S1344382AbhIITmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 15:42:02 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077DFC06175F
+        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 12:40:40 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id f6so3883712iox.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 12:40:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d2IYAT4zf02RWUNDruz7+0lDEcO/Nb9ZtTNr33lXbog=;
-        b=PB5fXArkN11kuDGlOpAY2Uq87Zlrf8VbZJFzYvAFZT5RhsN545UOJp9+uNPzoeyM4e
-         xib37Uo5ToG8XyCVLrJOQ4PDCnYiw5xizwwq+G6OOivyUUmST8sQwFsRyMOYc+l6DO7M
-         8h86v98MDD+4tMscf29L5z/MJV5FVN/5OoQlI=
+        d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=omHK5HDlzER183cyZkTKOzYYGUkHjw3w9hbfK4BYqz0=;
+        b=m1cL1vnBIh5hnME0fLf/03QSDVpxtl/TeC8w1p53SYW3s3nbsQPmBzZNswhGPCD2cL
+         uLw1epWGDYSTZ5MpekGlW6RbfG4AwAVq18FYKH6S3cgvisBWC9LtJfPjY/20E+SrmE6O
+         JkQC+qtWTyOXOmnFd+Zg/hoJ6zJN+jDJYBaa9zvwgkx4fDYJTeFUbbMX0/WQBPgOPKoe
+         /aogc93dSPCcoi8508bkUXFv+MP86oB72+wZoMiZSx7lhumVGBO6WnDgzNGy+TC6TTaJ
+         b0IrQ3QY7P1K1l7nrievNvoAPSgnNtEf+rI4ft3P3fV+TmisPIHPcO3uANjijPWY927g
+         T9vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d2IYAT4zf02RWUNDruz7+0lDEcO/Nb9ZtTNr33lXbog=;
-        b=m00T3gYeOegq6XjaTBMfU+vd41IQ2eKUPSRHaN4mrnt7HBaY0Ev/BwgqrCNK8JYVCJ
-         gO5UgAwpMVihmKqDEAyxBwFJE7wdZRgEr/i37ux7Xmx73A0QYk6aUpgqegULOTNpaf3k
-         ayR8U3gEcfSMAzfxXsAqcNZdTTfmeGJ/A5xfIfo+qLrrj2T2IgRC6yW6XpA2Gn9jNfOv
-         anWBJ23s8FdyXPGoGofhoCe8SHpjueciftxKTpZnAN+dCXu5NOQ6/d6gL5UcMEKLvvSo
-         SFMdsRVtWbgYc6u+bVj/vDq0aOIRn/n7x/vEXFsvxUV00ob0/YNy9N99HnB5hglqURWu
-         AcvA==
-X-Gm-Message-State: AOAM531rsDK6g9Sz7xjZm0asof8PppCz/4g6aLP3xhtZHf/1hyYcRiGx
-        IK+LA93AZ508V++FqvydoHrb3QZUML/pGQ==
-X-Google-Smtp-Source: ABdhPJyyG8n6KwldXytCF7R36z1Uu387sTI/aB/kP6P1rStsbho1wLhlYFAITXPgLocJBWI7M05H8g==
-X-Received: by 2002:a02:c80b:: with SMTP id p11mr1356560jao.122.1631216003049;
-        Thu, 09 Sep 2021 12:33:23 -0700 (PDT)
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com. [209.85.166.171])
-        by smtp.gmail.com with ESMTPSA id e1sm1290577ils.76.2021.09.09.12.33.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Sep 2021 12:33:20 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id a1so3110710ilj.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 12:33:20 -0700 (PDT)
-X-Received: by 2002:a05:6e02:e02:: with SMTP id a2mr3620736ilk.180.1631215999852;
- Thu, 09 Sep 2021 12:33:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210901201934.1084250-1-dianders@chromium.org>
- <20210901131531.v3.5.I0a2f75bb822d17ce06f5b147734764eeb0c3e3df@changeid> <YTUPiyOjsUJXN11h@ravnborg.org>
-In-Reply-To: <YTUPiyOjsUJXN11h@ravnborg.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 9 Sep 2021 12:33:07 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VbYcdSqxLHdSaDPh=X0hbW6VWV0mM-iFy3k0J1q+6MWg@mail.gmail.com>
-Message-ID: <CAD=FV=VbYcdSqxLHdSaDPh=X0hbW6VWV0mM-iFy3k0J1q+6MWg@mail.gmail.com>
-Subject: Re: [PATCH v3 05/16] drm/panel-simple-edp: Split eDP panels out of panel-simple
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Steev Klimaszewski <steev@kali.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=omHK5HDlzER183cyZkTKOzYYGUkHjw3w9hbfK4BYqz0=;
+        b=7P4i0nSaQbTWRTA09oX2eu6ZICDDG0tqRS5AJ81KFcMzt9kOhBRkdB98oS7j2YM/4G
+         m8BbTtV1M3xrs0XfBjcg47+wMoPWCsKlLP3bd5Hw9ItvZxm7ZwWVt9kw43Zn1sv0fSlw
+         Q8/TlYMzg2Shl6GX2rKmPcrOGHdQwNLmsSqHVVzwRhyo3Kkm5Ncuv4twErGK/BYtM7Jn
+         1EpSnU54DP0C3rx+TbQy56fY8s8J1psGDQdDtPZz3j2SKfJagDhqxjWyTt/DYsuiIz9T
+         npeXWE4bh1Iz+WvtKZDK92+KaRmF8e/9+Vw8R01px1VefH4+SZbZJ1FEiUuDxxjzmk1a
+         eCsQ==
+X-Gm-Message-State: AOAM532yD9B6QVKDRDUqu74jh46rk5BPhXaJc4FHbUsxxPf4CVm3UZeF
+        9BBce05pPASsE7Cc7Nk/p8KECA==
+X-Google-Smtp-Source: ABdhPJz3q1yp02+FGGk5xwLhMqLsGzDcW4RGE53wuluHkd/aRR5dQvYKpwpZHY70k2BEVHmCJPkPmg==
+X-Received: by 2002:a02:85c2:: with SMTP id d60mr1313582jai.85.1631216439428;
+        Thu, 09 Sep 2021 12:40:39 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
+        by smtp.gmail.com with ESMTPSA id m26sm1333222ioj.54.2021.09.09.12.40.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Sep 2021 12:40:38 -0700 (PDT)
+Message-ID: <868c17e24e0789838871167b008baf81b9876ef7.camel@ndufresne.ca>
+Subject: Re: [EXT] Re: [PATCH v8 03/15] media:Add v4l2 buf flag codec data.
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Ming Qian <ming.qian@nxp.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 09 Sep 2021 15:40:36 -0400
+In-Reply-To: <AM6PR04MB6341540B142F744B2E6F3379E7D59@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1631002447.git.ming.qian@nxp.com>
+         <7ef1840137417c33f5ef7ca611c90fc274926851.1631002447.git.ming.qian@nxp.com>
+         <79cdfe0af999f574642314289e1734df5e2032eb.camel@ndufresne.ca>
+         <AM6PR04MB6341540B142F744B2E6F3379E7D59@AM6PR04MB6341.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Le jeudi 09 septembre 2021 à 02:20 +0000, Ming Qian a écrit :
+> > -----Original Message-----
+> > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
+> > Sent: Wednesday, September 8, 2021 9:15 PM
+> > To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
+> > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
+> > dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
+> > linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Subject: [EXT] Re: [PATCH v8 03/15] media:Add v4l2 buf flag codec data.
+> > 
+> > Caution: EXT Email
+> > 
+> > Hi Ming,
+> > 
+> > thanks for the patch. I'm doing a first pass review of the new APIs you are
+> > introducing.
+> > 
+> > Le mardi 07 septembre 2021 à 17:49 +0800, Ming Qian a écrit :
+> > > In some decoing scenarios, application may queue a buffer that only
+> > > contains codec config data, and the driver needs to know whether is it
+> > > a frame or not.
+> > > So we add a buf flag to tell this case.
+> > > 
+> > > Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> > > Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> > > Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+> > > ---
+> > >  Documentation/userspace-api/media/v4l/buffer.rst | 7 +++++++
+> > >  include/uapi/linux/videodev2.h                   | 1 +
+> > >  2 files changed, 8 insertions(+)
+> > > 
+> > > diff --git a/Documentation/userspace-api/media/v4l/buffer.rst
+> > > b/Documentation/userspace-api/media/v4l/buffer.rst
+> > > index e991ba73d873..11013bcf8a41 100644
+> > > --- a/Documentation/userspace-api/media/v4l/buffer.rst
+> > > +++ b/Documentation/userspace-api/media/v4l/buffer.rst
+> > > @@ -607,6 +607,13 @@ Buffer Flags
+> > >       the format. Any subsequent call to the
+> > >       :ref:`VIDIOC_DQBUF <VIDIOC_QBUF>` ioctl will not block anymore,
+> > >       but return an ``EPIPE`` error code.
+> > > +    * .. _`V4L2-BUF-FLAG-CODECCONFIG`:
+> > > +
+> > > +      - ``V4L2_BUF_FLAG_CODECCONFIG``
+> > > +      - 0x00200000
+> > > +      - The buffer only contains codec config data, eg. sps and pps.
+> > > +    Applications can set this bit when ``type`` refers to an output
+> > > +    stream, this flag is usually used by v4l2 decoder.
+> > 
+> > Currently, the bottom line is that all decoders needs a frame or field
+> > accompanied with the headers (only Annex B. being defined and supported for
+> > now). Decoders can be more flexible (and some are). The documentation here
+> > is not clear enough, remember that we must not break compatibility.
+> > 
+> > I think you have to clarify the intention. This flag exist in OMX and have
+> > been
+> > source of confusion and inter-operability since the start.
+> > 
+> > - If this flag is entirely optional, and is just an optimization, then
+> > adding it this
+> > way is fine, but the documentation should be updated.
+> > 
+> > - If this flag is required only when the header is split, then this flag
+> > need to be
+> > accompanied with a V4L2_BUF_CAP_SUPPORTS_SPLIT_CODECCONFIG (or
+> > similar name, shorter could be nice). This is so that userspace can detect
+> > if that
+> > feature is supported or not.
+> > 
+> > - If having split codecconfig is strictly needed for your driver, then this
+> > flag is
+> > not the proper solution. The only solution I'd see for that, would be to use
+> > something else then V4L2_PIX_FMT_H264 so that existing userspace are not
+> > tricked into trying to use your driver the wrong way. I think such header
+> > could
+> > make sense with H264_NO_SC (though not super clear what this is exactly,
+> > it's
+> > not really used), or a clearer new format H264_AVCC/AVCC3
+> 
+> Hi Nicolas,
+> 
+>     This flag is optional, and in fact, our driver doesn't want to receive a
+> splited header,
+> It's best that every buffer contains a frame.
+>     But in some case, the client may enqueue some buffer that only contains
+> the header data without any frame data.
+> And our driver need to know this case, for this type of buffer, we have two
+> cases to handle.
+>     1. ignore the timestamp.
+> 	2. the amphion decoder needs a ring buffer for decoding, driver will
+> copy the coded data to the ring buffer, and update the write pointer, then
+> pass a frame count to firmware, firmware will use the frame count to determine
+> whether starting decoding a frame or not, if the frame count is incorrect, it
+> may led to vpu hang. So for this type of buffer, we won't increase the frame
+> count.
+> 
+>     The flag is required only when the header is split, I agree with you that
+> it's better to add a capability flag. Actually our driver doesn't want meet
+> this case, but this situation does exist in some applications, I add this flag
+> to help handle it.
+>     Currently we meet this case in android platform.
 
-On Sun, Sep 5, 2021 at 11:42 AM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> > +++ b/drivers/gpu/drm/panel/panel-simple-edp.c
-> > @@ -0,0 +1,1298 @@
-> > +/*
-> > + * Copyright (C) 2013, NVIDIA Corporation.  All rights reserved.
-> > + *
-> > + * Permission is hereby granted, free of charge, to any person obtaining a
-> > + * copy of this software and associated documentation files (the "Software"),
-> > + * to deal in the Software without restriction, including without limitation
-> > + * the rights to use, copy, modify, merge, publish, distribute, sub license,
-> > + * and/or sell copies of the Software, and to permit persons to whom the
-> > + * Software is furnished to do so, subject to the following conditions:
-> > + *
-> > + * The above copyright notice and this permission notice (including the
-> > + * next paragraph) shall be included in all copies or substantial portions
-> > + * of the Software.
-> > + *
-> > + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> > + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> > + * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL
-> > + * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-> > + * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> > + * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-> > + * DEALINGS IN THE SOFTWARE.
-> > + */
-> Would be nice if you could use the SPDX thingy for the license.
+Thanks, that clarify were this comes from. Perhaps you could drop this from your
+initial patchset, and we can handle this separatly ?
 
-I'm going to leave this alone. I definitely started this driver by
-copy-pasting the panel-simple.c file and it still shares a lot of
-lines of code with that driver. It feels like that qualifies for the
-"substantial portions of the Software" portion which tells me to
-retain the license. I also kept Thierry as the author since, again,
-it's really a splitting of the existing driver and not the creation of
-a new driver. In fact, if I were to assign a new author/license to
-panel-edp, one could also make the argument that I should assign a new
-author/license to panel-simple. panel-simple got ~50% of the old
-panels and panel-edp got the other ~50% of the old panels plus a
-search-and-replace of "simple" for "edp" and some code deletion. I
-don't think search-and-replace name change nor code deletion is
-justification for claiming authorship. ;-)
+I remain a bit worried about the possible VPU hang, as the door is still wide
+open to DoS on this HW from random streams. Have you considered raising this
+issue to Amphion ? Perhaps there is a different way you could deal with partial
+frames ?
 
-If Thierry wants to chime in and say that I should put down a
-different license for either of the two files, though, I'd be glad to
-change it.
+> 
+> > 
+> > >      * .. _`V4L2-BUF-FLAG-REQUEST-FD`:
+> > > 
+> > >        - ``V4L2_BUF_FLAG_REQUEST_FD``
+> > > diff --git a/include/uapi/linux/videodev2.h
+> > > b/include/uapi/linux/videodev2.h index 167c0e40ec06..5bb0682b4a23
+> > > 100644
+> > > --- a/include/uapi/linux/videodev2.h
+> > > +++ b/include/uapi/linux/videodev2.h
+> > > @@ -1119,6 +1119,7 @@ static inline __u64 v4l2_timeval_to_ns(const
+> > struct timeval *tv)
+> > >  #define V4L2_BUF_FLAG_TSTAMP_SRC_SOE         0x00010000
+> > >  /* mem2mem encoder/decoder */
+> > >  #define V4L2_BUF_FLAG_LAST                   0x00100000
+> > > +#define V4L2_BUF_FLAG_CODECCONFIG            0x00200000
+> > >  /* request_fd is valid */
+> > >  #define V4L2_BUF_FLAG_REQUEST_FD             0x00800000
+> > > 
+> > 
+> 
 
--Doug
+
