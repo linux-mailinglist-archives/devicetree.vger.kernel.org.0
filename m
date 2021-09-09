@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5113C405456
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:29:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F874057F5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 15:44:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354444AbhIIM6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:58:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57770 "EHLO mail.kernel.org"
+        id S1357355AbhIINoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 09:44:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59102 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1356150AbhIIMxL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 08:53:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BC827600AA;
-        Thu,  9 Sep 2021 11:57:33 +0000 (UTC)
+        id S1356713AbhIIMzm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 08:55:42 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2892F63256;
+        Thu,  9 Sep 2021 11:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631188654;
-        bh=jy87Hs9DjEstU082RReFi1SFX5hfII05KU1e+UcXikQ=;
+        s=k20201202; t=1631188697;
+        bh=m3yJofFf0wv0x/kEmyC+s9DoQmK+92xMzaXuscuJTkI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FuJn/WlItLezQ4ciaC+Q/ltJ8U/y2ha6VHiOzWdgZBaGzEN8ruw8gA6r3qyumNLqM
-         /BM/r6EF0F93iI+R2raqTJ4laKjL4+F5kNp/rQ0/eB6N09nsTe1E/FS7m2SyqWqFTh
-         0yzXthwfZ2uTeU0NUyvVl46mfK8yeTI6wwgjNX/HjneW2NIVT209Efa4LyezmunDe9
-         hGJaUYd7ATQ2X41bRocIQQyaxOu+tJFYS0dQhmbAbWbXoeWkDBz3zX88fxh+K8rtAd
-         Sppectf8telxUgAd2zJ5b0mWhGh9EQiPLsd4JL/3mkIWYRZjWDSjiXN20qjSFeu8ZE
-         SP8tHjVa1liuA==
+        b=RFiqzgFONcPlMoqiiP8qrS7x3GRxy4TVsS7bhyrv+1twEWij5h1dpZVBAJwz8UBOW
+         TebgeJnKo5I5Dol8wsIhkXNaDE7cMTQoCmokeDrOWbefBrEnLVEt+vAnKijihQWXpA
+         EAgSm/VoS3Xr9u1HWg2gU4ygAfcKUnQgwnC4eBW/JLA1x94zjCtLiNv+TcTsUmbRPz
+         5twWDvhf/GpsVQPVio89HBzk2eamgB86vO/2ConBsFwyuAwML5+0zTutcfDzUmnCm3
+         F4V1YFfxgJdwXp+vSeCziVXFhUKeEDkBa+qSGSnlzIwsZp7h64OqRiXicWFDKDP1Uz
+         bWzdewnm0aCpQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>,
-        Brian Masney <masneyb@onstation.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 06/74] ARM: dts: qcom: apq8064: correct clock names
-Date:   Thu,  9 Sep 2021 07:56:18 -0400
-Message-Id: <20210909115726.149004-6-sashal@kernel.org>
+Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 41/74] ARM: dts: imx53-ppd: Fix ACHC entry
+Date:   Thu,  9 Sep 2021 07:56:53 -0400
+Message-Id: <20210909115726.149004-41-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909115726.149004-1-sashal@kernel.org>
 References: <20210909115726.149004-1-sashal@kernel.org>
@@ -44,48 +43,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Heidelberg <david@ixit.cz>
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-[ Upstream commit 0dc6c59892ead17a9febd11202c9f6794aac1895 ]
+[ Upstream commit cd7cd5b716d594e27a933c12f026d4f2426d7bf4 ]
 
-Since new code doesn't take old clk names in account, it does fixes
-error:
+PPD has only one ACHC device, which effectively is a Kinetis
+microcontroller. It has one SPI interface used for normal
+communication. Additionally it's possible to flash the device
+firmware using NXP's EzPort protocol by correctly driving a
+second chip select pin and the device reset pin.
 
-msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
-
-and following kernel oops introduced by
-b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
-
-Also removes warning about deprecated clock names.
-
-Tested against linux-5.10.y LTS on Nexus 7 2013.
-
-Reviewed-by: Brian Masney <masneyb@onstation.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
-Link: https://lore.kernel.org/r/20210707131453.24041-1-david@ixit.cz
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Link: https://lore.kernel.org/r/20210802172309.164365-3-sebastian.reichel@collabora.com
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/imx53-ppd.dts | 23 +++++++++++++----------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 4a99c9255104..d0153bbbdbeb 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1296,9 +1296,9 @@ dsi0: mdss_dsi@4700000 {
- 				<&mmcc DSI1_BYTE_CLK>,
- 				<&mmcc DSI_PIXEL_CLK>,
- 				<&mmcc DSI1_ESC_CLK>;
--			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
--					"src_clk", "byte_clk", "pixel_clk",
--					"core_clk";
-+			clock-names = "iface", "bus", "core_mmss",
-+					"src", "byte", "pixel",
-+					"core";
+diff --git a/arch/arm/boot/dts/imx53-ppd.dts b/arch/arm/boot/dts/imx53-ppd.dts
+index f202396e3f2a..f346673d34ea 100644
+--- a/arch/arm/boot/dts/imx53-ppd.dts
++++ b/arch/arm/boot/dts/imx53-ppd.dts
+@@ -70,6 +70,12 @@ cko2_11M: sgtl-clock-cko2 {
+ 		clock-frequency = <11289600>;
+ 	};
  
- 			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
- 					<&mmcc DSI1_ESC_SRC>,
++	achc_24M: achc-clock {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++	};
++
+ 	sgtlsound: sound {
+ 		compatible = "fsl,imx53-cpuvo-sgtl5000",
+ 			     "fsl,imx-audio-sgtl5000";
+@@ -287,16 +293,13 @@ &gpio4 11 GPIO_ACTIVE_LOW
+ 		    &gpio4 12 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ 
+-	spidev0: spi@0 {
+-		compatible = "ge,achc";
+-		reg = <0>;
+-		spi-max-frequency = <1000000>;
+-	};
+-
+-	spidev1: spi@1 {
+-		compatible = "ge,achc";
+-		reg = <1>;
+-		spi-max-frequency = <1000000>;
++	spidev0: spi@1 {
++		compatible = "ge,achc", "nxp,kinetis-k20";
++		reg = <1>, <0>;
++		vdd-supply = <&reg_3v3>;
++		vdda-supply = <&reg_3v3>;
++		clocks = <&achc_24M>;
++		reset-gpios = <&gpio3 6 GPIO_ACTIVE_LOW>;
+ 	};
+ 
+ 	gpioxra0: gpio@2 {
 -- 
 2.30.2
 
