@@ -2,36 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1289404ADC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E7BB404B33
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236339AbhIILti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 07:49:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47118 "EHLO mail.kernel.org"
+        id S238977AbhIILuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 07:50:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55048 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239647AbhIILrk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 07:47:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0C1F56124A;
-        Thu,  9 Sep 2021 11:43:12 +0000 (UTC)
+        id S237109AbhIILsw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 07:48:52 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 159636137E;
+        Thu,  9 Sep 2021 11:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631187793;
-        bh=vpGN6M9N/+VFlJTwRXh9c32T/+9r1GIZGJlU8Oq/aBk=;
+        s=k20201202; t=1631187811;
+        bh=wlrHyYfPWKz23ai1ZnO5b4NKnVRwj7Rn0UBQRRpgyJU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GfJ9Y3+84PYYEXYbg7CrrZE1/WmC95rBxAAEXbjAg0VjBgZMfcJcKtiyG6E/uK/rZ
-         ymEDTCKgMELwNKR0ezN1FUaIn7RGZliJNa7WnEsbDWufkFlUweiTVHaFjI065D6h8N
-         lHLLAdFCeQNs3Tq8Mhz/S4ISG1Zp5UYuxwPTe5B8nh/8970CPCngT0CMGt3of24NIP
-         Js4D1jMV2F+MODaX1izuXbfG2IVfHPVvs04nCMsWtUI5kcyIJt7xfR8aLPAgrnyhDy
-         KcpMfg2eH33XkqPaDJjew5MbrG9dAhEd3DegwvEtFCwJ+bMiSW6UK7le9rRwDJycGA
-         4SIVxVrwNdAmA==
+        b=G3mqlBTtUjNawfWR3XUdeSBpdGq0sSvXbEi1Joq3TWy0VBUHCXX6ejPiIwmhGd9YL
+         dn4ZaHXUn2b8SVSJov+QBK6tCGDjK24MyNNTzBjgS4XTZl6fmuoeIZuSfGyvRWPrK7
+         APWYy8z2i/syJfZ88JhWcFoCYlgK89T9V9w+ZGtvnC2E9hm90qXukJwT1Wigzn31qw
+         0ZNpxfpGeQDIwDLhs/iFiYbcwCjsv+D6FxqzZHCWeNPhfbXnGfNN8+TUyWMEiESB1B
+         oJ0E8aSNmNMDNeE8Vyd0k+jTSeoJxqmamPfiYoz5vJy4mM/odwmN0XjitCMuG5MPDs
+         ZQgwZsy959fkQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vidya Sagar <vidyas@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.14 099/252] arm64: tegra: Fix Tegra194 PCIe EP compatible string
-Date:   Thu,  9 Sep 2021 07:38:33 -0400
-Message-Id: <20210909114106.141462-99-sashal@kernel.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.14 112/252] arm64: dts: qcom: sdm630: Rewrite memory map
+Date:   Thu,  9 Sep 2021 07:38:46 -0400
+Message-Id: <20210909114106.141462-112-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909114106.141462-1-sashal@kernel.org>
 References: <20210909114106.141462-1-sashal@kernel.org>
@@ -43,56 +45,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vidya Sagar <vidyas@nvidia.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 
-[ Upstream commit bf2942a8b7c38e8cc2d5157b4f0323d7f4e5ec71 ]
+[ Upstream commit 26e02c98a9ad63eb21b9be4ac92002f555130d3b ]
 
-The initialization sequence performed by the generic platform driver
-pcie-designware-plat.c for a DWC based implementation doesn't work for
-Tegra194. Tegra194 has a different initialization sequence requirement
-which can only be satisfied by the Tegra194 specific platform driver
-pcie-tegra194.c. So, remove the generic compatible string "snps,dw-pcie-ep"
-from Tegra194's endpoint controller nodes.
+The memory map was wrong. Fix it.
 
-Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Link: https://lore.kernel.org/r/20210728222542.54269-2-konrad.dybcio@somainline.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 41 ++++++++++++----------------
+ 1 file changed, 18 insertions(+), 23 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 5ba7a4519b95..c8250a3f7891 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -2122,7 +2122,7 @@ pcie@141a0000 {
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index f91a928466c3..5ea3884b3ccb 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -343,10 +343,19 @@ wlan_msa_mem: wlan-msa-mem@85700000 {
+ 		};
  
- 	pcie_ep@14160000 {
--		compatible = "nvidia,tegra194-pcie-ep", "snps,dw-pcie-ep";
-+		compatible = "nvidia,tegra194-pcie-ep";
- 		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX4A>;
- 		reg = <0x00 0x14160000 0x0 0x00020000>, /* appl registers (128K)      */
- 		      <0x00 0x36040000 0x0 0x00040000>, /* iATU_DMA reg space (256K)  */
-@@ -2162,7 +2162,7 @@ pcie_ep@14160000 {
- 	};
+ 		qhee_code: qhee-code@85800000 {
+-			reg = <0x0 0x85800000 0x0 0x3700000>;
++			reg = <0x0 0x85800000 0x0 0x600000>;
+ 			no-map;
+ 		};
  
- 	pcie_ep@14180000 {
--		compatible = "nvidia,tegra194-pcie-ep", "snps,dw-pcie-ep";
-+		compatible = "nvidia,tegra194-pcie-ep";
- 		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX8B>;
- 		reg = <0x00 0x14180000 0x0 0x00020000>, /* appl registers (128K)      */
- 		      <0x00 0x38040000 0x0 0x00040000>, /* iATU_DMA reg space (256K)  */
-@@ -2202,7 +2202,7 @@ pcie_ep@14180000 {
- 	};
++		rmtfs_mem: memory@85e00000 {
++			compatible = "qcom,rmtfs-mem";
++			reg = <0x0 0x85e00000 0x0 0x200000>;
++			no-map;
++
++			qcom,client-id = <1>;
++			qcom,vmid = <15>;
++		};
++
+ 		smem_region: smem-mem@86000000 {
+ 			reg = <0 0x86000000 0 0x200000>;
+ 			no-map;
+@@ -357,58 +366,44 @@ tz_mem: memory@86200000 {
+ 			no-map;
+ 		};
  
- 	pcie_ep@141a0000 {
--		compatible = "nvidia,tegra194-pcie-ep", "snps,dw-pcie-ep";
-+		compatible = "nvidia,tegra194-pcie-ep";
- 		power-domains = <&bpmp TEGRA194_POWER_DOMAIN_PCIEX8A>;
- 		reg = <0x00 0x141a0000 0x0 0x00020000>, /* appl registers (128K)      */
- 		      <0x00 0x3a040000 0x0 0x00040000>, /* iATU_DMA reg space (256K)  */
+-		modem_fw_mem: modem-fw-region@8ac00000 {
++		mpss_region: mpss@8ac00000 {
+ 			reg = <0x0 0x8ac00000 0x0 0x7e00000>;
+ 			no-map;
+ 		};
+ 
+-		adsp_fw_mem: adsp-fw-region@92a00000 {
++		adsp_region: adsp@92a00000 {
+ 			reg = <0x0 0x92a00000 0x0 0x1e00000>;
+ 			no-map;
+ 		};
+ 
+-		pil_mba_mem: pil-mba-region@94800000 {
++		mba_region: mba@94800000 {
+ 			reg = <0x0 0x94800000 0x0 0x200000>;
+ 			no-map;
+ 		};
+ 
+-		buffer_mem: buffer-region@94a00000 {
++		buffer_mem: tzbuffer@94a00000 {
+ 			reg = <0x0 0x94a00000 0x0 0x100000>;
+ 			no-map;
+ 		};
+ 
+-		venus_fw_mem: venus-fw-region@9f800000 {
++		venus_region: venus@9f800000 {
+ 			reg = <0x0 0x9f800000 0x0 0x800000>;
+ 			no-map;
+ 		};
+ 
+-		secure_region2: secure-region2@f7c00000 {
+-			reg = <0x0 0xf7c00000 0x0 0x5c00000>;
+-			no-map;
+-		};
+-
+ 		adsp_mem: adsp-region@f6000000 {
+ 			reg = <0x0 0xf6000000 0x0 0x800000>;
+ 			no-map;
+ 		};
+ 
+-		qseecom_ta_mem: qseecom-ta-region@fec00000 {
+-			reg = <0x0 0xfec00000 0x0 0x1000000>;
+-			no-map;
+-		};
+-
+ 		qseecom_mem: qseecom-region@f6800000 {
+ 			reg = <0x0 0xf6800000 0x0 0x1400000>;
+ 			no-map;
+ 		};
+ 
+-		secure_display_memory: secure-region@f5c00000 {
+-			reg = <0x0 0xf5c00000 0x0 0x5c00000>;
+-			no-map;
+-		};
+-
+-		cont_splash_mem: cont-splash-region@9d400000 {
+-			reg = <0x0 0x9d400000 0x0 0x23ff000>;
++		zap_shader_region: gpu@fed00000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0xfed00000 0x0 0xa00000>;
+ 			no-map;
+ 		};
+ 	};
 -- 
 2.30.2
 
