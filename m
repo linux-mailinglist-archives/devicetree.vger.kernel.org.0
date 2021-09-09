@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D17A74049D9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35500404A63
+	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 13:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238809AbhIILns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 07:43:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45698 "EHLO mail.kernel.org"
+        id S240965AbhIILqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 07:46:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46486 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237334AbhIILm6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 07:42:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7F8F5611CC;
-        Thu,  9 Sep 2021 11:41:46 +0000 (UTC)
+        id S240100AbhIILo3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 07:44:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 377FA611C6;
+        Thu,  9 Sep 2021 11:42:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631187707;
-        bh=Fl89BLpZqkI7d42dfLouRxVDKhNQxznxdmuRukWnMdk=;
+        s=k20201202; t=1631187753;
+        bh=p+sAzM/XDE2JhZloIqQUgcKpO2Gb1o+zgmF5bat62yk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IGqH3lC5Psm9d16Pp5nb6XEg3mcgcysOU/Jq12qRNMNgbJFcne7Md7UF82AKho4dq
-         hDdCgXksrAVyBqCyc55l8PShf/mP0+4LyMAd3MhYAsMjzfvTWdREOytA828Cott3NA
-         E0lfnkkTk/RGIHKH6o3CBMklFaq86TIfuoDtYZhgQPQ9USNA44XdA6Y+JW/ElsYWqM
-         ZUbQ07eyKUx9f6HyvCQKfmoDoCkcoV/5bMlUeQCDXaBMFH2NVUcP20XdDjVNhh+d14
-         2AotBcjJHuAc8CNed3/T0CU8iFlCPchp+2Y0q7Wv15nrvbPjgb4JdbnEn9JrTb9HkX
-         kZwGuV7aqf+Iw==
+        b=GwOVGlEH1GkwFb2TmGts3qQa7oRtp7jaWUln+kH2upbx29WzR/Ndm8Ldq9r46CYRV
+         nJkE6H/+uIagUu0pKltCDE/SVoIACSzpfh7rkk//gcaYo16ATKtgSxQ0J5GRB6lwZk
+         ig96NdnG5jvkQVdBgXLmkKxFoz+F7XlMnfePath6K9T+VAhb7kbuEURuu3mWhqgFiW
+         CK7iZ2/KF5um1xyxz/hTE1XrDzDOiFfslnX/+Z0HETIfh85K+DRNlgkCUaL7xb5LD8
+         UNnE4rCD5s/IZXKtxqTHVTWNiKLtnnG9mUZ0uSdoNfcI6cuIsqzOPG6pL0d/wcquw5
+         e7N97DKoAozqg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.14 031/252] arm64: dts: qcom: Fix usb entries for SA8155p adp board
-Date:   Thu,  9 Sep 2021 07:37:25 -0400
-Message-Id: <20210909114106.141462-31-sashal@kernel.org>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: [PATCH AUTOSEL 5.14 067/252] arm64: dts: allwinner: h6: tanix-tx6: Fix regulator node names
+Date:   Thu,  9 Sep 2021 07:38:01 -0400
+Message-Id: <20210909114106.141462-67-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210909114106.141462-1-sashal@kernel.org>
 References: <20210909114106.141462-1-sashal@kernel.org>
@@ -43,121 +43,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+From: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-[ Upstream commit 12dd4ebda47abd5e3907da386b6fe1d8181ad179 ]
+[ Upstream commit 7ab1f6539762946de06ca14d7401ae123821bc40 ]
 
-SA8155p adp board has two USB A-type receptacles called
-USB-portB and USB-portC respectively.
+Regulator node names don't reflect class of the device. Fix that by
+prefixing names with "regulator-".
 
-While USB-portB is a USB High-Speed connector/interface, the
-USB-portC one is a USB 3.1 Super-Speed connector/interface.
-
-Also the USB-portB is used as the USB emergency
-download port (for image download purposes).
-
-Enable both the ports on the board in USB Host mode (since all
-the USB interfaces are brought out to USB Type A
-connectors).
-
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Link: https://lore.kernel.org/r/20210627114616.717101-4-bhupesh.sharma@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Link: https://lore.kernel.org/r/20210722161220.51181-2-jernej.skrabec@gmail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 60 ++++++++++++++++++++----
- 1 file changed, 51 insertions(+), 9 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-index 0da7a3b8d1bf..5ae2ddc65f7e 100644
---- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-@@ -307,10 +307,6 @@ &qupv3_id_1 {
- 	status = "okay";
- };
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+index be81330db14f..02641191682e 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+@@ -32,14 +32,14 @@ hdmi_con_in: endpoint {
+ 		};
+ 	};
  
--&tlmm {
--	gpio-reserved-ranges = <0 4>;
--};
--
- &uart2 {
- 	status = "okay";
- };
-@@ -337,6 +333,16 @@ &ufs_mem_phy {
- 	vdda-pll-max-microamp = <18300>;
- };
+-	reg_vcc3v3: vcc3v3 {
++	reg_vcc3v3: regulator-vcc3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
  
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb2phy_ac_en1_default>;
-+};
- 
- &usb_1_hsphy {
- 	status = "okay";
-@@ -346,15 +352,51 @@ &usb_1_hsphy {
- };
- 
- &usb_1_qmpphy {
-+	status = "disabled";
-+};
-+
-+&usb_2 {
- 	status = "okay";
--	vdda-phy-supply = <&vreg_l8c_1p2>;
--	vdda-pll-supply = <&vdda_usb_ss_dp_core_1>;
- };
- 
--&usb_1 {
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb2phy_ac_en2_default>;
-+};
-+
-+&usb_2_hsphy {
- 	status = "okay";
-+	vdda-pll-supply = <&vdd_usb_hs_core>;
-+	vdda33-supply = <&vdda_usb_hs_3p1>;
-+	vdda18-supply = <&vdda_usb_hs_1p8>;
- };
- 
--&usb_1_dwc3 {
--	dr_mode = "peripheral";
-+&usb_2_qmpphy {
-+	status = "okay";
-+	vdda-phy-supply = <&vreg_l8c_1p2>;
-+	vdda-pll-supply = <&vdda_usb_ss_dp_core_1>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>;
-+
-+	usb2phy_ac_en1_default: usb2phy_ac_en1_default {
-+		mux {
-+			pins = "gpio113";
-+			function = "usb2phy_ac";
-+			bias-disable;
-+			drive-strength = <2>;
-+		};
-+	};
-+
-+	usb2phy_ac_en2_default: usb2phy_ac_en2_default {
-+		mux {
-+			pins = "gpio123";
-+			function = "usb2phy_ac";
-+			bias-disable;
-+			drive-strength = <2>;
-+		};
-+	};
- };
+-	reg_vdd_cpu_gpu: vdd-cpu-gpu {
++	reg_vdd_cpu_gpu: regulator-vdd-cpu-gpu {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vdd-cpu-gpu";
+ 		regulator-min-microvolt = <1135000>;
 -- 
 2.30.2
 
