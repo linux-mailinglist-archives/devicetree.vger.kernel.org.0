@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D57ED40516F
+	by mail.lfdr.de (Postfix) with ESMTP id 68EA440516E
 	for <lists+devicetree@lfdr.de>; Thu,  9 Sep 2021 14:43:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352649AbhIIMgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 08:36:22 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:37479 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351614AbhIIMeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 08:34:14 -0400
-Received: by mail-ot1-f46.google.com with SMTP id i3-20020a056830210300b0051af5666070so2259643otc.4;
-        Thu, 09 Sep 2021 05:33:04 -0700 (PDT)
+        id S244345AbhIIMgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 08:36:21 -0400
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:34547 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350422AbhIIMeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 08:34:12 -0400
+Received: by mail-oo1-f46.google.com with SMTP id g4-20020a4ab044000000b002900bf3b03fso509735oon.1;
+        Thu, 09 Sep 2021 05:33:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=mgK7NOGoFgYko3sL9/CnFKWvO1Nc0SwAG4V9JvFppl0=;
-        b=MwASJW5zaS47XJzk+OUMFCM8579zUeVFHmrZiTvd/73yfZn3/Ksa1AhBkLNG4ebrvg
-         JMhGG4weOt07iMTQQp6XEqELjBkHqIi++UCN64RejODnNcEUAFWtU5AWVXZfItF4ONOw
-         jezomeqlOt9AS8QXXTA7/o6MpW1VosXnp6KtUgQs42QTXe85oldC6QfizVKuhJltSCJ6
-         JMH2qVJlR4yxm/uV24pRT+GpkKB2jqGQDoc+5hJbp3fyys2jZrhbUH9u2vmOd3eRy9Cz
-         IAQhxFwg6GahPRjI5UbdrCwWFV0/lLNZ7l78KOljL6yWx/Jbbh2ecIyTtt3qTZp9yt38
-         5jiw==
-X-Gm-Message-State: AOAM533Hyf1r8POXE325IHB1GbIN1ZdMhD3czKuMmAbUILg66jAEff+y
-        mORvBymB3JQ2Ald0C6Mzvw==
-X-Google-Smtp-Source: ABdhPJw1M/AsCCVywKipuhZa6/5nA/2P6FN5EmeeX004LUh08SNTosLeVyAGlWR8c1Aqa3bmnf0Ltw==
-X-Received: by 2002:a9d:641a:: with SMTP id h26mr2231113otl.15.1631190782575;
-        Thu, 09 Sep 2021 05:33:02 -0700 (PDT)
+        bh=JB+SNLlfcpm25i4sSN9couzo+TEO2P9+BVL7k3+yKII=;
+        b=raqPiIDAwgfW96mw2hkVFrtgBaHnnxaopPxtY5GB+53i4g+7OvOgQM/abE+rGKhBLA
+         THbzZ2jq4Iwp4noz8RQEbEPPvWME7LC3weUmyBTL/ktoTgWQIh4PESdyOu5LHV1DcGeH
+         6YNWiKia6is5UYJpzdLBEywYtZFkgFJXpLIS8lp/eko9ABg8Tfq2sv/Wmh5pTUIj99b9
+         DiF9813XNe3lzsFuCVbVmJ3OvhhiAJCfXQ7HNRr8TdN4QheFqv4skHlPegp8NzK0NDld
+         TLUcgicZKxWElfFc6nEwaNS06h3ybjpMBPxM1X2xWNX6vaJS540BfNDvUgq5o+Qe8Syx
+         L0Xw==
+X-Gm-Message-State: AOAM53030cCAELJHwz0il6d7/YGpfUMcmdBkojWYz8dMJnLNgBYXSVpN
+        g2wdMoaGvescpUmcTP6YNw==
+X-Google-Smtp-Source: ABdhPJy0XHmtcFAE2dZpjjWrUVCUjH89FQg2tjEgw63aJCweJIVoZOV4v+I/L15n0a2BOIdJD2bWuQ==
+X-Received: by 2002:a4a:a509:: with SMTP id v9mr2241178ook.73.1631190780811;
+        Thu, 09 Sep 2021 05:33:00 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x4sm361101ood.2.2021.09.09.05.33.01
+        by smtp.gmail.com with ESMTPSA id c7sm411181otm.27.2021.09.09.05.32.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Sep 2021 05:33:01 -0700 (PDT)
-Received: (nullmailer pid 200342 invoked by uid 1000);
+        Thu, 09 Sep 2021 05:32:59 -0700 (PDT)
+Received: (nullmailer pid 200344 invoked by uid 1000);
         Thu, 09 Sep 2021 12:32:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org
-In-Reply-To: <20210908221118.138045-1-linus.walleij@linaro.org>
-References: <20210908221118.138045-1-linus.walleij@linaro.org>
-Subject: Re: [PATCH] dt-bindings: net: Add bindings for IXP4xx V.35 WAN HSS
+To:     Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Cc:     openbmc@lists.ozlabs.org, yulei.sh@bytedance.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        joel@jms.id.au, osk@google.com, linux-aspeed@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        andrew@aj.id.au
+In-Reply-To: <20210909102907.32037-2-chiawei_wang@aspeedtech.com>
+References: <20210909102907.32037-1-chiawei_wang@aspeedtech.com> <20210909102907.32037-2-chiawei_wang@aspeedtech.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: aspeed: Add UART routing controller
 Date:   Thu, 09 Sep 2021 07:32:53 -0500
-Message-Id: <1631190773.296990.200341.nullmailer@robh.at.kernel.org>
+Message-Id: <1631190773.304300.200343.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Sep 2021 00:11:18 +0200, Linus Walleij wrote:
-> This adds device tree bindings for the IXP4xx V.35 WAN high
-> speed serial (HSS) link.
+On Thu, 09 Sep 2021 18:29:05 +0800, Chia-Wei Wang wrote:
+> Add dt-bindings for Aspeed UART routing controller.
 > 
-> An example is added to the NPE example where the HSS appears
-> as a child.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Oskar Senft <osk@google.com>
+> Signed-off-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
 > ---
-> Currently only adding these bindings so we can describe the
-> hardware in device trees.
-> ---
->  ...ntel,ixp4xx-network-processing-engine.yaml |  26 ++++
->  .../bindings/net/intel,ixp4xx-hss.yaml        | 129 ++++++++++++++++++
->  2 files changed, 155 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+>  .../bindings/soc/aspeed/uart-routing.yaml     | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/uart-routing.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -73,12 +68,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.example.dt.yaml: npe@c8006000: '#address-cells', '#size-cells', 'hss@0' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+Documentation/devicetree/bindings/soc/aspeed/uart-routing.example.dt.yaml:0:0: /example-0/lpc@1e789000: failed to match any schema with compatible: ['aspeed,ast2600-lpc-v2', 'simple-mfd', 'syscon']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1526025
+See https://patchwork.ozlabs.org/patch/1526149
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
