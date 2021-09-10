@@ -2,91 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24AB24071A0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 21:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73B1D4071E2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 21:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232924AbhIJTFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 15:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232892AbhIJTFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 15:05:00 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA91C061756;
-        Fri, 10 Sep 2021 12:03:49 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id m9so4038072wrb.1;
-        Fri, 10 Sep 2021 12:03:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uXevfslZuYBVfagltpQRsoEe64TrqKR3SYZSkmxiNRI=;
-        b=lCIqFvZwSN+DNqD410N9Zrf203q9a9c12M25Jit2InUObJooZ0K1+AsYKwb9E4P/pd
-         HR9r2aB2yFSSGJLdf/aJwHo76xpuqlSY818/cnomgdiIEg7IZkRMb4NcFG2hnRs1IxRk
-         yyfBzd8bCmqC0yXhPaixK5ORcgUDvIDi5z4XpjAkdwXCU64NpW7iMEH7NIOmeQ1c8VYQ
-         KrpF9dEZS6JFMHUZHt3vh89fh2aF30CqER2S7yoN7HEY5GhoVAE9/lFP6D7/giqY1tpR
-         EyBVBJL9uBepI5q/WRZtjaZ8hlA0zqA4YD6VjxCAJ3ykuOTorkE9iYVkoi+lgkGWLBBs
-         A9pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uXevfslZuYBVfagltpQRsoEe64TrqKR3SYZSkmxiNRI=;
-        b=4nVpJdxGsjMD1UaMH6dwcWXr7WE/V96Wl2ku92XG1hFTeeLxN92QArIEHY6ioITrgL
-         43wOXwiLE/gK1/2mONVgNIpL93EEqh+W3c/LqNENwOb1cXJfdyB4IjRN+NScBCpO6cdp
-         OBicNYIyzYSwWG2qn/f5y/9Rp45LNRKYvnBVdfxJ91sw5F+Jt3Xjff6Ac5GG+/wPUt1r
-         eHth+EAWPmpnbXYfoYTb6Oymv8+ma5+7u1A7whxo1Ip9QrVKlMb0Mt/SukRX53eQxcac
-         VdCGI9ejbegU4r628FmjEjZqaY+uRgaPohYj/ZQuzi38qp2TDZQPQ3by7TZc2rVlKCID
-         je/Q==
-X-Gm-Message-State: AOAM530zCBCznBrz2Nu/68Bv4ecmzgReT7yw1y7N6zAisE7VgRBJ+l6L
-        zQ9MFWuHyOvyVuszAEOaqEGi+FEUfZU=
-X-Google-Smtp-Source: ABdhPJwhaTrECPI7JhVVNrpKyE4W+cRTf2a/tG92fHbQUb8KyGNNWgUi0uiIU71pYg4bp/XTO7ckFQ==
-X-Received: by 2002:a5d:528b:: with SMTP id c11mr11159838wrv.369.1631300627378;
-        Fri, 10 Sep 2021 12:03:47 -0700 (PDT)
-Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
-        by smtp.gmail.com with ESMTPSA id l124sm4986620wml.8.2021.09.10.12.03.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Sep 2021 12:03:46 -0700 (PDT)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Daniel Palmer <daniel@0x0f.com>,
-        Romain Perier <romain.perier@gmail.com>,
+        id S233244AbhIJT3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 15:29:36 -0400
+Received: from esa5.hgst.iphmx.com ([216.71.153.144]:29545 "EHLO
+        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232070AbhIJT3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 15:29:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1631302099; x=1662838099;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=M6ASK3pxzTzUEWfr0bWd/gQjwbvnSl8KehAgnRUs/7c=;
+  b=BPfXc+zeFi+4XrMHzWFnAXofFwan9znzMbwgfKo9/PepFMKq8sNV6aEg
+   zCjIgKxfiHQFyNx+ZdqP8f04zQ0t/cXLb+/1tR8eLKvbEW2vYX7kqAalx
+   A2Z13VRcB+cg6/EsshvtlztVJAGscsGDoqnqruSFtyaH71wjZwhtOK9FT
+   VVT8SPKnDDBc0tD869CmVNn7iDzYOok2aRDI1393Hd8JNpbK8gHcGirm4
+   PyJZ6Mz6ymAtKddkW9YnSLja0veCfnQh0+YqcVNc1leUN5bWBCex5qaiM
+   NsG64UaT1ptaHR7JXQA2V1OJsXAgFbbHPFbsJHTbTyy6HH/nUE67NcTPQ
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.85,283,1624291200"; 
+   d="scan'208";a="179706168"
+Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 11 Sep 2021 03:28:18 +0800
+IronPort-SDR: kDQ/494TAIi0Id6yjVxCmKanlIG4LHBhWnrWTR4riPxaIIcrsK71Wziwk9YkhDMcRCFILsXbkP
+ CzWzkf7WPSjmvqXSbkCn49TzLAyBEX3fiIFvt167OHNjOAbDhc6HwzDpmOsTUkx+Kryx4MtncK
+ DeJgu7v30hSBCiza7h2wXqQNePFSUGfMVATXzR6GQm/B3wGbQ84fx4VKuFC2Qkf7dwd5ASSuQJ
+ R/cLly7vEGHTUcWtXpveCxBA72I8DFNTAxXpSX75F/XVZyrOjsp+zT4EtC4TPiBSptDo0BLTi6
+ aNpOexRddIoAr3gFReXnqMfG
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2021 12:03:13 -0700
+IronPort-SDR: h8rmJk7aJGl1DQ4xvXmYn2Ft9W/zWNGDt3UqKP+wySzYpCanclmM/1AbUHR+fzsnOGiRLz4bbv
+ Zl00Q0yl8i2pl4nzC51vYeNN76Ct6hZzj0C7mhwdLVQTvQKjHK5BJHIS9L4rbkUTcvTwebwWKR
+ CUhlZgJDQdrDONliJ+Z7tbVpsXTJnbRp8wwucn7gYy4EtcSC80P5UCbgGjEfu0mSi15aZKVkwe
+ dnJm1lYVqXlnTNUxsjbO2wjhAj6zZa050futMhvxaheAvJ6L4/ryQuaG8NtSaIVYY0nf0Ht7DS
+ E34=
+WDCIronportException: Internal
+Received: from unknown (HELO hulk.wdc.com) ([10.225.167.73])
+  by uls-op-cesaip01.wdc.com with ESMTP; 10 Sep 2021 12:28:18 -0700
+From:   Atish Patra <atish.patra@wdc.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        "Darrick J. Wong" <djwong@kernel.org>, devicetree@vger.kernel.org,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Jiri Olsa <jolsa@redhat.com>,
+        John Garry <john.garry@huawei.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
-Date:   Fri, 10 Sep 2021 21:03:22 +0200
-Message-Id: <20210910190322.27058-5-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210910190322.27058-1-romain.perier@gmail.com>
-References: <20210910190322.27058-1-romain.perier@gmail.com>
+        Vincent Chen <vincent.chen@sifive.com>
+Subject: [v3 00/10] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
+Date:   Fri, 10 Sep 2021 12:27:47 -0700
+Message-Id: <20210910192757.2309100-1-atish.patra@wdc.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As proposed by Daniel, I am going to help him to maintain the platform,
-so add myself as co-maintainer.
+This series adds improved perf support for RISC-V based system using
+SBI PMU extension[1] and Sscofpmf extension[2]. The SBI PMU extension allows
+the kernel to program the counters for different events and start/stop counters
+while the sscofpmf extension allows the counter overflow interrupt and privilege
+mode filtering. An hardware platform can leverage SBI PMU extension without
+the sscofpmf extension if it supports mcountinhibit and mcounteren. However,
+the reverse is not true. With both of these extension enabled, a platform can
+take advantage of all both event counting and sampling using perf tool. 
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+This series introduces a platform perf driver instead of a existing arch
+specific implementation. The new perf implementation has adopted a modular
+approach where most of the generic event handling is done in the core library
+while individual PMUs need to only implement necessary features specific to
+the PMU. This is easily extensible and any future RISC-V PMU implementation
+can leverage this. Currently, SBI PMU driver & legacy PMU driver are implemented
+as a part of this series.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3a9a7cbf9456..ad1a0e5a5425 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2231,6 +2231,7 @@ F:	arch/arm/mach-pxa/mioa701.c
- 
- ARM/MStar/Sigmastar Armv7 SoC support
- M:	Daniel Palmer <daniel@thingy.jp>
-+M:	Romain Perier <romain.perier@gmail.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- W:	http://linux-chenxing.org/
--- 
-2.33.0
+The legacy driver tries to reimplement the existing minimal perf under a new
+config to maintain backward compatibility. This implementation only allows
+monitoring of always running cycle/instruction counters. Moreover, they can
+not be started or stopped. In general, this is very limited and not very useful.
+That's why, I am not very keen to carry the support into the new driver.
+However, I don't want to break perf for any existing hardware platforms.
+If nobody really uses perf currently, I will be happy to drop PATCH 4.
+
+This series has been tested in Qemu on both RV64 & RV32. Qemu[5] & OpenSBI [3]
+patches are required to test it. Qemu changes are not backward compatible.
+That means, you can not use perf anymore on older Qemu versions with latest
+OpenSBI and/or Kernel. However, newer kernel will just use legacy pmu driver if
+old OpenSBI is detected or hardware doesn't implement mcountinhibit.
+
+Here is an output of perf stat/report while running hackbench with OpenSBI & Linux
+kernel patches applied [3].
+
+Perf stat:
+=========
+
+[root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e r8000000000000007
+-e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e branch-misses
+-e cache-misses -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses
+-e cycles -e instructions ./hackbench -pipe 15 process
+Running with 15*40 (== 600) tasks.
+Time: 6.578
+
+ Performance counter stats for './hackbench -pipe 15 process':
+
+             6,491      r8000000000000005      (52.59%) --> SBI_PMU_FW_SET_TIMER
+            20,433      r8000000000000007      (60.74%) --> SBI_PMU_FW_IPI_RECVD
+            21,271      r8000000000000006      (68.71%) --> SBI_PMU_FW_IPI_SENT
+                 0      r0000000000020002      (76.55%)
+     <not counted>      r0000000000020004      (0.00%)
+     <not counted>      branch-misses          (0.00%)
+     <not counted>      cache-misses           (0.00%)
+        57,537,853      dTLB-load-misses       (9.49%)
+         2,821,147      dTLB-store-misses      (18.64%)
+        52,928,130      iTLB-load-misses       (27.53%)
+    89,521,791,110      cycles                 (36.08%)
+    90,678,132,464      instructions #    1.01  insn per cycle (44.44%)
+
+       6.975908032 seconds time elapsed
+
+       3.130950000 seconds user
+      24.353310000 seconds sys
+
+The patches can also be found in the github[4].
+
+Perf record:
+============
+[root@fedora-riscv riscv]# perf record -e cycles -e instructions -e \
+dTLB-load-misses -e dTLB-store-misses -c 1000 ./hackbench -pipe 15 process 15
+Running with 15*40 (== 600) tasks.
+Time: 1.238
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 0.106 MB perf.data (1020 samples) ]
+
+[root@fedora-riscv riscv]# perf report  
+Available samples                                                               
+372 cycles                                                                     ◆
+372 instructions                                                               ▒
+262 dTLB-load-misses                                                           ▒
+14 dTLB-store-misses      
+
+The patches can also be found in the github[4].
+
+[1] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc
+[2] https://drive.google.com/file/d/171j4jFjIkKdj5LWcExphq4xG_2sihbfd/edit
+[3] https://github.com/atishp04/opensbi/tree/pmu_sscofpmf 
+[4] https://github.com/atishp04/linux/tree/riscv_pmu_v3
+[5] https://github.com/atishp04/qemu/tree/riscv_pmu_v2
+
+Changes from v3->v4:
+1. Added interrupt overflow support.
+2. Cleaned up legacy driver initialization.
+3. Supports perf record now.
+4. Added the DT binding and maintainers file.
+5. Changed cpu hotplug notifier to be multi-state.
+6. OpenSBI doesn't disable cycle/instret counter during boot. Update the
+   perf code to disable all the counter during the boot.
+
+Changes from v1->v2
+1. Implemented the latest SBI PMU extension specification.
+2. The core platform driver was changed to operate as a library while only
+   sbi based PMU is built as a driver. The legacy one is just a fallback if
+   SBI PMU extension is not available.
+
+Atish Patra (10):
+RISC-V: Remove the current perf implementation
+RISC-V: Add CSR encodings for all HPMCOUNTERS
+RISC-V: Add a perf core library for pmu drivers
+RISC-V: Add a simple platform driver for RISC-V legacy perf
+RISC-V: Add RISC-V SBI PMU extension definitions
+dt-binding: pmu: Add RISC-V PMU DT bindings
+RISC-V: Add perf platform driver based on SBI PMU extension
+RISC-V: Add interrupt support for perf
+Documentation: riscv: Remove the old documentation
+MAINTAINERS: Add entry for RISC-V PMU drivers
+
+.../devicetree/bindings/perf/riscv,pmu.yaml   |  51 ++
+Documentation/riscv/pmu.rst                   | 255 ------
+MAINTAINERS                                   |  10 +
+arch/riscv/Kconfig                            |  13 -
+arch/riscv/include/asm/csr.h                  |  66 +-
+arch/riscv/include/asm/perf_event.h           |  72 --
+arch/riscv/include/asm/sbi.h                  |  97 +++
+arch/riscv/kernel/Makefile                    |   1 -
+arch/riscv/kernel/perf_event.c                | 485 ------------
+drivers/perf/Kconfig                          |  25 +
+drivers/perf/Makefile                         |   5 +
+drivers/perf/riscv_pmu.c                      | 331 ++++++++
+drivers/perf/riscv_pmu_legacy.c               | 143 ++++
+drivers/perf/riscv_pmu_sbi.c                  | 731 ++++++++++++++++++
+include/linux/cpuhotplug.h                    |   1 +
+include/linux/perf/riscv_pmu.h                |  69 ++
+16 files changed, 1528 insertions(+), 827 deletions(-)
+create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+delete mode 100644 Documentation/riscv/pmu.rst
+delete mode 100644 arch/riscv/kernel/perf_event.c
+create mode 100644 drivers/perf/riscv_pmu.c
+create mode 100644 drivers/perf/riscv_pmu_legacy.c
+create mode 100644 drivers/perf/riscv_pmu_sbi.c
+create mode 100644 include/linux/perf/riscv_pmu.h
+
+--
+2.31.1
 
