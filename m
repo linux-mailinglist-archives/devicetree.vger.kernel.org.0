@@ -2,40 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B44124062CE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 02:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93503406351
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 02:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242185AbhIJAq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 20:46:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44872 "EHLO mail.kernel.org"
+        id S241386AbhIJAq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 20:46:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43688 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232303AbhIJASt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 20:18:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5ECA361101;
-        Fri, 10 Sep 2021 00:17:18 +0000 (UTC)
+        id S232664AbhIJATD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Sep 2021 20:19:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 265AD610E9;
+        Fri, 10 Sep 2021 00:17:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631233039;
-        bh=VLjAvUgxy44qM8GoKgrF9Lm6uZ0W/hWCW00zYMDFXNQ=;
+        s=k20201202; t=1631233070;
+        bh=LUd+G3+gj7ABxoZULKlb7MG8flMMf70NCfz1c3d0LQ0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mFLJ3p0XUF0T2TeUGtMNOB7kZgHloEB6WTtxfeMvmiwP6DIe9U8fHPWxgs6LuYvac
-         kHK0KgJKN0Jng4Do2CKclQby6cswliwZiZUIzrhs3UNhWfaVi8Jat45cZKzthUKnDq
-         IRARACSfQ8jP6p4bymB0OX9xpaHRiPlMiT+51Mnh445zAWRCZV35ElvDp33YUCwYKR
-         TU+8d8+j0nIUIFJhFY5uzonQvZG4mpKU91hwS65C5zZw8PNazsMa8rTDxeLY5rLPNB
-         n8sxdUwDG9n9qn5L5CRCGycglMqGdGsiIP7GPaivrZOFFilRGeupC2qDnfoyoLVXiQ
-         HDvB43lpJoOEw==
+        b=ZI8ZlbzxGMSaEtpLoBa+m2moxHIEHI2934mBnb4KaGCeeH3thmGk3kaeMSl/h3yMw
+         jAQFc7xuEs3qAPLirKa7cgIKR6xiBvLx2oaXwK2i3/cBX1a5fShxCWmf6Ga+GrMaIv
+         V+e3RrOOdjPbOk0w3fEOcn0OwiCk6OisapNBn19iG/CBMD9W/BdpS8486wWuSGJ2w1
+         +z6yvHjk7klz8/eXYnUJRtZtoW0m6M5ZEi5PqzWXCZJLHsi3dhP+D9xeZzVzccxvIM
+         zK0QBPDjDT8CM5yX3KvezmVMnVj8Rmt+mbG9Paz+N+mVFKTivb1Nz+MQrhnrWqoPzN
+         v8xrV/p9kIVew==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sasha Levin <sashal@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.14 58/99] MIPS: mscc: ocelot: mark the phy-mode for internal PHY ports
-Date:   Thu,  9 Sep 2021 20:15:17 -0400
-Message-Id: <20210910001558.173296-58-sashal@kernel.org>
+Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.14 80/99] dt-bindings: clock: brcm,iproc-clocks: fix armpll properties
+Date:   Thu,  9 Sep 2021 20:15:39 -0400
+Message-Id: <20210910001558.173296-80-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210910001558.173296-1-sashal@kernel.org>
 References: <20210910001558.173296-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -43,84 +45,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-[ Upstream commit eba54cbb92d28b4f6dc1ed5f73f5187b09d82c08 ]
+[ Upstream commit 6880d94f84262e721f7da6eaa41cd8fd5d87164c ]
 
-The ocelot driver was converted to phylink, and that expects a valid
-phy_interface_t. Without a phy-mode, of_get_phy_mode returns
-PHY_INTERFACE_MODE_NA, which is not ideal because phylink rejects that.
+armpll clocks (available on Cygnus and Northstar Plus) are simple clocks
+with no cells. Adjust binding props #clock-cells and clock-output-names
+to handle them.
 
-The ocelot driver was patched to treat PHY_INTERFACE_MODE_NA as
-PHY_INTERFACE_MODE_INTERNAL to work with the broken DT blobs, but we
-should fix the device trees and specify the phy-mode too.
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Link: https://lore.kernel.org/r/20210819052918.6753-1-zajec5@gmail.com
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Stephen Boyd <sboyd@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/mips/boot/dts/mscc/ocelot_pcb120.dts | 4 ++++
- arch/mips/boot/dts/mscc/ocelot_pcb123.dts | 4 ++++
- 2 files changed, 8 insertions(+)
+ .../bindings/clock/brcm,iproc-clocks.yaml     | 27 +++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-diff --git a/arch/mips/boot/dts/mscc/ocelot_pcb120.dts b/arch/mips/boot/dts/mscc/ocelot_pcb120.dts
-index d2dc6b3d923c..bd240690cb37 100644
---- a/arch/mips/boot/dts/mscc/ocelot_pcb120.dts
-+++ b/arch/mips/boot/dts/mscc/ocelot_pcb120.dts
-@@ -71,21 +71,25 @@ phy4: ethernet-phy@3 {
- &port0 {
- 	status = "okay";
- 	phy-handle = <&phy0>;
-+	phy-mode = "internal";
- };
+diff --git a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+index 1174c9aa9934..5ad147d265e6 100644
+--- a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
++++ b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+@@ -61,13 +61,30 @@ properties:
+     maxItems: 1
  
- &port1 {
- 	status = "okay";
- 	phy-handle = <&phy1>;
-+	phy-mode = "internal";
- };
+   '#clock-cells':
+-    const: 1
++    true
  
- &port2 {
- 	status = "okay";
- 	phy-handle = <&phy2>;
-+	phy-mode = "internal";
- };
+   clock-output-names:
+     minItems: 1
+     maxItems: 45
  
- &port3 {
- 	status = "okay";
- 	phy-handle = <&phy3>;
-+	phy-mode = "internal";
- };
+ allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - brcm,cygnus-armpll
++              - brcm,nsp-armpll
++    then:
++      properties:
++        '#clock-cells':
++          const: 0
++    else:
++      properties:
++        '#clock-cells':
++          const: 1
++      required:
++        - clock-output-names
+   - if:
+       properties:
+         compatible:
+@@ -358,7 +375,6 @@ required:
+   - reg
+   - clocks
+   - '#clock-cells'
+-  - clock-output-names
  
- &port4 {
-diff --git a/arch/mips/boot/dts/mscc/ocelot_pcb123.dts b/arch/mips/boot/dts/mscc/ocelot_pcb123.dts
-index 7d7e638791dd..0185045c7630 100644
---- a/arch/mips/boot/dts/mscc/ocelot_pcb123.dts
-+++ b/arch/mips/boot/dts/mscc/ocelot_pcb123.dts
-@@ -49,19 +49,23 @@ &mdio0 {
- &port0 {
- 	status = "okay";
- 	phy-handle = <&phy0>;
-+	phy-mode = "internal";
- };
+ additionalProperties: false
  
- &port1 {
- 	status = "okay";
- 	phy-handle = <&phy1>;
-+	phy-mode = "internal";
- };
- 
- &port2 {
- 	status = "okay";
- 	phy-handle = <&phy2>;
-+	phy-mode = "internal";
- };
- 
- &port3 {
- 	status = "okay";
- 	phy-handle = <&phy3>;
-+	phy-mode = "internal";
- };
+@@ -392,3 +408,10 @@ examples:
+         clocks = <&osc2>;
+         clock-output-names = "keypad", "adc/touch", "pwm";
+     };
++  - |
++    arm_clk@0 {
++        #clock-cells = <0>;
++        compatible = "brcm,nsp-armpll";
++        clocks = <&osc>;
++        reg = <0x0 0x1000>;
++    };
 -- 
 2.30.2
 
