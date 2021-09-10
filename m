@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90D6A407287
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 22:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECA7E407288
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 22:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233824AbhIJU2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 16:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53792 "EHLO
+        id S233926AbhIJU2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 16:28:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233806AbhIJU2E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 16:28:04 -0400
+        with ESMTP id S233843AbhIJU2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 16:28:05 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327CDC061757
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:26:53 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C34C061574
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:26:54 -0700 (PDT)
 Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1mOn6l-0000xM-I9; Fri, 10 Sep 2021 22:26:47 +0200
+        id 1mOn6m-0000xM-91; Fri, 10 Sep 2021 22:26:48 +0200
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -29,9 +29,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
         patchwork-lst@pengutronix.de
-Subject: [PATCH v4 06/18] soc: imx: gpcv2: keep i.MX8M* bus clocks enabled
-Date:   Fri, 10 Sep 2021 22:26:28 +0200
-Message-Id: <20210910202640.980366-7-l.stach@pengutronix.de>
+Subject: [PATCH v4 07/18] soc: imx: gpcv2: support system suspend/resume
+Date:   Fri, 10 Sep 2021 22:26:29 +0200
+Message-Id: <20210910202640.980366-8-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210910202640.980366-1-l.stach@pengutronix.de>
 References: <20210910202640.980366-1-l.stach@pengutronix.de>
@@ -45,59 +45,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Annotate the domains with bus clocks to keep those clocks enabled
-as long as the domain is active.
+Our usage of runtime PM to control the hierarchy of power domains is
+slightly unusual and means that powering up a domain may fail in early
+system resume, as runtime PM is still disallowed at this stage.
+
+However the system suspend/resume path takes care of powering down/up
+the power domains in the order defined by the device parent/child and
+power-domain provider/consumer hierarachy. So we can just runtime
+resume all our power-domain devices to allow the power-up to work
+properly in the resume path. System suspend will still disable all
+domains as intended.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Acked-by: Peng Fan <peng.fan@nxp.com>
 ---
- drivers/soc/imx/gpcv2.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/soc/imx/gpcv2.c | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
 diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-index c3b1d2580963..c48f37f203ab 100644
+index c48f37f203ab..57ed0a6bfb13 100644
 --- a/drivers/soc/imx/gpcv2.c
 +++ b/drivers/soc/imx/gpcv2.c
-@@ -625,6 +625,7 @@ static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
- 			.hskreq = IMX8MM_HSIO_HSK_PWRDNREQN,
- 			.hskack = IMX8MM_HSIO_HSK_PWRDNACKN,
- 		},
-+		.keep_clocks = true,
- 	},
+@@ -947,6 +947,36 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
+ 	return 0;
+ }
  
- 	[IMX8MM_POWER_DOMAIN_PCIE] = {
-@@ -671,6 +672,7 @@ static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
- 			.hskack = IMX8MM_GPUMIX_HSK_PWRDNACKN,
- 		},
- 		.pgc   = BIT(IMX8MM_PGC_GPUMIX),
-+		.keep_clocks = true,
++#ifdef CONFIG_PM_SLEEP
++static int imx_pgc_domain_suspend(struct device *dev)
++{
++	int ret;
++
++	/*
++	 * This may look strange, but is done so the generic PM_SLEEP code
++	 * can power down our domain and more importantly power it up again
++	 * after resume, without tripping over our usage of runtime PM to
++	 * power up/down the nested domains.
++	 */
++	ret = pm_runtime_get_sync(dev);
++	if (ret < 0) {
++		pm_runtime_put_noidle(dev);
++		return ret;
++	}
++
++	return 0;
++}
++
++static int imx_pgc_domain_resume(struct device *dev)
++{
++	return pm_runtime_put(dev);
++}
++#endif
++
++static const struct dev_pm_ops imx_pgc_domain_pm_ops = {
++	SET_SYSTEM_SLEEP_PM_OPS(imx_pgc_domain_suspend, imx_pgc_domain_resume)
++};
++
+ static const struct platform_device_id imx_pgc_domain_id[] = {
+ 	{ "imx-pgc-domain", },
+ 	{ },
+@@ -955,6 +985,7 @@ static const struct platform_device_id imx_pgc_domain_id[] = {
+ static struct platform_driver imx_pgc_domain_driver = {
+ 	.driver = {
+ 		.name = "imx-pgc",
++		.pm = &imx_pgc_domain_pm_ops,
  	},
- 
- 	[IMX8MM_POWER_DOMAIN_GPU] = {
-@@ -697,6 +699,7 @@ static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
- 			.hskack = IMX8MM_VPUMIX_HSK_PWRDNACKN,
- 		},
- 		.pgc   = BIT(IMX8MM_PGC_VPUMIX),
-+		.keep_clocks = true,
- 	},
- 
- 	[IMX8MM_POWER_DOMAIN_VPUG1] = {
-@@ -743,6 +746,7 @@ static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
- 			.hskack = IMX8MM_DISPMIX_HSK_PWRDNACKN,
- 		},
- 		.pgc   = BIT(IMX8MM_PGC_DISPMIX),
-+		.keep_clocks = true,
- 	},
- 
- 	[IMX8MM_POWER_DOMAIN_MIPI] = {
-@@ -810,6 +814,7 @@ static const struct imx_pgc_domain imx8mn_pgc_domains[] = {
- 			.hskreq = IMX8MN_HSIO_HSK_PWRDNREQN,
- 			.hskack = IMX8MN_HSIO_HSK_PWRDNACKN,
- 		},
-+		.keep_clocks = true,
- 	},
- 
- 	[IMX8MN_POWER_DOMAIN_OTG1] = {
+ 	.probe    = imx_pgc_domain_probe,
+ 	.remove   = imx_pgc_domain_remove,
 -- 
 2.30.2
 
