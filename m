@@ -2,116 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1444C40714F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 20:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9AAF407199
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 21:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233494AbhIJSoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 14:44:09 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:49367 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbhIJSoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 14:44:03 -0400
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 35C4D240006;
-        Fri, 10 Sep 2021 18:42:49 +0000 (UTC)
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Cc:     Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S232110AbhIJTE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 15:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230513AbhIJTEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 15:04:55 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E50C061574;
+        Fri, 10 Sep 2021 12:03:44 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id z4so4013098wrr.6;
+        Fri, 10 Sep 2021 12:03:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2HzZynKdGrV44/xOe+zaSu5/JFHGIIV4Z7i2+Mxb4So=;
+        b=PXcww5kI0R813yeiWBw2wE4F/LSk9naoPzC626Wd5/POsg2wsFYMcT//IXfTy19CQI
+         Gha1nqoD/VHFDpvh0jeItrnd9P6z7CcCDWD9xnT/2YKZEWsIrX8IhYcmhgJVLnNa3/Fj
+         OeDJFxaV/gxkzivmzrYbRVWWz57oMllNVY/8+Qw3yBK43FVePed6xV2aeSynZawpFRER
+         cDkljf2NbfKPw/Ov+cPc751QgEvaJ+x1K28Z0ZeaSl5EfngyvN17c7bzAT53coI3BNUT
+         r0f2pKV5ssHkDXTIpRAZik9SfNsIy2n7QcWN03UqXL4MNKkKXnOsKC8YPxGLkOKEh2Us
+         O5Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2HzZynKdGrV44/xOe+zaSu5/JFHGIIV4Z7i2+Mxb4So=;
+        b=gT/turbwXbs42UL+S2S6/C+vcnH2FiayRBH939bPoedPswNZ4gk41r/kYvYRJ+KwNE
+         81mXNBRpTVbo58YBjcVernlY1HNwwi7ZPaucXuVpH0nMaExU14nuamR/8DGIE5N2LUKi
+         iqM6hfP/8mjjW8jMnGimlBv6jAz/AwpeMKTSeox+vEV+pcGLE9TT6tC46gTawe3wro8x
+         UxXqDkCfOrT+tEFk82dIJZXjW8/hAqc4F87MW+kBkgDT/Lv0zctfzkQAt5QJ6R4zeLLl
+         xxVk4H2Y1MJxbLfz2EyDHgxC1somaB6jMX+qB32680wbsFUnDOf/ZUh7qBiqbFeN/s1r
+         WWow==
+X-Gm-Message-State: AOAM5335yp/PMRFaofiPneP+R3isbWpqGoOpkYrGGnr6HLUCN/R31/hj
+        rDD3Aa3aDz01y5beC1yRTFP8v+5ddnY=
+X-Google-Smtp-Source: ABdhPJzSGwRdaLj6Q0psVF7VMzyjHnXUukEu7xXHgUWoXVMnooA6oL29OqEyljYzK6eEpDeRL8ebYQ==
+X-Received: by 2002:a5d:47a4:: with SMTP id 4mr11558258wrb.329.1631300622777;
+        Fri, 10 Sep 2021 12:03:42 -0700 (PDT)
+Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
+        by smtp.gmail.com with ESMTPSA id e8sm156734wrj.48.2021.09.10.12.03.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Sep 2021 12:03:41 -0700 (PDT)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH 22/22] ARM: dts: sun8i: v3s: Add support for the ISP
-Date:   Fri, 10 Sep 2021 20:41:47 +0200
-Message-Id: <20210910184147.336618-23-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
-References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Add support for IDO-SBC2D06-V1B-22W
+Date:   Fri, 10 Sep 2021 21:03:18 +0200
+Message-Id: <20210910190322.27058-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The V3s (and related platforms) come with an instance of the A31 ISP.
-Even though it is very close to the A31 ISP, it is not exactly
-register-compatible and a dedicated compatible only is used as a
-result.
+IDO-SOM2D01 is an ultra-small SOM module based on SigmaStar SSD201/SSD202
+SoC (ARM Cortex A7 core). The module integrates WIFI, NAND and PM
+circuits on a PCB area of 2.95CM x 2.95CM. The SoC integrates 128 MB of
+DDR3 on-chip.
 
-Just like most other blocks of the camera pipeline, the ISP uses
-the common CSI bus, module and ram clock as well as reset.
+IDO-SBC2D06-V1B-22W is an dual-ethernet SBC powered by a IDO-SOM2D01,
+that embeds a MicroSD card slot, 4-lane MIPI DSI connector for 4-inch
+RGB565 display or 7-inch RGB888 display, Dual 10/100M Ethernet ports,
+and more.
 
-A port connection to the ISP is added to CSI0 for convenience since
-CSI0 serves for MIPI CSI-2 interface support, which is likely to
-receive raw data that will need to be processed by the ISP to produce
-a final image.
+This series adds support for this SOM and this boards.
 
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- arch/arm/boot/dts/sun8i-v3s.dtsi | 33 ++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Romain Perier (4):
+  ARM: mstar: Mark timer with arm,cpu-registers-not-fw-configured
+  ARM: dts: mstar: Add the Wireless Tag IDO-SBC2D06-V1B-22W
+  dt-bindings: add vendor prefix for Wireless Tag
+  MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index ec7fa6459547..139fc03806f6 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -637,6 +637,14 @@ csi0_in_mipi_csi2: endpoint {
- 						remote-endpoint = <&mipi_csi2_out_csi0>;
- 					};
- 				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					csi0_out_isp: endpoint {
-+						remote-endpoint = <&isp_in_csi0>;
-+					};
-+				};
- 			};
- 		};
- 
-@@ -709,5 +717,30 @@ dphy: d-phy@1cb2000 {
- 			status = "disabled";
- 			#phy-cells = <0>;
- 		};
-+
-+		isp: isp@1cb8000 {
-+			compatible = "allwinner,sun8i-v3s-isp";
-+			reg = <0x01cb8000 0x1000>;
-+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_CSI>,
-+				 <&ccu CLK_CSI1_SCLK>,
-+				 <&ccu CLK_DRAM_CSI>;
-+			clock-names = "bus", "mod", "ram";
-+			resets = <&ccu RST_BUS_CSI>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					isp_in_csi0: endpoint {
-+						remote-endpoint = <&csi0_out_isp>;
-+					};
-+				};
-+			};
-+		};
- 	};
- };
+ .../devicetree/bindings/arm/mstar/mstar.yaml  |  2 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
+ MAINTAINERS                                   |  1 +
+ arch/arm/boot/dts/Makefile                    |  1 +
+ ...star-infinity2m-ssd201-som2d01-common.dtsi | 21 ++++++++++++++
+ ...sd202d-wirelesstag-ido-sbc2d06-v1b-22w.dts | 23 +++++++++++++++
+ ...ity2m-ssd202d-wirelesstag-ido-som2d01.dtsi | 28 +++++++++++++++++++
+ arch/arm/boot/dts/mstar-v7.dtsi               |  1 +
+ 8 files changed, 79 insertions(+)
+ create mode 100644 arch/arm/boot/dts/mstar-infinity2m-ssd201-som2d01-common.dtsi
+ create mode 100644 arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w.dts
+ create mode 100644 arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtsi
+
 -- 
-2.32.0
+2.33.0
 
