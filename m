@@ -2,96 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B165406CBB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 15:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E869406D99
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 16:24:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233412AbhIJNNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 09:13:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231266AbhIJNNT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Sep 2021 09:13:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5663461074;
-        Fri, 10 Sep 2021 13:12:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631279528;
-        bh=xHga66dm4Y9qq0uRqhXsaAzyDsRHpSACVQyB1egW9K0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eJsE8Ta6uMCzj83BNAPi3TWJsU/ek87eyc1cyWmWRbEY6LSIylTILxeLBPcCh3VqM
-         +UuMDdXOzL2lQa3ZO+22QXyIvPaBNRxbm5bJPOijU2PIlnw+VUUwwBk6Qq944OmjEt
-         RxLXy/en9uHOqzUYaD2jNDahx9TyJep9QujaFP2GGBjlD9gAgAVV2LhCdNWEnasLZG
-         uI2891BkzeNzXWtWsobyVrHnvL4wBnpSFLqWoM3EZBy8CtrltF35zKoWtE82xJZSl7
-         6dcRlyMvMJZE9sfRGf2NFUywvBlJ731VryKu7qmG6o8My6JZQ8tLbZ1xLv9HzTGXXY
-         qhT9n3wq0f8MQ==
-Received: by mail-ej1-f44.google.com with SMTP id a25so4173451ejv.6;
-        Fri, 10 Sep 2021 06:12:08 -0700 (PDT)
-X-Gm-Message-State: AOAM53075Aojjeephn1s2w1j0GtYcE22Gg43TIcWRirB/poj0IGt0NjH
-        SONdVDODKY6Z+zLolJxGxSLNE/tCzwEND1LHOA==
-X-Google-Smtp-Source: ABdhPJwxGWq0xviAjQ1uqiQ6zFb2APY00BFbtVFZJIy9PKNY22PNbijurhvlFBUTtPgsvxhftkZqTIJ49BSdm3GEVUw=
-X-Received: by 2002:a17:906:7217:: with SMTP id m23mr9323698ejk.466.1631279526962;
- Fri, 10 Sep 2021 06:12:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210909213118.1087083-1-robh@kernel.org> <20210909213118.1087083-5-robh@kernel.org>
-In-Reply-To: <20210909213118.1087083-5-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 10 Sep 2021 08:11:55 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJS2V959cbybBDHnj_X4OXiSeHocpknDN97u6r2y17PyA@mail.gmail.com>
-Message-ID: <CAL_JsqJS2V959cbybBDHnj_X4OXiSeHocpknDN97u6r2y17PyA@mail.gmail.com>
-Subject: Re: [PATCH 4/8] dt-bindings: clock: arm,syscon-icst: Use 'reg'
- instead of 'vco-offset' for VCO register address
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S233702AbhIJOZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 10:25:40 -0400
+Received: from mail-qt1-f177.google.com ([209.85.160.177]:34597 "EHLO
+        mail-qt1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233706AbhIJOZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 10:25:39 -0400
+Received: by mail-qt1-f177.google.com with SMTP id 2so1558927qtw.1;
+        Fri, 10 Sep 2021 07:24:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=3/lXCTGRjOib0NEqydvUuR/bGgrus2AGOSJiOOia7MY=;
+        b=J8TBX0PCEAlyuBPxrYWFC/j/xYZPY45B1g9zhLMc4yHZheCoRm3cjLaB560jd+Se9r
+         q/UVfjZCrgLl+ki5vfWcr9JTYp1C5J3xYFF+NVeuiXHbzRPITnfTnoZx4kup3Cjw2fF1
+         UXY9aVRbhSMnCv7VxLDknnWpjD8nz1aNRqrUKSkSz7lqvproWLIvxuW7TyNGUWrXEOHF
+         G9dCcegZvtl1gQ5GeaGdyx9RdOPIo56ftER2JbnWJyrb9pm1KnAYO2ePQTVSDaT3GdoX
+         pndk1NqBdnFNIlgUtjm2d6oSJRW5QpPCQdwUwyk3tp+GfMZUp9q3LUrShnxKocSMdMPg
+         Q5Tw==
+X-Gm-Message-State: AOAM533aWz9zOqi31qd3gSKzcil2CSLeP/hD2mkP4v2fQJ5Ejqv2eZEd
+        Gbq5Jwfbiv1uzYkx63wNcLpvvuWZhw==
+X-Google-Smtp-Source: ABdhPJwLLwqIpWeQzYq1k7yjFpZImc0ZWD8Y+nVKDluIJN6s8hiRc3X2DQqpYQCvwED182BVKwDPyQ==
+X-Received: by 2002:ac8:4292:: with SMTP id o18mr8221809qtl.75.1631283865687;
+        Fri, 10 Sep 2021 07:24:25 -0700 (PDT)
+Received: from bill-the-cat.lan (2603-6081-7b01-cbda-55fd-c014-b2c6-676a.res6.spectrum.com. [2603:6081:7b01:cbda:55fd:c014:b2c6:676a])
+        by smtp.gmail.com with ESMTPSA id b21sm3190527qte.38.2021.09.10.07.24.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Sep 2021 07:24:23 -0700 (PDT)
+From:   Tom Rini <trini@konsulko.com>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org
+Subject: [PATCH] docs: dt: submitting-patches: Add note about other project usage
+Date:   Fri, 10 Sep 2021 10:24:19 -0400
+Message-Id: <20210910142419.5237-1-trini@konsulko.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 9, 2021 at 4:31 PM Rob Herring <robh@kernel.org> wrote:
->
-> 'reg' is the standard property for defining register banks/addresses. Add
-> it to use for the VCO register address and deprecate 'vco-offset'. This
-> will also allow for using standard node names with unit-addresses.
->
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml b/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
-> index 118c5543e037..c346287ca15d 100644
-> --- a/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
-> +++ b/Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
-> @@ -69,6 +69,10 @@ properties:
->        - arm,impd1-vco1
->        - arm,impd1-vco2
->
-> +  reg:
-> +    maxItems: 1
-> +    description: The VCO register
-> +
->    clocks:
->      description: Parent clock for the ICST VCO
->      maxItems: 1
-> @@ -83,6 +87,7 @@ properties:
->    vco-offset:
->      $ref: '/schemas/types.yaml#/definitions/uint32'
->      description: Offset to the VCO register for the oscillator
-> +    deprecated
+In an attempt to make it more broadly known that other projects are
+equal consumers / users of the device tree bindings, add a note to
+submitting patches to say that extra care and consideration may need to
+be taken when updating existing bindings.
 
-Sigh, that should be 'deprecated: true'.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Tom Rini <trini@konsulko.com>
+---
+ Documentation/devicetree/bindings/submitting-patches.rst | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Rob
+diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+index 8087780f1685..36a17b250ccc 100644
+--- a/Documentation/devicetree/bindings/submitting-patches.rst
++++ b/Documentation/devicetree/bindings/submitting-patches.rst
+@@ -63,6 +63,9 @@ I. For patch submitters
+      string that is matched by the driver (as in the "nvidia,tegra20-pcie"
+      example above).
+ 
++  9) Bindings are actively used by multiple projects other than the Linux
++     Kernel, extra care and consideration may need to be taken when making changes
++     to existing bindings.
+ 
+ II. For kernel maintainers
+ ==========================
+-- 
+2.17.1
+
