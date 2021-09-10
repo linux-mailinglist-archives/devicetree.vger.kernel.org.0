@@ -2,109 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15F3A406A4D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 12:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C25406A60
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 12:52:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232458AbhIJKp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 06:45:28 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:59630 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232416AbhIJKp1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 06:45:27 -0400
-X-UUID: de4bf021505b404096541361163f7be5-20210910
-X-UUID: de4bf021505b404096541361163f7be5-20210910
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1048934180; Fri, 10 Sep 2021 18:44:09 +0800
+        id S232450AbhIJKxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 06:53:36 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52112 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232415AbhIJKxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 06:53:36 -0400
+X-UUID: 7afaeee5e7e64cec9ab4614b76c303e0-20210910
+X-UUID: 7afaeee5e7e64cec9ab4614b76c303e0-20210910
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1730091123; Fri, 10 Sep 2021 18:52:22 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 10 Sep 2021 18:44:08 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 10 Sep 2021 18:52:21 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 10 Sep 2021 18:44:08 +0800
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
+ Transport; Fri, 10 Sep 2021 18:52:21 +0800
+Message-ID: <3b21154346c0a36868fb5e9ac187379be97a69c1.camel@mediatek.com>
+Subject: Re: [v2 11/24] clk: mediatek: Add MT8195 ccusys clock support
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <aaronyu@google.com>
-Subject: [PATCH 2/2] dt-bindings: mediatek: mt8195: add mt8195-mt6359-rt1011-rt5682 document
-Date:   Fri, 10 Sep 2021 18:44:05 +0800
-Message-ID: <20210910104405.11420-3-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210910104405.11420-1-trevor.wu@mediatek.com>
-References: <20210910104405.11420-1-trevor.wu@mediatek.com>
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        "Devicetree List" <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 10 Sep 2021 18:52:21 +0800
+In-Reply-To: <CAGXv+5EMoZq8BohUA_OoChmEdHL988pphxUJX077hO88htRUtA@mail.gmail.com>
+References: <20210820111504.350-1-chun-jie.chen@mediatek.com>
+         <20210820111504.350-12-chun-jie.chen@mediatek.com>
+         <CAGXv+5EMoZq8BohUA_OoChmEdHL988pphxUJX077hO88htRUtA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds document for mt8195 board with mt6359, rt1011 and rt5682
+On Mon, 2021-08-23 at 20:13 +0800, Chen-Yu Tsai wrote:
+> On Fri, Aug 20, 2021 at 7:23 PM Chun-Jie Chen
+> <chun-jie.chen@mediatek.com> wrote:
+> > 
+> > Add MT8195 ccusys clock controller which provides clock gate
+> > control in Camera Computing Unit.
+> 
+> Could you offer a bit more explanation about this unit? Is it an ISP?
+> Or some other function that does computation on images?
+> 
 
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
----
- .../sound/mt8195-mt6359-rt1011-rt5682.yaml    | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
+CCU could access ISP HW control register and could be used for ISP
+pipeline control. The use case is like secure camera or doing post-
+processing on ISP statistic data.
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
-new file mode 100644
-index 000000000000..d354c30d3377
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8195-mt6359-rt1011-rt5682.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek MT8195 with MT6359, RT1011 and RT5682 ASoC sound card driver
-+
-+maintainers:
-+  - Trevor Wu <trevor.wu@mediatek.com>
-+
-+description:
-+  This binding describes the MT8195 sound card with RT1011 and RT5682.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt8195_mt6359_rt1011_rt5682
-+
-+  mediatek,platform:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 ASoC platform.
-+
-+  mediatek,dptx-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 Display Port Tx codec node.
-+
-+  mediatek,hdmi-codec:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8195 HDMI codec node.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+
-+examples:
-+  - |
-+
-+    sound: mt8195-sound {
-+        compatible = "mediatek,mt8195_mt6359_rt1011_rt5682";
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&aud_pins_default>;
-+    };
-+
-+...
--- 
-2.18.0
+Thanks!
+Best Regards,
+Chun-Jie
+
+> > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> >  drivers/clk/mediatek/Makefile         |  3 +-
+> >  drivers/clk/mediatek/clk-mt8195-ccu.c | 50
+> > +++++++++++++++++++++++++++
+> >  2 files changed, 52 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/clk/mediatek/clk-mt8195-ccu.c
+> > 
+> > diff --git a/drivers/clk/mediatek/Makefile
+> > b/drivers/clk/mediatek/Makefile
+> > index 718bbb04191b..03fb020834f3 100644
+> > --- a/drivers/clk/mediatek/Makefile
+> > +++ b/drivers/clk/mediatek/Makefile
+> > @@ -80,6 +80,7 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-
+> > mt8192-msdc.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
+> >  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
+> > -obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-
+> > mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-
+> > mt8195-cam.o
+> > +obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-
+> > mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-
+> > mt8195-cam.o \
+> > +                                       clk-mt8195-ccu.o
+> 
+> When wrapping, please align with previous line. "clk-mt8195-ccu.o"
+> should
+> align with "clk-mt8195-apmixedsys.o".
+> 
+> 
+> ChenYu
 
