@@ -2,98 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B85340633F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 02:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 113A740650A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 03:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233167AbhIJAqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 20:46:36 -0400
-Received: from conssluserg-02.nifty.com ([210.131.2.81]:56840 "EHLO
-        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236385AbhIJA3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 20:29:53 -0400
-X-Greylist: delayed 41542 seconds by postgrey-1.27 at vger.kernel.org; Thu, 09 Sep 2021 20:29:52 EDT
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50]) (authenticated)
-        by conssluserg-02.nifty.com with ESMTP id 18A0SMaI003027;
-        Fri, 10 Sep 2021 09:28:22 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 18A0SMaI003027
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1631233703;
-        bh=3BKQgzHIpldXuMHUJ6SaQQUNOmT0VJRr0GBhL34/P2c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SmQ8gJjUW5qCQBoxvKCfTgv+uQUgADXrxiSO193JbR71wEGJyRpeybxD2r0j1cPrk
-         zVX9Fffjuuo7MIRpkPN83vlH2Q6gKuT9nAzta5B4BMvbx2xFEOOqFhg2oMjLcvjqTJ
-         z6kDeJv+HUvKDXTVjkCDSAHsmvfZZ3piODTPpDaLPMwpM6+FNq71m7ItsS58WVagp9
-         Au8s99s9lYkVD08kEo1Z+wis3O/T2OIBOFUux3Ip3Cdk3loqUJhDz6YAZIqu4bGMew
-         /y8qfTMLvcSbizAjb3M2laEliIJ65HyyLIJZLCl6NiZEZOBQtxIXbePMFOh9TpA3mS
-         PEDccKuURGdmg==
-X-Nifty-SrcIP: [209.85.216.50]
-Received: by mail-pj1-f50.google.com with SMTP id gp20-20020a17090adf1400b00196b761920aso243508pjb.3;
-        Thu, 09 Sep 2021 17:28:22 -0700 (PDT)
-X-Gm-Message-State: AOAM531jWlcz5xXyH4LGxcSAgloLjkFMF3E7tV2CYi2ZwWQN4w0a1LIP
-        mKcezbH7CXL9GfMCx4eaTgmgFdV9wnJ17WUC4bU=
-X-Google-Smtp-Source: ABdhPJzD06aFs0p/r4Q9yVgjNgi9sLrgBCBxV2NQtWqdP6NM/aEatdL0eTrM0VaY63R0ni0GHq0J+dlHnIb5BVBDpwI=
-X-Received: by 2002:a17:90a:192:: with SMTP id 18mr6573730pjc.119.1631233702032;
- Thu, 09 Sep 2021 17:28:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210909213118.1087083-1-robh@kernel.org> <20210909213118.1087083-9-robh@kernel.org>
-In-Reply-To: <20210909213118.1087083-9-robh@kernel.org>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Fri, 10 Sep 2021 09:27:45 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQx8yqUdEWOmYqq2Mqk5BVuqc1w3rOcVm2Bb5wDSFRXaA@mail.gmail.com>
-Message-ID: <CAK7LNAQx8yqUdEWOmYqq2Mqk5BVuqc1w3rOcVm2Bb5wDSFRXaA@mail.gmail.com>
-Subject: Re: [PATCH 8/8] kbuild: Enable dtc 'unit_address_format' warning by default
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-leds@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+        id S238883AbhIJBXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 21:23:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51426 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233536AbhIJBXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 21:23:07 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E660EC0613BB
+        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 18:14:57 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id f64-20020a2538430000b0290593bfc4b046so316248yba.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 18:14:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=85stIuvqC7qXvT5OV0bxpCSRV3islXlTG8FuUpmB6wU=;
+        b=nPp1DZY5v8HPhBDJ8jyynRo0qkVY4WIpV/P2Z4KrAH+CXnr+lJO+uYbYGSMnNsuFH0
+         1hCEfbFVCkaBdzRO/ZMU1H+jW59xthzaQ2XaSIT+pbM/nhPjkSiQorLtd+RxgzMYK1P2
+         Ch1Dn6ZXH1PsY7OGl293RP8ACT3dlLcEOpziT0xI3N1+R8m8Ghzm722s1qxmPgZEOvjn
+         iqFc3tBiKqUUw6+lEm6ZHHyUVl6Ntpp1ss1hrYBsldFVV+JhACJuz0zkNtqps5QsUVuz
+         XIG9qvbJk6nar/cnBNhzNnFqgHtz18SdPSBjLZ/eYu6pdyEOrFPCja/0m4ZNsu2BKRNg
+         FUWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=85stIuvqC7qXvT5OV0bxpCSRV3islXlTG8FuUpmB6wU=;
+        b=N2IlNxt6wc9ca6osZ7VSx2SgxKHUwRLiIf9f8VggqRVMp7dZkE9Pv2eSFL9fYZwCpW
+         +q7S9egcytTWm/0VEMZXs87Sdbnf7ASB7CFT3DQ66X+oLDsfMNuo/VxX8OdjybI11sTP
+         Jc+98hKgf18ECgf7DTL16zPkB1+FAEWtnh4/WO/Mq+VtbZ94dulFBOZVaS78ix04vRS5
+         jH1LsB53p85EzUhM+YnOaQEdQmR1ak20EI4wo0DrtFlMp7Qvn+BaifJlBadYoxMoUznB
+         37vq9v5rjlezS1q2IviQCbIuy0WLHEVBwL4AFARHwsqWRjnUSLfmKYhlxPPSiDdZYUMg
+         MeHA==
+X-Gm-Message-State: AOAM532DNjRh+VkIpYk8Cl/uvnUuwvVUsL3H6QPnP4r/1Qcgo+GKtoG0
+        5jozV/VMmaF/3LQ9CCmoPNK01K9gvbaFjC8=
+X-Google-Smtp-Source: ABdhPJzz94EF6js4TQNESTU8ocFK+QyflQuccilOIE6oq/6PZh3SN0Dg+hA+CzGTYuc99t12ZwOKjZ7ruFbm42Q=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:dada:6772:417c:a317])
+ (user=saravanak job=sendgmr) by 2002:a05:6902:102f:: with SMTP id
+ x15mr7805359ybt.81.1631236497165; Thu, 09 Sep 2021 18:14:57 -0700 (PDT)
+Date:   Thu,  9 Sep 2021 18:14:45 -0700
+Message-Id: <20210910011446.3208894-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.33.0.309.g3052b89438-goog
+Subject: [PATCH] of: property: Disable fw_devlink DT support for X86
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     Andre Muller <andre.muller@web.de>, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 10, 2021 at 6:31 AM Rob Herring <robh@kernel.org> wrote:
->
-> With all the 'unit_address_format' warnings fixed, enable the warning by
-> default.
->
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
+Andre reported fw_devlink=on breaking OLPC XO-1.5 [1].
 
-Acked-by: Masahiro Yamada <masahiroy@kernel.org>
+OLPC XO-1.5 is an X86 system that uses a mix of ACPI and OF to populate
+devices. The root cause seems to be ISA devices not setting their fwnode
+field. But trying to figure out how to fix that doesn't seem worth the
+trouble because the OLPC devicetree is very sparse/limited and fw_devlink
+only adds the links causing this issue. Considering that there aren't many
+users of OF in an X86 system, simply fw_devlink DT support for X86.
 
-> Cc: Michal Marek <michal.lkml@markovi.net>
-> Cc: Nick Desaulniers <ndesaulniers@google.com>
-> Cc: linux-kbuild@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  scripts/Makefile.lib | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index 54582673fc1a..56d50eb0cd80 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -310,7 +310,6 @@ DTC_FLAGS += -Wno-interrupt_provider
->  # Disable noisy checks by default
->  ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
->  DTC_FLAGS += -Wno-unit_address_vs_reg \
-> -       -Wno-unit_address_format \
->         -Wno-avoid_unnecessary_addr_size \
->         -Wno-alias_paths \
->         -Wno-graph_child_address \
-> --
-> 2.30.2
->
+[1] - https://lore.kernel.org/lkml/3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de/
+Fixes: ea718c699055 ("Revert "Revert "driver core: Set fw_devlink=on by default""")
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+Cc: Andre Muller <andre.muller@web.de>
+---
+ drivers/of/property.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 0c0dc2e369c0..3fd74bb34819 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1444,6 +1444,9 @@ static int of_fwnode_add_links(struct fwnode_handle *fwnode)
+ 	struct property *p;
+ 	struct device_node *con_np = to_of_node(fwnode);
+ 
++	if (IS_ENABLED(CONFIG_X86))
++		return 0;
++
+ 	if (!con_np)
+ 		return -EINVAL;
+ 
 -- 
-Best Regards
-Masahiro Yamada
+2.33.0.309.g3052b89438-goog
+
