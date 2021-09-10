@@ -2,125 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3DB4062EF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 02:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B85340633F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 02:46:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241022AbhIJAqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 20:46:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48856 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234458AbhIJAXX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Sep 2021 20:23:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 466CC60FC0;
-        Fri, 10 Sep 2021 00:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631233333;
-        bh=0qoPz0XxPfXHdEYRMLp8Eu5l/yKnCJEtPrEdBPPsYCY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OZRiGW60AyTQbjGw9XCJ+nc6o9Ad1Va58IBU3QX88Nx+PD63MWpjKPUFvS4VViI74
-         Acp9vokF+qdxKXwLtvMCfmfzyrXYp261YJdndTcuLX7wM2GlUjSJaoFnMp5zbffSq0
-         mzrWgo3VZVxG0huyDnauz9UqLnR0WPgtFgvD2cRnO0SbN0ZvQxW2ZaWJUbLRv9NiMV
-         RHLIQp2085vM5f4JxkGt1rR4OBDqFWUOmAAeMRnSABO544X3qlfJMEo/N7GFKLHnT3
-         ApJEWeuXHBA9tncVV9bP+hC6T1I5fpRdLmCc1gdZLjyJwXoZxLf9heWo/fnCTHklGC
-         8MeTKLmxt6ZBw==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sasha Levin <sashal@kernel.org>, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 22/37] MIPS: mscc: ocelot: mark the phy-mode for internal PHY ports
-Date:   Thu,  9 Sep 2021 20:21:27 -0400
-Message-Id: <20210910002143.175731-22-sashal@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210910002143.175731-1-sashal@kernel.org>
-References: <20210910002143.175731-1-sashal@kernel.org>
+        id S233167AbhIJAqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 20:46:36 -0400
+Received: from conssluserg-02.nifty.com ([210.131.2.81]:56840 "EHLO
+        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236385AbhIJA3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 20:29:53 -0400
+X-Greylist: delayed 41542 seconds by postgrey-1.27 at vger.kernel.org; Thu, 09 Sep 2021 20:29:52 EDT
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id 18A0SMaI003027;
+        Fri, 10 Sep 2021 09:28:22 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 18A0SMaI003027
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1631233703;
+        bh=3BKQgzHIpldXuMHUJ6SaQQUNOmT0VJRr0GBhL34/P2c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=SmQ8gJjUW5qCQBoxvKCfTgv+uQUgADXrxiSO193JbR71wEGJyRpeybxD2r0j1cPrk
+         zVX9Fffjuuo7MIRpkPN83vlH2Q6gKuT9nAzta5B4BMvbx2xFEOOqFhg2oMjLcvjqTJ
+         z6kDeJv+HUvKDXTVjkCDSAHsmvfZZ3piODTPpDaLPMwpM6+FNq71m7ItsS58WVagp9
+         Au8s99s9lYkVD08kEo1Z+wis3O/T2OIBOFUux3Ip3Cdk3loqUJhDz6YAZIqu4bGMew
+         /y8qfTMLvcSbizAjb3M2laEliIJ65HyyLIJZLCl6NiZEZOBQtxIXbePMFOh9TpA3mS
+         PEDccKuURGdmg==
+X-Nifty-SrcIP: [209.85.216.50]
+Received: by mail-pj1-f50.google.com with SMTP id gp20-20020a17090adf1400b00196b761920aso243508pjb.3;
+        Thu, 09 Sep 2021 17:28:22 -0700 (PDT)
+X-Gm-Message-State: AOAM531jWlcz5xXyH4LGxcSAgloLjkFMF3E7tV2CYi2ZwWQN4w0a1LIP
+        mKcezbH7CXL9GfMCx4eaTgmgFdV9wnJ17WUC4bU=
+X-Google-Smtp-Source: ABdhPJzD06aFs0p/r4Q9yVgjNgi9sLrgBCBxV2NQtWqdP6NM/aEatdL0eTrM0VaY63R0ni0GHq0J+dlHnIb5BVBDpwI=
+X-Received: by 2002:a17:90a:192:: with SMTP id 18mr6573730pjc.119.1631233702032;
+ Thu, 09 Sep 2021 17:28:22 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <20210909213118.1087083-1-robh@kernel.org> <20210909213118.1087083-9-robh@kernel.org>
+In-Reply-To: <20210909213118.1087083-9-robh@kernel.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Fri, 10 Sep 2021 09:27:45 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQx8yqUdEWOmYqq2Mqk5BVuqc1w3rOcVm2Bb5wDSFRXaA@mail.gmail.com>
+Message-ID: <CAK7LNAQx8yqUdEWOmYqq2Mqk5BVuqc1w3rOcVm2Bb5wDSFRXaA@mail.gmail.com>
+Subject: Re: [PATCH 8/8] kbuild: Enable dtc 'unit_address_format' warning by default
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Fri, Sep 10, 2021 at 6:31 AM Rob Herring <robh@kernel.org> wrote:
+>
+> With all the 'unit_address_format' warnings fixed, enable the warning by
+> default.
+>
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
 
-[ Upstream commit eba54cbb92d28b4f6dc1ed5f73f5187b09d82c08 ]
+Acked-by: Masahiro Yamada <masahiroy@kernel.org>
 
-The ocelot driver was converted to phylink, and that expects a valid
-phy_interface_t. Without a phy-mode, of_get_phy_mode returns
-PHY_INTERFACE_MODE_NA, which is not ideal because phylink rejects that.
+> Cc: Michal Marek <michal.lkml@markovi.net>
+> Cc: Nick Desaulniers <ndesaulniers@google.com>
+> Cc: linux-kbuild@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  scripts/Makefile.lib | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> index 54582673fc1a..56d50eb0cd80 100644
+> --- a/scripts/Makefile.lib
+> +++ b/scripts/Makefile.lib
+> @@ -310,7 +310,6 @@ DTC_FLAGS += -Wno-interrupt_provider
+>  # Disable noisy checks by default
+>  ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
+>  DTC_FLAGS += -Wno-unit_address_vs_reg \
+> -       -Wno-unit_address_format \
+>         -Wno-avoid_unnecessary_addr_size \
+>         -Wno-alias_paths \
+>         -Wno-graph_child_address \
+> --
+> 2.30.2
+>
 
-The ocelot driver was patched to treat PHY_INTERFACE_MODE_NA as
-PHY_INTERFACE_MODE_INTERNAL to work with the broken DT blobs, but we
-should fix the device trees and specify the phy-mode too.
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/mips/boot/dts/mscc/ocelot_pcb120.dts | 4 ++++
- arch/mips/boot/dts/mscc/ocelot_pcb123.dts | 4 ++++
- 2 files changed, 8 insertions(+)
-
-diff --git a/arch/mips/boot/dts/mscc/ocelot_pcb120.dts b/arch/mips/boot/dts/mscc/ocelot_pcb120.dts
-index 7da9ed2da248..8555fe3e9517 100644
---- a/arch/mips/boot/dts/mscc/ocelot_pcb120.dts
-+++ b/arch/mips/boot/dts/mscc/ocelot_pcb120.dts
-@@ -61,21 +61,25 @@ phy4: ethernet-phy@3 {
- &port0 {
- 	status = "okay";
- 	phy-handle = <&phy0>;
-+	phy-mode = "internal";
- };
- 
- &port1 {
- 	status = "okay";
- 	phy-handle = <&phy1>;
-+	phy-mode = "internal";
- };
- 
- &port2 {
- 	status = "okay";
- 	phy-handle = <&phy2>;
-+	phy-mode = "internal";
- };
- 
- &port3 {
- 	status = "okay";
- 	phy-handle = <&phy3>;
-+	phy-mode = "internal";
- };
- 
- &port4 {
-diff --git a/arch/mips/boot/dts/mscc/ocelot_pcb123.dts b/arch/mips/boot/dts/mscc/ocelot_pcb123.dts
-index 7d7e638791dd..0185045c7630 100644
---- a/arch/mips/boot/dts/mscc/ocelot_pcb123.dts
-+++ b/arch/mips/boot/dts/mscc/ocelot_pcb123.dts
-@@ -49,19 +49,23 @@ &mdio0 {
- &port0 {
- 	status = "okay";
- 	phy-handle = <&phy0>;
-+	phy-mode = "internal";
- };
- 
- &port1 {
- 	status = "okay";
- 	phy-handle = <&phy1>;
-+	phy-mode = "internal";
- };
- 
- &port2 {
- 	status = "okay";
- 	phy-handle = <&phy2>;
-+	phy-mode = "internal";
- };
- 
- &port3 {
- 	status = "okay";
- 	phy-handle = <&phy3>;
-+	phy-mode = "internal";
- };
 -- 
-2.30.2
-
+Best Regards
+Masahiro Yamada
