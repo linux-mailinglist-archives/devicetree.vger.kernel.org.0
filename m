@@ -2,77 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5594A4066B5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 07:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4846A406711
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 08:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbhIJF1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 01:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230037AbhIJF1E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 01:27:04 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6FDFC061574;
-        Thu,  9 Sep 2021 22:25:53 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id q3so426994plx.4;
-        Thu, 09 Sep 2021 22:25:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=eYB4xclX6nU8BjBKvkhYddYsIz6ktkELU80e97kp5Jw=;
-        b=ojOWpgQ4RATCnuf5Hz1tLXf7TD90hXaK2FTKQ3T5a2YlM5SgA4bpxKpjBLmIByz+In
-         MdtZmEcHAatuOLU2Pny5o5jI+IojDy9h7tVrlgfYwUefvJscZwTZZKdwq3/4AMAoa7Xq
-         AQvG5NqlQQ32BY4buQVc35Vh2DGcAVoSkg4aUU6hdoT1u7sirhVLswkW6/MOQ+t6vwEd
-         xnl8l0WU+0MxyA3fGekzIHUWc/k/QGuwgRl++mMy2jp3OsyrCasWHVrbS+VEvRCqdBPE
-         Y+zlTuwkrkCRLUlib8Ql9k+z2YZqDmsCtTaeCXg/6IblW0aAH5AM3n/ORM98DrIcIyUF
-         f6Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eYB4xclX6nU8BjBKvkhYddYsIz6ktkELU80e97kp5Jw=;
-        b=D81Tcj/BTlQu+0Gik/aPkOoSJ6yagYr0dB9ve6IHfkRQX7kHj21yUcOu5LBooFKU5T
-         SZ/5u3Ycs8nIpZsr04VhsFpEX2gLIRx+Deq0cGDlFpDrL6KcoJRYLa6PIlvNJWY5qq9T
-         /uICi2Gny3NrmGpTxT4OwnaqYS1O7/vX+5c/5undO7uawH10tdDrK8JRK5831Vc5fFoF
-         ioxSivfuQm0X82Jo7Xym8SNLcY0hU6GYXfDpcVgkCpqG5HLGnsYUBNAnRB7j0I3CqkZ/
-         PKS1lqIFpvM9JWBf8cRaOXDsvHUH/aL7AzO+EUKp8HjedY5VW/MElrhCuqGlMtn3G6ft
-         IQxA==
-X-Gm-Message-State: AOAM533T9n5vAXONgShmLehcuqFaNLR0M7mvohureqiNzBQu3xix/E/T
-        e/K3lkQKjQTXZ8+yKFWy0jMX/bjmm7Q=
-X-Google-Smtp-Source: ABdhPJzaQIoBsDmBFfVHPJAlrQ3vMpSj5qYJbg6jYdYPt0QtCIOTD4PJt2NQf2i6fUdVXLWfRVz3Tg==
-X-Received: by 2002:a17:90a:2dc7:: with SMTP id q7mr7499790pjm.231.1631251553315;
-        Thu, 09 Sep 2021 22:25:53 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:acdc:1d22:e20a:2796])
-        by smtp.gmail.com with ESMTPSA id z12sm3688441pfe.79.2021.09.09.22.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Sep 2021 22:25:52 -0700 (PDT)
-Date:   Thu, 9 Sep 2021 22:25:49 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 2/2] dt-bindings: input: Add binding for cypress-sf
-Message-ID: <YTrsXU0KPQVsKcQN@google.com>
-References: <20210907174341.422013-1-y.oudjana@protonmail.com>
- <20210907174341.422013-3-y.oudjana@protonmail.com>
+        id S230429AbhIJGKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 02:10:19 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:9475 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230417AbhIJGKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 02:10:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1631254148; x=1662790148;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=rMISBhDoirXhSZzIMJvsSzelGB83Eh0UtdpXSnUSB5k=;
+  b=loJqPfLTs09B5EeOAE+SKIeNflburkQyxwLcUxdyLLSQq5J9sNkcMt7p
+   /o59FIqbYawHvv5NJJReqUzBYVHdWAcd+MTqMHZjv4ZZ+dqQ5v6dQbDEG
+   iG1fc9EOTLpeFoUr3n3WzvJBvk/mnFgbFRodt9+enXUk8byHawSmV/NQ+
+   7bC09PhR2gnD4Jry1gAemAlucLKf0KtWs1aVxTJn4Vt0mKP87foOqS/c7
+   OtAANyYAHS9a5Ydgmil0jA1WWz0FTsV+j7JDGdD8W9rGk3oCTqWJqSt+l
+   GbeA8a3v84xQ2vJ0BRPd4ihSqgG0YUS9Ho4hu2Cun3/PmrhQtO5bVyFaL
+   w==;
+IronPort-SDR: hJX4tHPpMy6RHIXo7Q7AzwVwbNShvcROajRz4d4BPnP91LAa0VQH+iFK/NXkLUAnS+smOHbM+M
+ CM0d1OUrKlPowCrzrDUZCH7q1wc/jHQ6OXT+Ajsdwk5xBN60IgT6xqskRPyqci1j5uRHVHllCz
+ X4uNEHUA9dNiGd4aj2KiTGd95Agk9qg0VHiA+Ppiokb7rGvjeEwvcrwfcgwEJSBW+Wr1UfjRpX
+ LL6LT19T0hPUCfxNO+k6eXE/bpKk41W0/67UQgMJVNCRFR1nL6wNXB89jirI8BdhOeHWvhUJFK
+ 2WQKlJ0GkuWpYRAImV23z05J
+X-IronPort-AV: E=Sophos;i="5.85,282,1624345200"; 
+   d="scan'208";a="68849088"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Sep 2021 23:09:07 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 9 Sep 2021 23:09:07 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 9 Sep 2021 23:09:03 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v3 0/2] irqchip/mchp-eic: add driver for Microchip EIC
+Date:   Fri, 10 Sep 2021 09:06:54 +0300
+Message-ID: <20210910060656.1061234-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210907174341.422013-3-y.oudjana@protonmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 07, 2021 at 05:44:13PM +0000, Yassine Oudjana wrote:
-> Add a device tree binding for Cypress StreetFighter.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Hi,
 
-Applied, thank you.
+This patch adds support for Microchip External Interrupt Controller
+present on SAMA7G5. The controller supports for 2 external interrupt
+lines and is connected to GIC as follows:
+
+pinX   +------+ EXT_IRQ0 +------+ int 153 (for pinX) +------+
+------>|      |--------->|      |------------------->|      |
+pinY   | PIO  | EXT_IRQ1 | EIC  | int 154 (for pinY) | GIC  |
+------>|      |--------->|      |------------------->|      |
+       +------+          +------+                    +------+
+
+where PIO is the pin controller.
+
+Thank you,
+Claudiu Beznea
+
+Changes in v2:
+- fix compilation warning on bindings
+
+Changes in v2:
+- s/mchp/microchip in bindings
+- get rid of glitch filter settings
+- use s/eic@/interrupt-controller@ in bindings
+- removed '' around interrupts in bindings as proposed by Rob
+- removed glitch filter settings
+- switched to hierarchical irqchip driver
+- addressed review comments
+- use builtin_platform_driver instead of module_platform_driver
+
+Claudiu Beznea (2):
+  dt-bindings: microchip,eic: add bindings
+  irqchip/mchp-eic: add support
+
+ .../interrupt-controller/microchip,eic.yaml   |  73 ++++
+ MAINTAINERS                                   |   6 +
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-mchp-eic.c                | 314 ++++++++++++++++++
+ 5 files changed, 402 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/microchip,eic.yaml
+ create mode 100644 drivers/irqchip/irq-mchp-eic.c
 
 -- 
-Dmitry
+2.25.1
+
