@@ -2,226 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F6F0406C7F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 14:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCFB406C9A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 15:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233130AbhIJMxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 08:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
+        id S233270AbhIJNFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 09:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233095AbhIJMxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 08:53:08 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF27C061574;
-        Fri, 10 Sep 2021 05:51:57 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id n14-20020a05600c3b8e00b002f8bd2f8ab6so1372923wms.5;
-        Fri, 10 Sep 2021 05:51:57 -0700 (PDT)
+        with ESMTP id S233185AbhIJNFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 09:05:05 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3CBC061574
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 06:03:54 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id k15-20020a25240f000000b0059efafc5a58so2267931ybk.11
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 06:03:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T0Kza21M5RkTzf291TUHaFKlBPBGzvLm8pO18XxAdkU=;
-        b=okHmHXfqY/Jx9vlmHAH+Mn9jwD9yT/V72hOa0fulm+VjLjVTTpDTOWGMo1DXPaeMAz
-         Kdy+uc5wFIhNt5LK8YQDMcdAG7yw0NEsSYnp6W/b7Qf7lL4ZmMjdYa7LE66nO8LODBOJ
-         n6yRU8O0DpDEX8tNLzpBPsDZYZcMQFFzAuVe+yuxjCynZEUy1KyC8IYrUhev53EYyqME
-         ps3c7BNBqkW3sZauO29gIfRopLRGNnBmvaS674DKYajnGfoPZDXiXg5Ckzo87rjxmMrd
-         /DtWKCQ/K73IC6ewIZL4ttKF8stRP4T+JWfC+Yw+e3Av7CtRKXhFxtOpUVpVg8RPc0ta
-         Mfwg==
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=IeHMnwyPlntJ+9Kovc0kz68pxDiDtqq0mND+q+dKmuM=;
+        b=sKgWvVagldMOdNDEECLqCwWve1jCCoinf+jkuI0uSKKaw87CwABTpCgJMa08G1sBog
+         GSoQo7X+ohCUaprKgAFsuGvCHDI96KQu7rxQcNvWNqFrGSXJKZe7lJyWFxmL6vmF4+64
+         Hj4ktl/1e/DfaF2imiRHWX5M7iZuzOKLTyJDZAG5AwI0AVsBTu1PTYGlNE7kwevibGMq
+         uBhjxsfdfI7EIkYa/iBLYNO5qtn9/7maIqwssW3QGjfs5uuTt4C564oVC8elXz+IgtxR
+         UUfxt/ZTl8ta6/TeBn6DX3X2C4yUoM/O4mtrgL7T6gO74ZZ9qrlX8E56fENOEZwAFPcs
+         baKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T0Kza21M5RkTzf291TUHaFKlBPBGzvLm8pO18XxAdkU=;
-        b=GWhMxlxZDMz2YBht8HPsDTqKDIoP2inwHU4URiQlabtoC9crMZQWyn7pP89U7EBDKd
-         wt2skdOmLAqUiHdvLQEonG21R5716Hek+n7asHpgsOVUrOtxuapHz49LV7bTG8yePq37
-         0g97aKr2oMcxd+CuRwSZWqIrfWbMAu4VlrvPUVTEC24Sh7zFGMo5ZUGk2qp5pyOTVLRc
-         4QicUxtnLP2KC2eCU+gbaP/zKhyHzcIQvKilvy4YNKCMB5xm91+Du72GSwllmQ1RvwVJ
-         vsq8NQPANoRl3RM0TRYvIT2Z8/vCP4O24CV4YMLpWvpVZvEHK2Y+t6KjeuJ7rCTZEWMo
-         ZKvA==
-X-Gm-Message-State: AOAM5327A50cE1nD1tq2Rv7LdXLvIg8acgW0J1OcdFO8I1wMZeGyzMHZ
-        jCJrd3skpfyhkU/2RI59TyUE5KXDyIUbEkZqr3o=
-X-Google-Smtp-Source: ABdhPJwFbByDUlrrsQ6dQpRSGNqUcCD/KStLeVUDLPXetuY5wqSXTm+TQjY8RRqdkVfmvdTqDfZmaXjT3968OYGAPO4=
-X-Received: by 2002:a1c:4e02:: with SMTP id g2mr8342202wmh.91.1631278316328;
- Fri, 10 Sep 2021 05:51:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com> <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com>
-In-Reply-To: <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Fri, 10 Sep 2021 15:51:44 +0300
-Message-ID: <CAEnQRZBi6pMbuHTJF4yNzX_Lh-pYZc3LTNuKVs5pk-hNS-OWMQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] dt-bindings: dsp: fsl: update binding document for
- remote proc driver
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        linux-remoteproc@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=IeHMnwyPlntJ+9Kovc0kz68pxDiDtqq0mND+q+dKmuM=;
+        b=NjOsmmdOVsT9TAwpuuVukRY3/BELcPyy4/E8fXwnlesXjTVmEj6kFPnYSSAia6Lo87
+         fQv2uMQQmtqxpDYTrDUkwYjp8gcxmRYGGDDjzdn3kx+hV3TKgVJOonlti2Of8WwucENY
+         RAJEo5LLmMYFLFRwxny2I/8MqiQJG6FNvS3kwBXcQOBY1YGvzXR/JSWUET0quNFQujbO
+         Y7s0eKrPsxT7KWu0Hn8OKPkfMqkyLFfWoUPXhfjtkv3h6VM7LQbB449IKKLLywlRs82T
+         ZxP48Gyr4AwG6D+vnPxxlbvAtyL+nJ+zV4BoLZmb6KFQn8TI7NBXAPv9z6YLBgKvcqIB
+         Nxrw==
+X-Gm-Message-State: AOAM530RaA09hVxfuqBMcciXH0g0R5neZOD2W4nP8WY3OEDXW1pH+CvR
+        KZMD91AlJruQdB37kvvHej/WEwM=
+X-Google-Smtp-Source: ABdhPJxECZOcpBv/gTuYUDejgHhSKgS8eXKrifNj6j6UICA9ZTxdVUE4iSeud8Rg6KKovjhPkNFB1hA=
+X-Received: from osk.cam.corp.google.com ([2620:0:1004:1a:42c6:8506:76cb:83dc])
+ (user=osk job=sendgmr) by 2002:a5b:9c9:: with SMTP id y9mr11340666ybq.460.1631279033973;
+ Fri, 10 Sep 2021 06:03:53 -0700 (PDT)
+Date:   Fri, 10 Sep 2021 09:03:37 -0400
+Message-Id: <20210910130337.2025426-1-osk@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.33.0.309.g3052b89438-goog
+Subject: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+From:   Oskar Senft <osk@google.com>
+To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, Oskar Senft <osk@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 8, 2021 at 12:39 PM Shengjiu Wang <shengjiu.wang@nxp.com> wrote:
->
-> As there are two drivers for DSP on i.MX, one is for sound open
-> firmware, another is for remote processor framework. In order to
-> distinguish two kinds of driver, defining different compatible strings.
->
-> For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> are needed and the mailbox channel is different with SOF.
->
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Document bindings for the Nuvoton NCT7802Y driver.
 
-Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Oskar Senft <osk@google.com>
+---
+ .../bindings/hwmon/nuvoton,nct7802.yaml       | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
 
-> ---
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
->  1 file changed, 75 insertions(+), 6 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> index 7afc9f2be13a..51ea657f6d42 100644
-> --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
->
->  maintainers:
->    - Daniel Baluta <daniel.baluta@nxp.com>
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
->
->  description: |
->    Some boards from i.MX8 family contain a DSP core used for
-> @@ -19,6 +20,10 @@ properties:
->        - fsl,imx8qxp-dsp
->        - fsl,imx8qm-dsp
->        - fsl,imx8mp-dsp
-> +      - fsl,imx8qxp-hifi4
-> +      - fsl,imx8qm-hifi4
-> +      - fsl,imx8mp-hifi4
-> +      - fsl,imx8ulp-hifi4
->
->    reg:
->      maxItems: 1
-> @@ -28,37 +33,63 @@ properties:
->        - description: ipg clock
->        - description: ocram clock
->        - description: core clock
-> +      - description: debug interface clock
-> +      - description: message unit clock
-> +    minItems: 3
-> +    maxItems: 5
->
->    clock-names:
->      items:
->        - const: ipg
->        - const: ocram
->        - const: core
-> +      - const: debug
-> +      - const: mu
-> +    minItems: 3
-> +    maxItems: 5
->
->    power-domains:
->      description:
->        List of phandle and PM domain specifier as documented in
->        Documentation/devicetree/bindings/power/power_domain.txt
-> +    minItems: 1
->      maxItems: 4
->
->    mboxes:
->      description:
->        List of <&phandle type channel> - 2 channels for TXDB, 2 channels for RXDB
-> +      or - 1 channel for TX, 1 channel for RX, 1 channel for RXDB
->        (see mailbox/fsl,mu.txt)
-> +    minItems: 3
->      maxItems: 4
->
->    mbox-names:
-> -    items:
-> -      - const: txdb0
-> -      - const: txdb1
-> -      - const: rxdb0
-> -      - const: rxdb1
-> +    oneOf:
-> +      - items:
-> +          - const: txdb0
-> +          - const: txdb1
-> +          - const: rxdb0
-> +          - const: rxdb1
-> +      - items:
-> +          - const: tx
-> +          - const: rx
-> +          - const: rxdb
->
->    memory-region:
->      description:
->        phandle to a node describing reserved memory (System RAM memory)
->        used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  firmware-name:
-> +    description: |
-> +      Default name of the firmware to load to the remote processor.
-> +
-> +  fsl,dsp-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to syscon block which provide access for processor enablement
->
->  required:
->    - compatible
-> @@ -91,3 +122,41 @@ examples:
->          mboxes = <&lsio_mu13 2 0>, <&lsio_mu13 2 1>, <&lsio_mu13 3 0>, <&lsio_mu13 3 1>;
->          memory-region = <&dsp_reserved>;
->      };
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    dsp_reserved: dsp@92400000 {
-> +      reg = <0x92400000 0x1000000>;
-> +      no-map;
-> +    };
-> +    dsp_vdev0vring0: vdev0vring0@942f0000 {
-> +      reg = <0x942f0000 0x8000>;
-> +      no-map;
-> +    };
-> +    dsp_vdev0vring1: vdev0vring1@942f8000 {
-> +      reg = <0x942f8000 0x8000>;
-> +      no-map;
-> +    };
-> +    dsp_vdev0buffer: vdev0buffer@94300000 {
-> +      compatible = "shared-dma-pool";
-> +      reg = <0x94300000 0x100000>;
-> +      no-map;
-> +    };
-> +
-> +    dsp: dsp@3b6e8000 {
-> +      compatible = "fsl,imx8mp-hifi4";
-> +      reg = <0x3B6E8000 0x88000>;
-> +      clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
-> +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_OCRAMA_IPG>,
-> +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
-> +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSPDBG_ROOT>;
-> +      clock-names = "ipg", "ocram", "core", "debug";
-> +      firmware-name = "imx/dsp/hifi4.bin";
-> +      power-domains = <&audiomix_pd>;
-> +      mbox-names = "tx", "rx", "rxdb";
-> +      mboxes = <&mu2 0 0>,
-> +               <&mu2 1 0>,
-> +               <&mu2 3 0>;
-> +      memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-> +                      <&dsp_vdev0vring1>, <&dsp_reserved>;
-> +      fsl,dsp-ctrl = <&audio_blk_ctrl>;
-> +    };
-> --
-> 2.17.1
->
+diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+new file mode 100644
+index 000000000000..bc4b69aeb116
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7802.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton NCT7802Y Hardware Monitoring IC
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++
++description: |
++  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
++  5 remote temperature sensors with SMBus interface.
++
++  Datasheets:
++    https://www.nuvoton.com/export/resource-files/Nuvoton_NCT7802Y_Datasheet_V12.pdf
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,nct7802
++
++  reg:
++    maxItems: 1
++
++  nuvoton,rtd-modes:
++    description: |
++      Select modes for the three RTDs.
++
++      The order is RTD1, RTD2, RTD3.
++
++      Valid values for RTD1 and RTD2 are:
++        "closed",
++        "current",
++        "thermistor",
++        "voltage"
++
++      Valid values for RTD3 are:
++        "closed",
++        "thermistor",
++        "voltage"
++    type: stringlist
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nct7802@28 {
++            compatible = "nuvoton,nct7802";
++            reg = <0x28>;
++            nuvoton,sensor-modes =
++              /* RTD1 */ "thermistor",
++              /* RTD2 */ "voltage",
++              /* RTD3 */ "closed";
++        };
++    };
+-- 
+2.33.0.309.g3052b89438-goog
+
