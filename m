@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72EBA4072CB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 23:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 667A84072DA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 23:19:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234092AbhIJVFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 17:05:45 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:44852 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233736AbhIJVFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 17:05:45 -0400
-Received: by mail-ot1-f53.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so3998028otg.11;
-        Fri, 10 Sep 2021 14:04:33 -0700 (PDT)
+        id S234451AbhIJVUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 17:20:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37242 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233245AbhIJVU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 17:20:26 -0400
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2546AC061574
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 14:19:14 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id y18so4109576ioc.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 14:19:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5lhyZTASH4SJRYSNnAF6nepknOxCtJqItrbtMVPCI0I=;
+        b=HqKsNG9+E/mQtTSc/qswsz3jUSkK53rxZSIixGE9gzqlmB/R5arNOEIhFALiap9nOZ
+         Qh4qv/DoUYwk3jrqlEpTng0e56wwgvnUoqWbc9CAb8q2XlxLEGrmbKEEmlZUWDOm3ZVC
+         fZ5eKKXsnu6FK6QIN+kKvYtG5i8SC/c0vlCI0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=vgHIM4Ct31Y31nZq6uyxNUaBJB+NoA1rPrBjIZ9bcLA=;
-        b=e68TXzk4aApcZzQg9iYVfFHa3LQXf8yUIkdufWEoXYDRwbiE7a4eDFq8d5RfxjlfkI
-         4D9DW3SzHc7exeSmF0xy/4TKfMGOZ8sW4bH9cE5Z1/V+/CleW0HVP66moP/glYt/L5M/
-         30X0nfWfosWT1o4c4egOH9X95w3XyenKaoQF6qb9qXJH7V4zGK9wWCc89mpnvK9yLE06
-         R0gG0mWwajZ3NAZLX7l3YU5iUvszgY68Q9s1Bz1gq+y0F49MFcCSsSXon4SjloJEF65O
-         jpM+QpgGYywqzy5p7Xk1JUT0zptj0i5PmH83642iQTHeMrojgY836Pt8Qx1M93efk/zP
-         T0gw==
-X-Gm-Message-State: AOAM533Lfcx2DRyUjCDMaMe+ieCdTNdea0PTyjS3jQVazb54Mc5ojtSi
-        61OZg0wvS30C8/DbJJ2DwaU5vR/7TQ==
-X-Google-Smtp-Source: ABdhPJz667Jb44ra/AD13hNO/0SIw8b6ZHh1K4XA6Lv3SBIW3AcpdVu1n2MvnNI17kqtZ1EKdXL4kQ==
-X-Received: by 2002:a05:6830:78c:: with SMTP id w12mr4357491ots.196.1631307872751;
-        Fri, 10 Sep 2021 14:04:32 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 99sm1499759otd.2.2021.09.10.14.04.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Sep 2021 14:04:32 -0700 (PDT)
-Received: (nullmailer pid 3378802 invoked by uid 1000);
-        Fri, 10 Sep 2021 21:04:31 -0000
-Date:   Fri, 10 Sep 2021 16:04:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for 5.15, take 1
-Message-ID: <YTvIXzO2QJ4n9RmM@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5lhyZTASH4SJRYSNnAF6nepknOxCtJqItrbtMVPCI0I=;
+        b=yVcbFsyLl8j0KA83Mz9czzzQpAlVzijV/R9JJA0h5jT4RJeCOZaTrYb2h5Kl+nM+oM
+         MK+ngsZiK4/w0flnu134bGyfdMHTorREdc+RH52BT//vC1pK3KSDR0nZKQ3oBNTWS1m5
+         tfvIsknYEPNLbviQnjMkVr2bqMCX7UsPcIi92Fzt7B7fAqeLw+Nb6xxxVPPzJhqB+XG1
+         KOnGzcg0vt1ZpYw2s09X6XWJ6+EVTBYksB0WkY8CLab3pXVi+Ny7DdupS1sejqEI8HLq
+         bWltRyAdtRuhk6oywlnVdzGnyz6DvUM6SQk84k47embs0xy3+2c/NVHjhVa3CbdAwkb/
+         +8ig==
+X-Gm-Message-State: AOAM532ZhEVPE0iy41sYnfRibjQ1JBsJ35Yj4rEatZVtw5GLiBPubbe6
+        pOhkl4TEKIyUG3L1TJiMdwNa/X0zCinmrg==
+X-Google-Smtp-Source: ABdhPJz4Fr8f4fUtvOotbpfRfRvSHwj8zQHL0A3vDRglanAvBx0ULtAhLZvRPfDn3zD6l/9lrL883w==
+X-Received: by 2002:a6b:d915:: with SMTP id r21mr8634437ioc.76.1631308753437;
+        Fri, 10 Sep 2021 14:19:13 -0700 (PDT)
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com. [209.85.166.182])
+        by smtp.gmail.com with ESMTPSA id g19sm1651046ilb.84.2021.09.10.14.19.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Sep 2021 14:19:12 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id h29so3438868ila.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 14:19:12 -0700 (PDT)
+X-Received: by 2002:a92:da0c:: with SMTP id z12mr6317818ilm.120.1631308752557;
+ Fri, 10 Sep 2021 14:19:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid>
+In-Reply-To: <20210909122053.1.Ieafda79b74f74a2b15ed86e181c06a3060706ec5@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 10 Sep 2021 14:19:01 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UV_TG+zCsdYc5mqHFP5Cd8QuQNgYMtWNX9kENXpJXn4w@mail.gmail.com>
+Message-ID: <CAD=FV=UV_TG+zCsdYc5mqHFP5Cd8QuQNgYMtWNX9kENXpJXn4w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: Add sc7180-trogdor-homestar
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hi,
 
-Please pull a couple of DT fixes.
+On Thu, Sep 9, 2021 at 12:21 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Homestar is a trogdor variant. The DT bits are essentially the same as
+> in the downstream tree, except for:
+>
+> - skip -rev0 and rev1 which were early builds and have their issues,
+>   it's not very useful to support them upstream
+> - don't include the .dtsi for the MIPI cameras, which doesn't exist
+>   upstream
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>  .../dts/qcom/sc7180-trogdor-homestar-r2.dts   |  20 ++
+>  .../dts/qcom/sc7180-trogdor-homestar-r3.dts   |  15 +
+>  .../dts/qcom/sc7180-trogdor-homestar.dtsi     | 335 ++++++++++++++++++
+>  4 files changed, 372 insertions(+)
 
-Rob
-
-
-The following changes since commit bf9f243f23e6623f310ba03fbb14e10ec3a61290:
-
-  Merge tag '5.15-rc-ksmbd-part2' of git://git.samba.org/ksmbd (2021-09-09 16:17:14 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.15-1
-
-for you to fetch changes up to 094b147c766289baa0f370d124609c3ac2b5a420:
-
-  spi: dt-bindings: xilinx: Drop type reference on *-bits properties (2021-09-10 14:54:27 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.15, take 1:
-
-- Disable fw_devlinks on x86 DT platforms to fix OLPC
-
-- More replacing oneOf+const with enum on a few new schemas
-
-- Drop unnecessary type references on Xilinx SPI binding schema
-
-----------------------------------------------------------------
-Rob Herring (2):
-      dt-bindings: More use 'enum' instead of 'oneOf' plus 'const' entries
-      spi: dt-bindings: xilinx: Drop type reference on *-bits properties
-
-Saravana Kannan (1):
-      of: property: Disable fw_devlink DT support for X86
-
- .../devicetree/bindings/display/msm/dsi-phy-7nm.yaml       |  8 ++++----
- Documentation/devicetree/bindings/spi/omap-spi.yaml        |  6 +++---
- Documentation/devicetree/bindings/spi/spi-xilinx.yaml      |  2 --
- .../devicetree/bindings/watchdog/maxim,max63xx.yaml        | 14 +++++++-------
- drivers/of/property.c                                      |  3 +++
- 5 files changed, 17 insertions(+), 16 deletions(-)
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
