@@ -2,95 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37356407292
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 22:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87EB4072AD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 22:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233938AbhIJU2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 16:28:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53846 "EHLO
+        id S234204AbhIJUqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 16:46:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233941AbhIJU2N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 16:28:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10359C061756
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:27:02 -0700 (PDT)
-Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mOn6u-0000xM-7Z; Fri, 10 Sep 2021 22:26:56 +0200
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        patchwork-lst@pengutronix.de
-Subject: [PATCH v4 18/18] arm64: dts: imx8mm: add DISP blk-ctrl
-Date:   Fri, 10 Sep 2021 22:26:40 +0200
-Message-Id: <20210910202640.980366-19-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210910202640.980366-1-l.stach@pengutronix.de>
-References: <20210910202640.980366-1-l.stach@pengutronix.de>
+        with ESMTP id S233733AbhIJUqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 16:46:23 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AE2C061756
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:45:12 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id bq5so6531250lfb.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:45:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cHZ3QYaJRANd6Qj4KQO6L3SGyASMHRspLs55AF3AwWE=;
+        b=oWtIVPgv1HwE7IY8decgYe+XXsapaK71IYNwqcUpFV/X30cjslrTpA8ZgbGCPucza5
+         DoEpBPO5b7fToKSGi7M2O5K5ck/8zJ9zMbM8zzQBlmjyg/O1hmf2/F/BuxqOdCo9RLX5
+         CN44zjCWc2H/woem3/Q5Enn77Bu4aroRtduOwkTyHn2xqj8t//BWWJoqF8+C8GsCWQ0N
+         PVxQ6ZfiGKbDhasUfzDG01Pu1kyyKYvA2u+JyT4cBD3NnOR0GmeyFVCGOIMo540r6DJU
+         ebX0YfaIK2l61i263jvT3xncvy4oky11uHJv1kksY766rN8WOxgOF3VD82mhsOnWIslA
+         DxdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cHZ3QYaJRANd6Qj4KQO6L3SGyASMHRspLs55AF3AwWE=;
+        b=KKMg5UAuHru0jwD5DtsziK0/KOKZ9cf7xpwaDtjr2zqeaCk9YlLr8mEa5aOU58YJiQ
+         48WXGcBX3HYEwyTH6ou8ihTTobR0xiUGRyD5TzMVCHD3EbyJIA1QjyzANUfILg3lJRRX
+         KmOep4JXDQ24tSOWVrWdIGdgRQpng8BJn9NIHnrW8XszdXxZ8YHeGCRpa5k1Sd8xCqg+
+         8e8RGgk9TbboR4DKTaFQ+NttxkXpKmG7hqsXR/Uo+arxDA/6w9O9sLNRupH3pXWZi2xT
+         ZrCKbsCv65aIccDEmePbMWDR1e8sqgS5LjgialX/N+xAmu3c65C+y7xGyymRfPt3OJJp
+         kzRQ==
+X-Gm-Message-State: AOAM532gmc0lj2qJBK4JYz+3sizJjpc09wY3aziZmKsNZ19o+gbsK5Hf
+        A9yUgbew+uE4JL6U1R2q8Adsk6QTzE7ICPy2I/RJKA==
+X-Google-Smtp-Source: ABdhPJxan8X8Nq4KBVtpwoPScw7hKKIccMMRyL8tlUisClLY1DY/Kev1VSP82ziuaLs5oTPMbmOIOba1m7PhZJMnhTE=
+X-Received: by 2002:a05:6512:3e15:: with SMTP id i21mr5186718lfv.273.1631306710387;
+ Fri, 10 Sep 2021 13:45:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210910130337.2025426-1-osk@google.com> <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+In-Reply-To: <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+From:   Oskar Senft <osk@google.com>
+Date:   Fri, 10 Sep 2021 16:44:54 -0400
+Message-ID: <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT node for the DISP blk-ctrl. With this in place the
-display/mipi power domains are fully functional.
+Hi Guenter
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 27 +++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Thanks for the quick feedback!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 1452d60a0524..3bec6b8d52a0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -1067,6 +1067,33 @@ aips4: bus@32c00000 {
- 			#size-cells = <1>;
- 			ranges = <0x32c00000 0x32c00000 0x400000>;
- 
-+			disp_blk_ctrl: blk-ctrl@32e28000 {
-+				compatible = "fsl,imx8mm-disp-blk-ctrl", "syscon";
-+				reg = <0x32e28000 0x100>;
-+				power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
-+						<&pgc_dispmix>, <&pgc_mipi>,
-+						<&pgc_mipi>;
-+				power-domain-names = "bus", "csi-bridge",
-+						     "lcdif", "mipi-dsi",
-+						     "mipi-csi";
-+				clocks = <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
-+					 <&clk IMX8MM_CLK_DISP_APB_ROOT>,
-+					 <&clk IMX8MM_CLK_CSI1_ROOT>,
-+					 <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
-+					 <&clk IMX8MM_CLK_DISP_APB_ROOT>,
-+					 <&clk IMX8MM_CLK_DISP_ROOT>,
-+					 <&clk IMX8MM_CLK_DSI_CORE>,
-+					 <&clk IMX8MM_CLK_DSI_PHY_REF>,
-+					 <&clk IMX8MM_CLK_CSI1_CORE>,
-+					 <&clk IMX8MM_CLK_CSI1_PHY_REF>;
-+				clock-names = "csi-bridge-axi","csi-bridge-apb",
-+					      "csi-bridge-core", "lcdif-axi",
-+					      "lcdif-apb", "lcdif-pix",
-+					      "dsi-pclk", "dsi-ref",
-+					      "csi-aclk", "csi-pclk";
-+				#power-domain-cells = <1>;
-+			};
-+
- 			usbotg1: usb@32e40000 {
- 				compatible = "fsl,imx8mm-usb", "fsl,imx7d-usb";
- 				reg = <0x32e40000 0x200>;
--- 
-2.30.2
+> > +  nuvoton,rtd-modes:
+> > +    description: |
+> > +      Select modes for the three RTDs.
+> > +
+> At the very least, "RTD" should be defined. The datasheet doesn't say explicitly,
+> but I suspect it means "Remote Temperature Diode".
+Ha, good point. As I understand, RTD means "Resistance Temperature
+Detector". But TBH, I'm not sure how that squares with Nuvoton's use
+of "LTD" for the local sensor ... sigh.
 
+> > +      Valid values for RTD1 and RTD2 are:
+> > +        "closed",
+> > +        "current",
+> > +        "thermistor",
+> > +        "voltage"
+> I am not sure what "closed" means (the datasheet doesn't say), but I suspect it means
+> that the sensor is disabled (?). For the other modes, the translation to the standard
+> ABI is:
+Thanks for that pointer, I now found that in
+Documentation/hwmon/sysfs-interface. Given that there's no definition
+for "disabled", I guess I'll just leave that out of the device tree
+binding for now? That way we'll stay consistent with the sysfs ABI.
+
+That gives us the following mapping for sysfs / device tree -> nct7802 HW:
+2 (3904 transistor) -> 3 (voltage)
+3 (thermal diode) -> 1 (current)
+4 (thermistor) -> 2 (thermistor)
+
+I'll update the device tree binding to be an array then. I also update
+the temp_type functions to support all 3 values.
+
+Oskar.
