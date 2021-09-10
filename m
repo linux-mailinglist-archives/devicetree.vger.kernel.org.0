@@ -2,224 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA5740730C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 23:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02837407330
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 00:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234668AbhIJVpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 17:45:05 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:37519 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234660AbhIJVpE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 17:45:04 -0400
-Received: by mail-oi1-f177.google.com with SMTP id y128so4896704oie.4;
-        Fri, 10 Sep 2021 14:43:53 -0700 (PDT)
+        id S232571AbhIJWFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 18:05:39 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:44857 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232360AbhIJWFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 18:05:38 -0400
+Received: by mail-ot1-f51.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so4190370otg.11;
+        Fri, 10 Sep 2021 15:04:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wN8Y2wY394DQtoDB0ZKstnKrvfl0KfDm4sPTZE7KEbI=;
-        b=QKG+1TtVLawGrrgCCRwri3d3F0ADcMgsVLNyq2F8h+5dA4yWnbzyqdyji2ltr6t7f2
-         tDFsclk1wxwDnqcGp+lnyDlLFuYSfkBuUKsbRR7z8N5ggtXQ97iksqYm4Z2dlulA+wM7
-         4cf+lOdMzYjOGR99ImnopG0Ho7bS/I0lN5hGKYogp93z4H99/4nRW+81nIM2l/d1V9hY
-         WJAAijkX4UHJpT0yhrhc7m3FDvH19Igq4u57Rfx7jl48rFJgmm2rnopsRG5GC3uwKkRP
-         xkaQInz5s1VXtrVToEOUkc2P9FIZedjwNKBZfanf2fXX/R2TdVzikXlSmuR+h0ZhO/kh
-         Klwg==
-X-Gm-Message-State: AOAM532JyvmGl2BZyWwtkP5C1lMeyuejXbfnpLtneifXmWmx5S+tM/Ur
-        1Fs1utVqZO0Lqz8lUOrmkg==
-X-Google-Smtp-Source: ABdhPJzI5jZ1We8L4wQ3ky0Qn8k47NIXcaY1it3c6cBzK5okGJJz8CdOgksLylAhdG6yIILzd4GFvg==
-X-Received: by 2002:aca:b6d5:: with SMTP id g204mr5941193oif.29.1631310232763;
-        Fri, 10 Sep 2021 14:43:52 -0700 (PDT)
+        bh=hkHTS49iipztUh1vQR77+AagPqEuPWOB0Lr1u4zmbh0=;
+        b=EI8pjmYlNqpf6rLlSiSuXMzwi/Z8b/KognvmHxxlmQUF1EGIzE8fAoFe3Thfc7k0h4
+         B52jCHA8vKr3XD2k3lYGnX2dFhkxtKUIkoR7NzYtALT0thAG8cX25ctNYrX3/axjZI90
+         5iqkJ5wPHETBG+rj9kIcEmbTAX5G1F3sNFP8tarIjj8Zm2GEJBvOf1clcylvQH+6+ocE
+         IkKF3IQ+HEzlXsZDI5tMKWetLyr6KOQ2sZa2XzcVIFLg0Pq7i7uw6FId8nXaNz5zMRl7
+         cKu1SOynTeX9tOE6+91uYCcpdPGwE4stTTw4vDx5MQQRVv6mD2uydKL+QW0NVbFIR2+A
+         JlXw==
+X-Gm-Message-State: AOAM531xsJ3hcz62zL5VZnZe7uAZvedpqAUyTBxKtpQNADb9kEvgd4kg
+        h25WQFULIG3acABWuEAkHg==
+X-Google-Smtp-Source: ABdhPJxk4HXxAM91kIV80yySCehMGaFW3CDFDV5aHTPieFKbrgctcWAya/bmgIqALeen03UUougSGA==
+X-Received: by 2002:a9d:6046:: with SMTP id v6mr6627489otj.234.1631311466616;
+        Fri, 10 Sep 2021 15:04:26 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y138sm1581590oie.22.2021.09.10.14.43.51
+        by smtp.gmail.com with ESMTPSA id v19sm1557901oic.31.2021.09.10.15.04.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Sep 2021 14:43:51 -0700 (PDT)
-Received: (nullmailer pid 3430328 invoked by uid 1000);
-        Fri, 10 Sep 2021 21:43:50 -0000
-Date:   Fri, 10 Sep 2021 16:43:50 -0500
+        Fri, 10 Sep 2021 15:04:26 -0700 (PDT)
+Received: (nullmailer pid 3456962 invoked by uid 1000);
+        Fri, 10 Sep 2021 22:04:25 -0000
+Date:   Fri, 10 Sep 2021 17:04:25 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        daniel.baluta@nxp.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        shengjiu.wang@gmail.com
-Subject: Re: [PATCH v4 4/4] dt-bindings: dsp: fsl: update binding document
- for remote proc driver
-Message-ID: <YTvRlmIedfBiXSCg@robh.at.kernel.org>
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH] [v2] dt-bindings: arm/msm/qcom,idle-state convert to
+ YAML
+Message-ID: <YTvWaRCswQs9Mt6L@robh.at.kernel.org>
+References: <20210908171453.53259-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com>
+In-Reply-To: <20210908171453.53259-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 08, 2021 at 05:10:55PM +0800, Shengjiu Wang wrote:
-> As there are two drivers for DSP on i.MX, one is for sound open
-> firmware, another is for remote processor framework. In order to
-> distinguish two kinds of driver, defining different compatible strings.
-
-What determines which firmware is used? Is it tied to the board? Or for 
-a given board, users could want different firmware? In the latter case, 
-this configuration should not be in DT.
-
-> For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> are needed and the mailbox channel is different with SOF.
+On Wed, Sep 08, 2021 at 07:14:53PM +0200, David Heidelberg wrote:
+> Switched maintainer from Lina to Bjorn.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
->  1 file changed, 75 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> index 7afc9f2be13a..51ea657f6d42 100644
-> --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
->  
->  maintainers:
->    - Daniel Baluta <daniel.baluta@nxp.com>
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
->  
->  description: |
->    Some boards from i.MX8 family contain a DSP core used for
-> @@ -19,6 +20,10 @@ properties:
->        - fsl,imx8qxp-dsp
->        - fsl,imx8qm-dsp
->        - fsl,imx8mp-dsp
-> +      - fsl,imx8qxp-hifi4
-> +      - fsl,imx8qm-hifi4
-> +      - fsl,imx8mp-hifi4
-> +      - fsl,imx8ulp-hifi4
->  
->    reg:
->      maxItems: 1
-> @@ -28,37 +33,63 @@ properties:
->        - description: ipg clock
->        - description: ocram clock
->        - description: core clock
-> +      - description: debug interface clock
-> +      - description: message unit clock
-> +    minItems: 3
-> +    maxItems: 5
->  
->    clock-names:
->      items:
->        - const: ipg
->        - const: ocram
->        - const: core
-> +      - const: debug
-> +      - const: mu
-> +    minItems: 3
-> +    maxItems: 5
->  
->    power-domains:
->      description:
->        List of phandle and PM domain specifier as documented in
->        Documentation/devicetree/bindings/power/power_domain.txt
-> +    minItems: 1
->      maxItems: 4
+> Doesn't fix:
+> ```
+> idle-states: 'spc' does not match any of the regexes: '^(cpu|cluster)-', 'pinctrl-[0-9]+'
+> ```
+> from colliding arm/idle-states.yaml .
 
-How does the same h/w have different number of power domains?
+Your options are:
 
->  
->    mboxes:
->      description:
->        List of <&phandle type channel> - 2 channels for TXDB, 2 channels for RXDB
-> +      or - 1 channel for TX, 1 channel for RX, 1 channel for RXDB
->        (see mailbox/fsl,mu.txt)
-> +    minItems: 3
->      maxItems: 4
->  
->    mbox-names:
-> -    items:
-> -      - const: txdb0
-> -      - const: txdb1
-> -      - const: rxdb0
-> -      - const: rxdb1
-> +    oneOf:
-> +      - items:
-> +          - const: txdb0
-> +          - const: txdb1
-> +          - const: rxdb0
-> +          - const: rxdb1
-> +      - items:
-> +          - const: tx
-> +          - const: rx
-> +          - const: rxdb
+- Drop this and add your node names and compatible strings to 
+idle-states.yaml. A variation of this is change the QCom node names 
+in dts files to match. Those look like the only real differences.
 
-These are completely different mailboxes?
+- Extract the common idle state node properties to a common schema to 
+reference from both schemas.
 
->  
->    memory-region:
->      description:
->        phandle to a node describing reserved memory (System RAM memory)
->        used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  firmware-name:
-> +    description: |
-> +      Default name of the firmware to load to the remote processor.
-> +
-> +  fsl,dsp-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to syscon block which provide access for processor enablement
+I'd lean towards option 1 unless there are other variations of 
+idle-state nodes that also need option 2.
 
-Curious, how is this done with the open sound f/w?
-
->  
->  required:
->    - compatible
-> @@ -91,3 +122,41 @@ examples:
->          mboxes = <&lsio_mu13 2 0>, <&lsio_mu13 2 1>, <&lsio_mu13 3 0>, <&lsio_mu13 3 1>;
->          memory-region = <&dsp_reserved>;
->      };
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    dsp_reserved: dsp@92400000 {
-> +      reg = <0x92400000 0x1000000>;
-> +      no-map;
-> +    };
-> +    dsp_vdev0vring0: vdev0vring0@942f0000 {
-> +      reg = <0x942f0000 0x8000>;
-> +      no-map;
-> +    };
-> +    dsp_vdev0vring1: vdev0vring1@942f8000 {
-> +      reg = <0x942f8000 0x8000>;
-> +      no-map;
-> +    };
-> +    dsp_vdev0buffer: vdev0buffer@94300000 {
-> +      compatible = "shared-dma-pool";
-> +      reg = <0x94300000 0x100000>;
-> +      no-map;
-> +    };
-> +
-> +    dsp: dsp@3b6e8000 {
-> +      compatible = "fsl,imx8mp-hifi4";
-> +      reg = <0x3B6E8000 0x88000>;
-> +      clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
-> +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_OCRAMA_IPG>,
-> +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSP_ROOT>,
-> +               <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_DSPDBG_ROOT>;
-> +      clock-names = "ipg", "ocram", "core", "debug";
-> +      firmware-name = "imx/dsp/hifi4.bin";
-> +      power-domains = <&audiomix_pd>;
-> +      mbox-names = "tx", "rx", "rxdb";
-> +      mboxes = <&mu2 0 0>,
-> +               <&mu2 1 0>,
-> +               <&mu2 3 0>;
-> +      memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-> +                      <&dsp_vdev0vring1>, <&dsp_reserved>;
-> +      fsl,dsp-ctrl = <&audio_blk_ctrl>;
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+Rob
