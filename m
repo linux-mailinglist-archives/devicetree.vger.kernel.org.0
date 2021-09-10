@@ -2,201 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B391D4065B4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 04:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED55A4065C5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 04:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbhIJCbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Sep 2021 22:31:06 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55826 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229720AbhIJCbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 22:31:06 -0400
-X-UUID: 5e411f4b6eb547f0aa51d73d2212102a-20210910
-X-UUID: 5e411f4b6eb547f0aa51d73d2212102a-20210910
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 507428610; Fri, 10 Sep 2021 10:29:53 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 10 Sep 2021 10:29:51 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 10 Sep 2021 10:29:51 +0800
-Message-ID: <f47decf6d1fa0f1b375a531dc44736a0ca63b2d4.camel@mediatek.com>
-Subject: Re: [PATCH v7 3/5] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
-From:   moudy ho <moudy.ho@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        "Nicolas Boichat" <drinkcat@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Pi-Hsun Shih <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
-        Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?= 
-        <sj.huang@mediatek.com>, <ben.lok@mediatek.com>,
-        <randy.wu@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@google.com>
-Date:   Fri, 10 Sep 2021 10:29:51 +0800
-In-Reply-To: <CAAOTY_8GFP0utAVSw1JY6=y9hsJTbf8mtiKCnUmTcG2e9Zwdxg@mail.gmail.com>
-References: <20210824100027.25989-1-moudy.ho@mediatek.com>
-         <20210824100027.25989-4-moudy.ho@mediatek.com>
-         <CAAOTY_8GFP0utAVSw1JY6=y9hsJTbf8mtiKCnUmTcG2e9Zwdxg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S229844AbhIJCn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Sep 2021 22:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229461AbhIJCn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Sep 2021 22:43:28 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11CACC061574
+        for <devicetree@vger.kernel.org>; Thu,  9 Sep 2021 19:42:18 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id i12so486908ybq.9
+        for <devicetree@vger.kernel.org>; Thu, 09 Sep 2021 19:42:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vevm67U6XLhtx4sgfe4TH7dfrXJJnbnonxcluBbCc2U=;
+        b=I8a7JSqA9KshyuhPcpOEkoHMJrTRj/3CrO7jXHcI+za5PSiNfAeFm/zuJZzRzbqv/O
+         j8fgZ53TufHkL60nDk+a8n2771KB1dqQsbKxvhl9llNm8gF3N9K0nJxZ7KZWsK9BUlBn
+         OSgx0OoxjT9WWWDzzr7+7+m6pAwJpnWKh8aNqS+LUcy/y+XEQ2EE44ltu7QrQJ1Y+OQA
+         CJzP+RiStlcFBVGiLDkXwBdVxiLz4K2yT99dRwqSjLo69lp1zhsXJ6jIv+QZUDPe4Uzi
+         N6pLxugVK2pmha97Rg4zTL7W7cBJNN8ZNcUWen8T7SGvA7vGPxy34CYLgVdqyzAW+WJL
+         AM2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vevm67U6XLhtx4sgfe4TH7dfrXJJnbnonxcluBbCc2U=;
+        b=jtp2MHQbuNA+2y2i9tcpb+61EO8WTULNwV9P/oQY5mK8Dh38SQHyp1aKdGnOUJ+USc
+         naPZenkW13HQlU6LYnVoFyyheHqCBNE+31gLVtyodDx60QZ416VZwhch5oiFYJXN08Af
+         ECMf6EEDbUS6MeWtwUeB/cab3s+HHbD5G2QEg382Pi/7ulCb5YalJYkLTZWpEDfF+upF
+         /khrMfyBaT8b6iuk6G4uKaxHIkQMQtwYc+/rw21AC9ZqfLYoo2Vcr6ft+uZgip9nQdut
+         c1c/Yx+zrwoPQ3FD7tMwdO90+VqKBAObjh+NNTrF+Pd9EQb/H3sOUwLHZ9JnF6kh7x0V
+         gpNQ==
+X-Gm-Message-State: AOAM5337F8tNYpCBLG5XQZHFe77J+3QULywhkHYS6H5JGtnLSxs2oOSs
+        /vNKCTBgpbXoT71eb+hybpyB5tH8rgUGbThcPRwwNw==
+X-Google-Smtp-Source: ABdhPJymvUyw29SZRUnlB/AZg/lp3eZDUFaR1tbpDbRG9INJ1ZufNnAgSfHTQdhcj1K5svJ7OOLvhyc/HE1RHoKwF0w=
+X-Received: by 2002:a25:21c5:: with SMTP id h188mr7433936ybh.23.1631241736936;
+ Thu, 09 Sep 2021 19:42:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
+References: <3c1f2473-92ad-bfc4-258e-a5a08ad73dd0@web.de> <CAGETcx9eFg7jR=ibBLhU3q+VnpqJXQCVmQcEyMpozddRiCXFLQ@mail.gmail.com>
+ <97044cb9-b7a9-d8af-93e7-d33a81a1cfe2@web.de> <CAGETcx9NpKou1jOEksX4tayRuEVYcy-T4H6QhQU-AUz3Zg1NaQ@mail.gmail.com>
+ <CAL_JsqL8sGc7sA7q+SFcMKF02NWpqOUUEWew1qOY+vdpKVFJ6w@mail.gmail.com>
+ <ac715ac4-eb2d-7dd0-9752-4cbe95b0e88d@web.de> <CAL_Jsq+mqpHF5hn0iD8+nz3iOH4-doqqB0hgiV-MLKS2_s9oBg@mail.gmail.com>
+ <CAGETcx-qbmmPOH4+pyHGSnukTA3PgXTxYyZg5fSEuD=Uy3YVMQ@mail.gmail.com> <CAL_JsqKsMdv8rTUB936SU-JnZ3ULrF=jeN6V_3hY_eVg1D-yUw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKsMdv8rTUB936SU-JnZ3ULrF=jeN6V_3hY_eVg1D-yUw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 9 Sep 2021 19:41:40 -0700
+Message-ID: <CAGETcx-drHSNug-9wHdWKq7YWKq=jE69NN_5EL1RSWQT2syCag@mail.gmail.com>
+Subject: Re: [Bisected Regression] OLPC XO-1.5: Internal drive and SD card
+ (mmcblk*) gone since commit ea718c699055
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Andre Muller <andre.muller@web.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-09-07 at 08:11 +0800, Chun-Kuang Hu wrote:
-> Hi, Moudy:
-> 
-> Moudy Ho <moudy.ho@mediatek.com> 於 2021年8月24日 週二 下午6:02寫道：
-> > 
-> > This patch adds DT binding document for Media Data Path 3 (MDP3)
-> > a unit in multimedia system used for scaling and color format
-> > convert.
-> > 
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > ---
-> >  .../bindings/media/mediatek,mdp3-ccorr.yaml   |  57 +++++
-> >  .../bindings/media/mediatek,mdp3-rdma.yaml    | 207
-> > ++++++++++++++++++
-> >  .../bindings/media/mediatek,mdp3-rsz.yaml     |  65 ++++++
-> >  .../bindings/media/mediatek,mdp3-wdma.yaml    |  71 ++++++
-> >  .../bindings/media/mediatek,mdp3-wrot.yaml    |  71 ++++++
-> >  5 files changed, 471 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,mdp3-ccorr.yaml
-> 
-> I've compared ccorr driver in display [1] and ccorr in mdp [2], both
-> are similar. So I would like both binding document are placed
-> together. In display folder? In mdp folder? In SoC folder? I've no
-> idea which one is better. At lease put together.
-> 
-> [1] 
-> https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/mediatek/mtk_disp_ccorr.c?h=v5.14__;!!CTRNKA9wMg0ARbw!xOYd8SaiDSRvJBgpaQpLzMxqPOAstMX7cGXkhEnuYa1Wb3EMiiElNEPeycP_k2IQ$
->  
-> [2] 
-> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/patch/20210824100027.25989-6-moudy.ho@mediatek.com/__;!!CTRNKA9wMg0ARbw!xOYd8SaiDSRvJBgpaQpLzMxqPOAstMX7cGXkhEnuYa1Wb3EMiiElNEPeyTwjz4UU$
->  
-> 
-> Regards,
-> Chun-Kuang.
+On Thu, Sep 9, 2021 at 4:10 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Sep 9, 2021 at 2:24 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Thu, Sep 9, 2021 at 8:15 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > On Thu, Sep 9, 2021 at 9:09 AM Andre Muller <andre.muller@web.de> wrote:
+> > > >
+> > > > On 09/09/2021 00.31, Rob Herring wrote:
+> > > > > On Tue, Sep 7, 2021 at 10:15 PM Saravana Kannan <saravanak@google.com> wrote:
+> > > > >>
+> > > > >> On Tue, Sep 7, 2021 at 7:12 PM Andre Muller <andre.muller@web.de> wrote:
+> > > > >>>
+> > > > >>> On 08/09/2021 00.05, Saravana Kannan wrote:
+> > > > >>>> On Sun, Sep 5, 2021 at 1:15 AM Andre Muller <andre.muller@web.de> wrote:
+> > > > >>>>>
+> > > > >>>>> With linux-5.13 and linux-5.14, the internal drive and SD card reader are gone from the XO-1.5. I bisected the issue to come up with ea718c699055:
+> > > > >>>>>
+> > > > >>>>> # first bad commit: [ea718c699055c8566eb64432388a04974c43b2ea] Revert "Revert "driver core: Set fw_devlink=on by default""
+> > > > >>>>>
+> > > > >>>>> The /dev/mmcblk* nodes are not generated since this patch.
+> > > > >>>>>
+> > > > >>>>> Please find the output of lspsi -vv and lshw below.
+> > > > >>>>>
+> > > > >>>>> I will be happy to provide more info and/or test patches.
+> > > > >>>>
+> > > > >>>> Hi Andre,
+> > > > >>>>
+> > > > >>>> Can you point me to the dts file in upstream that corresponds to this system?
+> > > > >>>>
+> > > > >>>> Also, if you can give the output of:
+> > > > >>>> cat /sys/kernel/debug/devices_deferred
+> > > > >>>
+> > > > >>> Hi Saravana,
+> > > > >>>
+> > > > >>>
+> > > > >>> /sys/kernel/debug/devices_deferred is empty.
+> > > > >>> I used the last good commit b6f617.
+> > > > >>
+> > > > >> Sorry, I wanted that with the bad commit.
+> > > >
+> > > > Uh-oh, my bad...
+> > > >
+> > > > The bad case says
+> > > > # cat devices_deferred
+> > > > 0000:00:0c.0
+> > > >
+> > > > That's the SD Host controller.
+> > > >
+> > > > >>
+> > > > >>>
+> > > > >>> The XO-1.5 has an x86 compatible VIA C7 processor.
+> > > > >>> It uses the VX855 chip for about all I/O tasks, including SDIO.
+> > > > >>> I am not aware of a device tree file for it.
+> > > > >>>
+> > > > >>> It is a bit of a strange beast, it uses OFW to initialize the hardware and provide a FORTH shell.
+> > > > >>> Which also is the boot manager, configured via FORTH scripts.
+> > > > >>>
+> > > > >>>   From the linux side of the fence, dmesg's line 2 is:
+> > > > >>>
+> > > > >>> "OFW detected in memory, cif @ 0xff83ae68 (reserving top 8MB)"
+> > > > >>>
+> > > > >>> AIUI, this mechanism is used in lieu of a device tree file, like UEFI on most x86 hardware.
+> > > > >>> But my understanding of device trees is severely limited, I might be allwrong.
+> > > > >>
+> > > > >> Uhh... I'm so confused. If Linux doesn't use OF, then none of the code
+> > > > >> enabled by fw_devlink=on should be executed.
+> > > > >
+> > > > > Linux does, but maybe not for memory (like UEFI on arm64).
+> > > > >
+> > > > >> The only thing that might remotely even execute is:
+> > > > >> efifb_add_links() in drivers/firmware/efi/efi-init.c
+> > > > >>
+> > > > >> If you want you can just do an early return 0; in that to see if it
+> > > > >> makes a difference (unlikely).
+> > > > >>
+> > > > >> Rob, Do you know what's going on with OLPC and DT?
+> > > > >
+> > > > > Not really. I have an XO-1 DT dump[1]. It's probably a similar looking
+> > > > > DT though. It's pretty ancient lacking anything we've invented for DT
+> > > > > in the last 10 years. There's not really much to it as about the only
+> > > > > phandle I see is for interrupts.
+> > > > >
+> > > > >>> Anyway, the firmware source is here:
+> > > > >>> http://dev.laptop.org/git/users/quozl/openfirmware/
+> > > > >>>
+> > > > >>> This file is the closest dt-analogous thing for the XO-1.5 I can find therein:
+> > > > >>> cpu/x86/pc/olpc/via/devices.fth
+> > > > >>
+> > > > >> That file is all gibberish to me.
+> > > > >
+> > > > > Running this on a booted system would help:
+> > > > >
+> > > > > dtc -f -I fs -O dts /proc/device-tree > dump.dts
+> > > >
+> > > > Ah, thanks. I never knew about the DT in there...
+> > > > XO-1.5_dump.dts is attached.
+> > > >
+> > > > >
+> > > > > If you don't have dtc on the system, then you'll have to zip up
+> > > > > /proc/device-tree contents and run dtc elsewhere (or just post that).
+> > > > >
+> > > > >>> My machine runs the latest version:
+> > > > >>> http://wiki.laptop.org/go/OLPC_Firmware_q3c17
+> > > > >>>
+> > > > >>> The XO-1.5 hardware specs are here:
+> > > > >>> http://wiki.laptop.org/images/f/f0/CL1B_Hdwe_Design_Spec.pdf
+> > > > >>> http://wiki.laptop.org/go/Hardware_specification_1.5
+> > > > >>>
+> > > > >>> Would the .config or dmesg help?
+> > > > >>
+> > > > >> At this point, why not? When you do send them, please send them as
+> > > > >> attachments and not inline.
+> > > > >>
+> > > > >> Also, when you collect the dmesg logs, the following could help:
+> > > > >> Enable the existing dev_dbg logs in these functions:
+> > > > >> device_link_add()
+> > > > >> device_links_check_suppliers()
+> > > > >>
+> > > > >> And add the following log to fwnode_link_add():
+> > > > >> +++ b/drivers/base/core.c
+> > > > >> @@ -87,6 +87,8 @@ int fwnode_link_add(struct fwnode_handle *con,
+> > > > >> struct fwnode_handle *sup)
+> > > > >>                  goto out;
+> > > > >>          }
+> > > > >>
+> > > > >> +       pr_info("Link fwnode %pfwP as a consumer of fwnode %pfwP\n", con, sup);
+> > > > >> +
+> > > > >
+> > > >
+> > > > OK. The dmesg with debug info is attached as well (for the broken case).
+> > >
+> > > Humm, ACPI and DT together...
+> > >
+> > > Looks to me like it's waiting for the wrong interrupt-parent. The log
+> > > says it is waiting for 'interrupt-controller@i20' which is the only
+> > > interrupt-controller found in the DT, but the parent is the PCI bridge
+> > > with whatever interrupt-map is pointing to. That's not clear as the
+> > > phandle (0x767a4) doesn't exist in the DT. I suppose the parent is
+> > > defined in ACPI?
+> >
+> > After staring at it for a while, I realized that
+> > interrupt-controller@i20 is indeed the right node. Looks like we need
+> > to do endian conversion of the ".node" property in the interrupt
+> > controller and it would match with 0x767a4.
+>
+> Ah yes, I failed on doing the endian conversion.
+>
+> > > pci 0000:00:0c.0: probe deferral - wait for supplier interrupt-controller@i20
+> > The SD controller is waiting forever on interrupt-controller@i20 to be
+> > added as a device.
+> >
+> > Rob,
+> >
+> > My guess is that the fwnode value is not getting set for ISA devices
+> > populated when isa@11 is added. Any idea how/where those child devices
+> > are populated? I thought they'd be platform devices, but it doesn't
+> > look like that's the case?
+>
+> Sometimes they are. Sometimes there's no driver I think. I couldn't
+> figure out what code corresponds to this node in the kernel.
+>
+> > > If there's not an easy fix, just disable devlinks for x86. There's
+> > > only one other DT platform, ce4100, and I really doubt it is even used
+> > > at all.
+> >
+> > I think the easy fix is to set the ISA device's fwnode when it's
+> > added, but I can't tell how they are getting added. But yeah, if that
+> > turns out to be hard, then I'd vote for disabling it for x86 too.
+>
+> Just disable it.
 
-Hi Chun-Kuang,
+Done
+https://lore.kernel.org/lkml/20210910011446.3208894-1-saravanak@google.com/
 
-Thank you for your recommendation.
-I will integrate the same component binding files in MDP and DISP, and
-place them in the folder same with MMSYS instead.
-(
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-)
-The first version of RDMA, CCORR, AAL, COLOR and WDMA will be provided
-by MDP and then DISP add it own property later.
+Andre, can you give it a shot please?
 
-Thanks & Regards,
-Moudy Ho
-> 
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,mdp3-wdma.yaml
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-
-> > ccorr.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-
-> > ccorr.yaml
-> > new file mode 100644
-> > index 000000000000..59fd68b46022
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-
-> > ccorr.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/media/mediatek,mdp3-ccorr.yaml*__;Iw!!CTRNKA9wMg0ARbw!xOYd8SaiDSRvJBgpaQpLzMxqPOAstMX7cGXkhEnuYa1Wb3EMiiElNEPeyW4MmXUY$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xOYd8SaiDSRvJBgpaQpLzMxqPOAstMX7cGXkhEnuYa1Wb3EMiiElNEPeydwX0gSy$
-> >  
-> > +
-> > +title: Mediatek Media Data Path 3 CCORR Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Daoyuan Huang <daoyuan.huang@mediatek.com>
-> > +  - Moudy Ho <moudy.ho@mediatek.com>
-> > +
-> > +description: |
-> > +  One of Media Data Path 3 (MDP3) components used to do color
-> > correction with 3X3 matrix.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +        - mediatek,mt8183-mdp3-ccorr
-> > +
-> > +  mediatek,mdp3-id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    maxItems: 1
-> > +    description: |
-> > +      HW index to distinguish same functionality modules.
-> > +
-> > +  reg:
-> > +    description: |
-> > +      Physical base address and length of the function block
-> > +      register space, the number aligns with the component
-> > +      and its own subcomponent.
-> > +
-> > +  mediatek,gce-client-reg:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: |
-> > +      sub-system id corresponding to the global command engine
-> > (GCE)
-> > +      register address.
-> > +      $ref: /schemas/mailbox/mtk-gce.txt
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/mt8183-clk.h>
-> > +    #include <dt-bindings/gce/mt8183-gce.h>
-> > +
-> > +    mdp3_ccorr: mdp3_ccorr@1401c000 {
-> > +      compatible = "mediatek,mt8183-mdp3-ccorr";
-> > +      mediatek,mdp3-id = <0>;
-> > +      reg = <0x1401c000 0x1000>;
-> > +      mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xc000
-> > 0x1000>;
-> > +      clocks = <&mmsys CLK_MM_MDP_CCORR>;
-> > +    };
-
+-Saravana
