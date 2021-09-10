@@ -2,120 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90C48406A33
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 12:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B85BE406A41
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 12:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232394AbhIJKgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 06:36:41 -0400
-Received: from mout.web.de ([212.227.17.12]:53279 "EHLO mout.web.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232157AbhIJKgj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Sep 2021 06:36:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
-        s=dbaedf251592; t=1631270120;
-        bh=NkaF6yzyaw3gMwcBE5iEi8F34hLhYgz9u3+0igXeSrM=;
-        h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=m0s4tDItyYkg5wwuAwxXO5se0uejWOfgWwZngwOIQAX3KKgIM5cOjQ7O4nCX+N6qz
-         Tag2epZb/JSNJz/0K23Z267ckKwcEqFzge17+WxWBNgyax2woIbVd26vmuaaGMsK/v
-         rQmXiuLjuOZh2zedZWmVfGBNz2lZS4X4VKAy4XQk=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [10.0.0.17] ([185.159.157.24]) by smtp.web.de (mrweb103
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0Le4Tw-1mjd9I0ur6-00psTr; Fri, 10
- Sep 2021 12:35:20 +0200
-Subject: Re: [PATCH] of: property: Disable fw_devlink DT support for X86
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210910011446.3208894-1-saravanak@google.com>
- <YTr4CZW+rOXAjNq9@kroah.com>
-From:   Andre Muller <andre.muller@web.de>
-Message-ID: <5064e6ca-344d-7eda-3264-50fb63e2e3f3@web.de>
-Date:   Fri, 10 Sep 2021 12:37:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232496AbhIJKoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 06:44:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232488AbhIJKoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 06:44:13 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6DD0C061756;
+        Fri, 10 Sep 2021 03:43:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Yogfv2Yi339SegP6Z35FOnJjy3FmfNyA9OjilfPTuVc=; b=JWmON8IfmlGzcQxv3GOO9/RbTt
+        TBQoHpAQ324oQ5Aj+OMG9ioLMojB3jb+cP4a1uu12Ffbusvx9GDoCieuAPh5HDvVSfF618Ybz72tu
+        4RqmJJ4jOfKVFVEeKFJ4qqKls2+D9lmSeks8SXM+onaHgZxpU52vVsytobBGikx+i+7FZNVPiEGW7
+        lOsfLWKZw6VCYhvEDM+xtOtSS4MsQbLW9zuqZwrOPOEPn8NtrlJGu7TIKAMDa+TNxSCkIv/OjQG0Z
+        FPqCC3U08xfE5vaOpIZlvsbVTDm0ntAw3ZNI/FhqYLeLq5lpWyWN7Bc30bEmgSadzn/D9/UuEjPAx
+        BLVTX9Cg==;
+Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <mperttunen@nvidia.com>)
+        id 1mOdzg-00056E-9A; Fri, 10 Sep 2021 13:42:52 +0300
+From:   Mikko Perttunen <mperttunen@nvidia.com>
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v5 0/3] NVIDIA Tegra NVDEC support
+Date:   Fri, 10 Sep 2021 13:42:44 +0300
+Message-Id: <20210910104247.1206716-1-mperttunen@nvidia.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <YTr4CZW+rOXAjNq9@kroah.com>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:wPimF1SPwTSrk6vH6Mnw/WxrIttEdY5oCk9Fbcef4RsFjrxVNLL
- YUCpz/wG/ahPxsNR/AyEp2mVy+D5CwCR8tVvGuUVbMNYXR4+geSqsidcWvOOpEHXIcQ9lrM
- lEUE5cR+VUjzpK5QzfQPpARKd4j7daIKQML8Ll95zpAkgqWk+H4/7bGL0j7DwQMKKMG7QVh
- xpioQrZcvMv2Lji8Xivag==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:6HjYgy6odGY=:mtnZVk3N0IuPRnd92mAyC0
- Umfg0FIZgJgNuQ8Fv1KSEk+XAUIKlWTiyPn+p2KkzW4S08os4fD4M4veYXEAUcPaZXOiy7P1u
- NzBd6zPrdUSQ+7qXOZZGL/zi2/du28H611JxOdbwX/n5joyyJCTeFkJYnIuj/SYf9bBggPSar
- we0UBkGjg4ydorF3yeuPQNLjPedqJ/TPA9yTmgAzmuZsPatRXtOUnCuJZVzUq+EKGq3ftwGVu
- SxZvJrE34ZBKiLONHTuNQo53I8AVUDbFn1zr2LqWVdddj1vKBYqhUa8VrDbFXt3pjTcmHJRfn
- EiWvtUBdxAm/gfC5lVbOMh0favWxWKWOyDAMwWaTA7/FRGnidm4tiIpS8s9T4Ex5vN3HnBEFW
- UtdmDPcsKDUf6C+hPHLfpgO3w2oRbjtc4PbLPNCOllEDg+nK1A/k43fbx8Oyxs3z56lr0AWBk
- wnn/yTFudhrtY79wg1r4+ECeGk4GPKeb8brMh6sNzGtEGiC5DgCI3VQ+7/3GMggERR0QxXhhj
- /p/oAyG65dR048ULpicNAipXZp32cv5xlMdwoyqzX97QqnectJUf3qOEuGr3EaEAw8F9nmGkw
- SLtNffL3kEhTZ87C+fN11cTgSuSI9KO9IYIaagmUkgO9epSLFXdpY9RI+KojdZPRlR5t1fxR9
- D7XfXZ9RjGW0JlQkToObmPQdCyi6G2u5Z9peQDB9aKB9ymukj2PxkUHw74bTiHB++j+3GIaRc
- TyI4f+VYrwKlXWRRISnqw8XY7fjR3J0L34X5SCeVuZZeWfxCgnCh1Rq/msm4sWxlyUedZ7KU0
- vCscmYtcOlgF9q9EaAvc0peeSO1m+Bb5itHj75h25o/H0JCfBHX/zGClKOE5tXdyoZnQ7uEOK
- LI/lSO2A5ErO2w/ULhCQmHhDJOxWiDGl7hwZNeExEYGTxgzHqoi/cJaEq2i9d8t1LK2L214yN
- jllOYE9cpJ/Z2yFozQCpha+g4zL3n6G2FCja+N0yhg9gbqqAJqHaRGVfBnM+fR/naJQP0k1Jf
- Jc8u8hd0CzDkexmtERR3g+HTtMn7rdhO2ZmnH0n2WN6R30vbH3zRwqKRfq5maEuwUOZPcvrei
- w7uIoCzRk4Z8A4=
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 84.249.134.236
+X-SA-Exim-Mail-From: mperttunen@nvidia.com
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2021 08.15, Greg Kroah-Hartman wrote:
-> On Thu, Sep 09, 2021 at 06:14:45PM -0700, Saravana Kannan wrote:
->> Andre reported fw_devlink=3Don breaking OLPC XO-1.5 [1].
->>
->> OLPC XO-1.5 is an X86 system that uses a mix of ACPI and OF to populate
->> devices. The root cause seems to be ISA devices not setting their fwnod=
-e
->> field. But trying to figure out how to fix that doesn't seem worth the
->> trouble because the OLPC devicetree is very sparse/limited and fw_devli=
-nk
->> only adds the links causing this issue. Considering that there aren't m=
-any
->> users of OF in an X86 system, simply fw_devlink DT support for X86.
->>
->> [1] - https://lore.kernel.org/lkml/3c1f2473-92ad-bfc4-258e-a5a08ad73dd0=
-@web.de/
->> Fixes: ea718c699055 ("Revert "Revert "driver core: Set fw_devlink=3Don =
-by default""")
->> Signed-off-by: Saravana Kannan <saravanak@google.com>
->> Cc: Andre Muller <andre.muller@web.de>
->> ---
->>   drivers/of/property.c | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/of/property.c b/drivers/of/property.c
->> index 0c0dc2e369c0..3fd74bb34819 100644
->> --- a/drivers/of/property.c
->> +++ b/drivers/of/property.c
->> @@ -1444,6 +1444,9 @@ static int of_fwnode_add_links(struct fwnode_hand=
-le *fwnode)
->>   	struct property *p;
->>   	struct device_node *con_np =3D to_of_node(fwnode);
->>
->> +	if (IS_ENABLED(CONFIG_X86))
->> +		return 0;
->
-> I love it :)
->
-> Anyway, getting a "Tested-by:" would be great to have here.  Andre, can
-> you verify this solves your issue?
+Here's the v5 of the NVDEC support series, containing the
+following changes:
 
-Yes, this patch fixes the issue, the drives work fine.
-Tested-by: Andre M=FCller <andre.muller@web.de>
+* Changed from nvidia,instance property to nvidia,host1x-class
+  property.
+* Set additionalProperties to false in DT bindings.
+* Added dma-coherent property to DT bindings.
 
-Thanks all,
-Andre
+NVDEC hardware documentation can be found at
+https://github.com/NVIDIA/open-gpu-doc/tree/master/classes/video
 
->
-> thanks,
->
-> greg k-h
->
+and example userspace can be found at
+https://github.com/cyndis/vaapi-tegra-driver
+
+Thanks,
+Mikko
+
+Mikko Perttunen (3):
+  dt-bindings: Add YAML bindings for NVDEC
+  arm64: tegra: Add NVDEC to Tegra186/194 device trees
+  drm/tegra: Add NVDEC driver
+
+ .../gpu/host1x/nvidia,tegra210-nvdec.yaml     | 104 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  16 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  38 ++
+ drivers/gpu/drm/tegra/Makefile                |   3 +-
+ drivers/gpu/drm/tegra/drm.c                   |   4 +
+ drivers/gpu/drm/tegra/drm.h                   |   1 +
+ drivers/gpu/drm/tegra/nvdec.c                 | 464 ++++++++++++++++++
+ drivers/gpu/host1x/dev.c                      |  18 +
+ include/linux/host1x.h                        |   2 +
+ 10 files changed, 650 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvdec.yaml
+ create mode 100644 drivers/gpu/drm/tegra/nvdec.c
+
+-- 
+2.32.0
 
