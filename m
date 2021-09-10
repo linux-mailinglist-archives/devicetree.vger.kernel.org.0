@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D87EB4072AD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 22:45:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F18B44072C9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Sep 2021 23:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234204AbhIJUqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 16:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233733AbhIJUqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 16:46:23 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AE2C061756
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:45:12 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id bq5so6531250lfb.9
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 13:45:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cHZ3QYaJRANd6Qj4KQO6L3SGyASMHRspLs55AF3AwWE=;
-        b=oWtIVPgv1HwE7IY8decgYe+XXsapaK71IYNwqcUpFV/X30cjslrTpA8ZgbGCPucza5
-         DoEpBPO5b7fToKSGi7M2O5K5ck/8zJ9zMbM8zzQBlmjyg/O1hmf2/F/BuxqOdCo9RLX5
-         CN44zjCWc2H/woem3/Q5Enn77Bu4aroRtduOwkTyHn2xqj8t//BWWJoqF8+C8GsCWQ0N
-         PVxQ6ZfiGKbDhasUfzDG01Pu1kyyKYvA2u+JyT4cBD3NnOR0GmeyFVCGOIMo540r6DJU
-         ebX0YfaIK2l61i263jvT3xncvy4oky11uHJv1kksY766rN8WOxgOF3VD82mhsOnWIslA
-         DxdA==
+        id S234069AbhIJVEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 17:04:54 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:39788 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233736AbhIJVEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 17:04:53 -0400
+Received: by mail-oi1-f176.google.com with SMTP id v2so4753261oie.6;
+        Fri, 10 Sep 2021 14:03:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cHZ3QYaJRANd6Qj4KQO6L3SGyASMHRspLs55AF3AwWE=;
-        b=KKMg5UAuHru0jwD5DtsziK0/KOKZ9cf7xpwaDtjr2zqeaCk9YlLr8mEa5aOU58YJiQ
-         48WXGcBX3HYEwyTH6ou8ihTTobR0xiUGRyD5TzMVCHD3EbyJIA1QjyzANUfILg3lJRRX
-         KmOep4JXDQ24tSOWVrWdIGdgRQpng8BJn9NIHnrW8XszdXxZ8YHeGCRpa5k1Sd8xCqg+
-         8e8RGgk9TbboR4DKTaFQ+NttxkXpKmG7hqsXR/Uo+arxDA/6w9O9sLNRupH3pXWZi2xT
-         ZrCKbsCv65aIccDEmePbMWDR1e8sqgS5LjgialX/N+xAmu3c65C+y7xGyymRfPt3OJJp
-         kzRQ==
-X-Gm-Message-State: AOAM532gmc0lj2qJBK4JYz+3sizJjpc09wY3aziZmKsNZ19o+gbsK5Hf
-        A9yUgbew+uE4JL6U1R2q8Adsk6QTzE7ICPy2I/RJKA==
-X-Google-Smtp-Source: ABdhPJxan8X8Nq4KBVtpwoPScw7hKKIccMMRyL8tlUisClLY1DY/Kev1VSP82ziuaLs5oTPMbmOIOba1m7PhZJMnhTE=
-X-Received: by 2002:a05:6512:3e15:: with SMTP id i21mr5186718lfv.273.1631306710387;
- Fri, 10 Sep 2021 13:45:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210910130337.2025426-1-osk@google.com> <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
-In-Reply-To: <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Fri, 10 Sep 2021 16:44:54 -0400
-Message-ID: <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=93MTRoNLekpPYpdVTnaXdlw7Z2oeG1fPoIGkCvvG1zk=;
+        b=T1x0P/8r+DTLbJbfMJZLgyThjW5jN1vvhZKVcyEx758GYusAISMoGYLfMOLo0cenHX
+         89CoDakHKNJP5/T1YPhQuPr3ZYaO2F50YrSZpyaPHpuNlmIlrqOWJA6nutnH9UI/HNEY
+         gWVeyQgqsb7z1Kx+MR90bEXhgcks4lGYFnFz1JuhEABBi/II92B3rrs83DiTemGQEajz
+         pxDCV+7ui9HRKUgLXNQex83m07FcwM58oTw8nuIAhEQbk/1WMvOEHRk9W4vzobVTYxUe
+         qU9d+q0UV35ou8mv5xeubOUWT56qkANevNjlO5Wx/oe0Ptne8PNtt7eDfmYM1eDEffWD
+         Ku2w==
+X-Gm-Message-State: AOAM532oYL88tYHKeLYHFI1ziQ7m7P1vzYzQCR4HZmujFRMvH8JlRPcU
+        a5ZUzQSJOGa635/sx/YsRgyz/AhSHw==
+X-Google-Smtp-Source: ABdhPJwDnTZxh9BtBOWryNxOzuJ0wKs7zxT57XESsLdt0lVfTNBKekkc0rljzNNpDbrR6fAdFsH8Sg==
+X-Received: by 2002:aca:4e08:: with SMTP id c8mr5914242oib.79.1631307822009;
+        Fri, 10 Sep 2021 14:03:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h19sm1500061otr.75.2021.09.10.14.03.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Sep 2021 14:03:41 -0700 (PDT)
+Received: (nullmailer pid 3377646 invoked by uid 1000);
+        Fri, 10 Sep 2021 21:03:40 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Oskar Senft <osk@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>
+In-Reply-To: <20210910130337.2025426-1-osk@google.com>
+References: <20210910130337.2025426-1-osk@google.com>
 Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Date:   Fri, 10 Sep 2021 16:03:40 -0500
+Message-Id: <1631307820.617689.3377645.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
+On Fri, 10 Sep 2021 09:03:37 -0400, Oskar Senft wrote:
+> Document bindings for the Nuvoton NCT7802Y driver.
+> 
+> Signed-off-by: Oskar Senft <osk@google.com>
+> ---
+>  .../bindings/hwmon/nuvoton,nct7802.yaml       | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> 
 
-Thanks for the quick feedback!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > +  nuvoton,rtd-modes:
-> > +    description: |
-> > +      Select modes for the three RTDs.
-> > +
-> At the very least, "RTD" should be defined. The datasheet doesn't say explicitly,
-> but I suspect it means "Remote Temperature Diode".
-Ha, good point. As I understand, RTD means "Resistance Temperature
-Detector". But TBH, I'm not sure how that squares with Nuvoton's use
-of "LTD" for the local sensor ... sigh.
+yamllint warnings/errors:
 
-> > +      Valid values for RTD1 and RTD2 are:
-> > +        "closed",
-> > +        "current",
-> > +        "thermistor",
-> > +        "voltage"
-> I am not sure what "closed" means (the datasheet doesn't say), but I suspect it means
-> that the sensor is disabled (?). For the other modes, the translation to the standard
-> ABI is:
-Thanks for that pointer, I now found that in
-Documentation/hwmon/sysfs-interface. Given that there's no definition
-for "disabled", I guess I'll just leave that out of the device tree
-binding for now? That way we'll stay consistent with the sysfs ABI.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml: properties:nuvoton,rtd-modes:type: 'anyOf' conditional failed, one must be fixed:
+	'stringlist' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
+	'stringlist' is not of type 'array'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml: properties:nuvoton,rtd-modes:type: 'stringlist' is not one of ['boolean', 'object']
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml: properties:nuvoton,rtd-modes: 'oneOf' conditional failed, one must be fixed:
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml: properties:nuvoton,rtd-modes: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	Additional properties are not allowed ('type' was unexpected)
+		hint: A vendor string property with exact values has an implicit type
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml: properties:nuvoton,rtd-modes: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	'boolean' was expected
+		hint: A vendor boolean property can use "type: boolean"
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml: ignoring, error in schema: properties: nuvoton,rtd-modes: type
+warning: no schema found in file: ./Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.example.dt.yaml:0:0: /example-0/i2c/nct7802@28: failed to match any schema with compatible: ['nuvoton,nct7802']
 
-That gives us the following mapping for sysfs / device tree -> nct7802 HW:
-2 (3904 transistor) -> 3 (voltage)
-3 (thermal diode) -> 1 (current)
-4 (thermistor) -> 2 (thermistor)
+doc reference errors (make refcheckdocs):
 
-I'll update the device tree binding to be an array then. I also update
-the temp_type functions to support all 3 values.
+See https://patchwork.ozlabs.org/patch/1526504
 
-Oskar.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
