@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D7D4074C3
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 04:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A834074C7
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 04:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235202AbhIKC55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 22:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54774 "EHLO
+        id S235228AbhIKDAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 23:00:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235174AbhIKC55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 22:57:57 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F674C061756
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 19:56:45 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id w78so4259895qkb.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 19:56:45 -0700 (PDT)
+        with ESMTP id S235227AbhIKDAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 23:00:44 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A114C061756
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 19:59:32 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id s16so2558831qvt.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 19:59:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=89y7dtYjpW2V9bTWN6kb0LJfhttVbVV+nnJbuimMLgY=;
-        b=CA/aZXFeGkPuzg/ckeBhtNY8HYbXRlOYOhmLKCI2KF0rZ/NZcqyTRuwEd1PgrerdSC
-         iGWWHM3lXyXIi0IWv0+n9JbNCwV+tCPZWA1HIZvPRSaJ3BI0+uTCum3FolNyCMFrOuKR
-         4VWhE5avruEnXE9qopY1Q0NlrT81Pze+kDVNc=
+        bh=QLsl1b3NpV63ZgEOzfho19a1Y601LOSFY9by5dYQ2vk=;
+        b=ZuJTyoJ2Az9c1Is3XTu1LV5/RcY65XnXmK9vMWCubV36heqTW7cF4yLUQU9PtDVMM0
+         fnXovV3tnPfgC5oaX9jyX6JtQEEgHRvOt6pnEvvrOlUiNsbD9Vv3TJZrvF+S0kZyHHFS
+         E98OaS1d0Tpyt77mNYlHPOHMmTywNyO4wZQ+w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=89y7dtYjpW2V9bTWN6kb0LJfhttVbVV+nnJbuimMLgY=;
-        b=gRnfd1kDlzry2FzO0QGA75tim/fQn4yftQf4bWx7tfu94O2s24O5dRwnvJadFlRRBd
-         F21E/P5mECIeQ5GE+VjI0+cgcNYCQI2zinKJ12gb0g/JcAPnohhAyJMq9O9C36YWY5cc
-         CXNNG4qf5hVAbIPaBuESA5cdkrBoB5UGpCx1i8/GLG3KDSTTltV6HhDbbxN2ntdB1u+u
-         ViZhpGWShqvoUAEbQ7DOmsxY3DXu8FJVLf7zG+dmI2LyczCIDuMYIKA8zOTMYSQjJJSK
-         DaveJfqSw6DgW+IUKQUZXSv2x1i4LZOF2sXDIFZXitg42WPMc9rTzKmTrGwIU7Jm9mnJ
-         covg==
-X-Gm-Message-State: AOAM531kcsvybuRWadIr3B+9YxSy+sr+XsbjRikFCQ3kqIbZBkDh+5V6
-        3F8iMNDT08+i+NHW5bmBvjJyPl58cuo9JmlDgUfyLw==
-X-Google-Smtp-Source: ABdhPJxyPNstiWLJG53wPOjDbgm6Dv1LCOTIxLjonS9hoQA3Pq9DmrgpkpAr3oJe8ZeISaPvJyLJTY5o5JC47ysONNM=
-X-Received: by 2002:a05:620a:4495:: with SMTP id x21mr498697qkp.378.1631329004367;
- Fri, 10 Sep 2021 19:56:44 -0700 (PDT)
+        bh=QLsl1b3NpV63ZgEOzfho19a1Y601LOSFY9by5dYQ2vk=;
+        b=X3YquLbefx/PHSQXvNgmuUoJ2iNU96/u4Ln7BTl8gqjsULYd9XYWP+j5zNYZOabkyc
+         KO1lLgPc6GLmp/FmGgxQ45CAvDxUhVYkv5WzqRgQRVyz06LTIf3dTx47gSfF5N3Cc97b
+         6gh/ZMyQNio4T2RAtudH/OqggzcxBSTct9k3Hfwxo4DgbFi8IvttV+xd1MePobjwfyZw
+         3J9t90R36J6Qq/lZhkIn6qJ8AC+z/LTS7apMuNduWizRWVkC05mKTX6NU1IYI0cjnKHB
+         bB78xAZ3o6bdBrXsBgCl7s80o2TeZxCkXT5WTSIVpokhQFFwO+KEmiAz9GZsvUvdE+r4
+         vi2Q==
+X-Gm-Message-State: AOAM533W/jteNgYN9de34Cg1oHKsrdg1O7E1Y898nscfl3ziiWlynZe+
+        Ke4ITMS3YsD1Pz0+kwUagV2qQiCS4DJi7rzqzuXHHg==
+X-Google-Smtp-Source: ABdhPJxlXs7FidNs06MWxVYHLmOrbib25biafBKZ0BHrdEoITRWXuaidDQ8sY+mPr9EqtO+a/mftg06B0puO2QvO5HU=
+X-Received: by 2002:a0c:aac5:: with SMTP id g5mr666903qvb.23.1631329171737;
+ Fri, 10 Sep 2021 19:59:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210910190322.27058-1-romain.perier@gmail.com> <20210910190322.27058-5-romain.perier@gmail.com>
-In-Reply-To: <20210910190322.27058-5-romain.perier@gmail.com>
+References: <20210910190322.27058-1-romain.perier@gmail.com> <20210910190322.27058-4-romain.perier@gmail.com>
+In-Reply-To: <20210910190322.27058-4-romain.perier@gmail.com>
 From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sat, 11 Sep 2021 11:56:33 +0900
-Message-ID: <CAFr9PXnLZC1zfs4e1GqZU4UU3knU-BwREe0-abrWNq7akrTntw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
+Date:   Sat, 11 Sep 2021 11:59:21 +0900
+Message-ID: <CAFr9PXmwRDfXmDR9UOGoQ2+_LDaSGgmg7n=Ek4RtBdiC2kfuLA@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: add vendor prefix for Wireless Tag
 To:     Romain Perier <romain.perier@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
         Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
@@ -59,43 +59,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Romain,
+Sorry for sending this again. Gmail decided to switch to html email so
+the first version bounced from the mailing lists.
 
 On Sat, 11 Sept 2021 at 04:03, Romain Perier <romain.perier@gmail.com> wrote:
 >
-> As proposed by Daniel, I am going to help him to maintain the platform,
-> so add myself as co-maintainer.
+> This adds a vendor prefix for wireless tag boards and SOMs.
 >
 > Signed-off-by: Romain Perier <romain.perier@gmail.com>
 > ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3a9a7cbf9456..ad1a0e5a5425 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2231,6 +2231,7 @@ F:        arch/arm/mach-pxa/mioa701.c
->
->  ARM/MStar/Sigmastar Armv7 SoC support
->  M:     Daniel Palmer <daniel@thingy.jp>
-> +M:     Romain Perier <romain.perier@gmail.com>
->  L:     linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->  S:     Maintained
->  W:     http://linux-chenxing.org/
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index a867f7102c35..b50d62dde7c5 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -517,6 +517,8 @@ patternProperties:
+>      description: International Business Machines (IBM)
+>    "^icplus,.*":
+>      description: IC Plus Corp.
+> +  "^wirelesstag,.*":
+> +    description: Wireless Tag (qiming yunduan)
+>    "^idt,.*":
+>      description: Integrated Device Technologies, Inc.
+>    "^ifi,.*":
 > --
 > 2.33.0
 >
 
-Acked-by: Daniel Palmer <daniel@thingy.jp>
+This should be in alphabetical order.
+Also, this commit should be before adding the DT for the board I think.
+The prefix should be in before something that uses it.
 
-For everyone else: For MStar/SigmaStar I have a ~350 commit backlog
-that makes almost everything work on these machines.
-It's impossible for me to finish up working out the hardware and clean
-up and push patches without the whole process taking years.
-Romain stepped up to help out and has been pulling out patches,
-cleaning them up and pushing them. He deserves to be listed as a
-maintainer.
-
-Cheers,
+Thanks,
 
 Daniel
