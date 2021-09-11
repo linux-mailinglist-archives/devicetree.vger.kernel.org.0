@@ -2,346 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96EE5407684
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 14:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81CEF40768C
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 14:20:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235915AbhIKMPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Sep 2021 08:15:20 -0400
-Received: from relay08.th.seeweb.it ([5.144.164.169]:51489 "EHLO
-        relay08.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235829AbhIKMPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Sep 2021 08:15:16 -0400
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D5BE13F46F;
-        Sat, 11 Sep 2021 14:14:01 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 8/8] clk: qcom: mmcc-msm8998: Remove unnecessary fallbacks to global clocks
-Date:   Sat, 11 Sep 2021 14:13:40 +0200
-Message-Id: <20210911121340.261920-9-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210911121340.261920-1-marijn.suijten@somainline.org>
-References: <20210911121340.261920-1-marijn.suijten@somainline.org>
+        id S235750AbhIKMVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Sep 2021 08:21:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230249AbhIKMVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Sep 2021 08:21:18 -0400
+Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944C4C061574;
+        Sat, 11 Sep 2021 05:20:05 -0700 (PDT)
+Received: by mail-vs1-xe2b.google.com with SMTP id a21so4014507vsp.12;
+        Sat, 11 Sep 2021 05:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7H4xpqYSY81qruCKg0gMtRjcT5K5rttH7wg/f9oDRUM=;
+        b=EjO+h+qRdpbAaxSWbNySY0QHC1aHKW7nV63e4IqtLrd636xgC/5uI+LtnX69vgv0wx
+         XJUILMykuNMsKd+JQRY7VEYrGKnKytB+LHSkmoC2sgf9U3WQ3lpoxM6jqgabw01fOqSV
+         aPyoRXE1I+uuZInytFq6ZMW9wC9m9XVqbOVi2Xe2Nf+EIT6TPJIwCW2MSM9G7KP3o23p
+         lPicPE5P2YpprhhSTM3AJa3F61nDbAuXHIHT3ZbhdXIFbPSpkmL83BKOJPQ79uEvohMP
+         W6lDSC3YZe+2fE4kOjj4MRn6V0TMXY2QbR/lONQmIP6HRASOqyvzufMxTMlyTeNOmnXQ
+         LUHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7H4xpqYSY81qruCKg0gMtRjcT5K5rttH7wg/f9oDRUM=;
+        b=0cWBifenGshzDDQegqzFnydgN3bXu+7CIdoNMngUSM6e68+J9o1swRDVHMv48uUE7i
+         W6ju2jBG9NslUqPZNGpzywJmhbckiVcFaeYs02Jfdp0Oohyu1rBxadIZXL8looAPjRrZ
+         HiuAJMn2Hj1s0eU9SLDzX7/5vf4GJ6H+aiXsDYJrx0bwI6qHiz3nio6W70hgEqWov0jy
+         um9TNV4CPh4xlssW+Lv3b/9u3iUMV7JMr4jRC5hoWFjvRH6Mi6EtOlC1iDymDq8gqxtU
+         6oTIlWXeo3yL9Ilk4eSo4nfj3xPmBV9tXXtEj3U1FyZPUIkAYAj9YpLeImwK40VIe93e
+         amMw==
+X-Gm-Message-State: AOAM5302p5ulyzG55JMQIvmgSDWmtgo5iiggbZk2DAkHK7zKPVqP/4ay
+        AUvbTmaxUJio+3RWo9OkYj5LY6kT+9Jq/8dIHZ7QEALm
+X-Google-Smtp-Source: ABdhPJwx8ta3pvKIUZJBToP9h/NasPw2m0chELd5Fz7tfkbqg/HunG1xeb+C+1VTrJrxG0KT4myBNizMQaCNb+rNFsI=
+X-Received: by 2002:a67:ef85:: with SMTP id r5mr756445vsp.32.1631362804642;
+ Sat, 11 Sep 2021 05:20:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210910190322.27058-1-romain.perier@gmail.com>
+ <20210910190322.27058-3-romain.perier@gmail.com> <CAFr9PXmRXcu_ifE62dT5AwZv2uFbYVfAc5ZX5qBoRkEPKGB+JA@mail.gmail.com>
+In-Reply-To: <CAFr9PXmRXcu_ifE62dT5AwZv2uFbYVfAc5ZX5qBoRkEPKGB+JA@mail.gmail.com>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Sat, 11 Sep 2021 14:19:53 +0200
+Message-ID: <CABgxDoLBbD8P-PhRH+SmuuQ8jNR53Ti=8brFL3NXMmiotXU5ww@mail.gmail.com>
+Subject: Re: [PATCH 2/4] ARM: dts: mstar: Add the Wireless Tag IDO-SBC2D06-V1B-22W
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A previous patch removes the "xo" clock from the global namespace making
-it impossible to acquire by that ".name".  The device-tree for msm8998
-currently does not include an mmcc node but the dt-bindings for this
-compatible already require all these clocks, and the patch introducing
-this node [1] also includes them.
+Hi Daniel,
 
-[1]: https://patchwork.kernel.org/project/linux-arm-msm/patch/20210901183123.1087392-1-angelogioacchino.delregno@somainline.org/
+Ack, I will fix it (remove "common" from the file name and the unneeded spa=
+ce)
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- drivers/clk/qcom/mmcc-msm8998.c | 105 +++++++++++++++-----------------
- 1 file changed, 48 insertions(+), 57 deletions(-)
+Thanks,
+Romain
 
-diff --git a/drivers/clk/qcom/mmcc-msm8998.c b/drivers/clk/qcom/mmcc-msm8998.c
-index a5ab6abe62bf..c421b1291651 100644
---- a/drivers/clk/qcom/mmcc-msm8998.c
-+++ b/drivers/clk/qcom/mmcc-msm8998.c
-@@ -53,8 +53,7 @@ static struct clk_fixed_factor gpll0_div = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mmss_gpll0_div",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "gpll0",
--			.name = "gpll0"
-+			.fw_name = "gpll0"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_fixed_factor_ops,
-@@ -78,8 +77,7 @@ static struct clk_alpha_pll mmpll0 = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mmpll0",
- 			.parent_data = &(const struct clk_parent_data){
--				.fw_name = "xo",
--				.name = "xo"
-+				.fw_name = "xo"
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -111,8 +109,7 @@ static struct clk_alpha_pll mmpll1 = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "mmpll1",
- 			.parent_data = &(const struct clk_parent_data){
--				.fw_name = "xo",
--				.name = "xo"
-+				.fw_name = "xo"
- 			},
- 			.num_parents = 1,
- 			.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -141,8 +138,7 @@ static struct clk_alpha_pll mmpll3 = {
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "mmpll3",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "xo",
--			.name = "xo"
-+			.fw_name = "xo"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -170,8 +166,7 @@ static struct clk_alpha_pll mmpll4 = {
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "mmpll4",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "xo",
--			.name = "xo"
-+			.fw_name = "xo"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -199,8 +194,7 @@ static struct clk_alpha_pll mmpll5 = {
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "mmpll5",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "xo",
--			.name = "xo"
-+			.fw_name = "xo"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -228,8 +222,7 @@ static struct clk_alpha_pll mmpll6 = {
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "mmpll6",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "xo",
--			.name = "xo"
-+			.fw_name = "xo"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -257,8 +250,7 @@ static struct clk_alpha_pll mmpll7 = {
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "mmpll7",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "xo",
--			.name = "xo"
-+			.fw_name = "xo"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -286,8 +278,7 @@ static struct clk_alpha_pll mmpll10 = {
- 	.clkr.hw.init = &(struct clk_init_data){
- 		.name = "mmpll10",
- 		.parent_data = &(const struct clk_parent_data){
--			.fw_name = "xo",
--			.name = "xo"
-+			.fw_name = "xo"
- 		},
- 		.num_parents = 1,
- 		.ops = &clk_alpha_pll_fixed_fabia_ops,
-@@ -316,9 +307,9 @@ static const struct parent_map mmss_xo_hdmi_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_hdmi[] = {
--	{ .fw_name = "xo", .name = "xo" },
--	{ .fw_name = "hdmipll", .name = "hdmipll" },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "xo" },
-+	{ .fw_name = "hdmipll" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_dsi0pll_dsi1pll_map[] = {
-@@ -329,10 +320,10 @@ static const struct parent_map mmss_xo_dsi0pll_dsi1pll_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_dsi0pll_dsi1pll[] = {
--	{ .fw_name = "xo", .name = "xo" },
--	{ .fw_name = "dsi0dsi", .name = "dsi0dsi" },
--	{ .fw_name = "dsi1dsi", .name = "dsi1dsi" },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "xo" },
-+	{ .fw_name = "dsi0dsi" },
-+	{ .fw_name = "dsi1dsi" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_dsibyte_map[] = {
-@@ -343,10 +334,10 @@ static const struct parent_map mmss_xo_dsibyte_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_dsibyte[] = {
--	{ .fw_name = "xo", .name = "xo" },
--	{ .fw_name = "dsi0byte", .name = "dsi0byte" },
--	{ .fw_name = "dsi1byte", .name = "dsi1byte" },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "xo" },
-+	{ .fw_name = "dsi0byte" },
-+	{ .fw_name = "dsi1byte" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_dp_map[] = {
-@@ -357,10 +348,10 @@ static const struct parent_map mmss_xo_dp_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_dp[] = {
--	{ .fw_name = "xo", .name = "xo" },
--	{ .fw_name = "dplink", .name = "dplink" },
--	{ .fw_name = "dpvco", .name = "dpvco" },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "xo" },
-+	{ .fw_name = "dplink" },
-+	{ .fw_name = "dpvco" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_gpll0_gpll0_div_map[] = {
-@@ -371,10 +362,10 @@ static const struct parent_map mmss_xo_gpll0_gpll0_div_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "xo" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_gpll0_gpll0_div_map[] = {
-@@ -386,11 +377,11 @@ static const struct parent_map mmss_xo_mmpll0_gpll0_gpll0_div_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll0_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div_map[] = {
-@@ -403,12 +394,12 @@ static const struct parent_map mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll1_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll0_out_even.clkr.hw },
- 	{ .hw = &mmpll1_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div_map[] = {
-@@ -421,12 +412,12 @@ static const struct parent_map mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div_map[] = {
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll5_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll0_out_even.clkr.hw },
- 	{ .hw = &mmpll5_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div_map[] = {
-@@ -440,13 +431,13 @@ static const struct parent_map mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div_map[
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll3_mmpll6_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll0_out_even.clkr.hw },
- 	{ .hw = &mmpll3_out_even.clkr.hw },
- 	{ .hw = &mmpll6_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div_map[] = {
-@@ -460,13 +451,13 @@ static const struct parent_map mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div_map
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll4_out_even.clkr.hw },
- 	{ .hw = &mmpll7_out_even.clkr.hw },
- 	{ .hw = &mmpll10_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_div_map[] = {
-@@ -480,13 +471,13 @@ static const struct parent_map mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_div_map
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll7_mmpll10_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll0_out_even.clkr.hw },
- 	{ .hw = &mmpll7_out_even.clkr.hw },
- 	{ .hw = &mmpll10_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static const struct parent_map mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div_map[] = {
-@@ -501,14 +492,14 @@ static const struct parent_map mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_gpll0_
- };
- 
- static const struct clk_parent_data mmss_xo_mmpll0_mmpll4_mmpll7_mmpll10_gpll0_gpll0_div[] = {
--	{ .fw_name = "xo", .name = "xo" },
-+	{ .fw_name = "xo" },
- 	{ .hw = &mmpll0_out_even.clkr.hw },
- 	{ .hw = &mmpll4_out_even.clkr.hw },
- 	{ .hw = &mmpll7_out_even.clkr.hw },
- 	{ .hw = &mmpll10_out_even.clkr.hw },
--	{ .fw_name = "gpll0", .name = "gpll0" },
-+	{ .fw_name = "gpll0" },
- 	{ .hw = &gpll0_div.hw },
--	{ .fw_name = "core_bi_pll_test_se", .name = "core_bi_pll_test_se" },
-+	{ .fw_name = "core_bi_pll_test_se" },
- };
- 
- static struct clk_rcg2 byte0_clk_src = {
--- 
-2.33.0
-
+Le sam. 11 sept. 2021 =C3=A0 05:18, Daniel Palmer <daniel@0x0f.com> a =C3=
+=A9crit :
+>
+> Hi Romain,
+>
+> On Sat, 11 Sept 2021 at 04:03, Romain Perier <romain.perier@gmail.com> wr=
+ote:
+> > +              - wirelesstag,ido-som2d01 # Wireless Tag IDO-SOM2D01
+> > +              - wirelesstag,ido-sbc2d06-v1b-22w # Wireless Tag IDO-SBC=
+2D06-1VB-22W
+>
+> For anyone wondering why we have two strings here:
+> The SBC board is made up of a SoM and a board with the connectors.
+> The SoM could be used standalone so we might as well have a compatible
+> for it too.
+> We have some dtsis for the SoM but really those could be built as is
+> to support someone using the SoM on it's own.
+>
+> > +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd201-som2d01-common.dtsi
+>
+> For anyone wondering:
+>
+> The som2d01 can come with an SSD201 (64MB DDR2 integrated) or SSD202D
+> (128MB DDR3 integrated) and they need different fixed regulators for
+> the DDR supply.
+> So we have a common dtsi and then override the regulator in another
+> layer of dtsi for the SSD202D version.
+>
+> Thinking about it now I think we can drop common from the file name.
+>
+> > @@ -0,0 +1,21 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > +/*
+> > + * Copyright (c) 2021 thingy.jp.
+> > + * Author: Daniel Palmer <daniel@thingy.jp>
+> > + * Author: Romain Perier <romain.perier@gmail.com>
+> > + */
+> > +
+> > +/ {
+> > +
+>
+> Unneeded space.
+>
+> > +       reg_vcc_dram: regulator-vcc-dram {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "vcc_dram";
+> > +               regulator-min-microvolt =3D <1800000>;
+> > +               regulator-max-microvolt =3D <1800000>;
+> > +               regulator-boot-on;
+> > +       };
+> > +};
+> > +
+> > +&pm_uart {
+> > +       status =3D "okay";
+> > +};
+> > diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido=
+-sbc2d06-v1b-22w.dts b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesst=
+ag-ido-sbc2d06-v1b-22w.dts
+> > new file mode 100644
+> > index 000000000000..20b40b711d4f
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d0=
+6-v1b-22w.dts
+> > @@ -0,0 +1,23 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > +/*
+> > + * Copyright (c) 2021 thingy.jp.
+> > + * Author: Daniel Palmer <daniel@thingy.jp>
+> > + * Author: Romain Perier <romain.perier@gmail.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtsi"
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > +       model =3D "Wireless Tag IDO-SBC2D06-1VB-22W";
+> > +       compatible =3D "wirelesstag,ido-sbc2d06-v1b-22w", "wirelesstag,=
+ido-som2d01", "mstar,infinity2m";
+> > +
+> > +       leds {
+> > +               compatible =3D "gpio-leds";
+> > +               sys_led {
+> > +                       gpios =3D <&gpio SSD20XD_GPIO_GPIO85 GPIO_ACTIV=
+E_LOW>;
+> > +                       linux,default-trigger =3D "heartbeat";
+> > +               };
+> > +       };
+> > +};
+> > diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido=
+-som2d01.dtsi b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-=
+som2d01.dtsi
+> > new file mode 100644
+> > index 000000000000..06567a5219c5
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-som2d0=
+1.dtsi
+> > @@ -0,0 +1,28 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> > +/*
+> > + * Copyright (c) 2021 thingy.jp.
+> > + * Author: Daniel Palmer <daniel@thingy.jp>
+> > + * Author: Romain Perier <romain.perier@gmail.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mstar-infinity2m-ssd202d.dtsi"
+> > +#include "mstar-infinity2m-ssd201-som2d01-common.dtsi"
+> > +
+> > +/ {
+> > +       model =3D "Wireless Tag IDO-SOM2D01 (SSD202D)";
+> > +       compatible =3D "wirelesstag,ido-som2d01", "mstar,infinity2m";
+> > +
+> > +       aliases {
+> > +               serial0 =3D &pm_uart;
+> > +       };
+> > +
+> > +       chosen {
+> > +               stdout-path =3D "serial0:115200n8";
+> > +       };
+> > +};
+> > +
+> > +&reg_vcc_dram {
+> > +       regulator-min-microvolt =3D <1500000>;
+> > +       regulator-max-microvolt =3D <1500000>;
+> > +};
+> > --
+> > 2.33.0
+> >
+>
+> Cheers,
+>
+> Daniel
