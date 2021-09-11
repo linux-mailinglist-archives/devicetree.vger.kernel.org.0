@@ -2,76 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02837407330
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 00:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5073440743C
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 02:46:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbhIJWFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 18:05:39 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:44857 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232360AbhIJWFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 18:05:38 -0400
-Received: by mail-ot1-f51.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so4190370otg.11;
-        Fri, 10 Sep 2021 15:04:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hkHTS49iipztUh1vQR77+AagPqEuPWOB0Lr1u4zmbh0=;
-        b=EI8pjmYlNqpf6rLlSiSuXMzwi/Z8b/KognvmHxxlmQUF1EGIzE8fAoFe3Thfc7k0h4
-         B52jCHA8vKr3XD2k3lYGnX2dFhkxtKUIkoR7NzYtALT0thAG8cX25ctNYrX3/axjZI90
-         5iqkJ5wPHETBG+rj9kIcEmbTAX5G1F3sNFP8tarIjj8Zm2GEJBvOf1clcylvQH+6+ocE
-         IkKF3IQ+HEzlXsZDI5tMKWetLyr6KOQ2sZa2XzcVIFLg0Pq7i7uw6FId8nXaNz5zMRl7
-         cKu1SOynTeX9tOE6+91uYCcpdPGwE4stTTw4vDx5MQQRVv6mD2uydKL+QW0NVbFIR2+A
-         JlXw==
-X-Gm-Message-State: AOAM531xsJ3hcz62zL5VZnZe7uAZvedpqAUyTBxKtpQNADb9kEvgd4kg
-        h25WQFULIG3acABWuEAkHg==
-X-Google-Smtp-Source: ABdhPJxk4HXxAM91kIV80yySCehMGaFW3CDFDV5aHTPieFKbrgctcWAya/bmgIqALeen03UUougSGA==
-X-Received: by 2002:a9d:6046:: with SMTP id v6mr6627489otj.234.1631311466616;
-        Fri, 10 Sep 2021 15:04:26 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v19sm1557901oic.31.2021.09.10.15.04.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Sep 2021 15:04:26 -0700 (PDT)
-Received: (nullmailer pid 3456962 invoked by uid 1000);
-        Fri, 10 Sep 2021 22:04:25 -0000
-Date:   Fri, 10 Sep 2021 17:04:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH] [v2] dt-bindings: arm/msm/qcom,idle-state convert to
- YAML
-Message-ID: <YTvWaRCswQs9Mt6L@robh.at.kernel.org>
-References: <20210908171453.53259-1-david@ixit.cz>
+        id S234960AbhIKArn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 20:47:43 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:3708 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234957AbhIKArm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Sep 2021 20:47:42 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18AMqDqM021593;
+        Fri, 10 Sep 2021 19:46:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=nnQSN31jtxHeO8603VLC465dKrlkvLcY+sGc3eMaxIw=;
+ b=OZ+uyQ+QN6Ry/+/69V4UF8UBlf/oeamW+U+QmCzAU5bQEfOFzMeJc5zKolhmfCoQ6yXz
+ mhkbv5cjvjwOupT5KGgJ4UDk5sbudoooPtsDcdV5wj1WGt3lYoQfj1d7DDmWFIwmV3PZ
+ o7S0TIazN4m/Ry5qdvuGejy3PQiAJTzpeTRm5F36PgwzhTqC8Ewd51cF3iexvDUl9lup
+ VaVV074hhfVugqQK3uSaY9Sxj/ICnb9QHmuQrsNnqGTZgftGeivvhBOsp1ZQMdsnB2Qw
+ XJuFZEp1jxAGaTPK+YIKULk8zymRRktYjGFGx9hPDFsrMDWYKOZ9Cvth33yZvdx8t3J/ gw== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 3aytg79kjf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 10 Sep 2021 19:46:21 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Sat, 11 Sep
+ 2021 01:46:20 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
+ Transport; Sat, 11 Sep 2021 01:46:20 +0100
+Received: from mail1.cirrus.com (unknown [198.61.64.254])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id AF66645D;
+        Sat, 11 Sep 2021 00:46:11 +0000 (UTC)
+From:   David Rhodes <drhodes@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh@kernel.org>,
+        <ckeepax@opensource.cirrus.com>, <brian.austin@cirrus.com>,
+        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <david.rhodes@cirrus.com>, <pierre-louis.bossart@linux.intel.com>,
+        <devicetree@vger.kernel.org>
+CC:     David Rhodes <drhodes@opensource.cirrus.com>
+Subject: [PATCH v7 0/2] Cirrus Logic CS35L41 Amplifier
+Date:   Fri, 10 Sep 2021 19:45:44 -0500
+Message-ID: <20210911004546.2139657-1-drhodes@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210908171453.53259-1-david@ixit.cz>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: pR86pyhJ5rdkT9bQGcT5NgA6A3CnjwOG
+X-Proofpoint-ORIG-GUID: pR86pyhJ5rdkT9bQGcT5NgA6A3CnjwOG
+X-Proofpoint-Spam-Reason: safe
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 08, 2021 at 07:14:53PM +0200, David Heidelberg wrote:
-> Switched maintainer from Lina to Bjorn.
-> 
-> Doesn't fix:
-> ```
-> idle-states: 'spc' does not match any of the regexes: '^(cpu|cluster)-', 'pinctrl-[0-9]+'
-> ```
-> from colliding arm/idle-states.yaml .
+ASoC driver and devicetree documentation for a new
+Cirrus Logic amplifier CS35L41
 
-Your options are:
+v7 changes:
+Remove property 'classh-bst-max-limit'
 
-- Drop this and add your node names and compatible strings to 
-idle-states.yaml. A variation of this is change the QCom node names 
-in dts files to match. Those look like the only real differences.
+David Rhodes (2):
+  ASoC: cs35l41: CS35L41 Boosted Smart Amplifier
+  ASoC: cs35l41: Add bindings for CS35L41
 
-- Extract the common idle state node properties to a common schema to 
-reference from both schemas.
+ .../devicetree/bindings/sound/cs35l41.yaml    |  151 ++
+ include/sound/cs35l41.h                       |   34 +
+ sound/soc/codecs/Kconfig                      |   12 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/cs35l41-i2c.c                |  114 ++
+ sound/soc/codecs/cs35l41-spi.c                |  143 ++
+ sound/soc/codecs/cs35l41-tables.c             |  597 +++++++
+ sound/soc/codecs/cs35l41.c                    | 1545 +++++++++++++++++
+ sound/soc/codecs/cs35l41.h                    |  775 +++++++++
+ 9 files changed, 3375 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cs35l41.yaml
+ create mode 100644 include/sound/cs35l41.h
+ create mode 100644 sound/soc/codecs/cs35l41-i2c.c
+ create mode 100644 sound/soc/codecs/cs35l41-spi.c
+ create mode 100644 sound/soc/codecs/cs35l41-tables.c
+ create mode 100644 sound/soc/codecs/cs35l41.c
+ create mode 100644 sound/soc/codecs/cs35l41.h
 
-I'd lean towards option 1 unless there are other variations of 
-idle-state nodes that also need option 2.
+-- 
+2.25.1
 
-Rob
