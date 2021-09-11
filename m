@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59FCC407708
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 15:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9502540777D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 15:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236180AbhIKNOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Sep 2021 09:14:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38304 "EHLO mail.kernel.org"
+        id S236790AbhIKNRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Sep 2021 09:17:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39240 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236366AbhIKNNr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Sep 2021 09:13:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6372461153;
-        Sat, 11 Sep 2021 13:12:34 +0000 (UTC)
+        id S237026AbhIKNPi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Sep 2021 09:15:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A48B61205;
+        Sat, 11 Sep 2021 13:13:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631365955;
+        s=k20201202; t=1631365994;
         bh=hjns1O5VBB1oEQxpCGhtIp+uuv+3hKCDt4L6L2WPSCw=;
         h=From:To:Cc:Subject:Date:From;
-        b=d6wxB3Gy/RjKNQ9JMSad9Wn+jPz3w5e1XdBt12l1UooQmr6JDRG9WZtCBwtIdedI6
-         KUtrcnNpa+XJVTY5B/utbVWH6FoDW2hR/PHHrWhyq/trG59MXSK2H52BYU/BN9ZY1k
-         qVC6tN2PGQAQaIAwT4YRmtYjKsbgLz1OwFzWAH9o7aKn/LFODX94LgRUV5gkhZhCVs
-         GekaMGvh8b9XfX+LMG5BNFNeEA4dhbNUx295XPc64IOeQu0yY9gqO2OF9RSHSQnI8C
-         +VPdOxdNqZhPBIYNXIfK75fnzI6j16L+JvFN8ADYkrkRkJG2NH4A1893+/OD783y19
-         nPG4oaLZ3knqg==
+        b=ttHdCX7+NlbQwQjtM1XsNeuFmyIS74XhoPumj7ruW1ZF6XznY4fivMJd8RcA1VdCX
+         jLzhYyihEtH3hJcFPMm9fKifjloVYYCQZapjB7Va6Tp4PbVEmKhKj6ASkBDpIkxlgI
+         UXj5WkFmtXAZpeoeIR8Lizp+x51qTgsa0wTy3ihtMF6x5rEuL1WbHFRIap3KAxfyDp
+         PA78LBH9eKOfTKLTHHpmdvMIxuYNaguBJlpFfwxEiSha5xjcm0wRobxlh9ru6SPfhu
+         gdZiOepPZ3PBNeEKyJmzg0l4VyOvYBft12fbVwUUCY/6j9djQdrnVgYPwnKlpFNVf8
+         GUIJvJmC2FX0A==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
         "Ryan J . Barnett" <ryan.barnett@collins.com>,
         Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
         linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 01/29] dt-bindings: mtd: gpmc: Fix the ECC bytes vs. OOB bytes equation
-Date:   Sat, 11 Sep 2021 09:12:05 -0400
-Message-Id: <20210911131233.284800-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 01/25] dt-bindings: mtd: gpmc: Fix the ECC bytes vs. OOB bytes equation
+Date:   Sat, 11 Sep 2021 09:12:48 -0400
+Message-Id: <20210911131312.285225-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 X-stable: review
