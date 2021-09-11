@@ -2,85 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2384074C6
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 04:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7310C4074CF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 05:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235225AbhIKDAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 23:00:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55378 "EHLO
+        id S231864AbhIKDT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 23:19:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231864AbhIKDAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 23:00:42 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3158CC061574
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 19:59:31 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id n34so3588569pfv.7
-        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 19:59:31 -0700 (PDT)
+        with ESMTP id S229503AbhIKDT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Sep 2021 23:19:57 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60BBC061756
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 20:18:43 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id t4so4288262qkb.9
+        for <devicetree@vger.kernel.org>; Fri, 10 Sep 2021 20:18:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=UB5X6LDtRlmMLewbT80H60e45mPwURkAoe8UEYtUtgs=;
-        b=Gz1fMRpfaH2C5eN1MfQ2PXoki7YggTUFa1FJUwgwHiTb74g38zPY4euMFmPX7JCyDW
-         Jv+bkJUPzaDhED5hLeLONpBGdxrjVXkrHOLkxNemZZpr9D/571vnBcV45bS5cmLO6oTk
-         gTSfeEaGkiBqdedP7PhuPijDkw/vt6JBWPkyYuZ7VMX9XMbGWlldTBc8IzJlaRIxg5yr
-         0HtVAT+KcYnSRXC7XYbHJJVmRlNFYOFirru4xED5KNMGp7Kq+gl2OpVdatqf/tXi4Jtx
-         i4f13uf59JyY7Yvo/kmUl1hDPEU6BQeDZbZKV//ehed14mfVOUFiK5TUOFLAnHwbU009
-         w/8g==
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yglhQiqMuWRPXEcp/S7cp6xw4g2Boo9OI0xnp6CMYq0=;
+        b=WIz8lZM8PLGizh5UoEnFP8TfCrOQRzhtjoMSFgBW6nZVGw1g7pIgTv2s7R4uf7BE7i
+         1Vcn6md5a/DpD/uE0Z0jbqm3xF+uW+OJ5FNv465mG9zup5WjKMvfgXkPtpdqUb6ibXaD
+         +ebjUbCnGE5zhrzDu0fCNtIWBpGDOoWEO3TC0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=UB5X6LDtRlmMLewbT80H60e45mPwURkAoe8UEYtUtgs=;
-        b=jBVrv4nuZNDMYzSO2vha0lScwZy3360Kf9kiqZc9N+J+1TeVNZz043iEoEnl7enYwk
-         K7e1+CooGKgnYvG0w9qm600k/ZXaMQiqz4xZlElqp5cm6nItu0IDfDLEOI08aegzdIdC
-         CoC2T9TZLofP3uzMvYPlfXN1oWTYitDyTDobLdJiqfqYq6JEYSUxG/D2HpbzgdL41HvL
-         VMGpsSzai7zKcouNuFVJQXecPlvziAfkfOSsbxcFsY6YlnBecidH/lu2QJU/sEHlDiZI
-         SboPKucMt5QWYKtYLiD02dDDo7efoaMUV7mgCMpvIgVvQVV6YcJ7AvVUQxkEyvMU7ypo
-         Y3EA==
-X-Gm-Message-State: AOAM5315H4A4uqzPWGUcafYyOxrEWmLS/uP/mKiCCsAlo4udHJpS9vBo
-        ial7Uj/4KyLGZar5Q3WE+TgBSGStFQZu0Z9tnAA=
-X-Google-Smtp-Source: ABdhPJyhNz7FpdAhLv7ZfOja9Ix8Kne7bd1GCapqxWhqNHAMKuzKaFeVBP5RKma2P/nWcZ/4ei8JG3OXFOQYI+WvkNQ=
-X-Received: by 2002:a63:c045:: with SMTP id z5mr737242pgi.374.1631329170719;
- Fri, 10 Sep 2021 19:59:30 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yglhQiqMuWRPXEcp/S7cp6xw4g2Boo9OI0xnp6CMYq0=;
+        b=23TYo1mEvpmhmHwQWS63NFLr+kwrLXCQe0IBCCaOB0K+IjRIqeSuvuGNl8XY3DjAC+
+         lya3HKb/scxwzjXLGdfrhORSpvUpuiOvB1hz8RL3BFpYwYoI0OH/2gw7v4ZZNrZph+6y
+         Z5oRWCC8BzbdbljOg4Of+ED80HR2MFGa9I/l+6VOAXkPTqsbMNv3xLAllIq1/zM1Iy2B
+         bGVMEzims45+4kFmbLIrUj2hOlx6iT1BKADHmc8Dvq4b86FHRNfgAqpwq08Yr/N/1cU1
+         jmNkKXj5MNZqxvz+QnhMsahyeBWxDRfYMP34RISwMqzwxQaANiQxcK0oBTbs81TwGirD
+         V+xA==
+X-Gm-Message-State: AOAM531nrEG9pNxeGXLIgSHe2jm2oVAxLzWd+v2LX4r3hZHGfIr6LIBG
+        dYPVWJnPXAib41NuDRxKClh36cx6TJLteh87miRWEQ==
+X-Google-Smtp-Source: ABdhPJxrshc0/e0qK2u4rQeCBzQr0P9W4mE/w2bCGPbHuyvvD1MoYhyx+d2tpScTXawu9idjHi4apmLNG0MU0Rawwm4=
+X-Received: by 2002:a05:620a:228a:: with SMTP id o10mr545406qkh.342.1631330322890;
+ Fri, 10 Sep 2021 20:18:42 -0700 (PDT)
 MIME-Version: 1.0
-Reply-To: asimmahmood4005@gmail.com
-Sender: jemillasmith345@gmail.com
-Received: by 2002:a05:7300:7648:b0:3a:f3ae:fd1 with HTTP; Fri, 10 Sep 2021
- 19:59:30 -0700 (PDT)
-From:   "Mr. Asim Mahmood" <millasth804@gmail.com>
-Date:   Fri, 10 Sep 2021 19:59:30 -0700
-X-Google-Sender-Auth: 3uM-Rok_Ycx2MduYMn6IBVtpOak
-Message-ID: <CABzEcLhTOL_L8=eX9ySdUFY3GafTqBAMZWwvT90XYJUwjiTXhQ@mail.gmail.com>
-Subject: URGENT URGENT
-To:     undisclosed-recipients:;
+References: <20210910190322.27058-1-romain.perier@gmail.com> <20210910190322.27058-3-romain.perier@gmail.com>
+In-Reply-To: <20210910190322.27058-3-romain.perier@gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Sat, 11 Sep 2021 12:18:32 +0900
+Message-ID: <CAFr9PXmRXcu_ifE62dT5AwZv2uFbYVfAc5ZX5qBoRkEPKGB+JA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] ARM: dts: mstar: Add the Wireless Tag IDO-SBC2D06-V1B-22W
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good Day,
+Hi Romain,
 
-Accept my apologies for writing you a surprise letter. I am Mr. Asim
-Mahmood, I am a banker for Garanti Ak Finans Bank, Burkina Faso. I
-hope that you will not expose or betray this trust and confidence that
-I am about to impose on you. I have a very important interest that I
-would like to discuss with you regarding one of our late customers who
-had a fixed deposit account at our bank. I have been in search of
-someone with the same last name as yours, so when I saw your name, I
-was pushed to contact you for our mutual benefit.
+On Sat, 11 Sept 2021 at 04:03, Romain Perier <romain.perier@gmail.com> wrote:
+> +              - wirelesstag,ido-som2d01 # Wireless Tag IDO-SOM2D01
+> +              - wirelesstag,ido-sbc2d06-v1b-22w # Wireless Tag IDO-SBC2D06-1VB-22W
 
-I have the opportunity to transfer the sum of (US$ 6,300,000) to you.
-I would like to invest these funds and introduce you to our bank as
-the beneficiary of the deceased client for this transaction. All I
-need is your sincere cooperation and I promise this will be done under
-a legitimate agreement that will protect us from any violation of the
-law. I agree that 40% of this money will go to you as my foreign
-partner, 50% to me, while 10% will go to establish a foundation for
-the underprivileged people in your country. If you would like to hear
-me out, I will provide you with full details of this transaction in
-your reply to this letter.
+For anyone wondering why we have two strings here:
+The SBC board is made up of a SoM and a board with the connectors.
+The SoM could be used standalone so we might as well have a compatible
+for it too.
+We have some dtsis for the SoM but really those could be built as is
+to support someone using the SoM on it's own.
 
-Thank you for your urgent response.
+> +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd201-som2d01-common.dtsi
 
-Regards,
-Mr. Asim Mahmood.
+For anyone wondering:
+
+The som2d01 can come with an SSD201 (64MB DDR2 integrated) or SSD202D
+(128MB DDR3 integrated) and they need different fixed regulators for
+the DDR supply.
+So we have a common dtsi and then override the regulator in another
+layer of dtsi for the SSD202D version.
+
+Thinking about it now I think we can drop common from the file name.
+
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright (c) 2021 thingy.jp.
+> + * Author: Daniel Palmer <daniel@thingy.jp>
+> + * Author: Romain Perier <romain.perier@gmail.com>
+> + */
+> +
+> +/ {
+> +
+
+Unneeded space.
+
+> +       reg_vcc_dram: regulator-vcc-dram {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "vcc_dram";
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <1800000>;
+> +               regulator-boot-on;
+> +       };
+> +};
+> +
+> +&pm_uart {
+> +       status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w.dts b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w.dts
+> new file mode 100644
+> index 000000000000..20b40b711d4f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w.dts
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright (c) 2021 thingy.jp.
+> + * Author: Daniel Palmer <daniel@thingy.jp>
+> + * Author: Romain Perier <romain.perier@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +       model = "Wireless Tag IDO-SBC2D06-1VB-22W";
+> +       compatible = "wirelesstag,ido-sbc2d06-v1b-22w", "wirelesstag,ido-som2d01", "mstar,infinity2m";
+> +
+> +       leds {
+> +               compatible = "gpio-leds";
+> +               sys_led {
+> +                       gpios = <&gpio SSD20XD_GPIO_GPIO85 GPIO_ACTIVE_LOW>;
+> +                       linux,default-trigger = "heartbeat";
+> +               };
+> +       };
+> +};
+> diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtsi b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtsi
+> new file mode 100644
+> index 000000000000..06567a5219c5
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtsi
+> @@ -0,0 +1,28 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright (c) 2021 thingy.jp.
+> + * Author: Daniel Palmer <daniel@thingy.jp>
+> + * Author: Romain Perier <romain.perier@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "mstar-infinity2m-ssd202d.dtsi"
+> +#include "mstar-infinity2m-ssd201-som2d01-common.dtsi"
+> +
+> +/ {
+> +       model = "Wireless Tag IDO-SOM2D01 (SSD202D)";
+> +       compatible = "wirelesstag,ido-som2d01", "mstar,infinity2m";
+> +
+> +       aliases {
+> +               serial0 = &pm_uart;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path = "serial0:115200n8";
+> +       };
+> +};
+> +
+> +&reg_vcc_dram {
+> +       regulator-min-microvolt = <1500000>;
+> +       regulator-max-microvolt = <1500000>;
+> +};
+> --
+> 2.33.0
+>
+
+Cheers,
+
+Daniel
