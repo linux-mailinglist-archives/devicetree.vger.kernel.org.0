@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 589B24077FB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 15:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36BCD4077EC
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 15:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236494AbhIKNWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Sep 2021 09:22:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49190 "EHLO mail.kernel.org"
+        id S237382AbhIKNVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Sep 2021 09:21:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49240 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237525AbhIKNTY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Sep 2021 09:19:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B38F561288;
-        Sat, 11 Sep 2021 13:14:05 +0000 (UTC)
+        id S237554AbhIKNTZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Sep 2021 09:19:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3396B61350;
+        Sat, 11 Sep 2021 13:14:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631366046;
-        bh=xESobgeIkbpJA62rLjpHEFlWrZqp6AXEsmRZp0ZSGiw=;
+        s=k20201202; t=1631366057;
+        bh=mdToDSP4iZ2cukpJ3ZT/GEREaE+0G5rXlJ0MG9HZdX0=;
         h=From:To:Cc:Subject:Date:From;
-        b=AR6GNZ4C8alUod726OVQSJYi7kVRQt012RzU25apZ+chjaikxttIQeqVGgwJJhASE
-         G45B635Bha6Dic/PwIPAKk26+3H5Qhlb3sw6riFaCb2+4KQPB9LJJ0aEQab8J27xbl
-         zmjfLZBeSp1Wn4WEQH21+HjbF4AUfWkAe8EjKJBhMxQ9aHK4DrozsqVKToEm91qpzh
-         l8WWfc0PA59T+FWUaIwnZSMfBUxNngNI5hRnTSwNPU0zeCefb6izetVtEWSTqYvSpL
-         o4yDpmGUDwAiaDdNLAyj2iJ6L0IypLOwxk3Xk9Sidua8K9ql0bADZOqD4hZtaVIwkf
-         Txsm7kiaRu60g==
+        b=GxCb8nUTLte0vV6uoc/laehKE8uVtBoWfQSF9ZlLbnol7pUjs5q5XNNVw9+3u9r/y
+         +/03R2D6KCccKm8hCkOnnsIPodoWGptcRhSRa1brD2L8hgplzrbSUcq1BroReKjrOj
+         g8B5u0EIKpxVXSLo4Cn+Zbctf2qgGfHVkMcMEaIb29+Al9LKBYJsd35LXloYLg6xcy
+         RDI1HTAhkvfQ1TIV03fTvm+ATBW1vSZBV6huj+9TS0d7wLYNTyIG4/NkV3yozcxP8H
+         ygm0n1m9/9Sr1nPgRoHIpTfKR4udICArCbTLIAlgrvkn5EXSbZLI08WcDzKbqjGnHn
+         uxX1TWoF0losQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
         "Ryan J . Barnett" <ryan.barnett@collins.com>,
         Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
         linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 1/7] dt-bindings: mtd: gpmc: Fix the ECC bytes vs. OOB bytes equation
-Date:   Sat, 11 Sep 2021 09:13:58 -0400
-Message-Id: <20210911131404.286005-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 1/5] dt-bindings: mtd: gpmc: Fix the ECC bytes vs. OOB bytes equation
+Date:   Sat, 11 Sep 2021 09:14:10 -0400
+Message-Id: <20210911131415.286125-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 X-stable: review
@@ -64,10 +64,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-index c059ab74ed88..a4a75fa79524 100644
+index dd559045593d..d2d1bae63a36 100644
 --- a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
 +++ b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-@@ -122,7 +122,7 @@ on various other factors also like;
+@@ -123,7 +123,7 @@ on various other factors also like;
  	so the device should have enough free bytes available its OOB/Spare
  	area to accommodate ECC for entire page. In general following expression
  	helps in determining if given device can accommodate ECC syndrome:
