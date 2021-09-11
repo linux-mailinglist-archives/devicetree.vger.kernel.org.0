@@ -2,60 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 981DB4079D8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 19:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D57B407AC9
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 01:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232448AbhIKRbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Sep 2021 13:31:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49524 "EHLO mail.kernel.org"
+        id S229800AbhIKXX5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 11 Sep 2021 19:23:57 -0400
+Received: from mail.chamber.uz ([217.30.169.104]:42055 "EHLO mail.chamber.uz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230018AbhIKRbS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Sep 2021 13:31:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 874D061027;
-        Sat, 11 Sep 2021 17:30:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631381405;
-        bh=hUcR2g6TUQiNlHG3a/B5efZFLKRnW8Z++9LPoE7IQAg=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=vHbExPW+4OggFCW4LUVPbZ2rUbt6p7HrbLNvC+2xa7mgal3SW3CORIX2BmrqvRcbu
-         kyIoaVw4cFOHzIzSEJhzRqy3sY3ReOkQsyrU7O2WGXD95RboK8QN9X1TC6XYjJ2Dli
-         wOsHpxwWNeLGzc3uv8ZTTR30+P23UOECXEUzlxbyxgJ1Bjgefuz9836aseu4UlkoVR
-         bnU5A7NwLlnNBO3f3HoO6LUVh0w+SMbfII9qIUgQneNpB27+7SHdIjzi9g6xbxrgZa
-         3hIb/SmtL4M7rmEUljA6APJNd/oqKXz2yT8tfIIG/Bnc4xcHNTtu5TpUQLYKjV228A
-         NmlfTdkKn6OXQ==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 71498600E8;
-        Sat, 11 Sep 2021 17:30:05 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for 5.15, take 1
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <YTvIXzO2QJ4n9RmM@robh.at.kernel.org>
-References: <YTvIXzO2QJ4n9RmM@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <YTvIXzO2QJ4n9RmM@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.15-1
-X-PR-Tracked-Commit-Id: 094b147c766289baa0f370d124609c3ac2b5a420
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: a1406e424253ba2121614377aaab274d403b08e0
-Message-Id: <163138140539.31565.7748956337457195645.pr-tracker-bot@kernel.org>
-Date:   Sat, 11 Sep 2021 17:30:05 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S231534AbhIKXX4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Sep 2021 19:23:56 -0400
+Received: from [192.168.0.114] (172.24.0.9) by mail.chamber.uz (172.24.0.254)
+ with Microsoft SMTP Server (TLS) id 14.2.347.0; Sun, 12 Sep 2021 04:20:37
+ +0500
+Content-Type: text/plain; charset="iso-8859-1"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Re: Forex and Bitcoin Mining
+To:     Recipients <bx@chamber.uz>
+From:   "Mr. Baltazar Miguel" <bx@chamber.uz>
+Date:   Sun, 12 Sep 2021 01:20:26 +0200
+Reply-To: <baltazar200miguel@yahoo.com>
+Message-ID: <d8d4564f-8c24-450e-9c6b-5651404a758a@MX2010.chamber.local>
+X-Originating-IP: [172.24.0.9]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Fri, 10 Sep 2021 16:04:31 -0500:
+Hello ,
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.15-1
+Would you like to learn how to make money while you sleep, through Bitcoin Mining, Binary options trading, and Forex trading? You do not need any certificate, professional skill, or prior experience. Remember THE FUTURE IS DIGITAL. Those who embrace it today will become the billionaires of tomorrow.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/a1406e424253ba2121614377aaab274d403b08e0
+I would be pleased to educate and guide you on how to do this for free. With $10,000, you can get a return of $100,000 in less than a month. There are still other packages to suit your financial capability. So many people are doing this and I wonder what you are waiting for.
 
-Thank you!
+Withdrawals are processed when due!!!
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+100% genuine and legit??????
+
+To set up an investment with me with the Bitcoin trading Crypto contact me on this email today:  baltazar200miguel@yahoo.com
+
+Kind regards.
+Baltazar Miguel
