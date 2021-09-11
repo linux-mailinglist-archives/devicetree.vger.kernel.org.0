@@ -2,234 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66B9640743D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 02:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB424074A5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Sep 2021 04:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234984AbhIKArr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Sep 2021 20:47:47 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:45950 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234957AbhIKArq (ORCPT
+        id S235180AbhIKCeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Sep 2021 22:34:22 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:53763 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235128AbhIKCeV (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Sep 2021 20:47:46 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18B0Z7CZ013159;
-        Fri, 10 Sep 2021 19:46:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=PODMain02222019;
- bh=IZqiyTUHD2x360lWWpykFlvpq1SKN8+9hHWr45L/WIs=;
- b=gVUXDDpYVOPaAXvtj4dr8ntOPVoUTUsUAAF5L6SFZ9Y0puPyd0+kv9By91CEjWjC0OIl
- E5HQ/60jeROYgbb63kvxCwg5s/GKVzeTlep0vmeie4evg3PM9qt0S0MoAib54RpwDS20
- ydhTGGFDKb17Y7+QUVJ1Yh3Wx7Gr+O8Ufn25n9SiHmcSRjKJ1zM0tuwVvkY1e6K0j4Nk
- OD65dN/0lvrnEzpmYgNoa/uFWPKo3DryFnnscJQgblrTMASIjGDEOvgNV5vjxkcDc2Y2
- Jjl2BZ4I0jQkOxoVMkYom0XOiO2c2+nR4WDcV/VaMhP+7Me7LMomnfIpti5sZhAwupJA 9g== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 3aytg79kjh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 10 Sep 2021 19:46:29 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Sat, 11 Sep
- 2021 01:46:28 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
- Transport; Sat, 11 Sep 2021 01:46:28 +0100
-Received: from mail1.cirrus.com (unknown [198.61.64.254])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 8BD8045D;
-        Sat, 11 Sep 2021 00:46:26 +0000 (UTC)
-From:   David Rhodes <drhodes@opensource.cirrus.com>
-To:     <broonie@kernel.org>, <robh@kernel.org>,
-        <ckeepax@opensource.cirrus.com>, <brian.austin@cirrus.com>,
-        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
-        <david.rhodes@cirrus.com>, <pierre-louis.bossart@linux.intel.com>,
-        <devicetree@vger.kernel.org>
-CC:     David Rhodes <drhodes@opensource.cirrus.com>
-Subject: [PATCH v7 2/2] ASoC: cs35l41: Add bindings for CS35L41
-Date:   Fri, 10 Sep 2021 19:45:46 -0500
-Message-ID: <20210911004546.2139657-3-drhodes@opensource.cirrus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210911004546.2139657-1-drhodes@opensource.cirrus.com>
-References: <20210911004546.2139657-1-drhodes@opensource.cirrus.com>
+        Fri, 10 Sep 2021 22:34:21 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 44C92580D36;
+        Fri, 10 Sep 2021 22:32:53 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Fri, 10 Sep 2021 22:32:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=9
+        wn7RP7Sux9NYgDDcEExp5Udsa+3BvnVWNaKgQ+xtco=; b=C54qrA6kMQY/5XFcT
+        HMkZjs6lh0FZRguVrhwIIxrnEospagqHftUvoYjDpwCm52GukttO6NgXCKLjCWd4
+        IPQ3HnUc0sspZBvEeG11N3NxPIxPAELxHPmDPkzwN3D+a7y2U4Ymnf6kKO0tEzpv
+        /T/jlT9JM4ZHHQMfm51jRmmRJM+2NUJGu+dVVMSR/EnecBMYkKm0Ot+TNRo2fmM3
+        8Ss6bNrbFwpdFdmjxPq8cgRIepxZ9WZcFZMurqPQFuOCLKhn7jkwsw3i+L/oBHvd
+        YQXYsWdsYjxJCqUVq1BUAVjMV41QYSVZ4zuYmE114hVUuAozGtptkODL8ggpSKn9
+        XLh9g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=9wn7RP7Sux9NYgDDcEExp5Udsa+3BvnVWNaKgQ+xt
+        co=; b=qtYIC427B9zI8tzmC3wd15AoaBFHpEDOC4H603KsCIB0FiBofs4wkvwg7
+        uS9gkqjTxxsnurrBUh9uTLiFVU5y/AU2WqyvWkXFQhqXH9SSjNvCFrzXfYDv80zD
+        Dbjd2JwpGgoW3IfzTZd41DZ0DI+/8emaVG65seFbSczgiZoiO7LGDmtkP61nGiNO
+        q29dU+yrnOCwwDHmCcS1rC/Q004jB9wAxkp0Jvt6Aq4/6Pg9a5cQCOG0tJaXKWwm
+        piUEidBdJvly9SUKPlltO/LYrX7RUGfolQSptC905Qh01jToxPFZNY+rO2jnFMQS
+        5lAtst/0U/MIehzGvTp8tBGhbfKkA==
+X-ME-Sender: <xms:UhU8YdLgdDXoWKC5WM2HQdQzOWdceZhNFSM4ZDIHW6NksC96cac9SQ>
+    <xme:UhU8YZKBTmqsKcPVzbIpFt3Yxh47OT_TXobfh9KV4CulVI2nzLQsjQCI3W3wZXy7w
+    JGzunryDsbkl61_ow>
+X-ME-Received: <xmr:UhU8YVuvztFyxK92St4z7JM8euPi079MLna5__K8AbtHxfeDfOc6Zt95nHudd6fSdDF6DSaxsOn2at7cJ1owmDaQcN290xAoXC-DMGRMN1IRWRpVWg83Sp9V5A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudegvddgheejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
+    uefgtedtgeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:UhU8YebXU91bKJe0VzOMREaX9RL4z3XY_MEMKJXqUxxdu3mFSIg-dA>
+    <xmx:UhU8YUZV90hxitD4BKT3lUTXoRgZFq4zPto02grRmhBVZSp61WGIrw>
+    <xmx:UhU8YSDPWhl62RYdMbH_U3KEA4Rr7McORTS2QeDVX2eLVn4djGBtdw>
+    <xmx:VRU8YUMXGyMvhK50DVWRrnQwwYX_iPnsyiYrYSDrtx6K3yINWpvIZw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 10 Sep 2021 22:32:49 -0400 (EDT)
+Subject: Re: [PATCH 09/22] ARM: dts: sun8i: v3s: Add nodes for MIPI CSI-2
+ support
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
+References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
+ <20210910184147.336618-10-paul.kocialkowski@bootlin.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <483288cb-d9fa-4581-7986-d15c4aa27769@sholland.org>
+Date:   Fri, 10 Sep 2021 21:32:48 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: bfr3_iXteb1C4pR3vPY1s-ycmg1GPHmr
-X-Proofpoint-ORIG-GUID: bfr3_iXteb1C4pR3vPY1s-ycmg1GPHmr
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <20210910184147.336618-10-paul.kocialkowski@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Devicetree binding documentation for CS35L41 driver
+On 9/10/21 1:41 PM, Paul Kocialkowski wrote:
+> MIPI CSI-2 is supported on the V3s with an A31-based MIPI CSI-2 bridge
+> controller. The controller uses a separate D-PHY, which is the same
+> that is otherwise used for MIPI DSI, but used in Rx mode.
+> 
+> On the V3s, the CSI0 controller is dedicated to MIPI CSI-2 as it does
+> not have access to any parallel interface pins.
+> 
+> Add all the necessary nodes (CSI0, MIPI CSI-2 bridge and D-PHY) to
+> support the MIPI CSI-2 interface.
+> 
+> Note that a fwnode graph link is created between CSI0 and MIPI CSI-2
+> even when no sensor is connected. This will result in a probe failure
+> for the controller as long as no sensor is connected but this is fine
+> since no other interface is available.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  arch/arm/boot/dts/sun8i-v3s.dtsi | 72 ++++++++++++++++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
+> index a77b63362a1d..ec7fa6459547 100644
+> --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
+> @@ -612,6 +612,34 @@ spi0: spi@1c68000 {
+>  			#size-cells = <0>;
+>  		};
+>  
+> +		csi0: camera@1cb0000 {
+> +			compatible = "allwinner,sun8i-v3s-csi";
+> +			reg = <0x01cb0000 0x1000>;
+> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CSI>,
+> +				 <&ccu CLK_CSI1_SCLK>,
+> +				 <&ccu CLK_DRAM_CSI>;
+> +			clock-names = "bus", "mod", "ram";
+> +			resets = <&ccu RST_BUS_CSI>;
+> +			status = "disabled";
+> +
+> +			assigned-clocks = <&ccu CLK_CSI1_SCLK>;
+> +			assigned-clock-parents = <&ccu CLK_PLL_ISP>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					csi0_in_mipi_csi2: endpoint {
+> +						remote-endpoint = <&mipi_csi2_out_csi0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>  		csi1: camera@1cb4000 {
+>  			compatible = "allwinner,sun8i-v3s-csi";
+>  			reg = <0x01cb4000 0x3000>;
 
-CS35L41 is a 11-V Boosted Mono Class D Amplifier with
-DSP Speaker Protection and Equalization
+All of the new nodes should be added above this one, to maintain unit
+address order.
 
-Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
----
- .../devicetree/bindings/sound/cs35l41.yaml    | 151 ++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/cs35l41.yaml
+Regards,
+Samuel
 
-diff --git a/Documentation/devicetree/bindings/sound/cs35l41.yaml b/Documentation/devicetree/bindings/sound/cs35l41.yaml
-new file mode 100644
-index 000000000000..fde78c850286
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/cs35l41.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/cs35l41.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cirrus Logic CS35L41 Speaker Amplifier
-+
-+maintainers:
-+  - david.rhodes@cirrus.com
-+
-+description: |
-+  CS35L41 is a boosted mono Class D amplifier with DSP
-+  speaker protection and equalization
-+
-+properties:
-+  compatible:
-+    enum:
-+      - cirrus,cs35l40
-+      - cirrus,cs35l41
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    description:
-+      The first cell indicating the audio interface.
-+    const: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  VA-supply:
-+    description: voltage regulator phandle for the VA supply
-+
-+  VP-supply:
-+    description: voltage regulator phandle for the VP supply
-+
-+  cirrus,boost-peak-milliamp:
-+    description:
-+      Boost-converter peak current limit in mA.
-+      Configures the peak current by monitoring the current through the boost FET.
-+      Range starts at 1600 mA and goes to a maximum of 4500 mA with increments
-+      of 50 mA. See section 4.3.6 of the datasheet for details.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 1600
-+    maximum: 4500
-+    default: 4500
-+
-+  cirrus,boost-ind-nanohenry:
-+    description:
-+      Boost inductor value, expressed in nH. Valid
-+      values include 1000, 1200, 1500 and 2200.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 1000
-+    maximum: 2200
-+
-+  cirrus,boost-cap-microfarad:
-+    description:
-+      Total equivalent boost capacitance on the VBST
-+      and VAMP pins, derated at 11 volts DC. The value must be rounded to the
-+      nearest integer and expressed in uF.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+
-+  cirrus,asp-sdout-hiz:
-+    description:
-+      Audio serial port SDOUT Hi-Z control. Sets the Hi-Z
-+      configuration for SDOUT pin of amplifier.
-+      0 = Logic 0 during unused slots, and while all transmit channels disabled
-+      1 = Hi-Z during unused slots but logic 0 while all transmit channels disabled
-+      2 = (Default) Logic 0 during unused slots, but Hi-Z while all transmit channels disabled
-+      3 = Hi-Z during unused slots and while all transmit channels disabled
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 3
-+    default: 2
-+
-+  cirrus,gpio1-polarity-invert:
-+    description:
-+      Boolean which specifies whether the GPIO1
-+      level is inverted. If this property is not present the level is not inverted.
-+    type: boolean
-+
-+  cirrus,gpio1-output-enable:
-+    description:
-+      Boolean which specifies whether the GPIO1 pin
-+      is configured as an output. If this property is not present the
-+      pin will be configured as an input.
-+    type: boolean
-+
-+  cirrus,gpio1-src-select:
-+    description:
-+      Configures the function of the GPIO1 pin.
-+      Note that the options are different from the GPIO2 pin
-+      0 = High Impedance (Default)
-+      1 = GPIO
-+      2 = Sync
-+      3 = MCLK input
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 3
-+
-+  cirrus,gpio2-polarity-invert:
-+    description:
-+      Boolean which specifies whether the GPIO2
-+      level is inverted. If this property is not present the level is not inverted.
-+    type: boolean
-+
-+  cirrus,gpio2-output-enable:
-+    description:
-+      Boolean which specifies whether the GPIO2 pin
-+      is configured as an output. If this property is not present the
-+      pin will be configured as an input.
-+    type: boolean
-+
-+  cirrus,gpio2-src-select:
-+    description:
-+      Configures the function of the GPIO2 pin.
-+      Note that the options are different from the GPIO1 pin.
-+      0 = High Impedance (Default)
-+      1 = GPIO
-+      2 = Open Drain INTB
-+      3 = MCLK input
-+      4 = Push-pull INTB (active low)
-+      5 = Push-pull INT (active high)
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 5
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#sound-dai-cells"
-+  - cirrus,boost-peak-milliamp
-+  - cirrus,boost-ind-nanohenry
-+  - cirrus,boost-cap-microfarad
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+      cs35l41: cs35l41@2 {
-+        compatible = "cirrus,cs35l41";
-+        reg = <2>;
-+        VA-supply = <&dummy_vreg>;
-+        VP-supply = <&dummy_vreg>;
-+        reset-gpios = <&gpio 110 0>;
-+        cirrus,boost-peak-milliamp = <4500>;
-+        cirrus,boost-ind-nanohenry = <1000>;
-+        cirrus,boost-cap-microfarad = <15>;
-+      };
-\ No newline at end of file
--- 
-2.25.1
+> @@ -637,5 +665,49 @@ gic: interrupt-controller@1c81000 {
+>  			#interrupt-cells = <3>;
+>  			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>  		};
+> +
+> +		mipi_csi2: csi@1cb1000 {
+> +			compatible = "allwinner,sun8i-v3s-mipi-csi2",
+> +				     "allwinner,sun6i-a31-mipi-csi2";
+> +			reg = <0x01cb1000 0x1000>;
+> +			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CSI>,
+> +				 <&ccu CLK_CSI1_SCLK>;
+> +			clock-names = "bus", "mod";
+> +			resets = <&ccu RST_BUS_CSI>;
+> +			status = "disabled";
+> +
+> +			phys = <&dphy>;
+> +			phy-names = "dphy";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				mipi_csi2_in: port@0 {
+> +					reg = <0>;
+> +				};
+> +
+> +				mipi_csi2_out: port@1 {
+> +					reg = <1>;
+> +
+> +					mipi_csi2_out_csi0: endpoint {
+> +						remote-endpoint = <&csi0_in_mipi_csi2>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		dphy: d-phy@1cb2000 {
+> +			compatible = "allwinner,sun6i-a31-mipi-dphy";
+> +			reg = <0x01cb2000 0x1000>;
+> +			clocks = <&ccu CLK_BUS_CSI>,
+> +				 <&ccu CLK_MIPI_CSI>;
+> +			clock-names = "bus", "mod";
+> +			resets = <&ccu RST_BUS_CSI>;
+> +			allwinner,direction = "rx";
+> +			status = "disabled";
+> +			#phy-cells = <0>;
+> +		};
+>  	};
+>  };
+> 
 
