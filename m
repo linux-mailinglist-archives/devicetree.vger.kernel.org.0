@@ -2,142 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 740DE407CCF
-	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 12:14:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2689E407DCB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 16:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232663AbhILKPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Sep 2021 06:15:50 -0400
-Received: from mail-db8eur05on2068.outbound.protection.outlook.com ([40.107.20.68]:62944
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229568AbhILKPt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Sep 2021 06:15:49 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IXhyTG2EmNeFFaq9Bq0K352cTcMDX1SZfD/gKX7gueKA258+Bcd7pIDWrmVTFztuvVtks/vpZZKmRxbmZrgPStL1szk1oUWX16PKDCKODX8vkC091n6WOq9Te1GYb4IkZ58kkVXV/OmDxMn3UudzLb52zRQrZX0a0dHPpTv3j4mG8f6Hc2oDsQeKui4O0jJfbDh7RKCTEzCE0H1IOwaSk1PCkKEXs6DyRtpTbDAq/zQk5FTe0VBYw409coqS/9Ety7PVK4YcA2ZKDSLpL9WY0yD2hp1bDxOTeGA4ee6EcCwJEozSjCXnFMDaXzHv0or9Yl/L7PtpenQYQ6Imd83Nng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=BX46RYN2HT1Cte5GHoZpP2nAHPkvEIebLpcWfrx3bUQ=;
- b=kOGjsIP2wbnVoZgyxBJA8yI1nTvM7pr90f4xviJs0iESDdGjOjLOxhuCxjY4V50Krd8f/N2EOf+/v41MN+D/H9uUpHN6QggoA5cT/etBXX4fv1xvRzN/ZmTZvDHOpWEW/C1V6eOPa4Wp+coEY+kj+gz0bL+YmxgFf8j2+SD5IhWohLeXQj9+pyYiwEPfftAhMcR/fPZqMbeRQXXxNgH3BdTa2P8C5LBonnHHiZUkrQonScHgndp9aE/m02rT0gR+QFNHvgEc+9OWjD9rexbXZm8Kao0MxRWAQkwF/0WCxKEpBjK4C85/OtNKK9H3f9n6vZ/rVhJaj+6Auw/sFFrdZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BX46RYN2HT1Cte5GHoZpP2nAHPkvEIebLpcWfrx3bUQ=;
- b=iBq5fImSuFnTlBAlEkWy9p5zHzjsVP2NNdd0gRLtKNHS2OPvLbmpdLDOQDF2pMxxmDUOeI/pKnLLPW8ANKhjSf+jzKFPKLNf9RvCbBqLBI/W0wFGUijd/zUmp+5lcJzem6UfvAmNShl+RJTcX9VnSC2jcRSQgYTW2y6m6NCTHKQ=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB4686.eurprd04.prod.outlook.com (2603:10a6:803:71::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14; Sun, 12 Sep
- 2021 10:14:33 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4500.018; Sun, 12 Sep 2021
- 10:14:33 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Sasha Levin <sashal@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>
-Subject: Re: [PATCH AUTOSEL 5.4 22/37] MIPS: mscc: ocelot: mark the phy-mode
- for internal PHY ports
-Thread-Topic: [PATCH AUTOSEL 5.4 22/37] MIPS: mscc: ocelot: mark the phy-mode
- for internal PHY ports
-Thread-Index: AQHXpdnoz9fi1RBYPEig4OnDY7Pba6ugMkEA
-Date:   Sun, 12 Sep 2021 10:14:33 +0000
-Message-ID: <20210912101432.6ego3nlw7q6h33yc@skbuf>
-References: <20210910002143.175731-1-sashal@kernel.org>
- <20210910002143.175731-22-sashal@kernel.org>
-In-Reply-To: <20210910002143.175731-22-sashal@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 713f39ed-ed13-4a9e-6fc0-08d975d61dda
-x-ms-traffictypediagnostic: VI1PR04MB4686:
-x-microsoft-antispam-prvs: <VI1PR04MB46869CE30254BF42E2E0303DE0D89@VI1PR04MB4686.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: TQrUBm4+PyqdXi7FxfELNLn7K7KUjlEJReYpFsKE4Q3AA6EuXEquaVr0wFHXJJI1GyKHFrHgzr7p2ICwG3MXjUUmGSnPL3tTEohdjZC5zU4Yt5b4OkFN34Bi50db5kDb0mQLF9Lw7nLc3I6h8KZHpw+MM7WCdQzWhM4Y/XEDTEd0+BH3BcSwjWgtK4kciFM/OEdQwYuO4+s13Mm6fg1be5FBiM93NXhIXWKhJZUvLHPiSEgsEQh7gRbYtMWxkx40nN2ELTobcmyjxRJ2HCJjVN4ththsK4TKo8W7fj2mG+NUsxG2X7faShyIC0/tM5P7VJuPh4Hrhg03irq6JcSJsR02iJW5YSbFiX+fnJgKwFHhdh313JO7YwUZLhFClSI7TEtlBudCDGCvu57+GODuJX8yUAlLm9qo9qDDYWvmsmP8/x7GM2UGLOhY3Vjw6DT4mjKrbkJ4q0tPSQ8NN5AVbwYLMnqg01LOuMd6sd45BMsJesUS+zy4j+cHge234F3JvkQUztKc9NrkYUBzIQmOuyXoEIyNNi3YR0VI63EJtxeFQRtEwWL81etx4i0Ow7mqhD1XwIik3GqqmgbfMRjWsiohtjM2N5c3CFFT/bNekSGsEyaiTsDHJSuZpR9Wqj272sDcmPu1fWSDqhddwoKeu6a8e4fqhVqO5qa6r535Vc4t3ZQiLUEaon1U2eqe1EsVxWHe5gDnFqFVRF5R0HsR32w1lpD61GYHwmFJLPmuxcX4NrDyO88k6ymFfHp7Pb6OaMeIemkeCRnGRXeHia6L7o4EbEwrrX6a6gmB774LKM0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(396003)(39860400002)(136003)(366004)(376002)(346002)(44832011)(478600001)(186003)(1076003)(2906002)(316002)(6506007)(6486002)(76116006)(66946007)(122000001)(33716001)(26005)(66476007)(66556008)(64756008)(66446008)(8936002)(4744005)(38070700005)(6512007)(9686003)(86362001)(5660300002)(4326008)(8676002)(71200400001)(38100700002)(6916009)(54906003)(966005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vv7dg/CAIWgzaJwvb6i0C1IVAN8fAFey1eBtN2EnQ7W5R6mo36QNCY2XwvWX?=
- =?us-ascii?Q?swQUAij82wFqyjOrLFrmscUG2WhlIpDTdr4Np1XoMOpic3C61noSQ6MAYXmz?=
- =?us-ascii?Q?7tdhreYxM3/qE3/f3J7lUzpclhciPDAiHqoF9UEckzy7bzcj6s8Om+DZ/CXU?=
- =?us-ascii?Q?y/Zkw73CzrgOUZjIMxTcB5CtdRuyKvDf7PqXqDyb78QXdZaDW7PSnHjvNVvC?=
- =?us-ascii?Q?hJAf4wU8NN5pa3HdssU2P5KX7aS+jc2ntsP2jGOkYxIxJtRS+OTDistk8WUO?=
- =?us-ascii?Q?KP2tRvt2o8XctLd8+AyCEEyrkqw3d8pLsKg6KdKy4lmNNmfvu/CtzmQO+J11?=
- =?us-ascii?Q?OYmw1S6ekQK/I3k1Iih7cybGH3lgeo0gNuA2KVsGiMY9CGpbfiKKUjrG4rfj?=
- =?us-ascii?Q?EY2bzVHTxdrVkRh8PJ5AzCt9VlfHpivH1W4Gtzxdggr9a43tLZpOsEXk2Xuv?=
- =?us-ascii?Q?5cFqGzqyXkNRGYa96Qfe+8vInGukuhnRz0l5OI2cNronejjLRb/VTK8XSHVg?=
- =?us-ascii?Q?FF1S8j03Ql1qIew3K85CbpRT/DIVJQD1WgdI8sanqLLnW8tYIuiam2FyO737?=
- =?us-ascii?Q?QUUBED76Bi8iYmxNwPb/JlC7zpS6UqWsQdcuXk0hrjI4cSjAdErXOnzO+mAT?=
- =?us-ascii?Q?B/CYixq+pbAKsaVYaHG09hnv9bwiH/tBoHZOX/Nx5wJWkJlQugyfpkDXWFA1?=
- =?us-ascii?Q?IHsBa5yx9fqbcnAE7xEg9oC/jikRwBXDw7A9gj1Zh99r2M5EBWLWfD39MzxL?=
- =?us-ascii?Q?gADXcDzv3jEOtbwu91tD5+Stx+j/3yGUX1NsiOcxz7wjO7OTIa2G5zfnscx7?=
- =?us-ascii?Q?mJEZ2OsUayAQcNTKtgImu9HOBHu+QlC1sSpXu0cR4r1UtYFxIOPi9fH92BrB?=
- =?us-ascii?Q?4v1vK9fWV/6laNXYrsASp7CIusO9EASrZQuvaAoPWXJqCOxGG02WgNEpzg2O?=
- =?us-ascii?Q?3Sopmytne7cuzlO1hDfdfTFWa4uEAtCUPhFAnsQY0AdL5ALaQyj8Oll8yCYn?=
- =?us-ascii?Q?H8WzfDqMCNKPrRrvYIf0/6Sora3IpMx722rKqxMVaEn/XlK4GdtK4hfClvJh?=
- =?us-ascii?Q?ty7/TfLGnjQ5DQ5kEHYo18402RA1lNm+x3VHmRbQ/jgJpfHfZ3TNPI9+3KgI?=
- =?us-ascii?Q?2I+6cSXDTwNcms7nsxECZighYV2ee2lPeUJAG1d4KQf3FQbLVIQkqDDUJqR2?=
- =?us-ascii?Q?WyrPKlpDUGcAVxFioATuvpydyMc4N7nYu+627oqqpYZb592TQe6+4/Xm07El?=
- =?us-ascii?Q?jkG+MiNWcWwLRDmHnV7d60Gw/o3GsNtdo5gXa2Hfjp6SxDzEVhSw3ep3Ml7I?=
- =?us-ascii?Q?1Hsqww8uZJPS0gr+xWxAOsXW?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <78E94934732A274B9854B27D454E540C@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S231925AbhILOmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Sep 2021 10:42:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229653AbhILOmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Sep 2021 10:42:06 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A22C061574
+        for <devicetree@vger.kernel.org>; Sun, 12 Sep 2021 07:40:51 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id g8so10202404edt.7
+        for <devicetree@vger.kernel.org>; Sun, 12 Sep 2021 07:40:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=M7XAduPSau7jNQ1Bw+pmFFUarTdMQmGShJ3P2Wf2mk0=;
+        b=nPcDSOXwJfKBIwxe8NBTL4d8RsRbV9lf1sRbeE5xGrNJB8ShNcnhoyGkAl/f4A3ph/
+         r0s/XQthLKYzVH7MKlRO133IBagMeQqaKeMdmX/pqVzmj6iQcKG1A93PPK8knHuJuzge
+         o4PfWkKtJPZXrvNK65eLT/opBJEtvtbaQZOo4jDfBF9bsUONsPGMWkKxblLLsDbCYihj
+         7IjC4MnkpGuw5b4rljxWX9c1I/jpoR3EDB9+TBTQGgRhs4OaB+9czqgyslHzFO7iiaef
+         Uc3sNR5DGkqLx/xZ9/Ae3PIm3CvnF020hX24ZJWNlYf7oNJCE/778YwFFS0gsC/dl2hG
+         Hciw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=M7XAduPSau7jNQ1Bw+pmFFUarTdMQmGShJ3P2Wf2mk0=;
+        b=XxOY+QS5oJEcN2yV6uVeISkq2wzXoMkBRBwAXiIBNyyu8L91i9k8Z5xtWTD4znAFTW
+         Zmf0mVgvbNx3Xh/Z1JfuTrx73Jd0byYAVQC5e5TH5PL+3S4AJEk/8IrGLUP8xcaV6hqi
+         IuxftfQ7fy1cB9qplxIyJD8qLE/tzTtEppsGnElkRyb+x3MDvQsqhr3ZmmJiAoIeE3mP
+         7JgTIMdNFVbrG8jx2bnjbqhgW+3PnWssAvT09XLBa2JDLTHoBm88lXxfcwOupU3vsutH
+         Qq7RxQH52aZlXMjEWVJNbu37YhmyeNsbDfxlsjjpFqMx9h3NxAsRN3gH+ztUXNtH4ctx
+         1prA==
+X-Gm-Message-State: AOAM533xyv/BXeB7LkqPOrlHDbBHxNWBmmk3potXG4ZN7/biShGBrnyG
+        y6Xl5J8QgSkGAQA6T+wPgtTpOQfuYh46Qq2diFou5EaU3el+lw==
+X-Google-Smtp-Source: ABdhPJx6XCXRe3c6Fkp8vsAG28brDO7fcRgiQMj6a1y97qUOgoseDUl2JXCpf5sqdQ5pGv/Zm9IZJ9jJA82riFC/OlU=
+X-Received: by 2002:a50:9e02:: with SMTP id z2mr8117088ede.249.1631457650124;
+ Sun, 12 Sep 2021 07:40:50 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 713f39ed-ed13-4a9e-6fc0-08d975d61dda
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2021 10:14:33.2852
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4kp0ggWfftegRTcJO5jMKC6xFlIzuBWxzHuaJHijVQERJcFYyVWznv98XYCqXPi7yOdpEoiXs6e4bJNXwRqmGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4686
+References: <20210910202640.980366-1-l.stach@pengutronix.de> <20210910202640.980366-14-l.stach@pengutronix.de>
+In-Reply-To: <20210910202640.980366-14-l.stach@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Sun, 12 Sep 2021 09:40:39 -0500
+Message-ID: <CAHCN7xKfuewfxbCkOAtFvD+SLk+ej71iTrVa2ws8ZAAhrp0btA@mail.gmail.com>
+Subject: Re: [PATCH v4 13/18] soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sasha,
-
-On Thu, Sep 09, 2021 at 08:21:27PM -0400, Sasha Levin wrote:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
->=20
-> [ Upstream commit eba54cbb92d28b4f6dc1ed5f73f5187b09d82c08 ]
->=20
-> The ocelot driver was converted to phylink, and that expects a valid
-> phy_interface_t. Without a phy-mode, of_get_phy_mode returns
-> PHY_INTERFACE_MODE_NA, which is not ideal because phylink rejects that.
->=20
-> The ocelot driver was patched to treat PHY_INTERFACE_MODE_NA as
-> PHY_INTERFACE_MODE_INTERNAL to work with the broken DT blobs, but we
-> should fix the device trees and specify the phy-mode too.
->=20
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
+On Fri, Sep 10, 2021 at 3:26 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> This adds the description for the i.MX8MM disp blk-ctrl.
+>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
 > ---
+>  drivers/soc/imx/imx8m-blk-ctrl.c | 70 ++++++++++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>
+> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> index f2d74669d683..225c15f35dad 100644
+> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> @@ -431,11 +431,81 @@ static const struct imx8m_blk_ctrl_data imx8m_vpu_blk_ctl_dev_data = {
+>         .num_domains = ARRAY_SIZE(imx8m_vpu_blk_ctl_domain_data),
+>  };
+>
+> +static int imx8mm_disp_power_notifier(struct notifier_block *nb,
+> +                                     unsigned long action, void *data)
+> +{
+> +       struct imx8m_blk_ctrl *bc = container_of(nb, struct imx8m_blk_ctrl,
+> +                                                power_nb);
+> +
+> +       if (action != GENPD_NOTIFY_ON && action != GENPD_NOTIFY_PRE_OFF)
+> +               return NOTIFY_OK;
+> +
+> +       /* Enable bus clock and deassert bus reset */
+> +       regmap_set_bits(bc->regmap, BLK_CLK_EN, BIT(12));
+> +       regmap_set_bits(bc->regmap, BLK_SFT_RSTN, BIT(6));
+> +
+> +       /*
+> +        * On power up we have no software backchannel to the GPC to
+> +        * wait for the ADB handshake to happen, so we just delay for a
+> +        * bit. On power down the GPC driver waits for the handshake.
+> +        */
+> +       if (action == GENPD_NOTIFY_ON)
+> +               udelay(5);
+> +
+> +
+> +       return NOTIFY_OK;
+> +}
+> +
+> +static const struct imx8m_blk_ctrl_domain_data imx8m_disp_blk_ctl_domain_data[] = {
 
-Could you please drop this patch?
+Since the 8MQ, 8MM, 8MN, and 8MP have different blk_ctl structures,
+shouldn't this be imx8mm_disp_blk_ctl_domain_data?
 
-As discussed here, I did not bother to patch the ocelot switch driver on
-stable kernels to support the new device tree binding too:
-https://lore.kernel.org/lkml/YR6b15zKkjWFoM1X@piout.net/
+> +       [IMX8MM_DISPBLK_PD_CSI_BRIDGE] = {
+> +               .name = "dispblk-csi-bridge",
+> +               .clk_names = (const char *[]){ "csi-bridge-axi", "csi-bridge-apb",
+> +                                              "csi-bridge-core", },
+> +               .num_clks = 3,
+> +               .gpc_name = "csi-bridge",
+> +               .rst_mask = BIT(0) | BIT(1) | BIT(2),
+> +               .clk_mask = BIT(0) | BIT(1) | BIT(2) | BIT(3) | BIT(4) | BIT(5),
+> +       },
+> +       [IMX8MM_DISPBLK_PD_LCDIF] = {
+> +               .name = "dispblk-lcdif",
+> +               .clk_names = (const char *[]){ "lcdif-axi", "lcdif-apb", "lcdif-pix", },
+> +               .num_clks = 3,
+> +               .gpc_name = "lcdif",
+> +               .clk_mask = BIT(6) | BIT(7),
+> +       },
+> +       [IMX8MM_DISPBLK_PD_MIPI_DSI] = {
+> +               .name = "dispblk-mipi-dsi",
+> +               .clk_names = (const char *[]){ "dsi-pclk", "dsi-ref", },
+> +               .num_clks = 2,
+> +               .gpc_name = "mipi-dsi",
+> +               .rst_mask = BIT(5),
+> +               .clk_mask = BIT(8) | BIT(9),
+> +       },
+> +       [IMX8MM_DISPBLK_PD_MIPI_CSI] = {
+> +               .name = "dispblk-mipi-csi",
+> +               .clk_names = (const char *[]){ "csi-aclk", "csi-pclk" },
+> +               .num_clks = 2,
+> +               .gpc_name = "mipi-csi",
+> +               .rst_mask = BIT(3) | BIT(4),
+> +               .clk_mask = BIT(10) | BIT(11),
+> +       },
+> +};
+> +
+> +static const struct imx8m_blk_ctrl_data imx8m_disp_blk_ctl_dev_data = {
 
-So backporting the device tree change would break the old driver.=
+Same here.
+
+> +       .max_reg = 0x2c,
+> +       .power_notifier_fn = imx8mm_disp_power_notifier,
+> +       .domains = imx8m_disp_blk_ctl_domain_data,
+> +       .num_domains = ARRAY_SIZE(imx8m_disp_blk_ctl_domain_data),
+> +};
+> +
+>  static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
+>         {
+>                 .compatible = "fsl,imx8mm-vpu-blk-ctrl",
+>                 .data = &imx8m_vpu_blk_ctl_dev_data
+>         }, {
+> +               .compatible = "fsl,imx8mm-disp-blk-ctrl",
+> +               .data = &imx8m_disp_blk_ctl_dev_data
+> +       } ,{
+>                 /* Sentinel */
+>         }
+>  };
+> --
+> 2.30.2
+>
