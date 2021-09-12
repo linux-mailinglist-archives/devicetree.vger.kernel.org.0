@@ -2,118 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE9574081C1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 23:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F1414081D8
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 23:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235600AbhILVJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Sep 2021 17:09:01 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:55975 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235034AbhILVJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Sep 2021 17:09:01 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 3E5EF5C0046;
-        Sun, 12 Sep 2021 17:07:46 -0400 (EDT)
-Received: from imap46 ([10.202.2.96])
-  by compute1.internal (MEProxy); Sun, 12 Sep 2021 17:07:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.com.au;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type:content-transfer-encoding; s=fm1; bh=mk
-        RpGHmdJF3f4VUu9ZIMiGiTNXdGreWTcrs7p2zXik0=; b=fxVlL1ozOzGjAqYIva
-        rHCoQEROPYliyrGGm2wYbNgm5899u+ceGh6JO/I8JAVxWt39/S9FtDi2Ig5oNLOd
-        Lnrvg2zw30rde6yZ3lGLui+CLveWzp9gAJDNG8SL0TWnxYij+CbflsswIbbgLhhJ
-        WQi/HheOiq6D0I9yrMRHbkvzR5a8bSmATeVVc7Vj1Sfu0SDsI104XdvW2YrOqIiE
-        ZqhKoroSbPk85E3qwUlp1KtNnpKxfYac7Cv16KEvU0NOETZkA662XTmM3zqrvAeX
-        ixdAIy/0IelQQk/1Jv8MAP4CNRjebks2TaORa4AG/Km4STG2U0GZNIZMUUb/d8Bb
-        0m3A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=mkRpGHmdJF3f4VUu9ZIMiGiTNXdGreWTcrs7p2zXi
-        k0=; b=RywLMun3lGx6nY6vRq69e7fwogZd6KMauG0ZiVds+qCl2ZdLHKawXRdPg
-        d3RRj1VQk0dE9+IWfzKm7In9TdTLtV4zWVuVwpchOqiCmgK1eiToTnruYwu7wJ5Z
-        z36djf+MdGvJ2Ns8NWgJ6pXHTBcD6ZeGHuYGS+gH/vUgRX7Jif5OF9R+517R8S1z
-        RKitbR7hPZV96tPlg4QxOCG1NmIukQDe+Ne3OFi5N1nDUsymXLxdnlHFReSANsar
-        Ef3ORcrLCH4kqyzFKbXn5VL9sAgLxeU5rP1/V9oVKUbjyUUcGVeyg1l1vsf0kw/B
-        sYIEY0sAvfLW2eDeK3D5EnJauIQhg==
-X-ME-Sender: <xms:IWw-YQDC-kGkFfcw_09Ujh-xGF_gEs_EWIaBlQrRyHX5_uflwC5_vg>
-    <xme:IWw-YSi2BoKZg52oVjfhzefa3mV82nFE79J3EpMIYdB4qtGvAUNUAC2YT861rsshm
-    0ukrsaMdUtUYq_wQA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudeghedgudehgecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ohhhnhcuvfhhohhmshhonhdfuceolhhishhtshesjhhohhhnthhhohhmshhonhdrfhgrsh
-    htmhgrihhlrdgtohhmrdgruheqnecuggftrfgrthhtvghrnhepjedttdejvdfgjeehheek
-    veekleelfffgledugefhjeegvdekudduhedtvdfhkeelnecuffhomhgrihhnpehkvghrnh
-    gvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
-    ohhmpehlihhsthhssehjohhhnhhthhhomhhsohhnrdhfrghsthhmrghilhdrtghomhdrrg
-    hu
-X-ME-Proxy: <xmx:IWw-YTnXw_jjJirDLoVsqY2PPghn-QkUQaxJauHa8cjSX1mzwQN_Gw>
-    <xmx:IWw-YWxFL_pJwgO_42qU07_67D87k9qwKY83SOpXvp32InxljrB7-g>
-    <xmx:IWw-YVRbU-Jlb86qTc8hWh17Qhq2JH_HlLLS7tqW43v2ovLa32-Fnw>
-    <xmx:Imw-YTPx1CB1tRu61Iuy4HVOSygYwnOs99Iv7eR7wVJ8qadT1w_wbQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 50C2E1EE0064; Sun, 12 Sep 2021 17:07:45 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1229-g7ca81dfce5-fm-20210908.005-g7ca81dfc
-Mime-Version: 1.0
-Message-Id: <7d1a7607-15fc-4dd6-9317-c6161c4984db@www.fastmail.com>
-In-Reply-To: <vrcxh2wnnrl7a7.fsf@plvision.eu>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-4-vadym.kochan@plvision.eu>
- <b54325f156eaaa6535667a1a7fb695c7688d2db4.camel@pengutronix.de>
- <vrcxh2wnnrl7a7.fsf@plvision.eu>
-Date:   Sun, 12 Sep 2021 21:06:39 +0000
-From:   "John Thomson" <lists@johnthomson.fastmail.com.au>
-To:     "Vadym Kochan" <vadym.kochan@plvision.eu>,
-        =?UTF-8?Q?Jan_L=C3=BCbbe?= <jlu@pengutronix.de>
-Cc:     "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "Robert Marko" <robert.marko@sartura.hr>
-Subject: Re: [PATCH v2 3/3] nvmem: add ONIE nvmem cells parser
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+        id S236065AbhILVcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Sep 2021 17:32:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235034AbhILVcJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Sep 2021 17:32:09 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4A8DF61029;
+        Sun, 12 Sep 2021 21:30:54 +0000 (UTC)
+Received: from [198.52.44.129] (helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mPX3s-00AKvP-8c; Sun, 12 Sep 2021 22:30:52 +0100
+Date:   Sun, 12 Sep 2021 22:30:42 +0100
+Message-ID: <871r5tcwhp.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 4/4] arm64: apple: Add PCIe node
+In-Reply-To: <20210827171534.62380-5-mark.kettenis@xs4all.nl>
+References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
+        <20210827171534.62380-5-mark.kettenis@xs4all.nl>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 198.52.44.129
+X-SA-Exim-Rcpt-To: mark.kettenis@xs4all.nl, devicetree@vger.kernel.org, alyssa@rosenzweig.io, kettenis@openbsd.org, tglx@linutronix.de, robh+dt@kernel.org, marcan@marcan.st, bhelgaas@google.com, nsaenz@kernel.org, jim2101024@gmail.com, f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com, daire.mcnamara@microchip.com, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vadym,
+On Fri, 27 Aug 2021 18:15:29 +0100,
+Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> 
+> From: Mark Kettenis <kettenis@openbsd.org>
+> 
+> Add node corresponding to the apcie,t8103 node in the
+> Apple device tree for the Mac mini (M1, 2020).
+> 
+> Clock references and DART (IOMMU) references are left out at the
+> moment and will be added once the appropriate bindings have been
+> settled upon.
+> 
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> ---
+>  arch/arm64/boot/dts/apple/t8103.dtsi | 63 ++++++++++++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+> index 503a76fc30e6..6e4677bdef44 100644
+> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> @@ -214,5 +214,68 @@ pinctrl_smc: pinctrl@23e820000 {
+>  				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
+>  				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+> +
+> +		pcie0: pcie@690000000 {
+> +			compatible = "apple,t8103-pcie", "apple,pcie";
+> +			device_type = "pci";
+> +
+> +			reg = <0x6 0x90000000 0x0 0x1000000>,
+> +			      <0x6 0x80000000 0x0 0x4000>,
 
-On Wed, 8 Sep 2021, at 09:56, Vadym Kochan wrote:
->=20
-> Hi Jan,
->=20
-> Jan L=C3=BCbbe <jlu@pengutronix.de> writes:
-=E2=80=A6
->=20
-> > I think it would be useful to have a way to express this setup for s=
-ystems with
-> > many interfaces, but am unsure of where this should be described. Ma=
-ybe a "mac-
-> > address-offset" property in the generic ethernet controller binding?
-> >
-> > Regards,
-> > Jan
->=20
-> May be something like eth_address_provider should be introduced in
-> net/ethernet/ ?
->=20
-> This provider can provide something like eth_provider_address_next() w=
-hich
-> will consider "mac-address-num" (or other specific fields).
->=20
+Only exposing 16kB for the 'rc' crashes the Linux driver as it tries
+to configure the port ref-clock configurations, which live much
+higher:
 
-A patch series proposed the devicetree property
-mac-address-increment, but it did not get support at the time:
-of_net: add mac-address-increment support
-https://lore.kernel.org/all/20200920095724.8251-4-ansuelsmth@gmail.com/
-dt-bindings: net: Document use of mac-address-increment
-https://lore.kernel.org/all/20200920095724.8251-5-ansuelsmth@gmail.com/
+#define CORE_LANE_CFG(port)		(0x84000 + 0x4000 * (port))
 
-Cheers,
---=20
-  John Thomson
+Previous versions of the binding had this region as 1MB, which made
+things work.
+
+> +			      <0x6 0x81000000 0x0 0x8000>,
+> +			      <0x6 0x82000000 0x0 0x8000>,
+> +			      <0x6 0x83000000 0x0 0x8000>;
+
+These used to be 16kB, and are now twice as much. Didn't cause any
+issue with the Linux driver, but I wonder what trigger either change.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
