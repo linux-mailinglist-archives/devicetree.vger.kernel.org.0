@@ -2,130 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 752CB407C2E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 09:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 183F8407CBF
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 11:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231970AbhILHal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Sep 2021 03:30:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58048 "EHLO
+        id S229814AbhILJwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Sep 2021 05:52:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231670AbhILHak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Sep 2021 03:30:40 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22542C061574;
-        Sun, 12 Sep 2021 00:29:26 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id b6so9379817wrh.10;
-        Sun, 12 Sep 2021 00:29:26 -0700 (PDT)
+        with ESMTP id S233678AbhILJwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Sep 2021 05:52:01 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22954C061757;
+        Sun, 12 Sep 2021 02:50:47 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id n7-20020a05600c3b8700b002f8ca941d89so4452075wms.2;
+        Sun, 12 Sep 2021 02:50:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p8XhEt4Fmunfa8NpIGRPQuJN1xu6qouTV5IkQcF+ghU=;
-        b=cKXO0KuhajEgiGk1+uT4HTy5EyOwfRg/XscYGA04SmmiTfiwVzN5cb8yuTT+w1S/tc
-         fHHVCQoE52EXSOh056ofPSHaNg327CEj2v3BkOpPgPl1R7Chrtp2BYKHp9YUrgB5WIWb
-         pk1rOUYa0txYlOq9SCialmsGXlsZLqTHzD0vE8u5yh84Dnff4sRu/9b5J5z3igoVcpaR
-         MvFo/IMAILvxNbVjxGT5PJApS40MYHBmcCYwEm/BSshsevBBOuMJjf1Py9eRcYaJE1q7
-         qMgO97pF+3YnVuj7+wSwObrDEFuPuzoQskz+UmD4Du/e+odHpEFFLGK98DUkaPDhXDBL
-         GSJQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZfUDMjhaBW28irP63CnwhnXUauvV+ceBbmfpoRw/Bl8=;
+        b=T1/hhsyBRS2DZ/592/U9LVU+905MkddkZ7e1nzYGxk3NrFdUaONbjuCPUU+gYQAHf6
+         a1qCH3aWLd+2sKyN1+2zeYJQLYcEL/LZZwvW/b6O4juccBqfNW4nQncgbff+UwRkuXd4
+         zKp96LxjFMOVlsVhsiJDad//D8305kdp21qeIu6Sd+AbbolgW+OSAkDc9EoWo9V8a48i
+         nv9/oBTQwPlH4eCmKGCMoZTQ00ZQooVtNjRSwqL5zCep+fL3NLkM+nXrDeuo8xBKk/aH
+         l0HebZCPiIoQrqZ6ZwIOfvpcBoeuQ861jdq4/sIkzWS9K030Sj/hYNhrbd5bZXL+ZUI5
+         vzbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p8XhEt4Fmunfa8NpIGRPQuJN1xu6qouTV5IkQcF+ghU=;
-        b=zjiIdJ37KTGI4V/VT/UbhOVYWO/FQBPhbYP040Te3MHPrDLd+crfCpKube+cdmUixw
-         l2Bf4EW7+M4K6NxOAv4QI0I93BCqYqrZBIBGUUQ2J3790ecOwzT4OJX2Surhboh8wUBX
-         eUtz6PiygvnfPVXw3rfX86uk9MAagZrMVP0IIcNuYXx7Qdl+8Komc7FmkehSJuvT6p0D
-         vmjRnyyl5BLCKfsZsHIvdfeRWMioIpqItmRw8dLLI4lKldTmUHgG0ki46jNuzCMM/mDo
-         HHSA6RF7VlfujIFzEhhXeoccPO3IZMOMfgM228vbY1KfgUV4Dc/trfAts6W1Sqdf5Wn+
-         IC1Q==
-X-Gm-Message-State: AOAM530kCykMI0EYrMYT66jjvIAhOLs5rz7uhMNqR+XG0L7D7N1D3BKD
-        URXNDujQkYrmYtSJYyUV9mKbJxZu6eH/yg==
-X-Google-Smtp-Source: ABdhPJw8j95ed8Tv5MAZwOMVe8G4B4HBMDkVEHQ3XC1PQKwL8HHqVAy8O8rZnTdOeGzxz6l+b1oylA==
-X-Received: by 2002:adf:c109:: with SMTP id r9mr6361561wre.184.1631431764810;
-        Sun, 12 Sep 2021 00:29:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZfUDMjhaBW28irP63CnwhnXUauvV+ceBbmfpoRw/Bl8=;
+        b=jrWIMzQW1bKktTR79m60KKEL92P+UWLjUXk56AXyoF8nVpz8cKPgQ+det5pA9gKxzL
+         LKki+6WoYG8vO0ZRyKWkBvDvOfBGHJb1qOE+4D7SRJLfyJx9wqQsV3Cbw80O6FyS+65a
+         vCMKt/C5Ng55eSoCNSfwrtdOgDTWqLjLXcJUQ96WnRHzZE8gn3p1kbbW1Siz2r3R1Hog
+         +uOXBrNTH585dGCls2CdUdccTEBAbO6fcblhj5EOpoKdKTWKpyrnSmBvuH/nU4SariGw
+         uOiRaUBuJ7sCjs8gwo+cCqcO+SCIKLpvuY3HOyyqctlGB4XOMF4SFo/uv98NpgnLO9KB
+         mGOA==
+X-Gm-Message-State: AOAM530gThdTGRw0fOBNRCK/Xd7C2b/X93u6YFbRAOddMqED8Sce/VIi
+        ts4oAjQMjzKfveLkOn+UcIw=
+X-Google-Smtp-Source: ABdhPJyzMQK6uGv0+edsUnseYhz0bylpHJqwuQWPA5iwYb8Cj0rz5723JiK4lVGjA+DXjoqok7/erg==
+X-Received: by 2002:a7b:cd15:: with SMTP id f21mr1464839wmj.16.1631440245762;
+        Sun, 12 Sep 2021 02:50:45 -0700 (PDT)
 Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id t18sm3584889wrp.97.2021.09.12.00.29.23
+        by smtp.gmail.com with ESMTPSA id n13sm3471487wmq.3.2021.09.12.02.50.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Sep 2021 00:29:24 -0700 (PDT)
+        Sun, 12 Sep 2021 02:50:45 -0700 (PDT)
 From:   Jernej Skrabec <jernej.skrabec@gmail.com>
 To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         linux-kernel@vger.kernel.org,
         Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: sun8i: r40: Add I2S nodes
-Date:   Sun, 12 Sep 2021 09:29:14 +0200
-Message-Id: <20210912072914.398419-3-jernej.skrabec@gmail.com>
+Subject: [PATCH] arm64: dts: allwinner: a64: Add GPU opp table
+Date:   Sun, 12 Sep 2021 11:50:32 +0200
+Message-Id: <20210912095032.2397824-1-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210912072914.398419-1-jernej.skrabec@gmail.com>
-References: <20210912072914.398419-1-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner R40 has 3 I2S controllers, compatible to those in H3. First
-two are routed to pins, while third is used internally for HDMI audio.
+GPU on A64 currently runs at default frequency, which is 297 MHz. This
+is a bit low in some cases and noticeable lag can be observed in GPU
+rendered UIs. GPU is capable to run at 432 MHz.
 
-Add nodes for all 3 I2S controllers.
+Add GPU OPP table.
 
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- arch/arm/boot/dts/sun8i-r40.dtsi | 39 ++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 291f4784e86c..1d87fc0c24ee 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -736,6 +736,45 @@ ir1: ir@1c21c00 {
- 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 6ddb717f2f98..5ba379078500 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -102,6 +102,22 @@ de: display-engine {
+ 		status = "disabled";
+ 	};
+ 
++	gpu_opp_table: opp-table-gpu {
++		compatible = "operating-points-v2";
++
++		opp-120000000 {
++			opp-hz = /bits/ 64 <120000000>;
++		};
++
++		opp-312000000 {
++			opp-hz = /bits/ 64 <312000000>;
++		};
++
++		opp-432000000 {
++			opp-hz = /bits/ 64 <432000000>;
++		};
++	};
++
+ 	osc24M: osc24M_clk {
+ 		#clock-cells = <0>;
+ 		compatible = "fixed-clock";
+@@ -1103,6 +1119,7 @@ mali: gpu@1c40000 {
+ 			clocks = <&ccu CLK_BUS_GPU>, <&ccu CLK_GPU>;
+ 			clock-names = "bus", "core";
+ 			resets = <&ccu RST_BUS_GPU>;
++			operating-points-v2 = <&gpu_opp_table>;
  		};
  
-+		i2s0: i2s@1c22000 {
-+			#sound-dai-cells = <0>;
-+			compatible = "allwinner,sun8i-r40-i2s",
-+				     "allwinner,sun8i-h3-i2s";
-+			reg = <0x01c22000 0x400>;
-+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2S0>, <&ccu CLK_I2S0>;
-+			clock-names = "apb", "mod";
-+			resets = <&ccu RST_BUS_I2S0>;
-+			dmas = <&dma 3>, <&dma 3>;
-+			dma-names = "rx", "tx";
-+		};
-+
-+		i2s1: i2s@1c22400 {
-+			#sound-dai-cells = <0>;
-+			compatible = "allwinner,sun8i-r40-i2s",
-+				     "allwinner,sun8i-h3-i2s";
-+			reg = <0x01c22400 0x400>;
-+			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2S1>, <&ccu CLK_I2S1>;
-+			clock-names = "apb", "mod";
-+			resets = <&ccu RST_BUS_I2S1>;
-+			dmas = <&dma 4>, <&dma 4>;
-+			dma-names = "rx", "tx";
-+		};
-+
-+		i2s2: i2s@1c22800 {
-+			#sound-dai-cells = <0>;
-+			compatible = "allwinner,sun8i-r40-i2s",
-+				     "allwinner,sun8i-h3-i2s";
-+			reg = <0x01c22800 0x400>;
-+			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2S2>, <&ccu CLK_I2S2>;
-+			clock-names = "apb", "mod";
-+			resets = <&ccu RST_BUS_I2S2>;
-+			dmas = <&dma 6>, <&dma 6>;
-+			dma-names = "rx", "tx";
-+		};
-+
- 		ths: thermal-sensor@1c24c00 {
- 			compatible = "allwinner,sun8i-r40-ths";
- 			reg = <0x01c24c00 0x100>;
+ 		gic: interrupt-controller@1c81000 {
 -- 
 2.33.0
 
