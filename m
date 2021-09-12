@@ -2,165 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB409407EB2
-	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 18:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C652407EBC
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 18:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbhILQna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Sep 2021 12:43:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39594 "EHLO mail.kernel.org"
+        id S233339AbhILQxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Sep 2021 12:53:50 -0400
+Received: from ixit.cz ([94.230.151.217]:54866 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229643AbhILQn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Sep 2021 12:43:29 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S230158AbhILQxu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Sep 2021 12:53:50 -0400
+Received: from newone.lan (ixit.cz [94.230.151.217])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7FB986108E;
-        Sun, 12 Sep 2021 16:42:12 +0000 (UTC)
-Date:   Sun, 12 Sep 2021 17:45:44 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cai Huoqing <caihuoqing@baidu.com>
-Cc:     <lars@metafoo.de>, <robh+dt@kernel.org>, <shawnguo@kernel.org>,
-        <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
-        <festevam@gmail.com>, <linux-imx@nxp.com>, <aardelean@deviqon.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: iio: adc: Add binding documentation
- for NXP IMX8QXP ADC
-Message-ID: <20210912174544.285b40bd@jic23-huawei>
-In-Reply-To: <20210912071334.1745-3-caihuoqing@baidu.com>
-References: <20210912071334.1745-1-caihuoqing@baidu.com>
-        <20210912071334.1745-3-caihuoqing@baidu.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        by ixit.cz (Postfix) with ESMTPSA id 3600F23B26;
+        Sun, 12 Sep 2021 18:52:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1631465553;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=yC0D9CrqiJDjXzrYXSzEu64en0t0j58CW742XHzjffM=;
+        b=0AeqGYeL+Bc/2dlR5wM7YZmnsC/N7AVWUb/+kcwf++HDOwcE3FozJZswvUELL6442sh1HE
+        4lDeoXW+OEWYC+j2S9aFpNrb5Bz/LqQ5B2qU8a8cF2+ceVX7/fD5VaFu5+PG1E77HeI2Qj
+        a+AbMZ5SaoMcbNrISFJzMf46j80rj2U=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+Subject: [PATCH] dt-bindings: arm: Fix Toradex compatible typo
+Date:   Sun, 12 Sep 2021 18:51:20 +0200
+Message-Id: <20210912165120.188490-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Sep 2021 15:13:33 +0800
-Cai Huoqing <caihuoqing@baidu.com> wrote:
+Fixes: f4d1577e9bc6 ("dt-bindings: arm: Convert Tegra board/soc bindings to json-schema")
 
-> The NXP i.MX 8QuadXPlus SOC a new ADC IP, so add
-> binding documentation for NXP IMX8QXP ADC
-> 
-> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
-> ---
-> v1->v2: *Fix some indentation issues.
->         *Mark status as okay.
->         *Change clock2 source.
-> v3->v4: *Remove 'status' from examples.
->         *Remove unused 'state'.
->         *Remove interrupts-parent.
->         *Change num of address/size-cells from 1 to 2.
-> v1 link:
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210830172140.414-5-caihuoqing@baidu.com/
-> v3 link:
-> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210907015724.1377-3-caihuoqing@baidu.com/
-> 
->  .../bindings/iio/adc/nxp,imx8qxp-adc.yaml     | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> new file mode 100644
-> index 000000000000..8e16adf9a28a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/nxp,imx8qxp-adc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP IMX8QXP ADC bindings
-> +
-> +maintainers:
-> +  - Cai Huoqing <caihuoqing@baidu.com>
-> +
-> +description:
-> +  Supports the ADC found on the IMX8QXP SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,imx8qxp-adc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: per
-> +      - const: ipg
-> +
-> +  assigned-clocks:
-> +    maxItems: 1
-> +
-> +  assigned-clock-rates:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 2
-> +
-> +  '#size-cells':
-> +    const: 2
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - assigned-clocks
-> +  - assigned-clock-rates
-> +  - power-domains
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - "#io-channel-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-These indeed need to be here so we know what form reg for child
-nodes takes, but...
-> +        adc@5a880000 {
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/arm/tegra.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Why are these required properties?  There aren't any child nodes
-defined in this binding so I don't think they are used.
-
-> +            compatible = "nxp,imx8qxp-adc";
-> +            reg = <0x0 0x5a880000 0x0 0x10000>;
-> +            interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&clk IMX_SC_R_ADC_0>,
-> +                     <&clk IMX_SC_R_ADC_0>;
-> +            clock-names = "per", "ipg";
-> +            assigned-clocks = <&clk IMX_SC_R_ADC_0>;
-> +            assigned-clock-rates = <24000000>;
-> +            power-domains = <&pd IMX_SC_R_ADC_0>;
-> +            #io-channel-cells = <1>;
-> +        };
-> +    };
-> +...
+diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
+index b9f75e20fef5..b2a645740ffe 100644
+--- a/Documentation/devicetree/bindings/arm/tegra.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra.yaml
+@@ -54,7 +54,7 @@ properties:
+           - const: toradex,apalis_t30
+           - const: nvidia,tegra30
+       - items:
+-          - const: toradex,apalis_t30-eval-v1.1
++          - const: toradex,apalis_t30-v1.1-eval
+           - const: toradex,apalis_t30-eval
+           - const: toradex,apalis_t30-v1.1
+           - const: toradex,apalis_t30
+-- 
+2.33.0
 
