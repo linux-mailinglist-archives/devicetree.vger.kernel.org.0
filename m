@@ -2,503 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81113407AE9
-	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 01:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F2A407B72
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 06:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231719AbhIKXcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Sep 2021 19:32:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40362 "EHLO
+        id S231939AbhILEEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Sep 2021 00:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbhIKXcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Sep 2021 19:32:55 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE58C061574;
-        Sat, 11 Sep 2021 16:31:42 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id a12so3780288qvz.4;
-        Sat, 11 Sep 2021 16:31:42 -0700 (PDT)
+        with ESMTP id S229500AbhILEEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Sep 2021 00:04:37 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93D8C061574;
+        Sat, 11 Sep 2021 21:03:23 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso8335700ots.5;
+        Sat, 11 Sep 2021 21:03:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SF5Djwa7LdNiHxRjdFLoRDNrrr1dk3BHck2dDR7/514=;
-        b=JUVcj/1i8UHO+xOHFahin442E40hENB9NS+VRqxmpmfSimWPp6NP/hAgw2c/0ROdd2
-         H3WezqjRzR9pwoVQuSsJY2d+RQRt/UbzepMqeX+9eBY6c4ouk8oQIpRxCI3KCCLrAM0P
-         vvSCN91cuSky8+biwqlrSP5marGfgJHKTqalbOsrY2Umd4KIDQbRckH7VPdSWYBgZqof
-         fy1kFrnnmcZr42I7UzBTjWCPsF1DjdvX4qje1qe3oa3I3VTpjQI6AisNGNsNgIFrqIIz
-         WqYYTD8dSKmjCabUusC2lrdm2MVG0HFpUHKdSpgVA950MdCdr9VM2udNkdaEC5zPbwVV
-         Xc6w==
+        h=sender:from:subject:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=gdB/e3psdiALZR/YkF+nz15PIU8JJhD2qY+r04G1VXI=;
+        b=MG4DHYBd2ry5PoivqUkyoLfzyvQGvSaAHmyrgHJdA2IZev54QRn2OrTZ+qgDY/Y++T
+         qkQdRcbuV+TWg/t41ju785C9vQc77skdTeuamNreGTSUgA37kSjtXGlAgU/uAr01m09N
+         Ir+qI286cPzlXR4v8DcT4rc3duUCi2g+4ifopZgBnluavcX1nB6V4xF8MHtFOxp63tsf
+         kp3c6uMd66asBCsS9sfCW9AWbAxbVdYNqdu3LgvMm+kvZLagB67xd10GUO/7ECFOAaOh
+         tu58YaUGpxtD1bifqx3m9MRnMU8CGzDiCkVBPBFiG59lyCrEtGhoEmRjwHAthhaCJV5b
+         64BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SF5Djwa7LdNiHxRjdFLoRDNrrr1dk3BHck2dDR7/514=;
-        b=aiL0YVhWQG/aLoxzjyxL6VZM6LPGDji2rlXXvtxxDE3ssteGuD8vd/6UwdlBLQWDZi
-         fH1H1eVq5MPg9MT4KyfkRAMB3b60VN5xzde5+GD91euiAvC2lpkeKB3t9S9WSGiEMuno
-         xWse57ON7ye4Fww7vib9YjxjJ1usB+1oBQ/Gy6/FmxsKHAXykt4IQPvhN7qEgeX9hviu
-         Eslo20o0WxpxlgdRL65TJUhzQgI00+/R3sTqNjZ7mUcW4gZ8Rl1KqJJt5log7jL5yPxr
-         +Oa79k3V4KftSgPhO1iMOXqcMWQyCDOnh8v72jw4D3oe0fnHjd6tgXurAI70m/uMmg1c
-         5sjw==
-X-Gm-Message-State: AOAM532azxm4iKswj/FhH3AlENJ3BBWDzxQETYQHfWaxRjHSCixBaRU/
-        T+HddF1JN86jpE4OiGYjdQc=
-X-Google-Smtp-Source: ABdhPJxzs0r2JmEsnK4Y8VrRzmFzWfip94Z+2zJ3L68XkkMEer2KfeJQM5J8Qfv9HhjCFYaN7x1FEA==
-X-Received: by 2002:a0c:e4c1:: with SMTP id g1mr3822195qvm.64.1631403101029;
-        Sat, 11 Sep 2021 16:31:41 -0700 (PDT)
-Received: from shaak (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id v3sm2155594qkd.20.2021.09.11.16.31.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Sep 2021 16:31:40 -0700 (PDT)
-Date:   Sat, 11 Sep 2021 19:31:38 -0400
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Peter Rosin <peda@axentia.se>, lars@metafoo.de,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v8 09/14] iio: afe: rescale: fix accuracy for small
-Message-ID: <YT08Wjhgu+J39Qet@shaak>
-References: <YSVWZcjW8QoDaSpN@shaak>
- <c63fb63f-884d-0ffb-b25c-bac591f169f7@axentia.se>
- <YSsP8aWU2uFBOt6M@shaak>
- <20210830122724.2722c086@jic23-huawei>
+        h=x-gm-message-state:sender:from:subject:to:cc:references:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=gdB/e3psdiALZR/YkF+nz15PIU8JJhD2qY+r04G1VXI=;
+        b=I/RjxPUf5jRLx+URfBY92jwpoojyUVmtSoOu9AEYwYSqkwKlQ6mkEaLfAhle4V3CZr
+         K/B7esfbN6LI2/qWWeSkRPNFC3w1KQ+Fu7GlWpO74uSDFLuWKR4tm4VB54E3Jc7SscsJ
+         HUqBVZYx0SohFEfCuZE/DX/d7+tP1bO730NgPtim8ydjZ//sgIqGoahmUlz4oTMIEnmk
+         wjj4rgYsg6BXuiMmoW3jQ+lU8Slq5I0k6gn9LffCls/4ptMcgA4HszbOj5Y4/cqXq503
+         73Ev7immQAl6eKz1XFh9H8OTrdGfVqoajG4X73+3Gh+xso58RdBMhhWYQqENStXhMP71
+         gY1A==
+X-Gm-Message-State: AOAM533zYP8cPYg2MDjcUzBHbGD7F66bR47smojwbN+skbaeAI/qxegM
+        K7kjsEsjyvAph1QhIuWWVO+NtDXvi30=
+X-Google-Smtp-Source: ABdhPJzFow8lyV6CdkYEhDj3FWDlELW0zwdE6emeMxG8WDX/5aajSagJBQRCOy9ErHBKDu1J9vwkCA==
+X-Received: by 2002:a05:6830:2e8:: with SMTP id r8mr4442360ote.171.1631419403104;
+        Sat, 11 Sep 2021 21:03:23 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m20sm801890oiw.46.2021.09.11.21.03.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Sep 2021 21:03:22 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+To:     Oskar Senft <osk@google.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20210910130337.2025426-1-osk@google.com>
+ <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+ <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+Message-ID: <f1e6c2b7-d668-9aa5-32fd-9a38c901cd3e@roeck-us.net>
+Date:   Sat, 11 Sep 2021 21:03:21 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210830122724.2722c086@jic23-huawei>
+In-Reply-To: <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 30, 2021 at 12:27:24PM +0100, Jonathan Cameron wrote:
-> On Sun, 29 Aug 2021 00:41:21 -0400
-> Liam Beguin <liambeguin@gmail.com> wrote:
+On 9/10/21 1:44 PM, Oskar Senft wrote:
+> Hi Guenter
 > 
-> > On Thu, Aug 26, 2021 at 11:53:14AM +0200, Peter Rosin wrote:
-> > > On 2021-08-24 22:28, Liam Beguin wrote:  
-> > > > On Mon Aug 23, 2021 at 00:18:55 +0200, Peter Rosin wrote:  
-> > > >> [I started to write an answer to your plans in the v7 thread, but didn't
-> > > >> have time to finish before v8 appeared...]
-> > > >>
-> > > >> On 2021-08-20 21:17, Liam Beguin wrote:  
-> > > >>> From: Liam Beguin <lvb@xiphos.com>
-> > > >>>
-> > > >>> The approximation caused by integer divisions can be costly on smaller
-> > > >>> scale values since the decimal part is significant compared to the
-> > > >>> integer part. Switch to an IIO_VAL_INT_PLUS_NANO scale type in such
-> > > >>> cases to maintain accuracy.  
-> > > >>  
-> > > > 
-> > > > Hi Peter,
-> > > > 
-> > > > Thanks for taking time to look at this in detail again. I really
-> > > > appreciate all the feedback you've provided.
-> > > >   
-> > > >> The conversion to int-plus-nano may also carry a cost of accuracy.
-> > > >>
-> > > >> 90/1373754273 scaled by 261/509 is 3.359e-8, the old code returns 3.348e-8,
-> > > >> but the new one gets you 3.3e-8 (0.000000033, it simply cannot provide more
-> > > >> digits). So, in this case you lose precision with the new code.
-> > > >>
-> > > >> Similar problem with 100 / 2^30 scaled by 3782/7000. It is 5.032e-8, the old
-> > > >> code returns 5.029e-8, but the new one gets you the inferior 5.0e-8.
-> > > >>  
-> > > > 
-> > > > I see what you mean here.
-> > > > I added test cases with these values to see exactly what we get.  
-> > > 
-> > > Excellent!
-> > >   
-> > > > 
-> > > > Expected rel_ppm < 0, but
-> > > >     rel_ppm == 1000000
-> > > > 
-> > > >      real=0.000000000
-> > > >  expected=0.000000033594
-> > > > # iio_rescale_test_scale: not ok 42 - v8 - 90/1373754273 scaled by 261/509
-> > > > Expected rel_ppm < 0, but
-> > > >     rel_ppm == 1000000
-> > > > 
-> > > >      real=0.000000000
-> > > >  expected=0.000000050318
-> > > > # iio_rescale_test_scale: not ok 43 - v8 - 100/1073741824 scaled by 3782/7000
-> > > > 
-> > > > 
-> > > > The main issue is that the first two examples return 0 which night be worst
-> > > > that loosing a little precision.  
-> > > 
-> > > They shouldn't return zero?
-> > > 
-> > > Here's the new code quoted from the test robot (and assuming
-> > > a 64-bit machine, thus ignoring the 32-bit problem on line 56).
-> > > 
-> > >     36		case IIO_VAL_FRACTIONAL:
-> > >     37		case IIO_VAL_FRACTIONAL_LOG2:
-> > >     38			tmp = (s64)*val * 1000000000LL;
-> > >     39			tmp = div_s64(tmp, rescale->denominator);
-> > >     40			tmp *= rescale->numerator;
-> > >     41	
-> > >     42			tmp = div_s64_rem(tmp, 1000000000LL, &rem);
-> > >     43			*val = tmp;
-> > >     44	
-> > >     45			/*
-> > >     46			 * For small values, the approximation can be costly,
-> > >     47			 * change scale type to maintain accuracy.
-> > >     48			 *
-> > >     49			 * 100 vs. 10000000 NANO caps the error to about 100 ppm.
-> > >     50			 */
-> > >     51			if (scale_type == IIO_VAL_FRACTIONAL)
-> > >     52				tmp = *val2;
-> > >     53			else
-> > >     54				tmp = 1 << *val2;
-> > >     55	  
-> > >   > 56			 if (abs(rem) > 10000000 && abs(*val / tmp) < 100) {  
-> > >     57				 *val = div_s64_rem(*val, tmp, &rem2);
-> > >     58	
-> > >     59				 *val2 = div_s64(rem, tmp);
-> > >     60				 if (rem2)
-> > >     61					 *val2 += div_s64(rem2 * 1000000000LL, tmp);
-> > >     62	
-> > >     63				 return IIO_VAL_INT_PLUS_NANO;
-> > >     64			 }
-> > >     65	
-> > >     66			return scale_type;
-> > > 
-> > > When I go through the above manually, I get:
-> > > 
-> > > line 
-> > > 38: tmp = 90000000000    ; 90 * 1000000000
-> > > 39: tmp = 176817288      ; 90000000000 / 509
-> > > 40: tmp = 46149312168    ; 176817288 * 261
-> > > 42: rem = 149312168      ; 46149312168 % 1000000000
-> > >     tmp = 46             ; 46149312168 / 1000000000
-> > > 43: *val = 46
-> > > 51: if (<fractional>) [yes]
-> > > 52: tmp = 1373754273
-> > > 56: if (149312168 > 10000000 && 46/1373754273 < 100) [yes && yes]
-> > > 57: rem2 = 46            ; 46 % 1373754273
-> > >     *val = 0             ; 46 / 1373754273
-> > > 59: *val2 = 0            ; 149312168 / 1373754273
-> > > 60: if 46 [yes]
-> > > 61: *val2 = 33           ; 0 + 46 * 1000000000 / 1373754273
-> > > 63: return <int-plus-nano> [0.000000033]
-> > > 
-> > > and
-> > > 
-> > > line 
-> > > 38: tmp = 100000000000   ; 100 * 1000000000
-> > > 39: tmp = 14285714       ; 100000000000 / 7000
-> > > 40: tmp = 54028570348    ; 176817288 * 3782
-> > > 42: rem = 28570348       ; 54028570348 % 1000000000
-> > >     tmp = 54             ; 54028570348 / 1000000000
-> > > 43: *val = 54
-> > > 51: if (<fractional>) [no]
-> > > 54: tmp = 1073741824     ; 1 << 30
-> > > 56: if (28570348 > 10000000 && 54/1073741824 < 100) [yes && yes]
-> > > 57: rem2 = 54            ; 54 % 1073741824
-> > >     *val = 0             ; 54 / 1073741824
-> > > 59: *val2 = 0            ; 28570348 / 1073741824
-> > > 60: if 46 [yes]
-> > > 61: *val2 = 50           ; 0 + 54 * 1000000000 / 1073741824
-> > > 63: return <int-plus-nano> [0.000000050]
-> > > 
-> > > Why do you get zero, what am I missing?  
-> > 
-> > So... It turns out, I swapped schan and rescaler values which gives us:
-> > 
-> > numerator = 90
-> > denominator = 1373754273
-> > schan_val = 261
-> > schan_val2 = 509
-> > 
-> > line
-> > 38: tmp = 261000000000   ; 261 * 1000000000
-> > 39: tmp = 189            ; 261000000000 / 1373754273
-> > 40: tmp = 17010          ; 189 * 90
-> > 42: rem = 17010          ; 17010 % 1000000000
-> >     tmp = 0              ; 17010 / 1000000000
-> > 43: *val = 0
-> > 51: if (<fractional>) [yes]
-> > 52: tmp = 509
-> > 56: if (17010 > 10000000 && 0/509 < 100) [no && yes]
-> > 66: *val = 0
-> >     *val2 = 509
-> >     return <fractional> [0.000000000]
-> > 
-> > Swapping back the values, I get the same results as you!
-> > 
-> > Also, replacing line 56 from the snippet above with
-> > 
-> > 	- if (abs(rem) > 10000000 && abs(div64_s64(*val, tmp)) < 100) {
-> > 	+ if (abs(rem)) {
-> > 
-> > Fixes these precision errors. It also prevents us from returning
-> > different scales if we swap the two divisions (schan and rescaler
-> > parameters).
-> > 
-> > >   
-> > > > At the same time, I wonder how "real" these values would be. Having such a
-> > > > small scale would mean having a large raw value. With 16-bits of resolution,
-> > > > that would still give about (1 << 16) * 3.3594e-08 = 0.002201616 mV.  
-> > > 
-> > > If we cap at 16 bits it sounds as if we probably erase some precision
-> > > provided by 24-bit ADCs. We have drivers for those. I didn't really
-> > > dig that deep in the driver offerings, but I did find a AD7177 ADC
-> > > (but no driver) which is 32-bit. If we don't have any 32-bit ADC driver
-> > > yet, it's only a matter of time, methinks. I have personally worked
-> > > with 24-bit DACs, and needed every last bit...
-> > >   
-> > 
-> > I was only using 16-bits as an example, but I guess you're right, these
-> > values do start to make sense when you're looking at 24-bit and 32-bit
-> > ADCs.
+> Thanks for the quick feedback!
 > 
-> I'd be tempted to be cynical on this.  High resolution devices are rare
-> as frankly building a low enough noise board to take advantage is hard.
-> Known users of the AFE infrastructure also rare and so as long as we don't
-> break any 'current' users via loss of accuracy I'm not that bothered if
-> we aren't perfect for 32 bit devices. 
-
-Hi Jonathan,
-
-> I'm guessing we can sometimes sanity check if an overflow will occur
-> at probe?  Perhaps do that where possible and print something obvious
-> to the log.  Then someone who needs it can figure out the magic maths
-> to do this for those high resolution devices!
-
-Good point, I'll see if I can add a check that could help for this.
-
-> > > > We could try to get more precision out of the first division
-> > > > 
-> > > > 	tmp = (s64)*val * 1000000000LL;
-> > > > 	tmp = div_s64(tmp, rescale->denominator);
-> > > > 	tmp *= rescale->numerator;
-> > > > 	tmp = div_s64_rem(tmp, 1000000000LL, &rem);
-> > > > 
-> > > > But then, we'd be more likely to overflow. What would be a good middle
-> > > > ground?  
-> > > 
-> > > I don't think we can settle for anything that makes any existing case
-> > > worse. That's a regression waiting to happen, and what to do then?
-> > >   
-> > 
-> > Agreed, and looking at this more, there's still ways to improve without
-> > having to compromise.
-> > Hopefully adding the test suite will make it easier to catch potential
-> > regressions in the future :-)
+>>> +  nuvoton,rtd-modes:
+>>> +    description: |
+>>> +      Select modes for the three RTDs.
+>>> +
+>> At the very least, "RTD" should be defined. The datasheet doesn't say explicitly,
+>> but I suspect it means "Remote Temperature Diode".
+> Ha, good point. As I understand, RTD means "Resistance Temperature
+> Detector". But TBH, I'm not sure how that squares with Nuvoton's use
+> of "LTD" for the local sensor ... sigh.
 > 
-> Absolutely.  Have that test suite is great :)
+>>> +      Valid values for RTD1 and RTD2 are:
+>>> +        "closed",
+>>> +        "current",
+>>> +        "thermistor",
+>>> +        "voltage"
+>> I am not sure what "closed" means (the datasheet doesn't say), but I suspect it means
+>> that the sensor is disabled (?). For the other modes, the translation to the standard
+>> ABI is:
+> Thanks for that pointer, I now found that in
+> Documentation/hwmon/sysfs-interface. Given that there's no definition
+> for "disabled", I guess I'll just leave that out of the device tree
+> binding for now? That way we'll stay consistent with the sysfs ABI.
 > 
-> > 
-> > > >> I'm also wondering if it is wise to not always return the same scale type?
-> > > >> What happens if we want to extend this driver to scale a buffered channel?
-> > > >> Honest question! I don't know, but I fear that this patch may make that
-> > > >> step more difficult to take??  
-> > > > 
-> > > > That's a fair point, I didn't know it could be a problem to change
-> > > > scale.  
-> > > 
-> > > I don't *know* either? But it would not be completely alien to me if
-> > > the buffered case assumes "raw" numbers, and that there is little room
-> > > for "meta-data" with each sample.
-> 
-> Spot on.  Meta data is a pain so an early design decision in IIO was to
-> not support it in band.
-> 
-> > >   
-> > > >>
-> > > >> Jonathan, do you have any input on that?
-> > > >>
-> > > >> Some more examples of problematic properties of this patch:
-> > > >>
-> > > >> 21837/24041 scaled by 427/24727 is 0.01568544672, you get 0.015685446. Ok.
-> > > >> But if you reduce the input number, gcd(21837, 24041) -> 29, you have:
-> > > >> 753/829 scaled by 427/24727 which still is 0.01568544672 of course, but in
-> > > >> this case you get 0.01568154403. Which is less precise. It is unfortunate
-> > > >> that input that should be easier to scale may yield worse results.  
-> > > > 
-> > > > Expected rel_ppm < 0, but
-> > > >     rel_ppm == 0
-> > > > 
-> > > >      real=0.015685445
-> > > >  expected=0.015685446719
-> > > > # iio_rescale_test_scale: not ok 44 - v8 - 21837/24041 scaled by 427/24727
-> > > > Expected rel_ppm < 0, but
-> > > >     rel_ppm == 0
-> > > > 
-> > > >      real=0.015685445
-> > > >  expected=0.015685446719
-> > > > # iio_rescale_test_scale: not ok 45 - v8 - 753/829 scaled by 427/24727
-> > > > 
-> > > > It seems like both cases are rounded and give the same result. I do get
-> > > > your point though, values that could be simplified might loose more
-> > > > precision because of this change in scale type.  
-> > > 
-> > > I aimed at this:
-> > > 
-> > > line
-> > > 38: tmp = 21837000000000 ; 21837 * 1000000000
-> > > 39: tmp = 883123710      ; 21837000000000 / 24727
-> > > 40: tmp = 377093824170   ; 883123710 * 427
-> > > 42: rem = 93824170       ; 377093824170 % 1000000000
-> > >     tmp = 377            ; 377093824170 / 1000000000
-> > > 43: *val = 377
-> > > 51: if (<fractional>) [yes]
-> > > 52: tmp = 24041
-> > > 56: if (149312168 > 10000000 && 377/24041 < 100) [yes && yes]
-> > > 57: rem2 = 377           ; 377 % 24041
-> > >     *val = 0             ; 377 / 24041
-> > > 59: *val2 = 3902         ; 93824170 / 24041
-> > > 60: if 377 [yes]
-> > > 61: *val2 = 15685446     ; 3902 + 377 * 1000000000 / 24041
-> > > 63: return <int-plus-nano> [0.0015685446]
-> > > 
-> > > Why does the test output a 5 at the end and not a 6? It's all
-> > > integer arithmetic so there is no room for rounding issues.
-> > > 
-> > > and
-> > > 
-> > > line 
-> > > 38: tmp = 753000000000   ; 753 * 1000000000
-> > > 39: tmp = 30452541       ; 753000000000 / 24727
-> > > 40: tmp = 13003235007    ; 30452541 * 427
-> > > 42: rem = 3235007        ; 13003235007 % 1000000000
-> > >     tmp = 13             ; 13003235007 / 1000000000
-> > > 43: *val = 13
-> > > 51: if (<fractional>) [yes]
-> > > 52: tmp = 829
-> > > 56: if (3235007 > 10000000 && 13/829 < 100) [no && yes]
-> > > 66: return <fractional> [13/829 ~= 0.015681544]
-> > > 
-> > > 0.015681544 is pretty different from 0.015685446
-> > > 
-> > > Again, I don't understand what's going on.
-> > >   
-> > > >>
-> > > >> 760/1373754273 scaled by 427/2727 is 8.662580e-8, and 8.662393e-8 is
-> > > >> returned. Which is perhaps not great accuracy, but such is life. However.
-> > > >> 761/1373754273 scaled by 427/2727 is 8.673978e-8, which is of course
-> > > >> greater, but 8.6e-8 is returned. Which is less than what was returned for
-> > > >> the smaller 760/1373754273 value above.  
-> > > > 
-> > > > Expected rel_ppm < 0, but
-> > > >     rel_ppm == 1000000
-> > > > 
-> > > >      real=0.000000000
-> > > >  expected=0.000000086626
-> > > > # iio_rescale_test_scale: not ok 46 - v8 - 760/1373754273 scaled by 427/2727
-> > > > Expected rel_ppm < 0, but
-> > > >     rel_ppm == 1000000
-> > > > 
-> > > >      real=0.000000000
-> > > >  expected=0.000000086740
-> > > > # iio_rescale_test_scale: not ok 47 - v8 - 761/1373754273 scaled by 427/2727
-> > > > 
-> > > > We fall into the same case as the first two examples where the real value is
-> > > > null.  
-> > > 
-> > > I aimed at
-> > > 
-> > > line
-> > > 38: tmp = 760000000000   ; 760 * 1000000000
-> > > 39: tmp = 278694536      ; 760000000000 / 2727
-> > > 40: tmp = 119002566872   ; 278694536 * 427
-> > > 42: rem = 2566872        ; 119002566872 % 1000000000
-> > >     tmp = 119            ; 119002566872 / 1000000000
-> > > 43: *val = 119
-> > > 51: if (<fractional>) [yes]
-> > > 52: tmp = 1373754273
-> > > 56: if (2566872 > 10000000 && 119/1373754273 < 100) [no && yes]
-> > > 66: return <fractional> [119/1373754273 ~= 0.000000086624]
-> > > 
-> > > and
-> > > 
-> > > line
-> > > 38: tmp = 761000000000   ; 761 * 1000000000
-> > > 39: tmp = 279061239      ; 761000000000 / 2727
-> > > 40: tmp = 119159149053   ; 279061239 * 427
-> > > 42: rem = 159149053      ; 119159149053 % 1000000000
-> > >     tmp = 119            ; 119159149053 / 1000000000
-> > > 43: *val = 119
-> > > 51: if (<fractional>) [yes]
-> > > 52: tmp = 1373754273
-> > > 56: if (159149053 > 10000000 && 119/1373754273 < 100) [yes && yes]
-> > > 57: rem2 = 119           ; 119 % 1373754273
-> > >     *val = 0             ; 119 / 1373754273
-> > > 59: *val2 = 0            ; 159149053 / 1373754273
-> > > 60: if 119 [yes]
-> > > 61: *val2 = 86           ; 0 + 119 * 1000000000 / 1373754273
-> > > 63: return <int-plus-nano> [0.000000086]
-> > >   
-> > > > Considering these null values and the possible issue of not always having the
-> > > > same scale type, would it be better to always return an IIO_VAL_INT_PLUS_NANO
-> > > > scale?  
-> > > 
-> > > No, that absolutely kills the precision for small values that are much
-> > > better off as-is. The closer you get to zero, the more the conversion
-> > > to int-plus-nano hurts, relatively speaking.  
-> > 
-> > I'm not sure I understand what you mean. The point of switching to
-> > IIO_VAL_INT_PLUS_NANO at the moment is to get more precision on small
-> > values. Am I missing something?
-> > 
-> > >   
-> > > >>
-> > > >> Some of these objections are related to what I talked about in v7, i.e.:
-> > > >>
-> > > >>     Also, changing the calculation so that you get more precision whenever that is
-> > > >>     possible feels dangerous. I fear linearity breaks and that bigger input cause
-> > > >>     smaller output due to rounding if the bigger value has to be rounded down, but
-> > > >>     that this isn't done carefully enough. I.e. attempting to return an exact
-> > > >>     fraction and only falling back to the old code when that is not possible is
-> > > >>     still not safe since the old code isn't careful enough about rounding. I think
-> > > >>     it is really important that bigger input cause bigger (or equal) output.
-> > > >>     Otherwise you might trigger instability in feedback loops should a rescaler be
-> > > >>     involved in a some regulator function.  
-> > > > 
-> > > > I think I didn't read this closely enought the first time around. I agree that
-> > > > bigger inputs should cause bigger outputs, especially with these rounding
-> > > > errors. My original indention was to have all scales withing a tight margin,
-> > > > that's why I ended up going with ppm for the test cases.
-> > > >   
-> > > >>
-> > > >> Sadly, I see no elegant solution to your problem.
-> > > >>
-> > > >> One way forward may be to somehow provide information on the expected
-> > > >> input range, and then determine the scaling method based on that
-> > > >> instead of the individual values. But, as indicated, there's no real
-> > > >> elegance in that. It can't be automated...  
-> > > > 
-> > > > I guess the issue with that is that unless it's a user parameter, we're
-> > > > always going go have these little islands you mentioned in v7...
-> > > > 
-> > > > Would it be viable to guaranty a MICRO precision instead of NANO, and
-> > > > not have the range parameter?  
-> > > 
-> > > I don't get what you mean here? Returning int-plus-micro can't be it,
-> > > since that would be completely pointless and only make it easier to
-> > > trigger accuracy problems of the conversion. However, I feel that any
-> > > attempt to shift digits but still having the same general approch will
-> > > just change the size and position of the islands, and thus not fix the
-> > > fundamental problematic border between land and water.  
-> > 
-> > My apologies, discard this last comment. I was suggesting to guaranty
-> > less precision, but consistent over the full range. I don't believe
-> > that's a viable option.
-> 
-> Keep up the good work!  I'm looking forward to this going in (hopefully
-> shortly!)
 
-Thanks again for the encouragement, it's been really nice working with
-all of you!
+Sure there is. A possible set of bindings - in that case for tmp421 -
+is suggested with the series at
+https://lore.kernel.org/linux-hwmon/cover.1631021349.git.krzysztof.adamski@nokia.com/
 
-Liam
+That specifically includes the ability to enable or disable channels
+using the standard 'status' property. While that series is primarily
+for the n-factor property supported by the tmp421, the same approach
+can be used for all temperature sensor properties.
 
-> Jonathan
+Guenter
+
+> That gives us the following mapping for sysfs / device tree -> nct7802 HW:
+> 2 (3904 transistor) -> 3 (voltage)
+> 3 (thermal diode) -> 1 (current)
+> 4 (thermistor) -> 2 (thermistor)
 > 
-> > 
-> > Thanks again for your time,
-> > Liam
-> > 
-> > > 
-> > > Cheers,
-> > > Peter
+> I'll update the device tree binding to be an array then. I also update
+> the temp_type functions to support all 3 values.
+> 
+> Oskar.
+> 
 
-*snip*
+
+
