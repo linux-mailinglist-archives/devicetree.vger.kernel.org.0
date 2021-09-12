@@ -2,173 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2689E407DCB
-	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 16:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB409407EB2
+	for <lists+devicetree@lfdr.de>; Sun, 12 Sep 2021 18:42:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231925AbhILOmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Sep 2021 10:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbhILOmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Sep 2021 10:42:06 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A22C061574
-        for <devicetree@vger.kernel.org>; Sun, 12 Sep 2021 07:40:51 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id g8so10202404edt.7
-        for <devicetree@vger.kernel.org>; Sun, 12 Sep 2021 07:40:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M7XAduPSau7jNQ1Bw+pmFFUarTdMQmGShJ3P2Wf2mk0=;
-        b=nPcDSOXwJfKBIwxe8NBTL4d8RsRbV9lf1sRbeE5xGrNJB8ShNcnhoyGkAl/f4A3ph/
-         r0s/XQthLKYzVH7MKlRO133IBagMeQqaKeMdmX/pqVzmj6iQcKG1A93PPK8knHuJuzge
-         o4PfWkKtJPZXrvNK65eLT/opBJEtvtbaQZOo4jDfBF9bsUONsPGMWkKxblLLsDbCYihj
-         7IjC4MnkpGuw5b4rljxWX9c1I/jpoR3EDB9+TBTQGgRhs4OaB+9czqgyslHzFO7iiaef
-         Uc3sNR5DGkqLx/xZ9/Ae3PIm3CvnF020hX24ZJWNlYf7oNJCE/778YwFFS0gsC/dl2hG
-         Hciw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M7XAduPSau7jNQ1Bw+pmFFUarTdMQmGShJ3P2Wf2mk0=;
-        b=XxOY+QS5oJEcN2yV6uVeISkq2wzXoMkBRBwAXiIBNyyu8L91i9k8Z5xtWTD4znAFTW
-         Zmf0mVgvbNx3Xh/Z1JfuTrx73Jd0byYAVQC5e5TH5PL+3S4AJEk/8IrGLUP8xcaV6hqi
-         IuxftfQ7fy1cB9qplxIyJD8qLE/tzTtEppsGnElkRyb+x3MDvQsqhr3ZmmJiAoIeE3mP
-         7JgTIMdNFVbrG8jx2bnjbqhgW+3PnWssAvT09XLBa2JDLTHoBm88lXxfcwOupU3vsutH
-         Qq7RxQH52aZlXMjEWVJNbu37YhmyeNsbDfxlsjjpFqMx9h3NxAsRN3gH+ztUXNtH4ctx
-         1prA==
-X-Gm-Message-State: AOAM533xyv/BXeB7LkqPOrlHDbBHxNWBmmk3potXG4ZN7/biShGBrnyG
-        y6Xl5J8QgSkGAQA6T+wPgtTpOQfuYh46Qq2diFou5EaU3el+lw==
-X-Google-Smtp-Source: ABdhPJx6XCXRe3c6Fkp8vsAG28brDO7fcRgiQMj6a1y97qUOgoseDUl2JXCpf5sqdQ5pGv/Zm9IZJ9jJA82riFC/OlU=
-X-Received: by 2002:a50:9e02:: with SMTP id z2mr8117088ede.249.1631457650124;
- Sun, 12 Sep 2021 07:40:50 -0700 (PDT)
+        id S229726AbhILQna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Sep 2021 12:43:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39594 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229643AbhILQn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Sep 2021 12:43:29 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7FB986108E;
+        Sun, 12 Sep 2021 16:42:12 +0000 (UTC)
+Date:   Sun, 12 Sep 2021 17:45:44 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     <lars@metafoo.de>, <robh+dt@kernel.org>, <shawnguo@kernel.org>,
+        <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
+        <festevam@gmail.com>, <linux-imx@nxp.com>, <aardelean@deviqon.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: iio: adc: Add binding documentation
+ for NXP IMX8QXP ADC
+Message-ID: <20210912174544.285b40bd@jic23-huawei>
+In-Reply-To: <20210912071334.1745-3-caihuoqing@baidu.com>
+References: <20210912071334.1745-1-caihuoqing@baidu.com>
+        <20210912071334.1745-3-caihuoqing@baidu.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210910202640.980366-1-l.stach@pengutronix.de> <20210910202640.980366-14-l.stach@pengutronix.de>
-In-Reply-To: <20210910202640.980366-14-l.stach@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Sun, 12 Sep 2021 09:40:39 -0500
-Message-ID: <CAHCN7xKfuewfxbCkOAtFvD+SLk+ej71iTrVa2ws8ZAAhrp0btA@mail.gmail.com>
-Subject: Re: [PATCH v4 13/18] soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        Tim Harvey <tharvey@gateworks.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        patchwork-lst@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 10, 2021 at 3:26 PM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> This adds the description for the i.MX8MM disp blk-ctrl.
->
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+On Sun, 12 Sep 2021 15:13:33 +0800
+Cai Huoqing <caihuoqing@baidu.com> wrote:
+
+> The NXP i.MX 8QuadXPlus SOC a new ADC IP, so add
+> binding documentation for NXP IMX8QXP ADC
+> 
+> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 > ---
->  drivers/soc/imx/imx8m-blk-ctrl.c | 70 ++++++++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
->
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> index f2d74669d683..225c15f35dad 100644
-> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -431,11 +431,81 @@ static const struct imx8m_blk_ctrl_data imx8m_vpu_blk_ctl_dev_data = {
->         .num_domains = ARRAY_SIZE(imx8m_vpu_blk_ctl_domain_data),
->  };
->
-> +static int imx8mm_disp_power_notifier(struct notifier_block *nb,
-> +                                     unsigned long action, void *data)
-> +{
-> +       struct imx8m_blk_ctrl *bc = container_of(nb, struct imx8m_blk_ctrl,
-> +                                                power_nb);
+> v1->v2: *Fix some indentation issues.
+>         *Mark status as okay.
+>         *Change clock2 source.
+> v3->v4: *Remove 'status' from examples.
+>         *Remove unused 'state'.
+>         *Remove interrupts-parent.
+>         *Change num of address/size-cells from 1 to 2.
+> v1 link:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210830172140.414-5-caihuoqing@baidu.com/
+> v3 link:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210907015724.1377-3-caihuoqing@baidu.com/
+> 
+>  .../bindings/iio/adc/nxp,imx8qxp-adc.yaml     | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> new file mode 100644
+> index 000000000000..8e16adf9a28a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/nxp,imx8qxp-adc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       if (action != GENPD_NOTIFY_ON && action != GENPD_NOTIFY_PRE_OFF)
-> +               return NOTIFY_OK;
+> +title: NXP IMX8QXP ADC bindings
 > +
-> +       /* Enable bus clock and deassert bus reset */
-> +       regmap_set_bits(bc->regmap, BLK_CLK_EN, BIT(12));
-> +       regmap_set_bits(bc->regmap, BLK_SFT_RSTN, BIT(6));
+> +maintainers:
+> +  - Cai Huoqing <caihuoqing@baidu.com>
 > +
-> +       /*
-> +        * On power up we have no software backchannel to the GPC to
-> +        * wait for the ADB handshake to happen, so we just delay for a
-> +        * bit. On power down the GPC driver waits for the handshake.
-> +        */
-> +       if (action == GENPD_NOTIFY_ON)
-> +               udelay(5);
+> +description:
+> +  Supports the ADC found on the IMX8QXP SoC.
 > +
+> +properties:
+> +  compatible:
+> +    const: nxp,imx8qxp-adc
 > +
-> +       return NOTIFY_OK;
-> +}
+> +  reg:
+> +    maxItems: 1
 > +
-> +static const struct imx8m_blk_ctrl_domain_data imx8m_disp_blk_ctl_domain_data[] = {
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: per
+> +      - const: ipg
+> +
+> +  assigned-clocks:
+> +    maxItems: 1
+> +
+> +  assigned-clock-rates:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - assigned-clocks
+> +  - assigned-clock-rates
+> +  - power-domains
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - "#io-channel-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+These indeed need to be here so we know what form reg for child
+nodes takes, but...
+> +        adc@5a880000 {
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
 
-Since the 8MQ, 8MM, 8MN, and 8MP have different blk_ctl structures,
-shouldn't this be imx8mm_disp_blk_ctl_domain_data?
+Why are these required properties?  There aren't any child nodes
+defined in this binding so I don't think they are used.
 
-> +       [IMX8MM_DISPBLK_PD_CSI_BRIDGE] = {
-> +               .name = "dispblk-csi-bridge",
-> +               .clk_names = (const char *[]){ "csi-bridge-axi", "csi-bridge-apb",
-> +                                              "csi-bridge-core", },
-> +               .num_clks = 3,
-> +               .gpc_name = "csi-bridge",
-> +               .rst_mask = BIT(0) | BIT(1) | BIT(2),
-> +               .clk_mask = BIT(0) | BIT(1) | BIT(2) | BIT(3) | BIT(4) | BIT(5),
-> +       },
-> +       [IMX8MM_DISPBLK_PD_LCDIF] = {
-> +               .name = "dispblk-lcdif",
-> +               .clk_names = (const char *[]){ "lcdif-axi", "lcdif-apb", "lcdif-pix", },
-> +               .num_clks = 3,
-> +               .gpc_name = "lcdif",
-> +               .clk_mask = BIT(6) | BIT(7),
-> +       },
-> +       [IMX8MM_DISPBLK_PD_MIPI_DSI] = {
-> +               .name = "dispblk-mipi-dsi",
-> +               .clk_names = (const char *[]){ "dsi-pclk", "dsi-ref", },
-> +               .num_clks = 2,
-> +               .gpc_name = "mipi-dsi",
-> +               .rst_mask = BIT(5),
-> +               .clk_mask = BIT(8) | BIT(9),
-> +       },
-> +       [IMX8MM_DISPBLK_PD_MIPI_CSI] = {
-> +               .name = "dispblk-mipi-csi",
-> +               .clk_names = (const char *[]){ "csi-aclk", "csi-pclk" },
-> +               .num_clks = 2,
-> +               .gpc_name = "mipi-csi",
-> +               .rst_mask = BIT(3) | BIT(4),
-> +               .clk_mask = BIT(10) | BIT(11),
-> +       },
-> +};
-> +
-> +static const struct imx8m_blk_ctrl_data imx8m_disp_blk_ctl_dev_data = {
+> +            compatible = "nxp,imx8qxp-adc";
+> +            reg = <0x0 0x5a880000 0x0 0x10000>;
+> +            interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&clk IMX_SC_R_ADC_0>,
+> +                     <&clk IMX_SC_R_ADC_0>;
+> +            clock-names = "per", "ipg";
+> +            assigned-clocks = <&clk IMX_SC_R_ADC_0>;
+> +            assigned-clock-rates = <24000000>;
+> +            power-domains = <&pd IMX_SC_R_ADC_0>;
+> +            #io-channel-cells = <1>;
+> +        };
+> +    };
+> +...
 
-Same here.
-
-> +       .max_reg = 0x2c,
-> +       .power_notifier_fn = imx8mm_disp_power_notifier,
-> +       .domains = imx8m_disp_blk_ctl_domain_data,
-> +       .num_domains = ARRAY_SIZE(imx8m_disp_blk_ctl_domain_data),
-> +};
-> +
->  static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
->         {
->                 .compatible = "fsl,imx8mm-vpu-blk-ctrl",
->                 .data = &imx8m_vpu_blk_ctl_dev_data
->         }, {
-> +               .compatible = "fsl,imx8mm-disp-blk-ctrl",
-> +               .data = &imx8m_disp_blk_ctl_dev_data
-> +       } ,{
->                 /* Sentinel */
->         }
->  };
-> --
-> 2.30.2
->
