@@ -2,119 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5044D408953
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1283D408970
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239100AbhIMKtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 06:49:11 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:60958 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239094AbhIMKtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 06:49:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1631530075;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type;
-        bh=jW3RSfCiVG035tkP4VV2MK7HMp8Gx524MEf00frh+Is=;
-        b=LHPBXU5uIMV3lvi85Sg2rtrloI2LH/wPCm+bHqMUfAgKL8qt0VlKPMCH76lCSfzUgQmmV1
-        8OU18Q7lfc95w/+vrJb09FyrjU3HYqxzJDIK+Nz4PjPsTL+OtaZSOb75ItgeR0ktpesB2e
-        x4A8yNUDHX0MfecAqWOH+8L3bJrxJxk=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-5-xAstc3f-OYy7zh2AAGyTiQ-1; Mon, 13 Sep 2021 06:47:54 -0400
-X-MC-Unique: xAstc3f-OYy7zh2AAGyTiQ-1
-Received: by mail-ed1-f70.google.com with SMTP id y10-20020a056402270a00b003c8adc4d40cso4697312edd.15
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 03:47:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=jW3RSfCiVG035tkP4VV2MK7HMp8Gx524MEf00frh+Is=;
-        b=TXQAFYcZOXw8wXUGqg7PGOdpBY9Z5QV1GG+b4blKnANNwS4y/kPpkY8vxaDrbu+8Qd
-         CUKhzBaOErleJvb28D6k4B8H8g9hSqc0CsLLMvGON3IQuoIlecuZg2dwNwbb2sMNSRkh
-         az8imVcX4UGR4UWiEi5z6kaK/Fq3m9AFgM3AqbbwtglNMdyqKPWURBNqMljJTn20Xtw6
-         oEQzrQtzE09FY3+/rqgpk6KLMfbEwtBBZ54aEy114Kxb5yQZFA63r4C3ORIGb8n7UboA
-         /7M2JMyo2cuMYNWWUlM4OTOP0q6jhJ5bqlDQBqJwoz1oejVhzrY1IuvtjgiTNTYbCYXr
-         zPzw==
-X-Gm-Message-State: AOAM530uu8D7QvihoPFMX1ZVuaZy8pfKo8xOI5iNZGDx0XHudpwkad5Q
-        CZMM/3yaa/GOO//eGwf3LrymFOmK/Ln6nd26rMGYJ1UYPKW35j/3Q8+1kZJRku++n/jJKQ1VN+8
-        aVhl8z2/ZKlQT7KKxqBJX4w==
-X-Received: by 2002:a17:906:269a:: with SMTP id t26mr7121208ejc.20.1631530072841;
-        Mon, 13 Sep 2021 03:47:52 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyUzxkOpFlkukF5bylBkxuLJ8coUNDVC3dmW/I3lxI4GHhcqqXeIdferB5ZUa/gtf5ATObe8g==
-X-Received: by 2002:a17:906:269a:: with SMTP id t26mr7121179ejc.20.1631530072612;
-        Mon, 13 Sep 2021 03:47:52 -0700 (PDT)
-Received: from redhat.com ([2a03:c5c0:207f:418b:5703:fd4e:73dd:1986])
-        by smtp.gmail.com with ESMTPSA id o15sm3258041ejj.10.2021.09.13.03.47.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Sep 2021 03:47:52 -0700 (PDT)
-Date:   Mon, 13 Sep 2021 06:47:46 -0400
-From:   "Michael S. Tsirkin" <mst@redhat.com>
-To:     Alexey Kardashevskiy <aik@ozlabs.ru>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] virtio: don't fail on !of_device_is_compatible
-Message-ID: <20210913104640.85839-1-mst@redhat.com>
+        id S239211AbhIMKzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 06:55:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51150 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238681AbhIMKzb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 06:55:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8A1CE6103B;
+        Mon, 13 Sep 2021 10:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631530456;
+        bh=3SRhzTBiqP3IIrmIEDH1+61sWzXII/5uXbVi3rCBjN0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=CBD90Xf9ehAWWcgw2ujqPuwldG7ZtQe2ChCYey8K4Yrpdt71xUyogfzhFXu8RfMGl
+         aS1IFPzUR2q2fjVe9MfOtnip2AE7WWISVY06NqXDR8DxgcMP8U7qHJPJwjQrLr4MNJ
+         pYD6jrZjRft61Hq51iXcR+p1+IJLiR/Ho8dhFgE0392axlZGZK0IQHHnMjH5hzgE/F
+         dsicF8XxY79QiunsWufOgJVgvfkfVJrmV9UnOTvbVA5RhU3jPz1s+mpOAHzn21Vc0J
+         5R8+G3GVLods03LmnR4bdM7CQ94qIoa9VoNWMFBAYzW+ztbGxSH2FEZyGLEc3dBdlG
+         QnRJ3BEcK/x9g==
+From:   Mark Brown <broonie@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Pavel Nadein <pavelnadein@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, Pavel Nadein <pasha-net@narod.ru>
+Subject: Re: [5.16][PATCH 0/3] Support for Ingenic JZ47xx SPI controller
+Date:   Mon, 13 Sep 2021 11:53:07 +0100
+Message-Id: <163153017121.45927.12831297849596169623.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210830230139.21476-1-contact@artur-rojek.eu>
+References: <20210830230139.21476-1-contact@artur-rojek.eu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email 2.27.0.106.g8ac3dc51b1
-X-Mutt-Fcc: =sent
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A recent change checking of_device_is_compatible on probe broke some
-powerpc/pseries setups. Apparently there virtio devices do not have a
-"compatible" property - they are matched by PCI vendor/device ids.
+On Tue, 31 Aug 2021 01:01:36 +0200, Artur Rojek wrote:
+> This patchset introduces support for SPI controllers found in the
+> Ingenic JZ47xx family of SoCs. Of particular note, this allows to
+> replace GPIO backed SPI on the MIPS Creator CI20 board.
+> 
+> Mark:
+> Checkpatch generates a `need consistent spacing around '*'` error on
+> this patchset, however I believe this is a false positive due to it
+> confusing a pointer with multiplication operator inside a macro.
+> 
+> [...]
 
-Let's just skip of_node setup but proceed with initialization like we
-did previously.
+Applied to
 
-Fixes: 694a1116b405 ("virtio: Bind virtio device to device-tree node")
-Reported-by: Alexey Kardashevskiy <aik@ozlabs.ru>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>
-Signed-off-by: Michael S. Tsirkin <mst@redhat.com>
----
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-Arnd could you help review this pls? Viresh is on vacation.
+Thanks!
 
- drivers/virtio/virtio.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+[1/3] dt-bindings: spi: Document Ingenic SPI controller bindings
+      commit: ff4daa7dd7e624a989dc882f7dcce6d8818b1036
+[2/3] SPI: add Ingenic JZ47xx driver.
+      commit: ae5f94cc00a7fdce830fd4bfe7a8c77ae7704666
+[3/3] MIPS: JZ4780: CI20: DTS: add SPI controller config
+      commit: 7b3fd8109b5d343b535e796328223b4f1c4aff5c
 
-diff --git a/drivers/virtio/virtio.c b/drivers/virtio/virtio.c
-index c46cc1fbc7ae..19a70a2361b4 100644
---- a/drivers/virtio/virtio.c
-+++ b/drivers/virtio/virtio.c
-@@ -347,8 +347,13 @@ static int virtio_device_of_init(struct virtio_device *dev)
- 	ret = snprintf(compat, sizeof(compat), "virtio,device%x", dev->id.device);
- 	BUG_ON(ret >= sizeof(compat));
- 
-+	/*
-+	 * On powerpc/pseries virtio devices are PCI devices so PCI
-+	 * vendor/device ids play the role of the "compatible" property.
-+	 * Simply don't init of_node in this case.
-+	 */
- 	if (!of_device_is_compatible(np, compat)) {
--		ret = -EINVAL;
-+		ret = 0;
- 		goto out;
- 	}
- 
--- 
-MST
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
