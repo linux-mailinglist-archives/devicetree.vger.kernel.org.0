@@ -2,209 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C29DA4082F3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 04:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6286B408392
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 06:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236953AbhIMCvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Sep 2021 22:51:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55992 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236880AbhIMCvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Sep 2021 22:51:22 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3D1C061574;
-        Sun, 12 Sep 2021 19:50:07 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id a12so5202402qvz.4;
-        Sun, 12 Sep 2021 19:50:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JnZ+T81xxeMxYG/DyrFUoeTLNxItYvJm+vAp2jTLAZQ=;
-        b=jza6yE/fm8WFHUhKeWJzT2WE+AruH9/IyzcQ9SRwxSdsX7cHFd608qvGhlqG5MY2oc
-         adANEjGGi652gTiZR4H3fElz1JvvB44B13jjMWp9vOu1qJ2TUWCwMHoxYtBDtEBL/4mE
-         gr10Urm6rF6o8yAdfXE4wbiy4D6wM0Hu/7CVlVwKwc/FzagHO0uyi28plkNXpXd5DImb
-         kC6cXJjxNiTz+86DXcfBBgYgAntyClv5/rjD2f8flIvG4fm7QUICOAILaqD1zqktDHf0
-         IXl3ExCe9DPvmahpIvM+u5SM/L/pCPoSsNYpbA1d3gq0j37IC+hnxUk527o+cDexZdHp
-         ssgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JnZ+T81xxeMxYG/DyrFUoeTLNxItYvJm+vAp2jTLAZQ=;
-        b=43SM4oZfe1iPqrw8Lqo8l86C1lzpPAGcuL2ytKnhtIvuaI7F7fSLeIqCN4dZJzfMhX
-         d81RJcKw9bQq3khN0Q9YcHBqoygoGm9aFQHAULrcVKIMdC91Ox1lQYygzbu3d5JcgMdm
-         jka57w7TqQRMfdH740e/hJjggfGtrZipP2loloUktPDyMsp+UEEC/IkmnhScpPxd9Jhl
-         845GV9H706yE1pbajL9ROlVR2/QblGyQgutRLvZcszTglHwHthRv2BrLpKWb25I8iFoc
-         EHt6jccFaPWrUmQILcrgZuquLodg7TtVJqJ2tiNJ0Mg6Hh5luWTyoCyRCUWxUs5F1yKF
-         uTSQ==
-X-Gm-Message-State: AOAM532OrcxDKOKI2pymvbIPpaXY3I8nxLrcTY+DE8+u0XluAWZqwVOw
-        FrVcdq2oPg0aKklTzedGhuyjhkYbkqDEVqYuxlQ=
-X-Google-Smtp-Source: ABdhPJz98VN8iXHnjlxns/6j/ePNeoUcGPRvxViJL2XieOkvUCfGYuL0FKZUmxs7193sLurQ6venBPdc00qWr9qv2XM=
-X-Received: by 2002:ad4:470e:: with SMTP id k14mr8559532qvz.55.1631501406118;
- Sun, 12 Sep 2021 19:50:06 -0700 (PDT)
+        id S231458AbhIMEee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 00:34:34 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57172 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230022AbhIMEee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 00:34:34 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 18D4X234102717;
+        Sun, 12 Sep 2021 23:33:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1631507582;
+        bh=69WhAtP/XV2lc3VDriRBaF77eUBDt+20lz9YeiUgYXo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=V/Ed3+V9Mfi4Lo3Yk2sjcpbZ98c+KrgEXKFp4pfczIfLPZ4SqyCaNnT7g9xlGmBYY
+         jn3omaqTNz1HQ4QC+abxwIy8wheZ0FpCeGCEvU0S0w9bhLooxDUjoVJP9U2oQxyhE4
+         MKoCk7026w/mywpXI9DyDjK4G6eLhFWiUWQXhoX4=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 18D4X2Qj005183
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 12 Sep 2021 23:33:02 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sun, 12
+ Sep 2021 23:33:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Sun, 12 Sep 2021 23:33:01 -0500
+Received: from [10.250.232.51] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 18D4WuO2118326;
+        Sun, 12 Sep 2021 23:32:58 -0500
+Subject: Re: [PATCH] dt-bindings: More use 'enum' instead of 'oneOf' plus
+ 'const' entries
+To:     Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>
+CC:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Mark Brown <broonie@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-spi@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>
+References: <20210910165153.2843871-1-robh@kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <b56ee1c2-ce2d-a3ed-ff54-7b0d956f959a@ti.com>
+Date:   Mon, 13 Sep 2021 10:02:55 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com> <YTvRlmIedfBiXSCg@robh.at.kernel.org>
-In-Reply-To: <YTvRlmIedfBiXSCg@robh.at.kernel.org>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Mon, 13 Sep 2021 10:49:55 +0800
-Message-ID: <CAA+D8AM3RhN+=J1daZAV=DZJT52w4-KarBNMNHUzeg=GbtARvw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] dt-bindings: dsp: fsl: update binding document for
- remote proc driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>, ohad@wizery.com,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, daniel.baluta@nxp.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210910165153.2843871-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+On 10/09/21 10:21 pm, Rob Herring wrote:
+> 'enum' is equivalent to 'oneOf' with a list of 'const' entries, but 'enum'
+> is more concise and yields better error messages.
+> 
+> Fix a couple more cases which have appeared.
+> 
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Marek <jonathan@marek.ca>
+> Cc: Aswath Govindraju <a-govindraju@ti.com>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: linux-spi@vger.kernel.org
+> Cc: linux-watchdog@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/display/msm/dsi-phy-7nm.yaml          |  8 ++++----
+>  .../devicetree/bindings/spi/omap-spi.yaml          |  6 +++---
 
-On Sat, Sep 11, 2021 at 5:43 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Sep 08, 2021 at 05:10:55PM +0800, Shengjiu Wang wrote:
-> > As there are two drivers for DSP on i.MX, one is for sound open
-> > firmware, another is for remote processor framework. In order to
-> > distinguish two kinds of driver, defining different compatible strings.
->
-> What determines which firmware is used? Is it tied to the board? Or for
-> a given board, users could want different firmware? In the latter case,
-> this configuration should not be in DT.
+For omap-spi:
 
-The compatible string determines which firmware is used.
-For a given board, users could want different firmware, then need
-to reboot the kernel and switch to another DTB.
+Acked-by: Aswath Govindraju <a-govindraju@ti.com>
 
->
-> > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> > are needed and the mailbox channel is different with SOF.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
-> >  1 file changed, 75 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > index 7afc9f2be13a..51ea657f6d42 100644
-> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
-> >
-> >  maintainers:
-> >    - Daniel Baluta <daniel.baluta@nxp.com>
-> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> >
-> >  description: |
-> >    Some boards from i.MX8 family contain a DSP core used for
-> > @@ -19,6 +20,10 @@ properties:
-> >        - fsl,imx8qxp-dsp
-> >        - fsl,imx8qm-dsp
-> >        - fsl,imx8mp-dsp
-> > +      - fsl,imx8qxp-hifi4
-> > +      - fsl,imx8qm-hifi4
-> > +      - fsl,imx8mp-hifi4
-> > +      - fsl,imx8ulp-hifi4
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -28,37 +33,63 @@ properties:
-> >        - description: ipg clock
-> >        - description: ocram clock
-> >        - description: core clock
-> > +      - description: debug interface clock
-> > +      - description: message unit clock
-> > +    minItems: 3
-> > +    maxItems: 5
-> >
-> >    clock-names:
-> >      items:
-> >        - const: ipg
-> >        - const: ocram
-> >        - const: core
-> > +      - const: debug
-> > +      - const: mu
-> > +    minItems: 3
-> > +    maxItems: 5
-> >
-> >    power-domains:
-> >      description:
-> >        List of phandle and PM domain specifier as documented in
-> >        Documentation/devicetree/bindings/power/power_domain.txt
-> > +    minItems: 1
-> >      maxItems: 4
->
-> How does the same h/w have different number of power domains?
+>  .../bindings/watchdog/maxim,max63xx.yaml           | 14 +++++++-------
+>  3 files changed, 14 insertions(+), 14 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+> index 4265399bb154..c851770bbdf2 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+> @@ -14,10 +14,10 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    oneOf:
+> -      - const: qcom,dsi-phy-7nm
+> -      - const: qcom,dsi-phy-7nm-8150
+> -      - const: qcom,sc7280-dsi-phy-7nm
+> +    enum:
+> +      - qcom,dsi-phy-7nm
+> +      - qcom,dsi-phy-7nm-8150
+> +      - qcom,sc7280-dsi-phy-7nm
+>  
+>    reg:
+>      items:
+> diff --git a/Documentation/devicetree/bindings/spi/omap-spi.yaml b/Documentation/devicetree/bindings/spi/omap-spi.yaml
+> index e55538186cf6..9952199cae11 100644
+> --- a/Documentation/devicetree/bindings/spi/omap-spi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/omap-spi.yaml
+> @@ -84,9 +84,9 @@ unevaluatedProperties: false
+>  if:
+>    properties:
+>      compatible:
+> -      oneOf:
+> -        - const: ti,omap2-mcspi
+> -        - const: ti,omap4-mcspi
+> +      enum:
+> +        - ti,omap2-mcspi
+> +        - ti,omap4-mcspi
+>  
+>  then:
+>    properties:
+> diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> index f2105eedac2c..ab9641e845db 100644
+> --- a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+> @@ -15,13 +15,13 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    oneOf:
+> -      - const: maxim,max6369
+> -      - const: maxim,max6370
+> -      - const: maxim,max6371
+> -      - const: maxim,max6372
+> -      - const: maxim,max6373
+> -      - const: maxim,max6374
+> +    enum:
+> +      - maxim,max6369
+> +      - maxim,max6370
+> +      - maxim,max6371
+> +      - maxim,max6372
+> +      - maxim,max6373
+> +      - maxim,max6374
+>  
+>    reg:
+>      description: This is a 1-byte memory-mapped address
+> 
 
-For different SoC, the integration is different, on i.MX8QM/8QXP, there are
-4 power-domains for DSP,  but on i.MX8MP, there are 1 power-domain.
-
->
-> >
-> >    mboxes:
-> >      description:
-> >        List of <&phandle type channel> - 2 channels for TXDB, 2 channels for RXDB
-> > +      or - 1 channel for TX, 1 channel for RX, 1 channel for RXDB
-> >        (see mailbox/fsl,mu.txt)
-> > +    minItems: 3
-> >      maxItems: 4
-> >
-> >    mbox-names:
-> > -    items:
-> > -      - const: txdb0
-> > -      - const: txdb1
-> > -      - const: rxdb0
-> > -      - const: rxdb1
-> > +    oneOf:
-> > +      - items:
-> > +          - const: txdb0
-> > +          - const: txdb1
-> > +          - const: rxdb0
-> > +          - const: rxdb1
-> > +      - items:
-> > +          - const: tx
-> > +          - const: rx
-> > +          - const: rxdb
->
-> These are completely different mailboxes?
-
-It is the same mailbox, for this mailbox, there are 16 channels
-(4 for tx,  4 for rx,  4 for txdb, 4 for rxdb).
-For sound open firmware and remoteproc firmware, they
-use different mailbox channels.
-
->
-> >
-> >    memory-region:
-> >      description:
-> >        phandle to a node describing reserved memory (System RAM memory)
-> >        used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +
-> > +  firmware-name:
-> > +    description: |
-> > +      Default name of the firmware to load to the remote processor.
-> > +
-> > +  fsl,dsp-ctrl:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to syscon block which provide access for processor enablement
->
-> Curious, how is this done with the open sound f/w?
-
-Currently the code for this in sound open firmware is not upsteamed,
-I think this phandle is also applied for sound open firmware.
-
-By the way, Should I separate the change of this file from this
-patch series?  Does it belong to your linux tree?
-
-
-Best Regards
-Wang Shengjiu
