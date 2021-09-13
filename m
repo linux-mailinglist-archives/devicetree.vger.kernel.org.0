@@ -2,99 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9799D4097AD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 17:43:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83FCC4098C9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 18:19:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241401AbhIMPoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 11:44:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51508 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245748AbhIMPos (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 11:44:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CD78B60F6F;
-        Mon, 13 Sep 2021 15:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631547812;
-        bh=iE0HFH0NNPFgkof/k+GQAAQOhVg4zb9WvqBH1HY3xJc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ImLrqL0ByWQ5ab29nSi4j7UIJ3wlAyVn5OmPplWgc2aPveBGnx6uVkQ/WAwVaQHE+
-         1bYm/d05gurtsREmPDH6Kz0M3DCDTlDzUp7oXj71jncBhhK6tQ+mGHMW2w3dDlrb0x
-         sPrTFeGUEp+CzeNBFYouohZtJCJxKdxlYIL7rYdZ7SQXDctkRWk662JOzl+4NQNdzv
-         LCs1enD408VCN2QqF88/6PauwkgUVo8IjmKzZVrZNy33ufBtGImfRpZHlhyp947VR/
-         8WOYlFDtyXHt90RkTaYQ2qsJgWrBtycmpWG9g1Pw+uyYM6DCgx+6gyoEI2CnkMWEdI
-         AYXi3yfTm8vXQ==
-Date:   Mon, 13 Sep 2021 16:42:53 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: Re: [PATCH 1/2] dt-bindings: sound: sun4i-i2s: add Allwinner R40
- I2S compatible
-Message-ID: <20210913154253.GJ4283@sirena.org.uk>
-References: <20210912072914.398419-1-jernej.skrabec@gmail.com>
- <20210912072914.398419-2-jernej.skrabec@gmail.com>
- <20210913111117.GB4283@sirena.org.uk>
- <22661441.uYPlIyrNLm@kista>
+        id S230375AbhIMQUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 12:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230003AbhIMQUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 12:20:25 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75048C061574;
+        Mon, 13 Sep 2021 09:19:09 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id bd1so14744560oib.5;
+        Mon, 13 Sep 2021 09:19:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=N/xWzsBvqbn7jaeScL3f3s2ZA+9ZXt9gbvH0hh2wYqs=;
+        b=RQ7hh2BPtVQZCJRpUOs9J8RxaFes0UR5KxWnf1sYxhufmrjNmW2didexyDITFZdsxC
+         Kvghcihb327Yic4NNqHkQyNXtCmj8oSYQhjONbUbocrdgBxlGaKHrDE5SWd4I9YquUc0
+         WenkrxhySOFXNmrd8Vj7BM+jehzX+H40j5ioqeaw34F5FPyARB7L7HgurPoa2CG7WlsO
+         qWkbVVfRUgGmnC1CnbVCLRTFiXOdiEjVccsieju0hDofc4gktQJjl2/U6F6d67tMQIFb
+         VmOZiXxeB7i1a7f4y02oiA0OLralUSa22zrW8QKQwjJqzvioMuAh1Q3NIeq6ChX1Nsvz
+         +reg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=N/xWzsBvqbn7jaeScL3f3s2ZA+9ZXt9gbvH0hh2wYqs=;
+        b=sUyg+G81/4GvJvpfuIU0fK/mpEp8VWOOQf0GTLFXbiYTrjqjV0zpCVMxxNo9D3fkMa
+         4i+hyJJwKM+dvcYBLvcJqumGEdK5d5vPhRdtxbpRXoKXhRguinZSWtglZvVXd5FjnWPi
+         Ft0TsJ+5XqMXu2QogeC+uXFiPSxkZYr0BVgNQNp0PF+lmpUqvhunzl5BRbeiueiL/bEE
+         Ky+JonKaklUgNDsjHL3L7gDEW6LkAH22R5CsXZljz13Kfc+Ig+yCAKKqfaWRwqaAneaA
+         SHLyxsbbuxXtjwlkQvinanl/MjmsJQiM0kB+X52HvCTcS2U42U7737dW6wKVLomA6p76
+         iorQ==
+X-Gm-Message-State: AOAM531IBGM6VVoy6LdlVGSd8E5vFTFlW0K2A0wsn+Yd+yHyhsx4TJA1
+        cSMMrgHO9GeJ82bCKe8px68=
+X-Google-Smtp-Source: ABdhPJy8IIqfMvGEvR4RTQ17OcjoZehc+ZdejnMHeNu4ua85Usp8hsBvX6aPh4XYk6wkuD65e3OEKA==
+X-Received: by 2002:a05:6808:3a3:: with SMTP id n3mr8437749oie.41.1631549948824;
+        Mon, 13 Sep 2021 09:19:08 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id w12sm1789648oie.41.2021.09.13.09.19.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Sep 2021 09:19:08 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 13 Sep 2021 09:19:07 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?iso-8859-1?Q?Benn=E9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH V3 5/5] virtio: Bind virtio device to device-tree node
+Message-ID: <20210913161907.GA176753@roeck-us.net>
+References: <cover.1627273794.git.viresh.kumar@linaro.org>
+ <454a58f998b0d16847d72a97b32192829fab2c8c.1627273794.git.viresh.kumar@linaro.org>
+ <20210913144905.GA1267554@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pMCBjikF2xGw87uL"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <22661441.uYPlIyrNLm@kista>
-X-Cookie: Above all else -- sky.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210913144905.GA1267554@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 13, 2021 at 07:49:07AM -0700, Guenter Roeck wrote:
+> On Mon, Jul 26, 2021 at 10:21:45AM +0530, Viresh Kumar wrote:
+> > Bind the virtio devices with their of_node. This will help users of the
+> > virtio devices to mention their dependencies on the device in the DT
+> > itself. Like GPIO pin users can use the phandle of the device node, or
+> > the node may contain more subnodes to add i2c or spi eeproms and other
+> > users.
+> > 
+> > Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+> > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> 
+> This patch causes a boot failure on sparc64: The virtio device no longer
+> instantiates. Reverting this patch fixes the problem. Bisect log attached.
+> 
 
---pMCBjikF2xGw87uL
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In case it matters: The problem is here:
 
-On Mon, Sep 13, 2021 at 05:33:22PM +0200, Jernej =C5=A0krabec wrote:
-> Dne ponedeljek, 13. september 2021 ob 13:11:17 CEST je Mark Brown napisal=
-(a):
-> > On Sun, Sep 12, 2021 at 09:29:13AM +0200, Jernej Skrabec wrote:
++       if (!of_device_is_compatible(np, compat)) {
++               ret = -EINVAL;
++               goto out;
++       }
 
-> > Please submit patches using subject lines reflecting the style for the
-> > subsystem, this makes it easier for people to identify relevant patches.
-> > Look at what existing commits in the area you're changing are doing and
-> > make sure your subject lines visually resemble what they're doing.
-> > There's no need to resubmit to fix this alone.
+Guenter
 
-> I did exactly that. But history is not uniform:
-
-=2E..
-
-> Most subjects contain "dt-bindings: sound: " at the beginning. I selected=
-=20
-> variant from latest commit (ce09d1a6800d).
-
-If you look at more than just this one file the numbers look rather
-different there, I see I will have to start being super strict with the
-sunxi stuff here :( .  Other people messing up is not a good reason to
-follow them, nor is the occasional thing that's part of a larger series
-being let slide without a maintainer fixup.
-
-Nothing in this patch series had anything about ASoC in it meaning I
-very nearly deleted this unread.
-
---pMCBjikF2xGw87uL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmE/cXwACgkQJNaLcl1U
-h9B7yAf9GrjBcYYjoYmHk2ZHnH4FGIW1SIEuaNKaEJmJXHzcLzx4UAPNI2O4V+8g
-FZ9vrvXdgrL+oSe55PWGaZBsht4c2v4girmAbjzHR38nRCJLhERN/6R5wEPbVByW
-q4jCqRCp1NQ7QpRgz/2JguQEnyYkX0Yx3FJaH5T0O6Pj0XvkBVj1b1pSalwBcd64
-LJnF21d/xcGgamIxvtmTPKihdz7qn60UVNXT1NHbb7kVfpkS5WOyVQ7LX5rW5GRS
-yzMRhG0g94WnK2qpIjWTxIaTqjsC3mBnS48Y+zMVk53jmg1I/IzkTzz5ETNCD2i1
-2YIUG6UpDNc+IaUbEvVfu+VwDtTZyw==
-=5aW6
------END PGP SIGNATURE-----
-
---pMCBjikF2xGw87uL--
+> Guenter
+> 
+> ---
+> # bad: [6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f] Linux 5.15-rc1
+> # good: [926de8c4326c14fcf35f1de142019043597a4fac] Merge tag 'acpi-5.15-rc1-3' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+> git bisect start 'HEAD' '926de8c4326c'
+> # good: [8177a5c96229ff24da1e362789e359b68b4f34f5] Merge tag 'libata-5.15-2021-09-11' of git://git.kernel.dk/linux-block
+> git bisect good 8177a5c96229ff24da1e362789e359b68b4f34f5
+> # bad: [78e709522d2c012cb0daad2e668506637bffb7c2] Merge tag 'for_linus' of git://git.kernel.org/pub/scm/linux/kernel/git/mst/vhost
+> git bisect bad 78e709522d2c012cb0daad2e668506637bffb7c2
+> # bad: [7bc7f61897b66bef78bb5952e3d1e9f3aaf9ccca] Documentation: Add documentation for VDUSE
+> git bisect bad 7bc7f61897b66bef78bb5952e3d1e9f3aaf9ccca
+> # bad: [41116599a0731f4cd451e9d191d879ab45e31945] virtio/vsock: add 'VIRTIO_VSOCK_SEQ_EOR' bit.
+> git bisect bad 41116599a0731f4cd451e9d191d879ab45e31945
+> # good: [5262912ef3cfc5e518892c3d67fb36412cb813e2] vdpa/mlx5: Add support for control VQ and MAC setting
+> git bisect good 5262912ef3cfc5e518892c3d67fb36412cb813e2
+> # good: [7f815fce08d563006e43d1b7d2f9a0a4f3b832f3] dt-bindings: i2c: Add bindings for i2c-virtio
+> git bisect good 7f815fce08d563006e43d1b7d2f9a0a4f3b832f3
+> # good: [d5a8680dfab0547a4ecd708b1fe9de48598a6757] uapi: virtio_ids: Sync ids with specification
+> git bisect good d5a8680dfab0547a4ecd708b1fe9de48598a6757
+> # bad: [9af8f1061646e8e22b66413bedf7b3e2ab3d69e5] virtio/vsock: rename 'EOR' to 'EOM' bit.
+> git bisect bad 9af8f1061646e8e22b66413bedf7b3e2ab3d69e5
+> # bad: [694a1116b405d887c893525a6766b390989c8606] virtio: Bind virtio device to device-tree node
+> git bisect bad 694a1116b405d887c893525a6766b390989c8606
+> # first bad commit: [694a1116b405d887c893525a6766b390989c8606] virtio: Bind virtio device to device-tree node
