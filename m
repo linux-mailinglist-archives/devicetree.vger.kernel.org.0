@@ -2,203 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A738408805
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 11:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4407C408830
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 11:28:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238362AbhIMJUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 05:20:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59370 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238319AbhIMJUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 05:20:40 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA16C061760
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 02:19:24 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id lb1-20020a17090b4a4100b001993f863df2so5185685pjb.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 02:19:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ozlabs-ru.20150623.gappssmtp.com; s=20150623;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/KLMhu/ohKTdcErkhutjcvNbaBuyL81b9h2OgPrIAGs=;
-        b=0nRXlrxU0h72/63M9Z//j1oUioUEAaM+i5ApthV6Y6lkH/EExd7NOO9yr4vV4wgDNy
-         bPRLPTKfpDYsCESaZiV2ZnTya9oO/cvVWeYUWVWCDWsqN4hgD6OhUU/+7nWrCeQACVrj
-         Ng9tOjvqGrzA7ezlFKTNwqvCGL9I7gYNe6l7oGdArV3/eMLtbXxGC+8j1o1poMN3JBjm
-         uSomnaR+AeYmB3bnxhpAvi9nuZ7FVpjatWQ9DdigYpQHkh1YOAzCo0x6jo1vcFUn1WFa
-         xsMcSqIckKjfo3/7e6i8S6BIeDrXis8u9S6H1ZGWzHGN/RgTRu8Oa9fTXdCfIzfaw8/w
-         1Dyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/KLMhu/ohKTdcErkhutjcvNbaBuyL81b9h2OgPrIAGs=;
-        b=3jHUI700aYuJ7057b2e+MGf34dEM7qJM4XL+SFDyRu4hlC71DC4MDlpY0AjSb52e6h
-         1LzJohfVwZmJdd3FV0GikYQM0JnNWNn/udAHkjTPqfLtsLRQcqbtMgG4johq6uILoLhB
-         Qm9J6k3uIhnGlbAcLA5NH1fAvJYkxp/ikQvgR+W1UQdXFCVIEOp0q1YUVZJhsFE9Dtkm
-         gaesUGO+NG1erVDkCV19BkkwkXRZI5trWG+hg/9reiUIUyiCrYdjarsdj4Zzn8JX92dN
-         5xndNhqR6ovS5Z3w9PmQgkNf8YuXTI1YxALzNDwWpP8DJzW8E7ttJ1rhLtGEDyvF8jOZ
-         G5Fg==
-X-Gm-Message-State: AOAM530Hr6dvjyH3DiVoxKAzEUzJ+cjO3uMxdfDVDl3csMGl5bpAK8VQ
-        BGHldJ6vwyIe1n7ayxKh6EMARjrjOOk2BA==
-X-Google-Smtp-Source: ABdhPJyY3G84sKYfeqnJEQmI31QLTRG3fjL7QKVWFJ//gBCJGS4TbYjUbyn/1EcTU7tcRuRvFNJWLw==
-X-Received: by 2002:a17:90b:3ecd:: with SMTP id rm13mr12074738pjb.4.1631524764063;
-        Mon, 13 Sep 2021 02:19:24 -0700 (PDT)
-Received: from [192.168.10.23] (124-171-108-209.dyn.iinet.net.au. [124.171.108.209])
-        by smtp.gmail.com with ESMTPSA id m1sm6457153pfc.30.2021.09.13.02.19.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Sep 2021 02:19:23 -0700 (PDT)
-Message-ID: <d5f87715-5a3e-1e85-68ba-3e4d35163c68@ozlabs.ru>
-Date:   Mon, 13 Sep 2021 19:19:17 +1000
+        id S235168AbhIMJ3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 05:29:25 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:51070 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S238597AbhIMJ3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 05:29:25 -0400
+X-UUID: ce9b042b918847c99cb990bb1516e57c-20210913
+X-UUID: ce9b042b918847c99cb990bb1516e57c-20210913
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <seiya.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1269922654; Mon, 13 Sep 2021 17:28:04 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 13 Sep 2021 17:28:02 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 13 Sep 2021 17:28:02 +0800
+From:   Seiya Wang <seiya.wang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>
+Subject: [PATCH] arm64: dts: mt8183: support coresight-cpu-debug for mt8183
+Date:   Mon, 13 Sep 2021 17:27:36 +0800
+Message-ID: <20210913092736.19207-1-seiya.wang@mediatek.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:92.0) Gecko/20100101
- Thunderbird/92.0
-Subject: Re: [PATCH V3 5/5] virtio: Bind virtio device to device-tree node
-Content-Language: en-US
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        virtualization@lists.linux-foundation.org
-References: <cover.1627273794.git.viresh.kumar@linaro.org>
- <454a58f998b0d16847d72a97b32192829fab2c8c.1627273794.git.viresh.kumar@linaro.org>
-From:   Alexey Kardashevskiy <aik@ozlabs.ru>
-In-Reply-To: <454a58f998b0d16847d72a97b32192829fab2c8c.1627273794.git.viresh.kumar@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add coresight-cpu-debug nodes to mt8183 for dumping
+EDPRSR, EDPCSR, EDCIDSR, EDVIDSR
+while kernel panic happens
 
+Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
 
-On 26/07/2021 14:51, Viresh Kumar wrote:
-> Bind the virtio devices with their of_node. This will help users of the
-> virtio devices to mention their dependencies on the device in the DT
-> itself. Like GPIO pin users can use the phandle of the device node, or
-> the node may contain more subnodes to add i2c or spi eeproms and other
-> users.
-> 
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> ---
->  drivers/virtio/virtio.c | 57 ++++++++++++++++++++++++++++++++++++++---
->  1 file changed, 54 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/virtio/virtio.c b/drivers/virtio/virtio.c
-> index 4b15c00c0a0a..d001e84a5b23 100644
-> --- a/drivers/virtio/virtio.c
-> +++ b/drivers/virtio/virtio.c
-> @@ -4,6 +4,7 @@
->  #include <linux/virtio_config.h>
->  #include <linux/module.h>
->  #include <linux/idr.h>
-> +#include <linux/of.h>
->  #include <uapi/linux/virtio_ids.h>
->  
->  /* Unique numbering for virtio devices. */
-> @@ -292,6 +293,9 @@ static int virtio_dev_remove(struct device *_d)
->  
->  	/* Acknowledge the device's existence again. */
->  	virtio_add_status(dev, VIRTIO_CONFIG_S_ACKNOWLEDGE);
-> +
-> +	of_node_put(dev->dev.of_node);
-> +
->  	return 0;
->  }
->  
-> @@ -319,6 +323,43 @@ void unregister_virtio_driver(struct virtio_driver *driver)
->  }
->  EXPORT_SYMBOL_GPL(unregister_virtio_driver);
->  
-> +static int virtio_device_of_init(struct virtio_device *dev)
-> +{
-> +	struct device_node *np, *pnode = dev_of_node(dev->dev.parent);
-> +	char compat[] = "virtio,XXXXXXXX"; /* Reserve enough space 32-bit id */
-> +	int ret, count;
-> +
-> +	if (!pnode)
-> +		return 0;
-> +
-> +	count = of_get_available_child_count(pnode);
-> +	if (!count)
-> +		return 0;
-> +
-> +	/* There can be only 1 child node */
-> +	if (WARN_ON(count > 1))
-> +		return -EINVAL;
-> +
-> +	np = of_get_next_available_child(pnode, NULL);
-> +	if (WARN_ON(!np))
-> +		return -ENODEV;
-> +
-> +	BUG_ON(snprintf(compat, sizeof(compat), "virtio,%x", dev->id.device) >=
-> +	       sizeof(compat));
-> +
-> +	if (!of_device_is_compatible(np, compat)) {
-
-
-This broke powerpc/pseries as there these virtio devices are PCI so
-there is no "compat" - PCI vendor id/device ids play role of "compat".
-Thanks,
-
-
-
-
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	dev->dev.of_node = np;
-> +	return 0;
-> +
-> +out:
-> +	of_node_put(np);
-> +	return ret;
-> +}
-> +
->  /**
->   * register_virtio_device - register virtio device
->   * @dev        : virtio device to be registered
-> @@ -343,6 +384,10 @@ int register_virtio_device(struct virtio_device *dev)
->  	dev->index = err;
->  	dev_set_name(&dev->dev, "virtio%u", dev->index);
->  
-> +	err = virtio_device_of_init(dev);
-> +	if (err)
-> +		goto out_ida_remove;
-> +
->  	spin_lock_init(&dev->config_lock);
->  	dev->config_enabled = false;
->  	dev->config_change_pending = false;
-> @@ -362,10 +407,16 @@ int register_virtio_device(struct virtio_device *dev)
->  	 */
->  	err = device_add(&dev->dev);
->  	if (err)
-> -		ida_simple_remove(&virtio_index_ida, dev->index);
-> +		goto out_of_node_put;
-> +
-> +	return 0;
-> +
-> +out_of_node_put:
-> +	of_node_put(dev->dev.of_node);
-> +out_ida_remove:
-> +	ida_simple_remove(&virtio_index_ida, dev->index);
->  out:
-> -	if (err)
-> -		virtio_add_status(dev, VIRTIO_CONFIG_S_FAILED);
-> +	virtio_add_status(dev, VIRTIO_CONFIG_S_FAILED);
->  	return err;
->  }
->  EXPORT_SYMBOL_GPL(register_virtio_device);
-> 
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index 409cf827970c..3ad4dd47518a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -367,6 +367,70 @@
+ 			reg = <0 0x0c530a80 0 0x50>;
+ 		};
+ 
++		cpu_debug0: cpu-debug@d410000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xd410000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu0>;
++		};
++
++		cpu_debug1: cpu-debug@d510000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xd510000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu1>;
++		};
++
++		cpu_debug2: cpu-debug@d610000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xd610000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu2>;
++		};
++
++		cpu_debug3: cpu-debug@d710000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xd710000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu3>;
++		};
++
++		cpu_debug4: cpu-debug@d810000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xd810000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu4>;
++		};
++
++		cpu_debug5: cpu-debug@d910000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xd910000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu5>;
++		};
++
++		cpu_debug6: cpu-debug@da10000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xda10000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu6>;
++		};
++
++		cpu_debug7: cpu-debug@db10000 {
++			compatible = "arm,coresight-cpu-debug","arm,primecell";
++			reg = <0x0 0xdb10000 0x0 0x1000>;
++			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
++			clock-names = "apb_pclk";
++			cpu = <&cpu7>;
++		};
++
+ 		topckgen: syscon@10000000 {
+ 			compatible = "mediatek,mt8183-topckgen", "syscon";
+ 			reg = <0 0x10000000 0 0x1000>;
 -- 
-Alexey
+2.14.1
+
