@@ -2,40 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FA61408981
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7380C408984
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239313AbhIMK4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 06:56:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51846 "EHLO mail.kernel.org"
+        id S239414AbhIMK4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 06:56:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51940 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239367AbhIMK4C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 06:56:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 86CD861004;
-        Mon, 13 Sep 2021 10:54:45 +0000 (UTC)
+        id S239251AbhIMK4J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 06:56:09 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 671DA6108B;
+        Mon, 13 Sep 2021 10:54:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631530486;
-        bh=7l+vYectJVc2pcNJ1xmipSlZuJEZCOZ/t0TzVWfHOpQ=;
+        s=k20201202; t=1631530494;
+        bh=J92vC4acCGp/Nk1DVTMvmiwsE+1YSxjAx3HdJ63Eif8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kNOWPfSdeU4ol4rp4iIs1sStfO5f1aba6ThiI63sJDvw8W6/7tKCot+ftABjHK4H4
-         jxD+gIqQYBRvf2Pto3xU5Uv71cPnjg4F7RRUpaMjBHzeye8rKjtr0mXXQsLv8KwOhY
-         LhaAIdpg7Wsp4eZJobeR8gOAQs5UkrYkAoOnDoY0Va7oBPWYVq2nMiLuxKO8Q+JKpj
-         xaB0Cc5/caUQOLLelK523pe+pxzD+QEpoycUagWpPN6jAxB1VKWGWN7TJlshE8CmF2
-         ACulhOe9EiLjp7DAEbkCOnuX9bfGK3LbB+1ZeAHwTCpDb20vIlZsJwz64VUl+kF8Jg
-         yYnMtMIV9GgGw==
+        b=CA/ReKV88hWRccNlZp2jbvoF+MRdqbytMChkRu3P1UoZB0DlxO8RJbf4X/I8EPBKN
+         5KBsjYp5FPRiikbFXTwcFaICeHQvOEarhXNZ26bVC9GjQMdKpAlHpPKwHIJVVwlTo2
+         V8Ztr+ul5R7N+UUqu+3O/rccSIccMOI93651bbXkufYjiJXqVvA7gWZ7oIaCegHBqp
+         4RB3C1QfxT89nRdn0eZAn+JalCO9U3HBi/Lspp4kEg/Ol+F9nes8Y+oqaTsNki6Ua8
+         OkaIIoPQATjwRnslyThDxIszGqdBYtRn/DxFvDe18Ea9ybw0C94P9B62L7uzx3yuxI
+         mqjx8QKfYu4RQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        Sameer Pujar <spujar@nvidia.com>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        jbrunet@baylibre.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, stephan@gerhold.net
-Subject: Re: [PATCH v3 0/3] Convert name-prefix doc to json-schema
-Date:   Mon, 13 Sep 2021 11:53:18 +0100
-Message-Id: <163152996585.45703.9035282827838850495.b4-ty@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-sunxi@googlegroups.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 00/52] ARM: dts: Last round of DT schema fixes
+Date:   Mon, 13 Sep 2021 11:53:20 +0100
+Message-Id: <163152996583.45703.2271458065369838682.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1630686919-19495-1-git-send-email-spujar@nvidia.com>
-References: <1630686919-19495-1-git-send-email-spujar@nvidia.com>
+In-Reply-To: <20210901091852.479202-1-maxime@cerno.tech>
+References: <20210901091852.479202-1-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -43,13 +44,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Sep 2021 22:05:16 +0530, Sameer Pujar wrote:
-> Following are the changes:
->   - Add json-schema for 'sound-name-prefix' documentation under
->     'name-perfix.yaml'
->   - Use schema references wherever needed.
->   - Remove txt based doc
+On Wed, 1 Sep 2021 11:18:00 +0200, Maxime Ripard wrote:
+> Here's another round of schema warnings fixes for the Allwinner platform.
 > 
+> There's a fair share of new schemas in there since the schema tools now warn
+> when a compatible is not documented in a schema.
+> 
+> We don't have any warning anymore if we use the OPP binding Rob submitted, and
+> since that means we have all our devices properly validated I don't expect more
+> fixes now, aside from the usual bunch of regressions.
 > 
 > [...]
 
@@ -59,12 +62,14 @@ Applied to
 
 Thanks!
 
-[1/3] ASoC: Add json-schema documentation for sound-name-prefix
-      commit: 7f826da8e924bae7dd56b99e3760514017ca51a3
-[2/3] ASoC: Use schema reference for sound-name-prefix
-      commit: 82d3ec1d89fa2750fdc74e2f29c6c7ff673a2768
-[3/3] ASoC: Remove name-prefix.txt
-      commit: 955cc3488e6d407bac3883be630cabbead0892f4
+[01/52] ASoC: dt-bindings: Add WM8978 Binding
+        commit: 5bd5699c494f42a3c23e377bb35be5d716b85012
+[02/52] ASoC: dt-bindings: Convert Bluetooth SCO Link binding to a schema
+        commit: 6ef239699102580b104bfca11d9b94abfbc8caec
+[03/52] ASoC: dt-bindings: Convert SPDIF Transmitter binding to a schema
+        commit: 1c02b74ba20838ba194850beb0adfc6b5e11bb2a
+[04/52] ASoC: dt-bindings: Convert Simple Amplifier binding to a schema
+        commit: 50a41ce8c56d07f42a97112077acbaeda8b86ed9
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
