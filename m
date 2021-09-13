@@ -2,112 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F147409C5A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 20:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09765409CBD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 21:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345477AbhIMSgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 14:36:44 -0400
-Received: from sibelius.xs4all.nl ([83.163.83.176]:51929 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241450AbhIMSgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 14:36:43 -0400
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 452b42da;
-        Mon, 13 Sep 2021 20:35:23 +0200 (CEST)
-Date:   Mon, 13 Sep 2021 20:35:23 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org, alyssa@rosenzweig.io,
-        kettenis@openbsd.org, tglx@linutronix.de, robh+dt@kernel.org,
-        marcan@marcan.st, bhelgaas@google.com, nsaenz@kernel.org,
-        jim2101024@gmail.com, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        daire.mcnamara@microchip.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org
-In-Reply-To: <871r5tcwhp.wl-maz@kernel.org> (message from Marc Zyngier on Sun,
-        12 Sep 2021 22:30:42 +0100)
-Subject: Re: [PATCH v4 4/4] arm64: apple: Add PCIe node
-References: <20210827171534.62380-1-mark.kettenis@xs4all.nl>
-        <20210827171534.62380-5-mark.kettenis@xs4all.nl> <871r5tcwhp.wl-maz@kernel.org>
-Message-ID: <5614581066cc67fa@bloch.sibelius.xs4all.nl>
+        id S240476AbhIMTPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 15:15:33 -0400
+Received: from mail.z3ntu.xyz ([128.199.32.197]:45366 "EHLO mail.z3ntu.xyz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229460AbhIMTPd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 15:15:33 -0400
+Received: from g550jk.localnet (ip-213-127-63-121.ip.prioritytelecom.net [213.127.63.121])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 92CB3C96D2;
+        Mon, 13 Sep 2021 19:14:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1631560455; bh=xXK4qoM6eeH56dLOIWdlOIkpkBiaBDzS80YDoQgblCM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=sOxjwAvB+CdsxphN08jjTBXJtvxWx0TaKSLPNYCcEWqn7eiHdbKiLjw3rPhQRujfC
+         2habQZaD2P7AKdGOU9NmXb7Su+qKXQqCeIdVKCyargtNuicz8gAST9EKEJbZkpz/S2
+         NQjrn7PyFN70Lax5VePEEfKB6BONXg2J9Bi8UQrw=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, bartosz.dudziak@snejp.pl,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
+Date:   Mon, 13 Sep 2021 21:14:14 +0200
+Message-ID: <5220943.AHGTne7y6d@g550jk>
+In-Reply-To: <9942f964-442e-e782-3926-6d7d1123418a@canonical.com>
+References: <20210911232707.259615-1-luca@z3ntu.xyz> <20210911232707.259615-7-luca@z3ntu.xyz> <9942f964-442e-e782-3926-6d7d1123418a@canonical.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Sun, 12 Sep 2021 22:30:42 +0100
-> From: Marc Zyngier <maz@kernel.org>
+Hi Krzysztof,
 
-Hi Marc,
-
-> On Fri, 27 Aug 2021 18:15:29 +0100,
-> Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
-> > 
-> > From: Mark Kettenis <kettenis@openbsd.org>
-> > 
-> > Add node corresponding to the apcie,t8103 node in the
-> > Apple device tree for the Mac mini (M1, 2020).
-> > 
-> > Clock references and DART (IOMMU) references are left out at the
-> > moment and will be added once the appropriate bindings have been
-> > settled upon.
-> > 
-> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
-> > ---
-> >  arch/arm64/boot/dts/apple/t8103.dtsi | 63 ++++++++++++++++++++++++++++
-> >  1 file changed, 63 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> > index 503a76fc30e6..6e4677bdef44 100644
-> > --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> > +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> > @@ -214,5 +214,68 @@ pinctrl_smc: pinctrl@23e820000 {
-> >  				     <AIC_IRQ 396 IRQ_TYPE_LEVEL_HIGH>,
-> >  				     <AIC_IRQ 397 IRQ_TYPE_LEVEL_HIGH>;
-> >  		};
-> > +
-> > +		pcie0: pcie@690000000 {
-> > +			compatible = "apple,t8103-pcie", "apple,pcie";
-> > +			device_type = "pci";
-> > +
-> > +			reg = <0x6 0x90000000 0x0 0x1000000>,
-> > +			      <0x6 0x80000000 0x0 0x4000>,
+On Montag, 13. September 2021 10:49:43 CEST Krzysztof Kozlowski wrote:
+> On 12/09/2021 01:27, Luca Weiss wrote:
+> > LG Electronics is a part of the LG Corporation and produces, amongst
+> > other things, consumer electronics such as phones and smartwatches.
 > 
-> Only exposing 16kB for the 'rc' crashes the Linux driver as it tries
-> to configure the port ref-clock configurations, which live much
-> higher:
+> Hi,
 > 
-> #define CORE_LANE_CFG(port)		(0x84000 + 0x4000 * (port))
+> Thanks for the patches.
 > 
-> Previous versions of the binding had this region as 1MB, which made
-> things work.
-
-Oops.  When I formalized the binding, I looked at the Apple DT and
-used the sizes from there.  And didn't notice that this wasn't
-sufficient since U-Boot doesn't actually use the size of the region to
-create a mapping like an actual OS would do.  It is somewhat unclear
-how big the regions really are, but as marcan noted at some point in
-the past the sizes in the Apple DT seem to be somewhat inconsistent so
-religiously following what is done there may not make sense.  So I'll
-fix this in v5 (also in the example in the DT binding).
-
-Corellium uses 1MB, which makes more sense unless we break up the
-block into multiple ranges.
-
-> > +			      <0x6 0x81000000 0x0 0x8000>,
-> > +			      <0x6 0x82000000 0x0 0x8000>,
-> > +			      <0x6 0x83000000 0x0 0x8000>;
+> I think "lge" it's the same prefix as "lg". There is no sense in having
+> multiple vendor prefixes just because company splits inside business
+> units or subsidiaries. The same as with other conglomerates, e.g.
+> Samsung - if we wanted to be specific, there will be 4-5 Samsung
+> vendors... Not mentioning that company organisation is not always
+> disclosed and can change.
 > 
-> These used to be 16kB, and are now twice as much. Didn't cause any
-> issue with the Linux driver, but I wonder what trigger either change.
 
-0x8000 is what the Apple DT uses.
+I was mostly following qcom-msm8974-lge-nexus5-hammerhead as it's the other LG 
+device tree I am aware of so I've picked lge instead of lg. Also worth noting 
+that Google uses "LGE" in the Android device tree[1] or in the model name in 
+the LG G Watch R kernel sources ("LGE APQ 8026v2 LENOK rev-1.0").
 
-Since we don't have authorative documentation for the chip we have to
-make some guesses here.  I suspect we should try to keep the sizes as
-small as possible while sticking to sizes of 2^n?  Then it probably
-makes sense to use 0x4000 for these ranges.
+I don't have a strong opinion either way so I'm fine with either.
 
-Cheers,
+If we decide to go with "lg" do we want to change the Nexus 5 devicetree 
+(hammerhead) also, that one has the lge name in at least compatible and 
+filename (I don't know how much of a breaking change that would be considered 
+as).
 
-Mark
+> We already have lg for several components, also made by LG Electronics.
+> What about these?
+> 
+> There is only one device with "lge", added back in 2016 without adding
+> vendor prefix. I would propose to fix that one, instead of keeping
+> duplicated "lg".
+> 
+> Best regards,
+> Krzysztof
+
+Regards
+Luca
+
+[1] https://android.googlesource.com/device/lge/hammerhead/
+
+
+
