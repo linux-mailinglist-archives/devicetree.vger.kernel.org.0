@@ -2,173 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B029409CD9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 21:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D70409CF7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 21:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240252AbhIMTYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 15:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240191AbhIMTYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 15:24:54 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 479FDC061760
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 12:23:38 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id b10so13602220ioq.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 12:23:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SCfdjvRp7InTH9XjtPaz8vHnaVYBhJdaoMr7MV9qAvA=;
-        b=dGo+tuevfhZCA/YeqPxtdFEN1V8llnfd0o54rTOUf0poR2gUtjWfiAKLIpNs8ETBko
-         7RQh66PWNSSZTd+a0Lwe0U9L1gMHib7lbmfwVZI9a6R+sacM2f343flRrqxLjOeCMN8a
-         S+kcaEXejuEf8BVC+K6MKMCHj9ZbXpBEihpuds/BBELsi909qp2oT1AaF0PMIUnTJN5+
-         wC+NAt7hnv6Jh7VFnRE/N2GtDOCnYYxX8M+Utx8+4Ym3FexPh4CTif35n/nT8bvgqPEi
-         9cEWiUBQITXahD1whKbEJGu4JJfqT2iYhn7z8X/6VksHTVkZyzYCDV8BzSCW1BZeIFSM
-         cNtg==
+        id S242248AbhIMT3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 15:29:35 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:40686 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241848AbhIMT3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 15:29:34 -0400
+Received: by mail-ot1-f54.google.com with SMTP id l16-20020a9d6a90000000b0053b71f7dc83so14871688otq.7;
+        Mon, 13 Sep 2021 12:28:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SCfdjvRp7InTH9XjtPaz8vHnaVYBhJdaoMr7MV9qAvA=;
-        b=Qg6ldw6z2j3xaWr8JMPk7UKWKA+jr4AwXyZTRXNumv8nMRBxPjPfahVf4Udl4mU7Tg
-         a0hNEci2KZJiJpf50kWRvneQl4NFEWUpRCzFjXXHpPVGwrk72cK/GCo2FQz/edgy2ELW
-         g9oFduDvwJh4MVYok5UB8CT+ZHD5aRPY/kzIIh5MMq4edJXBU+0mJ3qoMgoDcQLYOvka
-         gDJjyosDRm7K7JjnHT9Y3uo97Gwvbxq1+JowtlhaHa6HGPDguv+xFDaOwafZaOzkvS5o
-         X81VLKhqxI5yapN8DfLu4GaFg603Kv35l9QG3b27u37Mfq7tKOa6dSoJBPtl5ECudEoQ
-         +Eyw==
-X-Gm-Message-State: AOAM533K1Da7S9WlPc4QTylJGAN4BpjtYvO8TFRnRoaq1KIBuEwviSaS
-        0+92f/IMzurLGHhWvzV82RfIfP+BHqciiOREl4WoCQ==
-X-Google-Smtp-Source: ABdhPJyVuPZv27Yi2qFn/qujRstHDcU6qv3CChfab0QTyJU1ljeUyfb4M1sR4wvotkY1crUMu4lxnztMStgDzGPAhmA=
-X-Received: by 2002:a5d:8b4b:: with SMTP id c11mr10576984iot.98.1631561017347;
- Mon, 13 Sep 2021 12:23:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=g+Q2qhVPQ7t2dWkHiAQZbqwf5gFYdZacySJXFNnEnrg=;
+        b=hgcU/39cL8nasIheHfvohl3WR5g0ZzrhE3GpyQgX3ixzyp7u1uyQtnmPxdFpCtGjro
+         DbpYcyPDQGVULJFJ1xlSvsY9Bv46Gffp9LNncaq4kKqC7p88R3iYQ/1Mb2kmbhk4RApo
+         /Cfy0EXsweiIkPEZvaomujgVxgoi+ZCGNUt7TG7EuGh5zgc5gKiLrXMxyvLXhi4YJrpk
+         hNunzb14Vi+6vMJ8JJxrxBNFyn0S4PzwD5Plpt/8wZzLzrOvtHPo34/fxfQubS0Nj8ZX
+         0mQVbQP8Vp4nSL4dLdRZAFD2sa83+PunJZvwgazxcaZ4WdjT8ydnmOs1Ey++kffol4KQ
+         hhAQ==
+X-Gm-Message-State: AOAM531OQkTpb4hlNuQY5R9VYtA10GeCLL5sLC6gbPhW6EwA8AmxPctB
+        IePf6Hf3/hKEaOZJy1pUOw==
+X-Google-Smtp-Source: ABdhPJxPkAR3Bxh1Ev21crujx07CiRZnZvdkVQ7u2FyfOauoqvueRDEfAPRY/2dg38mxF7DLleoA3g==
+X-Received: by 2002:a05:6830:31a5:: with SMTP id q5mr11038625ots.253.1631561298042;
+        Mon, 13 Sep 2021 12:28:18 -0700 (PDT)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id m24sm1907838oie.50.2021.09.13.12.28.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Sep 2021 12:28:17 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org
+Subject: [PATCH v2 0/8] Arm boards syscon 'unit_address_format' clean-ups
+Date:   Mon, 13 Sep 2021 14:28:08 -0500
+Message-Id: <20210913192816.1225025-1-robh@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210913105920.3719525-1-yangcong5@huaqin.corp-partner.google.com>
- <20210913105920.3719525-6-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20210913105920.3719525-6-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Mon, 13 Sep 2021 12:23:25 -0700
-Message-ID: <CAD=FV=XFApy_RxCRzrQrQ1-xua+tBpZN60B1TzyEvDNm3LnD7Q@mail.gmail.com>
-Subject: Re: [v5 5/5] drm/panel: Update BOE and INX init code to support touch function
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series addresses the last of the dtc 'unit_address_format'
+warnings in the tree.
 
-On Mon, Sep 13, 2021 at 3:59 AM yangcong
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> This is an incell IC, TDDI use time division multiplexing.
-> Init code effect touch sensing.
-> Support touch function we needed to handle were:
-> a) Update init code for the panel driver, adjust the porch value.
-> b) After update init code these two panels can support DSI HS mode.
->
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 399 +++++-------------
->  1 file changed, 110 insertions(+), 289 deletions(-)
+The remaining issue was dealing with the node names on 2 bindings for
+Arm Ltd boards syscon child nodes: register-bit-led and Versatile ICST.
+Both of these used an offset property for register address rather than
+'reg' which is the preference nowadays. With a 'reg' property, then we
+can have a proper node name and unit-address. This series adds support
+for using 'reg' instead and updates the node names and unit-addresses.
 
-Please squash this with patch #3 in the series. Even though you have
-landed patch #3 in the series in a Chrome OS tree it doesn't matter.
-Since patch #3 hasn't landed upstream there is no reason to post the
-"wrong" code and then fix it up in the same series. The Chrome OS tree
-can always take a revert of the old version and a re-pick of the new
-version.
+The dts file changes have inter-dependencies, but the clock and led
+changes can go via each subsystem.
+
+Rob
 
 
-> @@ -36,7 +36,6 @@ struct panel_desc {
->         const struct panel_init_cmd *init_cmds;
->         unsigned int lanes;
->         bool discharge_on_disable;
-> -       bool unsupport_dsi_hs_mode;
+Rob Herring (8):
+  dt-bindings: leds: Convert register-bit-led binding to DT schema
+  dt-bindings: leds: register-bit-led: Use 'reg' instead of 'offset'
+  leds: syscon: Support 'reg' in addition to 'offset' for register
+    address
+  dt-bindings: clock: arm,syscon-icst: Use 'reg' instead of 'vco-offset'
+    for VCO register address
+  clk: versatile: clk-icst: Support 'reg' in addition to 'vco-offset'
+    for register address
+  ARM: dts: arm: Update register-bit-led nodes 'reg' and node names
+  ARM: dts: arm: Update ICST clock nodes 'reg' and node names
+  kbuild: Enable dtc 'unit_address_format' warning by default
 
-Not that I'm complaining, but how did this suddenly get supported?
+ .../bindings/clock/arm,syscon-icst.yaml       |  5 +
+ .../bindings/leds/register-bit-led.txt        | 94 ------------------
+ .../bindings/leds/register-bit-led.yaml       | 95 +++++++++++++++++++
+ arch/arm/boot/dts/arm-realview-eb.dtsi        | 42 +++++---
+ arch/arm/boot/dts/arm-realview-pb1176.dts     | 42 +++++---
+ arch/arm/boot/dts/arm-realview-pb11mp.dts     | 48 +++++++---
+ arch/arm/boot/dts/arm-realview-pbx.dtsi       | 42 +++++---
+ arch/arm/boot/dts/integrator.dtsi             | 23 +++--
+ arch/arm/boot/dts/integratorap-im-pd1.dts     |  9 +-
+ arch/arm/boot/dts/integratorap.dts            | 15 ++-
+ arch/arm/boot/dts/integratorcp.dts            |  9 +-
+ arch/arm/boot/dts/mps2.dtsi                   | 10 +-
+ arch/arm/boot/dts/versatile-ab-ib2.dts        |  6 +-
+ arch/arm/boot/dts/versatile-ab.dts            | 27 ++++--
+ arch/arm64/boot/dts/arm/juno-motherboard.dtsi | 27 ++++--
+ drivers/clk/versatile/clk-icst.c              |  3 +-
+ drivers/leds/leds-syscon.c                    |  3 +-
+ scripts/Makefile.lib                          |  1 -
+ 18 files changed, 316 insertions(+), 185 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/register-bit-led.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/register-bit-led.yaml
 
+-- 
+2.30.2
 
-> @@ -84,6 +83,8 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
->         _INIT_DCS_CMD(0x07, 0x78),
->         _INIT_DCS_CMD(0x08, 0x5A),
->         _INIT_DCS_CMD(0x0D, 0x63),
-> +       _INIT_DCS_CMD(0x0E, 0x91),
-> +       _INIT_DCS_CMD(0x0F, 0x73),
-
-I _really_ don't like this opaque list of commands and the fact that
-apparently they aren't fixed but need to change depending on how
-you're configuring the panel, but I won't personally block this patch
-just because of it since it matches what other panels in this driver
-are doing.
-
-If someone more familiar with MIPI panels wants to chime in though,
-I'm all ears.
-
-
-> @@ -1442,15 +1260,15 @@ static int boe_panel_enable(struct drm_panel *panel)
->  }
->
->  static const struct drm_display_mode boe_tv110c9m_default_mode = {
-> -       .clock = 162383,
-> +       .clock = 166594,
->         .hdisplay = 1200,
->         .hsync_start = 1200 + 40,
->         .hsync_end = 1200 + 40 + 8,
->         .htotal = 1200 + 40 + 8 + 28,
->         .vdisplay = 2000,
->         .vsync_start = 2000 + 26,
-> -       .vsync_end = 2000 + 26 + 1,
-> -       .vtotal = 2000 + 26 + 1 + 94,
-> +       .vsync_end = 2000 + 26 + 2,
-> +       .vtotal = 2000 + 26 + 2 + 148,
->         .type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
->  };
->
-> @@ -1463,14 +1281,15 @@ static const struct panel_desc boe_tv110c9m_desc = {
->         },
->         .lanes = 4,
->         .format = MIPI_DSI_FMT_RGB888,
-> -       .mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-> -                     MIPI_DSI_MODE_LPM,
-> +       .mode_flags = MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_VIDEO
-> +                       | MIPI_DSI_MODE_VIDEO_HSE
-> +                       | MIPI_DSI_CLOCK_NON_CONTINUOUS
-> +                       | MIPI_DSI_MODE_VIDEO_BURST,
->         .init_cmds = boe_tv110c9m_init_cmd,
-> -       .unsupport_dsi_hs_mode = true,
->  };
->
->  static const struct drm_display_mode inx_hj110iz_default_mode = {
-> -       .clock = 162383,
-> +       .clock = 166594,
->         .hdisplay = 1200,
->         .hsync_start = 1200 + 40,
->         .hsync_end = 1200 + 40 + 8,
-> @@ -1478,7 +1297,7 @@ static const struct drm_display_mode inx_hj110iz_default_mode = {
->         .vdisplay = 2000,
->         .vsync_start = 2000 + 26,
->         .vsync_end = 2000 + 26 + 1,
-> -       .vtotal = 2000 + 26 + 1 + 94,
-> +       .vtotal = 2000 + 26 + 1 + 149,
-
-It seems really odd that the two panels have _exactly_ the same timing
-except that one of them now has:
-
-.vsync_end = 2000 + 26 + 2,
-
-...and the other:
-
-.vsync_end = 2000 + 26 + 1,
-
-Do they really need to be different?
-
--Doug
