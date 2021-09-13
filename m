@@ -2,233 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 093EA4088FC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8158408920
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:37:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238184AbhIMK2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 06:28:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46562 "EHLO
+        id S239165AbhIMKi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 06:38:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237875AbhIMK2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 06:28:41 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A46C061760
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 03:27:25 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id f11-20020a17090aa78b00b0018e98a7cddaso6107360pjq.4
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 03:27:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ozlabs-ru.20150623.gappssmtp.com; s=20150623;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4ojy6cEsFHk10XZ8gTjQ+8LmjK4t0ENByVBTa8Pq7oU=;
-        b=QuwYcmThUMsaKLPdimS74jJZtMpt3AGfCzcrliBD84wbo8kIKgW2stgTtjKVEPOXzT
-         vK9j9FtLGWqdxd6JBDkTbSw7MzcmTUtHHx+dCGDznrQl20OvaAzYP3TYfHi2eMMB5YFp
-         YCkUY17hm27ZRdbvTJgKTQ0nJX132ZwjKAu2TcGOyHglENSby2fAe19CY5+OJ1lJs/Nu
-         Bwr91VjUS+jm5EFG/8ZyIXrPRxbKQ4aYh4rt4sCDZgA6IFSQJcjUmb8xcmj10W+S4/kd
-         3thgZ1vmfDQJNAI6o6aVXaEtJ18Ie5qHSQK4ytd6+usHvlg09Em1q5wuNTzsT1gu7klb
-         clHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4ojy6cEsFHk10XZ8gTjQ+8LmjK4t0ENByVBTa8Pq7oU=;
-        b=f8t70pBzi2Lg2ifejatGzxGxGAkymTeTiHuXxCrpUH9eWkPSeC8ZZ8p33eXsY8FCZp
-         qAXPL8V9JS9MAXwJ8c69BtcLnHWmhxPHhty4N/S9sI5LU01VWtmqOrcIPJgVlFlZUjHf
-         OyvBED31eTVegDecrNQLVwGldduAOt7G7RrPBx52McX4MzuAqV099Md17q5GmN7t8ZFf
-         h4AaGAu4yCi6A7mqHa3WUHqWhBYLizo8trUJXzufD2FFQU9Or6pqwbKyqYlL6C7nyQUd
-         y0E56Daj+jDXizbC74uXWjKeRNvsRdDNIHnaeAJ/YnfgKrRVnGMi1bIX9u4OGolHZ9h5
-         wI0Q==
-X-Gm-Message-State: AOAM530BVjOmSa219zmy13mC9XimIq9/EdLjWycZYfh4McLWUV1QIXqn
-        YzwfU60FFWWhHD7+wkf+LeVUsw==
-X-Google-Smtp-Source: ABdhPJy/mVKPNDDtD4/hvsKtLutn7O4PYcsfQlygwftXaH5JMs9hcX/42bjEZeujoWBt0V4KD/A4xQ==
-X-Received: by 2002:a17:902:b218:b029:11a:bf7b:1a80 with SMTP id t24-20020a170902b218b029011abf7b1a80mr9787613plr.82.1631528845385;
-        Mon, 13 Sep 2021 03:27:25 -0700 (PDT)
-Received: from [192.168.10.23] (124-171-108-209.dyn.iinet.net.au. [124.171.108.209])
-        by smtp.gmail.com with ESMTPSA id q12sm6663523pfj.153.2021.09.13.03.27.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Sep 2021 03:27:24 -0700 (PDT)
-Message-ID: <f73fc95b-9164-536f-99b2-f46bf0d06837@ozlabs.ru>
-Date:   Mon, 13 Sep 2021 20:27:18 +1000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:92.0) Gecko/20100101
- Thunderbird/92.0
-Subject: Re: [PATCH V3 5/5] virtio: Bind virtio device to device-tree node
-Content-Language: en-US
-To:     "Michael S. Tsirkin" <mst@redhat.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Jason Wang <jasowang@redhat.com>,
+        with ESMTP id S235467AbhIMKi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 06:38:56 -0400
+X-Greylist: delayed 68 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 13 Sep 2021 03:37:39 PDT
+Received: from lb2-smtp-cloud7.xs4all.net (lb2-smtp-cloud7.xs4all.net [IPv6:2001:888:0:108::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A3EC061574;
+        Mon, 13 Sep 2021 03:37:39 -0700 (PDT)
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id PjK4mY9mDpQdWPjK6m2WBC; Mon, 13 Sep 2021 12:36:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1631529389; bh=ts0p47VDy1RuNtn8qktl3hYi7SGUCH+xhpXXyzEAqtw=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=uT8KXGzgjksultoKLa6we++Z5zQLHWwzxQ1lEaWts3V+Qt0LNNuLFKu25NrWVtuZo
+         1LjgM6hHryuY3vq86+RddrMjTRLIOGkgo4SfsdiOrUr48cKtu+vNfkx0MjBiwNcpfO
+         x6kplKvSIXRoXxHHPc0inP48WEZxdSkXCSqJm8OA8GgCSgu+LIvqbVnp4QM5ZYTn7J
+         6MU68wd2j4SMjAOYTSWc5DvNC5MeX1A8pf+1CWNkki8e9D88yU+UdZUnskF6jcxZTb
+         x7hQZjC3/LvQLv9qw4W/mb7PL04dcOPrwcCuvqA4xG8KRGj+HQy9zMnX4rlqCMTzEn
+         tPbVQ1sl7yM4Q==
+Subject: Re: [PATCH v11 22/34] media: dt: bindings: tegra-vde: Convert to
+ schema
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        Bill Mills <bill.mills@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-References: <cover.1627273794.git.viresh.kumar@linaro.org>
- <454a58f998b0d16847d72a97b32192829fab2c8c.1627273794.git.viresh.kumar@linaro.org>
- <d5f87715-5a3e-1e85-68ba-3e4d35163c68@ozlabs.ru>
- <20210913053816-mutt-send-email-mst@kernel.org>
-From:   Alexey Kardashevskiy <aik@ozlabs.ru>
-In-Reply-To: <20210913053816-mutt-send-email-mst@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20210912200832.12312-1-digetx@gmail.com>
+ <20210912200832.12312-23-digetx@gmail.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <0feef7a8-932e-0190-1043-bba7912f9599@xs4all.nl>
+Date:   Mon, 13 Sep 2021 12:36:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20210912200832.12312-23-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfBdOdOXcUGbOy8OWfAC0zxt/5ZR1EjxHBJ5gYl1f4tGuUDl47qC7VjDg1mAM1PInADc627yzwRlN776HivHd3rTukcU69b8xPC7ACa9E2OCKz91uYxVL
+ 3pdE4kFomOEJlyK5XDfxdXtkeeBC6mOcEhqdqQwH4Zws8gqXIk0y1SM6A/xR4dq6DXJT7ktzTegdDG2vf69Bf1Inc0nSWgZcbClZjXwBh/6PUzQQyvzHLfsA
+ MRCg1hz61XV+l3VOAjxTdsKpAIGBo5kKouuEEKeKcN1jvS8Y8nT2StkOml2QcAp89m6Wk/ljTRQJt50Pf/R0Xpa6GKRLtA+x9Yq2QyyozRGaEmdryuHf2IDp
+ Q6SW4rvA5uBRNutfkivCZXigSZU5qHJ5kw750tkFQIIHV4Q1Hgy7BxRlCWLDxS8PfBn9Lp7H+asKVWAphKn3QHcek/YltS/ABCs0FsZ/YxLaK0+MXtijtE8N
+ 7IoOEhoYPPSuxCJVYRY2UIX6BUYkHxG05T8QxzP2/1OIQgwJfCAP+XbzTGzEjP6pVMvZubLc12lsVJWCTiZdTLStuvHC7VjW/9q0/DSNdZjEcJSwFcQ+5dyU
+ 0eKCP9Dh5LYZT7DIAVFey8OVjpZ9uaftPAxLqk1JoPg7m9mI9PoDMKZdyopexXSAEkA+hIx7xrEvoftuPWB7pcPk0PvijwpFW0auOy3J3kPh/369Sb87TZNZ
+ aPAjyWc0MbC3Mh70ruxm3cUiNK/HT/bmjvtwWG3dOkjR32K9siusAxDnRz9cS4EDVOuoyYuZ13/BO7ElqRAuOx5q0R3emXQu2tGq4Lm3cJIySdIAPOeQHKlC
+ Pt/2uJZ1rD/V8hREozP5HWMpb/VDmz2UKrzSUl/oM93MrtwwA5OReojHDK/jBj047YRvvi048iAM+C77MmGajROkXVOkz5zTgmTdgFpLyczCfSLozwWsOB8/
+ /WmY+e3vD4ivhhMDYTMT1pKxMCf5o0J9NBATSWpd+8gyniN4r86bss3nC+zossl+DEmHbl9DW37wvlJaoD0uAuclOEZkulWi/mTtMePBwtj9f2qDzfpZ1kJ1
+ GMs/9dNnpONv9MRYquVtr/jvyP+/QyoAuPUWqaA14jfh9yQKudX8GRbJ7H3I9R9OnMQUMzEV8DF73tiZK/ez+BpOXxl4QyeKAgjItyGL2Mgf5aO2W51MBFUA
+ vcBqz+fImYuWTCXG/ganwWyK78mkW/C/g6Kw1BNFDg8+AQek3w9LKWRqiiYlFGaouizKDG4jvgu0tfNQQRQWEAI27rJZnQmS9XbIySYi3JeHzJsYHbI/eq12
+ HB9rl2aipViGOkt0q/AYjTyawB5Sw+66uJO0J7XD9CgnHeRUD9T11P5quyCclU6iI5roRQOJt9rwOjTWp5qC2bm5CYZMtQ4P/nzrPZDQSkLzGV+KgPC0vZzo
+ 2tBxqWDknYbfj2P6g7YMu8cpLcqf0WxFjGnH8w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 13/09/2021 19:45, Michael S. Tsirkin wrote:
-> On Mon, Sep 13, 2021 at 07:19:17PM +1000, Alexey Kardashevskiy wrote:
->>
->>
->> On 26/07/2021 14:51, Viresh Kumar wrote:
->>> Bind the virtio devices with their of_node. This will help users of the
->>> virtio devices to mention their dependencies on the device in the DT
->>> itself. Like GPIO pin users can use the phandle of the device node, or
->>> the node may contain more subnodes to add i2c or spi eeproms and other
->>> users.
->>>
->>> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
->>> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
->>> ---
->>>  drivers/virtio/virtio.c | 57 ++++++++++++++++++++++++++++++++++++++---
->>>  1 file changed, 54 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/virtio/virtio.c b/drivers/virtio/virtio.c
->>> index 4b15c00c0a0a..d001e84a5b23 100644
->>> --- a/drivers/virtio/virtio.c
->>> +++ b/drivers/virtio/virtio.c
->>> @@ -4,6 +4,7 @@
->>>  #include <linux/virtio_config.h>
->>>  #include <linux/module.h>
->>>  #include <linux/idr.h>
->>> +#include <linux/of.h>
->>>  #include <uapi/linux/virtio_ids.h>
->>>  
->>>  /* Unique numbering for virtio devices. */
->>> @@ -292,6 +293,9 @@ static int virtio_dev_remove(struct device *_d)
->>>  
->>>  	/* Acknowledge the device's existence again. */
->>>  	virtio_add_status(dev, VIRTIO_CONFIG_S_ACKNOWLEDGE);
->>> +
->>> +	of_node_put(dev->dev.of_node);
->>> +
->>>  	return 0;
->>>  }
->>>  
->>> @@ -319,6 +323,43 @@ void unregister_virtio_driver(struct virtio_driver *driver)
->>>  }
->>>  EXPORT_SYMBOL_GPL(unregister_virtio_driver);
->>>  
->>> +static int virtio_device_of_init(struct virtio_device *dev)
->>> +{
->>> +	struct device_node *np, *pnode = dev_of_node(dev->dev.parent);
->>> +	char compat[] = "virtio,XXXXXXXX"; /* Reserve enough space 32-bit id */
->>> +	int ret, count;
->>> +
->>> +	if (!pnode)
->>> +		return 0;
->>> +
->>> +	count = of_get_available_child_count(pnode);
->>> +	if (!count)
->>> +		return 0;
->>> +
->>> +	/* There can be only 1 child node */
->>> +	if (WARN_ON(count > 1))
->>> +		return -EINVAL;
->>> +
->>> +	np = of_get_next_available_child(pnode, NULL);
->>> +	if (WARN_ON(!np))
->>> +		return -ENODEV;
->>> +
->>> +	BUG_ON(snprintf(compat, sizeof(compat), "virtio,%x", dev->id.device) >=
->>> +	       sizeof(compat));
->>> +
->>> +	if (!of_device_is_compatible(np, compat)) {
->>
->>
->> This broke powerpc/pseries as there these virtio devices are PCI so
->> there is no "compat" - PCI vendor id/device ids play role of "compat".
->> Thanks,
+On 12/09/2021 22:08, Dmitry Osipenko wrote:
+> Convert NVIDIA Tegra video decoder binding to schema.
 > 
-> Hmm now that you say this I wonder why do we bother
-> with this check, too. When can this be invoked for something
-> that is not a virtio device? And is it enough to just
-> skip of_node initialization then?
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
+Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
 
-I am not following here, the problem device is virtio-scsi which is
-virtio-derived, or you meant that virtio which hosts virtio-bus?
+Regards,
 
+	Hans
+
+> ---
+>  .../bindings/media/nvidia,tegra-vde.txt       |  64 -----------
+>  .../bindings/media/nvidia,tegra-vde.yaml      | 107 ++++++++++++++++++
+>  2 files changed, 107 insertions(+), 64 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/nvidia,tegra-vde.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/nvidia,tegra-vde.yaml
 > 
->>
->>
->>
->>> +		ret = -EINVAL;
+> diff --git a/Documentation/devicetree/bindings/media/nvidia,tegra-vde.txt b/Documentation/devicetree/bindings/media/nvidia,tegra-vde.txt
+> deleted file mode 100644
+> index 602169b8aa19..000000000000
+> --- a/Documentation/devicetree/bindings/media/nvidia,tegra-vde.txt
+> +++ /dev/null
+> @@ -1,64 +0,0 @@
+> -NVIDIA Tegra Video Decoder Engine
+> -
+> -Required properties:
+> -- compatible : Must contain one of the following values:
+> -   - "nvidia,tegra20-vde"
+> -   - "nvidia,tegra30-vde"
+> -   - "nvidia,tegra114-vde"
+> -   - "nvidia,tegra124-vde"
+> -   - "nvidia,tegra132-vde"
+> -- reg : Must contain an entry for each entry in reg-names.
+> -- reg-names : Must include the following entries:
+> -  - sxe
+> -  - bsev
+> -  - mbe
+> -  - ppe
+> -  - mce
+> -  - tfe
+> -  - ppb
+> -  - vdma
+> -  - frameid
+> -- iram : Must contain phandle to the mmio-sram device node that represents
+> -         IRAM region used by VDE.
+> -- interrupts : Must contain an entry for each entry in interrupt-names.
+> -- interrupt-names : Must include the following entries:
+> -  - sync-token
+> -  - bsev
+> -  - sxe
+> -- clocks : Must include the following entries:
+> -  - vde
+> -- resets : Must contain an entry for each entry in reset-names.
+> -- reset-names : Should include the following entries:
+> -  - vde
+> -
+> -Optional properties:
+> -- resets : Must contain an entry for each entry in reset-names.
+> -- reset-names : Must include the following entries:
+> -  - mc
+> -- iommus: Must contain phandle to the IOMMU device node.
+> -
+> -Example:
+> -
+> -video-codec@6001a000 {
+> -	compatible = "nvidia,tegra20-vde";
+> -	reg = <0x6001a000 0x1000 /* Syntax Engine */
+> -	       0x6001b000 0x1000 /* Video Bitstream Engine */
+> -	       0x6001c000  0x100 /* Macroblock Engine */
+> -	       0x6001c200  0x100 /* Post-processing Engine */
+> -	       0x6001c400  0x100 /* Motion Compensation Engine */
+> -	       0x6001c600  0x100 /* Transform Engine */
+> -	       0x6001c800  0x100 /* Pixel prediction block */
+> -	       0x6001ca00  0x100 /* Video DMA */
+> -	       0x6001d800  0x300 /* Video frame controls */>;
+> -	reg-names = "sxe", "bsev", "mbe", "ppe", "mce",
+> -		    "tfe", "ppb", "vdma", "frameid";
+> -	iram = <&vde_pool>; /* IRAM region */
+> -	interrupts = <GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>, /* Sync token interrupt */
+> -		     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>, /* BSE-V interrupt */
+> -		     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>; /* SXE interrupt */
+> -	interrupt-names = "sync-token", "bsev", "sxe";
+> -	clocks = <&tegra_car TEGRA20_CLK_VDE>;
+> -	reset-names = "vde", "mc";
+> -	resets = <&tegra_car 61>, <&mc TEGRA20_MC_RESET_VDE>;
+> -	iommus = <&mc TEGRA_SWGROUP_VDE>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/media/nvidia,tegra-vde.yaml b/Documentation/devicetree/bindings/media/nvidia,tegra-vde.yaml
+> new file mode 100644
+> index 000000000000..3b6c1f031e04
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/nvidia,tegra-vde.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/nvidia,tegra-vde.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra Video Decoder Engine
+> +
+> +maintainers:
+> +  - Dmitry Osipenko <digetx@gmail.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra132-vde
+> +              - nvidia,tegra124-vde
+> +              - nvidia,tegra114-vde
+> +              - nvidia,tegra30-vde
+> +          - enum:
+> +              - nvidia,tegra20-vde
+> +      - items:
+> +          - const: nvidia,tegra20-vde
+> +
+> +  reg:
+> +    maxItems: 9
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sxe
+> +      - const: bsev
+> +      - const: mbe
+> +      - const: ppe
+> +      - const: mce
+> +      - const: tfe
+> +      - const: ppb
+> +      - const: vdma
+> +      - const: frameid
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: vde
+> +      - const: mc
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: sync-token
+> +      - const: bsev
+> +      - const: sxe
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  iram:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle of the SRAM MMIO node.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - resets
+> +  - reset-names
+> +  - interrupts
+> +  - interrupt-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    video-codec@6001a000 {
+> +      compatible = "nvidia,tegra20-vde";
+> +      reg = <0x6001a000 0x1000>, /* Syntax Engine */
+> +            <0x6001b000 0x1000>, /* Video Bitstream Engine */
+> +            <0x6001c000  0x100>, /* Macroblock Engine */
+> +            <0x6001c200  0x100>, /* Post-processing Engine */
+> +            <0x6001c400  0x100>, /* Motion Compensation Engine */
+> +            <0x6001c600  0x100>, /* Transform Engine */
+> +            <0x6001c800  0x100>, /* Pixel prediction block */
+> +            <0x6001ca00  0x100>, /* Video DMA */
+> +            <0x6001d800  0x300>; /* Video frame controls */
+> +      reg-names = "sxe", "bsev", "mbe", "ppe", "mce",
+> +                  "tfe", "ppb", "vdma", "frameid";
+> +      iram = <&iram>; /* IRAM MMIO region */
+> +      interrupts = <0  9 4>, /* Sync token */
+> +                   <0 10 4>, /* BSE-V */
+> +                   <0 12 4>; /* SXE */
+> +      interrupt-names = "sync-token", "bsev", "sxe";
+> +      clocks = <&clk 61>;
+> +      reset-names = "vde", "mc";
+> +      resets = <&rst 61>, <&mem 13>;
+> +      iommus = <&mem 15>;
+> +    };
 > 
-> 
-> So basically ret = 0 above?
 
-
-Yup, this does fix it. Thanks,
-
-> 
-> 
->>> +		goto out;
->>> +	}
->>> +
->>> +	dev->dev.of_node = np;
->>> +	return 0;
->>> +
->>> +out:
->>> +	of_node_put(np);
->>> +	return ret;
->>> +}
->>> +
->>>  /**
->>>   * register_virtio_device - register virtio device
->>>   * @dev        : virtio device to be registered
->>> @@ -343,6 +384,10 @@ int register_virtio_device(struct virtio_device *dev)
->>>  	dev->index = err;
->>>  	dev_set_name(&dev->dev, "virtio%u", dev->index);
->>>  
->>> +	err = virtio_device_of_init(dev);
->>> +	if (err)
->>> +		goto out_ida_remove;
->>> +
->>>  	spin_lock_init(&dev->config_lock);
->>>  	dev->config_enabled = false;
->>>  	dev->config_change_pending = false;
->>> @@ -362,10 +407,16 @@ int register_virtio_device(struct virtio_device *dev)
->>>  	 */
->>>  	err = device_add(&dev->dev);
->>>  	if (err)
->>> -		ida_simple_remove(&virtio_index_ida, dev->index);
->>> +		goto out_of_node_put;
->>> +
->>> +	return 0;
->>> +
->>> +out_of_node_put:
->>> +	of_node_put(dev->dev.of_node);
->>> +out_ida_remove:
->>> +	ida_simple_remove(&virtio_index_ida, dev->index);
->>>  out:
->>> -	if (err)
->>> -		virtio_add_status(dev, VIRTIO_CONFIG_S_FAILED);
->>> +	virtio_add_status(dev, VIRTIO_CONFIG_S_FAILED);
->>>  	return err;
->>>  }
->>>  EXPORT_SYMBOL_GPL(register_virtio_device);
->>>
->>
->> -- 
->> Alexey
-> 
-
--- 
-Alexey
