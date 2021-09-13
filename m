@@ -2,85 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6E34409D14
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 21:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21BA2409D67
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 21:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347547AbhIMT3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 15:29:51 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:41856 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242654AbhIMT3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 15:29:46 -0400
-Received: by mail-oi1-f178.google.com with SMTP id 6so15495649oiy.8;
-        Mon, 13 Sep 2021 12:28:30 -0700 (PDT)
+        id S242877AbhIMTum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 15:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35856 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240049AbhIMTul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 15:50:41 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80629C061762
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 12:49:25 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso15001876otu.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 12:49:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=yw1b9fZ1lnCtG8cegvzmoiB8uewJHdwQglsWdbmU568=;
+        b=oEi+EQkTL3cI5BWuIOLe986IYt7QuXhKHrWvB2PKhVGBwtcewfViIp+vKPLd5Jh8Ga
+         +SQebu6ypyjpH7bVj9+T7Y+zTjLLpfdff0Gg278iQWfJvD5izP55iv4Q3ODx1PMWuD7r
+         aw8u/G3gjbhXzPyaBPtLRqpJD2AUwiWN1C07M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/ZKrm3JFwDCEWz9SSMPNs1GsPW3Uuj4ZIMM/IhHhwf8=;
-        b=Wduw/0EMaMASqkqOo3SnTcK5rsEG5hRKHw8sYjd+mVxDFuuRkDG+kQutSC6dxBrvhW
-         xZ5cCwLgR3f6B4/i06fJwp0tF0BqUD9YRhUyYJtteK2YFf60JpThwr5uNvSUk3KTMEzg
-         0aaMpu5EFLluekqUVxN9Ehik7gFNUkMvyX31QWxuivkPjhAJKo6JSJjus39KSUOC51WZ
-         f/UUPE1pdmFo/OWCngVvgOyRNI1/uKIOaFv8Z4+lfW6SDJAvruah000fTeJllH20Tbnf
-         nGdWc7pT2BFAePFRHEaa10OSPMOLZFHG3sKILukMVukOkATuN8GZHoy77ITBt/VSspn9
-         E0hw==
-X-Gm-Message-State: AOAM5306OPJ+/4aTQINE2BnF9weE/ncd9apHl+TAfM/Gz+zDqrYGbcGM
-        GJpm9I2V1HwE9Z6gBf0pMQ==
-X-Google-Smtp-Source: ABdhPJzGujT8h0f+vj7IE5u1yfIMMd1RcTFZznLmqp9NuLIaVlBthUgGpvpj6x0bLUtKIu66LMo8eg==
-X-Received: by 2002:a05:6808:b21:: with SMTP id t1mr9025535oij.165.1631561310059;
-        Mon, 13 Sep 2021 12:28:30 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id m24sm1907838oie.50.2021.09.13.12.28.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Sep 2021 12:28:29 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kbuild@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH v2 8/8] kbuild: Enable dtc 'unit_address_format' warning by default
-Date:   Mon, 13 Sep 2021 14:28:16 -0500
-Message-Id: <20210913192816.1225025-9-robh@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210913192816.1225025-1-robh@kernel.org>
-References: <20210913192816.1225025-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=yw1b9fZ1lnCtG8cegvzmoiB8uewJHdwQglsWdbmU568=;
+        b=PfLLW80Gb+V7hpyWwl8Fp9NwkUEMU3S4uFirfgFbwqTCLt0GVo2I76/THvNn8zSQTy
+         U3XkZyJ1DkAvM7vSuPouIgke2K1esGFNU65NBjdfEAXJxtw/jKdBks7oPMQ0PiMvtQLx
+         Q0woHEXdoOfmgXFvLa+nP2Y7q99IoCRu5I/+qbuN+4Oqfp45Jvg8xfoLKc6vnSxoDgm4
+         SA73OGLe7qAy2OWKu1GbHZGSjEmgQKZdafrVySbEqgCBvIRhpqU7xvIEvR1NuBRbH/91
+         pD+6VRUiuLM5lGfFiHIbE66htR0uX+eDXYWP/xJodHT9LeYJPAZJZpUfxozmvDbrJNuu
+         lIyA==
+X-Gm-Message-State: AOAM531mMF+SoiErIVwCwQRZDqoy4zUcIkV+HtRL7vnVtmIvyd0hd15F
+        RfEnV++ibnNZ90njF1lMIi9AztWNvLgOa2aN6wOsRw==
+X-Google-Smtp-Source: ABdhPJz3o79dJM5zC1pjJ+LQMjOTyr1vev2/NGN4jY/c2ZfYnAk+xuiWK8/sXZPYqgI/zUyQOWM/DC8C0/FJ2jSbiDw=
+X-Received: by 2002:a05:6830:18c7:: with SMTP id v7mr11183152ote.126.1631562564916;
+ Mon, 13 Sep 2021 12:49:24 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 13 Sep 2021 12:49:24 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1631539062-28577-3-git-send-email-srivasam@codeaurora.org>
+References: <1631539062-28577-1-git-send-email-srivasam@codeaurora.org> <1631539062-28577-3-git-send-email-srivasam@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 13 Sep 2021 12:49:24 -0700
+Message-ID: <CAE-0n50i9rm6fcuyjCCPXjtxTyXwAiRVx91dXT4BDpbGA-tKjg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: qcom: SC7280: Add machine driver
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With all the 'unit_address_format' warnings fixed, enable the warning by
-default.
+Quoting Srinivasa Rao Mandadapu (2021-09-13 06:17:42)
+> diff --git a/sound/soc/qcom/sc7280.c b/sound/soc/qcom/sc7280.c
+> new file mode 100644
+> index 0000000..906910c
+> --- /dev/null
+> +++ b/sound/soc/qcom/sc7280.c
+> @@ -0,0 +1,343 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+> +//
+> +// sc7280.c -- ALSA SoC Machine driver for sc7280
+> +
+> +#include <linux/gpio.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <sound/core.h>
+> +#include <sound/jack.h>
+> +#include <sound/pcm.h>
+> +#include <sound/soc.h>
+> +#include <uapi/linux/input-event-codes.h>
 
-Cc: Michal Marek <michal.lkml@markovi.net>
-Cc: Nick Desaulniers <ndesaulniers@google.com>
-Cc: linux-kbuild@vger.kernel.org
-Acked-by: Masahiro Yamada <masahiroy@kernel.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- scripts/Makefile.lib | 1 -
- 1 file changed, 1 deletion(-)
+Looks like the include should be <linux/input.h> instead. I see that
+practically no other code in the kernel is including the uapi header as
+it's for userspace, not kernel. The uapi header is included in input.h
+though so it's not actually all that different.
 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 54582673fc1a..56d50eb0cd80 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -310,7 +310,6 @@ DTC_FLAGS += -Wno-interrupt_provider
- # Disable noisy checks by default
- ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
- DTC_FLAGS += -Wno-unit_address_vs_reg \
--	-Wno-unit_address_format \
- 	-Wno-avoid_unnecessary_addr_size \
- 	-Wno-alias_paths \
- 	-Wno-graph_child_address \
--- 
-2.30.2
+> +
+> +#include <dt-bindings/sound/sc7180-lpass.h>
+> +#include <dt-bindings/sound/qcom,q6afe.h>
+> +
+> +#include "../codecs/wcd938x.h"
+> +#include "common.h"
+> +#include "lpass.h"
+> +
+[...]
+> +static int sc7280_snd_platform_probe(struct platform_device *pdev)
+> +{
+> +       struct snd_soc_card *card;
+> +       struct sc7280_snd_data *data;
+> +       struct device *dev = &pdev->dev;
+> +       struct snd_soc_dai_link *link;
+> +       int ret, i;
+> +
+> +       /* Allocate the private data */
 
+This comment is worthless.
+
+> +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +       if (!data)
+> +               return -ENOMEM;
+> +
+> +       card = &data->card;
+> +       snd_soc_card_set_drvdata(card, data);
+> +
+> +       card->owner = THIS_MODULE;
+> +       card->driver_name = "SC7280";
+> +       card->dev = dev;
+> +
+> +       ret = qcom_snd_parse_of(card);
+> +       if (ret)
+> +               return ret;
+> +
+> +       for_each_card_prelinks(card, i, link) {
+> +               link->init = sc7280_init;
+> +               link->ops = &sc7280_ops;
+> +       }
+Nitpick: Newline here.
+
+> +       return devm_snd_soc_register_card(dev, card);
+> +}
+> +
