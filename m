@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA25408BC2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF7D8408C0D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236074AbhIMNF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 09:05:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54796 "EHLO
+        id S236154AbhIMNIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 09:08:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240176AbhIMNE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 09:04:56 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F5CC0613CF;
-        Mon, 13 Sep 2021 06:03:39 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id n2so21037074lfk.0;
-        Mon, 13 Sep 2021 06:03:39 -0700 (PDT)
+        with ESMTP id S240286AbhIMNGZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 09:06:25 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 006A4C0613A7;
+        Mon, 13 Sep 2021 06:04:05 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id j12so17154350ljg.10;
+        Mon, 13 Sep 2021 06:04:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=9sTLBz67v50uxjPLGpmhcnOPvRMUIhtkAWqB/GTMNGI=;
-        b=SNqyq33VjffTGxubIW/LVFzPl1THnHS0OjXILWJlGHhs3uOPKtGPlG+cnXP+YAnbwg
-         BIdtfwwWXkRAwENahNcuRhu96N2IkmlxCLKKjVUq39lf3jWb6FZ1803OksGuXuYfdxWj
-         rwM6eDfauAsUaGST3r5DUVwV8Fm3qyQ6k3n+VTzTvcf3He+J3CXwcqyIi3Ig6yUzb8BG
-         pJmhSV9JKmk9QuRUfKzh4bNehnhhZDNOb9ytRrxLf8ekFaAbNfhbj3rlV/3ooo+4EHON
-         EfeS8d453noCzt25XSSARXvv1Cnx3WJ6PqzK9KqKzIx1lpV1vjyZuyKAdHNkBYyApJuy
-         KouA==
+        bh=fdVszoPfkP5+3xSMJWK4c78cuwygZKo1iummJFR4SMM=;
+        b=De1hyk8IpuJO89EwScfFDxWniZuOIgBoXs0Bcv6cEYm3jhfjDgZaJgCFA7desNyLbG
+         oWFZp8n6NyIoVyW5ayBL85G4bcz6CP2VORAT3Ayewt9VD6rXnyEXeG2aE99Lwxitnuwb
+         HpVUNFipkD8WsoGaSXZ0VelVuRPxYFZrob3RjqR21C8HkPVWChFj/IWVeMAgtaxEHWYn
+         rVpqZ8MJ2PsdbRDgMO7L3/WOZZLNkGep9UISsqLuLUd4EXLyzy9KKjb5vsqOm6PQfOaF
+         +lXyy06VKaxWRZEPi2yje+Cya9nYLxK6bMGMziDQKxT6tcNyEgeQ6UpYEndJzxFa3Dz2
+         kohA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9sTLBz67v50uxjPLGpmhcnOPvRMUIhtkAWqB/GTMNGI=;
-        b=MXyUHO9DchFKB5UZ3BkApHf7/k5KrFzKV9ngq5Nd+zIk+JkZp0X3V5IzDQJjtr08wH
-         nTQtLN+mz9LYDMWgYqA+ElSP82qC2H2x65tPDzX9cV4XJ4MWlpTNebLDI79Gm4xzemaA
-         4bi6ti5VDV+B5PyIPxhsk6Z9Ck2l6OAyzLcnmq1hZ3owaMwtr4NXrccp2diBPWg1IHnL
-         j8FTpvBM8+06w94OAZCQnaz6PkPIVcnYs6SyY/5LlnbjEvPckmwJph9giCCVqBT2AHTB
-         8HC2IyDUwfpvzsTQD9mDmcw8VUZD2tP08drodM2d/7GlPQdNCYbw98E8RcqyjOAqPJy3
-         Jvqg==
-X-Gm-Message-State: AOAM531uGBcrm9yXPUt3mePmi91xYcm5tlyzBnKKxiGPytEr8hy0GPF2
-        NeYRRIvEMWo42fGLBYHtsQSKqhN6nmflZeuZnjE=
-X-Google-Smtp-Source: ABdhPJz98Iy3VQAyl6qYBfputzhJiJ/oqeAlSmgwWwR0nmZWXPhHu2AvEn65dsd71VopVkjo1fi+DYZFawZc1oQRStc=
-X-Received: by 2002:ac2:5f1b:: with SMTP id 27mr9222856lfq.79.1631538218197;
- Mon, 13 Sep 2021 06:03:38 -0700 (PDT)
+        bh=fdVszoPfkP5+3xSMJWK4c78cuwygZKo1iummJFR4SMM=;
+        b=Fv/VzmKuG8w+/6FyRPaDDqR4SBgttVCN1CIONPQnlK6GgkQPDHF0YwILOiBIj9IH4t
+         mw3UiHKjgIuPRzSk0sjKSS5sPc83+trOdPYrdNxRONEi69MjEeNjDAzi/nxOlXpNVow1
+         aotvQN1tEP5maQWjFCy44kaocR52RC9RvClXCL42ImGqE4bypGXrjt3l6vAZX6zc7iVK
+         m9ss3GYjYDyeQRRqjx27PGbA2LsQJNFQ3JV6fSyVh94mUaS3gvqkW63wJqFx5Ti6socO
+         Eb1z28hjvdPq3BDIk7Sw+Tmzz8ouekZyoorIdsuT7lFevXmdjtd8T8/DFOXR01fFbmAO
+         EVHA==
+X-Gm-Message-State: AOAM531dzfJq+YN06cOmW7ivWCiphz6GH714BIw/9+yE8GneljsTDyhR
+        /prsPOWv/tXOXyIY9E+zjFLCR9nWbDHr92gJdvU=
+X-Google-Smtp-Source: ABdhPJyapPwIOJ4iZsGjLhObcjcAMnBA6vJhfLb+R+mSJyhunzcosVW1T1D7lBEFop7FvtY38jGSHd5TbbyPOOZNxCo=
+X-Received: by 2002:a2e:9942:: with SMTP id r2mr10574876ljj.92.1631538241665;
+ Mon, 13 Sep 2021 06:04:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210818070209.1540451-1-michal.vokac@ysoft.com>
-In-Reply-To: <20210818070209.1540451-1-michal.vokac@ysoft.com>
+References: <20210818070209.1540451-1-michal.vokac@ysoft.com> <20210818070209.1540451-2-michal.vokac@ysoft.com>
+In-Reply-To: <20210818070209.1540451-2-michal.vokac@ysoft.com>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 13 Sep 2021 10:03:27 -0300
-Message-ID: <CAOMZO5DgMN8OptVAs0JMkFC51WoD7t8rE3rPqzZGXBcT+5x9wA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix lp5562 LED driver probe
+Date:   Mon, 13 Sep 2021 10:03:50 -0300
+Message-ID: <CAOMZO5DUYrVZ0F_ZF66jtCkgTAM5YsqDvxaQJHGeTc-+4c2Yrw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: imx6dl-yapp4: Remove the unused white LED channel
 To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
 Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -59,39 +59,22 @@ Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
-
 On Wed, Aug 18, 2021 at 4:02 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
 com> wrote:
 >
-> Since the LED multicolor framework support was added in commit
-> 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
-> LEDs on this platform stopped working.
+> Since the reg property was added to each channel node in commit
+> b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5562
+> channel node") it is possible to skip unused channels.
 >
-> Author of the framework attempted to accommodate this DT to the
-> framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg proper=
-ty
-> to the lp5562 channel node") but that is not sufficient. A color property
-> is now required even if the multicolor framework is not used, otherwise
-> the driver probe fails:
+> Remove the actually unused white LED channel.
 >
->   lp5562: probe of 1-0030 failed with error -22
->
-> Add the color property to fix this.
->
-> Fixes: 92a81562e695 ("leds: lp55xx: Add multicolor framework support to l=
-p55xx")
-> Cc: <stable@vger.kernel.org>
-> Cc: linux-leds@vger.kernel.org
 > Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
 
 Reviewed-by: Fabio Estevam <festevam@gmail.com>
