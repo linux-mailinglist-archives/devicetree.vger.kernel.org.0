@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7D8408C0D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B87409150
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236154AbhIMNIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 09:08:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240286AbhIMNGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 09:06:25 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 006A4C0613A7;
-        Mon, 13 Sep 2021 06:04:05 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id j12so17154350ljg.10;
-        Mon, 13 Sep 2021 06:04:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=fdVszoPfkP5+3xSMJWK4c78cuwygZKo1iummJFR4SMM=;
-        b=De1hyk8IpuJO89EwScfFDxWniZuOIgBoXs0Bcv6cEYm3jhfjDgZaJgCFA7desNyLbG
-         oWFZp8n6NyIoVyW5ayBL85G4bcz6CP2VORAT3Ayewt9VD6rXnyEXeG2aE99Lwxitnuwb
-         HpVUNFipkD8WsoGaSXZ0VelVuRPxYFZrob3RjqR21C8HkPVWChFj/IWVeMAgtaxEHWYn
-         rVpqZ8MJ2PsdbRDgMO7L3/WOZZLNkGep9UISsqLuLUd4EXLyzy9KKjb5vsqOm6PQfOaF
-         +lXyy06VKaxWRZEPi2yje+Cya9nYLxK6bMGMziDQKxT6tcNyEgeQ6UpYEndJzxFa3Dz2
-         kohA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=fdVszoPfkP5+3xSMJWK4c78cuwygZKo1iummJFR4SMM=;
-        b=Fv/VzmKuG8w+/6FyRPaDDqR4SBgttVCN1CIONPQnlK6GgkQPDHF0YwILOiBIj9IH4t
-         mw3UiHKjgIuPRzSk0sjKSS5sPc83+trOdPYrdNxRONEi69MjEeNjDAzi/nxOlXpNVow1
-         aotvQN1tEP5maQWjFCy44kaocR52RC9RvClXCL42ImGqE4bypGXrjt3l6vAZX6zc7iVK
-         m9ss3GYjYDyeQRRqjx27PGbA2LsQJNFQ3JV6fSyVh94mUaS3gvqkW63wJqFx5Ti6socO
-         Eb1z28hjvdPq3BDIk7Sw+Tmzz8ouekZyoorIdsuT7lFevXmdjtd8T8/DFOXR01fFbmAO
-         EVHA==
-X-Gm-Message-State: AOAM531dzfJq+YN06cOmW7ivWCiphz6GH714BIw/9+yE8GneljsTDyhR
-        /prsPOWv/tXOXyIY9E+zjFLCR9nWbDHr92gJdvU=
-X-Google-Smtp-Source: ABdhPJyapPwIOJ4iZsGjLhObcjcAMnBA6vJhfLb+R+mSJyhunzcosVW1T1D7lBEFop7FvtY38jGSHd5TbbyPOOZNxCo=
-X-Received: by 2002:a2e:9942:: with SMTP id r2mr10574876ljj.92.1631538241665;
- Mon, 13 Sep 2021 06:04:01 -0700 (PDT)
+        id S245674AbhIMOAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 10:00:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46242 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244593AbhIMN6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 09:58:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A9D3061A05;
+        Mon, 13 Sep 2021 13:36:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1631540218;
+        bh=kOOR+xcN8/54SB6RYy9mQlEDZBHcac0OnG2mrsKPHgs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ymvCDhV2t3agCdHMDNpBphhk+QsgtqOMKojuQotXbPUfwYmld+EnNfiNSIH761Mbd
+         /yY8KLMqvm5C0EwhFyRASEL0zTAqFdMugd+YZa9tkZosKmBCri+BTwGQ6h6bNAKtSf
+         RESN40XLsUbjvac5vrKVpIyWli3HAu4iPVqpB74c=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bryan ODonoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.13 102/300] arm64: dts: qcom: sm8250: fix usb2 qmp phy node
+Date:   Mon, 13 Sep 2021 15:12:43 +0200
+Message-Id: <20210913131112.824287275@linuxfoundation.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210913131109.253835823@linuxfoundation.org>
+References: <20210913131109.253835823@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-References: <20210818070209.1540451-1-michal.vokac@ysoft.com> <20210818070209.1540451-2-michal.vokac@ysoft.com>
-In-Reply-To: <20210818070209.1540451-2-michal.vokac@ysoft.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 13 Sep 2021 10:03:50 -0300
-Message-ID: <CAOMZO5DUYrVZ0F_ZF66jtCkgTAM5YsqDvxaQJHGeTc-+4c2Yrw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: imx6dl-yapp4: Remove the unused white LED channel
-To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 18, 2021 at 4:02 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
-com> wrote:
->
-> Since the reg property was added to each channel node in commit
-> b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5562
-> channel node") it is possible to skip unused channels.
->
-> Remove the actually unused white LED channel.
->
-> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+[ Upstream commit 63fa4322469648ae1023bb92a8b0d6a2f4bdaf2c ]
+
+Use 'lanes' as SuperSpeed lanes device node instead of just 'lane' to
+fix issues with TypeC support.
+
+Fixes: 46a6f297d7dd ("arm64: dts: qcom: sm8250: Add USB and PHY device nodes")
+Cc: robh+dt@kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Link: https://lore.kernel.org/r/20210706230702.299047-2-bryan.odonoghue@linaro.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 09b552396557..1316bea3eab5 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -2123,7 +2123,7 @@
+ 				 <&gcc GCC_USB3_PHY_SEC_BCR>;
+ 			reset-names = "phy", "common";
+ 
+-			usb_2_ssphy: lane@88eb200 {
++			usb_2_ssphy: lanes@88eb200 {
+ 				reg = <0 0x088eb200 0 0x200>,
+ 				      <0 0x088eb400 0 0x200>,
+ 				      <0 0x088eb800 0 0x800>;
+-- 
+2.30.2
+
+
+
