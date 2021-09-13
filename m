@@ -2,113 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 809FA409F1A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 23:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C4C409F25
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 23:32:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244170AbhIMVbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 17:31:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34756 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230080AbhIMVbi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 17:31:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 01E18610FB;
-        Mon, 13 Sep 2021 21:30:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631568621;
-        bh=kDnxC/ku/qO2YWO25lHgWh/UEfoJ7cygr+a1l7tUC3M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=VG7wvsOWUJeXM+FMs0FH3+zOqmH2owxzqpPcu3YDANFOnCP0VbRPqEIP7hbPmgxR2
-         gXA88kVtMvEDQp2Wq3i53HT5FPfYY0sQxDMbbLweb/XOQOdW7pON2ZaSKLyoOWRwe3
-         2NcGOGQaiTH6ttTuSViiC0aRsCsprYdlNXjV4mF22b8xslz9/7njo0TnbHF3GrN5f3
-         Z5ftw0XCnBbCOEuQejvNVTreFcRoNgu7TY+xy+Cm550RFXxezpoUo4uwy8jOl+umX8
-         B3wLfVX/6tDhfGgNYy0i/9QrUg+GwvUpyu1cjXivP3o1TyWIt94PKB4YWJkDFm58C3
-         yaXWj4r5QVavQ==
-Received: by mail-ej1-f44.google.com with SMTP id t19so24005287ejr.8;
-        Mon, 13 Sep 2021 14:30:20 -0700 (PDT)
-X-Gm-Message-State: AOAM533mzDRtI93FSs6flVEIws9fhBU3AP9bGrx7k2Pf0W47anuGHX88
-        HB3px84FUdTeqjs4q0lhjzi9FpbQDhGcaMtJAw==
-X-Google-Smtp-Source: ABdhPJwdYd6a5ti400oMtW47AX0MdBsmzprmsa0Cq36bJ4SwNp/qbAWDuiT9TlqObJ7jFtSCUgGwBouL6RRe3fuMhM8=
-X-Received: by 2002:a17:907:33ce:: with SMTP id zk14mr1304192ejb.84.1631568619636;
- Mon, 13 Sep 2021 14:30:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210913182550.264165-1-maz@kernel.org> <20210913182550.264165-4-maz@kernel.org>
-In-Reply-To: <20210913182550.264165-4-maz@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 13 Sep 2021 16:30:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLtypMS8xquP_QjZcgQSOjWjOT82H9KNkE-gyqMJSgEUA@mail.gmail.com>
-Message-ID: <CAL_JsqLtypMS8xquP_QjZcgQSOjWjOT82H9KNkE-gyqMJSgEUA@mail.gmail.com>
-Subject: Re: [PATCH v3 03/10] PCI: of: Allow matching of an interrupt-map
- local to a pci device
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S245439AbhIMVdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 17:33:16 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:45023 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245214AbhIMVdO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 17:33:14 -0400
+Received: by mail-ot1-f50.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so15361085otg.11;
+        Mon, 13 Sep 2021 14:31:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=QU12R93C/2HpZJoOcgXvSj7FddUhGVnWB6kugUlE2BE=;
+        b=xR9UJQpz/hSGGvyhFQXEK7kZ7m2VcbHuoa7EtTu88gpXHVKT0Sp15Xrq9Qg0i2dyf1
+         2WKIh2EhJn28IZ+tUKTSuJKKQyFZ8B9hSETISlFkPUHzgMr2auzUGexO9HFmIKDHfjeu
+         GgWlLkU1NalxrDvcuebZZmqSj4Mkg/aFp/shBCX6T/6djwQb+wgX7P/UgtpIBQFLAvjl
+         1ada4g67667aO+rC5ubMUOJnT5xenw5kXXHXq2VJShcnC2LX13uJr1hHS1988h98YpW2
+         hPO4+Gj5v3/DpVC6T/d03dGseYF4yBL5S1nT/wbqaaeJ02ao/NowQz+gbjaqmFNPcIw1
+         yEyw==
+X-Gm-Message-State: AOAM53386UY1g3PZfV4sOGCwFAx07UFps89sC5bO4lzeszFkH+1Yb6Y7
+        kKPFjaM1BTn6AlRg4sRZtw==
+X-Google-Smtp-Source: ABdhPJws5hIKPlUv/5PkbnyXdCuMInLDuRZvOVl9H4kZSwlpFdEIIwEw12ixvJugCp4dooNmhS8Yaw==
+X-Received: by 2002:a9d:71c6:: with SMTP id z6mr11552420otj.382.1631568718235;
+        Mon, 13 Sep 2021 14:31:58 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id i19sm2180255ooe.44.2021.09.13.14.31.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Sep 2021 14:31:57 -0700 (PDT)
+Received: (nullmailer pid 1413000 invoked by uid 1000);
+        Mon, 13 Sep 2021 21:31:54 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Paul <sean@poorly.run>
+Cc:     David Airlie <airlied@linux.ie>, freedreno@lists.freedesktop.org,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        intel-gfx@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kuogee Hsieh <khsieh@codeaurora.org>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20210913175747.47456-13-sean@poorly.run>
+References: <20210913175747.47456-1-sean@poorly.run> <20210913175747.47456-13-sean@poorly.run>
+Subject: Re: [PATCH 12/14] dt-bindings: msm/dp: Add bindings for HDCP registers
+Date:   Mon, 13 Sep 2021 16:31:54 -0500
+Message-Id: <1631568714.653445.1412999.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 1:26 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> Just as we now allow an interrupt map to be parsed when part
-> of an interrupt controller, there is no reason to ignore an
-> interrupt map that would be part of a pci device node such as
-> a root port since we already allow interrupt specifiers.
->
-> This allows the device itself to use the interrupt map for
-> for its own purpose.
->
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
+On Mon, 13 Sep 2021 13:57:43 -0400, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> This patch adds the bindings for the MSM DisplayPort HDCP registers
+> which are required to write the HDCP key into the display controller as
+> well as the registers to enable HDCP authentication/key
+> exchange/encryption.
+> 
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
 > ---
->  drivers/pci/of.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index d84381ce82b5..443cebb0622e 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -423,7 +423,7 @@ static int devm_of_pci_get_host_bridge_resources(struct device *dev,
->   */
->  static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *out_irq)
->  {
-> -       struct device_node *dn, *ppnode;
-> +       struct device_node *dn, *ppnode = NULL;
->         struct pci_dev *ppdev;
->         __be32 laddr[3];
->         u8 pin;
-> @@ -452,8 +452,14 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
->         if (pin == 0)
->                 return -ENODEV;
->
-> +       /* Local interrupt-map in the device node? Use it! */
-> +       if (dn && of_get_property(dn, "interrupt-map", NULL)) {
+>  .../bindings/display/msm/dp-controller.yaml           | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+> 
 
-No need to check 'dn' is not NULL.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Otherwise,
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/msm/dp-controller.yaml:26:5: [error] duplication of key "const" in mapping (key-duplicates)
+./Documentation/devicetree/bindings/display/msm/dp-controller.yaml:27:5: [error] duplication of key "const" in mapping (key-duplicates)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/msm/dp-controller.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 25, column 5
+found duplicate key "const" with value "hdcp_key" (original value: "dp_controller")
+  in "<unicode string>", line 26, column 5
 
-> +               pin = pci_swizzle_interrupt_pin(pdev, pin);
-> +               ppnode = dn;
-> +       }
-> +
->         /* Now we walk up the PCI tree */
-> -       for (;;) {
-> +       while (!ppnode) {
->                 /* Get the pci_dev of our parent */
->                 ppdev = pdev->bus->self;
->
-> --
-> 2.30.2
->
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/display/msm/dp-controller.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
+    testtree = dtschema.load(filename, line_number=line_number)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 623, in load
+    return yaml.load(f.read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 25, column 5
+found duplicate key "const" with value "hdcp_key" (original value: "dp_controller")
+  in "<unicode string>", line 26, column 5
+
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
+    ret = check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
+    print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
+AttributeError: 'DuplicateKeyError' object has no attribute 'path'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dp-controller.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+make: *** [Makefile:1441: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1527534
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
