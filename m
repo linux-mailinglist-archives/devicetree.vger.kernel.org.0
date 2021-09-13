@@ -2,227 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F120408929
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5044D408953
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 12:47:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235467AbhIMKjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 06:39:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239033AbhIMKjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 06:39:10 -0400
-Received: from lb2-smtp-cloud7.xs4all.net (lb2-smtp-cloud7.xs4all.net [IPv6:2001:888:0:108::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8310C061574;
-        Mon, 13 Sep 2021 03:37:52 -0700 (PDT)
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id PjLTmYAZ2pQdWPjLUm2WW1; Mon, 13 Sep 2021 12:37:52 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1631529472; bh=HwcwZOckR6uo2ELf6S9P6ET08CoHQZG30MzfynjPP1Y=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=MCo+PzmKRi0SRrGtOM416IzQJO6AITQ9txiJczYZUT2j1PLalRU5sK8brIPH68/BR
-         B3lcGsKHyhVPUUqtDzn17BIpuZKLYersfu6bK+ej4ovGjl5ezSmiN7ZRhCy46TAkJV
-         RKkBNmtqCBhL/53Xyhi6PBCAAw2Nx/ZNiPdnyCLll9Zce0gKMhDyxm4ktoP3m04jbC
-         03y6FOJQJwSWHwtax2zsZOz/Vft7XxEbjTc5n23eR13MHr7YH7kNrbK76lhbF8QW3p
-         9Xm4EWH0dpVZE6WlSc6DMQmOibPuklbGJ+jHvg+newaIYoFnFcJLSPOqfxVEnhkG9A
-         lvwHvL3X9CS1Q==
-Subject: Re: [PATCH v11 24/34] media: staging: tegra-vde: Support generic
- power domain
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S239100AbhIMKtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 06:49:11 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:60958 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239094AbhIMKtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 06:49:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1631530075;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+        bh=jW3RSfCiVG035tkP4VV2MK7HMp8Gx524MEf00frh+Is=;
+        b=LHPBXU5uIMV3lvi85Sg2rtrloI2LH/wPCm+bHqMUfAgKL8qt0VlKPMCH76lCSfzUgQmmV1
+        8OU18Q7lfc95w/+vrJb09FyrjU3HYqxzJDIK+Nz4PjPsTL+OtaZSOb75ItgeR0ktpesB2e
+        x4A8yNUDHX0MfecAqWOH+8L3bJrxJxk=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-5-xAstc3f-OYy7zh2AAGyTiQ-1; Mon, 13 Sep 2021 06:47:54 -0400
+X-MC-Unique: xAstc3f-OYy7zh2AAGyTiQ-1
+Received: by mail-ed1-f70.google.com with SMTP id y10-20020a056402270a00b003c8adc4d40cso4697312edd.15
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 03:47:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=jW3RSfCiVG035tkP4VV2MK7HMp8Gx524MEf00frh+Is=;
+        b=TXQAFYcZOXw8wXUGqg7PGOdpBY9Z5QV1GG+b4blKnANNwS4y/kPpkY8vxaDrbu+8Qd
+         CUKhzBaOErleJvb28D6k4B8H8g9hSqc0CsLLMvGON3IQuoIlecuZg2dwNwbb2sMNSRkh
+         az8imVcX4UGR4UWiEi5z6kaK/Fq3m9AFgM3AqbbwtglNMdyqKPWURBNqMljJTn20Xtw6
+         oEQzrQtzE09FY3+/rqgpk6KLMfbEwtBBZ54aEy114Kxb5yQZFA63r4C3ORIGb8n7UboA
+         /7M2JMyo2cuMYNWWUlM4OTOP0q6jhJ5bqlDQBqJwoz1oejVhzrY1IuvtjgiTNTYbCYXr
+         zPzw==
+X-Gm-Message-State: AOAM530uu8D7QvihoPFMX1ZVuaZy8pfKo8xOI5iNZGDx0XHudpwkad5Q
+        CZMM/3yaa/GOO//eGwf3LrymFOmK/Ln6nd26rMGYJ1UYPKW35j/3Q8+1kZJRku++n/jJKQ1VN+8
+        aVhl8z2/ZKlQT7KKxqBJX4w==
+X-Received: by 2002:a17:906:269a:: with SMTP id t26mr7121208ejc.20.1631530072841;
+        Mon, 13 Sep 2021 03:47:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyUzxkOpFlkukF5bylBkxuLJ8coUNDVC3dmW/I3lxI4GHhcqqXeIdferB5ZUa/gtf5ATObe8g==
+X-Received: by 2002:a17:906:269a:: with SMTP id t26mr7121179ejc.20.1631530072612;
+        Mon, 13 Sep 2021 03:47:52 -0700 (PDT)
+Received: from redhat.com ([2a03:c5c0:207f:418b:5703:fd4e:73dd:1986])
+        by smtp.gmail.com with ESMTPSA id o15sm3258041ejj.10.2021.09.13.03.47.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Sep 2021 03:47:52 -0700 (PDT)
+Date:   Mon, 13 Sep 2021 06:47:46 -0400
+From:   "Michael S. Tsirkin" <mst@redhat.com>
+To:     Alexey Kardashevskiy <aik@ozlabs.ru>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-staging@lists.linux.dev, linux-spi@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20210912200832.12312-1-digetx@gmail.com>
- <20210912200832.12312-25-digetx@gmail.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <77d205ef-469d-cfa3-f742-b009b2b05992@xs4all.nl>
-Date:   Mon, 13 Sep 2021 12:37:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH] virtio: don't fail on !of_device_is_compatible
+Message-ID: <20210913104640.85839-1-mst@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20210912200832.12312-25-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfC0UR8EPsGu9scFXo/XyGQ+zclz4oYZK7ebAu7LkFSvn1ZSZql+X7aMfNk2HSIv/6FmtrmYKiCEiTasQtOArrwJIB9K/cvmo41OrNVaccz9t4pz4xFSP
- j4RW9XR1UXUNkZjiB50fmOTEVHWZQEEL0LCboGmfgPr5tPA1jHo+Fuobmb+0K/MLvwhlRfiHLXPOigMyMug4DAUy9DCMyYAMmHUGJHv08xsy7IjWw38ZjMxo
- aw3wUIyWLem1d/zZmaf0LubaeQEZUwSFtGIFmi2F++I5O/GnY6GkKzmSCgXAmFtLzjbSwYUQcEkSadgl1N7ZZVdyjkKvJJ0aYYeoMQSEFJa2Ep+OIUZDntf6
- P0TpfOPh+oHT4OaPgd5wX0Ui1jmXaNQKW7aiar3zaCLkiYfmnX+F0vULqbIoZ6Ijdo2bKxDHce1DUd2BDXddvwEDjjcvmwNJfaoskXKVJRBqdLmaxUjUx/V/
- 09sbugSxdQhoVzwFzLT3DKHkZy+ewtdafWnzzxHv+4stixNxPyyAI2h9as2uXoPgPxclbWBSsYP7l1szZCwtKGYT00s5EQOcBeWGELKehjEPZU7UIzo4bx5t
- XspkFLAEM2gYpZFyIvFS0wY3UCtb68z5Upk6evtPpZgIKEGtBIR0GgSrn7PajKK7ZSa59x+FBQCKHR7D/w+1WFcdtzWbiWZOPpgBrSmqc5/wwoyS/xNwqSXF
- BHINYcJu8Lxzm6X6B3Wp4XpYRHwQpR9JFJbMR3ymDzApxAEXHL9uemBkl0o1h+BGgsC5F6aokDy9tX4L8IDLFBHNYT2Pwvd9HUCEeoNPS5jx3YXabGxXfyrQ
- 3lGRLo/HkRWNr7PLHtJZ77cSpQDrR1R8NmTfiJxEgg6UzcAvgVLxfI1g38BX4vUe9ce3WZipyz82IsYvAd0E8qEeYNBf9cQqiSeduAEs0J8jFmDQMF/bnM8z
- oWi6YfJ+OqDe8iZ4iXmiBCynBsD9Pj/M4Dr61pK7Za58Lls8qeutMD/e4s56bLQcns/C35b1daKF009MnInB6c47cKlaoofOh8sc48nwDtnjAt+BGY6mbExF
- IL2eHWyz5KtrWh9bHowFYh63JcVKotwFmpQvQS5tfc/TOmUHpsuFEof+PXhXy3lLgluHHHaxnVE4rlKDqdQrJ7o8l2UjrEt9sudgUNRzDBKqKaIFDZUhe1R9
- Vhd0WP8g6IGkYe28njn8Mx/bA9RWRZFruTXvFVTegHNR4Ei/fa7tFwYD0ocofy0eAHQz5WooS/WLrsh/CJH+pSHt5I98Ogi2Ahridm3lxQF/JsQi+G8N54Cd
- hQtFam3Yh78FeXR5vuY6rDO4iey1wjaobPOJepuclTuligKEfwZaFmsF1+QE5Dg/h7h6wtbe1VhmaUAmLnObMknumKX2VDfPdRJIBlr8yRolNNpw2M8qIZi9
- 0DND+x88qIRDteuXO11Vz6gw6Zo8nTyoyKWBuw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email 2.27.0.106.g8ac3dc51b1
+X-Mutt-Fcc: =sent
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2021 22:08, Dmitry Osipenko wrote:
-> Currently driver supports legacy power domain API, this patch adds generic
-> power domain support. This allows us to utilize a modern GENPD API for
-> newer device-trees.
-> 
-> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
-> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
-> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+A recent change checking of_device_is_compatible on probe broke some
+powerpc/pseries setups. Apparently there virtio devices do not have a
+"compatible" property - they are matched by PCI vendor/device ids.
 
-Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Let's just skip of_node setup but proceed with initialization like we
+did previously.
 
-Regards,
+Fixes: 694a1116b405 ("virtio: Bind virtio device to device-tree node")
+Reported-by: Alexey Kardashevskiy <aik@ozlabs.ru>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>
+Signed-off-by: Michael S. Tsirkin <mst@redhat.com>
+---
 
-	Hans
+Arnd could you help review this pls? Viresh is on vacation.
 
-> ---
->  drivers/staging/media/tegra-vde/vde.c | 57 +++++++++++++++++++++------
->  1 file changed, 46 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/staging/media/tegra-vde/vde.c b/drivers/staging/media/tegra-vde/vde.c
-> index ed4c1250b303..bb3079a2c0b5 100644
-> --- a/drivers/staging/media/tegra-vde/vde.c
-> +++ b/drivers/staging/media/tegra-vde/vde.c
-> @@ -20,6 +20,7 @@
->  #include <linux/slab.h>
->  #include <linux/uaccess.h>
->  
-> +#include <soc/tegra/common.h>
->  #include <soc/tegra/pmc.h>
->  
->  #include "uapi.h"
-> @@ -920,13 +921,17 @@ static __maybe_unused int tegra_vde_runtime_suspend(struct device *dev)
->  	struct tegra_vde *vde = dev_get_drvdata(dev);
->  	int err;
->  
-> -	err = tegra_powergate_power_off(TEGRA_POWERGATE_VDEC);
-> -	if (err) {
-> -		dev_err(dev, "Failed to power down HW: %d\n", err);
-> -		return err;
-> +	if (!dev->pm_domain) {
-> +		err = tegra_powergate_power_off(TEGRA_POWERGATE_VDEC);
-> +		if (err) {
-> +			dev_err(dev, "Failed to power down HW: %d\n", err);
-> +			return err;
-> +		}
->  	}
->  
->  	clk_disable_unprepare(vde->clk);
-> +	reset_control_release(vde->rst);
-> +	reset_control_release(vde->rst_mc);
->  
->  	return 0;
->  }
-> @@ -936,14 +941,41 @@ static __maybe_unused int tegra_vde_runtime_resume(struct device *dev)
->  	struct tegra_vde *vde = dev_get_drvdata(dev);
->  	int err;
->  
-> -	err = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_VDEC,
-> -						vde->clk, vde->rst);
-> +	err = reset_control_acquire(vde->rst_mc);
->  	if (err) {
-> -		dev_err(dev, "Failed to power up HW : %d\n", err);
-> +		dev_err(dev, "Failed to acquire mc reset: %d\n", err);
->  		return err;
->  	}
->  
-> +	err = reset_control_acquire(vde->rst);
-> +	if (err) {
-> +		dev_err(dev, "Failed to acquire reset: %d\n", err);
-> +		goto release_mc_reset;
-> +	}
-> +
-> +	if (!dev->pm_domain) {
-> +		err = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_VDEC,
-> +							vde->clk, vde->rst);
-> +		if (err) {
-> +			dev_err(dev, "Failed to power up HW : %d\n", err);
-> +			goto release_reset;
-> +		}
-> +	}
-> +
-> +	err = clk_prepare_enable(vde->clk);
-> +	if (err) {
-> +		dev_err(dev, "Failed to enable clock: %d\n", err);
-> +		goto release_reset;
-> +	}
-> +
->  	return 0;
-> +
-> +release_reset:
-> +	reset_control_release(vde->rst);
-> +release_mc_reset:
-> +	reset_control_release(vde->rst_mc);
-> +
-> +	return err;
->  }
->  
->  static int tegra_vde_probe(struct platform_device *pdev)
-> @@ -1001,14 +1033,14 @@ static int tegra_vde_probe(struct platform_device *pdev)
->  		return err;
->  	}
->  
-> -	vde->rst = devm_reset_control_get(dev, NULL);
-> +	vde->rst = devm_reset_control_get_exclusive_released(dev, NULL);
->  	if (IS_ERR(vde->rst)) {
->  		err = PTR_ERR(vde->rst);
->  		dev_err(dev, "Could not get VDE reset %d\n", err);
->  		return err;
->  	}
->  
-> -	vde->rst_mc = devm_reset_control_get_optional(dev, "mc");
-> +	vde->rst_mc = devm_reset_control_get_optional_exclusive_released(dev, "mc");
->  	if (IS_ERR(vde->rst_mc)) {
->  		err = PTR_ERR(vde->rst_mc);
->  		dev_err(dev, "Could not get MC reset %d\n", err);
-> @@ -1066,6 +1098,10 @@ static int tegra_vde_probe(struct platform_device *pdev)
->  	pm_runtime_use_autosuspend(dev);
->  	pm_runtime_set_autosuspend_delay(dev, 300);
->  
-> +	err = devm_tegra_core_dev_init_opp_table_common(dev);
-> +	if (err)
-> +		goto err_pm_runtime;
-> +
->  	/*
->  	 * VDE partition may be left ON after bootloader, hence let's
->  	 * power-cycle it in order to put hardware into a predictable lower
-> @@ -1133,8 +1169,7 @@ static void tegra_vde_shutdown(struct platform_device *pdev)
->  	 * On some devices bootloader isn't ready to a power-gated VDE on
->  	 * a warm-reboot, machine will hang in that case.
->  	 */
-> -	if (pm_runtime_status_suspended(&pdev->dev))
-> -		tegra_vde_runtime_resume(&pdev->dev);
-> +	pm_runtime_get_sync(&pdev->dev);
->  }
->  
->  static __maybe_unused int tegra_vde_pm_suspend(struct device *dev)
-> 
+ drivers/virtio/virtio.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/virtio/virtio.c b/drivers/virtio/virtio.c
+index c46cc1fbc7ae..19a70a2361b4 100644
+--- a/drivers/virtio/virtio.c
++++ b/drivers/virtio/virtio.c
+@@ -347,8 +347,13 @@ static int virtio_device_of_init(struct virtio_device *dev)
+ 	ret = snprintf(compat, sizeof(compat), "virtio,device%x", dev->id.device);
+ 	BUG_ON(ret >= sizeof(compat));
+ 
++	/*
++	 * On powerpc/pseries virtio devices are PCI devices so PCI
++	 * vendor/device ids play the role of the "compatible" property.
++	 * Simply don't init of_node in this case.
++	 */
+ 	if (!of_device_is_compatible(np, compat)) {
+-		ret = -EINVAL;
++		ret = 0;
+ 		goto out;
+ 	}
+ 
+-- 
+MST
 
