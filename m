@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37B594085F8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 10:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 303034085F9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 10:00:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237838AbhIMIBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 04:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
+        id S237775AbhIMIBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 04:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237853AbhIMIBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 04:01:53 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B71C0613C1
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 01:00:37 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id s10so19215258lfr.11
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 01:00:37 -0700 (PDT)
+        with ESMTP id S237796AbhIMIBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 04:01:55 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8491C061574
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 01:00:39 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id g1so7758111lfj.12
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 01:00:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=vlYI72az+h1GSzT+KG/59hM5JtHvcZcByQ0ounNHO2U=;
-        b=DPK3BL4e38LGamDuhR47D9vYop2OOzeDkoJkoRfQUS17RgpWs74+DhDV1Hj9DFji/o
-         xr8wl0cYH5ymAEBdo7LFalu2Y5g1EjRilB7yK003AmuB3feVGtv8jEOIqDbHREoDRZ11
-         7t/+UiFhiK6+fb/3pwq3Wzq7aNxWExKeptBoM2iIZao8NExX+tsAYqudgREe9DKbtYDf
-         52JJXyiUQeWJa7y/TbOW/8rW2+IuTLDawya+CWSGil1R3e3721B+aVHIYhd82kLE59aF
-         QGsvbYa1/t0DrCz0HB+3IC/yHIKKftiL+6tMyvqCSf1/HK0GtfTST0ZwPyMRNyXoqNQj
-         1CBQ==
+        bh=8Y5f7mSG/Z4kpKHyPCOHxfNeioXgmOEZEZUSqKOsaYE=;
+        b=MOvB4u7DxrRG7GkuoSJRj4wpNAKnTOeqOwRc//qPvxb/IRzRrmzB9442GS8q32GPQ7
+         rUyffWyQHt6jhfwciVi5YscsZFFJExuTzSqHxox7Tzznwb/0JZLiowNuMHuoOP21CvTy
+         TUVWzwfpgnx5ztrve/gNVenPJdy1ebq8yLWbdNuaR08XmzdLaDC4GxrItTMvHbrsEEU7
+         +6wAV4ab/J2HfYEZUHn9ybpb9K4gxbJyjomeCjN48851sT5HhgA/lEo23gT7+bVSX7uQ
+         UOno0QDQUB/CbylaiaLwaPwUid6uwaewz5GcFlZ+vhxORjiudNO/QVmP++lMn1vffxwW
+         sMtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=vlYI72az+h1GSzT+KG/59hM5JtHvcZcByQ0ounNHO2U=;
-        b=buroC5RH1vT6Ceo0l3Y24GIjNQxZ05Ao941ivcAs/biFOUuS8RawiLPAbFAQwgYGwO
-         n22DsAlfx4obzJrlx0WBbXKwnd1Ub9XVo5wd6ORFLiop+3pYUKG2w8qqMtWbNBbr3F5u
-         dPKFErJuwsBZ6Z3VSkTjRPQiuTGrX+epsRRzsf3G4cM8pMsxw2d5Yp2VoW0PPHQJf4zU
-         3n8v5DrQ4ZC6PbXE1UYxEqFLTpHhNA7/fWkTWqUDnCDQP0uVVA1Bx3MkuVSC3UJDPXyd
-         YJgu1BTQeAlfRDzFsHRKJZXj1ufvezbzpS5i/zm/jHfz5xnEc0q5qcH/SIZ0dnqNp2BY
-         MELw==
-X-Gm-Message-State: AOAM531D8Lllh9hJ5GzyRjco37TWloJQ7TMkmb9cpqjyWswoInvKpxrf
-        7jACnAQ+tJh5EWdWLUPxrSM=
-X-Google-Smtp-Source: ABdhPJxUllraKRY8XIslWCFTdKHXnhkQWzeqy+WPW56KQM0UrCO8UgCllmPbOcb+rQzy5LYj20jUIA==
-X-Received: by 2002:a19:3818:: with SMTP id f24mr8119306lfa.601.1631520036157;
-        Mon, 13 Sep 2021 01:00:36 -0700 (PDT)
+        bh=8Y5f7mSG/Z4kpKHyPCOHxfNeioXgmOEZEZUSqKOsaYE=;
+        b=ttDllUdfRbBk0YOxboZgr637st08yHYGXrFi39xDLz5mK/ezNTMMu5EAi8dEo6ra7Y
+         Puo2pkDlIKhSVgvjSghdoGIRaeMwo8JtODl3hVrwAajQtoFZCOfVPwMrwvf41WiX+5Zh
+         TUPOIYZHKH8Q1zCBBVrZqwZigpE1YnzNB02w+yVdWU5kOduqLbWCGnBEG4KvWGW+zDvg
+         Xls3BIXt3iuQP+y7fR6k9tws3L4MoblFu6g9rLLmq8ZLhZk+NTDDiXb/7LjREJy/ruAE
+         QnCAQlCMbE7fedX7x0Aoc7VbC7xnyk+AlHv+Mtp0EYbsMLgAqDRGydWazYQtMEVzKNP6
+         2TRA==
+X-Gm-Message-State: AOAM530DpAO0iIhvUZBakfuCpYqrQprExnK7ZVOzU5P1ZMJFxssSP/Yc
+        gIWCc/kqVvafuk9pg+fOiJ0=
+X-Google-Smtp-Source: ABdhPJyPCwAiyRpWpSima2Twrhc/9WwN43NHYTDarTV3e5vdg9OWv7I4NVTpYnicJ9h8qzcGAzDEMg==
+X-Received: by 2002:a05:6512:3c99:: with SMTP id h25mr7946722lfv.640.1631520038031;
+        Mon, 13 Sep 2021 01:00:38 -0700 (PDT)
 Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id t13sm747059lff.46.2021.09.13.01.00.35
+        by smtp.gmail.com with ESMTPSA id t13sm747059lff.46.2021.09.13.01.00.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Sep 2021 01:00:35 -0700 (PDT)
+        Mon, 13 Sep 2021 01:00:37 -0700 (PDT)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Kishon Vijay Abraham I <kishon@ti.com>,
         Vinod Koul <vkoul@kernel.org>,
@@ -57,9 +57,9 @@ Cc:     linux-phy@lists.infradead.org,
         Chunfeng Yun <chunfeng.yun@mediatek.com>,
         devicetree@vger.kernel.org,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/4] dt-bindings: mfd: brcm,cru: add USB 2.0 PHY
-Date:   Mon, 13 Sep 2021 10:00:23 +0200
-Message-Id: <20210913080024.6951-3-zajec5@gmail.com>
+Subject: [PATCH 4/4] phy: bcm-ns-usb2: support updated DT binding with PHY reg space
+Date:   Mon, 13 Sep 2021 10:00:24 +0200
+Message-Id: <20210913080024.6951-4-zajec5@gmail.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210913080024.6951-1-zajec5@gmail.com>
 References: <20210913080024.6951-1-zajec5@gmail.com>
@@ -72,53 +72,126 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Northstar's USB 2.0 PHY is part of the CRU MFD.
+Updated DT binding maps just a PHY's register space instead of the whole
+DMU block. Accessing a common CRU reg is handled using syscon &
+regmap.
+
+The old binding has been deprecated and remains supported as a fallback
+method.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- .../devicetree/bindings/mfd/brcm,cru.yaml         | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ drivers/phy/broadcom/phy-bcm-ns-usb2.c | 52 +++++++++++++++++++++-----
+ 1 file changed, 43 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-index bf4e585d3c18..262284ae80f1 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-@@ -39,6 +39,9 @@ patternProperties:
-   '^clock-controller@[a-f0-9]+$':
-     $ref: ../clock/brcm,iproc-clocks.yaml
+diff --git a/drivers/phy/broadcom/phy-bcm-ns-usb2.c b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
+index 4b015b8a71c3..98d32729a45d 100644
+--- a/drivers/phy/broadcom/phy-bcm-ns-usb2.c
++++ b/drivers/phy/broadcom/phy-bcm-ns-usb2.c
+@@ -9,17 +9,23 @@
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/err.h>
++#include <linux/mfd/syscon.h>
+ #include <linux/module.h>
+ #include <linux/of_address.h>
+ #include <linux/of_platform.h>
+ #include <linux/phy/phy.h>
+ #include <linux/platform_device.h>
++#include <linux/regmap.h>
+ #include <linux/slab.h>
  
-+  '^phy@[a-f0-9]+$':
-+    $ref: ../phy/bcm-ns-usb2-phy.yaml
+ struct bcm_ns_usb2 {
+ 	struct device *dev;
+ 	struct clk *ref_clk;
+ 	struct phy *phy;
++	struct regmap *clkset;
++	void __iomem *base;
 +
-   '^syscon@[a-f0-9]+$':
-     $ref: syscon.yaml
++	/* Deprecated binding */
+ 	void __iomem *dmu;
+ };
  
-@@ -52,6 +55,7 @@ required:
+@@ -27,7 +33,6 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
+ {
+ 	struct bcm_ns_usb2 *usb2 = phy_get_drvdata(phy);
+ 	struct device *dev = usb2->dev;
+-	void __iomem *dmu = usb2->dmu;
+ 	u32 ref_clk_rate, usb2ctl, usb_pll_ndiv, usb_pll_pdiv;
+ 	int err = 0;
  
- examples:
-   - |
-+    #include <dt-bindings/clock/bcm-nsp.h>
-     cru-bus@1800c100 {
-         compatible = "brcm,ns-cru", "simple-mfd";
-         reg = <0x1800c100 0x1d0>;
-@@ -76,7 +80,16 @@ examples:
-                                  "iprocfast", "sata1", "sata2";
-         };
+@@ -44,7 +49,10 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
+ 		goto err_clk_off;
+ 	}
  
--        syscon@180 {
-+        phy@164 {
-+            compatible = "brcm,ns-usb2-phy";
-+            reg = <0x164 0x4>;
-+            brcm,syscon-clkset = <&clkset>;
-+            clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
-+            clock-names = "phy-ref-clk";
-+            #phy-cells = <0>;
-+        };
+-	usb2ctl = readl(dmu + BCMA_DMU_CRU_USB2_CONTROL);
++	if (usb2->base)
++		usb2ctl = readl(usb2->base);
++	else
++		usb2ctl = readl(usb2->dmu + BCMA_DMU_CRU_USB2_CONTROL);
+ 
+ 	if (usb2ctl & BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_PDIV_MASK) {
+ 		usb_pll_pdiv = usb2ctl;
+@@ -58,15 +66,24 @@ static int bcm_ns_usb2_phy_init(struct phy *phy)
+ 	usb_pll_ndiv = (1920000000 * usb_pll_pdiv) / ref_clk_rate;
+ 
+ 	/* Unlock DMU PLL settings with some magic value */
+-	writel(0x0000ea68, dmu + BCMA_DMU_CRU_CLKSET_KEY);
++	if (usb2->clkset)
++		regmap_write(usb2->clkset, 0, 0x0000ea68);
++	else
++		writel(0x0000ea68, usb2->dmu + BCMA_DMU_CRU_CLKSET_KEY);
+ 
+ 	/* Write USB 2.0 PLL control setting */
+ 	usb2ctl &= ~BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_NDIV_MASK;
+ 	usb2ctl |= usb_pll_ndiv << BCMA_DMU_CRU_USB2_CONTROL_USB_PLL_NDIV_SHIFT;
+-	writel(usb2ctl, dmu + BCMA_DMU_CRU_USB2_CONTROL);
++	if (usb2->base)
++		writel(usb2ctl, usb2->base);
++	else
++		writel(usb2ctl, usb2->dmu + BCMA_DMU_CRU_USB2_CONTROL);
+ 
+ 	/* Lock DMU PLL settings */
+-	writel(0x00000000, dmu + BCMA_DMU_CRU_CLKSET_KEY);
++	if (usb2->clkset)
++		regmap_write(usb2->clkset, 0, 0x00000000);
++	else
++		writel(0x00000000, usb2->dmu + BCMA_DMU_CRU_CLKSET_KEY);
+ 
+ err_clk_off:
+ 	clk_disable_unprepare(usb2->ref_clk);
+@@ -90,10 +107,27 @@ static int bcm_ns_usb2_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 	usb2->dev = dev;
+ 
+-	usb2->dmu = devm_platform_ioremap_resource_byname(pdev, "dmu");
+-	if (IS_ERR(usb2->dmu)) {
+-		dev_err(dev, "Failed to map DMU regs\n");
+-		return PTR_ERR(usb2->dmu);
++	if (of_find_property(dev->of_node, "brcm,syscon-clkset", NULL)) {
++		usb2->base = devm_platform_ioremap_resource(pdev, 0);
++		if (IS_ERR(usb2->base)) {
++			dev_err(dev, "Failed to map control reg\n");
++			return PTR_ERR(usb2->base);
++		}
 +
-+        clkset: syscon@180 {
-             compatible = "brcm,cru-clkset", "syscon";
-             reg = <0x180 0x4>;
-         };
++		usb2->clkset = syscon_regmap_lookup_by_phandle(dev->of_node,
++							       "brcm,syscon-clkset");
++		if (IS_ERR(usb2->clkset)) {
++			dev_err(dev, "Failed to lookup clkset regmap\n");
++			return PTR_ERR(usb2->clkset);
++		}
++	} else {
++		usb2->dmu = devm_platform_ioremap_resource_byname(pdev, "dmu");
++		if (IS_ERR(usb2->dmu)) {
++			dev_err(dev, "Failed to map DMU regs\n");
++			return PTR_ERR(usb2->dmu);
++		}
++
++		dev_warn(dev, "using deprecated DT binding\n");
+ 	}
+ 
+ 	usb2->ref_clk = devm_clk_get(dev, "phy-ref-clk");
 -- 
 2.26.2
 
