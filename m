@@ -2,101 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86AED408AE2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 14:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F76F408B1E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 14:36:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239882AbhIMMUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 08:20:02 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:46758 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235252AbhIMMUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 08:20:01 -0400
-Received: by mail-ot1-f43.google.com with SMTP id c8-20020a9d6c88000000b00517cd06302dso12952734otr.13;
-        Mon, 13 Sep 2021 05:18:45 -0700 (PDT)
+        id S238659AbhIMMhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 08:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238428AbhIMMhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 08:37:32 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735FBC061574
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 05:36:16 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id i12so19884569ybq.9
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 05:36:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8/7I4pp3bCeX5QtDeGFLNRIAdhczuRGJY+RZHqPbZaY=;
+        b=v4RvoaeIBbVIdxvY8xRQ4WL4/b7BIh5z4yAdugyL3U40o0OAox8l/o86/wCLeuSVLY
+         SkFl2x/4cP7fQHUKJB8Lum7jMTkL+sdW7a2alYIYIXzR0hK+km75ixtIK6FVRwCa1zwb
+         Mrpaa3nC7c3HRCbgxOJjL40Sl+/Caliwzv1Lmb4FnJx2C+rIF1+zpzyjAIqHeHAO4cOz
+         ew07jy2l/SUzCzjyxoGsRJVgwl7J9IxvHXVdwboZxIMKtsj/QHOe0G2/54yqlAI76mpi
+         PdjYXZpimIImuJDxV+h7gP1v/xG11paG1BAUkn6RKxGfoc8sshK0JokDrcZIpsXsUphJ
+         RCFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=yAANwLMWDLEO6I7ZRYD4RFaA1eZZfYg/uLblDuOz8Iw=;
-        b=8OUPKotk8mlwlgzQ1SzI5dyOsPrCpUtirWXrHRJvIdOQdClNSe+2sWKeQ1S+mdZSHd
-         s3lmiwBMJF7SoYflkd9X7C/7vuXWS/uKzmXro3WnQnCXZn6pdnfEWm/RwZaB8EvUffAZ
-         1tF8BE5BeYD0zyX07AL/WK5YOn9VaunrN35JsjhguwKfou2a1zwfUiXXUx6DJeTSBlIu
-         GmapSAJe4DTm2oNvVFYUxL6nGfxz1I88CztJLl3ICNJO69S2EB6+37jNHb8eHC4RMUeT
-         gIQfC8aff/JvJGEcV/IIFdcqaY162Rr1AjNRCigFIXcw4c62fF8JTYohP6+V1US8IIHo
-         /u6Q==
-X-Gm-Message-State: AOAM533+MjEujcVSQv0Mph0znagcMuVUwRh0J4zZGgU1lTLBwLN8eivY
-        XtMePgUtQ6MZ3UWksxszCA==
-X-Google-Smtp-Source: ABdhPJzYnMEYkbxkurS4PpZO/QSrg41SFbZti1sBP50QH1OMY0W6b4aKzKiENjcLtUjXkbrnVoCMkg==
-X-Received: by 2002:a9d:36d:: with SMTP id 100mr9346988otv.237.1631535525388;
-        Mon, 13 Sep 2021 05:18:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id h3sm1800959otu.7.2021.09.13.05.18.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Sep 2021 05:18:44 -0700 (PDT)
-Received: (nullmailer pid 444714 invoked by uid 1000);
-        Mon, 13 Sep 2021 12:18:43 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     devicetree@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Anup Patel <anup.patel@wdc.com>, linux-doc@vger.kernel.org,
-        Vincent Chen <vincent.chen@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8/7I4pp3bCeX5QtDeGFLNRIAdhczuRGJY+RZHqPbZaY=;
+        b=EGrNRvyhHv1sMjeNmPnyGV/AGQtMOGYuPAQu6hnEp9dS7q3OHnV801jAb2B7/KmHT3
+         2jvfzuL4SwyXzLNpOMBGV+2qQ8/UzPr/b2hrlmDxJkhDFeGoWBTtZCHhT53bFbEvZWKy
+         KQf8EPdka1pwYv8BAdPAv6fc24jHsm3xsCNPTDBNscglbkqCY2WW0aXnqhrObY0dbmm/
+         10sRc7uRmmP3Z612mIPi3V3j8S8jhZSICk4h1GprzppxgcSIdFFXBtARP501GT943vx5
+         JX2j2bkSwLoiGL6A223AUhPLEJnR1fRsuZPfFXU7YmNWdN7+Hcjo9HdT2PJGvlCodlj5
+         4R9Q==
+X-Gm-Message-State: AOAM533r2Ed3E4TFyjQA8GwCdycNw6s0ZivScvFqZeqaCInaemsJXiV9
+        5eyOhLzx5pfXIJntlbbO9BljzYfld3Rf+hGov1mHZQ==
+X-Google-Smtp-Source: ABdhPJwxn1AKm92da/Waw57h9E+5bL6agaUKuU1Ri+g26ebKDO6jncg+nkjCj8CjiBlxY7UbSLfr+ulCb6LaiDBmvtI=
+X-Received: by 2002:a25:388c:: with SMTP id f134mr15710121yba.209.1631536575709;
+ Mon, 13 Sep 2021 05:36:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210828121007.14865-1-jbx6244@gmail.com>
+In-Reply-To: <20210828121007.14865-1-jbx6244@gmail.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 13 Sep 2021 14:36:04 +0200
+Message-ID: <CAMpxmJWncsMtjsjZY7c5aOtvf0+gxgui=yu27acouO1XjaGq7Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: add gpio-line-names to rockchip,gpio-bank.yaml
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
-        "Darrick J. Wong" <djwong@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        John Garry <john.garry@huawei.com>,
-        linux-kernel@vger.kernel.org, Nick Kossifidis <mick@ics.forth.gr>,
-        linux-riscv@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
-        linux-perf-users@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>
-In-Reply-To: <20210910192757.2309100-7-atish.patra@wdc.com>
-References: <20210910192757.2309100-1-atish.patra@wdc.com> <20210910192757.2309100-7-atish.patra@wdc.com>
-Subject: Re: [v3 06/10] dt-binding: pmu: Add RISC-V PMU DT bindings
-Date:   Mon, 13 Sep 2021 07:18:43 -0500
-Message-Id: <1631535523.169353.444713.nullmailer@robh.at.kernel.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Sep 2021 12:27:53 -0700, Atish Patra wrote:
-> This patch adds the DT bindings for RISC-V PMU driver. It also defines
-> the interrupt related properties to allow counter overflow interrupt.
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+On Sat, Aug 28, 2021 at 2:10 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>
+> Some people and companies may want to add more description
+> to there gpio pins. Add a gpio-line-names property to the
+> rockchip,gpio-bank.yaml file to reduce the notifications
+> from the existing mainline DT.
+>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  .../devicetree/bindings/perf/riscv,pmu.yaml   | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> 
+>  Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+> index 0d62c28fb..d4e42c2b9 100644
+> --- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
+> @@ -29,6 +29,8 @@ properties:
+>
+>    gpio-controller: true
+>
+> +  gpio-line-names: true
+> +
+>    "#gpio-cells":
+>      const: 2
+>
+> --
+> 2.20.1
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/riscv,pmu.yaml: 'optional' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select']
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-./Documentation/devicetree/bindings/perf/riscv,pmu.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/perf/riscv,pmu.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/riscv,pmu.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-Documentation/devicetree/bindings/perf/riscv,pmu.example.dt.yaml:0:0: /example-0/pmu: failed to match any schema with compatible: ['riscv,pmu']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1526606
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Bart
