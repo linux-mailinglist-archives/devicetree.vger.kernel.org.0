@@ -2,133 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53EF34086CE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 10:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29EC640877F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 10:50:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237884AbhIMIet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 04:34:49 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:49317 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238370AbhIMIeI (ORCPT
+        id S238217AbhIMIvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 04:51:09 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52324
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238021AbhIMIvJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 04:34:08 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id F34C6580B05;
-        Mon, 13 Sep 2021 04:32:52 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 13 Sep 2021 04:32:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=75DIi7N4mlFsZ7koSe8DWsv99XW
-        KUQRl2cLcYOj+eRw=; b=AnOlF00X96M/zW0xSLaelxCdp+K18+ZvmQsW1G5Jmc1
-        oElqXlG6JCdmczd/vKPwL3qL4BDsX6dkA2fN6QRoJ8grHu2Thc25WjizjZg9Avzc
-        RaYn7G8tooHV1u49uwMxyOxP30LxlMkM6+rtPQOjoVzsYMx9PyXe3O4Hnv/egiTw
-        NyZet3CUtGVfyhSbCqE/wgND+4cU/EVakaCS6mEzJvl0dptFN5cXvZc4+UylhV8/
-        aL8qVF/Ul/4o34hylws0sak95LsbZcJkg/JVlqgWvdOBfXQNDvZrK8rb30ljmMNm
-        pHD53eqmmRrzSQbAhzT6rPX5eSzlc5E4LO/IrfEHvjQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=75DIi7
-        N4mlFsZ7koSe8DWsv99XWKUQRl2cLcYOj+eRw=; b=SN9b9to4Bd4dhSPZrvD5Ip
-        v6TQojxM8KFWFJbSgojmFZqVxzmpkrCCS7Bi0ctSCWNTpLP0C+Ltb2smFmZ9t5dN
-        8H0cWcfdxawGXxZmZOxKv5iZZrdrRSh5ENXelBLtB+8O1cjQ4VNJBWzGOfDPgiYO
-        0E8/MSmhw0cFXxAdjKqDebZ3qX1Y0mmgcxORhkBvByyHCQoQ23m1iSdgFSaKQdZF
-        xDmDbMMKcZGxSF8R8V2NXQoLNCIL1jvVHqG/fH+Pkc2CGK/lTI8JGEfY3DWKHnBm
-        OnmJUZLUdv+BwoWPMWiK4Ikr+HL7emzRoNrMO/poMgcCqISHnFes1IhfajTEwufg
-        ==
-X-ME-Sender: <xms:sgw_Yfk08ku3w2tB6OIiCaJwz8ukU_9LVm3ZGzSO97YdIBckz0UBLA>
-    <xme:sgw_YS1gOv0XzLLVJbrUaxYBsjUNwJI9PihhLnmg_dVfbVOiZUBygwn5GUvF_Tta6
-    hII1FJLLYK-K3P7mSo>
-X-ME-Received: <xmr:sgw_YVq5H-v5FtgSUXDYNNPdwaK9kYeNunnKZCsNhzqgSXAblDCehDWjp07BpkGR9pSmzpNNV9T8erwdcgxJAi36B-YuUAXDmg5p>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudegjedgtdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:sgw_YXkz5MzWwU4gJPWMz_8NWHOQ1DmnM4gv77MB2pfmpU60E_48jA>
-    <xmx:sgw_Yd1kOOHLiDkMeW5kMsQlIqOfrSjHWCBtbQPI8FakjpnQQJaSug>
-    <xmx:sgw_YWscRLJY93a522dC4jHw87H5KupnycUSN4X6eSrAGMMUpRqakQ>
-    <xmx:tAw_Ya7jfDwgw7gUctNpUkbWkmcXDngX9I6l8AXMn46WIWNRv7f-Qg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Sep 2021 04:32:50 -0400 (EDT)
-Date:   Mon, 13 Sep 2021 10:32:48 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mon, 13 Sep 2021 04:51:09 -0400
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 64F3940269
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 08:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631522986;
+        bh=cvsTaNvz2UiyUHxrP1qTmkazHzyp2+ewfPl4qysKyqw=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=iX/ddOI0soVCVBJLKnppgpNxk3hwgSXOy1uv0upheDnJzNFHuaHhAGsbNY4MSWM2e
+         ciO8V+YI4aaR+Qp713fZx24OqZc3SO9DwTUHc+AT6JEZdEsawjMTpS3lpfCOUe7sku
+         HW0Yp/WAkW6dhf3IAwaaQgKvZwCJYt9Zne310MIfPq/a9n/j7blngyRl/Q0k5EIc+v
+         A6IiqapNts/Q0aA0t9nMBhfRif62g2KtO/W3agtGHHZlCkdD8qmZp9B6BXs2Rx9WCZ
+         1KCOpsYOZqtQMlsqFRriSrHweafledt0gE4kYLYMT5d0Cz0q5wLBhWUk+x4rQc6NO/
+         7J8f8Ebp0NS+w==
+Received: by mail-wm1-f72.google.com with SMTP id w25-20020a1cf6190000b0290252505ddd56so4616077wmc.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 01:49:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cvsTaNvz2UiyUHxrP1qTmkazHzyp2+ewfPl4qysKyqw=;
+        b=WnC6udDCVHpZ7zSdKjU1POHOzSe28rqC3kl6M6D/udxYByPEWHlqHZa4N+ULpkIu5X
+         k09yYJ+dNT60BLo0WFZQf2Opailgn+eUtKJAcgw15XFegU5qALvtesTuEz4++/BdMFI+
+         TgcDb9h7xuyhs2OL7uuYyrlZelvdECIcNegLUce8bnCtJYfI/YhjInQAOTlUGt8NS+eQ
+         Vps2a3PkCgcnZ1kWpvnVNqzS4xPaiLcXFlVC8DtN//j1yjlL+ls6sxsjPYo1CyqRqkUc
+         p6n61oVStrfaNndCN2btWVP6ThyuagwSaG1J+nbfyQJ3I/V+2c72TF6UYDe+X1NriPVs
+         yfSA==
+X-Gm-Message-State: AOAM530/Q1ERNiVI5A2RQpn9wgu0GG19bfVVPgHw+2kwj+mxEAl4SwPd
+        eeodzhaWItV9UTldsCkne/j4KSitl6lukQ10nWrVHmjKydRePIXOhi5w54RRrvMBD4JdP2Y+vrW
+        GumWkLkhlfxqBAkESV+Y8vDN/1rHbqDs/plk61vY=
+X-Received: by 2002:a1c:7dc8:: with SMTP id y191mr9834709wmc.6.1631522985977;
+        Mon, 13 Sep 2021 01:49:45 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJysUCxDbnakViIKz96HPA6XtGKkx8YI+rcAhRkRtTaIgEYJRWHQ/TSjMn35PEYSgfejgWgdmQ==
+X-Received: by 2002:a1c:7dc8:: with SMTP id y191mr9834698wmc.6.1631522985838;
+        Mon, 13 Sep 2021 01:49:45 -0700 (PDT)
+Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id j4sm6969822wrt.23.2021.09.13.01.49.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Sep 2021 01:49:45 -0700 (PDT)
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, bartosz.dudziak@snejp.pl,
         Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH 19/22] soc: sunxi: mbus: Add A31 ISP compatibles to the
- list
-Message-ID: <20210913083248.h3m775cbmwsvhg6g@gilmour>
-References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
- <20210910184147.336618-20-paul.kocialkowski@bootlin.com>
- <208239ba-01b1-451e-6030-894bd25770c3@sholland.org>
- <YT8BkjAZUGGYTR9l@aptenodytes>
+        Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210911232707.259615-1-luca@z3ntu.xyz>
+ <20210911232707.259615-7-luca@z3ntu.xyz>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
+Message-ID: <9942f964-442e-e782-3926-6d7d1123418a@canonical.com>
+Date:   Mon, 13 Sep 2021 10:49:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="f2zlbewwwotbr242"
-Content-Disposition: inline
-In-Reply-To: <YT8BkjAZUGGYTR9l@aptenodytes>
+In-Reply-To: <20210911232707.259615-7-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/09/2021 01:27, Luca Weiss wrote:
+> LG Electronics is a part of the LG Corporation and produces, amongst
+> other things, consumer electronics such as phones and smartwatches.
 
---f2zlbewwwotbr242
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-On Mon, Sep 13, 2021 at 09:45:22AM +0200, Paul Kocialkowski wrote:
-> Hi Samuel,
->=20
-> On Fri 10 Sep 21, 21:36, Samuel Holland wrote:
-> > On 9/10/21 1:41 PM, Paul Kocialkowski wrote:
-> > > The A31 ISP sits on the mbus and requires the usual bus address
-> > > adaptation. Add its compatibles to the list.
-> >=20
-> > My understanding is that this driver only exists to work around old DT
-> > bindings where the interconnects/interconnect-names =3D "dma-mem"
-> > properties are not required (and so they are historically missing from
-> > the device trees).
-> >=20
-> > For new bindings, it would be better to use those properties and not add
-> > to this list.
->=20
-> Oh okay, I didn't really look into it and just did the same thing that was
-> done for the CSI controller. Thanks for the heads up!
+Thanks for the patches.
 
-This code was done to maintain backward compatibility. New DT should
-indeed use the interconnects property.
+I think "lge" it's the same prefix as "lg". There is no sense in having
+multiple vendor prefixes just because company splits inside business
+units or subsidiaries. The same as with other conglomerates, e.g.
+Samsung - if we wanted to be specific, there will be 4-5 Samsung
+vendors... Not mentioning that company organisation is not always
+disclosed and can change.
 
-Maxime
+We already have lg for several components, also made by LG Electronics.
+What about these?
 
---f2zlbewwwotbr242
-Content-Type: application/pgp-signature; name="signature.asc"
+There is only one device with "lge", added back in 2016 without adding
+vendor prefix. I would propose to fix that one, instead of keeping
+duplicated "lg".
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYT8MsAAKCRDj7w1vZxhR
-xZy/AP9rOXpdGd4BspcymmvG0qIIWP3Pq7kC/1bc4wAklO4KHgD9Ha2JWbrzpEPh
-UGlrPhGtVhtUgMRZHOwB90O+gdiFLgI=
-=Gzk+
------END PGP SIGNATURE-----
-
---f2zlbewwwotbr242--
+Best regards,
+Krzysztof
