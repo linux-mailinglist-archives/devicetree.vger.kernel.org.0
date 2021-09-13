@@ -2,93 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7E4408AE8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 14:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86AED408AE2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 14:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239974AbhIMMUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 08:20:18 -0400
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:41799 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239941AbhIMMUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 08:20:05 -0400
-Received: by mail-oo1-f42.google.com with SMTP id b5-20020a4ac285000000b0029038344c3dso3307407ooq.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 05:18:49 -0700 (PDT)
+        id S239882AbhIMMUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 08:20:02 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:46758 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235252AbhIMMUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 08:20:01 -0400
+Received: by mail-ot1-f43.google.com with SMTP id c8-20020a9d6c88000000b00517cd06302dso12952734otr.13;
+        Mon, 13 Sep 2021 05:18:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=bugLB47+bgjh8v8+QK5frTd0NffoWq49bJO7kM44vYc=;
-        b=ArUoGMDSLJmi3hr+TfXY14gReLY8dfcmn7ChL4cWCDJiyNJEs75rVSjfmMjd+cNK2+
-         558f0fDVK5pT++bvGBDAfI3bVJkj/7prOGGtIq8T/kuylVyKfqosKGB/JRqr9w4rvWZz
-         CE4/Hmc8ljsex1/oxF8+Cnz5NQ+5b0qdO721XM4c8V5e5eMyQaxV3XS/2+0MIyxl2MAb
-         /9J6xaJ6RFmDGLklCBso2ufVnUqet1kpgs4meV9EabcAUSW6SBmKNBHUGaE7XoiML3jA
-         waT1+Tm53kM/aJyzFYZ0ovKykz7Mn2MIgZqEHpifIbRfEpvMYqdVM47Sg3sGoIIJUxLZ
-         ypbw==
-X-Gm-Message-State: AOAM5339arD+ST57LrVXZEaav5MD0dDL5MQFGl/f5wxyIerquYIfizaN
-        jIttrmRXurAEdWmkmPKYZA==
-X-Google-Smtp-Source: ABdhPJwt0IFdigIJfxeCTtwNeM7X3ErMU+2u8b0W1BgO/3uSEqQH3pWXKI6bH07SKMAfznY2eaixBg==
-X-Received: by 2002:a4a:1506:: with SMTP id 6mr8762820oon.93.1631535529229;
-        Mon, 13 Sep 2021 05:18:49 -0700 (PDT)
+        bh=yAANwLMWDLEO6I7ZRYD4RFaA1eZZfYg/uLblDuOz8Iw=;
+        b=8OUPKotk8mlwlgzQ1SzI5dyOsPrCpUtirWXrHRJvIdOQdClNSe+2sWKeQ1S+mdZSHd
+         s3lmiwBMJF7SoYflkd9X7C/7vuXWS/uKzmXro3WnQnCXZn6pdnfEWm/RwZaB8EvUffAZ
+         1tF8BE5BeYD0zyX07AL/WK5YOn9VaunrN35JsjhguwKfou2a1zwfUiXXUx6DJeTSBlIu
+         GmapSAJe4DTm2oNvVFYUxL6nGfxz1I88CztJLl3ICNJO69S2EB6+37jNHb8eHC4RMUeT
+         gIQfC8aff/JvJGEcV/IIFdcqaY162Rr1AjNRCigFIXcw4c62fF8JTYohP6+V1US8IIHo
+         /u6Q==
+X-Gm-Message-State: AOAM533+MjEujcVSQv0Mph0znagcMuVUwRh0J4zZGgU1lTLBwLN8eivY
+        XtMePgUtQ6MZ3UWksxszCA==
+X-Google-Smtp-Source: ABdhPJzYnMEYkbxkurS4PpZO/QSrg41SFbZti1sBP50QH1OMY0W6b4aKzKiENjcLtUjXkbrnVoCMkg==
+X-Received: by 2002:a9d:36d:: with SMTP id 100mr9346988otv.237.1631535525388;
+        Mon, 13 Sep 2021 05:18:45 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q26sm1806775otf.39.2021.09.13.05.18.48
+        by smtp.gmail.com with ESMTPSA id h3sm1800959otu.7.2021.09.13.05.18.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Sep 2021 05:18:48 -0700 (PDT)
-Received: (nullmailer pid 444717 invoked by uid 1000);
+        Mon, 13 Sep 2021 05:18:44 -0700 (PDT)
+Received: (nullmailer pid 444714 invoked by uid 1000);
         Mon, 13 Sep 2021 12:18:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     David Rhodes <drhodes@opensource.cirrus.com>
-Cc:     ckeepax@opensource.cirrus.com,
-        pierre-louis.bossart@linux.intel.com, david.rhodes@cirrus.com,
-        brian.austin@cirrus.com, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
-        broonie@kernel.org
-In-Reply-To: <20210911004546.2139657-3-drhodes@opensource.cirrus.com>
-References: <20210911004546.2139657-1-drhodes@opensource.cirrus.com> <20210911004546.2139657-3-drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH v7 2/2] ASoC: cs35l41: Add bindings for CS35L41
+To:     Atish Patra <atish.patra@wdc.com>
+Cc:     devicetree@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Anup Patel <anup.patel@wdc.com>, linux-doc@vger.kernel.org,
+        Vincent Chen <vincent.chen@sifive.com>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Darrick J. Wong" <djwong@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        John Garry <john.garry@huawei.com>,
+        linux-kernel@vger.kernel.org, Nick Kossifidis <mick@ics.forth.gr>,
+        linux-riscv@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
+        linux-perf-users@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>
+In-Reply-To: <20210910192757.2309100-7-atish.patra@wdc.com>
+References: <20210910192757.2309100-1-atish.patra@wdc.com> <20210910192757.2309100-7-atish.patra@wdc.com>
+Subject: Re: [v3 06/10] dt-binding: pmu: Add RISC-V PMU DT bindings
 Date:   Mon, 13 Sep 2021 07:18:43 -0500
-Message-Id: <1631535523.185638.444716.nullmailer@robh.at.kernel.org>
+Message-Id: <1631535523.169353.444713.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Sep 2021 19:45:46 -0500, David Rhodes wrote:
-> Devicetree binding documentation for CS35L41 driver
+On Fri, 10 Sep 2021 12:27:53 -0700, Atish Patra wrote:
+> This patch adds the DT bindings for RISC-V PMU driver. It also defines
+> the interrupt related properties to allow counter overflow interrupt.
 > 
-> CS35L41 is a 11-V Boosted Mono Class D Amplifier with
-> DSP Speaker Protection and Equalization
-> 
-> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
 > ---
->  .../devicetree/bindings/sound/cs35l41.yaml    | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/cs35l41.yaml
+>  .../devicetree/bindings/perf/riscv,pmu.yaml   | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/sound/cs35l41.yaml:151:9: [error] no new line character at the end of file (new-line-at-end-of-file)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cs35l41.yaml: 'additionalProperties' is a required property
-	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/riscv,pmu.yaml: 'optional' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select']
 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cs35l41.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/sound/cs35l41.yaml
-Documentation/devicetree/bindings/sound/cs35l41.example.dts:21.11-21: Warning (reg_format): /example-0/cs35l41@2:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml: example-0: cs35l41@2:reg:0: [2] is too short
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/sound/cs35l41.example.dt.yaml:0:0: /example-0/cs35l41@2: failed to match any schema with compatible: ['cirrus,cs35l41']
+./Documentation/devicetree/bindings/perf/riscv,pmu.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/perf/riscv,pmu.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/riscv,pmu.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+Documentation/devicetree/bindings/perf/riscv,pmu.example.dt.yaml:0:0: /example-0/pmu: failed to match any schema with compatible: ['riscv,pmu']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1526664
+See https://patchwork.ozlabs.org/patch/1526606
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
