@@ -2,122 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A96409738
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 17:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79E2240965D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 16:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230150AbhIMP0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 11:26:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346471AbhIMPYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 11:24:38 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70095C03D414
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 07:20:06 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id d21so7282678wra.12
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 07:20:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=O8wS1+sNPRvLr9/odqtW8j5vtaz640FsxM1Sy4aZraE=;
-        b=zUBlJhHnIxCu1VQebaWtOTcojpoxcqf8Qil1UfYKUm269Nj4QGsIrqfFUPEKCgOCvj
-         YKKwj5PXov8glQvMvfwiPlTQNBAZLjHvRykWxxcjPO+B5LeEAXV+CF0JniLntM/XXp8a
-         qDzd0LGSnT4rhQzdHvVuwFOuGZpcZzmTjO6WUUZxcoeWqBZISAJJWDCnGtsOQ77xjPXW
-         ZXpqOEBrve0eO1b6ZI6o4HS1umsI28TXB36MBOhTaeJf1AeCxmV4kFX7cLi4pJ3+lT53
-         T4wUAXA5CIFSIOG6wgxMaDZWw7Nj0s2NeYAxCQE+G2uQw4CQYGQmLfacwmFFkYLCObIm
-         C39Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=O8wS1+sNPRvLr9/odqtW8j5vtaz640FsxM1Sy4aZraE=;
-        b=zSCPNWroe1A3irDTIPfFK2jh29ZohnMHJ9vmO3sqhjWhPxcPLJf42V5VfZ+r/q4Wq7
-         TFTIXcg081wWfUdSfHINrfsrn75GFYGj6InzHxUoG9XpLa3iJPm8iCd6oLdusp3arpp2
-         kzVDZiEcMGT1CQdVWYTjMYLbU02F5Bc9L61oaQLTJfAg+qWLPCotEN4HNCuukKfCYAav
-         42tfvONDeAaJYiuCX5ddVOnwp4LJhWt2pTy30dwSzzxZv7TzIOPQYj1O3L0JnRFD2mec
-         lNTI8wn0WjNdMPsu6F5JoHQ4iHM8md7wtdkjlHJono92F/SRMlP8+eod2MW6xqluqtFQ
-         d8uA==
-X-Gm-Message-State: AOAM530wlhWJYPgDZnwCfwGyUz3Oa0wuZ2FYlBozsYABg5daHi0lpkS5
-        atrJkR09z2TW/u+4L7UDGydhwA==
-X-Google-Smtp-Source: ABdhPJzMHe5HCthXhhGzcU/HUaYAkZHU7J7+wRvuKVdeLuGClMUEH72WUtiPwg/TRe6z7s0Aap1rbg==
-X-Received: by 2002:adf:916f:: with SMTP id j102mr12802317wrj.422.1631542805025;
-        Mon, 13 Sep 2021 07:20:05 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id b16sm7688776wrp.82.2021.09.13.07.20.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Sep 2021 07:20:04 -0700 (PDT)
-Subject: Re: [PATCH v2 3/3] nvmem: add ONIE nvmem cells parser
-To:     John Thomson <lists@johnthomson.fastmail.com.au>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        =?UTF-8?Q?Jan_L=c3=bcbbe?= <jlu@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-4-vadym.kochan@plvision.eu>
- <b54325f156eaaa6535667a1a7fb695c7688d2db4.camel@pengutronix.de>
- <vrcxh2wnnrl7a7.fsf@plvision.eu>
- <7d1a7607-15fc-4dd6-9317-c6161c4984db@www.fastmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <ceaf0e29-2306-37af-f170-281d7c097fad@linaro.org>
-Date:   Mon, 13 Sep 2021 15:20:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S1345414AbhIMOv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 10:51:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34776 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346721AbhIMOrm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 10:47:42 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BF8960C51;
+        Mon, 13 Sep 2021 14:23:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631543026;
+        bh=Z6j0LTCb/0Fx5pxLfWQP2iaIBaU+rx32o1y6TgwxBf8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MU3y9lQuvncRuxjepqLqkpJUzPPrYF1sGflnKzj/heuTwTgCN2oNNAs23fggxVkTI
+         SAJJTyaiBjgQRaDV37IIVo3TBX6/pRgLJBSRVK+p6AZE8/p0AZ0ClN/l2wERwsr08e
+         ZK+t0tQObmMvi3NvViHiwLgD/7Hn6EBQdRpGn+P+w2fQyfNrVuAsSDhjSpJhHlKvEh
+         VRnEwO+o3S7UB09yT9HlUXq94DNsRj+WtZyJ6fdb9gHLV2FBqziv4gzSvKSwLGoGed
+         XR4Lx9PEzHDqaq7/WoM+A7Oqtzy39yurrcScsemlk7ouYCJQqPgTcuvTy2Agqiu4eG
+         IIVYWobHBYlIA==
+Date:   Mon, 13 Sep 2021 15:23:07 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, catalin.marinas@arm.com, will@kernel.org,
+        perex@perex.cz, tiwai@suse.com, kuninori.morimoto.gx@renesas.com,
+        sharadg@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 06/13] ASoC: tegra: Add Tegra210 based MVC driver
+Message-ID: <20210913142307.GF4283@sirena.org.uk>
+References: <1630056839-6562-1-git-send-email-spujar@nvidia.com>
+ <1630056839-6562-7-git-send-email-spujar@nvidia.com>
+ <20210903181326.GP4932@sirena.org.uk>
+ <29c785d0-cc70-7cce-c205-77059c11e0e1@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <7d1a7607-15fc-4dd6-9317-c6161c4984db@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="i3lJ51RuaGWuFYNw"
+Content-Disposition: inline
+In-Reply-To: <29c785d0-cc70-7cce-c205-77059c11e0e1@nvidia.com>
+X-Cookie: Above all else -- sky.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--i3lJ51RuaGWuFYNw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 12/09/2021 22:06, John Thomson wrote:
-> Hi Vadym,
-> 
-> On Wed, 8 Sep 2021, at 09:56, Vadym Kochan wrote:
->>
->> Hi Jan,
->>
->> Jan Lübbe <jlu@pengutronix.de> writes:
-> …
->>
->>> I think it would be useful to have a way to express this setup for systems with
->>> many interfaces, but am unsure of where this should be described. Maybe a "mac-
->>> address-offset" property in the generic ethernet controller binding?
->>>
->>> Regards,
->>> Jan
->>
->> May be something like eth_address_provider should be introduced in
->> net/ethernet/ ?
->>
->> This provider can provide something like eth_provider_address_next() which
->> will consider "mac-address-num" (or other specific fields).
->>
-> 
-> A patch series proposed the devicetree property
-> mac-address-increment, but it did not get support at the time:
+On Mon, Sep 13, 2021 at 10:32:32AM +0530, Sameer Pujar wrote:
+> On 9/3/2021 11:43 PM, Mark Brown wrote:
 
-Please have a look at some recent nvmem patches 
-https://lkml.org/lkml/2021/9/8/270 that adds support for vendor specific 
-post-processing of nvmem-cells.
+> > > +	err |= regmap_update_bits(mvc->regmap, TEGRA210_MVC_SWITCH,
+> > > +			TEGRA210_MVC_VOLUME_SWITCH_MASK,
+> > > +			TEGRA210_MVC_VOLUME_SWITCH_TRIGGER);
+> > > +
+> > > +end:
+> > > +	pm_runtime_put(cmpnt->dev);
+> > > +	return err;
+> > > +}
 
-Am hoping that increment usecase (along with other variants) should also 
-be dealt in similar way.
+> > _put() should return 0 if there's no change or 1 for a change.
 
+> So this means, no need to return any error value and just return 0 in such
+> cases?
 
---srini
-> of_net: add mac-address-increment support
-> https://lore.kernel.org/all/20200920095724.8251-4-ansuelsmth@gmail.com/
-> dt-bindings: net: Document use of mac-address-increment
-> https://lore.kernel.org/all/20200920095724.8251-5-ansuelsmth@gmail.com/
-> 
+If there's an error you should return that instead.
 
+--i3lJ51RuaGWuFYNw
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> Cheers,
-> 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmE/XsoACgkQJNaLcl1U
+h9Aeywf+L19DUp0pquR8XpAdjcB8vCJFQ8bpY19O2MoHi1ytdVvLaesU9Hd+lPBc
+hvbcsNlfBqDuH2EGjUqPFkRKDevu6YiF+UsAYldN6011XNMjbyo5GtPnLSQbtFY0
+55lL43iJ4KqIZDIYwgdoz5f/kEDfuhAFP1GUvo31JnSRRqcsooD/0YWnKx3rOmvF
+EA3QmaFxjp46zpSp+U92iKEMDi3rkJNpqgBiL/vpQRgLQ4xov5nBxzMHx+AmH/hl
+89lvssVBxEV6+waoi1STpaAdHR5ynuhBctdoBh0UgEGg1T+l477TFZ/dCHFQd5OF
+zHcyS9EQ2akuFsPlpZA9FqtaxNTN+w==
+=rm21
+-----END PGP SIGNATURE-----
+
+--i3lJ51RuaGWuFYNw--
