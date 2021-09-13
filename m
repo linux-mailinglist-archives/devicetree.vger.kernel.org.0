@@ -2,82 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B87409150
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A6B408E1C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:30:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245674AbhIMOAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 10:00:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46242 "EHLO mail.kernel.org"
+        id S239080AbhIMNbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 09:31:37 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:45045 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244593AbhIMN6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 09:58:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A9D3061A05;
-        Mon, 13 Sep 2021 13:36:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1631540218;
-        bh=kOOR+xcN8/54SB6RYy9mQlEDZBHcac0OnG2mrsKPHgs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ymvCDhV2t3agCdHMDNpBphhk+QsgtqOMKojuQotXbPUfwYmld+EnNfiNSIH761Mbd
-         /yY8KLMqvm5C0EwhFyRASEL0zTAqFdMugd+YZa9tkZosKmBCri+BTwGQ6h6bNAKtSf
-         RESN40XLsUbjvac5vrKVpIyWli3HAu4iPVqpB74c=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bryan ODonoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.13 102/300] arm64: dts: qcom: sm8250: fix usb2 qmp phy node
-Date:   Mon, 13 Sep 2021 15:12:43 +0200
-Message-Id: <20210913131112.824287275@linuxfoundation.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20210913131109.253835823@linuxfoundation.org>
-References: <20210913131109.253835823@linuxfoundation.org>
-User-Agent: quilt/0.66
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S235759AbhIMNT0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 09:19:26 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1631539090; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=CvVrCMtwoEwiaui0m7l95Lo4pyEzFXOcStMuEqPMqJo=; b=NgzZR9/X52qxsPTvFXuD+RBSCceuzinWIpx8t/jlpSeECv3JzQuZ5hHt/Q5/tzA/weIJEmOc
+ WipQXbnyHtPTMvlDuhIZVAydNYc9GL2n6JU+doXbqAVdOyfwvaEeaiXlzV+rwuuSd/wnUBY5
+ 6DYbRHqvf7basEYSzae4hPzl2P8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 613f4f87648642cc1c06967e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 13 Sep 2021 13:17:59
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 25457C43618; Mon, 13 Sep 2021 13:17:59 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E5CDC4338F;
+        Mon, 13 Sep 2021 13:17:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 1E5CDC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2 0/2] Machine driver to support LPASS SC7280 sound card registration
+Date:   Mon, 13 Sep 2021 18:47:40 +0530
+Message-Id: <1631539062-28577-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+This patch set is to add support for SC7280 sound card registration and
+to add dt-bindings documentation file.
 
-[ Upstream commit 63fa4322469648ae1023bb92a8b0d6a2f4bdaf2c ]
+These patches depends on the dt-bindings header patch
+  -- https://patchwork.kernel.org/project/alsa-devel/list/?series=543829
 
-Use 'lanes' as SuperSpeed lanes device node instead of just 'lane' to
-fix issues with TypeC support.
+Srinivasa Rao Mandadapu (2):
+  ASoC: google: dt-bindings: Add sc7280-herobrine machine bindings
+  ASoC: qcom: SC7280: Add machine driver
+Chnages Since V1:
+    -- Indentation changes and typo.
 
-Fixes: 46a6f297d7dd ("arm64: dts: qcom: sm8250: Add USB and PHY device nodes")
-Cc: robh+dt@kernel.org
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Link: https://lore.kernel.org/r/20210706230702.299047-2-bryan.odonoghue@linaro.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/sound/google,sc7280-herobrine.yaml    | 169 ++++++++++
+ sound/soc/qcom/Kconfig                             |  12 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/sc7280.c                            | 343 +++++++++++++++++++++
+ 4 files changed, 526 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+ create mode 100644 sound/soc/qcom/sc7280.c
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 09b552396557..1316bea3eab5 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2123,7 +2123,7 @@
- 				 <&gcc GCC_USB3_PHY_SEC_BCR>;
- 			reset-names = "phy", "common";
- 
--			usb_2_ssphy: lane@88eb200 {
-+			usb_2_ssphy: lanes@88eb200 {
- 				reg = <0 0x088eb200 0 0x200>,
- 				      <0 0x088eb400 0 0x200>,
- 				      <0 0x088eb800 0 0x800>;
 -- 
-2.30.2
-
-
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
