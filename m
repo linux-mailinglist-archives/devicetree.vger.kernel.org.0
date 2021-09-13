@@ -2,97 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F76F408B1E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 14:36:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA25408BC2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 15:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238659AbhIMMhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 08:37:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48436 "EHLO
+        id S236074AbhIMNF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 09:05:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238428AbhIMMhc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 08:37:32 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735FBC061574
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 05:36:16 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id i12so19884569ybq.9
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 05:36:16 -0700 (PDT)
+        with ESMTP id S240176AbhIMNE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 09:04:56 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4F5CC0613CF;
+        Mon, 13 Sep 2021 06:03:39 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id n2so21037074lfk.0;
+        Mon, 13 Sep 2021 06:03:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8/7I4pp3bCeX5QtDeGFLNRIAdhczuRGJY+RZHqPbZaY=;
-        b=v4RvoaeIBbVIdxvY8xRQ4WL4/b7BIh5z4yAdugyL3U40o0OAox8l/o86/wCLeuSVLY
-         SkFl2x/4cP7fQHUKJB8Lum7jMTkL+sdW7a2alYIYIXzR0hK+km75ixtIK6FVRwCa1zwb
-         Mrpaa3nC7c3HRCbgxOJjL40Sl+/Caliwzv1Lmb4FnJx2C+rIF1+zpzyjAIqHeHAO4cOz
-         ew07jy2l/SUzCzjyxoGsRJVgwl7J9IxvHXVdwboZxIMKtsj/QHOe0G2/54yqlAI76mpi
-         PdjYXZpimIImuJDxV+h7gP1v/xG11paG1BAUkn6RKxGfoc8sshK0JokDrcZIpsXsUphJ
-         RCFw==
+         :cc:content-transfer-encoding;
+        bh=9sTLBz67v50uxjPLGpmhcnOPvRMUIhtkAWqB/GTMNGI=;
+        b=SNqyq33VjffTGxubIW/LVFzPl1THnHS0OjXILWJlGHhs3uOPKtGPlG+cnXP+YAnbwg
+         BIdtfwwWXkRAwENahNcuRhu96N2IkmlxCLKKjVUq39lf3jWb6FZ1803OksGuXuYfdxWj
+         rwM6eDfauAsUaGST3r5DUVwV8Fm3qyQ6k3n+VTzTvcf3He+J3CXwcqyIi3Ig6yUzb8BG
+         pJmhSV9JKmk9QuRUfKzh4bNehnhhZDNOb9ytRrxLf8ekFaAbNfhbj3rlV/3ooo+4EHON
+         EfeS8d453noCzt25XSSARXvv1Cnx3WJ6PqzK9KqKzIx1lpV1vjyZuyKAdHNkBYyApJuy
+         KouA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8/7I4pp3bCeX5QtDeGFLNRIAdhczuRGJY+RZHqPbZaY=;
-        b=EGrNRvyhHv1sMjeNmPnyGV/AGQtMOGYuPAQu6hnEp9dS7q3OHnV801jAb2B7/KmHT3
-         2jvfzuL4SwyXzLNpOMBGV+2qQ8/UzPr/b2hrlmDxJkhDFeGoWBTtZCHhT53bFbEvZWKy
-         KQf8EPdka1pwYv8BAdPAv6fc24jHsm3xsCNPTDBNscglbkqCY2WW0aXnqhrObY0dbmm/
-         10sRc7uRmmP3Z612mIPi3V3j8S8jhZSICk4h1GprzppxgcSIdFFXBtARP501GT943vx5
-         JX2j2bkSwLoiGL6A223AUhPLEJnR1fRsuZPfFXU7YmNWdN7+Hcjo9HdT2PJGvlCodlj5
-         4R9Q==
-X-Gm-Message-State: AOAM533r2Ed3E4TFyjQA8GwCdycNw6s0ZivScvFqZeqaCInaemsJXiV9
-        5eyOhLzx5pfXIJntlbbO9BljzYfld3Rf+hGov1mHZQ==
-X-Google-Smtp-Source: ABdhPJwxn1AKm92da/Waw57h9E+5bL6agaUKuU1Ri+g26ebKDO6jncg+nkjCj8CjiBlxY7UbSLfr+ulCb6LaiDBmvtI=
-X-Received: by 2002:a25:388c:: with SMTP id f134mr15710121yba.209.1631536575709;
- Mon, 13 Sep 2021 05:36:15 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9sTLBz67v50uxjPLGpmhcnOPvRMUIhtkAWqB/GTMNGI=;
+        b=MXyUHO9DchFKB5UZ3BkApHf7/k5KrFzKV9ngq5Nd+zIk+JkZp0X3V5IzDQJjtr08wH
+         nTQtLN+mz9LYDMWgYqA+ElSP82qC2H2x65tPDzX9cV4XJ4MWlpTNebLDI79Gm4xzemaA
+         4bi6ti5VDV+B5PyIPxhsk6Z9Ck2l6OAyzLcnmq1hZ3owaMwtr4NXrccp2diBPWg1IHnL
+         j8FTpvBM8+06w94OAZCQnaz6PkPIVcnYs6SyY/5LlnbjEvPckmwJph9giCCVqBT2AHTB
+         8HC2IyDUwfpvzsTQD9mDmcw8VUZD2tP08drodM2d/7GlPQdNCYbw98E8RcqyjOAqPJy3
+         Jvqg==
+X-Gm-Message-State: AOAM531uGBcrm9yXPUt3mePmi91xYcm5tlyzBnKKxiGPytEr8hy0GPF2
+        NeYRRIvEMWo42fGLBYHtsQSKqhN6nmflZeuZnjE=
+X-Google-Smtp-Source: ABdhPJz98Iy3VQAyl6qYBfputzhJiJ/oqeAlSmgwWwR0nmZWXPhHu2AvEn65dsd71VopVkjo1fi+DYZFawZc1oQRStc=
+X-Received: by 2002:ac2:5f1b:: with SMTP id 27mr9222856lfq.79.1631538218197;
+ Mon, 13 Sep 2021 06:03:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210828121007.14865-1-jbx6244@gmail.com>
-In-Reply-To: <20210828121007.14865-1-jbx6244@gmail.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 13 Sep 2021 14:36:04 +0200
-Message-ID: <CAMpxmJWncsMtjsjZY7c5aOtvf0+gxgui=yu27acouO1XjaGq7Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: gpio: add gpio-line-names to rockchip,gpio-bank.yaml
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
+References: <20210818070209.1540451-1-michal.vokac@ysoft.com>
+In-Reply-To: <20210818070209.1540451-1-michal.vokac@ysoft.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 13 Sep 2021 10:03:27 -0300
+Message-ID: <CAOMZO5DgMN8OptVAs0JMkFC51WoD7t8rE3rPqzZGXBcT+5x9wA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix lp5562 LED driver probe
+To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 28, 2021 at 2:10 PM Johan Jonker <jbx6244@gmail.com> wrote:
->
-> Some people and companies may want to add more description
-> to there gpio pins. Add a gpio-line-names property to the
-> rockchip,gpio-bank.yaml file to reduce the notifications
-> from the existing mainline DT.
->
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> index 0d62c28fb..d4e42c2b9 100644
-> --- a/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-> @@ -29,6 +29,8 @@ properties:
->
->    gpio-controller: true
->
-> +  gpio-line-names: true
-> +
->    "#gpio-cells":
->      const: 2
->
-> --
-> 2.20.1
->
+Hi Michal,
 
-Applied, thanks!
+On Wed, Aug 18, 2021 at 4:02 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
+com> wrote:
+>
+> Since the LED multicolor framework support was added in commit
+> 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
+> LEDs on this platform stopped working.
+>
+> Author of the framework attempted to accommodate this DT to the
+> framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg proper=
+ty
+> to the lp5562 channel node") but that is not sufficient. A color property
+> is now required even if the multicolor framework is not used, otherwise
+> the driver probe fails:
+>
+>   lp5562: probe of 1-0030 failed with error -22
+>
+> Add the color property to fix this.
+>
+> Fixes: 92a81562e695 ("leds: lp55xx: Add multicolor framework support to l=
+p55xx")
+> Cc: <stable@vger.kernel.org>
+> Cc: linux-leds@vger.kernel.org
+> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
 
-Bart
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
