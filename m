@@ -2,113 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7489F409B84
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 19:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B02409C00
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 20:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344746AbhIMSAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 14:00:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344671AbhIMSAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 14:00:03 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0AEC061760
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 10:58:47 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id y144so11524721qkb.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 10:58:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=poorly.run; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oWizuF2Gkg5WBWYuRN/ca9SeolKOfaapBj8fX/su7TA=;
-        b=dYQ2DyVTpbIDha8CUhN+J+mw7txqI2DY1SQsqYWAcWyvwWWv/DKHdaAhKYZP9DQyzD
-         YeQmUswjqmC8H0LV5txitjG6S6HXVuB0/8oiEuN6G926IDGjxdOlXo/Z3wimhyP/aaXO
-         KyIi3QH09HLDqrTIBlDdF2TrVHW4ykvrh43nwF21P4Mm6H1/388ACLg5MjvttsBWSG05
-         BwzcEG5kuUBb6zxIntbNIJskW2xRyDc3u3juGpSd2KdazkUlMdTnbMf5qrNd79ZW1pPG
-         RJL0cEJSgEsXRxo0C5pwv7rYOSth3equVxcxKuIZlgAizB5OQ2rKgGuugri+l1yQg1H/
-         cEbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oWizuF2Gkg5WBWYuRN/ca9SeolKOfaapBj8fX/su7TA=;
-        b=8BeSkXPRlzx6NwdcBENSt2N2LZjusuJc7TNef2OZV1v6kwOY55FwkkbkqbKYrEDh8Z
-         BTRj/E2BXe+V60F6iXF5mauMevWcONWMNM7kcQOxYs7jnaWNgSFAEq1MSVEp9gPiSVvj
-         W2lz7V9m4skdYOJRxOTzdC8DXGoCwC0Utvo2zYtea9min3dCtVA7Z5acyCpit9xp6AYv
-         jYsTSidS9idGRu8cXdmPOUZfKQVsAzNFpDlLVHFcixEE0iHM5Uweaixkpj1tojw/GIhr
-         SgPF9FcoD98j2F8OK+aynevn/IFOTU8yVGgXmY3rHHYaKzY5MNwWNWYWl4GMmN7ZGH+6
-         HdZQ==
-X-Gm-Message-State: AOAM530XZ6hHIypOcomS9K6flEvsqA43DoGklQN9cT6nsyNhkgmpF3bz
-        j8tXqMlXiA2/N0LaXH8E0lYIwg==
-X-Google-Smtp-Source: ABdhPJzdUETObMuE5TjeYa4MFhxpwmHubpDdN2EJsguHGyIC3/AVj+jNYU8iSEFntmDBjJb1to1k4Q==
-X-Received: by 2002:a05:620a:13cb:: with SMTP id g11mr855201qkl.332.1631555926278;
-        Mon, 13 Sep 2021 10:58:46 -0700 (PDT)
-Received: from localhost ([167.100.64.199])
-        by smtp.gmail.com with ESMTPSA id d13sm4515415qtm.32.2021.09.13.10.58.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 Sep 2021 10:58:46 -0700 (PDT)
-From:   Sean Paul <sean@poorly.run>
-To:     dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Cc:     Sean Paul <seanpaul@chromium.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S239183AbhIMSW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 14:22:27 -0400
+Received: from ixit.cz ([94.230.151.217]:41004 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232400AbhIMSW0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 14:22:26 -0400
+Received: from newone.lan (ixit.cz [94.230.151.217])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id BFAA823B26;
+        Mon, 13 Sep 2021 20:21:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1631557268;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=vfoDdisrRD0gEyWuDlQo2+5u5Uz5hrHU5rLfPkwcZ+A=;
+        b=hAAQpNkpgVGWu8leM4f1c2J8JvErhx9NQN0Jim6pgrqEB47aI+AySu0LOAxHN/BybwDEyv
+        6zFo3/6MtaiNiv1rVPmr6kMH9vfgV8JEWTFwd8fmcE6V/MBO8/EbixltYVL8yL5nLpGXd2
+        4r4y6V2m6egJfYiMeV8wZe/f0NBVJ5I=
+From:   David Heidelberg <david@ixit.cz>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Kuogee Hsieh <khsieh@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 12/14] dt-bindings: msm/dp: Add bindings for HDCP registers
-Date:   Mon, 13 Sep 2021 13:57:43 -0400
-Message-Id: <20210913175747.47456-13-sean@poorly.run>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210913175747.47456-1-sean@poorly.run>
-References: <20210913175747.47456-1-sean@poorly.run>
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+Subject: [PATCH] dt-bindings: iio: magnetometer: asahi-kasei,ak8975 add vid reg
+Date:   Mon, 13 Sep 2021 20:19:49 +0200
+Message-Id: <20210913181949.83179-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Paul <seanpaul@chromium.org>
+Driver and device-tree also use vid-supply regulator.
 
-This patch adds the bindings for the MSM DisplayPort HDCP registers
-which are required to write the HDCP key into the display controller as
-well as the registers to enable HDCP authentication/key
-exchange/encryption.
+Fixes: 7e000fbff7a0 ("dt-bindings: iio: magnetometer: ak8975: convert format to yaml, add maintainer")
 
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- .../bindings/display/msm/dp-controller.yaml           | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ .../bindings/iio/magnetometer/asahi-kasei,ak8975.yaml        | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-index 64d8d9e5e47a..984301442653 100644
---- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-@@ -21,6 +21,11 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+index a0a1ffe017df..49e851ff206e 100644
+--- a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
++++ b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+@@ -43,6 +43,11 @@ properties:
+       an optional regulator that needs to be on to provide VDD power to
+       the sensor.
  
-+  reg-names:
-+    const: dp_controller
-+    const: hdcp_key
-+    const: hdcp_tz
++  vid-supply:
++    description: |
++      an optional regulator that needs to be on to provide VID power to
++      the sensor.
 +
-   interrupts:
-     maxItems: 1
+   mount-matrix:
+     description: an optional 3x3 mounting rotation matrix.
  
-@@ -99,8 +104,10 @@ examples:
-     #include <dt-bindings/power/qcom-rpmpd.h>
- 
-     displayport-controller@ae90000 {
--        compatible = "qcom,sc7180-dp";
--        reg = <0xae90000 0x1400>;
-+        reg = <0 0x0ae90000 0 0x1400>,
-+              <0 0x0aed1000 0 0x174>,
-+              <0 0x0aee1000 0 0x2c>;
-+        reg-names = "dp_controller", "hdcp_key", "hdcp_tz";
-         interrupt-parent = <&mdss>;
-         interrupts = <12>;
-         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
+2.33.0
 
