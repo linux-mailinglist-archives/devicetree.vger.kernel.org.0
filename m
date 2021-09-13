@@ -2,74 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71B02409C00
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 20:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7083E409C0E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 20:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239183AbhIMSW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 14:22:27 -0400
-Received: from ixit.cz ([94.230.151.217]:41004 "EHLO ixit.cz"
+        id S236173AbhIMS1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 14:27:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59594 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232400AbhIMSW0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 14:22:26 -0400
-Received: from newone.lan (ixit.cz [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S233133AbhIMS1T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 14:27:19 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id BFAA823B26;
-        Mon, 13 Sep 2021 20:21:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1631557268;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=vfoDdisrRD0gEyWuDlQo2+5u5Uz5hrHU5rLfPkwcZ+A=;
-        b=hAAQpNkpgVGWu8leM4f1c2J8JvErhx9NQN0Jim6pgrqEB47aI+AySu0LOAxHN/BybwDEyv
-        6zFo3/6MtaiNiv1rVPmr6kMH9vfgV8JEWTFwd8fmcE6V/MBO8/EbixltYVL8yL5nLpGXd2
-        4r4y6V2m6egJfYiMeV8wZe/f0NBVJ5I=
-From:   David Heidelberg <david@ixit.cz>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        by mail.kernel.org (Postfix) with ESMTPSA id 4CC4760F9F;
+        Mon, 13 Sep 2021 18:26:03 +0000 (UTC)
+Received: from [198.52.44.129] (helo=wait-a-minute.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mPqeX-00AYPD-3J; Mon, 13 Sep 2021 19:26:01 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-Subject: [PATCH] dt-bindings: iio: magnetometer: asahi-kasei,ak8975 add vid reg
-Date:   Mon, 13 Sep 2021 20:19:49 +0200
-Message-Id: <20210913181949.83179-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Stan Skowronek <stan@corellium.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Hector Martin <marcan@marcan.st>,
+        Robin Murphy <Robin.Murphy@arm.com>, kernel-team@android.com
+Subject: [PATCH v3 00/10] PCI: Add support for Apple M1
+Date:   Mon, 13 Sep 2021 19:25:40 +0100
+Message-Id: <20210913182550.264165-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 198.52.44.129
+X-SA-Exim-Rcpt-To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, kw@linux.com, alyssa@rosenzweig.io, stan@corellium.com, kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st, Robin.Murphy@arm.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver and device-tree also use vid-supply regulator.
+I have resumed my earlier effort to bring the Apple-M1 into the world
+of living by equipping it with a PCIe controller driver. Huge thanks
+to Alyssa Rosenzweig for kicking it into shape and providing the first
+two versions of this series.
 
-Fixes: 7e000fbff7a0 ("dt-bindings: iio: magnetometer: ak8975: convert format to yaml, add maintainer")
+Much has changed since v2[2]. Mark Kettenis is doing a great job with
+the binding [0], so I have dropped that from the series, and strictly
+focused on the Linux side of thing. I am now using this binding as is,
+with the exception of a single line change, which I believe is a fix
+[1].
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/iio/magnetometer/asahi-kasei,ak8975.yaml        | 5 +++++
- 1 file changed, 5 insertions(+)
+Supporting the per-port interrupt controller has brought in a couple
+of fixes for the core DT code.  Also, some work has gone into dealing
+with excluding the MSI page from the IOVA range, as well as
+programming the RID-to-SID mapper.
 
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
-index a0a1ffe017df..49e851ff206e 100644
---- a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
-@@ -43,6 +43,11 @@ properties:
-       an optional regulator that needs to be on to provide VDD power to
-       the sensor.
- 
-+  vid-supply:
-+    description: |
-+      an optional regulator that needs to be on to provide VID power to
-+      the sensor.
-+
-   mount-matrix:
-     description: an optional 3x3 mounting rotation matrix.
- 
+Overall, the driver is now much cleaner and most probably feature
+complete when it comes to supporting internal devices (although I
+haven't investigated things like power management). TB support is
+another story, and will require some more hacking.
+
+This of course still depends on the clock and pinctrl drivers that are
+otherwise in flight, and will affect this driver one way or another.
+I have pushed a branch with all the dependencies (and more) at [3].
+
+* From v2 [2]:
+  - Refactor DT parsing to match the new version of the binding
+  - Add support for INTx and port-private interrupts
+  - Signal link-up/down using interrupts
+  - Export of_phandle_args_to_fwspec
+  - Fix generic parsing of interrupt map
+  - Rationalise port setup (data structure, self discovery)
+  - Tell DART to exclude MSI doorbell from the IOVA mappings
+  - Get rid of the setup bypass if the link was found up on boot
+  - Prevent the module from being removed
+  - Program the RID-to-SID mapper on device discovery
+  - Rebased on 5.15-rc1
+
+[0] https://lore.kernel.org/r/20210827171534.62380-1-mark.kettenis@xs4all.nl
+[1] https://lore.kernel.org/r/871r5tcwhp.wl-maz@kernel.org
+[2] https://lore.kernel.org/r/20210816031621.240268-1-alyssa@rosenzweig.io
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/log/?h=hack/m1-pcie-v3
+
+Alyssa Rosenzweig (2):
+  PCI: apple: Add initial hardware bring-up
+  PCI: apple: Set up reference clocks when probing
+
+Marc Zyngier (8):
+  irqdomain: Make of_phandle_args_to_fwspec generally available
+  of/irq: Allow matching of an interrupt-map local to an interrupt
+    controller
+  PCI: of: Allow matching of an interrupt-map local to a pci device
+  PCI: apple: Add INTx and per-port interrupt support
+  arm64: apple: t8103: Add root port interrupt routing
+  PCI: apple: Implement MSI support
+  iommu/dart: Exclude MSI doorbell from PCIe device IOVA range
+  PCI: apple: Configure RID to SID mapper on device addition
+
+ MAINTAINERS                          |   7 +
+ arch/arm64/boot/dts/apple/t8103.dtsi |  33 +-
+ drivers/iommu/apple-dart.c           |  25 +
+ drivers/of/irq.c                     |  17 +-
+ drivers/pci/controller/Kconfig       |  17 +
+ drivers/pci/controller/Makefile      |   1 +
+ drivers/pci/controller/pcie-apple.c  | 818 +++++++++++++++++++++++++++
+ drivers/pci/of.c                     |  10 +-
+ include/linux/irqdomain.h            |   4 +
+ kernel/irq/irqdomain.c               |   6 +-
+ 10 files changed, 925 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/pci/controller/pcie-apple.c
+
 -- 
-2.33.0
+2.30.2
 
