@@ -2,89 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29E70409AF7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 19:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2124409B2F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Sep 2021 19:50:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243076AbhIMRkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 13:40:15 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:44140 "EHLO inva020.nxp.com"
+        id S243171AbhIMRvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 13:51:16 -0400
+Received: from mga07.intel.com ([134.134.136.100]:64157 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240913AbhIMRj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Sep 2021 13:39:56 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2572C1A039A;
-        Mon, 13 Sep 2021 19:38:39 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 168711A010C;
-        Mon, 13 Sep 2021 19:38:39 +0200 (CEST)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 3E7AB20363;
-        Mon, 13 Sep 2021 19:38:38 +0200 (CEST)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-serial@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Abel Vesa <abel.vesa@nxp.com>
-Subject: [RFC 19/19] arm64: defconfig: Add necessary configs for icc+devfreq on i.MX8MQ
-Date:   Mon, 13 Sep 2021 20:38:14 +0300
-Message-Id: <1631554694-9599-20-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
-References: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S229937AbhIMRvP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 13:51:15 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10106"; a="285446847"
+X-IronPort-AV: E=Sophos;i="5.85,290,1624345200"; 
+   d="scan'208";a="285446847"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Sep 2021 10:49:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.85,290,1624345200"; 
+   d="scan'208";a="432659202"
+Received: from bspteam04.iind.intel.com ([10.106.46.142])
+  by orsmga006.jf.intel.com with ESMTP; 13 Sep 2021 10:49:56 -0700
+From:   shruthi.sanil@intel.com
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, kris.pan@linux.intel.com,
+        mgross@linux.intel.com, srikanth.thokala@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com, shruthi.sanil@intel.com
+Subject: [PATCH v7 0/2] Add the driver for Intel Keem Bay SoC timer block
+Date:   Mon, 13 Sep 2021 23:19:53 +0530
+Message-Id: <20210913174955.32330-1-shruthi.sanil@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compile in the interconnect and devfreq drivers for the i.MX8MQ.
-Also compile in the powersave devfreq governor.
+From: Shruthi Sanil <shruthi.sanil@intel.com>
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
- arch/arm64/configs/defconfig | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+The timer block supports 1 64-bit free running counter
+and 8 32-bit general purpose timers.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 3bf6f8a86aae..b06f1b01714d 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1063,8 +1063,9 @@ CONFIG_ARCH_TEGRA_186_SOC=y
- CONFIG_ARCH_TEGRA_194_SOC=y
- CONFIG_ARCH_TEGRA_234_SOC=y
- CONFIG_TI_SCI_PM_DOMAINS=y
--CONFIG_ARM_IMX_BUS_DEVFREQ=m
--CONFIG_ARM_IMX8M_DDRC_DEVFREQ=m
-+CONFIG_DEVFREQ_GOV_POWERSAVE=y
-+CONFIG_ARM_IMX_BUS_DEVFREQ=y
-+CONFIG_ARM_IMX8M_DDRC_DEVFREQ=y
- CONFIG_EXTCON_PTN5150=m
- CONFIG_EXTCON_USB_GPIO=y
- CONFIG_EXTCON_USBC_CROS_EC=y
-@@ -1156,8 +1157,8 @@ CONFIG_SLIM_QCOM_CTRL=m
- CONFIG_SLIM_QCOM_NGD_CTRL=m
- CONFIG_MUX_MMIO=y
- CONFIG_INTERCONNECT=y
--CONFIG_INTERCONNECT_IMX=m
--CONFIG_INTERCONNECT_IMX8MQ=m
-+CONFIG_INTERCONNECT_IMX=y
-+CONFIG_INTERCONNECT_IMX8MQ=y
- CONFIG_INTERCONNECT_QCOM=y
- CONFIG_INTERCONNECT_QCOM_MSM8916=m
- CONFIG_INTERCONNECT_QCOM_OSM_L3=m
+Patch 1 holds the device tree binding documentation.
+Patch 2 holds the device driver.
+
+This driver is tested on the Keem Bay evaluation module board.
+
+Changes since v6:
+- Removed the unused compatible string from the mfd device node
+  to fix the error thrown by the make dt-binding command.
+
+Changes since v5:
+- Created a MFD device for the common configuration register
+  in the device tree bindings.
+- Updated the timer driver with the MFD framework to access the
+  common configuration register.
+
+Changes since v4:
+- Updated the description in the device tree bindings.
+- Updated the unit address of all the timers and counter
+  in the device tree binding.
+
+Changes since v3:
+- Update in KConfig file to support COMPILE_TEST for Keem Bay timer.
+- Update in device tree bindings to remove status field.
+- Update in device tree bindings to remove 64-bit address space for
+  the child nodes by using non-empty ranges.
+
+Changes since v2:
+- Add multi timer support.
+- Update in the device tree binding to support multi timers.
+- Code optimization.
+
+Changes since v1:
+- Add support for KEEMBAY_TIMER to get selected through Kconfig.platforms.
+- Add CLOCK_EVT_FEAT_DYNIRQ as part of clockevent feature.
+- Avoid overlapping reg regions across 2 device nodes.
+- Simplify 2 device nodes as 1 because both are from same IP block.
+- Adapt the driver code according to the new simplified devicetree.
+
+Shruthi Sanil (2):
+  dt-bindings: timer: Add bindings for Intel Keem Bay SoC Timer
+  clocksource: Add Intel Keem Bay timer support
+
+ .../bindings/timer/intel,keembay-timer.yaml   | 172 ++++++++++++
+ MAINTAINERS                                   |   5 +
+ drivers/clocksource/Kconfig                   |  11 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-keembay.c           | 252 ++++++++++++++++++
+ 5 files changed, 441 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
+ create mode 100644 drivers/clocksource/timer-keembay.c
+
+
+base-commit: 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f
 -- 
-2.31.1
+2.17.1
 
