@@ -2,175 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC45440B5CB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85F8840B5F9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:34:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbhINRW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 13:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51358 "EHLO
+        id S229732AbhINRfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 13:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbhINRW0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:22:26 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E36FC061762;
-        Tue, 14 Sep 2021 10:21:09 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id l9so12663156vsb.8;
-        Tue, 14 Sep 2021 10:21:09 -0700 (PDT)
+        with ESMTP id S229464AbhINRfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:35:18 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC616C061574;
+        Tue, 14 Sep 2021 10:34:00 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id 6so222259oiy.8;
+        Tue, 14 Sep 2021 10:34:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+mDwE36Zke+PiuA7+VNvUx8z4xBQRfTwxEpfcAzi3rU=;
-        b=mrb8Qjm+1VcJe3mP+wkmzWB2z+qoxKqSsGPQxKd7KwUkv6Tp7mHCjRxjSV//wypnit
-         WYKTwZ93H8OhVF7IBiYOPq9t/jWRYJRyIXN/cJJoN+iIWR6azSf4Ocof017npFGHdAQO
-         D2LTs5k66k0hbO8m1DO65kYBVxRab4RY1gOixIxNgcnmCTzfWadlI6nse8vEyE8ccQc9
-         tblQ4RHyQ/Ay+s1CGyw2VeI1J61IA+RVFWQKgHMOHGnMwNvfdygb5VHezZFKMtbTtoCt
-         Md3vXGadGo4tPGK1NFsXRf6TF4uPu1PJ7+/FRBS43fRqV981L9hCkkq75M9b3tfG4BM2
-         uLRQ==
+        h=sender:to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8Var4fQF1XhsoVmdTJ7YRQUllwNpqTaomfukEwbYbZQ=;
+        b=PZxToyoB/iGvr8rt2v1pfgJfVpTI5N0w6XI6pLImxPZivPPloYRbZHZARAA13TT6kB
+         7NlESFpcSohzlpoii9z27Ixx02SOO+pfctFH8LH/k2U3VyS6pY86oMt23SkEweecYtWP
+         8HFdxbuT6flbYz8qKGeMeaNJzr6TGxH+PH6mDyes8nh82v0Zoy20eerbmk4Zvp8obwkJ
+         twEYt/KHIrc8+/noY4RUU71nOLw6iwbcgOLSSGNiUkFyQrGi6TBFW1iNWFplUm7idOL7
+         2ZVfS3Zc7BxH2jfHnVmpsFVli2brZ6iL+Oo1BL7JKx3HGmvUymdplQDryMQ5kpSo4Que
+         eO5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+mDwE36Zke+PiuA7+VNvUx8z4xBQRfTwxEpfcAzi3rU=;
-        b=kxGqW6gpANCMiWODXAAM4+ODIggZEP65ARLCnbSA+hLbPCicj7eWpapexu8NPnipvW
-         WF1V5uEx/70sSCYJegGBqIbU2zIfGaismqz1YG27oYUhQkxLLz6zAUUBoq0IPLErf2Up
-         rQqP3weFMYvp5dl1s6bCVT1wBN4cLEk8n8Ask/WICe329DXDULsyZTfJ2BipAMN4yXoU
-         Sz9cNaY4ZI9OLKVLkyYMl4BXzevKuICGNV/Go2K1Yy/vBKUBN/aBDerYY+bTp8lypjJ6
-         GTTCbgCTCeuUJTPDzxcqFkqt7vWsn/16wn4U/yfP3OdETkSHKVD7fowhS1otvEU8dMsL
-         xOdw==
-X-Gm-Message-State: AOAM532Zsdn8wkDUkMHtcyIltXI8R/9yFgmQrsG+gY3Vnq5tt0TTqf/n
-        xjEcKumh+ypfxbU+Oi7NMqvS221SK0l/L8eJLf0=
-X-Google-Smtp-Source: ABdhPJzZxkoTBgrfJLrIIluP+RRyNCxyBKVDDsn0YXtVl/FUgzI4fLB8giL87QUL8PNg8ZHag8xYOAGvZkxFBSdS2Jk=
-X-Received: by 2002:a05:6102:22eb:: with SMTP id b11mr356913vsh.36.1631640068127;
- Tue, 14 Sep 2021 10:21:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210823171613.18941-1-romain.perier@gmail.com>
-In-Reply-To: <20210823171613.18941-1-romain.perier@gmail.com>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Tue, 14 Sep 2021 19:20:56 +0200
-Message-ID: <CABgxDoJYL-3BDb4p8c85k9j1hB5Bp5s_iWHE8V6MiiG1iB4dmQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] Add RTC for MStar SoCs
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>,
+        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8Var4fQF1XhsoVmdTJ7YRQUllwNpqTaomfukEwbYbZQ=;
+        b=gEuenI5wM4+fHGfw2++Yqjb4XWNWZZl8TlwJoI+GWkNZ8cewOMMnmchkcPrtkoj0S3
+         /ORVcLXErd6zvLXzUskmjIrVQl6Q5jBFTVfRqK1XvlTDdEle34vGunEWL2XgUn8L5epn
+         jR69CHzLr5XrmQgzf5W1nb5a5vHpMyjOmQPMikIYkwhD892daVpF5XzWd7yAr+slxEey
+         Y/ECyU2FeESWPdTPAxqJjehi1tiSGfImEfIXMt8UvurWX3q0lUelY9wq5mk0IMThZ8PY
+         NgMhSR+H2CzmTpH+sjLinkuIeYnOxRsVP3CpLGGvzn6spoNQK6NmwhvnNIQ9U42vpEgb
+         NBfg==
+X-Gm-Message-State: AOAM532rSFAWKr0XfL48uV/WF66X166Rkc3/3ll5NMZQHGPUCjPStk4I
+        biDlgltBJMMjor7d0ie88JI=
+X-Google-Smtp-Source: ABdhPJzdfEBxf3YhjeaJoYbBfVki2x3p9gdFKon2ehXCuG9yDEaZ1WWuaIgvXSKRGffb+2ZcPTLB/Q==
+X-Received: by 2002:aca:6254:: with SMTP id w81mr2242540oib.83.1631640840079;
+        Tue, 14 Sep 2021 10:34:00 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u19sm2746582oof.30.2021.09.14.10.33.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Sep 2021 10:33:59 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+To:     Oskar Senft <osk@google.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+References: <20210910130337.2025426-1-osk@google.com>
+ <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+ <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+ <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net>
+ <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
+ <20210914150859.GB3457579@roeck-us.net>
+ <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+Message-ID: <c410eba9-f6cf-4dbf-797f-48afde9c1898@roeck-us.net>
+Date:   Tue, 14 Sep 2021 10:33:57 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 9/14/21 10:11 AM, Oskar Senft wrote:
+> Hi Guenter
+> 
+>>> Following the example from tmp421, this could then be like this:
+>>
+>> Something like that, only we'll need something to distinguish
+>> temperature sensors from other sensor types, eg voltage or current.
+>> Maybe a "type" property. I'd suggest "sensor-type", but we have
+>> non-sensor attributes such as fan count and pwm values which should
+>> be covered as well. But it looks like a good start for a set of
+>> generic sensor properties.
+> Would it be acceptable to simply number the sensors and document which
+> sensor has which number?
+> 
+> Something like this:
+> 0 = LTD
+> 1 = RTD1
+> 2 = RTD2
+> 3 = RTD3
+> 4 = FAN1
+> 5 = FAN2
+> 6 = FAN3
+> 
+That might be a possibility, though it would have to be well defined
+for each chip (nct7802 also has voltage sensors). We'll have to discuss
+this with Rob.
 
-ping,
+Personally I think I would prefer using a type qualifier - that seems
+cleaner. But that is really a matter of opinion.
 
-Regards,
-Romain
+> Would we also want to be able to define PWMs? From what I can tell the
+> driver does not support running individual pins in GPIO mode, right?
+> So I'm not quite clear what "disabling PWM" would actually mean.
+> 
+The ABI states that fans should run at full speed in that case,
+though that may be chip dependent (some chips stop the fan if pwm
+control is turned off).
 
-Le lun. 23 ao=C3=BBt 2021 =C3=A0 19:16, Romain Perier <romain.perier@gmail.=
-com> a =C3=A9crit :
->
-> This patches series adds a new driver for the RTC found in the Mstar
-> MSC313e SoCs and newer. It adds a basic rtc driver, the corresponding
-> devicetree bindings and its documentation.
->
-> The rtctest (from selftests) has been passed on this driver, with the
-> following output:
-> $ rtctest
-> TAP version 13
-> 1..7
-> # Starting 7 tests from 2 test cases.
-> #  RUN           rtc.date_read ...
-> # rtctest.c:47:date_read:Current RTC date/time is 01/01/1970 00:02:03.
-> #            OK  rtc.date_read
-> ok 1 rtc.date_read
-> #  RUN           rtc.uie_read ...
-> #            OK  rtc.uie_read
-> ok 2 rtc.uie_read
-> #  RUN           rtc.uie_select ...
-> #            OK  rtc.uie_select
-> ok 3 rtc.uie_select
-> #  RUN           rtc.alarm_alm_set ...
-> # rtctest.c:136:alarm_alm_set:Alarm time now set to 00:02:12.
-> # rtctest.c:156:alarm_alm_set:data: 1a0
-> #            OK  rtc.alarm_alm_set
-> ok 4 rtc.alarm_alm_set
-> #  RUN           rtc.alarm_wkalm_set ...
-> # rtctest.c:192:alarm_wkalm_set:Alarm time now set to 01/01/1970 00:02:15=
-.
-> #            OK  rtc.alarm_wkalm_set
-> ok 5 rtc.alarm_wkalm_set
-> #  RUN           rtc.alarm_alm_set_minute ...
-> # rtctest.c:238:alarm_alm_set_minute:Alarm time now set to 00:03:00.
-> # rtctest.c:258:alarm_alm_set_minute:data: 1a0
-> #            OK  rtc.alarm_alm_set_minute
-> ok 6 [  180.545015] random: fast init done
-> rtc.alarm_alm_set_minute
-> #  RUN           rtc.alarm_wkalm_set_minute ...
-> # rtctest.c:294:alarm_wkalm_set_minute:Alarm time now set to 01/01/1970 0=
-0:04:00.
-> #            OK  rtc.alarm_wkalm_set_minute
-> ok 7 rtc.alarm_wkalm_set_minute
-> # PASSED: 7 / 7 tests passed.
-> # Totals: pass:7 fail:0 xfail:0 xpass:0 skip:0 error:0
->
-> Changes since v3:
-> - Fixed bad device table in MODULE_DEVICE_TABLE()
-> - Use reverse christmas tree ordering for local variables in the probe()
->   function
-> - Removed the "clk" field from the msc313_rtc data structure (not
->   required, only used in the probe function)
->
-> Changes since v2:
-> - Added dual-license header to the dt-bindings documentation
-> - Reordered dts entries, so the rtc device_node is before the watchdog
->   device_node (because it has a lower address)
-> - Updated rtc range_max to U32_MAX
-> - Leave range_min to 0 (default value when it is not set at all)
-> - Fixed the CNT_EN_BIT logic, so .read_time will only read the time when
->   the RTC has been previously set and has a valid state (which is not
->   the case after a POR).
->
-> Changes since v1:
-> - Fixed the DT bindings documentation and fixed dt_binding_check (an
->   include was missing)
-> - Added || COMPILE_TEST to kconfig
-> - Removed rtc_valid_tm from msc313_rtc_read_time()
-> - Removed the last write of the msc313_rtc_set_time() function (not
->   required) and improved comments
-> - Replaced the relaxed io by normal io in msc313_rtc_interrupt()
-> - Added checks to be sure that the alarm fired in msc313_rtc_interrupt()
-> - Removed msc313_rtc_remove() (replaced by devm_add_action_or_reset)
-> - Removed unnecessary software reset of the IP in the probe function
->   (the soft reset is never executed, it is a mistake from the initial
->   refactoring)
-> - Switched to devm_rtc_allocate_device() and devm_rtc_register_device(),
->   and dropped the error message related to the rtc device allocation
-> - Added an RTC range by setting .range_min and .range_max
-> - Added the "start-year" property to the DT bindings documentation
->
-> Daniel Palmer (1):
->   rtc: Add support for the MSTAR MSC313 RTC
->
-> Romain Perier (2):
->   dt-bindings: rtc: Add Mstar MSC313e RTC devicetree bindings
->     documentation
->   ARM: dts: mstar: Add rtc device node
->
->  .../bindings/rtc/mstar,msc313-rtc.yaml        |  49 ++++
->  MAINTAINERS                                   |   1 +
->  arch/arm/boot/dts/mstar-v7.dtsi               |   8 +
->  drivers/rtc/Kconfig                           |  10 +
->  drivers/rtc/Makefile                          |   1 +
->  drivers/rtc/rtc-msc313.c                      | 258 ++++++++++++++++++
->  6 files changed, 327 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,msc313-rt=
-c.yaml
->  create mode 100644 drivers/rtc/rtc-msc313.c
->
-> --
-> 2.30.2
->
+> Anyway, if we simply go by "sensor number", that would mean that we'd
+> have different attributes depending on the sensor number. Would that
+> be ok?
+> 
+That is a question for Rob to answer.
+
+> Also, I'm sorry, I think I just realized that in "voltage mode" we
+> don't seem to get a temperature reading. I hadn't actually looked
+> through more of the datasheet except for the single MODE register
+> before. But I don't think this makes a difference for what I proposed
+> so far?
+> 
+
+We don't ? I thought this reflects temperature measurement with a
+transistor instead of a diode (which would be current based).
+Hard to say - the datasheet is a bit vague in that regard.
+
+>>>          /* LTD */
+>>>          input@0 {
+>>>              reg = <0x0>;
+>>>              status = "okay";
+>>
+>> Not sure what the default is here ('okay' or 'disabled').
+>> We'd also need to define what to do if there is no data
+>> for a given sensor.
+> I think I'd like to keep previous behavior unmodified. From what I can
+> tell previous behavior was:
+> - xTDs enabled by default
+> - RTD modes unmodified, i.e. defaulting to whatever the HW comes up with
+> 
+> The NCT7802Y can self-program from an EEPROM, so I assume we should
+> honor the "power-up configuration" obtained from there? I.e. if no
+> configuration is provided in the device tree, the driver should use
+> whatever configuration the chip has when the driver is loaded.
+> 
+Definitely yes. My question was more what to do if the information
+in devicetree nodes is incomplete.
+
+Thanks,
+Guenter
+
+>>>              label = "voltage mode";
+>>
+>> That isn't the idea for "label", as "label" would be expected to
+>> show up as tempX_label (and a label of "voltage mode" would be odd).
+>> The label should indicate where the sensor is located on a board,
+>> such as "inlet" or "outlet".
+> Yes, absolutely. This was a bad example on my part. In my
+> understanding "label" is just a string that we pass through.
+> 
+> Oskar.
+> 
+
