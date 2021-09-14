@@ -2,81 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07DE740BAE0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 00:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B1740BB0A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 00:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234727AbhINWB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 18:01:28 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:39664 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232351AbhINWB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 18:01:28 -0400
-Received: by mail-ot1-f47.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so677713otf.6;
-        Tue, 14 Sep 2021 15:00:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1+WLR65qTBoUub6/pKXyNbktbZPgOslN8+Xmkk6CTLc=;
-        b=gMkWFAvg+xfgzjR8+jNqi9dOrIDkdO7DIbrN+3/Ciqrf2rz1AraSCeqnecO8mhk3zd
-         LJMSecY4h/4r1waRd5VVxCTj/L0VyqvNdbAtASKVFRLFHADhHapHyOcxaE0SNVzJxFM7
-         8/yvac59177znNpEun7teaoM62vZaozJsW2qTuBpDBIvys55dZSRePtW8AIgnivg3lDz
-         /pq6qM+O62EB5sjNHNMOvZq0qT8ZuE8aZM/Fq/L1eB3eJh1FUbfyG7v67fehuG4vXJLb
-         1yk0C4T1tfL7UoggCoDz2Pw6xyhXklzbGk307InjVw7v97B5W5+iGWTOXMtdbD44GR7t
-         9BOw==
-X-Gm-Message-State: AOAM533uMD9a34XGNHBi0AjPVPCwN1B5ArDl31/mDxfdbGp/fa9eVFoK
-        k3C0NDsFkPmSvsHyxoVH1g==
-X-Google-Smtp-Source: ABdhPJz1pOO1WsaRumXrQshfHtdpfhL6MTWP4mSSbUpKyygYT9dlE16+Hwncpuov78gSO5mXYexJIQ==
-X-Received: by 2002:a05:6830:78c:: with SMTP id w12mr16229945ots.196.1631656810214;
-        Tue, 14 Sep 2021 15:00:10 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k23sm2943388ood.12.2021.09.14.15.00.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 15:00:09 -0700 (PDT)
-Received: (nullmailer pid 4040654 invoked by uid 1000);
-        Tue, 14 Sep 2021 22:00:08 -0000
-Date:   Tue, 14 Sep 2021 17:00:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] clk: versatile: clk-icst: Support 'reg' in
- addition to 'vco-offset' for register address
-Message-ID: <YUEbaEzKT+cCYk9z@robh.at.kernel.org>
-References: <20210913192816.1225025-1-robh@kernel.org>
- <20210913192816.1225025-6-robh@kernel.org>
- <163164958886.763609.7483570624844319215@swboyd.mtv.corp.google.com>
+        id S235358AbhINWSS convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Sep 2021 18:18:18 -0400
+Received: from mail1.arteliagroup.com ([86.65.33.73]:3935 "EHLO
+        mail1.arteliagroup.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234701AbhINWSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 18:18:17 -0400
+X-Greylist: delayed 431 seconds by postgrey-1.27 at vger.kernel.org; Tue, 14 Sep 2021 18:18:17 EDT
+Authentication-Results: mail1.arteliagroup.com; spf=None smtp.pra=arnaud.bray@arteliagroup.com; spf=None smtp.mailfrom=arnaud.bray@arteliagroup.com
+Received-SPF: None (mail1.arteliagroup.com: no sender
+  authenticity information available from domain of
+  arnaud.bray@arteliagroup.com) identity=pra;
+  client-ip=172.21.0.8; receiver=mail1.arteliagroup.com;
+  envelope-from="arnaud.bray@arteliagroup.com";
+  x-sender="arnaud.bray@arteliagroup.com";
+  x-conformance=sidf_compatible
+Received-SPF: None (mail1.arteliagroup.com: no sender
+  authenticity information available from domain of
+  arnaud.bray@arteliagroup.com) identity=mailfrom;
+  client-ip=172.21.0.8; receiver=mail1.arteliagroup.com;
+  envelope-from="arnaud.bray@arteliagroup.com";
+  x-sender="arnaud.bray@arteliagroup.com";
+  x-conformance=sidf_compatible
+IronPort-SDR: vZRb9cIVvUKAA5H/CtSHVTb/jJ182Dy8kJlKscMfuiNKlEYnvYibi4OgE4JHtxh5KwNOv2pA0D
+ FCrez50nPkyg==
+IronPort-Data: A9a23:zHZ0/anG5Sxf9zvw9F3BtX7o5gzxJkRdPkR7XQ2eYbSJt1+Wr1Gzt
+ xIXWzyOOKyNMTSkL913bdiypEIHvcfUndIxHVBo/yA9EH8b8sCt6fZ1jKvT04F+CuWZESqL1
+ yiSAzX5BJhcokX0/39BCZC86ykhvU20buCkUreca3ktHVUMpBoJ0nqPpcZo2+aEvvDpW2thi
+ fuqyyHuEAfNNwxcawr42IrfwP9bh8kejRtD1rAIiV+ni3eF/5UdJMp3yahctBIUSKEMdgKxb
+ 76rIL1UYgrkExkR5tONyt4Xc2UPS7/WewGUlndSWqGtmB9fvmo51aNT2Pg0MBgNzW/Q2Yg3m
+ L2htrTpIestFqTWnu0AX19SCShvFaRc5LLDIHGwq8uO1wvNdH6EL/BGUBhmZtRAprcf7WZms
+ KZwxCo2RhKElfC6wKCxYvdjjdY8JszueogYvxlIxivQDPlgSorERaTMzcFX1zgqgd1WW/3ZI
+ dcaARJ0cB3LYjVRNVpRDp8i9M+innfXbTJVshSWqLAx7myVyxZ+uJDhPdDfe9GWTN9PtliXq
+ 2DB9SL+GB5yHNiTziWD/2OEmODBnDn2HokVEdWQ5+9lj1OC7nIcCBMWW1v9u+TRolW3Xtl3N
+ UNR+ywl66M18SSDRd77QxSzvFaasRQHHcdLe8U45waKxq/d5S6HCWEeQjNHc5ogudNebWYp3
+ 0OSt83mCCZpvaHTT3+Bnp+PqDq2Pi4YBXENaDUCQBdD5dT/yKkohwjMT99LDqG4lNv4BXf2z
+ izihCw5mLg7k8AU3Kz9+krI6xqnp57FXyYr6QvWRG/j5QR8DKahdoqu43DF4vtaKouFCF+Mo
+ BAsl8WA7esDEYuAmQSTT+gXWrKk/fCINHvbm1EHN4Uh+jWr/Va9co1K5jxiYkFkLq4scjbzZ
+ kLcuA55+pBeJn2ncelxbp7ZI9kxyKPIC9voTPbZcpxIb4QZSeMt1EmCfmbJgDqryhFqyedvU
+ ap3uP2EVR4yYZmLBhLvLwvB+dfHBxzSB0uKLXw48/hj+bOEeHORSL4KKlyTdqYy66bsTMA5N
+ TpAH5Pi9vicOdESpgHe65IeKVEDImI8GIiwoMtSHgJGzsyKB0l5Y8LsLWsdRrFY
+IronPort-HdrOrdr: A9a23:SXg89akcyLklTeJW9jtM+9tojL7pDfI63DAbv31ZSRFFG/FxXq
+ iV8MjzsiWYtN9xYhodcL+7WJVoLUm8yXcX2+Ms1NWZLWvbUQKTRelfBO3Zsl7d8kXFh4tgPM
+ xbHJSWZuefMWRH
+X-IronPort-AV: E=Sophos;i="5.85,292,1624312800"; 
+   d="scan'208";a="41831049"
+Received: from unknown (HELO mail.arteliagroup.com) ([172.21.0.8])
+  by mail1.arteliagroup.com with ESMTP; 15 Sep 2021 00:09:47 +0200
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <163164958886.763609.7483570624844319215@swboyd.mtv.corp.google.com>
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Good news!!
+To:     Recipients <arnaud.bray@arteliagroup.com>
+From:   Brown Coleman <arnaud.bray@arteliagroup.com>
+Date:   Wed, 15 Sep 2021 00:10:23 +0200
+Reply-To: <abr23101@gmail.com>
+Message-ID: <a799e68f-9c77-4305-a66c-bdc20d932549@SVPEXCH36502.arteliagroup.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 12:59:48PM -0700, Stephen Boyd wrote:
-> Quoting Rob Herring (2021-09-13 12:28:13)
-> > The ICST binding now also supports 'reg' in addition to 'vco-offset' for
-> > the VCO register address. Add support to the driver to get the VCO
-> > address from 'reg'.
-> > 
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-clk@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> 
-> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> 
-> I don't think this driver is changing much so you can take it through DT
-> tree if you prefer.
+Hello
 
-clk tree is fine. :)
+Upon my research for honest person in your region produce your name. I am Brown Coleman, 17years old from Switzerland. I need your assistance to help manage my family's financial portfolio which was WILL to me by my late parents worth US$19,500,000.00 until I am eligible to handle property investments according to the laws. You will be paid 30% for your contributions.
 
-Rob
+If your answer is "YES" please contact me for more details.
+
+Thanks.
+Brown Coleman
