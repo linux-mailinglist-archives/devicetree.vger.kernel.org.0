@@ -2,100 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EAF640B5A6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E46B140B5B9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbhINRLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 13:11:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
+        id S231469AbhINRMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 13:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbhINRLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:11:07 -0400
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B406AC061574;
-        Tue, 14 Sep 2021 10:09:49 -0700 (PDT)
-Received: by mail-vs1-xe2f.google.com with SMTP id u1so12640519vsq.10;
-        Tue, 14 Sep 2021 10:09:49 -0700 (PDT)
+        with ESMTP id S231366AbhINRMm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:12:42 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370B7C0613D9
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 10:11:25 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id g14so25259914ljk.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 10:11:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=google.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BmjYRi68aN56XU0y56jNmFUmGH6RU4xfmzH+VRZkmP8=;
-        b=WvQ9+x6vxQQ+jhcAP5aiM9UUy4wS/+0cv6xeYDS7ufnUKsz4hCBnFWDmhD1S9TlrMU
-         15I+yXU4SaoAXgM5tE07/F7pJiZU6m5xLA0daV3F12m7Z4bMRCq/wCHKq1b63eTYw854
-         IfhtsR4mlFwMil8XUAvNphsYt3XqAnG1Wq2QMqXFZc5j+oTn6Ww/UXeJd+VJ0L/llS6E
-         dIHJmwyPnM/aWIk1uRTqLi5AICTQzTZIl0lulZVXv310h6vZOFdSB+zsb9B0J5GRN8tW
-         8kk6FcBfTbpRpGKjoEIAWncTwrRs2+waDBETLl4OuPSKW+1L5QqSuNWHhpwdGPxR5xMn
-         6Z3w==
+         :cc;
+        bh=ZT8P3mQS19BrQefv3EWE24TGiGm5rj3TjmzR3qpVXBE=;
+        b=R7/H7gDZMigDeE0/7mL3+Kht1Qq8uEhUZE8eVa7Zr8Sqp0Uiwp5ooulujxnj9DN26r
+         iXutHA2s1AR95Ie0uGO7kHklBl2AHrtx54ryEOSTh75NmQZElYFLohJYKbqTIG89cr3S
+         JaJUMhWPm4AfWjASiUMMoQ0NizfdQKNT4jYxkvLqSKHDqD+qKYnwntAQIdDoSLQXCb6W
+         HZdogmYivHX5NQ5UqfveQ01Mvsr0SQoqlqm5fhrEdfb7kxasv9mQeT8F0dP5E8xQLfya
+         ScbmThUzvRoKQSTNd8go1yGe8x+olw73/Xrj2sD/ic+NuiqDgF81lH+MIf/U49Wz/6rL
+         66Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BmjYRi68aN56XU0y56jNmFUmGH6RU4xfmzH+VRZkmP8=;
-        b=CA+4dLK1nF16YfsXOTxKZfgFCCHzm6cNrvlRTApyWt/FS4bvWfXg/rKsn4jN2nwx1V
-         HitagpSb9OqelC8jlqmehu64r5tOrpK6BjuRk3JJQHRSL86ToN6xVdjF/XSuW8NIz6F6
-         faEkv63AVuIwQrb2sVpyNE26uBSHqAFlvfQuvm023mNRcOpvm+zlAixkSw0ODflnDfDG
-         ChoMa9cIkRyj1InIIzzSh4h8h5mXVocEx0OJ03d+CjWO0Y18087BjlnNCPGgigl3cK1q
-         ciAR0PRaRUiohHnRF13WF4lNlmD6AgL1dqZhvPL2b/cjqggWbbqhJBIaUrGwCEGE/kk9
-         s1+A==
-X-Gm-Message-State: AOAM532mzKJgvQgnP0wgzz0wYGpU3KnZFbE8llngEmyeucWFjX+E2LYH
-        FeCBSpV/QVevIZNfPSbV0CatDb9/vi5yp6Fp4Fq16hmA
-X-Google-Smtp-Source: ABdhPJzTqzpkX0hLcieltriovP1u8Zem4alXiXe22whECWTd4+BN1Q5gN3Zr7krVAOKfE1FPBchFDYt9vsD8p2sJ4Eg=
-X-Received: by 2002:a05:6102:34cd:: with SMTP id a13mr261137vst.56.1631639388823;
- Tue, 14 Sep 2021 10:09:48 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=ZT8P3mQS19BrQefv3EWE24TGiGm5rj3TjmzR3qpVXBE=;
+        b=Ok68UsZGS4W8K40Ok+wgitkwErC5H7veX7sHh5XiTpIhUo657r5PScSt/uIYi6tsN1
+         zuXgDmjV+f9KEEzDo5jAtikYBdJaPUDn8vPYBYfQxk+BfwaS16pOeR1j8+1Sp6GJQ5bf
+         NKceqXWipxuA6CX0YhnpY3miv/1lFtscHx6NwAWOBAnJCjD9kML9vUqV4jt0A2LXBP4F
+         iwkkjqJE7gV/bvT4vpE0brITG9xEBm0ln4/swC8mf3+C0Yw5AIrvcOJ9oZTgGOtGeMXh
+         h2ockNHwbfkjOLxMO/xpY+0rfbC7dcK+Qbu7Fh/vIHefsla0jAIVUDfmuABHj0ZPUx2p
+         IYJA==
+X-Gm-Message-State: AOAM531VTya7Lzv+zkB6qF+nIA4YVdMoPgAkQLcnJNhF9kqHzwnNG2D3
+        JFh2tH30Bdj9EOP7f8DDCdL+zaPVG3DWWILah1FRyg==
+X-Google-Smtp-Source: ABdhPJzbFGFCCGLaoraaVB4YLcpsXIXczCdDgluSLTvBSPzDSrdTaoBGMxoUjtGK6U6TnHPIhPELWTNCwL8e7mqTk/k=
+X-Received: by 2002:a05:651c:1209:: with SMTP id i9mr16692284lja.85.1631639483288;
+ Tue, 14 Sep 2021 10:11:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210910190322.27058-1-romain.perier@gmail.com>
- <20210910190322.27058-5-romain.perier@gmail.com> <CAFr9PXnLZC1zfs4e1GqZU4UU3knU-BwREe0-abrWNq7akrTntw@mail.gmail.com>
- <CAK8P3a24NTmkyh01OEzDQ8=oTWpUnDtwWQgUUxUbW2wxsgAFeA@mail.gmail.com>
- <CAFr9PXkipBnVDBOpdYhUD4bYNaL8qybPhGJi7YwSHaCNrPz6rw@mail.gmail.com> <CAK8P3a1=GTcgbqkwnzsFtBtFZTtf4Lop7U5hsCAid-fCgs07yQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a1=GTcgbqkwnzsFtBtFZTtf4Lop7U5hsCAid-fCgs07yQ@mail.gmail.com>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Tue, 14 Sep 2021 19:09:37 +0200
-Message-ID: <CABgxDoJLOERb4CFABz0XNZ9MFR1F66Nyw9NknaEMHKSRze6VHA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210910130337.2025426-1-osk@google.com> <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+ <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+ <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net> <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
+ <20210914150859.GB3457579@roeck-us.net>
+In-Reply-To: <20210914150859.GB3457579@roeck-us.net>
+From:   Oskar Senft <osk@google.com>
+Date:   Tue, 14 Sep 2021 13:11:07 -0400
+Message-ID: <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Guenter
 
-Thank you very much and sorry for the wrong inclusion of
-soc@kernel.org, it's noted for the next time.
+> > Following the example from tmp421, this could then be like this:
+>
+> Something like that, only we'll need something to distinguish
+> temperature sensors from other sensor types, eg voltage or current.
+> Maybe a "type" property. I'd suggest "sensor-type", but we have
+> non-sensor attributes such as fan count and pwm values which should
+> be covered as well. But it looks like a good start for a set of
+> generic sensor properties.
+Would it be acceptable to simply number the sensors and document which
+sensor has which number?
 
-Regards,
-Romain
+Something like this:
+0 = LTD
+1 = RTD1
+2 = RTD2
+3 = RTD3
+4 = FAN1
+5 = FAN2
+6 = FAN3
 
-Le mar. 14 sept. 2021 =C3=A0 17:26, Arnd Bergmann <arnd@arndb.de> a =C3=A9c=
-rit :
+Would we also want to be able to define PWMs? From what I can tell the
+driver does not support running individual pins in GPIO mode, right?
+So I'm not quite clear what "disabling PWM" would actually mean.
+
+Anyway, if we simply go by "sensor number", that would mean that we'd
+have different attributes depending on the sensor number. Would that
+be ok?
+
+Also, I'm sorry, I think I just realized that in "voltage mode" we
+don't seem to get a temperature reading. I hadn't actually looked
+through more of the datasheet except for the single MODE register
+before. But I don't think this makes a difference for what I proposed
+so far?
+
+> >         /* LTD */
+> >         input@0 {
+> >             reg = <0x0>;
+> >             status = "okay";
 >
-> On Tue, Sep 14, 2021 at 5:03 PM Daniel Palmer <daniel@0x0f.com> wrote:
-> > On Tue, 14 Sept 2021 at 22:54, Arnd Bergmann <arnd@arndb.de> wrote:
+> Not sure what the default is here ('okay' or 'disabled').
+> We'd also need to define what to do if there is no data
+> for a given sensor.
+I think I'd like to keep previous behavior unmodified. From what I can
+tell previous behavior was:
+- xTDs enabled by default
+- RTD modes unmodified, i.e. defaulting to whatever the HW comes up with
+
+The NCT7802Y can self-program from an EEPROM, so I assume we should
+honor the "power-up configuration" obtained from there? I.e. if no
+configuration is provided in the device tree, the driver should use
+whatever configuration the chip has when the driver is loaded.
+
+> >             label = "voltage mode";
 >
-> > > FWIW, I'd suggest merging the MAINTAINERS file change as a
-> > > bugfix for 5.15, it's generally better to do these as early as possib=
-le
-> > > to make sure any patches reach all the right people.
-> >
-> > That makes sense.
-> > Would it be possible for you to merge that single commit for me?
->
-> Done, merged into arm/fixes.
->
-> > Seems like that would be easier than me creating a fixes branch for a
-> > single commit, sending you a PR, finding out I still don't actually
-> > know how to do PR properly.. :)
-> > If it's a hassle I'll do the PR though.
->
-> If you only have one or two patches, sending that patch to soc@kernel.org
-> is usually the easiest way anyway, unless there is a reason to keep the
-> branch description separate from the patch description in the git log.
->
->       Arnd
+> That isn't the idea for "label", as "label" would be expected to
+> show up as tempX_label (and a label of "voltage mode" would be odd).
+> The label should indicate where the sensor is located on a board,
+> such as "inlet" or "outlet".
+Yes, absolutely. This was a bad example on my part. In my
+understanding "label" is just a string that we pass through.
+
+Oskar.
