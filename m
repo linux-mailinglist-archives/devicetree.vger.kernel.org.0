@@ -2,140 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99E8440A588
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 06:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F352A40A5E5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 07:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233328AbhINEqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 00:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43762 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232547AbhINEqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 00:46:01 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7209EC061574
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 21:44:44 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id y13so25406750ybi.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 21:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1r0TZ84blCBesuKiFn+H2dregrw6ABXsbkmKzg/nQu0=;
-        b=c2riprLKxlL27Yyb+7k/Vq2jY0mItg4VJfw5jDxlGCjxtTeG3KWmbBtziHwcvjK0s3
-         aWwZtlOjIMDctAYMxHSV9FM3XQrlNRH57/TGW+G31PD7pATUU5GsjIymcuvgVmTVi8Re
-         YsXewenPVW0hQXKlfqwLoVkITw/NCWFL4eqvWAxm79ZWMBjCbjfLLM5ZcbXWITR+1RFK
-         fMBA58TjwtqITsLD1tggkyfad4+bJ2ozO9bSgQdF+HTSW7gP9ZRl4pymd+56Q13uMlks
-         lJIzhn+3c8uFhhcLKo9NlUzP2e3VScbxfs/BDO9AwOVuHrty/thdLbN/tlBK7zYCOYyk
-         QCSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1r0TZ84blCBesuKiFn+H2dregrw6ABXsbkmKzg/nQu0=;
-        b=HkWEC02M/umPzsSjhxgVPRp9/eOtzQlIYWYYg/ckTMeHopR42nhj0iZvCNyIUjbb5/
-         PqfQxoj9BakNyHZArlTAY9r2ZAH8k/CQgheDYra0NebfL1OHZLm76DwiFXV1n2hrrg1g
-         CKgQsj2K8BKMzz5PAAEkAT6JFSGVchGn82tpBpAKZVxT5LMQc5sozCqiEVysGF5IgSGZ
-         bDDGcxVEkO1w7mOii7Z7wUJS1RJUUcC9Bl6gHu0LLViOiq7YYIWnGPINXh6EvJcHPHzB
-         7rz0QAV6hxsDUABvCjkNsWpNCYASAak/7VSPMMiSVNJVkQGyXvcoiRC6OCmb5r+XGDDs
-         Wjvw==
-X-Gm-Message-State: AOAM53079WtwNGdhPILnqA45m9BMV8YI/pcyuSGIeBa66Ne96DAMderB
-        k/LLFmcjUXkLsc66N6ArDhDKsIWFMMw6mqRAaT9pHw==
-X-Google-Smtp-Source: ABdhPJyC79flKvm/NTskhQXFVLb8a+3+9QFks4On6LuHo0ZaivwVolNpwIdPxosiSI1x0RiEuI3f7yDxY5v64Cy+D2M=
-X-Received: by 2002:a25:b94:: with SMTP id 142mr19497766ybl.508.1631594683564;
- Mon, 13 Sep 2021 21:44:43 -0700 (PDT)
+        id S239423AbhINFWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 01:22:40 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:51082 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232999AbhINFWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 01:22:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1631596883; x=1663132883;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=3soQi0wGvkkV/4g/5MUBAwvcwd+u3O8QELRrteHqQc8=;
+  b=UDFjkAElxXH2FbWLTbvPbvDRZCkWCa46jxgeBvkz6vVdIUvlOE0HzFSz
+   jsn9ieb7wl7aY18lyNlOlp5GPv2NzCFXEyO8p5GSWobImvlk3Jjc4K9B4
+   XfOsQZF6Vb5cj+T6sKBCdjXbuQWJEGPvDeJ7Si5SsfPXYRrgIfclO+FPM
+   BQ6/AxCuxtNWKW2YKBTJKGVj0kfMhxaFwBfdrjWX+26Yf1rGK3/vpWwTC
+   IMwhAJzF9YgFEcx6ZHl7zb7vVZ1j5MmzfVdlJuHe5BB58X/3vuvgEEel8
+   iyWBUEC7ztI0u+gMaCLwv6dOW57u20fLb9pcCgQvw6PV9Ul8Lj13jfdr7
+   g==;
+IronPort-SDR: YkxWtgnUTrET6EljaIWcNhy+lwz+6ODZyJ5iAQUcV7q1hBopV3j+kNnZRadiAyA2SHuS28BbxL
+ jTiVTelxQe3HfATgtuI1oejnh50HSioPER5bJHyUROxWC9S6FkVnqaonZsqWYJzjC9/nSe7TJj
+ GY6ChfiIM+ONNDM2LyOQh27oeoWVrWteKtwrmEOcp8jqesYaGHAQ3zo8lieEM4j3vlLp54XDHL
+ z8L5y6DXIvfaaKsSqEE6e/46h1Ppi4zWToWtPKaWvNsG3GW5Ybp6LuTlEoyg3eGgdH78bNYw3D
+ 027XiYq8vI56gAcVk65RQGMm
+X-IronPort-AV: E=Sophos;i="5.85,291,1624345200"; 
+   d="scan'208";a="143984321"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Sep 2021 22:21:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 13 Sep 2021 22:21:22 -0700
+Received: from CHE-LT-I66125LX.amer.actel.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 13 Sep 2021 22:21:17 -0700
+From:   Durai Manickam KR <durai.manickamkr@microchip.com>
+To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Hari.PrasathGE@microchip.com>
+CC:     Durai Manickam KR <durai.manickamkr@microchip.com>
+Subject: [PATCH] ARM: dts: at91-sama5d27_som1_ek: Added I2C bus recovery support
+Date:   Tue, 14 Sep 2021 10:51:13 +0530
+Message-ID: <20210914052113.85695-1-durai.manickamkr@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <CGME20210908215815eucas1p12d139145cbb80041ca0dce750eed04fb@eucas1p1.samsung.com>
- <20210908215806.2748361-1-saravanak@google.com> <75889ceb-343b-161f-0280-13df347e6628@samsung.com>
- <CAGETcx8peaew90SWiux=TyvuGgvTQOmO4BFALz7aj0Za5QdNFQ@mail.gmail.com>
-In-Reply-To: <CAGETcx8peaew90SWiux=TyvuGgvTQOmO4BFALz7aj0Za5QdNFQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 13 Sep 2021 21:44:07 -0700
-Message-ID: <CAGETcx-qDPETtsSPKyW+6i=c=x2LG-tcJ+zCu40jCa9FwA-bEA@mail.gmail.com>
-Subject: Re: [PATCH v1] RFC: of: property: fix phy-hanlde issue
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 5:54 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Thu, Sep 9, 2021 at 1:03 AM Marek Szyprowski
-> <m.szyprowski@samsung.com> wrote:
-> >
-> > Hi
-> >
-> > On 08.09.2021 23:58, Saravana Kannan wrote:
-> > > This is a test patch. I'll split it up into multiple commits and clean
-> > > it up once it's shown to help.
-> > >
-> > > Marek, can you please test this and let me know if it helps?
-> > I've just checked and nope, it doesn't help for my case. Ethernet is
-> > still not probed on Amlogic G12A/B SoC based boards. :(
->
-> Hi Marek,
->
-> Thanks for testing out the patch. Turns out the issue was a lot more
-> complicated than I thought. Thanks to a bunch of debug logs that Rob
-> provided off-list, I was able to root cause the actual issue.
->
-> Looks like the problem is cyclic dependency between the mdio-multiplexer and the
-> ethernet:
-> ethmac -(phy-handle)-> external_phy -(parent) ->
-> mdio-multiplexer -(mdio-bus-parent)-> mdio0 -(parent)-> ethmac
->
-> Relevant parts of the DT combined from multiple files and trimmed and
-> pasted below.
->
-> If fw_devlink sees a cycle, it'll stop enforcing ordering between all
-> the devices in the cycle since it can't figure out which one of the
-> dependencies isn't real. So, the confusing part was that, when Andrew
-> Lunn gave the patch for adding support for "mdio-bus-parent", that
-> should have allowed fw_devlink to see the cycle and stop enforcing the
-> dependencies. But that didn't happen because of a bug in fw_devlink
-> cycle handling (it worked for most cases, but not for this specific
-> ordering in DT). I'll send out a fix for that soon.
+SDA and SCL is configured as GPIO for I2C bus to recover during
+I2C bus malfunction.
 
-Here's the fix I promised:
-https://lore.kernel.org/lkml/20210914043928.4066136-2-saravanak@google.com/
+Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+---
+ arch/arm/boot/dts/at91-sama5d27_som1.dtsi   | 12 ++++++++++-
+ arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 23 +++++++++++++++++++--
+ 2 files changed, 32 insertions(+), 3 deletions(-)
 
-> That combined with
-> Andrew's "mdio-bus-parent" patch should fix things for you.
+diff --git a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+index e3251f3e3eaa..edce6bcf6cd6 100644
+--- a/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
++++ b/arch/arm/boot/dts/at91-sama5d27_som1.dtsi
+@@ -8,6 +8,7 @@
+  */
+ #include "sama5d2.dtsi"
+ #include "sama5d2-pinfunc.h"
++#include <dt-bindings/gpio/gpio.h>
+ 
+ / {
+ 	model = "Atmel SAMA5D27 SoM1";
+@@ -95,8 +96,11 @@ ethernet-phy@7 {
+ 
+ 			i2c0: i2c@f8028000 {
+ 				dmas = <0>, <0>;
+-				pinctrl-names = "default";
++				pinctrl-names = "default", "gpio";
+ 				pinctrl-0 = <&pinctrl_i2c0_default>;
++				pinctrl-1 = <&pinctrl_i2c0_gpio>;
++				sda-gpios = <&pioA PIN_PD21 GPIO_ACTIVE_HIGH>;
++				scl-gpios = <&pioA PIN_PD22 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 				status = "okay";
+ 
+ 				at24@50 {
+@@ -113,6 +117,12 @@ pinctrl_i2c0_default: i2c0_default {
+ 					bias-disable;
+ 				};
+ 
++				pinctrl_i2c0_gpio: i2c0_gpio {
++					pinmux = <PIN_PD21__GPIO>,
++						 <PIN_PD22__GPIO>;
++					bias-disable;
++				};
++
+ 				pinctrl_qspi1_default: qspi1_default {
+ 					sck_cs {
+ 						pinmux = <PIN_PB5__QSPI1_SCK>,
+diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+index 614999dcb990..0f10e05d6e23 100644
+--- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
++++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+@@ -131,8 +131,11 @@ i2c3: i2c@600 {
+ 					i2c-analog-filter;
+ 					i2c-digital-filter;
+ 					i2c-digital-filter-width-ns = <35>;
+-					pinctrl-names = "default";
++					pinctrl-names = "default", "gpio";
+ 					pinctrl-0 = <&pinctrl_mikrobus_i2c>;
++					pinctrl-1 = <&pinctrl_i2c3_gpio>;
++					sda-gpios = <&pioA PIN_PA24 GPIO_ACTIVE_HIGH>;
++					scl-gpios = <&pioA PIN_PA23 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 					status = "okay";
+ 				};
+ 			};
+@@ -216,8 +219,11 @@ i2c1: i2c@fc028000 {
+ 				i2c-analog-filter;
+ 				i2c-digital-filter;
+ 				i2c-digital-filter-width-ns = <35>;
+-				pinctrl-names = "default";
++				pinctrl-names = "default", "gpio";
+ 				pinctrl-0 = <&pinctrl_i2c1_default>;
++				pinctrl-1 = <&pinctrl_i2c1_gpio>;
++				sda-gpios = <&pioA PIN_PD4 GPIO_ACTIVE_HIGH>;
++				scl-gpios = <&pioA PIN_PD5 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ 				status = "okay";
+ 			};
+ 
+@@ -253,6 +259,13 @@ pinctrl_i2c1_default: i2c1_default {
+ 					bias-disable;
+ 				};
+ 
++				pinctrl_i2c1_gpio: i2c1_gpio {
++                                        pinmux = <PIN_PD4__GPIO>,
++                                                 <PIN_PD5__GPIO>;
++                                        bias-disable;
++                                };
++
++
+ 				pinctrl_isc_base: isc_base {
+ 					pinmux = <PIN_PC21__ISC_PCK>,
+ 						 <PIN_PC22__ISC_VSYNC>,
+@@ -442,6 +455,12 @@ pinctrl_mikrobus_i2c: mikrobus1_i2c {
+ 					bias-disable;
+ 				};
+ 
++				pinctrl_i2c3_gpio: i2c3_gpio {
++					pinmux = <PIN_PA24__GPIO>,
++						 <PIN_PA23__GPIO>;
++					bias-disable;
++				};
++
+ 				pinctrl_flx4_default: flx4_uart_default {
+ 					pinmux = <PIN_PC28__FLEXCOM4_IO0>,
+ 						 <PIN_PC29__FLEXCOM4_IO1>,
+-- 
+2.25.1
 
-Fairly certain the fix above and Andrew's patch should fix it for you
-if you want to test it. Rob already verified a very similar patch for me.
-
--Saravana
-
-> But I
-> think I'll revert the phy-handle patch for other reasons (I'll explain
-> that in the patch that reverts it).
->
->
-> Thanks,
-> Saravana
->
-> ethmac: ethernet@ff3f0000 {
->     compatible = "amlogic,meson-g12a-dwmac"
->
->     phy-handle = <&external_phy>;
->     mdio0: mdio {
->         compatible = "snps,dwmac-mdio";
->     }
-> };
->
-> mdio-multiplexer {
->     mdio-bus-parent = <&mdio0>;
->
->     ext_mdio: mdio@0 {
->         /* no compatible prop */
->         external_phy: ethernet-phy@0 {
->             /* no compatible prop */
->         }
->     }
-> }
->
-> -Saravana
