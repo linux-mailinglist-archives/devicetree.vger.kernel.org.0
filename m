@@ -2,173 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9061C40A376
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 04:18:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C1940A3DD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 04:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238465AbhINCTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 22:19:37 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:52400 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S238631AbhINCTH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 22:19:07 -0400
-X-UUID: c8607808247b4488a4eaf985649cad4c-20210914
-X-UUID: c8607808247b4488a4eaf985649cad4c-20210914
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1419661368; Tue, 14 Sep 2021 10:17:48 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 14 Sep 2021 10:17:46 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 14 Sep 2021 10:17:46 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v3 24/24] clk: mediatek: Add MT8195 apusys clock support
-Date:   Tue, 14 Sep 2021 10:16:33 +0800
-Message-ID: <20210914021633.26377-25-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210914021633.26377-1-chun-jie.chen@mediatek.com>
-References: <20210914021633.26377-1-chun-jie.chen@mediatek.com>
+        id S234374AbhINCw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 22:52:28 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:59683 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237867AbhINCw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Sep 2021 22:52:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1631587871;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=OmTulBs9q+vbNMJfsRmajckF/MOURKwD1JqRZVK9QMw=;
+        b=QUAUmA1P6T/r8nce37kRwK527Rjfcj34L+usRSJtdXdeq2L8n5OoH6QGmWIbmX4HJPPc7k
+        3gbAeCeHa1ApEB0QZnxIHo4lg0JSc7Z0ppQ0ymn9CAEO/27yu8sDOMPMtHD8pJVdafwGhH
+        msL9SCw0+LbiNlL2faG7GAhJxb+7dSE=
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com
+ [209.85.208.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-399-qvq_k7SPPn6qvixB4UQm4Q-1; Mon, 13 Sep 2021 22:51:09 -0400
+X-MC-Unique: qvq_k7SPPn6qvixB4UQm4Q-1
+Received: by mail-lj1-f199.google.com with SMTP id d19-20020a2e8913000000b001c2cf57d9b7so5146515lji.16
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 19:51:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OmTulBs9q+vbNMJfsRmajckF/MOURKwD1JqRZVK9QMw=;
+        b=DqDNLR6Mc1YDq1s2IDu0bkCw6wGkZGlkm8p2Z9C8an9FQqyPOap3dzeWPkBKgJPEI/
+         s6FdfQoqhaVc4eUz2vqSUja0rPImb2V2zMoaLxl5NxHHD3PeIi+KJUthYoNZ1iPZez77
+         lLS6KQyrEmPA2bGMHzuPd1lYe59bFBlDZg9OidXFeOSwg/oVVjAI14kmdoQFgWY3t22G
+         05Avl6gS2qvBdPBAixyxlFyYZ+Yh7mGKzTCax5Mp5Y6sp3NoYc42SNywbALtMiDVPnKn
+         xGBTj8l9WEPgyjl8K1Gb2SBXwPKB989hxIAPHTZp/inWpOhgeDDXSyUPw+GckSpw/SNM
+         09zA==
+X-Gm-Message-State: AOAM533bsly/UPpMkLBE+ksOLNeFLHYwUPUXAa7In5pIS4HhJegvl5sn
+        y1USO6tisG9XBfsDrpOmGR92ichGrwB7QNVUUa2Az9RvFGW54tdOTGnElYosAYi6LpawA986FQ2
+        lSU2TIcJzk4tdL2jJ5S88N0+8LKB2WAR8CsYx5w==
+X-Received: by 2002:a05:651c:b09:: with SMTP id b9mr13170736ljr.307.1631587868061;
+        Mon, 13 Sep 2021 19:51:08 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyWV5sVHDiv+fgIFmhN9p5nU2mmIjZkCH4nqdLdqeo+9oSfLJ5OsAZxljqxcHXz1azMI0JJSKQuMLXiwLN5i50=
+X-Received: by 2002:a05:651c:b09:: with SMTP id b9mr13170716ljr.307.1631587867859;
+ Mon, 13 Sep 2021 19:51:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210913104640.85839-1-mst@redhat.com>
+In-Reply-To: <20210913104640.85839-1-mst@redhat.com>
+From:   Jason Wang <jasowang@redhat.com>
+Date:   Tue, 14 Sep 2021 10:50:56 +0800
+Message-ID: <CACGkMEsXm+v14r=+ALCsxe82+Ht8dUS9_1y3YvD-kvKraAFUoQ@mail.gmail.com>
+Subject: Re: [PATCH] virtio: don't fail on !of_device_is_compatible
+To:     "Michael S. Tsirkin" <mst@redhat.com>
+Cc:     Alexey Kardashevskiy <aik@ozlabs.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        virtualization <virtualization@lists.linux-foundation.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT8195 apusys clock controller which provides PLLs
-in AI processor Unit.
+On Mon, Sep 13, 2021 at 6:47 PM Michael S. Tsirkin <mst@redhat.com> wrote:
+>
+> A recent change checking of_device_is_compatible on probe broke some
+> powerpc/pseries setups. Apparently there virtio devices do not have a
+> "compatible" property - they are matched by PCI vendor/device ids.
+>
+> Let's just skip of_node setup but proceed with initialization like we
+> did previously.
+>
+> Fixes: 694a1116b405 ("virtio: Bind virtio device to device-tree node")
+> Reported-by: Alexey Kardashevskiy <aik@ozlabs.ru>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Viresh Kumar <viresh.kumar@linaro.org>
+> Signed-off-by: Michael S. Tsirkin <mst@redhat.com>
+> ---
+>
+> Arnd could you help review this pls? Viresh is on vacation.
+>
+>  drivers/virtio/virtio.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/virtio/virtio.c b/drivers/virtio/virtio.c
+> index c46cc1fbc7ae..19a70a2361b4 100644
+> --- a/drivers/virtio/virtio.c
+> +++ b/drivers/virtio/virtio.c
+> @@ -347,8 +347,13 @@ static int virtio_device_of_init(struct virtio_device *dev)
+>         ret = snprintf(compat, sizeof(compat), "virtio,device%x", dev->id.device);
+>         BUG_ON(ret >= sizeof(compat));
+>
+> +       /*
+> +        * On powerpc/pseries virtio devices are PCI devices so PCI
+> +        * vendor/device ids play the role of the "compatible" property.
+> +        * Simply don't init of_node in this case.
+> +        */
+>         if (!of_device_is_compatible(np, compat)) {
+> -               ret = -EINVAL;
+> +               ret = 0;
+>                 goto out;
+>         }
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
----
- drivers/clk/mediatek/Makefile                |  3 +-
- drivers/clk/mediatek/clk-mt8195-apusys_pll.c | 92 ++++++++++++++++++++
- 2 files changed, 94 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/mediatek/clk-mt8195-apusys_pll.c
+Acked-by: Jason Wang <jasowang@redhat.com>
 
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index 3c602af49c0a..dc96038a0155 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o
- 				   clk-mt8195-ipe.o clk-mt8195-mfg.o clk-mt8195-scp_adsp.o \
- 				   clk-mt8195-vdec.o clk-mt8195-vdo0.o clk-mt8195-vdo1.o \
- 				   clk-mt8195-venc.o clk-mt8195-vpp0.o clk-mt8195-vpp1.o \
--				   clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o
-+				   clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o \
-+				   clk-mt8195-apusys_pll.o
- obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
- obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt8195-apusys_pll.c b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-new file mode 100644
-index 000000000000..f1c84186346e
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-@@ -0,0 +1,92 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (c) 2021 MediaTek Inc.
-+// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+
-+#include "clk-mtk.h"
-+
-+#include <dt-bindings/clock/mt8195-clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#define MT8195_PLL_FMAX		(3800UL * MHZ)
-+#define MT8195_PLL_FMIN		(1500UL * MHZ)
-+#define MT8195_INTEGER_BITS	(8)
-+#define MT8195_PCW_BITS		(22)
-+#define MT8195_POSDIV_SHIFT	(24)
-+#define MT8195_PLL_EN_BIT	(0)
-+#define MT8195_PCW_SHIFT	(0)
-+
-+/*
-+ * The "en_reg" and "pcw_chg_reg" fields are standard offset register compared
-+ * with "reg" field, so set zero to imply it.
-+ * No tuner control in apu pll, so set "tuner_XXX" as zero to imply it.
-+ * No rst or post divider enable in apu pll, so set "rst_bar_mask" and "en_mask"
-+ * as zero to imply it.
-+ */
-+#define PLL(_id, _name, _reg, _pwr_reg, _pd_reg, _pcw_reg) {		\
-+		.id = _id,						\
-+		.name = _name,						\
-+		.reg = _reg,						\
-+		.pwr_reg = _pwr_reg,					\
-+		.en_mask = 0,						\
-+		.flags = 0,						\
-+		.rst_bar_mask = 0,					\
-+		.fmax = MT8195_PLL_FMAX,				\
-+		.fmin = MT8195_PLL_FMIN,				\
-+		.pcwbits = MT8195_PCW_BITS,				\
-+		.pcwibits = MT8195_INTEGER_BITS,			\
-+		.pd_reg = _pd_reg,					\
-+		.pd_shift = MT8195_POSDIV_SHIFT,			\
-+		.tuner_reg = 0,						\
-+		.tuner_en_reg = 0,					\
-+		.tuner_en_bit = 0,					\
-+		.pcw_reg = _pcw_reg,					\
-+		.pcw_shift = MT8195_PCW_SHIFT,				\
-+		.pcw_chg_reg = 0,					\
-+		.en_reg = 0,						\
-+		.pll_en_bit = MT8195_PLL_EN_BIT,			\
-+	}
-+
-+static const struct mtk_pll_data apusys_plls[] = {
-+	PLL(CLK_APUSYS_PLL_APUPLL, "apusys_pll_apupll", 0x008, 0x014, 0x00c, 0x00c),
-+	PLL(CLK_APUSYS_PLL_NPUPLL, "apusys_pll_npupll", 0x018, 0x024, 0x01c, 0x01c),
-+	PLL(CLK_APUSYS_PLL_APUPLL1, "apusys_pll_apupll1", 0x028, 0x034, 0x02c, 0x02c),
-+	PLL(CLK_APUSYS_PLL_APUPLL2, "apusys_pll_apupll2", 0x038, 0x044, 0x03c, 0x03c),
-+};
-+
-+static int clk_mt8195_apusys_pll_probe(struct platform_device *pdev)
-+{
-+	struct clk_onecell_data *clk_data;
-+	struct device_node *node = pdev->dev.of_node;
-+	int r;
-+
-+	clk_data = mtk_alloc_clk_data(CLK_APUSYS_PLL_NR_CLK);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	mtk_clk_register_plls(node, apusys_plls, ARRAY_SIZE(apusys_plls), clk_data);
-+	r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-+	if (r)
-+		goto free_apusys_pll_data;
-+
-+	return r;
-+
-+free_apusys_pll_data:
-+	mtk_free_clk_data(clk_data);
-+	return r;
-+}
-+
-+static const struct of_device_id of_match_clk_mt8195_apusys_pll[] = {
-+	{ .compatible = "mediatek,mt8195-apusys_pll", },
-+	{}
-+};
-+
-+static struct platform_driver clk_mt8195_apusys_pll_drv = {
-+	.probe = clk_mt8195_apusys_pll_probe,
-+	.driver = {
-+		.name = "clk-mt8195-apusys_pll",
-+		.of_match_table = of_match_clk_mt8195_apusys_pll,
-+	},
-+};
-+builtin_platform_driver(clk_mt8195_apusys_pll_drv);
--- 
-2.18.0
+>
+> --
+> MST
+>
 
