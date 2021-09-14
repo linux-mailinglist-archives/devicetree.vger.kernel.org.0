@@ -2,92 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFAD040A9BD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 10:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB51A40AA1D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 11:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbhINIx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 04:53:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbhINIx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 04:53:28 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3744BC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:52:11 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mQ4Ai-00077S-RI; Tue, 14 Sep 2021 10:52:08 +0200
-Message-ID: <2dc72116ec935a5a5d7a1a176868b7af7ff3227c.camel@pengutronix.de>
-Subject: Re: [PATCH v2] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
- vqmmc-supply node
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Heiko Thiery <heiko.thiery@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Date:   Tue, 14 Sep 2021 10:52:07 +0200
-In-Reply-To: <79fb60ea9a002ea553a92ea08b28b866@walle.cc>
-References: <20210914072627.24173-1-heiko.thiery@gmail.com>
-         <449f718706fd5af03190bdda986de37aa8fa14e3.camel@pengutronix.de>
-         <79fb60ea9a002ea553a92ea08b28b866@walle.cc>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S231324AbhINJFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 05:05:01 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40280 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231202AbhINJFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 05:05:00 -0400
+X-UUID: 96d951a6298a4e7e814c7034cab63dd9-20210914
+X-UUID: 96d951a6298a4e7e814c7034cab63dd9-20210914
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 713890747; Tue, 14 Sep 2021 17:03:41 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 14 Sep 2021 17:03:39 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 14 Sep 2021 17:03:40 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v12 0/5] Add SPMI support for Mediatek SoC IC
+Date:   Tue, 14 Sep 2021 17:03:33 +0800
+Message-ID: <20210914090338.5945-1-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 14.09.2021 um 10:32 +0200 schrieb Michael Walle:
-> Hi Lucas,
-> 
-> Am 2021-09-14 10:20, schrieb Lucas Stach:
-> > Am Dienstag, dem 14.09.2021 um 09:26 +0200 schrieb Heiko Thiery:
-> > > The sw4 output (V_1V8_S0 voltage) from the PMIC is the main supply for
-> > > the 1V8 power domain. It is not only used as supply for the eMMC.
-> > > So this voltage can not be changed and is not allowed to switched off.
-> > > Therefore we do not want to provide this regulator to the SDHC driver 
-> > > to
-> > > control this voltage.
-> > > 
-> > This specific requirement should not be solved by removing the
-> > regulator connection from the SDHCI node, but instead by constraining
-> > the regulator voltage range to a fixed 3.3V and marking the regulator
-> > as always-on to reflect the hardware requirements in the DT.
-> > 
-> > Also if your eMMC vqmmc is a fixed 3.3V, I don't think you need the
-> > faster pinctrl states, as you can't use the faster pin states anyways,
-> > as they require a 1.8V signaling voltage.
-> 
-> Are you speaking of the 1.8V signalling modes? As far as I know the
-> IMX SDHC controller will switch the voltage by its own function pin.
-> That is, its not a GPIO.
+This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi driver.
+This series is based on Chun-Jie's patches[1].
 
-Ah, I mixed things up here. This is a fixed 1.8V supply, which is valid
-for eMMC, so the high-speed modes are available. My comment still
-applies that this should be fixed by constraining the regulator, not by
-removing the DT connection.
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=521655
 
-vqmmc is the MMC IO voltage, which can be switched either by the
-function pin, which gets toggled automatically when software does the
-voltage switch, or by explicitly switching the regulator voltage. eMMCs
-are a bit special as they can work with a fixed 1.8V IO supply and
-don't need to start with 3.3V.
+changes since v11:
+- rebase to v5.15-rc1.
 
-Regards,
-Lucas
+Henry Chen (1):
+  spmi: mediatek: Add support for MT8195
+
+Hsin-Hsiung Wang (4):
+  dt-bindings: spmi: modify the constraint 'maxItems' to 'minItems'
+  dt-bindings: spmi: document binding for the Mediatek SPMI controller
+  spmi: mediatek: Add support for MT6873/8192
+  arm64: dts: mt8192: add spmi node
+
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |  76 +++
+ .../devicetree/bindings/spmi/spmi.yaml        |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  17 +
+ drivers/spmi/Kconfig                          |  10 +
+ drivers/spmi/Makefile                         |   2 +
+ drivers/spmi/spmi-mtk-pmif.c                  | 547 ++++++++++++++++++
+ 6 files changed, 653 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+ create mode 100644 drivers/spmi/spmi-mtk-pmif.c
+
+
+base-commit: 6880fa6c56601bb8ed59df6c30fd390cc5f6dd8f
+prerequisite-patch-id: 69871b871ab339881b50a2d6988173050b6c7a4f
+prerequisite-patch-id: 4f5900b98a0c7cbe62694f2477a6cb410187714b
+-- 
+2.18.0
 
