@@ -2,139 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA0B40A727
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 09:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3506440A74F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 09:24:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240644AbhINHNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 03:13:31 -0400
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:44409 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240629AbhINHNa (ORCPT
+        id S240697AbhINH0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 03:26:08 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:36244
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230108AbhINH0H (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 03:13:30 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id BA352320099A;
-        Tue, 14 Sep 2021 03:12:11 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Tue, 14 Sep 2021 03:12:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=Fc6wkN2zuzHVhgeAS+AnQDchtXL
-        n7np9D/B8joAceZA=; b=1HvlhRvHiV1DncHz2xFtaIt2nDYnbvpDPm6K/sOT16N
-        RBN5exLyHncGrjA/W57eHssYlCIerkvUjM21YO0EyjSDJHrThrhTyZmgOLiirgC/
-        fU19f0sp9SKzi0TOwemApTPPfflen4lhiomFMhyGM4b8lbCg99T/sehPlA1lYIUt
-        vefa8K54tg2efJbxObqoCqZMAMPrt2BicMoI0fwMo+ss4n1/TYKx2LrtU0qpJCCY
-        EULysB4hbiG1nnMN2CJU6ifmTYjYEv7bzZE1GKWlzW4sLp324THsUoLqxCrPVfTo
-        6FFeXr0je2FvCcsV8BEPzUQMxpy2bNEj1lMcg0cZkMw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Fc6wkN
-        2zuzHVhgeAS+AnQDchtXLn7np9D/B8joAceZA=; b=Ih6IbOoGjTZIl/40almB8r
-        4vQzgO+djCZmBMdailQZCMxlh4y2MnmOE7uSKexuqLeiPeI5zH0VDPAQNq8sEPUY
-        XKSr8q0ubhADRqmyrPk1udmYOAuwluTGyMDEYM5ms3pl84imj4qdB+NjmH2vrjoc
-        S5Mhmv52SzQPKNv4JzF7wuof/nNt66hL7FsCG3ewjJgbM6+LZ1KNwXrWQmxkjfOQ
-        zJHQrYCr6upvUkog1qJ6QB/4tF70D7JTnAagvY9Vi84GCBzABW6l30TjluQiGJu7
-        AUeVpMFHdtnMX09gaaqPKYrdpb0JH1vu3NwR/U1Cu/3zaooxhqNURZMyhPtXv8gA
-        ==
-X-ME-Sender: <xms:SktAYRQweFanL_37CSagnj_I6_pEb6xXeZrRZy9Zkk51PYIEFRlP1A>
-    <xme:SktAYayMxL47ubk8OjyM-XcOaFLAQl_jhTAGbXC8JKkcEAOQS2J5jkYliSetzcphe
-    tgL90ZJ3EyvvVuQsxU>
-X-ME-Received: <xmr:SktAYW3FAp5pZ6QuzwG725OTGoFndYGbwv5WAyikqyqw8WZNsb25xvGEQXX9OAQMLVaiWayFzzlRrmli2-nkiIKIO1HUjhjdChbT>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudegkedguddugecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:SktAYZBp7Y_IMMc_4SyaSlY6qmP0mbrRkUVqt9myWNOs5CaLnog8hw>
-    <xmx:SktAYagW8QG44DysNakVzwQqS0mVj0UeNp3Jx8gtF8AQxr7tZjkeaw>
-    <xmx:SktAYdoxyIHN3s9jrSaVuU02wwQYhIzqsRlj9wHi-LOFaVQnCJvEew>
-    <xmx:S0tAYeiZWil4Rh_KJK-FokTyfSBBOc58Rh0zi5wBaHSmCPX1czXcSA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 14 Sep 2021 03:12:10 -0400 (EDT)
-Date:   Tue, 14 Sep 2021 09:12:08 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 29/52] dt-bindings: mfd: Convert X-Powers AXP binding
- to a schema
-Message-ID: <20210914071208.7xalrr2qskzdncgs@gilmour>
-References: <20210901091852.479202-1-maxime@cerno.tech>
- <20210901091852.479202-30-maxime@cerno.tech>
- <YTJ7Nf9s1fr3kJny@robh.at.kernel.org>
- <YTXZIn7d5yrRcO0o@google.com>
+        Tue, 14 Sep 2021 03:26:07 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2CC384019C
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 07:24:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1631604290;
+        bh=4983Sfp485zuGKC0ImKtxBapf0kX8m2fzxgiCI1l5VQ=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=qqJtCJWSIUAevVqEQZ58Cq9CII7YjkGPxVYlCb9V71knxS97HNwa5fYNTfgAY/uMx
+         luL1R/YKa5193vZvst83kT7eHU6NU627mmNNTiAoVOSTEytHurot9P8uOmKsNKWaNT
+         +9xQpvK01ai2tKDHphdxoOwgU8QIEYSsfK1rIwR15B93+NVOqD9+/nTCDsghZ95BCC
+         8UeetpiCi3LGUpDRcjH9v+BGfjWas43qK1bENbOZ4bT3hkxMARSi4W0ZgWi02f3sXw
+         6bR86KZ8oH867y64hN9OCeGcrhM4IcQPE10H0xlPBoFWWuRpHzDkU/WtwIaE7rh+i3
+         dN3jQB4H4r7Hw==
+Received: by mail-wr1-f71.google.com with SMTP id z1-20020adfec81000000b0015b085dbde3so3594482wrn.14
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 00:24:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=4983Sfp485zuGKC0ImKtxBapf0kX8m2fzxgiCI1l5VQ=;
+        b=BQ0SIEQ+Ml/mgyyuOUFIhJR5NybQMVTABHdr9sXTjIIXkHiU3hwKMZmYJED4d0zlIZ
+         E6c5p6up+ZVWhJJmyy2lqUUK9LgspObeipCwnSCqZuWMozvhVt6Ya1kYAeBU8i/3zsMs
+         y0qtRBaU7fHImo/z9Q9tBxQictrYo/p4cOGPFxfX/IdB4jmhncvJaO/hZWvXe0xysEnd
+         ARPo/OnDDCE2v+uh/xbKtpg3Ka9ovICR8+33xLGw2NqjP3lOcNTC6UhwpWm5MmcTuymk
+         XXp/CWYFjHqzjvhaymx7zxfkFgrHaf+KsieKQu7SYlAAXFT772RvcYJxsnNBSGwQxHcQ
+         4vlA==
+X-Gm-Message-State: AOAM530wvHHmOdudaIr8zpRSc/TCPOHoHGcjuAVi+E8FuAZUwF7ng3Oh
+        dw8LJZlCC+vgGBQOoTpxrmZtRzUdCpyHjhbvJe9OVODDUPGtxqWjCyeOzQKQuyvvkdSPl1Hdv1v
+        oILIsF0N1VgH05MI/rpfYcrWTFFXdgiNm1Cl7a5o=
+X-Received: by 2002:a5d:6a8f:: with SMTP id s15mr12285068wru.15.1631604289822;
+        Tue, 14 Sep 2021 00:24:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx+Mz4fzrDvBl6O4ft7ymJcQ1n96FBpgww76aw4z7k8DvFWFMiqtByGcTnNnCjUrA24F2YULw==
+X-Received: by 2002:a5d:6a8f:: with SMTP id s15mr12285059wru.15.1631604289673;
+        Tue, 14 Sep 2021 00:24:49 -0700 (PDT)
+Received: from [192.168.3.211] (lk.84.20.244.219.dc.cable.static.lj-kabel.net. [84.20.244.219])
+        by smtp.gmail.com with ESMTPSA id m3sm12473012wrg.45.2021.09.14.00.24.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Sep 2021 00:24:49 -0700 (PDT)
+Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, bartosz.dudziak@snejp.pl,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210911232707.259615-1-luca@z3ntu.xyz>
+ <20210911232707.259615-7-luca@z3ntu.xyz>
+ <9942f964-442e-e782-3926-6d7d1123418a@canonical.com>
+ <5220943.AHGTne7y6d@g550jk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <4f415ca1-6527-5667-01f2-9676f565d670@canonical.com>
+Date:   Tue, 14 Sep 2021 09:24:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="i2ynvafdmliqfxzt"
-Content-Disposition: inline
-In-Reply-To: <YTXZIn7d5yrRcO0o@google.com>
+In-Reply-To: <5220943.AHGTne7y6d@g550jk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 13/09/2021 21:14, Luca Weiss wrote:
+> Hi Krzysztof,
+> 
+> On Montag, 13. September 2021 10:49:43 CEST Krzysztof Kozlowski wrote:
+>> On 12/09/2021 01:27, Luca Weiss wrote:
+>>> LG Electronics is a part of the LG Corporation and produces, amongst
+>>> other things, consumer electronics such as phones and smartwatches.
+>>
+>> Hi,
+>>
+>> Thanks for the patches.
+>>
+>> I think "lge" it's the same prefix as "lg". There is no sense in having
+>> multiple vendor prefixes just because company splits inside business
+>> units or subsidiaries. The same as with other conglomerates, e.g.
+>> Samsung - if we wanted to be specific, there will be 4-5 Samsung
+>> vendors... Not mentioning that company organisation is not always
+>> disclosed and can change.
+>>
+> 
+> I was mostly following qcom-msm8974-lge-nexus5-hammerhead as it's the other LG 
+> device tree I am aware of so I've picked lge instead of lg. Also worth noting 
+> that Google uses "LGE" in the Android device tree[1] or in the model name in 
+> the LG G Watch R kernel sources ("LGE APQ 8026v2 LENOK rev-1.0")
 
---i2ynvafdmliqfxzt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[1] Does not point to kernel tree. Downstream user could be a good
+argument to switch to lge, but then I would expect correcting other "lg"
+devices which are in fact made by LGE.
 
-On Mon, Sep 06, 2021 at 10:02:26AM +0100, Lee Jones wrote:
-> On Fri, 03 Sep 2021, Rob Herring wrote:
->=20
-> > On Wed, 01 Sep 2021 11:18:29 +0200, Maxime Ripard wrote:
-> > > The X-Powers AXP PMICs are supported by Linux thanks to its device tr=
-ee
-> > > binding.
-> > >=20
-> > > Now that we have the DT validation in place, let's convert the device
-> > > tree bindings for that driver over to a YAML schema.
-> > >=20
-> > > Cc: Chen-Yu Tsai <wens@csie.org>
-> > > Cc: Lee Jones <lee.jones@linaro.org>
-> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > >=20
-> > > ---
-> > >=20
-> > > Changes from v1:
-> > >   - Add GPIO example
-> > >   - Remove the limitation on regulator-ramp-delay
-> > > ---
-> > >  .../i2c/allwinner,sun6i-a31-p2wi.yaml         |   2 +-
-> > >  .../devicetree/bindings/mfd/axp20x.txt        | 273 ------------
-> > >  .../bindings/mfd/x-powers,axp152.yaml         | 400 ++++++++++++++++=
-++
-> > >  3 files changed, 401 insertions(+), 274 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/mfd/axp20x.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/x-powers,ax=
-p152.yaml
-> > >=20
-> >=20
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> >=20
-> > Note that the gpio child schema needs to be applied with this one.
->=20
-> Not sure I'm in possession of that.
+> 
+> I don't have a strong opinion either way so I'm fine with either.
+> 
+> If we decide to go with "lg" do we want to change the Nexus 5 devicetree 
+> (hammerhead) also, that one has the lge name in at least compatible and 
+> filename (I don't know how much of a breaking change that would be considered 
+> as).
 
-So, how do you want to merge that? Through the DT tree?
+We would have to add a new one and mark the old compatible as deprecated.
 
-Maxime
+> 
+>> We already have lg for several components, also made by LG Electronics.
+>> What about these?
+>>
+>> There is only one device with "lge", added back in 2016 without adding
+>> vendor prefix. I would propose to fix that one, instead of keeping
+>> duplicated "lg".
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Regards
+> Luca
+> 
+> [1] https://android.googlesource.com/device/lge/hammerhead/
+> 
+> 
+> 
 
---i2ynvafdmliqfxzt
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYUBLSAAKCRDj7w1vZxhR
-xTCnAP4nRFX+NUSYOSv7BPfHkL68rqzEZ48dqUeIShoa6czvdAEA6MH0HjZSMhEO
-qjLGTpN/RyUKJ4x0wfZdfoL0zzwBXQE=
-=d9F/
------END PGP SIGNATURE-----
-
---i2ynvafdmliqfxzt--
+Best regards,
+Krzysztof
