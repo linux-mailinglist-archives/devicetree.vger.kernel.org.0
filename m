@@ -2,59 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B76E40B401
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BDB140B40D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 18:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235048AbhINQAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 12:00:55 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:40944 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235098AbhINQAz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 12:00:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=yP9sqpmeviA1gb8gdGm9Zr+sde7rymb2vu5e6GQu/qg=; b=DDxkZfiV6LZzhfKWyqCXV3BhOw
-        QQgPt6wYz+nyhuYoBzaMdZICvs/MIrii8ETTiOfOOCa4wqAbXpitBrFSsmOgFusg/DHNyn8CqEhYg
-        PXARVojjKYadX+59MKV9KVTZMnAcLKo43wQQXWIzbEHdYDF4BBEJ6FDrtr+TZ8tgN2O8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mQAqN-006cRo-UL; Tue, 14 Sep 2021 17:59:35 +0200
-Date:   Tue, 14 Sep 2021 17:59:35 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org, maz@kernel.org,
-        tglx@linutronix.de, linux-arm-kernel@lists.infradead.org,
-        romain.perier@gmail.com
-Subject: Re: [PATCH 0/3] SigmaStar SSD20XD GPIO interrupt controller
-Message-ID: <YUDG58WfACd8GYf5@lunn.ch>
-References: <20210914100415.1549208-1-daniel@0x0f.com>
+        id S233926AbhINQCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 12:02:38 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:34697 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233857AbhINQCg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 12:02:36 -0400
+Received: by mail-oo1-f52.google.com with SMTP id g4-20020a4ab044000000b002900bf3b03fso4827327oon.1;
+        Tue, 14 Sep 2021 09:01:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cn+CaUamIV5ffSEiSxIWSxmoRy7kzAqNfsOsKH/+GQE=;
+        b=xptYCKqGbG3GIzbZp1zWEw9MxpGC5ECcz2S8bnlHcMjYmXASi8wuNWglYZHRQknsQC
+         lKqC3FV/mN4AuZbM+a2EdJpHIdNELGrplEB48Vk5Y9Vwd3MQPJxBkPLE2Vy4kjZEX2Fb
+         fpdWRIoDAZFc7iCFJj5RTddadhReC02Ao3wvHCjM2i/9bj+nj+T1cPh/ckCOzW/vPuoS
+         3peMdt3wTNdC32x8MRQdxc17aGv+ctzuEok3UXWBZdEiXQouiEHumw+b6nO019hrgCc0
+         IAGT4WxgZp56sQIZCuEzFZYCsGWeYDS0NvlvMSlLqXcGIpFIPCMJTsIcNzU+WahwFcr0
+         VtlQ==
+X-Gm-Message-State: AOAM530T5Fcni06SehQc/kAZz2Drr8VBpmyhFeGDJaSvrVRTsxjIb1n7
+        ycwtfJAR5EUF4PdPQmO+qw==
+X-Google-Smtp-Source: ABdhPJydrZcnWbcyYKEf8iOzboFIcQrfjb0myBlumYE/rSjF7jHXY0LUIuBgPpEAXCxHWNbxHZjqcw==
+X-Received: by 2002:a4a:a58e:: with SMTP id d14mr14800526oom.28.1631635278934;
+        Tue, 14 Sep 2021 09:01:18 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x4sm2757875ood.2.2021.09.14.09.01.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 09:01:17 -0700 (PDT)
+Received: (nullmailer pid 3475829 invoked by uid 1000);
+        Tue, 14 Sep 2021 16:01:16 -0000
+Date:   Tue, 14 Sep 2021 11:01:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     catalin.marinas@arm.com, devicetree@vger.kernel.org,
+        perex@perex.cz, kuninori.morimoto.gx@renesas.com, tiwai@suse.com,
+        lgirdwood@gmail.com, will@kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-tegra@vger.kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, broonie@kernel.org, sharadg@nvidia.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 04/13] ASoC: dt-bindings: tegra: Few more Tegra210
+ AHUB modules
+Message-ID: <YUDHTHU3GBaISmHw@robh.at.kernel.org>
+References: <1631551342-25469-1-git-send-email-spujar@nvidia.com>
+ <1631551342-25469-5-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210914100415.1549208-1-daniel@0x0f.com>
+In-Reply-To: <1631551342-25469-5-git-send-email-spujar@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 07:04:12PM +0900, Daniel Palmer wrote:
-> In new SigmaStar SoCs they have moved away from having a few
-> interrupt capable GPIOs and instead have chained yet another
-> interrupt controller in to provide interrupt support for
-> all of the GPIOs.
+On Mon, 13 Sep 2021 22:12:12 +0530, Sameer Pujar wrote:
+> This patch adds YAML schema for DT bindings of few AHUB modules.
+> These devices will be registered as ASoC components and bindings
+> will be used on Tegra210 and later chips. The bindings for below
+> mentioned modules are added:
 > 
-> I'm hardly an IRQ expert so I expect I've made a total
-> mess of this. No one else was going to write this driver
-> so I had a go.
+>  * SFC (Sampling Frequency Converter)
+>  * MVC (Master Volume Control)
+>  * AMX (Audio Multiplexer)
+>  * ADX (Audio Demultiplexer)
+>  * Mixer
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> ---
+>  .../bindings/sound/nvidia,tegra210-adx.yaml        | 76 ++++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-ahub.yaml       | 20 ++++++
+>  .../bindings/sound/nvidia,tegra210-amx.yaml        | 76 ++++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-mixer.yaml      | 74 +++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-mvc.yaml        | 76 ++++++++++++++++++++++
+>  .../bindings/sound/nvidia,tegra210-sfc.yaml        | 73 +++++++++++++++++++++
+>  6 files changed, 395 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-adx.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-amx.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mixer.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mvc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-sfc.yaml
+> 
 
-Hi Daniel
-
-How are the GPIOs mapped to the interrupts? Is it a simple 1:1?
-
-The GPIO core has some support for the GPIO drivers to be also
-interrupt controllers. So if this interrupt control is dedicated to
-GPIO, you would be better to make it part of the GPIO driver.
-
-      Andrew
+Reviewed-by: Rob Herring <robh@kernel.org>
