@@ -2,133 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D78F40B75E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:00:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3CD240B775
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231997AbhINTAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 15:00:50 -0400
-Received: from mga01.intel.com ([192.55.52.88]:44162 "EHLO mga01.intel.com"
+        id S231161AbhINTGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 15:06:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38264 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232391AbhINTAu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 15:00:50 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="244453667"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
-   d="scan'208";a="244453667"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2021 11:59:32 -0700
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
-   d="scan'208";a="544240275"
-Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost) ([10.251.216.6])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2021 11:59:26 -0700
-From:   Jani Nikula <jani.nikula@linux.intel.com>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "open list\:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 04/15] drm/edid: Use new encoded panel id style for quirks matching
-In-Reply-To: <CAD=FV=XgLcOBOOp9kgShE4+T8g8UZcO_Ff3hhAbGTyLkdE7HNA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210909210032.465570-1-dianders@chromium.org> <20210909135838.v4.4.I6103ce2b16e5e5a842b14c7022a034712b434609@changeid> <87ee9r10qw.fsf@intel.com> <CAD=FV=XgLcOBOOp9kgShE4+T8g8UZcO_Ff3hhAbGTyLkdE7HNA@mail.gmail.com>
-Date:   Tue, 14 Sep 2021 21:59:23 +0300
-Message-ID: <87y27zyodw.fsf@intel.com>
+        id S229728AbhINTGU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Sep 2021 15:06:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AB95B6113B;
+        Tue, 14 Sep 2021 19:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1631646303;
+        bh=S+WBtW6HNUgPMZLeWY7k0MAg6G4+RTj47Ww0A0vOLL4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=aW8H+3EnbpNtT0Q6jAuhJ2xACzDdXhpREproWljO3gmQoVZb8+tuCQTIpSkWydeUz
+         ll4DjX5fJGGPKqrvpgG4OpIeoQ/NMI9g8+6hQUhuPAu2RXE9n4kIUPYoLI7F4Munan
+         q5TwCHTqM7BAR5+avqQSgQD1yJaoLrOq83kXx3dEDcN+N9Ap8UZ8k/gtQBczWsNG38
+         9ay/nZ43qPC+9PKZ5Fz2Mnsbuo7XhnDFIeZdDjPLPllpuDEbcTSCVYeibBmEzkFB8m
+         pxq7g5gS/HsqJrEH4hD9HZi+dzrca46kPVBdnlYxtsDgvGY+uMmbxfoKbqrsPtrhGl
+         /DsJ8ahZ7fAhg==
+Date:   Tue, 14 Sep 2021 14:05:01 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        robh@kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
+        smohanad@codeaurora.org, bjorn.andersson@linaro.org,
+        sallenki@codeaurora.org, skananth@codeaurora.org,
+        vpernami@codeaurora.org, vbadigan@codeaurora.org
+Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
+Message-ID: <20210914190501.GA1445131@bjorn-Precision-5520>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210914080911.GA16774@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Sep 2021, Doug Anderson <dianders@chromium.org> wrote:
+On Tue, Sep 14, 2021 at 01:39:11PM +0530, Manivannan Sadhasivam wrote:
 > Hi,
->
-> On Tue, Sep 14, 2021 at 11:16 AM Jani Nikula
-> <jani.nikula@linux.intel.com> wrote:
->>
->> On Thu, 09 Sep 2021, Douglas Anderson <dianders@chromium.org> wrote:
->> > In the patch ("drm/edid: Allow the querying/working with the panel ID
->> > from the EDID") we introduced a different way of working with the
->> > panel ID stored in the EDID. Let's use this new way for the quirks
->> > code.
->> >
->> > Advantages of the new style:
->> > * Smaller data structure size. Saves 4 bytes per panel.
->> > * Iterate through quirks structure with just "==" instead of strncmp()
->> > * In-kernel storage is more similar to what's stored in the EDID
->> >   itself making it easier to grok that they are referring to the same
->> >   value.
->> >
->> > The quirk table itself is arguably a bit less readable in the new
->> > style but not a ton less and it feels like the above advantages make
->> > up for it.
->>
->> I suppose you could pass vendor as a string to EDID_QUIRK() to retain
->> better readability?
->
-> I would love to, but I couldn't figure out how to do this and have it
-> compile! Notably I need the compiler to be able to do math at compile
-> time to compute the final u32 to store in the init data. I don't think
-> the compiler can dereference strings (even constant strings) and do
-> math on the result at compile time.
+> 
+> On Thu, Jul 22, 2021 at 05:42:39PM +0530, Manivannan Sadhasivam wrote:
+> > Hello,
+> > 
+> > This series adds support for Qualcomm PCIe Endpoint controller found
+> > in platforms like SDX55. The Endpoint controller is based on the designware
+> > core with additional Qualcomm wrappers around the core.
+> > 
+> > The driver is added separately unlike other Designware based drivers that
+> > combine RC and EP in a single driver. This is done to avoid complexity and
+> > to maintain this driver autonomously.
+> > 
+> > The driver has been validated with an out of tree MHI function driver on
+> > SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+> 
+> Ping again! Do I need to resend this series on top of v5.15-rc1? I
+> thought this one could go in for v5.15 but...
 
-Ah, right.
+It's still "New" in patchwork:
 
->
-> I _think_ you could make it work with four-character codes (only
-> specifying 3 characters), AKA single-quoting something like 'AUO' but
-> I think four-character codes are not dealt with in a standard enough
-> way between compilers so they're not allowed in Linux.
->
-> If you like it better, I could do something like this:
->
-> #define ACR_CODE 'A', 'C', 'R'
-> #define AUO_CODE 'A', 'U', 'O'
-> ...
-> ...
->
-> ...then I could refer to the #defines...
+  https://patchwork.kernel.org/project/linux-pci/list/?series=519709
 
-Nah.
+so if it still applies cleanly on top of v5.15-rc1, you needn't post
+it again.
 
->
->
->> Just bikeshedding, really. ;)
->
-> I'll take this comment (without any formal tags) as:
->
-> * You've seen this patch (and the previous ones) and wouldn't object
-> to it merging.
->
-> * You're not planning on any deeper review / testing, so I shouldn't
-> wait for more stuff from you before merging. Please yell if this is
-> not the case. I'm happy to wait but I don't want to wait if no further
-> review is planned.
+If it requires any tweaks to apply on v5.15-rc1, please rebase it and
+post a v8.
 
-I have now reviewed the ones where my review is relevant, and certainly
-don't expect me to comment on the rest. ;)
-
-BR,
-Jani.
-
->
->
-> In general I'm still planning to give this series at least another
-> week for comments before merging. ${SUBJECT} patch also is the only
-> one lacking any type of Review / Ack tags so I'll see if I can find
-> someone to give it something before merging, too.
->
->
-> -Doug
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Bjorn
