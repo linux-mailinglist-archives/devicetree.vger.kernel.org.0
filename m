@@ -2,84 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED4A40A8CD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 10:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A69A40A8EC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 10:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbhINIHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 04:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60852 "EHLO
+        id S231553AbhINILh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 04:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbhINIGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 04:06:14 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B9F9C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:04:41 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id g14so11418192pfm.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:04:41 -0700 (PDT)
+        with ESMTP id S230262AbhINIL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 04:11:28 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78661C0613AF
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:09:20 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id w7so11970622pgk.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=mPxf8n4L3IhQim+FqxOgbXfL3jMltbQ5PguuhqlZwis=;
-        b=jXuhTz2cNKtJ3NPxnOg3cpQ0f/hkZoz0EZ9XWrpKu5pQMOAWGEhYgfINCwMnPHZ0lQ
-         YVdkKLJwwQgTDtl7sWrMut5/du/OFrbE3JAsL03JhFKa30Vxg2pTpiae18R1lCLfQWCn
-         V4K/admGlmXsBKbbVTd4LhrwNpRrLKcUdKOnPgURsSh9MOL1y7hvUU0gUJJVef49EY9E
-         Ae9xZQr2HvAWF8Ge0MleZYx5YBPG6pO0GpkJXQjpyz+xOo9B1TBWEqpTQSjLHFvdAqLf
-         2rPbKN7KucbU8Q3zmTODxbKU35eUVgKGWS5UksNYYRSyc8HzdgRvdwBoMYkSq61NFVqA
-         ZHGw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HORz+N9iPM3MBLFTrD2etygd1AQ7C3FwAZKQ2ef9vXA=;
+        b=hNqZp1dwfdFkEDBjv3xUXxcGBjBFOYQgKv9Fg+Lztu1zsRHrV3An6X4PLGSsbKhgOa
+         t9JlCxXjagpAmLziP/AL4bkyLre2pXearJ6vsOhr3a4OMeeE5IWFJItz28A/KEi4a3t8
+         mBpgnfsVbpl9pw9GSX02QXTV+i2OrSKCNJzSQLhyxVbOQSMnvydpM/9vsKsudJbutJt/
+         VlHtTVJtBzxB+XhxVk5T/zY1+eqmH4bBZobJzk0Ccqr9JCQQ/PGT4tbPOkPrXWRl3JCx
+         nFuZpm82/kf2CtsMtwOjplejstBJ5m09BzGpksPce+zrvVQFXeXb8WLPsb6c9Mn8XRYL
+         NIrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=mPxf8n4L3IhQim+FqxOgbXfL3jMltbQ5PguuhqlZwis=;
-        b=L5LlUB5sLXC7zG3/fBsCLuVXqGZzAneWYn+JexwTtB/TzICxXlmgOkOv02NvVDi0sO
-         WXb2IbIA+YJXEjNloNlsmhaJbYl96X2ry/HcsefGLBr21zeYtdGddCg0MTPmv2s0YUQg
-         tG3AB7a+jt/7CrHyB1n/Tp4Pr6eg/wYC+FLzGGwZO9JkD3GF6hxPx9MiRYj522cidgW/
-         qOm/X4leeA8HREERRXdtNwMIznVO90zSe5CztMeXWd8XsbxOTXqQmOiHxqStwVtEPheL
-         zrS78QkIWwFHclqjlY7Jz7UKSy+wMcGZctaWP/0pBa7VCTMg1BZ/4BWpyNslj4JQpVE0
-         b3dw==
-X-Gm-Message-State: AOAM530l5GrtN7/NoBTwPVGAJ2TvU9nZxmzEzizeRvcn8Igd6aG7xqGA
-        bN2TENJkZkPWRcC3MNn9zxgzbQ==
-X-Google-Smtp-Source: ABdhPJyBV4Xv+A6RpGj+/8WZTrDIvEBMuenzOA/XTxb+vQGguV8s6pAEMow9p4iiamqfR0koc1YENg==
-X-Received: by 2002:a65:6ab0:: with SMTP id x16mr14713986pgu.181.1631606681022;
-        Tue, 14 Sep 2021 01:04:41 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id y6sm9328396pfb.64.2021.09.14.01.04.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HORz+N9iPM3MBLFTrD2etygd1AQ7C3FwAZKQ2ef9vXA=;
+        b=Luzi57Mx0AeRTpCs6OlGwMVluSpVTHqEqX4iGoofZQt3SMIalvltjrUPLOd/VfxZn+
+         Qh0j7XJYlQkLR2YdeTqIQEo1UO3PaKJ3rsc/3fBqwg4XBhQc6wVK1deKQq/L6VG71Z5d
+         VC4M2SgFrEqMx3UBJ/mt/CeZva4u3kGqJbqe74lG0VWL9ex+AeS2N9NrwgWX5/NIbNiO
+         nxn6pifcNzy3LSpuKGckYRvdLTYeoTNxdmQXS8JZYYSqnHOvWppgx51bifF061UAuPuE
+         KbK9Kk8337lH7gauhUwVbzBtVFj8rPrjjE5WKeL2HY3+ZIPYbehcPp5EbDTp9qeA870m
+         Cvzw==
+X-Gm-Message-State: AOAM530HwXCSU1nohUGAqLxgtEXdrvdfsOLHI/BP2nX7Z2m7vcwPQgPM
+        TyYNJDG6H8a5STQTv7V6yuCF
+X-Google-Smtp-Source: ABdhPJyh/TNWx4PNfVhDrSi721PTkgySN/TIS/csuXWue6mCXR6CsUoAqZhV2TwTkxInYfdYoJMZGw==
+X-Received: by 2002:aa7:9f8a:0:b0:43c:39be:23fb with SMTP id z10-20020aa79f8a000000b0043c39be23fbmr3434984pfr.57.1631606959868;
+        Tue, 14 Sep 2021 01:09:19 -0700 (PDT)
+Received: from thinkpad ([2409:4072:6211:54eb:fe9c:efbb:2b75:a575])
+        by smtp.gmail.com with ESMTPSA id d5sm669016pjs.53.2021.09.14.01.09.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 01:04:40 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH] dt-bindings: mailbox: Update maintainer email for qcom apcs-kpss
-Date:   Tue, 14 Sep 2021 16:04:33 +0800
-Message-Id: <20210914080433.13499-1-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        Tue, 14 Sep 2021 01:09:19 -0700 (PDT)
+Date:   Tue, 14 Sep 2021 13:39:11 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        robh@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, smohanad@codeaurora.org,
+        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
+        skananth@codeaurora.org, vpernami@codeaurora.org,
+        vbadigan@codeaurora.org
+Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
+Message-ID: <20210914080911.GA16774@thinkpad>
+References: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sivaprakash's codeaurora.org email address bounces.  Before he comes
-back with his new email, fill Jassi's address in there.
+Hi,
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, Jul 22, 2021 at 05:42:39PM +0530, Manivannan Sadhasivam wrote:
+> Hello,
+> 
+> This series adds support for Qualcomm PCIe Endpoint controller found
+> in platforms like SDX55. The Endpoint controller is based on the designware
+> core with additional Qualcomm wrappers around the core.
+> 
+> The driver is added separately unlike other Designware based drivers that
+> combine RC and EP in a single driver. This is done to avoid complexity and
+> to maintain this driver autonomously.
+> 
+> The driver has been validated with an out of tree MHI function driver on
+> SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+> 
 
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index 6395281b0cec..371cf31f4154 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -11,7 +11,7 @@ description:
-   platforms.
- 
- maintainers:
--  - Sivaprakash Murugesan <sivaprak@codeaurora.org>
-+  - Jassi Brar <jassisinghbrar@gmail.com>
- 
- properties:
-   compatible:
--- 
-2.17.1
+Ping again! Do I need to resend this series on top of v5.15-rc1? I thought this
+one could go in for v5.15 but...
 
+Thanks,
+Mani
+
+> Thanks,
+> Mani
+> 
+> Changes in v7:
+> 
+> * Used existing naming convention for callback functions
+> * Used active low state for PERST# gpio
+> 
+> Changes in v6:
+> 
+> * Removed status property in DT and added reviewed tag from Rob
+> * Switched to _relaxed variants as suggested by Rob
+> 
+> Changes in v5:
+> 
+> * Removed the DBI register settings that are not needed
+> * Used the standard definitions available in pci_regs.h
+> * Added defines for all the register fields
+> * Removed the left over code from previous iteration
+> 
+> Changes in v4:
+> 
+> * Removed the active_config settings needed for IPA integration
+> * Switched to writel for couple of relaxed versions that sneaked in
+> 
+> Changes in v3:
+> 
+> * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
+> * Noticeable changes are:
+>   - Got rid of _relaxed calls and used readl/writel
+>   - Got rid of separate TCSR memory region and used syscon for getting the
+>     register offsets for Perst registers
+>   - Changed the wake gpio handling logic
+>   - Added remove() callback and removed "suppress_bind_attrs"
+>   - stop_link() callback now just disables PERST IRQ
+> * Added MMIO region and doorbell interrupt to the binding
+> * Added logic to write MMIO physicall address to MHI base address as it is
+>   for the function driver to work
+> 
+> Changes in v2:
+> 
+> * Addressed the comments from Rob on bindings patch
+> * Modified the driver as per binding change
+> * Fixed the warnings reported by Kbuild bot
+> * Removed the PERST# "enable_irq" call from probe()
+> 
+> Manivannan Sadhasivam (3):
+>   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
+>     controller
+>   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
+>   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
+> 
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
+>  MAINTAINERS                                   |  10 +-
+>  drivers/pci/controller/dwc/Kconfig            |  10 +
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
+>  5 files changed, 888 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+>  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
+> 
+> -- 
+> 2.25.1
+> 
