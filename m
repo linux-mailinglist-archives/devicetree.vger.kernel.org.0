@@ -2,267 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D7440AC6D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 13:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4414240AC6E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 13:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231948AbhINLap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 07:30:45 -0400
-Received: from mail-vi1eur05on2085.outbound.protection.outlook.com ([40.107.21.85]:21248
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        id S231980AbhINLbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 07:31:38 -0400
+Received: from mail-eopbgr80048.outbound.protection.outlook.com ([40.107.8.48]:58709
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231941AbhINLam (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 07:30:42 -0400
+        id S231941AbhINLbh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Sep 2021 07:31:37 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U/y9Wq6vE+PDVLFfNuamjG5pcDmkb99gP0Whxm2Y1jEzbezyADKf5u+8ED5FH7iyEHENkqInvWelrJhN8+Xz9UJArY2FE4n+eFc0bHwbyeuxpBnAOT8jWggll/S4PO/G0MdLo+QgJ83OH/AZhrp0IY37uIQR71QUrxVleiIsDjyZACQaSnUybYD5cV13ZvR0CyYuwBwloTXwOQyP9HDkjiABBJXPksX5lvp2L1YjVYXX13p3UwLJZdS5y1LuxSjy9QmKw+6Tsehe9ukIrcTI/AVRzkKQJJQWeLWUI6ixeXGwWGxN0lKzaAOPNh8K4rcDRBZyddCiWj4IEjtfqj6MLA==
+ b=TneJZCTsnVxmd4uv1JU4LdWThAud6SIrd4HwAHdHFu9m4cGf6d7UctHtjd5eUFrzqG5WbsDWbu7JdtGQIZtTgTSk3lzQ94ixI5DwwUK0I9sQS412eanyUwh7a4qjmcQDsk5sRBVbs5PMkORKHY29zKOj2JP0ZnXUto5HZX1ilpULoukoZpE+ZIfyKExkh4xTNxypUAPN6PbpYDdi2SSSx76o2YAFaYooWPToelBApW8Bg7vMr6xH7TNRiwzY8GWxNboslzU6eVinXrhBCE+nESa1aY58FAne8/T/U1Et7/4kPfH5xH2cvd3sJZ0k2uLJ5veGafHAlZgKVyYRqPYj0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
- bh=9lA+U4uNFx+UrM2W0SIsFIvI9G2E11uxkU4Hv7xWId4=;
- b=VK3ZcMQccFWQL4Md6a8GVpC+NE+mIM9d4JTXRlmr8gqtBYwKE/bGmzzOVe8xAqIMvFF3IDSgDOuIQI5NG/ZAb3ZMVhgjY4lUoTfK/l12hfVaeNYNsz5vKQ9iROkNGiRi+g+xq9X5HbPpNGFdcKVJzBSF4SLeqqoI17jPKsbDUegA1FebO4ZaU0YKz5EGnL+Zvq9QbGx34JuPAO/77bkHFnrmrC2IR9zE5VdSui4A5HhLL4H6BpWgPtzOnLg6w2Ve+DuxvJipevoDoiEwGvueEnDs8dU9wddIpLdXHU+Abj9v7o8SKo2DIvnV8aQCN46oRGL+il2j4jq4EPxjZuDD5Q==
+ bh=LqFhHdvaVnSaCHLWV/wpdUnTpIVeNtxxDQeynCZqRdQ=;
+ b=CMr8uS5ljRa/+3QiDTTViCBE6FzsfBj3t3agH0vM79FND6946dSmJDvbHxmZV+EhgZyyRb4zNBXIz9ouZ6JQEaWTjrXPkIRGEzmiYOh6MQx55KEPik54jpNsVmRSpXL69xs5xKFFMw4lA+IjK4nyYDh6GJt/+FjB+iC0c/N12vIvq4x+ilLBxvsV48tNNkc60cUOwKWFq1wjmRZbCaGDZpfnct8j4/3oVHINe5HkTliXI0IrSEI37RLFVk1mHrUkuWrJFiepnB/gvwf49bnI86ujzyKigzRinQysr5LOnWZfOjtLrFBsPeRaN2DB/DU3GMNiVgwmgEy7R9Apa3VocQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9lA+U4uNFx+UrM2W0SIsFIvI9G2E11uxkU4Hv7xWId4=;
- b=Vx5b9v1YHa3rNcRgAJ952K/+kZGZNj6j6FlQ4aWeCA3fmzyGWRodXHEWjEgOKVIhYCH1i1691jvAgTvG+THWYvydzta4LBrHjkJnfSXfY6huXYnn2uSg9FaWa4rFyFb/K3P/D+Q8YRDSTDzygCffaW3ltyOIfo4stacE34N9FeA=
+ bh=LqFhHdvaVnSaCHLWV/wpdUnTpIVeNtxxDQeynCZqRdQ=;
+ b=WhCr3C+HHp9lbTH7whLa+zvJWPrYyZh3ejmrfriNbEOTOx1ydLite10aXMrpaB4bpVfCcSRiOBTiHaPicOLJ41nVKP8YY9jCSO0p5pNT10SFS0/bFT9+sf83ea1SXoLFdfc7tsTxcG623gIRTyniq4Y4uwetkg1lgt8BTgJ7U9Q=
 Authentication-Results: nxp.com; dkim=none (message not signed)
  header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
 Received: from VI1PR0401MB2559.eurprd04.prod.outlook.com (2603:10a6:800:57::8)
- by VI1PR0401MB2366.eurprd04.prod.outlook.com (2603:10a6:800:2b::23) with
+ by VI1PR0401MB2638.eurprd04.prod.outlook.com (2603:10a6:800:56::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.16; Tue, 14 Sep
- 2021 11:29:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.18; Tue, 14 Sep
+ 2021 11:30:17 +0000
 Received: from VI1PR0401MB2559.eurprd04.prod.outlook.com
  ([fe80::485a:4462:94c2:5edb]) by VI1PR0401MB2559.eurprd04.prod.outlook.com
  ([fe80::485a:4462:94c2:5edb%10]) with mapi id 15.20.4500.019; Tue, 14 Sep
- 2021 11:29:23 +0000
-Date:   Tue, 14 Sep 2021 14:29:20 +0300
+ 2021 11:30:17 +0000
+Date:   Tue, 14 Sep 2021 14:30:16 +0300
 From:   Abel Vesa <abel.vesa@nxp.com>
 To:     Jacky Bai <ping.bai@nxp.com>
 Cc:     shawnguo@kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
         s.hauer@pengutronix.de, p.zabel@pengutronix.de,
         kernel@pengutronix.de, linux-imx@nxp.com,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/9] clk: imx: Update the pllv4 to support imx8ulp
-Message-ID: <YUCHkKFTBxIuEYpf@ryzen>
+Subject: Re: [PATCH v3 3/9] clk: imx: Update the compsite driver to support
+ imx8ulp
+Message-ID: <YUCHyHW7COZYiD6B@ryzen>
 References: <20210914065208.3582128-1-ping.bai@nxp.com>
- <20210914065208.3582128-3-ping.bai@nxp.com>
+ <20210914065208.3582128-4-ping.bai@nxp.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210914065208.3582128-3-ping.bai@nxp.com>
-X-ClientProxiedBy: VI1PR04CA0080.eurprd04.prod.outlook.com
- (2603:10a6:803:64::15) To VI1PR0401MB2559.eurprd04.prod.outlook.com
+In-Reply-To: <20210914065208.3582128-4-ping.bai@nxp.com>
+X-ClientProxiedBy: VI1PR09CA0114.eurprd09.prod.outlook.com
+ (2603:10a6:803:78::37) To VI1PR0401MB2559.eurprd04.prod.outlook.com
  (2603:10a6:800:57::8)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from ryzen (188.25.164.198) by VI1PR04CA0080.eurprd04.prod.outlook.com (2603:10a6:803:64::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.15 via Frontend Transport; Tue, 14 Sep 2021 11:29:22 +0000
+Received: from ryzen (188.25.164.198) by VI1PR09CA0114.eurprd09.prod.outlook.com (2603:10a6:803:78::37) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend Transport; Tue, 14 Sep 2021 11:30:17 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 240ef483-5ae9-4693-fa8e-08d97772e6b3
-X-MS-TrafficTypeDiagnostic: VI1PR0401MB2366:
+X-MS-Office365-Filtering-Correlation-Id: 9b9fc82a-c5c9-481a-9711-08d977730730
+X-MS-TrafficTypeDiagnostic: VI1PR0401MB2638:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0401MB23664FDFB46CE937D030804FF6DA9@VI1PR0401MB2366.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Microsoft-Antispam-PRVS: <VI1PR0401MB2638CB9A8CFE05CE976A0C0DF6DA9@VI1PR0401MB2638.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1tm3FTEWcwvYLX9X/oPeRG589QJHS+WfOpCr2qgdSR76xptjyK1mH+Ne+zX7DSlfY15kcwhdYkjqutPjrBFRa5bppDxpnDIWO55DKaX195T6J5bBX4hnWLBMF/YRD6K2uZg8xWutTw5pt1THvGxE3e1xCyabiwmom8RfoTWP1Y3D+MwdzN19HzvAOHsIWqKXMImrOV/vsru/g/5budXU90V6KxCvBb9iXc+3AyJXwFeMBKqKiErP8xlG8ql3xRvldRdHDo1IkZAKrYe701lRbFR7C+Z3e4NCRQjo7e2TOoIQGKNDKuIGw1e5tbdFRpDwzg5PdpQT88yx6dJ9eFSzrgJJ72IOvP8HSd84rufG66EY4VKjHbMVSYknnqnTWprvTCJ2vpo7nH9dKLWT6wly2TsrqlhALU/IAT/AeaiLDQeEvj6NTegvPy4h9eTiHiDjqWwqYdUV43VRlAfXzrCAcOssu/Oecj0Ox/b64OTdD1HT0q0k2bAsyuDBFrn365IpMQLs+FXzHidy4WTVuMMUFJQ2Ql8RNVfCTUmeBvJ1KYO0eOSADV5yd4lhaAT1Fw/o8SELXJAoxvvj/bs44QsMVdb2ZnpU2TYJ+l1vS1exQi6+N9mOuPoyKE6M8qsF0aDcmWpRl0XgRjXbPS69vvJvEEco3BLUaoJlsOc7e2zvOdhl0Zrv4+xl4o+vSFcO1r4PDn9Kbn2akn10rHmuELwRddEdj5eSyKr7YuxQnkrRcyc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2559.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(396003)(346002)(136003)(366004)(39860400002)(52116002)(316002)(6496006)(9686003)(86362001)(5660300002)(55016002)(33716001)(44832011)(6636002)(9576002)(66946007)(66476007)(66556008)(6862004)(53546011)(8936002)(956004)(478600001)(2906002)(38350700002)(83380400001)(26005)(38100700002)(8676002)(186003)(4326008)(32563001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: yCkdgVrdwJSHyn7ga11dSuODuMolxDChZbPcj3MdqN9CRJ/mOmpUdlYUIdKgcJVOZsIv+di21Gz+W8vp6jiq+fbf+K5Vm0XmX3z3kSK3yaJuf0eqECgcSAVaAICLDGWYrh1u8MM3l+54BrUZ4K16nsT4oBoBTjJWjepPcPAJTdgieQaYYBci1eu0hk0hJJ0I5gIU56Y42yOkCA1k3PVYHByYxcK5MTDqnkNnenadgXsj8k56jv+uFo5mKw1qQ2FMlgfS0khF+GSqntVqCOtsnRnvA26WsLY4x/cKDKUFi6Thmkd5rEy629yP00IRIJ8b0UV5KFBmnFJWzLeR1z5JnW3RFGRDwyn9A3effsSdB1+9p0nLX6yApnv++zuWnF0CIhb7b6OBRRbPSptkAA3wqT41ki2Hz/X7Z1wDV5zu5GV74UUK/Qy2UBUnOsWSTwJOmbIB823oUZ/aJ3KFBpTuKXD2XdM7fVcgdD85x3ABBJjEs98poVlzE4aH/SsgnHjABXh0+EQ+e8C3yKJY9wWX6wEUyG/eOvSHzNulCVkEH0KFP8B8q2IHlo0WiOQlC65eVAOOE7v0pxoduluVxXKzW+p1OgiFXa5Cb1JltUnTAOlvOFBLwIwuhRYml3FD1cKFxpzcUA045Iby0nE3cUouNWZtJh6/w9++9lmRjKsPQmfiwAVd7iWanS/J0F8ka1JuXwY9X2Isz5paMOBYrh78vpPcrikUjU04QrcKSiT+Rw0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2559.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(346002)(136003)(376002)(39860400002)(66946007)(66476007)(66556008)(26005)(5660300002)(52116002)(6496006)(186003)(38350700002)(38100700002)(8936002)(6862004)(478600001)(86362001)(15650500001)(33716001)(53546011)(9686003)(55016002)(9576002)(956004)(83380400001)(2906002)(44832011)(316002)(8676002)(6636002)(4326008)(32563001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3MtPPhXL+MyqKKyB690EOFhf00D3HNY5v3cF/vj7ASK4X+YUFHwQUwnm0j3k?=
- =?us-ascii?Q?SCvKYw6fZIdSTSmdkv0xBKNInzOE3cgSX9A6dl1tc9CM+06kwbzG48+Vn6vw?=
- =?us-ascii?Q?6tXIlrKH1rCMJS1wowuMDdCnSc5dhrsbsarSGLVh91Elza27Na5hbaJArhVR?=
- =?us-ascii?Q?PiDfZTp9px1xmPkw4TyawSAUmaKHCbLg28uhfqsULxgKKKiPfFlkZJiFVQuU?=
- =?us-ascii?Q?KElbLmSWRDy38H19X/expsF/t+BDizR5s1IolGSwuBB4baJfAkuAaHt/bICm?=
- =?us-ascii?Q?QlloCu1Q3QEdJsGUHo6WKj8r6wDucbuCxu9Qox+d/U9Lemkoemj2azSNiLN6?=
- =?us-ascii?Q?KHKuvcDbh08Op/ltEgSB7yczzaU4KwMGZV/mS+6eXsMwnGa/TvD3c89ywcUy?=
- =?us-ascii?Q?OZ+/dfHGJSYosE1Bla0vQa+GBERS5Osj9j25YfMbEoTNVyH00MUDiKS744eL?=
- =?us-ascii?Q?hkqXGaNtfqIu8ouwMK4Vtj44uodr9ig0gROag2CA640w4yrPFmPkCNkccsKW?=
- =?us-ascii?Q?ppzXSg9SqtCLuE2G/2DpGxTSjU0OwzqtRCbdWdMhRkGKGrIH0P6MH4T8CPDc?=
- =?us-ascii?Q?iK5DDxXkr9KlxDCYyG6QLrj1cjSb2toNEnLVSMVoKwBjCYj3ZjctofiWZ4hR?=
- =?us-ascii?Q?6DWbzaKf+i5J1AmXqA2zx7y/F1O5k+tO0mQHcG1z+QnX7YmAux0m9dW3gSmA?=
- =?us-ascii?Q?rq0AtkDmLdd36b1OOC5WIAH42+CzxFHDxeHxpz9IGJcVt3Nkx+0JVarlgAju?=
- =?us-ascii?Q?x8ydgtv4Jd7kHbi+xeNFQD+vXIGqFtQYbOIFEOO7eQpsOQ7/5bjNh9+bL9QK?=
- =?us-ascii?Q?WocvwQPmrZTwMWmiWcjinrmJzOVkiJvyTgHdTcWzOG11+jZ03gDxuEIrsaRV?=
- =?us-ascii?Q?VvUZCgOsgdNzudf0YUju1vTbcFpB0xobVBrOB5SXdueSlzSc/Ebl7XaVtJRe?=
- =?us-ascii?Q?xrvOyrSETti0xJnq8rKvH3i8aJbj3Y48ZpVXxmbr7sAncHcdHOtCr9xwrQdq?=
- =?us-ascii?Q?6c7+i9p2TQx53v/MBW2rfRtDf8eNl/40ZDDzv7EkAPv4nRjRYdOiJHxTCBdy?=
- =?us-ascii?Q?0CmxP3H/RVL9F4Aybj5blJkfT80oJOLach1/kLTtruWgbBh4+G6tDUTrKGcK?=
- =?us-ascii?Q?qxyxKDnLDkp8ftEfiFas1Osa/sB4Xpq7EznGCFaAJpHGEgr3/uAMctcRCeZY?=
- =?us-ascii?Q?ee7W+DwQgG02YnRWeKxSH/5yHViv3Nl8MIb4smH1wcyA8rP4AQ/Eq3xgkrry?=
- =?us-ascii?Q?cTWUOEZuajdcbO0UyVqasJsTiX5GhVuLL0y6S+bqgFpvEcWyBeP2WlZvHAFO?=
- =?us-ascii?Q?TKKGifx8P0ocmujCWttfQ0PK?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WvRtprwdNKJH/q7qjAGk7qK9BvF8fLG9iwpDxhSkQJjn/cSophc2X5RTZw2e?=
+ =?us-ascii?Q?jfuvpJJAnHKSmAfHAYGmBN1+aX0knXgtgAQ9d1erUYI6cjx5GUNHwDlfpN/Q?=
+ =?us-ascii?Q?tMqs8whRzWC0bvPUquXOkHdX5dtIa2tyjqYg/Lo44NWmuyTFgi/S0lSRpDQx?=
+ =?us-ascii?Q?OTnubSSAK/Yha8tehUUI1W7oYyhzhFOoLCh54KV7uztHoukm7l9rccFF1GCQ?=
+ =?us-ascii?Q?cdCE5zOOQn12Paikyk/D74uNV6DVaLv5s2rn/GOXXgBqsbZy8Adgtq1Sdlvn?=
+ =?us-ascii?Q?RkT0BZ4WT2aS0vmIA4YGECKKEModEZbwZQ+ut49HqmfVjxlqRuvhMTC3q7dM?=
+ =?us-ascii?Q?Ky8iNnEaZuAI9wkuNtY8/GxZ6cF87GxKv3/Y0Fx2IKrXd6lK24Yt0ULWi9w1?=
+ =?us-ascii?Q?spZfLgUS9xdtaQsuPclbVy0wPgQG0Yu7R9zC2/ivKY/3rGNs7Yq+jOOgmsRZ?=
+ =?us-ascii?Q?27qvWoHbEUqfRk9mDX5HR/3ub0BecP8mmqIFVEownOs4gPhiQBdpWgeeK83F?=
+ =?us-ascii?Q?BPvaj5JeLnz/7o7J1ZqnZqjRirAmQykJehwkhnW53LQ9DorKpbebWvwzXxA0?=
+ =?us-ascii?Q?zHxB4q5ER9GsNsQgg7GohoaBjqPAOsMbMxUrytN0TdL+OCOVHmXQPv+PThM1?=
+ =?us-ascii?Q?ra+z+u0SBaZ468Kk9ajizH05F3EM1Vrhe5WftD0tUwONPWlylpKfPJXA9Dfx?=
+ =?us-ascii?Q?5CVWBpC1CXyWFdO8AONfxe2644dnwycxRAIU+MxQb2wgCTuO52HbPaBV0ST2?=
+ =?us-ascii?Q?oUspBnBGo3R1MmYLPcWC9oBvafPuLJpqtyus1flKmuUEUYkSN5IyounpREZQ?=
+ =?us-ascii?Q?jVwc9POo6wBaWHqfvBIFGYSR1pdpT9h1WcZqM6torLWzF8IvzhYLgjRiZ++N?=
+ =?us-ascii?Q?/dq01Gv/MmLP1xl9tnjIFPDgUbE0D5E7A0e6zkMu0niPzAals4jCpnyBbnXg?=
+ =?us-ascii?Q?fBd9NYG7ds6Df3jgXaylW2U43L5WYlM34TDal2eKYyb5ZM0Ee3fL40KZFDa2?=
+ =?us-ascii?Q?PahU8qIjSEc5f4v76lPG+tiRTCJzo3wQiXcYMoMJG/UoYU64lml7731Lnagk?=
+ =?us-ascii?Q?Zr53CTH93PfgcLLx39lHTsTxrbb5+w9X3Cfq/Azn/v3g3MGe6gKkG7BkuRPP?=
+ =?us-ascii?Q?Bz4e2iEINztBHgMqMRZwZirwjg4sczPVi9wtrywaszH8sa7FLUuWkNaZ3UBi?=
+ =?us-ascii?Q?gfkRBI0RQb5to2DGW5IpJL0jraiAqAsjb/+tfD8hFZ35AXJLgWbyrOJj3KoT?=
+ =?us-ascii?Q?b2qM7heu77kO2jn/Wvm7LlaRbVnIVVldJYwoKPt0RjIwkk1VLqXi0nWjQcYD?=
+ =?us-ascii?Q?IaIiCvs7S3ygfPNDMjCJl2un?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 240ef483-5ae9-4693-fa8e-08d97772e6b3
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b9fc82a-c5c9-481a-9711-08d977730730
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2559.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2021 11:29:23.2326
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2021 11:30:17.6844
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t3L/UWzNJmoudza3xm3y/L6BarVmW5COY04WYevXc4WOC2pbbj2FMOSHJoa93MAXGqANHH3kvpPixOm1QQ7QZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2366
+X-MS-Exchange-CrossTenant-UserPrincipalName: U8PdsfMDr7/isVsVDB6AS5rtR4R4vgmwZtF2Xh4TfOer3dZkAaH84pyqwkUtDHYy3H7bjDXDqxaO7LE0//OPcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2638
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-09-14 14:52:01, Jacky Bai wrote:
-> The PLLs used on i.MX8ULP is mostly the same as on i.MX7ULP,
-> except the PLL register offset is changed. Change the PLLv4
-> driver for code reuse on i.MX7ULP and i.MX8ULP.
+On 21-09-14 14:52:02, Jacky Bai wrote:
+> On i.MX8ULP, some peripherals have a sw_rst control resides
+> in the per device PCC clock control register, all others are
+> same as i.MX7ULP, so update the 7ulp clock composite driver to
+> support i.MX8ULP to maxmimize the code reuse.
 > 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-
-I'm OK with this one. But maybe later on we will have two separate
-wrappers in clk.h called imx_clk_hw_pllv4_7ulp and
-imx_clk_hw_pllv4_8ulp. We'll see. 
 
 Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
 
 > ---
->   v3 changes: no
+>   v3 changs: no
 > ---
->  drivers/clk/imx/clk-imx7ulp.c |  4 ++--
->  drivers/clk/imx/clk-pllv4.c   | 34 +++++++++++++++++++++++++---------
->  drivers/clk/imx/clk.h         |  9 +++++++--
->  3 files changed, 34 insertions(+), 13 deletions(-)
+>  drivers/clk/imx/clk-composite-7ulp.c | 61 ++++++++++++++++++++++++++--
+>  drivers/clk/imx/clk.h                |  6 +++
+>  2 files changed, 64 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/clk/imx/clk-imx7ulp.c b/drivers/clk/imx/clk-imx7ulp.c
-> index 779e09105da7..ba50d6db8097 100644
-> --- a/drivers/clk/imx/clk-imx7ulp.c
-> +++ b/drivers/clk/imx/clk-imx7ulp.c
-> @@ -78,8 +78,8 @@ static void __init imx7ulp_clk_scg1_init(struct device_node *np)
->  	hws[IMX7ULP_CLK_SPLL_PRE_DIV]	= imx_clk_hw_divider_flags("spll_pre_div", "spll_pre_sel", base + 0x608,	8,	3,	CLK_SET_RATE_GATE);
+> diff --git a/drivers/clk/imx/clk-composite-7ulp.c b/drivers/clk/imx/clk-composite-7ulp.c
+> index d85ba78abbb1..50ed383320bf 100644
+> --- a/drivers/clk/imx/clk-composite-7ulp.c
+> +++ b/drivers/clk/imx/clk-composite-7ulp.c
+> @@ -23,11 +23,50 @@
+>  #define PCG_PCD_WIDTH	3
+>  #define PCG_PCD_MASK	0x7
 >  
->  	/*						name	 parent_name	 base */
-> -	hws[IMX7ULP_CLK_APLL]		= imx_clk_hw_pllv4("apll",  "apll_pre_div", base + 0x500);
-> -	hws[IMX7ULP_CLK_SPLL]		= imx_clk_hw_pllv4("spll",  "spll_pre_div", base + 0x600);
-> +	hws[IMX7ULP_CLK_APLL]		= imx_clk_hw_pllv4(IMX_PLLV4_IMX7ULP, "apll",  "apll_pre_div", base + 0x500);
-> +	hws[IMX7ULP_CLK_SPLL]		= imx_clk_hw_pllv4(IMX_PLLV4_IMX7ULP, "spll",  "spll_pre_div", base + 0x600);
->  
->  	/* APLL PFDs */
->  	hws[IMX7ULP_CLK_APLL_PFD0]	= imx_clk_hw_pfdv2("apll_pfd0", "apll", base + 0x50c, 0);
-> diff --git a/drivers/clk/imx/clk-pllv4.c b/drivers/clk/imx/clk-pllv4.c
-> index 8ec703f27417..3c750ccbee25 100644
-> --- a/drivers/clk/imx/clk-pllv4.c
-> +++ b/drivers/clk/imx/clk-pllv4.c
-> @@ -23,14 +23,17 @@
->  
->  /* PLL Configuration Register (xPLLCFG) */
->  #define PLL_CFG_OFFSET		0x08
-> +#define IMX8ULP_PLL_CFG_OFFSET	0x10
->  #define BP_PLL_MULT		16
->  #define BM_PLL_MULT		(0x7f << 16)
->  
->  /* PLL Numerator Register (xPLLNUM) */
->  #define PLL_NUM_OFFSET		0x10
-> +#define IMX8ULP_PLL_NUM_OFFSET	0x1c
->  
->  /* PLL Denominator Register (xPLLDENOM) */
->  #define PLL_DENOM_OFFSET	0x14
-> +#define IMX8ULP_PLL_DENOM_OFFSET	0x18
->  
->  #define MAX_MFD			0x3fffffff
->  #define DEFAULT_MFD		1000000
-> @@ -38,6 +41,9 @@
->  struct clk_pllv4 {
->  	struct clk_hw	hw;
->  	void __iomem	*base;
-> +	u32		cfg_offset;
-> +	u32		num_offset;
-> +	u32		denom_offset;
->  };
->  
->  /* Valid PLL MULT Table */
-> @@ -72,12 +78,12 @@ static unsigned long clk_pllv4_recalc_rate(struct clk_hw *hw,
->  	u32 mult, mfn, mfd;
->  	u64 temp64;
->  
-> -	mult = readl_relaxed(pll->base + PLL_CFG_OFFSET);
-> +	mult = readl_relaxed(pll->base + pll->cfg_offset);
->  	mult &= BM_PLL_MULT;
->  	mult >>= BP_PLL_MULT;
->  
-> -	mfn = readl_relaxed(pll->base + PLL_NUM_OFFSET);
-> -	mfd = readl_relaxed(pll->base + PLL_DENOM_OFFSET);
-> +	mfn = readl_relaxed(pll->base + pll->num_offset);
-> +	mfd = readl_relaxed(pll->base + pll->denom_offset);
->  	temp64 = parent_rate;
->  	temp64 *= mfn;
->  	do_div(temp64, mfd);
-> @@ -165,13 +171,13 @@ static int clk_pllv4_set_rate(struct clk_hw *hw, unsigned long rate,
->  	do_div(temp64, parent_rate);
->  	mfn = temp64;
->  
-> -	val = readl_relaxed(pll->base + PLL_CFG_OFFSET);
-> +	val = readl_relaxed(pll->base + pll->cfg_offset);
->  	val &= ~BM_PLL_MULT;
->  	val |= mult << BP_PLL_MULT;
-> -	writel_relaxed(val, pll->base + PLL_CFG_OFFSET);
-> +	writel_relaxed(val, pll->base + pll->cfg_offset);
->  
-> -	writel_relaxed(mfn, pll->base + PLL_NUM_OFFSET);
-> -	writel_relaxed(mfd, pll->base + PLL_DENOM_OFFSET);
-> +	writel_relaxed(mfn, pll->base + pll->num_offset);
-> +	writel_relaxed(mfd, pll->base + pll->denom_offset);
->  
->  	return 0;
->  }
-> @@ -207,8 +213,8 @@ static const struct clk_ops clk_pllv4_ops = {
->  	.is_prepared	= clk_pllv4_is_prepared,
->  };
->  
-> -struct clk_hw *imx_clk_hw_pllv4(const char *name, const char *parent_name,
-> -			  void __iomem *base)
-> +struct clk_hw *imx_clk_hw_pllv4(enum imx_pllv4_type type, const char *name,
-> +		 const char *parent_name, void __iomem *base)
->  {
->  	struct clk_pllv4 *pll;
->  	struct clk_hw *hw;
-> @@ -221,6 +227,16 @@ struct clk_hw *imx_clk_hw_pllv4(const char *name, const char *parent_name,
->  
->  	pll->base = base;
->  
-> +	if (type == IMX_PLLV4_IMX8ULP) {
-> +		pll->cfg_offset = IMX8ULP_PLL_CFG_OFFSET;
-> +		pll->num_offset = IMX8ULP_PLL_NUM_OFFSET;
-> +		pll->denom_offset = IMX8ULP_PLL_DENOM_OFFSET;
-> +	} else {
-> +		pll->cfg_offset = PLL_CFG_OFFSET;
-> +		pll->num_offset = PLL_NUM_OFFSET;
-> +		pll->denom_offset = PLL_DENOM_OFFSET;
-> +	}
+> -struct clk_hw *imx7ulp_clk_hw_composite(const char *name,
+> +#define SW_RST		BIT(28)
 > +
->  	init.name = name;
->  	init.ops = &clk_pllv4_ops;
->  	init.parent_names = &parent_name;
-> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
-> index e144f983fd8c..3f518559b8f9 100644
-> --- a/drivers/clk/imx/clk.h
-> +++ b/drivers/clk/imx/clk.h
-> @@ -42,6 +42,11 @@ enum imx_pll14xx_type {
->  	PLL_1443X,
->  };
->  
-> +enum imx_pllv4_type {
-> +	IMX_PLLV4_IMX7ULP,
-> +	IMX_PLLV4_IMX8ULP,
+> +static int pcc_gate_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_gate *gate = to_clk_gate(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = clk_gate_ops.enable(hw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * release the sw reset for peripherals associated with
+> +	 * with this pcc clock.
+> +	 */
+> +	val = readl(gate->reg);
+> +	val |= SW_RST;
+> +	writel(val, gate->reg);
+> +
+> +	return 0;
+> +}
+> +
+> +static void pcc_gate_disable(struct clk_hw *hw)
+> +{
+> +	clk_gate_ops.disable(hw);
+> +}
+> +
+> +static int pcc_gate_is_enabled(struct clk_hw *hw)
+> +{
+> +	return clk_gate_ops.is_enabled(hw);
+> +}
+> +
+> +static const struct clk_ops pcc_gate_ops = {
+> +	.enable = pcc_gate_enable,
+> +	.disable = pcc_gate_disable,
+> +	.is_enabled = pcc_gate_is_enabled,
 > +};
 > +
->  /* NOTE: Rate table should be kept sorted in descending order. */
->  struct imx_pll14xx_rate_table {
->  	unsigned int rate;
-> @@ -191,8 +196,8 @@ struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
->  		.kdiv	=	(_k),			\
->  	}
+> +static struct clk_hw *imx_ulp_clk_hw_composite(const char *name,
+>  				     const char * const *parent_names,
+>  				     int num_parents, bool mux_present,
+>  				     bool rate_present, bool gate_present,
+> -				     void __iomem *reg)
+> +				     void __iomem *reg, bool has_swrst)
+>  {
+>  	struct clk_hw *mux_hw = NULL, *fd_hw = NULL, *gate_hw = NULL;
+>  	struct clk_fractional_divider *fd = NULL;
+> @@ -77,7 +116,7 @@ struct clk_hw *imx7ulp_clk_hw_composite(const char *name,
+>  	hw = clk_hw_register_composite(NULL, name, parent_names, num_parents,
+>  				       mux_hw, &clk_mux_ops, fd_hw,
+>  				       &clk_fractional_divider_ops, gate_hw,
+> -				       &clk_gate_ops, CLK_SET_RATE_GATE |
+> +				       has_swrst ? &pcc_gate_ops : &clk_gate_ops, CLK_SET_RATE_GATE |
+>  				       CLK_SET_PARENT_GATE);
+>  	if (IS_ERR(hw)) {
+>  		kfree(mux);
+> @@ -87,3 +126,19 @@ struct clk_hw *imx7ulp_clk_hw_composite(const char *name,
 >  
-> -struct clk_hw *imx_clk_hw_pllv4(const char *name, const char *parent_name,
-> -			     void __iomem *base);
-> +struct clk_hw *imx_clk_hw_pllv4(enum imx_pllv4_type type, const char *name,
-> +		const char *parent_name, void __iomem *base);
+>  	return hw;
+>  }
+> +
+> +struct clk_hw *imx7ulp_clk_hw_composite(const char *name, const char * const *parent_names,
+> +				int num_parents, bool mux_present, bool rate_present,
+> +				bool gate_present, void __iomem *reg)
+> +{
+> +	return imx_ulp_clk_hw_composite(name, parent_names, num_parents, mux_present, rate_present,
+> +					gate_present, reg, false);
+> +}
+> +
+> +struct clk_hw *imx8ulp_clk_hw_composite(const char *name, const char * const *parent_names,
+> +				int num_parents, bool mux_present, bool rate_present,
+> +				bool gate_present, void __iomem *reg, bool has_swrst)
+> +{
+> +	return imx_ulp_clk_hw_composite(name, parent_names, num_parents, mux_present, rate_present,
+> +					gate_present, reg, has_swrst);
+> +}
+> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
+> index 3f518559b8f9..a9bcfee7a75b 100644
+> --- a/drivers/clk/imx/clk.h
+> +++ b/drivers/clk/imx/clk.h
+> @@ -237,6 +237,12 @@ struct clk_hw *imx7ulp_clk_hw_composite(const char *name,
+>  				     bool rate_present, bool gate_present,
+>  				     void __iomem *reg);
 >  
->  struct clk_hw *clk_hw_register_gate2(struct device *dev, const char *name,
->  		const char *parent_name, unsigned long flags,
+> +struct clk_hw *imx8ulp_clk_hw_composite(const char *name,
+> +				     const char * const *parent_names,
+> +				     int num_parents, bool mux_present,
+> +				     bool rate_present, bool gate_present,
+> +				     void __iomem *reg, bool has_swrst);
+> +
+>  struct clk_hw *imx_clk_hw_fixup_divider(const char *name, const char *parent,
+>  				  void __iomem *reg, u8 shift, u8 width,
+>  				  void (*fixup)(u32 *val));
 > -- 
 > 2.26.2
 > 
