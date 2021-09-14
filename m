@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 039BD40B926
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 22:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F65840B92B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 22:23:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234560AbhINUYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 16:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37644 "EHLO
+        id S234393AbhINUYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 16:24:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234718AbhINUY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 16:24:27 -0400
+        with ESMTP id S234781AbhINUY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 16:24:28 -0400
 Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46A9AC0613A3
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 13:22:39 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id v1so139490plo.10
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 13:22:39 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFEBFC0613E7
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 13:22:40 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id bg1so129044plb.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 13:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=rzFpNJqBOGrvK8PxTEisk5vASJ81UtyTd+SuH+Jj6C4=;
-        b=DLM6eGapNxE2vVc3P4C/IXZ7ewDC2TZAzbBclSO9gAO+g3JjjVDgx9Xk2xGLZmSyPH
-         N+5Mhsv+LxHtby729s8U9pukPgT0vbL6ulWqBCO+Bj6l3Ui4h8sOSg11KomCnOBFwOv/
-         gTtVKSWGY0KJFBkzwniJNF+9O9yI0QI709x2o=
+        bh=vpEXnbBKR0bloKgXMxBkZufR69FGR0namo850/sSuY0=;
+        b=QD10I0+TVx4/lj2zfWzAgsFTRCOeUemwh5dNMsa7Dl3/o3jNo71bM29C3c1wQjJnog
+         qNHCZT3p5Go/d2liL5u5rqpZiqfFAWm+tSypPxiw4MTgjDCWgYwSGRSX8WkDVu5c5hpg
+         eBPZD62X+jCyS9fgUWHAmPz8GUjZK+sepSqD4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=rzFpNJqBOGrvK8PxTEisk5vASJ81UtyTd+SuH+Jj6C4=;
-        b=XtTt7nWVKMNCzAUEeTJ6uunViR/LhYCrqvdfsX12THQIqe8C0mry+6eKjbVhxGKk7m
-         l0otPyp+XBn4pr/xmdsBFOd261PJWfuTOa4C7l27v44CLM2mjJg0aIgzT5k6eSJcs5Lo
-         W5wLVDQhLhi+eD89E/piKPBzsxSfdiV+zw6IB6ZoMzmpHD9IarUjaIcRDfh98L06xV6a
-         Ie4tRbTd/nEMy9g1+tlfioRK2xtUYUhXwF+DjMRf9ArlXdr4ejkS9YeTl5G6EwjLgq+M
-         iXXOTP4X97cmrt8UNiYaHKgDEkQAeu0ZleRX0uvVpDVGyIJgCfU+YFjlFo3byYqN82Aq
-         z4gQ==
-X-Gm-Message-State: AOAM533QgU7wVlKcsHATBZG4uAIai5+IkdnhM/1H+q0EdJWnp5/xQLGb
-        WbnfZceDe0sBiI3NhDRukQRWsA==
-X-Google-Smtp-Source: ABdhPJy8i/dFscfXlM3GCb7yl0yPY+U0rw+Ib7iozR9Nz10ZdHDtYe4aRkU+gU9znARPbJw7KL2xoQ==
-X-Received: by 2002:a17:902:6546:b0:13a:339a:6616 with SMTP id d6-20020a170902654600b0013a339a6616mr16644770pln.34.1631650958848;
-        Tue, 14 Sep 2021 13:22:38 -0700 (PDT)
+        bh=vpEXnbBKR0bloKgXMxBkZufR69FGR0namo850/sSuY0=;
+        b=T8KcneQzJQa5ghdkGBCmbmEOqA3stt+M94yriaRW8agKRPbn+5GfchjtXheVOHP59V
+         gErBYDOrXyGGzS4nvh+VUB8NlRQO9gM4lFdU5GldJUrWcVzKF36/cEuDxiOrzOpLmIce
+         zyc1h63hFGUOAOudmNgZ3MK7pN2Essibn1EStjwOWeq89poY6dOSUIdyEn48xgpZ0Ftp
+         88S7w5e+e+MaCp+oxXq07h/U3qoMIbCBEErBgd2h7CGcwufcwoeXhV9sHjDb8d5mWFR5
+         iKpwsTSKNYkTrjP13Biwm9KG7EfRijoMYSzspA2bFukNFRjI8+gXCrYtJ0jqg/KHVT1G
+         TuRA==
+X-Gm-Message-State: AOAM532qwvKocyEgriX10vwevHA2sfzb7AuJH/8TH5UINKmtG0owN8KN
+        kXog8N8CkE8HcBYV3+7mz8C7WQ==
+X-Google-Smtp-Source: ABdhPJwPexQPBm3N8BIYYm1w0FBveH0mVeVCcozwvbwFgJXed/YNyR9bZk3JoDvWePbXriTorIBX1Q==
+X-Received: by 2002:a17:902:650b:b0:13a:123a:4ef9 with SMTP id b11-20020a170902650b00b0013a123a4ef9mr16501693plk.49.1631650960249;
+        Tue, 14 Sep 2021 13:22:40 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f38f:9d0f:3eba:f8c4])
-        by smtp.gmail.com with ESMTPSA id 141sm12185393pgg.16.2021.09.14.13.22.37
+        by smtp.gmail.com with ESMTPSA id 141sm12185393pgg.16.2021.09.14.13.22.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 13:22:38 -0700 (PDT)
+        Tue, 14 Sep 2021 13:22:39 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,9 +59,9 @@ Cc:     devicetree@vger.kernel.org, Steev Klimaszewski <steev@kali.org>,
         Maxime Ripard <mripard@kernel.org>,
         Douglas Anderson <dianders@chromium.org>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v5 12/15] drm/panel-edp: hpd_reliable shouldn't be subtraced from hpd_absent
-Date:   Tue, 14 Sep 2021 13:21:59 -0700
-Message-Id: <20210914132020.v5.12.I2522235fca3aa6790ede0bf22a93d79a1f694e6b@changeid>
+Subject: [PATCH v5 13/15] drm/panel-edp: Fix "prepare_to_enable" if panel doesn't handle HPD
+Date:   Tue, 14 Sep 2021 13:22:00 -0700
+Message-Id: <20210914132020.v5.13.Ia8288d36df4b12770af59ae3ff73ef7e08fb4e2e@changeid>
 X-Mailer: git-send-email 2.33.0.309.g3052b89438-goog
 In-Reply-To: <20210914202202.1702601-1-dianders@chromium.org>
 References: <20210914202202.1702601-1-dianders@chromium.org>
@@ -71,14 +71,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the delays are named / described with eDP-centric names, it
-becomes clear that we should really specify the "hpd_reliable" and
-"hpd_absent" separately without taking the other into account. Let's
-fix it.
-
-This should be a no-op change and just adjust how we specify
-things. The actual delays should be the same before and after for the
-one panel that currently species both "hpd_reliable" and "hpd_absent".
+While cleaning up the descriptions of the delay for eDP panels I
+realized that we'd have a bug if any panels need the
+"prepare_to_enable" but HPD handling isn't happening in the panel
+driver. Let's put in a stopgap to at least make us not violate
+timings. This is not perfectly optimal but trying to do better is
+hard. At the moment only 2 panels specify this delay and only 30 ms is
+at stake. These panels are also currently hooked up with "hpd-gpios"
+so effectively this "fix" is just a theoretical fix and won't actually
+do anything for any devices currently supported in mainline.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 Acked-by: Sam Ravnborg <sam@ravnborg.org>
@@ -89,40 +90,51 @@ Acked-by: Sam Ravnborg <sam@ravnborg.org>
 Changes in v4:
 - panel-simple-edp => panel-edp
 
- drivers/gpu/drm/panel/panel-edp.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Changes in v3:
+- Fix "prepare_to_enable" patch new for v3.
+
+ drivers/gpu/drm/panel/panel-edp.c | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index 1547e4797594..80a37a4e5750 100644
+index 80a37a4e5750..a83ef9905ea7 100644
 --- a/drivers/gpu/drm/panel/panel-edp.c
 +++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -423,7 +423,7 @@ static int panel_edp_prepare_once(struct panel_edp *p)
+@@ -508,12 +508,32 @@ static int panel_edp_prepare(struct drm_panel *panel)
+ static int panel_edp_enable(struct drm_panel *panel)
+ {
+ 	struct panel_edp *p = to_panel_edp(panel);
++	unsigned int delay;
  
- 	delay = p->desc->delay.hpd_reliable;
- 	if (p->no_hpd)
--		delay += p->desc->delay.hpd_absent;
-+		delay = max(delay, p->desc->delay.hpd_absent);
- 	if (delay)
- 		msleep(delay);
+ 	if (p->enabled)
+ 		return 0;
  
-@@ -1039,15 +1039,13 @@ static const struct panel_desc boe_nv133fhm_n61 = {
- 		 * spike on the HPD line.  It was explained that this spike
- 		 * was until the TCON data download was complete.  On
- 		 * one system this was measured at 8 ms.  We'll put 15 ms
--		 * in the prepare delay just to be safe and take it away
--		 * from the hpd_absent (which would otherwise be 200 ms)
--		 * to handle this.  That means:
-+		 * in the prepare delay just to be safe.  That means:
- 		 * - If HPD isn't hooked up you still have 200 ms delay.
- 		 * - If HPD is hooked up we won't try to look at it for the
- 		 *   first 15 ms.
- 		 */
- 		.hpd_reliable = 15,
--		.hpd_absent = 185,
-+		.hpd_absent = 200,
+-	if (p->desc->delay.enable)
+-		msleep(p->desc->delay.enable);
++	delay = p->desc->delay.enable;
++
++	/*
++	 * If there is a "prepare_to_enable" delay then that's supposed to be
++	 * the delay from HPD going high until we can turn the backlight on.
++	 * However, we can only count this if HPD is handled by the panel
++	 * driver, not if it goes to a dedicated pin on the controller.
++	 * If we aren't handling the HPD pin ourselves then the best we
++	 * can do is assume that HPD went high immediately before we were
++	 * called (and link training took zero time).
++	 *
++	 * NOTE: if we ever end up in this "if" statement then we're
++	 * guaranteed that the panel_edp_wait() call below will do no delay.
++	 * It already handles that case, though, so we don't need any special
++	 * code for it.
++	 */
++	if (p->desc->delay.prepare_to_enable && !p->hpd_gpio && !p->no_hpd)
++		delay = max(delay, p->desc->delay.prepare_to_enable);
++
++	if (delay)
++		msleep(delay);
  
- 		.unprepare = 500,
- 	},
+ 	panel_edp_wait(p->prepared_time, p->desc->delay.prepare_to_enable);
+ 
 -- 
 2.33.0.309.g3052b89438-goog
 
