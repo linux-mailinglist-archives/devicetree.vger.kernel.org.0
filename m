@@ -2,124 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 869F740B65E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 110C740B666
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 20:00:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231771AbhINSAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 14:00:55 -0400
-Received: from mga14.intel.com ([192.55.52.115]:34118 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230092AbhINSAz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 14:00:55 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10107"; a="221755385"
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
-   d="scan'208";a="221755385"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2021 10:59:37 -0700
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
-   d="scan'208";a="544216080"
-Received: from lveltman-mobl.ger.corp.intel.com (HELO localhost) ([10.251.216.6])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Sep 2021 10:59:31 -0700
-From:   Jani Nikula <jani.nikula@linux.intel.com>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list\:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Steev Klimaszewski <steev@kali.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 03/16] drm/edid: Allow the querying/working with the panel ID from the EDID
-In-Reply-To: <CAD=FV=X-d8XH5bmcAhDGnbs-DHgQ7D6G9g3gRsjo7RN1xQ1kNA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210901201934.1084250-1-dianders@chromium.org> <20210901131531.v3.3.I4a672175ba1894294d91d3dbd51da11a8239cf4a@changeid> <87h7ey81e9.fsf@intel.com> <CAD=FV=X-d8XH5bmcAhDGnbs-DHgQ7D6G9g3gRsjo7RN1xQ1kNA@mail.gmail.com>
-Date:   Tue, 14 Sep 2021 20:59:27 +0300
-Message-ID: <87h7en11j4.fsf@intel.com>
+        id S231886AbhINSBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 14:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60788 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231682AbhINSB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 14:01:28 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79894C061574;
+        Tue, 14 Sep 2021 11:00:10 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id i3so190128wmq.3;
+        Tue, 14 Sep 2021 11:00:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wvbyZiOz7Ec9hyqSMpm7mmMn4oxPF4j+O4Rp3JHG2m4=;
+        b=mfyFG+lR7RBM2GfQ3G4NpQZOUn6NZBITG9iuVFfYmmBUHeB1Gcr/Wto32TRMdfaY4/
+         dc5LoMnFT4wsUNATmuqVy0looXm6tzhJHkysFpatHA3985nLfmeaLb7EUaU+gpbdQ6EP
+         vbR9qc+vBNEGDjUUc1b1qG67UMpiwBRH4odmNsNQ9yJ0Oj/jtfSvp3hDP/5z9PROi4Du
+         SJOYEhHS6D3tblpwl+UBx1H65Mc+hb529Xp4ZB+ilxabGLJ72wdsLjFmDy7CxDMhQO9x
+         /IuB7K2pDLMzKj7401b5P1UyuSqCsLAe6XkeEHPYHB+SxqLJbMF5pzl/VgAjStzztQ09
+         Pikg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wvbyZiOz7Ec9hyqSMpm7mmMn4oxPF4j+O4Rp3JHG2m4=;
+        b=3eFlh5a9lJKsVbb6dlRoIhxrvJaMTxZ5f0fYUNUAURhXl0R6cuVPj6JJoW8qLLTMjv
+         5Cos53K5z3PEdzYrNMZqRAjjO4SZ04tFBf1hpIDWV4jTZlHAM/x53J4smnqjmm9OxW9I
+         OFbr6Kpb8gGeTc7iD65jJrU6/q9q7xSk4DorJRKY6lNeY6yGy9lc6uEA+ZYAWHn0WR4E
+         4jOGQx2whCOPzYRgU36JigjeF0ekDYay5ZPDifnyNQjTmq66eoU8WQqa943emHJXhl0X
+         XuMg1qE7R0gxm7ga4P4vfm4Mh2C/WwyHjqLT8M8rDi+XEb+eI9mCksb48QkYe8MpIm5z
+         VJzg==
+X-Gm-Message-State: AOAM531fasc9MXoFjRoW2bSFZUxCbzcDVrHWkc6Y7W/iFnts33WrqbvD
+        3KJgwMbA2WjW6Jwqn4mAjgc=
+X-Google-Smtp-Source: ABdhPJw/wltv4HvH8nTvBUz2AhO7PAV/1Z+vLbyMv0bsdlONsSJXjcVDS6v23vp5wflmT7xBZuOXtg==
+X-Received: by 2002:a1c:7304:: with SMTP id d4mr315087wmb.119.1631642408706;
+        Tue, 14 Sep 2021 11:00:08 -0700 (PDT)
+Received: from [192.168.0.16] ([37.223.140.66])
+        by smtp.gmail.com with ESMTPSA id k17sm10887920wrq.7.2021.09.14.11.00.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Sep 2021 11:00:08 -0700 (PDT)
+Message-ID: <9552b0dc-337f-7edc-2997-50603dfe8bcd@gmail.com>
+Date:   Tue, 14 Sep 2021 20:00:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.0.3
+Subject: Re: [RESEND,v2,7/9] dt-bindings: arm64: dts: mediatek: Add mt7986
+ series
+Content-Language: en-US
+To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Cc:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
+References: <20210914085137.31761-1-sam.shih@mediatek.com>
+ <20210914085137.31761-8-sam.shih@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20210914085137.31761-8-sam.shih@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Sep 2021, Doug Anderson <dianders@chromium.org> wrote:
-> Hi,
->
-> On Mon, Sep 6, 2021 at 3:05 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>
->> > +{
->> > +     struct edid *edid;
->> > +     u32 val;
->> > +
->> > +     edid = drm_do_get_edid_blk0(drm_do_probe_ddc_edid, adapter, NULL, NULL);
->> > +
->> > +     /*
->> > +      * There are no manufacturer IDs of 0, so if there is a problem reading
->> > +      * the EDID then we'll just return 0.
->> > +      */
->> > +     if (IS_ERR_OR_NULL(edid))
->> > +             return 0;
->> > +
->> > +     /*
->> > +      * In theory we could try to de-obfuscate this like edid_get_quirks()
->> > +      * does, but it's easier to just deal with a 32-bit number.
->>
->> Hmm, but is it, really? AFAICT this is just an internal representation
->> for a table, where it could just as well be stored in a struct that
->> could be just as compact now, but extensible later. You populate the
->> table via an encoding macro, then decode the id using a function - while
->> it could be in a format that's directly usable without the decode. If
->> suitably chosen, the struct could perhaps be reused between the quirks
->> code and your code.
->
-> I'm not 100% sure, but I think you're suggesting having this function
-> return a `struct edid_panel_id` or something like that. Is that right?
-> Maybe that would look something like this?
->
-> struct edid_panel_id {
->   char vendor[4];
->   u16 product_id;
-> }
->
-> ...or perhaps this (untested, but I think it works):
->
-> struct edid_panel_id {
->   u16 vend_c1:5;
->   u16 vend_c2:5;
->   u16 vend_c3:5;
->   u16 product_id;
-> }
->
-> ...and then change `struct edid_quirk` to something like this:
->
-> static const struct edid_quirk {
->   struct edid_panel_id panel_id;
->   u32 quirks;
-> } ...
->
-> Is that correct? There are a few downsides that I can see:
->
-> a) I think the biggest downside is the inability compare with "==". I
-> don't believe it's legal to compare structs with "==" in C. Yeah, we
-> can use memcmp() but that feels more awkward to me.
->
-> b) Unless you use the bitfield approach, it takes up more space. I
-> know it's not a huge deal, but the format in the EDID is pretty much
-> _forced_ to fit in 32-bits. The bitfield approach seems like it'd be
-> more awkward than my encoding macros.
 
-Sorry for the delayed response. Fair enough, let's go with the u32 for
-now. It's not like we can't change this later.
 
-BR,
-Jani.
+On 14/09/2021 10:51, Sam Shih wrote:
+> MT7986 is Mediatek's new 4-core SoC, which is mainly for wifi-router
+> application. The difference between mt7986a and mt7986b is that some
+> pins do not exist on mt7986b.
+> 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Sam, I'd like to take this patch through my tree but you seemed to have send the 
+patches in a strange way that confuses my b4.sh
+
+Would you mind send the next version using git send-email or similar?
+
+Regards,
+Matthias
+
+> 
+> ---
+> v2: added an Acked-by tag
+> ---
+>   Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 80a05f6fee85..a9a778269684 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -76,6 +76,14 @@ properties:
+>             - enum:
+>                 - mediatek,mt7629-rfb
+>             - const: mediatek,mt7629
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt7986a-rfb
+> +          - const: mediatek,mt7986a
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt7986b-rfb
+> +          - const: mediatek,mt7986b
+>         - items:
+>             - enum:
+>                 - mediatek,mt8127-moose
+> 
