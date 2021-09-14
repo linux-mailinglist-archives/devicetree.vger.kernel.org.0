@@ -2,105 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1165040B2BE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E093940B2C8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:16:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233828AbhINPPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 11:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48756 "EHLO
+        id S233765AbhINPRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 11:17:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234793AbhINPPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:15:06 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C8CC0613E0
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 08:13:48 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id y28so5330843lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 08:13:48 -0700 (PDT)
+        with ESMTP id S233584AbhINPRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:17:54 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F199EC061574;
+        Tue, 14 Sep 2021 08:16:36 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id c21so12639711edj.0;
+        Tue, 14 Sep 2021 08:16:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vs4JzNzYOIkiMNCXl/BXAxJoRkCBxorofWXnQlKIKTc=;
-        b=pRPWsNXgrIohQph/8NpbL+8CQcifHOg3AtasJUc6ewrlqivFf7tNOnOev6xbHNeScy
-         5lUw0JKVS2bKoFDpADjDZDubGnxK5+M9NWO2BpPX9q2R9b58vLMbE5CMjgmeiW2mNU8s
-         o7ThsamuF+OksBlmKnCdC/Nw0BTW4A0/yGHr6VSMZWFPhdhurnzjm6uYfu9gnLkkCbv0
-         lpdeXMq9bL2t29SyoDO11ImlthHn7AXkSS4a0zy/pQiHkSYi566+PTsS85skBEHoByF1
-         ZgvNHr/rm3TIdw1ErNJ7E4dDZUpJCDskQV8oxzwthUO37ZBKKoQhbdM/zIrykMAFIsCq
-         Kl9Q==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=y4C7y9yJzTQudhCL/GHuZMtYngDM40ymN0HTRwvsckQ=;
+        b=iAVdVA2EgO9QsXTzpLndE0Po4h/y/qQrRmQfUiLtKaar7C2wTdegTmqF7Nu+TysdKp
+         5BAqiDSPftJYqaKPWzzGkWDgHfvj/and+2n6wpJlZ4zIoIvdDXUbiP8jul2L9Ofj3kQy
+         tSxR2zWKZ0QWEXIZA5mEuSKwcktjF++SnMQTwqD9an+7rgCUBrWnj0CTFMMGzKLqoocF
+         lPZqSQ23U/MlVvR5AetSppaPTUIQ0R+WMJ/DFLnqCAODCccVRrAnncsLPG0AI0Eu/M5M
+         CX2CeUXsbl+DObJdSGvA0OUWDHnFYFsl3CgbNGTHULTrMBYp8uOfw9Z0ZWw3k9rx2b3A
+         4qwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vs4JzNzYOIkiMNCXl/BXAxJoRkCBxorofWXnQlKIKTc=;
-        b=5dKjzapFeKFNoBRWI2gJ+1mdLP11BmMRLxuUzd/qpCtMsZosEK4CrZIlb6GUIladBB
-         l6hEBIrLh5dvlpPsnzWDROfzsiAnpHFFfQ9S/J2VlREuxokOT3vA96j/da+3ohrfvje2
-         19YtXS5Q8w4jgcf+R05du3ia/q+PugbvfsevGHlSrnpaSnvKabtgJ15SPgnKNcxXUS+X
-         RqlBZ6iVIvHpBRnCjY8LiqwVkFTpeblZFUlEHm6jp8BzYkUIYUuOQKNCv0MjjpDMXnfo
-         IrDlazqJAa3MKvDdKl3aXe2g4wuAT6IrGOKxQha2BpkGD2EBTrVYBgzxdY5v1zGFQLrW
-         47Ww==
-X-Gm-Message-State: AOAM533zK21jwwuc3RPxrNig1XYoCZohj7u2R6IqqsHOlw1E/4T0ecpD
-        /q27t7JuAqgokttoAwkNuM8Dg1XmiEnZEN2/Bm0csg==
-X-Google-Smtp-Source: ABdhPJz/nB2X7ZhjAGNpGQ+wUMu55D7srT5Jv3DFOroslyMj15lcS2R9RnxlnBnfcSTTFydrMt0Pg3Xb7m3aCBq9Pto=
-X-Received: by 2002:a05:6512:318a:: with SMTP id i10mr14107059lfe.444.1631632426763;
- Tue, 14 Sep 2021 08:13:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210913192816.1225025-1-robh@kernel.org> <20210913192816.1225025-9-robh@kernel.org>
-In-Reply-To: <20210913192816.1225025-9-robh@kernel.org>
-From:   Nick Desaulniers <ndesaulniers@google.com>
-Date:   Tue, 14 Sep 2021 08:13:35 -0700
-Message-ID: <CAKwvOdnNOMDWar2jpEw_yt8-dzW6KX-NVWh=UHc2FeYzux4tVw@mail.gmail.com>
-Subject: Re: [PATCH v2 8/8] kbuild: Enable dtc 'unit_address_format' warning
- by default
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Michal Marek <michal.lkml@markovi.net>,
-        linux-kbuild@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=y4C7y9yJzTQudhCL/GHuZMtYngDM40ymN0HTRwvsckQ=;
+        b=e5LUaXDr9H7NCkp6Uz4CsXpzMZ3uJMaTS901KJSoxHqo+vXOmIKXtGMbpYgmZ7wAQM
+         GeJN1hB2ckf2mrOpdmY8sbpir0bHXTR9EvtoINm7dxQylZuTUeUby3+AATOcU2yhlvBS
+         axUemMwVVuPPjGUNcvkbI0xBU04ICJhSap8h5d7b7wfwKuqK7MubtbJFJfqpkN+cggkB
+         GRw2nXOPA4WqJgRqEJTaMOyvKBkfr7CHaXwoi1yVxegSxLJL6RC2VuOnGMO33X8y9/Wy
+         pCL0g2i30QeWjcJ9uv7eBwxc/f+lInqUjFIl8q8ICasx4tc8EWOQe5YbnWhTOBVPhnU6
+         udfQ==
+X-Gm-Message-State: AOAM533ETY+OjOUmdJQBhmf+8roFh42KstOpS8xwRZmy1tV+yqQKlxVW
+        jnwZYIA18vd9l3LUb8UFV3Q=
+X-Google-Smtp-Source: ABdhPJxcpflDkKriUpwXnmQ91xvw+QQ2tRPyfz+7x2m8TLRQSCCUzKP02myJJM14tbNU0Ev45LWzUA==
+X-Received: by 2002:a05:6402:2c9:: with SMTP id b9mr20207344edx.109.1631632595532;
+        Tue, 14 Sep 2021 08:16:35 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id x12sm4932833edd.51.2021.09.14.08.16.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 08:16:35 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to rbox-pro
+Date:   Tue, 14 Sep 2021 15:16:31 +0000
+Message-Id: <20210914151631.2841-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 12:28 PM Rob Herring <robh@kernel.org> wrote:
->
-> With all the 'unit_address_format' warnings fixed, enable the warning by
-> default.
->
-> Cc: Michal Marek <michal.lkml@markovi.net>
-> Cc: Nick Desaulniers <ndesaulniers@google.com>
-> Cc: linux-kbuild@vger.kernel.org
-> Acked-by: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Add initial support limited to HDMI i2s and SPDIF (LPCM).
 
-Acked-by: Nick Desaulniers <ndesaulniers@google.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+This reworks an earlier submission which was rejected due to errant
+inclusion of some regulators with the patch.
 
-> ---
->  scripts/Makefile.lib | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index 54582673fc1a..56d50eb0cd80 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -310,7 +310,6 @@ DTC_FLAGS += -Wno-interrupt_provider
->  # Disable noisy checks by default
->  ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
->  DTC_FLAGS += -Wno-unit_address_vs_reg \
-> -       -Wno-unit_address_format \
->         -Wno-avoid_unnecessary_addr_size \
->         -Wno-alias_paths \
->         -Wno-graph_child_address \
-> --
-> 2.30.2
->
+ .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index dde7cfe12cff..50137aafab10 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -14,6 +14,7 @@
+ /dts-v1/;
+ 
+ #include "meson-gxm.dtsi"
++#include <dt-bindings/sound/meson-aiu.h>
+ 
+ / {
+ 	compatible = "kingnovel,r-box-pro", "amlogic,s912", "amlogic,meson-gxm";
+@@ -33,6 +34,13 @@
+ 		reg = <0x0 0x0 0x0 0x80000000>; /* 2 GiB or 3 GiB */
+ 	};
+ 
++	spdif_dit: audio-codec-0 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -90,6 +98,59 @@
+ 		clocks = <&wifi32k>;
+ 		clock-names = "ext_clock";
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "RBOX-PRO";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
++
++		dai-link-4 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&aiu {
++	status = "okay";
++	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-names = "default";
+ };
+ 
+ &ethmac {
 -- 
-Thanks,
-~Nick Desaulniers
+2.17.1
