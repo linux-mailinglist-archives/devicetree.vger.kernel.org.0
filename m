@@ -2,101 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC3D40B630
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498C240B644
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbhINRs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 13:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
+        id S229854AbhINR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 13:56:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbhINRsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:48:55 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E09CC061762
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 10:47:38 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id n13-20020a17090a4e0d00b0017946980d8dso2797221pjh.5
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 10:47:38 -0700 (PDT)
+        with ESMTP id S229785AbhINR4q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:56:46 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F54C061574;
+        Tue, 14 Sep 2021 10:55:28 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id i3so179106wmq.3;
+        Tue, 14 Sep 2021 10:55:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qNpmfocRQgc6fMij3WcOQJkyWY3Uzb6MR8R5s1ErrCg=;
-        b=KPCtsR38LKdUoGcNa9GMqU/wR3GKGsaGwGVWLrf7cTsNP0tMwfHxiVnXeNBD+J0bAR
-         OHt4glvZNHZEuQOxJxkSV+mHRlUouRr5v75HCVBtg55LVtrbl0JZYNZmWf9abdpTZ1fT
-         dj9O41H7PaVBseG2hxBbfB6v157CkHzc4Y/Ea6KgpQ0sVUXicjK75+Zga8zquLhgUCKA
-         Ja7hIRiZ5TLpu5k4poKYNPfN7e81zIYxp3lGPNvTTzmCT2OHek/ME9QQOHOLa7VmD/50
-         yISaCDIX6r0w38d0AMn+uFFne4g8Tl7IaEmMbyF9Sto+JeSPDSlxK6/PP9RoG8JJ6ow7
-         WTxw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=o4N33InZazxjk2fm8q6vK8YiuSMIHI0rSm1Fto78HVY=;
+        b=Kq6HIns1wxIDQW7wVZGqtPs8Lakk8I2+OcNr4+nPCS8f/mzDXYIWAZxRV8SyM5sUl7
+         KThkCXKwt+hQ2dt63JusPyHaXkRQd/hdG4E/7waUU3CQ460zJKlwL3YYywxYlkQSRipj
+         eG2H/DFdMmgjEnu0ITT0qTmWNjC1TP+FcblWcm4/CiJFBebBVfahFriCoBHSbFSzGGpp
+         r60UtLtehM2QgVDXIgJQAsaNl1kpDPQVKHEzz5aPcMNQXZFOFRb3y3urst5VCx1aRF0k
+         xPfk6JJjY1uTSynF5d8puaV6rOVlAbsQrnhbUZJe+Dh5ke4Fj9YQTYDCZwnlEX32XaFZ
+         YnDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qNpmfocRQgc6fMij3WcOQJkyWY3Uzb6MR8R5s1ErrCg=;
-        b=MVKkUKeqqF04n//wSj6CzcEIgcxHzBzSp3t/RJ4tMn/nH2hpOApPbDXtIQZ33Y4tpS
-         PB7JzsFB31pApzpa4zuPODs4jrxjw85s4xKq8DkGo1l7KhI3SyCDrHpxwiWNBM/Ej21e
-         LKO8MBaAp9dt1hT9rN4McG/YQpRzSRoxOqFGeTTjpuvtc9KvxV6r+sa6b9WBlyMqDdyG
-         JSJdfc3ppHly8TvV8lNJr4NmMyiZ15P2Ws7eS/hPXMTWFQDAb+ZjBs286rWf8oq2AG2S
-         lIJ9NywYeBJJ4B7pA2/CfT0JeDnDtPm1MY+snl2FJAa4l7f34ct59StNXs4oPM4QRa94
-         X5sw==
-X-Gm-Message-State: AOAM531oi+j32vaHFrz3ct5IMfb7LfcAbdf/fDUngwg78TGagVLbAMAV
-        OFGQL/G+tSe2c87gNw8E/smydA==
-X-Google-Smtp-Source: ABdhPJw3+2cqCp32kqlVBigVqINzGynUgq9CRlUWcOXHDpqwoO/bewGBpusqKzF/M2PyOYPCRpivjw==
-X-Received: by 2002:a17:902:dacc:b0:135:960b:1754 with SMTP id q12-20020a170902dacc00b00135960b1754mr15957252plx.77.1631641657742;
-        Tue, 14 Sep 2021 10:47:37 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id x15sm11970896pgt.34.2021.09.14.10.47.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 10:47:36 -0700 (PDT)
-Date:   Tue, 14 Sep 2021 11:47:34 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, daniel.baluta@nxp.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        shengjiu.wang@gmail.com
-Subject: Re: [PATCH v4 2/4] remoteproc: imx_rproc: Add IMX_RPROC_SCU_API
- method
-Message-ID: <20210914174734.GC1719994@p14s>
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-3-git-send-email-shengjiu.wang@nxp.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=o4N33InZazxjk2fm8q6vK8YiuSMIHI0rSm1Fto78HVY=;
+        b=PIfq5osUmHw/9xCG6+QgWbwEjpBMUIS8oQskvVn9JaY5M88iV5rgb9smHvxnv1zj0v
+         zHKoyE7kI0tuPpj8OfDEfJob8tMq6oPUHo3OsugGEN4nAGApxeLEmehEAzTeeBD3OXRd
+         NNZkzFmVFiY1YrtUqe7bMOGeKxkOQB3pkNAsxpjdRRa2KEsiA8ZizgNmKkhIWAk2G9Ve
+         yeHtevV9fuNh2gGDrXvf18qBOMdt2TF8FY0chUheXb2Hu1aVeeng8eyy6eHGExWqn1zc
+         n2UFYkU6boJrTjbZiiEkv4EcUBJm/tcrbyns5Cfog3oQ7my7C1lNFHj+kNr7Olbn9etZ
+         bzhA==
+X-Gm-Message-State: AOAM531yEr8nuyGmZL4QLjrC+5DCW+zvknrunfut/juPG3PifT9p6Fco
+        H2/nRUD376Pc8sK+gMShyLs=
+X-Google-Smtp-Source: ABdhPJzUGxuis/ruDJdd5qDR8TPtVsMGxpsuKrk+eTnAx/luvB3WM899gSd766IT/oCv1KftVjMfMQ==
+X-Received: by 2002:a05:600c:3203:: with SMTP id r3mr371006wmp.175.1631642126910;
+        Tue, 14 Sep 2021 10:55:26 -0700 (PDT)
+Received: from [192.168.0.16] ([37.223.140.66])
+        by smtp.gmail.com with ESMTPSA id u16sm1982308wmc.41.2021.09.14.10.55.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Sep 2021 10:55:26 -0700 (PDT)
+Message-ID: <016b501b-a4bf-c74d-9f7f-8145800ca6e0@gmail.com>
+Date:   Tue, 14 Sep 2021 19:55:24 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1631092255-25150-3-git-send-email-shengjiu.wang@nxp.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.0.3
+Subject: Re: [RESEND,v2,8/9] arm64: dts: mediatek: add mt7986a support
+Content-Language: en-US
+To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Cc:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
+References: <20210914085137.31761-1-sam.shih@mediatek.com>
+ <20210914085137.31761-9-sam.shih@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20210914085137.31761-9-sam.shih@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 08, 2021 at 05:10:53PM +0800, Shengjiu Wang wrote:
-> On i.MX8QM and i.MX8QXP, most devices are controlled
-> by System Control Unit, so add IMX_RPROC_SCU_API
-> method for these platform.
+
+
+On 14/09/2021 10:51, Sam Shih wrote:
+> Add basic chip support for Mediatek mt7986a, include
+> uart nodes with correct clocks, rng node with correct clock,
+> and watchdog node and mt7986a pinctrl node.
 > 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Add cpu node, timer node, gic node, psci and reserved-memory node
+> for ARM Trusted Firmware,
+> 
+> Add clock controller nodes, include 40M clock source, topckgen, infracfg,
+> apmixedsys and ethernet subsystem.
+> 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> 
 > ---
->  drivers/remoteproc/imx_rproc.h | 2 ++
->  1 file changed, 2 insertions(+)
+> v2: modified clock and uart node due to clock driver updated
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile        |   1 +
+>   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  49 ++++
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 227 +++++++++++++++++++
+>   3 files changed, 277 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a.dtsi
 > 
-> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
-> index 23d8e808d27f..1c7e2127c758 100644
-> --- a/drivers/remoteproc/imx_rproc.h
-> +++ b/drivers/remoteproc/imx_rproc.h
-> @@ -22,6 +22,8 @@ enum imx_rproc_method {
->  	IMX_RPROC_MMIO,
->  	/* Through ARM SMCCC */
->  	IMX_RPROC_SMC,
-> +	/* Through System Control Unit API */
-> +	IMX_RPROC_SCU_API,
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index 4f68ebed2e31..e6c3a73b9e4a 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> new file mode 100644
+> index 000000000000..a58347c09ab2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> @@ -0,0 +1,49 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2021 MediaTek Inc.
+> + * Author: Sam.Shih <sam.shih@mediatek.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt7986a.dtsi"
+> +
+> +/ {
+> +	model = "MediaTek MT7986a RFB";
+> +	compatible = "mediatek,mt7986a-rfb";
+> +	chosen {
+> +		bootargs = "console=ttyS0,115200n1 loglevel=8  \
+> +				earlycon=uart8250,mmio32,0x11002000";
 
-So much better now...
+We should be able to achieve this by using the stdout-path instead.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
->  };
->  
->  struct imx_rproc_dcfg {
-> -- 
-> 2.17.1
-> 
+Regards,
+Matthias
