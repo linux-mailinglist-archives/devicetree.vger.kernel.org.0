@@ -2,146 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6DD040B3B3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C430C40B3D3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234817AbhINPwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 11:52:21 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:39707 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234974AbhINPvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:51:54 -0400
-Received: by mail-ot1-f53.google.com with SMTP id m7-20020a9d4c87000000b0051875f56b95so19086814otf.6;
-        Tue, 14 Sep 2021 08:50:36 -0700 (PDT)
+        id S232800AbhINP52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 11:57:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232983AbhINP52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:57:28 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54CF5C061766
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 08:56:10 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id k13so29849639lfv.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 08:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D9r7vZTFmt+HJczJ26/VRGmSIRdn9r2Ig6CHBFrDqyQ=;
+        b=WGEzzSuuYjdTtafp7Eu81tLCmpgrr+gXYtUri5DNqI5NCgL24GFjf73a/e2jyLt9mG
+         odsKhpJeEdR3FB9k9Ien6pDJYoUHRHuid0YNZ7TbOAJHb8OyBtWer7iWwSW1u14BXOTW
+         +YgaPZ7iP6bLgkmX18uF8UKm4iFPdCtC9yRbpl7jVdskqTbpu7KwRYteuWz8ZFnqgxxD
+         AfUt/CUakcI47R7HCq1Pt53OXxONCeJvCnNSqyqa5DLS2EJx9dyrtL6MmKj8Qeogi/2k
+         W2fxnWN2DrZhVF2sMisO5VmdDX4hiiHjtj7uYz6E7yZ96NmYUpdC25W3LF6dushrEzbY
+         GW9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rnTeP9MXgZMY0ccObwY7v7BGqeBnLTs9n9kuMAleLtU=;
-        b=uMrQXwPkwZQI4u+fgY8x57N5Sf+XGFPy3a8dSWB+Q9NcZRmI6ihQh2yirR+Kw1z8wb
-         S8foRUr6DmH56Gf9Al9phiQ8tmlTb6RdYCeYhQeM1ENspC71mqbXTPVweD9wvJhfJckZ
-         oYy9Di6Yiy2kJ9eGCVAqN0tYECNV7FxYYEGu3tbVCEtkm9FOa3Cd0zCHlfpd6RYdbwgl
-         MdzjbEH4v9mdLQcBKOF6cKLjlYfiYkdocHc+Pto+rsMuey9sxsI3/Qe5zzgaIZT85UzM
-         8BrVvb+kFknkVNqmqiDNx9wa8cKiDgEuJQulv2HGZ5z0Ddkg0wXoeMy/Kt5Gj8lKN2Zn
-         dMnA==
-X-Gm-Message-State: AOAM531M2yFKqmvqKmA147eth7VylNoymW4pLD4038jkFlI6qi70G2Bu
-        xEJkvsG1hW/4035MUTneUQ==
-X-Google-Smtp-Source: ABdhPJyt6EAx6ms2TgwhAmHferJKtGDUssDln1uxGGEcAReE4RxZo6WxwJ5mhvyQn7pkyGrkHd3kuw==
-X-Received: by 2002:a05:6830:4124:: with SMTP id w36mr15592836ott.72.1631634636081;
-        Tue, 14 Sep 2021 08:50:36 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a13sm2726549oos.4.2021.09.14.08.50.34
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D9r7vZTFmt+HJczJ26/VRGmSIRdn9r2Ig6CHBFrDqyQ=;
+        b=i3EbeB+snGZXEAPgWBr1nVPToItTr8J+tQ1n/kvJbBOoaTX7EPCPNp6k3K0s9JHFo8
+         BSaJcea1WGAUspEwi5qDdrmWisTx3rjhQEDRADSYMTQ2xQUORqrac6QJN0suCo+P8JIu
+         pvAbOpmTqZ3EW97CTG+EldAzZVVrbwKOnw6zlv65uFK6sO/tFdh8xPQcA39Nm+2By7Dy
+         pDji11na0bPH1xXcUP5AcL/5ZGUZjnIZzBrSljMgCgkPIP/VuEhJ9zwhQWvi+fjnu13k
+         ZEzM1RihBWbUpeJ2BpYhuuvDNDSDEvQj7hMXWwHk1BXUFwyptCcUkO4/SfyrCauL2O34
+         eIhw==
+X-Gm-Message-State: AOAM530ooaixHcb970CpH+n86A8wBF5xXi4Uw8KNSbbsaJWnV6ZmpTRc
+        hDfcG4f2BTHM2F1tvnsBjl57Mw==
+X-Google-Smtp-Source: ABdhPJxyinnxHmfXKBVGde0Dv5bF8T5/S0h3LFk8Is4k0D1dXCGfavlZhTNu/0Ze4Zz34a+lhodbWQ==
+X-Received: by 2002:ac2:5b07:: with SMTP id v7mr586587lfn.113.1631634968690;
+        Tue, 14 Sep 2021 08:56:08 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id 26sm603801lfz.40.2021.09.14.08.56.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 08:50:35 -0700 (PDT)
-Received: (nullmailer pid 3462681 invoked by uid 1000);
-        Tue, 14 Sep 2021 15:50:33 -0000
-Date:   Tue, 14 Sep 2021 10:50:33 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        "Darrick J. Wong" <djwong@kernel.org>, devicetree@vger.kernel.org,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jiri Olsa <jolsa@redhat.com>,
-        John Garry <john.garry@huawei.com>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Vincent Chen <vincent.chen@sifive.com>
-Subject: Re: [v3 06/10] dt-binding: pmu: Add RISC-V PMU DT bindings
-Message-ID: <YUDEyYQvjCo83h5B@robh.at.kernel.org>
-References: <20210910192757.2309100-1-atish.patra@wdc.com>
- <20210910192757.2309100-7-atish.patra@wdc.com>
+        Tue, 14 Sep 2021 08:56:08 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 0/6] clk: samsung: Introduce Exynos850 SoC clock driver
+Date:   Tue, 14 Sep 2021 18:56:01 +0300
+Message-Id: <20210914155607.14122-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210910192757.2309100-7-atish.patra@wdc.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 10, 2021 at 12:27:53PM -0700, Atish Patra wrote:
-> This patch adds the DT bindings for RISC-V PMU driver. It also defines
-> the interrupt related properties to allow counter overflow interrupt.
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  .../devicetree/bindings/perf/riscv,pmu.yaml   | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> new file mode 100644
-> index 000000000000..497caad63f16
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pmu/riscv,pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V PMU
-> +
-> +maintainers:
-> +  - Atish Patra <atish.patra@wdc.com>
-> +
-> +description:
-> +  The "Sscofpmf" extension allows the RISC-V PMU counters to overflow and
-> +  generate a local interrupt so that event sampling can be done from user-space.
-> +  The above said ISA extension is an optional extension to maintain backward
-> +  compatibility and will be included in privilege specification v1.12 . That's
-> +  why the interrupt property is marked as optional. The platforms with sscofpmf
-> +  extension should add this property to enable event sampling.
-> +  The device tree node with the compatible string is mandatory for any platform
-> +  that wants to use pmu counter start/stop methods using SBI PMU extension.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - riscv,pmu
-> +
-> +    description:
-> +      Should be "riscv,pmu".
+This patch series provides the implementation for Exynos850 clock
+driver, its documentation and corresponding changes for Samsung clock
+infrastructure:
+  - Adds new PLL types used in Exynos850 SoC, following TRM
+  - Enables bus clock for each registered CMU, if it's provided
 
-The schema already says this.
+I tried to follow already established design for Samsung clock drivers
+(getting most insights from Exynos7 and Exynos5433 clock drivers), and
+integrate the driver in existing infrastructure. The whole driver was
+implemented from scratch, using mostly TRM.
 
-Just 'pmu' isn't very specific. No version to attach here?
+For now only basic clocks are implemented, including next blocks:
+  - CMU_TOP
+  - CMU_PERI
+  - CMU_CORE
+  - CMU_HSI
 
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 4095
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - None
-> +optional:
-> +  - compatible
+Some CMUs are still not implemented, but that can be added in future,
+when the need arises. The driver also lacks CLKOUT support, PM ops and
+automatic clocks control (using Q-Channel protocol). All that can be
+added independently later.
 
-Besides 'optional' not being the in vocabulary, 'compatible' is never 
-optional.
+Implemented clock tree was tested via UART and MMC drivers, and using
+DebugFS clk support (e.g. using 'clk_summary' file). In order to keep
+all clocks running I added 'clk_ignore_unused' kernel param in my local
+tree, and defined CLOCK_ALLOW_WRITE_DEBUGFS in clk.c for actually
+testing clocks via DebugFS.
 
-> +  - interrupts-extended
-> +
-> +examples:
-> +  - |
-> +    pmu {
-> +      compatible = "riscv,pmu";
-> +      interrupts-extended = <&cpu0intc 13>,
-> +                            <&cpu1intc 13>,
-> +                            <&cpu2intc 13>,
-> +                            <&cpu3intc 13>;
-> +    };
-> +...
-> -- 
-> 2.31.1
-> 
-> 
+Sam Protsenko (6):
+  clk: samsung: Enable bus clock on init
+  clk: samsung: clk-pll: Implement pll0822x PLL type
+  clk: samsung: clk-pll: Implement pll0831x PLL type
+  dt-bindings: clock: Add bindings definitions for Exynos850 CMU
+  dt-bindings: clock: Document Exynos850 CMU bindings
+  clk: samsung: Introduce Exynos850 clock driver
+
+ .../clock/samsung,exynos850-clock.yaml        | 190 +++++
+ drivers/clk/samsung/Makefile                  |   1 +
+ drivers/clk/samsung/clk-exynos850.c           | 700 ++++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 | 196 +++++
+ drivers/clk/samsung/clk-pll.h                 |   2 +
+ drivers/clk/samsung/clk.c                     |  13 +
+ include/dt-bindings/clock/exynos850.h         |  72 ++
+ 7 files changed, 1174 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+ create mode 100644 drivers/clk/samsung/clk-exynos850.c
+ create mode 100644 include/dt-bindings/clock/exynos850.h
+
+-- 
+2.30.2
+
