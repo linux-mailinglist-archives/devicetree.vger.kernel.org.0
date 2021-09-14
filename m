@@ -2,204 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8910F40B467
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 18:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 325E840B478
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 18:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbhINQVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 12:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36366 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbhINQVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 12:21:04 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB4EC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 09:19:46 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id c42-20020a05683034aa00b0051f4b99c40cso19273990otu.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 09:19:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Jtb8OFYVUbw9XLg2yYwY4Ltv6cAZL0xcIR85bxlF9uA=;
-        b=at6HxkSSyz92um8ZPONMuS1WvGH3tzq9djna/Xd9JXgh8WSHaW3huOltIWeI1u77s/
-         XwKKOGepaHXQlRW3lCzGc4X/2SNIPfBQ5CGl3cUsAoJg5tOzzXqVjDPt1ibEeMjqKRr9
-         APKUwJtHinEkLUW8LfRXiOXt+tZPm4Y7K3m4ljnO60xv7iq4L+tQyu7BBwwqqlL3Eg+H
-         GOKBfu83BYdGUVykZRU7to3gk21pHWi37A2I9223L2JxAokUgo9u8aAzFYqlGzfuXjQP
-         Jb+Qo5OPXZp7LEKancmKr4XL6xqcHrBX9+qGvcn6hgmCdlB3b+ZltTuObngXLyaIh1r0
-         EV8w==
+        id S229601AbhINQX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 12:23:58 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:43791 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229535AbhINQX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 12:23:57 -0400
+Received: by mail-ot1-f51.google.com with SMTP id x10-20020a056830408a00b004f26cead745so19261565ott.10;
+        Tue, 14 Sep 2021 09:22:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Jtb8OFYVUbw9XLg2yYwY4Ltv6cAZL0xcIR85bxlF9uA=;
-        b=Xd14zqt+hIH9FoV4DSwtxjd8psS30uRjjYtm4vhktICjeLh2BJSYiI6EgtJ1d/kIqt
-         ESAF86vKCaJdTwKAPmA72adwqKYj77/cYHBmVehCgVCC1PFTy2oh2dUZRFACG9k6NDFD
-         LolHEHuPWxw9njkmp63ZXSzp+0zVsuvMdl5Dir+NI4oiBYstAvp9rjZ96XiJ8z4iEJ/e
-         1T9/fiJ6IgzSpbOX/2k01MckJP6HIfMiWXiqe1OfVDBCOAr29wrO1P+Ntd1cvd0K2CjY
-         tsPAAh2f+qNnYhrcmAaJcH+N9TTmpXdVJASjIp6hxEpHKNhG1+lBTBO/fJh4TwKHC9rD
-         T4FA==
-X-Gm-Message-State: AOAM530vhL7dVEjLe0ZAT6sSgqOJOChj1n/gDPcxwMQYkjHh6ruDV1u3
-        7NjuSn//l/ycuZZ3KHmX0/c0uA==
-X-Google-Smtp-Source: ABdhPJwcyBDRYHdI3C8TASoR12zuUKZ8BwdC++6KzkmP0P0TKJfrjymH8IhpGDm1tI5v6oIvVKwi3Q==
-X-Received: by 2002:a9d:4d8a:: with SMTP id u10mr15608379otk.21.1631636385946;
-        Tue, 14 Sep 2021 09:19:45 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id u19sm2708436oof.30.2021.09.14.09.19.44
+        bh=ELcDPKJa1WqjIjHIohEd4xcW4UCoHGlmNfR9X3tKCTg=;
+        b=RbIsV306p6VJp7xCtWsLY/hX1h/VweRtmmkb4uMQqm3/8QE1JAwQITGzBLX4BT0Tgm
+         vx8n02vR4k+Fu6bR3nlDb2qJqvVlWJ5Ye4IxXpItzgIDNZJWcW3FY8XLmTbiPwScbgWq
+         aW/FhJ9J+kmWwMzML6ZQvDLzFHq1N8ZiYkRFvCkKYQXpr4GbHLJeiOj9ShRArb/LHT5t
+         H9CILK8silz/V7JJtcQ8ojGCbZjAIRkcNtejOrGgmRZsAmKjFbf+Wp36l6kV5rCksssl
+         kTUUqnzhfQRMguROpmSK3tRuSvenZ/3dYRvBccrqRj4D8QJ20iMfeANMVFDPTzOdkjUT
+         f5nQ==
+X-Gm-Message-State: AOAM532xVsus8UsIDN+WZWGxu7uOGEFmBy+hL+xhhkW3NQzabPzHnBEu
+        jZF59mj/Pt3G5KOfIFj6tw==
+X-Google-Smtp-Source: ABdhPJx9tiukj074D2L64vCKyJvg7rExXu5ryDjVuvb6hck/1tQT1ViBfr9195nKNOWbxgUtyPokxA==
+X-Received: by 2002:a9d:36d:: with SMTP id 100mr15545952otv.237.1631636559607;
+        Tue, 14 Sep 2021 09:22:39 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id r20sm2704219oot.16.2021.09.14.09.22.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 09:19:45 -0700 (PDT)
-Date:   Tue, 14 Sep 2021 11:19:43 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
+        Tue, 14 Sep 2021 09:22:37 -0700 (PDT)
+Received: (nullmailer pid 3503731 invoked by uid 1000);
+        Tue, 14 Sep 2021 16:22:36 -0000
+Date:   Tue, 14 Sep 2021 11:22:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Liviu Dudau <liviu.dudau@arm.com>,
         Sudeep Holla <sudeep.holla@arm.com>,
-        Hector Martin <marcan@marcan.st>,
-        Vinod Koul <vkoul@kernel.org>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 17/18] arm64: dts: qcom: Add device tree for Sony
- Xperia 10 III
-Message-ID: <YUDLn1l+EfKLBM+f@builder.lan>
-References: <20210828131814.29589-1-konrad.dybcio@somainline.org>
- <20210828131814.29589-17-konrad.dybcio@somainline.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: leds: Convert register-bit-led
+ binding to DT schema
+Message-ID: <YUDMTGdFOOn2eZET@robh.at.kernel.org>
+References: <20210913192816.1225025-1-robh@kernel.org>
+ <20210913192816.1225025-2-robh@kernel.org>
+ <CACRpkdZX6_rBEpScxSjmiBQr_cCY9mSipm-a5B8nFRLJVBqXaw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210828131814.29589-17-konrad.dybcio@somainline.org>
+In-Reply-To: <CACRpkdZX6_rBEpScxSjmiBQr_cCY9mSipm-a5B8nFRLJVBqXaw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 28 Aug 08:18 CDT 2021, Konrad Dybcio wrote:
+On Tue, Sep 14, 2021 at 12:41:31AM +0200, Linus Walleij wrote:
+> On Mon, Sep 13, 2021 at 9:28 PM Rob Herring <robh@kernel.org> wrote:
+> 
+> > Convert the register-bit-led binding to DT schema format.
+> >
+> > As the example just repeats nearly identical nodes, trim it down to a
+> > few nodes and use some documented values for 'linux,default-trigger'.
+> >
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Cc: Pavel Machek <pavel@ucw.cz>
+> > Cc: linux-leds@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> Thanks for doing this!
+> 
+> > v2:
+> >  - Drop undocumented linux,default-trigger values
+> 
+> Will this lead to warnings? People tend to want to use these.
 
-> Add initial SM6350 SoC and Sony Xperia 10 III (PDX213, Lena platform) device
-> trees. There is no sign of another Lena devices on the horizon, so a common
-> DTSI is not created for now. 10 III features a Full HD OLED display and 5G
-> support, among other nice things like USB3.
-> 
+Yes. The list for linux,default-trigger was purposely limited rather 
+than just throw in all the occurrences we could find. It's kind of a 
+mess with similar or overlapping names.
 
-Thanks for the series, looks quite nice, so please respin with the few
-small modifications noted in the reviews.
+There's other and better ways to do this now. There's the 'function' 
+property and you can link to another device. 
 
-> The bootloader is VERY unpleasant, to get a bootable setup you have to run:
 > 
-> mkbootimg --kernel arch/arm64/boot/Image.gz --ramdisk [some initrd] \
-> --dtb arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dtb \
-> --cmdline "[some cmdline]" --base 0 --kernel_offset 0x8000 \
-> --ramdisk_offset 0x1000000 --dtb_offset 0x1f00000 --os_version 11 \
-> --os_patch_level "2021-08" --tags_offset 0x100 --pagesize 4096 \
-> --header_version 2 -o mainline.img
+> (Possibly we could actually create operating-system independent
+> triggers that make sense on any system. But it's another can
+> of worms we don't need to open today.)
 > 
-> adb reboot bootloader
+> > +    enum:
+> > +      [ 0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100, 0x200, 0x400, 0x800,
+> > +        0x1000, 0x2000, 0x4000, 0x8000, 0x10000, 0x20000, 0x40000, 0x80000,
+> > +        0x100000, 0x200000, 0x400000, 0x800000, 0x1000000, 0x2000000, 0x4000000,
+> > +        0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000 ]
 > 
-> // You have to either pull vbmeta{"","_system"} from
-> // /dev/block/bootdevice/by-name/ or build one as a part of AOSP build process
-> fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
-> fastboot --disable-verity --disable-verification flash vbmeta_system \
-> vbmeta_system.img
+> That's an interesting looking enum :D
 > 
-> fastboot flash boot mainline.img
-> fastboot erase dtbo // This will take approx 70s...
+> But I can't think of anything better, so:
 
-I always assumed that erase was broken when it took more than 5 seconds
-to clear the dtbo partition(s). So I always just flash a few kB of
-/dev/zero.
+We could define our own type, but I can't say I recall the need for this 
+elsewhere.
 
-Regards,
-Bjorn
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> fastboot reboot
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |  1 +
->  .../qcom/sm6350-sony-xperia-lena-pdx213.dts   | 57 +++++++++++++++++++
->  2 files changed, 58 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 5bbeb058e1f2..d1ace2541ce1 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akatsuki.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-apollo.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-microsoft-surface-duo.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-> new file mode 100644
-> index 000000000000..a26c23754f5d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts
-> @@ -0,0 +1,57 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-> + */
-> +/dts-v1/;
-> +
-> +#include "sm6350.dtsi"
-> +
-> +/ {
-> +	model = "Sony Xperia 10 III";
-> +	compatible = "sony,pdx213", "qcom,sm6350";
-> +	qcom,msm-id = <434 0x10000>, <459 0x10000>;
-> +	qcom,board-id = <0x1000B 0>;
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer: framebuffer@a0000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0xa0000000 0 0x2300000>;
-> +			width = <1080>;
-> +			height = <2520>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +			clocks = <&gcc GCC_DISP_AXI_CLK>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhc_2 {
-> +	status = "okay";
-> +
-> +	cd-gpios = <&tlmm 94 GPIO_ACTIVE_HIGH>;
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <13 4>, <45 2>, <56 2>;
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	maximum-speed = "super-speed";
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_1_hsphy {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_qmpphy {
-> +	status = "okay";
-> +};
-> -- 
-> 2.33.0
-> 
+Thanks.
+
+Rob
