@@ -2,75 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1B1740BB0A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 00:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30E1140BAFA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 00:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235358AbhINWSS convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 14 Sep 2021 18:18:18 -0400
-Received: from mail1.arteliagroup.com ([86.65.33.73]:3935 "EHLO
-        mail1.arteliagroup.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234701AbhINWSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 18:18:17 -0400
-X-Greylist: delayed 431 seconds by postgrey-1.27 at vger.kernel.org; Tue, 14 Sep 2021 18:18:17 EDT
-Authentication-Results: mail1.arteliagroup.com; spf=None smtp.pra=arnaud.bray@arteliagroup.com; spf=None smtp.mailfrom=arnaud.bray@arteliagroup.com
-Received-SPF: None (mail1.arteliagroup.com: no sender
-  authenticity information available from domain of
-  arnaud.bray@arteliagroup.com) identity=pra;
-  client-ip=172.21.0.8; receiver=mail1.arteliagroup.com;
-  envelope-from="arnaud.bray@arteliagroup.com";
-  x-sender="arnaud.bray@arteliagroup.com";
-  x-conformance=sidf_compatible
-Received-SPF: None (mail1.arteliagroup.com: no sender
-  authenticity information available from domain of
-  arnaud.bray@arteliagroup.com) identity=mailfrom;
-  client-ip=172.21.0.8; receiver=mail1.arteliagroup.com;
-  envelope-from="arnaud.bray@arteliagroup.com";
-  x-sender="arnaud.bray@arteliagroup.com";
-  x-conformance=sidf_compatible
-IronPort-SDR: vZRb9cIVvUKAA5H/CtSHVTb/jJ182Dy8kJlKscMfuiNKlEYnvYibi4OgE4JHtxh5KwNOv2pA0D
- FCrez50nPkyg==
-IronPort-Data: A9a23:zHZ0/anG5Sxf9zvw9F3BtX7o5gzxJkRdPkR7XQ2eYbSJt1+Wr1Gzt
- xIXWzyOOKyNMTSkL913bdiypEIHvcfUndIxHVBo/yA9EH8b8sCt6fZ1jKvT04F+CuWZESqL1
- yiSAzX5BJhcokX0/39BCZC86ykhvU20buCkUreca3ktHVUMpBoJ0nqPpcZo2+aEvvDpW2thi
- fuqyyHuEAfNNwxcawr42IrfwP9bh8kejRtD1rAIiV+ni3eF/5UdJMp3yahctBIUSKEMdgKxb
- 76rIL1UYgrkExkR5tONyt4Xc2UPS7/WewGUlndSWqGtmB9fvmo51aNT2Pg0MBgNzW/Q2Yg3m
- L2htrTpIestFqTWnu0AX19SCShvFaRc5LLDIHGwq8uO1wvNdH6EL/BGUBhmZtRAprcf7WZms
- KZwxCo2RhKElfC6wKCxYvdjjdY8JszueogYvxlIxivQDPlgSorERaTMzcFX1zgqgd1WW/3ZI
- dcaARJ0cB3LYjVRNVpRDp8i9M+innfXbTJVshSWqLAx7myVyxZ+uJDhPdDfe9GWTN9PtliXq
- 2DB9SL+GB5yHNiTziWD/2OEmODBnDn2HokVEdWQ5+9lj1OC7nIcCBMWW1v9u+TRolW3Xtl3N
- UNR+ywl66M18SSDRd77QxSzvFaasRQHHcdLe8U45waKxq/d5S6HCWEeQjNHc5ogudNebWYp3
- 0OSt83mCCZpvaHTT3+Bnp+PqDq2Pi4YBXENaDUCQBdD5dT/yKkohwjMT99LDqG4lNv4BXf2z
- izihCw5mLg7k8AU3Kz9+krI6xqnp57FXyYr6QvWRG/j5QR8DKahdoqu43DF4vtaKouFCF+Mo
- BAsl8WA7esDEYuAmQSTT+gXWrKk/fCINHvbm1EHN4Uh+jWr/Va9co1K5jxiYkFkLq4scjbzZ
- kLcuA55+pBeJn2ncelxbp7ZI9kxyKPIC9voTPbZcpxIb4QZSeMt1EmCfmbJgDqryhFqyedvU
- ap3uP2EVR4yYZmLBhLvLwvB+dfHBxzSB0uKLXw48/hj+bOEeHORSL4KKlyTdqYy66bsTMA5N
- TpAH5Pi9vicOdESpgHe65IeKVEDImI8GIiwoMtSHgJGzsyKB0l5Y8LsLWsdRrFY
-IronPort-HdrOrdr: A9a23:SXg89akcyLklTeJW9jtM+9tojL7pDfI63DAbv31ZSRFFG/FxXq
- iV8MjzsiWYtN9xYhodcL+7WJVoLUm8yXcX2+Ms1NWZLWvbUQKTRelfBO3Zsl7d8kXFh4tgPM
- xbHJSWZuefMWRH
-X-IronPort-AV: E=Sophos;i="5.85,292,1624312800"; 
-   d="scan'208";a="41831049"
-Received: from unknown (HELO mail.arteliagroup.com) ([172.21.0.8])
-  by mail1.arteliagroup.com with ESMTP; 15 Sep 2021 00:09:47 +0200
-Content-Type: text/plain; charset="iso-8859-1"
+        id S229874AbhINWNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 18:13:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34918 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235313AbhINWNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 18:13:53 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94EDAC061766
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 15:12:35 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id h16so1578461lfk.10
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 15:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LAvaIUH5OlRWAZQfOb+bWm3uVreewxT3eR+cClts1uI=;
+        b=VLrCs/+hNIGuWHNfFM8FPpo9MdASxRdZfjTQbnUJQyNoarhnB48pzOHj92Uv+amr9p
+         ixzRcYtYvH4tHeMTkq392YF521gX9qRP6RXpjY/MbnIpiM/U1DAP4rT3mhItZ+smgYPC
+         HAnvOKCP691XE//yBgTqBGfOzo3Xk8LHh+rXW30yKTdtiIQEgJZOMlPkWV+fJ3uxpW4R
+         nToOeYf0EHRW6z3YX/fLoUtleulbtYB1Liz6pppbcIZmFmkKstGWGpmXGDPpdxxXQDOO
+         To6zI2pt1uDGWX1qSHzdUDUBiwjbHPMgxHrVOk9ocyyjcFoQBRhXrj0omC1wbF+Moi96
+         n6BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LAvaIUH5OlRWAZQfOb+bWm3uVreewxT3eR+cClts1uI=;
+        b=yyF53yY498NEFaBd6MwL5I1GXPZdM7Kxyek5FZA89Lz41GRT8wuTZwRfs9N/xEcpw1
+         opRPouRwY192fKt41FeBY4lmgwsou7wrPd/GyFBwVr6SDbd186JjM73ohfDf1/R+7gD4
+         TyTrfPQwRrV8SJ1tLlVGiaepEG3vEpu1y2DQiawVGuzixBIYlPLqxy0oW6lqg1tbfF2d
+         zZu4RI7zrrBHU157D7Ljc+juSPB4I2ghLJmdcp2J3a8ngIr6f+jooccJEoy9V3N0rhTV
+         O85sv9Gd/xkmQrOZ87ZLbeWBKa7//1HG6q/Q8ekJKT0tcXJ1fSgR29O20ml+EL8C/QT5
+         Zavg==
+X-Gm-Message-State: AOAM532gXBAdK57mvDaFippss2KV+HUfZAYmQTaqbrOMSA1Zh3yCBsj/
+        8WkeKTYjQlFBJLPBWSgO9ghhWIgbNxA61JV+bZEXlw==
+X-Google-Smtp-Source: ABdhPJwu3ztXRgAHEffeDYZFOfptVugQFO781IvsJ0Ym9L4qfm8T9QJBx3b1mwEoJsYA+Z6NYJX/ewEtSqtF71Fz60g=
+X-Received: by 2002:a05:6512:132a:: with SMTP id x42mr14797863lfu.291.1631657553855;
+ Tue, 14 Sep 2021 15:12:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Good news!!
-To:     Recipients <arnaud.bray@arteliagroup.com>
-From:   Brown Coleman <arnaud.bray@arteliagroup.com>
-Date:   Wed, 15 Sep 2021 00:10:23 +0200
-Reply-To: <abr23101@gmail.com>
-Message-ID: <a799e68f-9c77-4305-a66c-bdc20d932549@SVPEXCH36502.arteliagroup.com>
+References: <20210914202202.1702601-1-dianders@chromium.org>
+In-Reply-To: <20210914202202.1702601-1-dianders@chromium.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 15 Sep 2021 00:12:22 +0200
+Message-ID: <CACRpkdaTb4_UfFzCqw=fiAnQhHD+1sDDua529KdGQbgMVfjYBw@mail.gmail.com>
+Subject: Re: [PATCH v5 00/15] eDP: Support probing eDP panels dynamically
+ instead of hardcoding
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Steev Klimaszewski <steev@kali.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Ripard <mripard@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lionel Debieve <lionel.debieve@st.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?Q?Martin_J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Walle <michael@walle.cc>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Nishanth Menon <nm@ti.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        Otavio Salvador <otavio@ossystems.com.br>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Razvan Stefanescu <razvan.stefanescu@microchip.com>,
+        Robert Richter <rric@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Will Deacon <will@kernel.org>,
+        William Cohen <wcohen@redhat.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
+On Tue, Sep 14, 2021 at 10:22 PM Douglas Anderson <dianders@chromium.org> wrote:
 
-Upon my research for honest person in your region produce your name. I am Brown Coleman, 17years old from Switzerland. I need your assistance to help manage my family's financial portfolio which was WILL to me by my late parents worth US$19,500,000.00 until I am eligible to handle property investments according to the laws. You will be paid 30% for your contributions.
+> Version 5 of this series just fixes the panel ID encode macro to be
+> cleaner and adds Jani's review tags.
+>
+> It could possibly be ready to land?
 
-If your answer is "YES" please contact me for more details.
+Definitely IMO, the kernel look so much better after this change,
+so for the series:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks.
-Brown Coleman
+Yours,
+Linus Walleij
