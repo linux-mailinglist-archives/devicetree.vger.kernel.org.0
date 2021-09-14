@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A9AE40B83C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D88240B859
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:49:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232217AbhINTjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 15:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55500 "EHLO
+        id S232012AbhINTud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 15:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229946AbhINTjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 15:39:35 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12C05C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:38:18 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id q11-20020a9d4b0b000000b0051acbdb2869so155416otf.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:38:18 -0700 (PDT)
+        with ESMTP id S232995AbhINTuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 15:50:32 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DE8C061764
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:49:14 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id g66-20020a9d12c8000000b0051aeba607f1so127450otg.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:49:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=MLQfJAb2nshbl/BB+0CPYD8WzePweEOPxKjryODlhBY=;
-        b=fU+2fUmhgATKS8sAffT3oVU6G2cnoZkbVdK4P3jZkCaJb9Xfxl7zEis23p11wyRKLT
-         gevV9/SEA5s4KPdSYD/V458UJayvvtRbj36OivXuugfYVP8wsl59bEM5GB4iKnz7Luph
-         dlhHwKeU4rYMBNLJ08Mo9iphxOG4w0qe+9FXE=
+        bh=v3c6E6MMQg7r5oBUq1m5l+3onlEbo8USrY7KqxJROCA=;
+        b=d82STJplqEDvwvwojrzgiDLySxHC1xT1ThA3Ss936NRBXycfFJuLyM8brNvGk8Q0BZ
+         RfBmUa9WgZiV5/lphxebcR9MMFlYTDzmZFqlnn1xZL+BdktpnYJhU6VO5vbPEWNE8pmP
+         0O+noFpedvkPblcENKaTnLBR08KFvN7bCh7tc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=MLQfJAb2nshbl/BB+0CPYD8WzePweEOPxKjryODlhBY=;
-        b=BZEihXMQhRX0TkP1b1IabNLITlqP1iu+civ/OVNqnl1OG5n1NVbrsK3MYZEvhnALIh
-         Rv1MPshkQgYBljpbHH/nJLWkfgUKHvOP2oxWyKHHEmeX1rKHi6+zcjVLyTT034aR3Kov
-         yaWb01aRKrvSXJ5fNeaYlg0YcocnHHpzBYWpCBKPk3rjYmLjS00PREc/rSTD7rPYTbxU
-         cFcoyJQP8d3NWa6NGYatGQ8le1A9YwPwbyJV2zQNwKenBvAkQkg4cnV5zVuypMxGcKRo
-         WDxRL+oDI+SQtRFiMBmcbSe7UmYCvHu/s4lPDNAORMyTBB5f8llmQBR0xeud03U9i/59
-         /EYg==
-X-Gm-Message-State: AOAM530vRw9che4ZaQOYHvoHZjbXEchg97hcOI9mWuWzs0b/7jSGPRok
-        ZyAgxSsDakOvix/eoCxC8STP46vXQtol7JFPd+2rIg==
-X-Google-Smtp-Source: ABdhPJxur0KKzVgNz/Rt1leSMplGKbq52Yi9bMuRCAElrwUadKtFKUESc7Cpo+vzi77WMrUS5VZsmr6ZB/ewu6AFCd0=
-X-Received: by 2002:a05:6830:719:: with SMTP id y25mr16212633ots.77.1631648296004;
- Tue, 14 Sep 2021 12:38:16 -0700 (PDT)
+        bh=v3c6E6MMQg7r5oBUq1m5l+3onlEbo8USrY7KqxJROCA=;
+        b=cnkWYTXTVqXEbRyf8eVx2qp5NTH6NmZCLOyOCP4tv5cyaKWoluJGMRuCeVhPKY4Qat
+         h8LQfBdOveBo7SAADDpII6XMNdpSsF4k3Mx2554/n44ZKvqCtpQtYtRZIIGe09Sp//dr
+         YbJroqmS+EMdgwMk3I86Gfa8ClamH/VJ+ccE0JNA2SF9XNmNDPRMgQ5Sizp5Bics24CI
+         LKuTexsUVFk2mCHbyCdvKNjojVmCqfn9MsqvTNF2QNswMSVQVeV0knkurYGJ9RlY14Rw
+         fe99ewb5Kmbh24hLJWM1j4QtxO7FFGZgKiWWxgKNnhGHvMuWVoiSOTVhbZsgD/yY6Z61
+         9s2Q==
+X-Gm-Message-State: AOAM531CBrZJzkB9ara4ji0M/73bgc8YLFfTxick1xDjBC4dsqDbdMrj
+        8h6c8FmrBo6uKZ66y5Q3iegnoun3UEH11S5vkSo74Q==
+X-Google-Smtp-Source: ABdhPJxmespo1Jy0mHteRtDveO8RQ+I+51B8KS7gLjSxy7Zo9ipn42budJZnsYHGhJ2GXe/Dp851pqDqSjKJs8/Nhqk=
+X-Received: by 2002:a05:6830:1212:: with SMTP id r18mr15731034otp.159.1631648953925;
+ Tue, 14 Sep 2021 12:49:13 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 14 Sep 2021 12:38:15 -0700
+ HTTPREST; Tue, 14 Sep 2021 12:49:13 -0700
 MIME-Version: 1.0
-In-Reply-To: <1631624108-15491-3-git-send-email-skakit@codeaurora.org>
-References: <1631624108-15491-1-git-send-email-skakit@codeaurora.org> <1631624108-15491-3-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
+References: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Tue, 14 Sep 2021 12:38:15 -0700
-Message-ID: <CAE-0n53z4SmMAM4VfY+beCHNzpYfQN7+LsXJBGXC3+7Lm-s1XA@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] arm64: dts: sc7280: Add volume up support for sc7280-idp
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>
-Cc:     David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Date:   Tue, 14 Sep 2021 12:49:13 -0700
+Message-ID: <CAE-0n50R1wfw=V7o19N20YOqSrRZKR7Zd4QLcRcjYQNsdf3QHg@mail.gmail.com>
+Subject: Re: [PATCH v4] phy: qcom-qmp: add support for display port voltage
+ and pre-emphasis swing
+To:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
+        vkoul@kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com, p.zabel@pengutronix.de
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2021-09-14 05:55:08)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 371a2a9..003112f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -239,6 +239,26 @@
->         cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
->  };
+Quoting Kuogee Hsieh (2021-09-14 09:45:01)
+> Both voltage and pre-emphasis swing level are set during link training
+> negotiation between host and sink. There are totally four tables added.
+> A voltage swing table for both hbr and hbr1, a voltage table for both
+> hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
+> table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
+> added to complete the sequence of configure dp phy base on HPG.
 >
-> +&soc {
-> +       gpio-keys {
+> Chnages in v2:
+> -- revise commit test
+> -- add Fixes tag
+> -- replaced voltage_swing_cfg with voltage
+> -- replaced pre_emphasis_cfg with emphasis
+> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
+> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
+>
+> Changes in V3:
+> -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
+>
+> Changes in V4:
+> -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
+>
+> Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
+> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> ---
 
-This should be in the root node, not soc node as it doesn't have any reg
-property. Please move it to / and put it at the top of the file.
-
-> +               compatible = "gpio-keys";
-> +               label = "gpio-keys";
-> +
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&key_vol_up_default>;
-> +
-> +               volume-up {
-> +                       label = "volume_up";
-> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-> +                       linux,input-type = <1>;
-> +                       linux,code = <KEY_VOLUMEUP>;
-> +                       gpio-key,wakeup;
-> +                       debounce-interval = <15>;
-> +                       linux,can-disable;
-> +               };
-> +       };
-> +};
-> +
->  &uart5 {
->         status = "okay";
->  };
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
