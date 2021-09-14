@@ -2,168 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07BC040B682
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 20:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C711440B698
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 20:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbhINSGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 14:06:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33854 "EHLO
+        id S229464AbhINSQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 14:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbhINSGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 14:06:54 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B5FC061574;
-        Tue, 14 Sep 2021 11:05:37 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id t8so16632024wrq.4;
-        Tue, 14 Sep 2021 11:05:36 -0700 (PDT)
+        with ESMTP id S230035AbhINSQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 14:16:03 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16DC5C061764
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 11:14:46 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id i8-20020a056830402800b0051afc3e373aso19826301ots.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 11:14:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+1y8l2tNjfVvue0GuX0pU4hXK+xpXz6uowb3ztMXPXM=;
-        b=lVX78cx2cu9BrWY/tMDofsnuzHJFq2TMG8Ky4M7BNgAAA3x8GrZbgFcOcHnhT0Dlk9
-         CZG3gIeBPr9PQrCCJiN3B73jX1l5mXVhjhNtl0lXZctpsX9QN/qf6jb+x+WJ9i2onw5e
-         TYsldgo7wemxEHewPYgD+8FsunBzv2rGD2GLOKzk0ZZuLmDwoTtNxr7xnknjW1GDfTub
-         3UyWOs+CgPz3EbBfvxJtvvbxHw/0UfNJ+qa/iih66fGd4QbmGRgV52+2S/IqZCuCwoM6
-         FZG2mhvPn+qwCxhEkRtLUxJq6B+u2wXUhZbvnRCSTaJZuRhvhsVbqF3qO5xXkKlB4OFu
-         C0ZA==
+        d=kali.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=sYTvZJAxHGhzzHy9MbB9JE2/ATEqAjDDP6ye5nyr/vE=;
+        b=DTgCe1uEB8ugrI4Uve6EgB8s+22KurxbPhxGKDbFnRkAUiIzTUFljDAf2cGtCQOzxx
+         zW4sOSF2cJzsyTSoSWzdHz7qWGeQbLEnLF2GuUuFOQqBbvzlrWNc2VhZpJCWYdyPHgFy
+         U03jpb3rz9UIy3fvEsXfLc5KX2gQtU4idIv2VkqONw5jVK5/6wUDAGJxawKcYT0f1eDt
+         xzdqKieOo+hCnNYJTKJTag2s127zSH+HxddoipCe3JVXRgPelbVEcruBXIFLkhXBKhFQ
+         AQJEe8aqh2CnTk9u77jHdGjoO+Fdx6lvME6aTFy/eWU9DNpFrU1lyQzuvdqN1xlRfyKY
+         vmfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+1y8l2tNjfVvue0GuX0pU4hXK+xpXz6uowb3ztMXPXM=;
-        b=syzelaWzZjY8gGtGC3aWiv+9R+4VByIY24hQ8sRfExSAAuZSOxqMRhSgipp4JruPJQ
-         XuHUI1SMVtnVZpD/rSUqRJ3ZlzY5Csp3vnjkk2jgR1p0jjpkjsD+39HllHGOlMUhUrLi
-         ia+4qC4bpUFrU5ACUhnRetIkYm2cxI0NVfNYdzPEG4lEA26WLkBrkrZ1TQ+L41xZJo5o
-         xfBGAFH0FzHtCV/CgKxBS4n+eFiOvOip/FGvTx3DIqpxmC26Yh1OssZCHUI51fUpHLri
-         aOFPZHeJKQdR7lRGIqaZhcbj7burjqndT40+RVQ3t5e+OjmAhKe+AfsV1Kd9fJQU41CI
-         aytw==
-X-Gm-Message-State: AOAM532bRD4f1qKFH8WCHI4l/0BYy8vd6tl0OfuKejxzurxzepfDT7XY
-        XyUimZ72fWdR1sifJTZcifU=
-X-Google-Smtp-Source: ABdhPJxqpTLNGYPNjmcbbLjVJoUGnCTDdwnuvBoAur6n27EC8bdWn7zaOL01tPtyuvM42HRh+nwEKQ==
-X-Received: by 2002:adf:f911:: with SMTP id b17mr517696wrr.412.1631642735637;
-        Tue, 14 Sep 2021 11:05:35 -0700 (PDT)
-Received: from [192.168.0.16] ([37.223.140.66])
-        by smtp.gmail.com with ESMTPSA id g1sm1849151wrr.2.2021.09.14.11.05.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Sep 2021 11:05:35 -0700 (PDT)
-Message-ID: <84ab5c30-7661-f225-96c3-59ead2391eec@gmail.com>
-Date:   Tue, 14 Sep 2021 20:05:34 +0200
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=sYTvZJAxHGhzzHy9MbB9JE2/ATEqAjDDP6ye5nyr/vE=;
+        b=Wr37/PnaFMyZ75+0oh35JomXEp8wJfr/55M/7yd/af/EpLXFVup+EAM0K6go+ZgVi4
+         0wvVTEuQE784rbxRMw9+E5zgPOpy5SeIQXXiBETvw0eqV/y8ygtthbBl0aRqwl+ylqQn
+         Jl4ogOWuNg88Z08opRC2/HRVhhQJQY1VVZtWtlRtjT6Y6ognShfb3oZ2alkSj9+BkJ3e
+         0OwdxBQjJFxJ2Dkrk6IEAgH0Qj2BumVMme+cWRbvvp0MHOrjqYb7Tj/nNeWuYcqD54d/
+         dNN785bB1s9Dzt7mSnUU86rggZIovV2Qsy197iGyFc7l6V2Qcjc78H/Q844lp0IPK8HD
+         A+GQ==
+X-Gm-Message-State: AOAM533rPnAgF+UBJeFWg+en9gLSmFAXZ6TCbEuN3xVSgVUcCOkZ0laR
+        TmMXOB5rvSXijDxqU5A2rFCxIQ==
+X-Google-Smtp-Source: ABdhPJzAapFP1GYfQM+h+eExDIQ09L8TCYZprsclHv54zKcSa9rwQ66as5TbcALddgz9QnkppHaYuA==
+X-Received: by 2002:a05:6830:2093:: with SMTP id y19mr16018501otq.349.1631643285404;
+        Tue, 14 Sep 2021 11:14:45 -0700 (PDT)
+Received: from DESKTOP-UL9N8HT.localdomain (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id w15sm2578954oiw.19.2021.09.14.11.14.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 11:14:45 -0700 (PDT)
+From:   Steev Klimaszewski <steev@kali.org>
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: qcom: c630: add second channel for wifi
+Date:   Tue, 14 Sep 2021 13:16:03 -0500
+Message-Id: <20210914181603.32708-1-steev@kali.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20210914162439.31113-1-steev@kali.org>
+References: <20210914162439.31113-1-steev@kali.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.0.3
-Subject: Re: [PATCH] arm64: dts: mt8183: support coresight-cpu-debug for
- mt8183
-Content-Language: en-US
-To:     Seiya Wang <seiya.wang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com
-References: <20210913092736.19207-1-seiya.wang@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20210913092736.19207-1-seiya.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On the Lenovo Yoga C630, the WiFi/BT chip can use both RF
+channels/antennas, so add the regulator for it.
 
+Signed-off-by: Steev Klimaszewski <steev@kali.org>
+---
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-On 13/09/2021 11:27, Seiya Wang wrote:
-> Add coresight-cpu-debug nodes to mt8183 for dumping
-> EDPRSR, EDPCSR, EDCIDSR, EDVIDSR
-> while kernel panic happens
-> 
-> Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 64 ++++++++++++++++++++++++++++++++
->   1 file changed, 64 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 409cf827970c..3ad4dd47518a 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -367,6 +367,70 @@
->   			reg = <0 0x0c530a80 0 0x50>;
->   		};
->   
-> +		cpu_debug0: cpu-debug@d410000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index d7591a4621a2..531b88d4a1a2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -230,6 +230,9 @@ vreg_l22a_2p85: ldo22 {
+ 		};
+ 
+ 		vreg_l23a_3p3: ldo23 {
++			regulator-min-microvolt = <3300000>;
++			regulator-max-microvolt = <3312000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+ 		vdda_qusb_hs0_3p1:
+@@ -610,6 +613,7 @@ bluetooth {
+ 		vddxo-supply = <&vreg_l7a_1p8>;
+ 		vddrf-supply = <&vreg_l17a_1p3>;
+ 		vddch0-supply = <&vreg_l25a_3p3>;
++		vddch1-supply = <&vreg_l23a_3p3>;
+ 		max-speed = <3200000>;
+ 	};
+ };
+@@ -724,6 +728,7 @@ &wifi {
+ 	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
+ 	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+ 	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
++	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
+ 
+ 	qcom,snoc-host-cap-8bit-quirk;
+ };
+-- 
+2.33.0
 
-Missing a space:  "arm,coresight-cpu-debug", "arm,primecell";
-
-I suppose that's a copy-paste from the binding doc which is wrong. Other then 
-that, things look fine.
-
-Regards,
-Matthias
-
-> +			reg = <0x0 0xd410000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu0>;
-> +		};
-> +
-> +		cpu_debug1: cpu-debug@d510000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xd510000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu1>;
-> +		};
-> +
-> +		cpu_debug2: cpu-debug@d610000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xd610000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu2>;
-> +		};
-> +
-> +		cpu_debug3: cpu-debug@d710000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xd710000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu3>;
-> +		};
-> +
-> +		cpu_debug4: cpu-debug@d810000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xd810000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu4>;
-> +		};
-> +
-> +		cpu_debug5: cpu-debug@d910000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xd910000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu5>;
-> +		};
-> +
-> +		cpu_debug6: cpu-debug@da10000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xda10000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu6>;
-> +		};
-> +
-> +		cpu_debug7: cpu-debug@db10000 {
-> +			compatible = "arm,coresight-cpu-debug","arm,primecell";
-> +			reg = <0x0 0xdb10000 0x0 0x1000>;
-> +			clocks = <&infracfg CLK_INFRA_DEBUGSYS>;
-> +			clock-names = "apb_pclk";
-> +			cpu = <&cpu7>;
-> +		};
-> +
->   		topckgen: syscon@10000000 {
->   			compatible = "mediatek,mt8183-topckgen", "syscon";
->   			reg = <0 0x10000000 0 0x1000>;
-> 
