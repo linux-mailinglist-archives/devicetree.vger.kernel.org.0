@@ -2,79 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 659F940ADBB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 14:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 651FE40ADC4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 14:34:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232504AbhINMdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 08:33:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58050 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232412AbhINMdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 08:33:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A848F60F9F;
-        Tue, 14 Sep 2021 12:32:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631622721;
-        bh=B9PIk/9PrcrqkK5QK8g/tEn1XLqHBAB4niXngidyYhI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=lbEYWFzwfmuEvcZB9lU1qV7mYFyETzdgkC7Lj/bPUxS6BBZqm/h+z64mxJ/DP6/an
-         Q763v9jDJwiA0k3BUTUSXth3eaiEzvURSV6nJcbcFLZJJivVDoJf9ah7iBxroTO6oG
-         /3K2vgUYuTG49kbXe8LJS8KRCzj7Ow9D17Y0P5A20TYOTwWHJ2N+CZNGSblx1IYXZt
-         PfY8cGcqFbmW+CefHNllhp2OJgWYyZUpTZ90xkSiXgznYaQ9Tz4AOAWtczxxXjLdVg
-         6ZXIY7YJ0eFIlZ/piic/oK+hNfNhfsZANA7v87Tm2aXWLwfUfHNhUsYfcUNLr6WBfj
-         S/bbrbFcWJrMg==
-Subject: Re: [PATCH v2 0/2] ARM: dts: keystone-k2*-evm: Fix mdio and dss node
- status
-To:     ssantosh@kernel.org
-Cc:     nm@ti.com, lokeshvutla@ti.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210824105858.19496-1-rogerq@kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <37067735-73a2-7840-e467-e13aab19fcd0@kernel.org>
-Date:   Tue, 14 Sep 2021 15:31:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232517AbhINMfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 08:35:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232495AbhINMfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 08:35:50 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982A9C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 05:34:33 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mQ7du-0001I5-RW; Tue, 14 Sep 2021 14:34:30 +0200
+Message-ID: <8f5a00dc2b6e3f23e669a8073daa8ddcd5fb1e01.camel@pengutronix.de>
+Subject: Re: [PATCH v2] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
+ vqmmc-supply node
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Heiko Thiery <heiko.thiery@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Date:   Tue, 14 Sep 2021 14:34:29 +0200
+In-Reply-To: <9c4ada4b9ca1e806ea1916f195598b40@walle.cc>
+References: <20210914072627.24173-1-heiko.thiery@gmail.com>
+         <449f718706fd5af03190bdda986de37aa8fa14e3.camel@pengutronix.de>
+         <79fb60ea9a002ea553a92ea08b28b866@walle.cc>
+         <2dc72116ec935a5a5d7a1a176868b7af7ff3227c.camel@pengutronix.de>
+         <9c4ada4b9ca1e806ea1916f195598b40@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-In-Reply-To: <20210824105858.19496-1-rogerq@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Santosh
+Am Dienstag, dem 14.09.2021 um 11:39 +0200 schrieb Michael Walle:
+> Am 2021-09-14 10:52, schrieb Lucas Stach:
+> > Am Dienstag, dem 14.09.2021 um 10:32 +0200 schrieb Michael Walle:
+> > > Hi Lucas,
+> > > 
+> > > Am 2021-09-14 10:20, schrieb Lucas Stach:
+> > > > Am Dienstag, dem 14.09.2021 um 09:26 +0200 schrieb Heiko Thiery:
+> > > > > The sw4 output (V_1V8_S0 voltage) from the PMIC is the main supply for
+> > > > > the 1V8 power domain. It is not only used as supply for the eMMC.
+> > > > > So this voltage can not be changed and is not allowed to switched off.
+> > > > > Therefore we do not want to provide this regulator to the SDHC driver
+> > > > > to
+> > > > > control this voltage.
+> > > > > 
+> > > > This specific requirement should not be solved by removing the
+> > > > regulator connection from the SDHCI node, but instead by constraining
+> > > > the regulator voltage range to a fixed 3.3V and marking the regulator
+> > > > as always-on to reflect the hardware requirements in the DT.
+> > > > 
+> > > > Also if your eMMC vqmmc is a fixed 3.3V, I don't think you need the
+> > > > faster pinctrl states, as you can't use the faster pin states anyways,
+> > > > as they require a 1.8V signaling voltage.
+> > > 
+> > > Are you speaking of the 1.8V signalling modes? As far as I know the
+> > > IMX SDHC controller will switch the voltage by its own function pin.
+> > > That is, its not a GPIO.
+> > 
+> > Ah, I mixed things up here. This is a fixed 1.8V supply, which is valid
+> > for eMMC, so the high-speed modes are available. My comment still
+> > applies that this should be fixed by constraining the regulator, not by
+> > removing the DT connection.
+> > 
+> > vqmmc is the MMC IO voltage, which can be switched either by the
+> > function pin, which gets toggled automatically when software does the
+> > voltage switch, or by explicitly switching the regulator voltage. eMMCs
+> > are a bit special as they can work with a fixed 1.8V IO supply and
+> > don't need to start with 3.3V.
+> 
+> Mh, I have some kind of general question though.
+> 
+> Lets take the SDHC controller for the SD card, which needs to change
+> the voltage if you want to use the high speed mode of the cards. Ie.
+> from 3.3V to 1.8V. The controller does this autonomously with the help
+> of a pin which is controlled by the controller itself. Will it have a
+> vqmmc-supply property? And if so what whould the supply be?
+> 
+If the IO voltage regulator is controlled via the fixed function pin
+you would not add the vqmmc-supply to the DT, as the regulator isn't
+known to Linux in that case.
 
-On 24/08/2021 13:58, Roger Quadros wrote:
-> Hi Santosh,
-> 
-> This series fixes mdio and dss status nodes from "ok" to "okay"
-> 
-> As per Device Tree Specification [1], the status parameter of nodes can
-> be "okay", "disabled", etc. "ok" is not a valid parameter.
-> 
-> U-boot Driver Model does not recognize status="ok" either and treats
-> the node as disabled.
-> 
-> [1] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+The vqmmc-supply should be used when you have a regulator which is
+controlled via some other path than the fixed function pin, or if the
+regulator is fixed. By having the connection to the fixed regulator,
+the MMC core is able to see that certain modes of operation are not
+available.
 
-Could you please queue these trivial fixes for 5.15? Thanks
+Regards,
+Lucas
 
-> 
-> cheers,
-> -roger
-> 
-> Roger Quadros (2):
->   ARM: dts: keystone-k2*-evm: Fix mdio node status to "okay"
->   ARM: dts: keystone-k2g-evm: Fix dss node status to "okay"
-> 
->  arch/arm/boot/dts/keystone-k2e-evm.dts  | 2 +-
->  arch/arm/boot/dts/keystone-k2g-evm.dts  | 2 +-
->  arch/arm/boot/dts/keystone-k2hk-evm.dts | 2 +-
->  arch/arm/boot/dts/keystone-k2l-evm.dts  | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
-
-cheers,
--roger
