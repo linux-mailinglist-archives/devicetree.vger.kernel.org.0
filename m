@@ -2,131 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6768940AE0E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 14:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 917F940AE2C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 14:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232933AbhINMnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 08:43:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41064 "EHLO
+        id S232992AbhINMvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 08:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232800AbhINMnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 08:43:12 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82B9C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 05:41:54 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id o11so16073682ljp.8
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 05:41:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4g2Wav+SkEq7UdYNbmRHcmC3tflY4E5NwVgSGxv7C8A=;
-        b=qOHx8aC8BMjVfANULofMofo+Gn7EYmEyRD60TzkLTAglNPJTgUY6AhDhJDlsuNmUVP
-         pXebtude00R9h0Np8DdVymybtPF6dYn5KcOfOMieN3ierydKjpSoQ3Ugm2L/Jv9GCMLG
-         r8sWnElZ+XaBahtw2lCd+4w85Iy0b0x6lklsk926EE3SUMXZRh5zKDz7x73nYKXUbAdt
-         oUkOddNJ6tJ15SieBfeBTGwdRHmoLxSp4LsdwD0hLo29Eze7Zk9SCmSoncJ0PNmbWJNq
-         D0tjsH/QLcoS5vJdmTG4hztbNWnUBcOI1chBAFAO1tfCQvTAr+hRZNi1yBv838898FJr
-         D/6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4g2Wav+SkEq7UdYNbmRHcmC3tflY4E5NwVgSGxv7C8A=;
-        b=CPwattkyBS/uUKmWfXbH4OfiYxA7+7MH0APWjUAKuOvdDnNOtNu152nteX7ZZvcYlf
-         3dsMC5D1LEiLBPIr7MCD08MDK8iRbDPjBowHUXo/SGXsal9WOQSOkx6Gnmaf6cOvxQAV
-         DBC9BpstdBNt04RRnQ0Pk4Zb9FH4ItQqXOe/V6JrOcDQdc6tVaueiGw8Rew2D2K6NGZg
-         BYFLR2Jr4WM+6fpzyIRdOeFYgCwuBLxaCPnHvByrdGAaMs+TkCoGbQytEvaVKHsOFmgT
-         ivEWaaL8Vcyw7dnkdYOjPZLbSkTred6vGEYgTfMRRNKiA63/eVX5qKX2LPbw6M6RQAMq
-         nS4g==
-X-Gm-Message-State: AOAM532rhudPdjyyVXFgega7vNwJ7r4L15oX1LtQY/x6eY5h1oVEtZfp
-        Q/LExcz73Baxyif1ifqdkCoR+FkkECEbZzASlGNbeA==
-X-Google-Smtp-Source: ABdhPJyCVc4mtRLHkSZpQgUbb2SW4fU+QPB5ugjn5OXSRgz/bPNeaI6YI6JPobEK5J+coeywBE3QAPCg1vCCKPGdf5E=
-X-Received: by 2002:a05:651c:1505:: with SMTP id e5mr15210748ljf.9.1631623312789;
- Tue, 14 Sep 2021 05:41:52 -0700 (PDT)
+        with ESMTP id S232664AbhINMvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 08:51:31 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F04C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 05:50:14 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mQ7sy-0003Pn-CH; Tue, 14 Sep 2021 14:50:04 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mQ7sv-0006MQ-Gg; Tue, 14 Sep 2021 14:50:01 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mQ7sv-0006x5-F8; Tue, 14 Sep 2021 14:50:01 +0200
+Date:   Tue, 14 Sep 2021 14:49:59 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: Re: [PATCH v8 2/4] pwm: driver for qualcomm ipq6018 pwm block
+Message-ID: <20210914124959.spwjiifvysposhls@pengutronix.de>
+References: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
+ <bdc61569e4068490f53f347dcf29ee9539a8bc0b.1630323987.git.baruch@tkos.co.il>
 MIME-Version: 1.0
-References: <20210910130337.2025426-1-osk@google.com> <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
- <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com> <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net>
-In-Reply-To: <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net>
-From:   Oskar Senft <osk@google.com>
-Date:   Tue, 14 Sep 2021 08:41:36 -0400
-Message-ID: <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kqyldxkbyhgsihnp"
+Content-Disposition: inline
+In-Reply-To: <bdc61569e4068490f53f347dcf29ee9539a8bc0b.1630323987.git.baruch@tkos.co.il>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guenter
 
-> https://lore.kernel.org/linux-hwmon/cover.1631021349.git.krzysztof.adamski@nokia.com/
->
-> That specifically includes the ability to enable or disable channels
-> using the standard 'status' property. While that series is primarily
-> for the n-factor property supported by the tmp421, the same approach
-> can be used for [temperature] sensor properties on other chips as well.
+--kqyldxkbyhgsihnp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Good pointer! I should be able to replicate that for the LTD (@0) and
-RTDs (1, 2, 3) in a similar way.
+Hello Baruch,
 
-> I put [temperature] in [] because we'd need to find a means to express
-> if the sub-nodes are for temperature, voltage, or something else, but
-> I think the basic principle is sound.
-Following the example from tmp421, this could then be like this:
+On Mon, Aug 30, 2021 at 02:46:25PM +0300, Baruch Siach wrote:
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index c76adedd58c9..08add845596f 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -260,6 +260,18 @@ config PWM_INTEL_LGM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-intel-lgm.
+> =20
+> +config PWM_IPQ
+> +	tristate "IPQ PWM support"
+> +	depends on ARCH_QCOM || COMPILE_TEST
+> +	depends on HAVE_CLK && HAS_IOMEM
+> +	help
+> +	  Generic PWM framework driver for IPQ PWM block which supports
+> +	  4 pwm channels. Each of the these channels can be configured
+> +	  independent of each other.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-ipq.
+> +
+>  config PWM_IQS620A
+>  	tristate "Azoteq IQS620A PWM support"
+>  	depends on MFD_IQS62X || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 708840b7fba8..7402feae4b36 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -22,6 +22,7 @@ obj-$(CONFIG_PWM_IMX1)		+=3D pwm-imx1.o
+>  obj-$(CONFIG_PWM_IMX27)		+=3D pwm-imx27.o
+>  obj-$(CONFIG_PWM_IMX_TPM)	+=3D pwm-imx-tpm.o
+>  obj-$(CONFIG_PWM_INTEL_LGM)	+=3D pwm-intel-lgm.o
+> +obj-$(CONFIG_PWM_IPQ)		+=3D pwm-ipq.o
+>  obj-$(CONFIG_PWM_IQS620A)	+=3D pwm-iqs620a.o
+>  obj-$(CONFIG_PWM_JZ4740)	+=3D pwm-jz4740.o
+>  obj-$(CONFIG_PWM_KEEMBAY)	+=3D pwm-keembay.o
+> diff --git a/drivers/pwm/pwm-ipq.c b/drivers/pwm/pwm-ipq.c
+> new file mode 100644
+> index 000000000000..8405d0554951
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-ipq.c
+> @@ -0,0 +1,275 @@
+> +// SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0
+> +/*
+> + * Copyright (c) 2016-2017, 2020 The Linux Foundation. All rights reserv=
+ed.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/math64.h>
+> +#include <linux/of_device.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+> +#include <linux/bitfield.h>
+> +
+> +/* The frequency range supported is 1 Hz to clock rate */
+> +#define IPQ_PWM_MAX_PERIOD_NS	((u64)NSEC_PER_SEC)
+> +
+> +/*
+> + * The max value specified for each field is based on the number of bits
+> + * in the pwm control register for that field
+> + */
+> +#define IPQ_PWM_MAX_DIV		0xFFFF
+> +
+> +/*
+> + * Two 32-bit registers for each PWM: REG0, and REG1.
+> + * Base offset for PWM #i is at 8 * #i.
+> + */
+> +#define IPQ_PWM_CFG_REG0 0 /*PWM_DIV PWM_HI*/
+> +#define IPQ_PWM_REG0_PWM_DIV		GENMASK(15, 0)
+> +#define IPQ_PWM_REG0_HI_DURATION	GENMASK(31, 16)
 
-i2c {
-    #address-cells = <1>;
-    #size-cells = <0>;
+Assuming that IPQ_PWM_REG0_PWM_DIV is a field in IPQ_PWM_CFG_REG0: I
+wonder why the former has not "CFG" in it's name?! Ditto below.
 
-    nct7802@28 {
-        compatible = "nuvoton,nct7802";
-        reg = <0x28>;
-        #address-cells = <1>;
-        #size-cells = <0>;
+> +#define IPQ_PWM_CFG_REG1 4 /*ENABLE UPDATE PWM_PRE_DIV*/
+> +#define IPQ_PWM_REG1_PRE_DIV		GENMASK(15, 0)
+> +/*
+> + * Enable bit is set to enable output toggling in pwm device.
+> + * Update bit is set to reflect the changed divider and high duration
+> + * values in register.
+> + */
+> +#define IPQ_PWM_REG1_UPDATE		BIT(30)
+> +#define IPQ_PWM_REG1_ENABLE		BIT(31)
+> +
+> +
+> +struct ipq_pwm_chip {
+> +	struct pwm_chip chip;
+> +	struct clk *clk;
+> +	struct regmap *regmap;
+> +	u32 regmap_off;
+> +};
+> +
+> +static struct ipq_pwm_chip *to_ipq_pwm_chip(struct pwm_chip *chip)
 
-        /* LTD */
-        input@0 {
-            reg = <0x0>;
-            status = "okay";
-            /* No "mode" attribute here*/
-            label = "local temp";
-        };
+I would have called this ipq_pwm_from_chip() to have this function's
+name use the common prefix, too. (But note that Thierry might not agree
+here.)
 
-        /* RTD1 */
-        input@1 {
-            reg = <0x1>;
-            mode = <0x2>; /* 3904 transistor */
-            label = "voltage mode";
-        };
+> +{
+> +	return container_of(chip, struct ipq_pwm_chip, chip);
+> +}
+> +
+> +static unsigned int ipq_pwm_reg_read(struct pwm_device *pwm, unsigned re=
+g)
 
-        input@2 {
-            reg = <0x2>;
-            mode = <0x4>; /* thermistor */
-            label = "thermistor mode";
-        };
+checkpatch warns about this line
 
-        /* RTD3 */
-        input@3 {
-            reg = <0x3>;
-            mode = <0x3>; /* thermal diode */
-            label = "current mode";
-            status = "disabled";
-        };
-    };
-};
+> +{
+> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(pwm->chip);
+> +	unsigned int off =3D ipq_chip->regmap_off + 8 * pwm->hwpwm + reg;
+> +	unsigned int val;
+> +
+> +	regmap_read(ipq_chip->regmap, off, &val);
 
-I noticed that "nct7802_temp_is_visible" only allows the temperature
-sensor to be visible for current and thermistor but not voltage. Is
-that right?
+You don't expect regmap_read returning an error? Maybe note that in a
+comment to prevent someone preparing patches checking the error. Or
+alternatively add a WARN_ONCE when this fails?
 
-Before I go and change the driver further, I'd like to make sure we
-agree on the interface.
+> +	return val;
+> +}
+> +
+> +static void ipq_pwm_reg_write(struct pwm_device *pwm, unsigned reg,
+> +		unsigned val)
 
-Also: Is nct7802_temp_is_visible called again after temp_type_store
-was called (I didn't try it)?
+I expected that checkpatch warns here, too, and advises to align follow
+up lines to the opening ( in the previous line. So it's me who has to
+criticize that.
 
-Thanks
-Oskar.
+> +{
+> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(pwm->chip);
+> +	unsigned int off =3D ipq_chip->regmap_off + 8 * pwm->hwpwm + reg;
+> +
+> +	regmap_write(ipq_chip->regmap, off, val);
+> +}
+> +
+> +static void config_div_and_duty(struct pwm_device *pwm, unsigned int pre=
+_div,
+> +			unsigned int pwm_div, unsigned long rate, u64 duty_ns,
+> +			bool enable)
+> +{
+> +	unsigned long hi_dur;
+> +	unsigned long val =3D 0;
+> +
+> +	/*
+> +	 * high duration =3D pwm duty * (pwm div + 1)
+> +	 * pwm duty =3D duty_ns / period_ns
+> +	 */
+> +	hi_dur =3D div64_u64(duty_ns * rate, (pre_div + 1) * NSEC_PER_SEC);
+> +
+> +	val =3D FIELD_PREP(IPQ_PWM_REG0_HI_DURATION, hi_dur) |
+> +		FIELD_PREP(IPQ_PWM_REG0_PWM_DIV, pwm_div);
+> +	ipq_pwm_reg_write(pwm, IPQ_PWM_CFG_REG0, val);
+> +
+> +	val =3D FIELD_PREP(IPQ_PWM_REG1_PRE_DIV, pre_div);
+> +	ipq_pwm_reg_write(pwm, IPQ_PWM_CFG_REG1, val);
+> +
+> +	/* Enable needs a separate write to REG1 */
+
+s/Enable/Updating REG1/ ?
+
+> +	val |=3D IPQ_PWM_REG1_UPDATE;
+> +	if (enable)
+> +		val |=3D IPQ_PWM_REG1_ENABLE;
+> +	ipq_pwm_reg_write(pwm, IPQ_PWM_CFG_REG1, val);
+> +}
+> +
+> +static int ipq_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			 const struct pwm_state *state)
+> +{
+> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(chip);
+> +	unsigned long freq;
+> +	unsigned int pre_div, pwm_div, best_pre_div, best_pwm_div;
+> +	long long diff;
+> +	unsigned long rate =3D clk_get_rate(ipq_chip->clk);
+> +	unsigned long min_diff =3D rate;
+> +	u64 period_ns, duty_ns;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -EINVAL;
+> +
+> +	if (state->period < div64_u64(NSEC_PER_SEC, rate))
+> +		return -ERANGE;
+> +
+> +	period_ns =3D min(state->period, IPQ_PWM_MAX_PERIOD_NS);
+> +	duty_ns =3D min(state->duty_cycle, period_ns);
+> +
+> +	/* freq in Hz for period in nano second */
+> +	freq =3D div64_u64(NSEC_PER_SEC, period_ns);
+
+You're loosing quite some precision here. Consider a clock rate of
+266666667 Hz and period =3D 500000001 ns.
+
+Then we end up with freq =3D 1 (while the exact result is nearly 2) which
+results in diff below being too small.
+
+> +	best_pre_div =3D IPQ_PWM_MAX_DIV;
+> +	best_pwm_div =3D IPQ_PWM_MAX_DIV;
+> +	/* Initial pre_div value such that pwm_div < IPQ_PWM_MAX_DIV */
+> +	pre_div =3D DIV64_U64_ROUND_UP(period_ns * rate,
+> +			(u64)NSEC_PER_SEC * (IPQ_PWM_MAX_DIV + 1));
+
+This is wrong, you need to round down here. (Consider cases where you
+need pre_div =3D 0.)
+
+> +
+> +	for (; pre_div <=3D IPQ_PWM_MAX_DIV; pre_div++) {
+> +		pwm_div =3D DIV64_U64_ROUND_UP(period_ns * rate,
+> +				(u64)NSEC_PER_SEC * (pre_div + 1));
+> +		pwm_div--;
+
+Can it happen that pwm_div is zero before it is decreased by one? Also
+you need to round down here; with rounding up the resulting period is
+bigger than the requested period (unless the division yields an exact
+integer).
+
+> +		if (pre_div > pwm_div)
+> +			break;
+
+A comment here why we can end the search would be good.
+
+> +		/*
+> +		 * Make sure we can do 100% duty cycle where
+> +		 * hi_dur =3D=3D pwm_div + 1
+> +		 */
+> +		if (pwm_div > IPQ_PWM_MAX_DIV - 1)
+> +			continue;
+> +
+> +		diff =3D ((uint64_t)freq * (pre_div + 1) * (pwm_div + 1))
+> +			- (uint64_t)rate;
+> +
+> +		if (diff < 0) /* period larger than requested */
+> +			continue;
+> +		if (diff =3D=3D 0) { /* bingo */
+> +			best_pre_div =3D pre_div;
+> +			best_pwm_div =3D pwm_div;
+> +			break;
+> +		}
+> +		if (diff < min_diff) {
+> +			min_diff =3D diff;
+> +			best_pre_div =3D pre_div;
+> +			best_pwm_div =3D pwm_div;
+> +		}
+> +	}
+> +
+> +	/* config divider values for the closest possible frequency */
+> +	config_div_and_duty(pwm, best_pre_div, best_pwm_div,
+> +			    rate, duty_ns, state->enabled);
+> +
+> +	return 0;
+> +}
+> +
+> +static void ipq_pwm_get_state(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+> +			      struct pwm_state *state)
+> +{
+> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(chip);
+> +	unsigned long rate =3D clk_get_rate(ipq_chip->clk);
+> +	unsigned int pre_div, pwm_div, hi_dur;
+> +	u64 effective_div, hi_div;
+> +	u32 reg0, reg1;
+> +
+> +	reg0 =3D ipq_pwm_reg_read(pwm, IPQ_PWM_CFG_REG0);
+> +	reg1 =3D ipq_pwm_reg_read(pwm, IPQ_PWM_CFG_REG1);
+> +
+> +	state->polarity =3D PWM_POLARITY_NORMAL;
+> +	state->enabled =3D reg1 & IPQ_PWM_REG1_ENABLE;
+> +
+> +	pwm_div =3D FIELD_GET(IPQ_PWM_REG0_PWM_DIV, reg0);
+> +	hi_dur =3D FIELD_GET(IPQ_PWM_REG0_HI_DURATION, reg0);
+> +	pre_div =3D FIELD_GET(IPQ_PWM_REG1_PRE_DIV, reg1);
+> +
+> +	/* No overflow here, both pre_div and pwm_div <=3D 0xffff */
+> +	effective_div =3D (u64)(pre_div + 1) * (pwm_div + 1);
+> +	state->period =3D div64_u64(effective_div * NSEC_PER_SEC, rate);
+
+You have to round up here to make apply . get_state idempotent.
+
+> +	hi_div =3D hi_dur * (pre_div + 1);
+> +	state->duty_cycle =3D div64_u64(hi_div * NSEC_PER_SEC, rate);
+> +}
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--kqyldxkbyhgsihnp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmFAmnQACgkQwfwUeK3K
+7AkuAQf/aW5lxy/sZhu1FYXjhXt8bEX0ZZtODsMFvdw3WJWJmJVlRvS4BvzUGvRg
+Vevu6jpj64N4ryR1vzP22wmJUt3XnT4ibR2lc/SxtuGNAwhSY6+zJ2lr3os1WTyA
+qZYU5v2JTkJTbUrm83nPCE2oOuEpg2/aFRHMSt27wlNMi4d3GM8Inm7Ot+aQ6hbf
+tP4OcHWVrx71EPDy7Kzy3WiRld4pJacqxtpDVa3pU2+BypqcS+EUaRVMjrV8Fip3
+DaAjZrTz98i7DGeAs7t8BH4j9naAVT65iiSmxQNfiAL6dMyUVXAuGkP/OBBu3V9v
+GntX09gS2MVul36UCu3wCi78SPKq0g==
+=xk9H
+-----END PGP SIGNATURE-----
+
+--kqyldxkbyhgsihnp--
