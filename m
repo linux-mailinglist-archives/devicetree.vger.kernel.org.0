@@ -2,167 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F8840B5F9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB0040B62D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbhINRfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 13:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54398 "EHLO
+        id S231795AbhINRsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 13:48:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbhINRfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:35:18 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC616C061574;
-        Tue, 14 Sep 2021 10:34:00 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id 6so222259oiy.8;
-        Tue, 14 Sep 2021 10:34:00 -0700 (PDT)
+        with ESMTP id S231758AbhINRsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:48:00 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85EA0C061762
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 10:46:43 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id q68so13441685pga.9
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 10:46:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8Var4fQF1XhsoVmdTJ7YRQUllwNpqTaomfukEwbYbZQ=;
-        b=PZxToyoB/iGvr8rt2v1pfgJfVpTI5N0w6XI6pLImxPZivPPloYRbZHZARAA13TT6kB
-         7NlESFpcSohzlpoii9z27Ixx02SOO+pfctFH8LH/k2U3VyS6pY86oMt23SkEweecYtWP
-         8HFdxbuT6flbYz8qKGeMeaNJzr6TGxH+PH6mDyes8nh82v0Zoy20eerbmk4Zvp8obwkJ
-         twEYt/KHIrc8+/noY4RUU71nOLw6iwbcgOLSSGNiUkFyQrGi6TBFW1iNWFplUm7idOL7
-         2ZVfS3Zc7BxH2jfHnVmpsFVli2brZ6iL+Oo1BL7JKx3HGmvUymdplQDryMQ5kpSo4Que
-         eO5Q==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7UFM2ZEfyisKcjzE2kztorsuEGj60mmoqCDZgmBx5qk=;
+        b=adISV1GzrtR3BVLqWylk7j+Nf0f9LohcT8NA2GxEC5o5Ir6X0Rf80NFfjWbiZ4MfIH
+         ARLEjkxxSPs8mBEmc9VUj2WyjNFe0RkVCmXChHcxpVOh50a4gFrHiqvBH8BTPF2sT1jd
+         aaLZPBnnrqTDq2NK/mwpYYUhvoXrF1JBe6706NdMEh8Iua+zLYFmVbYAU5GTw8bwA/dt
+         di+mdi9j/bH5jgWOne9zkrkyVO32aegprpms/DaZkgojU9DnTvLT91RNBHstQRZS/ktF
+         c4MOx8GF/wpcp/CSo05i1B66s/sOZBxxhFS/d0ZvSSStyIXEIXRE+t+8FKHmY81HfZ5E
+         CcPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8Var4fQF1XhsoVmdTJ7YRQUllwNpqTaomfukEwbYbZQ=;
-        b=gEuenI5wM4+fHGfw2++Yqjb4XWNWZZl8TlwJoI+GWkNZ8cewOMMnmchkcPrtkoj0S3
-         /ORVcLXErd6zvLXzUskmjIrVQl6Q5jBFTVfRqK1XvlTDdEle34vGunEWL2XgUn8L5epn
-         jR69CHzLr5XrmQgzf5W1nb5a5vHpMyjOmQPMikIYkwhD892daVpF5XzWd7yAr+slxEey
-         Y/ECyU2FeESWPdTPAxqJjehi1tiSGfImEfIXMt8UvurWX3q0lUelY9wq5mk0IMThZ8PY
-         NgMhSR+H2CzmTpH+sjLinkuIeYnOxRsVP3CpLGGvzn6spoNQK6NmwhvnNIQ9U42vpEgb
-         NBfg==
-X-Gm-Message-State: AOAM532rSFAWKr0XfL48uV/WF66X166Rkc3/3ll5NMZQHGPUCjPStk4I
-        biDlgltBJMMjor7d0ie88JI=
-X-Google-Smtp-Source: ABdhPJzdfEBxf3YhjeaJoYbBfVki2x3p9gdFKon2ehXCuG9yDEaZ1WWuaIgvXSKRGffb+2ZcPTLB/Q==
-X-Received: by 2002:aca:6254:: with SMTP id w81mr2242540oib.83.1631640840079;
-        Tue, 14 Sep 2021 10:34:00 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u19sm2746582oof.30.2021.09.14.10.33.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Sep 2021 10:33:59 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Oskar Senft <osk@google.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210910130337.2025426-1-osk@google.com>
- <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
- <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
- <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net>
- <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
- <20210914150859.GB3457579@roeck-us.net>
- <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
-Message-ID: <c410eba9-f6cf-4dbf-797f-48afde9c1898@roeck-us.net>
-Date:   Tue, 14 Sep 2021 10:33:57 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7UFM2ZEfyisKcjzE2kztorsuEGj60mmoqCDZgmBx5qk=;
+        b=UesTCgbIzZlHwFHxlrFNj5y7Wcwp5HRV7XMyMAQcXpm3Z5tTaX5qvNJlEN+D+Y+5Na
+         RdvC4dgYRan92IbQ2Z2XyxXfpuxxVG28QWZUxJgiOJ90Qan1xlnEMEJ0Omc8p2j5oDDk
+         uUyR7gqLX+1fh2DUPJY59sHZPa9+4lF+UZnVIiMRZSUAgl1NeDBgnrX/WuR60ARx3bwj
+         nrkDEbRYvnFyMLaNVkj5hwG+cqwf5+Yh6hdD97osuCwL48eoldzG3dqSZLaBefjIivQq
+         OD4jfZpDuXHZi9ZLliYY25h+j6bd7QuRR+ccZ4WFV8KxezGRcdMINizWmw8q5Y0oXal9
+         cybQ==
+X-Gm-Message-State: AOAM533z9g5dVYfmhqKZ7mMidLiwI8C0T6TUPjjZtVoiHQ/H+H/Jw06a
+        GBwRnZugrClb+HQlwdMX7lhDvlERPct7bA==
+X-Google-Smtp-Source: ABdhPJzNx8VjnH2V9I2EnHJTuQp2w956w0/y+JiYMwH4mCa/ph7gOkFElD1jQd/qXlADKOpBI9CZjA==
+X-Received: by 2002:a63:da49:: with SMTP id l9mr16290385pgj.277.1631641602979;
+        Tue, 14 Sep 2021 10:46:42 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id pc3sm2354264pjb.0.2021.09.14.10.46.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 10:46:42 -0700 (PDT)
+Date:   Tue, 14 Sep 2021 11:46:39 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, daniel.baluta@nxp.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        shengjiu.wang@gmail.com
+Subject: Re: [PATCH v4 1/4] remoteproc: imx_rproc: Move common structure to
+ header file
+Message-ID: <20210914174639.GB1719994@p14s>
+References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
+ <1631092255-25150-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <CABoTLcQfS5-UL92NR9vbc2YrGJv3oQPYCqAm-diNoq-tkHP_hQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1631092255-25150-2-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/14/21 10:11 AM, Oskar Senft wrote:
-> Hi Guenter
+On Wed, Sep 08, 2021 at 05:10:52PM +0800, Shengjiu Wang wrote:
+> Move common structure imx_rproc_att, imx_rproc_method
+> and imx_rproc_dcfg to header file which can be shared with
+> imx_dsp_rproc driver.
 > 
->>> Following the example from tmp421, this could then be like this:
->>
->> Something like that, only we'll need something to distinguish
->> temperature sensors from other sensor types, eg voltage or current.
->> Maybe a "type" property. I'd suggest "sensor-type", but we have
->> non-sensor attributes such as fan count and pwm values which should
->> be covered as well. But it looks like a good start for a set of
->> generic sensor properties.
-> Would it be acceptable to simply number the sensors and document which
-> sensor has which number?
-> 
-> Something like this:
-> 0 = LTD
-> 1 = RTD1
-> 2 = RTD2
-> 3 = RTD3
-> 4 = FAN1
-> 5 = FAN2
-> 6 = FAN3
-> 
-That might be a possibility, though it would have to be well defined
-for each chip (nct7802 also has voltage sensors). We'll have to discuss
-this with Rob.
-
-Personally I think I would prefer using a type qualifier - that seems
-cleaner. But that is really a matter of opinion.
-
-> Would we also want to be able to define PWMs? From what I can tell the
-> driver does not support running individual pins in GPIO mode, right?
-> So I'm not quite clear what "disabling PWM" would actually mean.
-> 
-The ABI states that fans should run at full speed in that case,
-though that may be chip dependent (some chips stop the fan if pwm
-control is turned off).
-
-> Anyway, if we simply go by "sensor number", that would mean that we'd
-> have different attributes depending on the sensor number. Would that
-> be ok?
-> 
-That is a question for Rob to answer.
-
-> Also, I'm sorry, I think I just realized that in "voltage mode" we
-> don't seem to get a temperature reading. I hadn't actually looked
-> through more of the datasheet except for the single MODE register
-> before. But I don't think this makes a difference for what I proposed
-> so far?
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  drivers/remoteproc/imx_rproc.c | 28 +------------------------
+>  drivers/remoteproc/imx_rproc.h | 37 ++++++++++++++++++++++++++++++++++
+>  2 files changed, 38 insertions(+), 27 deletions(-)
+>  create mode 100644 drivers/remoteproc/imx_rproc.h
 > 
 
-We don't ? I thought this reflects temperature measurement with a
-transistor instead of a diode (which would be current based).
-Hard to say - the datasheet is a bit vague in that regard.
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
->>>          /* LTD */
->>>          input@0 {
->>>              reg = <0x0>;
->>>              status = "okay";
->>
->> Not sure what the default is here ('okay' or 'disabled').
->> We'd also need to define what to do if there is no data
->> for a given sensor.
-> I think I'd like to keep previous behavior unmodified. From what I can
-> tell previous behavior was:
-> - xTDs enabled by default
-> - RTD modes unmodified, i.e. defaulting to whatever the HW comes up with
+> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
+> index d88f76f5305e..b0da0130c3b6 100644
+> --- a/drivers/remoteproc/imx_rproc.c
+> +++ b/drivers/remoteproc/imx_rproc.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/remoteproc.h>
+>  #include <linux/workqueue.h>
+>  
+> +#include "imx_rproc.h"
+>  #include "remoteproc_internal.h"
+>  
+>  #define IMX7D_SRC_SCR			0x0C
+> @@ -72,33 +73,6 @@ struct imx_rproc_mem {
+>  /* M4 own area. Can be mapped at probe */
+>  #define ATT_OWN		BIT(1)
+>  
+> -/* address translation table */
+> -struct imx_rproc_att {
+> -	u32 da;	/* device address (From Cortex M4 view)*/
+> -	u32 sa;	/* system bus address */
+> -	u32 size; /* size of reg range */
+> -	int flags;
+> -};
+> -
+> -/* Remote core start/stop method */
+> -enum imx_rproc_method {
+> -	IMX_RPROC_NONE,
+> -	/* Through syscon regmap */
+> -	IMX_RPROC_MMIO,
+> -	/* Through ARM SMCCC */
+> -	IMX_RPROC_SMC,
+> -};
+> -
+> -struct imx_rproc_dcfg {
+> -	u32				src_reg;
+> -	u32				src_mask;
+> -	u32				src_start;
+> -	u32				src_stop;
+> -	const struct imx_rproc_att	*att;
+> -	size_t				att_size;
+> -	enum imx_rproc_method		method;
+> -};
+> -
+>  struct imx_rproc {
+>  	struct device			*dev;
+>  	struct regmap			*regmap;
+> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
+> new file mode 100644
+> index 000000000000..23d8e808d27f
+> --- /dev/null
+> +++ b/drivers/remoteproc/imx_rproc.h
+> @@ -0,0 +1,37 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2017 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
+> + * Copyright 2021 NXP
+> + */
+> +
+> +#ifndef _IMX_RPROC_H
+> +#define _IMX_RPROC_H
+> +
+> +/* address translation table */
+> +struct imx_rproc_att {
+> +	u32 da;	/* device address (From Cortex M4 view)*/
+> +	u32 sa;	/* system bus address */
+> +	u32 size; /* size of reg range */
+> +	int flags;
+> +};
+> +
+> +/* Remote core start/stop method */
+> +enum imx_rproc_method {
+> +	IMX_RPROC_NONE,
+> +	/* Through syscon regmap */
+> +	IMX_RPROC_MMIO,
+> +	/* Through ARM SMCCC */
+> +	IMX_RPROC_SMC,
+> +};
+> +
+> +struct imx_rproc_dcfg {
+> +	u32				src_reg;
+> +	u32				src_mask;
+> +	u32				src_start;
+> +	u32				src_stop;
+> +	const struct imx_rproc_att	*att;
+> +	size_t				att_size;
+> +	enum imx_rproc_method		method;
+> +};
+> +
+> +#endif /* _IMX_RPROC_H */
+> -- 
+> 2.17.1
 > 
-> The NCT7802Y can self-program from an EEPROM, so I assume we should
-> honor the "power-up configuration" obtained from there? I.e. if no
-> configuration is provided in the device tree, the driver should use
-> whatever configuration the chip has when the driver is loaded.
-> 
-Definitely yes. My question was more what to do if the information
-in devicetree nodes is incomplete.
-
-Thanks,
-Guenter
-
->>>              label = "voltage mode";
->>
->> That isn't the idea for "label", as "label" would be expected to
->> show up as tempX_label (and a label of "voltage mode" would be odd).
->> The label should indicate where the sensor is located on a board,
->> such as "inlet" or "outlet".
-> Yes, absolutely. This was a bad example on my part. In my
-> understanding "label" is just a string that we pass through.
-> 
-> Oskar.
-> 
-
