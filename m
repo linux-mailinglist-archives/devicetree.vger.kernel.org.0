@@ -2,108 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC33740B285
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD3340B294
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233930AbhINPIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 11:08:43 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:48078 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233858AbhINPIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:08:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1631632045; x=1663168045;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=WbzsE5CPbx1OvZmlMiX5JgPDXQPhCtNDGTNE8+SJ0yo=;
-  b=FJ16zqQlLr+gxmofsoBVECzLdX1Yix6RkN9PtBolDLcWmUhlF4d7EE1U
-   kz+k1Fnyk+VMxzYK6iiYJV4HLN2SD56+ynIunvupZC/yO85g+2ZqFPNfd
-   TwJgnHYwxhRPyaBvODSf7g5tpVkl1WVxdAghGKncj1bViFpivUsPb81iQ
-   l9PDGhVCn9LLC4eBb/nT16+nQ+ZaXQ1H/uAWBg1YcVFQO8fnqLVHm9yMZ
-   g6S61l4qSFVoItdfDQ58GSvcsRS7kKsaOvm00+gpluxAZIoAUWdMcMTun
-   6eA367z4tBeNdc7cLT91X1lBmMoyZRzJqmcLI0kC0tUIBkt6I8MytTijU
-   Q==;
-IronPort-SDR: aQqZBjit+kf9DbUG/qm9V5G5vf9iiAD2HVbEQp5rNcIyjSMP3Aj7aLet5INKqcSLEH/gQOf6tj
- wv1OZ8beZG7/S1a54PAX7ROXbvE6V3GFuKyVq+mVTpH6eI8OQMSvqCVa9XJLSio0XmT9APn7dM
- GAN+6uRvVuWldjkBp5xJvQDfww5k8D0HOhS2S0hbAYRotXdE/7+iAtdplMhm2uln+hyrS4sbvd
- +yxcOFgMiXhKswuH6Ga7gFGnrnrUgR4YVLOW1w4zmfbtGfi2i+4g18nT4uKE937cZYROtwCNn7
- W2BmTJezVf7v3Q2YPVgXA3mO
-X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
-   d="scan'208";a="144052717"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Sep 2021 08:07:24 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 14 Sep 2021 08:07:24 -0700
-Received: from [10.171.246.26] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 14 Sep 2021 08:07:23 -0700
-Subject: Re: [PATCH] ARM: dts: at91: sama7g5: add chipid
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210908094329.182477-1-claudiu.beznea@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <50422bf9-01d5-3d11-ada1-f2f7ee155aba@microchip.com>
-Date:   Tue, 14 Sep 2021 17:07:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S233703AbhINPKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 11:10:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233584AbhINPKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:10:19 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07C9C061574;
+        Tue, 14 Sep 2021 08:09:02 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id c19-20020a9d6153000000b0051829acbfc7so18881545otk.9;
+        Tue, 14 Sep 2021 08:09:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sg7LDb7clu8dL1nFJb4uHjtJUIj2GDqVqsngLGbcYjs=;
+        b=MbCzzKC0XDB2q5FOYC1yE5Wlb3L+jpDDIyIUM1SsJYH8PfHaRxh0oD0a+/gD9bw88N
+         wGqVY6FQYRYqBJL6QAF5nIfQxCZhlcFVLnkSZSKovQciFMe+Mpf7NIOU+/wWskEOiP3p
+         TbtTKjbVNeUaVnZSGTQzrXybDgcj5mbmUWHhloh4YMTQttDZF0A21ME2Gd/2rBDTspTA
+         I78Me/rzibAq4C24kS65eyVt7R90M0wpz4obRsK0iomF2BcwWMn5FCWtCpVWr3ZDp0uR
+         lxHUIXwhe8/+oa1Ur9Yfi+ns3nypvKNn5mX9JxVJWVXi/pKOVi/wDx0aNKLLKtW6Fvet
+         S2LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=sg7LDb7clu8dL1nFJb4uHjtJUIj2GDqVqsngLGbcYjs=;
+        b=CM25rfQk1yh1fV+zltZ8THeP82Ka7eoEgWc8JSKctobEUfFKQym7gSBX/GufzxZVKH
+         p+dJNAdC7DNyzVHGdusy9VRhaWAful8nNkWI16SXzPkeDqo26v4SeW82z9IffHkmGGGJ
+         NBZqNCz04tedvQ/o/Z9W+SUvSJnRuTd50oGhCIEUvnilFnEwkkKNIUOsmc3irLhp7HLs
+         pU4AZXd43JjlG1+Z5PfBj0tp3sWmHrJzj7h9bavmHeaDIzt7/fDGelwDztWFRWzuw1PN
+         xQAjJ3kJ8YSRLEKB/CN67NWxHnOxkl+EZ3CESQRILXOdeUmtM6OkTnM1NCC0mNxk9fOV
+         9B3g==
+X-Gm-Message-State: AOAM53381Ze9yCGzrlK552IqMEhaCj+TiPutb534PNzafBq+y5AoJArX
+        hmz662aWEC/RJWvAJFZdOay0QiEGexM=
+X-Google-Smtp-Source: ABdhPJw3DWNsO/lWEWxG6QOPO0x9juHGzb/cQVeGjmug85LLqElS9k6e2lYsW4M5azePNVV8GfXxdw==
+X-Received: by 2002:a9d:7052:: with SMTP id x18mr15006845otj.78.1631632141983;
+        Tue, 14 Sep 2021 08:09:01 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 3sm2692610ots.61.2021.09.14.08.09.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 08:09:01 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 14 Sep 2021 08:08:59 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Oskar Senft <osk@google.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: hwmon: Add nct7802 bindings
+Message-ID: <20210914150859.GB3457579@roeck-us.net>
+References: <20210910130337.2025426-1-osk@google.com>
+ <71c17c47-ca9e-e9d2-7b89-cc25b512c06a@roeck-us.net>
+ <CABoTLcRZ43EUVzbqWniu64PkB7Yx4RMYKjaBxaSihk+k0Ca-gA@mail.gmail.com>
+ <722b27f6-4390-9b5b-f6f2-75ce9e967d12@roeck-us.net>
+ <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210908094329.182477-1-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABoTLcSdkmuBxd5Yh6z2Oqm1-_Vd4J5Ni1i1qq5s07mWu7Ndew@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2021 at 11:43, Claudiu Beznea wrote:
-> Add chipid node for sama7g5.
+On Tue, Sep 14, 2021 at 08:41:36AM -0400, Oskar Senft wrote:
+> Hi Guenter
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-> ---
+> > https://lore.kernel.org/linux-hwmon/cover.1631021349.git.krzysztof.adamski@nokia.com/
+> >
+> > That specifically includes the ability to enable or disable channels
+> > using the standard 'status' property. While that series is primarily
+> > for the n-factor property supported by the tmp421, the same approach
+> > can be used for [temperature] sensor properties on other chips as well.
 > 
-> Hi Nicolas,
+> Good pointer! I should be able to replicate that for the LTD (@0) and
+> RTDs (1, 2, 3) in a similar way.
 > 
-> This applies clean on top of series with title "ARM: at91: add new nodes
-> to DT and fix for PM".
-
-I think it can go in at91-fixes for 5.15 as it integrates nicely with 
-the basic IP that we need enabled on this new SoC.
-
-Best regards,
-   Nicolas
-
-> 
->   arch/arm/boot/dts/sama7g5.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-> index e50806cf7660..6c58c151c6d9 100644
-> --- a/arch/arm/boot/dts/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/sama7g5.dtsi
-> @@ -159,6 +159,11 @@ ps_wdt: watchdog@e001d180 {
->   			clocks = <&clk32k 0>;
->   		};
->   
-> +		chipid@e0020000 {
-> +			compatible = "microchip,sama7g5-chipid";
-> +			reg = <0xe0020000 0x8>;
-> +		};
-> +
->   		sdmmc0: mmc@e1204000 {
->   			compatible = "microchip,sama7g5-sdhci", "microchip,sam9x60-sdhci";
->   			reg = <0xe1204000 0x4000>;
+> > I put [temperature] in [] because we'd need to find a means to express
+> > if the sub-nodes are for temperature, voltage, or something else, but
+> > I think the basic principle is sound.
+> Following the example from tmp421, this could then be like this:
 > 
 
+Something like that, only we'll need something to distinguish
+temperature sensors from other sensor types, eg voltage or current.
+Maybe a "type" property. I'd suggest "sensor-type", but we have
+non-sensor attributes such as fan count and pwm values which should
+be covered as well. But it looks like a good start for a set of
+generic sensor properties.
 
--- 
-Nicolas Ferre
+> i2c {
+>     #address-cells = <1>;
+>     #size-cells = <0>;
+> 
+>     nct7802@28 {
+>         compatible = "nuvoton,nct7802";
+>         reg = <0x28>;
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+> 
+>         /* LTD */
+>         input@0 {
+>             reg = <0x0>;
+>             status = "okay";
+
+Not sure what the default is here ('okay' or 'disabled').
+We'd also need to define what to do if there is no data
+for a given sensor.
+
+>             /* No "mode" attribute here*/
+>             label = "local temp";
+>         };
+> 
+>         /* RTD1 */
+>         input@1 {
+>             reg = <0x1>;
+>             mode = <0x2>; /* 3904 transistor */
+>             label = "voltage mode";
+
+That isn't the idea for "label", as "label" would be expected to
+show up as tempX_label (and a label of "voltage mode" would be odd).
+The label should indicate where the sensor is located on a board,
+such as "inlet" or "outlet".
+
+>         };
+> 
+>         input@2 {
+>             reg = <0x2>;
+>             mode = <0x4>; /* thermistor */
+>             label = "thermistor mode";
+>         };
+> 
+>         /* RTD3 */
+>         input@3 {
+>             reg = <0x3>;
+>             mode = <0x3>; /* thermal diode */
+>             label = "current mode";
+>             status = "disabled";
+>         };
+>     };
+> };
+> 
+> I noticed that "nct7802_temp_is_visible" only allows the temperature
+> sensor to be visible for current and thermistor but not voltage. Is
+> that right?
+> 
+No, that is a bug.
+
+> Before I go and change the driver further, I'd like to make sure we
+> agree on the interface.
+> 
+> Also: Is nct7802_temp_is_visible called again after temp_type_store
+> was called (I didn't try it)?
+> 
+No. That would not be the idea. If enabling / disabling a sensor
+is supposed with the _enable attribute (and/or with devicetree),
+the affected sensor should always be instantiated, and reading
+sensor data should return -ENODATA if the sensor is disabled.
+
+Thanks,
+Guenter
