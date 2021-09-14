@@ -2,156 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A69A40A8EC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 10:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4BD440A90C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 10:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbhINILh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 04:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
+        id S230155AbhINIVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 04:21:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230262AbhINIL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 04:11:28 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78661C0613AF
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:09:20 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id w7so11970622pgk.13
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:09:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HORz+N9iPM3MBLFTrD2etygd1AQ7C3FwAZKQ2ef9vXA=;
-        b=hNqZp1dwfdFkEDBjv3xUXxcGBjBFOYQgKv9Fg+Lztu1zsRHrV3An6X4PLGSsbKhgOa
-         t9JlCxXjagpAmLziP/AL4bkyLre2pXearJ6vsOhr3a4OMeeE5IWFJItz28A/KEi4a3t8
-         mBpgnfsVbpl9pw9GSX02QXTV+i2OrSKCNJzSQLhyxVbOQSMnvydpM/9vsKsudJbutJt/
-         VlHtTVJtBzxB+XhxVk5T/zY1+eqmH4bBZobJzk0Ccqr9JCQQ/PGT4tbPOkPrXWRl3JCx
-         nFuZpm82/kf2CtsMtwOjplejstBJ5m09BzGpksPce+zrvVQFXeXb8WLPsb6c9Mn8XRYL
-         NIrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HORz+N9iPM3MBLFTrD2etygd1AQ7C3FwAZKQ2ef9vXA=;
-        b=Luzi57Mx0AeRTpCs6OlGwMVluSpVTHqEqX4iGoofZQt3SMIalvltjrUPLOd/VfxZn+
-         Qh0j7XJYlQkLR2YdeTqIQEo1UO3PaKJ3rsc/3fBqwg4XBhQc6wVK1deKQq/L6VG71Z5d
-         VC4M2SgFrEqMx3UBJ/mt/CeZva4u3kGqJbqe74lG0VWL9ex+AeS2N9NrwgWX5/NIbNiO
-         nxn6pifcNzy3LSpuKGckYRvdLTYeoTNxdmQXS8JZYYSqnHOvWppgx51bifF061UAuPuE
-         KbK9Kk8337lH7gauhUwVbzBtVFj8rPrjjE5WKeL2HY3+ZIPYbehcPp5EbDTp9qeA870m
-         Cvzw==
-X-Gm-Message-State: AOAM530HwXCSU1nohUGAqLxgtEXdrvdfsOLHI/BP2nX7Z2m7vcwPQgPM
-        TyYNJDG6H8a5STQTv7V6yuCF
-X-Google-Smtp-Source: ABdhPJyh/TNWx4PNfVhDrSi721PTkgySN/TIS/csuXWue6mCXR6CsUoAqZhV2TwTkxInYfdYoJMZGw==
-X-Received: by 2002:aa7:9f8a:0:b0:43c:39be:23fb with SMTP id z10-20020aa79f8a000000b0043c39be23fbmr3434984pfr.57.1631606959868;
-        Tue, 14 Sep 2021 01:09:19 -0700 (PDT)
-Received: from thinkpad ([2409:4072:6211:54eb:fe9c:efbb:2b75:a575])
-        by smtp.gmail.com with ESMTPSA id d5sm669016pjs.53.2021.09.14.01.09.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Sep 2021 01:09:19 -0700 (PDT)
-Date:   Tue, 14 Sep 2021 13:39:11 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        hemantk@codeaurora.org, smohanad@codeaurora.org,
-        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        vbadigan@codeaurora.org
-Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
-Message-ID: <20210914080911.GA16774@thinkpad>
-References: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S229699AbhINIVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 04:21:42 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 295A0C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 01:20:25 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mQ3fz-00037F-Ds; Tue, 14 Sep 2021 10:20:23 +0200
+Message-ID: <449f718706fd5af03190bdda986de37aa8fa14e3.camel@pengutronix.de>
+Subject: Re: [PATCH v2] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
+ vqmmc-supply node
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Heiko Thiery <heiko.thiery@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Date:   Tue, 14 Sep 2021 10:20:21 +0200
+In-Reply-To: <20210914072627.24173-1-heiko.thiery@gmail.com>
+References: <20210914072627.24173-1-heiko.thiery@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Am Dienstag, dem 14.09.2021 um 09:26 +0200 schrieb Heiko Thiery:
+> The sw4 output (V_1V8_S0 voltage) from the PMIC is the main supply for
+> the 1V8 power domain. It is not only used as supply for the eMMC.
+> So this voltage can not be changed and is not allowed to switched off.
+> Therefore we do not want to provide this regulator to the SDHC driver to
+> control this voltage.
+> 
+This specific requirement should not be solved by removing the
+regulator connection from the SDHCI node, but instead by constraining
+the regulator voltage range to a fixed 3.3V and marking the regulator
+as always-on to reflect the hardware requirements in the DT.
 
-On Thu, Jul 22, 2021 at 05:42:39PM +0530, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series adds support for Qualcomm PCIe Endpoint controller found
-> in platforms like SDX55. The Endpoint controller is based on the designware
-> core with additional Qualcomm wrappers around the core.
-> 
-> The driver is added separately unlike other Designware based drivers that
-> combine RC and EP in a single driver. This is done to avoid complexity and
-> to maintain this driver autonomously.
-> 
-> The driver has been validated with an out of tree MHI function driver on
-> SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
-> 
+Also if your eMMC vqmmc is a fixed 3.3V, I don't think you need the
+faster pinctrl states, as you can't use the faster pin states anyways,
+as they require a 1.8V signaling voltage.
 
-Ping again! Do I need to resend this series on top of v5.15-rc1? I thought this
-one could go in for v5.15 but...
+Regards,
+Lucas
+ 
+> Fixes: 5dbadc848259 ("arm64: dts: fsl: add support for Kontron pitx-imx8m board")
+> Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
+> ---
+> 
+> v2:
+>  - slightly reword the commit message (thanks Michael)
+>  - add Fixes tag (thanks Fabio)
+> 
+> 
+>  arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> index f593e4ff62e1..436d98135ba9 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> @@ -348,7 +348,6 @@ &usdhc1 {
+>  	pinctrl-0 = <&pinctrl_usdhc1>;
+>  	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+>  	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+> -	vqmmc-supply = <&sw4_reg>;
+>  	bus-width = <8>;
+>  	non-removable;
+>  	no-sd;
 
-Thanks,
-Mani
 
-> Thanks,
-> Mani
-> 
-> Changes in v7:
-> 
-> * Used existing naming convention for callback functions
-> * Used active low state for PERST# gpio
-> 
-> Changes in v6:
-> 
-> * Removed status property in DT and added reviewed tag from Rob
-> * Switched to _relaxed variants as suggested by Rob
-> 
-> Changes in v5:
-> 
-> * Removed the DBI register settings that are not needed
-> * Used the standard definitions available in pci_regs.h
-> * Added defines for all the register fields
-> * Removed the left over code from previous iteration
-> 
-> Changes in v4:
-> 
-> * Removed the active_config settings needed for IPA integration
-> * Switched to writel for couple of relaxed versions that sneaked in
-> 
-> Changes in v3:
-> 
-> * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
-> * Noticeable changes are:
->   - Got rid of _relaxed calls and used readl/writel
->   - Got rid of separate TCSR memory region and used syscon for getting the
->     register offsets for Perst registers
->   - Changed the wake gpio handling logic
->   - Added remove() callback and removed "suppress_bind_attrs"
->   - stop_link() callback now just disables PERST IRQ
-> * Added MMIO region and doorbell interrupt to the binding
-> * Added logic to write MMIO physicall address to MHI base address as it is
->   for the function driver to work
-> 
-> Changes in v2:
-> 
-> * Addressed the comments from Rob on bindings patch
-> * Modified the driver as per binding change
-> * Fixed the warnings reported by Kbuild bot
-> * Removed the PERST# "enable_irq" call from probe()
-> 
-> Manivannan Sadhasivam (3):
->   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
->     controller
->   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
->   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-> 
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
->  MAINTAINERS                                   |  10 +-
->  drivers/pci/controller/dwc/Kconfig            |  10 +
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
->  5 files changed, 888 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
-> 
-> -- 
-> 2.25.1
-> 
