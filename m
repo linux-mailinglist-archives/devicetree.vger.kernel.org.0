@@ -2,161 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E74940A697
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 08:15:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC0B40A6C9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 08:41:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239977AbhINGQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 02:16:31 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:24348 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239962AbhINGQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 02:16:30 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20210914061512euoutp01922955669eab8334a127db436c7e6d34~km6hP5w0V3021230212euoutp01s
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 06:15:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20210914061512euoutp01922955669eab8334a127db436c7e6d34~km6hP5w0V3021230212euoutp01s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1631600112;
-        bh=I/edZr8BlUd40McbMEg2zkIzCis5wLjFNkkfSzTLxDs=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=ZE/kJC+s8qEQq71PV18U7t18oZmYdoCF3gMfhUmQ6GsDIqs7/CQX0GPYgDapQEkCt
-         EJRsTU5k+B7X9uNRNcgdsM13B7/cQ+IsanFL2jlI4Qswt2cZBOvNmaEBJmc84geBOX
-         Dyhga28Jkkf58UiMn+mCfcv1RVFrVbeJwjdJCz5A=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20210914061512eucas1p2726973d3a03900bae53ae3287cdb345d~km6hGpJy30039100391eucas1p2k;
-        Tue, 14 Sep 2021 06:15:12 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 1E.A4.45756.FED30416; Tue, 14
-        Sep 2021 07:15:11 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20210914061511eucas1p10de5aebb4af7a87b0cbdfc0cf62df8fa~km6gnGtDh1504015040eucas1p1t;
-        Tue, 14 Sep 2021 06:15:11 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20210914061511eusmtrp2a2211ce0378ec4420989e16cc236dd14~km6gmcrE00957209572eusmtrp2n;
-        Tue, 14 Sep 2021 06:15:11 +0000 (GMT)
-X-AuditID: cbfec7f2-7d5ff7000002b2bc-4b-61403def8af2
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id BA.BF.31287.FED30416; Tue, 14
-        Sep 2021 07:15:11 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20210914061511eusmtip1a1ee091206dfdc1d20a65223eed8ca64~km6gKhJAm0142701427eusmtip1P;
-        Tue, 14 Sep 2021 06:15:11 +0000 (GMT)
-Subject: Re: [PATCH v1] RFC: of: property: fix phy-hanlde issue
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <bb2fbc94-9afd-07f4-9bce-bd40516f196a@samsung.com>
-Date:   Tue, 14 Sep 2021 08:15:10 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.14.0
+        id S240239AbhINGm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 02:42:28 -0400
+Received: from mail-eopbgr80040.outbound.protection.outlook.com ([40.107.8.40]:35639
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S240231AbhINGm1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Sep 2021 02:42:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZtEiHL0zRVwDmnh/EbMSfcIwRH8QwpU8TS9WL6uT0TxnAWKsGXikIleNy2xVqYVcH+vvCFvMwRslF2bYeSTS8XwDbE+wBOgJNq2O9urolZSHQc7MwAPF/bvexuXnAPc8m6N/QHuLToiGuYlC/I1/wpVbngg/Mybc31T2RPteyIgYF1TBoWbQtK3WhGfeNockNGXoj1Jha3bCpr4kM7NqKOMYVOE5DS5K+Dp1TauDux5YpwzMwRxvHq4DHl1JertNPnpzPcjFYPMnGWNRQgexbGhUsAScfCl57+IYQXR0DFug9PwLf6Q7Uk6wI0e/IHFd/2KucjMwq7KQtv1Mt+QIeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=j3i66GCAvFPa7+ypVoaPrqLzOFRFcTUlKZNwccs7TT8=;
+ b=S99W9GE4oPYzi/q63N9fsc4X9aVUHsoupUGqJolIox0mPW+t9fan2aaovWogqBb1jchOBGIvebaLHyXgLMt+uVJk4EQPy0/GSCk0RsjjfMDuYS7GV9jA14/Dw+QlvdgAAW9h1lgPeWONt5jO9vphhY7Bamg+cEiAMAIt6euDuMyj0okpBWa+lX+62w6hQRlOz7Z8lPGsIH13un3S0bVIJFPoD29iajfZAV2+VCgZR1hg0rpPAB+ccMjc46L8XR+G6x6wPRnwZKEYUctnODofKbABXgjZWb1TQXJwC8MgJvI/9HVYAPj+hwUn4KbzqRp637mIzpf2BjDf5dFTAEXh3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j3i66GCAvFPa7+ypVoaPrqLzOFRFcTUlKZNwccs7TT8=;
+ b=GfGR3hsdSNTl4Gmrudn041B33hnbtcYTR+GWH2eUKS0O03Fdqe/Muna0dAjybIaMsHo0lHVhvMX9t+my7Hz5bjbZVGVvzqnkg71UVivDU22bTm72Oi5FB9yLx2FiGAdWNT7OL/Q5CgyLVBT46N6y3S85UOrhoAhSK7EweJJJopk=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
+ by DBBPR04MB6028.eurprd04.prod.outlook.com (2603:10a6:10:c1::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.17; Tue, 14 Sep
+ 2021 06:41:07 +0000
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::55b5:93f6:50b1:a49e]) by DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::55b5:93f6:50b1:a49e%3]) with mapi id 15.20.4500.018; Tue, 14 Sep 2021
+ 06:41:07 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     shawnguo@kernel.org, robh+dt@kernel.org, abel.vesa@nxp.com,
+        sboyd@kernel.org, s.hauer@pengutronix.de, p.zabel@pengutronix.de
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/9] Add imx8ulp clock & reset driver support
+Date:   Tue, 14 Sep 2021 14:51:59 +0800
+Message-Id: <20210914065208.3582128-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.26.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGAP274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::17)
+ To DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx-qDPETtsSPKyW+6i=c=x2LG-tcJ+zCu40jCa9FwA-bEA@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKKsWRmVeSWpSXmKPExsWy7djP87rvbR0SDZ7utbKYf+Qcq8XMN//Z
-        LHZsF7G4vGsOm0Xr3iPsFl2H/rI5sHls272N1WPnrLvsHgs2lXpsWtXJ5vF5k1wAaxSXTUpq
-        TmZZapG+XQJXxuSGfYwFnwQr1q68x9zAuJevi5GTQ0LARGJO7wzWLkYuDiGBFYwSj5YsZAVJ
-        CAl8YZTYcr4EIvGZUeLdlbnMMB0P9x5khkgsZ5SY/vIJVMdHRomvG426GDk4hAXsJVaeMwcJ
-        iwhoSWy69pgFpJ5ZYBGjxPwPtxlBEmwChhJdb7vYQGxeATuJSc8egi1gEVCVWLh0GzuILSqQ
-        LDHtbxMzRI2gxMmZT1hAbE6BQInLk8+D2cwC8hLb385hhrDFJW49mc8EskxC4AqHxIwV/xkh
-        rnaRmDL/GZQtLPHq+BZ2CFtG4v9OmIZmRomH59ayQzg9jBKXm2ZAdVhL3Dn3iw3kNWYBTYn1
-        u/RBTAkBR4n5U3whTD6JG28FIW7gk5i0bTozRJhXoqNNCGKGmsSs4+vgth68cIl5AqPSLCSf
-        zULyzSwk38xCWLuAkWUVo3hqaXFuemqxYV5quV5xYm5xaV66XnJ+7iZGYMo5/e/4px2Mc199
-        1DvEyMTBeIhRgoNZSYR32xvbRCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8q2aviRcSSE8sSc1O
-        TS1ILYLJMnFwSjUwOSwRTo3v9l07jf1ErD+LUI3KuwyDb8fPCKtW1mw84TPzyHGpl9NWsq41
-        5klemrXj7ZnE6V8Db5/aobaMXznn1ucHh9LiZrnylK3d9XXbVSFeV7MX73urfy3fvMK6vHvR
-        jrCihwqOMz6UPwiJ+m5a/XR9wONI//rvZq35rNs9pGrPrLy2zu343xdH9q3WlVW63Vn9+B+f
-        zZWvMbktr3Pm+13U31AVP0F4m3rf5fDcRu7CUCUfj4bymh/K+X3WX9ZyKXsunOBy5r41+41v
-        R8tE+NmiT79XdMnbsDdCq09r1sO1UpPWHwhqOn+s/baf7lWdg3fSzyyesnvbubm/j30IPPrF
-        3Tun33u3465kZzbnR0osxRmJhlrMRcWJAGTL/82oAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsVy+t/xu7rvbR0SDTY0yljMP3KO1WLmm/9s
-        Fju2i1hc3jWHzaJ17xF2i65Df9kc2Dy27d7G6rFz1l12jwWbSj02repk8/i8SS6ANUrPpii/
-        tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/OJiU1J7MstUjfLkEvY3LDPsaCT4IV
-        a1feY25g3MvXxcjJISFgIvFw70FmEFtIYCmjxN8vFhBxGYmT0xpYIWxhiT/Xutggat4zSsw5
-        lN3FyMEhLGAvsfKcOUhYREBLYtO1xyxdjFwczAKLGCWmv2xgB3GEBC4xSXQuWssOUsUmYCjR
-        9RZiEK+AncSkZw/BFrMIqEosXLoNrEZUIFni7evvTBA1ghInZz5hAbE5BQIlLk8+D2YzC5hJ
-        zNsM0cssIC+x/e0cKFtc4taT+UwTGIVmIWmfhaRlFpKWWUhaFjCyrGIUSS0tzk3PLTbUK07M
-        LS7NS9dLzs/dxAiMsm3Hfm7ewTjv1Ue9Q4xMHIyHGCU4mJVEeLe9sU0U4k1JrKxKLcqPLyrN
-        SS0+xGgK9M9EZinR5HxgnOeVxBuaGZgamphZGphamhkrifNunbsmXkggPbEkNTs1tSC1CKaP
-        iYNTqoHJuUd/+crFXOItVgbSguverTXw/dum4e9zoM6yu+jG6oknrz/UyzPMfdCb91bC3GO2
-        3Ol21bksbD2zJA9oP1jwUjrD5b6qxpWUJ7Pd35a9S62d6vGg51N3OMPDMK+9IWVmn3IumApL
-        zfp4NY9hZ0SV0oSOxWvFijf9luGfc5zvMIt2v1kPW9sd79d3xWZ3nzDMfv064nnoEdb9S353
-        7HZjONKr+C/h3aGvPJeXOPb8kL93+MSzE3sEpu1tyZu84NDluSyN9/2+HfKvOfqL+8rNexGK
-        n9br5sgxf9zME/MoQDpdODl3+ovmfaxlN/uY3xyPN3tTGXz9v1H1vSfPHZvKbSTPyC97XT0h
-        on2SbDWfEktxRqKhFnNRcSIAPuSRoTsDAAA=
-X-CMS-MailID: 20210914061511eucas1p10de5aebb4af7a87b0cbdfc0cf62df8fa
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210908215815eucas1p12d139145cbb80041ca0dce750eed04fb
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210908215815eucas1p12d139145cbb80041ca0dce750eed04fb
-References: <CGME20210908215815eucas1p12d139145cbb80041ca0dce750eed04fb@eucas1p1.samsung.com>
-        <20210908215806.2748361-1-saravanak@google.com>
-        <75889ceb-343b-161f-0280-13df347e6628@samsung.com>
-        <CAGETcx8peaew90SWiux=TyvuGgvTQOmO4BFALz7aj0Za5QdNFQ@mail.gmail.com>
-        <CAGETcx-qDPETtsSPKyW+6i=c=x2LG-tcJ+zCu40jCa9FwA-bEA@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SGAP274CA0005.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend Transport; Tue, 14 Sep 2021 06:41:04 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0d6de154-ad6c-409e-cc74-08d9774aa1ac
+X-MS-TrafficTypeDiagnostic: DBBPR04MB6028:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB6028BD9BDC140ACA968C661E87DA9@DBBPR04MB6028.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u6Udzqv0zHv+64tbwVQkzdu1UVwt8mpygnXTfPTRfuf0S7I9XrslPv4B+nILVa9d8JU21FJMSrqLEpDtbKO5hpkVs2MYlyZ/bbtVCwJ4AIK9CQUlfgEFeDCsOIScFEN+phI38ND/IFQ/t0bgOR1zvQC/SmUeKoCoCegQrhJ2T814VyUH8UYB2271w8xqvTX51fELVmdO9f8pbA1PL/GlAhMlO07yZLK3xiCs95jCoIqXrgjOyNLonSQX+HMpC4rzYSsGPc6sGud+du9ZdMfXK1F5qSMCgXMgRk1DmY4cfa+zNyaaaKnbVmgPSmE63upKyi8eT1eO1OA2KzSyE5FChHtMAJFhR8t2lSlvOmIq8/FXzeIj00kyyOHfpbfenbcecr78BOESe/Ymiy6PyEKC0i4RzQ5AbRXnTM1GeWRc2uTiyYUsErbJ+0XZBs/dosNoRHkcawmj4878KniR2TS9mU4Bh+p00fr03xqq5Mp6ht10E88ly2n0MZRPu8qf/PHaMHRAG1VxDaf2ciD3mYB6iN/4wa8r/0lJfc1bOL1VRvNd+p5BmXljxM430lRYdKmZrzVM/4awA7eSQ6xzkDbOFLjI7qEisA8m9tzwAnkLgeUdTWhpAXfI8RVCrWo6I6Iz1tbfgMfXHVjKxADHICOkTV6Wn9AUTJmDaZ8L3TlQjo8OLy5MKVeiEEIgazg4G9dV0FGkicr3COHvyu+aqumnUIpzCKzFl4qolj/2gZ+JyrfI1qyhNMzlhF3yIBxtntDYISmf7uE5Tz6TmyP8HuMAMnfgimR85VaUYwbHtsjlyALDvgD/LNEDLJwdm23cxA3t
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(366004)(376002)(396003)(956004)(6512007)(2906002)(83380400001)(6486002)(2616005)(4326008)(316002)(8676002)(966005)(5660300002)(66946007)(66556008)(52116002)(6666004)(66476007)(1076003)(8936002)(38350700002)(6506007)(186003)(478600001)(26005)(86362001)(36756003)(38100700002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FjQwruFO04/qKKFkJbl4o5UPcSJcjdLxqMyz9TyBnPMmcP+WEVrfE4wdSzV5?=
+ =?us-ascii?Q?/h8nlT2tZT9lNYlTBq+tZVx6bmV0vDv1K14WfDaueq6Om+HuZCcWiGpCGtct?=
+ =?us-ascii?Q?pzucNctka9TUwS3LIfCFFwMbpxRb9IxkMCyN0ZTy3swyK1P5irbSc3a4VDiK?=
+ =?us-ascii?Q?ecj3qJCR/uPrdp6vfYesEn0yI4TI0LjBbh7qk+lZMDzd9ejQbyfiyjnK89xu?=
+ =?us-ascii?Q?8n2khJ2EaPmHN8tn8CwcunFsa1Qx4GtHNT80/rBOSSwtcOvgZlzDK4vs+fLf?=
+ =?us-ascii?Q?lSnh0wFq5GUHHnLd8i4g77KD0LU3kyOo13W1Dinqm67kFWjYK8Fmaka/b4lY?=
+ =?us-ascii?Q?HZL3pyqVlLCdDttAWjcgSdp6xblw79yhpGFl+P/ILuzbd30PkqoB5/rs4NJl?=
+ =?us-ascii?Q?jHdypGL4FnieVqzUy0ukirdgce8qURQIz3d/sBevd4xdMAVq5iPuQi9afvq1?=
+ =?us-ascii?Q?hO2hTlGwWKCRZ91N1fgRrnrFUXgdJk3B6XmnY6obdTS8MW9x858ORqrWmkGf?=
+ =?us-ascii?Q?D6kyC/sD0DF52e9JtA9559IlVUfIMKJoPRXnL/MbFMGdSSDnZ/Cvg/ReRYfJ?=
+ =?us-ascii?Q?Dtyf/xQlimEsHvesOEBjaZ6HpDM2Fbje3wuxAUqQ55Hl4N+lITN1QU8II3hT?=
+ =?us-ascii?Q?lvbOihEgDalVILFG1T5cvTNqSGkTqaPa2paOK4JXeKo0g4rITHG5bJLXO3HE?=
+ =?us-ascii?Q?z4Rkq1tLiH6Bk6OaZ3YdM6sdNefmFOlLDYVaETcysETxiTFtRWm9Nx7BBwoS?=
+ =?us-ascii?Q?iS/M5uuNk3nSxIFCGv2QREoXvlamt2FiQw3DddphWBJoRNhHs/AjvdUsB5aa?=
+ =?us-ascii?Q?Onwacnr5VqFGP6fEvhtmQUA35+9wxfetpxOoMGXvulqVBRkTXl0Vl4HS/oL+?=
+ =?us-ascii?Q?1e0QAezsF+2pl9w/I2waksLjXlHo7G+wJ8r/8qR20woxdjCLVCHfWm5gU1aZ?=
+ =?us-ascii?Q?orq7lTahCWqhgzjre5Om44uuh3JmX6/AdJKJebLDXCU9M/KNtbzuacpp5iRb?=
+ =?us-ascii?Q?Dg3pQu+hNu+0PiA5tyPxxgR6s+H7cum7r3OZvl4sA1b4GSp69g2wYxeCVCMX?=
+ =?us-ascii?Q?5ENBB+x/85LP5fWXarHDl9pLHm/DpaDNVFi73Iyzze0eHyWjpN/u1ocmBbbX?=
+ =?us-ascii?Q?bQXcVyMVlm/Jmpb4GEMalWLEmcN2wb3f7i86cR+MoNt8oTgkaFT3bWb9YDhG?=
+ =?us-ascii?Q?T8TUM610yzbLsLKc47JnchskYp9khoHwwbbSuY60A0YMCG/X/aInEoceS/F3?=
+ =?us-ascii?Q?kj5/A5AIE+4I63vqU4jdllSEIwMyS9B32X+0/OK4xwsH+b1fp3sEqGHxq+Np?=
+ =?us-ascii?Q?SD+699gXBDmuJ/wJAGpbJZS8?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d6de154-ad6c-409e-cc74-08d9774aa1ac
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2021 06:41:07.5527
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kvwwvLEPbelJKUhtYaRSzmD0XI1rFJClRWVajgUdK+WEHELSCaCG5/QoNVjWJSkI/0glXvtLyoTRN0Dz8HXOeA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB6028
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
+This patchset adds the clock & reset driver support for i.MX8ULP.
+For some of the PCC slot, As there is a SWRST control bit share
+the same pcc register for peripheral reset ccontrol. To simplify
+the case, register the pcc reset controller driver when pcc
+clock driver is registered.
 
-On 14.09.2021 06:44, Saravana Kannan wrote:
-> On Mon, Sep 13, 2021 at 5:54 PM Saravana Kannan <saravanak@google.com> wrote:
->> On Thu, Sep 9, 2021 at 1:03 AM Marek Szyprowski
->> <m.szyprowski@samsung.com> wrote:
->>> On 08.09.2021 23:58, Saravana Kannan wrote:
->>>> This is a test patch. I'll split it up into multiple commits and clean
->>>> it up once it's shown to help.
->>>>
->>>> Marek, can you please test this and let me know if it helps?
->>> I've just checked and nope, it doesn't help for my case. Ethernet is
->>> still not probed on Amlogic G12A/B SoC based boards. :(
->> Hi Marek,
->>
->> Thanks for testing out the patch. Turns out the issue was a lot more
->> complicated than I thought. Thanks to a bunch of debug logs that Rob
->> provided off-list, I was able to root cause the actual issue.
->>
->> Looks like the problem is cyclic dependency between the mdio-multiplexer and the
->> ethernet:
->> ethmac -(phy-handle)-> external_phy -(parent) ->
->> mdio-multiplexer -(mdio-bus-parent)-> mdio0 -(parent)-> ethmac
->>
->> Relevant parts of the DT combined from multiple files and trimmed and
->> pasted below.
->>
->> If fw_devlink sees a cycle, it'll stop enforcing ordering between all
->> the devices in the cycle since it can't figure out which one of the
->> dependencies isn't real. So, the confusing part was that, when Andrew
->> Lunn gave the patch for adding support for "mdio-bus-parent", that
->> should have allowed fw_devlink to see the cycle and stop enforcing the
->> dependencies. But that didn't happen because of a bug in fw_devlink
->> cycle handling (it worked for most cases, but not for this specific
->> ordering in DT). I'll send out a fix for that soon.
-> Here's the fix I promised:
-> https://lore.kernel.org/lkml/20210914043928.4066136-2-saravanak@google.com/
->
->> That combined with
->> Andrew's "mdio-bus-parent" patch should fix things for you.
-> Fairly certain the fix above and Andrew's patch should fix it for you
-> if you want to test it. Rob already verified a very similar patch for me.
+Patch 1/9 for the dt-bindings part is send out for review previously
+with the dts patchset:
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210607083921.2668568-1-ping.bai@nxp.com/
 
-Right. Those both patches finally fixed the ethernet issue. Feel free to 
-add:
+Shawn suggests to send out the clock driver part firstly, so this
+patch is included in this patchset for now.
 
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+v3 changes:
+  - split the clock dt schema file into two file, one for pcc, one for cgc
 
-Best regards
+v2 changes:
+  - remove the useless clocks & clock-names from the dt-binding doc
+  - remove the redundant fixed clock register.
+
+Anson Huang (1):
+  clk: imx: disable i.mx7ulp composite clock during initialization
+
+Jacky Bai (8):
+  dt-bindings: clock: Add imx8ulp clock support
+  clk: imx: Update the pllv4 to support imx8ulp
+  clk: imx: Update the compsite driver to support imx8ulp
+  clk: imx: Add 'CLK_SET_RATE_NO_REPARENT' for composite-7ulp
+  clk: imx: disable the pfd when set pfdv2 clock rate
+  clk: imx: Update the pfdv2 for 8ulp specific support
+  clk: imx: Add clock driver for imx8ulp
+  clk: imx: Add the pcc reset controller support on imx8ulp
+
+ .../bindings/clock/imx8ulp-cgc-clock.yaml     |  43 ++
+ .../bindings/clock/imx8ulp-pcc-clock.yaml     |  50 ++
+ drivers/clk/imx/Kconfig                       |   6 +
+ drivers/clk/imx/Makefile                      |   2 +
+ drivers/clk/imx/clk-composite-7ulp.c          |  87 ++-
+ drivers/clk/imx/clk-imx7ulp.c                 |  20 +-
+ drivers/clk/imx/clk-imx8ulp.c                 | 569 ++++++++++++++++++
+ drivers/clk/imx/clk-pfdv2.c                   |  22 +-
+ drivers/clk/imx/clk-pllv4.c                   |  34 +-
+ drivers/clk/imx/clk.h                         |  24 +-
+ include/dt-bindings/clock/imx8ulp-clock.h     | 258 ++++++++
+ include/dt-bindings/reset/imx8ulp-pcc-reset.h |  59 ++
+ 12 files changed, 1142 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/imx8ulp-cgc-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/imx8ulp-pcc-clock.yaml
+ create mode 100644 drivers/clk/imx/clk-imx8ulp.c
+ create mode 100644 include/dt-bindings/clock/imx8ulp-clock.h
+ create mode 100644 include/dt-bindings/reset/imx8ulp-pcc-reset.h
 
 -- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+2.26.2
 
