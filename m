@@ -2,329 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C48340B225
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 16:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19BB940B22F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 16:55:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234186AbhINOyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 10:54:49 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:60432 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233992AbhINOys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 10:54:48 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 18E9qBZq029006;
-        Tue, 14 Sep 2021 16:53:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=+XHamXQdZi2kEmdvcKwNfgbw0cyJVN5+1tLl4re1/3I=;
- b=xzMWf8WoRQl1+FMG4OAUg6PS3w0tfs6Xl1KNw2d7icdIlr3gCjDYI0fvo2rbz+xh/MrL
- YKk1ckJxdbbYOkPYgxqyHdrTZ2FS7fOFhyR4pXvAr7HJX91xnk0iOyBJUwigR6HCjjgq
- wuzGfuS2zf2RzuLbxBggCcJct3Sglhmv7MPTU9wteYhs5tlAEFXMFqQ+8EWqraleLON7
- z5ZQ/fYOwRbQRqGlkZVITCyuyWtksXzWFICjwA1kIWkFlopJi9LzS0iyo5oPDryAM7s0
- pbQ46nfyC8vdFIQyUH+uXCCxdhSsnSJql2xJGNvBUYC82APZ0tnbJkPoko34g4O06hCu hg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3b2sg19mpg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Sep 2021 16:53:16 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4E3BA10002A;
-        Tue, 14 Sep 2021 16:53:16 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4124F21A229;
-        Tue, 14 Sep 2021 16:53:16 +0200 (CEST)
-Received: from localhost (10.75.127.46) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 14 Sep 2021 16:53:16
- +0200
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH 3/3] phy: stm32: add phy tuning support
-Date:   Tue, 14 Sep 2021 16:52:56 +0200
-Message-ID: <20210914145256.243869-4-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210914145256.243869-1-amelie.delaunay@foss.st.com>
-References: <20210914145256.243869-1-amelie.delaunay@foss.st.com>
+        id S234229AbhINO4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 10:56:20 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:45092 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231816AbhINO4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 10:56:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1631631302; x=1663167302;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=IjFR4kRJRpH81PfAAqBxjNLPUPgdsFh5sAVjP2zjExY=;
+  b=rTYbQKL5cxYvwpacP+7glLOtXcdXpkdjwiznwhlSDv45t/QCY1wTfexK
+   3GDIV6dAm402KfQg7JV5zNIKYscr1nemZAajnYM/MTCgJFjS9gfTwKG8u
+   h4vjjL+7ZrnqcUdgOj0hDq2/FJzNt0uYMwohtARLN+69FUh5UYelrFgMS
+   dw0DKka1MUR4qeW3kQ0Zizqqp2WUMGsYzqD51y/WRECLf/8QVQShffl7z
+   szBHdkMyB3R24a7Z44itgcnBQKQDaO1a40zgjEbJGfB0e6sRYsKBWmz97
+   /Hwezqy0wWgW4/Eml5W/h+45EbmInwvg0jX3hT9W91EwGMY5CsbDTT5R8
+   g==;
+IronPort-SDR: WgsuTRdUEvBb/bBim9+6LQs+HiHsZAD93+sz2jBX3vGvxDlpezogYYT6614ZRDfbRJAu/V3l7n
+ zMUGxzTT1KhojNVkC0bpFpO+VH6GSrcXthkgeAXzRCSTMIP8o9bRheXmuTn08e6smYaiTkACGy
+ 5aAvyexFhHvpvEtXSCUzn0TF43dLoyQEFaX74EjfsbxCvAaA4MfU8023skkrbwdEpFCIcuWJaK
+ EiMrAZzg3fZplCXRe9Tm5XWFsaxBb0MCAaSbKprcmsFoB9VxCSA1qfUJQzvjFLW8ECzn7GQ+cV
+ h31XJL/EBml9VkD0Xvb06s1M
+X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
+   d="scan'208";a="144049782"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Sep 2021 07:55:01 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 14 Sep 2021 07:55:01 -0700
+Received: from [10.171.246.26] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Tue, 14 Sep 2021 07:54:59 -0700
+Subject: Re: [PATCH v2 0/4] ARM: at91: add new nodes to DT and fix for PM
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux@armlinux.org.uk>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210823131915.23857-1-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <2406a3ff-9fe0-441e-b4c8-eb8d0e5f7027@microchip.com>
+Date:   Tue, 14 Sep 2021 16:54:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-09-14_03,2021-09-14_01,2020-04-07_01
+In-Reply-To: <20210823131915.23857-1-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It can be necessary to adjust the phys settings to compensate parasitics.
-This patch adds support of the new optional property st,phy-tuning to
-configure the tune interface of the phys of stm32-usbphyc.
-Properties of st,phy-tuning phandle are also optional, that's why each
-property is skipped if not found (-EINVAL).
-Phy tuning is restored on resume because if deep low power state is
-achieved, phy tuning configuration is reset.
+On 23/08/2021 at 15:19, Claudiu Beznea wrote:
+> Hi,
+> 
+> The following patches enable UDDRC, DDR3 PHY, SECURAM and SHDWC IPs
+> on SAMA7G5.
+> 
+> Besides this patch 1/1 avoid the panic on PM initialization code allowing
+> the system to boot when PM is enabled but not enough information is
+> provided in DT.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- drivers/phy/st/phy-stm32-usbphyc.c | 195 +++++++++++++++++++++++++++++
- 1 file changed, 195 insertions(+)
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index 083593aea53a..fb7ad7b8e815 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -20,6 +20,7 @@
- #define STM32_USBPHYC_PLL	0x0
- #define STM32_USBPHYC_MISC	0x8
- #define STM32_USBPHYC_MONITOR(X) (0x108 + ((X) * 0x100))
-+#define STM32_USBPHYC_TUNE(X)	(0x10C + ((X) * 0x100))
- #define STM32_USBPHYC_VERSION	0x3F4
- 
- /* STM32_USBPHYC_PLL bit fields */
-@@ -41,6 +42,83 @@
- #define STM32_USBPHYC_MON_SEL_LOCKP 0x1F
- #define STM32_USBPHYC_MON_OUT_LOCKP BIT(3)
- 
-+/* STM32_USBPHYC_TUNE bit fields */
-+#define INCURREN		BIT(0)
-+#define INCURRINT		BIT(1)
-+#define LFSCAPEN		BIT(2)
-+#define HSDRVSLEW		BIT(3)
-+#define HSDRVDCCUR		BIT(4)
-+#define HSDRVDCLEV		BIT(5)
-+#define HSDRVCURINCR		BIT(6)
-+#define FSDRVRFADJ		BIT(7)
-+#define HSDRVRFRED		BIT(8)
-+#define HSDRVCHKITRM		GENMASK(12, 9)
-+#define HSDRVCHKZTRM		GENMASK(14, 13)
-+#define OTPCOMP			GENMASK(19, 15)
-+#define SQLCHCTL		GENMASK(21, 20)
-+#define HDRXGNEQEN		BIT(22)
-+#define HSRXOFF			GENMASK(24, 23)
-+#define HSFALLPREEM		BIT(25)
-+#define SHTCCTCTLPROT		BIT(26)
-+#define STAGSEL			BIT(27)
-+
-+enum boosting_vals {
-+	BOOST_1_MA = 1,
-+	BOOST_2_MA,
-+	BOOST_MAX,
-+};
-+
-+enum dc_level_vals {
-+	DC_MINUS_5_TO_7_MV,
-+	DC_PLUS_5_TO_7_MV,
-+	DC_PLUS_10_TO_14_MV,
-+	DC_MAX,
-+};
-+
-+enum current_trim {
-+	CUR_NOMINAL,
-+	CUR_PLUS_1_56_PCT,
-+	CUR_PLUS_3_12_PCT,
-+	CUR_PLUS_4_68_PCT,
-+	CUR_PLUS_6_24_PCT,
-+	CUR_PLUS_7_8_PCT,
-+	CUR_PLUS_9_36_PCT,
-+	CUR_PLUS_10_92_PCT,
-+	CUR_PLUS_12_48_PCT,
-+	CUR_PLUS_14_04_PCT,
-+	CUR_PLUS_15_6_PCT,
-+	CUR_PLUS_17_16_PCT,
-+	CUR_PLUS_19_01_PCT,
-+	CUR_PLUS_20_58_PCT,
-+	CUR_PLUS_22_16_PCT,
-+	CUR_PLUS_23_73_PCT,
-+	CUR_MAX,
-+};
-+
-+enum impedance_trim {
-+	IMP_NOMINAL,
-+	IMP_MINUS_2_OHMS,
-+	IMP_MINUS_4_OMHS,
-+	IMP_MINUS_6_OHMS,
-+	IMP_MAX,
-+};
-+
-+enum squelch_level {
-+	SQLCH_NOMINAL,
-+	SQLCH_PLUS_7_MV,
-+	SQLCH_MINUS_5_MV,
-+	SQLCH_PLUS_14_MV,
-+	SQLCH_MAX,
-+};
-+
-+enum rx_offset {
-+	NO_RX_OFFSET,
-+	RX_OFFSET_PLUS_5_MV,
-+	RX_OFFSET_PLUS_10_MV,
-+	RX_OFFSET_MINUS_5_MV,
-+	RX_OFFSET_MAX,
-+};
-+
- /* STM32_USBPHYC_VERSION bit fields */
- #define MINREV			GENMASK(3, 0)
- #define MAJREV			GENMASK(7, 4)
-@@ -60,6 +138,7 @@ struct stm32_usbphyc_phy {
- 	struct regulator *vbus;
- 	u32 index;
- 	bool active;
-+	u32 tune;
- };
- 
- struct stm32_usbphyc {
-@@ -375,6 +454,111 @@ static int stm32_usbphyc_clk48_register(struct stm32_usbphyc *usbphyc)
- 	return ret;
- }
- 
-+static void stm32_usbphyc_phy_tuning(struct stm32_usbphyc *usbphyc,
-+				     struct device_node *np, u32 index)
-+{
-+	struct stm32_usbphyc_phy *usbphyc_phy = usbphyc->phys[index];
-+	struct device_node *tune_np;
-+	u32 reg = STM32_USBPHYC_TUNE(index);
-+	u32 otpcomp, val;
-+	int ret;
-+
-+	/* st,phy-tuning is optional so skip phy tuning if not found */
-+	tune_np = of_parse_phandle(np, "st,phy-tuning", 0);
-+	if (!tune_np)
-+		return;
-+
-+	/* Backup OTP compensation code */
-+	otpcomp = FIELD_GET(OTPCOMP, readl_relaxed(usbphyc->base + reg));
-+
-+	ret = of_property_read_u32(tune_np, "st,current-boost", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < BOOST_MAX) {
-+			val = (val == BOOST_2_MA) ? 1 : 0;
-+			usbphyc_phy->tune |= INCURREN | FIELD_PREP(INCURRINT, val);
-+		} else {
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,current-boost value\n", index);
-+		}
-+	}
-+
-+	if (!of_property_read_bool(tune_np, "st,no-lsfs-fb-cap"))
-+		usbphyc_phy->tune |= LFSCAPEN;
-+
-+	if (of_property_read_bool(tune_np, "st,hs-slew-ctrl"))
-+		usbphyc_phy->tune |= HSDRVSLEW;
-+
-+	ret = of_property_read_u32(tune_np, "st,hs-dc-level", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < DC_MAX) {
-+			if (val == DC_MINUS_5_TO_7_MV) {
-+				usbphyc_phy->tune |= HSDRVDCCUR;
-+			} else {
-+				val = (val == DC_PLUS_10_TO_14_MV) ? 1 : 0;
-+				usbphyc_phy->tune |= HSDRVCURINCR | FIELD_PREP(HSDRVDCLEV, val);
-+			}
-+		} else {
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,hs-dc-level value\n", index);
-+		}
-+	}
-+
-+	if (of_property_read_bool(tune_np, "st,fs-rftime-tuning"))
-+		usbphyc_phy->tune |= FSDRVRFADJ;
-+
-+	if (of_property_read_bool(tune_np, "st,hs-rftime-reduction"))
-+		usbphyc_phy->tune |= HSDRVRFRED;
-+
-+	ret = of_property_read_u32(tune_np, "st,hs-current-trim", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < CUR_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(HSDRVCHKITRM, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,hs-current-trim value\n", index);
-+	}
-+
-+	ret = of_property_read_u32(tune_np, "st,hs-impedance-trim", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < IMP_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(HSDRVCHKZTRM, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid hs-impedance-trim value\n", index);
-+	}
-+
-+	ret = of_property_read_u32(tune_np, "st,squelch-level", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < SQLCH_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(SQLCHCTL, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,squelch-level value\n", index);
-+	}
-+
-+	if (of_property_read_bool(tune_np, "st,hs-rx-gain-eq"))
-+		usbphyc_phy->tune |= HDRXGNEQEN;
-+
-+	ret = of_property_read_u32(tune_np, "st,hs-rx-offset", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < RX_OFFSET_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(HSRXOFF, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,hs-rx-offset value\n", index);
-+	}
-+
-+	if (of_property_read_bool(tune_np, "st,no-hs-ftime-ctrl"))
-+		usbphyc_phy->tune |= HSFALLPREEM;
-+
-+	if (!of_property_read_bool(tune_np, "st,no-lsfs-sc"))
-+		usbphyc_phy->tune |= SHTCCTCTLPROT;
-+
-+	if (of_property_read_bool(tune_np, "st,hs-tx-staggering"))
-+		usbphyc_phy->tune |= STAGSEL;
-+
-+	of_node_put(tune_np);
-+
-+	/* Restore OTP compensation code */
-+	usbphyc_phy->tune |= FIELD_PREP(OTPCOMP, otpcomp);
-+
-+	writel_relaxed(usbphyc_phy->tune, usbphyc->base + reg);
-+}
-+
- static void stm32_usbphyc_switch_setup(struct stm32_usbphyc *usbphyc,
- 				       u32 utmi_switch)
- {
-@@ -550,6 +734,9 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 			usbphyc->phys[port]->vbus = NULL;
- 		}
- 
-+		/* Configure phy tuning */
-+		stm32_usbphyc_phy_tuning(usbphyc, child, index);
-+
- 		port++;
- 	}
- 
-@@ -601,10 +788,18 @@ static int stm32_usbphyc_remove(struct platform_device *pdev)
- static int __maybe_unused stm32_usbphyc_resume(struct device *dev)
- {
- 	struct stm32_usbphyc *usbphyc = dev_get_drvdata(dev);
-+	struct stm32_usbphyc_phy *usbphyc_phy;
-+	int port;
- 
- 	if (usbphyc->switch_setup >= 0)
- 		stm32_usbphyc_switch_setup(usbphyc, usbphyc->switch_setup);
- 
-+	for (port = 0; port < usbphyc->nphys; port++) {
-+		usbphyc_phy = usbphyc->phys[port];
-+		if (usbphyc_phy->tune)
-+			writel_relaxed(usbphyc_phy->tune, usbphyc->base + STM32_USBPHYC_TUNE(port));
-+	}
-+
- 	return 0;
- }
- 
+Whole series queued to at91-fixes for 5.15 as without these patches the 
+SAMA7G5 don't have power management at full capacity.
+
+Best regards,
+   Nicolas
+
+> Changes in v2:
+> - changes cover letter title from
+>    "ARM: dts: at91: enable ips for sama7g5" to
+>    "ARM: at91: add new nodes to DT and fix for PM"
+> - update the device tree patches title and description
+> - added patch "ARM: at91: pm: do not panic if ram controllers are not
+>    enabled"
+> 
+> Claudiu Beznea (4):
+>    ARM: at91: pm: do not panic if ram controllers are not enabled
+>    ARM: dts: at91: sama7g5: add ram controllers
+>    ARM: dts: at91: sama7g5: add securam node
+>    ARM: dts: at91: sama7g5: add shdwc node
+> 
+>   arch/arm/boot/dts/at91-sama7g5ek.dts |  9 ++++
+>   arch/arm/boot/dts/sama7g5.dtsi       | 34 ++++++++++++
+>   arch/arm/mach-at91/pm.c              | 78 ++++++++++++++++++++++------
+>   3 files changed, 105 insertions(+), 16 deletions(-)
+> 
+
+
 -- 
-2.25.1
-
+Nicolas Ferre
