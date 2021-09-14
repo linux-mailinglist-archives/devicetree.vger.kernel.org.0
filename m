@@ -2,88 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C608840B7AD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00ACE40B7BE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233630AbhINTNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 15:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
+        id S232762AbhINTRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 15:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233009AbhINTN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 15:13:27 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F58C0617A8
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:11:58 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id c79so610982oib.11
-        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:11:58 -0700 (PDT)
+        with ESMTP id S232541AbhINTRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 15:17:20 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2519CC061764
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:16:03 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id bg1so8911469plb.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:16:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=BSSwT7oxjsgFOMu+1NGwhgQtpViayCWoOwG64CMoBRk=;
-        b=hDSs206v3195Y560qB95htiH1r7XdiqlWoYYGIMmZKsme0wdt3U7Hl0DEmzORETQAl
-         oY7mro96c7tw05FWPje4aYkbJ+sv5WycBN3Nw5uuG+YACDPdMvZNHwpOSPLMWJ5tSv7Q
-         K57nIq7SsAR9mAnQlW2a/GH3wsihNJPESaOnA=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=WFOT59cCtymWMfL4SO8+d5Xi0mJUHh8WtafGla+6Fjk=;
+        b=fFUtYwDyRmbrGZNDvI6UWZKiCmvMlSwziL8cwdTH2CeDOMkrl0eIUFq46MGgXn6YFH
+         HGQLkqHGMV9AZNAeU0yYflwmP0+eTNGG+pVCkUkHxH2iZ4O8RO+Fkoal29xRSbFn6+rl
+         0WNChNpZliAfyDd/ac/zMd4FTcuGjGgJJb+sBG071sH6ZtZpLWMfRfdtK5Uxs847Rjju
+         Rv8IIaPAXGwVwd/qZaD1SvQ2SG6R1+lvIwkaeehJikFPSIL+FteKeRgluGaEMTMuPFRD
+         PyF7GYPeIxp4iAccTJWhSsk8Yl6f+6bs0Bq7l4hnAnm6qNskanPWTkQQ16B+G6i/eg2e
+         zykg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=BSSwT7oxjsgFOMu+1NGwhgQtpViayCWoOwG64CMoBRk=;
-        b=kNPgbGK52V+a55KQSk9/ZrMRVLf6L5whm0lH2r2T9sXDgM/gvGFnOSryAJEUhB+5Gn
-         L/TZmyq8gRKRYc5NWVawvbybrP1mRiIjxAvTvRhrQYtvddw5mZ+qaon5dnbfI7KPYJHa
-         UEKUWOkEIjqtdeCuqeplEaGgxz3TxNicu5yzk2w2kkcElY2/TXuVkOc6InxXnFxxn1d+
-         c+2mxkbf57yKKq04TdUytRbEMYvPbOQ7A0PzIJJdppVXgGpsNpPS9w+76+q0Gb5U2oCV
-         vG52XMzJjX+A6q2MAK1EUEi0QAp3EBXKxVnalSTEt/VyXIkqX9Dn7BvmHUhE+7lMaWwC
-         kf7g==
-X-Gm-Message-State: AOAM531ENuvKFZI66HTD+XiHsMEEVSoa3uRyema/ZXMjsGbdmq4z+e9R
-        c9E+a0Lk0P7C5leimBEY9HY7MnoCyqAHkw64QsXvOw==
-X-Google-Smtp-Source: ABdhPJxj/G3bL5HF0hTnBTg2JQFv34CpmMFfj/HJPwzL7skUSH+a239+sjhTD9p4IGQVFNxccYFtNL83KeC+Bp7Fvi8=
-X-Received: by 2002:a54:4419:: with SMTP id k25mr2725351oiw.32.1631646717560;
- Tue, 14 Sep 2021 12:11:57 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 14 Sep 2021 12:11:57 -0700
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=WFOT59cCtymWMfL4SO8+d5Xi0mJUHh8WtafGla+6Fjk=;
+        b=3lL3IkTWRHGM0rtxvnZrmwBE+WkwdEZJJ99r9WJywctEyNMTRComgpu+Z2OplTHJlr
+         TmzuPxSkkkS+liF1UK0sPmOXZzlRG50kxO5aOu181LtO3nRF01b6NBHPFD/zjt5/MW1j
+         4crCibKPrV2/zxy/0D8BKet6MuYAfwWB1PfTt+VEeCHiDw574xtJAl0ryqiYP6d5tfvF
+         6DzCaI/51DKc2ERadm/RJzwFZibUXV3Lj00AEgyc4MeIw9i8RdYh37eUzORs4jjdBi+q
+         Q5LbUkG3t1lp7kmkZ9IJglvWAxs6uUgcCskDhoPkZxPaLSu28yBQvl6Vm78LTlSteWIU
+         RLdQ==
+X-Gm-Message-State: AOAM533nmQprhVBNGuC84Amsm7T1vYKE05gkeEWH0zvPlapQFnYB0enC
+        RXKsSWIBrWoI3GN+TnEtSGKvEA==
+X-Google-Smtp-Source: ABdhPJwXvhp6LRKLX8SxbopWpgdpnqaEzIdnzmExTZ7x8IVkYopo45xSAT9ofirlyG0sr+Upl2o09w==
+X-Received: by 2002:a17:90a:420c:: with SMTP id o12mr3897532pjg.101.1631646962604;
+        Tue, 14 Sep 2021 12:16:02 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id d13sm11034666pfn.114.2021.09.14.12.16.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 12:16:01 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Fabien Parent <fparent@baylibre.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Subject: Re: [PATCH RESEND v3 0/4] input: MT6358 PMIC button support
+In-Reply-To: <20210816100013.100412-1-mkorpershoek@baylibre.com>
+References: <20210816100013.100412-1-mkorpershoek@baylibre.com>
+Date:   Tue, 14 Sep 2021 12:16:01 -0700
+Message-ID: <7h4kan7ytq.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20210909135838.v4.1.I1116e79d34035338a45c1fc7cdd14a097909c8e0@changeid>
-References: <20210909210032.465570-1-dianders@chromium.org> <20210909135838.v4.1.I1116e79d34035338a45c1fc7cdd14a097909c8e0@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 14 Sep 2021 12:11:57 -0700
-Message-ID: <CAE-0n53Pp1F5dZRk98WT5+K9jz_XpMkKUvYAs_suZFaOE0K39w@mail.gmail.com>
-Subject: Re: [PATCH v4 01/15] dt-bindings: drm/panel-simple-edp: Introduce
- generic eDP panels
-To:     Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Linus W <linus.walleij@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        Steev Klimaszewski <steev@kali.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2021-09-09 14:00:17)
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-edp.yaml b/Documentation/devicetree/bindings/display/panel/panel-edp.yaml
-> new file mode 100644
-> index 000000000000..6a621376ff86
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-edp.yaml
-> @@ -0,0 +1,188 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-edp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Probable (via DP AUX / EDID) eDP Panels with simple poweron sequences
+Hi Dmitry,
 
-Should that be "Probeable" or "Probe-able" or "Detectable"? It's not
-about statistical probabilities right?
+Mattijs Korpershoek <mkorpershoek@baylibre.com> writes:
+
+> The MediaTek MT6358 PMIC has support for two buttons: PWR and HOME.
+>
+> The interrupt logic is a little different than other PMICs from the
+> same family:
+> for MT6323 and MT6397, we have one interrupt source per button
+> * for MT6358, we have two interrupts lines per button: the press and
+> * release interrupts are distinct sources.
+>
+> Changes since original v2 at [1]:
+> * added 4th patch with device tree enable
+> * cover letter title prefixed with 'input'
+>
+> This has been tested with evtest on mt8183-pumpkin on 5.14-rc6
+
+Any feedback on this series?
+
+The related MFD patches were merged already, so there are no out-of-tree
+dependencies.
+
+Thanks,
+
+Kevin
