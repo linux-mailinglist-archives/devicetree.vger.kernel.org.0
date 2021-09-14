@@ -2,204 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0164940ACAB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 13:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D6240ACB2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 13:48:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232165AbhINLqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 07:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232156AbhINLqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 07:46:34 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C884DC061574;
-        Tue, 14 Sep 2021 04:45:16 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id k5-20020a05600c1c8500b002f76c42214bso1815730wms.3;
-        Tue, 14 Sep 2021 04:45:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=srJ1nnPayRwL7lbGpY/83XlR5+6EDwIUs1YgAf5CvAc=;
-        b=Fc2tb5a+i6mPu1zN/Zy2JxO7WoxNmnQnZOv5gD83Goc9DsKmVsK/NYu2wuxtigRIX7
-         bvZCSnkatlKzFeuM8WHmywGr9Qm+Ot2AODaqLkfJAD0ujLhriqYZaDEVa4+odZxbeMYs
-         pmkCU3EUHQEVf7IaIkdPCfDJYulUV2iFDaw6+J6AvySE3oo87QbA7gikr2SUB9mG8pFM
-         iYzcB+AQP5SOR5K4w4iOZxQKw3OlSoNGDUMzhA2XLDzto1Pck1BbA2hcjswv5nLz2B+1
-         uKwoZyb271RHCRcPk/BbPiPGllvj8U9fq+819qFS0+H+VGy1dVZvq3L9l48SjL7a5dHg
-         7MqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=srJ1nnPayRwL7lbGpY/83XlR5+6EDwIUs1YgAf5CvAc=;
-        b=1fVjJbSvPkidiouSx5qKQtfbXdEuV/C0p0PVKEttkH3Ctb4nFrDVMGyWTYKoCfOuT5
-         hRshZojzlAdQQKDs9MQmARjLItEBKC+DDpm2rCJic8WtjdHmIskCTUMWQejmAySVbQ7F
-         54Z0XaNMehc65GeAQA27eEtfoxOvwOYcJ4cyHZqJj0ITMeX1uebm4hfUGv/kgjiy9Wy9
-         l/9zyuY9K30zD/tPUtmHxykj06ndVDb3W4P8klHAGJmfI1Veicnr6kcC3SkpNO47Fj0d
-         K4sJJjYCRSePgHn0zxDWGFho3XnLiGsD+TlCFM5NTRhH1elnT7+yDN9mfbISVawaiYYk
-         Qu1w==
-X-Gm-Message-State: AOAM533MC6Fh2IqJMWiraFlnUUzLpNT+UE2KxMV8Isuapncdyu3W/hig
-        9BpY90T6kc783+t+XNDAdLVWVX4FNVXDlQfx9qM=
-X-Google-Smtp-Source: ABdhPJx6ROBbB/L3d3MCNwPfBiaV7A37myc/PvlyZsasGnqr7pvETJ6x8p8mEb6FpotSotV0OiSP+CebEkJvY9YeNxQ=
-X-Received: by 2002:a1c:1cc:: with SMTP id 195mr1703232wmb.188.1631619915376;
- Tue, 14 Sep 2021 04:45:15 -0700 (PDT)
+        id S232139AbhINLtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 07:49:32 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:46781 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232378AbhINLt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Sep 2021 07:49:27 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id 344122B0136A;
+        Tue, 14 Sep 2021 07:48:07 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Tue, 14 Sep 2021 07:48:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=/FO+XkH3e9OeFf1oDJJDRN3NS/p
+        48CW6gbe2PBdmjAU=; b=sOQ8lZWOfqrUG+oxYfqJG7PAg2SiMP5MlA3sT3ch7p+
+        mpCfwR9MolGtqYSYtH1RGNgXNF2P6OiylQtWVE9g6KSI8M+yh6wxDbUe0LPL0wIg
+        Gls1MJnJN2F26x4xyQYw9E0qKYvZWDyvEUdNusYQee70eb/9WNVJJjr7X57zGVf4
+        TXFnhU3QM4ce4NBuhNRPVwBRIRJrKQImnCJjTgbyRNZhkjeLn05hL2nAe0GWwite
+        P0dtpjlt9s+3fertoi1thbDJ0ZUKS/PxIh30CBhK1QDmecyvdHVppkG79SSfIgOE
+        7Q+4W+NlR4diozfdJaMrcns/t1LV5mYqZeSUX1ZJ9Wg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=/FO+Xk
+        H3e9OeFf1oDJJDRN3NS/p48CW6gbe2PBdmjAU=; b=LiaLcPYSWdjwjzqCqyNcFC
+        Dg1MN2bC5JNwW9l9L7vEJ1IK8m+mRIlOJfisFe9pnGeH7VqsZ2g7aFo/PVGCH8u2
+        q2qU/Kxe0xrxRAmjQA0UfV+3DKnsA1OeakfWxtBm9OtDNJg+/zTkfcvgsZFYI9+i
+        hwHrN9mwptLYHyRBpNQDglH2vG+wOVKRu5+Fxlv3lhDaizcn7bI57KUQGaJhGBrw
+        f0jYmaQFO0z8W8B7ywgDLW7wJeaxOTd1CXjNrkh3F36IfFENYcK56THk6K2Zv9Gw
+        UviR0Y0WXJNtPZD1Pg83E45Lt5D0DVPUSyDpAIr91O2YZYcBBnxtM1Pa2dcD2OYw
+        ==
+X-ME-Sender: <xms:9ItAYStGiCN4j-mogi1-2MxUb9LMxUZ5N84Gu0Vw6qFkCqQyWdbc6g>
+    <xme:9ItAYXeeqtFKeIT2wjyUwGSFRLSjmRchsw_WMlD2KYY73E9sFsPDCiEMvVCyRB8ZU
+    ec-IkcjtYX_pgJaV6k>
+X-ME-Received: <xmr:9ItAYdy6GM-O_upEoYCJxFg9pS47K1A_IgpttINATnCA-oKpWE8ILW-DUOy2-prSTLWsWF0OuAy1c2CETsQZatCuxsg8K3gqN3Qz>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudegledggeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepveevfeffudeviedtgeethffhteeuffetfeffvdehvedvheetteehvdelfffg
+    jedvnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpe
+    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:9ItAYdOjHLWzmqmps8fUAxQastkf1ChDebTG5LgtD1G2a_3S_jVE7w>
+    <xmx:9ItAYS8XKRUwsCK_tryagUFfwMY6bqwlft769BXhljdlV1seWfzXfw>
+    <xmx:9ItAYVW1jY9jsDYcn95FSFL78DmGkpGOvXMv9bZcpLpps84cRtlbXw>
+    <xmx:9otAYV0PEy1uIb3OkFdatdBkka3a8F3KMFF6IgNJxzRT_iimR9wxV06uq8o>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 14 Sep 2021 07:48:04 -0400 (EDT)
+Date:   Tue, 14 Sep 2021 13:48:01 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 20/22] staging: media: Add support for the Allwinner A31
+ ISP
+Message-ID: <20210914114801.krmzxbkwj6u7lfjd@gilmour>
+References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
+ <20210910184147.336618-21-paul.kocialkowski@bootlin.com>
+ <20210913083135.v7q7joux2xckat62@gilmour>
+ <YUBUUQxBaGUkjzMP@aptenodytes>
+ <YUCDVm4OA3C3Re09@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-References: <1631092255-25150-1-git-send-email-shengjiu.wang@nxp.com>
- <1631092255-25150-5-git-send-email-shengjiu.wang@nxp.com> <YTvRlmIedfBiXSCg@robh.at.kernel.org>
-In-Reply-To: <YTvRlmIedfBiXSCg@robh.at.kernel.org>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Tue, 14 Sep 2021 14:45:02 +0300
-Message-ID: <CAEnQRZBQ4HqfNJq-tYE5+6eVz=WSHPHfnY7_qLYOttKD2pgtvg@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] dt-bindings: dsp: fsl: update binding document for
- remote proc driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>, bjorn.andersson@linaro.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        linux-remoteproc@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rvmu2elmhrznwm6w"
+Content-Disposition: inline
+In-Reply-To: <YUCDVm4OA3C3Re09@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 11, 2021 at 12:45 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Sep 08, 2021 at 05:10:55PM +0800, Shengjiu Wang wrote:
-> > As there are two drivers for DSP on i.MX, one is for sound open
-> > firmware, another is for remote processor framework. In order to
-> > distinguish two kinds of driver, defining different compatible strings.
->
-> What determines which firmware is used? Is it tied to the board? Or for
-> a given board, users could want different firmware? In the latter case,
-> this configuration should not be in DT.
->
-> > For remote proc driver, the properties firmware-name and fsl,dsp-ctrl
-> > are needed and the mailbox channel is different with SOF.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 81 +++++++++++++++++--
-> >  1 file changed, 75 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > index 7afc9f2be13a..51ea657f6d42 100644
-> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > @@ -8,6 +8,7 @@ title: NXP i.MX8 DSP core
-> >
-> >  maintainers:
-> >    - Daniel Baluta <daniel.baluta@nxp.com>
-> > +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> >
-> >  description: |
-> >    Some boards from i.MX8 family contain a DSP core used for
-> > @@ -19,6 +20,10 @@ properties:
-> >        - fsl,imx8qxp-dsp
-> >        - fsl,imx8qm-dsp
-> >        - fsl,imx8mp-dsp
-> > +      - fsl,imx8qxp-hifi4
-> > +      - fsl,imx8qm-hifi4
-> > +      - fsl,imx8mp-hifi4
-> > +      - fsl,imx8ulp-hifi4
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -28,37 +33,63 @@ properties:
-> >        - description: ipg clock
-> >        - description: ocram clock
-> >        - description: core clock
-> > +      - description: debug interface clock
-> > +      - description: message unit clock
-> > +    minItems: 3
-> > +    maxItems: 5
-> >
-> >    clock-names:
-> >      items:
-> >        - const: ipg
-> >        - const: ocram
-> >        - const: core
-> > +      - const: debug
-> > +      - const: mu
-> > +    minItems: 3
-> > +    maxItems: 5
-> >
-> >    power-domains:
-> >      description:
-> >        List of phandle and PM domain specifier as documented in
-> >        Documentation/devicetree/bindings/power/power_domain.txt
-> > +    minItems: 1
-> >      maxItems: 4
->
-> How does the same h/w have different number of power domains?
->
-> >
-> >    mboxes:
-> >      description:
-> >        List of <&phandle type channel> - 2 channels for TXDB, 2 channels for RXDB
-> > +      or - 1 channel for TX, 1 channel for RX, 1 channel for RXDB
-> >        (see mailbox/fsl,mu.txt)
-> > +    minItems: 3
-> >      maxItems: 4
-> >
-> >    mbox-names:
-> > -    items:
-> > -      - const: txdb0
-> > -      - const: txdb1
-> > -      - const: rxdb0
-> > -      - const: rxdb1
-> > +    oneOf:
-> > +      - items:
-> > +          - const: txdb0
-> > +          - const: txdb1
-> > +          - const: rxdb0
-> > +          - const: rxdb1
-> > +      - items:
-> > +          - const: tx
-> > +          - const: rx
-> > +          - const: rxdb
->
-> These are completely different mailboxes?
->
-> >
-> >    memory-region:
-> >      description:
-> >        phandle to a node describing reserved memory (System RAM memory)
-> >        used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +
-> > +  firmware-name:
-> > +    description: |
-> > +      Default name of the firmware to load to the remote processor.
-> > +
-> > +  fsl,dsp-ctrl:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to syscon block which provide access for processor enablement
->
-> Curious, how is this done with the open sound f/w?
 
-Hi Rob,
+--rvmu2elmhrznwm6w
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Should be the same story. Here is the PR sent for review with Sound
-Open Firmware (SOF):
+On Tue, Sep 14, 2021 at 02:11:18PM +0300, Laurent Pinchart wrote:
+> Hi Paul,
+>=20
+> On Tue, Sep 14, 2021 at 09:50:41AM +0200, Paul Kocialkowski wrote:
+> > On Mon 13 Sep 21, 10:31, Maxime Ripard wrote:
+> > > On Fri, Sep 10, 2021 at 08:41:45PM +0200, Paul Kocialkowski wrote:
+> > > > Some Allwinner platforms come with an Image Signal Processor, which
+> > > > supports various features in order to enhance and transform data
+> > > > received by image sensors into good-looking pictures. In most cases,
+> > > > the data is raw bayer, which gets internally converted to RGB and
+> > > > finally YUV, which is what the hardware produces.
+> > > >=20
+> > > > This driver supports ISPs that are similar to the A31 ISP, which was
+> > > > the first standalone ISP found in Allwinner platforms. Simpler ISP
+> > > > blocks were found in the A10 and A20, where they are tied to a CSI
+> > > > controller. Newer generations of Allwinner SoCs (starting with the
+> > > > H6, H616, etc) come with a new camera subsystem and revised ISP.
+> > > > Even though these previous and next-generation ISPs are somewhat
+> > > > similar to the A31 ISP, they have enough significant differences to
+> > > > be out of the scope of this driver.
+> > > >=20
+> > > > While the ISP supports many features, including 3A and many
+> > > > enhancement blocks, this implementation is limited to the following:
+> > > > - V3s (V3/S3) platform support;
+> > > > - Bayer media bus formats as input;
+> > > > - Semi-planar YUV (NV12/NV21) as output;
+> > > > - Debayering with per-component gain and offset configuration;
+> > > > - 2D noise filtering with configurable coefficients.
+> > > >=20
+> > > > Since many features are missing from the associated uAPI, the driver
+> > > > is aimed to integrate staging until all features are properly
+> > > > described.
+> > >=20
+> > > We can add new features/interfaces to a !staging driver. Why do you
+> > > think staging is required?
+> >=20
+> > This is true for the driver but not so much for the uAPI, so it seems t=
+hat
+> > the uAPI must be added to staging in some way. Then I'm not sure it mak=
+es sense
+> > to have a !staging driver that depends on a staging uAPI.
+> >=20
+> > Besides that, I added it to staging because that's the process that was
+> > followed by rkisp1, which is a very similar case.
+>=20
+> Maxime is right in the sense that uAPI can always be extended, but it
+> has to be done in a backward-compatible manner, and staging is sometimes
+> considered as not being covered by the ABI stability requirements of the
+> kernel. Not everybody agrees on this, but there are clear cases where
+> userspace really can't expect staging ABIs to be stable (for instance
+> when the driver doesn't even compile).
+>=20
+> I think there's value in having the driver in staging to facilitate
+> development until we consider the ABI stable, but I'm not entirely sure
+> if there should be another step taken to mark this ABI is not being
+> ready yet.
 
-https://github.com/thesofproject/linux/pull/3156
+The rule seems to be about whether or not the user-space gets broken in
+the process:
 
-The only difference is that SOF uses:
-syscon_regmap_lookup_by_compatible while remoteproc driver uses
-syscon_regmap_lookup_by_phandle.
+https://lore.kernel.org/lkml/CAHk-=3DwiVi7mSrsMP=3DfLXQrXK_UimybW=3DziLOwSz=
+FTtoXUacWVQ@mail.gmail.com/
 
-thanks,
-Daniel.
+Something that wouldn't compile cannot generate a regression, since it
+never worked in the first place. Changing the semantic of an ioctl does.
+
+Maxime
+
+--rvmu2elmhrznwm6w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYUCL8QAKCRDj7w1vZxhR
+xTToAQDDtt/uV0Mc20Vef8PiiT2oboXw4IMiKcGnaGkiGeJF0AEA2qTN9vI6Lp2E
+c1Q7OUUDoHcGOrZWXlkbdAD1T4FyvQw=
+=vImF
+-----END PGP SIGNATURE-----
+
+--rvmu2elmhrznwm6w--
