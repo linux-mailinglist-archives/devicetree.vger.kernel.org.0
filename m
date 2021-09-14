@@ -2,269 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D305840B57C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 18:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EAF640B5A6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 19:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbhINQ7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 12:59:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51174 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229507AbhINQ7c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 12:59:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 95B40610E6;
-        Tue, 14 Sep 2021 16:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631638695;
-        bh=Zn3JMalaQqbdRp33++4pXq7te8PElXoiceo6RKrR+4M=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=eYmv1cUPnPP9+FUvdjdlyoAy8PdD8a6LsbDOp17T+HguMrlE0sqQJDwGSAwV/UypZ
-         qcFFhCypIP22A5RTp2bF4i7ctfprY/TDzKx4mXHjfao7MfTmukU9f/VC2KPNtYRsDB
-         MxvhPT5l613syVJApgYhHB9yb8nHc/H/hgGR9jxsiMlvVzBqM5ZjekrNlwsy264Jwn
-         hNW5VDAvDM0B71KndGtCM92lagkfYyik5veRUPCnc5RwVprOTJ/B7fv39nty4iky1B
-         QoudhUml5RvmK0wTC9wzoMc7fnx+RwUcla+mwTGsaN0a4/9Uek+Fz78idOuK8MUMHX
-         jMXEKrr3DKd1A==
-Message-ID: <d9082b1b4c2e358c97bbc815c1b06e1b05011b0e.camel@kernel.org>
-Subject: Re: [PATCH v15 1/6] tpm_tis: Fix expected bit handling and send all
- bytes in one shot without last byte in exception
-From:   Jarkko Sakkinen <jarkko@kernel.org>
-To:     amirmizi6@gmail.com, Eyal.Cohen@nuvoton.com,
-        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
-        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org,
-        benoit.houyere@st.com, eajames@linux.ibm.com, joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
-Date:   Tue, 14 Sep 2021 19:58:12 +0300
-In-Reply-To: <20210914151032.216122-2-amirmizi6@gmail.com>
-References: <20210914151032.216122-1-amirmizi6@gmail.com>
-         <20210914151032.216122-2-amirmizi6@gmail.com>
+        id S229967AbhINRLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 13:11:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229517AbhINRLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 13:11:07 -0400
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B406AC061574;
+        Tue, 14 Sep 2021 10:09:49 -0700 (PDT)
+Received: by mail-vs1-xe2f.google.com with SMTP id u1so12640519vsq.10;
+        Tue, 14 Sep 2021 10:09:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=BmjYRi68aN56XU0y56jNmFUmGH6RU4xfmzH+VRZkmP8=;
+        b=WvQ9+x6vxQQ+jhcAP5aiM9UUy4wS/+0cv6xeYDS7ufnUKsz4hCBnFWDmhD1S9TlrMU
+         15I+yXU4SaoAXgM5tE07/F7pJiZU6m5xLA0daV3F12m7Z4bMRCq/wCHKq1b63eTYw854
+         IfhtsR4mlFwMil8XUAvNphsYt3XqAnG1Wq2QMqXFZc5j+oTn6Ww/UXeJd+VJ0L/llS6E
+         dIHJmwyPnM/aWIk1uRTqLi5AICTQzTZIl0lulZVXv310h6vZOFdSB+zsb9B0J5GRN8tW
+         8kk6FcBfTbpRpGKjoEIAWncTwrRs2+waDBETLl4OuPSKW+1L5QqSuNWHhpwdGPxR5xMn
+         6Z3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=BmjYRi68aN56XU0y56jNmFUmGH6RU4xfmzH+VRZkmP8=;
+        b=CA+4dLK1nF16YfsXOTxKZfgFCCHzm6cNrvlRTApyWt/FS4bvWfXg/rKsn4jN2nwx1V
+         HitagpSb9OqelC8jlqmehu64r5tOrpK6BjuRk3JJQHRSL86ToN6xVdjF/XSuW8NIz6F6
+         faEkv63AVuIwQrb2sVpyNE26uBSHqAFlvfQuvm023mNRcOpvm+zlAixkSw0ODflnDfDG
+         ChoMa9cIkRyj1InIIzzSh4h8h5mXVocEx0OJ03d+CjWO0Y18087BjlnNCPGgigl3cK1q
+         ciAR0PRaRUiohHnRF13WF4lNlmD6AgL1dqZhvPL2b/cjqggWbbqhJBIaUrGwCEGE/kk9
+         s1+A==
+X-Gm-Message-State: AOAM532mzKJgvQgnP0wgzz0wYGpU3KnZFbE8llngEmyeucWFjX+E2LYH
+        FeCBSpV/QVevIZNfPSbV0CatDb9/vi5yp6Fp4Fq16hmA
+X-Google-Smtp-Source: ABdhPJzTqzpkX0hLcieltriovP1u8Zem4alXiXe22whECWTd4+BN1Q5gN3Zr7krVAOKfE1FPBchFDYt9vsD8p2sJ4Eg=
+X-Received: by 2002:a05:6102:34cd:: with SMTP id a13mr261137vst.56.1631639388823;
+ Tue, 14 Sep 2021 10:09:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210910190322.27058-1-romain.perier@gmail.com>
+ <20210910190322.27058-5-romain.perier@gmail.com> <CAFr9PXnLZC1zfs4e1GqZU4UU3knU-BwREe0-abrWNq7akrTntw@mail.gmail.com>
+ <CAK8P3a24NTmkyh01OEzDQ8=oTWpUnDtwWQgUUxUbW2wxsgAFeA@mail.gmail.com>
+ <CAFr9PXkipBnVDBOpdYhUD4bYNaL8qybPhGJi7YwSHaCNrPz6rw@mail.gmail.com> <CAK8P3a1=GTcgbqkwnzsFtBtFZTtf4Lop7U5hsCAid-fCgs07yQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a1=GTcgbqkwnzsFtBtFZTtf4Lop7U5hsCAid-fCgs07yQ@mail.gmail.com>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Tue, 14 Sep 2021 19:09:37 +0200
+Message-ID: <CABgxDoJLOERb4CFABz0XNZ9MFR1F66Nyw9NknaEMHKSRze6VHA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Daniel Palmer <daniel@0x0f.com>, Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.36.5-0ubuntu1 
-MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-09-14 at 18:10 +0300, amirmizi6@gmail.com wrote:
-> From: Amir Mizinski <amirmizi6@gmail.com>
->=20
-> Detected an incorrect implementation of the send command.
-> Currently, the driver polls the TPM_STS.stsValid field until TRUE; then i=
-t
-> reads TPM_STS register again to verify only that TPM_STS.expect field is
-> FALSE (i.e., it ignores TPM_STS.stsValid).
-> Since TPM_STS.stsValid represents the TPM_STS.expect validity, both field=
-s
-> fields should be checked in the same TPM_STS register read value.
+Hi,
 
-This is missing description of what kind of error/consquence this caused.
-Perhaps you got something to the klog, or how did you find out about the
-issue? Since you have reproduced, please connect it to the reality.
+Thank you very much and sorry for the wrong inclusion of
+soc@kernel.org, it's noted for the next time.
 
-> Modify the signature of 'wait_for_tpm_stat()', add an additional
-> "mask_result" parameter to its call and rename it to
-> 'tpm_tis_wait_for_stat()' for better alignment with other naming.
-> 'tpm_tis_wait_for_stat()' is now polling the TPM_STS with a mask and wait=
-s
-> for the value in mask_result. Add the ability to check if certain TPM_STS
-> bits have been cleared.
+Regards,
+Romain
 
-The commit description is probably out of sync (not only rename, there is n=
-o
-parameter called mask_result).
-
-It's also lacking description, how this new parameter is taken advantage of=
-.
-
-E.g.
-
-"Use the new parameter to check that status TPM_STS_VALID is set,
- in addition that TPM_STS_EXPECT is zeroed. This prevents a racy
- checkk
-
-
-> In addition, the send command was changed to comply with
-> TCG_DesignPrinciples_TPM2p0Driver_vp24_pubrev.pdf as follows:
-> - send all command bytes in one loop
-> - remove special handling of the last byte
->=20
-> Suggested-by: Benoit Houyere <benoit.houyere@st.com>
-> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-> ---
->  drivers/char/tpm/tpm_tis_core.c | 68 +++++++++++++++--------------------=
-------
->  1 file changed, 25 insertions(+), 43 deletions(-)
->=20
-> diff --git a/drivers/char/tpm/tpm_tis_core.c b/drivers/char/tpm/tpm_tis_c=
-ore.c
-> index 69579ef..7d5854b 100644
-> --- a/drivers/char/tpm/tpm_tis_core.c
-> +++ b/drivers/char/tpm/tpm_tis_core.c
-> @@ -44,9 +44,9 @@ static bool wait_for_tpm_stat_cond(struct tpm_chip *chi=
-p, u8 mask,
->  	return false;
->  }
-> =20
-> -static int wait_for_tpm_stat(struct tpm_chip *chip, u8 mask,
-> -		unsigned long timeout, wait_queue_head_t *queue,
-> -		bool check_cancel)
-> +static int wait_for_tpm_stat(struct tpm_chip *chip, u8 mask, u8 stat,
-> +				 unsigned long timeout,
-> +				 wait_queue_head_t *queue, bool check_cancel)
-
-This naming is not too great, considering that there is already local varia=
-ble
-called status.
-
-
->  {
->  	unsigned long stop;
->  	long rc;
-> @@ -55,7 +55,7 @@ static int wait_for_tpm_stat(struct tpm_chip *chip, u8 =
-mask,
-> =20
->  	/* check current status */
->  	status =3D chip->ops->status(chip);
-> -	if ((status & mask) =3D=3D mask)
-> +	if ((status & mask) =3D=3D stat)
->  		return 0;
-> =20
->  	stop =3D jiffies + timeout;
-> @@ -83,7 +83,7 @@ static int wait_for_tpm_stat(struct tpm_chip *chip, u8 =
-mask,
->  			usleep_range(TPM_TIMEOUT_USECS_MIN,
->  				     TPM_TIMEOUT_USECS_MAX);
->  			status =3D chip->ops->status(chip);
-> -			if ((status & mask) =3D=3D mask)
-> +			if ((status & mask) =3D=3D stat)
->  				return 0;
->  		} while (time_before(jiffies, stop));
->  	}
-> @@ -260,9 +260,10 @@ static int recv_data(struct tpm_chip *chip, u8 *buf,=
- size_t count)
-> =20
->  	while (size < count) {
->  		rc =3D wait_for_tpm_stat(chip,
-> -				 TPM_STS_DATA_AVAIL | TPM_STS_VALID,
-> -				 chip->timeout_c,
-> -				 &priv->read_queue, true);
-> +					   TPM_STS_DATA_AVAIL | TPM_STS_VALID,
-> +					   TPM_STS_DATA_AVAIL | TPM_STS_VALID,
-> +					   chip->timeout_c, &priv->read_queue,
-> +					   true);
->  		if (rc < 0)
->  			return rc;
->  		burstcnt =3D get_burstcount(chip);
-> @@ -315,8 +316,9 @@ static int tpm_tis_recv(struct tpm_chip *chip, u8 *bu=
-f, size_t count)
->  		goto out;
->  	}
-> =20
-> -	if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
-> -				&priv->int_queue, false) < 0) {
-> +	if (wait_for_tpm_stat(chip, TPM_STS_VALID, TPM_STS_VALID,
-> +				  chip->timeout_c, &priv->int_queue,
-> +				  false) < 0) {
->  		size =3D -ETIME;
->  		goto out;
->  	}
-> @@ -342,61 +344,40 @@ static int tpm_tis_send_data(struct tpm_chip *chip,=
- const u8 *buf, size_t len)
->  	struct tpm_tis_data *priv =3D dev_get_drvdata(&chip->dev);
->  	int rc, status, burstcnt;
->  	size_t count =3D 0;
-> -	bool itpm =3D priv->flags & TPM_TIS_ITPM_WORKAROUND;
-> =20
->  	status =3D tpm_tis_status(chip);
->  	if ((status & TPM_STS_COMMAND_READY) =3D=3D 0) {
->  		tpm_tis_ready(chip);
-> -		if (wait_for_tpm_stat
-> -		    (chip, TPM_STS_COMMAND_READY, chip->timeout_b,
-> -		     &priv->int_queue, false) < 0) {
-> +		if (wait_for_tpm_stat(chip, TPM_STS_COMMAND_READY,
-> +					  TPM_STS_COMMAND_READY,
-> +					  chip->timeout_b, &priv->int_queue,
-> +					  false) < 0) {
->  			rc =3D -ETIME;
->  			goto out_err;
->  		}
->  	}
-> =20
-> -	while (count < len - 1) {
-> +	while (count < len) {
-
-This.
-
->  		burstcnt =3D get_burstcount(chip);
->  		if (burstcnt < 0) {
->  			dev_err(&chip->dev, "Unable to read burstcount\n");
->  			rc =3D burstcnt;
->  			goto out_err;
->  		}
-> -		burstcnt =3D min_t(int, burstcnt, len - count - 1);
-> +		burstcnt =3D min_t(int, burstcnt, len - count);
-
-What are these two changes (loop condition and the right above change)?
-
->  		rc =3D tpm_tis_write_bytes(priv, TPM_DATA_FIFO(priv->locality),
->  					 burstcnt, buf + count);
->  		if (rc < 0)
->  			goto out_err;
-> =20
->  		count +=3D burstcnt;
-> -
-> -		if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
-> -					&priv->int_queue, false) < 0) {
-> -			rc =3D -ETIME;
-> -			goto out_err;
-> -		}
-> -		status =3D tpm_tis_status(chip);
-> -		if (!itpm && (status & TPM_STS_DATA_EXPECT) =3D=3D 0) {
-> -			rc =3D -EIO;
-> -			goto out_err;
-> -		}
->  	}
-> -
-> -	/* write last byte */
-> -	rc =3D tpm_tis_write8(priv, TPM_DATA_FIFO(priv->locality), buf[count]);
-> -	if (rc < 0)
-> -		goto out_err;
-> -
-> -	if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
-> -				&priv->int_queue, false) < 0) {
-> +	if (wait_for_tpm_stat(chip, TPM_STS_VALID | TPM_STS_DATA_EXPECT,
-> +				  TPM_STS_VALID, chip->timeout_a,
-> +				  &priv->int_queue, false) < 0) {
->  		rc =3D -ETIME;
->  		goto out_err;
->  	}
-> -	status =3D tpm_tis_status(chip);
-> -	if (!itpm && (status & TPM_STS_DATA_EXPECT) !=3D 0) {
-> -		rc =3D -EIO;
-> -		goto out_err;
-> -	}
-> =20
->  	return 0;
-> =20
-> @@ -451,9 +432,10 @@ static int tpm_tis_send_main(struct tpm_chip *chip, =
-const u8 *buf, size_t len)
->  		ordinal =3D be32_to_cpu(*((__be32 *) (buf + 6)));
-> =20
->  		dur =3D tpm_calc_ordinal_duration(chip, ordinal);
-> -		if (wait_for_tpm_stat
-> -		    (chip, TPM_STS_DATA_AVAIL | TPM_STS_VALID, dur,
-> -		     &priv->read_queue, false) < 0) {
-> +		if (wait_for_tpm_stat(chip,
-> +					  TPM_STS_DATA_AVAIL | TPM_STS_VALID,
-> +					  TPM_STS_DATA_AVAIL | TPM_STS_VALID,
-> +					  dur, &priv->read_queue, false) < 0) {
->  			rc =3D -ETIME;
->  			goto out_err;
->  		}
-
-/Jarkko
-
+Le mar. 14 sept. 2021 =C3=A0 17:26, Arnd Bergmann <arnd@arndb.de> a =C3=A9c=
+rit :
+>
+> On Tue, Sep 14, 2021 at 5:03 PM Daniel Palmer <daniel@0x0f.com> wrote:
+> > On Tue, 14 Sept 2021 at 22:54, Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> > > FWIW, I'd suggest merging the MAINTAINERS file change as a
+> > > bugfix for 5.15, it's generally better to do these as early as possib=
+le
+> > > to make sure any patches reach all the right people.
+> >
+> > That makes sense.
+> > Would it be possible for you to merge that single commit for me?
+>
+> Done, merged into arm/fixes.
+>
+> > Seems like that would be easier than me creating a fixes branch for a
+> > single commit, sending you a PR, finding out I still don't actually
+> > know how to do PR properly.. :)
+> > If it's a hassle I'll do the PR though.
+>
+> If you only have one or two patches, sending that patch to soc@kernel.org
+> is usually the easiest way anyway, unless there is a reason to keep the
+> branch description separate from the patch description in the git log.
+>
+>       Arnd
