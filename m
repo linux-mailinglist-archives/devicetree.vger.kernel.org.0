@@ -2,84 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA2B840B300
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3425840B316
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:29:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234108AbhINP1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 11:27:53 -0400
-Received: from mout.kundenserver.de ([212.227.126.187]:48877 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234167AbhINP1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:27:52 -0400
-Received: from mail-wr1-f42.google.com ([209.85.221.42]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MX00X-1mOFSs0K8v-00XMMD; Tue, 14 Sep 2021 17:26:27 +0200
-Received: by mail-wr1-f42.google.com with SMTP id d21so13187870wra.12;
-        Tue, 14 Sep 2021 08:26:27 -0700 (PDT)
-X-Gm-Message-State: AOAM531Bw8nrt96Metxb7d3vMiS7JhYl8fPUuKYf93SWVITPbEWwvALC
-        x4rn/J5vXK8nKyYrRUleK73P5v95wQoMvpA4L98=
-X-Google-Smtp-Source: ABdhPJx58PLXLbIDPH3agyMnNUczBn+6WHGZgh2cx7ovkyQCQ1tT2E26eQzrosGp+LginhSbFYIKP6merOG8OWf3s2g=
-X-Received: by 2002:a5d:528b:: with SMTP id c11mr18953468wrv.369.1631633186700;
- Tue, 14 Sep 2021 08:26:26 -0700 (PDT)
+        id S233858AbhINPbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 11:31:12 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:37716 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233202AbhINPbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:31:12 -0400
+Received: by mail-ot1-f47.google.com with SMTP id i3-20020a056830210300b0051af5666070so19012495otc.4;
+        Tue, 14 Sep 2021 08:29:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hY3n620qkUe68a0lR/eM4pnBZx4xVNZn3jSpa0Q0FXI=;
+        b=xOiAv1rEC2znFH0Oj5g6uK92wtj73mdct8n/1fVLldmk/mxQseA2yIDYn3KYrmPkoB
+         7K/3I70FEfqLIf5fYO8PKqLsCykvOCVlyR9iYs66Uq7+3LXDAB+gqjQkEx0a5u/BwDxE
+         IsUeSwRCHxWUOSecVH9lElfMgS7vhR2oAJPNCC6BzpMEDErFrFQpdPwGt86G3A9qYwWP
+         l3/HBka9ZlLrAzsJrGmsskVLsmQucHImxh1f4cEcLj/s3izCDVZZRX1QoS+uEs1SJYVj
+         lCzTXbfb9ZTt21Qg/psHin+TPoi0upQBLLyhKZTViQDhv11Y5R3vuiJVKOzrx5VhoCgg
+         lOjw==
+X-Gm-Message-State: AOAM533bLixxkYEY+MWkkAW1QOS+pXIZJYNjxiIyw3cRtfx2NiLUMrA9
+        heMAPVs8JvZnaZtz75FaMo6f+/y05A==
+X-Google-Smtp-Source: ABdhPJzRUZ4ZMrRc9mURnyKePfileuuXOyxTiC7JxVwjZOsKyviPYdj5t2RGvnmyMMSCPT9UPGRUrg==
+X-Received: by 2002:a05:6830:241d:: with SMTP id j29mr15258826ots.47.1631633394245;
+        Tue, 14 Sep 2021 08:29:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q13sm2712339ota.17.2021.09.14.08.29.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 08:29:53 -0700 (PDT)
+Received: (nullmailer pid 3326462 invoked by uid 1000);
+        Tue, 14 Sep 2021 15:29:52 -0000
+Date:   Tue, 14 Sep 2021 10:29:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: Add bindings for IXP4xx V.35 WAN HSS
+Message-ID: <YUC/8HriKjisxslU@robh.at.kernel.org>
+References: <20210908221118.138045-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-References: <20210910190322.27058-1-romain.perier@gmail.com>
- <20210910190322.27058-5-romain.perier@gmail.com> <CAFr9PXnLZC1zfs4e1GqZU4UU3knU-BwREe0-abrWNq7akrTntw@mail.gmail.com>
- <CAK8P3a24NTmkyh01OEzDQ8=oTWpUnDtwWQgUUxUbW2wxsgAFeA@mail.gmail.com> <CAFr9PXkipBnVDBOpdYhUD4bYNaL8qybPhGJi7YwSHaCNrPz6rw@mail.gmail.com>
-In-Reply-To: <CAFr9PXkipBnVDBOpdYhUD4bYNaL8qybPhGJi7YwSHaCNrPz6rw@mail.gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 14 Sep 2021 17:26:10 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1=GTcgbqkwnzsFtBtFZTtf4Lop7U5hsCAid-fCgs07yQ@mail.gmail.com>
-Message-ID: <CAK8P3a1=GTcgbqkwnzsFtBtFZTtf4Lop7U5hsCAid-fCgs07yQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:VnVHxWypdRtpTbbOUa3/mrs9CuHe1McNGJueNVuhoFnIryByfgv
- gnhVwKUfnik/lAGj/0SBJ3aNpwaRx4z5vX5x4GhkU0odrAe8BnzBkVrd/WS8EV4ncrzwYQm
- CdASMDKwEIp+zr5sjoRJeELJSW0pfkzUHJ8NxD/WwsnRx+YnIHMTb/wks0+3jJD9OEve6gE
- g4+9KQRv47kfTfUKwG1KA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:qjObmYm+w2w=:vN4YTObWx7sfcSi4+rQb9j
- Wydj7yVS0y/R447f1vtO0c2rfQBvfCzIwEtw+hIv4QREpG3EJUXuaPZQpe0MUDRXqBmqwcb3o
- lJK+J7M9epXQQVAcQ0BwgZMdBqV7PmufSkek02wjInMAMy8TyC2wN2m4Llv/U+wETnNALqnFr
- Us7FKhJ7Wrmlo2CrKT1nzo4IcPl9ERRqvZNh/JcvvKWAds9EglYQKuK/BRR8E7UxWcu1GHGKu
- EIybfSZdgn8PyfM+Tex/55EoWB1FN/OztrGMr9N0g5T0Wut/jnXq1VkGY3xwoAkCO5lBslSmT
- ntaRX5vMhD+1KXPXkKE5c8yZ3fO4rj+QYb81odICBeiyfhPPvfY9tCbje+l8PhyXWZsT+0bI5
- oKjU8Upekf0o7v3w/HvJqYz17lqdM//oRzhR4rWNrmLJqzR8jK1RqNZI12wfvLIMDtdqiCm0z
- zbrnayozAKmNqpcvus0EPZipIWkIJmePcLobd/3SIkXBCw9nlX+4Qmc6sKDJJzFZfdm1WBjNm
- +FaZFWM/9pebNKZpqChePwb+kDFoHpHi4U4bx7w82+SPCDDnLd7GF1juuFUTCeYFhDfsk6i/s
- UaTe89lD8XDSK3omw9M1fa1VMvyLz2KwvKajuCl5JAN14l/zckp96fdkYRy4mYQOL4Ev3Mhfw
- U53vOKWzCV3GWma2TltFD4/mKVNs5mocAYZyW0Jq8kC+8SdGgT3eHdNpuGIddFs97HNRgbGEP
- dXSIVO+CP29L8lc+dM+e9oI9OlTYVrfj7s0++Q==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210908221118.138045-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 14, 2021 at 5:03 PM Daniel Palmer <daniel@0x0f.com> wrote:
-> On Tue, 14 Sept 2021 at 22:54, Arnd Bergmann <arnd@arndb.de> wrote:
+On Thu, Sep 09, 2021 at 12:11:18AM +0200, Linus Walleij wrote:
+> This adds device tree bindings for the IXP4xx V.35 WAN high
+> speed serial (HSS) link.
+> 
+> An example is added to the NPE example where the HSS appears
+> as a child.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> Currently only adding these bindings so we can describe the
+> hardware in device trees.
+> ---
+>  ...ntel,ixp4xx-network-processing-engine.yaml |  26 ++++
+>  .../bindings/net/intel,ixp4xx-hss.yaml        | 129 ++++++++++++++++++
+>  2 files changed, 155 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+> index c435c9f369a4..179e5dea32b0 100644
+> --- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+> @@ -45,9 +45,35 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+>      npe: npe@c8006000 {
+>           compatible = "intel,ixp4xx-network-processing-engine";
+>           reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
+> +         #address-cells = <1>;
+> +         #size-cells = <0>;
+> +
+> +         hss@0 {
+> +             compatible = "intel,ixp4xx-hss";
+> +             reg = <0>;
+> +             intel,npe-handle = <&npe 0>;
+> +             queue-chl-rxtrig = <&qmgr 12>;
+> +             queue-pkt-rx = <&qmgr 13>;
+> +             queue-pkt-tx0 = <&qmgr 14>;
+> +             queue-pkt-tx1 = <&qmgr 15>;
+> +             queue-pkt-tx2 = <&qmgr 16>;
+> +             queue-pkt-tx3 = <&qmgr 17>;
+> +             queue-pkt-rxfree0 = <&qmgr 18>;
+> +             queue-pkt-rxfree1 = <&qmgr 19>;
+> +             queue-pkt-rxfree2 = <&qmgr 20>;
+> +             queue-pkt-rxfree3 = <&qmgr 21>;
+> +             queue-pkt-txdone = <&qmgr 22>;
 
-> > FWIW, I'd suggest merging the MAINTAINERS file change as a
-> > bugfix for 5.15, it's generally better to do these as early as possible
-> > to make sure any patches reach all the right people.
->
-> That makes sense.
-> Would it be possible for you to merge that single commit for me?
+Need vendor prefix on all these. Maybe some can be arrays (e.g. tx0, 
+tx1, tx2, tx3)?
 
-Done, merged into arm/fixes.
-
-> Seems like that would be easier than me creating a fixes branch for a
-> single commit, sending you a PR, finding out I still don't actually
-> know how to do PR properly.. :)
-> If it's a hassle I'll do the PR though.
-
-If you only have one or two patches, sending that patch to soc@kernel.org
-is usually the easiest way anyway, unless there is a reason to keep the
-branch description separate from the patch description in the git log.
-
-      Arnd
+> +             cts-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+> +             rts-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+> +             dcd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+> +             dtr-gpios = <&gpio_74 2 GPIO_ACTIVE_LOW>;
+> +             clk-internal-gpios = <&gpio_74 0 GPIO_ACTIVE_HIGH>;
+> +         };
+>  
+>           crypto {
+>               compatible = "intel,ixp4xx-crypto";
+> diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+> new file mode 100644
+> index 000000000000..a5a9a14a1242
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2021 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/net/intel,ixp4xx-hss.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Intel IXP4xx V.35 WAN High Speed Serial Link (HSS)
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  The Intel IXP4xx HSS makes use of the IXP4xx NPE (Network
+> +  Processing Engine) and the IXP4xx Queue Manager to process
+> +  V.35 Wideband Modem (WAN) links.
+> +
+> +properties:
+> +  compatible:
+> +    const: intel,ixp4xx-hss
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: The HSS instance
+> +
+> +  intel,npe-handle:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the NPE this HSS instance is using
+> +      and the instance to use in the second cell
+> +
+> +  queue-chl-rxtrig:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the RX trigger queue on the NPE
+> +
+> +  queue-pkt-rx:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet RX queue on the NPE
+> +
+> +  queue-pkt-tx0:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet TX0 queue on the NPE
+> +
+> +  queue-pkt-tx1:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet TX1 queue on the NPE
+> +
+> +  queue-pkt-tx2:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet TX2 queue on the NPE
+> +
+> +  queue-pkt-tx3:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet TX3 queue on the NPE
+> +
+> +  queue-pkt-rxfree0:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet RXFREE0 queue on the NPE
+> +
+> +  queue-pkt-rxfree1:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet RXFREE1 queue on the NPE
+> +
+> +  queue-pkt-rxfree2:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet RXFREE2 queue on the NPE
+> +
+> +  queue-pkt-rxfree3:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet RXFREE3 queue on the NPE
+> +
+> +  queue-pkt-txdone:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description: phandle to the packet TXDONE queue on the NPE
+> +
+> +  cts-gpios:
+> +    maxItems: 1
+> +    description: Clear To Send (CTS) GPIO line
+> +
+> +  rts-gpios:
+> +    maxItems: 1
+> +    description: Ready To Send (RTS) GPIO line
+> +
+> +  dcd-gpios:
+> +    maxItems: 1
+> +    description: Data Carrier Detect (DCD) GPIO line
+> +
+> +  dtr-gpios:
+> +    maxItems: 1
+> +    description: Data Terminal Ready (DTR) GPIO line
+> +
+> +  clk-internal-gpios:
+> +    maxItems: 1
+> +    description: Clock internal GPIO line, driving this high will make the HSS
+> +      use internal clocking as opposed to external clocking
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - intel,npe-handle
+> +  - queue-chl-rxtrig
+> +  - queue-pkt-rx
+> +  - queue-pkt-tx0
+> +  - queue-pkt-tx1
+> +  - queue-pkt-tx2
+> +  - queue-pkt-tx3
+> +  - queue-pkt-rxfree0
+> +  - queue-pkt-rxfree1
+> +  - queue-pkt-rxfree2
+> +  - queue-pkt-rxfree3
+> +  - queue-pkt-txdone
+> +  - cts-gpios
+> +  - rts-gpios
+> +  - dcd-gpios
+> +  - dtr-gpios
+> +  - clk-internal-gpios
+> +
+> +additionalProperties: false
+> -- 
+> 2.31.1
+> 
+> 
