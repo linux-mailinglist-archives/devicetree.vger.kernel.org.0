@@ -2,104 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D006B40B77E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:09:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C608840B7AD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 21:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232233AbhINTKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 15:10:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39708 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229869AbhINTKk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 15:10:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C268A60FED;
-        Tue, 14 Sep 2021 19:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1631646563;
-        bh=cfhCymTR+NW29/iSC+hTY93GTILfL5f/hAJx/9UgVVw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=tr+fY58jSFJxzkQD3+ZeNTH6ot3AQjr9hI5N+KRk/pUe10bWgj9E2fWblopTfx8zu
-         uJIocMIZvsIk+OM/+eDPkmlt2wgJc3vcky+ov0S1t77UOIhOkN+YUuXHs3qPv2DVpo
-         2qm+h9xVEff8lNQTlneJLjJmC0HIQ/OZd4yy7SwFe5zIklTeX1iOOX755GC3akda+9
-         odhXDgZgd/PesEkHSwIMLPXCbdgRPN4yoFLR200yMTObkB8Om7roHaF7z9jTYQyd+G
-         SUc7CgSOtcb+YIT+U5cYP/1TwcVCJeIevhLQuGn5GtusuoNCPhsL9C03y0vFhgYnQQ
-         kKCNi+Gr7wPrg==
-Date:   Tue, 14 Sep 2021 14:09:21 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Stan Skowronek <stan@corellium.com>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>,
-        Robin Murphy <Robin.Murphy@arm.com>, kernel-team@android.com
-Subject: Re: [PATCH v3 03/10] PCI: of: Allow matching of an interrupt-map
- local to a pci device
-Message-ID: <20210914190921.GA1445505@bjorn-Precision-5520>
+        id S233630AbhINTNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 15:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233009AbhINTN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 15:13:27 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F58C0617A8
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:11:58 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id c79so610982oib.11
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 12:11:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=BSSwT7oxjsgFOMu+1NGwhgQtpViayCWoOwG64CMoBRk=;
+        b=hDSs206v3195Y560qB95htiH1r7XdiqlWoYYGIMmZKsme0wdt3U7Hl0DEmzORETQAl
+         oY7mro96c7tw05FWPje4aYkbJ+sv5WycBN3Nw5uuG+YACDPdMvZNHwpOSPLMWJ5tSv7Q
+         K57nIq7SsAR9mAnQlW2a/GH3wsihNJPESaOnA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=BSSwT7oxjsgFOMu+1NGwhgQtpViayCWoOwG64CMoBRk=;
+        b=kNPgbGK52V+a55KQSk9/ZrMRVLf6L5whm0lH2r2T9sXDgM/gvGFnOSryAJEUhB+5Gn
+         L/TZmyq8gRKRYc5NWVawvbybrP1mRiIjxAvTvRhrQYtvddw5mZ+qaon5dnbfI7KPYJHa
+         UEKUWOkEIjqtdeCuqeplEaGgxz3TxNicu5yzk2w2kkcElY2/TXuVkOc6InxXnFxxn1d+
+         c+2mxkbf57yKKq04TdUytRbEMYvPbOQ7A0PzIJJdppVXgGpsNpPS9w+76+q0Gb5U2oCV
+         vG52XMzJjX+A6q2MAK1EUEi0QAp3EBXKxVnalSTEt/VyXIkqX9Dn7BvmHUhE+7lMaWwC
+         kf7g==
+X-Gm-Message-State: AOAM531ENuvKFZI66HTD+XiHsMEEVSoa3uRyema/ZXMjsGbdmq4z+e9R
+        c9E+a0Lk0P7C5leimBEY9HY7MnoCyqAHkw64QsXvOw==
+X-Google-Smtp-Source: ABdhPJxj/G3bL5HF0hTnBTg2JQFv34CpmMFfj/HJPwzL7skUSH+a239+sjhTD9p4IGQVFNxccYFtNL83KeC+Bp7Fvi8=
+X-Received: by 2002:a54:4419:: with SMTP id k25mr2725351oiw.32.1631646717560;
+ Tue, 14 Sep 2021 12:11:57 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 14 Sep 2021 12:11:57 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210913182550.264165-4-maz@kernel.org>
+In-Reply-To: <20210909135838.v4.1.I1116e79d34035338a45c1fc7cdd14a097909c8e0@changeid>
+References: <20210909210032.465570-1-dianders@chromium.org> <20210909135838.v4.1.I1116e79d34035338a45c1fc7cdd14a097909c8e0@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 14 Sep 2021 12:11:57 -0700
+Message-ID: <CAE-0n53Pp1F5dZRk98WT5+K9jz_XpMkKUvYAs_suZFaOE0K39w@mail.gmail.com>
+Subject: Re: [PATCH v4 01/15] dt-bindings: drm/panel-simple-edp: Introduce
+ generic eDP panels
+To:     Douglas Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Linus W <linus.walleij@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        Steev Klimaszewski <steev@kali.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 13, 2021 at 07:25:43PM +0100, Marc Zyngier wrote:
-> Just as we now allow an interrupt map to be parsed when part
-> of an interrupt controller, there is no reason to ignore an
-> interrupt map that would be part of a pci device node such as
-> a root port since we already allow interrupt specifiers.
-> 
-> This allows the device itself to use the interrupt map for
-> for its own purpose.
-> 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-
-Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-
-I assume Lorenzo would merge this along with the rest of the series.
-
-If I were applying I would silently wrap to 75 characters, s/pci/PCI/
-in subject and above, and maybe incorporate a version of the subject
-line in the commit log so it says what the patch does.
-
-> ---
->  drivers/pci/of.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index d84381ce82b5..443cebb0622e 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -423,7 +423,7 @@ static int devm_of_pci_get_host_bridge_resources(struct device *dev,
->   */
->  static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *out_irq)
->  {
-> -	struct device_node *dn, *ppnode;
-> +	struct device_node *dn, *ppnode = NULL;
->  	struct pci_dev *ppdev;
->  	__be32 laddr[3];
->  	u8 pin;
-> @@ -452,8 +452,14 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
->  	if (pin == 0)
->  		return -ENODEV;
->  
-> +	/* Local interrupt-map in the device node? Use it! */
-> +	if (dn && of_get_property(dn, "interrupt-map", NULL)) {
-> +		pin = pci_swizzle_interrupt_pin(pdev, pin);
-> +		ppnode = dn;
-> +	}
+Quoting Douglas Anderson (2021-09-09 14:00:17)
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-edp.yaml b/Documentation/devicetree/bindings/display/panel/panel-edp.yaml
+> new file mode 100644
+> index 000000000000..6a621376ff86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-edp.yaml
+> @@ -0,0 +1,188 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-edp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  	/* Now we walk up the PCI tree */
-> -	for (;;) {
-> +	while (!ppnode) {
->  		/* Get the pci_dev of our parent */
->  		ppdev = pdev->bus->self;
->  
-> -- 
-> 2.30.2
-> 
+> +title: Probable (via DP AUX / EDID) eDP Panels with simple poweron sequences
+
+Should that be "Probeable" or "Probe-able" or "Detectable"? It's not
+about statistical probabilities right?
