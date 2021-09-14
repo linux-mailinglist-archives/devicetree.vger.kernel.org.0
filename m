@@ -2,122 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9F040AFB2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 15:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5489D40AFB5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 15:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233095AbhINNzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 09:55:40 -0400
-Received: from mout.kundenserver.de ([212.227.126.135]:59021 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233306AbhINNzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 09:55:40 -0400
-Received: from mail-wm1-f51.google.com ([209.85.128.51]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MIKs0-1meQe10PJs-00EPiX; Tue, 14 Sep 2021 15:54:21 +0200
-Received: by mail-wm1-f51.google.com with SMTP id k5-20020a05600c1c8500b002f76c42214bso2167310wms.3;
-        Tue, 14 Sep 2021 06:54:21 -0700 (PDT)
-X-Gm-Message-State: AOAM5339GGfVI54LJs1caBSiGYG1khp5UI5T3+Dch1O7IQLX2kwtm0Kv
-        8PV1Pj/+4B54C9I3DtyB8b6UbJ9AgrsJADcknRQ=
-X-Google-Smtp-Source: ABdhPJzfYT9N1FW1riy+N/kpM3JaauBvGO+lf0r+4PKV8dK91NMoj2dnMEb7hSJi/AoxQAwHMqJzn9JWuELlwpKaDNo=
-X-Received: by 2002:a05:600c:896:: with SMTP id l22mr2356251wmp.173.1631627660743;
- Tue, 14 Sep 2021 06:54:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210910190322.27058-1-romain.perier@gmail.com>
- <20210910190322.27058-5-romain.perier@gmail.com> <CAFr9PXnLZC1zfs4e1GqZU4UU3knU-BwREe0-abrWNq7akrTntw@mail.gmail.com>
-In-Reply-To: <CAFr9PXnLZC1zfs4e1GqZU4UU3knU-BwREe0-abrWNq7akrTntw@mail.gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 14 Sep 2021 15:54:04 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a24NTmkyh01OEzDQ8=oTWpUnDtwWQgUUxUbW2wxsgAFeA@mail.gmail.com>
-Message-ID: <CAK8P3a24NTmkyh01OEzDQ8=oTWpUnDtwWQgUUxUbW2wxsgAFeA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] MAINTAINERS: Add myself as MStar/Sigmastar Armv7 SoC maintainers
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:37CR7+fnRwArzmWcbT/2Dmeczil2SoxB7I+W6cPAQ1eACbHISaU
- St2xHbNyDNVGJIoT+9Qg3miicp+R9Byvchps3c02EvVQtANDLaXxoNUISvJqgKpGZT6lPQ0
- 78n9Py8VzK8WdA27KvAFglgM2LrZzbVdqEJNpgkKPBzxp41RBK081+YB6LK2l/8d5bSmP/K
- q+s7QXrtu4f9GWe9EiXjw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:OA359SMSxoM=:m7lO6T0hrrIXBNCONzqS1h
- bO94nRd2iCkscdj8lNFUzjH9T01uclRTvX4VoQZWssmOYpvl7Kj/vTB6M1UqWAI5skqHYGaje
- KKzj+h42efo8nTXKL3FEky7b19QuxLti2X2KptcnA77r7rCX2+QG8HSRk7wcXeG7YgBVWuaaJ
- nzaEnpHUgfWe1BhSZWQ2cMzh4HVaeJjwHQ1cXWIca7FwKBDnZLBvorFRGdtYzU1SdKQcOcKeU
- ptoSIyC8VmH4GBeoroiNj2V6cj8s4B//Mkwp6MiIRtRVJesrX5AldN410Z9ylI4iuRukt7/Z6
- +sPKjjLOOjyg/fRfCWNHjkBJ7EmbQsaYy7alIFcmjnE4FL4J0Rl26FleGMA8unz8UAx9Rf4pn
- YVgbdXSCIlcvuSVZQnb2Pbbk2YGREEXk2oKYCbc89YsFX6sXeIOPbfh8KctRwSynT/BZyRp0w
- 7/yof+jpNS3fnGZwQ/sFW2P3uTD30zaj2d2Iq96RYGBYLX1T0IOMoRPP9M4hOvcogG/5MyVeg
- Yba79OLIi6hNyDmfVe1GeT12ihWedNbcHMy+XC3yk5ivuBvLDqVG6fY49kwb7hZ1qVpV+qwGz
- cxTROHX0aiIP0sTl/Y1jSjeaPsFhQUwSj/SI76H5PpG484kXhlH2PUcszjbB7ZQE1B4XTTCQ0
- 9f0hoKit1BFGZkLxw9BId6IJkjgAj8GHSqHONSbZswqXatOoWA6t7fGKX61m4lKlDe8lCXzT1
- wYNbK8mlLpcKY7QBr/ZeACRYJ5LcwF0GlVOfnlbYcmz1BvnpomZaKwrVsLEkC01xsBxCRxS0T
- O4YEW7u5zZlvPqgc0UPHVzRFeednBtidZffUymhVo5Fi+clZeWRc3la9N8e8Zamn46U0Yn4df
- 92G0hb4OD8cNX4LHvSCg==
+        id S233396AbhINNzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 09:55:48 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:35097 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233217AbhINNzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Sep 2021 09:55:47 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E3E1D580339;
+        Tue, 14 Sep 2021 09:54:29 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute1.internal (MEProxy); Tue, 14 Sep 2021 09:54:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm2; bh=o1rdGWrst3yz3l9o6PKhZvLFS00Y
+        bNnCxVpsc8+ZQ0Q=; b=Tkq2hX5SCFOnZrVbkgcBZ6C6zgNZnqwDeKDEAjc0NlUx
+        tw5bG6yUexZ4EiHLAk4a4XRv0dUTjluL6jp62KFZR+yzY5+2da7QpDhWFfra0FHZ
+        hx+JqOyJ2RaarqAY0q7ysbF7dQH0E7nAspoMq1+jKJhdON/rPKJeS8FKPjXvYN7p
+        AXx0GqctvFlNzuJFcACMJpAZdGaFX/neNQvEwM4Y7+OEuNSI0uiqQY+Xy7u/f/GW
+        gBtxBoQl9Yc5AQWZVZnQ8pFbgvs8ZJnXMm6Lz418NB7BpuS7knvr+VoZlNnBosJK
+        O2Uiwp3kLDlmYZSVbIXabkhOTb5T3gfAAwtD13h6xA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=o1rdGW
+        rst3yz3l9o6PKhZvLFS00YbNnCxVpsc8+ZQ0Q=; b=OTd+/B8/GhaKtCl5w+ORGZ
+        V1Sy7PpckAAeRXVr8xCe8GPuN9wSnI3MjtEPqP43BGveZZaRGDxpad8//sZ7YxFM
+        lO8caKEhcnCAtUsY2d+wzz4gAjlfF9HfvbkrCgdBlzg/VxsvXxmVPS5WO/d63i+f
+        51PPUsBAXUoEtCFNClwnWx7krafITnQN78kI+5gwiN0wvJvQWtNL5rHjDyKNcqMH
+        tuOGqLjWZ/tzYbxPiLelmUNlYMm6lDYh/7eWwP3LXbnjuftEZL7nOlBJdxrGtJcG
+        HVwCMP9cplCcwho7HNWCBbPFd/yDV3lfI/ttXy8RN5176rbt2H6h7v3qpnVXp8pg
+        ==
+X-ME-Sender: <xms:k6lAYdv7JqoISe3lrX5D0y4S16ThaQHVo_KrWlBV9OP8IJOp_dFNXg>
+    <xme:k6lAYWcauth90l5fAWQxijDbpHRN9IK-C1gDWGtoFFZ-nwh_Do6e6VR6OKHX6i7hE
+    3pzGEj0sVOUUl60Z9o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrudegledgieekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeehjefgtddtfeelfeetjeeifeduueehleektdegtdejheeiteeuleehuefh
+    geehgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:lKlAYQwgShuYZRz0nDGskuRWSkl7oNvRViw9Zj43VNfeJePf-eTYPA>
+    <xmx:lKlAYUPZTW9WZLQzjppIYv7a7iuVgDs5dSASbuc6DZKddu8KZlXNEA>
+    <xmx:lKlAYd93X_WmtOjDPurl38ReC6DvgqgDW80CvyTWXHqYGcWEei1eNA>
+    <xmx:lalAYUWubXw0R-fU5jlgsxl97F3gUCmqxtgmvOpoJ-YW2wRfr8qv8A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id C241151C0060; Tue, 14 Sep 2021 09:54:27 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1291-gc66fc0a3a2-fm-20210913.001-gc66fc0a3
+Mime-Version: 1.0
+Message-Id: <479322ce-b0e4-40e4-831e-387415b4e310@www.fastmail.com>
+In-Reply-To: <20210913182550.264165-10-maz@kernel.org>
+References: <20210913182550.264165-1-maz@kernel.org>
+ <20210913182550.264165-10-maz@kernel.org>
+Date:   Tue, 14 Sep 2021 15:54:07 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Marc Zyngier" <maz@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Cc:     "Bjorn Helgaas" <bhelgaas@google.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Lorenzo Pieralisi" <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Stan Skowronek" <stan@corellium.com>,
+        "Mark Kettenis" <kettenis@openbsd.org>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Robin Murphy" <Robin.Murphy@arm.com>, kernel-team@android.com
+Subject: =?UTF-8?Q?Re:_[PATCH_v3_09/10]_iommu/dart:_Exclude_MSI_doorbell_from_PCI?=
+ =?UTF-8?Q?e_device_IOVA_range?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 11, 2021 at 4:57 AM Daniel Palmer <daniel@0x0f.com> wrote:
-> On Sat, 11 Sept 2021 at 04:03, Romain Perier <romain.perier@gmail.com> wrote:
-> >
-> > As proposed by Daniel, I am going to help him to maintain the platform,
-> > so add myself as co-maintainer.
-> >
-> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> > ---
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 3a9a7cbf9456..ad1a0e5a5425 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -2231,6 +2231,7 @@ F:        arch/arm/mach-pxa/mioa701.c
-> >
-> >  ARM/MStar/Sigmastar Armv7 SoC support
-> >  M:     Daniel Palmer <daniel@thingy.jp>
-> > +M:     Romain Perier <romain.perier@gmail.com>
-> >  L:     linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> >  S:     Maintained
-> >  W:     http://linux-chenxing.org/
-> > --
-> > 2.33.0
-> >
->
-> Acked-by: Daniel Palmer <daniel@thingy.jp>
->
-> For everyone else: For MStar/SigmaStar I have a ~350 commit backlog
-> that makes almost everything work on these machines.
-> It's impossible for me to finish up working out the hardware and clean
-> up and push patches without the whole process taking years.
-> Romain stepped up to help out and has been pulling out patches,
-> cleaning them up and pushing them. He deserves to be listed as a
-> maintainer.
 
-Sounds good to me.
 
-One process issue though: These emails were sent 'cc:soc@kernel.org', so
-they end up in patchwork, but I'm guessing they were not actually meant
-for us to apply from there. I'm happy to take merge these patches (or
-a future version of the series) directly from patchwork if that's what you
-both had in mind, but for clarity please either
+On Mon, Sep 13, 2021, at 20:25, Marc Zyngier wrote:
+> The MSI doorbell on Apple HW can be any address in the low 4GB
+> range. However, the MSI write is matched by the PCIe block before
+> hitting the iommu. It must thus be excluded from the IOVA range
+> that is assigned to any PCIe device.
+> 
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
 
-a) drop soc@kernel.org from Cc for patches that are meant for review
-and will be part of a pull request.
+It's not pretty but I'm not aware of any better solution and this should
+work as long as these two are always paired. With the small nit below
+addressed:
 
-or
+Reviewed-by: Sven Peter <sven@svenpeter.dev>
 
-b) put soc@kernel.org in the 'to:' field after they have been reviewed
-and you want them to get merged.
+> ---
+>  drivers/iommu/apple-dart.c          | 25 +++++++++++++++++++++++++
+>  drivers/pci/controller/Kconfig      |  5 +++++
+>  drivers/pci/controller/pcie-apple.c |  4 +++-
+>  3 files changed, 33 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iommu/apple-dart.c b/drivers/iommu/apple-dart.c
+> index 559db9259e65..d1456663688e 100644
+> --- a/drivers/iommu/apple-dart.c
+> +++ b/drivers/iommu/apple-dart.c
+> @@ -721,6 +721,29 @@ static int apple_dart_def_domain_type(struct device *dev)
+>  	return 0;
+>  }
+>  
+> +#define DOORBELL_ADDR	(CONFIG_PCIE_APPLE_MSI_DOORBELL_ADDR & PAGE_MASK)
+> +
+> +static void apple_dart_get_resv_regions(struct device *dev,
+> +					struct list_head *head)
+> +{
+> +#ifdef CONFIG_PCIE_APPLE
 
-Or even better, add an explicit sentence below the '---' line asking
-for the patches to be merged directly into the soc tree when this
-is what you want.
+I think using IS_ENABLED would be better here in case the pcie driver is built as
+a module which would then only define CONFIG_PCIE_APPLE_MODULE AIUI.
 
-FWIW, I'd suggest merging the MAINTAINERS file change as a
-bugfix for 5.15, it's generally better to do these as early as possible
-to make sure any patches reach all the right people.
 
-      Arnd
+Thanks,
+
+
+Sven
