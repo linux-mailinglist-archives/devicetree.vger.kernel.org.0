@@ -2,56 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 808B840A4DE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 05:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B93340A4EE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 05:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235059AbhINDsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Sep 2021 23:48:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59158 "EHLO
+        id S239201AbhIND4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Sep 2021 23:56:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238594AbhINDsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 23:48:50 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC04C061762
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 20:47:33 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x27so25682445lfu.5
-        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 20:47:33 -0700 (PDT)
+        with ESMTP id S238366AbhINDz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Sep 2021 23:55:59 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D733EC061574
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 20:54:42 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id s10so25691759lfr.11
+        for <devicetree@vger.kernel.org>; Mon, 13 Sep 2021 20:54:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=FrBxgBJRIesKND2p4JWvyIyYZLW/EMVyaSJmvlgnc7M=;
-        b=hFHoSCP4ZqBnTi0Je/dZuxWAYVe7ahmUT4ouDeZycYplQc6eWdFD6XLD4NVCulZFWn
-         PLY1K05Cb/vRU8mBrnLE2p2aORqauAvngf2sAIg1fDDu3BfqXGZNvV5uv8/5tUzw/4YG
-         qzqfs3OpWUH8fEA0rF8C67mzCR11vhF0u0qwc=
+        bh=V3UGDU81U9TWNu+b+RTtkfUp8lpGdcxhRFiSbeAytI0=;
+        b=CqVgi5LN+VU9Lng3wgwCbs8J7/30XsJBr33Rnghx1IM/UnhrmUqVsI0nK8UMkkTr7v
+         ArllR5WC8kHE946ELuMIy4wldZrau3NxjIQLzgxEzl0dU5ttCX4IxMT0v9pYDvtRd4gI
+         gnuXV3F+191DgI51Qf07etXbbLodoicx8aIQc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FrBxgBJRIesKND2p4JWvyIyYZLW/EMVyaSJmvlgnc7M=;
-        b=It0vvcHpyBWGCfwqod5HDiQJNU1t4wx09DFkcljmoo52r0XifAW0tgov9vfcweryEy
-         rZYa2nUeiAVSc3FETh3fQifsaIiSH3C1RV17n1Yp1iBvh9vZTBG3+Xfvwi/XT/rTrWyS
-         wV344MykcUcBmrx6yoeGkMj142il1kAnSWUNTHLR53c40KTVU+RCBdAppwDv3PsKmwcn
-         txD7ycvoc9OLLs17IGkzo0sLVJ887gtGVKWD87vQZw4Hp6RoQ9F0yI2VWlusZGa7BoFl
-         m9zLRK/1U7xt0dh7QSdcaja4J2F66oJy++xEuAwXZGoA3H3jVXoHPYcvvR56rutqrcJj
-         VMLg==
-X-Gm-Message-State: AOAM5334HMgkEOR0HqMR+qNgnDvFZjlnLsmxEPqzWUw/8fvYg1kTWR3X
-        xhkDtw51+dfbujd69eVH7Wz17v0eMS/XvWSzOUPFWA==
-X-Google-Smtp-Source: ABdhPJw482RoH9R6kRaipVn2e5KT3JCWphlUZk+qJMjpQ/6Io5WzkeCO15gJ697X6Umup8yBeDalVv6S5cdtlV2Q7OQ=
-X-Received: by 2002:ac2:4204:: with SMTP id y4mr11315813lfh.501.1631591251353;
- Mon, 13 Sep 2021 20:47:31 -0700 (PDT)
+        bh=V3UGDU81U9TWNu+b+RTtkfUp8lpGdcxhRFiSbeAytI0=;
+        b=l04pyuVT/3bUvnc2mGzu/571G5pDQ6UVeLs+E59UOvBlRACY1SEPqq/gWfkmcuryff
+         OFeFNLiQ0uMeXxNG6IQV1NVasRtn/2flUS68nz1KxAfHvF+d14h7BjELOrQhAxs+7o9D
+         nbOphSR9/ZXc0cq4q1oBVM2BszQXytSXnTrMjdDC/xl+H3xOh5s2hEwhMjaiFQZuaMIZ
+         dzbYwOXAcT3l8/1UAledj7UhiMeV/8gbGevLvPES1Wj/Wy+fJ3BPIrdp7YFdbeHPMgii
+         9ByAHew4NwMbrPDrDz0BBmS4hx4AUCPNDPFnotS4GOtvaVNjFeoocWdbtH0uWBfPqr22
+         I8lg==
+X-Gm-Message-State: AOAM5320Aig26pBDn+tdQCmx9KRF7ivYoGBPn0mDETRcKknLWZGpqlWg
+        Auh7S7sAYTBcJMonY5PjNTTQVKM3HWGwFyOoYBuitg==
+X-Google-Smtp-Source: ABdhPJz06wxSNftrXxbf9gQccwFZoT4p6vzzDgTrPH3HmQOLPaulrUefmGD48EIhURQIzkD+/6vrYZupUg2JBcfAYEQ=
+X-Received: by 2002:a19:c3d3:: with SMTP id t202mr9045097lff.678.1631591681299;
+ Mon, 13 Sep 2021 20:54:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210820111504.350-1-chun-jie.chen@mediatek.com>
- <20210820111504.350-20-chun-jie.chen@mediatek.com> <CAGXv+5FuLTw9jmXEifkfKKYiN-vur3jBbwZWjL5m8vTkoP6VMA@mail.gmail.com>
- <9845ce7c9c2236210d9f730a00eec7071572a0a4.camel@mediatek.com>
-In-Reply-To: <9845ce7c9c2236210d9f730a00eec7071572a0a4.camel@mediatek.com>
+References: <20210914021633.26377-1-chun-jie.chen@mediatek.com> <20210914021633.26377-8-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210914021633.26377-8-chun-jie.chen@mediatek.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 14 Sep 2021 11:47:20 +0800
-Message-ID: <CAGXv+5Es7PjoBaKQ3u3zU3oxof3j8Lr=Xf2E0-WF51Mn8Y4TSg@mail.gmail.com>
-Subject: Re: [v2 19/24] clk: mediatek: Add MT8195 vencsys clock support
+Date:   Tue, 14 Sep 2021 11:54:30 +0800
+Message-ID: <CAGXv+5FcTbaR2yXK3OB+iTgYy1OUpDt2FKQw7bA3nGdk4jKxZg@mail.gmail.com>
+Subject: Re: [v3 07/24] clk: mediatek: Add MT8195 topckgen clock support
 To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Nicolas Boichat <drinkcat@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
@@ -69,157 +67,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 10, 2021 at 7:09 PM Chun-Jie Chen
+On Tue, Sep 14, 2021 at 10:17 AM Chun-Jie Chen
 <chun-jie.chen@mediatek.com> wrote:
 >
-> On Wed, 2021-08-25 at 19:03 +0800, Chen-Yu Tsai wrote:
-> > On Fri, Aug 20, 2021 at 7:31 PM Chun-Jie Chen
-> > <chun-jie.chen@mediatek.com> wrote:
-> > >
-> > > Add MT8195 vencsys clock controller which provide clock gate
-> > > control for video encoder.
-> > >
-> > > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> > > ---
-> > >  drivers/clk/mediatek/Makefile          |  2 +-
-> > >  drivers/clk/mediatek/clk-mt8195-venc.c | 69
-> > > ++++++++++++++++++++++++++
-> > >  2 files changed, 70 insertions(+), 1 deletion(-)
-> > >  create mode 100644 drivers/clk/mediatek/clk-mt8195-venc.c
-> > >
-> > > diff --git a/drivers/clk/mediatek/Makefile
-> > > b/drivers/clk/mediatek/Makefile
-> > > index 3c8c8cdbd3ef..82ffcc4f2c52 100644
-> > > --- a/drivers/clk/mediatek/Makefile
-> > > +++ b/drivers/clk/mediatek/Makefile
-> > > @@ -82,6 +82,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-
-> > > mt8192-vdec.o
-> > >  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
-> > >  obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-
-> > > mt8195-topckgen.o clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o clk-
-> > > mt8195-cam.o \
-> > >                                         clk-mt8195-ccu.o clk-
-> > > mt8195-img.o clk-mt8195-ipe.o clk-mt8195-mfg.o clk-mt8195-
-> > > scp_adsp.o \
-> > > -                                       clk-mt8195-vdec.o clk-
-> > > mt8195-vdo0.o clk-mt8195-vdo1.o
-> > > +                                       clk-mt8195-vdec.o clk-
-> > > mt8195-vdo0.o clk-mt8195-vdo1.o clk-mt8195-venc.o
-> > >  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
-> > >  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-> > > diff --git a/drivers/clk/mediatek/clk-mt8195-venc.c
-> > > b/drivers/clk/mediatek/clk-mt8195-venc.c
-> > > new file mode 100644
-> > > index 000000000000..10702a4ad5ff
-> > > --- /dev/null
-> > > +++ b/drivers/clk/mediatek/clk-mt8195-venc.c
-> > > @@ -0,0 +1,69 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > > +//
-> > > +// Copyright (c) 2021 MediaTek Inc.
-> > > +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> > > +
-> > > +#include "clk-gate.h"
-> > > +#include "clk-mtk.h"
-> > > +
-> > > +#include <dt-bindings/clock/mt8195-clk.h>
-> > > +#include <linux/clk-provider.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +static const struct mtk_gate_regs venc_cg_regs = {
-> > > +       .set_ofs = 0x4,
-> > > +       .clr_ofs = 0x8,
-> > > +       .sta_ofs = 0x0,
-> > > +};
-> > > +
-> > > +#define GATE_VENC(_id, _name, _parent, _shift)                 \
-> > > +       GATE_MTK(_id, _name, _parent, &venc_cg_regs, _shift,
-> > > &mtk_clk_gate_ops_setclr_inv)
-> > > +
-> > > +static const struct mtk_gate venc_clks[] = {
-> > > +       GATE_VENC(CLK_VENC_LARB, "venc_larb", "top_venc", 0),
-> > > +       GATE_VENC(CLK_VENC_VENC, "venc_venc", "top_venc", 4),
-> > > +       GATE_VENC(CLK_VENC_JPGENC, "venc_jpgenc", "top_venc", 8),
-> > > +       GATE_VENC(CLK_VENC_JPGDEC, "venc_jpgdec", "top_venc", 12),
-> > > +       GATE_VENC(CLK_VENC_JPGDEC_C1, "venc_jpgdec_c1", "top_venc",
-> > > 16),
-> > > +       GATE_VENC(CLK_VENC_GALS, "venc_gals", "top_venc", 28),
-> > > +};
-> > > +
-> > > +static const struct mtk_gate venc_core1_clks[] = {
-> > > +       GATE_VENC(CLK_VENC_CORE1_LARB, "venc_core1_larb",
-> > > "top_venc", 0),
-> > > +       GATE_VENC(CLK_VENC_CORE1_VENC, "venc_core1_venc",
-> > > "top_venc", 4),
-> > > +       GATE_VENC(CLK_VENC_CORE1_JPGENC, "venc_core1_jpgenc",
-> > > "top_venc", 8),
-> > > +       GATE_VENC(CLK_VENC_CORE1_JPGDEC, "venc_core1_jpgdec",
-> > > "top_venc", 12),
-> > > +       GATE_VENC(CLK_VENC_CORE1_JPGDEC_C1, "venc_core1_jpgdec_c1",
-> > > "top_venc", 16),
-> > > +       GATE_VENC(CLK_VENC_CORE1_GALS, "venc_core1_gals",
-> > > "top_venc", 28),
-> >
-> > The two hardware blocks look the same. Are there any actual
-> > differences?
+> Add MT8195 topckgen clock controller which provides muxes, dividers
+> to handle variety clock selection in other IP blocks.
 >
-> These two hardware blocks are same, like venc core0 and core1.
-> Based on performance requirement we can choose to run one core or two
-> cores.
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
 
-What I meant was "are these two clock controllers the same"? If so
-then we shouldn't be using compatible strings to distinguish them.
-
-ChenYu
-
-> Thanks!
-> Best Regards,
-> Chun-Jie
->
-> > I am somewhat skeptical about using different compatible strings just
-> > to provide different clock names. This is normally handled with
-> > "clock-output-names" properties in the device tree.
-> >
-> > ChenYu
-> >
-> > > +};
-> > > +
-> > > +static const struct mtk_clk_desc venc_desc = {
-> > > +       .clks = venc_clks,
-> > > +       .num_clks = ARRAY_SIZE(venc_clks),
-> > > +};
-> > > +
-> > > +static const struct mtk_clk_desc venc_core1_desc = {
-> > > +       .clks = venc_core1_clks,
-> > > +       .num_clks = ARRAY_SIZE(venc_core1_clks),
-> > > +};
-> > > +
-> > > +static const struct of_device_id of_match_clk_mt8195_venc[] = {
-> > > +       {
-> > > +               .compatible = "mediatek,mt8195-vencsys",
-> > > +               .data = &venc_desc,
-> > > +       }, {
-> > > +               .compatible = "mediatek,mt8195-vencsys_core1",
-> > > +               .data = &venc_core1_desc,
-> > > +       }, {
-> > > +               /* sentinel */
-> > > +       }
-> > > +};
-> > > +
-> > > +static struct platform_driver clk_mt8195_venc_drv = {
-> > > +       .probe = mtk_clk_simple_probe,
-> > > +       .driver = {
-> > > +               .name = "clk-mt8195-venc",
-> > > +               .of_match_table = of_match_clk_mt8195_venc,
-> > > +       },
-> > > +};
-> > > +builtin_platform_driver(clk_mt8195_venc_drv);
-> > > --
-> > > 2.18.0
-> > > _______________________________________________
-> > > Linux-mediatek mailing list
-> > > Linux-mediatek@lists.infradead.org
-> > >
-> https://urldefense.com/v3/__http://lists.infradead.org/mailman/listinfo/linux-mediatek__;!!CTRNKA9wMg0ARbw!y1_g6m5bndRYKNdAsx1SEqMln7Rc-AmZ63Tn_4fTkT24K04mXhjGMOYcO1ew0k99Y72C$
-> > >
->
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
