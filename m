@@ -2,203 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80ED540A862
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 09:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A872140A893
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 09:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237153AbhINHqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 03:46:35 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:45971 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237252AbhINHpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 03:45:44 -0400
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id AC9E4100011;
-        Tue, 14 Sep 2021 07:44:22 +0000 (UTC)
-Date:   Tue, 14 Sep 2021 09:44:22 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S231834AbhINHvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 03:51:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229933AbhINHvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 03:51:07 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947DBC061A06
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 00:46:05 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id e16so11371524pfc.6
+        for <devicetree@vger.kernel.org>; Tue, 14 Sep 2021 00:46:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=yUIdWvjj9q23RkzkQJPx6zsYTa4SnqwX2qzQZjHmW4w=;
+        b=byiAg5C8jSm77FbYRDqhrcvAwhZ5B5wN50oDH4cED0QvxH2Y9uWex/0V6902ETBKR2
+         /0HZ9TB8ARBlldDeoINQE8KiP2/FWuqnChBIK26Jmy5gri20OI0BDog+LR9x/MzZsseD
+         7edGRUfeFi4X5yJ5S4bO3c7xMGc4VghXeQW5gYnSzSPQEatM7xy01godPiro8yt+iKFD
+         51VzXW+oUEkxbitH1NVRj0DzjqjBRV3b/kd/iYojQUz3T22wiN8iuhk+Vx4nJrOtncF8
+         /pdwtcRe4B2ZT2xyOeba2m0/cw0TUHO81yFNTUtH/m+c5q2uXvw3CNZVa9X0wL9Ek5g9
+         Z1dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=yUIdWvjj9q23RkzkQJPx6zsYTa4SnqwX2qzQZjHmW4w=;
+        b=ywfetgxnvEO0fuFttifg34FKzo/0gywgzyh21wid5+k2osqo68TJneDHGmyBp1tO5z
+         jFDH3UDjNFy0t/JmcyHbIXhLv/CilpzqO0YSgkGjrxUdWUKD1jlXVruq8O1Z162QT5ER
+         1W1wVGW+RPyyeLm4MWng79IDcAMp1KLw1NspnKvppxkvPEUC4pVoFV4AinZyBbLFm4S/
+         BtkOn+XOJTwbCfrwuczv960vOSx9P/KYIYOe4/oFMVN28uh7X+YsmjV7bWBFJ9PjJOEF
+         CeOMQSxQL+NyTj4KLdpNtmtTXO1r6aQe/kU+Fl28neOaflPqwJ3O4p2TmrdwDhXNf2jI
+         +lwA==
+X-Gm-Message-State: AOAM533IfHRB+TQrhtfRBB2rdE8684QXvZO4E74qW3z7d2Imd128A2F6
+        WqexG1mcEBywk7WFS3defCq/MD8NFiS5kA==
+X-Google-Smtp-Source: ABdhPJxnzOsXpAMcB0T5OdV0027JIXHuVA1vnJKKgl1uxVCUqMD4sqwjpcbaaj6TLZb7aZyMZFjhJA==
+X-Received: by 2002:a65:434c:: with SMTP id k12mr14497088pgq.17.1631605565093;
+        Tue, 14 Sep 2021 00:46:05 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id u16sm6696923pfn.68.2021.09.14.00.46.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 00:46:04 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 17/22] dt-bindings: media: Add Allwinner A31 ISP bindings
- documentation
-Message-ID: <YUBS1sdHKUMZx6gx@aptenodytes>
-References: <20210910184147.336618-1-paul.kocialkowski@bootlin.com>
- <20210910184147.336618-18-paul.kocialkowski@bootlin.com>
- <20210913081808.esgqvz4eeatp4hkp@gilmour>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="x/ZjxzLvCjsZxqAS"
-Content-Disposition: inline
-In-Reply-To: <20210913081808.esgqvz4eeatp4hkp@gilmour>
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH 0/2] Add pinctrl driver for QCM2290
+Date:   Tue, 14 Sep 2021 15:45:40 +0800
+Message-Id: <20210914074542.12957-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The series adds QCM2290 pinctrl driver and bindings.
 
---x/ZjxzLvCjsZxqAS
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Shawn Guo (2):
+  dt-bindings: pinctrl: qcom: Add QCM2290 pinctrl bindings
+  pinctrl: qcom: Add QCM2290 pinctrl driver
 
-Hi,
+ .../pinctrl/qcom,qcm2290-pinctrl.yaml         |  186 ++
+ drivers/pinctrl/qcom/Kconfig                  |    8 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-qcm2290.c        | 1552 +++++++++++++++++
+ 4 files changed, 1747 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qcm2290-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-qcm2290.c
 
-On Mon 13 Sep 21, 10:18, Maxime Ripard wrote:
-> On Fri, Sep 10, 2021 at 08:41:42PM +0200, Paul Kocialkowski wrote:
-> > This introduces YAML bindings documentation for the Allwinner A31 Image
-> > Signal Processor (ISP).
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > ---
-> >  .../media/allwinner,sun6i-a31-csi.yaml        |   2 +-
-> >  .../media/allwinner,sun6i-a31-isp.yaml        | 111 ++++++++++++++++++
-> >  2 files changed, 112 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
-un6i-a31-isp.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
-1-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-cs=
-i.yaml
-> > index f4a686b77a38..c60f6b5403fa 100644
-> > --- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.y=
-aml
-> > @@ -1,4 +1,4 @@
-> > -# SPDX-License-Identifier: GPL-2.0
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >  %YAML 1.2
-> >  ---
-> >  $id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-csi.yaml#
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a3=
-1-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-is=
-p.yaml
-> > new file mode 100644
-> > index 000000000000..a0f82f150e90
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.y=
-aml
-> > @@ -0,0 +1,111 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree B=
-indings
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - allwinner,sun6i-a31-isp
-> > +      - allwinner,sun8i-v3s-isp
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus Clock
-> > +      - description: Module Clock
-> > +      - description: DRAM Clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +      - const: ram
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: CSI0 input port
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +        additionalProperties: false
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: CSI1 input port
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +        additionalProperties: false
->=20
-> port@0 and port@1 required?
+-- 
+2.17.1
 
-I'd say just one of them, does that make sense?
-
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
->=20
-> ports required?
-
-I think so yes, so I'll add it there.
-
-Paul
-
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---x/ZjxzLvCjsZxqAS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmFAUtYACgkQ3cLmz3+f
-v9EiZQgAncwC5/lF0lGIbrTPuu+Q9LnR4LGlxrt2xaOkbmtxVfCuQexU1wx2+C0m
-X+H+fuo3Eq8DN3lFIeAmXG03mYFoVJj8kPybnE6K9e48LQJ70/ahwK7MueZQVuzO
-PDGmIDVxWJtGSbbPUTedQnlYgE+eVzqfbedRrdeYFGRdrUSS9pbO4kW/4lm0xkZW
-UMGcam8bE8v4iyc77LBdvX1cNtexR/PD4L7aiCD0zPkG35iHwzZcEPuXmhuyg/27
-ksjDM1DurT9+zJMQTOv09ii1qJr3jaN1t6l7THV3hOYupapueCU1G/ILqb2Wd4mK
-CSZ2qYlFM6vc5HrIf0v671i9ViGatQ==
-=gBHG
------END PGP SIGNATURE-----
-
---x/ZjxzLvCjsZxqAS--
