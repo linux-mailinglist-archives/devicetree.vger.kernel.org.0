@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19BB940B22F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 16:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFF440B26F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 17:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234229AbhINO4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 10:56:20 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:45092 "EHLO
+        id S233143AbhINPEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 11:04:43 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:46552 "EHLO
         esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231816AbhINO4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 10:56:20 -0400
+        with ESMTP id S233823AbhINPEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 11:04:42 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1631631302; x=1663167302;
+  t=1631631805; x=1663167805;
   h=subject:to:cc:references:from:message-id:date:
    mime-version:in-reply-to:content-transfer-encoding;
-  bh=IjFR4kRJRpH81PfAAqBxjNLPUPgdsFh5sAVjP2zjExY=;
-  b=rTYbQKL5cxYvwpacP+7glLOtXcdXpkdjwiznwhlSDv45t/QCY1wTfexK
-   3GDIV6dAm402KfQg7JV5zNIKYscr1nemZAajnYM/MTCgJFjS9gfTwKG8u
-   h4vjjL+7ZrnqcUdgOj0hDq2/FJzNt0uYMwohtARLN+69FUh5UYelrFgMS
-   dw0DKka1MUR4qeW3kQ0Zizqqp2WUMGsYzqD51y/WRECLf/8QVQShffl7z
-   szBHdkMyB3R24a7Z44itgcnBQKQDaO1a40zgjEbJGfB0e6sRYsKBWmz97
-   /Hwezqy0wWgW4/Eml5W/h+45EbmInwvg0jX3hT9W91EwGMY5CsbDTT5R8
-   g==;
-IronPort-SDR: WgsuTRdUEvBb/bBim9+6LQs+HiHsZAD93+sz2jBX3vGvxDlpezogYYT6614ZRDfbRJAu/V3l7n
- zMUGxzTT1KhojNVkC0bpFpO+VH6GSrcXthkgeAXzRCSTMIP8o9bRheXmuTn08e6smYaiTkACGy
- 5aAvyexFhHvpvEtXSCUzn0TF43dLoyQEFaX74EjfsbxCvAaA4MfU8023skkrbwdEpFCIcuWJaK
- EiMrAZzg3fZplCXRe9Tm5XWFsaxBb0MCAaSbKprcmsFoB9VxCSA1qfUJQzvjFLW8ECzn7GQ+cV
- h31XJL/EBml9VkD0Xvb06s1M
+  bh=qz4dR1CgzYGGT0z26GzDEuB5PYVw4P8xOIwzgKSUxx4=;
+  b=Bz27UoGJg6mzzCDHrC2+KSczIFYix7I/78MIdO7yRS5b8Oy0+pFhvIpu
+   vAO/aVfXE0dIVWMkP1vgrbH309d0XjHfKiDF0OPRqQyvzJV5O7l8ZAvkj
+   465LvREbdoI7lacSl4z8SSfAJD5qZnaqdJkpPJZUSGix6r3EmXqyw9HgC
+   DsEf96p3etGWRKaJd6fGgHCbCtY9yEfXDBA/LFu3/x0s/P3PHglr3Kphv
+   ZCzGb2VdBpu/0eP1KZ9qVRvr2dxkHEOaV6i3k2EACd2X3l+OfGrIAjm7p
+   TCJLG1OAkiATnFc/IV4JcQQlMM4ZaG2ICPF/rh+3bvXt2veS5CqBQVaWB
+   A==;
+IronPort-SDR: K15dS+qzzbY1xjhLJL7gX16f92HHzS9PV9OYHL1A/6qcMySbagr3Bu+xptlD+wjBi7Fr7HgxLT
+ hThTAT6UqAMC6uybEvvEjiCWDl53Dz7mvAqvRShRnsLcTBHVCyOudLy0Y+427EwHvKbW2LeiKE
+ 4g3pyGhVbimKszgkab2GxvCN05jmqJCM4sPqjCJxgqVxJrgSughqNdjaKUz0nluj30oSMlaa4c
+ d6bz5ZizMRIf9LKJp7XbM/FQYxL4g8O3G828695PSSHXhqgIaBCrnO1eDOnj10t6ukKyoeH9Zu
+ zqfwpqtOKm+6oe95suo1tK3n
 X-IronPort-AV: E=Sophos;i="5.85,292,1624345200"; 
-   d="scan'208";a="144049782"
+   d="scan'208";a="129271935"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Sep 2021 07:55:01 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Sep 2021 08:03:24 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 14 Sep 2021 07:55:01 -0700
-Received: from [10.171.246.26] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 14 Sep 2021 07:54:59 -0700
-Subject: Re: [PATCH v2 0/4] ARM: at91: add new nodes to DT and fix for PM
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <robh+dt@kernel.org>, <linux@armlinux.org.uk>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210823131915.23857-1-claudiu.beznea@microchip.com>
+ 15.1.2176.14; Tue, 14 Sep 2021 08:03:18 -0700
+Received: from [10.171.246.26] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Tue, 14 Sep 2021 08:03:16 -0700
+Subject: Re: [PATCH] ARM: dts: at91: sama5d2_som1_ek: disable ISC node by
+ default
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+CC:     <robh+dt@kernel.org>, <ludovic.desroches@microchip.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210902121358.503589-1-eugen.hristev@microchip.com>
 From:   Nicolas Ferre <nicolas.ferre@microchip.com>
 Organization: microchip
-Message-ID: <2406a3ff-9fe0-441e-b4c8-eb8d0e5f7027@microchip.com>
-Date:   Tue, 14 Sep 2021 16:54:59 +0200
+Message-ID: <c3afbdb3-ad68-f277-7405-9e98af1c8f97@microchip.com>
+Date:   Tue, 14 Sep 2021 17:03:16 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210823131915.23857-1-claudiu.beznea@microchip.com>
+In-Reply-To: <20210902121358.503589-1-eugen.hristev@microchip.com>
 Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -62,42 +63,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2021 at 15:19, Claudiu Beznea wrote:
-> Hi,
+On 02/09/2021 at 14:13, Eugen Hristev wrote:
+> Without a sensor node, the ISC will simply fail to probe, as the
+> corresponding port node is missing.
+> It is then logical to disable the node in the devicetree.
+> If we add a port with a connection to a sensor endpoint, ISC can be enabled.
 > 
-> The following patches enable UDDRC, DDR3 PHY, SECURAM and SHDWC IPs
-> on SAMA7G5.
-> 
-> Besides this patch 1/1 avoid the panic on PM initialization code allowing
-> the system to boot when PM is enabled but not enough information is
-> provided in DT.
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
 
+Makes sense:
 Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-Whole series queued to at91-fixes for 5.15 as without these patches the 
-SAMA7G5 don't have power management at full capacity.
+And queued for at91-fixes in 5.15 as there is no point continuing to 
+have a failing probe on this board.
 
-Best regards,
+Thanks, best regards,
    Nicolas
 
-> Changes in v2:
-> - changes cover letter title from
->    "ARM: dts: at91: enable ips for sama7g5" to
->    "ARM: at91: add new nodes to DT and fix for PM"
-> - update the device tree patches title and description
-> - added patch "ARM: at91: pm: do not panic if ram controllers are not
->    enabled"
+> ---
+>   arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 1 -
+>   1 file changed, 1 deletion(-)
 > 
-> Claudiu Beznea (4):
->    ARM: at91: pm: do not panic if ram controllers are not enabled
->    ARM: dts: at91: sama7g5: add ram controllers
->    ARM: dts: at91: sama7g5: add securam node
->    ARM: dts: at91: sama7g5: add shdwc node
-> 
->   arch/arm/boot/dts/at91-sama7g5ek.dts |  9 ++++
->   arch/arm/boot/dts/sama7g5.dtsi       | 34 ++++++++++++
->   arch/arm/mach-at91/pm.c              | 78 ++++++++++++++++++++++------
->   3 files changed, 105 insertions(+), 16 deletions(-)
+> diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+> index 614999dcb990..cd4672501add 100644
+> --- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
+> @@ -71,7 +71,6 @@ apb {
+>   			isc: isc@f0008000 {
+>   				pinctrl-names = "default";
+>   				pinctrl-0 = <&pinctrl_isc_base &pinctrl_isc_data_8bit &pinctrl_isc_data_9_10 &pinctrl_isc_data_11_12>;
+> -				status = "okay";
+>   			};
+>   
+>   			qspi1: spi@f0024000 {
 > 
 
 
