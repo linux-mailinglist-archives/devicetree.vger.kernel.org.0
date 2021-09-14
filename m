@@ -2,135 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D95840BA2C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 23:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 370B840BA54
+	for <lists+devicetree@lfdr.de>; Tue, 14 Sep 2021 23:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235291AbhINVWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Sep 2021 17:22:53 -0400
-Received: from mx4.wp.pl ([212.77.101.11]:40327 "EHLO mx4.wp.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235077AbhINVWq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Sep 2021 17:22:46 -0400
-Received: (wp-smtpd smtp.wp.pl 15615 invoked from network); 14 Sep 2021 23:21:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-          t=1631654484; bh=NI1s3fyUzKFnJoED0B09JtxVWEJcupkI0XVp/SgGAfw=;
-          h=From:To:Subject;
-          b=cCrJANci5DZlDbkrA82osLhdrQPRxOHO8phkpAMptkt23yfUK3Oh3zYMFw5mUD2fF
-           k3FJgLXCJ9/oDxckIVkzuMLpfIXRp9LnUEL3cE814flVUFyiNSlS21GCqw1ZxBREog
-           dQSIg6x8/vafCqTmRZXILt5JUUqeRW7pqOsV25Vs=
-Received: from 46.204.52.243.nat.umts.dynamic.t-mobile.pl (HELO LAPTOP-OLEK.Free) (olek2@wp.pl@[46.204.52.243])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <john@phrozen.org>; 14 Sep 2021 23:21:24 +0200
-From:   Aleksander Jan Bajkowski <olek2@wp.pl>
-To:     john@phrozen.org, tsbogend@alpha.franken.de, olek2@wp.pl,
-        maz@kernel.org, ralf@linux-mips.org, ralph.hempel@lantiq.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        hauke@hauke-m.de, dev@kresin.me, arnd@arndb.de, jgg@ziepe.ca,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 8/8] dt-bindings: net: lantiq: Add the burst length properties
-Date:   Tue, 14 Sep 2021 23:21:05 +0200
-Message-Id: <20210914212105.76186-8-olek2@wp.pl>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210914212105.76186-1-olek2@wp.pl>
-References: <20210914212105.76186-1-olek2@wp.pl>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-MailID: 3f16cb31ff38d9575689798d722fbd40
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [4ZN0]                               
+        id S234462AbhINVgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Sep 2021 17:36:53 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:37755 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232047AbhINVgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Sep 2021 17:36:53 -0400
+Received: by mail-ot1-f42.google.com with SMTP id i3-20020a056830210300b0051af5666070so597138otc.4;
+        Tue, 14 Sep 2021 14:35:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=nV9xXSrBUTmCzf5AiBkL6FDLbv6dEG3GHOqZwFkkyGw=;
+        b=0FSH7vO/CiYKfFUKQCtw65wJmeEnSFxiem01S3pXZXxCktDkcLClrfuGPL9ptzDKK4
+         4g9zLsDL/YhroSlItOVstKS3H2h+BGo5FvR/SHLwypSNhnq0rm5ItazFAnd3o5NmVj2X
+         VwE7FdUm1WlJVP29gfW2r6mnG0Q7KcC+4fXdBVfq6ZMECfG0qbf2RTou2p0zvcXkQi0O
+         6Compn7RoOBUR236eOR6COoOmNDk9v3cxj5ZcYsLvVa3zcAhwKRa1c/TwMQ5onB7ZBmS
+         1poaGwqGhK554CxyhTFOvOOphQW2D/uGQdF04sQD1rAKiYpJaaGYU/EOZLp/k/eMAEVr
+         ddfQ==
+X-Gm-Message-State: AOAM532vtz8wJJrc3geVKqvzXoww3ZirJHzHeQrQYLvJ+XHyOAG2bcMI
+        UyDmUGgpFTj1FT8LjbYOBA==
+X-Google-Smtp-Source: ABdhPJyaI54mbxvyEqPJ8hb3jhXyeZejVuYhsxqlt4be67wj2aws/2/5Mlq8Sb+XvAJVlxqMGN3YIg==
+X-Received: by 2002:a9d:7289:: with SMTP id t9mr16704656otj.273.1631655335239;
+        Tue, 14 Sep 2021 14:35:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v11sm2916500oto.22.2021.09.14.14.35.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Sep 2021 14:35:34 -0700 (PDT)
+Received: (nullmailer pid 4008885 invoked by uid 1000);
+        Tue, 14 Sep 2021 21:35:33 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Tom Gall <tom.gall@linaro.org>, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?utf-8?q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+In-Reply-To: <20210914155607.14122-6-semen.protsenko@linaro.org>
+References: <20210914155607.14122-1-semen.protsenko@linaro.org> <20210914155607.14122-6-semen.protsenko@linaro.org>
+Subject: Re: [PATCH 5/6] dt-bindings: clock: Document Exynos850 CMU bindings
+Date:   Tue, 14 Sep 2021 16:35:33 -0500
+Message-Id: <1631655333.292425.4008884.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The new added properties are used for configuring burst length.
+On Tue, 14 Sep 2021 18:56:06 +0300, Sam Protsenko wrote:
+> Provide dt-schema documentation for Exynos850 SoC clock controller.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  .../clock/samsung,exynos850-clock.yaml        | 190 ++++++++++++++++++
+>  1 file changed, 190 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> 
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- .../bindings/net/lantiq,etop-xway.yaml           | 16 ++++++++++++++++
- .../bindings/net/lantiq,xrx200-net.yaml          | 16 ++++++++++++++++
- 2 files changed, 32 insertions(+)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-index 4412abfb4987..437502c5ca96 100644
---- a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-+++ b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-@@ -29,6 +29,18 @@ properties:
-       - const: tx
-       - const: rx
- 
-+  lantiq,tx-burst-length:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      TX programmable burst length.
-+    enum: [2, 4, 8]
-+
-+  lantiq,rx-burst-length:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      RX programmable burst length.
-+    enum: [2, 4, 8]
-+
-   phy-mode: true
- 
- required:
-@@ -37,6 +49,8 @@ required:
-   - interrupt-parent
-   - interrupts
-   - interrupt-names
-+  - lantiq,tx-burst-length
-+  - lantiq,rx-burst-length
-   - phy-mode
- 
- additionalProperties: false
-@@ -49,5 +63,7 @@ examples:
-         interrupt-parent = <&icu0>;
-         interrupts = <73>, <78>;
-         interrupt-names = "tx", "rx";
-+        lantiq,tx-burst-length = <8>;
-+        lantiq,rx-burst-length = <8>;
-         phy-mode = "rmii";
-     };
-diff --git a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-index 7bc074a42369..16d831f22063 100644
---- a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-+++ b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-@@ -29,6 +29,18 @@ properties:
-       - const: tx
-       - const: rx
- 
-+  lantiq,tx-burst-length:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      TX programmable burst length.
-+    enum: [2, 4, 8]
-+
-+  lantiq,rx-burst-length:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      RX programmable burst length.
-+    enum: [2, 4, 8]
-+
-   '#address-cells':
-     const: 1
- 
-@@ -41,6 +53,8 @@ required:
-   - interrupt-parent
-   - interrupts
-   - interrupt-names
-+  - lantiq,tx-burst-length
-+  - lantiq,rx-burst-length
-   - "#address-cells"
-   - "#size-cells"
- 
-@@ -56,4 +70,6 @@ examples:
-         interrupt-parent = <&icu0>;
-         interrupts = <73>, <72>;
-         interrupt-names = "tx", "rx";
-+        lantiq,tx-burst-length = <8>;
-+        lantiq,rx-burst-length = <8>;
-     };
--- 
-2.30.2
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/samsung,exynos850-clock.example.dt.yaml:0:0: /example-2/serial@13820000: failed to match any schema with compatible: ['samsung,exynos850-uart']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1528063
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
