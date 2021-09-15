@@ -2,265 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 532AE40C9CE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 18:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADBB340CA54
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 18:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbhIOQMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 12:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55476 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbhIOQMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 12:12:51 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97192C061574;
-        Wed, 15 Sep 2021 09:11:32 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id w19-20020a17090aaf9300b00191e6d10a19so2587374pjq.1;
-        Wed, 15 Sep 2021 09:11:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kQO6nJ7xYUr/Ykm70q0a3iQ3nfJt+frCs5YZoOVN9zY=;
-        b=LsLZ53W19vXphqy0E7nrOjzeG2Wbsso/8h3TJIIfQQRuc0RUgbveL6lTIGCryK5ICK
-         dH2BmynoDBTi13Srk/l05UDc7tV++8V9MfHd6mfmt2pVAbzr3mlqvcRvKKUh8pFKOoZ8
-         wW2ew25ZOQkBSXbDgqEfZHJ75rRJFC9eHN0Rq4SqWn5fGx2l+SbTSH9FB6bzcWnk7GiL
-         OoPO5p8/W+2w+oW98TmIQmrAfw1wIr3CtAidISGz1qcygyjqeK/WUqaI82lDKe+gLvI6
-         EVVO7AWLx2ThQWqH/053b9kOTd6fFdc64DAAc5YK643X1SrL5wr7gPjKmuTHe9VB/zRS
-         QyOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kQO6nJ7xYUr/Ykm70q0a3iQ3nfJt+frCs5YZoOVN9zY=;
-        b=yNPsuqc9xqczy6dr1THQLQY/3KrbczB9cOpBXA9ltp4+xvzHJHHUn7uip8eRqmtrBg
-         BJ6TAHpZlFFFSrHP8yAt0u4uYZ69BW+OIbyuAhZ25wbB40isvyMlpz9rAfSLWu/SCDPA
-         E+7LGn55Uyuu+kGRJ4prREfoWGN99z2sm742RR6UIrDK8aSjcIgR9ZYAU+cwwXhgES36
-         ueLg9Vb2TPv+3aAQknb72+1fnq0G6MTxmoiYbM3g6W/TVn8ozUTYEcwVsW3gxl6xe3UM
-         8A25qeyQQBVjx9DrDOhzoeE3uaEudsbqGN8pfv9wcZ84Qorhcmq2BgiMFUTbFA7TgUqN
-         gm3Q==
-X-Gm-Message-State: AOAM531G+ehNo6tGr2M60BKwablD5au3Z/uCbEwdcAVxm+oLP2LY0dCo
-        VYeN9GbmyQSFlVMgwvBVNc5rLQiMQkY=
-X-Google-Smtp-Source: ABdhPJw/BYjCeW0zWZelSqU0PtOxUWW3Ypjbbznf/ZERjJWSgWst9vojOReseuHw30zHtMoa0FfIIg==
-X-Received: by 2002:a17:902:b696:b0:13a:7871:55f5 with SMTP id c22-20020a170902b69600b0013a787155f5mr404069pls.60.1631722291639;
-        Wed, 15 Sep 2021 09:11:31 -0700 (PDT)
-Received: from [172.30.1.2] ([14.32.163.5])
-        by smtp.gmail.com with ESMTPSA id cm5sm200499pjb.24.2021.09.15.09.11.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Sep 2021 09:11:31 -0700 (PDT)
-Subject: Re: [PATCH 3/6] clk: samsung: clk-pll: Implement pll0831x PLL type
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20210914155607.14122-1-semen.protsenko@linaro.org>
- <20210914155607.14122-4-semen.protsenko@linaro.org>
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Message-ID: <c534c85e-d5a6-43e0-25f6-3d0ff3bc1f68@gmail.com>
-Date:   Thu, 16 Sep 2021 01:11:24 +0900
+        id S229628AbhIOQgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 12:36:01 -0400
+Received: from mga07.intel.com ([134.134.136.100]:58317 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229747AbhIOQf6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Sep 2021 12:35:58 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="286060912"
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
+   d="scan'208";a="286060912"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 09:34:39 -0700
+X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
+   d="scan'208";a="583352205"
+Received: from mvetrive-mobl3.amr.corp.intel.com (HELO [10.212.69.198]) ([10.212.69.198])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 09:34:38 -0700
+Subject: Re: [PATCH v6 16/22] ASoC: qdsp6: audioreach: add module
+ configuration command helpers
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
+ <20210915131333.19047-17-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <4cd0e63f-107b-d10a-11e9-bced83f487a5@linux.intel.com>
+Date:   Wed, 15 Sep 2021 11:11:41 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Firefox/78.0 Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210914155607.14122-4-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210915131333.19047-17-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21. 9. 15. 오전 12:56, Sam Protsenko wrote:
-> pll0831x PLL is used in Exynos850 SoC for top-level fractional PLLs. The
-> code was derived from very similar pll36xx type, with next differences:
-> 
-> 1. Lock time for pll0831x is 500*P_DIV, when for pll36xx it's 3000*P_DIV
-> 2. It's not suggested in Exynos850 TRM that S_DIV change doesn't require
->     performing PLL lock procedure (which is done in pll36xx
->     implementation)
-> 3. The offset from PMS-values register to K-value register is 0x8 for
->     pll0831x, when for pll36xx it's 0x4
-> 
-> When defining pll0831x type, CON3 register offset should be provided as
-> a "con" parameter of PLL() macro, like this:
-> 
->      PLL(pll_0831x, 0, "fout_mmc_pll", "oscclk",
->          PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, pll0831x_26mhz_tbl),
-> 
-> To define PLL rates table, one can use PLL_36XX_RATE() macro, e.g.:
-> 
->      PLL_36XX_RATE(26 * MHZ, 799999877, 31, 1, 0, -15124)
-> 
-> as it's completely appropriate for pl0831x type and there is no sense in
-> duplicating that.
-> 
-> If bit #1 (MANUAL_PLL_CTRL) is not set in CON1 register, it won't be
-> possible to set new rate, with next error showing in kernel log:
-> 
->      Could not lock PLL fout_mmc_pll
-> 
-> That can happen for example if bootloader clears that bit beforehand.
-> PLL driver doesn't account for that, so if MANUAL_PLL_CTRL bit was
-> cleared, it's assumed it was done for a reason and it shouldn't be
-> possible to change that PLL's rate at all.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->   drivers/clk/samsung/clk-pll.c | 105 ++++++++++++++++++++++++++++++++++
->   drivers/clk/samsung/clk-pll.h |   1 +
->   2 files changed, 106 insertions(+)
-> 
-> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
-> index 03131b149c0b..83d1b03647db 100644
-> --- a/drivers/clk/samsung/clk-pll.c
-> +++ b/drivers/clk/samsung/clk-pll.c
-> @@ -498,6 +498,103 @@ static const struct clk_ops samsung_pll0822x_clk_min_ops = {
->   	.recalc_rate = samsung_pll0822x_recalc_rate,
->   };
->   
-> +/*
-> + * PLL0831x Clock Type
-> + */
-> +/* Maximum lock time can be 500 * PDIV cycles */
-> +#define PLL0831X_LOCK_FACTOR		(500)
-> +
-> +#define PLL0831X_KDIV_MASK		(0xFFFF)
-> +#define PLL0831X_MDIV_MASK		(0x1FF)
-> +#define PLL0831X_PDIV_MASK		(0x3F)
-> +#define PLL0831X_SDIV_MASK		(0x7)
-> +#define PLL0831X_MDIV_SHIFT		(16)
-> +#define PLL0831X_PDIV_SHIFT		(8)
-> +#define PLL0831X_SDIV_SHIFT		(0)
-> +#define PLL0831X_KDIV_SHIFT		(0)
-> +#define PLL0831X_LOCK_STAT_SHIFT	(29)
-> +#define PLL0831X_ENABLE_SHIFT		(31)
-> +
-> +static unsigned long samsung_pll0831x_recalc_rate(struct clk_hw *hw,
-> +						  unsigned long parent_rate)
+
+> +int q6apm_map_memory_regions(struct q6apm_graph *graph, unsigned int dir, phys_addr_t phys,
+> +			     size_t period_sz, unsigned int periods)
 > +{
-> +	struct samsung_clk_pll *pll = to_clk_pll(hw);
-> +	u32 mdiv, pdiv, sdiv, pll_con3, pll_con5;
-> +	s16 kdiv;
-> +	u64 fvco = parent_rate;
+> +	struct audioreach_graph_data *data;
+> +	struct audio_buffer *buf;
+> +	int cnt;
+> +	int rc;
 > +
-> +	pll_con3 = readl_relaxed(pll->con_reg);
-> +	pll_con5 = readl_relaxed(pll->con_reg + 8);
-> +	mdiv = (pll_con3 >> PLL0831X_MDIV_SHIFT) & PLL0831X_MDIV_MASK;
-> +	pdiv = (pll_con3 >> PLL0831X_PDIV_SHIFT) & PLL0831X_PDIV_MASK;
-> +	sdiv = (pll_con3 >> PLL0831X_SDIV_SHIFT) & PLL0831X_SDIV_MASK;
-> +	kdiv = (s16)((pll_con5 >> PLL0831X_KDIV_SHIFT) & PLL0831X_KDIV_MASK);
+> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
+> +		data = &graph->rx_data;
+> +	else
+> +		data = &graph->tx_data;
 > +
-> +	fvco *= (mdiv << 16) + kdiv;
-> +	do_div(fvco, (pdiv << sdiv));
-> +	fvco >>= 16;
+> +	mutex_lock(&graph->lock);
 > +
-> +	return (unsigned long)fvco;
-> +}
-> +
-> +static int samsung_pll0831x_set_rate(struct clk_hw *hw, unsigned long drate,
-> +				     unsigned long parent_rate)
-> +{
-> +	const struct samsung_pll_rate_table *rate;
-> +	struct samsung_clk_pll *pll = to_clk_pll(hw);
-> +	u32 pll_con3, pll_con5;
-> +
-> +	/* Get required rate settings from table */
-> +	rate = samsung_get_pll_settings(pll, drate);
-> +	if (!rate) {
-> +		pr_err("%s: Invalid rate : %lu for pll clk %s\n", __func__,
-> +			drate, clk_hw_get_name(hw));
-> +		return -EINVAL;
+> +	if (data->buf) {
+> +		dev_err(graph->dev, "Buffer already allocated\n");
+> +		mutex_unlock(&graph->lock);
+> +		return 0;
+
+is this an error worth of dev_err() if you return 0?
+
 > +	}
 > +
-> +	pll_con3 = readl_relaxed(pll->con_reg);
-> +	pll_con5 = readl_relaxed(pll->con_reg + 8);
+> +	buf = kzalloc(((sizeof(struct audio_buffer)) * periods), GFP_KERNEL);
+> +	if (!buf) {
+> +		mutex_unlock(&graph->lock);
+> +		return -ENOMEM;
+> +	}
 > +
-> +	/* Change PLL PMSK values */
-> +	pll_con3 &= ~((PLL0831X_MDIV_MASK << PLL0831X_MDIV_SHIFT) |
-> +			(PLL0831X_PDIV_MASK << PLL0831X_PDIV_SHIFT) |
-> +			(PLL0831X_SDIV_MASK << PLL0831X_SDIV_SHIFT));
-> +	pll_con3 |= (rate->mdiv << PLL0831X_MDIV_SHIFT) |
-> +			(rate->pdiv << PLL0831X_PDIV_SHIFT) |
-> +			(rate->sdiv << PLL0831X_SDIV_SHIFT);
-> +	pll_con5 &= ~(PLL0831X_KDIV_MASK << PLL0831X_KDIV_SHIFT);
-> +	/*
-> +	 * kdiv is 16-bit 2's complement (s16), but stored as unsigned int.
-> +	 * Cast it to u16 to avoid leading 0xffff's in case of negative value.
-> +	 */
-> +	pll_con5 |= ((u16)rate->kdiv << PLL0831X_KDIV_SHIFT);
+> +	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
+> +		data = &graph->rx_data;
+> +	else
+> +		data = &graph->tx_data;
 > +
-> +	/* Set PLL lock time */
-> +	writel_relaxed(rate->pdiv * PLL0831X_LOCK_FACTOR, pll->lock_reg);
+> +	data->buf = buf;
 > +
-> +	/* Write PMSK values */
-> +	writel_relaxed(pll_con3, pll->con_reg);
-> +	writel_relaxed(pll_con5, pll->con_reg + 8);
+> +	buf[0].phys = phys;
+> +	buf[0].size = period_sz;
 > +
-> +	/* Wait for PLL lock if the PLL is enabled */
-> +	if (pll_con3 & BIT(pll->enable_offs))
-> +		return samsung_pll_lock_wait(pll, BIT(pll->lock_offs));
+> +	for (cnt = 1; cnt < periods; cnt++) {
+> +		if (period_sz > 0) {
+> +			buf[cnt].phys = buf[0].phys + (cnt * period_sz);
+> +			buf[cnt].size = period_sz;
+> +		}
+> +	}
+> +	data->num_periods = periods;
 > +
-> +	return 0;
+> +	mutex_unlock(&graph->lock);
+> +
+> +	rc = audioreach_map_memory_regions(graph, dir, period_sz, periods, 1);
+> +	if (rc < 0) {
+> +		dev_err(graph->dev, "Memory_map_regions failed\n");
+> +		audioreach_graph_free_buf(graph);
+> +	}
+> +
+> +	return rc;
 > +}
+> +EXPORT_SYMBOL_GPL(q6apm_map_memory_regions);
+
+> +int q6apm_write_async(struct q6apm_graph *graph, uint32_t len, uint32_t msw_ts,
+> +		      uint32_t lsw_ts, uint32_t wflags)
+> +{
+> +	struct apm_data_cmd_wr_sh_mem_ep_data_buffer_v2 *write;
+> +	int rc, payload_size, iid;
+> +	struct audio_buffer *ab;
+> +	struct gpr_pkt *pkt;
 > +
-> +static const struct clk_ops samsung_pll0831x_clk_ops = {
-> +	.recalc_rate = samsung_pll0831x_recalc_rate,
-> +	.set_rate = samsung_pll0831x_set_rate,
-> +	.round_rate = samsung_pll_round_rate,
-> +	.enable = samsung_pll3xxx_enable,
-> +	.disable = samsung_pll3xxx_disable,
-> +};
+> +	payload_size = sizeof(*write);
+
+nit-pick on variable-naming: I get confused between actions and objects.
+
 > +
-> +static const struct clk_ops samsung_pll0831x_clk_min_ops = {
-> +	.recalc_rate = samsung_pll0831x_recalc_rate,
-> +};
+> +	iid = q6apm_graph_get_rx_shmem_module_iid(graph);
+> +	pkt = audioreach_alloc_pkt(payload_size, DATA_CMD_WR_SH_MEM_EP_DATA_BUFFER_V2,
+> +				 graph->rx_data.dsp_buf | (len << APM_WRITE_TOKEN_LEN_SHIFT),
+> +				 graph->port->id, iid);
+> +	if (IS_ERR(pkt))
+> +		return -ENOMEM;
 > +
->   /*
->    * PLL45xx Clock Type
->    */
-> @@ -1407,6 +1504,14 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
->   		else
->   			init.ops = &samsung_pll36xx_clk_ops;
->   		break;
-> +	case pll_0831x:
-> +		pll->enable_offs = PLL0831X_ENABLE_SHIFT;
-> +		pll->lock_offs = PLL0831X_LOCK_STAT_SHIFT;
-> +		if (!pll->rate_table)
-> +			init.ops = &samsung_pll0831x_clk_min_ops;
-> +		else
-> +			init.ops = &samsung_pll0831x_clk_ops;
-> +		break;
->   	case pll_6552:
->   	case pll_6552_s3c2416:
->   		init.ops = &samsung_pll6552_clk_ops;
-> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
-> index 213e94a97f23..a739f2b7ae80 100644
-> --- a/drivers/clk/samsung/clk-pll.h
-> +++ b/drivers/clk/samsung/clk-pll.h
-> @@ -37,6 +37,7 @@ enum samsung_pll_type {
->   	pll_1452x,
->   	pll_1460x,
->   	pll_0822x,
-> +	pll_0831x,
->   };
->   
->   #define PLL_RATE(_fin, _m, _p, _s, _k, _ks) \
+> +	write = (void *)pkt + GPR_HDR_SIZE;
+> +
+> +	mutex_lock(&graph->lock);
+> +	ab = &graph->rx_data.buf[graph->rx_data.dsp_buf];
+> +
+> +	write->buf_addr_lsw = lower_32_bits(ab->phys);
+> +	write->buf_addr_msw = upper_32_bits(ab->phys);
+> +	write->buf_size = len;
+> +	write->timestamp_lsw = lsw_ts;
+> +	write->timestamp_msw = msw_ts;
+> +	write->mem_map_handle = graph->rx_data.mem_map_handle;
+> +	write->flags = wflags;
+> +
+> +	graph->rx_data.dsp_buf++;
+> +
+> +	if (graph->rx_data.dsp_buf >= graph->rx_data.num_periods)
+> +		graph->rx_data.dsp_buf = 0;
+> +
+> +	mutex_unlock(&graph->lock);
+> +
+> +	rc = gpr_send_port_pkt(graph->port, pkt);
+> +
+> +	kfree(pkt);
+> +
+> +	return rc;
+> +}
+> +EXPORT_SYMBOL_GPL(q6apm_write_async);
+> +
+> +int q6apm_read(struct q6apm_graph *graph)
+> +{
+> +	struct data_cmd_rd_sh_mem_ep_data_buffer_v2 *read;
+> +	struct audioreach_graph_data *port;
+> +	struct audio_buffer *ab;
+> +	struct gpr_pkt *pkt;
+> +	int rc, iid;
+> +
+> +	iid = q6apm_graph_get_tx_shmem_module_iid(graph);
+> +	pkt = audioreach_alloc_pkt(sizeof(*read), DATA_CMD_RD_SH_MEM_EP_DATA_BUFFER_V2,
+> +				 graph->tx_data.dsp_buf, graph->port->id, iid);
+> +	if (IS_ERR(pkt))
+> +		return -ENOMEM;
+> +
+> +	read = (void *)pkt + GPR_HDR_SIZE;
+
+same nit-pick on variable naming, with the additional present/past
+grammar issue that you don't know if it's a read buffer or a pointer to
+data read in the past.
+
+> +
+> +	mutex_lock(&graph->lock);
+> +	port = &graph->tx_data;
+> +	ab = &port->buf[port->dsp_buf];
+> +
+> +	read->buf_addr_lsw = lower_32_bits(ab->phys);
+> +	read->buf_addr_msw = upper_32_bits(ab->phys);
+> +	read->mem_map_handle = port->mem_map_handle;
+> +	read->buf_size = ab->size;
+> +
+> +	port->dsp_buf++;
+> +
+> +	if (port->dsp_buf >= port->num_periods)
+> +		port->dsp_buf = 0;
+> +
+> +	mutex_unlock(&graph->lock);
+> +
+> +	rc = gpr_send_port_pkt(graph->port, pkt);
+> +	kfree(pkt);
+> +
+> +	return rc;
+> +}
+> +EXPORT_SYMBOL_GPL(q6apm_read);
+> +
+>  static int graph_callback(struct gpr_resp_pkt *data, void *priv, int op)
+>  {
+>  	struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done_v2 *rd_done;
 > 
-
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-
--- 
-Best Regards,
-Samsung Electronics
-Chanwoo Choi
