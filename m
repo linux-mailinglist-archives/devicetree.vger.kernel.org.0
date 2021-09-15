@@ -2,664 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 106AC40CA53
-	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 18:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532AE40C9CE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Sep 2021 18:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbhIOQf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Sep 2021 12:35:59 -0400
-Received: from mga07.intel.com ([134.134.136.100]:58311 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229992AbhIOQf6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Sep 2021 12:35:58 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10108"; a="286060905"
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
-   d="scan'208";a="286060905"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 09:34:37 -0700
-X-IronPort-AV: E=Sophos;i="5.85,295,1624345200"; 
-   d="scan'208";a="583352195"
-Received: from mvetrive-mobl3.amr.corp.intel.com (HELO [10.212.69.198]) ([10.212.69.198])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2021 09:34:35 -0700
-Subject: Re: [PATCH v6 15/22] ASoC: qdsp6: audioreach: add q6apm support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210915131333.19047-1-srinivas.kandagatla@linaro.org>
- <20210915131333.19047-16-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <f4c9702d-72a4-f602-71ce-006e6588190f@linux.intel.com>
-Date:   Wed, 15 Sep 2021 11:02:42 -0500
+        id S229599AbhIOQMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Sep 2021 12:12:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55476 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229536AbhIOQMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Sep 2021 12:12:51 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97192C061574;
+        Wed, 15 Sep 2021 09:11:32 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id w19-20020a17090aaf9300b00191e6d10a19so2587374pjq.1;
+        Wed, 15 Sep 2021 09:11:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kQO6nJ7xYUr/Ykm70q0a3iQ3nfJt+frCs5YZoOVN9zY=;
+        b=LsLZ53W19vXphqy0E7nrOjzeG2Wbsso/8h3TJIIfQQRuc0RUgbveL6lTIGCryK5ICK
+         dH2BmynoDBTi13Srk/l05UDc7tV++8V9MfHd6mfmt2pVAbzr3mlqvcRvKKUh8pFKOoZ8
+         wW2ew25ZOQkBSXbDgqEfZHJ75rRJFC9eHN0Rq4SqWn5fGx2l+SbTSH9FB6bzcWnk7GiL
+         OoPO5p8/W+2w+oW98TmIQmrAfw1wIr3CtAidISGz1qcygyjqeK/WUqaI82lDKe+gLvI6
+         EVVO7AWLx2ThQWqH/053b9kOTd6fFdc64DAAc5YK643X1SrL5wr7gPjKmuTHe9VB/zRS
+         QyOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kQO6nJ7xYUr/Ykm70q0a3iQ3nfJt+frCs5YZoOVN9zY=;
+        b=yNPsuqc9xqczy6dr1THQLQY/3KrbczB9cOpBXA9ltp4+xvzHJHHUn7uip8eRqmtrBg
+         BJ6TAHpZlFFFSrHP8yAt0u4uYZ69BW+OIbyuAhZ25wbB40isvyMlpz9rAfSLWu/SCDPA
+         E+7LGn55Uyuu+kGRJ4prREfoWGN99z2sm742RR6UIrDK8aSjcIgR9ZYAU+cwwXhgES36
+         ueLg9Vb2TPv+3aAQknb72+1fnq0G6MTxmoiYbM3g6W/TVn8ozUTYEcwVsW3gxl6xe3UM
+         8A25qeyQQBVjx9DrDOhzoeE3uaEudsbqGN8pfv9wcZ84Qorhcmq2BgiMFUTbFA7TgUqN
+         gm3Q==
+X-Gm-Message-State: AOAM531G+ehNo6tGr2M60BKwablD5au3Z/uCbEwdcAVxm+oLP2LY0dCo
+        VYeN9GbmyQSFlVMgwvBVNc5rLQiMQkY=
+X-Google-Smtp-Source: ABdhPJw/BYjCeW0zWZelSqU0PtOxUWW3Ypjbbznf/ZERjJWSgWst9vojOReseuHw30zHtMoa0FfIIg==
+X-Received: by 2002:a17:902:b696:b0:13a:7871:55f5 with SMTP id c22-20020a170902b69600b0013a787155f5mr404069pls.60.1631722291639;
+        Wed, 15 Sep 2021 09:11:31 -0700 (PDT)
+Received: from [172.30.1.2] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id cm5sm200499pjb.24.2021.09.15.09.11.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Sep 2021 09:11:31 -0700 (PDT)
+Subject: Re: [PATCH 3/6] clk: samsung: clk-pll: Implement pll0831x PLL type
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20210914155607.14122-1-semen.protsenko@linaro.org>
+ <20210914155607.14122-4-semen.protsenko@linaro.org>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Message-ID: <c534c85e-d5a6-43e0-25f6-3d0ff3bc1f68@gmail.com>
+Date:   Thu, 16 Sep 2021 01:11:24 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210915131333.19047-16-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210914155607.14122-4-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-> +static void audioreach_populate_graph(struct apm_graph_open_params *open,
-> +				      struct list_head *sg_list,
-> +				      int num_sub_graphs)
+On 21. 9. 15. 오전 12:56, Sam Protsenko wrote:
+> pll0831x PLL is used in Exynos850 SoC for top-level fractional PLLs. The
+> code was derived from very similar pll36xx type, with next differences:
+> 
+> 1. Lock time for pll0831x is 500*P_DIV, when for pll36xx it's 3000*P_DIV
+> 2. It's not suggested in Exynos850 TRM that S_DIV change doesn't require
+>     performing PLL lock procedure (which is done in pll36xx
+>     implementation)
+> 3. The offset from PMS-values register to K-value register is 0x8 for
+>     pll0831x, when for pll36xx it's 0x4
+> 
+> When defining pll0831x type, CON3 register offset should be provided as
+> a "con" parameter of PLL() macro, like this:
+> 
+>      PLL(pll_0831x, 0, "fout_mmc_pll", "oscclk",
+>          PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, pll0831x_26mhz_tbl),
+> 
+> To define PLL rates table, one can use PLL_36XX_RATE() macro, e.g.:
+> 
+>      PLL_36XX_RATE(26 * MHZ, 799999877, 31, 1, 0, -15124)
+> 
+> as it's completely appropriate for pl0831x type and there is no sense in
+> duplicating that.
+> 
+> If bit #1 (MANUAL_PLL_CTRL) is not set in CON1 register, it won't be
+> possible to set new rate, with next error showing in kernel log:
+> 
+>      Could not lock PLL fout_mmc_pll
+> 
+> That can happen for example if bootloader clears that bit beforehand.
+> PLL driver doesn't account for that, so if MANUAL_PLL_CTRL bit was
+> cleared, it's assumed it was done for a reason and it shouldn't be
+> possible to change that PLL's rate at all.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>   drivers/clk/samsung/clk-pll.c | 105 ++++++++++++++++++++++++++++++++++
+>   drivers/clk/samsung/clk-pll.h |   1 +
+>   2 files changed, 106 insertions(+)
+> 
+> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
+> index 03131b149c0b..83d1b03647db 100644
+> --- a/drivers/clk/samsung/clk-pll.c
+> +++ b/drivers/clk/samsung/clk-pll.c
+> @@ -498,6 +498,103 @@ static const struct clk_ops samsung_pll0822x_clk_min_ops = {
+>   	.recalc_rate = samsung_pll0822x_recalc_rate,
+>   };
+>   
+> +/*
+> + * PLL0831x Clock Type
+> + */
+> +/* Maximum lock time can be 500 * PDIV cycles */
+> +#define PLL0831X_LOCK_FACTOR		(500)
+> +
+> +#define PLL0831X_KDIV_MASK		(0xFFFF)
+> +#define PLL0831X_MDIV_MASK		(0x1FF)
+> +#define PLL0831X_PDIV_MASK		(0x3F)
+> +#define PLL0831X_SDIV_MASK		(0x7)
+> +#define PLL0831X_MDIV_SHIFT		(16)
+> +#define PLL0831X_PDIV_SHIFT		(8)
+> +#define PLL0831X_SDIV_SHIFT		(0)
+> +#define PLL0831X_KDIV_SHIFT		(0)
+> +#define PLL0831X_LOCK_STAT_SHIFT	(29)
+> +#define PLL0831X_ENABLE_SHIFT		(31)
+> +
+> +static unsigned long samsung_pll0831x_recalc_rate(struct clk_hw *hw,
+> +						  unsigned long parent_rate)
 > +{
-> +	struct apm_mod_conn_list_params *mc_data = open->mod_conn_list_data;
-> +	struct apm_module_list_params *ml_data = open->mod_list_data;
-> +	struct apm_prop_list_params *mp_data = open->mod_prop_data;
-> +	struct apm_container_params *c_data = open->cont_data;
-> +	struct apm_sub_graph_params *sg_data = open->sg_data;
-> +	int ncontainer = 0, nmodule = 0, nconn = 0;
-> +	struct apm_mod_prop_obj *module_prop_obj;
-> +	struct audioreach_container *container;
-> +	struct apm_module_conn_obj *conn_obj;
-> +	struct audioreach_module *module;
-> +	struct audioreach_sub_graph *sg;
-> +	struct apm_container_obj *cobj;
-> +	struct apm_mod_list_obj *mlobj;
-> +	int i = 0;
+> +	struct samsung_clk_pll *pll = to_clk_pll(hw);
+> +	u32 mdiv, pdiv, sdiv, pll_con3, pll_con5;
+> +	s16 kdiv;
+> +	u64 fvco = parent_rate;
 > +
-> +	mlobj = &ml_data->mod_list_obj[0];
+> +	pll_con3 = readl_relaxed(pll->con_reg);
+> +	pll_con5 = readl_relaxed(pll->con_reg + 8);
+> +	mdiv = (pll_con3 >> PLL0831X_MDIV_SHIFT) & PLL0831X_MDIV_MASK;
+> +	pdiv = (pll_con3 >> PLL0831X_PDIV_SHIFT) & PLL0831X_PDIV_MASK;
+> +	sdiv = (pll_con3 >> PLL0831X_SDIV_SHIFT) & PLL0831X_SDIV_MASK;
+> +	kdiv = (s16)((pll_con5 >> PLL0831X_KDIV_SHIFT) & PLL0831X_KDIV_MASK);
 > +
-> +	list_for_each_entry(sg, sg_list, node) {
-> +		struct apm_sub_graph_data *sg_cfg = &sg_data->sg_cfg[i++];
+> +	fvco *= (mdiv << 16) + kdiv;
+> +	do_div(fvco, (pdiv << sdiv));
+> +	fvco >>= 16;
 > +
-> +		apm_populate_sub_graph_config(sg_cfg, sg);
-> +
-> +		list_for_each_entry(container, &sg->container_list, node) {
-> +			cobj = &c_data->cont_obj[ncontainer];
-> +
-> +			apm_populate_container_config(cobj, container);
-> +			apm_populate_module_list_obj(mlobj, container, sg->sub_graph_id);
-> +
-> +			list_for_each_container_module(module, container) {
-> +				uint32_t src_mod_inst_id;
-> +
-> +				src_mod_inst_id = module->src_mod_inst_id;
-> +
-> +				module_prop_obj = &mp_data->mod_prop_obj[nmodule];
-> +				apm_populate_module_prop_obj(module_prop_obj, module);
-> +
-> +				if (src_mod_inst_id /*&& dst_mod_inst_id*/) {
-
-remove left-over code or uncomment required condition?
-
-> +					conn_obj = &mc_data->conn_obj[nconn];
-> +					apm_populate_connection_obj(conn_obj, module);
-> +					nconn++;
-> +				}
-> +
-> +				nmodule++;
-> +			}
-> +			mlobj = (void *) mlobj + APM_MOD_LIST_OBJ_PSIZE(container->num_modules);
-> +
-> +			ncontainer++;
-> +		}
-> +	}
-> +}
-
-> +static struct audioreach_graph *q6apm_get_audioreach_graph(struct q6apm *apm, uint32_t graph_id)
-> +{
-> +	struct audioreach_graph_info *info;
-> +	struct audioreach_graph *graph;
-> +
-> +	mutex_lock(&apm->lock);
-> +	graph = idr_find(&apm->graph_idr, graph_id);
-> +	mutex_unlock(&apm->lock);
-> +
-> +	if (graph) {
-> +		kref_get(&graph->refcount);
-> +		return graph;
-> +	}
-> +
-> +	info = idr_find(&apm->graph_info_idr, graph_id);
-> +
-> +	if (!info)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	graph = kzalloc(sizeof(*graph), GFP_KERNEL);
-> +	if (!graph)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	graph->apm = apm;
-> +	graph->info = info;
-> +	graph->id = graph_id;
-> +
-> +	graph->graph = audioreach_alloc_graph_pkt(apm, &info->sg_list, graph_id);
-> +	if (IS_ERR(graph->graph)) {
-> +		kfree(graph);
-> +		return ERR_PTR(-ENOMEM);
-> +	}
-> +
-> +	mutex_lock(&apm->lock);
-> +	idr_alloc(&apm->graph_idr, graph, graph_id, graph_id + 1, GFP_KERNEL);
-
-test for idr_alloc() success? You have error checks for idr_find() but
-not for the _alloc() case.
-
-> +	mutex_unlock(&apm->lock);
-> +
-> +	kref_init(&graph->refcount);
-> +
-> +	q6apm_send_cmd_sync(apm, graph->graph, 0);
-> +
-> +	return graph;
+> +	return (unsigned long)fvco;
 > +}
 > +
-> +static int audioreach_graph_mgmt_cmd(struct audioreach_graph *graph, uint32_t opcode)
+> +static int samsung_pll0831x_set_rate(struct clk_hw *hw, unsigned long drate,
+> +				     unsigned long parent_rate)
 > +{
-> +	struct audioreach_graph_info *info = graph->info;
-> +	int num_sub_graphs = info->num_sub_graphs;
-> +	struct apm_module_param_data *param_data;
-> +	struct apm_graph_mgmt_cmd *mgmt_cmd;
-> +	struct audioreach_sub_graph *sg;
-> +	struct q6apm *apm = graph->apm;
-> +	int i = 0, rc, payload_size;
-> +	struct gpr_pkt *pkt;
+> +	const struct samsung_pll_rate_table *rate;
+> +	struct samsung_clk_pll *pll = to_clk_pll(hw);
+> +	u32 pll_con3, pll_con5;
 > +
-> +	payload_size = APM_GRAPH_MGMT_PSIZE(num_sub_graphs);
-> +
-> +	pkt = audioreach_alloc_apm_cmd_pkt(payload_size, opcode, 0);
-> +	if (IS_ERR(pkt))
-> +		return -ENOMEM;
-> +
-> +	mgmt_cmd = (void *)pkt + GPR_HDR_SIZE + APM_CMD_HDR_SIZE;
-> +
-> +	mgmt_cmd->num_sub_graphs = num_sub_graphs;
-> +
-> +	param_data = &mgmt_cmd->param_data;
-> +	param_data->module_instance_id = APM_MODULE_INSTANCE_ID;
-> +	param_data->param_id = APM_PARAM_ID_SUB_GRAPH_LIST;
-> +	param_data->param_size = payload_size - APM_MODULE_PARAM_DATA_SIZE;
-> +
-> +	list_for_each_entry(sg, &info->sg_list, node)
-> +		mgmt_cmd->sub_graph_id_list[i++] = sg->sub_graph_id;
-> +
-> +	rc = q6apm_send_cmd_sync(apm, pkt, 0);
-> +
-> +	kfree(pkt);
-> +
-> +	return rc;
-> +}
-> +
-> +static void q6apm_put_audioreach_graph(struct kref *ref)
-> +{
-> +	struct audioreach_graph *graph;
-> +	struct q6apm *apm;
-> +
-> +	graph = container_of(ref, struct audioreach_graph, refcount);
-> +	apm = graph->apm;
-> +
-> +	audioreach_graph_mgmt_cmd(graph, APM_CMD_GRAPH_CLOSE);
-> +
-> +	mutex_lock(&apm->lock);
-> +	graph = idr_remove(&apm->graph_idr, graph->id);
-> +	mutex_unlock(&apm->lock);
-> +
-> +	kfree(graph->graph);
-> +	kfree(graph);
-> +}
-> +
-> +static bool q6apm_get_apm_state(struct q6apm *apm)
-> +{
-> +	struct gpr_pkt *pkt;
-> +
-> +	pkt = audioreach_alloc_apm_cmd_pkt(0, APM_CMD_GET_SPF_STATE, 0);
-> +	if (IS_ERR(pkt))
-> +		return -ENOMEM;
-> +
-> +	q6apm_send_cmd_sync(apm, pkt, APM_CMD_RSP_GET_SPF_STATE);
-> +
-> +	kfree(pkt);
-> +
-> +	return !apm->state ? false : true;
-> +}
-> +
-> +static struct audioreach_module *__q6apm_find_module_by_mid(struct q6apm *apm,
-> +						    struct audioreach_graph_info *info,
-> +						    uint32_t mid)
-> +{
-> +	struct audioreach_container *container;
-> +	struct audioreach_sub_graph *sgs;
-> +	struct audioreach_module *module;
-> +
-> +	list_for_each_entry(sgs, &info->sg_list, node) {
-> +		list_for_each_entry(container, &sgs->container_list, node) {
-> +			list_for_each_entry(module, &container->modules_list, node) {
-> +				if (mid == module->module_id)
-> +					return module;
-> +			}
-> +		}
+> +	/* Get required rate settings from table */
+> +	rate = samsung_get_pll_settings(pll, drate);
+> +	if (!rate) {
+> +		pr_err("%s: Invalid rate : %lu for pll clk %s\n", __func__,
+> +			drate, clk_hw_get_name(hw));
+> +		return -EINVAL;
 > +	}
 > +
-> +	return NULL;
-> +}
+> +	pll_con3 = readl_relaxed(pll->con_reg);
+> +	pll_con5 = readl_relaxed(pll->con_reg + 8);
 > +
-> +static struct audioreach_module *q6apm_graph_get_last_module(struct q6apm *apm, u32 sgid)
-> +{
-> +	struct audioreach_container *container;
-> +	struct audioreach_module *module;
-> +	struct audioreach_sub_graph *sg;
+> +	/* Change PLL PMSK values */
+> +	pll_con3 &= ~((PLL0831X_MDIV_MASK << PLL0831X_MDIV_SHIFT) |
+> +			(PLL0831X_PDIV_MASK << PLL0831X_PDIV_SHIFT) |
+> +			(PLL0831X_SDIV_MASK << PLL0831X_SDIV_SHIFT));
+> +	pll_con3 |= (rate->mdiv << PLL0831X_MDIV_SHIFT) |
+> +			(rate->pdiv << PLL0831X_PDIV_SHIFT) |
+> +			(rate->sdiv << PLL0831X_SDIV_SHIFT);
+> +	pll_con5 &= ~(PLL0831X_KDIV_MASK << PLL0831X_KDIV_SHIFT);
+> +	/*
+> +	 * kdiv is 16-bit 2's complement (s16), but stored as unsigned int.
+> +	 * Cast it to u16 to avoid leading 0xffff's in case of negative value.
+> +	 */
+> +	pll_con5 |= ((u16)rate->kdiv << PLL0831X_KDIV_SHIFT);
 > +
-> +	mutex_lock(&apm->lock);
-> +	sg = idr_find(&apm->sub_graphs_idr, sgid);
-> +	mutex_unlock(&apm->lock);
-> +	if (!sg)
-> +		return NULL;
+> +	/* Set PLL lock time */
+> +	writel_relaxed(rate->pdiv * PLL0831X_LOCK_FACTOR, pll->lock_reg);
 > +
-> +	container = list_last_entry(&sg->container_list, struct audioreach_container, node);
-> +	module = audioreach_get_container_last_module(container);
+> +	/* Write PMSK values */
+> +	writel_relaxed(pll_con3, pll->con_reg);
+> +	writel_relaxed(pll_con5, pll->con_reg + 8);
 > +
-> +	return module;
-> +}
-> +
-> +static struct audioreach_module *q6apm_graph_get_first_module(struct q6apm *apm, u32 sgid)
-> +{
-> +	struct audioreach_container *container;
-> +	struct audioreach_module *module;
-> +	struct audioreach_sub_graph *sg;
-> +
-> +	mutex_lock(&apm->lock);
-> +	sg = idr_find(&apm->sub_graphs_idr, sgid);
-> +	mutex_unlock(&apm->lock);
-> +	if (!sg)
-> +		return NULL;
-> +
-> +	container = list_first_entry(&sg->container_list, struct audioreach_container, node);
-> +	module = audioreach_get_container_first_module(container);
-> +
-> +	return module;
-> +}
-> +
-> +bool q6apm_is_sub_graphs_connected(struct q6apm *apm, u32 src_sgid, u32 dst_sgid)
-> +{
-> +	struct audioreach_module *module;
-> +	u32 iid;
-> +
-> +	module = q6apm_graph_get_last_module(apm, src_sgid);
-> +	if (!module)
-> +		return false;
-> +
-> +	iid = module->instance_id;
-> +	module = q6apm_graph_get_first_module(apm, dst_sgid);
-> +	if (!module)
-> +		return false;
-> +
-> +	if (module->src_mod_inst_id == iid)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +int q6apm_connect_sub_graphs(struct q6apm *apm, u32 src_sgid, u32 dst_sgid, bool connect)
-> +{
-> +	struct audioreach_module *module;
-> +	u32 iid;
-> +
-> +	if (connect) {
-> +		module = q6apm_graph_get_last_module(apm, src_sgid);
-> +		if (!module)
-> +			return -ENODEV;
-> +
-> +		iid = module->instance_id;
-> +	} else {
-> +		iid = 0;
-> +	}
-> +
-> +	module = q6apm_graph_get_first_module(apm, dst_sgid);
-> +	if (!module)
-> +		return -ENODEV;
-> +
-> +	/* set src module in dst subgraph first module */
-> +	module->src_mod_inst_id = iid;
+> +	/* Wait for PLL lock if the PLL is enabled */
+> +	if (pll_con3 & BIT(pll->enable_offs))
+> +		return samsung_pll_lock_wait(pll, BIT(pll->lock_offs));
 > +
 > +	return 0;
 > +}
 > +
-> +int q6apm_graph_get_rx_shmem_module_iid(struct q6apm_graph *graph)
-> +{
-> +	struct audioreach_module *module;
-> +
-> +	module = q6apm_find_module_by_mid(graph, MODULE_ID_WR_SHARED_MEM_EP);
-> +	if (!module)
-> +		return -ENODEV;
-> +
-> +	return module->instance_id;
-> +
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_get_rx_shmem_module_iid);
-> +
-> +static int graph_callback(struct gpr_resp_pkt *data, void *priv, int op)
-> +{
-> +	struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done_v2 *rd_done;
-> +	struct data_cmd_rsp_wr_sh_mem_ep_data_buffer_done_v2 *done;
-> +	struct apm_cmd_rsp_shared_mem_map_regions *rsp;
-> +	struct gpr_ibasic_rsp_result_t *result;
-> +	struct q6apm_graph *graph = priv;
-> +	struct gpr_hdr *hdr = &data->hdr;
-> +	struct device *dev = graph->dev;
-> +	uint32_t client_event;
-> +	int ret = -EINVAL;
-> +	phys_addr_t phys;
-> +	int token;
-> +
-> +	result = data->payload;
-> +
-> +	switch (hdr->opcode) {
-> +	case DATA_CMD_RSP_WR_SH_MEM_EP_DATA_BUFFER_DONE_V2:
-> +		client_event = APM_CLIENT_EVENT_DATA_WRITE_DONE;
-> +		mutex_lock(&graph->lock);
-> +		token = hdr->token & APM_WRITE_TOKEN_MASK;
-> +
-> +		done = data->payload;
-> +		phys = graph->rx_data.buf[token].phys;
-> +
-> +		if (lower_32_bits(phys) != done->buf_addr_lsw ||
-> +		    upper_32_bits(phys) != done->buf_addr_msw) {
-> +			dev_err(dev, "WR BUFF Unexpected addr %08x-%08x\n",
-> +				done->buf_addr_lsw, done->buf_addr_msw);
-> +			ret = -EINVAL;
-> +		} else {
-> +			ret = 0;
-> +			graph->result.opcode = hdr->opcode;
-> +			graph->result.status = done->status;
-> +		}
-> +		mutex_unlock(&graph->lock);
-> +		if (graph->cb)
-> +			graph->cb(client_event, hdr->token, data->payload,
-> +				  graph->priv);
-> +
-> +		break;
-> +	case APM_CMD_RSP_SHARED_MEM_MAP_REGIONS:
-> +		graph->result.opcode = hdr->opcode;
-> +		graph->result.status = 0;
-> +		rsp = data->payload;
-> +
-> +		if (hdr->token == SNDRV_PCM_STREAM_PLAYBACK)
-> +			graph->rx_data.mem_map_handle = rsp->mem_map_handle;
-> +		else
-> +			graph->tx_data.mem_map_handle = rsp->mem_map_handle;
-> +
-> +		wake_up(&graph->cmd_wait);
-> +		ret = 0;
-> +		break;
-> +	case DATA_CMD_RSP_RD_SH_MEM_EP_DATA_BUFFER_V2:
-> +		client_event = APM_CLIENT_EVENT_DATA_READ_DONE;
-> +		mutex_lock(&graph->lock);
-> +		rd_done = data->payload;
-> +		phys = graph->tx_data.buf[hdr->token].phys;
-> +		if (upper_32_bits(phys) != rd_done->buf_addr_msw ||
-> +		    lower_32_bits(phys) != rd_done->buf_addr_lsw) {
-> +			dev_err(dev, "RD BUFF Unexpected addr %08x-%08x\n",
-> +				rd_done->buf_addr_lsw, rd_done->buf_addr_msw);
-> +			ret = -EINVAL;
-> +		} else {
-> +			ret = 0;
-> +		}
-> +		mutex_unlock(&graph->lock);
-> +		wake_up(&graph->cmd_wait);
-> +
-> +		if (graph->cb)
-> +			graph->cb(client_event, hdr->token, data->payload,
-> +				  graph->priv);
-> +		break;
-> +	case DATA_CMD_WR_SH_MEM_EP_EOS_RENDERED:
-> +		break;
-> +	case GPR_BASIC_RSP_RESULT:
-> +		switch (result->opcode) {
-> +		case APM_CMD_SHARED_MEM_UNMAP_REGIONS:
-> +			graph->result.opcode = result->opcode;
-> +			graph->result.status = 0;
-> +			if (hdr->token == SNDRV_PCM_STREAM_PLAYBACK)
-> +				graph->rx_data.mem_map_handle = 0;
-> +			else
-> +				graph->tx_data.mem_map_handle = 0;
-> +
-> +			wake_up(&graph->cmd_wait);
-> +			ret = 0;
-> +			break;
-> +		case APM_CMD_SHARED_MEM_MAP_REGIONS:
-> +		case DATA_CMD_WR_SH_MEM_EP_MEDIA_FORMAT:
-> +		case APM_CMD_SET_CFG:
-> +			graph->result.opcode = result->opcode;
-> +			graph->result.status = result->status;
-> +			if (result->status) {
-> +				dev_err(dev, "Error (%d) Processing 0x%08x cmd\n",
-> +					result->status, result->opcode);
-> +				ret = -EINVAL;
-> +			} else {
-> +				ret = 0;
-> +			}
-> +			wake_up(&graph->cmd_wait);
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +struct q6apm_graph *q6apm_graph_open(struct device *dev, q6apm_cb cb,
-> +				     void *priv, int graph_id)
-> +{
-> +	struct q6apm *apm = dev_get_drvdata(dev->parent);
-> +	struct audioreach_graph *ar_graph;
-> +	struct q6apm_graph *graph;
-> +	int ret;
-> +
-> +	ar_graph = q6apm_get_audioreach_graph(apm, graph_id);
-> +	if (IS_ERR(ar_graph)) {
-> +		dev_err(dev, "No graph found with id %d\n", graph_id);
-> +		return ERR_CAST(ar_graph);
-> +	}
-> +
-> +	graph = kzalloc(sizeof(*graph), GFP_KERNEL);
-> +	if (!graph) {
-> +		ret = -ENOMEM;
-> +		goto err;
-> +	}
-> +
-> +	graph->apm = apm;
-> +	graph->priv = priv;
-> +	graph->cb = cb;
-> +	graph->info = ar_graph->info;
-> +	graph->ar_graph = ar_graph;
-> +	graph->id = ar_graph->id;
-> +	graph->dev = dev;
-> +
-> +	mutex_init(&graph->lock);
-> +	init_waitqueue_head(&graph->cmd_wait);
-> +
-> +	graph->port = gpr_alloc_port(apm->gdev, dev, graph_callback, graph);
-> +	if (!graph->port) {
-> +		kfree(graph);
-> +		ret = -ENOMEM;
-> +		goto err;
-> +	}
-> +
-> +	return graph;
-> +err:
-> +	kref_put(&ar_graph->refcount, q6apm_put_audioreach_graph);
-> +	return ERR_PTR(ret);
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_open);
-> +
-> +int q6apm_graph_close(struct q6apm_graph *graph)
-> +{
-> +	struct audioreach_graph *ar_graph = graph->ar_graph;
-> +
-> +	gpr_free_port(graph->port);
-> +	kref_put(&ar_graph->refcount, q6apm_put_audioreach_graph);
-> +	kfree(graph);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_close);
-> +
-> +int q6apm_graph_prepare(struct q6apm_graph *graph)
-> +{
-> +	return audioreach_graph_mgmt_cmd(graph->ar_graph, APM_CMD_GRAPH_PREPARE);
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_prepare);
-> +
-> +int q6apm_graph_start(struct q6apm_graph *graph)
-> +{
-> +	struct audioreach_graph *ar_graph = graph->ar_graph;
-> +	int ret = 0;
-> +
-> +	if (ar_graph->start_count == 0)
-> +		ret = audioreach_graph_mgmt_cmd(ar_graph, APM_CMD_GRAPH_START);
-> +
-> +	ar_graph->start_count++;
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_start);
-> +
-> +int q6apm_graph_stop(struct q6apm_graph *graph)
-> +{
-> +	struct audioreach_graph *ar_graph = graph->ar_graph;
-> +
-> +	if (--ar_graph->start_count > 0)
-> +		return 0;
-> +
-> +	return audioreach_graph_mgmt_cmd(ar_graph, APM_CMD_GRAPH_STOP);
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_stop);
-> +
-> +int q6apm_graph_flush(struct q6apm_graph *graph)
-> +{
-> +	return audioreach_graph_mgmt_cmd(graph->ar_graph, APM_CMD_GRAPH_FLUSH);
-> +}
-> +EXPORT_SYMBOL_GPL(q6apm_graph_flush);
-> +
-> +static int q6apm_audio_probe(struct snd_soc_component *component)
-> +{
-> +	return audioreach_tplg_init(component);
-> +}
-> +
-> +static void q6apm_audio_remove(struct snd_soc_component *component)
-> +{
-> +	/* remove topology */
-> +	snd_soc_tplg_component_remove(component);
-> +}
-> +
-> +#define APM_AUDIO_DRV_NAME "q6apm-audio"
-> +
-> +static const struct snd_soc_component_driver q6apm_audio_component = {
-> +	.name		= APM_AUDIO_DRV_NAME,
-> +	.probe		= q6apm_audio_probe,
-> +	.remove		= q6apm_audio_remove,
+> +static const struct clk_ops samsung_pll0831x_clk_ops = {
+> +	.recalc_rate = samsung_pll0831x_recalc_rate,
+> +	.set_rate = samsung_pll0831x_set_rate,
+> +	.round_rate = samsung_pll_round_rate,
+> +	.enable = samsung_pll3xxx_enable,
+> +	.disable = samsung_pll3xxx_disable,
 > +};
 > +
-> +static int apm_probe(gpr_device_t *gdev)
-> +{
-> +	struct device *dev = &gdev->dev;
-> +	struct q6apm *apm;
-> +	int ret;
+> +static const struct clk_ops samsung_pll0831x_clk_min_ops = {
+> +	.recalc_rate = samsung_pll0831x_recalc_rate,
+> +};
 > +
-> +	apm = devm_kzalloc(dev, sizeof(*apm), GFP_KERNEL);
-> +	if (!apm)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, apm);
-> +
-> +	mutex_init(&apm->lock);
-> +	apm->dev = dev;
-> +	apm->gdev = gdev;
-> +	init_waitqueue_head(&apm->wait);
-> +
-> +	idr_init(&apm->graph_idr);
-> +	idr_init(&apm->graph_info_idr);
-> +	idr_init(&apm->sub_graphs_idr);
-> +	idr_init(&apm->containers_idr);
-> +
-> +	idr_init(&apm->modules_idr);
-> +
-> +	q6apm_get_apm_state(apm);
-> +
-> +	ret = devm_snd_soc_register_component(dev, &q6apm_audio_component, NULL, 0);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to get register q6apm: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return of_platform_populate(dev->of_node, NULL, NULL, dev);
-> +}
-> +
-> +struct audioreach_module *q6apm_find_module_by_mid(struct q6apm_graph *graph, uint32_t mid)
-> +{
-> +	struct audioreach_graph_info *info = graph->info;
-> +	struct q6apm *apm = graph->apm;
-> +
-> +	return __q6apm_find_module_by_mid(apm, info, mid);
-> +
-> +}
-> +
-> +static int apm_callback(struct gpr_resp_pkt *data, void *priv, int op)
-> +{
-> +	gpr_device_t *gdev = priv;
-> +	struct q6apm *apm = dev_get_drvdata(&gdev->dev);
-> +	struct device *dev = &gdev->dev;
-> +	struct gpr_ibasic_rsp_result_t *result;
-> +	struct gpr_hdr *hdr = &data->hdr;
-> +	int ret = -EINVAL;
-> +
-> +	result = data->payload;
-> +
-> +	switch (hdr->opcode) {
-> +	case APM_CMD_RSP_GET_SPF_STATE:
-> +		apm->result.opcode = hdr->opcode;
-> +		apm->result.status = 0;
-> +		/* First word of result it state */
-> +		apm->state = result->opcode;
-> +		wake_up(&apm->wait);
+>   /*
+>    * PLL45xx Clock Type
+>    */
+> @@ -1407,6 +1504,14 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
+>   		else
+>   			init.ops = &samsung_pll36xx_clk_ops;
+>   		break;
+> +	case pll_0831x:
+> +		pll->enable_offs = PLL0831X_ENABLE_SHIFT;
+> +		pll->lock_offs = PLL0831X_LOCK_STAT_SHIFT;
+> +		if (!pll->rate_table)
+> +			init.ops = &samsung_pll0831x_clk_min_ops;
+> +		else
+> +			init.ops = &samsung_pll0831x_clk_ops;
 > +		break;
+>   	case pll_6552:
+>   	case pll_6552_s3c2416:
+>   		init.ops = &samsung_pll6552_clk_ops;
+> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
+> index 213e94a97f23..a739f2b7ae80 100644
+> --- a/drivers/clk/samsung/clk-pll.h
+> +++ b/drivers/clk/samsung/clk-pll.h
+> @@ -37,6 +37,7 @@ enum samsung_pll_type {
+>   	pll_1452x,
+>   	pll_1460x,
+>   	pll_0822x,
+> +	pll_0831x,
+>   };
+>   
+>   #define PLL_RATE(_fin, _m, _p, _s, _k, _ks) \
+> 
 
-this would keep ret = -EINVAL and return it, that seems suspicious since
-this doesn't look as an error case?
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-> +	case GPR_BASIC_RSP_RESULT:
-> +		switch (result->opcode) {
-> +		case APM_CMD_GRAPH_START:
-> +		case APM_CMD_GRAPH_OPEN:
-> +		case APM_CMD_GRAPH_PREPARE:
-> +		case APM_CMD_GRAPH_CLOSE:
-> +		case APM_CMD_GRAPH_FLUSH:
-> +		case APM_CMD_GRAPH_STOP:
-> +		case APM_CMD_SET_CFG:
-> +			apm->result.opcode = result->opcode;
-> +			apm->result.status = result->status;
-> +			if (result->status) {
-> +				dev_err(dev, "Error (%d) Processing 0x%08x cmd\n",
-> +					result->status, result->opcode);
-> +				ret = -EINVAL;
-> +			} else {
-> +				ret = 0;
-
-That's also weird, maybe initialize to zero and return an error code in
-error cases, or fix the case APM_CMD_RSP_GET_SPF_STATE above.
-
-> +			}
-> +			wake_up(&apm->wait);
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +		break;
-> +	default:
-> +		break;
-
-so all the defaults are errors?
-
-> +	}
-> +
-> +	return ret;
-> +}
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
